@@ -1,0 +1,383 @@
+grammar_point: なくて (negative te-form)
+learn_before:
+  - Verb[ても] (concessive)
+  - '[Clause]から (because・so)'
+  - ことに (to my emotion or feeling)
+  - たとえ〜ても (even if)
+  - てから (after and since)
+  - てよかった (glad or relieved that)
+  - で (means・method)
+  - ではなくて・じゃなくて (not A but B)
+  - な-Adjective (predicate form)
+  - な-Adjectives (adjectival nouns)
+  - むしろ (rather・instead)
+  - を (emotion's object or cause)
+  - 側 (side or flank)
+  - 割と (comparatively・rather・unexpectedly)
+  - 本当に (genuinely)
+meaning: Not ~ and; Not so; Because not
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: なくて
+    rarity: common
+    meaning: Not ~ and; Not so; Because not
+  - conjugation-type: concessive (～ても)
+    form: なくても
+    rarity: common
+    meaning: Even if not ~
+  - conjugation-type: conditional (～ば)
+    form: なければ
+    rarity: common
+    meaning: If not ~
+  - conjugation-type: conditional (～たら)
+    form: なかったら
+    rarity: common
+    meaning: If it wasn't ~; If not ~ (past)
+pronunciation:
+  katakana: ナクテ
+  romaji: nakute
+formation:
+  Verb (negative stem) + なくて: Used when the preceding negative verbal action or state is the reason or
+    condition for the subsequent clause.
+  い-adjective (stem) + くなくて: Used when the preceding negative adjectival state is the reason or condition
+    for the subsequent clause.
+  な-adjective / Noun + では/じゃなくて: Used when the preceding negative nominal or adjectival state is the reason
+    or condition for the subsequent clause.
+jlpt: N4
+etymology: The grammar point 「なくて」 is formed by combining the negative form of a verb or adjective 「ない」
+  (conjugated to 「なく」) with the conjunctive particle 「て」. This construction essentially creates a negative
+  te-form, indicating a reason, cause, or a sequence of actions where the first action is negative.
+writeup: In Japanese, 「なくて」 combines the 「ない」 negative ending (conjugated to 「なく」) with the 「て」 conjunctive
+  particle. Like the regular 「て」-form, it can connect clauses, but with a negative meaning. Often, 「なくて」
+  highlights the reason or cause for a specific result. It's commonly translated as "because not (A),
+  (B)" or "because I didn't (A), (B)." Sentences using 「なくて」 often include the speaker's feelings (adjectives),
+  potential form verbs, or situations beyond the speaker's control. This "beyond control" element strengthens
+  the "because" translation. Words expressing things beyond one's control include 「困る」 (to be troubled),
+  「嬉しい」 (to be happy), 「疲れている」 (to feel weary), 「心配」 (to feel anxiety/worry), and 「安心」 (to feel relief).
+false_friends:
+  - term: ～て
+    meaning: And; And so; Due to; Because of; Since; Conjunctive
+    kind: similar expression
+    nuance: Unlike 「なくて」, the regular 「～て」 form does not inherently carry a negative meaning. It simply
+      connects actions or states, or indicates cause/reason without negation, focusing on sequence or
+      positive condition. The contrast lies in the presence or absence of negation in the preceding clause.
+    grammar_point: Verb[て] (and then)
+  - term: ないで
+    meaning: Without doing; Not ~ and ~
+    kind: often confused with
+    nuance: While both involve negation, 「～ないで」 primarily describes an action performed *without* doing
+      something else (e.g., 「食べないで話す」 - 'to talk without eating') or a negative state that exists *simultaneously*
+      with another action. It focuses more on the *manner* of an action or a co-existing negative state,
+      rather than a direct *reason* or *cause* for a subsequent outcome, which is a key function of 「なくて」.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ～ないから
+    meaning: Because (not)
+    kind: similar expression
+    nuance: Both 「なくて」 and 「ないから」 express a negative reason or cause. However, 「ないから」 is a more direct
+      and explicit statement of cause, emphasizing the logical reason for the subsequent clause. 「なくて」
+      often implies a more natural consequence, a given state leading to an emotional outcome, or a situation
+      beyond the speaker's control. It can also simply connect two clauses where the first is negative,
+      without necessarily implying a strong causal link, akin to a negative 'and'.
+    grammar_point: '[Clause]から (because・so)'
+  - term: なくてもいい
+    meaning: It's okay not to; no need to
+    kind: similar expression
+    nuance: While 「なくて」 connects a negative reason or state to a subsequent clause, 「なくてもいい」 (formed from
+      「なくて」 + 「も」 + 「いい」) expresses that something is permissible or unnecessary even if a negative condition
+      is met. The nuance shifts from cause/sequence to permission/lack of obligation.
+    grammar_point: なくてもいい (no need to)
+post_false_friends_writeup: The key difference lies in the nuance of causality and the presence of negation.
+  「～て」 describes a sequence or reason without implying negation, while 「～ないで」 indicates an
+examples:
+  - english: It's a shame I couldn't talk to that person.
+    japanese:
+      - あの 人 と 話せ {なく て}、残念 です。
+      - あの 人 と 話せ {なく て} 残念 だ。
+      - あの 人 と 話す こと が でき {なく て}、残念 です。
+      - あの 人 と 話す こと が でき {なく て}、本当 に 残念 だ よ。
+    english_literally: Not being able to talk to that person, it's a shame.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 と 話せ なかっ た {から}、残念 です。
+        english: Because I couldn't talk to that person, it's a shame.
+        hint: 「～から」 directly states the reason. 「～なくて」 can also indicate cause, but often implies a more
+          natural or emotional consequence, or simply connects the negative state to the outcome.
+    scene: A person feeling regret about a missed opportunity to speak with someone important at an event.
+    register: semi-formal
+    setting: melancholic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「話せなくて」 conveys the inability to speak as a direct reason for the feeling of regret.
+      The use of 「残念です」 makes the expression polite, suitable for reflecting on a missed opportunity to
+      no one in particular.
+  - english: This cake isn't sweet; it's refreshing.
+    japanese:
+      - この ケーキ は 甘く {なく て}、さっぱり し て いる。
+      - この ケーキ は 甘く {なく て} さっぱり し て いる わ。
+      - この ケーキ は 甘く {なく て}、割と さっぱり し てる よ。
+    english_literally: This cake not sweet, it is refreshing.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は 甘く ない {けど}、さっぱり し て いる。
+        english: This cake is not sweet, but it is refreshing.
+        hint: 「～けど」 expresses a contrast or concession, meaning 'it's not sweet, but (it is refreshing).'
+          「～なくて」 links the lack of sweetness to the refreshing quality as a consequence or descriptive
+          elaboration.
+    scene: A baker describing a new, less sweet cake to a customer who prefers lighter desserts.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The adjective 「甘くなくて」 indicates the absence of sweetness, which is directly linked to the
+      cake's refreshing quality 「さっぱりしている」. The addition of 「わ」 in the second Japanese example softens
+      the tone, common in female speech, making the description more gentle and appealing to a customer.
+  - english: That shop isn't lively; it's quiet.
+    japanese:
+      - あの 店 は 賑やか で は {なく て}、静か だ。
+      - あの 店 は 賑やか じゃ {なく て}、静か だ よ。
+      - あの 店 は 賑やか で は {なく て}、むしろ 静か だ。
+    english_literally: That shop not lively, it is quiet.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 は 賑やか じゃ ない {けど}、静か だ。
+        english: That shop isn't lively, but it's quiet.
+        hint: 「～けど」 implies a contrast or concession. 「～なくて」 more directly states what the shop is not,
+          and then provides what it is, implying a direct characteristic.
+    scene: Two friends discussing their preferred atmosphere for studying in a cafe.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「賑やかではなくて」 acts as a direct negation, indicating what the shop is *not*, immediately
+      followed by what it *is* (「静かだ」 - quiet). The casual 「賑やかじゃなくて」 and the added 「だよ」 or 「むしろ」 (rather)
+      reflect a friendly, conversational tone between peers.
+  - english: That story wasn't true; it was a lie.
+    japanese:
+      - あの 話 は 事実 で は {なく て}、嘘 だっ た。
+      - あの 話 は 事実 じゃ {なく て}、嘘 だっ た ん だ。
+      - あの 話 は 事実 で は {なく て}、完全 に 嘘 でし た。
+    english_literally: That story not fact, it was a lie.
+    competing_grammar:
+      - competing_japanese:
+          - あの 話 は 事実 で は なかっ た {けど}、嘘 だっ た。
+        english: That story wasn't true, but it was a lie.
+        hint: 「～けど」 implies a contrast or concession. 「～なくて」 is used here to present a correction or clarification,
+          stating what something is not, followed by what it actually is.
+    scene: Someone correcting a rumor they heard, stating the actual truth.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「事実ではなくて」 explicitly states that the story is *not* a fact, and by implication, it *is* a
+      lie. This direct contrast using 「なくて」 clearly refutes the previous statement. The variations in
+      politeness, from 「嘘だった」 to 「嘘でした」, allow for adjustment based on the audience, typical in a formal
+      setting like correcting a rumor.
+  - english: I apologize for not making it on time for our appointment.
+    japanese:
+      - 約束 の 時間 に 間に合わ {なく て}、申し訳 あり ませ ん。
+      - 約束 の 時間 に 間に合わ {なく て}、すみ ませ ん。
+      - 約束 の 時間 に 間に合わ {なく て}、ごめん なさい。
+    english_literally: Not making it in time for appointment, I am sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 の 時間 に 間に合わ なかっ た {から}、申し訳 あり ませ ん。
+        english: Because I wasn't on time for our appointment, I apologize.
+        hint: 「～から」 more explicitly states the reason. 「～なくて」 can also convey cause, but often implies
+          a more direct, perhaps regrettable, consequence of the negative action.
+    scene: Someone arriving late to a meeting or gathering and offering an apology.
+    register: formal
+    setting: apologetic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「間に合わなくて」 expresses the negative reason for the apology directly and concisely. This is a
+      common and natural way to link a negative action to an expression of regret. The choice between
+      「申し訳ありません」, 「すみません」, and 「ごめんなさい」 reflects varying degrees of formality, from very polite to casual,
+      allowing the speaker to match the social context.
+  - english: I couldn't play because I didn't finish my homework.
+    japanese:
+      - 宿題 を 終わら せ {なく て}、遊べ なかっ た。
+      - 宿題 終わら せ {なく て}、遊べ なかっ た ん だ。
+      - 宿題 を 終わら せ {なく て}、ゲーム も でき なかっ た よ。
+    english_literally: Not finishing homework, could not play.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を 終わら せ なかっ た {から}、遊べ なかっ た。
+        english: Because I didn't finish my homework, I couldn't play.
+        hint: 「～から」 directly expresses the reason for the inability to play. 「～なくて」 states the negative
+          precondition that led to the subsequent consequence.
+    scene: A child explaining to their parents why they couldn't join their friends outside.
+    register: casual
+    setting: apologetic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「終わらせなくて」 clearly states the negative reason for the inability to play, highlighting the direct
+      consequence. The casual tone of the sentences, particularly with phrases like 「遊べなかったんだ」 or 「できなかったよ」,
+      is typical of a child explaining a situation to their parents, possibly with a hint of lament.
+  - english: I had no money in my wallet, so I couldn't buy anything.
+    japanese:
+      - 財布 に お 金 が {なく て}、何 も 買え なかっ た。
+      - 財布 に お 金 が {なく て}、何 も 買え なかっ た よ。
+      - 財布 に お 金 が {なく て}、困っ た。
+    english_literally: Money not being in wallet, could not buy anything.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 に お 金 が なかっ た {から}、何 も 買え なかっ た。
+        english: Because there was no money in my wallet, I couldn't buy anything.
+        hint: 「～から」 directly expresses the reason for not being able to buy anything. 「～なくて」 links the
+          absence of money to the inability to purchase as a direct consequence.
+    scene: Someone recounting a frustrating shopping experience where they realized they didn't have enough
+      cash.
+    register: casual
+    setting: melancholic
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「お金がなくて」 directly states the lack of money as the reason for the inability to buy
+      anything. This usage emphasizes the direct and immediate consequence of the negative state. Adding
+      「よ」 or expressing 「困った」 (I was troubled) further conveys the speaker's frustration in a casual,
+      conversational manner.
+  - english: It's good that this news isn't serious.
+    japanese:
+      - この ニュース は 深刻 じゃ {なく て} よかっ た。
+      - この ニュース は 深刻 じゃ {なく て}、本当 に よかっ た ね。
+      - この ニュース は 深刻 で は {なく て}、本当 に 安心 し た。
+    english_literally: This news not serious, it was good.
+    competing_grammar:
+      - competing_japanese:
+          - この ニュース は 深刻 じゃ なかっ た {から} よかっ た。
+        english: Because this news wasn't serious, it was good.
+        hint: 「～から」 explicitly states the reason for the relief. 「～なくて」 implies that the non-serious nature
+          of the news directly led to the positive feeling of relief.
+    scene: Two colleagues discussing a recent update, relieved it's not as bad as initially thought.
+    register: semi-formal
+    setting: optimistic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「深刻じゃなくて」 expresses the negative state of the news (not serious) as the reason for the positive
+      outcome (it was good/a relief). The use of 「じゃなくて」 is a casual contraction of 「ではないくて」. Adding 「本当によかったね」
+      or 「本当に安心した」 conveys shared relief and reinforces the positive sentiment among colleagues.
+  - english: I'm troubled because the bus doesn't seem to be coming.
+    japanese:
+      - バス が 来 そう に {なく て}、困っ て い ます。
+      - バス が 来 そう に {なく て}、困っ てる。
+      - バス が 来 そう に {なく て}、どう しよう か な。
+    english_literally: Bus not seeming to come, I am troubled.
+    competing_grammar:
+      - competing_japanese:
+          - バス が 来 そう に ない {から}、困っ て い ます。
+        english: Because the bus doesn't seem to be coming, I'm troubled.
+        hint: 「～から」 directly states the reason for being troubled. 「～なくて」 implies that the bus not seeming
+          to come is the direct cause of the speaker's distress.
+    scene: Someone waiting at a bus stop, growing increasingly frustrated as the bus is delayed.
+    register: semi-formal
+    setting: melancholic
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「来そうになくて」 combines the auxiliary verb 「そう」 (seems like) with the negative 「ない」
+      and then 「なくて」, effectively meaning "doesn't seem to be coming, and therefore...". It conveys a
+      natural consequence of the observed situation. The use of 「困っています」 or 「困ってる」 expresses the speaker's
+      distress, fitting the melancholic setting of a delayed bus.
+  - english: My child hasn't come home yet, and I'm worried.
+    japanese:
+      - 子供 が まだ 帰っ て 来 {なく て}、心配 です。
+      - 子供 が まだ 帰っ て 来 {なく て}、心配 だ よ。
+      - 子供 が まだ 帰っ て 来 {なく て}、本当 に 心配 だ わ。
+    english_literally: Child not yet returned home, I am worried.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が まだ 帰っ て 来 ない {から}、心配 です。
+        english: Because my child hasn't come home yet, I'm worried.
+        hint: 「～から」 explicitly states the reason for the worry. 「～なくて」 links the child's absence directly
+          to the feeling of concern.
+    scene: A mother expressing concern to her partner about their child's delayed return from school.
+    register: semi-formal
+    setting: cautious
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「です」 shows politeness even when expressing worry, which is characteristic of a
+      parent speaking to their partner or another adult in a respectful context. The phrase 「帰って来なくて」
+      clearly states the negative reason for the speaker's concern. The optional 「心配だわ」 is a common female-specific
+      ending used to express feelings more emphatically, suitable for an older female speaker.
+  - english: She doesn't look like she's having fun; I wonder what's wrong.
+    japanese:
+      - 彼女 が 楽し そう じゃ {なく て}、どう し た ん だろう。
+      - 彼女 が 楽し そう じゃ {なく て}、どう し た の？
+      - 彼女 が 楽し そう で は {なく て}、何 か あっ た の か な。
+    english_literally: She not looking fun, I wonder what happened.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 楽し そう じゃ ない {から}、どう し た ん だろう。
+        english: Because she doesn't look like she's having fun, I wonder what's wrong.
+        hint: 「～から」 explicitly states the reason for the speaker's wonder. 「～なくて」 implies that her not
+          looking fun is the direct observation leading to the question about what's wrong.
+    scene: A friend observing another friend's subdued demeanor at a party and wondering the cause.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual ending 「どうしたんだろう」 is typical of male speech when pondering a situation. The observation
+      「楽しそうじゃなくて」 indicates a perceived negative state, prompting the speaker's question about what might
+      be wrong. The contraction 「じゃなくて」 is common in casual speech among younger people, making it sound
+      more natural in this context.
+  - english: Even if I don't know the way, it's okay because I have my smartphone.
+    japanese:
+      - もし 道 が 分 から {なく て} も、スマホ が ある から 大丈夫 だ。
+      - もし 道 が 分 から {なく て} も、携帯 が ある から 大丈夫 だ よ。
+      - た と え 道 が 分 から {なく て} も、スマホ が ある から 平気 だ よ。
+    english_literally: Even if not knowing way, because I have smartphone, it is okay.
+    competing_grammar:
+      - competing_japanese:
+          - もし 道 が 分 から なけれ {ば}、スマホ が ある から 大丈夫 だ。
+        english: If I don't know the way, it's okay because I have my smartphone.
+        hint: 「～なければ」 is another conditional form meaning 'if not'. While both express condition, 「～なくても」
+          specifically highlights a concession ('even if not X, Y is still true').
+    scene: Someone reassuring a travel companion about navigating an unfamiliar city.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: concessive (～ても)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「分からなくても」 (even if I don't know) combined with the reassuring 「大丈夫だ」 or 「平気だよ」
+      creates a supportive and comforting tone. The casual ending 「～だよ」 is typical for younger male speakers
+      and can be used to add a friendly emphasis when reassuring a female listener.
+  - english: The crops in the field will wither because it's not raining.
+    japanese:
+      - 雨 が 降ら {なく て}、畑 の 作物 が 枯れ て しまう。
+      - 雨 が 降ら {なく て}、畑 の 作物 が 枯れ ちゃう ぞ。
+      - 雨 が 降ら {なく て}、作物 が みんな ダメ に なる わ。
+    english_literally: Rain not falling, field's crops will wither.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降ら ない {から}、畑 の 作物 が 枯れ て しまう。
+        english: Because it's not raining, the crops in the field will wither.
+        hint: 「～から」 directly expresses the reason for the crops withering. 「～なくて」 implies that the lack
+          of rain is the direct cause leading to the outcome.
+    scene: A farmer explaining to a visitor the grim outlook for their crops due to a prolonged drought.
+    register: semi-formal
+    setting: pessimistic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The solemn tone implied by 「枯れてしまう」 (will wither away) combined with the descriptive 「雨が降らなくて」
+      to state the reason, is typical of an older, experienced male farmer conveying a grim reality. The
+      optional 「枯れちゃうぞ」 adds a sense of grave certainty and male speech, while 「みんなダメになるわ」 is a more emphatic
+      and often female-associated way of expressing complete ruin.
+post_example_writeup: Remember, while 「なくて」 often translates to "because not," it fundamentally connects
+  two clauses with a negative reason or state. The resulting feeling or state is a consequence of the
+  preceding negative condition. This differs from simply listing two unrelated negative conditions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なくて

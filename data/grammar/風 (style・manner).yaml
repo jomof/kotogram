@@ -1,0 +1,269 @@
+grammar_point: 風 (style・manner)
+learn_before:
+  - を (emotion's object or cause)
+meaning: Style, way, fashion
+meaning_warning: 風 is read “ふう” not “かぜ”
+pronunciation:
+  katakana: フウ
+  romaji: fū
+formation:
+  Noun + 風: In the style of (A)
+  Noun + 風 + の + Noun: (B) is in the style of (A)
+  Noun + 風 + に + Verb: To do something in the style of (A)
+jlpt: N4
+etymology: The kanji 風 (kaze) originally meant “wind.” In this grammatical context, however, it is used
+  metaphorically to describe a style, manner, or way of doing something, like the wind carrying a certain
+  atmosphere or feeling that defines a particular form. This usage has evolved to denote a distinct 'flavor'
+  or 'characteristic'.
+writeup: 'The suffix 風 (fū) is used in Japanese to convey the meaning of “in the style of (A)” or “in
+  the fashion of (A).” It implies that something possesses the characteristics, appearance, or general
+  atmosphere of the noun it modifies. While the kanji 風 can mean “wind” (kaze), in this compound form,
+  it consistently takes the reading ふう (fū). To use 風, attach it directly to the end of a noun to describe
+  something as being ''in the style of'' that noun. For example, 日本風 (Nihon-fū) means ''Japanese-style''.
+  Additionally, the particle の (no) may be attached after 風 (i.e. 風の) before connecting it to another
+  noun. This clarifies that the second noun (B) is in the style of the first noun (A). For example, 日本風の家
+  (Nihon-fū no ie) means ''a Japanese-style house''. Furthermore, it can combine with the particle に (ni)
+  to form 風に, functioning adverbially to describe an action performed ''in the style of'' or ''in the
+  manner of'' the preceding noun. For example, 彼 は 日本風 に 絵 を 描く (Kare wa Nihon-fū ni e o kaku) means ''He
+  paints in a Japanese style.'' Important Consideration: As a compound structure or suffix, 風 is always
+  pronounced ふう (fū) in this grammatical pattern. It is crucial not to confuse it with its common reading
+  かぜ (kaze) when it refers to ''wind'' or ''a cold''.'
+false_friends:
+  - term: ～みたい
+    meaning: like, similar to, seems like
+    kind: similar expression
+    nuance: Unlike 風, ～みたい is more casual and indicates a general likeness or appearance, rather than
+      a specific 'style' or 'fashion'. It can also express a subjective impression, suggesting that something
+      'looks like' or 'seems like' something else, without necessarily implying an intentional or established
+      characteristic.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: ～のようだ
+    meaning: like, as if, seems like
+    kind: similar expression
+    nuance: Similar to ～みたい but more formal, ～のようだ expresses a likeness or comparison. While 風 denotes
+      an established style or characteristic, ～のようだ often implies a resemblance that might be coincidental
+      or temporary, or a comparison made for descriptive purposes rather than an inherent quality.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 型・形 (type・form・model・shape)
+    meaning: Model, type, pattern, kind, or shape of something.
+    kind: similar expression
+    nuance: 「型」 or 「形」 emphasizes the *mold* or *blueprint* something adheres to, or its physical *shape*
+      or *form*, implying a more rigid or defined structure. 「風」 describes a *manner* or *aesthetic* that
+      is adopted, often with a more flexible or interpretive feel. While 「型」 denotes a fixed pattern or
+      category, 「風」 relates to a broader 'flavor' or 'vibe'.
+    grammar_point: 型 (type model)
+post_false_friends_writeup: When differentiating between 風, ～みたい, and ～のようだ, consider the formality and
+  the nature of the resemblance. 風 is used for recognized styles, fashions, or appearances that have a
+  distinct identity. ～みたい is a casual way to say 'like' or 'seems like', often based on a subjective or
+  transient impression. ～のようだ is its more formal counterpart, also indicating resemblance or appearance
+  but used in more formal contexts and often for more direct comparisons. Furthermore, while 風 implies
+  a broader aesthetic or manner, 型・形 focuses on the specific mold, pattern, or physical form, indicating
+  a more precise and rigid structure.
+examples:
+  - english: He often makes Italian-style pasta.
+    japanese:
+      - 彼 は イタリア {風} の パスタ を よく 作る。
+      - 彼 は イタリア {風} の パスタ を よく 作り ます。
+    english_literally: He, as for, Italian style's pasta, often makes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は イタリア {みたい} な パスタ を よく 作る。
+        english: He often makes pasta that's like Italian pasta.
+        hint: 「みたい」 suggests a general resemblance, but 「風」 indicates a specific 'style' or 'fashion'
+          that is intentionally adopted or clearly recognizable as such. We're looking for a specific
+          style of pasta.
+    scene: A friend talking about another friend's cooking habits.
+    register: casual
+    setting: friendly
+    nuance: The casual tone of this conversation among friends highlights the relaxed context in which
+      one might describe a cooking style. The phrase 「よく 作る」 emphasizes the frequency, suggesting a characteristic
+      habit.
+    etymology: The word 'パスタ' (pasuta) is a loanword from Italian 'pasta', referring to Italian noodles.
+      'イタリア' (Italia) is the Japanese rendition of 'Italy'.
+  - english: Recently, retro-style interiors are popular.
+    japanese:
+      - 最近、レトロ {風} の インテリア が 人気 です。
+      - 最近、レトロ {風} の インテリア が 人気 だ。
+    english_literally: Recently, retro style's interior, is popular.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、レトロ {な} インテリア が 人気 です。
+        english: Recently, old-fashioned interiors are popular.
+        hint: While 「レトロな」 can mean 'retro,' it often implies simply 'old-fashioned' or 'dated.' 「風」 specifically
+          highlights a 'style' or 'aesthetic' that is intentionally designed to evoke the past. We're
+          looking for interiors that are specifically 'retro-style'.
+    scene: Discussing current trends in home decor.
+    register: formal
+    setting: informative
+    nuance: The use of the polite form 「です」 and the informative setting lend a formal tone to the discussion
+      of trends, where 「人気 です」 indicates general popularity.
+    etymology: 「レトロ」 (retoro) is a loanword from 'retro', indicating a style derived from the past. 「インテリア」
+      (interia) is a loanword from 'interior'.
+  - english: The young woman was wearing gyaru-style makeup.
+    japanese:
+      - 若い 女性 が ギャル {風} の メイク を し て い た。
+      - 若い 女性 が ギャル {風} の メイク を し て い まし た。
+      - 若い 女性 が ギャル {風} メイク を し て い た。
+    english_literally: Young woman, gyaru style's makeup, was doing.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 女性 が ギャル {みたい} な メイク を し て い た。
+        english: The young woman was wearing makeup like a gyaru.
+        hint: 「みたい」 implies a general resemblance, whereas 「風」 indicates an adherence to a specific 'style'
+          or 'fashion'. Here, the makeup isn't just similar; it's distinctly 'gyaru-style.' We're looking
+          for makeup that is characteristic of the gyaru style.
+    scene: Observing someone's appearance and discussing it with a friend.
+    register: casual
+    setting: casual slang
+    speaker_gender: female
+    nuance: The informal tone, coupled with an observation about a specific fashion choice, is common
+      in casual conversation between female friends. 「ギャル」 (gyaru) is a specific Japanese youth subculture
+      style.
+    etymology: 「ギャル」 (gyaru) is a Japanese loanword from English 'gal', referring to a specific fashion
+      and lifestyle trend prevalent among young women in Japan.
+  - english: My boss always dresses neatly in a businessman's style.
+    japanese:
+      - 上司 は いつ も ビジネスマン {風} の きちん と し た 格好 だ。
+      - 上司 は いつ も ビジネスマン {風} の きちん と し た 格好 です。
+    english_literally: Boss, as for, businessman style's neat appearance is.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 は いつ も ビジネスマン {みたい} な きちん と し た 格好 だ。
+        english: My boss always dresses neatly like a businessman.
+        hint: While 「みたい」 suggests a comparison 'like a businessman,' 「風」 conveys that the boss specifically
+          adopts a 'businessman's style,' implying an intentional choice or a recognized professional
+          look. We're looking for attire that is characteristic of the businessman style.
+    scene: Describing a colleague's professional appearance to a coworker.
+    register: semi-formal
+    setting: professional
+    nuance: The semi-formal register and professional setting are appropriate for discussing a superior's
+      appearance. The phrase 「きちん と し た 格好」 emphasizes the neatness of the attire.
+    etymology: 「ビジネスマン」 (bijinesuman) is a loanword from English 'businessman'.
+  - english: The children are playing, striking poses like anime heroes.
+    japanese:
+      - 子供 たち は アニメ の ヒーロー {風} の ポーズ を とっ て 遊ん で いる。
+      - 子供 たち は アニメ の ヒーロー {風} の ポーズ を とっ て 遊ん で い ます。
+      - 子供 たち は アニメ の ヒーロー {風} の ポーズ とっ て 遊ん でる。
+    english_literally: Children, as for, anime's hero style's poses, taking, are playing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は アニメ の ヒーロー {みたい} な ポーズ を とっ て 遊ん で いる。
+        english: The children are playing, striking poses like anime heroes.
+        hint: 「みたい」 is for a general comparison, but 「風」 specifies that they are striking poses 'in the
+          style of' anime heroes, implying an emulation of a known pattern. We're looking for poses that
+          are characteristic of anime heroes.
+    scene: Observing children's imaginative play in a park.
+    register: casual
+    setting: reflective
+    nuance: The casual 「遊ん で いる」 suits the observation of children's play. The reflection on their imaginative
+      actions using 「ヒーロー 風」 highlights their emulation of a distinct style.
+    etymology: 「アニメ」 (anime) is a Japanese abbreviation of 'animation'. 「ヒーロー」 (hiiroo) is a loanword
+      from English 'hero'. 「ポーズ」 (poozu) is a loanword from English 'pose'.
+  - english: She always dresses in a French style.
+    japanese:
+      - 彼女 は いつ も フランス {風} の 服装 を し て いる。
+      - 彼女 は いつ も フランス {風} の 服装 を し て い ます。
+      - 彼女 は いつ も フランス {風} の 服装 し てる。
+    english_literally: She, as for, always French style's clothing, is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も フランス {みたい} な 服装 を し て いる。
+        english: She always dresses like she's from France.
+        hint: 「みたい」 suggests a general resemblance, whereas 「風」 indicates a specific 'style' or 'fashion'
+          that is intentionally adopted or clearly recognizable as such. We're looking for clothes that
+          are characteristic of French style.
+    scene: Discussing a friend's consistent fashion sense.
+    register: casual
+    setting: friendly
+    nuance: This casual expression, used among friends, points to a consistent and distinct fashion sense.
+      The phrase 「いつ も」 emphasizes the regularity of her French style.
+    etymology: 「フランス」 (Furansu) is the Japanese name for 'France'. 「服装」 (fukusō) refers to clothing or
+      attire.
+  - english: She showed a childishly innocent smile.
+    japanese:
+      - 彼女 は 子供 {風} の 無邪気 な 笑顔 を 見せ た。
+      - 彼女 は 子供 {風} の 無邪気 な 笑顔 を 見せ まし た。
+    english_literally: She, as for, child style's innocent smile, showed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 子供 {みたい} な 無邪気 な 笑顔 を 見せ た。
+        english: She showed an innocent smile like a child's.
+        hint: 「みたい」 is a straightforward comparison 'like a child.' 「風」, in this context, implies that
+          the smile possesses the *essence* or *characteristic quality* of a child's innocence, suggesting
+          an inherent nature rather than just a resemblance. We're looking for a smile that has the characteristics
+          of a child's innocence.
+    scene: Describing someone's expression that unexpectedly revealed a certain quality.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: The formal tone suggests a detached observation, and the use of 「笑顔」 (egao) for 'smile' is
+      neutral, allowing the male speaker to describe the characteristic with a nuanced choice of words.
+      「子供 風」 emphasizes the inherent 'essence' of a child's innocence.
+    etymology: 「無邪気」 (mujakina) means innocent or naive. 「笑顔」 (egao) combines 「笑う」 (warau, to laugh/smile)
+      and 「顔」 (kao, face).
+  - english: He always wears celebrity-style clothing.
+    japanese:
+      - 彼 は いつ も 有名 人 {風} の 服装 を し て いる。
+      - 彼 は いつ も 有名 人 {風} の 服装 を し て い ます。
+      - 彼 は いつ も 有名 人 {風} の 服装 し てる。
+    english_literally: He, as for, always celebrity style's clothing, is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 有名 人 {みたい} な 服装 を し て いる。
+        english: He always wears clothes like a celebrity.
+        hint: 「みたい」 suggests a general resemblance, whereas 「風」 indicates a specific 'style' or 'fashion'
+          that is intentionally adopted or clearly recognizable as such. We're looking for clothing that
+          is characteristic of celebrity style.
+    scene: Two friends discussing a mutual acquaintance's fashion sense.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The casual 「し て いる」 combined with the observation of someone's distinct fashion choices is
+      typical of how male friends might discuss others' styles in a relaxed setting. 「有名 人 風」 implies
+      an intentional adoption of a publicly recognized style.
+    etymology: 「有名 人」 (yūmeijin) means 'famous person' or 'celebrity', combining 「有名」 (yūmei, famous)
+      and 「人」 (jin, person).
+  - english: This garden is built in a traditional Japanese garden style.
+    japanese:
+      - この 庭園 は 日本 庭園 {風} に 造ら れ て いる。
+      - この 庭園 は 日本 庭園 {風} に 造ら れ て い ます。
+      - この 庭園 は 日本 庭園 {風} に 造ら れ てる。
+    english_literally: This garden, as for, Japanese garden style, is being built.
+    competing_grammar:
+      - competing_japanese:
+          - この 庭園 は 日本 園 {の よう に} 造ら れ て いる。
+        english: This garden is built like a Japanese garden.
+        hint: 「のよう に」 implies a comparison or a general resemblance in manner, whereas 「風 に」 indicates
+          that it is designed *in the style* of something, embodying its specific characteristics through
+          a deliberate artistic choice. We're looking for a garden that embodies the characteristics of
+          a Japanese garden style.
+    scene: Describing the aesthetic of a garden to someone visiting.
+    register: formal
+    setting: informative
+    nuance: The use of 「～風 に」 emphasizes that the action of building is performed *in the manner* or *style*
+      of a Japanese garden, highlighting the deliberate artistic choice. The formal language is suited
+      for an informative description of a specific architectural style.
+    etymology: 「庭園」 (teien) means garden or park, often referring to a more formal, designed garden.
+  - english: This new game has retro pixel art-style graphics.
+    japanese:
+      - この 新しい ゲーム は レトロ ピクセル アート {風} の グラフィック だ。
+      - この 新しい ゲーム は レトロ ピクセル アート {風} の グラフィック です。
+    english_literally: This new game, as for, retro pixel art style's graphics is.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい ゲーム は レトロ ピクセル アート {みたい} な グラフィック だ。
+        english: This new game has graphics like retro pixel art.
+        hint: 「みたい」 is a general comparison, but 「風」 indicates that the graphics are specifically designed
+          *in the style* of retro pixel art, reflecting an intentional artistic choice to evoke a specific
+          aesthetic. We're looking for graphics that embody the specific style of retro pixel art.
+    scene: Discussing the visual design of a video game with friends.
+    register: casual
+    setting: informative
+    nuance: 「レトロ ピクセル アート 風」 indicates an intentional artistic direction to evoke a specific, recognizable
+      visual aesthetic from older games. The casual 「だ」 suits a discussion about a game among friends.
+      The use of katakana loanwords for 'retro', 'pixel art', and 'graphic' is common in casual speech
+      about modern media.
+    etymology: 「ピクセル アート」 (pikuseru āto) is a loanword from 'pixel art'. 「グラフィック」 (gurafikku) is a loanword
+      from 'graphic'.
+post_example_writeup: While 風 can be used broadly, it often highlights a discernible trend, school of
+  thought, or established pattern. This differentiates it from expressions of mere casual similarity.

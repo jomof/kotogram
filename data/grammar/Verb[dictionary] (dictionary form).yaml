@@ -1,0 +1,263 @@
+grammar_point: Verb[dictionary] (dictionary form)
+matcher: '{verb-dictionary}'
+matcher_enforce_examples: true
+learn_before:
+  - どこ (where)
+  - 何 (what)
+meaning: plain, non-past verb form
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 食べる
+    rarity: common
+    meaning: to eat (dictionary form)
+  - conjugation-type: dictionary (plain non-past)
+    form: 飲む
+    rarity: common
+    meaning: to drink (dictionary form)
+  - conjugation-type: dictionary (plain non-past)
+    form: する
+    rarity: common
+    meaning: to do (dictionary form)
+  - conjugation-type: dictionary (plain non-past)
+    form: 来る
+    rarity: common
+    meaning: to come (dictionary form)
+pronunciation:
+  katakana: ジショケイ
+  romaji: Jishokei
+formation:
+  Group 1 Verbs (Godan verbs): The final -u sound changes from -i, -chi, -ri, -bi, -mi, -ni, -ki, -gi,
+    -shi, to -u.
+  Group 2 Verbs (Ichidan verbs): The -masu stem takes a -ru ending.
+  Irregular Verbs: Specific forms for する and くる.
+jlpt: N5
+etymology: The concept of 'dictionary form' (辞書形 - jishokei) reflects its primary use as the entry form
+  found in Japanese dictionaries. Historically, Japanese verbs had various endings depending on their
+  function (e.g., conclusive, attributive, imperative). The modern 'dictionary form' consolidates what
+  were often different forms in classical Japanese into a single base form from which most contemporary
+  conjugations are derived. Its 'plain' nature stems from this historical usage as a foundational, non-polite
+  verbal ending.
+writeup: 'The dictionary form, or 辞書形 (jishokei), is the fundamental, non-past, plain form of a Japanese
+  verb. It is the form you will find when looking up verbs in a dictionary, hence its name. This form
+  is inherently casual and is used when speaking with friends, family, or in informal settings. It serves
+  as the base from which almost all other verb conjugations are derived, making its mastery essential
+  for further grammatical development. Understanding the dictionary form is crucial for conjugating verbs
+  into polite forms (like the -masu form), past tense, negative forms, and many other grammatical patterns.
+  While called ''non-past,'' its usage can refer to future actions or general truths, depending on context.
+  For instance, 「食べる」 (taberu) can mean ''to eat'' (general action), ''will eat'' (future action), or
+  ''eats'' (habitual action). The formation varies slightly depending on the verb group: Group 1 Verbs
+  (Godan verbs): These verbs end in a 「う」 sound. For example, 買う (kau - to buy), 話す (hanasu - to speak),
+  待つ (matsu - to wait), 死ぬ (shinu - to die), 呼ぶ (yobu - to call), 飲む (nomu - to drink), 書く (kaku - to
+  write), 泳ぐ (oyogu - to swim), 帰る (kaeru - to return). Group 2 Verbs (Ichidan verbs): These verbs always
+  end in 「る」 (ru) preceded by an ''e'' sound or ''i'' sound. For example, 食べる (taberu - to eat), 見る (miru
+  - to see), 寝る (neru - to sleep). Irregular Verbs: There are only two truly irregular verbs: する (suru
+  - to do) and くる (kuru - to come), which have unique dictionary forms.'
+false_friends:
+  - term: Verb[ます] (polite present)
+    meaning: The polite non-past form of a verb.
+    kind: similar expression
+    nuance: The dictionary form is casual and plain, while the -masu form is polite and appropriate for
+      most formal situations or when speaking to strangers or superiors.
+    grammar_point: Verb[ます] (polite present)
+post_false_friends_writeup: While both the dictionary form and the -masu form are non-past, their primary
+  distinction lies in their level of politeness. The dictionary form conveys a direct, casual tone, suitable
+  for informal conversations or when explicitly stating facts. The -masu form, on the other hand, adds
+  a layer of politeness, making it appropriate for more formal settings, speaking to elders, or when you
+  want to show respect.
+examples:
+  - english: I eat sushi.
+    japanese:
+      - 私 は 寿司 を {食べる}。
+      - 寿司 を {食べる}。
+      - 俺 は 寿司 を {食べる}。
+      - 私 寿司 を {食べる}。
+    english_literally: As for me, sushi I eat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 寿司 を 食べ ます。
+        english: I eat sushi.
+        hint: The -masu form is polite. We're looking for the plain, casual form.
+    scene: A friend asks you what you like to eat.
+    register: casual
+    setting: friendly
+  - english: Cats sleep a lot.
+    japanese:
+      - 猫 は よく {寝る}。
+      - 猫 よく {寝る}。
+      - 猫 は よく {寝る} もん だ。
+      - 猫 よく {寝る} よ。
+    english_literally: As for cats, well they sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は よく 寝 ます。
+        english: Cats sleep a lot.
+        hint: The -masu form is polite. We're looking for the plain, casual form often used for general
+          truths.
+    scene: Explaining a fact about cats.
+    register: casual
+    setting: informative
+  - english: I will go to school tomorrow.
+    japanese:
+      - 明日 学校 へ {行く}。
+      - 明日 学校 {行く}。
+      - 明日 学校 に {行く} ぞ。
+      - 明日 学校 に {行く} けど ね。
+    english_literally: Tomorrow, school to go.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 学校 へ 行き ます。
+        english: I will go to school tomorrow.
+        hint: The -masu form is polite. We're looking for the plain form for future plans.
+    scene: Telling a friend your plans for tomorrow.
+    register: casual
+    setting: friendly
+  - english: When you look up this word in the dictionary, it will appear as 読む.
+    japanese:
+      - この 単語 を 辞書 で 引く と {読む} と 出 て くる。
+      - この 言葉 を 辞書 で 調べる と {読む} と 載っ て いる。
+    english_literally: This word dictionary in look up and "read" appears.
+    competing_grammar:
+      - competing_japanese:
+          - 『To read』は 日本 語 で 読み ます だ。
+        english: “To read” is 読みます in Japanese.
+        hint: When referring to dictionary entries or definitions, the dictionary form itself is used,
+          not its polite conjugation.
+    scene: Explaining how a Japanese word is written and found in a dictionary.
+    register: formal
+    setting: instructional
+  - english: Do you smoke cigarettes?
+    japanese:
+      - タ バコ を {吸う}？
+      - タ バコ {吸う}？
+      - タ バコ {吸う} の か？
+      - お前、タバコ {吸う} の？
+    english_literally: Cigarettes, to smoke?
+    competing_grammar:
+      - competing_japanese:
+          - タ バコ を 吸い ます か？
+        english: Do you smoke cigarettes?
+        hint: Adding か or using the -masu form makes it polite. We're asking casually.
+    scene: Asking a friend a direct question.
+    register: casual
+    setting: interrogative
+  - english: I can speak Japanese.
+    japanese:
+      - 私 は 日本 語 を {話す} こと が できる。
+      - 私 は 日本 語 を {話す} こと が できる よ。
+      - 日本 語 {話す} こと が できる。
+    english_literally: As for me, Japanese to speak thing can.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 日本 語 を 話せ ます。
+        english: I can speak Japanese.
+        hint: The potential form 話せる is more direct. We're using the dictionary form as a noun modifier
+          here.
+    scene: Stating your ability to someone.
+    register: casual
+    setting: informative
+  - english: This is a book to read.
+    japanese:
+      - これ は {読む} 本 だ。
+      - これ は {読む} 本 な ん だ。
+      - これ は {読む} 本 だ よ。
+    english_literally: This as for to read book it is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 昨日 読ん だ 本 だ。
+        english: This is a book I read yesterday.
+        hint: While 読んだ (past tense) is common for past actions modifying nouns, the dictionary form can
+          be used for general or habitual actions. We're looking for the base form.
+    scene: Showing a book to a friend and explaining its purpose.
+    register: casual
+    setting: friendly
+  - english: I like to read.
+    japanese:
+      - 私 は 本 を {読む} の が 好き だ。
+      - 本 を {読む} の が 好き。
+      - 私、本 を {読む} の が 好き な ん だ。
+    english_literally: As for me, books to read thing I like.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 本 が 好き だ。
+        english: I like books.
+        hint: This sentence specifies that you like the *act* of reading, not just books themselves. We're
+          looking for the verb form here.
+    scene: Discussing hobbies.
+    register: casual
+    setting: friendly
+  - english: He said he'll go.
+    japanese:
+      - 彼 は {行く} と 言っ た。
+      - 彼、{行く} って 言っ た よ。
+      - 彼、{行く} って。
+    english_literally: As for him, go he said.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 行き ます と 言っ た。
+        english: He said he'll go.
+        hint: The direct quote uses the casual form of the verb when reporting in casual speech.
+    scene: Reporting a friend's decision.
+    register: casual
+    setting: informative
+  - english: Want to drink something?
+    japanese:
+      - 何 か {飲む}？
+      - 何 か {飲む} か？
+    english_literally: Something, drink?
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 飲み ます か？
+        english: Shall we drink something?
+        hint: This casual invitation uses the dictionary form without an interrogative particle.
+    scene: Offering a drink to a friend.
+    register: casual
+    setting: friendly
+  - english: It might rain tomorrow.
+    japanese:
+      - 明日 雨 が {降る} か も しれ ない。
+      - 明日 雨 {降る} か も。
+      - 明日 雨 が {降る} か も ね。
+    english_literally: Tomorrow rain falls maybe.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 雨 だろう。
+        english: It will probably rain tomorrow.
+        hint: 「だろう」 expresses a higher probability or conjecture based on inference. We're looking for
+          an expression that conveys a weaker possibility.
+    scene: Discussing tomorrow's weather forecast.
+    register: casual
+    setting: informative
+  - english: I try to read every day.
+    japanese:
+      - 毎日 本 を {読む} よう に する。
+      - 毎日 本 {読む} よう に する。
+      - 毎日 本 を {読む} よう に し てる ん だ。
+    english_literally: Every day books to read effort do.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 本 を 読み ます。
+        english: I read books every day.
+        hint: This sentence emphasizes the *effort* made to read, not just the action itself.
+    scene: Explaining a daily habit.
+    register: casual
+    setting: informative
+  - english: Visitors must sign in.
+    japanese:
+      - 訪問 者 は 名前 を {書く} こと。
+      - 名前 を {書く} こと。
+      - 訪問 者 は 必ず 名前 を {書く} こと。
+    english_literally: As for visitors, name to write thing.
+    competing_grammar:
+      - competing_japanese:
+          - 訪問 者 は 名前 を 書い て ください。
+        english: Visitors, please write your name.
+        hint: 「〜こと」 after dictionary form is a more direct, often impersonal, instruction or rule, unlike
+          a polite request.
+    scene: A sign in a building.
+    register: formal
+    setting: instructional
+post_example_writeup: The examples demonstrate how the dictionary form serves as a versatile base in Japanese.
+  It appears naturally in casual conversation, for general statements, and in combination with other grammatical
+  patterns to express various nuances like ability, desire, or intent. Pay close attention to its usage
+  in more formal instructional contexts or when modifying nouns, as these are common patterns where the
+  plain form is essential.

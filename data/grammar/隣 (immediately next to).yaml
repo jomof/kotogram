@@ -1,0 +1,397 @@
+grammar_point: 隣 (immediately next to)
+learn_before:
+  - どなた (polite who)
+meaning: Immediately next to; adjacent
+pronunciation:
+  katakana: トナリ
+  romaji: tonari
+formation:
+  Noun の + 隣: Indicates something immediately adjacent to a noun, often implying shared boundary or being
+    in the same row/category.
+jlpt: N4
+etymology: 「隣」 (tonari) is believed to derive from the ancient Japanese verb 「と成る」 (to naru), meaning
+  'to become joined' or 'to form a pair with', emphasizing the direct, immediate adjacency.
+writeup: '「隣」 (tonari) is used to express immediate proximity in Japanese. It strictly means ''immediately
+  next to'' or ''neighboring''. It implies that there is nothing in between the two things, and they are
+  often of the same type or category, or share a direct boundary. For instance, if you are sitting on
+  a train and someone is in the seat right beside you, they are あなた の 隣 (anata no tonari). If you are
+  talking about the house next door, it is 隣 の 家 (tonari no ie). When describing inanimate objects, 「隣」
+  is used for items in a row or array that are immediately adjacent, like books on a shelf or buildings
+  on a street. Important Considerations: Use 「隣」 when emphasizing direct, immediate adjacency, often implying
+  a shared boundary or items within the same category/line.'
+false_friends:
+  - term: そば
+    meaning: Near, nearby, close by
+    kind: similar expression
+    nuance: 「そば」 indicates general closeness, without specifying immediate adjacency. It's less precise
+      than 「隣」 about the exact position relative to an object or person.
+    grammar_point: <suggest>:そば (near, nearby, close by)
+  - term: 近く
+    meaning: Near, vicinity, close
+    kind: similar expression
+    nuance: 「近く」 is the broadest term for proximity, referring to a general area or vicinity. It does
+      not imply direct adjacency at all, unlike 「隣」.
+    grammar_point: 近く,遠く (proximity・distance spatial)
+  - term: 隣り合わせ
+    meaning: Side by side, adjacent to each other
+    kind: similar expression
+    nuance: 「隣り合わせ」 emphasizes that two or more things are arranged directly next to each other, often
+      implying they are facing the same way or forming a contiguous block. It's a stronger, more descriptive
+      form of adjacency than a simple 「隣」.
+    grammar_point: 隣り合わせ (side by side)
+  - term: 間
+    meaning: Between, middle spatial
+    kind: similar expression
+    nuance: 「間」 indicates a space or interval *between* two or more points, implying that something is
+      located in the middle, or refers to a duration. It contrasts with 「隣」 which implies direct, immediate
+      adjacency with nothing in between.
+    grammar_point: あいだ (between・among・while・during)
+post_false_friends_writeup: While 「隣」 conveys immediate proximity, it is more specific than 「そば」 and 「近く」.
+  「そば」 suggests being 'at hand' or 'in one's presence', while 「近く」 is simply 'not far away'. Neither of
+  them implies direct adjacency as strongly as 「隣」 does. 「隣り合わせ」 is a more emphatic way to say 'immediately
+  next to each other', often used for items placed in a row. Furthermore, 「間」 is distinct as it refers
+  to something located *between* two points, rather than directly adjacent to one.
+examples:
+  - english: I sat next to him.
+    japanese:
+      - 私 は 彼 の {隣} に 座り まし た。
+      - 私 は 彼 の {隣} に 座っ た。
+      - 私 は 彼 の {隣} に 座っ た ん だ。
+      - 彼 の {隣} に 座っ た よ。
+      - 彼 の {隣} に 座っ た ぜ。
+      - 私 は 彼 の {隣} に 座っ ちゃっ た。
+      - 彼 の {隣} に 座っ た ん です。
+      - 私 は 彼 の {隣} に 座ら せ て いただき まし た。
+      - 彼 の {隣} に 座っ た し。
+      - 彼 の {隣} に 座り まし た よ。
+      - 彼 の {隣} に 座っ ちゃっ た ん だ。
+      - '{隣} に 座り まし た。'
+      - '{隣} に 座っ た よ。'
+      - '{隣} に 座っ た。'
+      - 彼 の {隣} に 座っ た の。
+    english_literally: I, him's next to, sat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼 の {そば} に 座っ た。
+        english: I sat near him.
+        hint: 「そば」 indicates general closeness, not necessarily the seat right next to him. We're looking
+          for immediate adjacency.
+      - competing_japanese:
+          - 私 は 彼 の {近く} に 座っ た。
+        english: I sat close to him.
+        hint: 「近く」 implies general proximity, not sitting directly beside someone. We're looking for the
+          seat right next to him.
+      - competing_japanese:
+          - 彼 と {隣り合わせ} に 座っ た。
+        english: I sat side by side with him.
+        hint: 「隣り合わせ」 emphasizes sitting *together* side by side, implying a shared state of being adjacent,
+          rather than simply sitting *next to* someone in an available spot. We're looking for the simple
+          act of taking the seat next to someone.
+      - competing_japanese:
+          - 彼 と {並ん で} 座っ た。
+        english: I sat side-by-side with him.
+        hint: While `並んで` emphasizes sitting in alignment, it doesn't specify the immediate adjacency
+          in the same way that `隣` does for a single seat. We're looking for the simple act of taking
+          the seat next to someone.
+    scene: You enter a crowded room and find a vacant seat directly beside someone you know.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Using 「隣」 (tonari) here precisely conveys that the speaker sat in the seat immediately adjacent
+      to the other person, leaving no space in between. This emphasizes the direct proximity in a polite
+      context.
+  - english: My house is next to the station.
+    japanese:
+      - 私 の 家 は 駅 の {隣} です。
+      - 私 の 家 は 駅 の {隣} で ござい ます。
+      - うち は 駅 の {隣} だ よ。
+      - 駅 の {隣} です。
+      - うち は 駅 の {隣} だ ぜ。
+      - うち は 駅 の {隣} だ。
+      - 駅 の {隣} に うち が あり ます。
+      - うち、駅 の {隣} な ん だ。
+      - 私 の 家 は 駅 の {隣} に ござい ます。
+      - 駅 の {隣} が うち だ よ。
+      - 駅 の {隣} に 家 が ある ん です。
+      - 駅 の {隣} の 家 です。
+      - 駅 の {隣} の アパート に 住ん でる。
+      - 我が家 は 駅 の {隣} で ござい ます。
+      - 駅 の {隣} だ。
+    english_literally: My house station's next door, is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 は 駅 の {そば} です。
+        english: I house is near the station.
+        hint: 「そば」 means 'near' in a general sense, not necessarily immediately adjacent. We're looking
+          for a direct neighbor relationship.
+      - competing_japanese:
+          - 私 の 家 は 駅 の {近く} です。
+        english: My house is close to the station.
+        hint: 「近く」 implies general proximity, not necessarily the very next building. We're looking for
+          direct adjacency.
+      - competing_japanese:
+          - 駅 と うち は {隣り合わせ} です。
+        english: The station and my house are side by side.
+        hint: 「隣り合わせ」 emphasizes that the station and house are placed *together* side by side, often
+          implying a shared wall or continuous facade. While grammatically possible, 「隣」 is more common
+          for simply stating one building is adjacent to another. We're looking for the simple adjacency
+          of the house to the station.
+      - competing_japanese:
+          - 私 の 家 は {駅前} に あり ます。
+        english: My house is in front of the station.
+        hint: While 「駅前」 means 'in front of the station', it implies a general area, not necessarily the
+          *next* building. We're looking for the house being directly next door to the station.
+    scene: You are giving directions to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: Using 「隣」 (tonari) is precise, indicating that the speaker's house is the *next door* building
+      to the station, sharing a boundary. This is the common and natural way to describe the location
+      of a house relative to an immediately adjacent landmark. The casual version 「うち は 駅 の 隣 だ よ」 uses
+      「うち」 for 'my house' and the sentence-final particle 「よ」 adds emphasis, which is common among younger
+      speakers, especially female speakers, in informal situations.
+  - english: Is the seat next to this one free?
+    japanese:
+      - この 席 の {隣} は 空い て い ます か？
+      - こちら の 席 の {隣} は 空い て い ます か？
+      - この 席 の {隣}、空い てる？
+      - この 席 {隣} 空い てる？
+      - この 席 の {隣} は 空い て いる？
+      - この 席 の {隣} の 席 は 空い て い ます か？
+      - ここ の {隣}、空い て ます か？
+      - この 席 の {隣} は 空席 です か？
+      - '{隣}、空い てる？'
+      - 恐れ入り ます が、この 席 の {隣} は 空い て おり ます でしょう か？
+      - この {隣} の 席、空い て ます か？
+      - 失礼 し ます が、この 席 の {隣} は 空い て い ます か？
+      - この 席 の {隣}、どなた か いらっしゃい ます か？
+      - '{隣} の 席、空い てる？'
+    english_literally: This seat's next is empty?
+    competing_grammar:
+      - competing_japanese:
+          - この 席 の {そば} は 空い て い ます か？
+        english: Is the area near this seat free?
+        hint: 「そば」 is too vague; it asks if the general area nearby is free, not the specific adjacent
+          seat. We're asking about the very next seat.
+      - competing_japanese:
+          - この 席 の {近く} は 空い て い ます か？
+        english: Is the area close to this seat free?
+        hint: 「近く」 refers to the general vicinity, not the specific seat directly beside. We're asking
+          about the very next seat.
+      - competing_japanese:
+          - この 席 と {隣り合わせ} の 席 は 空い て い ます か？
+        english: Is the seat adjacent to this one free?
+        hint: 「隣り合わせ」 emphasizes two things being *together* side by side. While technically possible,
+          「隣」 is the direct and natural way to ask about the single seat immediately beside the current
+          one. We're looking for the specific seat right next to this one.
+      - competing_japanese:
+          - この {辺り} は 空い て い ます か？
+        english: Is this area free?
+        hint: This asks about the general vicinity, not the specific seat immediately next to the one
+          in question. We're looking for the specific seat right next to this one.
+      - competing_japanese:
+          - '{ここ} は 空い て い ます か？'
+        english: Is here free?
+        hint: This is too vague and might refer to the speaker's own spot or a general area, not the specific
+          adjacent seat. We're looking for the specific seat right next to this one.
+    scene: You are on a crowded train or in a cafe, looking for a seat.
+    register: teineigo (polite)
+    setting: interrogative
+    speaker_gender: female
+    nuance: When asking about a seat, 「隣」 (tonari) is unequivocally used to refer to the seat *immediately*
+      adjacent to the specified seat. The casual form 「空いてる？」 is a common contraction of 「空いていますか？」 and
+      is widely used by female speakers in informal situations.
+  - english: The seat next to me on the train became free.
+    japanese:
+      - 電車 の {隣} の 席 が 空い た。
+      - 電車 の {隣} の 席 が 空き まし た。
+      - 電車 の {隣} の 席、空い た！
+      - 電車 の {隣} の 席 空い た よ！
+      - 電車 の {隣} の 席 が 空い て よかっ た。
+      - 電車 の {隣} の 席 が 空き まし た よ。
+      - 電車 の {隣} の 席 が 空い た ん だ。
+      - やっ た！電車 の {隣} の 席 空い た！
+      - 電車 の {隣} の 席、やっと 空い た ね。
+      - 電車 の {隣} が 空き まし た。
+      - '{隣} の 席 が 空い た から 座ろう。'
+      - 電車 の {隣} の 席 が ガラッ と 空い た。
+      - ああ、電車 の {隣} が 空い た わ。
+    english_literally: Train's next seat became free.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 の {そば} の 席 が 空い た。
+        english: The seat near the train became free.
+        hint: 「そば」 implies a seat near the train itself, not the specific seat immediately next to yours.
+          We're looking for the seat right beside you.
+      - competing_japanese:
+          - 電車 の {近く} の 席 が 空い た。
+        english: The seat close to the train became free.
+        hint: 「近く」 indicates a seat in the general vicinity of the train, not the specific seat immediately
+          next to yours. We're looking for the seat right beside you.
+      - competing_japanese:
+          - 電車 で 私 の 席 と {隣り合わせ} の 席 が 空い た。
+        english: The seat adjacent to mine on the train became free.
+        hint: 「隣り合わせ」 suggests seats arranged in a contiguous unit, which is true, but 「隣」 is the precise
+          and natural term for *the* specific seat immediately next to yours. We're looking for the single
+          seat right next to yours.
+    scene: You are on a crowded train, and someone just got off, leaving the seat beside you empty.
+    register: casual
+    setting: informative
+    nuance: This example uses 「隣」 (tonari) unequivocally for the 'immediately adjacent seat' on a train.
+      This is the standard usage for specifying seats in a row. The exclamation mark in 「空いた！」 adds a
+      sense of surprise or relief.
+  - english: The bookstore is next to the cafe.
+    japanese:
+      - 本屋 は カフェ の {隣} です。
+      - 本屋 は カフェ の {隣} だ よ。
+      - 本屋 は カフェ の {隣} に あり ます。
+    english_literally: Bookstore, cafe's next to, is.
+    competing_grammar:
+      - competing_japanese:
+          - 本屋 は カフェ の {そば} です。
+        english: The bookstore is near the cafe.
+        hint: 「そば」 indicates general closeness, not necessarily immediate adjacency. We're looking for
+          the specific next-door location.
+      - competing_japanese:
+          - 本屋 は カフェ の {近く} です。
+        english: The bookstore is close to the cafe.
+        hint: 「近く」 means in the general vicinity, not necessarily the very next building. We're looking
+          for direct adjacency.
+      - competing_japanese:
+          - カフェ と 本屋 は {隣り合わせ} です。
+        english: The cafe and the bookstore are side by side.
+        hint: 「隣り合わせ」 emphasizes that the two establishments are arranged *together* side by side, implying
+          a shared wall or continuous facade. 「隣」 is more common for simply stating one building is adjacent
+          to another. We're looking for simple adjacency.
+    scene: You are giving directions to a friend in a shopping district.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please place this box next to that one.
+    japanese:
+      - この 箱 を あの 箱 の {隣} に 置い て ください。
+      - この 箱 を あの 箱 の {隣} に 置い て ね。
+      - この 箱 は あの 箱 の {隣} に 置い て くれ。
+    english_literally: This box, that box's next to, please place.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 を あの 箱 の {そば} に 置い て ください。
+        english: Please place this box near that one.
+        hint: 「そば」 indicates general closeness, not necessarily directly adjacent. We're looking for placing
+          it right next to it.
+      - competing_japanese:
+          - この 箱 を あの 箱 の {近く} に 置い て ください。
+        english: Please place this box close to that one.
+        hint: 「近く」 implies a broader area, not a specific position directly next to it. We're looking
+          for placing it right next to it.
+      - competing_japanese:
+          - この 箱 と あの 箱 を {隣り合わせ} に 置い て ください。
+        english: Please place this box and that box side by side.
+        hint: 「隣り合わせ」 implies arranging items *together* side by side, focusing on the paired arrangement.
+          「隣」 simply indicates placing one item next to another. We're looking for simple adjacency.
+    scene: You are instructing someone to arrange boxes in a storage room.
+    register: teineigo (polite)
+    setting: instructional
+  - english: My desk is next to the window.
+    japanese:
+      - 私 の 机 は 窓 の {隣} に あり ます。
+      - 私 の 机 は 窓 の {隣} だ よ。
+      - うち の 机 は 窓 の {隣} に ある。
+    english_literally: My desk window's next to, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 机 は 窓 の {そば} に あり ます。
+        english: My desk is near the window.
+        hint: 「そば」 indicates general closeness, not necessarily directly against it. We're implying the
+          desk is flush with the window.
+      - competing_japanese:
+          - 私 の 机 は 窓 の {近く} に あり ます。
+        english: My desk is close to the window.
+        hint: 「近く」 implies a broader area, not a specific position directly beside. We're implying the
+          desk is flush with the window.
+    scene: You are describing your workspace to a colleague.
+    register: teineigo (polite)
+    setting: informative
+    nuance: Implies the desk is directly beside the window, possibly touching or very close, rather than
+      just in the general vicinity.
+  - english: The cat is sleeping next to the dog.
+    japanese:
+      - 猫 は 犬 の {隣} で 寝 て いる。
+      - 猫 は 犬 の {隣} で 寝 てる よ。
+      - 猫 が 犬 の {隣} で 寝 て い ます。
+    english_literally: Cat dog's next to, sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は 犬 の {そば} で 寝 て いる。
+        english: The cat is sleeping near the dog.
+        hint: 「そば」 suggests general closeness, not necessarily directly touching. We're implying they
+          are sleeping in contact.
+      - competing_japanese:
+          - 猫 は 犬 の {近く} で 寝 て いる。
+        english: The cat is sleeping close to the dog.
+        hint: 「近く」 indicates general proximity, not specifically side-by-side contact. We're implying
+          they are sleeping in contact.
+      - competing_japanese:
+          - 猫 と 犬 が {隣り合わせ} で 寝 て いる。
+        english: The cat and dog are sleeping side by side.
+        hint: 「隣り合わせ」 emphasizes they are arranged *together* side by side. While similar, 「隣」 is simpler
+          for two items being next to each other. We're looking for simple direct adjacency.
+    scene: Observing pets napping together.
+    register: casual
+    setting: friendly
+    nuance: Used for two animals sleeping immediately beside each other, indicating close physical contact.
+  - english: The park is next to the elementary school.
+    japanese:
+      - その 公園 は 小 学校 の {隣} です。
+      - その 公園 は 小 学校 の {隣} に あり ます。
+      - その 公園 は 小 学校 の {隣} だ よ。
+    english_literally: That park elementary school's next to, is.
+    competing_grammar:
+      - competing_japanese:
+          - その 公園 は 小 学校 の {そば} です。
+        english: The park is near the elementary school.
+        hint: 「そば」 indicates general closeness, not necessarily directly adjacent. We're looking for the
+          specific next-door location.
+      - competing_japanese:
+          - その 公園 は 小 学校 の {近く} です。
+        english: The park is close to the elementary school.
+        hint: 「近く」 means in the general vicinity, not necessarily bordering it. We're looking for direct
+          adjacency.
+      - competing_japanese:
+          - 小 学校 と 公園 は {隣り合わせ} です。
+        english: The elementary school and park are side by side.
+        hint: 「隣り合わせ」 emphasizes that the two facilities are arranged *together* side by side, focusing
+          on their joint adjacency. 「隣」 is more common for simply stating one is adjacent to another.
+          We're looking for simple direct adjacency.
+    scene: Talking about local amenities.
+    register: teineigo (polite)
+    setting: informative
+    nuance: Describes the adjacency of two distinct public facilities, implying they share a border.
+  - english: Who is the person next to Tanaka-san?
+    japanese:
+      - 田中 さん の {隣} の 人 は 誰 です か？
+      - 田中 さん の {隣} の 方 は どなた です か？
+      - 田中 さん の {隣} の 人、誰 だ？
+    english_literally: Tanaka-san's next to person is who?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん の {そば} の 人 は 誰 です か？
+        english: Who is the person near Tanaka-san?
+        hint: 「そば」 indicates general closeness, not necessarily the person immediately beside them. We're
+          looking for the person directly adjacent.
+      - competing_japanese:
+          - 田中 さん の {近く} の 人 は 誰 です か？
+        english: Who is the person close to Tanaka-san?
+        hint: 「近く」 implies a broader area, not the specific person directly beside. We're looking for
+          the person directly adjacent.
+    scene: At a formal gathering, asking about someone.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Refers to the person immediately adjacent to Tanaka-san, typically in a seating arrangement.
+post_example_writeup: These examples illustrate that 「隣」 is specifically used for immediate adjacency,
+  often implying a shared boundary or items within the same category. It is precise and commonly used
+  for neighbors, adjacent seats, or items placed directly beside one another.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/横-隣-adjacency-spatial

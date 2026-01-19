@@ -1,0 +1,247 @@
+grammar_point: だんだん (gradually)
+learn_before:
+  - 近く,遠く (proximity・distance spatial)
+meaning: Gradually, little by little, step by step
+pronunciation:
+  katakana: ダンダン
+  romaji: dandan
+formation:
+  だんだん + [Phrase]: Expresses a gradual change or progression subjected to the speaker's perspective, whether
+    it is a continuous, natural process, or a subjective perception of change over time, often used in
+    conversational and narrative contexts to describe evolving situations or feelings. This can be combined
+    with other progressive forms like Verb[て] + くる or Verb[て] + いく to emphasize the direction of the gradual
+    change, or stand alone to indicate a general slow evolution, often implying a noticeable but not necessarily
+    rapid shift in state or action. When combined with other adverbs of time or frequency, it further
+    specifies the temporal aspect of the gradual change, contributing to a more precise description of
+    the evolving situation, allowing for nuanced expressions of transformation over time.
+jlpt: N4
+etymology: The word 「だんだん」 originally comes from the kanji construction 「段々」, which literally means 「step
+  by step」 or 「stage by stage」. The repetition emphasizes the gradual nature of the change, evoking the
+  image of ascending or descending steps. This core concept of sequential, continuous movement or change
+  is fundamental to its usage.
+writeup: 「だんだん」 is an adverb used to express a slight but constant progression of something. It signifies
+  a change that occurs "step by step" or " steadily," often implying a natural, continuous process rather
+  than a series of distinct increments. This adverb modifies the meaning of entire phrases, indicating
+  a gradual increase or decrease in a state or action. To use 「だんだん」, simply place it before the phrase
+  that describes the change. While 「だんだん」 can optionally take the particle 「と」 (e.g., だんだんと), it is very
+  often omitted, a common characteristic for many adverbs and onomatopoeic words in Japanese. It is important
+  to distinguish 「だんだん」 from 「どんどん」. While both describe progression, 「どんどん」 implies a rapid or forceful
+  change, often carrying the nuance of a banging sound (like a drum). In contrast, 「だんだん」 emphasizes a
+  slower, more deliberate, and continuous progression. Similarly, while 「少しずつ」 also means "little by little,"
+  it tends to imply discrete, incremental steps or changes that are more consciously measured, whereas
+  「だんだん」 suggests a more flowing, unfolding process.
+false_friends:
+  - term: どんどん (rapidly・progressively)
+    meaning: Progressively, rapidly increasing, more and more
+    kind: often confused with
+    nuance: Unlike 「だんだん」, 「どんどん」 expresses fast changes or progression. It has the onomatopoeic feel
+      of drums, implying force or speed, or a rapid, unhesitating action.
+    grammar_point: どんどん (rapidly・progressively)
+  - term: 少しずつ
+    meaning: Little by little, a bit at a time
+    kind: similar expression
+    nuance: While both indicate gradual change, 「だんだん」 implies a continuous, unfolding process, whereas
+      「少しずつ」 suggests discrete, incremental steps or changes that are consciously measured or performed.
+    grammar_point: <strongly-suggest>:少しずつ (little by little, a bit at a time)
+  - term: 徐々に
+    meaning: Gradually, slowly
+    kind: similar expression
+    nuance: 「徐々に」 is more formal and literary than 「だんだん」. While it also indicates gradual change, it
+      is less common in everyday conversation and often implies a more deliberate or systematic progression.
+    grammar_point: <strongly-suggest>:徐々に (gradually, slowly)
+post_false_friends_writeup: The primary differences among 「だんだん」, 「どんどん」, 「少しずつ」, and 「徐々に」 lie in the
+  speed, nature, and formality of the change. Use 「だんだん」 for a continuous, steady, and often natural progression
+  in general conversation. Use 「どんどん」 when the change is rapid, forceful, or dramatic, or when encouraging
+  rapid action. 「少しずつ」 is for incremental, deliberate changes, often implying conscious effort or measurement.
+  「徐々に」 is a more formal alternative to 「だんだん」, suitable for written contexts or more polite speech, but
+  less natural for casual, ongoing processes.
+examples:
+  - english: My body is gradually getting warmer.
+    japanese:
+      - 体 が {だんだん} 暖かく なっ て き まし た。
+      - 体 が {だんだん} 暖かく なっ て き た。
+      - 体 が {だんだん} 暖まっ て き まし た。
+    english_literally: Body is gradually getting warmer.
+    competing_grammar:
+      - competing_japanese:
+          - 体 が {少し ずつ} 暖かく なっ て き まし た。
+        english: My body is getting warmer little by little.
+        hint: 「少しずつ」 emphasizes discrete, incremental steps. We're looking for a continuous, natural warming
+          process.
+    scene: A person feeling their body temperature rise after exercising or coming in from the cold.
+    register: teineigo (polite)
+    setting: informative
+  - english: Your Japanese is gradually improving, isn't it?
+    japanese:
+      - 日本 語 が {だんだん} 上手 に なっ て き まし た ね。
+      - 日本 語 が {だんだん} 上手 に なっ て き た ね。
+      - 日本 語 が {だんだん} 良く なっ て き まし た ね。
+    english_literally: Japanese is gradually getting better, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が {少し ずつ} 上手 に なっ て き まし た ね。
+        english: Your Japanese is improving little by little.
+        hint: 「少しずつ」 implies smaller, more intermittent gains. We're looking for an observation of steady,
+          ongoing progress.
+    scene: A teacher complimenting a student's progress.
+    register: teineigo (polite)
+    setting: supportive
+  - english: She was nervous at first, but she seems to be gradually relaxing.
+    japanese:
+      - 彼女 は 最初 は 緊張 し て い た けど、{だんだん} リラックス し て き た みたい だ。
+      - 彼女 は 最初 は 緊張 し て い まし た が、{だんだん} リラックス し て き た よう です。
+      - 彼女 は 最初 は 緊張 し て い た が、{だんだん} 落ち着い て き た よう だ。
+    english_literally: She was nervous at first, but gradually seems to have relaxed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 最初 は 緊張 し て い た けど、{徐々 に} リラックス し て き た みたい だ。
+        english: She was nervous at first, but she seems to be slowly relaxing.
+        hint: 「徐々に」 is more formal or written. We're looking for a natural, unfolding process in casual
+          conversation.
+    scene: Someone observing a person becoming more comfortable in a new situation.
+    register: semi-formal
+    setting: informative
+  - english: You will gradually lose interest in sweets.
+    japanese:
+      - あなた は {だんだん} お かし を 食べ たく なく なる よ。
+      - お かし は {だんだん} 食べ たく なく なり ます よ。
+      - '{だんだん} 甘い 物 に 興味 が なくなる でしょう。'
+    english_literally: You will gradually not want to eat sweets.
+    competing_grammar:
+      - competing_japanese:
+          - あなた は {徐々 に} お かし を 食べ たく なく なる でしょう。
+        english: You will slowly lose interest in sweets.
+        hint: 「徐々に」 sounds too formal for a mother speaking to her child. We're looking for a gentle,
+          natural evolution of taste.
+    scene: A mother gently advises her child about eating habits.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「〜よ」 at the end softens the advice, typical for a mother speaking to her child.
+      「だんだん」 here highlights the natural, gentle evolution of taste preferences. This expression suggests
+      a subtle and natural shift in desire over time, aligning with common observations about changing
+      tastes as one matures, rather than a forced or sudden change. The casual register and direct address
+      further enhance the comforting and familiar tone of parental advice, making the prediction feel
+      less like a strict instruction and more like an empathetic insight into a natural process of growth
+      and change, subtly conveying that tastes will naturally evolve.
+  - english: I'm gradually falling in love with you.
+    japanese:
+      - '{だんだん} 君 の こと が 好き に なっ て いく よ。'
+      - '{だんだん} あなた の こと が 好き に なっ て いき ます。'
+      - '{だんだん} 好き に なっ て き た よ。'
+    english_literally: Gradually, I am coming to like you.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し ずつ} 君 の こと が 好き に なっ て いき ます。'
+        english: I'm falling in love with you little by little.
+        hint: 「少しずつ」 can feel more deliberate or measured. We're looking for a continuous, natural development
+          of feelings in an intimate context.
+    scene: A man confessing his feelings to a woman he likes.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「〜いく」 emphasizes the ongoing process of feelings developing, suggesting a continuous,
+      unfolding transformation of emotions. The casual ending 「〜よ」 is typical for a male speaker in an
+      intimate confession, lending a soft, personal, and authentic tone to the declaration of evolving
+      affection. This combination effectively conveys a natural, heartfelt progression of romantic feelings
+      rather than a sudden or calculated shift, making the expression more tender and relatable within
+      a romantic context.
+  - english: I'm gradually getting tired, so let's take a break soon.
+    japanese:
+      - '{だんだん} 疲れ が たまっ て き た から、そろそろ 休憩 しよう。'
+      - '{だんだん} 疲れ が たまっ て き まし た から、そろそろ 休憩 し ましょ う。'
+      - '{だんだん} 疲れ て き た し、そろそろ 休も う か。'
+    english_literally: Gradually, tiredness has accumulated, so let's take a break soon.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し ずつ} 疲れ が たまっ て き た から、そろそろ 休憩 しよう。'
+        english: I'm getting tired little by little, so let's take a break soon.
+        hint: 「少しずつ」 might imply a deliberate accumulation of tiredness. We're looking for a naturally
+          developing fatigue.
+    scene: Two coworkers discussing their energy levels at work.
+    register: casual
+    setting: friendly
+  - english: I'm gradually getting sleepy.
+    japanese:
+      - '{だんだん} 眠く なっ て き た。'
+      - '{だんだん} 眠く なっ て き まし た。'
+      - '{だんだん} 眠気 が さし て き た。'
+    english_literally: Gradually, I have become sleepy.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し ずつ} 眠く なっ て き まし た。'
+        english: I'm getting sleepy little by little.
+        hint: 「少しずつ」 suggests a more conscious or measured progression. We're looking for the natural
+          onset of drowsiness.
+    scene: Telling your spouse you're ready for bed.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    nuance: The phrase 「眠くなってきた」 expresses the gradual onset of drowsiness. Because the sentence ends
+      without politeness markers like 「〜ます」 or 「〜です」, it is appropriate for conversations with close friends,
+      family, or romantic partners. The use of 「だんだん」 emphasizes that the sleepiness is a continuous and
+      natural process, not a sudden event, making the statement feel gentle and reflective of a slow transition
+      into a sleepy state. This intimate register highlights the comfort and familiarity between the speaker
+      and listener, where such a simple, unadorned observation is naturally understood and accepted.
+  - english: The pain has gradually become worse.
+    japanese:
+      - '{だんだん} 痛み が ひどく なっ て き まし た。'
+      - 痛み が {だんだん} 増し て き まし た。
+    english_literally: Gradually, the pain has become severe.
+    competing_grammar:
+      - competing_japanese:
+          - 痛み が {少し ずつ} ひどく なっ て き まし た。
+        english: The pain has become worse little by little.
+        hint: 「少しずつ」 might imply discrete, minor worsening. We're looking for a continuous, worsening
+          nature of the pain for diagnosis.
+    scene: A patient describing their symptoms to a doctor.
+    register: teineigo (polite)
+    setting: serious
+  - english: I'm gradually beginning to understand what the professor is saying.
+    japanese:
+      - 先生 の 言っ て いる こと が {だんだん} 分かっ て き まし た。
+      - 先生 の 言っ て いる こと が {だんだん} 分かっ て き た。
+      - 先生 が 何 を 言っ て いる の か {だんだん} 理解 できる よう に なっ て き まし た。
+    english_literally: What the professor is saying, gradually I've come to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 言っ て いる こと が {少し ずつ} 分かっ て き まし た。
+        english: I'm understanding what the professor is saying little by little.
+        hint: 「少しずつ」 implies discrete steps in understanding. We're looking for a continuous, unfolding
+          process of comprehension.
+    scene: A student in a difficult lecture, reflecting on their comprehension.
+    register: semi-formal
+    setting: academic
+    nuance: The phrase 「分かってきました」 emphasizes the progressive understanding. 「だんだん」 highlights the slow,
+      continuous process of comprehension, suggesting a natural and steady progression over time. This
+      nuance implies that understanding is not a sudden epiphany but a gradual unfolding, making the student's
+      progress seem organic and earned through consistent exposure and effort. The semi-formal register
+      is appropriate for an academic setting, indicating a respectful but also personal reflection on
+      one's learning journey.
+  - english: The sound of the train gradually faded into the distance.
+    japanese:
+      - 列車 の 音 が {だんだん} 遠ざかっ て いき まし た。
+      - 列車 の 音 が {だんだん} 遠く なっ て いき まし た。
+      - 列車 の 音 が {だんだん} 聞こえ なく なっ て き た。
+    english_literally: Train's sound gradually became distant.
+    competing_grammar:
+      - competing_japanese:
+          - 列車 の 音 が {少し ずつ} 遠ざかっ て いき まし た。
+        english: The sound of the train faded little by little.
+        hint: 「少しずつ」 implies distinct, incremental changes in sound. We're looking for a smooth, continuous
+          diminishing of the sound.
+    scene: Observing a train departing from a station, listening to its diminishing sound.
+    register: formal
+    setting: reflective
+    nuance: The use of 「遠ざかっていく」 (to go away into the distance) emphasizes the continuous movement. 「だんだん」
+      perfectly captures the slow, steady diminishing of the sound as the train moves further away, rather
+      than a sudden or intermittent fade. This creates a vivid image of the sound seamlessly receding,
+      highlighting the natural and uninterrupted flow of the train's departure. The formal register adds
+      a touch of elegance to the observation, fitting a reflective setting.
+post_example_writeup: 「だんだん」 is frequently paired with verbs in the 「〜てくる」 form (for changes coming towards
+  the speaker/present) or 「〜ていく」 form (for changes moving away from the speaker/future) to further emphasize
+  the gradual progression of an action or state over time. This combination clearly expresses an ongoing,
+  unfolding change.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だんだん

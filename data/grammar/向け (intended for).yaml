@@ -1,0 +1,399 @@
+grammar_point: 向け (intended for)
+learn_before:
+  - Verb[ている・てる] (progressive・resultative)
+  - '[Noun]向き (facing)'
+  - 〜付き (attached with)
+  - 込み (including)
+  - ～に沿って (in line with・in accordance with・following)
+meaning: Intended for, Aimed at
+pronunciation:
+  katakana: ムケ
+  romaji: muke
+formation:
+  '[Noun] + 向け': Indicates something is intended for, aimed at, or oriented toward the noun.
+  '[Noun1] + 向けの + [Noun2]': Indicates the second noun is intended for or aimed at the first noun.
+  '[Noun] + 向けに + [Verb/Adjective]': Indicates an action or state is directed towards or intended for
+    the noun.
+jlpt: N3
+etymology: 「向け」 is derived from the transitive verb 「向ける (むける)」, meaning "to turn towards" or "to aim
+  at". It has evolved into a suffix to indicate the target or intended recipient of something. In contemporary
+  Japanese, it is considered a 造語 (zōgo), a word coined for a specific purpose.
+writeup: '「向け」 is a suffix indicating that something is "intended for," "aimed at," or "oriented toward"
+  a specific group or purpose. It derives from the transitive verb 「向ける (むける)」, meaning "to turn towards"
+  or "to aim at." In contemporary Japanese, it is considered a **造語 (zōgo)**, a word coined for a specific
+  purpose. This suffix is used to denote that a product, service, or content has been planned or designed
+  with a particular audience or objective in mind.When attached to a noun, 「向け」 implies an intentionality:
+  something was "made for" or "designed for" the specified noun. For instance, 「子供向け」 means something
+  created for children. However, this does not necessarily mean it is exclusively restricted to that target
+  audience.It is crucial to distinguish 「向け」 from 「向き」. While both are suffixes derived from verbs (「向け」
+  from transitive 「向ける」, and 「向き」 from intransitive 「向く」), their nuances differ. 「向き」 indicates suitability
+  or facing a certain direction, suggesting a more passive compatibility or natural fit. In contrast,
+  「向け」 strongly emphasizes that something was created with a clear *intention* for a specific target.
+  For example, 「大人向けの映画」 means a movie *made for* adults, whereas 「大人向きの映画」 suggests a movie *suitable
+  for* adults.'
+false_friends:
+  - term: に向かって・に向けて
+    meaning: Towards, to face, to head to
+    kind: similar expression
+    nuance: 「に向かって/に向けて」 indicates direction or movement towards a physical location or goal, whereas
+      「向け」 specifies an intended audience or purpose.
+    grammar_point: に向かって (physical direction)
+  - term: 向き
+    meaning: Suitable for, facing
+    kind: similar expression
+    nuance: 「向き」 describes something suitable or facing a certain direction. 「向け」, on the other hand,
+      signifies something *specifically designed* or intended for a particular audience.
+    grammar_point: '[Noun]向き (suitable for)'
+  - term: に合わせて・に合う
+    meaning: In accordance with, matching, fitting, suitable for, adjust or tune to
+    kind: similar expression
+    nuance: 「に合わせて/に合った」 means something is adjusted or suitable for a purpose. 「向け」 implies something
+      is *specifically created* or tailored for a particular target.
+    grammar_point: に合わせる・に合う (match or fit)
+post_false_friends_writeup: To avoid confusion, remember that 「向け」 emphasizes the *intention* behind something
+  being created for a specific audience. 「に向かって/に向けて」 indicates direction, 「向き」 describes suitability
+  or orientation, and 「に合わせて/に合った」 describes adjustment or matching.
+examples:
+  - english: This app was made for children.
+    japanese:
+      - この アプリ は 子供 {向け} に 作ら れ まし た。
+      - この アプリ は 子供 {向け} に 作ら れ た。
+    english_literally: This app, for children, was made.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ は 子供 の {ため に} 作ら れ まし た。
+        english: This app was made for the benefit of children.
+        hint: 「のために」 emphasizes the benefit or purpose, not necessarily the specific design or targeting.
+          We're looking for an expression that means it was designed specifically for children.
+      - competing_japanese:
+          - この アプリ は 子供 {用 に} 作ら れ まし た。
+        english: This app was made for children's use.
+        hint: 「用」 means 'for use by' or 'for a particular purpose'. While close, 「向け」 emphasizes the intentional
+          design and targeting for an audience. We're looking for a word that suggests intentional design
+          for a specific group.
+    scene: A product manager is presenting a new educational app to a board of investors.
+    register: formal
+    setting: professional
+    nuance: The use of 「向け」 emphasizes that the app was intentionally designed for children. This is a
+      common phrase in business presentations when highlighting a product's target demographic.
+    etymology: The verb 「作られる」 (tsukurareru) is the passive form of 「作る」 (tsukuru), meaning "to make".
+      The honorific auxiliary verb 「られる」 is derived from the classical Japanese auxiliary verb 「る/らる」
+      expressing spontaneous action or possibility, here indicating something 'is made' rather than 'someone
+      made it'. The combination expresses a general statement about the app's creation.
+  - english: She joined a guitar class for beginners.
+    japanese:
+      - 彼女 は 初心 者 {向け} の ギター 教室 に 参加 し た。
+      - 彼女 は 初心 者 {向け} の ギター 教室 に 参加 し まし た。
+    english_literally: She, for beginners, a guitar class joined.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 初心 者 {用 の} ギター 教室 に 参加 し た。
+        english: She joined a guitar class for beginner's use.
+        hint: 「用」 means 'for use by' or 'for a specific purpose'. While similar, 「向け」 has a stronger nuance
+          of something being deliberately structured or designed for that audience. We're looking for
+          an expression that implies intentional design for a specific level of students.
+      - competing_japanese:
+          - 彼女 は 初心 者 {に 合う} ギター 教室 に 参加 し た。
+        english: She joined a guitar class suitable for beginners.
+        hint: 「に合う」 indicates suitability or matching. 「向け」 implies the class was *designed* or *intended*
+          for beginners, not just that it happens to suit them. We're looking for an expression that suggests
+          the class was intentionally created for beginners.
+    scene: A friend is describing their new hobby to another friend.
+    register: casual
+    setting: friendly
+    nuance: 「向け」 specifies that the guitar class is specifically structured and designed for people new
+      to guitar. The casual past tense 「参加した」 is natural for a friend recounting an event.
+    etymology: The verb 「参加する」 (sanka suru) means "to participate" or "to join". Its origin is from Chinese
+      characters 「参」 (san, to join) and 「加」 (ka, to add). The nominalizer 「の」 connects 「初心者向け」 as an adjective
+      to 「ギター教室」, indicating the type of class.
+  - english: This recipe has been simply arranged for busy people.
+    japanese:
+      - この レシピ は 忙しい 人 {向け} に 簡単 に アレンジ さ れ て い ます。
+      - この レシピ は 忙しい 人 {向け} に 簡単 に アレンジ さ れ て いる。
+    english_literally: This recipe, for busy people, simply arranged has been.
+    competing_grammar:
+      - competing_japanese:
+          - この レシピ は 忙しい 人 の {ため に} 簡単 に アレンジ さ れ て い ます。
+        english: This recipe has been simply arranged for the sake of busy people.
+        hint: 「のために」 highlights the benefit or purpose. 「向け」 specifically implies that the recipe was
+          intentionally simplified and designed with busy people as the target audience. We're looking
+          for a phrase that means it was designed for a specific group.
+      - competing_japanese:
+          - この レシピ は 忙しい 人 {用 に} 簡単 に アレンジ さ れ て い ます。
+        english: This recipe has been simply arranged for busy people's use.
+        hint: 「用」 means 'for use by' or 'for a specific purpose'. While similar, 「向け」 adds a stronger
+          emphasis on the intentional design and tailoring for that specific target. We're looking for
+          a word that implies the recipe was intentionally modified for busy people.
+    scene: A chef is explaining how a particular dish was adapted for a specific demographic in a cooking
+      show.
+    register: semi-formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 「向け」 highlights that the recipe was intentionally simplified with busy people as the target
+      audience. The phrase 「アレンジされています」 (arranged) uses the passive voice to describe the state of the
+      recipe.
+    etymology: 「アレンジ」 is a loanword from English "arrange". The verb 「される」 (sareru) is the passive form
+      of 「する」 (suru), making 「アレンジされる」 (arranged). 「て いる」 indicates a continuous or resultant state, common
+      in descriptions of current conditions or features.
+  - english: This program is for adults, so I guess it's still too early for me.
+    japanese:
+      - この 番組 は 大人 {向け} だ から、僕 に は まだ 早い か な。
+      - この 番組 は 大人 {向け} です から、私 に は まだ 早い か も しれ ませ ん。
+      - この 番組 は 大人 {向け} な の で、まだ 早い と 思わ れ ます。
+    english_literally: This program is for adults, so for me it's still early, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 番組 は 大人 {向き} だ から、僕 に は まだ 早い か な。
+        english: This program is suitable for adults, so I guess it's still too early for me.
+        hint: 「向き」 means 'suitable for' or 'facing a certain direction'. While close, 「向け」 specifically
+          means it was *designed* or *intended* for adults. We're looking for an expression that suggests
+          the program was intentionally made for adults.
+      - competing_japanese:
+          - この 番組 は 大人 の {ため} だ から、僕 に は まだ 早い か な。
+        english: This program is for the benefit of adults, so I guess it's still too early for me.
+        hint: 「のため」 emphasizes benefit or purpose. 「向け」 implies the program's content and themes were
+          specifically crafted with an adult audience in mind. We're looking for an expression that suggests
+          the program was designed for adults.
+    scene: A teenage boy is browsing TV channels with his older brother.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「僕」 (boku) is common for male speakers, particularly younger ones, in casual conversation.
+      The phrase 「まだ早いかな」 (mada hayai kana) conveys a sense of youthful self-awareness and slight hesitation,
+      typical of a younger speaker acknowledging limitations in a casual conversation with an older peer.
+      「向け」 indicates the program is explicitly designed for a mature audience.
+    etymology: 「番組」 (bangumi) literally means "program". The particle 「から」 (kara) is used here to indicate
+      a reason or cause ("because"). 「早い」 (hayai) means "early" or "premature". The sentence-final particle
+      「かな」 (kana) adds a sense of personal reflection or uncertainty, often used when speaking to oneself
+      or informally to others.
+  - english: The romance novel he wrote is completely aimed at women, isn't it?
+    japanese:
+      - 彼 が 書い た 恋愛 小説 は、完全 に 女性 {向け} だ ね。
+      - 彼 が 書い た 恋愛 小説 は、完全 に 女性 {向け} です ね。
+      - 彼 が 書い た 恋愛 小説 は、完全 に 女性 {向け} だ。
+    english_literally: The romance novel he wrote, completely female-aimed it is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 書い た 恋愛 小説 は、完全 に 女性 {向き} だ ね。
+        english: The romance novel he wrote is completely suitable for women, isn't it?
+        hint: 「向き」 means 'suitable for'. While a novel can be suitable for women, 「向け」 emphasizes that
+          the novel was *intentionally written* or *designed* with a female readership in mind. We're
+          looking for an expression that implies intentional targeting.
+      - competing_japanese:
+          - 彼 が 書い た 恋愛 小説 は、完全 に 女性 の {ため の} 物 だ ね。
+        english: The romance novel he wrote is completely for women, isn
+        hint: 「のため」 emphasizes benefit or purpose. 「向け」 specifically highlights the intentional design
+          and targeting towards a female readership. We're looking for an expression that suggests the
+          novel was designed for women.
+    scene: Two male friends are discussing a book written by a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual ending 「だね」 (da ne) indicates agreement or seeking confirmation in a relaxed male
+      conversation. The use of 「完全に」 (kanzen ni, completely) emphasizes the strong targeting towards women.
+      「向け」 here suggests the novel's themes and style are clearly crafted for a female readership.
+    etymology: 「恋愛小説」 (ren'ai shousetsu) combines 「恋愛」 (ren'ai, romance) and 「小説」 (shousetsu, novel).
+      The verb 「書く」 (kaku, to write) in its past plain form 「書いた」 (kaita) modifies 「恋愛小説」. 「だね」 is a combination
+      of the copula 「だ」 and the sentence-final particle 「ね」, often used for agreement or confirmation.
+  - english: This report is written for specialists, so it might be difficult for the general public.
+    japanese:
+      - この 報告 書 は 専門 家 {向け} に 書か れ て いる の で、一般 の 人 に は 難しい か も しれ ませ ん。
+      - この 報告 書 は 専門 家 {向け} に 書か れ て いる から、一般 の 人 に は 難しい か も しれ ない。
+      - この 報告 書 は 専門 家 {向け} だ から、一般 の 人 に は 難しい か も しれ ない。
+    english_literally: This report, for specialists, has been written, so for general people it might
+      be difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この 報告 書 は 専門 家 の {ため に} 書か れ て いる の で、一般 の 人 に は 難しい か も しれ ませ ん。
+        english: This report is written for the benefit of specialists, so it might be difficult for the
+          general public.
+        hint: 「のために」 emphasizes benefit or purpose. 「向け」 implies the report's content and complexity were
+          intentionally tailored for an expert audience. We're looking for an expression that indicates
+          intentional targeting.
+      - competing_japanese:
+          - この 報告 書 は 専門 家 {用 に} 書か れ て いる の で、一般 の 人 に は 難しい か も しれ ませ ん。
+        english: This report is written for specialists' use, so it might be difficult for the general
+          public.
+        hint: 「用」 means 'for use by'. While similar, 「向け」 more strongly conveys that the report's style
+          and content were *designed* specifically for specialists. We're looking for a word that implies
+          intentional design for a specific group.
+    scene: A researcher is explaining the technical nature of their findings to a colleague.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: 「向け」 conveys that the report's content and language are deliberately tailored for a specific
+      expert audience. The phrase 「難しい か も しれ ませ ん」 (muzukashii kamoshiremasen) expresses a polite possibility,
+      fitting for an academic discussion.
+    etymology: 「報告書」 (houkokusho) means "report document". 「専門家」 (senmonka) means "specialist". The passive
+      form 「書かれている」 (kakarete iru) means "is written". 「ので」 (node) is a conjunctive particle indicating
+      reason, similar to 「から」 but often perceived as slightly softer. 「かもしれない」 (kamoshirenai) expresses
+      possibility, derived from 「かも」 (perhaps) and 「知れない」 (shirenai, to not know).
+  - english: The new smartphone is also being developed for overseas markets.
+    japanese:
+      - 新しい スマート フォン は 海外 {向け} に も 開発 さ れ て い ます。
+      - 新しい スマート フォン は 海外 {向け} に も 開発 さ れ て いる。
+    english_literally: New smartphone, for overseas, also being developed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマート フォン は 海外 市場 の {ため に} も 開発 さ れ て い ます。
+        english: The new smartphone is also being developed for the benefit of overseas markets.
+        hint: 「のため」 focuses on the benefit or purpose. 「向け」 implies that the smartphone's design and features
+          are intentionally oriented towards the needs and preferences of overseas markets. We're looking
+          for an expression that suggests intentional targeting of specific markets.
+      - competing_japanese:
+          - 新しい スマート フォン は 海外 市場 {用 に} も 開発 さ れ て い ます。
+        english: The new smartphone is also being developed for overseas market use.
+        hint: 「用」 means 'for use by'. While close, 「向け」 more strongly conveys that the entire development
+          process is being tailored for overseas markets. We're looking for a word that implies intentional
+          design for a specific market.
+    scene: A tech company's press conference announcing a new product.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 「向け」 emphasizes that the company is intentionally designing the phone to meet the needs and
+      regulations of international markets. The particle 「も」 (mo) indicates "also" or "as well," highlighting
+      that this development is in addition to domestic markets.
+    etymology: 「スマートフォン」 is a loanword from English "smartphone". 「海外」 (kaigai) means "unseen". 「開発される」
+      (kaihatsu sareru) is the passive form of 「開発する」 (kaihatsu suru, to develop). The phrase 「て います」
+      (te imasu) indicates a continuous or ongoing state of development.
+  - english: This software was developed specifically for small and medium-sized businesses.
+    japanese:
+      - この ソフトウェア は 中 小 企業 {向け} に 特化 し て 開発 さ れ まし た。
+      - この ソフトウェア は 中 小 企業 {向け} に 特化 し て 開発 さ れ た。
+    english_literally: This software, for small and medium-sized businesses, specializing, was developed.
+    competing_grammar:
+      - competing_japanese:
+          - この ソフトウェア は 中 小 企業 の {ため に} 特化 し て 開発 さ れ まし た。
+        english: This software was developed specifically for the benefit of small and medium-sized businesses.
+        hint: 「のために」 focuses on the benefit or purpose. 「向け」 emphasizes that the software's features and
+          design were intentionally tailored for SMEs. We're looking for an expression that indicates
+          intentional design for a specific group.
+      - competing_japanese:
+          - この ソフトウェア は 中 小 企業 {用 に} 特化 し て 開発 さ れ まし た。
+        english: This software was developed specifically for small and medium-sized businesses' use.
+        hint: 「用」 means 'for use by'. While similar, 「向け」 adds a stronger nuance that the software was
+          *designed* and *specialized* for SMEs. We're looking for a word that implies intentional development
+          for a specific type of business.
+    scene: A software sales representative is pitching their product to a potential client.
+    register: formal
+    setting: persuasive
+    conjugation: past polite (～ました)
+    nuance: The phrase 「特化 し て」 (tokka shite, specialized) further emphasizes the intentional design of
+      the software for SMEs, reinforcing the nuance of 「向け」. The polite past tense 「開発されました」 is appropriate
+      for a business presentation.
+    etymology: 「ソフトウェア」 is a loanword from English "software". 「中小企業」 (chuu shou kigyou) means "small
+      and medium-sized enterprises". 「特化する」 (tokka suru) means "to specialize". The combination 「特化して開発された」
+      indicates it was developed with a specific focus.
+  - english: He's reading a magazine for sports enthusiasts.
+    japanese:
+      - 彼 は スポーツ 好き {向け} の 雑誌 を 読ん で いる。
+      - 彼 は スポーツ 好き {向け} の 雑誌 を 読ん で い ます。
+    english_literally: He, for sports lovers, a magazine is reading.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は スポーツ 好き の {ため の} 雑誌 を 読ん で いる。
+        english: He's reading a magazine for the benefit of sports enthusiasts.
+        hint: 「のための」 emphasizes benefit or purpose. 「向け」 implies the magazine's content is intentionally
+          curated and designed to appeal specifically to sports enthusiasts. We're looking for an expression
+          that indicates intentional targeting of a specific interest group.
+      - competing_japanese:
+          - 彼 は スポーツ 好き {用 の} 雑誌 を 読ん で いる。
+        english: He's reading a magazine for sports enthusiasts' use.
+        hint: 「用」 means 'for use by'. While similar, 「向け」 highlights that the magazine's content is *designed*
+          and *aimed* at people who love sports. We're looking for a word that implies intentional design
+          for a specific interest group.
+    scene: Someone is observing a friend engrossed in reading in a coffee shop.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「スポーツ 好き」 (supootsu zuki, sports lover) is a common, casual way to refer to someone
+      who likes sports. The usage of 「向け」 indicates the magazine's content is intentionally curated to
+      appeal to people with a strong interest in sports. The continuous form 「読んでいる」 (yonde iru) describes
+      an ongoing action.
+    etymology: 「スポーツ」 is a loanword from English "sports". 「好き」 (suki) means "liking" or "fondness". 「雑誌」
+      (zasshi) means "magazine". 「読む」 (yomu, to read) in its progressive form 「読んでいる」 indicates an action
+      currently in progress.
+  - english: I chose this dress for a wedding.
+    japanese:
+      - この ドレス は 結婚 式 {向け} に 選ん だ ん だ。
+      - この ドレス は 結婚 式 {向け} に 選ん だ の です。
+      - この ドレス は 結婚 式 {向け} に 選ん だ。
+    english_literally: This dress, for a wedding, chose I did.
+    competing_grammar:
+      - competing_japanese:
+          - この ドレス は 結婚 式 の {ため に} 選ん だ ん だ。
+        english: I chose this dress for the sake of a wedding.
+        hint: 「のために」 emphasizes purpose or benefit. 「向け」 implies the dress was intentionally selected
+          because its style and formality are suitable for a wedding. We're looking for an expression
+          that suggests intentional selection for a specific occasion.
+      - competing_japanese:
+          - この ドレス は 結婚 式 {用 に} 選ん だ ん だ。
+        english: I chose this dress for wedding use.
+        hint: 「用」 indicates something is 'for use by' or 'for a specific purpose'. While similar, 「向け」
+          highlights that the dress was specifically *chosen or tailored* to match the occasion's requirements.
+          We're looking for a word that implies intentional selection based on suitability for an event.
+    scene: A woman is showing her friend a new dress she bought for an upcoming event.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「んだ」 (n da) at the end of the sentence adds a causal or explanatory nuance, common
+      in casual conversation between close female friends sharing personal details. 「向け」 highlights that
+      the dress was intentionally selected because its style and formality are appropriate for a wedding.
+    etymology: 「ドレス」 is a loanword from English "dress". 「結婚式」 (kekkonshiki) means "wedding ceremony".
+      「選ぶ」 (erabu, to choose) in its past plain form 「選んだ」 (eranda) is used here. The sentence-final 「んだ」
+      (also 「のだ」 or 「のです」) is an explanatory or assertive particle often used to provide context or emphasize
+      a reason.
+  - english: These instructions are for foreign visitors.
+    japanese:
+      - この 説明 は 外国 人 {向け} です。
+      - この 説明 は 外国 人 {向け} だ。
+    english_literally: These instructions, for foreign people, are.
+    competing_grammar:
+      - competing_japanese:
+          - この 説明 は 外国 人 の {ため の} 説明 です。
+        english: This explanation is an explanation for the benefit of foreigners.
+        hint: 「のために」 emphasizes benefit or purpose, not necessarily the specific design or targeting.
+          We're looking for an expression that means it was designed specifically for children.
+      - competing_japanese:
+          - この 説明 は 外国 人 {用 の} 説明 です。
+        english: This explanation is an explanation for use by foreigners.
+        hint: 「用」 means 'for use by' or 'for a particular purpose'. While close, 「向け」 emphasizes the intentional
+          design and targeting for an audience. We're looking for a word that suggests intentional design
+          for a specific group.
+    scene: A hotel concierge speaking to a Japanese colleague about signage.
+    register: formal
+    setting: informative
+    nuance: 「向け」 specifies that the instructions were intentionally simplified or translated for non-Japanese
+      speakers. 「です」 makes it polite and formal.
+  - english: The seminar was primarily aimed at young entrepreneurs.
+    japanese:
+      - その セミナー は 主 に 若い 起業 家 {向け} だっ た。
+      - その セミナー は 主 に 若い 起業 家 {向け} でし た。
+    english_literally: That seminar, mainly for young entrepreneurs, was.
+    competing_grammar:
+      - competing_japanese:
+          - その セミナー は 主 に 若い 起業 家 の {ため の} 物 だっ た。
+        english: That seminar was mainly for the benefit of young entrepreneurs.
+        hint: Emphasis on benefit, not intentional targeting of content.
+      - competing_japanese:
+          - その セミナー は 主 に 若い 起業 家 {用 の} 物 だっ た。
+        english: That seminar was mainly for use by young entrepreneurs.
+        hint: Emphasis on use, not specific design/tailoring of the content for that audience.
+    scene: Two university students discussing a recent business seminar they attended.
+    register: casual
+    setting: academic
+    nuance: 「向け」 indicates that the content and style of the seminar were specifically tailored to the
+      interests and needs of young entrepreneurs. The casual past tense 「だった」 is suitable for conversation
+      between students.
+post_example_writeup: As you can see from the examples, 「向け」 clearly indicates an intentional design or
+  targeting. While other particles like 「のために」 or 「〜用」 might express a similar idea of purpose, 「向け」 carries
+  the stronger nuance of something being specifically *crafted* or *tailored* for a particular audience
+  or occasion. Pay attention to the context and the specific nuance you wish to convey when choosing between
+  these expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/向け

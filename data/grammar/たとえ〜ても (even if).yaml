@@ -1,0 +1,266 @@
+grammar_point: たとえ〜ても (even if)
+learn_before:
+  - '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - と共に (together with)
+  - にしても (even if)
+  - 手に入れる (to obtain)
+meaning: Even if…is the case, Supposing that
+meaning_warning: Sometimes seen as「たとい」
+pronunciation:
+  katakana: タトエ〜テモ
+  romaji: tatoe ~ temo
+formation:
+  たとえ + [Sentence] + ても: Expresses that even if something is the case, it does not affect the result.
+jlpt: N3
+etymology: 「たとえ」 comes from the verb 「例える (tatoeru)」, meaning "to compare" or "to use as an example."
+  It sets up a hypothetical situation. 「〜ても」 expresses "even if" or "even though," indicating a contrast
+  or concession. Its origin implies setting up a specific instance or example to make a point, which aligns
+  with its use to introduce a hypothetical scenario that does not alter the conclusion.
+writeup: 「たとえ〜ても」 is used to express that even if something is the case, it doesn't necessarily affect
+  the outcome. 「たとえ」 introduces a hypothetical situation, and 「〜ても」 indicates that regardless of that
+  situation, the result remains the same or is still possible. It is a contrastive conjunction, meaning
+  that while situation A might lead you to expect Result X, that is not the case; instead, Result Y occurs.
+  The addition of 「たとえ」 to 「〜ても」 adds emphasis to the hypothetical nature of the condition, implying an
+  'even if this unlikely or difficult thing happens' scenario, making the statement more emphatic than
+  「〜ても」 alone. Sometimes 「たとい」 is used, especially in older texts or more formal contexts, but 「たとえ」 is
+  overwhelmingly more common in modern Japanese.
+false_friends:
+  - term: もしも〜なら・もしも〜でも
+    meaning: If, Supposing
+    kind: similar expression
+    nuance: 「もしも〜なら・もしも〜でも」 focuses on a condition and its likely outcome, whereas 「たとえ〜ても」 emphasizes
+      persistence or lack of impact despite a condition. The key difference is the contrastive nature
+      of 「たとえ〜ても」, where the outcome is unexpected given the condition.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: にしても
+    meaning: Even though, Even if, Even when, Also
+    kind: similar expression
+    nuance: 「にしても」 can express concession or addition, while 「たとえ〜ても」 focuses specifically on a hypothetical
+      situation and its limited effect. 「たとえ〜ても」 often implies a stronger, perhaps more extreme, hypothetical
+      scenario.
+    grammar_point: にしても (even if)
+  - term: とも
+    meaning: Even if, No matter
+    kind: similar expression
+    nuance: 「とも」 emphasizes "no matter what," often used for stronger, more absolute concessions. 「たとえ〜ても」
+      highlights the contrast between a situation and its expected outcome, implying an 'even if *this*
+      happens' scenario that might be counterintuitive.
+    grammar_point: とも (even if・no matter)
+  - term: たって (even if)
+    meaning: Even if, Even though, No matter how
+    kind: similar expression
+    nuance: 「たって」 is a more casual contraction of 「〜ても」 and often implies a rejection of a reason or excuse,
+      or a strong concession. 「たとえ〜ても」 is generally more formal and focuses on acknowledging a hypothetical
+      situation without necessarily rejecting it, but rather stating its non-impact.
+    grammar_point: (っ)たって (even if・even though)
+  - term: にせよ・にしろ
+    meaning: Even if, Even though, No matter, Whether… or
+    kind: similar expression
+    nuance: 「にせよ・にしろ」 is often used when presenting alternative possibilities or indicating that something
+      is true regardless of various conditions. 「たとえ〜ても」 typically focuses on a single, specific hypothetical
+      scenario and the speaker's resolute stance despite it.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: としても
+    meaning: Even if (we assume), Assuming, Also as
+    kind: similar expression
+    nuance: 「としても」 often suggests making an assumption for the sake of argument or an intellectual supposition.
+      「たとえ〜ても」 is used to state a condition, sometimes extreme, and emphasizes the speaker's determination
+      or the lack of impact of that condition, making it more about personal resolve or a strong contrast.
+    grammar_point: としても (even if assumed)
+post_false_friends_writeup: 「たとえ〜ても」 often emphasizes the strength of one's feelings, intentions, or resolve,
+  especially when contrasting it with a challenging or undesirable condition. It's about the speaker's
+  willingness to persist regardless of circumstances. The 「たとえ」 part adds an extra layer of emphasis on
+  the hypothetical nature of the condition, making the statement more emphatic than 「〜ても」 alone.
+examples:
+  - english: Even if it rains, this event won't be canceled.
+    japanese:
+      - '{たとえ} 雨 が {降っ て も}、この イベント は 中止 し ない。'
+      - '{たとえ} 雨 が {降っ て も}、この イベント は 中止 し ませ ん。'
+      - '{たとえ} 雨 が {降ろ う と も}、この イベント は 中止 し ませ ん。'
+    english_literally: Even if rain falls, this event will not be canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ {て も}、この イベント は 中止 し ない。
+        english: Even if it rains, this event won't be canceled.
+        hint: 「たとえ」 emphasizes the speaker's strong determination to proceed despite a potentially challenging
+          condition, highlighting the contrast between the expected impact of rain and the actual decision.
+          We're looking for a strong statement of resolve.
+    scene: An organizer is announcing a policy for an outdoor event, emphasizing their commitment to proceeding
+      regardless of weather.
+    register: formal
+    setting: informative
+  - english: Even if the price is high, truly valuable things should be acquired.
+    japanese:
+      - '{たとえ} 値段 が {高く て も}、本当 に 価値 の ある もの は 手 に 入れる べき だ。'
+      - '{たとえ} 値段 が {高く て も}、本当 に 価値 の ある もの は 手 に 入れる べき です。'
+      - '{たとえ} 値段 が {高く て も}、本当 に 価値 の ある もの は 手 に 入れる べき でしょう。'
+    english_literally: Even if the price is high, truly valuable things should be obtained.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 が 高く {て も}、本当 に 価値 の ある もの は 手 に 入れる べき だ。
+        english: Even if the price is high, truly valuable things should be acquired.
+        hint: 「たとえ」 adds a stronger sense of conviction, implying that even an extreme hypothetical cost
+          should not deter. We're looking for an emphatic statement about value.
+    scene: A consultant is advising a client on making wise investments, focusing on long-term value over
+      immediate cost.
+    register: formal
+    setting: professional
+  - english: Even if work is busy, exercise is essential for health.
+    japanese:
+      - '{たとえ} 仕事 が {忙しく て も}、健康 の ため に 運動 は 欠かせ ない。'
+      - '{たとえ} 仕事 が {忙しく て も}、健康 の ため に 運動 は 欠かせ ませ ん。'
+      - '{たとえ} 仕事 が {忙しい と し て も}、健康 の ため に 運動 は 欠かせ ませ ん。'
+    english_literally: Even if work is busy, for health exercise is indispensable.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が 忙しく {て も}、健康 の ため に 運動 は 欠かせ ない。
+        english: Even if work is busy, exercise is essential for health.
+        hint: 「たとえ」 highlights that even in the most demanding work periods, the commitment to health
+          remains firm, conveying strong discipline. We're looking for an assertion about prioritizing
+          health despite a busy schedule.
+    scene: Someone is talking about their personal routine and priorities, emphasizing the importance
+      of well-being despite demands.
+    register: semi-formal
+    setting: informative
+  - english: Even if my family opposes it, I will continue to support him.
+    japanese:
+      - '{たとえ} 家族 が {反対 し て も}、私 は 彼 を 支え 続ける。'
+      - '{たとえ} 家族 が {反対 し て も}、私 は 彼 を 支え 続け ます。'
+      - '{たとえ} 家族 が {反対 しよ う と も}、私 は 彼 を 支え 続け ます。'
+    english_literally: Even if family opposes, I will continue to support him.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 が 反対 し {て も}、私 は 彼 を 支え 続ける。
+        english: Even if my family opposes it, I will continue to support him.
+        hint: 「たとえ」 intensifies the speaker's resolve, showing that even in the face of significant opposition,
+          her decision is firm. We're looking for an expression of unwavering commitment despite obstacles.
+    scene: A young woman is confiding in a friend about her unwavering commitment to her partner despite
+      family disapproval.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The deep emotional commitment expressed in 「私は彼を支え続ける」, particularly when conveying unwavering
+      loyalty in the face of family opposition, is a sentiment often expressed by women in intimate relationships.
+  - english: Even if it's a difficult path, it's important to keep moving forward without giving up.
+    japanese:
+      - '{たとえ} 困難 な 道 {で も}、諦め ず に 進む こと が 大切 だ。'
+      - '{たとえ} 困難 な 道 {で も}、諦め ず に 進む こと が 大切 です。'
+      - '{たとえ} 困難 な 道 {で あろ う と も}、諦め ず に 進む こと が 大切 です。'
+    english_literally: Even if it's a difficult path, not giving up and moving forward is important.
+    competing_grammar:
+      - competing_japanese:
+          - 困難 な 道 {で も}、諦め ず に 進む こと が 大切 だ。
+        english: Even if it's a difficult path, it's important to keep moving forward without giving up.
+        hint: 「たとえ」 underscores the idea that even an extreme hypothetical of difficulty should not deter
+          one, adding a more profound and inspirational tone. We're looking for an inspiring statement
+          about perseverance.
+    scene: A mentor is giving encouraging advice to a student facing a challenging task, emphasizing perseverance.
+    register: formal
+    setting: inspirational
+  - english: Even if I become alone, I will never feel lonely.
+    japanese:
+      - '{たとえ} 一人 に {なっ て も}、僕 は 決して 孤独 で は ない と 感じる だろう。'
+      - '{たとえ} 一人 に {なっ て も}、僕 は 決して 孤独 で は ない と 感じる でしょ う。'
+      - '{たとえ} 一人 に {なっ て も}、僕 は 決して 孤独 で は ない と 感じる だろ う。'
+    english_literally: Even if I become alone, I will surely not feel lonely.
+    competing_grammar:
+      - competing_japanese:
+          - 一人 に なっ {て も}、僕 は 決して 孤独 で は ない と 感じる だろう。
+        english: Even if I become alone, I will never feel lonely.
+        hint: 「たとえ」 emphasizes the depth of the speaker's emotional resilience, suggesting that even under
+          the difficult hypothetical of becoming solitary, he maintains his composure. We're looking for
+          a statement about inner strength.
+    scene: A young man, known for his self-reliance, muses on his future, affirming his inner strength.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The use of 「僕」 clearly marks the speaker as male. The assertion 「決して孤独ではない」 expresses a strong,
+      self-reliant stance often conveyed by men reflecting on their inner strength.
+  - english: Even if the world ends, we should live today to the fullest.
+    japanese:
+      - '{たとえ} 世界 が {滅び て も}、私 たち は 今日 を 精 一 杯 生きる べき だ。'
+      - '{たとえ} 世界 が {滅び て も}、私 たち は 今日 を 精 一 杯 生きる べき です。'
+      - '{たとえ} 世界 が {滅びよ う と も}、私 たち は 今日 を 精 一 杯 生きる べき です。'
+    english_literally: Even if the world perishes, we should live today with utmost effort.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 が 滅び {て も}、私 たち は 今日 を 精 一 杯 生きる べき だ。
+        english: Even if the world ends, we should live today to the fullest.
+        hint: 「たとえ」 introduces a profound hypothetical of an imminent, cataclysmic end, accentuating the
+          timeless wisdom of prioritizing action and hope in the present. We're looking for a philosophical
+          statement about living in the present.
+    scene: A philosopher contemplates the meaning of life, stressing the importance of presence and effort
+      regardless of grand outcomes.
+    register: formal
+    setting: reflective
+  - english: Even if we are far apart, my heart will always be with you.
+    japanese:
+      - '{たとえ} 遠く {離れ て も}、私 の 心 は いつ も あなた と 共 に あり ます。'
+      - '{たとえ} 遠く {離れ て も}、私 の 心 は いつ も あなた と 共 に ある わ。'
+      - '{たとえ} 遠く {離れよ う と も}、私 の 心 は いつ も あなた と 共 に あり ます。'
+    english_literally: Even if we are far apart, my heart is always with you.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く 離れ {て も}、私 の 心 は いつ も あなた と 共 に あり ます。
+        english: Even if we are far apart, my heart will always be with you.
+        hint: 「たとえ」 conveys the speaker's deep and unwavering affection despite a potentially painful
+          hypothetical outcome of separation, making the declaration more poignant and impactful. We're
+          looking for a deeply emotional expression of commitment despite distance.
+    scene: A woman is expressing her enduring affection to her beloved partner who is about to embark
+      on a long journey.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「私の心はいつもあなたと共にあります」 is a deeply emotional and romantic expression, frequently employed
+      by women to convey constant affection and spiritual presence despite physical distance. This usage
+      reinforces the female speaker's tender sentiment.
+  - english: Even if no one understands, I will uphold the justice I believe in.
+    japanese:
+      - '{たとえ} 誰 に も {理解 さ れ なく て も}、私 は 自分 の 信じる 正義 を 貫く。'
+      - '{たとえ} 誰 に も {理解 さ れ なく て も}、私 は 自分 の 信じる 正義 を 貫き ます。'
+      - '{たとえ} 誰 に も {理解 さ れよ う と も}、私 は 自分 の 信じる 正義 を 貫き ます。'
+    english_literally: Even if by no one understood, I will uphold the justice I believe in.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 に も 理解 さ れ なく {て も}、私 は 自分 の 信じる 正義 を 貫く。
+        english: Even if no one understands, I will uphold the justice I believe in.
+        hint: 「たとえ」 adds emphasis to the speaker's unwavering commitment despite the potential lack of
+          understanding from others, highlighting their strong resolve. We're looking for a resolute assertion
+          of principles.
+    scene: A public figure makes a strong declaration of their principles during a difficult time, asserting
+      their unwavering commitment.
+    register: semi-formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「自分の信じる正義を貫く」 conveys a powerful sense of conviction and determination, which is
+      often associated with male leaders or individuals making assertive public statements. The use of
+      「私」 combined with this resolute action suggests a strong, principled stance, common for male speakers
+      in such contexts.
+  - english: Even if one has no possessions, happiness can be found with richness of heart.
+    japanese:
+      - '{たとえ} 財産 が {なく て も}、心 の 豊か さ が あれ ば 幸福 だ。'
+      - '{たとえ} 財産 が {なく て も}、心 の 豊か さ が あれ ば 幸福 です。'
+      - '{たとえ} 財産 が {なかろ う と も}、心 の 豊か さ が あれ ば 幸福 です。'
+    english_literally: Even if wealth is not there, if richness of heart exists then happiness is.
+    competing_grammar:
+      - competing_japanese:
+          - 財産 が なく {て も}、心 の 豊か さ が あれ ば 幸福 だ。
+        english: Even if one has no possessions, happiness can be found with richness of heart.
+        hint: 「たとえ」 emphasizes the contrast between material wealth and emotional richness, elevating
+          the statement to a philosophical stance on true happiness. We're looking for a philosophical
+          statement about true happiness.
+    scene: A spiritual teacher shares a life lesson, emphasizing inner peace over material wealth.
+    register: formal
+    setting: inspirational
+post_example_writeup: 「たとえ〜ても」 often emphasizes the strength of one's feelings, intentions, or resolve,
+  especially when contrasting it with a challenging or undesirable condition. It's about the speaker's
+  willingness to persist regardless of circumstances. The 「たとえ」 part adds an extra layer of emphasis on
+  the hypothetical nature of the condition, making the statement more emphatic than 「〜ても」 alone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たとえ-ても

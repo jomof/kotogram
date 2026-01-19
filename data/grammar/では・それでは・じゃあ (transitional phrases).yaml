@@ -1,0 +1,349 @@
+grammar_point: では・それでは・じゃあ (transitional phrases)
+learn_before:
+  - それでは (well then)
+meaning: If so, Well (then), In that case
+pronunciation:
+  katakana: デハ・ソレデハ・ジャア
+  romaji: de wa, sore de wa, jaa
+formation:
+  では / それでは / じゃあ: Used to transition topics, indicate a conclusion, or as a polite farewell.
+jlpt: N3
+etymology: では is a contraction of で + は. で is the particle indicating location or means, and は is the
+  topic marker. Therefore, the original nuance might have been something like 'in that case' or 'regarding
+  that matter.' それでは further expands this by adding それ (that). じゃあ is a more casual contraction of では
+  or それでは.
+writeup: The expressions **では**, **それでは**, and **じゃあ** function as conjunctions in Japanese, signaling
+  a transition in discourse, indicating a conclusion, or serving as a polite valediction. **それでは** represents
+  the most formal iteration, followed by **では**, with **じゃあ** being the most casual. Fundamentally, they
+  all convey similar notions such as 'if so,' 'well then,' or 'in that case.' Their utility extends beyond
+  simple transitions; they often preface a logical consequence stemming from a preceding statement or
+  mark a significant shift in conversational topic. Notably, these forms, particularly **では** and **それでは**,
+  are also employed to politely conclude an an interaction, akin to the English 'well, I must be going
+  now.' The underlying structure of **それでは** can be analyzed as a compound of それ (that), the particle
+  で (indicating means or context), and the topic marker は, collectively creating a cohesive unit for initiating
+  a new phase of communication or concluding a current one.
+false_friends:
+  - term: さ (interjection)
+    meaning: All right, There we go, Now, You see, Well (I don't know, let me see)
+    kind: similar expression
+    nuance: While both can be translated as "well," さ often indicates hesitation or a new idea coming
+      to mind, whereas では/それでは/じゃあ indicates a transition or conclusion.
+    grammar_point: さ (interjection)
+  - term: さて
+    meaning: Well, Well then
+    kind: similar expression
+    nuance: While both can be translated as "well," さて is often used to change the subject or indicate
+      a new beginning, whereas では/それでは/じゃあ implies a connection to the previous topic.
+    grammar_point: さて (transitional word)
+  - term: なら
+    meaning: If that's the case; in that case
+    kind: often confused with
+    nuance: Unlike では/それでは/じゃあ which function as general discourse markers or conclusions, 「なら」 introduces
+      a conditional statement, meaning "if X (which is already known or stated), then Y." It implies a
+      condition rather than a direct consequence.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: だとすれば (if that is the case)
+    meaning: If that is the case, then...
+    kind: often confused with
+    nuance: A more formal and explicit conditional phrase than 「なら」, 「だとすれば」 strongly emphasizes the premise
+      ("if that were true"). It sets up a logical inference from an assumption, rather than just marking
+      a general transition.
+    grammar_point: <suggest>:だとすれば (if that is the case)
+  - term: それなら
+    meaning: If that's the case; in that case
+    kind: often confused with
+    nuance: Similar to 「なら」, 「それなら」 is used to introduce a statement or action that logically follows
+      from something previously mentioned. It is a conditional, not a general transition marker like では/それでは/じゃあ,
+      and links the new point directly to the preceding information.
+    grammar_point: それなら (if that's the case)
+post_false_friends_writeup: The key to distinguishing between では/それでは/じゃあ, さ, さて, and conditional forms
+  like なら/だとすれば/それなら lies in understanding their specific nuances. では/それでは/じゃあ signal a transition, conclusion,
+  or polite farewell. さ is more of a filler word, indicating hesitation or a thought process. さて indicates
+  a change of subject or a new beginning. Conditionals like なら, だとすれば, and それなら, while sometimes translated
+  similarly, explicitly set up a logical consequence based on a given or assumed premise, rather than
+  simply marking a general discourse transition. Context is crucial in determining the correct choice.
+examples:
+  - english: It seems the rain has stopped. Well then, shall we go for a walk in the park?
+    japanese:
+      - 雨 が 止ん だ よう です ね。{で は}、公園 へ 散歩 に 行き ませ ん か。
+      - 雨 が 止ん だ よう です ね。{じゃあ}、公園 へ 散歩 に 行き ませ ん か。
+    english_literally: Rain stopped seemed like, isn't it? Well then, park to walk to go won't you?
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 止ん だ よう です ね。公園 へ 散歩 に 行き ませ ん か。
+        english: It seems the rain has stopped. Shall we go for a walk in the park?
+        hint: This sentence lacks the smooth transition from the observation (rain stopping) to the suggestion.
+          We're looking for a natural connector for the logical next step.
+      - competing_japanese:
+          - 雨 が 止ん だ よう です ね。{さて}、公園 へ 散歩 に 行き ませ ん か。
+        english: It seems the rain has stopped. Now, shall we go for a walk in the park?
+        hint: While 「さて」 can introduce a new idea, it implies a more general change of subject. We're
+          looking for a phrase that implies a direct consequence or logical next step based on the observed
+          change.
+    scene: Two friends are at home, looking out the window, and the rain has just stopped.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「では」 is used here to smoothly transition from an observation (the rain stopping) to a suggestion.
+      The casual tone of the speaker and the inviting 「行きませんか」 (shall we go?) make it suitable for a friendly
+      context. 「じゃあ」 would also fit this casual, friendly context, providing a slightly more informal
+      feel while maintaining the smooth transition. This usage bridges the observation and the resulting
+      proposal.
+  - english: Have you finished packing? Well then, shall we get going soon?
+    japanese:
+      - 荷物 まとめ 終わっ た？{じゃあ}、そろそろ 出発 しよう か。
+      - 荷物 まとめ 終わっ た？{で は}、そろそろ 出発 しよう か。
+    english_literally: Baggage arranging finished? Well then, soon departure let's, huh?
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 まとめ 終わっ た？そろそろ 出発 しよう か。
+        english: Have you finished packing? Shall we get going soon?
+        hint: This sentence misses the explicit, casual bridge that connects the confirmed readiness to
+          the next action. We're looking for a smooth transition that casually signals a decision or next
+          step.
+    scene: Friends about to leave for a trip, confirming readiness.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「じゃあ」, being the most casual, fits perfectly here to confirm the readiness for departure between
+      friends. The question 「荷物まとめ終わった？」 (Have you finished packing?) and the volitional 「出発しようか」 (shall
+      we get going?) indicate a shared, immediate action, reinforcing the informal setting. 「では」 could
+      also be used here, offering a slightly less casual, but still friendly, transition. 「じゃあ」 provides
+      a natural, casual flow from the prior confirmation to the action.
+  - english: Thank you for your input. Well then, let's move on to the next agenda item.
+    japanese:
+      - ご 意見 ありがとう ござい ます。{で は}、次 の 議題 に 移り ましょう。
+      - ご 意見 ありがとう ござい ます。{それ で は}、次 の 議題 に 移り ましょう。
+    english_literally: Your opinion thank you. Well then, next agenda item to move let's.
+    competing_grammar:
+      - competing_japanese:
+          - ご 意見 ありがとう ござい ます。次 の 議題 に 移り ましょう。
+        english: Thank you for your input. Let's move on to the next agenda item.
+        hint: This sentence lacks the polite and clear signal for transitioning between discussion points
+          in a formal setting. We're looking for a phrase that smoothly concludes one topic and introduces
+          the next.
+    scene: A meeting chairperson concluding a discussion point and moving to the next.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「では」 is a standard, formal way to transition topics in a professional setting like a meeting.
+      「ご意見ありがとうございます」 (thank you for your input) politely concludes the previous discussion, and 「次の議題に移りましょう」
+      (let's move on to the next agenda item) clearly directs the flow of the meeting. 「それでは」 would also
+      be appropriate here, signaling an even more definitive and formal shift in topic. This use of 「では」
+      signals a decisive, professional shift.
+  - english: It's getting late, so I guess I'll head home now.
+    japanese:
+      - 時間 も 遅い し、{じゃあ}、そろそろ 帰る ね。
+      - 時間 も 遅い し、{で は}、そろそろ 帰る ね。
+    english_literally: Time also late, so, well then, soon return, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 時間 も 遅い し、そろそろ 帰る ね。
+        english: It's getting late, so I guess I'll head home now.
+        hint: This sentence doesn't explicitly link the reason (getting late) to the action (leaving)
+          with a transitional phrase. We're looking for a casual marker that connects the cause to the
+          outcome.
+    scene: A young person at a friend's house late at night, deciding to leave.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: 「じゃあ」 combined with 「そろそろ帰るね」 (I guess I'll head home soon, right?) is a very common and natural
+      way for a younger person to politely excuse themselves from a casual gathering. The 「ね」 softens
+      the statement, seeking a mild confirmation or understanding. 「では」 could also be used here, providing
+      a slightly more formal, but still generally acceptable, transition for a casual departure. This
+      usage of 「じゃあ」 provides a gentle, logical transition to the act of leaving.
+  - english: Thank you very much for today. Well then, I will excuse myself now.
+    japanese:
+      - 本日 は ありがとう ござい まし た。{で は}、これ で 失礼 いたし ます。
+      - 本日 は ありがとう ござい まし た。{それ で は}、これ で 失礼 いたし ます。
+    english_literally: Today thank you very much. Well then, this with excuse myself.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 は ありがとう ござい まし た。これ で 失礼 いたし ます。
+        english: Thank you very much for today. I will excuse myself now.
+        hint: This sentence lacks the polite and definitive signal for ending an interaction and departing.
+          We're looking for a formal bridge that transitions to an act of leaving.
+    scene: A business person concluding a meeting with clients and departing.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「では」 is used in highly formal business contexts to mark the end of an interaction and the
+      beginning of departure. 「失礼いたします」 is the humble form of 「失礼します」, elevating the politeness level,
+      appropriate when addressing clients or superiors. 「それでは」 can also be used in this context, providing
+      an even more formal and definitive conclusion to the interaction. 「では」 ensures a professional and
+      smooth conclusion to the encounter.
+  - english: That concludes the first half of the explanation. Well then, let's proceed to the second
+      half.
+    japanese:
+      - 以上 で 前半 の 説明 を 終わり ます。{で は}、後半 へ 進み ましょう。
+      - 以上 で 前半 の 説明 を 終わり ます。{それ で は}、後半 へ 進み ましょう。
+    english_literally: Above with first half's explanation end. Well then, latter half to proceed let's.
+    competing_grammar:
+      - competing_japanese:
+          - 以上 で 前半 の 説明 を 終わり ます。後半 へ 進み ましょう。
+        english: That concludes the first half of the explanation. Let's proceed to the second half.
+        hint: This sentence misses the clear and concise transition used in instructional or presentational
+          settings. We're looking for a formal marker that signals the conclusion of one segment and the
+          progression to the next.
+    scene: A lecturer finishing one section of a presentation and moving to the next.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「では」 here is a clear and concise transition used in instructional or presentational settings.
+      It signifies the conclusion of one segment 「前半の説明を終わります」 (the first half of the explanation ends)
+      and the immediate progression to the next 「後半へ進みましょう」 (let's proceed to the second half). 「それでは」
+      would also fit this academic setting, offering a slightly more formal feel for the transition. This
+      creates a structured flow for the audience.
+  - english: Thank you for the report. In that case, may I interpret this matter as approved?
+    japanese:
+      - ご 報告 ありがとう ござい ます。{それ で は}、この 件 は 承認 さ れ た と 解釈 し て よろしい でしょう か。
+      - ご 報告 ありがとう ござい ます。{で は}、この 件 は 承認 さ れ た と 解釈 し て よろしい でしょう か。
+    english_literally: Your report thank you very much. In that case, this matter approved was as interpret
+      may I?
+    competing_grammar:
+      - competing_japanese:
+          - ご 報告 ありがとう ござい ます。この 件 は 承認 さ れ た と 解釈 し て よろしい でしょう か。
+        english: Thank you for the report. May I interpret this matter as approved?
+        hint: This sentence lacks the formal phrase that explicitly draws a conclusion or seeks clarification
+          based on the preceding information. We're looking for a word that clearly indicates a logical
+          inference from what was just said.
+      - competing_japanese:
+          - ご 報告 ありがとう ござい ます。この 件 が 承認 さ れ た {なら} 解釈 し て よろしい でしょう か。
+        english: Thank you for the report. If this matter is approved, may I interpret it as such?
+        hint: 「なら」 introduces a conditional statement, implying 'if X is true.' Here, the manager is drawing
+          a conclusion based on an existing report, not setting up a hypothetical condition. We're looking
+          for a phrase that implies 'given that report, this is the conclusion'.
+    scene: A manager confirming a decision based on a subordinate's report.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「それでは」 is used formally to draw a conclusion or seek clarification based on previously provided
+      information. 「では」 could also be used here, providing a slightly less formal but still polite transition.
+      「承認されたと解釈してよろしいでしょうか」 (may I interpret it as approved?) is a highly polite and indirect way of asking
+      for confirmation in a professional setting. This choice reflects the careful consideration of the
+      manager's inquiry.
+  - english: From what you've told me, then, that mistake was your responsibility, wasn't it?
+    japanese:
+      - あなた の 話 を 聞く 限り、{それ で は}、あの ミス は 君 の 責任 と いう 事 です ね？
+      - あなた の 話 を 聞く 限り、{で は}、あの ミス は 君 の 責任 と いう 事 です ね？
+    english_literally: Your story to hear limit, well then, that mistake your responsibility is that thing,
+      right?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 話 を 聞く 限り、あの ミス は 君 の 責任 と いう 事 です ね？
+        english: As far as I've heard your story, that mistake is your responsibility, right?
+        hint: This sentence doesn't explicitly link the conclusion about responsibility to the preceding
+          information. We're looking for a word that connects the premise to the resulting statement clearly.
+    scene: A project manager clarifying accountability with a team member.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: While 「それでは」 is formal, the slightly accusatory tone of 「君の責任という事ですね？」 (it's your responsibility,
+      isn't it?) makes it semi-formal. 「では」 could also be used here, providing a slightly less formal
+      but still serious transition. It's used to confirm an understanding or conclusion that might be
+      sensitive, based on the preceding conversation 「あなたの話を聞く限り」 (as far as listening to your story).
+      「それでは」 here emphasizes the logical flow leading to the potentially uncomfortable conclusion.
+  - english: Today's meeting concludes with this. Well then, see you next week, at the same time.
+    japanese:
+      - 本日 の 打ち合わせ は これ で 終了 です。{で は}、また 来週、同じ 時間 に。
+      - 本日 の 打ち合わせ は これ で 終了 です。{それ で は}、また 来週、同じ 時間 に。
+    english_literally: Today's meeting this with end is. Well then, again next week, same time at.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 の 打ち合わせ は これ で 終了 です。また 来週、同じ 時間 に。
+        english: Today's meeting concludes with this. See you next week, at the same time.
+        hint: This sentence lacks the polite and definitive signal for concluding the meeting and transitioning
+          to the next interaction. We're looking for a phrase that formally wraps up the current session.
+    scene: A team concluding a regular weekly meeting.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「では」 is a common closing phrase in formal or semi-formal settings, especially when scheduling
+      the next interaction. 「本日の打ち合わせはこれて終了です」 (today's meeting ends with this) clearly signals the wrap-up,
+      and 「また来週、同じ時間に」 (again next week, at the same time) is a concise way to confirm the next appointment.
+      「それでは」 would also be a very natural choice here, providing a slightly more formal and definitive
+      ending. The use of 「では」 provides a smooth and polite ending to the meeting.
+  - english: Given the current situation, in that case, we need to create a new plan.
+    japanese:
+      - 現状 を 踏まえる と、{それ で は}、新た な 計画 を 立てる 必要 が あり ます。
+      - 現状 を 踏まえる と、{で は}、新た な 計画 を 立てる 必要 が あり ます。
+    english_literally: Current situation to step on, in that case, new plan to establish need exists.
+    competing_grammar:
+      - competing_japanese:
+          - 現状 を 踏まえる と、新た な 計画 を 立てる 必要 が あり ます。
+        english: Considering the current situation, we need to create a new plan.
+        hint: This sentence does not explicitly link the necessity of a new plan to the assessment of
+          the current situation. We're looking for a word that formalizes this logical progression from
+          circumstances to action.
+    scene: Business leaders discussing a strategic pivot based on new information.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「それでは」 is used here to logically follow a statement of circumstances 「現状を踏まえると」 (given the
+      current situation), leading to a necessary action or conclusion. It implies "given these facts,
+      this is what follows." 「では」 could also be used here, providing a slightly less formal but still
+      appropriate transition. The formal tone is suitable for strategic discussions. This use of 「それでは」
+      emphasizes the cause-and-effect relationship in a formal setting.
+  - english: Thank you for contacting us. Well then, after confirming the details, we will contact you
+      again.
+    japanese:
+      - ご 連絡 ありがとう ござい ます。{で は}、詳細 を 確認 の 上、改めて ご 連絡 いたし ます。
+      - ご 連絡 ありがとう ござい ます。{それ で は}、詳細 を 確認 の 上、改めて ご 連絡 いたし ます。
+    english_literally: Your contact thank you. Well then, details confirm after, again contactいたします.
+    competing_grammar:
+      - competing_japanese:
+          - ご 連絡 ありがとう ござい ます。詳細 を 確認 の 上、改めて ご 連絡 いたし ます。
+        english: Thank you for contacting us. After confirming the details, we will contact you again.
+        hint: This sentence lacks the polite, professional bridge from acknowledging contact to stating
+          the next steps. We're looking for a phrase that smooths the transition and outlines the subsequent
+          action.
+    scene: A customer service representative responding to a client inquiry.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「では」 is a common polite connector in customer service or business communication. It smoothly
+      transitions from acknowledging receipt of contact 「ご連絡ありがとうございます」 to outlining the next steps 「詳細を確認の上、改めてご連絡いたします」
+      (after confirming details, we will contact you again). 「それでは」 would also be very natural in this
+      professional context, possibly adding a slightly more formal tone. The use of humble language 「いたします」
+      reinforces the professional and polite register. 「では」 ensures the communication remains clear and
+      courteous.
+  - english: I see. Well then, would you like to go drink some delicious sake with me next time?
+    japanese:
+      - そう です ね、{じゃあ}、今度 一緒 に 美味しい お 酒 を 飲み に 行き ませ ん か？
+      - そう です ね、{で は}、今度 一緒 に 美味しい お 酒 を 飲み に 行き ませ ん か？
+    english_literally: That is, isn't it? Well then, next time together delicious sake to drink go won't
+      you?
+    competing_grammar:
+      - competing_japanese:
+          - そう です ね、今度 一緒 に 美味しい お 酒 を 飲み に 行き ませ ん か？
+        english: I see. Would you like to go drink some delicious sake with me next time?
+        hint: This sentence doesn't provide the smooth, casual transition from agreement to a personal
+          invitation. We're looking for a word that subtly shifts the topic to a new suggestion.
+    scene: A person at a bar trying to ask out someone they find attractive.
+    register: semi-formal
+    setting: flirty
+    nuance: The slight hesitation and agreement with 「そうですね」 followed by a casual 「じゃあ」 sets up a smooth
+      transition to an invitation. 「では」 could also be used here, maintaining a slightly more polite or
+      reserved tone while still making the invitation. The phrase 「飲みに行きませんか」 (would you like to go drink...?)
+      is a common, polite, and slightly suggestive way to invite someone for drinks. The speaker's use
+      of 「美味しいお酒」 implies a shared enjoyment, hinting at a desire for a pleasant shared experience. The
+      semi-formal politeness combined with the inviting tone is characteristic of flirting. 「じゃあ」 here
+      serves to bridge the existing conversation with a new, more personal proposition.
+post_example_writeup: As these examples demonstrate, 「では・それでは・じゃあ」 are highly versatile transitional phrases.
+  The choice between them depends primarily on the level of formality and the specific nuance you wish
+  to convey. 「じゃあ」 is your go-to for casual, everyday interactions, while 「では」 offers a more general polite
+  transition, and 「それでは」 steps up to formal and more definitive conclusions or shifts in professional
+  or academic contexts. Mastering their usage allows for natural and appropriate communication in a wide
+  range of situations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/では-それでは-じゃあ

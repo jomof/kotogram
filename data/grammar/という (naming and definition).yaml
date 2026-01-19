@@ -1,0 +1,335 @@
+grammar_point: という (naming and definition)
+learn_before:
+  - '[Verb-dictionary]だけだ (all one has to do)'
+  - かというと (because)
+  - で (means・method)
+  - と (manner)
+  - というのは (definition or reason)
+  - に (static location・time)
+meaning: Called, Named, Known as, As much as
+pronunciation:
+  katakana: トイウ
+  romaji: to iu
+formation:
+  Noun A + という + Noun B: Used to identify Noun B by the name or label Noun A.
+  Clause/Sentence + という + Noun: Used to characterize or explain a Noun based on the preceding Clause or
+    Sentence.
+  Clause/Sentence + と言う: Used to report a statement, thought, or opinion directly.
+  Noun + と言う: Used to state a name or title for a noun, or to provide a definition.
+  Adjective + と言う: Used to describe a characteristic or quality of a noun.
+jlpt: N3
+etymology: 「という」 is a combination of the particle 「と」 (which marks quotations or definitions) and the
+  verb 「言う(いう)」 (to say). Thus, it literally translates to "that says" or "that is called".
+writeup: The grammar point 「という」 connects two nouns, meaning "the (B) that is called (A)" or "the (B)
+  known as (A)". It is a set expression, predominantly written in hiragana. Its core function is to convey
+  identifying information or a characterization that is not immediately apparent through simple observation.
+  This is crucial for understanding its usage. For example, if you look at a man, you cannot know that
+  his name is Bob, or that he works in an office; this information requires telling or knowledge. However,
+  you can tell if he is 'short' or 'tall' by just looking. Therefore, 「という」 should primarily be used to
+  express information that requires specific knowledge or a declaration, rather than mere visual observation.
+  While you might occasionally encounter sentences where (A) is describing something that appears 'obvious'
+  (e.g., a person who is visibly strong described as 「強いという」), in such cases, the speaker typically implies
+  a nuance. This often means something about (A) is not exactly as it seems, or that the speaker's opinion
+  or knowledge differs from general perception. This particular nuance is not limited to nouns and can
+  be seen with various word types.
+false_friends:
+  - term: ということ
+    meaning: ~ing, The ~ that ~ (nominalization)
+    kind: similar expression
+    nuance: Unlike 「という」, 「ということ」 nominalizes a phrase or clause, transforming it into a noun. It often
+      refers to 'the fact that...' or 'the meaning that...'.
+    grammar_point: ということだ (it means that)
+  - term: といわれている
+    meaning: It is said that, Is known as
+    kind: similar expression
+    nuance: Unlike 「という」, 「といわれている」 (literally 'it is being said') describes widely-held beliefs, rumors,
+      or reputations that are generally accepted, rather than a direct naming or definition.
+    grammar_point: といわれている (it is said that)
+  - term: というのは
+    meaning: Known as ~, Called ~, Means ~, Because
+    kind: similar expression
+    nuance: Unlike 「という」, 「というのは」 often provides an explanation, a definition, or states the reason for
+      something, functioning almost as 'as for what is called...' or 'the reason is...'.
+    grammar_point: というのは (definition or reason)
+  - term: いわゆる
+    meaning: What is called, So-called, Generally known
+    kind: similar expression
+    nuance: Unlike 「という」, 「いわゆる」 implies a common or conventional term for something, often with a slight
+      nuance of 'what is commonly known as' or 'the so-called', sometimes with a hint of irony or detachment.
+    grammar_point: いわゆる (so-called)
+  - term: って (quotation marker・casual)
+    meaning: Casual form of と言う/というのは
+    kind: similar expression
+    nuance: 「って」 is a more casual, colloquial contraction of 「と / という / とは」. While it shares a similar
+      function in naming or quoting, it implies a very informal context and is typically used in speech
+      among close friends. 「という」 is generally more neutral and can be used in a wider range of registers.
+    grammar_point: って (quotation marker, casual)
+post_false_friends_writeup: The subtle differences between 「という」 and expressions such as 「ということ」, 「といわれている」,
+  「というのは」, 「いわゆる」, and 「って」 are crucial for precise communication. Remember that 「という」 primarily functions
+  to name or directly identify something. The other expressions carry additional layers of meaning related
+  to nominalization, hearsay, explanation, common terminology, or varying levels of formality. Paying
+  close attention to context will guide you in selecting the most accurate expression.
+examples:
+  - english: There's a bakery called Hana in the neighborhood.
+    japanese:
+      - 近所 に 花 {と いう} 名前 の パン 屋 が あり ます。
+      - 近所 に 花 {って いう} 名前 の パン 屋 が あり ます。
+    english_literally: In neighborhood, a bakery with a name that is called Hana exists.
+    competing_grammar:
+      - competing_japanese:
+          - 近所 に 花 {の} パン 屋 が あり ます。
+        english: There's a flower bakery in the neighborhood.
+        hint: Using 「の」 here would imply the bakery sells flowers or is made of flowers, not that 'Hana'
+          is its name. We're looking for a way to specify a name.
+      - competing_japanese:
+          - 近所 に 花 だ {と いわ れ て いる} パン 屋 が あり ます。
+        english: There's a bakery in the neighborhood that is said to be Hana.
+        hint: 「といわれている」 implies hearsay or common knowledge about something being called 'Hana', rather
+          than a direct statement of its name. We're looking to directly state the name of the bakery.
+      - competing_japanese:
+          - 近所 に {いわゆる} 花 パン 屋 が あり ます。
+        english: There's a so-called Hana bakery in the neighborhood.
+        hint: 「いわゆる」 suggests 'Hana' is a commonly accepted, perhaps slightly ironic or conventional,
+          term for the bakery, not simply stating its actual name. We're just trying to state its name.
+    scene: You are telling a friend about a new shop in the neighborhood.
+    register: casual
+    setting: friendly
+    nuance: This is a simple, direct use of 「という」 to name a place. The casual register is shown by the
+      plain form 「あります」 and the simple sentence structure. 「って いう」 can be used for a more casual tone.
+  - english: I designed a building with the concept of a future city.
+    japanese:
+      - 未来 都市 {と いう} コンセプト の 建物 を 設計 し まし た。
+      - 未来 都市 {って いう} コンセプト の 建物 を 設計 し まし た。
+    english_literally: A building of concept that is called future city, I designed.
+    competing_grammar:
+      - competing_japanese:
+          - 未来 都市 コンセプト {の} 建物 を 設計 し まし た。
+        english: I designed a future city concept building.
+        hint: Without 「という」, '未来都市コンセプト' might be interpreted as a compound noun, implying 'future city'
+          is directly part of the concept's name or type, rather than the concept itself being 'called'
+          or 'defined as' future city. We're looking to specify that 'future city' IS the concept.
+      - competing_japanese:
+          - この 建物 の コンセプト は 未来 都市 だ {と いう こと} です。
+          - この 建物 の コンセプト は 未来 都市 {だ と いう こと} です。
+        english: The fact is that the concept of this building is a future city.
+        hint: 「ということ」 nominalizes a statement, focusing on 'the fact that' something is the case. We're
+          looking to state the concept itself, not the fact about it.
+      - competing_japanese:
+          - 未来 都市 {と いう の は} この 建物 の コンセプト です。
+        english: What is called a future city is the concept of this building.
+        hint: 「というのは」 often provides an explanation or definition. While related, the original sentence
+          uses 「という」 to link the concept directly to the building, not to define 'future city'. We're
+          just stating the concept of the building.
+    scene: An architect is presenting their design to a client, explaining the core idea behind the structure.
+    register: teineigo (polite)
+    setting: professional
+    nuance: This example uses 「という」 to define a concept for a noun (建物). The polite 「設計しました」 is appropriate
+      for a professional setting. The concept '未来都市' is an abstract idea, fitting the non-obvious nature
+      of 「という」. While 「って言う」 is a casual alternative, it's less suitable for a professional presentation.
+  - english: Yesterday, I met a dog named Haru at the park.
+    japanese:
+      - 昨日、公園 で ハル {と いう} 犬 に 会い まし た。
+      - 昨日、公園 で ハル {って いう} 犬 に 会い まし た。
+    english_literally: Yesterday, at the park, a dog that is called Haru, I met.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、公園 で ハル {の} 犬 に 会い まし た。
+        english: Yesterday, I met Haru's dog at the park.
+        hint: Using 「の」 here implies ownership, meaning it's 'Haru's dog', not a dog named 'Haru'. We're
+          looking to state the dog's name.
+      - competing_japanese:
+          - 昨日、公園 で 犬 の ハル {と いわ れ て いる} の に 会い まし た。
+        english: Yesterday, I met a dog named Haru who is said to be at the park.
+        hint: 「といわれている」 indicates that 'Haru' is a rumor or widely known fact, not a direct statement
+          of meeting a specific dog named Haru. We're looking to simply state the dog's name.
+    scene: Sharing a casual anecdote with a friend about an encounter at the park.
+    register: casual
+    setting: friendly
+    nuance: A common casual way to introduce a person or animal by name. The plain past form 「会いました」 is
+      standard. 「って言う」 offers an even more casual alternative suitable for a friendly conversation.
+  - english: She is a singer whose name is Sora.
+    japanese:
+      - 彼女 は 空 {と いう} 名前 の 歌手 です。
+      - 彼女 は 空 {って いう} 名前 の 歌手 です。
+    english_literally: She is a singer whose name is called Sora.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 空 {の} 歌手 です。
+        english: She is a singer of the sky/empty.
+        hint: 「空 の 歌手」 would imply a singer associated with the sky or emptiness, not a singer named Sora.
+          We need to clearly state her name.
+      - competing_japanese:
+          - 彼女 は 空 だ {と いわ れ て いる} 歌手 です。
+        english: She is a singer who is said to be Sora.
+        hint: 「といわれている」 indicates that 'Sora' is a rumor or commonly said, not a direct statement of her
+          name. We're looking to state her actual name.
+    scene: Introducing a musician to someone who might not know them.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This politely identifies a person by their stage name. The structure 「名前の歌手です」 emphasizes
+      that '空' is her *name*. 「って言う」 can be used here in a slightly more casual, but still polite, informative
+      context.
+  - english: My older brother is researching a difficult field called space science.
+    japanese:
+      - 兄 が 宇宙 科学 {と いう} 難しい 分野 を 研究 し て い ます。
+      - 兄 が 宇宙 科学 {って いう} 難しい 分野 を 研究 し て い ます。
+    english_literally: My older brother is researching a difficult field that is called space science.
+    competing_grammar:
+      - competing_japanese:
+          - 兄 が 宇宙 科学 {の} 難しい 分野 を 研究 し て い ます。
+        english: My older brother is researching a difficult field of space science.
+        hint: Using 「の」 would simply modify the field as 'a field belonging to space science,' rather
+          than defining 'space science' itself as the field. We're looking to explicitly state that the
+          field is 'called' space science.
+      - competing_japanese:
+          - 兄 が {いわゆる} 宇宙 科学 の 難しい 分野 を 研究 し て い ます。
+          - 兄 が {いわゆる} 宇宙 科学 の 難しい 分野 を 研究 し て い ます。
+        english: My older brother is researching a difficult field of so-called space science.
+        hint: 「いわゆる」 implies that 'space science' is a commonly known term, perhaps with a slightly detached
+          or ironic nuance, rather than a neutral naming. We're just stating the field's name.
+    scene: Explaining your older brother's profession to someone who might not be familiar with the field.
+    register: teineigo (polite)
+    setting: academic
+    nuance: This example uses 「という」 to name and define a specific academic field (分野). The polite form
+      「研究しています」 is suitable for discussing one's family or profession in a neutral setting. It highlights
+      that 'space science' is the particular term for the concept being discussed. 「って言う」 provides a slightly
+      more casual alternative, depending on the relationship with the listener.
+  - english: That athlete is known by the nickname genius of effort.
+    japanese:
+      - あの 選手 は 努力 の 天才 {と いう} 呼び名 で 知ら れ て い ます。
+      - あの 選手 は 努力 の 天才 {って いう} 呼び名 で 知ら れ て い ます。
+    english_literally: That athlete is known by the name that is called genius of effort.
+    competing_grammar:
+      - competing_japanese:
+          - あの 選手 は 努力 の 天才 {と いわ れ て いる} けど、最近 は 負け 続き です。
+          - あの 選手 は 努力 の 天才 {だ と いわ れ て いる} けど、最近 は 負け 続き です。
+        english: That athlete is said to be a genius of effort.
+        hint: 「といわれている」 focuses on a widely held belief or rumor. While related, the original sentence
+          specifies that 'genius of effort' is a *nickname*, not just a general reputation. We're looking
+          to name the nickname.
+      - competing_japanese:
+          - あの 選手 は {いわゆる} 努力 の 天才 です。
+          - あの 選手 は {いわゆる} 努力 の 天才 です。
+        english: That athlete is a so-called genius of effort.
+        hint: 「いわゆる」 implies that 'genius of effort' is a common term, perhaps with a slight nuance of
+          'what is commonly known as', but doesn't explicitly state it's a 'nickname'. We're looking to
+          state it's a nickname.
+    scene: Discussing a well-known athlete's reputation with friends, focusing on their unique characteristic.
+    register: casual
+    setting: storytelling
+    nuance: This example uses 「という」 to convey a nickname or title for a person. The casual form 「です」 (understood)
+      and the use of 「知られています」 (passive) are appropriate for general discussion. 「って言う」 is a common casual
+      alternative for nicknames.
+  - english: 'She holds the belief: I will never give up.'
+    japanese:
+      - 彼女 は『私 は 決して 諦め ない』{と いう} 信念 を 持っ て い ます。
+      - 彼女 は『私 は 決して 諦め ない』{って いう} 信念 を 持っ て い ます。
+    english_literally: She holds the belief that says 'I will never give up'.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は『私 は 決して 諦め ない』{と いう こと} を 信念 と し て 持っ て い ます。
+          - 彼女 は『私 は 決して 諦め ない』{だ と いう こと} を 信念 と し て 持っ て い ます。
+        english: She holds the fact that 'I will never give up' as a belief.
+        hint: 「ということ」 nominalizes the entire preceding clause, emphasizing 'the fact that' it is her belief.
+          We're looking to directly state what the belief is called or what it consists of.
+    scene: You are describing a very determined person to another friend, highlighting their core conviction.
+    register: casual
+    setting: serious
+    nuance: This demonstrates 「という」 to convey the content of a thought or belief. The direct quote is
+      linked to '信念'. The casual tone is appropriate for sharing a personal observation about someone's
+      strong character. 「って言う」 is a common casual alternative for direct quotations or beliefs.
+  - english: He has a reputation for being strong, but he's been on a losing streak recently.
+    japanese:
+      - 彼 は 強い {と いう} 評判 だ けど、最近 は 負け 続き です。
+      - 彼 は 強い {って いう} 評判 だ けど、最近 は 負け 続き です。
+    english_literally: He has a reputation that says strong, but recently has been losing continually.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 強い {と いわ れ て いる} けど、最近 は 負け 続き です。
+          - 彼 は 強い {だ と いわ れ て いる} けど、最近 は 負け 続き です。
+        english: He is said to be strong, but recently has been losing continually.
+        hint: 「といわれている」 is directly about hearsay or common belief without specifying it as a 'reputation'.
+          The original implies a specific 'reputation' (評判). We're looking to state that he has a reputation
+          of being strong.
+    scene: Discussing a sports figure or competitor who is not performing as expected, implying a contradiction
+      to their public image.
+    register: casual
+    setting: cautious
+    nuance: This sentence exemplifies the nuance of 「という」 where an 'obvious' characteristic is presented,
+      but then questioned or contradicted. The phrasing 「強いという評判だ」 acknowledges the reputation, while
+      「負け続きです」 introduces the unexpected reality. 「って言う」 maintains the casual tone for discussing public
+      figures.
+  - english: What I seek is only your very existence.
+    japanese:
+      - 私 が 求める の は、あなた {と いう} 存在 だけ だ。
+      - 私 が 求める の は、あなた {って いう} 存在 だけ だ。
+    english_literally: What I seek is only the existence that is called you.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 求める の は、あなた {の} 存在 だけ だ。
+        english: What I seek is only your existence.
+        hint: 「あなたの存在」 means 'your existence' in a general sense. 「という」 here emphasizes that the person
+          *themselves* embodies the very concept of 'existence' in this context, making it more profound
+          and intimate. We're looking for a more poetic and defining statement.
+    scene: A man is confessing his deep feelings to the woman he loves, expressing intense devotion.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: This is an intimate and poetic use of 「という」, where it defines the listener (あなた) as the very
+      concept of '存在'. The phrasing 「あなたという存在」 emphasizes the singular, irreplaceable nature of the person.
+      This kind of expression is often used in romantic or deeply emotional contexts, reflecting a strong
+      attachment. 「って言う」 is a casual alternative but may slightly diminish the poetic gravitas in such
+      an intimate confession.
+  - english: In psychology class, we learned about a concept called 'cognitive bias'.
+    japanese:
+      - 心理 学 の 授業 で、認知 バイアス {と いう} 概念 に つい て 学び まし た。
+      - 心理 学 の 授業 で、認知 バイアス {って いう} 概念 に つい て 学び まし た。
+    english_literally: In psychology class, about a concept that is called cognitive bias, we learned.
+    competing_grammar:
+      - competing_japanese:
+          - 心理 学 の 授業 で、認知 バイアス {の} 概念 に つい て 学び まし た。
+        english: In psychology class, we learned about the concept of cognitive bias.
+        hint: While grammatically correct, using 「の」 here simply links 'cognitive bias' to 'concept'.
+          「という」 more explicitly defines or names the concept itself as 'cognitive bias'. We're looking
+          to name the concept.
+    scene: Two students are chatting after a psychology lecture, discussing what they found interesting.
+    register: teineigo (polite)
+    setting: academic
+    nuance: This example uses 「という」 to name and define a specific academic concept. The polite form 「学びました」
+      is appropriate for discussing studies in an educational setting. It highlights that 'cognitive bias'
+      is the particular term for the concept being discussed. 「って言う」 offers a slightly more casual alternative,
+      common in student-to-student conversations.
+  - english: There's a proverb that says, 'When in Rome, do as the Romans do.'
+    japanese:
+      - 『郷 に 入っ て は 郷 に 従え』{と いう} ことわざ が あり ます。
+      - 『郷 に 入っ て は 郷 に 従え』{って いう} ことわざ が あり ます。
+    english_literally: There is a proverb that says 'When in Rome, do as the Romans do'.
+    competing_grammar:
+      - competing_japanese:
+          - 『郷 に 入っ て は 郷 に 従え』{の} ことわざ が あり ます。
+        english: There is a proverb of 'When in Rome, do as the Romans do'.
+        hint: Using 「の」 here would imply a possessive relationship or a general belonging. 「という」 is needed
+          to directly state the content or definition of the proverb. We're looking to define the proverb
+          by its content.
+      - competing_japanese:
+          - 『郷 に 入っ て は 郷 に 従え』{と いう こと} です。
+        english: The fact is that 'When in Rome, do as the Romans do'.
+        hint: 「ということ」 nominalizes the clause, turning it into 'the fact that...'. Here, we are introducing
+          a proverb and its name/content, not stating a fact about a situation. We are defining the proverb
+          by its content.
+    scene: A teacher explains a cultural concept to students, providing an example of a common proverb.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This example showcases 「という」 used to introduce and define a saying or proverb. The embedded
+      quote forms the definition of the noun 「ことわざ」 (proverb). The polite register is suitable for an
+      educational context. 「って言う」 can also be used, but is less formal and might be chosen for a more
+      conversational teaching style.
+post_example_writeup: The examples demonstrate how 「という」 is used to specify or name an entity, from concrete
+  objects and individuals to abstract concepts and characteristics. Observe its application across various
+  contexts, from straightforward identification to more nuanced expressions conveying reputations or personal
+  qualities. The flexibility of 「という」 allows for precise, albeit sometimes subtle, distinctions in communication,
+  highlighting information that isn't immediately obvious from mere observation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/という-called

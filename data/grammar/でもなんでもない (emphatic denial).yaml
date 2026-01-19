@@ -1,0 +1,450 @@
+grammar_point: でもなんでもない (emphatic denial)
+learn_before:
+  - い-Adjective[くありません] (polite negative form)
+  - ことだから (given the nature of)
+  - でもある (to also be)
+  - 単なる (mere・simple)
+meaning: Not at all, By no means, Definitely not, Nothing like that, Not really
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: でもなんでもない
+    rarity: common
+    meaning: Not at all, by no means
+  - conjugation-type: non-past polite (～ます)
+    form: でもなんでもありません
+    rarity: common
+    meaning: Not at all, by no means (polite)
+  - conjugation-type: past plain (～た)
+    form: でもなんでもなかった
+    rarity: common
+    meaning: Was not at all, was by no means
+  - conjugation-type: past polite (～ました)
+    form: でもなんでもありませんでした
+    rarity: common
+    meaning: Was not at all, was by no means (polite)
+pronunciation:
+  katakana: デモナンデモナイ
+  romaji: demo nan demo nai
+formation:
+  Noun + でもなんでもない: Indicates something is 'definitely not' or 'not at all' the noun.
+  な-Adjective + でもなんでもない: Indicates something is 'definitely not' or 'not at all' the adjective.
+jlpt: N1
+etymology: The grammar point 「でもなんでもない」 is formed by combining 「でも」 (even), 「何でも」 (anything), and 「ない」
+  (not). The 「でも」 adds emphasis, indicating that something is 'not even' or 'not in the slightest'. 「何でも」
+  broadens the scope to include 'anything of the kind', implying a sweeping negation. Together, they create
+  a strong, all-encompassing denial, literally meaning 'not even anything (like that)'. This etymological
+  breakdown highlights its function as a comprehensive negator, denying not just the specific item but
+  'anything and everything' related to it.
+writeup: "「でもなんでもない」 is a powerful and versatile expression used in Japanese to strongly deny or negate\
+  \ a preceding noun or な-adjective. It conveys a firm sense of \"not at all,\" \"by no means,\" or \"\
+  definitely not.\" The literal translation of \"not even (A) or anything of the sort\" captures its inherent\
+  \ nuance of a sweeping, absolute denial.\n\nThis expression is highly flexible in its usage. While it\
+  \ fundamentally serves as a negative construction, it can be employed to convey various nuances. For\
+  \ instance, it can be used to: \n*   **Strongly correct a misconception**: As when clarifying someone\
+  \ is absolutely not a doctor.\n*   **Emphasize an absolute truth**: Stressing that a task is definitively\
+  \ not easy.\n*   **Convey reassurance**: By stating that something is \"not bothersome at all\" (迷惑でもなんでもない).\n\
+  \nWhile predominantly used with nouns and な-adjectives, it's worth noting that a similar construction,\
+  \ 「い-Adj[く]+もなんともない」, exists for い-adjectives, allowing for comparable emphatic negation across different\
+  \ word classes. This highlights a systematic way Japanese expresses such strong denials."
+false_friends:
+  - term: い-Adj[く]+もなんともない
+    meaning: Not... or anything, Not at all, Not, By no means, Definitely not, Nothing like that
+    kind: synonym
+    nuance: Unlike 「でもなんでもない」, 「い-Adj[く]+もなんともない」 is used with い-adjectives. For example, 「難しくもなんともない」
+      (not difficult at all). While functionally similar in expressing strong negation, their application
+      depends on the part of speech they modify.
+    grammar_point: くもなんともない (not at all)
+  - term: 全く〜ない
+    meaning: not at all, completely not
+    kind: similar expression
+    nuance: 「全く～ない」 emphasizes the thoroughness of the negation of a state or action. In contrast, 「でもなんでもない」
+      often denies an identity or categorization, implying that something is absolutely not what it might
+      be perceived or assumed to be.
+    grammar_point: 全く〜ない (not at all)
+  - term: ではない
+    meaning: is not
+    kind: often confused with
+    nuance: 「ではない」 (or its casual form 「じゃない」) is a basic, neutral negation. 「でもなんでもない」 is a much stronger,
+      emphatic denial, used when correcting a misconception or firmly stating that something is absolutely
+      not the case, going beyond a simple factual negation.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+post_false_friends_writeup: Remember that 「でもなんでもない」 is typically used after nouns and な-adjectives, while
+  「い-Adj[く]+もなんともない」 is used with い-adjectives. Pay attention to the word class preceding these expressions
+  to use them correctly. The core meaning of strong negation is shared, but their grammatical connection
+  points differ. Also, while 「全く～ない」 emphasizes complete negation and 「ではない」 is a simple denial, 「でもなんでもない」
+  offers a more emphatic and absolute dismissal, often used to correct a misperception.
+examples:
+  - english: He's not a doctor at all. He's just a pharmacist.
+    japanese:
+      - 彼 は 医者 {で も なん で も ない}。ただ の 薬剤 師 だ。
+      - 彼 は 医者 {で も なん で も あり ませ ん}。ただ の 薬剤 師 です。
+      - 彼 は 医者 {で も なん で も ない} ん だ よ。ただ の 薬剤 師 だ。
+      - 彼 は 医者 {で も なん で も ない} ん だ ぜ。ただ の 薬剤 師 だ。
+    english_literally: He is doctor not at all. Just pharmacist.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 医者 {じゃ ない}。
+        english: He is not a doctor.
+        hint: The scene implies a strong correction of a persistent misconception. The phrase "not a doctor
+          at all" emphasizes the absolute absence of that quality, which "医者じゃない" might not fully convey,
+          making 「でもなんでもない」 more suitable for a definitive clarification. We're looking for a strong correction.
+      - competing_japanese:
+          - 彼 は {全く} 医者 {で は ない}。
+        english: He is completely not a doctor.
+        hint: 「全く～ない」 emphasizes that he is completely not a doctor, but 「でもなんでもない」 adds a stronger sense
+          of refuting a misconception or misclassification. We're looking for a definitive denial of his
+          profession.
+      - competing_japanese:
+          - 彼 は 医者 {で は ない}。
+        english: He is not a doctor.
+        hint: 「ではない」 states a fact. 「でもなんでもない」 offers a much stronger, more emphatic denial, especially
+          when correcting a misunderstanding. We're looking for a strong correction.
+      - competing_japanese:
+          - 彼 は 医者 だ と いう {わけ で は ない}。
+        english: It's not that he's a doctor.
+        hint: 「わけではない」 implies 'not necessarily' or 'it's not the case that...'. 「でもなんでもない」 is a direct
+          and absolute denial, leaving no room for nuance. We're looking for a definitive denial.
+    scene: Ken is casually correcting his friend Hiroshi, who mistakenly thought their mutual acquaintance
+      was a medical doctor.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The speaker uses the casual ending 「～だ」 and direct address, typical of male speech when correcting
+      a friend. The emphatic negation 「{でもなんでもない}」 is used to make a clear, strong distinction that the
+      acquaintance is absolutely not a doctor. The addition of 「～ん だ よ」 or 「～ん だ ぜ」 makes the explanation
+      slightly softer or more masculine/emphatic respectively.
+  - english: This job isn't easy at all. It requires considerable effort.
+    japanese:
+      - この 仕事 は 簡単 {で も なん で も ない}。相当 な 努力 が 必要 だ。
+      - この 仕事 は 簡単 {で も なん で も あり ませ ん}。相当 な 努力 が 必要 です。
+      - この 仕事 は 簡単 {で も なん で も ない} ん です よ。相当 な 努力 が 必要 な ん です。
+      - この 仕事 は 簡単 {で も なん で も ない} よ。相当 な 努力 が 必要 だ から ね。
+    english_literally: This job easy not at all. Considerable effort is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 簡単 {じゃ ない}。
+        english: This job is not easy.
+        hint: The scene emphasizes managing expectations and warning about the significant challenge.
+          Using 「でもなんでもない」 highlights that the job is *absolutely not* easy, which is a stronger warning
+          than a simple negation, setting a serious tone for the new hire. We're looking for an emphatic
+          statement about the job's difficulty.
+      - competing_japanese:
+          - この 仕事 は {全く} 簡単 {で は ない}。
+        english: This job is completely not easy.
+        hint: 「全く～ない」 stresses the total lack of ease. 「でもなんでもない」 adds a nuance of 'it's not easy *at
+          all*, despite what you might think'. We're looking for a strong denial that corrects an assumption.
+      - competing_japanese:
+          - この 仕事 は 簡単 {で は ない}。
+        english: This job is not easy.
+        hint: 「ではない」 states a fact. 「でもなんでもない」 provides a more emphatic denial, often used to contradict
+          an implied easiness. We're looking for an emphatic statement about the job's difficulty.
+      - competing_japanese:
+          - この 仕事 は 簡単 だ と いう {わけ で は ない}。
+        english: It's not that this job is easy.
+        hint: 「わけではない」 implies 'not necessarily' or 'it's not the case that...'. 「でもなんでもない」 is an absolute
+          denial, emphasizing the job is *definitely* not easy. We're looking for an absolute denial.
+    scene: A senior employee is advising a new hire about the true demands of a particular task.
+    register: semi-formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The senior employee, an older female, uses a direct but professional tone to convey the gravity
+      of the task. The phrasing 「相当な努力が必要だ」 further underscores the emphatic denial of easiness, reinforcing
+      the instructional nature of the conversation. The use of 「{でもなんでもない}」 strengthens this denial. The
+      addition of 「～ん です よ」 or 「～よ」 and 「～から ね」 softens the delivery while maintaining authority.
+  - english: What she said wasn't a joke at all. Her expression was serious.
+    japanese:
+      - 彼女 の 話 は 冗談 {で も なん で も なかっ た}。真剣 な 表情 だっ た。
+      - 彼女 の 話 は 冗談 {で も なん で も あり ませ ん でし た}。真剣 な 表情 でし た。
+      - 彼女 の 話 は 冗談 {で も なん で も なかっ た} ん だ よ。真剣 な 表情 だっ た から。
+      - 彼女 の 話 は 冗談 {で も なん で も なかっ た} ぜ。真剣 な 表情 だっ た ん だ。
+    english_literally: Her talk joke not at all was. Serious expression was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 話 は 冗談 {じゃ なかっ た}。
+        english: Her talk was not a joke.
+        hint: The scene conveys a strong realization that the words were *absolutely not* a joke. This
+          emphasizes the gravity of the situation and the speaker's belated understanding, making the
+          strong negation more impactful than a simple past negative. We're looking for a strong realization.
+      - competing_japanese:
+          - 彼女 の 話 は {全く} 冗談 {で は なかっ た}。
+        english: Her talk was completely not a joke.
+        hint: 「全く～ない」 emphasizes the thoroughness of the negation. 「でもなんでもない」 adds a nuance of 'it's not
+          even a joke, despite what you might think'. We're looking for a strong realization.
+      - competing_japanese:
+          - 彼女 の 話 は 冗談 {で は なかっ た}。
+        english: Her talk was not a joke.
+        hint: 「ではなかった」 is a simple past negation. 「でもなんでもなかった」 is a more emphatic denial, implying a stronger
+          contrast to expectation. We're looking for an emphatic realization.
+      - competing_japanese:
+          - 彼女 の 話 は 冗談 だっ た と いう {わけ で は ない}。
+        english: It's not that her talk was a joke.
+        hint: 「わけではない」 implies 'not necessarily' or 'it's not the case that...'. 「でもなんでもない」 signifies
+          an absolute and firm denial. We're looking for an absolute denial about the talk's nature.
+    scene: A friend is recounting a past conversation, realizing the seriousness of another person's words
+      after the fact.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The speaker's use of the casual past tense 「～だった」 and the observation of 「真剣な表情」 reflects
+      an informal recounting among friends. The use of 「{でもなんでもなかった}」 shows a strong emphasis on the utter
+      unexpectedness of the seriousness, conveying a deeper understanding or surprise about the previous
+      event. The casual explanations like 「～ん だ よ」 and masculine 「～ぜ」 further characterize the speaker's
+      casual delivery.
+  - english: That rumor isn't true at all. It's completely baseless.
+    japanese:
+      - その うわさ は 本当 {で も なん で も あり ませ ん}。根 も 葉 も 無い こと です。
+      - その うわさ は 本当 {で も なん で も ない}。根 も 葉 も 無い こと だ。
+      - その うわさ は 本当 {で も なん で も ござい ませ ん}。根 も 葉 も ござい ませ ん。
+    english_literally: That rumor true not at all is. Root and leaf not a thing is.
+    competing_grammar:
+      - competing_japanese:
+          - その うわさ は 本当 {で は あり ませ ん}。
+        english: That rumor is not true.
+        hint: The scene demands a strong, official denial to effectively discredit the rumor in a professional
+          setting. 「でもなんでもありません」 provides a more authoritative and emphatic assertion that the rumor is
+          *absolutely not* true, crucial for maintaining credibility. We're looking for a strong, formal
+          assertion.
+      - competing_japanese:
+          - その うわさ は {全く} 本当 {で は あり ませ ん}。
+        english: That rumor is completely not true.
+        hint: 「全く～ない」 focuses on the completeness of the falsehood. 「でもなんでもない」 carries the weight of a
+          strong refutation against a widespread belief or claim. We're looking for a definitive and formal
+          denial.
+      - competing_japanese:
+          - その うわさ は 本当 {で は あり ませ ん}。
+        english: That rumor is not true.
+        hint: 「ではありません」 is a standard polite negation. 「でもなんでもありません」 is a more powerful, assertive denial,
+          particularly fitting for official corrections. We're looking for a strong, formal assertion.
+      - competing_japanese:
+          - その うわさ は 本当 だ と いう {わけ で は あり ませ ん}。
+        english: It's not that the rumor is true.
+        hint: 「わけではありません」 implies 'not necessarily'. 「でもなんでもありません」 is an absolute dismissal, emphasizing
+          the rumor is *definitely* not true. We're looking for an absolute and formal denial.
+    scene: A public relations manager is formally addressing journalists about a false accusation concerning
+      their client.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The female PR manager employs the polite negative form 「～ありません」 along with the strong idiom
+      「根も葉も無いこと」 to deliver a firm, professional, and definitive denial to the media, underscoring the
+      absolute falsehood of the rumor. The use of 「{でもなんでもありません}」 strengthens this formal assertion. The
+      inclusion of the highly formal 「ございません」 further elevates the register for a very serious professional
+      setting.
+  - english: His actions weren't surprising at all. They were to be expected.
+    japanese:
+      - 彼 の 行動 は 驚き {で も なん で も あり ませ ん でし た}。予期 さ れる こと でし た から。
+      - 彼 の 行動 は 驚き {で も なん で も なかっ た}。予期 さ れる こと だっ た から。
+      - 彼 の 行動 は 驚き {で も なん で も なかっ た} です。予期 さ れる こと でし た から。
+      - 彼 の 行動 は 驚き {で も なん で も ござい ませ ん でし た}。予期 さ れる こと でし た から。
+    english_literally: His actions surprise not at all were. Expected thing was because.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 は 驚き {で は あり ませ ん でし た}。
+        english: His actions were not surprising.
+        hint: The scene requires the speaker to strongly assert that an event was *not at all* surprising
+          from their perspective, in contrast to others who might have been surprised. This conveys foresight
+          and a deeper understanding of the situation. We're looking for an emphatic statement countering
+          potential surprise.
+      - competing_japanese:
+          - 彼 の 行動 は {全く} 驚き {で は あり ませ ん でし た}。
+        english: His actions were completely not surprising.
+        hint: 「全く～ない」 emphasizes the total absence of surprise. 「でもなんでもない」 often implies a strong correction
+          to others' surprised reactions, asserting that it was *not at all* surprising. We're looking
+          for a firm assertion that counters general perception.
+      - competing_japanese:
+          - 彼 の 行動 は 驚き {で は あり ませ ん でし た}。
+        english: His actions were not surprising.
+        hint: 「ではありませんでした」 is a polite past negation. 「でもなんでもありませんでした」 is a more emphatic denial, emphasizing
+          that the actions were *definitely* not surprising. We're looking for an emphatic statement countering
+          potential surprise.
+      - competing_japanese:
+          - 彼 の 行動 は 驚き だっ た と いう {わけ で は あり ませ ん でし た}。
+        english: It's not that his actions were surprising.
+        hint: 「わけではありませんでした」 means 'it wasn't necessarily the case that...'. 「でもなんでもありませんでした」 is an absolute
+          declaration, firmly stating the actions were *not at all* surprising. We're looking for an absolute
+          denial of surprise.
+    scene: A colleague is discussing a recent development that some found surprising, but the speaker
+      maintains it was entirely foreseeable.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal and polite past negative 「～ありませんでした」 combined with 「予期されることでしたから」 demonstrates
+      a logical and authoritative explanation. This is often used by a male speaker in a professional
+      setting to express a clear, confident understanding of past events. The inclusion of 「{でもなんでもありませんでした}」
+      emphasizes this lack of surprise. The casual 「～だったから」 or polite 「～だったです」 variations allow for a
+      slight adjustment in formality while retaining the core meaning.
+  - english: It's nothing special. Just an everyday occurrence.
+    japanese:
+      - それ は 特別 {で も なん で も ない} よ。いつ も の こと だ から。
+      - それ は 特別 {で も なん で も あり ませ ん}。いつ も の こと です から。
+    english_literally: That special not at all. Always's thing is because.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 特別 {じゃ ない} よ。
+        english: That's not special.
+        hint: While 「特別じゃない」 is a simple denial, the scene implies a stronger desire to dismiss any notion
+          of uniqueness or difficulty, making 「でもなんでもない」 more suitable for emphatically downplaying the
+          situation. We're looking for a phrase to strongly downplay significance.
+      - competing_japanese:
+          - それ は {全く} 特別 {で は ない} よ。
+        english: That is completely not special.
+        hint: 「全く～ない」 expresses a complete lack of a quality. 「でもなんでもない」 adds a nuance of 'it's not even
+          special', often used to correct a perceived overestimation or praise. We're looking for an emphatic
+          denial to downplay something.
+    scene: A friend is downplaying an achievement or action to avoid excessive praise from another friend.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The female speaker uses 「～よ」 to soften the statement while still conveying a firm denial that
+      the situation is special. 「{でもなんでもない}」 emphasizes that it's *absolutely not* special, downplaying
+      its significance. The use of 「いつものこと」 reinforces the idea that it's a common occurrence, typical
+      in casual conversation when deflecting compliments.
+  - english: This isn't a simple misunderstanding at all. It's a fundamental difference in opinion.
+    japanese:
+      - これ は 単なる 誤解 {で も なん で も あり ませ ん}。根本 的 な 意見 の 相違 です。
+      - これ は 単なる 誤解 {で も なん で も ない}。根本 的 な 意見 の 相違 だ。
+    english_literally: This simple misunderstanding not at all is. Fundamental opinion's difference is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 単なる 誤解 {で は あり ませ ん}。
+        english: This is not a simple misunderstanding.
+        hint: The scene suggests the need for a strong clarification to address a serious disagreement.
+          「でもなんでもありません」 provides a more decisive and emphatic statement that it is *absolutely not* a
+          simple misunderstanding, setting a clear tone for the discussion. We're looking for a strong
+          statement of clarification.
+      - competing_japanese:
+          - これ は {全く} 誤解 {で は あり ませ ん}。
+        english: This is completely not a misunderstanding.
+        hint: While 「全く～ない」 emphasizes complete negation, 「でもなんでもない」 adds the nuance of correcting an
+          assumption or simplification that it's *just* a misunderstanding. We're looking for an emphatic
+          correction of a false premise.
+    scene: A team leader is clarifying the severity of a disagreement among team members during a meeting,
+      indicating it's deeper than a mere misunderstanding.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The male speaker uses polite language with 「～ありません」 to maintain professionalism while strongly
+      emphasizing that the issue is far beyond a mere misunderstanding. The direct assertion 「{でもなんでもありません}」
+      serves to firmly establish the seriousness of the situation. The phrase 「根本的な意見の相違」 highlights the
+      depth of the issue, common in a workplace setting to ensure clarity.
+  - english: The concert wasn't satisfactory at all. The sound quality was terrible.
+    japanese:
+      - あの コンサート は 満足 {で も なん で も なかっ た} ね。音質 が 最悪 だっ た から。
+      - あの コンサート は 満足 {で も なん で も あり ませ ん でし た} ね。音質 が 最悪 でし た から。
+    english_literally: That concert satisfactory not at all was, you know. Sound quality terrible was
+      because.
+    competing_grammar:
+      - competing_japanese:
+          - あの コンサート は 満足 {じゃ なかっ た} ね。
+        english: That concert wasn't satisfactory.
+        hint: The scene depicts strong disappointment. While 「満足じゃなかった」 is a basic negative, 「でもなんでもなかった」
+          emphasizes the *absolute* lack of satisfaction, expressing a more profound disappointment. We're
+          looking for an emphatic expression of dissatisfaction.
+      - competing_japanese:
+          - あの コンサート は {全く} 満足 {で は なかっ た} ね。
+        english: That concert was completely not satisfactory.
+        hint: 「全く～ない」 focuses on the completeness of the negative state. 「でもなんでもない」, when used in this
+          context, implies 'not even satisfactory, contrary to expectations or hopes'. We're looking for
+          a strong denial of satisfaction based on a specific reason.
+    scene: Two friends are chatting casually after attending a disappointing concert, expressing their
+      strong negative opinion about it.
+    register: casual
+    setting: pessimistic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The female speaker uses 「～ね」 to seek agreement from her friend, indicating a shared negative
+      experience. 「{でもなんでもなかった}」 is used to strongly emphasize the utter lack of satisfaction with the
+      concert, going beyond a simple negative assessment. The reason 「音質が最悪だったから」 provides the clear justification
+      for this strong denial, common in casual complaints among peers.
+  - english: His advice wasn't useless at all. It actually helped me a lot.
+    japanese:
+      - 彼 の 助言 は 無駄 {で も なん で も なかっ た} です。実際 に とても 役 に 立ち まし た から。
+      - 彼 の 助言 は 無駄 {で も なん で も なかっ た}。実際 に とても 役 に 立っ た から。
+    english_literally: His advice useless not at all was. Actually very helpful was because.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 助言 は 無駄 {じゃ なかっ た} です。
+        english: His advice wasn't useless.
+        hint: The scene requires a strong reassurance that the advice was beneficial, countering any doubt.
+          「でもなんでもなかった」 provides a more emphatic denial of uselessness, highlighting its positive impact
+          beyond simple negation. We're looking for a strong affirmation of value.
+      - competing_japanese:
+          - 彼 の 助言 は {全く} 無駄 {で は なかっ た} です。
+        english: His advice was completely not useless.
+        hint: While 「全く～ない」 emphasizes total absence of uselessness, 「でもなんでもない」 implies 'it was not even
+          useless, on the contrary, it was very useful', often used to strongly correct a negative perception.
+          We're looking for an emphatic correction of a negative assumption.
+    scene: A junior colleague is reassuring a senior colleague, who thought their past advice might have
+      been unhelpful, confirming its true value.
+    register: semi-formal
+    setting: supportive
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The younger male speaker uses polite forms like 「～でした」 to show respect to the senior colleague.
+      「{でもなんでもなかった}」 is employed to strongly deny the idea that the advice was useless, emphasizing its
+      actual benefit. The explanation 「実際にとて も役に立ちましたから」 provides evidence for this strong affirmation,
+      demonstrating earnestness and gratitude in a semi-formal setting.
+  - english: The decision was not arbitrary at all; it was based on careful consideration.
+    japanese:
+      - その 決定 は 恣意 的 {で も なん で も あり ませ ん}。慎重 な 検討 に 基づく もの です。
+      - その 決定 は 恣意 的 {で も なん で も ない}。慎重 な 検討 に 基づく もの だ。
+    english_literally: That decision arbitrary not at all is. Careful consideration based thing is.
+    competing_grammar:
+      - competing_japanese:
+          - その 決定 は 恣意 的 {で は あり ませ ん}。
+        english: That decision is not arbitrary.
+        hint: In a formal setting, a simple negation might not be strong enough to dispel concerns. 「でもなんでもありません」
+          provides a more definitive and authoritative denial, asserting that the decision was *absolutely
+          not* arbitrary, crucial for building trust. We're looking for a strong, formal denial of a negative
+          attribute.
+      - competing_japanese:
+          - その 決定 は {全く} 恣意 的 {で は あり ませ ん}。
+        english: That decision is completely not arbitrary.
+        hint: While 「全く～ない」 emphasizes the total absence of arbitrariness, 「でもなんでもない」 often carries the
+          nuance of correcting a potential accusation or misperception that it *is* arbitrary. We're looking
+          for an emphatic refutation of a negative judgment.
+    scene: A spokesperson is addressing public concerns, emphasizing the logical and well-thought-out
+      basis of a policy decision.
+    register: formal
+    setting: persuasive
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The female speaker, in a formal and public setting, uses 「～ありません」 to convey a strong, authoritative
+      denial of the decision being arbitrary. 「{でもなんでもありません}」 explicitly refutes the notion, asserting
+      that the decision was well-founded. The phrase 「慎重な検討に基づくもの」 further reinforces the logic behind
+      the decision, typical in professional or political discourse aiming to reassure an audience.
+post_example_writeup: As illustrated by the examples, 「でもなんでもない」 is a versatile expression used to strongly
+  negate a noun or な-adjective. Its usage can range from casual conversation to formal professional settings,
+  adapting its ending form accordingly. It's particularly effective when you want to strongly dismiss
+  a possibility, correct a misunderstanding, or downplay the significance of something by emphasizing
+  its absolute lack of a particular quality. The various forms highlight how this strong negation can
+  be expressed across different levels of formality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でもなんでもない

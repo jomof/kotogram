@@ -1,0 +1,268 @@
+grammar_point: 正面 (front face spatial)
+learn_before:
+  - 奥,手前 (depth・foreground spatial)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: The front, front face, or facade of something.
+pronunciation:
+  katakana: ショウメン
+  romaji: shōmen
+formation:
+  '[Noun の] 正面': Indicates the front side of a noun.
+  正面 に: In front of or facing the front.
+  正面 から: From the front.
+  正面 を 向く: To face the front.
+jlpt: N3
+etymology: The Kanji 正 (shō) means 'correct, true, main' and 面 (men) means 'face, surface, aspect.' Combined,
+  正面 literally means 'correct/main face/surface,' which accurately conveys its meaning as the principal
+  front of an object or person. This distinction from general 'mae' (前), which can mean 'before' (temporal)
+  or 'in front of' (spatial area), highlights 正面's focus on the actual face or façade.
+writeup: 正面 (shōmen) refers specifically to the **front face, facade, or principal side** of an object,
+  building, or even a person. Unlike the broader term 前 (mae), which can denote the general area in front
+  of something or a temporal "before," 正面 focuses on the designated or apparent "face" that is typically
+  presented or observed. Think of it as the side you'd normally address, view, or interact with. This
+  term is versatile and can be used to describe the front of anything from a house to a television, or
+  even the posture of a person. For instance, when describing a building, 正面 would refer to its main entrance
+  or the side that faces the street. When talking about a person, 正面 indicates facing them directly, head-on.
+  It is often used with particles such as に to indicate "in front of" or "facing the front," から for "from
+  the front," or を when specifying the direction of facing. The nuance of 正面 is about a *specific, identifiable
+  front*, not just any space in front.
+false_friends:
+  - term: 前 (まえ)
+    meaning: front; before (spatial or temporal)
+    kind: often confused with
+    nuance: 前 is a more general term that can mean the space *in front of* something, or "before" in a
+      temporal sense. It does not specifically refer to the *face* or *façade* of an object or person.
+      For example, 「家の前に車がある」 (Ie no mae ni kuruma ga aru - There's a car in front of the house) refers
+      to the general area, whereas 「家の正面に玄関がある」 (Ie no shōmen ni genkan ga aru - The entrance is at the
+      front *face* of the house) specifies the architectural front.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 手前 (てまえ)
+    meaning: just before; this side; in front (of someone important)
+    kind: similar expression
+    nuance: 手前 can also indicate a spatial "in front," but often implies a close proximity or a perspective
+      from the speaker's side, sometimes with a nuance of modesty or deference when referring to one's
+      own position relative to another. It does not imply the "face" or "façade" of an object like 正面
+      does.
+    grammar_point: 奥,手前 (depth・foreground spatial)
+post_false_friends_writeup: While 前 can indicate a general area in front of something, 正面 is used when
+  you are referring to the *specific, identifiable face or facade* of an object or person. For instance,
+  if you are looking at a house, 正面 refers to the main side with the entrance, while 前 could refer to
+  the lawn or street in front of it. 手前 also indicates being in front, but it often carries a nuance of
+  being just before something or on one's own side, and lacks the sense of a defined "face" that 正面 has.
+  Understanding this distinction is key to using these spatial terms accurately.
+examples:
+  - english: Please stand in front of the building.
+    japanese:
+      - 建物 の {正面} に 立っ て ください。
+      - 建物 の {正面} に 立っ て。
+      - 建物 の {正面} に お 立ち ください。
+    english_literally: Building's front-face-at stand please.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 の 前 に 立っ て ください。
+        english: Please stand in front of the building (general area).
+        hint: 正面 refers specifically to the main 'face' of the building, while 前 indicates the general
+          area in front. We're looking for the main side.
+      - competing_japanese:
+          - 建物 の 手前 に 立っ て ください。
+        english: Please stand just before the building (from my perspective).
+        hint: 手前 often implies closer proximity or the speaker's viewpoint, not necessarily the building's
+          designated front. We're looking for the main face of the building.
+    scene: A tour guide instructing a group.
+    register: formal
+    setting: informative
+  - english: Please look directly at the camera.
+    japanese:
+      - カメラ の {正面} を 見 て ください。
+      - カメラ の {正面} を 見 て ね。
+      - カメラ の {正面} を 御覧 ください。
+    english_literally: Camera's front-face-object-marker look please.
+    competing_grammar:
+      - competing_japanese:
+          - カメラ の 方 を 見 て ください。
+        english: Please look towards the camera.
+        hint: 「〜の方」 indicates a general direction, but not necessarily facing the specific 'face' of the
+          camera. We're looking for direct eye contact with the camera's front.
+      - competing_japanese:
+          - カメラ の 前 に 顔 を 向け て ください。
+        english: Please turn your face in front of the camera.
+        hint: This phrase could mean simply being in front of it, not necessarily aligned with its main
+          lens. We're looking for a direct gaze at the camera's main viewing part.
+    scene: A photographer giving instructions.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「カメラの正面」 specifies looking directly at the lens or the primary viewing side of the camera,
+      not just somewhere in front of it.
+  - english: The light is shining from the front.
+    japanese:
+      - 光 が {正面} から 差し て い ます。
+      - 光 が {正面} から 差し て いる よ。
+      - 光 が {正面} から 射し込ん で おり ます。
+    english_literally: Light-subject-marker front-face-from shining is.
+    competing_grammar:
+      - competing_japanese:
+          - 光 が 前 から 差し て い ます。
+        english: The light is shining from the front (general direction).
+        hint: 「前から」 is a general direction. 「正面から」 implies the light source is directly facing the subject,
+          originating from its 'face' or most prominent side. We're looking for the direct light source.
+      - competing_japanese:
+          - 光 が 手前 から 当たっ て い ます。
+        english: The light is hitting from this side (near me).
+        hint: 手前 implies proximity to the speaker, not necessarily the direct front of an object. We're
+          looking for the direct frontal light.
+    scene: Describing a lighting setup.
+    register: casual
+    setting: informative
+    nuance: 「正面から」 implies the light source is directly facing the subject, originating from its 'face'
+      or most prominent side.
+  - english: Please face the front.
+    japanese:
+      - '{正面} を 向い て ください。'
+      - '{正面} を 向い て ね。'
+      - '{正面} に お 向き ください。'
+    english_literally: Front-face-object-marker face please.
+    competing_grammar:
+      - competing_japanese:
+          - 前 を 向い て ください。
+        english: Please face forward (general direction).
+        hint: 「前を向く」 is a general phrase for facing forward. 「正面を向く」 specifically means to align oneself
+          with the designated 'front' or 'face' of something. We're looking for facing the direct front.
+      - competing_japanese:
+          - こちら を 向い て ください。
+        english: Please face this way.
+        hint: 「こちら」 points to the speaker's direction, which might not be the designated 'front' of a
+          space or setup. We're looking for facing the specified front.
+    scene: A teacher in a classroom instructing students.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「正面を向いて」 is a common instruction meaning to turn one's body directly towards the designated
+      front, e.g., the teacher or the blackboard.
+  - english: The actors appeared from the front of the stage.
+    japanese:
+      - 俳優 たち は 舞台 の {正面} から 現れ まし た。
+      - 俳優 たち は 舞台 の {正面} から 現れ た。
+      - 俳優 たち は 舞台 の {正面} から お出まし に なり まし た。
+    english_literally: Actors-topic stage's front-face-from appeared.
+    competing_grammar:
+      - competing_japanese:
+          - 俳優 たち は 舞台 の 前 から 現れ まし た。
+        english: The actors appeared from the front of the stage (general area).
+        hint: 「舞台の前」 refers to the area in front of the stage, which could be the orchestra pit or audience
+          area. 「舞台の正面」 refers specifically to the part of the stage that faces the audience. We're looking
+          for the specific part of the stage.
+    scene: Describing a play.
+    register: formal
+    setting: storytelling
+    nuance: 「舞台の正面」 refers specifically to the part of the stage that faces the audience, typically where
+      main performances occur.
+  - english: Look! He's heading right for the front entrance!
+    japanese:
+      - 見 て！彼 が 玄関 の {正面} へ まっすぐ 向かっ て いる！
+      - 見 て！彼 が 玄関 の {正面} に まっすぐ 向かっ て いる！
+      - 御覧 なさい！彼 が 玄関 の {正面} へ 真っ直ぐ に 向かっ て おら れ ます！
+    english_literally: Look! He-subject-marker entrance's front-face-to straight heading!
+    competing_grammar:
+      - competing_japanese:
+          - 見 て！彼 が 玄関 の 前 へ まっすぐ 向かっ て いる！
+        english: Look! He's heading right for the area in front of the entrance!
+        hint: 「玄関の前」 means the area generally in front of the entrance. 「玄関の正面」 emphasizes the direct
+          approach towards the main entrance, highlighting it as the definitive front point of entry.
+          We're looking for the precise front of the entrance.
+    scene: Two friends watching someone approach a building.
+    register: casual
+    setting: excited
+    nuance: 「玄関の正面」 emphasizes the direct approach towards the main entrance, highlighting it as the definitive
+      front point of entry. `へ` indicates the direction.
+  - english: The main entrance is on the front facade of the castle.
+    japanese:
+      - お 城 の {正面} に 正門 が あり ます。
+      - お 城 の {正面} に 正門 が ある。
+      - お 城 の {正面} に 正門 が 御座い ます。
+    english_literally: Castle's front-face-at main-gate-subject-marker is.
+    competing_grammar:
+      - competing_japanese:
+          - お 城 の 前 に 正門 が あり ます。
+        english: The main entrance is in front of the castle (general area).
+        hint: 「お城の前」 could mean anywhere in the vicinity. 「お城の正面」 points out the primary, intended front
+          of the castle, which often contains its most significant features like the main gate. We're
+          looking for the specific facade.
+    scene: A historian describing a castle.
+    register: formal
+    setting: informative
+    nuance: 「お城の正面」 here refers to the architectural design's intended front where the main entrance is
+      logically positioned.
+  - english: He looked straight ahead and said nothing.
+    japanese:
+      - 彼 は {正面} を 見据え て、何 も 言わ なかっ た。
+      - 彼 は {正面} を 見据え て、何 も 言わ ず。
+      - 彼 は {正面} を 見据え、何 も 仰ら れ ませ ん でし た。
+    english_literally: He-topic front-face-object-marker stared-at, nothing said-not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 前 を 見 て、何 も 言わ なかっ た。
+        english: He looked forward and said nothing.
+        hint: 「前を見る」 is a general act of looking forward. 「正面を見据える」 implies a fixed, direct gaze towards
+          a specific front, often conveying determination or seriousness. We're looking for a steady,
+          direct gaze.
+    scene: Describing a person's stoic demeanor.
+    register: casual
+    setting: reflective
+    nuance: 「正面を見据えて」 implies a fixed, direct gaze forward, often conveying determination or seriousness.
+  - english: Please place the product with its front facing the customer.
+    japanese:
+      - 商品 の {正面} を お 客 様 に 向け て 置い て ください。
+      - 商品 の {正面} を お 客 様 に 向け て ね。
+      - 商品 の {正面} を お 客 様 の 方 へ 向け て お 置き ください。
+    english_literally: Product's front-face-object-marker customer-to facing place please.
+    competing_grammar:
+      - competing_japanese:
+          - 商品 を 客 に 向け て 置い て ください。
+        english: Please place the product facing the customer.
+        hint: This is too general. 「商品の正面」 refers to the side of the product designed to be most appealing
+          or informative to the customer, typically with branding or key features. We're looking for the
+          specific 'face' of the product.
+    scene: A store manager instructing an employee.
+    register: semi-formal
+    setting: instructional
+    nuance: 「商品の正面」 refers to the side of the product designed to be most appealing or informative to
+      the customer, typically with branding or key features.
+  - english: The cat faced the window directly.
+    japanese:
+      - その 猫 は 窓 の {正面} を 向き まし た。
+      - その 猫 は 窓 の {正面} を 向い た。
+      - その 猫 は 窓 の {正面} を お 向き に なり まし た。
+    english_literally: That cat-topic window's front-face-object-marker faced.
+    competing_grammar:
+      - competing_japanese:
+          - その 猫 は 窓 の 方 を 向き まし た。
+        english: The cat faced towards the window.
+        hint: 「窓の方」 indicates a general direction toward the window. 「窓の正面を向く」 indicates the cat turned
+          its entire body to directly face the window pane, emphasizing the flat surface. We're looking
+          for the cat to face the exact surface.
+    scene: Observing a pet.
+    register: casual
+    setting: informative
+    nuance: 「窓の正面を向く」 indicates the cat turned its entire body to directly face the window pane, emphasizing
+      the flat surface.
+  - english: The entrance door should be installed on the front side of the house.
+    japanese:
+      - 玄関 ドア は 家 の {正面} に 設置 する べき です。
+      - 玄関 ドア は 家 の {正面} に 設置 す べき だ。
+      - 玄関 ドア は 家 の {正面} に 設置 する こと が 望ましい です。
+    english_literally: Entrance door-topic house's front-face-at install should.
+    competing_grammar:
+      - competing_japanese:
+          - 玄関 ドア は 家 の 前 に 設置 する べき です。
+        english: The entrance door should be installed in front of the house.
+        hint: 「家の前」 means the general area in front. 「家の正面」 refers to the architectural design's intended
+          front where the main entrance is logically positioned. We're looking for the specific facade
+          of the house.
+    scene: An architect discussing design plans.
+    register: formal
+    setting: informative
+    nuance: 「家の正面」 here refers to the architectural design's intended front where the main entrance is
+      logically positioned.
+post_example_writeup: These examples illustrate how 正面 is used to specify the direct front or face of
+  an object or person, distinct from more general spatial terms. Pay close attention to the particles
+  used with 正面, as they convey different aspects of its directional or locational meaning.

@@ -1,0 +1,238 @@
+grammar_point: 誰でも (anyone・everyone)
+learn_before:
+  - も (addition or emphasis particle)
+meaning: anyone; everyone; whoever; anybody; everybody
+pronunciation:
+  katakana: ダレデモ
+  romaji: daredemo
+formation:
+  誰 + でも: Forms 'anyone' or 'everyone' from 'who' plus the particle 'demo'.
+  '[Question Word] + でも': General formation for 'any/every' + [Question Word].
+jlpt: N5
+etymology: The word 「誰」 (dare) means 'who'. The particle 「でも」 (demo) combines 「で」 (de), which can indicate
+  means or state, and 「も」 (mo), which signifies inclusion, 'even,' or 'also.' Therefore, 「誰でも」 literally
+  conveys a sense of 'even who' or 'by any means who,' which has evolved to mean 'anyone' or 'everyone'
+  in a comprehensive, non-exclusive sense. This construction can be extended to other question words to
+  form 'anything,' 'anywhere,' etc.
+writeup: |-
+  「誰でも」 (daredemo) is a fundamental expression used to mean 'anyone,' 'everyone,' 'whoever,' 'anybody,' or 'everybody.' It is formed by combining the interrogative pronoun 「誰」 (dare, meaning 'who') with the particle 「でも」 (demo). This construction universally applies to individuals or groups, indicating that a statement holds true without exception for all people.
+
+  Its primary function is to express inclusivity or universality. For instance, if you say 「誰でもできます」 (daredemo dekimasu), it conveys 'Anyone can do it,' implying that there are no restrictions or special qualifications required. This makes it a very useful phrase for expressing general truths, capabilities, or permissions.
+
+  While 「誰でも」 is often translated as 'everyone' or 'anyone,' it typically carries a nuance of 'any person whatsoever' or 'whoever it may be.' It's important to note that while 「誰でも」 implies 'everyone' when used with a positive verb, its negative counterpart, 'no one,' is more commonly expressed using 「誰も〜ない」 (dare mo ~ nai) rather than simply negating 「誰でも」 directly. This distinction is crucial for accurate communication.
+false_friends:
+  - term: みんな (minna)
+    meaning: everyone (a collective noun)
+    kind: similar expression
+    nuance: 「みんな」 refers to a specific, existing group of people, emphasizing them as a collective unit.
+      In contrast, 「誰でも」 refers to people in a more generalized, inclusive sense, often implying 'any
+      person at all' rather than a defined group. For example, 「みんなが来た」 (Everyone came) implies a known
+      group arrived, while 「誰でも入れる」 (Anyone can enter) suggests open admission to all.
+    grammar_point: <suggest>:みんな (everyone)
+  - term: どの人も (dono hito mo)
+    meaning: every person (individually specified)
+    kind: similar expression
+    nuance: 「どの人も」 is very similar to 「誰でも」 in meaning 'every person,' but it places a stronger emphasis
+      on each individual within a set, often when discussing a characteristic common to all of them. 「誰でも」
+      is more natural for a general, unrestricted statement. 「どの人も背が高い」 (Every person is tall) refers
+      to each person being tall, whereas 「誰でも利用できます」 (Anyone can use it) refers to the general accessibility.
+    grammar_point: <suggest>:どの人も (every person)
+  - term: 誰も〜ない (dare mo ~ nai)
+    meaning: no one; nobody
+    kind: antonym
+    nuance: 「誰も〜ない」 is the direct negative counterpart of 「誰でも」. While 「誰でも」 means 'everyone' or 'anyone'
+      in a positive or inclusive sense, 「誰も〜ない」 means 'no one' and always requires a negative verb. For
+      instance, 「誰でも知っている」 (Everyone knows) versus 「誰も知らない」 (No one knows).
+    grammar_point: <suggest>:誰も〜ない (no one)
+post_false_friends_writeup: When distinguishing between 「誰でも」 and similar expressions like 「みんな」 or 「どの人も」,
+  consider the emphasis. 「誰でも」 highlights the 'any-ness' or 'unrestricted' nature of who can be involved,
+  making it suitable for general statements and open invitations. 「みんな」, conversely, emphasizes the collective
+  'all' within a defined group. If you're talking about a characteristic that applies to every single
+  individual in a known set, 「どの人も」 might be more precise. And remember, the negative form for 'no one'
+  is 「誰も〜ない」, which strictly pairs 「誰も」 with a negative verb.
+examples:
+  - english: Anyone can do this simple task.
+    japanese:
+      - この 簡単 な 作業 なら {誰 で も} でき ます。
+      - この 簡単 な 作業 なら {誰 で も} できる よ。
+    english_literally: If it's this simple task, anyone can do it.
+    competing_grammar:
+      - competing_japanese:
+          - この 簡単 な 作業 なら みんな でき ます。
+        english: Everyone (in this group) can do this simple task.
+        hint: 「みんな」 refers to all members of a specific, defined group, while 「誰でも」 implies 'any person
+          whatsoever' without a specific group in mind. We're looking for an inclusive statement about
+          'anyone'.
+    scene: A team leader explains a new procedure.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「誰でも」 emphasizes the simplicity of the task, suggesting that its execution requires
+      no special skills or prior knowledge, thus opening it up to a broad range of individuals.
+  - english: This park is open to everyone, regardless of age or gender.
+    japanese:
+      - この 公園 は 年齢 や 性別 に 関係 なく {誰 で も} 利用 でき ます。
+      - この 公園 は 年齢 や 性別 に 関係 なく {誰 で も} 利用 できる よ。
+      - この 公園 は 年齢 や 性別 に 関係 なく {誰 で も} ご 利用 いただけ ます。
+    english_literally: This park, regardless of age or gender, anyone can use.
+    competing_grammar:
+      - competing_japanese:
+          - この 公園 は 年齢 や 性別 に 関係 なく どの 人 も 利用 でき ます。
+        english: This park, regardless of age or gender, every single person can use.
+        hint: While similar, 「どの人も」 emphasizes each individual within a set. 「誰でも」 is more commonly used
+          for general accessibility and inclusivity. We're looking for a general statement about 'anyone'.
+    scene: A sign at the entrance of a public park.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 「誰でも」 here stresses that the park's accessibility is universal, without any limitations based
+      on personal attributes like age or gender, highlighting its public and open nature.
+  - english: If you just work hard, anyone can achieve their dreams.
+    japanese:
+      - 一生 懸命 努力 すれ ば、{誰 で も} 夢 を 叶え られ ます。
+      - 一生 懸命 努力 すれ ば、{誰 で も} 夢 を 叶え られる よ。
+    english_literally: If you make an effort diligently, anyone can fulfill dreams.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 努力 すれ ば、誰 も 夢 を 叶え られ ない。
+        english: If you just work hard, no one can achieve their dreams.
+        hint: The nuance of this sentence is positive and encouraging. 「誰も〜ない」 implies a complete lack
+          of ability or possibility for anyone. We're looking for an inclusive statement about 'anyone'.
+    scene: A motivational speaker addresses an audience.
+    register: semi-formal
+    setting: inspirational
+    conjugation: potential (～られる/～える)
+    nuance: This example uses 「誰でも」 to convey an encouraging message that success is attainable by anyone
+      who puts in the effort, emphasizing the power of hard work rather than innate talent or specific
+      circumstances.
+  - english: Even a child knows that.
+    japanese:
+      - そんな こと は 子供 {誰 で も} 知っ て いる よ。
+      - そんな こと は 子供 {誰 で も} 知っ てる ぜ。
+    english_literally: Such a thing, even a child, anyone knows.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと は 子供 みんな 知っ て いる よ。
+        english: Even children all know that.
+        hint: 「誰でも」 here highlights the absolute simplicity or common knowledge of the fact, meaning 'anyone,
+          even a child' would know. 「みんな」 would imply all the children in a particular group. We're looking
+          for a statement about general knowledge.
+    scene: A parent scolds their child for asking a very obvious question.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「子供 誰でも」 here is used to emphasize that the information is so basic that literally
+      'any child' would know it. The particle 「よ」 at the end adds a sense of assertion from the male speaker,
+      reinforcing the obviousness of the statement.
+  - english: This story is so funny, anyone would laugh.
+    japanese:
+      - この 話 は 面白い から {誰 で も} 笑う だろう。
+      - この 話 は 面白い です から {誰 で も} 笑う でしょう。
+    english_literally: This story is funny, so anyone would probably laugh.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は 面白い から 誰 も 笑わ ない だろう。
+        english: This story is funny, so no one would probably laugh.
+        hint: The context implies the story is humorous and evokes laughter from anyone. The competing
+          sentence means the opposite, that no one would laugh. We're looking for a positive, inclusive
+          reaction.
+    scene: Friends discussing a humorous anecdote.
+    register: casual
+    setting: humorous
+    conjugation: volitional (～よう)
+    nuance: 「誰でも 笑う だろう」 indicates a strong likelihood that the story's humor is universally appealing,
+      suggesting that 'anyone' who hears it would find it amusing and laugh.
+  - english: You can get information from anyone who knows.
+    japanese:
+      - 知っ て いる {誰 で も} から 情報 を 得 られる よ。
+      - 知っ て いる {誰 で も} から 情報 を 得 られ ます。
+    english_literally: From anyone who knows, you can get information.
+    competing_grammar:
+      - competing_japanese:
+          - 知っ て いる みんな から 情報 を 得 られる よ。
+        english: You can get information from everyone who knows (in this group).
+        hint: 「誰でも」 here refers to an unspecified individual who possesses the knowledge, not necessarily
+          a pre-defined group. 「みんな」 refers to a collective. We're looking for general access to information
+          from 'anyone'.
+    scene: A colleague advising another on how to find data.
+    register: casual
+    setting: informative
+    nuance: 「知っている 誰でも」 means 'anyone who knows,' suggesting that the source of information is not limited
+      to a specific person but can be obtained from any knowledgeable individual. The final 「よ」 adds a
+      friendly, advising tone.
+  - english: I believe that anyone can change for the better.
+    japanese:
+      - '{誰 で も} 良い 方向 に 変われる と 信じ て い ます。'
+      - '{誰 で も} 良い 方向 に 変われる と 信じ て いる よ。'
+    english_literally: Anyone can change in a good direction, I believe.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 も 良い 方向 に 変われ ない と 信じ て い ます。
+        english: I believe that no one can change for the better.
+        hint: This sentence expresses a hopeful and inclusive belief. The competing sentence states the
+          opposite. We're looking for a positive, universally applicable statement.
+    scene: A therapist sharing their philosophy with a client.
+    register: formal
+    setting: supportive
+    conjugation: potential (～られる/～える)
+    nuance: The use of 「誰でも」 here conveys a deeply empathetic and optimistic view, asserting that positive
+      transformation is possible for 'any' individual, regardless of their past or current circumstances.
+  - english: These rules apply to everyone, without exception.
+    japanese:
+      - この 規則 は 例外 なく {誰 で も} に 適用 さ れ ます。
+      - この 規則 は 例外 なく {誰 で も} に ご 適用 いただけ ます。
+    english_literally: These rules, without exception, apply to anyone.
+    competing_grammar:
+      - competing_japanese:
+          - この 規則 は 例外 なく みんな に 適用 さ れ ます。
+        english: These rules apply to everyone (in this group), without exception.
+        hint: 「みんな」 refers to a specific group, while 「誰でも」 emphasizes that there are no individuals excluded
+          from the rule, making it universally binding. We're looking for universal applicability.
+    scene: A supervisor explaining company policy.
+    register: formal
+    setting: instructional
+    conjugation: passive (～られる/～かれる)
+    nuance: The combination of 「例外 なく」 (without exception) and 「誰でも」 strongly emphasizes the universal
+      and non-discriminatory application of the rules to 'every single person'.
+  - english: I want to create a space where anyone can feel comfortable.
+    japanese:
+      - '{誰 で も} 居心地 良く 感じ られる 場所 を 作り たい です。'
+      - '{誰 で も} 居心地 良く 感じ られる 場所 を 作り たい な。'
+    english_literally: I want to make a place where anyone can feel comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 も 居心地 良く 感じ られ ない 場所 を 作り たい です。
+        english: I want to create a place where no one can feel comfortable.
+        hint: The intent is to create a welcoming environment for all. The competing sentence conveys
+          the opposite intent. We're looking for an inclusive and positive atmosphere.
+    scene: An architect describes their design philosophy.
+    register: formal
+    setting: creative
+    conjugation: desiderative (～たい)
+    nuance: 「誰でも 居心地 良く 感じられる」 highlights the aspiration for a truly inclusive environment where 'any'
+      person, regardless of their background or personal characteristics, can experience comfort and ease.
+  - english: Anyone would be surprised to hear such news.
+    japanese:
+      - そんな ニュース を 聞け ば {誰 で も} 驚く だろう。
+      - そんな ニュース を 聞け ば {誰 で も} 驚く でしょう。
+    english_literally: If they hear such news, anyone would probably be surprised.
+    competing_grammar:
+      - competing_japanese:
+          - そんな ニュース を 聞け ば 誰 も 驚か ない だろう。
+        english: If they hear such news, no one would probably be surprised.
+        hint: The sentence implies a universal reaction of surprise. The competing sentence means the
+          opposite. We're looking for a broadly applicable emotional response.
+    scene: A journalist discusses a shocking news report.
+    register: semi-formal
+    setting: serious
+    conjugation: volitional (～よう)
+    nuance: This use of 「誰でも」 signifies that the news is so impactful or shocking that it would elicit
+      a reaction of surprise from 'any' person who hears it, emphasizing the universality of the emotion.
+post_example_writeup: As you can see from these examples, 「誰でも」 is highly versatile and can be used in
+  a variety of contexts, from everyday conversations to more formal statements. Its strength lies in its
+  ability to express universal applicability or inclusivity, making it a powerful tool for generalization
+  in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/誰でも

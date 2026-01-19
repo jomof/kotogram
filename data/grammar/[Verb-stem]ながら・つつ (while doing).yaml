@@ -1,0 +1,518 @@
+grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+learn_before:
+  - '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - つつも (even though, despite・internal conflict or contradiction)
+meaning: While doing (something); during
+pronunciation:
+  katakana: ナガラ・ツツ
+  romaji: nagara・tsutsu
+formation:
+  Verb[masu-stem] + ながら: Indicates that the action of the first verb is performed simultaneously with
+    the action of the second verb. Often, the action before ながら is a continuous or background activity.
+  Verb (ます-stem) + つつ: Indicates performing two actions simultaneously or in parallel, or an ongoing state.
+    More formal or literary than ながら, and can also imply a concessive nuance (even though).
+jlpt: N4
+etymology: The origin of ながら is believed to be rooted in the classical Japanese word なが（し） (nagashi),
+  meaning 'long' or 'continuous,' combined with the particle らか (raka), which indicates a state or appearance.
+  Over time, this evolved to denote the continuous or simultaneous nature of an action, emphasizing that
+  one action 'stretches out' alongside another. The grammar point 「つつ」 is derived from the verb 「つむ」 (tsumu),
+  which means "to spin" or "to weave." The idea is that you are weaving two actions together simultaneously.
+  It's also related to the verb 「続ける」 (tsuzukeru), meaning "to continue," suggesting an ongoing state
+  or action.
+writeup: |-
+  The grammar points 「ながら」 and 「つつ」 attach to the masu-stem of a verb to indicate that two actions are happening simultaneously. Both actions are performed by the same subject. The action described before 「ながら」 or 「つつ」 is typically a continuous or ongoing activity that serves as a backdrop or accompaniment to the main action, which follows the clause. While both actions occur at the same time, the main focus or emphasis is usually placed on the action expressed in the second part of the sentence.
+
+  For example, in 「音楽 を {聞きながら} 勉強する」 (I study while listening to music), 'studying' is the primary action, and 'listening to music' is the accompanying background activity. It's crucial to distinguish this usage from other expressions that indicate sequential actions or different types of concurrent activities.
+
+  「ながら」 is versatile and can be used in various registers. 「つつ」 is often found in more formal or literary contexts, particularly in writing, and commonly denotes an ongoing state, a mental process, or a sustained condition rather than momentary physical movements. Furthermore, 「つつ」 can also carry a concessive nuance, similar to "although" or "even though," even without the particle 「も」, though the addition of 「も」 (e.g., 知りつつも) often emphasizes this contrast more strongly. Due to its formal nature, using 「つつ」 in casual conversation can sound stiff or unnatural.
+false_friends:
+  - term: ながら (although・despite)
+    meaning: Although; despite; even though (indicating contradiction or concession)
+    kind: similar expression
+    nuance: While the form is identical, this 「ながら」 expresses a contradictory or concessive relationship
+      between two clauses (e.g., 'even though I know, I do'). The 「ながら (while doing)」 discussed here indicates
+      simultaneous action.
+    grammar_point: '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - term: つつも (even though, despite)
+    meaning: Even though; despite (concessive)
+    kind: similar expression
+    nuance: 「つつも」 is a formal and literary expression for 'even though' or 'despite'. It emphasizes a
+      concession, often in a continuous or internal state, rather than simply simultaneous action.
+    grammar_point: つつも (even though, despite・internal conflict or contradiction)
+  - term: かたわら (while doing something else)
+    meaning: While, besides, in addition to (indicating a side activity or occupation)
+    kind: similar expression
+    nuance: 「かたわら」 suggests that the activity after the phrase is a main occupation, while the activity
+      before it is a side job or hobby. 「ながら/つつ (while doing)」 simply denotes simultaneous actions without
+      implying a primary/secondary occupation distinction.
+    grammar_point: かたわら (while doing something else)
+  - term: Verb[て] (and then)
+    meaning: And, and then, after that (sequence)
+    kind: similar expression
+    nuance: The て-form expresses a sequence of actions (A happens, then B happens) or a continuous state,
+      whereas 「ながら/つつ (while doing)」 strictly implies that two actions are occurring at the same time.
+    grammar_point: Verb[て] (and then)
+  - term: ついでに (taking the opportunity)
+    meaning: While you are at it; on the occasion of
+    kind: similar expression
+    nuance: 「ついでに」 implies doing something additional or convenient at the same time as another action,
+      often an unrelated one. It doesn't mean the actions are directly related or happening continuously
+      like with 「ながら/つつ」, but rather taking advantage of an opportunity.
+    grammar_point: ついでに (taking the opportunity)
+  - term: つつある (gradual process)
+    meaning: In the process of (gradual change)
+    kind: similar expression
+    nuance: 「つつある」 specifically indicates a gradual process of change or development that is currently
+      underway, emphasizing the progression towards a new state. 「つつ」, on its own, primarily denotes two
+      simultaneous actions or states.
+    grammar_point: つつある (gradual process)
+  - term: '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+    meaning: While; before a change occurs
+    kind: similar expression
+    nuance: 「うちに」 implies doing something within a specific time frame or before a condition changes,
+      often with an emphasis on taking advantage of an opportunity. 「ながら/つつ」 focus on ongoing simultaneous
+      actions or states.
+    grammar_point: '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+post_false_friends_writeup: Understanding the precise nuance of 「ながら」 and 「つつ」 is essential. While both
+  can express simultaneous actions, 「ながら」 is more common and versatile, used for various concurrent actions.
+  「つつ」 is more formal and often emphasizes sustained states, mental processes, or appears in written contexts.
+  Furthermore, both can have concessive meanings depending on context or if 「も」 is added. Pay close attention
+  to the verb form they attach to and the overall meaning of the sentence to differentiate them from other
+  similar expressions and from their concessive homophones.
+examples:
+  - english: I always listen to music while studying.
+    japanese:
+      - 私 は いつ も 音楽 を {聞き ながら} 勉強 し ます。
+      - いつ も 音楽 を {聞き ながら} 勉強 し てる。
+      - いつ も 音楽 を {聞き ながら} 勉強 を する。
+    english_literally: As for me, always music listening-while study-do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は いつ も 音楽 を 聞い て 勉強 し ます。
+        english: I always listen to music and then study.
+        hint: This uses the て-form which typically implies a sequence of actions, not simultaneous actions.
+          We're looking for an action happening at the same time as another.
+    scene: A student describes their study habits.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This sentence uses the masu-stem of 聞く (聞きます becomes 聞き) with 「ながら」 to show that 'listening
+      to music' is happening concurrently with 'studying'. The polite form 「します」 indicates a general habit.
+  - english: He was singing while walking down the street.
+    japanese:
+      - 彼 は 道 を {歩き ながら} 歌っ て い た。
+      - 彼 は 道 を {歩き ながら} 歌っ て い まし た。
+      - あいつ 道 {歩き ながら} 歌っ て た ぜ。
+    english_literally: As for him, road walking-while singing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 道 を 歩い て、歌っ て い た。
+        english: He walked down the road, and then was singing.
+        hint: 'The て-form here suggests a sequence of actions: first he walked, then he sang. We need
+          to express both actions happening at the same time.'
+    scene: Observing someone's actions in public.
+    register: casual
+    setting: storytelling
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    nuance: 「歩きながら」 (from 歩く) indicates that 'walking' and 'singing' happened at the same time. The casual
+      past progressive 「歌っていた」 describes a continuous action in the past.
+  - english: Please eat your breakfast while watching the news.
+    japanese:
+      - ニュース を {見 ながら} 朝ごはん を 食べ て ください。
+      - ニュース を {見 ながら} 朝食 を お 召し上がり ください。
+      - ニュース {見 ながら} 朝ごはん 食べ なさい。
+    english_literally: News watching-while breakfast eat please.
+    competing_grammar:
+      - competing_japanese:
+          - ニュース を 見 て から 朝ごはん を 食べ て ください。
+        english: Please watch the news and then eat your breakfast.
+        hint: 「てから」 indicates that one action must be completed before the next begins. We want both actions
+          to happen at the same time.
+    scene: A parent instructs their child at the breakfast table.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「見ながら」 (from 見る) expresses the concurrent action of 'watching' while 'eating breakfast'. The
+      polite command 「食べてください」 makes it a gentle request.
+  - english: The child was crying while looking for their mother.
+    japanese:
+      - 子供 は 母親 を {探し ながら} 泣い て い た。
+      - 子供 は 母親 を {探し ながら} 泣い て い まし た。
+      - 子供 が お 母 さん を {探し ながら} 泣い て た ん だ よ。
+    english_literally: Child as for mother searching-while crying was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 母親 を 探し た が 泣い て い た。
+        english: The child looked for their mother, but was crying.
+        hint: This uses the concessive 'が' particle to show a contrast ('looked for but cried'), not simultaneous
+          actions.
+    scene: A young child is lost in a department store.
+    register: casual
+    setting: storytelling
+    conjugation: progressive (～ている)
+    nuance: 「探しながら」 (from 探す) shows 'searching' and 'crying' simultaneously. 「泣いていた」 emphasizes the ongoing
+      nature of the crying in the past.
+  - english: I like to talk with friends while drinking coffee.
+    japanese:
+      - コーヒー を {飲み ながら} 友達 と 話す の が 好き だ。
+      - コーヒー を {飲み ながら} 友達 と 話す の が 好き です。
+      - コーヒー {飲み ながら} 友達 と 喋る の 好き だ な。
+    english_literally: Coffee drinking-while friends with talk like.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー を 飲む ついで に 友達 と 話す の が 好き だ。
+        english: I like to talk with friends incidentally while drinking coffee.
+        hint: 「ついでに」 implies doing something incidentally while doing something else, often an unrelated
+          one, not necessarily strictly simultaneously or as a primary accompanying action.
+    scene: Two friends chatting in a cafe.
+    register: casual
+    setting: friendly
+    nuance: 「飲みながら」 (from 飲む) denotes the simultaneous action of 'drinking coffee' while 'talking'. 「好きだ」
+      indicates a general preference.
+  - english: He skillfully played the piano while singing.
+    japanese:
+      - 彼 は {歌い ながら} 上手 に ピアノ を 弾い た。
+      - 彼 は {歌い ながら} 上手 に ピアノ を 弾き まし た。
+      - 彼 が {歌い ながら} ピアノ を 華麗 に 奏で た。
+    english_literally: He singing-while skillfully piano played.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 歌っ た 後 に 上手 に ピアノ を 弾い た。
+        english: He sang, and after that, skillfully played the piano.
+        hint: 「た後に」 clearly states a sequence, where singing finishes before playing the piano. We need
+          to convey simultaneous performance.
+    scene: A musician performing at a concert.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: 「歌いながら」 (from 歌う) highlights the concurrent actions of 'singing' and 'playing the piano'.
+      The plain past tense 「弾いた」 describes a completed action in the past.
+  - english: She was knitting a scarf while watching TV.
+    japanese:
+      - 彼女 は テレビ を {見 ながら} マフラー を 編ん で い た。
+      - 彼女 は テレビ を {見 ながら} マフラー を 編ん で い まし た。
+      - 彼女、テレビ {見 ながら} マフラー 編ん で た ん だ。
+    english_literally: She TV watching-while scarf knitting was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は テレビ を 見 て 編ん だ。
+        english: She watched TV and knitted.
+        hint: The て-form here could imply either a sequence or a casual connection, but it doesn't emphasize
+          the strict simultaneity as clearly as ながら does.
+    scene: Someone relaxing at home.
+    register: casual
+    setting: intimate
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    nuance: 「見ながら」 (from 見る) expresses 'watching TV' as an accompanying action to 'knitting'. The past
+      progressive 「編んでいた」 describes the ongoing nature of knitting in the past.
+  - english: Don't walk while looking at your phone; it's dangerous.
+    japanese:
+      - 携帯 を {見 ながら} 歩か ない で ください、危ない です よ。
+      - 携帯 を {見 ながら} 歩く の は やめ なさい、危険 だ よ。
+      - スマホ {見 ながら} 歩く な、危ねえ ぞ。
+    english_literally: Phone watching-while walk-don't please, dangerous is (yo).
+    competing_grammar:
+      - competing_japanese:
+          - 携帯 を 見 て 歩く の は 危ない です よ。
+        english: Walking while looking at your phone is dangerous.
+        hint: This is a general statement about the act, but it doesn't directly use the 'while doing'
+          structure in the same way. We want to show the 'while doing' aspect.
+    scene: A concerned friend gives advice.
+    register: teineigo (polite)
+    setting: cautious
+    conjugation: negative plain (～ない)
+    nuance: 「見ながら」 (from 見る) highlights the dangerous simultaneity of 'looking at your phone' and 'walking'.
+      The negative imperative 「歩かないでください」 gives a polite warning.
+  - english: The elderly couple chatted happily while strolling in the park.
+    japanese:
+      - 老 夫婦 は 公園 を {散歩 し ながら} 楽し そう に 話し た。
+      - 老 夫婦 は 公園 を {散歩 し ながら} 楽し そう に 話し まし た。
+      - 老 夫婦 が 公園 を {散策 し ながら} 楽し げ に 語らっ た。
+    english_literally: Elderly couple park strolling-while happily talked.
+    competing_grammar:
+      - competing_japanese:
+          - 老 夫婦 は 公園 で 散歩 し て、楽し そう に 話し た。
+        english: The elderly couple strolled in the park, and then talked happily.
+        hint: Similar to previous examples, the て-form suggests a sequence or simple connection, not the
+          precise simultaneity of ながら.
+    scene: An peaceful scene in a park.
+    register: formal
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: 「散歩しながら」 (from 散歩する) emphasizes the simultaneous actions of 'strolling' and 'chatting'. The
+      adverbial phrase 「楽しそうに」 (happily) adds to the scene.
+  - english: She learns English by listening to podcasts every day.
+    japanese:
+      - 彼女 は 毎日 ポッド キャスト を {聞き ながら} 英語 を 勉強 する。
+      - 彼女 は 毎日 ポッド キャスト を {聞き ながら} 英語 を 勉強 し ます。
+      - 毎日 ポッド キャスト を {聞き ながら} 英語 を 学ぶ の が 彼女 の 習慣 だ。
+    english_literally: She every-day podcast listening-while English study-does.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ポッド キャスト で 英語 を 勉強 する。
+        english: She studies English with podcasts.
+        hint: While grammatically correct, this lacks the explicit nuance of doing two things at once
+          that ながら provides. We want to show the 'while doing' aspect.
+    scene: Describing someone's method of language learning.
+    register: casual
+    setting: informative
+    nuance: 「聞きながら」 (from 聞く) indicates 'listening' is happening at the same time as 'studying English',
+      highlighting it as a method. The plain form 「勉強する」 describes a regular habit.
+  - english: He often eats bread while reading a newspaper.
+    japanese:
+      - 彼 は 新聞 を {読み ながら} パン を よく 食べる。
+      - 彼 は 新聞 を {読み ながら} パン を よく 食べ ます。
+      - 彼 は よく 新聞 を {読み ながら} パン を 食す。
+    english_literally: He newspaper reading-while bread often eats.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 新聞 を 読み、パン を よく 食べる。
+        english: He reads a newspaper, and often eats bread.
+        hint: This just lists two actions. It doesn't explicitly state that he does them at the same time.
+    scene: A common morning routine.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「読みながら」 (from 読む) shows 'reading a newspaper' happening concurrently with 'eating bread'.
+      The adverb 「よく」 (often) emphasizes the habitual nature of this action.
+  - english: He walked slowly while thinking.
+    japanese:
+      - 彼 は 考え {つつ}、ゆっくり と 歩い て い た。
+      - 彼 は 考え {つつ}、ゆっくり と 歩ん で い た。
+      - 彼 は 考え {つつ}、ゆっくり と 歩い た。
+    english_literally: He, thinking while, slowly was walking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 考え {ながら}、ゆっくり と 歩い て い た。
+        english: He walked slowly while thinking.
+        hint: 「ながら」 is generally used for simultaneous actions, often physical, and is less formal than
+          「つつ」. We're looking for the more formal expression for a sustained mental process.
+    scene: A man deep in thought, taking his time.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「つつ」 here emphasizes the continuous state of 'thinking' (考え) as he 'walks' (歩いて), creating
+      a reflective atmosphere. 「考えながら」 would also work, but 「つつ」 adds a touch of formality and literary
+      quality to the description of his internal state.
+  - english: New technologies are developing and bringing significant changes to society.
+    japanese:
+      - 新しい 技術 は 発展 し {つつ}、社会 に 大きな 変化 を もたらし て いる。
+      - 新しい 技術 は 発展 し {つつ}、社会 に 大きな 変化 を もたらし つつ ある。
+      - 新しい 技術 は 発展 し {つつ}、社会 に 大きな 変化 を もたらし て おり ます。
+    english_literally: New technologies are developing, and bringing big changes to society.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 は 発展 し {て} おり、社会 に 大きな 変化 を もたらし て いる。
+        english: New technologies are developing, bringing significant changes to society.
+        hint: While 「～ている」 expresses an ongoing state, 「つつ」 in this context emphasizes the continuous,
+          simultaneous nature of the development and its impact, often used in more formal or academic
+          settings.
+    scene: An academic discussing technological progress in a formal presentation.
+    register: formal
+    setting: academic
+    nuance: This sentence uses 「つつ」 to describe an ongoing process of 'development' (発展) that simultaneously
+      'brings about changes' (変化をもたらして). The formal tone of 「つつ」 aligns well with the academic setting,
+      indicating a continuous, impactful trend. 「発展しながら」 would be less formal.
+  - english: Although he knew he would fail, he accepted the challenge.
+    japanese:
+      - 失敗 する と 知り {つつ} も、彼 は その 挑戦 を 受け入れ た。
+      - 失敗 する と 知り {つつ} も、彼 は その 挑戦 を 受け入れ まし た。
+      - 失敗 する と 知り {つつ}、彼 は その 挑戦 を 受け入れ た。
+    english_literally: Failure will happen knowing, he accepted that challenge.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 する と 知っ {て} い {て} {も}、彼 は その 挑戦 を 受け入れ た。
+        english: Even if he knew he would fail, he accepted the challenge.
+        hint: 「～ても」 expresses 'even if' or 'even though'. 「つつも」 provides a more formal and literary concessive
+          nuance, indicating a simultaneous state of knowing despite an action.
+    scene: A determined person facing a difficult task, fully aware of the risks.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The combination of 「知りつつも」 emphasizes a concessive nuance, meaning 'despite knowing'. It highlights
+      the contrast between his 'knowledge' (知り) of potential failure and his 'acceptance' (受け入れ) of the
+      challenge, conveying resolve. 「知っていたが」 or 「知っていても」 could also be used but 「知りつつも」 adds a more sophisticated,
+      literary feel to the concession.
+  - english: While respecting customer feedback, we are proceeding with product improvements.
+    japanese:
+      - 我々 は 顧客 の 意見 を 尊重 し {つつ}、製品 の 改善 を 進め て おり ます。
+      - 我々 は 顧客 の 意見 を 尊重 し {つつ}、製品 の 改善 を 進め て いる。
+      - 我々 は 顧客 の 意見 を 尊重 し {つつ}、製品 の 改善 を 進め つつ あり ます。
+    english_literally: We, customer's opinions respecting, product improvements are proceeding.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 は 顧客 の 意見 を 尊重 し {て}、製品 の 改善 を 進め て おり ます。
+        english: We respect customer feedback and are proceeding with product improvements.
+        hint: The 「～て」 form can connect clauses, implying a sequence or parallel actions, but 「つつ」 specifically
+          emphasizes the ongoing, continuous nature of respecting feedback *while* proceeding with improvements,
+          typical in formal business contexts.
+    scene: A team leader reporting on product development and strategy in a business meeting.
+    register: formal
+    setting: professional
+    nuance: This sentence uses 「つつ」 to convey that 'respecting customer feedback' (顧客の意見を尊重し) is an ongoing
+      principle that guides the 'product improvement' (製品の改善) process. The choice of 「つつ」 emphasizes the
+      continuous adherence to this principle in a professional context, making the statement sound deliberate
+      and responsible. 「尊重しながら」 would sound more casual, while 「尊重し」 might imply a sequential action rather
+      than a continuous guiding principle.
+  - english: While gazing at the sunset, she thought of her distant hometown.
+    japanese:
+      - 彼女 は 夕焼け を 眺め {つつ}、遠い 故郷 を 思っ た。
+      - 彼女 は 夕焼け を 眺め {つつ}、遠い 故郷 を 思い出し て い た。
+      - 彼女 は 夕焼け を 眺め {つつ}、遠い 故郷 を 思い出し まし た。
+    english_literally: She, sunset gazing while, distant hometown thought of.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 夕焼け を 眺め {ながら}、遠い 故郷 を 思っ た。
+        english: While gazing at the sunset, she thought of her distant hometown.
+        hint: 「ながら」 is a common way to express simultaneous actions. However, 「つつ」 adds a more formal
+          and literary tone, often used for sustained, reflective actions like gazing and thinking.
+    scene: A woman reflecting on her past and childhood memories.
+    register: semi-formal
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「眺めつつ」 connects the act of 'gazing' (眺め) with the internal process of 'thinking' (思った), suggesting
+      a deep, continuous contemplation prompted by the scenery. The phrase evokes a sense of nostalgia.
+      「眺めながら」 would be more common in speech but 「つつ」 lends a more poetic and formal tone, fitting a reflective
+      moment.
+  - english: While confronting difficulties, he always maintained a positive attitude.
+    japanese:
+      - 彼 は 困難 に 立ち向かい {つつ}、常 に 前向き な 姿勢 を 保っ た。
+      - 彼 は 困難 に 立ち向かい {つつ}、常 に 前向き な 姿勢 を 保ち 続け た。
+      - 彼 は 困難 に 立ち向かい {つつ}、常 に 前向き な 姿勢 を 保ち まし た。
+    english_literally: He, difficulties confronting while, always positive attitude maintained.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 困難 に 立ち向かい {ながら}、常 に 前向き な 姿勢 を 保っ た。
+        english: While confronting difficulties, he always maintained a positive attitude.
+        hint: While 「ながら」 can indicate simultaneous actions, 「つつ」 in this context better conveys a continuous,
+          enduring struggle that coexists with a sustained positive attitude, suitable for a more formal
+          or inspirational narrative.
+    scene: A mentor speaking about someone who showed great resilience throughout their life.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「立ち向かいつつ」 signifies a continuous state of 'confronting difficulties' (困難に立ち向かい)
+      which coexists with the unwavering maintenance of a 'positive attitude' (前向きな姿勢を保った). The use of
+      「つつ」 highlights this sustained duality, emphasizing the subject's resilience and enduring spirit.
+      An older speaker might use this formal expression to convey wisdom through such an example.
+  - english: While discussing various opinions, we will work towards reaching a consensus.
+    japanese:
+      - 我々 は 様々 な 意見 を 議論 し {つつ}、合意 形成 に 努め ます。
+      - 我々 は 様々 な 意見 を 議論 し {つつ}、合意 形成 に 努める。
+      - 我々 は 様々 な 意見 を 議論 し {つつ}、合意 形成 に 努め て いき ます。
+    english_literally: We, various opinions discussing while, consensus formation will strive.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 は 様々 な 意見 を 議論 し {ながら}、合意 形成 に 努め ます。
+        english: While discussing various opinions, we will work towards reaching a consensus.
+        hint: ながら」 is suitable for simultaneous actions. However, 「つつ」 here emphasizes the continuous
+          process of discussion as an integral part of striving for consensus in a formal setting, giving
+          a sense of careful, sustained effort.
+      - competing_japanese:
+          - 我々 は 様々 な 意見 を 議論 し {て}、合意 形成 に 努め ます。
+        english: We discussed various opinions and will work towards reaching a consensus.
+        hint: The 「～て」 form implies a sequence or a completed action before the next, while 「つつ」 clearly
+          expresses that the discussion is ongoing *as* the effort to reach consensus is being made.
+    scene: A corporate meeting where a team leader explains the process of decision-making.
+    register: formal
+    setting: professional
+    nuance: The phrase 「議論しつつ」 highlights that the 'discussion of opinions' (意見を議論し) is an ongoing and
+      continuous process that occurs concurrently with the effort to 'form a consensus' (合意形成に努めます). This
+      usage is highly appropriate in a formal, professional context, conveying a sense of diligent and
+      sustained engagement in the process. It implies that the discussion itself is a part of the effort
+      to reach the goal.
+  - english: Although regretting his past actions, he continues to move forward.
+    japanese:
+      - 過去 の 行動 を 悔やみ {つつ}、彼 は 前 に 進み 続け て いる。
+      - 過去 の 行動 を 悔やみ {つつ} も、彼 は 前 に 進み 続け て いる。
+      - 過去 の 行動 を 悔やみ {つつ}、彼 は 前 に 進み 続け て い ます。
+    english_literally: Past actions regretting while, he forward continues to move.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 行動 を 悔やみ {ながら}、彼 は 前 に 進み 続け て いる。
+        english: While regretting his past actions, he continues to move forward.
+        hint: While 「ながら」 can express simultaneous actions, 「つつ」 here adds a more introspective and continuous
+          nuance to the 'regretting' state, emphasizing it as an internal, sustained feeling that coexists
+          with moving on.
+      - competing_japanese:
+          - 過去 の 行動 を 悔やん {で} い {る} {が}、彼 は 前 に 進み 続け て いる。
+        english: He is regretting his past actions, but he continues to move forward.
+        hint: 「～ているが」 clearly states a contrast. 「悔やみつつ」 expresses a simultaneous state where the regret
+          is ongoing as he moves forward, lending a more literary and emotionally nuanced tone to the
+          description of his internal conflict.
+    scene: A character in a novel reflecting on their life choices and resilience.
+    register: bungo (literary)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「悔やみつつ」 conveys that 'regret for past actions' (過去の行動を悔やみ) is a continuous, internal state
+      that coexists with his 'moving forward' (前に進み続けている). This highlights an enduring emotional condition
+      alongside a practical action. The literary register of 「つつ」 perfectly suits the reflective and somewhat
+      melancholic tone of this sentence, painting a picture of inner struggle and resilience.
+  - english: Students learn and mature while overcoming various challenges.
+    japanese:
+      - 学生 たち は 様々 な 課題 を 乗り越え {つつ}、成長 し て いき ます。
+      - 学生 たち は 様々 な 課題 を 乗り越え {つつ}、成長 し て いく。
+      - 学生 たち は 様々 な 課題 を 乗り越え {つつ}、成長 を 遂げ て いき ます。
+    english_literally: Students, various challenges overcoming while, will grow and go.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 たち は 様々 な 課題 を 乗り越え {ながら}、成長 し て いき ます。
+        english: Children learn and grow while experiencing various things.
+        hint: While 「ながら」 is commonly used for simultaneous actions, 「つつ」 is often preferred in formal
+          or instructional contexts to describe a continuous, integrated process like 'overcoming challenges'
+          and 'maturing'.
+      - competing_japanese:
+          - 学生 たち は 様々 な 課題 を 乗り越え {て} いく {中} で、成長 し て いき ます。
+        english: Students learn and mature in the process of overcoming various challenges.
+        hint: 「～ていく中で」 explicitly means 'while' or 'during the time that'. 「つつ」 offers a more concise
+          and formal way to express the continuous, simultaneous nature of overcoming challenges and growing.
+    scene: A teacher explaining the educational journey to new students or parents.
+    register: formal
+    setting: academic
+    speaker_age: older
+    nuance: The phrase 「乗り越えつつ」 emphasizes that 'overcoming various challenges' (様々な課題を乗り越え) is a continuous,
+      integrated part of the students' 'growth and development' (成長していきます). The formal nature of 「つつ」
+      is fitting for an educational or instructional context, conveying a sense of a structured, ongoing
+      process rather than just incidental simultaneous actions. An older, authoritative speaker like a
+      teacher would use this to impart wisdom.
+  - english: While carefully observing the situation, we will continue to implement necessary measures.
+    japanese:
+      - 状況 を 注視 し {つつ}、必要 な 対策 を 講じ て いき ます。
+      - 状況 を 注視 し {つつ}、必要 な 対策 を 講じ て いく。
+      - 状況 を 注視 し {つつ}、必要 な 対策 を 講じ て 参り ます。
+    english_literally: Situation carefully observing while, necessary measures will implement.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 を 注視 し {ながら}、必要 な 対策 を 講じ て いき ます。
+        english: While carefully observing the situation, we will continue to implement necessary measures.
+        hint: ながら」 is an option for simultaneous actions. However, 「つつ」 lends a more formal and official
+          tone, often used in public statements to convey continuous, diligent effort in parallel with
+          another action.
+      - competing_japanese:
+          - 状況 を 注視 し {て} いる {間} に、必要 な 対策 を 講じ て いき ます。
+        english: While we are observing the situation, we will implement necessary measures.
+        hint: 「～ている間に」 explicitly means 'while' or 'during the time that'. 「つつ」 provides a more succinct
+          and formal way to express the continuous, simultaneous nature of observation and action in official
+          communication.
+    scene: A government official or spokesperson making a public statement during a crisis.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: 「注視しつつ」 signifies that the 'careful observation of the situation' (状況を注視し) is an ongoing,
+      continuous process directly linked to the 'implementation of necessary measures' (必要な対策を講じていきます).
+      This formal usage of 「つつ」 is highly suitable for official statements, conveying a sense of diligence,
+      responsibility, and continuous action to a large audience. It implies that the observation directly
+      informs the actions taken.
+post_example_writeup: Understanding the subtle differences in nuance and formality between 「つつ」 and similar
+  expressions like 「ながら」 is key to using them appropriately. While 「ながら」 is more versatile for everyday
+  simultaneous actions, 「つつ」 is more formal and often emphasizes a continuous, sustained state or a mental
+  process, particularly in written or more deliberate spoken contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8C%E3%82%89

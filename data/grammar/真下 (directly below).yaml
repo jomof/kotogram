@@ -1,0 +1,194 @@
+grammar_point: 真下 (directly below)
+learn_before:
+  - あそこ (over there)
+  - 形 (physical shape)
+  - 気 (feeling・inclination・atmosphere)
+  - 端・縁 (edge・border)
+meaning: directly below
+pronunciation:
+  katakana: マシタ
+  romaji: mashita
+formation:
+  Noun の {真下}: Indicates a precise location directly underneath the noun.
+jlpt: N3
+etymology: The word 『真下』 combines 『真』 (ma), meaning 'true', 'real', or 'exact', and 『下』 (shita), meaning
+  'below' or 'under'. This etymology clearly indicates the meaning of being 'truly' or 'exactly' below
+  something, emphasizing precision in spatial relation.
+writeup: |-
+  『真下』 refers to the exact position directly underneath something. It implies a precise vertical alignment, meaning 'right below' or 'directly beneath'. This expression is more specific and emphatic than simply using 『下』 (shita), which can denote a more general 'under' or 'lower part'.
+
+  It is typically used with the particle 『の』 to indicate what is directly below what, as in 「Noun の 真下」. While primarily used for physical locations, it can occasionally be extended to more abstract concepts where a clear 'underneath' relationship is implied, though this is less common. Understanding 『真下』 is key to articulating precise spatial relationships in Japanese.
+false_friends:
+  - term: 下
+    meaning: below, under, down
+    kind: similar expression
+    nuance: 『下』 is a general term for 'below' or 'under', without the emphasis on direct vertical alignment
+      that 『真下』 carries. It can also refer to the lower part of something, not necessarily directly beneath
+      another object.
+    grammar_point: <suggest>:下 (vertical position)
+  - term: 底
+    meaning: bottom (of a container, body of water, etc.), sole
+    kind: similar expression
+    nuance: 『底』 refers specifically to the lowest inner surface of a container or a deep body of water.
+      It is not used for general spatial relations like being directly underneath an object in open space,
+      which is what 『真下』 describes.
+    grammar_point: <suggest>:底 (bottom of container)
+  - term: 真上
+    meaning: directly above
+    kind: antonym
+    nuance: While 『真上』 also uses 『真』 for exactness, it describes the opposite direction, 'directly above',
+      whereas 『真下』 means 'directly below'. They both emphasize precision but point in opposite directions.
+    grammar_point: 真上 (directly above)
+  - term: 真ん中
+    meaning: exact center, middle
+    kind: similar expression
+    nuance: 『真ん中』 uses 『真』 to denote exactness, but for the 'center' or 'middle' point of something, not
+      a directional position relative to an object above or below it.
+    grammar_point: <suggest>:真ん中 (exact center)
+post_false_friends_writeup: To avoid confusing 『真下』 with similar terms, remember its core nuance of 'exact
+  vertical alignment below something'. 『下』 is broad, 『底』 is for containers, 『真上』 is the direct opposite,
+  and 『真ん中』 is about the center point. Each term has its specific context and precision.
+examples:
+  - english: The cat is sleeping right under the desk.
+    japanese:
+      - 猫 が 机 の {真下} で 寝 て い ます。
+      - 猫 が 机 の {真下} で 寝 てる。
+    english_literally: The cat, under the desk's direct underside, is sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が 机 の 下 で 寝 て い ます。
+        english: The cat is sleeping under the desk (somewhere, not necessarily directly beneath).
+        hint: 『下』 is a general term for 'under' or 'below', without the emphasis on the exact vertical
+          alignment. We're looking for 'right under'.
+    scene: You enter a room and see your cat napping in a specific spot.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Please stand directly under the umbrella to avoid the rain.
+    japanese:
+      - 雨 に 濡れ ない よう に、傘 の {真下} に 立っ て ください。
+      - 雨 に 濡れ ない よう に、傘 の {真下} に 立っ て。
+      - 雨 に 濡れ ない よう に、傘 の {真下} に お 立ち ください。
+    english_literally: So as not to get wet from the rain, please stand directly under the umbrella.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 に 濡れ ない よう に、傘 の 下 に 立っ て ください。
+        english: Please stand under the umbrella (anywhere under it).
+        hint: 『下』 doesn't convey the precise 'directly under' meaning needed for avoiding rain efficiently.
+          We're looking for the exact spot.
+    scene: It's raining, and you're advising a friend.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The treasure is buried directly beneath that old tree.
+    japanese:
+      - 宝物 は あの 古い 木 の {真下} に 埋め られ て い ます。
+      - 宝物 は あの 古い 木 の {真下} に 埋め られ てる。
+      - 宝物 は あの 古い 木 の {真下} に 埋め られ て いる。
+    english_literally: The treasure, that old tree's direct underside, is buried.
+    competing_grammar:
+      - competing_japanese:
+          - 宝物 は あの 古い 木 の 下 に 埋め られ て い ます。
+        english: The treasure is buried under that old tree (somewhere in the vicinity).
+        hint: To emphasize the exact burial spot, 『下』 is too vague. We need to say 'directly beneath'.
+    scene: You're giving instructions for a treasure hunt.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: The airplane is flying directly below us.
+    japanese:
+      - 飛行 機 が 私 達 の {真下} を 飛ん で い ます。
+      - 飛行 機 が 私 達 の {真下} を 飛ん でる。
+      - 飛行 機 が 私 達 の {真下} を 飛ん で いる。
+    english_literally: The airplane is flying directly below us.
+    competing_grammar:
+      - competing_japanese:
+          - 飛行 機 が 私 達 の 下 を 飛ん で い ます。
+        english: The airplane is flying below us (generally in the sky below).
+        hint: 『下』 would mean it's flying generally beneath, but not necessarily in a straight line beneath
+          your current position. We're looking for 'directly below'.
+    scene: You're looking up at the sky from a skyscraper, and an airplane passes.
+    register: teineigo (polite)
+    setting: informative
+  - english: There's a hidden switch right under this stone.
+    japanese:
+      - この 石 の {真下} に 隠れ た スイッチ が あり ます。
+      - この 石 の {真下} に 隠れ た スイッチ が ある。
+    english_literally: Under this stone's direct underside, a hidden switch exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 石 の 下 に 隠れ た スイッチ が あり ます。
+        english: There's a hidden switch under this stone (somewhere).
+        hint: 『下』 might imply it's simply somewhere on the ground under the stone. 『真下』 specifies it's
+          precisely beneath it. We're looking for 'right under'.
+    scene: You are exploring an ancient ruin and discover a clue.
+    register: teineigo (polite)
+    setting: creative
+  - english: The child stood directly under the waterfall.
+    japanese:
+      - 子供 は 滝 の {真下} に 立っ て い まし た。
+      - 子供 は 滝 の {真下} に 立っ て た。
+      - 子供 は 滝 の {真下} に 立っ て い た。
+    english_literally: The child was standing at the waterfall's direct underside.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 滝 の 下 に 立っ て い まし た。
+        english: The child was standing under the waterfall (in its general area).
+        hint: 『下』 indicates a general area. For the strong impact of standing directly under a waterfall,
+          『真下』 is more appropriate. We're looking for 'directly under'.
+    scene: A tourist describes a memorable sight.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: He drew a perfect circle directly under the square.
+    japanese:
+      - 彼 は 四角 形 の {真下} に 完全 な 円 を 描き まし た。
+      - 彼 は 四角 形 の {真下} に 完全 な 円 を 描い た。
+    english_literally: He drew a perfect circle at the square's direct underside.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 四角 形 の 下 に 完全 な 円 を 描き まし た。
+        english: He drew a perfect circle under the square (not necessarily aligned).
+        hint: When dealing with precise geometry, 『下』 is too ambiguous. 『真下』 ensures exact vertical placement.
+          We're looking for 'directly under'.
+    scene: An art teacher explains a drawing technique.
+    register: teineigo (polite)
+    setting: academic
+  - english: The main office is directly below the conference room.
+    japanese:
+      - 本社 は 会議 室 の {真下} です。
+      - 本社 は 会議 室 の {真下} だ。
+    english_literally: The main office is the conference room's direct underside.
+    competing_grammar:
+      - competing_japanese:
+          - 本社 は 会議 室 の 下 です。
+        english: The main office is below the conference room (on a lower floor, but not necessarily stacked).
+        hint: 『下』 might mean simply on a lower floor. 『真下』 indicates they are vertically aligned on different
+          floors. We're looking for 'directly below'.
+    scene: A new employee is asking for directions in an office building.
+    register: teineigo (polite)
+    setting: professional
+  - english: We found the old well directly beneath the kitchen floor.
+    japanese:
+      - 台所 の 床 の {真下} に 古い 井戸 を 見つけ まし た。
+      - 台所 の 床 の {真下} に 古い 井戸 を 見つけ た。
+    english_literally: At the kitchen floor's direct underside, we found an old well.
+    competing_grammar:
+      - competing_japanese:
+          - 台所 の 床 の 下 に 古い 井戸 を 見つけ まし た。
+        english: We found the old well under the kitchen floor (generally in the area).
+        hint: 『下』 might mean it's somewhere beneath the floorboards. 『真下』 implies it's vertically aligned
+          with that specific spot. We're looking for 'directly beneath'.
+    scene: A family is renovating an old house and makes an unexpected discovery.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: He pointed directly below the map to indicate the exact location.
+    japanese:
+      - 彼 は 正確 な 位置 を 示す ため、地図 の {真下} を 指差し まし た。
+      - 彼 は 正確 な 位置 を 示す ため、地図 の {真下} を 指差し た。
+    english_literally: He, to show the exact location, pointed directly below the map.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 正確 な 位置 を 示す ため、地図 の 下 を 指差し まし た。
+        english: He pointed below the map (generally).
+        hint: 『下』 implies a general downward direction. 『真下』 emphasizes that he pointed to the spot directly
+          aligned with the map. We're looking for 'directly below'.
+    scene: A general is giving strategic instructions during a briefing.
+    register: formal
+    setting: professional

@@ -1,0 +1,286 @@
+grammar_point: 奥,手前 (depth・foreground spatial)
+learn_before:
+  - 手前 (before; in front of; on account of)
+meaning: depth; innermost part; just before; in front of
+pronunciation:
+  katakana: オク,テマエ
+  romaji: oku, temae
+formation:
+  Noun の 奥: Indicates the innermost or deepest part of a noun's location.
+  Noun の 手前: Indicates a location just before or on the near side of a noun.
+  奥 に/で: Used adverbially to mean 'in the back/deep inside'.
+  手前 に/で: Used adverbially to mean 'in the front/just before'.
+jlpt: N3
+etymology: 「奥」 (oku) literally means 'inner part' or 'recess', often associated with the hidden or profound.
+  Its kanji combines a roof (宀) with a tree (木) and a person (人), suggesting a secluded space within a
+  dwelling or deep within nature. 「手前」 (temae) literally means 'in front of one's hands' (手 - hand, 前
+  - front), conveying the sense of being directly before or on the near side of something, hence its usage
+  for immediate proximity or even one's own perspective.
+writeup: |-
+  「奥」(oku) and 「手前」(temae) are nouns that function primarily as spatial indicators, defining relative positions of depth and foreground. They are often used with the possessive particle 「の」 following a noun to specify a location relative to that noun (e.g., 「部屋 の 奥」 - the back of the room, 「駅 の 手前」 - just before the station). They can also be used adverbially with particles 「に」 or 「で」 (e.g., 「奥 に ある」 - it's in the back, 「手前 で 止まる」 - stop just in front).
+
+  **奥 (Oku)**: This term signifies the innermost, deepest, or furthest part of an an area or object. It conveys a sense of being deep within, often implying that something is hidden, secluded, or requires effort to reach. For instance, the 'back' of a shrine or temple (神社 の 奥) refers to its most sacred, innermost area.
+
+  **手前 (Temae)**: This term indicates the immediate front, the near side, or just before something. It implies a closer, more immediate proximity than the general term 「前」(mae). When used for spatial reference, it positions something precisely on 'this side' of a specified point or boundary.
+
+  While both terms are used for spatial description, their nuances of depth and proximity make them distinct and crucial for precise communication in Japanese.
+false_friends:
+  - term: 前 (mae)
+    meaning: front; before (time/space)
+    kind: similar expression
+    nuance: 「前」(mae) is a more general term for 'front' or 'before', often implying a broader area. 「手前」(temae)
+      is more specific, indicating 'just before' or 'on the immediate near side' of a point, often with
+      a sense of a boundary.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 後ろ (ushiro)
+    meaning: back; behind
+    kind: antonym
+    nuance: 「後ろ」(ushiro) refers to the 'back' or 'rear' in a general directional sense, typically external
+      to an object. 「奥」(oku) refers to the 'innermost' or 'deepest part' of an interior space.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 中 (naka)
+    meaning: inside; within
+    kind: similar expression
+    nuance: 「中」(naka) is a general term for 'inside' or 'within' an enclosed space. 「奥」(oku) specifies
+      the *deepest* or *innermost* part of that interior, implying a more remote or hidden location within.
+    grammar_point: 中・外 (spatial and temporal reference)
+  - term: 近く (chikaku)
+    meaning: near, nearby
+    kind: similar expression
+    nuance: 「近く」 is a general term for 'near' or 'close by'. 「手前」 is more specific, meaning 'just before'
+      or 'on the immediate near side' of a particular point, often implying a boundary or precise location
+      relative to something.
+    grammar_point: 近く,遠く (proximity・distance spatial)
+  - term: 寸前 (sunzen)
+    meaning: just before, on the verge of
+    kind: similar expression
+    nuance: 「寸前」 indicates being immediately before a critical or significant event, often implying an
+      impending, momentary action or state. While 「手前」 can mean 'just before' spatially, 「寸前」 is typically
+      temporal and emphasizes the very last moment before something happens.
+    grammar_point: <suggest>:寸前 (just before)
+post_false_friends_writeup: To avoid confusion, remember that 「前」 is broad, while 「手前」 is precise about
+  immediate proximity. Similarly, 「後ろ」 indicates a general rearward direction, whereas 「奥」 points to the
+  deepest interior. 「中」 refers to any point within an enclosed space, while 「奥」 specifically pinpoint
+  the furthest reaches of that interior. Furthermore, 「近く」 describes a general vicinity, unlike the precise
+  'just before' of 「手前」. Finally, while 「手前」 indicates spatial proximity, 「寸前」 specifically refers to
+  a critical temporal moment just before an event.
+examples:
+  - english: The storage room is at the back of the house.
+    japanese:
+      - 物置 は 家 の {奥} に あり ます。
+      - 物置 は 家 の {奥} に ある。
+      - 物置 は 家 の {奥} です。
+      - 物置 は 家 の {奥} だ.
+    english_literally: Storage room, as for, house's deep inside, is.
+    competing_grammar:
+      - competing_japanese:
+          - 物置 は 家 の {後ろ} に あり ます。
+        english: The storage room is behind the house.
+        hint: 「後ろ」(ushiro) means 'behind' in a general external sense. We're looking for a word that describes
+          the innermost or deepest part of the house's interior.
+      - competing_japanese:
+          - 物置 は 家 の {中} に あり ます。
+        english: The storage room is inside the house.
+        hint: 「中」(naka) means 'inside' generally. We're looking for a word that specifies the *deepest*
+          or *furthest* part of the interior.
+    scene: A father is describing the layout of their house to his daughter.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The father is giving a straightforward explanation to his daughter. The usage of 「あります」 is
+      polite but not overly formal, typical for a parent instructing a child. The phrase 「家 の 奥」 directly
+      refers to the physical back of the house, implying a hidden or less accessible part.
+  - english: Please line up just before the door.
+    japanese:
+      - ドア の {手前} に 並ん で ください。
+      - ドア の {手前} に 並ん で くれ。
+      - ドア の {手前} で お 並び ください。
+      - ドア の {手前} に 並び なさい.
+    english_literally: Door's immediate front, please line up.
+    competing_grammar:
+      - competing_japanese:
+          - ドア の {前} に 並ん で ください。
+        english: Please line up in front of the door.
+        hint: 「前」(mae) means 'in front' generally. We're looking for a word that specifies 'just before'
+          or 'on the immediate near side' of the door, implying a specific boundary.
+      - competing_japanese:
+          - ドア の {近く} に 並ん で ください。
+        english: Please line up near the door.
+        hint: 「近く」(chikaku) means 'near' generally. We're looking for a word that specifies 'just before'
+          or 'on the immediate near side' of the door, implying a specific boundary that you shouldn't
+          cross yet.
+    scene: An attendant is instructing a group of people at an entrance.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The attendant uses the polite imperative 「並んで ください」 to instruct a group. The phrase 「ドア の
+      手前」 is precise, indicating a specific spot 'just before' the door, maintaining order. The attendant's
+      younger age might imply a more standard, textbook-polite speech, without leaning into overly casual
+      or more nuanced polite forms that might come with more experience.
+  - english: There's a subtle taste that comes from the depths of this soup.
+    japanese:
+      - この スープ の {奥} から 繊細 な 味 が し ます。
+      - この スープ は {奥} から 繊細 な 味 が する。
+      - この スープ の {奥} に 繊細 な 味 が 隠れ て い ます。
+      - この スープ の {奥} に は 繊細 な 味 が 隠れ て いる。
+    english_literally: This soup's deep inside, from, delicate taste is felt.
+    competing_grammar:
+      - competing_japanese:
+          - この スープ の {中} から 繊細 な 味 が し ます。
+        english: There's a delicate taste from inside this soup.
+        hint: 「中」(naka) means 'inside' generally. We're looking for a word that suggests the *profound*
+          or *hidden* depths from which the taste originates.
+    scene: You are a chef explaining the complexity of a dish to a diner.
+    register: semi-formal
+    setting: informative
+  - english: The train stopped just before the station platform.
+    japanese:
+      - 電車 は 駅 の {手前} で 止まり まし た。
+      - 電車 は 駅 の {手前} で 止まっ た。
+      - 電車 は 駅 の {手前} で 停車 し まし た。
+      - 電車 は 駅 の {手前} で 停車 し た.
+    english_literally: Train, as for, station's immediate front, at, stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は 駅 の {前} で 止まり まし た。
+        english: The train stopped in front of the station.
+        hint: 「前」(mae) is less precise. We're looking for a term that emphasizes the train stopping *just
+          before* the platform, implying a specific, slightly offset position.
+    scene: A train conductor is reporting an unexpected stop.
+    register: formal
+    setting: informative
+  - english: That artist's work has a profound depth.
+    japanese:
+      - あの 芸術 家 の 作品 は {奥} が 深い です。
+      - あの 芸術 家 の 作品 は {奥} が 深い。
+      - あの 芸術 家 の 作品 は {奥} が とても 深い です。
+      - あの 芸術 家 の 作品 は {奥} が とても 深い。
+    english_literally: That artist's work, as for, deep inside, is deep.
+    competing_grammar:
+      - competing_japanese:
+          - あの 芸術 家 の 作品 は {深い} です。
+        english: That artist's work is deep.
+        hint: While 「深い」 (fukai) means deep, 「奥が深い」 implies a hidden, complex, or profound quality that
+          is not immediately apparent, rather than just a general depth.
+    scene: Art critics are discussing a famous artist's exhibition.
+    register: formal
+    setting: academic
+  - english: The package was left just before the entrance.
+    japanese:
+      - 荷物 は 玄関 の {手前} に 置い て あり まし た。
+      - 荷物 は 玄関 の {手前} に 置い て あっ た。
+      - 荷物 は 玄関 の {手前} に あり ます。
+      - 荷物 は 玄関 の {手前} に ある。
+    english_literally: Package, as for, entrance's immediate front, at, was placed.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 は 玄関 の {前} に 置い て あり まし た。
+        english: The package was left in front of the entrance.
+        hint: 「前」(mae) is more ambiguous. We're looking for a term that specifies the package was placed
+          *just before* the entrance, not necessarily directly in front or obstructing it.
+      - competing_japanese:
+          - 荷物 は 玄関 の {後ろ} に 置い て あり まし た。
+        english: The package was left behind the entrance.
+        hint: 「後ろ」(ushiro) means 'behind'. We're looking for a word that specifies the package was placed
+          *just before* the entrance, not behind it.
+      - competing_japanese:
+          - 荷物 は 玄関 の {中} に 置い て あり まし た。
+        english: The package was left inside the entrance.
+        hint: 「中」(naka) means 'inside'. We're looking for a word that specifies the package was placed
+          *just before* the entrance, not within it.
+    scene: You are explaining to someone where a delivery was left.
+    register: casual
+    setting: informative
+  - english: He has a deep understanding of Japanese culture.
+    japanese:
+      - 彼 は 日本 文化 に {奥} が 深い です。
+      - 彼 は 日本 文化 に {奥} が 深い。
+    english_literally: He, as for, Japanese culture, to, depth is deep.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 文化 を {よく 理解 し て い ます}。
+        english: He understands Japanese culture well.
+        hint: 「よく 理解 する」 means to understand well generally. We're looking for an idiom that emphasizes
+          a profound, nuanced understanding, beyond simple comprehension.
+    scene: Two friends are discussing a mutual acquaintance's interests.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「奥が深い」 is an idiomatic expression signifying profoundness or deep intricacy, commonly
+      used when appreciating something complex like culture. The casual 「です」 ending is standard for informal
+      informative speech between friends.
+  - english: The cat is sitting just in front of the door, blocking the way.
+    japanese:
+      - 猫 が ドア の {手前} に 座っ て い て、邪魔 です。
+      - 猫 が ドア の {手前} に 座っ て い て、邪魔 だ.
+    english_literally: Cat, as for, door's immediate front, at, sitting and, nuisance is.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が ドア の {前} に 座っ て い て、邪魔 です。
+        english: The cat is sitting in front of the door, blocking the way.
+        hint: 「前」(mae) is a general 'in front'. We're looking for a term that emphasizes the cat is precisely
+          in the immediate path, causing an obstruction.
+    scene: Someone is trying to walk through a doorway but their pet is in the way.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「邪魔です」 (it's in the way/a nuisance) conveys a common, slightly exasperated sentiment.
+      「ドア の 手前」 highlights that the cat is specifically in the immediate path, not just generally 'in
+      front' of the door, making the obstruction clear.
+  - english: We ventured deep into the forest.
+    japanese:
+      - 私 たち は 森 の {奥} へ 進ん で いき まし た。
+      - 私 たち は 森 の {奥} へ 進ん で いっ た。
+      - 森 の {奥} へ 進ん で いき まし た。
+      - 森 の {奥} へ 進ん で いっ た.
+    english_literally: We, as for, forest's deep interior, to, advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 森 の {中} へ 進ん で いき まし た。
+        english: We ventured into the forest.
+        hint: 「中」(naka) implies merely entering the forest. We're looking for a word that suggests going
+          into the furthest, most secluded part of the forest.
+    scene: A person is recounting a past adventure or expedition.
+    register: semi-formal
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「森 の 奥 へ 進ん で いきました」 emphasizes the act of penetrating deep into the forest, conveying
+      a sense of adventure or exploration into a remote area. The polite past tense 「いきました」 is suitable
+      for recounting an event to an audience.
+  - english: He turned back just before the cliff edge.
+    japanese:
+      - 彼 は 崖 の {手前} で 引き返し まし た。
+      - 彼 は 崖 の {手前} で 引き返し た。
+    english_literally: He, as for, cliff's immediate front, at, turned back.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 崖 の {近く} で 引き返し まし た。
+        english: He turned back near the cliff edge.
+        hint: 「近く」(chikaku) means 'near', which is less precise. We're looking for a word that emphasizes
+          the critical point *just* before the danger, implying a narrow escape.
+    scene: Someone is recounting a dangerous encounter or a close call.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「崖 の 手前」 precisely indicates the point of no return, emphasizing the immediacy of the boundary
+      or danger. This usage highlights the precision of 「手前」 in describing a critical stopping point.
+      「引き返しました」 (turned back) is a standard polite verb choice.
+post_example_writeup: As seen in the examples, 「奥」 and 「手前」 are precise spatial markers. 「奥」 goes beyond
+  simply 'inside' or 'behind' to indicate the deepest, most secluded part, and can extend to abstract
+  concepts like profoundness. 「手前」 refines 'front' to mean 'just before' or 'on the immediate near side',
+  often implying a slight offset from a main point or a critical proximity. Understanding these nuances
+  helps in conveying exact locations and even abstract concepts of depth and closeness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E5%A5%A5-%E6%89%8B%E5%89%8D

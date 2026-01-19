@@ -1,0 +1,489 @@
+grammar_point: になる・くなる (to become)
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+  - い-Adjective[く] (adverbial form)
+  - ことか (how surprising or emotional)
+  - だんだん (gradually)
+  - となる (to become・result in)
+  - となると (when it comes to)
+  - になると (when it comes to)
+  - は (topic and contrast)
+  - 地面・天井 (ground・floor・ceiling)
+  - 近く,遠く (proximity・distance spatial)
+meaning: To become (a noun or adjective)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: になる
+    rarity: common
+    meaning: to become (noun/na-adjective)
+  - conjugation-type: dictionary (plain non-past)
+    form: くなる
+    rarity: common
+    meaning: to become (i-adjective)
+  - conjugation-type: non-past polite (～ます)
+    form: になります
+    rarity: common
+    meaning: to become (noun/na-adjective, polite)
+  - conjugation-type: non-past polite (～ます)
+    form: くなります
+    rarity: common
+    meaning: to become (i-adjective, polite)
+  - conjugation-type: past plain (～た)
+    form: になった
+    rarity: common
+    meaning: became (noun/na-adjective)
+  - conjugation-type: past plain (～た)
+    form: くなった
+    rarity: common
+    meaning: became (i-adjective)
+  - conjugation-type: past polite (～ました)
+    form: になりました
+    rarity: common
+    meaning: became (noun/na-adjective, polite)
+  - conjugation-type: past polite (～ました)
+    form: くなりました
+    rarity: common
+    meaning: became (i-adjective, polite)
+  - conjugation-type: negative plain (～ない)
+    form: にならない
+    rarity: common
+    meaning: does not become (noun/na-adjective)
+  - conjugation-type: negative plain (～ない)
+    form: くならない
+    rarity: common
+    meaning: does not become (i-adjective)
+  - conjugation-type: negative past plain (～なかった)
+    form: にならなかった
+    rarity: common
+    meaning: did not become (noun/na-adjective)
+  - conjugation-type: negative past plain (～なかった)
+    form: くなかった
+    rarity: common
+    meaning: did not become (i-adjective)
+  - conjugation-type: te-form (～て)
+    form: になって
+    rarity: common
+    meaning: becoming (noun/na-adjective), for sequential actions or states
+  - conjugation-type: te-form (～て)
+    form: くなって
+    rarity: common
+    meaning: becoming (i-adjective), for sequential actions or states
+  - conjugation-type: conditional (～たら)
+    form: になったら
+    rarity: common
+    meaning: if/when it becomes (noun/na-adjective)
+  - conjugation-type: conditional (～たら)
+    form: くなったら
+    rarity: common
+    meaning: if/when it becomes (i-adjective)
+  - conjugation-type: conditional (～ば)
+    form: になれば
+    rarity: common
+    meaning: if it becomes (noun/na-adjective)
+  - conjugation-type: conditional (～ば)
+    form: くなれば
+    rarity: common
+    meaning: if it becomes (i-adjective)
+  - conjugation-type: desiderative (～たい)
+    form: になりたい
+    rarity: common
+    meaning: want to become (noun/na-adjective)
+  - conjugation-type: desiderative (～たい)
+    form: くなりたい
+    rarity: common
+    meaning: want to become (i-adjective)
+  - conjugation-type: potential (～られる/～える)
+    form: になれる
+    rarity: common
+    meaning: can become (noun/na-adjective)
+  - conjugation-type: potential (～られる/～える)
+    form: くなれる
+    rarity: common
+    meaning: can become (i-adjective)
+pronunciation:
+  katakana: ニナル・クナル
+  romaji: ninaru / kunaru
+formation:
+  '[Noun] + に + なる': Indicates becoming a certain state or condition.
+  '[い-Adjective] (remove い) + くなる': Indicates becoming more of the adjective.
+  '[な-Adjective] + に + なる': Indicates becoming the state of the na-adjective or adverbializing na-adjective
+    stem to modify 'なる'.
+jlpt: N5
+etymology: 「に」 is a particle indicating a direction or target of change, signifying the result or state
+  something transforms into. 「なる」 is the foundational verb "to become" in Japanese. 「くなる」 is a specific
+  grammatical conjugation used exclusively with い-adjectives to indicate a change in their degree or state.
+  This conjugation pattern is derived from the adverbial form of い-adjectives (dropping い and adding く),
+  which then precedes 「なる」 to denote the shift.
+writeup: '「になる」 with nouns and な-adjectives and 「くなる」 with い-adjectives both express the idea of "becoming."
+  This grammar point describes a change in state, condition, or quality. The verb 「なる」 can be conjugated
+  to indicate different tenses (past, present, future) or polarity (positive, negative). While the dictionary
+  form is casual, it can be easily adapted to polite or formal speech by conjugating ''なる'', for example,
+  「になります」 or 「になりました」. For **い-adjectives**, you drop the final 「い」 and add 「くなる」. For example, 「大きい」
+  (big) becomes 「大きくなる」 (to become big). For **な-adjectives** and **nouns**, you add 「になる」. For example,
+  「元気」 (healthy) becomes 「元気 に なる」 (to become healthy). There is a notable exception: the i-adjective
+  「いい」 (good) conjugates irregularly to 「よくなる」, not 「いくなる」.'
+false_friends:
+  - term: てくる
+    meaning: to come to be, to become, to start to, has been ~ing
+    kind: similar expression
+    nuance: While both 「になる/くなる」 and 「てくる」 can express a change, 「てくる」 often emphasizes the process or
+      gradual nature of the change over time, or a change that happened from somewhere else to here. 「になる/くなる」
+      simply indicates the end state or the result of a change.
+    grammar_point: 〜てくる (change toward present・movement toward speaker)
+  - term: Noun・Adjective+にする・くする
+    meaning: To make a noun or adjective, to turn something into a noun or adjective
+    kind: similar expression
+    nuance: 「～にする/くする」 expresses a transitive change, meaning someone or something actively makes something
+      become a certain state or quality. In contrast, 「～になる/くなる」 describes an intransitive change where
+      something itself becomes that state or quality, often naturally or as a result of external factors.
+    grammar_point: にする (to decide or make)
+  - term: ようになる
+    meaning: To come to be; to reach the point that; to turn into
+    kind: similar expression
+    nuance: While 「になる/くなる」 generally describes any change of state, 「ようになる」 specifically indicates a
+      change in habit, ability, or condition that has been acquired over time or as a result of some process,
+      often implying a new, regular state or capability. 「になる/くなる」 is more about the state itself, while
+      「ようになる」 is about the process of reaching a new ability or routine.
+    grammar_point: ようになる (to come to be)
+post_false_friends_writeup: While 「になる/くなる」 focuses on the resulting state of a transformation, 「てくる」
+  often highlights the progression toward that state or a change that has manifested itself. Use 「てくる」
+  when you want to emphasize that something gradually changes over time or appears as a result of a process,
+  rather than just stating the final state of becoming. The related forms 「～にする/くする」 are transitive verbs,
+  meaning they indicate an agent actively making something change, whereas 「～になる/くなる」 are intransitive,
+  indicating something changes on its own. Furthermore, 「ようになる」 is specifically used when a change in
+  *ability* or a *new habit* has been acquired over time.
+examples:
+  - english: He will become a university student this year.
+    japanese:
+      - 彼 は 今年 大学 に {なる}。
+      - 彼 は 今年 大学 に {なり ます}。
+      - 彼 は 今年 大学 に {なる} で しょう。
+    english_literally: He this year university student will become.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今年 大学 に {なっ て くる}。
+        english: He has been becoming a university student this year.
+        hint: 「なってくる」 implies a gradual process or a change that has been ongoing up to the present. We're
+          looking for a simple, definitive future change.
+      - competing_japanese:
+          - 彼 は 今年 大学 に {する}。
+        english: He will make himself a university student this year.
+        hint: 「する」 implies an active, conscious decision or action on his part to make himself a university
+          student. We're stating that he will simply become one.
+      - competing_japanese:
+          - 彼 は 今年 大学 {だ}。
+        english: He is a university student this year.
+        hint: 「だ」 describes a current state of being. We're looking for a change of state, indicating
+          he will simply become a university student.
+    scene: A high school student excitedly talking about their future plans with a friend.
+    register: casual
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: This example uses the casual form 「なる」 appropriate for a young male speaker talking to a friend
+      about future plans. The use of 「になる」 emphasizes the definitive transition to a new status.
+    etymology: The verb 「なる」 fundamentally describes a state of coming into being. Here, it signifies
+      the process of obtaining a new identity or role rather than a physical movement or acquisition,
+      fitting the meaning of a change of state.
+  - english: When summer comes, it gets hot every day.
+    japanese:
+      - 夏 に なる と、毎日 暑く {なる}。
+      - 夏 に なる と、毎日 暑く {なり ます}。
+    english_literally: When summer becomes, every day hot becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 夏 に なる と、毎日 暑く {なっ て くる}。
+        english: When summer comes, it has been gradually getting hot every day.
+        hint: 「なってくる」 suggests a continuous or gradual change over time. We're talking about a general,
+          recurring change in state.
+      - competing_japanese:
+          - 毎日 を 暑く {する}。
+        english: Make every day hot.
+        hint: 「する」 is a transitive verb, implying someone makes it hot. We're talking about the natural
+          change of the weather becoming hot.
+      - competing_japanese:
+          - 夏 に なる と、毎日 {暑い}。
+        english: When summer comes, it is hot every day.
+        hint: 「暑い」 describes a current state of being hot. We're looking for the process of it becoming
+          hot.
+    scene: A person discussing seasonal changes with a friend, anticipating the upcoming heat.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The combination of 「に なる」 with 「と」 indicates a natural consequence or recurring phenomenon.
+      「暑く なる」 specifically highlights the change in temperature as a result of summer's arrival, rather
+      than the gradual feeling of it getting hotter.
+    etymology: The 「と」 particle, when connected with a verb, often implies a natural or inevitable result,
+      which complements the sense of transformation conveyed by 「なる」. The adverbial form 「暑く」 stems from
+      the i-adjective 「暑い」, maintaining the adjectival meaning while allowing it to modify the verb 「なる」.
+  - english: The more you use this machine, the more convenient it becomes.
+    japanese:
+      - この 機械 は 使う ほど 便利 に {なる}。
+      - この 機械 は 使う ほど 便利 に {なり ます}。
+    english_literally: This machine as much as you use, convenient becomes.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は 使う ほど 便利 に {なっ て くる}。
+        english: The more you use this machine, the more convenient it has been gradually becoming.
+        hint: 「なってくる」 emphasizes a gradual progression. We're describing a general cause-and-effect relationship
+          where the convenience increases as a result of usage.
+      - competing_japanese:
+          - この 機械 は 使う ほど 便利 に {する}。
+        english: The more you use this machine, the more convenient you make it.
+        hint: 「する」 implies an active agent making the machine convenient. We're describing how the machine
+          becomes convenient on its own due to usage.
+    scene: An engineer demonstrating a new piece of technology to a client, highlighting its adaptive
+      features.
+    register: formal
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「使う ほど」 emphasizes a proportional relationship, meaning 'the more you use it, the
+      more X happens'. 「便利 に なる」 highlights the progressive increase in convenience, presenting it as
+      a direct result of usage. The formal register suits the technical and professional setting.
+    etymology: 「ほど」 is a particle derived from a noun meaning 'extent' or 'degree', and when used with
+      a verb it indicates that an action or state progresses in proportion to another. 「便利に」 is the adverbial
+      form of the na-adjective 「便利だ」, allowing it to modify the verb 「なる」 and convey the manner in which
+      it becomes convenient.
+  - english: Her dream is to become a singer.
+    japanese:
+      - 彼女 の 夢 は 歌手 に {なる} こと です。
+      - 彼女 の 夢 は 歌手 に {なる} こと。
+    english_literally: Her dream is a singer to become thing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 夢 は 歌手 に {なっ て くる} こと です。
+        english: Her dream is to be gradually becoming a singer.
+        hint: 「なってくる」 implies a process unfolding. We're expressing the ultimate state or goal of becoming
+          a singer.
+      - competing_japanese:
+          - 彼女 の 夢 は 歌手 に {する} こと です。
+        english: Her dream is to make herself a singer.
+        hint: 「する」 implies an active choice or effort to make herself a singer. We're describing the state
+          of becoming a singer as her dream.
+      - competing_japanese:
+          - 彼女 の 夢 は 歌手 {です}。
+        english: Her dream is a singer.
+        hint: 「です」 states that her dream is a singer, which doesn't make sense. We need to express that
+          her dream is to become a singer.
+    scene: A friend talking about their aspirations for the future.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「歌手 に なる こと」 literally means 'the act of becoming a singer', highlighting the process
+      and transformation inherent in achieving her dream. This indicates a strong personal aspiration
+      rather than a simple statement of current profession or desire. The use of 「です」 adds a slight formality
+      and certainty to the statement, even in a casual conversation among friends.
+    etymology: 「こと」 is a nominalizer here, turning the phrase 「歌手 に なる」 (to become a singer) into a noun
+      phrase, making it possible to be the subject of 'her dream is...'. This grammatical structure allows
+      for abstract concepts and actions to be treated as concrete nouns.
+  - english: After the exam, I felt relieved, my mood became easy.
+    japanese:
+      - 試験 が 終わっ て、気分 が 楽 に {なっ た}。
+      - 試験 が 終わっ て、気分 が 楽 に {なり まし た}。
+      - 試験 が 終わっ て、気分 が 楽 に {なっ た わ}。
+      - 試験 が 終わっ て、気分 が 楽 に {なっ た な}。
+    english_literally: Exam finished, mood easy became.
+    competing_grammar:
+      - competing_japanese:
+          - 気分 が 楽 に {なっ て き た}。
+        english: My mood has been gradually becoming easy.
+        hint: 「なってきた」 would imply a gradual easing of mood over time. We are talking about a sudden, completed
+          change in mood.
+      - competing_japanese:
+          - 気分 を 楽 に {し た}。
+        english: I made my mood easy.
+        hint: 「し た」 implies an active effort to make your mood easy. We're saying your mood became easy
+          naturally.
+    scene: A student expressing relief after completing a difficult examination.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: 「楽 に なった」 expresses a change from a state of discomfort or tension to a state of ease. The
+      past tense 「なった」 clearly indicates that this change has already occurred and is a result of the
+      exam's completion. The casual register reflects the informal context of a student sharing personal
+      feelings.
+    etymology: The te-form 「終わって」 connects the completion of the exam to the subsequent change in mood,
+      creating a causal sequence. 「楽に」 is the adverbial form of the na-adjective 「楽だ」, allowing it to
+      describe the manner of becoming.
+  - english: If you take this medicine, you shouldn't get sleepy.
+    japanese:
+      - この 薬 を 飲む と、眠く {なら ない} はず だ。
+      - この 薬 を 飲む と、眠く {なら ない} はず です。
+    english_literally: This medicine if you drink, sleepy will not become expected.
+    competing_grammar:
+      - competing_japanese:
+          - 眠く {なっ て こ ない} はず だ。
+        english: You shouldn't gradually start to feel sleepy.
+        hint: 「なっ て こ ない」 suggests a gradual onset that doesn't happen. We're stating that the state of
+          being sleepy will not come into existence at all.
+      - competing_japanese:
+          - 眠く {し ない} はず だ。
+        english: You shouldn't make yourself sleepy.
+        hint: 「し ない」 implies you actively avoid making yourself sleepy. We're stating that the medication
+          prevents sleepiness from occurring naturally.
+    scene: A doctor explaining the side effects of a new medication to a patient.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: 「眠く ならない」 uses the negative form to indicate that the state of being sleepy will not come
+      into existence. 「はず だ」 conveys the speaker's expectation or certainty. This phrasing is direct and
+      informative, suitable for a medical explanation, maintaining a semi-formal tone with the casual
+      「だ」 or polite 「です」 ending for 「はず」.
+    etymology: The 「と」 particle here functions similarly to an 'if-then' conditional, indicating that
+      the action of taking the medicine leads to the non-occurrence of sleepiness. 「眠く」 is the adverbial
+      form of the i-adjective 「眠い」, allowing it to modify the negative form of 「なる」.
+  - english: If you don't make an effort, your goals probably won't be achieved, won't become achievable.
+    japanese:
+      - 努力 し なけれ ば、目標 は 達成 でき なく {なる} だろう。
+      - 努力 し なけれ ば、目標 は 達成 でき なく {なる} で しょう。
+    english_literally: Effort if do not, goals achievement will not become possible probably.
+    competing_grammar:
+      - competing_japanese:
+          - 目標 は 達成 でき なく {なっ て くる} だろう。
+        english: Your goals probably won't be gradually becoming achievable.
+        hint: 「なっ て くる」 implies a gradual process of becoming achievable. We're describing the eventual
+          state of goals not being achieved if effort is not made.
+      - competing_japanese:
+          - 目標 は 達成 でき なく {する} だろう。
+        english: You probably won't make your goals achievable.
+        hint: 「する」 implies someone makes the goals unachievable. We're describing how the goals become
+          unachievable due to lack of effort.
+    scene: A coach giving a stern warning to an athlete who isn't putting in enough effort.
+    register: formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「できなく なる」 emphasizes that the ability to achieve goals will cease to exist or will
+      not come into being if effort is lacking. The 「だろう」 or 「でしょう」 adds a strong sense of probability
+      and warning, making the coach's statement impactful. This is a common way for an older male to express
+      a negative outcome as a consequence of inaction, conveying seriousness and authority. The formal
+      register is fitting for a public address.
+    etymology: 「できなく なる」 is formed from the potential form 「できる」 (to be able to do) and the negative form
+      「ない」, which then conjugates with 「なる」 to show a change into a state of inability. This construction
+      is very precise in conveying the meaning of 'to become unable to do something'.
+  - english: As it became night, it suddenly got cool.
+    japanese:
+      - 夜 に なっ て、急 に 涼しく {なり まし た}。
+      - 夜 に なっ て、急 に 涼しく {なっ た}。
+      - 夜 に なっ て、急 に 涼しく {なっ た よ}。
+      - 夜 に なっ て、急 に 涼しく {なっ た ね}。
+    english_literally: Night became, suddenly cool became polite.
+    competing_grammar:
+      - competing_japanese:
+          - 急 に 涼しく {なっ て き まし た}。
+        english: It suddenly has been gradually becoming cool.
+        hint: 「なっ て き まし た」 implies a gradual shift towards coolness. We're emphasizing an immediate,
+          completed change.
+      - competing_japanese:
+          - 急 に 涼しく {し まし た}。
+        english: I suddenly made it cool.
+        hint: 「し まし た」 implies an active agent made it cool. We're describing how the weather became cool
+          naturally.
+    scene: Two people enjoying an evening stroll, noticing the change in temperature.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    nuance: 「夜に なって」 uses the te-form of 「なる」 to connect the arrival of night with the subsequent change
+      in temperature. 「涼しく なりました」 indicates a shift from a warmer state to a cooler one, using the polite
+      past tense appropriate for friendly conversation. The nuance is a direct observation of the resulting
+      state.
+    etymology: The te-form 「なって」 indicates a sequence of events or a cause-and-effect relationship, allowing
+      the first clause (night arriving) to lead into the second (temperature changing). 「涼しく」 is the adverbial
+      form of the i-adjective 「涼しい」, which then modifies the verb 「なる」.
+  - english: I want to become better at speaking Japanese.
+    japanese:
+      - 日本 語 が 上手く {なり たい} です。
+      - 日本 語 が 上手く {なり たい} と 思っ て い ます。
+    english_literally: Japanese well become want polite.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 上達 {し たい} です。
+        english: I want to improve my Japanese.
+        hint: 「上達 する」 is a transitive verb meaning "to improve" (oneself or something else), implying
+          active effort. We're focusing on the state of becoming proficient.
+      - competing_japanese:
+          - 日本 語 を 勉強 {し 続け たい} です。
+        english: I want to keep studying Japanese.
+        hint: 「し 続け たい」 expresses a desire to continue an action, not necessarily to achieve a state of
+          being "good at" something.
+    scene: A student talking to their language tutor about their learning goals.
+    register: teineigo (polite)
+    setting: inspirational
+    conjugation: desiderative (～たい)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「上手く なりたい」 uses the adverbial form of the i-adjective 「上手い」 (skillful) combined with the desiderative
+      form of 「なる」, expressing a desire for a change in ability. The polite 「です」 ending is appropriate
+      for speaking to a tutor.
+    etymology: 「上手く」 is the adverbial form of the i-adjective 「上手い」 (skillful/good at), allowing it to
+      modify a verb like 「なる」. The desiderative suffix 「～たい」 attaches directly to the stem of the verb
+      「なる」 (なり) to express desire, literally meaning "want to become."
+  - english: The baby's cries gradually became louder.
+    japanese:
+      - 赤ちゃん の 泣き声 が だんだん 大きく {なっ て き た}。
+      - 赤ちゃん の 泣き声 が だんだん 大きく {なっ て き まし た}。
+    english_literally: Baby's crying sound gradually big became came.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん の 泣き声 が 急 に 大きく {なっ た}。
+        english: The baby's cries suddenly became louder.
+        hint: 「なっ た」 implies a sudden, completed change, while 「なっ て き た」 highlights a gradual increase
+          over time.
+      - competing_japanese:
+          - 赤ちゃん の 泣き声 を 大きく {し た}。
+        english: Someone made the baby's cries louder.
+        hint: 「し た」 implies an active agent made the cries louder. We're describing a natural increase
+          in volume.
+    scene: A parent noticing their baby's increasing volume of crying.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「だんだん」 (gradually) paired with 「なっ て き た」 (has been becoming/came to be) emphasizes the continuous
+      and progressive nature of the change, which is a common usage for 「～てくる」 with 「なる」. 「大きく」 is the
+      adverbial form of the i-adjective 「大きい」, modifying 「なる」.
+    etymology: The construction 「～てくる」 implies movement towards the speaker or a progression of time leading
+      to the present state. When combined with 「なる」, as in 「なっ て くる」, it signifies a gradual change that
+      has been occurring and continues up to the point of observation, reinforcing the meaning of 「だんだん」
+      (gradually).
+  - english: If it rains, the ground will become wet.
+    japanese:
+      - 雨 が 降れ ば、地面 が 濡れ て {なる} でしょう。
+      - 雨 が 降れ ば、地面 が 濡れ て {なり ます} でしょう。
+    english_literally: Rain if falls, ground wet becomes probably.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降れ ば、地面 が 濡れ て {き ます} でしょう。
+        english: If it rains, the ground will gradually become wet.
+        hint: 「き ます」 implies a process of becoming. We're stating a direct, likely outcome of the ground
+          becoming wet.
+      - competing_japanese:
+          - 雨 が 降れ ば、地面 を 濡 ら {し ます} でしょう。
+        english: If it rains, it will make the ground wet.
+        hint: 「濡らし ます」 is transitive, meaning an agent makes the ground wet. We're talking about the ground
+          becoming wet naturally.
+    scene: A meteorologist explaining weather phenomena on a news broadcast.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「濡れて なる」 is less common than 「濡れて いる」 or 「濡れる」, but here it emphasizes the change of state.
+      The usage of 「でしょう」 adds a degree of certainty or prediction common in weather forecasts. The formal
+      register is appropriate for a public announcement.
+    etymology: The conditional 「～ば」 indicates a strong causal relationship, where the rain (cause) directly
+      leads to the ground becoming wet (effect). 「濡れる」 (to get wet) is an intransitive verb, and its te-form
+      「濡れて」 connects to 「なる」 to describe the resulting state.
+post_example_writeup: These examples demonstrate the versatility of 「になる/くなる」 in expressing a change of
+  state, whether it's a physical transformation, a change in condition, or a development over time. Pay
+  close attention to the base form (noun, na-adjective, or i-adjective) when choosing between 「になる」 and
+  「くなる」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/になる-くなる

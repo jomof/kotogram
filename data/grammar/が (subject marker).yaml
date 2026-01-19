@@ -1,0 +1,250 @@
+grammar_point: が (subject marker)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[しました] (polite past)
+  - Verb[たい] (desiderative)
+  - Verb[ました] (polite past)
+  - Verb[よう] (volitional)
+  - '[Noun]が好きだ (to like)'
+  - '[Noun]が欲しい (to want something)'
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - あり (possibility・with)
+  - い-Adjective (connecting and adverbial form)
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[み] (abstract quality)
+  - い-adjective (sentence-ending)
+  - かける・かけ (in process・incomplete・on the verge)
+  - それと (and; also)
+  - だった (past copula, casual)
+  - で (by time)
+  - で (means・method)
+  - と (and, connects nouns)
+  - と (with)
+  - にする (to decide or make)
+  - ね (seeking agreement)
+  - のを (direct object nominalizer)
+  - まくる (excessive action)
+  - や (non-exhaustive list)
+  - を (path of movement)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 任せる (to entrust or leave to)
+  - 側 (side or flank)
+  - 切る (do completely or thoroughly)
+  - 地面・天井 (ground・floor・ceiling)
+  - 誰か (someone・somebody)
+  - 超える (to exceed)
+meaning: Marks the subject of a sentence.
+pronunciation:
+  katakana: ガ
+  romaji: ga
+formation:
+  Noun + が + Verb: Marks the subject of the action.
+  Noun + が + Adjective: Marks the subject of the state described by the adjective.
+  Question Word + が + Verb/Adjective: Used with question words to ask about the subject.
+jlpt: N5
+etymology: 'The particle が has roots in Old Japanese, where it served as a genitive case particle (similar
+  to modern の) and an honorific possessive marker. Over time, its function evolved, and it became primarily
+  used to mark the grammatical subject. This historical development contributes to its nuance today: when
+  が marks a subject, it often singles out or highlights that element, especially when it introduces new
+  information or specifies which entity performs an action or possesses a quality. This ''singling out''
+  can be seen as a vestige of its earlier identifying and possessive roles, contrasting with は which often
+  sets a broader, already established topic.'
+writeup: |-
+  The particle が (ga) is a fundamental subject marker in Japanese. Its primary role is to identify the grammatical subject of a sentence, indicating who or what is performing an action or experiencing a state. While English primarily uses word order, Japanese relies on particles like が to clarify grammatical roles.
+
+  A key distinction often made is between が and は (wa). While both can appear with subjects, their nuances differ significantly. が is typically used when introducing new information about the subject, answering a 'who?' or 'what?' question, or emphasizing the subject itself. For instance, if someone asks '誰が来ましたか' (Dare ga kimashita ka? - Who came?), the answer would likely use が, such as '田中さんが来ました' (Tanaka-san ga kimashita - Tanaka-san came), because Tanaka-san is the new, specific information being identified.
+
+  が is also consistently used with verbs that express potential (e.g., できる - dekiru, 'can do'), desire (e.g., 〜たい - -tai, 'want to do'), and certain adjectives (e.g., 好きだ - suki da, 'like'; 欲しい - hoshii, 'want'). In these cases, が marks the object of the potential, desire, or liking, even though it functions grammatically like the subject of the adjective or potential verb. For example, '日本語が話せます' (Nihongo ga hanasemasu - I can speak Japanese) or '寿司が食べたい' (Sushi ga tabetai - I want to eat sushi).
+
+  Furthermore, が is essential in subordinate clauses to mark their respective subjects, particularly when the subject of the subordinate clause is different from the main clause's subject or topic. It is also common with natural phenomena verbs where no specific agent is implied, like '雨が降っている' (Ame ga futte iru - It is raining).
+
+  Understanding the subtle differences between が and は is crucial for natural Japanese expression.
+false_friends:
+  - term: は (topic and contrast)
+    meaning: topic marker or contrast marker
+    kind: often confused with
+    nuance: が identifies the subject and often introduces new information, while は marks the topic, which
+      is usually already known or implied, and can also indicate contrast. が is for identification, は
+      is for establishing context.
+    grammar_point: は (topic and contrast)
+post_false_friends_writeup: While both が and は indicate something about the subject or topic, their roles
+  in conveying information are distinct. が introduces new information or specifies the subject. It answers
+  'who/what' did or is something. は, on the other hand, typically introduces information about an already
+  established topic or sets a scene. It can also highlight a contrast. To avoid mixing them up, consider
+  whether you are identifying a specific subject (が) or making a statement about a broader, often known,
+  topic (は).
+examples:
+  - english: Who broke the vase? Taro broke it.
+    japanese:
+      - 誰 が 花瓶 を 割り まし た か。
+      - 太郎 が 割り まし た。
+      - 誰 が 花瓶 を 割っ た の？
+      - 太郎 が 割っ た。
+    english_literally: Who vase broke? Taro broke.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 は 花瓶 を 割り まし た か。
+        english: As for who, broke the vase?
+        hint: 「は」 marks the topic or emphasizes contrast, but it's generally not used with interrogative
+          pronouns like 誰 (who) when asking for specific identification. We're looking to identify the
+          specific subject.
+    scene: A parent asks their child about a broken vase.
+    register: casual
+    setting: interrogative
+    nuance: The first 「誰が」 asks to identify the specific subject. The response 「太郎が」 uses が to directly
+      answer and emphasize that Taro is the one who performed the action, specifying new information.
+  - english: That cat is cute.
+    japanese:
+      - あの 猫 が かわいい です。
+      - あの 猫 が かわいい。
+      - あの 猫 が かわいー。
+      - あの 猫 が かわいい です よ。
+    english_literally: That cat cute is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 猫 は かわいい です。
+        english: As for that cat, it is cute.
+        hint: While grammatically correct, using 「は」 would imply that the cuteness is general knowledge
+          about the cat or setting a topic. 「が」 highlights the cat as the specific subject that is cute,
+          often used when introducing the cat or its quality for the first time.
+    scene: You spot a cat and point it out to a friend.
+    register: teineigo (polite)
+    setting: informative
+  - english: There is a cat in the garden.
+    japanese:
+      - 庭 に 猫 が い ます。
+      - 庭 に 猫 が いる。
+      - 庭 に 猫 が 居 ます。
+    english_literally: Garden in cat exists.
+    competing_grammar:
+      - competing_japanese:
+          - 庭 に 猫 は い ます。
+        english: In the garden, as for a cat, it exists.
+        hint: 「は」 is generally not used with verbs of existence like います/あります unless it's for contrast
+          (e.g., 'There's no dog, but there IS a cat'). 「が」 is used to simply state that something exists.
+    scene: You are telling someone about seeing a cat.
+    register: teineigo (polite)
+    setting: informative
+  - english: I can speak Japanese.
+    japanese:
+      - 私 は 日本 語 が 話せ ます。
+      - 私 は 日本 語 が 話せる。
+      - 日本 語 が 話せる よ。
+    english_literally: As for me, Japanese can speak.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 日本 語 を 話せ ます。
+        english: As for me, I am able to speak Japanese.
+        hint: While を can be used with potential verbs, が is more common and often preferred for marking
+          the object that one is capable of doing. We're looking for the more typical usage for potential
+          verbs.
+    scene: You are discussing your language abilities with a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    nuance: With potential verbs (e.g., 話せる - hanaseru, 'can speak'), が marks the object of capability
+      (日本語 - Nihongo), treating it grammatically like the subject for the potential verb, emphasizing
+      what *can* be done.
+  - english: I want to eat sushi.
+    japanese:
+      - 私 は 寿司 が 食べ たい です。
+      - 私 は 寿司 が 食べ たい。
+      - 寿司 が 食べ たい な。
+      - 寿司 食べ たい。
+    english_literally: As for me, sushi want to eat is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 寿司 を 食べ たい です。
+        english: As for me, I want to eat sushi.
+        hint: Similar to potential verbs, with desiderative expressions like 〜たい (tai), が is the standard
+          particle to mark the object of desire. We're looking for the most common and natural choice
+          here.
+    scene: At a restaurant, you are deciding what to order.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: With desiderative expressions like 「〜たい」 (tai, 'want to'), が marks the object of desire (寿司
+      - sushi), which functions as the grammatical subject for the adjective. This highlights the specific
+      thing desired.
+  - english: This room is bright.
+    japanese:
+      - この 部屋 が 明るい です。
+      - この 部屋 が 明るい。
+      - この 部屋 が 明るい です ね。
+    english_literally: This room bright is.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 明るい です。
+        english: As for this room, it is bright.
+        hint: 「は」 would state a general fact about the room. 「が」 highlights the room as the specific subject
+          that possesses the quality of brightness, often used when newly observing or pointing out this
+          characteristic.
+    scene: You walk into a new room and comment on its atmosphere.
+    register: teineigo (polite)
+    setting: informative
+  - english: The wind is blowing.
+    japanese:
+      - 風 が 吹い て い ます。
+      - 風 が 吹い て いる。
+      - 風 吹い て る。
+    english_literally: Wind blowing is.
+    competing_grammar:
+      - competing_japanese:
+          - 風 は 吹い て い ます。
+        english: As for the wind, it is blowing.
+        hint: While 「風は吹いている」 can be used if wind is the established topic, 「風が吹いている」 is the more natural
+          and commonly used phrase for describing an ongoing natural phenomenon without implying a specific
+          contrast or broader topic.
+    scene: You are outdoors and notice the movement of air.
+    register: casual
+    setting: informative
+  - english: Among apples and oranges, oranges are expensive.
+    japanese:
+      - りんご と みかん の 中 で、みかん が 高い です。
+      - りんご と みかん の 中 で、みかん が 高い。
+      - りんご と みかん の 中 じゃ、みかん が 高い です。
+    english_literally: Apple and orange among, orange expensive is.
+    competing_grammar:
+      - competing_japanese:
+          - りんご と みかん の 中 で、みかん は 高い です。
+        english: Among apples and oranges, as for oranges, they are expensive.
+        hint: Using 「は」 here might suggest a general statement about oranges being expensive. 「が」 emphasizes
+          that out of the given choices, *oranges* are the specific item that is expensive, singling them
+          out.
+    scene: You are shopping at a fruit stand, comparing prices.
+    register: teineigo (polite)
+    setting: informative
+  - english: A new computer is necessary.
+    japanese:
+      - 新しい パソコン が 必要 です。
+      - 新しい パソコン が 必要 だ。
+      - 新しい パソコン が 必要 です ね。
+    english_literally: New personal computer necessary is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい パソコン は 必要 です。
+        english: As for a new computer, it is necessary.
+        hint: While 「は」 can be used, 「が」 is more natural when stating that something specific (a new computer)
+          is needed, often as new information or a specific requirement for a situation.
+    scene: You are discussing equipment upgrades for your office.
+    register: teineigo (polite)
+    setting: professional
+  - english: What is your hobby? My hobby is reading.
+    japanese:
+      - 趣味 は 何 が 好き です か。
+      - 私 の 趣味 は 読書 が 好き です。
+      - 趣味 は 何 が 好き な の？
+      - 私 の 趣味 は 読書 が 好き だ。
+      - 読書 が 好き だ な。
+    english_literally: Hobby what like is? My hobby reading like is.
+    competing_grammar:
+      - competing_japanese:
+          - 趣味 は 何 を 好き です か。
+          - 私 の 趣味 は 読書 を 好き です。
+        english: What do you like as a hobby? My hobby is liking reading.
+        hint: With expressions like 「好きだ」 (suki da, 'to like'), the object of liking is almost exclusively
+          marked with が, not を. We're looking for the standard particle with this adjective.
+    scene: You are getting to know a new friend at a social gathering.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: In the question, 「何が」 asks for the specific thing that is liked. In the answer, 「読書が」 specifies
+      the liked thing, marking the object of the adjective 「好きだ」 (suki da, 'to like').

@@ -1,0 +1,255 @@
+grammar_point: 込み (including)
+better_grammar_point_name:
+  - <suggest>:〜込み (including・packed with)
+  - <suggest>:Verb stem + 込み (deeply・into)
+learn_before:
+  - Verb[(ら)れる] (adversative passive)
+  - Verb[(ら)れる] (potential)
+  - Verb[なくて] (negative te-form)
+  - Verb[ば] (conditional)
+  - Verb[ました] (polite past)
+  - Verb[ます] (polite present)
+  - 〜ら (plural suffix)
+  - する (to do・make)
+  - ずに済む (get by without)
+  - それ (that)
+  - それに (in addition・moreover)
+  - だい (informal question or request emphasis)
+  - って (casual quotation・reason・topic)
+  - と (with)
+  - ともなく (unintended action or unknown source)
+  - なくて (conjunction)
+  - なくて (negative te-form)
+  - なくなる (to cease to be)
+  - に(も)なく (unusual・out of character)
+  - にかなう (to be in accord with)
+  - 得意 (good at)
+  - 必要とする (to consider necessary・to require)
+  - 憎む (to hate・to detest)
+  - 苦手 (not good at)
+  - 間もなく (shortly・in a moment・very soon)
+meaning: including; filled with; into (indicating thoroughness or integration)
+pronunciation:
+  katakana: コミ
+  romaji: komi
+formation:
+  Noun + 込み: Indicates that the preceding noun is included or integrated.
+  Verb-stem + 込み: Adds the nuance of 'into,' 'deeply,' 'fully,' or 'packed with' to the action of the
+    verb.
+jlpt: N3
+etymology: The suffix 「込み」 originates from the verb 込む (komu), which means 'to be crowded,' 'to be put
+  into,' 'to go into,' or 'to be filled.' This core meaning of 'entering' or 'filling' extended to imply
+  'inclusion' when used with nouns (e.g., 税込み 'tax included,' literally 'tax-filled'), and 'deeply' or
+  'thoroughly' when affixed to verb stems (e.g., 飛び込む 'to jump in deeply,' 詰め込む 'to cram in thoroughly').
+  The evolution reflects a semantic shift from physical entry or containment to abstract inclusion or
+  the thoroughness of an action.
+writeup: |-
+  The Japanese grammar point 「込み」 is a versatile element that functions primarily as a suffix, adding specific nuances to nouns and verb stems. When attached to a noun, 「込み」 often means "including" or "with something included." This is commonly seen in contexts such as pricing, where it specifies that taxes, service charges, or other fees are already part of the total cost. For example, 「税込み」 (zeikomi) means "tax included," and 「サービス料込み」 (sābisu-ryō komi) means "service charge included." In these cases, 「込み」 indicates that the preceding item is intrinsically part of the whole.
+
+  When 「込み」 is attached to the stem form of a verb, it adds a nuance of an action being performed "into" something, "deeply," or "thoroughly." It suggests completeness or integration of the action. For instance, 「飛び込む」 (tobikomu) means "to jump into" (implying deeply into water or a situation), and 「詰め込む」 (tsumekomu) means "to cram in" or "to stuff thoroughly." Many common verbs are formed this way, such as 「申し込む」 (mōshikomu, to apply, literally "to state into"), 「書き込む」 (kakikomu, to write into/fill in), and 「練り込む」 (nerikomu, to knead thoroughly or to incorporate/infuse).
+
+  Understanding the context is key to grasping the precise meaning of 「込み」. While it consistently conveys a sense of inclusion or thoroughness, its specific interpretation depends heavily on whether it follows a noun or a verb stem, and the nature of the preceding word.
+false_friends:
+  - term: 含む (fukumu)
+    meaning: to include, to contain
+    kind: similar expression
+    nuance: 「含む」 is a verb that means to generally include or contain. It is a direct action. 「〜込み」, on
+      the other hand, is a suffix that forms a new compound word or expression, often implying that something
+      is already inherently included or thoroughly integrated.
+    grammar_point: <suggest>:含む (to include)
+  - term: 含めて (fukumete)
+    meaning: including (te-form of 含む)
+    kind: similar expression
+    nuance: Similar to 「含む」, 「含めて」 explicitly states that something is being included in a list or consideration.
+      「〜込み」 is more about a fixed state of inclusion, like in a price, or the thoroughness of an action.
+    grammar_point: <suggest>:含む (to include)
+  - term: と共に (to tomo ni)
+    meaning: together with
+    kind: similar expression
+    nuance: 「と共に」 emphasizes accompaniment or being side-by-side with something. 「〜込み」 implies that something
+      is an intrinsic part or deeply integrated, not just coexisting.
+    grammar_point: と共に (together with)
+  - term: 入る (hairu)
+    meaning: to enter
+    kind: similar expression
+    nuance: 「入る」 is the general verb for entering. When 「込み」 is attached to a verb stem (e.g., 飛び込み),
+      it adds a nuance of the action being done 'deeply into' or 'fully contained within,' which is more
+      specific than simply 'entering'.
+    grammar_point: <suggest>:入る (to enter)
+  - term: いっぱい (ippai)
+    meaning: full; a lot
+    kind: similar expression
+    nuance: 「いっぱい」 describes a state of being full or a large quantity. While 「込み」 can imply 'packed with,'
+      it refers to the process or result of filling/integrating, not just the state of fullness.
+    grammar_point: いっぱい (full・a lot)
+post_false_friends_writeup: While 「込み」 can sometimes overlap in meaning with words like 「含む」 or 「入る」,
+  it's important to recognize its specific role as a suffix. When used after a noun, it often implies
+  an intrinsic or inherent inclusion, especially in commercial or descriptive contexts (e.g., 「税込み」, meaning
+  tax is already part of the price). This differs from 「含む」, which is a transitive verb indicating an
+  active act of including something. Similarly, when attached to a verb stem, 「込み」 emphasizes a thoroughness,
+  depth, or completion of an action that simply using the base verb like 「入る」 might not convey.
+examples:
+  - english: The price includes tax.
+    japanese:
+      - 値段 は {税込み} です。
+      - 値段 は {税込み} で ござい ます。
+      - 値段 は {税込み} だ。
+    english_literally: The price is tax-included.
+    competing_grammar:
+      - competing_japanese:
+          - 税金 を 含む 値段 です。
+        english: The price that includes tax.
+        hint: 「含む」 is a verb for general inclusion, while 「税込み」 is a common fixed expression specifically
+          for prices with tax already included. We're looking for the fixed expression here.
+    scene: A customer is asking about the final cost of an item.
+    register: formal
+    setting: professional
+  - english: I'm not good at memorizing things by cramming.
+    japanese:
+      - 私 は {詰め込み} 教育 が 苦手 です。
+      - 僕 は {詰め込み} 教育 が 苦手 だ。
+      - '{詰め込み} 教育 は 私 に は 苦手 です。'
+    english_literally: As for me, cramming education is not my strong point.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 覚える の が 苦手 です。
+        english: I am not good at memorizing things.
+        hint: This is about general memorization, not specifically 'cramming' for a test or task. We're
+          looking for the specific concept of cramming.
+    scene: A student is discussing their study habits with a friend.
+    register: casual
+    setting: academic
+    nuance: 「詰め込み」 specifically refers to the act of cramming or stuffing information, implying a less
+      effective, superficial method of learning, rather than just 'memorizing'.
+  - english: He's quick to grasp things, so he learns fast.
+    japanese:
+      - 彼 は {飲み込み} が 早い の で、覚える の が 速い です。
+      - 彼 は {飲み込み} が 早い から、覚える の が 速い です。
+      - 彼 は {飲み込み} が 早い から、覚える の が 速い ね。
+    english_literally: As for him, understanding is fast, so learning is quick.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 理解 が 早い の で、覚える の が 速い です。
+        english: He understands quickly, so he learns fast.
+        hint: This focuses on 'understanding' in general, not the specific idiomatic expression 'quick
+          to grasp' using 「飲み込み」. We're looking for the idiomatic phrase here.
+    scene: Two colleagues are discussing a new team member's learning ability.
+    register: semi-formal
+    setting: professional
+    nuance: 「飲み込みが早い」 (nomikomi ga hayai) is an idiomatic expression that literally means 'quick to swallow/take
+      in,' metaphorically meaning 'quick to grasp' or 'quick to understand.' 「飲み込み」 here encapsulates
+      the act of fully taking in information.
+  - english: Please fill in the necessary information.
+    japanese:
+      - 必要 事項 を {書き込み} ください。
+      - 必要 事項 を {書き込み} 願い ます。
+      - 必要 事項 を {書き込ん で} ください。
+    english_literally: Please write in the necessary items.
+    competing_grammar:
+      - competing_japanese:
+          - 必要 事項 を 記入 し て ください。
+        english: Please fill in the necessary information.
+        hint: 「記入」 is a more general term for 'filling out forms'. 「書き込み」 emphasizes writing *into* a
+          specific space or document. We're looking for the sense of writing into a form here.
+    scene: An instruction on a form or website.
+    register: formal
+    setting: informative
+  - english: He jumped into the pond without hesitation.
+    japanese:
+      - 彼 は 躊躇 なく 池 に {飛び込み} まし た。
+      - 彼 は 躊躇 なく 池 に {飛び込ん だ}。
+      - 彼 は ためらわ ず 池 に {飛び込み} まし た。
+    english_literally: He unhesitatingly jumped into the pond.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 躊躇 なく 池 に 入り まし た。
+        english: He entered the pond without hesitation.
+        hint: 「入る」 is general entry. 「飛び込む」 specifies the manner of entry – jumping – and implies thoroughness.
+          We're looking for the specific action of jumping in.
+    scene: Narrating an event where someone made a sudden, decisive action.
+    register: casual
+    setting: storytelling
+  - english: I'll submit my application tomorrow.
+    japanese:
+      - 明日、{申し込み} ます。
+      - 明日、{申し込む} よ。
+      - 明日、{申し込む} わ。
+    english_literally: Tomorrow, I will apply.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、申請 し ます。
+        english: Tomorrow, I will apply (make a request).
+        hint: 「申請」 is a broader term for 'application' or 'request'. 「申し込み」 is specifically for applying
+          to participate or join something. We're looking for the specific act of applying to join.
+    scene: Someone talking about applying for a job or a school.
+    register: teineigo (polite)
+    setting: professional
+  - english: That's just your misconception.
+    japanese:
+      - それ は 君 の {思い込み} だ よ。
+      - それ は あなた の {思い込み} です よ。
+      - それ は 君 の {思い込み} だ。
+      - それ は 君 の {思い込み} だ ね。
+    english_literally: That is your misconception.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 君 の 勘違い だ よ。
+        english: That's just your misunderstanding.
+        hint: 「勘違い」 is a simple misunderstanding, while 「思い込み」 implies a strong, potentially stubborn,
+          belief that may not be true. We're looking for the nuance of a fixed, possibly mistaken, belief.
+    scene: A friend correcting another friend's mistaken belief.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: 「思い込み」 (omoikomi) refers to a firm belief or assumption that may not be based on reality.
+      The 「込み」 here implies a thought that has 'entered' deeply into one's mind, making it a fixed idea.
+      The sentence-final particle 「よ」 is used to add emphasis and a sense of conviction, often used by
+      male speakers.
+  - english: They hired someone for a live-in position.
+    japanese:
+      - 彼 ら は {住み込み} の 人 を 雇っ た。
+      - 彼 ら は {住み込み} の 人 を 雇い まし た。
+      - 彼 ら は {住み込み} で 働く 人 を 雇っ た。
+    english_literally: They hired a live-in person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 寮 に 住む 人 を 雇っ た。
+        english: They hired someone who lives in a dorm.
+        hint: This implies living in a separate dormitory provided by the employer, not living *in* the
+          place of work itself. We're looking for the specific concept of living on the premises where
+          one works.
+    scene: Discussing new staff arrangements in a business or household.
+    register: casual
+    setting: professional
+  - english: The bread is made with thoroughly kneaded dough.
+    japanese:
+      - この パン は よく {練り込み} さ れ た 生地 で 作ら れ て いる。
+      - この パン は よく {練り込ま れ た} 生地 で 作ら れ て い ます。
+      - この パン は しっかり {練り込み} さ れ た 生地 で 作ら れ て いる。
+    english_literally: This bread is made with well-kneaded dough.
+    competing_grammar:
+      - competing_japanese:
+          - この パン は よく 練ら れ た 生地 で 作ら れ て いる。
+        english: This bread is made with well-kneaded dough.
+        hint: This simply states the dough was kneaded well. 「練り込み」 emphasizes the process of infusing
+          or thoroughly working *into* the dough, implying a deeper integration than just kneading. We're
+          looking for that deeper integration nuance here.
+    scene: A baker describing the quality of their bread.
+    register: formal
+    setting: informative
+  - english: Please throw your trash into the designated bin.
+    japanese:
+      - ゴミ は 指定 さ れ た ゴミ箱 に {投げ込み} ください。
+      - ゴミ は 指定 さ れ た ゴミ箱 に {投げ込ん で} ください。
+      - ゴミ は 指定 さ れ た ゴミ箱 に {投げ込み} 願い ます。
+    english_literally: Please throw into the designated trash can.
+    competing_grammar:
+      - competing_japanese:
+          - ゴミ は 指定 さ れ た ゴミ箱 に 捨て て ください。
+        english: Please throw away your trash into the designated bin.
+        hint: 「捨てる」 is a general verb for 'discarding' or 'throwing away'. 「投げ込み」 specifies the action
+          of 'throwing *into*' and often implies a more casual or direct physical action. We're looking
+          for the specific act of throwing something into a container.
+    scene: An instruction at a public facility.
+    register: formal
+    setting: instructional

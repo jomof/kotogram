@@ -1,0 +1,313 @@
+grammar_point: わざわざ (going out of one's way)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - '[Clause]から (because・so)'
+  - '[Verb-て]くれる (to do for me・in-group)'
+  - 一体 (emphasis in questions)
+  - 傾向がある (neutral tendency)
+meaning: Expressly, Especially, Go out of one's way, Take the trouble to
+meaning_warning: わざと means "on purpose!"
+pronunciation:
+  katakana: ワザワザ
+  romaji: wazawaza
+formation:
+  わざわざ + [Clause/Verb Phrase]: Indicates that the action in the clause or verb phrase was undertaken with
+    special effort or intentionality.
+jlpt: N3
+etymology: The etymological root of 「わざわざ」 lies in 「わざ」 (waza), meaning 'deed,' 'act,' or 'performance.'
+  The reduplication 「わざわざ」 emphasizes the deliberate nature or special effort involved in an action. Historically,
+  the kanji 「態態」 (waza-waza) was sometimes used, where 「態」 specifically denotes 'manner,' 'form,' or 'attitude,'
+  and by extension, 'purpose' or 'intent.' This kanji usage underscores that the action described by 「わざわざ」
+  is undertaken with a clear will or intention, often requiring one to go out of their way.
+writeup: |-
+  「わざわざ」 (wazawaza) is an adverb that indicates someone has gone out of their way to do something. It can be translated as "expressly," "especially," or "to go out of one's way." Typically, 「わざわざ」 appears at the beginning of a sentence, preceding a statement about an intentionally performed action. 「わざわざ」 tends to be used positively, but it can also carry negative connotations, depending on the context. While almost never used, 「態態」 may be seen in kanji form. 「態」 expresses purpose or intent, suggesting a strong goal or willingness to do something. The translation of 「わざわざ」 depends on whether the actual result is positive, negative, or undecided:
+
+  *   **Positive result:** To purposefully do (A), resulting in (A).
+  *   **Negative result:** To have every intention of (A), but the actual result is (B).
+  *   **Undecided result:** To be intent on (A), with (A) hopefully happening.
+false_friends:
+  - term: わざと
+    meaning: on purpose, intentionally
+    kind: often confused with
+    nuance: Unlike 「わざわざ」, which can indicate going out of one's way, 「わざと」 solely means doing something
+      intentionally or on purpose, often with a negative connotation.
+    grammar_point: <suggest>:わざと (on purpose)
+  - term: あえて
+    meaning: daringly; to dare (to do something)
+    kind: similar expression
+    nuance: 「あえて」 implies doing something despite difficulty or risk, or daring to do something, often
+      with a sense of defiance or courage. 「わざわざ」 simply means taking extra effort or trouble.
+    grammar_point: あえて (daringly)
+post_false_friends_writeup: While 「わざわざ」 highlights going out of one's way or taking extra trouble, 「わざと」
+  focuses purely on the intentionality of an action, often implying a deliberate, sometimes negative,
+  purpose. Think of 「わざと」 as doing something on purpose, while 「わざわざ」 is doing something with special
+  effort or unnecessarily putting oneself out. Furthermore, 「あえて」 conveys a sense of daring or boldness,
+  performing an action despite potential difficulties or in a challenging manner. When choosing between
+  these, consider if the emphasis is on the effort taken (わざわざ), the deliberate intent (わざと), or the courage/challenge
+  involved (あえて).
+examples:
+  - english: Thank you for going out of your way to get me a present just because it's my birthday!
+    japanese:
+      - 誕生 日 だ から って、{わざわざ} プレゼント を ありがとう！
+      - 誕生 日 です から と {わざわざ} プレゼント を いただい て、ありがとう ござい ます。
+    english_literally: Because it's my birthday, you went out of your way to give me a present, thank
+      you!
+    competing_grammar:
+      - competing_japanese:
+          - 誕生 日 だ から って、プレゼント を ありがとう！
+        english: Because it's my birthday, thank you for the present!
+        hint: The scene emphasizes the special effort and thoughtful action involved in going out of one's
+          way, distinguishing it from simply having bought something the speaker likes. We're looking
+          for an expression that highlights the extra effort.
+    scene: Receiving a thoughtful birthday gift from a friend.
+    register: casual
+    setting: friendly
+    nuance: The casual phrasing 「誕生日 だから って」 and 「ありがとう」 convey a personal and informal expression of
+      gratitude for the special effort made. The emphasis is on the receiver's appreciation for the trouble
+      taken.
+  - english: Why did you go out of your way to say something so rude?
+    japanese:
+      - なぜ {わざわざ} そんな 失礼 な こと を 言っ た の？
+      - なぜ {わざわざ} その よう に 失礼 な こと を おっしゃっ た の です か？
+    english_literally: Why did you go out of your way to say such a rude thing?
+    competing_grammar:
+      - competing_japanese:
+          - なぜ そんな 失礼 な こと を 言っ た の？
+        english: Why did you say something so rude?
+        hint: The scene emphasizes the speaker's frustration that the listener deliberately chose to be
+          cruel, implying an unnecessary effort to cause harm. We're looking for a phrase that expresses
+          this unnecessary effort.
+      - competing_japanese:
+          - なぜ わざと そんな 失礼 な こと を 言っ た の？
+        english: Why did you intentionally say something so rude?
+        hint: 「わざと」 emphasizes that the action was done deliberately, often with a negative intent. 「わざわざ」
+          emphasizes the extra effort or trouble taken.
+    scene: Confronting someone who made an unnecessarily offensive remark.
+    register: casual
+    setting: serious
+    nuance: The use of 「なぜ」 and the interrogative 「の？」 in this casual context expresses direct questioning
+      with a hint of exasperation at the listener's unnecessary rudeness. The speaker is implying the
+      listener took extra trouble to be offensive.
+  - english: Apparently, he goes out of his way every day to buy breakfast at a distant bakery.
+    japanese:
+      - 彼 は 毎日、{わざわざ} 遠い パン 屋 で 朝食 を 買っ て いる らしい。
+      - 彼 は 毎日、{わざわざ} 遠い パン 屋 で 朝食 を 買っ て いる よう です。
+    english_literally: He, every day, goes out of his way at a distant bakery for breakfast, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日、遠い パン 屋 で 朝食 を 買っ て いる らしい。
+        english: Apparently, he buys breakfast every day at a distant bakery.
+        hint: The scene highlights that the speaker is commenting on the special effort involved in a
+          daily routine, rather than just the routine itself. We're looking for an expression that conveys
+          this extra effort.
+    scene: Gossiping with a colleague about a mutual friend's unusual habit.
+    register: casual
+    setting: friendly
+    nuance: The use of 「らしい」 indicates hearsay or inference, conveying a sense of mild surprise or curiosity
+      from the speaker about the friend's consistent, notable effort to get breakfast from afar. The phrase
+      highlights the unusual nature of this daily routine.
+  - english: Thank you very much for taking the trouble to come all the way here.
+    japanese:
+      - 遠い ところ を {わざわざ} お 越し いただき、誠 に ありがとう ござい ます。
+      - 遠い ところ を {わざわざ} 来 て くださり、誠 に ありがとう ござい ます。
+      - 遠く から {わざわざ} おい で くださり、誠 に ありがとう ござい ます。
+    english_literally: From a distant place, taking the trouble to come, truly thank you very much.
+    competing_grammar:
+      - competing_japanese:
+          - 遠い ところ を お 越し いただき、誠 に ありがとう ござい ます。
+        english: Thank you very much for coming all the way from a distant place.
+        hint: The scene highlights that the speaker is grateful for the listener making a special trip,
+          not just for their arrival, emphasizing the listener's considerate effort. We're looking for
+          a phrase that acknowledges this extra trouble.
+    scene: Greeting an important client who traveled a long distance for a meeting.
+    register: formal
+    setting: professional
+    nuance: The highly formal expressions 「お越し いただき」 and 「誠に ありがとう ござい ます」 emphasize profound gratitude
+      for the listener's significant effort and inconvenience in traveling a long distance, typical in
+      a business context. The phrase is used to acknowledge the special consideration shown by the listener.
+  - english: You don't need to go out of your way to print and bring the report; you can just send it
+      by email.
+    japanese:
+      - 報告 書 は 電子 メール で 送れる の に、{わざわざ} 印刷 し て 持っ て くる 必要 は ない よ。
+      - 報告 書 は 電子 メール で お 送り いただけ ます の で、{わざわざ} 印刷 し て お 持ち いただく 必要 は ござい ませ ん。
+    english_literally: The report, even though it can be sent by email, there's no need for you to go
+      out of your way to print and bring it.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 は 電子 メール で 送れる の に、印刷 し て 持っ て くる 必要 は ない よ。
+        english: Even though you can send the report by email, there's no need to print and bring it.
+        hint: The scene clarifies that the speaker questions the necessity of the *extra effort* involved
+          in printing and physically bringing the report when a simpler method exists. We're looking for
+          an expression that highlights this unnecessary trouble.
+      - competing_japanese:
+          - 報告 書 は 電子 メール で 送れる の に、わざと 印刷 し て 持っ て くる 必要 は ない よ。
+        english: Even though you can send the report by email, there's no need to intentionally print
+          and bring it.
+        hint: 「わざと」 implies a deliberate, sometimes mischievous or pointless intention. 「わざわざ」 emphasizes
+          the unnecessary effort or trouble taken.
+    scene: A manager advising a junior employee on efficient workflow.
+    register: semi-formal
+    setting: instructional
+    nuance: The phrase 「必要 は ない よ」, despite the semi-formal register, carries a gentle advisory tone from
+      a manager to a junior employee, implying that the employee's extra effort is unnecessary and potentially
+      inefficient. It's a pragmatic use of 「わざわざ」 to discourage unneeded trouble.
+  - english: That person goes out of their way to take a detour just to assert their opinion.
+    japanese:
+      - あの 人 は、{わざわざ} 回り 道 を し て まで、自分 の 意見 を 主張 し たがる ね。
+      - あの 方 は、{わざわざ} 遠回り を し て まで、ご 自身 の 意見 を 主張 なさる 傾向 が あり ます ね。
+    english_literally: That person, going out of their way, even taking a detour, tends to assert their
+      own opinion, don't they?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は、回り 道 を し て まで、自分 の 意見 を 主張 し たがる ね。
+        english: That person even takes a detour just to assert their opinion.
+        hint: The scene emphasizes the speaker's observation of the colleague's deliberate and possibly
+          stubborn effort to make a point, even if it means taking a complicated route. We're looking
+          for a phrase that highlights this specific effort.
+      - competing_japanese:
+          - あの 人 は、わざと 回り 道 を し て まで、自分 の 意見 を 主張 し たがる ね。
+        english: That person intentionally takes a detour just to assert their opinion.
+        hint: 「わざと」 emphasizes the deliberate and intentional nature of the action. 「わざわざ」 highlights
+          the extra effort or trouble involved in performing the action.
+    scene: Observing a persistent colleague in a meeting.
+    register: casual
+    setting: serious
+    nuance: The casual ending 「ね」 seeks agreement from the listener while subtly expressing mild exasperation
+      or observation regarding someone's persistent and unnecessarily convoluted efforts to assert their
+      views. It highlights the speaker's judgment of the other person's troublesome nature.
+  - english: I apologize for going out of my way to call you so early.
+    japanese:
+      - こんな に 早く {わざわざ} お 電話 し て しまっ て、申し訳 ござい ませ ん。
+      - こんな に 早く {わざわざ} お 電話 し て しまい、申し訳 あり ませ ん。
+      - こんな に 朝 早く {わざわざ} ご 連絡 し て しまい、大変 恐縮 です。
+    english_literally: So early, going out of my way to call you, I am truly sorry.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 早く お 電話 し て しまっ て、申し訳 ござい ませ ん。
+        english: I apologize for calling you so early.
+        hint: The scene conveys that the apology is specifically for the listener's inconvenience of receiving
+          a call at an unusually early hour, implying the speaker put them out of their way. We're looking
+          for an expression that conveys this added inconvenience.
+    scene: Making an urgent call at an inconvenient time to someone older.
+    register: formal
+    setting: apologetic
+    nuance: The formal phrase 「申し訳 ございません」 combined with the use of 「お電話 して しまって」 indicates that the speaker
+      views their action as imposing or inconvenient for the listener, reinforcing the 'going out of one's
+      way' nuance of 「わざわざ」 when it creates burden for others.
+  - english: You came all the way to see me? What on earth happened?
+    japanese:
+      - 君 が {わざわざ} 私 に 会い に 来 て くれる なんて、一体 どう し た ん だ い？
+      - あなた が {わざわざ} 私 に 会い に 来 て くれる なんて、一体 どう し た の？
+      - え、{わざわざ} 会い に 来 て くれ た の？何 か あっ た の？
+    english_literally: You, going out of your way to come to see me, what on earth happened?
+    competing_grammar:
+      - competing_japanese:
+          - 君 が 私 に 会い に 来 て くれる なんて、一体 どう し た ん だ い？
+        english: You came to see me? What on earth happened?
+        hint: The scene highlights the speaker's surprise at the visitor's unexpected and possibly inconvenient
+          effort to come and see them, implying something significant must have occurred. We're looking
+          for a phrase that conveys this effort.
+    scene: A busy man is surprised by a visit from his female friend who rarely makes such efforts.
+    register: casual
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker's use of 「君」 for his female friend and the casual interrogative 「どうした んだい？」
+      conveys a sense of direct, familiar surprise and concern. The 「わざわざ」 emphasizes the unexpected effort
+      made by the listener, prompting the speaker to inquire about the unusual circumstances.
+  - english: Honestly, you went out of your way to choose the most troublesome method, didn't you?
+    japanese:
+      - 全く、{わざわざ} 手間 の かかる 方法 を 選ん だ の ね。
+      - 本当 に、{わざわざ} 面倒 な 方法 を 選ん だ ん だ ね。
+      - いや だ なあ、{わざわざ} 大変 な やり 方 を 選ぶ なんて。
+    english_literally: Honestly, you went out of your way to choose the troublesome method, didn't you?
+    competing_grammar:
+      - competing_japanese:
+          - 全く、手間 の かかる 方法 を 選ん だ の ね。
+        english: Honestly, you chose the troublesome method, didn't you?
+        hint: The scene emphasizes the speaker's exasperation at the child's deliberate choice of a difficult
+          method, suggesting an unnecessary and self-imposed burden. We're looking for a phrase that expresses
+          this deliberate choice for extra trouble.
+      - competing_japanese:
+          - 全く、わざと 手間 の かかる 方法 を 選ん だ の ね。
+        english: Honestly, you intentionally chose the most troublesome method, didn't you?
+        hint: 「わざと」 means doing something deliberately, often with a mischievous or ironic intent. 「わざわざ」
+          implies going out of your way, even if it results in extra trouble.
+    scene: A parent commenting on a child's overly complicated approach to a simple task.
+    register: casual
+    setting: sarcastic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The female speaker's use of 「〜の ね」 adds a subtle nuance of questioning or mild exasperation,
+      common from an older female (like a parent) addressing a younger male (like a child), highlighting
+      the unnecessary effort the listener made.
+  - english: Even though he was sick, he went out of his way to come to the presentation.
+    japanese:
+      - 彼 は 病気 な の に、{わざわざ} 発表 会 に 来 て くれ まし た。
+      - 彼、病気 な の に、{わざわざ} 発表 会 に 来 て くれ た ん だ よ。
+    english_literally: He, despite being sick, went out of his way to come to the presentation.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 病気 な の に、発表 会 に 来 て くれ まし た。
+        english: Even though he was sick, he came to the presentation.
+        hint: The scene emphasizes the friend's strong will and effort to attend the presentation despite
+          their illness, highlighting their dedication and the extra trouble they took. We're looking
+          for a phrase that conveys this exceptional effort.
+    scene: Appreciating a friend's dedication despite their illness.
+    register: casual
+    setting: supportive
+    nuance: The use of 「のに」 (even though/despite) highlights the contrast between the person's sickness
+      and their decision to attend, emphasizing the extraordinary effort they made. The phrase 「来て くれ
+      ました」 expresses appreciation for the person's action.
+  - english: You don't have to go out of your way to work overtime just to help us.
+    japanese:
+      - '{わざわざ} 残業 し て まで、僕 たち の 手伝い を する 必要 は ない よ。'
+      - '{わざわざ} 残業 し て まで、私 たち を 手伝う 必要 は ない よ。'
+      - みんな の ため に {わざわざ} 残業 する こと は ない から ね。
+    english_literally: Going out of your way, even working overtime, there's no need to help us.
+    competing_grammar:
+      - competing_japanese:
+          - 残業 し て まで、僕 たち の 手伝い を する 必要 は ない よ。
+        english: You don't have to work overtime just to help us.
+        hint: The scene implies the speaker's concern about the listener making excessive, self-sacrificing
+          effort beyond what is necessary to assist the team. We're looking for a phrase that conveys
+          this unneeded extra effort.
+      - competing_japanese:
+          - わざと 残業 し て まで、僕 たち の 手伝い を する 必要 は ない よ。
+        english: You don't have to intentionally work overtime just to help us.
+        hint: 「わざと」 means doing something deliberately, potentially with a hidden motive. 「わざわざ」 refers
+          to taking the trouble or making an extra effort.
+    scene: A man trying to dissuade his coworker from overworking themselves to help the team.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker's use of 「僕 たち」 and the casual 「ない よ」 expresses a supportive but firm admonition,
+      implying that the listener's excessive effort (working overtime) is not necessary or even desirable.
+      It conveys concern for the listener's well-being.
+  - english: I forgot my umbrella, so it was a great help that you went out of your way to bring it to
+      me.
+    japanese:
+      - 傘 を 忘れ て しまっ た の で、{わざわざ} 届け て くださっ て 助かり まし た。
+      - 傘 忘れ ちゃっ た から さ、{わざわざ} 届け て くれ て 助かっ た よ。
+      - 傘 を 忘れ た ん だ けど、{わざわざ} 持っ て き て もらえ て 助かっ た わ。
+    english_literally: I forgot my umbrella, so you went out of your way to bring it, and it was a great
+      help.
+    competing_grammar:
+      - competing_japanese:
+          - 傘 を 忘れ て しまっ た の で、届け て くださっ て 助かり まし た。
+        english: I forgot my umbrella, so you brought it to me, and it was a great help.
+        hint: The scene conveys polite appreciation specifically for the effort the person took to return
+          the forgotten umbrella, acknowledging it as a special kindness. We're looking for a phrase that
+          highlights this special effort.
+    scene: Thanking a kind stranger or acquaintance for returning a forgotten item.
+    register: formal
+    setting: friendly
+    nuance: The polite expression 「届けて くださって」 combined with 「助かり ました」 conveys sincere gratitude for the
+      listener's benevolent action of going out of their way to return the forgotten item, highlighting
+      the significant assistance provided by their effort.
+post_example_writeup: The adverb 「わざわざ」 often carries a nuance of effort or intention, suggesting that
+  the action was not something done casually or without thought.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/わざわざ

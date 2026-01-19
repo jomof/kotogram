@@ -1,0 +1,407 @@
+grammar_point: わ (feminine sentence-ending particle)
+matcher: ⌈ˢわᵖprt:sentence_final_particleᵇわʳワ⌉
+learn_before:
+  - ね (seeking agreement)
+meaning: Sentence-ending particle, primarily used by females, adding a soft and feminine tone to express
+  emphasis, emotion, or seeking agreement.
+pronunciation:
+  katakana: ワ
+  romaji: wa
+formation:
+  Statement + わ: Adds a soft, feminine tone, expressing emphasis, emotion, or seeking agreement.
+jlpt: N3
+etymology: The particle 「わ」 is believed to have originated from the adverbial particle 「は」. Although they
+  share an origin, their functions and usage differ significantly. 「は」 typically marks a topic, whereas
+  「わ」 functions exclusively as a sentence-ending particle.
+writeup: The sentence-ending particle 「わ」 is primarily used by women to add a soft, feminine tone to their
+  statements. It can express emphasis, emotion, or seek agreement. Think of it as adding a touch of softness
+  or charm to what you are saying. It's often used when expressing personal feelings, giving advice, or
+  making a gentle assertion. While mainly used by women, men may use 「わ」 to express surprise or light
+  exasperation, especially in western Japan. The pitch differs noticeably when used by men compared to
+  women, often rising for women and falling for men. Pay attention to the context and tone to understand
+  the speaker's intent. For female speakers, 「わ」 adds a gentle, persuasive tone and can be translated
+  as "you know?", "oh?", or "ever so (A)", where (A) is something the speaker wants to emphasize. For
+  male speakers, it typically indicates surprise or mild annoyance about something unavoidable or a sudden
+  realization. It is used after the plain form of words, including verbs, adjectives, and auxiliary verbs
+  in their unconjugated forms, such as 「だ」 and 「です」.
+false_friends:
+  - term: は
+    meaning: topic marker
+    kind: often confused with
+    nuance: Unlike 「わ」, which is a sentence-ending particle used for emphasis or to soften a statement,
+      「は」 marks the topic of a sentence and affects the information structure.
+    grammar_point: は (topic and contrast)
+  - term: ね
+    meaning: seeking confirmation/agreement
+    kind: similar expression
+    nuance: While 「わ」 adds a softer tone or emphasis, 「ね」 actively seeks confirmation or agreement from
+      the listener. They can be used together, but their functions are distinct, with 「ね」 being more direct
+      in engagement.
+    grammar_point: ね (seeking agreement)
+  - term: よ
+    meaning: assertive sentence ending
+    kind: similar expression
+    nuance: Whereas 「わ」 is gentle and often feminine, 「よ」 is more assertive and emphasizes new information
+      or a strong assertion. 「よ」 is more about informing, while 「わ」 is about expressing personal feeling
+      or soft persuasion.
+    grammar_point: よ (emphasis・information sharing)
+  - term: ぞ
+    meaning: strong assertion/exclamation
+    kind: similar expression
+    nuance: 「ぞ」 is a very strong, typically male-used particle for assertion or exclamation, often challenging
+      the listener. 「わ」, even in its male usage, is much softer and expresses internal realization or
+      mild exasperation, not direct assertion or challenge.
+    grammar_point: ぞ (strong emphasis)
+  - term: さ
+    meaning: casual emphasis
+    kind: similar expression
+    nuance: 「さ」 is a casual particle used for emphasis or assertion, often implying "you know?" or adding
+      a light touch, but it lacks the feminine nuance of 「わ」 and is gender-neutral or slightly masculine.
+      It doesn't typically soften a statement in the same way.
+    grammar_point: さ (casual emphasis)
+  - term: なあ
+    meaning: emotional emphasis
+    kind: similar expression
+    nuance: 「なあ」 expresses deep emotion, admiration, or longing, often drawing attention to the speaker's
+      feeling. While 「わ」 can express emotion, 「なあ」 is typically more profound and can be used by any gender,
+      unlike the distinct feminine nuance of 「わ」.
+    grammar_point: なあ (emotional emphasis)
+post_false_friends_writeup: It is important to distinguish 「わ」 from other similar particles like 「は」,
+  「ね」, 「よ」, 「ぞ」, 「さ」, and 「なあ」. While they all modify the tone of a sentence, their specific functions
+  and typical gender associations differ. 「は」 marks the topic, 「ね」 seeks agreement, 「よ」 asserts information,
+  「ぞ」 provides a strong, often male, assertion, 「さ」 adds casual emphasis, and 「なあ」 conveys deeper emotional
+  emphasis. 「わ」, in contrast, softens or emphasizes, primarily in feminine speech, or expresses mild exasperation
+  or realization in male speech. Consider what the speaker wants to convey and choose the appropriate
+  particle accordingly.
+examples:
+  - english: This flower is truly beautiful, you know.
+    japanese:
+      - この 花、本当 に きれい {だ わ}。
+      - この 花、本当 に 美しい {わ}。
+      - この 花、本当 に きれい {だ わ} ね。
+      - この 花、本当 に きれい {です わ}。
+    english_literally: This flower, truly beautiful it is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 花 は 本当 に きれい だ ね。
+        english: This flower is truly beautiful, isn't it?
+        hint: Using 「ね」 directly seeks agreement from the listener. We're looking for a softer, more emotional
+          expression of beauty that implies a personal feeling without necessarily demanding a response.
+      - competing_japanese:
+          - この 花 は 本当 に きれい だ よ。
+        english: This flower is truly beautiful, I tell you.
+        hint: Using 「よ」 makes the statement more assertive and informative. We're looking for a softer,
+          more emotional tone, characteristic of the speaker's personal sentiment.
+      - competing_japanese:
+          - この 花 は 本当 に きれい だ。
+        english: This flower is truly beautiful.
+        hint: Omitting the sentence-ending particle makes the statement neutral, lacking the softness
+          or emphasis provided by 「わ」. We're looking for an expression that adds a gentle, feminine touch.
+    scene: A woman admiring a flower with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The particle 「わ」 adds a gentle, feminine touch to the statement, making it sound more friendly
+      and approachable. It's a typical way for women to express their feelings in a casual setting about
+      something beautiful, such as 「きれいだわ」. Adding 「ね」 to 「きれいだわね」 softens the statement further while
+      gently inviting agreement. Using 「ですわ」 adds a polite formality while retaining the feminine nuance.
+    etymology: While 「きれい」 itself means 'beautiful', its use in this context conveys a subjective, appreciative
+      beauty, often linked to emotional expression rather than objective fact. The combination with 「わ」
+      enhances this personal sentiment.
+  - english: Ah, I'm so tired again today.
+    japanese:
+      - ああ、今日 も 疲れ た {わ}。
+      - ああ、今日 も 疲れ まし た {わ}。
+      - ああ、今日 も 疲れる {わ}。
+      - ああ、今日 も 疲労 し まし た {わ}。
+    english_literally: Ah, today too, tired I am.
+    competing_grammar:
+      - competing_japanese:
+          - ああ、今日 も 疲れ た ね。
+        english: Ah, I'm so tired again today, aren't I/are we?
+        hint: Using 「ね」 implies seeking shared experience or agreement. We're looking for a more personal,
+          reflective expression of weariness, often directed inwards.
+      - competing_japanese:
+          - ああ、今日 も 疲れ た よ。
+        english: Ah, I'm so tired again today, I tell you.
+        hint: Using 「よ」 makes the statement more assertive and informative. We're looking for a softer,
+          more reflective or emotional expression of fatigue.
+      - competing_japanese:
+          - ああ、今日 も 疲れ た。
+        english: Ah, I'm so tired again today.
+        hint: Without 「わ」, the statement is a neutral declaration of tiredness, lacking the soft, emotional
+          nuance. We're looking for an expression that adds a personal, often resigned, touch.
+    scene: A woman sighing after a long day at work.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The 「わ」 in 「疲れたわ」 from a female speaker conveys a personal, often emotional, expression of
+      a state or feeling. It adds a softer, more reflective tone to the statement, typical for expressing
+      self-directed thoughts or feelings. 「疲れましたわ」 maintains politeness while retaining this personal
+      nuance. 「疲れるわ」 in the present tense can also convey resignation or ongoing weariness. 「疲労しましたわ」
+      is a more formal way to express exhaustion.
+    etymology: The interjection 「ああ」 (ah) is an onomatopoeic expression for a sigh or realization, reinforcing
+      the emotional tone of the speaker's weariness.
+  - english: This dress really suits me, don't you think?
+    japanese:
+      - この ドレス、私 に 似合う {わ}。
+      - この ドレス、私 に 似合い ます {わ}。
+      - この ドレス、私 に 似合う {わ} ね。
+      - この ドレス、私 に お 似合い {です わ}。
+    english_literally: This dress, to me suits, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この ドレス、私 に 似合う ね。
+        english: This dress suits me, doesn't it?
+        hint: Using 「ね」 more directly asks for confirmation. We're looking for a softer, more implicit
+          invitation for agreement, characteristic of the speaker's personal feeling.
+      - competing_japanese:
+          - この ドレス、私 に 似合う よ。
+        english: This dress suits me, I tell you.
+        hint: Using 「よ」 makes the statement more assertive and informative. We're looking for a gentler
+          way to express personal belief while inviting the listener to share the sentiment.
+    scene: A woman trying on a dress, asking her friend for an opinion.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: Using 「わ」 in 「似合うわ」 subtly seeks the listener's agreement or a gentle confirmation. It expresses
+      a personal feeling while inviting the other person to share in the sentiment, characteristic of
+      intimate female conversation. 「似合いますわ」 offers a polite alternative, and 「似合うわね」 explicitly invites
+      soft agreement. 「お似合いですわ」 is a more polite and slightly more formal way to say it, maintaining the
+      feminine softness.
+    etymology: The verb 「似合う」 (niau) directly means 'to suit' or 'to match', and its use here implies
+      an aesthetic harmony rather than a functional fit.
+  - english: Section Chief, the documents are over here.
+    japanese:
+      - 課長、書類 は こちら に ござい ます {わ}。
+      - 課長、書類 は こちら で ござい ます {わ}。
+      - 課長、書類 は こちら に あり ます {わ}。
+    english_literally: Section Chief, as for the documents, they are here, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 課長、書類 は こちら に ござい ます。
+        english: Section Chief, the documents are over here.
+        hint: Omitting 「わ」 results in a standard polite statement without the added soft, feminine nuance.
+          We're looking for a way to convey information respectfully yet softly.
+      - competing_japanese:
+          - 課長、書類 は こちら です よ。
+        english: Section Chief, the documents are over here, I tell you.
+        hint: Using 「よ」 makes the statement more direct and informative, lacking the subtle softening
+          of 「わ」. We're looking for a more gentle and refined tone.
+    scene: A female office worker politely directing her section chief.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「わ」 with the polite form 「ございます」, as in 「ございますわ」, creates a refined and gentle
+      tone, often used by female speakers in a professional or formal setting to convey information respectfully
+      yet softly. This usage can indicate a younger speaker addressing an older superior. 「ございますわ」 adds
+      a touch of gentle femininity to an otherwise straightforward polite statement, making it less blunt
+      and more courteous. 「ありますわ」 is a slightly less formal but still polite option.
+    etymology: 「ございます」 is a highly polite form of 「ある」 or 「いる」, stemming from the older form 「ござる」. Its
+      combination with 「わ」 in professional contexts demonstrates a balance between formality and a traditionally
+      feminine soft delivery.
+  - english: Oh no, I missed the last train again.
+    japanese:
+      - また 終電 逃し た {わ}。
+      - また 終電 に 間に合わ なかっ た {わ}。
+      - また 終電 に 乗り 遅れ た {わ}。
+    english_literally: Again last train missed.
+    competing_grammar:
+      - competing_japanese:
+          - また 終電 逃し た ぞ。
+        english: Damn, I missed the last train again!
+        hint: Using 「ぞ」 indicates a strong, often male, assertion or exclamation, which is more direct
+          and less resigned than the male usage of 「わ」. We're looking for a tone of mild exasperation
+          or internal lament.
+      - competing_japanese:
+          - また 終電 逃し た な。
+        english: Oh, I missed the last train again, huh?
+        hint: Using 「な」 can express a milder exclamation or a self-reflection, but 「わ」 in this male context
+          specifically conveys a sense of resignation or unfortunate realization. We're looking for that
+          particular nuance.
+      - competing_japanese:
+          - また 終電 逃し た。
+        english: I missed the last train again.
+        hint: Without 「わ」, the statement is a neutral declaration. We're looking for an expression that
+          conveys a personal sense of resignation or mild exasperation.
+    scene: A man at the train station, realizing he's missed his last train.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: When used by a male speaker, as in 「逃したわ」, 「わ」 often expresses a sense of resignation or mild
+      exasperation at an unfortunate but unavoidable situation, often sounding like an internal monologue.
+      It's a spontaneous expression of internal realization. 「間に合わなかったわ」 and 「乗り遅れたわ」 are alternative
+      phrasings with the same nuance, emphasizing the failure to catch the train.
+    etymology: 「終電」 (shūden) literally means 'last train'. The phrase conveys a common urban plight, and
+      the male use of 「わ」 here accentuates the feeling of a personal setback.
+  - english: Huh? The keys were here.
+    japanese:
+      - あれ？鍵 は ここ に {あっ た わ}。
+      - あれ？鍵 が ここ に {あっ た わ}。
+      - あれ？鍵、ここ に {あっ た ん だ わ}。
+    english_literally: Huh? Keys were here, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あれ？鍵 は ここ に あっ た よ。
+        english: Huh? The keys were here, I tell you.
+        hint: Using 「よ」 would suggest informing someone else of the discovery, rather than the internal
+          realization. We're looking for an expression of sudden self-discovery.
+      - competing_japanese:
+          - あれ？鍵 は ここ に あっ た ね。
+        english: Huh? The keys were here, weren't they?
+        hint: Using 「ね」 can imply self-confirmation, but 「わ」 for male speakers often carries a nuance
+          of mild exasperation or finding something unexpectedly. We're looking for that particular feeling
+          of realization.
+      - competing_japanese:
+          - あれ？鍵 は ここ に あっ た。
+        english: Huh? The keys were here.
+        hint: Without 「わ」, the statement is a neutral observation. We're looking for an expression that
+          adds a touch of surprise or self-discovery.
+    scene: A man has been searching for his keys and finds them in an obvious spot.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: For male speech, 「わ」 in 「あったわ」 often expresses a sudden realization or a mild sense of exasperation,
+      typically indicating a moment of finding something unexpectedly or realizing something obvious that
+      was overlooked. Using 「鍵 が ここ にあったわ」 might slightly emphasize the keys themselves as the subject
+      of discovery. 「あったんだわ」 emphasizes the discovery of a truth or fact.
+    etymology: The interjection 「あれ？」 is commonly used to express mild surprise or confusion, preceding
+      a sudden realization, which pairs well with the male usage of 「わ」 for self-discovery.
+  - english: This is definitely something we should do.
+    japanese:
+      - これ は 絶対 に やる べき {だ わ}。
+      - これ は 絶対 に やら なけれ ば なら ない {わ}。
+      - これ は 絶対 に やる べき こと です {わ}。
+      - これ は 絶対 に 実行 す べき {です わ}。
+    english_literally: This, absolutely should do, it is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 絶対 に やる べき だ ね。
+        english: This is definitely something we should do, right?
+        hint: Using 「ね」 directly seeks agreement from the group. We're looking for a statement that conveys
+          strong conviction while maintaining a gentle, persuasive tone from the speaker's side.
+      - competing_japanese:
+          - これ は 絶対 に やる べき だ よ。
+        english: This is definitely something we should do, I'm telling you.
+        hint: Using 「よ」 asserts the statement more strongly and directly. We're looking for a way to express
+          conviction while maintaining a softer, more persuasive feminine nuance in a formal setting.
+      - competing_japanese:
+          - これ は 絶対 に やる べき です。
+        english: This is definitely something we should do.
+        hint: Omitting 「わ」 makes it a standard polite statement without the added feminine persuasion
+          and conviction. We're looking for a tone that combines formality with soft insistence.
+    scene: A woman strongly advocating for a new project in a team meeting.
+    register: formal
+    setting: persuasive
+    speaker_gender: female
+    listener_gender: group
+    nuance: In a more formal or persuasive context, a female speaker using 「だわ」, as in 「やるべきだわ」, can convey
+      a strong sense of conviction while maintaining a gentle and persuasive tone, often used when addressing
+      a group or advocating for a position. 「やらなければならないわ」 conveys a stronger sense of obligation, and
+      「やるべきことですわ」 adds a slightly more formal nuance. 「実行すべきですわ」 further emphasizes the action aspect.
+    etymology: 「絶対 に」 (zettai ni) meaning 'absolutely' or 'definitely' is a strong intensifier. When combined
+      with the feminine 「わ」, it allows for strong assertion without sounding overly aggressive, which
+      is a common communication strategy in Japanese professional settings for women.
+  - english: You really shouldn't say such terrible things.
+    japanese:
+      - そんな ひどい こと、言う べき じゃ ない {わ}。
+      - そんな ひどい こと、言っ て は いけ ませ ん {わ}。
+      - そんな ひどい こと、仰る べき で は ない {です わ}。
+    english_literally: Such terrible things, should not say.
+    competing_grammar:
+      - competing_japanese:
+          - そんな ひどい こと、言う べき じゃ ない よ。
+        english: You really shouldn't say such terrible things, I tell you.
+        hint: Using 「よ」 would make the disapproval more direct and assertive, potentially sounding preachy.
+          We're looking for a firm yet soft expression of disappointment or concern.
+      - competing_japanese:
+          - そんな ひどい こと、言う べき じゃ ない ね。
+        english: You really shouldn't say such terrible things, should you?
+        hint: Using 「ね」 seeks agreement, which might dilute the firm disapproval. We're looking for a
+          statement that expresses disappointment more directly from the speaker's perspective.
+      - competing_japanese:
+          - そんな ひどい こと、言う べき じゃ ない。
+        english: You really shouldn't say such terrible things.
+        hint: Without 「わ」, the statement is a neutral prohibition, lacking the emotional nuance of concern
+          or disappointment. We're looking for a firm but soft expression of disapproval.
+    scene: A woman expressing disapproval to a friend's insensitive comment.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker using 「わ」 with a negative imperative, as in 「言うべきじゃないわ」, expresses disapproval
+      or strong feeling in a way that is firm yet retains a feminine softness. It conveys disappointment
+      or concern rather than a blunt command. 「言ってはいけませんわ」 provides a more polite and formal way to express
+      this prohibition. 「仰るべきではないですわ」 uses respectful language (sonkeigo) for the verb, further emphasizing
+      the gentle yet firm disapproval in a more formal context.
+    etymology: The expression 「言う べき じゃ ない」 indicates something 'should not be said' or 'ought not to
+      be said'. The inclusion of 「わ」 softens this moral judgment, making it feel more like personal advice
+      or disappointment rather than a strict rule.
+  - english: Perhaps it would be better to take a break soon.
+    japanese:
+      - そろそろ 休ん だ 方 が いい {わ}。
+      - そろそろ お 休み なさっ た 方 が よろしい {わ}。
+    english_literally: Soon, rest did, better it is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - そろそろ 休ん だ 方 が いい よ。
+        english: You should take a break soon, I'm telling you.
+        hint: Using 「よ」 would make the suggestion more direct and assertive, like giving an order. We're
+          looking for a softer, more gentle recommendation characteristic of caring advice.
+      - competing_japanese:
+          - そろそろ 休ん だ 方 が いい ね。
+        english: You should take a break soon, don't you think?
+        hint: Using 「ね」 would seek active agreement. We're looking for a softer, personal expression of
+          concern or suggestion that invites consideration rather than immediate confirmation.
+    scene: A female friend noticing her friend looking tired and offering a gentle suggestion.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「わ」 in 「休んだ方がいいわ」 by a female speaker adds a gentle, caring nuance to the suggestion,
+      making it sound less like a command and more like a thoughtful recommendation. This usage softens
+      the advice, emphasizing personal concern. 「お休みになった方がよろしいわ」 maintains this gentle suggestion but
+      elevates the politeness, suitable for a slightly more formal or respectful context.
+    etymology: The phrase 「～た方がいい」 indicates 'it is better to do ~'. Combining it with 「わ」 allows the
+      speaker to convey this advice with a softer, more empathetic tone, often used when expressing personal
+      feelings about what's best for someone else.
+  - english: Hmm, it's already this late.
+    japanese:
+      - うーん、もう こんな 時間 {だ わ}。
+      - うーん、もう こんな 時間 {です わ}。
+    english_literally: Hmm, already this time it is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - うーん、もう こんな 時間 だ よ。
+        english: Hmm, it's already this late, I tell you.
+        hint: Using 「よ」 would be more assertive, as if informing someone else. We're looking for an internal
+          realization or mild complaint, often directed at oneself.
+      - competing_japanese:
+          - うーん、もう こんな 時間 だ な。
+        english: Hmm, it's already this late, isn't it?
+        hint: Using 「な」 can convey a similar self-reflection but lacks the specific nuance of slight exasperation
+          or mild surprise often associated with the male use of 「わ」.
+    scene: A man looking at his watch, realizing how late it has become and sighing to himself.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: For male speakers, especially older ones or in certain dialects, 「わ」 as in 「こんな時間だわ」 can express
+      a mild realization or resignation, often with a slight tone of internal surprise or exasperation,
+      similar to 'Oh, it's already this late.' It sounds like an internal monologue about an unavoidable
+      fact. 「こんな時間ですわ」 would be a polite version with the same nuanced self-reflection.
+    etymology: The phrase 「こんな時間」 literally means 'this kind of time' or 'such a time as this', referring
+      to the current time being later than expected. The interjection 「うーん」 emphasizes the reflective
+      or slightly troubled internal thought.
+post_example_writeup: The examples illustrate how 「わ」 is primarily used by female speakers to add a soft,
+  emotional, or assertive tone to their statements. It allows for a range of expressions from gentle agreement-seeking
+  to firm conviction, while maintaining a feminine nuance. The distinct male usage, characterized by tones
+  of surprise or resignation, is also highlighted, often indicating an internal reaction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/わ

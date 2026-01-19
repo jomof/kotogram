@@ -1,0 +1,378 @@
+grammar_point: たらどう (how about)
+learn_before:
+  - い-Adjective[dictionary] (dictionary)
+  - い-Adjective[かったら] (past conditional)
+  - たら (conditional, when・if A then B)
+  - で (means・method)
+  - 少し (a little)
+meaning: Why don't you...?; What if you did...?; How about...?
+meaning_warning: It can be further contracted to たら by itself in very casual conversations.
+pronunciation:
+  katakana: タラドウ
+  romaji: tara dou
+formation:
+  Verb[たら form] + どう: Suggests a course of action or offers advice in a softer manner; 'How about...?',
+    'Why don't you?'
+  Verb[たら form] + どう + ですか: A more polite version of the suggestion, suitable for formal or respectful
+    contexts.
+  Verb[たら form] + どう + だ/か: Adds emphasis or a slightly more direct/challenging tone, often used in casual
+    conversation.
+jlpt: N4
+etymology: This grammar point combines the conditional particle 「たら」, indicating a hypothetical situation
+  or completion of an action, with 「どう」, meaning "how". The literal sense is, 'If (this happens), how
+  about it?' or 'How would it be if...?'. It inquires about the proposed action's effect or suitability.
+writeup: |-
+  「たらどう」 is a versatile expression used to offer suggestions or advice to another person. It can be translated as "Why don't you?", "What if you did?", or "How about?"
+
+  To construct this expression, take a verb and put it into its past plain form (～た), then add 「ら」 to form the conditional 「たら」, followed by 「どう」. For example, from 食べる (to eat), you get 食べたらどう (Why don't you eat?).
+
+  **Politeness Levels:**
+  *   Adding 「ですか」 to the end, forming 「たらどうですか」, makes the suggestion more polite and suitable for formal or semi-formal situations.
+  *   In very casual speech, 「たら」 can be used on its own with an upward interrogative intonation. This is a common contraction of 「たらどう」.
+  *   Occasionally, 「だ」 or 「か」 may be appended to 「たらどう」 for added emphasis or to reinforce the interrogative nature, though this is not strictly necessary.
+
+  **Important Consideration:**
+  Despite its primary use for offering helpful advice, 「たらどう」 can sometimes be perceived as critical or challenging, depending on the speaker's tone and the relationship with the listener. For instance, 「もっと真面目に勉強したらどう？」 (Why don't you study more seriously?) can sound like a reprimand if the tone is harsh. Therefore, careful consideration of context and delivery is crucial to avoid unintended implications.
+false_friends:
+  - term: ませんか
+    meaning: Won't you, Would you not, Why don't we
+    kind: similar expression
+    nuance: While 「ませんか」 can be used to invite someone or suggest a joint action, it's more of an invitation
+      or solicitation rather than a direct suggestion for the listener's benefit, which is the core of
+      「たらどう」.
+    grammar_point: ませんか (invitation or suggestion)
+  - term: たほうがいい
+    meaning: It'd be better to, Should do
+    kind: similar expression
+    nuance: 「たほうがいい」 is a stronger, more direct form of advice, implying that the recommended action is
+      preferable or even necessary. 「たらどう」 is a gentler suggestion, leaving the decision more open to
+      the listener.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: たら
+    meaning: When, From when, Just when, If
+    kind: often confused with
+    nuance: 「たら」 by itself is a conditional conjunction expressing 'if' or 'when'. It does not inherently
+      carry the nuance of a suggestion or inquiry as 「たらどう」 does, although it can imply it in very casual
+      contexts with specific intonation. For example, 「ご飯食べたら？」 implies a suggestion, but it's a contraction/ellipses
+      of 「食べたらどう？」.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: たらいい・といい
+    meaning: It would be nice if, It would be good if, Should, I hope
+    kind: similar expression
+    nuance: 「たらいい」 expresses a wish or hope for something to happen or a general ideal. 「たらどう」 directly
+      proposes an specific action to the listener and seeks their consideration or response regarding
+      that action.
+    grammar_point: たらいい・といい (hope・suggestion)
+  - term: Verb[volitional-よう]+ではないか
+    meaning: Let's do something, Why don't we
+    kind: similar expression
+    nuance: 「たらどう」 is used to advise or suggest an action for the listener. In contrast, 「～ではないか」 is a
+      more rhetorical suggestion, often used to propose a collective action or to make a strong point
+      to a group, akin to 'Why don't we...?' or 'Indeed, isn't it?'
+    grammar_point: '[Verb-よう]ではないか (let''s・why don''t we)'
+  - term: ことだ
+    meaning: Should, ought to
+    kind: similar expression
+    nuance: 「たらどう」 is an interpersonal suggestion posed as a question. 「ことだ」 expresses a general moral
+      or practical imperative, stating what one 'should' or 'ought to' do as a matter of principle or
+      common sense.
+    grammar_point: ことだ (should・ought to)
+  - term: べき
+    meaning: Should, ought to, must
+    kind: similar expression
+    nuance: 「べき」 expresses a strong moral obligation or what is logically expected, a more assertive and
+      less interrogative form of advice than 「たらどう」.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: てほしい
+    meaning: I want you to (do something)
+    kind: similar expression
+    nuance: 「てほしい」 expresses the speaker's desire for the listener to perform an action, whereas 「たらどう」
+      is a suggestion for the listener's own benefit, presented as a question.
+    grammar_point: '[Verb-て]ほしい (to want someone to do)'
+  - term: んじゃない
+    meaning: Don't, Mustn't, Shouldn't have (also used for speculation/criticism)
+    kind: similar expression
+    nuance: 「んじゃない」, when used with a rising intonation (んじゃないの？), can function as a strong, often critical,
+      suggestion or rhetorical question, similar to 'Aren't you going to...?' or 'Shouldn't you...?'.
+      This makes it more confrontational than the typically gentler 「たらどう」.
+    grammar_point: んじゃない (prohibition・regret・speculation)
+post_false_friends_writeup: It is crucial to distinguish 「たらどう」 from expressions that might appear similar.
+  「たらどう」 uniquely frames advice as a question, prompting the listener to consider a specific action. Unlike
+  other forms that might convey strong recommendations, desires, or invitations, 「たらどう」 offers a suggestion
+  with an implicit 'how about that?' follow-up.
+examples:
+  - english: You seem tired every day, why don't you go to bed a bit earlier?
+    japanese:
+      - 毎日 疲れ て いる みたい だ けど、もう 少し 早く {寝 たら どう}？
+      - 毎日 疲れ て いる みたい だ けど、もう 少し 早く {寝 たら？}
+    english_literally: Every day you seem tired, but why don't you sleep a bit earlier?
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 疲れ て いる みたい だ けど、もう 少し 早く 寝 {ませ ん か}？
+        english: You seem tired every day, won't you go to bed a bit earlier?
+        hint: 「ませんか」 is more of an invitation or asking for an opinion, not a direct piece of advice to
+          solve a problem. We're looking for a suggestion for the listener's benefit.
+      - competing_japanese:
+          - 毎日 疲れ て いる みたい だ けど、もう 少し 早く 寝 {た 方 が いい} です よ。
+        english: You seem tired every day, you should go to bed a bit earlier.
+        hint: 「た方がいい」 is a stronger, more direct form of advice. We're looking for a gentler suggestion.
+      - competing_japanese:
+          - 毎日 疲れ て いる みたい だ けど、もう 少し 早く 寝 {たら いい} と 思う。
+        english: You seem tired every day, I think it would be good if you went to bed a bit earlier.
+        hint: 「たらいい」 expresses a personal opinion or hope. We're looking for a direct suggestion to the
+          listener.
+    scene: A friend suggesting a simple solution to another friend who looks exhausted.
+    register: casual
+    setting: friendly
+  - english: If you don't mind, why don't you check this report?
+    japanese:
+      - もし よろしけれ ば、この 報告 書 を {確認 し たら どう です か}？
+      - もし よろしけれ ば、この 報告 書 を {確認 し たら どう}？
+    english_literally: If it's alright, how about checking this report?
+    competing_grammar:
+      - competing_japanese:
+          - もし よろしけれ ば、この 報告 書 を 確認 し {ませ ん か}？
+        english: If you don't mind, won't you check this report?
+        hint: 「ませんか」 sounds more like an invitation to check it together, or merely an offer, not a suggestion
+          for the superior's benefit. We're looking for an indirect, respectful suggestion for action.
+      - competing_japanese:
+          - もし よろしけれ ば、この 報告 書 を 確認 し {た 方 が いい} です よ。
+        english: If you don't mind, you should check this report.
+        hint: 「た方がいい」 would be too direct and potentially presumptuous when speaking to a superior. We're
+          looking for a polite and deferential suggestion.
+      - competing_japanese:
+          - もし よろしけれ ば、この 報告 書 を 確認 し {たら いい} です ね。
+        english: If you don't mind, it would be good if you checked this report.
+        hint: 「たらいい」 expresses a general idea of what would be good, not a polite suggestion to a specific
+          person to take action. We're looking for a subtle suggestion.
+    scene: A junior colleague politely suggesting to a senior colleague that they review a document.
+    register: teineigo (polite)
+    setting: professional
+  - english: If you're always missing deadlines, why don't you proceed more systematically?
+    japanese:
+      - いつ も 締め切り に 間に合わ ない なら、もっと 計画 的 に {進め たら どう}？
+      - いつ も 締め切り に 間に合わ ない なら、もっと 計画 的 に {進め たら どう だ}。
+    english_literally: If you always don't make deadlines, how about proceeding more systematically?
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 締め切り に 間に合わ ない なら、もっと 計画 的 に 進め {ませ ん か}？
+        english: If you're always missing deadlines, won't you proceed more systematically?
+        hint: 「ませんか」 is less of a direct piece of advice and more of a soft suggestion or rhetorical question.
+          We're looking for a suggestion with a clear implication of dissatisfaction.
+      - competing_japanese:
+          - いつ も 締め切り に 間に合わ ない なら、もっと 計画 的 に 進め {た 方 が いい} です よ。
+        english: While similar, 「たらどう」 can carry a subtly more critical or challenging nuance, especially
+          with certain intonation, compared to the more neutral 'should do' of 「～方がいい」. We're looking
+          for an underlying critique.
+        hint: While similar, 「たらどう」 can carry a subtly more critical or challenging nuance, especially
+          with certain intonation, compared to the more neutral 'should do' of 「～方がいい」. We're looking
+          for an underlying critique.
+      - competing_japanese:
+          - いつ も 締め切り に 間に合わ ない なら、もっと 計画 的 に 進め {たら いい} と 思う。
+        english: If you're always missing deadlines, I think it would be good if you proceeded more systematically.
+        hint: 「たらいい」 expresses personal opinion or hope, not a challenge. We're looking for a phrase that
+          conveys a challenge.
+    scene: A team leader expressing frustration and challenging a team member's work habits.
+    register: casual
+    setting: serious
+  - english: You look like you're having a hard time. Why don't you take a short break?
+    japanese:
+      - 大変 そう です ね。少し 休憩 を {取っ たら どう です か}？
+      - 大変 そう です ね。少し 休憩 を {取っ たら どう}？
+    english_literally: You look like it's difficult. Why don't you take a short break?
+    competing_grammar:
+      - competing_japanese:
+          - 大変 そう です ね。少し 休憩 を 取り {ませ ん か}？
+        english: You look like you're having a hard time. Won't you take a short break?
+        hint: 「ませんか」 is more of an invitation for the speaker and listener to take a break together, not
+          specific advice for the stressed individual. We're looking for an empathetic suggestion for
+          the listener.
+      - competing_japanese:
+          - 大変 そう です ね。少し 休憩 を 取っ {た 方 が いい} です よ。
+        english: You look like you're having a hard time. You should take a short break.
+        hint: 「た方がいい」 sounds more prescriptive and less empathetic. We're looking for a supportive and
+          caring suggestion that allows the stressed person agency.
+      - competing_japanese:
+          - 大変 そう です ね。少し 休憩 を 取っ {たら いい} です ね。
+        english: You look like you're having a hard time. It would be good if you took a short break.
+        hint: 「たらいい」 expresses a general idea, not a direct empathetic suggestion. We're looking for a
+          more direct, yet gentle, suggestion.
+    scene: A kind colleague offering empathetic advice to a visibly stressed coworker.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    nuance: The polite 「〜ですか」 makes the suggestion appropriate and caring. The speaker, a female colleague,
+      is showing empathy and offering a gentle suggestion to her male coworker.
+  - english: If you're lost, why don't you try using your phone's map app?
+    japanese:
+      - 道 に 迷っ た なら、スマホ の 地図 アプリ を {使っ て み たら どう}？
+      - 道 に 迷っ た なら、スマホ の 地図 アプリ を {使っ て み たら？}
+    english_literally: If you're lost, why don't you try using your phone's map app?
+    competing_grammar:
+      - competing_japanese:
+          - 道 に 迷っ た なら、スマホ の 地図 アプリ を 使っ て み {ませ ん か}？
+        english: If you're lost, won't you try using your phone's map app?
+        hint: 「ませんか」 sounds like a simple casual question rather than a concrete piece of advice to solve
+          the problem of being lost. We're looking for a clear, actionable suggestion.
+      - competing_japanese:
+          - 道 に 迷っ た なら、スマホ の 地図 アプリ を 使っ {た 方 が いい} よ。
+        english: If you're lost, you should try using your phone's map app.
+        hint: 「た方がいい」 would sound more like a directive rather than a friendly suggestion from a stranger.
+          We're looking for helpful, non-authoritative advice.
+      - competing_japanese:
+          - 道 に 迷っ た なら、スマホ の 地図 アプリ を 使っ {たら いい} と 思う。
+        english: If you're lost, I think it would be good if you tried using your phone's map app.
+        hint: 「たらいい」 expresses personal opinion or hope. We're looking for a direct suggestion.
+    scene: A helpful local offering practical advice to a lost tourist.
+    register: casual
+    setting: informative
+  - english: My mother gently suggested, Why don't you eat your vegetables too?
+    japanese:
+      - 野菜 も {食べ たら どう}？と、母 が 優しく 勧め た。
+      - 野菜 も {食べ たら}？と、母 が 優しく 勧め た。
+    english_literally: My mother gently suggested, 'Why don't you eat your vegetables too?'
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 も 食べ {ませ ん か}？
+        english: Won't you eat your vegetables too?
+        hint: 「ませんか」 is more of an invitation, not a gentle suggestion/encouragement to a child. We're
+          looking for a suggestion that implies gentle encouragement.
+      - competing_japanese:
+          - 野菜 も 食べ {た 方 が いい} よ。
+        english: You should eat your vegetables too.
+        hint: 「た方がいい」 carries a stronger, more direct 'should' implication, which might sound too demanding
+          from a parent trying to gently encourage. We're looking for a softer, persuasive tone.
+      - competing_japanese:
+          - 野菜 も 食べ {たら いい} わ よ。
+        english: It would be good if you ate your vegetables too.
+        hint: 「たらいい」 is expressed as a general good idea, less direct encouragement. We're looking for
+          a gentle nudge for a desired behavior.
+    scene: A parent encouraging their child to eat healthy during dinner.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The short, direct use of 「たらどう」 is common for parents suggesting things to children. The speaker,
+      an older female (mother), is offering a gentle nudge to her younger male listener (child) to eat
+      his vegetables. The phrase 「優しく勧め た」 highlights the soft nature of the suggestion.
+  - english: If you feel like it, why don't you meet me again sometime?
+    japanese:
+      - もし 気 が 向い たら、また 今度 {会っ て くれ たら どう}？
+      - もし 気 が 向い たら、また 今度 {会っ て くれ たら？}
+    english_literally: If you feel like it, why don't you meet me again sometime?
+    competing_grammar:
+      - competing_japanese:
+          - もし 気 が 向い たら、また 今度 会い {ませ ん か}？
+        english: If you feel like it, won't you meet me again sometime?
+        hint: 「ませんか」 is a direct invitation, less open-ended/tentative. We're looking for a softer, more
+          open-ended invitation.
+      - competing_japanese:
+          - もし 気 が 向い たら、また 今度 会っ{た 方 が いい} よ。
+        english: If you feel like it, you should meet me again sometime.
+        hint: 「た方がいい」 is very strong and inappropriate for a casual suggestion after a date. We're looking
+          for a gentle suggestion of possibility.
+      - competing_japanese:
+          - もし 気 が 向い たら、また 今度 会っ て くれ {たら いい} な。
+        english: If you feel like it, it would be good if you met me again sometime.
+        hint: 「たらいい」 expresses a hope, not a suggestion to the listener. We're looking for a phrase that
+          suggests a possibility with gentle encouragement.
+    scene: Someone leaving the door open for a future meeting after a first date that went well but needs
+      follow-up.
+    register: casual
+    setting: first-date
+  - english: Since it's this hot, why don't you buy a cold drink?
+    japanese:
+      - こんな に 暑い ん だ から、冷たい 飲み物 を {買っ たら どう か}？
+      - こんな に 暑い ん だ から、冷たい 飲み物 を {買っ たら どう}？
+    english_literally: Since it's this hot, why don't you buy a cold drink?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 暑い ん だ から、冷たい 飲み物 を 買い {ませ ん か}？
+        english: Since it's this hot, won't you buy a cold drink?
+        hint: 「ませんか」 could imply the counselor joining the job search or an invitation to consider the
+          idea generally. We're looking for specific advice for the client's situation.
+      - competing_japanese:
+          - こんな に 暑い ん だ から、冷たい 飲み物 を 買っ {た 方 が いい} よ。
+        english: Since it's this hot, you should buy a cold drink.
+        hint: 「た方がいい」 is a strong piece of advice, almost a command, which might not fit the casual, friendly
+          tone. We're looking for a simple, practical suggestion without being overly insistent.
+      - competing_japanese:
+          - こんな に 暑い ん だ から、冷たい 飲み物 を 買っ {たら いい} ね。
+        english: Since it's this hot, it would be good if you bought a cold drink.
+        hint: 「たらいい」 expresses a general good idea, not a direct suggestion. We're looking for a phrase
+          that explicitly suggests an action.
+    scene: Two friends walking outside on a scorching summer day, one suggesting a quick fix.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The addition of 「か」 makes the suggestion more direct and probing, often used between close
+      friends. The male speaker is offering a practical suggestion to his male friend about the heat.
+  - english: If you're just going to complain, why don't you try doing it yourself?
+    japanese:
+      - 文句 ばかり 言う なら、自分 で {やっ て み たら どう だ}。
+      - 文句 ばかり 言う なら、自分 で {やっ て み たら どう}？
+    english_literally: If you just complain, why don't you try doing it yourself?
+    competing_grammar:
+      - competing_japanese:
+          - 文句 ばかり 言う なら、自分 で やっ て み {ませ ん か}？
+        english: If you're just going to complain, won't you try doing it yourself?
+        hint: 「ませんか」 is an invitation, not a challenge. We're looking for a phrase that expresses exasperation
+          and a challenge to take responsibility.
+      - competing_japanese:
+          - 文句 ばかり 言う なら、自分 で やっ {た 方 が いい} よ。
+        english: If you're just going to complain, you should try doing it yourself.
+        hint: 「た方がいい」 is softer advice, less challenging/confrontational. 「たらどうだ」 can carry a more confrontational
+          or challenging nuance. We're looking for a pointed rhetorical challenge.
+      - competing_japanese:
+          - 文句 ばかり 言う なら、自分 で やっ て み {たら いい} と 思う。
+        english: If you're just going to complain, I think it would be good if you tried doing it yourself.
+        hint: 「たらいい」 expresses personal opinion, not a challenge. We're looking for a phrase that implies
+          the speaker has considered the action and is throwing it back at the listener.
+    scene: A frustrated colleague challenging a complaining team member to take initiative.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「どうだ」, particularly by a male speaker, adds a strong, sometimes critical or challenging
+      tone to the suggestion, indicating exasperation and urging the listener to take responsibility.
+      The male speaker is challenging the male listener to act rather than just complain.
+  - english: If you're not satisfied with your current job, why don't you try looking for a new one?
+    japanese:
+      - 今 の 仕事 に 満足 し て い ない なら、新しい 職 を {探し て み たら どう です か}。
+      - 今 の 仕事 に 満足 し て い ない なら、新しい 職 を {探し て み たら どう}？
+    english_literally: If you are not satisfied with your current job, why don't you try looking for a
+      new job?
+    competing_grammar:
+      - competing_japanese:
+          - 今 の 仕事 に 満足 し て い ない なら、新しい 職 を 探し て み {ませ ん か}？
+        english: If you're not satisfied with your current job, won't you try looking for a new one?
+        hint: 「ませんか」 could imply the counselor joining the job search or an invitation to consider the
+          idea generally. We're looking for specific advice for the client's situation.
+      - competing_japanese:
+          - 今 の 仕事 に 満足 し て い ない なら、新しい 職 を 探し {た 方 が いい} です よ。
+        english: If you're not satisfied with your current job, you should try looking for a new one.
+        hint: 「た方がいい」 is a more prescriptive form of advice, which might feel too forceful from a counselor.
+          We're looking for a professional, guiding suggestion that allows the client agency.
+      - competing_japanese:
+          - 今 の 仕事 に 満足 し て い ない なら、新しい 職 を 探し {たら いい} です ね。
+        english: If you're not satisfied with your current job, it would be good if you tried looking
+          for a new one.
+        hint: 「たらいい」 expresses a general ideal, not direct professional advice. We're looking for a more
+          direct, yet polite, suggestion.
+    scene: A career counselor advising a client on their professional development.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The polite 「〜ですか」 makes this advice appropriate for a professional setting. The male career
+      counselor is providing a neutral and encouraging suggestion to his female client regarding her career
+      path.
+post_example_writeup: Remember that the perceived nuance of 「たらどう」 can shift significantly with your tone.
+  A gentle, upward intonation typically conveys a helpful suggestion, while a downward, firm intonation
+  can make it sound like a reprimand or a challenge. Always consider your relationship with the listener
+  and the context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たらどう

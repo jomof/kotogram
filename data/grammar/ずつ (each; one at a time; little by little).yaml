@@ -1,0 +1,234 @@
+grammar_point: ずつ (each; one at a time; little by little)
+learn_before:
+  - 少しずつ (little by little・a bit at a time)
+meaning: Each; per; one at a time; little by little; gradually
+pronunciation:
+  katakana: ズツ
+  romaji: zutsu
+formation:
+  Noun + ずつ: Indicates equal distribution, repetition, or gradual progression of the noun.
+jlpt: N3
+etymology: The word 「ずつ」 originally comes from the verb 「続く (つづく)」 (tsuzuku), meaning "to continue." This
+  etymology reflects the grammar point's nuance of something happening repeatedly or gradually.
+writeup: The particle 「ずつ」 is employed after a noun, typically a quantifier, to denote phenomena that
+  occur or exist in specific amounts, intervals, or increments. Its function is analogous to English expressions
+  such as "each," "per," or "at a time." While some linguistic analyses classify 「ずつ」 as an adverbial
+  particle, its application remains consistent regardless of categorization. The kanji form 「宛」, which
+  literally translates to "allotment," further illuminates the concept of distinct, uniform groupings.
+  It is important to distinguish this use of 「宛」 from its more common reading of 「あて」 when referring to
+  an address or destination.
+false_friends:
+  - term: ばかり
+    meaning: only, just
+    kind: similar expression
+    nuance: 「ずつ」 emphasizes equal distribution, incremental progression, or performing an action little
+      by little. In contrast, 「ばかり」 focuses on exclusivity, meaning 'only' or 'just', often implying a
+      limitation or a recent completion of an action. For example, 「食べたばかり」 means 'just ate', focusing
+      on time, while 「一つずつ」 focuses on distribution.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: ごとに
+    meaning: each, every, for each
+    kind: similar expression
+    nuance: While both express 'each' or 'every', 「ごとに」 emphasizes repetition at regular intervals or
+      for every specific item (e.g., 「毎週ごとに」 for 'every week'). It often highlights a pattern or a recurring
+      event. 「ずつ」, on the other hand, specifically implies distribution of discrete quantities (e.g.,
+      「一人ずつ」 for 'one person at a time') or gradual, continuous increments ('little by little'), focusing
+      on an even distribution or steady pace rather than just recurrence.
+    grammar_point: ごとに (each・every)
+  - term: だんだん
+    meaning: gradually
+    kind: similar expression
+    nuance: Both describe a gradual process, but 「だんだん」 implies a more noticeable, often progressive change
+      or increase/decrease over time. It suggests a continuous, observable progression. 「ずつ」, especially
+      when paired with quantifiers like 「少し」 (e.g., 「少しずつ」), emphasizes smaller, more discrete, sometimes
+      imperceptible, increments or a gentler pace. It highlights the step-by-step nature of change rather
+      than just its overall progression.
+    grammar_point: だんだん (gradually)
+  - term: 各
+    meaning: each, every
+    kind: similar expression
+    nuance: 「各」 (かく) is a formal term typically used as a prefix or adjectival noun meaning 'each' or
+      'every' to refer to individual members within a group (e.g., 「各人」 for 'each person', 「各国」 for 'each
+      country'). It signifies individuality or comprehensiveness among distinct entities. 「ずつ」, while
+      also meaning 'each', specifically implies distribution in equal or consistent portions, or performing
+      an action 'one by one' (e.g., 「一つずつ」 for 'one by one' or 「二人ずつ」 for 'two at a time'), focusing on
+      the method of apportionment.
+    grammar_point: 各 (each or every)
+post_false_friends_writeup: 「ずつ」 indicates increments, equal distribution, or something that progresses
+  little by little. 「ばかり」 is more about limiting something to a specific case or condition. 「ごとに」 focuses
+  on recurring instances. 「だんだん」 describes a general, often more noticeable, gradual change. 「各」 (かく)
+  emphasizes the individuality of members within a group.
+examples:
+  - english: Please give me one of each item on the menu.
+    japanese:
+      - メニュー に 載っ て いる もの を 一 つ {ずつ} ください。
+      - メニュー に 載っ て いる もの を 一 つ {ずつ} お 願い し ます。
+    english_literally: Regarding items on the menu, please give me one each.
+    competing_grammar:
+      - competing_japanese:
+          - メニュー に 載っ て いる もの を {各々} ください。
+        english: Please give me each item individually.
+        hint: 「各々」 means 'each one' or 'individually' and can be used when referring to separate items,
+          but it doesn't specify 'one of each kind'. We're looking for a way to say 'one unit of each
+          item' for distribution.
+    scene: A customer, curious about a new restaurant, wants to try every dish and asks the server for
+      one of each.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Please enter inside, one person at a time.
+    japanese:
+      - 一人 {ずつ} 中 へ お 入り ください。
+      - お 一人 {ずつ} 中 へ お 入り ください。
+    english_literally: One person each, please enter inside.
+    competing_grammar:
+      - competing_japanese:
+          - '{一人一人} 中 へ お 入り ください。'
+        english: Please enter inside, person by person.
+        hint: 「一人一人」 emphasizes each person individually, but 「ずつ」 is used to specify distribution or
+          a sequence of 'one unit at a time' in a group or process. We're looking for a smooth, continuous
+          flow of single entries.
+    scene: A museum guide is managing the flow of visitors into a crowded exhibit, ensuring an orderly
+      entry.
+    register: teineigo (polite)
+    setting: instructional
+  - english: This drink is strong, so please drink it little by little.
+    japanese:
+      - この 飲み物 は 強い の で、少し {ずつ} 飲ん で ください。
+      - この 飲み物、強い です から、少し {ずつ} 飲ん で ください ね。
+    english_literally: Because this drink is strong, please drink it little by little.
+    competing_grammar:
+      - competing_japanese:
+          - この 飲み物 は 強い の で、{だんだん} 飲ん で ください。
+        english: This drink is strong, so please drink it gradually.
+        hint: 「だんだん」 implies a change that happens gradually over time. 「少しずつ」 emphasizes taking things
+          in small, discrete increments. We're looking for a way to suggest consuming it in small, controlled
+          portions.
+    scene: A friend advises another friend to be careful with a potent homemade beverage to avoid getting
+      too drunk too quickly.
+    register: teineigo (polite)
+    setting: cautious
+  - english: Every month, I save some money bit by bit to go on a trip.
+    japanese:
+      - 毎月 いくら か {ずつ} お 金 を 貯め て、旅行 に 行き ます。
+      - 毎月 いくら か {ずつ} お 金 を 貯蓄 し て、旅行 に 行き ます。
+    english_literally: Every month, saving some amount each time, I go on a trip.
+    competing_grammar:
+      - competing_japanese:
+          - 毎月 少し {ずつ} お 金 を 貯め て、旅行 に 行き ます。
+        english: Every month, I save a little money bit by bit to go on a trip.
+        hint: While 「少しずつ」 means 'little by little' in general, 「いくら か ずつ」 implies 'some amount each time,'
+          allowing for slight variations in the amount saved. We're looking for the nuance of saving 'some
+          varying amount' each month.
+    scene: A student talks about their financial plan to afford a dream vacation, highlighting the consistent
+      but variable contributions.
+    register: teineigo (polite)
+    setting: optimistic
+  - english: Please proceed to the front, one group at a time.
+    japanese:
+      - 一 グループ {ずつ} 前 に お 進み ください。
+      - 各 グループ {ずつ}、前方 へ お 進み ください。
+    english_literally: One group each, please proceed forward.
+    competing_grammar:
+      - competing_japanese:
+          - 一 グループ {ごと に} 前 に お 進み ください。
+        english: Please proceed to the front for each group.
+        hint: 「ごとに」 means 'every (unit of time/group)' or 'for each,' often indicating a repeating interval.
+          「ずつ」 specifically refers to 'one unit at a time' or 'in increments of one,' focusing on the
+          step-by-step movement of individual groups. We're looking for the idea of groups moving sequentially,
+          one by one.
+    scene: An instructor at a workshop asks participants to come up in turns for a demonstration, emphasizing
+      orderly progression of each group.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Those attending the party, please bring one food item each.
+    japanese:
+      - パーティー に 来る 方 は 一人 一 つ {ずつ} 食べ物 を 持っ て 来 て ください。
+      - パーティー ご 参加 の 方 は、一人 一 つ {ずつ} 食料 を お 持ち ください。
+    english_literally: People coming to the party, please bring one food item each.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に 来る 方 は {各々} 食べ物 を 持っ て 来 て ください。
+        english: Those attending the party, please bring a food item individually.
+        hint: 「各々」 means 'each one' or 'individually' and implies that each person should bring something,
+          but it doesn't specify the quantity. 「一つずつ」 clearly states 'one item each'. We're looking for
+          a clear instruction on the exact number of items to bring per person.
+    scene: The host sends out an invitation with a potluck request to their guests, clarifying the contribution
+      per person.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Due to global warming, the temperature is increasing by 0.008 degrees Celsius each year.
+    japanese:
+      - 地球 温暖 化 の ため、気温 は 毎年 ０ ． ００８ 度 {ずつ} 上がっ て い ます。
+      - 地球 温暖 化 に より、毎年 気温 は ０ ． ００８ 度 {ずつ} 上昇 し て い ます。
+    english_literally: Due to global warming, the temperature is rising 0.008 degrees each year.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 温暖 化 の ため、気温 は 毎年 ０ ． ００８ 度 上がっ て い ます。
+        english: Due to global warming, the temperature increases by 0.008 degrees Celsius every year.
+        hint: Without 「ずつ」, the sentence describes the total increase per year. 「ずつ」 emphasizes that the
+          increase happens in consistent, small increments throughout the year or as a uniform distribution
+          per year. We're looking for the specific idea of an incremental, consistent rise.
+    scene: A climate scientist presents data on global temperature trends, emphasizing the consistent,
+      incremental rise.
+    register: formal
+    setting: informative
+  - english: The students divided into groups of ten and boarded the buses.
+    japanese:
+      - 生徒 は １０ 人 {ずつ} の グループ に 分かれ て、バス に 乗り まし た。
+      - 生徒 は １０ 人 {ずつ} の グループ に 分かれ て、バス に 乗車 し まし た。
+    english_literally: The students divided into groups of 10 people each and boarded the buses.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 は １０ 人 の グループ に 分かれ て、バス に 乗り まし た。
+        english: The students divided into groups of ten and boarded the buses.
+        hint: Without 「ずつ」, the sentence states they formed groups of ten. 「ずつ」 adds the nuance that these
+          groups were formed by distributing students evenly, with exactly ten in each group. We're looking
+          for the idea of an equal distribution into groups of ten.
+    scene: A tour guide describes how the students were organized for their journey, specifically noting
+      the uniform group size.
+    register: teineigo (polite)
+    setting: informative
+  - english: Let's act in pairs today.
+    japanese:
+      - 今日 は 二人 {ずつ} で 行動 し ましょう。
+      - 今日 は 二人 {ずつ} で 動き ましょう。
+    english_literally: Today, let's act two people each.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {二人 で} 行動 し ましょう。
+        english: Let's act with two people today.
+        hint: 「二人で」 means 'with two people' or 'by two people' and refers to an action involving two individuals.
+          「二人ずつで」 specifically means 'in pairs' or 'two by two,' emphasizing the formation of groups of
+          exactly two. We're looking for the idea of forming groups of two people for an activity.
+    scene: A team leader suggests a method for an activity to ensure everyone participates effectively
+      in small, equal groups.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Let's gradually become more intimate.
+    japanese:
+      - 少し {ずつ}、親密 に なっ て いき ましょう。
+      - 少し {ずつ}、親密 さ を 深め て いき ましょう。
+    english_literally: Little by little, let's become intimate.
+    competing_grammar:
+      - competing_japanese:
+          - '{徐々 に} 親密 に なっ て いき ましょう。'
+        english: Let's gradually become more intimate.
+        hint: 「徐々に」 means 'gradually' or 'step by step,' implying a smooth, continuous change. 「少しずつ」
+          emphasizes very small, discrete increments. We're looking for a gentle, deliberate progression
+          in small steps.
+      - competing_japanese:
+          - '{だんだん} 親密 に なっ て いき ましょう。'
+        english: Let's gradually become more intimate.
+        hint: 「だんだん」 means 'gradually' and often suggests a noticeable, progressive change. 「少しずつ」 highlights
+          smaller, almost imperceptible increments. We're looking for the nuance of deepening intimacy
+          through subtle, continuous steps.
+    scene: A couple, early in their relationship, expresses their desire to deepen their bond over time,
+      implying a gentle, step-by-step approach.
+    register: teineigo (polite)
+    setting: intimate
+post_example_writeup: The examples illustrate how 「ずつ」 emphasizes discrete, equal increments or distribution,
+  whether it's for physical items, gradual processes, or forming groups. Pay close attention to how it
+  conveys a consistent pace or allotment, making it distinct from other words that might imply general
+  gradualness or individuality without the precise incremental nature.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ずつ

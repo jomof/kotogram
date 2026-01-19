@@ -1,0 +1,340 @@
+grammar_point: '[Verb-stem]つづける (to continue doing)'
+learn_before:
+  - Verb[させられる] (causative-passive)
+meaning: To continue
+conjugations:
+  - conjugation-type: causative (～させる)
+    form: つづけさせる
+    rarity: very rare
+    meaning: to make/let (someone) continue
+  - conjugation-type: causative-passive (～させられる)
+    form: つづけさせられる
+    rarity: very rare
+    meaning: to be made/let to continue
+  - conjugation-type: dictionary (plain non-past)
+    form: つづける
+    rarity: common
+    meaning: to continue
+  - conjugation-type: desiderative (～たい)
+    form: つづけたい
+    rarity: less common
+    meaning: want to continue
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: つづけろ
+    rarity: rare
+    meaning: continue!
+  - conjugation-type: imperative polite (～なさい)
+    form: つづけなさい
+    rarity: uncommon
+    meaning: continue!
+  - conjugation-type: negative plain (～ない)
+    form: つづけない
+    rarity: common
+    meaning: not to continue
+  - conjugation-type: negative non-past polite (～ません)
+    form: つづけません
+    rarity: common
+    meaning: not to continue (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: つづけなかった
+    rarity: common
+    meaning: did not continue
+  - conjugation-type: negative past polite (～ませんでした)
+    form: つづけませんでした
+    rarity: common
+    meaning: did not continue (polite)
+  - conjugation-type: non-past polite (～ます)
+    form: つづけます
+    rarity: common
+    meaning: to continue (polite)
+  - conjugation-type: past plain (～た)
+    form: つづけた
+    rarity: common
+    meaning: continued
+  - conjugation-type: past polite (～ました)
+    form: つづけました
+    rarity: common
+    meaning: continued (polite)
+  - conjugation-type: te-form (～て)
+    form: つづけて
+    rarity: common
+    meaning: continuing, and continue
+  - conjugation-type: volitional (～よう)
+    form: つづけよう
+    rarity: rare
+    meaning: let's continue
+  - conjugation-type: volitional polite (～ましょう)
+    form: つづけましょう
+    rarity: rare
+    meaning: let's continue (polite)
+  - conjugation-type: conditional (～ば)
+    form: つづければ
+    rarity: common
+    meaning: if (one) continues
+  - conjugation-type: conditional (～たら)
+    form: つづけたら
+    rarity: common
+    meaning: if/when (one) continues
+  - conjugation-type: concessive (～ても)
+    form: つづけても
+    rarity: common
+    meaning: even if (one) continues
+pronunciation:
+  katakana: ツヅケル
+  romaji: tsuzukeru
+formation:
+  Verb in -masu stem + 続ける: Indicates the continuation of an action.
+jlpt: N4
+etymology: The verb 「続ける (つづける)」 is derived from the verb 「続く (つづく)」, which means "to continue" or "to
+  last." 「続ける」 is the transitive form, meaning "to continue something," while 「続く」 is intransitive, meaning
+  "something continues."
+writeup: |-
+  The verb 「{続ける}」 (tsuzukeru) signifies the continuation of an action. It is formed by attaching 「続ける」 to the **-masu stem** of another verb. This structure emphasizes that an action is sustained over a period, or that one persists in an action without interruption.
+
+  It is crucial to understand the nuanced difference when connecting verbs. While the **-masu stem + 続ける** form implies that the preceding action is being done *continuously* or *persistently*, using the **て-form** of a verb followed by a separate verb (e.g., 頑張って 続ける) often implies that the first action is completed, and *then* the second action of continuing takes place. For example, 「走り続ける」 means "to continue running" as a single, sustained action, whereas 「走って 続ける」 implies "run, and then continue (something else, or the act of continuing itself)." The former is a single, continuous act, while the latter separates the initial action from the act of continuing.
+
+  {続ける} is a transitive verb, meaning it takes a direct object when used independently (e.g., 「仕事を 続ける」 - to continue the work). However, when affixed to the -masu stem of another verb, it serves to modify the action of that verb, emphasizing its ongoing nature. This grammatical structure is common across various registers and is fundamental for expressing sustained actions in Japanese.
+false_friends:
+  - term: ばかりだ
+    meaning: (Only) continue to, Keep on -ing, More and more
+    kind: synonym
+    nuance: 「ばかりだ」 often emphasizes a trend or continuous worsening of a situation, while 「続ける」 simply
+      states the action continues.
+    grammar_point: ばかりだ (only continues to)
+  - term: 一方だ
+    meaning: More and more, Continue to, Keep on, -er and -er
+    kind: synonym
+    nuance: 「一方だ」 implies a one-sided progression or a constant increase/decrease, whereas 「続ける」 focuses
+      on the sustained action itself.
+    grammar_point: '[Verb-dictionary]一方だ (more and more・continuous change)'
+  - term: ている
+    meaning: State of being, Has (have) done
+    kind: often confused with
+    nuance: 「ている」 describes an action in progress or a resulting state, focusing on what is happening
+      *now* or the current condition. In contrast, 「続ける」 specifically emphasizes the act of *sustaining*
+      or *persevering* an action over time, often with intent.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+post_false_friends_writeup: While these expressions may seem similar to 「続ける」, each has distinct nuances.
+  「ばかりだ」 often carries a negative connotation, emphasizing something undesirable keeps happening. 「一方だ」
+  highlights a one-way trend. 「ている」 simply describes the current state of an ongoing action. Remember
+  to choose the expression that best fits the specific nuance you want to convey.
+examples:
+  - english: It is important to continue practicing every day.
+    japanese:
+      - 毎日 練習 を {つづける} こと が 大切 です。
+      - 毎日 練習 を {つづける} こと が 大切 だ。
+      - 毎日 練習 を {つづける} の は 大切 です。
+      - 毎日 練習 を {つづける} の は 大事 だ。
+    english_literally: Every day practice to continue thing is important.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 {する} こと が 大切 です。
+        english: It is important to practice every day.
+        hint: 「する」 simply states the action. We're looking for a phrase that emphasizes the *continuation*
+          of practice.
+    scene: A coach advises young athletes on the importance of consistent effort.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence uses the plain form of the verb to describe a general truth or advice.
+    etymology: The concept of 'daily practice' (毎日 練習) is deeply ingrained in Japanese culture, particularly
+      in martial arts and traditional crafts, emphasizing continuous effort for mastery.
+  - english: He has continued talking for many hours.
+    japanese:
+      - 彼 は 何 時間 も 話し {つづけ て} いる。
+      - 彼 は 何 時間 も 話し {つづけ て} い ます。
+      - 彼 は 何 時間 も 話し {つづけ てる}。
+    english_literally: He for many hours talking continuing is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 時間 も 話し {て いる}。
+        english: He has been talking for many hours.
+        hint: While 「～ている」 indicates an ongoing action, we need to emphasize that the talking has been
+          *continuously sustained* over a long period. We're looking for a verb that expresses persistence.
+    scene: Observing a very passionate speaker at a conference who shows no signs of stopping.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: The phrase 「話し つづけて いる」 emphasizes the **continuous** and **uninterrupted** nature of the
+      action of talking, indicating persistence over a long period. This is distinct from simply 「話し て
+      いる」 which would just mean 'is talking' without the strong nuance of continuation.
+    etymology: The combination of the -masu stem of 話す (話し) with 続ける highlights the direct continuation
+      of the action. The 「～て いる」 form then places this continued action in the present progressive.
+  - english: I will continue to do my best with this job until the end.
+    japanese:
+      - この 仕事 を 最後 まで 頑張り {つづけ ます}。
+      - この 仕事 を 最後 まで 頑張り {つづける}。
+    english_literally: This job until end doing my best will continue.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 を 最後 まで {頑張り ます}。
+        english: I will do my best with this job until the end.
+        hint: 「頑張ります」 means 'I will do my best'. We're looking for a phrase that expresses the *continuation*
+          of doing one's best, implying sustained effort.
+    scene: An employee reassuring their manager about their commitment to a long-term project.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    nuance: 「頑張り つづけます」 conveys a strong sense of sustained effort and commitment, appropriate for reassuring
+      a manager. The polite 「ます」 ending maintains professionalism. The usage by a female speaker in a
+      professional context emphasizes their strong dedication.
+    etymology: 「頑張る」 itself implies perseverance. Adding 「続ける」 further emphasizes the *ongoing* nature
+      of this perseverance until completion. 「最後 まで」 (until the end) reinforces the continuous aspect.
+  - english: He must not stop running even in the rain.
+    japanese:
+      - 彼 は 雨 の 中 で も 走り {つづけ ない} と いけ ませ ん。
+      - 彼 は 雨 の 中 で も 走り {つづけ ない} と いけ ない。
+      - 彼 は 雨 の 中 で も 走り {つづけ なけれ ば} なら ない。
+    english_literally: He rain in even running not continue if not good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 雨 の 中 で も 走ら {ない と いけ ませ ん}。
+        english: He must run even in the rain.
+        hint: This means 'he must run'. We're looking for a phrase that specifically states he must *not
+          stop running*, emphasizing persistence.
+    scene: A coach insists on the athlete's unwavering dedication during a tough training session.
+    register: casual
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: The negative form 「走り つづけない」 indicates that the continuous action of running *must not cease*.
+      This expresses a strict instruction for unwavering dedication. The phrase 「～と いけません」 (must) reinforces
+      the necessity.
+    etymology: 「～ない と いけません」 literally means 'if not ~, it's no good,' a common construction for expressing
+      obligation or necessity. When combined with 「走り 続ける」, it becomes 'if one does not continue running,
+      it's no good'.
+  - english: She continued dancing until she collapsed.
+    japanese:
+      - 彼女 は 倒れる まで 踊り {つづけ た}。
+      - 彼女 は 倒れる まで 踊り {つづけ まし た}。
+      - 彼女 は 倒れる まで 踊り {つづけ て} い た。
+    english_literally: She collapsing until dancing continued.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 倒れる まで {踊っ た}。
+        english: She danced until she collapsed.
+        hint: This simply states she danced until she collapsed. We're looking for a phrase that highlights
+          the *sustained* and *uninterrupted* nature of her dancing until that point.
+    scene: Recounting a captivating performance by a dancer with incredible stamina.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: The past tense 「踊り つづけた」 vividly describes the sustained action of dancing up to a specific
+      point of exhaustion, highlighting endurance. The casual register fits storytelling among friends.
+    etymology: 「～まで」 means 'until' or 'up to.' The combination 「倒れる まで 踊り つづけた」 perfectly captures the
+      duration and intensity of the action, emphasizing that the dancing continued *up to* the moment
+      of collapse.
+  - english: Don't give up; keep challenging yourself!
+    japanese:
+      - 諦め ず に 挑戦 し {つづけ なさい}。
+      - 諦め ず に 挑戦 し {つづけ ろ}。
+      - 諦め ず に 挑戦 を {つづけ て} ください。
+    english_literally: Don't give up; challenging yourself continue!
+    competing_grammar:
+      - competing_japanese:
+          - 諦め ず に 挑戦 {し なさい}。
+        english: Don't give up; challenge yourself!
+        hint: This is a command to challenge oneself. We're looking for a phrase that specifically encourages
+          *continuously* challenging oneself.
+    scene: A mentor encouraging a struggling junior employee not to be disheartened by setbacks.
+    register: meirei-kei no teineigo (polite imperative)
+    setting: inspirational
+    conjugation: imperative polite (～なさい)
+    nuance: 「挑戦 し つづけ なさい」 is a polite but firm command to persistently take on challenges. The 「～なさい」
+      form is often used by someone in a supervisory or teaching role towards a junior.
+    etymology: 「諦め ず に」 means 'without giving up.' 「挑戦 する」 means 'to challenge.' The imperative form of
+      「続ける」 here creates a strong encouragement to maintain the action of challenging oneself.
+  - english: Let's all continue to cooperate.
+    japanese:
+      - 皆 で 協力 し {つづけ ましょう}。
+      - 皆 で 協力 し {つづけ よう}。
+      - 皆 で 引き続き 協力 し {つづけ ましょう}。
+    english_literally: Everyone together cooperate let's continue.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 で 協力 {し ましょう}。
+        english: Let's all cooperate.
+        hint: This means 'Let's cooperate'. We're looking for a phrase that emphasizes the intention to
+          *continue* cooperating as an ongoing effort.
+    scene: A team leader concluding a meeting, urging ongoing collaboration for future success.
+    register: teineigo (polite)
+    setting: persuasive
+    conjugation: volitional polite (～ましょう)
+    nuance: 「協力 し つづけ ましょう」 is a polite and collaborative invitation to continue cooperating, suitable
+      for a team leader encouraging ongoing effort. The 「～ましょう」 ending suggests a shared intent.
+    etymology: 「協力 する」 means 'to cooperate.' The volitional form 「～ましょう」 expresses a joint suggestion
+      or resolve. When combined with 「続ける」, it emphasizes the desire for *continuous* collective action.
+  - english: My boss makes me continue working overtime.
+    japanese:
+      - 上司 は 私 に 残業 を さ せ {つづける}。
+      - 上司 は 私 に 残業 を さ せ {つづけ ます}。
+      - 上司 は 私 に 残業 を {つづけ させ} て いる。
+    english_literally: Boss me overtime to do makes continues.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 は 私 に 残業 を {さ せる}。
+        english: My boss makes me work overtime.
+        hint: This means 'my boss makes me work overtime'. We're looking for a phrase that expresses the
+          *ongoing* nature of being made to work overtime, implying a repetitive or sustained action.
+    scene: A tired employee complaining about their demanding work conditions.
+    register: casual
+    setting: melancholic
+    conjugation: causative (～させる)
+    nuance: The causative form 「残業 を さ せ つづける」 highlights that the boss *continuously makes* the employee
+      work overtime, emphasizing the ongoing burden and passive nature of the employee's situation. The
+      casual tone suits a complaint.
+    etymology: 「残業 する」 is 'to work overtime.' 「させる」 is the causative verb. The addition of 「続ける」 means
+      'to continue to cause (to do overtime)', implying a repetitive or sustained action imposed by the
+      boss.
+  - english: Even though he disliked it, he was made to continue talking.
+    japanese:
+      - 彼 は 嫌 がっ て いる の に、話 を さ せ られ {つづけ た}。
+      - 彼 は 嫌 がっ て いる の に、話 を さ せ られ {つづけ まし た}。
+    english_literally: He disliked although, talking made to continue was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 嫌 がっ て いる の に、話 を {さ せ られ た}。
+        english: Even though he disliked it, he was made to talk.
+        hint: This means 'he was made to talk'. We're looking for a phrase that expresses he was *continuously
+          forced* to talk, emphasizing the prolonged nature of the unwanted action.
+    scene: A witness recounts being pressured to give a lengthy statement despite their discomfort.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The causative-passive form `話させられる` combined with `つづけた` in 「話 を さ せ られ {つづけ た}」 conveys that
+      he was *continuously forced* to talk against his will, underscoring his lack of agency and the prolonged
+      nature of the unwanted action.
+    etymology: 「させられる」 is the causative-passive form ('to be made to do'). When combined with 「続ける」, it
+      becomes 'to be continuously made to do', emphasizing the ongoing nature of the compelled action.
+      「嫌がって いる のに」 ('even though he disliked it') provides the context of unwilling participation.
+  - english: If you continue to put in effort, you will surely succeed.
+    japanese:
+      - 努力 を し {つづけれ ば}、きっと 成功 し ます。
+      - 努力 を し {つづけれ ば}、きっと 成功 する でしょう。
+      - 努力 を し {つづけれ ば}、必ず 成功 し ます。
+    english_literally: Effort if make continue, surely succeed.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 を {すれ ば}、きっと 成功 し ます。
+        english: If you put in effort, you will surely succeed.
+        hint: This means 'if you make an effort'. We're looking for a phrase that stresses the *continuation*
+          of effort, implying sustained hard work.
+    scene: A motivational speaker addressing an audience, emphasizing the importance of perseverance.
+    register: formal
+    setting: inspirational
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「努力 を し つづければ」 highlights that success is contingent upon the *sustained and continuous* application
+      of effort. The `～ば` conditional form expresses a general, logical consequence, making it suitable
+      for a universal motivational statement presented by a male speaker to a group.
+    etymology: The construction `V-masu stem + ば` is a fundamental conditional form. When applied to `つづける`,
+      it creates a strong causal link between continuous action and its result.
+post_example_writeup: The key is to remember that 「続ける」 always implies a continuation of some action.
+  While the primary formation involves attaching it to the -masu stem of a verb, be aware of the difference
+  in nuance if you were to use it with the te-form of a verb. For instance, 「V-masu続ける」 (e.g., 頑張り続ける)
+  means "to continue V-ing" as a single, sustained action, whereas 「V-te続ける」 (e.g., 頑張って続ける) implies "do
+  V and then continue," with 「続ける」 acting on the preceding clause. Also, be aware that direct imperative
+  forms like 「続けなさい」 can sound strong and should be used carefully depending on the context and relationship.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/つづける

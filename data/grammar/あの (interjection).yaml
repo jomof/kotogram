@@ -1,0 +1,252 @@
+grammar_point: あの (interjection)
+learn_before:
+  - Verb[ない] (plain negative)
+  - '[Verb-て]いただけませんか (humble request)'
+  - あれ (that over there)
+  - あれ? (surprise・confusion)
+  - かた (way of doing)
+  - こちら (this way, formal)
+  - ご (honorific prefix for Sino-Japanese words)
+  - そういえば (speaking of which)
+  - てください (polite request)
+  - どのように (in what way)
+  - に向かって (physical direction)
+  - へいく (to head toward)
+  - もので・ものだから (because・as an excuse)
+  - 悪い (bad)
+  - 風 (style・manner)
+meaning: um; oh; hey (interjection for hesitation, realization, or attention)
+pronunciation:
+  katakana: アノ
+  romaji: ano
+formation:
+  あの: Used as a standalone interjection.
+jlpt: N5
+etymology: The interjection 「あの」 shares its phonetic form with the demonstrative adjective 「あの」 (that,
+  over there), but its usage as a discourse marker is distinct. While the demonstrative points to something
+  spatially or conceptually distant, the interjection 「あの」 marks a cognitive or social space—a pause in
+  thought, a moment of seeking attention, or a sudden mental connection. It's akin to English 'um,' 'uh,'
+  'oh,' or 'hey,' signifying a temporary break or transition in communication.
+writeup: "The interjection 「あの」 is a versatile and fundamental word in Japanese conversation. It serves\
+  \ several key functions, often depending on context, intonation, and accompanying body language. \n\n\
+  **1. Hesitation or Pause (『あの、ちょっと...』)**\nThis is perhaps its most common use. When a speaker is searching\
+  \ for the right words, collecting their thoughts, or preparing to say something potentially sensitive\
+  \ or difficult, 「あの」 can create a brief, polite pause. It signals to the listener that the speaker is\
+  \ about to say something, but is taking a moment. It's similar to \"um\" or \"uh\" in English, but often\
+  \ carries a slightly more polite or considerate nuance.\n\n**2. Calling Attention or Initiating Conversation\
+  \ (『あの、すみません』)**\n「あの」 can be used to gently get someone's attention before making a request, asking\
+  \ a question, or starting a conversation. It's less abrupt than a direct name call and is a polite way\
+  \ to signal your intention to speak. When used this way, it is often followed by expressions like 「すみません」\
+  \ (excuse me) or 「ちょっといいですか」 (do you have a moment?).\n\n**3. Realization or Recall (『あの、そういえば...』)**\n\
+  Sometimes, 「あの」 is used when a speaker suddenly remembers something, has an insight, or connects a new\
+  \ piece of information to the current conversation. In this sense, it's similar to \"oh\" or \"that\
+  \ reminds me\" in English. It indicates a shift in the speaker's internal thought process that is now\
+  \ being verbalized.\n\n**4. Softening a Statement or Request (『あの、これ、貸してもらえますか？』)**\nBy preceding a\
+  \ request or a potentially awkward statement with 「あの」, the speaker can soften its impact, making it\
+  \ sound less demanding or direct. This adds a layer of politeness and consideration, indicating that\
+  \ the speaker is mindful of the listener's feelings.\n\n「あの」 is primarily used in casual and semi-formal\
+  \ contexts, often signaling a momentary hesitation or a gentle way to approach someone or introduce\
+  \ a topic."
+false_friends:
+  - term: あの
+    meaning: that (over there)
+    kind: often confused with
+    nuance: Unlike the interjection 「あの」, this refers to something physically distant from both speaker
+      and listener, or something mutually known but not present. It functions as a demonstrative determiner
+      modifying a noun.
+    grammar_point: この (this)
+  - term: えっと
+    meaning: umm; well; let me see
+    kind: similar expression
+    nuance: 「えっと」 is a pure filler word indicating hesitation or a search for words, often used when one
+      is unsure of what to say next. While 「あの」 can also serve as a filler, it has additional functions
+      like calling attention or indicating realization, which 「えっと」 typically does not.
+    grammar_point: <suggest>:えっと (hesitation sound)
+  - term: あのね
+    meaning: hey (listen); you know
+    kind: similar expression
+    nuance: 「あのね」 is a slightly more direct, yet still soft, way to get someone's attention, often used
+      when the speaker wants to share some information or start a specific topic. It implies a desire
+      for the listener to prepare for what's coming. 「あの」 alone is more general and can be used for simple
+      hesitation without necessarily leading into a disclosure.
+    grammar_point: <suggest>:あのね (attention seeking)
+post_false_friends_writeup: While 「あの」 as an interjection shares its pronunciation with the demonstrative
+  「あの」, their functions are entirely different. The demonstrative 「あの」 points to something, whereas the
+  interjection signals a pause in thought or a social cue. When comparing 「あの」 to other hesitation sounds
+  like 「えっと」, remember that 「あの」 is more versatile, capable of drawing attention or indicating a sudden
+  realization, beyond just filling a silence. 「あのね」 is a specific conversational opener, slightly more
+  insistent than a simple 「あの」.
+examples:
+  - english: Um, excuse me, could you tell me the way to the station?
+    japanese:
+      - あの、すみ ませ ん、駅 へ の 行き 方 を 教え て もらえ ませ ん か？
+      - あの、ごめん、駅 へ の 行き 方、教え て？
+    english_literally: Um, excuse me, could you teach me the way to the station?
+    competing_grammar:
+      - competing_japanese:
+          - えっと、すみ ませ ん、駅 へ の 行き 方 を 教え て もらえ ませ ん か？
+        english: Uhm, excuse me, could you tell me the way to the station?
+        hint: 「えっと」 is a pure hesitation sound, while 「あの」 here is also used to politely catch someone's
+          attention. We're looking for an interjection that both signals a pause and politely initiates
+          a request.
+    scene: You are a tourist in Japan, slightly lost, and you want to ask a passerby for directions.
+    register: formal
+    setting: informative
+  - english: Oh, that's right! I have to go to the store today.
+    japanese:
+      - あの、そう だ！今日、お 店 に 行か なく ちゃ。
+      - あの、そう だ！今日、お 店 に 行か なきゃ。
+      - あの、そう でし た！今日、お 店 に 行か なけれ ば なり ませ ん。
+      - あの、そう だ！今日、お 店 に 行か ない と。
+    english_literally: Oh, that's right! Today, I must go to the store.
+    competing_grammar:
+      - competing_japanese:
+          - あ、そう だ！今日、お 店 に 行か なく ちゃ。
+        english: Ah, that's right! I have to go to the store today.
+        hint: 「あ」 is a more sudden exclamation of realization. We're looking for a slightly softer or
+          more thoughtful 'oh' indicating a sudden recall.
+    scene: A person is suddenly reminded of an important errand while doing something else.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「あの」 here signals a self-correction or sudden memory, often accompanied by a slightly
+      rising intonation, as if the speaker is talking to themselves and suddenly recalling something.
+  - english: Hey, do you have a minute? I have something to discuss.
+    japanese:
+      - あの、ちょっと よろしい です か？話し たい こと が ある ん です。
+      - あの、少々 よろしゅう ござい ます か？お 話し し たい こと が ござい ます。
+      - あの、ちょっと いい？話し たい こと が ある ん だ けど。
+    english_literally: Hey, a little bit is it good? There is something I want to talk about.
+    competing_grammar:
+      - competing_japanese:
+          - あの ね、ちょっと よろしい です か？話し たい こと が ある ん です。
+        english: You know, do you have a minute? I have something to discuss.
+        hint: 「あのね」 implies a slightly more intimate or familiar tone, often used when sharing personal
+          news. We're looking for a more general, polite way to initiate a conversation, even with someone
+          you don't know well.
+    scene: A colleague approaches their supervisor to request a private conversation.
+    register: semi-formal
+    setting: professional
+  - english: Um, could you pass the salt, please?
+    japanese:
+      - あの、お 塩 を 取っ て いただけ ます か？
+      - あの、お 塩、取っ て もらえ ます か？
+      - あの、塩、取っ て くれる？
+    english_literally: Um, could I receive the salt, please?
+    competing_grammar:
+      - competing_japanese:
+          - お 塩 を 取っ て いただけ ます か？
+        english: Could you pass the salt, please?
+        hint: The addition of 「あの」 softens the request, making it sound more polite, especially in a service
+          context. We're looking for that introductory, polite interjection.
+    scene: At a dinner table, a guest politely asks someone to pass an item.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Um... actually, I'm not feeling well today, so...
+    japanese:
+      - あの…実 は 今日、具合 が 悪い の で…。
+      - あの…実 は 今日、具合 が 悪い もの です から…。
+      - あの…実 は 本日、体調 が 優れ ませ ん の で…。
+    english_literally: Um…actually today, my condition is bad, so…
+    competing_grammar:
+      - competing_japanese:
+          - ええと…実 は 今日、具合 が 悪い の で…。
+        english: Uhm…actually today, my condition is bad, so…
+        hint: 「ええと」 is a more extended filler. Here, 「あの」 helps to gently introduce an unpleasant fact,
+          allowing the speaker to gather courage or soften the delivery.
+    scene: Someone is trying to politely decline an invitation or explain an absence.
+    register: casual
+    setting: apologetic
+  - english: Oh, that reminds me, what was that movie called?
+    japanese:
+      - あの、そう いえ ば、あの 映画、何 て 言っ た っけ？
+      - あの、そう いえ ば、あの 映画、何 と 仰い まし た っけ？
+      - あの、そう いえ ば、あの 映画、何 て 言っ た っけ な？
+    english_literally: Oh, that reminds me, that movie, what was it called?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、そう いえ ば、あの 映画、何 て 言っ た っけ？
+        english: Hey, speaking of which, what was that movie called?
+        hint: 「ねえ」 is a more direct way to grab attention. 「あの」 here indicates a thought process where
+          something has just come to mind.
+    scene: Two friends are chatting, and one suddenly remembers something they wanted to ask.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 'The repeated 「あの」 in the sentence: the first 「あの」 (interjection) signals the speaker''s sudden
+      recall, while the second 「あの」 (demonstrative) refers to the movie, which is mutually known but currently
+      not a direct topic. This demonstrates the dual use within a single sentence.'
+  - english: Um, could you sign here?
+    japanese:
+      - あの、こちら に サイン を お 願い し ます。
+      - あの、こちら に ご 署名 を お 願い 申し上げ ます。
+      - あの、こちら に サイン し て ください。
+    english_literally: Um, a signature here, I request.
+    competing_grammar:
+      - competing_japanese:
+          - こちら に サイン を お 願い し ます。
+        english: Please sign here.
+        hint: The addition of 「あの」 softens the request, making it sound more polite, especially in a service
+          context. We're looking for that introductory, polite interjection.
+    scene: A bank teller is assisting a customer.
+    register: teineigo (polite)
+    setting: professional
+  - english: Oh, I forgot to tell you earlier. The meeting has been postponed.
+    japanese:
+      - あの、さっき 言い 忘れ まし た。会議 は 延期 に なり まし た。
+      - あの、さっき 言い 忘れ て た。会議、延期 に なっ た よ。
+      - あの、先程 申し上げ 忘れ まし た。会議 は 延期 と なり まし た。
+    english_literally: Oh, I forgot to say earlier. The meeting has become postponed.
+    competing_grammar:
+      - competing_japanese:
+          - しまっ た、さっき 言い 忘れ まし た。会議 は 延期 に なり まし た。
+        english: Damn, I forgot to tell you earlier. The meeting has been postponed.
+        hint: 「しまった」 is an exclamation of frustration or annoyance at a mistake. 「あの」 expresses a milder
+          realization or correction of an oversight.
+    scene: A manager remembers a crucial piece of information they forgot to convey to an employee.
+    register: formal
+    setting: informative
+  - english: Um... how should I put this? It's a bit complicated.
+    japanese:
+      - あの…何 と 言い ます か、少し 複雑 でし て。
+      - あの…どの よう に 申し上げれ ば よろしい か、少々 複雑 で ござい ます。
+      - あの…何 て 言う か、ちょっと 複雑 な ん だ よ ね。
+    english_literally: Um…how should I say it, it is a little complicated.
+    competing_grammar:
+      - competing_japanese:
+          - ええと…何 と 言い ます か、少し 複雑 でし て。
+        english: Uhm…how should I say it, it is a little complicated.
+        hint: Both 「あの」 and 「ええと」 can be used for hesitation. Here, 「あの」 sets a slightly more thoughtful
+          and preparatory tone before explaining a complex situation.
+    scene: A student is asked a difficult question by their professor and needs a moment to formulate
+      an answer.
+    register: semi-formal
+    setting: academic
+  - english: Hey, is that the new coffee shop everyone's talking about?
+    japanese:
+      - あの、あれ、最近 流行り の コーヒー 屋 さん？
+      - あの、あれ は 最近 流行り の コーヒー ショップ です か？
+      - あの、あれ って、最近 流行り の コーヒー 屋 さん？
+    english_literally: Hey, that, recently popular coffee shop?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、あれ、最近 流行り の コーヒー 屋 さん？
+        english: Hey, that, recently popular coffee shop?
+        hint: 「ねえ」 is a more direct and sometimes more feminine way to get attention. 「あの」 is a more neutral
+          and gentler way to draw attention to something you've just noticed.
+    scene: Two friends are walking and one points out a new place they've heard about.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: In this casual setting, 「あの」 is used to gently prompt the listener to look at something the
+      speaker has just noticed, and also to prompt a question about it. It's a soft way to initiate a
+      topic.
+post_example_writeup: As these examples demonstrate, 「あの」 is a remarkably versatile interjection. Its
+  meaning and function are heavily influenced by context, intonation, and what follows it. It can be a
+  simple filler, a polite way to enter a conversation, or a signal of a sudden thought or realization.
+  Mastering its subtle uses will significantly enhance your natural conversational flow in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あの

@@ -1,0 +1,502 @@
+grammar_point: たくさん (many・a lot)
+learn_before:
+  - Verb[(ら)れる] (potential)
+  - Verb[た] (past tense)
+  - Verb[ました] (polite past)
+  - Verbて (uncontrollable consequence)
+  - '[Noun]をください (please give me)'
+  - と (with)
+  - どうぞ (here you are・please・invitation)
+  - 側面 (aspect side)
+meaning: Many, A lot of, Plenty, Enough
+pronunciation:
+  katakana: タクサン
+  romaji: takusan
+formation:
+  たくさん + Verb: Indicates doing a verb to a large extent.
+  たくさん + の + Noun: Indicates a large quantity of something (emphasizes the noun).
+  たくさん + Noun: Indicates a large quantity of something (emphasizes the quantity or the action).
+jlpt: N5
+etymology: The etymology of 「たくさん」 is not definitively known, but it is believed to have originated from
+  a combination of 「多 (ta)」 meaning "many" and 「さん (san)」 which could be an honorific suffix or a word
+  emphasizing quantity. Over time, it evolved into its current form to denote a large amount or quantity.
+writeup: The word 「たくさん」 (沢山) is a common expression in Japanese, primarily functioning as an adverbial
+  noun meaning 'a lot,' 'many,' or 'plenty.' While it is a noun, it often modifies verbs directly to indicate
+  a large extent or quantity of an action. For example, 「たくさん 食べる」 means 'to eat a lot.' When modifying
+  a noun, 「たくさん」 can either directly precede the noun or be followed by the particle 「の」. When 「たくさん」
+  is used directly before a noun without 「の」 (e.g., 「たくさん 本」), it tends to modify the entire phrase, emphasizing
+  the overall quantity of the noun's presence or involvement in the action. Conversely, when 「の」 is used
+  (e.g., 「たくさん の 本」), the focus is placed more specifically on the noun itself, highlighting its large
+  quantity. 「たくさん」 is versatile and widely used in both casual and polite speech across various contexts.
+false_friends:
+  - term: いっぱい
+    meaning: Full, a lot, much
+    kind: similar expression
+    nuance: 「いっぱい」 can mean both "full" (e.g., a glass of water) and "a lot," while 「たくさん」 focuses more
+      on quantity or abundance.
+    grammar_point: いっぱい (full・a lot)
+  - term: 多い・おおい
+    meaning: Many, numerous
+    kind: similar expression
+    nuance: 「多い」 is an adjective that describes the quantity, whereas 「たくさん」 is an adverbial noun indicating
+      the extent or degree.
+    grammar_point: 多い (many・a lot・much)
+  - term: かなり
+    meaning: quite, considerably, fairly
+    kind: similar expression
+    nuance: 「かなり」 indicates a high degree or extent, often subjectively, and can apply to adjectives and
+      adverbs, whereas 「たくさん」 specifically refers to quantity or amount. It often implies a subjective
+      evaluation of a significant degree rather than a simple large count.
+    grammar_point: かなり (quite・considerably)
+  - term: 大勢
+    meaning: many people, a large crowd
+    kind: similar expression
+    nuance: 「大勢」 is exclusively used for a large number of people, often implying a dense gathering, while
+      「たくさん」 can be used for people or inanimate objects and actions, and simply denotes a large quantity
+      without necessarily implying density.
+    grammar_point: 大勢 (many people)
+  - term: 多くの
+    meaning: many, much (adjectival)
+    kind: similar expression
+    nuance: 「多くの」 is an adjectival form that directly modifies a noun, indicating 'many' or 'much' of
+      that noun. In contrast, 「たくさん」 functions adverbially to modify verbs or as an adverbial noun, denoting
+      a large quantity or extent of an action or item.
+    grammar_point: 多い (many・a lot・much)
+  - term: 豊富
+    meaning: abundant, rich
+    kind: similar expression
+    nuance: 「豊富」 describes a state of having an ample or rich supply of something, often used for resources
+      or qualities, whereas 「たくさん」 simply states a large quantity or extent.
+    grammar_point: 豊富 (abundant・rich)
+  - term: 膨大
+    meaning: enormous, vast
+    kind: similar expression
+    nuance: 「膨大」 implies an extremely large or vast quantity, often emphasizing the overwhelming size,
+      which is a stronger degree than 「たくさん」's general 'a lot'.
+    grammar_point: 膨大 (enormous・vast)
+  - term: たっぷり
+    meaning: plenty, ample, full
+    kind: similar expression
+    nuance: 「たっぷり」 suggests a generous or ample amount, often with a nuance of being sufficient or even
+      excessive, particularly for liquids or time, whereas 「たくさん」 is a more general term for 'a lot' of
+      anything.
+    grammar_point: たっぷり (plenty・ample)
+post_false_friends_writeup: While 「いっぱい」, 「多い」, 「かなり」, 「大勢」, 「多くの」, 「豊富」, 「膨大」, and 「たっぷり」 all relate
+  to quantity, they are used differently. 「いっぱい」 can refer to something being full or abundant. 「多い」 is
+  an adjective to describe the number or amount, while 「たくさん」 is an adverbial noun emphasizing the extent
+  or degree to which something exists or is done. 「かなり」 denotes a high degree subjectively, and 「大勢」 is
+  specifically for large numbers of people. 「多くの」 is an adjectival form directly modifying nouns, emphasizing
+  the quantity of the noun itself. 「豊富」 describes a state of richness or abundance. 「膨大」 conveys an overwhelmingly
+  vast quantity. 「たっぷり」 implies an ample and often generous amount, particularly for non-countable things
+  like liquids or time. Consider the context and what you want to emphasize to choose the most appropriate
+  word.
+examples:
+  - english: I studied a lot today.
+    japanese:
+      - 今日 は {たくさん} 勉強 し た。
+      - 今日、{たくさん} 勉強 し た ぞ。
+      - 今日、{たくさん} 勉強 し た よ。
+      - 今日、{たくさん} 勉強 し ちゃっ た。
+    english_literally: Today, a lot study did.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {多く の} 勉強 を し まし た。
+        english: Today, I did many studies.
+        hint: 「多くの」 is an adjective form that describes the noun '勉強' (studies) directly, implying 'many
+          studies' rather than the adverbial 'studied a lot'.
+      - competing_japanese:
+          - 今日 は 勉強 し {すぎ} まし た。
+        english: I studied too much today.
+        hint: This phrase suggests an excessive amount of studying, implying a negative connotation, whereas
+          the original simply states a large quantity. We're looking for a simple statement of large quantity
+          not an excessive one.
+      - competing_japanese:
+          - 今日 は {かなり} 勉強 し まし た。
+        english: I studied quite a lot today.
+        hint: 「かなり」 indicates a significant or considerable amount, often with a subjective judgment,
+          whereas 「たくさん」 simply states a large quantity. We're looking for a simple statement of large
+          quantity.
+    scene: A student proudly tells their parent about their productive day.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「たくさん 勉強 しました」 (though here in casual form 「した」) emphasizes the significant amount
+      of effort put into studying. Using 「勉強 した ぞ」 adds a masculine, confident tone typically used by
+      young males when addressing someone familiar like a parent. 「勉強 した よ」 is a softer, more general
+      casual assertion. 「勉強 し ちゃっ た」 implies the action was completed, possibly with a slight nuance of
+      having done more than expected or intended, but still conveying a large amount of studying in a
+      casual way, as often used by younger speakers to their parents. This demonstrates the versatility
+      of the informal tone with 「たくさん」 in this casual setting and interaction between parent and child
+      of different ages and genders.
+  - english: Many trees are planted in this park.
+    japanese:
+      - この 公園 に は {たくさん} の 木 が 植え られ て い ます。
+      - この 公園 に は {たくさん} の 木 が 植わっ て いる よ。
+      - この 公園 に は {たくさん} の 樹木 が 植え られ て い ます。
+      - この 公園 に は {たくさん} の 木 が 植え られ て いる。
+    english_literally: In this park, many of trees are planted.
+    competing_grammar:
+      - competing_japanese:
+          - この 公園 に は {たくさん} 木 が 植え られ て い ます。
+        english: In this park, trees are planted a lot.
+        hint: Omitting 「の」 would emphasize the action of 'planting a lot' rather than directly modifying
+          'trees' as 'many trees'.
+      - competing_japanese:
+          - この 公園 に は 木 が {多い} です。
+        english: In this park, there are many trees.
+        hint: 「多い」 is an adjective that describes the quantity of trees, presenting it as a characteristic
+          of the park. The target sentence uses 'たくさん の' to emphasize the quantity of trees specifically
+          planted.
+      - competing_japanese:
+          - この 公園 に は {かなり} の 木 が 植え られ て い ます。
+        english: Quite a lot of trees are planted in this park.
+        hint: 「かなり」 suggests a considerable amount, but 「たくさん」 directly states a large quantity, focusing
+          on the sheer number. We're looking for an emphasis on the large number of trees.
+      - competing_japanese:
+          - この 公園 に は {多く の} 木 が 植え られ て い ます。
+        english: In this park, a large number of trees are planted.
+        hint: 「多く の」 focuses on 'many trees' as a specific quantity, while 「たくさん の」 emphasizes the abundance
+          of trees that have been planted. We're looking for an emphasis on the quantity of trees.
+    scene: A landscape architect is explaining the design of a newly developed park, highlighting its
+      rich greenery.
+    register: formal
+    setting: informative
+    nuance: The use of 「の」 after 「たくさん」 specifically modifies 「木」 (trees), putting the focus on the 「数」
+      (kazu, number) and 「種類」 (shurui, variety) of trees, suggesting a deliberate effort to plant extensively.
+      This makes the sentence sound more descriptive and precise. The inclusion of 「樹木」 (jumoku, trees
+      and shrubs) offers a slightly more technical and formal nuance, fitting the context of a landscape
+      architect. 「植わっている」 and 「植えられている」 are both appropriate here; 「植わっている」 implies a state of being planted
+      naturally or as a result of an action, whereas 「植えられている」 specifically emphasizes the action of being
+      planted by someone. The choice reinforces the professional, informative register, consistent with
+      the speaker's role.
+  - english: A lot of people came to the party.
+    japanese:
+      - パーティー に {たくさん} 人 が 来 た。
+      - パーティー に {たくさん} の 人 たち が 来 た ね。
+    english_literally: To the party, a lot of people came.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に {たくさん} の 人 が 来 まし た。
+        english: A lot of people (specifically) came to the party.
+        hint: Using 「の」 puts emphasis on 'many people' as a specific group, whereas the target sentence
+          emphasizes the 'act of many people coming'.
+      - competing_japanese:
+          - パーティー に 来 た 人 は {多い} です。
+        english: The people who came to the party are many.
+        hint: This phrase uses the adjective 「多い」 to describe the quantity of people, making it a statement
+          about the group itself, rather than an adverbial description of the action of coming.
+      - competing_japanese:
+          - パーティー に {大勢} の 人 が 来 まし た。
+        english: A large crowd of people came to the party.
+        hint: 「大勢」 specifically refers to a large number of people, often implying a crowd. We're looking
+          for a more general 'a lot of people' that can also apply to other things.
+      - competing_japanese:
+          - パーティー に {かなり} の 人 が 来 まし た。
+        english: Quite a lot of people came to the party.
+        hint: 「かなり」 indicates a considerable or significant amount, often with a subjective judgment.
+          We're looking for a simple statement of large quantity.
+      - competing_japanese:
+          - パーティー に {多く の} 人 が 来 まし た。
+        english: A large number of people came to the party.
+        hint: 「多く の」 focuses on 'many people' as a specific quantity, while the original emphasizes the
+          act of 'many people coming'. We're looking for an emphasis on the number of people.
+    scene: You are casually describing a successful party where you didn't expect so many guests.
+    register: casual
+    setting: informative
+    nuance: Here, 「たくさん」 modifies the verb 「来 た」 (kita, came), emphasizing that the 「来る」 (kuru, action
+      of coming) was done by many people. It describes the general situation of a high turnout, rather
+      than focusing on the specific group of people. The casual 「来 た ね」 adds a soft, confirmatory tone,
+      commonly used when sharing information with a peer or someone familiar. The variation using 「人 たち」
+      (hitotachi) emphasizes the collectiveness of the 'many people', rather than just a large count of
+      individuals. This further highlights how 「たくさん」 can be flexibly used depending on the specific nuance
+      and context of 'many people'.
+  - english: I gained a lot of experience in Japan.
+    japanese:
+      - 日本 で {たくさん} 経験 を し まし た。
+      - 日本 で {たくさん} 経験 し た。
+      - 日本 で {たくさん} 経験 を 積み まし た。
+      - 日本 で {たくさん} の こと を 経験 し まし た。
+    english_literally: In Japan, a lot of experience did.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で {多く の} 経験 を し まし た。
+        english: I gained many experiences in Japan.
+        hint: 「多くの」 describes the noun '経験' as 'many experiences,' while the target sentence uses 'たくさん'
+          adverbially to describe the action of 'gaining experience' to a large extent.
+      - competing_japanese:
+          - 日本 で 経験 が {豊富} です。
+        english: I have abundant experience in Japan.
+        hint: 「豊富」 (hōfu) means 'abundant' or 'rich,' describing the state of having a lot of experience
+          rather than the action of gaining it in large quantity.
+      - competing_japanese:
+          - 日本 で {かなり} 経験 を し まし た。
+        english: I gained quite a lot of experience in Japan.
+        hint: 「かなり」 indicates a considerable or significant extent, while 「たくさん」 focuses on the sheer
+          volume or amount. We're looking for an emphasis on the large volume of experience.
+      - competing_japanese:
+          - 日本 で 経験 が {多い} です。
+        english: I have much experience in Japan.
+        hint: 「多い」 is an adjective that describes the quantity of experience itself, making it a statement
+          about the characteristic of the experience rather than the action of gaining it in large amounts.
+    scene: Someone is recounting their valuable experiences after returning from a long stay in Japan.
+    register: semi-formal
+    setting: storytelling
+    nuance: 「たくさん 経験 を しました」 uses 「たくさん」 adverbially with the verb 「経験 を する」 (keiken wo suru, to gain
+      experience), indicating a significant 「量」 (ryō, amount) of experience. The semi-formal register
+      is appropriate for sharing personal experiences in a somewhat formal setting. The alternative 「経験
+      を 積み まし た」 (keiken wo tsumimashita) literally means 'piled up experience,' which conveys the nuance
+      of accumulating experience over time, often implying effort and dedication. This adds depth to the
+      meaning of 'gained a lot' by suggesting a cumulative process. The use of 「たくさん の こと を 経験 し まし た」
+      (takusan no koto o keiken shimashita) refers to 'many things/m_atters experienced,' emphasizing
+      the breadth of experiences.
+  - english: He spent a lot of time reading.
+    japanese:
+      - 彼 は {たくさん} の 時間 を 読書 に 費やし た。
+      - 彼 は {たくさん} の 時間 を 読書 に 費やし て い まし た。
+      - 彼 は {たくさん} の 時間 を 読書 に 捧げ た。
+    english_literally: He spent a lot of time for reading.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {膨大 な} 時間 を 読書 に 費やし た。
+        english: He spent a vast amount of time reading.
+        hint: 「膨大 な」 implies a massive or enormous amount, which is a stronger emphasis than simply "a
+          lot" with 「たくさん」. We're looking for a more general statement of 'a lot'.
+      - competing_japanese:
+          - 彼 は {たくさん} 時間 を 読書 に 費やし た。
+        english: He spent time reading a lot.
+        hint: Omitting 「の」 shifts the emphasis slightly, making 「たくさん」 function more as an adverb modifying
+          the entire verb phrase 'spent time reading,' rather than specifically modifying 'time' as 'a
+          lot of time'.
+      - competing_japanese:
+          - 彼 は 読書 に 費やす 時間 が {多い}。
+        english: The time he spends on reading is a lot.
+        hint: This uses the adjective 「多い」 to describe the time itself as 'plentiful,' focusing on the
+          amount of time as a characteristic rather than an action of spending 'a lot' of time.
+      - competing_japanese:
+          - 彼 は {かなり} の 時間 を 読書 に 費やし た。
+        english: He spent a considerable amount of time reading.
+        hint: 「かなり」 emphasizes a noteworthy or substantial amount of time, whereas 「たくさん」 emphasizes the
+          sheer quantity of time. We're looking for a simple statement of large quantity.
+      - competing_japanese:
+          - 彼 は {多く の} 時間 を 読書 に 費やし た。
+        english: He spent a large amount of time reading.
+        hint: 「多く の」 specifically points to 'a large amount of time' as a quantity, while 「たくさん の」 emphasizes
+          the abundance of time spent. We're looking for an emphasis on the quantity of time.
+    scene: A biographer describes a scholar's dedication to their studies.
+    register: formal
+    setting: academic
+    nuance: 「たくさん の 時間」 highlights the 「量」 (ryō, quantity) of 「時間」 (jikan, time) itself as a resource,
+      which was then dedicated to reading. This emphasizes the 「規模」 (kibo, magnitude) of the time commitment,
+      fitting an academic context. The progressive form 「費やし て い まし た」 emphasizes the continuous nature
+      of the action over a period, suitable for describing a sustained dedication. 「捧げた」 (sasageta, dedicated/devoted)
+      indicates a higher level of commitment or sacrifice, which is appropriate for describing a scholar's
+      deep engagement with their studies. These variations demonstrate how 「たくさん」 can be combined with
+      different verbs and verb forms to convey subtle differences in meaning, while maintaining the core
+      idea of a large quantity, which is key in academic contexts.
+  - english: Please eat a lot of rice and get well.
+    japanese:
+      - ご飯 を {たくさん} 食べ て、元気 に なっ て ください。
+      - ご飯 を {たくさん} 食べ て、元気 出し て ね。
+      - ご飯 を {たくさん} 召し上がっ て、お 元気 に なっ て ください。
+      - ご飯 を {たくさん} 食べ なさい。
+    english_literally: Rice, a lot eat, and get well, please.
+    competing_grammar:
+      - competing_japanese:
+          - ご飯 を {お腹 いっぱい} 食べ て ください。
+        english: Please eat until you are full.
+        hint: 「お腹 いっぱい」 (onaka ippai) emphasizes eating until one's stomach is full, focusing on the state
+          of satiety rather than simply a large quantity of food.
+      - competing_japanese:
+          - ご飯 を {沢山} 食べ て ください。
+        english: Please eat a large quantity of rice (more formally/written).
+        hint: 「沢山」 is the kanji writing for 「たくさん」, and while it means the same, it tends to be used in
+          more formal or written contexts compared to the more common hiragana 「たくさん」 in speech.
+      - competing_japanese:
+          - ご飯 を {かなり} 食べ て、元気 に なっ て ください。
+        english: Please eat quite a lot of rice and get well.
+        hint: 「かなり」 indicates a noticeable or considerable amount, which might sound less natural as a
+          direct encouragement to eat a large quantity compared to 「たくさん」, which directly means 'a lot'.
+          We're looking for a direct encouragement to eat a large quantity.
+      - competing_japanese:
+          - '{多く の} ご飯 を 食べ て ください。'
+        english: Please eat a large quantity of rice.
+        hint: 「多く の」 refers to 'a large quantity of rice' as a specific amount. While similar, 「たくさん」
+          is more common for directly modifying verbs like 'taberu' (eat) to mean 'drink a lot'.
+    scene: A grandmother lovingly encourages her grandchild who is recovering from an illness to eat heartily.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The grandmother's use of 「たくさん 食べて」 (tabete, eat a lot) expresses 「愛情」 (aijō, care) and a
+      desire for the grandchild to regain 「力」 (chikara, strength) by consuming a large quantity of food.
+      The casual register is appropriate for family communication. 「元気 出し て ね」 is a softer, more encouraging
+      phrase often used towards children, reflecting the speaker's age and relationship. 「召し上がって」 is a
+      more polite, respectful verb form, fitting for an older person speaking to a younger one with care.
+      「食べ なさい」 (tabe nasai) is a polite imperative, typically used by older figures like parents or grandparents
+      to children, conveying a gentle but firm command. This illustrates the diverse ways 「たくさん」 can be
+      used in different registers while conveying the same core meaning of 'a lot', tailored to the relationship
+      and situation, reflecting gender and age dynamics in Japanese speech.
+  - english: There are many issues with this problem.
+    japanese:
+      - この 問題 に は {たくさん} 課題 が ある。
+      - 本件 に は {たくさん} の 課題 が 存在 し ます。
+      - この 問題 に は {たくさん} の 課題 が あり ます。
+      - この 問題 に は {たくさん} の 課題 が 見受け られ ます。
+    english_literally: This problem, to it, a lot of issues exist.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 に は {たくさん} の 課題 が ある。
+        english: Regarding this problem, there are a lot of issues (specifically).
+        hint: Using 「の」 puts emphasis on 'many issues' as a specific quantity, whereas the target sentence
+          emphasizes the 'existence of issues'in abundance'.
+      - competing_japanese:
+          - この 問題 に は 課題 が {多い}。
+        english: Regarding this problem, issues are many.
+        hint: This uses the adjective 「多い」 to describe the quantity of issues, presenting it as a characteristic
+          of the problem itself, rather than an adverbial description of the existence of issues.
+      - competing_japanese:
+          - この 問題 に は {かなり} 課題 が ある。
+        english: There are quite a few issues with this problem.
+        hint: 「かなり」 implies a significant or noticeable number of issues, whereas 「たくさん」 emphasizes the
+          sheer quantity. We're looking for a direct statement of a large number of issues.
+      - competing_japanese:
+          - この 問題 に は {多く の} 課題 が ある。
+        english: There are a large number of issues with this problem.
+        hint: 「多く の」 focuses on 'a large number of issues' as a specific quantity, while 「たくさん」 emphasizes
+          the sheer abundance of issues. We're looking for a direct statement of a large number of issues.
+    scene: A team leader points out numerous challenges in a new project proposal during a meeting.
+    register: formal
+    setting: serious
+    nuance: 「たくさん 課題 が ある」 (kadai ga aru, many issues exist) uses 「たくさん」 to modify the 「存在」 (sonzai, existence)
+      of the issues, highlighting their 「普及率」 (fukyū-ritsu, prevalence) in a direct, problem-focused manner
+      common in professional discussions. The phrasing implies a simple statement of fact regarding the
+      multitude of issues. The more formal 「本件 に は たくさん の 課題 が 存在 します」 is suitable for a business meeting.
+      The verb 「見受け られ ます」 (miukerareru, can be observed/found) adds a nuance of 'these issues are evident'
+      or 'can be perceived,' making the statement more objective and formal, fitting a serious business
+      discussion. This highlights how 「たくさん」 can be used in highly formal and objective contexts when
+      combined with appropriate vocabulary and expressions.
+  - english: I talked a lot with my friend.
+    japanese:
+      - 友達 と {たくさん} 話し まし た。
+      - 友達 と {たくさん} 話し た。
+    english_literally: Friend with, a lot talked.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 と {長く} 話し まし た。
+        english: I talked with my friend for a long time.
+        hint: 「長く」 emphasizes the duration of the conversation, not the quantity of what was talked about.
+          We're looking for a large amount of talking.
+      - competing_japanese:
+          - 友達 と {いっぱい} 話し まし た。
+        english: I talked a lot/to my fill with my friend.
+        hint: While 「いっぱい」 can mean 'a lot', it can also imply 'to the point of being full' or 'to one's
+          heart's content', which is a slightly different nuance than simply a large quantity. We're looking
+          for a general large quantity of talking.
+    scene: Two friends are catching up after not seeing each other for a while.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「たくさん 話し まし た」 emphasizes the sheer volume of conversation, indicating that they
+      had much to discuss. The polite past tense 「まし た」 makes it suitable for a friendly but polite conversation
+      often used by female friends. The casual 「話し た」 is also common in such friendly settings. The nuance
+      for female speakers talking about catching up with a friend highlights the depth and breadth of
+      their conversation, suggesting they covered many topics or had a very extensive chat, which is a
+      common characteristic of female communication when reconnecting with close friends. This reinforces
+      the naturalness of the example in a female-to-female friendly setting.
+  - english: I have a lot of things I want to do.
+    japanese:
+      - '{たくさん} やり たい こと が あり ます。'
+      - '{たくさん} やり たい こと が ある よ。'
+      - '{たくさん} やり たい こと が あん の さ。'
+    english_literally: A lot of things I want to do exist.
+    competing_grammar:
+      - competing_japanese:
+          - やり たい こと が {多い} です。
+        english: There are many things I want to do.
+        hint: 「多い」 is an adjective describing the quantity of 'things', whereas 「たくさん」 here acts adverbially
+          to emphasize the abundance of 'things I want to do'.
+      - competing_japanese:
+          - '{多く の} やり たい こと が あり ます。'
+        english: I have a large number of things I want to do.
+        hint: 「多く の」 specifies a large number of items. While similar, 「たくさん」 here has a slightly broader,
+          more general sense of 'a lot'. We're looking for a general sense of 'a lot'.
+    scene: A young person thinking about their future plans and aspirations.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「たくさん やり たい こと が あり ます」 expresses a general abundance of desires or plans. The casual tone
+      suggests personal reflection. For a young male, this phrasing sounds natural, expressing enthusiasm
+      for many potential activities. 「あん の さ」 is a very casual, slightly emphatic masculine phrasing,
+      indicating a strong personal feeling or assertion. This phrase would be used amongst very close
+      friends or in informal internal monologue, underscoring a youthful and somewhat assertive male expression
+      of plentiful aspirations or wishes for the future. The phrasing emphasizes the sheer number of things,
+      rather than the things themselves, thus highlighting the desire or intention, a nuance that resonates
+      with a younger speaker's enthusiastic outlook.
+  - english: The concert had a lot of audience members.
+    japanese:
+      - コンサート に は {たくさん} の お 客 さん が い まし た。
+      - コンサート に は {たくさん} の お 客 様 が いらっしゃい まし た。
+      - コンサート に は {たくさん} お 客 さん が 来 た よ。
+    english_literally: Concert, to it, a lot of guests were.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート に は {大勢} の お 客 さん が い まし た。
+        english: The concert's had a large crowd of audience members.
+        hint: 「大勢」 specifically refers to a large number of people, often implying a dense crowd. While
+          applicable, 「たくさん の」 is more general and focuses purely on the large quantity. We're looking
+          for a general large quantity.
+      - competing_japanese:
+          - コンサート に は お 客 さん が {多い} です。
+        english: The concert's audience members were many.
+        hint: 「多い」 is an adjective describing the quantity of people. The original uses 「たくさん の」 to emphasize
+          the abundance of audience members present. We're looking for an emphasis on the abundance.
+    scene: A concert organizer happily discussing the success of their event.
+    register: formal
+    setting: informative
+    nuance: Using 「たくさん の お 客 さん が い まし た」 highlights the sheer number of attendees. The use of 「お 客 さん」
+      (o-kyaku-san) is polite and appropriate for discussing audience numbers in a formal context. 「お
+      客 様 が いらっしゃい まし た」 is a highly respectful form, emphasizing politeness, often used by staff or hosts
+      addressing important guests or a large, respected audience. The casual 「来た よ」 also shows the versatility
+      of 「たくさん」, indicating a more personal, excited tone when sharing the success with a friend or colleague.
+      The combination of 「たくさん」 with honorifics like 「お 客 様」 and respectful verbs like 「いらっしゃい まし た」 demonstrates
+      its usage in highly formal and respectful contexts, while still conveying the core meaning of 'a
+      lot'.
+  - english: Please drink a lot of water.
+    japanese:
+      - '{たくさん} 水 を 飲ん で ください。'
+      - '{たくさん} お 水 を お 飲み ください。'
+      - '{たくさん} お 水 飲ん で ね。'
+    english_literally: A lot of water, please drink.
+    competing_grammar:
+      - competing_japanese:
+          - '{多く の} 水 を 飲ん で ください。'
+        english: Please drink a large quantity of water.
+        hint: 「多く の」 focuses on 'a large quantity of water' as a specific amount. While similar, 「たくさん」
+          is more common for directly modifying verbs like 'nomu' (drink) to mean 'drink a lot'.
+      - competing_japanese:
+          - 水分 を {たっぷり} 摂っ て ください。
+        english: Please take in plenty of fluids.
+        hint: 「たっぷり」 emphasizes 'ample' or 'generous amount', often for fluids, rather than just a general
+          'a lot'. We're looking for a simple 'a lot'.
+    scene: A doctor advising a patient to stay hydrated.
+    register: semi-formal
+    setting: instructional
+    nuance: 「たくさん 水 を 飲ん で ください」 is a direct and polite instruction to drink a large quantity of water.
+      The use of 「お 飲み ください」 is a more formal and respectful way of saying 'please drink', suitable for
+      a professional setting like a doctor's advice, demonstrating the use of honorifics with 「たくさん」.
+      The casual 「飲ん で ね」 is a softer, casual encouragement, perhaps from a parent to a child, highlighting
+      the flexibility of 「たくさん」 across different registers and relationships. The use of 「お 水」 (o-mizu)
+      adds a touch of politeness even in casual contexts. These variations show that 「たくさん」 is used not
+      only in formal and academic settings but also in instructional and supportive contexts to indicate
+      a large amount, adapting to the politeness level.
+post_example_writeup: As you can see from these examples, 「たくさん」 is a versatile word. When directly preceding
+  a noun, it often implies an adverbial sense, emphasizing the quantity of the *action* involving that
+  noun. When followed by 「の」 before a noun, it puts a stronger emphasis on the *quantity of the noun itself*.
+  Understanding this subtle distinction will allow you to use 「たくさん」 with more precision in various contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たくさん

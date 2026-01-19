@@ -1,0 +1,501 @@
+grammar_point: ばよかった (should have)
+learn_before:
+  - '[Verb-よう]思う (intend to)'
+meaning: Should have, I wish, It would have been better to
+conjugations:
+  - conjugation-type: past plain (～た)
+    form: ばよかった
+    rarity: common
+    meaning: should have; I wish I had
+  - conjugation-type: past polite (～ました)
+    form: ばよかったです
+    rarity: common
+    meaning: should have; I wish I had (polite)
+pronunciation:
+  katakana: バヨカッタ
+  romaji: ba yokatta
+formation:
+  Group 1 Verb (五段動詞) Conditional ば形 + よかった: 'Indicates regret that a past action was not taken, or that
+    a different action would have been better. Example: 話す (to speak) → 話せばよかった (I should have spoken)'
+  Group 2 Verb (一段動詞) Conditional れば形 + よかった: 'Indicates regret that a past action was not taken, or that
+    a different action would have been better. Example: 食べる (to eat) → 食べればよかった (I should have eaten)'
+  Irregular Verb する Conditional すれば形 + よかった: 'Indicates regret that a past action was not taken, or that
+    a different action would have been better. Example: する (to do) → すればよかった (I should have done)'
+  Irregular Verb 来る Conditional 来れば形 + よかった: 'Indicates regret that a past action was not taken, or that
+    a different action would have been better. Example: 来る (to come) → 来ればよかった (I should have come)'
+jlpt: N4
+etymology: The grammar point 「ばよかった」 is derived from the conditional form 「～ば」 (if) combined with 「よかった」
+  (was good). Literally, it translates to "it would have been good if…". The 「ば」 highlights a hypothetical
+  situation, and 「よかった」 expresses the speaker's sentiment that the situation would have been preferable
+  to the actual outcome.
+writeup: |-
+  「ばよかった」 is used to express regret or a wish that something had been done differently. It combines the conditional particle 「ば」 with the past tense of the い-adjective 「良い」 (いい), which conjugates to 「よかった」. This construction translates to "I wish I had done (A)" or "I should have done (A)." It is used after verbs conjugated into the conditional 「ば」 form.
+
+  The conjugation to the conditional 「ば」 form varies by verb group:
+
+  *   For Group 1 verbs (五段動詞, Godan Doushi), the final う sound changes to え, and ば is added (e.g., 話す → 話せば).
+  *   For Group 2 verbs (一段動詞, Ichidan Doushi), the final る is dropped, and れば is added (e.g., 食べる → 食べれば).
+  *   Irregular verbs する (suru) and 来る (kuru) become すれば and 来れば respectively.
+
+  It's **important** to note the contrast with 「ばいい」, the non-past version, which means "it would be good if (A)".
+false_friends:
+  - term: たらいい・といい
+    meaning: It would be nice if, It would be good if, Should, I hope
+    kind: similar expression
+    nuance: Unlike 「ばよかった」 which expresses regret about the past, 「たらいい」 and 「といい」 express a desire or
+      hope for a present or future situation.
+    grammar_point: たらいい・といい (hope・suggestion)
+  - term: てよかった
+    meaning: I'm glad that
+    kind: antonym
+    nuance: Unlike 「ばよかった」 which expresses regret, 「てよかった」 expresses relief or satisfaction about something
+      that happened.
+    grammar_point: てよかった (glad or relieved that)
+  - term: べきだった
+    meaning: Should have (duty/obligation)
+    kind: similar expression
+    nuance: While both express 'should have', 「べきだった」 implies a strong sense of duty or obligation that
+      was not fulfilled. 「ばよかった」 is a more general expression of regret or a wish for a different past
+      action.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ～ない方がよかった
+    meaning: It would have been better not to
+    kind: similar expression
+    nuance: This phrase expresses that not doing something would have been preferable. It's often a factual
+      preference for non-action, whereas 「ばよかった」 implies personal regret about an action taken or not
+      taken.
+    grammar_point: '[Verb-ない]ほうがいい (it is better not to do)'
+  - term: ～たかった
+    meaning: Wanted to do, but didn't
+    kind: similar expression
+    nuance: 「～たかった」 expresses a past desire or wish that was not fulfilled. 「ばよかった」 goes further to express
+      regret about the consequence of that unfulfilled desire or a past action/inaction.
+    grammar_point: たい (want to do)
+  - term: たらよかった
+    meaning: It would have been better if (colloquial regret)
+    kind: similar expression
+    nuance: たらよかった is a colloquial and sometimes softer alternative to ばよかった, carrying a similar meaning
+      of regret for a past action or state. It's often used conversationally.
+    grammar_point: <suggest>:たらよかった (it would have been better if)
+  - term: 後悔する
+    meaning: to regret
+    kind: similar expression
+    nuance: While 後悔する directly states the act of regretting, ばよかった expresses the regret by implying a
+      hypothetical better alternative action in the past.
+    grammar_point: <suggest>:後悔する (to regret)
+  - term: ていたら
+    meaning: if (hypothetical past)
+    kind: similar expression
+    nuance: ていたら presents a general hypothetical condition in the past and its consequence, while ばよかった
+      specifically conveys the speaker's regret about their own past action or inaction.
+    grammar_point: <suggest>:ていたら (if hypothetical)
+post_false_friends_writeup: While 「ばよかった」 conveys regret about a past action or inaction, expressions
+  like 「たらいい」 and 「といい」 are used for expressing hopes or suggestions for the present or future. In contrast,
+  「てよかった」 signifies relief or contentment regarding a past event. 「べきだった」 implies a strong, unfulfilled
+  duty, unlike the more general regret of 「ばよかった」. Furthermore, 「～ない方がよかった」 is a direct preference for
+  not having done something, and 「～たかった」 expresses a past desire that was not met, all differing from
+  the nuanced regret of 「ばよかった」. Additionally, 「たらよかった」 is a colloquial variation of regret, while 「後悔する」
+  is a direct verb for 'to regret'. 「ていたら」 is a general conditional for hypothetical pasts, lacking the
+  specific nuance of regret present in 「ばよかった」.
+examples:
+  - english: I should have spoken sooner, right?
+    japanese:
+      - もっと 早く 話せ {ば よかっ た} ね。
+      - もっと 早く 話せ {ば よかっ た} な。
+      - もっと 早く 話せ {ば よかっ た}。
+    english_literally: It would have been good if I had spoken sooner.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 早く 話し {て よかっ た} ね。
+          - もっと 早く 話し {て よかっ た です} ね。
+        english: I'm glad I spoke sooner.
+        hint: 「てよかった」 expresses satisfaction or relief about a past action. We're looking for a phrase
+          that expresses regret about a past action not taken.
+    scene: A friend regretting a delay in communication after a problem arises.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The use of 「ね」 or 「な」 softens the regret and invites agreement/reflection from the listener,
+      making it a casual reflection rather than a strong complaint.
+  - english: I should have spoken sooner, right?
+    japanese:
+      - もっと 早く 話せ {ば よかっ た です} ね。
+      - もっと 早く 話せ {ば よかっ た です}。
+    english_literally: It would have been good if I had spoken sooner.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 早く 話し {て よかっ た} ね。
+          - もっと 早く 話し {て よかっ た です} ね.
+        english: I'm glad I spoke sooner.
+        hint: 「てよかった」 expresses satisfaction or relief about a past action. We're looking for a phrase
+          that expresses regret about a past action not taken.
+    scene: A friend regretting a delay in communication after a problem arises, speaking politely.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: Using 「よかったです」 makes the regret polite and appropriate for general conversation with acquaintances
+      or superiors. 「ね」 still adds a softening touch.
+  - english: It would have been better if I had stated my opinion clearly in front of everyone.
+    japanese:
+      - みんな の 前 で はっきり と 意見 を 言え {ば よかっ た です}。
+      - みんな の 前 で はっきり と 意見 を 言え {ば よかっ た です} ね.
+    english_literally: It would have been good if I had stated my opinion clearly in front of everyone.
+    competing_grammar:
+      - competing_japanese:
+          - みんな の 前 で はっきり と 意見 を 言う {べき} でし た。
+          - みんな の 前 で はっきり と 意見 を 言う {べき} だっ た。
+        english: I should have stated my opinion clearly in front of everyone (because it was my duty).
+        hint: 「～べきだった」 implies a strong obligation or duty that was not fulfilled. We're looking for a
+          more general expression of regret or a wish that a past action had been different.
+    scene: A junior employee regretting not speaking up during a group discussion.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The polite 「よかったです」 is appropriate for a professional setting. A younger female speaker might
+      use this to express a mild, reflective regret to a superior or colleagues without being overly dramatic
+      or blaming others.
+  - english: It would have been better if I had stated my opinion clearly in front of everyone.
+    japanese:
+      - みんな の 前 で はっきり と 意見 を 言え {ば よかっ た}。
+      - みんな の 前 で はっきり と 意見 を 言え {ば よかっ た} ね。
+      - みんな の 前 で はっきり と 意見 を 言え {ば よかっ た} な.
+    english_literally: It would have been good if I had stated my opinion clearly in front of everyone.
+    competing_grammar:
+      - competing_japanese:
+          - みんな の 前 で はっきり と 意見 を 言う {べき} でし た。
+          - みんな の 前 で はっきり と 意見 を 言う {べき} だっ た。
+        english: I should have stated my opinion clearly in front of everyone (because it was my duty).
+        hint: 「～べきだった」 implies a strong obligation or duty that was not fulfilled. We're looking for a
+          more general expression of regret or a wish that a past action had been different.
+    scene: A junior employee regretting not speaking up during a group discussion, speaking casually to
+      a close friend.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: This casual form expresses the same regret in a more direct, less formal way, suitable for
+      close friends or internal thought.
+  - english: Ah, I wish I had gone to that store earlier.
+    japanese:
+      - あの 店 は 前 もっ て 行け {ば よかっ た} なあ。
+      - あの 店 は 前 もっ て 行け {ば よかっ た}。
+      - あの 店 は 前 もっ て 行け {ば よかっ た} ね。
+      - あの 店 は 前 もっ て 行け {ば よかっ た} な.
+    english_literally: It would have been good if I had gone to that store beforehand.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 に 前 もっ て 行き {たかっ た} なあ。
+          - あの 店 に 前 もっ て 行き {たかっ た です} なあ.
+        english: Ah, I wanted to go to that store earlier.
+        hint: 「～たかった」 expresses a past desire or wish. We're looking for a phrase that conveys regret
+          about not having gone.
+    scene: A couple standing outside a popular, closed store.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「なあ」 at the end adds a sense of longing and self-reproach, characteristic of male
+      casual speech when expressing regret or wistfulness.
+  - english: Ah, I wish I had gone to that store earlier.
+    japanese:
+      - あの 店 は 前 もっ て 行け {ば よかっ た です} なあ。
+      - あの 店 は 前 もっ て 行け {ば よかっ た です}。
+      - あの 店 は 前 もっ て 行け {ば よかっ た です} ね.
+    english_literally: It would have been good if I had gone to that store beforehand.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 に 前 もっ て 行き {たかっ た} なあ。
+          - あの 店 に 前 もっ て 行き {たかっ た です} なあ.
+        english: Ah, I wanted to go to that store earlier.
+        hint: 「～たかった」 expresses a past desire or wish. We're looking for a phrase that conveys regret
+          about not having gone.
+    scene: A couple standing outside a popular, closed store, speaking politely.
+    register: teineigo (polite)
+    setting: melancholic
+    conjugation: past polite (～ました)
+    nuance: Maintaining the 「なあ」 with 「よかったです」 softens the polite expression, allowing for a more reflective,
+      wistful tone in a polite context.
+  - english: I should have left home earlier.
+    japanese:
+      - もっと 早く 家 を 出れ {ば よかっ た}。
+      - もっと 早く 家 を 出れ {ば よかっ た} ね。
+      - もっと 早く 家 を 出れ {ば よかっ た} な.
+    english_literally: It would have been good if I had left home earlier.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 早く 家 を 出 {たら よかっ た}。
+          - もっと 早く 家 を 出 {たら よかっ た です}。
+        english: It would have been better if I left home earlier.
+        hint: 「たらよかった」 is a common, slightly more colloquial way to express regret. We're looking for
+          the more direct expression of 'should have' using ば形.
+    scene: Someone stuck in heavy traffic, realizing they will be late.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: A simple, direct expression of regret, common in everyday casual speech.
+  - english: I should have left home earlier.
+    japanese:
+      - もっと 早く 家 を 出れ {ば よかっ た です}。
+      - もっと 早く 家 を 出れ {ば よかっ た です} ね.
+    english_literally: It would have been good if I had left home earlier.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 早く 家 を 出 {たら よかっ た}。
+          - もっと 早く 家 を 出 {たら よかっ た です}。
+        english: It would have been better if I left home earlier.
+        hint: 「たらよかった」 is a common, slightly more colloquial way to express regret. We're looking for
+          the more direct expression of 'should have' using ば形.
+    scene: Someone stuck in heavy traffic, realizing they will be late, speaking politely to a colleague.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: A polite and common way to express personal regret to others, such as colleagues or acquaintances,
+      without being overly informal.
+  - english: I think I should have studied a little more.
+    japanese:
+      - もう 少し 勉強 すれ {ば よかっ た} と 思っ て い ます。
+      - もう 少し 勉強 すれ {ば よかっ た} と 思い ます。
+      - もう 少し 勉強 すれ {ば よかっ た} と 思っ て い ます ね.
+    english_literally: I think it would have been good if I had studied a little more.
+    competing_grammar:
+      - competing_japanese:
+          - もう 少し 勉強 し なかっ た と {後悔 し て い ます}。
+          - もう 少し 勉強 し なかっ た と {後悔 し て いる}。
+        english: I regret not having studied a little more.
+        hint: 「後悔している」 directly states regret. We're looking for a construction that implies a hypothetical
+          better past action using a conditional form.
+    scene: A student after receiving disappointing test results, reflecting seriously.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: Adding 「と 思っています」 indicates a formal and direct conveyance of a reflective thought, suitable
+      for a serious context like discussing academic performance with a teacher.
+  - english: I think I should have studied a little more.
+    japanese:
+      - もう 少し 勉強 すれ {ば よかっ た} と 思う。
+      - もう 少し 勉強 すれ {ば よかっ た} と 思う よ。
+      - もう 少し 勉強 すれ {ば よかっ た} と 思う ね.
+    english_literally: I think it would have been good if I had studied a little more.
+    competing_grammar:
+      - competing_japanese:
+          - もう 少し 勉強 し なかっ た と {後悔 し て い ます}。
+          - もう 少し 勉強 し なかっ た と {後悔 し て いる}。
+        english: I regret not having studied a little more.
+        hint: 「後悔している」 directly states regret. We're looking for a construction that implies a hypothetical
+          better past action using a conditional form.
+    scene: A student after receiving disappointing test results, reflecting casually to themselves or
+      a close friend.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    nuance: The casual 「と思う」 indicates personal reflection or thought, suitable for talking to oneself
+      or close friends.
+  - english: I wish I had been more careful before leaving.
+    japanese:
+      - 出かける 前 に 気 を つけ れ {ば よかっ た} なあ。
+      - 出かける 前 に 気 を つけ れ {ば よかっ た}。
+      - 出かける 前 に 気 を つけ れ {ば よかっ た} ね。
+      - 出かける 前 に 気 を つけ れ {ば よかっ た} な.
+    english_literally: It would have been good if I had been more careful before leaving.
+    competing_grammar:
+      - competing_japanese:
+          - 出かける 前 に もっと 注意 す {べき だっ た}。
+          - 出かける 前 に もっと 注意 す {べき でし た}。
+        english: I should have been more careful before leaving.
+        hint: 「～べきだった」 implies a strong sense of duty or obligation. We're looking for a general expression
+          of regret using the conditional form, rather than a strong obligation.
+    scene: A person who just got caught in an unexpected downpour or had a minor mishap.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The simple phrase 「気をつけばよかった」 expresses a general regret about not being more attentive. The
+      「なあ」 adds a reflective, slightly self-reproaching tone, common in casual female speech when sighing
+      or lamenting.
+  - english: I wish I had been more careful before leaving.
+    japanese:
+      - 出かける 前 に 気 を つけ れ {ば よかっ た です} なあ。
+      - 出かける 前 に 気 を つけ れ {ば よかっ た です}。
+      - 出かける 前 に 気 を つけ れ {ば よかっ た です} ね.
+    english_literally: It would have been good if I had been more careful before leaving.
+    competing_grammar:
+      - competing_japanese:
+          - 出かける 前 に もっと 注意 す {べき だっ た}。
+          - 出かける 前 に もっと 注意 す {べき でし た}。
+        english: I should have been more careful before leaving.
+        hint: 「～べきだった」 implies a strong sense of duty or obligation. We're looking for a general expression
+          of regret using the conditional form, rather than a strong obligation.
+    scene: A person who just got caught in an unexpected downpour or had a minor mishap, speaking politely.
+    register: teineigo (polite)
+    setting: melancholic
+    conjugation: past polite (～ました)
+    nuance: Using 「よかったです」 politely expresses the regret, while 「なあ」 still maintains a soft, reflective,
+      or lamenting nuance, suitable for polite conversation where some personal feeling is expressed.
+  - english: I should have listened to my parents.
+    japanese:
+      - 親 の 言う こと を 聞け {ば よかっ た}。
+      - 親 の 言う こと を 聞け {ば よかっ た} ね。
+      - 親 の 言う こと を 聞け {ば よかっ た} な.
+    english_literally: It would have been good if I had listened to my parents.
+    competing_grammar:
+      - competing_japanese:
+          - 親 の 言う こと を 聞く {べき だっ た}。
+          - 親 の 言う こと を 聞く {べき でし た}。
+        english: I should have listened to my parents (because it was my duty).
+        hint: 「べきだった」 implies a strong sense of duty or obligation that was not fulfilled. We're looking
+          for a more personal regret.
+    scene: A young adult facing consequences after ignoring parental advice.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: Expresses personal regret, a common sentiment in adulthood. The directness of the casual form
+      emphasizes the personal nature of the regret.
+  - english: I should have listened to my parents.
+    japanese:
+      - 親 の 言う こと を 聞け {ば よかっ た です}。
+      - 親 の 言う こと を 聞け {ば よかっ た です} ね.
+    english_literally: It would have been good if I had listened to my parents.
+    competing_grammar:
+      - competing_japanese:
+          - 親 の 言う こと を 聞く {べき だっ た}。
+          - 親 の 言う こと を 聞く {べき でし た}。
+        english: I should have listened to my parents (because it was my duty).
+        hint: 「べきだった」 implies a strong sense of duty or obligation that was not fulfilled. We're looking
+          for a more personal regret.
+    scene: A young adult discussing their past choices with an older, respected family member or mentor.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+    nuance: The polite form allows one to express a negative past reflection in a socially appropriate
+      manner, without sounding overly casual or blaming others.
+  - english: It would have been better if I hadn't gone there.
+    japanese:
+      - そこ に 行か なけ れ {ば よかっ た}。
+      - そこ に 行か なけ れ {ば よかっ た} ね。
+      - そこ に 行か なけ れ {ば よかっ た} な.
+    english_literally: It would have been good if I had not gone there.
+    competing_grammar:
+      - competing_japanese:
+          - そこ に 行か {ない ほう が よかっ た}。
+          - そこ に 行か {ない ほう が よかっ た です}。
+        english: It would have been better not to go.
+        hint: 「～ない方がよかった」 expresses that not doing something would have been preferable, often less strong
+          or more a factual statement than the regret implied by 「ばよかった」. We're looking for a direct expression
+          of regret using the conditional ば形.
+    scene: Someone reflecting on a negative experience they had after visiting a specific place.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    nuance: Uses the negative conditional form 「～なければ」 with 「ばよかった」 to express regret about performing
+      an action. This is a common way to say "I wish I hadn't...".
+  - english: It would have been better if I hadn't gone there.
+    japanese:
+      - そこ に 行か なけ れ {ば よかっ た です}。
+      - そこ に 行か なけ れ {ば よかっ た です} ね.
+    english_literally: It would have been good if I had not gone there.
+    competing_grammar:
+      - competing_japanese:
+          - そこ に 行か {ない ほう が よかっ た}。
+          - そこ に 行か {ない ほう が よかっ た です}。
+        english: It would have been better not to go.
+        hint: 「～ない方がよかった」 expresses that not doing something would have been preferable, often less strong
+          or more a factual statement than the regret implied by 「ばよかった」. We're looking for a direct expression
+          of regret using the conditional ば形.
+    scene: Sharing a regrettable past experience with a new acquaintance or colleague.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: The polite form allows one to express a negative past reflection in a socially appropriate
+      manner, without sounding overly casual or blaming others.
+  - english: If I had bought that stock then, I would be rich now.
+    japanese:
+      - あの 時 あの 株 を 買っ {て い れ ば}、今頃 金持ち だろう に。
+      - あの 時 あの 株 を 買っ {て い れ ば}、今頃 金持ち だろう に。
+    english_literally: It would have been good if I had bought that stock then.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 あの 株 を 買っ {て い たら}、今頃 金持ち だろう に。
+          - あの 時 あの 株 を 買っ {て い たら}、今頃 金持ち でしょ う に。
+        english: If I had bought that stock then, I'd probably be rich now.
+        hint: 「～ていたら」 is another conditional form often used for hypothetical past situations and their
+          consequences, but 「ばよかった」 specifically focuses on the speaker's regret about their own action
+          or inaction. We're looking for a direct expression of 'should have' as a form of regret.
+    scene: An older person regretting a past financial decision while talking to a friend.
+    register: casual
+    setting: pessimistic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The use of 「～ていれば」 implies a state or continuous action that, if it had occurred, would have
+      led to a better outcome. 「なあ」 adds a wistful, regretful tone, common in reflective male speech.
+  - english: If I had bought that stock then, I would be rich now.
+    japanese:
+      - あの 時 あの 株 を 買っ {て い れ ば よかっ た です}。
+      - あの 時 あの 株 を 買っ {て い れ ば よかっ た です} ね。
+    english_literally: It would have been good if I had bought that stock then.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 あの 株 を 買っ {て い たら}、今頃 金持ち だろう に。
+          - あの 時 あの 株 を 買っ {て い たら}、今頃 金持ち でしょ う に.
+        english: If I had bought that stock then, I'd probably be rich now.
+        hint: 「～ていたら」 is another conditional form often used for hypothetical past situations and their
+          consequences, but 「ばよかった」 specifically focuses on the speaker's regret about their own action
+          or inaction. We're looking for a direct expression of 'should have' as a form of regret.
+    scene: An older person regretting a past financial decision while talking to a junior colleague or
+      mentee.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: Combines the politeness of 「よかったです」 with the contemplative 「なあ」, suitable for expressing a
+      personal regret in a polite but reflective tone.
+  - english: I should have prepared the documents more carefully.
+    japanese:
+      - 書類 を もっと 丁寧 に 準備 すれ {ば よかっ た です}。
+      - 書類 を もっと 丁寧 に 準備 すれ {ば よかっ た です} ね.
+    english_literally: It would have been good if I had prepared the documents more carefully.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 を もっと 丁寧 に 準備 す {べき でし た}。
+          - 書類 を もっと 丁寧 に 準備 す {べき だっ た}。
+        english: I should have prepared the documents more carefully (it was my duty).
+        hint: 「べきでした」 implies an unfulfilled obligation or duty. We're looking for a more general expression
+          of regret or a wish that a past action had been different, not necessarily a duty.
+    scene: An office worker realizing a mistake in an important report before a presentation and speaking
+      to a supervisor.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This example demonstrates a professional context for regret. The polite form 「よかったです」 is appropriate.
+      A female speaker might use this to express a self-critical professional regret without sounding
+      overly dramatic or blaming others.
+  - english: I should have prepared the documents more carefully.
+    japanese:
+      - 書類 を もっと 丁寧 に 準備 すれ {ば よかっ た}。
+      - 書類 を もっと 丁寧 に 準備 すれ {ば よかっ た} ね。
+      - 書類 を もっと 丁寧 に 準備 すれ {ば よかっ た} な.
+    english_literally: It would have been good if I had prepared the documents more carefully.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 を もっと 丁寧 に 準備 す {べき でし た}。
+          - 書類 を もっと 丁寧 に 準備 す {べき だっ た}。
+        english: I should have prepared the documents more carefully (it was my duty).
+        hint: 「べきでした」 implies an unfulfilled obligation or duty. We're looking for a more general expression
+          of regret or a wish that a past action had been different, not necessarily a duty.
+    scene: An office worker realizing a mistake in an important report before a presentation, speaking
+      to a close colleague or friend.
+    register: casual
+    setting: apologetic
+    conjugation: past plain (～た)
+    nuance: The casual form conveys a direct, personal regret, suitable for informal conversations with
+      trusted colleagues.
+post_example_writeup: Understanding the precise nuance of regret is crucial in Japanese. 「ばよかった」 directly
+  communicates a wish that a past action had been different, often implying a sense of self-reproach or
+  a recognition of a missed opportunity. While other expressions can convey similar sentiments, 「ばよかった」
+  specifically uses the conditional form to posit a hypothetical, better past, distinguishing it from
+  general past desires or duties.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ばよかった

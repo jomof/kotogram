@@ -1,0 +1,307 @@
+grammar_point: と伝える (to convey or report)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - '[Noun]をください (please give me)'
+  - って (casual quotation・reason・topic)
+  - ではなくて・じゃなくて (not A but B)
+  - なく (not and or but)
+  - なし (without・no)
+  - も又 (too・also・again emphatic)
+  - を旨とする (to make it one's principle)
+  - 入り (containing)
+  - 気持ち (feeling・mood)
+  - 真上 (directly above)
+meaning: To convey (a message), to report, to tell (information to someone). It emphasizes the act of
+  transmitting information.
+pronunciation:
+  katakana: トツタエル
+  romaji: to tsutaeru
+formation:
+  '[Quoted content] と + 伝える (つたえる)': To convey or report the quoted content, emphasizing the content of
+    the message.
+  '[Information] を + 伝える (つたえる)': To convey specific information or feelings, focusing on the information
+    itself.
+  '[Person に] + [Information を] + 伝える (つたえる)': To convey information to a specific person, highlighting
+    the recipient.
+jlpt: N4
+etymology: The verb 伝える (つたえる) originates from 伝う (つたう), meaning "to go along" or "to travel along." This
+  root reflects the idea of something being passed along or moving from one point to another. The quotative
+  particle と (to) signifies the content of what is being passed along. Thus, と伝える literally means "to
+  pass along (that) X," highlighting the act of transmission of a specific message.
+writeup: |-
+  The grammar point と伝える (to tsutaeru) is used to express the act of **conveying**, **reporting**, or **telling** a message or information to someone. The と particle functions as a quotative marker, indicating that the preceding clause is the content being conveyed. While 言う (いう) simply means "to say," 伝える (つたえる) carries a distinct nuance of **transmission** or **delivery** of information, often implying that the speaker is acting as a messenger or is responsible for ensuring the information reaches its intended recipient. This makes と伝える particularly useful when relaying messages, news, feelings, or instructions from one party to another.
+
+  The choice between と伝える and other verbs like 言う or 話す often depends on the speaker's emphasis. If the focus is on the act of *delivering* a message from one party to another, 伝える is more appropriate. If it's simply about the act of *speaking* or *stating* something generally, 言う or 話す might be used. For higher levels of politeness or humility, especially in business contexts when conveying information on behalf of someone else, humble forms like お伝えします (otsutae shimasu) or お伝えいたします (otsutae itashimasu) can be used.
+false_friends:
+  - term: 言う (いう)
+    meaning: to say, to speak
+    kind: similar expression
+    nuance: 言う is a general verb for speaking or stating. と伝える specifically implies *conveying* a message
+      or information to someone else, often as a messenger or with a specific target in mind. You might
+      言う something to yourself, but you 伝える something *to someone*.
+    grammar_point: <suggest>:言う (to say)
+  - term: 話す (はなす)
+    meaning: to speak, to talk
+    kind: similar expression
+    nuance: 話す focuses on the act of conversation or communication in general, often implying a two-way
+      exchange. と伝える is about the one-way transmission of a specific piece of information or message.
+    grammar_point: <suggest>:話す (to talk)
+  - term: 教える (おしえる)
+    meaning: to teach, to tell (information/instruction)
+    kind: similar expression
+    nuance: While 教える involves conveying information, it specifically implies imparting knowledge, instructions,
+      or teaching a skill. と伝える is broader, referring to relaying any kind of message or information,
+      without the pedagogical implication.
+    grammar_point: <suggest>:教える (to teach)
+  - term: 報告する (ほうこくする)
+    meaning: to report (formally)
+    kind: similar expression
+    nuance: 報告する is a more formal and specific term for making a report, often summarizing findings or
+      developments in a structured way (e.g., a business report, a police report). と伝える is more general
+      and can apply to informal messages as well as formal ones. 報告する often implies a superior-subordinate
+      relationship or an official context.
+    grammar_point: <suggest>:報告する (to report)
+post_false_friends_writeup: While these verbs all involve communication, と伝える distinguishes itself by
+  focusing on the active delivery of a message from one point to another, often with the speaker acting
+  as an intermediary. 言う is the most general "to say," 話す implies a conversational exchange, and 教える specifically
+  means to impart knowledge or instruction. 報告する is a more formal and structured act of reporting specific
+  findings. Understanding these subtle differences is key to choosing the most natural and appropriate
+  verb in Japanese.
+examples:
+  - english: Please tell him I'll be late.
+    japanese:
+      - 彼 に {遅れる と 伝える}。
+      - 彼 に {遅れる と 伝え て ください}。
+      - 彼 に {遅れる と 伝え て くれる}？
+    english_literally: To him, will be late, I convey.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 遅れる と 言う。
+        english: Say to him that I'll be late.
+        hint: While 言う means 'to say', と伝える is preferred when you are conveying a message from one person
+          to another. We're looking for an emphasis on relaying the message.
+    scene: A friend is asking another friend to relay a message.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is a casual request using the plain form of 伝える. The phrase 「遅れる と 伝える」 directly conveys
+      the content of the message, 'I will be late'. 「伝えてください」 is a polite request, and 「伝えてくれる？」 is a
+      casual request.
+  - english: I will convey the message to Tanaka-san.
+    japanese:
+      - 田中 さん に {その 旨 を 伝え ます}。
+      - 田中 さん に {その 旨 を お 伝え し ます}。
+      - 田中 さん に {その 旨 を お 伝え いたし ます}。
+    english_literally: To Tanaka-san, that effect/content, I will convey.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん に その 旨 を 報告 し ます。
+        english: I will report that message to Tanaka-san.
+        hint: 報告する implies a formal report, often summarizing findings. Here we're simply relaying a message.
+          We're looking for the nuance of general message conveyance.
+    scene: A colleague reassuring another that they will deliver information.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The polite form 「伝えます」 is used. 「その 旨 (その むね)」 is a polite way to refer to 'that effect' or
+      'that content', common in formal settings to refer to previously discussed information. 「お伝えします」
+      and 「お伝えいたします」 are humble forms, increasing the politeness and showing respect to the recipient.
+  - english: I want to convey my gratitude.
+    japanese:
+      - 感謝 の 気持ち を {伝え たい}。
+      - 感謝 の 気持ち を {お 伝え し たい} です。
+    english_literally: Gratitude's feelings, I want to convey.
+    competing_grammar:
+      - competing_japanese:
+          - 感謝 の 気持ち を 表現 し たい。
+        english: I want to express my gratitude.
+        hint: 表現する is 'to express' generally. 伝える specifically implies delivering or transmitting that
+          feeling to someone else. We're looking for the nuance of transmitting emotions.
+    scene: Someone reflecting on their desire to express thankfulness.
+    register: casual
+    setting: reflective
+    conjugation: desiderative (～たい)
+    nuance: 「気持ち を 伝えたい」 is a common expression for wanting to convey one's feelings. It emphasizes the
+      desire to transmit emotions rather than just stating them. Adding 「お伝えしたいです」 makes the expression
+      more polite.
+  - english: They conveyed the sad news.
+    japanese:
+      - 彼 ら は 悲しい 知らせ を {伝え た}。
+      - 彼 ら は 悲しい 知らせ を {伝え まし た}。
+    english_literally: They, sad news, conveyed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 悲しい 知らせ を 発表 し た。
+        english: They announced the sad news.
+        hint: 発表する means 'to announce' or 'to present', which implies a more public or formal declaration.
+          伝える is about the act of delivering the message. We're looking for a simple conveyance of information.
+    scene: A news report or historical account.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The past plain form 「伝えた」 is used. This sentence emphasizes the act of delivering important,
+      in this case, unfortunate, news. 「伝えました」 is the polite past form.
+  - english: This festival conveys the traditions of the ancestors.
+    japanese:
+      - この 祭り は 先祖 の 伝統 を {伝え て いる}。
+      - この 祭り が 先祖 の 伝統 を {伝え て いる}。
+    english_literally: This festival, ancestors' traditions, is conveying.
+    competing_grammar:
+      - competing_japanese:
+          - この 祭り は 先祖 の 伝統 を 表し て いる。
+        english: This festival represents the traditions of the ancestors.
+        hint: 表す (arawasu) means 'to represent' or 'to show'. While similar, 伝える emphasizes the active
+          transmission of culture across generations. We're looking for the nuance of active cultural
+          transmission.
+    scene: Explaining cultural significance.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「伝えている」 here indicates an ongoing state or continuous action, meaning the festival *is currently*
+      transmitting or *serves to transmit* the traditions across generations. Using 「が」 instead of 「は」
+      can place more emphasis on the festival as the conveyer.
+  - english: Please convey the instructions to the team.
+    japanese:
+      - チーム に 指示 を {伝え て ください}。
+      - チーム に 指示 を {お 伝え ください}。
+    english_literally: To the team, instructions, please convey.
+    competing_grammar:
+      - competing_japanese:
+          - チーム に 指示 を 言っ て ください。
+        english: Please say the instructions to the team.
+        hint: 言う (iu) is 'to say' in general. 伝える (tsutaeru) specifically refers to conveying a message
+          or information, implying a relaying action. We're looking for the nuanced act of transmitting
+          instructions.
+    scene: A manager giving a task to an employee.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: The 「〜てください」 form is a polite request. This example uses it to instruct someone to relay specific
+      information or directives to a group, emphasizing the clear transmission of information. 「お伝えください」
+      is a more polite and humble way to make the request.
+  - english: I couldn't convey what I really wanted to say.
+    japanese:
+      - 本当 に 言い たい こと を {伝え られ なかっ た}。
+      - 本当 に 言い たい こと を {伝え られ ませ ん でし た}。
+    english_literally: Truly want to say thing, could not convey.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 言い たい こと が 言え なかっ た。
+        english: I couldn't say what I really wanted to say.
+        hint: 言う (iu) focuses on the act of speaking. 伝える (tsutaeru) focuses on the successful transmission
+          or understanding of the message. We're looking for the nuance of failing to transmit the message
+          effectively.
+    scene: Someone regretting a missed opportunity to speak their mind.
+    register: casual
+    setting: melancholic
+    conjugation: passive (～られる/～かれる)
+    nuance: 「伝えられなかった」 is the past negative potential form, meaning 'could not convey'. It expresses a
+      failure to communicate effectively despite a desire to do so. 「伝えられませんでした」 is its polite equivalent.
+  - english: I will convey your message to the director.
+    japanese:
+      - 部 長 に お 客 様 の ご 用件 を {お 伝え いたし ます}。
+      - 部 長 に お 客 様 の ご 用件 を {お 伝え し ます}。
+    english_literally: To the director, customer's matter, I will humbly convey.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 に お 客 様 の ご 用件 を 報告 し ます。
+        english: I will report the customer's matter to the director.
+        hint: 報告する (houkoku suru) is specifically 'to report', often implying a structured, official report.
+          Here, you're simply relaying a message or request. We're looking for the nuance of conveying
+          a message in a business setting.
+    scene: A receptionist speaking to a client.
+    register: kenjōgo (humble)
+    setting: professional
+    speaker_gender: female
+    nuance: 「お伝えいたします」 is a highly humble form of 伝える (to convey), using the honorific prefix お- and the
+      humble auxiliary verb いたします. This is common in business or service interactions to show extreme
+      respect to the listener/customer while humbling the speaker's action. The phrase 「お客様 の ご 用件」 (okyakusama
+      no go youken) refers to 'the customer's business/request' in a highly polite manner. 「お伝えします」 is
+      slightly less formal but still humble.
+  - english: The news conveyed that the typhoon is approaching.
+    japanese:
+      - ニュース は 台風 が 近づい て いる と {伝え た}。
+      - ニュース は 台風 が 近づい て いる と {伝え まし た}。
+    english_literally: News, typhoon is approaching, conveyed.
+    competing_grammar:
+      - competing_japanese:
+          - ニュース は 台風 が 近づい て いる と 報じ た。
+        english: The news reported that the typhoon is approaching.
+        hint: 報じる (houjiru) specifically means 'to report' as in a media broadcast, which is more specific
+          to news organizations. 伝える is a broader term for conveying information. We're looking for the
+          general act of conveying information through the news.
+    scene: Reporting on a weather update.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: Here, the news itself is treated as the subject that 'conveys' the information, acting as
+      a medium for transmission. It indicates that the information about the typhoon was delivered via
+      the news. 「伝えました」 is the polite past form.
+  - english: He conveyed his intention to quit the company.
+    japanese:
+      - 彼 は 会社 を 辞める 意向 を {伝え た}。
+      - 彼 は 会社 を 辞める 意向 を {伝え まし た}。
+    english_literally: He, company to quit intention, conveyed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 会社 を 辞める と 言っ た。
+        english: He said that he would quit the company.
+        hint: 言う (iu) is 'to say', which is more general. 意向 を 伝える (ikou o tsutaeru) is a set phrase meaning
+          'to express one's intention', implying a more formal or deliberate communication. We're looking
+          for the act of formally conveying an intention.
+    scene: Discussing someone's decision.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: 「意向 を 伝える」 (ikou o tsutaeru) is a set phrase meaning 'to express one's intention'. This example
+      uses the plain past form 「伝えた」 to report the act of communicating a decision. 「伝えました」 is the polite
+      past form.
+  - english: She tried to convey her feelings without words.
+    japanese:
+      - 彼女 は 言葉 なし に 気持ち を {伝えよう と し た}。
+      - 彼女 は 言葉 で なく 気持ち を {伝えよう と し た}。
+      - 彼女 は 言葉 なし に 気持ち を {伝えよう と し まし た}。
+    english_literally: She, words without, feelings, tried to convey.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 言葉 なし に 気持ち を 示そう と し た。
+        english: She tried to show her feelings without words.
+        hint: 示す (shimesu) means 'to show' or 'to indicate', which focuses on displaying something. 伝える
+          (tsutaeru) emphasizes the act of making something understood or transmitting it. We're looking
+          for the attempt to make her feelings understood by another person.
+    scene: A romantic drama.
+    register: casual
+    setting: intimate
+    conjugation: volitional (～よう)
+    nuance: 「伝えよう と した」 is the volitional form followed by 「とする」 (to try to do), indicating an attempt
+      to convey something. 「言葉 なし に」 means 'without words', highlighting the difficulty or nuance of her
+      communication. 「言葉 で なく」 is another way to say 'without words', and 「伝えよう と しました」 is the polite
+      form.
+  - english: The painting conveys the artist's passion.
+    japanese:
+      - その 絵 は 画家 の 情熱 を {伝え て いる}。
+      - その 絵 が 画家 の 情熱 を {伝え て いる}。
+    english_literally: That painting, painter's passion, is conveying.
+    competing_grammar:
+      - competing_japanese:
+          - その 絵 は 画家 の 情熱 を 表現 し て いる。
+        english: The painting expresses the artist's passion.
+        hint: 表現する (hyougen suru) means 'to express' or 'to represent'. While often interchangeable in
+          this context, 伝える implies that the passion is successfully transmitted to and felt by the viewer.
+          We're looking for the nuance that the painting effectively communicates the artist's passion
+          to the observer.
+    scene: Art critique.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: In this context, 「伝えている」 means the painting 'expresses' or 'communicates' the artist's passion,
+      indicating that the emotion is evident through the artwork. Using 「が」 instead of 「は」 can put more
+      emphasis on the painting as the conveyer of the passion.
+post_example_writeup: These examples demonstrate how と伝える is used across various contexts, from direct
+  message relay to conveying abstract concepts like feelings or traditions. The specific conjugation of
+  伝える will adjust the formality, tense, and aspect of the conveyance. Remember, the core idea is the active
+  transmission of information or a message.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A8%E4%BC%9D%E3%81%88%E3%82%8B

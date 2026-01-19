@@ -1,0 +1,237 @@
+grammar_point: そっち (that way・that direction)
+matcher: ⌈ˢそっちᵖpronᵇそっちᵈ其方ʳソッチ⌉
+meaning: that way, that direction (closer to the listener or contextually implied)
+pronunciation:
+  katakana: ソッチ
+  romaji: socchi
+formation:
+  そっち: Refers to a direction or place closer to the listener, or contextually established. Can also casually
+    refer to 'your side' or 'you'.
+jlpt: N5
+etymology: The term 「そっち」 is a casual, contracted form of 「そちら」. Both belong to the Japanese demonstrative
+  system, often categorized as the 'ko-so-a-do' series. The 'so' (そ) indicates proximity to the listener,
+  or a shared, previously mentioned context, distinguishing it from 'ko' (こ) for proximity to the speaker
+  and 'a' (あ) for distance from both. Historically, these demonstratives evolved from older forms, maintaining
+  their core function of indicating relative spatial or contextual distance.
+writeup: |-
+  「そっち」 is a versatile demonstrative that refers to 'that way,' 'that direction,' or 'that place' which is closer to the listener or is contextually relevant to the listener's situation. It is the casual equivalent of 「そちら」, and is commonly used in informal conversations among friends, family, or close acquaintances. While primarily indicating direction or location, 「そっち」 can also be used casually to refer to a person or group, essentially meaning 'your side' or 'you guys,' depending on the context.
+
+  It's crucial to understand 「そっち」 within the broader 'ko-so-a-do' system of demonstratives:
+  *   **こっち (kocchi)**: 'This way,' 'this direction,' or 'this place' (closer to the speaker).
+  *   **そっち (socchi)**: 'That way,' 'that direction,' or 'that place' (closer to the listener).
+  *   **あっち (acchi)**: 'That way over there,' 'that direction over there,' or 'that place over there' (distant from both speaker and listener).
+  *   **どっち (docchi)**: 'Which way,' 'which direction,' or 'which place' (interrogative).
+
+  When choosing between 「そっち」 and its more polite counterpart 「そちら」, consider the social context and your relationship with the listener. 「そっち」 conveys a sense of familiarity and directness, while 「そちら」 is preferred in formal situations, with superiors, or when speaking to strangers to show respect. This distinction is vital for maintaining appropriate levels of politeness in Japanese communication.
+false_friends:
+  - term: そちら
+    meaning: that way (polite)
+    kind: similar expression
+    nuance: 「そっち」 is casual and direct, suitable for informal conversations. 「そちら」 is its polite counterpart,
+      used in more formal settings or to show respect.
+    grammar_point: そちら (that way, formal)
+  - term: そこ
+    meaning: that place (near listener)
+    kind: similar expression
+    nuance: 「そっち」 indicates a direction or a general area, implying movement or perspective. 「そこ」 refers
+      to a specific, static location. Think of 「そっち」 as 'that general vicinity' and 「そこ」 as 'right there.'
+    grammar_point: そこ (there)
+  - term: この・その・あの・どの (demonstrative determiners)
+    meaning: this/that/that over there/which (modifying nouns)
+    kind: similar expression
+    nuance: 「そっち」 typically refers to a direction or a general area, or can act as a casual pronoun for
+      'you' or 'your side'. 「この・その・あの・どの」 are demonstrative adjectives that always precede and modify
+      a noun (e.g., 「その 本」, 'that book').
+    grammar_point: <suggest>:この・その・あの・どの (demonstrative determiners)
+  - term: こっち
+    meaning: this way (casual)
+    kind: antonym
+    nuance: 「そっち」 indicates a direction or location closer to the listener. 「こっち」 indicates a direction
+      or location closer to the speaker. They are direct opposites in terms of relative position.
+    grammar_point: <suggest>:こっち・そっち・あっち・どっち (this way・that way・which way)
+  - term: あっち
+    meaning: that way over there (casual)
+    kind: similar expression
+    nuance: 「そっち」 is for things near the listener. 「あっち」 is for things distant from both speaker and listener.
+      They are both casual forms of directional demonstratives.
+    grammar_point: <suggest>:こっち・そっち・あっち・どっち (this way・that way・which way)
+  - term: どっち
+    meaning: which way (casual)
+    kind: similar expression
+    nuance: 「そっち」 indicates 'that way' (near listener). 「どっち」 is the interrogative form, meaning 'which
+      way' or 'which of two options'.
+    grammar_point: <suggest>:こっち・そっち・あっち・どっち (this way・that way・which way)
+post_false_friends_writeup: The Japanese demonstrative system, often called the 'ko-so-a-do' series, provides
+  a structured way to indicate relative distance. While 「そっち」, 「こっち」, 「あっち」, and 「どっち」 specifically refer
+  to directions or general areas, terms like 「そこ」 refer to precise locations. Additionally, demonstrative
+  adjectives such as 「その」 are always followed by a noun, describing 'that noun' (near the listener), unlike
+  「そっち」 which can stand alone or refer to a general direction/area. Understanding these nuanced distinctions
+  is key to using demonstratives accurately and naturally.
+examples:
+  - english: Could you please come that way?
+    japanese:
+      - '{そっち} に 来 て くれる？'
+      - '{そっち} に 来 て よ。'
+    english_literally: To that way, will you come?
+    competing_grammar:
+      - competing_japanese:
+          - そちら に 来 て いただけ ます か？
+        english: Could you please come that way? (polite)
+        hint: The speaker is using a polite request, suggesting a more formal tone than 「そっち」. We're looking
+          for a casual way to ask someone to come in their direction.
+      - competing_japanese:
+          - そこ に 来 て くれる？
+        english: Could you please come to that specific spot?
+        hint: 「そこ」 refers to a precise, static location. We're looking for a general direction rather
+          than a fixed spot.
+    scene: A friend is calling you over from a short distance away in a casual setting.
+    register: casual
+    setting: friendly
+  - english: What's going on over on your side?
+    japanese:
+      - '{そっち} は どう なっ てる？'
+      - '{そっち} は どう だ い？'
+    english_literally: Your side, how is it becoming?
+    competing_grammar:
+      - competing_japanese:
+          - そちら の 状況 は いかが です か？
+        english: How is the situation on your side? (polite)
+        hint: This uses formal language and refers to a 'situation' explicitly. We're looking for a casual
+          inquiry about the listener's general state or progress.
+    scene: You're talking to a friend on the phone, checking in on their day or a project they're working
+      on.
+    register: casual
+    setting: informative
+  - english: The toys are over there.
+    japanese:
+      - おもちゃ は {そっち} に ある よ。
+      - おもちゃ は {そっち} に ある から ね。
+    english_literally: Toys are in that general direction, you know.
+    competing_grammar:
+      - competing_japanese:
+          - おもちゃ は そこ に ある よ。
+        english: The toys are right there (at that specific spot).
+        hint: 「そこ」 pinpoints a specific spot. We're pointing to a general area or direction where the
+          toys can be found.
+      - competing_japanese:
+          - おもちゃ は あそこ に ある よ。
+        english: The toys are over there (far from both of us), you know.
+        hint: 「あそこ」 indicates a location distant from both the speaker and listener. We are referring
+          to a location closer to the listener.
+    scene: A parent tells their child where to find their toys in the living room, indicating a general
+      area rather than a precise spot.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: The use of 「よ」 (yo) at the end adds a soft, reassuring tone, common when speaking to children.
+  - english: Let's run that way!
+    japanese:
+      - '{そっち} に 走ろう！'
+      - '{そっち} へ 走ろう よ！'
+    english_literally: To that way, let's run!
+    competing_grammar:
+      - competing_japanese:
+          - あちら に 走り ましょう！
+        english: Let's run over there! (polite, distant)
+        hint: This is a polite suggestion for a distant location. We're giving a casual, immediate suggestion
+          for a direction near the listener.
+    scene: Two friends are playing a game and one suggests a direction to move.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+  - english: Is your plan progressing over on your side?
+    japanese:
+      - '{そっち} の 計画 は 進ん でる？'
+      - '{そっち} の 計画 は 順調？'
+    english_literally: Your side's plan, is it progressing?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 計画 は 進ん で い ます か？
+        english: Is your plan progressing? (polite)
+        hint: Using 「あなたの」 and polite verb forms is more formal. We're looking for a casual way to ask
+          about the listener's plan.
+    scene: A colleague asks a peer about the status of their project in a casual office environment.
+    register: casual
+    setting: professional
+  - english: You, get out of the way!
+    japanese:
+      - '{そっち}、どい て！'
+      - '{そっち}、ちょっと どい て！'
+    english_literally: That way/You, get out of the way!
+    competing_grammar:
+      - competing_japanese:
+          - そこ を どい て ください！
+        english: Please get out of that spot!
+        hint: This is a polite command specifying a static spot. We're looking for a more direct, casual
+          instruction to move out of a general area.
+    scene: Someone in a hurry tells another person to move aside in a crowded place.
+    register: casual
+    setting: commanding
+  - english: I'll leave the tea over there.
+    japanese:
+      - お 茶 は {そっち} に 置い とく ね。
+      - お 茶 は {そっち} に 置い て おく ね。
+    english_literally: As for tea, I'll put it in that direction, okay?
+    competing_grammar:
+      - competing_japanese:
+          - お 茶 は そこ に 置い て おき ます ね。
+        english: I'll leave the tea right there (at that specific spot).
+        hint: 「そこ」 refers to a precise location. Here, the speaker is indicating a general area for the
+          tea, implying the listener will find it easily.
+    scene: A housemate places a cup of tea for another housemate in the living room, indicating a general
+      area rather than a specific spot.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: 「置いとく」 (oito ku) is a casual contraction of 「置いておく」 (oite oku), indicating an action done
+      in advance or for future convenience. The 「ね」 (ne) at the end seeks confirmation or softens the
+      statement, common in casual interactions.
+  - english: My room is that way.
+    japanese:
+      - 私 の 部屋 は {そっち} です。
+      - 俺 の 部屋 は {そっち} だ。
+    english_literally: My room, it is that way.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は あちら です。
+        english: My room is over there. (polite, distant)
+        hint: 「あちら」 indicates a direction far from both speaker and listener, and is more formal. We're
+          describing a direction relative to the listener, in a somewhat polite manner.
+      - competing_japanese:
+          - 私 の 部屋 は そこ です。
+        english: My room is right there (at that spot).
+        hint: 「そこ」 indicates a specific point. We're indicating a general direction.
+    scene: You are giving directions to a visitor in your home, indicating a hallway or a general area
+      where your room is located.
+    register: teineigo (polite)
+    setting: informative
+  - english: Your side is always so easy, isn't it?
+    japanese:
+      - '{そっち} は いつ も 楽 で いい なあ。'
+      - '{そっち} は いつ も 楽 で 羨ましい なあ。'
+    english_literally: Your side is always easy, it is good, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あなた は いつ も 楽 で いい なあ。
+        english: You are always so easy, aren't you?
+        hint: While 「あなた」 can mean 'you', 「そっち」 here implies 'your situation' or 'your circumstances'
+          rather than directly addressing the person. We're commenting on their situation, not just them
+          personally.
+    scene: A student complains to a friend who seems to have an easier time with schoolwork.
+    register: casual
+    setting: melancholic
+  - english: How does it look from your perspective?
+    japanese:
+      - '{そっち} から 見る と どう 見える？'
+      - '{そっち} から だ と どう 見える の？'
+    english_literally: From your side/that way looking, how does it look?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 立場 から 見る と どう 見え ます か？
+        english: How does it look from your position/standpoint? (polite)
+        hint: This is a more formal and explicit way to ask for a perspective. We're looking for a casual
+          way to ask for the listener's viewpoint, using a spatial metaphor.
+    scene: Two colleagues are looking at a presentation from different angles and one asks the other for
+      their opinion.
+    register: casual
+    setting: informative

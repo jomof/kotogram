@@ -1,0 +1,286 @@
+grammar_point: 〜代 (decade or generation)
+learn_before:
+  - Verb[ば] (conditional)
+  - で (means・method)
+  - でございます (polite copula, formal)
+  - でした (past copula, polite)
+  - な-Adjective[でした] (polite past)
+  - なあ (emotional emphasis)
+  - にて (formal at・by means of)
+  - は〜が (topic's attribute)
+  - は〜だ (topic & copula)
+  - びる (to seem like)
+  - また (again; also; or)
+  - ようになる (to come to be)
+  - を (direct object marker)
+  - 一切〜ない (not at all)
+  - 側 (side or flank)
+  - 単位で (in units of)
+  - 見える (to be visible・to seem)
+meaning: Teens, Twenties, Thirties, 1910s, 20s/30s, Generation, Era
+pronunciation:
+  katakana: ダイ
+  romaji: dai
+formation:
+  Number + 代: Used to denote a decade of age (e.g. 20代 for twenties).
+  Number + 年代: Used to denote a chronological decade (e.g. 1990年代 for the 1990s).
+  Ordinal Number + 代: Used to denote a generation, reign, or position in a series (e.g. 第3代 for the 3rd
+    generation/reign).
+jlpt: N4
+etymology: The kanji 代 (dai) intrinsically carries meanings of 'generation,' 'age,' or 'period.' Its usage
+  as a suffix to numerical expressions logically extends this core meaning. When appended to numbers representing
+  tens (e.g. 10, 20, 30), it specifies a decade of a person's life, directly mapping to the concept of
+  an 'age period.' When combined with 年 (nen) to form 年代 (nendai), it clearly denotes a 'year period'
+  or chronological decade. Similarly, when paired with an ordinal number (第X代), it signifies a sequential
+  'generation' or 'reign' in a series, maintaining its fundamental connection to periods and successions.
+writeup: |-
+  The suffix ～代 (dai) is a versatile element in Japanese, primarily used to refer to decades, either of a person's age or a chronological period.
+
+  **1. Decades of Age (Age Groups)**
+  This is perhaps the most common application, similar to English expressions like 'teens,' 'twenties,' or 'thirties.' To use it, simply add 代 (dai) after the age (in tens). For example:
+  *   10代 (juu-dai): Teens (ages 10-19)
+  *   20代 (ni-juu-dai): Twenties (ages 20-29)
+  *   30代 (san-juu-dai): Thirties (ages 30-39)
+  This usage is very common in everyday conversation and surveys.
+
+  **2. Chronological Decades (Historical Periods)**
+  ～代 can also denote a chronological decade, such as the 1960s or 1970s. In these cases, it often appears as 年代 (nendai), though sometimes 年 (nen) is omitted, especially in casual contexts or when the context is clear. For example:
+  *   1980年代 (sen-kyuuhyaku-hachi-juu-nendai): The 1980s
+  *   70年代 (nana-juu-nendai): The 70s
+  This is widely used when discussing historical periods, cultural trends, or past events.
+
+  **3. Generations, Reigns, or Ordinal Positions**
+  Furthermore, ～代 can mark specific generations, successions, or ordinal positions within a series, often appearing with an ordinal prefix like 第～代 (dai-～-dai) or alone for 'first generation' (初代 - shodai). Examples include:
+  *   第5代 (dai-go-dai): The 5th generation/reign (e.g. the fifth shogun)
+  *   初代 (shodai): The first generation/founder
+  This usage is common in historical, political, or organizational contexts.
+false_friends:
+  - term: 若い頃
+    meaning: Young days, younger years
+    kind: similar expression
+    nuance: While `Number+代` specifies a decade of age (e.g. 'twenties'), `若い頃` refers to a more general
+      period of youth, without specifying a numerical age range. For instance, someone in their late teens
+      or early thirties might refer to `若い頃`.
+    grammar_point: <strongly-suggest>:若い頃 (younger days)
+  - term: 最初
+    meaning: First, beginning
+    kind: often confused with
+    nuance: '`初代` (shodai), which incorporates `代`, specifically refers to the ''''first generation''''
+      or ''''founder'''' in a succession, often used for official positions or established lineages. `最初`
+      is a general term for ''''first'''' in any sequence or action, not necessarily implying a generational
+      or official succession.'
+    grammar_point: <strongly-suggest>:最初 (first, beginning)
+  - term: 時代
+    meaning: Era, period, times
+    kind: similar expression
+    nuance: '`Number+年代` (nendai) strictly denotes a chronological decade (e.g. 1980s). In contrast, `時代`
+      is a broader term for any period or era, which can be short or long, and does not necessarily refer
+      to a 10-year span. It''''s often used when talking about historical eras or prevailing times.'
+    grammar_point: <strongly-suggest>:時代 (era, period)
+post_false_friends_writeup: While the suffix ～代 (dai) is generally distinct in its usage for numerical
+  decades and generations, learners might sometimes confuse it with more general terms related to age
+  or periods. Understanding the specific nature of ～代, which always ties to a numerical progression or
+  grouping, is key to avoiding these confusions. For example, while `20代` specifically means 'people in
+  their twenties,' `若い頃` can refer to a broader, less defined period of youth. Similarly, `初代` specifies
+  the 'first generation' of a lineage or position, differing from the general 'first' conveyed by `最初`.
+  Lastly, `Number+年代` precisely defines a 10-year chronological period, whereas `時代` refers to a broader,
+  more indefinite 'era' or 'period'.
+examples:
+  - english: She looks like she's in her teens, but she's actually in her twenties.
+    japanese:
+      - 彼女 は {10 代} に 見え ます が、実 は 20 代 です。
+      - 彼女 は {10 代} に 見える けど、実 は 20 代 な ん だ。
+      - 彼女 は {10 代} に 見える けど、実 は 20 代 だ よ。
+    english_literally: She, in her teens, looks like, but in truth, in her twenties, is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {若い 頃} の よう に 見え ます が、実 は 大人 です。
+        english: She looks like her younger days, but she's actually an adult.
+        hint: This describes a general period of youth, not a specific decade of age. We're looking for
+          a precise age range.
+    scene: Two female friends are gossiping about a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「に 見え ます」 (ni miemasu) indicates that the speaker is making an observation based
+      on appearance, not certain knowledge, which is common in casual conversation about others' ages.
+      The contrast between 「10代」 and 「20代」 highlights the speaker's surprise.
+  - english: My twenties were days spent chasing dreams.
+    japanese:
+      - 私 の {20 代} は 夢 を 追いかける 毎日 でし た。
+      - 私 の {20 代} は 夢 を 追いかけ て い た 毎日 でし た。
+      - 私 の {20 代} は 夢 を 追いかける 日々 でし た。
+    english_literally: My twenties, dreams, chasing, every day, was.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {若い 頃} は 夢 を 追いかける 毎日 でし た。
+        english: My younger days were spent chasing dreams.
+        hint: The nuance is about a specific period of youth (twenties) rather than just 'young age' in
+          general. We're looking for a numerical decade.
+    scene: A man in his forties is reflecting on his past during a casual conversation with a younger
+      colleague.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「でした」 (deshita) makes the sentence polite, suitable for sharing personal reflections
+      with a colleague. The phrase 「夢 を 追いかける」 (yume o oikakeru - chasing dreams) is a common expression
+      for aspirational periods of life.
+  - english: At our company, employees in their thirties are leading the team.
+    japanese:
+      - 会社 で は {30 代} の 社員 が チーム を リード し て い ます。
+      - 弊社 で は {30 代} の 社員 が チーム を リード し て おり ます。
+      - 弊社 にて {30 代} 社員 が チーム の 指導 を 担っ て おり ます。
+    english_literally: Company at, in thirties, employees, team, leading, are doing.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 で は 中堅 社員 が チーム を リード し て い ます。
+        english: At our company, mid-career employees are leading the team.
+        hint: The context implies a need for a specific age bracket rather than a general description
+          like 'mid-career employees'. We're looking for the numerical decade.
+    scene: A manager is explaining the team structure to a new employee during an orientation.
+    register: formal
+    setting: professional
+    nuance: This sentence uses standard business Japanese, with 「会社 で は」 (kaisha de wa) for 'at the company'
+      and 「リード し て い ます」 (riido shite imasu) which is a common loanword for 'leading'. The mention of
+      「30代」 is a specific and common way to categorize employees by age group in Japanese companies.
+  - english: We support people in their fifties so that they can lead healthy lives.
+    japanese:
+      - '{50 代} の 方々 が 健康 的 な 生活 を 送れる よう、支援 し て い ます。'
+      - '{50 代} の 方々 が 健康 的 な 生活 を 送れる よう、支援 を 行なっ て おり ます。'
+      - '{50 代} の 方々 に 健康 的 な 生活 を 送っ て 頂く ため に、支援 を 行っ て おり ます。'
+    english_literally: In their fifties, people, healthy, life, can lead, so that, supporting, are doing.
+    competing_grammar:
+      - competing_japanese:
+          - 高齢 者 の 方々 が 健康 的 な 生活 を 送れる よう、支援 し て い ます。
+        english: We support elderly people so that they can lead healthy lives.
+        hint: The scene requires targeting a specific age group for a program, rather than a general term
+          like 'elderly'. We're looking for a specific age group.
+    scene: A non-profit organization representative is giving a presentation on their community support
+      programs.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「方々」 (katagata) is a polite plural for 'people,' appropriate in a formal presentation.
+      「健康 的 な 生活 を 送れる よう」 (kenkou-teki na seikatsu o okureru you) means 'so that they can lead healthy
+      lives,' indicating the purpose of the support for this specific age group.
+  - english: My father loves rock music from the 70s.
+    japanese:
+      - 私 の 父 は {70 年 代} の ロック ミュージック が 大好き です。
+      - うち の 親父 は {70 年 代} の ロック が 大好き な ん だ よ ね。
+      - 父 さん は {70 年 代} の ロック が 大好き だ よ。
+    english_literally: My father, 70s, rock music, very much likes.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 父 は {時代} の ロック ミュージック が 大好き です。
+        english: My father loves rock music of an era (general).
+        hint: This uses a general term for 'era' or 'period', not the specific chronological decade. We're
+          looking for a precise decade.
+    scene: A college student is discussing their family's musical tastes with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「大好き です」 (daisuki desu) is a common and emphatic way to express a strong liking
+      for something. 「70年代」 clearly points to a specific historical period of music, common in casual
+      cultural discussions.
+  - english: 90s fashion is trending again recently.
+    japanese:
+      - '{90 年 代} の ファッション が 最近 また 流行 し て い ます。'
+      - '{90 年 代} の ファッション、最近 また 流行っ てる よ ね。'
+      - '{90 年 代} の ファッション が 最近 また 流行っ てる なあ。'
+    english_literally: 90s, fashion, recently, again, popular, is doing.
+    competing_grammar:
+      - competing_japanese:
+          - '{時代} の ファッション が 最近 また 流行 し て い ます。'
+        english: Fashion of an era is trending again recently.
+        hint: This refers to fashion from a general 'era' or 'period' rather than a specific chronological
+          decade. We're looking for a precise decade.
+    scene: Two friends are browsing a vintage clothing store and discussing trends.
+    register: casual
+    setting: friendly
+    nuance: 「流行 し て い ます」 (ryuukou shite imasu) directly translates to 'is trending' or 'is popular,'
+      a common expression for fashion. The use of 「また」 (mata - again) emphasizes the cyclical nature of
+      trends, typical in casual fashion talk.
+  - english: Smartphones became widespread after entering the 2000s.
+    japanese:
+      - '{2000 年 代} に 入っ て から、スマート フォン が 普及 し まし た。'
+      - '{2000 年 代} に 入り まし て から、スマート フォン が 普及 致し まし た。'
+      - '{2000 年 代} 以降、スマート フォン が 広く 普及 する よう に なり まし た。'
+    english_literally: 2000s, into, since, smartphone, widespread, became.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、スマート フォン が 普及 し まし た。
+        english: Smartphones became widespread recently.
+        hint: The article's focus on historical development requires specifying a particular decade for
+          the widespread adoption, not just 'recently'. We're looking for a specific historical decade.
+    scene: A technology journalist is writing an article about the history of mobile devices.
+    register: formal
+    setting: informative
+    nuance: 「に 入っ て から」 (ni haitte kara) signifies 'after entering' a period, indicating the beginning
+      of a trend or development. 「普及 し まし た」 (fukyuu shimashita) is a formal way to say 'became widespread,'
+      suitable for informative or academic writing.
+  - english: The 2000s BCE saw remarkable development of civilization.
+    japanese:
+      - 紀元 前 {2000 年 代} は 文明 の 発展 が 著しかっ た。
+      - 紀元 前 {2000 年 代} に おき まし て は 文明 の 発展 が 著しい もの でし た。
+      - 紀元 前 {2000 年 代} に おい て は 文明 の 発展 が 著しかっ た と 言える だろ う。
+    english_literally: BCE 2000s, civilization's development, remarkable, was.
+    competing_grammar:
+      - competing_japanese:
+          - 古い {時代} は 文明 の 発展 が 著しかっ た。
+        english: In ancient times, civilization saw remarkable development.
+        hint: The academic context demands a precise chronological reference to a specific period, rather
+          than a vague 'old era'. We're looking for a specific historical period in BCE.
+    scene: A history professor is delivering a lecture on ancient civilizations.
+    register: formal
+    setting: academic
+    nuance: 「紀元 前」 (kigenzen) means 'BCE' or 'BC,' which is crucial for specifying ancient historical
+      periods. 「著しかっ た」 (ichijirushikatta) means 'was remarkable' or 'was significant,' a common adjective
+      in academic discourse to describe notable progress or change.
+  - english: The third president introduced innovative ideas.
+    japanese:
+      - '{第 3 代} 社長 は 革新 的 な アイデア を 導入 し まし た。'
+      - 弊社 で は {第 3 代} 社長 は 革新 的 な アイデア を 導入 致し まし た。
+      - 弊社 にて {第 3 代} 社長 が 革新 的 な アイデア を 導入 し まし た。
+    english_literally: Third generation president, innovative, ideas, introduced.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の 社長 は 革新 的 な アイデア を 導入 し まし た。
+        english: The previous president introduced innovative ideas.
+        hint: The historical context implies a specific numerical order of leadership, rather than just
+          'the previous president'. We're looking for the ordinal number of the president.
+    scene: A company historian is presenting on the significant leaders in the company's history.
+    register: formal
+    setting: informative
+    nuance: 「第3代」 (dai san dai) precisely indicates the third individual in a succession, common when
+      discussing leadership changes. 「革新 的 な アイデア」 (kakushin-teki na aidia - innovative ideas) and 「導入
+      し まし た」 (dounyuu shimashita - introduced) are standard business and academic terms, reflecting a
+      professional context.
+  - english: Japan's first prime minister was Hirobumi Itō.
+    japanese:
+      - 日本 の {初代} 総理 大臣 は 伊藤 博文 です。
+      - 日本 の {初代} 総理 大臣 は 伊藤 博文 でし た。
+      - 日本 の {初代} 総理 大臣 は 伊藤 博文 で ござい まし た。
+    english_literally: Japan's first generation prime minister, Hirobumi Itō, is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の {最初} の 総理 大臣 は 伊藤 博文 です。
+        english: Japan's first prime minister was Hirobumi Itō.
+        hint: While '最初' (saisho) means 'first,' '初代' is the specific and more appropriate term for the
+          first in a line of successors or a historical founder. We're looking for the term for the first
+          in a series of successors.
+    scene: A history teacher is reviewing key historical figures with their students.
+    register: teineigo (polite)
+    setting: academic
+    nuance: 「初代」 (shodai) is specifically used for the very first in a series of generations or official
+      positions, particularly when referring to founders or first leaders. The sentence structure is straightforward
+      and informative, typical of a factual statement in an educational setting.
+post_example_writeup: Understanding the various contexts in which ～代 (dai) is used is crucial for both
+  comprehension and accurate expression in Japanese. Pay close attention to the number preceding it and
+  the broader context of the sentence to discern whether it refers to age, a chronological decade, or
+  an ordinal position in a series. While the usage for age and chronological decades is more common in
+  daily conversation, its application in formal or historical contexts for generations and successions
+  is equally important for a comprehensive grasp of the language.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/代

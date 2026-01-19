@@ -1,0 +1,497 @@
+grammar_point: 近く,遠く (proximity・distance spatial)
+learn_before:
+  - 〜てくる (change toward present・movement toward speaker)
+  - あそこ (over there)
+  - けっこう (quite・ample・no thanks)
+  - どこ (where)
+meaning: near, far (spatial proximity/distance)
+pronunciation:
+  katakana: チカク, トオク
+  romaji: chikaku, tooku
+formation:
+  Noun の + 近く/遠く: Indicates proximity to or distance from a noun.
+  近く/遠く + に: Indicates location or direction (near/far) with respect to an action or existence.
+jlpt: N5
+etymology: 「近く」(chikaku) derives from 「近し」(chikashi), an old adjective meaning 'near'. 「遠く」(tooku) similarly
+  comes from 「遠し」(tooshi), meaning 'far'. Both have adverbial forms (「近くに」「遠くに」) and noun forms (「近く」「遠く」).
+writeup: "「近く」(chikaku) and 「遠く」(tooku) are words used to describe spatial proximity and distance, respectively.\
+  \ While they are often translated as 'near' and 'far', their usage is more akin to 'a near place/area'\
+  \ or 'a far place/area'. They function as nouns and can be followed by various particles like 「に」 (ni),\
+  \ 「で」 (de), 「へ」 (e), 「から」 (kara), etc., to indicate specific relationships. They can also directly modify\
+  \ nouns when followed by 「の」 (no). \n\n**Important Considerations:** \n*   When used with 「に」, they\
+  \ indicate the destination or location of an action or existence. \n*   They can refer to both general\
+  \ areas and specific points, depending on context. \n*   While primarily spatial, they can be used metaphorically,\
+  \ such as 「近い将来」(chikai shourai - near future) or 「遠い昔」(tooi mukashi - distant past)."
+false_friends:
+  - term: そば
+    meaning: beside, nearby
+    kind: similar expression
+    nuance: 「そば」 (soba) implies being immediately next to something, often within arm's reach or very
+      close personal space. 「近く」 is more general, referring to a broader vicinity.
+    grammar_point: <suggest>:そば (immediate proximity)
+  - term: 離れて
+    meaning: separated, distant (te-form of 離れる)
+    kind: antonym
+    nuance: 「離れて」 (hanarete) is the te-form of a verb meaning 'to separate' or 'to be distant from'. It
+      emphasizes the action or state of being apart, whereas 「遠く」 simply describes the state of being
+      far away.
+    grammar_point: <suggest>:離れる (to be separated)
+  - term: 手前
+    meaning: just before, in front of
+    kind: similar expression
+    nuance: 「手前」 (temae) indicates a position just before something, or on this side from a reference
+      point, implying a very specific, limited proximity. 「近く」 is less precise and refers to a general
+      area.
+    grammar_point: 手前 (before; in front of; on account of)
+post_false_friends_writeup: When distinguishing between 「近く」 and other terms like 「そば」 or 「手前」, remember
+  that 「近く」 describes a general vicinity, while 「そば」 implies immediate proximity and 「手前」 a specific 'just
+  before' position. 「遠く」 describes a general distance, while 「離れて」 indicates an action of separation.
+examples:
+  - english: The station is near here.
+    japanese:
+      - 駅 は {近く} です。
+      - 駅 は ここ の {近く} です。
+      - 駅 は {近く} だ。
+      - 駅 は ここ の {近く} だ。
+      - 駅 は {近く} に あり ます。
+      - 駅 は {近く} に ある。
+      - 駅 は {近く} に ある よ。
+      - 駅 は ここ {近く} に あり ます。
+      - 駅 は {近く} に ある の？
+      - 駅 は {近く} か な。
+      - 駅 は ここ {近く} な ん だ。
+      - 駅 は {近く} だ よ。
+      - 駅 は {近く} に ある ん だ ね。
+      - 駅 は {近く} に ある はず です。
+      - 駅 は {近く} に ある みたい です。
+      - 駅 は {近く} に ある よ！
+    english_literally: The station, here, is near.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 は ここ の {そば} です。
+        english: The station is right next to here.
+        hint: 「そば」 implies immediate, very close proximity, often arm's length. We're looking for a more
+          general vicinity.
+      - competing_japanese:
+          - 駅 は ここ の {手前} です。
+        english: The station is just before here.
+        hint: 「手前」 indicates a specific position just before or on this side of something. We're looking
+          for a general nearby area.
+      - competing_japanese:
+          - 駅 は {近い} です。
+        english: The station is close.
+        hint: 「近い」 is an adjective. We're looking for the noun form 「近く」.
+      - competing_japanese:
+          - 駅 は {すぐ そこ} です。
+        english: The station is right there.
+        hint: 「すぐ そこ」 implies a very immediate and visible location. We're looking for a more general
+          'near' area.
+      - competing_japanese:
+          - 駅 は ここ から {離れ て い ます}。
+        english: The station is far from here.
+        hint: 「離れて います」 describes a state of being separated or distant. We're looking for a word indicating
+          general proximity.
+      - competing_japanese:
+          - 駅 は {近所} に あり ます。
+        english: The station is in the neighborhood.
+        hint: 「近所」 refers to a general neighborhood or vicinity. We're looking for a direct spatial descriptor
+          of 'near'.
+      - competing_japanese:
+          - 駅 は この {あたり} です。
+        english: The station is around this area.
+        hint: 「あたり」 indicates a general region or vicinity. We're looking for a more direct spatial descriptor
+          of 'near' a specific point.
+    scene: You are giving directions to a tourist.
+    register: teineigo (polite)
+    setting: informative
+  - english: I live far from the school.
+    japanese:
+      - 私 は 学校 から {遠く} に 住ん で い ます。
+      - 私 は 学校 から {遠く} に 住ん でる。
+      - 学校 から {遠く} に 住ん で い ます。
+      - 学校 から {遠く} に 住ん でる。
+      - 学校 から {遠く} です。
+      - 学校 から {遠く} だ。
+      - 私、学校 から {遠く} に 住ん で いる の。
+      - 学校 から {遠く} に 住ん でる ん だ。
+      - 学校 から {遠く} の 方 に 住ん でる ん だ。
+      - 学校 から {遠く} な ん だ よ ね。
+      - 学校 から は 結構 {遠く} だ よ。
+      - 学校 から は {遠く} に 住ん で い ます。
+      - 学校 から {遠く} です けど ね。
+      - 学校 から {遠く} な の？
+    english_literally: I, from school, far at, live.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学校 から {離れ て 住ん で い ます}。
+        english: I live separated from the school.
+        hint: 「離れて」 emphasizes the state of being separated from the school, focusing on the action/state
+          of separation. We're simply describing the distance.
+      - competing_japanese:
+          - 私 は 学校 から {遠い 所} に 住ん で い ます。
+        english: I live in a distant place from school.
+        hint: 「遠い 所」 means 'a distant place'. While correct, 「遠く」 directly expresses the adverbial idea
+          of 'far away'. We're looking for the adverbial form.
+      - competing_japanese:
+          - 私 は 学校 の {近く} に 住ん で い ます。
+        english: I live near the school.
+        hint: 「近く」 describes a general vicinity. We're looking for a word that means 'far'.
+      - competing_japanese:
+          - 私 は 学校 の {そば} に 住ん で い ます。
+        english: I live right next to the school.
+        hint: 「そば」 implies immediate, very close proximity. We're looking for a word describing distance.
+      - competing_japanese:
+          - 私 は 学校 の {手前} に 住ん で い ます。
+        english: I live just before the school.
+        hint: 「手前」 indicates a specific position just before something. We're looking for a word describing
+          distance.
+      - competing_japanese:
+          - 私 は 学校 から {はるか} に 住ん で い ます。
+        english: I live far off, or remotely, from the school.
+        hint: 「はるか」 emphasizes a very great, often vast, distance. We're describing a more general 'far'
+          without implying extreme remoteness.
+    scene: A student explaining their commute.
+    register: teineigo (polite)
+    setting: informative
+  - english: Let's meet near the park.
+    japanese:
+      - 公園 の {近く} で 会い ましょう。
+      - 公園 の {近く} で 会おう。
+      - 公園 の {近く} で 会える か な？
+      - 公園 の {近く} で 会おっ か。
+      - 公園 の {近く} で 会い ましょう か。
+      - 公園 の {近く} で 集合 しよう！
+      - 公園 の {近く} で 待ち合わせ しよう ね。
+      - じゃあ、公園 の {近く} で 良い？
+      - 公園 の {近く} は どう です か？
+      - 公園 の {近く} で 待ち合わせ し ましょう。
+      - 公園 の {近く} で 会おう か。
+    english_literally: Park's near at, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の {そば} で 会い ましょう。
+        english: Let's meet right next to the park.
+        hint: 「そば」 suggests meeting right next to the park. We're looking for a broader area around the
+          park.
+      - competing_japanese:
+          - 公園 の {手前} で 会い ましょう。
+        english: Let's meet just before the park.
+        hint: 「手前」 suggests meeting right at the entrance or just before the park. We're looking for a
+          more general area around the park.
+      - competing_japanese:
+          - 公園 の {近く} へ 行こう。
+        english: Let's go near the park.
+        hint: This sentence means 'let's go to a place near the park', not 'let's meet there'. We're looking
+          for an invitation to meet.
+      - competing_japanese:
+          - 公園 から {離れ て} 会い ましょう。
+        english: Let's meet far from the park.
+        hint: 「離れて」 means 'separated' or 'far away'. We're looking for a meeting place that is 'near'
+          the park.
+      - competing_japanese:
+          - 公園 の {近い} 場所 で 会い ましょう。
+        english: Let's meet at a close place to the park.
+        hint: 「近い」 is an adjective. We're looking for the noun form 「近く」 to specify the vicinity.
+      - competing_japanese:
+          - 公園 から {遠く} で 会い ましょう。
+        english: Let's meet far from the park.
+        hint: 「遠く」 describes a general distance. We're looking for a meeting place that is 'near' the
+          park.
+    scene: Making plans with a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Please come closer to me.
+    japanese:
+      - 私 の {近く} に 来 て ください。
+      - 私 の {近く} へ 来 て ください。
+      - 僕 の {近く} に 来 て ください。
+      - 私 の {近く} に 来 て。
+      - 僕 の {近く} に 来 て。
+      - もっと {近く} に 来 て ください。
+      - もっと {近く} へ 来 て ください。
+      - '{近く} に 来 て ほしい。'
+      - こっち の {近く} に 来 て ください。
+      - もう 少し {近く} に 来 て ください。
+    english_literally: My near to please come.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {そば} に 来 て ください。
+        english: Please come right next to me.
+        hint: 「そば」 implies immediate, very close proximity, often arm's length or within personal space.
+          We're looking for a general vicinity.
+      - competing_japanese:
+          - 私 に {近づい て} ください。
+        english: Please approach me.
+        hint: 「近づいてください」 uses a verb to describe the action of approaching. We're looking for a noun expressing
+          general proximity.
+      - competing_japanese:
+          - 私 の {方 へ} 来 て ください。
+        english: Please come towards me.
+        hint: 「の方へ」 indicates a general direction towards someone. We're looking for a more specific sense
+          of 'nearness'.
+    scene: A teacher gently calling a student closer during an activity.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: This example uses 「近く に 来 て ください」 to indicate movement towards a general vicinity. The use
+      of 「ください」 makes it a polite request. If a male speaker were saying this, they might use 「僕 の 近くに」.
+      A female speaker would commonly use 「私 の 近くに」.
+  - english: I heard a dog barking in the distance.
+    japanese:
+      - '{遠く} で 犬 の 鳴き声 が 聞こえ まし た。'
+      - '{遠く} で 犬 の 鳴き声 が 聞こえ た。'
+      - あの {遠く} で 犬 の 鳴き声 が 聞こえ まし た。
+      - '{遠く} から 犬 の 鳴き声 が 聞こえ まし た。'
+      - あそこ の {遠く} で 犬 の 鳴き声 が 聞こえ た わ。
+      - '{遠く} の 方 から 犬 の 鳴き声 が 聞こえ まし た。'
+      - 何 か {遠く} の 方 で 犬 が 鳴い て い た よ。
+      - '{遠く} から 聞こえる 犬 の 鳴き声 が あっ た わ。'
+      - すごい {遠く} から 犬 の 鳴き声 が 聞こえ た ん だ よ ね。
+      - 朝方、{遠く} で 犬 の 鳴き声 が 聞こえ て き まし た。
+    english_literally: Far at, dog's barking sound was heard.
+    competing_grammar:
+      - competing_japanese:
+          - '{遠い 所} で 犬 の 鳴き声 が 聞こえ まし た。'
+        english: I heard a dog barking at a distant place.
+        hint: 「遠い 所」 is an adjective modifying 'place'. We're looking for the noun 「遠く」 used adverbially
+          to indicate 'in the distance'.
+      - competing_japanese:
+          - '{はるか 彼方} で 犬 の 鳴き声 が 聞こえ まし た。'
+        english: I heard a dog barking far, far away.
+        hint: 「はるか 彼方」 emphasizes an extremely vast or remote distance. We're looking for a general sense
+          of 'in the distance'.
+    scene: Someone recalling a memory from their childhood.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    nuance: 「遠く で」 indicates the location where the sound originated. The use of 「聞こえ まし た」 is polite.
+      A female speaker might add a softer ending like 「わ」 or 「わ ね」 in more casual contexts, but here it's
+      simply a neutral, polite observation.
+  - english: Christmas is drawing near.
+    japanese:
+      - クリスマス が {近く} なっ て き まし た。
+      - クリスマス が {近く} です。
+      - もう すぐ クリスマス が {近く} です ね。
+      - クリスマス が {近く} なっ て き た わ ね。
+      - クリスマス の 日 が {近く} なっ て き まし た。
+      - クリスマス が {近く} に 感じ られ ます。
+      - だんだん クリスマス が {近く} なっ て き た よ。
+      - ほら、クリスマス が {近く} なっ て き た よ。
+      - クリスマス の 雰囲気 が {近く} なっ て き た ね。
+      - もう クリスマス が {近く} だ から、準備 し なく ちゃ。
+    english_literally: Christmas is becoming near.
+    competing_grammar:
+      - competing_japanese:
+          - クリスマス が {近い} です。
+        english: Christmas is close.
+        hint: 「近い」 is an adjective describing the current state. We're looking for the noun form 「近く」
+          to express the idea of something 'drawing near' or 'becoming close'.
+      - competing_japanese:
+          - '{もう すぐ} クリスマス です。'
+        english: It's almost Christmas.
+        hint: 「もうすぐ」 means 'soon'. While conveying a similar idea, we're focusing on the gradual approach
+          implied by 「近く に なっ て くる」.
+    scene: Family members discussing upcoming holidays and preparations.
+    register: teineigo (polite)
+    setting: excited
+    nuance: 「近く なっ て き まし た」 (literally 'has become near') implies a gradual approach, perfectly fitting
+      for events like holidays. The phrasing expresses a sense of anticipation.
+  - english: This castle was built in the distant past.
+    japanese:
+      - この お 城 は {遠く} 昔 に 建て られ まし た。
+      - この お 城 は {遠く} 昔 に 建て られ た。
+      - この お 城 は {遠く} の 昔 に 建て られ まし た。
+      - この お 城 は {遠く} 昔 に 造ら れ まし た。
+      - この お 城 は {遠く} 昔 に 築か れ まし た。
+      - '{遠く} 昔、この お 城 は 建て られ た ん だ。'
+      - とても {遠く} の 昔 に、この お 城 は 建て られ まし た。
+      - 言い伝え に よる と、この お 城 は {遠く} 昔 に 建て られ た そう です。
+      - この お 城 は {遠く} 昔 の 人々 の 手 で 建て られ まし た。
+      - 想像 も つか ない ほど {遠く} 昔 に この お 城 は 建て られ まし た。
+    english_literally: This castle, far past in, was built.
+    competing_grammar:
+      - competing_japanese:
+          - この お 城 は {はるか 昔} に 建て られ まし た。
+        english: This castle was built in the very distant past.
+        hint: 「はるか 昔」 emphasizes an extremely vast or remote past. We're looking for a more general 'distant
+          past' implied by 「遠く 昔」.
+      - competing_japanese:
+          - この お 城 は {大昔} に 建て られ まし た。
+        english: This castle was built in ancient times.
+        hint: 「大昔」 specifically refers to 'ancient times' or 'long, long ago'. We're looking for a more
+          flexible 'distant past'.
+      - competing_japanese:
+          - この お 城 は {昔} に 建て られ まし た。
+        english: This castle was built in the past.
+        hint: 「昔」 simply means 'the past' or 'olden days' without emphasizing distance. We're looking
+          for a phrase that stresses the 'distant' aspect.
+    scene: A tour guide explaining the history of a historical site to a group of visitors.
+    register: teineigo (polite)
+    setting: informative
+  - english: Is there a post office nearby?
+    japanese:
+      - '{近く} に 郵便 局 は あり ます か？'
+      - '{近く} に 郵便 局 は ない か な？'
+      - '{近く} に 郵便 局 って ある？'
+      - この {近く} に 郵便 局 は あり ます か？
+      - ここ の {近く} に 郵便 局 は あり ます か？
+      - もし {近く} に 郵便 局 が あれ ば 教え て ください。
+      - '{近く} に 郵便 局 は ある と 思い ます か？'
+      - '{近く} に 郵便 局 が ある か どう か 分かり ます か？'
+      - 一番 {近く} の 郵便 局 は どこ です か？
+      - '{近く} に 便利 な 郵便 局 は あり ます か？'
+    english_literally: Near at post office is there?
+    competing_grammar:
+      - competing_japanese:
+          - この {辺り} に 郵便 局 は あり ます か？
+        english: Is there a post office around this area?
+        hint: 「この 辺り」 refers to 'around this area' or 'this vicinity'. We're looking for a more direct
+          'nearby'.
+      - competing_japanese:
+          - '{近所} に 郵便 局 は あり ます か？'
+        english: Is there a post office in the neighborhood?
+        hint: 「近所」 refers to the 'neighborhood' or 'local area'. We're looking for a more general 'nearby'
+          location.
+    scene: Asking for directions in an unfamiliar part of town.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: I saw a beautiful sunset from afar.
+    japanese:
+      - '{遠く} から 美しい 夕焼け を 見 まし た。'
+      - '{遠く} から 美しい 夕焼け を 見 た。'
+      - '{遠く} の 方 から 美しい 夕焼け を 見 まし た。'
+      - とても {遠く} から 美しい 夕焼け が 見え まし た。
+      - '{遠く} から 見る と、夕焼け は もっと 美しかっ た です。'
+      - 窓 から {遠く} を 見 たら 美しい 夕焼け だっ た ん だ よ ね。
+      - あの 山 の {遠く} から 美しい 夕焼け が 見え た わ。
+      - 屋上 から {遠く} に 美しい 夕焼け が 広がっ て い まし た。
+      - 水平 線 の {遠く} に 美しい 夕焼け が 見え まし た。
+      - 船 の 上 から {遠く} の 美しい 夕焼け を 眺め まし た。
+    english_literally: Far from beautiful sunset was seen.
+    competing_grammar:
+      - competing_japanese:
+          - '{遠い 場所} から 美しい 夕焼け を 見 まし た。'
+        english: I saw a beautiful sunset from a distant place.
+        hint: 「遠い 場所」 explicitly states 'a distant place'. We're looking for the adverbial usage of 「遠く
+          から」, implying 'from afar'.
+      - competing_japanese:
+          - '{遠方} から 美しい 夕焼け を 見 まし た。'
+        english: I saw a beautiful sunset from a remote location.
+        hint: 「遠方」 is a more formal term for a distant location. We're looking for the more common and
+          general 'from afar'.
+    scene: Describing a scenic view captured during a trip.
+    register: teineigo (polite)
+    setting: storytelling
+    speaker_gender: male
+  - english: My aunt lives nearby, so we often meet.
+    japanese:
+      - 叔母 は {近く} に 住ん で いる の で、よく 会い ます。
+      - 叔母 は {近く} に 住ん でる から、よく 会う よ。
+      - 叔母 は うち の {近く} に 住ん で いる から、よく 会う ん だ。
+      - 私 の 叔母 は {近く} に 住ん で いる の で、よく お 茶 を し ます。
+      - うち の 叔母 さん は {近く} に 住ん で いる から、何 か と 相談 し やすい ん です。
+      - '{近く} に 叔母 が いる と、本当 に 助かり ます。'
+      - '{近く} に 叔母 が 住ん で いる の で、心強い です。'
+      - 妹 の 叔母 が {近く} に 住ん で い て、よく 子供 を 見 て くれ ます。
+      - '{近く} に 叔母 が いる から、急 な 用事 で も 頼める ん です。'
+      - 叔母 は {近く} に 住ん で いる の で、困っ た 時 は すぐ に 頼れ ます。
+    english_literally: Aunt near at living because, often meet.
+    competing_grammar:
+      - competing_japanese:
+          - 叔母 は {近所} に 住ん で いる の で、よく 会い ます。
+        english: My aunt lives in the neighborhood, so we often meet.
+        hint: 「近所」 specifically refers to the 'neighborhood'. We're looking for the more general 'nearby'
+          area indicated by 「近く」.
+      - competing_japanese:
+          - 叔母 は うち の {そば} に 住ん で いる の で、よく 会い ます。
+        english: My aunt lives right next to our house, so we often meet.
+        hint: 「そば」 implies immediate, very close proximity. We're looking for a general 'nearby' location,
+          not necessarily adjacent.
+    scene: A person explaining their family situation to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please put the books back in their original place in the distance.
+    japanese:
+      - 本 を {遠く} の 元 の 場所 に 戻し て ください。
+      - 本 を {遠く} の 元 の 場所 へ 戻し て ください。
+      - 本 を {遠く} に ある 元 の 場所 に 戻し て ください。
+      - 本 を {遠く} の 棚 に 戻し て ください。
+      - その 本 を {遠く} の 方 に 戻し て ください。
+      - この 本 は {遠く} の あそこ に 戻し て ください。
+      - それ ら の 本 は {遠く} に ある 図書 室 に 戻し て ください。
+      - 本 は {遠く} の 専用 の 場所 に 戻し て ください。
+      - 本 は {遠く} の 定 位置 に 戻し て ください。
+      - 読み 終わっ た 本 は {遠く} の 片付け 場所 に 戻し て ください。
+    english_literally: Books, far's original place to please return.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を {遠い 場所} の 元 の 場所 に 戻し て ください。
+        english: Please put the books back in their original place in a distant location.
+        hint: 「遠い 場所」 uses an adjective to describe a 'distant place'. We're using the noun form 「遠く」
+          to mean 'in the distance' or 'far away'.
+      - competing_japanese:
+          - 本 を {離れ た} 元 の 場所 に 戻し て ください。
+        english: Please put the books back in their original separated place.
+        hint: 「離れ た」 emphasizes being separated or detached. We're simply indicating distance.
+    scene: A librarian instructing a volunteer where to return books.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Let's find a café near the station.
+    japanese:
+      - 駅 の {近く} で カフェ を 探し ましょう。
+      - 駅 の {近く} で カフェ を 探そう。
+      - 駅 の {近く} に カフェ は あり ます か ね？
+      - 駅 の {近く} で 良い カフェ を 探し ませ ん か？
+      - 駅 の {近く} に ある カフェ を 見つけ たい です ね。
+      - 駅 の {近く} に カフェ が ある か な？
+      - 駅 の {近く} の カフェ に 行こう よ。
+      - 駅 から そんな に {近く} ない けど、あの カフェ に しよう か？
+      - 駅 の {近く} に は 色々 な カフェ が あり ます よ。
+      - 待ち合わせ は 駅 の {近く} の カフェ に しよう か と 思っ て ます。
+    english_literally: Station's near at cafe let's find.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の {そば} で カフェ を 探し ましょう。
+        english: Let's find a cafe right next to the station.
+        hint: 「そば」 implies immediate proximity. We're looking for a more general area around the station.
+      - competing_japanese:
+          - 駅 の {近所} で カフェ を 探し ましょう。
+        english: Let's find a cafe in the station's neighborhood.
+        hint: 「近所」 refers to the neighborhood. We're looking for 'nearby' as a general area relative to
+          the station.
+    scene: Two friends deciding where to meet up.
+    register: teineigo (polite)
+    setting: friendly
+  - english: From here, it's quite far to the hospital.
+    japanese:
+      - ここ から 病院 まで は かなり {遠く} です。
+      - ここ から 病院 まで は 結構 {遠く} です よ。
+      - ここ から 病院 まで は {遠く} だ ね。
+      - ここ から 病院 まで は 随分 {遠く} です。
+      - ここ から 病院 まで は 歩い て 行く に は {遠く} です。
+      - ここ から 病院 は かなり {遠く} な の で、タクシー を 使う 方 が いい です よ。
+      - すみ ませ ん、ここ から 病院 は {遠く} です か？
+      - ここ から 病院 まで は 思っ た より {遠く} でし た。
+      - 地図 を 見る と、ここ から 病院 まで は {遠く} です ね。
+      - ここ から 病院 は 少し {遠く} に 感じ ます。
+    english_literally: Here from hospital until quite far is.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から 病院 まで は {遠い} です。
+        english: From here, the hospital is far.
+        hint: 「遠い」 is an adjective describing the state of being far. We're using the noun 「遠く」 to express
+          the distance itself, often in a slightly more emphatic or descriptive way when combined with
+          adverbs like 「かなり」 or 「結構」.
+      - competing_japanese:
+          - ここ から 病院 まで は {距離 が あり ます}。
+        english: From here, there is distance to the hospital.
+        hint: 「距離 が あり ます」 literally means 'there is distance', which is technically correct but less
+          natural for simple statements of distance. We're looking for a direct way to say 'it's far'.
+    scene: A person giving directions or advice about travel to a location.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: As you can see from the examples, 「近く」 and 「遠く」 are versatile. They can be used
+  with particles like 「に」, 「で」, 「から」, or with the possessive particle 「の」 to describe the location or
+  origin of something. They can also refer to temporal distance, such as in phrases like 「近く なっ て き まし
+  た」 for an approaching event or 「遠く 昔」 for the distant past.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/近く-遠く

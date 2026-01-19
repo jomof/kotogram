@@ -1,0 +1,232 @@
+grammar_point: なん・Counter・か (some・several・a few)
+learn_before:
+  - 何[Counter]も (many of something)
+meaning: Some, several, a few
+pronunciation:
+  katakana: ナン+カウンター+カ
+  romaji: nan + counter + ka
+formation:
+  なん + [counter] + か: Indicates an uncertain number of something, like 'some', 'several', or 'a few'.
+jlpt: N4
+etymology: 「何 (nan)」 means "what" or "how many". 「か (ka)」 is a particle often used at the end of questions,
+  but it can also express uncertainty or doubt. Together, they create a sense of "some unknown quantity"
+  or "what quantity, I wonder?" when used with a counter.
+writeup: |-
+  The expression 「なん+counter+か」 in Japanese indicates an uncertain number of something, similar to "some," "several," or "a few" in English. It conveys the speaker's uncertainty about the precise quantity. It is important to note the distinction between 「なん」 and 「なに」; 「なん」 is almost always used when counting things, while 「なに」 is used to identify things.
+
+  In addition to 「なん」, 「いく」 (from the kanji 「幾」 meaning "how many/much") can also be used in this construction. While both are common, 「幾」 is more frequently found in set expressions like 「いくら」 (how much) and 「いくつ」 (how many/old), whereas 「なん」 is generally used for counting specific items, such as people. The expression 「何者だ！」 (nani mono da!), meaning "What kind of person are you!", is a fixed phrase that, despite containing 「何」, does not follow the 「なん + counter + か」 structure. It is unrelated to this grammar point's function of indicating an indefinite quantity and should not be confused with it.
+false_friends:
+  - term: 数 + counter
+    meaning: Several, a few (definite but small number)
+    kind: often confused with
+    nuance: 「数+counter」 implies a definite, countable, albeit small, number that the speaker knows or
+      can easily ascertain. 「なん+counter+か」 implies uncertainty or an unwillingness to state a precise
+      count, focusing on the indefiniteness.
+    grammar_point: <suggest>:数・Counter (definite but small number)
+post_false_friends_writeup: While both 「なん+counter+か」 and 「数+counter」 (e.g., 「数人」 for several people,
+  「数回」 for several times) can be translated as 'a few' or 'several' in English, their nuances differ significantly.
+  「数+counter」 is used when the speaker knows the approximate number and wishes to convey it, even if it's
+  not exact. It suggests a quantified, albeit small, amount. In contrast, 「なん+counter+か」 is used when
+  the speaker genuinely does not know the precise number, or when they want to convey that the exact number
+  is unimportant. It emphasizes the *indefiniteness* of the quantity, implying 'some unknown number' rather
+  than 'a small, known number'.
+examples:
+  - english: I think I have been there several times.
+    japanese:
+      - そこ に {何 回 か} 行っ た こと が ある と 思う。
+      - そこ に {何 回 か} 行っ た こと が あり ます と 思い ます。
+    english_literally: I think I have gone there {what times, I wonder}.
+    competing_grammar:
+      - competing_japanese:
+          - '{数 人} 来 ます。'
+        english: I think I have been there a few times.
+        hint: While `数回` (several times) implies a known, small quantity, `何 回 か` is used to convey a
+          slight uncertainty or a feeling that the exact number isn't important or easily recallable,
+          emphasizing the indefiniteness. We're looking for a casual, imprecise recall of past visits.
+    scene: A person is vaguely recalling past visits to a place, not needing to specify the exact number,
+      just that it was more than once but not a precise count.
+    register: casual
+    setting: reflective
+  - english: A few people are coming now.
+    japanese:
+      - 今、{何 人 か} 来 ます。
+      - 今、{何 人 か} 来る。
+      - 今、{何 人 か} いらっしゃい ます。
+    english_literally: What people, I wonder, are coming now.
+    competing_grammar:
+      - competing_japanese:
+          - '{数 人} 来 ます。'
+        english: A few people are coming now.
+        hint: While `数人` (several people) implies a known, small quantity, `何 人 か` is used when the precise
+          number of people arriving is unknown or not crucial to specify. We're looking for an indefinite
+          number of people.
+    scene: An employee is informing a superior that some visitors are arriving, but doesn't have an exact
+      head count yet or isn't obligated to provide one.
+    register: teineigo (polite)
+    setting: professional
+  - english: Next time, why don't we go see a few movies together?
+    japanese:
+      - 今度、{何 回 か} 一緒 に 映画 を 見 に 行か ない？
+      - 今度、{何 回 か} 一緒 に 映画 を 見 に 行き ませ ん か？
+      - 今度、{何 回 か} 映画 見 に 行こう か？
+    english_literally: Next time, why don't we go to see {what times, I wonder} movies together.
+    competing_grammar:
+      - competing_japanese:
+          - '{数 回} 一緒 に 映画 を 見 に 行か ない？'
+        english: Next time, why don't we go see a few movies together?
+        hint: While `数回` (several times) implies a precise, fixed count, `何 回 か` suggests a flexible number
+          of times, implying a series of future activities. We're looking for a suggestion that leaves
+          the exact number open-ended.
+    scene: A man is making a casual suggestion to a woman, wanting to imply multiple future outings without
+      committing to a fixed number, leaving room for flexibility.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「見 に 行か ない？」 is a soft invitation. The male speaker's casual tone, indicated by
+      the sentence structure and the context of suggesting a shared activity, creates a light, flirty
+      atmosphere.
+  - english: I found a few good shops in this town.
+    japanese:
+      - この 町 で {何 軒 か} 良い 店 を 見つけ た よ。
+      - この 町 で {何 軒 か} 良い 店 を 見つけ まし た よ。
+      - この 町 で {何 軒 か} 良い 店 を 見つけ た ぜ。
+      - この 町 で {何 軒 か} 良い 店 を 見つけ た わ よ。
+    english_literally: I found {what times, I wonder} good shops in this town.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 で {数 軒} 良い 店 を 見つけ た よ。
+        english: I found a few good shops in this town.
+        hint: While `数軒` (several shops) implies a known, small quantity, `何 軒 か` conveys that the speaker
+          has been to a number of good shops, but the exact count isn't relevant to the anecdote. We're
+          looking for an emphasis on the experience of finding "a few" rather than stating a precise quantity.
+    scene: An older person is sharing their experience with a younger companion, casually mentioning that
+      they've visited multiple shops, but the exact count isn't important for the anecdote.
+    register: casual
+    setting: friendly
+    speaker_age: older
+    nuance: The informal 「よ」 ending creates a warm, sharing atmosphere suitable for a casual encounter
+      where the older speaker is sharing observations with the younger listener.
+  - english: A few cars were stopped on the road.
+    japanese:
+      - 道 に {何 台 か} 車 が 止まっ て い た。
+      - 道 に {何 台 か} 車 が 止まっ て い まし た。
+    english_literally: '{What cars, I wonder} were stopped on the road.'
+    competing_grammar:
+      - competing_japanese:
+          - 道 に {数 台} 車 が 止まっ て い た。
+        english: A few cars were stopped on the road.
+        hint: While `数台` (several units) implies a more definite, albeit small, number, `何 台 か` is used
+          because the speaker observed multiple cars but didn't count them precisely, emphasizing the
+          indefinite quantity. We're looking for an observation of an unspecified number of cars.
+    scene: Someone describing a street scene where they noticed multiple cars, but didn't bother to count
+      them precisely.
+    register: semi-formal
+    setting: informative
+  - english: A few people were gathered in front of the station.
+    japanese:
+      - 駅 前 に {何 人 か} 人 が 集まっ て い た。
+      - 駅 前 に {何 人 か} 人 が 集まっ て い まし た。
+      - 駅 前 に {何 人 か} の 人 が 集まっ て い まし た。
+    english_literally: '{What people, I wonder} were gathered in front of the station.'
+    competing_grammar:
+      - competing_japanese:
+          - 駅 前 に {数 人} 人 が 集まっ て い た。
+        english: A few people were gathered in front of the station.
+        hint: While `数人` (several people) implies a known, small quantity, `何 人 か` conveys that there
+          were some people, but the exact count is unknown or unimportant. We're looking for a general
+          observation about an unspecified number of people.
+    scene: A person observing a crowd at a station and commenting on the presence of some people, without
+      having counted them.
+    register: semi-formal
+    setting: informative
+  - english: I think this project will require several discussions.
+    japanese:
+      - この 企画 に は、{何 回 か} の 話し合い が 必要 だ と 思い ます。
+      - この 企画 に は、{何 回 か} の 話し合い が 必要 だ と 思う。
+      - この 企画 に は、{何 回 か} 話し合い が 必要 だ と 思い ます。
+    english_literally: I think this project will require {what times, I wonder} discussions.
+    competing_grammar:
+      - competing_japanese:
+          - この 企画 に は、{数 回} の 話し合い が 必要 だ と 思い ます。
+        english: I think this project will require several discussions.
+        hint: While `数回` (several times) implies a predefined quantity, `何 回 か` implies that the exact
+          number of discussions is uncertain or flexible, focusing on the need for "some" discussions.
+          We're looking for an indication that multiple, but unfixed, discussions will be required.
+    scene: A female project manager addressing a male team member about the next steps for a complex project,
+      indicating that multiple discussions, not a fixed number, will be needed.
+    register: bijinesu nihongo (business)
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: The formal tone with 「～だ と 思い ます」 and the use of 「～が 必要 だ」 (necessary) indicate a professional
+      and serious discussion about the project. The female speaker uses this phrasing to convey the need
+      for multiple, unspecified discussions to her male colleague.
+  - english: I studied for a few hours yesterday.
+    japanese:
+      - 昨日、{何 時間 か} 勉強 し まし た。
+      - 昨日、{何 時間 か} 勉強 し た。
+      - 昨日、{何 時間 か} 勉強 し た ぜ。
+      - 昨日、{何 時間 か} 勉強 し た わ。
+    english_literally: Yesterday, I studied for {what hours, I wonder}.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、{数 時間} 勉強 し まし た。
+        english: I studied for several hours yesterday.
+        hint: '`数時間` indicates a specific, known number of hours, while `何 時間 か` implies an approximate
+          or uncounted duration. We''re looking for an indefinite amount of study time.'
+    scene: A university student casually tells her friend about her study habits from the previous day,
+      not specifying the exact duration.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The polite form `しました` maintains a respectful but casual tone between friends. The use of
+      `何 時間 か` suggests the speaker didn't precisely time her study, or it's not relevant to state the
+      exact number.
+  - english: I bought a few books at the bookstore today.
+    japanese:
+      - 今日、本屋 で {何 冊 か} 本 を 買い まし た。
+      - 今日、本屋 で {何 冊 か} 本 を 買っ た。
+      - 今日、本屋 で {何 冊 か} 本 を 買っ た ぜ。
+      - 今日、本屋 で {何 冊 か} 本 を 買っ た わ。
+    english_literally: Today, at the bookstore, I bought {what books, I wonder}.
+    competing_grammar:
+      - competing_japanese:
+          - 今日、本屋 で {数 冊} 本 を 買い まし た。
+        english: I bought several books at the bookstore today.
+        hint: '`数冊` implies a definite count of books, whereas `何 冊 か` suggests the exact number is either
+          unknown or not important to the speaker. We''re looking for an unspecified small quantity of
+          books.'
+    scene: A person shares their recent purchases with a friend, implying they bought more than one book
+      but without needing to state the precise quantity.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of `何 冊 か` here is typical for casual conversation where the precise number of items
+      isn't crucial. The `ました` ending makes it polite enough for a friendly interaction.
+  - english: I waited for a few minutes, but the bus didn't come.
+    japanese:
+      - '{何 分 か} 待っ た けど、バス が 来 なかっ た。'
+      - '{何 分 か} 待ち まし た けど、バス が 来 ませ ん でし た。'
+    english_literally: '{What minutes, I wonder} I waited, but the bus did not come.'
+    competing_grammar:
+      - competing_japanese:
+          - '{数 分} 待っ た けど、バス が 来 なかっ た。'
+        english: I waited for several minutes, but the bus didn't come.
+        hint: '`数分` implies a measured, definite short period, while `何 分 か` highlights the uncertainty
+          of the duration or the frustration of an unfulfilled wait. We''re looking for an indefinite
+          waiting period.'
+    scene: Someone recounting their frustrating experience waiting for a bus that never arrived.
+    register: casual
+    setting: pessimistic
+    speaker_gender: female
+    listener_gender: group
+    nuance: The casual `待った けど` (waited but) and `来 なかった` (didn't come) reflect the speaker's frustration.
+      `何 分 か` emphasizes the perceived length and futility of the wait, rather than a precise time measurement.
+post_example_writeup: This grammar point is versatile and can be used with various counters, allowing
+  for flexibility in expressing approximate quantities without needing to be precise. It is particularly
+  useful in everyday conversations where exact numbers are either unknown or not important.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なん-counter-か

@@ -1,0 +1,325 @@
+grammar_point: ところだ (location by travel time)
+learn_before:
+  - '[Verb-dictionary]ところだ (about to do)'
+  - を中心に (focused on)
+meaning: is in a place where it takes ~ to get to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ところだ
+    rarity: common
+    meaning: is in a place where it takes ~ to get to (plain)
+  - conjugation-type: non-past polite (～ます)
+    form: ところです
+    rarity: common
+    meaning: is in a place where it takes ~ to get to (polite)
+pronunciation:
+  katakana: トコロダ
+  romaji: tokoro da
+formation:
+  Place + は/が + Starting Point + から + Means of Transport + で + Time + の + ところだ: Indicates the location
+    of a place in terms of the time it takes to reach it
+jlpt: N4
+etymology: 「ところ」 literally means "place." In this context, it refers to a location defined by the amount
+  of time it takes to get there. The phrase 「…のところだ」 emphasizes the duration of the journey to specify
+  the location.
+writeup: |-
+  The grammar point 「ところだ」 specifies a location by describing the travel time required to reach it from a specific reference point using a particular mode of transportation. While 「ところ」 literally means "place," in this context, it functions to denote a location that is **defined** by its accessibility. It is a simplified and commonly used form of 「ところにある」 (to be located in a place).
+
+  This pattern is often used when providing directions, discussing commute times, or generally describing the proximity and accessibility of a place. The structure typically involves:
+  *   **[Place] は/が**: The location being described.
+  *   **[Starting Point] から**: The reference point from which travel time is measured.
+  *   **[Means of Transport] で**: The mode of transportation used (e.g., 歩い て for walking, バス で for by bus, 車 で for by car).
+  *   **[Time] の ところだ**: The duration of travel, followed by 「の」 and 「ところだ」.
+
+  It conveys not just a duration, but that the destination **is** at that specific travel-time-defined location.
+false_friends:
+  - term: Vるところ
+    meaning: just about to do something
+    kind: often confused with
+    nuance: Unlike 「～のところだ」 which describes a location, 「Vるところ」 indicates the imminent timing of an action.
+    grammar_point: <suggest>:Vるところ (just about to do)
+  - term: Vているところ
+    meaning: in the middle of doing something
+    kind: often confused with
+    nuance: While sharing "ところ," this form describes an action in progress, not a physical location.
+    grammar_point: <suggest>:Vているところ (in the middle of doing)
+  - term: Vたところ
+    meaning: just finished doing something
+    kind: often confused with
+    nuance: This usage of "ところ" refers to an action that has just concluded, bearing no relation to spatial
+      location.
+    grammar_point: <suggest>:Vたところ (just finished doing)
+  - term: ～にある
+    meaning: is located at
+    kind: similar expression
+    nuance: 「～にある」 simply states existence at a location, whereas 「～のところだ」 specifically emphasizes the
+      *travel time or distance* as the defining characteristic of that location.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: ～から～まで
+    meaning: from ~ to ~
+    kind: similar expression
+    nuance: The particle 「まで」 indicates a limit or extent, which can describe a range or duration like
+      'from X to Y'. However, unlike 「～のところだ」, it focuses on the boundary or completion of a range, not
+      defining a location by its travel time. 「～のところだ」 specifically pinpoints a location based on time
+      taken to reach it.
+    grammar_point: <suggest>:から～まで (from to)
+post_false_friends_writeup: Keep in mind that while 「ところ」 appears in various grammar patterns, its usage
+  in 「～のところだ」 specifically defines a location by the time required to reach it. Do not confuse it with
+  other 「ところ」 constructions that indicate the timing or state of an action (e.g., 「Vるどころだ」, 「Vているところだ」,
+  or 「Vたところだ」). The key distinction lies in whether you are describing a place or the temporal aspect
+  of an action.
+examples:
+  - english: The school is a five-minute walk from home.
+    japanese:
+      - 学校 は 家 から 歩い て 五 分 の {ところ だ}。
+      - 学校 は 家 から 歩い て 五 分 の {ところ だ よ}。
+      - 学校 は 家 から 歩い て 五 分 の {ところ です}。
+      - 学校 は 家 から 歩い て 五 分 の {ところ です} よ。
+    english_literally: The school is a place of five minutes walking from home.
+    competing_grammar:
+      - competing_japanese:
+          - 学校 は 家 から 歩い て 五 分 {だ}。
+        english: The school is five minutes walk from home.
+        hint: This phrase states the duration of the walk. We're looking for a phrase that defines the
+          *location* of the school based on that travel time, which 「ところだ」 precisely conveys by denoting
+          the place at that time.
+      - competing_japanese:
+          - 学校 が 家 から 歩い て 五 分 に 行く {ところ だ}。
+        english: The school is about to walk five minutes from home.
+        hint: 「Vるところ」 indicates an action that is about to happen. We're looking for a phrase that describes
+          a location defined by travel time, not an action's imminent start time.
+      - competing_japanese:
+          - 学校 が 家 から 歩い て 五 分 に 行っ て いる {ところ だ}。
+        english: The school is in the middle of walking five minutes from home.
+        hint: 「Vているところ」 indicates an action currently in progress. We're looking for a phrase that describes
+          a location defined by travel time, not an action that is currently occurring.
+      - competing_japanese:
+          - 学校 が 家 から 歩い て 五 分 に 行っ た {ところ だ}。
+        english: The school just finished walking five minutes from home.
+        hint: 「Vたところ」 indicates an action that has just finished. We're looking for a phrase that describes
+          a location defined by travel time, not a recently completed action.
+      - competing_japanese:
+          - 学校 は 家 から 歩い て 五 分 の ところ に {ある}。
+        english: The school is located at a place five minutes walk from home.
+        hint: While 「～にある」 describes existence at a location, 「～のところだ」 specifically emphasizes that the
+          location is *defined* by the travel time or distance. We're looking for a phrase that highlights
+          this defining aspect, rather than just stating existence.
+      - competing_japanese:
+          - 家 から 学校 まで 歩い て 五 分 {だ}。
+        english: It's a five-minute walk from home to school.
+        hint: 「～から～まで」 focuses on the duration or range of travel itself. We're looking for a phrase that
+          defines the *destination's location* based on that travel time, rather than the travel time
+          itself.
+    scene: A child tells their friend how close their school is.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「ところだ」 is typical for casual settings. The additions 「ところだよ」, 「ところです」, and 「ところです
+      よ」 offer variations in politeness and emphasis, allowing for a more nuanced expression. For example,
+      「ところです よ」 adds a gentle emphasis or confirmation, making the statement more reassuring. This phrasing
+      defines the school's location by how far it is in terms of walking time, emphasizing convenience
+      from the speaker's home.
+  - english: The new office is about a thirty-minute train ride from the station.
+    japanese:
+      - 新しい 事務 所 は 駅 から 電車 で 三十 分 の {ところ です}。
+      - 新しい 事務 所 は 駅 から 電車 で 三十 分 の {ところ だ}。
+      - 新しい 事務 所 は 駅 から 電車 で 三十 分 の {ところ です} よ。
+    english_literally: The new office is a place of thirty minutes by train from the station.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 事務 所 は 駅 から 電車 で 三十 分 {です}。
+        english: The new office is thirty minutes by train from the station.
+        hint: This sentence describes the duration of the train ride. We're looking for a phrase that
+          defines the office's location *by* that travel time, indicating its accessibility.
+      - competing_japanese:
+          - 新しい 事務 所 は 駅 から 電車 で 三十 分 {かかり ます}。
+        english: The new office takes thirty minutes by train from the station.
+        hint: 「～かかります」 specifies the time required for travel. We're looking for a phrase that pinpoints
+          the location *as* being that amount of travel time away.
+    scene: A colleague explains the location of their new office to a new hire.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The core use of 「ところです」 maintains the formal register suitable for a professional setting.
+      Including 「ところだ」 shows a less formal, but still grammatically correct, variant that might be used
+      in a written internal memo. Adding 「ところです よ」 adds a clear, reassuring tone suitable for informing
+      a new hire.
+  - english: My new apartment is about a fifteen-minute bike ride from the supermarket.
+    japanese:
+      - 私 の 新しい アパート は スーパー から 自転 車 で 十 五 分 の {ところ だ}。
+      - 私 の 新しい アパート は スーパー から 自転 車 で 十 五 分 の {ところ だ よ}。
+      - 私 の 新しい アパート は スーパー から 自転 車 で 十 五 分 の {ところ です}。
+      - 私 の 新しい アパート は スーパー から 自転 車 で 十 五 分 の {ところ です} よ。
+    english_literally: My new apartment is a place of fifteen minutes by bicycle from the supermarket.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 新しい アパート は スーパー から 自転 車 で 十 五 分 {だ}。
+        english: My new apartment is fifteen minutes by bike from the supermarket.
+        hint: This phrase simply states the duration of the bike ride. We're looking for a phrase that
+          defines the apartment's location *by* that travel time, emphasizing its specific placement relative
+          to the supermarket.
+    scene: A friend casually describes their new living situation.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The plain form 「ところだ」 is appropriate for casual conversation between friends. Variations like
+      「ところだよ」 add a friendly emphasis, while 「ところです」 and 「ところです よ」 offer slightly more polite options
+      that can still be used in casual settings to convey a bit more respect or clarity.
+  - english: The nearest hospital is approximately ten minutes by car from the city center.
+    japanese:
+      - 最寄り の 病院 は 中心 街 から 車 で 十 分 の {ところ です}。
+      - 最寄り の 病院 は 中心 街 から 車 で 十 分 の {ところ だ}。
+    english_literally: The nearest hospital is a place of ten minutes by car from the city center.
+    competing_grammar:
+      - competing_japanese:
+          - 最寄り の 病院 は 中心 街 から 車 で 十 分 の 場所 に {あり ます}。
+        english: The nearest hospital is located at a place ten minutes by car from the city center.
+        hint: While 「～の場所にある」 is also correct, 「～のところです」 specifically emphasizes that the hospital's location
+          is *characterized* by its travel time from the city center. We're looking for the phrase that
+          highlights this defining aspect.
+    scene: A medical professional gives information about local facilities.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: This usage with 「ところです」 fits a formal situation where precise, objective information is conveyed,
+      like a medical professional providing facts. The plain form 「ところだ」 is less common in this specific
+      formal context but can be used in more internal, informal discussions.
+  - english: The ancient temple is a two-hour bus journey from the airport.
+    japanese:
+      - その 古い 寺 は 空港 から バス で 二 時間 の {ところ だ}。
+      - その 古い 寺 は 空港 から バス で 二 時間 の {ところ です}。
+    english_literally: That ancient temple is a place of two hours by bus from the airport.
+    competing_grammar:
+      - competing_japanese:
+          - 空港 から その 古い 寺 まで バス で 二 時間 {だ}。
+        english: From the airport to that ancient temple is two hours by bus.
+        hint: 「～から～まで」 focuses on the duration or range of travel itself. We're looking for a phrase that
+          defines the *temple's location* based on that travel time, rather than the travel time itself.
+    scene: A tour guide explains the distance to a cultural site.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: Both plain 「ところだ」 and polite 「ところです」 are natural choices for a tour guide. The plain form
+      can be seen as direct and factual, fitting for informative contexts, while the polite form is generally
+      courteous when addressing a group.
+  - english: The highly-rated restaurant is just a three-minute walk from here.
+    japanese:
+      - あの 評判 の レストラン は ここ から 歩い て 三 分 の {ところ だ}。
+      - あの 評判 の レストラン は ここ から 歩い て 三 分 の {ところ だ よ}。
+      - あの 評判 の レストラン は ここ から 歩い て 三 分 の {ところ です}。
+      - あの 評判 の レストラン は ここ から 歩い て 三 分 の {ところ です} よ。
+    english_literally: That highly-rated restaurant is a place of three minutes walking from here.
+    competing_grammar:
+      - competing_japanese:
+          - あの 評判 の レストラン は ここ から 歩い て 三 分 {です}。
+        english: That highly-rated restaurant is three minutes walk from here.
+        hint: This sentence states the duration of the walk. We're looking for a phrase that defines the
+          restaurant's location *by* that travel time, indicating its specific proximity.
+    scene: A friend enthusiastically recommends a restaurant.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: All forms are suitable for a casual, friendly recommendation. The plain 「ところだ」 is direct,
+      「ところだよ」 adds a casual, friendly assurance. The polite 「ところです」 and 「ところです よ」 (with the 「よ」 particle)
+      indicate politeness while still conveying enthusiasm, which is common in recommendations, especially
+      when speaking to a female listener as it softens the tone.
+  - english: The remote village is a four-hour trek on foot from the nearest town.
+    japanese:
+      - その 遠い 村 は 最寄り の 町 から 徒歩 で 四 時間 の {ところ だ}。
+      - その 遠い 村 は 最寄り の 町 から 徒歩 で 四 時間 の {ところ です}。
+    english_literally: That distant village is a place of four hours on foot from the nearest town.
+    competing_grammar:
+      - competing_japanese:
+          - その 遠い 村 は 最寄り の 町 から 徒歩 で 四 時間 {かかる}。
+        english: That distant village takes four hours on foot from the nearest town.
+        hint: 「～かかる」 describes the duration of the travel. We're looking for a phrase that *defines* the
+          village's location by that specific travel time.
+    scene: An adventurer recounts a challenging journey.
+    register: casual
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The plain form 「ところだ」 is suitable for a storytelling context, conveying direct information
+      about the difficulty of access, making the speaker sound experienced and factual. The polite form
+      「ところです」 is also acceptable, especially if the storyteller is addressing a group and wishes to maintain
+      a level of courtesy.
+  - english: The National Art Museum is twenty minutes by subway from the main station.
+    japanese:
+      - 国立 美術 館 は 主要 駅 から 地下 鉄 で 二十 分 の {ところ です}。
+      - 国立 美術 館 は 主要 駅 から 地下 鉄 で 二十 分 の {ところ だ}。
+    english_literally: The National Art Museum is a place of twenty minutes by subway from the main station.
+    competing_grammar:
+      - competing_japanese:
+          - 国立 美術 館 は 主要 駅 から 地下 鉄 で 二十 分 の 場所 に {あり ます}。
+        english: The National Art Museum is in a place twenty minutes by subway from the main station.
+        hint: While 「～の場所にある」 is also correct, 「～のところです」 specifically emphasizes that the museum's location
+          is *characterized* by its travel time from the station. We're looking for the phrase that highlights
+          this defining aspect.
+    scene: A receptionist provides directions to a visitor.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The polite form 「ところです」 is appropriate for a formal, professional interaction where clear,
+      helpful directions are given, such as by a receptionist. While 「ところだ」 is grammatically possible,
+      it would significantly lower the formality and might not be suitable for this professional context.
+  - english: The secret base is an hour's helicopter flight from the capital.
+    japanese:
+      - 秘密 基地 は 首都 から ヘリコプター で 一 時間 の {ところ だ}。
+      - 秘密 基地 は 首都 から ヘリコプター で 一 時間 の {ところ だ よ}。
+      - 秘密 基地 は 首都 から ヘリコプター で 一 時間 の {ところ です}。
+    english_literally: The secret base is a place of one hour by helicopter from the capital.
+    competing_grammar:
+      - competing_japanese:
+          - 秘密 基地 は 首都 から ヘリコプター で 一 時間 {だ}。
+        english: The secret base is one hour by helicopter from the capital.
+        hint: This sentence expresses the duration of the flight. We're looking for a phrase that defines
+          the secret base's location *by* that specific travel time.
+    scene: A character reveals the location of a secret hideout in a spy movie.
+    register: casual
+    setting: creative
+    conjugation: dictionary (plain non-past)
+    nuance: The plain form 「ところだ」 suits the direct, almost matter-of-fact tone of revealing a secret location
+      in a fictional narrative. Adding 「ところだよ」 gives a slightly more casual or reassuring tone, while
+      「ところです」 would be used if the character were speaking to someone they needed to show more respect
+      to, even in a casual setting.
+  - english: The school library is just a seven-minute walk from the main building.
+    japanese:
+      - 学校 の 図書 館 は 本館 から 歩い て 七 分 の {ところ だ}。
+      - 学校 の 図書 館 は 本館 から 歩い て 七 分 の {ところ だ よ}。
+      - 学校 の 図書 館 は 本館 から 歩い て 七 分 の {ところ です}。
+      - 学校 の 図書 館 は 本館 から 歩い て 七 分 の {ところ です} よ。
+    english_literally: The school library is a place of seven minutes walking from the main building.
+    competing_grammar:
+      - competing_japanese:
+          - 学校 の 図書 館 は 本館 から 歩い て 七 分 で {行け ます}。
+        english: You can go to the school library from the main building in seven minutes walking.
+        hint: This phrase indicates the possibility and duration of reaching the library. We're looking
+          for a phrase that defines the library's location *as* being that specific travel time away.
+    scene: A student tells another student about the library's proximity.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The plain form 「ところだ」 is natural for a casual conversation between students. The addition
+      of 「よ」 in 「ところだよ」 makes it even more friendly and informative. The polite forms 「ところです」 and 「ところです
+      よ」 are also acceptable in a friendly context, showing slightly more consideration or general politeness
+      towards the listener.
+post_example_writeup: The usage of 「ところだ」 vs. 「ところです」 determines the politeness level of the sentence.
+  The choice between plain and polite forms depends on the context and relationship between speakers,
+  just as with other Japanese verb and adjective endings. This pattern is versatile and frequently used
+  in daily conversation when discussing proximity and accessibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ところだ

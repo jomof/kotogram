@@ -1,0 +1,226 @@
+grammar_point: ていては (if one keeps doing something)
+learn_before:
+  - 抜く (do completely)
+meaning: If one keeps doing something; when; if something is...
+pronunciation:
+  katakana: テイテハ
+  romaji: teite wa
+formation:
+  '[Verb in て-form] + いては': Expresses a negative outcome if an action continues.
+jlpt: N2
+etymology: The grammar point 「ていては」 is derived from 「ている」 (the continuous form of a verb) + 「は」 (a topic
+  marker indicating a hypothetical or repetitive situation). Thus, it combines the idea of continuous
+  action with a conditional "if" or "when". It signifies that an ongoing action or state, if continued,
+  will lead to a certain outcome, almost always a negative one.
+writeup: 「ていては」 is used to express that if one continues with a certain action (A), a negative outcome
+  (B) will result. It combines the 「て」-form of a verb, 「いる」 (to be) in its 「て」-form (「いて」), and 「は」. The
+  「ては」 part is similar to that in other patterns like 「てはいけない」, 「てはならない」, and 「てはだめ」, which express prohibition
+  or negativity. Essentially, 「ていては」 highlights the continuous nature of an action and warns about its
+  potential consequences. It is a blend of continuous action and hypothetical/repetitive situations, depending
+  on the verb it attaches to, consistently pointing towards an undesirable outcome.
+false_friends:
+  - term: ては
+    meaning: If; when; because (with a negative consequence)
+    kind: similar expression
+    nuance: 「ては」 has a broader range of meanings related to conditions and circumstances, covering general
+      hypothetical situations or reasons. In contrast, 「ていては」 specifically focuses on the negative consequences
+      of a continuous action or ongoing state. The key difference lies in the emphasis on the ongoing
+      nature of the condition leading to the negative result in 「ていては」.
+    grammar_point: ては (inevitable negative outcome)
+post_false_friends_writeup: While both 「ては」 and 「ていては」 express conditional or consequential relationships,
+  it is important to distinguish their nuances. Use 「ては」 for general conditions or reasons, and 「ていては」
+  when you want to highlight that a continuous action or state is leading to an undesirable outcome.
+examples:
+  - english: If you keep being so late, you won't make the train.
+    japanese:
+      - そんな に 遅れ て {て い て は}、電車 に 間に合い ませ ん よ。
+      - そんな に 遅れ て {て い て は}、電車 に 間に合わ ない よ。
+      - そんな に 遅れ て {て い て は}、電車 に 間に合わ ない ぞ。
+    english_literally: If you keep being late, you will not make it in time for the train.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 遅れる {と}、電車 に 間に合い ませ ん よ。
+          - そんな に 遅れる {と}、電車 に 間に合わ ない よ。
+        english: If you are late, you won't make the train.
+        hint: 「と」 indicates a natural or inevitable result. We're looking for an expression that emphasizes
+          the negative outcome of a continuous action.
+    scene: A friend reminding another about punctuality for a meeting.
+    register: casual
+    setting: friendly
+    nuance: The use of 「〜よ」 adds a gentle warning or advice among friends. This phrase could be used by
+      anyone, regardless of age or gender, in a casual setting.
+  - english: If you keep dwelling on past failures, you can't move forward.
+    japanese:
+      - いつ まで も 過去 の 失敗 を 引きずっ て {て い て は}、前 に 進め ませ ん。
+      - いつ まで も 過去 の 失敗 を 引きずっ て {て い て は}、前 に 進め ない です よ。
+      - いつ まで も 過去 の 失敗 を 引きずっ て {て い て は}、前 に 進め ない よ。
+    english_literally: If you keep dragging along past failures forever, you cannot advance forward.
+    competing_grammar:
+      - competing_japanese:
+          - いつ まで も 過去 の 失敗 を 引きずる {と}、前 に 進め ませ ん。
+          - いつ まで も 過去 の 失敗 を 引きずる {と}、前 に 進め ない よ。
+        english: If you dwell on past failures, you can't move forward.
+        hint: 「と」 expresses a general condition leading to a result. We're looking for an expression that
+          highlights the negative consequences of a continuous action or state.
+    scene: A mentor giving advice to a disheartened protégé struggling with setbacks.
+    register: semi-formal
+    setting: supportive
+    nuance: This phrasing suggests gentle encouragement, emphasizing that a continuous mindset is hindering
+      progress. It's a supportive, advisory tone common in mentorship.
+  - english: If you keep being so anxious, you won't be able to concentrate on the exam.
+    japanese:
+      - そんな に 不安 に 思っ て {て い て は}、試験 に 集中 でき ませ ん よ。
+      - そんな に 不安 に 思っ て {て い て は}、試験 に 集中 でき ない よ。
+      - そんな に 不安 に 思っ て {て い て は}、試験 に 集中 でき ない ぞ。
+    english_literally: If you keep thinking so anxiously, you cannot concentrate on the exam.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 不安 に 思う {と}、試験 に 集中 でき ませ ん よ。
+          - そんな に 不安 に 思う {と}、試験 に 集中 でき ない よ。
+        english: If you are so anxious, you won't be able to concentrate on the exam.
+        hint: 「と」 indicates a direct, often automatic, consequence. We're looking for an expression that
+          emphasizes the negative impact of an ongoing state.
+    scene: A classmate trying to calm down a nervous friend before a big test.
+    register: casual
+    setting: sympathetic
+    nuance: The use of 「〜よ」 provides a gentle warning, indicating shared understanding and concern between
+      peers. The tone is empathetic.
+  - english: If you keep neglecting to submit reports, your boss won't trust you.
+    japanese:
+      - 報告 書 の 提出 を ずっと 怠っ て {て い て は}、上司 は 信頼 し ませ ん。
+      - 報告 書 の 提出 を ずっと 怠っ て {て い て は}、上司 は 信頼 し ない です よ。
+      - 報告 書 の 提出 を ずっと 怠っ て {て い て は}、上司 は 信頼 し ない よ。
+    english_literally: If you keep neglecting the submission of reports, your boss will not trust you.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 の 提出 を ずっと 怠る {と}、上司 は 信頼 し ませ ん。
+          - 報告 書 の 提出 を ずっと 怠る {と}、上司 は 信頼 し ない よ。
+        english: If you neglect to submit reports, your boss won't trust you.
+        hint: 「と」 describes a general conditional relationship. We're looking for an expression that specifically
+          points out the negative outcome of a persistent action or habit.
+    scene: A senior colleague advising a junior employee about workplace responsibilities.
+    register: semi-formal
+    setting: informative
+    nuance: This sentence conveys a clear warning about professional consequences, typical in a workplace
+      advice context. The formality is appropriate for inter-colleague communication.
+  - english: If you keep worrying about every little thing, you probably won't enjoy life.
+    japanese:
+      - 小さな こと を いちいち 気 に し て {て い て は}、人生 を 楽しめ ない でしょう。
+      - 小さな こと を いちいち 気 に し て {て い て は}、人生 を 楽しめ ない と 思う よ。
+      - 小さな こと を いちいち 気 に し て {て い て は}、人生 を 楽しめ ない はず だ よ。
+    english_literally: If you keep minding small things one by one, you probably cannot enjoy life.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな こと を いちいち 気 に する {と}、人生 を 楽しめ ない でしょう。
+          - 小さな こと を いちいち 気 に する {と}、人生 を 楽しめ ない と 思う よ。
+        english: If you worry about every little thing, you probably won't enjoy life.
+        hint: 「と」 states a general consequence. We're looking for an expression that emphasizes the negative
+          impact of a continuous worrying habit.
+    scene: A philosopher sharing life wisdom during a public lecture.
+    register: formal
+    setting: reflective
+    nuance: The use of 「でしょう」 softens the statement, making it more of a reflective observation or a gentle
+      prediction than a direct admonition. It sounds more like a general truth.
+  - english: If you keep practicing with that posture, you'll get injured.
+    japanese:
+      - その よう な 姿勢 で 練習 し て {て い て は}、怪我 を し ます よ。
+      - その よう な 姿勢 で 練習 し て {て い て は}、怪我 を する よ。
+      - その よう な 姿勢 で 練習 し て {て い て は}、怪我 を する ぞ。
+    english_literally: If you keep practicing with such a posture, you will get injured.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 姿勢 で 練習 する {と}、怪我 を し ます よ。
+          - その よう な 姿勢 で 練習 する {と}、怪我 を する よ。
+        english: If you practice with that posture, you'll get injured.
+        hint: 「と」 indicates a direct result. We're looking for an expression that highlights the negative
+          consequences of continuing a particular way of practicing.
+    scene: A coach correcting an athlete's form during training.
+    register: casual
+    setting: instructional
+    nuance: The directness implies urgency and a clear warning, typical from a coach to an athlete who
+      needs to adjust a continuous action. The 「〜よ」 adds a personal warning.
+  - english: If you keep skipping breakfast, you won't have energy all day, man.
+    japanese:
+      - 朝食 を 抜い て {て い て は}、一 日 中 力 が 出 ない ぞ。
+      - 朝食 を 抜く {と}、一 日 中 力 が 出 ない ぞ。
+      - 朝食 を 抜い て {て い て は}、一 日 中 力 が 出 ませ ん よ。
+    english_literally: If you keep skipping breakfast, energy will not come out all day.
+    competing_grammar:
+      - competing_japanese:
+          - 朝食 を 抜く {と}、一 日 中 力 が 出 ない ぞ。
+          - 朝食 を 抜く {と}、一 日 中 力 が 出 ませ ん よ。
+        english: If you skip breakfast, you won't have energy all day, man.
+        hint: 「と」 expresses a general consequence. We're looking for an expression that emphasizes the
+          negative outcome of a repeated action.
+    scene: An older brother giving advice to his younger brother.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「〜ぞ」 is characteristic of male speech, adding a forceful yet friendly tone, often
+      used by an older male towards a younger one. It conveys a strong, informal warning.
+  - english: If you keep staying up late every night, your face will be puffy tomorrow, you know.
+    japanese:
+      - いつ も 夜更かし し て {て い て は}、明日 の 顔 が むくん で しまう わ よ。
+      - いつ も 夜更かし し て {て い て は}、明日 の 顔 が むくん で しまい ます よ。
+      - いつ も 夜更かし し て {て い て は}、明日 の 顔 が むくん で しまう よ。
+    english_literally: If you always stay up late, tomorrow's face will swell up.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 夜更かし する {と}、明日 の 顔 が むくん で しまう わ よ。
+          - いつ も 夜更かし する {と}、明日 の 顔 が むくん で しまい ます よ。
+        english: If you stay up late every night, your face will be puffy tomorrow, you know.
+        hint: 「と」 describes a general cause-and-effect. We're looking for an expression that highlights
+          the negative result of a continuous habit.
+    scene: A mother gently scolding her teenage daughter about her sleep habits.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「〜わよ」 is a sentence-ending particle often used by women to add emphasis or a gentle warning,
+      fitting for a mother advising her daughter. It carries a caring but firm tone.
+  - english: If we keep neglecting environmental issues like this, it will have a serious impact on the
+      future.
+    japanese:
+      - この まま 環境 問題 を 放置 し て {て い て は}、未来 に 大変 な 影響 を 与える でしょう。
+      - この まま 環境 問題 を 放置 し て {て い て は}、未来 に 大変 な 影響 を 与え ます よ。
+      - この まま 環境 問題 を 放置 し て {て い て は}、未来 に 大変 な 影響 を 与える はず です よ。
+    english_literally: If we keep leaving environmental problems as they are, it will give a serious impact
+      on the future.
+    competing_grammar:
+      - competing_japanese:
+          - この まま 環境 問題 を 放置 する {と}、未来 に 大変 な 影響 を 与える でしょう。
+          - この まま 環境 問題 を 放置 する {と}、未来 に 大変 な 影響 を 与え ます よ。
+        english: If we neglect environmental issues like this, it will have a serious impact on the future.
+        hint: 「と」 states a general consequence. We're looking for an expression that emphasizes the negative
+          long-term effects of continuing to neglect an issue.
+    scene: An environmental scientist presenting a grim outlook to a public forum.
+    register: formal
+    setting: persuasive
+    nuance: The use of 「でしょう」 softens the warning, making it a strong prediction based on current trends,
+      rather than a direct command. This is typical for persuasive speech on a serious topic.
+  - english: If you keep eating fast food, your health will suffer.
+    japanese:
+      - ファスト フード ばかり 食べ て {て い て は}、体 に 悪い です よ。
+      - ファスト フード ばかり 食べ て {て い て は}、体 に 悪い よ。
+      - ファスト フード ばかり 食べ て {て い て は}、体 に 悪い ぞ。
+    english_literally: If you keep only eating fast food, it is bad for your body.
+    competing_grammar:
+      - competing_japanese:
+          - ファスト フード ばかり 食べる {と}、体 に 悪い です よ。
+          - ファスト フード ばかり 食べる {と}、体 に 悪い よ。
+        english: If you eat fast food, your health will suffer.
+        hint: 「と」 states a general consequence. We're looking for an expression that emphasizes the negative
+          outcome of a continuous habit.
+    scene: A friend giving health advice to another.
+    register: casual
+    setting: friendly
+    nuance: The use of 「〜です よ」 softens the advice and adds a personal touch, common in friendly exchanges,
+      indicating concern for the listener's well-being.
+post_example_writeup: 「ていては」 is consistently used to warn or advise about the consequences of continuing
+  a certain behavior or state, highlighting the negative outcomes that stem from persistent actions or
+  conditions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ていては

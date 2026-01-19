@@ -1,0 +1,297 @@
+grammar_point: どう (how)
+meaning: how; in what way; what do you think; no matter how
+pronunciation:
+  katakana: ドウ
+  romaji: dō
+formation:
+  どう + Verb: Asks about the method or manner of an action.
+  どう + なります/なった: Inquires about how a situation or outcome develops or turned out.
+  '[Noun] は どう ですか/でしたか': Asks for an opinion or impression about a noun, or its state/condition.
+  どう + Negative Verb/Adjective (e.g., どうにもならない): Emphasizes an extreme or unchangeable state, often translated
+    as "no matter how/what." For example, 「どうにもならない」 (nothing can be done) indicates an unchangeable situation.
+  どう (単独で/間投詞的に): Used alone or as an interjection to prompt a decision, reaction, or to express general
+    inquiry.
+jlpt: N5
+etymology: The word 「どう」 is a contraction of the older form 「どのよう」 (dono yō) or 「いかに」 (ikani). 「どのよう」
+  itself means 'what kind of way' (「どの」 - what kind of, 「よう」 - way/manner). The evolution to 「どう」 essentially
+  compresses 'in what manner,' maintaining its core meaning of inquiring into method, state, or opinion.
+writeup: '「どう」 is a fundamental interrogative word in Japanese, primarily used to ask "how" or "in what
+  way." It seeks information about methods, states, conditions, or opinions. Its versatility makes it
+  a very common word in daily conversation. **Asking about method/manner**: When inquiring "how to do
+  something" or "in what way something happened," 「どう」 typically precedes the verb. For instance, 「どうしますか」(How
+  will you do it? / What will you do?) asks about the intended method or course of action. **Asking about
+  state/condition**: It can be used to inquire about the state of something or someone, often followed
+  by a verb like 「なる」(to become) or the copula. For example, 「気分はどうですか」(How are you feeling?) directly
+  asks about one''s current physical or emotional state. **Seeking opinion/impression**: When used with
+  copulas like 「だ」 or 「です」 (often informally contracted to just 「どう？」), 「どう」 asks for an opinion or impression
+  about something. This usage is very common, as in 「この映画はどうでしたか」(How was this movie?), where it solicits
+  a subjective evaluation. **Emphasis (with negative)**: Sometimes, 「どう」 can be used to emphasize a state
+  or action when paired with negative forms, such as 「どうにもならない」(There’s nothing that can be done). This
+  implies that no method or effort will yield a different result.'
+false_friends:
+  - term: いかが (polite how)
+    meaning: how; what; how about (polite)
+    kind: similar expression
+    nuance: 「いかが」 is a more polite and formal equivalent to 「どう」, making it suitable for situations requiring
+      respect or deference. While 「どう」 is general, 「いかが」 is specifically polite.
+    grammar_point: いかが (polite how)
+  - term: どんな (what kind of)
+    meaning: what kind of; what sort of
+    kind: often confused with
+    nuance: 「どんな」 asks about the *type* or *nature* of something, focusing on classification rather than
+      the method, state, or opinion. For example, 「どんな映画ですか」 asks 'What kind of movie is it?', not 'How
+      was the movie?'.
+    grammar_point: どんな (what kind of)
+  - term: どうやって (how to do)
+    meaning: how; by what means; in what way (emphasizing method)
+    kind: similar expression
+    nuance: 「どうやって」 specifically emphasizes the *means* or *procedure* by which an action is performed.
+      While 「どう」 can imply method, 「どうやって」 explicitly asks for the 'how-to' or 'by what means.' For example,
+      「どうやって 駅 へ 行きます か」 asks for detailed directions or methods.
+    grammar_point: どうやって (how to do)
+post_false_friends_writeup: While 「どう」 covers a broad range of inquiries about methods, states, and opinions,
+  it's crucial to distinguish it from related terms. 「いかが」 offers a polite alternative, essential in formal
+  or respectful contexts. 「どんな」 inquires about the *nature* or *type* of something, focusing on classification
+  rather than process or condition. Meanwhile, 「どうやって」 specifically probes the *means* or *procedure*
+  by which an action is performed, providing a more direct query about the "how-to." Understanding these
+  distinctions will allow for more precise and contextually appropriate communication.
+examples:
+  - english: How are you feeling?
+    japanese:
+      - 気分 は {どう} です か？
+      - 体調 は {どう} です か？
+      - 気分 は {どう}？
+    english_literally: Feeling as for how is it?
+    competing_grammar:
+      - competing_japanese:
+          - '{大丈夫 です か}？'
+          - '{お 元気 です か}？'
+        english: Are you okay? / How are you?
+        hint: These phrases inquire about general well-being or if someone is alright, not explicitly
+          about their specific 'feeling' or 'condition' using 'how'. We're looking for a question about
+          'how' one feels.
+    scene: A nurse checking on a patient's condition after surgery.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This is a standard, polite way to ask about someone's physical or emotional state. The honorific
+      prefix 「お」 is often omitted in more direct inquiries about one's state, as the focus is on the state
+      itself rather than an action performed by the listener. It's a general inquiry without specific
+      gender or age implications, common in healthcare settings.
+  - english: How do I get to the station?
+    japanese:
+      - 駅 へ は {どう} 行き ます か？
+      - 駅 まで は {どう} 行け ば いい です か？
+      - 駅 へ {どう} 行く？
+    english_literally: Station toward as for how go?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 は {どこ です か}？
+        english: Where is the station?
+        hint: This asks for the location of the station, not for the method or way to get there. We're
+          looking for a question about 'how' to reach the station.
+      - competing_japanese:
+          - '{どう やっ て} 駅 へ 行き ます か？'
+        english: How (by what means) do I get to the station?
+        hint: While similar in meaning, this phrase emphasizes the specific means or procedure. The grammar
+          point is about a more general 'how'. This uses the grammar point 「どうやって (how to do)」.
+    scene: A tourist asking a passerby for directions.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This sentence uses the polite form 「行きます」 and the particle 「へ」 to indicate direction. 「どう
+      行きます か」 is a general question about the pronunciation or manner of transport or route. It's a neutral
+      and polite way to ask for directions.
+  - english: How was the movie?
+    japanese:
+      - この 映画 は {どう} でし た か？
+      - この 映画 {どう} だっ た？
+      - 映画 の 感想 は {どう} でし た か？
+    english_literally: This movie as for how was it?
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は {面白かっ た です か}？
+        english: Was this movie interesting?
+        hint: This asks about a specific quality (interesting), not a general opinion or impression. We're
+          looking for a broad question about 'how' the movie was.
+      - competing_japanese:
+          - '{どんな} 映画 でし た か？'
+        english: What kind of movie was it?
+        hint: This asks about the type or genre of the movie, not the overall impression or evaluation.
+          We're looking for an opinion on 'how' it was.
+    scene: Two friends casually discussing a movie they just watched.
+    register: casual
+    setting: friendly
+    nuance: 「どう でした か」 is a very common way to ask for an opinion or impression about something that has
+      already occurred. The casual register with 「どう」 is appropriate for conversations among friends.
+      It directly asks for the listener's personal feeling or review.
+  - english: What do you think about that person?
+    japanese:
+      - あの 人 の こと {どう} 思い ます か？
+      - あの 人 の こと {どう} 思う？
+      - あの 方 は {どう} 思わ れ ます か？
+    english_literally: That person's matter how think?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は {どんな 人 です か}？
+        english: What kind of person is that person?
+        hint: This asks about the person's character or type, not your personal opinion or impression
+          of them. We're looking for 'what' you think, not 'what kind' of person they are.
+      - competing_japanese:
+          - あの 人 の 評判 は {何 と 言わ れ て い ます か}？
+        english: What is said about that person's reputation?
+        hint: This inquires about public opinion or reputation, not the speaker's individual thought or
+          feeling. We're looking for your personal opinion.
+    scene: Two colleagues discussing a new employee at a casual lunch.
+    register: semi-formal
+    setting: professional
+    nuance: 「どう 思い ます か」 is a polite but direct way to ask for someone's opinion on a person or situation.
+      「こと」 (matter) is used to refer to the person or thing being discussed, making the inquiry slightly
+      more indirect and thus softer than a direct 「あの 人 は どう です か？」 which might sound like an assessment
+      of their well-being.
+  - english: How did it turn out?
+    japanese:
+      - 結果 は {どう} なり まし た か？
+      - 結果 は {どう} なっ た？
+      - 結局、{どう} なり まし た か？
+    english_literally: Result as for how became?
+    competing_grammar:
+      - competing_japanese:
+          - 結果 は {出 まし た か}？
+        english: Did the result come out?
+        hint: This asks if a result exists, not about the nature or specific outcome of that result. We're
+          looking for 'how' it turned out.
+      - competing_japanese:
+          - '{何 が 起き まし た か}？'
+        english: What happened?
+        hint: This is a more general inquiry about events, not specifically about the manner or state
+          of an outcome. We're looking for 'how' it turned out.
+    scene: A manager asking a team member for the outcome of a complex task.
+    register: formal
+    setting: professional
+    nuance: 「どう なり まし た か」 specifically inquires about the process or development that led to a certain
+      outcome. This form is common in professional settings when asking about the status or final state
+      of a project or situation. It's less about a subjective feeling and more about objective circumstances.
+  - english: What should we do about this?
+    japanese:
+      - これ、{どう} し ます か？
+      - これ、{どう} する？
+      - これ に 対し て {どう} 対処 し ます か？
+    english_literally: This, how do?
+    competing_grammar:
+      - competing_japanese:
+          - これ は {何 を す べき} です か？
+        english: What should be done about this?
+        hint: This phrasing implies a stronger sense of obligation or correct action, rather than an open
+          question about a plan or decision. We're looking for a question about 'what to do' or 'how to
+          proceed'.
+      - competing_japanese:
+          - '{何 を し たら いい} です か？'
+        english: What should I do? (general dilemma)
+        hint: This is a general question for personal advice or dilemma, not specific to a shared item
+          or task. We're looking for 'what to do' about a specific thing.
+    scene: Colleagues in a meeting deciding on the next steps for a new challenge.
+    register: semi-formal
+    setting: professional
+    nuance: 「どう し ます か」 is a concise and common phrase used to ask for a decision or a plan of action
+      regarding a specific matter. It’s versatile for both informal and semi-formal settings, prompting
+      the listener to articulate their approach or choice. This example highlights its use in a professional
+      decision-making context.
+  - english: How about going out for dinner tonight?
+    japanese:
+      - 今夜、夕食 に 行く の は {どう} です か？
+      - 今夜、夕食 {どう}？
+    english_literally: Tonight, dinner to go (nominalizer) as for how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、夕食 に {行き たい です か}？
+        english: Do you want to go to dinner tonight?
+        hint: This directly asks about the listener's desire, not their opinion on the proposed plan.
+          We're looking for a suggestion asking 'how' they feel about it.
+      - competing_japanese:
+          - 今夜、夕食 を {食べ ましょう か}？
+        english: Shall we eat dinner tonight?
+        hint: This is a direct volitional suggestion, not an inquiry about the listener's opinion on a
+          general idea. We're looking for 'how about' this idea.
+    scene: Friends casually making plans for the evening.
+    register: casual
+    setting: friendly
+    nuance: This is a common way to make a suggestion or proposal. By nominalizing the action (行く の は),
+      the speaker is asking for the listener's opinion on the idea itself. The casual 「どう です か」 makes
+      it an open, non-pushy invitation appropriate among friends.
+  - english: So, how about it?
+    japanese:
+      - で、{どう}？
+      - で、{どう} です か？
+      - で、{どう} なさい ます か？
+    english_literally: Then, how?
+    competing_grammar:
+      - competing_japanese:
+          - で、{決め まし た か}？
+        english: So, have you decided?
+        hint: This directly asks if a decision has been made, not for a general opinion or next step.
+          We're looking for a general inquiry 'how about it?'
+      - competing_japanese:
+          - で、{意見 は}？
+        english: So, what's your opinion?
+        hint: This is a very blunt way to ask for an opinion, lacking the nuance of 'how about it' in
+          terms of consideration. We're looking for a more open-ended 'how about it?'
+    scene: A friend asking for a quick decision after presenting several options during a hangout.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「で、どう？」 is an extremely casual and direct way to prompt a decision or opinion, common among
+      close friends. The particle 「で」 serves as a connective, meaning 'and so' or 'then.' It's a familiar
+      expression, often used by female speakers to urge a response without being overly pushy.
+  - english: How could this have happened?
+    japanese:
+      - 一体、{どう} なっ た の だろう？
+      - 一体、{どう} なっ た ん だろう？
+      - これ は {どう} なっ た の だろう か？
+    english_literally: What in the world, how became nominalizer likely?
+    competing_grammar:
+      - competing_japanese:
+          - 一体、{何 が 起き た の だろう}？
+        english: What on earth happened?
+        hint: This asks about 'what' specific event occurred, not 'how' it came to be in its current state.
+          We're looking for 'how' it happened.
+      - competing_japanese:
+          - これ は {どの よう に し て} 起き た の だろう？
+        english: How did this happen (by what method)?
+        hint: This phrase specifically inquires about the method or process of an occurrence, which is
+          a more explicit version than the general 'how' used here. We're looking for a broader 'how could
+          this have happened?'
+    scene: A detective investigating a mysterious crime scene, trying to piece together the events.
+    register: semi-formal
+    setting: interrogative
+    nuance: 「一体、どう なっ た の だろう？」 expresses strong perplexity or confusion. 「一体」 adds a sense of 'what on
+      earth' or 'how in the world,' intensifying the questioning of the cause or process. The 「の だろう」
+      ending conveys a sense of wondering or pondering the unknown circumstances, suitable for a reflective
+      inquiry.
+  - english: How do you like my new haircut?
+    japanese:
+      - 私 の 新しい 髪型 は {どう} です か？
+      - 新しい 髪型、{どう}？
+    english_literally: My new haircut as for how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 新しい 髪型 は {似合っ て い ます か}？
+        english: Does my new haircut suit me?
+        hint: This asks about whether the haircut is *fitting* or *becoming*, not for a general opinion
+          or impression of it. We're looking for a general opinion of 'how' it is.
+      - competing_japanese:
+          - 私 の 新しい 髪型 は {どんな 感じ です か}？
+        english: What kind of feeling/impression does my new haircut give?
+        hint: This asks for a descriptive *kind* of impression, not a general evaluative 'how' it is.
+          We're looking for 'how' you like it.
+    scene: A person showing off their new haircut to a friend.
+    register: casual
+    setting: friendly
+    nuance: This is a common and versatile way to solicit opinions or impressions on something new or
+      changed, whether it's an appearance, a new item, or a recent experience. The casual version 「どう？」
+      is very common among close friends.
+post_example_writeup: As seen in these examples, 「どう」 is incredibly versatile. It shifts meaning slightly
+  depending on what it modifies and the particles it's combined with. Pay close attention to whether it's
+  asking about a *method* (e.g., 「どう 行きます か」), a *state* (e.g., 「気分 は どう です か」), or an *opinion* (e.g.,
+  「この 映画 は どう でし た か」). Understanding these nuances will help you use 「どう」 naturally in various contexts.

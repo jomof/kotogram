@@ -1,0 +1,234 @@
+grammar_point: 〜付き (attached with)
+learn_before:
+  - ちょっと (adverb)
+  - で (for)
+  - でございます (polite copula, formal)
+  - は〜だ (topic & copula)
+meaning: attached with; including; with a (certain feature or condition)
+pronunciation:
+  katakana: ツキ
+  romaji: tsuki
+formation:
+  Noun + 付き: Indicates that the noun has or comes with the specified feature or item.
+  Verb[masu-stem] + 付き: Less common, but can describe something that comes with a specific action or way
+    of being. For example, 「話し方 付き」 (with a way of speaking).
+jlpt: N3
+etymology: The suffix 「付き」 originates from the verb 「付く」 (tsuku), meaning 'to be attached,' 'to adhere,'
+  or 'to be furnished with.' When nominalized, 「付き」 describes the state or characteristic of having something
+  attached or included. This evolution from a verb denoting physical attachment to a suffix signifying
+  inherent features reflects its versatility in describing both tangible and intangible attributes that
+  come with a subject.
+writeup: |-
+  The grammar point 「〜付き」 functions as a versatile suffix that indicates something is 'attached with,' 'comes with,' or 'includes' a particular feature or condition. It is primarily used with nouns, forming a compound noun or an adjectival phrase that modifies another noun.
+
+  This construction is highly common in everyday Japanese, especially when describing products, services, or even the attributes of people. For instance, when purchasing an item, you might see descriptions like 「電池付き」 (with batteries included) or 「説明書付き」 (with an instruction manual).
+
+  While often used for tangible attachments, 「〜付き」 can also describe more abstract or inherent characteristics. For example, 「笑顔付き」 (with a smile) describes someone's demeanor, or 「条件付き」 (with conditions) refers to an agreement that has stipulations.
+
+  It provides a concise way to specify an additional component or characteristic that is part of the main subject. The nuance is generally neutral, making it suitable for both casual conversation and more formal descriptions, such as in advertising or official documents. It emphasizes the presence of the attached element as a defining or accompanying feature.
+false_friends:
+  - term: 込み
+    meaning: including (all parts/charges), packed with, all-inclusive
+    kind: similar expression
+    nuance: 「込み」 often implies a more comprehensive or all-inclusive state, or something being 'packed
+      in.' For instance, 「税込み」 (tax included) means the price is all-inclusive of tax. 「人込み」 (hitogomi)
+      refers to a packed crowd. In contrast, 「〜付き」 describes an item having a specific feature or attachment,
+      without necessarily implying 'all-inclusive.' It's more about the presence of an *additional* component.
+    grammar_point: <strongly-suggest>:込み (including)
+  - term: 入り
+    meaning: containing, with (ingredients/contents)
+    kind: similar expression
+    nuance: 「〜入り」 is commonly used for internal contents, especially in food and drinks (e.g., 「卵入り」 egg-containing).
+      It emphasizes what is *inside*. Conversely, 「〜付き」 indicates something *attached to the outside*
+      or *a feature/condition* that comes with something, not necessarily its internal composition.
+    grammar_point: <strongly-suggest>:入り (containing)
+  - term: 〜がある
+    meaning: to have, there is
+    kind: similar expression
+    nuance: 「〜がある」 is a general verb for possession or existence, providing a broad statement. 「〜付き」,
+      however, is a modifying suffix that integrates the 'having' concept into a single descriptive term,
+      often creating a compound noun or adjectival phrase. It's more concise and focuses on a permanent,
+      designed, or accompanying feature, making it part of the noun's description rather than a separate
+      statement of existence.
+    grammar_point: がある (possessed feature)
+post_false_friends_writeup: While 「〜付き」, 「込み」, and 「入り」 all convey a sense of inclusion or accompaniment,
+  their specific nuances and common usages differ. 「〜付き」 emphasizes a feature or accessory that comes
+  *with* something. 「込み」 often indicates that a cost or component is *already included* in a total, or
+  describes a crowded state. 「入り」 typically refers to *what is contained inside* something, especially
+  food or packaging. Understanding these distinctions will help you choose the most appropriate expression.
+examples:
+  - english: This room comes with a private bathroom.
+    japanese:
+      - この 部屋 は {風呂場 付き} だ。
+      - この 部屋 は {風呂場 付き} です。
+      - 当 室 は {風呂場 付き} と なっ て おり ます。
+    english_literally: This room is private bathroom attached.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に は 風呂場 が ある。
+        english: This room has a bathroom.
+        hint: While 「〜がある」 expresses possession, 「〜付き」 is more often used as a direct modifier to describe
+          a feature of an item or service. We're looking for a descriptive phrase here.
+    scene: A real estate agent is showing a potential tenant an apartment.
+    register: formal
+    setting: informative
+    nuance: The use of 「風呂場 付き」 concisely highlights 'private bathroom' as a key, inherent feature of
+      the room, often used in property listings or descriptions to emphasize amenities.
+  - english: This camera comes with a detachable lens.
+    japanese:
+      - この カメラ は {取り外し 可能 な レンズ 付き} です。
+      - この カメラ は {取り外し 可能 レンズ 付き} だ。
+      - 本機 は {着脱 式 レンズ 付き} で ござい ます。
+    english_literally: This camera is detachable lens attached.
+    competing_grammar:
+      - competing_japanese:
+          - この カメラ に は 取り外し 可能 な レンズ が つい て い ます。
+        english: This camera has a detachable lens attached.
+        hint: The verb 「ついています」 directly states attachment. However, 「〜付き」 forms a more concise, adjectival
+          phrase to describe the camera's feature. We're looking for a descriptive suffix.
+    scene: A salesperson is explaining the features of a camera to a customer.
+    register: semi-formal
+    setting: informative
+  - english: The plan includes free Wi-Fi.
+    japanese:
+      - この プラン は {無料 Wi-Fi 付き} です。
+      - 本 プラン は {無料 Wi-Fi 付き} と なり ます。
+      - この プラン に は {フリー Wi-Fi 付き} も ござい ます。
+    english_literally: This plan is free Wi-Fi attached.
+    competing_grammar:
+      - competing_japanese:
+          - この プラン に は 無料 Wi-Fi が 含ま れ て い ます。
+        english: This plan includes free Wi-Fi.
+        hint: 「含まれています」 (fukumareteimasu) means 'is included.' While correct, 「〜付き」 is a common and direct
+          way to state an included service in commercial contexts. We're looking for a more concise modifier.
+    scene: A hotel receptionist is explaining the amenities included in a guest's booking plan.
+    register: formal
+    setting: informative
+  - english: He's a man with a lot of connections.
+    japanese:
+      - 彼 は {コネ 付き} の 男 だ。
+      - 彼 は {コネ 付き} の 方 です。
+      - 彼 は {人脈 付き} の 人物 と 言える でしょう。
+    english_literally: He is connections attached man.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は コネ が 多い 男 だ。
+        english: He is a man who has many connections.
+        hint: 「コネ が 多い」 describes someone having many connections. 「コネ 付き」 implies that having connections
+          is an inherent or defining characteristic, often implying that these connections are used or
+          are part of his 'package.' We're looking for a more ingrained description.
+    scene: Two colleagues are discussing a new employee known for their network.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「コネ 付き の 男」 is a casual and somewhat knowing phrase, implying that his connections are a prominent
+      and advantageous 'feature' of him, often used by male speakers. The choice of 「男」 is gender-neutral
+      but in this context with 「コネ」 can be slightly informal.
+  - english: The rumor came with a scary detail.
+    japanese:
+      - その 噂 は {恐ろしい 詳細 付き} で 伝わっ た。
+      - その 噂 は {恐ろしい 詳細 付き} でし た。
+      - その 噂 は {恐ろしい 詳細 付き} と なっ て 伝わり まし た。
+    english_literally: That rumor is scary details attached for spread.
+    competing_grammar:
+      - competing_japanese:
+          - その 噂 に は 恐ろしい 詳細 が あっ た。
+        english: That rumor had scary details.
+        hint: 「〜があった」 indicates existence. 「〜付き」 here emphasizes that the scary detail was a distinct,
+          accompanying feature of the rumor as it spread, as if it's a fixed part of its 'package'. We're
+          looking for a phrase that highlights this 'package deal'.
+    scene: Friends are sharing a chilling story they heard, emphasizing a particularly frightening aspect.
+    register: casual
+    setting: storytelling
+  - english: The set menu comes with a drink.
+    japanese:
+      - セット メニュー は {ドリンク 付き} だ。
+      - セット メニュー は {ドリンク 付き} です。
+      - セット メニュー は {お 飲み物 付き} で ござい ます。
+    english_literally: Set menu is drink attached.
+    competing_grammar:
+      - competing_japanese:
+          - セット メニュー に は ドリンク が つい て くる。
+        english: A drink comes with the set menu.
+        hint: 「ついてくる」 (tsuite kuru) means 'comes along with.' While similar, 「〜付き」 is often used in menus
+          or product descriptions as a concise way to list inclusions. We're looking for a compact descriptor.
+    scene: A customer is ordering at a cafe, confirming what is included in the set meal.
+    register: casual
+    setting: informative
+  - english: This old car comes with a lot of problems.
+    japanese:
+      - この 古い 車 は {問題 付き} だ。
+      - この 古い 車 は {問題 付き} です。
+      - この 古い 車 は {トラブル 付き} で ござい ます。
+    english_literally: This old car is problems attached.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 車 に は 問題 が たくさん ある。
+        english: This old car has many problems.
+        hint: 「問題 が たくさん ある」 (mondai ga takusan aru) states the existence of many problems. 「問題 付き」 implies
+          that problems are an inherent and often undesirable characteristic of the car. We're looking
+          for a phrase that highlights this 'package deal' of problems.
+    scene: Someone is complaining to a friend about the continuous issues with their old car.
+    register: casual
+    setting: pessimistic
+  - english: She's a singer with incredible vocal talent.
+    japanese:
+      - 彼女 は {驚異 的 な 歌唱 力 付き} の 歌手 だ。
+      - 彼女 は {驚異 的 な 歌唱 力 付き} の 歌手 です。
+      - 彼女 は {ずば抜け た 歌唱 力 付き} の 歌手 と 言える でしょう。
+    english_literally: She is amazing vocal ability attached singer.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 驚異 的 な 歌唱 力 を 持っ て いる 歌手 だ。
+        english: She is a singer who possesses incredible vocal talent.
+        hint: 「〜を持っている」 means 'possesses.' 「〜付き」 here frames the vocal talent as an inherent attribute
+          that comes 'with' her as a singer, making it a defining part of her identity in this context.
+          We're looking for a more integrated description.
+    scene: Music critics are discussing a new artist's exceptional performance.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「驚異的な 歌唱力 付き」 emphasizes the vocal ability as a core, defining attribute that is 'attached'
+      to her as a singer, highlighting it as a notable characteristic. While 「〜を持っている」 would also work,
+      「〜付き」 can imply it's a natural or inherent part of her talent, especially when spoken by a female
+      critic.
+  - english: The proposal included a detailed appendix.
+    japanese:
+      - その 提案 は {詳細 な 付録 付き} で あっ た。
+      - その 提案 は {詳細 な 付録 付き} でし た。
+      - その 提案 に は {詳細 な 付録 付き} と なっ て おり まし た。
+    english_literally: That proposal was detailed appendix attached.
+    competing_grammar:
+      - competing_japanese:
+          - その 提案 に は 詳細 な 付録 が 含ま れ て い た。
+        english: That proposal contained a detailed appendix.
+        hint: 「含まれていた」 (fukumareteita) means 'was contained.' 「〜付き」 is a common, concise way in formal
+          written Japanese to indicate an accompanying document or section. We're looking for a direct
+          descriptive modifier for the proposal.
+    scene: During a business review, a team leader refers to a comprehensive proposal document.
+    register: formal
+    setting: professional
+  - english: He came with a smile on his face.
+    japanese:
+      - 彼 は {笑顔 付き} で やっ て き た。
+      - 彼 は {笑顔 付き} で いらっしゃい まし た。
+      - 彼 は {笑顔 付き} で 登場 し まし た。
+    english_literally: He is smile attached came.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 笑顔 で やっ て き た。
+        english: He came with a smile.
+        hint: 「笑顔 で」 means 'with a smile' and focuses on the manner. 「笑顔 付き」 emphasizes the smile as an
+          accompanying feature of his appearance upon arrival, as if it's a fixed part of his presentation.
+          We're looking for something that describes his 'look' upon arrival.
+    scene: A casual description of someone entering a room, noting their cheerful demeanor.
+    register: casual
+    setting: friendly
+post_example_writeup: As seen in the examples, 「〜付き」 is incredibly versatile, applying to tangible items,
+  abstract concepts, and even human characteristics. It provides a compact and effective way to convey
+  that something comes bundled with, or inherently possesses, another element. Pay attention to the context,
+  as it often describes a standard feature, an added bonus, or even an unwanted accompaniment.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/〜付き

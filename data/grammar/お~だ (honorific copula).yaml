@@ -1,0 +1,348 @@
+grammar_point: お~だ (honorific copula)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - お (honorific prefix)
+  - ご (honorific prefix for Sino-Japanese words)
+  - じゃなかった (was not)
+  - でございます (polite copula, formal)
+  - な-Adjective[ではなかった・じゃなかった] (plain past negative)
+  - な-Adjective[み] (abstract quality)
+  - 方をする (to behave in a certain way)
+  - 迷惑をかける (to cause trouble)
+  - ～なかったでしょう (past negative conjecture)
+meaning: An honorific copula used to respectfully describe a state or characteristic, often associated
+  with a person of higher status.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: お~だ
+    rarity: common
+    meaning: honorific is (plain non-past)
+  - conjugation-type: non-past polite (～ます)
+    form: お~です
+    rarity: common
+    meaning: honorific is (polite non-past)
+  - conjugation-type: past plain (～た)
+    form: お~だった
+    rarity: less common
+    meaning: honorific was (plain past)
+  - conjugation-type: past polite (～ました)
+    form: お~でした
+    rarity: common
+    meaning: honorific was (polite past)
+  - conjugation-type: negative plain (～ない)
+    form: お~ではない
+    rarity: less common
+    meaning: honorific is not (plain non-past negative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: お~ではありません
+    rarity: common
+    meaning: honorific is not (polite non-past negative)
+  - conjugation-type: negative past plain (～なかった)
+    form: お~ではなかった
+    rarity: less common
+    meaning: honorific was not (plain past negative)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: お~ではありませんでした
+    rarity: common
+    meaning: honorific was not (polite past negative)
+pronunciation:
+  katakana: オ〜ダ
+  romaji: o~ da
+formation:
+  お + Noun + だ/です/でした/ではない/ではありません など: Used to respectfully describe a state or characteristic of a person,
+    often used with nouns that imply status or role (e.g., お医者様 da, お名前 desu).
+  お + な-Adjective + だ/です/でした/ではない/ではありません など: Used to respectfully describe a state or quality, primarily
+    with certain common na-adjectives (e.g., お元気 desu). Note that not all na-adjectives can take 'お'.
+  ご + Noun + だ/です/でした/ではない/ではありません など: Used with Sino-Japanese origin nouns that do not take 'お' (e.g.,
+    ご住所 desu). 'ご' also functions as an honorific prefix like 'お'.
+jlpt: N3
+etymology: The honorific copula お~だ is a direct combination of the honorific prefix お (o-) and the copula
+  だ (da). The prefix お (o-) originated from earlier forms used to denote reverence or politeness, attaching
+  to nouns and adjectives. だ (da) is the plain form of the copula, indicating 'is' or 'are'. The combination
+  creates a simple yet effective way to express honorific predicates, evolving from general politeness
+  into a specific marker of respect, especially when referring to qualities or states of a person of higher
+  social standing.
+writeup: |-
+  The expression お~だ, and its polite form お~です, serves as an honorific copula in Japanese, primarily used to describe the state, condition, or possessions of someone to whom you wish to show respect. This is a fundamental component of sonkeigo (respectful language), which is used when talking about actions or states of people of higher status, such as customers, superiors, or elders. You will never use this form to describe yourself or your own possessions.
+
+  The 'お' prefix is an honorific marker that attaches to many Japanese nouns and some na-adjectives. It elevates the word it precedes, thereby elevating the person associated with that word. For example, rather than simply saying '名前です' (It's a name), when asking for someone's name in a respectful context, you would say 'お名前です' (It's your honorable name).
+
+  It is important to note that not all nouns and na-adjectives can take 'お'. Generally, native Japanese nouns and certain common na-adjectives (like 元気・げんき - healthy/energetic) readily accept 'お'. For Sino-Japanese nouns (kango), the prefix 'ご' (go-) is typically used instead of 'お', such as 'ご住所' (go-jūsho - your honorable address). Understanding which prefix to use often comes with exposure and practice.
+
+  While the plain form お~だ exists, it is considerably less common in actual usage compared to its polite counterpart お~です. This is because the very nature of using an honorific copula implies a formal or respectful context where the polite 'です' form would naturally be preferred. The plain form might occasionally be seen in very specific literary or dramatic contexts, but for daily communication, お~です is the standard.
+false_friends:
+  - term: です (polite copula)
+    meaning: is (polite)
+    kind: similar expression
+    nuance: 「です」 is a general polite copula used to form polite sentences. It expresses politeness to
+      the listener but does not add honor to the subject of the sentence. In contrast, 「お~だ/です」 explicitly
+      shows respect towards the person or thing being described.
+    grammar_point: です (polite copula)
+  - term: でございます (polite copula, formal)
+    meaning: is (very polite, formal)
+    kind: similar expression
+    nuance: 「でございます」 is a highly formal and humble copula, often used by staff or in very formal settings.
+      While it conveys extreme politeness, it typically humbles the speaker's own status or actions, or
+      is used in a formal descriptive context. It does not honor the subject as 「お~だ/です」 does; rather,
+      it elevates the overall politeness level of the statement from the speaker's side.
+    grammar_point: でございます (polite copula, formal)
+  - term: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+    meaning: honorific verbs
+    kind: often confused with
+    nuance: These are honorific forms used for verbs, describing the *actions* of a respected person.
+      For example, 「いらっしゃる」 means 'to go/come/be' honorifically. In contrast, 「お~だ/です」 is a copula used
+      to describe the *state* or *identity* of a respected person, not their actions.
+    grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+post_false_friends_writeup: While all these expressions relate to politeness or formality in Japanese,
+  their specific functions differ. 「です」 is a general polite ending. 「でございます」 is a very formal humble copula.
+  「お~だ/です」 is distinctly an honorific copula, showing respect specifically to the subject of the description.
+  Knowing these distinctions is crucial for appropriate usage in different social contexts.
+examples:
+  - english: Is this your honorable name?
+    japanese:
+      - こちら が お 客 様 の {お 名前} です か。
+      - こちら が お 客 様 の {お 名前} で いらっしゃい ます か。
+      - お 客 様 の {お 名前} です か。
+    english_literally: This here is customer's honorable name, is it?
+    competing_grammar:
+      - competing_japanese:
+          - こちら が お 客 様 の 名前 です か。
+        english: Is this your name?
+        hint: This sentence is polite but lacks the explicit honorific respect given to the customer.
+          We're looking for a form that elevates the customer's name.
+      - competing_japanese:
+          - こちら が お 客 様 の お 名前 で ござい ます か。
+        english: Is this your honorable name (very polite)?
+        hint: While very polite, 「でございます」 often implies humility from the speaker rather than direct honor
+          to the listener's belongings. We're looking for a direct honorific form for the subject.
+    scene: A hotel receptionist politely asks a guest for their name during check-in.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    listener_gender: no one
+    nuance: The use of 「お名前」 (onamae) directly honors the guest's name, demonstrating appropriate respect
+      in a service setting. The speaker, a receptionist, uses polite language to show deference.
+  - english: It's a wonderful view.
+    japanese:
+      - 本当 に {お 見事} です ね。
+      - 実 に {お 見事} だ。
+      - 本当 に {お 見事} で ござい ます。
+    english_literally: Truly honorable splendid, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 見事 です ね。
+        english: It's truly splendid.
+        hint: This is a neutral description. We're looking for a way to express a higher degree of admiration,
+          showing honor to the 'splendor' itself, often implicitly honoring the creator or context.
+    scene: An art critic stands before a masterpiece at an exhibition.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: 「お見事」 (omigoto) is an honorific way to express 'splendid' or 'masterful.' While it technically
+      honors the noun '見事' (migoto), in context, it conveys a profound respect for the artistry or the
+      creator, which is a common application of 'お' with certain aesthetic terms. This is a common phrase
+      to express strong admiration respectfully.
+  - english: Your honorable daughter is now a university student.
+    japanese:
+      - '{お 嬢 様} は もう 大学 生 で いらっしゃい ます。'
+      - '{お 嬢 様} は もう 大学 生 です。'
+      - '{お 嬢 様} は もう 大学 生 だ。'
+    english_literally: Honorable young lady is already university student.
+    competing_grammar:
+      - competing_japanese:
+          - 娘 さん は もう 大学 生 です。
+        english: Your daughter is already a university student.
+        hint: This is polite but lacks the specific honorific term for 'daughter'. We're looking for a
+          word that honors the person's daughter directly.
+    scene: Two acquaintances meet after a long time and catch up.
+    register: formal
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「お嬢様」 (ojōsama) is an honorific term for 'daughter' (or sometimes 'young lady'), used to show
+      respect to the listener's family member. The speaker's use of this honorific implies a formal yet
+      friendly relationship where mutual respect is shown. The 'でいらっしゃいます' is a more formal honorific
+      verb form for 'is', reinforcing the respect.
+  - english: Is your honorable mother well?
+    japanese:
+      - '{お 母 様} は {お 元気} です か。'
+      - '{お 母 様} は {お 元気} で いらっしゃい ます か。'
+      - '{お 母 様} は {お 元気} で いらっしゃい まし た か。'
+    english_literally: Honorable mother is honorable well, is it?
+    competing_grammar:
+      - competing_japanese:
+          - お 母 さん は 元気 です か。
+        english: Is your mother well?
+        hint: This is polite, but the use of 「お母様」 and 「お元気」 adds a higher level of respect. We're looking
+          for an honorific question showing more deference.
+    scene: A junior employee asks a senior colleague about their mother's health.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_age: younger
+    nuance: Both 「お母様」 (okā-sama) and 「お元気」 (ogenki) use the honorific prefix 'お' to show respect. 'お母様'
+      uses '様' (sama) for an even higher degree of reverence than 'さん' (san). This combined usage by a
+      younger speaker to an older listener indicates appropriate respect within a professional hierarchy.
+  - english: Your honorable opinion is highly valued.
+    japanese:
+      - '{ご 意見} は 大変 貴重 です。'
+      - '{ご 意見} は 大変 貴重 で ござい ます。'
+      - '{ご 意見} は 大変 貴重 だ。'
+    english_literally: Honorable opinion is extremely valuable.
+    competing_grammar:
+      - competing_japanese:
+          - 意見 は 大変 貴重 です。
+        english: The opinion is highly valued.
+        hint: This statement is neutral. We're looking for a way to explicitly honor the listener's opinion.
+    scene: A manager responds to a subordinate's suggestion during a meeting.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「ご意見」 (goiken) uses the honorific prefix 'ご' with a Sino-Japanese noun, signifying respect
+      towards the speaker's opinion. This demonstrates that the manager values the subordinate's input
+      and maintains a respectful demeanor even when in a position of authority.
+  - english: Her honorable beauty was truly breathtaking.
+    japanese:
+      - 彼女 の {お 美し さ} は 本当 に 息 を のむ ほど でし た。
+      - 彼女 の {お 美し さ} は 本当 に 息 を のむ ほど だっ た。
+      - 彼女 の {お 美し さ} は 本当 に 息 を のむ ほど で ござい まし た。
+    english_literally: Her honorable beauty was truly breathtaking to the extent of taking breath.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 美し さ は 本当 に 息 を のむ ほど でし た。
+        english: Her beauty was truly breathtaking.
+        hint: This is a simple past description. We're looking for an honorific way to describe her beauty,
+          often used in more formal or reverent contexts.
+    scene: A narrator describing a historical figure in a documentary.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: 「お美しさ」 (outsukushisa) uses the honorific 'お' with a noun derived from an adjective ('美しい'
+      - beautiful). This form emphasizes and honors the beauty itself, lending a more formal and almost
+      reverent tone suitable for a narrative or respectful description.
+  - english: We sincerely apologize for any inconvenience.
+    japanese:
+      - お 客 様 に は {ご 迷惑} を おか けして 大変 申し訳 ござい ませ ん でし た。
+      - お 客 様 に は {ご 迷惑} を お かけ し て 申し訳 あり ませ ん でし た。
+    english_literally: To customers honorable trouble causing, extremely sorry it was not.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 に は 迷惑 を おか けして 大変 申し訳 ござい ませ ん でし た。
+        english: We caused trouble to the customers and were very sorry.
+        hint: This is polite but lacks the honorific for 'trouble.' We're looking for a form that acknowledges
+          the inconvenience in a more respectful way to the customer.
+    scene: A store manager apologizing to customers after an incident.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    conjugation: past polite (～ました)
+    listener_gender: group
+    nuance: 「ご迷惑」 (gomeiwaku) uses 'ご' to honor the 'trouble' or 'inconvenience' experienced by the customer,
+      which is standard in business Japanese for showing empathy and respect. The entire phrase is a very
+      common and formal way to apologize in professional settings.
+  - english: The honorable new employee is very serious.
+    japanese:
+      - '{お 若い} ながら {お 真面目} な 方 です。'
+      - '{お 若い} ながら {お 真面目} な 方 だ。'
+      - '{お 若い} ながら {お 真面目} な 方 で いらっしゃい ます。'
+    english_literally: Honorable young even though honorable serious person is.
+    competing_grammar:
+      - competing_japanese:
+          - 若い の に 真面目 な 方 です。
+        english: They are a serious person despite being young.
+        hint: This is a more direct statement. We're looking for a way to honor the employee's youth and
+          seriousness using honorific language.
+    scene: A senior colleague complimenting a new, junior employee to another senior colleague.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: 「お若い」 (owakai) and 「お真面目」 (omajime) use the 'お' prefix to respectfully describe the new employee's
+      attributes (youth and seriousness). This is a way of acknowledging their positive traits while maintaining
+      a respectful distance, appropriate when discussing a junior with a peer.
+  - english: Was your honorable trip a pleasant one?
+    japanese:
+      - '{ご 旅行} は {お 楽} しみ でし た か。'
+      - '{ご 旅行} は {お 楽} しみ でし た でしょう か。'
+      - '{ご 旅行} は {お 楽し} み で いらっしゃい まし た か。'
+    english_literally: Honorable trip was honorable enjoyment, was it?
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 は 楽しかっ た です か。
+        english: Was the trip fun?
+        hint: This is a casual way to ask. We're looking for a more respectful and formal inquiry about
+          someone's trip.
+    scene: A client calls their travel agent after returning from a trip.
+    register: semi-formal
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: 「ご旅行」 (goryokō) and 「お楽しみ」 (otanoshimi) both use honorific prefixes, 'ご' for the Sino-Japanese
+      '旅行' (ryokō - trip) and 'お' for '楽しみ' (tanoshimi - enjoyment). This double application of honorifics
+      makes the inquiry exceptionally polite and respectful, suitable for a professional asking about
+      a client's experience.
+  - english: That honorable book is very popular among students.
+    japanese:
+      - その {ご 本} は 学生 たち の 間 で とても 人気 が あり ます。
+      - その {ご 本} は 学生 たち の 間 で とても 人気 が ある。
+    english_literally: That honorable book is among students very popular there is.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 は 学生 たち の 間 で とても 人気 が あり ます。
+        english: That book is very popular among students.
+        hint: This sentence is grammatically correct but lacks the respectful tone towards the book, possibly
+          due to its author or cultural significance. We're looking for an honorific reference to the
+          book itself.
+    scene: A librarian discussing a highly regarded publication with a researcher.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: 「ご本」 (gohon) uses the honorific prefix 'ご' with '本' (hon - book). While '本' itself is not
+      a person, the honorific 'ご' is used here to show respect towards the book, likely because of its
+      author, content, or the context of the conversation (e.g., a classic text, a work by a respected
+      scholar). This is a less common but valid usage of honorifics for inanimate objects that are held
+      in high regard.
+  - english: He is an honorable person.
+    japanese:
+      - 彼 は とても {お 立派} な 方 だ。
+      - 彼 は とても {お 立派} な 方 です。
+    english_literally: He is very honorable splendid person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 立派 な 方 です。
+        english: He is a very splendid person.
+        hint: This is a polite description. We're looking for a plain honorific form, often used in narratives
+          or internal thoughts where politeness to a listener isn't the primary goal, but respect for
+          the subject is conveyed.
+    scene: A narrator describing a respected character in a novel. This phrase is said in a plain, respectful
+      tone, common in written descriptions or internal thoughts about a respected character.
+    register: bungo (literary)
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+    nuance: 「お立派」 (orippa) uses the 'お' prefix to honor the quality of being 'splendid' or 'fine.' While
+      the copula 「だ」 (da) is plain, the combination is often found in written works to convey a sense
+      of inherent respect for the subject being described, rather than direct politeness to a listener.
+  - english: It wasn't an honorable mistake.
+    japanese:
+      - '{ご 手違い} で は ござい ませ ん でし た。'
+      - '{ご 手違い} で は あり ませ ん でし た。'
+      - '{ご 手違い} で は なかっ た。'
+    english_literally: Honorable mistake was not.
+    competing_grammar:
+      - competing_japanese:
+          - 手違い で は あり ませ ん でし た。
+        english: It was not a mistake.
+        hint: This is a neutral negative statement. We're looking for a more respectful way to state that
+          something was not a 'mistake,' acknowledging it honorifically for the other party.
+    scene: A customer service representative correcting an issue, assuring the customer it was not their
+      fault.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+    nuance: 「ご手違い」 (gotechigai) applies the honorific 'ご' to '手違い' (a mistake or oversight), framing it
+      respectfully as the customer's 'honorable oversight.' This phrase, combined with the very formal
+      'ではございませんでした,' is highly deferential, common in business to avoid blaming the customer and to take
+      responsibility politely.
+post_example_writeup: The usage of お~だ/です extends beyond just directly honorific nouns and adjectives.
+  It is a core part of keigo (honorific language) and demonstrates the speaker's awareness of social hierarchy
+  and politeness. Mastering its use, and distinguishing it from other polite and humble forms, is key
+  to natural and appropriate communication in Japanese, especially in formal or service-oriented interactions.

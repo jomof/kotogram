@@ -1,0 +1,467 @@
+grammar_point: やら (uncertainty・listing)
+learn_before:
+  - あんなに (that much over there)
+  - いつの間にか (unnoticed change)
+  - がする (sense perception)
+  - といった (such as)
+  - どうやら (apparently・it seems)
+  - どれ (which of 3 or more)
+  - なぜか (for some reason)
+  - につき (due to or per)
+  - の? (question)
+  - 思われる (to seem・impersonal)
+  - 聞こえる (to be audible)
+meaning: To express uncertainty or doubt, often self-addressed; I wonder; whether or not; things like...
+  and...
+pronunciation:
+  katakana: ヤラ
+  romaji: yara
+formation:
+  Verb (plain) + のやら: Indicates self-addressed wonder or uncertainty about a verb's action or state.
+  い-Adjective (plain) + のやら: Indicates self-addressed wonder or uncertainty about an い-adjective's state.
+  な-Adjective (stem + な) + のやら: Indicates self-addressed wonder or uncertainty about a な-adjective's state.
+  Noun + な + のやら: Indicates self-addressed wonder or uncertainty about a noun's state or identity.
+  Verb (plain) + ことやら: Indicates self-addressed wonder with an implication of concern, worry, or hopelessness
+    about a verb's action or outcome.
+  い-Adjective (plain) + ことやら: Indicates self-addressed wonder with an implication of concern, worry, or
+    hopelessness about an い-adjective's state.
+  な-Adjective (stem + な) + ことやら: Indicates self-addressed wonder with an implication of concern, worry,
+    or hopelessness about a な-adjective's state.
+  Noun + な + ことやら: Indicates self-addressed wonder with an implication of concern, worry, or hopelessness
+    about a noun's state or identity.
+  X (plain form or expression) + のやら + Y (plain form or expression) + のやら: Expresses uncertainty or an
+    inability to distinguish between two or more alternatives (X and Y), with a nuance of doubt or puzzlement.
+  X (plain form or expression) + やら + Y (plain form or expression) + やら: Expresses uncertainty or an inability
+    to distinguish between two or more alternatives (X and Y), often used for listing or mixed feelings
+    without 'の'.
+  何 + やら: Indicates something vague, unspecified, or indistinct.
+  いつのまに + やら: A set phrase indicating a subtle, unnoticed change or passage of time.
+jlpt: N1
+etymology: The particle 「やら」 is thought to have evolved from a combination of the interrogative particle
+  「や」 and the conjunctive or expressive particle 「ら」. The original 「や」 was used to pose questions, and
+  the addition of 「ら」 likely contributed to the nuance of listing possibilities or expressing indefiniteness,
+  leading to its current use for self-addressed wonder or uncertainty. Its interrogative root connects
+  it to other question-forming particles.
+writeup: |-
+  The particle 「やら」 is used at the end of a sentence to express a question or doubt to oneself, conveying a sense of "I wonder..." or uncertainty. It is predominantly used in informal speech, often when the speaker is internally pondering a situation or outcome, not seeking an answer from others.
+
+  There are generally three main patterns for using 「やら」, each with slight nuances:
+
+  *   **~のやら**: This is the most common form, directly translating to "I wonder if..." or "I wonder what/where/when...". It attaches to the plain form of verbs, い-adjectives, な-adjectives (using な), and nouns (using な). It expresses a general sense of not knowing or being unsure.
+
+  *   **~ことやら**: This form also means "I wonder if..." but carries a stronger nuance of concern, worry, or even hopelessness about the situation. It often implies a negative outlook or a feeling of helplessness regarding an uncertain future. It attaches to the plain form of verbs and い-adjectives, and to な-adjectives and nouns using な, with だ being omitted.
+
+  *   **~やら**: This form is used more broadly to express uncertainty or a lack of clear distinction between multiple possibilities, often translated as "whether...or..." or "who knows...". It attaches to the plain form of verbs and い-adjectives. For な-adjectives and nouns, the だ is typically omitted, attaching directly to the stem or past form. It can be used when listing alternatives or expressing a general state of not fully comprehending something.
+
+  While 「やら」 indicates an internal monologue, it is still frequently spoken aloud in casual settings, reflecting the speaker's thoughts to their immediate audience.
+false_friends:
+  - term: だろうか
+    meaning: I wonder...
+    kind: similar expression
+    nuance: While both express uncertainty, 「だろうか」 is generally more formal and often used in written
+      language or polite speech, whereas 「やら」 is typically more conversational and expresses a personal,
+      often emotional, internal questioning.
+    grammar_point: のだろうか (I wonder)
+  - term: かしら
+    meaning: I wonder...
+    kind: similar expression
+    nuance: 「かしら」 is typically used by women or in effeminate speech to express a soft, wondering tone.
+      「やら」 does not carry such a specific gender connotation and can be used by anyone, often conveying
+      a stronger sense of internal struggle or exasperation.
+    grammar_point: かしら (soft uncertainty・female)
+  - term: か
+    meaning: Question marker
+    kind: often confused with
+    nuance: 「か」 simply marks a question or presents alternatives, acting as a neutral interrogative. In
+      contrast, 「やら」 conveys a deeper sense of internal questioning, doubt, or a struggle to distinguish
+      between possibilities, often imbued with the speaker's emotion.
+    grammar_point: か (question)
+  - term: やら〜やら
+    meaning: Whether or not; things like... and...
+    kind: similar expression
+    nuance: While 「やら」 focuses on a singular or vaguely defined uncertainty or wonder, 「やら〜やら」 explicitly
+      lists multiple items or alternatives, indicating a lack of clear distinction among them. However,
+      in contemporary usage, the singular 「やら」 is also often used for listing.
+    grammar_point: やら (uncertainty・listing)
+post_false_friends_writeup: To avoid confusion, remember that 「やら」 expresses a question directed at oneself,
+  indicating uncertainty or doubt, often with an emotional undertone. In contrast, 「だろうか」 is more formal
+  and less personal, 「かしら」 is gender-specific and softer, and 「か」 simply functions as a neutral question
+  marker. Understanding these distinctions is key to using each expression appropriately.
+examples:
+  - english: He is really a genius, I wonder.
+    japanese:
+      - 彼 は 本当 に 天才 {な の やら}。
+      - 彼 は 本当 に 天才 {な の やら} と 思わ れ ます。
+    english_literally: He truly genius, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 本当 に 天才 な の {か な}。
+        english: He is really a genius, I wonder.
+        hint: While 「かな」 expresses casual wonder, 「な の やら」 carries a stronger nuance of internal questioning
+          or slight bewilderment about the truth of the statement.
+      - competing_japanese:
+          - 彼 は 本当 に 天才 な の {か} と 思わ れ ます。
+        english: It is thought whether he is truly a genius.
+        hint: This is a more objective statement about what is thought. We're looking for an expression
+          that conveys a personal, self-addressed wonder or doubt.
+    scene: A teacher is evaluating a new student who has shown exceptional, but inconsistent, talent.
+    register: semi-formal
+    setting: interrogative
+    nuance: 「天才 な のやら」 expresses genuine uncertainty or questioning of a person's proclaimed status, suggesting
+      the speaker is not fully convinced.
+  - english: I wonder if it's truly delicious.
+    japanese:
+      - 本当 に 美味しい {の やら}。
+      - 本当 に 美味しい {の やら} と 思い ます。
+    english_literally: Truly delicious, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 美味しい {か な}。
+        english: I wonder if it's truly delicious.
+        hint: 「かな」 is a simpler, casual wonder. 「の やら」 adds a nuance of skepticism or internal debate
+          about the authenticity of the deliciousness.
+      - competing_japanese:
+          - 本当 に 美味しい {の だろう か}。
+        english: I wonder if it's truly delicious.
+        hint: 「だろうか」 is more formal and objective. We're looking for a more personal and possibly skeptical
+          internal questioning about the taste.
+    scene: A diner looks suspiciously at a dish known for its unusual ingredients.
+    register: casual
+    setting: cautious
+    nuance: 「美味しい のやら」 conveys a skeptical or questioning attitude towards the taste, implying a hesitation
+      to accept it at face value.
+  - english: I wonder if I can actually do it.
+    japanese:
+      - 本当 に できる {の やら}。
+      - 本当 に できる {な の やら} と 思い ます。
+    english_literally: Truly can do, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に できる {か どう か}。
+        english: Whether I can actually do it or not.
+        hint: This simply states the two possibilities. We're looking for an expression that conveys a
+          sense of personal doubt or hesitation.
+      - competing_japanese:
+          - 本当 に できる {かしら}。
+        english: I wonder if I can actually do it.
+        hint: 「かしら」 is softer and often used by women. We're looking for a more direct expression of self-doubt
+          that can be used by anyone.
+    scene: A student is contemplating a difficult task assigned by their teacher.
+    register: casual
+    setting: reflective
+    nuance: 「できる のやら」 expresses personal doubt and uncertainty about one's own ability to perform a task.
+  - english: I wonder why he is so anxious; I can't find a reason.
+    japanese:
+      - なぜ 彼 は あんな に 不安 {な の やら}、理由 が 見当たら ない。
+      - なぜ 彼 は あんな に 不安 {な の やら}、理由 が 見当たら ませ ん。
+      - 彼 は なぜ あんな に 不安 {な の やら}、理由 が 見当たら ない。
+    english_literally: Why he so anxious, reason cannot find.
+    competing_grammar:
+      - competing_japanese:
+          - なぜ 彼 は あんな に 不安 な の {か}、理由 が 見当たら ない。
+        english: Why is he so anxious? I can't find a reason.
+        hint: This forms a direct question. We're looking for an expression that indicates an internal,
+          pondering wonder, often with a nuance of concern or puzzlement.
+      - competing_japanese:
+          - なぜ 彼 は あんな に 不安 な の {だろう か}、理由 が 見当たら ない。
+        english: I wonder why he is so anxious; I can't find a reason.
+        hint: This expresses a formal wonder. We're looking for a more casual expression of internal pondering
+          with a nuance of concern.
+      - competing_japanese:
+          - なぜ 彼 は あんな に 不安 な の {かしら}、理由 が 見当たら ない。
+        english: I wonder how serious his illness is, no one will tell me.
+        hint: 「かしら」 is a soft, feminine way to express wonder. We're looking for a more neutral or slightly
+          more expressive internal pondering.
+    scene: A friend observes another friend exhibiting unusual anxiety without any apparent cause, prompting
+      an internal question about the situation.
+    register: casual
+    setting: sympathetic
+    nuance: 「不安 な のやら」 conveys an empathetic internal questioning about another person's emotional state,
+      indicating a desire to understand but an inability to grasp the underlying cause. It shows concern
+      mixed with puzzlement.
+  - english: I hear some strange sound from the next room.
+    japanese:
+      - 隣 の 部屋 から {何 か} 変 な 音 が 聞こえる。
+      - 隣 の 部屋 から {何 か} 変 な 音 が 聞こえ ます。
+      - 隣 の 部屋 から {何 か} 変 な 音 が 聞こえ て くる。
+    english_literally: Next room from something strange sound hear.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 部屋 から {何 か} 変 な 音 が 聞こえる。
+        english: I hear some strange sound from the next room.
+        hint: This refers to an unspecified 'something.' We're looking for an expression that implies
+          a vague, indistinct, or unidentifiable 'something' with a nuance of mystery or uncertainty.
+    scene: A person hears an indistinct or unidentifiable sound from a neighboring room, causing mild
+      curiosity or concern.
+    register: casual
+    setting: interrogative
+    nuance: 「何 やら」 suggests an unidentified or vague something, creating a sense of mild mystery or an
+      undefined quality. It indicates that the speaker knows *something* is there, but not precisely what.
+  - english: I wonder how long this difficult situation will continue.
+    japanese:
+      - この 苦しい 状況 が いつ まで 続く {こと やら}。
+      - この 苦しい 状況 が いつ まで 続く {こと やら} と 思う と。
+    english_literally: This difficult situation when until continues, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 苦しい 状況 が いつ まで 続く {の か な}。
+        english: I wonder when this difficult situation will end.
+        hint: This conveys a general, casual wonder. 「こと やら」 adds a deeper nuance of worry, concern, or
+          even hopelessness about the situation.
+      - competing_japanese:
+          - この 苦しい 状況 が いつ まで 続く {の だろう か}。
+        english: I wonder when this difficult situation will continue.
+        hint: 「だろうか」 implies a more formal and objective wonder. We're looking for an expression that
+          conveys a stronger sense of personal burden and despair.
+    scene: Someone is enduring a long and arduous ordeal, feeling a sense of despair about its end.
+    register: casual
+    setting: melancholic
+    nuance: 「苦しい 状況 が 続く こと やら」 emphasizes the prolonged suffering and the hopelessness of the situation,
+      expressing a deep emotional burden.
+  - english: I wonder how bad his injury is.
+    japanese:
+      - 彼 の 怪我 が どれ ほど 重症 {な こと やら}。
+      - 彼 の 怪我 が どれ ほど 重症 {な こと やら}、とても 心配 です。
+    english_literally: His injury how much serious, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 怪我 が どれ ほど 重症 な の {か な}。
+        english: I wonder how bad his injury is.
+        hint: 「かな」 expresses casual wonder. 「な こと やら」 emphasizes strong concern and anxiety, implying
+          a fear of negative outcomes.
+      - competing_japanese:
+          - 彼 の 怪我 が どれ ほど 重症 な の {だろう か}。
+        english: I wonder how bad his injury is.
+        hint: This is a more objective way of wondering. 「な こと やら」 conveys a deeper, more emotional concern
+          and sense of helplessness regarding the severity of the injury.
+    scene: A concerned friend watches an injured person being taken away by ambulance.
+    register: casual
+    setting: sympathetic
+    nuance: 「重症 な こと やら」 expresses deep concern and anxiety about the severity of someone's injury, implying
+      a fear of the unknown outcome.
+  - english: I wonder how I'll manage to live until the next payday.
+    japanese:
+      - 次 の 給料 日 まで どう やっ て 生き て いく {こと やら}。
+      - 次 の 給料 日 まで どう やっ て 生き て いく {こと やら} です。
+      - 次 の 給料 日 まで どう やっ て 生き てく {こと やら}。
+    english_literally: Next payday until how to live, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 給料 日 まで どう やっ て 生き て いく {か}。
+        english: How will I manage to live until the next payday?
+        hint: This forms a simple question. We're looking for an expression that conveys a deeper sense
+          of concern, worry, or even hopelessness about the future.
+      - competing_japanese:
+          - 次 の 給料 日 まで どう やっ て 生き て いける {だろう か}。
+        english: I wonder how I can manage to live until the next payday.
+        hint: This conveys a general sense of wondering. We're looking for an expression that implies
+          a strong feeling of hopelessness or concern about the situation.
+      - competing_japanese:
+          - 次 の 給料 日 まで どう やっ て 生き て いく {かしら}。
+        english: I wonder how I'll manage to live until the next payday.
+        hint: 「かしら」 is softer and often feminine. We're looking for an expression that conveys a deeper
+          sense of concern, worry, or even hopelessness.
+      - competing_japanese:
+          - 次 の 給料 日 まで どう やっ て 生き て いけ ば いい の {か}。
+        english: How should I live until the next payday?
+        hint: This expresses a question about how to proceed. We're looking for an expression that conveys
+          a stronger sense of deep concern or hopelessness about the situation.
+    scene: A student is facing financial hardship and is unsure how they will make ends meet until their
+      next student loan or part-time job payment.
+    register: casual
+    setting: melancholic
+    nuance: The use of 「どう やって 生きていく こと やら」 with 「こと やら」 expresses a deep sense of despair and hopelessness
+      regarding one's financial situation, more profound than a simple question. It highlights a personal
+      struggle and anxiety.
+  - english: I wonder how serious his illness is; no one will tell me.
+    japanese:
+      - 彼 の 病気 が どれ ほど 深刻 {な こと やら}、誰 も 教え て くれ ない。
+      - 彼 の 病気 が どれ ほど 深刻 {な こと やら}、誰 も 教え て くれ ませ ん。
+      - 彼 の 病気 が どれ ほど 深刻 {な こと やら}、本当 に 心配 だ。
+    english_literally: His illness how serious, no one tells me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 病気 が どれ ほど 深刻 な の {か}、誰 も 教え て くれ ない。
+        english: How serious is his illness? No one will tell me.
+        hint: This forms a direct question. We're looking for an expression that conveys deep anxiety
+          and powerlessness, especially when information is being withheld.
+      - competing_japanese:
+          - 彼 の 病気 が どれ ほど 深刻 な の {だろう か}、誰 も 教え て くれ ない。
+        english: I wonder how serious his illness is; no one will tell me.
+        hint: 「だろうか」 is generally more formal and objective. We're looking for an expression that conveys
+          deep anxiety and personal distress regarding the unknown.
+      - competing_japanese:
+          - 彼 の 病気 が どれ ほど 深刻 な の {かしら}、誰 も 教え て くれ ない。
+        english: I wonder how serious his illness is, no one will tell me.
+        hint: 「かしら」 softens the inquiry. We're looking for an expression that conveys strong anxiety and
+          powerlessness.
+    scene: A concerned family member is trying to get information about a loved one's serious illness,
+      but medical staff are withholding details, leading to deep worry.
+    register: formal
+    setting: melancholic
+    nuance: The use of 「深刻 な こと やら」 emphasizes the speaker's profound anxiety and fear about the unknown
+      severity of a situation, especially when information is being withheld. It conveys a sense of powerlessness
+      and emotional distress.
+  - english: I wonder when this work will end; I have no idea at all.
+    japanese:
+      - この 仕事 が いつ 終わる {こと やら}、見当 も つか ない。
+      - この 仕事 が いつ 終わる {こと やら}、見当 も つき ませ ん。
+      - この 仕事、いつ 終わる {こと やら}、見当 も つか ない よ。
+    english_literally: This work when ends, no idea at all.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 が いつ 終わる の {か}、見当 も つか ない。
+        english: When will this work end? I have no idea at all.
+        hint: This forms a simple question about timing. We're looking for an expression that conveys
+          extreme frustration and a sense of hopelessness about an uncertain completion.
+      - competing_japanese:
+          - この 仕事 が いつ 終わる の {だろう か}、見当 も つか ない。
+        english: I wonder when this work will end; I have no idea at all.
+        hint: 「だろうか」 implies a more general, objective wonder. We're looking for an expression that conveys
+          a sense of personal frustration and hopelessness.
+      - competing_japanese:
+          - この 仕事 が いつ 終わる の {かしら}、見当 も つか ない。
+        english: I wonder when this work will end; I have no idea at all.
+        hint: 「かしら」 is a softer way to express wonder. We're looking for an expression that conveys extreme
+          frustration and hopelessness about an uncertain completion.
+    scene: An employee is buried under an overwhelming workload with no clear end in sight, feeling exhausted
+      and disheartened.
+    register: casual
+    setting: pessimistic
+    nuance: 「いつ 終わる こと やら」 is used to express extreme frustration and a sense of hopelessness about the
+      completion of a long, arduous task, highlighting the speaker's mental fatigue and desire for the
+      situation to end.
+  - english: I can't trust him, I'm unsure whether what he's saying is true or false.
+    japanese:
+      - 彼 の 話 は 本当 {やら} 嘘 {やら}、信用 でき ない。
+      - 彼 の 話 は 本当 {やら} 嘘 {やら}、信用 でき ませ ん。
+      - 彼 の 話 は 本当 {やら} 嘘 {やら} で、信用 でき ない。
+    english_literally: His story true or false, cannot trust.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 は 本当 {か} 嘘 {か}、信用 でき ない。
+        english: I can't trust him, whether his story is true or false.
+        hint: This simply states two alternatives. We're looking for an expression that conveys confusion
+          or inability to distinguish between options, often implying exasperation.
+    scene: A detective is interviewing a suspect who is giving contradictory statements, making it difficult
+      to ascertain the truth.
+    register: formal
+    setting: serious
+    nuance: The paired 「本当 やら 嘘 やら」 emphasizes the listener's confusion and inability to distinguish between
+      two possibilities, suggesting a deliberate obfuscation by the speaker. This expresses a strong sense
+      of uncertainty and distrust in the information provided.
+  - english: She had a complex expression, as if she was happy or sad.
+    japanese:
+      - 彼女 は 嬉しい {やら} 悲しい {やら}、複雑 な 表情 を し て い た。
+      - 彼女 は 嬉しい {やら} 悲しい {やら}、複雑 な 表情 を し て い まし た。
+      - 彼女 は 嬉しい {やら} 悲しい {やら} と いっ た、複雑 な 表情 を し て い た。
+    english_literally: She happy or sad, complex expression was doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 嬉しい {か} 悲しい {か}、複雑 な 表情 を し て い た。
+        english: She had a complex expression, whether she was happy or sad.
+        hint: This states a choice between two emotions. We're looking for an expression that suggests
+          the simultaneous presence of conflicting feelings, making it difficult to pinpoint a single
+          emotion.
+      - competing_japanese:
+          - 彼女 は 嬉しい {の} と 悲しい {の} と で、複雑 な 表情 を し て い た。
+        english: She describes mixed emotions as a cause. We're looking for an expression that suggests
+          the simultaneous presence and indistinguishability of conflicting feelings.
+        hint: This describes mixed emotions as a cause. We're looking for an expression that suggests
+          the simultaneous presence and indistinguishability of conflicting feelings.
+    scene: A friend observes their companion's mixed emotions after a significant event, finding it hard
+      to pinpoint a single feeling.
+    register: casual
+    setting: reflective
+    nuance: The construction 「嬉しい やら 悲しい やら」 effectively conveys the simultaneous presence of conflicting
+      emotions, highlighting the speaker's observation of ambiguity in the other person's state. It implies
+      a mixture of feelings that are difficult to separate.
+  - english: I have no idea at all whether this painting is good or bad.
+    japanese:
+      - この 絵 が 良い {の やら} 悪い {の やら}、私 に は 全く わから ない。
+      - この 絵 が 良い {の やら} 悪い {な の やら}、私 に は 全く わかり ませ ん。
+      - この 絵 が 良い {の やら} 悪い {な の やら}、私 に は さっぱり わから ない。
+    english_literally: This painting good or bad, to me completely do not understand.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵 が 良い {か} 悪い {か}、私 に は 全く わから ない。
+        english: I have no idea whether this painting is good or bad.
+        hint: This simply presents a choice between two options. We're looking for an expression that
+          emphasizes the speaker's inability to discern or judge between possibilities due to a lack of
+          understanding or confidence.
+    scene: A person visits an art gallery but is not well-versed in art criticism, feeling completely
+      clueless about the value of a piece.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「良い のやら 悪い のやら」 highlights the speaker's personal inability to judge or evaluate
+      something, reflecting a lack of expertise or confidence in their own judgment.
+  - english: I wonder if this plan will go well or not; I'm still uneasy.
+    japanese:
+      - この 計画 が うまく いく {の やら} どう {の やら}、まだ 不安 だ。
+      - この 計画 が うまく いく {の やら} どう {な の やら}、まだ 不安 です。
+      - この 計画 が うまく いく {の やら} どう {な の やら}、不安 だ なあ。
+    english_literally: This plan goes well whether or not, still uneasy.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が うまく いく {か どう か}、まだ 不安 だ。
+        english: I'm still uneasy about whether this plan will go well or not.
+        hint: This phrase states a simple alternative. We're looking for an expression that conveys a
+          sense of internal uncertainty and unresolved pondering.
+      - competing_japanese:
+          - この 計画 が うまく いく {だろう か}、まだ 不安 だ。
+        english: I wonder if this plan will go well; I'm still uneasy.
+        hint: This expresses a general wonder or question. We're looking for an expression that specifically
+          implies an internal uncertainty about alternatives or an unresolved state.
+      - competing_japanese:
+          - この 計画 が うまく いく {かしら}、まだ 不安 だ。
+        english: I wonder if this plan will go well; I'm still uneasy.
+        hint: 「かしら」 is typically used by women or in softer contexts. We're looking for an expression
+          that conveys a sense of strong internal uncertainty or pondering about alternatives.
+    scene: A project manager is sharing their apprehension with a colleague about a new, unproven project.
+    register: semi-formal
+    setting: serious
+    nuance: The phrase 「うまく いく のやら どう のやら」 conveys an internal uncertainty about the outcome, implying
+      a degree of personal stake and worry, common for someone responsible for a project.
+  - english: I can't distinguish if that person is a teacher or a student.
+    japanese:
+      - あの 人 が 先生 {な の やら} 生徒 {な の やら}、見分け が つか ない。
+      - あの 人 が 先生 {な の やら} 生徒 {な の やら}、見分け が つき ませ ん。
+      - あの 人 が 先生 {な の やら} 生徒 {な の やら}、全く 見分け が つか ない。
+    english_literally: That person teacher or student, cannot distinguish.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 が 先生 {か} 生徒 {か}、見分け が つか ない。
+        english: I can't distinguish if that person is a teacher or a student.
+        hint: This presents alternatives as a simple choice. We're looking for an expression that emphasizes
+          the difficulty or inability to distinguish between multiple possibilities.
+    scene: A new student is observing people in the school hallway, trying to figure out who is who among
+      unfamiliar faces.
+    register: casual
+    setting: interrogative
+    nuance: The phrase 「先生 な のやら 生徒 な のやら」 points to a difficulty in categorizing or identifying someone
+      based on appearance, implying a lack of clear distinguishing features. It expresses simple uncertainty
+      in identification.
+  - english: Before I knew it, the sun had set.
+    japanese:
+      - '{いつ の 間 に か} 日 が 暮れ て い た。'
+      - '{いつ の 間 に か} 日 が 暮れ て い まし た。'
+      - 気づけ ば {いつ の 間 に か} 日 が 暮れ て い た。
+    english_literally: Unawares, sun had set.
+    competing_grammar:
+      - competing_japanese:
+          - '{いつ の 間 に か} 日 が 暮れ て い た。'
+        english: Before I knew it, the sun had set.
+        hint: This indicates something happened without one's notice. We're looking for an expression
+          that emphasizes the subtle, unnoticed, and often surprising passage of time or gradual change.
+    scene: A person is engrossed in an activity, losing track of time, and suddenly realizes it's dark
+      outside.
+    register: casual
+    setting: reflective
+    nuance: The set phrase 「いつのまに やら」 indicates that an event occurred gradually and unnoticed by the
+      speaker, conveying a sense of subtle progression or surprise at the passage of time.
+post_example_writeup: These examples illustrate the versatile applications of 「やら」 across various contexts,
+  from expressing simple curiosity to profound worry. The choice of form (e.g., 「のやら」 vs. 「ことやら」 vs. plain
+  「やら」) depends heavily on the specific nuance the speaker wishes to convey regarding their internal questioning
+  and emotional state.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/やら

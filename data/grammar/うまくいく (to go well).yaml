@@ -1,0 +1,309 @@
+grammar_point: うまくいく (to go well)
+learn_before:
+  - どうか (earnestly・please)
+meaning: to go well; to succeed; to work out
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: うまくいく
+    rarity: common
+    meaning: to go well
+  - conjugation-type: non-past polite (～ます)
+    form: うまくいきます
+    rarity: common
+    meaning: goes well
+  - conjugation-type: past plain (～た)
+    form: うまくいった
+    rarity: common
+    meaning: went well
+  - conjugation-type: past polite (～ました)
+    form: うまくいきました
+    rarity: common
+    meaning: went well
+  - conjugation-type: negative plain (～ない)
+    form: うまくいかない
+    rarity: common
+    meaning: does not go well
+  - conjugation-type: negative non-past polite (～ません)
+    form: うまくいきません
+    rarity: common
+    meaning: does not go well
+  - conjugation-type: negative past plain (～なかった)
+    form: うまくいかなかった
+    rarity: common
+    meaning: did not go well
+  - conjugation-type: negative past polite (～ませんでした)
+    form: うまくいきませんでした
+    rarity: common
+    meaning: did not go well
+  - conjugation-type: te-form (～て)
+    form: うまくいって
+    rarity: common
+    meaning: going well (and/or)
+  - conjugation-type: conditional (～ば)
+    form: うまくいけば
+    rarity: common
+    meaning: if it goes well
+  - conjugation-type: conditional (～たら)
+    form: うまくいったら
+    rarity: common
+    meaning: if it goes well / when it went well
+  - conjugation-type: progressive (～ている)
+    form: うまくいっている
+    rarity: common
+    meaning: is going well
+  - conjugation-type: volitional (～よう)
+    form: うまくいこう
+    rarity: less common
+    meaning: let's make it go well
+  - conjugation-type: volitional polite (～ましょう)
+    form: うまくいきましょう
+    rarity: less common
+    meaning: let's make it go well
+pronunciation:
+  katakana: ウマクイク
+  romaji: umaku iku
+formation:
+  '[Effort/Situation] が + うまくいく': Indicates that an effort or situation progresses favorably.
+  '[Person/Group] が + [Attempt] に + うまくいく': Indicates that a person succeeds in an attempt.
+jlpt: N4
+etymology: うまくいく is formed from the adjective うまい (umai, meaning skillful, delicious, good at something)
+  in its adverbial form うまく (umaku, meaning skillfully, well) and the verb いく (iku, meaning to go). Thus,
+  it literally means "to go skillfully" or "to go well," which naturally evolved into its current meaning
+  of "to succeed" or "to work out favorably."
+writeup: うまくいく is a versatile phrase used to express that something is progressing smoothly, successfully,
+  or turning out as intended. It combines the adverbial form of うまい (skillful, good) with the verb いく
+  (to go). This literal translation of "to go well" perfectly captures its meaning of achieving a desired
+  outcome without obstacles. It can refer to plans, projects, relationships, or any situation that culminates
+  positively. While often translated as "to succeed," it carries a broader nuance of things simply "working
+  out" or "going as planned," which can be less grand than a full "success." It is frequently used in
+  daily conversation across various registers, from casual to formal, and is not notably gender or age-specific
+  in its usage. Its application is broad, encompassing everything from personal endeavors to large-scale
+  operations.
+false_friends:
+  - term: 成功する
+    meaning: to succeed
+    kind: similar expression
+    nuance: While うまくいく implies things are progressing favorably or turning out as planned, 成功する specifically
+      means to achieve a definitive, often significant, success or accomplishment. うまくいく とは異なり、最終的な成果に焦点を当てます。
+    grammar_point: する (to do・make)
+  - term: 失敗する
+    meaning: to fail
+    kind: antonym
+    nuance: 'うまくいく describes a positive or favorable outcome, whereas 失敗する describes the opposite: an
+      undesirable or unsuccessful outcome. They are direct opposites in meaning.'
+    grammar_point: する (to do・make)
+  - term: できる
+    meaning: to be able to do; to be completed
+    kind: often confused with
+    nuance: できる can mean "to be completed" or "to be possible," which might overlap with "working out."
+      However, うまくいく specifically emphasizes the favorable nature of the outcome or process, whereas できる
+      is more neutral, simply stating completion or capability.
+    grammar_point: <suggest>:するができる (can・be able to)
+post_false_friends_writeup: While `うまくいく` shares conceptual ground with phrases like `成功する` (to succeed)
+  or `できる` (to be completed or possible), subtle differences exist. `成功する` suggests a more definitive
+  and often significant achievement, a clear victory, whereas `うまくいく` can describe a smoother process
+  or a satisfactory outcome without necessarily being a major triumph. On the other hand, `できる` simply
+  indicates completion or capability, without the inherent positive connotation of things going *well*.
+examples:
+  - english: I hope everything goes well with your new job.
+    japanese:
+      - 新しい 仕事、{うまく いく と} いい ね。
+      - 新しい 仕事、{うまく いき ます よう に}。
+    english_literally: New job, I hope it goes well.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事、{成功 する と} いい ね。
+        english: I hope your new job succeeds.
+        hint: 「成功する」often implies a larger, more impactful success. Here, we're looking for a general
+          wish for smooth progress and a favorable outcome.
+    scene: A friend wishing another well.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    listener_gender: female
+    nuance: The use of 「うまくいくといいね」 expresses a casual wish for success or smooth progress, common among
+      friends. The casual 「いいね」 is often used when expressing wishes to close acquaintances.
+  - english: The project went well and was completed on time.
+    japanese:
+      - プロジェクト は {うまく いっ て}、期日 通り に 完了 し まし た。
+      - プロジェクト は {うまく いっ た} の で、期日 通り に 完了 し まし た。
+    english_literally: As for the project, it went well, and was completed according to schedule.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト は {成功 し て}、期日 通り に 完了 し まし た。
+        english: The project succeeded and was completed on time.
+        hint: While 「成功する」can be used, 「うまくいく」here emphasizes the smooth process and favorable outcome,
+          rather than just the final success. We're looking for the sense of things proceeding smoothly.
+    scene: A team leader reporting to management.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: It's a difficult challenge, but I believe it will work out.
+    japanese:
+      - 難しい 挑戦 です が、きっと {うまく いく と} 信じ て い ます。
+      - 難しい 挑戦 です が、きっと {うまく いき ます} と 信じ て い ます。
+    english_literally: It is a difficult challenge, but surely I believe it will go well.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい 挑戦 です が、きっと {成功 する と} 信じ て い ます。
+        english: It's a difficult challenge, but I believe it will succeed.
+        hint: 「成功する」 implies a definitive, often significant, success. Here, the emphasis is more on the
+          process resolving favorably. We're looking for the idea of things sorting themselves out positively.
+    scene: An employee presenting a new idea to their boss.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: Their relationship seems to be going well.
+    japanese:
+      - 彼 ら の 関係 は {うまく いっ て いる} よう です ね。
+      - 彼 ら の 関係 は {うまく いっ て いる} みたい です。
+    english_literally: Their relationship, it seems, is going well.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 関係 は {順調 な} よう です ね。
+        english: Their relationship seems to be smooth/favorable.
+        hint: 「順調」refers to something proceeding without problems, but 「うまくいっている」specifically emphasizes
+          the positive state of the relationship as 'working out'. We're looking for the phrase that captures
+          the idea of a relationship functioning well.
+    scene: Two colleagues gossiping about mutual acquaintances.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+  - english: We tried a new strategy, but it didn't quite work out.
+    japanese:
+      - 新しい 作戦 を 試し まし た が、あまり {うまく いか なかっ た} です。
+      - 新しい 作戦 を 試し まし た が、あまり {うまく いき ませ ん でし た}。
+    english_literally: We tried a new strategy, but it didn't go well much.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 作戦 を 試し まし た が、{失敗 し まし た}。
+        english: We tried a new strategy, but it failed.
+        hint: 「失敗する」is a strong statement of failure. 「うまくいかなかった」 is softer, implying it just didn't proceed
+          favorably, not necessarily a complete disaster. We're looking for the nuance of 'didn't go as
+          planned' rather than outright failure.
+    scene: A commander reviewing battle strategy with subordinates.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+  - english: We need to try various methods until something works out.
+    japanese:
+      - 何 か {うまく いく} まで、色々 な 方法 を 試す 必要 が あり ます。
+      - 何 か {うまく いき ます} まで、色々 な 方法 を 試す 必要 が あり ます。
+    english_literally: Until something goes well, there is a need to try various methods.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か {できる} まで、色々 な 方法 を 試す 必要 が あり ます。
+        english: We need to try various methods until something is possible/can be done.
+        hint: 「できる」implies possibility or completion. Here, we're looking for the nuance of a method that
+          is effective and leads to a favorable outcome. We're looking for something that 'works out'
+          effectively.
+    scene: A group of students working on a science project.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: If this plan goes well, we'll be able to expand our business.
+    japanese:
+      - この 計画 が {うまく いけ ば}、事業 を 拡大 できる でしょう。
+      - この 計画 が {うまく いっ たら}、事業 を 拡大 できる でしょう。
+    english_literally: If this plan goes well, we will be able to expand our business, probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が {成功 すれ ば}、事業 を 拡大 できる でしょう。
+        english: If this plan succeeds, we'll be able to expand our business.
+        hint: 「成功すれば」is correct but emphasizes a clear success. 「うまくいけば」focuses on the plan progressing
+          smoothly and favorably. We're looking for the nuance of the plan proceeding without hitches.
+    scene: Business partners discussing future prospects.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+  - english: Do you really think this approach will work?
+    japanese:
+      - その やり 方 で 本当 に {うまく いき ます} か？
+      - その やり 方 で 本当 に {うまく いく} と 思い ます か？
+    english_literally: With that method, truly, will it go well?
+    competing_grammar:
+      - competing_japanese:
+          - その やり 方 で 本当 に {成功 し ます} か？
+        english: Do you really think this approach will succeed?
+        hint: 「成功しますか」implies a question about ultimate triumph. 「うまくいきますか」is a more general query about
+          whether the approach will proceed smoothly and lead to a good outcome. We're looking for whether
+          the method will 'work out'.
+    scene: A skeptical team member questioning a proposal.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: Thanks to everyone's cooperation, the event went perfectly.
+    japanese:
+      - 皆 の 協力 の おかげ で、イベント は {うまく いき まし た}。
+      - 皆 の 協力 の おかげ で、イベント は {うまく 行っ た}。
+    english_literally: Thanks to everyone's cooperation, the event went well.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 の 協力 の おかげ で、イベント は {成功 し まし た}。
+        english: Thanks to everyone's cooperation, the event succeeded.
+        hint: 「成功しました」is fine but more formal and emphasizes a definite success. 「うまくいきました」 implies a
+          smooth, problem-free execution. We're looking for the nuance of the event unfolding without
+          issues.
+    scene: An event organizer thanking staff after a successful event.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: If we proceed carelessly, it won't go well.
+    japanese:
+      - 軽率 に 進め ば、{うまく いか ない} でしょう。
+      - 軽率 に 進め ば、{うまく いき ませ ん} でしょう。
+    english_literally: If we proceed carelessly, it will not go well, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 軽率 に 進め ば、{失敗 する} でしょう。
+        english: If we proceed carelessly, it will fail.
+        hint: 「失敗する」 suggests a complete collapse. 「うまくいかない」is a milder statement, indicating it simply
+          won't proceed favorably. We're looking for the phrase that means 'it won't turn out well'.
+    scene: An experienced mentor advising a junior colleague.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The male speaker uses 「でしょう」 with a slightly cautionary nuance, emphasizing the negative prediction.
+      「うまくいかない」 is a plain negative form, common in advice from an older, experienced person.
+  - english: I don't feel like things are going well for me recently.
+    japanese:
+      - 最近、自分 の こと が {うまく いっ て い ない} 気 が する。
+      - 最近、自分 の こと が {うまく いっ て ない} 気 が する。
+    english_literally: Recently, as for my own things, I feel that they are not going well.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、自分 の こと が {成功 し て い ない} 気 が する。
+        english: Recently, I feel like my things are not succeeding.
+        hint: 「成功する」implies a more significant and definitive accomplishment. Here, the speaker is expressing
+          a general feeling about the flow of their life, not necessarily a grand failure. We're looking
+          for a phrase that describes a general state of things not progressing favorably.
+    scene: A person confiding in a close friend.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    nuance: The use of 「気がする」 softens the statement, indicating a personal feeling rather than a definitive
+      fact. The female speaker uses plain forms like 「うまくいっていない」 in this intimate setting, conveying vulnerability.
+  - english: I hope it goes well for you this time!
+    japanese:
+      - 今度 こそ {うまく いっ て} ほしい ね！
+      - 今度 こそ {うまく いき ます よう に}！
+    english_literally: This time, please go well!
+    competing_grammar:
+      - competing_japanese:
+          - 今度 こそ {成功 し て} ほしい ね！
+        english: I hope you succeed this time!
+        hint: 「成功する」is often used for bigger, more significant achievements. While applicable, the nuance
+          here is a supportive wish for smooth progress rather than a monumental victory. We're looking
+          for a general sense of things turning out well.
+    scene: A friend encouraging another before a difficult task.
+    register: casual
+    setting: supportive
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「ほしいね」 with the te-form of 「うまくいく」 expresses a strong wish for the listener's success
+      or smooth execution. The particle 「ね」 adds a friendly, seeking agreement tone, typical between male
+      friends.

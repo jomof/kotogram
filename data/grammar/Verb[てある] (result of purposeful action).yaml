@@ -1,0 +1,293 @@
+grammar_point: Verb[てある] (result of purposeful action)
+learn_before:
+  - 真上 (directly above)
+meaning: a state of existence resulting from a purposeful action
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てある
+    rarity: common
+    meaning: is left (as a result of purposeful action)
+  - conjugation-type: non-past polite (～ます)
+    form: てあります
+    rarity: common
+    meaning: is left (as a result of purposeful action), polite
+  - conjugation-type: negative plain (～ない)
+    form: てない
+    rarity: common
+    meaning: is not left (as a result of purposeful action)
+  - conjugation-type: negative non-past polite (～ません)
+    form: てありません
+    rarity: common
+    meaning: is not left (as a result of purposeful action), polite
+  - conjugation-type: past plain (～た)
+    form: てあった
+    rarity: common
+    meaning: was left (as a result of purposeful action)
+  - conjugation-type: past polite (～ました)
+    form: てありました
+    rarity: common
+    meaning: was left (as a result of purposeful action), polite
+  - conjugation-type: negative past plain (～なかった)
+    form: てなかった
+    rarity: common
+    meaning: was not left (as a result of purposeful action)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: てありませんでした
+    rarity: common
+    meaning: was not left (as a result of purposeful action), polite
+pronunciation:
+  katakana: テアル
+  romaji: tearu
+formation:
+  Transitive Verb て-form + ある: Indicates a state resulting from a purposeful action on an inanimate object.
+jlpt: N4
+etymology: The 『て』 form acts as a conjunctive, connecting the preceding verb to 『ある』, which signifies
+  the existence of an inanimate object. This combination inherently suggests a state of something being
+  in existence due to a preceding action, with 『ある』 explicitly indicating the inanimate nature of the
+  subject in its resultant state.
+writeup: |-
+  『Verb[てある]』 is a grammar pattern used to describe a state that has resulted from a deliberate, purposeful action. It often implies that someone has performed an action to prepare something or arrange it in a certain way. The focus is on the **resultant state** of the object rather than the action itself or the actor.
+
+  **Key distinctions:**
+  - **Purposeful Action:** The action leading to the state is almost always done with intention. For example, ドアが{開けてあります} (The door has been opened [by someone for a purpose]), implies someone opened it intentionally, perhaps for ventilation or for someone to enter.
+  - **Transitive Verbs:** 『Verb[てある]』 typically follows the 『て-form』 of transitive verbs (verbs that take a direct object).
+  - **Inanimate Subject:** The subject of the 『てある』 sentence is usually inanimate, as it is the object that is in a certain state.
+  - **Emphasis on State:** While 『Verb[ている]』 can also describe a resultant state (e.g., ドアが{開いている} - The door is open), 『Verb[てある]』 specifically emphasizes that this state is the *result of a purposeful action*. 『開いている』 could mean the door is open naturally or accidentally, but 『開けてある』 strongly suggests someone opened it on purpose.
+false_friends:
+  - term: Verb[ている] (ongoing state・resultant state)
+    meaning: an ongoing action or a state that has resulted from an action
+    kind: often confused with
+    nuance: 『Verb[ている]』 can describe a resultant state without implying a purposeful action (e.g., 窓が{割れている}
+      - The window is broken, could be accidental). 『Verb[てある]』 *always* implies a purposeful action.
+    grammar_point: Verb[ている・てる] (progressive・resultative)
+  - term: Verb[ておく・とく] (preparation・advance action)
+    meaning: to do something in advance or leave something in a certain state
+    kind: similar expression
+    nuance: 『Verb[ておく]』 emphasizes the *action of preparing* for a future event (e.g., 窓を{開けておく} - I'll
+      open the window [in advance]). 『Verb[てある]』 emphasizes the *state* resulting from that preparation
+      (e.g., 窓が{開けてある} - The window *is* open [because someone opened it]). The 『てある』 form is usually
+      passive, describing the state of the object, while 『ておく』 is active.
+    grammar_point: Verb[ておく・とく] (preparation・advance action)
+post_false_friends_writeup: 'The main difference between 『Verb[てある]』 and 『Verb[ている]』 when describing a
+  resultant state lies in the presence of intent. If an object is in a certain state because someone intentionally
+  put it that way, use 『てある』. If the state is simply observed, or occurred naturally/accidentally, 『ている』
+  is more appropriate. For example, a window could be 『開いている』 (just open), but if it was opened by someone
+  to let air in, it is 『開けてある』. The distinction between 『てある』 and 『ておく』 is one of focus: 『ておく』 focuses
+  on the *action* of preparation, while 『てある』 focuses on the *state* that *resulted* from that preparation.
+  Think of 『ておく』 as “to do and leave” and 『てある』 as “it has been done and is left [in that state]”.'
+examples:
+  - english: The map has been placed on the table.
+    japanese:
+      - 地図 が テーブル に {置い て あり ます}。
+      - 地図 が テーブル に {置い て ある}。
+    english_literally: Map on table has been placed.
+    competing_grammar:
+      - competing_japanese:
+          - 地図 が テーブル に {置い て ある}。
+        english: The map is on the table (plain form).
+        hint: This uses the plain form of 『てある』. We're looking for the polite form.
+      - competing_japanese:
+          - 地図 が テーブル に {置か れ て い ます}。
+        english: The map has been placed on the table (passive).
+        hint: This uses the passive voice, focusing on the action being performed. We're looking for an
+          expression that highlights the resultant state of a purposeful action.
+      - competing_japanese:
+          - 地図 が テーブル に {置い て あり ます}。
+        english: The map has been placed on the table (with a less common nuance for this example).
+        hint: While technically grammatically correct, 『置いてある』 or 『置いてあります』 typically implies a purposeful
+          placement for some reason, like preparation. If it's just 'there', 『置かれている』 might be more neutral.
+    scene: You enter a meeting room and notice the setup, including a map on the table.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: The books are neatly arranged on the shelf.
+    japanese:
+      - 本 が 棚 に きちんと {並べ て ある}。
+      - 本 が 棚 に きちんと {並べ て あり ます}。
+    english_literally: Books on shelf neatly arranged exist.
+    competing_grammar:
+      - competing_japanese:
+          - 本 が 棚 に きちんと {並べ て あり ます}。
+        english: The books are neatly arranged on the shelf (polite).
+        hint: This is the polite form. We're looking for the plain form.
+      - competing_japanese:
+          - 本 が 棚 に きちんと {並ん で いる}。
+        english: The books are neatly lined up on the shelf.
+        hint: 『並んでいる』 describes a state of things being lined up but doesn't necessarily imply a purposeful
+          arrangement by someone. We're looking for an expression that suggests intentional arrangement.
+    scene: A librarian is checking the shelves, noting how organized they are.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: Dinner had been prepared.
+    japanese:
+      - 夕食 が {作っ て あり まし た}。
+      - 夕食 が {作っ て あっ た}。
+    english_literally: Dinner has been made.
+    competing_grammar:
+      - competing_japanese:
+          - 夕食 が {作ら れ て い ます}。
+        english: Dinner is being made / has been made (passive).
+        hint: This passive form focuses on the action being performed. We're looking for a completed state
+          resulting from an intentional action.
+      - competing_japanese:
+          - 夕食 が {でき て い まし た}。
+        english: Dinner was ready.
+        hint: 『できていました』 means it was ready, but doesn't emphasize it being *prepared* by someone for a
+          specific purpose. We're looking for a nuance of purposeful preparation.
+    scene: Someone arrived home after a long day and found dinner ready for them.
+    register: casual
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+  - english: The room hasn't been cleaned yet.
+    japanese:
+      - 部屋 が まだ {掃除 し て ない}。
+      - 部屋 が まだ {掃除 し て あり ませ ん}。
+    english_literally: Room still not cleaned.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が まだ {掃除 し て あり ませ ん}。
+        english: The room still hasn't been cleaned (polite).
+        hint: This is a polite form. We're looking for a casual expression of the room's current state
+          of not being purposefully cleaned.
+      - competing_japanese:
+          - 部屋 が まだ {掃除 さ れ て い ませ ん}。
+        english: The room still hasn't been cleaned (passive, polite).
+        hint: This is a polite passive form focusing on the action not being performed. We're looking
+          for a casual expression of the room's current state of not being purposefully cleaned.
+      - competing_japanese:
+          - 部屋 が まだ {汚い}。
+        english: The room is still dirty.
+        hint: This describes the room's current dirty state but doesn't imply an expectation of it being
+          cleaned by someone. We're looking for a nuance of a purposeful action (cleaning) not yet having
+          occurred.
+    scene: A roommate complains about the mess to another.
+    register: casual
+    setting: casual slang
+    conjugation: negative plain (～ない)
+    nuance: The use of the casual negative form 「掃除してない」highlights the unfulfilled purposeful action of
+      cleaning, implying an expectation that it should have been done.
+  - english: The chairs are set up for the event.
+    japanese:
+      - 椅子 が イベント の ため に {並べ て ある}。
+      - 椅子 が イベント の ため に {並べ て あり ます}。
+    english_literally: Chairs for event have been arranged.
+    competing_grammar:
+      - competing_japanese:
+          - 椅子 が イベント の ため に {並べ られ て いる}。
+        english: The chairs are being arranged / have been arranged for the event (passive).
+        hint: This focuses on the action of arrangement. We're looking for the resultant state after a
+          purposeful action.
+      - competing_japanese:
+          - 椅子 が イベント の ため に {並ん で いる}。
+        english: The chairs are lined up for the event.
+        hint: 『並んでいる』 simply states that the chairs are in a line, without necessarily implying they were
+          purposefully set up for the event. We're looking for the sense of deliberate preparation.
+    scene: Two event organizers are discussing arrangements, and one confirms the chairs are ready.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: Important points were underlined.
+    japanese:
+      - 大切 な 点 に 線 が {引い て あっ た}。
+      - 大切 な 点 に 線 が {引い て あり まし た}。
+    english_literally: Important points line has been drawn.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な 点 に 線 が {引か れ て い た}。
+        english: Important points were drawn (passive).
+        hint: This passive form focuses on the action of drawing the line. We're looking for the resultant
+          state where the lines are present due to a past purposeful action.
+      - competing_japanese:
+          - 大切 な 点 に 線 が {引い て ある}。
+        english: Important points are underlined (present tense).
+        hint: This is the present tense. We're looking for the past tense of the resultant state.
+    scene: A teacher is reviewing an old essay from a student, noting where they had underlined key ideas.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+  - english: The window has been left open.
+    japanese:
+      - 窓 が {開け て あり ます}。
+      - 窓 が {開け て ある}。
+    english_literally: Window has been opened.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 が {開い て い ます}。
+        english: The window is open.
+        hint: 『開いています』 simply describes the state of the window being open and does not necessarily imply
+          a purposeful action or that someone left it that way. We're looking for the implication of intentional
+          action.
+      - competing_japanese:
+          - 窓 が {開け られ て い ます}。
+        english: The window has been opened (passive).
+        hint: This passive form emphasizes the action of opening. We're looking for the resultant state
+          where the window is open due to someone's deliberate action.
+    scene: A parent returns home and sees a window open that they expected to be closed, and they are
+      mildly annoyed.
+    register: casual
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: While 『開けてあります』 neutrally states a purposeful opening, in a context of scolding, it can imply
+      that the window was left open *and shouldn't have been*. The directness of 『開けてあります』 implies accountability
+      for the state.
+  - english: The schedule is written on the whiteboard.
+    japanese:
+      - 予定 が ホワイトボード に {書い て あり ます}。
+      - 予定 が ホワイトボード に {書い て ある}。
+    english_literally: Schedule on whiteboard has been written.
+    competing_grammar:
+      - competing_japanese:
+          - 予定 が ホワイトボード に {書い て ある}。
+        english: The schedule is written on the whiteboard (plain form).
+        hint: This is the plain form. We're looking for the polite form.
+      - competing_japanese:
+          - 予定 が ホワイトボード に {書か れ て い ます}。
+        english: The schedule has been written on the whiteboard (passive).
+        hint: This passive form focuses on the action of writing. We're looking for the resultant state
+          where the schedule is present due to someone's deliberate action.
+    scene: A manager is briefing the team, pointing to the whiteboard where the schedule has been clearly
+      laid out.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: Snacks have been prepared for the guests.
+    japanese:
+      - お 菓子 が お 客 さん の ため に {用意 し て あり ます}。
+      - お 菓子 が お 客 さん の ため に {用意 し て ある}。
+    english_literally: Snacks for guests have been prepared.
+    competing_grammar:
+      - competing_japanese:
+          - お 菓子 が お 客 さん の ため に {用意 さ れ て い ます}。
+        english: Snacks are being prepared / have been prepared for the guests (passive).
+        hint: This passive form highlights the action of preparation. We're looking for the resultant
+          state of preparedness due to a purposeful action.
+    scene: A hostess welcomes guests into her home, indicating that refreshments are ready for them.
+    register: formal
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: The light is turned on.
+    japanese:
+      - 電気 が {つけ て あり ます}。
+      - 電気 が {つけ て ある}。
+    english_literally: Light has been turned on.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 が {つい て いる}。
+        english: The light is on.
+        hint: 『ついている』 simply describes the light being on, without explicitly stating it was purposefully
+          turned on. We're looking for the nuance of an intentional action leading to the current state.
+      - competing_japanese:
+          - 電気 が {つけ られ て い ます}。
+        english: The light has been turned on (passive).
+        hint: This passive form focuses on the action of turning on the light. We're looking for the resultant
+          state where the light is on due to someone's deliberate action.
+    scene: You enter a dark room and notice the light is already on, perhaps because someone was just
+      there or left it on for you.
+    register: casual
+    setting: casual slang
+    conjugation: non-past polite (～ます)

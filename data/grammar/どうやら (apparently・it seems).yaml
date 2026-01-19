@@ -1,0 +1,245 @@
+grammar_point: どうやら (apparently・it seems)
+learn_before:
+  - どう (how)
+meaning: Apparently, it seems, it looks like
+pronunciation:
+  katakana: ドウヤラ
+  romaji: douyara
+formation:
+  どうやら + [statement]: Indicates a degree of uncertainty, implying "apparently" or "it seems".
+jlpt: N2
+etymology: 「どうやら」 originally comes from 「どう」 (how) + 「やら」, an archaic particle indicating uncertainty
+  about a singular thing or a list. It's similar to adding "or whatever" or "or some such" in English
+  to soften a statement, but for a whole statement. It implies the speaker is trying to figure out 'how'
+  things are, and 'apparently' this is the conclusion.
+writeup: 「どうやら」 translates to "apparently," "it seems like," or "it looks like." It is an adverb that
+  expresses speculation and often appears at the beginning of a sentence, modifying the entire phrase.
+  It strengthens the uncertainty of things the speaker is already unsure about, functioning similarly
+  to saying "in some way it seems like (A)." It is frequently used in conjunction with other speculative
+  expressions like 「ようだ」, 「そうだ」, and 「らしい」, adding a layer of personal inference or deduction to the statement.
+  While 「どうやら」 can be used in both casual and polite contexts, its primary function is to indicate that
+  the speaker is drawing a conclusion based on available, often circumstantial, evidence.
+false_friends:
+  - term: ようだ (it seems)
+    meaning: It seems, looks like (based on direct observation or strong impression)
+    kind: similar expression
+    nuance: While both express conjecture, 「～ようだ」 is often based on direct observation or a more immediate
+      impression, whereas {どうやら} suggests a conclusion reached after considering various circumstances
+      or indirect evidence.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: '[Sentence]らしい (it seems・I hear)'
+    meaning: It seems, apparently (based on hearsay or strong likelihood/characteristic)
+    kind: similar expression
+    nuance: 「～らしい」 often indicates that information was received from others or describes something true
+      to its nature. {どうやら} emphasizes the speaker's own inference or deduction from the situation, rather
+      than information simply heard or a general characteristic.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: '[Adj-stem]・[V-stem]そうだ (looks・seems like)'
+    meaning: Looks like, seems (based on visual appearance)
+    kind: similar expression
+    nuance: This form of 「～そうだ」 is strictly based on immediate visual cues. {どうやら} is not limited to visual
+      information; it can be based on any kind of circumstantial evidence or reasoning.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: そうだ (hear that)
+    meaning: I hear that; I'm told that (hearsay)
+    kind: similar expression
+    nuance: This form of 「～そうだ」 conveys information received directly from others. {どうやら} implies the
+      speaker has processed various pieces of information or observations to arrive at a conclusion, rather
+      than simply reporting what they heard.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+post_false_friends_writeup: When distinguishing between {どうやら} and similar expressions like 「～ようだ」, 「～らしい」,
+  and 「～そうだ」, consider the source of the conjecture. {どうやら} is best used when the speaker is drawing a
+  conclusion through their own process of deduction, piecing together various bits of information or observations.
+  It implies a sense of 'from what I can tell' or 'it appears to be the case.' In contrast, 「～ようだ」 is
+  more about direct sensory impressions, 「～らしい」 is often about hearsay or typical characteristics, and
+  「～そうだ」 (looks like) is visual, while 「～そうだ」 (I hear that) is about direct reports. {どうやら} adds a nuance
+  of the speaker's intellectual involvement in arriving at the conclusion.
+examples:
+  - english: It seems like she doesn't need me.
+    japanese:
+      - '{どう やら} 私 に は 彼女 が 必要 が ない よう だ。'
+      - '{どう やら} 俺 に は 彼女 が 必要 ない みたい だ。'
+      - '{どう やら} 私 に は 彼女 が 必要 と し て い ない みたい。'
+    english_literally: Apparently, I am not necessary for her.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼女 に は 必要 が ない {らしい}。
+        english: Apparently, I'm not needed by her (based on hearsay).
+        hint: 「らしい」 implies information from others or a strong likelihood, whereas {どうやら} is your own
+          inference. We're looking for a deduction based on your own observation. There is no information
+          in this sentence that implies the information came from others. Rather, it implies an internal
+          deduction from observations. So, this sentence would be translated using {どうやら} to emphasize
+          that deduction.
+    scene: A man is reflecting on a recent breakup and feeling unneeded.
+    register: semi-formal
+    setting: melancholic
+  - english: It seems he's apparently married.
+    japanese:
+      - '{どう やら} 彼 は 結婚 し て いる らしい よ。'
+      - '{どう やら} 彼 は ご 結婚 なさっ た らしい です よ。'
+      - '{どう やら} 彼、結婚 し てる っぽい よ。'
+    english_literally: Apparently, he is apparently married.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 結婚 し て いる {よう だ} よ。
+        english: It seems he's married (based on observation).
+        hint: 「～ようだ」 implies an observation or impression, while {どうやら} emphasizes your personal deduction
+          from various pieces of information. We're looking for a deduction based on various hints. Therefore,
+          this sentence would be translated using {どうやら} to emphasize that deduction rather than a simple
+          observation.
+    scene: Two friends are gossiping about a mutual acquaintance, connecting various pieces of information
+      to draw a conclusion.
+    register: casual
+    setting: informative
+  - english: It seems our neighbor, Mr. Suzuki, is apparently going to England next month.
+    japanese:
+      - お 隣 の 鈴木 さん が {どう やら} 来月 から イギリス に 行く らしい です よ。
+      - お 隣 の 鈴木 さん、{どう やら} 来月 イギリス 行く らしい よ。
+      - '{どう やら} お 隣 の 鈴木 さん は 来月 イギリス へ 行か れる よう です。'
+    english_literally: Our neighbor, Mr. Suzuki, apparently next month from England go apparently polite.
+    competing_grammar:
+      - competing_japanese:
+          - お 隣 の 鈴木 さん が 来月 から イギリス に 行く {よう です} よ。
+        english: It seems our neighbor, Mr. Suzuki, is going to England next month (based on observation).
+        hint: 「～ようだ」 implies an observation or impression, while {どうやら} emphasizes your personal deduction.
+          We're looking for a deduction based on various bits of information. Therefore, this sentence
+          would be translated using {どうやら} to emphasize that deduction rather than a simple observation.
+    scene: Two neighbors are sharing recent news about someone they both know, having gathered bits of
+      information.
+    register: teineigo (polite)
+    setting: informative
+  - english: Looks like I left the light on. Sorry about that.
+    japanese:
+      - '{どう やら} 俺 は 電気 を つけ っぱなし に し た らしい。すみ ませ ん。'
+      - '{どう やら} 電気 を つけ っぱなし に し て しまっ た よう です。申し訳 あり ませ ん。'
+      - '{どう やら} 電気 を つけ っぱなし に し て た みたい。ごめん。'
+    english_literally: Apparently, I left the electricity on. Sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 は 電気 を つけ っぱなし に し た {よう だ}。すみ ませ ん。
+        english: It seems I left the light on. Sorry about that.
+        hint: 「～ようだ」 implies an observation or impression, while {どうやら} emphasizes your personal deduction
+          upon realizing something. We're looking for a sentence that shows a sudden realization and deduction.
+          Therefore, this sentence would be translated using {どうやら} to emphasize that deduction, rather
+          than a simple observation.
+    scene: A young man walks into a room, notices the light on, and realizes he made a mistake.
+    register: casual
+    setting: apologetic
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The speaker uses 「俺」 (ore), a casual first-person pronoun typically used by young men, indicating
+      a male speaker in a relaxed setting. The tone is one of mild self-reprimand upon discovering something.
+      The use of {どうやら} emphasizes this is a personal realization, not just an observation, as it indicates
+      a deduction made by the speaker about their own actions based on the current situation. The phrase
+      「つけっぱなしにしたらしい」 further reinforces the speaker's conclusion or deduction about their own action,
+      rather than a simple statement of fact or observation of the state.
+  - english: It seems like it's going to rain, given how dark the sky is.
+    japanese:
+      - 空 が {どう やら} 降り そう な 暗 さ だ な。
+      - 空 の 感じ から {どう やら} 雨 が 降り そう だ ね。
+      - '{どう やら} 雨 が 降り そう だ、この 空 の 色 は。'
+    english_literally: The sky apparently is a darkness that looks like it will rain.
+    competing_grammar:
+      - competing_japanese:
+          - 空 が 降り {そう} な 暗 さ だ ね。
+        english: The sky is a darkness that looks like it will rain.
+        hint: Without {どうやら}, the sentence states a direct observation. We're looking for a sentence that
+          conveys a deduction based on observed circumstances.
+    scene: Someone looks out the window, observing the dark clouds and deducing it will rain soon.
+    register: casual
+    setting: cautious
+    nuance: The sentence-ending particle 「な」 (na) is used here to express a casual, reflective tone, often
+      used by male speakers to share a thought or observation with themselves or a close listener. The
+      use of {どうやら} here emphasizes that the conclusion about rain is a deduction based on the visual
+      evidence of the sky's darkness.
+  - english: It seems the project deadline will apparently be extended, considering the current progress.
+    japanese:
+      - 現在 の 進捗 状況 から 見 て、プロジェクト の 締め切り は {どう やら} 延長 さ れる よう です。
+      - 今 の 進み 具合 から {どう やら} プロジェクト の 締め切り は 延び そう です。
+      - 現状 を 鑑み る と、締め切り は {どう やら} 延長 と なり そう です。
+    english_literally: Considering the current progress situation, the project's deadline apparently seems
+      like it will be extended.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 進捗 状況 から 見 て、プロジェクト の 締め切り は 延長 さ れる {そう です}。
+        english: I hear the project deadline will be extended, considering the current progress.
+        hint: 「～そうです」 (hearsay) indicates information received from others. We're looking for a sentence
+          that emphasizes the speaker's own professional deduction from the data.
+    scene: A project manager is reviewing progress reports and concluding the inevitable.
+    register: formal
+    setting: informative
+  - english: It seems our cat has apparently found a new favorite napping spot.
+    japanese:
+      - うち の 猫 は {どう やら} 新しい お 気 に 入り の 寝床 を 見つけ た よう だ わ。
+      - うち の 猫、{どう やら} 新しい お 気 に 入り の 寝床 を 発見 し た みたい ね。
+      - '{どう やら} うち の 猫 は 新しい 寝床 が 気 に 入っ た よう です わ。'
+    english_literally: Our cat apparently seems to have found a new favorite sleeping place.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 は 新しい お 気 に 入り の 寝床 を 見つけ た {みたい だ} ね。
+        english: Our cat seems to have found a new favorite napping spot.
+        hint: 「～みたいだね」 conveys a more direct, casual observation. We're looking for a sentence that implies
+          a deduction based on various little signs the cat has given.
+    scene: A woman observes her cat always sleeping in a new, unusual spot and deduces it's a new favorite.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-ending particle 「わ」 (wa) is characteristic of female speech, adding a gentle
+      and often self-affirming or slightly emphatic tone. The use of {どうやら} here suggests the speaker
+      has noticed a pattern or various subtle signs that lead her to conclude the cat has found a new
+      spot, rather than it being an obvious, single event.
+  - english: It seems young people these days don't bother to read newspapers anymore.
+    japanese:
+      - 最近 の 若者 は {どう やら} 新聞 を 読ま ない よう だ のう。
+      - 今 の 若い 子 は {どう やら} 新聞 を 読ま ない みたい だ ね。
+      - '{どう やら} 最近 の 若者 は 新聞 を 手 に し ない よう だ。'
+    english_literally: Young people these days apparently seem not to read newspapers.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 若者 は 新聞 を 読ま ない {そう だ}。
+        english: I heard young people these days don't read newspapers.
+        hint: 「～そうだ」 (hearsay) implies you've been told this information. We're looking for a statement
+          that sounds like a personal deduction or observation from someone reflecting on the trends.
+    scene: An older person, perhaps sitting in a cafe, observes the lack of newspaper readers among the
+      younger generation.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: The ending particle 「のう」 (nō) is often used by older speakers, particularly men, to express
+      a contemplative or somewhat nostalgic sentiment. The use of {どうやら} here suggests that this conclusion
+      is drawn from various observations over time, rather than a single piece of information, highlighting
+      the speaker's personal inference about a generational shift.
+  - english: It seems I've lost my wallet again. Oh no.
+    japanese:
+      - '{どう やら} また 財布 を なくし た みたい だ。あぁ、最悪！'
+      - また 財布 を なくし た {どう やら}。やばい！
+      - '{どう やら} 財布 を また どこ か に 置い て き た よう だ。'
+    english_literally: Apparently, I lost my wallet again. Oh, the worst!
+    competing_grammar:
+      - competing_japanese:
+          - また 財布 を なくし た {よう だ}。あぁ、最悪！
+        english: It seems I lost my wallet again. Oh no.
+        hint: 「～ようだ」 is a general observation. We're looking for a sentence that shows a sudden realization
+          and deduction after checking multiple places or remembering past mistakes.
+    scene: Someone frantically searches their pockets and bag, then realizes the unfortunate truth.
+    register: casual
+    setting: pessimistic
+  - english: It seems he's apparently running on coffee alone today.
+    japanese:
+      - 彼 は 今日、{どう やら} コーヒー だけ で 動い て いる らしい よ。
+      - '{どう やら} 彼 は 今日、コーヒー で しか 生き て い ない みたい。'
+      - 今日 の 彼 は {どう やら} コーヒー だけ が エネルギー 源 の よう だ。
+    english_literally: He today, apparently seems to be moving only with coffee.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今日、コーヒー だけ で 動い て いる {そう だ} よ。
+        english: I heard he's running on coffee alone today.
+        hint: 「～そうだ」 (hearsay) indicates you received this information from someone else. We're looking
+          for a sentence that expresses your own deduction based on observing his behavior.
+    scene: A colleague observes another's exhausted but highly caffeinated state at work.
+    register: casual
+    setting: humorous
+post_example_writeup: 「どうやら」 adds a layer of uncertainty or conjecture. Use it when you want to express
+  that something is likely, but not certain, based on available information or your personal deduction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どうやら

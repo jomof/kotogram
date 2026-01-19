@@ -1,0 +1,245 @@
+grammar_point: い-Adjective[dictionary] (dictionary)
+matcher: '{i-adjective-dictionary}'
+matcher_enforce_examples: true
+meaning: i-adjective (plain non-past form)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: '[い-Adjective]'
+    rarity: common
+    meaning: plain non-past form of an i-adjective
+pronunciation:
+  katakana: イ形容詞
+  romaji: i-keiyoushi
+formation:
+  い-Adjective (dictionary form): Describes a noun directly or predicates a sentence.
+jlpt: N5
+etymology: Japanese adjectives, specifically い-adjectives, have been part of the language's core structure
+  for centuries, serving to describe qualities and states directly. Unlike verbs, they do not require
+  a copula (like だ or です) when used predicatively in plain form, a characteristic believed to stem from
+  their ancient verbal nature. The terminal い ending is a remnant of this older conjugation system.
+writeup: |-
+  い-Adjectives are a fundamental category of Japanese adjectives, easily identifiable by their terminal character 「い」 (i) in their dictionary (plain non-past) form. They directly modify nouns by preceding them, or they can stand alone at the end of a sentence to predicate a quality or state.
+
+  **Usage as a Noun Modifier:**
+  When an い-adjective directly modifies a noun, it simply precedes the noun without any particles. For example, 「大きい 家」 (ookii ie) means "a big house." This direct modification is one of their most common functions.
+
+  **Usage as a Predicate:**
+  い-Adjectives can also end a sentence, acting as the predicate. In plain form, no additional copula is needed. For instance, 「この 家 は 大きい」 (kono ie wa ookii) means "This house is big." When politeness is desired, 「です」 is appended: 「この 家 は 大きい です」 (kono ie wa ookii desu).
+false_friends:
+  - term: な-Adjectives
+    meaning: adjectival nouns
+    kind: similar expression
+    nuance: While both い-adjectives and な-adjectives describe nouns, な-adjectives require 「な」 when modifying
+      a noun (e.g., 「きれいな 花」 - kirei na hana, 'a beautiful flower') and 「だ」 (plain) or 「です」 (polite) when
+      used predicatively (e.g., 「この 花 は きれいだ」 - kono hana wa kirei da, 'This flower is beautiful'). い-adjectives
+      do not use 「な」 and conjugate differently.
+    grammar_point: な-Adjectives (adjectival nouns)
+  - term: Verb[dictionary] (dictionary form)
+    meaning: plain non-past verb
+    kind: often confused with
+    nuance: Both are 'dictionary forms' and can end a plain sentence. However, verbs describe actions
+      or states of being, while い-adjectives describe qualities. Their conjugations and roles in sentence
+      structure are distinct. For example, 「食べる」 (taberu - to eat) is a verb, while 「高い」 (takai - high・expensive)
+      is an い-adjective.
+    grammar_point: Verb[dictionary] (dictionary form)
+  - term: い-Adjective[stem] (stem)
+    meaning: adjective stem
+    kind: similar expression
+    nuance: The い-adjective stem is the part of the adjective before the final 「い」 (e.g., 「高」 from 「高い」).
+      While used in various conjugations and compound words, the stem itself cannot stand alone as a dictionary
+      form or predicate a sentence. We're looking for the full, complete dictionary form of the adjective.
+    grammar_point: い-Adjective[stem] (stem)
+post_false_friends_writeup: Distinguishing between い-adjectives, な-adjectives, and verbs is essential
+  for proper Japanese grammar. Pay close attention to the final character of the dictionary form and how
+  they behave when modifying nouns or acting as predicates. い-adjectives are unique in their ability to
+  end a plain sentence directly with their dictionary form, unlike な-adjectives which require a copula,
+  or verbs which denote actions.
+examples:
+  - english: This book is interesting.
+    japanese:
+      - この 本 は {面白い}。
+      - この 本 は {面白い} です.
+    english_literally: This book is interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 好評 を 得 て いる よう です。
+        english: This book seems to have garnered a good reputation.
+        hint: 「好評 を 得 て いる ようです」 uses a noun 「好評」 (kōhyō - good reputation) and a verb phrase to convey
+          the idea. We're looking for a simple declarative statement that the book *is* interesting, using
+          an い-adjective.
+      - competing_japanese:
+          - この 本 は 読み応え が あり ます。
+        english: This book has a lot of reading value/is worth reading.
+        hint: 「読み応え が あります」 uses a noun phrase 「読み応え」 (reading value) and the verb 「あります」 (to exist/have)
+          to describe the book's quality. We're looking for a direct statement using an い-adjective.
+    scene: A student enthusiastically shares their opinion about a newly read book.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: The coffee at this cafe is delicious.
+    japanese:
+      - この カフェ の コーヒー は {美味しい} です。
+      - この カフェ の コーヒー は {美味しい}。
+    english_literally: This cafe's coffee is delicious (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ の コーヒー は 絶品 です。
+        english: The coffee at this cafe is superb.
+        hint: 「絶品」 (zeppin) is a noun meaning 'superb article' or 'masterpiece', often used to describe
+          food or drink of excellent quality. We're looking for the standard い-adjective for 'delicious'.
+      - competing_japanese:
+          - この カフェ の コーヒー は 上品 です。
+        english: The coffee at this cafe is elegant.
+        hint: 「上品」 (jouhin) is a な-adjective meaning 'elegant' or 'refined'. It implies a different kind
+          of quality. We're looking for 'delicious'.
+    scene: Two friends are trying a new cafe and one comments on the coffee.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: This bag is heavy, so I can't carry it.
+    japanese:
+      - この カバン は {重い} の で、持て ない。
+      - この カバン は {重い} です の で、持て ませ ん。
+    english_literally: This bag is heavy, so cannot carry.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は 重量 が ある です から、持て ませ ん。
+        english: This bag has weight, therefore I can't carry it (more formal).
+        hint: 「ですから」 is a more formal way to express 'therefore' or 'so' compared to 「ので」. This example
+          uses a noun 「重量」 (jūryō - weight) and a verb 「ある」 (aru - to exist/have) to describe the bag.
+          We're looking for the direct use of an い-adjective to describe its weight.
+      - competing_japanese:
+          - この カバン は 運ぶ の が 大変 な の で、持て ない。
+        english: This bag is difficult to carry, so I can't.
+        hint: 「運ぶ の が 大変」 (hakobu no ga taihen) uses a nominalized verb phrase and a な-adjective 「大変」
+          (taihen - difficult/hard) to describe the situation. We're looking for a direct statement using
+          an い-adjective to describe the bag's inherent quality (heavy).
+    scene: Someone struggling to lift a heavy bag at a train station.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: Summers in this region are hot, but winters are cold.
+    japanese:
+      - この 地域 の 夏 は {暑い} です が、冬 は {寒い} です。
+      - この 地域 の 夏 は {暑い} が、冬 は {寒い}。
+    english_literally: This region's summer is hot (polite), but winter is cold (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 の 夏 は 高温 で、冬 は 低温 です。
+        english: The summer in this region is high temperature, and winter is low temperature.
+        hint: This sentence uses the nouns 「高温」 (kōon - high temperature) and 「低温」 (teion - low temperature)
+          with the copula 「です」 to describe the climate. We're looking for direct statements using い-adjectives
+          to describe the temperature.
+      - competing_japanese:
+          - この 地域 の 夏 は 高温 だ そう です が、冬 は 低温 だ そう です。
+        english: I hear summers in this region are high temperature, and winters are low temperature.
+        hint: Adding 「～そうです」 implies the information is hearsay. This example uses nouns for temperature.
+          We're stating a known fact about the climate using い-adjectives.
+    scene: A meteorologist describing the climate of a particular area.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Old things bring back fond memories.
+    japanese:
+      - 古い もの は {懐かしい}。
+      - 古い もの は {懐かしい} です。
+    english_literally: Old things are nostalgic.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の もの は 記憶 に 残る。
+        english: Old things remain in memory.
+        hint: 「記憶 に 残る」 (kioku ni nokoru) uses a noun 「記憶」 (memory) and a verb 「残る」 (to remain) to express
+          a similar idea. While similar, 「懐かしい」 (natsukashii) specifically conveys the feeling of nostalgia
+          or longing for the past. We're looking for the direct expression of 'fond memories' via an い-adjective.
+      - competing_japanese:
+          - 昔 の もの に 記憶 が あり ます。
+        english: Old things have memories.
+        hint: This sentence means 'old things possess memories'. We're looking for an adjective that describes
+          the *feeling* of nostalgia that old things evoke, not simply that they contain memories.
+    scene: An antique collector reflecting on their passion.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: The い-adjective 「懐かしい」 (natsukashii) directly predicates the feeling of nostalgia or fondness
+      for old things.
+  - english: The mountain is tall.
+    japanese:
+      - 山 は {高い}。
+      - 山 は {高い} です。
+    english_literally: Mountain is tall.
+    competing_grammar:
+      - competing_japanese:
+          - 山 は 高 さ が あり ます。
+        english: The mountain has height.
+        hint: 「高さ が あります」 uses the noun 「高さ」 (takasa - height) and the verb 「あります」 (to exist/have) to
+          describe the mountain. We're looking for a simple statement using an い-adjective to describe
+          the mountain's height.
+    scene: A hiker observes a towering mountain.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: This soup is hot.
+    japanese:
+      - この スープ は {熱い}。
+      - この スープ は {熱い} です。
+    english_literally: This soup is hot.
+    competing_grammar:
+      - competing_japanese:
+          - この スープ は 湯気 が 出 て いる。
+        english: This soup is steaming.
+        hint: 「湯気 が 出 て いる」 describes a physical state (steaming) using a verb phrase. We're looking for
+          a direct statement using an い-adjective to describe the soup's temperature.
+    scene: A person tastes freshly made soup.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: Her voice is gentle.
+    japanese:
+      - 彼女 の 声 は {優しい}。
+      - 彼女 の 声 は {優しい} です。
+    english_literally: Her voice is gentle.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 声 は 穏やか です。
+        english: Her voice is calm.
+        hint: 「穏やか」 (odayaka) is a な-adjective meaning 'calm' or 'gentle' in a tranquil sense, often used
+          for atmosphere or personality. 「優しい」 (yasashii) refers more to kindness, tenderness, or softness
+          in quality. We're looking for an い-adjective that describes gentleness in sound.
+    scene: Describing a person's speaking manner.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: The sky is blue today.
+    japanese:
+      - 今日 は 空 が {青い}。
+      - 今日 は 空 が {青い} です。
+    english_literally: Today, sky is blue.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 空 は 晴れ て い ます。
+        english: Today's sky is clear.
+        hint: 「晴れています」 (harete imasu) means 'it is clear/sunny'. While a clear sky is often blue, this
+          phrase describes the weather condition, not the color. We're looking for a direct statement
+          about the color of the sky.
+    scene: Commenting on the weather.
+    register: casual
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+  - english: This room is bright.
+    japanese:
+      - この 部屋 は {明るい}。
+      - この 部屋 は {明るい} です.
+    english_literally: This room is bright.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 光 が たくさん 入り ます。
+        english: This room gets a lot of light.
+        hint: This phrase describes the reason *why* the room is bright (much light enters it) rather
+          than directly stating the quality of brightness using an adjective.
+    scene: Entering a well-lit room.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+post_example_writeup: い-Adjectives in their plain non-past (dictionary) form are essential for describing
+  qualities and states directly. Mastering their use, both when modifying nouns and when predicating sentences,
+  will allow you to express a wide range of observations and descriptions in Japanese.

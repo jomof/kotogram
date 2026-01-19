@@ -1,0 +1,264 @@
+grammar_point: んだけど・んですが (explanatory・softening)
+learn_before:
+  - けれど (but・however)
+meaning: But..., And..., You see..., The thing is...
+meaning_warning: Versions without ん/の are also acceptable, but the ん/の version is more common nowadays.
+pronunciation:
+  katakana: ンだけど・んですが
+  romaji: n dakedo / n desu ga
+formation:
+  Sentence + んだけど: Used to introduce a topic, provide background context, or soften a statement or request
+    in casual situations.
+  Sentence + んですが: Used to introduce a topic, provide background context, or soften a statement or request
+    in polite situations, often implying a follow-up question or request.
+  Sentence + んだけど / んですが (implied continuation): When the second part of the sentence is left unsaid,
+    implying the speaker is looking for a reply or being indirect out of politeness.
+jlpt: N4
+etymology: The grammatical structure 「～んだけど」 and 「～んですが」 evolved from the combination of 「～んだ」 (nda),
+  which is a contraction of 「～のだ」 (no da), and the conjunction 「けど」 (kedo). The 「～のだ」 form functions as
+  an explanatory or declarative particle, adding nuance of explanation, emphasis, or confirmation. 「けど」
+  serves as a soft conjunction meaning "but" or "however", allowing for continuation or mild contrast.
+  Thus, the combination softens the transition and provides context or background for the following statement,
+  often leading to a question or request.
+writeup: |-
+  The expressions 「んだけど」 and 「んですが」 are versatile and frequently used in Japanese conversation. They combine the explanatory nuance of 「んだ」 (or 「の」 in the polite form) with the concessive or connective particle 「けど」 (or 「が」 in the polite form). This combination results in a softer, more nuanced connection between two clauses, often translating to "but...", "and...", or "the thing is...".
+
+  The primary function of 「んだけど」/「んですが」 is to provide **background information, context, or a reason** for what follows. It can be used to set the stage for a request, a question, an explanation, or even a soft contradiction.
+
+  A key nuance is that the second part of the sentence can sometimes be **left unsaid**. This omission often occurs when the speaker is being polite, indirect, or when the implied meaning is obvious from the context. For example, if someone says 「ちょっとお願いがあるんだけど...」 (Chotto onegai ga aru n dakedo...), they are implying something like "...could you help me?" or "...would you mind doing something?" without explicitly stating it.
+
+  There are several forms of this construction, ranging from casual to formal:
+  *   **んだけど** (n dakedo): Most casual and common.
+  *   **んだけれど** (n dakeredo): Slightly more formal than 「んだけど」.
+  *   **んだけれども** (n dakeredomo): Even more formal and literary.
+  *   **んだが** (n daga): A more direct and somewhat masculine form, often used to introduce a point or request. It can sound strong depending on the tone.
+  *   **んですが** (n desu ga): The polite form, suitable for formal situations or when addressing someone of higher status.
+
+  It is important to note that 「ん」 (n) can sometimes be replaced by 「の」 (no) in these expressions, making the phrase slightly more formal (e.g., 「のだけれど」, 「のですけれど」, 「のですが」). While less common in modern Japanese, the 「ん」 (or 「の」) can occasionally be omitted entirely, though the 「ん」/「の」 form is preferred for its explanatory nuance.
+false_friends:
+  - term: のに
+    meaning: even though; despite
+    kind: similar expression
+    nuance: Unlike 「んだけど」, 「のに」 expresses a sense of surprise, dissatisfaction, or disappointment regarding
+      a situation. It highlights a contradiction in a more emphatic way, often with a negative connotation.
+      For example, 「たくさん勉強したのに、試験に落ちた」 (I studied a lot, but I failed the exam) conveys disappointment.
+    grammar_point: のに (unexpected result)
+  - term: が
+    meaning: but; and
+    kind: similar expression
+    nuance: 「が」 is a more neutral and direct conjunction. While it can mean 'but' or 'and', it lacks the
+      explanatory or softening nuance inherent in 「んだけど」. It simply states a contrast or connects two
+      clauses without implying background context or seeking a response. For example, 「日本語は難しいが、面白い」 (Japanese
+      is difficult, but interesting) is a straightforward statement.
+    grammar_point: しかし (but・however)
+  - term: けど・だけど
+    meaning: but; however
+    kind: similar expression
+    nuance: While 「けど」 and 「だけど」 serve as direct conjunctions for contrast or connection, they lack the
+      underlying explanatory or softening nuance that 「んだけど」/「んですが」 derives from the inclusion of 「ん/の」.
+      They simply link two clauses, whereas 「んだけど」/「んですが」 implies a preliminary context or reason for
+      the subsequent statement, often inviting a response or understanding.
+    grammar_point: しかし (but・however)
+post_false_friends_writeup: While 「のに」, 「が」, and 「けど・だけど」 can all translate to "but" or "and," they carry
+  distinct nuances compared to 「んだけど」/「んですが」. Use 「のに」 when expressing a sense of disappointment or unexpected
+  outcome. Use 「が」 or 「けど・だけど」 for a straightforward, neutral connection or contrast between ideas. In
+  contrast, 「んだけど」/「んですが」 is used when you want to provide background context, soften a statement, or
+  gently lead into a request or question, implying that the listener's understanding or response is desired.
+examples:
+  - english: I have a question, do you have a moment now?
+    japanese:
+      - 質問 が ある {ん だ けど}、今 ちょっと 時間 ある？
+      - 質問 が ある {ん です が}、今 ちょっと 時間 あり ます か？
+      - 質問 が ある {ん だ けれど}、今 ちょっと 時間 ある？
+      - 質問 が ある {ん です けれど}、今 ちょっと 時間 あり ます か？
+    english_literally: A question exists (the thing is), now do you have a little time?
+    competing_grammar:
+      - competing_japanese:
+          - 質問 が ある。今 ちょっと 時間 ある？
+        english: I have a question. Do you have a moment now?
+        hint: The phrasing without 「んだけど」 is more direct and can sound abrupt. 「んだけど」 softens the request
+          and provides context, making the inquiry more polite. We're looking for a softer way to introduce
+          a question.
+    scene: A student approaches a classmate after class.
+    register: casual
+    setting: interrogative
+  - english: Some urgent business came up, so I will be late for the meeting.
+    japanese:
+      - 急 な 用事 が でき た {ん です が}、会議 に 遅れ ます。
+      - 急 な 用事 が でき た {ん だ けど}、会議 に 遅れる。
+      - 急 な 用事 が でき た {ん です けれど}、会議 に 遅れる。
+      - 急 な 用事 が でき た {ん だ けれど}、会議 に 遅れる。
+    english_literally: Urgent business arose (the thing is), I will be late for the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 急 な 用事 が でき た。会議 に 遅れ ます。
+        english: Urgent business came up. I will be late for the meeting.
+        hint: Simply stating the facts can sound blunt, especially in a professional context. 「んですが」 softens
+          the announcement of being late and makes it sound more apologetic. We're looking for a polite
+          way to provide a reason for lateness.
+    scene: A junior employee calls their manager to inform them of a delay.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: I'm looking for a new house, do you know a good place?
+    japanese:
+      - 新しい 家 を 探し て いる {ん です が}、良い 所 知っ て い ます か？
+      - 新しい 家 を 探し て いる {ん だ けど}、良い 所 知っ てる？
+      - 新しい 家 を 探し て いる {ん です けれど}、良い 所 ご 存知 です か？
+      - 新しい 家 を 探し て いる {ん だ けれど}、良い 所 知っ てる？
+    english_literally: I am searching for a new house (the thing is), do you know a good place?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 家 を 探し て い ます。良い 所 知っ て い ます か？
+        english: I am looking for a new house. Do you know a good place?
+        hint: Using 「んですが」 creates a smoother flow, providing context before asking for advice. Without
+          it, the sentences can sound disconnected. We're looking for a way to introduce a topic before
+          asking a question.
+    scene: A person asks a trusted colleague for a recommendation.
+    register: teineigo (polite)
+    setting: informative
+  - english: This dish is delicious, but it might be a bit spicy.
+    japanese:
+      - この 料理、美味しい {ん だ けど}、ちょっと 辛い か な。
+      - この 料理、美味しい {ん です が}、少し 辛い か も しれ ませ ん。
+      - この 料理、美味しい {ん だ けれど}、ちょっと 辛い か な。
+      - この 料理、美味しい {ん です けれど}、少し 辛い か も しれ ませ ん。
+    english_literally: This dish is delicious (the thing is), I wonder if it's a little spicy.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理、美味しい。で も、ちょっと 辛い か な。
+        english: This dish is delicious. But, it might be a bit spicy.
+        hint: 「んだけど」 allows for a softer, more nuanced expression of a mild negative point after a positive
+          one. 「でも」 is more direct and can sound more like a strong contradiction. We're looking for a
+          way to express a gentle contrast.
+    scene: A friend tastes a new dish at a restaurant with you.
+    register: casual
+    setting: reflective
+  - english: I prepared the presentation...
+    japanese:
+      - プレゼン を 作っ た {ん です が}…
+      - プレゼン を 作っ た {ん だ けど}…
+      - プレゼン を 作っ た {ん です けれど}…
+      - プレゼン を 作っ た {ん だ けれど}…
+    english_literally: I made the presentation (the thing is)...
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン を 作っ た。
+        english: I prepared the presentation.
+        hint: Ending with 「んですが」 implicitly asks the senior to review the presentation or prompts a response,
+          making the interaction smoother and more respectful than simply stating the task is complete.
+          We're looking for an indirect way to prompt a reaction or next step.
+    scene: A junior staff member hands over their work to their senior, implying a request for review.
+    register: teineigo (polite)
+    setting: professional
+  - english: I feel bad asking, but could you give me a hand?
+    japanese:
+      - 悪い {ん だ けど}、ちょっと 手伝っ て くれ ない か？
+      - 悪い {ん です が}、少々 お 手伝い いただけ ませ ん か？
+      - 悪い {ん だ けれど}、ちょっと 手伝っ て くれ ない か？
+      - 悪い {ん です けれど}、少々 お 手伝い いただけ ませ ん か？
+    english_literally: It's bad (the thing is), won't you give me a little help?
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 手伝っ て くれ ない か？
+        english: Could you give me a hand?
+        hint: The phrase 「悪いんだけど」 softens the request, acknowledging it might be an imposition. Without
+          it, the request can sound more demanding or less considerate. We're looking for a way to politely
+          introduce a request that might be an imposition.
+    scene: A man asks a close friend for a favor.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「悪いんだけど」 (warui n dakedo) is a common, slightly apologetic preface for a request,
+      particularly among male speakers, indicating a polite acknowledgement of potential inconvenience.
+      The ending 「くれないか」 also reinforces a casual, male-leaning request.
+  - english: I wasn't feeling well yesterday, but I'm fine today.
+    japanese:
+      - 昨日、調子 が 悪かっ た {ん だ けど}、今日 は もう 元気 だ よ。
+      - 昨日、調子 が 悪かっ た {ん です が}、今日 は もう 元気 です。
+      - 昨日、調子 が 悪かっ た {ん だ けれど}、今日 は もう 元気 だ よ。
+      - 昨日、調子 が 悪かっ た {ん です けれど}、今日 は もう 元気 です。
+    english_literally: Yesterday, my condition was bad (the thing is), but today I am already fine.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、調子 が 悪かっ た。今日 は もう 元気 だ よ。
+        english: Yesterday, I wasn't feeling well. Today, I'm already fine.
+        hint: 「んだけど」 connects the two clauses smoothly, providing background context (not feeling well
+          yesterday) for the current situation (fine today), making the explanation sound more natural
+          and less abrupt. We're looking for a way to link two related statements with an explanatory
+          nuance.
+    scene: A woman explains her absence to a friend.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: Using 「悪かったんだけど」 (warukatta n dakedo) provides a softer, more nuanced explanation for a previous
+      state (not feeling well). This gentle approach is typical for a female speaker explaining a personal
+      situation, focusing on conveying understanding rather than just stating facts.
+  - english: My computer broke down, what should I do?
+    japanese:
+      - パソコン が 壊れ た {ん です が}、どう し たら いい でしょう か。
+      - パソコン が 壊れ た {ん だ けど}、どう し たら いい？
+      - パソコン が 壊れ た {ん です けれど}、どう し たら よろしい でしょう か。
+      - パソコン が 壊れ た {ん だ けれど}、どう し たら いい？
+    english_literally: My computer broke (the thing is), what should I do?
+    competing_grammar:
+      - competing_japanese:
+          - パソコン が 壊れ た。どう し たら いい でしょう か。
+        english: My computer broke down. What should I do?
+        hint: 「んですが」 subtly implies that the speaker is presenting a problem to seek a solution or advice,
+          making the inquiry more collaborative and polite than a direct statement followed by a question.
+          We're looking for a polite way to present a problem and ask for advice.
+    scene: A person seeks advice from an expert after a technical issue.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: I'm thinking of going to see a movie later, would you like to come?
+    japanese:
+      - 後 で 映画 を 見 に 行こ う か と 思っ て いる {ん だ けど}、一緒 に どう？
+      - 後 で 映画 を 見 に 行こ う か と 思っ て いる {ん です が}、ご 一緒 に いかが です か？
+      - 後 で 映画 を 見 に 行こ う か と 思っ て いる {ん だ けれど}、一緒 に どう？
+      - 後 で 映画 を 見 に 行こ う か と 思っ て いる {ん です けれど}、ご 一緒 に いかが です か？
+    english_literally: Later, I am thinking of going to see a movie (the thing is), how about together?
+    competing_grammar:
+      - competing_japanese:
+          - 後 で 映画 を 見 に 行こ う か と 思っ て いる。一緒 に どう？
+        english: I'm thinking of going to see a movie later. How about coming along?
+        hint: While grammatically correct, omitting 「んだけど」 makes the invitation sound more direct, almost
+          like an assumption that the other person will come, rather than a softer, more open invitation.
+          We're looking for a softer way to suggest something.
+    scene: A friend casually invites another friend to the movies.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「んだけど」 softens the invitation, making it feel less like a direct command and more
+      like a gentle suggestion. The volitional form 「行こうか」 combined with 「と思っているんだけど」 is a common way
+      for both male and female speakers to float an idea, but the casual 「どう？」 (instead of 「いかがですか？」)
+      makes it more fitting for casual male speech with a female friend.
+  - english: I haven't slept well lately, so I'm a bit tired.
+    japanese:
+      - 最近、よく 眠れ て い ない {ん です が}、少し 疲れ て い ます。
+      - 最近、よく 眠れ て い ない {ん だ けど}、ちょっと 疲れ てる ん だ。
+      - 最近、よく 眠れ て い ない {ん です けれど}、少し 疲れ て おり ます。
+      - 最近、よく 眠れ て い ない {ん だ けれど}、ちょっと 疲れ てる ん だ。
+    english_literally: Recently, I haven't been able to sleep well (the thing is), so I am a little tired.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、よく 眠れ て い ない。少し 疲れ て い ます。
+        english: Recently, I haven't been able to sleep well. I'm a little tired.
+        hint: Without 「んですが」, simply stating the facts can sound blunt and may not convey the implied
+          context or a subtle request for understanding. 「んですが」 softens the statement, indicating that
+          there might be a reason or a desire for the listener's consideration. We're looking for a polite
+          way to explain a personal situation that might affect one's performance.
+    scene: A junior employee explains their fatigue to a senior colleague.
+    register: teineigo (polite)
+    setting: apologetic
+    speaker_age: younger
+    nuance: Using 「眠れていないんですが」 politely explains a personal circumstance, often implicitly seeking understanding
+      or empathy from the listener. It is common for younger employees or those in a less senior position
+      to use this softening particle when explaining a situation that might impact their work, conveying
+      respect and a desire to be understood by their superiors or older colleagues.
+post_example_writeup: As illustrated by these examples, 「んだけど」/「んですが」 serves to soften a statement or
+  request, providing an explanatory lead-in. It encourages a natural flow of conversation, often inviting
+  a response or implying an unstated continuation. The choice between 「んだけど」 and 「んですが」 depends on the
+  level of formality and politeness required in the interaction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/んだけど-んですが

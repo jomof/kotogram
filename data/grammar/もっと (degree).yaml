@@ -1,0 +1,252 @@
+grammar_point: もっと (degree)
+better_grammar_point_name:
+  - <suggest>:もっと (more)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-stem]なさい (polite imperative)'
+  - 〜ていく (change toward future・movement away from speaker)
+  - い (friendly particle)
+  - い-Adjective[く] (adverbial form)
+  - か (or)
+  - けっこう (quite・ample・no thanks)
+  - ね (seeking agreement)
+  - ばよかった (should have)
+  - 必要がある (it is necessary to)
+  - 思うに (in my opinion)
+  - ～口 (exit・entrance)
+meaning: more; further; still more; beyond; furthermore
+pronunciation:
+  katakana: モット
+  romaji: motto
+formation:
+  もっと + Verb: Modifies a verb to indicate doing something to a higher degree or for a longer duration.
+  もっと + い-Adjective: Intensifies an い-adjective, meaning 'even more' or 'more' plus the adjective.
+  もっと + な-Adjective: Intensifies a な-adjective, meaning 'even more' or 'more' plus the adjective.
+  もっと + Adverb: Further strengthens the meaning of another adverb, meaning 'even more' or 'more' plus
+    the adverb.
+jlpt: N5
+etymology: The word もっと (motto) is believed to derive from 尤も (もっとも - mottomo), which originally meant
+  "most" or "extremely" in a definitive sense, often implying "most reasonable" or "most justifiable."
+  Over time, もっと evolved to primarily signify "more" or "further," losing some of the superlative or definitive
+  nuances of its origin. This transition reflects a shift from an absolute "most" to a comparative "more,"
+  emphasizing an increase in degree rather than a final, highest point.
+writeup: '**もっと** is an adverb primarily used to express an increase in degree, quantity, or intensity.
+  It translates most commonly to "more," "further," or "still more" in English. It can modify verbs, adjectives,
+  and other adverbs, indicating that an action, state, or quality should be enhanced or continued to a
+  greater extent.When used with verbs, **もっと** suggests doing something to a higher degree or for a longer
+  duration. For example, 「もっと食べる」 (motto taberu) means "to eat more." When modifying adjectives, it intensifies
+  the quality, such as 「もっと大きい」 (motto ookii) meaning "even bigger" or "more big." With adverbs, it further
+  strengthens their meaning, like 「もっと早く」 (motto hayaku) meaning "even faster" or "more quickly."**もっと**
+  is a versatile and common word used across all registers of Japanese, from very casual conversations
+  among friends to formal speeches. It is an essential building block for expressing comparison and desire
+  for improvement or increase.### Important Considerations:*   **Placement:** **もっと** usually precedes
+  the word it modifies.*   **Implicit Comparison:** While **もっと** doesn''t explicitly form a comparative
+  sentence (like "X is more than Y"), it inherently implies a comparison with the current state or expectation.*   **Desire
+  vs. Fact:** Depending on context and surrounding grammar, **もっと** can express a desire ("I want more...")
+  or simply state a fact ("It is more...").'
+false_friends:
+  - term: もっとも
+    meaning: most; extremely; indeed; reasonable
+    kind: similar expression
+    nuance: もっとも is a superlative adverb meaning "most" or "extremely," indicating the highest degree
+      or the logical truth. もっと simply means "more" or "further," indicating an increase in degree from
+      a previous state.
+    grammar_point: もっとも (most, extremely)
+  - term: さらに
+    meaning: furthermore; again; still; even more
+    kind: similar expression
+    nuance: さらに often implies an additional step or continuation, a deeper level, or an accumulation ("in
+      addition to what exists"). もっと focuses purely on increasing the quantity or degree of a single item
+      or action.
+    grammar_point: 更に (even more)
+  - term: より
+    meaning: than; from; since
+    kind: similar expression
+    nuance: より is a particle used to form explicit comparisons (e.g., "X より Y のほうが" - Y is more X than
+      X). もっと is an adverb that intensifies a single item or action without needing a direct comparison
+      object.
+    grammar_point: より (comparative)
+  - term: いっそう
+    meaning: still more; even more; all the more
+    kind: similar expression
+    nuance: いっそう emphasizes that the degree of something has become "even more" pronounced, often implying
+      it was already significant. It has a nuance of further intensification. もっと is a more neutral term
+      for "more."
+    grammar_point: <suggest>:いっそう (still more, even more)
+  - term: なんだか
+    meaning: somehow; for some reason; vaguely
+    kind: antonym
+    nuance: なんだか expresses vagueness or uncertainty, the opposite of the specific increase implied by
+      もっと. While もっと seeks to quantify or intensify, なんだか indicates an unspecified or vague feeling or
+      situation.
+    grammar_point: <suggest>:なんだか (somewhat)
+post_false_friends_writeup: While **もっと**, **もっとも**, **さらに**, **より**, and **いっそう** all relate to intensity
+  or comparison, their specific uses and nuances differ. **もっとも** functions as a superlative ("most"),
+  while **もっと** is a general intensifier ("more"). **さらに** implies an additional step or accumulation,
+  and **いっそう** denotes "even more" with an emphasis on further intensification. **より** is specifically
+  for direct comparisons between two entities. Understanding these distinctions is key to precise expression.
+examples:
+  - english: I want to eat more.
+    japanese:
+      - '{もっと} 食べ たい。'
+      - '{もっと} 食べ たい です。'
+    english_literally: More want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 食べ たい。
+        english: I want to eat a lot.
+        hint: 「たくさん」 means 'a lot' or 'many,' indicating a large quantity. We're looking for 'more,' implying
+          an increase from the current amount.
+    scene: A child at dinner, expressing their desire for an additional helping.
+    register: casual
+    setting: friendly
+    conjugation: desiderative (～たい)
+  - english: Please speak a little louder.
+    japanese:
+      - '{もっと} 大きな 声 で 話し て ください。'
+      - '{もっと} 大きく 話し て ください。'
+      - '{もっと} 大きい 声 で お 話し ください。'
+    english_literally: More big voice by speak please.
+    competing_grammar:
+      - competing_japanese:
+          - 大きな 声 で 話し て ください。
+        english: Please speak in a loud voice.
+        hint: This just asks for a loud voice in general. We're looking for 'louder,' implying an increase
+          from the current volume.
+    scene: A teacher asking a student to project their voice during a presentation.
+    register: teineigo (polite)
+    setting: instructional
+  - english: This is much more interesting!
+    japanese:
+      - これ {もっと} 面白い よ！
+      - これ {もっと} 面白い ね！
+      - これ {もっと} 面白い ぞ！
+    english_literally: This more interesting (yo)!
+    competing_grammar:
+      - competing_japanese:
+          - これ とても 面白い よ！
+        english: This is very interesting!
+        hint: 「とても」 means 'very,' which is a strong intensifier for the current state. We're looking for
+          'much more interesting,' implying a comparison or increase.
+    scene: Friends discussing a newly discovered book or movie, genuinely impressed.
+    register: casual
+    setting: friendly
+    nuance: The use of 「よ」 adds a sense of assertion and emphasis to the speaker's strong feeling about
+      the increased interestingness. It implies sharing new information or a strong opinion.
+    etymology: 面白い (omoshiroi) originally referred to something bright or white, and later evolved to
+      mean 'interesting' or 'amusing' due to the brightness or clarity associated with engaging things.
+  - english: You should run even faster.
+    japanese:
+      - '{もっと} 早く 走っ た ほう が いい よ。'
+      - '{もっと} 早く 走っ た ほう が いい です よ。'
+    english_literally: More fast ran is better (yo).
+    competing_grammar:
+      - competing_japanese:
+          - 速く 走っ た ほう が いい よ。
+        english: This suggests running fast. We're looking for 'even faster,' indicating a comparative
+          increase in speed.
+        hint: This suggests running fast. We're looking for 'even faster,' indicating a comparative increase
+          in speed.
+    scene: A coach giving advice to an athlete during practice.
+    register: casual
+    setting: instructional
+    conjugation: past plain (～た)
+    listener_gender: group
+  - english: I don't want any more difficult questions.
+    japanese:
+      - '{もっと} 難しい 問題 は いり ませ ん。'
+      - '{もっと} 難しい 問題 は いら ない。'
+      - '{もっと} 難しい 問題 は 結構 です。'
+    english_literally: More difficult problems not need.
+    competing_grammar:
+      - competing_japanese:
+          - これ 以上 難しい 問題 は いり ませ ん。
+        english: I don't need any more difficult problems than this.
+        hint: 「これ以上」 means 'any more than this,' which specifies the current level as the limit. We're
+          looking for a general refusal of additional difficulty.
+    scene: A student struggling with homework, expressing frustration.
+    register: teineigo (polite)
+    setting: academic
+  - english: I want to become a better person.
+    japanese:
+      - '{もっと} いい 人 に なり たい。'
+      - '{もっと} いい 人 に なり たい です。'
+    english_literally: More good person become want.
+    competing_grammar:
+      - competing_japanese:
+          - より 良い 人 に なり たい。
+        english: I want to become a better person (than someone or something else).
+        hint: 「より」 typically implies a direct comparison with another entity. We're looking for a general
+          desire for self-improvement, not necessarily relative to others.
+    scene: Someone reflecting on their personal growth and setting aspirations.
+    register: casual
+    setting: reflective
+    conjugation: desiderative (～たい)
+  - english: We need to further improve our service.
+    japanese:
+      - サービス を {もっと} 改善 する 必要 が あり ます。
+      - サービス を {もっと} 改善 し なく て は なり ませ ん。
+      - サービス を {もっと} 改善 し なけれ ば いけ ませ ん。
+    english_literally: Service (object) more improve need exists.
+    competing_grammar:
+      - competing_japanese:
+          - サービス を さらに 改善 する 必要 が あり ます。
+        english: We need to additionally improve our service.
+        hint: 「さらに」 implies an additional step or continuation in improvement. We're looking for a general
+          emphasis on increasing the degree of improvement, not just adding to it.
+    scene: A manager addressing their team during a business meeting.
+    register: formal
+    setting: professional
+  - english: I wished I could have studied more.
+    japanese:
+      - '{もっと} 勉強 すれ ば よかっ た です。'
+      - '{もっと} 勉強 すれ ば よかっ た。'
+    english_literally: More study if good was.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 勉強 し て おけ ば よかっ た です。
+        english: I wished I had studied more (in advance/as preparation).
+        hint: 「～ておく」 suggests doing something in advance. We're looking for a general regret about not
+          studying more, not specifically about preparation.
+    scene: A student expressing regret after receiving a poor test score.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: conditional (～ば)
+  - english: Could I have some more water?
+    japanese:
+      - '{もっと} お 水、いただけ ます か。'
+      - '{もっと} お 水、ください。'
+      - お 水、{もっと} お 願い し ます。
+    english_literally: More water, may I receive?
+    competing_grammar:
+      - competing_japanese:
+          - お 水、お かわり いただけ ます か。
+        english: Could I have a refill of water?
+        hint: 「おかわり」 specifically refers to a refill or second helping. We're looking for a more general
+          request for 'more,' which can apply even to the first serving if it's too small.
+    scene: At a restaurant, a customer politely requests more water.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: potential (～られる/～える)
+  - english: I will try even harder from now on.
+    japanese:
+      - これ から {もっと} 頑張り ます。
+      - これ から {もっと} 頑張る。
+      - これ から {もっと} 頑張り ましょう！
+    english_literally: From now more try my best.
+    competing_grammar:
+      - competing_japanese:
+          - これ から 精 一杯 頑張り ます。
+        english: I will try my utmost best from now on.
+        hint: 「精一杯 (seiippai)」 means 'with all one's might' or 'to the best of one's ability,' implying
+          maximum effort. We're looking for 'even harder,' suggesting increased effort from a previous
+          level.
+    scene: Someone setting a new personal goal or commitment.
+    register: teineigo (polite)
+    setting: serious
+post_example_writeup: The examples illustrate how **もっと** can be flexibly applied across different parts
+  of speech—verbs, い-adjectives, な-adjectives, and adverbs—to universally convey the idea of an increased
+  degree or intensity. From simple requests for more food to expressing desires for self-improvement or
+  professional enhancement, **もっと** serves as a fundamental building block for articulating quantitative
+  and qualitative growth in Japanese.

@@ -1,0 +1,245 @@
+grammar_point: どちら様 (very polite who)
+learn_before:
+  - '[Verb-て]からでないと〜ない (unless after doing)'
+  - こちら (this way, formal)
+  - ご (honorific prefix for Sino-Japanese words)
+  - どなた (polite who)
+meaning: Who (very polite way to ask for someone's name or identity)
+pronunciation:
+  katakana: ドチラサマ
+  romaji: dochirasama
+formation:
+  どちら + 様: Used when politely inquiring about someone's identity, especially when they are unknown to
+    the speaker, or when taking a phone call.
+jlpt: N2
+etymology: 「どちら」 originally meant 'which direction' or 'which of two,' and later extended to refer to
+  'which person' (polite form of 'どれ'). The addition of the honorific suffix 「様」 (sama), which denotes
+  extreme respect or formality, elevates the politeness level significantly, making it a very formal and
+  deferential way to ask 'who.'
+writeup: |-
+  「どちら様」 is a highly polite and formal expression used to inquire about someone's identity. It literally translates to something like 'Which honorable person?' and is commonly employed in situations where you do not know the person you are speaking with, or when you are answering a phone call and need to identify the caller. It conveys a strong sense of respect and humility from the speaker. It is more formal than 「どなた」 and much more polite than the casual 「誰」.
+
+  This expression is particularly prevalent in business contexts, customer service, and reception settings, where maintaining a respectful and polite demeanor is crucial. For example, a receptionist might use it when a visitor arrives, or a shop assistant might use it with an unfamiliar customer. On the phone, it is the standard way to ask 'who is calling?' if the caller does not immediately introduce themselves.
+
+  While highly polite, its use implies a certain distance or lack of familiarity. It would generally not be used with close friends or family, nor would it be used if you already know the person but simply forgot their name (in which case a more direct and apologetic approach might be taken).
+false_friends:
+  - term: 誰 (who)
+    meaning: Who (casual)
+    kind: similar expression
+    nuance: 「誰」 is the most basic and casual way to ask 'who.' It lacks any politeness or formality and
+      should only be used in very informal settings or with close acquaintances. It can sound rude in
+      formal contexts. We're looking for a very polite way to ask 'who.'
+    grammar_point: 誰 (who)
+  - term: どなた (polite who)
+    meaning: Who (polite)
+    kind: similar expression
+    nuance: 「どなた」 is polite and suitable for many formal situations, but 「どちら様」 adds an extra layer of
+      deference and formality, often implying a greater distance or humility on the part of the speaker.
+      Use 「どなた」 when politeness is required, but 「どちら様」 for utmost politeness or when directly identifying
+      an unknown party.
+    grammar_point: どなた (polite who)
+  - term: どちら (which way・person)
+    meaning: Which (of two or more); which way; who (polite)
+    kind: similar expression
+    nuance: 「どちら」 itself can be used to politely ask 'who' when referring to one of two or more options,
+      or simply as a polite 'who' (e.g., in 'どちら様', it's the base word). However, without 「様」, it lacks
+      the strong deferential nuance specific to identifying an unknown person in a very formal context.
+      We're looking for the specific phrase 「どちら様」.
+    grammar_point: <suggest>:どちら (this way・that way・which way, formal)
+post_false_friends_writeup: Understanding the subtle differences among 「誰」, 「どなた」, and 「どちら様」 is key to
+  speaking Japanese appropriately for the situation. While all translate to 'who' in English, their levels
+  of politeness and contexts of use vary significantly. 「誰」 is informal, 「どなた」 is generally polite, and
+  「どちら様」 is reserved for highly formal or deferential inquiries, particularly when the person's identity
+  is completely unknown or they are a guest/client.
+examples:
+  - english: May I ask who this is?
+    japanese:
+      - お 電話 ありがとう ござい ます。{どちら 様} で いらっしゃい ます か。
+      - お 電話 ありがとう ござい ます。{どちら 様} で ござい ましょう か。
+      - お 電話 ありがとう ござい ます。{どちら 様} でしょう か。
+    english_literally: Thank you for your call. Which honorable person are you?
+    competing_grammar:
+      - competing_japanese:
+          - お 電話 ありがとう ござい ます。誰 です か。
+        english: Thank you for your call. Who is it?
+        hint: Using 「誰 ですか」 on the phone sounds very impolite, almost accusatory, especially in a professional
+          setting. We're looking for a very polite way to ask 'who'.
+      - competing_japanese:
+          - お 電話 ありがとう ござい ます。どなた です か。
+        english: Thank you for your call. Who is it? (polite)
+        hint: While 「どなた ですか」 is polite, 「どちら様 で いらっしゃいますか」 conveys an even higher degree of politeness
+          and is more standard for identifying callers in a business context. We're looking for a very
+          polite way to ask 'who'.
+    scene: A customer service representative answers a phone call.
+    register: teineigo (polite)
+    setting: professional
+  - english: Excuse me, may I ask who you are?
+    japanese:
+      - 恐れ入り ます が、お 客 様 は {どちら 様} で いらっしゃい ます か。
+      - 恐れ入り ます が、お 客 様 は {どちら 様} で ござい ましょう か。
+      - 恐れ入り ます が、{どちら 様} で いらっしゃい ます か。
+    english_literally: I am sorry to trouble you, but as for the customer, which honorable person are
+      you?
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん が、お 客 さん は 誰 です か。
+        english: Excuse me, who are you, customer?
+        hint: This sounds abrupt and disrespectful in a customer service context. The usage of 「お客さん」
+          instead of 「お客様」 also reduces the politeness. We're looking for a very polite way to ask 'who'.
+    scene: A staff member approaches a person waiting in a lobby whom they don't recognize.
+    register: teineigo (polite)
+    setting: professional
+  - english: May I know who left this package?
+    japanese:
+      - この 荷物 を 置い て いっ た の は {どちら 様} でしょう か。
+      - この 荷物 を お 置き に なっ た の は {どちら 様} で いらっしゃい ます か。
+      - この 荷物 を 置い て いっ た の は {どちら 様} で ござい ましょう か。
+    english_literally: The one who left this package, which honorable person might it be?
+    competing_grammar:
+      - competing_japanese:
+          - この 荷物 を 置い て いっ た の は 誰 です か。
+        english: Who left this package?
+        hint: While grammatically correct, this sounds direct and lacks the politeness appropriate for
+          an office or public setting. We're looking for a very polite way to ask 'who'.
+    scene: An office worker finds an unmarked package in the common area and needs to identify the owner.
+    register: teineigo (polite)
+    setting: professional
+  - english: To whom do I owe this pleasure?
+    japanese:
+      - この よう な お 心遣い は {どちら 様} から でしょう か。
+      - この よう な お 心遣い は {どちら 様} から で ござい ましょう か。
+      - この よう な お 心遣い は {どちら 様} で いらっしゃい ます か。
+    english_literally: Such kindness, from which honorable person might it be?
+    competing_grammar:
+      - competing_japanese:
+          - この よう な ご 親切 は 誰 から です か。
+        english: This kindness, from whom is it?
+        hint: This is too casual and direct for acknowledging a polite gesture from someone whose identity
+          is unknown or unclear. We're looking for a very polite way to ask 'who'.
+    scene: Someone receives an unexpected act of kindness or gift and wishes to express gratitude while
+      politely inquiring about the giver.
+    register: teineigo (polite)
+    setting: serious
+  - english: Excuse me, but from whom did this email come?
+    japanese:
+      - 恐れ入り ます が、この メール は {どちら 様} から の お 送り でしょう か。
+      - 恐れ入り ます が、この メール は {どちら 様} から の お 送り で ござい ましょう か。
+      - 恐れ入り ます が、この メール は {どちら 様} が お 送り に なり まし た でしょう か。
+    english_literally: I am sorry, but this email, from which honorable person's sending is it?
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん が、この メール は 誰 から です か。
+        english: Excuse me, but who is this email from?
+        hint: This is too informal for a professional inquiry about an email sender. We're looking for
+          a very polite way to ask 'who'.
+    scene: An office worker receives an important, but unidentifiable email and needs to ascertain the
+      sender.
+    register: teineigo (polite)
+    setting: professional
+  - english: May I have your name, please?
+    japanese:
+      - '{どちら 様} で いらっしゃい ます か、お 名前 を 伺っ て も よろしい でしょう か。'
+      - '{どちら 様} で いらっしゃい ます か、お 名前 を お 聞か せ いただけ ます でしょう か。'
+      - '{どちら 様} で ござい ましょう か、お 名前 を 伺っ て も よろしい でしょう か。'
+    english_literally: Which honorable person are you, may I respectfully ask your name?
+    competing_grammar:
+      - competing_japanese:
+          - お 名前 は 何 です か。
+        english: What is your name?
+        hint: While common, this is a very direct and less formal way to ask for a name. 「どちら様」 is preferred
+          in formal settings where you want to show maximum respect. We're looking for a very polite way
+          to ask 'who'.
+    scene: A hotel receptionist addressing a guest who has just arrived.
+    register: teineigo (polite)
+    setting: professional
+  - english: I'm sorry, I couldn't quite catch your name, who was that again?
+    japanese:
+      - 申し訳 ござい ませ ん、お 名前 が よく 聞き取れ なかっ た の です が、{どちら 様} で いらっしゃい ます か。
+      - 申し訳 ござい ませ ん、お 名前 が よく 聞き取れ なかっ た の です が、{どちら 様} で ござい ましょう か。
+      - 申し訳 ござい ませ ん、お 名前 が よく 聞き取れ なかっ た の です が、{どちら 様} でしょう か。
+    english_literally: I am truly sorry, I could not quite catch your name, but which honorable person
+      are you?
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん、名前 聞き取れ なかっ た ん です けど、誰 でし た っけ。
+        english: Sorry, I couldn't catch your name, who was it again?
+        hint: This is too casual and might sound like you don't care to remember. In a professional context,
+          a higher level of politeness is expected. We're looking for a very polite way to ask 'who'.
+    scene: A business person on the phone apologizes for not clearly hearing the caller's name and asks
+      again.
+    register: teineigo (polite)
+    setting: professional
+  - english: If I may ask, who is calling regarding this matter?
+    japanese:
+      - この 件 に つき まし て、{どちら 様} から の ご 連絡 で ござい ましょう か。
+      - この 件 に つき まし て、{どちら 様} から の ご 連絡 で いらっしゃい ます か。
+      - この 件 に つき まし て、{どちら 様} が ご 連絡 ください まし た でしょう か。
+    english_literally: Regarding this matter, from which honorable person might the contact be?
+    competing_grammar:
+      - competing_japanese:
+          - この 件、誰 から の 電話 です か。
+        english: Regarding this matter, who is this call from?
+        hint: This phrasing is too blunt and lacks the necessary respect for a formal inquiry about a
+          sensitive topic. We're looking for a very polite way to ask 'who'.
+    scene: A company representative receives a call about a specific business matter and needs to politely
+      identify the caller.
+    register: teineigo (polite)
+    setting: professional
+  - english: This item has been forgotten. Whose is it?
+    japanese:
+      - こちら に お 忘れ物 が ござい ます。{どちら 様} の 物 で ござい ましょう か。
+      - こちら に お 忘れ物 が ござい ます。{どちら 様} の 物 で いらっしゃい ます か。
+      - こちら に お 忘れ物 が ござい ます。{どちら 様} の 物 でしょう か。
+    english_literally: Here, there is a forgotten item. Whose honorable person's item might it be?
+    competing_grammar:
+      - competing_japanese:
+          - これ 忘れ物。誰 の？
+        english: This is a forgotten item. Whose?
+        hint: This is extremely casual and might be acceptable only among very close friends or in an
+          informal family setting. It is not suitable for a public announcement. We're looking for a very
+          polite way to ask 'who'.
+    scene: A store clerk finds a forgotten item and makes an announcement or asks customers in a polite
+      manner.
+    register: teineigo (polite)
+    setting: professional
+  - english: Someone is at the entrance. Who could it be?
+    japanese:
+      - 入り口 に どなた か いらっしゃい ます が、{どちら 様} で ござい ましょう か。
+      - 入り口 に どなた か いらっしゃい ます が、{どちら 様} で いらっしゃい ます か。
+      - 入り口 に どなた か いらっしゃい ます が、{どちら 様} でしょう か。
+    english_literally: Someone is at the entrance, but who honorable person might it be?
+    competing_grammar:
+      - competing_japanese:
+          - 入り口 に 誰 か いる けど、誰 だ？
+        english: Someone's at the entrance, but who is it?
+        hint: This is casual and can sound informal or even suspicious depending on the tone. In a professional
+          or respectful context, a more polite phrasing is necessary. We're looking for a very polite
+          way to ask 'who'.
+    scene: A person inside a building receives a visitor they weren't expecting and wants to confirm their
+      identity before allowing entry.
+    register: teineigo (polite)
+    setting: serious
+  - english: May I ask who is responsible for this inquiry?
+    japanese:
+      - この お 問い合わせ は {どちら 様} が ご 担当 で いらっしゃい ます か。
+      - この お 問い合わせ は {どちら 様} が ご 担当 で ござい ましょう か。
+      - この お 問い合わせ は {どちら 様} の お 担当 でしょう か。
+    english_literally: This inquiry, which honorable person is in charge?
+    competing_grammar:
+      - competing_japanese:
+          - この 問い合わせ、誰 が 担当 です か。
+        english: Who is in charge of this inquiry?
+        hint: This is direct and lacks the politeness expected in a formal business interaction. 「どちら様」
+          is used to maintain a respectful distance while clarifying responsibility. We're looking for
+          a very polite way to ask 'who'.
+    scene: In a business meeting, someone asks who is the contact person for a specific client inquiry.
+    register: teineigo (polite)
+    setting: professional
+post_example_writeup: The examples illustrate how 「どちら様」 is primarily used in formal or semi-formal settings,
+  particularly when identifying an unknown individual in professional contexts or when answering the phone.
+  The nuances conveyed include respect, humility, and a certain degree of distance, which are all critical
+  aspects of Japanese communication culture. Pay close attention to the particles and verbs used with
+  「どちら様」, such as 「で いらっしゃいますか」 or 「で ございましょうか」, as these further enhance the politeness and formality
+  of the expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どちら様

@@ -1,0 +1,231 @@
+grammar_point: んー (hesitation・agreement)
+learn_before:
+  - んとする (on the verge of or try to)
+meaning: A vocalization used to express hesitation, agreement, or a thinking pause.
+pronunciation:
+  katakana: ンー
+  romaji: nー
+  pronunciation_warning: The 'ー' extends the preceding 'ン' sound, making it a prolonged nasal murmur rather
+    than a distinct vowel.
+formation:
+  Standalone: Used as a direct response or interjection.
+  Preceding speech: Used before words or phrases to indicate thought, uncertainty, or as a lead-in.
+  Following speech: Used after words or phrases, often for confirmation, mild agreement, or to invite
+    a response.
+jlpt: N5
+etymology: The sound 'んー' is a fundamental vocalization, akin to 'hmm' or 'uh-huh' in English. It arises
+  from the natural articulation of the nasal 'n' sound, often extended to indicate a pause or internal
+  processing. Its directness and simplicity make it a universal filler or response in conversational Japanese,
+  evolving from basic human vocalizations rather than complex grammatical derivation. It is a sound that
+  conveys immediacy of thought or reception.
+writeup: |-
+  The vocalization 「んー」 is a versatile and incredibly common sound in Japanese conversation. It functions similarly to 'hmm,' 'uh-huh,' 'well,' or a simple 'yes' in English, but its precise meaning is highly dependent on intonation, context, and accompanying facial expressions or body language. It is generally **casual** and used among friends, family, or close acquaintances.
+
+  When pronounced with a **flat or slightly falling intonation**, it often signifies **agreement** or **understanding**, much like 'uh-huh' or 'yes, I see.' It's a non-committal affirmation that encourages the speaker to continue.
+
+  With a **rising or questioning intonation**, it can express **hesitation**, **uncertainty**, or a **thoughtful pause**. In this case, it's equivalent to 'hmm, I'm not sure' or 'let me think.' It can also be used when one is trying to recall something or formulate a response.
+
+  It is also frequently used as a **conversational filler** or a **thinking sound** at the beginning of a sentence, giving the speaker a moment to gather their thoughts before speaking. It helps maintain the flow of conversation without creating an awkward silence. While versatile, it is important to note that 「んー」 is part of casual speech and would generally not be used in formal or business settings.
+false_friends:
+  - term: うん
+    meaning: casual "yes"
+    kind: similar expression
+    nuance: 「うん」 is a direct, albeit casual, affirmative response, clearly meaning 'yes.' 「んー」 is less
+      committal; it can imply 'yes,' 'I'm thinking,' or 'I understand,' but is more ambiguous.
+    grammar_point: <suggest>:うん (casual yes)
+  - term: えー
+    meaning: '"What?", "Oh...", "Really?" (expressing surprise, doubt, or prolonged hesitation)'
+    kind: similar expression
+    nuance: 「えー」 often carries a stronger sense of surprise, disbelief, or a longer, more drawn-out hesitation
+      compared to 「んー」, which is generally shorter and more neutral.
+    grammar_point: <suggest>:えー (surprise・hesitation)
+  - term: まあ
+    meaning: '"well," "oh well," "so-so," "just about" (often used as a mild conversational filler or
+      to express resignation/indifference)'
+    kind: similar expression
+    nuance: 「まあ」 implies a level of resignation, agreement with reservations, or a general 'it's alright/not
+      bad.' 「んー」 is more about processing or simple acknowledgement without the underlying judgment or
+      resignation.
+    grammar_point: <suggest>:まあ (mild agreement・resignation)
+post_false_friends_writeup: While 「んー」, 「うん」, 「えー」, and 「まあ」 are all common vocalizations or short interjections
+  in Japanese, their nuances and primary functions differ. 「んー」 is a versatile sound for thinking, mild
+  agreement, or short hesitation. 「うん」 is a direct casual affirmative. 「えー」 conveys surprise or stronger
+  disbelief/hesitation. 「まあ」 often indicates resignation or a 'so-so' sentiment. Paying attention to context
+  and intonation is key to distinguishing them.
+examples:
+  - english: Hmm, what should I eat for dinner?
+    japanese:
+      - んー、晩ご飯 は 何 に しよう か な。
+      - んー、晩ご飯、何 に しよう？
+    english_literally: Hmm, as for dinner, what shall I do?
+    competing_grammar:
+      - competing_japanese:
+          - えー と、晩ご飯 は 何 に しよう か な。
+        english: Uhm, what should I eat for dinner?
+        hint: 「えーと」 is a common filler sound for thinking or searching for words, but 「んー」 often conveys
+          a deeper or more prolonged thought process before speaking. We're looking for a sound that expresses
+          a thoughtful pause.
+    scene: A student is looking into the refrigerator, trying to decide what to cook for dinner.
+    register: casual
+    setting: reflective
+    nuance: The speaker uses 「んー」 to indicate a thinking pause or indecision, common in casual self-talk.
+      The elongated 'んー' often suggests deeper thought or contemplation.
+  - english: Uh-huh, I understand what you're saying.
+    japanese:
+      - んー、言っ て いる こと は わかる よ。
+      - んー、言っ てる こと、わかる よ。
+    english_literally: Uh-huh, what you are saying, I understand.
+    competing_grammar:
+      - competing_japanese:
+          - はい、言っ て いる こと は わかり ます。
+        english: Yes, I understand what you're saying.
+        hint: While 「はい」 is a direct affirmative, 「んー」 conveys a more nuanced, often non-committal or
+          reflective understanding. We're looking for a sound that shows mild agreement or acknowledgement.
+    scene: A friend is explaining a complicated situation to another friend.
+    register: casual
+    setting: informative
+    nuance: Here, 「んー」 signifies understanding and acknowledgement, encouraging the speaker to continue.
+      The sentence-final 「よ」 adds a gentle assertion to the understanding. This is a common way for a
+      listener to show they are following along.
+  - english: Hmm, I don't really know.
+    japanese:
+      - んー、ちょっと よく 分から ない な。
+      - んー、ちょっと よく わかん ない な。
+    english_literally: Hmm, a little not well understand, I suppose.
+    competing_grammar:
+      - competing_japanese:
+          - 分から ない な。
+        english: I don't really know.
+        hint: Simply stating 'I don't know' is direct, but 'んー' adds a sense of pondering or hesitation
+          before expressing uncertainty. We're looking for an expression that starts with a thinking sound.
+    scene: Two colleagues are discussing a problem, and one is unsure of the solution.
+    register: casual
+    setting: interrogative
+    nuance: The 「んー」 expresses hesitation and a slight lack of certainty. The casual 「な」 at the end further
+      emphasizes the speaker's mild uncertainty or thought. This indicates they are processing the question
+      but do not have an immediate answer.
+  - english: Yes, it's definitely like that.
+    japanese:
+      - んー、確か に そう だ よ。
+      - んー、確か に そう だ ね。
+    english_literally: Uh-huh, certainly it is so, indeed.
+    competing_grammar:
+      - competing_japanese:
+          - うん、確か に そう だ よ。
+        english: Yeah, it's certainly like that.
+        hint: 「うん」 is a direct casual affirmative. 「んー」 can also indicate agreement, but often implies
+          a moment of internal confirmation or realization before stating it. We're looking for a sound
+          that expresses internal agreement.
+    scene: Two people are confirming plans for the weekend.
+    register: casual
+    setting: friendly
+    nuance: This 「んー」 is a quick, affirmative response, similar to 'yeah' in English. The addition of
+      「確かに」 (certainly) strengthens the agreement, and 「だよ」 provides a friendly assertion.
+  - english: Well, I guess that's okay.
+    japanese:
+      - んー、まあ、いい か。
+      - んー、まあ、いい か な。
+    english_literally: Hmm, well, is it fine?
+    competing_grammar:
+      - competing_japanese:
+          - まあ、いい か。
+        english: Well, is it okay?
+        hint: 「まあ」 already implies a degree of resignation or mild acceptance. Adding 「んー」 before it emphasizes
+          the internal weighing of options or slight reluctance before settling. We're looking for a sound
+          that suggests a hesitant concession.
+    scene: Someone is offered a compromise they aren't fully enthusiastic about.
+    register: casual
+    setting: cautious
+    nuance: Here, 「んー」 precedes a slightly reluctant acceptance. The combination with 「まあ」 (well) and
+      the questioning 「いいか」 (is it okay?) suggests a hesitant agreement, perhaps with underlying reservations.
+      This expresses a tentative acceptance.
+  - english: Uh-huh, that's what I thought.
+    japanese:
+      - んー、やっぱり ね。
+      - んー、やっぱり な。
+    english_literally: Uh-huh, as I thought, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - やっぱり そう だっ た か。
+        english: I knew it (that's how it was), after all.
+        hint: This is a direct statement of realization. 「んー」 preceding it adds a subtle 'aha' moment,
+          indicating that the realization is just now solidifying. We're looking for a sound that expresses
+          confirmation of a suspicion.
+    scene: A secret is revealed that one person had already suspected.
+    register: casual
+    setting: reflective
+    nuance: This 「んー」 indicates confirmation of a prior suspicion or understanding. 「やっぱり」 means 'as expected'
+      or 'just as I thought,' and 「ね」 seeks mild agreement or expresses shared understanding.
+  - english: Hmm, it's a difficult question.
+    japanese:
+      - んー、難しい 質問 だ ね。
+      - んー、難しい 質問 だ なぁ。
+    english_literally: Hmm, difficult question, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 難しい 質問 だ ね。
+        english: It's a difficult question, isn't it?
+        hint: While grammatically correct, stating it directly doesn't convey the initial pause for thought
+          that 「んー」 does. We're looking for a sound that indicates the speaker is pondering the question.
+    scene: A student asks their teacher a very profound question.
+    register: casual
+    setting: academic
+    nuance: The 「んー」 here signals that the speaker is pondering the question, acknowledging its complexity.
+      The 「ね」 softens the statement, inviting the listener to share the sentiment of difficulty.
+  - english: Yeah, it sounds good.
+    japanese:
+      - んー、いい ね。
+      - んー、ええ ね。
+    english_literally: Yeah, good, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - いい ね。
+        english: Sounds good!
+        hint: Simply saying 「いいね」 is a straightforward agreement. 「んー」 often adds a touch of thoughtful
+          consideration or internal approval before expressing agreement. We're looking for a sound that
+          conveys positive consideration.
+    scene: Two friends are planning a trip together.
+    register: casual
+    setting: excited
+    nuance: This is a simple, positive agreement. The enthusiasm is conveyed more by the intonation of
+      the whole phrase than by 「んー」 itself, which acts as an enthusiastic lead-in or an 'aha' moment of
+      approval. The 「ね」 makes it a shared positive sentiment.
+  - english: Uh-huh, that's right, that's right.
+    japanese:
+      - んー、そう だ ね、そう だ ね。
+      - んー、そうそう。
+    english_literally: Uh-huh, that's right, isn't it? That's right, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - はい、はい。
+        english: Yes, yes.
+        hint: 「はい、はい」 can be used for simple acknowledgement, but 「んー」 often implies a more empathetic
+          or engaged listening. We're looking for a sound that shows active, understanding listening.
+    scene: A parent is listening patiently to their child recount a long story.
+    register: casual
+    setting: supportive
+    nuance: The repeated 「そうだね」 after 「んー」 serves as active listening and gentle encouragement for the
+      speaker to continue, confirming comprehension and agreement. This is very common in supportive conversations.
+  - english: Hmm, I wonder if that's really possible.
+    japanese:
+      - んー、本当 に できる の か な。
+      - んー、本当 に できる か な。
+    english_literally: Hmm, really can do, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に できる の か な。
+        english: I wonder if that's really possible.
+        hint: This is a direct expression of doubt. 「んー」 emphasizes the internal contemplation and skepticism
+          before voicing the concern. We're looking for a sound that expresses pondering skepticism.
+    scene: Someone is contemplating a challenging task or idea.
+    register: casual
+    setting: cautious
+    nuance: This 「んー」 expresses doubt or skepticism, leading into a question about feasibility. The informal
+      「かな」 reinforces the speaker's internal questioning and uncertainty. This is a common phrase to express
+      internal deliberation.
+post_example_writeup: As these examples demonstrate, the vocalization 「んー」 is not a fixed grammatical
+  structure but a flexible conversational tool. Its role in communication hinges entirely on the speaker's
+  intonation and the surrounding conversational context. It can be a simple placeholder for thought, a
+  nuanced expression of agreement, or a subtle signal of uncertainty.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%93%E3%83%BC

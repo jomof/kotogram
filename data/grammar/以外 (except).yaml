@@ -1,0 +1,251 @@
+grammar_point: 以外 (except)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - 〜てはいけない・〜てはならない (must not)
+  - あんなに (that much over there)
+  - ご (honorific prefix for Sino-Japanese words)
+  - と考えられている (is considered to be)
+  - な (prohibitive particle)
+  - のみ (only・just)
+  - は (topic and contrast)
+  - ばあいは (in the event of)
+  - 何でも (anything・everything)
+  - 君・くん (honorific suffix)
+  - 考えられる・考えられない (can be considered・unthinkable)
+meaning: Except, Besides, Other than, With the exception of
+pronunciation:
+  katakana: イガイ
+  romaji: igai
+formation:
+  Noun + いがい: Indicates everything outside of the noun, such as 'except (A)', or 'besides (A)'
+jlpt: N4
+etymology: The construction 以外 (igai) is a combination of the kanji 以 (i), meaning "by means of", and
+  外 (gai), meaning "outside". Therefore, it literally means "outside of" or "beyond".
+writeup: |-
+  The grammar point **以外** (igai) is used to express "except (A)" or "besides (A)". It indicates everything that is outside of or excluded from a particular noun. It can be translated as "with the exception of (A)" or "everything outside of (A)". To use **以外**, attach it directly to the noun you want to exclude. This construction is a combination of the kanji 以 (meaning 'by means of'), and 外 ('outside').
+
+  It is crucial to distinguish **以外** from **意外** (igai). While both share the same pronunciation, **意外** is written with the kanji 意 (meaning 'intention' or 'mind') and 外 ('outside'), literally meaning 'out of mind'. **意外** expresses surprise or something unexpected – that which falls outside of one's expectations. This distinction is often overlooked even by native speakers in casual conversation, leading to misunderstanding. For precise communication, use **以外** for *exclusion* and **意外** for *unexpectedness*.
+false_friends:
+  - term: ほかに(も)・ほか(には)
+    meaning: Other, Another, Any other, Anything else, As well as, Besides, In addition
+    kind: similar expression
+    nuance: Unlike 以外, ほかに emphasizes the existence of additional options or items, rather than strict
+      exclusion.
+    grammar_point: ほかに ほかには (other besides)
+  - term: はともかく
+    meaning: Setting aside, Apart from
+    kind: similar expression
+    nuance: Unlike 以外, はともかく indicates a temporary digression or something to be considered later.
+    grammar_point: はともかく (setting aside・leaving aside)
+  - term: を除いて
+    meaning: Except, With the exception of, Excluding
+    kind: synonym
+    nuance: Unlike 以外, を除いて explicitly highlights the act of removing or excluding something.
+    grammar_point: を除いて (excluding・except for)
+  - term: を置いて他に〜ない
+    meaning: No...but, Nothing else but, None other than
+    kind: similar expression
+    nuance: Unlike 以外, をおいてほかに〜ない emphasizes exclusivity and a lack of alternatives.
+    grammar_point: を置いて他に〜ない (nothing else compares)
+post_false_friends_writeup: The expressions 「ほかに(も)・ほか(には)」, 「はともかく」, 「を除いて」, and 「をおいてほかに〜ない」 can all
+  express ideas of exclusion or alternatives, but they carry distinct nuances. 「以外」 emphasizes that something
+  is 'outside' a defined category or set, marking it as an exception. 「ほかに」 often suggests 'in addition
+  to' or 'any other', focusing on the existence of other options rather than strict exclusion. 「はともかく」
+  sets something aside for the moment, indicating it's not the primary focus of discussion. 「を除いて」 explicitly
+  highlights the action of 'removing' or 'excluding' an item from a group, often implying a deliberate
+  act. Lastly, 「をおいてほかに〜ない」 is a strong, emphatic phrase meaning 'none other than', stressing absolute
+  uniqueness or exclusivity. Understanding these distinctions is crucial for precise expression in Japanese.
+examples:
+  - english: Everyone participated, except for Mr. Suzuki.
+    japanese:
+      - 鈴木 さん {以外}、全員 が 参加 し まし た。
+      - 鈴木 さん {以外} は、全員 が 参加 し まし た。
+      - 鈴木 さん {以外}、みんな 参加 し た。
+      - 鈴木 氏 {以外}、全員 ご 参加 さ れ まし た。
+    english_literally: Mr. Suzuki outside, everyone participated.
+    competing_grammar:
+      - competing_japanese:
+          - 鈴木 さん を {除い て} 全員 が 参加 し まし た。
+        english: Everyone participated, excluding Mr. Suzuki.
+        hint: 「を除いて」 explicitly states exclusion. We're looking for a more general statement of exception.
+    scene: A team leader is reporting attendance for a meeting to his colleagues.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of the formal verb 「参加しました」 combined with the general address to a "group" of listeners
+      (e.g., team members) indicates a standard professional communication from a male speaker.
+  - english: At this store, you can buy meat in addition to fish.
+    japanese:
+      - この 店 で は、魚 {以外}、肉 も 買え ます よ。
+      - こちら の お 店 で は、魚 {以外} に、お 肉 も お 買い求め いただけ ます。
+      - この 店、魚 {以外} に も 肉 売っ てる よ。
+    english_literally: This store in, fish outside, meat also can buy.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 で は、魚 の {ほか} に 肉 も 買え ます よ。
+        english: At this store, in addition to fish, you can buy meat.
+        hint: 「のほかに」 emphasizes 'in addition to' or 'besides'. We're looking for an expression that implies
+          everything *outside* of the stated item.
+    scene: A new customer is asking about the types of food available at a store, and a staff member is
+      explaining.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The polite verb ending 「買えます」 and the particle 「よ」, commonly used by a female staff member
+      to inform a customer, make this suitable for a polite, informative setting.
+  - english: I can eat anything as long as it's not spicy.
+    japanese:
+      - 辛い もの {以外} なら、何 で も 食べ られ ます。
+      - 辛い もの {以外} でし たら、何 で も いただけ ます。
+      - 辛い の {以外} なら、何 で も いける。
+    english_literally: Spicy things outside if, anything can eat.
+    competing_grammar:
+      - competing_japanese:
+          - 辛い もの {じゃ なけれ ば}、何 で も 食べ られ ます。
+        english: If it's not spicy, I can eat anything.
+        hint: 「じゃなければ」 focuses on a conditional negation. We're looking for a way to express "anything
+          *except*" a particular item.
+    scene: A friend is asking about dietary preferences before ordering food for a group gathering.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The casual conditional 「なら」 and the potential form 「食べられます」 indicate a relaxed conversation
+      between friends, common for a male speaker explaining his preferences.
+  - english: Mobile phone use is prohibited except during break time.
+    japanese:
+      - 休憩 時間 {以外} は、スマート フォン の 使用 は 禁止 です。
+      - 休憩 時間 {以外}、スマホ の 使用 は 禁止。
+      - 休憩 時間 {以外} の スマート フォン の ご 使用 は お 控え ください。
+    english_literally: Break time outside is, smartphone's use is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - 休憩 時間 を {除い て}、スマート フォン の 使用 は 禁止 です。
+        english: Excluding break time, mobile phone use is prohibited.
+        hint: 「を除いて」 emphasizes explicit exclusion. We're looking for an expression that defines a general
+          rule with a clear exception.
+    scene: An office manager has posted a notice regarding company policy on phone usage.
+    register: formal
+    setting: professional
+  - english: I can't say such things to anyone but you.
+    japanese:
+      - あなた {以外} に は、こんな こと は 言え ませ ん。
+      - あなた {以外} の 人 に は、こんな 話 は でき ない。
+      - 君 {以外} に は、こんな 話 し ない よ。
+    english_literally: You outside to is, such things can't say.
+    competing_grammar:
+      - competing_japanese:
+          - あなた に {しか}、こんな こと は 言え ませ ん。
+        english: I can only say such things to you.
+        hint: 「にしか〜ない」 means "only to" and emphasizes exclusivity. We're looking for an expression that
+          frames the listener as the sole exception from a group.
+    scene: A person confides a secret to a very trusted friend, emphasizing their unique bond.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「あなた」, which can be intimate depending on context, and the phrase 「こんなことは言えません」,
+      expressing vulnerability and exclusive trust, is natural for a female speaker in an intimate setting.
+  - english: No one but him can play the piano so skillfully.
+    japanese:
+      - 彼 {以外} に ピアノ を あんな に 上手 に 弾ける 人 は い ない。
+      - 彼 {以外} に は ピアノ を あんな に 上手 に 弾ける 人 は い ませ ん。
+      - 彼 {以外} あんな に ピアノ 上手 な 人 い ない よ。
+    english_literally: He outside to piano that skillfully can play person is not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 {しか} ピアノ を あんな に 上手 に 弾け ない。
+        english: Only he can play piano so skillfully.
+        hint: 「しか〜ない」 emphasizes 'only' or 'nothing but', focusing on singular capability. We're looking
+          for an expression that highlights an exception from a group.
+    scene: Two friends are watching a piano recital, and one is expressing awe at the performer's skill.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「あんなに上手」 conveys admiration. The phrasing 「〜ない」 is a common casual negative, used
+      here by a female speaker in a friendly context.
+  - english: I haven't studied anything other than English for the exam.
+    japanese:
+      - 試験 の ため に 英語 {以外} は 何 も 勉強 し て い ませ ん。
+      - 試験 の ため に 英語 {以外} 何 も 勉強 し て ない。
+      - テスト の ため に 英語 {以外}、全然 勉強 し て い ない です。
+    english_literally: Exam for English outside anything not studied.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の ため に 英語 {だけ} 勉強 し まし た。
+        english: For the exam, I only studied English.
+        hint: 「だけ」 emphasizes exclusivity, meaning "only this." We're looking for an expression that focuses
+          on what was *not* studied.
+    scene: A student is confessing their poor study habits to a sympathetic friend before a big exam.
+    register: semi-formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「何 も 勉強 し て い ませ ん」 conveys a sense of regret or honesty. The usage of 「試験」 and
+      「勉強」 fits the academic setting, and the tone is neutral, often used by male students when discussing
+      studies.
+  - english: Are there any restaurants open other than this one?
+    japanese:
+      - この 店 {以外} に 開い てる レストラン ある？
+      - この お 店 {以外} に 開い て いる レストラン は ござい ます か？
+      - ここ {以外} で 開い て る とこ、どっ か ない？
+    english_literally: This store outside to open restaurant exist?
+    competing_grammar:
+      - competing_japanese:
+          - この 店 の {ほか} に 開い てる レストラン ある？
+        english: Are there other restaurants open besides this one?
+        hint: 「のほかに」 implies 'in addition to' existing options. We're looking for an expression that asks
+          about places *outside* of the current one.
+    scene: Two friends are looking for a place to eat late at night, but their usual spot is closed.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「ある？」 (instead of ありますか) and the contraction 「開いてる」 indicates a casual tone suitable
+      for friends.
+  - english: Please contact me outside of business hours only in emergencies.
+    japanese:
+      - 業務 時間 {以外} は 緊急 の 場合 のみ ご 連絡 ください。
+      - 業務 時間 {以外} は 緊急 時 のみ ご 連絡 お 願い し ます。
+      - 勤務 時間 {以外} は、緊急 の 時 だけ 連絡 し て ください。
+    english_literally: Business hours outside is emergency case only contact please.
+    competing_grammar:
+      - competing_japanese:
+          - 業務 時間 中 は ご 連絡 いただけ ます が、それ {以外} は 緊急 時 のみ です。
+        english: You can contact me during business hours, but outside of that, only in emergencies.
+        hint: This example uses 「以外」 in a broader context. We're looking for a clear instruction stating
+          an exception to a general rule.
+    scene: A manager is providing instructions to their team regarding communication protocols.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「業務時間」 and polite imperative 「ご 連絡 ください」 are standard in a professional instructional
+      context. The male manager is addressing a group of subordinates.
+  - english: I can't imagine a life without my family.
+    japanese:
+      - 家族 {以外} の 人生 は 考え られ ない。
+      - 家族 {以外} の 人生 なんて、私 に は 考え られ ませ ん。
+      - 家族 {以外} の 人生 は あり え ない。
+    english_literally: Family outside life cannot be imagined.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 の い {ない} 人生 は 考え られ ない。
+        english: I can't imagine a life without family.
+        hint: This uses a negative form 「〜がいない」 to express absence. We're looking for an expression that
+          defines life *exclusive* of family.
+    scene: During a casual conversation, a person is reflecting on the importance of their family.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrasing 「考えられない」 expresses a strong personal feeling. The addition of 「なんて」 in one variation
+      adds a touch of emotional emphasis, often used by female speakers.
+post_example_writeup: Understanding the precise nuance of 「以外」 in these various contexts is key. It always
+  sets something apart as an exception or something 'outside' a defined category, whether it's people,
+  items, conditions, or abstract concepts like 'life'. The choice of accompanying particles like 「は」 or
+  「に」, and the level of politeness, adapts to the specific situation and speaker-listener relationship.

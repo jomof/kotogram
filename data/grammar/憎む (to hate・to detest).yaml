@@ -1,0 +1,278 @@
+grammar_point: 憎む (to hate・to detest)
+matcher: |-
+  ⌈ˢ憎~ᵖv:~ᵇ憎む~⌉|
+  ⌈ˢ憎~ᵖv:~ᵇ~ᵈ憎むʳ~⌉
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+  - 込み (including)
+meaning: to hate, to detest
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 憎む
+    rarity: common
+    meaning: to hate, to detest
+  - conjugation-type: non-past polite (～ます)
+    form: 憎みます
+    rarity: common
+    meaning: to hate, to detest (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 憎まない
+    rarity: common
+    meaning: do not hate, do not detest
+  - conjugation-type: negative non-past polite (～ません)
+    form: 憎みません
+    rarity: common
+    meaning: do not hate, do not detest (polite)
+  - conjugation-type: past plain (～た)
+    form: 憎んだ
+    rarity: common
+    meaning: hated, detested
+  - conjugation-type: te-form (～て)
+    form: 憎んで
+    rarity: common
+    meaning: hating, detesting (connective form)
+  - conjugation-type: volitional (～よう)
+    form: 憎もう
+    rarity: common
+    meaning: let's hate, shall we hate (or, 'I intend to hate')
+  - conjugation-type: passive (～られる/～かれる)
+    form: 憎まれる
+    rarity: common
+    meaning: to be hated, to be detested
+  - conjugation-type: potential (～られる/～える)
+    form: 憎める
+    rarity: less common
+    meaning: able to hate (or, can feel hatred)
+pronunciation:
+  katakana: ニクム
+  romaji: nikumu
+formation:
+  Noun/Object を + Verb: Expresses hatred or detestation towards a specific noun or object.
+jlpt: N3
+etymology: 憎む (nikumu) derives from the classical Japanese にくむ (nikumu), which conveyed the meaning of
+  'to hate' or 'to detest.' The kanji 憎 itself inherently signifies hatred and animosity. Its origin can
+  be traced back to the concept of being displeasing or 'ugly' (related to words like 憎い), which then
+  evolved into a robust feeling of aversion and malice. It is a foundational word in Japanese for expressing
+  intense, profound negative emotions, often implying a deep-seated animosity rather than a superficial
+  dislike.
+writeup: 憎む (nikumu) is a transitive Godan verb meaning “to hate” or “to detest.” It expresses a strong,
+  often enduring, negative emotion towards a person, group, concept, or object. Unlike 嫌う (kirau), which
+  means “to dislike” and can be used for mild aversion, 憎む implies a deep-seated and intense feeling of
+  hatred or animosity. This verb is typically used to describe emotions that are profound and potentially
+  long-lasting, often related to actions, behaviors, or characteristics that are found utterly unacceptable
+  or despicable. 憎む carries significant emotional weight, so its use should reflect the gravity of the
+  feeling being conveyed. It is less common in casual conversation for minor dislikes and more often appears
+  in contexts describing serious interpersonal conflicts, historical grievances, or moral condemnations.
+  It is a powerful word to describe a profound sense of animosity.
+false_friends:
+  - term: 嫌う (kirau)
+    meaning: to dislike, to hate
+    kind: similar expression
+    nuance: 嫌う is a milder form of dislike, ranging from simple aversion to mild hatred. 憎む implies a
+      much stronger, deeper, and often more personal sense of hatred or animosity.
+    grammar_point: 嫌う (to dislike・to hate)
+  - term: 恨む (uramu)
+    meaning: to resent, to bear a grudge
+    kind: similar expression
+    nuance: 恨む focuses on the feeling of resentment or bitterness towards someone for a past wrong or
+      perceived injustice. While related to negative feelings, it emphasizes the lingering grievance rather
+      than pure hatred. 憎む is a broader term for hatred, not necessarily tied to a specific past act of
+      wrongdoing.
+    grammar_point: <suggest>:恨む (to resent・to bear a grudge)
+  - term: 憎い (nikui)
+    meaning: hateful, detestable (adjective)
+    kind: similar expression
+    nuance: 憎い is an i-adjective meaning “hateful” or “detestable,” describing the quality of something
+      that is hated or deserves hatred. It describes the object of hatred. 憎む is the verb, describing
+      the act of hating.
+    grammar_point: い-Adjective[dictionary] (dictionary)
+post_false_friends_writeup: When choosing between 憎む and 嫌う, consider the intensity of the emotion. 嫌う
+  is for general dislike, much like “I don't like natto.” 憎む is for profound hatred, typically reserved
+  for people, actions, or concepts that evoke a strong moral or emotional repulsion. 恨む is distinct in
+  its focus on lingering resentment stemming from past grievances. While a person you 憎む you might also
+  恨む, the core emotion emphasized is different. 憎い is an adjective describing something as an object of
+  hatred, whereas 憎む is the action of hating.
+examples:
+  - english: He hates injustice.
+    japanese:
+      - 彼 は 不 公平 を {憎む}。
+      - 彼 は 不 公平 を {憎み ます}。
+    english_literally: As for him, injustice, he hates.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 不 公平 が 嫌い だ。
+        english: He dislikes injustice.
+        hint: 嫌いだ expresses a milder dislike. We're looking for a stronger sense of hatred.
+    scene: A person talking about a friend's strong moral stance.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: She hated the way he spoke.
+    japanese:
+      - 彼女 は 彼 の 話し 方 を {憎ん だ}。
+      - 彼女 は 彼 の 話し 方 を {憎み まし た}。
+    english_literally: As for her, his way of speaking, she hated.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼 の 話し 方 に 我慢 でき なかっ た。
+        english: She couldn't stand the way he spoke.
+        hint: 我慢できなかった expresses an inability to tolerate, but 憎んだ shows a deeper emotional response of
+          hatred.
+    scene: Someone recalling a past negative experience with a colleague.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+  - english: Humans detest betrayal.
+    japanese:
+      - 人間 は 裏切り を {憎み ます}。
+      - 人間 は 裏切り を {憎む}。
+    english_literally: As for humans, betrayal, they detest (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 裏切り を 嫌い ます。
+        english: Humans dislike betrayal.
+        hint: 嫌います indicates dislike, which is not as strong as the detestation conveyed by 憎みます.
+    scene: A philosopher giving a lecture on human nature.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+  - english: I don't hate anyone.
+    japanese:
+      - 私 は 誰 も {憎ま ない}。
+      - 私 は 誰 も {憎み ませ ん}。
+    english_literally: As for me, anyone, I do not hate.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 誰 も 嫌い じゃ ない。
+        english: I don't dislike anyone.
+        hint: 嫌いじゃない is a softer negative, indicating mere dislike, not the strong emotion of not hating.
+    scene: A wise elder responding to a question about their feelings towards past enemies.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+  - english: He was hated by many.
+    japanese:
+      - 彼 は 多く の 人 に {憎ま れる}。
+      - 彼 は 多く の 人 に {憎ま れ まし た}。
+    english_literally: As for him, by many people, he was hated.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 多く の 人 に 嫌わ れ た。
+        english: He was disliked by many.
+        hint: 嫌われた means 'was disliked,' which is a less intense feeling than 'was hated'.
+    scene: A historical account of a controversial figure.
+    register: formal
+    setting: informative
+    conjugation: passive (～られる/～かれる)
+  - english: Let's detest war.
+    japanese:
+      - 戦争 を {憎もう}。
+      - 戦争 を {憎み ましょう}。
+    english_literally: War, let's detest.
+    competing_grammar:
+      - competing_japanese:
+          - 戦争 を 嫌 がろう。
+        english: Let's show aversion to war.
+        hint: 嫌がろう suggests showing dislike or aversion, whereas 憎もう is a stronger call to actively hate.
+    scene: An activist rallying people for a cause.
+    register: semi-formal
+    setting: persuasive
+    conjugation: volitional (～よう)
+    listener_gender: group
+  - english: Hating your past self won't change anything.
+    japanese:
+      - 過去 の 自分 を {憎ん で} も 何 も 変わら ない。
+      - 過去 の 自分 を {憎ん で も} 何 も 変わり ませ ん。
+    english_literally: Past self, even hating, nothing changes.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 自分 を 恨ん で も 何 も 変わら ない。
+        english: Resenting your past self won't change anything.
+        hint: 恨んでも implies resentment for past actions, focusing on blame. 憎んではより一般的な憎しみを表します。(憎んで is
+          a more general hatred.)
+    scene: A therapist talking to a client about self-acceptance.
+    register: casual
+    setting: supportive
+    conjugation: te-form (～て)
+  - english: It's hard to find anyone who can hate such kindness.
+    japanese:
+      - そんな 優し さ を {憎める} 人 は なかなか い ない。
+      - そんな 優し さ を {憎め ます} 人 は なかなか い ない。
+    english_literally: Such kindness, a person who can hate, is hardly found.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 優し さ を 嫌え る 人 は なかなか い ない。
+        english: It's hard to find anyone who can dislike such kindness.
+        hint: 嫌える implies merely being able to dislike, while 憎める refers to the ability to feel strong
+          hatred. The context suggests a stronger feeling.
+    scene: Friends discussing someone's exceptionally good nature.
+    register: casual
+    setting: friendly
+    conjugation: potential (～られる/～える)
+    nuance: The potential form 憎める indicates the 「能力」 (ability) to feel hatred. The sentence expresses
+      the idea that it's nearly impossible to harbor such intense negative feelings towards something
+      so positive, emphasizing the unlikelihood of hating such kindness.
+  - english: They hated the oppression.
+    japanese:
+      - 彼 ら は その 圧制 を {憎ん だ}。
+      - 彼 ら は その 圧制 を {憎み まし た}。
+    english_literally: As for them, that oppression, they hated.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は その 圧制 を 嫌悪 し た。
+        english: They detested that oppression.
+        hint: 嫌悪した is more of a formal, intellectual detestation, while 憎んだ conveys a deeper, more emotional
+          hatred.
+    scene: A documentary narrator describing a historical struggle.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: She swore to detest fate itself.
+    japanese:
+      - 彼女 は 運命 その もの を {憎む} と 誓っ た。
+      - 彼女 は 運命 その もの を {憎み ます} と 誓い まし た。
+    english_literally: As for her, fate itself, she swore to detest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 運命 その もの を 恨む と 誓っ た。
+        english: She swore to resent fate itself.
+        hint: 恨む emphasizes resentment for past grievances, while 憎む conveys a direct, intense hatred,
+          often towards abstract concepts like fate.
+    scene: A dramatic character expressing their despair.
+    register: bungo (literary)
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+  - english: We do not detest their efforts.
+    japanese:
+      - 私 たち は 彼 ら の 努力 を {憎み ませ ん}。
+      - 私 たち は 彼 ら の 努力 を {憎ま ない}。
+    english_literally: As for us, their efforts, we do not hate (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 彼 ら の 努力 を 嫌っ て い ませ ん。
+        english: We are not disliking their efforts.
+        hint: 嫌っていません conveys a general lack of dislike, whereas 憎みません explicitly states a lack of intense
+          hatred.
+    scene: A company spokesperson addressing public criticism.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    listener_gender: group
+post_example_writeup: The examples illustrate how 憎む conveys a profound sense of hatred. Notice its usage
+  across various registers, from casual declarations to more formal or literary contexts, always implying
+  a strong emotional stance. The choice of 憎む over milder terms like 嫌う (嫌う (to dislike・to hate)) signifies
+  the depth and often the negative impact of the emotion.

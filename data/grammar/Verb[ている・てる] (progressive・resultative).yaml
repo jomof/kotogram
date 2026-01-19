@@ -1,0 +1,360 @@
+grammar_point: Verb[ている・てる] (progressive・resultative)
+learn_before:
+  - する (to do・make)
+meaning: is doing (ongoing action), has done (resultative state), has been doing (habitual action)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[て]いる
+    rarity: common
+    meaning: is doing, has done
+  - conjugation-type: non-past polite (～ます)
+    form: Verb[て]います
+    rarity: common
+    meaning: is doing, has done (polite)
+  - conjugation-type: negative plain (～ない)
+    form: Verb[て]いない
+    rarity: common
+    meaning: is not doing, has not done
+  - conjugation-type: negative non-past polite (～ません)
+    form: Verb[て]いません
+    rarity: common
+    meaning: is not doing, has not done (polite)
+  - conjugation-type: past plain (～た)
+    form: Verb[て]いた
+    rarity: common
+    meaning: was doing, had done
+  - conjugation-type: past polite (～ました)
+    form: Verb[て]いました
+    rarity: common
+    meaning: was doing, had done (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[て]いなかった
+    rarity: common
+    meaning: was not doing, had not done
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Verb[て]いませんでした
+    rarity: common
+    meaning: was not doing, had not done (polite)
+  - conjugation-type: te-form (～て)
+    form: Verb[て]いて
+    rarity: common
+    meaning: being in the state of doing, having done
+  - conjugation-type: volitional (～よう)
+    form: Verb[て]いよう
+    rarity: uncommon
+    meaning: let's be doing (implies a guess or intention to maintain a state)
+  - conjugation-type: volitional polite (～ましょう)
+    form: Verb[て]いましょう
+    rarity: uncommon
+    meaning: let's be doing (polite, implies a guess or intention to maintain a state)
+  - conjugation-type: conditional (～ば)
+    form: Verb[て]いれば
+    rarity: common
+    meaning: if (is) doing, if (has) done
+  - conjugation-type: conditional (～たら)
+    form: Verb[て]いたら
+    rarity: common
+    meaning: if (was) doing, if (had) done
+  - conjugation-type: concessive (～ても)
+    form: Verb[て]いても
+    rarity: common
+    meaning: even if (is) doing, even if (has) done
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[て]る
+    rarity: common
+    meaning: is doing, has done (casual)
+  - conjugation-type: negative plain (～ない)
+    form: Verb[て]ない
+    rarity: common
+    meaning: is not doing, has not done (casual)
+  - conjugation-type: past plain (～た)
+    form: Verb[て]た
+    rarity: common
+    meaning: was doing, had done (casual)
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[て]なかった
+    rarity: common
+    meaning: was not doing, had not done (casual)
+pronunciation:
+  katakana: テイル・テル
+  romaji: teiru・teru
+formation:
+  Verb[て-form] + いる: Indicates an ongoing action (progressive) or a resultant state.
+  Verb[て-form] + る: A casual contraction of Verb[て-form] + いる, common in everyday speech.
+jlpt: N5
+etymology: The 〜て form is a conjunctive particle, historically derived from the verb つ (completion) and
+  あり (existence). When combined with いる (居る, meaning "to exist" or "to be"), it evolved to express either
+  a continuous action or a state resulting from a completed action. いる originally meant "to sit" or "to
+  be in a specific place," which gradually broadened to simply "to be" or "to exist," leading to its use
+  for indicating a persistent state. The contraction てる is a natural phonological reduction in casual
+  speech.
+writeup: |-
+  〜ている is one of the most fundamental and versatile grammar patterns in Japanese. It serves primarily two main functions: indicating an **ongoing action (progressive)** and indicating a **resultative state**.
+
+  1.  **Ongoing Action (Progressive)**: This is similar to the English "be -ing" form. It describes an action that is currently in progress.
+      *   Example: 彼女は本を読んでいます。(She is reading a book.)
+      *   Example: 雨が降っています。(It is raining.)
+
+  2.  **Resultative State**: This indicates a state that is the result of a completed action. The action itself might have finished, but its outcome or effect continues. This can be tricky for English speakers because it often translates to a simple present tense or present perfect.
+      *   Example: 窓が開いています。(The window is open. - The action of opening is complete, and the state of being open continues.)
+      *   Example: 結婚しています。(I am married. - The action of marrying is complete, and the state of being married continues.)
+      *   Example with an intransitive verb: 電気がついています。(The light is on. - The action of the light turning on is complete, and the state of being on continues.)
+
+      A common pitfall here is with verbs that describe a state of being rather than a continuous action, such as 知る (to know), 住む (to live), 持つ (to have).
+      *   知っている (shitte iru) means "I know" (a state of knowing), not "I am knowing."
+      *   住んでいる (sunde iru) means "I live in/am living in" (a state of residence).
+      *   持っている (motte iru) means "I have/possess" (a state of possession).
+
+  3.  **Habitual Action**: 〜ている can also describe actions that happen regularly or habitually.
+      *   Example: 毎日日本語を勉強しています。(I study Japanese every day.)
+
+  4.  **Casual Contraction (〜てる)**: In casual speech, 〜ている often contracts to 〜てる. This is very common and sounds natural among friends and family.
+false_friends:
+  - term: Verb[dictionary]
+    meaning: simple present/future tense, general truth
+    kind: similar expression
+    nuance: Unlike Verb[ている], the Verb[dictionary] form focuses on a future action, general truth, or
+      habitual action without emphasizing the ongoing nature or resultant state.
+    grammar_point: Verb[dictionary] (dictionary form)
+  - term: Verb[て]いるところだ
+    meaning: in the process of doing, right now
+    kind: similar expression
+    nuance: Verb[て]いるところだ specifically emphasizes that the action is happening *at this very moment*,
+      whereas Verb[ている] can refer to a broader ongoing period or a resultant state.
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+  - term: Verb[て]ある
+    meaning: a state resulting from an intentional action (transitive verb)
+    kind: similar expression
+    nuance: Verb[て]ある implies that a state exists *because someone intentionally did something* to create
+      that state, often with a transitive verb and an omitted agent. Verb[ている] for resultative states
+      often uses intransitive verbs or simply describes the state without implying specific intent to
+      prepare it.
+    grammar_point: てある (resultant state)
+post_false_friends_writeup: While these expressions might seem similar, paying attention to the specific
+  nuance of ongoing action, present state, and intentionality will help distinguish them. Remember that
+  Verb[ている] is versatile, covering continuous actions, current states, and habitual actions.
+examples:
+  - english: What are you doing now?
+    japanese:
+      - 今 何 を {し て いる} の？
+      - 今 何 を {し て い ます} か？
+      - 今 何 を {し てる} の？
+    english_literally: Now what are you doing?
+    competing_grammar:
+      - competing_japanese:
+          - 今 何 を する の？
+        english: What will you do now?
+        hint: The Verb[dictionary] form implies a future action. We're looking for an action that is currently
+          in progress.
+    scene: A friend calls you on the phone and asks what you're up to.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: This is a common casual question using the contracted form of {している}. The polite version would
+      be {しています}.
+  - english: I'm studying Japanese at the library.
+    japanese:
+      - 図書 館 で 日本 語 を {勉強 し て い ます}。
+      - 図書 館 で 日本 語 を {勉強 し て いる}。
+      - 図書 館 で 日本 語 を {勉強 し てる}。
+    english_literally: At the library, Japanese is studying.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 で 日本 語 を 勉強 する。
+        english: I will study Japanese at the library.
+        hint: The simple present Verb[dictionary] form suggests a future intention. We're looking for
+          an ongoing action.
+      - competing_japanese:
+          - 図書 館 で 日本 語 を 勉強 する ところ です。
+        english: I'm just about to study Japanese at the library.
+        hint: Verb[ているところだ] emphasizes immediacy. We're looking for an action that is currently ongoing,
+          not just about to start.
+    scene: You're telling your professor what you are currently engaged in.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: non-past polite (～ます)
+  - english: The window is open.
+    japanese:
+      - 窓 が {開い て い ます}。
+      - 窓 が {開い て いる}。
+      - 窓 が {開い てる}。
+    english_literally: Window is open.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 が 開く。
+        english: The window opens/will open.
+        hint: The Verb[dictionary] for 開く means the action of opening or that it will open. We're looking
+          for the current state of being open.
+      - competing_japanese:
+          - 窓 が 開け て あり ます。
+        english: The window has been opened (by someone).
+        hint: Verb[て]ある implies intentional action by someone to leave it open. Here, we're simply stating
+          the current state of the window, regardless of *who* opened it or *why*.
+    scene: You notice a window in the room is not closed.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: He is wearing a blue shirt.
+    japanese:
+      - 彼 は 青い シャツ を {着 て い ます}。
+      - 彼 は 青い シャツ を {着 て いる}。
+      - 彼 は 青い シャツ を {着 てる}。
+    english_literally: He blue shirt is wearing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 青い シャツ を 着る。
+        english: He wears a blue shirt (habitually/will wear).
+        hint: The Verb[dictionary] form can describe habitual action, but not the current state of wearing.
+          We're looking for what he is currently wearing.
+    scene: You are describing a person's current attire to a friend.
+    register: casual
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: The verb 着る (kiru - to wear, put on above waist) when used with {着ています} indicates the *state*
+      of wearing something, not the action of putting it on. Even though it's polite, the context of describing
+      someone to a friend can be casual.
+  - english: I'm married.
+    japanese:
+      - 結婚 {し て い ます}。
+      - 結婚 {し て いる}。
+      - 結婚 {し てる}。
+    english_literally: Marriage is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 結婚 する。
+        english: I will get married.
+        hint: 結婚する indicates the action of getting married. We're looking for the current state of being
+          married.
+    scene: Someone asks about your relationship status.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: My cat is sleeping on the sofa.
+    japanese:
+      - うち の 猫 が ソファ で {寝 て いる}。
+      - うち の 猫 が ソファ で {寝 てる}。
+      - うち の 猫 が ソファ で {寝 て い ます}。
+    english_literally: My cat sofa at is sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 が ソファ で 寝る。
+        english: My cat sleeps on the sofa (habitually/will sleep).
+        hint: The Verb[dictionary] for 寝る can describe a habit or future action. We are looking for the
+          current state of being asleep.
+    scene: You come home and see your cat napping.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This example uses the casual contracted form {寝てる} (neteru) for 寝ている, which is very common
+      in informal speech. The female speaker uses polite language when addressing others, but the casual
+      form is natural when speaking to herself or a pet.
+  - english: The light is on.
+    japanese:
+      - 電気 が {つい て い ます}。
+      - 電気 が {つい て いる}。
+      - 電気 が {つい てる}。
+    english_literally: Electricity is attached/on.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 が つく。
+        english: The light will turn on.
+        hint: The Verb[dictionary] for つく means the action of turning on. We're looking for the current
+          state of being on.
+    scene: You walk into a room and notice the illumination.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: They have lived in Tokyo for 10 years.
+    japanese:
+      - 彼 ら は 東京 に １０ 年 {住ん で い ます}。
+      - 彼 ら は 東京 に １０ 年 {住ん で いる}。
+      - 彼 ら は 東京 に １０ 年 {住ん でる}。
+    english_literally: They Tokyo in 10 years are living.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 東京 に １０ 年 住み ます。
+        english: They will live in Tokyo for 10 years.
+        hint: The Verb[ます] form of 住む usually refers to a future action or habitual action but doesn't
+          convey the sense of *having lived* there up to now. We're looking for a state of continuous
+          residence.
+    scene: You are explaining a couple's residency history to a mutual acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: He knows the answer.
+    japanese:
+      - 彼 は 答え を {知っ て い ます}。
+      - 彼 は 答え を {知っ て いる}。
+      - 彼 は 答え を {知っ てる}。
+    english_literally: He answer is knowing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 答え を 知る。
+        english: He will come to know the answer/He knows the answer (general).
+        hint: 知る in its dictionary form is used for the action of coming to know. To express the state
+          of 'knowing,' Verb[ている] is used.
+    scene: You are discussing a problem with a colleague, and you mention someone who has the solution.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: The verb 知る (shiru - to know/find out) always takes the {知っています} form to express the state
+      of 'knowing.' It would be incorrect to use 知ります in this context. The male speaker uses polite language
+      suitable for a professional setting.
+  - english: I'm not doing anything right now.
+    japanese:
+      - 今、何 も {し て い ませ ん}。
+      - 今、何 も {し て い ない}。
+      - 今、何 も {し て ない}。
+    english_literally: Now, nothing am doing not.
+    competing_grammar:
+      - competing_japanese:
+          - 今、何 も し ませ ん。
+        english: I won't do anything now.
+        hint: The simple negative Verb[ます] form implies future non-action or a general disinclination.
+          We're looking for a statement about current activity.
+    scene: Someone asks if you're busy.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative non-past polite (～ません)
+  - english: They were laughing at the joke.
+    japanese:
+      - 彼 ら は 冗談 に {笑っ て い まし た}。
+      - 彼 ら は 冗談 に {笑っ て い た}。
+      - 彼 ら は 冗談 に {笑っ て た}。
+    english_literally: They joke at were laughing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 冗談 に 笑い まし た。
+        english: They laughed at the joke.
+        hint: 笑いました indicates a completed action in the past. We're looking for an action that was ongoing
+          in the past.
+    scene: You are recounting a past event where someone found something amusing.
+    register: teineigo (polite)
+    setting: storytelling
+    conjugation: past polite (～ました)
+  - english: What were you reading just now?
+    japanese:
+      - さっき 何 を {読ん で い まし た} か？
+      - さっき 何 を {読ん で い た} の？
+      - さっき 何 を {読ん で た} の？
+    english_literally: Just now what were reading?
+    competing_grammar:
+      - competing_japanese:
+          - さっき 何 を 読み まし た か？
+        english: What did you read just now?
+        hint: 読みました implies a completed reading action. We're looking for what was being read, suggesting
+          an ongoing action in the past.
+    scene: You see someone put down a book or magazine.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: past polite (～ました)
+post_example_writeup: Understanding the core concept of Verb[ている] requires careful attention to context,
+  as the same form can express both ongoing actions and resultant states. Practice distinguishing these
+  uses, especially with verbs that commonly describe states like 知る (to know) or 住む (to live), rather
+  than continuous actions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/2

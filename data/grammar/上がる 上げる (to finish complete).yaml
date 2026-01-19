@@ -1,0 +1,505 @@
+grammar_point: 上がる 上げる (to finish complete)
+learn_before:
+  - やっと (finally・barely)
+meaning: Something is finished, To finish something, Something has come to an end, To do something completely,
+  To do something through
+meaning_warning: 上がる is intransitive, 上げる is transitive
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 上がる・上げる
+    rarity: common
+    meaning: to finish/complete (intransitive/transitive)
+  - conjugation-type: non-past polite (～ます)
+    form: 上がります・上げます
+    rarity: common
+    meaning: to finish/complete (intransitive/transitive)
+  - conjugation-type: negative plain (～ない)
+    form: 上がらない・上げない
+    rarity: common
+    meaning: not to finish/complete (intransitive/transitive)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 上がりません・上げません
+    rarity: common
+    meaning: not to finish/complete (intransitive/transitive)
+  - conjugation-type: past plain (～た)
+    form: 上がった・上げた
+    rarity: common
+    meaning: finished/completed (intransitive/transitive)
+  - conjugation-type: past polite (～ました)
+    form: 上がりました・上げました
+    rarity: common
+    meaning: finished/completed (intransitive/transitive)
+  - conjugation-type: negative past plain (～なかった)
+    form: 上がらなかった・上げなかった
+    rarity: common
+    meaning: did not finish/complete (intransitive/transitive)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 上がりませんでした・上げませんでした
+    rarity: common
+    meaning: did not finish/complete (intransitive/transitive)
+  - conjugation-type: te-form (～て)
+    form: 上がって・上げて
+    rarity: common
+    meaning: finishing/completing (intransitive/transitive) (te-form)
+  - conjugation-type: conditional (～ば)
+    form: 上がれば・上げれば
+    rarity: uncommon
+    meaning: if one finishes/completes (intransitive/transitive)
+  - conjugation-type: conditional (～たら)
+    form: 上がったら・上げたら
+    rarity: uncommon
+    meaning: if/when one finishes/completes (intransitive/transitive)
+  - conjugation-type: volitional (～よう)
+    form: 上がろう・上げよう
+    rarity: rare
+    meaning: let's finish/complete (intransitive/transitive)
+  - conjugation-type: volitional polite (～ましょう)
+    form: 上がりましょう・上げましょう
+    rarity: rare
+    meaning: shall we finish/complete (intransitive/transitive)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 上がれ・上げろ
+    rarity: uncommon
+    meaning: finish/complete! (intransitive/transitive)
+  - conjugation-type: potential (～られる/～える)
+    form: 上がれる・上げられる
+    rarity: common
+    meaning: can finish/complete (intransitive/transitive)
+  - conjugation-type: passive (～られる/～かれる)
+    form: 上げられる
+    rarity: rare
+    meaning: to be finished/completed (transitive only)
+  - conjugation-type: causative (～させる)
+    form: 上げさせる
+    rarity: uncommon
+    meaning: to make/let someone finish/complete (transitive only)
+pronunciation:
+  katakana: アガル・アゲル
+  romaji: agaru, ageru
+formation:
+  '[Verb stem] + 上がる': Indicates the completion of an action; intransitive. The subject completes itself.
+  '[Verb stem] + 上げる': Indicates the completion of an action; transitive. The subject completes the object.
+  '[Verb stem] + 出来上がる': To be completed, to be done (intransitive)
+  '[Verb stem] + 仕上げる': To finish, to complete (transitive)
+jlpt: N3
+etymology: The verb 「上がる (agaru)」 means "to rise" or "to go up." 「上げる (ageru)」 means "to raise" or "to
+  lift up." When attached to the stem of another verb, they carry the nuance of completing the action
+  to its fullest extent, as if the action has "risen" to its peak or has been "lifted" to completion.
+writeup: |-
+  When used after the conjunctive (masu-stem) form of a verb, either of the verbs 「上げる (ageru)」 "to raise," or 「上がる (agaru)」 "to rise" may be used. They convey that something has been done "to the limit." 「上がる」 is used for actions that take place by themselves (intransitive), while 「上げる」 is used for actions that have an instigator (transitive). Although 「上げる」 and 「上がる」 show that something has been done "to the limit," the nuance is usually "to do (A) to the point of completion," or "to do (A) through to the end." Therefore, the "limit" that is highlighted is usually a natural ending, and not due to running out of some kind of resource.
+
+  Most commonly, 「上げる」 and 「上がる」 are used when some kind of effect or product is produced as a result of the (A) action. In these cases, the literal meaning of "to (A) up" is very similar to "to finish up (A)" in English.
+
+  **Important Considerations**
+  Note that 「仕上がる (shiagaru)」 is a very common expression that is used for many things. Usually, it conveys that something has been completed after some involved or time-consuming process.
+false_friends:
+  - term: はじめる
+    meaning: To start, To begin to
+    kind: antonym
+    nuance: Unlike 「上がる・上げる」 which indicates completion, 「はじめる」 signifies the commencement of an action.
+      They represent opposite phases of a process, one being the start, the other the finish to completion.
+    grammar_point: '[Verb-stem]はじめる (to start doing)'
+  - term: 切れない
+    meaning: Being unable to finish or complete
+    kind: antonym
+    nuance: While 「上がる・上げる」 implies a successful and thorough conclusion, 「切れない」 expresses the inability
+      to finalize something, often due to a lack of capacity or resources. They are fundamentally opposite
+      in outcome.
+    grammar_point: 切れない (unable to finish fully)
+  - term: おわる
+    meaning: To finish, To end
+    kind: synonym
+    nuance: 「おわる」 is a general term for finishing any action or event. 「上がる・上げる」 adds a nuance of completing
+      something to its fullest extent, often implying a thorough or satisfactory culmination, rather than
+      just simply ending it. It emphasizes the achievement of a final, desired state.
+    grammar_point: '[Verb-stem]おわる (to finish doing)'
+  - term: てしまう・ちゃう
+    meaning: To do something completely; to do something by accident; to do something regrettably/unfortunately
+    kind: synonym
+    nuance: 「てしまう・ちゃう」 also indicates completion, but often carries additional connotations of doing something
+      completely or irrevocably, or by accident, or with a sense of regret or surprise. In contrast, 「上がる・上げる」
+      typically denotes a neutral or positive completion to a high standard, without these extra emotional
+      overtones.
+    grammar_point: <suggest>:てしまう・ちゃう (completion・regret・accident)
+  - term: 切る
+    meaning: To do something completely to the end, Utterly, Resolutely
+    kind: synonym
+    nuance: 「切る」 implies a decisive, exhaustive, and often difficult completion, emphasizing the act of
+      seeing something through to the absolute end. While 「上がる・上げる」 also means completion, it highlights
+      the natural culmination or perfecting of an action, rather than the effort or decisiveness involved
+      in pushing it to its final point.
+    grammar_point: 切る (do completely or thoroughly)
+post_false_friends_writeup: While several expressions share the idea of "finishing" or "completing" something,
+  the key difference lies in the nuance. 「上がる・上げる」 emphasizes the natural conclusion or peak of an action.
+  To avoid confusion, consider whether you wish to highlight the inherent completeness of an action (use
+  「上がる・上げる」) or if you wish to emphasize the decisive ending (use 「切る」), the accidental nature (use 「てしまう」),
+  or the beginning of something (use 「はじめる」).
+examples:
+  - english: The rice has finished cooking.
+    japanese:
+      - ご飯 が 炊き {上がっ た} よ。
+      - ご飯 が 炊き {上がり まし た}。
+      - ご飯 が 炊き {上がっ た} わ。
+    english_literally: Rice boiled up finished, you know.
+    competing_grammar:
+      - competing_japanese:
+          - ご飯 が 炊き {始まっ た} よ。
+        english: The rice has started cooking.
+        hint: This means it *started* cooking, not that it *finished* cooking completely. We're looking
+          for completion.
+      - competing_japanese:
+          - ご飯 が 炊き {終わっ た} よ。
+        english: The rice finished cooking.
+        hint: This simply means the cooking process ended. We're looking for the nuance that it's perfectly
+          cooked and ready to eat.
+      - competing_japanese:
+          - ご飯 が 炊け {て しまっ た} よ。
+        english: The rice has completely cooked.
+        hint: While this can imply thorough completion, it can also imply an unwanted outcome or an accidental
+          action. We're looking for a neutral or positive completion.
+      - competing_japanese:
+          - ご飯 が {出来 た} よ。
+        english: The rice is ready.
+        hint: This is a general term for something being completed or ready. We're looking for the nuance
+          of something reaching its ideal state of completion through a process.
+    scene: A mother announcing dinner is ready to her family.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「炊き上がった」 implies that the rice has reached a state of perfect completion and readiness
+      for consumption, highlighting a thorough and satisfactory outcome rather than a mere cessation of
+      cooking. The sentence ending 「わ」 (often used by female speakers as seen in 「上がったわ」) adds a soft,
+      informative, or assertive tone to the announcement.
+  - english: I finally finished writing this thesis.
+    japanese:
+      - やっと この 論文 を 書き {上げ まし た}。
+      - やっと この 論文、書き {上げ た}。
+      - やっと この 論文 を 書き {上げる こと が でき まし た}。
+    english_literally: Finally this thesis, wrote up and completed.
+    competing_grammar:
+      - competing_japanese:
+          - やっと この 論文 を 書き {始め まし た}。
+        english: I finally started writing this thesis.
+        hint: This means it *started*, not that it *finished* completely. We're looking for completion.
+      - competing_japanese:
+          - この 論文 を 書き {切れ ませ ん} でし た。
+        english: I couldn't finish writing this thesis completely.
+        hint: This expresses inability to complete. We're looking for successful completion after effort.
+      - competing_japanese:
+          - やっと この 論文 を {書き 終え まし た}。
+        english: I finally finished writing this thesis.
+        hint: This simply means the writing process ended. We're looking for the nuance that it was completed
+          thoroughly and to a high standard, implying significant effort.
+      - competing_japanese:
+          - やっと この 論文 を 書け {て しまい まし た}。
+        english: I finally wrote this thesis completely.
+        hint: While this can imply thorough completion, it often carries a sense of an unwanted outcome
+          or an accidental action. We're looking for a neutral or positive completion emphasizing effort.
+      - competing_japanese:
+          - やっと この 論文 を 書き {切り まし た}。
+        english: I finally completely wrote this thesis.
+        hint: This emphasizes decisively finishing something, often with difficulty. `書き上げる` highlights
+          bringing it to a refined or perfected state through effort.
+      - competing_japanese:
+          - やっと この 論文 を {完成 さ せ まし た}。
+        english: I finally completed this thesis.
+        hint: This is a general term for completing something. We're looking for the nuance of something
+          being brought to a refined and perfected state through effort.
+    scene: A university student tells their professor they have submitted their challenging final paper.
+    register: semi-formal
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: 「書き上げました」 suggests not just finishing the task of writing, but completing it thoroughly and
+      to a high standard, implying a significant effort and achievement.
+  - english: This difficult jigsaw puzzle just won't come together completely.
+    japanese:
+      - この 難しい ジグソー パズル は なかなか 組み {上がら ない}。
+      - この 難しい ジグソー パズル は なかなか 組み {上がり ませ ん}。
+    english_literally: This difficult jigsaw puzzle hardly combines up.
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい ジグソー パズル は なかなか 組み {始まら ない}。
+        english: This means it doesn't even begin to assemble. We're looking for the nuance that it won't
+          reach a state of complete assembly.
+        hint: This means it doesn't even begin to assemble. We're looking for the nuance that it won't
+          reach a state of complete assembly.
+      - competing_japanese:
+          - この 難しい ジグソー パズル は 組み {切れ ない}。
+        english: This difficult jigsaw puzzle cannot be completely assembled.
+        hint: This implies an inability to complete due to the nature of the task. While similar, `組み上がらない`
+          highlights the puzzle's failure to naturally form a complete whole.
+      - competing_japanese:
+          - この 難しい ジグソー パズル は なかなか 組み {終わら ない}。
+        english: This difficult jigsaw puzzle hardly finishes assembling.
+        hint: This simply means the assembly process won't end. We're looking for the nuance that it won't
+          naturally form a complete whole.
+      - competing_japanese:
+          - この 難しい ジグソー パズル は なかなか {完成 し ない}。
+        english: This difficult jigsaw puzzle just won't be completed.
+        hint: This is a general term for something not being completed. We're looking for the nuance of
+          pieces not naturally forming a complete whole.
+    scene: A child frustrated with a complex toy, showing it to a grandparent.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_age: younger
+    nuance: 「組み上がらない」 specifically refers to the puzzle pieces not naturally forming the complete picture,
+      highlighting the lack of natural culmination of the assembly process.
+  - english: Please compile these materials thoroughly by tomorrow.
+    japanese:
+      - この 資料 を 明日 まで に まとめ {上げ て} ください。
+      - この 資料 を 明日 まで に まとめ {上げ て} いただけ ます か。
+    english_literally: These materials, by tomorrow, summarize up and please.
+    competing_grammar:
+      - competing_japanese:
+          - この 資料 を 明日 まで に まとめ {始め て} ください。
+        english: Please start compiling these materials by tomorrow.
+        hint: This requests to *start* the compilation, not to complete it thoroughly. We're looking for
+          a thorough completion.
+      - competing_japanese:
+          - この 資料 を 明日 まで に まとめ {終え て} ください。
+        english: Please finish compiling these materials by tomorrow.
+        hint: This proposes to simply ask for the compilation process to end. We're looking for a thorough
+          and polished compilation.
+      - competing_japanese:
+          - この 資料 を 明日 まで に {まとめ て しまっ て} ください。
+        english: Please finish compiling these materials completely by tomorrow.
+        hint: While this can imply thorough completion, it often carries a sense of an unwanted outcome,
+          or doing something quickly/irreversibly. We're looking for thoroughness in a professional context.
+      - competing_japanese:
+          - この 資料 を 明日 まで に まとめ {切っ て} ください。
+        english: Please compile these materials completely by tomorrow.
+        hint: This emphasizes decisively finishing something, often with difficulty. `まとめ上げる` suggests
+          bringing it to a refined and excellent state.
+      - competing_japanese:
+          - この 資料 を 明日 まで に {まとめ て} ください。
+        english: Please compile these materials by tomorrow.
+        hint: This simply asks for compilation. We're looking for a thorough and polished compilation
+          that goes beyond a simple summary.
+      - competing_japanese:
+          - この 資料 を 明日 まで に {完了 さ せ て} ください。
+        english: Please complete these materials by tomorrow.
+        hint: This is a general term for completing something. We're looking for the nuance of compiling
+          thoroughly and to a high standard.
+    scene: A supervisor instructing an employee about an important report.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_age: older
+    nuance: 「まとめ上げて」 emphasizes the need for a complete, well-organized, and polished compilation of the
+      materials, beyond a simple summary, which is typical in a professional context.
+  - english: The new project was completed according to plan.
+    japanese:
+      - 新しい プロジェクト が 計画 通り に 出来 {上がっ た}。
+      - 新しい プロジェクト が 計画 通り に 出来 {上がり まし た}。
+    english_literally: New project according to plan, completed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト が 計画 通り に 出来 {始まっ た}。
+        english: The new project started according to plan.
+        hint: This means it *started*, not that it was completed. We're looking for completion.
+      - competing_japanese:
+          - 新しい プロジェクト が 計画 通り に {終わっ た}。
+        english: The new project finished according to plan.
+        hint: This simply means the project came to an end. We're looking for the nuance that it reached
+          a state of complete readiness and finality as intended.
+      - competing_japanese:
+          - 新しい プロジェクト が 計画 通り に 出来 {上がっ て しまっ た}。
+        english: The new project has completely finished according to plan.
+        hint: While this can imply thorough completion, it might also carry a sense of an unwanted outcome
+          or an action happening quickly/irreversibly. We're looking for a neutral, positive completion.
+      - competing_japanese:
+          - 新しい プロジェクト が 計画 通り に {完了 し た}。
+        english: The new project was completed according to plan.
+        hint: This is a general term for something being finished. We're looking for the nuance of something
+          reaching its final, perfected state.
+    scene: Colleagues celebrating the successful wrap-up of a long-term project.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: 「出来上がった」 signifies that the project reached a state of complete readiness and finality, successfully
+      fulfilling the intended plan.
+  - english: I spent several months to finish this novel.
+    japanese:
+      - この 小説 は 何 ヶ月 も かけ て 仕 {上げ まし た}。
+      - この 小説 は 何 ヶ月 も かけ て 仕 {上げ た}。
+    english_literally: This novel, took many months, finished up.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て 書き {始め まし た}。
+        english: I spent several months to start writing this novel.
+        hint: This means it *started*, not that it was finished. We're looking for completion.
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て も 書き {切れ ませ ん} でし た。
+        english: Even after several months, I couldn't finish writing this novel completely.
+        hint: This expresses inability to complete. We're looking for successful completion after effort.
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て {終え まし た}。
+        english: I spent several months to finish this novel.
+        hint: This simply means the writing process ended. We're looking for the nuance that it was meticulously
+          completed and refined.
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て 書き {終え て しまい まし た}。
+        english: I spent several months and ended up finishing this novel.
+        hint: While this can imply thorough completion, it often carries a sense of an unwanted outcome
+          or an action happening quickly/irreversibly. We're looking for a neutral or positive completion
+          emphasizing quality.
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て 書き {切り まし た}。
+        english: I spent several months to completely write this novel.
+        hint: This emphasizes decisively finishing something exhaustively. `仕上げる` highlights bringing
+          it to a refined and perfected state, implying craftsmanship.
+      - competing_japanese:
+          - この 小説 は 何 ヶ月 も かけ て {完成 さ せ まし た}。
+        english: I spent several months to complete this novel.
+        hint: This is a general term for completing something. We're looking for the nuance of meticulously
+          completing and refining a work.
+    scene: A novelist discusses their newly published book at a literary event.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: 「仕上げました」 suggests that the novel was meticulously completed and refined over a long period,
+      implying high quality and dedication to the craft, rather than a mere cessation of writing.
+  - english: The bread will be baked by morning.
+    japanese:
+      - 朝 に は パン が 焼き {上がり ます} よ。
+      - 朝 に は パン が 焼き {上がり ます}。
+      - 朝 に は パン が 焼き {上がる} よ。
+    english_literally: By morning, bread will be baked up, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 に は パン が 焼き {始め ます} よ。
+        english: The bread will start baking by morning.
+        hint: This means it *start* baking, not that it will be completely baked. We're looking for completion.
+      - competing_japanese:
+          - 朝 に は パン が 焼き {終わり ます} よ。
+        english: The bread will finish baking by morning.
+        hint: This simply means the baking process will end. We're looking for the nuance that it will
+          be perfectly baked and ready for consumption.
+      - competing_japanese:
+          - 朝 に は パン が 焼け {て しまい ます} よ。
+        english: The bread will be completely baked by morning.
+        hint: While this can imply thorough completion, it might also carry a sense of something happening
+          quickly or irrevocably. We're looking for a positive, natural completion.
+      - competing_japanese:
+          - 朝 に は パン が {焼け ます} よ。
+        english: The bread can be baked by morning.
+        hint: This implies capability or possibility. We're looking for the nuance that the bread will
+          be perfectly baked and ready for consumption.
+      - competing_japanese:
+          - 朝 に は パン が {出来上がり ます} よ。
+        english: The bread will be ready by morning.
+        hint: This is a general term for something being completed or ready. We're looking for the nuance
+          of bread reaching its ideal state of completion through baking.
+    scene: A baker tells a customer they can pick up their fresh bread in the morning.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「焼き上がります」 implies the bread will be perfectly baked and ready for consumption, reaching its
+      ideal state of completion. The sentence-final particle 「よ」 adds a tone of informing the listener
+      of something new or to draw their attention to the state of the bread.
+  - english: Let's all carry out this plan to completion!
+    japanese:
+      - みんな で この 計画 を 実行 し {上げ ましょう}！
+      - みんな で この 計画 を 実行 し {上げよう}！
+    english_literally: Everyone together, this plan, execute up and let's.
+    competing_grammar:
+      - competing_japanese:
+          - みんな で この 計画 を 実行 し {始め ましょう}！
+        english: Let's all start carrying out this plan!
+        hint: This proposes to *start* the execution, not to carry it out to completion. We're looking
+          for thorough completion.
+      - competing_japanese:
+          - みんな で この 計画 を 実行 し {終え ましょう}！
+        english: Let's all finish carrying out this plan!
+        hint: This proposes to simply finish the plan's execution. We're looking for a strong commitment
+          to fully implement it to a successful outcome.
+      - competing_japanese:
+          - みんな で この 計画 を 実行 し {終え て しまい ましょう}！
+        english: Let's all completely finish carrying out this plan!
+        hint: While this implies thorough completion, it can also suggest doing something quickly or irrevocably.
+          We're looking for a thorough and positive completion emphasizing effort.
+      - competing_japanese:
+          - みんな で この 計画 を 実行 し {切り ましょ う}！
+        english: Let's all completely carry out this plan decisively!
+        hint: This emphasizes decisively seeing the plan through to its absolute end. `実行し上げる` highlights
+          bringing it to a refined and excellent state of completion.
+      - competing_japanese:
+          - みんな で この 計画 を {実行 し ましょう}！
+        english: Let's all execute this plan!
+        hint: This proposes to simply execute the plan. We're looking for a strong commitment to fully
+          implement it to its ultimate, successful outcome.
+      - competing_japanese:
+          - みんな で この 計画 を {完成 さ せ ましょう}！
+        english: Let's all complete this plan!
+        hint: This is a general term for completing something. We're looking for the nuance of pushing
+          the plan through to its ultimate, successful outcome.
+    scene: A team leader motivating their team during a challenging phase of a project.
+    register: semi-formal
+    setting: persuasive
+    conjugation: volitional polite (～ましょう)
+    nuance: 「実行し上げましょう」 conveys a strong sense of commitment to fully implementing the plan until it achieves
+      its ultimate, successful outcome.
+  - english: The new commercial building was finally completed last month.
+    japanese:
+      - 新しい 商売 ビル が 先月 やっと 建ち {上がり まし た}。
+      - 新しい 商売 ビル が 先月 やっと 建ち {上がっ た}。
+    english_literally: New commercial building, last month, finally built up.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 商売 ビル が 先月 やっと 建ち {始め まし た}。
+        english: The new commercial building finally started construction last month.
+        hint: This means construction began, not that it finished. We're looking for completion.
+      - competing_japanese:
+          - 新しい 商売 ビル が 先月 やっと {完成 し まし た}。
+        english: The new commercial building was finally completed last month.
+        hint: This is a general term for completion. We're looking for the nuance of a complex construction
+          reaching its final, functional state.
+      - competing_japanese:
+          - 新しい 商売 ビル が 先月 やっと 建ち {終わり まし た}。
+        english: The new commercial building finally finished being built last month.
+        hint: This simply means the building process ended. We're looking for the nuance that it's fully
+          built and ready for use.
+    scene: A real estate agent proudly announces the completion of a major construction project.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: 「建ち上がりました」 emphasizes the successful culmination of a large-scale and often complex construction
+      project, suggesting that the building has taken its final form and is ready for use.
+  - english: The actors delivered a splendid performance of the classic play.
+    japanese:
+      - 俳優 たち が その 古典 劇 を 見事 に 演じ {上げ まし た}。
+      - 俳優 たち が その 古典 劇 を 見事 に 演じ {上げ た}。
+    english_literally: Actors, that classic play, splendidly performed up.
+    competing_grammar:
+      - competing_japanese:
+          - 俳優 たち が その 古典 劇 を 演じ {始め まし た}。
+        english: The actors started performing that classic play.
+        hint: This means they began, not completed, the performance. We're looking for completion.
+      - competing_japanese:
+          - 俳優 たち が その 古典 劇 を 見事 に {演じ 終わり まし た}。
+        english: The actors splendidly finished performing that classic play.
+        hint: This simply means the performance ended. We're looking for the nuance that they gave a complete
+          and excellent performance.
+      - competing_japanese:
+          - 俳優 たち が その 古典 劇 を 見事 に {演じ まし た}。
+        english: The actors splendidly performed that classic play.
+        hint: This is a general way to say they performed. We're looking for the nuance of them bringing
+          the play to a fully realized and excellent execution.
+    scene: A theater critic reviews a performance.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: 「演じ上げました」 highlights that the actors not only performed the play, but did so to a high standard,
+      bringing the production to a complete and polished state. This implies skill, effort, and a satisfactory
+      outcome.
+post_example_writeup: As demonstrated in the examples, 「V-上がる」 and 「V-上げる」 often form compound verbs that
+  describe various types of completion. For example, 「出来上がる (dekiagaru)」 means to be completed or finished
+  (often with a sense of achieving a final, perfect state, especially for food or products), while 「仕上げる
+  (shiageru)」 means to finish, complete, or perfect something (often used for tasks requiring craftsmanship
+  or attention to detail). Paying attention to these common compound verbs can help in understanding the
+  specific nuance of completion in context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/上がる-上げる

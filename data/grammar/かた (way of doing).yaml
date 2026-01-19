@@ -1,0 +1,245 @@
+grammar_point: かた (way of doing)
+learn_before:
+  - Verb[stem] (continuative)
+  - 〜かは〜によって違う (depends on)
+  - 〜について・〜に関して (about・regarding)
+  - あの (that)
+  - たい (want to do)
+  - にて (formal at・by means of)
+  - ね (seeking agreement)
+  - 知る (to know or find out)
+meaning: way of doing; how to
+pronunciation:
+  katakana: カタ
+  romaji: kata
+formation:
+  Verb[ます-stem] + 方: Indicates the method, manner, or 'how-to' of performing an action.
+jlpt: N4
+etymology: The suffix 「方 (かた)」 derives from the noun 「方 (かた)」 meaning 'direction' or 'side'. Over time,
+  its meaning extended to encompass 'method' or 'way' (as in 'the direction of an action' or 'the side
+  from which an action proceeds'), ultimately evolving into its current usage as a suffix to describe
+  the manner of an action.
+writeup: |-
+  The grammar point 「〜かた」 is attached to the ます-stem of a verb to form a noun, meaning "the way of doing something" or "how to do something." It nominalizes the action, allowing you to describe or inquire about the method, manner, or skill involved in performing that action.
+
+  For example, if you combine the ます-stem of 食べる (taberu - to eat), which is 食べ (tabe), with かた, you get 「食べ方 (tabekata)」, meaning "the way of eating" or "how to eat." Similarly, 「読む (yomu - to read)」 becomes 「読み方 (yomikata) - the way of reading」, and 「話す (hanasu - to speak)」 becomes 「話し方 (hanashikata) - the way of speaking or manner of speaking」.
+
+  This construction is often used with verbs like 分かる (wakaru - to understand), 上手だ (jouzuda - to be good at), and 下手だ (hetada - to be bad at), to express one's understanding or proficiency in a particular method or skill. For instance, 「漢字の読み方が分かりますか (Kanji no yomikata ga wakarimasu ka?) - Do you understand how to read kanji?」 or 「彼の話し方が上手だ (Kare no hanashikata ga jouzuda) - His way of speaking is good/skillful」.
+
+  It's a versatile and common pattern used across various contexts, from giving instructions to commenting on personal habits or skills.
+false_friends:
+  - term: 方法
+    meaning: method; way; means
+    kind: similar expression
+    nuance: 「方法」 is a standalone noun that refers to a general or specific method, procedure, or means
+      to achieve something. It is a more formal or objective term than 「かた」. While 「かた」 focuses on the
+      "how-to" aspect of an action, 「方法」 refers to the overall system or approach.
+    grammar_point: <suggest>:方法 (method)
+  - term: 様
+    meaning: way; manner; state
+    kind: often confused with
+    nuance: While 「かた」 specifically means "way of doing" and attaches to verb stems, 「様 (よう)」 functions
+      more broadly as a noun meaning "way" or "manner" (e.g., このように - in this way) or an auxiliary used
+      to indicate appearance or resemblance (e.g., 〜ようだ - it seems). They describe different aspects of
+      "how."
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 方
+    meaning: person; direction; side
+    kind: often confused with
+    nuance: This 「方 (かた)」 is a homophone but has entirely different meanings related to "person" (polite
+      term for 人) or "direction/side". The context will always differentiate it from 「〜かた (way of doing)」,
+      which always follows a verb stem.
+    grammar_point: <suggest>:方 (person・direction)
+post_false_friends_writeup: While 「〜かた」 specifically refers to the method or manner of performing a verb's
+  action, 「方法」 is a broader noun for a 'method' or 'means'. Use 「〜かた」 when you want to specify how a particular
+  action is carried out, often implying a skill or a standard procedure for that action. 「様 (よう)」, on
+  the other hand, describes a general 'manner' or 'appearance', or indicates resemblance, and is not directly
+  attached to a verb stem to form a 'way of doing'. Lastly, the homophonous 「方 (かた)」 referring to 'person'
+  or 'direction' is distinct and can be identified by its usage with different particles or in different
+  contexts. Pay attention to the part of speech and context to differentiate these.
+examples:
+  - english: Please tell me how to read this kanji.
+    japanese:
+      - この 漢字 の {読み 方} を 教え て ください。
+      - この 漢字 の {読み 方} 教え て よ。
+    english_literally: This kanji's reading way, please teach me.
+    competing_grammar:
+      - competing_japanese:
+          - この 漢字 を どう 読む か 教え て ください。
+        english: Please tell me how to read this kanji (in what manner).
+        hint: 「どう読むか」is a direct question about *how* to read it, but 「読み方」is asking for the *method*
+          or *way* of reading. We're looking for the way/method.
+    scene: A student asks their teacher for help with a difficult kanji.
+    register: teineigo (polite)
+    setting: academic
+  - english: He has a good way of speaking.
+    japanese:
+      - 彼 は {話し 方} が 上手 だ。
+      - 彼 は {話し 方} が 上手 です。
+      - あいつ の {話し 方}、うまい よ な。
+    english_literally: He's speaking way is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 話す こと が 上手 だ。
+          - 彼 は 話し ぶり が 上手 だ。
+        english: He is good at speaking / His manner of speaking is good.
+        hint: 「話すこと」 emphasizes the general act of speaking, and 「話しぶり」 describes the manner observed.
+          「話し方」 refers to the inherent method or skill of speaking. We're looking for the way/method.
+    scene: Two friends are discussing a mutual acquaintance's communication style.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「話し方」 refers to the 「manner」 or 「style」 of speaking, implying skill. The casual tone with
+      「上手だ」is common between male friends.
+  - english: This is a guide on how to use the machine.
+    japanese:
+      - これ は 機械 の {使い 方} の 説明 書 です。
+      - これ は 機械 の {使い 方} の 説明 書 だ よ。
+      - こちら は 機械 の {使い 方} に 関する 説明 書 で ござい ます。
+    english_literally: This is machine's using way's instruction manual.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 機械 を どう 使う か の 説明 書 です。
+        english: This is a manual on how to use the machine (what way to use).
+        hint: Similar to the first example, 「どう使うか」 is a direct question, while 「使い方」 refers to the method
+          of usage. We're looking for the method.
+    scene: An employee hands a manual to a new hire, explaining its purpose.
+    register: formal
+    setting: professional
+  - english: Do you know how to make this dish?
+    japanese:
+      - この 料理 の {作り 方} を 知っ て い ます か。
+      - この 料理 の {作り 方} 知っ てる？
+      - この 料理 の {作り 方} を ご 存知 です か。
+    english_literally: This dish's making way, do you know?
+    competing_grammar:
+      - competing_japanese:
+          - この 料理、どう やっ て 作る か 知っ て い ます か？
+        english: Do you know how to make this dish (what way to make it)?
+        hint: 「どうやって作るか」 asks about the specific process of making, while 「作り方」 refers to the general
+          method or recipe. We're looking for the method.
+    scene: Someone is looking at a recipe with a friend and asks if they can cook it.
+    register: semi-formal
+    setting: casual slang
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「作り方」 explicitly means "how to make." The use of 「〜ですか」is standard polite form suitable for
+      general conversation among friends or acquaintances.
+  - english: I don't understand her way of thinking.
+    japanese:
+      - 彼女 の {考え 方} が 分から ない。
+      - 彼女 の {考え 方} が 分かり ませ ん。
+      - あいつ の {考え 方}、マジ で 分かん ねぇ。
+    english_literally: Her thinking way, I don't understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 考える 方法 が 分から ない。
+        english: I don't understand her thinking method.
+        hint: While 「方法」 can also mean 'method', 「考え方」 is specifically used for someone's 'way of thinking'
+          or 'mindset'. We're looking for the specific manner of thinking.
+    scene: Someone is struggling to understand a colleague's perspective on a project.
+    register: casual
+    setting: professional
+  - english: We need to consider how to solve this problem.
+    japanese:
+      - この 問題 の {解き 方} を 考える 必要 が ある。
+      - この 問題 の {解き 方} を 考える 必要 が ある ね。
+      - この 問題 の {解き 方} を 考慮 する 必要 が ござい ます。
+    english_literally: This problem's solving way, there is a need to consider.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 を どう 解く か 考える 必要 が ある。
+        english: We need to consider how to solve this problem (how we will solve it).
+        hint: 「どう解くか」 focuses on the specific action of solving, while 「解き方」 refers to the established
+          method or approach. We're looking for the method.
+    scene: A team meeting discussing a challenging issue that requires a solution.
+    register: formal
+    setting: professional
+  - english: I want to learn how to play the guitar.
+    japanese:
+      - ギター の {弾き 方} を 習い たい。
+      - ギター の {弾き 方} を 習い たい です。
+      - ギター の {弾き 方}、習い たい ん だ よ ね。
+    english_literally: Guitar's playing way, I want to learn.
+    competing_grammar:
+      - competing_japanese:
+          - ギター を どう 弾く か 習い たい。
+        english: I want to learn how I should play the guitar.
+        hint: 「どう弾くか」 is about the immediate question of how to perform the action, while 「弾き方」 refers
+          to the technique or established way of playing. We're looking for the method.
+    scene: A student tells their friend about a new hobby they want to pick up.
+    register: casual
+    setting: friendly
+  - english: The way of writing reports differs depending on the company.
+    japanese:
+      - 報告 書 の {書き 方} は 会社 に よっ て 異なり ます。
+      - 報告 書 の {書き 方} は 会社 に よっ て 違う ん です。
+      - 報告 書 の {書き 方} は 各社 にて 相違 いたし ます。
+    english_literally: Report's writing way, by company, it differs.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 を 書く 方法 は 会社 に よっ て 異なり ます。
+        english: The method for writing reports differs depending on the company.
+        hint: 「方法」 is a more general term for 'method' or 'means'. 「書き方」 specifically means 'the way of
+          writing' and implies the detailed procedure or style. We're looking for the specific method.
+    scene: A business consultant explaining best practices and variations in corporate procedures.
+    register: formal
+    setting: professional
+    nuance: 「書き方」 here refers to the specific format or procedure for writing reports, common in professional
+      settings. The use of 「〜によって異なります」is a standard formal expression for indicating variation based
+      on a factor.
+  - english: Please explain the method for connecting these parts.
+    japanese:
+      - これ ら の 部品 の {繋ぎ 方} を 説明 し て ください。
+      - これ ら の 部品 の {繋ぎ 方}、説明 し て。
+      - これ ら の 部品 の {繋ぎ 方} を ご 説明 いただけ ます か。
+    english_literally: These parts' connecting way, please explain.
+    competing_grammar:
+      - competing_japanese:
+          - これ ら の 部品 を どう 繋ぐ か 説明 し て ください。
+        english: Please explain how to connect these parts.
+        hint: 「どう繋ぐか」 asks for instructions on connecting. 「繋ぎ方」 refers to the established way or procedure
+          for connection. We're looking for the method.
+    scene: A technician giving instructions to an apprentice about assembling equipment.
+    register: teineigo (polite)
+    setting: technical
+  - english: Even though I read the manual, I don't understand how to use it.
+    japanese:
+      - 説明 書 を 読ん だ けれど、{使い 方} が よく 分かり ませ ん。
+      - 説明 書 読ん だ けど、{使い 方} よく 分かん ない。
+      - 説明 書 を 読ん だ の です が、{使い 方} が 理解 でき ませ ん。
+    english_literally: Manual, I read, but using way, I don't understand well.
+    competing_grammar:
+      - competing_japanese:
+          - 説明 書 を 読ん だ けれど、どう やっ て 使う か よく 分かり ませ ん。
+        english: Even though I read the manual, I don't understand how I should use it.
+        hint: 「どうやって使うか」 directly asks for the steps of usage. 「使い方」 refers to the correct or established
+          way of using something. We're looking for the method.
+    scene: A person frustrated with a new gadget, despite trying to follow the instructions.
+    register: semi-formal
+    setting: casual slang
+    nuance: 「使い方」 here refers to the method of operation. 「〜けれど」 is a polite conjunction used to express
+      a contrast or a gentle objection.
+  - english: His way of holding chopsticks is beautiful.
+    japanese:
+      - 彼 の 箸 の {持ち 方} が きれい だ。
+      - 彼 の 箸 の {持ち 方} が きれい です。
+      - あの 人、箸 の {持ち 方} めっちゃ きれい だ よ ね。
+    english_literally: His chopsticks' holding way is beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 箸 を きれい に 持つ。
+        english: He holds chopsticks beautifully.
+        hint: This sentence describes the action of holding chopsticks gracefully. 「持ち方」 refers to the
+          specific *method* or *style* of holding them as a noun. We're looking for the method.
+    scene: Observing someone at a dinner table and remarking on their etiquette.
+    register: casual
+    setting: casual slang
+    nuance: 「持ち方」 specifically refers to the "manner of holding" rather than just the "method of holding,"
+      often implying elegance or correctness. The casual 「きれいだ」 is suitable for everyday conversation.
+post_example_writeup: As illustrated in the examples, 「〜かた」 is a highly versatile construction used to
+  describe methods, manners, and skills across a wide range of situations. It can be applied to practical
+  actions like making food or using a device, as well as more abstract concepts like thinking or speaking.
+  Understanding this nominalizing function of 「〜かた」 is key to accurately describing processes and abilities
+  in Japanese.

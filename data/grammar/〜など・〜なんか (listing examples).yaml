@@ -1,0 +1,243 @@
+grammar_point: 〜など・〜なんか (listing examples)
+learn_before:
+  - Verb[たり] (representative listing)
+meaning: etc.・and so on
+pronunciation:
+  katakana: ナド・ナンカ
+  romaji: nado・nanka
+formation:
+  Noun + など: Used after a noun to mean 'and so on,' 'and the like,' or 'things such as A.'
+  Noun + なんか: A more casual version of 'Noun + など,' often carrying a nuance of triviality, dismissal,
+    or softening.
+  Verb[dictionary form] + など: Used after a verb in dictionary form to mean 'doing things such as...' or
+    'and so on.'
+  Verb[dictionary form] + なんか: A casual variant of 'Verb[dictionary form] + など.'
+  い-Adjective[dictionary form] + など: Used after an i-adjective in dictionary form to mean 'being (adjective)
+    and so on.'
+  い-Adjective[dictionary form] + なんか: A casual variant of 'い-Adjective[dictionary form] + など.'
+  な-Adjective[だ] + など: Used after a na-adjective with 'だ' (or its various forms) to mean 'being (na-adjective)
+    and so on.'
+  な-Adjective[だ] + なんか: A casual variant of 'な-Adjective[だ] + など.'
+jlpt: N3
+etymology: The particle 「など」 originates from 「名処」 (na-do), literally meaning 'name place' or 'such a place,'
+  which evolved to denote 'such things' or 'and so on.' Its historical use expanded from referring to
+  places to encompassing items and actions. 「なんか」 is a more colloquial variant derived from 「などか」 (なども
+  + question particle か) or simply a phonological corruption of 「など」. Over time, it gained an informal,
+  sometimes dismissive, connotation when used to provide examples.
+writeup: "The particles 「など」 and 「なんか」 are used to provide non-exhaustive examples, essentially meaning\
+  \ \"etc.,\" \"and so on,\" or \"things such as....\" They indicate that the items or actions listed\
+  \ are representative examples, but there are other similar ones that could also be included. \n\n**「など」**\
+  \ is a versatile particle that can be used in a wide range of contexts, from formal to casual. It is\
+  \ typically attached to the last item in a list, or it can follow a single item to suggest that other\
+  \ similar items are implied. For example, 「鉛筆や消しゴムなど」 means \"pencils, erasers, etc.\" or \"things like\
+  \ pencils and erasers.\"\n\n**「なんか」** is a more colloquial and informal version of 「など」. While it shares\
+  \ the core meaning of indicating non-exhaustive examples, 「なんか」 often carries an additional nuance.\
+  \ This nuance can be: \n*   **Triviality or Dismissal**: When used to refer to something, it can imply\
+  \ that the speaker views it as unimportant or not a big deal. For instance, 「ゲームなんか」 might mean \"games\
+  \ (which are trivial).\" \n*   **Self-deprecation**: When referring to oneself, it can soften a statement\
+  \ or express humility, as in 「私なんか」 (\"someone like me\" or \"me, of all people\"). \n*   **Softening**:\
+  \ It can also simply make a statement sound more casual and less direct, similar to how \"like\" might\
+  \ be used in casual English conversation.\n\nIt is important to understand the difference in formality\
+  \ and nuance between 「など」 and 「なんか」. While 「など」 is a neutral choice for listing examples, 「なんか」 should\
+  \ be reserved for casual conversations and situations where its subtle dismissive or softening tone\
+  \ is appropriate. Using 「なんか」 in formal settings can sound impolite or inappropriate."
+false_friends:
+  - term: や
+    meaning: non-exhaustive list
+    kind: similar expression
+    nuance: 「や」 connects items within a list, implying that these are examples among others. 「など」 typically
+      follows the last item in a list or a single item, indicating "and so on" or "things like that."
+      「や」 often implies a more representative selection, whereas 「など」 can be more general.
+    grammar_point: や (non-exhaustive list)
+  - term: とか
+    meaning: listing examples・or something
+    kind: similar expression
+    nuance: 「とか」 is a more casual and conversational particle for listing examples, often carrying a vaguer
+      or more uncertain nuance like "or something." 「など」 is more formal and straightforward for listing,
+      while 「なんか」 is casual but can also imply triviality.
+    grammar_point: <suggest>:とか (listing examples)
+  - term: 〜なんて・〜なんか
+    meaning: showing contempt・making light of
+    kind: often confused with
+    nuance: While 「なんか」 can be used for listing examples, when paired with 「なんて」 or used with a strong
+      dismissive tone, it expresses contempt or makes light of something. The current grammar point focuses
+      purely on its function as "etc." for listing.
+    grammar_point: 〜なんて・〜なんか (showing contempt・making light of)
+post_false_friends_writeup: When differentiating between these particles for listing, consider the level
+  of formality and the nuance you wish to convey. 「や」 is good for simple, non-exhaustive lists where the
+  items are distinct. 「など」 is versatile for both simple listing and implying a broader category of things.
+  「とか」 is very casual and vague. Finally, be mindful that while 「なんか」 can list examples casually, it shares
+  its form with another use that implies contempt or triviality. The context and your intonation will
+  usually make the meaning clear.
+examples:
+  - english: I like sports such as soccer and baseball.
+    japanese:
+      - 私 は サッカー や 野球 {など} の スポーツ が 好き です。
+      - サッカー や 野球 {なん か} スポーツ が 好き だ よ。
+      - サッカー や 野球 {なん か} スポーツ が 好き だ。
+    english_literally: As for me, soccer and baseball, etc., sports I like.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は サッカー や 野球 が 好き です。
+        english: I like soccer and baseball (among other things).
+        hint: Using 「や」 implies that soccer and baseball are *the* examples being presented, and less
+          emphasis is placed on there being many other unmentioned examples. We're looking for a way to
+          clearly state 'and so on'.
+      - competing_japanese:
+          - 私 は サッカー や 野球 と か スポーツ が 好き です。
+        english: I like soccer and baseball or something like that, sports.
+        hint: 「とか」 is more casual and can imply vagueness or uncertainty about the examples. We're looking
+          for a more neutral 'and so on'.
+    scene: A student is talking about their hobbies in a classroom setting.
+    register: teineigo (polite)
+    setting: informative
+  - english: I ate a lot of delicious things like sushi and tempura.
+    japanese:
+      - 寿司 や 天ぷら {など} おいしい もの を たくさん 食べ まし た。
+      - 寿司 や 天ぷら {なん か} おいしい もの を いっぱい 食べ た よ。
+      - 寿司 や 天ぷら {なん か} おいしい もの を いっぱい 食べ た。
+    english_literally: Sushi and tempura, etc., delicious things, a lot I ate.
+    competing_grammar:
+      - competing_japanese:
+          - 寿司 や 天ぷら と か おいしい もの を たくさん 食べ まし た。
+        english: I ate a lot of delicious things like sushi and tempura or something.
+        hint: 「とか」 is very casual and suggests a less precise list. We need a more standard 'and so on'.
+    scene: Someone recounting their meal at a restaurant to a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I often read books, magazines, etc., on the train.
+    japanese:
+      - 電車 の 中 で 本 や 雑誌 {など} を よく 読み ます。
+      - 電車 で 本 や 雑誌 {なん か} よく 読む ん だ。
+    english_literally: Train's inside, books and magazines, etc., often read.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 の 中 で 本 や 雑誌 を よく 読み ます。
+        english: I often read books and magazines on the train.
+        hint: This sentence implies a complete list of what is read. We're looking for a non-exhaustive
+          list, indicating there might be other types of reading materials too.
+    scene: A person describing their daily commute habits to a colleague.
+    register: teineigo (polite)
+    setting: informative
+  - english: That store sells souvenirs like keychains and postcards.
+    japanese:
+      - あの 店 は キー ホルダー や はがき {など} の お 土産 を 売っ て い ます。
+      - あの 店、キー ホルダー や はがき {なん か} の お 土産 売っ てる よ。
+    english_literally: That store, keychains and postcards, etc., souvenirs sells.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 は キー ホルダー や はがき と か の お 土産 を 売っ て い ます。
+        english: That store sells souvenirs like keychains and postcards or something.
+        hint: 「とか」 suggests a vaguer list, perhaps also with a hint of unimportance. We need a clearer
+          indication of 'and so on'.
+    scene: Two friends discussing souvenir shopping.
+    register: teineigo (polite)
+    setting: friendly
+  - english: On holidays, I do things like watch TV or play games.
+    japanese:
+      - 休み の 日 は テレビ を 見 たり ゲーム を し たり {なん か} し ます。
+      - 休み の 日 は テレビ を 見 たり ゲーム を し たり {なん か} する。
+      - 休み の 日 は テレビ を 見 たり ゲーム を し たり {など} し ます。
+    english_literally: Holiday's day, TV watching, games playing, etc., do.
+    competing_grammar:
+      - competing_japanese:
+          - 休み の 日 は テレビ を 見 たり ゲーム を し たり し ます。
+        english: On holidays, I do things like watch TV or play games.
+        hint: This is a direct list of activities. The current grammar point, with 「なんか」, suggests these
+          are just casual, unexciting examples.
+    scene: A young man casually talking about his weekend plans with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+  - english: I'm not good at singing or dancing, things like that.
+    japanese:
+      - 歌っ たり 踊っ たり {なん か} 苦手 だ よ。
+      - 歌っ たり 踊っ たり {なん か} 苦手 だ。
+      - 歌っ たり 踊っ たり {など} が 苦手 です。
+    english_literally: Singing, dancing, etc., not good at, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 歌っ たり 踊っ たり が 苦手 だ よ。
+        english: Singing and dancing are things I'm not good at, you know.
+        hint: This is a simple statement of dislike for the listed activities. The use of 「なんか」 adds a
+          dismissive or slightly self-deprecating nuance.
+    scene: A teenager shyly declining an invitation to karaoke.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: The use of 「なんか」 after the verb phrase emphasizes the speaker's casual dismissal of singing
+      and dancing as activities they enjoy, implying 'things like *that* are just not for me.' The informal
+      「よ」 further underscores the casualness of the statement.
+  - english: He's always talking about cars and motorbikes and stuff.
+    japanese:
+      - 彼 は いつ も 車 や バイク {なん か} の 話 を し て いる よ。
+      - 彼 は いつ も 車 や バイク {なん か} の 話 を し て いる。
+      - 彼 は いつ も 車 や バイク {など} の 話 を し て い ます。
+    english_literally: He, always, cars and motorbikes, etc., talk is doing, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 車 や バイク と か の 話 を し て いる よ。
+        english: He's always talking about cars and motorbikes or something like that, you know.
+        hint: 「とか」 would also work here but might imply a slight uncertainty or vagueness about the types
+          of topics, whereas 「なんか」 more specifically suggests a casual, perhaps slightly dismissive, attitude
+          from the speaker towards those topics.
+    scene: A person gossiping about a mutual acquaintance's interests.
+    register: casual
+    setting: friendly
+    nuance: The 「なんか」 here subtly conveys a mild annoyance or disinterest from the speaker regarding the
+      friend's frequent topic of conversation, implying 'just cars and motorbikes, nothing else interesting.'
+  - english: For a healthy body, it's important to eat vegetables, fruits, and so on.
+    japanese:
+      - 健康 な 体 の ため に 野菜 や 果物 {など} を 食べる こと が 大切 です。
+      - 健康 な 体 の ため に 野菜 や 果物 {など} を 摂取 する こと が 重要 です。
+    english_literally: Healthy body's for, vegetables and fruits, etc., eating thing is important.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 な 体 の ため に 野菜 や 果物 を 食べる こと が 大切 です。
+        english: For a healthy body, eating vegetables and fruits is important.
+        hint: This sentence implies that only vegetables and fruits are important. The current grammar
+          point explicitly indicates that these are just examples among many other healthy foods.
+    scene: A nutritionist giving advice on a healthy diet.
+    register: formal
+    setting: informative
+  - english: Things like watching movies alone in a quiet room are what I love.
+    japanese:
+      - 静か な 部屋 で 一人 で 映画 を 見る {など} が 私 の 大好き な こと です。
+      - 静か な 部屋 で 一人 で 映画 を 見る {なん か}、私 の 大好き な こと だ。
+      - 静か な 部屋 で 一人 で 映画 を 見る {など} が 私 の 大好き な こと だ。
+    english_literally: Quiet room in, alone, movie watching, etc., is my favorite thing.
+    competing_grammar:
+      - competing_japanese:
+          - 静か な 部屋 で 一人 で 映画 を 見る の が 私 の 大好き な こと です。
+        english: Watching movies alone in a quiet room is my favorite thing.
+        hint: This expresses a single favorite activity. We're looking to convey that this is *one example*
+          among various things the speaker loves to do.
+    scene: Someone describing their ideal way to spend leisure time.
+    register: teineigo (polite)
+    setting: reflective
+  - english: Even things like simple greetings can make someone happy.
+    japanese:
+      - 簡単 な 挨拶 {なん か} で も 人 を 幸せ に する こと が できる よ。
+      - 簡単 な 挨拶 {なん か} で も 人 を 幸せ に する こと が できる。
+      - 簡単 な 挨拶 {など} で も 人 を 幸せ に する こと が でき ます。
+    english_literally: Simple greetings, etc., even, people happy make can, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 簡単 な 挨拶 で も 人 を 幸せ に する こと が できる よ。
+        english: Even simple greetings can make someone happy, you know.
+        hint: This sentence emphasizes 'simple greetings' as *the* example. The current grammar point,
+          with 「なんか」, suggests that simple greetings are just one trivial example of something that can
+          bring happiness, implying even the smallest things count.
+    scene: An older, empathetic person giving life advice to a younger one.
+    register: casual
+    setting: inspirational
+    speaker_age: older
+    nuance: The use of 「なんか」 here trivializes the act of 'simple greetings,' not to diminish their value,
+      but to emphasize that *even such a small thing* can have a big impact. It implies 'things as minor
+      as greetings.' The 「よ」 softens the advice given to the younger listener.
+post_example_writeup: These examples illustrate how 「など」 and 「なんか」 are used to provide examples without
+  being exhaustive. Remember that 「など」 is suitable for most contexts, while 「なんか」 adds a layer of casualness
+  and can convey a nuanced sense of triviality or humility. Choosing the correct particle helps you express
+  not just what you are listing, but also your attitude towards those examples.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%A9%E3%83%BB%E3%81%AA%E3%82%93%E3%81%8B-%EF%BC%88listing-examples%EF%BC%89

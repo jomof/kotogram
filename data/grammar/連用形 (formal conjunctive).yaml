@@ -1,0 +1,281 @@
+grammar_point: 連用形 (formal conjunctive)
+learn_before:
+  - Verb[て] (and then)
+  - 多い (many・a lot・much)
+  - ～直す (re-do・fix)
+meaning: Formal Conjunctive
+meaning_warning: Used primarily in written language
+pronunciation:
+  katakana: レンヨウケイ
+  romaji: ren'yōkei
+  pronunciation_warning: The long 'o' in 'yō' is sometimes shortened in casual speech.
+formation:
+  Verb (masu stem) + ,: Connects clauses in a formal style.
+  い-Adjective (く-form) + ,: Connects clauses in a formal style.
+  な-Adjective/Noun + で + ,: Connects clauses in a formal style.
+jlpt: N3
+etymology: The term 「連用形」 (ren'yōkei) literally means "connecting use form." It describes the form of
+  a word that connects to other words or phrases in a sentence, particularly in more formal writing styles.
+  This conjunctive function is the core of its etymological meaning.
+writeup: |-
+  The **連用形** (ren'yōkei), often referred to as the "masu-stem" or "conjunctive form," serves as a cornerstone of formal Japanese writing. It enables the concise connection of clauses and phrases, indicating a sequence of events, a cause-and-effect relationship, or concurrent states without requiring explicit conjunctions like **て**. This form is frequently encountered in academic papers, official documents, and literary works, contributing to a more refined and compact expression.
+
+  For **verbs**, the **連用形** is the dictionary form minus the **ます** when conjugated into the polite form. For instance, **食べます** (tabemasu) becomes **食べ** (tabe), and **書きます** (kakimasu) becomes **書き** (kaki). For **い-adjectives**, the **い** ending transforms into **く**. For example, **高い** (takai) becomes **高く** (takaku). When connecting **な-adjectives** or **nouns**, **で** is appended to the word. For example, **静か** (shizuka) becomes **静かで** (shizukade), and **学生** (gakusei) becomes **学生で** (gakuseide).
+
+  **Important Considerations:**
+
+  *   While **連用形** is grammatically correct and versatile, its usage is predominantly confined to **written Japanese** and highly formal spoken contexts, such as speeches or presentations. In everyday conversation, the **て-form** is significantly more common for connecting clauses.
+  *   A **Japanese comma** (読点, 、) often follows the **連用形** when connecting clauses. This comma is crucial for maintaining readability and clarity, preventing the sentence from becoming a confusing string of words. It visually separates the connected ideas, aiding comprehension in the absence of explicit conjunctions.
+  *   The **連用形** often implies a **direct causal or sequential link** between the connected clauses. For instance, **雨が降り、風邪を引いた** (Ame ga furi, kaze o hiita - The rain fell, I caught a cold) implicitly links the rain to catching a cold.
+false_friends:
+  - term: ではない
+    meaning: Not A but B, Conjunctive
+    kind: similar expression
+    nuance: Unlike 連用形, ではない explicitly contrasts two elements, indicating what something is not before
+      stating what it is.
+    grammar_point: ではない・じゃなくて (not A but B)
+  - term: じゃなくて
+    meaning: Not A but B, Conjunctive
+    kind: similar expression
+    nuance: Unlike 連用形, じゃなくて explicitly contrasts two elements, indicating what something is not before
+      stating it is.
+    grammar_point: ではない・じゃなくて (not A but B)
+  - term: て-form
+    meaning: connecting clauses, indicating sequence, reason, or simultaneous actions
+    kind: similar expression
+    nuance: While both 連用形 and て-form connect clauses, て-form is much more common in casual spoken Japanese
+      and is less formal. 連用形 tends to imply a stronger, often more formal, sequential or causal link.
+    grammar_point: Verb[て] (non-sequential events)
+  - term: および
+    meaning: And (formal); as well as
+    kind: similar expression
+    nuance: 連用形 connects clauses by modifying the first clause's form, implying sequence or relatedness
+      without an explicit conjunction. および is a formal conjunction that explicitly means "and" or "as
+      well as," typically used to list items or clauses of equal weight, rather than indicating a strong
+      causal or sequential flow.
+    grammar_point: および (and・as well as)
+  - term: 且つ
+    meaning: And; moreover; furthermore
+    kind: similar expression
+    nuance: While 連用形 connects clauses by modifying the verb/adjective/noun form to create a flow, 且つ
+      is a formal conjunction that explicitly means "and" or "moreover," often used to connect elements
+      of equal importance or to add an additional point. It doesn't imply a sequential or causal relationship
+      through grammatical modification like 連用形.
+    grammar_point: 且つ (and・moreover)
+  - term: 並びに
+    meaning: And; both ~ and ~; as well as
+    kind: similar expression
+    nuance: 連用形 provides a concise, formal connection between clauses, often implying sequence or causality.
+      並びに, on the other hand, is a very formal conjunction used to link nouns or clauses exhaustively,
+      meaning "and" or "as well as," emphasizing a comprehensive listing rather than a flowing narrative.
+    grammar_point: 並びに (and・as well as・formal)
+post_false_friends_writeup: The **連用形** primarily serves to connect clauses in a formal and often sequential
+  manner, emphasizing a direct relationship between actions or states. In contrast, forms like **ではない**
+  or **じゃなくて** explicitly negate one possibility to assert another. The **て-form** is a general conjunctive
+  that can express various relationships (sequence, cause, manner) but is notably more common in casual
+  speech than the formal **連用形**. Furthermore, explicit formal conjunctions like **および**, **且つ**, and
+  **並びに** are used to list items or clauses, whereas **連用形** achieves connection through grammatical form
+  modification, often implying sequence or causality without stating it directly.
+examples:
+  - english: I prepared the report and submitted it to my boss.
+    japanese:
+      - 報告 書 を {作成 し}、上司 に 提出 し た。
+      - 報告 書 を {作成 し}、上司 に 提出 し まし た。
+      - 報告 書 を {準備 し}、上司 に 提出 し た。
+    english_literally: Report prepared, to boss submitted.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 を 作成 し {て}、上司 に 提出 し た。
+        english: I prepared the report and submitted it to my boss.
+        hint: The て-form is typically used for connecting actions in casual speech. We're looking for
+          a more formal and concise connection suitable for written reports.
+    scene: A diligent office worker is recounting their completed tasks for the day.
+    register: formal
+    setting: professional
+    nuance: The verb 「作成し」 (sakuseishi) is the 連用形 of 作成する. This sentence describes a sequential completion
+      of tasks in a professional setting, where brevity and directness are valued. The formal tone of
+      「作成し」 fits well with reporting to a superior.
+  - english: This region is cold, and it snows a lot in winter.
+    japanese:
+      - この 地域 は {寒く}、冬 は 雪 が 多い。
+      - この 地域 は {寒く}、冬 は 雪 が 多い です.
+    english_literally: This region is cold, winter snow is much.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は 寒く {て}、冬 は 雪 が 多い。
+        english: This region is cold, and it snows a lot in winter.
+        hint: The て-form is common in conversational descriptions. We're looking for a more concise and
+          formal way to connect attributes, suitable for an academic presentation.
+    scene: A geography lecturer describes the climate of a particular area during a university lecture.
+    register: formal
+    setting: academic
+    nuance: The adjective 「寒く」 (samuku) is the 連用形 of 寒い. This usage concisely links two characteristics
+      of the region. The formal register of 連用形 is suitable for an informative, academic context where
+      precise and compact expression is desired.
+  - english: His speech was fluent, captivating the audience.
+    japanese:
+      - 彼 の スピーチ は {流暢 で}、聴衆 を 魅了 し た。
+      - 彼 の スピーチ は {流暢 で}、聴衆 を 魅了 し まし た.
+    english_literally: His speech was fluent, audience captivated.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の スピーチ は 流暢 {で あり}、聴衆 を 魅了 し た。
+        english: His speech was fluent, and it captivated the audience.
+        hint: While 'であり' is grammatically correct, 連用形 offers a more concise and elegant connection for
+          descriptive clauses in formal writing. We're looking for a simpler, more direct connection.
+    scene: A speech critic analyzes a speaker's performance in a written review.
+    register: formal
+    setting: academic
+    nuance: The な-adjective 「流暢で」 (ryūchōde) is the 連用形 of 流暢だ. It links the speaker's fluency directly
+      to the audience's captivation. This formal construction is characteristic of written analysis, where
+      smooth logical flow is prioritized.
+  - english: She is a doctor, and she saved the patient's life.
+    japanese:
+      - 彼女 は {医師 で}、患者 の 命 を 救っ た。
+      - 彼女 は {医師 で}、患者 の 命 を 救い まし た。
+    english_literally: She is a doctor, patient's life saved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 医師 {な の で}、患者 の 命 を 救っ た。
+        english: Since she is a doctor, she saved the patient's life.
+        hint: 「なので」 implies a reason or cause. We're looking for a simple, factual connection between
+          her profession and her action, without necessarily implying causation.
+    scene: A medical professional or a journalist is describing a doctor's heroic action in a formal report.
+    register: formal
+    setting: informative
+    nuance: The noun 「医師で」 (ishide) uses the 連用形 construction for nouns. This sentence establishes her
+      profession and immediately follows with an action she performed, demonstrating a concise and factual
+      recounting typical of formal narratives about professional achievements.
+  - english: The student read books in the library, completed the assignment, and then left the lab.
+    japanese:
+      - 学生 は 図書 館 で {本 を 読み}、課題 を {完成 し}、研究 室 を {後 に し た。
+      - 学生 は 図書 館 で {本 を 読み}、課題 を {完成 し}、研究 室 を {後 に し まし た。
+      - 学生 は 図書 館 で {本 を 読み}、課題 を {終え}、研究 室 を {後 に し た。
+    english_literally: Student in library books read, assignment completed, lab left.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 図書 館 で 本 を 読ん {で}、課題 を 完成 し {て}、研究 室 を 後 に し た。
+        english: The student read books in the library, completed the assignment, and then left the lab.
+        hint: Repeated use of the て-form can make a sentence sound less refined for a formal description.
+          We're looking for a more concise and flowing way to list a sequence of actions.
+    scene: A university professor describes the typical diligent routine of a dedicated student to an
+      incoming class.
+    register: formal
+    setting: instructional
+    nuance: 'This example showcases multiple 連用形 verbs in a sequence: 「読み」 (yomi), 「完成し」 (kanseishi),
+      and 「後にした」 (atoni shita). This stylistic choice provides a continuous, concise flow, common in written
+      reports or formal descriptions of processes or routines, emphasizing the progression of actions
+      without the pauses implied by repeated て-form.'
+  - english: The sky was blue and the clouds were white; it was a perfect day.
+    japanese:
+      - 空 は {青く}、雲 は {白く}、完璧 な 一 日 だっ た。
+      - 空 は {青く}、雲 は {白く}、完璧 な 一 日 でし た。
+    english_literally: Sky blue, clouds white, perfect day was.
+    competing_grammar:
+      - competing_japanese:
+          - 空 は 青く {て}、雲 は 白く {て}、完璧 な 一 日 だっ た。
+        english: The sky was blue, the clouds were white, and it was a perfect day.
+        hint: Using multiple て-forms for adjectives can sound conversational. We're looking for a more
+          elegant and concise way to describe multiple attributes, suitable for a literary context.
+    scene: An artist describes a beautiful day, emphasizing the visual elements for a painting.
+    register: formal
+    setting: creative
+    nuance: Here, two い-adjectives, 「青く」 (aoku) and 「白く」 (shiroku), are used in their 連用形 to describe
+      simultaneous states. This creates a visually coherent and poetic description, common in literary
+      contexts where conciseness and aesthetic flow are valued over conversational directness.
+  - english: Due to unforeseen circumstances, the event was postponed.
+    japanese:
+      - 予期 せ ぬ 事情 に {より}、イベント は 延期 さ れ た。
+      - 予期 せ ぬ 事情 に {より}、イベント は 延期 さ れ まし た。
+    english_literally: Unforeseen circumstances due to, event postponed was.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 せ ぬ 事情 に {よっ て}、イベント は 延期 さ れ た。
+        english: Due to unforeseen circumstances, the event was postponed.
+        hint: 「によって」 is a common causal expression, but 「により」 is often preferred in highly formal written
+          announcements for its conciseness. We're looking for the more formal, concise causal connection.
+    scene: An official notice posted on a website or bulletin board.
+    register: formal
+    setting: informative
+    nuance: The phrase 「により」 (ni yori), the 連用形 of による, is a very common formal expression used in written
+      announcements and official documents to state a cause or reason. Its conciseness and formality make
+      it suitable for conveying important information directly and succinctly.
+  - english: The old temple, being very quiet, provided a profound sense of tranquility.
+    japanese:
+      - 古寺 は {静か に}、深い 静寂 を 与え た。
+      - 古寺 は {静か に}、深い 静寂 を 与え まし た。
+    english_literally: Old temple quietly, deep tranquility gave.
+    competing_grammar:
+      - competing_japanese:
+          - 古寺 は 静か {で}、深い 静寂 を 与え た。
+        english: The old temple was quiet, and it provided a profound sense of tranquility.
+        hint: While '静かで' connects two states or descriptions, '静かに' here functions adverbially, modifying
+          '与えた' (gave), making it a more elegant literary expression. We're looking for a usage that describes
+          *how* it gave tranquility, rather than just *being* quiet and *then* giving tranquility.
+    scene: A travel writer pens a descriptive passage for a guide about spiritual places.
+    register: formal
+    setting: creative
+    nuance: 「静かに」 (shizuka ni) is the adverbial 連用形 of the na-adjective 静かだ. In this context, it functions
+      as an adverb, modifying 与えた (ataeta - gave), signifying "quietly gave." This construction is often
+      found in literary descriptions, lending a sense of refined quietude to the scene and describing
+      the *manner* in which the tranquility was provided.
+  - english: The results, being evident, led to immediate action.
+    japanese:
+      - 結果 は {明らか で}、直 ち に 対策 が 取ら れ た。
+      - 結果 は {明らか で}、直 ち に 対策 が 取ら れ まし た.
+    english_literally: Results evident, immediately measures taken were.
+    competing_grammar:
+      - competing_japanese:
+          - 結果 は 明らか {だっ た の で}、直 ち に 対策 が 取ら れ た。
+        english: Because the results were evident, immediate action was taken.
+        hint: 「だったので」 explicitly states a reason. We're looking for a more concise and formal way to present
+          a state as the direct background for a subsequent action, without explicitly stating a cause.
+    scene: A scientist presents findings in a research paper, emphasizing the clarity of the data.
+    register: formal
+    setting: academic
+    nuance: 「明らかで」 (akiraka de) is the 連用形 of the na-adjective 明らかだ. This concise phrase establishes the
+      clear state of the results and directly links it to the immediate implementation of countermeasures.
+      This formal connection is typical in academic or analytical writing where logical progression is
+      emphasized.
+  - english: Having prepared thoroughly, she performed splendidly on stage.
+    japanese:
+      - 彼女 は {入念 に} 準備 し、舞台 で 素晴らしい 演技 を 披露 し た。
+      - 彼女 は {入念 に} 準備 し、舞台 で 素晴らしい 演技 を 披露 し まし た。
+    english_literally: She thoroughly prepared, stage on splendid performance displayed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 入念 に 準備 し {た の で}、舞台 で 素晴らしい 演技 を 披露 し た。
+        english: Because she prepared thoroughly, she performed splendidly on stage.
+        hint: 「したので」 (shita no de) explicitly indicates a reason. We're looking for a more formal and
+          compact way to connect a preceding action (preparation) to a subsequent one (performance), implying
+          a direct flow rather than just a causal link.
+    scene: A journalist writes a review of a performer's successful show.
+    register: formal
+    setting: creative
+    nuance: 「入念に」 (nyūnen ni), derived from the na-adjective 入念だ, acts adverbially here, much like in
+      example 8, modifying 準備し (junbishi - prepared). This elegant construction succinctly expresses the
+      *manner* of her preparation and smoothly transitions to her performance, a style frequently seen
+      in written narratives or reviews that aim for conciseness and stylistic flow. The sequence of actions
+      is seamlessly linked.
+  - english: He arrived at the station, bought a ticket, and boarded the train.
+    japanese:
+      - 彼 は 駅 に {着き}、切符 を {買い}、電車 に 乗り込ん だ。
+      - 彼 は 駅 に {着き}、切符 を {買い}、電車 に 乗り込み まし た。
+      - 彼 は 駅 に {到着 し}、切符 を {買い}、電車 に 乗り込ん だ。
+    english_literally: He station at arrived, ticket bought, train boarded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 駅 に 着い {て}、切符 を 買っ {て}、電車 に 乗り込ん だ。
+        english: He arrived at the station, bought a ticket, and boarded the train.
+        hint: The repeated use of the て-form can sound repetitive in formal contexts. We're looking for
+          a more streamlined way to describe a sequence of actions undertaken by the same subject.
+    scene: A narrator describes a character's actions in a novel or story.
+    register: formal
+    setting: storytelling
+    nuance: 'This example demonstrates the 連用形 being used for a series of consecutive actions by the same
+      subject: 「着き」 (tsuki - arrived), 「買い」 (kai - bought). This pattern is characteristic of formal narratives
+      and reports, providing a smooth and concise flow to describe a sequence of events without repetitive
+      conjunctions, making the description feel more fluid and less disjointed.'
+post_example_writeup: While the **連用形** offers a concise and formal way to connect clauses, remember that
+  the **て-form** is the standard for everyday spoken Japanese. Opt for **連用形** when aiming for a more
+  polished, academic, or literary tone in written communication, or in highly formal speeches.

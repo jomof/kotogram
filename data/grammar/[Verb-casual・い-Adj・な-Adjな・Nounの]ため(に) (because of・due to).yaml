@@ -1,0 +1,453 @@
+grammar_point: '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+learn_before:
+  - '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - ては (inevitable negative outcome)
+  - で (cause・reason)
+  - ではない (formal negative copula)
+  - 得意 (good at)
+meaning: because of; due to
+pronunciation:
+  katakana: タメ (ニ)
+  romaji: tame (ni)
+formation:
+  Verb (plain form, any tense) + ため (に): 'Indicates the reason or cause for a situation. If the verb is
+    in past tense, it exclusively denotes reason/cause. Example: 遅刻した ため に (because I was late).'
+  Noun + の + ため (に): 'Indicates a reason/cause related to a noun. Example: 雨 の ため に (because of rain).'
+  い-Adjective (plain form) + ため (に): 'Indicates a reason or cause based on an い-adjective. Example: 寒い
+    ため に (because it''s cold).'
+  な-Adjective (stem + な) + ため (に): 'Indicates a reason or cause based on a な-adjective. Example: 静か な
+    ため に (because it''s quiet).'
+jlpt: N3
+etymology: The word 「為 (ため)」 is fundamentally a noun meaning 'sake,' 'benefit,' or 'purpose.' Its evolution
+  into a grammatical construction, often paired with the particle 「に」, reflects its dual capacity to express
+  both the intended goal of an action (purpose) and the underlying cause or reason for a situation. Historically,
+  the concept of 'for the sake of' naturally extended to 'because of,' as something done 'for the sake
+  of' a reason leads to a result. The optional 「に」 further solidifies this adverbial function, clarifying
+  whether the preceding clause serves as a goal or a contributing factor.
+writeup: 'The grammatical structure 「ため(に)」 is derived from the noun 「為 (ため)」, meaning ''sake'' or ''benefit''.
+  This specific grammar point focuses on its use to indicate the **reason** or **cause** for a particular
+  state or event. The presence or absence of the particle 「に」 is optional, but its inclusion often strengthens
+  the sense of a direct cause-and-effect relationship. When 「ため(に)」 expresses reason or cause (because
+  of, due to), it can convey an objective or factual reason for something. This usage is broad and can
+  follow various word types: *   **Verbs in their plain form (non-past or past)**: When a verb is in the
+  **past tense**, it *exclusively* denotes reason/cause. For instance, 大雪だった**ため に** (because it was heavy
+  snow) or 仕事が終わらなかった**ため に** (because work didn''t finish). *   **い-adjectives in their plain form**:
+  For example, 環境に良い**ため に** (because it''s good for the environment). *   **な-adjectives followed by
+  な**: For example, 不安な**ため に** (because she was anxious). *   **Nouns followed by の**: For example, 予期せぬ故障の**ため
+  に** (due to an unexpected breakdown). Compared to other causal expressions like 「から」 and 「ので」, 「ため(に)」
+  tends to be more formal and objective, making it suitable for explanations of factual causes or consequences,
+  or when a stronger, more direct causal link is implied.'
+false_friends:
+  - term: わけだ
+    meaning: for that reason; no wonder; as you'd expect; naturally; thus; this is why
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, which explains reason, 「わけだ」 typically implies a conclusion or understanding
+      derived from previous information or a situation.
+    grammar_point: わけだ (logical conclusion)
+  - term: のに
+    meaning: While 「の に」 can indicate purpose, it often carries a nuance of surprise, regret, or unexpected
+      outcome, which 「ため(に)」 does not. 「ため(に)」 is neutral regarding the outcome's expectation.
+    kind: similar expression
+    nuance: While 「の に」 can indicate purpose, it often carries a nuance of surprise, regret, or unexpected
+      outcome, which 「ため(に)」 does not. 「ため(に)」 is neutral regarding the outcome's expectation.
+    grammar_point: のに (unexpected result)
+  - term: には
+    meaning: in order to; in regard to; for
+    kind: similar expression
+    nuance: 「に は」 focuses more on conditions or requirements that are necessary for something to happen,
+      while 「ため(に)」 directly states the reason itself.
+    grammar_point: には (in order to)
+  - term: そのため
+    meaning: for that reason; because of that; to that end
+    kind: similar expression
+    nuance: 「そのため(に)」 is a conjunction that explicitly refers back to a previously stated reason. 「ため(に)」
+      can introduce a new reason without requiring a preceding context.
+    grammar_point: そのため (for that reason)
+  - term: 向き
+    meaning: suitable for; facing
+    kind: similar expression
+    nuance: 「向き」 describes suitability or orientation, indicating what something is appropriate for, rather
+      than expressing the cause of an action like 「ため(に)」.
+    grammar_point: '[Noun]向き (suitable for)'
+  - term: んがため
+    meaning: in order to; to; for the purpose of
+    kind: similar expression
+    nuance: 「んがため(に)」 is a more formal, literary, or emphatic version of 「ため(に)」 when expressing purpose,
+      often found in written language or very elevated speech. This grammar point 「ため(に)」 primarily focuses
+      on cause/reason, not purpose.
+    grammar_point: んがため (for the purpose of)
+  - term: から
+    meaning: Because, since
+    kind: similar expression
+    nuance: Both 「から」 and 「ため に」 can express reason/cause. 「から」 is generally more conversational and subjective,
+      often implying the speaker's direct reasoning or feelings, while 「ため に」 tends to sound more objective
+      and formal, especially when stating a factual cause or consequence.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので
+    meaning: because, so, since, the reason being
+    kind: similar expression
+    nuance: Similar to 「から」, 「の で」 expresses reason/cause. It is generally softer and more polite than
+      「から」, and often implies an objective reason. 「ため に」 can sometimes be interchanged with 「の で」 when
+      stating a reason, but 「ため に」 places a slightly stronger emphasis on the preceding clause as the
+      determining factor.
+    grammar_point: '[Clause]ので (because・so)'
+  - term: ように
+    meaning: so that; in order to; in such a way that
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, which directly states the objective or benefit of an action, 「よう に」 often
+      implies a purpose that involves a change of state, ability, or an indirect goal, often used with
+      verbs of potential or ability, or for requests/instructions.
+    grammar_point: ように (purpose or desired state)
+  - term: ことだから
+    meaning: Given the nature of (A), (B) is to be expected; Precisely because it is (A), (B).
+    kind: similar expression
+    nuance: 「ことだから」 is used to explain a reason based on someone's known characteristics or typical behavior,
+      suggesting an outcome is predictable. 「ため(に)」 states a more general and objective reason or cause
+      for events or actions.
+    grammar_point: ことだから (given the nature of)
+  - term: にあって
+    meaning: At, In the (place or situation), Under ~ conditions or circumstances, During, Suited to
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, 「にあって」 describes the circumstances **where** something occurs, rather than
+      the cause.
+    grammar_point: にあって (in certain conditions)
+  - term: によって・による
+    meaning: By means of, According to, Depending on, Because of, Due to
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, 「によって」 can also mean "by means of" or "according to," in addition to "because
+      of." It also refers to the means or agent through which something occurs.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: につき
+    meaning: Due to, on account of, for each/every
+    kind: similar expression
+    nuance: 「につき」 is more formal than 「ため(に)」 and often used in official announcements or notices. It
+      also carries the nuance of "each" or "every" when used in a different context.
+    grammar_point: につき (due to or per)
+  - term: せい
+    meaning: Because of, Due to, Blame
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, 「せい」 carries a negative connotation, implying blame or fault. The cause is
+      usually something undesirable.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: おかげで
+    meaning: Thanks to, Because of
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, 「おかげで」 has a positive connotation, implying gratitude or benefit. The cause
+      is usually something favorable.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: その結果
+    meaning: As a result
+    kind: similar expression
+    nuance: 「その結果」 directly emphasizes the outcome or consequence, while 「ため(に)」 focuses more on the cause
+      itself.
+    grammar_point: '[Verb-た・Nounの]結果 (as a result of)'
+  - term: Verb+にいく
+    meaning: to go to do something
+    kind: similar expression
+    nuance: While 「ため(に)」 states a general purpose for an action, 「Verb+にいく」 specifically indicates going
+      somewhere *in order to do* something. This grammar point 「ため(に)」 primarily focuses on cause/reason,
+      not purpose.
+    grammar_point: '[Verb-stem]に行く (to go in order to do)'
+post_false_friends_writeup: While these expressions share some conceptual overlap with 「ため(に)」, recognizing
+  their distinct nuances is crucial for accurate and natural Japanese. 「ため(に)」 serves as a versatile tool
+  for stating reason, emphasizing the direct connection between a preceding state and its consequence.
+  Other expressions might imply conditions, conclusions, or different levels of formality. Pay close attention
+  to the connotation, formality, and specific type of causal relationship each expression conveys.
+examples:
+  - english: Because it was heavy snow, school was canceled.
+    japanese:
+      - 大雪 だっ た {ため に}、学校 が 休み に なっ た。
+      - 大雪 だっ た {ため に}、学校 が 休み に なり まし た。
+    english_literally: Heavy snow was because of, school rest became.
+    competing_grammar:
+      - competing_japanese:
+          - 大雪 {で}、学校 が 休み に なっ た。
+        english: Due to heavy snow, school was canceled.
+        hint: While 「で」 can indicate cause, 「ため に」 puts a stronger emphasis on the preceding event as
+          the direct and primary cause. We're looking for a clear, emphasized reason.
+      - competing_japanese:
+          - 大雪 だっ た {から}、学校 が 休み に なっ た。
+        english: Because it was heavy snow, school was canceled.
+        hint: 「から」 can state a reason but is generally more conversational and subjective. 「ため に」 often
+          provides a more objective and definitive reason. We're looking for a clear, objective reason.
+    scene: A student explains why school was unexpectedly closed to their friend.
+    register: casual
+    setting: informative
+    nuance: This example uses 「ため に」 to indicate a reason or cause. The past tense of the noun with 「だった」
+      emphasizes that the heavy snow *was* the reason. The phrasing is direct and objective, explaining
+      the cause of the school closure.
+  - english: Because she was anxious, she couldn't sleep.
+    japanese:
+      - 彼 女 は 不 安 な {ため に}、眠 れ なかっ た。
+      - 彼 女 は 不 安 な {ため に}、眠 れ ませ ん でし た。
+    english_literally: She anxious was because of, sleep could not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 女 は 不 安 だ {から}、眠 れ なかっ た。
+        english: Because she was anxious, she couldn't sleep.
+        hint: 「から」 is a common way to state a reason, but 「ため に」 can offer a slightly more formal or objective
+          explanation, especially for a situation like inability to sleep. We're looking for a clear,
+          objective cause.
+    scene: A doctor is explaining a patient's sleep difficulties to a family member.
+    register: teineigo (polite)
+    setting: serious
+    speaker_gender: male
+    nuance: Here, 「ため に」 is used to state the reason for an involuntary action (inability to sleep). The
+      adjective 「不安 な」 describes her state, and 「ため に」 provides the cause. This illustrates its use with
+      a な-adjective to explain a consequence.
+  - english: We recycle because it's good for the environment.
+    japanese:
+      - 環境 に 良い {ため に}、リサイクル を し て い ます。
+      - 環境 に 良い {ため に}、リサイクル を し て いる。
+    english_literally: Environment to good because of, recycle doing are.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 に 良い {から}、リサイクル を し て い ます。
+        english: Because it's good for the environment, we recycle.
+        hint: 「から」 states a reason, but 「ため に」 can provide a more formal or emphasized explanation of
+          the benefit or objective reason. We're looking for the clear reason for the action.
+    scene: A community representative explains a local recycling initiative.
+    register: semi-formal
+    setting: informative
+    listener_gender: group
+    nuance: This example uses 「ため に」 with an い-adjective 「良い」 to state the reason. It highlights that
+      the action of recycling is done because it yields a positive outcome for the environment. The continuous
+      form 「し て い ます」 indicates an ongoing action.
+  - english: Because work didn't finish, I have to work overtime again today.
+    japanese:
+      - 仕事 が 終わら なかっ た {ため に}、今日 も 残業 だ。
+      - 仕事 が 終わら なかっ た {ため に}、今日 も 残業 です。
+    english_literally: Work finished not because of, today also overtime is.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が 終わら なかっ た {から}、今日 も 残業 だ。
+        english: Because work didn't finish, I have to work overtime again today.
+        hint: 「から」 is a common reason-giving particle, but 「ため に」 can convey a more direct and sometimes
+          slightly more formal or definitive cause for a consequence. We're looking for the direct cause
+          of the overtime.
+    scene: A tired office worker complains to their spouse about their schedule.
+    register: shitashii kuchō (intimate)
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    nuance: This example uses 「ため に」 to state a reason in the negative past tense. 「終わら なかった ため に」 indicates
+      that the unfinished work is the direct cause of having to work overtime. The casual tone and context
+      are typical of intimate conversation, often with a slightly resigned nuance for the male speaker.
+  - english: Because of yesterday's sudden business trip, I cannot attend today's meeting.
+    japanese:
+      - 昨日 の 急 な 出張 の {ため に}、今日 の 会議 に は 出 られ ませ ん。
+      - 昨日 の 急 な 出張 の {ため に}、今日 の 会議 に は 参加 でき ませ ん。
+    english_literally: Yesterday's sudden business trip's reason, to today's meeting, I cannot go out.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 急 な 出張 な {の で}、今日 の 会議 に は 出 られ ませ ん。
+        english: Because of yesterday's sudden business trip, I cannot attend today's meeting.
+        hint: 「ので」 is a common particle to express cause and effect, but 「ため に」 offers a more formal and
+          objective tone, especially when stating a reason for an absence or inability. We're looking
+          for a more formal and objective way to state the reason.
+    scene: A business professional is apologizing to a colleague for their absence from a meeting.
+    register: formal
+    setting: apologetic
+    nuance: 「急 な 出張」 (sudden business trip) is the objective cause. The speaker uses formal language like
+      「出られません」 (cannot attend) and the explicit causal connection of 「ために」 to clearly state the unavoidable
+      reason for absence. The alternative uses 「参加できません」 which is a direct translation of 'cannot participate'.
+  - english: Due to an unexpected breakdown, that machine cannot be used.
+    japanese:
+      - 予期 せ ぬ 故障 の {ため に}、その 機械 は 使用 でき ませ ん。
+      - 予期 せ ぬ 故障 の {ため に}、その 機械 は 使え ませ ん。
+    english_literally: Unexpected breakdown's reason, that machine cannot be used.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 せ ぬ 故障 {に よっ て}、その 機械 は 使用 でき ませ ん。
+        english: By an unexpected breakdown, that machine cannot be used.
+        hint: While 「によって」 can indicate cause, it often emphasizes the 'means' or 'agent' through which
+          something occurs. 「ため に」 focuses more directly on the objective reason. We're looking for a
+          direct, objective reason for something.
+    scene: A maintenance worker posts a notice about equipment that is out of order.
+    register: formal
+    setting: informative
+    nuance: 「予期せぬ 故障」 (unexpected breakdown) is the clear, objective cause. The use of 「ために」 here provides
+      a neutral, factual explanation for the machine's unavailability, common in official notices or reports.
+      「使用できません」 is the formal expression, while 「使えません」 is a more direct and slightly less formal but
+      still polite way to say the same thing.
+  - english: Because I've been busy lately, I don't have time for my hobbies.
+    japanese:
+      - 最近 忙しい {ため に}、趣味 の 時間 が あり ませ ん。
+      - 最近 忙しい {ため に}、趣味 の 時間 が ない ん です。
+      - 最近 忙しい {ため に}、趣味 の 時間 が ない。
+    english_literally: Lately busy's reason, hobby time does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 忙しい {の で}、趣味 の 時間 が あり ませ ん。
+        english: Because I've been busy lately, I don't have time for my hobbies.
+        hint: 「ので」 is a general causal conjunction. 「ため に」, even in casual settings, carries a slightly
+          more formal or emphatic nuance when stating a clear cause-and-effect. We're looking for a slightly
+          more formal or emphatic way to state the reason.
+    scene: A student laments to a friend about their lack of free time.
+    register: casual
+    setting: melancholic
+    nuance: 「忙しい」 (busy) is the direct cause of the lack of hobby time. This expresses a personal feeling
+      of busyness and its direct impact on one's life. 「ありません」 is polite, while 「ない ん です」 offers a slightly
+      more explanatory and casual tone, and 「ない」 is the plain, most casual form.
+  - english: Because he is diligent, he always works responsibly.
+    japanese:
+      - 彼 は 真面目 な {ため に}、いつ も 責任 を 持っ て 仕事 を し ます。
+      - 彼 は 真面目 な {ため に}、いつ も 責任 を 持っ て 仕事 を し て い ます。
+      - 彼 は 真面目 な {ため に}、いつ も 責任 感 を 持っ て 仕事 を し ます。
+    english_literally: He is diligent's reason, always with responsibility work he does.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 真面目 だ {から}、いつ も 責任 を 持っ て 仕事 を し ます。
+        english: Because he is diligent, he always works responsibly.
+        hint: 「から」 is a common, direct way to state a reason, but 「ため に」 emphasizes a characteristic or
+          inherent quality as the objective reason for a consistent outcome. We're looking for a way to
+          highlight an inherent trait as the cause.
+    scene: A manager is describing a good employee to a new team member.
+    register: semi-formal
+    setting: informative
+    nuance: 「真面目な」 (diligent/serious) highlights a positive trait as the cause for his responsible work.
+      「ため に」 here describes a characteristic that directly leads to an outcome. It's a neutral, almost
+      factual observation. The progressive form 「して います」 emphasizes the continuous nature of his work,
+      while 「責任感」 (sense of responsibility) emphasizes the feeling rather than the act.
+  - english: Because I drank too much last night, I have a terrible hangover this morning.
+    japanese:
+      - 昨夜、飲み すぎ た {ため に}、今朝 は ひどい 二 日 酔い です。
+      - 昨夜、飲み すぎ た {ため に}、今朝 は ひどい 二 日 酔い だ。
+      - 昨夜、飲み すぎ た {ため に}、今朝 は ひどい 二 日 酔い に なっ ちゃっ た。
+    english_literally: Last night, drank too much's reason, this morning is a terrible two-day-sickness.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜、飲み すぎ た {せい で}、今朝 は ひどい 二 日 酔い です。
+        english: While both can indicate cause, 「せい で」 strongly implies a negative consequence due to
+          someone's fault or a negative external factor. 「ため に」 is more neutral. We're looking for a more
+          neutral statement of cause and effect.
+        hint: While both can indicate cause, 「せい で」 strongly implies a negative consequence due to someone's
+          fault or a negative external factor. 「ため に」 is more neutral. We're looking for a more neutral
+          statement of cause and effect.
+    scene: A man calls his friends to say he can't make it to their morning plans due to a hangover.
+    register: casual
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「飲みすぎた」 (drank too much) is the direct cause of the hangover. 「ひどい 二日酔いです」 (terrible hangover)
+      expresses the severe consequence. This statement is common in casual settings when explaining a
+      self-inflicted negative outcome. The use of 「です」 keeps it polite but the content is casual. 「だ」
+      is the plain form, making it even more casual. 「なっちゃった」 emphasizes the unfortunate outcome in a
+      more colloquial way.
+  - english: Due to heavy snow, the trains are significantly delayed.
+    japanese:
+      - 大雪 の {ため に}、電車 が 大幅 に 遅れ て い ます。
+      - 大雪 の {ため に}、電車 に 大幅 な 遅れ が 生じ て い ます。
+      - 大雪 の {ため に}、電車 が 大幅 に 運行 を 遅らせ て い ます。
+    english_literally: Heavy snow's reason, train is significantly delayed.
+    competing_grammar:
+      - competing_japanese:
+          - 大雪 {に よっ て}、電車 が 大幅 に 遅れ て い ます。
+        english: Due to heavy snow, the trains are significantly delayed.
+        hint: Both 「ために」 and 「によって」 are used for formal announcements of causes. However, 「ために」 often
+          describes a direct cause, while 「によって」 can also imply a means or agent. We're looking for a
+          direct, objective cause.
+    scene: A train station announcement informing passengers about delays.
+    register: formal
+    setting: emergency/alarm
+    listener_gender: group
+    nuance: 「大雪」 (heavy snow) is the objective and impactful cause. 「大幅に 遅れています」 (significantly delayed)
+      describes the severe consequence. This usage is typical for factual public announcements of events
+      outside human control. 「遅れ が 生じ て い ます」 uses a more formal verb for 'occurrence of delay', and 「運行
+      を 遅らせ て い ます」 specifies 'delaying operation', both common in official announcements.
+  - english: Because that room is small, there's no space to put furniture.
+    japanese:
+      - その 部屋 は 狭い {ため に}、家具 を 置く 場所 が あり ませ ん。
+      - その 部屋 は 狭い {ため に}、家具 を 置く 場所 が ない。
+      - その 部屋 は 狭い {ため に}、家具 を 置く スペース が ない よ。
+    english_literally: That room is narrow's reason, furniture to put place does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - その 部屋 は 狭い {の で}、家具 を 置く 場所 が あり ませ ん。
+        english: Because that room is small, there's no space to put furniture.
+        hint: 「ので」 is a general causal conjunction. 「ため に」, even in casual settings, emphasizes an inherent
+          characteristic (being small) as the objective reason for the resulting lack of space. We're
+          looking for a clearer cause-and-effect based on an inherent property.
+    scene: A friend is showing another friend their new apartment and explaining why it's difficult to
+      furnish.
+    register: casual
+    setting: informative
+    nuance: 「狭い」 (small/narrow) is the inherent characteristic. 「家具を 置く 場所が ありません」 (no space to put furniture)
+      is the direct consequence. This is a common, relatable scenario. 「ありません」 is polite. 「ない」 is the
+      plain form. 「スペース が ない よ」 uses the English loanword for 'space' and the casual sentence-ending particle
+      「よ」, common in conversational settings.
+  - english: Because he is clumsy, he is bad at detailed work.
+    japanese:
+      - 彼 は 不 器用 な {ため に}、細かい 作業 が 苦手 です。
+      - 彼 は 不 器用 な {ため に}、細かい 作業 を 苦手 と し て い ます。
+      - 彼 は 不 器用 な {ため に}、細かい 作業 が 得意 で は あり ませ ん。
+    english_literally: He is clumsy's reason, detailed work he is bad at.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 不 器用 な {せい で}、細かい 作業 が 苦手 です。
+        english: While both can indicate cause, 「せい で」 specifically implies a negative outcome or something
+          to blame. 「ため に」 presents the characteristic more neutrally as an objective reason. We're looking
+          for a more neutral and objective statement of the reason.
+        hint: While both can indicate cause, 「せい で」 specifically implies a negative outcome or something
+          to blame. 「ため に」 presents the characteristic more neutrally as an objective reason. We're looking
+          for a more neutral and objective statement of the reason.
+    scene: A colleague is discussing another colleague's strengths and weaknesses.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「不器用な」 (clumsy/awkward) describes a personal characteristic leading to a certain inability.
+      「苦手です」 (is bad at) indicates a weakness. While 「せい で」 could also be used for a negative outcome,
+      「ため に」 presents it as a more neutral, inherent characteristic leading to the consequence. 「苦手 と
+      し て い ます」 is a slightly more formal way to express 'is bad at something'. 「得意 で は あり ませ ん」 is a
+      polite, indirect way to say 'is not good at', using the antonym.
+  - english: Because I studied hard, I was able to get a high score on the exam.
+    japanese:
+      - よく 勉強 し た {ため に}、試験 で 高い 点数 を 取れ まし た。
+      - よく 勉強 し た {ため に}、試験 で 高い 点数 を 取る こと が でき まし た。
+      - よく 勉強 し た {ため に}、試験 で 高い 点数 を 獲得 でき まし た。
+    english_literally: Studied hard's reason, on the exam high score was able to get.
+    competing_grammar:
+      - competing_japanese:
+          - よく 勉強 し た {おかげ で}、試験 で 高い 点数 を 取れ まし た。
+        english: Thanks to studying hard, I was able to get a high score on the exam.
+        hint: 「おかげで」 specifically implies gratitude or a positive outcome due to a beneficial cause. 「ため
+          に」 is more neutral, stating the direct cause-and-effect relationship. We're looking for a neutral
+          statement of cause and effect, not necessarily expressing gratitude.
+    scene: A student reflecting on their exam results.
+    register: formal
+    setting: excited
+    speaker_age: younger
+    nuance: 「よく 勉強した」 (studied hard) is the direct effort leading to the positive result. While 「おかげで」
+      emphasizes gratitude, 「ため に」 focuses more on the direct causal link, stating the achievement as
+      a natural consequence of the action. 「取る こと が でき まし た」 explicitly uses the 'can do' structure 「~こと
+      が できる」. 「獲得 でき まし た」 uses 「獲得」 (かく と く - acquire, gain) which is a more formal verb for 'getting
+      points'.
+  - english: Due to the introduction of a new system, the service will be temporarily suspended.
+    japanese:
+      - 新しい システム 導入 の {ため に}、一時 的 に サービス が 停止 し ます。
+      - 新しい システム 導入 の {ため に}、一時 的 に サービス が 停止 さ せ て いただき ます。
+      - 新しい システム 導入 の {ため に}、一時 的 に サービス の ご 利用 を 停止 さ せ て いただき ます。
+    english_literally: New system introduction's reason, temporarily service will stop.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム 導入 {に つき}、一時 的 に サービス が 停止 し ます。
+        english: Due to the introduction of a new system, the service will be temporarily suspended.
+        hint: 「につき」 is a very formal expression used in announcements or official documents to state a
+          reason. While 「ため に」 is also formal and objective, 「につき」 is often found in printed notices.
+          We're looking for a common expression for announcements.
+    scene: A company announces a temporary service interruption.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: 「新しい システム 導入」 (new system introduction) is the direct, objective cause. 「一時的に サービスが 停止します」
+      (service will be temporarily suspended) is the factual consequence. 「ため に」 is used here in a formal,
+      informative context, typical for public or internal announcements. 「停止 さ せ て いただき ます」 uses humble
+      language (させて いただく) common in company announcements for actions they are taking. 「サービス の ご 利用 を
+      停止 さ せ て いただき ます」 adds further politeness by referring to the customer's 'use of service' (ご利用).
+post_example_writeup: When 「ため(に)」 expresses reason or cause, it simply states why something happened
+  or is the case. Pay close attention to the form of the word preceding 「ため(に)」 to correctly interpret
+  its meaning, especially if the preceding verb is in the past tense, which strongly suggests a reason
+  or cause rather than a purpose.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ため-に

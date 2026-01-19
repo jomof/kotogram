@@ -1,0 +1,228 @@
+grammar_point: そういえば (speaking of which)
+learn_before:
+  - しか〜ない (only, nothing but)
+  - や (non-exhaustive list)
+  - 君・くん (honorific suffix)
+meaning: Speaking of which, by the way, come to think of it
+pronunciation:
+  katakana: ソウイエバ
+  romaji: sou ieba
+formation:
+  Phrase + そういえば + New topic: Used to introduce a topic that the speaker was reminded of or just thought
+    of. New topic
+jlpt: N2
+etymology: The phrase is derived from 「そう」 (like that) and 「言えば」 (if you say). The literal sense is akin
+  to "if saying that," which implies recalling something triggered by a previous statement. The combination
+  of 「そう」 and 「言えば」 functions as a cohesive unit to mark a sudden, prompted recollection, providing a
+  smoother transition into the recalled topic than a stark topic change.
+writeup: 「そういえば」 is used to introduce a topic that the speaker has just remembered or thought of, often
+  prompted by something previously mentioned in the conversation. It's similar to saying "speaking of
+  which," "by the way," or "come to think of it" in English. This phrase is typically used to transition
+  to a **related** topic, not to introduce completely unrelated subjects. This is a subtle but important
+  distinction from the English phrase "by the way." It is very similar in usage to 「といえば」, with 「そう」 simply
+  replacing the direct quotation particle 「と」. You can think of it as a set phrase.
+false_friends:
+  - term: ところで
+    meaning: By the way, incidentally
+    kind: often confused with
+    nuance: While 「そういえば」 is prompted by a previous statement or current context, 「ところで」 is used to introduce
+      a completely new and unrelated topic.
+    grammar_point: ところで (by the way)
+  - term: と言えば
+    meaning: Speaking of, if it were the case that
+    kind: similar expression
+    nuance: 「と言えば」 is used to bring up something directly related to the immediately preceding topic,
+      often as a direct response. 「そういえば」 introduces something the speaker just remembered or thought
+      of as a result of the conversation, not necessarily a direct response.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+post_false_friends_writeup: 'To avoid confusion, remember that 「そういえば」 is more about recalling something
+  prompted by the current discussion, while 「ところで」 signals a complete change of subject. 「と言えば」 is a direct
+  response or association with the current topic, often reinforcing or expanding on what was just said.
+  The core difference lies in the **trigger** for the new topic: for 「そういえば」 it''s a *recollection sparked
+  by the context*, while for 「ところで」 it''s a *deliberate topic shift*.'
+examples:
+  - english: Regarding that project, speaking of which, did you call Tanaka-san?
+    japanese:
+      - あの プロジェクト の 件 です が、{そう いえ ば}、田中 さん に 電話 し まし た か？
+      - あの プロジェクト の 件 だ けど、{そう いえ ば}、田中 さん に 電話 し た？
+    english_literally: Regarding that project's matter, if one were to say that, did you call Tanaka-san?
+    competing_grammar:
+      - competing_japanese:
+          - あの プロジェクト の 件 です が、{ところ で}、田中 さん に 電話 し まし た か？
+        english: Regarding that project, by the way, did you call Tanaka-san?
+        hint: 「そういえば」 is used for a sudden recollection related to the conversation. 「ところで」 introduces
+          a completely new topic. We're looking for a related memory.
+    scene: Two coworkers are discussing their tasks for the day, and one remembers a pending item.
+    register: semi-formal
+    setting: professional
+  - english: Want to watch a movie this weekend? Speaking of which, the movie I saw yesterday was really
+      interesting.
+    japanese:
+      - 週末、映画 で も 見る？{そう いえ ば}、昨日 見 た 映画、すごく 面白かっ た よ。
+      - 週末、映画 で も 見 ます か？{そう いえ ば}、昨日 見 た 映画、すごく 面白かっ た です よ。
+    english_literally: Weekend, shall we watch a movie or something? If one were to say that, the movie
+      seen yesterday was very interesting.
+    competing_grammar:
+      - competing_japanese:
+          - 週末、映画 で も 見る？{ところ で}、昨日 見 た 映画、すごく 面白かっ た よ。
+        english: Want to watch a movie this weekend? By the way, the movie I saw yesterday was really
+          interesting.
+        hint: 「そういえば」 suggests a spontaneous memory prompted by the conversation. 「ところで」 is for changing
+          the subject entirely. We're recalling something related to movies.
+    scene: Two friends are talking about their weekend plans, and one recalls something related to entertainment
+      they recently enjoyed.
+    register: casual
+    setting: friendly
+  - english: How was your trip? Come to think of it, I forgot to buy souvenirs.
+    japanese:
+      - 旅行 は どう だっ た？{そう いえ ば}、お 土産 を 買っ て くる の を 忘れ ちゃっ た。
+      - ご 旅行 は いかが でし た か？{そう いえ ば}、お 土産 を 買い 忘れ て しまい まし た。
+    english_literally: How was the trip? If one were to say that, I completely forgot bringing souvenirs.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 は どう だっ た？うっかり、お 土産 を 買い 忘れ て しまっ た。
+        english: How was your trip? Carelessly, I forgot to buy souvenirs.
+        hint: 「そういえば」 expresses a sudden realization or recollection. Just stating the fact directly doesn't
+          convey the suddenness. We're looking for a phrase that means 'come to think of it'.
+    scene: A traveler returning from a trip is asked about their journey, and suddenly remembers this
+      omission.
+    register: casual
+    setting: apologetic
+  - english: What should we have for dinner tonight? Speaking of which, the eggs that were left in the
+      fridge are all gone, aren't they?
+    japanese:
+      - 今日 の 夕食 は 何 に しよう か？{そう いえ ば}、冷蔵 庫 に 残っ て い た 卵 は もう 無い よ ね。
+      - 今日 の 夕食 は 何 に し ましょう か？{そう いえ ば}、冷蔵 庫 に 残っ て い た 卵 は もう あり ませ ん よ ね。
+    english_literally: Tonight's dinner, what shall we make? If one were to say that, the eggs remaining
+      in the refrigerator are already gone, aren't they?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 夕食 は 何 に しよう か？{ところ で}、冷蔵 庫 に 残っ て い た 卵 は もう 無い よ ね。
+        english: What should we have for dinner tonight? By the way, the eggs that were left in the fridge
+          are all gone, aren't they?
+        hint: 「そういえば」 introduces a related thought that just came to mind. 「ところで」 is for an unrelated
+          topic. The missing eggs are related to dinner plans.
+    scene: A couple is deciding on dinner plans, and one partner remembers a crucial ingredient is missing.
+    register: casual
+    setting: intimate
+  - english: About that restaurant we were talking about the other day, speaking of which, I managed to
+      book it.
+    japanese:
+      - この 間 話し て い た レストラン の こと です が、{そう いえ ば}、予約 でき まし た よ。
+      - この 間 お 話し し て い まし た レストラン の こと です が、{そう いえ ば}、予約 が でき まし た。
+    english_literally: Regarding the restaurant we talked about the other day, if one were to say that,
+      I was able to reserve it.
+    competing_grammar:
+      - competing_japanese:
+          - この 間 話し て い た レストラン の こと です が、例 の レストラン、予約 でき まし た よ。
+        english: Regarding that restaurant we talked about the other day, that restaurant, I managed to
+          book it.
+        hint: 「そういえば」 conveys a sudden recollection or a realization prompted by the conversation. A direct
+          statement like this one lacks that nuance. We're looking for a phrase to introduce a newly recalled
+          piece of information.
+    scene: Two friends previously discussed trying a new restaurant, and one now has news about the reservation.
+    register: casual
+    setting: friendly
+  - english: What was the release date for that game again? Come to think of it, I wonder if the new game
+      has been released yet.
+    japanese:
+      - ゲーム の 発売 日 いつ だ っけ？{そう いえ ば}、新しい ゲーム もう 発売 さ れ た か な。
+      - ゲーム の 発売 日 いつ だ っけ？{そう いや}、新しい ゲーム もう 発売 さ れ た か な。
+    english_literally: Game's release date, what was it again? If one were to say that, I wonder if the
+      new game has already been released.
+    competing_grammar:
+      - competing_japanese:
+          - ゲーム の 発売 日 いつ だ っけ？新しい ゲーム は もう 発売 さ れ た か な。
+        english: What was the release date for that game again? I wonder if the new game has been released
+          yet.
+        hint: 「そういえば」 expresses a sudden thought or realization. This sentence is a direct question without
+          that nuance. We're looking for a phrase that means 'come to think of it'.
+    scene: A gamer is looking at their console, pondering about a game, and a thought suddenly occurs
+      to them about an anticipated release.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: Yesterday was fun, wasn't it? Speaking of which, it was at that time that I was drawn to
+      your smile.
+    japanese:
+      - 昨日 は 楽しかっ た ね。{そう いえ ば}、あの 時 君 の 笑顔 に 惹か れ た ん だ。
+      - 昨日 は 楽しかっ た です ね。{そう いえ ば}、あの 時 あなた の 笑顔 に 惹か れ まし た。
+    english_literally: Yesterday was fun, wasn't it? If one were to say that, at that time, I was attracted
+      to your smile.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 楽しかっ た ね。君 の 笑顔 に 惹か れ た ん だ。
+        english: Yesterday was fun, wasn't it? I was drawn to your smile.
+        hint: 「そういえば」 softens a direct statement, making it sound like a fond, sudden recollection. This
+          direct statement might feel too abrupt or bold. We're looking for a natural way to recall a
+          personal detail.
+    scene: On a first date, a man brings up a past memory that stands out to him, perhaps after a topic
+      about first impressions or past events.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「そういえば」 allows a male speaker to organically weave in a personal, romantic sentiment
+      like 「君 の 笑顔 に 惹か れ た ん だ」 (I was drawn to your smile). This indicates a sudden, fond recollection,
+      adding a layer of authenticity and intimacy to the confession. The polite version 「あなた の 笑顔 に 惹か
+      れ まし た」 would be less intimate, used in a more formal or less established relationship. It could
+      also imply an indirect compliment by stating a past feeling that just resurfaced due to the conversation
+      about the fun day they had together.
+  - english: Is the meeting preparation going smoothly? By the way, did you prepare the materials for
+      tomorrow's meeting?
+    japanese:
+      - 会議 の 準備 は 順調 です か？{そう いえ ば}、明日 の 会議 の 資料 を 準備 し まし た か。
+      - 会議 の 準備 順調？{そう いえ ば}、明日 の 会議 の 資料 用意 し た？
+    english_literally: Is the meeting preparation going smoothly? If one were to say that, have you prepared
+      the materials for tomorrow's meeting?
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 準備 は 順調 です か？明日 の 会議 の 資料 は 準備 し まし た か？
+        english: Is the meeting preparation going smoothly? Did you prepare the materials for tomorrow's
+          meeting?
+        hint: 「そういえば」 makes the question feel like a helpful reminder that just popped into mind. A direct
+          question like this might sound like an interrogation. We're looking for a way to subtly inquire
+          about something related.
+    scene: Two colleagues are discussing a project, and one remembers an important upcoming meeting detail.
+    register: teineigo (polite)
+    setting: professional
+  - english: We haven't seen Sato-san lately, have we? Speaking of which, have you sent out the invitations
+      for Sato-san's wedding yet?
+    japanese:
+      - 最近 佐藤 さん 見 ない ね。{そう いえ ば}、佐藤 さん の 結婚 式 の 招待 状 もう 送っ た？
+      - 最近 佐藤 さん を 見 ませ ん ね。{そう いえ ば}、佐藤 さん の 結婚 式 の 招待 状 は もう 送り まし た か？
+    english_literally: Haven't seen Sato-san lately, have we? If one were to say that, have you already
+      sent the wedding invitations for Sato-san?
+    competing_grammar:
+      - competing_japanese:
+          - 最近 佐藤 さん 見 ない ね。佐藤 さん の 結婚 式 の 招待 状 は 送っ た？
+        english: We haven't seen Sato-san lately, have we? Have you sent out Sato-san's wedding invitations?
+        hint: 「そういえば」 softens the inquiry, making it seem like a sudden thought rather than a direct check.
+          This phrasing could sound more like an accusation. We're looking for a phrase to naturally transition
+          to a related question.
+    scene: Friends are chatting about a mutual acquaintance, and the conversation prompts a memory about
+      their wedding preparations.
+    register: casual
+    setting: friendly
+  - english: About tomorrow's test, speaking of which, did you study for the kanji part?
+    japanese:
+      - 明日 の 試験 の こと だ けど、{そう いえ ば}、漢字 の 部分 は 勉強 し た？
+      - 明日 の 試験 の こと です が、{そう いえ ば}、漢字 の 部分 は 勉強 し まし た か？
+    english_literally: Regarding tomorrow's test, if one were to say that, did you study the kanji part?
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 試験 の こと だ けど、漢字 の 部分 は 勉強 し た？
+        english: About tomorrow's test, did you study for the kanji part?
+        hint: 「そういえば」 introduces a thought that suddenly occurred to the speaker, often prompted by the
+          previous topic. A direct question lacks this nuance of sudden recollection. We're looking for
+          a phrase to express 'come to think of it'.
+    scene: Two students are discussing their upcoming exams, and one suddenly remembers a specific detail
+      about the test material.
+    register: casual
+    setting: academic
+post_example_writeup: 'As you can see from the examples, 「そういえば」 is incredibly versatile and can be used
+  in a variety of registers, from casual conversation among friends to more polite exchanges in professional
+  settings. Its core function remains consistent: to smoothly introduce a topic that has just come to
+  mind, usually prompted by the ongoing discussion. Pay close attention to the context and the level of
+  politeness required in your speech, as the surrounding phrases will adapt even if 「そういえば」 itself does
+  not change.'

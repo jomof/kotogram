@@ -1,0 +1,229 @@
+grammar_point: '[Verb-dictionary]のが嫌いだ (to dislike doing)'
+learn_before:
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Verb-dictionary]のが好きだ (to like doing)'
+meaning: to dislike doing something
+pronunciation:
+  katakana: ドウシジショケイノガキライダ
+  romaji: doushi jishokei no ga kiraida
+formation:
+  Verb[dictionary form] + のが嫌いだ: Used to express disliking the action described by the verb.
+jlpt: N4
+etymology: The particle 「の」 (no) functions here as a nominalizer, transforming a verb or a verb phrase
+  into a noun. This allows the action itself to become the grammatical subject that the speaker dislikes.
+  「嫌い」 (kirai) is a な-adjective that originates from the verb 「嫌う」 (kirau), meaning 'to dislike' or 'to
+  hate'. The combination 「〜のが嫌いだ」 literally means 'the act of doing ~ is disliked', effectively expressing
+  an aversion to the action.
+writeup: The phrase 「〜のが嫌いだ」 is used to express that the speaker dislikes or hates performing a certain
+  action. This construction uses the nominalizer 「の」 to turn a verb's dictionary form into a noun clause,
+  which then becomes the subject of the な-adjective 「嫌い」. For example, 「泳ぐのが嫌いだ」 means 'I dislike swimming'
+  or 'I dislike the act of swimming'. It's crucial to distinguish this from simply disliking a noun or
+  object, which would be expressed as 「[Noun]が嫌いだ」 (e.g., 「ピーマンが嫌いだ」 - I dislike bell peppers). In 「〜のが嫌いだ」,
+  the focus is specifically on the *action*. While 「嫌いだ」 is typically used in plain form, it can be made
+  polite by adding 「です」 (e.g., 「嫌いです」). Be mindful that 「嫌い」 is a strong word, and using it too frequently
+  or in formal settings might be perceived as overly direct or harsh. Softer alternatives like 「あまり好きじゃない」
+  (I don't like it very much) or 「苦手だ」 (I'm not good at it/I'm uncomfortable with it) are often preferred
+  for less intense dislikes or when trying to be more diplomatic. This grammatical pattern is very common
+  and can be applied to a wide range of actions, making it a versatile way to express personal preferences
+  regarding activities.
+false_friends:
+  - term: '[Noun]が嫌いだ'
+    meaning: to dislike (a thing)
+    kind: similar expression
+    nuance: This form is used when disliking a noun or object. For example, 「虫が嫌いだ」 means "I dislike insects."
+      The focus is on the object itself, not the act of interacting with it. We're looking for disliking
+      an action here.
+    grammar_point: '[Noun]が嫌いだ (to dislike)'
+  - term: '[Verb-dictionary]ことが嫌いだ'
+    meaning: to dislike (the fact of) doing something
+    kind: similar expression
+    nuance: While grammatically possible, 「こと」 as a nominalizer in this context often implies a more abstract
+      concept, specific event, or circumstance. 「の」 is more natural and commonly used for general actions
+      as subjects of adjectives like 好き, 嫌い, 上手, 下手. For example, 「彼が嘘をつくことが嫌いだ」 might emphasize the "fact
+      that he lies" rather than the "act of lying" in general.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: '[Verb-dictionary]のは嫌だ'
+    meaning: doing something is unpleasant/disagreeable
+    kind: similar expression
+    nuance: 「嫌だ」 is a な-adjective meaning "unpleasant" or "disagreeable". It's generally a bit softer
+      and more subjective than 「嫌いだ」, which means "hated" or "disliked". 「嫌だ」 expresses a feeling of aversion
+      towards something that is about to happen or a situation. 「嫌いだ」 expresses a general, more permanent
+      dislike for an action. For instance, 「残業するのは嫌だ」 (Overtime is unpleasant) vs. 「残業するのが嫌いだ」 (I dislike
+      doing overtime work).
+    grammar_point: な-Adjective[だ] (plain present)
+  - term: '[Verb-dictionary]のが苦手だ'
+    meaning: to be bad at doing something (and thus dislike it)
+    kind: similar expression
+    nuance: 「苦手だ」 implies being "bad at" something, "not good with" it, or finding it "difficult" or "uncomfortable".
+      This often leads to a dislike of the activity, but the primary meaning is about skill or comfort,
+      not pure aversion. It's a softer expression than 「嫌いだ」. For example, 「歌うのが苦手だ」 means "I'm not good
+      at singing" (and thus might dislike it), whereas 「歌うのが嫌いだ」 means "I dislike singing" (regardless
+      of skill).
+    grammar_point: <strongly-suggest>:[Verb-dictionary]のが苦手だ (to be bad at doing)
+post_false_friends_writeup: 'When distinguishing between similar expressions like 「〜のが嫌いだ」, 「〜ことが嫌いだ」,
+  「〜のは嫌だ」, and 「〜のが苦手だ」, consider the subtle nuances: 「の」 as a nominalizer is versatile and often used
+  for general actions that are the subject of adjectives like `好き` or `嫌い`. 「こと」 also nominalizes but
+  can imply a more abstract concept, specific event, or fact, making it sometimes less natural for expressing
+  a general dislike of an action. 「嫌だ」, while also expressing aversion, tends to focus on something being
+  "unpleasant" or "disagreeable" often in a given situation, rather than a deep, generalized "dislike"
+  like 「嫌い」. Lastly, 「苦手だ」 points to a lack of skill or comfort, which *leads* to dislike, rather than
+  a direct dislike itself, offering a softer alternative.'
+examples:
+  - english: I dislike eating natto.
+    japanese:
+      - 納豆 を {食べる の が 嫌い だ}。
+      - 納豆 を {食べる の が 嫌い です}。
+    english_literally: Natto to eat the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 が 嫌い だ。
+        english: I dislike natto (the thing).
+        hint: This refers to disliking natto as an object, not the act of eating it. We're looking for
+          disliking an action here.
+      - competing_japanese:
+          - 納豆 を 食べる の は 嫌 だ。
+        english: Eating natto is unpleasant/disagreeable.
+        hint: This expresses that the act of eating natto is unpleasant to the speaker, a slightly softer
+          nuance than a direct dislike. We're looking for a general dislike of the action.
+    scene: A person is asked about their food preferences.
+    register: casual
+    setting: friendly
+  - english: My younger brother hates studying.
+    japanese:
+      - 弟 は {勉強 する の が 嫌い だ}。
+      - 弟 は {勉強 する の が 嫌い です}。
+    english_literally: Younger brother as for study the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は 勉強 が 嫌い だ。
+        english: My younger brother dislikes studying (as a subject).
+        hint: This implies a dislike for 'studying' as a general concept or subject, not the act of doing
+          it. We're looking for disliking the action of studying.
+      - competing_japanese:
+          - 弟 は 勉強 する の が 苦手 だ。
+        english: My younger brother is bad at studying (and therefore dislikes it).
+        hint: This suggests a lack of ability or comfort with studying, which might lead to dislike. We're
+          looking for a direct dislike of the action.
+    scene: A mother is talking about her children's habits.
+    register: casual
+    setting: informative
+    speaker_gender: female
+  - english: She dislikes talking about her past.
+    japanese:
+      - 彼女 は 自分 の 過去 に つい て {話す の が 嫌い だ}。
+      - 彼女 は 自分 の 過去 に つい て {話す の が 嫌い です}。
+    english_literally: She as for own past about to speak the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 自分 の 過去 に つい て 話す の が 苦手 だ。
+        english: She is uncomfortable talking about her past.
+        hint: This implies discomfort or difficulty, not necessarily a strong dislike. We're looking for
+          a direct aversion to the action.
+    scene: Two friends are discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+  - english: I dislike waiting for people.
+    japanese:
+      - 私 は 人 を {待つ の が 嫌い だ}。
+      - 私 は 人 を {待つ の が 嫌い です}。
+    english_literally: I as for person to wait the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 人 を 待つ の は 嫌 だ。
+        english: Waiting for people is unpleasant for me.
+        hint: This states that the situation of waiting is unpleasant, rather than expressing a deep,
+          general dislike for the action itself. We're looking for a direct dislike of the action.
+    scene: Someone is complaining about being late.
+    register: casual
+    setting: apologetic
+  - english: He hates losing more than anything.
+    japanese:
+      - 彼 は 何 より も {負ける の が 嫌い だ}。
+      - 彼 は 何 より も {負ける の が 嫌い です}。
+    english_literally: He as for anything more than to lose the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 負け ず 嫌い だ。
+        english: He hates to lose; he is a sore loser.
+        hint: This is a fixed expression for being a sore loser. We're looking for a general statement
+          of disliking the act of losing.
+    scene: A coach describes a player's personality.
+    register: formal
+    setting: informative
+    speaker_gender: male
+  - english: My cat dislikes being held.
+    japanese:
+      - うち の 猫 は {抱っこ さ れる の が 嫌い だ}。
+      - うち の 猫 は {抱っこ さ れる の が 嫌い です}。
+    english_literally: My cat as for being held the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 は 抱っこ さ れる の は 嫌 がる。
+        english: My cat shows dislike for being held.
+        hint: This form indicates that the cat *shows signs* of disliking being held, often through behavior.
+          We're looking for a statement about a general dislike of the action for the cat.
+    scene: A pet owner talks about their cat's quirks.
+    register: casual
+    setting: friendly
+  - english: I dislike making mistakes during work.
+    japanese:
+      - 仕事 中 に {ミス を する の が 嫌い だ}。
+      - 仕事 中 に {ミス を する の が 嫌い です}。
+    english_literally: During work mistakes to do the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 中 に ミス を する の は 嫌 だ。
+        english: Making mistakes during work is unpleasant.
+        hint: This emphasizes the unpleasantness of the situation, rather than a general dislike for the
+          act of making mistakes itself. We're looking for a direct aversion to the action.
+    scene: A new employee expresses their feelings about their job.
+    register: semi-formal
+    setting: serious
+  - english: As a manager, I dislike criticizing my subordinates.
+    japanese:
+      - 上司 と し て、部下 を {叱る の が 嫌い だ}。
+      - 上司 と し て、部下 を {叱る の が 嫌い です}。
+    english_literally: As a boss, subordinates to scold the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 と し て、部下 を 叱る の は 気 が 引ける。
+        english: As a boss, I'm reluctant to scold my subordinates.
+        hint: This implies hesitation or reluctance due to personal feelings, not necessarily a direct
+          dislike of the action. We're looking for a statement about disliking the act itself.
+    scene: A manager is talking to a colleague about leadership challenges.
+    register: formal
+    setting: professional
+  - english: Children often dislike going to the dentist.
+    japanese:
+      - 子供 は 歯 医者 に {行く の が 嫌い だ}。
+      - 子供 は 歯 医者 に {行く の が 嫌い です}。
+    english_literally: Children as for dentist to go the act is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 歯 医者 が 嫌い だ。
+        english: Children dislike the dentist (the person/place).
+        hint: This expresses a dislike for the dentist as a person or place, not the act of going there.
+          We're looking for disliking the action of going.
+    scene: A parent discusses common childhood experiences.
+    register: casual
+    setting: informative
+  - english: Since childhood, I disliked speaking in front of many people.
+    japanese:
+      - 子供 の 頃 から、大勢 の 前 で {話す の が 嫌い だ}った。
+      - 子供 の 頃 から、大勢 の 前 で {話す の が 嫌い でし た}。
+    english_literally: Since childhood, many people in front to speak the act was disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃 から、大勢 の 前 で 話す の が 苦手 だ。
+        english: Since childhood, I've been bad at speaking in front of many people.
+        hint: This implies a lack of skill or comfort, rather than a direct dislike. We're looking for
+          a statement about a direct aversion to the action.
+    scene: Someone reflecting on their lifelong personality traits.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+post_example_writeup: As you can see from these examples, 「〜のが嫌いだ」 is a versatile phrase for expressing
+  personal aversion to a wide range of actions. Pay attention to the subtle differences with similar expressions;
+  choosing the right nuance can significantly impact how your message is received. Practice using it with
+  various verbs and in different contexts to solidify your understanding and naturalize your expression.

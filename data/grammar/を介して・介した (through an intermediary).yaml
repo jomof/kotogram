@@ -1,0 +1,351 @@
+grammar_point: を介して・介した (through an intermediary)
+learn_before:
+  - Verb[ていた] (past progressive・resultative)
+  - すぐ (immediately・easily)
+  - つきましては (in connection with that)
+  - で (means・method)
+  - とする (to assume・to decide)
+  - ものとして (on the assumption that)
+  - 端・縁 (edge・border)
+meaning: Through, via, by means of, by way of; using the intermediary of
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: を介して
+    rarity: common
+    meaning: through, via, by means of (indicating an ongoing connection or a general means)
+  - conjugation-type: past plain (～た)
+    form: を介した
+    rarity: common
+    meaning: through, via, by means of (indicating a completed action or used attributively)
+  - conjugation-type: non-past polite (～ます)
+    form: を介します
+    rarity: common
+    meaning: to go through, to mediate via (polite non-past)
+  - conjugation-type: negative plain (～ない)
+    form: を介さない
+    rarity: less common
+    meaning: do not go through, do not mediate via (plain negative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: を介しません
+    rarity: less common
+    meaning: do not go through, do not mediate via (polite negative)
+pronunciation:
+  katakana: ヲカイシテ・カイシタ
+  romaji: o kaishite / kaishita
+formation:
+  Noun + を介して: Indicates that an action or communication occurs through a medium or intermediary.
+  Noun1 + を介しての + Noun2: Describes Noun2 that occurs through Noun1 (attributive form, general/present).
+  Noun1 + を介した + Noun2: Describes Noun2 that occurred through Noun1 (attributive form, past).
+jlpt: N2
+etymology: The phrase 「を介して」 is derived from the verb 「介する (kai suru)」, which means "to mediate," "to
+  go through," or "to use as an intermediary." Thus, 「を介して」 literally translates to "through (something
+  that mediates)." The construction is formed by combining the object particle 「を」 with the te-form of
+  「介する」 (介して) to indicate a means or method, or the past plain form (介した) to function attributively. The
+  form 「を介しての」 is an attributive form of 「を介して」, often used before a noun to describe it.
+writeup: 'The grammar point 「を介して (o kaishite)」 and its variations 「を介した (o kaishita)」 and 「を介しての (o kaishite
+  no)」 are used to express that something occurs **through**, **via**, or **by means of** a particular
+  medium or intermediary. It emphasizes the channel or go-between through which an action, event, or communication
+  takes place. This expression carries a more formal and precise nuance compared to simpler alternatives
+  like 「で」 or 「を通して」, making it suitable for academic, business, or official contexts. This grammar point
+  is often found in discussions of information transfer, communication channels, formal introductions,
+  or processes where an indirect route is involved. Its use signals a clear, often official, intermediary
+  role. Usage: 1. **Noun + を介して**: This is the most common form, functioning adverbially. It specifies
+  the medium or intermediary through which an action is performed or something is transmitted. Example:
+  友人を介して連絡を取る (to contact someone through a friend) 2. **Noun1 + を介した + Noun2**: The past plain form 「介した」
+  functions attributively, modifying a subsequent noun. It describes Noun2 as something that occurred
+  or was realized via Noun1. Example: インターネットを介した情報交換 (information exchange via the internet) 3. **Noun1
+  + を介しての + Noun2**: Similar to 「を介した + Noun2」, this form also functions attributively. While 「介した」 implies
+  completion or a past event, 「を介しての」 can suggest an ongoing process or a general characteristic, though
+  they are often interchangeable.'
+false_friends:
+  - term: を通して
+    meaning: Through; via; throughout; during
+    kind: similar expression
+    nuance: While 「を介して」 emphasizes mediation or the role of a specific intermediary as a channel, 「を通して」
+      has a broader meaning. It can also imply a direct route, a period of time (e.g., 「一年を通して」, throughout
+      the year), or a general means. 「を介して」 always suggests an indirect path facilitated by something
+      or someone.
+    grammar_point: を通じて・を通して (medium・means)
+  - term: によって
+    meaning: By means of; due to; depending on; according to
+    kind: similar expression
+    nuance: 「によって」 indicates the cause, method, or agent by which something is achieved or influenced.
+      It focuses on the origin or instrument of an action. In contrast, 「を介して」 specifically focuses on
+      the intermediary or channel through which an action passes, rather than being the direct cause or
+      method itself.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: で
+    meaning: By means of; using; at/in (location)
+    kind: similar expression
+    nuance: 「で」 is a versatile particle indicating means, location, or cause, but it is much more general
+      and less formal than 「を介して」. While 「で」 can imply 'by means of', it does not carry the specific nuance
+      of an 'intermediary' or 'channel' that 「を介して」 does. 「を介して」 explicitly points to a go-between, whereas
+      「で」 is simply 'by' or 'with'.
+    grammar_point: で (means・method)
+post_false_friends_writeup: To avoid confusion between 「を介して」, 「を通して」, and 「によって」, remember that 「を介して」
+  is typically reserved for situations where there is a clear intermediary or channel involved in a process
+  or communication. Think of it as 'via' or 'through the agency of'. 「を通して」 can be used for more direct
+  passages or durations, while 「によって」 highlights the means or cause. When the focus is on a specific go-between
+  that enables the action, 「を介して」 is the most precise and formal choice.
+examples:
+  - english: Our company is expanding its sales network in overseas markets through local agents.
+    japanese:
+      - 弊社 は、現地 の 代理 人 {を 介し て}、海外 市場 で の 販売 網 を 拡大 し て い ます。
+      - 弊社 は、現地 の 代理 人 {を 介し て}、海外 市場 に おい て 販売 網 を 拡大 し て おり ます。
+      - 弊社 は、現地 の 代理 人 {を 介し て}、海外 市場 に おけ る 販売 網 の 拡大 を 図っ て い ます。
+    english_literally: Our company, local agent through, overseas market in sales network is expanding.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 は、現地 の 代理 人 {を 通し て}、海外 市場 で の 販売 網 を 拡大 し て い ます。
+        english: Our company is expanding its sales network in overseas markets through local agents.
+        hint: 「を通して」 can also mean "through," but 「を介して」 emphasizes the formal intermediary role of the
+          agents, which is more suitable for a business context. We're looking for an expression that
+          highlights a formal channel.
+    scene: A corporate executive is explaining the company's global strategy during a business presentation,
+      highlighting the role of foreign partners.
+    register: formal
+    setting: informative
+    nuance: The use of 「を介して」 here highlights the specific *intermediary* role of the local agents in
+      facilitating market expansion. This is more formal than 「を通して」. 「弊社 (heisha)」 is a humble term for
+      "our company," appropriate in a professional setting. The polite 「〜ています」 form is also fitting for
+      a business presentation.
+    etymology: The term 「代理人 (daininin)」 for 'agent' implies a representative acting on behalf of another,
+      which aligns well with the intermediary concept of を介して. 「販売網 (hanbai-mō)」 refers to a 'sales network',
+      a structure through which goods are distributed, emphasizing the channel aspect.
+  - english: This system collects weather data in real-time via satellite.
+    japanese:
+      - この システム は、衛星 {を 介し て}、リアル タイム で 気象 データ を 収集 し ます。
+      - この システム は、衛星 {を 介し て}、気象 データ を リアル タイム に 収集 し て い ます。
+      - 衛星 {を 介し て}、リアル タイム な 気象 データ が この システム に よっ て 収集 さ れ ます。
+    english_literally: This system, satellite through, real-time weather data collects.
+    competing_grammar:
+      - competing_japanese:
+          - この システム は、衛星 {を 通し て}、リアル タイム で 気象 データ を 収集 し ます。
+        english: This system collects weather data in real-time through satellite.
+        hint: While 「を通して」 can describe a general path, 「を介して」 specifically emphasizes the satellite as
+          the precise medium or channel for data transmission. We're looking for a formal term for using
+          an intermediary.
+    scene: A meteorologist is explaining the functionality of a new climate monitoring system during a
+      technical demonstration.
+    register: semi-formal
+    setting: technical
+    nuance: 「を介して」 emphasizes that the satellite acts as the *channel* or *medium* for data transmission,
+      stressing the intermediary nature. The use of 「収集します」 maintains a formal, informative tone typical
+      in scientific or technical explanations.
+    etymology: 「衛星 (eisei)」, meaning 'satellite', literally means 'guardian star'. Its use as a medium
+      for data transmission perfectly illustrates the concept of を介して as a conduit. 「リアルタイム (real time)」
+      is a loanword from English, commonly used in technical contexts.
+  - english: He met that famous writer through an introduction facilitated by a mutual friend.
+    japanese:
+      - 彼 は、共通 の 友人 {を 介し た} 紹介 で、その 著名 な 作家 と 出会い まし た。
+      - 彼 は、共通 の 友人 {を 介し た} ご 紹介 で、その 著名 な 作家 と お 会い し まし た。
+      - 彼 は、共通 の 友人 {を 介し た} ご 縁 で、その 著名 な 作家 と お 知り合い に なれ まし た。
+    english_literally: He, common friend through introduction by, that famous writer met.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、共通 の 友人 {を 通し て} の 紹介 で、その 著名 な 作家 と 出会い まし た。
+        english: He met that famous writer through an introduction by a mutual friend.
+        hint: 「を通して」 could be used here, but 「を介した」 strongly emphasizes the friend's role as a specific
+          intermediary for the introduction itself. We're looking for a term that highlights the friend
+          as the go-between.
+    scene: Someone is recounting how a mutual acquaintance led to a significant meeting, emphasizing the
+      friend's role in connecting them.
+    register: semi-formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: 「を介した紹介」 emphasizes that the introduction * itself* was intermediated by the friend, highlighting
+      the friend's specific role as the go-between for the act of introduction. The 「た」 form indicates
+      a past action, modifying 「紹介 (shōkai)」, which means 'introduction'. The polite 「出会いました」 maintains
+      a respectful tone.
+    etymology: 「紹介 (shōkai)」, meaning 'introduction', is composed of 「紹」 (introduce, inherit) and 「介」
+      (mediate, assist). The presence of 「介」 within the word itself reinforces the grammatical point's
+      core meaning of mediation or acting as a go-between.
+  - english: The government sent humanitarian aid supplies to the conflict zone through international
+      organizations.
+    japanese:
+      - 政府 は、国際 機関 {を 介し て}、紛争 地域 へ 人道 支援 物資 を 送り まし た。
+      - 政府 は、国際 機関 {を 介し て}、紛争 地域 へ の 人道 支援 物資 を 送付 し まし た。
+      - 政府 は、国際 機関 {を 介し て}、紛争 地域 に 人道 支援 物資 を 供給 し まし た。
+    english_literally: Government, international organizations through, conflict zone to humanitarian
+      aid supplies sent.
+    competing_grammar:
+      - competing_japanese:
+          - 政府 は、国際 機関 {に よっ て}、紛争 地域 へ 人道 支援 物資 を 送り まし た。
+        english: The government sent humanitarian aid supplies to the conflict zone by international organizations.
+        hint: 「によって」 would imply the international organizations are the *means* or *agent* of sending.
+          「を介して」 clarifies that the international organizations serve as the *medium* or *channel* for
+          the aid. We're seeking a term for the channel of dissemination.
+    scene: A news reporter is delivering a formal update on a country's foreign policy and humanitarian
+      efforts.
+    register: formal
+    setting: informative
+    nuance: In this formal context, 「を介して」 precisely indicates that international organizations served
+      as the *channel* for the government's humanitarian aid. This is a common phrasing in official reports
+      or news broadcasts. 「送りました」 is a polite past tense form.
+    etymology: 「国際機関 (kokusai kikan)」 refers to 'international organizations', entities that facilitate
+      global efforts. Their role as a channel for aid aligns perfectly with the nuance of を介して, which
+      implies using an established intermediary.
+  - english: Our company is promoting remote work operations via online meeting systems.
+    japanese:
+      - 当社 で は、オン ライン 会議 システム {を 介し て の} 遠隔 業務 を 推進 し て い ます。
+      - 当社 で は、オン ライン 会議 システム {を 介し た} 遠隔 業務 の 導入 を 推進 し て い ます。
+      - 当社 は、オン ライン 会議 システム {を 介し て}、遠隔 業務 の 実施 を 進め て おり ます。
+    english_literally: Our company, online meeting system through, remote work operations is promoting.
+    competing_grammar:
+      - competing_japanese:
+          - 当社 で は、オン ライン 会議 システム {を 通し て} の 遠隔 業務 を 推進 し て い ます。
+        english: Our company is promoting remote work operations through online meeting systems.
+        hint: While 「を通して」 is possible for a general means, 「を介しての」 clearly defines the online system
+          as the specific intermediary channel for the remote work. We're looking for an expression that
+          highlights the system as a distinct channel.
+    scene: A company executive is presenting a new work-from-home policy to employees, explaining the
+      tools used.
+    register: formal
+    setting: informative
+    nuance: 「を介しての」 clearly specifies that the online meeting system serves as the *channel* through which
+      remote work is conducted, functioning as an attributive phrase modifying 「遠隔業務 (enkaku gyōmu)」.
+      This form is common in formal business communication to explain procedures. The verb 「推進しています (suishin
+      shite imasu)」 means 'is promoting' and signals an active, ongoing effort by the company.
+    etymology: 「遠隔業務 (enkaku gyōmu)」 means 'remote work', literally 'distant operations'. The 'online
+      meeting system' acts as the crucial intermediary that bridges this distance, emphasizing the 'through'
+      aspect of を介して.
+  - english: He was conducting illegal transactions via the internet.
+    japanese:
+      - 彼 は、インターネット {を 介し て}、違法 な 取引 を 行っ て い まし た。
+      - 彼 は、インターネット {を 介し て}、違法 な 取引 に 従事 し て い まし た。
+      - インターネット {を 介し た} 違法 な 取引 が 彼 に よっ て 行わ れ て い まし た。
+    english_literally: He, internet through, illegal transactions was conducting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、インターネット {を 通し て}、違法 な 取引 を 行っ て い まし た。
+        english: He was conducting illegal transactions through the internet.
+        hint: While 「を通して」 can mean "through the internet," 「を介して」 provides a more formal and precise
+          nuance of the internet as the channel for illicit activities. We're looking for a term that
+          emphasizes the internet as the medium for the transactions.
+    scene: A police detective is briefing his team about a suspect's activities, using precise language.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: 「を介して」 is used here to precisely indicate the internet as the *channel* or *medium* for the
+      illicit activities, fitting the formal and precise language expected in an investigation. The speaker,
+      a detective, typically uses formal language. The use of 「いました」 implies an ongoing past action.
+    etymology: The internet, or 「インターネット」, functions as an impersonal intermediary for transactions, both
+      legal and illegal. Its nature as a vast network makes it a common channel, directly aligning with
+      the function of を介して.
+  - english: During my student days, I met him through a mutual friend.
+    japanese:
+      - 学生 時代、共通 の 友だち {を 介し て}、彼 と 知り合い まし た。
+      - 学生 時代、共通 の 友だち {を 介し て}、彼 と 知り合っ た ん だ。
+      - 学生 時代、共通 の 友だち {を 介し て}、彼 と 知り合う こと が でき た の よ。
+    english_literally: Student days, common friend through, him met.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 時代、共通 の 友だち {を 通し て}、彼 と 知り合い まし た。
+        english: During my student days, I met him through a mutual friend.
+        hint: 「を通して」 is a broader term for "through," but 「を介して」 specifically focuses on the friend acting
+          as the go-between for the introduction. We're looking for an expression that emphasizes the
+          friend's intermediary role.
+    scene: A woman is reminiscing with a close friend about how she met her husband years ago, focusing
+      on the specific person who connected them.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: While 「を介して」 is generally formal, it can be used in casual storytelling to add a slightly
+      more descriptive or narrative tone, especially when the speaker wants to emphasize the friend's
+      role as the "go-between." For women, 「〜と知り合いました」 is a polite and common way to conclude the sentence
+      when reminiscing about meeting someone. The use of 「友だち」 instead of the more formal 「友人」 signals
+      a casual register.
+    etymology: The phrase 「共通 の 友だち (kyōtsū no tomodachi)」 literally means 'common friend'. A mutual friend
+      inherently acts as an intermediary for introductions between two people who previously didn't know
+      each other, making を介して a suitable expression here.
+  - english: New research findings are often disseminated through international academic conferences.
+    japanese:
+      - 新しい 研究 の 発見 は、国際 学術 会議 {を 介し て} 広く 発表 さ れ ます。
+      - 新しい 研究 成果 は、国際 学術 会議 {を 介し て} 広く 公表 さ れ ます。
+      - 国際 学術 会議 {を 介し て}、新しい 研究 の 発見 が 広く 発表 さ れ ます。
+    english_literally: New research findings, international academic conferences through, widely announced
+      are.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 研究 の 発見 は、国際 学術 会議 {を 通し て} 広く 発表 さ れ ます。
+        english: New research findings are often disseminated through international academic conferences.
+        hint: While 「を通して」 can describe a general means, 「を介して」 more precisely emphasizes the academic
+          conference as the formal channel or platform for dissemination. We are looking for a term that
+          signifies a structured intermediary for information sharing.
+      - competing_japanese:
+          - 新しい 研究 の 発見 は、国際 学術 会議 {に よっ て} 広く 発表 さ れ ます。
+        english: New research findings are often disseminated by international academic conferences.
+        hint: 「によって」 would imply the conferences *themselves* are the agents of announcement. 「を介して」 clarifies
+          that the conferences serve as the *medium* or *channel* for the announcement. We're seeking
+          a term for the channel of dissemination.
+    scene: A university professor explains to their graduate students how academic discoveries are shared
+      within the global research community.
+    register: formal
+    setting: academic
+    nuance: In an academic context, 「を介して」 is highly appropriate to describe academic conferences as the
+      formal, established channels through which research findings are transmitted. The passive form 「発表されます」
+      (are announced) also fits the objective tone of academic discourse.
+    etymology: 「学術 (gakujutsu)」 means 'science; learning; scholarship', and 「会議 (kaigi)」 means 'meeting;
+      conference'. An 'academic conference' serves as a crucial intermediary for the exchange and dissemination
+      of knowledge, aligning well with the core meaning of を介して.
+  - english: All official communications must go through the legal department.
+    japanese:
+      - すべて の 公式 な 連絡 は、法務 部 {を 介し て} 行わ れる 必要 が あり ます。
+      - すべて の 公式 連絡 は、法務 部 {を 介し て} 行う もの と し ます。
+      - 公式 連絡 に つき まし て は、すべて 法務 部 {を 介し て} 行う 必要 が あり ます。
+    english_literally: All official communications, legal department through, conducted need exists.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 公式 な 連絡 は、法務 部 {で} 行わ れる 必要 が あり ます。
+        english: All official communications must be conducted at the legal department / by means of the
+          legal department.
+        hint: 「で」 can indicate means, but 「を介して」 specifically highlights the legal department as the *mandatory
+          intermediary* or *channel* for the communication, implying a structured process. We're looking
+          for an expression that signifies a required channel.
+      - competing_japanese:
+          - すべて の 公式 な 連絡 は、法務 部 {に よっ て} 行わ れる 必要 が あり ます。
+        english: All official communications must be conducted by the legal department.
+        hint: 「によって」 would imply the legal department is the *agent* performing the communication. 「を介して」
+          specifies that the communication passes *through* the legal department, regardless of who initiates
+          it. We need a term for the passage through an intermediary.
+    scene: A new employee receives an orientation on company policy, emphasizing strict adherence to communication
+      protocols.
+    register: formal
+    setting: instructional
+    nuance: 「を介して」 is used here to strongly convey that the legal department is the designated, formal
+      *channel* for all official communications, indicating a strict protocol. The phrase 「行われる必要 が あります」
+      (it is necessary for it to be conducted) emphasizes the compulsory nature of this process, fitting
+      a corporate setting.
+    etymology: 「法務 (hōmu)」 refers to 'legal affairs', and 「部 (bu)」 means 'department'. A 'legal department'
+      inherently acts as an intermediary for legal scrutiny and compliance, making を介して a precise choice
+      for describing official communication flow.
+  - english: The news spread quickly through social media.
+    japanese:
+      - その ニュース は、SNS {を 介し て} あっ と いう 間 に 広まっ た。
+      - その ニュース は、SNS {を 介し て} すぐ に 広まり まし た。
+      - SNS {を 介し た} ニュース が、あっ と いう 間 に 広がっ た の です。
+    english_literally: That news, SNS through, quickly spread.
+    competing_grammar:
+      - competing_japanese:
+          - その ニュース は、SNS {を 通し て} あっ と いう 間 に 広まっ た。
+        english: The news spread quickly through SNS.
+        hint: While 「を通して」 is very common for general channels, 「を介して」 specifically emphasizes SNS as
+          the direct intermediary for the rapid spread of information. We're looking for an expression
+          that highlights the specific medium.
+    scene: Two friends are casually discussing how a piece of information went viral.
+    register: casual
+    setting: friendly
+    nuance: Even in a casual conversation, 「を介して」 can be used to emphasize the *channel* through which
+      information propagates. Here, SNS (social networking services) is clearly the intermediary. The
+      casual 「〜た」 ending for the verb is appropriate for this register.
+    etymology: SNS is a common modern intermediary for information sharing. The use of 「を介して」 with such
+      a contemporary term demonstrates the adaptability of this grammar point to various types of communication
+      channels, whether traditional or digital.
+post_example_writeup: 'When selecting between 「を介して」, 「を通して」, and 「によって」, consider the formality of the
+  context and the specific nuance you wish to convey. 「を介して」 explicitly points to a structured or deliberate
+  mediation, often implying an official or well-defined channel. If the intermediary is simply a general
+  means or a passage through time, 「を通して」 might be more appropriate. If the focus is on the direct cause
+  or method, 「によって」 is usually the correct choice. Pay close attention to the role of the noun preceding
+  the grammar point: is it a direct actor, a general passage, or a specific go-between?'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を介して・介した

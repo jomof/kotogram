@@ -1,0 +1,309 @@
+grammar_point: 反面 (on the other hand)
+learn_before:
+  - Verb[えば] (conditional)
+meaning: While, On the other hand, Although, However, On the flip side
+pronunciation:
+  katakana: ハンメン
+  romaji: hanmen
+formation:
+  Verb (plain non-past) + 反面: Used to describe a contrasting aspect of an action or state.
+  い-Adjective (plain non-past) + 反面: Used to describe a contrasting aspect of an i-adjective quality.
+  な-Adjective (stem + な/である) + 反面: Used to describe a contrasting aspect of a na-adjective quality. Use
+    「な」 for casual contexts and 「である」 for more formal ones.
+  Noun + である + 反面: Used to describe a contrasting aspect of a noun's characteristic or identity.
+jlpt: N2
+etymology: The word 「反面 (hanmen)」 literally translates to "opposite side" or "reverse aspect." It is composed
+  of the kanji 「反 (han)」, meaning "opposite" or "reverse," and 「面 (men)」, meaning "side" or "aspect."
+  This direct, literal meaning is reflected in its grammatical function, where it serves to highlight
+  the contrasting or contradictory aspects of a single entity or situation. Its usage evolved to concisely
+  express the duality inherent in many concepts or phenomena, emphasizing the two differing 'faces' of
+  the same subject.
+writeup: |-
+  「反面 (hanmen)」 is a grammatical construction used to present two contrasting or opposing features of a single person, thing, or situation. It frequently translates to "while," "on the other hand," or "although." The core function of 「反面」 is to highlight a duality, typically presenting a positive aspect alongside a negative one, or vice-versa. It is crucial to understand that 「反面」 is specifically used for expressing contradictions and is not suitable for describing two exclusively positive or two exclusively negative aspects of the same subject; it implies a trade-off or an inherent opposition.
+
+  As a noun, 「反面」 connects to various word types:
+  *   **Verbs** (in their plain non-past form): For example, 「する反面 (suru hanmen - while doing)」, 「できない反面 (dekinai hanmen - while unable to do)」.
+  *   **い-adjectives** (in their plain non-past form): For example, 「高い反面 (takai hanmen - while expensive)」, 「美味しくない反面 (oishikunai hanmen - while not delicious)」.
+  *   **な-adjectives** (followed by 「な」 or 「である」): For example, 「便利な反面 (benri na hanmen - while convenient)」 for casual contexts, or 「便利である反面 (benri de aru hanmen - while convenient)」 for more formal or explanatory situations.
+  *   **Nouns** (followed by 「である」): For example, 「学生である反面 (gakusei de aru hanmen - while being a student)」.
+
+  This structure enables a nuanced expression of complex realities where benefits often come with drawbacks, or positive traits are accompanied by negative ones within the same subject. It emphasizes that these contrasting elements are inherent to the same entity, creating a sense of balance in the observation.
+false_friends:
+  - term: に対して
+    meaning: In contrast to, While, In regard to, Whereas
+    kind: similar expression
+    nuance: 「に対して」 is typically used to compare two *different* entities or subjects, or to express an
+      opposing action or feeling towards something. It emphasizes contrast between distinct elements rather
+      than opposing aspects within a single one, which is the core function of 「反面」.
+    grammar_point: に対して (towards; in contrast)
+  - term: 一方で
+    meaning: On the other hand, At the same time, While
+    kind: similar expression
+    nuance: 「一方で」 can indicate contrasting or simultaneous aspects, but it is broader than 「反面」. It can
+      introduce another aspect or viewpoint without necessarily implying a strong contradiction or a negative
+      consequence directly stemming from a positive attribute. While it can show contrast, it doesn't
+      always carry the same emphasis on inherent opposition within *one* subject as 「反面」 does.
+    grammar_point: 一方で (on the other hand・while)
+  - term: ながらも
+    meaning: Even though, despite
+    kind: similar expression
+    nuance: 「ながらも」 indicates concession, meaning "even while doing X, Y occurs," or "despite X, Y." While
+      it can express contrasting aspects, it doesn't necessarily imply the inherent, often problematic,
+      duality of two opposing characteristics within the *same subject* as strongly as 「反面」 does. 「ながらも」
+      often focuses on an action or state continuing despite a condition, or a surprising outcome given
+      a certain condition.
+    grammar_point: '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - term: ものの
+    meaning: Although, but, even though
+    kind: similar expression
+    nuance: 「ものの」 is a more formal and literary expression for "although" or "even though." It expresses
+      a concession, where a statement is true but there's a contrasting or unexpected subsequent fact.
+      Like 「反面」, it can highlight duality. However, `ものの` often simply introduces a contrasting fact without
+      necessarily implying the inherent, two-sided nature of *one* subject that 「反面」 emphasizes (e.g.,
+      A is true, *but* B is also true, where B might not be an inherent *opposite* of A, just another
+      fact).
+    grammar_point: ものの (although・but)
+post_false_friends_writeup: |-
+  When distinguishing between 「反面」, 「に対して」, 「一方で」, 「ながらも」, and 「ものの」, consider the nature and focus of the contrast.
+  *   Use 「反面」 to highlight two *inherently opposing or contradictory characteristics* that belong to the *same single subject or situation*. It emphasizes a direct trade-off or duality. For instance, a job might be challenging but also highly rewarding.
+  *   Use 「に対して」 when comparing or contrasting *two different entities, ideas, or groups*. It points out differences between distinct items. For example, comparing city life to rural life, or someone's attitude towards another.
+  *   Use 「一方で」 for presenting *another side* or a *simultaneous aspect*. It is broader than 「反面」 and can introduce a contrasting or additional fact without necessarily implying an inherent, strong contradiction within a single subject. It often means "on the other hand" or "at the same time."
+  *   Use 「ながらも」 to express concession, meaning "even while doing X, Y occurs," or "despite X, Y." It focuses on an action or state continuing despite a condition or a surprising outcome given a certain condition. While it can show contrasting aspects, it less strongly implies the fundamental, inherent duality within a single subject that 「反面」 highlights.
+  *   Use 「ものの」 as a more formal way to say "although" or "even though." It introduces a conceded fact followed by a contrasting or unexpected subsequent fact. Similar to 「ながらも」, it expresses a concession but might not carry the specific emphasis on the internal, two-sided conflict of one subject that 「反面」 does.
+examples:
+  - english: While remote work increases free time, the boundary between work and private life becomes
+      ambiguous.
+    japanese:
+      - リモート ワーク は 自由 な 時間 が 増える {反面}、仕事 と プライベート の 境界 が 曖昧 に なる。
+      - リモート ワーク は 自由 な 時間 が 増える {反面}、仕事 と プライベート の 境界 が 曖昧 に なり ます。
+    english_literally: Remote work, on the other hand, free time increases, work and private life's boundary
+      becomes ambiguous.
+    competing_grammar:
+      - competing_japanese:
+          - リモート ワーク は 自由 な 時間 が 増える {一方 で}、仕事 と プライベート の 境界 が 曖昧 に なる。
+        english: While remote work increases free time, at the same time, the boundary between work and
+          private life becomes ambiguous.
+        hint: 「一方で」 can express simultaneous aspects or another side, but it doesn't carry the same strong
+          implication of an inherent trade-off or contradiction that 「反面」 does. We're looking for a grammar
+          point that strongly highlights a dual nature where one aspect directly leads to another.
+    scene: A colleague discussing the pros and cons of telecommuting with another colleague.
+    register: semi-formal
+    setting: informative
+    nuance: This example uses 「反面」 to describe the inherent duality of remote work, where increased freedom
+      comes with a blurred boundary. The formal tone is reflected in the overall sentence structure, suitable
+      for a professional discussion.
+    etymology: The concept of 'remote work' (リモートワーク) is a modern one, contrasting with traditional office
+      settings, highlighting the evolution of work-life balance discussions.
+  - english: This smartphone's camera has amazing image quality, but on the other hand, its battery drains
+      quickly.
+    japanese:
+      - この スマート フォン の カメラ は 画質 が 素晴らしい {反面}、バッテリー の 消耗 が 激しい。
+      - この スマート フォン の カメラ は 画質 が 素晴らしい {反面}、バッテリー の 消耗 が 激しい です。
+    english_literally: This smartphone's camera, image quality is amazing, on the other hand, battery
+      consumption is severe.
+    competing_grammar:
+      - competing_japanese:
+          - この スマート フォン の カメラ は 画質 が 素晴らしい {けど}、バッテリー の 消耗 が 激しい。
+        english: This smartphone's camera has amazing image quality, but its battery drains quickly.
+        hint: 「けど」 simply states a contrast, but 「反面」 emphasizes that the amazing image quality and quick
+          battery drain are two inherent aspects of the *same* phone. We're looking for a grammar point
+          that highlights this inherent duality.
+    scene: A consumer explaining the pros and cons of a new gadget to a friend.
+    register: casual
+    setting: informative
+    nuance: 'The use of 「反面」 here emphasizes the inherent trade-off in the smartphone''s design: great
+      camera quality but poor battery life. The casual register is appropriate for a conversation between
+      friends.'
+    etymology: The term 'smartphone' (スマート フォン) is a loanword from English, showcasing the global nature
+      of technology. 'Camera' (カメラ) is also a loanword.
+  - english: While city living is convenient, there's also the problem of high rent.
+    japanese:
+      - 都会 で の 生活 は 便利 {な 反面}、家賃 が 高い と いう 問題 が ある。
+      - 都会 で の 生活 は 便利 {で ある 反面}、家賃 が 高い と いう 問題 が ある。
+    english_literally: City living is convenient, on the other hand, rent is high, problem exists.
+    competing_grammar:
+      - competing_japanese:
+          - 都会 で の 生活 は 便利 だ。{その 代わり}、家賃 が 高い と いう 問題 が ある。
+        english: City living is convenient. Instead, there's also the problem of high rent.
+        hint: 「その代わり」 implies something is done *in exchange* for something else, or a substitute. 「反面」
+          describes two *inherent* characteristics of the same subject. We're looking for a grammar point
+          that highlights the dual nature of city living.
+    scene: A young woman reflecting on her experiences living in a big city with a close friend.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual nature of the conversation between two female friends is reflected in the use of
+      「な反面」, which is commonly used in everyday speech to express contrasting points about a single subject.
+      The speaker's tone implies a personal, relatable observation. The use of 「便利」 (convenient) paired
+      with 「な反面」 highlights the duality inherent in city life.
+    etymology: The phrase 'city living' (都会での 生活) encapsulates the modern experience of urbanization,
+      where convenience often comes at a higher cost.
+  - english: His plan is innovative, but on the other hand, its feasibility remains questionable.
+    japanese:
+      - 彼 の 計画 は 革新 的 {で ある 反面}、実現 可能 性 に は 疑問 が 残る。
+      - 彼 の 計画 は 革新 的 {な 反面}、実現 可能 性 に は 疑問 が 残る。
+    english_literally: His plan is innovative, on the other hand, feasibility remains questionable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 計画 は 革新 的 {だ が}、実現 可能 性 に は 疑問 が 残る。
+        english: His plan is innovative, but its feasibility remains questionable.
+        hint: 「だが」 serves as a simple conjunction to state a contrast. 「反面」 specifically conveys that
+          the innovation and questionable feasibility are two inherent and often conflicting aspects of
+          the *same* plan. We're looking for a grammar point that expresses this inherent duality.
+    scene: A male manager discussing the pros and cons of a new project proposal with his team.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「である反面」 is used here to convey a formal and objective assessment of the plan's
+      duality, emphasizing that both its innovative nature and its questionable feasibility are inherent
+      characteristics of the same proposal. This is common in professional and academic discourse among
+      male speakers when presenting a balanced view to a group.
+    etymology: The concept of 'innovation' (革新) implies a breaking from tradition, which naturally invites
+      questions of 'feasibility' (実現可能性) when applied in practical settings.
+  - english: New AI technology is a tool that enriches our lives, but on the other hand, it also carries
+      ethical challenges.
+    japanese:
+      - 新しい AI 技術 は 私 たち の 生活 を 豊か に する ツール {で ある 反面}、倫理 的 な 課題 も はらん で いる。
+      - 新しい AI 技術 は 私 たち の 生活 を 豊か に する ツール {で ある 反面}、倫理 的 な 課題 も はらん で い ます。
+    english_literally: New AI technology is a tool that enriches our lives, on the other hand, ethical
+      challenges also are harboring.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい AI 技術 は 私 たち の 生活 を 豊か に する ツール で ある {一方 で}、倫理 的 な 課題 も はらん で いる。
+        english: New AI technology is a tool that enriches our lives, on the other hand, it also carries
+          ethical challenges.
+        hint: While 「一方で」 can present another side or a simultaneous aspect, 「反面」 more strongly emphasizes
+          an inherent contradiction or trade-off within the *same* subject. We're looking for a grammar
+          point that highlights this intrinsic duality.
+    scene: An academic discussing the societal impact of AI technology during a lecture.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: The academic context of evaluating a complex subject like AI technology calls for 「である反面」
+      to present its intrinsic duality – both a benefit and a challenge stemming from the very nature
+      of the technology itself. This formal expression highlights the speaker's objective analysis.
+    etymology: The modern discussion around 'AI technology' (AI 技術) and 'ethical challenges' (倫理的な 課題)
+      reflects a global concern about new scientific advancements and their societal implications.
+  - english: While he is a popular actor, he also has a very private side.
+    japanese:
+      - 彼 は 人気 俳優 {で ある 反面}、非常 に プライベート な 面 も 持っ て いる。
+      - 彼 は 人気 俳優 {で ある 反面}、非常 に プライベート な 面 も 持っ て い ます。
+    english_literally: He, popular actor is, on the other hand, very private side also has.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 人気 俳優 {だ けど}、非常 に プライベート な 面 も 持っ て いる。
+        english: He is a popular actor, but he also has a very private side.
+        hint: 「けど」 simply connects two facts. 「反面」 emphasizes that being a popular actor and having a
+          private side are two inherent, contrasting aspects of the *same person*. We're looking for a
+          grammar point that highlights this inherent duality.
+    scene: A fan discussing a celebrity with a friend.
+    register: semi-formal
+    setting: informative
+    nuance: The use of 「である反面」 is suitable for discussing a public figure's contrasting traits in a slightly
+      more analytical or respectful manner. It highlights the inherent duality of being a public figure
+      with a desire for privacy.
+    etymology: The concept of a 'popular actor' (人気 俳優) reflects the modern celebrity culture, where public
+      persona often contrasts with private life. The word 'private' (プライベート) is a loanword from English.
+  - english: This novel is easy to read, but its themes are surprisingly profound.
+    japanese:
+      - この 小説 は 読み やすい {反面}、テーマ は 驚く ほど 奥深い。
+      - この 小説 は 読み やすい {反面}、テーマ は 驚く ほど 奥深い です。
+    english_literally: This novel, easy to read, on the other hand, themes are surprisingly profound.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は 読み やすい {が}、テーマ は 驚く ほど 奥深い。
+        english: This novel is easy to read, but its themes are surprisingly profound.
+        hint: 「が」 simply connects two clauses with a contrasting idea. 「反面」 suggests that the readability
+          and profundity are two inherent, contrasting characteristics of the *same* novel. We're looking
+          for a grammar point that highlights this inherent duality.
+    scene: Two friends discussing a book they've both read.
+    register: semi-formal
+    setting: academic
+    nuance: 「読みやすい反面」 highlights the inherent paradox of a novel being accessible yet complex. This structure
+      is common in literary critiques or discussions.
+    etymology: The term 'novel' (小説) refers to a literary form with a long history in Japan. 'Theme' (テーマ)
+      is a loanword, indicating a common concept in literary analysis.
+  - english: Being a professional athlete is glamorous, but it also requires immense discipline and sacrifice.
+    japanese:
+      - プロ の アスリート は 華やか {な 反面}、途方 も ない 規律 と 犠牲 が 必要 だ。
+      - プロ の アスリート は 華やか {で ある 反面}、途方 も ない 規律 と 犠牲 が 必要 だ。
+    english_literally: Professional athlete, glamorous, on the other hand, immense discipline and sacrifice
+      is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - プロ の アスリート は 華やか です。{しかし}、途方 も ない 規律 と 犠牲 が 必要 です。
+        english: Being a professional athlete is glamorous. However, immense discipline and sacrifice
+          are necessary.
+        hint: 「しかし」 is a general conjunction for contrast. 「反面」 specifically conveys that the glamour
+          and the discipline are two intrinsic and contrasting aspects of being a professional athlete.
+          We're looking for a grammar point that highlights this deep-seated duality.
+    scene: A sports commentator discussing the life of an athlete.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal tone and use of 「な反面」 are suitable for a commentator's objective analysis of a
+      demanding profession. It emphasizes the intrinsic trade-off between the perceived glamor and the
+      underlying hardships. The term 「アスリート」 (athlete) is a loanword from English, commonly used in Japanese
+      sports contexts.
+    etymology: The concept of a 'professional athlete' (プロ の アスリート) often involves a public image of success
+      juxtaposed with the hidden dedication required. 'Discipline' (規律) and 'sacrifice' (犠牲) are key values
+      in Japanese athletic training.
+  - english: My son is very active, but on the other hand, he can also be quite clumsy.
+    japanese:
+      - うち の 息子 は とても 活発 {な 反面}、結構 不 器用 な ところ も ある。
+      - うち の 息子 は とても 活発 {で ある 反面}、結構 不 器用 な ところ も ある。
+      - うち の 息子 は とても 活発 {な 反面}、結構 不 器用 な ところ も あり ます。
+      - うち の 息子 は とても 活発 {で ある 反面}、結構 不 器用 な ところ も あり ます.
+    english_literally: My son, very active, on the other hand, quite clumsy aspects also exist.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 息子 は とても 活発 {だ けど}、結構 不 器用 な ところ も ある。
+        english: My son is very active, but he can also be quite clumsy.
+        hint: 「だけど」 simply states a contrasting point. 「反面」 emphasizes that being active and clumsy are
+          two inherent, contrasting aspects of the *same child's personality*. We're looking for a grammar
+          point that points out this inherent duality.
+    scene: A mother talking about her child with another mother.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual 「活発な反面」 is perfectly natural for a parent describing their child's personality.
+      It highlights the simultaneous existence of an energetic nature and clumsiness, which are both inherent
+      traits of the child. The use of 「うちの息子」 (my son) contributes to the casual and intimate tone often
+      used by female speakers in this setting.
+    etymology: The use of 「うちの息子」 reflects a common Japanese way of referring to one's own family members.
+      'Clumsy' (不器用) describes a trait often observed in children, contrasting with their active nature.
+  - english: Traditional crafts are beautiful, but they require a lot of time and effort to master.
+    japanese:
+      - 伝統 工芸 は 美しい {反面}、習得 に は 大変 な 時間 と 労力 が かかる。
+      - 伝統 工芸 は 美しい {反面}、習得 に は 大変 な 時間 と 労力 が かかり ます。
+    english_literally: Traditional crafts, beautiful, on the other hand, mastering requires great time
+      and effort.
+    competing_grammar:
+      - competing_japanese:
+          - 伝統 工芸 は 美しい です。{しかし}、習得 に は 大変 な 時間 と 労力 が かかり ます。
+        english: Traditional crafts are beautiful. However, mastering requires a lot of time and effort.
+        hint: 「しかし」 introduces a general contrasting idea. 「反面」 specifically conveys that the beauty and
+          the demanding nature are two inherent and contrasting aspects of traditional crafts. We're looking
+          for a grammar point that highlights this intrinsic duality.
+    scene: A museum curator giving a presentation on traditional arts.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「美しい反面」 is used formally here to discuss the intrinsic value and challenges associated
+      with traditional crafts. It conveys that the beauty and the difficulty are two inherent and contrasting
+      aspects of the craft itself, suitable for an expert presentation by a female speaker to a group.
+      「伝統工芸」 (traditional crafts) embodies a deep cultural appreciation in Japan.
+    etymology: The term 'traditional crafts' (伝統 工芸) represents a significant part of Japanese cultural
+      heritage, often associated with a long history of meticulous development and preservation.
+post_example_writeup: The examples illustrate how 「反面」 is used to describe two opposing attributes or
+  outcomes related to the *same subject*. It effectively conveys a balanced, often bittersweet, perspective
+  by highlighting the inherent contradictions within a single entity or situation. This structure is particularly
+  useful when discussing the trade-offs or dual nature of concepts, objects, or experiences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/反面

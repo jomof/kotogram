@@ -1,0 +1,818 @@
+grammar_point: な-Adjectives (adjectival nouns)
+learn_before:
+  - あり (possibility・with)
+  - でした (past copula, polite)
+  - な-Adjective (predicate form)
+  - な-Adjective[ではなかった・じゃなかった] (plain past negative)
+meaning: Adjectival nouns
+meaning_warning: Some な-adjectives can end in い. For example, きれい (綺麗), ハンサム (handsome).
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: '[Adjective Stem] + だ'
+    rarity: common
+    meaning: is ~ (plain)
+  - conjugation-type: non-past polite (～ます)
+    form: '[Adjective Stem] + です'
+    rarity: common
+    meaning: is ~ (polite)
+  - conjugation-type: past plain (～た)
+    form: '[Adjective Stem] + だっ た'
+    rarity: common
+    meaning: was ~ (plain)
+  - conjugation-type: past polite (～ました)
+    form: '[Adjective Stem] + でし た'
+    rarity: common
+    meaning: was ~ (polite)
+  - conjugation-type: negative plain (～ない)
+    form: '[Adjective Stem] + で は ない'
+    rarity: common
+    meaning: is not ~ (plain)
+  - conjugation-type: negative plain (～ない)
+    form: '[Adjective Stem] + じゃ ない'
+    rarity: common
+    meaning: is not ~ (plain, informal)
+  - conjugation-type: negative non-past polite (～ません)
+    form: '[Adjective Stem] + で は あり ませ ん'
+    rarity: common
+    meaning: is not ~ (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: '[Adjective Stem] + じゃ あり ませ ん'
+    rarity: common
+    meaning: is not ~ (polite, informal)
+  - conjugation-type: negative past plain (～なかった)
+    form: '[Adjective Stem] + で は なかっ た'
+    rarity: common
+    meaning: was not ~ (plain)
+  - conjugation-type: negative past plain (～なかった)
+    form: '[Adjective Stem] + じゃ なかっ た'
+    rarity: common
+    meaning: was not ~ (plain, informal)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: '[Adjective Stem] + で は あり ませ ん でし た'
+    rarity: common
+    meaning: was not ~ (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: '[Adjective Stem] + じゃ あり ませ ん でし た'
+    rarity: common
+    meaning: was not ~ (polite, informal)
+  - conjugation-type: te-form (～て)
+    form: '[Adjective Stem] + で'
+    rarity: common
+    meaning: being ~, and; because ~
+  - conjugation-type: conditional (～たら)
+    form: '[Adjective Stem] + だっ たら'
+    rarity: common
+    meaning: if it is ~, if it were ~
+  - conjugation-type: conditional (～ば)
+    form: '[Adjective Stem] + なら ば'
+    rarity: common
+    meaning: if ~
+  - conjugation-type: concessive (～ても)
+    form: '[Adjective Stem] + で も'
+    rarity: common
+    meaning: even if ~
+pronunciation:
+  katakana: ナ-ケイヨウシ
+  romaji: na-keiyoushi
+formation:
+  '[な-Adjective] + だ / です': Used at the end of a sentence to state a fact about the adjectival noun.
+  '[な-Adjective] + な + [Noun]': Used to modify or describe a noun. な is added between the adjective and
+    the noun.
+jlpt: N5
+etymology: Many な-adjectives have their roots in Chinese kango (漢字語), or more recently, English loanwords
+  (外来語). Because they were originally nouns or noun-like words, they retain a nominal characteristic of
+  requiring the copula だ/です to form a predicate. The particle な itself evolved from the classical Japanese
+  attributive particle なる.
+writeup: |-
+  In Japanese grammar, な-adjectives, also known as adjectival nouns (形容動詞, keiyōdōshi), are a distinct class of words that behave similarly to both adjectives and nouns. While most originate from nouns, particularly Chinese loanwords (kango) or foreign loanwords (gairaigo), they have developed their own unique conjugation rules.
+
+  **Key Characteristics:**
+  *   **Predicate Use**: When used at the end of a sentence to describe a state or quality, な-adjectives are followed by a form of the copula, typically だ (plain form) or です (polite form). For example, 「この 部屋 は 静か だ」 (This room is quiet) or 「この 部屋 は 静か です」 (This room is quiet, polite).
+  *   **Attributive Use**: When a な-adjective modifies a noun, the particle な is inserted between the adjective and the noun. For example, 「静か な 部屋」 (a quiet room).
+
+  **Historical Note:** Many な-adjectives were originally nouns. Their nominal origin explains why they rely on the copula だ/です to function as predicates, much like regular nouns do.
+
+  **Identifying な-Adjectives:**
+  Distinguishing な-adjectives from regular nouns can be challenging for learners, as both can appear with similar structures. A useful heuristic, often taught to Japanese children, involves the adverb とても ('very').
+
+  If とても naturally precedes a word and sounds grammatically correct (e.g., 「とても 静か」, very quiet; 「とても 綺麗」, very beautiful), the word is likely a な-adjective. This is because adjectives denote qualities that can exist in varying degrees and thus can be intensified. Conversely, とても generally sounds unnatural when paired directly with common nouns (e.g., 「とても 犬」, very dog; 「とても 本」, very book) because nouns typically represent discrete entities rather than gradable qualities.
+false_friends:
+  - term: い-Adjectives
+    meaning: Adjectives ending in い
+    kind: similar expression
+    nuance: Unlike な-adjectives, which require な before a noun they modify, い-adjectives directly precede
+      the noun without any connecting particle. They also have different conjugation patterns for tense
+      and negation.
+    grammar_point: い-Adjective[dictionary] (dictionary)
+  - term: ～なら
+    meaning: if, in the case of
+    kind: similar expression
+    nuance: While both な-adjective + たら and な-adjective + なら can form conditionals, なら often expresses
+      a conditional based on an assumption or advice regarding an existing state, while たら typically implies
+      a direct consequence from a completed action or a more general hypothetical.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: に (adverbializer)
+    meaning: To make something an adverb.
+    kind: similar expression
+    nuance: な-adjectives transform into adverbs by adding に (e.g., 静か に話す - to speak quietly), allowing
+      them to modify verbs, whereas their adjectival forms modify nouns or act as predicates.
+    grammar_point: に (adverbializer)
+  - term: 化する (to make become ~ize)
+    meaning: to make/become ~ize
+    kind: similar expression
+    nuance: While な-adjectives describe an existing state or quality (e.g., 複雑 だ - it is complex), the
+      suffix 化する indicates a process where something changes or is made to become that state (e.g., 複雑
+      化する - to become complex/complicate).
+    grammar_point: 化する (to make become ~ize)
+post_false_friends_writeup: Remember that な-adjectives need な before the noun they modify, while い-adjectives
+  attach directly to the noun. This is a fundamental distinction in their attributive usage. For conditionals,
+  while both たら and なら express 'if', they carry subtle differences in nuance regarding the nature of the
+  condition or consequence, with たら often implying a more direct result of a completed action, and なら
+  offering a suggestion or advice based on a premise. Additionally, be mindful that while some な-adjectives
+  resemble nouns, they function as adjectives, whereas true nouns typically do not take な to modify other
+  nouns nor can they be intensified by とても in the same manner. Furthermore, distinguish な-adjectives modifying
+  nouns from noun + の + noun constructions; the former describes a quality, while the latter indicates
+  possession or a relationship between two nouns. Lastly, note that な-adjectives use に と become adverbs
+  modifying verbs, and the suffix 化する indicates a change or transformation into a state, distinct from
+  simply describing an existing state with a な-adjective.
+examples:
+  - english: This room is very quiet.
+    japanese:
+      - この 部屋 は とても {静か} です。
+      - この 部屋 は とても {静か} だ。
+      - この 部屋、とても {静か}。
+      - この 部屋 は 大変 {静か} です。
+      - この 部屋 は とても {静か} だ よ。
+      - この 部屋、すごく {静か} だ ね。
+      - この 部屋 は 本当 に {静か} です ね。
+      - この 部屋 は とても {静か} で ござい ます。
+      - この 部屋 は かなり {静か} です。
+      - この 部屋 は 随分 {静か} だ ね。
+      - この 部屋 は {静か} です わ。
+      - この 部屋、{静か} だ な。
+      - この 部屋、{静か} じゃ ね？
+      - この 部屋 は とても {静か} です よ。
+      - この 部屋、{静か} だ ぜ。
+      - この 部屋 は とても {静か} で 快適 です。
+      - この 部屋 は {静か} な ん です よ。
+      - この 部屋 は {静か} な の で 落ち着き ます。
+      - この 部屋 は {静か} じゃ ない。
+      - この 部屋 は {静か} で は あり ませ ん。
+      - この 部屋 は とても {静か} だっ た。
+      - この 部屋 は {静か} じゃ なかっ た。
+      - この 部屋 は {静か} だっ た よ。
+      - '{静か} な 部屋 です よ。'
+      - この 部屋、{静か} だ ろ？
+      - この 部屋、{静か} で いい ね。
+      - こんな に {静か} な 部屋 は 珍しい です ね。
+      - '{静か} な 部屋 で 落ち着き ます。'
+      - ここ は 本当 に {静か} だ から 好き だ。
+      - この 部屋 は {静か} で 落ち着け ます。
+    english_literally: This room very quiet is.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は {音 が ない} です。
+        english: This room has no sound.
+        hint: While this describes an absence, it doesn't convey the qualitative state of quietness like
+          an adjective does. We're looking for an adjective.
+      - competing_japanese:
+          - この 部屋 は {静か な} です。
+        english: This room is quiet (incorrect).
+        hint: The form 「静か な」 is for modifying nouns. When describing the room directly, you need a different
+          form.
+      - competing_japanese:
+          - この 部屋 は 落ち着い {て いる}。
+        english: This room is calming.
+        hint: While 「落ち着いている」 conveys a sense of calm, 「静か」 specifically refers to the absence of noise.
+          We're looking for a common adjective that describes a lack of noise.
+      - competing_japanese:
+          - この 部屋 は ひっそり と し {て いる}。
+        english: This room is deserted and quiet.
+        hint: 「ひっそりとしている」 implies a sense of stillness and desertion, rather than just the absence of
+          sound. We're looking for a common adjective that describes a lack of noise.
+      - competing_japanese:
+          - この 部屋 は {静か に} し て ください。
+        english: This phrase uses an adverb to give a command, not to describe the room itself.
+        hint: This phrase uses an adverb to give a command, not to describe the room itself. We're looking
+          for a descriptive adjective.
+      - competing_japanese:
+          - この 部屋 は {静 かしい} です。
+        english: This room is quiet (incorrect conjugation).
+        hint: な-adjectives do not conjugate with an い ending. They use forms of the copula (だ/です) or the
+          particle な. We're looking for the correct conjugation of a な-adjective.
+      - competing_japanese:
+          - この 部屋 は {静寂} です。
+        english: This room is silence.
+        hint: 「静寂」 is a noun referring to silence itself, not a quality of being silent that can be graded.
+          We're looking for an adjective that describes the room's quiet state.
+      - competing_japanese:
+          - この 部屋 の {静けさ} は 素晴らしい です。
+        english: The quietness of this room is wonderful.
+        hint: 「静けさ」 is a noun referring to the quality of quietness itself, often used in phrases like
+          'quietness of X'. We're looking for an adjective directly describing the room.
+    scene: A real estate agent is showing a quiet apartment to a client who values peaceful environments.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「とても」 to emphasize the degree of quietness, common in polite sales interactions.
+      The use of 「です」 maintains a professional and respectful tone suitable for a real estate agent speaking
+      to a client. The variations include more informal options like 「静か じゃ ね？」 which conveys a casual,
+      almost rhetorical question, often used by younger speakers. The inclusion of 「静か です わ」 in the variations
+      illustrates a softer, slightly more feminine expression.
+  - english: My favorite color is blue.
+    japanese:
+      - 私 の {好き} な 色 は 青 です。
+      - 私 の {好き} な 色 は 青 だ。
+      - 私 の 一番 {好き} な 色 は 青 です。
+      - 私 の {好き} な 色 は 青 だ よ。
+      - 一番 {好き} な 色 は 青 です。
+      - 私 の 大 {好き} な 色 は 青 です。
+      - 私 の {好き} な 色 は 青 で ござい ます。
+      - 俺 の {好き} な 色 は 青 だ。
+      - '{好き} な 色 は 青 です。'
+      - 青 が {好き} です。
+      - 私 の {好き} な 色 は 青 だ ぞ。
+      - 私 の {好き} な 色 は 青 ね。
+      - 私 の {好き} な 色 は 青 じゃ ない。
+      - 私 の {好き} な もの は 青 です。
+      - '{好き} な 服 は 青 です。'
+      - 私 の {好き} な 色 は 青 だっ た。
+      - 私 の {好き} な 色 は 青 でし た。
+      - 私 の {好き} な 色 は 青 じゃ なかっ た。
+      - 私 の {好き} な 色 は 青 で は あり ませ ん でし た。
+      - '{好き} な 色、青。'
+      - 私、青 が {好き} だ。
+      - 青 が {好き} な ん だ。
+      - 青 は 私 の {好き} な 色 です。
+      - '{好き} な 色 は 青 だ けど、赤 も 悪く ない。'
+      - '{好き} な 色 って 何？'
+      - 青 が 一番 {好き} な 色 な ん だ。
+    english_literally: My liked color is blue.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {好き の} 色 は 青 です。
+        english: My liked color is blue (incorrect).
+        hint: 「好き」 functions as an adjectival noun when modifying a noun, requiring 「な」. We're looking
+          for the correct particle to connect the adjective to the noun.
+      - competing_japanese:
+          - 私 は 青い 色 を {好き だ}。
+        english: I like blue color (incorrect grammar).
+        hint: While 「好き」 expresses liking, it behaves as an adjectival noun describing the color, not
+          as a transitive verb. We're looking for the correct adjectival structure.
+      - competing_japanese:
+          - 私 は 青 が {気 に 入っ て いる}。
+        english: I like blue.
+        hint: 「気に入っている」 expresses personal preference for something. Here, we are describing "favorite
+          color" as an attribute, which is typically handled by the adjectival noun 「好き な」.
+      - competing_japanese:
+          - 青い 色 が 私 の {好み} です。
+        english: Blue is my preference.
+        hint: 「好み」 is a noun indicating a preference. While similar in meaning, we are focusing on the
+          adjectival noun 「好き」.
+      - competing_japanese:
+          - 私 の {楽しい} 色 は 青 です。
+        english: My fun color is blue.
+        hint: 「楽しい」 is an い-adjective, which directly modifies the noun 「色」 without a connecting particle
+          like 「な」. 「好き」, as a な-adjective, requires 「な」 to modify a noun. We're looking for the correct
+          usage of the な-adjective 「好き」.
+      - competing_japanese:
+          - 私 の {好き} が 青 です。
+        english: My liking is blue.
+        hint: While 「好き」 can be a noun (e.g., in 「好き嫌い」), when modifying a noun like 「色」 it functions
+          as an adjectival noun and requires 「な」. We're looking for the correct adjectival usage.
+      - competing_japanese:
+          - 私 の {趣味} の 色 は 青 です。
+        english: My hobby's color is blue.
+        hint: 「趣味 の 色」 uses 「の」 to link a noun to another noun, indicating a type of item. We're looking
+          for an adjectival noun indicating 'favorite'.
+    scene: A child is drawing with their friend and is asked what their favorite color is.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「好き な」 correctly uses the attributive form of the な-adjective to modify 「色」. The
+      casual tone and childlike context make the simple declarative sentence with 「です」 appropriate. The
+      speaker's gender is subtly reflected in options like 「好き な 色 は 青 ね。」, which adds a gentle, feminine
+      touch. The direct statement of preference is typical of a younger speaker. Adding 「青 が 好き です」 shows
+      the predicative use of the same adjectival noun.
+  - english: You're energetic today too!
+    japanese:
+      - 今日 も {元気} だ ね！
+      - 今日 も {元気} です ね！
+      - 今日 も {元気} ね！
+      - 今日 も {元気} だ よ！
+      - 今日 も {元気} じゃ ない か！
+      - 今日 も {元気} いっぱい です ね！
+      - 今日 も {元気} じゃん！
+      - 今日 も 本当 に {元気} だ ね！
+      - 今日 も {元気} だ ぞ！
+      - 今日 も {元気} だろ！
+      - 今日 も {元気} だ ぜ！
+      - 今日 も {元気} だっ た ね！
+      - 今日 も {元気} じゃ ない ね！
+      - 今日 も {元気} で は あり ませ ん ね！
+      - 今日 も {元気} だっ た の？
+      - 今日 は {元気} じゃ ない ね。
+      - 今日 は {元気} で は あり ませ ん ね。
+      - 今日 も {元気} な の？
+      - 今日 も {元気} です か？
+      - 今日 も {元気} じゃ なかっ た ね。
+      - '{元気} だ ね！どう し た の？'
+      - お、{元気} じゃん！
+      - 朝 から {元気} で 素晴らしい ね！
+      - 相 変わら ず {元気} だ ね！
+    english_literally: Today too energetic is, isn't it!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 も {元気} です ね！
+        english: You're energetic today too, aren't you! (polite).
+        hint: While this is a polite way to say it, the original sentence aims for a casual, familiar
+          tone, typical when speaking to family.
+      - competing_japanese:
+          - 今日 も {元気 な} ね！
+        english: You're energetic today too (incorrect attributive use).
+        hint: The form 「元気 な」 is for modifying nouns. When stating a quality about someone directly, you
+          need a different form.
+      - competing_japanese:
+          - 今日 も {活発} だ ね！
+        english: You're lively today too!
+        hint: While 「活発」 also means lively or active, 「元気」 specifically implies health and vigor, often
+          used as a general greeting. We're looking for the more common, general greeting expression.
+      - competing_japanese:
+          - 今日 も {元気 に} し てる？
+        english: Are you doing well today too?
+        hint: This is a question about someone's state using an adverbial form. We're looking for a direct
+          descriptive statement using an adjective.
+      - competing_japanese:
+          - 今日 も {元気 そう だ} ね！
+        english: You seem energetic today too!
+        hint: This phrase uses 「そう だ」 to express that something *appears* to be the case, rather than
+          stating it as a fact. We're looking for a direct statement about someone's energy level.
+      - competing_japanese:
+          - 今日 も あなた は {元気 が あり ます} ね！
+        english: You have energy today too!
+        hint: While this means having energy, 「元気 だ」 directly describes someone's state of being energetic.
+          We're looking for a descriptive adjective.
+      - competing_japanese:
+          - 今日 も {忙しい} です ね！
+        english: You're busy today too!
+        hint: 「忙しい」 is an い-adjective, which conjugates differently for plain forms and negatives. 「元気」
+          is a な-adjective. We're looking for the correct usage of the な-adjective 「元気」.
+      - competing_japanese:
+          - 今日 も {活力} です ね！
+        english: Today too, it is vitality!
+        hint: 「活力」 is a noun referring to vitality itself. 「元気」 functions as an adjectival noun to describe
+          someone's energetic state. We're looking for an adjective that describes the person's state.
+    scene: A father cheerfully greets his young child in the morning.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「元気 だ」 is a direct, plain statement typical of a parent speaking to a child, conveying
+      affection and familiarity. The sentence-final particle 「ね」 softens the assertion into a shared observation,
+      making it a warm greeting. The addition of 「じゃん！」 offers a very casual, often used by younger speakers
+      to express surprise or confirmation. 「だ ぞ！」 and 「だ ぜ！」 are strong, masculine casual endings.
+  - english: This problem isn't easy.
+    japanese:
+      - この 問題 は {簡単} じゃ ない。
+      - この 問題 は {簡単} で は ない。
+      - この 問題 は {簡単} で は あり ませ ん。
+      - この 問題 は {簡単} じゃ なかっ た。
+      - この 問題 は {簡単} で は あり ませ ん でし た。
+      - この 問題 は {簡単} じゃ ない よ。
+      - この 問題 は {簡単} じゃ ねえ。
+      - この 問題 は {簡単} じゃ あり ませ ん。
+      - この 問題、{簡単} じゃ ない ね。
+      - この 問題 は {簡単} で は なかっ た。
+      - この 問題 は {容易} で は ない。
+      - この 問題、全然 {簡単} じゃ ない。
+      - 正直、この 問題 は {簡単} じゃ ない。
+      - この 問題 は {簡単} じゃ ない ぞ。
+      - この 問題、全然 {簡単} じゃ ない ん だ。
+      - これ、{簡単} じゃ ない な。
+      - 全然 {簡単} じゃ ない よ、これ。
+      - '{簡単} じゃ ない と 思う ん だ よ ね。'
+      - 思っ た より {簡単} じゃ なかっ た。
+      - これ は {簡単} で は ない。
+    english_literally: This problem easy not is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は {簡単 で は あり ませ ん}。
+        english: This problem isn't easy (polite).
+        hint: While this is a polite negation, the original sentence uses a casual tone appropriate for
+          speaking to oneself or close friends.
+      - competing_japanese:
+          - この 問題 は {易しく ない}。
+        english: This problem is not easy (using い-adjective).
+        hint: While 「易しい」 is an い-adjective meaning 'easy', 「簡単」 is an adjectival noun and requires a
+          different negative form. We're focusing on the adjectival noun '簡単'.
+      - competing_japanese:
+          - この 問題 は {難しい}。
+        english: This problem is difficult.
+        hint: While 「難しい」 is an antonym and expresses the same sentiment, the original sentence explicitly
+          uses the negative form of 「簡単」 (easy). We are looking for the correct negative conjugation of
+          the adjectival noun 「簡単」.
+      - competing_japanese:
+          - この 問題 は {簡単 な こと} じゃ ない。
+        english: This phrase treats '簡単' as part of a noun phrase ('簡単 な こと'). We are looking for a direct
+          adjectival description.
+        hint: This phrase treats '簡単' as part of a noun phrase ('簡単 な こと'). We are looking for a direct
+          adjectival description.
+      - competing_japanese:
+          - この 問題 は {平易 さ} じゃ ない。
+        english: This problem isn't plainness.
+        hint: 「平易さ」 is a noun referring to the quality of plainness itself. 「簡単」 is an adjectival noun
+          used to describe a problem's quality. We're looking for the correct negative form of the adjectival
+          noun.
+    scene: A high school student sighs while looking at a difficult math problem, talking to himself.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「簡単 じゃ ない」 uses the casual negative form, which is appropriate for a male student
+      speaking to himself in a moment of frustration. The grammar reflects the speaker's internal thought
+      process rather than a formal address. 「じゃ ねえ」 is a highly informal, masculine negative form, often
+      used by younger males.
+  - english: My room was clean.
+    japanese:
+      - 私 の 部屋 は {綺麗} でし た。
+      - 私 の 部屋 は {綺麗} だっ た。
+      - 私 の 部屋 は {綺麗} だっ た よ。
+      - 僕 の 部屋 は {綺麗} だっ た。
+      - 私 の 部屋 は {綺麗} で ござい まし た。
+      - 私 の 部屋 は 本当 に {綺麗} でし た。
+      - 部屋 が {綺麗} だっ た。
+      - 俺 の 部屋 は {綺麗} だっ た ぜ。
+      - 私 の 部屋 は {清潔} でし た。
+      - 私 の 部屋 は {綺麗} でし た わ。
+      - 私 の 部屋 は {綺麗} でし た よ。
+      - 私 の 部屋 は {綺麗} だっ た ん だ。
+      - 私 の 部屋 は {綺麗} じゃ なかっ た。
+      - 私 の 部屋 は {綺麗} で は あり ませ ん でし た。
+      - 私 の 部屋 は あまり {綺麗} で は あり ませ ん でし た。
+      - '{綺麗} だっ た 部屋。'
+      - 私 の 部屋 は {綺麗} でし た か？
+      - 部屋、{綺麗} だっ た な。
+      - 前 より {綺麗} でし た。
+      - '{綺麗} な 状態 だっ た。'
+      - '{綺麗} な 部屋 だっ た な。'
+    english_literally: My room beautiful/clean was.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は {綺麗 だっ た}。
+        english: My room was clean (plain).
+        hint: While 「綺麗 だっ た」 is the plain past form, 「綺麗 でし た」 is the polite past form. We're looking
+          for a polite recounting of events.
+      - competing_japanese:
+          - 私 の 部屋 は {綺麗}。
+        english: My room is clean (present, omitted copula).
+        hint: When describing a state in the past, a form of the copula is necessary. This sentence is
+          in the present tense and implies casual speech.
+      - competing_japanese:
+          - 私 の 部屋 は {清潔 だっ た}。
+        english: My room was hygienic/spotless.
+        hint: While 「清潔」 also means clean, it specifically refers to hygiene or being spotless. 「綺麗」 is
+          broader and can refer to general cleanliness or beauty. We're looking for the more general term
+          for "clean."
+      - competing_japanese:
+          - 私 の 部屋 は {綺麗 に} さ れ た。
+        english: My room was cleaned (by someone).
+        hint: This sentence uses the passive voice to indicate that the room was cleaned by an external
+          agent. We're looking for a descriptive statement about the room's state, not an action performed
+          on it.
+      - competing_japanese:
+          - 私 の 部屋 は {美しかっ た}。
+        english: My room was beautiful.
+        hint: 「美しい」 is an い-adjective focusing purely on aesthetic beauty, whereas 「綺麗」 can mean both
+          clean and beautiful. We're looking for the more general term for 'clean'.
+      - competing_japanese:
+          - 私 の 部屋 は {美し さ} でし た。
+        english: My room was beauty.
+        hint: 「美しさ」 is a noun referring to the quality of beauty itself. 「綺麗」 is an adjectival noun that
+          describes a room's state of being clean or beautiful. We're looking for an adjective describing
+          the room's state.
+      - competing_japanese:
+          - 私 の 部屋 の {綺麗 さ} は 驚く ほど でし た。
+        english: The cleanliness/beauty of my room is wonderful.
+        hint: 「綺麗さ」 is a noun referring to the quality of cleanliness/beauty itself. We're looking for
+          an adjective directly describing the room's state.
+    scene: A woman tells her friend about how she cleaned her room yesterday.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「綺麗 でし た」 indicates a polite past tense, which is common in general conversation,
+      especially among female friends. The use of the polite form maintains a respectful and pleasant
+      interaction, even when discussing mundane topics. 「でし たら」 is a slightly more feminine and softer
+      polite ending.
+  - english: If you like it, how about one more?
+    japanese:
+      - もし {好き} だっ たら、もう 一 つ どう です か？
+      - もし {好き} なら、もう 一 つ どう です か？
+      - もし {好き} だっ たら、もう 一 つ どう？
+      - もし {好き} なら、もう 一 つ どう？
+      - もし {好き} で あれ ば、もう 一 つ いかが です か？
+      - もし {好き} でし たら、もう 一 つ いかが です か？
+      - '{好き} なら、もう 一 つ どう？'
+      - もし {好き} だっ たら、もう 一 つ いかが です か？
+      - もし {好き} なら ば、もう 一 つ いかが です か？
+      - もし {好き} だっ たら、ぜひ どうぞ。
+      - もし {好き} だっ たら、お 代わり は いかが です か？
+      - '{好き} でし たら、いかが です か？'
+      - '{好き} だっ たら、もう 一 個？'
+      - '{好き} じゃ なかっ たら、いり ませ ん か？'
+      - もし {好き} でし たら、どうぞ。
+      - '{好き} だっ たら、遠慮 なく どうぞ。'
+      - '{好き} なら、他 に も あり ます よ。'
+      - もし {好き} でし たら、お 持ち帰り に なり ます か？
+    english_literally: If liked were, one more how is?
+    competing_grammar:
+      - competing_japanese:
+          - もし {好き なら}、もう 一 つ どう です か？
+        english: If you like it, how about one more? (conditional with なら)
+        hint: While 「好き なら」 is also a valid conditional, 「好き だっ たら」 often implies a more direct or factual
+          consequence. We're looking for a form that subtly pushes for an immediate decision.
+      - competing_japanese:
+          - もし {好き と}、もう 一 つ どう です か？
+        english: If you like it (incorrect conditional with と), how about one more?
+        hint: The particle 「と」 usually indicates a natural or habitual consequence, not a general conditional
+          like 「だったら」. We're looking for a conditional that expresses a general assumption or possibility.
+      - competing_japanese:
+          - もし {気 に 入っ たら}、もう 一 つ どう です か？
+        english: If you like it (having taken a liking to it), how about one more?
+        hint: 「気に入る」 is a verb meaning "to take a liking to" and often implies an action of choosing or
+          coming to like something. 「好き」 is an adjectival noun describing a state of liking. We're looking
+          for the conditional form of the adjectival noun 「好き」.
+      - competing_japanese:
+          - '{好き なら ば}、もう 一 つ 食べ ます か？'
+        english: If you like it, will you eat one more?
+        hint: This uses the 「ば」 conditional, which implies a more general or habitual condition, or a
+          suggestion. We're looking for a form often used for a specific, present condition and consequence.
+      - competing_japanese:
+          - '{お 気 に 召し まし たら}、もう 一 つ いかが です か？'
+        english: If it pleases you, how about one more?
+        hint: This uses honorific language and a different verb (気に入る) to express liking. The original
+          sentence uses the adjectival noun 「好き」 to express preference in a more direct way. We're looking
+          for the conditional form of the adjectival noun.
+      - competing_japanese:
+          - もし {嬉しかっ たら}、もう 一 つ どう です か？
+        english: If you were happy, how about one more?
+        hint: 「嬉しい」 is an い-adjective, and its conditional form is 「嬉しかっ たら」. For な-adjectives like 「好き」,
+          the conditional form is 「好き だっ たら」. We're looking for the conditional form of a な-adjective.
+      - competing_japanese:
+          - もし あなた の {好み} でし たら、もう 一 つ どう です か？
+        english: If it is to your preference, how about one more?
+        hint: While 「好み」 is a noun expressing preference, 「好き」 functions as an adjectival noun to describe
+          a state of liking. We're looking for the conditional form using the adjectival noun.
+      - competing_japanese:
+          - もし あなた の {好み の もの} だっ たら、もう 一 つ どう です か？
+        english: If it is an item of your preference, how about one more?
+        hint: 「好み の もの」 uses 「の」 to link a noun to another noun, indicating a type of item. We're looking
+          for an adjectival noun that directly expresses liking.
+    scene: A shop assistant offers an additional item to a customer who seems interested in their purchase.
+    register: formal
+    setting: persuasive
+    conjugation: conditional (～たら)
+    listener_gender: group
+    nuance: The shop assistant uses 「好き だっ たら」 to present a conditional offer, maintaining a polite and
+      persuasive tone suitable for customer service. The overall polite sentence structure with 「どう です
+      か？」 encourages the customer to consider the offer without being overly pushy. 「でし たら」 is a more
+      formal variant of 「だっ たら」, often used in business contexts.
+  - english: That isn't a famous store.
+    japanese:
+      - あの 店 は {有名} な 店 じゃ ない です。
+      - あの 店 は {有名} な 店 で は あり ませ ん。
+      - あれ は {有名} な 店 じゃ ない よ。
+      - あの 店 は あまり {有名} じゃ ない です。
+      - あの 店 は 決して {有名} な 店 で は ない。
+      - そんな に {有名} じゃ ない ん だ よ ね。
+      - あの 店 は {有名} な 店 だっ た の か？
+      - あの 店、{有名} じゃ ない っけ？
+      - あの 店 は {有名} じゃ なかっ た と 思う ん だ よ ね。
+    english_literally: That store famous store not is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 は {有名 じゃ ない です}。
+        english: That store isn't famous.
+        hint: This is a correct way to state the non-fame of the store. However, the original sentence
+          emphasizes that it's "a famous *store*", implying that "famous" is an attribute of the store
+          itself. The original sentence highlights the noun modified by the adjective.
+      - competing_japanese:
+          - あの 店 は {無名} です。
+        english: That store is unknown/obscure.
+        hint: 「無名」 is an antonym, meaning "unknown" or "obscure." While it conveys a similar idea, the
+          original sentence explicitly uses the negative of "famous." We're looking for the negative form
+          of the な-adjective 「有名」.
+      - competing_japanese:
+          - あの 店 は {知ら れ て い ない} です。
+        english: That store is not known.
+        hint: This verb phrase means "is not known" or "is not recognized." The original sentence uses
+          an adjective to describe the *quality* of the store, not its state of being known. We're looking
+          for an adjectival description.
+    scene: Two friends are walking past a small shop.
+    register: casual
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+  - english: This train station is convenient, so I often use it.
+    japanese:
+      - この 駅 は {便利} で、よく 利用 し ます。
+      - この 駅 は {便利} でし て、よく 利用 し ます。
+      - この 駅 は {便利} な の で、よく 利用 し ます。
+      - この 駅 は {便利} だ から、よく 使う ん だ。
+      - ここ の 駅 は {便利} です から、私 は よく 利用 し ます。
+      - この 駅 は 本当 に {便利} で、毎日 使っ て い ます。
+      - この 駅、{便利} でしょ？だ から よく 来る ん だ。
+      - '{便利} な 駅 です から、利用 客 も 多い です。'
+      - この 駅 は {便利} で、通勤 に 最適 です。
+    english_literally: This station convenient and, often use.
+    competing_grammar:
+      - competing_japanese:
+          - この 駅 は {便利 な} 駅 です。
+        english: This station is a convenient station.
+        hint: This sentence describes the station as a convenient one, but doesn't connect it to a consequence.
+          The original sentence uses the te-form to link "convenient" to the action of using it often.
+          We're looking for a te-form connection.
+      - competing_japanese:
+          - この 駅 は {使い やすい} です。
+        english: This station is easy to use.
+        hint: While 「使いやすい」 conveys usability, 「便利」 refers to general convenience, which might include
+          location, facilities, etc. We're looking for the direct adjectival noun for "convenient".
+      - competing_japanese:
+          - この 駅 は {機能 的} です。
+        english: This station is functional.
+        hint: 「機能的」 means functional or efficient in its design. 「便利」 has a broader meaning of convenience,
+          implying ease of use and usefulness. We're looking for an adjective meaning "convenient."
+    scene: A person is explaining to a friend why they prefer this particular train station.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「便利 で」 demonstrates the speaker's personal experience and positive assessment.
+      The phrase connects the quality of the station to the action of frequent use, typical in informal
+      conversation. The polite 「よく 利用 し ます」 fits the informative setting and general conversation between
+      friends. The variants include more causal options such as 「便利 だ から」 and 「よく 使う ん だ」 that are commonly
+      heard.
+  - english: Even if it's a bit inconvenient, it's fine.
+    japanese:
+      - 少し {不便} で も、大丈夫 です。
+      - 多少 {不便} で も、問題 ない です。
+      - ちょっと {不便} だ って も、気 に し ない よ。
+      - たとえ {不便} で も、やれる よ。
+      - '{不便} で も、なん と か なる さ。'
+      - 多少 {不便} で も、対応 可能 です。
+      - 少々 {不便} か も しれ ない が、許容 範囲 です。
+      - '{不便} だ が、それ も また 一興 です ね。'
+      - '{不便} さ を 感じ て も、我慢 できる。'
+    english_literally: A little inconvenient even if, okay is.
+    competing_grammar:
+      - competing_japanese:
+          - 少し {不便 なら}、大丈夫 です。
+        english: If it's a bit inconvenient, it's fine.
+        hint: While 「なら」 is a valid conditional, 「でも」 emphasizes the concessive nature, meaning "even
+          if" or "even though" there's inconvenience. We're looking for the concessive form.
+      - competing_japanese:
+          - 少し {不便 だ けど}、大丈夫 です。
+        english: It's a bit inconvenient, but it's fine.
+        hint: 「けど」 connects two clauses with a contrasting meaning. 「でも」 emphasizes that the "fine" part
+          is true *despite* the inconvenience. We're looking for the concessive form.
+      - competing_japanese:
+          - 少し {便利 で は ない} けど、大丈夫 です。
+        english: It's not very convenient, but it's fine.
+        hint: This is the negative form of "convenient." The original sentence uses the direct adjectival
+          noun "inconvenient" in a concessive clause. We're looking for the concessive form.
+    scene: A team member is reassuring their colleague about a temporary setup that isn't ideal.
+    register: semi-formal
+    setting: supportive
+    conjugation: concessive (～ても)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「少し 不便 で も」 demonstrates a willingness to adapt, conveying a supportive and understanding
+      attitude. The polite 「大丈夫 です」 maintains a professional yet reassuring tone. 「気に し ない よ」 is a more
+      casual expression of dismissal, often used informally.
+  - english: The previous place wasn't that convenient.
+    japanese:
+      - 前 の 場所 は あまり {便利} で は あり ませ ん でし た。
+      - 前 の 場所 は あまり {便利} じゃ あり ませ ん でし た。
+      - 前 の 場所 は そんな に {便利} じゃ なかっ た です。
+      - 以前 の 場所 は あまり {便利} でし た ね。
+      - あの 場所 は {便利} じゃ なかっ た と 思い ます。
+      - 前 の 場所 は {不便} でし た。
+      - 前 の 場所 は そんな に {便利} で も なかっ た な。
+      - あの 時 の 場所 は {便利} で は あり ませ ん でし た ね。
+      - 前 の 場所 は {便利} じゃ なかっ た ん だ よ ね。
+      - 前 の 場所 は あまり {利便} 性 が あり ませ ん でし た。
+    english_literally: Previous place much convenient not was.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の 場所 は {便利 じゃ ない です}。
+        english: The previous place isn't that convenient (present tense).
+        hint: This sentence is in the present tense. The original sentence refers to a past situation,
+          requiring a past tense negative. We're looking for the past negative form.
+      - competing_japanese:
+          - 前 の 場所 は {不便 でし た}。
+        english: The previous place was inconvenient.
+        hint: While this conveys the same meaning, the original sentence explicitly uses the negative
+          of "convenient." We're looking for the negative past polite form of 「便利」.
+      - competing_japanese:
+          - 前 の 場所 は {使い にくかっ た} です。
+        english: The previous place was difficult to use/unpleasant.
+        hint: 「使いにくかった」 focuses on difficulty of use. 「便利」 encompasses broader convenience. We're looking
+          for the negative past polite form of the adjective 「便利」.
+    scene: Two colleagues are discussing past office locations.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「あまり 便利 で は あり ませ ん でし た」 is a polite and somewhat indirect way of expressing dissatisfaction,
+      which is common in professional or semi-formal settings. The "あまり" softens the statement. 「じゃ あり
+      ませ ん でし た」 is a slightly more casual but still polite negative past form. 「じゃ なかっ た です」 is also
+      common.
+  - english: If you are good at it, please teach me.
+    japanese:
+      - もし {上手} なら ば、教え て ください。
+      - もし {上手} だっ たら、教え て ください。
+      - もし {上手} なら、教え て よ。
+      - もし {上手} でし たら、ご 指導 お 願い し ます。
+      - '{上手} なら、ぜひ 教え て ほしい です。'
+      - もし {上手} で いらっしゃる なら、私 に 教え て いただけ ませ ん か？
+    english_literally: If skillful is, please teach me.
+    competing_grammar:
+      - competing_japanese:
+          - もし {上手く いく なら}、教え て ください。
+        english: If it goes well, please teach me.
+        hint: This refers to the outcome of an action ('going well'), not the speaker's inherent skill.
+          We're looking for a conditional based on the adjectival quality of being skillful.
+      - competing_japanese:
+          - もし {巧み なら ば}、教え て ください。
+        english: If you are clever/skillful, please teach me.
+        hint: While 「巧み」 also means skillful, 「上手」 is the more common and general な-adjective for describing
+          a person's skill. We're looking for the common usage of a な-adjective.
+      - competing_japanese:
+          - もし {上手 と}、教え て ください。
+        english: If skillful (incorrect conditional with と), please teach me.
+        hint: The particle 「と」 usually implies a natural consequence, not a general conditional for asking
+          for help. We're looking for a conditional that expresses a hypothetical situation where one
+          possesses a skill.
+    scene: A student asks a senior colleague to teach them a particular skill.
+    register: formal
+    setting: academic
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「上手 なら ば」 in a formal setting shows respect and a clear conditional request. The
+      polite imperative 「教えて ください」 reinforces the formal tone. 「もし 上手 なら、教えて よ。」 offers a more casual,
+      friendly alternative for closer relationships.
+  - english: Tokyo is a very lively city.
+    japanese:
+      - 東京 は とても {賑やか} な 街 です。
+      - 東京 は 大変 {賑やか} な 街 です。
+      - 東京 は すごく {賑やか} な 都市 です よ。
+      - 東京 は とても {賑やか} な 町 だ。
+      - 東京 は 随分 {賑やか} な 所 です ね。
+      - 東京 は 本当 に {賑やか} な 場所 だ よ。
+      - '{賑やか} な 東京 の 街 が 好き です。'
+      - 東京 は {賑やか} な こと で 有名 です。
+      - 東京 は {賑やか} な ん です よ。
+      - 東京 は 昔 から {賑やか} な 街 です。
+    english_literally: Tokyo very lively city is.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 は とても {活気 が あり ます}。
+        english: Tokyo has a lot of vitality.
+        hint: While 「活気 が ある」 conveys liveliness, 「賑やか な」 directly describes the atmosphere using an adjectival
+          noun. We're looking for the attributive form of a な-adjective.
+      - competing_japanese:
+          - 東京 は とても {楽しい} 街 です。
+        english: Tokyo is a very fun city.
+        hint: 「楽しい」 is an い-adjective, directly modifying 「街」 without 「な」. 「賑やか」 is a な-adjective that
+          requires 「な」 to modify a noun. We're focusing on the correct use of the な-adjective.
+      - competing_japanese:
+          - 東京 は とても {賑やか} です。
+        english: Tokyo is very lively (predicate use).
+        hint: This sentence uses 「賑やか」 as a predicate. The original sentence uses it attributively to
+          modify 「街」. We're looking for the attributive use.
+    scene: Someone describes Tokyo to a friend who has never visited Japan.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「とても 賑やか な 街 です」 uses the attributive form of the な-adjective 「賑やか」 to describe
+      the noun 「街」, clearly illustrating its function. The use of 「とても」 emphasizes the degree, and the
+      polite 「です」 is suitable for informative conversation. 「賑やか な 都市 です よ。」 is a slightly more assertive
+      and common way to deliver information.
+post_example_writeup: The adverb とても ('very') is particularly useful for identifying な-adjectives. とても
+  naturally precedes な-adjectives, as they denote qualities that can vary in degree (e.g., 'very beautiful,'
+  'very quiet'). In contrast, it sounds unnatural when paired with simple nouns that do not express such
+  qualities, as nouns typically represent discrete entities rather than gradable characteristics.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-adjectives

@@ -1,0 +1,213 @@
+grammar_point: 時代 (era・period)
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+meaning: era・period・age
+pronunciation:
+  katakana: ジダイ
+  romaji: jidai
+formation:
+  時代: Refers to a general era, period, or age.
+  '[Specific Noun] + 時代': Denotes an era associated with a specific noun (e.g., historical periods, personal
+    life stages).
+  '[Verb-dictionary/Noun-の] + 時代': Refers to the era characterized by a certain action or state.
+jlpt: N3
+etymology: 「時代」(じだい) is a compound noun formed from 「時」(じ), meaning 'time' or 'hour', and 「代」(だい), meaning
+  'generation', 'period', or 'age'. The combination highlights a distinct segment of time, often marked
+  by specific events, people, or cultural characteristics, rather than just a simple duration. It emphasizes
+  a qualitative aspect of time.
+writeup: |-
+  The noun 「時代」(じだい) signifies an "era," "period," or "age." It is used to delineate a specific span of time that possesses unique characteristics, often historical, cultural, or personal. Unlike terms that denote a mere duration, 「時代」 suggests a defined phase with a particular atmosphere or defining features.
+
+  It can stand alone to refer to a general era, such as 「今の時代」(いま の じだい - the present age/era), or combine with other nouns to specify a particular period, like 「江戸時代」(えど じだい - Edo Period) or 「学生時代」(がくせい じだい - student days). When used with a verb in dictionary form or a noun followed by の, it can describe an era defined by a certain action or state, emphasizing the prevailing conditions or activities of that time.
+
+  「時代」 carries a nuance of significance, implying a period shaped by events, societal norms, or personal experiences. It's frequently used in discussions of history, cultural trends, and personal narratives.
+false_friends:
+  - term: 時期 (jiki)
+    meaning: time, season, period, phase
+    kind: similar expression
+    nuance: 時期 refers to a suitable or opportune time or phase, often shorter and less defined by distinct
+      characteristics than 時代. It emphasizes timeliness.
+    grammar_point: <suggest>:時期 (time・season)
+  - term: 期間 (kikan)
+    meaning: period, term, interval
+    kind: similar expression
+    nuance: 期間 denotes a fixed, definite length of time with a clear start and end point (e.g., a project
+      term, a vacation period). 時代 is a broader, often named, era that might not have strictly defined
+      start/end dates in common usage.
+    grammar_point: <suggest>:期間 (period・term)
+  - term: 世 (yo)
+    meaning: world, age, generation
+    kind: similar expression
+    nuance: 世 often refers to the current world, society, or a generation, frequently carrying philosophical
+      or societal connotations about human existence or societal trends. While it can overlap, 時代 is more
+      specific to historical or personal periods.
+    grammar_point: <suggest>:世 (world・age)
+  - term: 年代 (nendai)
+    meaning: age, period, era (often decade-specific)
+    kind: similar expression
+    nuance: 年代 typically refers to decades (e.g., 1980年代 - the 1980s) or age groups. While it defines
+      a period, 時代 is a broader term for historical or personal eras that can span longer than a decade.
+    grammar_point: 〜代 (decade or generation)
+post_false_friends_writeup: While 「時代」(じだい) describes a broad, characteristic period, 「時期」(じき) highlights
+  a particular opportune or suitable moment. 「期間」(きかん) specifies a definite, measurable length of time.
+  「世」(よ) often refers to the human world or current society. 「年代」(ねんだい) points to specific decades or
+  age groups. Each term describes a 'period' but with different scopes and nuances.
+examples:
+  - english: The Edo period lasted for about 260 years.
+    japanese:
+      - 江戸 {時代} は 約 260 年 続き まし た。
+      - 江戸 {時代} は 約 260 年 続い た。
+    english_literally: Edo era, approximately 260 years, continued.
+    competing_grammar:
+      - competing_japanese:
+          - 江戸 期間 は 約 260 年 続き まし た。
+        english: The Edo duration lasted for about 260 years.
+        hint: 期間 (kikan) is used for a fixed duration with clear start and end points, not a broad historical
+          era. We're looking for the term for a historical epoch.
+    scene: A history teacher explains the length of a significant historical period in Japan.
+    register: formal
+    setting: informative
+  - english: My student days were the most enjoyable.
+    japanese:
+      - 私 の 学生 {時代} が 一番 楽しかっ た です。
+      - 私 の 学生 {時代} が 一番 楽しかっ た。
+      - 僕 の 学生 {時代} が 一番 楽しかっ た。
+      - あたし の 学生 {時代} が 一番 楽しかっ た わ。
+    english_literally: My student era was most enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 学生 の 時期 が 一番 楽しかっ た です。
+        english: My student time was the most enjoyable.
+        hint: 時期 (jiki) is more about a suitable time or phase, not an entire life stage. We're looking
+          for a period of one's life.
+    scene: A person reminisces about their youth.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: The use of 「学生時代」specifically refers to the entire period of being a student, not just a moment
+      or a duration. The sentence structure focuses on this specific life stage.
+  - english: It's an era where artificial intelligence is indispensable.
+    japanese:
+      - 人工 知能 が 不可欠 な {時代} です。
+      - 人工 知能 が 不可欠 な {時代} だ。
+    english_literally: Artificial intelligence is indispensable, it's an era.
+    competing_grammar:
+      - competing_japanese:
+          - 人工 知能 が 不可欠 な 年代 です。
+        english: It's a decade where artificial intelligence is indispensable.
+        hint: 年代 (nendai) typically refers to specific decades or age groups. We're talking about a broader,
+          characteristic age or era, not just a 10-year span.
+    scene: A speaker discusses technological advancements and their impact on society.
+    register: formal
+    setting: academic
+  - english: In an era when money can buy anything, true happiness is hard to find.
+    japanese:
+      - お 金 で 何 で も 買える {時代} に、本当 の 幸せ を 見つける の は 難しい。
+      - お 金 で 何 で も 買える {時代} に、本当 の 幸せ を 見つける の は 難しい です。
+    english_literally: Money with anything can buy era in, true happiness to find is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 で 何 で も 買える 時期 に、本当 の 幸せ を 見つける の は 難しい。
+        english: In a time when money can buy anything, true happiness is hard to find.
+        hint: 時期 (jiki) implies a specific 'moment' or 'phase' but not a long-term, prevailing societal
+          condition like a characteristic 'era'. We're describing the nature of the current age.
+    scene: A philosopher ponders the nature of modern society.
+    register: casual
+    setting: reflective
+  - english: My grandfather always talks about his war days.
+    japanese:
+      - 祖父 は いつ も 戦争 {時代} の こと を 話し ます。
+      - 祖父 は いつ も 戦争 {時代} の こと を 話す。
+      - じい ちゃん は いつ も 戦争 {時代} の 話 を する。
+    english_literally: Grandfather always war era's things talks about.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は いつ も 戦争 の 世 の こと を 話し ます。
+        english: Grandfather always talks about the things of the world of war.
+        hint: 世 (yo) often refers to society or the 'world' in a broader, sometimes philosophical sense,
+          rather than a specific historical period or personal experience within it. We are referring
+          to a distinct historical period.
+    scene: A family member talks about their grandparent's stories.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: It was the golden age of cinema.
+    japanese:
+      - 映画 の 黄金 {時代} でし た。
+      - 映画 の 黄金 {時代} だっ た。
+    english_literally: Cinema's golden era was.
+    competing_grammar:
+      - competing_japanese:
+          - 映画 の 黄金 年代 でし た。
+        english: It was the golden decade of cinema.
+        hint: 年代 (nendai) specifically refers to decades (e.g., 1920年代), while here we mean a more general
+          'golden age' or 'era' of cinema, which might span multiple decades or be less strictly defined.
+    scene: A film critic discusses a significant period in movie history.
+    register: formal
+    setting: academic
+  - english: We live in an age where information is overflowing.
+    japanese:
+      - 情報 が 溢れる {時代} に 生き て い ます。
+      - 情報 が 溢れる {時代} に 生き て いる。
+    english_literally: Information overflowing era in living are.
+    competing_grammar:
+      - competing_japanese:
+          - 情報 が 溢れる 時期 に 生き て い ます。
+        english: We live in a time when information is overflowing.
+        hint: 時期 (jiki) implies a specific 'point' or 'phase,' not a prolonged, defining characteristic
+          of the entire current period. We need a term that describes the nature of the present age.
+    scene: A speaker gives a presentation on modern society.
+    register: formal
+    setting: informative
+  - english: That was a difficult era for many people.
+    japanese:
+      - 多く の 人々 に とっ て 厳しい {時代} でし た。
+      - 多く の 人々 に とっ て 厳しい {時代} だっ た。
+    english_literally: Many people for difficult era was.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 人々 に とっ て 厳しい 期間 でし た。
+        english: That was a difficult period for many people.
+        hint: 期間 (kikan) suggests a measurable duration, while 時代 (jidai) better captures a time characterized
+          by a specific hardship for many, even if its exact length isn't precise. We're describing the
+          quality of the time, not just its length.
+    scene: A historian comments on a past historical period.
+    register: formal
+    setting: serious
+  - english: In this modern era, traditional crafts are being re-evaluated.
+    japanese:
+      - この 現代 {時代} で は、伝統 工芸 が 再 評価 さ れ て い ます。
+      - この 現代 {時代} で は、伝統 工芸 が 再 評価 さ れ て いる。
+    english_literally: This modern era in, traditional crafts re-evaluated are being.
+    competing_grammar:
+      - competing_japanese:
+          - この 現代 の 世 で は、伝統 工芸 が 再 評価 さ れ て い ます。
+        english: In this modern world, traditional crafts are being re-evaluated.
+        hint: 世 (yo) refers to the 'world' or 'society' at large, while 時代 (jidai) specifically highlights
+          the 'era' as a distinct period with its own trends. We want to emphasize the specific period's
+          characteristics.
+    scene: A journalist writes about cultural trends.
+    register: formal
+    setting: informative
+  - english: I want to live in an era where everyone can be themselves.
+    japanese:
+      - みんな が 自分 らしく 生き られる {時代} に 生き たい です。
+      - みんな が 自分 らしく 生き られる {時代} に 生き たい。
+      - みんな が 自分 らしく 生き られる {時代} に 生き たい な。
+    english_literally: Everyone themselves like able to live era in want to live.
+    competing_grammar:
+      - competing_japanese:
+          - みんな が 自分 らしく 生き られる 時期 に 生き たい です。
+        english: I want to live in a time when everyone can be themselves.
+        hint: 時期 (jiki) implies a specific, perhaps opportune, 'time' or 'phase,' not a broad societal
+          'era' defined by a certain characteristic. We're describing a desired future age.
+    scene: A young person expresses their hopes for the future.
+    register: teineigo (polite)
+    setting: optimistic
+    nuance: 「自分らしく生きられる時代」 refers to an entire era defined by personal freedom and authenticity, not just
+      a brief period. The use of 「時代」 emphasizes this pervasive characteristic of the envisioned time.
+post_example_writeup: When choosing between these similar terms, consider the scope and emphasis. If you
+  are referring to a broad historical or personal period with distinct characteristics, 「時代」 is the most
+  appropriate choice. If it's a specific optimal moment or phase, use 「時期」. For a defined, measurable
+  duration, opt for 「期間」. If speaking generally about society or a specific decade, 「世」 or 「年代」 might
+  be better, respectively.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/時代

@@ -1,0 +1,211 @@
+grammar_point: に則って・に即して (in accordance with)
+learn_before:
+  - ~なければならない・なきゃ (must do・have to)
+  - にかなう (to be in accord with)
+  - に当たって (on the occasion of・in doing・when undertaking)
+meaning: In accordance with, based on, in conformity with
+pronunciation:
+  katakana: ニノットッテ・ニソクシテ
+  romaji: ni nottote・ni sokushite
+formation:
+  Noun + に則って/に即して: Used to describe an action or state that is carried out in conformity with a rule,
+    standard, or principle (に則って) or in adaptation to a specific situation or reality (に即して).
+jlpt: N1
+etymology: Both 「則る (のっとる)」 and 「即する (そくする)」 have their origins in describing adherence or conformity.
+  「則」 fundamentally refers to rules, laws, or norms, stemming from ancient concepts of patterns and standards.
+  Thus, 「に則って」 signifies acting strictly according to established regulations or traditions. On the other
+  hand, 「即」 conveys immediacy, fittingness, or being in contact with something. Therefore, 「に即して」 implies
+  adapting or adjusting one's actions or thoughts to a specific situation, reality, or immediate context.
+  The combination with the particle 「に」 establishes the rule or reality as the standard against which
+  the action is measured.
+writeup: |-
+  The expressions 「に則って」 and 「に即して」 are formal adverbial phrases used to indicate that an action or statement is carried out or formulated in accordance with something. While both convey a sense of conformity, they carry distinct nuances that are important for accurate usage.
+
+  **に則って (ni nottote)**
+  This form emphasizes strict adherence to established rules, laws, principles, traditions, or precedents. It suggests that an action is performed exactly as dictated by a set standard. Think of it as following a blueprint precisely or upholding a long-standing custom. It is often used in legal, academic, or formal organizational contexts where precision and compliance are paramount.
+
+  **に即して (ni sokushite)**
+  This form focuses on adapting to or being appropriate for a specific situation, reality, or actual conditions. It implies that one's actions or statements are realistic, practical, and directly relevant to the current circumstances. Unlike 「に則って」 which looks at fixed rules, 「に即して」 looks at the present state of affairs and adjusts accordingly. It's about being pertinent and realistic.
+
+  **Key Differences:**
+  *   **に則って**: Focuses on **rules, laws, principles, traditions**. Implies **strict, prescribed adherence**.
+  *   **に即して**: Focuses on **situations, facts, realities**. Implies **adaptation, practicality, relevance**.
+
+  For example, when discussing following the law, 「法律に則って」 would be appropriate. When discussing making a proposal realistic, 「現状に即して」 would be used. They are interchangeable only in very broad senses, but their specific nuances make them distinct tools for expressing conformity in formal Japanese.
+false_friends:
+  - term: に沿って
+    meaning: Along; in accordance with; along the lines of
+    kind: similar expression
+    nuance: While 「に沿って」 also means "in accordance with," it often implies following a general path, plan,
+      or guideline rather than strict adherence to a defined rule or adapting to a specific reality. It
+      suggests moving *alongside* something.
+    grammar_point: ～に沿って (in line with・in accordance with・following)
+  - term: に基づいて
+    meaning: Based on; founded on
+    kind: similar expression
+    nuance: 「に基づいて」 means that something is founded upon or derived from certain facts, data, or principles.
+      It indicates the *basis* for something, but not necessarily a strict *adherence* to it (as with
+      「に則って」) or a *practical adaptation* to a situation (as with 「に即して」).
+    grammar_point: にもとづいて (based on)
+  - term: に従って
+    meaning: In accordance with; following; as a result of (proportional change)
+    kind: similar expression
+    nuance: 「に従って」 can indeed mean "in accordance with," making it quite similar to 「に則って」 in some contexts
+      (e.g., following instructions). However, it also has a common meaning of "as X happens, Y also happens"
+      (proportional change), which is distinct. When it means "in accordance with," it implies following
+      directions or guidance, which is less rigid than 「に則って」's focus on strict rules and traditions,
+      and less about adapting to reality than 「に即して」.
+    grammar_point: に従って・従い (in accordance with and proportional change)
+post_false_friends_writeup: While 「に則って」 and 「に即して」 both relate to conforming, it is important to distinguish
+  them from other similar expressions. 「に沿って」 often means to follow a general course or plan, like 「計画に沿って進める」
+  (to proceed along the plan), suggesting a less rigid adherence than 「に則って」. 「に基づいて」 simply states that
+  something is *founded* on certain information or principles, such as 「データに基づいて分析する」 (to analyze based
+  on data), without necessarily implying strict execution or practical adaptation. Lastly, 「に従って」 can
+  mean to follow instructions or rules, but it also commonly indicates a proportional change, like 「時間の経過に従って」
+  (as time passes). Unlike 「に則って」's strictness or 「に即して」's adaptability, 「に従って」 is often about simply
+  following a given direction or process.
+examples:
+  - english: We must carry out the procedure strictly in accordance with the law.
+    japanese:
+      - 手続き は 法律 {に 則っ て} 行わ なけれ ば なり ませ ん。
+      - 手続き は 法律 {に 則っ て} 行わ なけれ ば なら ない。
+    english_literally: Procedure as for law in-accordance-with must-be-carried-out.
+    competing_grammar:
+      - competing_japanese:
+          - 手続き は 法律 に 基づい て 行わ なけれ ば なり ませ ん。
+        english: The procedures must be carried out based on the law.
+        hint: We are looking for strict adherence to the law, not just being based on it.
+    scene: A corporate legal team discussing compliance.
+    register: formal
+    setting: serious
+  - english: The traditional ceremony was performed exactly according to ancient customs.
+    japanese:
+      - その 伝統 的 な 儀式 は 古い 慣習 {に 則っ て} 執り行わ れ た。
+      - その 伝統 的 な 儀式 は 古い 慣習 {に 則っ て} 執り行わ れ まし た。
+    english_literally: That traditional ceremony as for old customs in-accordance-with was-performed.
+    competing_grammar:
+      - competing_japanese:
+          - その 伝統 的 な 儀式 は 古い 慣習 に 従っ て 執り行わ れ た。
+        english: The traditional ceremony was performed following ancient customs.
+        hint: We are looking for strict performance according to established custom, not just generally
+          following it.
+    scene: A cultural historian explaining a local festival.
+    register: formal
+    setting: informative
+  - english: Please make decisions that are appropriate for the current situation.
+    japanese:
+      - 現在 の 状況 {に 即し て} 適切 な 判断 を 下し て ください。
+      - 現在 の 状況 {に 即し て} 適切 な 判断 を 下し て いただき たい。
+    english_literally: Current situation in-accordance-with appropriate judgment please-make.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 状況 に 沿っ て 適切 な 判断 を 下し て ください。
+        english: Please make decisions along with the current situation.
+        hint: We are looking for decisions that are appropriate for and adapt to the current situation,
+          not just going along with it.
+    scene: A team leader instructing their members during a crisis meeting.
+    register: formal
+    setting: commanding
+  - english: It is important to teach practical knowledge that is relevant to reality.
+    japanese:
+      - 現実 {に 即し て} 実用 的 な 知識 を 教える こと が 重要 だ。
+      - 現実 {に 即し て} 実用 的 な 知識 を 教える こと が 重要 です。
+    english_literally: Reality in-accordance-with practical knowledge to-teach thing is important.
+    competing_grammar:
+      - competing_japanese:
+          - 現実 に 合わせ て 実用 的 な 知識 を 教える こと が 重要 だ。
+        english: It is important to teach practical knowledge that is adjusted to reality.
+        hint: We want knowledge that directly *fits* or *is relevant to* reality, not just adjusted to
+          it.
+    scene: An educational expert giving a lecture on curriculum reform.
+    register: formal
+    setting: informative
+  - english: The company's operations are conducted in strict compliance with internal regulations.
+    japanese:
+      - 会社 の 運営 は 社内 規定 {に 則っ て} 行わ れ て い ます。
+      - 会社 の 運営 は 社内 規定 {に 則っ て} 行わ れ て いる。
+    english_literally: Company's operation as for internal regulations in-accordance-with is-being-conducted.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 運営 は 社内 規定 に 基づい て 行わ れ て い ます。
+        english: The company's operations are conducted based on internal regulations.
+        hint: The emphasis is on strict compliance with internal regulations, not just being based on
+          them.
+    scene: A company executive explaining their operational policy to investors.
+    register: formal
+    setting: informative
+  - english: We need to develop a plan that is realistic and fits the actual conditions.
+    japanese:
+      - 実情 {に 即し て} 現実 的 な 計画 を 立てる 必要 が あり ます。
+      - 実情 {に 即し て} 現実 的 な 計画 を 立てる 必要 が ある。
+    english_literally: Actual-conditions in-accordance-with realistic plan to-make necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 実情 に 沿っ て 現実 的 な 計画 を 立てる 必要 が あり ます。
+        english: We need to develop a realistic plan along with the actual conditions.
+        hint: We need a plan that practically *fits* and is *realistic for* the actual conditions, not
+          merely going along with them.
+    scene: A project manager presenting a revised project plan.
+    register: formal
+    setting: persuasive
+  - english: Decisions in science should always be made based on scientific principles.
+    japanese:
+      - 科学 に おけ る 決定 は 常 に 科学 的 原則 {に 則っ て} なされる べき だ。
+      - 科学 に おけ る 決定 は 常 に 科学 的 原則 {に 則っ て} なされる べき です。
+    english_literally: Science in decisions as for always scientific principles in-accordance-with should-be-made.
+    competing_grammar:
+      - competing_japanese:
+          - 科学 に おけ る 決定 は 常 に 科学 的 原則 に 基づい て なされる べき だ。
+        english: Decisions in science should always be made based on scientific principles.
+        hint: The emphasis is on decisions being made in strict conformity with scientific principles,
+          not merely founded upon them.
+    scene: A scientist discussing research ethics at a conference.
+    register: formal
+    setting: serious
+  - english: We must provide support that truly meets the needs of each individual.
+    japanese:
+      - 各々 の ニーズ {に 即し て} 真 に 寄り添っ た 支援 を 行う べき だ。
+      - 各々 の ニーズ {に 即し て} 真 に 寄り添っ た 支援 を 行う べき です。
+    english_literally: Each person's needs in-accordance-with truly empathetic support should-be-provided.
+    competing_grammar:
+      - competing_japanese:
+          - 各々 の ニーズ に 合わせ て 真 に 寄り添っ た 支援 を 行う べき だ。
+        english: We must provide support that is adjusted to each individual's needs.
+        hint: We're looking for support that *truly meets* and *is appropriate for* individual needs,
+          not just adjusted to them.
+    scene: A social worker explaining their approach to client care.
+    register: formal
+    setting: supportive
+  - english: The government must govern in accordance with the will of the people.
+    japanese:
+      - 政府 は 国民 の 意思 {に 則っ て} 政治 を 行う べき だ。
+      - 政府 は 国民 の 意思 {に 則っ て} 政治 を 行う べき です。
+    english_literally: Government as for citizen's will in-accordance-with politics should-conduct.
+    competing_grammar:
+      - competing_japanese:
+          - 政府 は 国民 の 意思 に 従っ て 政治 を 行う べき だ。
+        english: The government must govern following the will of the people.
+        hint: The nuance here is about strict adherence to the will of the people as a guiding principle
+          for governance, not just generally following it.
+    scene: A political analyst commenting on current events.
+    register: formal
+    setting: serious
+  - english: He gave advice that was very practical and based on his own experience.
+    japanese:
+      - 彼 は 自身 の 経験 {に 即し て} とても 実用 的 な 助言 を くれ た。
+      - 彼 は 自身 の 経験 {に 即し て} とても 実用 的 な 助言 を くれ まし た。
+    english_literally: He as for his-own experience in-accordance-with very practical advice gave-me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 自身 の 経験 に 基づい て とても 実用 的 な 助言 を くれ た。
+        english: He gave very practical advice based on his own experience.
+        hint: The advice was practical *because it fit* the speaker's experience, not just founded on
+          it.
+    scene: A mentor giving advice to a junior colleague.
+    register: formal
+    setting: informative
+post_example_writeup: Understanding the subtle differences between 「に則って」 and 「に即して」, as well as similar
+  expressions, allows for more precise and natural communication in formal Japanese. 「に則って」 emphasizes
+  strict obedience to rules and norms, while 「に即して」 highlights practical adaptation to current circumstances.
+  Mastering these nuances will significantly enhance your ability to express complex ideas with accuracy
+  and appropriate formality.

@@ -1,0 +1,222 @@
+grammar_point: こんなに (this much)
+better_grammar_point_name:
+  - <suggest>:こんなに (this much・so)
+learn_before:
+  - まさか (no way)
+meaning: this much; so much; to this extent (as perceived by the speaker)
+pronunciation:
+  katakana: コンナニ
+  romaji: konna ni
+formation:
+  こんなに + [い-Adjective]: Expresses 'this much' or 'so' with i-adjectives.
+  こんなに + [な-Adjective]: Expresses 'this much' or 'so' with na-adjectives.
+  こんなに + [Verb]: Expresses 'this much' or 'so' with verbs.
+jlpt: N4
+etymology: こんなに is a fusion of こう (like this, thus) + な (adjectival particle, as seen in こんな) + に (adverbial
+  particle). こう itself is linked to これ (this). The に particle transforms the adjectival こんな into an adverb,
+  allowing it to modify verbs and adjectives, expressing "to this extent" or "in this manner/degree."
+  Historically, it conveys a degree observed or experienced by the speaker.
+writeup: こんなに is an adverb used to express a surprising or unexpected degree or amount of something that
+  is perceived by, or close to, the speaker. It translates to "this much," "so," "such," or "to this extent"
+  in English. Unlike general intensifiers like とても (very) or すごく (extremely), こんなに implies a direct observation
+  or experience that leads the speaker to comment on the remarkable degree of something. It often conveys
+  a sense of wonder, surprise, or even disappointment regarding the perceived extent.It can modify verbs,
+  い-adjectives, and な-adjectives. When modifying adjectives, it emphasizes the intensity of the quality.
+  When modifying verbs, it emphasizes the degree or manner of the action.
+false_friends:
+  - term: そんなに
+    meaning: that much
+    kind: similar expression
+    nuance: こんなに refers to something physically or psychologically close to the speaker, implying their
+      direct observation. そんなに refers to something physically or psychologically close to the listener,
+      or a degree that has already been mentioned or is known to the listener.
+    grammar_point: そんなに (that much)
+  - term: あんなに
+    meaning: that much over there
+    kind: similar expression
+    nuance: あんなに refers to something physically or psychologically distant from both the speaker and the
+      listener, often implying a memory or a shared past experience.
+    grammar_point: あんなに (that much over there)
+  - term: どんなに
+    meaning: how much
+    kind: similar expression
+    nuance: どんなに is an interrogative adverb used to ask about the degree or extent, often used in questions
+      or rhetorical statements. It does not express a degree itself, but probes for one.
+    grammar_point: どんなに (how much)
+  - term: とても
+    meaning: very
+    kind: similar expression
+    nuance: とても is a general intensifier meaning "very" or "extremely." While it also expresses a high
+      degree, it lacks the nuance of direct observation, surprise, or comparison inherent in こんなに.
+    grammar_point: とても (very・extremely)
+post_false_friends_writeup: To avoid confusion, remember that the こ・そ・あ・ど series (kosoado kotoba) for
+  adverbs (こんなに, そんなに, あんなに, どんなに) parallels their use as demonstratives. こんなに expresses "this (degree),
+  as perceived by me (speaker)," そんなに means "that (degree), as perceived by you (listener) or already
+  known/mentioned," and あんなに refers to "that (degree), far away or in the past for both of us." どんなに is
+  simply the question form for degree.
+examples:
+  - english: This cake is so delicious!
+    japanese:
+      - この ケーキ は {こんな に} おいしい！
+      - この ケーキ は {こんな に} おいしい です！
+      - この ケーキ が {こんな に} 美味しい なんて！
+    english_literally: This cake, {this much} delicious!
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は とても おいしい！
+        english: This cake is very delicious!
+        hint: 「とても」 is a general intensifier. 「こんなに」 emphasizes the unexpected degree. We're looking for
+          a degree that implies surprise based on the speaker's direct perception.
+    scene: A person tastes a cake they weren't expecting to be good.
+    register: casual
+    setting: friendly
+  - english: I didn't expect the homework to take this long.
+    japanese:
+      - 宿題 が {こんな に} 時間 が かかる と は 思わ なかっ た。
+      - 宿題 が {こんな に} 時間 が かかる なんて 思わ なかっ た よ。
+      - 宿題 に {こんな に} 時間 が かかる と は 思っ て も み ませ ん でし た。
+    english_literally: Homework, {this much} time takes, that I didn't think.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 が あんな に 時間 が かかる と は 思わ なかっ た。
+        english: I didn't expect the homework to take that long (as if recalling or referring to something
+          distant/general).
+        hint: 「あんなに」 refers to a distant or generalized extent. We're looking for a degree that is surprising
+          in the speaker's immediate experience.
+    scene: A student realizing how much time they've spent on their homework.
+    register: casual
+    setting: reflective
+  - english: I didn't think it would be this boring.
+    japanese:
+      - '{こんな に} つまら ない と は 思わ なかっ た。'
+      - '{こんな に} つまら ない なんて 思っ て なかっ た よ。'
+      - まさ か {こんな に} 退屈 だ と は 思っ て おり ませ ん でし た。
+    english_literally: '{This much} boring, that I didn''t think.'
+    competing_grammar:
+      - competing_japanese:
+          - つまら ない と は 思わ なかっ た。
+        english: I didn't think it would be boring.
+        hint: This sentence states it was boring, but doesn't emphasize *how* boring it was. We're looking
+          for an expression that highlights the unexpected degree of boredom.
+    scene: A friend complains about a movie they are watching together.
+    register: casual
+    setting: commanding
+  - english: I didn't know you could run this fast.
+    japanese:
+      - あなた が {こんな に} 速く 走れる と は 知ら なかっ た。
+      - 君 が {こんな に} 速く 走れる なんて 知ら なかっ た よ。
+      - あなた が {こんな に} 速く お 走り に なれる と は 存じ ませ ん でし た。
+    english_literally: You, {this much} fast run-can, that I didn't know.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が とても 速く 走れる と は 知ら なかっ た。
+        english: I didn't know you could run very fast.
+        hint: 「とても」 is a general intensifier without the nuance of direct observation or surprise. We're
+          looking for an adverb that expresses an unexpected degree based on observation.
+    scene: A coach praises a new athlete during practice.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The coach is surprised by the athlete's speed, using 「こんなに」to express that unexpected degree.
+      The specific phrasing 「速く 走れる」implies ability.
+  - english: How could you be so calm in this situation?
+    japanese:
+      - '{こんな に} 大変 な 時 に どう し て そんな に 落ち着い て い られる の？'
+      - '{こんな に} 大変 な の に どう し て 落ち着い て い られる ん だ？'
+      - '{こんな に} 大変 な 状況 で どう し て その よう に 落ち着い て いらっしゃる の です か？'
+    english_literally: '{This much} difficult time in, why that much calm-can-be?'
+    competing_grammar:
+      - competing_japanese:
+          - 大変 な 時 に どう し て 落ち着い て い られる の？
+        english: How can you be calm in this difficult situation?
+        hint: This sentence expresses difficulty, but doesn't emphasize the extreme *degree* of difficulty.
+          We're looking for an adverb that expresses this unexpected and high degree.
+    scene: One friend expresses disbelief at another's composure during a crisis.
+    register: casual
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「こんなに」to highlight the unexpected and extreme "difficulty" of the situation,
+      contrasting it with the listener's surprising calmness. The rhetorical question emphasizes the speaker's
+      astonishment.
+  - english: This city has grown so much. I barely recognize it.
+    japanese:
+      - この 町 は {こんな に} 大きく なっ た ね。ほとんど わから ない よ。
+      - この 町 が {こんな に} 大きく なっ た なんて、びっくり だ ね。
+      - この 町 は {こんな に} 変化 し た の です ね。面影 も あり ませ ん。
+    english_literally: This town, {this much} big became, huh. Almost don't recognize.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 は とても 大きく なっ た ね。ほとんど わから ない よ。
+        english: This city has grown very much. I barely recognize it.
+        hint: 「とても」 is a general intensifier. 「こんなに」 emphasizes the striking, unexpected degree of change
+          perceived by the speaker.
+    scene: A person visiting their hometown after a long time.
+    register: casual
+    setting: reflective
+  - english: I've never seen such a beautiful sunset like this.
+    japanese:
+      - '{こんな に} きれい な 夕日 は 今 まで 見 た こと が ない。'
+      - '{こんな に} きれい な 夕日、初めて 見 た よ！'
+      - これ ほど {こんな に} 美しい 夕焼け は これ まで 見 た こと が ござい ませ ん。
+    english_literally: '{This much} beautiful sunset, until now, seen not exist.'
+    competing_grammar:
+      - competing_japanese:
+          - とても きれい な 夕日 は 今 まで 見 た こと が ない。
+        english: I've never seen a very beautiful sunset before.
+        hint: 「とても」 means 'very' generally. 「こんなに」 emphasizes the beauty is *to this extent*, often implying
+          it's beyond typical expectations.
+    scene: Two people watching a sunset together.
+    register: casual
+    setting: creative
+  - english: I didn't realize the line would be this long.
+    japanese:
+      - 列 が {こんな に} 長い と は 思わ なかっ た。
+      - まさか 列 が {こんな に} 長い と は 思わ なかっ た。
+      - 列 が {こんな に} 長い と は 予想 し て おり ませ ん でし た。
+    english_literally: Line, {this much} long, that I didn't think.
+    competing_grammar:
+      - competing_japanese:
+          - 列 が そんな に 長い と は 思わ なかっ た。
+        english: I didn't realize the line would be that long (as you mentioned/we discussed).
+        hint: 「そんなに」 refers to a degree already in the listener's awareness. We're looking for an expression
+          of the speaker's personal, unexpected observation.
+    scene: A person waiting in a very long queue for a popular event.
+    register: casual
+    setting: pessimistic
+  - english: I didn't think it would be this hot today.
+    japanese:
+      - 今日 は {こんな に} 暑い と は 思わ なかっ た。
+      - まさか 今日 が {こんな に} 暑い と は ね。
+      - 本日 は {こんな に} 暑い と は 存じ ませ ん でし た。
+    english_literally: Today, {this much} hot, that I didn't think.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は そんな に 暑い と は 思わ なかっ た。
+        english: I didn't think it would be that hot today (as you just said / as we talked about).
+        hint: 「そんなに」 is used when referring to a degree mentioned by the listener or previously known.
+          We're looking for a degree that surprises the speaker upon observation.
+    scene: Speaker comments on the unexpected temperature after stepping outside.
+    register: casual
+    setting: reflective
+  - english: I'm so happy I could cry.
+    japanese:
+      - '{こんな に} 嬉しい と 涙 が 出 て くる。'
+      - '{こんな に} 嬉しい なんて、泣い ちゃう よ。'
+      - '{こんな に} 嬉しい と、自然 と 涙 が 溢れ て まいり ます。'
+    english_literally: '{This much} happy, then tears come out.'
+    competing_grammar:
+      - competing_japanese:
+          - とても 嬉しい と 涙 が 出 て くる。
+        english: I'm very happy and tears come out.
+        hint: 「とても」 is a general intensifier. 「こんなに」 emphasizes the profound, unexpected level of happiness
+          that triggers tears.
+    scene: A person overwhelmed with joy after receiving good news.
+    register: casual
+    setting: excited
+post_example_writeup: As you can see, こんなに often appears in sentences expressing surprise, whether positive
+  or negative, about a degree or extent. It ties the intensity directly to the speaker's current perception.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%93%E3%82%93%E3%81%AA

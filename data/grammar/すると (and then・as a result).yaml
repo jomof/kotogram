@@ -1,0 +1,249 @@
+grammar_point: すると (and then・as a result)
+learn_before:
+  - ところが (unexpected contrast)
+  - を (path of movement)
+  - 右・左 (left and right)
+  - 聞こえる (to be audible)
+meaning: Having done...; If...is done...; (And/just) then; Thereupon; If so
+pronunciation:
+  katakana: スルト
+  romaji: suru to
+formation:
+  Sentence 1 + すると + Sentence 2: Indicates that Sentence 2 is a result or consequence of Sentence 1. It
+    often expresses a surprising or unexpected outcome.
+jlpt: N3
+etymology: The word 「すると」 is derived from the verb 「する」 (to do) and the conjunction particle 「と」, and
+  is considered an abbreviation of 「そうすると」 (if you do that). Its origin lies in the combination of an
+  action (する) and its direct, often immediate, consequence (と), leading to the meaning of 'thereupon'
+  or 'as a result'. This structure emphasizes the direct link between the preceding action or state and
+  the following event.
+writeup: 「すると」, combining 「する」 and the conjunction particle 「と」, is generally an abbreviation of 「そうすると」
+  and means "once (A) is done, (B)," or "upon (A), (B)." 「すると」 usually starts a new sentence, highlighting
+  an occurrence due to the circumstances in the previous sentence. As a standalone statement, 「すると」 is
+  a conjunction. It can be used across various registers, from casual to more formal contexts, depending
+  on the surrounding sentence structure and politeness level.The "result" 「すると」 conveys should be one
+  of two things:Something the speaker has no control over.A conclusion/determination the speaker wants
+  to confirm is correct, based on their understanding of the previous statement.When 「すると」 draws a conclusion
+  about another person's statement, it's closer to "so you mean to say (A)" or "if so, then (A)."
+false_friends:
+  - term: そこで
+    meaning: Accordingly, Now, Therefore, To that end
+    kind: similar expression
+    nuance: Unlike 「すると」, 「そこで」 typically indicates a more deliberate action or decision based on the
+      preceding statement.
+    grammar_point: そこで (and so・at that point・therefore)
+  - term: そうすると
+    meaning: Having done that..., If that is done..., (And/just) then, Thereupon, If so
+    kind: similar expression
+    nuance: 「そうすると」 is almost synonymous with 「すると」, but it more explicitly references the preceding action
+      or situation.
+    grammar_point: そうすると (and then・if so)
+  - term: と
+    meaning: If, When, Whenever, And, [Conditional]
+    kind: similar expression
+    nuance: While 「と」 can also indicate a sequence of events, it lacks the sense of surprise or unexpectedness
+      that 「すると」 often conveys.
+    grammar_point: と (conditional, inevitable result)
+  - term: それに
+    meaning: And, Besides, Moreover, In addition
+    kind: similar expression
+    nuance: 「それに」 is used to add more information, whereas 「すると」 indicates a result or consequence.
+    grammar_point: それに (in addition・moreover)
+  - term: そのため
+    meaning: For that reason, Because of that, To that end
+    kind: similar expression
+    nuance: 「そのため(に)」 indicates a reason or purpose, while 「すると」 indicates a result or consequence.
+    grammar_point: そのため (for that reason)
+  - term: だから
+    meaning: Therefore, so, that's why
+    kind: similar expression
+    nuance: 「だから」 explicitly states a reason, often for a logical deduction or conclusion, which can be
+      more deliberate than the immediate, sometimes surprising, outcome implied by 「すると」.
+    grammar_point: '[Clause]から (because・so)'
+  - term: Verbて (uncontrollable consequence)
+    meaning: Because of, due to, since; expresses a cause-and-effect relationship where the cause is often
+      beyond the speaker's control.
+    kind: similar expression
+    nuance: While both indicate a cause-and-effect, 「すると」 often emphasizes a direct or immediate observable
+      outcome, sometimes unexpected, whereas `Verbて (uncontrollable consequence)` points to an uncontrollable
+      consequence that directly follows.
+    grammar_point: Verbて (uncontrollable consequence)
+post_false_friends_writeup: Remember that while these words may seem similar, 「すると」 specifically highlights
+  an immediate or unexpected result of a previous action. 「そこで」 implies a decision based on the prior
+  action. Other options like 「それに」 simply add information without implying consequence.
+examples:
+  - english: I cleaned my room. Then, I found an old photo.
+    japanese:
+      - 部屋 の 掃除 を し た。{する と}、昔 の 写真 が 見つかっ た。
+      - 部屋 の 掃除 を し まし た。{する と}、昔 の 写真 が 見つかり まし た。
+      - 部屋 掃除 し た。{する と}、昔 の 写真 出 て き た。
+    english_literally: I cleaned my room. Thereupon, an old photo was found.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 の 掃除 を し {たら} 昔 の 写真 が 見つかっ た。
+        english: When I cleaned my room, I found an old photo.
+        hint: The conditional `たら` indicates that the discovery *happened* after cleaning, but `すると` emphasizes
+          a direct, often unexpected, consequence. We're looking for a direct and immediate result.
+      - competing_japanese:
+          - 部屋 の 掃除 を し た。{そして} 昔 の 写真 が 見つかっ た。
+        english: I cleaned my room. And then, I found an old photo.
+        hint: '`そして` merely connects two events in sequence. `すると` highlights a more direct, often surprising,
+          consequence of the first action. We''re looking for a consequence, not just a sequence.'
+      - competing_japanese:
+          - 部屋 の 掃除 を し た。{その 時} 昔 の 写真 が 見つかっ た。
+        english: I cleaned my room. At that time, I found an old photo.
+        hint: '`その 時` specifies a point in time when an event occurred. `すると` focuses on the *result*
+          or *consequence* of the preceding action. We''re looking for a cause-and-effect relationship.'
+    scene: Someone unexpectedly finding something while cleaning.
+    register: casual
+    setting: reflective
+  - english: A bell sound was heard from afar. Just then, a small cat approached.
+    japanese:
+      - 遠く から 鈴 の 音 が 聞こえ た。{する と}、小さな 猫 が 近寄っ て き た。
+      - 遠く から 鈴 の 音 が 聞こえ まし た。{する と}、小さな 猫 が 近寄っ て き まし た。
+    english_literally: From afar, a bell sound was heard. Thereupon, a small cat approached.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く から 鈴 の 音 が 聞こえ た。{その 時} 小さな 猫 が 近寄っ て き た。
+        english: A bell sound was heard from afar. At that time, a small cat approached.
+        hint: '`その 時` indicates a simple temporal relationship. `すると` implies that the cat''s approaching
+          was a direct and immediate consequence of hearing the bell sound. We''re looking for a direct
+          consequence.'
+    scene: A person sitting quietly outside, observing their surroundings.
+    register: casual
+    setting: reflective
+  - english: She said she was graduating next year. Then, I realized job hunting would start soon.
+    japanese:
+      - 彼女 は『来年 卒業 です』と 言っ た。{する と}、就職 活動 が もう すぐ 始まる と 思っ た。
+      - 彼女 は『来年 卒業 です』と 言い まし た。{する と}、就職 活動 が もう すぐ 始まる と 思い まし た。
+      - 彼女 は『来年 卒業』って 言っ た。{する と}、『もう すぐ 就職 活動 か』って 思っ た。
+    english_literally: She said, "I am graduating next year." Thereupon, I thought, "Job hunting will
+      soon begin, won't it?"
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は『来年 卒業 です』と 言っ た。{だ から}、就職 活動 が もう すぐ 始まる と 思っ た。
+        english: She said, 'I'm graduating next year.' Therefore, I thought job hunting would start soon.
+        hint: '`だから` presents a clear, strong reason for a conclusion. `すると` also indicates a conclusion,
+          but often one that is a more immediate or spontaneous realization based on the preceding information,
+          rather than a reasoned deduction. We''re looking for an immediate realization.'
+    scene: A senior colleague realizing the logical next step for a junior's career.
+    register: formal
+    setting: informative
+    nuance: The use of 「と 思った」 (I thought) indicates the speaker's internal logical deduction. 「就職 活動」
+      (shūshoku katsudō) is a common term for job hunting activities.
+  - english: I ran every day for my diet. Then, my body became surprisingly light.
+    japanese:
+      - ダイエット の ため に 毎日 走っ た。{する と}、体 が 驚く ほど 軽く なっ た。
+      - ダイエット の ため に 毎日 走り まし た。{する と}、体 が 驚く ほど 軽く なり まし た。
+    english_literally: For diet, I ran every day. Thereupon, my body became surprisingly light.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット の ため に 毎日 走っ た。{その 結果} 体 が 驚く ほど 軽く なっ た。
+        english: I ran every day for my diet. As a result, my body became surprisingly light.
+        hint: '`その 結果` indicates a general result or outcome. `すると` conveys a more direct, often immediate
+          and sometimes unexpected consequence of the action. We''re looking for a direct, sometimes surprising,
+          outcome.'
+    scene: Someone reflecting on the positive outcomes of a personal effort.
+    register: casual
+    setting: optimistic
+  - english: The old woman put the bread in the oven. Then, the bread became magically big inside the
+      oven.
+    japanese:
+      - お 婆 さん が パン を オーブン に 入れ た。{する と}、オーブン の 中 で パン が 魔法 の よう に 大きく なっ た。
+      - お 婆 さん が パン を オーブン に 入れ まし た。{する と}、オーブン の 中 で パン が 魔法 の よう に 大きく なり まし た。
+    english_literally: The old woman put bread into the oven. Thereupon, inside the oven, the bread became
+      magically big.
+    competing_grammar:
+      - competing_japanese:
+          - お 婆 さん が パン を オーブン に 入れ た。{そして} オーブン の 中 で パン が 魔法 の よう に 大きく なっ た。
+        english: The old woman put the bread in the oven. And then, the bread became magically big inside
+          the oven.
+        hint: '`そして` merely states a sequence of events. `すると` emphasizes the immediate, direct, and often
+          wondrous or surprising unfolding of the second event as a direct consequence of the first. We''re
+          looking for a direct, magical consequence.'
+    scene: A narrator describing an enchanting event in a fantasy story.
+    register: casual
+    setting: creative
+  - english: I opened the door. Then, a cat jumped out.
+    japanese:
+      - ドア を 開け た。{する と}、猫 が 飛び出し て き た。
+      - ドア を 開け まし た。{する と}、猫 が 飛び出し て き まし た。
+    english_literally: I opened the door. Thereupon, a cat jumped out.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 開け {たら} 猫 が 飛び出し て き た。
+        english: When I opened the door, a cat jumped out.
+        hint: The conditional `たら` indicates that the discovery *happened* after cleaning, but `すると` emphasizes
+          a direct, often unexpected, consequence. We're looking for a direct and immediate result.
+      - competing_japanese:
+          - ドア を 開け た。{そして} 猫 が 飛び出し て き た。
+        english: I opened the door. And then, I found an old photo.
+        hint: '`そして` merely connects two events in sequence. `すると` highlights a more direct, often surprising,
+          consequence of the first action. We''re looking for a consequence, not just a sequence.'
+    scene: Someone opening a door and being surprised by what happens next.
+    register: casual
+    setting: excited
+  - english: He started coughing loudly. Then, I realized he must have caught a cold.
+    japanese:
+      - 彼 が 大きな 声 で 咳 を し 始め た。{する と}、風邪 を ひい た の に 違い ない と 気づい た。
+      - 彼 が 大きな 声 で 咳 を し 始め まし た。{する と}、風邪 を ひい た の に 違い ない と 気づき まし た。
+    english_literally: He started coughing loudly. Thereupon, I realized he must have caught a cold.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 大きな 声 で 咳 を し 始め た。{だ から}、風邪 を ひい た の に 違い ない と 気づい た。
+        english: He started coughing loudly. Therefore, I realized he must have caught a cold.
+        hint: '`だから` presents a strong reason or logical deduction. `すると` implies a more immediate or
+          spontaneous realization based on observation. We''re looking for an immediate realization.'
+    scene: Observing someone's behavior and drawing a conclusion about their condition.
+    register: casual
+    setting: reflective
+  - english: I touched the hot pan. Then, I burned my finger.
+    japanese:
+      - 熱い フライパン を 触っ た。{する と}、指 を 火傷 し た。
+      - 熱い フライパン を 触り まし た。{する と}、指 を 火傷 し まし た。
+    english_literally: I touched the hot pan. Thereupon, I burned my finger.
+    competing_grammar:
+      - competing_japanese:
+          - 熱い フライパン を 触っ た。{その 結果}、指 を 火傷 し た。
+        english: I touched the hot pan. As a result, I burned my finger.
+        hint: '`その 結果` indicates a general outcome. `すると` conveys a more direct and immediate consequence
+          of the action. We''re looking for a direct, immediate outcome.'
+    scene: A moment of carelessness leading to an immediate, painful consequence.
+    register: casual
+    setting: cautious
+  - english: The sun set. Then, the stars began to twinkle in the sky.
+    japanese:
+      - 日 が 沈ん だ。{する と}、空 に 星 が きらめき 始め た。
+      - 日 が 沈み まし た。{する と}、空 に 星 が きらめき 始め まし た。
+    english_literally: The sun set. Thereupon, stars began to twinkle in the sky.
+    competing_grammar:
+      - competing_japanese:
+          - 日 が 沈ん だ。{そして} 空 に 星 が きらめき 始め た。
+        english: The sun set. And then, the stars began to twinkle in the sky.
+        hint: '`そして` simply states a sequence of events. `すると` implies that the second event is a natural
+          and immediate consequence of the first. We''re looking for a natural consequence.'
+    scene: Observing a beautiful natural transition from day to night.
+    register: casual
+    setting: reflective
+  - english: Turn the handle to the right. Then, the water will come out.
+    japanese:
+      - 取っ手 を 右 に 回す。{する と}、水 が 出る。
+      - 取っ手 を 右 に 回し ます。{する と}、水 が 出 ます。
+    english_literally: Turn the handle to the right. Thereupon, water will come out.
+    competing_grammar:
+      - competing_japanese:
+          - 取っ手 を 右 に 回せ {ば} 水 が 出る。
+        english: If you turn the handle to the right, water will come out.
+        hint: '`～ば` expresses a general condition. `すると` describes a direct, immediate, and often observed
+          consequence of an action or instruction. We''re looking for a direct cause-and-effect.'
+      - competing_japanese:
+          - 取っ手 を 右 に 回し {たら} 水 が 出る。
+        english: If you turn the handle to the right, water will come out.
+        hint: '`～たら` also expresses a conditional, focusing on the completion of the first action. `すると`
+          emphasizes the immediate result that follows. We''re looking for an immediate result.'
+    scene: Giving instructions on how to operate a device or machine.
+    register: formal
+    setting: instructional
+post_example_writeup: While 「すると」 often translates to "and then", it has a stronger sense of causality
+  than just a simple sequence of events. It emphasizes that the second event is a direct consequence or
+  a logical conclusion from the first, often implying immediacy or even a surprising outcome.

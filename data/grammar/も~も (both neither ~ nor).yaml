@@ -1,0 +1,270 @@
+grammar_point: も~も (both neither ~ nor)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Verb-dictionary]ことが好きだ (to like doing)'
+  - い-Adjective[くありません] (polite negative form)
+  - い-adjective (sentence-ending)
+  - することができる (can・be able to)
+  - できない (cannot do・unable to do)
+  - とする (feel ~)
+  - な-Adjective (predicate form)
+  - な-Adjective[であった] (formal past)
+  - な-Adjectives (adjectival nouns)
+  - ほど〜ない (not as... as)
+  - 大きな・小さな (big・small)
+meaning: Both ~ and ~; neither ~ nor ~; also; (not) either
+pronunciation:
+  katakana: モ～モ
+  romaji: mo ~ mo
+formation:
+  Verb (ます stem) + も + Verb (ます stem) + も + する/しない: To express performing or not performing two actions.
+  Noun + も + Noun + も + する/しない: To express two nouns are both involved in an action, or neither are。
+  い-adjective (stem) + く + も + い-adjective (stem) + く + も + ある/ない: To express something possesses both
+    qualities, or neither.
+  な-adjective (stem)/Noun + で + も + な-adjective (stem)/Noun + で + も + ある/ない: To express something possesses
+    both qualities/states, or neither.
+jlpt: N2
+etymology: The particle 「も」 originally indicates 'also' or 'too.' When used in the 「も~も」 pattern, it emphasizes
+  the presence or absence of both elements being described.
+writeup: |-
+  The 「も~も」 grammar pattern is used to express that two things are true or exist, or that neither of two things is true or exists. It creates a sense of balance or parallelism between the two elements. The pattern can be used with verbs, nouns, い-adjectives, and な-adjectives, each having a slightly different construction.
+
+  *   **Verbs**: The ます-stem of the verb is followed by 「も」. For example, 「読みも書きもする」 (both read and write) or 「読みも書きもしない」 (neither read nor write). Variations using 「～し」 or conditional forms like 「～すれば」 can also be integrated, such as 「読みもするし、書きもする」 (reads and also writes).
+  *   **Nouns**: The noun is directly followed by 「も」. For example, 「料理も掃除もする」 (both cook and clean) or 「料理も掃除もしない」 (neither cook nor clean).
+  *   **い-adjectives**: The い ending is dropped and replaced with 「く」, followed by 「も」. For example, 「うれしくも悲しくもある」 (both happy and sad) or 「うれしくも悲しくもない」 (neither happy nor sad).
+  *   **な-adjectives/Nouns**: Add 「で」 after the stem or noun, followed by 「も」. For example, 「便利でも経済的でもある」 (both convenient and economical) or 「便利でも経済的でもない」 (neither convenient nor economical). Similar to verbs, forms like 「便利でもあり、経済的でもある」 (is convenient and also economical) can be used.
+
+  This pattern is versatile and adds nuance to your Japanese expressions, allowing you to convey a balanced or comprehensive perspective, emphasizing that the predicate applies equally to both mentioned items, either affirmatively or negatively.
+false_friends:
+  - term: し〜し (and; listing reasons)
+    meaning: and; in addition; for such reasons
+    kind: similar expression
+    nuance: While 「～し～し」 lists reasons or additional information, often implying there might be other
+      reasons or items, 「も～も」 emphasizes the exhaustive inclusion or exclusion of *both* elements explicitly
+      stated. It creates a stronger sense of parallelism and is often used for comparison or contrast
+      where both items are equally affected by the predicate.
+    grammar_point: し〜し (and; listing reasons)
+  - term: 〜ばかりでなく・〜だけでなく (not only... but also)
+    meaning: not only X but also Y
+    kind: similar expression
+    nuance: 「～だけでなく～も」 primarily highlights the addition of something unexpected or more significant (Y)
+      after mentioning something standard (X). In contrast, 「も～も」 treats both X and Y as equally weighted
+      and simultaneously true or false, focusing on their parallel relationship rather than one being
+      an extension of the other.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: と (and)
+    meaning: X and Y; X, Y, and Z (for listing items)
+    kind: similar expression
+    nuance: 「～と～と」 is a simple conjunctive particle used to list items exhaustively. It implies a direct
+      conjunction. 「も～も」 adds the nuance of 'even' or 'also' to each item, emphasizing that the predicate
+      applies equally to both, which can imply a comprehensive coverage or an unexpected pairing. It doesn't
+      merely list, but makes a statement about the combined nature or state of the two elements.
+    grammar_point: と (and, connects nouns)
+  - term: '[Sentence] ばかりか (not only... but also)'
+    meaning: Not only...but also; much more than; in addition to.
+    kind: similar expression
+    nuance: While 「も～も」 implies equal weighting or a comprehensive dual application, 「～ばかりか（～さえ）」 emphasizes
+      that the second element (Y) is even more significant or surprising than the first (X). It conveys
+      a sense of escalation or an "even X" implication, whereas 「も～も」 focuses on the parallelism of two
+      items.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: While 「も～も」, 「～し～し」, 「～だけでなく～も」, 「～ばかりか（～さえ）」, and 「～と～と」 can all connect
+  ideas, their nuances differ. 「も～も」 stresses the complete inclusion or exclusion of *both* listed items,
+  often highlighting a balance or comprehensive application. 「～し～し」 provides additional reasons or items,
+  often implying a non-exhaustive list or simply connecting facts. 「～だけでなく～も」 emphasizes adding something
+  significant or unexpected to the first item. 「～ばかりか（～さえ）」 takes this further by highlighting that the
+  second item is even more surprising or extreme. Lastly, 「～と～と」 is a neutral conjunction for exhaustively
+  listing items. Choose 「も～も」 when the parallelism and comprehensive application of the predicate to both
+  elements are key, often in a balanced or dualistic sense.
+examples:
+  - english: He can both read and write Japanese.
+    japanese:
+      - 彼 は 日本 語 を 読み {も} 書き {も} できる。
+      - 彼 は 日本 語 を 読み {も} 書き {も} でき ます。
+      - 彼、日本 語 読み {も} 書き {も} できる よ。
+    english_literally: As for him, as for Japanese, reading also writing also can do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 を 読める {し}、書ける。
+        english: He can read Japanese, and also write.
+        hint: 「～し～し」 lists reasons or items, but 「も～も」 emphasizes the comprehensive inclusion of both
+          abilities. We're looking for an expression that stresses both skills simultaneously.
+      - competing_japanese:
+          - 彼 は 日本 語 を 読む こと {と} 書く こと が できる。
+        english: He can read and write Japanese.
+        hint: 「～と～と」 simply lists things. 「も～も」 adds emphasis that *both* actions are equally applicable.
+          We're looking for a pattern that highlights the comprehensive nature of his skills.
+    scene: A language teacher is assessing a student's comprehensive ability in Japanese.
+    register: teineigo (polite)
+    setting: academic
+  - english: In my town, there are both a large park and a small shopping street.
+    japanese:
+      - 私 の 街 に は、大きな 公園 {も} 小さな 商店 街 {も} ある。
+      - 俺 の 街 に は、大きな 公園 {も} 小さな 商店 街 {も} ある ん だ。
+    english_literally: In my town, a large park also a small shopping street also exist.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 街 に は、大きな 公園 {と} 小さな 商店 街 が ある。
+        english: In my town, there is a large park and a small shopping street.
+        hint: 「～と～と」 simply lists items. 「も～も」 emphasizes that *both* items are present, often with a
+          sense of completeness or pleasant surprise. We're looking for a way to emphasize the presence
+          of each unique feature.
+      - competing_japanese:
+          - 私 の 街 に は、大きな 公園 {だけ で なく} 小さな 商店 街 も ある。
+        english: In my town, there is not only a large park but also a small shopping street.
+        hint: 「～だけでなく～も」 highlights adding something unexpected or significant. 「も～も」 treats both items
+          as equally weighted and simultaneously present. We're looking for a pattern that gives equal
+          weight to both attractions.
+    scene: Someone is proudly describing the amenities available in their hometown to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: In the second variation, the use of 「俺」 (ore) instead of 「私」 (watashi) indicates a male speaker
+      and a more casual, familiar tone, suitable for speaking to a friend.
+  - english: I was too busy this week, so I neither watched TV nor read books.
+    japanese:
+      - 今週 は 忙し すぎ て、テレビ を 見 {も} し なけれ ば、本 を 読み {も} し なかっ た。
+      - 今週 は 忙し すぎ て、テレビ を 見 {も} し ない し、本 を 読み {も} し なかっ た。
+      - 今週 は 忙し すぎ て、テレビ を 見 {も} し ませ ん でし た し、本 を 読み {も} し ませ ん でし た。
+    english_literally: This week, being too busy, neither did I even watch TV, nor did I even read books.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 は テレビ を 見 なかっ た {し}、本 も 読ま なかっ た。
+        english: This week, I didn't watch TV, and I didn't read books either.
+        hint: While 「～し～し」 lists reasons or items, 「も～も」 in the negative strongly conveys 'neither X nor
+          Y' as a comprehensive statement of absence. We're looking for a pattern that emphasizes the
+          complete lack of both activities.
+    scene: A student is explaining their lack of free time to a concerned parent.
+    register: casual
+    setting: serious
+    speaker_age: younger
+    nuance: The use of 「～も～も しなかった」 emphasizes a strong negation of both actions, conveying a sense of
+      thoroughness in the lack of activity, suitable for an apology or explanation to a a concerned parent.
+  - english: The food at that restaurant is neither delicious nor cheap.
+    japanese:
+      - あの レストラン の 料理 は 美味しく {も} なけれ ば、安く {も} ない。
+      - あの レストラン の 料理 は 美味しく {も} 安く {も} ない。
+      - あの レストラン の 料理 は 美味しく {も} ござい ませ ん し、安く {も} ござい ませ ん。
+    english_literally: That restaurant's food, delicious also not if, cheap also not.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン の 料理 は 美味しく ない {し}、安く も ない。
+        english: The food at that restaurant is not delicious, and it's not cheap either.
+        hint: 「～し～し」 lists multiple negative attributes. 「も～も ない」 delivers a stronger, more conclusive
+          statement of 'neither X nor Y'. We're looking for a phrase that implies a strong sentiment of
+          disappointment about both qualities.
+    scene: Two friends are complaining about a disappointing dining experience they recently had.
+    register: casual
+    setting: serious
+  - english: Her speech was both interesting and moving.
+    japanese:
+      - 彼女 の スピーチ は、面白く {も} 感動 的 {で} も あっ た。
+      - 彼女 の スピーチ は、面白く {も} あり、感動 的 {で} も あっ た。
+    english_literally: Her speech, interesting also moving also was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の スピーチ は 面白かっ た {し}、感動 的 で も あっ た。
+        english: Her speech was interesting, and it was also moving.
+        hint: 「～し～し」 presents reasons or additional facts. 「も～も」 emphasizes the simultaneous presence
+          of both qualities. We're looking for a way to highlight that both positive qualities were present.
+    scene: An attendee is discussing a conference presentation with a colleague.
+    register: semi-formal
+    setting: professional
+  - english: I can't say I like him or dislike him.
+    japanese:
+      - 彼 の こと は 好き {も} 嫌い {も} 言え ない。
+      - 彼 の こと は 好き {も} 嫌い {も} 申し 上げ られ ませ ん。
+    english_literally: As for him, like also dislike also cannot say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の こと は 好き {か} 嫌い {か}、言え ない。
+        english: I can't say whether I like him or dislike him.
+        hint: While 「～か～か」 presents a choice between two options, 「も～も 言えない」 implies a state where *neither*
+          extreme feeling applies, signifying neutrality. We're looking for a way to express neutrality,
+          not just an inability to choose.
+    scene: Someone is confessing their ambiguous feelings about a new acquaintance to a trusted friend.
+      They feel neutral about him.
+    register: casual
+    setting: intimate
+    nuance: The phrase 「好きも嫌いも言えない」 succinctly captures a state of neutrality, emphasizing the absence
+      of both strong positive and negative feelings towards the person, suitable for a candid confession
+      to a trusted friend.
+  - english: Those clothes are neither cute nor comfortable.
+    japanese:
+      - その 服 は かわいく {も} なけれ ば、着心地 が 良く {も} ない。
+      - その 服 は かわいく {も} ない し、着心地 が 良く {も} ない。
+      - その 服 は かわいく {も} 着心地 が 良く {も} ない。
+    english_literally: Those clothes, neither are they even cute, nor are they even comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - その 服 は かわいく ない {し}、着心地 が 良く も ない。
+        english: Those clothes are not cute, and they're not comfortable either.
+        hint: 「～し～し」 lists multiple negative attributes. 「も～も ない」 delivers a stronger, more conclusive
+          statement of 'neither X nor Y'. We're looking for a comprehensive negative assessment of the
+          clothing.
+    scene: Two female friends are trying on clothes at a shop, and one is expressing her disappointment.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「かわいくもなければ、着心地が良くもない」 emphasizes a comprehensive negative assessment, which is
+      typical in a casual conversation between close female friends expressing disappointment about shopping.
+      The strong denial of both qualities enhances the feeling of disappointment.
+  - english: This problem is both simple and difficult.
+    japanese:
+      - この 問題 は 簡単 {で} も、難しい {で} も ある。
+      - この 問題 は 簡単 {で} も {ある} し、難しい {で} も {ある}。
+    english_literally: This problem, simple also is, and difficult also is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 簡単 だ {し}、難しい。
+        english: This problem is simple, and it's difficult.
+        hint: 「～し～し」 lists attributes, but 「も～も ある」 emphasizes the simultaneous and sometimes paradoxical
+          existence of both qualities, often for analytical or explanatory purposes. We're looking for
+          a way to explain a nuanced, paradoxical concept.
+    scene: A university professor is explaining a complex concept in a lecture, highlighting its paradoxical
+      nature.
+    register: formal
+    setting: academic
+  - english: Lately, I'm so busy that I can neither contact them nor meet them.
+    japanese:
+      - 最近 は 忙しく て、連絡 を する こと {も} でき なけれ ば、会う こと {も} でき ない。
+      - 最近 は 忙し すぎ て、連絡 を する こと {も} でき ませ ん し、会う こと {も} でき ませ ん。
+    english_literally: Lately, being too busy, neither can I contact them nor can I meet them.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 は 連絡 も でき ない {し}、会う こと も でき ない。
+        english: Lately, I can't contact them, and I can't meet them either.
+        hint: 「～し～し」 lists multiple reasons or states. 「も～も できない」 strongly conveys a complete inability
+          to perform *either* action due to circumstances. We're looking for a pattern that expresses
+          a comprehensive inability to do both things.
+    scene: Someone is apologizing to a friend for being out of touch due to overwhelming work.
+    register: semi-formal
+    setting: serious
+    nuance: The structure 「連絡をすることもできなければ、会うこともできない」 conveys a strong sense of inability or constraint
+      regarding both actions, fitting for an apology where one wants to emphasize the complete lack of
+      opportunity.
+  - english: Both adults and children enjoyed the movie.
+    japanese:
+      - その 映画 は 大人 {も} 子供 {も} 楽しん だ。
+      - その 映画 は 大人 {も} 子供 {も} 楽しみ まし た。
+    english_literally: That movie, adults also children also enjoyed.
+    competing_grammar:
+      - competing_japanese:
+          - その 映画 は 大人 {と} 子供 が 楽しん だ。
+        english: Adults and children enjoyed that movie.
+        hint: 「と～と」 simply lists the participants. 「も～も」 emphasizes that *both* groups, distinct as they
+          are, equally enjoyed the movie, highlighting a more comprehensive inclusion. We're looking for
+          a way to stress that both categories were included.
+    scene: Two friends are chatting about a family-friendly movie they recently saw, surprised by its
+      broad appeal.
+    register: casual
+    setting: friendly
+    nuance: The use of 「大人も子供も」 highlights the movie's universal appeal, showing that its enjoyment wasn't
+      limited to a single age group but extended to both, emphasizing comprehensive participation.
+post_example_writeup: The usage of 「も～も」 often emphasizes the exhaustive nature of what is being stated,
+  whether it's an affirmation of both elements or a negation of both. Pay close attention to the verb
+  or adjective form used after the second 「も」, as this dictates the overall tense and polarity of the
+  statement. This pattern allows for a concise and impactful way to express duality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/も~も

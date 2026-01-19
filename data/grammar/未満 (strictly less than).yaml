@@ -1,0 +1,273 @@
+grammar_point: 未満 (strictly less than)
+learn_before:
+  - Noun・Adjective+は〜となっている (established state)
+  - 〜量 (quantity)
+  - い-Adjective[くありません] (polite negative form)
+  - ちょっと (adverb)
+  - に反して (contrary to)
+  - のみ (only・just)
+  - を機に (leverage opportunity)
+  - 上がる 上げる (to finish complete)
+  - 変わる (to change)
+  - 恐れがある (risk or fear)
+meaning: Strictly less than; under; below
+pronunciation:
+  katakana: ミマン
+  romaji: miman
+formation:
+  数字 + 未満: Indicates a quantity strictly less than the specified number.
+  期間 + 未満: Indicates a period of time strictly less than the specified duration (e.g., 18歳未満 - under 18
+    years old).
+jlpt: N3
+etymology: 'The term 未満 (miman) is a compound of two kanji: 未 (mi), meaning ''not yet'' or ''un-,'' and
+  満 (man), meaning ''full,'' ''satisfied,'' or ''to reach.'' Therefore, 未満 literally translates to ''not
+  yet full'' or ''not reaching the full amount,'' conveying the meaning of ''less than'' or ''under''
+  a certain value. This etymology highlights the concept of falling short of a particular measure or threshold.'
+writeup: |-
+  未満 (miman) is a straightforward term used to indicate that a quantity, age, or value is strictly "less than" a specified number. It is crucial to understand that the number itself is **not** included in the range. For instance, 18歳未満 (juuhassai miman) means "under 18 years old," implying 17 years old and younger, but explicitly excluding 18. This contrasts with terms that include the boundary value.
+
+  This term is very common in formal contexts such as laws, regulations, statistics, and official documents, where precision in numerical values is required. While it can be used in casual conversation, its formal nature makes it less frequent than looser expressions like 「〜より少ない」 (yori sukunai) or 「〜以下」 (ika) in everyday speech. Its usage is consistent across various demographic groups in Japan.
+false_friends:
+  - term: 以下 (less than or equal to)
+    meaning: Less than or equal to; below or including
+    kind: antonym
+    nuance: Unlike {未満}, {以下} is inclusive of the specified number, meaning the value can be equal to
+      or less than the given number. For example, 10人以下 includes 10 people.
+    grammar_point: 〜以下 (less than or equal to・the following)
+  - term: 以上 (more than or equal)
+    meaning: More than or equal to; That's all.
+    kind: antonym
+    nuance: While {未満} defines a strict upper boundary (exclusive), {以上} defines an inclusive lower boundary,
+      meaning the value can be equal to or more than the given number.
+    grammar_point: '[Noun]以上 (more than or equal to)'
+  - term: 以内 (within)
+    meaning: Within; Less than or equal to; Not exceeding
+    kind: similar expression
+    nuance: '{以内} specifies a range from zero up to and including the stated number, whereas {未満} strictly
+      excludes the number. For example, 5メートル以内 (within 5 meters) includes 5 meters, but 5メートル未満 (less
+      than 5 meters) does not.'
+    grammar_point: 以内 (within)
+  - term: より少ない (less than)
+    meaning: Less than; fewer than
+    kind: similar expression
+    nuance: 「より少ない」 is a more general and flexible way to say 'less than' and is often used in casual
+      conversation. While it also implies strict inequality, {未満} is preferred for formal, precise cut-offs
+      like exam scores.
+    grammar_point: 少ない (few・little)
+  - term: に満たない (not reaching)
+    meaning: Not reaching; falling short of; less than
+    kind: similar expression
+    nuance: '{に満たない} directly expresses ''not reaching'' a certain amount and implies ''less than''. It
+      is often used to convey inadequacy or insufficiency, whereas {未満} is primarily a precise mathematical
+      boundary.'
+    grammar_point: に満たない (not reaching)
+  - term: 下回る (to fall below)
+    meaning: To fall below; to be less than
+    kind: similar expression
+    nuance: '{下回る} is a verb describing the action of falling below a certain level, while {未満} specifies
+      a state of being strictly less than a value.'
+    grammar_point: <strongly-suggest>:下回る (to fall below)
+  - term: 超える (to exceed)
+    meaning: To exceed; to go over; to pass
+    kind: antonym
+    nuance: '{超える} expresses a value being greater than a certain limit, effectively the opposite of {未満}.'
+    grammar_point: <strongly-suggest>:超える (to exceed)
+post_false_friends_writeup: When working with numerical boundaries in Japanese, it is vital to distinguish
+  between exclusive and inclusive limits. {未満} strictly means 'less than,' always excluding the number.
+  Conversely, {以下} means 'less than or equal to,' including the number. Similarly, {以上} means 'greater
+  than or equal to,' while expressions like {超える} indicate 'exceeding' a value. {以内} implies 'within'
+  a range, including the upper limit. Use {未満} for strict exclusion, and be mindful of context and formality
+  when choosing between precise terms like {未満} and more general expressions such as 「より少ない」、 「に満たない」,
+  or 「下回る」.
+examples:
+  - english: Children under 6 years old do not need a ticket.
+    japanese:
+      - 6 歳 {未満} の 子供 は チケット が 必要 あり ませ ん。
+      - 6 歳 {未満} の お 子 様 は 切符 が いり ませ ん.
+    english_literally: Children less than 6 years old ticket not necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 6 歳 {以下} の 子供 は チケット が 必要 あり ませ ん.
+        english: Children 6 years old or younger do not need a ticket.
+        hint: 「以下」 includes the stated number, meaning children exactly 6 years old would also not need
+          a ticket. We're looking for strictly 'less than'.
+    scene: A parent asking about ticket requirements at a train station.
+    register: formal
+    setting: informative
+  - english: Only those with a score of less than 70% will need to retake the exam.
+    japanese:
+      - 70 % {未満} の スコア の 人 だけ が 再 試験 を 受ける 必要 が あり ます。
+      - 70 % {未満} の 成績 者 のみ 再 試験 が 必須 です.
+    english_literally: Only people with a score less than 70% have necessity to take re-exam.
+    competing_grammar:
+      - competing_japanese:
+          - 70 % {より} {少ない} スコア の 人 だけ が 再 試験 を 受ける 必要 が あり ます.
+        english: Only those with a score less than 70% will need to retake the exam.
+        hint: While 「より少ない」 conveys 'less than,' {未満} is preferred for formal, precise cut-offs like exam
+          scores. We're looking for the more formal term.
+    scene: A teacher announcing exam results to a class.
+    register: formal
+    setting: informative
+    nuance: The use of 「未満」 makes it clear that a score of exactly 70% would not require a retake, only
+      scores below it, emphasizing strict adherence to the cutoff.
+    etymology: The word 「再試験」 (saishiken) means 're-examination,' combining 「再」 (sai - re-, again) and
+      「試験」 (shiken - examination).
+  - english: This product is for external use only; please do not ingest even a small amount.
+    japanese:
+      - この 製品 は 外用 薬 です。微量 {未満} で も 摂取 し ない で ください。
+      - 本 製品 は 外用 です の で、微量 {未満} も 口 に し ない で ください.
+    english_literally: This product external use medicine. Even less than a trace amount please do not
+      ingest.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 外用 薬 です。{少し も} 摂取 し ない で ください.
+        english: This product is for external use only; please do not ingest even a little bit.
+        hint: 「少しも」 means 'not even a little,' but doesn't convey the extreme, precise 'less than a trace
+          amount' as strongly as {微量未満}.
+    scene: Instructions on a medicine bottle.
+    register: formal
+    setting: instructional
+    nuance: 「微量未満」 emphasizes that even an amount smaller than a 'trace amount' should not be ingested,
+      stressing extreme caution. This use of 未満 highlights an extremely low, almost imperceptible threshold.
+    etymology: The phrase 「口 に し ない で ください」 (kuchi ni shinai de kudasai) literally means 'please do not
+      put in mouth,' a common way to say 'do not ingest.'
+  - english: The number of attendees was less than 50, so the event was cancelled.
+    japanese:
+      - 参加 者 数 が 50 名 {未満} だっ た の で、イベント は 中止 と なり まし た。
+      - 参加 者 数 が 50 名 {未満} の ため、イベント は 中止 と なり まし た.
+    english_literally: Number of participants was less than 50 people, so event was cancelled.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 数 が 50 名 {以下} だっ た の で、イベント は 中止 と なり まし た.
+        english: The number of attendees was 50 or less, so the event would still be cancelled. We're
+          looking for strictly 'less than'.
+        hint: 「以下」 includes 50 attendees. If exactly 50 attendees showed up, the event would still be
+          cancelled. We're looking for strictly 'less than'.
+    scene: An event organizer explaining the cancellation.
+    register: formal
+    setting: informative
+    nuance: The phrase 「50名未満」 precisely indicates that the cutoff for cancellation was exactly 50 attendees,
+      and they fell short of that number.
+    etymology: 「中止」 (chuushi) means 'cancellation' or 'suspension,' formed from 「中」 (chuu - middle, in
+      progress) and 「止」 (shi - stop). It implies stopping something that was planned or in progress.
+  - english: If the temperature falls below 0 degrees Celsius, the pipes might freeze.
+    japanese:
+      - 気温 が 摂氏 0 度 {未満} に なる と、パイプ が 凍る 可能 性 が あり ます。
+      - 気温 が 摂氏 0 度 {未満} に なれ ば、パイプ が 凍結 する 恐れ が あり ます.
+    english_literally: Temperature becomes less than 0 degrees Celsius, pipes freezing possibility there
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - 気温 が 摂氏 0 度 を {下回る} と、パイプ が 凍る 可能 性 が あり ます.
+        english: If the temperature falls below 0 degrees Celsius, the pipes might freeze.
+        hint: 「下回る」 is a verb meaning 'to fall below,' and while correct, {未満} is typically used in formal,
+          precise statements about thresholds.
+    scene: A weather report or warning.
+    register: formal
+    setting: informative
+    nuance: This sentence clearly states that 0 degrees Celsius itself is not cold enough for pipes to
+      freeze, but any temperature strictly below it could cause freezing. The precision is important for
+      cautionary warnings.
+    etymology: 「摂氏」 (sesshi) is the Japanese term for Celsius, a loanword combining 「摂」 (setsu -攝, to
+      control, absorb) and 「氏」 (shi - Mr., clan name), used to denote the scale as named after Anders
+      Celsius. 「凍結」 (touketsu) means 'freezing,' combining 「凍」 (tou - freeze) and 「結」 (ketsu - tie, bind).
+  - english: His income is less than the national average.
+    japanese:
+      - 彼 の 収入 は 全国 平均 {未満} です。
+      - 彼 の 収入 は 全国 平均 {未満} と なっ て い ます.
+    english_literally: His income national average less than is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 収入 は 全国 平均 {より} {少ない} です.
+        english: His income is less than the national average.
+        hint: 「より少ない」 is more casual and general. {未満} conveys a more formal, precise comparison against
+          a numerical average.
+    scene: A discussion about economic status.
+    register: semi-formal
+    setting: informative
+    nuance: The use of 「未満」 highlights that his income is not merely 'below' the average but strictly
+      'less than' it, often implying a quantifiable difference, which is fitting for a semi-formal discussion
+      on statistics.
+    etymology: 「全国平均」 (zenkoku heikin) means 'national average,' a compound of 「全国」 (zenkoku - whole country)
+      and 「平均」 (heikin - average, balance).
+  - english: All applicants must be under 30 years of age.
+    japanese:
+      - 応募 者 は 全員、30 歳 {未満} で なけれ ば なり ませ ん。
+      - 応募 者 は 全員、30 歳 {未満} と し ます.
+    english_literally: Applicants all, must be less than 30 years old.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 者 は 全員、30 歳 {まで} の 者 と し ます.
+        english: All applicants must be up to 30 years old.
+        hint: 「まで」 (until) can be ambiguous regarding inclusion of the boundary. {未満} clearly excludes
+          30 years old. We're looking for strict exclusion.
+    scene: A job application requirement.
+    register: formal
+    setting: instructional
+    nuance: 'In formal application requirements, 「30歳未満」 ensures clarity: applicants who are exactly 30
+      years old are not eligible, only those who are 29 or younger.'
+    etymology: 「応募者」 (ouboshya) means 'applicant,' combining 「応」 (ou - respond, comply) and 「募」 (bo -
+      recruit, raise). This reflects the act of responding to a recruitment call.
+  - english: The success rate for this difficult procedure is less than 5%.
+    japanese:
+      - この 難しい 手術 の 成功 率 は 5 % {未満} です。
+      - この 難しい 手術 の 成功 率 は 5 % {未満} と 見積 も られ ます.
+    english_literally: This difficult surgery's success rate is less than 5%.
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい 手術 の 成功 率 は 5 % に {満た ない} です.
+        english: The success rate for this difficult procedure is less than 5%.
+        hint: 「満たない」 also means 'less than,' but {未満} is a common and concise phrase for stating strict
+          numerical cutoffs, especially in formal contexts.
+    scene: A doctor explaining a medical procedure.
+    register: formal
+    setting: informative
+    nuance: The precise use of 「未満」 communicates the low probability very strictly, indicating that a
+      5% success rate is not achieved; it is always below that mark. This precision is critical in medical
+      contexts.
+    etymology: 「成功率」 (seikouritsu) means 'success rate,' a compound of 「成功」 (seikou - success) and 「率」
+      (ritsu - rate, ratio).
+  - english: Vehicles with an engine displacement of less than 50cc are classified as mopeds.
+    japanese:
+      - 排気 量 50 cc {未満} の 車両 は 原動 機 付 自転 車 に 分類 さ れ ます。
+      - 50 cc {未満} の 排気 量 の 車両 は 原付 に 分類 さ れ ます.
+    english_literally: Engine displacement less than 50cc vehicles are classified as motorized bicycles.
+    competing_grammar:
+      - competing_japanese:
+          - 排気 量 50 cc {まで} の 車両 は 原動 機 付 自転 車 に 分類 さ れ ます.
+        english: Vehicles with an engine displacement up to 50cc are classified as mopeds.
+        hint: 「まで」 (up to) can imply inclusion. {未満} unambiguously excludes 50cc, which is vital for legal
+          classifications.
+    scene: A driving school lesson or traffic law explanation.
+    register: formal
+    setting: instructional
+    nuance: This phrasing, often found in legal or technical specifications, leaves no ambiguity regarding
+      the exact cutoff point for vehicle classification. Even 50cc exactly would not be included as a
+      moped.
+    etymology: 「原動機付自転車」 (gendoukitsuki jitensha) literally means 'motor-attached bicycle,' typically
+      abbreviated to 原付 (gentsuki). It's a precise legal term, reflecting the legal and technical nature
+      of the classification. 「分類」 (bunrui) means 'classification,' combining 「分」 (bun - divide) and 「類」
+      (rui - sort, kind).
+  - english: Despite the forecast, the actual rainfall was less than 10mm.
+    japanese:
+      - 予報 に 反し、実際 の 降水 量 は 10 mm {未満} でし た。
+      - 予報 に も かかわら ず、実際 の 降水 量 は 10 mm {未満} でし た.
+    english_literally: Contrary to forecast, actual precipitation was less than 10mm.
+    competing_grammar:
+      - competing_japanese:
+          - 予報 に 反し、実際 の 降水 量 は 10 mm を {下回っ た}。
+        english: Despite the forecast, the actual rainfall fell below 10mm.
+        hint: 「下回る」 means 'to fall below,' and while it conveys the meaning, {未満} is a concise, standard
+          expression for numerical thresholds.
+    scene: A meteorologist giving a post-event weather summary.
+    register: formal
+    setting: informative
+    nuance: Using 「未満」 provides a precise factual statement, emphasizing that the rainfall did not even
+      reach the 10mm mark, which might imply a significant difference from expectations or a critical
+      threshold.
+    etymology: 「降水量」 (kousuiryou) means 'precipitation (amount),' combining 「降水」 (kousui - precipitation)
+      and 「量」 (ryou - quantity, amount).
+post_example_writeup: Understanding the precise boundaries that 「未満」 establishes is key. It's a common
+  way to express strict upper limits in official or technical contexts. Pay close attention to whether
+  the boundary number itself is included or excluded, as this is the primary distinction between 「未満」
+  and similar expressions like 「以下」.

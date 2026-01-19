@@ -1,0 +1,263 @@
+grammar_point: 範囲内 (within the range)
+learn_before:
+  - Verb[えば] (conditional)
+  - Verb[ないで] (negative without doing)
+  - あそこ (over there)
+  - ですから (therefore)
+  - どこ (where)
+  - ましょう (polite volitional or suggestion)
+meaning: within the range・within the scope
+pronunciation:
+  katakana: ハンイナイ
+  romaji: han-i nai
+formation:
+  Noun + の + 範囲内: Indicates that something is within a specific scope, area, or limit defined by the preceding
+    noun.
+  Verb[dictionary form] + 範囲内: When used with a verb in dictionary form (e.g., できる 範囲内), it indicates
+    that an action is permissible or expected within a certain context or boundary, meaning 'within the
+    range of what can be done' or 'within the scope of...'.
+jlpt: N3
+etymology: 'The term 「範囲内」 (han''i nai) is composed of two main parts: 「範囲」 (han''i) and 「内」 (nai). 「範囲」
+  is derived from 「範」 (han), meaning ''model'' or ''limit'', and 「囲」 (i), meaning ''enclosure'' or ''surrounding''.
+  Combined, 「範囲」 means ''scope'' or ''range''. 「内」 (nai) means ''inside'' or ''within''. Therefore, 「範囲内」
+  literally translates to ''within the range'' or ''inside the scope'', indicating that something is contained
+  within a defined boundary or set of parameters. Its use extends beyond physical space to include abstract
+  concepts like rules, expectations, or areas of responsibility, reflecting its core meaning of being
+  contained within a specified limit.'
+writeup: "「範囲内」 is a versatile expression used to indicate that something—an action, a decision, a situation,\
+  \ or an object—exists or occurs within a specified limit, boundary, or scope. It is frequently encountered\
+  \ in formal and academic contexts, as well as in discussions about regulations, rules, or defined parameters.\
+  \ \n\nThis grammar point emphasizes the idea of *containment* or *conformance*. When something is 「範囲内」,\
+  \ it means it is permissible, expected, or simply present within a given set of conditions. For instance,\
+  \ when discussing a budget, something being 「予算 の 範囲内」 (within budget) means it conforms to the financial\
+  \ limits. Similarly, 「ルール の 範囲内」 (within the rules) signifies compliance with regulations. \n\nWhile\
+  \ 「範囲内」 can refer to physical boundaries, its strength lies in describing abstract limits such as: \n\
+  *   **Rules and Regulations:** Actions taken that adhere to established guidelines. \n*   **Expectations:**\
+  \ Outcomes or behaviors that fall within what is anticipated or acceptable. \n*   **Competence/Responsibility:**\
+  \ Tasks or areas that are within one's capability or jurisdiction. \n*   **Time or Budget Constraints:**\
+  \ Operating within allocated timeframes or financial limits.\n\nIt is important to understand that 「範囲内」\
+  \ does not necessarily imply 'just barely within' or 'at the maximum limit,' but rather simply 'inside'\
+  \ the defined boundaries. It contrasts with 「範囲外」, which means 'outside the range' or 'beyond the scope'."
+false_friends:
+  - term: 以内 (within a numerical/temporal limit)
+    meaning: within (a numerical/temporal limit)
+    kind: similar expression
+    nuance: 「以内」 typically refers to a quantitative limit (e.g., within 5 minutes, within 10 meters, within
+      3 units), whereas 「範囲内」 refers to a qualitative or conceptual scope, such as rules, jurisdiction,
+      or abstract boundaries.
+    grammar_point: 以内 (within)
+  - term: 限界 (limit)
+    meaning: limit, boundary (often a maximum)
+    kind: similar expression
+    nuance: While both relate to boundaries, 「限界」 refers to the absolute maximum or breaking point. 「範囲内」
+      simply means *inside* a defined scope, which might be well below a breaking point. 「限界」 implies
+      a ceiling, while 「範囲内」 refers to the space below that ceiling.
+    grammar_point: <suggest>:限界 (limit)
+  - term: 範囲外 (outside the range)
+    meaning: outside the range/scope
+    kind: antonym
+    nuance: This is the direct opposite. 「範囲内」 indicates inclusion, while 「範囲外」 indicates exclusion from
+      a defined scope.
+    grammar_point: <suggest>:範囲外 (outside the range)
+post_false_friends_writeup: 'To differentiate 「範囲内」 from similar expressions: remember that 「以内」 is typically
+  used for numerical or temporal restrictions, like ''within 5 meters'' (５メートル以内) or ''within 3 days''
+  (３日以内). In contrast, 「範囲内」 refers to a broader, often conceptual or qualitative, scope, such as ''within
+  the rules'' (ルール の 範囲内) or ''within the scope of one''s duties'' (職務 の 範囲内). 「限界」 denotes an absolute
+  maximum or breaking point, while 「範囲内」 simply means ''contained within'' without necessarily implying
+  proximity to a breaking point. The antonym 「範囲外」 directly signifies exclusion from this defined scope.'
+examples:
+  - english: Please act within the scope of your responsibilities.
+    japanese:
+      - 職務 の {範囲 内} で 行動 し て ください。
+      - 職務 の {範囲 内} で 行動 し て。
+      - 職務 の {範囲 内} で 行動 する よう に し て ください。
+    english_literally: Within duties' scope, please act.
+    competing_grammar:
+      - competing_japanese:
+          - 職務 の ルール で 行動 し て ください。
+        english: Please act according to your job's rules.
+        hint: 「ルール」 refers to specific guidelines, whereas 「範囲内」 refers to the general boundaries or scope
+          of what is permitted. We're looking for a general area of action, not specific rules.
+    scene: A manager instructing an employee on appropriate conduct at work.
+    register: formal
+    setting: professional
+  - english: This problem is within the scope of our current research.
+    japanese:
+      - この 問題 は 現在 の 研究 {範囲 内} です。
+      - この 問題 は 現在 の 研究 {範囲 内} だ。
+    english_literally: This problem, current research's scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 現在 の 研究 対象 です。
+        english: This problem is an object of our current research.
+        hint: 「研究 対象」 means something is the *subject* of research. We're looking for something that indicates
+          it *fits within the limits* of the research.
+    scene: Researchers discussing the viability of a project.
+    register: formal
+    setting: academic
+    nuance: The use of 「現在 の 研究 範囲内」 clearly defines the academic boundary of the topic, making it suitable
+      for a formal, academic setting.
+  - english: The product's performance is within the expected range.
+    japanese:
+      - 製品 の 性能 は 期待 {範囲 内} です。
+      - 製品 の 性能 は 期待 {範囲 内} だ。
+    english_literally: Product's performance, expectation's scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - 製品 の 性能 は 期待 通り です。
+        english: The product's performance is as expected.
+        hint: 「期待 通り」 means it meets expectations exactly. We're looking for a phrase that means it falls
+          *within* a permissible or anticipated set of results, not necessarily exactly as hoped.
+    scene: A quality control engineer reporting on a new product.
+    register: formal
+    setting: technical
+  - english: His remarks were within the bounds of common sense.
+    japanese:
+      - 彼 の 発言 は 常識 の {範囲 内} でし た。
+      - 彼 の 発言 は 常識 の {範囲 内} だっ た。
+    english_literally: His remarks, common sense's scope within, were.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 発言 は 常識 的 でし た。
+        english: His remarks were common-sensical.
+        hint: 「常識 的」 describes something *as* common-sensical. We're looking for a phrase that means it
+          *fell within the limits* of common sense.
+    scene: Two colleagues discussing a recent meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「常識 の 範囲内」 implies that the remarks adhered to generally accepted social norms.
+      While not gender-specific, a male speaker using this phrase to another colleague is natural in a
+      professional, formal setting.
+  - english: The cost must be within the budget.
+    japanese:
+      - 費用 は 予算 の {範囲 内} で なけれ ば なり ませ ん。
+      - 費用 は 予算 の {範囲 内} で なけれ ば いけ ませ ん。
+      - 費用 は 予算 の {範囲 内} で なけれ ば なら ない。
+    english_literally: Costs, budget's scope within, must not be outside.
+    competing_grammar:
+      - competing_japanese:
+          - 費用 は 予算 以内 で なけれ ば なり ませ ん。
+        english: The cost must be within the budget (numerical limit).
+        hint: 「以内」 specifies a strict numerical or temporal upper limit. 「範囲内」 indicates adherence to
+          a broader, often conceptual, boundary, like the general 'scope' of the budget. We're looking
+          for a phrase that means it fits within the overall defined limits of the budget, not just a
+          numerical cap.
+    scene: A team leader setting financial guidelines for a project.
+    register: formal
+    setting: professional
+  - english: This behavior is within the acceptable range for children.
+    japanese:
+      - この 行動 は 子供 に とっ て 許容 {範囲 内} です。
+      - この 行動 は 子供 に とっ て 許容 {範囲 内} だ。
+    english_literally: This behavior, for children, acceptable scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - この 行動 は 子供 に とっ て 許さ れる べき です。
+        english: This behavior should be allowed for children.
+        hint: 「許される べき」 means it *should be permitted*. We're looking for a phrase that means it *falls
+          within* what is generally considered acceptable.
+    scene: A parent or teacher explaining child behavior.
+    register: formal
+    setting: informative
+  - english: This level of difficulty is within the range for a beginner.
+    japanese:
+      - この 難し さ は 初心 者 の {範囲 内} です。
+      - この 難し さ は 初心 者 の {範囲 内} だ。
+    english_literally: This difficulty, beginner's scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - この 難し さ は 初心 者 で も 大丈夫 です。
+        english: This difficulty is okay even for beginners.
+        hint: 「大丈夫」 means it's 'okay' or 'fine'. We're looking for a phrase that means it *fits within
+          the capabilities* or typical level of a beginner.
+    scene: A tutor assessing a student's progress.
+    register: semi-formal
+    setting: academic
+  - english: I'm sure it's within the rules; please don't worry.
+    japanese:
+      - きっと ルール の {範囲 内} です から、ご 心配 なく。
+      - きっと ルール の {範囲 内} だ から、心配 ない よ。
+      - きっと ルール の {範囲 内} だ から さ、心配 し ない で。
+    english_literally: Surely, rules' scope within, because, no worries.
+    competing_grammar:
+      - competing_japanese:
+          - きっと ルール に 沿っ て い ます から、ご 心配 なく。
+        english: Surely it conforms to the rules, so don't worry.
+        hint: 「〜に 沿って」 means to *conform to* or *follow* rules. We're looking for a phrase that means
+          it *exists within the boundaries* of the rules.
+    scene: One friend reassuring another about a situation.
+    register: semi-formal
+    setting: friendly
+  - english: This type of error is within the expected range for new software.
+    japanese:
+      - この タイプ の エラー は 新しい ソフトウェア の 予測 {範囲 内} です。
+      - この タイプ の エラー は 新しい ソフトウェア の 予測 {範囲 内} だ。
+    english_literally: This type of error, new software's prediction scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - この タイプ の エラー は 新しい ソフトウェア で 起こり 得る こと です。
+        english: This type of error is something that can happen with new software.
+        hint: 「起こり得る こと」 means it *can occur*. We're looking for a phrase that means it *falls within
+          the anticipated set* of errors for new software.
+    scene: A software developer explaining bugs to a client.
+    register: formal
+    setting: technical
+  - english: Is this request within the scope of what you can handle?
+    japanese:
+      - この ご 要望 は 対応 {範囲 内} でしょう か。
+      - この ご 要望 は 対応 {範囲 内} です か？
+      - この 要望 は 対応 {範囲 内} か？
+    english_literally: This request, handling scope within, probably is?
+    competing_grammar:
+      - competing_japanese:
+          - この ご 要望 は 対応 可能 でしょう か。
+        english: Is this request handleable?
+        hint: 「対応 可能」 means *possible to handle*. We're looking for a phrase that asks if it *falls within
+          your defined area* of service or capability.
+    scene: A customer service representative clarifying a client's request.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「対応 範囲内」 (within handling scope) is very common in customer service or business
+      contexts. A female speaker using polite Japanese with 「〜でしょうか」 for a formal inquiry is typical in
+      this professional setting.
+  - english: The doctor confirmed that the symptoms were within the normal range for recovery.
+    japanese:
+      - 医師 は 症状 が 回復 の 正常 {範囲 内} で ある こと を 確認 し まし た。
+      - 医師 は 症状 が 回復 の 正常 {範囲 内} で ある こと を 確認 し た。
+      - 医師 は 症状 が 回復 の 正常 {範囲 内} だっ た と 確認 し た。
+    english_literally: Doctor, symptoms, recovery's normal scope within, are, that, confirmed.
+    competing_grammar:
+      - competing_japanese:
+          - 医師 は 症状 が 回復 に 向かっ て いる こと を 確認 し まし た。
+        english: The doctor confirmed that the symptoms were heading towards recovery.
+        hint: 「回復 に 向かっている」 indicates *progress towards recovery*. We're looking for a phrase that means
+          the symptoms *fall within the typical parameters* expected during recovery.
+    scene: A patient receiving an update from their doctor.
+    register: formal
+    setting: serious
+    nuance: 「正常 範囲内」 is a common medical term, indicating that a condition falls within what is considered
+      typical or healthy. The formal register suits the medical context.
+  - english: The proposed solution falls within the acceptable range of environmental impact.
+    japanese:
+      - 提案 さ れ た 解決 策 は 環境 影響 の 許容 {範囲 内} です。
+      - 提案 さ れ た 解決 策 は 環境 影響 の 許容 {範囲 内} だ。
+    english_literally: Proposed solution, environmental impact's acceptable scope within, is.
+    competing_grammar:
+      - competing_japanese:
+          - 提案 さ れ た 解決 策 は 環境 に 優しい です。
+        english: The proposed solution is environmentally friendly.
+        hint: 「環境 に 優しい」 means it's *good for the environment*. We're looking for a phrase that means
+          its *impact falls within acceptable limits*, not necessarily that it's beneficial.
+    scene: An environmental consultant presenting a report.
+    register: formal
+    setting: professional
+post_example_writeup: As you can see from the examples, 「範囲内」 is a highly versatile expression. Its use
+  is prevalent in situations requiring precision in defining boundaries, whether these are physical, conceptual,
+  or regulatory. It provides a formal and clear way to state that something adheres to or exists within
+  specific parameters, ensuring clarity in communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E7%AF%84%E5%9B%B2%E5%86%85

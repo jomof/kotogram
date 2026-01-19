@@ -1,0 +1,459 @@
+grammar_point: てみる (try and see)
+learn_before:
+  - Verb[てみる] (try doing)
+meaning: To try to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てみる
+    rarity: common
+    meaning: to try (to do something)
+  - conjugation-type: non-past polite (～ます)
+    form: てみます
+    rarity: common
+    meaning: to try (to do something) (polite)
+  - conjugation-type: negative plain (～ない)
+    form: てみない
+    rarity: common
+    meaning: not to try (to do something)
+  - conjugation-type: negative non-past polite (～ません)
+    form: てみません
+    rarity: common
+    meaning: not to try (to do something) (polite)
+  - conjugation-type: past plain (～た)
+    form: てみた
+    rarity: common
+    meaning: tried (to do something)
+  - conjugation-type: past polite (～ました)
+    form: てみました
+    rarity: common
+    meaning: tried (to do something) (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: てみなかった
+    rarity: common
+    meaning: did not try (to do something)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: てみませんでした
+    rarity: common
+    meaning: did not try (to do something) (polite)
+  - conjugation-type: te-form (～て)
+    form: てみて
+    rarity: common
+    meaning: try (to do something) (request/command form)
+  - conjugation-type: conditional (～ば)
+    form: てみれば
+    rarity: uncommon
+    meaning: if one tries (to do something)
+  - conjugation-type: conditional (～たら)
+    form: てみたら
+    rarity: uncommon
+    meaning: if one tried (to do something)
+  - conjugation-type: volitional (～よう)
+    form: てみよう
+    rarity: common
+    meaning: let's try (to do something)
+  - conjugation-type: volitional polite (～ましょう)
+    form: てみましょう
+    rarity: uncommon
+    meaning: shall we try (to do something)
+pronunciation:
+  katakana: テミル
+  romaji: te miru
+  pronunciation_warning: While 見る can be used, its use strongly emphasizes the 'see' aspect over the 'try'
+    aspect, which can lead to misinterpretation.
+formation:
+  Verb in te-form + てみる: Expresses trying something to see what it's like or what will happen.
+jlpt: N4
+etymology: The grammar point 「てみる」 is formed by combining the te-form of a verb with the auxiliary verb
+  「みる」, which literally means 'to see'. This fusion semantically evolves into the meaning of 'to try and
+  see' or 'to try out'. The underlying idea is to perform an action to observe its outcome or to gain
+  experience. This linguistic construction highlights the experimental or experiential nature of the action,
+  as if one is performing an action to visually 'see' the result.
+writeup: 'The grammar point 「てみる」 (temiru) is used to express the idea of trying something to see what
+  happens or to gain experience. It combines the te-form of a verb with the auxiliary verb 「みる」 (miru),
+  which literally means ''to see''. This structure implies that the action is performed with an exploratory
+  or experimental intent. You are not just doing something, but doing it to ''see'' the result or to ''try
+  it out''. This construction is often employed when someone is trying something for the **first time**,
+  or when suggesting that someone else **should try something new**. For instance, if recommending an
+  activity or food, you might say 「〜てみて」 (temite) in a casual setting, or 「〜てみてください」 (temite kudasai)
+  for a more formal or polite request. In highly casual speech, especially among close friends, the 「て」
+  particle may sometimes be omitted, resulting in just 「〜み」 (mi). This carries a nuance of urging someone
+  to ''just give it a go!'' or ''come on, try it!''. A crucial nuance to understand is that when 「てみる」
+  is used in the **past tense** (e.g., 「〜てみた」), it often carries the implication that the attempt was
+  **successful** or that the speaker gained some insight from the experience, unless explicitly stated
+  otherwise. **Important Note**: While the auxiliary 「みる」 is almost always written in hiragana (みる), using
+  the kanji 「見る」 would heavily emphasize the literal meaning of ''to see''. This can lead to misunderstanding,
+  as the focus shifts from ''trying something out'' to ''seeing something'' in a literal sense. Therefore,
+  it is generally advised to write 「みる」 in hiragana in this grammatical context.'
+false_friends:
+  - term: てごらん
+    meaning: (Please) try to, (Please) look
+    kind: similar expression
+    nuance: 「てごらん」 is often used by someone older or in a position of authority to suggest or instruct
+      someone younger or of lower status to try something. It has a slightly commanding or instructing
+      tone, whereas 「てみる」 is a neutral expression of trying.
+    grammar_point: '[Verb-て]ごらん (gentle suggestion)'
+  - term: 〜ようと思う・〜おうと思う
+    meaning: I think I will, I think I shall, Going to, Gonna (Volitional+思う)
+    kind: similar expression
+    nuance: Unlike 「てみる」, 「〜ようと思う」 expresses an intention or plan to do something in the future, without
+      necessarily implying an experimental 'try and see' nuance. It simply states a decision.
+    grammar_point: '[Verb-よう]思う (intend to)'
+  - term: ようにする
+    meaning: To try to, To make sure to, To endeavor to
+    kind: similar expression
+    nuance: 「ようにする」 implies a continuous effort or a conscious attempt to make something a habit or to
+      ensure something happens regularly. It lacks the one-time, experimental 'try out' nuance of 「てみる」.
+    grammar_point: ようにする (make an effort to)
+  - term: Verb[volitional]とする
+    meaning: Try to, Attempt to, To be about to
+    kind: similar expression
+    nuance: While 「Verb[volitional]とする」 also means 'try to,' it often describes an attempt that is either
+      in progress or about to happen, focusing on the *effort* or *beginning* of an action. 「てみる」 is more
+      about performing the action to experience or observe the outcome.
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+post_false_friends_writeup: To avoid confusion, remember that 「てみる」 is about experimenting and seeing
+  what happens, while the other expressions have different nuances, such as continuous effort, intention,
+  or a command to try something.
+examples:
+  - english: I'll go try out the new restaurant.
+    japanese:
+      - 新しい レストラン に 行っ て {みる}。
+      - 新しい レストラン に 行っ て {み ます}。
+      - 新しい レストラン に 行っ て {みよう} と 思う。
+    english_literally: I will go and see the new restaurant.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい レストラン に {行く}。
+        english: I'll go to the new restaurant.
+        hint: The nuance of 'trying something out to see what happens' is missing in the simple verb form.
+          We're looking for an expression that suggests an experimental visit.
+    scene: A person is deciding where to eat dinner and considers a recently opened place.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This casual expression indicates an exploratory action. The speaker is not just going, but
+      going to 'try out' and 'see' what the new restaurant is like. The usage of 「〜てみる」 implies a sense
+      of curiosity and an experimental approach.
+    etymology: The verb 「行く」 (iku) means 'to go'. When combined with 「てみる」, it shifts the meaning to 'go
+      and try out', emphasizing the exploratory nature of the visit rather than just the action of going.
+      This specific phrasing highlights a modern, casual approach to trying new experiences, common among
+      younger speakers who are open to new things.
+  - english: Would you like to try this cake?
+    japanese:
+      - この ケーキ を 食べ {て み ます} か。
+      - この ケーキ、食べ {て みる}？
+      - この ケーキ、召し上がっ {て み ます} か。
+      - この ケーキ、食べ {て み ない}？
+    english_literally: Will you eat and see this cake?
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ を {食べ ます} か。
+        english: Will you eat this cake?
+        hint: The simple polite question just asks if you will eat, lacking the nuance of inviting someone
+          to 'experience' or 'taste and see' the cake. We're looking for an invitation to try.
+    scene: A friend is offering a freshly baked cake to a guest.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The polite form 「〜てみますか」 is used to gently suggest or invite someone to try something, emphasizing
+      the act of tasting to experience it. The feminine nuance in offering food is subtle but common.
+      The phrase 「食べ て みますか」 sounds softer and more inviting than a direct 「食べますか」, which might sound
+      like a simple inquiry about eating.
+    etymology: The verb 「食べる」 (taberu) means 'to eat'. Adding 「〜てみますか」 to it turns a direct question about
+      eating into an invitation to 'try and see' or 'taste' the cake. This construction, often used in
+      polite social contexts, makes the offer less direct and more about the experience.
+  - english: Just try touching it for a moment.
+    japanese:
+      - ちょっと だけ 触っ て {み て}。
+      - ちょっと だけ 触っ て {み て ください}。
+      - ちょっと 触っ て {みろ} よ。
+      - ちょっと 触っ て {みろ}。
+    english_literally: Touch and see it just a little.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと だけ {触っ て}。
+        english: Just touch it for a moment.
+        hint: The simple te-form is a direct request to touch, without the nuance of encouraging someone
+          to 'try it out' or 'see what happens'. We're looking for an encouragement to experience something.
+    scene: A child is hesitant to touch a harmless but unfamiliar object.
+    register: casual
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The casual command 「〜てみて」 encourages someone to perform an action experimentally, to see what
+      happens or how it feels. It's often used by an older person or parent to a child to gently push
+      them past hesitation. The use of 「ちょっと だけ」 further softens the request, making it less intimidating.
+      This is typical of a comforting and instructive tone often used by parents.
+    etymology: The verb 「触る」 (sawaru) means 'to touch'. The te-form 「触って」 combined with 「みて」 forms an
+      encouraging command to 'try touching'. This structure is very common in direct, informal communication
+      where one person is guiding another through an experience, particularly when overcoming apprehension.
+      The use of 「だけ」 (dake) limits the action, making it seem less daunting.
+  - english: Please try downloading this app.
+    japanese:
+      - この アプリ を ダウンロード し {て み て ください}。
+      - この アプリ を ダウンロード し {て み て いただけ ます} か。
+      - この アプリ、ダウンロード し {て み て 頂戴}。
+    english_literally: Please download and see this app.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ を ダウンロード {し て ください}。
+        english: Please download this app.
+        hint: The simple polite request is a direct instruction, not suggesting an experimental action
+          to see if it works or to gain experience. We're looking for a polite request to try something
+          out.
+    scene: A customer service representative is guiding a user through troubleshooting steps.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In a professional context, 「〜てみてください」 is a polite request to 'try out' an action, often implying
+      that the outcome is uncertain or that it's a step in a process (like troubleshooting). The polite
+      request is suitable for a customer service representative. While not exclusive to male speakers,
+      this clear, instructional tone is common in business Japanese.
+    etymology: 「ダウンロードする」 (daunroodo suru) is a suru-verb meaning 'to download'. Its te-form 「ダウンロードして」
+      combines with 「みてください」 to form a polite request to 'try downloading'. This phrase is a common way
+      to suggest an experimental action, especially in a technical or problem-solving context. The polite
+      imperative 「ください」 (kudasai) softens the command, making it a request rather than a direct order.
+  - english: I tried applying for the new job, and I passed the exam.
+    japanese:
+      - 新しい 仕事 に 応募 し {て み た} ら、合格 し た。
+      - 新しい 仕事 に 応募 し {て み まし た} ら、合格 し まし た。
+      - 新しい 仕事 に 応募 し {て み た} ところ、合格 し た。
+    english_literally: When I applied and saw for the new job, I passed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事 に {応募 し たら}、合格 し た。
+        english: When I applied for the new job, I passed the exam.
+        hint: This simple conditional sentence describes a cause and effect, but doesn't convey the nuance
+          that the application was an experiment or an action taken to see the result. We're looking for
+          an expression implying an attempt to see the outcome.
+    scene: A young man is excitedly telling his friend about a recent success.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The speaker implies they 'tried' applying, and the success of 'passing' confirms the implicit
+      positive outcome often associated with 「てみた」 in the past tense. The casual nature of the sentence
+      and the celebratory tone fit a male speaker sharing good news with a friend. The 「〜たら」 conditional
+      here implies a discovery or outcome after the action, emphasizing the 'see what happens' aspect
+      of 「てみる」.
+    etymology: 「応募する」 (ōbo suru) is a suru-verb meaning 'to apply'. When used with 「てみた」, it expresses
+      that the speaker 'tried applying' with an exploratory mindset. The inclusion of 「〜たら」 (conditional
+      particle) highlights that the passing of the exam was the 'result' or 'discovery' of this attempt.
+      This construction is common for sharing personal experiences and outcomes, particularly positive
+      ones.
+  - english: I tried buying that expensive dress, but it was a little too small.
+    japanese:
+      - あの 高い 服 を 買っ {て み まし た} が、少し 小さかっ た です。
+      - あの 高い 服、買っ {て み た} ん だ けど、ちょっと 小さかっ た。
+      - あの 高価 な 服 を 買っ {て み まし た} が、少々 小さかっ た です。
+    english_literally: I bought and saw that expensive dress, but it was a little small.
+    competing_grammar:
+      - competing_japanese:
+          - あの 高い 服 を {買い まし た} が、少し 小さかっ た です。
+        english: I bought that expensive dress, but it was a little too small.
+        hint: This simply states that the dress was bought, without indicating that the purchase was an
+          experiment or an attempt to see how it would fit. We're looking for an expression that suggests
+          trying out the purchase.
+    scene: A woman is lamenting a shopping mishap to her friend.
+    register: semi-formal
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    nuance: The speaker uses 「です」 after 「小さかった」, indicating a polite, yet slightly less formal tone than
+      strict 「teineigo」. The explicit mention of the negative outcome ('小さかった です') demonstrates how 「てみる」
+      can be used even when the attempt is not successful, provided the failure is stated. This nuance
+      is common in polite conversational sharing, often associated with female speakers, who might use
+      this structure to share personal experiences with a touch of polite reflection.
+    etymology: The verb 「買う」 (kau) means 'to buy'. The phrase 「買っ て み まし た」 signifies 'I tried buying'
+      the dress, indicating an exploratory purchase. The conjunction 「が」 (ga) introduces a contrasting
+      result ('but it was a little too small'). This construction is used to share an experience where
+      the action was taken to see the result, and the result was not as expected, conveying a sense of
+      personal reflection.
+  - english: It looks interesting, so I'll try doing it too.
+    japanese:
+      - 面白 そう だ から、私 も やっ {て みよう}。
+      - 面白 そう です から、私 も やっ {て み ましょう}。
+      - 面白 そう だ から、私 も やっ {て みる} か！
+    english_literally: Since it seems interesting, I will also do and see.
+    competing_grammar:
+      - competing_japanese:
+          - 面白 そう だ から、私 も {やろう}。
+        english: It looks interesting, so I'll do it too.
+        hint: The simple volitional indicates an intention to do something, but doesn't carry the nuance
+          of 'trying it out' experimentally. We're looking for an expression of intent to try something
+          new.
+    scene: Someone is watching a friend attempt a new hobby and decides to join in.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The volitional form 「〜てみよう」 expresses an intention to try something out, often with a sense
+      of excitement or curiosity about the outcome. It's a casual way of saying 'let's try it' or 'I'll
+      give it a go'. The phrase 「面白 そう だ から」 provides the motivation, and the volitional ending suits
+      the immediate, spontaneous decision often made by younger speakers among friends.
+    etymology: 「やる」 (yaru) is a casual verb for 'to do' or 'to try'. Its te-form 「やって」 combines with the
+      volitional 「みよう」 to mean 'let's try doing it' or 'I'll try doing it'. This construction is used
+      when someone is prompted by curiosity or interest to perform an action to experience it themselves.
+      It conveys a strong sense of personal initiative and experimentation.
+  - english: Shall we try starting a new project?
+    japanese:
+      - 新しい プロジェクト を 始め て {み ましょう}。
+      - 新しい プロジェクト を 始め {て み て は いかが でしょう} か。
+      - 新しい プロジェクト、始め {て み ませ ん か}？
+    english_literally: Let's start and see a new project.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト を {始め ましょう}。
+        english: Shall we start a new project?
+        hint: This is a direct suggestion to start, without implying an experimental or trial approach.
+          We're looking for a suggestion that involves trying out a new initiative.
+    scene: A team leader is proposing a new initiative to their colleagues during a meeting.
+    register: semi-formal
+    setting: persuasive
+    conjugation: volitional polite (～ましょう)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite volitional form 「〜てみましょう」 is used to suggest trying something together, often in
+      a group or professional setting, implying an experimental or exploratory approach. It's a way to
+      invite others to participate in trying out a new idea. This is common for a team leader who wants
+      to involve their team in a new venture, using polite yet encouraging language.
+    etymology: 「始める」 (hajimeru) means 'to start'. Its te-form 「始めて」 combines with the polite volitional
+      「みましょう」 to suggest 'let's try starting' a project. This expression is commonly used in collaborative
+      settings to propose an action that is somewhat experimental or whose outcome is not fully certain,
+      inviting collective participation to 'see what happens'.
+  - english: This method is complicated, so it's better not to try it first.
+    japanese:
+      - この 方法 は 複雑 だ から、まず は やっ {て み ない} 方 が いい。
+      - この 方法 は 複雑 です から、まず は やっ {て み ない} 方 が いい です。
+      - この 方法 は 複雑 です から、まず は やっ {て み ない} 方 が よろしい でしょう。
+    english_literally: Because this method is complicated, it is better not to do and see it first.
+    competing_grammar:
+      - competing_japanese:
+          - この 方法 は 複雑 だ から、まず は {やら ない 方 が いい}。
+        english: This method is complicated, so it's better not to do it first.
+        hint: This simply advises against doing the method, without emphasizing the specific caution against
+          'trying out' or 'experimenting' with it. We're looking for a warning against attempting something
+          experimentally.
+    scene: A mentor advises a student against trying a difficult approach without prior preparation.
+    register: semi-formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The negative form 「〜てみない方がいい」 advises against trying something, often because it's too difficult
+      or risky. It's a cautious warning against an experimental action. This phrasing is typical of a
+      mentor offering guidance, emphasizing that the action of 'trying' is not advisable. The inclusion
+      of 「まず は」 (first) implies that trying it later, with more preparation, might be acceptable.
+    etymology: 「やる」 (yaru) in its te-form 「やって」 combines with the negative 「みない」 and the structure 「方がいい」
+      (hō ga ii) to mean 'it is better not to try (doing something)'. This construction is used to express
+      a recommendation against an experimental action, highlighting that attempting it might lead to negative
+      consequences. It is a practical warning, indicating a preference for not undertaking an action,
+      especially if it is complicated or risky.
+  - english: Someday, I want to try soaking in a hot spring in Japan.
+    japanese:
+      - いつ か 日本 で 温泉 に 入っ {て み たい} です。
+      - いつ か 日本 で 温泉 に 入っ {て み たい} な。
+      - いつ か 日本 で 温泉 に 入浴 し {て み たい} と 存じ ます。
+    english_literally: Someday, I want to enter and see a hot spring in Japan.
+    competing_grammar:
+      - competing_japanese:
+          - いつ か 日本 で 温泉 に {入り たい} です。
+        english: Someday, I want to soak in a hot spring in Japan.
+        hint: This merely states a desire to do something, but doesn't convey the specific nuance of wanting
+          to 'experience' or 'try out' the hot spring activity. We're looking for an expression of desire
+          to try a new experience.
+    scene: A person is expressing their travel aspirations and hopes to experience a traditional hot spring.
+    register: teineigo (polite)
+    setting: optimistic
+    conjugation: desiderative (～たい)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The combination of 「〜てみたい」 with 「です」 expresses a polite desire to try something, often with
+      an emphasis on experiencing it personally. It's common for speakers to use this when expressing
+      future aspirations or wishes to try something new. The polite 「です」 ending makes it suitable for
+      general conversation, and the expressed desire for a unique cultural experience is common for younger,
+      optimistic individuals.
+    etymology: 「入る」 (hairu) means 'to enter'. Its te-form 「入って」 combined with the desiderative form of
+      「みる」, which is 「みたい」 (mitai), means 'want to try entering' or 'want to experience entering'. This
+      construction is often used to express a desire to try something new or to have an
+  - english: If you're in trouble, why don't you try consulting your teacher?
+    japanese:
+      - もし 困っ た ら、先生 に 相談 し {て み たら} どう です か。
+      - もし 困っ た ら、先生 に 相談 し {て み たら}？
+      - もし お 困り でし たら、先生 に ご 相談 し {て み て は いかが でしょう} か。
+    english_literally: If you're in trouble, how about you consult and see your teacher?
+    competing_grammar:
+      - competing_japanese:
+          - もし 困っ た ら、先生 に {相談 し たら} どう です か。
+        english: If you're in trouble, how about consulting your teacher?
+        hint: This phrasing is a direct suggestion, but it lacks the nuance of recommending an action
+          as an experiment or a trial to see if it helps. We're looking for a suggestion that invites
+          the listener to try an action as a potential solution.
+    scene: A classmate offers advice to a struggling peer about seeking help from a teacher.
+    register: semi-formal
+    setting: supportive
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「〜てみたらどうですか」 is a polite suggestion to 'try' an action, often implying that it's
+      a potential solution worth exploring. It's a softer way of giving advice, inviting the listener
+      to consider the experimental action. This supportive tone is common between classmates, with the
+      polite ending making it suitable for a semi-formal setting. The phrase 「どうですか」 itself softens the
+      suggestion, making it less of a direct instruction.
+    etymology: 「相談する」 (sōdan suru) means 'to consult'. Its te-form 「相談して」 combines with the conditional
+      form of 「みる」, which is 「みたら」, and the phrase 「どうですか」 (dō desu ka) to mean 'how about trying to consult?'.
+      This structure is used to propose an experimental action as a suggestion or a possible solution
+      to a problem. It encourages the listener to 'try and see' if the action yields a positive result.
+  - english: I didn't try solving it with that method, but I'll look for another one.
+    japanese:
+      - その 方法 で 解決 し {て み ませ ん でし た} が、他 の 方法 を 探し ます。
+      - その 方法 で 解決 し {て み なかっ た} けど、別 の 方法 探す わ。
+      - その 方法 で 解決 し {て み ませ ん でし た} けれど、他 の 方法 を 探し ます。
+    english_literally: I did not solve and see it with that method, but I will look for another method.
+    competing_grammar:
+      - competing_japanese:
+          - その 方法 で {解決 し ませ ん} でし た が、他 の 方法 を 探し ます。
+        english: I didn't solve it with that method, but I'll look for another one.
+        hint: This simply states that the problem wasn't solved, without specifying that the speaker didn't
+          even *attempt* to solve it using that method. We're looking for an expression that indicates
+          a specific method was not tried out.
+    scene: A team member reports to their superior about a failed attempt to resolve an issue, indicating
+      they didn't even attempt that specific method.
+    register: semi-formal
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This polite negative past form 「〜てみませんでした」 states that an experimental action was not performed,
+      implying a conscious decision or an unattempted approach. It's often used in formal or business
+      contexts to report on attempts (or lack thereof) to resolve an issue. The speaker is not merely
+      saying they didn't solve it, but that they didn't even 'try that method out', which is a common
+      way to report on progress or lack thereof in a professional setting.
+    etymology: '「解決する」 (kaiketsu suru) means ''to solve''. Its te-form 「解決して」 combines with the negative
+      past polite form of 「みる」, which is 「みませんでした」, meaning ''did not try solving''. This implies that
+      a particular method was not even attempted as an experiment. The conjunction 「が」 (ga) introduces
+      a contrasting follow-up action: ''but I will look for another method''. This is typical in business
+      communication where efforts and alternatives are reported.'
+post_example_writeup: Remember that 「てみる」 is often used when someone is trying something for the first
+  time. The nuance is one of experimentation or curiosity. In the past tense 「てみた」, it suggests the attempt
+  was successful unless otherwise indicated.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てみる

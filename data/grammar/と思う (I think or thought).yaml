@@ -1,0 +1,367 @@
+grammar_point: と思う (I think or thought)
+learn_before:
+  - '[Verb-よう]思う (intend to)'
+  - 思うに (in my opinion)
+meaning: I think
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: とおもう
+    rarity: common
+    meaning: I think
+  - conjugation-type: non-past polite (～ます)
+    form: とおもいます
+    rarity: common
+    meaning: I think
+  - conjugation-type: negative plain (～ない)
+    form: とおもわない
+    rarity: common
+    meaning: I don't think
+  - conjugation-type: negative non-past polite (～ません)
+    form: とおもいません
+    rarity: common
+    meaning: I don't think
+  - conjugation-type: past plain (～た)
+    form: とおもった
+    rarity: common
+    meaning: I thought
+  - conjugation-type: past polite (～ました)
+    form: とおもいました
+    rarity: common
+    meaning: I thought
+  - conjugation-type: negative past plain (～なかった)
+    form: とおもわなかった
+    rarity: common
+    meaning: I didn't think
+  - conjugation-type: negative past polite (～ませんでした)
+    form: とおもいませんでした
+    rarity: common
+    meaning: I didn't think
+  - conjugation-type: te-form (～て)
+    form: とおもって
+    rarity: common
+    meaning: thinking, believing
+  - conjugation-type: conditional (～ば)
+    form: とおもえば
+    rarity: common
+    meaning: if one thinks, considering
+  - conjugation-type: conditional (～たら)
+    form: とおもったら
+    rarity: common
+    meaning: when one thought, upon realizing
+  - conjugation-type: potential (～られる/～える)
+    form: とおもえる
+    rarity: common
+    meaning: can think, seems
+  - conjugation-type: passive (～られる/～かれる)
+    form: とおもわれる
+    rarity: common
+    meaning: is thought, it is believed
+  - conjugation-type: causative (～させる)
+    form: とおもわせる
+    rarity: less common
+    meaning: make someone think
+pronunciation:
+  katakana: トオモウ
+  romaji: to omou
+formation:
+  '[Verb (plain form)] + とおもう': Expresses the speaker's thought, opinion, or belief.
+  '[い-adjective] + とおもう': Expresses the speaker's thought, opinion, or belief about an adjective.
+  '[な-adjective (stem)] + だ + とおもう': Expresses the speaker's thought, opinion, or belief about a な-adjective.
+  '[Noun] + だ + とおもう': Expresses the speaker's thought, opinion, or belief about a noun spoken in formal
+    or written contexts or with more assertion. 「だ」 is often omitted in casual speech for nouns and な-adjectives,
+    which softens the statement and makes it less direct.
+  '[Noun] + とおもう': Expresses the speaker's thought, opinion, or belief about a noun in casual speech,
+    with the implication of softening the statement.
+  '[な-adjective (stem)] + とおもう': Expresses the speaker's thought, opinion, or belief about a な-adjective
+    in casual speech, with the implication of softening the statement and making it less direct or assertive,
+    common in feminine speech or when avoiding directness in general.
+jlpt: N4
+etymology: The grammar point 「とおもう」 is derived from the particle 「と」, which indicates content or quotation,
+  and the verb 「思う(おもう)」, meaning "to think". Together, they form a structure to express one's thoughts
+  or opinions.
+writeup: |-
+  To express what you "think" in Japanese, the common expression 「と 思う」 is regularly used. This is a combination of the particle 「と」, plus the verb 「思う(おもう)」. 「と 思う」 can be used after any verb, い-adjective, な-adjective, or noun. When used with nouns or な-adjectives in formal or written contexts, or when making a more assertive statement, 「だ」 is typically inserted before 「と 思う」.
+
+  Although this structure usually requires 「だ」 after nouns and な-adjectives in formal settings, it is very often omitted in casual speech. This omission contributes to a softer, less assertive tone, and is particularly common in feminine speech or when softening a statement in general. For example, a young woman might say 「この 本 は 美味しい と 思う」 (I think this book is delicious) rather than 「この 本 は 美味しい だ と 思う」.
+
+  **Important Considerations**
+
+  *   If you want to express what *someone else* is thinking, 「と 思っている」 is used. This is because 「と 思う」, in its simple form, has a sense of permanence or direct access to the speaker's mind, and thus is not something the speaker could know about another person. 「と 思っている」 can also be used to express your own thoughts when they are currently happening or are ongoing. For example, 「彼 は 嘘つき だ と 思っている」 (He thinks he's a liar) or 「来週 の 旅行 が 楽しみ だ と 思っています」 (I'm thinking that next week's trip will be fun).
+false_friends:
+  - term: Verb[volitional-よう]+思う
+    meaning: I intend to, I think I will
+    kind: similar expression
+    nuance: Unlike 「と 思う」, 「〜よう と 思う」 expresses intention or a plan for the future. 「と 思う」 expresses a
+      thought or opinion.
+    grammar_point: '[Verb-よう]思う (intend to)'
+  - term: ようだ
+    meaning: It seems that, It appears that, It looks like
+    kind: similar expression
+    nuance: 「ようだ」 expresses a judgment based on external observation or sensory perception, implying objective
+      evidence. 「と 思う」 expresses a subjective personal opinion or belief.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: '[Sentence]らしい (it seems・I hear)'
+    meaning: Appears to be, I heard that, seems that (based on indirect information or hearsay)
+    kind: similar expression
+    nuance: 「らしい」 indicates conjecture based on indirect information, reports, or common knowledge, often
+      meaning "it seems like (from what I hear/know)". 「と 思う」 conveys your own direct, personal thought
+      or belief.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+post_false_friends_writeup: The key difference is that 「と 思う」 expresses a thought or opinion, whereas
+  「〜よう と 思う」 indicates intention or a plan. Furthermore, while 「ようだ」 and 「らしい」 also express appearances
+  or conjectures, they are based on external evidence or hearsay, respectively, unlike 「と 思う」 which is
+  a direct personal thought. Pay close attention to the verb form preceding 「と 思う」 and the source of information
+  for appearances to distinguish these meanings.
+examples:
+  - english: I think this book is interesting.
+    japanese:
+      - この 本 は 面白い {と 思う}。
+      - この 本 は 面白い {と 思い ます}。
+    english_literally: As for this book, I think it is interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 面白い {です}。
+        english: This book is interesting.
+        hint: 「です」 is a direct statement about the book. 「と 思う」 expresses your personal opinion, softening
+          the statement. We're looking for an expression of opinion, not a direct assertion.
+    scene: Someone casually recommending a book to a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: I think it will get hot today.
+    japanese:
+      - 今日 は 暑く なる {と 思い ます}。
+      - 今日 は 暑く なる {と 思う}。
+      - 今日 は 暑く なる {と 思っ て い ます}。
+    english_literally: As for today, I think it will become hot.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 暑く なる {でしょう}。
+        english: It will probably get hot today.
+        hint: 「でしょう」 expresses probability or conjecture without personal involvement. 「と 思います」 expresses
+          your opinion or prediction based on your judgment. We're looking for a personal prediction.
+    scene: A meteorologist giving a weather forecast on TV.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I think he is very kind.
+    japanese:
+      - 彼 は とても 親切 {と 思う}。
+      - 彼 は とても 親切 {だ と 思う}。
+      - 彼 は とても 親切 {と 思い ます}。
+      - 彼 は とても 親切 {だ と 思い ます}。
+    english_literally: As for him, I think he is very kind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 親切 {だ}。
+        english: He is very kind.
+        hint: 「親切 だ」 is a direct statement. 「親切 と 思う」 expresses your subjective opinion, softening the
+          statement, especially when 「だ」 is omitted. We're looking for a subjective opinion.
+    scene: A young woman talking to her friend about a new acquaintance.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The usage of 「親切 と 思う」 without 「だ」 is common in casual feminine speech when expressing a personal
+      impression, softening the statement and making it sound less direct. This phrasing often comes across
+      as more gentle and reflective of a personal sentiment rather than a factual assertion.
+  - english: I think this is a dream.
+    japanese:
+      - これ は 夢 {と 思う}。
+      - これ は 夢 {だ と 思う}。
+      - これ は 夢 {と 思い ます}。
+      - これ は 夢 {だ と 思い ます}。
+    english_literally: This, I think, is a dream.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 夢 {だ}。
+        english: This is a dream.
+        hint: 「夢 だ」 is a definitive statement. 「夢 と 思う」 expresses your uncertainty or internal thought
+          about the nature of reality. We're looking for an internal thought or uncertainty about a situation.
+    scene: Someone waking up from a strange experience, unsure if it was real.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: I thought that movie was interesting.
+    japanese:
+      - あの 映画 は {面白かっ た} {と 思っ た}。
+      - あの 映画 は {面白かっ た} {と 思い まし た}。
+      - あの 映画 は {面白かっ た} {と 思っ て い た}。
+    english_literally: As for that movie, I thought it was interesting.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画 は {面白かっ た}。
+        english: That movie was interesting.
+        hint: 「面白かった」 is a factual statement about the movie. 「面白かった と 思った」 expresses your past opinion
+          or impression of it, emphasizing your subjective feeling at the time. We're looking for a past
+          subjective opinion.
+    scene: A person recalling their impression of a movie they watched recently.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: I don't think this plan will work out.
+    japanese:
+      - この 計画 は うまく いか ない {と 思い ませ ん}。
+      - この 計画 は うまく いか ない {と 思わ ない}。
+      - この 計画 は うまく いか ない {と 思っ て い ませ ん}。
+    english_literally: As for this plan, I don't think it will go well.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は うまく いき {ませ ん}。
+        english: This plan will not work out.
+        hint: 「うまく いきません」 is a direct negative statement of fact. 「うまく いか ない と 思い ません」 expresses your
+          opinion or doubt politely, softening the negativity. We're looking for a polite expression of
+          doubt or disagreement.
+    scene: A team member expressing doubt about a proposed project plan during a meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+  - english: When I thought he was a liar, it turned out he was.
+    japanese:
+      - 彼 が 嘘つき {だ と 思っ たら}、やはり そう だっ た。
+      - 彼 が 嘘つき {と 思っ たら}、やはり そう だっ た。
+    english_literally: When I thought he was a liar, indeed he was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 嘘つき {だっ た}。
+        english: He was a liar.
+        hint: 「嘘つき だっ た」 is a simple past fact. 「嘘つき だ と 思ったら」 describes the moment you realized or thought
+          something, leading to a subsequent event or confirmation. We're looking for an expression of
+          realization or a triggered thought.
+    scene: A person recounting a situation where their suspicion about someone was confirmed.
+    register: casual
+    setting: storytelling
+    conjugation: conditional (～たら)
+  - english: She thinks she is correct.
+    japanese:
+      - 彼女 は 自分 が 正しい {と 思っ て いる}。
+      - 彼女 は 自分 が 正しい {と 思っ て い ます}。
+      - 彼女、自分 が 正しい {って 思っ てる}。
+    english_literally: As for her, she thinks she is correct.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {正しい}。
+        english: She is correct.
+        hint: 「正しい」 states a fact. 「正しい と 思っている」 expresses someone's ongoing belief or state of mind,
+          typically used when reporting another's thoughts (as you cannot truly know their internal thoughts).
+          We're looking for an expression of another person's ongoing thought or belief.
+    scene: Two friends discussing a third person's stubbornness.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This usage specifically implies that the speaker is conveying someone else's belief or state
+      of mind, which is inferred rather than directly known. The casual 「って 思ってる」 is particularly common
+      among male speakers when informally referencing another person's thoughts. This contrasts with the
+      simple 「と 思う」, which is typically for the speaker's own current thoughts and not for reporting others'.
+  - english: I am thinking that I am looking forward to next week's trip.
+    japanese:
+      - 来週 の 旅行 が 楽しみ {だ と 思っ て い ます}。
+      - 来週 の 旅行 が 楽しみ {と 思っ て い ます}。
+      - 来週 の 旅行 が 楽しみ {だ と 思っ て いる}。
+    english_literally: As for next week's trip, I am thinking it is enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 旅行 が 楽しみ {です}。
+        english: I am looking forward to next week's trip.
+        hint: 「楽しみ です」 is a direct statement of enjoyment. 「楽しみ だ と 思っています」 conveys that your anticipation
+          is an ongoing thought process, emphasizing the continuous nature of the feeling. We're looking
+          for an ongoing thought rather than a static emotion.
+    scene: Someone sharing their excitement about an upcoming trip.
+    register: teineigo (polite)
+    setting: excited
+    conjugation: progressive (～ている)
+  - english: That way of thinking seems understandable.
+    japanese:
+      - そんな 考え 方 は {分かる と 思える}。
+      - そんな 考え 方 は {分かる と 思え ます}。
+    english_literally: Such a way of thinking, it can be thought to be understandable.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 考え 方 は {分かる}。
+        english: That way of thinking is understandable.
+        hint: While 「分かる」 means 'I understand' or 'it is understandable', 「分かる と 思える」 expresses that it
+          *seems* or *can be thought* to be understandable, implying a more objective assessment or possibility
+          from a broader perspective. We're looking for an expression of objective possibility or appearance.
+    scene: Someone evaluating a difficult concept and finding it comprehensible.
+    register: casual
+    setting: academic
+    conjugation: potential (～られる/～える)
+  - english: He is believed to have important information.
+    japanese:
+      - 彼 が 重要 な 情報 を 持っ て いる {と 思わ れる}。
+      - 彼 が 重要 な 情報 を 持っ て いる {と 思わ れ ます}。
+    english_literally: He, it is believed, possesses important information.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 重要 な 情報 を 持っ て いる {だろう}。
+        english: He probably has important information.
+        hint: 「だろう」 expresses probability based on personal conjecture. 「と 思われる」 indicates a general belief
+          or opinion held by others, often used in more formal or objective contexts to present a widely
+          held view. We're looking for an general belief or consensus.
+    scene: Colleagues speculating about a confidential matter.
+    register: formal
+    setting: professional
+    conjugation: passive (～られる/～かれる)
+  - english: I will try to think about it for a while.
+    japanese:
+      - ちょっと 考え て {と 思う}。
+      - ちょっと 考え て {と 思い ます}。
+    english_literally: I will think about it for a while.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと {考える}。
+        english: I will think about it.
+        hint: While 「考える」 is a direct statement of intent to think, 「考えて と 思う」, though less common than
+          「考えよう と 思う」 for intention, can sometimes imply a softer, more reflective resolve to think. We're
+          looking for a slightly softened commitment to thinking something over.
+    scene: A person agreeing to consider a proposal, but not committing immediately.
+    register: casual
+    setting: negotiating
+    nuance: In this context, while 「考えよう と 思う」 is more direct for 'I intend to think,' the simple 「と 思う」
+      after a verb in the て-form (like 考えて) can sometimes express a gentler, less firm internal decision
+      or contemplation, almost like 'I'm thinking of trying to think it over.' This usage is less common
+      but exists in very casual speech for softening.
+  - english: I didn't think it would be such a difficult problem.
+    japanese:
+      - こんな に 難しい 問題 {だ と 思わ なかっ た}。
+      - こんな に 難しい 問題 {と 思わ なかっ た}。
+      - こんな に 難しい 問題 {だ と 思い ませ ん でし た}。
+    english_literally: I didn't think it was such a difficult problem.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 難しい 問題 {だっ た}。
+        english: It was such a difficult problem.
+        hint: 「問題 だっ た」 states a past fact. 「問題 だ と 思わなかった」 expresses your prior expectation or opinion
+          that turned out to be incorrect. We're looking for an expression of a past mistaken belief.
+    scene: A student reflecting on a challenging exam question.
+    register: casual
+    setting: academic
+    conjugation: negative past plain (～なかった)
+  - english: You should not think about negative things.
+    japanese:
+      - 悪い こと ばかり {と 思わ ない} ほう が いい よ。
+      - 悪い こと ばかり {と 思わ ない} ほう が いい です よ。
+    english_literally: It is better not to think only about bad things.
+    competing_grammar:
+      - competing_japanese:
+          - 悪い こと ばかり 考え {ない ほう が いい よ}。
+        english: It's better not to think about only bad things.
+        hint: While 「考えない」 is a direct negative instruction, 「思わない」 in this context implies not holding
+          certain thoughts or opinions, making it a broader advisory. We're looking for advice about not
+          harboring certain thoughts.
+    scene: An older sibling advising a younger one who is feeling down.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+    speaker_age: older
+    nuance: Used to give advice, implying that it is better not to have or dwell on certain thoughts or
+      opinions. The casual 「〜ない ほうが いい よ」 is a common way for an older person to advise a younger one,
+      conveying care without being overly prescriptive.
+post_example_writeup: The usage of 「と 思う」 is highly flexible and context-dependent. Remember that the
+  plain form of verbs and adjectives is used before 「と 思う」, with nouns and な-adjectives sometimes taking
+  「だ」 depending on formality and desired assertiveness. Pay close attention to the specific nuance conveyed
+  by different conjugations of 思う, especially with progressive and potential forms.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とおもう

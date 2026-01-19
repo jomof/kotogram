@@ -1,0 +1,266 @@
+grammar_point: な-Adjective[でも] (concessive)
+learn_before:
+  - Verb[よう] (volitional)
+  - 〜ても〜なくても (whether or not)
+  - 〜なくても (even if not)
+  - あげる・やる (to give, outward)
+  - それでも (even so)
+  - どんなに (how much)
+  - どんなに〜ても (no matter how much)
+  - な-Adjective (predicate form)
+  - な-Adjective[がる] (showing signs of)
+  - な-Adjectives (adjectival nouns)
+meaning: even if/though (na-adjective is)...; no matter how (na-adjective)...
+pronunciation:
+  katakana: デモ
+  romaji: demo
+formation:
+  な-Adjective + でも: Indicates concession, 'even if/though the na-adjective is...'
+  な-Adjective + じゃなくても: Indicates concession in the negative, 'even if/though the na-adjective is not...'
+jlpt: N3
+etymology: The term 「でも」 is a combination of 「で」, which is the conjunctive form (連用形) of the copula 「だ」
+  (da, meaning 'is' or 'be'), and the particle 「も」 (mo), which signifies 'even' or 'also'. Therefore,
+  「でも」 literally translates to 'even being...' or 'even if it is...'. This linguistic structure allows
+  it to logically connect a preceding condition with a subsequent clause, emphasizing that the latter
+  occurs regardless of the former.
+writeup: |-
+  な-Adjective[でも] is a grammatical construction used to express a concessive meaning, similar to "even if" or "even though" in English, when modifying a な-adjective. It indicates that despite the state or quality described by the な-adjective, the action or state in the main clause occurs or remains true. This pattern is formed by directly attaching でも to the な-adjective stem. For example, 暇 (hima na - free/bored) becomes 暇でも (himademo - even if/though bored).
+
+  The core of this expression is the particle 「も」 (mo), which adds the nuance of "even" or "also". When combined with 「で」, the conjunctive form of the copula 「だ」, it forms "even if it is [な-adjective]". This construction allows you to express a situation where a certain condition (described by the な-adjective) is present, but it does not prevent the outcome or action in the subsequent clause.
+
+  It can also convey the idea of "no matter how [な-adjective]". For instance, if you say 「どんなに大変でも、頑張ります」 (Donnani taihen demo, ganbarimasu.), it means "No matter how difficult it is, I will do my best." Here, 大変 (taihen na - difficult/tough) is a な-adjective.
+
+  While な-Adjective[でも] is grammatically versatile, its usage generally leans towards situations where the speaker wants to emphasize that the consequence is independent of the adjective's state, often implying resilience or an unexpected continuation. It is commonly used in both casual and slightly formal contexts, depending on the overall sentence structure and the politeness level of the verb ending.
+false_friends:
+  - term: Verb[て]ても・い-Adjective[くても]
+    meaning: even if/though (general concessive)
+    kind: similar expression
+    nuance: While な-Adjective[でも] directly uses でも after the な-adjective stem, Verb[て]ても and い-Adjective[くても]
+      apply to verbs and い-adjectives respectively, using their て-form followed by も. They share the same
+      core concessive meaning but apply to different word types. な-Adjective[でも] is specific to な-adjectives.
+    grammar_point: <suggest>:concessive (～ても)
+  - term: な-Adjective[だって]
+    meaning: because (casual reason); even (casual emphasis)
+    kind: often confused with
+    nuance: な-Adjective[だって] can mean "because [na-adjective]" in very casual speech, or "even [na-adjective]"
+      when emphasizing. However, its primary meaning is often as a casual replacement for 「だそうだ」 (I heard
+      that). Its concessive use is less direct and often implies a reason or a listing rather than a clear
+      "even if/though" condition like な-Adjective[でも]. な-Adjective[でも] explicitly sets up a conditional
+      contrast.
+    grammar_point: だって (even・also)
+  - term: な-Adjective + だが・けれど
+    meaning: but; however
+    kind: similar expression
+    nuance: These simply state a contrast or contradiction between two clauses. They don't carry the "even
+      if" nuance of concession. For example, 「綺麗だが、高い」 (Kirei daga, takai - It's pretty, but expensive)
+      vs. 「綺麗でも、買わない」 (Kirei demo, kawanai - Even if it's pretty, I won't buy it). The latter implies
+      an unexpected outcome despite the prettiness.
+    grammar_point: しかし (but・however)
+post_false_friends_writeup: Understanding the nuances between な-Adjective[でも] and similar expressions
+  is key to using them correctly. While forms like Verb[て]ても or い-Adjective[くても] express general concession
+  across different word types, な-Adjective[でも] specifically targets な-adjectives, making it a precise
+  choice for such contexts. 「だって」, while sometimes conveying emphasis, doesn't carry the strong "even
+  if" conditional meaning that 「でも」 does. Similarly, simple contrastive conjunctions like 「だが」 or 「けれど」
+  merely state a contradiction without the added sense of an unexpected outcome despite the initial condition.
+  Pay attention to the specific type of word being modified and the exact nature of the relationship between
+  the clauses.
+examples:
+  - english: Even if it's simple, it's delicious.
+    japanese:
+      - これ、{簡単 で も}、美味しい です。
+      - これ、{簡単 で も}、美味しい よ。
+      - '{簡単 で も}、美味しい。'
+    english_literally: This, even if simple, is delicious.
+    competing_grammar:
+      - competing_japanese:
+          - これ、簡単 だ けど、美味しい です。
+        english: This is simple, but it's delicious.
+        hint: 「だけど」 simply states a contrast, whereas 「でも」 implies 'even if' or 'despite being'. We're
+          looking for a concession rather than a direct contrast.
+    scene: A friend is complimenting homemade food, which might not look elaborate but tastes good.
+    register: formal
+    setting: friendly
+  - english: Even if it's not convenient, I will go.
+    japanese:
+      - '{便利 じゃ なく て も}、行き ます。'
+      - '{便利 じゃ なく て も}、行く よ。'
+      - たとえ {便利 じゃ なく て も}、行き ます。
+    english_literally: Even if not convenient, I will go.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 じゃ ない けど、行き ます。
+        english: It's not convenient, but I will go.
+        hint: 「じゃないけど」 expresses a simple contrast. We are emphasizing a commitment despite the inconvenience,
+          suggesting a stronger concessive meaning.
+    scene: Someone is determined to attend an event despite potential inconveniences.
+    register: formal
+    setting: serious
+  - english: No matter how difficult it is, I will do my best.
+    japanese:
+      - どんな に {大変 で も}、頑張り ます。
+      - どんな に {大変 で も}、頑張る。
+      - どんな に {大変 で も}、頑張る つもり です。
+    english_literally: No matter how difficult, I will do my best.
+    competing_grammar:
+      - competing_japanese:
+          - 大変 で も、頑張り ます。
+        english: Even if it's difficult, I will do my best.
+        hint: Adding 「どんなに」 emphasizes the degree ('no matter how'). We're looking for a strong emphasis
+          on the difficulty.
+    scene: A student is talking to their teacher about a challenging project, expressing their resolve.
+    register: formal
+    setting: inspirational
+    speaker_gender: female
+    nuance: The combination of 「どんなに」 and 「大変でも」 emphasizes the speaker's unwavering determination despite
+      any level of difficulty. The formal 「頑張ります」 reinforces the seriousness of her commitment.
+  - english: Even though it was safe, I was still nervous.
+    japanese:
+      - '{安全 で も}、まだ 緊張 し て た よ。'
+      - '{安全 で も}、まだ 緊張 し て い まし た。'
+      - '{安全 で も}、まだ 緊張 し て た。'
+    english_literally: Even though safe, still was nervous.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 だっ た けど、まだ 緊張 し て た よ。
+        english: It was safe, but I was still nervous.
+        hint: 「だったけど」 conveys a simple past contrast. We want to express that 'even if' it was safe, the
+          nervousness was present.
+    scene: Two friends are discussing a past event, like a rollercoaster ride, and one admits their fear.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: 「安全でも」 highlights the paradox of feeling nervous despite being in a safe situation. The casual
+      ending 「〜してたよ」 is typical for male speech in an informal setting, sharing a personal feeling.
+  - english: Even if it's a little dangerous, let's try it.
+    japanese:
+      - 少し {危険 で も}、やっ て みよう。
+      - 少し {危険 で も}、やっ て み ましょう。
+      - 少し {危険 で も}、やっ て みよう よ。
+    english_literally: A little even if dangerous, let's try.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 危険 だ けど、やっ て みよう。
+        english: It's a little dangerous, but let's try it.
+        hint: 「だけど」 provides a mild contrast. The nuance of 「でも」 here is that the danger is acknowledged
+          but not a deterrent.
+    scene: Friends are contemplating an adventurous activity, acknowledging the risk.
+    register: casual
+    setting: excited
+  - english: Even if it's complicated, we must confirm the details.
+    japanese:
+      - '{複雑 で も}、詳細 を 確認 し なけれ ば なり ませ ん。'
+      - '{複雑 で も}、詳細 を 確認 し なきゃ いけ ない。'
+      - '{複雑 で も}、詳細 を 確認 する 必要 が あり ます。'
+    english_literally: Even if complicated, details must be confirmed.
+    competing_grammar:
+      - competing_japanese:
+          - 複雑 です が、詳細 を 確認 し なけれ ば なり ませ ん。
+        english: It is complicated, but we must confirm the details.
+        hint: 「ですが」 is a polite way to state a contrast. 「でも」 explicitly states 'even if', emphasizing
+          the necessity despite the complication.
+    scene: A team leader addressing their colleagues in a business meeting, stressing the importance of
+      thoroughness.
+    register: formal
+    setting: professional
+  - english: Even if he's quiet, he's actually a very kind person.
+    japanese:
+      - '{静か で も}、本当 は とても 優しい 人 だ。'
+      - '{静か で も}、本当 は とても 優しい 人 です。'
+      - '{静か で も}、本当 は すごく 優しい 人 だ よ。'
+    english_literally: Even if quiet, truly very kind person is.
+    competing_grammar:
+      - competing_japanese:
+          - 静か だ けど、本当 は とても 優しい 人 だ。
+        english: He's quiet, but he's actually a very kind person.
+        hint: 「だけど」 introduces a simple contrast. 「でも」 implies that the kindness exists *despite* the
+          quietness, often addressing a potential misunderstanding.
+    scene: Someone describing a mutual acquaintance to a new friend, revealing a deeper aspect of their
+      personality.
+    register: casual
+    setting: friendly
+  - english: Even if it's cheap, the quality is good.
+    japanese:
+      - '{安価 で も}、品質 が 良い です。'
+      - '{安価 で も}、品質 が 良い よ。'
+      - '{安価 で も}、品質 が 良い。'
+    english_literally: Even if cheap, quality is good.
+    competing_grammar:
+      - competing_japanese:
+          - 安価 です が、品質 が 良い です。
+        english: It is cheap, but the quality is good.
+        hint: 「ですが」 states a fact and then a contrast. We are highlighting that the good quality is surprising
+          given the low price.
+    scene: A customer reviewing a product online or to a friend, expressing satisfaction with its value.
+    register: formal
+    setting: informative
+  - english: Even if the preparation is incomplete, we have to start.
+    japanese:
+      - 準備 が {不 十分 で も}、始め なけれ ば なり ませ ん。
+      - 準備 が {不 十分 で も}、始め なきゃ いけ ない。
+      - 準備 が {不 十分 で も}、始める 必要 が あり ます。
+    english_literally: Preparation even if incomplete, must start.
+    competing_grammar:
+      - competing_japanese:
+          - 準備 が 不 十分 だ けど、始め なけれ ば なり ませ ん。
+        english: The preparation is incomplete, but we have to start.
+        hint: 「だけど」 is a simple 'but'. 「でも」 expresses the urgency or necessity to proceed *despite* the
+          incomplete state.
+    scene: A project manager giving a directive to their team despite some readiness issues, indicating
+      a deadline.
+    register: formal
+    setting: commanding
+  - english: Even if it's inconvenient, I will go to pick you up.
+    japanese:
+      - '{不便 で も}、迎え に 行き ます。'
+      - '{不便 で も}、迎え に 行く よ。'
+      - '{不便 で も}、必ず 迎え に 行き ます。'
+    english_literally: Even if inconvenient, will go to pick up.
+    competing_grammar:
+      - competing_japanese:
+          - 不便 です が、迎え に 行き ます。
+        english: It is inconvenient, but I will go to pick you up.
+        hint: 「ですが」 provides a polite contrast. 「でも」 emphasizes the speaker's willingness to overcome
+          the inconvenience for the listener.
+    scene: A friend offering a ride, assuring their friend that they don't mind the trouble.
+    register: formal
+    setting: supportive
+  - english: Even if he's clumsy, I still like him.
+    japanese:
+      - '{不 器用 で も}、私 は 彼 が 好き です。'
+      - '{不 器用 で も}、私 は 彼 が 好き。'
+      - '{不 器用 で も}、それ で も 私 は 彼 が 好き です。'
+    english_literally: Even if clumsy, I like him.
+    competing_grammar:
+      - competing_japanese:
+          - 不 器用 だ けど、私 は 彼 が 好き です。
+        english: He's clumsy, but I like him.
+        hint: 「だけど」 is a simple contrast. 「でも」 expresses acceptance and affection *despite* the flaw,
+          implying that the flaw doesn't diminish the positive feeling.
+    scene: Someone talking about a mutual loved one's endearing qualities, despite minor imperfections.
+    register: formal
+    setting: intimate
+  - english: Even if it's troublesome, I'll do it.
+    japanese:
+      - '{面倒 で も}、やる よ。'
+      - '{面倒 で も}、やり ます。'
+      - '{面倒 で も}、やる。'
+    english_literally: Even if troublesome, will do.
+    competing_grammar:
+      - competing_japanese:
+          - 面倒 だ けど、やる よ。
+        english: It's troublesome, but I'll do it.
+        hint: 「だけど」 is a neutral 'but'. 「でも」 suggests that the speaker acknowledges the trouble but chooses
+          to proceed anyway, often implying a reluctant willingness.
+    scene: A person reluctantly agreeing to a task, perhaps something they'd rather not do.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: 「面倒でも」 conveys a sense of resignation or reluctant compliance. The casual 「やるよ」 is characteristic
+      of male speech, indicating a decision to proceed despite personal disinclination.
+post_example_writeup: As these examples demonstrate, な-Adjective[でも] is a versatile expression used to
+  indicate that an action or state occurs regardless of the condition described by the na-adjective. It
+  allows for a nuanced expression of concession, highlighting that the initial condition does not hinder
+  the subsequent outcome. Pay close attention to the context and the overall tone of the sentence to fully
+  grasp its implication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AA-Adjective%5B%E3%81%A7%E3%82%82%5D-(concessive)

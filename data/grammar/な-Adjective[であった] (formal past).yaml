@@ -1,0 +1,254 @@
+grammar_point: な-Adjective[であった] (formal past)
+learn_before:
+  - だ (casual copula)
+  - だった (past copula, casual)
+  - である (formal copula)
+  - でした (past copula, polite)
+  - です (polite copula)
+  - な-Adjectives (adjectival nouns)
+meaning: was (formal past state or quality)
+pronunciation:
+  katakana: デアッタ
+  romaji: deatta
+formation:
+  な-Adjective stem + であった: Indicates the formal past tense of a な-adjective.
+jlpt: N1
+etymology: 「であった」 is a contraction of 「であってあった」. It derives from the 連用形 (ren'youkei or continuative form)
+  of the copula 「である」 (de aru), which is 「であって」 (deatte), combined with the auxiliary verb 「あった」 (atta),
+  the past tense of 「ある」 (aru). This construction emphasizes the state of 'being' something in the past,
+  giving it a more formal and definitive tone than the typical 「でした」.
+writeup: The expression 「であった」 is the formal past tense form for な-adjectives. It is equivalent to 「でした」
+  in meaning, but its usage is typically confined to formal writing, academic contexts, official reports,
+  and certain types of speeches. While 「でした」 is a polite form suitable for general conversation and polite
+  writing, 「であった」 conveys a more objective, conclusive, and sometimes declarative tone, making it less
+  common in casual spoken Japanese. Understanding 「であった」 is crucial for comprehending formal Japanese
+  texts and for producing written Japanese that sounds authoritative and precise. It is often encountered
+  in historical accounts, scientific papers, and legal documents.
+false_friends:
+  - term: な-Adjective + でした
+    meaning: was (polite past state or quality)
+    kind: similar expression
+    nuance: 「でした」 is the standard polite form used in everyday spoken Japanese and general polite writing.
+      It lacks the strong formality and declarative nuance of 「であった」. While both convey past tense, 「でした」
+      is far more common in most conversational and polite written contexts.
+    grammar_point: でした (past copula, polite)
+  - term: な-Adjective + だった
+    meaning: was (casual past state or quality)
+    kind: similar expression
+    nuance: 「だった」 is the casual past form, primarily used in informal spoken Japanese and casual writing.
+      It is the plain form counterpart to 「でした」 and lacks any formal nuance inherent in 「であった」.
+    grammar_point: だった (past copula, casual)
+  - term: な-Adjective + である
+    meaning: is (formal non-past state or quality)
+    kind: similar expression
+    nuance: 「である」 expresses the non-past formal state, often found in academic or factual writing. While
+      「であった」 denotes past state, 「である」 denotes present or general truth. The core copula is the same,
+      but the tense differs.
+    grammar_point: である (formal copula)
+post_false_friends_writeup: While 「であった」, 「でした」, and 「だった」 all convey the past tense of な-adjectives,
+  their usage contexts and levels of formality differ significantly. 「であった」 is reserved for highly formal
+  or literary situations, providing an objective and conclusive tone. 「でした」 is the standard polite form
+  for general use, and 「だった」 is its casual counterpart. 「である」 is the formal non-past form, sharing the
+  same root but differing in tense. Choosing the correct form depends entirely on the desired level of
+  formality and the medium of communication (spoken vs. written, casual vs. formal).
+examples:
+  - english: The weather yesterday was very pleasant.
+    japanese:
+      - 昨日 の 天気 は 実 に 快適 {で あっ た}。
+      - 昨日 の 天気 は 誠 に 快適 {で あっ た}。
+    english_literally: Yesterday's weather truly pleasant was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は 実 に 快適 でし た。
+        english: Yesterday's weather was truly pleasant. (polite)
+        hint: 「でした」 is the standard polite form, often used in spoken language. We're looking for a more
+          formal, written tone.
+    scene: A meteorologist writing a daily weather report for a newspaper.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: The use of 「であった」 gives the statement a factual, report-like quality suitable for a formal
+      weather report. 「実に」 (jitsuni) emphasizes the degree of pleasantness in a formal manner. 「誠に」 (makoto
+      ni) is a highly formal synonym for 「実に」.
+  - english: The research results were extremely precise.
+    japanese:
+      - 研究 の 結果 は 極めて 精密 {で あっ た}。
+      - 研究 の 結果 は 非常 に 精密 {で あっ た}。
+    english_literally: Research's results extremely precise were.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 の 結果 は 極めて 精密 だっ た。
+        english: The research results were extremely precise. (casual)
+        hint: 「だった」 is the casual past form. We need a formal tone for an academic context.
+    scene: A scientist summarizing findings in an academic journal.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: 「であった」 is fitting for an academic context, providing an objective and conclusive statement
+      about the research results. 「極めて」 (kiwamete) reinforces the precision in a formal way. 「非常に」 (hijou
+      ni) is a formal synonym for 「極めて」.
+  - english: The original plan was extremely difficult to implement.
+    japanese:
+      - 当初 の 計画 は 実現 が 非常 に 困難 {で あっ た}。
+      - 当初 の 計画 は 実現 が 大変 困難 {で あっ た}。
+    english_literally: Initial plan's realization extremely difficult was.
+    competing_grammar:
+      - competing_japanese:
+          - 当初 の 計画 は 実現 が 非常 に 困難 でし た。
+        english: The initial plan was extremely difficult to implement. (polite)
+        hint: While 「でした」 is polite, 「であった」 conveys a more formal and objective tone, often used in official
+          reports or analyses.
+    scene: A project manager presenting a post-mortem report to executives.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: Using 「であった」 here gives the statement a decisive and factual weight, appropriate for a formal
+      business report. 「困難」 (konnan) is a な-adjective meaning 'difficult'. 「大変」 (taihen) is a formal synonym
+      for 「非常に」.
+  - english: His attitude at that time was very serious.
+    japanese:
+      - 彼 の 当時 の 態度 は 大変 真剣 {で あっ た}。
+      - 彼 の 当時 の 態度 は 誠 に 真剣 {で あっ た}。
+    english_literally: His at that time's attitude very serious was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 当時 の 態度 は 大変 真剣 でし た。
+        english: His attitude at that time was very serious. (polite)
+        hint: 「であった」 provides a more formal and narrative tone suitable for written accounts or historical
+          descriptions.
+    scene: A biographer describing the subject's demeanor during a critical period.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: The formality of 「であった」 contributes to a narrative style often found in historical or biographical
+      writing, lending gravity to the description of the attitude. 「真剣」 (shinken) is a な-adjective meaning
+      'serious'. 「誠に」 (makoto ni) is a formal synonym for 「大変」 in this context.
+  - english: The solution presented yesterday was logically sound.
+    japanese:
+      - 昨日 提示 さ れ た 解決 策 は 論理 的 {で あっ た}。
+      - 昨日 提示 さ れ た 解決 策 は まこと に 論理 的 {で あっ た}。
+    english_literally: Yesterday presented solution logically sound was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 提示 さ れ た 解決 策 は 論理 的 でし た。
+        english: The solution presented yesterday was logically sound. (polite)
+        hint: 「であった」 is preferred in formal discourse, especially when discussing logical conclusions
+          or established facts.
+    scene: A lawyer making a closing argument in court, referring to evidence.
+    register: formal
+    setting: legal
+    conjugation: past plain (～た)
+    nuance: In a legal or argumentative context, 「であった」 emphasizes the objective and verifiable nature
+      of the claim. 「論理的」 (ronriteki) is a な-adjective meaning 'logical'. 「まことに」 (makoto ni) is a very
+      formal way of emphasizing the truth of the statement.
+  - english: The response from the audience was truly enthusiastic.
+    japanese:
+      - 聴衆 から の 反応 は 実 に 熱狂 的 {で あっ た}。
+      - 聴衆 から の 反応 は 誠 に 熱狂 的 {で あっ た}。
+    english_literally: Audience from reaction truly enthusiastic was.
+    competing_grammar:
+      - competing_japanese:
+          - 聴衆 から の 反応 は 実 に 熱狂 的 だっ た。
+        english: The response from the audience was truly enthusiastic. (casual)
+        hint: For a formal presentation or report, a more formal past tense is appropriate.
+    scene: A public relations representative reporting on a successful event.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: Using 「であった」 elevates the tone to a formal report, indicating a professional assessment of
+      the event's outcome. 「熱狂的」 (nekkyouteki) is a な-adjective meaning 'enthusiastic'. 「誠に」 (makoto ni)
+      is a formal synonym for 「実に」.
+  - english: The decision made at that time was indeed necessary.
+    japanese:
+      - 当時 下さ れ た 決定 は まさに 必要 不可欠 {で あっ た}。
+      - 当時 下さ れ た 決定 は 正に 必要 不可欠 {で あっ た}。
+    english_literally: At that time made decision truly necessary was.
+    competing_grammar:
+      - competing_japanese:
+          - 当時 下さ れ た 決定 は まさに 必要 不可欠 でし た。
+        english: The decision made at that time was indeed necessary. (polite)
+        hint: 「であった」 gives a stronger sense of certainty and historical fact than 「でした」, suitable for
+          formal statements.
+    scene: A historian analyzing a past political event in an academic paper.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: The phrase 「であった」 here reinforces the objective and historical accuracy of the statement.
+      「必要 不可欠」 (hitsuyou fukaketsu) is a な-adjective phrase meaning 'absolutely essential'. 「正に」 (masa
+      ni) is an alternative kanji for 「まさに」, conveying the same strong emphasis.
+  - english: His early life was generally peaceful.
+    japanese:
+      - 彼 の 幼少 期 は 概ね 平穏 {で あっ た}。
+      - 彼 の 幼少 期 は おおむね 平穏 {で あっ た}。
+    english_literally: His childhood generally peaceful was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 幼少 期 は 概ね 平穏 でし た。
+        english: His childhood was generally peaceful. (polite)
+        hint: This formal past form is suitable for biographical narratives or historical accounts, providing
+          an objective description.
+    scene: A narrator describing the formative years of a historical figure.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: 「であった」 lends a narrative and somewhat literary quality to the description, often used when
+      recounting historical or personal facts in a formal manner. 「平穏」 (heion) is a な-adjective meaning
+      'peaceful'. 「おおむね」 (oomune) is the hiragana spelling of 「概ね」, a common variation in formal writing.
+  - english: The situation at that time was very serious.
+    japanese:
+      - 当時 の 状況 は 非常 に 深刻 {で あっ た}。
+      - 当時 の 状況 は 極めて 深刻 {で あっ た}。
+    english_literally: At that time's situation extremely serious was.
+    competing_grammar:
+      - competing_japanese:
+          - 当時 の 状況 は 非常 に 深刻 でし た。
+        english: The situation at that time was very serious. (polite)
+        hint: 「でした」 is common in polite speech. For a formal, written account, 「であった」 is more appropriate.
+    scene: A reporter describing the gravity of a historical event.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The use of 「であった」 here emphasizes the objective and unchangeable nature of the past situation,
+      common in historical reporting. 「深刻」 (shinkoku) is a な-adjective meaning 'serious' or 'grave'. 「極めて」
+      (kiwamete) is a strong formal synonym for 「非常に」.
+  - english: His response was always prompt.
+    japanese:
+      - 彼 の 返答 は 常 に 迅速 {で あっ た}。
+      - 彼 の 返答 は いつ も 迅速 {で あっ た}。
+    english_literally: His response always prompt was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 返答 は 常 に 迅速 でし た。
+        english: His response was always prompt. (polite)
+        hint: 「であった」 is used for a more formal and definitive statement, often in written reports or analyses.
+    scene: An HR manager documenting an employee's consistent performance.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: 「であった」 imparts a sense of official documentation and objective reporting, fitting for a formal
+      record. 「迅速」 (jinsoku) is a な-adjective meaning 'prompt' or 'rapid'. 「いつも」 (itsumo) is a common
+      synonym for 「常に」 (tsune ni), maintaining a formal yet slightly more common phrasing.
+  - english: The decision was justifiable.
+    japanese:
+      - その 決定 は 正当 {で あっ た}。
+      - その 決定 は まさに 正当 {で あっ た}。
+    english_literally: That decision justifiable was.
+    competing_grammar:
+      - competing_japanese:
+          - その 決定 は 正当 だっ た。
+        english: The decision was justifiable. (casual)
+        hint: For a statement of fact in a formal context, 「であった」 is more appropriate than the casual
+          「だった」.
+    scene: A judge giving a ruling in a court case.
+    register: formal
+    setting: legal
+    conjugation: past plain (～た)
+    nuance: In a legal judgment, 「であった」 conveys a definitive and authoritative conclusion. 「正当」 (seitou)
+      is a な-adjective meaning 'justifiable' or 'proper'. Adding 「まさに」 (masani) intensifies the assertion,
+      common in formal declaration.
+post_example_writeup: The examples above demonstrate how 「であった」 is used to describe past states or qualities
+  with a formal and objective tone. Notice its prevalence in written and academic contexts, where precision
+  and authority are paramount. While 「でした」 and 「だった」 are perfectly valid for everyday use, 「であった」 elevates
+  the discourse, making it suitable for official reports, academic papers, or historical narratives.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-Adjective[であった]

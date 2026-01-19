@@ -1,0 +1,359 @@
+grammar_point: とする (feel ~)
+learn_before:
+  - 思わず (involuntarily)
+meaning: To feel or appear a certain way; to sense a particular quality or state.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: とする
+    rarity: common
+    meaning: to feel or appear (a certain way)
+  - conjugation-type: non-past polite (～ます)
+    form: とします
+    rarity: common
+    meaning: to feel or appear (a certain way)
+  - conjugation-type: negative plain (～ない)
+    form: としない
+    rarity: common
+    meaning: not to feel or appear (a certain way)
+  - conjugation-type: negative non-past polite (～ません)
+    form: としません
+    rarity: common
+    meaning: not to feel or appear (a certain way)
+  - conjugation-type: past plain (～た)
+    form: とした
+    rarity: common
+    meaning: felt or appeared (a certain way)
+  - conjugation-type: past polite (～ました)
+    form: としました
+    rarity: common
+    meaning: felt or appeared (a certain way)
+  - conjugation-type: negative past plain (～なかった)
+    form: としなかった
+    rarity: common
+    meaning: didn't feel or didn't appear (a certain way)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: としませんでした
+    rarity: common
+    meaning: didn't feel or didn't appear (a certain way)
+  - conjugation-type: te-form (～て)
+    form: として
+    rarity: common
+    meaning: feeling or appearing (a certain way), and...
+  - conjugation-type: conditional (～ば)
+    form: とすれば
+    rarity: uncommon
+    meaning: if one feels or appears (a certain way)
+  - conjugation-type: conditional (～たら)
+    form: としたら
+    rarity: uncommon
+    meaning: if one felt or appeared (a certain way)
+  - conjugation-type: volitional (～よう)
+    form: としよう
+    rarity: less common
+    meaning: let's feel or appear (a certain way)
+  - conjugation-type: volitional polite (～ましょう)
+    form: としましょう
+    rarity: less common
+    meaning: let's feel or appear (a certain way)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: としろ
+    rarity: very rare
+    meaning: feel or appear (a certain way)!
+  - conjugation-type: imperative polite (～なさい)
+    form: としなさい
+    rarity: very rare
+    meaning: please feel or appear (a certain way)
+pronunciation:
+  katakana: ト スル
+  romaji: to suru
+formation:
+  '[Mimetic Word / Onomatopoeia] + とする': Used to describe a sensory or psychological experience, often
+    an impression, feeling, or appearance associated with a specific mimetic word or onomatopoeia. The
+    mimetic word expresses the manner or state.
+jlpt: N3
+etymology: The grammar point 「とする」 is derived from the verb 「する」 (to do). In this context, it functions
+  as an auxiliary to express the feeling or impression that something *does* have a particular quality.
+  It attaches to mimetic words (onomatopoeia and gitaigo) to convey a subjective sensation, emphasizing
+  the manner or state described by the mimetic word.
+writeup: |-
+  The grammar point 「とする」 is primarily used with mimetic words (擬態語 - gitaigo, and 擬音語 - giongo, collectively often referred to as onomatopoeia in English) to describe a specific feeling, impression, or appearance. It transforms these descriptive words into a verbal expression, focusing on the subjective experience or vivid manner of something. This construction is highly versatile and frequently encountered in daily Japanese.
+
+  **Key Characteristics:**
+  *   **Subjective Impression:** 「とする」 conveys how something *feels* or *appears* to the speaker or observer. It's less about an objective fact and more about a sensory or psychological impression.
+  *   **Mimetic Word Dependence:** Its meaning is entirely dependent on the mimetic word it follows. For example, 「ほっとする」 means "to feel relieved" (from the sound of a sigh), 「からっとする」 means "to feel dry/clear" (from the sensation of dryness).
+  *   **State or Manner:** It describes either a momentary occurrence or a continuous state, or the manner in which an action or state occurs. For instance, 「ぼうっとしている」 describes being in a dazed state.
+
+  While 「とする」 can be conjugated like a regular verb, its primary function remains tied to expressing these nuanced sensory or psychological impressions.
+false_friends:
+  - term: とする (decide or assume)
+    meaning: To decide to do something; to assume or suppose something.
+    kind: often confused with
+    nuance: Unlike 「～とする (feel ~)」 which describes a subjective impression or sensation, this 「～とする」 is
+      used for making a decision, assumption, or setting something as a premise. For example, 「AをBとする」
+      means 'to consider A as B' or 'to treat A as B'.
+    grammar_point: <suggest>:とする (assume or decide)
+  - term: 見える (to seem or appear)
+    meaning: To seem or appear; to be visible.
+    kind: similar expression
+    nuance: While both can describe appearances, 「～とする (feel ~)」 emphasizes a *subjective feeling* or
+      the *manner* of appearance, often using a mimetic word. 「～見える」 more broadly describes what is *perceived*
+      visually or what *seems* to be the case, and does not exclusively attach to mimetic words. For example,
+      「そう見える」 (It looks that way) vs. 「からっとする」 (It feels dry/clear).
+    grammar_point: 見える (to be visible・to seem)
+  - term: ～になる (to become)
+    meaning: To become; to turn into.
+    kind: similar expression
+    nuance: 「～になる」 describes a change of state or a result. While some mimetic words can precede 「～になる」
+      (e.g., きれいになる - to become clean), 「～とする (feel ~)」 describes the *feeling* or *impression* of that
+      state, or the *manner* of being in that state, rather than the process of becoming. For example,
+      「部屋がきれいになる」 (the room becomes clean) vs. 「部屋がさっぱりとする」 (the room feels refreshed).
+    grammar_point: になる・くなる (to become)
+post_false_friends_writeup: While 「～とする」 (feel ~) helps express subtle feelings and impressions, be careful
+  not to confuse it with other common constructions. The key distinction is its use with mimetic words
+  to convey a subjective sensory or psychological experience, rather than an objective decision or a simple
+  change of state.
+examples:
+  - english: After the difficult project finished, everyone on the team had a relieved look on their faces.
+    japanese:
+      - 大変 な プロジェクト が 終わっ て、チーム の みんな が {ほっと し た} 顔 を し まし た。
+      - 大変 な プロジェクト が 終わっ て、チーム の みんな が {ほっと し た} 顔 を し て い た。
+      - 大変 な プロジェクト が 終わっ て、チーム の みんな が {ほっと し た} 様子 でし た。
+    english_literally: Difficult project finished, team's everyone relieved face did.
+    competing_grammar:
+      - competing_japanese:
+          - 大変 な プロジェクト が 終わっ て、チーム の みんな が 安心 {し まし た}。
+        english: After the difficult project finished, everyone on the team felt relieved/at ease.
+        hint: 「安心する」 means to feel relieved or at ease, but it lacks the specific nuance of a sigh of
+          relief or a visible expression of it conveyed by 「ほっとする」. We're looking for the specific feeling
+          and expression of relief.
+    scene: A project team finishes a demanding task, and the stress lifts from their faces.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: 「ほっとした」 specifically describes a sudden, profound sense of relief, often visible in one's
+      expression or a sigh. The phrase 「ほっとした 顔 を しました」 (made a relieved face) reinforces this visual
+      aspect, indicating a release of tension.
+    etymology: The mimetic word 「ほっと」 represents the sound of a sigh of relief. This sound is directly
+      linked to the feeling of stress leaving one's body.
+  - english: After taking a shower, both my mind and body felt refreshed.
+    japanese:
+      - シャワー を 浴び たら、心 も 体 も {さっぱり と し た} 気分 に なっ た。
+      - シャワー を 浴び たら、心 も 体 も {さっぱり と し た} 気分 に なり まし た。
+      - シャワー を 浴び て、心 も 体 も {さっぱり と し た} 感じ でし た。
+    english_literally: Shower took if, mind also body also refreshed feeling became.
+    competing_grammar:
+      - competing_japanese:
+          - シャワー を 浴び たら、心 も 体 も すっきり {し た} 気分 に なっ た。
+        english: After taking a shower, both my mind and body felt refreshed/clear.
+        hint: 「すっきりする」 also means to feel refreshed, but 「さっぱりする」 often emphasizes a lighter, cleaner
+          feeling, especially after washing or cleaning. We're looking for the sense of feeling cleansed
+          and light.
+    scene: A young woman is describing how she feels after a long, refreshing shower.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: 「さっぱりとした 気分」 emphasizes a feeling of lightness and freshness, both physically and mentally,
+      often associated with cleansing. The use of 「気分 に なった」 (became a feeling) clearly indicates a subjective
+      experience of becoming refreshed.
+    etymology: The mimetic word 「さっぱり」 conveys a sense of cleanliness, clarity, or refreshing lightness,
+      often after removing something heavy or unpleasant. It can be used for physical sensations like
+      feeling refreshed after a bath, or for mental states like having a clear conscience.
+  - english: At his rude remark, she instinctively felt offended.
+    japanese:
+      - 彼 の 失礼 な 発言 に、彼女 は 思わ ず {むっと し た}。
+      - 彼 の 失礼 な 発言 に、彼女 は 思わ ず {むっと し まし た}。
+      - 彼 の 失礼 な 発言 に、彼女 は {むっと し て しまっ た}。
+    english_literally: His rude remark at, she without thinking felt offended.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 失礼 な 発言 に、彼女 は 思わ ず {怒っ た}。
+        english: At his rude remark, she instinctively got angry.
+        hint: 「怒る」 means to get angry, which is a more general and often outwardly expressed emotion.
+          「むっとする」 conveys a more internal, subtle feeling of offense or sulking, often without a direct
+          outburst. We're looking for that inward feeling of irritation.
+    scene: During a conversation, a man makes an inappropriate comment, and a woman reacts with subtle
+      annoyance.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: 「むっとした」 conveys a silent, inward feeling of offense or annoyance, often without outward expression
+      of anger. 「思わず」 (unintentionally/instinctively) highlights the immediate, unbidden nature of the
+      feeling.
+    etymology: The mimetic word 「むっと」 depicts a state of silent, internal irritation, sulking, or being
+      offended, often characterized by a sullen expression or a feeling of stuffiness. It implies holding
+      anger in, rather than expressing it outwardly.
+  - english: Even though he failed an important exam, my younger brother was nonchalant.
+    japanese:
+      - 大切 な 試験 を 失敗 し た の に、弟 は {けろっと し て い た}。
+      - 大切 な 試験 を 失敗 し た の に、弟 は {けろっと し て い まし た}。
+      - 大切 な 試験 で 失敗 し た の に、弟 は {けろっと し て い た} の です。
+    english_literally: Important exam failed even though, younger brother was nonchalant.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な 試験 を 失敗 し た の に、弟 は 気 に {し て い なかっ た}。
+        english: Even though he failed an important exam, my younger brother wasn't worried about it.
+        hint: 「気にしない」 means not to care or worry, which is a general lack of concern. 「けろっとしている」 specifically
+          implies an unexpected, surprising nonchalance or quick recovery from a situation where one might
+          expect a stronger reaction. We're looking for that specific sense of being unfazed.
+    scene: An older sister is perplexed by her younger brother's lack of concern after a significant academic
+      setback.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「けろっとしている」 describes an unexpected and often surprising nonchalance or lack of remorse, especially
+      when a more serious reaction would be expected. The use of 「弟」 (younger brother) and a female speaker
+      (older sister) often implies a familial observation of this unusual attitude.
+    etymology: The mimetic word 「けろっと」 suggests an unconcerned or nonchalant attitude, often surprising
+      because it indicates a complete lack of emotional reaction or remorse where one might be expected.
+      It implies a quick recovery or an unaffected state.
+  - english: When I'm tired, I need time to just space out and not think about anything.
+    japanese:
+      - 疲れ た 時 は、何 も 考え ず {ぼうっと し て いる} 時間 が 必要 です。
+      - 疲れ た 時 は、何 も 考え ず {ぼうっと し て いる} 時間 が 必要 だ。
+      - 疲れ た 時 は、何 も 考え ず {ぼうっと する} 時間 が 欲しい。
+    english_literally: Tired when, nothing think without spacing out time is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た 時 は、何 も 考え ず {休ん で いる} 時間 が 必要 です。
+        english: When I'm tired, I need time to just rest without thinking about anything.
+        hint: 「休んでいる」 means simply resting. While 「ぼうっとしている」 involves resting, it specifically refers
+          to a state of being dazed or unfocused mentally, rather than just physical repose. We're looking
+          for the mental state of spacing out.
+    scene: A person reflecting on their need for mental rest after a busy week, emphasizing the importance
+      of simply relaxing without any particular activity.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: 「ぼうっとしている」 describes a state of unfocused mind or activity, often associated with relaxation
+      or daydreaming. 「何も考えず」 (nanimo kangaezu), meaning 'without thinking about anything,' emphasizes
+      the complete passivity of the state, implying mental relaxation rather than just physical rest.
+    etymology: The mimetic word 「ぼうっと」 describes a state of being dazed, absent-minded, or unfocused,
+      often associated with drowsiness, spacing out, or being dimly aware of surroundings. It conveys
+      a hazy or vague quality.
+  - english: As I was walking on a night road, there was a sudden sound and my heart gave a thump.
+    japanese:
+      - 夜道 を 歩い て い たら、急 に 物音 が し て {ドキッ と し た}。
+      - 夜道 を 歩い て い たら、急 に 物音 が し て {ドキッ と し まし た}。
+      - 夜道 を 歩い て い たら、急 に 物音 が し て {思わ ず ドキッ と し た}。
+    english_literally: Night road walking was if, suddenly sound happened and heart gave a thump.
+    competing_grammar:
+      - competing_japanese:
+          - 夜道 を 歩い て い たら、急 に 物音 が し て {びっくり し た}。
+        english: As I was walking on a night road, there was a sudden sound and I was surprised.
+        hint: 「びっくりした」 is a general expression for being surprised or startled. 「ドキッとした」 is more specific,
+          describing a sudden physical reaction, like a jolt or a heart thump, often from shock or fright.
+          We're looking for that specific physiological response.
+    scene: A person is walking alone at night when a sudden noise causes them to jump.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: 「ドキッとした」 is an onomatopoeic expression for a sudden, sharp thumping sensation, typically of
+      the heart, induced by surprise, shock, or nervousness. The phrase 「物音 が し て」 (a sound happened)
+      provides the immediate trigger for this physical, startled reaction.
+    etymology: The mimetic word 「ドキッ」 is an onomatopoeia representing the sound or sensation of a sudden,
+      sharp thumping of the heart, often due to surprise, fear, or excitement.
+  - english: At the ending of that horror movie, all the audience members shuddered.
+    japanese:
+      - その ホラー 映画 の 結末 に、観客 全員 が {ぞっと し た}。
+      - その ホラー 映画 の 結末 に、観客 全員 が {ぞっと し まし た}。
+      - その ホラー 映画 の 結末 に は、観客 全員 が {ぞっと する} もの が あっ た。
+    english_literally: That horror movie's ending at, audience all shuddered.
+    competing_grammar:
+      - competing_japanese:
+          - その ホラー 映画 の 結末 に、観客 全員 が {怖く なっ た}。
+        english: At the ending of that horror movie, all the audience members became scared.
+        hint: 「怖くなる」 means to become afraid, which is a general feeling of fear. 「ぞっとする」 specifically
+          describes a sudden physical sensation of a chill or shudder, often associated with horror or
+          disgust. We're looking for that distinct chilling sensation.
+    scene: People are watching a horror movie, and the scary ending makes everyone feel a chill.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    listener_gender: group
+    nuance: 「ぞっとした」 conveys a sudden, unpleasant physical sensation like a chill or shudder, commonly
+      associated with fear, disgust, or a strong sense of revulsion. 「観客 全員 が」 (all the audience members)
+      suggests a shared, impactful, and visceral experience.
+    etymology: The mimetic word 「ぞっと」 expresses the sensation of a shiver or chill down one's spine, often
+      caused by fear, horror, or disgust. It signifies a strong, unpleasant physical and emotional reaction.
+  - english: Her singing voice is so moving; when you listen, there's something that deeply touches your
+      heart.
+    japanese:
+      - 彼女 の 歌声 は とても 感動 的 で、聞い て いる と {ぐっ と くる} もの が ある。
+      - 彼女 の 歌声 は とても 感動 的 で、聞い て いる と {ぐっ と くる} もの が あり ます。
+      - 彼女 の 歌声 は とても 感動 的 で、聞く たび に {ぐっ と くる}。
+    english_literally: Her singing voice is very moving and, listening to it, something deeply touches
+      one's heart.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 歌声 は とても 感動 的 で、聞い て いる と 感動 {する} もの が ある。
+        english: Her singing voice is very moving; when you listen, there's something that makes you moved.
+        hint: 「感動する」 means to be moved or impressed, which is a broader term for emotional impact. 「ぐっとくる」
+          suggests a more sudden, intense, and often overwhelming emotional surge that can bring tears
+          or a lump in the throat. We're looking for that specific, deep emotional pull.
+    scene: A person is expressing how emotionally affected they are by a singer's performance.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「ぐっとくる」 describes a sudden, strong emotional impact, often causing a lump in the throat or
+      a rush of emotion, indicating deep admiration, sadness, or inspiration. 「聞いて いる と」 (when listening)
+      sets the condition for this profound emotional response, highlighting the immersive experience.
+    etymology: The mimetic word 「ぐっと」 suggests a sudden, strong, and intense movement or sensation, often
+      inwards or deeply affecting. When combined with 「くる」, it implies that something comes to you with
+      strong emotional impact, drawing you in.
+  - english: She firmly refused the unreasonable demands.
+    japanese:
+      - 彼女 は 不 合理 な 要求 を {きっぱり と し て} 断っ た。
+      - 彼女 は 不 合理 な 要求 を {きっぱり と し て} 断り まし た。
+    english_literally: She unreasonable demands firmly did refused.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 不 合理 な 要求 を {はっきり と} 断っ た。
+        english: She clearly refused the unreasonable demands.
+        hint: 「はっきりと」 means clearly or distinctly. While similar, 「きっぱりと」 implies a stronger sense of
+          decisiveness and resolve, leaving no room for argument or reconsideration. We're looking for
+          that firm, resolute refusal.
+    scene: A negotiation where one party presents an unacceptable offer, and the other party expresses
+      a clear rejection.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: 「きっぱりと」 indicates a clear, resolute, and unwavering stance or action. The use here highlights
+      the decisiveness in refusing 「断った」, leaving no room for ambiguity or further discussion. It emphasizes
+      the firm manner of the refusal.
+    etymology: The mimetic word 「きっぱり」 describes a clear, decisive, and often blunt manner, leaving no
+      ambiguity. It implies an action or statement that cuts off any possibility of reconsideration or
+      negotiation.
+  - english: The old temple stood quietly on the hill, as if time had stopped.
+    japanese:
+      - その 古い 寺 は、時 が 止まっ た か の よう に 丘 に {ひっそり と し て い た}。
+      - その 古い 寺 は、まるで 時 が 止まっ た か の よう に 丘 に {ひっそり と し て い まし た}。
+    english_literally: That old temple time stopped as if hill on quietly was.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 寺 は、時 が 止まっ た か の よう に 丘 に {静か に} 立っ て い た。
+        english: The old temple stood quietly on the hill, as if time had stopped.
+        hint: 「静かに」 means quietly or calmly. While the temple is quiet, 「ひっそりと」 conveys a deeper sense
+          of desertedness, stillness, and a lack of human presence, often with a hint of solemnity or
+          mystery. We're looking for that sense of profound, untouched quiet.
+    scene: Describing an ancient, isolated temple, emphasizing its peaceful yet deserted atmosphere.
+    register: formal
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: 「ひっそりとしている」 conveys a sense of quietness, stillness, and desolation, often implying that a
+      place is deserted or has a solemn, untouched atmosphere. 「時が止まったかのよう」 (as if time had stopped) reinforces
+      this profound stillness and timelessness, adding to the melancholic or reverent feeling.
+    etymology: The mimetic word 「ひっそり」 describes a quiet, still, and often secluded or deserted state,
+      without any sign of human activity or noise. It evokes a sense of loneliness, secrecy, or tranquility
+      depending on the context.
+post_example_writeup: The examples illustrate how 「とする」, when combined with various mimetic words, precisely
+  describes different subjective feelings and states. Notice how the choice of mimetic word drastically
+  changes the nuance, from physical sensations like relief or chills to internal states of nonchalance
+  or emotional impact. This flexibility makes 「とする」 a powerful tool for conveying nuanced personal experiences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とする

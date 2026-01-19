@@ -1,0 +1,251 @@
+grammar_point: 久しぶりに (for the first time in a long time・after a long absence)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あんなに (that much over there)
+  - い-Adjective[み] (abstract quality)
+  - こんなに (this much)
+  - に (adverbializer)
+  - にする (to decide or make)
+  - 以来 (since・ever since)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: for the first time in a long time; after a long absence
+pronunciation:
+  katakana: ヒサシブリニ
+  romaji: hisashiburi ni
+formation:
+  久しぶり + に: Indicates an action or event occurring after a long interval.
+jlpt: N3
+etymology: The expression combines the noun 久しぶり (hisashiburi), which literally means 'long time since,'
+  with the particle に (ni). 久し (hisashi) derives from a classical adjective meaning 'long (time),' and
+  ぶり (buri) is a suffix indicating 'after an interval of.' The particle に marks the circumstance or timing
+  of the action, signifying that something is being done 'in a long-time-since manner' or 'after a long
+  interval.'
+writeup: |-
+  The phrase **久しぶりに** (hisashiburi ni) is used to describe an action or event that is happening again after a long period of time. It conveys a sense of something being long-awaited or feeling fresh because of the extended interval since its last occurrence. It is commonly used in both casual and formal contexts, though its inherent nuance often lends itself to more personal or conversational situations.
+
+  This expression typically modifies a verb, indicating that the action described by the verb is being performed 'for the first time in a long time' or 'after a long absence.' The 'long time' implied by **久しぶりに** is subjective and can vary, but it always suggests a duration significant enough to warrant mention.
+
+  While **久しぶりに** is generally used in positive or neutral contexts, expressing a pleasant return to an activity or a reunion, it can also be used objectively without strong emotional connotation simply to state a fact about elapsed time. It is versatile and frequently appears in daily conversation, making it a fundamental phrase for discussing past intervals and current actions.
+false_friends:
+  - term: 久しぶり！
+    meaning: Long time no see! (greeting)
+    kind: similar expression
+    nuance: While using the same base noun, this is a standalone interjection used as a greeting when
+      encountering someone after a long time. It does not grammatically modify a verb or action.
+    grammar_point: <suggest>:久しぶり (greeting)
+  - term: X年ぶり
+    meaning: for the first time in X years / after an X-year interval
+    kind: similar expression
+    nuance: This construction explicitly states the specific duration (X years, X months, etc.) that has
+      passed, providing a precise numerical interval. **久しぶりに** is more general, simply implying 'a long
+      time' without specifying the exact period, and often carries a stronger emotional or subjective
+      sense of long-awaitedness.
+    grammar_point: <suggest>:Noun+ぶり (after an interval of)
+post_false_friends_writeup: When distinguishing **久しぶりに** from similar expressions, remember that **久しぶりに**
+  emphasizes the *feeling* or *perception* of a long time having passed before an action, often with a
+  nuance of pleasant anticipation or novelty. In contrast, **久しぶり！** is strictly a greeting, and constructions
+  like **X年ぶり** provide a precise, objective measurement of the elapsed time rather than a subjective
+  feeling.
+examples:
+  - english: I played games for the first time in a long time.
+    japanese:
+      - '{久し ぶり に} ゲーム を し た。'
+      - '{久し ぶり に} ゲーム を し まし た。'
+      - '{久し ぶり に} ゲーム を やっ た。'
+    english_literally: For the first time in a long time, (I) games played.
+    competing_grammar:
+      - competing_japanese:
+          - ５ 年 ぶり に ゲーム を し た。
+          - ５ 年 ぶり に ゲーム を し まし た。
+        english: I played games for the first time in five years.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: A person expresses their enjoyment after doing something they haven't done in a while.
+    register: casual
+    setting: friendly
+  - english: I'm going to my hometown for the first time in a long time.
+    japanese:
+      - '{久し ぶり に} 実家 に 帰り ます。'
+      - '{久し ぶり に} 実家 に 帰る。'
+    english_literally: For the first time in a long time, (I) to my hometown will return.
+    competing_grammar:
+      - competing_japanese:
+          - １０ 年 ぶり に 実家 に 帰り ます。
+          - １０ 年 ぶり に 実家 に 帰る。
+        english: I'm going to my hometown for the first time in ten years.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: A young adult tells their friend about their plans to visit their family home.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: The use of 帰ります shows politeness, suitable for informing a friend or acquaintance. It implies
+      a sense of returning to a familiar place after a significant absence.
+  - english: It's been a long time since I last ate ramen this good!
+    japanese:
+      - '{久し ぶり に} こんな に 美味しい ラーメン を 食べ た！'
+      - '{久し ぶり に} こんな に 美味しい ラーメン を 食べ まし た！'
+    english_literally: For the first time in a long time, such delicious ramen (I) ate!
+    competing_grammar:
+      - competing_japanese:
+          - 一 年 ぶり に こんな に 美味しい ラーメン を 食べ た！
+          - 一 年 ぶり に こんな に 美味しい ラーメン を 食べ まし た！
+        english: It's been a year since I last ate ramen this good!
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: A customer exclaims their satisfaction at a ramen shop.
+    register: casual
+    setting: excited
+    conjugation: past plain (～た)
+    nuance: The exclamation mark and casual '食べた！' conveys genuine excitement and surprise at how good
+      the ramen is, amplifying the 'long time' aspect. The use of 'こんなに' reinforces the strong feeling.
+  - english: It's rare to see him smile like that; it must be the first time in a long time.
+    japanese:
+      - 彼 が あんな に 笑う なんて {久し ぶり に} 見 た。
+      - 彼 が あんな に 笑う なんて {久し ぶり に} 見 まし た。
+    english_literally: Him that much smile, such a thing, for the first time in a long time (I) saw.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が あんな に 笑う なんて ５ 年 ぶり に 見 た。
+          - 彼 が あんな に 笑う なんて ５ 年 ぶり に 見 まし た。
+        english: It's rare to see him smile like that; it must be the first time in five years.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: Two colleagues comment on their usually serious boss showing genuine joy.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The speaker's observation 'あんなに 笑う なんて' suggests surprise at a rare sight, making '久しぶりに見た'
+      convey the significant and unusual nature of the event. It's a casual but insightful comment.
+  - english: I'm looking forward to traveling abroad for the first time in a long time.
+    japanese:
+      - '{久し ぶり に} 海外 旅行 に 行ける の で、とても 楽しみ です。'
+      - '{久し ぶり に} 海外 旅行 に 行ける の で、とても 楽しみ だ。'
+    english_literally: For the first time in a long time, because (I) can go overseas travel, very looking
+      forward to.
+    competing_grammar:
+      - competing_japanese:
+          - ３ 年 ぶり に 海外 旅行 に 行ける の で、とても 楽しみ です。
+          - ３ 年 ぶり に 海外 旅行 に 行ける の で、とても 楽しみ だ。
+        english: I'm looking forward to traveling abroad for the first time in three years.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: A student expresses their excitement about an upcoming trip.
+    register: teineigo (polite)
+    setting: optimistic
+    conjugation: potential (～られる/～える)
+    nuance: The combination with the potential form 行ける (can go) and the polite 楽しみです (looking forward
+      to) emphasizes the joy and anticipation of the long-awaited trip.
+  - english: The cherry blossoms are blooming beautifully this year, the first time in a while they've
+      been this vibrant.
+    japanese:
+      - 今年 は {久し ぶり に} 桜 が 綺麗 に 咲い て い ます ね。
+      - 今年 は {久し ぶり に} 桜 が 綺麗 に 咲い て いる ね。
+    english_literally: This year, for the first time in a long time, cherry blossoms beautifully blooming
+      are, aren't they?
+    competing_grammar:
+      - competing_japanese:
+          - 今年 は ８ 年 ぶり に 桜 が 綺麗 に 咲い て い ます ね。
+          - 今年 は ８ 年 ぶり に 桜 が 綺麗 に 咲い て いる ね。
+        english: This year, the cherry blossoms are blooming beautifully for the first time in eight years,
+          aren't they?
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: Two neighbors chat while admiring cherry blossoms in a park.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: progressive (～ている)
+    listener_gender: group
+    nuance: The polite です and the agreement-seeking ね at the end make this a gentle, shared observation.
+      It highlights the beauty of the cherry blossoms as something special because it hasn't been seen
+      in such a long time.
+  - english: It's the first time in a long time I've been this nervous about a presentation.
+    japanese:
+      - '{久し ぶり に} こんな に 緊張 し て い ます。'
+      - '{久し ぶり に} こんな に 緊張 し て いる。'
+    english_literally: For the first time in a long time, this much nervous (I) am.
+    competing_grammar:
+      - competing_japanese:
+          - 今回 は プレゼン で 久し ぶり に 緊張 し て い ます。
+          - 今回 は プレゼン で 久し ぶり に 緊張 し て いる。
+        english: This time, I'm nervous about the presentation for the first time in a long time.
+        hint: The original sentence uses `こんなに` (this much) to emphasize the *degree* of nervousness,
+          implying it's not just 'nervous' but 'this much nervous'. The competing example implies a return
+          to nervousness, but not necessarily to the same intense degree.
+    scene: A speaker before a big conference presentation.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: progressive (～ている)
+    nuance: The speaker is acknowledging a strong emotional state after a long period, indicating the
+      significance of the current situation. The polite form is appropriate for a formal context.
+  - english: I had a long talk with my parents for the first time in a long time.
+    japanese:
+      - '{久し ぶり に} 両親 と ゆっくり 話し まし た。'
+      - '{久し ぶり に} 両親 と ゆっくり 話し た。'
+    english_literally: For the first time in a long time, parents with slowly (I) talked.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 と ゆっくり 話せ た の は ３ 年 ぶり です。
+          - 両親 と ゆっくり 話せ た の は ３ 年 ぶり だ。
+        english: It's been three years since I was able to talk slowly with my parents.
+        hint: The nuance of `X年ぶり` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific number
+          of years.
+    scene: A person reflects on a meaningful conversation they had with their parents.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: The adverb ゆっくり (slowly/at ease) paired with '話しました' (talked) emphasizes the quality and depth
+      of the conversation, which was made possible by the long absence. It conveys a sense of quiet satisfaction.
+  - english: Since the typhoon, it's the first time in a long time the weather has been this clear.
+    japanese:
+      - 台風 以来、{久し ぶり に} こんな に 良い 天気 です。
+      - 台風 以来、{久し ぶり に} こんな に 良い 天気 だ。
+    english_literally: Typhoon since, for the first time in a long time, such good weather it is.
+    competing_grammar:
+      - competing_japanese:
+          - 台風 以来、２ 週間 ぶり に こんな に 良い 天気 です。
+          - 台風 以来、２ 週間 ぶり に こんな に 良い 天気 だ。
+        english: Since the typhoon, it's been two weeks since the weather has been this clear.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific period.
+    scene: Two neighbors discussing the weather after a recent typhoon.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The phrase 台風以来 (since the typhoon) provides a specific temporal anchor, highlighting the
+      duration of the bad weather before the return of good weather, making '久しぶりに' emphasize the relief.
+  - english: My grandfather is laughing out loud for the first time in a long time.
+    japanese:
+      - 祖父 が {久し ぶり に} 大声 で 笑っ て い ます。
+      - 祖父 が {久し ぶり に} 大声 で 笑っ て いる。
+    english_literally: Grandfather for the first time in a long time loudly laughing is.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 が 半年 ぶり に 大声 で 笑っ て い ます。
+          - 祖父 が 半年 ぶり に 大声 で 笑っ て いる。
+        english: My grandfather is laughing out loud for the first time in half a year.
+        hint: The nuance of `X年ぶりに` is to specify a precise duration, whereas `久しぶりに` implies a long time
+          without exact measurement. We're looking for a general 'long time' without a specific period.
+    scene: A family observing their elderly grandfather enjoying a rare moment of boisterous laughter.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: progressive (～ている)
+    nuance: The use of 大声で (loudly) emphasizes the extent of his laughter, making '久しぶりに' convey the heartwarming
+      and possibly rare nature of this joyful expression from the grandfather.
+post_example_writeup: The examples illustrate how **久しぶりに** functions by modifying various verbs across
+  different contexts. Notice how it consistently highlights the 'long interval' aspect, whether it's for
+  personal enjoyment, emotional states, or environmental observations. The nuance of a long-awaited or
+  fresh experience after a gap is always present, making the action feel more significant.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E4%B9%85%E3%81%97%E3%81%B6%E3%82%8A%E3%81%AB

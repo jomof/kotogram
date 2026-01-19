@@ -1,0 +1,330 @@
+grammar_point: に向かって (physical direction)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - 真上 (directly above)
+  - ～口 (exit・entrance)
+meaning: Towards, To face, To head to
+pronunciation:
+  katakana: ニ ムカッテ
+  romaji: ni mukatte
+formation:
+  Noun + に向かって: Indicates movement or action towards a destination or object.
+  Time expression + に向かって: Indicates approaching a point in time or a temporal progression.
+  Abstract Noun + に向かって: Indicates a metaphorical direction or progression towards an abstract concept
+    or state.
+jlpt: N2
+etymology: This grammar point originates from the verb 向かう (mukau), meaning "to face" or "to go towards."
+  に向かって is the te-form of 向かう combined with に, indicating the direction of an action. This reflects the
+  original spatial meaning of the verb.
+writeup: 'The phrase に向かって (ni mukatte) is used to express movement or orientation towards a specific
+  direction, object, or goal. It carries the nuance of actively facing or heading directly towards something,
+  whether physically or metaphorically. It can describe: *   **Physical Direction/Movement**: When someone
+  or something is moving directly towards a physical location or object. For example, a person walking
+  towards a station or a ship sailing towards an island. The emphasis is on the direct trajectory and
+  continuous progression. *   **Physical Orientation**: When something is positioned or facing in a particular
+  direction. For instance, a house facing the park or a statue facing the sea. *   **Abstract Direction/Goal**:
+  When efforts or actions are directed towards an abstract concept, objective, or future state. This can
+  include striving towards one''s dreams, working towards a goal, or developing towards a certain future.
+  *   **Temporal Progression**: When approaching a specific point in time or a future event. For example,
+  time progressing towards a new year or an event approaching. In all these uses, に向かって conveys a sense
+  of directness, active engagement, or inherent orientation towards the specified target.'
+false_friends:
+  - term: へ (directional particle)
+    meaning: To, Toward
+    kind: synonym
+    nuance: While 「へ」 indicates general direction or destination, 「に向かって」 implies a more active facing
+      or continuous movement directly towards something.
+    grammar_point: へ (directional particle)
+  - term: に (to)
+    meaning: to; for
+    kind: similar expression
+    nuance: While 「に」 marks a general destination or target, 「に向かって」 emphasizes the act of facing or moving
+      continuously towards that target, suggesting a more dynamic or intentional orientation.
+    grammar_point: に (static location・time)
+  - term: を (movement through space)
+    meaning: through, across, along
+    kind: similar expression
+    nuance: 「を」 indicates movement through or across a space, whereas 「に向かって」 specifies movement towards
+      a destination or object, often implying direct orientation rather than passing through.
+    grammar_point: を (path of movement)
+  - term: に向けて (aim and purpose)
+    meaning: Towards (a goal or target), Aimed at, In preparation for
+    kind: similar expression
+    nuance: While 「に向かって」 describes a literal, often continuous, physical or abstract movement towards
+      something, 「に向けて」 specifically conveys the idea of aiming at a goal, preparing for an event, or
+      directing efforts with a particular intention.
+    grammar_point: に向けて (aim and purpose)
+  - term: Verb[ます-stem] + 目指して
+    meaning: Aiming for, aspiring to, striving towards
+    kind: similar expression
+    nuance: 「目指して」 specifically means 'aiming for' or 'striving towards a goal,' focusing on the objective.
+      While 「に向かって」 can also imply movement towards a goal, it retains a stronger sense of physical or
+      direct orientation.
+    grammar_point: <suggest>:Verb[ます-stem] + 目指して (aiming for)
+post_false_friends_writeup: 'To differentiate these expressions: *   `へ` indicates simple direction or
+  destination without implying intent or facing. *   `に` marks a general destination or point in time
+  or space. *   `を` indicates movement through a space, emphasizing passage rather than a direct facing
+  or destination. *   `に向かって` implies a physical facing or direct, often continuous, movement towards
+  something, or a metaphorical progression/orientation. *   `に向けて` specifically highlights the intention
+  or purpose of moving towards a goal. *   `目指して` is about aiming for or striving towards a particular
+  objective.'
+examples:
+  - english: Please face the mic and say something.
+    japanese:
+      - マイク {に 向かっ て} 何 か 一言 お 願い し ます。
+      - マイク {に 向かっ て} 一言 喋っ て ください。
+      - マイク {に 向かっ て} 一言 お 話し ください。
+    english_literally: Toward the mic, please say a word.
+    competing_grammar:
+      - competing_japanese:
+          - マイク {の 前 で} 何 か 一言 お 願い し ます。
+        english: Please say something in front of the mic.
+        hint: 「マイク の 前 で」 means in front of the mic. We're looking for a phrase that specifically means
+          to face something directly and speak towards it.
+      - competing_japanese:
+          - マイク {の 方 へ} 何 か 一言 お 願い し ます。
+        english: Please say something towards the mic's direction.
+        hint: 「～の 方 へ」 indicates general direction. We're looking for a phrase that specifically means
+          to face something directly and speak towards it.
+    scene: A person at a podium asks someone to speak into the microphone.
+    register: formal
+    setting: professional
+    etymology: The verb 「向かう」 (mukau) means "to face" or "to head towards." When combined with 「に」 and
+      the te-form 「～て」, it forms 「に向かって」, which literally means "facing towards" or "moving towards."
+      This reflects the original spatial meaning of the verb.
+  - english: I shouted loudly towards the sky.
+    japanese:
+      - 空 {に 向かっ て} 大声 を 出し た。
+      - 空 {に 向かっ て} 大きな 声 を 出し た。
+      - 空 {に 向かっ て} 叫ん だ。
+    english_literally: Towards the sky, I let out a loud voice.
+    competing_grammar:
+      - competing_japanese:
+          - 空 {に} 大声 を 出し た。
+        english: I shouted loudly to the sky.
+        hint: 「空 に」 means to the sky. We're looking for a phrase that emphasizes directing a physical
+          action towards something.
+      - competing_japanese:
+          - 空 {に 向け て} 大声 を 出し た。
+        english: I shouted loudly aiming at the sky.
+        hint: 「に向けて」 suggests aiming for a goal or purpose. We're looking for a phrase that describes
+          a physical action directed towards something.
+    scene: Someone expressing their frustration or joy.
+    register: casual
+    setting: melancholic
+    nuance: The phrase 「大声 を 出し た」 is a straightforward expression of shouting loudly towards a broad,
+      open space.
+    etymology: In this context, 「に向かって」 extends its meaning from a literal physical direction to a broader,
+      symbolic direction, like shouting 'towards' the vastness of the sky. This shows the versatility
+      of the particle combination beyond just concrete movement.
+  - english: Why don't we walk toward a bright future together!
+    japanese:
+      - 明るい 未来 {に 向かっ て} 一緒 に 人生 を 歩もう じゃ ない か！
+      - 明るい 未来 {に 向かっ て}、共 に 歩ん で いこう じゃ ない か！
+      - 明るい 未来 {に 向かっ て}、一緒 に 進ん で いこう よ！
+    english_literally: Towards a bright future, why don't we walk life together!
+    competing_grammar:
+      - competing_japanese:
+          - 明るい 未来 {へ} 一緒 に 人生 を 歩もう じゃ ない か！
+        english: Why don't we walk to a bright future together!
+        hint: 「へ」 indicates general movement towards a destination. We're looking for a phrase that suggests
+          continuous effort and progression towards a future goal.
+      - competing_japanese:
+          - 明るい 未来 {の ため に} 一緒 に 頑張ろう じゃ ない か！
+        english: Why don't we work hard together for a bright future!
+        hint: 「～の ため に」 means 'for the sake of' or 'for the benefit of'. We're looking for an expression
+          that suggests moving towards a future goal.
+    scene: A person making a romantic proposal or suggestion to someone.
+    register: shitashii kuchō (intimate)
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: female
+    nuance: The expression 「～じゃ ないか！」 is an intimate phrase used to make a strong suggestion or invitation.
+      It encourages the listener to act together and conveys shared purpose and enthusiasm in a close
+      relationship, often used by a male speaker.
+    etymology: The concept of "walking towards the future" uses 「に向かって」 metaphorically. The original sense
+      of physical orientation is extended to an abstract, temporal orientation, reflecting how directional
+      particles often adapt to describe non-physical movements or goals over time.
+  - english: Please face the camera and smile.
+    japanese:
+      - カメラ {に 向かっ て}、笑顔 を お 願い し ます。
+      - カメラ {に 向かっ て}、笑っ て ください。
+      - カメラ {に 向かっ て}、スマイル お 願い し ます。
+    english_literally: Towards the camera, a smile please.
+    competing_grammar:
+      - competing_japanese:
+          - カメラ {の 方 を 見 て}、笑顔 を お 願い し ます。
+        english: Please look in the direction of the camera and smile.
+        hint: 「カメラ の 方 を 見 て」 means to look in the direction of the camera. We're looking for an expression
+          that specifically implies facing the camera directly.
+      - competing_japanese:
+          - カメラ {を 見 て}、笑顔 を お 願い し ます。
+        english: Please look at the camera and smile.
+        hint: This suggests looking at the camera. We're looking for an phrase that specifically implies
+          facing the camera directly with your body or head.
+    scene: A photographer directing a subject.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The polite request 「お願いします」 is standard for a professional setting. An older female speaker
+      might use this phrasing when directing someone, maintaining a polite yet authoritative tone.
+    etymology: This example reinforces the core meaning of 「に向かって」 as physically facing or orienting oneself
+      towards something. The action of smiling is directed specifically at the camera.
+  - english: Heading toward the future, medical development is continuously progressing.
+    japanese:
+      - 今後 {に 向かっ て}、治療 の 発展 は 進む 一方 だ。
+      - 未来 {に 向かっ て}、医療 の 発展 は 進む ばかり だ。
+      - 将来 {に 向かっ て}、医療 技術 の 発展 は 日々 進ん で い ます。
+    english_literally: Towards the future, medical development is continuously progressing.
+    competing_grammar:
+      - competing_japanese:
+          - '{今後 に}、治療 の 発展 は 進む 一方 だ。'
+        english: In the future, medical development is continuously progressing.
+        hint: 「今後 に」 simply states a location in time. We're looking for a phrase that emphasizes continuous
+          progress and dynamic movement towards the future.
+      - competing_japanese:
+          - '{今後}、治療 の 発展 は 進む 一方 だ。'
+        english: From now on, medical development is continuously progressing.
+        hint: This simply states that development is progressing. We're looking for a phrase that emphasizes
+          the direction and continuous movement towards the future.
+    scene: Discussing advancements in medicine.
+    register: semi-formal
+    setting: informative
+    nuance: 「に向かって」 here denotes a direction of progress, indicating that medical development is steadily
+      moving forward into the future.
+    etymology: The use of 「に向かって」 with a temporal concept like 「今後」 (future) highlights its ability to
+      express not just physical direction, but also a trajectory or progression over time, building on
+      its core sense of orientation.
+  - english: I wonder why he uses such a difficult way of speaking toward elementary school students.
+    japanese:
+      - 小学 生 {に 向かっ て} なん で そんな に 分かり にくい 言い 方 を する の だろう...
+      - 小学 生 {に 向かっ て}、どう し て そんな に 難しい 言葉遣い を する の か な...
+      - 小学 生 {に 向かっ て}、なぜ あんな に 難しい 話し 方 を する の だろう...
+    english_literally: Towards elementary school students, why does he use such an unclear way of speaking,
+      I wonder...
+    competing_grammar:
+      - competing_japanese:
+          - 小学 生 {に} なん で そんな に 難しい 言い 方 を する の だろう...
+        english: I wonder why he uses such a difficult way of speaking to elementary school students.
+        hint: 「小学生 に」 is a general way to say 'to elementary school students'. We're looking for an expression
+          that highlights the directness of communication towards them.
+      - competing_japanese:
+          - 小学 生 {の 前 で} なん で そんな に 分かり にくい 言い 方 を する の だろう...
+        english: I wonder why he uses such an unclear way of speaking in front of elementary school students.
+        hint: This implies speaking in front of children. We're looking for an expression that emphasizes
+          speaking directly to or at them.
+    scene: Someone observing a conversation between an adult and a child.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: 「の だろう」 conveys a sense of wonder or mild disbelief, implying a judgment about the speaker's
+      choice of words towards the children. A male speaker might express this observation colloquially.
+    etymology: This example shows 「に向かって」 used for directing speech at someone, highlighting the directness
+      of the communication. The phrase emphasizes that the speaking style is aimed at the elementary school
+      students, implying a direct audience.
+  - english: The ship is sailing straight towards the remote island.
+    japanese:
+      - 船 は 遠い 島 {に 向かっ て} まっすぐ 進ん で いる。
+      - 船 は 遠い 島 {に 向かっ て} まっすぐ 進ん で いき ます。
+      - 船 は 遠い 島 {に 向かっ て} 真っ直ぐ に 進ん で い ます。
+      - 船 は 遠い 島 {に 向かっ て} いる。
+    english_literally: The ship, towards the remote island, is advancing straight.
+    competing_grammar:
+      - competing_japanese:
+          - 船 は 遠い 島 {へ} まっすぐ 進ん で いる。
+        english: The ship is sailing straight to the remote island.
+        hint: 「へ」 indicates general direction. We're looking for a phrase that emphasizes direct and continuous
+          movement towards a destination.
+      - competing_japanese:
+          - 船 は 遠い 島 {へ と} まっすぐ 進ん で いる。
+        english: The ship is sailing straight towards the remote island.
+        hint: 「へと」 is similar to 「へ」 but might imply a more definite destination. We're looking for an
+          expression that highlights the active orientation and continuous motion towards a target.
+    scene: A peaceful scene of a ship at sea.
+    register: formal
+    setting: informative
+    nuance: 「まっすぐ 進んでいる」 emphasizes the direct and continuous movement towards the destination. This use
+      of 「に向かって」 clearly shows physical direction and progression.
+    etymology: This usage aligns with the fundamental meaning of 向かう (mukau) as moving directly towards
+      something, maintaining a clear path or trajectory.
+  - english: Our house faces directly towards the park, so the view is great.
+    japanese:
+      - 私 たち の 家 は 公園 {に 向かっ て} 建っ て いる から、景色 が とても 良い。
+      - 私 たち の 家 は 公園 {に 向かっ て} 建っ て い ます から、景色 が とても 良い です。
+      - 私 たち の 家 は 公園 {に 向かっ て} 建て られ て いる の で、景色 が とても 良い です。
+      - 私 たち の 家 は 公園 {に 向かっ て} いる の で、景色 が とても 良い です。
+    english_literally: Our house, towards the park, is built, so the scenery is very good.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 家 は 公園 {に 面し て いる} から、景色 が とても 良い。
+        english: Our house faces the park, so the view is great.
+        hint: 「に 面している」 also means 'facing'. We're looking for an expression that emphasizes the physical
+          orientation or position towards something.
+      - competing_japanese:
+          - 私 たち の 家 は 公園 {の 前 に} 建っ て いる から、景色 が とても 良い。
+        english: Our house is built in front of the park, so the view is great.
+        hint: 「公園 の 前 に」 indicates 'in front of the park'. We're looking for a phrase that specifically
+          describes the direction the house's front is oriented.
+    scene: Describing a house with a nice view.
+    register: casual
+    setting: friendly
+    nuance: 「建っている」 implies a static orientation, emphasizing the house's permanent facing towards the
+      park. This demonstrates 「に向かって」 indicating physical orientation, rather than just being located
+      in front of it.
+    etymology: This showcases the use of 向かう to describe static orientation, where a structure's front
+      is directed towards a specific point, extending its meaning from active motion to a fixed position.
+  - english: The students are striving hard towards their dreams.
+    japanese:
+      - 学生 たち は 自分 の 夢 {に 向かっ て} 必死 に 努力 し て いる。
+      - 学生 たち は 自分 の 夢 {に 向かっ て} 必死 に 努力 し て い ます。
+      - 学生 たち は 自分 の 夢 {に 向かっ て} 邁進 し て いる。
+      - 学生 は 自分 の 夢 {に 向かっ て} 必死 に 努力 し て いる。
+    english_literally: The students, towards their own dreams, desperately are making efforts.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 たち は 自分 の 夢 {の ため に} 必死 に 努力 し て いる。
+        english: The students are striving hard for the sake of their dreams.
+        hint: 「～の ため に」 means 'for the sake of'. We're looking for a phrase that emphasizes the direct
+          and active effort specifically aimed at achieving a goal.
+      - competing_japanese:
+          - 学生 たち は 自分 の 夢 {を 目指し て} 必死 に 努力 し て いる。
+        english: The students are striving hard aiming for their dreams.
+        hint: 「を 目指して」 implies continuous effort and progression towards an abstract goal, almost like
+          moving along a path. We're looking for a phrase that emphasizes the direct and active effort
+          specifically aimed at achieving a goal.
+    scene: In a classroom or study area.
+    register: semi-formal
+    setting: inspirational
+    nuance: 「必死 に 努力している」 highlights the intense and continuous effort directed towards the abstract goal
+      of their dreams. This demonstrates the metaphorical use of 「に向かって」, applying the concept of physical
+      direction to aspirations.
+    etymology: The metaphorical extension of 向かう to abstract concepts like "dreams" or "goals" is common,
+      reflecting the idea of directing one's efforts and path towards an intended outcome.
+  - english: He ran straight towards the finish line.
+    japanese:
+      - ゴール {に 向かっ て}、彼 は まっすぐ 走っ た。
+      - ゴール {に 向かっ て}、彼 は まっすぐ に 走っ た。
+      - ゴール {に 向かっ て}、彼 は まっすぐ 走り まし た。
+    english_literally: Towards the goal, he straight ran.
+    competing_grammar:
+      - competing_japanese:
+          - ゴール {へ}、彼 は まっすぐ 走っ た。
+        english: He ran straight to the goal.
+        hint: 「へ」 indicates a general direction or destination. We're looking for a phrase that emphasizes
+          a direct and focused physical movement towards a specific point.
+      - competing_japanese:
+          - ゴール {を 目指し て}、彼 は まっすぐ 走っ た。
+        english: He ran straight aiming for the goal.
+        hint: 「を 目指して」 emphasizes aiming for a goal with intention. We're looking for a phrase that describes
+          the physical act of moving directly towards something.
+    scene: An athletic competition, specifically during a race.
+    register: casual
+    setting: excited
+    nuance: The combination of 「まっすぐ 走った」 and 「に向かって」 strongly emphasizes the direct, determined, and
+      continuous physical movement of the runner, indicating that their body and effort were oriented
+      precisely towards the finish line.
+post_example_writeup: 「に向かって」は、物理的な移動の方向を示すだけでなく、抽象的な目標への努力や、時間的な進行を表す際にも使われます。特に、ある対象に"顔を向けて"いるような、明確な指向性や連続性を伴う動きや状態を表現するのに適しています。
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に向かって-に向けて

@@ -1,0 +1,260 @@
+grammar_point: Verb[たら] (conditional)
+learn_before:
+  - たら (conditional, when・if A then B)
+meaning: if... then...; when...
+pronunciation:
+  katakana: タラ
+  romaji: tara
+formation:
+  Verb[た形] + ら: If (verb) / When (verb is completed), then...
+  い-Adjective[かった形] + ら: If (i-adjective) / When (i-adjective is true), then...
+  な-Adjective[だった形] + ら: If (na-adjective) / When (na-adjective is true), then...
+  Noun[だった形] + ら: If (noun) / When (noun is true), then...
+jlpt: N4
+etymology: 'The `〜たら` form is generally considered to be a contraction or evolution of the past tense
+  `〜た` (the 連用形 or continuative form) followed by the old conditional particle `ば` (as in `〜たならば`). Over
+  time, `ならば` often reduced to `なら`, and in this specific construction, the `な` disappeared, leaving `たら`.
+  This origin from the past tense `た` is key to understanding its primary function: the condition must
+  be ''completed'' or ''realized'' for the consequence to follow, whether in a real or hypothetical sense.
+  This inherent ''completion'' aspect differentiates it from other conditional forms which don''t carry
+  this nuance.'
+writeup: |-
+  The `〜たら` conditional form is one of the most frequently used and versatile conditional structures in Japanese. It is formed by attaching `ら` to the `た` form of verbs, the `かった` form of い-adjectives, the `だった` form of な-adjectives, and the `だった` form of nouns.
+
+  Its core meaning is "if/when A, then B." What sets `〜たら` apart is its strong implication that the action or state described in the first clause (A) must be completed or realized before the action or state in the second clause (B) can occur. This makes it particularly suitable for expressing sequential actions, definite results, or hypothetical situations where the fulfillment of the condition is paramount.
+
+  `〜たら` can convey a simple hypothetical condition: 「もし明日雨が降ったら、家にいます。」("If it rains tomorrow, I'll stay home."). It can also express a sequence of events, where the completion of the first action directly leads to the second: 「家に帰ったら、ご飯を食べます。」("When I get home, I'll eat."). This sequential usage is very common.
+
+  Another significant use is for expressing unexpected discoveries or findings. For example, after trying something, you might exclaim, 「使ってみたら、意外と便利だった！」("When I tried using it, it was surprisingly convenient!"). Here, the act of trying (`使ってみる`) is completed, leading to the discovery.
+
+  Unlike `〜ば` or `〜と`, `〜たら` does not have strict limitations regarding the nature of the second clause (B). The result can be a command, a request, a suggestion, a statement of fact, or an intention. This flexibility makes it a very practical and all-purpose conditional form in daily conversation.
+false_friends:
+  - term: Verb[ば] (conditional)
+    meaning: if... then...
+    kind: similar expression
+    nuance: While both express conditions, `〜ば` often suggests a more general or hypothetical condition,
+      or a logical consequence. Its use in the second clause is more restricted; it cannot be followed
+      by volitional, imperative, or strong request forms. `〜たら` implies the completion or realization
+      of the condition.
+    grammar_point: Verb[えば] (conditional)
+  - term: なら (conditional)
+    meaning: if it's the case that A; as for A...
+    kind: similar expression
+    nuance: '`〜なら` typically focuses on the speaker''s judgment or a specific piece of information. It
+      introduces a condition that is often presumed to be true or is stated by someone else, and the second
+      clause provides advice, a suggestion, or a consequence based on that presumption. It doesn''t imply
+      temporal sequence like `〜たら` often does.'
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: と (conditional, inevitable result)
+    meaning: when A, then B (always); if A, then B (always)
+    kind: similar expression
+    nuance: '`〜と` indicates an automatic, inevitable, or natural consequence. If A happens, B *always*
+      happens. It''s often used for natural phenomena, mechanisms, or habits. `〜たら` is more flexible and
+      does not imply this strict, automatic relationship.'
+    grammar_point: と (conditional, inevitable result)
+  - term: 〜とき (when)
+    meaning: when... (time)
+    kind: similar expression
+    nuance: '`〜とき` functions as a noun, specifying a time when an action or state occurs. It simply indicates
+      the timeframe. `〜たら` explicitly expresses a condition or a sequential relationship where the first
+      clause must be completed before the second. While both can translate to ''when,'' `〜たら` implies
+      a condition *leading to* something, whereas `〜とき` just indicates the *moment* of something.'
+    grammar_point: とき (when)
+post_false_friends_writeup: Understanding the subtle differences between these conditional forms is crucial.
+  While `〜たら` is the most flexible, each conditional particle (`ば`, `なら`, `と`) carries its own specific
+  nuance and grammatical constraints that make it suitable for different contexts. Practice using them
+  in various situations to develop an intuitive sense of their appropriate usage.
+examples:
+  - english: If you don't understand, please ask me questions.
+    japanese:
+      - 分から なかっ たら、質問 し て ください。
+      - 分から なかっ たら、質問 し て。
+    english_literally: If you did not understand, please ask questions.
+    competing_grammar:
+      - competing_japanese:
+          - もし 分から なけれ ば、質問 し て ください。
+        english: If you don't understand, please ask me questions.
+        hint: 「ば」 emphasizes a general hypothetical condition, but 「たら」 is more common for direct requests
+          following a specific condition.
+    scene: A teacher addressing students in a classroom.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: conditional (～たら)
+  - english: When I go to Japan, I want to eat sushi.
+    japanese:
+      - 日本 に 行っ たら、寿司 が 食べ たい。
+      - 日本 に 行っ たら、寿司 が 食べ たい です。
+    english_literally: When I go to Japan, sushi I want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 行く とき に、寿司 が 食べ たい。
+        english: At the time I go to Japan, I want to eat sushi.
+        hint: 「とき」 merely indicates the time. 「たら」 implies that going to Japan is the condition *before*
+          eating sushi.
+    scene: A person is talking about their future travel plans.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+  - english: If it's sunny tomorrow, let's go for a walk.
+    japanese:
+      - 明日 晴れ たら、散歩 しよう。
+      - 明日 晴れ たら、散歩 し ましょう。
+    english_literally: Tomorrow if it becomes sunny, let's take a walk.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 晴れる なら、散歩 しよう。
+        english: If it's going to be sunny tomorrow, let's go for a walk.
+        hint: 「なら」 often implies a condition based on present information or assumption. 「たら」 focuses
+          on the realization of the condition itself.
+    scene: Two friends making plans for the next day.
+    register: shitashii kuchō (intimate)
+    setting: friendly
+    conjugation: conditional (～たら)
+  - english: When I opened the box, there was a cat inside.
+    japanese:
+      - 箱 を 開け たら、猫 が い た。
+      - 箱 を 開け たら、猫 が い まし た。
+    english_literally: Box opened, cat was there.
+    competing_grammar:
+      - competing_japanese:
+          - 箱 を 開ける と、猫 が い た。
+        english: When I opened the box, a cat was there (as an automatic result).
+        hint: 「と」 implies an automatic or habitual result. Here, the discovery is more of a unique, completed
+          event rather than an automatic consequence.
+    scene: Someone describing a surprising discovery.
+    register: casual
+    setting: storytelling
+    conjugation: conditional (～たら)
+  - english: If that's the case, I'll go.
+    japanese:
+      - それ だっ たら、私 が 行き ます。
+      - それ だっ たら、私 が 行く。
+    english_literally: If that is the case, I will go.
+    competing_grammar:
+      - competing_japanese:
+          - そう なら、私 が 行き ます。
+        english: If that's the case, I'll go.
+        hint: 「なら」 is typically used when making a judgment or suggestion based on something already known
+          or said. 「たら」 is more direct in stating a condition.
+    scene: Someone is deciding whether to participate in an activity after hearing new information.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: conditional (～たら)
+  - english: If this cake is delicious, I'll buy it again next time.
+    japanese:
+      - この ケーキ が 美味しかっ たら、次 も 買い ます。
+      - この ケーキ が 美味しかっ たら、次 も 買う。
+    english_literally: This cake if it was delicious, next time too will buy.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ が 美味しけれ ば、次 も 買い ます。
+        english: If this cake is delicious, I'll buy it again next time.
+        hint: 「ば」 is a general condition, but 「たら」 is often preferred when the condition is specific and
+          the action of buying again depends on the tasting being 'completed'.
+    scene: A person is trying a new cake and considering buying it again.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+  - english: If you're free, let's watch a movie together.
+    japanese:
+      - 暇 だっ たら、一緒 に 映画 を 観よう。
+      - 暇 だっ たら、一緒 に 映画 を 観 ましょう。
+    english_literally: If free, together movie let's watch.
+    competing_grammar:
+      - competing_japanese:
+          - 暇 なら、一緒 に 映画 を 観よう。
+        english: If you're free, let's watch a movie together.
+        hint: Both are possible, but 「たら」 often feels more like a direct proposal contingent on the stated
+          condition. 「なら」 might feel more like a general observation or a suggestion based on assumed
+          freedom.
+    scene: Two friends deciding on an activity.
+    register: shitashii kuchō (intimate)
+    setting: friendly
+    conjugation: conditional (～たら)
+  - english: If you become a doctor, you'll be able to help many people.
+    japanese:
+      - 医者 に なっ たら、たくさん の 人 を 助け られる でしょう。
+      - 医者 に なっ たら、たくさん の 人 を 助け られる だろう。
+    english_literally: Doctor become if, many people will be able to help.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 に なれ ば、たくさん の 人 を 助け られる でしょう。
+        english: If you become a doctor, you'll be able to help many people.
+        hint: Both are valid. 「たら」 emphasizes the completion of becoming a doctor as the prerequisite
+          for helping people. 「ば」 expresses a general logical consequence.
+    scene: A parent encouraging their child's career aspirations.
+    register: teineigo (polite)
+    setting: inspirational
+    conjugation: conditional (～たら)
+  - english: If you touch that, it's dangerous.
+    japanese:
+      - それ に 触っ たら、危ない よ。
+      - それ に 触っ たら、危ない です よ。
+    english_literally: That touched if, dangerous is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - それ に 触る と、危ない よ。
+        english: If you touch that, it's dangerous (automatically).
+        hint: 「と」 implies an automatic or consistent danger. 「たら」 states a potential dangerous outcome
+          *if* the action is completed, making it a warning for a specific instance.
+    scene: A parent warning a child about a dangerous object.
+    register: casual
+    setting: commanding
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「よ」 (yo) at the end adds a sense of warning or emphasis, typical in a parent-child
+      interaction. The `〜たら` conditional combined with `危ない` (abunai - dangerous) makes it a direct and
+      immediate warning about a specific potential action.
+  - english: Once you start, you won't be able to stop.
+    japanese:
+      - 始め たら、止まら ない よ。
+      - 始め たら、止まり ませ ん よ。
+    english_literally: Started if, will not stop, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 始めれ ば、止まら ない よ。
+        english: If you start, you won't be able to stop.
+        hint: Both are valid. 「たら」 emphasizes the *completion* of starting as the point of no return.
+          「ば」 indicates a general conditional relationship.
+    scene: A person describing the addictive nature of a game or hobby.
+    register: casual
+    setting: humorous
+    conjugation: conditional (～たら)
+  - english: If you hear any strange rumors, please tell me immediately.
+    japanese:
+      - 何 か 変 な 噂 を 聞い たら、すぐ に 教え て ください。
+      - 何 か 変 な 噂 を 聞い たら、すぐ に 教え て。
+    english_literally: Something strange rumor heard if, immediately please tell.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 変 な 噂 を 聞け ば、すぐ に 教え て ください。
+        english: If you hear any strange rumors, please tell me immediately.
+        hint: While `〜ば` can be used, `〜たら` is often preferred when making requests or commands that are
+          contingent on a specific event happening.
+    scene: A manager instructing their team to report any issues.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: conditional (～たら)
+  - english: If it were true, that would be amazing.
+    japanese:
+      - それ が 本当 だっ たら、すごい こと だ ね。
+      - それ が 本当 だっ たら、すごい こと です ね。
+    english_literally: That true if, amazing thing is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - それ が 本当 なら ば、すごい こと だ ね。
+        english: If that were true, that would be amazing.
+        hint: Both are possible. `〜たら` is often used for hypothetical situations that, if realized, would
+          lead to a significant outcome. `〜ならば` (a more formal version of `〜なら`) states a condition based
+          on a presumption.
+    scene: Two people discussing a fantastic but possibly untrue story.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+post_example_writeup: The examples illustrate `〜たら`'s flexibility across various parts of speech and contexts,
+  from simple hypothetical statements to sequential actions and unexpected discoveries. Pay attention
+  to how the completion or realization of the first clause is key to understanding its usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たら

@@ -1,0 +1,405 @@
+grammar_point: ようになる (to come to be)
+learn_before:
+  - ように〜てほしい (want someone to act in a certain way)
+meaning: To reach the point that, To come to be that, To turn into
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ようになる
+    rarity: common
+    meaning: to reach the point that
+  - conjugation-type: non-past polite (～ます)
+    form: ようになります
+    rarity: common
+    meaning: will reach the point that
+  - conjugation-type: negative plain (～ない)
+    form: ようにならない
+    rarity: common
+    meaning: to not reach the point that
+  - conjugation-type: negative non-past polite (～ません)
+    form: ようになりません
+    rarity: common
+    meaning: will not reach the point that
+  - conjugation-type: past plain (～た)
+    form: ようになった
+    rarity: common
+    meaning: reached the point that
+  - conjugation-type: past polite (～ました)
+    form: ようになりました
+    rarity: common
+    meaning: reached the point that
+  - conjugation-type: negative past plain (～なかった)
+    form: ようにならなかった
+    rarity: common
+    meaning: did not reach the point that
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ようになりませんでした
+    rarity: common
+    meaning: did not reach the point that
+  - conjugation-type: te-form (～て)
+    form: ようになって
+    rarity: common
+    meaning: having reached the point that
+  - conjugation-type: conditional (～ば)
+    form: ようになれば
+    rarity: uncommon
+    meaning: if it reaches the point that
+  - conjugation-type: conditional (～たら)
+    form: ようになったら
+    rarity: uncommon
+    meaning: if it reaches the point that
+  - conjugation-type: volitional (～よう)
+    form: ようになろう
+    rarity: very rare
+    meaning: let's reach the point that
+  - conjugation-type: volitional polite (～ましょう)
+    form: ようになりましょう
+    rarity: very rare
+    meaning: let's reach the point that
+  - conjugation-type: desiderative (～たい)
+    form: ようになりたい
+    rarity: common
+    meaning: want to reach the point that
+  - conjugation-type: imperative polite (～なさい)
+    form: ようになってください
+    rarity: uncommon
+    meaning: please reach the point that
+pronunciation:
+  katakana: ヨウニナル
+  romaji: yō ni naru
+formation:
+  Verb (plain form, non-past) + ようになる: Indicates a natural or gradual change to a new state or ability.
+  Verb (plain form, negative non-past) + ようになる: Indicates a natural or gradual change to a state of not
+    doing something or losing an ability.
+jlpt: N4
+etymology: The grammar point 「ようになる」 is formed from the noun 「よう」 (yō), derived from 「様」 (sama/yō), meaning
+  'manner' or 'way', combined with the particle 「に」 (ni), indicating a resultant state or direction, and
+  the verb 「なる」 (naru), meaning 'to become'. Thus, it literally means 'to become in such a way' or 'to
+  become in a state of doing X', evolving to denote a gradual transition or the acquisition of a new state
+  or ability.
+writeup: |-
+  The grammar point 「ようになる」 signifies a natural or gradual transition into a new state, habit, or ability. It conveys that a particular action or condition has 'reached the point where' it can or cannot be done, or that one has 'come to be able to' or 'come to not do' something. This construction implies an organic change over time, rather than a deliberate decision or effort. For example, 「日本語 が 話せる ようになる」 means 'to become able to speak Japanese' (implying a learning process).
+
+  It is typically attached to the plain, non-past form of a verb. When expressing an acquired ability, the potential form of the verb is used (e.g., 泳げるようになる - 'to become able to swim'). Conversely, when indicating that one has stopped doing something or lost an ability, the negative plain form is used (e.g., お酒 を 飲まない ようになる - 'to come to not drink alcohol anymore').
+
+  A notable point is with suru verbs. Since suru verbs do not typically have a separate potential form, できる is used in conjunction with them. For instance, instead of 勉強するようになる, it becomes 勉強できるようになる ('to become able to study').
+
+  While 「ようになる」 often implies a gradual change, it can also describe a sudden shift in state when combined with adverbs like 急に (kyū ni, 'suddenly'), as long as the change is a natural outcome rather than an intentional act.
+false_friends:
+  - term: ようにする
+    meaning: To try to, To make sure to, To endeavor to
+    kind: similar expression
+    nuance: Unlike 「ようになる」, 「ようにする」 indicates a conscious effort or intention to do something.
+    grammar_point: ようにする (make an effort to)
+  - term: ことになる
+    meaning: It will end up being, It is the result of, It has been decided that
+    kind: often confused with
+    nuance: Unlike 「ようになる」, 「ことになる」 indicates a result or decision, not a change in ability or natural
+      progression.
+    grammar_point: '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - term: ように (purpose or desired state)
+    meaning: So that, In order to, In such a way that
+    kind: often confused with
+    nuance: Unlike 「ようになる」, 「ように」 is used to express purpose or manner.
+    grammar_point: ように (purpose or desired state)
+post_false_friends_writeup: To avoid confusing 「ようになる」 with similar expressions, remember that 「ようになる」
+  specifically indicates a change or transition to a new state or ability. 「ようにする」 implies effort, 「ことになる」
+  implies a result, and 「ように」 indicates purpose or manner.
+examples:
+  - english: I will study every day until I become able to speak Japanese.
+    japanese:
+      - 日本 語 が 話せる {よう に なる} まで、毎日 勉強 し ます。
+      - 日本 語 が 話せる {よう に なる} まで、毎日 勉強 する つもり です。
+      - 日本 語 が 話せる {よう に なる} まで、日々 勉強 に 励み ます。
+    english_literally: Until Japanese speaking able become, every day study do.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 話せ ます。
+        english: I can speak Japanese.
+        hint: 「話せます」 simply states a current ability. We're looking for a phrase that expresses the process
+          of acquiring that ability over time.
+      - competing_japanese:
+          - 日本 語 を 話す こと が でき ます。
+        english: I am able to speak Japanese.
+        hint: 「話す こと が できます」 also states a current ability. The sentence implies a goal of reaching that
+          ability, which 「ようになる」 conveys.
+      - competing_japanese:
+          - 日本 語 が 話せる {よう に} 毎日 勉強 し ます。
+        english: I will study every day so that I can speak Japanese.
+        hint: 「～ように」 expresses purpose or manner ('so that I can speak'). 「～ようになる」 indicates a natural
+          or gradual change, focusing on the acquisition of the ability itself.
+      - competing_japanese:
+          - 日本 語 が 話せる まで、毎日 勉強 し ます。
+        english: I will study every day until I can speak Japanese.
+        hint: Omitting 「ようになる」 here makes it sound like you're studying *until* you achieve the ability,
+          rather than emphasizing the process of *becoming* able to speak. 「ようになる」 highlights the transition.
+    scene: A new language learner discussing their study plan with a tutor.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+  - english: Recently, I have come to not drink coffee anymore.
+    japanese:
+      - 最近、コーヒー を 飲ま ない {よう に なっ た}。
+      - 最近、コーヒー を 飲ま ない {よう に なっ て き まし た}。
+      - 最近 は、コーヒー を 飲ま ない {よう に なり まし た}。
+    english_literally: Recently, coffee drink not became.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、コーヒー を 飲み ませ ん。
+        english: Recently, I don't drink coffee.
+        hint: 「飲みません」 states a current state or habit. The sentence implies a *change* in habit that occurred
+          naturally over time, which 「ようになった」 expresses.
+      - competing_japanese:
+          - 最近、コーヒー を 飲む の を やめ まし た。
+        english: Recently, I quit drinking coffee.
+        hint: 「やめました」 suggests a conscious decision to stop. 「飲まなくなった」 implies a more natural or gradual
+          cessation of the habit.
+      - competing_japanese:
+          - 最近、コーヒー を 飲む の が 嫌い に なり まし た。
+        english: Recently, I came to dislike drinking coffee.
+        hint: This implies a change in preference. While it can lead to not drinking coffee, 「飲まなくなった」
+          more directly describes the change in the *action* or habit itself.
+      - competing_japanese:
+          - 最近、コーヒー を 飲ま ない {よう に し て い ます}。
+        english: Recently, I make sure not to drink coffee.
+        hint: 「ようにしている」 implies a conscious effort to maintain a habit or state. 「ようになる」 indicates a more
+          natural or gradual change in habit.
+    scene: A man explaining to a friend why he's not ordering coffee.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: Someday, I want to become able to fix computers by myself.
+    japanese:
+      - いつ か、自分 で パソコン を 直せる {よう に なり たい} です。
+      - いつ か、自分 で パソコン を 直せる {よう に なり たい} な。
+      - いつ か、自分 で パソコン を 修理 できる {よう に なり たい} と 思い ます。
+    english_literally: Someday, self by computer fixable want to become.
+    competing_grammar:
+      - competing_japanese:
+          - いつ か、自分 で パソコン を 直し たい です。
+        english: Someday, I want to fix computers by myself.
+        hint: 「直したい」 expresses a desire to perform the action. The sentence highlights the desire to *acquire
+          the skill* or ability to fix computers, not just to perform the action, emphasizing the learning
+          process that 「ようになりたい」 implies.
+      - competing_japanese:
+          - いつ か、自分 で パソコン を 直せる {よう に し たい です}。
+        english: Someday, I want to make it so that I can fix computers by myself.
+        hint: 「ようにしたい」 implies a conscious effort or decision to achieve the ability. 「ようになりたい」 is more
+          about a natural progression or acquisition of that ability.
+      - competing_japanese:
+          - いつ か、自分 で パソコン を 直せる はず です。
+        english: Someday, I should be able to fix computers by myself.
+        hint: 「はず」 expresses expectation or likelihood, not a desire to *become able* to do something
+          through a process of change.
+    scene: A woman sharing her aspiration with a family member.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: desiderative (～たい)
+    speaker_gender: female
+  - english: Please practice more and quickly become able to play skillfully.
+    japanese:
+      - もっと 練習 し て、早く 上手 に 弾ける {よう に なっ て ください}。
+      - もっと 練習 し て、早く 上手 に 弾ける {よう に なっ て ほしい} です。
+      - もっと 練習 し て、早く 上手 に 弾ける {よう に なっ て くれる} と 嬉しい です。
+    english_literally: More practice do, quickly skillful play able please become.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 練習 し て、早く 上手 に 弾い て ください。
+        english: Please practice more and quickly play skillfully.
+        hint: 「弾いてください」 is a direct request to perform the action. The sentence directs the student to
+          *develop the ability* to play skillfully over time, not just to play skillfully immediately,
+          which 「ようになってください」 emphasizes.
+      - competing_japanese:
+          - もっと 練習 し て、早く 上手 に 弾ける {よう に し て ください}。
+        english: Please practice more and make it so that you can play skillfully.
+        hint: 「ようにしてください」 implies an effort to make something happen. 「ようになってください」 suggests a natural
+          development or progression to that state as a result of practice.
+    scene: A music teacher instructing a student.
+    register: meirei-kei no teineigo (polite imperative)
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+    speaker_age: older
+  - english: From next month, it will become the case that you cannot smoke in this area.
+    japanese:
+      - 来月 から、この エリア で は タバコ が 吸え ない {よう に なり ます}。
+      - 来月 から、この エリア で は タバコ が 吸え ない {よう に なっ て しまい ます}。
+      - 来月 から、この エリア で は 喫煙 が 禁止 さ れる {よう に なり ます}。
+    english_literally: Next month from, this area in tobacco cannot smoke become.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 から、この エリア で は タバコ が 吸え ませ ん。
+        english: From next month, you cannot smoke in this area.
+        hint: 「吸えません」 states a future inability or prohibition. The sentence indicates a *transition*
+          to a new policy or state where smoking becomes prohibited, highlighting the change over time
+          that 「ようになります」 conveys.
+      - competing_japanese:
+          - 来月 から、この エリア で は タバコ を 吸う こと が でき ませ ん。
+        english: This is a direct statement of inability. 「ようになります」 specifically expresses that something
+          *will become* the case, indicating a change in the established norm.
+        hint: This is a direct statement of inability. 「ようになります」 specifically expresses that something
+          *will become* the case, indicating a change in the established norm.
+      - competing_japanese:
+          - 来月 から、この エリア で は タバコ が 吸え ない {こと に なり ます}。
+        english: From next month, it will be decided that you cannot smoke in this area.
+        hint: 「ことになる」 implies a decision or a consequence, often by external forces. While similar, 「ようになります」
+          focuses more on the natural or official progression into a new state.
+    scene: A public announcement at a workplace.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+  - english: I started walking every day, so my legs became strong.
+    japanese:
+      - 毎日 歩く {よう に なり まし た} の で、足 が 丈夫 に なり まし た。
+      - 毎日 歩く {よう に なっ た} の で、足 が 丈夫 に なっ た。
+      - 毎日 歩く {よう に なり まし た}。その 結果、足 が 丈夫 に なり まし た。
+    english_literally: Every day walk became, so legs strong became.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 歩き まし た。足 が 丈夫 に なり まし た。
+        english: I walked every day. My legs became strong.
+        hint: This simply lists two sequential events. The sentence connects the *change in habit* (starting
+          to walk daily) directly to the resulting physical change (stronger legs), emphasizing the acquired
+          habit which 「ようになりました」 expresses.
+      - competing_japanese:
+          - 毎日 歩き 始め て、足 が 丈夫 に なり まし た。
+        english: I started walking every day, and my legs became strong.
+        hint: 「歩き始めて」 implies the beginning of the action. 「歩くようになった」 focuses on the habit becoming established
+          as a new state.
+    scene: An elderly person talking about their health improvement to their doctor.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_age: older
+  - english: He gradually became able to solve even difficult problems.
+    japanese:
+      - 彼 は だんだん 難しい 問題 も 解ける {よう に なっ た}。
+      - 彼 は だんだん 難しい 問題 も 解ける {よう に なり まし た}。
+      - 彼 は 徐々 に 難しい 問題 も 解ける {よう に なっ た}。
+    english_literally: He gradually difficult problem also solveable became.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 難しい 問題 も 解け ます。
+        english: He can solve difficult problems.
+        hint: 「解けます」 simply states a current ability. The sentence emphasizes the *gradual development*
+          of the ability to solve difficult problems, suggesting a learning curve that 「ようになった」 accurately
+          reflects.
+    scene: A teacher discussing a student's progress.
+    register: semi-formal
+    setting: academic
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: As a result of long practice, I became able to do a handstand.
+    japanese:
+      - 長い 間 練習 し た 結果、逆立ち が できる {よう に なっ た}。
+      - 長い 間 練習 し た 結果、逆立ち が できる {よう に なり まし た}。
+      - 長い 間 練習 し た おかげ で、逆立ち が できる {よう に なっ た}。
+    english_literally: Long time practice did result, handstand able to do became.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 間 練習 し た 結果、逆立ち が でき まし た。
+        english: As a result of long practice, I was able to do a handstand.
+        hint: 「できました」 states the completion of the action or the presence of the ability. The sentence
+          highlights the *acquisition of a new physical ability* through sustained effort, emphasizing
+          the transition from inability to ability, which 「できるようになった」 effectively conveys.
+      - competing_japanese:
+          - 長い 間 練習 し た 結果、逆立ち を する こと が でき まし た。
+        english: As a result of long practice, I was able to do a handstand.
+        hint: Similar to 「できました」, this focuses on the ability at a specific point in time. 「できるようになった」
+          stresses the process of *becoming* able.
+    scene: A person showing off a new skill to friends.
+    register: casual
+    setting: excited
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+  - english: After living in Japan for a long time, I've come to understand subtle nuances in conversation.
+    japanese:
+      - 日本 に 長く 住む {よう に なっ て}、会話 の 微妙 な ニュアンス が 分かる よう に なり まし た。
+      - 日本 に 長く 住む {よう に なっ て}、会話 の 細かい ニュアンス まで わかる よう に なっ た よ。
+      - 長年 日本 に 居住 する {よう に なっ て}、対話 の 機微 を 理解 できる よう に なり まし た。
+    english_literally: Japan in long live become, conversation's subtle nuances understand become.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 長く 住ん で、会話 の 微妙 な ニュアンス が 分かり ます。
+        english: After living in Japan for a long time, I understand subtle nuances in conversation.
+        hint: This sentence describes a present state directly resulting from past action. 「～ようになって」 emphasizes
+          the *process* of change and acquisition of the ability over time.
+      - competing_japanese:
+          - 日本 に 長く 住ん だら、会話 の 微妙 な ニュアンス が 分かる でしょう。
+        english: If you live in Japan for a long time, you will probably understand subtle nuances in
+          conversation.
+        hint: This is a conditional statement about a future outcome. We're looking for an expression
+          that signifies a change that has already occurred over a period.
+    scene: A foreign resident reflecting on their language acquisition journey.
+    register: semi-formal
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: The 「～になって」 form here highlights the **process** of change that occurred over an extended
+      period. It suggests that *due to* the prolonged living in Japan, the speaker naturally developed
+      the ability to understand nuanced conversation. This phrasing emphasizes the gradual nature of the
+      acquisition of this skill.
+  - english: If I become able to speak Japanese fluently, I want to travel all over Japan.
+    japanese:
+      - 日本 語 が ペラペラ 話せる {よう に なっ たら}、日本 中 を 旅 し たい です。
+      - 日本 語 が ペラペラ 話せる {よう に なっ たら}、きっと 日本 全国 を 旅行 する ぞ！
+      - 日本 語 を 流暢 に 話せる {よう に なっ たら}、日本 列島 を 巡る の が 夢 です。
+    english_literally: Japanese fluently speakable become if, Japan whole travel want to do.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が ペラペラ 話せれ ば、日本 中 を 旅 し たい です。
+        english: If I can speak Japanese fluently, I want to travel all over Japan.
+        hint: While 「～ば」 is also a conditional, 「～たら」 (as used with 「ようになったら」) often implies a completion
+          of the condition leading to the subsequent action or desire. This subtle difference makes 「ようになったら」
+          a natural choice when talking about achieving a new state or ability.
+      - competing_japanese:
+          - 日本 語 が ペラペラ 話せ ます。日本 中 を 旅 し たい です。
+        english: I can speak Japanese fluently. I want to travel all over Japan.
+        hint: This simply states a current ability and a desire. The sentence implies a *future* acquisition
+          of ability as a prerequisite for traveling, which 「ようになったら」 effectively conveys.
+    scene: A student discussing their dreams with a friend.
+    register: teineigo (polite)
+    setting: optimistic
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「～ようになったら」 establishes a **future condition** where the speaker has successfully achieved
+      the ability to speak Japanese fluently. The desire to travel stems from this achieved state, emphasizing
+      the *result* of the gradual process of becoming fluent. The choice of 「ペラペラ」 also adds a touch of
+      casualness despite the polite 「です」 ending, common in aspirational speech among friends.
+  - english: If a child becomes able to tie their shoes by themselves, they will gain confidence.
+    japanese:
+      - 子供 が 自分 で 靴紐 を 結べる {よう に なれ ば}、自信 が つく でしょう。
+      - 子供 が 自分 で 靴紐 を 結べる {よう に なれ ば}、自己 肯定 感 が 高まる よ。
+      - 子供 が 自分 で 靴紐 を 結ぶ こと が できる {よう に なれ ば}、自立 心 が 育ま れる はず です。
+    english_literally: Child self by shoelace able to tie if becomes, confidence gains will.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 自分 で 靴紐 を 結べれ ば、自信 が つく でしょう。
+        english: If a child can tie their shoelaces by themselves, they will gain confidence.
+        hint: While 「結べれば」 states the conditional ability, 「ようになれば」 specifically emphasizes the *process
+          of acquiring* that ability and the positive outcome of that change.
+      - competing_japanese:
+          - 子供 が 自分 で 靴紐 を 結ぶ と、自信 が つく でしょう。
+        english: When a child ties their shoelaces by themselves, they will gain confidence.
+        hint: 「～と」 expresses a general truth or immediate consequence. 「ようになれば」 highlights the developmental
+          change from not being able to tie shoes to becoming able to do so.
+      - competing_japanese:
+          - 子供 が 自分 で 靴紐 を 結べる {よう に する こと で}、自信 を つけ させ ます。
+        english: By making it so a child can tie their shoelaces by themselves, we make them gain confidence.
+        hint: 「ようにする」 implies intentional effort by an external party. 「ようになれば」 focuses on the child's
+          natural development and the consequence.
+    scene: A parent discussing child development with another parent.
+    register: casual
+    setting: informative
+    conjugation: conditional (～ば)
+    nuance: This example uses 「ようになれば」 to describe a natural developmental milestone. It emphasizes the
+      child's progression towards a new capability and the subsequent positive emotional growth. The nuance
+      is that this confidence comes *as a result* of the gradual change in ability.
+post_example_writeup: The examples above demonstrate how 「ようになる」 is used to express a change in state
+  or ability, whether it's gaining a new skill, forming a new habit, or undergoing a transformation due
+  to external circumstances. It distinctly marks the *process* of becoming, emphasizing a gradual, natural
+  progression rather than a sudden, intentional act.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ようになる

@@ -1,0 +1,208 @@
+grammar_point: が原因で (due to)
+learn_before:
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - 主に (mainly)
+meaning: due to; because of; as a result of (negative outcome)
+pronunciation:
+  katakana: ガゲンインデ
+  romaji: ga gen'in de
+formation:
+  Noun が 原因で: Indicates that the preceding noun is the cause of a negative or undesirable event.
+  Plain form Sentence ことが 原因で: Indicates that the preceding plain form sentence/situation is the cause
+    of a negative or undesirable event.
+jlpt: N3
+etymology: The phrase combines the noun 原因 (gen'in), meaning "cause" or "origin," with the particle で
+  (de), which here denotes reason or cause. Thus, it literally means "by/with the cause," strongly emphasizing
+  the direct link between the preceding element and the subsequent outcome. This direct attribution is
+  why it's often used for negative results, as it pinpoints the source of the problem.
+writeup: が原因で is a Japanese grammar pattern used to explain the reason or cause behind an event or situation,
+  particularly when the outcome is undesirable, negative, or problematic. It literally translates to "due
+  to [Noun/Event] being the cause." While it can sometimes be used neutrally, its primary nuance is to
+  attribute a negative consequence to a specific cause. This makes it distinct from more general causal
+  particles like から or ので, which can be used for any kind of outcome. It's frequently encountered in news
+  reports, formal analyses, or discussions where accountability or a clear chain of events leading to
+  a problem is being established. It carries a strong sense of direct causation and often implies that
+  the preceding cause is the main, and often problematic, factor.
+false_friends:
+  - term: 〜ために (because of・for the sake of)
+    meaning: because of, for the sake of, in order to
+    kind: similar expression
+    nuance: ために can express cause/reason, purpose, or benefit, and can be neutral or convey a positive
+      nuance. が原因で specifically points to a cause of a negative outcome.
+    grammar_point: <suggest>:Verb[casual・い-Adj・な-Adjな・Nounの]ため(に)
+  - term: 〜によって (cause・reason)
+    meaning: due to, by means of, depending on, according to
+    kind: similar expression
+    nuance: によって can express cause/reason, but also means/method, or an agent in a passive sentence. While
+      it can be used for negative outcomes, it doesn't inherently carry the "negative consequence" nuance
+      as strongly as が原因で.
+    grammar_point: <suggest>:Nounによって (cause・reason)
+post_false_friends_writeup: When choosing between が原因で and similar expressions like 〜ために or 〜によって, consider
+  the nuance of the consequence. が原因で is best suited for situations where the cause led to an undesirable
+  or problematic result. While 〜ために and 〜によって can also state a cause, they are more neutral and can describe
+  causes for positive or neutral outcomes. Think of が原因で as highlighting the "root cause" of a problem.
+examples:
+  - english: Due to heavy rain, the event was cancelled.
+    japanese:
+      - 大雨 {が 原因 で}、イベント は 中止 に なっ た。
+      - 大雨 {が 原因 で}、イベント は 中止 に なり まし た。
+    english_literally: Heavy rain being the cause, the event was cancelled.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 {だ から}、イベント は 中止 に なっ た。
+        english: The event was cancelled because of heavy rain.
+        hint: から is a general reason, but が原因で specifically emphasizes that the rain was the *cause* of
+          the cancellation, often implying a negative impact. We're looking for an expression that attributes
+          a specific negative event to its cause.
+    scene: Two friends are discussing an outdoor event that couldn't happen.
+    register: casual
+    setting: friendly
+  - english: The accident occurred due to human error.
+    japanese:
+      - 人的 ミス {が 原因 で}、事故 が 発生 し まし た。
+      - 人的 ミス {が 原因 で}、事故 が 発生 し た。
+    english_literally: Human error being the cause, an accident occurred.
+    competing_grammar:
+      - competing_japanese:
+          - 人的 ミス {に よっ て}、事故 が 発生 し まし た。
+        english: An accident occurred by means of human error.
+        hint: によって can also express cause, but が原因で more strongly implies the human error was the *root
+          cause* of the accident, often used when explaining problematic outcomes. We're looking for an
+          expression that clearly states the negative cause.
+    scene: A manager is presenting a safety report to the team.
+    register: formal
+    setting: professional
+  - english: The project failed because the budget was insufficient.
+    japanese:
+      - 予算 が 不足 し て い た こと {が 原因 で}、プロジェクト は 失敗 し まし た。
+      - 予算 が 不足 し て い た こと {が 原因 で}、プロジェクト は 失敗 し た。
+    english_literally: The budget being insufficient being the cause, the project failed.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が 不足 し て い た こと {の ため に}、プロジェクト は 失敗 し まし た。
+        english: The project failed for the sake of the budget being insufficient.
+        hint: While のために can express cause, it often implies purpose or benefit. が原因で explicitly points
+          to the insufficient budget as the *source* of the failure, which is a negative outcome. We're
+          looking for a clear cause of a problematic situation.
+    scene: Colleagues are discussing the reasons for a failed project.
+    register: semi-formal
+    setting: professional
+  - english: My cold got worse because of overwork.
+    japanese:
+      - 無理 {が 原因 で}、風邪 が ひどく なっ た の。
+      - 無理 {が 原因 で}、風邪 が ひどく なっ た。
+    english_literally: Overwork being the cause, my cold became worse.
+    competing_grammar:
+      - competing_japanese:
+          - 無理 {だ から}、風邪 が ひどく なっ た の。
+        english: My cold got worse because of overwork.
+        hint: から is a general reason, but が原因で more directly attributes the worsening cold to the specific
+          cause of overwork, implying it's a problematic result. We're looking for a direct cause of a
+          negative personal experience.
+    scene: A woman is talking to her friend about her health struggles.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of の at the end of the sentence gives it a feminine, explanatory, and slightly soft
+      tone. 無理が原因で clearly states the undesirable cause of her cold worsening.
+  - english: The power outage was caused by a system malfunction.
+    japanese:
+      - システム の 不 具合 {が 原因 で}、停電 が 起き まし た。
+      - システム の 不 具合 {が 原因 で}、停電 が 起き た。
+    english_literally: A system malfunction being the cause, a power outage occurred.
+    competing_grammar:
+      - competing_japanese:
+          - システム の 不 具合 {に より}、停電 が 起き まし た。
+        english: A power outage occurred due to a system malfunction.
+        hint: により (more formal form of によって) can also state a cause, but が原因で puts stronger emphasis on
+          the malfunction as the direct root *cause* of the power outage. We're looking for the specific
+          source of a problem.
+    scene: A news anchor is reporting on a recent incident.
+    register: formal
+    setting: informative
+  - english: He lost his job because he was always late for work.
+    japanese:
+      - 彼 が いつ も 遅刻 し て い た こと {が 原因 で}、会社 を クビ に なっ た らしい よ。
+      - 彼 が いつ も 遅刻 し て い た こと {が 原因 で}、会社 を クビ に なっ た そう です。
+    english_literally: Him always being late being the cause, he was apparently fired from the company.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が いつ も 遅刻 し て い た {から}、会社 を クビ に なっ た らしい よ。
+        english: He was fired from the company because he was always late.
+        hint: While から states a reason, が原因で explicitly identifies his chronic lateness as the *direct
+          cause* leading to the negative consequence of being fired. We're looking for the primary reason
+          for an unfortunate outcome.
+    scene: Two older men are chatting casually about a former colleague's unfortunate situation.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: older
+    nuance: The casual tone and use of らしいよ (it seems, I heard) are typical of older male conversation,
+      particularly when discussing sensitive topics indirectly. 遅刻していたことが原因で clearly attributes the firing
+      to his habitual tardiness.
+  - english: Global warming is mainly due to carbon dioxide emissions.
+    japanese:
+      - 地球 温暖 化 は 主に 二 酸化 炭素 の 排出 {が 原因 で} ある。
+      - 地球 温暖 化 は 主に 二 酸化 炭素 の 排出 {が 原因 です}。
+    english_literally: Global warming is mainly carbon dioxide emissions being the cause.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 温暖 化 は 主に 二 酸化 炭素 の 排出 {に よる} もの で ある。
+        english: Global warming is mainly something resulting from carbon dioxide emissions.
+        hint: による indicates a result or origin, but が原因で more directly states that the emissions are the
+          *root cause* of global warming. We're looking for the fundamental cause in a factual statement.
+    scene: A professor is explaining complex environmental issues in a lecture.
+    register: formal
+    setting: academic
+  - english: Due to my lack of communication, there was a misunderstanding.
+    japanese:
+      - 私 の コミュニケーション 不足 {が 原因 で}、誤解 を 招い て しまい まし た。
+      - 私 の コミュニケーション 不足 {が 原因 で}、誤解 を 招い て しまっ た。
+    english_literally: My lack of communication being the cause, I ended up inviting misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の コミュニケーション 不足 {で}、誤解 を 招い て しまい まし た。
+        english: Due to my lack of communication, there was a misunderstanding.
+        hint: While particle で can denote cause, が原因で adds a stronger, more explicit emphasis on the lack
+          of communication being the *root cause* of the misunderstanding. We're looking for a clear statement
+          of accountability for a negative outcome.
+    scene: An employee is apologizing to their client for an error that occurred.
+    register: formal
+    setting: apologetic
+  - english: Because I didn't study enough, I failed the exam.
+    japanese:
+      - もっと 勉強 し なかっ た こと {が 原因 で}、試験 に 落ち て しまっ た。
+      - もっと 勉強 し なかっ た こと {が 原因 で}、試験 に 落ち て しまい まし た。
+    english_literally: Me not studying more being the cause, I ended up failing the exam.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 勉強 し なかっ た {から}、試験 に 落ち て しまっ た。
+        english: I failed the exam because I didn't study enough.
+        hint: から is a common way to state a reason, but が原因で expresses a stronger sense of direct cause
+          and effect, often with a nuance of regret or self-blame when the outcome is negative. We're
+          looking for a clear, impactful cause of a personal failure.
+    scene: A student is reflecting on their poor exam performance.
+    register: casual
+    setting: reflective
+  - english: Many illnesses are caused by stress.
+    japanese:
+      - ストレス {が 原因 で}、様々 な 病気 が 引き起こさ れ ます。
+      - ストレス {が 原因 で}、様々 な 病気 が 引き起こさ れる。
+    english_literally: Stress being the cause, various illnesses are brought about.
+    competing_grammar:
+      - competing_japanese:
+          - ストレス {の ため に}、様々 な 病気 が 引き起こさ れ ます。
+        english: For the sake of stress, various illnesses are brought about.
+        hint: While のために can express a cause, it often has a nuance of purpose or benefit, which doesn't
+          fit here. が原因で explicitly identifies stress as the *causal factor* for illnesses. We're looking
+          for a clear cause of a problematic condition.
+    scene: A doctor is explaining the health risks associated with stress.
+    register: formal
+    setting: serious
+post_example_writeup: As illustrated in these examples, が原因で is a potent phrase for attributing negative
+  outcomes to their specific causes. Its directness makes it suitable for both formal and informal contexts
+  where the focus is on identifying the source of a problem.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/が原因で

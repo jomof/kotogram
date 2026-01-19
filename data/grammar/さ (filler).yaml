@@ -1,0 +1,260 @@
+grammar_point: さ (filler)
+learn_before:
+  - さ (interjection)
+meaning: Like, you know, you see, listen, uhh
+pronunciation:
+  katakana: サ
+  romaji: sa
+formation:
+  Any position within a sentence: Creates thinking time or softens the tone.
+  Verb/Adjective/Noun + さ: When followed by the sentence-ending particle 「あ」, it can further emphasize
+    the softening or drawing out of a thought, often creating a 「さあ」 sound, or simply be a standalone
+    interjection to get attention before speaking further. This variant often appears at the beginning
+    of a statement or after a conjunction.
+jlpt: N3
+etymology: The filler 「さ」 is believed to have originated from the sentence-ending particle 「さ」, which
+  is used to add emphasis or seek agreement. Over time, particularly in casual speech, this particle evolved
+  into a versatile interjection used to fill pauses, soften speech, and manage conversational flow. Its
+  function of
+writeup: |-
+  The interjection 「さ」 is a common feature of casual Japanese speech, often heard among close friends, family, and colleagues with whom one has a relaxed relationship. Its usage can be compared to English fillers like "like," "you know," or "uhm," but it also carries additional nuances.
+
+  ### Functions of 「さ」:
+
+  *   **Pause Filler/Thought Gathering**: It can be used to fill a pause while the speaker gathers their thoughts, making the conversation sound more natural and less abrupt.
+  *   **Softening Tone**: 「さ」 can soften a statement or question, especially when bringing up a sensitive topic or making a request. It can make a direct statement sound less demanding or harsh.
+  *   **Attention-Grabbing**: When placed at the beginning of a sentence or phrase, especially with a drawn-out pronunciation like 「さあ」, it can serve to get the listener's attention before introducing new information.
+  *   **Signaling Hesitation or Mild Surprise**: It can subtly indicate that the speaker is reflecting, slightly bewildered, or searching for the right words.
+  *   **Conversational Flow**: It helps maintain the flow of conversation, indicating that the speaker is not finished speaking and is merely pausing.
+
+  While 「さ」 does not carry specific grammatical meaning on its own in this usage, its strategic placement and pronunciation are crucial for conveying the speaker's intent and emotion. It is a hallmark of natural, informal Japanese discourse.
+false_friends:
+  - term: さ (casual emphasis)
+    meaning: casual emphasis; indicates assertion, confirmation, or a light suggestion
+    kind: similar expression
+    nuance: While both can be translated as 'You see' or provide emphasis, the filler 「さ」 is primarily
+      used to fill pauses and soften speech, often internal to a sentence, whereas 「さ (casual emphasis)」
+      is a sentence-ending particle that asserts or confirms a statement.
+    grammar_point: さ (casual emphasis)
+  - term: さ (interjection)
+    meaning: All right, There we go, Now, You see, Well (I don't know, let me see)
+    kind: similar expression
+    nuance: The filler 「さ」 tends to be interspersed within sentences as a verbal pause or softener. In
+      contrast, the interjection 「さ」 typically appears at the beginning of a sentence or as a standalone
+      utterance to signal a new topic, a sudden realization, or to get attention, often implying a more
+      decisive or anticipatory tone.
+    grammar_point: さ (interjection)
+post_false_friends_writeup: To distinguish between the filler 「さ」 and the related interjection/sentence-ending
+  particle 「さ」, pay close attention to its position and the surrounding context. The filler 「さ」 often
+  appears mid-sentence or to smoothly transition, creating a sense of natural, unforced speech. The sentence-ending
+  「さ」, on the other hand, provides emphasis or seeks agreement, and the standalone interjection 「さ」 acts
+  as a conversational opener or prompt. The filler is about maintaining flow, while the others are about
+  signaling intent or adding emphasis.
+examples:
+  - english: Hey, you know, do you remember the money I lent you last month? I'd be happy if you could
+      return it soon.
+    japanese:
+      - あの {さ}、先月 貸し た お 金、覚え てる？そろそろ 返し て くれる と 嬉しい な。
+      - あの {さあ}、先月 貸し た お 金、覚え てる？そろそろ 返し て くれる と 嬉しい な。
+    english_literally: Hey, you know, the money I lent last month, do you remember? I'd be happy if you
+      could return it soon.
+    competing_grammar:
+      - competing_japanese:
+          - あの、先月 貸し た お 金、覚え てる？そろそろ 返し て くれる と 嬉しい な {。}
+        english: Hey, do you remember the money I lent you last month? I'd be happy if you could return
+          it soon.
+        hint: Without 「あのさ」, the opening sounds more abrupt and direct, lacking the gentle, hesitant nuance
+          that is often used when bringing up a sensitive topic. We're looking for a way to soften the
+          opening and imply a slight pause or hesitation.
+    scene: A student gently reminds a friend about a debt.
+    register: casual
+    setting: friendly
+  - english: Hey, listen. Actually, my girlfriend, you know, suddenly said she wants to break up. What
+      should I do?
+    japanese:
+      - ねえ 聞い て よ。実 は 彼女 が {さ}、突然 別れ たい って 言い 出し た ん だ。どう しよう？
+      - ねえ 聞い て よ。実 は 彼女 が {さあ}、突然 別れ たい って 言い 出し た ん だ。どう しよう？
+    english_literally: Hey, listen. Actually, my girlfriend, you know, suddenly said she wants to break
+      up. What should I do?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ 聞い て よ。実 は 彼女 が 突然 別れ たい って 言い 出し た ん だ。どう しよう {？}
+        english: Hey, listen. Actually, my girlfriend suddenly said she wants to break up. What should
+          I do?
+        hint: Omitting 「さ」 makes the sentence sound more like a direct report of facts rather than a raw,
+          emotional confession. We're looking for an expression that conveys a moment of internal processing
+          or emotional impact.
+    scene: A young man confiding in his best friend about a sudden breakup.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: male
+  - english: I'm going on a trip to Kyoto next time, so... do you have any recommended restaurants?
+    japanese:
+      - 今度、京都 に 旅行 に 行く ん だ けど {さ}…お 勧め の 食事 処 は ある？
+      - 今度、京都 に 旅行 に 行く ん だ けど {さあ}…お 勧め の 食事 処 は ある？
+    english_literally: Next time, I'm going on a trip to Kyoto, so... are there any recommended restaurants?
+    competing_grammar:
+      - competing_japanese:
+          - 今度、京都 に 旅行 に 行く ん だ けど…お 勧め の 食事 処 は ある {？}
+        english: I'm going on a trip to Kyoto next time, but... do you have any recommended restaurants?
+        hint: Without 「さ」, the transition from the premise to the question is more abrupt, losing the
+          casual, conversational flow. We're looking for a way to smoothly introduce a new topic while
+          inviting a response.
+    scene: A person asking a colleague for dining recommendations for an upcoming trip.
+    register: casual
+    setting: friendly
+  - english: My son suddenly called me in the middle of the night yesterday, and, you know, it really
+      worried me.
+    japanese:
+      - 昨日 の 夜中 に 息子 から 急 に 電話 が 来 て {さあ}、本当 に 心配 し た よ。
+      - 昨日 の 夜中 に 息子 から 急 に 電話 が 来 て {さ}、本当 に 心配 し た よ。
+    english_literally: Yesterday in the middle of the night, from my son, a sudden phone call came, and,
+      you know, I really worried.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 夜中 に 息子 から 急 に 電話 が 来 て、本当 に 心配 し た よ {。}
+        english: My son suddenly called me in the middle of the night yesterday, and it really worried
+          me.
+        hint: The absence of 「さあ」 makes the statement sound more like a factual report than an emotional
+          recounting of a past event. We're looking for an expression that adds a reflective or emotional
+          pause.
+    scene: A parent sharing a stressful experience about their child with a close friend.
+    register: casual
+    setting: reflective
+    speaker_age: older
+  - english: I don't want you to tell anyone, but, you know, he actually got promoted.
+    japanese:
+      - 誰 に も 言わ ない で ほしい ん だ けど {さ}、彼、実 は 立場 が 上がっ た ん だ。
+      - 誰 に も 言わ ない で ほしい ん だ けど {さあ}、彼、実 は 立場 が 上がっ た ん だ。
+    english_literally: I don't want you to tell anyone, but, you know, he, actually, his position went
+      up.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 に も 言わ ない で ほしい ん だ けど、彼、実 は 立場 が 上がっ た ん だ {。}
+        english: I don't want you to tell anyone, but he actually got promoted.
+        hint: Without 「さ」, the secret might feel less intimate or confidential, lacking the subtle pause
+          that conveys the speaker's emphasis on discretion. We're looking for a way to add a confidential
+          nuance to the disclosure.
+    scene: Two friends sharing a confidential piece of news.
+    register: casual
+    setting: informative
+  - english: Actually, you know, ever since we met, I've always thought you were wonderful.
+    japanese:
+      - 実 は {さ}、会っ た 時 から ずっと 君 の こと が 素敵 だ な って 思っ て た ん だ。
+      - 実 は {さあ}、会っ た 時 から ずっと 君 の こと が 素敵 だ な って 思っ て た ん だ。
+    english_literally: Actually, you know, from the time we met, I always thought you were wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - 実 は 会っ た 時 から ずっと 君 の こと が 素敵 だ な って 思っ て た ん だ {。}
+        english: Actually, ever since we met, I've always thought you were wonderful.
+        hint: Omitting 「さ」 makes the compliment sound more straightforward, possibly less natural or slightly
+          too direct for a first date. We're looking for a way to soften the confession, making it sound
+          more thoughtful and sincere.
+    scene: A male speaker subtly confessing admiration to a female listener on a first date.
+    register: casual
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+  - english: Hey, you know, that plan we talked about before, what happened with it?
+    japanese:
+      - ほら {さ}、前 に 話し た あの 計画、どう なっ た？
+      - ほら {さあ}、前 に 話し た あの 計画、どう なっ た？
+    english_literally: Hey, you know, that plan we talked about before, what happened to it?
+    competing_grammar:
+      - competing_japanese:
+          - ほら、前 に 話し た あの 計画、どう なっ た {？}
+        english: Hey, that plan we talked about before, what happened with it?
+        hint: Without 「さ」, the question could come across as a more direct inquiry or even a challenge,
+          lacking the softer, guiding tone desired in this context. We're looking for a way to add a gentle
+          prompt or reminder.
+    scene: An older person gently prompting a younger colleague about an ongoing project.
+    register: casual
+    setting: informative
+    speaker_age: older
+  - english: We haven't decided what to do for dinner tonight yet, you know, is there anything you want
+      to eat?
+    japanese:
+      - 今夜 の 夕食、まだ 何 も 決まっ て ない ん だ けど {さ}、何 か 食べ たい もの ある？
+      - 今夜 の 夕食、まだ 何 も 決まっ て ない ん だ けど {さあ}、何 か 食べ たい もの ある？
+    english_literally: Tonight's dinner, still nothing decided yet, you know, is there anything you want
+      to eat?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 の 夕食、まだ 何 も 決まっ て ない ん だ けど、何 か 食べ たい もの ある {？}
+        english: We haven't decided what to do for dinner tonight yet, is there anything you want to eat?
+        hint: Omitting 「さ」 makes the question sound more direct and less inviting of open discussion.
+          We're looking for a way to open a conversational space and encourage input.
+    scene: Friends discussing dinner plans, inviting suggestions.
+    register: casual
+    setting: negotiating
+  - english: Hey, you know, I want you to listen, but I'm going to be participating in a new project starting
+      next month!
+    japanese:
+      - あの {さ}、聞い て ほしい ん だ けど、来月 から 新しい プロジェクト に 参加 する こと に なっ た ん だ！
+      - あの {さあ}、聞い て ほしい ん だ けど、来月 から 新しい プロジェクト に 参加 する こと に なっ た ん だ！
+    english_literally: Hey, you know, I want you to listen, but from next month I'm going to participate
+      in a new project!
+    competing_grammar:
+      - competing_japanese:
+          - あの、聞い て ほしい ん だ けど、来月 から 新しい プロジェクト に 参加 する こと に なっ た ん だ {！}
+        english: Hey, I want you to listen, but I'm going to be participating in a new project starting
+          next month!
+        hint: Without the initial 「あのさ」, the excitement and the build-up to the news are lessened, making
+          the announcement feel less personal or enthusiastic. We're looking for an attention-grabber
+          that conveys eagerness.
+    scene: Someone excitedly sharing professional news with a close colleague or friend.
+    register: casual
+    setting: excited
+  - english: You know, Dad scolded me this morning for my messy room.
+    japanese:
+      - 今朝 {さあ}、父 に 部屋 が 汚い って 怒ら れ た よ。
+      - 今朝 {さ}、父 に 部屋 が 汚い って 怒ら れ た よ。
+    english_literally: This morning, you know, from my father, I was scolded that my room was messy.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝、父 に 部屋 が 汚い って 怒ら れ た よ {。}
+        english: This morning, Dad scolded me for my messy room.
+        hint: The absence of 「さあ」 makes the statement sound like a straightforward report of an event,
+          lacking the subtle implication of resignation or complaint. We're looking for a way to add a
+          touch of emotion, like a sigh or mild complaint.
+    scene: A teenager complaining to a friend about being scolded by their parent.
+    register: casual
+    setting: melancholic
+    speaker_age: younger
+  - english: Hey, you know, actually, I got a perfect score on the last test!
+    japanese:
+      - あの {さ}、実 は、この 前 の テスト、満点 だっ た ん だ！
+      - あの {さあ}、実 は、この 前 の テスト、満点 だっ た ん だ！
+    english_literally: Hey, you know, actually, the last test, I got a perfect score!
+    competing_grammar:
+      - competing_japanese:
+          - あの、実 は、この 前 の テスト、満点 だっ た ん だ {！}
+        english: Hey, actually, I got a perfect score on the last test!
+        hint: Without the initial 「あのさ」, the announcement might feel less casual and exciting, missing
+          the eager attention-grabbing nuance. We're looking for a casual way to draw attention before
+          sharing exciting news.
+    scene: A student excitedly sharing personal achievement with a close friend.
+    register: casual
+    setting: excited
+  - english: Listen, you know, recently work has been too busy, and I'm not feeling well.
+    japanese:
+      - ちょっと {さ}、最近 仕事 が 忙し すぎ て、体調 が 悪い ん だ。
+      - ちょっと {さあ}、最近 仕事 が 忙し すぎ て、体調 が 悪い ん だ。
+    english_literally: A little, you know, recently work has been too busy, and I'm not feeling well.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと、最近 仕事 が 忙し すぎ て、体調 が 悪い ん だ {。}
+        english: Recently work has been too busy, and I'm not feeling well.
+        hint: Omitting 「さ」 makes the statement sound more direct and less inviting of empathy, losing
+          the gentle lead-in to a personal complaint. We're looking for a way to soften the disclosure
+          of a personal issue.
+    scene: A person sharing a personal concern with a close friend.
+    register: casual
+    setting: serious
+post_example_writeup: As these examples demonstrate, 「さ」 is often used to manage the flow of conversation,
+  to introduce a topic, or to add a personal touch to a statement. Its strategic placement can transform
+  a simple sentence into one that conveys more nuance, hesitation, or intimacy, depending on the context
+  and the speaker's intention. It's a subtle but powerful tool in casual Japanese communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/さ-filler

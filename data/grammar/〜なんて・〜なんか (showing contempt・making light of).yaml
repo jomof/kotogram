@@ -1,0 +1,241 @@
+grammar_point: 〜なんて・〜なんか (showing contempt・making light of)
+learn_before:
+  - なんて (colloquial emphasis inquiry)
+meaning: Expressing that something is trivial, unworthy, or surprisingly (often negatively) impactful.
+pronunciation:
+  katakana: ナンテ・ナンカ
+  romaji: nante・nanka
+formation:
+  Noun + なんて/なんか: Used to express disdain or surprise regarding a noun.
+  Verb[plain form] + なんて/なんか: Used to express disdain or surprise regarding an action.
+  い-Adjective[plain form] + なんて/なんか: Used to express disdain or surprise regarding a quality.
+  な-Adjective[plain form] + なんて/なんか: Used to express disdain or surprise regarding a quality.
+  Sentence[plain form] + なんて/なんか: Used to express disdain or surprise regarding an entire statement.
+jlpt: N3
+etymology: 「なんて」 is a contraction of 「などという」 (nado to iu, "to say such things as") or 「なんという」 (nan to
+  iu, "what a..."). 「なんか」 is a more colloquial contraction of 「などか」 or 「なにがしか」 (both related to "something
+  like that" or "somehow"). The root 「など」 inherently implies "such as" or "among other things," leading
+  to its use for providing examples. When used with a strong emotional tone, these forms evolved to convey
+  emphasis, often negative, signifying "something like *that* (and nothing more important)" or "what kind
+  of (unbelievable/contemptible thing)!" This evolution from a descriptive "such as" to an emotive "such
+  a (trivial/awful) thing" highlights how linguistic particles can acquire pragmatic functions through
+  frequent use in emotionally charged contexts.
+writeup: |-
+  「〜なんて」 and 「〜なんか」 are versatile, casual particles primarily used to express a speaker's strong emotional reaction, often disdain, contempt, surprise, or belittlement towards the preceding word or statement. While their basic meaning can be similar to 「など」 (and the listing 「なんか」), which simply lists examples, 「なんて」 and 「なんか」 inject a significant emotional component.
+
+  When used to belittle or express contempt, they imply that the speaker considers the subject trivial, unworthy, or ridiculous. For example, if someone says 「英語なんて簡単だ」 (Eigo nante kantan da), they are not just saying "English is easy"; they are implying "English, *of all things*, is easy" or "English is *just* easy," perhaps with a dismissive or even arrogant tone.
+
+  They can attach to nouns, verbs (plain form), い-adjectives (plain form), な-adjectives (plain form), or even entire sentences (plain form). The choice between 「なんて」 and 「なんか」 is largely stylistic and regional, with 「なんか」 often feeling slightly more informal or rough.
+false_friends:
+  - term: 〜など・〜なんか
+    meaning: listing examples, such as
+    kind: similar expression
+    nuance: Unlike this grammar point which expresses disdain or surprise, 「など」 and 「なんか」 in this usage
+      simply provide examples without strong emotional connotation. We're looking for a grammar point
+      that expresses a negative reaction to the thing being mentioned, not just listing it.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: しか〜ない
+    meaning: only, nothing but
+    kind: similar expression
+    nuance: While 「しか〜ない」 strictly limits quantity or scope, 「なんて/なんか」 implies something is trivial or
+      unimportant, which can sometimes convey a similar sense of "only just this." However, 「しか〜ない」 is
+      a more objective limitation, whereas 「なんて/なんか」 is subjective and emotional. We're looking for an
+      emotional dismissal, not a factual limitation.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜なんて (what a...!)
+    meaning: what a...!, how...! (expressing strong surprise, sometimes admiration)
+    kind: similar expression
+    nuance: This use of 「なんて」 conveys strong surprise or exclamation, which can be positive or negative.
+      The current grammar point focuses specifically on belittling or contempt. While both are emotive,
+      the specific *type* of emotion differs. We're looking for a way to show something is trivial or
+      contemptible, not just surprising.
+    grammar_point: <suggest>:〜なんて (what a...!)
+  - term: ばかり (only・just, often with nuance of excess)
+    meaning: only; just; (implying excess)
+    kind: often confused with
+    nuance: 「ばかり」 focuses on exclusivity or often, excessive focus on one thing. While it can imply a
+      sense of "just this one trivial thing," it lacks the inherent emotional charge of disdain or contempt
+      found in 「なんて/なんか」. We're looking for a way to express belittlement, not merely a limited scope.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+post_false_friends_writeup: |-
+  It is crucial to differentiate 「〜なんて」 and 「〜なんか」 (contempt/belittling) from their homophonous counterparts. When used simply for listing examples, 「〜など」 and 「〜なんか」 function neutrally, like "and so on" or "such as." For instance, 「野菜など食べない」 (Yasai nado tabenai) means "I don't eat vegetables, etc.," merely providing an example, whereas 「野菜なんて食べない」 (Yasai nante tabenai) means "I wouldn't eat *something like* vegetables!" implying strong dislike or disdain.
+  Furthermore, 「なんて」 can be used as an exclamation to express strong, sometimes even positive, surprise or admiration, as in 「なんて美しいんだろう！」 (Nante utsukushii n darou!) meaning "How beautiful it is!" This differs from its belittling use where the emotion is typically negative or dismissive. The key is to pay attention to the context and the speaker's tone. The nuance of belittling or contempt usually comes through a slightly condescending or exasperated tone.
+examples:
+  - english: I would never eat something like natto.
+    japanese:
+      - 納豆 {なんて} 食べ ない よ。
+      - 納豆 {なん か} 食べ ませ ん。
+      - 納豆 {なん か} 食わ ねぇ。
+    english_literally: Natto, of all things, I don't eat.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 は 食べ ない よ。
+        english: I don't eat natto.
+        hint: This is a neutral statement. We're looking for an expression that conveys strong dislike
+          or disdain for natto.
+      - competing_japanese:
+          - 納豆 しか 食べ ない よ。
+        english: I only eat natto.
+        hint: This expresses limitation, saying only natto is eaten. We're looking for an expression of
+          dislike.
+    scene: A friend offers natto to someone who dislikes it.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「納豆なんて」 emphasizes the speaker's strong aversion to natto, implying it's something
+      undesirable. The 「よ」 adds a gentle assertion.
+  - english: How could you say such a terrible thing to your friend?
+    japanese:
+      - 友達 に そんな ひどい こと {言う なんて}。
+      - 友達 に そんな ひどい こと {言う なんか}。
+      - 友達 に そんな ひどい こと を {言っ ちゃう なんて}。
+    english_literally: To a friend, such a terrible thing to say, such as that.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 に そんな ひどい こと を 言っ た。
+        english: You said such a terrible thing to your friend.
+        hint: This is a factual statement. We're looking for an expression of shock and disapproval of
+          the action.
+    scene: Someone is shocked by a rude comment made by another person.
+    register: casual
+    setting: serious
+  - english: This exam was ridiculously easy!
+    japanese:
+      - この テスト、{簡単 なんて}。
+      - この テスト、{簡単 な ん か}。
+      - この テスト、{簡単 だっ た なんて}！
+    english_literally: This test, easy, of all things.
+    competing_grammar:
+      - competing_japanese:
+          - この テスト は 簡単 だっ た。
+        english: This test was easy.
+        hint: This is a neutral statement. We're looking for an
+    scene: A student walks out of an exam, surprised by its simplicity.
+    register: casual
+    setting: academic
+    nuance: 「簡単なんて」 expresses surprise and a slight sense of dismissiveness or disbelief at how easy the
+      test was, implying it was almost too easy to be called an exam.
+  - english: To think he's so lazy, it's just unbelievable.
+    japanese:
+      - 彼 が {怠惰 なんて}、信じ られ ない。
+      - 彼 が {怠惰 な ん か}、信じ られ ない わ。
+      - 彼 が {そんな に 怠惰 だ なんて}、信じ られ ませ ん。
+    english_literally: Him being lazy, of all things, unbelievable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 怠惰 だ。
+        english: He is lazy.
+        hint: This is a neutral description. We're looking for an expression of disbelief and negative
+          judgment.
+    scene: Two colleagues are discussing a coworker's surprising laziness.
+    register: casual
+    setting: professional
+    nuance: 「怠惰なんて」 expresses surprise and strong disapproval of his laziness, implying it's an unexpected
+      and negative quality.
+  - english: I can't believe you'd say such a thing.
+    japanese:
+      - 君 が そんな こと {言う なんて}。
+      - 君 が そんな こと {言う なんか}。
+      - あなた が そんな こと {言っ た なんて}。
+    english_literally: You saying such a thing, such as that.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が そんな こと を 言っ た の は 驚き だ。
+        english: It's surprising that you said such a thing.
+        hint: This is a more formal and less emotionally charged statement of surprise. We're looking
+          for an expression of shock and disapproval.
+    scene: A parent is scolding their child for a rude remark.
+    register: casual
+    setting: serious
+    speaker_age: older
+    nuance: 「君がそんなこと言うなんて」 expresses profound disappointment and disbelief, suggesting that the child's
+      statement is far beneath their expectations.
+  - english: I don't need things like excuses.
+    japanese:
+      - 言い訳 {なん か} いら ない よ。
+      - 言い訳 {なんて} いら ない わ。
+      - 言い訳 {なん か} 要り ませ ん。
+    english_literally: Excuses, of all things, I don't need.
+    competing_grammar:
+      - competing_japanese:
+          - 言い訳 は いら ない よ。
+        english: I don't need excuses.
+        hint: This is a neutral refusal. We're looking for an expression that dismisses excuses as unworthy.
+    scene: A manager sternly tells an employee to stop making excuses.
+    register: semi-formal
+    setting: professional
+    nuance: 「言い訳なんか」 dismisses excuses as trivial and undesirable, emphasizing the speaker's impatience
+      or irritation. 「よ」 adds emphasis to the assertion.
+  - english: Who would want to work on a day off?
+    japanese:
+      - 休み の 日 に {働く なんか} 嫌 だ。
+      - 休み の 日 に {働く なんて} 嫌 だ ね。
+      - 休日 に {働く なんか} 嫌 でしょう。
+    english_literally: On a day off, working, of all things, is disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 休み の 日 に 働く の は 嫌 だ。
+        english: I don't like working on my day off.
+        hint: This is a neutral statement of dislike. We're looking for an expression of strong aversion,
+          belittling the idea of working.
+    scene: Friends are complaining about work on their day off.
+    register: casual
+    setting: friendly
+    nuance: 「働くなんか」 expresses strong reluctance and disdain for the idea of working on a day off, implying
+      it's an absurd or undesirable activity.
+  - english: Being healthy is just a given, isn't it?
+    japanese:
+      - 健康 {なん か} 当たり前 だ。
+      - 健康 {なんて} 当たり前 じゃ ない？
+      - 健康 {なん か} 当然 だ よ な。
+    english_literally: Health, of all things, is obvious.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 は 当たり前 だ。
+        english: Health is obvious.
+        hint: This is a factual statement. We're looking for a dismissive attitude towards health.
+    scene: A young person dismisses the importance of health.
+    register: casual
+    setting: casual slang
+    speaker_age: younger
+    nuance: 「健康なんか」 shows a dismissive attitude towards health, implying it's a basic state that doesn't
+      require special attention or gratitude. This nuance is common among younger speakers who might take
+      their health for granted.
+  - english: I can't believe he actually won!
+    japanese:
+      - 彼 が {勝つ なんて}、嘘 みたい だ。
+      - 彼 が {勝つ なんか}、嘘 みたい。
+      - 彼 が {勝っ ちゃっ た なんて}、信じ られ ない。
+    english_literally: Him winning, of all things, seems like a lie.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 勝っ た こと は 驚き だ。
+        english: It's surprising that he won.
+        hint: This is a more neutral statement of surprise. We're looking for an expression of strong
+          disbelief and a sense of 'how could this happen?'.
+    scene: Someone reacts with disbelief to an unexpected victory.
+    register: casual
+    setting: excited
+    nuance: 「勝つなんて」 expresses strong disbelief and shock at an unexpected outcome, often implying that
+      the speaker thought the person was not capable of winning.
+  - english: I couldn't understand that kind of childish story.
+    japanese:
+      - 子供 だまし の 小説 {なん か} 読め なかっ た。
+      - 子供 だまし の 小説 {なんて} 読め なかっ た わ。
+      - 子供 だまし の 小説 {なん か} 読み たく なかっ た です。
+    english_literally: Such as a childish trick novel, I couldn't read.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 だまし の 小説 は 読め なかっ た。
+        english: I couldn't read the childish trick novel.
+        hint: This is a neutral statement of inability. We're looking for an expression of disdain for
+          the novel's quality.
+    scene: A person criticizes a book they found unsatisfying.
+    register: casual
+    setting: reflective
+    nuance: 「小説なんか」 expresses disdain for the quality of the novel, implying it's too simplistic or poorly
+      written to be worth reading.
+post_example_writeup: These examples illustrate how 「なんて」 and 「なんか」 are used to inject a speaker's subjective,
+  often negative, emotional response into a statement. The precise nuance—be it contempt, surprise, or
+  dismissiveness—is heavily dependent on context and tone. Mastering these particles allows for more natural
+  and emotionally expressive Japanese communication.

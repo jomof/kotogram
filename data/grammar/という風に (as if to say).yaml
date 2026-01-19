@@ -1,0 +1,335 @@
+grammar_point: という風に (as if to say)
+learn_before:
+  - なにか・なにも (something or nothing)
+  - にかかっている (to depend on)
+  - の無さ・のなさ (lack of)
+  - や (non-exhaustive list)
+meaning: As if to say, as if to suggest that, in such a way that, things like
+pronunciation:
+  katakana: トイウフウニ
+  romaji: to iu fuu ni
+formation:
+  '[Sentence] + という風に': Expresses a manner or way of doing something, suggesting a specific meaning or
+    intention.
+  '[Noun Phrase 1] + は + [Description 1], [Noun Phrase 2] + は + [Description 2], という風に': Lists examples
+    or elements in a series, indicating 'and so on' or 'in this manner'.
+jlpt: N2
+etymology: This grammar point combines 「と言う (to iu)」, meaning 'to say', with 「風に (fuu ni)」, meaning 'in
+  the manner of' or 'like'. The literal sense is 'in a way that says', indicating the speaker's perception
+  or interpretation of a situation rather than a definitive statement.
+writeup: 「という風に」 functions similarly to 「ふうに」, indicating something is done 'in the way of' or 'as if'.
+  It expresses a speaker's interpretation or uncertainty about a situation. It's like saying something
+  is done 'as if to say (A)', 'as if to suggest (A)', or 'in such a way that (A)'. Because 「という」 often
+  quotes the statement before it, pay attention to what 「という風に」 emphasizes. This grammar point can follow
+  verbs or nouns. This expression highlights the speaker's **uncertainty** about the actual situation;
+  it is used to comment on appearances or perceived intentions.
+false_friends:
+  - term: ふうに
+    meaning: In a ~ way, In a way that suggests, Like ~
+    kind: synonym
+    nuance: 「ふうに」 is similar but doesn't have the explicit 'saying' or 'suggesting' aspect of 「という風に」.
+      It simply describes the manner in which something is done.
+    grammar_point: ふうに (in a manner that suggests)
+  - term: ように・ような
+    meaning: As/like, Just like
+    kind: synonym
+    nuance: 「ように」 and 「ような」 are used for comparisons and resemblances. Unlike 「という風に」, they don't carry
+      the nuance of implied speech or suggestion.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: かのようだ・かのように
+    meaning: As if, Just like
+    kind: synonym
+    nuance: 「かのようだ」 emphasizes the hypothetical nature of a situation, whereas 「という風に」 focuses on the
+      perceived manner or intention behind an non-verbal action.
+    grammar_point: かのようだ・かのように (as if)
+post_false_friends_writeup: While these expressions are similar, 「という風に」 specifically implies a perception
+  or interpretation that something is being done or said in a particular way. It's about how something
+  is *perceived* or *interpreted* by the speaker, adding a layer of nuance beyond a simple statement of
+  fact or direct comparison. Pay attention to the subtle difference between this phrase and direct quotation
+  markers like 「と」, or simpler comparative expressions like 「ように」 or 「かのようだ」. Choose 「という風に」 when you
+  want to highlight the implied message or intention behind an action.
+examples:
+  - english: The manager conveyed it as if to say he was leaving early today.
+    japanese:
+      - 部 長 は 今日、早く 帰る {と いう 風 に} 伝え て き た。
+      - 部 長 は 今日、早く 帰る {と いう 風 に} 伝え て き まし た。
+    english_literally: The manager, as if saying 'I will go home early today,' conveyed it.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は 今日、早く 帰る {と} 伝え て き た。
+        english: The manager conveyed that he was leaving early today.
+        hint: Using 「と」 alone implies a direct quote or a definite statement, but 「という風に」 suggests the
+          message was implied or interpreted from the manager's actions, rather than explicitly stated.
+          We're looking for an implied message.
+      - competing_japanese:
+          - 部 長 は 今日、早く 帰る {ふう に} 伝え て き た。
+        english: The manager conveyed it in a way of leaving early today.
+        hint: 「ふうに」 describes the general manner, but 「という風に」 specifically emphasizes the message being
+          conveyed or implied, even if not directly spoken. We're looking for the implied message.
+      - competing_japanese:
+          - 部 長 は 今日、早く 帰る {か の よう に} 伝え て き た。
+        english: The manager conveyed it as if he was leaving early today.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance, 'as if' something is the case. 「という風に」 is
+          closer to interpreting an implied message or intention from someone's actions. We're looking
+          for the implied message.
+    scene: An employee subtly sharing an ambiguous message received from their manager.
+    register: semi-formal
+    setting: informative
+  - english: He is dedicating himself to work as if his whole life depends on it.
+    japanese:
+      - 彼 は まるで 人生 が かかっ て いる {と いう 風 に} 仕事 に 打ち込ん で いる。
+      - 彼 は まるで 人生 が かかっ て いる {と いう 風 に} 仕事 に 打ち込ん で い ます。
+    english_literally: As if his life depended on it, he is devoting himself to work in such a way.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は まるで 人生 が かかっ て いる {よう に} 仕事 に 打ち込ん で いる。
+        english: He is dedicating himself to work as if his whole life depends on it.
+        hint: While 「ように」 expresses comparison, 「という風に」 implies that his dedication *itself* sends a message
+          or suggests that his life depends on it. We're looking for an action that implies a deep personal
+          stake.
+      - competing_japanese:
+          - 彼 は まるで 人生 が かかっ て いる {ふう に} 仕事 に 打ち込ん で いる。
+        english: He is dedicating himself to work in a way that his whole life depends on it.
+        hint: 「ふうに」 generally describes the manner, but 「という風に」 adds a layer of interpretation, as if
+          his actions are 'saying' or 'suggesting' something. We're looking for an action that implies
+          a deep personal stake.
+      - competing_japanese:
+          - 彼 は まるで 人生 が かかっ て いる {か の よう に} 仕事 に 打ち込ん で いる。
+        english: He is dedicating himself to work as if his whole life depends on it.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on how the manner of doing
+          something *suggests* or *conveys* a particular meaning. We're looking for an action that implies
+          a deep personal stake.
+    scene: Observing a colleague's extreme dedication to their tasks.
+    register: semi-formal
+    setting: serious
+  - english: I had always believed as if to say I could overcome any difficulty.
+    japanese:
+      - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {と いう 風 に} 信じ て い た。
+      - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {と いう 風 に} 信じ て い まし た。
+    english_literally: I always believed, as if saying 'I can overcome any difficulty,' in such a way.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {と} 信じ て い た。
+        english: I had always believed that I could overcome any difficulty.
+        hint: Using 「と」 implies a direct, definite belief. 「という風に」 emphasizes that this belief was held
+          in a way that conveyed or suggested absolute confidence, even if not explicitly stated. We're
+          looking for a belief that felt like a conviction.
+      - competing_japanese:
+          - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {ふう に} 信じ て い た。
+        english: I had always believed in a way that I could overcome any difficulty.
+        hint: 「ふうに」 describes the general manner of believing. 「という風に」 specifically implies that the belief
+          itself had an inherent message or quality of confidence. We're looking for a belief that felt
+          like a conviction.
+      - competing_japanese:
+          - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {よう に} 信じ て い た。
+        english: I had always believed as if I could overcome any difficulty.
+        hint: 「ように」 indicates comparison or resemblance. 「という風に」 is used when the manner of believing
+          itself implies a certain message. We're looking for a belief that felt like a conviction.
+      - competing_japanese:
+          - 私 は ずっと、自分 が どんな 困難 も 乗り越え られる {か の よう に} 信じ て い た。
+        english: I had always believed as if I could overcome any difficulty.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on the inherent message or
+          characteristic of the belief. We're looking for a belief that felt like a conviction.
+    scene: Someone reflecting on their past self-belief before facing a challenge.
+    register: semi-formal
+    setting: reflective
+  - english: 'We proceeded with preparations by dividing responsibilities in the following way: I would
+      handle the presentation, and Yamada-san would handle data analysis.'
+    japanese:
+      - プレゼン は 私、データ 分析 は 山田 さん、{と いう 風 に} 担当 を 分け て 準備 を 進め た。
+      - プレゼン は 私、データ 分析 は 山田 さん、{と いう 風 に} 担当 を 分け て 準備 を 進め まし た。
+    english_literally: Presentation for me, data analysis for Yamada-san, in such a way, we divided responsibilities
+      and proceeded with preparations.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン は 私、データ 分析 は 山田 さん、{と いう よう に} 担当 を 分け て 準備 を 進め た。
+        english: I watched movies, my friend played games, and my sister read books, in this way, each
+          enjoyed the weekend.
+        hint: 「というように」 is for general examples or comparison. 「という風に」 in this context highlights these
+          specific examples as defining the *manner* of division. We're looking for a way to list specific
+          items that illustrate a method.
+    scene: Colleagues discussing how they delegated tasks for a project.
+    register: formal
+    setting: informative
+  - english: She looked at me suspiciously, as if to suggest I was hiding something.
+    japanese:
+      - 彼女 は 私 に、なに か 隠し て いる {と いう 風 に} 疑わし そう に 目 を 向け た。
+      - 彼女 は 私 に、なに か 隠し て いる {と いう 風 に} 疑わし そう に 目 を 向け まし た。
+    english_literally: She turned her suspicious eyes towards me, as if saying 'you are hiding something.'
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 私 に、なに か 隠し て いる {よう に} 疑わし そう に 目 を 向け た。
+        english: She looked at me suspiciously, as if I were hiding something.
+        hint: While 「ように」 expresses comparison, 「という風に」 suggests that her gaze *itself* conveyed or implied
+          the message that you were hiding something. We're looking for an action that implied a specific
+          suspicion.
+      - competing_japanese:
+          - 彼女 は 私 に、なに か 隠し て いる {ふう に} 疑わし そう に 目 を 向け た。
+        english: She looked at me suspiciously, in a manner of hiding something.
+        hint: 「ふうに」 describes the general manner. 「という風に」 specifically emphasizes that her look *suggested*
+          or *implied* a particular thought or message. We're looking for an action that implied a specific
+          suspicion.
+      - competing_japanese:
+          - 彼女 は 私 に、なに か 隠し て いる {か の よう に} 疑わし そう に 目 を 向け た。
+        english: She looked at me suspiciously, as if I were hiding something.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on the interpretation of her
+          gaze as conveying an implied message. We're looking for an action that implied a specific suspicion.
+    scene: A police officer observing a suspect's reaction during an interrogation.
+    register: semi-formal
+    setting: serious
+  - english: The child was crying out as if to say they had a scary dream.
+    japanese:
+      - その 子供 は、怖い 夢 を 見 た {と いう 風 に} 泣き叫ん で い た。
+      - その 子供 は、怖い 夢 を 見 た {と いう 風 に} 泣き叫ん で い まし た。
+    english_literally: That child was crying out as if saying 'I had a scary dream'.
+    competing_grammar:
+      - competing_japanese:
+          - その 子供 は、怖い 夢 を 見 た {よう に} 泣き叫ん で い た。
+        english: The child was crying out as if they had a scary dream.
+        hint: While 「ように」 expresses comparison, 「という風に」 suggests that the child's crying *itself* conveyed
+          or implied the message that they had a scary dream. We're looking for a cry that implies a specific
+          reason.
+      - competing_japanese:
+          - その 子供 は、怖い 夢 を 見 た {ふう に} 泣き叫ん で い た。
+        english: The child was crying out in a way that they had a scary dream.
+        hint: 「ふうに」 describes the general manner of crying. 「という風に」 specifically emphasizes that the crying
+          *implied* a particular reason or message. We're looking for a cry that implies a specific reason.
+      - competing_japanese:
+          - その 子供 は、怖い 夢 を 見 た {か の よう に} 泣き叫ん で い た。
+        english: The child was crying out as if they had a scary dream.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on the interpretation of the
+          child's distress as conveying an implied message. We're looking for a cry that implies a specific
+          reason.
+    scene: A parent comforting their child who just woke up from a nightmare.
+    register: casual
+    setting: melancholic
+  - english: He was speaking pessimistically as if to say the project would fail.
+    japanese:
+      - 彼 は プロジェクト が 失敗 する {と いう 風 に} 悲観 的 に 話し て い た。
+      - 彼 は プロジェクト が 失敗 する {と いう 風 に} 悲観 的 に 話し て い まし た。
+    english_literally: He was speaking pessimistically, as if saying 'the project will fail'.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プロジェクト が 失敗 する {と} 悲観 的 に 話し て い た。
+        english: He was speaking pessimistically that the project would fail.
+        hint: Using 「と」 implies a direct statement. 「という風に」 emphasizes that his pessimistic speech *implied*
+          or *conveyed* the message that the project would fail. We're looking for speech that implies
+          an outcome, not states it directly.
+      - competing_japanese:
+          - 彼 は プロジェクト が 失敗 する {ふう に} 悲観 的 に 話し て い た。
+        english: He was speaking pessimistically in a way that the project would fail.
+        hint: 「ふうに」 describes the general manner of speaking. 「という風に」 specifically emphasizes that his
+          speech *implied* or *conveyed* a particular negative outcome. We're looking for speech that
+          implies an outcome, not states it directly.
+      - competing_japanese:
+          - 彼 は プロジェクト が 失敗 する {よう に} 悲観 的 に 話し て い た。
+        english: He was speaking pessimistically as if the project would fail.
+        hint: 「ように」 expresses comparison. 「という風に」 highlights that his speech *implied* or *conveyed* the
+          message that he project would fail. We're looking for speech that implies an outcome, not states
+          it directly.
+      - competing_japanese:
+          - 彼 は プロジェクト が 失敗 する {か の よう に} 悲観 的 に 話し て い た。
+        english: He was speaking pessimistically as if the project would fail.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on the interpretation of his
+          pessimistic speech as conveying an implied message. We're looking for speech that implies an
+          outcome, not states it directly.
+    scene: A team leader describing a colleague's negative outlook on a new venture.
+    register: semi-formal
+    setting: pessimistic
+  - english: She smiled apologetically, as if to suggest she couldn't come tomorrow.
+    japanese:
+      - 彼女 は、明日 は 来 られ ない {と いう 風 に} 申し訳 な さ そう に 微笑ん だ。
+      - 彼女 は、明日 は 来 られ ない {と いう 風 に} 申し訳 な さ そう に 微笑み まし た。
+    english_literally: She smiled apologetically, as if saying 'I cannot come tomorrow'.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は、明日 は 来 られ ない {と} 申し訳 な さ そう に 微笑ん だ。
+        english: She smiled apologetically that she couldn't come tomorrow.
+        hint: Using 「と」 implies a direct statement. 「という風に」 emphasizes that her smile *implied* or *conveyed*
+          the message that she couldn't come. We're looking for a non-verbal cue that suggests a message.
+      - competing_japanese:
+          - 彼女 は、明日 は 来 られ ない {ふう に} 申し訳 な さ そう に 微笑ん だ。
+        english: She smiled apologetically in a way that she couldn't come tomorrow.
+        hint: 「ふうに」 describes the general manner of smiling. 「という風に」 specifically emphasizes that her
+          smile *implied* or *conveyed* a particular message. We're looking for a non-verbal cue that
+          suggests a message.
+      - competing_japanese:
+          - 彼女 は、明日 は 来 られ ない {よう に} 申し訳 な さ そう に 微笑ん だ。
+        english: She smiled apologetically as if she couldn't come tomorrow.
+        hint: 「ように」 expresses comparison. 「という風に」 highlights that her smile *implied* or *conveyed* the
+          message that she couldn't come. We're looking for a non-verbal cue that suggests a message.
+      - competing_japanese:
+          - 彼女 は、明日 は 来 られ ない {か の よう に} 申し訳 な さ そう に 微笑ん だ。
+        english: She smiled apologetically as if she couldn't come tomorrow.
+        hint: 「かのよう」 emphasizes a hypothetical resemblance. 「という風に」 focuses on the interpretation of her
+          smile as conveying an implied message. We're looking for a non-verbal cue that suggests a message.
+    scene: A person observing a friend who is subtly conveying bad news without speaking.
+    register: semi-formal
+    setting: apologetic
+  - english: 'We each enjoyed our weekend in the following ways: I watched movies, my friend played games,
+      and my sister read books.'
+    japanese:
+      - 私 は 映画、友達 は ゲーム、妹 は 読書、{と いう 風 に} 各々 週末 を 楽しん だ。
+      - 私 は 映画、友達 は ゲーム、妹 は 読書、{と と いう 風 に} 各々 週末 を 楽しみ まし た。
+    english_literally: I movies, friend games, sister reading books, in such a way, each enjoyed the weekend.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 映画、友達 は ゲーム、妹 は 読書、{と いう よう に} 各々 週末 を 楽しん だ。
+        english: I watched movies, my friend played games, and my sister read books, in this way, each
+          enjoyed the weekend.
+        hint: 「というように」 is for general examples or comparison. 「という風に」 in this context highlights these
+          specific examples as defining the *manner* of enjoyment. We're looking for a way to list specific
+          items that illustrate a method.
+    scene: Someone describing how different family members spent their recent weekend.
+    register: casual
+    setting: friendly
+  - english: She whispered to him, as if to say, I don't want to go home today.
+    japanese:
+      - 『今日 は 帰り たく ない な』{と いう 風 に} 彼女 が 彼 に ささやい た。
+      - 『今日 は 帰り たく ない な』{と いう 風 に} 彼女 が 彼 に ささやき まし た。
+    english_literally: As if to say 'I don't want to go home today,' she whispered to him.
+    competing_grammar:
+      - competing_japanese:
+          - 『今日 は 帰り たく ない な』{と} 彼女 が 彼 に ささやい た。
+        english: '''I don''t want to go home today,'' she whispered to him.'
+        hint: Using 「と」 simply marks a direct quote. 「という風に」 adds the nuance that the quote itself was
+          delivered in a *manner* that implied or suggested something beyond the literal words. We're
+          looking for a whispered message with an underlying implication.
+    scene: A woman subtly hinting at staying longer with her partner after a long day.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual final particle 「な」 at the end of 「帰りたくないな」, combined with the context of a female
+      speaker whispering to her male partner, adds a soft, somewhat longing, and intimate nuance appropriate
+      for a younger woman in a close relationship. The use of 「という風に」 indicates that her words were not
+      just a statement but carried a subtle implication, making the listener infer her desire to stay.
+  - english: This restaurant seems to speak to us as if to say, We will create a special time for the
+      two of you.
+    japanese:
+      - この レストラン は、『二 人 の 大切 な 時間 を 演出 し ます』{と いう 風 に} 語りかけ て くる よう だ。
+      - この レストラン は、『二 人 の 大切 な 時間 を 演出 し ます』{と いう 風 に} 語りかけ て くる よう です。
+    english_literally: This restaurant seems to speak to us, as if saying 'We will create a special time
+      for the two of you'.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は、『二 人 の 大切 な 時間 を 演出 し ます』{と} 語りかけ て くる よう だ。
+        english: 'This restaurant seems to speak to us: ''We will create a special time for the two of
+          you.'''
+        hint: Using 「と」 simply marks a direct quote. 「という風に」 adds the nuance that the restaurant's ambiance
+          *itself* conveys or implies this message, as if it's 'speaking' through its atmosphere rather
+          than directly. We're looking for an implied message from the environment.
+    scene: A couple considering a restaurant for an anniversary dinner, impressed by its ambiance.
+    register: semi-formal
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+post_example_writeup: As you can see from the examples, 「という風に」 is often used to describe actions or situations
+  that indirectly convey a message, intention, or characteristic. It's about how something is *perceived*
+  or *interpreted* by the speaker, adding a layer of nuance beyond a simple statement of fact or direct
+  comparison. Pay attention to the subtle difference between this phrase and direct quotation markers
+  like 「と」, or simpler comparative expressions like 「ように」 or 「かのようだ」. While some overlap exists, 「という風に」
+  uniquely captures the idea of an implied 'speech' or inherent suggestion within an action or situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/という風に

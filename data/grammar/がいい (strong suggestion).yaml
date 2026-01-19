@@ -1,0 +1,476 @@
+grammar_point: がいい (strong suggestion)
+learn_before:
+  - な (prohibitive particle)
+meaning: You should, It would be good to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: がいい
+    rarity: common
+    meaning: You should (do something), It would be good to (do something)
+  - conjugation-type: dictionary (plain non-past)
+    form: がよい
+    rarity: common
+    meaning: You should (do something), It would be good to (do something)
+  - conjugation-type: volitional (～よう)
+    form: がよかろう
+    rarity: uncommon
+    meaning: It would probably be good to (do something), You probably should (do something)
+pronunciation:
+  katakana: ガ イイ
+  romaji: ga ii
+formation:
+  Verb in dictionary form + がいい: 'Expresses a strong suggestion or command, often used by someone in a
+    position of authority. Also functions as a strong statement of what is natural, expected, or the only
+    correct course of action, sometimes implying an unavoidable conclusion from the speaker''s perspective.
+    It may also imply that something must happen or is the right thing to do based on the context, almost
+    as if it were a natural or logical outcome. It is a highly assertive form, leaving little room for
+    doubt or argument from the listener. The authority conveyed can stem from various sources: social
+    standing, wisdom, logical deduction, or even a sense of divine right, depending on the speaker and
+    context.'
+jlpt: N1
+etymology: 「がいい」 is derived from the particle 「が」, indicating the subject, and the い-adjective 「いい」 (good).
+  It literally translates to "(it) is good that...", but in usage, it takes on a stronger, commanding
+  tone. Historically, the form 「がよい」 is the classical root, with 「がいい」 emerging as a more colloquial contraction.
+  The volitional form 「がよかろう」 specifically stems from 「がよい」, maintaining the classical inflection. The
+  sense of strong suggestion or command evolved from the inherent implication that the action is the optimal
+  or most appropriate course, thus carrying a definitive and authoritative tone.
+writeup: '「がいい」 combines the particle 「が」 with the い-adjective 「いい」. While it literally means "it is good
+  that...", it functions as a strong suggestion or command. **Important note**: This grammar point is
+  generally used by someone in a position of authority or who perceives themselves to be. Using 「がいい」
+  can sound magnanimous or even pompous if you''re not careful. In many cases, the more literary 良(よ)い
+  may be used in place of いい. Verb + 「がいい」 can be thought of as a far stronger equivalent of 「たほうがいい」
+  "you should (A)", except that it will only ever be used by those that consider their own suggestion
+  as the only correct course of action. Because of its strong connotation, it''s rarely used in everyday
+  conversation. Beyond simple commands, 「がいい」 can also express a strong logical conclusion or what is
+  naturally expected to happen or be done, given the circumstances. It presents an action or state as
+  the definitive, appropriate, or even unavoidable outcome. This usage carries a sense of firm conviction
+  from the speaker, making it a very assertive expression. While grammatically simple, its pragmatic force
+  is quite high, making careful consideration of context and speaker-listener relationship crucial for
+  appropriate use.'
+false_friends:
+  - term: たほうがいい (it's better to)
+    meaning: You should
+    kind: similar expression
+    nuance: Unlike 「がいい」, 「たほうがいい」 offers a more gentle suggestion without the implied authority or command.
+      It's suitable for everyday advice.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: ほうがいい
+    meaning: Is better
+    kind: similar expression
+    nuance: Unlike 「がいい」, which implies a strong, often authoritative directive, 「ほうがいい」 presents something
+      as a better option without conveying a command or strong personal will. It's a statement of preference
+      or a mild recommendation based on a comparison.
+    grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+  - term: べき (should)
+    meaning: Should, Ought to
+    kind: similar expression
+    nuance: While 「べきだ」 expresses obligation or strong advice, it lacks the inherent implied authority
+      or commanding tone of 「がいい」. 「がいい」 often suggests a non-negotiable instruction from a superior,
+      whereas 「べきだ」 implies a logical or moral necessity.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: なさい (polite imperative)
+    meaning: Please do (a polite command)
+    kind: similar expression
+    nuance: 「～なさい」 is a polite command, typically used by someone in a supervisory or teaching role to
+      an inferior (e.g., parent to child, teacher to student). While it is a directive, it lacks the broader,
+      often more formal or dramatic authoritative connotation and non-negotiable nature of 「がいい」. It's
+      softer than 「がいい」 and often used in everyday situations.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: てほしい (I want you to)
+    meaning: I want you to
+    kind: similar expression
+    nuance: 「～てほしい」 expresses the speaker's desire for the listener to perform an action. This is fundamentally
+      different from 「がいい」, which is a strong suggestion or command from the speaker's authoritative stance,
+      not merely a wish.
+    grammar_point: '[Verb-て]ほしい (to want someone to do)'
+post_false_friends_writeup: Be mindful of the degree of forcefulness you want to convey. For polite suggestions
+  or advice, opt for 「たほうがいい」. Reserve 「がいい」 for situations where you have legitimate authority or wish
+  to express a strong recommendation, knowing it may sound somewhat pompous. 「べきだ」 conveys a sense of
+  logical or moral obligation, which is less about direct command and more about what is generally advisable
+  or correct. 「～なさい」 is a softer, polite command, while 「～てほしい」 expresses a personal desire.
+examples:
+  - english: Fear not. You should advance.
+    japanese:
+      - 恐れる こと なかれ。進む {が いい}。
+      - 恐れる こと なかれ。進む {が よい}。
+    english_literally: Fear thing exist not. Advance would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 進む {べき だ}
+        english: You should advance.
+        hint: This scene emphasizes a direct, authoritative command, which 「がいい」 conveys, unlike the general
+          obligation implied by 「べきだ」. The high-stakes military context necessitates immediate, unquestioning
+          compliance. We're looking for a strong, non-negotiable directive.
+      - competing_japanese:
+          - 進ん で {ください}
+        english: Please advance.
+        hint: 「てください」 is too polite and lacks the forceful, non-negotiable nature of a command given on
+          a battlefield. We're looking for a strong command.
+      - competing_japanese:
+          - 進ん だ {方 が いい}
+        english: You'd better advance.
+        hint: This is a gentle suggestion, not a direct command needed in a battle. We're looking for
+          an authoritative command.
+      - competing_japanese:
+          - 進む {方 が いい}
+        english: Advancing is better.
+        hint: This states a preference, not the strong, non-negotiable directive of a commander. We're
+          looking for a command.
+      - competing_japanese:
+          - 進み {なさい}
+        english: Advance.
+        hint: This is a polite command, typically used by a superior to an inferior, but lacks the sheer
+          authority and historical gravitas that 「がいい」 carries in this context. We're looking for a strong,
+          authoritative instruction.
+      - competing_japanese:
+          - 進ん で {ほしい}
+        english: I want you to advance.
+        hint: This expresses the speaker's desire, not a direct command or instruction. We're looking
+          for a strong directive.
+    scene: A general speaking to his soldiers before a battle.
+    register: formal
+    setting: commanding
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The general's direct command uses archaic 「なかれ」 (fear not) emphasizing his authority. 「進む
+      が いい」 is a strong, non-negotiable directive suitable for a leader on the battlefield.
+  - english: Listen to my voice, traveler.
+    japanese:
+      - 我が 声 に 耳 を 傾ける {が よい}、旅人 よ。
+      - 我が 声 に 耳 を 傾ける {が いい}、旅人 よ。
+    english_literally: My voice to ear incline would be good, traveler.
+    competing_grammar:
+      - competing_japanese:
+          - 耳 を 傾ける {べき だ}
+        english: You should listen.
+        hint: 「べきだ」 implies a logical or moral obligation, lacking the mystical or divine authority implied
+          by 「がよい」 from an oracle or deity. We're looking for an authoritative decree.
+      - competing_japanese:
+          - 耳 を 傾け て {ください}
+        english: Please listen.
+        hint: 「てください」 is a polite request, entirely unfitting for a powerful, authoritative figure like
+          an ancient oracle or deity. We're looking for an authoritative decree.
+      - competing_japanese:
+          - 耳 を 傾け た {方 が いい}
+        english: You'd better listen.
+        hint: This is a mild suggestion, not fitting for a divine entity's pronouncement. We're looking
+          for an authoritative decree.
+      - competing_japanese:
+          - 耳 を 傾ける {方 が いい}
+        english: Listening is better.
+        hint: This states a preference, not an authoritative decree. We're looking for a command.
+      - competing_japanese:
+          - 耳 を 傾け {なさい}
+        english: Listen.
+        hint: This is a polite command, not carrying the solemn and ancient authority of an oracle. We're
+          looking for an authoritative decree.
+      - competing_japanese:
+          - 耳 を 傾け て {ほしい}
+        english: I want you to listen.
+        hint: This expresses the speaker's desire, not an imperative from a higher being. We're looking
+          for an authoritative decree.
+    scene: An ancient oracle or deity addressing a human.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「が よい」 instead of 「が いい」 lends an archaic, solemn tone, fitting for an oracle.
+      「我が 声 に 耳 を 傾ける」 (listen to my voice) suggests that her words are of profound importance and must
+      be heeded.
+  - english: Further resistance is futile. You should surrender.
+    japanese:
+      - これ 以上 の 抵抗 は 無益 だ。降伏 する {が よかろう}。
+      - これ 以上 の 抵抗 は 無益 だ。降伏 する {が よかろう}。
+    english_literally: This more resistance is useless. Surrender probably would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 降伏 する {べき だ}
+        english: You should surrender.
+        hint: 「べきだ」 implies a moral obligation, whereas 「がよかろう」 is a strategic recommendation framed as
+          an inevitable and beneficial outcome, suitable for a cunning strategist. We're looking for a
+          strategic conclusion.
+      - competing_japanese:
+          - 降伏 し た {方 が いい}
+        english: You'd better surrender.
+        hint: 「た 方 が いい」 is a mild suggestion, lacking the gravitas and definitive tone of a strategist
+          presenting the most logical course of action in a critical situation. We're looking for a strong,
+          calculated statement.
+      - competing_japanese:
+          - 降伏 する {方 が いい}
+        english: Surrendering is better.
+        hint: This states a preference, not a strategic conclusion presented as the wisest course. We're
+          looking for a calculated statement.
+      - competing_japanese:
+          - 降伏 し {なさい}
+        english: Surrender.
+        hint: This is a polite command, but doesn't convey the sense of logical inevitability and strategic
+          wisdom implied by 「がよかろう」. We're looking for a persuasive strategic statement.
+      - competing_japanese:
+          - 降伏 し て {ほしい}
+        english: I want you to surrender.
+        hint: This expresses the speaker's desire, not a calculated assessment of the optimal outcome.
+          We're looking for a calculated statement.
+    scene: A cunning strategist advising an enemy general to surrender to avoid further bloodshed, implying
+      it's the wisest course.
+    register: formal
+    setting: persuasive
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「これ 以上 の 抵抗 は 無益 だ」 (further resistance is futile) establishes the logical inevitability.
+      「が よかろう」 suggests that surrender is the *wisest* or *most logical* action, presenting it as a firm
+      conclusion rather than a mere suggestion, yet softer than a direct command.
+  - english: People, there is nothing to fear. You should accept my benevolence.
+    japanese:
+      - 民 よ、恐れる こと は ない。我が 寛容 を 受け入れる {が いい}。
+      - 民 よ、恐れる こと は ない。我が 寛容 を 受け入れる {が よい}。
+    english_literally: People, fear thing is not. My benevolence accept would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 受け入れる {べき だ}
+        english: You should accept.
+        hint: 「べきだ」 implies a duty or moral obligation, which doesn't capture the king's self-perception
+          of bestowing a gift or decree, unlike 「がいい」. We're looking for a royal decree.
+      - competing_japanese:
+          - 受け入れ て {ほしい}
+        english: I want you to accept.
+        hint: 「てほしい」 is a request, which completely undermines the king's authoritative and condescending
+          tone. We're looking for a royal decree.
+      - competing_japanese:
+          - 受け入れ た {方 が いい}
+        english: You'd better accept.
+        hint: This is a gentle suggestion, not the condescending decree of a king. We're looking for a
+          royal decree.
+      - competing_japanese:
+          - 受け入れる {方 が いい}
+        english: Accepting is better.
+        hint: This states a preference, not a royal command that implies the recipient has no choice.
+          We're looking for a royal decree.
+      - competing_japanese:
+          - 受け入れ {なさい}
+        english: Accept.
+        hint: This is a polite command, lacking the exaggerated magnanimity and absolute authority of
+          the king's pronouncement. We're looking for a royal decree.
+    scene: A self-important king addressing his subjects, who are actually quite fearful of him.
+    register: formal
+    setting: condescending
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The king's grand address 「民 よ」 (people) and the patronizing phrase 「恐れる こと は ない」 (nothing
+      to fear) highlight his inflated self-importance. 「我が 寛容 を 受け入れる が いい」 (accept my benevolence) functions
+      as a decree, framed as a gift, emphasizing his absolute power.
+  - english: This path is dangerous. You should turn back.
+    japanese:
+      - この 道 は 危険 だ。引き返す {が いい}。
+      - この 道 は 危険 だ。引き返す {が よい}。
+    english_literally: This path is dangerous. Turn back would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 引き返す {べき だ}
+        english: You should turn back.
+        hint: 「べきだ」 is more of a general advisement. 「がいい」 conveys a more direct, urgent instruction from
+          someone with authority derived from experience, as is typical from an elder. We're looking for
+          a strong, protective directive.
+      - competing_japanese:
+          - 引き返し た {方 が いい}
+        english: You'd better turn back.
+        hint: 「た 方 が いい」 is a standard, milder suggestion. 「がいい」 carries a stronger sense of imperative,
+          reflecting the gravity of the elder's warning about a dangerous path. We're looking for a strong,
+          protective directive.
+      - competing_japanese:
+          - 引き返す {方 が いい}
+        english: Turning back is better.
+        hint: This states a preference, not a strong, protective warning from an experienced elder about
+          immediate danger. We're looking for a strong directive.
+      - competing_japanese:
+          - 引き返し {なさい}
+        english: Turn back.
+        hint: This is a polite command, but doesn't convey the serious, protective authority derived from
+          the elder's wisdom in this dangerous situation. We're looking for a strong, protective directive.
+      - competing_japanese:
+          - 引き返し て {ほしい}
+        english: I want you to turn back.
+        hint: This expresses the speaker's desire, not a direct, urgent instruction for safety. We're
+          looking for a strong directive.
+    scene: An experienced elder warning a young, inexperienced traveler about a perilous route.
+    register: formal
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The direct warning 「この 道 は 危険 だ」 (this path is dangerous) from an older female speaker gives
+      weight to her advice. 「引き返す が いい」 is a strong, protective directive rooted in experience, suggesting
+      that her counsel is paramount for the listener's safety.
+  - english: Don't overestimate your own strength. You should solidify your fundamentals more.
+    japanese:
+      - 己 の 力 を 過信 する な。もっと 基礎 を 固める {が いい}。
+      - 己 の 力 を 過信 する な。もっと 基礎 を 固める {が よい}。
+    english_literally: Self's strength overestimate not. More fundamentals solidify would be good.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 基礎 を 固める {べき だ}
+        english: You should solidify your fundamentals more.
+        hint: 「べきだ」 implies a general requirement. 「がいい」 is a direct, authoritative instruction from a
+          master, emphasizing that this specific advice is crucial for project success. We're looking
+          for a firm, instructional directive.
+      - competing_japanese:
+          - もっと 基礎 を 固め た {方 が いい}
+        english: You'd better solidify your fundamentals more.
+        hint: 「た 方 が いい」 is a softer suggestion. For a stern martial arts master, 「がいい」 conveys the necessary
+          firmness and seriousness of the instruction. We're looking for a firm, instructional directive.
+      - competing_japanese:
+          - もっと 基礎 を 固める {方 が いい}
+        english: Solidifying fundamentals more is better.
+        hint: This is a statement of preference, not a firm, instructional directive from a master. We're
+          looking for an authoritative instruction.
+      - competing_japanese:
+          - もっと 基礎 を 固め {なさい}
+        english: Solidify your fundamentals more.
+        hint: This is a polite command, but might lack the inherent, almost philosophical authority that
+          「がいい」 suggests coming from a martial arts master. We're looking for a strong, authoritative
+          instruction.
+      - competing_japanese:
+          - もっと 基礎 を 固め て {ほしい}
+        english: I want you to solidify your fundamentals more.
+        hint: This expresses the master's desire, not a direct, non-negotiable instruction for the pupil's
+          progress. We're looking for an authoritative instruction.
+    scene: A martial arts master giving stern advice to an overconfident pupil.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The master's opening 「己 の 力 を 過信 する な」 (don't overestimate your own strength) is a direct
+      rebuke. 「もっと 基礎 を 固める が いい」 (solidify your fundamentals more) acts as a firm, authoritative instruction,
+      emphasizing the necessity of his advice for the pupil's development.
+  - english: There is no escape now. You should nobly accept your fate.
+    japanese:
+      - もはや 逃げ場 は ない。潔く 運命 を 受け入れる {が いい}。
+      - もはや 逃げ場 は ない。潔く 運命 を 受け入れる {が よい}。
+    english_literally: No longer escape place is not. Nobly fate accept would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 運命 を 受け入れる {べき だ}
+        english: You should accept your fate.
+        hint: 「べきだ」 implies a moral imperative. 「がいい」 emphasizes the unavoidable and absolute nature of
+          the command from a dominant antagonist, leaving no alternative. We're looking for an absolute
+          command.
+      - competing_japanese:
+          - 運命 を 受け入れ た {方 が いい}
+        english: You'd better accept your fate.
+        hint: 「た 方 が いい」 is a gentle suggestion, entirely inconsistent with the dramatic and absolute
+          tone of an antagonist dictating terms of defeat. We're looking for an absolute command.
+      - competing_japanese:
+          - 運命 を 受け入れる {方 が いい}
+        english: Accepting fate is better.
+        hint: This presents an option, not a final, absolute command from an antagonist. We're looking
+          for an absolute command.
+      - competing_japanese:
+          - 運命 を 受け入れ {なさい}
+        english: Accept your fate.
+        hint: This is a polite command, but doesn't convey the same sense of ultimate, unavoidable decree
+          as 「がいい」 from a powerful antagonist. We're looking for an absolute command.
+      - competing_japanese:
+          - 運命 を 受け入れ て {ほしい}
+        english: I want you to accept your fate.
+        hint: This expresses the antagonist's desire, not a non-negotiable declaration of the protagonist's
+          impending fate. We're looking for an absolute command.
+    scene: A powerful antagonist cornering a protagonist, giving a final, absolute declaration.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The antagonist's declaration 「もはや 逃げ場 は ない」 (there is no escape now) sets a desperate tone.
+      「潔く 運命 を 受け入れる が いい」 (nobly accept your fate) is an absolute, unavoidable command, emphasizing the
+      protagonist's lack of agency in the face of insurmountable power.
+  - english: Given these statistics, implementing stricter environmental regulations would be advisable.
+    japanese:
+      - この 統計 から 見る と、より 厳格 な 環境 規制 を 実施 する {が いい}。
+      - この 統計 から 見る と、より 厳格 な 環境 規制 を 実施 する {が よい}。
+    english_literally: This statistics from see if, more strict environmental regulations implement would
+      be good.
+    competing_grammar:
+      - competing_japanese:
+          - 実施 する {べき だ}
+        english: You should implement.
+        hint: 「べきだ」 suggests a general obligation. Here, 「がいい」 emphasizes a definitive conclusion based
+          on presented evidence, reflecting the speaker's firm conviction in the necessity of the action.
+          We're looking for a strong recommendation based on data.
+      - competing_japanese:
+          - 実施 し た {方 が いい}
+        english: You'd better implement.
+        hint: This is a mild suggestion, not the authoritative conclusion derived from scientific analysis.
+          We're looking for a firm recommendation.
+    scene: A scientist presenting research findings and recommendations to a government committee.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「この 統計 から 見る と」 (viewed from these statistics) sets up a logical, data-driven conclusion.
+      「実施 する が いい」 conveys the speaker's strong professional conviction that this is the correct and necessary
+      course of action, not merely a suggestion.
+  - english: To ensure the project's success, we should first reassess the budget.
+    japanese:
+      - プロジェクト の 成功 を 確実 に する ため に は、まず 予算 を 再 評価 する {が いい}。
+      - プロジェクト の 成功 を 確実 に する ため に は、まず 予算 を 再 評価 する {が よい}。
+    english_literally: Project's success secure make for, first budget reassess would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 再 評価 する {べき だ}
+        english: We should reassess.
+        hint: 「べきだ」 indicates a general obligation. The project manager's use of 「がいい」 signals a clear,
+          non-negotiable directive that this specific action is crucial for project success. We're looking
+          for a decisive instructional statement.
+      - competing_japanese:
+          - 再 評価 し た {方 が いい}
+        english: We'd better reassess.
+        hint: This is a softer suggestion. In a professional setting where decisive leadership is needed,
+          「がいい」 conveys a firmer, more authoritative instruction from a project lead. We're looking for
+          a firm, instructional directive.
+    scene: A project manager addressing their team, outlining the critical next step for a struggling
+      project.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The introductory phrase 「プロジェクト の 成功 を 確実 に する ため に は」 (in order to ensure the project's success)
+      provides the context for a necessary action. 「まず 予算 を 再 評価 する が いい」 acts as a direct, authoritative
+      instruction from the project manager, presenting it as the optimal and essential next step.
+  - english: When facing such a challenge, one should not lose sight of their initial purpose.
+    japanese:
+      - この よう な 困難 に 直面 し たら、初め の 志 を 見失わ ない {が いい}。
+      - この よう な 困難 に 直面 し たら、初め の 志 を 見失わ ない {が よい}。
+    english_literally: This kind of difficulty face if, initial purpose lose sight not would be good.
+    competing_grammar:
+      - competing_japanese:
+          - 見失う {べき で ない}
+        english: You should not lose sight.
+        hint: While 「べき」 implies a logical necessity, 「がいい」 (in its negative form) here functions as a
+          profound piece of wisdom or a strong moral imperative, conveying a deeper, more reflective tone
+          suitable for a philosophical reflection. We're looking for a wise, universal principle.
+      - competing_japanese:
+          - 見失わ ない {方 が いい}
+        english: You'd better not lose sight.
+        hint: This is a milder suggestion. For a philosophical statement, 「がいい」 conveys a more absolute
+          and timeless truth about perseverance. We're looking for a strong, reflective truth.
+    scene: A wise individual reflecting on life's difficulties and the importance of perseverance.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This example uses the negative form of the verb, 「見失わ ない」, combined with 「がいい」 to express
+      what one *should not* do. The philosophical tone set by 「この よう な 困難 に 直面 し たら」 (when facing such
+      difficulties) makes 「初め の 志 を 見失わ ない が いい」 a universal piece of advice, almost a proverb, rather
+      than a personal command.
+post_example_writeup: Keep in mind the degree of authority implied by 「がいい」. Using it in the wrong context
+  can come across as arrogant or condescending. Consider alternatives like 「たほうがいい」 for milder suggestions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がいい

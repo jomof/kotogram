@@ -1,0 +1,390 @@
+grammar_point: べく (for the purpose of)
+learn_before:
+  - べくもない (no way to)
+meaning: For the purpose of; in order to; to ensure that; with the strong intention of
+pronunciation:
+  katakana: ベク
+  romaji: beku
+formation:
+  Verb (dictionary form) + べく: Indicates purpose or intention, translating to "in order to" or "for the
+    purpose of."
+  する → すべく: Classical conjugation for する (to do) when followed by べく.
+  する → するべく: Modern, more common conjugation for する (to do) when followed by べく, also considered correct.
+jlpt: N1
+etymology: べく is derived from the conjunctive form of the classical auxiliary verb べし (beshi). This べし
+  itself originated from the classical Japanese verb あり (ari), meaning 'to be,' combined with the suffix
+  -べし (beshi), which indicated strong assertion, possibility, or obligation. The kanji 可し (beshi), meaning
+  'to be permissible' or 'possible,' became associated with it. In its modern usage, べく retains the underlying
+  sense of a strong goal or intention, conveying a determined effort to achieve a specific purpose, often
+  with a nuance of inevitability or strong resolve.
+writeup: |-
+  **べく (beku)** is a formal expression used to indicate purpose or intention, often translated as "in order to," "for the purpose of," or "to ensure that." It attaches to the dictionary form of verbs that describe intentional actions, implying a strong will or clear objective behind the action. This grammatical structure carries a sense of determination, obligation, or deep commitment to achieving a goal, setting it apart from more general expressions of purpose.
+
+  Due to its classical roots, べく lends a highly formal tone to sentences and is primarily found in written Japanese, formal speeches, official documents, or news reports. It is rarely used in everyday spoken Japanese.
+
+  ### Usage with する (to do)
+  When connecting with the verb する (to do), べく can take two forms:
+
+  *   **すべく (subeku)**: This is the classical conjugation, reflecting the original form of べし. It is still considered grammatically correct and is common in very formal contexts.
+  *   **するべく (surubeku)**: This is a more modern and increasingly common form. Both forms are accepted and used in contemporary formal Japanese.
+
+  ### Nuance and Emphasis
+  While べく expresses purpose, it carries a stronger emphasis on the intentionality and significance of the goal than other particles. It often implies that the action taken is a resolute and necessary step towards achieving a specific, often challenging, objective. The underlying meaning can be thought of as a strong, internal drive or a firm commitment to accomplish the stated goal, often implying that the action is a necessary and resolute step towards achieving it.
+false_friends:
+  - term: ために
+    meaning: For the sake of, in order to
+    kind: similar expression
+    nuance: While both べく and ために express purpose, べく is significantly more formal and often implies a
+      stronger sense of determination or obligation. ために is a general-purpose particle used across various
+      registers, whereas べく is reserved for serious, formal, or highly determined contexts.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: ように
+    meaning: In order to (achieve a state or result); so that; like; as if
+    kind: similar expression
+    nuance: While べく expresses a strong intention or purpose for an action, ように is used to express purpose
+      for a desired state or outcome, often implying that the action is taken to enable something to happen
+      naturally or for an ability or potential to be realized. べく emphasizes the agent's strong will,
+      whereas ように focuses on the result.
+    grammar_point: ように (purpose or desired state)
+  - term: んがため
+    meaning: For the purpose of; in order to; with the goal of
+    kind: similar expression
+    nuance: Both べく and んがため convey strong purpose, but んがため often implies a more profound or fundamental
+      reason, sometimes with a nuance of extreme effort or even sacrifice to achieve that purpose. べく
+      focuses more on the active, determined effort itself.
+    grammar_point: んがため (for the purpose of)
+post_false_friends_writeup: The primary distinction between べく, ために, ように, and んがため lies in their formality
+  and the specific nuance of purpose. べく is employed when you wish to emphasize a resolute purpose or
+  obligation, often in a grander, more official context, highlighting the speaker's strong will. ために is
+  a more versatile and common expression that simply indicates purpose without necessarily conveying the
+  same degree of strong resolve or formality. ように, on the other hand, expresses purpose by focusing on
+  achieving a desired state or outcome, often implying that the action is taken to enable something to
+  happen naturally or for an ability or potential to be realized. Lastly, んがため, while also conveying strong
+  purpose, often suggests a more fundamental or even sacrificial effort for a given aim. Choosing べく over
+  these alternatives elevates the tone and highlights the significance of the action's objective and the
+  determination behind it.
+examples:
+  - english: The students studied late into the night in order to pass the exam.
+    japanese:
+      - 学生 たち は 試験 に 合格 する {べく}、夜 遅く まで 勉強 し た。
+      - 学生 たち は 合格 する {べく}、夜 遅く まで 試験 勉強 に 励ん だ。
+    english_literally: Students, exam pass in order to, late night until studied.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 たち は 試験 に 合格 する {ため に}、夜 遅く まで 勉強 し た。
+        english: The students studied late into the night for the purpose of passing the exam.
+        hint: While ために indicates purpose, べく conveys a stronger sense of determination and formality,
+          emphasizing resolute effort. We're looking for a strong, formal intention.
+      - competing_japanese:
+          - 学生 たち は 試験 に 合格 する {よう に}、夜 遅く まで 勉強 し た。
+        english: The students studied late into the night so that they could pass the exam.
+        hint: ように expresses purpose by focusing on achieving a desired outcome or state (e.g., ability
+          or possibility), whereas べく emphasizes the strong intention behind the action. This sentence
+          focuses on the determined will, not just the possibility.
+      - competing_japanese:
+          - 学生 たち は 試験 に 合格 せ {ん が ため に}、夜 遅く まで 勉強 し た。
+        english: The students studied late into the night for the sake of passing the exam.
+        hint: んがため can be used for purpose, but べく emphasizes active, determined effort, whereas んがため
+          sometimes implies a more profound or even sacrificial aim. We're looking for a more direct statement
+          of determined action.
+    scene: A teacher is observing their students' dedication, highlighting their serious commitment.
+    register: formal
+    setting: serious
+    nuance: The phrase 「合格するべく」 highlights the students' strong will and clear objective to pass the exam,
+      implying a deliberate and focused effort that transcends mere 'for the sake of'.
+  - english: A new law was enacted for the purpose of promoting environmental protection.
+    japanese:
+      - 環境 保護 を 促進 する {べく}、新しい 法律 が 制定 さ れ た。
+      - 環境 保護 を 促進 する {べく}、新た な 法律 が 制定 さ れ た。
+    english_literally: Environment protection promoting in order to, new law enacted.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 保護 を 促進 する {ため に}、新しい 法律 が 制定 さ れ た。
+        english: A new law was enacted for the purpose of promoting environmental protection.
+        hint: ために is a neutral expression of purpose. べく, however, adds a nuance of strong, deliberate
+          intent, fitting for official declarations or policies. We're looking for a formal, resolute
+          statement of purpose.
+      - competing_japanese:
+          - 環境 保護 を 促進 する {よう に}、新しい 法律 が 制定 さ れ た。
+        english: A new law was enacted so that environmental protection could be promoted.
+        hint: ように implies enabling a state. べく highlights the strong, direct intention of the action itself.
+          The law's enactment is a direct act of promotion, not just enabling it.
+      - competing_japanese:
+          - 環境 保護 を 促進 せ {ん が ため に}、新しい 法律 が 制定 さ れ た。
+        english: A new law was enacted for the sake of promoting environmental protection.
+        hint: んがため is very formal, but べく is commonly used for direct, determined actions like law enactment.
+          We're seeking the most appropriate formal expression for this kind of decisive action.
+    scene: A government spokesperson announces new environmental legislation, conveying the official and
+      determined intent behind it.
+    register: formal
+    setting: informative
+    nuance: In this formal, legislative context, 「促進するべく」 underscores the strong, deliberate intent behind
+      the enactment of the law, conveying a sense of decisive and purposeful action towards a significant
+      goal.
+  - english: In order to maintain employee health, the company introduced a new wellness program.
+    japanese:
+      - 社員 の 健康 を 維持 す {べく}、会社 は 新しい 健康 プログラム を 導入 し た。
+      - 社員 の 健康 を 維持 す {べく}、企業 は 新た な 健康 プログラム を 導入 し た。
+    english_literally: Employee health maintaining in order to, company new health program introduced.
+    competing_grammar:
+      - competing_japanese:
+          - 社員 の 健康 を 維持 する {ため に}、会社 は 新しい 健康 プログラム を 導入 し た。
+        english: For the purpose of maintaining employee health, the company introduced a new wellness
+          program.
+        hint: While ために is correct, すべく conveys a stronger, more formal commitment, typical of official
+          company announcements. We're looking for a serious, formal statement of purpose.
+      - competing_japanese:
+          - 社員 の 健康 を 維持 する {よう に}、会社 は 新しい 健康 プログラム を 導入 し た。
+        english: So that employee health could be maintained, the company introduced a new wellness program.
+        hint: ように suggests enabling a state. べく emphasizes the company's proactive, determined effort
+          to achieve a specific goal. The company is actively maintaining, not just enabling maintenance.
+      - competing_japanese:
+          - 社員 の 健康 を 維持 せ {ん が ため に}、会社 は 新しい 健康 プログラム を 導入 し た。
+        english: For the sake of maintaining employee health, the company introduced a new wellness program.
+        hint: んがため can feel a bit overly dramatic for a standard company initiative, whereas べく emphasizes
+          the determined and practical action taken. We need a direct, formal expression of corporate
+          intent.
+    scene: A human resources manager explains a new company initiative to employees, stressing the company's
+      commitment.
+    register: formal
+    setting: professional
+    nuance: The usage of 「維持すべく」 in a professional setting like a company announcement emphasizes the
+      firm commitment and proactive measure taken by the company to achieve the goal of maintaining employee
+      health. The classical form 「すべく」 adds to this formal tone.
+  - english: We will confront difficulties in order to build a better future.
+    japanese:
+      - より 良い 未来 を 築き上げる {べく}、我々 は 困難 に 立ち向かう。
+      - より 良い 未来 を 築く {べく}、我々 は 困難 に 立ち向かう。
+    english_literally: Better future build up in order to, we difficulties confront.
+    competing_grammar:
+      - competing_japanese:
+          - より 良い 未来 を 築き上げる {ため に}、我々 は 困難 に 立ち向かう。
+        english: We will confront difficulties in order to build a better future.
+        hint: ために is a general purpose indicator. べく imparts a sense of strong resolve and formal commitment,
+          fitting for an inspirational message. We're looking for a powerful statement of determination.
+      - competing_japanese:
+          - より 良い 未来 を 築き上げる {よう に}、我々 は 困難 に 立ち向かう。
+        english: We will confront difficulties so that we can build a better future.
+        hint: ように focuses on achieving a desirable state or outcome. べく emphasizes the determined effort
+          taken towards a specific, often grand, goal. This sentence conveys strong, direct intention.
+      - competing_japanese:
+          - より 良い 未来 を 築き上げ {ん が ため に}、我々 は 困難 に 立ち向かう。
+        english: For the sake of building a better future, we will confront difficulties.
+        hint: んがため can also express strong purpose, but べく often feels more directly tied to the *action*
+          of confronting difficulties as a means to the end, while んがため might imply the future is the
+          *ultimate reason* for any and all efforts. We need a direct sense of determined action.
+    scene: A leader addresses a team during a challenging project, emphasizing collective effort for a
+      daunting goal.
+    register: formal
+    setting: inspirational
+    nuance: The expression 「築き上げるべく」 here conveys a strong resolve and a determined commitment to a significant,
+      future-oriented goal. It is often used in speeches or declarations where a powerful message is intended,
+      even with the modern 「するべく」 form.
+  - english: Companies are investing in innovative technologies in order to enhance international competitiveness.
+    japanese:
+      - 国際 的 な 競争 力 を 高める {べく}、企業 は 革新 的 な 技術 に 投資 し て いる。
+      - 国際 競争 力 を 強化 する {べく}、各 企業 は 革新 的 な 技術 へ 投資 し て いる。
+    english_literally: International competitiveness enhance in order to, companies innovative technology
+      investing.
+    competing_grammar:
+      - competing_japanese:
+          - 国際 的 な 競争 力 を 高める {ため に}、企業 は 革新 的 な 技術 に 投資 し て いる。
+        english: Companies are investing in innovative technologies for the purpose of enhancing international
+          competitiveness.
+        hint: ために indicates purpose generally. べく adds a layer of strategic and determined intent, suitable
+          for economic analysis of significant corporate actions. We're looking for a precise, formal
+          statement of purpose.
+      - competing_japanese:
+          - 国際 的 な 競争 力 を 高める {よう に}、企業 は 革新 的 な 技術 に 投資 し て いる。
+        english: Companies are investing in innovative technologies so that international competitiveness
+          can be enhanced.
+        hint: ように implies enabling a state. べく focuses on the companies' active and deliberate efforts
+          to achieve enhancement. Here, the companies are actively enhancing, not just enabling.
+      - competing_japanese:
+          - 国際 的 な 競争 力 を 高め {ん が ため に}、企業 は 革新 的 な 技術 に 投資 し て いる。
+        english: Companies are investing in innovative technologies for the sake of enhancing international
+          competitiveness.
+        hint: んがため, though formal, might imply a more abstract or ultimate reason. べく is often chosen
+          to emphasize the direct, determined action of investing for a clear objective. We need to convey
+          a proactive, decisive business strategy.
+    scene: An economic analyst discusses business strategies, highlighting a strategic and high-stakes
+      objective.
+    register: formal
+    setting: technical
+    nuance: In this academic or business context, 「高めるべく」 stresses the deliberate, strategic intent of
+      companies to boost their international competitiveness, implying significant effort and foresight
+      in their investment decisions.
+  - english: The young artist left his hometown to pursue his ideals.
+    japanese:
+      - 若き 芸術 家 は、己 の 理想 を 追求 する {べく}、故郷 を 離れ た。
+      - 若き 芸術 家 は、自ら の 理想 を 追求 する {べく}、故郷 を 離れ た。
+    english_literally: Young artist, self's ideals pursue in order to, hometown left.
+    competing_grammar:
+      - competing_japanese:
+          - 若き 芸術 家 は、己 の 理想 を 追求 する {ため に}、故郷 を 離れ た。
+        english: The young artist left his hometown for the purpose of pursuing his ideals.
+        hint: ために expresses purpose simply. べく adds a dramatic, strong sense of personal conviction and
+          determination, fitting for a biographical narrative. We're looking for a nuanced expression
+          of profound resolve.
+      - competing_japanese:
+          - 若き 芸術 家 は、己 の 理想 を 追求 する {よう に}、故郷 を 離れ た。
+        english: The young artist left his hometown so that he could pursue his ideals.
+        hint: ように suggests enabling an outcome or possibility. べく conveys the artist's strong, direct
+          will and determined action to pursue his ideals. The emphasis is on his active pursuit, not
+          just the potential.
+      - competing_japanese:
+          - 若き 芸術 家 は、己 の 理想 を 追求 せ {ん が ため に}、故郷 を 離れ た。
+        english: For the sake of pursuing his ideals, the young artist left his hometown.
+        hint: んがため emphasizes a more ultimate or profound reason, fitting for 'ideals,' but べく is slightly
+          more common for expressing determined action. Both are strong, but べく emphasizes the act of
+          'leaving' as directly purposeful.
+    scene: A biographer narrates the early life of a famous artist, focusing on his profound personal
+      conviction.
+    register: formal
+    setting: storytelling
+    nuance: This example uses 「追求するべく」 to emphasize the profound and determined purpose behind the young
+      artist's life-changing decision to leave home, highlighting a strong, internal drive to realize
+      a personal ideal. It lends a slightly literary or dramatic tone.
+  - english: The commander devised a new strategy to achieve victory.
+    japanese:
+      - 勝利 を 収める {べく}、司令 官 は 新た な 戦略 を 考案 し た。
+      - 勝利 を 得る {べく}、司令 官 は 新た な 戦略 を 考案 し た。
+      - 勝利 を 収める {べく}、指揮 官 は 新た な 戦略 を 考案 し た。
+      - 勝利 を 収める {べく}、司令 官 は 新た な 戦略 を 策定 し た。
+    english_literally: Victory achieve in order to, commander new strategy devised.
+    competing_grammar:
+      - competing_japanese:
+          - 勝利 を 収める {ため に}、司令 官 は 新た な 戦略 を 考案 し た。
+        english: The commander devised a new strategy for the purpose of achieving victory.
+        hint: While ために indicates purpose, べく conveys a stronger sense of determination and formality,
+          emphasizing resolute effort. We're looking for a strong, formal intention.
+      - competing_japanese:
+          - 勝利 を 収める {よう に}、司令 官 は 新た な 戦略 を 考案 し た。
+        english: The commander devised a new strategy so that victory could be achieved.
+        hint: ように expresses purpose by focusing on achieving a desired outcome or state. べく emphasizes
+          the strong intention behind the action itself. The commander's action is a direct pursuit of
+          victory, not just enabling it.
+      - competing_japanese:
+          - 勝利 を 収め {ん が ため に}、司令 官 は 新た な 戦略 を 考案 し た。
+        english: The commander devised a new strategy for the sake of achieving victory.
+        hint: んがため, though fitting for a grand purpose like 'victory,' often has a slightly more archaic
+          or all-encompassing nuance. べく is typically used for the direct, determined execution of an
+          action toward a goal. We need the one that emphasizes the commander's decisive action.
+    scene: A military strategist explains a critical decision made during wartime.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「勝利を収めるべく」 emphasizes the commander's resolute and strategic determination to achieve
+      victory, conveying a tone appropriate for military or high-stakes contexts. The formal nature of
+      「べく」 fits the gravity of the decision.
+  - english: To elucidate the cause of the disease, the researchers conducted repeated experiments.
+    japanese:
+      - 病気 の 原因 を 解明 する {べく}、研究 者 たち は 実験 を 繰り返し た。
+      - 病気 の 原因 を 解明 す {べく}、研究 者 たち は 実験 を 繰り返し た。
+      - 病気 の 原因 を 解明 する {べく}、研究 者 たち は 実験 を 重ね た。
+      - 病気 の 原因 を 解明 する {べく}、研究 チーム は 実験 を 繰り返し た。
+    english_literally: Disease's cause elucidate in order to, researchers experiments repeated.
+    competing_grammar:
+      - competing_japanese:
+          - 病気 の 原因 を 解明 する {ため に}、研究 者 たち は 実験 を 繰り返し た。
+        english: For the purpose of elucidating the cause of the disease, the researchers conducted repeated
+          experiments.
+        hint: ために is a neutral expression of purpose. べく, however, adds a nuance of strong, deliberate
+          intent, fitting for academic research. We're looking for a formal, resolute statement of purpose.
+      - competing_japanese:
+          - 病気 の 原因 を 解明 する {よう に}、研究 者 たち は 実験 を 繰り返し た。
+        english: So that the cause of the disease could be elucidated, the researchers conducted repeated
+          experiments.
+        hint: ように implies enabling a state or outcome. べく highlights the strong, direct intention of the
+          researchers' actions. Their experiments are a direct pursuit of clarification, not just enabling
+          it.
+      - competing_japanese:
+          - 病気 の 原因 を 解明 せ {ん が ため に}、研究 者 たち は 実験 を 繰り返し た。
+        english: For the sake of elucidating the cause of the disease, the researchers conducted repeated
+          experiments.
+        hint: んがため emphasizes an ultimate reason, which could apply here. However, べく emphasizes the determined
+          and active process of research itself. We need to convey the researchers' active and focused
+          effort.
+    scene: A lead scientist presents findings from a long-term research project at a conference.
+    register: formal
+    setting: academic
+    listener_gender: group
+    nuance: 「解明するべく」 conveys the dedicated, rigorous effort of the researchers towards a specific scientific
+      objective. The formal tone of 「べく」 is well-suited for academic reporting and presentations, emphasizing
+      meticulous and intentional work.
+  - english: The mayor vowed to strive for the revitalization of the city.
+    japanese:
+      - 市長 は 都市 を 活性 化 する {べく}、尽力 する と 誓っ た。
+      - 市長 は 都市 を 活性 化 す {べく}、尽力 する と 誓っ た。
+      - 市長 は 都市 を 活性 化 する {べく}、固く 尽力 する と 誓っ た。
+      - 市長 は 市 の 活性 化 を 図る {べく}、尽力 する と 誓っ た。
+    english_literally: Mayor city revitalize in order to, strive vowed.
+    competing_grammar:
+      - competing_japanese:
+          - 市長 は 都市 を 活性 化 する {ため に}、尽力 する と 誓っ た。
+        english: The mayor vowed to strive for the purpose of revitalizing the city.
+        hint: ために is a general purpose indicator. べく imparts a sense of strong resolve and formal commitment,
+          fitting for a political vow. We're looking for a powerful statement of determination.
+      - competing_japanese:
+          - 市長 は 都市 を 活性 化 する {よう に}、尽力 する と 誓っ た。
+        english: The mayor vowed to strive so that the city could be revitalized.
+        hint: ように focuses on achieving a desirable state or outcome. べく emphasizes the determined effort
+          taken towards a specific, often grand, goal. This sentence conveys strong, direct intention.
+      - competing_japanese:
+          - 市長 は 都市 を 活性 化 せ {ん が ため に}、尽力 する と 誓っ た。
+        english: The mayor vowed to strive for the sake of revitalizing the city.
+        hint: んがため might be used for a higher, more abstract purpose. べく is suitable for a concrete, determined
+          action (striving) towards a specific public goal (revitalization). We need a clear declaration
+          of intent.
+    scene: The mayor delivers a speech during a town hall meeting, outlining future plans and making a
+      public commitment.
+    register: formal
+    setting: persuasive
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「活性化するべく」 reflects the mayor's strong commitment and proactive stance towards achieving a
+      public goal, resonating with a political promise. The use of 「べく」 adds gravity and emphasizes the
+      serious intent behind her words, suitable for a public address.
+  - english: He trained rigorously every day to become the strongest warrior.
+    japanese:
+      - 最強 の 武士 と なる {べく}、彼 は 毎日 厳しく 鍛錬 し た。
+      - 最強 の 武士 と なる {べく}、彼 は 日々 厳しく 鍛錬 し た。
+      - 最強 の 武士 と なる {べく}、彼 は 厳しい 鍛錬 を 日々 積ん だ。
+    english_literally: Strongest warrior become in order to, he every day rigorously trained.
+    competing_grammar:
+      - competing_japanese:
+          - 最強 の 武士 と なる {ため に}、彼 は 毎日 厳しく 鍛錬 し た。
+        english: For the purpose of becoming the strongest warrior, he trained rigorously every day.
+        hint: ために expresses purpose simply. べく adds a sense of strong personal conviction and determination,
+          fitting for a narrative about intense dedication. We're looking for a nuanced expression of
+          profound resolve.
+      - competing_japanese:
+          - 最強 の 武士 と なる {よう に}、彼 は 毎日 厳しく 鍛錬 し た。
+        english: So that he could become the strongest warrior, he trained rigorously every day.
+        hint: ように suggests enabling an outcome or possibility. べく conveys the individual's strong, direct
+          will and determined action to achieve a specific goal. The emphasis is on his active pursuit,
+          not just the potential.
+      - competing_japanese:
+          - 最強 の 武士 と な {ら ん が ため に}、彼 は 毎日 厳しく 鍛錬 し た。
+        english: For the sake of becoming the strongest warrior, he trained rigorously every day.
+        hint: んがため is very strong, suggesting an ultimate aim, which fits here. However, べく, with its
+          focus on the determined action (training), is a strong alternative for narrating a resolute
+          personal pursuit. We need an expression that captures the fierce dedication.
+    scene: A narrative describing a historical figure's intense personal dedication and ambition to master
+      their craft.
+    register: formal
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「となるべく」 highlights an individual's deep-seated ambition and the focused, disciplined effort
+      undertaken to achieve a personal transformation. The use of 「べく」 here elevates the tone to one of
+      serious dedication and unwavering commitment, often found in historical accounts or narratives of
+      great achievement.
+post_example_writeup: The examples illustrate how べく is consistently used in contexts demanding a high
+  degree of formality and a strong sense of purpose. Whether in political speeches, scientific reports,
+  or historical narratives, べく emphasizes the deliberate and resolute intention behind an action, setting
+  it apart from simpler expressions of purpose. Observe the nuances, particularly in comparison to ために,
+  ように, and んがため, to fully grasp its appropriate usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/べく

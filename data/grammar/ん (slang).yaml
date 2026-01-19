@@ -1,0 +1,220 @@
+grammar_point: ん (slang)
+learn_before:
+  - の? (question)
+meaning: casual explanatory form
+pronunciation:
+  katakana: ン
+  romaji: n
+formation:
+  Verb[plain] + ん: Used after plain forms of verbs.
+  い-Adjective[plain] + ん: Used after plain forms of い-adjectives.
+  な-Adjective[stem] + な + ん: Used after な-adjective stems, requiring 'な'.
+  Noun + な + ん: Used after nouns, requiring 'な'.
+jlpt: N4
+etymology: The particle 「ん」 is a phonetic contraction of 「の」, particularly when 「の」 is used to nominalize
+  a clause or to form explanatory questions (i.e., 「のだ」). Over time, in rapid, casual speech, the 'o'
+  sound often elides, leaving just the nasal 'n' sound. This natural linguistic evolution reflects a general
+  tendency in Japanese toward phonetic reduction and economy in informal communication. Its function as
+  an explanatory or emphatic marker stems directly from the underlying 「のだ」 structure, carrying over the
+  nuance of providing or seeking a reason or background.
+writeup: The informal particle 「ん」 is a common contraction primarily of 「のだ」 (and its polite form 「んです」),
+  serving to add an explanatory or emphatic nuance to a statement or question. It is widely used in casual
+  conversations and can convey a sense of personal involvement, seeking confirmation, or providing background
+  information. 「ん」 is highly versatile and attaches to plain forms of verbs and adjectives, and to nouns
+  and な-adjectives followed by 「な」. This contraction makes speech sound more natural and less formal than
+  using the full 「のだ」 or 「んです」. While 「のだ」 can sound slightly more objective or declarative, 「ん」 often
+  carries a softer, more direct, and sometimes more inquisitive tone, particularly in questions. It's
+  crucial to understand that 「ん」 doesn't change the core meaning of the sentence, but rather adds a layer
+  of context or emotional nuance, indicating that the speaker is either explaining something, confirming
+  something, or seeking clarification based on an underlying reason or situation. It's an indispensable
+  part of natural, everyday Japanese conversation.
+false_friends:
+  - term: のだ (explanatory)
+    meaning: to be (explanatory)
+    kind: similar expression
+    nuance: 「のだ」 is the more formal and explicit explanatory form, often used in written Japanese or more
+      formal spoken contexts. 「ん」 is its casual, contracted equivalent, softer and more commonly heard
+      in everyday conversation, sometimes implying a more direct or personal connection to the explanation.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+  - term: の (nominalizer)
+    meaning: nominalizer; question marker
+    kind: similar expression
+    nuance: While 「ん」 originates from 「の」, particularly its explanatory function, 「の」 itself has broader
+      uses, such as nominalizing clauses (e.g., 「読むのが好き」 - "I like reading") or forming direct, often
+      female-leaning, questions (e.g., 「読むの？」 - "Are you reading?"). 「ん」 specifically maintains the explanatory
+      or emphatic nuance of 「のだ」.
+    grammar_point: <strongly-suggest>:の (nominalizer・question particle)
+  - term: んー (interjection)
+    meaning: umm; hmm (hesitation)
+    kind: often confused with
+    nuance: The sound 「んー」 (often drawn out) is an interjection used to express hesitation, thought, or
+      agreement, similar to "hmm" or "uh-huh" in English. This is phonetically similar but functionally
+      distinct from the grammatical particle 「ん」, which is a contraction used for explanation or emphasis.
+    grammar_point: <strongly-suggest>:んー (hesitation・agreement)
+post_false_friends_writeup: The primary distinction to remember is that 「ん」 is almost always a casual,
+  contracted form of 「のだ」 or 「んです」. While 「のだ」 provides a direct explanation, 「ん」 softens this slightly,
+  making it more conversational and sometimes adding a feeling of personal involvement or a gentle seeking
+  of agreement. The basic 「の」 particle, while related, has broader functions beyond just explanation,
+  such as nominalizing verbs or directly forming questions without the explanatory nuance of 「ん」. Finally,
+  「んー」 as an interjection is purely a sound of contemplation or affirmation, not a grammatical particle.
+examples:
+  - english: That's why I'm busy.
+    japanese:
+      - だ から、忙しい {ん}。
+      - だ から、忙しい {ん だ}。
+      - だ から、忙しい {ん です}。
+    english_literally: Therefore, busy (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - だ から、忙しい よ。
+        english: Therefore, I'm busy.
+        hint: This simply states a fact with emphasis, but doesn't explicitly convey an explanation or
+          reason for the busyness, which 「ん」 does.
+    scene: A friend asks why you haven't been hanging out recently.
+    register: casual
+    setting: friendly
+  - english: Why are you here?
+    japanese:
+      - どう し て ここ に いる {ん}？
+      - どう し て ここ に いる {ん だ}？
+      - どう し て ここ に いる {ん です か}？
+    english_literally: Why here exist (explanatory particle)?
+    competing_grammar:
+      - competing_japanese:
+          - どう し て ここ に いる？
+        english: Why are you here?
+        hint: This is a more blunt question without the nuance of seeking an explanation or background
+          reason that 「ん」 provides. It sounds less inquisitive.
+    scene: You unexpectedly run into a friend in an unusual place, like a distant city.
+    register: casual
+    setting: friendly
+    listener_gender: male
+  - english: It's really cold today, isn't it?
+    japanese:
+      - 今日、本当 に 寒い {ん}。
+      - 今日、本当 に 寒い {ん だ}。
+      - 今日、本当 に 寒い {ん です}。
+    english_literally: Today, really cold (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - 今日、本当 に 寒い ね。
+        english: It's really cold today, right?
+        hint: This seeks agreement, but 「ん」 adds a layer of emphasis to the speaker's personal feeling
+          and an implicit invitation for agreement based on that shared feeling.
+    scene: You're outside with a friend, shivering.
+    register: casual
+    setting: friendly
+  - english: I'm just not good at it.
+    japanese:
+      - 単に 下手 な {ん}。
+      - 単に 下手 な {ん だ}。
+      - 単に 下手 な {ん です}。
+    english_literally: Simply clumsy (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - 単に 下手 です。
+        english: I am simply clumsy.
+        hint: This is a simple statement of fact. Adding 「な」+「ん」 clarifies that the speaker is offering
+          this as an explanation for something, like a failure.
+    scene: You're explaining why you failed at a task, perhaps a game or a craft.
+    register: casual
+    setting: apologetic
+  - english: It's because I'm a student.
+    japanese:
+      - 学生 な {ん}。
+      - 学生 な {ん だ}。
+      - 学生 な {ん です}。
+    english_literally: Student (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - 学生 な の で。
+        english: Because I'm a student.
+        hint: 「なので」 explicitly states the reason. 「な」+「ん」 is a more casual and slightly less direct way
+          to provide an explanation, often implying a shared understanding.
+    scene: Someone asks why you don't have much money for luxuries.
+    register: casual
+    setting: informative
+  - english: I think this is good.
+    japanese:
+      - これ で いい と 思う {ん} だ けど。
+      - これ で いい と 思う {ん だ} けど。
+      - これ で いい と 思う {ん です} けど。
+    english_literally: This is good, I think (explanatory particle) but.
+    competing_grammar:
+      - competing_japanese:
+          - これ で いい と 思い ます。
+        english: I think this is good.
+        hint: This is a neutral statement of opinion. The 「ん」 with 「〜だけど」 adds a tentative, personal nuance,
+          making it sound more like a suggestion or an opinion being offered for consideration.
+    scene: You're suggesting a solution or expressing an opinion about a task, a bit tentatively.
+    register: casual
+    setting: pessimistic
+  - english: You're late, aren't you?
+    japanese:
+      - 遅い {ん} じゃ ない？
+      - 遅い {ん だ} じゃ ない？
+      - 遅い {ん です} か？
+    english_literally: Late (explanatory particle) isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 遅い よ。
+        english: You're late!
+        hint: This is a direct statement, whereas 「ん」+「じゃない？」 implies a slight accusation or a request
+          for justification for being late.
+    scene: A friend arrives late to a meeting, and you're slightly annoyed.
+    register: casual
+    setting: interrogative
+  - english: Yeah, I was just about to head out.
+    japanese:
+      - うん、今 から 出かける とこ だっ た {ん}。
+      - うん、今 から 出かける とこ だっ た {ん だ}。
+      - はい、今 から 出かける とこ だっ た {ん です}。
+    english_literally: Yes, from now going out place was (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - うん、今 から 出かける ところ だっ た。
+        english: Yes, I was just about to head out.
+        hint: This is a factual statement. The 「ん」 adds a natural conversational flow, confirming the
+          previous observation while providing a slight explanatory context.
+    scene: A neighbor sees you at your door and asks if you're going out.
+    register: casual
+    setting: friendly
+  - english: My stomach hurts.
+    japanese:
+      - お腹 痛い {ん}。
+      - お腹 痛い {ん だ}。
+      - お腹 が 痛い {ん です}。
+    english_literally: Stomach hurts (explanatory particle).
+    competing_grammar:
+      - competing_japanese:
+          - お腹 が 痛い。
+        english: My stomach hurts.
+        hint: This is a neutral statement. The 「ん」 implies that the stomachache is the reason for something,
+          like an inability to eat or a general feeling of unwellness.
+    scene: You're trying to explain why you can't eat a particular food.
+    register: casual
+    setting: melancholic
+  - english: I'm going to study abroad!
+    japanese:
+      - 留学 する {ん} だ！
+      - 留学 する {ん です}！
+    english_literally: Study abroad do (explanatory particle) is!
+    competing_grammar:
+      - competing_japanese:
+          - 留学 する！
+        english: I'm going to study abroad!
+        hint: This is a simple statement of intent. The 「ん」 adds strong emphasis and a sense of conviction,
+          often used when announcing a decision or resolution with excitement.
+    scene: You're announcing a big decision to your friends with great excitement.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: The use of 「ん」 followed by 「だ」 here adds a strong, almost declarative emphasis, common among
+      younger speakers when announcing a significant decision or feeling. The speaker is not just stating
+      a fact, but expressing a resolved personal conviction.
+post_example_writeup: As these examples demonstrate, 「ん」 is an incredibly flexible and common component
+  of casual Japanese speech. It allows speakers to convey implied reasons, seek confirmation, or simply
+  add a softer, more personal touch to their statements without resorting to more formal explanatory forms.
+  Mastering its usage will significantly improve the naturalness of your spoken Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ん

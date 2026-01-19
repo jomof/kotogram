@@ -1,0 +1,325 @@
+grammar_point: それにしても (nevertheless)
+learn_before:
+  - にしても〜にしても (regardless of whether a or b)
+meaning: Nevertheless, even so
+pronunciation:
+  katakana: ソレニシテモ
+  romaji: sore ni shitemo
+formation:
+  それにしても + Sentence: Highlights that despite a previous statement, the speaker's opinion is the following
+    statement.
+jlpt: N2
+etymology: The expression それにしても is derived from にしても, which means "even though" or "even if." それに adds
+  emphasis, making it "even so" or "nevertheless." This evolution signifies a movement from a general
+  conditional acknowledgement to a more emphatic concession, emphasizing that a subsequent observation
+  is remarkable despite the preceding information.
+writeup: |-
+  「それにしても」 is an expression used to acknowledge a preceding statement or situation while simultaneously emphasizing a different point or opinion. It conveys a nuance of 'even so,' 'nevertheless,' or 'despite that.' The speaker accepts or acknowledges the previous statement as true, yet points out that there is more to be considered, or a particular aspect that stands out beyond what was expected. It implies that the subsequent statement (B) highlights something that is above or beyond the expectation set by the previous statement (A).
+
+  This grammar point often appears at the beginning of sentences or directly after a comma, signaling a shift in focus or a contrasting viewpoint. It is versatile and can be used in various registers, from casual to formal. It allows for a subtle yet firm expression of the speaker's true assessment or surprise regarding a situation.
+false_friends:
+  - term: ところが
+    meaning: Even so, however, even though, but
+    kind: often confused with
+    nuance: Unlike 「それにしても」, 「ところが」 often introduces an unexpected or contrary result, indicating a surprising
+      turn of events.
+    grammar_point: ところが (unexpected contrast)
+  - term: しかしながら
+    meaning: However, nevertheless, but
+    kind: similar expression
+    nuance: Unlike 「それにしても」, 「しかしながら」 is more formal and primarily used in written language or very formal
+      speech, serving as a direct logical connector for contrast. 「それにしても」 is more evaluative.
+    grammar_point: しかし (but・however)
+  - term: それなのに
+    meaning: And yet, despite this
+    kind: similar expression
+    nuance: Unlike 「それにしても」, 「それなのに」 emphasizes a strong sense of dissatisfaction, indignation, or surprise
+      at a clear contradiction between an expected outcome and the actual result.
+    grammar_point: それなのに (and yet・despite that)
+  - term: それでも
+    meaning: But still, and yet, even so, nevertheless
+    kind: similar expression
+    nuance: Unlike 「それにしても」, 「それでも」 emphasizes persistence, determination, or resilience despite a given
+      condition or obstacle, implying that an action is taken or a state persists in spite of something.
+    grammar_point: それでも (even so)
+  - term: でも
+    meaning: Even; or something; any (with question words); no matter (who/what/where/when)
+    kind: similar expression
+    nuance: Unlike 「それにしても」, 「でも」 is a simple, casual conjunction used for general contrast or to introduce
+      a new thought. 「それにしても」 carries a stronger evaluative or emphatic nuance.
+    grammar_point: でも (even・any・no matter)
+  - term: とはいえ
+    meaning: Though, although, that being said
+    kind: similar expression
+    nuance: 「とはいえ」 acknowledges a previous statement as true but then introduces a counterpoint or a nuance
+      that limits its scope, often meaning "having said that." 「それにしても」 expresses surprise or a strong
+      impression about the degree or extent of something despite a known fact, implying "even with that
+      in mind, this is remarkable."
+    grammar_point: とはいえ (though)
+  - term: といったらない
+    meaning: Indescribable, extreme, too... for words
+    kind: similar expression
+    nuance: 「といったらない」 is used to emphasize an extremely high or indescribable degree of a state or feeling.
+      While 「それにしても」 can highlight an unexpected degree, it still allows for description, often implying
+      "even given X, Y is surprisingly [degree]." 「といったらない」 goes beyond surprising to "beyond words."
+    grammar_point: といったらない (indescribable・extreme)
+post_false_friends_writeup: The key to distinguishing 「それにしても」 from these similar expressions lies in
+  understanding the specific nuance each conveys. 「それにしても」 generally acknowledges a previous point but
+  then redirects focus to another aspect or opinion, often implying a sense of a deeper observation or
+  a notable degree. 「ところが」 introduces an unexpected result. 「それなのに」 emphasizes a strong sense of contradiction
+  or dissatisfaction. 「しかしながら」 is a formal 'however.' 「それでも」 implies persistence or resilience despite
+  circumstances. 「でも」 is a common, casual conjunction for simple contrast. 「とはいえ」 concedes a point but
+  then introduces a limiting counterpoint. 「といったらない」 explicitly indicates an extreme, indescribable degree.
+  Pay attention to the context and the speaker's intent to choose the most appropriate expression.
+examples:
+  - english: He's a genius, but even so, that problem is too difficult.
+    japanese:
+      - 彼 は 天才 だ が、{それ に し て も} その 問題 は 難し すぎる。
+      - 彼 は 天才 だ けど、{それ に し て も} その 問題 は 難し すぎる。
+      - 彼 は 天才 だ が、{それ に し て も} あの 問題 は 難し すぎる。
+    english_literally: He is a genius, but even so, that problem is too difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 天才 だ が、{で も} その 問題 は 難し すぎる。
+        english: He's a genius, but that problem is too difficult.
+        hint: 「でも」 provides a simple contrast. 「それにしても」 adds emphasis to the extreme difficulty of the
+          problem, implying it's unexpectedly hard even for a genius. We're looking for an expression
+          that adds emphasis to an unexpected degree.
+    scene: A student struggling with a math problem reflects on how even their brilliant classmate would
+      find it challenging.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「彼は天才だが」 acknowledges a high capability, but 「その問題は難しすぎる」 emphasizes the extraordinary difficulty
+      of the problem, implying it's beyond typical expectations even for someone highly skilled. The use
+      of 「それにしても」 here shows the speaker's surprise at the extent of the difficulty.
+    etymology: The expression 「難しすぎる」 (too difficult) uses the suffix 「すぎる」, which is derived from the
+      verb 「過ぎる」 (sugiru), meaning 'to pass, to exceed'. This indicates an excessive degree.
+  - english: I heard it was going to rain, but even so, this is a terrible downpour.
+    japanese:
+      - 雨 が 降る と は 聞い て い た が、{それ に し て も} ひどい 降り 方 だ。
+      - 雨 が 降る と は 聞い て い た けれど、{それ に し て も} ひどい 降り 方 だ。
+      - 雨 が 降る と は 聞い て い た けど、{それ に し て も} ひどい 降り 方 だ ね。
+    english_literally: It was heard that rain would fall, but even so, it is a terrible way of falling.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降る と は 聞い て い た が、{しかし} ひどい 降り 方 だ。
+        english: I heard it was going to rain, but it's a terrible downpour.
+        hint: 「しかし」 states a factual contrast. 「それにしても」 conveys a sense of surprise and emphasizes the
+          *extent* of the rain. We're looking for an expression that highlights the unexpected degree
+          of the situation.
+    scene: Someone caught in a sudden, heavy rainstorm comments on its intensity.
+    register: casual
+    setting: serious
+    nuance: 「雨が降るとは聞いていたが」 sets the expectation of rain, while 「ひどい降り方だ」 expresses surprise at the severity,
+      indicating the current situation far exceeds the initial information. 「それにしても」 highlights this unexpected
+      intensity.
+    etymology: The phrase 「ひどい降り方」 uses 「方」 (kata) which means 'way' or 'manner'. Originally from 'direction'
+      or 'side', it evolved to describe the method or style of doing something, emphasizing the intense
+      'manner' of the rain's falling.
+  - english: This project cost a huge amount of money. Even so, I can't believe it's this ineffective.
+    japanese:
+      - この プロジェクト に は 多大 な 費用 が かかっ た。{それ に し て も}、これ ほど 効果 が ない と は。
+      - この プロジェクト に は 多大 な 費用 が かかり まし た。{それ に し て も}、これ ほど 効果 が ない と は。
+    english_literally: This project cost a huge amount of money. Even so, to think it has this little
+      effect.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は 多大 な 費用 が かかっ た。{それ な の に}、これ ほど 効果 が ない と は。
+        english: This project cost a huge amount of money. And yet, I can't believe it's this ineffective.
+        hint: 「それなのに」 implies strong dissatisfaction due to a clear contradiction. 「それにしても」 highlights
+          the *unexpectedly low* effectiveness despite the high investment. We're looking for an expression
+          that emphasizes the objective discrepancy.
+    scene: A business executive expresses disappointment about the poor results of a costly project.
+    register: formal
+    setting: serious
+    nuance: 「多大な費用がかかった」 establishes the significant investment, while 「これほど効果がないとは」 expresses shock or
+      disappointment at the extreme lack of effectiveness, suggesting the outcome is far worse than anticipated
+      despite the effort. 「それにしても」 conveys the speaker's strong bewilderment at this outcome.
+    etymology: The construct 「〜と は」 (to wa) at the end of the sentence is a contraction of 「〜とは驚いた」 or
+      「〜とはがっかりだ」, expressing surprise, disappointment, or strong feeling. It's a fossilized structure
+      that evolved to express exclamation regarding a discovery or realization.
+  - english: She's only a junior high student, but even so, her Japanese is native level.
+    japanese:
+      - 彼女 は まだ 中学 生 な の に、{それ に し て も} その 日本 語 は ネイティブ レベル だ。
+      - 彼女 は まだ 中学 生 な の に、{それ に し て も} その 日本 語 は ネイティブ レベル です。
+    english_literally: She is still a junior high student, but even so, that Japanese is native level.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は まだ 中学 生 な の に、{それ で も} その 日本 語 は ネイティブ レベル だ。
+        english: She's only a junior high student, but still her Japanese is native level.
+        hint: 「それでも」 emphasizes persistence despite an obstacle. 「それにしても」 emphasizes the *degree* of proficiency.
+          We're looking for an expression that highlights the unexpected level of skill.
+    scene: A Japanese language teacher is amazed by the exceptional proficiency of a young student.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「彼女はまだ中学生なのに」 establishes her young age, but 「その日本語はネイティブレベルだ」 highlights her extraordinary
+      skill, implying it far exceeds what would be expected for someone of her age. The female speaker's
+      surprise and admiration are conveyed through 「それにしても」, indicating that the skill is remarkable for
+      her age.
+    etymology: 「ネイティブ」 is a loanword from English "native". The word 「レベル」 (reberu) also comes from English
+      "level". The combination emphasizes a high standard of linguistic ability.
+  - english: We all cooperated and solved the problem. Even so, the tension from that time is unforgettable.
+    japanese:
+      - みんな で 協力 し て 問題 を 解決 し た。{それ に し て も}、あの 時 の 緊張 感 は 忘れ られ ない。
+      - 皆 で 協力 し て 問題 を 解決 し た。{それ に し て も}、あの 時 の 緊張 感 は 忘れ られ ない。
+      - みんな で 協力 し て 問題 を 解決 し まし た。{それ に し て も}、あの 時 の 緊張 感 は 忘れ られ ませ ん。
+    english_literally: We all cooperated and solved the problem. Even so, the tension from that time cannot
+      be forgotten.
+    competing_grammar:
+      - competing_japanese:
+          - みんな で 協力 し て 問題 を 解決 し た。{しかし}、あの 時 の 緊張 感 は 忘れ られ ない。
+        english: We all cooperated and solved the problem. However, the tension from that time is unforgettable.
+        hint: 「しかし」 simply connects two facts. 「それにしても」 implies a deeper reflection where, despite the
+          successful resolution, the speaker is still struck by the intensity of the past experience.
+          We're looking for an expression that emphasizes the lingering impact.
+    scene: Colleagues are reminiscing about a challenging past event, acknowledging its resolution but
+      still recalling the intense atmosphere.
+    register: semi-formal
+    setting: reflective
+    nuance: 「みんなで協力して問題を解決した」 states the successful outcome, but 「あの時の緊張感は忘れられない」 emphasizes the lasting
+      impression of the intense atmosphere, suggesting it was particularly significant even after resolution.
+      「それにしても」 here shows that despite the positive resolution, the speaker is still deeply affected by
+      the notable intensity of the past event.
+    etymology: 「緊張感」 (kinchōkan) combines 「緊張」 (tension, strain) and 「感」 (feeling, sense). 「感」 as a suffix
+      often forms nouns expressing a 'sense of' or 'feeling of' something, rooted in the idea of perception
+      or sensation.
+  - english: My friend finally got promoted. Even so, the workload she has now is absolutely insane.
+    japanese:
+      - 友達 が ようやく 昇進 し た よ。{それ に し て も}、今 の 仕事 量 は とんでも ない な。
+      - 友達 が ようやく 昇進 し た ね。{それ に し て も}、今 の 仕事 量 は とんでも ない な。
+      - 友達 が ようやく 昇進 し た よ。{それ に し て も}、今 の 仕事 量 は とんでも ない よ ね。
+      - 友達 が ようやく 昇進 し た わ ね。{それ に し て も}、今 の 仕事 量 は とんでも ない わ ね。
+    english_literally: My friend finally got promoted. Even so, the current workload is insane.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が ようやく 昇進 し た よ。{で も}、今 の 仕事 量 は とんでも ない な。
+        english: My friend finally got promoted. But, the workload she has now is absolutely insane.
+        hint: 「でも」 provides a simple contrast. 「それにしても」 adds emphasis to the extreme, unexpected nature
+          of the workload despite the positive news of promotion. We're looking for an expression that
+          highlights an unexpected degree.
+    scene: Two friends are chatting about a mutual friend's recent promotion, expressing mixed feelings.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「ようやく昇進したよ」 acknowledges the positive news of promotion, but 「今の仕事量はとんでもないな」 expresses surprise
+      and concern about the unexpectedly extreme workload that comes with it. The speaker's use of 「それにしても」
+      highlights the severity of this negative aspect despite the good news.
+    etymology: The colloquial expression 「とんでもない」 (tondemonai) originally meant 'unthinkable' or 'out
+      of the way' (literally 'not on the path'). It has evolved to mean 'ridiculous,' 'absurd,' or 'extreme,'
+      often used to emphasize an unexpected or overwhelming degree.
+  - english: The price was really cheap. Even so, the taste was so bad I couldn't eat it.
+    japanese:
+      - 値段 は 本当 に 安かっ た ん だ。{それ に し て も}、まずく て 食べ られ なかっ た よ。
+      - 値段 は 本当 に 安かっ た の。{それ に し て も}、まずく て 食べ られ なかっ た よ。
+      - 値段 は 本当 に 安かっ た ん だ。{それ に し て も}、あれ は まず すぎ て 食べ られ なかっ た。
+    english_literally: The price was really cheap. Even so, it was bad tasting and I could not eat it.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 は 本当 に 安かっ た ん だ。{だ が}、まずく て 食べ られ なかっ た よ。
+        english: The price was really cheap. But, the taste was so bad I couldn't eat it.
+        hint: 「だが」 provides a direct, factual contrast. 「それにしても」 expresses surprise and emphasizes the
+          unexpected degree of poor quality despite the low price. We're looking for an expression that
+          highlights a surprising discrepancy.
+    scene: Someone is complaining to a friend about a disappointing meal they bought.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「値段は本当に安かったんだ」 sets an expectation of a certain level of quality given the low price, but
+      「まずくて食べられなかったよ」 expresses extreme dissatisfaction due to the unexpectedly poor taste. The speaker's
+      use of 「それにしても」 underscores this surprising discrepancy, almost in a self-deprecating or humorous
+      way.
+    etymology: The word 「まずい」 (mazui) meaning 'bad tasting' or 'unskillful', has roots dating back to
+      the Heian period. It is often contrasted with 「うまい」 (umai) for 'good tasting' or 'skillful'.
+  - english: The report data is undoubtedly accurate. Even so, the conclusions drawn from it are difficult
+      to accept.
+    japanese:
+      - レポート の データ は 疑い なく 正確 だ。{それ に し て も}、その 結論 は 受け入れ 難い。
+      - レポート の データ は 疑い なく 正確 です。{それ に し て も}、その 結論 は 受け入れ 難い です。
+    english_literally: The report's data is undoubtedly accurate. Even so, its conclusions are difficult
+      to accept.
+    competing_grammar:
+      - competing_japanese:
+          - レポート の データ は 疑い なく 正確 だ。{しかし ながら}、その 結論 は 受け入れ 難い。
+        english: The report data is undoubtedly accurate. However, the conclusions drawn from it are difficult
+          to accept.
+        hint: 「しかしながら」 is a formal direct contrast. 「それにしても」 implies a deeper reflection where, despite
+          the accurate data, the conclusions are unexpectedly problematic. We're looking for an expression
+          that highlights an unexpected difficulty in acceptance.
+    scene: A team leader discusses a controversial internal report with their colleagues, acknowledging
+      the data's validity but questioning the interpretation.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「レポートのデータは疑いなく正確だ」 establishes the factual correctness and reliability of the data. However,
+      「その結論は受け入れ難い」 expresses a strong intellectual or professional disagreement, implying that the conclusions
+      are unexpectedly flawed or unpalatable despite being based on solid data. 「それにしても」 emphasizes this
+      disconnect.
+    etymology: The suffix 「〜難い」 (〜gatai) meaning 'difficult to do' or 'hard to do', attaches to the ます
+      stem of verbs. It originates from the adjective 「かたい」 (katai) meaning 'hard' or 'difficult', and
+      is a classical Japanese construction often used in formal or literary contexts.
+  - english: He apologized very sincerely. Even so, I can't quite forgive him yet.
+    japanese:
+      - 彼 は とても 誠実 に 謝罪 し た。{それ に し て も}、まだ 許す 気 に なれ ない。
+      - 彼 は とても 誠実 に 謝罪 し て くれ た。{それ に し て も}、まだ 許す 気 に なれ ない。
+      - 彼 は とても 誠実 に 謝罪 し て くれ た の に、{それ に し て も}、まだ 許す 気 に なれ ない の。
+    english_literally: He apologized very sincerely. Even so, I still can't feel like forgiving him.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 誠実 に 謝罪 し た。{それ な の に}、まだ 許す 気 に なれ ない。
+        english: He apologized very sincerely. And yet, I can't quite forgive him yet.
+        hint: 「それなのに」 often implies a stronger sense of disappointment or indignation at a contradiction.
+          「それにしても」 here gently expresses a persistent emotional block despite the genuine apology, focusing
+          on the unexpected difficulty in moving past it. We're looking for an expression that emphasizes
+          a lingering struggle despite a positive action.
+    scene: Someone confiding in a close friend about their struggle to forgive someone who has genuinely
+      apologized.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「彼はとても誠実に謝罪した」 acknowledges the genuine nature of the apology, but 「まだ許す気になれない」 conveys a
+      persistent emotional barrier, implying that despite the sincere effort from the other party, the
+      speaker's emotional state remains unexpectedly unyielding. 「それにしても」 highlights the depth of this
+      internal struggle, conveying a sense of 'even though he did all that, I still can't...'
+    etymology: The phrase 「〜気 に なれ ない」 (〜ki ni narenai) combines 「気」 (ki, meaning 'feeling' or 'mood')
+      with the potential negative form of 「なる」 (naru, 'to become'). This literally means 'cannot become
+      the feeling/mood to...', effectively expressing an inability to bring oneself to do something due
+      to a lack of inclination or emotional readiness.
+  - english: I already explained it once. Even so, you still don't understand?
+    japanese:
+      - 一 度 説明 し た でしょ。{それ に し て も}、まだ 分から ない の？
+      - 一 度 説明 し た でしょ？{それ に し て も}、まだ 分かり ませ ん か？
+      - 一 度 説明 し た じゃ ない。{それ に し て も}、まだ 分から ない の？
+    english_literally: I explained it once, right? Even so, you still don't understand?
+    competing_grammar:
+      - competing_japanese:
+          - 一 度 説明 し た でしょ。{だ が}、まだ 分から ない の？
+        english: I already explained it once. But, you still don't understand?
+        hint: 「だが」 provides a direct contrast. 「それにしても」 expresses surprise and frustration at the unexpected
+          persistence of misunderstanding, implying that comprehension should have occurred by now. We're
+          looking for an expression that underscores the speaker's incredulity at the lack of understanding.
+    scene: A frustrated parent or teacher patiently, but exasperatedly, re-explains something to a child
+      or student.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「一度説明したでしょ」 implies that sufficient explanation has been given for understanding to have taken
+      place. However, 「まだ分からないの？」 expresses genuine surprise and frustration at the continued lack of
+      comprehension, indicating an unexpected level of difficulty or slowness. The speaker's use of 「それにしても」
+      conveys their incredulity that, despite their effort, the other person still does not grasp the
+      concept.
+    etymology: The sentence-final particle 「の」 (no) serves to ask a question, but often carries a softer
+      or more inquisitive tone than 「か」. In this context, combined with rising intonation, it can convey
+      a nuance of 'isn't it the case?' or 'you mean...?', sometimes with an implied sense of concern,
+      surprise, or mild exasperation.
+post_example_writeup: As you can see, 「それにしても」 is used to add emphasis or a sense of unexpectedness to
+  a subsequent statement, even when a preceding point has been acknowledged. It's often about the degree
+  or extent of something being more notable than expected.

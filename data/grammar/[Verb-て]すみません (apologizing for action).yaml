@@ -1,0 +1,226 @@
+grammar_point: '[Verb-て]すみません (apologizing for action)'
+learn_before:
+  - Verb[たい] (desiderative)
+  - Verb[て] (casual request)
+  - Verb[て] (non-sequential events)
+  - '[Clause]ので (because・so)'
+  - '[Noun]向き (suitable for)'
+  - お (honorific prefix)
+  - お~だ (honorific copula)
+  - ところで (by the way)
+  - ところを (while or in circumstances)
+  - と言って (having said that)
+  - 使う (to use)
+  - 迷惑をかける (to cause trouble)
+meaning: I'm sorry for doing...
+pronunciation:
+  katakana: テ スミマセン
+  romaji: te sumimasen
+formation:
+  Verb[て] + すみません: Used to apologize for an action one has performed.
+jlpt: N4
+etymology: The particle 「て」 connects a verb to the following clause, indicating a cause or sequence. 「すみません」
+  literally means "it will not pass/finish," and later evolved to signify "I'm sorry" or "excuse me" because
+  the feeling of gratitude or apology does not end. Thus, 「〜てすみません」 means "I am sorry for having done
+  ~" or "I apologize for ~ing." Its core meaning is to express that one's feelings of regret or gratitude
+  are endless, indicating a genuine sentiment.
+writeup: |-
+  The phrase 「〜てすみません」 is used to apologize for an action you have performed. It combines the te-form of a verb, which indicates a cause or method, with 「すみません」, a common expression of apology or gratitude. When used together, it creates a polite apology directly tied to a specific action.
+
+  This construction is versatile and can be applied to a wide range of situations where one wishes to express regret or acknowledge inconvenience caused by their actions. It is generally polite, suitable for various social contexts, though its level of formality can vary slightly depending on the context and the specific verb used. It is a fundamental expression for showing remorse or consideration in daily Japanese interactions.
+false_friends:
+  - term: ごめんなさい
+    meaning: I'm sorry (casual)
+    kind: similar expression
+    nuance: 「ごめんなさい」 is a more casual and often more emotional apology than 「すみません」. While 「〜てすみません」 specifies
+      the action, 「ごめんなさい」 is a general apology. We're looking for an apology tied to a specific action.
+    grammar_point: <suggest>:ごめんなさい (i'm sorry)
+  - term: 申し訳ありません
+    meaning: I am truly sorry (formal)
+    kind: similar expression
+    nuance: 「申し訳ありません」 is a more formal and deeply apologetic expression, often used in business or very
+      serious situations. 「〜てすみません」 is a more general polite apology. We're looking for a polite, general
+      apology.
+    grammar_point: <suggest>:申し訳ありません (I am truly sorry)
+  - term: 〜ていただく
+    meaning: to have someone do something for you (receive a favor)
+    kind: often confused with
+    nuance: While both use the te-form followed by another verb, 「〜ていただく」 expresses receiving a favor,
+      indicating gratitude, not an apology for an action performed. We're looking for an apology.
+    grammar_point: '[Verb-て]もらう (to have someone do, receive an action)'
+post_false_friends_writeup: It is important to distinguish 「〜てすみません」 from other apologies and te-form
+  constructions. While 「ごめんなさい」 and 「申し訳ありません」 are general apologies, 「〜てすみません」 explicitly links the apology
+  to a specific action. Additionally, be careful not to confuse it with constructions like 「〜ていただく」, which
+  express receiving a favor, as the nuance is completely different. The key is that 「すみません」 here is used
+  to express regret for an action you have done, rather than gratitude for an action performed by someone
+  else.
+examples:
+  - english: I'm sorry for being late.
+    japanese:
+      - 遅れ て {すみ ませ ん}。
+      - 遅れ て {すみ ませ ん でし た}。
+      - 遅く なっ て {すみ ませ ん}。
+      - 遅く なっ て {すみ ませ ん でし た}。
+      - 遅れ て {すい ませ ん}。
+    english_literally: Being late, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 遅れ て 申し訳 あり ませ ん。
+        english: I am terribly sorry for being late.
+        hint: 「申し訳ありません」 conveys a much deeper and more formal apology. We're looking for a common, polite
+          apology.
+      - competing_japanese:
+          - 遅れ て ごめん。
+        english: Sorry for being late. (casual)
+        hint: 「ごめん」 is a very casual apology, suitable for close friends or family. We're looking for
+          a polite apology.
+    scene: You arrived a few minutes late to a casual meeting with a colleague.
+    register: semi-formal
+    setting: professional
+  - english: I'm sorry for making you wait.
+    japanese:
+      - お 待た せ し て {すみ ませ ん}。
+      - お 待た せ し て {すみ ませ ん でし た}。
+      - お 待た せ し て {すい ませ ん}。
+    english_literally: Making you wait, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - お 待た せ し て 申し訳 ござい ませ ん。
+        english: I deeply apologize for making you wait.
+        hint: 「申し訳ございません」 is an even higher level of formality and apology, often used in very serious
+          or business contexts. We're looking for a polite apology for a minor inconvenience.
+      - competing_japanese:
+          - 待た せ て ごめん ね。
+        english: Sorry for making you wait. (casual, feminine)
+        hint: 「待たせてごめんね」 is very casual and has a feminine nuance. We're looking for a polite, generally
+          applicable apology.
+    scene: You kept a friend waiting for a short period before meeting up.
+    register: formal
+    setting: friendly
+  - english: I'm sorry for having bothered you last night.
+    japanese:
+      - 昨夜 は ご 迷惑 を お かけ し て {すみ ませ ん でし た}。
+      - 昨夜 は ご 迷惑 を お かけ し て {すみ ませ ん}。
+    english_literally: Last night, having caused inconvenience, I was sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 は ご 迷惑 を お かけ し て 申し訳 あり ませ ん でし た。
+        english: Last night, I was terribly sorry for having caused you inconvenience.
+        hint: 「申し訳ありませんでした」 is a much more profound and formal apology. We're looking for a polite apology
+          in a general context.
+    scene: You are apologizing to a neighbor after a slightly noisy evening.
+    register: formal
+    setting: apologetic
+  - english: I'm sorry for troubling you during your busy time.
+    japanese:
+      - お 忙しい ところ {すみ ませ ん}。
+      - お 忙しい ところ {すい ませ ん}。
+    english_literally: In a busy place/time, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - お 忙しい ところ 恐縮 です が。
+        english: It is very kind of you during your busy time, but... (humble, requesting)
+        hint: 「恐縮ですが」 is a humble expression often used before making a request, not primarily an apology
+          for an action already done. We're looking for an apology for causing trouble.
+    scene: You need to ask a favor from someone who is clearly busy.
+    register: formal
+    setting: professional
+  - english: I'm sorry for not replying sooner.
+    japanese:
+      - 返事 が 遅く なっ て {すみ ませ ん}。
+      - 返事 が 遅く なっ て {すみ ませ ん でし た}。
+      - 返事 が 遅く なっ て {すい ませ ん}。
+    english_literally: Reply becoming late, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 返信 が 遅れ て 申し訳 あり ませ ん。
+        english: I apologize for the late reply. (more formal)
+        hint: 「申し訳ありません」 emphasizes the severity of the apology. We're looking for a general polite apology.
+      - competing_japanese:
+          - 返事 遅く なっ て ごめん ね。
+        english: Sorry for the late reply. (casual, feminine)
+        hint: 「ごめんね」 is a casual and softer apology. We're looking for a standard polite apology.
+    scene: You are sending an email to a friend or colleague after a slight delay.
+    register: semi-formal
+    setting: professional
+  - english: I'm sorry for raising my voice.
+    japanese:
+      - 声 を 荒げ て {すみ ませ ん}。
+      - 声 を 荒げ て {すみ ませ ん でし た}。
+      - 声 を 荒げ て {すい ませ ん}。
+    english_literally: Having raised my voice, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 声 を 荒げ て 申し訳 ござい ませ ん でし た。
+        english: I deeply apologize for having raised my voice.
+        hint: This emphasizes extreme regret. We are looking for a standard polite apology.
+    scene: You just had a heated discussion with someone and regret your tone.
+    register: formal
+    setting: apologetic
+  - english: I'm sorry for using your pen without asking.
+    japanese:
+      - あなた の ペン を 勝手 に 使っ て {すみ ませ ん}。
+      - あなた の ペン を 勝手 に 使っ て {すみ ませ ん でし た}。
+      - あなた の ペン を 勝手 に 使っ て {すい ませ ん}。
+    english_literally: Your pen, having used without permission, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の ペン を 勝手 に 使っ て ごめん。
+        english: Sorry for using your pen without permission. (casual)
+        hint: 「ごめん」 is a casual form of apology. We're looking for a polite one.
+    scene: You borrowed a classmate's pen without asking and are now returning it.
+    register: semi-formal
+    setting: friendly
+  - english: I'm sorry for forgetting about our promise.
+    japanese:
+      - 約束 を 忘れ て しまっ て {すみ ませ ん}。
+      - 約束 を 忘れ て しまっ て {すみ ませ ん でし た}。
+      - 約束 を 忘れ て しまっ て {すい ませ ん}。
+    english_literally: Having forgotten the promise completely, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 を 忘れ て しまい 申し訳 あり ませ ん。
+        english: I deeply apologize for having completely forgotten our promise.
+        hint: This emphasizes the seriousness of the forgotten promise. We're looking for a common polite
+          apology.
+    scene: You realize you missed an important appointment or commitment.
+    register: formal
+    setting: apologetic
+  - english: I'm sorry for bothering you.
+    japanese:
+      - お 邪魔 し て {すみ ませ ん}。
+      - お 邪魔 し て {すみ ませ ん でし た}。
+      - お 邪魔 し て {すい ませ ん}。
+    english_literally: Having bothered you, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - お 邪魔 し て 申し訳 あり ませ ん。
+        english: I apologize for intruding. (more formal)
+        hint: This is a more formal apology suitable for very inconvenient situations. We are looking
+          for a general polite apology for a minor disturbance.
+    scene: You enter someone's office or home and interrupt their work or activity.
+    register: formal
+    setting: apologetic
+  - english: I'm sorry for saying such selfish things.
+    japanese:
+      - わがまま を 言っ て {すみ ませ ん}。
+      - わがまま を 言っ て {すみ ませ ん でし た}。
+      - わがまま を 言っ て {すい ませ ん}。
+    english_literally: Having said selfish things, I'm sorry.
+    competing_grammar:
+      - competing_japanese:
+          - わがまま を 言っ て 申し訳 あり ませ ん。
+        english: I deeply apologize for saying such selfish things.
+        hint: This conveys a stronger sense of regret. We're looking for a standard polite apology.
+    scene: You've been demanding or unreasonable and now feel remorseful.
+    register: semi-formal
+    setting: apologetic
+post_example_writeup: The examples provided demonstrate how 「〜てすみません」 can be used in various situations
+  to express apologies for actions ranging from minor inconveniences to more significant mistakes. Pay
+  attention to the verb's te-form and the overall context to choose the most appropriate way to apologize
+  in Japanese. Remember that while 「すみません」 is generally polite, the severity of the apology can be intensified
+  by using more formal expressions like 「申し訳ありません」. Consider the relationship with the listener and the
+  gravity of the situation when choosing between 「すみません」 and its more formal counterparts. While 「すいません」
+  is a common, slightly more casual pronunciation, it carries the same meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%80%9CVB%E3%80%9C%E3%81%A6%E3%81%99%E3%81%BF%E3%81%BE%E3%81%9B%E3%82%93

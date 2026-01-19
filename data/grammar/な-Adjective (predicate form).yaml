@@ -1,0 +1,629 @@
+grammar_point: な-Adjective (predicate form)
+learn_before:
+  - な-Adjectives (adjectival nouns)
+meaning: な-Adjective (Predicate)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: だ
+    rarity: common
+    meaning: is/am/are [na-adjective]
+  - conjugation-type: non-past polite (～ます)
+    form: です
+    rarity: common
+    meaning: is/am/are [na-adjective]
+  - conjugation-type: negative plain (～ない)
+    form: ではない
+    rarity: common
+    meaning: is/am/are not [na-adjective]
+  - conjugation-type: negative non-past polite (～ません)
+    form: ではありません
+    rarity: common
+    meaning: is/am/are not [na-adjective]
+  - conjugation-type: past plain (～た)
+    form: だった
+    rarity: common
+    meaning: was/were [na-adjective]
+  - conjugation-type: past polite (～ました)
+    form: でした
+    rarity: common
+    meaning: was/were [na-adjective]
+  - conjugation-type: negative past plain (～なかった)
+    form: ではなかった
+    rarity: common
+    meaning: was/were not [na-adjective]
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ではありませんでした
+    rarity: common
+    meaning: was/were not [na-adjective]
+  - conjugation-type: te-form (～て)
+    form: で
+    rarity: common
+    meaning: '[na-adjective] and...'
+  - conjugation-type: conditional (～たら)
+    form: だったら
+    rarity: common
+    meaning: If it is/was [na-adjective]
+  - conjugation-type: volitional (～よう)
+    form: だろう
+    rarity: common
+    meaning: probably is/will be [na-adjective]
+  - conjugation-type: volitional polite (～ましょう)
+    form: でしょう
+    rarity: common
+    meaning: probably is/will be [na-adjective]
+pronunciation:
+  katakana: ナ ケイヨウシ ダ
+  romaji: na keiyōshi da
+formation:
+  '[な-Adjective Stem] + だ': Used to predicate (or state) the meaning of the adjective in plain form.
+  '[な-Adjective Stem] + です': Used to predicate (or state) the meaning of the adjective in polite form.
+jlpt: N5
+etymology: The term 「な-Adjective」 comes from the observation that these adjectives take the particle 「な」
+  when modifying a noun directly. 「だ」 is the plain form of the copula, indicating a statement of fact
+  or assertion.
+writeup: In Japanese grammar, 「な-Adjective だ」 is used to describe the predicate form of 「な」 adjectives.
+  A predicate is a word that describes the topic/subject of a sentence. Think of a 「述語 (じゅつご)」, which
+  literally means "statement word". As a predicate, 「な-Adjectives」 can appear by themselves (when the
+  word they are describing does not need to be stated), or they may be used at the end of a sentence.
+  It's important to remember that all 「な-Adjectives」 can also function as nouns, and therefore tend to
+  sound more like a noun than an adjective when used as a predicate. When there are no other words apart
+  from the adjective itself, it comes across similarly to "It's pretty", or "It's hated", and similar
+  expressions in English. We just have to guess what the 'it' is from context. **Important Consideration**
+  Unlike 「い-Adjectives」, 「な-Adjectives」 change form depending on where they are in the sentence. At the
+  end of a sentence, they will always be followed by 「だ」, or 「です」 (except in casual conversation where
+  「だ」 is omitted). However, when used before the word they are describing, they will always be followed
+  by 「な」. Hence the name 「な-Adjectives」. In many sentences, either 「は」 or 「が」 could be used to mark the
+  word/words that the predicate is describing. Which one sounds more natural will depend on many factors.
+  For example, if you are specifically pointing out something as being different from other things in
+  the same category, 「が」 will often be used. **Fun Fact** Most 「な-Adjectives」 are words of foreign (Chinese/English)
+  origin.
+false_friends:
+  - term: い-Adjective
+    meaning: i-Adjective (Predicate)
+    kind: similar expression
+    nuance: Unlike な-adjectives which take 「だ/です」 at the end of a sentence, い-adjectives do not require
+      a copula to predicate a sentence. For example, 「高い」 (takai - expensive) directly means 'it is expensive'.
+    grammar_point: い-Adjective[dictionary] (dictionary)
+  - term: な-Adjective + な + Noun
+    meaning: na-adjective modifying a noun
+    kind: similar expression
+    nuance: This construction uses 「な」 to connect the adjective to the noun it modifies (e.g., 「静か な 部屋」
+      - a quiet room), whereas 「な-Adjective だ」 predicates a sentence as a statement.
+    grammar_point: な-Adjective (modifying nouns)
+  - term: ～です
+    meaning: polite copula
+    kind: similar expression
+    nuance: 「～です」 is the polite form of 「～だ」. It functions identically to 「な-Adjective だ」 in meaning but
+      adds politeness.
+    grammar_point: です (polite copula)
+  - term: ～だろう
+    meaning: probably is/will be (plain conjectural)
+    kind: similar expression
+    nuance: 「～だろう」 is the plain form of 「～でしょう」. It conveys conjecture in a casual tone for nouns and
+      na-adjectives.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: ～なら
+    meaning: If (conditional for nouns/na-adjectives)
+    kind: often confused with
+    nuance: While 「～なら」 can also form a conditional for な-adjectives (e.g., 「本気 なら」), 「～だったら」 often carries
+      a nuance of a more direct, sometimes more immediate, hypothetical condition, especially in casual
+      speech.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: い-Adjective + ない
+    meaning: negative i-adjective
+    kind: often confused with
+    nuance: For na-adjectives, the negative is formed with 「で は ない」 (e.g., 「きれい で は ない」). For i-adjectives,
+      the negative is formed by changing the final い to くない (e.g., 「高く ない」 - not expensive) directly on
+      the adjective stem.
+    grammar_point: い-Adjective[くない] (negative)
+post_false_friends_writeup: While 「な-Adjective だ」 is fundamental, it's important to distinguish it from
+  the behavior of い-adjectives, which do not use 「だ」 or 「です」 at the end of a sentence. Also, be mindful
+  of the different conditional forms like 「～なら」 and the nuances between plain 「～だろう」 and polite 「～でしょう」
+  for expressing conjecture. Furthermore, remember the distinction between 「な-Adjective だ」 as a predicate
+  and the use of 「な」 when a な-adjective directly modifies a noun (e.g., 「静か な 部屋」 vs. 「部屋 は 静か だ」).
+examples:
+  - english: That restaurant is very quiet.
+    japanese:
+      - あの レストラン は とても {静か だ}
+      - あの レストラン は めちゃ {静か だ}
+      - あの レストラン は すごく {静か だ}
+      - あそこ の レストラン、すごく {静か だ} よ ね
+      - へえ、あそこ の レストラン って 意外 と {静か だ} ね
+    english_literally: That restaurant is very quiet.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は とても {静か な} 場所 だ。
+        english: That restaurant is a very quiet place (attributive use).
+        hint: This uses 「静か な」 to modify a noun. We're looking for a sentence where the na-adjective directly
+          predicates the subject.
+      - competing_japanese:
+          - あの レストラン は とても {落ち着い て いる}。
+        english: That restaurant is very calm/peaceful (verb form).
+        hint: This describes Mr. Yamada's actions, not his inherent quality using a predicate na-adjective.
+      - competing_japanese:
+          - あの レストラン は とても {静か です}。
+        english: That restaurant is very quiet (polite form).
+        hint: This uses the polite form of the predicate. We're looking for the plain form.
+      - competing_japanese:
+          - あの レストラン は とても {広い}。
+        english: That restaurant is very spacious.
+        hint: This uses an i-adjective. We're looking for a na-adjective as a predicate.
+      - competing_japanese:
+          - あの レストラン は とても {静か な ところ に ある}。
+        english: That restaurant is in a very quiet place.
+        hint: This describes the location, not the quality of the restaurant itself. We're looking for
+          a direct predicate.
+    scene: Two friends walking past a restaurant, deciding where to eat.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The plain form 「静か だ」 is a direct, casual statement of fact about the restaurant, typically
+      used among close friends. 「とても」 adds emphasis to the degree of quietness. 「めちゃ」 is a more casual
+      intensifier than 「とても」。 「すごく」 is also a casual intensifier.
+  - english: Mr. Yamada is always kind.
+    japanese:
+      - 山田 さん は いつ も {親切 です}
+      - 山田 さん は いつ も {ご 親切 です}
+      - 山田 さん は いつ も 本当 に {親切 です}
+      - 山田 さん は いつ も とっ て も {親切 です} ね
+      - 山田 さん は いつ も {親切 です} よ ね
+    english_literally: Mr. Yamada is always kind.
+    competing_grammar:
+      - competing_japanese:
+          - 山田 さん は いつ も {優しい}。
+        english: Mr. Yamada is always kind/gentle (i-adjective).
+        hint: This uses an i-adjective. We're looking for an example of a na-adjective as a predicate.
+      - competing_japanese:
+          - 山田 さん は いつ も {親切 に し て くれる}。
+        english: Mr. Yamada always acts kindly (adverbial use of na-adjective).
+        hint: This describes Mr. Yamada's actions, not his inherent quality using a predicate na-adjective.
+      - competing_japanese:
+          - 山田 さん は いつ も {親切 な} 人 です。
+        english: Mr. Yamada is always a kind person.
+        hint: This uses 「親切 な」 to modify a noun. We're looking for a sentence where the na-adjective directly
+          predicates the subject.
+      - competing_japanese:
+          - 山田 さん は いつ も {親切 だ}。
+        english: Mr. Yamada is always kind (plain form).
+        hint: This uses the plain form of the predicate. We're looking for the polite form.
+      - competing_japanese:
+          - 山田 さん は いつ も {親切 な の で} 助かっ て い ます。
+        english: Mr. Yamada is always kind, so it's a great help.
+        hint: This uses 「親切 な の で」 to express a reason. We're looking for a simple predicate statement.
+    scene: A new employee describing a colleague to their manager.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The polite form 「親切 です」 softens the statement, making it appropriate for professional interactions,
+      conveying respect. 「いつも」 (always) emphasizes a consistent characteristic in a polite manner. 「ご
+      親切 です」 adds a slight honorific prefix, further increasing politeness, suggesting an appreciation
+      for Mr. Yamada's kindness.
+  - english: This room is not clean.
+    japanese:
+      - この 部屋 は {きれい で は ない}
+      - この 部屋 は {きれい じゃ ない}
+      - この 部屋 は 全然 {きれい で は ない}
+      - マジ で この 部屋 {きれい じゃ ない} ん だ けど
+      - この 部屋、あんまり {きれい じゃ ない} な
+    english_literally: This room is not clean.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は {汚い}。
+        english: This room is dirty (i-adjective).
+        hint: This uses an i-adjective for 'dirty'. We're looking for the negative form of a na-adjective.
+      - competing_japanese:
+          - この 部屋 は {きれい で は あり ませ ん}。
+        english: This room is not clean (polite negative).
+        hint: This is the polite negative form. We're looking for the plain negative form.
+      - competing_japanese:
+          - この 部屋 は {きれい な} 部屋 で は ない。
+        english: This uses 「きれい な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「きれい な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+      - competing_japanese:
+          - この 部屋 は {汚く ない です}。
+        english: This uses the negative form of an i-adjective. We're looking for the negative form of
+          a na-adjective.
+        hint: This uses the negative form of an i-adjective. We're looking for the negative form of a
+          na-adjective.
+      - competing_japanese:
+          - この 部屋 は {きれい な} 状態 で は ない。
+        english: This room is not in a clean condition.
+        hint: This describes the state or condition using a noun. We're looking for a direct predicate
+          of the na-adjective.
+    scene: A college student complaining to their roommate about the messy dorm room.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「きれい で は ない」 is a direct, informal negation, expressing dissatisfaction. 「きれい じゃ ない」 is an
+      even more casual contraction, common in spoken Japanese. It's typical for a male student to use
+      this blunt phrasing with a close friend like a roommate.
+  - english: This problem is not easy.
+    japanese:
+      - この 問題 は {簡単 で は ありま せん}
+      - この 問題 は {簡単 じゃ あり ま せ ん}
+      - この 問題 は 決して {簡単 で は ありま せん}
+      - この 問題 は そう {簡単 じゃ あり ま せ ん} よ
+      - この 問題 は けっして {簡単 で は ありま せ ん} よ
+    english_literally: This problem is not easy.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は {難しい}。
+        english: This problem is difficult (i-adjective).
+        hint: This uses an i-adjective for 'difficult'. We're looking for the polite negative form of
+          a na-adjective.
+      - competing_japanese:
+          - この 問題 は {簡単 で は なかっ た}。
+        english: This problem was not easy (past tense).
+        hint: This is the past tense negative. We're looking for the non-past polite negative form.
+      - competing_japanese:
+          - この 問題 は {簡単 な} 問題 で は ありま せん。
+        english: This uses 「簡単 な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「簡単 な」 to modify a noun. We're looking for a sentence where the na-adjective directly
+          predicates the subject.
+      - competing_japanese:
+          - この 問題 は {簡単 で は ない}。
+        english: This uses the plain negative form. We're looking for the polite negative form.
+        hint: This uses the plain negative form. We're looking for the polite negative form.
+      - competing_japanese:
+          - この 問題 は {難しく ない です}。
+        english: This uses the polite negative form of an i-adjective. We're looking for the polite negative
+          form of a na-adjective.
+        hint: This uses the polite negative form of an i-adjective. We're looking for the polite negative
+          form of a na-adjective.
+      - competing_japanese:
+          - この 問題 は {簡単 だ と は 言え ませ ん}。
+        english: It can't be said that this problem is easy.
+        hint: This expresses a judgment about the problem. We're looking for a direct negative predicate.
+    scene: A professor explaining a complex math problem to a student who is struggling.
+    register: semi-formal
+    setting: academic
+    conjugation: negative non-past polite (～ません)
+    nuance: The polite negation 「簡単 で は ありま せん」 softens the statement, making it appropriate for an instructor
+      addressing a student. 「簡単 じゃ ありま せん」 is a slightly more casual but still polite version, often heard
+      in less formal academic discussions. It expresses the challenge without being overly harsh.
+  - english: Yesterday's event was lively.
+    japanese:
+      - 昨日 の イベント は {賑やか だっ た}
+      - 昨日 の イベント は とても {賑やか だっ た}
+      - 昨日 の イベント、本当 に {賑やか だっ た} ね！
+      - あの イベント、最高 に {賑やか だっ た} よ
+      - 昨日 の イベント、めっちゃ {賑やか だっ た} よ！
+    english_literally: Yesterday's event was lively.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の イベント は {活気 が あっ た}。
+        english: Yesterday's event had a lot of energy/liveliness.
+        hint: This uses a noun and a verb to express liveliness. We're looking for a na-adjective in the
+          plain past form.
+      - competing_japanese:
+          - 昨日 の イベント は {賑やか でし た}。
+        english: Yesterday's event was lively (polite past).
+        hint: This is the polite past form. We're looking for the plain past form.
+      - competing_japanese:
+          - 昨日 の イベント は {楽しかっ た}。
+        english: Yesterday's event was fun.
+        hint: This uses an i-adjective in the past tense. We're looking for a na-adjective in the plain
+          past form.
+      - competing_japanese:
+          - 昨日 の イベント は {賑やか な} 祭り だっ た。
+        english: This uses 「賑やか な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「賑やか な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+      - competing_japanese:
+          - 昨日 の イベント は {賑やか さ が あっ た}。
+        english: Yesterday's event had liveliness.
+        hint: This uses a noun form of 'liveliness'. We're looking for a direct predicate of the na-adjective.
+    scene: Two friends reminiscing about a fun event they both attended.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: 「賑やか だった」 provides a direct, casual account of a past event. The plain past tense is common
+      among friends when sharing experiences and feelings about something that has happened. Adding 「とても」
+      emphasizes the degree of liveliness, making the statement more emphatic.
+  - english: That research was extremely important.
+    japanese:
+      - その 研究 は 非常 に {重要 でし た}
+      - その 研究 は 極めて {重要 でし た}
+      - まさに その 研究 は {重要 でし た}
+      - その 研究、{非常 に 重要 でし た} と 報告 さ れ て い ます
+    english_literally: That research was extremely important.
+    competing_grammar:
+      - competing_japanese:
+          - その 研究 は とても {大切 だっ た}。
+        english: That research was very important/precious (plain form).
+        hint: This uses a different na-adjective in plain past tense. We're looking for the polite past
+          form of 'important'.
+      - competing_japanese:
+          - その 研究 は 非常 に {重要 で ある}。
+        english: That research is extremely important (plain non-past).
+        hint: This is the plain non-past form. We're looking for the polite past tense.
+      - competing_japanese:
+          - その 研究 は とても {貴重 でし た}。
+        english: That research was very valuable.
+        hint: This uses an i-adjective in the polite past tense. We're looking for a na-adjective in the
+          polite past form.
+      - competing_japanese:
+          - その 研究 は 非常 に {重要 な} 発見 でし た。
+        english: This uses 「重要 な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「重要 な」 to modify a noun. We're looking for a sentence where the na-adjective directly
+          predicates the subject.
+      - competing_japanese:
+          - その 研究 は {重要 だっ た}。
+        english: This uses the plain past form. We're looking for the polite past form.
+        hint: This uses the plain past form. We're looking for the polite past form.
+      - competing_japanese:
+          - その 研究 は {重要 性 が 高かっ た}。
+        english: That research had high importance.
+        hint: This uses a noun phrase for 'importance'. We're looking for a direct predicate of the na-adjective.
+    scene: A senior researcher presenting findings to a new team member during a training session.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: 「重要 でし た」 uses the polite past tense, which is suitable for conveying factual information
+      or assessments in a formal academic setting. 「非常に」 (extremely) emphasizes its significance, highlighting
+      the profound impact or value of the research.
+  - english: That plan was not realistic.
+    japanese:
+      - その 計画 は {現実 的 で は なかっ た}
+      - その 計画 は {現実 的 じゃ なかっ た}
+      - どう 考え て も その 計画 は {現実 的 で は なかっ た}
+      - 正直、その 計画 {現実 的 じゃ なかっ た} よ な
+      - あの 計画 は、結局 の ところ {現実 的 じゃ なかっ た} ね
+    english_literally: That plan was not realistic.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は {非 現実 的 だっ た}。
+        english: That plan was unrealistic (single na-adjective).
+        hint: This uses the na-adjective 'unrealistic'. We're looking for the negative form of 'realistic'.
+      - competing_japanese:
+          - その 計画 は {現実 的 で は あり ませ ん でし た}。
+        english: That plan was not realistic (polite past negative).
+        hint: This is the polite past negative form. We're looking for the plain past negative form.
+      - competing_japanese:
+          - その 計画 は {良く なかっ た}。
+        english: This uses the negative past form of an i-adjective. We're looking for the negative past
+          form of a na-adjective.
+        hint: This uses the negative past form of an i-adjective. We're looking for the negative past
+          form of a na-adjective.
+      - competing_japanese:
+          - その 計画 は {現実 的 な} アイデア で は なかっ た。
+        english: This uses 「現実的 な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「現実的 な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+      - competing_japanese:
+          - その 計画 は {実現 可能 で は なかっ た}。
+        english: That plan was not feasible/realizable.
+        hint: This uses a different negative predicate. We're looking for the negative form of 'realistic'.
+    scene: Colleagues discussing a failed project during a casual debriefing.
+    register: casual
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    nuance: 「現実的 で は なかった」 is a frank, informal assessment of a past situation. 「現実的 じゃ なかった」 is a more
+      casual contraction often used in everyday conversation. This directness is common among colleagues
+      who are comfortable expressing disappointment or criticism to each other.
+  - english: She was not satisfied.
+    japanese:
+      - 彼女 は {満足 で は ありま せん でし た}
+      - 彼女 は {満足 じゃ ありま せん でし た}
+      - 残念 ながら 彼女 は {満足 で は ありま せん でし た}
+      - 結局、彼女 は {満足 じゃ ありま せん でし た}
+      - 彼女 は 全く {満足 で は ありま せん でし た}
+    english_literally: She was not satisfied.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {不満 だっ た}。
+        english: She was dissatisfied/unhappy (plain past na-adjective).
+        hint: This uses a different na-adjective in plain past tense. We're looking for the polite past
+          negative form of 'satisfied'.
+      - competing_japanese:
+          - 彼女 は {満足 し て い ませ ん でし た}。
+        english: She was not satisfied (verb form).
+        hint: This expresses dissatisfaction using a verb phrase. We're looking for the polite past negative
+          form of the na-adjective 'satisfied'.
+      - competing_japanese:
+          - 彼女 は {嬉しく ありま せん でし た}。
+        english: This uses the polite negative past form of an i-adjective. We're looking for the polite
+          negative past form of a na-adjective.
+        hint: This uses the polite negative past form of an i-adjective. We're looking for the polite
+          negative past form of a na-adjective.
+      - competing_japanese:
+          - 彼女 は {満足 な} 顔 で は ありま せん でし た。
+        english: This uses 「満足 な」 to modify a noun. We're looking for a sentence where the na-adjective
+          directly predicates the subject.
+        hint: This uses 「満足 な」 to modify a noun. We're looking for a sentence where the na-adjective directly
+          predicates the subject.
+      - competing_japanese:
+          - 彼女 は {満足 で は なかっ た}。
+        english: This uses the plain past negative form. We're looking for the polite past negative form.
+        hint: This uses the plain past negative form. We're looking for the polite past negative form.
+      - competing_japanese:
+          - 彼女 は {期待 を 裏切ら れ た}。
+        english: Her expectations were betrayed.
+        hint: This implies dissatisfaction but uses a passive verb. We're looking for a direct negative
+          predicate.
+    scene: A customer service representative reporting a customer's negative feedback to their supervisor.
+    register: semi-formal
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+    listener_gender: male
+    nuance: 「満足 で は ありま せん でし た」 is a polite way to convey a negative past state, appropriate in a professional
+      context when reporting on someone else's feelings respectfully to a superior. 「満足 じゃ ありま せん でし た」
+      is a slightly more casual but still polite contraction, used in professional but less rigid settings.
+  - english: This room is convenient and comfortable.
+    japanese:
+      - この 部屋 は {便利 で} 快適 だ
+      - この 部屋 は {便利 で}、とても 快適 だ
+      - この 部屋、{便利 で} しかも 快適 だ よ
+      - 広く て {便利 で}、すごく 快適 な 部屋 だ
+      - この 部屋 は、立地 も {便利 で}、居心地 も 良い
+    english_literally: This room is convenient and comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は {便利 だ し} 快適 だ。
+        english: This room is convenient, and also comfortable (using 「し」 for listing reasons).
+        hint: This uses 「し」 to list features, which can imply a reason or emphasize multiple points. We're
+          looking for the te-form connecting two adjectives.
+      - competing_japanese:
+          - この 部屋 は {便利 で}、そして 快適 だ。
+        english: This room is convenient, and then comfortable (explicit conjunction).
+        hint: This uses an explicit conjunction to connect the ideas. We're looking for the te-form of
+          the na-adjective to connect qualities.
+      - competing_japanese:
+          - この 部屋 は {広く て} 快適 だ。
+        english: This uses the te-form of an i-adjective. We're looking for the te-form of a na-adjective.
+        hint: This uses the te-form of an i-adjective. We're looking for the te-form of a na-adjective.
+      - competing_japanese:
+          - この 部屋 は {便利 な} 場所 で 快適 だ。
+        english: This uses 「便利 な」 to modify a noun. We're looking for the te-form connecting two predicates
+          directly.
+        hint: This uses 「便利 な」 to modify a noun. We're looking for the te-form connecting two predicates
+          directly.
+      - competing_japanese:
+          - この 部屋 は {便利 だ から} 快適 だ。
+        english: This room is convenient, so it's comfortable.
+        hint: This uses 「から」 to express a reason. We're looking for the te-form to simply list characteristics.
+    scene: A person showing their new apartment to a friend, pointing out its features.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: The te-form 「便利 で」 connects two qualities smoothly, indicating that the room is both convenient
+      and comfortable. It's a common way to list multiple characteristics in casual speech. Adding 「とても」
+      emphasizes the comfort level, making the statement more expressive.
+  - english: If he is serious, things will proceed quickly.
+    japanese:
+      - もし 彼 が {本気 だっ たら}、話 は 早い
+      - 彼 が {本気 だっ たら}、すぐ 話 が 進む よ
+      - 彼 が {本気 だっ たら}、きっと 良い 方向 に 行く
+      - 彼 が {本気 だっ たら}、必ず やり遂げる だろう
+    english_literally: If he is serious, things will proceed quickly.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 が {本気 なら}、話 は 早い。
+        english: If he is serious, things will proceed quickly. (More general conditional)
+        hint: While 「なら」 also forms a conditional, 「だったら」 often implies a hypothetical situation or a
+          stronger, more direct condition. We're looking for a conditional that suggests a direct consequence.
+      - competing_japanese:
+          - 彼 が {本気 の 場合}、話 は 早い。
+        english: In the case that he is serious, things will proceed quickly (more formal/literal conditional).
+        hint: This uses a more formal conditional expression. We're looking for a conditional formed directly
+          from the na-adjective.
+      - competing_japanese:
+          - もし 彼 が {忙しかっ たら}、話 は 進ま ない だろう。
+        english: This uses the conditional form of an i-adjective. We're looking for the conditional form
+          of a na-adjective.
+        hint: This uses the conditional form of an i-adjective. We're looking for the conditional form
+          of a na-adjective.
+      - competing_japanese:
+          - もし 彼 が {本気 な} 人 だっ たら、話 は 早い。
+        english: This uses 「本気 な」 to modify a noun. We're looking for a conditional directly from the
+          na-adjective.
+        hint: This uses 「本気 な」 to modify a noun. We're looking for a conditional directly from the na-adjective.
+      - competing_japanese:
+          - 彼 が {本気 で あれ ば}、話 は 早い。
+        english: If he is serious, things will proceed quickly (classical conditional).
+        hint: This uses a more classical or formal conditional. We're looking for the common spoken conditional
+          form with 「だったら」.
+    scene: Two business partners discussing a potential new recruit and his commitment.
+    register: casual
+    setting: persuasive
+    conjugation: conditional (～たら)
+    nuance: 「本気 だったら」 forms a casual conditional clause. 「だったら」 can feel more direct and immediate than
+      「なら」, implying a stronger consequence if the condition is met. This phrasing adds a sense of urgency
+      or directness to the condition.
+  - english: Tomorrow's weather will probably be sunny.
+    japanese:
+      - 明日 の 天気 は {晴れ だろう}
+      - 明日 の 天気 は きっと {晴れ だろう}
+      - 明日 は {晴れ だろう} な
+      - どうせ 明日 も {晴れ だろう} し
+      - 明日 は おそらく {晴れ だろう}
+    english_literally: Tomorrow's weather will probably be sunny.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 天気 は {晴れる だろう}。
+        english: Tomorrow's weather will probably clear up (verb form).
+        hint: This example uses a verb form to express the weather changing. We're looking for a statement
+          about the current or resulting state of the weather using a na-adjective or noun.
+      - competing_japanese:
+          - 明日 の 天気 は {晴れ でしょう}。
+        english: Tomorrow's weather will probably be sunny (polite conjecture).
+        hint: This is the polite form of the conjecture. We're looking for the plain form.
+      - competing_japanese:
+          - 明日 の 天気 は {暑い だろう}。
+        english: This uses the volitional form of an i-adjective. We're looking for the volitional form
+          of a na-adjective or noun.
+        hint: This uses the volitional form of an i-adjective. We're looking for the volitional form of
+          a na-adjective or noun.
+      - competing_japanese:
+          - 明日 の 天気 は {晴れ の} 日 だろう。
+        english: This uses 「晴れ の」 to modify a noun. We're looking for a conjecture directly from the na-adjective
+          or noun.
+        hint: This uses 「晴れ の」 to modify a noun. We're looking for a conjecture directly from the na-adjective
+          or noun.
+      - competing_japanese:
+          - 明日 は {晴れ に なる} と 思う。
+        english: I think it will become sunny tomorrow.
+        hint: This expresses a personal opinion. We're looking for a direct conjecture using 「だろう」.
+    scene: A person checking the weather forecast and telling their family about it.
+    register: casual
+    setting: informative
+    conjugation: volitional (～よう)
+    nuance: 「晴れ だろう」 expresses a casual conjecture or prediction. It's often used when there's a reasonable
+      basis for the assumption, such as a weather report, conveying a degree of certainty. Adding 「きっと」
+      emphasizes the certainty of the prediction, making it sound more confident.
+  - english: The next project will surely be a success.
+    japanese:
+      - 次 の プロジェクト は きっと {成功 でしょう}
+      - 次 の プロジェクト は 間違い なく {成功 でしょう}
+      - 私 達 の 次 の プロジェクト は 必ず {成功 でしょう}！
+      - この プロジェクト は 絶対 に {成功 でしょう}！
+    english_literally: The next project will surely be a success.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の プロジェクト は きっと {成功 する はず です}。
+        english: The next project should certainly succeed (based on expectation).
+        hint: This expresses expectation based on known facts. We're looking for a polite conjecture about
+          the outcome.
+      - competing_japanese:
+          - 次 の プロジェクト は きっと {成功 する だろう}。
+        english: The next project will surely succeed (plain conjecture).
+        hint: This is the plain form of the conjecture. We're looking for the polite form.
+      - competing_japanese:
+          - 次 の プロジェクト は きっと {良い でしょう}。
+        english: This uses the polite volitional form of an i-adjective. We're looking for the polite
+          volitional form of a na-adjective or noun.
+        hint: This uses the polite volitional form of an i-adjective. We're looking for the polite volitional
+          form of a na-adjective or noun.
+      - competing_japanese:
+          - 次 の プロジェクト は きっと {成功 へ の} 道 でしょう。
+        english: This uses 「成功 へ の」 to modify a noun. We're looking for a conjecture directly from the
+          na-adjective or noun.
+        hint: This uses 「成功 へ の」 to modify a noun. We're looking for a conjecture directly from the na-adjective
+          or noun.
+      - competing_japanese:
+          - 次 の プロジェクト は {成功 に 終わる でしょ う}。
+        english: The next project will probably end in success.
+        hint: This uses a verb phrase for the conclusion. We're looking for a direct conjecture about
+          the outcome using 「でしょう」.
+    scene: A team leader speaking to their colleagues, expressing optimism about an upcoming project.
+    register: formal
+    setting: inspirational
+    conjugation: volitional polite (～ましょう)
+    listener_gender: group
+    nuance: 「成功 でしょう」 conveys a polite conjecture or strong expectation. 「でしょう」 is suitable for professional
+      settings to express confidence or predictions while maintaining formality. 「きっと」 (surely) adds emphasis,
+      reinforcing the leader's strong belief in success to the team.
+post_example_writeup: Understanding the predicate forms of な-adjectives is crucial for forming complete
+  sentences in Japanese. Remember that while the `だ` form is plain and used in casual contexts, `です` is
+  the polite equivalent. Mastering the conjugations, including past, negative, and conditional forms,
+  allows for expressing a wide range of meanings and adapting to different social registers.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-adjective-predicate

@@ -1,0 +1,230 @@
+grammar_point: から見ると (from the viewpoint of・looking from)
+learn_before:
+  - 〜てくる (change toward present・movement toward speaker)
+  - となる (to become・result in)
+  - に先立ち (prior to)
+  - 変わる (to change)
+  - 的 (adjectivizer)
+meaning: From the viewpoint of; looking from; considering from the perspective of
+pronunciation:
+  katakana: カラミルト
+  romaji: karamiru to
+formation:
+  Noun + から見ると: Used when adopting a specific person's or group's perspective to make a judgment or observation.
+  Plain form (Verb/い-Adjective/な-Adjective/Noun + だ) + から見ると: Used when making a judgment or observation
+    from the viewpoint of a general situation or condition.
+  '[Question word + か] + から見ると': Used when evaluating something based on an uncertain or hypothetical
+    viewpoint.
+jlpt: N2
+etymology: The phrase から見ると is a combination of the particle から (kara), indicating a source or point of
+  origin, and the verb 見る (miru), meaning "to see" or "to look," followed by the quotative particle と
+  (to), which here can imply a condition or result. Literally, it translates to "when looking from" or
+  "from the perspective of." This construction highlights that the statement or judgment being made is
+  relative to a specific viewpoint or criterion, drawing a conclusion from that perspective.
+writeup: |-
+  から見ると (kara miru to) is a grammar pattern used to express a judgment or observation from a particular perspective or viewpoint. It emphasizes the standpoint from which an evaluation or conclusion is being made. This phrase is commonly used when you are assessing a situation, person, or object based on a specific set of criteria or a particular individual's point of view.
+
+  It can be attached to nouns, representing a person or group whose perspective is being adopted, or to a plain form clause, indicating a situation or condition from which something is observed. The nuance is that the speaker is stepping into or considering that specific viewpoint to make a comment.
+
+  **Key characteristics**:
+  *   **Subjectivity**: It explicitly states that the following statement is a subjective judgment from the stated perspective.
+  *   **Evaluation/Judgment**: Often used when evaluating or making a judgment about something.
+  *   **Versatility**: Can refer to a person's perspective (e.g., 子供から見ると - from a child's perspective), an objective standard (e.g., データから見ると - from the data's perspective), or a specific situation (e.g., 彼の立場から見ると - from his position).
+false_friends:
+  - term: からすると・からすれば
+    meaning: judging from; based on; considering
+    kind: similar expression
+    nuance: While から見ると focuses on "looking from a viewpoint," からすると・からすれば often implies making a judgment
+      or inference based on some evidence or criterion. They are very close and often interchangeable,
+      but からすると can feel slightly more about drawing a logical conclusion or inference, whereas から見ると
+      is about the angle of perception.
+    grammar_point: <suggest>:からすると・からすれば (judging from)
+  - term: に取って
+    meaning: for (someone); to (someone); from the standpoint of
+    kind: similar expression
+    nuance: に取って indicates what something means to a person, or how it affects that person's feelings
+      or benefits. It's about relevance or value for them. から見ると is about observing and judging something
+      from their viewpoint, rather than its impact on them.
+    grammar_point: に取って (to・for・from the perspective of)
+  - term: にしたら・にしてみれば
+    meaning: if it were up to; from the perspective of (implying feelings/thoughts)
+    kind: similar expression
+    nuance: にしたら・にしてみれば is very similar to に取って but often emphasizes the feelings, thoughts, or situation
+      of the person if they were in that specific circumstance. It implies a stronger sense of empathy
+      or consideration for that person's internal state. から見ると is more objective, stating a judgment as
+      seen from that perspective.
+    grammar_point: にしたら・にしてみれば (from the perspective of)
+  - term: に言わせれば
+    meaning: if you ask (someone); according to (someone's opinion)
+    kind: similar expression
+    nuance: に言わせれば directly attributes an opinion or statement to a specific person, as if you are quoting
+      or summarizing what they would say. から見ると is about the speaker's own observation or judgment, but
+      filtered through a particular lens or viewpoint.
+    grammar_point: に言わせれば (as one would say)
+post_false_friends_writeup: While から見ると and phrases like からすると, に取って, にしたら, and に言わせれば all involve considering
+  a perspective, they each carry distinct nuances. から見ると is most directly about making an observation
+  or judgment from a specific standpoint. からすると often suggests an inference based on available information
+  or criteria. に取って and にしたら (or にしてみれば) focus on what something means to someone or how they feel about
+  it, often implying personal impact. Finally, に言わせれば reports what someone would say or thinks, attributing
+  an opinion directly. Understanding these subtle differences will help you choose the most appropriate
+  expression for your intended meaning.
+examples:
+  - english: From a child's perspective, homework is a form of torture.
+    japanese:
+      - '{子供 から 見る と}、宿題 は 拷問 だ。'
+      - '{子供 から 見る と}、宿題 は 拷問 です。'
+    english_literally: From a child's perspective, homework is torture.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 に とっ て は、宿題 は 拷問 だ。
+        english: For a child, homework is torture.
+        hint: にとっては focuses on what something means to a person. We're looking for a judgment made from
+          their viewpoint.
+    scene: A parent trying to get their child to do homework.
+    register: casual
+    setting: serious
+  - english: From an economic standpoint, these measures are necessary.
+    japanese:
+      - 経済 的 観点 {から 見る と}、これ ら の 措置 は 必要 だ。
+      - 経済 的 観点 {から 見る と}、これ ら の 措置 は 必要 です。
+    english_literally: From an economic viewpoint, these measures are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 的 観点 から する と、これ ら の 措置 は 必要 だ。
+        english: Judging from an economic viewpoint, these measures are necessary.
+        hint: からすると often implies a logical inference or judgment based on certain criteria. We're looking
+          for an observation made from that viewpoint.
+    scene: A government official explaining policy.
+    register: formal
+    setting: informative
+  - english: From an outsider's perspective, their decision seemed strange.
+    japanese:
+      - 部外 者 {から 見る と}、彼 ら の 決定 は 奇妙 に 見え た。
+      - 部外 者 {から 見る と}、彼 ら の 決定 は 奇妙 に 見え まし た。
+    english_literally: From an outsider's perspective, their decision appeared strange.
+    competing_grammar:
+      - competing_japanese:
+          - 部外 者 に 言わ せれ ば、彼 ら の 決定 は 奇妙 に 見え た。
+        english: If you ask an outsider, their decision seemed strange.
+        hint: に言わせれば attributes an opinion directly to someone. We're looking for the speaker's observation
+          from that perspective.
+    scene: Friends discussing a company's actions.
+    register: casual
+    setting: reflective
+  - english: From an artist's point of view, the colors might be too strong.
+    japanese:
+      - 芸術 家 の 視点 {から 見る と}、色 は 強 すぎる か も しれ ない。
+      - 芸術 家 の 視点 {から 見る と}、色 は 強 すぎる か も しれ ませ ん。
+    english_literally: From an artist's point of view, the colors might be too strong.
+    competing_grammar:
+      - competing_japanese:
+          - 芸術 家 から する と、色 は 強 すぎる か も しれ ない。
+        english: Judging from an artist, the colors might be too strong.
+        hint: からすると tends to imply a more objective assessment based on professional criteria. We're expressing
+          an observation from that specific artistic lens.
+    scene: An art critique session.
+    register: formal
+    setting: academic
+  - english: From a historical perspective, this event marked a turning point.
+    japanese:
+      - 歴史 的 視点 {から 見る と}、この 出来事 は 転換 点 と なっ た。
+      - 歴史 的 視点 {から 見る と}、この 出来事 は 転換 点 と なり まし た。
+    english_literally: From a historical viewpoint, this event became a turning point.
+    competing_grammar:
+      - competing_japanese:
+          - 歴史 的 視点 から すれ ば、この 出来事 は 転換 点 と なっ た。
+        english: If viewed from a historical standpoint, this event became a turning point.
+        hint: からすれば often implies an inference or conclusion that can be drawn. We're simply stating how
+          it appears from that viewpoint.
+    scene: A history professor giving a lecture.
+    register: formal
+    setting: informative
+  - english: From my point of view, it seems like a good solution.
+    japanese:
+      - 私 の 意見 {から 見る と}、それ は 良い 解決 策 の よう に 思える。
+      - 私 の 意見 {から 見る と}、それ は 良い 解決 策 の よう に 思え ます。
+    english_literally: From my opinion, that seems like a good solution.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に とっ て は、それ は 良い 解決 策 の よう に 思える。
+        english: For me, that seems like a good solution.
+        hint: にとっては indicates personal impact or relevance. We're expressing a judgment made from one's
+          own viewpoint.
+    scene: A team meeting discussing options.
+    register: semi-formal
+    setting: professional
+  - english: From the perspective of the older generation, modern music might sound noisy.
+    japanese:
+      - 昔 の 世代 の 人々 {から 見る と}、現代 の 音楽 は 騒がしい か も しれ ない。
+      - 昔 の 世代 の 人々 {から 見る と}、現代 の 音楽 は 騒がしい か も しれ ませ ん。
+    english_literally: From older generation's people, modern music might be noisy.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の 世代 の 人々 に し たら、現代 の 音楽 は 騒がしい か も しれ ない。
+        english: If you consider the older generation, modern music might be noisy.
+        hint: にしたら often empathizes with feelings or internal states. We're making a direct observation
+          from their general perspective.
+    scene: Grandparents talking about music.
+    register: casual
+    setting: friendly
+    speaker_age: older
+  - english: From an engineer's perspective, this design has several flaws.
+    japanese:
+      - エンジニア {から 見る と}、この 設計 に は いく つ か の 欠陥 が ある。
+      - エンジニア {から 見る と}、この 設計 に は いく つ か の 欠陥 が あり ます。
+    english_literally: From an engineer, this design has several flaws.
+    competing_grammar:
+      - competing_japanese:
+          - エンジニア から する と、この 設計 に は いく つ か の 欠陥 が ある。
+        english: Judging from an engineer, this design has several flaws.
+        hint: からすると is often used when making a more definitive inference based on professional knowledge.
+          We're stating how it appears from an engineer's viewpoint.
+    scene: A project review meeting.
+    register: semi-formal
+    setting: technical
+  - english: From a societal perspective, privacy issues are becoming more significant.
+    japanese:
+      - 社会 全体 {から 見る と}、プライバシー の 問題 は より 重要 に なっ て き て いる。
+      - 社会 全体 {から 見る と}、プライバシー の 問題 は より 重要 に なっ て き て い ます。
+    english_literally: From society as a whole, privacy issues are becoming more important.
+    competing_grammar:
+      - competing_japanese:
+          - 社会 全体 に とっ て、プライバシー の 問題 は より 重要 に なっ て き て いる。
+        english: For society as a whole, privacy issues are becoming more important.
+        hint: にとって focuses on relevance or significance to society. We're observing how the issue appears
+          from society's viewpoint.
+    scene: A news report.
+    register: formal
+    setting: informative
+  - english: From an investor's perspective, this stock is a good long-term hold.
+    japanese:
+      - 投資 家 {から 見る と}、この 株 は 長期 保有 に 適し て いる。
+      - 投資 家 {から 見る と}、この 株 は 長期 保有 に 適し て い ます。
+    english_literally: From an investor, this stock is suitable for long-term holding.
+    competing_grammar:
+      - competing_japanese:
+          - 投資 家 から すれ ば、この 株 は 長期 保有 に 適し て いる。
+        english: If you consider an investor, this stock is suitable for long-term holding.
+        hint: からすれば implies a logical conclusion or advice. We're stating how it looks from an investor's
+          perspective.
+    scene: A financial analyst advising a client.
+    register: semi-formal
+    setting: informative
+  - english: From a Japanese perspective, bowing is a natural form of greeting.
+    japanese:
+      - 日本 人 {から 見る と}、お 辞儀 は 自然 な 挨拶 の 形 だ。
+      - 日本 人 {から 見る と}、お 辞儀 は 自然 な 挨拶 の 形 です。
+    english_literally: From a Japanese person, bowing is a natural form of greeting.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 人 に 言わ せれ ば、お 辞儀 は 自然 な 挨拶 の 形 だ。
+        english: If you ask a Japanese person, bowing is a natural form of greeting.
+        hint: に言わせれば attributes a specific statement. We're making an observation from the general Japanese
+          cultural viewpoint.
+    scene: Explaining Japanese customs to a foreign visitor.
+    register: formal
+    setting: academic
+post_example_writeup: As you can see from these examples, から見ると is a versatile expression that allows
+  you to clearly articulate the perspective from which a judgment or observation is being made. It's a
+  precise way to specify the lens through which you are viewing a situation, whether that be a person's
+  viewpoint, a professional standpoint, or a general societal perspective.

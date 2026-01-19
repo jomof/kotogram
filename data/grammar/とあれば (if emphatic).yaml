@@ -1,0 +1,246 @@
+grammar_point: とあれば (if emphatic)
+learn_before:
+  - も~ば (even if... is enough)
+meaning: if (it is the case that)... then; given that...
+pronunciation:
+  katakana: トアレバ
+  romaji: to areba
+formation:
+  '[Noun] とあれば': Used when the premise is a noun.
+  '[Verb plain form] とあれば': Used when the premise is a verb.
+  '[い-Adjective] とあれば': Used when the premise is an い-adjective.
+  '[な-Adjective] とあれば': Used when the premise is a な-adjective (no な or だ is added before とあれば).
+jlpt: N2
+etymology: The phrase 「とあれば」 is formed from the quotative particle 「と」 (which can also mean 'if' or 'when'
+  in certain contexts, particularly after conditions or assumptions) and the conditional form 「あれば」 of
+  the verb 「ある」 (to be/exist). The combination literally conveys a meaning akin to "if it is said/assumed
+  that..." or "if it exists as...". Over time, it grammaticalized to emphasize a strong hypothetical or
+  given nature of a condition, suggesting that "if that particular circumstance holds true," then a specific,
+  often determined, outcome or action will ensue.
+writeup: |-
+  The grammar point 「とあれば」 is used to express a strong conditional statement, meaning "if it is the case that... then" or "given that...". It sets a specific premise, often a challenging or critical one, and implies that a natural, decisive, or unavoidable consequence or action will follow. Unlike simpler conditional forms such as 「～ば」, 「～たら」, or 「～なら」, 「とあれば」 carries a more emphatic and determined nuance. It suggests that the speaker is prepared to take a certain action or accept a certain outcome because the preceding condition is established as a firm premise.
+
+  This expression is frequently used in contexts where there is a strong resolve, a clear decision, or an undeniable necessity arising from a particular situation. It highlights the speaker's commitment to a course of action given the specific circumstances. It can attach to nouns, plain forms of verbs, and い-adjectives directly. For な-adjectives, it attaches directly without 「な」 or 「だ」.
+false_friends:
+  - term: とくれば
+    meaning: if it comes to; speaking of which
+    kind: similar expression
+    nuance: 「とくれば」 introduces a topic or person and implies that a certain characteristic or action is
+      expected or typical of them. For example, 「彼のこととくれば、いつも遅刻だ」 (Speaking of him, he's always late).
+      「とあれば」, on the other hand, sets a strong, often challenging, condition leading to a decisive action
+      or consequence. It's about a specific premise triggering a response, not a general observation about
+      a topic.
+    grammar_point: <strongly-suggest>:とくれば (if it comes to)
+  - term: となると
+    meaning: when it comes to; if it comes to that
+    kind: similar expression
+    nuance: 「となると」 introduces a logical consequence or a change in circumstances once a specific situation
+      is established. It signals a shift in perspective or an inevitable outcome, such as 「雨となると、試合は中止だ」
+      (If it rains, the game will be cancelled). While 「とあれば」 also sets a condition, it carries a more
+      emphatic, decisive tone, often implying a strong resolve or a necessary action *given* that specific,
+      often critical, condition.
+    grammar_point: となると (when it comes to)
+  - term: からには
+    meaning: since; now that; as long as (implies obligation)
+    kind: similar expression
+    nuance: 「からには」 emphasizes the speaker's obligation, strong intention, or natural consequence given
+      a certain established fact or decision. For example, 「約束したからには、守るべきだ」 (Since I promised, I should
+      keep it). 「とあれば」 also implies a strong condition triggering a response, but its nuance focuses more
+      on the inherent nature of the premise requiring a particular action, rather than an obligation that
+      stems from an already accepted fact.
+    grammar_point: からには (since; obligation)
+post_false_friends_writeup: 'To differentiate 「とあれば」 from similar expressions: remember that 「とあれば」 highlights
+  a *specific, often demanding, condition* that acts as a trigger for a determined or unavoidable action/outcome.
+  It frames the preceding statement as a non-negotiable premise. 「とくれば」 introduces a topic and implies
+  a *typical characteristic or expected behavior*. 「となると」 points to a *logical development or consequence*
+  given a certain situation. 「からには」 emphasizes an *obligation or strong intention* once a fact is established.'
+examples:
+  - english: If it means protecting my family, I'll do anything.
+    japanese:
+      - 家族 を 守る {と あれ ば}、どんな こと で も する。
+      - 家族 を 守る {と あれ ば}、何 で も する つもり だ。
+      - 家族 を 守る {と あれ ば}、いかなる 犠牲 も いとわ ない。
+    english_literally: If it is about protecting family, I will do anything.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 を 守る なら、どんな こと で も する。
+        english: If I protect my family, I'll do anything.
+        hint: While 「なら」also sets a condition, 「とあれば」emphasizes a stronger, more decisive commitment based
+          on that premise. We're looking for a grammar point that expresses strong resolve in the face
+          of a critical condition.
+    scene: A parent speaks with determination about their unwavering commitment.
+    register: casual
+    setting: serious
+    nuance: The use of 「とあれば」here strongly expresses that for the sake of protecting their family (家族
+      を 守る), they are ready to do absolutely anything (どんな こと でも する). It highlights the decisive commitment
+      due to a specific, critical condition.
+  - english: If it's for the sake of the children, we must overcome any difficulty.
+    japanese:
+      - 子供 達 の ため {と あれ ば}、どんな 困難 も 乗り越え なけれ ば なら ない。
+      - 子供 達 の ため {と あれ ば}、どんな 困難 も 乗り越え なきゃ なら ない。
+      - 子供 達 の ため {と あれ ば}、いかなる 困難 に も 立ち向かう。
+    english_literally: If it is for the children's sake, we must overcome any difficulty.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 達 の ため なら、どんな 困難 も 乗り越え なけれ ば なら ない。
+        english: If it's for the sake of the children, we must overcome any difficulty.
+        hint: Both are valid, but 「とあれば」conveys a stronger sense of inevitability and resolve under the
+          given circumstances, often implying a more challenging or specific premise than 「なら」. We're
+          looking for that stronger nuance.
+    scene: Teachers discussing a school project, emphasizing their dedication.
+    register: formal
+    setting: professional
+    nuance: 「子供達 の ため」 (for the sake of the children) as the condition with 「とあれば」emphasizes that this
+      specific purpose makes overcoming any difficulty (どんな 困難 も 乗り越えなければならない) an absolute necessity,
+      highlighting a strong sense of responsibility.
+  - english: If it's something important, I won't hesitate to give it my all.
+    japanese:
+      - 大切 な こと {と あれ ば}、全力 を 出す の を 躊躇わ ない。
+      - 大切 な こと {と あれ ば}、全力 で ぶつかる。
+      - 大切 な こと {と あれ ば}、一切 の 手抜き は し ない。
+    english_literally: If it is an important thing, I will not hesitate to give my full effort.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な こと だっ たら、全力 を 出す の を 躊躇わ ない。
+        english: If it was an important thing, I wouldn't hesitate to give my all.
+        hint: 「だったら」 can imply a more hypothetical or casual condition. 「とあれば」 emphasizes that the importance
+          of the thing is a given fact that directly leads to the determined action. We need a strong,
+          unconditional resolve.
+    scene: A student explaining their commitment to a significant task.
+    register: semi-formal
+    setting: academic
+    nuance: The phrase 「大切な こと」 (an important thing) combined with 「とあれば」shows that for anything deemed
+      important, the speaker's resolve to give their all (全力を 出す の を 躊躇わない) is unwavering. It sets the
+      condition as a firm premise for action.
+  - english: If it's a serious matter, we must deal with it immediately.
+    japanese:
+      - 緊急 な 事態 {と あれ ば}、直ちに 対処 し なけれ ば なら ない。
+      - 緊急 な 事態 {と あれ ば}、すぐさま 対応 し なけれ ば なら ない。
+      - 緊急 な 事態 {と あれ ば}、即刻 対応 す べき だ。
+    english_literally: If it is an urgent situation, we must immediately deal with it.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 な 事態 だ から、直ちに 対処 し なけれ ば なら ない。
+        english: Because it's an urgent situation, we must immediately deal with it.
+        hint: 「だから」states a reason, while 「とあれば」frames the urgent situation as the definitive condition
+          that dictates the immediate response. We need a phrasing that emphasizes the condition being
+          the absolute determinant.
+    scene: Emergency responders discussing a crisis.
+    register: formal
+    setting: emergency/alarm
+    nuance: 「緊急な 事態」 (an urgent situation) with 「とあれば」underscores that the urgency of the situation demands
+      immediate and decisive action (直ちに 対処 しなければならない). The condition leaves no room for debate.
+  - english: If it's something I can do, I'll gladly lend a hand.
+    japanese:
+      - 私 に できる こと {と あれ ば}、喜ん で 手伝い ます よ。
+      - 私 に できる こと {と あれ ば}、喜ん で 手伝おう。
+      - 私 に できる こと {と あれ ば}、どうぞ お 申し付け ください。
+    english_literally: If it is something I can do, I will gladly help.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に できる こと なら、喜ん で 手伝い ます よ。
+        english: If it's something I can do, I'll gladly lend a hand.
+        hint: While 「なら」is a general conditional, 「とあれば」here subtly emphasizes that *given the fact* it's
+          within one's capability, the action naturally follows. We're looking for that nuanced emphasis
+          on the 'given' condition.
+    scene: A colleague offering help to another.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Here, 「私 に できる こと」 (something I can do) followed by 「とあれば」expresses a willingness to help
+      because the condition aligns with the speaker's capability. The final 「よ」 adds a friendly assertion,
+      confirming the intention.
+  - english: If he said he'd do it, then he must have done it.
+    japanese:
+      - 彼 が やる と 言っ た {と あれ ば}、やっ た に 違い ない。
+      - 彼 が やる と 言っ た {と あれ ば}、必ず やっ た はず だ。
+      - 彼 が やる と 言っ た {と あれ ば}、間違い なく やっ た よ。
+    english_literally: If he said he would do it, then he must have done it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が やる と 言っ た の だ から、やっ た に 違い ない。
+        english: Since he said he'd do it, he must have done it.
+        hint: 「のだから」 states a reason more explicitly. 「とあれば」 here serves to establish the premise of 'him
+          saying it' as a strong, undeniable condition leading to the conclusion. We're looking for that
+          strong conditional linking.
+    scene: Friends discussing a mutual friend's reliability, expressing trust.
+    register: casual
+    setting: friendly
+    nuance: 「彼 が やる と 言った」 (He said he'd do it) with 「とあれば」implies that since this fact is established,
+      the conclusion that he must have done it (やった に 違いない) is undeniable, reflecting trust in his word
+      and the certainty derived from that premise.
+  - english: If it's the company's decision, then there's nothing we can do about it.
+    japanese:
+      - 会社 の 決定 {と あれ ば}、仕方 が ない。
+      - 会社 の 決定 {と あれ ば}、どう に も なら ない。
+      - 会社 の 決定 {と あれ ば}、従う しか ない。
+    english_literally: If it is the company's decision, there is no way around it.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 決定 なら、仕方 が ない。
+        english: If it's the company's decision, then there's nothing we can do about it.
+        hint: While 「なら」is often used for conditional statements regarding established facts, 「とあれば」emphasizes
+          the definitive and unavoidable nature of the 'company's decision' as the premise. We want to
+          highlight the premise as a strong, unchangeable given.
+    scene: Employees resignedly discussing a new company policy.
+    register: semi-formal
+    setting: professional
+    nuance: The use of 「会社 の 決定」 (company's decision) followed by 「とあれば」indicates that because this is
+      a formal, unchangeable decision, resisting it is futile (仕方 が ない). It highlights the premise as
+      a powerful, determining factor.
+  - english: If it's anywhere in the world, then I want to visit Japan first.
+    japanese:
+      - どこ へ で も 行ける {と あれ ば}、まず 日本 へ 行き たい。
+      - どこ へ で も 行ける {と あれ ば}、まず は 日本 だ な。
+      - どこ へ で も 行ける {と あれ ば}、真っ先 に 日本 を 目指そう。
+    english_literally: If it is possible to go anywhere, then I want to go to Japan first.
+    competing_grammar:
+      - competing_japanese:
+          - どこ へ で も 行ける の なら、まず 日本 へ 行き たい。
+        english: If it's possible to go anywhere, then I want to visit Japan first.
+        hint: 「のなら」 often implies a condition based on a known fact or assumption. 「とあれば」 sets up a broader
+          hypothetical scenario ('if it were true that I could go anywhere') as a strong premise for the
+          subsequent desire. We're looking for that emphatic hypothetical.
+    scene: Friends discussing dream travel destinations and prioritizing.
+    register: casual
+    setting: friendly
+    nuance: 「どこ へ でも 行ける」 (can go anywhere) with 「とあれば」sets up a broad hypothetical condition, emphasizing
+      that *if* such freedom exists, then Japan is the speaker's primary choice (まず 日本 へ 行きたい). It clearly
+      defines the specific condition under which the desire arises.
+  - english: If it's for the sake of winning, I'll endure any amount of training.
+    japanese:
+      - 勝利 の ため {と あれ ば}、どんな 厳しい 練習 に も 耐える。
+      - 勝利 の ため {と あれ ば}、どんな 厳しい 練習 も こなし て みせる。
+      - 勝利 の ため {と あれ ば}、一切 の 苦労 は 惜しま ない。
+    english_literally: If it is for the sake of victory, I will endure any harsh training.
+    competing_grammar:
+      - competing_japanese:
+          - 勝利 の ため なら、どんな 厳しい 練習 に も 耐える。
+        english: If it's for the sake of winning, I'll endure any amount of training.
+        hint: Similar to previous examples, 「なら」 is a general conditional. 「とあれば」 reinforces that 'victory'
+          is a strong, non-negotiable premise that warrants extreme effort. We're aiming for that sense
+          of determined commitment stemming from the condition.
+    scene: An athlete talks to their coach, demonstrating their resolve.
+    register: formal
+    setting: serious
+    nuance: The strong condition 「勝利 の ため」 (for victory) combined with 「とあれば」shows a firm resolve to endure
+      any tough training (どんな 厳しい 練習 にも 耐える) if the victory is the premise. This highlights determination
+      and unwavering commitment.
+  - english: If that's what you truly wish, then I won't say anything more.
+    japanese:
+      - あなた が そう 望む {と あれ ば}、私 は もう 何 も 言わ ない。
+      - あなた が そう 望む {と あれ ば}、これ 以上 口出し は し ない。
+      - あなた が そう 望む {と あれ ば}、異論 は ない。
+    english_literally: If you truly wish that, I will not say anything more.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が そう 望む の なら、私 は もう 何 も 言わ ない。
+        english: If you truly wish that, then I won't say anything more.
+        hint: 「のなら」 implies a condition based on a known fact. 「とあれば」 suggests a slightly stronger, more
+          decisive acceptance of the listener's wish as the definitive premise for the speaker's silence.
+          We're looking for that strong acceptance.
+    scene: Two people resolving a disagreement, with one conceding to the other's strong desire.
+    register: semi-formal
+    setting: serious
+    nuance: 「あなた が そう 望む」 (if you truly wish that) with 「とあれば」implies an acceptance of the listener's
+      strong desire as a definitive premise, leading to the speaker's concession (私 は もう 何 も 言わない). It
+      signifies that the speaker is compelled to act based on this strong condition.

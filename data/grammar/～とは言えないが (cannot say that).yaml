@@ -1,0 +1,278 @@
+grammar_point: ～とは言えないが (cannot say that)
+learn_before:
+  - 確かに (certainly・indeed)
+meaning: It cannot be said that... (but/though)
+pronunciation:
+  katakana: トワ イエナイガ
+  romaji: to wa ienai ga
+formation:
+  Verb[plain form] + とは言えないが: Used with verbs to qualify an action or state.
+  い-Adjective[plain form] + とは言えないが: Used with i-adjectives to qualify a characteristic.
+  な-Adjective[だ/である] + とは言えないが: Used with na-adjectives to qualify a state or characteristic.
+  Noun[だ/である] + とは言えないが: Used with nouns to qualify a classification or identity.
+jlpt: N2
+etymology: The phrase combines the quotative particle 「と」, the topic/contrast particle 「は」, the potential
+  negative form of 「言う」 (to say) which is 「言えない」 (cannot say), and the concessive conjunction 「が」 (but/though).
+  Literally, it means 'It cannot be said that X, but...'. This construction highlights the speaker's inability
+  or reluctance to make a definitive statement about X, followed by a clarification or counterpoint.
+writeup: |-
+  The grammar point 「～とは言えないが」 is used to express a reservation or qualification about a previous statement or idea. It signals that while there might be some truth or a common perception, it cannot be fully or definitively asserted. This phrase often introduces a contrasting or explanatory statement that provides a more nuanced or accurate perspective.
+
+  It's a useful expression when you want to avoid making an absolute statement, acknowledge complexity, or subtly correct a misconception without being overly direct. The part before 「とは言えないが」 is usually something that one might *think* or *say*, but the speaker then qualifies it. The 「が」 indicates a concession, leading into what the speaker *does* want to emphasize or clarify.
+
+  For example, if someone asks 'Is he a genius?', you might reply '天才とは言えないが、努力家だ' (It cannot be said that he is a genius, but he is a hard worker). Here, you are not denying his intelligence entirely, but you are clarifying what you believe to be his defining characteristic or the reason for his success. This phrase allows for a more subtle and polite way of disagreeing or refining a statement.
+false_friends:
+  - term: ～わけではない
+    meaning: It's not that...
+    kind: similar expression
+    nuance: 「～わけではない」 is a more direct negation of an implication or assumption. It explicitly denies
+      that something is necessarily true. While 「～とは言えないが」 expresses a reservation about making a statement,
+      「～わけではない」 directly denies the premise itself. 「～とは言えないが」 still leaves room for some truth, whereas
+      「～わけではない」 more strongly asserts that something is not the case. For example, '彼が好きというわけではない' means
+      'It's not that I like him (I might even dislike him)', while '彼が好きとは言えないが' means 'I can't say I
+      like him (but I don't necessarily dislike him either, or there's another reason)'.
+    grammar_point: <suggest>:わけではない (it's not that)
+  - term: ～とは限らない
+    meaning: not necessarily...
+    kind: similar expression
+    nuance: 「～とは限らない」 explicitly states that something is not always true or applicable in all cases;
+      it denies universality. 「～とは言えないが」 implies an inability or reluctance to make a definitive assertion
+      about a specific instance, even if it might hold true in some cases. 「～とは限らない」 is about rules or
+      general applicability, while 「～とは言えないが」 is about the validity of a specific claim or statement.
+      For example, 'お金持ちが幸せとは限らない' (Rich people are not necessarily happy), but '彼が幸せとは言えないが' (It cannot
+      be said that he is happy, but...).
+    grammar_point: とは限らない (not necessarily)
+  - term: ～とはいうものの
+    meaning: although it is said that...
+    kind: similar expression
+    nuance: 「～とはいうものの」 is a concessive expression that introduces a counter-argument or a point of contrast
+      after acknowledging a previous statement, often a commonly held belief or expectation. It's stronger
+      in its concessive nature than 「～とは言えないが」. While 「～とは言えないが」 qualifies the truth of a statement, 「～とはいうものの」
+      accepts the preceding statement as true (or commonly believed) but then presents a contrasting reality.
+      For example, '簡単だとはいうものの、実際は難しい' (Although it is said to be easy, in reality, it's difficult).
+    grammar_point: とはいえ (though)
+post_false_friends_writeup: When distinguishing these similar expressions, remember that 「～とは言えないが」 focuses
+  on the speaker's inability to make a definite statement or judgment, often implying a nuanced situation.
+  It's about 'what can be said'. In contrast, 「～わけではない」 negates an implication or assumption, stating
+  'it's not the case that...'. 「～とは限らない」 denies universality or certainty, meaning 'not necessarily'.
+  Finally, 「～とはいうものの」 is a concession, acknowledging a truth or common perception before presenting a
+  contrasting reality. Each serves a distinct purpose in expressing reservations or qualifications.
+examples:
+  - english: It cannot be said that he is smart, but he is a hard worker.
+    japanese:
+      - 彼 が 頭 が 良い {と は 言え ない が}、努力 家 だ。
+      - 彼 が 頭 が 良い {と は 言え ませ ん が}、努力 家 です。
+    english_literally: As for him, that he is smart, it cannot be said, but he is a hard worker.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頭 が 良く ない が、努力 家 だ。
+          - 彼 は 頭 が 良く ない です が、努力 家 です。
+        english: He's not smart, but he's a hard worker.
+        hint: 「～とは言えないが」 implies it's not *definitively* true, while 「～ない」 is a direct negation. We're
+          looking for a softer qualification.
+    scene: A teacher discussing a student's performance with a colleague.
+    register: semi-formal
+    setting: professional
+    nuance: The use of 「頭が良いとは言えないが」 subtly qualifies the student's academic standing, indicating that
+      while they may not be a genius, their diligent effort is a commendable trait. The phrase maintains
+      a respectful tone while offering a realistic assessment.
+    etymology: The phrase 「頭が良い」 (atama ga ii) means 'smart' or 'intelligent'. The following concessive
+      phrase then softens this assessment, allowing for a more nuanced description.
+  - english: It cannot be said that the exam was easy, but I think I managed to pass.
+    japanese:
+      - 試験 が 簡単 だっ た {と は 言え ない が}、なん と か 合格 でき た と 思う。
+      - 試験 が 簡単 だっ た {と は 言え ませ ん が}、なん と か 合格 でき た と 思い ます。
+    english_literally: The exam was easy, it cannot be said, but somehow I think I managed to pass.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 簡単 じゃ なかっ た けど、なん と か 合格 でき た と 思う。
+          - 試験 は 簡単 じゃ なかっ た です けど、なん と か 合格 でき た と 思い ます。
+        english: The exam wasn't easy, but I think I managed to pass.
+        hint: 「～とは言えないが」 emphasizes that the statement 'it was easy' cannot be made, rather than simply
+          stating it wasn't easy. We're looking for a softer qualification that implies nuance.
+    scene: A student talking to a friend after a difficult exam.
+    register: casual
+    setting: friendly
+    nuance: By saying 「簡単だったとは言えないが」, the speaker acknowledges the difficulty of the exam without outright
+      stating it was hard, softening the expression and perhaps showing humility. The following 'なんとか'
+      (somehow) emphasizes the effort to barely pass.
+    etymology: 「なんとか」 (nantoka) conveys a sense of barely managing or just about succeeding, often implying
+      effort or a fortunate outcome. It highlights that success wasn't easy despite the passing grade.
+  - english: It cannot be said that he broke the law, but his actions were morally questionable.
+    japanese:
+      - 彼 が 法 を 犯し た {と は 言え ない が}、その 行動 は 倫理 的 に 問題 が あっ た。
+      - 彼 が 法 を 犯し た {と は 言え ませ ん が}、その 行動 は 倫理 的 に 問題 が あり まし た。
+    english_literally: That he broke the law, it cannot be said, but his actions were ethically problematic.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 法 を 犯し た わけ で は ない が、その 行動 は 倫理 的 に 問題 が あっ た。
+          - 彼 が 法 を 犯し た わけ で は あり ませ ん が、その 行動 は 倫理 的 に 問題 が あり まし た。
+        english: It's not that he broke the law, but his actions were morally questionable.
+        hint: 「～とは言えないが」 implies a nuanced inability to make the statement, whereas 「～わけではないが」 more explicitly
+          denies the assumption that he broke the law. We're looking for a softer form of qualification.
+    scene: A lawyer discussing a client's case with a colleague.
+    register: formal
+    setting: professional
+    nuance: This example shows the phrase used in a formal context to distinguish between legal culpability
+      and moral judgment. 「法を犯したとは言えないが」 clearly states that no law was broken, while the latter part
+      points to a different kind of issue.
+    etymology: The phrase 「法を犯す」 (hou o okasu) means 'to break the law'. It refers to transgressing legal
+      regulations or statutes. The addition of 「倫理的に問題があった」 (rinriteki ni mondai ga atta) highlights a
+      distinction between legal and moral conduct.
+  - english: It cannot be said that this method is the best, but it is certainly effective.
+    japanese:
+      - この 方法 が 一番 良い {と は 言え ない が}、確か に 効果 的 だ。
+      - この 方法 が 一番 良い {と は 言え ませ ん が}、確か に 効果 的 です。
+    english_literally: This method is the best, it cannot be said, but certainly it is effective.
+    competing_grammar:
+      - competing_japanese:
+          - この 方法 が 一番 良い わけ で は ない が、確か に 効果 的 だ。
+          - この 方法 が 一番 良い わけ で は あり ませ ん が、確か に 効果 的 です。
+        english: It's not that this method is the best, but it is certainly effective.
+        hint: 「～とは言えないが」 expresses that you can't assert it's the best, suggesting other perspectives
+          might exist, while 「～わけではないが」 denies the implication that it *is* the best. We're looking for
+          a statement that qualifies, rather than denies.
+    scene: A team discussing different approaches to a project.
+    register: semi-formal
+    setting: professional
+    nuance: The phrase 「一番良いとは言えないが」 demonstrates a balanced view, admitting the method isn't perfect
+      while still endorsing its practical utility. This indicates pragmatism rather than idealism.
+    etymology: 「一番良い」 (ichiban ii) means 'the best'. While a method may not be 'the best' in an absolute
+      sense, 「確かに効果的だ」 (tashika ni koukateki da) asserts its undeniable effectiveness, highlighting practicality
+      over theoretical perfection.
+  - english: It cannot be said that the novel is a masterpiece, but it's an enjoyable read.
+    japanese:
+      - その 小説 が 傑作 {と は 言え ない が}、楽しく 読める 作品 だ。
+      - その 小説 が 傑作 {と は 言え ませ ん が}、楽しく 読める 作品 です。
+    english_literally: That novel is a masterpiece, it cannot be said, but it's a work that can be read
+      enjoyably.
+    competing_grammar:
+      - competing_japanese:
+          - その 小説 は 傑作 で は ない が、楽しく 読める 作品 だ。
+          - その 小説 は 傑作 で は あり ませ ん が、楽しく 読める 作品 です。
+        english: That novel is not a masterpiece, but it's an enjoyable read.
+        hint: 「～とは言えないが」 implies a softer, more subjective judgment about whether it qualifies as a masterpiece,
+          rather than a definitive statement that it isn't one. We're looking for a nuanced qualification.
+    scene: Two friends discussing a book they've both read.
+    register: casual
+    setting: friendly
+    nuance: 「傑作とは言えないが」 provides a gentle critique, indicating the novel doesn't meet the highest literary
+      standards, yet it acknowledges its positive aspect as an 'enjoyable read.'
+    etymology: 「傑作」 (kessaku) means 'masterpiece'. The nuance of 「楽しく読める」 (tanoshiku yomeru) emphasizes
+      that even if it's not a literary magnum opus, it still provides pleasure to the reader.
+  - english: It cannot be said that the new system is perfect, but it's definitely an improvement.
+    japanese:
+      - 新しい システム が 完璧 だ {と は 言え ない が}、改善 さ れ た の は 確か だ。
+      - 新しい システム が 完璧 だ {と は 言え ませ ん が}、改善 さ れ た の は 確か です。
+    english_literally: The new system is perfect, it cannot be said, but it is certain that it has been
+      improved.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム は 完璧 で は ない が、改善 さ れ た の は 確か だ。
+          - 新しい システム は 完璧 で は あり ませ ん が、改善 さ れ た の は 確か です。
+        english: The new system is not perfect, but it's definitely an improvement.
+        hint: 「～とは言えないが」 implies that you cannot confidently state it's perfect, acknowledging possible
+          minor flaws or differing opinions, whereas 「～ではない」 is a straightforward denial of perfection.
+          We're looking for a nuanced way of expressing 'not perfect'.
+    scene: Employees discussing the rollout of a new company system.
+    register: semi-formal
+    setting: professional
+    nuance: This phrase allows for a realistic evaluation of the new system, admitting its imperfections
+      (完璧だとは言えないが) while still highlighting its positive impact ('改善されたのは確かだ'). It reflects a pragmatic
+      and objective viewpoint.
+    etymology: 「完璧」 (kanpeki) means 'perfect' or 'complete'. The expression 「改善されたのは確かだ」 (kaizen sareta
+      no wa tashika da) implies that while not flawless, verifiable positive changes have been implemented.
+  - english: It cannot be said that she completely understands the situation, but she grasps the general
+      idea.
+    japanese:
+      - 彼女 が 状況 を 完全 に 理解 し た {と は 言え ない が}、大体 の ところ は 掴ん で いる。
+      - 彼女 が 状況 を 完全 に 理解 し た {と は 言え ませ ん が}、大体 の ところ は 掴ん で い ます。
+    english_literally: That she completely understood the situation, it cannot be said, but she has grasped
+      the general idea.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 状況 を 完全 に 理解 し た わけ で は ない が、大体 の ところ は 掴ん で いる。
+          - 彼女 が 状況 を 完全 に 理解 し た わけ で は あり ませ ん が、大体 の ところ は 掴ん で い ます。
+        english: It's not that she completely understood the situation, but she grasps the general idea.
+        hint: 「～とは言えないが」 suggests an inability to make the strong claim of full understanding, implying
+          a degree of uncertainty or nuance, while 「～わけではないが」 directly denies that she completely understood.
+          We're looking for a statement that avoids a definitive assertion.
+    scene: A manager assessing an employee's comprehension.
+    register: semi-formal
+    setting: professional
+    nuance: Using 「完全に理解したとは言えないが」 softens the critique, acknowledging partial understanding despite not
+      achieving full comprehension. It’s a polite way to point out a gap without being overly critical.
+    etymology: 「完全に理解する」 (kanzen ni rikai suru) means 'to completely understand'. The phrase 「大体のところは掴んでいる」
+      (daitai no tokoro wa tsukande iru) refers to having a 'general grasp' or 'understanding of the main
+      points', suggesting sufficient comprehension for practical purposes, even if not exhaustive.
+  - english: It cannot be said that his argument is logically flawed, but it lacks concrete evidence.
+    japanese:
+      - 彼 の 主張 が 論理 的 に 間違っ て いる {と は 言え ない が}、具体 的 な 根拠 に 乏しい。
+      - 彼 の 主張 が 論理 的 に 間違っ て いる {と は 言え ませ ん が}、具体 的 な 根拠 に 乏しい です。
+    english_literally: His argument is logically wrong, it cannot be said, but it is lacking in concrete
+      evidence.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 主張 は 論理 的 に 間違っ て いる わけ で は ない が、具体 的 な 根拠 に 乏しい。
+          - 彼 の 主張 は 論理 的 に 間違っ て いる わけ で は あり ませ ん が、具体 的 な 根拠 に 乏しい です。
+        english: It's not that his argument is logically flawed, but it lacks concrete evidence.
+        hint: 「～とは言えないが」 implies that you cannot assert it is logically flawed, leaving open the possibility
+          of a subtle flaw, while 「～わけではないが」 explicitly states it is not flawed. We're looking for a nuanced
+          judgment, not a direct denial.
+    scene: Academics discussing a research paper.
+    register: formal
+    setting: academic
+    nuance: This example demonstrates how to critique an argument subtly. 「論理的に間違っているとは言えないが」 grants that
+      the logic is sound, but immediately pivots to a critical point about the lack of evidence.
+    etymology: 「論理的に間違っている」 (ronriteki ni machigatte iru) means 'logically flawed'. 「具体的な根拠に乏しい」 (gutai-teki
+      na konkyo ni toboshii) means 'lacking in concrete evidence'. This phrasing is typical in academic
+      discourse to acknowledge validity in one aspect while pointing out weaknesses in another.
+  - english: It cannot be said that I fully agree with his opinion, but I understand his perspective.
+    japanese:
+      - 彼 の 意見 に 完全 に 賛成 する {と は 言え ない が}、彼 の 視点 は 理解 できる。
+      - 彼 の 意見 に 完全 に 賛成 する {と は 言え ませ ん が}、彼 の 視点 は 理解 でき ます。
+    english_literally: His opinion, that I fully agree, it cannot be said, but his viewpoint, I can understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 意見 に 完全 に 賛成 する わけ で は ない が、彼 の 視点 は 理解 できる。
+          - 彼 の 意見 に 完全 に 賛成 する わけ で は あり ませ ん が、彼 の 視点 は 理解 でき ます。
+        english: It's not that I fully agree with his opinion, but I understand his perspective.
+        hint: 「～とは言えないが」 suggests an inability to make the statement of full agreement, implying a nuanced
+          position, whereas 「～わけではないが」 is a direct denial of full agreement. We're looking for a qualified
+          statement of agreement.
+    scene: People discussing a controversial topic.
+    register: formal
+    setting: serious
+    nuance: 「完全に賛成するとは言えないが」 indicates a nuanced position, allowing the speaker to express partial disagreement
+      while maintaining respect for the other person's viewpoint, which is common in professional or diplomatic
+      discussions.
+    etymology: 「完全に賛成する」 (kanzen ni sansei suru) means 'to fully agree'. 「彼の視点は理解できる」 (kare no shiten
+      wa rikai dekiru) means 'I can understand his perspective', highlighting empathy or intellectual
+      comprehension even without full agreement.
+  - english: It cannot be said that living alone is easy, but it has its advantages.
+    japanese:
+      - 一人暮らし が 楽 だ {と は 言え ない が}、良い 点 も たくさん ある。
+      - 一人暮らし が 楽 だ {と は 言え ませ ん が}、良い 点 も たくさん あり ます。
+    english_literally: Living alone is easy, it cannot be said, but there are many good points too.
+    competing_grammar:
+      - competing_japanese:
+          - 一人暮らし は 楽 で は ない が、良い 点 も たくさん ある。
+          - 一人暮らし は 楽 で は あり ませ ん が、良い 点 も たくさん あり ます。
+        english: Living alone is not easy, but it has many good points.
+        hint: 「～とは言えないが」 implies that you cannot assert that it's easy, acknowledging the common perception
+          or the reality of some difficulties, while 「～ではない」 is a straightforward statement that it is
+          not easy. We're looking for a subtle qualification rather than a direct denial.
+    scene: Two friends discussing their living situations.
+    register: casual
+    setting: friendly
+    nuance: Here, 「楽だとは言えないが」 acknowledges the difficulties of living alone, which might be a common perception,
+      but immediately balances it with the positive aspects. This reflects a realistic and balanced view
+      of the experience.
+post_example_writeup: As these examples demonstrate, 「～とは言えないが」 is a versatile expression used to provide
+  a qualified statement. It allows speakers to express nuanced opinions, acknowledging potential downsides
+  or incompleteness while immediately following up with a positive or contrasting aspect. This makes for
+  more balanced and sophisticated communication, avoiding overly simplistic or absolute declarations.
+  Pay attention to the contrasting ideas presented before and after the phrase to fully grasp its meaning
+  in context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/~towa-ienai-ga

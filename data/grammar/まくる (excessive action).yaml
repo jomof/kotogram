@@ -1,0 +1,350 @@
+grammar_point: まくる (excessive action)
+learn_before:
+  - '[Noun]だらけ (full of, negative nuance)'
+  - '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - あまりに (excessively・too much)
+  - お (honorific prefix)
+  - とする (feel ~)
+  - まで (even to the extent)
+meaning: To do something excessively, relentlessly, or without restraint; to do like crazy or on and on
+meaning_warning: まくる is sometimes used as a noun in the pattern Verb[ます stem] + まくり + だ, indicating a
+  state of excessive action.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: まくる
+    rarity: common
+    meaning: to do excessively
+  - conjugation-type: non-past polite (～ます)
+    form: まくります
+    rarity: common
+    meaning: to do excessively (polite)
+  - conjugation-type: past plain (～た)
+    form: まくった
+    rarity: common
+    meaning: did excessively
+  - conjugation-type: past polite (～ました)
+    form: まくりました
+    rarity: common
+    meaning: did excessively (polite)
+  - conjugation-type: negative plain (～ない)
+    form: まくらない
+    rarity: common
+    meaning: do not do excessively
+  - conjugation-type: te-form (～て)
+    form: まくって
+    rarity: common
+    meaning: doing excessively, and...
+  - conjugation-type: volitional (～よう)
+    form: まくろう
+    rarity: common
+    meaning: let's do excessively
+  - conjugation-type: desiderative (～たい)
+    form: まくりたい
+    rarity: less common
+    meaning: to want to do excessively
+  - conjugation-type: potential (～られる/～える)
+    form: まくれる
+    rarity: less common
+    meaning: can do excessively
+pronunciation:
+  katakana: マクル
+  romaji: makuru
+formation:
+  Verb[ます stem] + まくる: Indicates performing an action repeatedly, intensely, or without restraint.
+jlpt: N1
+etymology: The grammar point 「まくる」 originates from the verb 「捲る (めくる)」, which means "to roll up," "to
+  turn over," or "to flip." This etymology conveys the core idea of repeated or continuous action, as
+  if one is constantly "turning over" or cycling through the action. This connection between 'turning
+  over' and 'repeated/excessive action' highlights the visual imagery of continuous, vigorous motion,
+  much like continuously turning pages or rolling something over and over. Over time, its meaning evolved
+  to encompass the intensity and lack of restraint seen in its modern usage.
+writeup: |-
+  「まくる」 is an auxiliary verb that attaches to the **ます-stem** of other verbs. It expresses that an action is being performed with great intensity, frequency, or without restraint. It essentially conveys the meaning of "doing [verb] like crazy," "doing nothing but [verb]," or "constantly doing [verb]."
+
+  This expression is versatile and can be used in both positive and negative contexts, depending on the main verb and the situation. However, it often carries a nuance of recklessness or abandon, implying that the speaker or subject is not considering the consequences of their repeated or vigorous actions. It's crucial to note that the verb preceding 「まくる」 must be **volitional**, meaning it is an action that the subject has control over and can repeat.
+
+  While primarily used as an auxiliary verb, the ます-stem + まくり form can also function as a noun, typically followed by だ (e.g., 食べまくりだ - 'It's a food spree'), to describe the state or result of excessive action.
+
+  Key characteristics of 「まくる」:
+  *   **Attachment**: Always connects to the ます-stem of a verb (e.g., 食べる → 食べまくる, 読む → 読みまくる).
+  *   **Intensity/Frequency**: Highlights that an action is done a lot, very enthusiastically, or repeatedly.
+  *   **Nuance**: Frequently suggests a lack of inhibition, doing something "to an extreme," or being consumed by an action.
+  *   **Volitional Verbs**: Strictly applies to verbs that describe intentional actions.
+false_friends:
+  - term: Verb[ます stem] + まくり + だ
+    meaning: a spree of [verb]ing; to be in a state of excessive [verb]ing
+    kind: similar expression
+    nuance: 「Verb[ます stem] + まくり + だ」 treats the excessive action as a noun, often referring to the *result*
+      or *state* of the action (e.g., 'a shopping spree', 'a reading marathon'). In contrast, 「まくる」 functions
+      as a verb, describing the action itself with intensity and repetition.
+    grammar_point: <suggest>:Verb[ます stem] + まくり + だ (state of excessive action)
+  - term: 〜すぎる
+    meaning: too much; excessively
+    kind: similar expression
+    nuance: While both convey excess, 「〜すぎる」 often implies that the action has gone beyond a desirable
+      or acceptable limit, leading to a negative outcome or criticism (e.g., 食べすぎる 'eat too much', leading
+      to illness). 「まくる」 simply emphasizes the *quantity* or *intensity* of the action, not necessarily
+      that it's the *only* thing being done. One could be 食べまくる (eating excessively) while also doing
+      other things, but 食べるばかり (only eating) excludes other activities.
+    grammar_point: すぎる (too much・excessive)
+  - term: ばかり
+    meaning: only; nothing but
+    kind: similar expression
+    nuance: 「ばかり」 focuses on exclusivity, meaning 'only doing X' or 'nothing but X' (e.g., 食べるばかり 'only
+      eating'). 「まくる」, however, emphasizes the *intensity and sheer volume* of the action, not necessarily
+      that it's the *only* thing being done. One could be 食べまくる (eating excessively) while also doing
+      other things, but 食べるばかり (only eating) excludes other activities.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: Verb + てしまう
+    meaning: to do completely; to do regrettably; to finish doing
+    kind: often confused with
+    nuance: While 「まくる」 emphasizes the *intensity* or *excessive quantity* of an action, 「〜てしまう」 focuses
+      on the *completion* of an action, often with a sense of regret, unintended consequence, or finality.
+      For example, 食べまくる (to eat excessively) vs. 食べちゃう (to eat it all up, perhaps regrettably).
+    grammar_point: <suggest>:てしまう・ちゃう (completion・regret・accident)
+post_false_friends_writeup: When distinguishing 「まくる」 from similar expressions, consider whether the focus
+  is on the action's sheer volume or intensity (まくる), the resulting state or noun-like excessive activity
+  (まくりだ), exceeding an appropriate limit (〜すぎる), exclusivity (ばかり), or the completion/regrettable outcome
+  of an action (〜てしまう). Each carries a distinct nuance that impacts the overall meaning of the sentence.
+examples:
+  - english: He locks himself in his room on weekends to make tons of plastic models.
+    japanese:
+      - 彼 は 趣味 の プラモデル を 作り {まくる} ため に、週末 は 部屋 に 閉じこもっ て いる。
+      - 彼 は 趣味 の プラモデル を 作り {まくり ます}。
+    english_literally: He, regarding his hobby of plastic models, in order to make them excessively, on
+      weekends, locks himself in his room.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 趣味 の プラモデル を {たくさん 作る} ため に、週末 は 部屋 に 閉じこもっ て いる。
+        english: He locks himself in his room on weekends to make a lot of plastic models.
+        hint: While 「たくさん作る」 indicates making a large quantity, 「作りまくる」 emphasizes the relentless, non-stop
+          nature and intensity of the action. We're looking for a sense of doing it "like crazy."
+    scene: Describing a friend's intense hobby.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「作りまくる」 highlights the hobbyist's intense dedication, implying a deep immersion
+      in the activity. This usage is common among younger individuals discussing hobbies with peers or
+      in informal settings.
+    etymology: The verb 「作る」 (tsukuru) means 'to make' or 'to create'. Coupled with 「まくる」, it emphasizes
+      the continuous and excessive nature of the making.
+  - english: Lately, I'm doing presentations excessively for work, so practice is very important.
+    japanese:
+      - 最近、仕事 で プレゼン を やり {まくり ます} から、練習 が とても 大事 です。
+      - 最近、仕事 で プレゼン を やり {まくる} の で、練習 が とても 大事 です。
+    english_literally: Recently, at work, because I do presentations excessively, practice is very important.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、仕事 で プレゼン を {たくさん やり} ます から、練習 が とても 大事 です。
+        english: Recently, at work, because I do a lot of presentations, practice is very important.
+        hint: 「たくさんやる」 simply means doing a large quantity. 「やりまくる」 suggests a higher degree of intensity,
+          frequency, and relentless action, often implying a somewhat overwhelming volume. We're looking
+          for the feeling of being swamped with presentations.
+    scene: A young professional is discussing their busy schedule and the need for preparation.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The polite form 「やりまくります」 is suitable for a professional setting, even when discussing intense
+      work. The phrase conveys the high volume of presentations without explicitly stating a negative
+      connotation, which is important in business communication. The use of 「から」 for reason and 「とても大事です」
+      for importance makes it a standard formal-leaning statement.
+    etymology: 「やる」 (yaru) is a versatile verb meaning 'to do' or 'to perform'. The combination 「やりまくる」
+      emphasizes the overwhelming frequency or intensity of doing presentations.
+  - english: After the exam, I played video games excessively to relieve stress.
+    japanese:
+      - 試験 後 は ゲーム を し {まくっ て}、ストレス を 解消 し た。
+      - 試験 後 は ゲーム を し {まくり まし た}、ストレス を 解消 し まし た。
+    english_literally: After the exam, I played games excessively, and relieved stress.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 後 は ゲーム を {たくさん し} て、ストレス を 解消 し た。
+        english: After the exam, I played video games a lot and relieved stress.
+        hint: 「たくさんする」 indicates playing a large amount. 「しまくって」 implies a more intense, uninhibited,
+          or relentless session, almost like being consumed by the activity. We're looking for the sense
+          of playing "like crazy."
+    scene: You're describing how you unwound after a difficult exam.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of the plain past tense 「解消した」 and the te-form 「しまくって」 is typical in casual conversation
+      between friends. The phrase 「しまくって」 vividly expresses the uninhibited, intense gaming session, commonly
+      used by younger speakers to describe recreational activities.
+  - english: My stomach hurts because I ate so much delicious food at our travel destination.
+    japanese:
+      - 旅行 先 で 美味しい もの を 食べ {まくっ た} の で、お腹 が 痛い。
+      - 旅行 先 で 美味しい もの を 食べ {まくり まし た} の で、お腹 が 痛い です。
+    english_literally: At the travel destination, because I ate delicious things excessively, my stomach
+      is hurting.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 先 で 美味しい もの を {食べ すぎ た} の で、お腹 が 痛い。
+        english: My stomach hurts because I ate too much delicious food at our travel destination.
+        hint: While both imply eating a lot, 「食べすぎた」 explicitly states that the quantity was excessive
+          to the point of causing a negative consequence. 「食べまくった」 focuses on the relentless, unrestrained
+          action of eating, which in this context led to a stomach ache, but its primary meaning is about
+          the intensity of the act itself. We're looking for the intensity of eating, leading to the problem.
+    scene: A traveler is complaining about their stomach after a trip.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「食べまくった」 is a somewhat informal but impactful way to describe eating excessively,
+      often used with a slight self-deprecating or humorous tone. This expression is natural for an older
+      speaker relating a personal experience to a peer, combining a casual register with a mild complaint.
+    etymology: 「食べる」 (taberu) means 'to eat'. The phrase 「食べまくった」 conveys eating a large amount of food
+      without restraint.
+  - english: This novel was so interesting that I stayed up all night reading it excessively.
+    japanese:
+      - この 小説 は あまり に 面白く て、徹夜 で 読み {まくり まし た}。
+      - この 小説 は あまり に 面白く て、徹夜 で 読み {まくっ た}。
+    english_literally: This novel was too interesting, staying up all night, I read it excessively.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は あまり に 面白く て、徹夜 で {たくさん 読み} まし た。
+        english: This novel was so interesting that I stayed up all night reading it a lot.
+        hint: 「たくさん読む」 means reading a large quantity. 「読みまくる」 emphasizes reading relentlessly, without
+          restraint, driven by the book's engrossing nature, leading to staying up all night. We're looking
+          for the intensity of the reading experience.
+    scene: A student describes finishing an engrossing novel.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The use of 「読みまくりました」 with the polite past tense shows an enthusiastic, yet polite, description
+      of an intense reading experience. It's suitable for a student sharing their experience in a semi-formal
+      setting, such as a classroom discussion or an informal chat with a teacher or senior student.
+  - english: Even though I'm on a diet, I end up buying cakes every day like crazy.
+    japanese:
+      - ダイエット 中 な の に、毎日 ケーキ を 買い {まくっ て} しまう。
+      - ダイエット 中 な の に、毎日 ケーキ を 買い {まくっ て} しまい ます。
+    english_literally: Even though I am in the middle of a diet, everyday I end up buying cakes excessively.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット 中 な の に、毎日 ケーキ を {買い すぎ て} しまう。
+        english: Even though I'm on a diet, I end up buying too many cakes every day.
+        hint: 「買いすぎて」 implies that the quantity bought is beyond what's appropriate or healthy. 「買いまくって」
+          focuses on the relentless, uncontrolled action of buying, which in this context implies buying
+          too much. We're looking for the intense, uncontrolled nature of the buying.
+    scene: Someone struggling with their diet confesses a weakness.
+    register: casual
+    setting: apologetic
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「買いまくってしまう」 combines the excessive action with the nuance of regret or an unintended
+      outcome (from 「〜てしまう」). This self-deprecating expression, often accompanied by a sigh or humorous
+      tone, is common among women discussing relatable struggles, regardless of age.
+    etymology: 「買う」 (kau) means 'to buy'. The combination with 「まくる」 emphasizes buying in an uncontrolled
+      and frequent manner, often with a sense of regret due to the added 「〜てしまう」.
+  - english: I bought clothes like crazy at the sale, and now my room is full of them.
+    japanese:
+      - セール で 服 を 買い {まくっ て} 部屋 が 服 だらけ に なっ た。
+      - セール で 服 を 買い {まくっ て} 部屋 が 服 だらけ に なり まし た。
+    english_literally: At the sale, I bought clothes excessively, and my room became full of clothes.
+    competing_grammar:
+      - competing_japanese:
+          - セール で 服 を {買い すぎ て} 部屋 が 服 だらけ に なっ た。
+        english: I bought too many clothes at the sale, and now my room is full of them.
+        hint: 「買いすぎて」 indicates that the quantity bought was excessive, leading to the room being cluttered.
+          「買いまくって」 emphasizes the intense, unrestrained, and repeated action of buying, which resulted
+          in the excessive amount. We're looking for the relentless buying action.
+    scene: A young woman is complaining about the clutter in her room after a shopping spree.
+    register: casual
+    setting: humorous
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「買いまくって」 portrays the act of buying as unrestrained and voluminous, typical for
+      younger women discussing shopping experiences with friends. The casual plain form 「なった」 matches
+      the relaxed, informal setting.
+    etymology: 「服」 (fuku) means 'clothes'. The phrase 「買いまくって」 conveys the act of buying a large quantity
+      of clothes, reflecting enthusiasm and lack of restraint.
+  - english: The final exams are coming up, so lately I've been drinking coffee like crazy late at night.
+    japanese:
+      - 期 末 試験 が 近い から、最近 は 夜中 に コーヒー を 飲み {まくっ て いる} ん だ。
+      - 期 末 試験 が 近い から、最近 は 夜中 に コーヒー を 飲み {まくっ て} い ます。
+    english_literally: Because final exams are close, recently late at night I am excessively drinking
+      coffee.
+    competing_grammar:
+      - competing_japanese:
+          - 期 末 試験 が 近い から、最近 は 夜中 に コーヒー を {飲み すぎ て} いる ん だ。
+        english: The final exams are coming up, so lately I've been drinking too much coffee late at night.
+        hint: 「飲みすぎている」 explicitly states that the amount of coffee is excessive. 「飲みまくっている」 focuses on
+          the continuous, intense, and relentless action of drinking coffee, implying a high volume due
+          to the pressure. We're looking for the intense, non-stop action of drinking.
+    scene: A high school student complains to a friend about their intense study habits.
+    register: casual
+    setting: academic
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of the casual sentence-ending particle 「ん だ」 combined with the continuous form 「飲みまくっている」
+      is typical of a younger speaker describing a current, ongoing struggle or habit in an informal setting.
+      The expression 「飲みまくっている」 vividly conveys the excessive nature of coffee consumption under pressure.
+  - english: He is making an effort not to drink excessively anymore.
+    japanese:
+      - 彼 は もう お 酒 を 飲み {まくら ない} よう に、努力 し て い ます。
+      - 彼 は もう お 酒 を 飲み {まくろう} と し ませ ん。
+    english_literally: He, anymore, so that he does not excessively drink alcohol, is making an effort.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は もう お 酒 を {飲み すぎ ない} よう に、努力 し て い ます。
+        english: He is making an effort not to drink too much alcohol anymore.
+        hint: 「飲みすぎない」 means not to drink beyond an appropriate limit. 「飲みまくらない」 implies avoiding drinking
+          in an uncontrolled, relentless, or very frequent manner. We're looking for the resolve to avoid
+          a pattern of excessive, unrestrained drinking.
+    scene: A concerned family member or friend describes someone's struggle with sobriety.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「飲みまくらないように」 explicitly expresses the intention to avoid excessive drinking. The
+      formal register and polite ending 「努力しています」 are fitting for an older speaker discussing a serious
+      matter. This expression clearly indicates a deliberate effort to curb a past or current habit.
+  - english: This weekend, let's just play games like crazy without thinking about anything!
+    japanese:
+      - 今週 末 は 何 も 考え ず に、ただ ゲーム を やり {まくろう}！
+      - 今週 末 は 何 も 考え ず に、ただ ゲーム を やり {まくり ましょう}！
+    english_literally: This weekend, without thinking about anything, let's just excessively play games!
+    competing_grammar:
+      - competing_japanese:
+          - 今週 末 は 何 も 考え ず に、ただ ゲーム を {たくさん やろう}！
+        english: This weekend, let's just play a lot of games without thinking about anything!
+        hint: 「たくさんやる」 means to do something a lot. 「やりまくろう」 conveys a stronger sense of playing relentlessly,
+          without inhibition, and with great enthusiasm, almost to an extreme. We're looking for the idea
+          of playing "like crazy."
+    scene: Friends are planning a relaxing, uninhibited weekend.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The volitional form 「やりまくろう」 is an energetic and casual suggestion, perfect for friends planning
+      an uninhibited activity. It conveys a strong desire to play intensely and without limits, common
+      in casual, friendly settings among younger people. The polite alternative 「やりまくりましょう」 would be suitable
+      for slightly more formal situations.
+post_example_writeup: While 「まくる」 generally describes an action done with great intensity or frequency,
+  its specific nuance can vary. It can sometimes imply a positive, uninhibited enjoyment, like "playing
+  like crazy" (遊びまくる). Other times, it might suggest a lack of control or an excessive, possibly problematic,
+  behavior, such as "drinking excessively" (飲みまくる). The context is key to understanding the speaker's
+  implied judgment or observation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/まくる

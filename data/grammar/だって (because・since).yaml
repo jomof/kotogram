@@ -1,0 +1,239 @@
+grammar_point: だって (because・since)
+learn_before:
+  - だって (even・also)
+meaning: because; but also; even
+pronunciation:
+  katakana: ダッテ
+  romaji: datte
+formation:
+  '[Casual statement] + だって': Indicates a reason or explanation, often with emphasis or a slightly defensive
+    nuance.
+  '[Noun/pronoun] + だって': Indicates 'even' or 'too' for the preceding noun/pronoun.
+jlpt: N4
+etymology: 'The particle 「だって」 originates from a contraction of 「だ」 (copula) and 「といって」 (quotative ''to
+  say'' + te-form), initially meaning ''even saying that'' or ''even if one says that.'' This evolved
+  into its current uses: as a causal conjunction signifying ''because'' or ''even so,'' and as an emphatic
+  particle meaning ''even'' or ''too.'' This historical development illuminates its dual functionality.'
+writeup: 「だって」 is a versatile and common particle primarily used in casual conversation. It functions
+  both as a conjunction meaning 'because' or 'even so', and as an emphatic particle meaning 'even' or
+  'too'. When used to express a reason, 「だって」 often implies a nuance of justification, slight complaint,
+  or a casual explanation, sometimes in response to an implied question or accusation. It's more informal
+  and sometimes more assertive than 「から」 or 「ので」. For instance, if someone asks "Why aren't you going?",
+  you might respond, 「だって、忙しいんだもん！」 (Because I'm busy!). When used emphatically, 「だって」 can mean 'even'
+  or 'too', similar to 「も」, but often with a stronger or more surprising implication. For example, 「彼だってできる」
+  (Even he can do it) implies that it's unexpected for him to be able to do it, or that his ability serves
+  as a strong counterpoint. 「だって」 is predominantly used by younger people or in very casual settings among
+  close friends and family, and its usage can sometimes come across as slightly childish or argumentative
+  if not used appropriately in context.
+false_friends:
+  - term: から
+    meaning: because; from
+    kind: similar expression
+    nuance: Unlike 「だって」, 「から」 is a straightforward causal particle without the nuance of emphasis, justification,
+      or defensiveness. It simply states the reason.
+    grammar_point: '[Clause]から (because・so)'
+  - term: のだ・んだ
+    meaning: explanatory
+    kind: similar expression
+    nuance: While 「だって」 can give a reason, 「〜のだ・〜んだ」 is used for explanation or emphasis of a fact, often
+      implying shared knowledge or providing context, without the defensive or 'even' nuance of 「だって」.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+  - term: も
+    meaning: also; too; even
+    kind: similar expression
+    nuance: Both 「だって」 and 「も」 can mean 'even,' but 「だって」 often carries a stronger emphasis or a sense
+      of surprise/counter-argument, whereas 「も」 is a more general additive particle.
+    grammar_point: も (addition or emphasis particle)
+  - term: もの・もん
+    meaning: because; since
+    kind: similar expression
+    nuance: Similar to 「だって」, 「もの・もん」 gives a reason, but it's typically softer, more childlike, or used
+      for self-justification, lacking the potential confrontational edge of 「だって」.
+    grammar_point: もの・もん (because・since)
+post_false_friends_writeup: While 「だって」 shares functions with 「から」, 「のだ・んだ」, 「も」, and 「もの・もん」, its distinct
+  nuance of providing a casual, sometimes defensive, justification or an emphatic 'even' sets it apart.
+  Pay attention to the context and the speaker's tone to discern its exact meaning and appropriate usage.
+examples:
+  - english: I bought it because I like it.
+    japanese:
+      - 好き {だ って}、買っ た ん だ。
+      - 好き {だ って}、買っ た の。
+      - 好き {だ って}、買っ ちゃっ た ん だ。
+    english_literally: Because I like it, I bought it.
+    competing_grammar:
+      - competing_japanese:
+          - 好き だ から 買っ た ん だ。
+        english: I bought it because I like it (straightforward reason).
+        hint: 「から」は中立的な理由を表す助詞です。ここではよりカジュアルで、やや強調された理由を表す「だって」が必要です。 We're looking for a more casual,
+          perhaps slightly emphatic, reason.
+    scene: A friend asks why you bought something.
+    register: casual
+    setting: friendly
+  - english: I couldn't go, because I was tired.
+    japanese:
+      - 疲れ て た {だ って} 行け なかっ た。
+      - 疲れ て た {だ って} 行け なかっ た もん。
+      - 疲れ て た {だ って} 行け なかっ た ん だ。
+    english_literally: Because I was tired, I couldn't go.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ て い た の で 行け なかっ た。
+        english: I couldn't go because I was tired (more polite).
+        hint: 「ので」はより丁寧な理由を表すことが多いです。ここではより直接的でカジュアルな理由が必要です。 We need a more direct, casual reason.
+    scene: Explaining why you missed an event.
+    register: casual
+    setting: apologetic
+  - english: Even a child can understand that.
+    japanese:
+      - 子供 {だ って} それ くらい 分かる よ。
+      - 子供 {だ って} それ くらい 分かる ん だ よ。
+      - 子供 {だ って} それ くらい 分かる の よ。
+    english_literally: Even a child, to that extent, understands.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 で も それ くらい 分かる よ。
+        english: Even a child can understand that (general 'even').
+        hint: 「でも」は一般的な「〜も」の意味ですが、ここでは「だって」がより強い強調や反論のニュアンスを含みます。 We're looking for a stronger emphasis,
+          implying a counter-argument.
+    scene: Expressing frustration that someone doesn't understand something simple.
+    register: casual
+    setting: serious
+    nuance: Here, 「だって」は「子供」という、通常は理解度が低いとされる対象までもが含まれることを強調しています。これは、その概念がいかに単純で、誰にでも理解できるかを強く示唆します。「よ」は話者の主張を補強します。
+      This use of 「だって」 emphasizes the inclusivity, meaning "even a child". It highlights that the concept
+      is so simple, even someone typically expected to have less understanding (a child) can grasp it.
+      The 「よ」 reinforces this assertion.
+  - english: Even I was surprised.
+    japanese:
+      - 私 {だ って} 驚い た よ。
+      - 私 {だ って} 驚い た ん だ よ。
+      - 私 {だ って} 驚い た の よ。
+    english_literally: Even I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 私 も 驚い た よ。
+        english: I was also surprised.
+        hint: 「も」は一般的な追加を表す助詞です。 「だって」は、話し手自身が驚いたことの意外性や、それがどれほど驚くべきことだったかを強く示します。 We're looking for a
+          stronger sense of surprise, implying that if even *you* were surprised, it must have been significant.
+    scene: Responding to someone's surprise or disbelief.
+    register: casual
+    setting: friendly
+    nuance: 「だって」は話し手自身の驚きを強調し、もし自分までもが驚いたのであれば、それは本当に驚くべき出来事だったことを示唆します。「よ」はこの主張をさらに強めます。 This use of
+      「だって」 emphasizes the speaker's own surprise, suggesting that if even *they* were surprised, it must
+      have been a truly surprising event. The 「よ」 reinforces this assertion.
+  - english: It's cold, because I don't have a heater.
+    japanese:
+      - ヒーター ない {だ って} 寒い ん だ。
+      - ヒーター ない {だ って} 寒い の。
+      - ヒーター ない {だ って} 寒い ん だ もん。
+    english_literally: Because there's no heater, it's cold.
+    competing_grammar:
+      - competing_japanese:
+          - ヒーター ない から 寒い ん だ。
+        english: It's cold because there's no heater (neutral reason).
+        hint: 「から」は一般的な理由を表す助詞です。ここでは、より直接的でカジュアルな、少し不満を含んだ理由が必要です。 We're looking for a direct, casual
+          reason for the complaint.
+    scene: Complaining about the cold in your room.
+    register: casual
+    setting: pessimistic
+  - english: But I already told you!
+    japanese:
+      - '{だ って}、もう 言っ た じゃ ない！'
+      - '{だ って}、もう 言っ た もん！'
+      - '{だ って}、もう 言っ た でしょ！'
+    english_literally: But, I already said it, didn't I!
+    competing_grammar:
+      - competing_japanese:
+          - しかし、もう 言っ た じゃ ない！
+        english: However, I already told you! (more formal)
+        hint: 「しかし」はより丁寧な接続詞です。 「だって」は、よりカジュアルで、しばしば防御的な発言の始まりとして使われます。 We're looking for a casual, defensive
+          opening to a statement, often used by younger speakers.
+    scene: A child defensively responding to a parent's repeated question.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: これは「だって」の典型的な防御的用法です。話し手は、すでに義務を果たした、または情報を提供したと主張しており、しばしばやや苛立ちや困惑のトーンを含みます。「じゃない」という語尾は、女性や子供が「〜でしょう？」「〜じゃないですか」という意味で使う一般的な表現です。
+      This is a classic defensive use of 「だって」. The speaker is asserting that they've already fulfilled
+      the obligation or given the information, often with a slight tone of frustration or exasperation.
+      「じゃない」 at the end is a common female/childlike expression for "isn't it?" or "don't you know?".
+  - english: Even Sensei was praised by the principal.
+    japanese:
+      - 先生 {だ って} 校長 先生 に 褒め られ た ん だ。
+      - 先生 {だ って} 校長 先生 に 褒め られ た の。
+      - 先生 {だ って} 校長 先生 に 褒め られ た ん だ よ。
+    english_literally: Even Sensei was praised by the principal.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 も 校長 先生 に 褒め られ た ん だ。
+        english: Sensei was also praised by the principal.
+        hint: 「も」は追加を表しますが、「だって」は先生のような高い立場の人までも含まれることを強調し、その出来事がどれほど広範囲に影響があったか、または意外だったかを示します。 We're
+          looking for emphasis that even a person of high standing like Sensei was included, suggesting
+          a broad or surprising impact.
+    scene: Talking about a teacher's achievement among students.
+    register: casual
+    setting: informative
+  - english: I can't buy it because I have no money.
+    japanese:
+      - お 金 ない {だ って} 買え ない よ。
+      - お 金 ない {だ って} 買え ない の。
+      - お 金 ない {だ って} 買え ない ん だ よ。
+    english_literally: Because there's no money, I can't buy it.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が ない から 買え ない よ。
+        english: I can't buy it because I have no money (neutral reason).
+        hint: 「から」は標準的な理由を表す助詞です。ここでは、カジュアルな会話で、より直接的で少し諦めのニュアンスを含んだ理由が必要です。 We're looking for a direct,
+          slightly resigned reason in casual speech.
+    scene: Explaining to a friend why you can't afford something.
+    register: casual
+    setting: friendly
+  - english: We couldn't go out because it was raining.
+    japanese:
+      - 雨 降っ て た {だ って} 出かけ られ なかっ た ん だ。
+      - 雨 降っ て た {だ って} 出かけ られ なかっ た の。
+      - 雨 降っ て た {だ って} 出かけ られ なかっ た ん だ よ。
+    english_literally: Because it was raining, we couldn't go out.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ て い た の で 出かけ られ なかっ た ん だ。
+        english: We couldn't go out because it was raining (slightly more formal).
+        hint: 「ので」は客観的で、より丁寧な理由を表すことが多いです。「だって」はよりカジュアルで直接的な理由を表します。 We're looking for a more casual and
+          direct reason.
+    scene: Explaining why plans were canceled.
+    register: casual
+    setting: reflective
+  - english: This exam is difficult even for me.
+    japanese:
+      - この テスト、私 {だ って} 難しい よ。
+      - この テスト、私 {だ って} 難しい ん だ よ。
+      - この テスト、私 {だ って} 難しい の よ。
+    english_literally: This test, even for me, is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この テスト、私 で も 難しい よ。
+        english: This test is difficult even for me (general 'even').
+        hint: 「でも」はより広い意味での「〜も」ですが、「だって」は、もし話し手までもが難しいと感じるなら、それはかなりの難易度であることを強調します。 We're looking for
+          emphasis that the difficulty is significant if even the speaker finds it challenging.
+    scene: A student discussing a difficult exam.
+    register: casual
+    setting: serious
+  - english: He was late because the train was delayed.
+    japanese:
+      - 電車 が 遅れ た {だ って}、彼 も 遅刻 し た ん だ。
+      - 電車 が 遅れ た {だ って}、彼 も 遅刻 し た の。
+      - 電車 が 遅れ た {だ って}、彼 も 遅刻 し た ん だ よ。
+    english_literally: Because the train was delayed, he was also late.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ た から、彼 も 遅刻 し た ん だ。
+        english: He was late because the train was delayed (neutral reason).
+        hint: 「から」は標準的な理由を表す助詞です。ここでは、カジュアルな会話で、より直接的な説明が必要です。 We're looking for a more direct and casual
+          explanation for someone's tardiness.
+    scene: Explaining someone's tardiness.
+    register: casual
+    setting: informative
+post_example_writeup: As seen in the examples, 「だって」 is a versatile particle that expresses both causality
+  and emphasis. Its exact nuance depends heavily on context and intonation. While it generally marks casual
+  speech, its use for justification or emphasizing inclusion can make it a powerful tool for expressing
+  one's feelings or explaining circumstances in a direct manner.

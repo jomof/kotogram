@@ -1,0 +1,711 @@
+grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+learn_before:
+  - 生かす (to keep alive・to make good use of)
+meaning: To try to do or be about to do; or to be unwilling to do or not make an effort to do.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ようとする
+    rarity: common
+    meaning: to try to do; to be about to do
+  - conjugation-type: non-past polite (～ます)
+    form: ようとします
+    rarity: common
+    meaning: to try to do; to be about to do (polite)
+  - conjugation-type: past plain (～た)
+    form: ようとした
+    rarity: common
+    meaning: tried to do; was about to do
+  - conjugation-type: past polite (～ました)
+    form: ようとしました
+    rarity: common
+    meaning: tried to do; was about to do (polite)
+  - conjugation-type: te-form (～て)
+    form: ようとして
+    rarity: common
+    meaning: trying to do; being about to do (te-form)
+  - conjugation-type: conditional (～ば)
+    form: ようとすれば
+    rarity: uncommon
+    meaning: if one tries to do; if one is about to do
+  - conjugation-type: conditional (～たら)
+    form: ようとしたら
+    rarity: uncommon
+    meaning: if one tried to do; when one was about to do
+  - conjugation-type: negative plain (～ない)
+    form: ようとしない
+    rarity: common
+    meaning: not willing to; not make an effort to; not attempt to
+  - conjugation-type: negative non-past polite (～ません)
+    form: ようとしません
+    rarity: common
+    meaning: not willing to; not make an effort to; not attempt to (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: ようとしなかった
+    rarity: common
+    meaning: was not willing to; did not make an effort to; did not attempt to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ようとしませんでした
+    rarity: common
+    meaning: was not willing to; did not make an effort to; did not attempt to (polite)
+  - conjugation-type: te-form (～て)
+    form: ようとしなくて
+    rarity: uncommon
+    meaning: not being willing to; not making an effort to (te-form)
+  - conjugation-type: conditional (～ば)
+    form: ようとしなければ
+    rarity: rare
+    meaning: if not willing to; if not making an effort to
+  - conjugation-type: conditional (～たら)
+    form: ようとしなかったら
+    rarity: rare
+    meaning: if not willing to; if not making an effort to
+pronunciation:
+  katakana: ヨウトスル・ヨウトシナイ
+  romaji: you to suru・you to shinai
+formation:
+  Verb[volitional-form] + とする: Expresses an attempt or being on the verge of doing an action.
+  Verb[volitional-form] + としない: Expresses unwillingness or active resistance to performing an action.
+jlpt: N3
+etymology: The grammar point 「ようとする」 combines the volitional form of a verb (indicating intent) with 「とする」
+  (to try/attempt), literally meaning "to intend to try." By negating 「する」 to 「しない」, the form 「ようとしない」
+  expresses 'to not try to do' or 'to be unwilling to do', highlighting an active choice or disposition
+  to not undertake an action or effort.
+writeup: |-
+  The 「[Verb-volitional]とする・としない」 grammar point encompasses two related concepts: **trying to do something** or **being about to do something**, and conversely, **being unwilling to do something** or **not making an effort to do something**.
+
+  When used as **「ようとする」**, it expresses an attempt to perform an action or being on the verge of doing so. This construction conveys a strong sense of the subject's intention and effort. While it signifies a clear decision to perform the action, it does not guarantee its completion. Often, the action may be unsuccessful or interrupted, particularly when used in the past tense 「ようとした」. For example, if you say 「家を出ようとしたら、雨が降り始めた」 (When I was about to leave the house, it started raining), it implies you had firmly decided to leave, but the rain intervened at the very last moment.
+
+  Conversely, when used as **「ようとしない」**, it expresses a lack of willingness or active effort to do something. This form often carries a negative connotation, as it implies a deliberate choice not to undertake an action, or a stubborn refusal. It is typically used to describe the actions or inactions of others, and using it to describe oneself can sound abrupt or rude. In such cases, expressions like 「ようと思わない」 (I don't intend to/I don't think I will) are generally preferred for personal statements of intent. For example, describing an old car that won't start as 「エンジンがかかろうとしない」 personifies its 'unwillingness' to function.
+false_friends:
+  - term: (よ)う
+    meaning: Let's, I shall (Casual volitional)
+    kind: similar expression
+    nuance: Verb[よう] is simply the volitional form, expressing intent or invitation. 「ようとする」 adds the
+      nuance of actively *trying* or being *on the verge* of an action, focusing on the process of the
+      attempt. 「ようとしない」 uses this form to express a lack of intention or willingness.
+    grammar_point: (よ)う (let’s, shall we)
+  - term: まだ～ていない
+    meaning: Still haven't done (something)
+    kind: often confused with
+    nuance: While 「まだ〜ていません」 states that an action has not yet been completed, 「ようとする」 describes an attempt
+      or being on the immediate verge of an action, regardless of its completion or lack thereof.
+    grammar_point: まだ～ていない (still uncompleted)
+  - term: '[Verb-dictionary]ところだ'
+    meaning: About to, On the verge of
+    kind: similar expression
+    nuance: 「るところだ」 focuses on the immediacy and state of being precisely on the verge of an action. 「ようとする」,
+      while also indicating imminence, places more emphasis on the *intention* or *effort* leading up
+      to the action, often implying an internal drive or a potential for interruption.
+    grammar_point: '[Verb-dictionary]ところだ (about to do)'
+  - term: ようにする
+    meaning: To try to, To make sure to, To endeavor to
+    kind: antonym
+    nuance: 「ようにする」 implies making a conscious effort to establish a habit or ensure something happens
+      regularly over time. 「ようとする」 refers to a specific, immediate attempt. Unlike 「ようとしない」 which indicates
+      a lack of effort, 「ようにする」 indicates an active attempt to do something.
+    grammar_point: ようにする (make an effort to)
+  - term: てみる
+    meaning: To try to
+    kind: similar expression
+    nuance: 「てみる」 suggests trying something out of curiosity, experimentation, or to see the result. 「ようとする」
+      implies a more determined, conscious effort or being on the point of doing something, with a stronger
+      sense of purpose behind the action.
+    grammar_point: てみる (try and see)
+  - term: そうになる
+    meaning: almost; on the verge of; close to (doing something)
+    kind: similar expression
+    nuance: 「そうになる」 means an action *nearly* happened, often involuntarily or accidentally, or indicates
+      proximity to a state. 「ようとする」 implies *intention* or *effort* to reach that state or action, suggesting
+      a more deliberate will.
+    grammar_point: そうになる (almost・on the verge of)
+  - term: '[Verb-dictionary]〜ところだった'
+    meaning: Almost did; was on the verge of.
+    kind: similar expression
+    nuance: 「ところだった」 specifically means "was *on the verge* of doing something, but it didn't happen (often
+      narrowly avoided)". It emphasizes the *near miss*. 「ようとした」 focuses on the *intention/attempt* that
+      was then thwarted.
+    grammar_point: '[Verb-dictionary]ところだった (was just about to)'
+  - term: Verb[volitional-よう]+思う
+    meaning: I think I will; I'm thinking of; I intend to
+    kind: similar expression
+    nuance: 「ようと思う」 expresses a pure statement of internal intent or a decision. 「ようとする」, while also indicating
+      intent, adds the nuance of an *active attempt* to begin the action or being *on the verge* of doing
+      it, focusing on the immediate process.
+    grammar_point: '[Verb-よう]思う (intend to)'
+post_false_friends_writeup: Distinguishing 「[Verb-volitional]とする・としない」 from similar expressions lies in
+  its unique nuance of active, often thwarted, intention or immediate imminence on the one hand, and active
+  unwillingness or stubborn refusal on the other. While other phrases might convey intent, attempt, or
+  being on the verge of an action, 「ようとする」 uniquely combines these aspects with a focus on the subject's
+  conscious will and the potential for an interruption or failure. Phrases like 「そうになる」 and 「ところだった」 indicate
+  proximity to an action, but 「ようとする」 emphasizes the internal drive or conscious attempt to initiate that
+  action. Conversely, 「ようとしない」 stands apart by emphasizing a deliberate decision *not* to make an effort
+  or an active resistance, which is distinct from simply not doing something or lacking desire.
+examples:
+  - english: This baby tries to put anything in its mouth, so caution is necessary.
+    japanese:
+      - この 赤ん坊 は なん で も 口 に 入 {れよう と する} から、注意 が 必要 だ。
+      - この 赤ん坊 は なん で も 口 に 入 {れよう と し ます} から、注意 が 必要 です。
+      - この 赤ん坊 は なん で も 口 に 入 {れよう と する} ん で、気 を つけ て ね。
+    english_literally: This baby anything mouth in put tries, so caution is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 赤ん坊 は なん で も 口 に {入れる} から、注意 が 必要 だ。
+        english: This baby puts anything in its mouth, so caution is necessary.
+        hint: The original sentence emphasizes the baby's *tendency* or *attempt* to put things in its
+          mouth, not just the action itself. We're looking for a grammar that expresses an internal inclination
+          or effort.
+      - competing_japanese:
+          - この 赤ん坊 は なん で も 口 に 入れ {かね ない} から、注意 が 必要 だ。
+        english: This baby might put anything in its mouth, so caution is necessary.
+        hint: 「～かねない」 implies a negative possibility or risk. We're looking for a grammar that describes
+          the baby's attempt or inclination, not a potential negative outcome.
+    scene: A new parent is talking to a friend about their baby's exploratory habits.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「ようとする」 highlights the baby's inherent tendency or impulse to put things in its mouth,
+      emphasizing an unconscious, almost instinctual, effort. This is common when describing the actions
+      of animals or young children. The phrase 「口に入れる」 is a common collocation.
+  - english: Every morning, I try to wake up early for my health.
+    japanese:
+      - 私 は 毎朝、健康 の ため に 早起き {しよう と し ます}。
+      - 私 は 毎朝、健康 の ため に 早起き {しよう と する}。
+      - 毎朝、健康 の ため に 早起き {しよう と する} ん だ。
+    english_literally: I every morning, health for early rise try.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 毎朝、健康 の ため に 早起き する {よう に し ます}。
+        english: Every morning, I make an effort to wake up early for my health.
+        hint: While both express effort, 「ようにする」 is for establishing a habit or making an ongoing effort
+          to ensure something happens regularly. 「ようとする」 emphasizes the *specific attempt* or intention
+          at each instance. We're looking for an immediate, conscious attempt.
+      - competing_japanese:
+          - 私 は 毎朝、健康 の ため に 早起き し {たい です}。
+        english: Every morning, I want to wake up early for my health.
+        hint: 「～たいです」 expresses a desire or wish. We're looking for a grammar that expresses an active
+          attempt or effort, not just a desire.
+    scene: A person explains their daily routine and aspirations to a colleague.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「ようとします」 indicates a continuous, conscious effort to wake up early for health.
+      It implies that while the speaker makes the effort, it might not always be successful, or it requires
+      consistent willpower. The polite form 「します」 fits the formal setting, while 「早起きする」 means 'to wake
+      up early'.
+  - english: He was about to stand up suddenly, but was stopped by the department manager.
+    japanese:
+      - 彼 は 急 に 席 を 立 {ち よう と し た} が、部長 に 呼び止め られ た。
+      - 彼 は 急 に 席 を 立 {ち よう と し まし た} が、部長 に 呼び止め られ まし た。
+      - 彼 は 突然 席 を 立ち {上がろう と し た} の です が、部長 に 呼び止め られ て しまっ た。
+    english_literally: He suddenly seat stand up was about to, but department manager by called to stop.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 急 に 席 を 立つ {ところ だっ た} が、部長 に 呼び止め られ た。
+        english: He was precisely on the verge of standing up suddenly, but was stopped by the department
+          manager.
+        hint: Both express being on the verge, but 「ようとした」 highlights the subject's *intention* or *decision*
+          to act, even if interrupted. 「ところだった」 more neutrally states the timing of the action, focusing
+          on being 'at the point' of doing something. We're looking for a grammar that implies an intention
+          that was thwarted.
+      - competing_japanese:
+          - 彼 は 急 に 席 を 立っ {て い た} が、部長 に 呼び止め られ た。
+        english: He was standing up suddenly, but was stopped by the department manager.
+        hint: 「～ていた」 describes an ongoing action. 「ようとした」 means he was *about to* stand up, not already
+          in the process. We're looking for a grammar that describes the immediacy of an action that was
+          prevented.
+    scene: During a meeting, a junior employee makes a move to leave but is interrupted by their boss.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The past form 「ようとした」 combined with 「が、〜された」 clearly indicates an action that was on the verge
+      of happening but was interrupted. The nuance here is that the male employee had a definite intention
+      to stand up, but his action was thwarted by the manager. This usage emphasizes the immediate imminence
+      and the subsequent interruption. The verb 「呼び止められた」 means 'was called to stop'.
+  - english: Trying to succeed in developing the new product, they worked day and night.
+    japanese:
+      - 新 製品 の 開発 に 成功 {しよう と し て}、彼 ら は 昼夜 を 問わ ず 働い た。
+      - 新 製品 の 開発 に 成功 {しよう と し て}、彼 ら は 昼夜 を 問わ ず 働き まし た。
+      - 新 製品 の 開発 を 達成 {しよう と し て}、彼 ら は 昼夜 の 別 なく 尽力 し た。
+    english_literally: New product development in succeed trying to, they day and night ask not worked.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 開発 に 成功 する {ため に}、彼 ら は 昼夜 を 問わ ず 働い た。
+        english: In order to succeed in developing the new product, they worked day and night.
+        hint: 「ために」 simply states the purpose. 「ようとして」 implies they were actively *trying* or *making
+          an effort* to succeed, which was the driving force behind their work. We're looking for a grammar
+          that indicates both purpose and ongoing effort.
+      - competing_japanese:
+          - 新 製品 の 開発 に 成功 し {たい と 思っ て}、彼 ら は 昼夜 を 問わ ず 働い た。
+        english: Wanting to succeed in developing the new product, they worked day and night.
+        hint: 「～たいと思って」 means 'thinking they want to'. While it expresses desire, 「ようとして」 describes the
+          active *attempt* or *effort* driven by that desire. We're looking for a grammar that indicates
+          the process of trying, not just the underlying thought.
+    scene: A project manager recounts the intense efforts of their team to deliver a new product.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: The te-form 「ようとして」 indicates the continuous state of 'trying to' as the reason or manner
+      for their intense work. It emphasizes that their tireless effort was driven by the strong intention
+      to succeed in the new product development. This formal register is appropriate for a project manager
+      reporting on a team's dedication. 「昼夜を問わず」 means 'day and night, without distinction'.
+  - english: When a child is in trouble, is it okay for parents to naturally try to help them?
+    japanese:
+      - 子供 が 困っ て いる 時、親 は 自然 に 助 {け よう と し たら} いい の です か。
+      - 子供 が 困っ て いる 時、親 は 自然 に 助 {け よう と し たら} いい の か な。
+      - 子供 が 困っ て いる 時、親 が 自然 に 助 {け よう と し たら} いい ん です か。
+    english_literally: Child is in trouble when, parent naturally help try to if good is it?
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 困っ て いる 時、親 は 自然 に {助け たら} いい の です か。
+        english: When a child is in trouble, is it okay for parents to naturally help them?
+        hint: 「助けたら」 is a simple conditional 'if they help'. 「助けようとしたら」 specifically questions the appropriateness
+          of acting on the *impulse* or *attempt* to help. We're looking for a grammar that includes the
+          nuance of an innate inclination or attempt.
+      - competing_japanese:
+          - 子供 が 困っ て いる 時、親 は 自然 に 助ける {べき です} か。
+        english: When a child is in trouble, should parents naturally help them?
+        hint: 「～べき」 expresses a moral obligation or strong recommendation. We're looking for a grammar
+          that questions the appropriateness of acting on an innate inclination, not a duty.
+    scene: A parent is asking for advice in a parenting forum or discussion.
+    register: semi-formal
+    setting: interrogative
+    conjugation: conditional (～たら)
+    nuance: 「助けようとしたら」 in this context implies the natural, innate inclination or impulse parents might
+      have to help their child. The conditional form questions whether it is 'good' or 'appropriate' to
+      act on this impulse. The phrase 「自然に」 (naturally) further emphasizes this inherent tendency. This
+      usage is less about a conscious 'attempt' and more about an automatic 'inclination'.
+  - english: The player tried to score a goal, but unfortunately, it went wide.
+    japanese:
+      - 選手 は ゴール を 決 {め よう と し た} が、惜しく も 外れ て しまっ た。
+      - 選手 は ゴール を 決 {め よう と し まし た} が、惜しく も 外れ て しまい まし た。
+      - 選手 ゴール 決 {め よう と し た} けど、残念 ながら 外し ちゃっ た な。
+    english_literally: Player goal decide tried to, but regrettably missed it.
+    competing_grammar:
+      - competing_japanese:
+          - 選手 は ゴール を 決め {て み た} が、惜しく も 外れ て しまっ た。
+        english: The player tried scoring a goal (to see what would happen), but unfortunately, it went
+          wide.
+        hint: 「てみた」 suggests trying something out of curiosity or experimentation. 「ようとした」 implies a more
+          determined, conscious effort with a strong sense of purpose. We're looking for a grammar that
+          describes a determined attempt that was unsuccessful.
+      - competing_japanese:
+          - 選手 は ゴール を 決め {そう に なっ た} が、惜しく も 外れ て しまっ た。
+        english: The player almost scored a goal, but unfortunately, it went wide.
+        hint: 「～そうになる」 means to be on the verge of, or almost do something, often without explicit intent.
+          「ようとした」 emphasizes the player's *intentional attempt* that was then thwarted. We're looking
+          for a grammar that highlights the deliberate effort.
+    scene: A sports commentator describes a pivotal moment in a soccer match.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: This sentence uses 「ようとした」 to describe a clear, intentional effort (「ゴールを決めようとした」 - 'tried
+      to score a goal') that ultimately failed, as indicated by 「が、惜しくも外れてしまった」 ('but unfortunately, it
+      went wide'). This nuance of a determined but unsuccessful attempt is central to 「ようとする」. The casual
+      register is fitting for sports commentary. 「惜しくも」 means 'regrettably' or 'unfortunately'.
+  - english: She was about to voice her opinion, but decided against it at the last moment.
+    japanese:
+      - 彼女 は 自分 の 意見 を 言 {おう と し た} が、土壇場 で やめ た。
+      - 彼女 は 自分 の 意見 を 言 {おう と し まし た} が、土壇場 で やめ まし た。
+      - 彼女 は 意見 を 述 {べ よう と し た} の です が、寸前 で 止め まし た。
+    english_literally: She herself's opinion say was about to, but at the last moment stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 自分 の 意見 を 言う {ところ だっ た} が、土壇場 で やめ た。
+        english: She was precisely on the verge of saying her opinion, but stopped at the last moment.
+        hint: 「ところだった」 focuses on the precise timing of being on the verge. 「ようとした」 highlights the speaker's
+          *intention* or *decision* to act, which was then aborted. We're looking for a grammar that emphasizes
+          the internal decision that was thwarted.
+      - competing_japanese:
+          - 彼女 は 自分 の 意見 を {言っ た} が、土壇場 で やめ た。
+        english: She said her opinion, but stopped at the last moment.
+        hint: 「言った」 indicates the action of speaking actually happened, then stopped. 「言おうとした」 emphasizes
+          the *intention* to speak, which was then aborted before the words came out. We're looking for
+          a grammar that describes an intended action that never materialized.
+    scene: A team meeting where a quiet member almost speaks up but changes her mind.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: 「言おうとした」 emphasizes the female speaker's *intention* or *decision* to speak, which she then
+      actively suppressed. This highlights an internal process rather than just being on the cusp of an
+      action, conveying her deliberate choice not to proceed. 「土壇場」 means 'at the last moment' or 'the
+      eleventh hour'.
+  - english: When I tried to close the window, it suddenly got stuck and wouldn't move.
+    japanese:
+      - 窓 を 開 {け よう と し たら}、急 に 固まっ て 動か なく なっ た。
+      - 窓 を 開 {け よう と し まし たら}、急 に 固まっ て 動か なく なり まし た。
+      - 窓 を 開 {け よう と し たら}、いきなり 固まっ て 動か なく なっ た ん だ。
+    english_literally: Window open was about to, suddenly got stuck and wouldn't move.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 を 開ける {ところ だっ たら}、急 に 固まっ て 動か なく なっ た。
+        english: When I was precisely at the point of opening the window, it suddenly got stuck and wouldn't
+          move.
+        hint: 「ところだった」 describes the exact timing of being on the verge. 「ようとしたら」 implies the *attempt*
+          or *initiation* of the action was met with the obstacle. We're looking for a grammar that emphasizes
+          the moment the attempt was made.
+    scene: Someone recounting a frustrating experience with a broken window.
+    register: casual
+    setting: storytelling
+    conjugation: conditional (～たら)
+    nuance: This sentence highlights an unexpected obstacle encountered *while in the process of trying*
+      to do something. 「開けようとしたら」 means 'when I was about to open' or 'when I tried to open', clearly
+      indicating the intention and the point at which the unexpected problem (「固まって動かなくなった」 - got stuck
+      and wouldn't move) occurred. This is a common narrative use for thwarted attempts.
+  - english: I was about to leave the house when a sudden call came in.
+    japanese:
+      - 家 を 出 {よう と し た} ところ に、急 な 電話 が かかっ て き た。
+      - 家 を 出 {よう と し た} ところ に、急 な 電話 が かかっ て き まし た。
+      - 家 を 出 {よう と し た} 瞬間 に、急 に 電話 が かかっ て き た ん だ。
+    english_literally: House leave was about to at that moment, sudden call came in.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を 出る {ところ に}、急 な 電話 が かかっ て き た。
+        english: Just as I was leaving the house, a sudden call came in.
+        hint: 「～ところ」 describes the exact point in time. 「ようとした」 specifically highlights the *intention*
+          or *decision* to leave at that moment, emphasizing the mental state leading up to the action.
+          We're looking for a grammar that includes the nuance of firm intent at the point of interruption.
+    scene: A person explains why they were delayed in their departure.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: Here, 「ようとしたところ」 precisely captures the moment of being on the verge of leaving, emphasizing
+      that the speaker had a clear intention to depart, but it was interrupted by an external event (the
+      phone call). The addition of 「ところ」 highlights the specific timing. This demonstrates the use of
+      「ようとする」 to describe an action that was definitively intended but prevented.
+  - english: He was about to apologize, but then his pride got in the way.
+    japanese:
+      - 彼 は 謝 {ろう と し た} が、プライド が 邪魔 を し た。
+      - 彼 は 謝 {ろう と し まし た} が、プライド が 邪魔 を し まし た。
+      - あいつ は 謝 {ろう と し た} ん だ けど、意地 が 邪魔 し た ん だ よ。
+    english_literally: He apologize was about to, but pride got in the way.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 謝り {たかっ た} が、プライド が 邪魔 を し た。
+        english: He wanted to apologize, but his pride got in the way.
+        hint: 「～たかった」 expresses a desire. 「謝ろうとした」 means he was *about to* apologize or *tried* to, indicating
+          that he initiated the action, not just had the desire. We're looking for a grammar that describes
+          the attempt to act.
+      - competing_japanese:
+          - 彼 は 謝る {つもり だっ た} が、プライド が 邪魔 を し た。
+        english: He intended to apologize, but his pride got in the way.
+        hint: 「～つもりだった」 expresses a firm intention. 「謝ろうとした」 implies he actually began to act on that
+          intention, or was on the very brink of doing so, before being stopped. We're looking for a grammar
+          that emphasizes the attempt itself.
+    scene: A friend describing another friend's stubbornness after an argument.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: This illustrates a mental 'attempt' that is thwarted by an internal obstacle (「プライドが邪魔をした」
+      - his pride got in the way). 「謝ろうとした」 signifies that he formed the intention to apologize and was
+      on the very verge of doing so, emphasizing his inner conflict before he stopped himself. This shows
+      that the 'attempt' doesn't always have to be a physical action.
+  - english: When I tried to close the door, the cat slipped out.
+    japanese:
+      - ドア を 閉 {め よう と し たら}、猫 が するり と 抜け出し た。
+      - ドア を 閉 {め よう と し まし たら}、猫 が するり と 抜け出し まし た。
+      - ドア を 閉 {め よう と し たら}、するり と 猫 が 出 て いっ た ん だ。
+    english_literally: Door close was about to, cat slipped out.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 閉める {と}、猫 が するり と 抜け出し た。
+        english: When I closed the door, the cat slipped out.
+        hint: 「～と」 describes a natural, immediate consequence. 「閉めようとしたら」 means the action was *attempted*
+          or *initiated* before the cat escaped, making the cat's action a consequence of the attempt,
+          not the full closure. We're looking for a grammar that shows the action was about to happen
+          when something else occurred.
+      - competing_japanese:
+          - ドア を 閉める {時}、猫 が するり と 抜け出し た。
+        english: When closing the door, the cat slipped out.
+        hint: 「～時」 indicates a general timeframe. 「閉めようとしたら」 specifies the exact moment of the *attempted*
+          closure, leading to the cat's escape. We're looking for a grammar that emphasizes the action
+          on the verge of completion.
+    scene: A common situation for pet owners.
+    register: casual
+    setting: storytelling
+    conjugation: conditional (～たら)
+    nuance: This example vividly describes an action that was in progress, or on the verge of completion,
+      when an unexpected event (the cat's escape) occurred. 「閉めようとしたら」 implies the speaker was actively
+      trying to close the door, and that very attempt created the opportunity for the cat to slip out.
+      「するり」 is an onomatopoeia for slipping smoothly and quickly.
+  - english: No matter how much I tried to persuade him, he wasn't willing to listen, so I can no longer
+      help him.
+    japanese:
+      - いくら 説得 {しよう と し なかっ た} の で、もう 彼 を 助ける こと は でき ない。
+      - いくら 説得 {しよう と し ませ ん でし た} の で、もう 彼 を 助ける こと は でき ませ ん。
+      - いくら 説得 {しよう と し なかっ た} から、もう あいつ は 助け られ ない。
+    english_literally: How much persuade tried to didn't do, so already him help can't do.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 説得 し た が、彼 は {聞か なかっ た} の で、もう 彼 を 助ける こと は でき ない。
+        english: No matter how much I tried to persuade him, he didn't listen, so I can no longer help
+          him.
+        hint: 「聞かなかった」 simply states that he did not listen. 「聞こうとしなかった」 conveys his *unwillingness* or
+          *refusal to even try* to listen. We're looking for a grammar that expresses a lack of willingness.
+      - competing_japanese:
+          - いくら 説得 し た が、彼 は 聞く {つもり は なかっ た} の で、もう 彼 を 助ける こと は でき ない。
+        english: No matter how much I persuaded him, he had no intention of listening, so I can no longer
+          help him.
+        hint: 「聞くつもりはなかった」 means he had no intention to listen. While similar in outcome, 「聞こうとしなかった」
+          focuses on his *lack of effort or refusal to even attempt* listening. We're looking for a grammar
+          that implies an active unwillingness.
+    scene: A social worker discusses a difficult case with a colleague, expressing frustration.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「説得しようとしなかった」 explicitly states that 'he' (the person being persuaded) made no
+      effort or showed no willingness to listen. This negative form emphasizes the subject's internal
+      resistance or lack of desire to engage, rather than just a failure to be persuaded. The female speaker's
+      frustration comes through this nuance. 「もう...できない」 emphasizes that it is 'no longer possible'.
+  - english: Our cat won't take its medicine.
+    japanese:
+      - うち の 猫 は なぜ か、薬 を 飲 {もう と し ない}。
+      - うち の 猫 は なぜ か、薬 を 飲 {もう と し ませ ん}。
+      - どう いう わけ か、うち の 猫 は 薬 を 飲 {もう と し ない} ん だ。
+    english_literally: Our cat somehow, medicine drink try to not.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 は なぜ か、薬 を {飲ま ない}。
+        english: For some reason, our cat doesn't drink its medicine.
+        hint: 「飲まない」 means it simply doesn't drink it. 「飲もうとしない」 emphasizes the cat's *active resistance*
+          or *unwillingness* to even attempt taking the medicine. We're looking for a grammar that expresses
+          a lack of effort or refusal.
+      - competing_japanese:
+          - うち の 猫 は なぜ か、薬 を 飲む こと が {でき ない}。
+        english: For some reason, our cat cannot take its medicine.
+        hint: 「～ことができない」 means 'cannot do'. While true that the cat isn't taking the medicine, 「飲もうとしない」
+          implies a lack of willingness rather than a lack of ability. We're looking for a grammar that
+          conveys stubbornness or resistance.
+    scene: A pet owner is lamenting their cat's stubbornness to the vet.
+    register: casual
+    setting: apologetic
+    conjugation: negative plain (～ない)
+    nuance: Here, 「飲もうとしない」 highlights the cat's active resistance or unwillingness to even attempt taking
+      the medicine, rather than simply stating it doesn't drink it. It implies a conscious (or instinctual)
+      decision not to comply. The casual register fits the interaction between a pet owner and a vet regarding
+      a common struggle. 「なぜか」 means 'for some reason'.
+  - english: No matter how much I pushed, the heavy door wouldn't budge.
+    japanese:
+      - いくら 押し て も、その 重い ドア は 動 {こう と し なかっ た}。
+      - いくら 押し て も、その 重い ドア は 動 {こう と し ませ ん でし た}。
+      - いくら 押し て も、あの 重い ドア、ちっとも 動 {こう と し なかっ た} よ。
+    english_literally: How much pushed even, that heavy door move was not willing to.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 押し て も、その 重い ドア は {動か なかっ た}。
+        english: No matter how much I pushed, the heavy door didn't move.
+        hint: 「動かなかった」 simply states that the door did not move. 「動こうとしなかった」 personifies the door, implying
+          it *refused* to move or made no effort to, despite external force. We're looking for a grammar
+          that expresses a lack of willingness or resistance from an inanimate object.
+      - competing_japanese:
+          - いくら 押し て も、その 重い ドア は 動き {よう が なかっ た}。
+        english: No matter how much I pushed, there was no way the heavy door would move.
+        hint: 「～ようがない」 means there's no way to do something due to inherent difficulty. 「動こうとしなかった」 implies
+          the door was *unwilling* or *resisting*, giving it a sense of agency, rather than just being
+          impossible to move. We're looking for a grammar that personifies the object's resistance.
+    scene: Someone struggling to open a stubborn door in an old building.
+    register: casual
+    setting: storytelling
+    conjugation: negative past plain (～なかった)
+    nuance: Even for inanimate objects, 「ようとしない」 can be used to describe their 'resistance' or 'unwillingness'
+      to function as expected. Here, the door 'refused' to move, giving it a somewhat personified quality,
+      which is a common usage to express frustration or an unexpected lack of compliance. 「いくら～ても」 means
+      'no matter how much ~'.
+  - english: No matter how much we persuade him, he won't try to change his mind.
+    japanese:
+      - 彼 は どんな に 説得 し て も、考え を 変えよう {と し ませ ん}。
+      - 彼 は どんな に 説得 し て も、考え を 変えよう {と し ない}。
+    english_literally: He, no matter how much persuades, tries not to change mind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は どんな に 説得 し て も、考え を {変え ませ ん}。
+        english: No matter how much we persuade him, he won't change his mind.
+        hint: This is a simple negative polite form. The scene emphasizes his active unwillingness or
+          refusal to even attempt to change, despite external pressure, which 『ようとしません』 captures more
+          precisely. We're looking for a grammar point that expresses a deliberate choice not to exert
+          effort towards an action, rather than simply stating that the action does not occur.
+    scene: A team leader discusses a stubborn colleague during a meeting.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    nuance: This usage highlights a stubborn individual's active unwillingness to even attempt a change
+      of mind, despite external attempts at persuasion. It implies a conscious resistance rather than
+      a mere inability to be swayed.
+  - english: She refused to admit her mistake.
+    japanese:
+      - 彼女 は 自分 の 失敗 を 認めよう {と し なかっ た}。
+      - 彼女 は 自分 の 失敗 を 認めよう {と し ませ ん でし た}。
+    english_literally: She, her own mistake, tried not to admit.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 自分 の 失敗 を {認め なかっ た}。
+        english: She didn't admit her mistake.
+        hint: This is a simple past negative. The scene highlights her active unwillingness to make the
+          effort to admit her mistake, rather than just stating that she didn't. We're looking for a grammar
+          point that conveys a deliberate resistance to performing an action, not merely a statement that
+          the action did not happen.
+    scene: A supervisor recounts an employee's inability to take responsibility for an error.
+    register: semi-formal
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    nuance: Here, 「認めようとしなかった」 emphasizes a deliberate internal refusal to acknowledge a mistake, implying
+      an active decision against making the effort to admit it. This highlights a character trait of avoiding
+      responsibility.
+  - english: No one is willing to participate in the new project.
+    japanese:
+      - 新しい プロジェクト に は 誰 も 参加 しよう {と し ない}。
+      - 新しい プロジェクト に は 誰 も 参加 しよう {と し ませ ん}。
+    english_literally: New project to, no one, tries not to participate.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト に は 誰 も {参加 し ない}。
+        english: No one participates in the new project.
+        hint: This is a simple negative. The scene highlights a collective unwillingness to exert the
+          effort to join the project, which 『ようとしない』 conveys more emphatically. We're looking for a grammar
+          point that expresses an active lack of willingness or effort to engage in an action, rather
+          than just a simple negation of that action.
+    scene: A project manager expresses frustration over a lack of volunteerism for a new initiative.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: This sentence describes a group's collective and active unwillingness to engage in a new project,
+      emphasizing that they are not even attempting to participate. It points to a conscious avoidance
+      or lack of enthusiasm.
+  - english: That politician is unwilling to listen to the voice of the people.
+    japanese:
+      - その 政治 家 は 国民 の 声 に 耳 を 傾けよう {と し ませ ん}。
+      - その 政治 家 は 国民 の 声 に 耳 を 傾けよう {と し ない}。
+    english_literally: That politician, people's voice to ear, tries not to incline.
+    competing_grammar:
+      - competing_japanese:
+          - その 政治 家 は 国民 の 声 に 耳 を {傾け ませ ん}。
+        english: That politician doesn't listen to the voice of the people.
+        hint: This is a simple negative polite. The scene emphasizes the politician's active refusal or
+          lack of effort to heed public opinion, which 『ようとしません』 expresses more strongly. We're looking
+          for a grammar point that expresses a deliberate unwillingness to act, not just a statement of
+          non-action.
+    scene: A concerned citizen discusses government policy with a friend, lamenting the lack of responsiveness.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    nuance: This usage conveys strong criticism of a politician's active resistance to considering public
+      opinion. It implies a deliberate choice not to make the effort to listen, rather than merely an
+      oversight.
+  - english: The child won't do their homework and just wants to play.
+    japanese:
+      - 子供 は 宿題 を しよう {と し ない} で、遊び たがっ て いる。
+      - 子供 は 宿題 を しよう {と し ませ ん} で、遊び たがっ て い ます。
+    english_literally: Child, homework to do tries not, and wants to play.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 宿題 を {し ない} で、遊び たがっ て いる。
+        english: The child doesn't do their homework and just wants to play.
+        hint: This is a simple negative. The scene points to the child's unwillingness to *make the effort*
+          to even start homework, rather than just stating they aren't doing it. We're looking for a grammar
+          point that highlights a deliberate decision not to exert effort towards an action, rather than
+          simply stating that the action is not being performed.
+    scene: A parent observes their child procrastinating on homework.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: This example vividly portrays a child's active refusal to engage with homework, highlighting
+      their conscious decision to avoid effort and prioritize play. The phrase 「遊びたがっている」 (wants to play)
+      further emphasizes this internal conflict and preference.
+  - english: She didn't try to ask for help and ended up shouldering it all alone.
+    japanese:
+      - 彼女 は 助け を 求めよう {と し なく て}、一人 で 抱え込ん で しまっ た。
+      - 彼女 は 助け を 求めよう {と し ませ ん でし た}。
+      - 彼女 は 助け を 求めよう {と し なかっ た}。
+    english_literally: She, help to ask tries not, and alone ended up holding it all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 助け を {求め なかっ た} の で、一人 で 抱え込ん で しまっ た。
+        english: She didn't ask for help, so she ended up shouldering it all alone.
+        hint: This is a simple past negative. The scene emphasizes her unwillingness to *make the effort*
+          to ask for help, implying a more active choice that led to a negative consequence. We're looking
+          for a grammar point that conveys a deliberate decision not to exert effort, leading to a specific
+          outcome, rather than just stating the lack of action.
+    scene: A friend reflects on how someone they know struggled because they wouldn't reach out for support.
+    register: casual
+    setting: sympathetic
+    conjugation: te-form (～て)
+    nuance: The te-form 「求めようとしなくて」 connects her active unwillingness to seek help directly to the negative
+      consequence of carrying the burden alone. It highlights her internal decision as the cause of her
+      struggle.
+  - english: The old car just won't start.
+    japanese:
+      - 古い 車 が なかなか エンジン が かかろう {と し ない}。
+      - 古い 車 が なかなか エンジン が かかろう {と し ませ ん}。
+    english_literally: Old car, somehow engine, tries not to start.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 車 が なかなか エンジン が {かから ない}。
+        english: The old car just doesn't start.
+        hint: This expresses a simple failure to start. 『ようとしない』 implies a more deliberate resistance
+          or active unwillingness of the engine to turn over. We're looking for a grammar point that personifies
+          the car's resistance to starting, implying an active refusal, rather than just stating that
+          it doesn't start.
+    scene: A person is trying to start their decades-old car on a cold morning, but it's stubbornly refusing
+      to ignite.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: This example personifies the old car, implying it has an 'active unwillingness' to start,
+      almost as if it's stubbornly refusing. This common usage allows speakers to express frustration
+      with inanimate objects that fail to function as expected.
+  - english: He's so set in his ways that he won't even try to understand new ideas.
+    japanese:
+      - 彼 は 頑固 で 新しい 考え を 理解 しよう {と し ない}。
+      - 彼 は 頑固 で 新しい 考え を 理解 しよう {と し ませ ん}。
+    english_literally: He is stubborn, new ideas tries not to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頑固 で 新しい 考え を {理解 し ない}。
+        english: He is stubborn and doesn't understand new ideas.
+        hint: This simply states he doesn't understand. 『ようとしない』 highlights his active refusal or lack
+          of effort to even attempt understanding, despite his stubbornness. We're looking for a grammar
+          point that expresses a deliberate unwillingness to make an effort to understand, rather than
+          just stating a lack of understanding.
+    scene: Two colleagues are discussing a particularly traditional and unyielding manager who resists
+      any form of change.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    nuance: This portrays a person's extreme stubbornness, indicating that they not only don't understand
+      new ideas but actively refuse to even make an attempt to comprehend them. The nuance emphasizes
+      their closed-mindedness and resistance to change.
+  - english: No matter what I said, she didn't try to believe me.
+    japanese:
+      - 何 を 言っ て も、彼女 は 私 の こと を 信じよう {と し なかっ た}。
+      - 何 を 言っ て も、彼女 は 私 の こと を 信じよう {と し ませ ん でし た}。
+    english_literally: No matter what I said, she, my things, tried not to believe.
+    competing_grammar:
+      - competing_japanese:
+          - 何 を 言っ て も、彼女 は 私 の こと を {信じ なかっ た}。
+        english: No matter what I said, she didn't believe me.
+        hint: This is a simple past negative. 『ようとしなかった』 conveys that she actively refused to make the
+          effort to believe, not just that belief didn't happen. We're looking for a grammar point that
+          emphasizes her active resistance to the action of believing, rather than simply stating that
+          she didn't believe.
+    scene: A man is recounting a past argument with his girlfriend where she remained unconvinced by his
+      explanations.
+    register: casual
+    setting: melancholic
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「信じよう と し なかっ た」 highlights the speaker's frustration that despite his efforts,
+      the listener (girlfriend) actively refused to make the effort to trust or believe him, implying
+      a conscious unwillingness rather than just an inability to believe.
+post_example_writeup: As these examples demonstrate, 「[Verb-volitional]とする・としない」 flexibly expresses a
+  range of meanings from a determined attempt or imminent action to an active unwillingness or stubborn
+  resistance. The nuances vary significantly based on the positive or negative form, the specific verb,
+  and the context. Paying close attention to the verb it modifies and the surrounding sentence structure
+  will help you grasp the precise nuance in each situation, whether conveying a conscious effort, an inherent
+  impulse, a thwarted action, or a deliberate refusal to act.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-volitionalとする

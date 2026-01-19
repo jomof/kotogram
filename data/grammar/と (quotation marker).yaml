@@ -1,0 +1,343 @@
+grammar_point: と (quotation marker)
+learn_before:
+  - と (with)
+meaning: Quotation
+pronunciation:
+  katakana: ト
+  romaji: to
+formation:
+  '[Quoted phrase] + と + 言う/思う/書く/聞く/etc.': Indicates direct quotation.
+jlpt: N5
+etymology: The particle 「と」 derives from the verb 「言う (いう)」, meaning "to say". Over time, it grammaticalized
+  to function as a quotative particle, marking direct speech or thoughts. Its fundamental role is to introduce
+  content that is presented as a direct representation of words or thoughts, akin to setting off a direct
+  quote in English.
+writeup: The particle 「と」 functions as a quotation marker, denoting direct speech, thoughts, or written
+  content. This grammatical function is referred to as 「引用 (いんよう)」 in Japanese, which implies a "reference"
+  or "citation." It directly follows the content being quoted. An important point to remember is that
+  when the quoted content ends with a noun or a な-adjective, 「だ」 must be inserted before 「と」. For example,
+  「猫だ**と**言った」 (He said it's a cat) or 「静かだ**と**思った」 (I thought it was quiet). This 「と」 is almost invariably
+  followed by a verb that indicates the nature of the communication, such as 「言う (いう) - to say」, 「思う (おもう)
+  - to think」, 「書く (かく) - to write」, or 「聞く (きく) - to hear/ask」. However, in certain contexts, particularly
+  at the end of a sentence, the following verb may be omitted for brevity, with the implication remaining
+  clear. Ultimately, 「と」 in this capacity expresses the fundamental relationship between *what* was communicated
+  and *how* it was conveyed.
+false_friends:
+  - term: って (quotation marker・casual)
+    meaning: Casual quotation
+    kind: synonym
+    nuance: 「って」 is a more casual alternative to 「と」 for quotations. Use 「って」 in informal conversations
+      with friends or family.
+    grammar_point: って (quotation marker, casual)
+  - term: といってもいい
+    meaning: You could say, You might say
+    kind: similar expression
+    nuance: Unlike 「と」, which quotes directly, 「といってもいい」 suggests an approximation or interpretation.
+    grammar_point: といってもいい (you could say)
+  - term: という
+    meaning: called; said to be; that is to say
+    kind: similar expression
+    nuance: Unlike 「と」 for direct quotation, 「という」 is typically used to introduce a definition, an explanation,
+      or a generally accepted idea. It defines what something is, rather than directly quoting what someone
+      said.
+    grammar_point: という (naming and definition)
+  - term: とか
+    meaning: things like~; or something like that
+    kind: often confused with
+    nuance: While 「と」 marks a precise quotation, 「とか」 introduces a vague or uncertain report, often used
+      when you are not sure of the exact words or when giving examples.
+    grammar_point: とか (hearsay)
+post_false_friends_writeup: While 「って」 and 「と」 both mark quotations, 「って」 carries a more casual tone,
+  making 「と」 more appropriate in formal situations. 「といってもいい」 suggests an approximation or interpretation
+  rather than a direct quote. 「という」 is used to define or explain something, not to directly quote spoken
+  or written words. Lastly, 「～とか」 implies vagueness or uncertainty about the quoted content, or lists
+  examples, differentiating it from the precise nature of 「と」.
+examples:
+  - english: The teacher said there is a lot of homework.
+    japanese:
+      - 先生 は 宿題 が 多い {と} 言い まし た。
+      - 先生 は 宿題 が 多い {と} 言っ た。
+      - 先生 は 宿題 が 多い {と} 言っ て た。
+      - 先生 は 宿題 が 多い {と} おっしゃい まし た。
+      - 先生 は 宿題 が 多い です {と} 仰い まし た。
+      - 先生 は 宿題 が 多い {と} 話し て い まし た。
+    english_literally: Teacher as for homework subject much {quotation} said.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 宿題 が 多い {こと} を 伝え まし た。
+        english: The teacher conveyed that there is a lot of homework.
+        hint: The scene implies a direct quote of what the teacher explicitly stated. We're looking for
+          a precise quotation here, not a general report.
+      - competing_japanese:
+          - 先生 は 宿題 が 多い {って} 言い まし た。
+        english: The teacher casually said there is a lot of homework.
+        hint: 「って」 is too casual for reporting a teacher's statement in an academic setting. We're looking
+          for a more neutral or formal quotation.
+      - competing_japanese:
+          - 先生 は 宿題 が 多い {と いう} 事実 を 伝え まし た。
+        english: The teacher conveyed the fact that there is a lot of homework.
+        hint: 「という」 indicates a general statement or definition, not a direct quote of what was said.
+          We're looking for the exact words that were spoken.
+      - competing_japanese:
+          - 先生 は 宿題 が 多い {と か} 言っ て い まし た。
+        english: The teacher was saying something like there's a lot of homework.
+        hint: 「とか」 implies a vague or uncertain report, not a direct quote. We're looking for a precise
+          statement.
+    scene: A student relaying information from a teacher to a classmate.
+    register: teineigo (polite)
+    setting: academic
+  - english: I wrote 'Thank you' on the paper.
+    japanese:
+      - 紙 に ありがとう {と} 書き まし た。
+      - 紙 に ありがとう {と} 書い た。
+      - 紙 に ありがとう {と} 記し まし た。
+      - 紙 に ありがとう {と} 認め まし た。
+    english_literally: Paper on thank you {quotation} wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 紙 に 感謝 の {言葉} を 書き まし た。
+        english: I wrote words of gratitude on the paper.
+        hint: The scene implies writing the exact words of gratitude. We're looking for the specific words
+          that were written, not a general expression of thanks.
+      - competing_japanese:
+          - 紙 に ありがとう {って} 書き まし た。
+        english: I casually wrote 'thank you' on the paper.
+        hint: 「って」 is primarily for spoken casual quotation, less common for directly quoting written
+          content unless quoting casual speech or thought that was written down. We're looking for a standard
+          written quote.
+      - competing_japanese:
+          - 紙 に 感謝 {と いう} 字 を 書き まし た。
+        english: I wrote the character 'gratitude' on the paper.
+        hint: 「という」 here defines the type of word or character, not the specific word written. We're looking
+          for the direct words that were written.
+      - competing_japanese:
+          - 紙 に ありがとう {と か} 書き まし た。
+        english: I wrote 'thank you' or something like that on the paper.
+        hint: 「とか」 implies uncertainty or a vague recollection of what was written, not the exact words.
+          We're looking for a precise quotation of the written content.
+    scene: Someone leaving a short, appreciative note.
+    register: teineigo (polite)
+    setting: friendly
+  - english: My friend's child said they wanted to play in the park.
+    japanese:
+      - 友達 の 子供 が 公園 で 遊び たい {と} 言い まし た。
+      - 友達 の 子供 が 公園 で 遊び たい {と} 言っ た。
+      - 友達 の 子供 が 公園 で 遊び たい {と} 言っ て た よ。
+      - 友達 の お 子 さん が 公園 で 遊び たい {と} 申し て おり まし た。
+      - 友達 の 子供 が 公園 で 遊び たい {と} いう こと でし た。
+    english_literally: Friend's child subject park at want to play {quotation} said.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 の 子供 が 公園 で 遊び たい {そう です}。
+        english: It seems my friend's child wants to play in the park.
+        hint: The scene implies an internal, verbalized thought. We're looking for the exact thought he
+          had, not a general sensation.
+      - competing_japanese:
+          - 友達 の 子供 が 公園 で 遊び たい {って} 言っ て た よ。
+        english: My friend's child was casually saying they wanted to play in the park.
+        hint: 「って」 would be more common if the speaker is talking to someone very familiar in a casual
+          context, but 「と」 is generally more neutral. We're looking for a direct quote that is not overly
+          casual.
+      - competing_japanese:
+          - 友達 の 子供 が 公園 で 遊び たい {と いう} 気持ち を 示し まし た。
+        english: My friend's child showed the feeling that they want to play in the park.
+        hint: 「という」 expresses a general state or feeling, not the child's exact words. We're looking for
+          a direct quotation of what the child said.
+      - competing_japanese:
+          - 友達 の 子供 が 公園 で 遊び たい {と か} 言っ て い まし た。
+        english: My friend's child was saying something like they wanted to play in the park.
+        hint: 「とか」 implies a vague or uncertain report of the child's words. We're looking for a precise
+          quotation.
+    scene: A parent recounting a request from their child to a friend.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「遊び たい」 is a common desire expressed by children. Using 「と 言いました」 is a polite way
+      for an older female speaker to relay the child's direct quote to another adult.
+  - english: Everyone said this cake is delicious.
+    japanese:
+      - みんな が この ケーキ は 美味しい {と} 言い まし た。
+      - みんな が この ケーキ は 美味しい {と} 言っ た。
+      - みんな が この ケーキ は 美味しい {と} 口々 に 言っ て い まし た。
+      - 皆 が この ケーキ は 美味しい {と} 申し て い まし た。
+      - 皆 が この ケーキ は 美味しい です ね {と} 褒め て くれ まし た。
+    english_literally: Everyone subject this cake as for delicious {quotation} said.
+    competing_grammar:
+      - competing_japanese:
+          - みんな が この ケーキ を 美味しい {と} 褒め まし た。
+        english: Everyone praised this cake as delicious.
+        hint: The scene highlights direct verbal praise from multiple individuals. We're looking for their
+          exact comments, not a description of their general reaction.
+      - competing_japanese:
+          - みんな が この ケーキ は 美味しい {って} 言い まし た。
+        english: Everyone casually said this cake is delicious.
+        hint: 「って」 is more casual. We're looking for a more neutral or formal quotation in this context.
+      - competing_japanese:
+          - みんな が この ケーキ は 美味しい {と いう} 意見 でし た。
+        english: Everyone was of the opinion that this cake is delicious.
+        hint: 「という」 reports a general consensus or opinion, not their exact verbal statement. We're looking
+          for the precise words they said.
+      - competing_japanese:
+          - みんな が この ケーキ は 美味しい {と か} 言っ て い まし た。
+        english: Everyone was saying something like 'this cake is delicious'.
+        hint: 「とか」 implies uncertainty or vagueness about the exact words they said. We're looking for
+          a precise quotation.
+    scene: A host receiving compliments from guests about dessert.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The direct quote 「美味しい」 is a common expression of approval. Using 「と 言いました」 conveys that the
+      speaker is reporting the exact sentiments expressed by the group, typically in a reflective context
+      to themselves or general audience.
+  - english: He thought, 'It's hot today.'
+    japanese:
+      - 彼 は 今日 は 暑い なあ {と} 思っ た。
+      - 彼 は 今日 は 暑い {と} 思っ た。
+      - 彼 は 今日 は 暑い なあ {と} 考え て い た。
+      - 彼 は 今日 は 暑い {と} 心 の 中 で 思っ た。
+      - 彼 は 今日 は 暑い な {と} 思い まし た。
+    english_literally: He as for today as for hot emotional particle {quotation} thought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今日 が 暑い {と} 感じ まし た。
+        english: He felt that it was hot today.
+        hint: The scene implies an internal, verbalized thought. We're looking for the exact thought he
+          had, not a general sensation.
+      - competing_japanese:
+          - 彼 は 今日 は 暑い なあ {って} 思っ た。
+        english: He casually thought, 'It's hot today'.
+        hint: 「って」 is common for casual internal thoughts, but 「と」 is also perfectly natural and perhaps
+          slightly more direct. We're looking for a direct internal quote.
+      - competing_japanese:
+          - 彼 は 今日 が 暑い {と いう} 結論 に 至り まし た。
+        english: He came to the conclusion that it's hot today.
+        hint: 「という」 expresses a conclusion or general thought, not a specific, internal verbalized thought.
+          We're looking for the direct internal thought he had.
+      - competing_japanese:
+          - 彼 は 今日 は 暑い {と か} 思っ て い た。
+        english: He was thinking something like it's hot today.
+        hint: 「とか」 implies a vague or uncertain internal thought. We're looking for a precise internal
+          quotation.
+    scene: A person reflecting on the weather while indoors.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The particle 「なあ」 at the end of 「暑い なあ」 adds a feeling of mild exclamation or reflection,
+      typical of internal thoughts. The use of 「と思った」 indicates a private, unexpressed thought in a casual
+      context.
+  - english: “Did you understand?” he asked.
+    japanese:
+      - 彼 は『分かっ た か』{と} 尋ね まし た。
+      - 彼 は 分かっ た か {と} 聞い た。
+      - 彼 は 分かっ た の か {と} 尋ね た。
+    english_literally: He subject "understood question" {quotation} asked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 理解 し た {か どう か} 尋ね まし た。
+        english: He asked whether or not I understood.
+        hint: This implies less directness or more uncertainty about understanding. We're looking for
+          the exact question that was asked.
+      - competing_japanese:
+          - 彼 は 分かっ た {って} 聞い た。
+        english: He casually asked, "Did you understand?"
+        hint: 「って」 is more colloquial and emphasizes the informality. While sometimes interchangeable,
+          「と」 is often preferred for quoting actual speech even in casual contexts when clarity of the
+          specific words is desired. We're looking for a common and direct way to quote.
+    scene: A senior student asking a junior if they grasped the concept.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The usage of 「分かったか」 is a direct and somewhat informal way to ask "Did you understand?". When
+      an older male speaker asks a younger male listener in a casual context, the plain form 「聞いた」 (instead
+      of 「尋ねました」) is very natural. The 「と」 particle ensures the exact phrasing of the question is quoted.
+  - english: The sign says, 'No entry.'
+    japanese:
+      - 標識 に は『立ち入り 禁止』{と} 書い て あり ます。
+      - 標識 に は『立ち入り 禁止』{と} 書い て あっ た。
+      - 看板 に は『立ち入り 禁止』{と} 示さ れ て い ます。
+    english_literally: Sign as for "entry prohibition" {quotation} written is.
+    competing_grammar:
+      - competing_japanese:
+          - 標識 に は 立ち入り 禁止 の {旨} が 記載 さ れ て い ます。
+        english: The sign states that entry is prohibited.
+        hint: This reports the content of the sign, but not as a direct quote. We're looking for the exact
+          words written on the sign.
+      - competing_japanese:
+          - 標識 に は 立ち入り 禁止 {って} 書い て あり ます。
+        english: The sign casually says, 'No entry.'
+        hint: 「って」 is less common for quoting written signs, especially official ones, as it implies a
+          more conversational or casual tone. We're looking for a standard way to quote written text.
+    scene: Pointing out a warning sign to someone.
+    register: teineigo (polite)
+    setting: informative
+  - english: I think it'll probably rain.
+    japanese:
+      - 多分 雨 が 降る {と} 思う よ。
+      - 多分 雨 が 降る {と} 思い ます。
+      - おそらく 雨 が 降る {と} 考え て い ます。
+    english_literally: Probably rain subject fall {quotation} think.
+    competing_grammar:
+      - competing_japanese:
+          - 多分 雨 が 降る {だろ う}。
+        english: It will probably rain. (Expression of conjecture)
+        hint: This expresses a conjecture directly without explicitly stating "I think." We're looking
+          for a sentence that explicitly states "I think" using the quotation particle.
+      - competing_japanese:
+          - 多分 雨 が 降る {みたい だ} よ。
+        english: It seems like it'll probably rain.
+        hint: 「みたいだ」 indicates something appears to be the case based on observation, rather than a personal
+          thought or belief. We're looking for an explicit thought.
+    scene: Friends discussing the weather, looking at the sky.
+    register: casual
+    setting: casual slang
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「よ」 at the end of 「思うよ」 adds a gentle, informative, or slightly assertive nuance,
+      often used by female speakers in casual settings to convey their thought or prediction to a group
+      of friends. The 「と」 directly links the thought to the verb 「思う」.
+  - english: I heard the cat meow.
+    japanese:
+      - 猫 が ニャー {と} 鳴く の が 聞こえ まし た。
+      - 猫 が ニャー {と} 鳴い た の が 聞こえ た。
+      - 猫 が ニャー {と} いう 声 を 聞き まし た。
+    english_literally: Cat subject meow {quotation} cry nominalizer subject heard.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 の {鳴き声} が 聞こえ まし た。
+        english: I heard the cat's meow (sound).
+        hint: This states that the sound was heard, but doesn't specify the exact sound with 「と」. We're
+          looking for a sentence that quotes the specific sound the cat made.
+      - competing_japanese:
+          - 猫 が ニャー と 鳴い て い た {よう だ}。
+        english: It seems the cat was meowing.
+        hint: 「ようだ」 indicates conjecture or appearance, not a direct perception of the sound as a quote.
+          We're looking for a direct report of having heard the specific sound.
+    scene: Someone inside their house hearing an animal outside.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: It was announced that the concert would be postponed.
+    japanese:
+      - コンサート は 延期 する {と} 発表 さ れ まし た。
+      - コンサート は 延期 だ {と} 発表 さ れ た。
+      - コンサート は 延期 に な る {と} 報じ られ まし た。
+    english_literally: Concert as for postponement do {quotation} announced was (passive).
+    competing_grammar:
+      - competing_japanese:
+          - コンサート は 延期 に な る {と の こと} です。
+        english: I heard that the concert will be postponed.
+        hint: 「とのこと」 reports something heard or communicated indirectly, often a general message, rather
+          than quoting an official announcement directly. We're looking for a direct, official announcement.
+      - competing_japanese:
+          - コンサート の {延期} が 発表 さ れ まし た。
+        english: The postponement of the concert was announced.
+        hint: This describes the event of the announcement, but doesn't directly quote the content. We're
+          looking for the content of the announcement to be quoted.
+    scene: Reporting an official public announcement or news.
+    register: formal
+    setting: informative

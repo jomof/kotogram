@@ -1,0 +1,252 @@
+grammar_point: 何[Counter]も (many of something)
+learn_before:
+  - なん・Counter・か (some・several・a few)
+meaning: Many of something; a surprising or emphatic large quantity
+pronunciation:
+  katakana: ナン[カウンター]モ
+  romaji: nan [counter] mo
+  pronunciation_warning: The pronunciation of 何 (nani) changes to ナン (nan) when directly followed by most
+    counters, similar to 何回 (nankai) or 何人 (nannin).
+formation:
+  何 + [Counter] + も: Indicates an emphatically large or surprisingly high quantity of something, often
+    implying 'as many as', 'so many', or 'countless'.
+jlpt: N2
+etymology: The etymology of 何[Counter]も lies in the combination of the interrogative pronoun 何 (nani/nan,
+  meaning 'what' or 'how many') and the particle も (mo), which signifies 'also', 'even', or 'as much as'.
+  When 何 is followed by a counter and then も, the 'even' nuance of も combines with the 'how many' implied
+  by 何+Counter to convey 'even as many as X', or 'countless'. This linguistic evolution leads to its current
+  meaning of emphasizing a surprisingly large, often uncountable, quantity, far exceeding what a simple
+  number would convey.
+writeup: |-
+  The grammar point 何[Counter]も is used to express a surprisingly large or emphatic quantity of something. It is similar to simply saying 'many' or 'a lot', but it adds a nuanced sense of emphasis, often conveying surprise, impressiveness, or sometimes even exasperation at the sheer number or repetition. It suggests that the quantity is so significant that it feels like 'countless' or 'more than one can easily keep track of'.
+
+  This construction is highly versatile and can be applied to various counters, such as for times (何回も), people (何人も), or small objects (何枚も). The nuance it carries is typically stronger than just using words like たくさん or 多い, implying a greater degree of volume or frequency than expected.
+
+  For instance, if you say 「何回も行った」 (nankai mo itta), it conveys a stronger sense of 'I went many, many times' or 'I went countless times' than just 「たくさん行った」 (takusan itta). It implies a certain persistence or a surprising number of occurrences.
+
+  It can be used in both positive contexts (e.g., expressing how much effort was put in, or how many wonderful experiences one had) and negative contexts (e.g., expressing frustration over repeated mistakes or numerous problems). The specific emotional coloring often depends on the surrounding sentence and situation.
+false_friends:
+  - term: たくさん
+    meaning: many, a lot
+    kind: similar expression
+    nuance: 「たくさん」 is a general term for 'many' or 'a lot' without the specific emphatic or surprising
+      nuance that 「何[Counter]も」 conveys. It simply states a quantity, while 「何[Counter]も」 emphasizes the
+      large or surprising nature of that quantity.
+    grammar_point: たくさん (many・a lot)
+  - term: しか〜ない
+    meaning: only, nothing but (with negation)
+    kind: antonym
+    nuance: While both use particles that can emphasize quantity, 「しか〜ない」 emphatically states a limited
+      or small quantity ('only X, no more'), whereas 「何[Counter]も」 emphasizes a large or surprising quantity
+      ('as many as X', 'so many'). The direction of emphasis is opposite.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: Number+も (emphatic quantity)
+    meaning: even (that many/much), as much as
+    kind: similar expression
+    nuance: 「Number+も」 is used with specific numbers to emphasize a quantity, often one that is surprisingly
+      large or unexpected for that specific number (e.g., 「１００人も」, 'as many as 100 people'). 「何[Counter]も」,
+      however, is used when the exact number is unknown or when the emphasis is on the sheer, uncountable
+      'many-ness' rather than a specific, emphasized count.
+    grammar_point: Number+も (emphatic quantity)
+  - term: まで (even to the extent)
+    meaning: even, to the extent of
+    kind: similar expression
+    nuance: 「まで」 emphasizes the range or limit of something, often including an unexpected item ('even
+      X'). While it can imply a large range, it doesn't directly quantify 'many' in the way 「何[Counter]も」
+      does. 「何[Counter]も」 focuses on the sheer number, while 「まで」 focuses on the inclusiveness up to a
+      certain point.
+    grammar_point: まで (limit extent)
+post_false_friends_writeup: When differentiating 「何[Counter]も」 from similar expressions, remember that
+  its core function is to convey a sense of 'surprisingly many' or 'countless'. While 「たくさん」 denotes a
+  large quantity, it lacks the emotional emphasis of 「何[Counter]も」. On the other hand, 「しか〜ない」 expresses
+  scarcity, the opposite of what 「何[Counter]も」 conveys. 「Number+も」 emphasizes a specific, often surprisingly
+  large, countable number, whereas 「何[Counter]も」 suggests an unspecific but undeniably vast amount. Finally,
+  「まで」 highlights the inclusion of something unexpected within a range, rather than the quantity itself.
+examples:
+  - english: I've been to Japan many times.
+    japanese:
+      - 日本 に {何 回 も} 行き まし た。
+      - 日本 に {何 回 も} 行っ た。
+    english_literally: To Japan, I went many times.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に たくさん 行き まし た。
+        english: I went to Japan a lot.
+        hint: The nuance of 'many times' without the emphasis of a surprisingly high number. We're looking
+          for an emphasis on how numerous the visits were.
+    scene: A student excitedly shares their travel experiences.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Many people gathered for the festival.
+    japanese:
+      - お 祭り に {何 人 も} 集まり まし た。
+      - お 祭り に {何 人 も} 集まっ た。
+    english_literally: For the festival, many people gathered.
+    competing_grammar:
+      - competing_japanese:
+          - お 祭り に 大勢 集まり まし た。
+        english: A large crowd gathered for the festival.
+        hint: 「大勢」 simply means a large group of people. We're looking for emphasis on the 'surprisingly
+          many' aspect.
+    scene: A reporter describes the scene at a local festival.
+    register: formal
+    setting: informative
+  - english: I reread the book many times.
+    japanese:
+      - その 本 を {何 度 も} 読み返し まし た。
+      - その 本 を {何 度 も} 読み返し た。
+    english_literally: That book, I reread many times.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を 沢山 読み返し まし た。
+        english: I reread the book a lot.
+        hint: This just means 'a lot'. We want to convey that the book was reread a surprising number
+          of times.
+    scene: A bookworm discussing their favorite novel.
+    register: teineigo (polite)
+    setting: reflective
+  - english: I had to redo the report many times.
+    japanese:
+      - レポート を {何 回 も} やり直さ なけれ ば なり ませ ん でし た。
+      - レポート を {何 回 も} やり直さ なけれ ば なら なかっ た。
+      - レポート を {何 回 も} やり直す 必要 が あり まし た。
+      - レポート を {何 回 も} やり直す 必要 が あっ た。
+    english_literally: The report, I had to redo many times.
+    competing_grammar:
+      - competing_japanese:
+          - レポート を 何 度 か やり直さ なけれ ば なり ませ ん でし た。
+        english: I had to redo the report several times.
+        hint: 「何度か」 implies 'a few times' or 'some times', not emphasizing the high number or frustration
+          of repeated attempts. We're looking for emphasis on a large, possibly frustrating, number of
+          times.
+    scene: A frustrated employee talking about their workload.
+    register: formal
+    setting: serious
+  - english: He has been to Europe many times.
+    japanese:
+      - 彼 は ヨーロッパ に {何 度 も} 行っ て い ます。
+      - 彼 は ヨーロッパ に {何 度 も} 行っ て いる。
+      - 彼 は ヨーロッパ へ {何 度 も} 行っ て い ます。
+      - 彼 は ヨーロッパ へ {何 度 も} 行っ て いる。
+    english_literally: He, to Europe, has gone many times.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ヨーロッパ に たくさん 行っ て い ます。
+        english: He has been to Europe a lot.
+        hint: This simply states he went a lot. We are looking for the nuance of him going a remarkable
+          or surprising number of times.
+    scene: Friends discussing a mutual acquaintance's travel history.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+  - english: I've sent him messages many times, but he hasn't replied.
+    japanese:
+      - 彼 に {何 通 も} メッセージ を 送っ た の に、返信 が あり ませ ん。
+      - 彼 に {何 通 も} メッセージ を 送っ た の に、返信 が ない。
+      - 彼 に {何 通 も} メッセージ を 送っ た けれど、返信 が あり ませ ん でし た。
+      - 彼 に {何 通 も} メッセージ を 送っ た けれど、返信 が なかっ た。
+    english_literally: To him, many messages, I sent, but there is no reply.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に たくさん メッセージ を 送っ た の に、返信 が あり ませ ん。
+        english: I sent him a lot of messages, but he hasn't replied.
+        hint: The focus is simply on the quantity of messages, not the exasperating repetition implied
+          by '何通も'. We're looking for emphasis on the sheer, perhaps frustrating, number of messages sent.
+    scene: Someone complaining to a friend about a non-responsive person.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+  - english: I had to explain it to her many times until she finally understood.
+    japanese:
+      - 彼女 に {何 度 も} 説明 し て やっと 分かっ て くれ まし た。
+      - 彼女 に {何 度 も} 説明 し て やっと 分かっ て くれ た。
+      - 彼女 に {何 度 も} 説明 し まし た が、ようやく 分かっ て くれ まし た。
+      - 彼女 に {何 度 も} 説明 し た けど、ようやく 分かっ て くれ た。
+    english_literally: To her, many times, I explained, and finally, she understood.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に 数 回 説明 し て やっと 分かっ て くれ まし た。
+        english: I explained it to her a few times and she finally understood.
+        hint: 「数回」 means 'a few times'. We want to express that it took a surprisingly large, perhaps
+          frustrating, number of explanations for her to understand.
+    scene: A teacher talking about a struggling student.
+    register: semi-formal
+    setting: informative
+  - english: There are many things I want to eat at this restaurant.
+    japanese:
+      - この レストラン に は {何 種類 も} 食べ たい もの が あり ます。
+      - この レストラン に は {何 種類 も} 食べ たい もの が ある。
+    english_literally: At this restaurant, there are many kinds of things I want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン に は いろいろ な 食べ たい もの が あり ます。
+        english: At this restaurant, there are various things I want to eat.
+        hint: 「いろいろな」 means 'various'. We're emphasizing the sheer number of types of food, not just their
+          variety. We're looking for emphasis on the extensive number of choices.
+    scene: Someone looking at a menu in a restaurant.
+    register: teineigo (polite)
+    setting: excited
+  - english: Many phone calls came in today.
+    japanese:
+      - 今日 は {何 件 も} 電話 が かかっ て き まし た。
+      - 今日 は {何 件 も} 電話 が かかっ て き た。
+      - 本日 は {何 件 も} 電話 が ござい まし た。
+    english_literally: Today, many phone calls came.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は たくさん 電話 が かかっ て き まし た。
+        english: Today, a lot of phone calls came.
+        hint: This is a general 'a lot'. We want to convey that there was a surprising number of calls,
+          possibly overwhelming. We're looking for emphasis on the sheer volume of calls.
+    scene: An office worker at the end of a busy day.
+    register: teineigo (polite)
+    setting: serious
+  - english: I’ve heard that rumor many times.
+    japanese:
+      - その 噂 は {何 回 も} 聞き まし た。
+      - その 噂 は {何 回 も} 聞い た。
+    english_literally: That rumor, I heard many times.
+    competing_grammar:
+      - competing_japanese:
+          - その 噂 は たまに 聞き まし た。
+        english: I heard that rumor occasionally.
+        hint: 「たまに」 means 'occasionally'. We're emphasizing that the rumor was heard a surprisingly large
+          number of times. We're looking for emphasis on the repeated occurrences.
+    scene: Someone casually mentioning information they've encountered frequently.
+    register: casual
+    setting: informative
+  - english: I tried asking him many times, but he still wouldn't tell me.
+    japanese:
+      - 彼 に {何 回 も} 聞い て み まし た が、まだ 教え て くれ ませ ん でし た。
+      - 彼 に {何 回 も} 聞い て み た けど、まだ 教え て くれ なかっ た。
+      - 彼 に {何 回 も} 尋ね て み まし た が、まだ 教え て もらえ ませ ん でし た。
+      - 彼 に {何 回 も} 尋ね て み た けど、まだ 教え て もらえ なかっ た。
+    english_literally: To him, many times, I tried asking, but he still did not teach me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 何 度 か 聞い て み まし た が、まだ 教え て くれ ませ ん でし た。
+        english: I tried asking him a few times, but he still wouldn't tell me.
+        hint: 「何度か」 implies 'a few times'. We want to express the exasperation of asking a large, possibly
+          surprising, number of times without success.
+    scene: A person frustrated by someone's secretiveness.
+    register: casual
+    setting: melancholic
+  - english: I worked for many hours to finish this project.
+    japanese:
+      - この プロジェクト を 終わら せる ため に {何 時間 も} 働き まし た。
+      - この プロジェクト を 終わら せる ため に {何 時間 も} 働い た。
+      - この プロジェクト を 完了 さ せる ため に {何 時間 も} 勤務 し まし た。
+      - この プロジェクト を 完了 さ せる ため に {何 時間 も} 勤務 し た。
+    english_literally: This project, to finish, for, many hours, I worked.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト を 終わら せる ため に 長い 時間 働き まし た。
+        english: I worked for a long time to finish this project.
+        hint: 「長い時間」 is simply 'a long time'. We're emphasizing the numerous hours, perhaps implying a
+          surprising or excessive amount of time spent. We're looking for emphasis on the many hours,
+          not just a long duration.
+    scene: A dedicated worker discussing their efforts.
+    register: teineigo (polite)
+    setting: serious

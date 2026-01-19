@@ -1,0 +1,289 @@
+grammar_point: 〜のは〜の方だ (it is X that)
+learn_before:
+  - か (or)
+  - でした (past copula, polite)
+  - 最初 (first・beginning)
+meaning: It is...that..., It is...who..., ...is the one that..., ...is the one who...
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: の方だ
+    rarity: common
+    meaning: is the one
+  - conjugation-type: non-past polite (～ます)
+    form: の方です
+    rarity: common
+    meaning: is the one (polite)
+  - conjugation-type: past plain (～た)
+    form: の方だった
+    rarity: common
+    meaning: was the one
+  - conjugation-type: past polite (～ました)
+    form: の方でした
+    rarity: less common
+    meaning: was the one (polite)
+  - conjugation-type: negative plain (～ない)
+    form: の方ではない
+    rarity: common
+    meaning: is not the one
+  - conjugation-type: negative non-past polite (～ません)
+    form: の方ではありません
+    rarity: less common
+    meaning: is not the one (polite)
+pronunciation:
+  katakana: ノハ エックス ノ ホウダ
+  romaji: no wa X no hō da
+formation:
+  '[Phrase] + のは + [Noun] + の方だ': Highlights that one element or person within a group or situation is
+    particularly relevant or responsible for something.
+jlpt: N3
+etymology: 'The construction is built from: 「の」 (nominalizer)・「は」 (topic marker)・「方」 (direction/side)
+  and 「だ」 (copula). Literally, it means ''''the one on the side of X''''・which implies something more
+  nuanced than a direct assertion・often used for emphasis or to soften a statement by indicating one ''''side''''
+  is responsible or relevant.'
+writeup: '「のはXの方だ」 is an expression used to emphasize that X is the one responsible for or associated
+  with a certain action or situation. It highlights a particular element or person, often against the
+  backdrop of other possibilities or expectations. While directly stating ''''X is Y'''' with simple particles
+  like が or は suffices for factual statements, adding 「の方だ」 introduces a nuance of ''''being on the side
+  of'''' or ''''being affiliated with''''・which can either soften a potentially harsh assertion or provide
+  a clearer・more emphatic identification. The grammar point consists of the following components: のは:
+  This part nominalizes the preceding phrase・turning it into a noun clause. 「は」 acts as a contrastive
+  topic marker・drawing attention to what follows. X: This is the noun or noun phrase that identifies ''''the
+  one'''' being emphasized. の方だ: 「の」 is a possessive or specifying particle・and 「方」 (hō) literally means
+  ''''side'''' or ''''direction''''. Together with the copula 「だ」 (or its polite form 「です」)・it expresses
+  ''''it is on the side of X''''. This indirectness makes the statement less blunt. This pattern is frequently
+  used to accept responsibility apologetically・implying ''''I am the one responsible''''・even if there
+  are other contributing factors. It also serves to clarify who or what is truly at fault・or who fits
+  a particular description・especially when there might be a misunderstanding or a need for precise identification.'
+false_friends:
+  - term: '[Phrase] + が + [Verb Adjective Noun + だ]'
+    meaning: It is [Phrase] that [Verb/Adjective/Noun]. / X is Y. (Direct statement)
+    kind: similar expression
+    nuance: This construction states a fact directly without the nuanced emphasis or softening that 「のはXの方だ」
+      provides. It assigns responsibility or identification bluntly, lacking the 'side of X' implication.
+      While grammatically correct, it might lack the specific nuance of contrast or gentle assertion that
+      「のはXの方だ」 offers.
+    grammar_point: <strongly-suggest>:基本の肯定文 (basic affirmative sentence)
+  - term: のは〜のことだ (emphasizing time or circumstance)
+    meaning: It was/is that...
+    kind: often confused with
+    nuance: While sharing the 「のは」 structure・「のは〜のことだ」 focuses on clarifying or emphasizing *when* or
+      *under what circumstances* something happened. It typically indicates a specific time・event・or the
+      meaning of something・rather than identifying the responsible party or contrasting specific entities
+      as 「のはXの方だ」 does.
+    grammar_point: のは〜のことだ (emphasizing time or circumstance)
+post_false_friends_writeup: When considering the phrase 「のはXの方だ」・it's important to differentiate it from
+  simply stating a fact using 「が」 or the copula 「だ」. While expressions like 「Xが[Verb/Adjective/Noun]だ」
+  or 「Xは[Verb/Adjective/Noun]だ」 convey the core meaning・they do so directly. 「のはXの方だ」・on the other hand・adds
+  a layer of emphasis or softening・highlighting X as the specific entity in focus・often in contrast to
+  others or to gently assert responsibility. It's not about being grammatically wrong・but about choosing
+  the expression that best conveys the intended nuance and level of emphasis.
+examples:
+  - english: I am the one who was late. I apologize sincerely.
+    japanese:
+      - 遅れ た {の は 私 の 方 です}。申し訳 あり ませ ん。
+      - 遅れ た {の は 私 の 方 だ}。ごめん なさい。
+      - 遅れ た {の は 私 ども の 方 で ござい ます}。誠 に 申し訳 ござい ませ ん。
+      - 遅れ た {の は 私 の 方 でし た}。申し訳 あり ませ ん でし た。
+    english_literally: The one who was late was on my side. I am terribly sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {が} 遅れ まし た。申し訳 あり ませ ん。
+        english: I was late. I apologize sincerely.
+        hint: Using just 「が」 directly states the fact without the specific emphasis on 'me' as the responsible
+          party. We're looking for an emphasis on who was responsible.
+    scene: A student arrives late to class and is addressing their professor.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: non-past polite (～ます)
+    nuance: The phrase 「私の方です」 gently yet firmly takes responsibility for the tardiness・implying that
+      despite any potential reasons・the speaker is the one truly responsible. The polite register・combined
+      with 「申し訳ありません」・conveys sincerity.
+  - english: My younger brother is the one who broke the window. It wasn't me.
+    japanese:
+      - 窓 を 割っ た {の は 弟 の 方 だ} よ。僕 じゃ ない。
+      - 窓 を 割っ た {の は 弟 の 方 です}。私 じゃ あり ませ ん。
+      - 窓 を 割っ た {の は 弟 の 方 だっ た} よ。僕 じゃ なかっ た。
+    english_literally: The one who broke the window was on my younger brother's side・you know. It's not
+      me.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 {が} 窓 を 割っ た よ。僕 じゃ ない。
+        english: My younger brother broke the window. It wasn't me.
+        hint: Simply using 「が」 states the fact. The grammar point highlights that 'my younger brother'
+          is specifically the one responsible・contrasting him with the speaker.
+    scene: A boy is being scolded for a broken window and points to his younger brother.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「弟の方だよ」 clearly singles out the younger brother as the culprit・emphasizing that the speaker
+      is not responsible. 「僕」 is a common male pronoun for younger speakers・fitting the casual tone.
+  - english: I was the one who confessed to him, so don't get the wrong idea.
+    japanese:
+      - 彼 に 告白 し た {の は 私 の 方 だ} から、勘違い し ない で。
+      - 彼 に 告白 し た {の は 私 の 方 です} から、勘違い し ない で ください。
+      - 彼 に 告白 し た {の は 私 の 方 だっ た} から、勘違い し ない で。
+    english_literally: The one who confessed to him was on my side・so don't misunderstand.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {が} 彼 に 告白 し た から、勘違い し ない で。
+        english: I confessed to him, so don't get the wrong idea.
+        hint: While correct・「私が」 simply states the fact. The grammar point emphasizes that *she* was the
+          one・correcting a potential misunderstanding or rumor.
+    scene: A young woman overhears rumors about her friend confessing to a boy and clarifies the truth.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「私の方だ」 emphasizes that *she* made the first move・correcting any potential rumors or misunderstandings.
+      「私」 is used here by a female in a casual context・asserting her action definitively.
+  - english: Ultimately, we are the ones who caused this project to fail.
+    japanese:
+      - この プロジェクト を 失敗 さ せ た {の は、結局 私 ども の 方 で ござい ます}。
+      - この プロジェクト を 失敗 さ せ た {の は、結局 私 ども の 方 です}。
+      - この プロジェクト を 失敗 さ せ た {の は、結局 私 ども の 方 だっ た}。
+    english_literally: The one who caused this project to fail was・after all・on our side.
+    competing_grammar:
+      - competing_japanese:
+          - 結局、私 ども {が} この プロジェクト を 失敗 さ せ まし た。
+        english: Ultimately, we caused this project to fail.
+        hint: This is a direct statement of responsibility. The grammar point softens the confession・implying
+          a collective responsibility while maintaining politeness.
+    scene: A company representative is giving a formal apology to a client after a failed project.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「私どもの方でございます」 is a very humble and formal way of accepting responsibility on behalf of one's
+      group・often used in business contexts to soften the blow while still admitting fault. 「でございます」 is
+      a highly polite copula・reinforcing the formal register.
+  - english: The problem lies in the methodology, not the human resources.
+    japanese:
+      - 問題 {な の は、その 方法 論 で あっ て、人材 の 方 で は ない}。
+      - 問題 {な の は、その 方法 論 で あっ て、人材 の 方 で は あり ませ ん}。
+      - 問題 {な の は、その 方法 論 で あっ て、人材 の 方 で は なかっ た}。
+    english_literally: What is the problem is the methodology・and not on the side of human resources.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 {は} 人材 {で は ない}。その 方法 論 {だ}。
+        english: The problem is not human resources. It's the methodology.
+        hint: This directly states what the problem is and isn't. The grammar point explicitly clarifies
+          and emphasizes that the problem is *not* with human resources・contrasting it with the actual
+          issue.
+    scene: A business consultant is explaining to a company's management why their recent initiative failed.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: 「人材の方ではない」 draws a clear distinction・explicitly stating that the issue is not with the people
+      but with the process. This is common in analytical or academic discussions・where precise categorization
+      is important.
+  - english: I am the one who likes sweets; he likes spicy food.
+    japanese:
+      - 甘い もの が 好き {な の は 私 の 方 で}、彼 は 辛い もの が 好き だ。
+      - 甘い もの が 好き {な の は 私 の 方 だ}。彼 は 辛い もの が 好き だ。
+      - 甘い もの が 好き {な の は 私 の 方 です}。彼 は 辛い もの が 好き です。
+    english_literally: The one who likes sweets is on my side・and he likes spicy things.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {は} 甘い もの {が} 好き {だ}。彼 は 辛い もの {が} 好き {だ}。
+        english: I like sweets. He likes spicy food.
+        hint: This simply states preferences. The grammar point sets up a clear contrast・highlighting
+          the speaker's preference specifically in comparison to someone else's.
+    scene: A woman is discussing her food preferences with a new acquaintance・contrasting them with her
+      boyfriend's.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「私の方で」 highlights the speaker's specific preference in contrast to someone else's・indicating
+      a personal taste without being confrontational. The use of 「私」 by a female speaker in a casual context・is
+      natural. The casual tone suits a friendly conversation about personal likes and dislikes.
+  - english: Even though I was the one who advised him at that time, I wasn't thanked.
+    japanese:
+      - あの 時、彼 に 意見 し て あげ た {の は 僕 の 方 だっ た} の に、感謝 さ れ なかっ た。
+      - あの 時、彼 に 意見 し て あげ た {の は 僕 の 方 でし た} の に、感謝 さ れ ませ ん でし た。
+      - あの 時、彼 に 意見 し て あげ た {の は 私 の 方 だっ た} の に、感謝 さ れ なかっ た。
+    english_literally: Even though the one who advised him at that time was on my side・I wasn't thanked.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、僕 {が} 彼 に 意見 し て あげ た の に、感謝 さ れ なかっ た。
+        english: Even though I advised him at that time, I wasn't thanked.
+        hint: This is a direct statement of who advised him. The grammar point adds emphasis to the speaker
+          being the specific person who advised・implying an unappreciated effort or injustice.
+    scene: A man is reflecting on a past incident where his efforts were overlooked by a friend.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: 「僕の方だったのに」 expresses a sense of injustice or unappreciated effort・emphasizing that the speaker
+      *was* the one who helped・contrary to what might be perceived or acknowledged. The use of 「僕」 as
+      a male pronoun and the casual ending add to the reflective・melancholic tone.
+  - english: Wasn't it probably me who made the mistake first?
+    japanese:
+      - 最初 に 間違え た {の は、多分 私 の 方 で は あり ませ ん でし た か}？
+      - 最初 に 間違え た {の は、多分 私 の 方 で は なかっ た の か}？
+      - 最初 に 間違え た {の は、多分 私 の 方 で は ない です か}？
+    english_literally: The one who made a mistake first was・probably・wasn't it on my side?
+    competing_grammar:
+      - competing_japanese:
+          - 多分 私 {が} 最初 に 間違え た の {で は あり ませ ん でし た か}？
+        english: Didn't I probably make the mistake first?
+        hint: While this asks directly if the speaker made the mistake・the grammar point uses a softer・more
+          tentative phrasing to suggest responsibility・especially when being cautious or humble.
+    scene: A new employee is cautiously asking a senior colleague about the cause of a recent error・suspecting
+      it might have been their fault.
+    register: teineigo (polite)
+    setting: cautious
+    conjugation: negative non-past polite (～ません)
+    nuance: 「私の方ではありませんでしたか」 is a tentative and polite way to suggest that the speaker might be the one
+      responsible・often used when asking for confirmation or gently hinting at a possibility. The polite
+      form・especially the negative interrogative 「でしたか」・conveys humility and caution.
+  - english: The one I really want to eat now is ramen.
+    japanese:
+      - 今 食べ たい {の は、ラーメン の 方 だ} な。
+      - 今 食べ たい {の は、ラーメン の 方 です} ね。
+      - 今 食べ たい {の は、ラーメン の 方 だ} よ。
+    english_literally: What I want to eat now・is on the side of ramen・you know.
+    competing_grammar:
+      - competing_japanese:
+          - 今、ラーメン {が} 食べ {たい} な。
+        english: I want to eat ramen now.
+        hint: This directly states the desire. The grammar point emphasizes 'ramen' as *the specific one*
+          among choices that the speaker wants to eat.
+    scene: Two friends are discussing what to have for dinner・and one strongly states their preference
+      for ramen over other options.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「ラーメンの方だ」 emphasizes ramen as the speaker's specific choice・implying a contrast with other
+      options. The 「な」 at the end softens the assertion slightly・making it sound more like a personal
+      thought shared with a friend.
+  - english: The one who truly understands the needs of the customer is the sales department.
+    japanese:
+      - 顧客 の ニーズ を 本当 に 理解 し て いる {の は、営業 部門 の 方 です}。
+      - 顧客 の ニーズ を 本当 に 理解 し て いる {の は、営業 部門 の 方 だ}。
+      - 顧客 の ニーズ を 本当 に 理解 し て いる {の は、営業 部門 の 方 で ござい ます}。
+    english_literally: The one who truly understands the customer's needs is on the side of the sales
+      department.
+    competing_grammar:
+      - competing_japanese:
+          - 営業 部門 {が} 顧客 の ニーズ を 本当 に 理解 し {て いる}。
+        english: The sales department truly understands the needs of the customer.
+        hint: While grammatically correct・this directly states the fact. The grammar point emphasizes
+          the sales department as *the* entity with this understanding・often in a context where other
+          departments might be vying for credit or where clarification is needed.
+    scene: During a business meeting・a manager explains the different roles and strengths of various departments・highlighting
+      the sales department's unique understanding of customer needs.
+    register: semi-formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: 「営業部門の方です」 highlights the sales department as the specific entity possessing this understanding・often
+      in contrast to other departments that might claim to. This phrasing is common in business presentations
+      to assign clear roles or expertise・and the polite 「です」 maintains a professional tone.
+post_example_writeup: 「のは」 nominalizes the clause・while 「方だ」 adds the nuance of 'being on the side of'・making
+  the statement more gentle or indirect. It is often used when acknowledging responsibility or gently
+  correcting someone・highlighting the specific party involved in a given situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のはxの方だ

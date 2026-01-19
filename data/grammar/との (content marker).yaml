@@ -1,0 +1,290 @@
+grammar_point: との (content marker)
+learn_before:
+  - と (quotation marker)
+  - につき (due to or per)
+  - 恐れがある (risk or fear)
+meaning: That; pertaining to; regarding
+pronunciation:
+  katakana: トノ
+  romaji: tono
+formation:
+  Statement + との + Noun: Indicates that the preceding statement is information related to the following
+    noun (e.g., a report, notice, news, view).
+  Noun + だ + との + Noun: For nouns, だ may precede との, though it is often omitted. This construction maintains
+    formality and conciseness, typical in written or official communication.
+jlpt: N1
+etymology: The grammar point 「との」 is a compound form, combining the quotative particle 「と」 and the nominative/attributive
+  particle 「の」. Historically, 「と」 has marked direct or indirect speech, thoughts, and content. 「の」, in
+  this context, functions to nominalize the preceding clause, making it an attribute of the following
+  noun. Thus, 「との」 effectively means "of that which was said/thought" or "that which is said to be," creating
+  a strong and formal link between the reported content and the noun describing the communication.
+writeup: 'The grammar point 「との」 is a compound particle formed by the quotative particle 「と」 and the case-marking
+  particle 「の」. This construction serves to present the preceding statement as the content of the following
+  noun. It is frequently encountered in formal writing, news reports, official announcements, and academic
+  contexts. While 「と」 can simply indicate a direct quote, the addition of 「の」 creates a more attributive
+  relationship, emphasizing that the preceding information *is* the content of the subsequent noun. This
+  makes it particularly suitable for linking reported speech, opinions, or facts to nouns that describe
+  types of communication or information, such as: *   **報告** (ほうこく - report) *   **見解** (けんかい - view,
+  opinion) *   **通知** (つうち - notice) *   **知らせ** (しらせ - news, announcement) *   **意向** (いこう - intention)
+  *   **指摘** (してき - pointing out) *   **依頼** (いらい - request) For nouns and な-adjectives, the copula 「だ」
+  may precede 「との」, but it is often omitted, especially in concise or formal contexts. The omission of
+  「だ」 maintains a higher level of formality. This grammar point provides a concise and direct way to convey
+  authoritative information, making it a staple in advanced Japanese communication.'
+false_friends:
+  - term: という
+    meaning: Called; Named; Means; That (general content marker)
+    kind: similar expression
+    nuance: 「という」 is a broad-use quotative marker, often used to define, name, or generally introduce
+      reported speech or thoughts. In contrast, 「との」 is more specific, always acting attributively to
+      a following noun (like 「報告」, 「見解」, 「通知」) to indicate that the preceding statement *is* the content
+      of that noun. While sometimes interchangeable, 「との」 usually implies a more formal or official context
+      and a tighter relationship with the noun.
+    grammar_point: という (naming and definition)
+  - term: によると
+    meaning: According to
+    kind: similar expression
+    nuance: 「によると」 introduces the source of information, emphasizing *who* or *what* the information comes
+      from. In contrast, 「との」 connects the content *as* a specific type of noun (e.g., report, view, notice),
+      making the preceding statement the *content* of that noun. 「によると」 focuses on the source, while 「との」
+      focuses on the nature of the content itself as a noun.
+    grammar_point: によると・によれば (according to)
+post_false_friends_writeup: While both 「という」 and 「との」 can introduce quoted or reported content, 「との」 is
+  specifically used to indicate that the information preceding it is being reported, communicated, or
+  considered in relation to the following noun (e.g., 報告, 意見, 知らせ). It creates a direct attributive link.
+  In contrast, 「という」 is broader; it can define something, specify a name or title, or introduce a general
+  statement, and doesn't always require a subsequent noun that clarifies the type of communication. Think
+  of 「との」 as a more formal and precise way to say "(content) as a [noun]" or "[noun] that (content)."
+examples:
+  - english: A report was received from the IT department this morning that an urgent system failure had
+      occurred.
+    japanese:
+      - 緊急 の システム 障害 が 発生 し た {と の} 報告 が、午前 中 に IT 部門 から あり まし た。
+      - 緊急 の システム 障害 が 発生 し た {と の} 報告 が、午前 中 に IT 部門 より ござい まし た。
+    english_literally: Urgent system failure occurred that report, in the morning, from IT department
+      came.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 の システム 障害 が 発生 し た {と} 報告 が、午前 中 に IT 部門 から あり まし た。
+        english: A report was received from the IT department this morning that an urgent system failure
+          had occurred (using 'to').
+        hint: Using just 「と」 might imply a general report. The scene, however, suggests a formal internal
+          communication where the content is explicitly linked to the 「報告」 (report), which 「との」 clearly
+          conveys. We're looking for an expression that formally attributes the content to the subsequent
+          noun, like a report or notice.
+      - competing_japanese:
+          - 緊急 の システム 障害 が 発生 し た {と いう} 報告 が、午前 中 に IT 部門 から あり まし た。
+        english: A report was received from the IT department this morning that an urgent system failure
+          had occurred (using 'to iu').
+        hint: While 「という」 is grammatically correct, 「との」 often carries a more formal and concise tone,
+          especially in official or written communications, directly linking the content to the specific
+          noun 「報告」. We're looking for a direct and formal link to the noun.
+    scene: A manager is informing their team about a recent IT issue during a morning meeting.
+    register: formal
+    setting: informative
+  - english: Experts expressed the view that this pandemic will have long-term effects on social structures.
+    japanese:
+      - 専門 家 は、今回 の パンデミック は 社会 構造 に 長期 的 な 影響 を 与える {と の} 見解 を 表明 し まし た。
+      - 専門 家 は、今次 の パンデミック は 社会 構造 に 長期 的 な 影響 を 与える {と の} 見解 を 表明 いたし まし た。
+    english_literally: Experts, this pandemic social structures to long-term effects will give that view
+      expressed.
+    competing_grammar:
+      - competing_japanese:
+          - 専門 家 は、今回 の パンデミック は 社会 構造 に 長期 的 な 影響 を 与える {と いう} 見解 を 表明 し まし た。
+        english: Experts expressed the view that this pandemic will have long-term effects on social structures
+          (using 'to iu').
+        hint: While 「という」 is commonly used for expressing views, 「との」 is often chosen in formal or academic
+          contexts, especially when citing specific, formally expressed opinions from authorities like
+          experts. The scene suggests a formal announcement of a professional opinion. We're looking for
+          an expression that directly frames the preceding statement as a formal 'view'.
+      - competing_japanese:
+          - 専門 家 {に よる と}、今回 の パンデミック は 社会 構造 に 長期 的 な 影響 を 与える と の こと です。
+        english: According to experts, this pandemic will have long-term effects on social structures.
+        hint: 「によると」 emphasizes the source of the information. We're looking for an expression that directly
+          links the content as the 'view' itself, not just reporting a source.
+    scene: A public health official is addressing the media about the broader implications of a global
+      health crisis, presenting their findings with authority.
+    register: formal
+    setting: academic
+  - english: A notice arrived from the secretariat that next week's meeting will be changed to an online
+      format.
+    japanese:
+      - 来週 の 会議 は オン ライン 開催 に 変更 する {と の} 連絡 が、事務 局 から 届き まし た。
+      - 来週 の 会議 は オン ライン 開催 に 変更 する {と の} 連絡 が、事務 局 より 参り まし た。
+    english_literally: Next week's meeting online format to change that communication, from secretariat
+      arrived.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 会議 は オン ライン 開催 に 変更 する {と} 連絡 が、事務 局 から 届き まし た。
+        english: A notice arrived from the secretariat that next week's meeting will be changed to an
+          online format (using 'to').
+        hint: Just using 「と」 might imply a general message. However, 「との」 creates a more direct and formal
+          connection between the content and the specific noun 「連絡」 (communication), suitable for a business
+          context where information is formally relayed. We're looking for an expression that formally
+          attaches the content as the specific 'communication' received.
+      - competing_japanese:
+          - 来週 の 会議 は オン ライン 開催 に 変更 する {と いう} 連絡 が、事務 局 から 届き まし た。
+        english: A notice arrived from the secretariat that next week's meeting will be changed to an
+          online format (using 'to iu').
+        hint: While 「という」 is grammatically valid, 「との」 is often preferred in professional settings for
+          its conciseness and stronger implication that the preceding clause *is* the substance of the
+          specific type of communication (「連絡」). We're looking for a succinct and formal way to link the
+          content to the type of communication.
+    scene: An administrative assistant is checking their email and relaying important information to a
+      colleague regarding an upcoming meeting.
+    register: semi-formal
+    setting: informative
+  - english: I heard a rumor that she's moving overseas, but I wonder if it's true.
+    japanese:
+      - 彼女、海外 へ 引っ越す {と の} 噂 を 聞い た けど、本当 な の か な？
+      - 彼女、海外 へ 引っ越す {と の} 噂 を 聞い た ん だ けど、本当 な の かしら？
+    english_literally: She, overseas to move that rumor heard, but true is it wondering?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女、海外 へ 引っ越す {と} 噂 を 聞い た けど、本当 な の か な？
+        english: I heard a rumor that she's moving overseas, but I wonder if it's true (using 'to').
+        hint: Using just 「と」 can be slightly less emphatic about the nature of the information. 「との」 connects
+          the content more tightly to the noun 「噂」 (rumor), making it clear that this is the specific
+          content of the overheard conversation. We're looking for an expression that clearly states the
+          preceding content *is* the rumor.
+    scene: Two close friends are having a casual chat over coffee, exchanging recent gossip about a mutual
+      acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「～なのかな？」 at the end, particularly the 「かな」, adds a soft, wondering, or slightly
+      speculative tone, which is common in casual female speech when discussing rumors or uncertainties.
+      The alternative 「～かしら？」 is also a common female expression for uncertainty or wondering, typically
+      used by women, making it suitable for a female speaker to a friend.
+  - english: An instruction was issued that all employees must complete security training this month.
+    japanese:
+      - 全 従業 員 は、セキュリティ 研修 を 今月 中 に 受講 する {と の} 指示 が 出さ れ まし た。
+      - 全 従業 員 は、セキュリティ 研修 を 今月 中 に 受講 する べし {と の} 指示 が 出さ れ まし た。
+    english_literally: All employees, security training this month within receive that instruction was
+      issued.
+    competing_grammar:
+      - competing_japanese:
+          - 全 従業 員 は、セキュリティ 研修 を 今月 中 に 受講 する {と} 指示 が 出さ れ まし た。
+        english: An instruction was issued that all employees must complete security training this month
+          (using 'to').
+        hint: While 「と」 is grammatically possible, 「との」 creates a more official and formal link between
+          the content and the specific noun 「指示」 (instruction). This makes it sound like a direct and
+          unambiguous directive, fitting a professional setting. We're looking for an expression that
+          explicitly attributes the content as the formal 'instruction'.
+    scene: A company executive is announcing a mandatory compliance requirement to the entire staff in
+      an official memo.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    nuance: The formality and directness of 「指示 が 出さ れ まし た」, combined with the commanding setting, are
+      suitable for a male speaker in a corporate or authoritative role. The use of 「との」 further emphasizes
+      the official nature of the instruction, conveying a strong directive often associated with male
+      speech in professional settings.
+  - english: The proposal to introduce a new marketing strategy was approved by the board of directors.
+    japanese:
+      - 新しい マーケティング 戦略 を 導入 する {と の} 提案 が、役員 会 で 承認 さ れ まし た。
+      - 新規 マーケティング 戦略 を 導入 する {と の} 提案 が、役員 会 にて 承認 さ れ まし た。
+    english_literally: New marketing strategy introduce that proposal, board of directors by approved
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい マーケティング 戦略 を 導入 する {と いう} 提案 が、役員 会 で 承認 さ れ まし た。
+        english: The proposal to introduce a new marketing strategy was approved by the board of directors
+          (using 'to iu').
+        hint: While 「という」 is common, 「との」 is frequently used in formal or professional contexts when referring
+          to specific proposals or recommendations, directly attributing the content to the noun 「提案」
+          (proposal). We're looking for a formal and concise expression to attribute the content to the
+          noun 'proposal'.
+    scene: A marketing director is presenting a successful outcome to their team after a recent board
+      meeting.
+    register: formal
+    setting: professional
+  - english: A warning was announced by the power company that a large-scale power outage may occur due
+      to abnormal weather.
+    japanese:
+      - 異常 気象 に より、大 規模 な 停電 が 発生 する {と の} 警告 が 電力 会社 から 発表 さ れ まし た。
+      - 異常 気象 に より、大 規模 な 停電 が 発生 する 恐れ が ある {と の} 警告 が 電力 会社 より 発表 さ れ まし た。
+    english_literally: Abnormal weather by, large-scale power outage occur that warning, power company
+      from announced was.
+    competing_grammar:
+      - competing_japanese:
+          - 異常 気象 に より、大 規模 な 停電 が 発生 する {と} 警告 が 電力 会社 から 発表 さ れ まし た。
+        english: A warning was announced by the power company that a large-scale power outage may occur
+          due to abnormal weather (using 'to').
+        hint: Using just 「と」 would make the warning sound less official or directly attributed to the
+          'warning' itself. 「との」 explicitly states that the preceding content *is* the warning, suitable
+          for critical public announcements. We're looking for a strong, formal connection that frames
+          the content as the specific 'warning'.
+    scene: Residents are receiving an emergency broadcast on their phones about an impending natural disaster.
+    register: formal
+    setting: emergency/alarm
+  - english: A notification was issued that the event would be canceled due to inclement weather.
+    japanese:
+      - 悪 天候 の ため、イベント は 中止 だ {と の} 通知 が 出さ れ まし た。
+      - 悪 天候 に つき、イベント は 中止 だ {と の} 通知 が 出さ れ まし た。
+    english_literally: Bad weather due to, event is cancellation that notification was issued.
+    competing_grammar:
+      - competing_japanese:
+          - 悪 天候 の ため、イベント は 中止 {と いう} 通知 が 出さ れ まし た。
+        english: A notification was issued that the event would be canceled due to inclement weather (using
+          'to iu').
+        hint: 「という」 is a broader quotative marker. We're looking for a more formal and concise way to
+          directly link the content to the 'notification', typical of official announcements.
+      - competing_japanese:
+          - 悪 天候 の ため、イベント は 中止 {と} 通知 が 出さ れ まし た。
+        english: A notification was issued that the event would be canceled due to inclement weather (using
+          'to').
+        hint: Using just 「と」 might sound less formal or directly linked to the 'notification' as a noun.
+          We're looking for a stronger, more formal connection that treats the content as the specific
+          'notification'.
+    scene: A university student receives an alert on their phone about a campus event.
+    register: formal
+    setting: informative
+  - english: The president announced his intention to retire next year.
+    japanese:
+      - 社長 は 来年 引退 する {と の} 意向 を 表明 し まし た。
+      - 社長 は 来年 引退 する {と の} 意向 を 示し まし た。
+    english_literally: The president, next year retire that intention announced.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 は 来年 引退 する {と} 言い まし た。
+        english: The president said he would retire next year.
+        hint: While grammatically correct, this sounds like a casual statement. We're looking for a more
+          formal announcement of an 'intention', explicitly linked to that noun.
+      - competing_japanese:
+          - 社長 は 来年 引退 する {と いう} 意向 を 表明 し まし た。
+        english: The president announced the intention that he would retire next year (using 'to iu').
+        hint: 「という」 is grammatically valid, but 「との」 is often preferred in formal contexts for its conciseness
+          and direct link between the stated content and the noun like 「意向」 (intention). We're looking
+          for a precise and formal way to attribute the content as the 'intention'.
+    scene: A company spokesperson is delivering a formal announcement to the press regarding the company's
+      leadership.
+    register: formal
+    setting: professional
+  - english: A forecast was released that the economy would gradually recover next year.
+    japanese:
+      - 来年、経済 は 緩やか に 回復 する {と の} 見通し が 発表 さ れ まし た。
+      - 来年、経済 は 緩やか に 回復 する {と の} 予測 が 発表 さ れ まし た。
+    english_literally: Next year, economy gradually recover that outlook was announced.
+    competing_grammar:
+      - competing_japanese:
+          - 来年、経済 は 緩やか に 回復 する {と} 発表 さ れ まし た。
+        english: It was announced that the economy would gradually recover next year.
+        hint: Using just 「と」 makes it a general announcement. We're looking for an expression that explicitly
+          states it as a 'forecast' or 'outlook', formally linking the content to that noun.
+      - competing_japanese:
+          - 来年、経済 は 緩やか に 回復 する {と いう} 見通し が 発表 さ れ まし た。
+        english: A forecast was released that the economy would gradually recover next year (using 'to
+          iu').
+        hint: While 「という」 is widely used, 「との」 is often chosen in formal or academic contexts when presenting
+          specific reports or analyses, directly linking the content to nouns like 「見通し」 (outlook) or
+          「予測」 (forecast). We're looking for a concise and formal way to attribute the content as the
+          'forecast'.
+    scene: An economic analyst is discussing a recent report on the national news, detailing future economic
+      trends.
+    register: formal
+    setting: informative
+post_example_writeup: 「との」 is often used in news reports, formal announcements, and academic writing to
+  relay information, opinions, or reports from various sources, indicating a clear, direct connection
+  between the statement and the noun it modifies.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/との

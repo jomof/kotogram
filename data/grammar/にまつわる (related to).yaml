@@ -1,0 +1,447 @@
+grammar_point: にまつわる (related to)
+learn_before:
+  - Verb[なかった] (past negative)
+  - '[Noun]だに(~しない) (even・not even)'
+  - '[Verb-て]いただけませんか (humble request)'
+  - お〜ください (polite request)
+  - ご (honorific prefix for Sino-Japanese words)
+  - といわれている (it is said that)
+  - どこ (where)
+meaning: Related to, associated with, surrounding
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にまつわる
+    rarity: common
+    meaning: related to, associated with
+  - conjugation-type: non-past polite (～ます)
+    form: にまつわります
+    rarity: less common
+    meaning: is related to, is associated with
+  - conjugation-type: negative plain (～ない)
+    form: にまつわらない
+    rarity: less common
+    meaning: not related to, not associated with
+  - conjugation-type: negative non-past polite (～ません)
+    form: にまつわりません
+    rarity: rare
+    meaning: is not related to, is not associated with
+  - conjugation-type: past plain (～た)
+    form: にまつわった
+    rarity: less common
+    meaning: was related to, was associated with
+  - conjugation-type: past polite (～ました)
+    form: にまつわりました
+    rarity: rare
+    meaning: was related to, was associated with
+  - conjugation-type: negative past plain (～なかった)
+    form: にまつわらなかった
+    rarity: rare
+    meaning: was not related to, was not associated with
+  - conjugation-type: negative past polite (～ませんでした)
+    form: にまつわりませんでした
+    rarity: rare
+    meaning: was not related to, was not associated with
+pronunciation:
+  katakana: ニマツワル
+  romaji: ni matsuwaru
+formation:
+  Noun + にまつわる + Noun: Indicates that something is related to or associated with the specified noun.
+jlpt: N1
+etymology: Derived from the verb 「纏わる (まつわる)」, meaning "to coil around," "to cling to," or "to be entangled
+  with." This grammar point extends that sense to indicate something is connected to or associated with
+  a particular topic, as if stories or information are 'coiling around' the central subject.
+writeup: '「にまつわる」 is a formal grammatical pattern used to indicate that something (typically a noun or
+  information) is deeply related to, associated with, or surrounds a particular noun or topic. It implies
+  a connection that is often historical, legendary, or involves a collection of stories, rumors, or events
+  that have grown around a central theme. This pattern generally takes the form **Noun A にまつわる Noun B**.
+  Here, **Noun A** is the central topic, and **Noun B** is the information, stories, or items that are
+  connected to it. Because of this nuance, words like 「話 (はなし - story)」, 「物語 (ものがたり - tale)」, 「伝説 (でんせつ
+  - legend)」, or 「神話 (しんわ - myth)」 frequently appear as **Noun B**. An important point for understanding
+  「にまつわる」 is its connection to the verb 「纏わる (まつわる)」. Although the kanji itself is rarely used in modern
+  writing, this verb literally means "to coil around" or "to cling to." This original meaning helps to
+  grasp the deeper nuance of 「にまつわる」: it''s not just a superficial connection, but rather something that
+  is intimately *entangled with* or *has gathered around* the topic at hand. This sense of something "coming
+  together around" a subject is key to its usage. While grammatically a verb, 「にまつわる」 functions primarily
+  as a modifier in this pattern, akin to an adjective, to connect a noun (the topic) to another noun (the
+  related item or information).'
+false_friends:
+  - term: に関する
+    meaning: related to, concerning
+    kind: similar expression
+    nuance: 「に関する」 is a broader, more general expression for "related to" or "concerning," often used
+      for objective facts or topics. 「にまつわる」 implies a more intrinsic, often historical, legendary, or
+      emotionally connected relationship, where something "coils around" or is deeply "entangled with"
+      the topic.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: についての
+    meaning: about, concerning
+    kind: similar expression
+    nuance: 「についての」 is a very general phrase meaning "about" or "concerning," indicating the subject matter
+      of information. 「にまつわる」 suggests a deeper, more inherent connection, often implying a collection
+      of stories, rumors, or events that have grown around a central theme or subject, conveying a more
+      intimate or integral link.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: 関係がある
+    meaning: to be related to, to have a connection
+    kind: similar expression
+    nuance: 「関係がある」 is a very general and versatile phrase for indicating a relationship or connection,
+      applicable in many contexts. 「にまつわる」, however, implies a deeper, more organic, or historical entanglement,
+      often used when stories, traditions, or events have 'gathered around' or 'coiled around' a central
+      subject.
+    grammar_point: 関係がある (to be related・to have a connection)
+post_false_friends_writeup: While 「に関する」, 「についての」, and 「関係がある」 can sometimes be used interchangeably with
+  「にまつわる」, the latter carries a stronger nuance of an intrinsic, historical, or deeply connected relationship.
+  Think of information or events that have organically 'coiled around' or become 'entangled with' a particular
+  subject. Choose 「にまつわる」 when the connection is more profound or encompasses a collective body of related
+  elements rather than just a simple factual reference.
+examples:
+  - english: In Kyoto, there are many stories related to ancient legends.
+    japanese:
+      - 京都 に は、古い 伝説 {に まつわる} 話 が たくさん ある。
+      - 京都 に は、古い 伝説 {に まつわる} 話 が たくさん あり ます。
+    english_literally: In Kyoto, there are many stories coiling around ancient legends.
+    competing_grammar:
+      - competing_japanese:
+          - 京都 の 古い 伝説 {に 関する} 話
+        english: Stories concerning Kyoto's ancient legends.
+        hint: 「に関する」 is a general expression for 'concerning' or 'related to'. We're looking for stories
+          that have organically gathered around or are deeply intertwined with the legends.
+      - competing_japanese:
+          - 京都 の 古い 伝説 {に つい て の} 話
+        english: Stories about Kyoto's ancient legends.
+        hint: 「についての」 is a very general phrase meaning 'about'. We're looking for stories that have organically
+          gathered around or are deeply intertwined with the legends.
+      - competing_japanese:
+          - 京都 の 古い 伝説 {に 関係 の ある} 話
+        english: Stories that have a relationship with Kyoto's ancient legends.
+        hint: 「関係がある」 describes a general connection. We're looking for stories that have organically
+          gathered around or are deeply intertwined with the legends.
+    scene: A tour guide is explaining the historical background of Kyoto.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He is researching the traditions and customs associated with that region.
+    japanese:
+      - 彼 は、その 地域 {に まつわる} 伝承 や 風習 を 研究 し て いる。
+      - 彼 は、その 地域 {に まつわる} 伝承 や 風習 を 研究 し て い ます。
+    english_literally: He is researching the traditions and customs coiling around that region.
+    competing_grammar:
+      - competing_japanese:
+          - その 地域 {に 関する} 伝承 や 風習
+        english: Traditions and customs concerning that region.
+        hint: The academic context implies a study of deeply embedded, organic cultural elements that
+          have *formed around* a specific region over time, making 「にまつわる」 more fitting than a simple
+          "about" or "concerning" like 「に関する」.
+      - competing_japanese:
+          - その 地域 {に つい て の} 伝承 や 風習
+        english: Traditions and customs about that region.
+        hint: The academic context implies a study of deeply embedded, organic cultural elements that
+          have *formed around* a specific region over time, making 「にまつわる」 more fitting than a general
+          "about" like 「についての」.
+      - competing_japanese:
+          - 彼 は、その 地域 {に 関係 の ある} 伝承 や 風習 を 研究 し て いる。
+        english: He is researching traditions and customs that have a relationship with that region.
+        hint: 「関係がある」 indicates a general connection. We're looking for traditions and customs that are
+          deeply embedded in or have grown out of the region.
+    scene: Two academics discussing a colleague's area of expertise.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: This is a neutral academic statement. The speaker and listener gender are provided for variety
+      but do not inherently change the Japanese phrasing.
+  - english: Strange rumors related to her past are being whispered within the company.
+    japanese:
+      - 彼女 の 過去 {に まつわる} 奇妙 な 噂 が、社内 で ささやか れ て いる。
+      - 彼女 の 過去 {に まつわる} 奇妙 な 噂 が、社内 で ささやか れ て い ます。
+    english_literally: Strange rumors coiling around her past are being whispered within the company.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 過去 {に 関する} 奇妙 な 噂
+        english: Strange rumors concerning her past.
+        hint: Rumors often 'coil around' a person or event, not just 'about' them. The sense of an amorphous,
+          unverified collection of talk originating from and surrounding her past is strongly conveyed
+          by 「にまつわる」, unlike the more neutral 「に関する」.
+      - competing_japanese:
+          - 彼女 の 過去 {に つい て の} 奇妙 な 噂
+        english: Strange rumors about her past.
+        hint: Rumors often 'coil around' a person or event, not just 'about' them. The sense of an amorphous,
+          unverified collection of talk originating from and surrounding her past is strongly conveyed
+          by 「にまつわる」, unlike the more neutral 「についての」.
+      - competing_japanese:
+          - 彼女 の 過去 {に 関係 の ある} 奇妙 な 噂 が、社内 で ささやか れ て いる。
+        english: Strange rumors that have a connection to her past are being whispered within the company.
+        hint: 「関係がある」 suggests a factual link. We're looking for rumors that have formed around and are
+          entangled with her past.
+    scene: Two colleagues gossiping quietly in the office.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「ささやかれている」 (sasayakarete iru), meaning "being whispered," implies a secretive and
+      potentially malicious spread of information, common in office gossip.
+  - english: All documents related to that incident were destroyed.
+    japanese:
+      - その 事件 {に まつわっ た} 資料 は、すべて 破棄 さ れ た。
+      - その 事件 {に まつわっ た} 資料 は、すべて 破棄 さ れ まし た。
+    english_literally: All documents coiled around that incident were destroyed.
+    competing_grammar:
+      - competing_japanese:
+          - その 事件 {に 関する} 資料
+        english: Documents concerning that incident.
+        hint: The destruction of "documents related to" an incident implies that these documents formed
+          a body of evidence that was intrinsically connected to the incident's specifics, making 「にまつわった」
+          more suitable than a simple "concerning" like 「に関する」.
+      - competing_japanese:
+          - その 事件 {に つい て の} 資料
+        english: Documents about that incident.
+        hint: The destruction of "documents related to" an incident implies that these documents formed
+          a body of evidence that was intrinsically connected to the incident's specifics, making 「にまつわった」
+          more suitable than a general "about" like 「についての」.
+      - competing_japanese:
+          - その 事件 {に 関係 の ある} 資料 は、すべて 破棄 さ れ た。
+        english: All documents that had a connection to that incident were destroyed.
+        hint: 「関係がある」 implies a general link. We're looking for documents that were intrinsically connected
+          to the incident's specifics, forming a body of evidence around it.
+    scene: A legal team discussing the handling of sensitive evidence from a past case.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+  - english: Please refrain from remarks unrelated to this issue.
+    japanese:
+      - この 問題 {に まつわら ない} 発言 は、ご 遠慮 ください。
+      - この 問題 {に まつわら ない} 発言 は、ご 遠慮 ください ませ。
+    english_literally: Please refrain from remarks not coiling around this issue.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 {に 関係 ない} 発言
+        english: Remarks unrelated to this issue.
+        hint: The formal setting and strict instruction emphasize that only contributions intrinsically
+          connected to the specific problem are acceptable. 「にまつわらない」 conveys that remarks should not
+          be "entangled with" irrelevant topics, which is a stronger nuance than a simple "not related"
+          like 「関係ない」.
+      - competing_japanese:
+          - この 問題 と {関係 の ない} 発言
+        english: Remarks having no connection to this issue.
+        hint: The formal setting and strict instruction emphasize that only contributions intrinsically
+          connected to the specific problem are acceptable. 「にまつわらない」 conveys that remarks should not
+          be "entangled with" irrelevant topics, which is a stronger nuance than a simple "not related"
+          like 「関係のない」.
+      - competing_japanese:
+          - この 問題 {に 関係 の ない} 発言 は、ご 遠慮 ください。
+        english: Please refrain from remarks that have no connection to this issue.
+        hint: 「関係がない」 is a general lack of connection. We're looking for remarks that are not entangled
+          with the specific problem at hand.
+    scene: A stern chairperson at a formal meeting, trying to keep the discussion focused.
+    register: formal
+    setting: commanding
+    conjugation: negative plain (～ない)
+  - english: Discussions concerning new technology will likely continue actively in the future.
+    japanese:
+      - 新しい 技術 {に まつわる} 議論 は、今後 も 活発 に 行わ れる でしょう。
+      - 新しい 技術 {に まつわる} 議論 は、今後 も 活発 に 行わ れる だろう。
+    english_literally: Discussions coiling around new technology will likely continue actively in the
+      future.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 {に 関する} 議論
+        english: Discussions concerning new technology.
+        hint: '"Discussions concerning new technology" suggests a broad range of related topics that naturally
+          emerge and intertwine around the subject of new tech. 「にまつわる」 captures this organic, multifaceted
+          nature of the debate more effectively than 「に関する」.'
+      - competing_japanese:
+          - 新しい 技術 {に つい て の} 議論
+        english: Discussions about new technology.
+        hint: '"Discussions concerning new technology" suggests a broad range of related topics that naturally
+          emerge and intertwine around the subject of new tech. 「にまつわる」 captures this organic, multifaceted
+          nature of the debate more effectively than 「についての」.'
+      - competing_japanese:
+          - 新しい 技術 {に 関係 の ある} 議論 は、今後 も 活発 に 行わ れる でしょう。
+        english: Discussions that have a connection to new technology will likely continue actively in
+          the future.
+        hint: 「関係がある」 denotes a general link. We're looking for discussions that naturally emerge and
+          intertwine around the subject of new technology.
+    scene: A technology analyst presenting a forecast to a business audience.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Could you please explain in detail the circumstances related to that project?
+    japanese:
+      - その プロジェクト {に まつわっ た} 経緯 を 詳しく ご 説明 いただけ ます でしょう か。
+      - その プロジェクト {に まつわっ た} 経緯 を 詳しく ご 説明 いただけ ます か。
+    english_literally: Could you please explain in detail the circumstances that coiled around that project?
+    competing_grammar:
+      - competing_japanese:
+          - その プロジェクト {に 関する} 経緯
+        english: Circumstances concerning that project.
+        hint: '"Circumstances related to" a project implies the chain of events and background factors
+          that intrinsically "enveloped" or "formed around" the project''s development. This is a more
+          comprehensive and formal inquiry than a simple "concerning" like 「に関する」.'
+      - competing_japanese:
+          - その プロジェクト {に つい て の} 経緯
+        english: Circumstances about that project.
+        hint: '"Circumstances related to" a project implies the chain of events and background factors
+          that intrinsically "enveloped" or "formed around" the project''s development. This is a more
+          comprehensive and formal inquiry than a general "about" like 「についての」.'
+      - competing_japanese:
+          - その プロジェクト {に 関係 の あっ た} 経緯 を 詳しく ご 説明 いただけ ます でしょう か。
+        english: Could you please explain in detail the circumstances that had a connection to that project?
+        hint: 「関係がある」 implies a general past connection. We're looking for circumstances that intrinsically
+          enveloped or formed around the project's development.
+    scene: A new manager asking a senior colleague for background information on a past project.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_age: younger
+    nuance: The use of humble language with 「ご説明いただけますでしょうか」 (go setsumei itadakemasu deshō ka) indicates
+      the speaker is younger or in a subordinate position, asking for information from an older or superior
+      colleague.
+  - english: Advice stemming from life experience is invaluable for young people.
+    japanese:
+      - 人生 経験 {に まつわる} アドバイス は、若者 に とっ て 貴重 です。
+      - 人生 経験 {に まつわる} アドバイス は、若者 に とっ て 貴重 だ。
+    english_literally: Advice coiling around life experience is invaluable for young people.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 経験 {に 関する} アドバイス
+        english: Advice concerning life experience.
+        hint: Advice that "stems from" or is "coiled around" life experience suggests wisdom directly
+          born from and deeply connected to personal history, rather than merely general advice *about*
+          life experience. 「にまつわる」 emphasizes this inherent connection.
+      - competing_japanese:
+          - 人生 経験 {に つい て の} アドバイス
+        english: Advice about life experience.
+        hint: Advice that "stems from" or is "coiled around" life experience suggests wisdom directly
+          born from and deeply connected to personal history, rather than merely general advice *about*
+          life experience. 「にまつわる」 emphasizes this inherent connection.
+      - competing_japanese:
+          - 人生 経験 {に 関係 の ある} アドバイス は、若者 に とっ て 貴重 です。
+        english: Advice that has a connection to life experience is invaluable for young people.
+        hint: 「関係がある」 implies a general link. We're looking for advice directly born from and deeply connected
+          to personal history.
+    scene: A mentor sharing wisdom with their protégés.
+    register: semi-formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: The phrase 「若者にとって貴重です」 (wakamono ni totte kichō desu) emphasizes the value of such advice
+      for younger generations, a sentiment often expressed by older individuals.
+  - english: In that research lab, they are discussing the latest discoveries related to the origin of
+      the universe.
+    japanese:
+      - その 研究 室 で は、宇宙 の 起源 {に まつわる} 最新 の 発見 に つい て 議論 し て い ます。
+      - その 研究 室 で は、宇宙 の 起源 {に まつわる} 最新 の 発見 に つい て 議論 し て いる。
+    english_literally: In that research lab, they are discussing the latest discoveries coiling around
+      the origin of the universe.
+    competing_grammar:
+      - competing_japanese:
+          - 宇宙 の 起源 {に 関する} 最新 の 発見
+        english: Latest discoveries concerning the origin of the universe.
+        hint: Scientific discoveries often form a complex body of knowledge that *surrounds* or *contributes
+          to* understanding a fundamental concept like the origin of the universe. 「にまつわる」 captures this
+          evolving, interconnected body of findings more precisely than 「に関する」.
+      - competing_japanese:
+          - 宇宙 の 起源 {に つい て の} 最新 の 発見
+        english: Latest discoveries about the origin of the universe.
+        hint: Scientific discoveries often form a complex body of knowledge that *surrounds* or *contributes
+          to* understanding a fundamental concept like the origin of the universe. 「にまつわる」 captures this
+          evolving, interconnected body of findings more precisely than 「についての」.
+      - competing_japanese:
+          - その 研究 室 で は、宇宙 の 起源 {に 関係 の ある} 最新 の 発見 に つい て 議論 し て い ます。
+        english: In that research lab, they are discussing the latest discoveries that have a connection
+          to the origin of the universe.
+        hint: 「関係がある」 suggests a general link. We're looking for a complex body of knowledge that surrounds
+          or contributes to understanding the origin of the universe.
+    scene: A news reporter describing an active scientific research facility.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: They didn't believe any of the scandals associated with that novelist.
+    japanese:
+      - 彼 ら は、その 小説 家 {に まつわら なかっ た} スキャンダル を 一切 信じ ませ ん でし た。
+      - 彼 ら は、その 小説 家 {に まつわら なかっ た} スキャンダル を 一切 信じ なかっ た。
+    english_literally: They didn't believe any of the scandals coiling around that novelist.
+    competing_grammar:
+      - competing_japanese:
+          - その 小説 家 {に 関する} スキャンダル
+        english: Scandals concerning that novelist.
+        hint: Scandals often *surround* or *cling to* public figures, forming a narrative or collection
+          of negative rumors. 「にまつわる」 implies this persistent, entangled association rather than just
+          factual information *about* the novelist, making it more fitting for describing pervasive rumors.
+      - competing_japanese:
+          - その 小説 家 {に つい て の} スキャンダル
+        english: Scandals about that novelist.
+        hint: Scandals often *surround* or *cling to* public figures, forming a narrative or collection
+          of negative rumors. 「にまつわる」 implies this persistent, entangled association rather than just
+          factual information *about* the novelist, making it more fitting for describing pervasive rumors.
+      - competing_japanese:
+          - 彼 ら は、その 小説 家 {に 関係 の なかっ た} スキャンダル を 一切 信じ ませ ん でし た。
+        english: They didn't believe any of the scandals that had no connection to that novelist.
+        hint: 「関係がない」 is a general lack of connection. We're looking for scandals that surrounded or clung
+          to public figures, forming a narrative or collection of negative rumors.
+    scene: A group of fans defending their favorite author against negative press.
+    register: semi-formal
+    setting: supportive
+    conjugation: negative past plain (～なかった)
+    listener_gender: group
+    nuance: The use of 「一切信じませんでした」 (issai shinjimasen deshita) emphasizes their complete disbelief and
+      strong support for the novelist.
+  - english: The legend says that there is a treasure related to the old castle.
+    japanese:
+      - あの 古城 {に まつわる} 宝物 の 伝説 が ある そう だ。
+      - あの 古城 {に まつわる} 宝物 の 伝説 が ある と 言わ れ て いる。
+    english_literally: There is a legend of a treasure coiling around that old castle.
+    competing_grammar:
+      - competing_japanese:
+          - あの 古城 {に 関する} 宝物 の 伝説
+        english: A legend of treasure concerning that old castle.
+        hint: 「にまつわる」 specifically emphasizes the way legends and stories become intertwined with a place
+          over time, making it more evocative for a tale of a treasure that has *grown around* the castle's
+          history.
+    scene: Friends sharing local folklore while visiting an ancient ruin.
+    register: casual
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+  - english: These mysterious phenomena are said to be related to ancient rituals.
+    japanese:
+      - これ ら の 不思議 な 現象 は、古い 儀式 {に まつわる} もの だ と 言わ れ て いる。
+      - これ ら の 不思議 な 現象 は、古い 儀式 {に まつわる} もの だ そう だ。
+    english_literally: These mysterious phenomena are said to be things coiling around ancient rituals.
+    competing_grammar:
+      - competing_japanese:
+          - これ ら の 不思議 な 現象 は、古い 儀式 {に 関する} もの だ と 言わ れ て いる。
+        english: These mysterious phenomena are said to be things concerning ancient rituals.
+        hint: For phenomena that are deeply connected or have their origins in ancient practices, 「にまつわる」
+          conveys a sense of inherent entanglement, rather than just a general relation.
+    scene: A documentary narrator explaining unexplained events.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He has published many essays reflecting on the difficulties associated with his long career.
+    japanese:
+      - 彼 は、長い キャリア {に まつわる} 苦労 を 振り返る エッセイ を 多く 発表 し て いる。
+      - 彼 は、長い キャリア {に まつわる} 苦労 を 振り返る エッセイ を 多く 発表 し て い ます。
+    english_literally: He has published many essays reflecting on the hardships coiling around his long
+      career.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、長い キャリア {に 関する} 苦労 を 振り返る エッセイ を 多く 発表 し て いる。
+        english: He has published many essays reflecting on the hardships concerning his long career.
+        hint: 「にまつわる」 here implies that the hardships were an integral part of and intrinsically linked
+          to his career journey, a more profound connection than a simple 'concerning'.
+    scene: A literary critic reviewing an author's latest work.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「振り返るエッセイ」 (furikaeru essei) implies a reflective, personal account, where the
+      hardships are not just topics, but woven into the fabric of his career.
+post_example_writeup: 「にまつわる」 is useful for describing connections between topics and related information,
+  especially in formal or academic contexts. It adds a layer of sophistication to the language. While
+  primarily used in its dictionary form to modify a noun, other conjugations can be used when the context
+  requires expressing tense or negation, though they are less common in this specific grammatical pattern.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にまつわる

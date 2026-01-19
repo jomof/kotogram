@@ -1,0 +1,399 @@
+grammar_point: 見える (to be visible・to seem)
+learn_before:
+  - びる (to seem like)
+  - 真上 (directly above)
+meaning: To be visible, to seem, to be in sight.
+meaning_warning: 見える was originally a conjugation of 見る, but nowadays we treat it as a standalone intransitive
+  verb. It is also used in honorific speech, meaning “to come.”
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 見える
+    rarity: common
+    meaning: to be visible
+  - conjugation-type: non-past polite (～ます)
+    form: 見えます
+    rarity: common
+    meaning: is visible (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 見えない
+    rarity: common
+    meaning: not visible
+  - conjugation-type: negative non-past polite (～ません)
+    form: 見えません
+    rarity: common
+    meaning: is not visible (polite)
+  - conjugation-type: past plain (～た)
+    form: 見えた
+    rarity: common
+    meaning: was visible
+  - conjugation-type: past polite (～ました)
+    form: 見えました
+    rarity: common
+    meaning: was visible (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 見えなかった
+    rarity: common
+    meaning: was not visible
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 見えませんでした
+    rarity: common
+    meaning: was not visible (polite)
+  - conjugation-type: te-form (～て)
+    form: 見えて
+    rarity: common
+    meaning: being visible; in a visible state
+  - conjugation-type: conditional (～ば)
+    form: 見えれば
+    rarity: uncommon
+    meaning: if visible
+  - conjugation-type: conditional (～たら)
+    form: 見えたら
+    rarity: uncommon
+    meaning: if it becomes visible
+  - conjugation-type: volitional (～よう)
+    form: 見えよう
+    rarity: very rare
+    meaning: let's be visible; probably visible
+  - conjugation-type: volitional polite (～ましょう)
+    form: 見えましょう
+    rarity: very rare
+    meaning: let's be visible (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 見えろ
+    rarity: rare
+    meaning: be visible! (command)
+  - conjugation-type: imperative polite (～なさい)
+    form: 見えなさい
+    rarity: rare
+    meaning: please be visible (polite command)
+  - conjugation-type: potential (～られる/～える)
+    form: 見えられる
+    rarity: rare
+    meaning: can be visible (redundant/less common)
+  - conjugation-type: causative (～させる)
+    form: 見えさせる
+    rarity: rare
+    meaning: to make visible
+pronunciation:
+  katakana: ミエル
+  romaji: mieru
+formation:
+  Subject が + 見える: Indicates that something is visible or can be seen.
+  Object に + Subject が + 見える: Indicates how something appears to someone (it seems or looks a certain
+    way).
+  Modifier + 見える: Describes how something appears or looks with an adverbial modifier.
+jlpt: N4
+etymology: 見える is derived from the verb 見る (miru), meaning "to see." Over time, it evolved into an intransitive
+  verb, indicating that something is visible without active intention. It also gained a usage to describe
+  appearance or seeming.
+writeup: "The grammar point 見える (mieru) is an intransitive verb used to describe something that is **visible**\
+  \ or **can be seen spontaneously** without conscious effort. It inherently expresses a state of being\
+  \ seen, much like 聞こえる (kikoeru) expresses a state of being audible.\n\nWhen using 見える to describe something\
+  \ that is visible, the object that is seen is typically marked with the particle が. For instance, 「富士山\
+  \ が 見える」 (Fuji-san ga mieru) means \"Mount Fuji is visible\" or \"Mount Fuji can be seen.\"\n\n見える can\
+  \ also be used to describe **how something appears or looks**. In this case, it is often preceded by\
+  \ an adverbial modifier. For example, an い-adjective will change to its く-form (e.g., 小さい → 小さく), and\
+  \ a な-adjective or noun will be followed by に (e.g., きれいな → きれいに, 学生 → 学生に). For instance, 「小さく 見える」\
+  \ (chiisaku mieru) means \"it looks small,\" and 「学生に 見える」 (gakusei ni mieru) means \"he/she looks like\
+  \ a student.\"\n\n**Important Considerations:**\n\nThe primary distinction between 見える and 見られる (mirareru),\
+  \ the potential form of 見る (miru), lies in the **intentionality of seeing**. \n\n*   **見える** implies\
+  \ that something simply comes into your field of vision, often without active concentration. It's about\
+  \ what is *unavoidably visible* if you are in the right position.\n*   **見られる** on the other hand, implies\
+  \ the *ability* to see something, often requiring effort, focus, or specific conditions to be met. For\
+  \ example, if you are looking for a rare bird, you might say 「鳥 が 見られる」 (tori ga mirareru) meaning \"\
+  I can see the bird\" (implying you successfully spotted it).\n\nAdditionally, 見える can refer to the **sense\
+  \ of sight itself**, indicating whether a person has the faculty of vision or not. For example, 「目 が\
+  \ 見えない」 (me ga mienai) means \"cannot see\" or \"is blind.\"\n\nWhile 見える was historically a potential\
+  \ form of 見る, it has evolved into a distinct intransitive verb in modern Japanese, focusing on the state\
+  \ of visibility rather than the action of seeing."
+false_friends:
+  - term: 見られる
+    meaning: to be able to see; can see (potential of 見る)
+    kind: similar expression
+    nuance: 見られる implies an active ability or permission to see, often requiring effort or specific conditions.
+      For example, 「努力すれば道が見られる」 (If you try, you can see the path). In contrast, 見える describes a passive
+      state of being visible without active intention.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: とみえる
+    meaning: it seems; it appears (deduction based on observation)
+    kind: often confused with
+    nuance: とみえる (e.g., 「疲れているとみえる」 'he seems tired') expresses a speaker's inference or deduction about
+      a situation based on observation, rather than simply stating something is visible. It functions
+      as a sentence-final expression indicating a conclusion. 見える focuses on direct visual appearance.
+    grammar_point: とみえる (seems from observation)
+  - term: らしい
+    meaning: appears to be; seems (based on hearsay or logical inference)
+    kind: similar expression
+    nuance: らしい conveys a sense of conjecture or inference based on what is heard or observed, often with
+      a subtle nuance of vagueness or indirectness. It implies the speaker's judgment about something's
+      nature. In contrast, 見える describes a direct visual appearance or a spontaneous state of visibility.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+post_false_friends_writeup: When distinguishing between 見える, 見られる, とみえる, and らしい, remember that 見える describes
+  what is passively visible or how something appears visually without intentional effort. 見られる, the potential
+  form of 見る, indicates an active ability to see something. とみえる implies a deduction or inference about
+  a situation based on observation, often used as a sentence-final conclusion. らしい, on the other hand,
+  expresses a conjecture or inference based on information or general impression, carrying a sense of
+  likelihood rather than direct visual evidence.
+examples:
+  - english: Mount Fuji is visible from the window.
+    japanese:
+      - 窓 から 富士 山 が {見え ます}。
+      - 窓 から 富士 山 が {見える}。
+    english_literally: From the window, Mount Fuji is visible.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 から 富士 山 が {見 られ ます}。
+        english: Mount Fuji can be seen from the window (implying ability).
+        hint: 「見られます」 indicates an active ability to see something. We're looking for an expression that
+          describes something passively visible.
+    scene: You are staying in a hotel room with a great view and want to tell someone about it.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「見えます」 politely conveys that Mount Fuji is simply there, in one's field of vision,
+      without any active effort to look at it.
+    etymology: The particle 「から」 indicates the origin or point from which something is seen, in this case,
+      'from the window'. 「が」 marks the subject of the intransitive verb 見える, indicating what is visible.
+  - english: There's a small building visible in the distance, but I wonder what it is.
+    japanese:
+      - 遠く に 小さな 建物 が {見える} けど、あれ は 何 だろう。
+      - 遠く に 小さな 建物 が {見え ます} けど、あれ は 何 でしょ う か。
+      - 遠く に 小さな 建物 が {見える} けど、あれ は 何 か な。
+    english_literally: In the distance, a small building is visible, but what is that, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 遠く に 小さな 建物 が {見つけ られる} けど、あれ は 何 だろう。
+        english: A small building can be spotted in the distance, but I wonder what it is.
+        hint: 「見つけられる」 implies an active act of spotting or finding something. We're looking for something
+          that is simply in sight.
+    scene: You are on a train journey and notice something unclear out the window, asking your travel
+      companion.
+    register: casual
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual ending 「けど」 (but) connects two clauses, expressing a mild doubt or question about
+      the visible building. 「何だろう」 (I wonder what it is) is a common casual male expression for pondering
+      something.
+    etymology: The use of 「～だろう」 comes from 「であろう」 which is a volitional form of the copula 「だ」, used
+      to express conjecture or uncertainty. 「遠く に」 indicates location or direction, here meaning 'in the
+      distance'.
+  - english: Does this outfit make me look fat?
+    japanese:
+      - この 服、私 に は 太っ て {見える} か な。
+      - この 服、俺 に は 太っ て {見える} か な。
+      - この 服、私 に は 太っ て {見え ます} か。
+    english_literally: This clothes, to me, does it look fat, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - この 服、私 に は 太っ て {感じる} か な。
+        english: Does this outfit make me feel fat?
+        hint: 「感じる」 refers to one's own subjective feeling. We're looking for how something appears visually
+          to someone.
+    scene: A woman tries on a new outfit before an event and asks her friend for an honest opinion.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual ending 「かな」 suggests a personal, slightly unsure inquiry, typical in close conversations.
+      The female speaker's concern over appearance is a common nuance for female speakers. 「私 に は」 emphasizes
+      the perspective of 'to me' or 'in my eyes'.
+    etymology: The 「て」 form of the verb 「太る」 (futoru, to get fat) combined with 「見える」 forms a construction
+      meaning 'looks/appears to be [state]'. This is common for describing appearance with adjectives.
+  - english: That job looks difficult, but it's actually easy.
+    japanese:
+      - その 仕事 は 難しく {見える} けど、実際 は 簡単 だ よ。
+      - その 仕事 は 難しく {見え ます} が、実際 は 簡単 です よ。
+    english_literally: That job looks difficult, but in reality, it is easy.
+    competing_grammar:
+      - competing_japanese:
+          - その 仕事 は 難しい {そう だ} けど、実際 は 簡単 だ よ。
+        english: That job seems difficult, but it's actually easy.
+        hint: 「～そうだ」 often indicates something appears to be a certain way based on observation or hearsay.
+          We're looking for how it visually presents itself.
+    scene: You are giving advice to a friend who is hesitant about taking on a new task.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「難しく 見える」 (looks difficult) implies a visual impression rather than a proven fact.
+      The sentence-final particle 「よ」 adds emphasis and conveys certainty or advice from the speaker.
+    etymology: 「難しく」 is the adverbial form of the い-adjective 「難しい」 (muzukashii, difficult), commonly
+      used to modify verbs like 見える to describe how something 'appears' or 'looks'.
+  - english: If you darken the room, the stars should be clearly visible.
+    japanese:
+      - 部屋 を 暗く し たら、星 が はっきり と {見える} はず です。
+      - 部屋 を 暗く し たら、星 が はっきり と {見える} はず だ。
+    english_literally: If you make the room dark, the stars should clearly be visible.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 を 暗く し たら、星 が はっきり と {見 られる} はず です。
+        english: If you darken the room, the stars should clearly be able to be seen.
+        hint: 「見られる」 refers to the ability to see. We're looking for something that indicates the stars
+          will become apparent to the eye.
+    scene: You are explaining to a child how to best see stars at night.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: 「見える はず です」 expresses a strong expectation or likelihood, indicating that under the specified
+      conditions (darkening the room), the stars will naturally become visible. The polite 「です」 makes
+      it suitable for instructing a child.
+    etymology: 「はず です」 is a grammatical construction indicating expectation or certainty, originating
+      from 「筈」, a noun meaning 'expectation' or 'schedule'. 「はっきりと」 is an adverb meaning 'clearly', derived
+      from 「はっきり」, an onomatopoeic word suggesting clarity.
+  - english: He looks so youthful, he doesn't seem old at all.
+    japanese:
+      - 彼 は 年寄り に {見え ない} くらい 若々しい です ね。
+      - 彼 は 年寄り に {見え ない} くらい 若々しい ね。
+    english_literally: He is so youthful that he does not look old.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 年寄り だ と {思え ない} くらい 若々しい です ね。
+        english: He is so youthful that you can't believe he's old.
+        hint: 「～と思えない」 indicates a disbelief or inability to think something. We're looking for an expression
+          that describes someone's visual appearance.
+    scene: You are complimenting an acquaintance's youthful appearance to another friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「年寄り に 見えない」 (doesn't look like an old person) is a specific negative usage of 見える describing
+      appearance. The combination with 「くらい」 (to the extent that) emphasizes the degree of his youthfulness.
+      The final 「ね」 seeks agreement and fosters a friendly atmosphere, common in female conversation.
+    etymology: The particle 「に」 here indicates the state or appearance something takes, meaning 'as' or
+      'like'. 「くらい」 (often written in hiragana) indicates degree or extent, originally from 「位」 meaning
+      'rank' or 'position'.
+  - english: Due to an old accident, he cannot see with his left eye.
+    japanese:
+      - 昔 の 事故 の せい で、彼 は 左目 が {見え ませ ん}。
+      - 昔 の 事故 の せい で、彼 は 左目 が {見え ない}。
+    english_literally: Because of an old accident, his left eye cannot see.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の 事故 の せい で、彼 は 左目 を {見る こと が でき ませ ん}。
+        english: Because of an old accident, he cannot look with his left eye.
+        hint: 「見る こと が でき ませ ん」 implies an inability to actively look at something. We're looking for
+          a statement about the involuntary state of vision itself.
+    scene: You are explaining someone's visual impairment to a sympathetic listener.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+    nuance: 「見えません」 here refers to the physical inability to see, emphasizing a permanent state rather
+      than a temporary action. 「～の せい で」 (due to) explicitly indicates the cause of his impaired vision,
+      conveying a factual and slightly sympathetic tone.
+    etymology: 「せい」 (lit. 'fault' or 'reason') in 「～の せい で」 indicates a cause, often for something negative.
+      It's a common phrase for attributing responsibility or reason.
+  - english: In this darkness, the characters become difficult to see.
+    japanese:
+      - この 暗 さ で は、文字 が {見え にくく} なり ます。
+      - この 暗 さ で は、文字 が {見え にくく} なる。
+    english_literally: In this darkness, characters become hard to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - この 暗 さ で は、文字 が {読み づらく} なり ます。
+        english: In this darkness, the characters become hard to read.
+        hint: 「読みづらい」 specifically refers to the difficulty of reading. We're looking for a general difficulty
+          in being visible or discernible.
+    scene: You are advising someone trying to read in poor lighting.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: 「見え にくく なり ます」 (becomes difficult to see) uses the suffix 「～にくい」, which indicates difficulty
+      in performing an action or experiencing a state. It highlights the passive challenge of discerning
+      characters in low light conditions.
+    etymology: The suffix 「～にくい」 is affixed to the stem of a verb to indicate difficulty, while 「～くなる」
+      is a common verb ending that expresses a change of state. 「暗さ」 is a noun derived from the adjective
+      「暗い」 (kurai, dark), meaning 'darkness'.
+  - english: Your face looks pale. Are you okay?
+    japanese:
+      - 顔色 が 青く {見え ます} が、大丈夫 です か。
+      - 顔色 が 青く {見える} けど、大丈夫 か。
+    english_literally: Complexion looks pale, but, are you okay?
+    competing_grammar:
+      - competing_japanese:
+          - 顔色 が 青い {そう です} が、大丈夫 です か。
+        english: It seems your complexion is pale, are you okay?
+        hint: 「～そうだ」 often indicates something appears a certain way based on general observation or hearsay.
+          We're looking for a direct visual appearance.
+    scene: You notice a friend or colleague looks unwell and you want to express concern.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+    nuance: 「青く 見えます」 uses the adverbial form of 「青い」 (aoi, blue/pale) with 見える to describe a visual state.
+      The particle 「が」 here acts as a soft connector before the polite question 「大丈夫 です か」, expressing
+      concern.
+    etymology: 「顔色」 (kaoiro) literally means 'face color', referring to one's complexion or pallor. The
+      adverbial form 「青く」 is essential for modifying 見える to describe how the color appears.
+  - english: From here, the entire city can be seen.
+    japanese:
+      - ここ から は、街 全体 が {見え ます}。
+      - ここ から は、街 全体 が {見える}。
+    english_literally: From here, the entire city is visible.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から は、街 全体 を {見る こと が でき ます}。
+        english: From here, you can see the entire city.
+        hint: 「見る こと が でき ます」 emphasizes the active ability to see. We're looking for a statement about
+          the passive state of being visible from a certain point.
+    scene: You are standing at a high viewpoint, like an observation deck, and describing the panoramic
+      view.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 「ここ から は」 specifies the location and uses the topic particle 「は」 to highlight the vantage
+      point. 「街 全体 が 見えます」 conveys that the city is spontaneously and comprehensively visible, without
+      any special effort from the observer.
+    etymology: 「街」 (machi) refers to a town or city. 「全体」 (zentai) means 'whole' or 'entirety'. The combination
+      emphasizes the completeness of what is visible. 「ここ から」 indicates the starting point of observation.
+  - english: The truth is starting to become visible.
+    japanese:
+      - 真実 が {見え} 始め て い ます。
+      - 真実 が {見え} 始め て いる。
+    english_literally: The truth has started to become visible.
+    competing_grammar:
+      - competing_japanese:
+          - 真実 が {分かり} 始め て い ます。
+        english: The truth is starting to be understood.
+        hint: 「分かる」 refers to understanding or knowing something. We're looking for the sense of something
+          visually emerging or becoming clear.
+    scene: After a long investigation, you are discussing the emerging facts with a colleague.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: 「見え 始め て い ます」 (is starting to become visible) uses the `Verb[masu-stem]+はじめる` construction
+      to indicate the beginning of a process. Here, it metaphorically means the truth is gradually becoming
+      clear, like an object slowly emerging from fog. It suggests an ongoing revelation.
+    etymology: 「始める」 (hajimeru) means 'to begin' or 'to start'. When combined with the ます-stem of another
+      verb, it indicates the beginning of that action or state. This usage of 見える extends beyond literal
+      sight to abstract concepts.
+  - english: I can see a light at the end of the tunnel.
+    japanese:
+      - トンネル の 先 に 光 が {見え ます}。
+      - トンネル の 先 に 光 が {見える}。
+    english_literally: At the end of the tunnel, a light is visible.
+    competing_grammar:
+      - competing_japanese:
+          - トンネル の 先 に 光 を {見つける こと が でき ます}。
+        english: I can find a light at the end of the tunnel.
+        hint: 「見つける」 implies actively searching and finding. We're looking for something that simply comes
+          into view without effort.
+    scene: You are encouraging someone who is going through a difficult period, using a common idiom.
+    register: teineigo (polite)
+    setting: inspirational
+    conjugation: non-past polite (～ます)
+    nuance: This is an idiomatic use of 見える, indicating hope or a clear path forward after a period of
+      difficulty. The spontaneous visibility of the light suggests a natural emergence of hope, rather
+      than an effort to find it.
+    etymology: 「トンネル の 先」 (tonneru no saki) literally means 'the tip/end of the tunnel'. This phrase is
+      a direct translation of a common English idiom, but it functions naturally in Japanese to convey
+      the same metaphorical meaning of hope appearing after a struggle.
+post_example_writeup: 'The examples highlight how 見える is used both for spontaneous visibility of objects
+  and to describe how something appears. The distinction from 見られる is crucial: 見える focuses on the inherent
+  state of visibility, while 見られる emphasizes the ability or permission to actively see something.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/見える

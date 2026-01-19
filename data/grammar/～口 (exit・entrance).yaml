@@ -1,0 +1,216 @@
+grammar_point: ～口 (exit・entrance)
+better_grammar_point_name:
+  - <suggest>:口 (opening・entrance・exit・counter)
+learn_before:
+  - どこ (where)
+meaning: opening, entrance, exit, or counter
+pronunciation:
+  katakana: グチ・クチ
+  romaji: guchi・kuchi
+formation:
+  Noun + 口 (ぐち / くち): Used as a suffix to indicate a specific type of opening, entrance, exit, or a counter
+    where a service is provided.
+jlpt: N5
+etymology: The kanji 「口」 (kuchi) literally means "mouth." Its application in Japanese extends beyond the
+  physical mouth to encompass any opening, entrance, or exit point. Over time, it developed a broader
+  meaning to include service counters or specific access points, stemming from the idea of a "mouth" or
+  "opening" for interaction or passage.
+writeup: |-
+  The suffix 「口」 (kuchi or guchi, depending on rendaku) is a versatile component in Japanese, primarily used to denote an opening, an entrance, an exit, or a service counter. It is attached to nouns to specify the nature of the opening or the function of the counter.
+
+  Its most common uses are seen in directional terms for stations and buildings, such as 「東口」 (higashiguchi - East Exit) or 「入口」 (iriguchi - entrance). It can refer to physical openings like 「非常口」 (hijouguchi - emergency exit) or 「投函口」 (toukankuchi - mail slot).
+
+  Beyond physical openings, 「口」 also extends to various types of service windows or counters, for example, 「窓口」 (madoguchi - ticket or service window/counter) or 「レジ口」 (rejiguchi - cash register counter). In more abstract contexts, it can refer to a source or channel, though these uses are typically for more advanced learners.
+false_friends:
+  - term: ドア
+    meaning: door
+    kind: similar expression
+    nuance: 「口」 refers to the opening or access point itself, or a type of counter, while 「ドア」 refers
+      to the physical movable barrier that covers an opening. For example, a 「ドア」 is part of an 「入口」.
+    grammar_point: <suggest>:ドア (door)
+  - term: ゲート
+    meaning: gate
+    kind: similar expression
+    nuance: 「口」 is often an integral part of a word describing a passage or counter, while 「ゲート」 refers
+      to a physical structure, usually larger than a door, that controls entry or exit.
+    grammar_point: <suggest>:ゲート (gate)
+  - term: 開口部
+    meaning: opening, aperture
+    kind: similar expression
+    nuance: 「〜口」 is a suffix typically attached to nouns to specify a type of entrance, exit, or service
+      counter. In contrast, 「開口部」 is a broader, more general, and often technical term for any physical
+      opening or aperture.
+    grammar_point: <suggest>:開口部 (opening・aperture)
+post_false_friends_writeup: While 「ドア」 and 「ゲート」 are physical objects associated with openings, 「〜口」 is
+  a suffix that defines the *type* or *function* of an opening or service point. 「開口部」 is a more generic
+  term for an opening, lacking the specific functional nuance that 「〜口」 provides.
+examples:
+  - english: Could you please tell me where the East Exit of the station is?
+    japanese:
+      - 駅 の 東 {口} は どこ です か？
+      - 駅 の 東 {口} は どちら です か？
+      - 東 {口} は どこ です か？
+    english_literally: Station's east exit is where?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の 東 の ドア は どこ です か？
+        english: Where is the east door of the station?
+        hint: 「ドア」 refers to the physical door. We are asking for the specific exit location or opening,
+          not just a door. We're looking for the designated exit.
+    scene: A tourist is asking for directions at a busy train station.
+    register: teineigo (polite)
+    setting: informative
+  - english: The entrance to the building is on the right.
+    japanese:
+      - ビル の {入り口} は 右側 に あり ます。
+      - ビル の {入り口} は 右側 です。
+      - 建物 の {入り口} は 右手 に あり ます。
+    english_literally: Building's entrance is right side at exists.
+    competing_grammar:
+      - competing_japanese:
+          - ビル の ドア は 右側 に あり ます。
+        english: The building's door is on the right.
+        hint: 「ドア」 refers to the physical movable barrier. We're looking for the designated entrance opening
+          to the building. We're looking for the overall entrance, not just the physical door.
+    scene: A guide is showing a group around a new office building.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Please go to the ticket counter for inquiries.
+    japanese:
+      - お 問い合わせ は 切符 売り場 の {窓口} へ どうぞ。
+      - お 問い合わせ は {窓口} へ どうぞ。
+      - 切符 売り場 の {窓口} まで お 願い し ます。
+    english_literally: Inquiries, ticket selling place's window to please.
+    competing_grammar:
+      - competing_japanese:
+          - お 問い合わせ は 切符 売り場 まで どうぞ。
+        english: Please go to the ticket selling place for inquiries.
+        hint: This simply states the location. We are specifically referring to the service counter where
+          inquiries are handled. We're looking for the specific counter, not just the general area.
+    scene: An announcement is made at a theater before a show.
+    register: teineigo (polite)
+    setting: informative
+  - english: Where is the emergency exit?
+    japanese:
+      - 非常 {口} は どこ です か？
+      - 非常 {口} は どちら です か？
+      - 非常 {口} どこ です か？
+    english_literally: Emergency exit is where?
+    competing_grammar:
+      - competing_japanese:
+          - 非常 ドア は どこ です か？
+        english: Where is the emergency door?
+        hint: While a door, 「ドア」 is the physical barrier. We're looking for the designated exit opening.
+          We're looking for the point of exit, not the physical door.
+    scene: During a fire drill at a school.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: Please pay at the cash register.
+    japanese:
+      - お 会計 は レジ {口} で お 願い し ます。
+      - お 会計 は レジ {口} で。
+      - お 支払い は レジ {口} で お 願い いたし ます。
+    english_literally: Payment, cash register opening at please do.
+    competing_grammar:
+      - competing_japanese:
+          - お 会計 は レジ で お 願い し ます。
+        english: Please pay at the cash register.
+        hint: 「レジ」 refers to the cash register machine itself. We are specifically referring to the counter
+          or station where the transaction takes place. We're looking for the specific counter where payment
+          is made.
+    scene: A staff member is directing a customer at a supermarket.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The mail slot is at the front of the building.
+    japanese:
+      - 郵便 物 投函 {口} は 建物 の 正面 に あり ます。
+      - 郵便 投函 {口} は 建物 の 正面 です。
+    english_literally: Mail object slot is building's front at exists.
+    competing_grammar:
+      - competing_japanese:
+          - 郵便 物 を 投函 する 場所 は 建物 の 正面 に あり ます。
+        english: The place to drop off mail is at the front of the building.
+        hint: This is a more general description of a place. We are looking for the specific opening designed
+          for mail submission. We're looking for the specific mail slot.
+    scene: A post office worker is explaining where to drop off mail.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please stand near the entrance of the escalator.
+    japanese:
+      - エスカレーター の 乗り {口} の 近く に お 立ち ください。
+      - エスカレーター 乗り {口} の 近く に お 立ち ください。
+      - エスカレーター の 乗り {口} 付近 に お 並び ください。
+    english_literally: Escalator's boarding opening's near at stand please.
+    competing_grammar:
+      - competing_japanese:
+          - エスカレーター の 入り口 の 近く に お 立ち ください。
+        english: Please stand near the entrance of the escalator.
+        hint: 「入り口」 is a general term for 'entrance'. 「乗り口」 specifically refers to the point where one
+          boards a vehicle or ride. We're looking for the specific boarding point.
+    scene: An announcement is made at a shopping mall.
+    register: teineigo (polite)
+    setting: instructional
+  - english: This is the car entrance for the parking lot.
+    japanese:
+      - こちら が 駐車 場 へ の 車 の {入り口} です。
+      - こちら が 駐車 場 の 車 {入り口} です。
+      - 駐車 場 へ の 車 の {入り口} は こちら です。
+    english_literally: This is parking lot to car's entrance.
+    competing_grammar:
+      - competing_japanese:
+          - こちら が 駐車 場 へ の 車 の ゲート です。
+        english: This is the car gate for the parking lot.
+        hint: 「ゲート」 refers to a physical barrier, often larger than a door. While a gate might be at the
+          entrance, 「入り口」 refers to the overall access point or opening. We're looking for the entrance,
+          not just the physical gate.
+    scene: A security guard is directing a driver at a large facility.
+    register: teineigo (polite)
+    setting: informative
+  - english: The exit of the park is over there.
+    japanese:
+      - 公園 の {出口} は あそこ です。
+      - 公園 の {出口} は あそこ だ よ。
+      - 公園 の {出口} は あちら です。
+    english_literally: Park's exit is over there.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の 門 は あそこ です。
+        english: The gate of the park is over there.
+        hint: 「門」 refers to a gate, a physical structure. 「出口」 refers to the designated exit point or
+          opening from the park. We're looking for the exit, not just the gate itself.
+    scene: A parent is telling their child where to go to leave the park.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: The use of 「あそこ」 (asoko) for 'over there' and the plain form 「です」 (desu) contributes to a
+      casual, parental tone. 「出口」 (deguchi) is standard for 'exit'.
+  - english: The entrance to the cave was surprisingly small.
+    japanese:
+      - 洞窟 の {入り口} は 意外 と 小さかっ た です。
+      - 洞窟 の {入り口} は 意外 と 小さかっ た。
+      - 洞窟 の {入り口} が 意外 に 小さかっ た です。
+    english_literally: Cave's entrance was surprisingly small.
+    competing_grammar:
+      - competing_japanese:
+          - 洞窟 の 穴 は 意外 と 小さかっ た です。
+        english: The hole in the cave was surprisingly small.
+        hint: 「穴」 is a general term for 'hole'. While a cave entrance might be a hole, 「入り口」 specifically
+          denotes the access point for entering. We're looking for the entrance, not just any hole.
+    scene: Someone recounting their adventure exploring a cave.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: Where is the West Exit for the train station?
+    japanese:
+      - 電車 の 駅 の 西 {口} は どこ です か？
+      - 電車 の 駅 の 西 {口} は どちら です か？
+      - 西 {口} は どこ です か？
+    english_literally: Train's station's west exit is where?
+    competing_grammar:
+      - competing_japanese:
+          - 電車 の 駅 の 西側 は どこ です か？
+        english: Where is the west side of the train station?
+        hint: 「西側」 refers to the west side in general. We are looking for the specific exit on the west
+          side. We're looking for the designated exit, not just the general side.
+    scene: Someone asks a local for directions to a specific station exit.
+    register: teineigo (polite)
+    setting: interrogative

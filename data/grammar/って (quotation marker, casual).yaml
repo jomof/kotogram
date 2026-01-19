@@ -1,0 +1,266 @@
+grammar_point: って (quotation marker, casual)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+meaning: casual quotation marker for reported speech or thoughts
+pronunciation:
+  katakana: ッテ
+  romaji: tte
+formation:
+  '[Casual Verb] + って': Used to quote what someone said or thought, or to report an action.
+  '[Casual い-Adjective] + って': Used to quote what someone said or thought, or to report a state.
+  '[Casual な-Adjective] + って': Used to quote what someone said or thought, or to report a state.
+  '[Noun] + って': Used to quote what someone said or thought, or to report a noun as a statement.
+jlpt: N4
+etymology: The particle って is a contraction of と言って (to say and), providing a more casual and abbreviated
+  way to introduce reported speech or thoughts. Its evolution reflects the natural tendency in spoken
+  language to shorten frequently used phrases.
+writeup: The particle って serves as a highly casual quotation marker in Japanese. It is primarily used
+  in informal conversation to report what someone said, thought, or heard. It functions similarly to the
+  more formal と (quotation marker) but carries a significantly more relaxed and conversational tone. Think
+  of it as a shorthand for phrases like と言った (said that) or と聞いた (heard that). Because of its informal
+  nature, って is frequently used among close friends and family, and generally avoided in formal or polite
+  contexts. It's often found at the end of a casual verb, い-adjective, な-adjective, or noun to directly
+  quote or summarize its content.
+false_friends:
+  - term: と (quotation marker)
+    meaning: direct or indirect quotation marker
+    kind: similar expression
+    nuance: While と also marks quotations, it is more formal and versatile. って is strictly casual and
+      tends to be used for shorter, more direct reports in conversation. と can be used in both formal
+      and casual settings, whereas って is limited to casual.
+    grammar_point: と (quotation marker)
+  - term: んだって (I heard, casual)
+    meaning: I heard that...
+    kind: similar expression
+    nuance: んだって explicitly conveys that the information is hearsay or something the speaker recently
+      learned, emphasizing 'I heard'. って, when used for quotation, can imply hearsay but doesn't always
+      emphasize it to the same degree. んだって adds the nuance of explanation (ん).
+    grammar_point: んだって (I heard, casual)
+  - term: って (casual quotation・reason・topic)
+    meaning: casual quotation, reason, or topic marker
+    kind: similar expression
+    nuance: This grammar point, 'って (quotation marker, casual)', specifically focuses on its function
+      as a quotation marker. The broader particle 'って' can also be used to introduce a topic or provide
+      a casual reason, functions which are distinct from pure quotation and are covered by the more general
+      grammar point.
+    grammar_point: って (casual quotation・reason・topic)
+  - term: だって (even・too・because)
+    meaning: even, too, because
+    kind: similar expression
+    nuance: The だって construction has multiple uses, including 'even/too' (e.g., 子供だって分かる - even a child
+      would understand) or providing a reason (e.g., 疲れたんだって - because I'm tired). While 'って' is part
+      of it, its overall function is different from solely marking a quotation.
+    grammar_point: <suggest>:だって (even・too・because)
+post_false_friends_writeup: When distinguishing between って and と, remember that って is almost exclusively
+  for casual, spoken contexts and often implies a more immediate or overheard piece of information. と,
+  on the other hand, is suitable for both casual and formal speech, and can introduce more complex reported
+  clauses. For んだって, the added ん emphasizes that the statement is explanatory and based on something the
+  speaker heard, making the hearsay aspect more prominent than with a simple って. Finally, be aware that
+  って also has other uses beyond quotation, such as marking a topic or giving a casual reason, which are
+  distinct from its use as a quotation marker.
+examples:
+  - english: She said she was hungry.
+    japanese:
+      - 彼女 は『お腹 空い た』{って} 言っ て た。
+      - 彼女 は お腹 空い た {って} 言っ て た。
+      - 彼女、お腹 空い た {って}。
+      - 彼女、お腹 空い た {って} 言っ て た よ。
+      - あの 子、お腹 空い た {って} さ。
+    english_literally: She, 'I'm hungry,' said.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は『お腹 空い た』と 言っ て た。
+        english: She said, 'I'm hungry.'
+        hint: The particle と is a more general quotation marker used in both formal and informal contexts.
+          We're looking for a specifically casual quotation marker.
+      - competing_japanese:
+          - 彼女 が お腹 空い た ん だ って。
+        english: I heard she's hungry.
+        hint: んだって emphasizes that the speaker heard the information, making it more explicit hearsay.
+          We're looking for a simple casual quotation.
+    scene: A friend is reporting what another friend said.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「お腹 空いた」{って} expresses a direct, casual quote from the friend. The speaker, being
+      female, uses the casual form without issue.
+  - english: He said he would go home early today.
+    japanese:
+      - 彼 は 今日 早く 帰る {って} 言っ て た よ。
+      - 彼、今日 早く 帰る {って}。
+      - 今日、彼 早く 帰る {って} 言っ て た。
+      - 今日、彼、早く 帰る {って}。
+    english_literally: He, today early go home, said (particle) (emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今日 早く 帰る と 言っ て た よ。
+        english: He said he would go home early today.
+        hint: と is suitable for general quotation, but we need the more casual particle here.
+    scene: Two colleagues are discussing a third colleague's plans after work.
+    register: casual
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「帰る{って}言ってたよ」 uses the casual form of the verb 帰る followed by って, showing that
+      the speaker is casually reporting what the male colleague said. The final よ adds a sense of informing
+      the listener.
+  - english: My mom said the dinner is ready.
+    japanese:
+      - 母 が ご飯 でき た {って}。
+      - お 母 さん、ご飯 でき た {って} 言っ て た よ。
+      - 母 が ご飯 でき た {って} 言っ て た。
+    english_literally: Mom, rice is ready, (casual quote).
+    competing_grammar:
+      - competing_japanese:
+          - 母 が ご飯 でき た って 言っ て た。
+        english: My mom said dinner is ready.
+        hint: Omitting 言ってた is common in very casual speech, but the prompt asks for a direct quotation
+          using the specified grammar point. This one is too long.
+    scene: A child comes to tell their parent that dinner is ready, reporting what the other parent said.
+    register: casual
+    setting: friendly
+    nuance: This very short sentence 「母がご飯できた{って}」 is typical of extremely casual, familiar speech, often
+      seen in families. The って particle here implies the verb 言った or 言っていた is omitted, which is common
+      in intimate settings.
+  - english: I heard the test was difficult.
+    japanese:
+      - 試験 難しかっ た {って} 聞い た よ。
+      - 試験、難しかっ た {って}。
+      - なんか、試験 難しかっ た {って} 聞い た。
+      - 試験、難しかっ た {って} さ。
+    english_literally: Test was difficult (casual quote) heard (particle).
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 難しかっ た と 聞い た よ。
+        english: I heard the test was difficult.
+        hint: The particle と is more formal for reporting. We need a casual reporting particle.
+      - competing_japanese:
+          - 試験 難しかっ た ん だ って。
+        english: I heard the test was difficult.
+        hint: んだって directly translates to 'I heard', focusing on the source of information. We're looking
+          for a general casual quotation of what was said.
+    scene: A student is talking to a classmate after an exam.
+    register: casual
+    setting: academic
+    nuance: The phrase 「難しかった{って}聞いたよ」 is used to report something heard. The use of って indicates the
+      casual nature of the conversation, common among students. The final よ adds a confirming or informing
+      nuance.
+  - english: He said he's going to work tomorrow.
+    japanese:
+      - 明日 仕事 行く {って}。
+      - 彼、明日 仕事 行く {って} 言っ て た。
+      - 明日 仕事 行く {って} さ。
+      - 明日、仕事 行く {って} よ。
+    english_literally: Tomorrow work go (casual quote).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 明日 仕事 に 行き ます と 申し て おり まし た。
+        english: He said he's going to work tomorrow. (Very polite)
+        hint: This is very polite speech. We're looking for a casual way to report. Also, the person is
+          explicit.
+    scene: A quick update between roommates about a mutual friend's plans.
+    register: casual
+    setting: friendly
+    nuance: This extremely short form, 「明日仕事行く{って}。」, is common when the context is clear and the verb
+      (like 言った or 言ってた) is omitted. It's concise and very casual, typical in conversations between close
+      friends.
+  - english: I thought, 'This is delicious!'
+    japanese:
+      - これ 美味しい {って} 思っ た。
+      - これ、美味しい {って} 感じ た。
+      - これ、美味しい {って} ね。
+      - これ、美味しい {って} 思っ た よ。
+    english_literally: This delicious (casual quote) thought.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 美味しい と 思っ た。
+        english: I thought, 'This is delicious.'
+        hint: と is used here for a thought, but って is for more casual thoughts, especially internal ones.
+    scene: Someone trying a new dish and reflecting on their internal reaction.
+    register: casual
+    setting: reflective
+    nuance: Using 「美味しい{って}思った」 indicates a casual, internal thought process. It feels more spontaneous
+      and less deliberate than using と思った, making it fitting for a personal reflection on taste.
+  - english: She told me she's okay.
+    japanese:
+      - 大丈夫 {って} 彼女 が 言っ て た よ。
+      - 彼女、大丈夫 {って} 言っ て た。
+      - 大丈夫 {って} さ。
+      - 彼女、大丈夫 {って}。
+    english_literally: Okay (casual quote) she was saying (particle).
+    competing_grammar:
+      - competing_japanese:
+          - 大丈夫 と 彼女 が 言っ て た よ。
+        english: She said she's okay.
+        hint: The particle と is more formal and less conversational. We need a casual quotation.
+    scene: A friend is asking about the well-being of another friend.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「大丈夫{って}彼女が言ってたよ」 uses って to casually report the female friend's reassurance. It's
+      a typical conversational exchange among friends, softened by the final よ particle.
+  - english: He said he was sleepy.
+    japanese:
+      - 眠い {って} 言っ て た。
+      - 彼、眠い {って}。
+      - 眠い {って} さ。
+      - 眠い {って} 聞い た。
+    english_literally: Sleepy (casual quote) said.
+    competing_grammar:
+      - competing_japanese:
+          - 眠たい と 言っ て い た。
+        english: He was saying he was sleepy.
+        hint: と言っていた is a more formal or standard way to report, especially with the longer 眠たい. We need
+          the casual って.
+    scene: A parent is telling another parent about their child's state.
+    register: casual
+    setting: friendly
+    nuance: 「眠い{って}言ってた」 uses the casual って to report a simple state. This usage is common in everyday
+      conversations, especially when summarizing or relaying brief remarks.
+  - english: They said it's a secret.
+    japanese:
+      - 秘密 {って}。
+      - 秘密 {って} 言っ て た よ。
+      - あれ、秘密 {って} 聞い た けど。
+      - これ、秘密 {って} さ。
+    english_literally: Secret (casual quote).
+    competing_grammar:
+      - competing_japanese:
+          - 秘密 だ と 申し て おり まし た。
+        english: They said it was a secret. (Very polite)
+        hint: This is a very formal and explicit way to say it. We're looking for a casual and implied
+          quotation.
+    scene: Someone is trying to get information from a friend who is holding back.
+    register: casual
+    setting: friendly
+    nuance: The very concise 「秘密{って}。」 implies 'They said it's a secret' or 'It's supposed to be a secret'
+      in a very casual context, omitting the verb. It's often used when conveying information that was
+      stated briefly or matter-of-factly.
+  - english: I wonder if she thinks it's impossible.
+    japanese:
+      - 無理 {って} 思っ てる の か な。
+      - 無理 {って} 思っ てる みたい だ ね。
+      - 無理 {って} 考え てる ん じゃ ない？
+      - 無理 {って} 感じ てる の か な。
+    english_literally: Impossible (casual quote) thinking (question particle).
+    competing_grammar:
+      - competing_japanese:
+          - 無理 だ と 考え て いる の か な。
+        english: I wonder if she's thinking it's impossible.
+        hint: と考えている is more formal and implies a deeper thought process. We need a casual particle for
+          a more immediate internal thought.
+    scene: Someone is speculating about another person's thoughts.
+    register: casual
+    setting: reflective
+    nuance: 「無理{って}思ってるのかな」 indicates speculation about someone's casual thought. The って makes the reported
+      thought feel more immediate or a direct reflection of their feeling. The final かな expresses personal
+      wonder or uncertainty.
+post_example_writeup: The examples provided illustrate って's versatility in casual communication, whether
+  quoting someone directly, reporting overheard information, or even expressing internal thoughts. The
+  brevity of some examples, where the verb 'to say' is omitted, highlights its integration into highly
+  informal, natural speech patterns. Understanding these nuances is key to sounding more like a native
+  speaker.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/って-quotation-marker-casual

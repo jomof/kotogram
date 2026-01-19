@@ -1,0 +1,314 @@
+grammar_point: と (conditional, inevitable result)
+learn_before:
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+meaning: If, when, whenever; expresses a natural consequence or a general truth.
+pronunciation:
+  katakana: ト
+  romaji: to
+formation:
+  Verb (dictionary form) + と + [result/consequence]: Indicates a natural or inevitable result when an
+    action occurs.
+  い-adjective (plain form) + と + [result/consequence]: Indicates a natural or inevitable result when a
+    state exists.
+  な-adjective (plain form) + だ と + [result/consequence]: Indicates a natural or inevitable result when
+    a state exists.
+  Noun + だ と + [result/consequence]: Indicates a natural or inevitable result when a condition is met.
+jlpt: N4
+etymology: The particle 「と」 originally indicated a co-occurrence or simultaneity. Its use as a conditional
+  evolved from this, implying that when one thing happens, another invariably follows. This connection
+  to simultaneity underlies its strong sense of inevitability in conditional contexts.
+writeup: "The 「と」 conditional expresses a natural, predictable, or inevitable consequence. Think of it\
+  \ as \"when A happens, B *always* happens.\" It is stronger than other conditional forms like 「ば」, 「たら」,\
+  \ or 「なら」 because it highlights a result that is considered a given. \n\nIt is primarily used for:\n\
+  \n*   **General truths or natural phenomena:** Things that are universally true or always occur under\
+  \ certain conditions (e.g., \"When spring comes, flowers bloom.\").\n*   **Directions or instructions:**\
+  \ Describing a sequence of actions with guaranteed, automatic outcomes (e.g., \"If you turn the key,\
+  \ the engine starts.\").\n*   **Habitual actions:** Describing actions that consistently lead to the\
+  \ same outcome (e.g., \"When I get home, I always take a bath.\").\n*   **Discoveries:** Describing\
+  \ what one finds upon doing something, implying an immediate and expected result (e.g., \"When I opened\
+  \ the box, there was a cat inside.\").\n\n**Important Considerations:**\n\n*   The 「と」 conditional describes\
+  \ something inevitable or natural. It **cannot** be used for hypothetical situations, expressing personal\
+  \ will, commands, requests, or suggestions in the result clause. For these, other conditional forms\
+  \ are necessary. For example, you cannot say 「ボタン を 押す と、座り な さい。」 ('If you press the button, sit down.').\n\
+  *   The verb in the 「と」 clause is always in the non-past form, even if referring to a past event whose\
+  \ consequence was immediately observed. The tense of the overall action is indicated in the result clause.\n\
+  *   Its inherent meaning of an automatic, certain consequence sets it apart from other conditional forms,\
+  \ making it suitable for scientific explanations, instruction manuals, or describing fixed routines."
+false_friends:
+  - term: ば (conditional)
+    meaning: If (conditional)
+    kind: similar expression
+    nuance: 「ば」 expresses a more general conditional; the result is not necessarily guaranteed to be automatic
+      or immediate. It can imply the speaker's judgment or a stronger logical deduction rather than an
+      automatic consequence.
+    grammar_point: ば (conditional, if A then B)
+  - term: たら (if・when・after)
+    meaning: If; when; after
+    kind: similar expression
+    nuance: 「たら」 implies that the result is discovered after the action in the first clause is completed,
+      or a past conditional. It can be used for hypothetical situations and allows for expressions of
+      speaker's will or command in the result clause.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: なら (conditional)
+    meaning: If; if it's the case that; as for
+    kind: similar expression
+    nuance: 「なら」 is used when the condition is based on information the speaker has just learned or assumed,
+      often implying 'if that's the case, then...'. It typically refers to specific circumstances rather
+      than general truths.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: もしも (strong hypothetical if)
+    meaning: If (for emphasis)
+    kind: similar expression
+    nuance: 「もし」 is an adverb used to emphasize a conditional, usually preceding 「ば」, 「たら」, or 「なら」. It
+      is not used with 「と」 because 「と」 already implies certainty.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: すると (and then・as a result)
+    meaning: And then; upon doing that
+    kind: often confused with
+    nuance: 「すると」 describes a sequence of events, often implying an immediate and perhaps surprising follow-up
+      action or discovery, similar to 「と」 in some contexts. However, it can also function as a discourse
+      marker and does not always imply the same strict cause-and-effect as the conditional 「と」.
+    grammar_point: すると (and then・as a result)
+  - term: ごとに (each・every)
+    meaning: Each time; every time; whenever
+    kind: similar expression
+    nuance: While 「と」 describes an automatic, inevitable consequence, 「ごとに」 emphasizes the repetition
+      or regularity of an event, implying "every time X happens, Y also happens." It focuses on the frequency
+      rather than the logical necessity.
+    grammar_point: ごとに (each・every)
+  - term: てから (after and since)
+    meaning: After doing; once...is done; since
+    kind: often confused with
+    nuance: 「てから」 indicates a sequential action where the second action occurs *after* the first one is
+      completed. Unlike 「と」, it does not necessarily imply an immediate or inevitable consequence, nor
+      does it typically describe universal truths or natural phenomena. It simply states a chronological
+      order.
+    grammar_point: てから (after and since)
+post_false_friends_writeup: While 「ば」, 「たら」, and 「なら」 can all translate to "if," they carry different
+  nuances than 「と」. Choose 「と」 when the outcome is predictable and almost certain, often describing universal
+  truths, natural phenomena, or habitual actions. For hypothetical or uncertain situations, or when expressing
+  personal will, then opt for one of the other conditionals. 「もし」 is an adverb that precedes other conditionals
+  for emphasis and is not used with 「と」. Furthermore, 「ごとに」 emphasizes repetition rather than inevitability,
+  and 「てから」 simply denotes chronological sequence, not automatic consequence like 「と」 does.
+examples:
+  - english: When you press this button, the light turns on.
+    japanese:
+      - この ボタン を 押す {と}、明かり が つき ます。
+      - この ボタン を 押す {と}、明かり が つく。
+    english_literally: This button pressing, the light turns on.
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押し {たら}、明かり が つき ます。
+        english: When you press this button, the light turns on.
+        hint: 「たら」 describes a consequence that follows an action, but it doesn't necessarily imply the
+          same universal, automatic cause-and-effect relationship that 「と」 does. We're looking for a general
+          rule.
+    scene: Explaining to someone how a common household appliance works.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The first sentence, using 「つきます」, maintains a polite tone appropriate for instructing someone.
+      The second, using 「つく」, is casual. The use of 「と」 emphasizes the reliable, automatic result when
+      the button is pressed, regardless of formality. The scenario suggests an older male instructing
+      a younger female.
+    etymology: 「明かり」 means 'light' or 'illumination'. 「つきます」 is the polite form of 「つく」 (to turn on/be
+      lit).
+  - english: When I wake up in the morning, I first drink coffee.
+    japanese:
+      - 朝 起きる {と}、まず コーヒー を 飲み ます。
+      - 朝 起きる {と}、まず コーヒー を 飲む。
+    english_literally: Morning wake up, first coffee drink.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 起き {たら}、まず コーヒー を 飲み ます。
+          - 朝 起きれ {ば}、まず コーヒー を 飲み ます。
+        english: When I wake up in the morning, I first drink coffee.
+        hint: 「たら」 or 「ば」 could indicate a general conditional, but they don't strongly convey the fixed,
+          habitual routine implied by 「と」. We're looking for an automatic, consistent sequence of actions.
+    scene: A man describing his consistent daily routine to a friend.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: male
+    nuance: The speaker describes a fixed, habitual action. The first sentence, with 「飲みます」, is polite,
+      suitable for a general observation. The second, with 「飲む」, is casual, appropriate for speaking to
+      a close friend. 「と」 emphasizes the consistent, almost involuntary nature of this action.
+    etymology: 「まず」 means 'first' or 'to begin with'.
+  - english: When I opened the door, there was a cat.
+    japanese:
+      - ドア を 開ける {と}、猫 が い た。
+      - ドア を 開ける {と}、猫 が い まし た。
+    english_literally: Door opening, cat was there.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 開け {たら}、猫 が い た。
+        english: When I opened the door, there was a cat.
+        hint: 「たら」 is also used for discoveries after an action, but 「と」 emphasizes the immediate and
+          direct nature of the consequence, often implying a 'sudden' or 'automatic' occurrence upon the
+          action. We're looking for a quick and direct realization.
+    scene: A woman telling a surprising story about what she found immediately upon entering her apartment.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    nuance: The use of 「と」 conveys an immediate, direct consequence or discovery upon performing the action.
+      The first sentence, ending with the casual 「いた」, is typical for storytelling among close acquaintances.
+      The second, ending with the polite 「いました」, is suitable for a slightly more formal recounting. This
+      expresses an unmediated, direct observation.
+    etymology: 「開ける」 (あける) means 'to open'. 「猫」 (ねこ) means 'cat'.
+  - english: If it's hot, you sweat.
+    japanese:
+      - 暑い {と}、汗 が 出 ます。
+      - 暑い {と}、汗 が 出る。
+    english_literally: Hot, sweat comes out.
+    competing_grammar:
+      - competing_japanese:
+          - 暑かっ {たら}、汗 が 出 ます。
+          - 暑けれ {ば}、汗 が 出 ます。
+        english: If it's hot, you sweat.
+        hint: While 「たら」 or 「ば」 could be used for a general conditional, 「と」 is specifically chosen for
+          universal truths or natural phenomena where the outcome is always guaranteed. We're looking
+          for a natural law.
+    scene: A doctor explaining a normal physiological response to a patient.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This sentence describes a universal truth. The version using 「出ます」 maintains a polite and
+      informative tone, suitable for formal settings. The version using 「出る」 is a casual way to state
+      the same fact. 「と」 is used to convey a scientific or general fact about the body's reaction to heat.
+    etymology: 「汗」 (あせ) means 'sweat'. 「出ます」 (でます) is the polite form of 「出る」 (でる), meaning 'to come out'
+      or 'to appear'.
+  - english: If the traffic light is red, cars stop.
+    japanese:
+      - 信号 が 赤い {と}、車 は 止まり ます。
+      - 信号 が 赤い {と}、車 は 止まる。
+      - 信号 が 赤い {と}、車 が 止まり ます。
+      - 信号 が 赤い {と}、車 が 止まる。
+    english_literally: Traffic light is red, car stops.
+    competing_grammar:
+      - competing_japanese:
+          - 信号 が 赤けれ {ば}、車 は 止まり ます。
+          - 信号 が 赤い {なら}、車 は 止まり ます。
+        english: If the traffic light is red, cars stop.
+        hint: 「ば」 or 「なら」 can set a condition, but 「と」 is preferred for fixed rules and automatic outcomes,
+          like traffic laws, where the consequence is always the same. We're looking for a rule that always
+          applies.
+    scene: An instructor explaining basic traffic rules to a new driver.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: This sentence describes a fixed rule or natural law. Both 「車 は 止まります」 and 「車 が 止まります」 are
+      polite forms; the former topicalizes 'cars' while the latter simply states the action. Their casual
+      counterparts are also included. 「と」 conveys the automatic response required by law, making it suitable
+      for instructional settings.
+    etymology: 「信号」 (しんごう) means 'traffic light' or 'signal'. 「止まります」 (とまります) is the polite form of 「止まる」
+      (とまる), 'to stop'.
+  - english: If you are honest, people will trust you.
+    japanese:
+      - 正直 だ {と}、人 は 信用 し て くれ ます。
+      - 正直 だ {と}、人 は 信用 し て くれる。
+      - 正直 だ {と}、みんな が 信用 し て くれ ます。
+      - 正直 だ {と}、みんな が 信用 し て くれる。
+    english_literally: Honest, people trust you.
+    competing_grammar:
+      - competing_japanese:
+          - 正直 だっ{たら}、人 は 信用 し て くれ ます。
+          - 正直 で あれ {ば}、人 は 信用 し て くれ ます。
+        english: If you are honest, people will trust you.
+        hint: 「たら」 or 「ば」 can express a general condition for trust, but 「と」 emphasizes this as a universal,
+          almost axiomatic truth about human nature. We're looking for a general principle.
+    scene: A teacher giving life advice to their students.
+    register: formal
+    setting: inspirational
+    nuance: This sentence expresses a universal truth about human behavior. Both polite (ending in 「信用してくれます」)
+      and casual (ending in 「信用してくれる」) forms are provided, and both 「人 は」 and 「みんな が」 are natural ways
+      to refer to 'people' in this context. The use of 「と」 emphasizes the unfailing consequence of honesty,
+      making it suitable for an inspirational or didactic context.
+    etymology: 「正直」 (しょうじき) means 'honest'. 「信用」 (しんよう) means 'trust' or 'credit'.
+  - english: If it's noisy, I can't concentrate.
+    japanese:
+      - うるさい {と}、集中 でき ませ ん。
+      - うるさい {と}、集中 でき ない。
+    english_literally: Noisy, concentration cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - うるさかっ {たら}、集中 でき ませ ん。
+          - うるさけれ {ば}、集中 でき ませ ん。
+        english: If it's noisy, I can't concentrate.
+        hint: 「たら」 or 「ば」 could express this condition, but 「と」 highlights a consistent, automatic inability
+          to concentrate whenever it's noisy. We're looking for a habitual, unavoidable reaction.
+    scene: A student explaining why they need a quiet study environment.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: This expresses a personal but consistent consequence of noise. The version using 「できません」 is
+      polite, suitable for explaining a personal difficulty to someone you are not very close to. The
+      version using 「できない」 is casual, more for close friends or internal thought. 「と」 describes a reliable
+      pattern in the speaker's ability to concentrate.
+    etymology: 「うるさい」 means 'noisy' or 'annoying'. 「集中」 (しゅうちゅう) means 'concentration'.
+  - english: If you are a student, you get a discount.
+    japanese:
+      - 学生 だ {と}、割引 が あり ます。
+      - 学生 だ {と}、割引 が ある。
+    english_literally: Student, discount exists.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 {なら}、割引 が あり ます。
+        english: If you are a student, you get a discount.
+        hint: 「なら」 is suitable for conditions based on a stated fact, but 「と」 specifically states a general
+          rule or policy where the discount is an automatic outcome of being a student. We're looking
+          for a fixed policy.
+    scene: A shop assistant informing a customer about a special offer.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This is a direct, factual statement about a condition and its guaranteed outcome. The version
+      with 「あります」 is polite, standard for customer service or informing others. The version with 「ある」
+      is casual. 「と」 emphasizes the automatic nature of the discount given the student status, common
+      in informational contexts.
+    etymology: 「学生」 (がくせい) means 'student'. 「割引」 (わりびき) means 'discount'.
+  - english: When it is spring, cherry blossoms bloom.
+    japanese:
+      - 春 だ {と}、桜 が 咲き ます。
+      - 春 だ {と}、桜 が 咲く。
+      - 春 だ {と}、桜 は 咲き ます。
+      - 春 だ {と}、桜 は 咲く。
+    english_literally: Spring, cherry blossoms bloom.
+    competing_grammar:
+      - competing_japanese:
+          - 春 {なら}、桜 が 咲き ます。
+          - 春 に なっ {たら}、桜 が 咲き ます。
+        english: When it is spring, cherry blossoms bloom.
+        hint: While 「たら」 or 「なら」 might imply a general conditional, 「と」 specifically describes a natural,
+          annual occurrence where the blooming is an inevitable result of spring's arrival. We're looking
+          for a natural, seasonal certainty.
+    scene: A tourist guide pointing out a natural seasonal phenomenon.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This describes a natural, annual event. The polite forms 「桜 が 咲きます」 and 「桜 は 咲きます」 are suitable
+      for general informational contexts, with the former focusing on the blooming itself and the latter
+      topicalizing 'cherry blossoms'. Their casual counterparts are also included. 「と」 highlights the
+      undeniable link between spring and the blooming of cherry blossoms.
+    etymology: 「桜」 (さくら) means 'cherry blossom'. 「咲きます」 (さきます) is the polite form of 「咲く」 (さく), 'to bloom'.
+  - english: When the sun sets, it gets dark.
+    japanese:
+      - 日 が 暮れる {と}、暗く なり ます。
+      - 日 が 暮れる {と}、暗く なる。
+    english_literally: Sun sets, dark becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 日 が 暮れ {たら}、暗く なり ます。
+          - 日 が 暮れれ {ば}、暗く なり ます。
+        english: When the sun sets, it gets dark.
+        hint: 「たら」 or 「ば」 could describe a general conditional, but 「と」 emphasizes this as an automatic,
+          universal natural phenomenon that always occurs. We're looking for an absolute natural occurrence.
+    scene: A parent explaining natural daily phenomena to a young child.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: This sentence conveys a universal, natural phenomenon. The version using 「なります」 is polite,
+      appropriate for teaching basic facts or general statements. The version using 「なる」 is casual. The
+      use of 「と」 stresses the inevitability of darkness following sunset.
+    etymology: 「日 が 暮れる」 (ひ が くれる) means 'the sun sets' or 'it gets dark'. 「暗く なる」 (くらく なる) means 'to
+      become dark'.
+post_example_writeup: Remember that 「と」 is used when the result is almost guaranteed and automatic, often
+  describing universal truths, natural phenomena, or habitual actions. For hypothetical or uncertain situations,
+  or when expressing personal will, other conditional forms like 「ば」 or 「たら」 are more appropriate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と-conditional

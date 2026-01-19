@@ -1,0 +1,448 @@
+grammar_point: のは (emphasis and identification)
+learn_before:
+  - だ (casual copula)
+meaning: It is ~ that ~; The one who ~ is ~; That which is ~; The time when ~ is ~; The reason why ~ is
+  ~
+pronunciation:
+  katakana: ノワ
+  romaji: no wa
+formation:
+  Verb (plain form) + のは + [identifier] + だ/です: 'Used to emphasize or identify the subject of an action
+    or the action itself. For example: 「食べる のは 私 です」 (It is I who eats).'
+  I-adjective (plain form) + のは + [identifier] + だ/です: 'Used to emphasize or identify the subject possessing
+    a certain quality or the quality itself. For example: 「高い のは この 車 です」 (It is this car that is expensive).'
+  Na-adjective (stem) + な/だった + のは + [identifier] + だ/です: 'Used to emphasize or identify the subject possessing
+    a certain quality or the quality itself. For example: 「静か な のは あの 部屋 です」 (It is that room that is
+    quiet).'
+  Noun + な/だった + のは + [identifier] + だ/です: 'Used to emphasize or identify the subject''s identity or the
+    identity itself. For example: 「学生 な のは 彼 です」 (It is he who is a student).'
+jlpt: N5
+etymology: 'The etymology of 「のは」 stems from two fundamental elements of Japanese grammar: the nominalizer
+  「の」 and the topic marker 「は」. The particle 「の」 (originally an Old Japanese case particle) has evolved
+  to function as a general nominalizer, turning verbs, adjectives, or even entire clauses into noun-like
+  entities. When it nominalizes a preceding predicate (verb or adjective), it effectively creates a noun
+  phrase meaning ''the act of ~'' or ''the thing which is ~''. The particle 「は」, on the other hand, is
+  the well-known topic marker, derived from the Old Japanese case particle 「は」, which marked emphasis.
+  When 「は」 follows the nominalizer 「の」, it explicitly marks the entire nominalized clause as the topic
+  of the sentence. This combination, 「のは」, thus serves to foreground the preceding action, state, or event,
+  emphasizing the new, crucial information that follows. It highlights *what* the sentence is about, specifically
+  pinpointing *who* or *what* is performing the action, *when* it occurs, or *why* it happens.'
+writeup: |-
+  「のは」 is a crucial grammatical structure in Japanese that functions to **nominalize** a preceding clause (a verb phrase, an i-adjective phrase, or a na-adjective/noun phrase), treating it as if it were a single noun. This newly formed noun clause then becomes the **topic** of the sentence, marked by the particle 「は」. The main purpose of 「のは」 is to **emphasize or identify** the information that follows it, often clarifying *who* is performing an action, *what* something is, *when* something happened, or *why* something is the case.
+
+  This structure effectively translates to English phrases like "It is ~ that ~", "The one who ~ is ~", "That which is ~", "The time when ~ is ~", or "The reason why ~ is ~". It draws the listener's attention to the specific element being defined or explained after 「のは」.
+
+  **Formation:**
+  *   **Verb (plain form) + のは**: 「話す のは 彼 です」 (It is he who speaks).
+  *   **I-adjective (plain form) + のは**: 「おいしい のは この リンゴ です」 (It is this apple that is delicious).
+  *   **Na-adjective (stem) + な/だった + のは**: 「きれい な のは あの 花 です」 (It is that flower that is beautiful).
+  *   **Noun + な/だった + のは**: 「先生 な のは 田中 さん です」 (It is Mr. Tanaka who is a teacher).
+
+  **Important Considerations:**
+  *   **Plain Forms Only**: The verb or adjective preceding 「の」 must always be in its plain form (dictionary form, ta-form, nai-form, etc.). Polite forms like 「〜ます」 or 「〜ません」 cannot directly precede 「の」 in this construction.
+  *   **Distinction from 〜のです/〜んです**: While 「のは」 is often followed by 「だ」 or 「です」 (e.g. 「〜のは〜だ」), this structure is distinct from the explanatory nominalizer 「〜のです」/「〜んです」. The latter explicitly signals that the speaker is providing an explanation, reason, or clarification. 「のは」, in contrast, primarily serves to highlight and identify the new information, often focusing on the subject or the object of the nominalized clause.
+  *   **Distinction from 「こと」**: Both 「の」 and 「こと」 can nominalize verbs, but they are not always interchangeable. 「の」 tends to refer to a specific, observable event or action, while 「こと」 is more abstract, often referring to a general concept, fact, or experience. For example, in fixed expressions like 「〜することができる」 (to be able to do) or 「〜がある」 (there are times when...), 「の」 cannot be used instead of 「こと」.
+false_friends:
+  - term: の (possession)
+    meaning: Indicates possession
+    kind: often confused with
+    nuance: The particle 「の」 indicates possession or attribution (e.g., 「私 の 本」, 'my book'), while 「のは」
+      nominalizes a phrase, turning it into a topic for identification (e.g., 「読む の は 私」, 'I am the one
+      who reads').
+    grammar_point: の (possession)
+  - term: は (topic and contrast)
+    meaning: As for... (Highlights sentence topic)
+    kind: often confused with
+    nuance: 「は」 marks the topic of a sentence (e.g., 「日本 は」, 'As for Japan'), whereas 「のは」 transforms
+      a verb or adjective phrase into a noun phrase that *is* the topic, emphasizing what is being identified
+      or defined (e.g., 「行く の は 日本 だ」, 'It is Japan that one goes to').
+    grammar_point: は (topic and contrast)
+  - term: こと (making a verb a noun)
+    meaning: Converting a verb into a noun
+    kind: similar expression
+    nuance: Both 「こと」 and 「の」 can nominalize verbs, but they are not always interchangeable. 「こと」 tends
+      to refer to the action or concept in a more general or abstract sense (e.g., 「本 を 読む こと」, 'the act
+      of reading books'). In contrast, 「の は」 focuses on identifying *which* specific instance, person,
+      time, or reason relates to the nominalized clause, making it the topic for further clarification
+      (e.g., 「読む の は 私」 emphasizes that 'I am the one who reads', identifying the actor).
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: Adjective+の(は) (the one that is)
+    meaning: The 'one' that... (Indefinite pronoun, Adjective nominalization)
+    kind: similar expression
+    nuance: While 「かわいい の」 can refer to 'the cute one' (as a nominalized adjective acting as a noun substitute,
+      implying there are multiple options or contexts), 「かわいい の は」 specifically emphasizes that the *characteristic*
+      of being cute is the topic being identified or described, rather than just pointing to a 'cute thing'
+      among others.
+    grammar_point: Adjective+の(は) (the one that is)
+  - term: Particle + の (noun modification)
+    meaning: Combined particles
+    kind: similar expression
+    nuance: 「Particle + の」 forms a combined particle, like 「へ の」 (e.g., 「A から B へ の 移動」, 'movement from
+      A to B'), where 「の」 modifies the preceding particle's sense. This is distinct from 「particle + のは」,
+      where 「の」 nominalizes the clause, and 「は」 marks the entire nominalized phrase as the topic (e.g.,
+      「東京 に 行く の は 明日 です」, 'It is tomorrow that I go to Tokyo').
+    grammar_point: <suggest>:Particle + の (modifying another particle)
+  - term: の が
+    meaning: That which is described
+    kind: similar expression
+    nuance: While 「の が」 nominalizes a clause to function as a grammatical subject or object, often describing
+      or evaluating the action or state (e.g., 「日本 語 を 勉強 する の が 楽しい」, 'studying Japanese is fun'), 「の
+      は」 specifically takes that nominalized clause and marks it as the *topic* of the sentence, foregrounding
+      it to emphasize the identifying information that comes after it.
+    grammar_point: <suggest>:の が (that which is described)
+  - term: んです・のです
+    meaning: Explanatory emphatic
+    kind: similar expression
+    nuance: While 「んです・のです」 explains *why* something is the case or provides context for a statement,
+      「の は」 identifies *what* specifically the sentence is about, often followed by a definition or identification.
+      「の は」 highlights *which* thing, time, or reason is being specified, while 「んです・のです」 explains *why*
+      or *how* the entire statement is true.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+  - term: わけだ (logical conclusion)
+    meaning: Logical conclusion, no wonder
+    kind: often confused with
+    nuance: 「わけだ」 explains a logical consequence or a reasonable conclusion derived from previous information.
+      In contrast, 「の は」 focuses on identifying *which* element (person, time, reason) is the topic and
+      what specific information is being provided about it. 「の は」 clarifies *what* is being discussed,
+      while 「わけだ」 clarifies *why* something is understood or naturally follows.
+    grammar_point: わけだ (logical conclusion)
+  - term: わけではない (not necessarily)
+    meaning: Not necessarily, not the case that
+    kind: often confused with
+    nuance: 「わけではない」 is used to deny that something is necessarily true or to express that it's not entirely
+      the case. It negates a prior assumption or implication. 「の は」 serves to identify and emphasize a
+      particular piece of information, not to negate an implication.
+    grammar_point: (という)わけではない (it's not that...)
+post_false_friends_writeup: 'To avoid mixing up 「のは」 with other similar expressions, focus on its core
+  function: transforming a clause into a noun phrase that then becomes the *topic* of the sentence, specifically
+  to **emphasize or identify** a particular piece of information (who, what, when, why) about that topic.
+  While other nominalizers like 「こと」 and 「わけ」 also turn clauses into noun-like entities, and particles
+  like 「が」 can mark them as subjects, 「のは」 uniquely sets up the nominalized clause as the central point
+  for clarification or definition, often highlighting a specific aspect that follows.'
+examples:
+  - english: Studying Japanese every day is tough.
+    japanese:
+      - 毎日 日本 語 を 勉強 する {の は} 大変 です。
+      - 毎日 日本 語 を 勉強 する {の は} 大変 だ。
+      - 毎日 日本 語 を 勉強 する {の は} しんどい よ。
+      - 毎日 日本 語 の 勉強 って {の は}、やっぱり 難しい ね。
+      - 毎日 日本 語 を 勉強 する {の は} なかなか 骨 が 折れ ます よ。
+    english_literally: The act of studying Japanese every day is tough.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 日本 語 を 勉強 する {こと は} 大変 です。
+        english: As for studying Japanese every day, it is tough.
+        hint: While 「こと は」 can also nominalize and topic-mark, 「の は」 specifically highlights and identifies
+          the preceding action as the specific topic of toughness. We're looking to emphasize the act
+          itself.
+      - competing_japanese:
+          - 毎日 日本 語 の 勉強 {は} 大変 です。
+        english: Daily Japanese study is tough.
+        hint: This uses 「は」 to mark 'daily Japanese study' as the topic, but it treats '勉強' as a noun.
+          「の は」 nominalizes a verb phrase to put emphasis on the *action* being tough. We're looking to
+          emphasize the act of studying.
+      - competing_japanese:
+          - 毎日 日本 語 を 勉強 する {の が} 大変 です。
+        english: It is tough to study Japanese every day.
+        hint: Using 「の が」 also nominalizes, but it typically serves as the subject marker, not necessarily
+          emphasizing the explanation as much as 「の は」 does. We're looking for emphasis on the specific
+          thing being identified as tough.
+    scene: A student confides in a friend about the difficulty of their daily language practice.
+    register: semi-formal
+    setting: reflective
+  - english: The most delicious one among these is this cake.
+    japanese:
+      - この 中 で 一番 おいしい {の は}、この ケーキ です。
+      - この 中 で 一番 おいしい {の は}、この ケーキ だ。
+      - 一番 おいしい {の は}、これ です。
+      - 一番 おいしい {の は}、これ だ ね。
+      - この 中 で 最も 美味しい {の は}、この ケーキ で ござい ます。
+      - 一番 うまい {の は}、やっぱ この ケーキ だ ね。
+    english_literally: That which is most delicious among these is this cake.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ {が} この 中 で 一番 おいしい です。
+        english: This cake is the most delicious among these.
+        hint: This sentence directly states the cake is delicious. 「の は」 is used when you want to identify
+          'the one that is delicious' from a group. We're looking to identify the specific item as the
+          best.
+      - competing_japanese:
+          - この 中 で 一番 おいしい {もの は} この ケーキ です。
+        english: The most delicious thing among these is this cake.
+        hint: Using 「もの は」 nominalizes and topic-marks, but 「の は」 provides a more natural and direct way
+          to identify the *specific characteristic* as the topic. We're looking to identify the specific
+          item based on its characteristic.
+      - competing_japanese:
+          - この ケーキ {は} この 中 で 一番 おいしい です。
+        english: As for this cake, it is the most delicious among these.
+        hint: While 「は」 marks the cake as the topic, 「の は」 places emphasis on *what* is the most delicious,
+          drawing attention to the specific item identified as the best.
+    scene: A baker proudly presents a selection of sweets, identifying their best creation to a customer.
+    register: formal
+    setting: informative
+  - english: The one we haven't heard from yet is his family's home.
+    japanese:
+      - まだ 電話 が ない {の は}、あの 人 の 家 から だ。
+      - まだ 電話 が ない {の は}、あの 人 の 家 から です。
+      - 未だ 連絡 が ない {の は}、彼 の 御 自宅 から です。
+      - まだ 音 沙汰 が ない {の は}、あの 方 の 御 宅 です ね。
+      - まだ 連絡 が ない {の は}、あいつ ん ち だ。
+    english_literally: The (source from which) there is no contact yet is from that person's home.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 家 から まだ 電話 {が} ない。
+        english: This states the fact directly. 「の は」 highlights the *source* of the missing call as the
+          key piece of information being explained. We're looking to identify *why* there is no call.
+        hint: This states the fact directly. 「の は」 highlights the *source* of the missing call as the
+          key piece of information being explained. We're looking to identify *why* there is no call.
+      - competing_japanese:
+          - まだ 連絡 が ない {の を} 心配 し て いる。
+        english: I'm worried about the fact that there's no contact yet.
+        hint: This uses 「の を」 to nominalize the situation as an object of concern. 「の は」 focuses on identifying
+          the specific thing that is the topic of the sentence. We're looking to identify the origin of
+          the lack of contact.
+    scene: Two detectives discuss a case, noting which contact has not yet responded.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of the plain form 「だ」 is common in casual or semi-formal male speech, especially in
+      serious or professional contexts between colleagues. This directness fits the communicative style
+      often observed between male detectives. The phrase `未だ 連絡 が ない` in a more formal context and `音
+      沙汰 が ない` in `あの 方 の 御 宅 です ね` emphasizes a more formal or slightly softer inquiry about the lack
+      of communication. `あいつ ん ち だ` is a highly casual expression using `あいつ` (that guy/gal) and `んち`
+      (colloquial for home), suitable for very informal conversations.
+  - english: I think the quietest one is this room.
+    japanese:
+      - 一番 静か な {の は}、この 部屋 だ と 思う。
+      - 一番 静か な {の は}、この 部屋 だ と 思い ます。
+      - 一番 静か な {の は}、この 部屋 です。
+      - 一番 静か な {の は}、ここ の 部屋 だ よ。
+      - 最も 静か な {の は}、こちら の お 部屋 だ と 思わ れ ます。
+      - 一番 静か な {の は}、絶対 この 部屋 だ よ！
+    english_literally: The one that is most quiet, I think, is this room.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 {が} 一番 静か だ と 思う。
+        english: I think this room is the quietest.
+        hint: This sentence focuses on the room as the subject. 「の は」 frames the statement to pinpoint
+          *what* is the quietest among possibilities. We're looking to identify the quietest one.
+      - competing_japanese:
+          - 一番 静か な {所 は} この 部屋 だ と 思う。
+        english: I think the quietest place is this room.
+        hint: Using 「所 は」 explicitly states 'the place' as the topic. 「の は」 implicitly refers to 'the
+          time when' or 'the event of' without needing to explicitly state '時'. We're looking for a more
+          implicit identification of the time.
+    scene: Two friends are looking for a place to study in a noisy building, and one suggests the quietest
+      option.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: The use of 「だ と 思う」 (I think it is) is a common casual expression among younger speakers to
+      express their opinion. The casual tone suits a conversation between friends. The added `よ` in `ここ
+      の 部屋 だ よ` provides a friendly, assertive nuance common among younger speakers, emphasizing the speaker's
+      conviction. `最も 静か な` and `思わ れ ます` elevates the formality, suitable for more formal or humble contexts.
+      `絶対 この 部屋 だ よ！` adds a strong emphasis with `絶対` (absolutely), reflecting a confident assertion
+      common among younger speakers.
+  - english: I am the boss here.
+    japanese:
+      - ここ で ボス な {の は}、私 だ。
+      - ここ で ボス な {の は}、私 です。
+      - ここ で ボス な {の は}、俺 だ。
+      - ここ で ボス な {の は}、この 私 よ。
+      - この 組織 で 責任 者 な {の は}、私 で ござい ます。
+      - ここ で ボス な {の は}、俺 しか い ない。
+      - ここ で ボス な {の は}、私 です わ.
+    english_literally: The one who is boss here is I.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {が} ここ で ボス だ。
+        english: I am the boss here.
+        hint: This states a fact directly. 「の は」 emphasizes *who* holds the role of boss, highlighting
+          it as the identified information. We're looking to identify the person who is the boss.
+      - competing_japanese:
+          - 私 {こそ} ここ で ボス だ。
+        english: It is precisely I who is the boss here.
+        hint: 「こそ」 adds strong emphasis, meaning 'precisely' or 'it is none other than'. While similar
+          in intent, 「の は」 focuses on presenting the identified fact. We're looking to identify *who*
+          is the boss.
+    scene: A new employee starts at a company, and their manager clearly asserts their position and authority.
+    register: semi-formal
+    setting: commanding
+    speaker_gender: female
+    listener_gender: group
+    nuance: While 「私 だ」 is a plain, assertive statement, for a female speaker in a commanding role, it
+      carries a strong, direct tone. Some may opt for 「私 です」 in highly formal business settings, but 「私
+      だ」 here effectively establishes authority in a clear, unambiguous manner to a group. The use of
+      `俺 だ` is a masculine, more assertive way to say 'I am the boss'. `この 私 よ` further emphasizes the
+      speaker's identity, with `よ` adding a firm, assertive feminine tone. The very formal `この 組織 で 責任
+      者 な の は 、 私 で ござい ます` is appropriate in a business setting to express authority with utmost politeness.
+      `俺 しか い ない` adds an exclusive emphasis typical of male speech. `私 です わ` uses the feminine sentence-ending
+      particle `わ` to soften the assertion while maintaining formality.
+  - english: That person came to Japan the day before.
+    japanese:
+      - あの 人 が 日本 に 来 た {の は}、一 つ 前 の 日 だ。
+      - あの 人 が 日本 に 来 た {の は}、一 つ 前 の 日 です。
+      - あの 方 が 日本 へ いらっしゃっ た {の は}、前日 で ござい ます。
+      - あの 人 が 日本 に 来 た {の は}、昨日 の 前 の 日 だ よ。
+      - あの 人 が 日本 に 来 た {の は}、おととい だ よ。
+    english_literally: The time when that person came to Japan is the day before.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 {は} 日本 に 一 つ 前 の 日 に 来 た。
+        english: This sentence directly states the time of arrival. 「の は」 highlights the *time* as the
+          piece of information being identified or explained. We're looking to identify *when* the person
+          arrived.
+        hint: This sentence directly states the time of arrival. 「の は」 highlights the *time* as the piece
+          of information being identified or explained. We're looking to identify *when* the person arrived.
+      - competing_japanese:
+          - あの 人 が 日本 に 来 た {時 は} 一 つ 前 の 日 だ。
+        english: The time when that person came to Japan is the day before.
+        hint: Using 「時 は」 explicitly uses 'time' as the topic. 「の は」 implicitly refers to 'the time when'
+          or 'the event of' without needing to explicitly state '時'. We're looking for a more implicit
+          identification of the time.
+    scene: A student asks about a new classmate's arrival date in Japan, and another student provides
+      the specific timing.
+    register: semi-formal
+    setting: informative
+  - english: The reason I came to Japan is to study Japanese.
+    japanese:
+      - 日本 に 来 た {の は}、日本 語 を 勉強 する ため です。
+      - 日本 に 来 た {の は}、日本 語 を 勉強 する ため だ。
+    english_literally: The reason (why) I came to Japan is for the purpose of studying Japanese.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 来 た 目的 は 日本 語 を 勉強 する {こと} です。
+        english: The purpose of coming to Japan is to study Japanese.
+        hint: This states the purpose directly as a noun. 「の は」 frames the reason *itself* as the information
+          being explained. We're looking to emphasize the reason for coming.
+      - competing_japanese:
+          - 日本 語 を 勉強 する {ため に} 日本 に 来 まし た。
+        english: I came to Japan in order to study Japanese.
+        hint: This uses 「ため に」 to express purpose, directly linking it to the action of coming. 「の は」
+          highlights the *reason* as the focal point of the statement. We're explaining *why* I came.
+    scene: A foreign student explains their motivation to a new acquaintance.
+    register: semi-formal
+    setting: informative
+  - english: What's most important in life is health.
+    japanese:
+      - 人生 で 一番 大切 な {の は}、健康 です。
+      - 人生 で 一番 大切 な {の は}、健康 だ。
+    english_literally: That which is most important in life is health.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 で は 健康 {が} 一番 大切 です。
+        english: In life, health is the most important.
+        hint: This sentence directly states that health is important. 「の は」 is used to identify *what*
+          specifically holds the utmost importance. We're pinpointing the most important thing.
+      - competing_japanese:
+          - 人生 で 一番 大切 な {こと は} 健康 です。
+        english: The most important thing in life is health.
+        hint: While 「こと は」 also nominalizes, 「の は」 provides a more concise way to highlight the abstract
+          concept that is being identified as most important. We're identifying the singular most important
+          element.
+    scene: A wise elder offers advice to a young person.
+    register: semi-formal
+    setting: reflective
+    speaker_age: older
+  - english: The hardest thing about learning Japanese is kanji.
+    japanese:
+      - 日本 語 の 勉強 で 一番 難しい {の は}、漢字 です。
+      - 日本 語 の 勉強 で 一番 難しい {の は}、漢字 だ。
+    english_literally: That which is most difficult in studying Japanese is kanji.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 勉強 で は 漢字 {が} 一番 難しい です。
+        english: In Japanese study, kanji is the most difficult.
+        hint: This uses 「が」 to mark kanji as the subject. 「の は」 emphasizes what *constitutes* the hardest
+          part of Japanese study, highlighting the specific difficulty. We're identifying the hardest
+          element.
+      - competing_japanese:
+          - 日本 語 の 勉強 の 難しい {ところ は} 漢字 です。
+        english: The difficult part of Japanese study is kanji.
+        hint: This uses 「ところ」 to refer to the 'part' or 'aspect'. 「の は」 allows for a more direct identification
+          of the 'thing that is difficult'. We're identifying the hardest element itself.
+    scene: A student discussing challenges with a tutor.
+    register: semi-formal
+    setting: academic
+  - english: The one who submitted the report is Tanaka-san.
+    japanese:
+      - レポート を 提出 し た {の は}、田中 さん です。
+      - レポート を 提出 し た {の は}、田中 さん だ。
+    english_literally: The one who submitted the report is Tanaka-san.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん {が} レポート を 提出 し まし た。
+        english: Tanaka-san submitted the report.
+        hint: This is a direct statement of fact. 「の は」 is used to specifically identify *who* performed
+          the action, often in response to a question or to clarify, making the person the focus. We're
+          pinpointing the person.
+      - competing_japanese:
+          - レポート を 提出 し た の は 田中 さん {の 方} です。
+        english: The one who submitted the report is Tanaka-san's side/Tanaka-san himself.
+        hint: This adds 「の 方」 for a stronger emphasis on 'that person specifically'. While similar, 「の
+          は」 alone provides the core identification. We're simply identifying the individual.
+    scene: A manager confirming who completed a task to a colleague.
+    register: semi-formal
+    setting: informative
+  - english: The important thing is not to give up.
+    japanese:
+      - 大切 な {の は}、諦め ない こと です。
+      - 大切 な {の は}、諦め ない こと だ。
+    english_literally: That which is important is not giving up.
+    competing_grammar:
+      - competing_japanese:
+          - 諦め ない {こと が} 大切 です。
+        english: Not giving up is important.
+        hint: This sentence makes 'not giving up' the subject with 「が」. 「の は」 emphasizes *what* constitutes
+          'important', framing it as an explanation of what importance means in this context. We're defining
+          what's important.
+    scene: A coach encourages their team after a tough loss.
+    register: semi-formal
+    setting: inspirational
+  - english: The difficult part is remembering everyone's names.
+    japanese:
+      - 難しい {の は}、みんな の 名前 を 覚える こと です。
+      - 難しい {の は}、みんな の 名前 を 覚える こと だ。
+    english_literally: That which is difficult is remembering everyone's names.
+    competing_grammar:
+      - competing_japanese:
+          - みんな の 名前 を 覚える {こと が} 難しい です。
+        english: Remembering everyone's names is difficult.
+        hint: This uses 「が」 to mark 'remembering names' as the subject. 「の は」 highlights *what* specifically
+          is difficult, presenting the difficulty as the topic to be explained. We're pinpointing the
+          specific challenge.
+    scene: A new teacher shares a common challenge they face.
+    register: semi-formal
+    setting: informative
+  - english: What's truly important for success is perseverance.
+    japanese:
+      - 成功 に とっ て 本当 に 大切 な {の は}、粘り強 さ です。
+      - 成功 に とっ て 本当 に 大切 な {の は}、粘り強 さ だ。
+      - 成功 に とっ て 本当 に 肝心 な {の は}、諦め ない こと だ よ。
+      - 本当 に 大切 な {の は}、根気 だ と 思う よ。
+    english_literally: That which is truly important for success is perseverance.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 に は 粘り強 さ {が} 本当 に 大切 です。
+        english: For success, perseverance is truly important.
+        hint: This uses 「が」 to mark perseverance as the subject. 「の は」 frames 'what is important' as the
+          topic to emphasize the specific quality being identified. We're pinpointing the essential element
+          for success.
+      - competing_japanese:
+          - 成功 の {ため に} 粘り強 さ が 大切 だ。
+        english: Perseverance is important for the sake of success.
+        hint: This uses 「ため に」 to state purpose. 「の は」 is used to identify *what* specifically is important
+          in the context of success, making that quality the focus of the statement. We're identifying
+          the critical factor.
+    scene: A veteran coach gives advice to a team of aspiring athletes.
+    register: formal
+    setting: inspirational
+    speaker_age: older
+post_example_writeup: As you can see, 「のは」 is very versatile and can be used to highlight different aspects
+  of a sentence, whether it's the subject, an object, a time, a reason, or an abstract concept. Pay close
+  attention to the context to understand exactly what is being emphasized. It functions to bring the most
+  important information to the listener's attention by setting up the preceding clause as the topic that
+  will be clarified.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のは

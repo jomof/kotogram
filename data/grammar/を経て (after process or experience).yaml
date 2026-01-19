@@ -1,0 +1,467 @@
+grammar_point: を経て (after process or experience)
+learn_before:
+  - Verb[えば] (conditional)
+  - Verb[ます] (polite present)
+  - '[Phrase]まで(のこと)だ (nothing more)'
+  - '[Verb-て]もらう (to have someone do, receive an action)'
+  - 〜付き (attached with)
+  - 〜任せ (leaving to or relying on)
+  - いっぱい (full・a lot)
+  - およそ・おおよそ (approximate・generally・not at all)
+  - げ (seeming・appearance)
+  - する (to do・make)
+  - ぜ (male emphatic particle)
+  - ぞ (strong emphasis)
+  - だ (casual copula)
+  - で (for)
+  - として (as)
+  - な-Adjective[だ] (plain present)
+  - なお (still; even; yet; still more)
+  - にする (to decide or make)
+  - にて (formal at・by means of)
+  - にわたって (throughout a range)
+  - は〜だ (topic & copula)
+  - 加えて (in addition・adding to that)
+  - 姿 (figure・appearance)
+  - 横 (side・horizontal)
+meaning: Via, through, after (experience, time, etc.), having gone through
+pronunciation:
+  katakana: ヲヘテ
+  romaji: o hete
+formation:
+  Noun + を経て: Indicates that the preceding noun (a stage, time, or experience) has been undergone or passed
+    through, leading to a subsequent state or action.
+jlpt: N1
+etymology: 「経 (へ)」 is from the verb 「経る (へる)」 meaning "to pass through," "to experience," or "to elapse."
+  The particle 「を」 marks the noun as the object that is being passed through or experienced.
+writeup: 「を経て」 is a formal grammar point used to emphasize the passage of time, an event that took a certain
+  amount of time, or a process one has undergone. 「経る」 itself is a verb meaning "to elapse" or "to pass"
+  in terms of time. Unlike 「過ぎる」 (sugiru), which focuses on reaching the endpoint, 「経る」 emphasizes the
+  events and changes that occur during the entire period leading up to that end point. Because of this
+  emphasis, 「を経て」 can often be translated as "having undergone (A)" due to its focus on the preceding
+  action. It directly follows a noun, and the rest of the sentence usually describes the significance
+  of that period or experience, or what happened as a result. As a formal structure, 「を経て」 is often found
+  in biographies, introductions, and similar media.
+false_friends:
+  - term: ～た後で
+    meaning: After (simple chronological sequence)
+    kind: often confused with
+    nuance: Unlike 「を経て」 which implies undergoing a process or experience over a period, 「～た後で」 simply
+      states that one event occurred after another in time without emphasizing the process or transformation.
+    grammar_point: あとで (after・later)
+  - term: ～てから
+    meaning: After doing X, then Y (emphasizes completion of X before Y)
+    kind: often confused with
+    nuance: 「～てから」 focuses on the sequential completion of actions, whereas 「を経て」 highlights the passage
+      through a period or experience, often with implied effort or transformation.
+    grammar_point: てから (after and since)
+  - term: ～を通して
+    meaning: Through; throughout; via (a medium or period)
+    kind: often confused with
+    nuance: While 「を経て」 denotes passing *through* a stage or experience to reach a new state, 「～を通して」
+      implies a continuous state or a means by which something happens *throughout* a period or medium.
+      「を経て」 emphasizes the *journey* leading to a result, while 「～を通して」 often describes the *method* or
+      *duration* of an ongoing process.
+    grammar_point: を通じて・を通して (medium・means)
+  - term: ～を通って
+    meaning: Passing through a physical location
+    kind: often confused with
+    nuance: 「を経て」 can refer to passing through physical locations, but it often carries a more formal
+      or symbolic connotation of traversing a stage or route. 「～を通って」 is a more general and direct expression
+      for physical traversal.
+    grammar_point: <suggest>:Verb[て]通る (to pass through a physical location)
+  - term: 末に
+    meaning: After (a long process); at the end of; as a result of
+    kind: similar expression
+    nuance: While 「を経て」 emphasizes the act of *undergoing* a process or experience, 「末に」 focuses on the
+      *culmination* or *result* that is reached after a prolonged effort or a series of events. It implies
+      that a final outcome was achieved after much struggle or a long period.
+    grammar_point: た末・の末・末に (culmination)
+post_false_friends_writeup: While all these expressions indicate a sequence or passage, 「を経て」 specifically
+  emphasizes the experience of going *through* a significant period, process, or stage, often implying
+  effort, transformation, or official protocol. 「～た後で」 and 「～てから」 simply denote chronological order. 「～を通して」
+  suggests a continuous state or a means by which something occurs throughout a period, while 「～を通って」
+  refers to physical traversal. 「末に」, on the other hand, highlights the ultimate outcome or result after
+  a long, often difficult, process.
+examples:
+  - english: We met in 2019 and married after going through two years of dating.
+    japanese:
+      - 私 たち、2019 年 に 出会っ て、約 2 年間 の 交際 を {経 て} 結婚 し まし た わ。
+      - 私 たち は、2019 年 に 出会っ て、約 2 年間 の 交際 を {経 て} 結婚 し まし た。
+      - 2019 年 に 出会っ て から、2 年 の 交際 を {経 て}、結婚 し た ん だ。
+      - 2019 年 に 出会っ て、まる 2 年 の 交際 を {経 て}、結婚 し た の よ。
+    english_literally: We, having met in 2019, having gone through approximately 2 years of dating, married.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち、2019 年 に 出会っ て、約 2 年間 の 交際 の {後 で} 結婚 し まし た わ。
+        english: We met in 2019 and married after two years of dating.
+        hint: 「～た後で」 simply states that one event happened after another. We're looking for a phrase that
+          emphasizes the experience of undergoing a process or period.
+      - competing_japanese:
+          - 私 たち、2019 年 に 出会っ て、約 2 年間 交際 し {て から} 結婚 し まし た わ。
+        english: We met in 2019 and after dating for about two years, we married.
+        hint: 「～てから」 focuses on the sequential completion of actions. We're looking for a phrase that
+          highlights the passage through a period with implied effort.
+      - competing_japanese:
+          - 私 たち、2019 年 に 出会っ て、約 2 年間 の 交際 を {通し} て 結婚 し まし た わ。
+        english: We met in 2019 and married through two years of dating.
+        hint: 「～を通して」 implies a continuous state or a means throughout a period. We're looking for the
+          sense of undergoing a significant process leading to a result.
+      - competing_japanese:
+          - 私 たち、2019 年 に 出会っ て、約 2 年間 の 交際 の {末 に} 結婚 し まし た わ。
+        english: We met in 2019 and married as a result of two years of dating.
+        hint: 「末に」 emphasizes the culmination of a process, often after difficulty. We're looking for
+          a phrase that highlights the experience of going through the dating period, not just the final
+          result.
+    scene: Two friends are catching up about a couple's long journey to marriage.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle 「わ」 adds a soft, feminine nuance to the speaker's statement, commonly
+      used by women in reflective or emotional contexts.
+  - english: Through studying in Japan, I was able to learn about Japanese culture and other aspects of
+      the country.
+    japanese:
+      - 日本 へ の 留学 を {経 て}、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+      - 日本 へ の 留学 を {経 て}、日本 の 文化 など も 学ぶ こと が でき まし た。
+      - 日本 へ の 留学 を {経 て}、日本 の 文化 と か も 沢山 学べ た よ。
+      - 日本 へ の 留学 を {経 て}、日本 の 文化 など を 知る こと が でき まし た。
+    english_literally: Having gone through studying abroad in Japan, I was able to learn about Japanese
+      culture and so on.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 留学 し {て}、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+        english: By studying abroad in Japan, I was able to learn about Japanese culture and so on.
+        hint: The te-form 「～して」 simply connects actions sequentially or indicates a cause. We're looking
+          for a phrase that emphasizes the experience of going through the entire study abroad period.
+      - competing_japanese:
+          - 日本 へ の 留学 を 終え た {後 で}、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+        english: After finishing studying abroad in Japan, I was able to learn about Japanese culture
+          and so on.
+        hint: 「～た後で」 focuses on a point in time after an event. We're looking for emphasis on the process
+          of undergoing the study abroad itself.
+      - competing_japanese:
+          - 日本 へ の 留学 を し {て から}、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+        english: After studying abroad in Japan, I was able to learn about Japanese culture and so on.
+        hint: 「～てから」 implies a direct sequence of events. We're looking for a phrase that highlights the
+          experience of passing through the entire study abroad period.
+      - competing_japanese:
+          - 日本 へ の 留学 を {通し} て、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+        english: Through studying abroad in Japan, I was able to learn about Japanese culture and so on.
+        hint: 「～を通して」 implies a continuous state or a means by which something happens *throughout* or
+          *by means of* the study abroad period as a continuous means. We're looking for the sense of
+          undergoing the entire process, implying a journey and its completion.
+      - competing_japanese:
+          - 日本 へ の 留学 の {末 に}、日本 の 文化 など を 学ぶ こと が でき た ん だ よ。
+        english: As a result of studying abroad in Japan, I was able to learn about Japanese culture and
+          so on.
+        hint: 「末に」 focuses on the culmination of an effort. We're looking for a phrase that describes
+          the experience of going through the entire study abroad period.
+    scene: A male student is reflecting on his long and impactful study abroad experience in Japan, sharing
+      it with a female friend.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The combination of the plain form 「できた」 and the explanatory 「んだ」 followed by 「よ」 creates a
+      casual, slightly assertive tone often used by male speakers when explaining something to a female
+      listener, indicating shared information or a gentle confirmation.
+  - english: People grow through various experiences.
+    japanese:
+      - 人 は 色々 な 経験 を {経 て}、成長 し て いく もの だ。
+      - 人 は 様々 な 経験 を {経 て}、成長 し て いく もの です。
+      - 人 は 色々 な 経験 を {経 て} 成長 する ん だ。
+      - 人 は 多く の 経験 を {経 て}、人間 と し て 成長 する もの です。
+    english_literally: People, having gone through various experiences, grow.
+    competing_grammar:
+      - competing_japanese:
+          - 人 は 色々 な 経験 {で} 成長 し て いく もの だ。
+        english: People grow by various experiences.
+        hint: 「～で」 indicates means or location. We're looking for a phrase that emphasizes the process
+          of undergoing various experiences.
+      - competing_japanese:
+          - 人 は 色々 な 経験 を し た {後 で}、成長 し て いく もの だ。
+        english: People grow after having various experiences.
+        hint: 「～た後で」 refers to a point in time after an experience. We're looking for a phrase that describes
+          the process of going through those experiences.
+      - competing_japanese:
+          - 人 は 色々 な 経験 を {通し} て、成長 し て いく もの だ。
+        english: People grow through various experiences.
+        hint: 「～を通して」 focuses on growth happening *throughout* or *by means of* experiences. We're looking
+          for a phrase that describes the process of going through and completing those experiences, implying
+          a journey with stages.
+      - competing_japanese:
+          - 人 は 色々 な 経験 の {末 に}、成長 し て いく もの だ。
+        english: People grow as a result of various experiences.
+        hint: 「末に」 focuses on the culmination of a process. We're looking for a phrase that describes
+          the act of experiencing different things as a path to growth.
+    scene: A philosophical man is sharing his wisdom with a group of attentive listeners.
+    register: formal
+    setting: reflective
+    speaker_gender: male
+    listener_gender: group
+    nuance: The philosophical statement ending with 「ものだ」 (meaning 'it is something that...', implying
+      a general truth or fact) is gender-neutral, but when delivered by a male speaker to a group, it
+      can convey a sense of universal truth or wisdom, fitting an authoritative or reflective setting.
+  - english: Chitoge and Raku finally married after going through about ten years of dating.
+    japanese:
+      - ちと げ と らく は、約 10 年 の 交際 を {経 て} 結婚 し た の よ。
+      - ちと げ と らく は、10 年 も の 長い 交際 を {経 て}、ようやく 結婚 し た の よ。
+      - ちと げ と らく は、およそ 10 年間 の 交際 を {経 て}、ついに 結婚 し まし た わ。
+    english_literally: Chitoge and Raku, having gone through approximately 10 years of dating, married.
+    competing_grammar:
+      - competing_japanese:
+          - ちと げ と らく は、約 10 年 の 交際 の {後 で} 結婚 し まし た の よ。
+        english: Chitoge and Raku married after about ten years of dating.
+        hint: 「～た後で」 simply states chronological order. We're looking for a phrase that emphasizes the
+          long journey and experiences within that decade of dating.
+      - competing_japanese:
+          - ちと げ と らく は、約 10 年 の 交際 を し {て から} 結婚 し まし た の よ。
+        english: Chitoge and Raku married after dating for about ten years.
+        hint: 「～てから」 implies a direct sequence after dating. We're looking for a phrase that emphasizes
+          the long process of undergoing dating for ten years.
+      - competing_japanese:
+          - ちと げ と らく は、約 10 年 の 交際 を {通し} て 結婚 し まし た の よ。
+        english: Chitoge and Raku married through about ten years of dating.
+        hint: 「～を通して」 implies a continuous state or means over a period, not the experience of passing
+          through a significant dating stage. We're looking for the sense of undergoing a long process.
+      - competing_japanese:
+          - ちと げ と らく は、約 10 年 の 交際 の {末 に} 結婚 し まし た の よ。
+        english: Chitoge and Raku married as a result of about ten years of dating.
+        hint: 「末に」 focuses on the culmination of a process, often implying difficulty. We're looking for
+          a phrase that highlights the experience of passing through the long dating period.
+    scene: A female narrator is telling a story about fictional characters to a male listener, emphasizing
+      the long duration of their relationship.
+    register: formal
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of the sentence-final particle 「のよ」 is characteristic of female speech, adding a gentle
+      emphasis or explanation, often used when informing or sharing news with a male listener in a conversational
+      context.
+  - english: 'Short bio: ''Graduated from the Department of Science, Waseda University. After working
+      at Google, he started his own business in 202X.'''
+    japanese:
+      - 略歴:早稲田 大学 理学 部 卒業 後 Google 勤務 を {経 て} 202◯年 独立。
+      - 略歴:早稲田 大学 理学 部 卒業、Google 勤務 を {経 て} 202◯年 独立。
+      - 略歴:早稲田 大学 理学 部 卒業 後、Google にて 勤務 を {経 て}、202◯年 に 独立。
+    english_literally: 'Short bio: After graduating from Waseda University Faculty of Science and having
+      gone through working at Google, independence in 202X.'
+    competing_grammar:
+      - competing_japanese:
+          - 略歴:早稲田 大学 理学 部 卒業 後 Google 勤務 の {後 で} 202◯年 独立。
+        english: 'Short bio: After graduating from Waseda University Faculty of Science and after working
+          at Google, started his own business in 202X.'
+        hint: 「～た後で」 simply indicates a chronological order. We're looking for a formal expression that
+          emphasizes undergoing a significant professional stage.
+      - competing_japanese:
+          - 略歴:早稲田 大学 理学 部 卒業 後 Google で 勤務 し {て から} 202◯年 独立。
+        english: 'Short bio: After graduating from Waseda University Faculty of Science and working at
+          Google, started his own business in 202X.'
+        hint: 「～てから」 implies a direct sequence. We're looking for a formal expression that describes the
+          experience of having passed through a specific professional stage.
+      - competing_japanese:
+          - 略歴:早稲田 大学 理学 部 卒業 後 Google 勤務 を {通し} て 202◯年 独立。
+        english: 'Short bio: After graduating from Waseda University Faculty of Science and through Google
+          employment, started his own business in 202X.'
+        hint: 「～を通して」 implies continuous change *throughout* the period, or *by means of* the changes.
+          We're looking for a formal phrase that describes passing *through* each distinct phase of design
+          modification, leading to its current state.
+      - competing_japanese:
+          - 略歴:早稲田 大学 理学 部 卒業 後 Google 勤務 の {末 に} 202◯年 独立。
+        english: 'Short bio: After graduating from Waseda University Faculty of Science and as a result
+          of working at Google, started his own business in 202X.'
+        hint: 「末に」 emphasizes the culmination of a process, often leading to a final result. We're looking
+          for a formal expression that emphasizes undergoing the work experience as a distinct stage.
+    scene: A professional biography is being summarized, detailing a significant career transition.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: 'Newspaper: ''After going through all of the necessary procedures, the mine acquisition will
+      be complete.'''
+    japanese:
+      - 新聞:今後 必要 な 手続き を {経 て}、鉱山 買収 は 完了 し ます。
+      - 新聞:今後、必要 な 手続き を {経 て}、鉱山 買収 は 完了 予定 です。
+      - 新聞:必要 な 手続き を {経 て}、鉱山 買収 が 完了 する 見込み です。
+    english_literally: 'Newspaper: In the future, having gone through necessary procedures, the mine acquisition
+      will be complete.'
+    competing_grammar:
+      - competing_japanese:
+          - 新聞:今後 必要 な 手続き を し {て}、鉱山 買収 は 完了 し ます。
+        english: 'Newspaper: In the future, doing the necessary procedures, the mine acquisition will
+          be complete.'
+        hint: The te-form 「～して」 simply connects actions sequentially. We're looking for a formal phrase
+          that emphasizes the official process of undergoing all necessary procedures.
+      - competing_japanese:
+          - 新聞:今後 必要 な 手続き を し た {後 で}、鉱山 買収 は 完了 し ます。
+        english: 'Newspaper: In the future, after doing the necessary procedures, the mine acquisition
+          will be complete.'
+        hint: 「～た後で」 focuses on a point in time after the procedures are done. We're looking for a formal
+          phrase that implies the process of going through the procedures.
+      - competing_japanese:
+          - 新聞:今後 必要 な 手続き を し {て から}、鉱山 買収 は 完了 し ます。
+        english: 'Newspaper: In the future, after doing the necessary procedures, the mine acquisition
+          will be complete.'
+        hint: 「～てから」 implies a direct sequence. We're looking for a formal phrase that emphasizes the
+          process of undergoing official procedures.
+      - competing_japanese:
+          - 新聞:今後 必要 な 手続き を {通し} て、鉱山 買収 は 完了 し ます。
+        english: 'Newspaper: In the future, through necessary procedures, the mine acquisition will be
+          complete.'
+        hint: 「～を通して」 implies continuous change *throughout* the period, or *by means of* the changes.
+          We're looking for a formal phrase that describes passing *through* each distinct phase of design
+          modification, leading to its current state.
+      - competing_japanese:
+          - 新聞:今後 必要 な 手続き の {末 に}、鉱山 買収 は 完了 し ます。
+        english: 'Newspaper: In the future, as a result of necessary procedures, the mine acquisition
+          will be complete.'
+        hint: 「末に」 emphasizes the culmination of a process. We're looking for a phrase that describes
+          undergoing official procedures as a distinct stage.
+    scene: A newspaper article reports on a major corporate acquisition, detailing the formal steps involved.
+    register: formal
+    setting: informative
+  - english: Even after several generations, the dispute still continues.
+    japanese:
+      - 数 世代 を {経 て} も なお 争議 が 続い て いる。
+      - 数 世代 を {経 て} も、その 争い は 今 も 続い て いる。
+      - 何 世代 も を {経 て} も、まだ 争議 は 続い て いる。
+    english_literally: Even having gone through several generations, the dispute still continues.
+    competing_grammar:
+      - competing_japanese:
+          - 数 世代 の {後 で} も なお 争議 が 続い て いる。
+        english: Even after several generations, the dispute still continues.
+        hint: 「～た後で」 simply refers to a point in time after a period. We're looking for a phrase that
+          implies the process of going through each generation, emphasizing the continuity of the passage
+          of time.
+      - competing_japanese:
+          - 数 世代 を {通し} て も なお 争議 が 続い て いる。
+        english: Through several generations, the dispute still continues.
+        hint: 「～を通して」 would imply the dispute continued *throughout* or *by means of* several generations.
+          We're looking for a phrase that emphasizes the passage *through* each generation as a distinct
+          stage, leading to the ongoing dispute.
+      - competing_japanese:
+          - 数 世代 の {末 に} も なお 争議 が 続い て いる。
+        english: Even at the culmination of several generations, the dispute still continues.
+        hint: 「末に」 emphasizes the end result or culmination of a long process. We're looking for a phrase
+          that focuses on the act of passing through each generation rather than just the final state.
+    scene: An academic discusses a long-standing historical conflict that has persisted over many years.
+    register: formal
+    setting: serious
+  - english: I'm going from Berlin, via Rome, to Buenos Aires.
+    japanese:
+      - ベルリン から ローマ を {経 て} ブエノスアイレス に 向かう ん だ。
+      - ベルリン から ローマ を {経 て} ブエノスアイレス へ 向かい ます。
+      - ベルリン を 出発 し、ローマ を {経 て}、ブエノスアイレス に 行く ん だ。
+    english_literally: From Berlin, having gone through Rome, I'm heading to Buenos Aires.
+    competing_grammar:
+      - competing_japanese:
+          - ベルリン から ローマ を {通っ て} ブエノスアイレス に 向かう ん だ。
+        english: I'm going from Berlin, passing through Rome, to Buenos Aires.
+        hint: While 「～を通って」 describes physical passage, 「を経て」 in this context implies a more formal or
+          significant traversal, often used for routes or stages of a journey. We're looking for a phrase
+          that specifies an intermediate point or stage in a route.
+      - competing_japanese:
+          - ベルリン から ローマ を {通し} て ブエノスアイレス に 向かう ん だ。
+        english: I'm going from Berlin, through Rome, to Buenos Aires.
+        hint: 「～を通して」 implies continuous movement *through* Rome without necessarily emphasizing it as
+          a distinct transit stage. We're looking for a phrase that means going *via* or *through* a specific
+          intermediate point or stage.
+      - competing_japanese:
+          - ベルリン から ローマ の {末 に} ブエノスアイレス に 向かう ん だ。
+        english: I'm going from Berlin, ultimately via Rome, to Buenos Aires.
+        hint: 「末に」 implies a final result after a process, not simply passing through an intermediate
+          location on a journey. We're looking for a phrase that specifies an intermediate point or stage
+          in a route.
+    scene: Someone is describing their complex international travel itinerary, highlighting the multiple
+      legs of the journey.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: The sentence-final particle 「んだ」 (which can be a contraction of 「のだ」) here adds a casual,
+      explanatory tone often used by male speakers when stating a plan or fact. While not exclusively
+      masculine, in this context, it contributes to a typically male casual speech pattern.
+  - english: After going through a long period of rehabilitation, he was finally able to return to the
+      stage.
+    japanese:
+      - 長い リハビリ 期間 を {経 て}、彼 は ようやく 舞台 へ の 復帰 を 果たし まし た。
+      - 長い リハビリ を {経 て}、彼 は やっと 舞台 に 戻る こと が でき た ん だ。
+      - 長 期間 の リハビリ を {経 て}、彼 は ついに 舞台 に 戻れ た の よ。
+    english_literally: Having gone through a long rehabilitation period, he finally achieved his return
+      to the stage.
+    competing_grammar:
+      - competing_japanese:
+          - 長い リハビリ の {後 で}、彼 は ようやく 舞台 へ の 復帰 を 果たし まし た。
+        english: After a long rehabilitation, he finally returned to the stage.
+        hint: 「～た後で」 simply states that one event happened after another. We're looking for a phrase that
+          emphasizes the effort and time taken to undergo the rehabilitation process.
+      - competing_japanese:
+          - 長い リハビリ を 終え {て から}、彼 は ようやく 舞台 へ の 復帰 を 果たし まし た。
+        english: After finishing a long rehabilitation, he finally returned to the stage.
+        hint: 「～てから」 focuses on the completion of an action before another. We're looking for a phrase
+          that highlights the experience of passing through the entire rehabilitation period, implying
+          a journey.
+      - competing_japanese:
+          - 長い リハビリ を {通し} て、彼 は ようやく 舞台 へ の 復帰 を 果たし まし た。
+        english: Through a long rehabilitation, he finally returned to the stage.
+        hint: 「～を通して」 implies a continuous state or a means by which something happens throughout a period.
+          We're looking for the sense of undergoing a significant process leading to a result.
+      - competing_japanese:
+          - 長い リハビリ の {末 に}、彼 は ようやく 舞台 へ の 復帰 を 果たし まし た。
+        english: As a result of a long rehabilitation, he finally returned to the stage.
+        hint: 「末に」 emphasizes the culmination of a process, often after significant effort. We're looking
+          for a phrase that focuses on the experience of going through the rehabilitation period itself.
+    scene: A veteran performer, after a serious injury, is making a comeback, and a reporter is describing
+      his journey to the audience.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「を果たしました」 (meaning 'achieved' or 'accomplished') adds a sense of accomplishment
+      and formality, fitting for a news report or formal announcement. When used by a female speaker in
+      this context, it conveys professionalism and respect for the subject.
+  - english: The company's product has undergone several design changes over the years.
+    japanese:
+      - その 製品 は、数 年 の 間 に 様々 な デザイン 変更 を {経 て}、現在 の 形 に なり まし た。
+      - この 製品 は、長年 に わたる デザイン の 変遷 を {経 て}、今 の 姿 に なり まし た。
+      - 弊社 の 製品 は、長年 の 試行 錯誤 を {経 て}、今 の デザイン に 落ち着き まし た。
+    english_literally: That product, having gone through various design changes over several years, became
+      its current form.
+    competing_grammar:
+      - competing_japanese:
+          - その 製品 は、数 年 の 間 に 様々 な デザイン 変更 の {後 で}、現在 の 形 に なり まし た。
+        english: That product, after various design changes over several years, became its current form.
+        hint: 「～た後で」 simply indicates chronological order. We're looking for a phrase that emphasizes
+          the process of undergoing multiple design phases.
+      - competing_japanese:
+          - その 製品 は、数 年 の 間 に 様々 な デザイン 変更 を し {て から}、現在 の 形 に なり まし た。
+        english: That product, after making various design changes over several years, became its current
+          form.
+        hint: 「～てから」 implies a direct sequence after changes were made. We're looking for a phrase that
+          highlights the journey of design evolution, implying a series of stages passed through.
+      - competing_japanese:
+          - その 製品 は、数 年 の 間 に 様々 な デザイン 変更 を {通し} て、現在 の 形 に なり まし た。
+        english: That product, through various design changes over several years, became its current form.
+        hint: 「～を通して」 implies continuous change *throughout* the period, or *by means of* the changes.
+          We're looking for a formal phrase that describes passing *through* each distinct phase of design
+          modification, leading to its current state.
+      - competing_japanese:
+          - その 製品 は、数 年 の 間 に 様々 な デザイン 変更 の {末 に}、現在 の 形 に なり まし た。
+        english: That product, as a result of various design changes over several years, became its current
+          form.
+        hint: 「末に」 emphasizes the culmination of a process, often after much trial and error. We're looking
+          for a phrase that describes undergoing distinct phases of design modification.
+    scene: A product designer is explaining the evolution of a popular product during a business presentation
+      to a group of stakeholders.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrases 「現在 の 形 に なり まし た」 or 「今 の 姿 に なり まし た」 are common in business contexts to describe
+      the result of a developmental process, implying a successful evolution. This formal and informative
+      tone is typical in male-led business presentations.
+post_example_writeup: The examples above illustrate how 「を経て」 is used across various contexts, from personal
+  relationships and educational journeys to professional careers, historical events, travel, and product
+  development. In each case, it underlines a significant process or passage, distinguishing it from simpler
+  temporal or causal expressions. It signifies not just an endpoint, but the journey and transformation
+  involved in reaching that point.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を経て

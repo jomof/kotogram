@@ -1,0 +1,230 @@
+grammar_point: 如何な (what kind of)
+learn_before:
+  - 〜如し・〜ごとし (like・as if)
+  - い-Adjective[み] (abstract quality)
+  - であろう (probably・likely)
+  - とも (even if・no matter)
+  - ものか・もんか (strong negation・absolutely not)
+  - ものと思う (to firmly believe or expect)
+  - ものの (although・but)
+  - ものを (if only・should have)
+  - 分かる (understand and know)
+meaning: What kind of; how; in what state or manner.
+pronunciation:
+  katakana: イカナ
+  romaji: ikana
+formation:
+  如何な + Noun: Used to inquire about the type, nature, or state of a noun. (e.g., 如何な状況 - what kind of
+    situation)
+  如何に + Verb/い-Adjective/な-Adjective (adverbial form): Used to inquire about the manner or degree of an
+    action or state. (e.g., 如何に難しい - how difficult)
+jlpt: N1
+etymology: The word 如何 (いか) originates from earlier forms like いかに (how, in what way), which itself is
+  related to いかにも (indeed, truly). The 'な' functions as the attributive particle characteristic of な-adjectives,
+  allowing it to directly modify nouns, similar to how どんな functions. The underlying meaning of 'how'
+  or 'in what manner' is preserved, evolving to ask 'what kind of' by inquiring into the nature of something.
+writeup: |-
+  The grammar point 「如何な」 (ikana) is a formal expression used to inquire about the nature, state, or condition of something, functioning similarly to a な-adjective. It often carries a more serious, rhetorical, or evaluative nuance compared to its more common counterpart, 「どんな」 (donna).
+
+  When directly modifying a noun, 「如何な」 asks "what kind of (Noun)?" or "what sort of (Noun)?" It delves into the specific characteristics or circumstances of the noun. For instance, you might use it to ask about the nature of a situation, a decision, or a feeling.
+
+  It can also appear in an adverbial form as 「如何に」 (ikani) before verbs or adjectives, meaning "how" or "to what extent." In this usage, it emphasizes the degree or manner of an action or state, often implying a profound or significant level.
+
+  Due to its formal register, 「如何な」 is more commonly encountered in written language, formal speeches, or when expressing a deep, thoughtful inquiry. It's less common in everyday casual conversation, where 「どんな」 or 「どういう」 would be preferred.
+false_friends:
+  - term: どんな (what kind of)
+    meaning: What kind of; what sort of.
+    kind: similar expression
+    nuance: 「どんな」 is a general, common, and less formal way to ask 'what kind of'. It's suitable for everyday
+      conversation and lacks the formal or rhetorical depth of 「如何な」.
+    grammar_point: どんな (what kind of)
+  - term: いかなる (whatever kind of)
+    meaning: Any kind of; whatever kind of; no matter what kind of.
+    kind: similar expression
+    nuance: 「いかなる」 is even more formal and often implies an exhaustive or universal sense of 'any' or
+      'whatever kind of'. It often appears in legal documents or highly formal statements, and unlike
+      「如何な」, it does not typically ask a question but rather makes a comprehensive statement.
+    grammar_point: <suggest>:いかなる (whatever kind of)
+  - term: どういう (what kind of)
+    meaning: What kind of; what sort of (asking for explanation or description).
+    kind: similar expression
+    nuance: 「どういう」 is similar to 「どんな」 but often implies a request for a more detailed explanation or
+      description of the 'kind' or 'way' something is. It's generally more conversational than 「如何な」 and
+      focuses on a descriptive answer.
+    grammar_point: <suggest>:どういう (what kind of)
+post_false_friends_writeup: While 「如何な」, 「どんな」, 「いかなる」, and 「どういう」 can all translate to 'what kind of'
+  or 'how' in English, their usage contexts and nuances differ significantly. 「如何な」 is formal and often
+  rhetorical, probing deeper into the nature of things. 「どんな」 is the most common and neutral. 「いかなる」 is
+  extremely formal and often exhaustive, meaning 'any/whatever kind'. 「どういう」 asks for a descriptive explanation.
+examples:
+  - english: What kind of situation is this?
+    japanese:
+      - これ は {如何 な} 状況 だろう か。
+      - これ は {如何 な} 状況 で あろう か。
+    english_literally: This, what kind of situation is it, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - これ は どんな 状況 だろう か。
+        english: What kind of situation is this (general query)?
+        hint: 「どんな」 is a general, common, and less formal way to ask 'what kind of'. We're looking for
+          a formal or rhetorical inquiry.
+    scene: A military commander assesses a chaotic battlefield.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The speaker, an older male military commander, uses 「如何な」 and the formal rhetorical ending
+      「だろうか」 to convey his profound concern and demand for an assessment of the chaotic situation to his
+      subordinates. This choice of words reflects a leadership position and formal communication in a
+      serious context.
+  - english: How difficult this problem is!
+    japanese:
+      - この 問題 は {如何に} 難しい こと か。
+      - この 問題 は {如何に} 難しい か。
+    english_literally: This problem, how difficult it is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は どれ ほど 難しい こと か。
+        english: How difficult this problem is (general expression of degree)?
+        hint: 「どれほど」 is a common way to express 'how much' or 'to what extent'. We're looking for a more
+          literary or rhetorical nuance emphasizing the profoundness of the difficulty.
+    scene: A scholar expresses extreme difficulty with a complex mathematical problem.
+    register: formal
+    setting: academic
+    nuance: The adverbial form 「如何に」 emphasizes the *degree* of difficulty, often used in exclamatory
+      or rhetorical sentences to express strong feeling or observation, rather than a direct question.
+  - english: I wonder what kind of fate awaits us.
+    japanese:
+      - 我々 を 待つ は {如何 な} 運命 だろう か。
+      - 我々 を 待つ は {如何 な} 運命 で あろう か。
+    english_literally: What kind of fate awaits us, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 を 待つ は どんな 運命 だろう か。
+        english: What kind of fate awaits us (general query)?
+        hint: 「どんな」 is a direct and common question. We're looking for a phrase that adds a layer of formal
+          reflection and contemplation about the nature of the fate.
+    scene: A group of explorers stands at the edge of an unknown land, contemplating their future.
+    register: formal
+    setting: reflective
+    nuance: 「如何な」 here suggests a deep, somewhat philosophical contemplation about an uncertain future,
+      indicating a weightier inquiry than a simple 'what kind of'.
+  - english: Regardless of what kind of challenges, we must overcome them.
+    japanese:
+      - '{如何 な} 困難 で あろう とも、我々 は 乗り越え なけれ ば なら ない。'
+      - '{如何 な} 困難 で あろう とも、乗り越え なけれ ば なり ませ ん。'
+    english_literally: What kind of difficulties there may be, even if, we must overcome.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 困難 で あろう とも、我々 は 乗り越え なけれ ば なら ない。
+        english: No matter what difficulties (general expression), we must overcome them.
+        hint: Both are grammatically correct, but 「如何な」 is much more formal and often used in written
+          or highly official contexts, conveying stronger resolve.
+    scene: A CEO addresses their employees, encouraging them to face upcoming challenges.
+    register: formal
+    setting: inspirational
+    nuance: Combined with 「〜であろうとも」, 「如何な」 takes on a concessive meaning, emphasizing that 'no matter
+      what kind of difficulties' they face, they will prevail. This phrasing is very formal and resolute.
+  - english: This is what kind of thing you should consider.
+    japanese:
+      - これ は {如何 な} 事柄 か、よく 考察 す べき だ。
+      - これ は {如何 な} 事柄 で ある か、よく 考察 す べき だ。
+    english_literally: This is what kind of matter, one should deeply consider.
+    competing_grammar:
+      - competing_japanese:
+          - これ は どう いう 事柄 か、よく 考察 す べき だ。
+        english: This is what kind of matter (asking for detailed explanation), one should deeply consider.
+        hint: 「どういう」 asks for a detailed explanation of the kind of matter. 「如何な」 suggests a more profound
+          or critical assessment of its nature.
+    scene: A mentor advises their student to critically think about a new concept.
+    register: formal
+    setting: instructional
+    nuance: The phrase 「如何な 事柄 か」 here implies 'the true nature or significance of this matter', urging
+      a thorough and deep consideration rather than a superficial understanding.
+  - english: I heard something about him, but I wonder what kind of person he actually is.
+    japanese:
+      - 彼 に つい て は 色々 聞い た が、{如何 な} 人物 な の だろう か。
+      - 彼 に つい て は 色々 聞い た が、{如何 な} 人物 で ある の か。
+    english_literally: About him, I heard various things, but what kind of person is he, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に つい て は 色々 聞い た が、どんな 人物 な の だろう か。
+        english: I heard something about him, but I wonder what kind of person he is (general description)?
+        hint: 「どんな」 seeks a general description. 「如何な」 probes deeper into the true character or essence
+          of the person, fitting a more investigative tone.
+    scene: A detective investigates a suspect, having heard rumors but seeking deeper understanding.
+    register: formal
+    setting: interrogative
+    nuance: The speaker is not just asking for a superficial description but is trying to ascertain the
+      true character or nature of the person, hence the more profound 「如何な」.
+  - english: How fleeting is human life!
+    japanese:
+      - 人生 は {如何に} 儚い もの か。
+      - 人生 は {如何に} 儚い か。
+    english_literally: Life, how fleeting a thing it is.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は どれ ほど 儚い もの か。
+        english: How fleeting is human life (general exclamation)?
+        hint: 「どれほど」 is a common way to express 'how much' or 'to what extent'. 「如何に」 lends a more poetic
+          or philosophical tone to the exclamation, indicating a deeper reflection.
+    scene: An elderly person reflects on their life and the passage of time.
+    register: formal
+    setting: reflective
+    nuance: This is a classic rhetorical use of 「如何に」 to express a deep, almost lamenting, observation
+      about the brevity of life. It’s a statement of profound realization rather than a question.
+  - english: What kind of impact will this incident have?
+    japanese:
+      - この 事件 は {如何 な} 影響 を 与える の か。
+      - この 事件 は {如何 な} 影響 を 与える で あろう か。
+    english_literally: This incident, what kind of influence will it give?
+    competing_grammar:
+      - competing_japanese:
+          - この 事件 は どんな 影響 を 与える の か。
+        english: What kind of impact will this incident have (general query)?
+        hint: 「どんな」 is a general query about effects. 「如何な」 emphasizes the *nature* or *type* of influence,
+          often implying a significant or complex impact, suitable for a journalistic context.
+    scene: Journalists discuss the potential ramifications of a major news event.
+    register: formal
+    setting: informative
+    nuance: Used in a formal, investigative context, 「如何な」 seeks to understand the *nature* and *extent*
+      of the impact, implying a desire for a comprehensive analysis.
+  - english: What kind of response should we prepare?
+    japanese:
+      - 我々 は {如何 な} 対応 を 準備 する べき か。
+      - 我々 は {如何 な} 対応 を 準備 する べき で あろう か。
+    english_literally: We, what kind of response should prepare?
+    competing_grammar:
+      - competing_japanese:
+          - 我々 は どんな 対応 を 準備 す べき か。
+        english: What kind of response should we prepare (general query)?
+        hint: 「どんな」 is a straightforward question. 「如何な」 is more formal and suggests a strategic consideration
+          of the *most appropriate* type of response, fitting a professional discussion.
+    scene: A crisis management team plans their next steps.
+    register: formal
+    setting: serious
+    nuance: This example shows 「如何な」 used in a practical, planning context, asking about the most appropriate
+      or effective *type* of response, fitting the professional and serious setting.
+  - english: How much does one need to learn to master this technique?
+    japanese:
+      - この 技 を 習得 する に は、{如何に} 学ぶ べき か。
+      - この 技 を 習得 する に は、{如何に} 学ぶ べき で あろう か。
+    english_literally: This technique to master, how much should one learn?
+    competing_grammar:
+      - competing_japanese:
+          - この 技 を 習得 する に は、どれ ほど 学ぶ べき か。
+        english: How much does one need to learn (quantity)?
+        hint: 「どれほど」 asks about quantity/degree. 「如何に」 questions the *manner* or *depth* of learning required,
+          carrying a more dedicated or philosophical tone, suitable for a master-student exchange.
+    scene: A martial arts student asks their master about the path to mastery.
+    register: formal
+    setting: academic
+    nuance: Here, 「如何に」 functions adverbially, questioning the *manner* or *extent* of learning required,
+      conveying a deep commitment to the subject, typical of a serious student.
+post_example_writeup: As you can see from the examples, 「如何な」 and 「如何に」 are versatile expressions that
+  allow for nuanced inquiries and rhetorical statements about quality, state, and manner, particularly
+  in formal or contemplative contexts. Pay attention to the subtle differences in connotation to use them
+  effectively.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/如何な

@@ -1,0 +1,382 @@
+grammar_point: 二度と (never again)
+learn_before:
+  - Verb[まい] (negative volitional)
+meaning: Never again; not a second time
+pronunciation:
+  katakana: ニドト
+  romaji: nidoto
+formation:
+  二度と + Verb[negative form]: Used to express that an action will not happen again, or should not happen
+    again.
+jlpt: N3
+etymology: The phrase combines 二度 (nido), meaning "two times" or "a second time," and the particle と (to),
+  which here serves to emphasize the condition or result. Thus, literally it implies "not even a second
+  time," leading to the meaning of "never again." This emphasizes a definitive cessation or prohibition
+  of an action's recurrence.
+writeup: |-
+  「二度と」 (nidoto) is an adverbial expression used to emphasize that something will **never again** happen or be done. It is always followed by a verb in its negative form. The nuance is very strong, indicating a firm resolution, a strong regret over a past action, or a stern prohibition against future occurrences. It is often used in situations where a negative experience has occurred, leading to a strong determination to prevent its repetition.
+
+  While it literally refers to 'a second time,' in common usage, 「二度と」 functions as a universal 'never again' for any subsequent occurrence of an action. It can apply to actions that have happened once and will not be repeated, or actions that have happened multiple times and will now cease entirely. Its primary use is to convey a strong, often emotional, commitment to non-repetition.
+false_friends:
+  - term: 決して〜ない
+    meaning: never
+    kind: similar expression
+    nuance: 「決して〜ない」 (kesshite ~nai) also means 'never,' but it carries a more general and formal tone
+      of absolute negation, without the specific 'not again' implication of 「二度と」. 「二度と」 specifically
+      implies not repeating something, often due to a past negative experience or strong resolve, whereas
+      「決して」 is a broader, more objective 'never.'
+    grammar_point: 決して〜ない (emphatic never)
+  - term: もう〜ない
+    meaning: not anymore
+    kind: similar expression
+    nuance: 「もう〜ない」 (mou ~nai) means 'not anymore' or 'no longer,' indicating a change from a previous
+      state where something *was* happening to a state where it *is not*. While it implies cessation,
+      it lacks the strong, definitive 'never again' and often regretful or determined nuance of 「二度と」.
+      It simply states a present non-occurrence.
+    grammar_point: もう (already・anymore)
+  - term: 金輪際〜ない
+    meaning: absolutely never
+    kind: similar expression
+    nuance: 「金輪際〜ない」 (konrinzai ~nai) is a much stronger and more emphatic way to say 'absolutely never.'
+      It conveys an even more resolute and unchangeable declaration than 「二度と」. It's often used in very
+      dramatic or definitive statements, more formal or literary in tone compared to the more common 「二度と」.
+    grammar_point: <suggest>:金輪際〜ない (absolutely never)
+post_false_friends_writeup: When choosing between these expressions, consider the degree of finality and
+  the reason for the negation. Use 「二度と」 for a strong, personal 'never again' that often stems from a
+  past experience or firm decision. Use 「決して」 for a more general, absolute 'never.' 「もう〜ない」 simply indicates
+  that something has stopped, without the strong emotional weight. 「金輪際」 is for the most absolute and
+  dramatic declarations of never.
+examples:
+  - english: I will never again do such a foolish thing.
+    japanese:
+      - 私 は {二 度 と}、そんな バカ な こと は し ませ ん。
+      - 私 は {二 度 と}、そんな バカ な こと は し ない。
+      - もう、{二 度 と} そんな バカ な こと は し ませ ん。
+      - 私 は {二 度 と}、あんな バカ な 真似 は し ませ ん。
+    english_literally: As for me, a second time, such a foolish thing I will not do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 決して、そんな バカ な こと は し ませ ん。
+        english: I will never do such a foolish thing.
+        hint: 「決して」 is a general 'never', not specifically 'never again' after a previous occurrence.
+          We're looking for a definitive statement about preventing repetition.
+      - competing_japanese:
+          - 私 は もう、そんな バカ な こと は し ませ ん。
+        english: I will no longer do such a foolish thing.
+        hint: 「もう〜ない」 implies 'not anymore' or 'no longer', not necessarily a firm resolve to *never*
+          repeat a specific action that happened before. We're looking for 'never again'.
+    scene: A person reflecting on a past mistake and making a firm resolution.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    nuance: This sentence uses 「二度と」 with the polite negative form 「しません」 to express a strong personal
+      resolve not to repeat a foolish action. The formality adds weight to the declaration.
+    etymology: The polite form 「しません」 (shimasen) emphasizes the speaker's determined commitment to their
+      resolution.
+  - english: I will never again go to that restaurant!
+    japanese:
+      - あの レストラン に は、{二 度 と} 行か ない！
+      - あの レストラン に は、{二 度 と} 行き ませ ん！
+      - あの レストラン に は、{二 度 と} 行く もん か！
+    english_literally: To that restaurant, a second time, I will not go!
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン に は、もう 行か ない！
+        english: I will not go to that restaurant anymore!
+        hint: 「もう〜ない」 simply states 'not going anymore,' and doesn't carry the same strong resolve as
+          'never again' after a specific negative experience. We're looking for 'never again'.
+      - competing_japanese:
+          - あの レストラン に は、絶対 に 行か ない！
+        english: I will absolutely not go to that restaurant!
+        hint: 「絶対に」 means 'absolutely,' which is strong, but 「二度と」 specifically refers to 'not a second
+          time' or 'never again' after a prior event. We're looking for 'never again'.
+    scene: A customer is extremely dissatisfied with their dining experience and declares they will not
+      return.
+    register: casual
+    setting: excited
+    conjugation: negative plain (～ない)
+    nuance: This casual exclamation uses 「二度と」 with the plain negative 「行かない」 to convey strong frustration
+      and a firm decision not to visit the restaurant again. The phrase sounds natural for both male and
+      female speakers expressing strong annoyance.
+    etymology: The plain negative 「行かない」 (ikanai) is direct and emphatic, fitting the speaker's strong
+      feeling of exasperation without needing polite forms.
+  - english: We must never again repeat the same mistake.
+    japanese:
+      - 私 たち は {二 度 と} 同じ 失敗 を 繰り返し て は なり ませ ん。
+      - 私 たち は {二 度 と} 同じ 失敗 を 繰り返さ ない よう に し ない と いけ ない。
+      - 私 たち は {二 度 と}、あの 失敗 を 繰り返し て は いけ ない。
+    english_literally: As for us, a second time, the same mistake repeating it must not be.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 決して 同じ 失敗 を 繰り返し て は なり ませ ん。
+        english: We must never repeat the same mistake.
+        hint: 「決して」 expresses a general absolute negation, not specifically a resolve *not to repeat*
+          a past action. We're looking for 'never again'.
+      - competing_japanese:
+          - 私 たち は もう 同じ 失敗 を 繰り返し て は なり ませ ん。
+        english: We must no longer repeat the same mistake.
+        hint: 「もう」 means 'no longer' or 'not anymore', which lacks the emphasis on preventing a *repetition*.
+          We're looking for 'never again'.
+    scene: A team leader addresses their colleagues after a critical error, emphasizing the need to learn
+      from it.
+    register: semi-formal
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: Here, 「二度と」 is combined with the prohibition 「〜てはなりません」, suitable for a semi-formal setting.
+      It emphasizes a collective resolve to prevent recurrence, implying that the previous mistake was
+      unacceptable.
+    etymology: The phrase 「〜てはなりません」 (te wa narimasen) literally means 'it will not do to...' or 'it must
+      not be that...', highlighting a necessary rule or strong prohibition.
+  - english: She vowed that she would never again tell a lie.
+    japanese:
+      - 彼女 は {二 度 と} 嘘 を 言わ ない と 誓っ た。
+      - 彼女 は {二 度 と} 嘘 は 言わ ない と 誓っ た。
+      - 彼女 は {二 度 と} 嘘 を つか ない と 誓っ た。
+    english_literally: She, a second time, a lie not to say vowed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 絶対 に 嘘 を 言わ ない と 誓っ た。
+        english: She vowed that she would absolutely not tell a lie.
+        hint: 「絶対に」 is a strong 'absolutely,' but 「二度と」 focuses on the non-recurrence or 'never again'
+          aspect. We're looking for 'never again'.
+      - competing_japanese:
+          - 彼女 は もう 嘘 を 言わ ない と 誓っ た。
+        english: She vowed that she would no longer tell a lie.
+        hint: This means she 'won't tell lies anymore,' but it's less emphatic about the 'never again'
+          aspect than 「二度と」. We're looking for 'never again'.
+    scene: A narrator describing a character's strong resolution after a difficult experience.
+    register: formal
+    setting: storytelling
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Used in a narrative context, 「二度と」 combined with 「言わないと誓った」 (vowed not to say) highlights
+      the character's firm and absolute decision based on a past event. The use of 「言わない」 (iwanai) for
+      'not to tell' is natural and direct.
+    etymology: The verb 「誓う」 (chikau), meaning 'to vow' or 'to swear,' adds a strong sense of commitment
+      and solemnity to the speaker's resolution.
+  - english: After that painful experience, I decided I would never again get involved in such matters.
+    japanese:
+      - あの 辛い 経験 以来、私 は {二 度 と} その よう な こと に 関わら ない と 決め た。
+      - あの 辛い 経験 以来、私 は {二 度 と} その よう な こと に 関わり ませ ん と 決め まし た。
+      - あの 辛い 経験 以来、{二 度 と} あんな こと に は 関わら ない と 決め た。
+    english_literally: That painful experience since, as for me, a second time, such things not to get
+      involved decided.
+    competing_grammar:
+      - competing_japanese:
+          - あの 辛い 経験 以来、私 は 一切 その よう な こと に 関わら ない と 決め た。
+        english: After that painful experience, I decided I would not get involved in such matters at
+          all.
+        hint: 「一切」 means 'not at all' or 'completely,' a broader negation than specifically 'never again'
+          for repetition. We're looking for 'never again'.
+      - competing_japanese:
+          - あの 辛い 経験 以来、私 は もう その よう な こと に 関わら ない と 決め た。
+        english: After that painful experience, I decided I would no longer get involved in such matters.
+        hint: Indicates a cessation, but less about preventing a *repetition* specifically. We're looking
+          for 'never again'.
+    scene: Someone reflecting on a past trauma and explaining their new boundary.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    listener_gender: no one
+    nuance: The phrase 「辛い経験以来」 (since that painful experience) provides the context for the strong resolution
+      expressed by 「二度と〜関わらないと決めた」 (decided never again to get involved). The casual register makes it
+      a personal reflection.
+    etymology: 「以来」 (irai) means 'since' or 'from then on,' indicating a point in time from which a new
+      state or decision has continued, strengthening the finality implied by 「二度と」.
+  - english: He promised never again to be late for meetings.
+    japanese:
+      - 彼 は 会議 に {二 度 と} 遅刻 し ない と 約束 し た。
+      - 彼 は 会議 に {二 度 と} 遅刻 し まい と 約束 し た。
+      - 彼 は 会議 に {二 度 と} 遅れ ない と 約束 し た。
+    english_literally: He, to meetings, a second time, not to be late promised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 会議 に 決し て 遅刻 し ない と 約束 し た。
+        english: He promised never to be late for meetings.
+        hint: 「決して」 means 'never' generally, not emphasizing the *repetition* aspect. We're looking for
+          'never again'.
+      - competing_japanese:
+          - 彼 は 会議 に 絶対 に 遅刻 し ない と 約束 し た。
+        english: He promised to absolutely not be late for meetings.
+        hint: 「絶対に」 means 'absolutely,' a strong negation, but 「二度と」 highlights the 'never again' aspect
+          specifically. We're looking for 'never again'.
+    scene: A colleague informs a manager about a team member's commitment to punctuality.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: 「二度と遅刻しないと約束した」 (promised never again to be late) is a common phrase to indicate a firm commitment
+      to correcting a recurring issue. This usage is applicable in a professional context, and the structure
+      「〜ないと約束する」 (yakusoku suru) means 'to promise not to do something.'
+    etymology: 「遅刻」 (chikoku) means 'lateness' or 'absence,' derived from Chinese characters meaning 'late'
+      and 'arrival.' The combination with 「しない」 (shinai) emphasizes the resolved non-occurrence of lateness.
+  - english: My parents told me never again to speak rudely.
+    japanese:
+      - 両親 は 私 に {二 度 と} 乱暴 な 言葉 を 使う な と 言っ た。
+      - 両親 は 私 に {二 度 と} 乱暴 な 言葉 を 使う な と 言いつけ た。
+      - 両親 は 私 に {二 度 と} 乱暴 な 言葉 を 使わ ない よう に と 言っ た。
+    english_literally: Parents, to me, a second time, rude words do not use said.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 は 私 に もう 乱暴 な 言葉 を 使う な と 言っ た。
+        english: My parents told me not to speak rudely anymore.
+        hint: Implies 'don't use anymore,' but lacks the strong 'never again' for any future instance.
+          We're looking for 'never again'.
+      - competing_japanese:
+          - 両親 は 私 に 絶対 に 乱暴 な 言葉 を 使う な と 言っ た。
+        english: My parents told me to absolutely not speak rudely.
+        hint: 「絶対に」 means 'absolutely,' strong, but not specifically 'never *again* after this.' We're
+          looking for 'never again'.
+    scene: A child recalling a reprimand from their parents.
+    register: casual
+    setting: instructional
+    conjugation: imperative plain (～ろ/～え)
+    speaker_age: younger
+    nuance: The combination of 「二度と」 with the plain negative imperative 「使うな」 (tsukau na), a strong and
+      direct command, creates a very firm prohibition, typical of parents reprimanding a child. This is
+      a common way to express a strong prohibition on repeating an undesirable action.
+    etymology: The imperative 「使うな」 (tsukau na) is a direct, informal negative command. The particle 「な」
+      at the end of a verb's plain form creates a strong prohibition, commonly used by parents to children
+      or among close friends.
+  - english: If you fail this time, you'll never again get another chance.
+    japanese:
+      - 今回 失敗 し たら、{二 度 と} チャンス は ない だろう。
+      - 今回 失敗 し たら、{二 度 と} チャンス は ない。
+      - 今回 失敗 し たら、{二 度 と} 次 の チャンス は ない だろう。
+    english_literally: This time if you fail, a second time, chances will not be, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 今回 失敗 し たら、もう チャンス は ない だろう。
+        english: If you fail this time, you'll no longer get a chance.
+        hint: Implies 'no more chances,' but doesn't carry the strong 'never *again*' nuance as a consequence
+          of past action. We're looking for 'never again'.
+      - competing_japanese:
+          - 今回 失敗 し たら、決して チャンス は ない だろう。
+        english: If you fail this time, you'll never get a chance.
+        hint: 「決して」 is a general 'never,' less focused on the 'no second chance' meaning. We're looking
+          for 'never again'.
+    scene: A coach giving a stern warning to an athlete before a competition.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This example shows 「二度と」 in a conditional context, highlighting the severe consequence of
+      a failure. 「チャンスは ないだろう」 (chansu wa nai darou) emphasizes the finality of the situation, often implying
+      a point of no return.
+    etymology: 「だろう」 (darou) is a casual form of 「でしょう」, indicating a conjecture or probability. When
+      used with a negative statement like 「ないだろう」 (nai darou), it emphasizes the strong likelihood of
+      something not happening, reinforcing the 'never again' meaning.
+  - english: He swore he would never again approach her.
+    japanese:
+      - 彼 は 彼女 に {二 度 と} 近づか ない と 誓っ た。
+      - 彼 は 彼女 に {二 度 と} 近づく まい と 誓っ た。
+      - 彼 は 彼女 に {二 度 と} 近づか ない と 固く 誓っ た。
+    english_literally: He, to her, a second time, not to approach swore.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 彼女 に 絶対 に 近づか ない と 誓っ た。
+        english: He swore he would absolutely not approach her.
+        hint: 「絶対に」 is a strong 'absolutely,' but not specific to *never repeating* an action like 「二度と」.
+          We're looking for 'never again'.
+      - competing_japanese:
+          - 彼 は 彼女 に もう 近づか ない と 誓っ た。
+        english: He swore he would no longer approach her.
+        hint: Means 'won't approach anymore,' less about the absolute 'never again' after a previous encounter.
+          We're looking for 'never again'.
+    scene: A person recounting a solemn promise made by someone else.
+    register: formal
+    setting: storytelling
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: Similar to a previous example, this illustrates 「二度と」 with 「誓った」 (chikatta), reinforcing a
+      strong, unwavering commitment in a narrative context. The use of 「近づかない」 (chikazukanai) for 'not
+      to approach' is standard.
+    etymology: The particle 「に」 (ni) after 「彼女」 (kanojo) marks the indirect object or target of the action,
+      indicating 'to her' or 'towards her.'
+  - english: I absolutely never again want to experience something like that.
+    japanese:
+      - あんな 経験 は {二 度 と} し たく ない。
+      - あんな 経験 は {二 度 と} いや だ。
+      - あんな 経験 は {二 度 と} し たく ねえ。
+    english_literally: That kind of experience, a second time, do not want to do.
+    competing_grammar:
+      - competing_japanese:
+          - あんな 経験 は 絶対 に し たく ない。
+        english: I absolutely do not want to experience something like that.
+        hint: While strong, 「絶対に」 means 'absolutely not,' not specifically 'never *again* experience.'
+          We're looking for 'never again'.
+      - competing_japanese:
+          - あんな 経験 は もう し たく ない。
+        english: I no longer want to experience something like that.
+        hint: Means 'don't want to do it anymore,' lacks the emphasis on preventing *any future repetition*.
+          We're looking for 'never again'.
+    scene: Someone expressing a strong aversion to repeating a negative experience.
+    register: casual
+    setting: pessimistic
+    conjugation: desiderative (～たい)
+    nuance: Combining 「二度と」 with the desiderative negative 「したくない」 (shitakunai), meaning 'do not want
+      to do,' powerfully conveys a deep desire to avoid a particular experience ever again. This highlights
+      the emotional impact of the past event.
+    etymology: The desiderative form 「したい」 (shitai) expresses 'want to do,' and its negative 「したくない」 (shitakunai)
+      expresses 'do not want to do.' This direct expression of desire or aversion strengthens the 'never
+      again' sentiment.
+  - english: Please never again do such a thing.
+    japanese:
+      - '{二 度 と} そんな こと は し ない で ください。'
+      - '{二 度 と} その よう な こと は なさら ない で ください。'
+      - '{二 度 と} そんな こと は お やめ ください。'
+    english_literally: A second time, such a thing, please do not do.
+    competing_grammar:
+      - competing_japanese:
+          - 決して そんな こと は し ない で ください。
+        english: Please never do such a thing.
+        hint: 「決して」 means 'never,' but 「二度と」 focuses on the specific 'never *again*,' often after a first
+          occurrence. We're looking for 'never again'.
+      - competing_japanese:
+          - もう そんな こと は し ない で ください。
+        english: Please don't do such a thing anymore.
+        hint: Means 'please don't do it anymore,' which is less forceful in preventing future repetitions.
+          We're looking for 'never again'.
+    scene: A parent or teacher strongly admonishing a child or student.
+    register: formal
+    setting: commanding
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: This uses 「二度と」 with the polite negative request 「〜ないでください」 (naide kudasai) to issue a firm
+      prohibition. It's strong yet polite enough for formal admonition.
+    etymology: 「〜ないでください」 (naide kudasai) is the standard polite negative request form, literally meaning
+      'please do not do (verb).' It's a common way to express prohibition politely in Japanese.
+  - english: I'm so ashamed, I never again want to show my face there.
+    japanese:
+      - 恥ずかしく て、もう {二 度 と} そこ に は 顔 を 出せ ない。
+      - 恥ずかしく て、もう {二 度 と} そこ に は 参り ませ ん。
+      - 恥ずかしく て、{二 度 と} そこ に は 顔 を 出せる か！
+    english_literally: Because ashamed, already a second time, there, cannot show face.
+    competing_grammar:
+      - competing_japanese:
+          - 恥ずかしく て、もう そこ に は 顔 を 出せ ない。
+        english: I'm so ashamed, I cannot show my face there anymore.
+        hint: Means 'cannot show my face there anymore,' but less emphatic on the 'never again' aspect.
+          We're looking for 'never again'.
+      - competing_japanese:
+          - 恥ずかしく て、絶対 に そこ に は 顔 を 出せ ない。
+        english: I'm so ashamed, I absolutely cannot show my face there.
+        hint: 「絶対に」 emphasizes 'absolutely not,' but 「二度と」 implies the refusal to *ever again* perform
+          the action. We're looking for 'never again'.
+    scene: Someone expressing extreme embarrassment after a public incident.
+    register: casual
+    setting: melancholic
+    conjugation: potential (～られる/～える)
+    nuance: The combination of 「恥ずかしくて」 (hazukashikute, because I'm ashamed) and 「二度と顔を出せない」 (nidoto kao
+      o dasenai, cannot show my face again) shows a strong, emotional consequence leading to a complete
+      refusal to return to a place. 「顔を出す」 is an idiom meaning 'to show one's face' or 'to appear'.
+    etymology: The phrase 「顔を出す」 (kao o dasu) literally means 'to put out one's face,' and is an idiomatic
+      expression for 'to appear' or 'to show up.' The potential negative 「出せない」 (dasenai) indicates an
+      inability, whether physical or emotional, to perform the action.
+post_example_writeup: The examples illustrate how 「二度と」 consistently pairs with negative verb forms, conveying
+  a resolute 'never again' that often stems from a past experience or a strong intention to prevent recurrence.
+  This distinguishes it from simpler negations or other forms of expressing 'never.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/二度と

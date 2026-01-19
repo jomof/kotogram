@@ -1,0 +1,234 @@
+grammar_point: いくら〜でも (no matter how much)
+learn_before:
+  - (っ)たって (even if・even though)
+  - いくら (how much)
+meaning: No matter how much
+pronunciation:
+  katakana: イクラ デモ
+  romaji: ikura demo
+formation:
+  いくら + Verb (te-form) + ても: Indicates 'no matter how much' of an action or state.
+  いくら + い-adjective (te-form) + ても: Indicates 'no matter how' for an adjectival quality.
+  いくら + な-adjective (plain form) + でも: Indicates 'no matter how' for a nominal or adjectival quality.
+  いくら + Noun + でも: Indicates 'even if it's (this person/thing)' or 'no matter how much (of this noun)'.
+  いくらでも + Verb or Noun/Verb phrase: Indicates 'as much as you want/can' or 'an endless amount'.
+jlpt: N3
+etymology: 「いくら」 originates from the kanji 幾ら, literally meaning 'how much'. Its inclusion in this grammatical
+  pattern retains that sense of quantifying the extent or degree of something. The pattern then combines
+  this interrogative sense of quantity with a concessive marker (ても/でも) to convey the idea of 'no matter
+  what quantity/extent'.
+writeup: |-
+  「いくら〜でも」 functions similarly to 「どんなに〜ても」, both generally translating to "no matter how (A), (B)". However, a key distinction lies in the nuance of the initial word. 「いくら」, stemming from 幾ら, means "how much," placing emphasis on **quantity, amount, or extent**. In contrast, 「どんなに」, derived from どのような, focuses on "what kind" or "what sort," emphasizing **type, manner, or quality**.
+
+  When using 「いくら〜でも」, 「いくら」 combines with the te-form of verbs and い-adjectives followed by 「ても」, or with nouns and な-adjectives followed by 「でも」。The literal translation is "however much (A), (B)". The (B) part of the phrase typically highlights a result that is unexpected or remains unchanged despite the condition in (A), often leading to a negative outcome or a statement of surprising resilience.
+
+  While this pattern is frequently found in sentences expressing negation (e.g., using 「ない」 or 「ありません」), it can also appear in positive sentences. In such cases, the (B) phrase still conveys something surprising or unexpected given the extent or amount described in (A), for example, it might indicate that a vast quantity exists, or that even a highly capable person has limitations.
+
+  **Key Difference with どんなに〜ても:**
+  Use 「いくら〜でも」 when you want to highlight the *volume* or *amount* of something (e.g., effort, money, time, degree of a quality). Use 「どんなに〜ても」 when the emphasis is on the *type*, *manner*, or *quality* (e.g., how beautiful, how difficult in nature). Although there is this subtle difference, in many situations, both expressions can be used interchangeably, especially when the context allows for both interpretations.
+false_friends:
+  - term: どんなに〜ても
+    meaning: No matter how
+    kind: synonym
+    nuance: 「いくら〜でも」 emphasizes the *quantity*, *amount*, or *extent* of something, whereas 「どんなに〜ても」
+      focuses on the *type*, *manner*, or *quality*.
+    grammar_point: どんなに〜ても (no matter how much)
+  - term: どうしても
+    meaning: Regardless of, No matter what, By all means
+    kind: similar expression
+    nuance: Unlike 「いくら〜でも」 which emphasizes the degree of a condition, 「どうしても」 implies a strong sense
+      of determination or inevitability, often meaning 'no matter what happens' or 'absolutely must'.
+    grammar_point: どうしても (inevitably or absolutely)
+  - term: どれだけ〜ても
+    meaning: No matter how much or how far
+    kind: similar expression
+    nuance: 「どれだけ〜ても」 is very similar to 「いくら〜でも」 in meaning 'no matter how much', but 「いくら」 often carries
+      a slightly stronger sense of being *quantifiable* or pertaining to *money/cost*, while 「どれだけ」 can
+      feel a bit more general for *degree* or *extent*.
+    grammar_point: <suggest>:どれだけ〜ても (no matter how much or how far)
+post_false_friends_writeup: 'To differentiate these expressions: Use 「いくら〜でも」 when referring to a measurable
+  amount, degree, or extent. Use 「どんなに〜ても」 when emphasizing the type or quality. 「どうしても」 expresses a strong
+  resolve or an unavoidable circumstance, often indicating that something *will* or *will not* happen
+  regardless of the situation.'
+examples:
+  - english: No matter how much we discuss it, his opinion probably won't change.
+    japanese:
+      - '{いくら} 話し合っ て も、彼 の 意見 は 変わら ない だろう。'
+      - '{いくら} 話し合っ た と し て も、彼 の 意見 は 変わら ない と 思い ます。'
+    english_literally: No matter how much we discuss, his opinion probably won't change.
+    competing_grammar:
+      - competing_japanese:
+          - '{どれ だけ 話し合っ て も}'
+        english: No matter how much we discuss it (emphasizing effort broadly)
+        hint: The scene focuses on the volume of discussion already undertaken and its lack of effect,
+          making this less appropriate. We're looking for an emphasis on the quantity or extent.
+    scene: A group of colleagues are frustrated by a team member's stubbornness regarding a project proposal.
+    register: semi-formal
+    setting: serious
+  - english: No matter how expensive the bag is, it's natural for it to get damaged if you use it every
+      day.
+    japanese:
+      - '{いくら} 高い カバン で も、毎日 使え ば 傷む の は 当たり前 だ。'
+      - '{いくら} 高い カバン で あっ て も、毎日 使え ば 傷む の は 当たり前 です。'
+      - '{いくら} 高い カバン だっ た って、毎日 使え ば 傷む よ。'
+    english_literally: No matter how expensive the bag, if you use it every day, it getting damaged is
+      natural.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 高く て も}'
+        english: No matter how expensive it is (emphasizing quality or type)
+        hint: The situation highlights the cost (an amount) of the bag rather than its inherent quality
+          or type. We're looking for an emphasis on the quantity or extent.
+    scene: A fashion enthusiast is lamenting that their luxury handbag, despite its high price, shows
+      signs of wear and tear from daily use.
+    register: casual
+    setting: reflective
+  - english: No matter how difficult the job is, we have to meet the deadline.
+    japanese:
+      - '{いくら} 大変 な 仕事 で も、期限 は 守ら なけれ ば なら ない。'
+      - '{いくら} 大変 な 仕事 で あっ て も、期限 は 守ら なけれ ば なり ませ ん。'
+      - '{いくら} 大変 な 仕事 だ って、期限 は 守る べき だ。'
+    english_literally: No matter how difficult the job, the deadline must be met.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 大変 な 仕事 で も}'
+        english: No matter how difficult the job is (emphasizing quality or type)
+        hint: The context is about the extent or degree of difficulty, not the nature or type of difficulty.
+          We're looking for an emphasis on the quantity or extent.
+    scene: A project manager is addressing their team, emphasizing the importance of timely completion
+      despite challenges.
+    register: teineigo (polite)
+    setting: commanding
+  - english: Even for my older brother, this puzzle might be too difficult.
+    japanese:
+      - '{いくら} 兄 さん で も、この パズル は 難し すぎる ん じゃ ない か。'
+      - '{いくら} 兄 さん で あっ て も、この パズル は 難し すぎる の で は ない でしょう か。'
+      - '{いくら} 兄 さん だ って、この パズル は 難し すぎる だろ。'
+    english_literally: Even for my older brother, this puzzle is too difficult, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 兄 さん が {どれ だけ 賢く て も}
+        english: No matter how clever my older brother is (emphasizing degree or extent)
+        hint: The scene implies a specific person's capabilities are being tested, focusing on 'even for
+          this individual' rather than a general measure of intelligence or skill. We're looking for an
+          emphasis on the specific case or exception.
+    scene: A younger sibling watches their very clever older brother struggle with a particularly complex
+      jigsaw puzzle.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The use of 「兄さん」 is a common way for a younger sibling to refer to their older brother. The
+      phrase 「んじゃないか」 expresses a soft conjecture or doubt, making the observation gentle and thoughtful.
+  - english: If you have worries, you can consult with me as much as you want.
+    japanese:
+      - 悩み が ある なら、{いくら} で も 私 に 相談 し て いい よ。
+      - 悩み が ある なら、{いくら} で も 私 に ご 相談 し て も いい です よ。
+      - 悩み が ある なら、{いくら} で も 私 に ご 相談 ください。
+    english_literally: If you have worries, you can consult with me as much as you want.
+    competing_grammar:
+      - competing_japanese:
+          - '{どれ だけ で も}'
+        english: You can consult with me to whatever extent (emphasizing general degree)
+        hint: The speaker is offering an unlimited amount of their time and attention for consultation,
+          which 'いくら' conveys well, emphasizing the quantity of available support. We're looking for an
+          emphasis on the amount or quantity.
+    scene: A supportive friend offers a listening ear to someone who is clearly distressed.
+    register: casual
+    setting: friendly
+  - english: There are endless books in this library, so you can borrow as many as you like.
+    japanese:
+      - この 図書 館 に は {いくら} で も 本 が ある から、好き な だけ 借り られる よ。
+      - この 図書 館 に は {いくら} で も 本 が ござい ます から、お 好き な だけ お 借り ください。
+    english_literally: In this library, there are books as much as you want, so you can borrow as much
+      as you like.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 に {どれ だけ 本 が ある の か}
+        english: To what extent are there books in this library?
+        hint: The emphasis is on the vast, indefinite quantity of books available for borrowing, which
+          'いくらでも' effectively communicates as 'as much as you want'. We're looking for an emphasis on
+          the amount or quantity.
+    scene: A librarian is explaining the extensive collection available to a new visitor.
+    register: teineigo (polite)
+    setting: informative
+  - english: No matter how early you wake up, there are times when you still can't make it, right?
+    japanese:
+      - '{いくら} 早く 起き て も、結局 間に合わ ない とき も ある よ ね。'
+      - '{いくら} 早く 起き まし て も、結局 間に合わ ない とき も あり ます よ ね。'
+      - '{いくら} 早く 起き たって、結局 間に合わ ない とき も ある よ。'
+    english_literally: No matter how early you wake up, after all, there are times when you can't make
+      it, right?
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 早く 起き て も}'
+        english: No matter how early you wake up (emphasizing manner or quality)
+        hint: The context is about the extent of waking up early (the amount of time or effort), rather
+          than the manner of waking up. We're looking for an emphasis on the quantity or extent.
+    scene: Two students commiserate over the struggle of getting to school on time despite their best
+      efforts.
+    register: casual
+    setting: sympathetic
+  - english: No matter how close friends you are, I think you should keep secrets.
+    japanese:
+      - '{いくら} 親しい 友達 で も、秘密 は 守る べき だ と 思う。'
+      - '{いくら} 親しい 友達 で あっ て も、秘密 は 守る べき だ と 思い ます。'
+      - '{いくら} 親しい 友達 だ って、秘密 は 守る べき だ よ。'
+    english_literally: No matter how close friends, I think secrets should be kept.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 親しい 友達 で も}'
+        english: No matter how close friends you are (emphasizing quality or type of friendship)
+        hint: The sentence emphasizes the degree of closeness, and 'いくら' highlights that even at the highest
+          degree, certain boundaries of confidentiality exist. We're looking for an emphasis on the quantity
+          or extent of closeness.
+    scene: A person is giving advice to a younger friend about the importance of trust and discretion
+      in friendships.
+    register: formal
+    setting: instructional
+    speaker_age: older
+    nuance: The use of 「べきだ」 (beki da) indicates a strong recommendation or obligation. The setting is
+      'instructional' and the speaker is 'older', which adds weight to the advice, suggesting a sense
+      of wisdom being imparted.
+  - english: No matter how much you try, results don't always appear immediately.
+    japanese:
+      - '{いくら} 努力 し て も、すぐ に 結果 が 出る わけ で は ない。'
+      - '{いくら} 努力 し まし て も、すぐ に 結果 が 出る わけ で は あり ませ ん。'
+      - '{いくら} 努力 し たって、すぐ に 結果 は 出 ない よ。'
+    english_literally: No matter how much you try, it's not the case that results appear immediately.
+    competing_grammar:
+      - competing_japanese:
+          - '{どれ だけ 努力 し て も}'
+        english: No matter how much you try (emphasizing general degree or extent)
+        hint: The nuance is about the amount of effort exerted and its delayed return, which 'いくら' specifies
+          as a quantifiable measure of hard work. We're looking for an emphasis on the amount or quantity
+          of effort.
+    scene: A mentor is encouraging a frustrated protégé, reminding them that progress takes time and sustained
+      effort.
+    register: teineigo (polite)
+    setting: supportive
+  - english: No matter how hot it gets, I still love summer.
+    japanese:
+      - '{いくら} 暑く なっ て も、夏 が 大好き だ。'
+      - '{いくら} 暑く なり まし て も、夏 が 大好き です。'
+      - '{いくら} 暑く なっ たって、夏 が 大好き だ よ。'
+    english_literally: No matter how hot it becomes, summer is very liked.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 暑く なっ て も}'
+        english: No matter how hot it gets (emphasizing the *quality* or *type* of heat)
+        hint: The sentence emphasizes the *degree* or *extent* of the heat, indicating that even if the
+          temperature reaches extreme levels, the speaker's feeling remains unchanged. We're looking for
+          an emphasis on the quantity or extent.
+    scene: A person expressing their unwavering love for summer despite the scorching heat.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: The phrase 「大好きだ」 is a common expression of strong fondness. The use of 「いくら」 highlights the
+      extreme degree of the heat, showing the speaker's enthusiasm for summer even under very hot conditions.
+      This casual tone is typical for expressing personal preferences.
+post_example_writeup: The examples illustrate how 「いくら〜でも」 is used across various contexts, often highlighting
+  an unyielding outcome despite a significant extent or amount of a condition. Pay close attention to
+  the nuance of quantity or degree that 「いくら」 brings, distinguishing it from related expressions that
+  focus on manner or type.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いくら-でも

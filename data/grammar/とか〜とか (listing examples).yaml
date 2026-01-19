@@ -1,0 +1,401 @@
+grammar_point: とか〜とか (listing examples)
+learn_before:
+  - とか (hearsay)
+meaning: Among other things, for example, such as
+meaning_warning: For non-exhaustive lists
+pronunciation:
+  katakana: トカ〜トカ
+  romaji: toka~toka
+formation:
+  Noun + とか + Noun + とか: Listing examples of nouns.
+  Verb + とか + Verb + とか: Listing examples of actions.
+jlpt: N4
+etymology: 「とか」 is derived from the particle 「と」 (to), which indicates a listing of items, and 「か」 (ka),
+  which adds uncertainty or acts as a question marker, giving the sense of "and so on" or "among other
+  things."
+writeup: |-
+  The structure 「とか〜とか」 is used to present a **non-exhaustive list** of items or actions. It implies that the listed elements are merely examples from a broader category, suggesting the existence of other similar items. It can follow nouns, verbs, or even clauses. When multiple items are listed, the final 「とか」 is frequently omitted.
+
+  **Important Considerations:**
+  *   **Non-Exhaustive:** The core meaning of 「とか」 is to indicate that the list provided is not complete; there are other unmentioned items or actions that could also fit.
+  *   **Versatility:** Unlike some other listing particles, 「とか」 is highly versatile. It can connect not only nouns but also verbs and entire clauses, which expands its utility significantly in conversational Japanese.
+  *   **Casual Tone:** While technically usable in formal contexts, 「とか」 generally carries a casual or conversational nuance. It's frequently heard in daily interactions where a precise or exhaustive enumeration is not necessary or desired.
+false_friends:
+  - term: やら〜やら
+    meaning: Whether or, Things like, And … so on
+    kind: synonym
+    nuance: 「やら〜やら」 often implies a sense of being overwhelmed or listing things that are causing trouble,
+      suggesting a chaotic or burdensome enumeration.
+    grammar_point: やら (uncertainty・listing)
+  - term: たり〜たりする
+    meaning: Things like ~ and ~
+    kind: synonym
+    nuance: 「たり〜たりする」 lists actions or states, often indicating repeated, alternating, or partial actions,
+      focusing on what is actually done rather than merely given as examples.
+    grammar_point: Verb[たり] (representative listing)
+  - term: や
+    meaning: Things like, And the like
+    kind: synonym
+    nuance: 「や」 can only connect nouns, whereas 「とか」 can also connect verbs and clauses, offering greater
+      grammatical flexibility. 「や」 can feel more definitive for a short list.
+    grammar_point: や (non-exhaustive list)
+  - term: など
+    meaning: Such as, Things like, Etc., And so on
+    kind: synonym
+    nuance: 「など」 is often more formal than 「とか」 and can be used in a broader range of contexts, including
+      written language.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: といった
+    meaning: Such as, Like, So much as
+    kind: synonym
+    nuance: 「といった」 is more formal and primarily used in written language or very formal speech to introduce
+      specific examples that represent a broader category.
+    grammar_point: といった (such as)
+  - term: 例えば
+    meaning: For example
+    kind: synonym
+    nuance: 「例えば (tatoeba)」 is a set phrase used to introduce an example, often at the beginning of a
+      sentence or clause, whereas 「とか」 is a particle used to list examples within a sentence.
+    grammar_point: たとえば (for example)
+  - term: し〜し
+    meaning: And, Giving reasons
+    kind: synonym
+    nuance: 「し〜し」 is used to list multiple reasons or facts that lead to a conclusion, not just general
+      examples, and often carries a slightly negative or critical nuance.
+    grammar_point: し〜し (and; listing reasons)
+  - term: なんか・なんて
+    meaning: Such as, Things like, Emphasis
+    kind: synonym
+    nuance: 「なんか/なんて」 often carries a sense of self-deprecation, dismissiveness, or disdain towards the
+      listed items, implying they are not particularly important or good.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: 〜なり〜なり
+    meaning: Or, Either or
+    kind: synonym
+    nuance: 「〜なり〜なり」 suggests a choice or an option between two or more possibilities, implying that any
+      of the listed items would be acceptable or serve the purpose.
+    grammar_point: なり~なり (either... or...)
+post_false_friends_writeup: While 「とか」, 「やら」, 「たり」, 「や」, and 「など」 can all introduce examples, remember
+  that 「とか」 and 「や」 are generally less formal. Use 「といった」 in formal contexts. 「やら〜やら」 emphasizes a sense
+  of being overwhelmed or a chaotic enumeration. 「たり〜たりする」 focuses on repeated or alternating actions.
+  「し〜し」 provides multiple reasons. 「なんか/なんて」 often implies a dismissive or derogatory tone. 「〜なり〜なり」 presents
+  multiple acceptable options.
+examples:
+  - english: This morning, I ate things like bread and coffee.
+    japanese:
+      - 今朝 は パン {と か} コーヒー {と か} を 食べ た。
+      - 今朝 は パン {と か} コーヒー {と か} を 食べ まし た。
+      - 今朝 は パン {と か} コーヒー を 食べ た。
+      - 今朝、パン {と か} コーヒー {と か} 食べ た。
+    english_literally: As for this morning, I ate bread and coffee, among other things.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は パン {と} コーヒー を 食べ た。
+        english: This morning, I ate bread and coffee.
+        hint: Using 「と」 implies an exhaustive list of items, suggesting that only bread and coffee were
+          eaten. We're looking for a non-exhaustive list, indicating there might have been other items.
+      - competing_japanese:
+          - 今朝 は パン {や} コーヒー を 食べ た。
+        english: This morning, I ate things like bread and coffee.
+        hint: While 「や」 also indicates a non-exhaustive list of nouns, it cannot be used to list verbs
+          or clauses. We're focusing on the more versatile 「とか」.
+    scene: A person quickly recounting their breakfast to a coworker, implying it was a typical, quick
+      meal.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「と か」 here indicates that the speaker is giving examples, not an exhaustive list.
+      The casual plain form 「食べ た」 is typical among younger speakers and for casual conversation with
+      friends or coworkers. 「は」 marks 'this morning' as the topic.
+    etymology: The plain past form of verbs like 「食べる」 comes from classical Japanese, where the suffix
+      「たり」 evolved into modern 「た」, marking completed action or past tense. The particle 「は」 functions
+      here as a topic marker, highlighting "this morning" as the context for the action. 「を」 is the direct
+      object marker.
+  - english: On weekends, I want to spend time doing things like reading and taking walks.
+    japanese:
+      - 週末 は 読書 する {と か} 散歩 する {と か} し て 過ごし たい です。
+      - 週末 は 読書 する {と か} 散歩 する {と か} し て 過ごし たい。
+      - 週末 は 読書 {と か} 散歩 {と か} し て 過ごし たい です。
+      - 週末 は 読書 {と か} 散歩 {と か} し て 過ごし たい。
+    english_literally: As for weekends, reading and walking, among other things, I want to do and spend
+      time.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は 読書 {し たり} 散歩 {し たり} し て 過ごし たい です。
+        english: On weekends, I want to spend time doing things like reading and taking walks (alternatingly/repeatedly).
+        hint: 「たり〜たりする」 lists actions, often implying that they are done alternately or repeatedly. We're
+          looking for simply listing examples of actions without that implication.
+    scene: A student discussing their ideal weekend activities with a friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: desiderative (～たい)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「読書 する と か 散歩 する と か」 highlights reading and walking as examples of desired activities, implying
+      a non-exhaustive list of relaxing things to do. The polite form 「したい です」 makes the statement suitable
+      for general conversation with a friend, without being overly casual or overly formal. 「は」 marks
+      'weekend' as the topic.
+    etymology: The desiderative 「たい」 (want to do) suffix originated from the classical Japanese auxiliary
+      verb 「たし」. The construction 「〜たい です」 is the polite form, showing consideration for the listener.
+      The te-form 「し て」 connects the actions to the verb 「過ごす」 (to spend time).
+  - english: I heard that restaurant has delicious things like ramen and gyoza.
+    japanese:
+      - あの 店、ラーメン {と か} 餃子 {と か} 美味しい {と か} 聞い た よ。
+      - あの 店、ラーメン {と か} 餃子 {と か} 美味しい {と か} 聞き まし た よ。
+      - あの 店、ラーメン {と か} 餃子 {と か} 美味しい らしい よ。
+      - あの 店、ラーメン {と か} 餃子 {と か} 美味しい らしい です よ。
+    english_literally: That shop, ramen and gyoza, among other things, delicious, among other things,
+      I heard, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店、ラーメン、餃子 {など} 美味しい と 聞い た よ。
+        english: I heard that restaurant's ramen and gyoza are delicious, among other things.
+        hint: 「など」 is generally more formal and can be used to list examples. We're looking for a casual
+          way to list examples.
+      - competing_japanese:
+          - あの 店、ラーメン {と} 餃子 が 美味しい と 聞い た よ。
+        english: I heard that restaurant's ramen and gyoza are delicious.
+        hint: Using 「と」 for listing implies an exhaustive list, suggesting only those two items are delicious.
+          We are looking for a non-exhaustive list, meaning there are other delicious items.
+    scene: Two friends casually discussing a new restaurant they've heard about.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The final 「よ」 (in 「聞いた よ」) adds a casual, assertive tone, common in female speech, indicating
+      the speaker is sharing information they believe to be true. 「ラーメン と か 餃子 と か」 emphasizes these as
+      mere examples of delicious items, not an exhaustive list. The plain past form 「聞いた」 maintains the
+      casual tone.
+    etymology: The sentence-final particle 「よ」 adds emphasis or informs the listener, often used in casual
+      conversation. 「と」 is used here as a quotative particle, indicating what was heard. 「らしい です」 can
+      be used to express hearsay, similar to this usage of 「と聞いた」.
+  - english: If you're tired, why don't you try doing things like resting or getting light exercise?
+    japanese:
+      - 疲れ たら、休む {と か} 軽い 運動 する {と か} し て み て は どう です か？
+      - 疲れ たら、休む {と か} 軽い 運動 する {と か} し て み たら どう？
+      - 疲れ たら、休む {と か} 軽い 運動 {と か} し て み て は どう です か？
+      - 疲れ たら、休む {と か} 軽い 運動 {と か} し て み たら どう？
+    english_literally: If tired, resting or light exercise, among other things, why don't you try?
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ たら、休む {なり} 軽い 運動 する {なり} し て み て は どう です か？
+        english: If you're tired, why don't you try resting or getting light exercise?
+        hint: 「〜なり〜なり」 implies a choice between the listed options, suggesting either one would be acceptable.
+          We're looking for examples of general suggestions, not necessarily specific choices.
+    scene: A supportive colleague offering advice to a tired friend.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「休む と か 軽い 運動 する と か」 suggests these as examples of potential solutions, offering flexibility
+      and implying other options exist. The polite phrasing 「て み て は どう です か」 makes the advice gentle
+      and considerate, appropriate for a supportive colleague. 「疲れたら」 uses the conditional 「たら」 to set
+      the premise.
+    etymology: The 「たら」 conditional form is thought to have evolved from the past tense suffix 「た」 combined
+      with 「あり」 (to be/exist). The construction 「〜て は どう です か」 is a common polite suggestion, where 「どう
+      です か」 literally means "how is it?" but is used to inquire about the listener's opinion or receptiveness
+      to a suggestion.
+  - english: My cat always does things like hiding immediately or sharpening its claws on the furniture.
+    japanese:
+      - うち の 猫、すぐ 隠れる {と か} 家具 で 爪 を 研ぐ {と か} する の。
+      - うち の 猫 は、すぐ 隠れる {と か} 家具 で 爪 を 研ぐ {と か} し ます。
+      - うち の 猫 は、すぐ 隠れる {と か} 家具 で 爪 を 研ぐ {と か}、そんな こと を する の。
+    english_literally: Our cat, immediately hides or sharpens claws on furniture, among other things,
+      does.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫、すぐ 隠れる {やら} 家具 で 爪 を 研ぐ {やら} する の。
+        english: My cat always does things like hiding immediately or sharpening its claws on the furniture
+          (and it's a bit overwhelmed).
+        hint: 「やら〜やら」 often implies a sense of being overwhelmed or listing things that are causing trouble,
+          suggesting a chaotic or burdensome enumeration. We're looking for simply listing examples of
+          typical behavior.
+    scene: Someone describing their cat's mischievous habits to a fellow pet owner, with a sigh.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「の」 at the end of the sentence adds a feminine or explanatory tone, making the
+      description sound endearing despite the cat's mischievousness. 「隠れる と か 研ぐ と か」 lists typical examples
+      of the cat's behavior, implying that there are many other similar habits, which is typical for a
+      casual conversation between pet owners.
+    etymology: The sentence-final particle 「の」 (used colloquially as 「ん」) implies an explanation or a
+      casual assertion, often used by female speakers or in intimate conversations. 「うち の 猫」 uses 「うち」
+      in its meaning of "my family's" or "my household's" which extends to pets.
+  - english: I want to think about things like going home early today, or resting well tomorrow.
+    japanese:
+      - 今日 は 早く 帰る {と か}、明日 は ゆっくり 休む {と か}、考え たい。
+      - 今日 は 早く 帰る {と か}、明日 は ゆっくり 休む {と か}、考え たい です。
+      - 今日 は 早く 帰る {と か} 明日 は ゆっくり 休む {と か}、考え て いる。
+      - 今日 は 早く 帰る {と か} 明日 は ゆっくり 休む {と か}、そんな こと を 考え たい。
+    english_literally: As for today, going home early, or as for tomorrow, resting well, among other things,
+      I want to think.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 早く 帰る {か}、明日 は ゆっくり 休む {か}、考え たい。
+        english: I want to think about whether to go home early today or rest well tomorrow.
+        hint: 「〜か、〜か」 explicitly presents two options as alternatives to be chosen between. We're looking
+          for a non-exhaustive list of ideas being considered.
+    scene: A person thinking aloud about their plans to recover from a busy week, undecided yet.
+    register: casual
+    setting: reflective
+    conjugation: desiderative (～たい)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「早く 帰る と か、ゆっくり 休む と か」 emphasizes these as just a couple of the possibilities the speaker
+      is considering, implying a non-exhaustive thought process. The plain form 「考え たい」 reinforces the
+      internal, reflective nature of the thought, suitable for speaking aloud to oneself. The use of 「は」
+      here highlights the specific days.
+    etymology: The particle 「は」 functions as a topic marker, emphasizing "today" and "tomorrow" as distinct
+      topics for consideration. The desiderative 「たい」 (want to do) suffix is a common way to express desires
+      or intentions. The word 「ゆっくり」 is an adverb meaning "slowly" or "at ease."
+  - english: He always causes problems by doing things like being late or forgetting appointments.
+    japanese:
+      - 彼 は いつ も 遅刻 する {と か}、約束 を 忘れる {と か} で 困る ん だ よ ね。
+      - 彼 は いつ も 遅刻 する {と か}、約束 を 忘れる {と か} で 困り ます よ ね。
+      - 彼 は いつ も 遅刻 する {と か} 約束 を 忘れる {と か}、困っ て いる ん だ よ ね。
+      - 彼 は いつ も 遅刻 する {と か} 約束 を 忘れる {と か}、そう いう こと を する から 困る ん だ よ ね。
+    english_literally: He always being late or forgetting appointments, among other things, troubles me,
+      you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 遅刻 する {やら} 約束 を 忘れる {やら} で 困る ん だ よ ね。
+        english: He always causes problems by doing things like being late or forgetting appointments
+          (and it's so frustrating).
+        hint: 「やら〜やら」 can imply a sense of being overwhelmed or exasperated by a series of events or behaviors.
+          We're looking for simply listing characteristic examples of annoying habits.
+    scene: A woman complaining to a close friend about a mutual male friend's annoying habits.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「ん だ よね」 by a female speaker adds a nuanced layer of emphasis and seeks agreement
+      from the listener, making the complaint sound more personal and relatable. The casual verb forms
+      「遅刻 する と か 忘れる と か」 highlight these as characteristic examples of his annoying behaviors, implying
+      there are more. 「で」 here indicates the cause or reason.
+    etymology: The sentence-final combination 「ん だ よ ね」 is a contraction of 「の です よ ね」, where 「の (ん)」
+      adds explanatory nuance, 「です (だ)」 asserts, 「よ」 informs, and 「ね」 seeks agreement. This blend creates
+      a strong, yet relatable, expression of frustration. 「困る」 means to be troubled or to have difficulty.
+  - english: If it's something like next Monday or Wednesday, I can make time.
+    japanese:
+      - 来週 の 月曜 日 {と か} 水曜 日 {と か} なら、時間 が 取れ ます。
+      - 来週 の 月曜 日 {と か} 水曜 日 {と か} なら、時間 が 取れる。
+      - 来週 の 月曜 日 {と か} 水曜 日 {と か}、だっ たら、時間 が 取れ ます。
+      - 来週 の 月曜 日 {と か} 水曜 日 {と か} でし たら、時間 が 取れ ます。
+    english_literally: If it's next week's Monday or Wednesday, among other days, I can make time.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 月曜 日 {なり} 水曜 日 {なり} なら、時間 が 取れ ます。
+        english: If it's next Monday or Wednesday (either one), I can make time.
+        hint: 「〜なり〜なり」 implies a choice between the listed options, suggesting either one would be acceptable.
+          We're looking for examples of potential times, implying other unmentioned possibilities.
+    scene: A busy professional politely suggesting flexible meeting times to a client.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: 「月曜 日 と か 水曜 日 と か」 indicates these are flexible examples of available days, implying other
+      potential options, which is more accommodating than a simple list. The polite 「取れ ます」 is suitable
+      for a professional setting, and 「なら」 presents a conditional suggestion.
+    etymology: The conditional particle 「なら」 (if it is) is typically used for conditions based on information
+      from the listener or an established context. 「時間 が 取れ ます」 is a polite way to say "I can make time,"
+      with 「取れる」 being the potential form of 「取る」 (to take/get). 「来週 の」 uses the particle 「の」 to connect
+      the noun 「来週」 (next week) to the days of the week.
+  - english: It seems he has allergies to things like fish and eggs.
+    japanese:
+      - 彼 は 魚 {と か} 卵 {と か} の アレルギー が ある らしい です。
+      - 彼 は 魚 {と か} 卵 {と か} の アレルギー が ある らしい。
+      - 彼 は 魚 {と か} 卵 {と か} に アレルギー が ある らしい です。
+      - 彼 は 魚 {と か} 卵 {と か} が アレルギー らしい です。
+    english_literally: He, fish or eggs, among other things, of allergies has, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 魚、卵 {など} の アレルギー が ある らしい です。
+        english: It seems he has allergies to things such as fish and eggs.
+        hint: 「など」 is another particle used to give non-exhaustive examples, often carrying a slightly
+          more formal tone than 「とか」. We're looking for a casual way to list examples of allergies.
+    scene: Someone politely explaining a friend's dietary restrictions to a dinner host.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「魚 と か 卵 と か」 suggests these as known examples of allergies, but implies there might be other
+      minor ones, providing a comprehensive and cautious explanation. The use of 「らしい です」 conveys that
+      this information is based on what the speaker has heard or understood, adding a layer of politeness
+      and indirectness, appropriate for explaining someone else's personal information.
+    etymology: 「らしい です」 is a polite way to express hearsay or conjecture, meaning "it seems that..." or
+      "I heard that...". 「の」 in 「〜の アレルギー」 functions as a possessive or descriptive particle, indicating
+      "allergies of/to ~." The topic particle 「は」 highlights "he" as the subject of the allergy information.
+  - english: That movie has a good reputation for things like an interesting story and beautiful visuals.
+    japanese:
+      - あの 映画、ストーリー が 面白い {と か}、映像 が きれい {と か}、評判 いい よ。
+      - あの 映画、ストーリー が 面白い {と か}、映像 が きれい {と か}、評判 いい です よ。
+      - あの 映画、ストーリー が 面白い {と か} 映像 が きれい {と か} で、評判 が いい よ。
+      - あの 映画、ストーリー が 面白い {と か}、映像 が きれい {と か}、良い 評判 だ よ。
+    english_literally: That movie, story interesting and visuals beautiful, among other things, reputation
+      good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画、ストーリー が 面白い {し}、映像 が きれい だ {し}、評判 いい よ。
+        english: That movie's story is interesting, and its visuals are beautiful, so it has a good reputation,
+          you know.
+        hint: 「し〜し」 is used to list multiple reasons or facts that lead to a conclusion. We're looking
+          for simply listing examples of positive aspects, not necessarily reasons leading to the reputation.
+    scene: Friends enthusiastically discussing a popular movie.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「ストーリー が 面白い と か、映像 が きれい と か」 highlights these as key examples of why the movie is well-regarded,
+      implying other positive aspects contribute to its reputation. The casual 「評判 いい よ」 (It has a good
+      reputation, you know) is common among friends. 「が」 marks the subject of the description.
+    etymology: 「評判」 refers to reputation or public opinion. The adjective 「面白い」 means interesting, and
+      「きれい」 means beautiful/clean. The casual sentence-final particle 「よ」 adds emphasis or informs the
+      listener, making the statement sound enthusiastic. 「が」 functions as a subject marker here, indicating
+      what specifically is interesting or beautiful.
+  - english: I wonder if he got lost, or something.
+    japanese:
+      - 彼、道 に 迷っ た {と か} し た ん じゃ ない か な。
+      - 彼、道 に 迷っ た {と か}、電車 が 遅れ た {と か} し た ん じゃ ない か な。
+      - 彼、道 に 迷っ た {と か}、スマホ の 充電 が 切れ た {と か} し た ん じゃ ない か な。
+    english_literally: He, got lost, or something, did, isn't it, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼、道 に 迷っ た {の か な}。
+        english: I wonder if he got lost.
+        hint: 「の か な」 expresses direct wondering about a single possibility. 「とか」 suggests a list of possibilities,
+          implying other unstated reasons for the friend's lateness.
+    scene: Two friends are waiting for a third friend who is very late and they are starting to worry.
+    register: casual
+    setting: interrogative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「と か」 here indicates the speaker is listing a possibility among others for why
+      the friend is late, conveying uncertainty. The ending 「ん じゃ ない か な」 further softens the speculation,
+      making it a tentative thought or question rather than a definitive statement.
+    etymology: The phrase 「ん じゃ ない か な」 is a common conversational way to express softened doubt or a
+      tentative suggestion, often with a slight upward intonation. 「道 に 迷う」 means to get lost on a path
+      or road. 「と か」 here indicates a vague example or possibility.
+post_example_writeup: The examples provided demonstrate the versatility of 「とか」 across different parts
+  of speech (nouns, verbs, adjectives) and in various contexts, from casual conversation to semi-formal
+  situations. Observe how it consistently implies a non-exhaustive list, making communication flexible
+  and less rigid.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とか-とか

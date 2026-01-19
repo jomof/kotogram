@@ -1,0 +1,266 @@
+grammar_point: '[Verb-て]いただけませんか (humble request)'
+learn_before:
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - 〜について・〜に関して (about・regarding)
+  - あの (interjection)
+  - ご (honorific prefix for Sino-Japanese words)
+  - その (that)
+  - でもいいなら (if even this is okay)
+  - どうか (earnestly・please)
+  - にまつわる (related to)
+  - を通じて・を通して (medium・means)
+meaning: Would you mind doing...? (humble request)
+pronunciation:
+  katakana: テイタダケマセンカ
+  romaji: te itadakemasenka
+formation:
+  Verb[て-form] + いただけませんか: To humbly ask someone to do something. The potential form of humble verb いただく
+    (to receive a favor) combined with the polite negative interrogative ませんか to soften the request.
+jlpt: N3
+etymology: The construction 「〜ていただけませんか」 is a multi-layered expression of politeness. It originates from
+  the te-form (〜て) of a verb, which serves to connect actions. This is followed by 「いただく」, the humble
+  form of 「もらう」(to receive), signifying the speaker's humble reception of a favor. The potential form
+  「いただける」(can receive) adds a nuance of possibility or capability. Finally, the polite negative interrogative
+  「ませんか」 softens the request further by framing it as 'Won't you be able to...?', making it highly indirect
+  and deferential. Thus, it literally means something akin to 'Won't you be able to grant me the humble
+  favor of doing...?', which translates to 'Would you mind doing...?' in English.
+writeup: |-
+  The expression 「〜ていただけませんか」 is a cornerstone of highly polite and humble requests in Japanese. It is typically employed when addressing individuals of higher social standing, such as superiors, clients, or respected elders, as well as when speaking to strangers. This construction is a more deferential alternative to 「〜てください」(please do) or 「〜てくれませんか/てもらえませんか」(would you do me the favor of doing...?).
+
+  Its inherent humility comes from the verb 「いただく」, which is the humble equivalent of 「もらう」(to receive). When used in this form, you are essentially asking if you can humbly 'receive the favor' of the other person performing an action for you. The addition of the potential form 「いただける」 and the polite negative question 「ませんか」 creates a complex layer of indirectness. Instead of a direct inquiry, it becomes a softened query like 'Won't you be able to...?' or 'Would it be possible for you to...?', which further enhances its politeness and reduces any perceived imposition on the listener.
+
+  Mastering 「〜ていただけませんか」 is crucial for navigating formal and respectful interactions in Japanese society, particularly in professional environments or customer service scenarios. It conveys a deep sense of respect and awareness of social hierarchy.
+false_friends:
+  - term: てください
+    meaning: Please do
+    kind: similar expression
+    nuance: This is a direct and polite request, but it lacks the humility and deference of 「〜ていただけませんか」.
+      It is suitable for general polite commands or requests to peers or subordinates.
+    grammar_point: てください (polite request)
+  - term: てくれませんか
+    meaning: Won't you do (me the favor)?
+    kind: similar expression
+    nuance: This is an indirect polite request, politer than 「〜てください」. It implies 'won't you kindly do
+      this for me?' It is less humble than 「〜ていただけませんか」 and can be used with peers or those slightly above
+      you.
+    grammar_point: てくれない・てもらえない (indirect request)
+  - term: てもらえませんか
+    meaning: Won't you give (me the favor of doing)?
+    kind: similar expression
+    nuance: Similar to 「〜てくれませんか」, but emphasizes receiving the favor. It is also an indirect polite request,
+      less humble than 「〜ていただけませんか」.
+    grammar_point: てくれない・てもらえない (indirect request)
+  - term: ていただけますか
+    meaning: Can you (humbly) do (me the favor)?
+    kind: similar expression
+    nuance: This is also a very humble request, directly related to the grammar point. It uses the potential
+      form 「いただける」 with a direct question 「か」. It is slightly more direct than 「〜ていただけませんか」 but still
+      highly polite and humble. The difference is subtle; 「ませんか」 adds an extra layer of indirectness.
+    grammar_point: <suggest>:Verb[て]いただけますか (humble request)
+  - term: ていただきたいのですが
+    meaning: I would like you to do (but...)
+    kind: similar expression
+    nuance: This expresses the speaker's desire for the listener to perform an action, often implying
+      a request without directly stating it. The 「のですが」 softens the statement, allowing for a deferential
+      opening. It's often used when the request might be difficult or inconvenient for the listener.
+    grammar_point: <suggest>:Verb[て]いただきたいのですが (desire for action, implies request)
+post_false_friends_writeup: These forms all convey requests or desires for someone to perform an action,
+  but they vary significantly in politeness, directness, and nuance, which are crucial in Japanese communication.
+  「〜てください」 is the most direct and least humble, suitable for general polite requests to peers or subordinates.
+  「〜てくれませんか」 and 「〜てもらえませんか」 are more indirect and polite, implying a 'favor' from the listener; they
+  are appropriate for general polite requests, even to those slightly above you. The forms 「〜ていただけますか」
+  and 「〜ていただけませんか」 are the most humble and indirect, essential for requests to superiors, elders, or clients,
+  as they demonstrate profound respect. The 「ませんか」 version is generally perceived as even softer and more
+  deferential due to its added indirectness. Lastly, 「〜ていただきたいのですが」 expresses a strong desire from the
+  speaker, subtly prompting the listener to act while maintaining a deferential tone.
+examples:
+  - english: Excuse me, would you mind telling me how to get to the station?
+    japanese:
+      - すみ ませ ん、駅 へ の 行き 方 を {教え て いただけ ませ ん か}？
+      - すみ ませ ん、駅 へ の 行き 方 を {教え て いただけ ます か}？
+    english_literally: Excuse me, regarding the way to the station, won't you be able to humbly receive
+      the favor of teaching me?
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん、駅 へ の 行き 方 を 教え て ください。
+        english: Excuse me, please tell me how to get to the station.
+        hint: 「教えてください」is a polite but direct command. We're looking for a more humble and indirect request,
+          suitable for a stranger.
+      - competing_japanese:
+          - すみ ませ ん、駅 へ の 行き 方 を 教え て くれ ませ ん か？
+        english: Excuse me, won't you tell me how to get to the station?
+        hint: 「教えてくれませんか」is a polite indirect request, but 「教えていただけませんか」adds an extra layer of humility
+          and deference, more appropriate when addressing a stranger.
+    scene: A person asks a stranger for directions on the street.
+    register: formal
+    setting: informative
+    nuance: The use of 「すみません」 and the humble 「教えていただけませんか」 clearly indicates that the speaker is politely
+      interrupting a stranger and asking for a favor, showing respect.
+  - english: Could you possibly send me the document by tomorrow?
+    japanese:
+      - 恐れ入り ます が、明日 まで に 資料 を {送っ て いただけ ませ ん か}？
+      - 恐れ入り ます が、明日 まで に 資料 を {送っ て いただけ ます か}？
+    english_literally: I apologize, but by tomorrow, won't you be able to humbly receive the favor of
+      sending the document?
+    competing_grammar:
+      - competing_japanese:
+          - 恐れ入り ます が、明日 まで に 資料 を 送っ て ください。
+        english: I apologize, but please send the document by tomorrow.
+        hint: 「送ってください」is a direct request. The context suggests a highly polite request, perhaps to a
+          superior or client.
+    scene: An office worker is requesting a document from a senior colleague or client.
+    register: formal
+    setting: professional
+    nuance: 「恐れ入りますが」is a very polite way to preface a request that might inconvenience someone, combined
+      with the humble 「送っていただけませんか」, it shows utmost respect in a professional setting.
+  - english: Would it be alright if I asked you one question?
+    japanese:
+      - 一 つ ご 質問 さ せ て {いただけ ませ ん か}？
+      - 一 つ ご 質問 さ せ て {いただけ ます か}？
+    english_literally: One question, won't you be able to humbly receive the favor of letting me ask?
+    competing_grammar:
+      - competing_japanese:
+          - 一 つ 質問 し て も いい です か？
+        english: Is it okay if I ask one question?
+        hint: 「質問してもいいですか」is a standard polite way to ask permission, but 「ご質問させていただけませんか」is much more
+          formal and humble, suitable when addressing someone of higher status.
+    scene: A student asks a professor for permission to ask a question after a lecture.
+    register: formal
+    setting: academic
+    nuance: The use of 「ご質問させていただけませんか」is a very humble way to ask for permission to speak, showing deference
+      to the professor's time and authority.
+  - english: Could you please give me a bit more detail about that?
+    japanese:
+      - その 点 に つい て、もう 少し 詳しく {ご 説明 いただけ ませ ん か}？
+      - その 点 に つい て、もう 少し 詳しく {ご 説明 いただけ ます か}？
+    english_literally: Regarding that point, won't you be able to humbly receive the favor of explaining
+      a bit more in detail?
+    competing_grammar:
+      - competing_japanese:
+          - その 点 に つい て、もう 少し 詳しく 説明 し て くれ ませ ん か？
+        english: Won't you explain a bit more about that point?
+        hint: 「説明してくれませんか」is polite, but 「ご説明いただけませんか」is more appropriate for a formal setting, adding
+          an honorific prefix 「ご」and deeper humility.
+    scene: A junior employee asks a manager for further explanation during a meeting.
+    register: semi-formal
+    setting: professional
+    nuance: The 「ご」prefix before 「説明」 elevates the politeness, making 「ご説明いただけませんか」 a highly respectful
+      way for a subordinate to ask a superior for clarification.
+  - english: Would you mind waiting here for a moment?
+    japanese:
+      - 恐れ入り ます が、こちら で 少々 お 待ち {いただけ ませ ん か}？
+      - 恐れ入り ます が、こちら で 少々 お 待ち {いただけ ます か}？
+    english_literally: I apologize, but here, won't you be able to humbly receive the favor of waiting
+      a little?
+    competing_grammar:
+      - competing_japanese:
+          - 恐れ入り ます が、こちら で 少々 待っ て ください。
+        english: I apologize, but please wait here for a moment.
+        hint: 「待ってください」is direct. The context of a customer service interaction requires a more humble
+          and deferential tone to the customer.
+    scene: A receptionist or customer service representative asks a customer to wait.
+    register: formal
+    setting: professional
+    nuance: Using 「恐れ入りますが」and the humble 「お待ちいただけませんか」is standard in customer service to show extreme
+      politeness and consideration when inconveniencing a customer.
+  - english: Could you possibly help me with this heavy luggage?
+    japanese:
+      - 大変 恐縮 です が、この 重い 荷物 を {運ん で いただけ ませ ん か}？
+      - 大変 恐縮 です が、この 重い 荷物 を {運ん で いただけ ます か}？
+    english_literally: I am terribly sorry, but regarding this heavy luggage, won't you be able to humbly
+      receive the favor of carrying it?
+    competing_grammar:
+      - competing_japanese:
+          - 大変 恐縮 です が、この 重い 荷物 を 運ん で ください ませ ん か？
+        english: I am terribly sorry, but won't you carry this heavy luggage for me?
+        hint: 「運んでくださいませんか」is polite, but 「運んでいただけませんか」is even more humble and deferential, especially
+          appropriate when asking for physical assistance from a stranger or someone you want to show
+          great respect to.
+    scene: An elderly woman asks a young person for help with her bags at the station.
+    register: formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「大変恐縮ですが」is a very humble apology for asking a favor, paired with 「運んでいただけませんか」, it conveys
+      sincere gratitude and respect for the other person's effort. This usage implies the speaker is older
+      and showing high respect to the younger person providing assistance.
+  - english: We are very sorry, but would you mind confirming your reservation details one more time?
+    japanese:
+      - 誠 に 恐縮 です が、もう 一 度 ご 予約 内容 を {ご 確認 いただけ ませ ん か}？
+      - 誠 に 恐縮 です が、もう 一 度 ご 予約 内容 を {ご 確認 いただけ ます か}？
+    english_literally: We are truly sorry, but once more, won't you be able to humbly receive the favor
+      of confirming your reservation details?
+    competing_grammar:
+      - competing_japanese:
+          - 誠 に 恐縮 です が、もう 一 度 ご 予約 内容 を 確認 し て ください。
+        english: We are truly sorry, but please confirm your reservation details one more time.
+        hint: 「確認してください」is a direct request. In a formal apology situation, a more humble and deferential
+          request is preferred to mitigate the imposition on the customer.
+    scene: A hotel clerk requests a guest to reconfirm details due to an error on their end.
+    register: formal
+    setting: professional
+    nuance: 「誠に恐縮ですが」is an extremely formal apology, emphasizing the hotel's regret for the inconvenience.
+      Using 「ご確認いただけませんか」 with the honorific 「ご」 on 「確認」 maintains the highest level of politeness towards
+      the guest.
+  - english: If it's not too much trouble, would you mind bringing me a glass of water?
+    japanese:
+      - もし よろしけれ ば、お 水 を 一杯 {お 持ち いただけ ませ ん か}？
+      - もし よろしけれ ば、お 水 を 一杯 {お 持ち いただけ ます か}？
+    english_literally: If it's good, won't you be able to humbly receive the favor of bringing a glass
+      of water?
+    competing_grammar:
+      - competing_japanese:
+          - もし よろしけれ ば、お 水 を 一杯 持っ て き て くれ ます か？
+        english: If it's okay, won't you bring me a glass of water?
+        hint: 「持ってきてくれますか」is polite, but 「お持ちいただけませんか」is a humble request using the honorific prefix 「お」
+          and a more formal expression of 'bringing', suitable for formal service or addressing someone
+          who is serving you.
+    scene: A guest in a traditional inn asks a staff member for water.
+    register: formal
+    setting: friendly
+    nuance: The phrase 「お持ちいただけませんか」employs the honorific prefix 「お」 with 「持ち」, which is the humble form
+      of 'to bring'. This demonstrates the speaker's recognition of the staff member's service role and
+      expresses the request with utmost respect.
+  - english: When you have time, would you mind taking a look at this document?
+    japanese:
+      - お 時間 が ある とき に、この 書類 に 目 を 通し て {いただけ ませ ん か}？
+      - お 時間 が ある とき に、この 書類 に 目 を 通し て {いただけ ます か}？
+    english_literally: When you have time, regarding this document, won't you be able to humbly receive
+      the favor of passing your eyes over it?
+    competing_grammar:
+      - competing_japanese:
+          - お 時間 が ある とき に、この 書類 に 目 を 通し て ほしい の です が。
+        english: When you have time, I would like you to look over this document.
+        hint: 「〜てほしいのですが」expresses a desire. We're looking for a direct, albeit humble, request for action.
+    scene: A junior researcher asks a busy senior researcher to review a draft paper.
+    register: semi-formal
+    setting: academic
+    nuance: 「お時間があるときに」shows consideration for the senior researcher's busy schedule. Combined with the
+      humble request, it frames the favor as something to be done at their convenience, further demonstrating
+      respect.
+  - english: Would you be able to explain the details of the project again?
+    japanese:
+      - プロジェクト の 詳細 を もう 一 度 ご 説明 {いただけ ませ ん か}？
+      - プロジェクト の 詳細 を もう 一 度 ご 説明 {いただけ ます か}？
+    english_literally: Regarding the project's details, once more, won't you be able to humbly receive
+      the favor of explaining?
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 詳細 を もう 一 度 説明 し て くれ ませ ん か？
+        english: Won't you explain the project's details once more?
+        hint: 「説明してくれませんか」is polite but less humble. We're looking for a humble request with either the
+          'ませんか' or 'ますか' ending.
+    scene: A team member asks a project leader for a re-explanation of the project details during a follow-up
+      meeting.
+    register: formal
+    setting: professional
+    nuance: The 「ご」in 「ご説明」is an honorific for the action, maintaining the formal tone typical in professional
+      settings when addressing a leader. The use of 「いただけませんか」 is the most humble way to make this request.
+post_example_writeup: The examples illustrate how 「〜ていただけませんか」, and its close variant 「〜ていただけますか」, are
+  employed across various formal and professional settings to convey utmost respect and humility when
+  making requests. The consistent use of humble language and honorifics, such as 「恐れ入りますが」or 「ご〜」, reinforces
+  the deferential tone, which is crucial in Japanese communication hierarchy. Understanding these nuances
+  allows for effective and culturally appropriate interaction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/327

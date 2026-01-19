@@ -1,0 +1,635 @@
+grammar_point: 〜について・〜に関して (about・regarding)
+learn_before:
+  - にまつわる (related to)
+meaning: About, regarding, concerning, in relation to
+pronunciation:
+  katakana: ニツイテ・ニカンスル・ニカンシテ
+  romaji: ni tsuite・ni kansuru・ni kan shite
+formation:
+  Noun + について: Introduces a topic or subject for general discussion or consideration.
+  Noun + についての + Noun: Describes a noun that is related to or about the specified noun, often used to
+    modify a subsequent noun.
+  Noun + に関して: Introduces a topic or subject in a formal and objective manner, often preceding a verb
+    or at a sentence break.
+  Noun + に関する + Noun: Modifies a subsequent noun, indicating that it is related to or concerns the preceding
+    noun, typically in formal or academic contexts.
+jlpt: N3
+etymology: 「について」 originates from a combination of the particle 「に」, the verb 「就 (つ)く」 (tsuku, to take
+  a position), and the 「て」-form, implying 'having taken a position regarding' something, which evolved
+  to mean 'about' or 'concerning'. While the kanji 「就」 exists, 「について」 is almost always written in hiragana.
+  「に関する」 and 「に関して」 stem from the verb 「関する」 (kansuru), meaning 'to concern' or 'to be related to'. The
+  kanji 「関」 (kan) signifies 'connection' or 'barrier', and 「する」 is the verb 'to do'. 「に関して」 is the 「て」-form
+  of 「関する」 followed by 「に」, indicating a relation or purpose.
+writeup: |-
+  The grammar patterns 「について」, 「に関して」, and 「に関する」 are all used to indicate that something (B) is 'about' or 'related to' something else (A). They specify the topic or subject of a statement, question, or piece of information. While they share this core meaning, their usage and nuance differ significantly, primarily in terms of formality and the nature of the relationship they describe.
+
+  **について (ni tsuite)**
+  This is the most common and versatile of the three. It can be used in a wide range of contexts, from casual conversation to formal writing. It generally introduces a broad topic or subject that is being discussed, considered, or researched. Think of it as equivalent to "about," "concerning," or "regarding" in a general sense.
+  *   **Formation:** Noun + について (adverbial) or Noun + についての + Noun (adjectival).
+  *   **Usage:** Applicable for general discussions, personal opinions, and inquiries about a topic.
+
+  **に関して (ni kanshite) and に関する (ni kansuru)**
+  These forms convey a higher degree of formality, objectivity, and direct relevance. They are often preferred in academic papers, business communications, official reports, and other settings where precision and a detached tone are valued. They imply a more specific or direct connection to the topic.
+  *   **に関して (ni kanshite):** Functions adverbially, similar to 「について」, typically appearing before a verb or at a sentence break to introduce the topic.
+  *   **に関する (ni kansuru):** Functions adjectivally, directly modifying a subsequent noun. It means "related to X" or "concerning X," connecting a preceding noun (the topic) to a subsequent noun.
+
+  **Key Differences and Usage:**
+  *   **Formality:** 「に関して・に関する」 are significantly more formal than 「について」. You will rarely hear 「に関して・に関する」 in casual everyday conversation.
+  *   **Scope:** 「について」 can cover a broader, more general discussion about a topic. 「に関して・に関する」 often implies a more focused, specific, or direct relationship to the subject, often used when dealing with factual information, research, or official matters.
+  *   **Grammatical Function:** 「について」 and 「に関して」 both function adverbially. 「についての」 and 「に関する」 both function adjectivally to modify nouns. The choice between the adjectival forms 「についての」 and 「に関する」 depends on the desired level of formality.
+false_friends:
+  - term: につき
+    meaning: due to, for each, per
+    kind: similar expression
+    nuance: While 「について」 and 「に関して」 indicate a topic, 「につき」 expresses a reason or a rate. For instance,
+      「雨天につき、中止」 means "canceled due to rain." This is often seen in public announcements.
+    grammar_point: につき (due to or per)
+  - term: にとって
+    meaning: to, for (someone)
+    kind: similar expression
+    nuance: 「にとって」 indicates benefit, perspective, or a specific standpoint, not merely a topic. For example,
+      「私にとって、それは難しい」 means "for me, that is difficult." It focuses on the recipient or perspective holder.
+    grammar_point: にとって (from the standpoint of)
+  - term: にかかわる
+    meaning: to concern, to affect
+    kind: similar expression
+    nuance: 「にかかわる」 implies a deeper connection, impact, or involvement, often suggesting consequences.
+      「命にかかわる」 means "life-threatening." It highlights a crucial link with significant implications, going
+      beyond simply stating a topic.
+    grammar_point: にかかわる (to concern or involve)
+  - term: にかけては
+    meaning: when it comes to
+    kind: similar expression
+    nuance: 「にかけては」 highlights a specific skill, expertise, or area of competence where someone excels.
+      「歌にかけては、彼が一番だ」 means "when it comes to singing, he's the best." It points to a particular forte
+      rather than a general topic.
+    grammar_point: にかけては (when it comes to)
+  - term: において
+    meaning: in, at, regarding
+    kind: similar expression
+    nuance: 「において」 specifies a place, time, or context in which an action occurs or a condition exists,
+      and can also be used formally for "in terms of." 「会議において」 means "in the meeting." It denotes the
+      setting or scope, while 「について・に関して」 introduce the topic.
+    grammar_point: において・における (formal context)
+  - term: に対して
+    meaning: towards; in contrast to
+    kind: similar expression
+    nuance: 「に対して」 indicates direction, opposition, or a target of an action or feeling. 「彼に対して怒っている」
+      means "I'm angry at him." It often implies an action directed *at* something or someone, or a comparison/contrast,
+      not merely discussing 'about' something.
+    grammar_point: に対して (towards; in contrast)
+  - term: 〜のこと
+    meaning: things about, matter of
+    kind: similar expression
+    nuance: 「〜のこと」 refers to 'the matter concerning X' or 'things about X,' often used in more casual
+      contexts or when referring to a general subject rather than a specific discussion point. 「について」
+      is more direct for introducing a topic of conversation or study. 「に関して」 is even more formal. 「〜のこと」
+      can sometimes sound vague.
+    grammar_point: のこと (about・concerning)
+  - term: の件で
+    meaning: regarding the matter of, concerning the case of
+    kind: similar expression
+    nuance: 「の件で」 is typically used in formal or business settings to refer to a specific 'matter' or
+      'case.' While it conveys 'about,' it implies a particular issue or agenda item, whereas 「について・に関して」
+      are broader and can introduce any topic. This is highly common in emails and official documents.
+    grammar_point: <suggest>:の件で (regarding the matter of)
+  - term: をめぐって
+    meaning: concerning, regarding (often implying contention or dispute)
+    kind: similar expression
+    nuance: 「をめぐって」 often implies a dispute, debate, or competition surrounding the topic, whereas 「について・に関して」
+      are more neutral and objective. It suggests a topic that is a source of contention or revolves around
+      a specific issue.
+    grammar_point: '[Noun]をめぐって (concerning・revolving around)'
+  - term: 関係がある
+    meaning: to be related to, to have a connection with
+    kind: similar expression
+    nuance: 「関係がある」 focuses on the existence of a relationship or connection between two things, whereas
+      「について・に関して」 specify the topic that a statement or information is about. 「関係がある」 describes the nature
+      of the link, rather than introducing the topic itself.
+    grammar_point: 関係がある (to be related・to have a connection)
+post_false_friends_writeup: While several expressions share meanings similar to 'about' or 'regarding,'
+  it's crucial to understand their distinct nuances. 「について」 is the most versatile and generally used to
+  introduce a broad topic of discussion. In contrast, 「に関して・に関する」 elevate the formality and objectivity,
+  making them ideal for official and academic discourse, often implying a more direct or specific relationship
+  to the subject. Other terms like 「につき」, 「にとって」, 「にかかわる」, 「にかけては」, 「において」, 「に対して」, 「〜のこと」, 「の件で」, 「をめぐって」,
+  and 「関係がある」 all convey different shades of meaning, from reasons, perspectives, impacts, expertise,
+  contexts, or relationships. Pay close attention to the context and desired nuance to select the most
+  appropriate expression.
+examples:
+  - english: Today's agenda is about the new project.
+    japanese:
+      - 今日 の 議題 は 新しい プロジェクト {に つい て} です。
+      - 今日 の 議題 は 新しい プロジェクト {に つい て} で ござい ます。
+    english_literally: Today's agenda, regarding the new project, is.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 議題 は 新しい プロジェクト {に 関し て} です。
+        english: Today's agenda is concerning the new project.
+        hint: 「に関して」 is more formal and implies a direct relationship or relevance. We're looking for
+          a general discussion 'about' the project. The term 「に関して」 can sometimes suggest a more specific
+          or delimited area of discussion rather than the broad topic itself.
+    scene: A team leader is stating the main topic for the day's meeting.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「です」 or 「で ございます」 maintains a professional and formal tone suitable for a team
+      leader addressing a group in a business setting. 「について」 clearly states the agenda's topic without
+      implying a specific problem, unlike other alternatives, making it ideal for a neutral topic introduction.
+      The nuance here is simply stating the subject matter.
+    etymology: 議題 (gida, agenda) refers to the topics to be discussed in a meeting. プロジェクト (purojekuto,
+      project) is a common loanword for 'project', derived from English 'project'.
+  - english: He is deeply researching Japanese culture.
+    japanese:
+      - 彼 は 日本 の 文化 {に つい て} 深く 研究 し て いる。
+      - 彼 は 日本 の 文化 {に つい て} 深く 研究 し て い ます。
+    english_literally: He, regarding Japanese culture, is deeply researching.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 の 文化 {に 関し て} 深く 研究 し て いる。
+        english: He is deeply researching in relation to Japanese culture.
+        hint: While 「に関して」 is also possible, it often emphasizes a more direct, perhaps academic, relationship.
+          We're looking for a general statement 'about' his research topic. The term 「に関して」 can sometimes
+          suggest a more specific or delimited area of research rather than the broad topic itself.
+    scene: You are describing a scholar's specialization to a colleague.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: Using 「について」 in an academic context is appropriate for describing a broad field of study.
+      The use of 「している」 (casual) or 「しています」 (polite) allows for flexibility in register while maintaining
+      the factual nature of the statement. 「深く 研究 している」 emphasizes the depth of the research, which is
+      typical in academic discussions. This phrase highlights the general subject of his extensive study.
+    etymology: 文化 (bunka, culture) combines 'bun' (writing, learning) and 'ka' (transform, change), reflecting
+      the idea of cultivated practices. 研究 (kenkyuu, research) combines 'ken' (to examine, scrutinize)
+      and 'kyuu' (to investigate, seek).
+  - english: This book is a consideration of AI and society.
+    japanese:
+      - この 本 は AI と 社会 {に つい て} の 考察 です。
+      - この 本 は AI と 社会 {に つい て} の 考察 だ。
+    english_literally: This book, regarding AI and society, is a consideration.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は AI と 社会 {に 関し て} の 考察 です。
+        english: This book is a consideration in relation to AI and society.
+        hint: 「に関して」 is often used for topics that imply a direct relationship or connection. Here, we're
+          looking for a book generally 'about' a subject. 「に関して」 might be used if the book strictly analyzed
+          the *relationship* between AI and society, rather than discussing broader aspects of both.
+    scene: A librarian is explaining the content of a new non-fiction book.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「についての 考察」 is a standard way to express that a book is a 'consideration about'
+      a specific topic. The choice between 「です」 (polite) and 「だ」 (casual) adjusts the register to the
+      context of the conversation. This structure makes it clear that the book delves into the subject
+      of AI and its societal implications. The nuance is that the book explores various aspects of AI
+      and its societal context.
+    etymology: 考察 (kousatsu, consideration) combines 'kou' (to think, consider) and 'satsu' (to inspect,
+      examine).
+  - english: What do you think about the new teacher?
+    japanese:
+      - 新しい 先生 {に つい て} どう 思い ます か。
+      - 新しい 先生 {に つい て} どう 思う？
+      - 新しい 先生 {に つい て} どう？
+    english_literally: Regarding the new teacher, what do you think?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 先生、どう 思い ます か？
+        english: New teacher, what do you think?
+        hint: While omitting 「について」 can be casual, it makes the relationship between 'new teacher' and
+          'what do you think' less clear. We're looking for a clear expression of asking 'about' someone.
+          The omission can sometimes sound abrupt or less specific.
+    scene: Two students are chatting casually after class about their new instructor.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual variations 「どう 思う？」 and 「どう？」 are typical among friends and young people. 「について」
+      is the most natural way to ask for an opinion 'about' someone in this context. The question is straightforward
+      and seeks a general impression of the teacher. The nuance is simply asking for a general opinion
+      or impression regarding the subject.
+    etymology: 先生 (sensei, teacher) means 'one born earlier,' implying seniority or mastery. The kanji
+      breakdown is 先 (sen, prior) and 生 (sei, birth/life).
+  - english: I want to be a little more careful about my diet.
+    japanese:
+      - 食 生活 {に つい て} もう 少し 気 を つけ たい。
+      - 食 生活 {に つい て} もう 少し 気 を つけ たい です。
+    english_literally: Regarding diet, I thought I wanted to know more.
+    competing_grammar:
+      - competing_japanese:
+          - 食 生活 を もう 少し 気 を つけ たい。
+        english: I want to be a little more careful with my diet.
+        hint: Using 「を」 indicates a direct object. While grammatically correct, 「について」 clearly states
+          the topic of what you want to be careful 'about'. 「を」 makes it sound like 'diet' is something
+          you physically manipulate, rather than a topic you're reflecting on.
+    scene: Someone is making a personal resolution to improve their lifestyle.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a personal reflection, making the casual 「気をつけたい」 appropriate. Adding 「です」 offers
+      a slightly polite nuance for internal monologue or if speaking to oneself politely. 「食生活 について」 clearly
+      indicates the area of life one wishes to be more mindful of, highlighting it as the subject of one's
+      attention and effort.
+    etymology: 食生活 (shokuseikatsu, diet/eating habits) combines 'shoku' (food), 'sei' (life), and 'katsu'
+      (activity).
+  - english: We often discuss his career path as a family.
+    japanese:
+      - 彼 の 進路 {に つい て}、家族 で よく 話し合い ます。
+      - 彼 の 進路 {に つい て}、家族 で よく 話し合う。
+    english_literally: Regarding his career path, as a family, we often discuss.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 進路 {の 件 で}、家族 で よく 話し合い ます。
+        english: Regarding the matter of his career path, we often discuss as a family.
+        hint: 「の件で」 refers to a specific 'matter' or 'case', which might be too strong or specific for
+          a general family discussion. We're looking for a general discussion 'about' his career path.
+          「の件で」 would be more appropriate for a formal, specific agenda item.
+    scene: A parent is talking to a friend about their child's future.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「について」 for discussing a 'career path' (進路) is common and natural. The choice between
+      「話し合います」 (polite) and 「話し合う」 (casual) depends on the exact relationship with the friend. This sentence
+      conveys a supportive and ongoing family discussion about a significant topic. The nuance here is
+      a recurring conversation on a subject of mutual interest.
+    etymology: 進路 (shinro, career path) combines 'shin' (to advance) and 'ro' (road, path). 話し合う (hanashiau,
+      to discuss) combines 'hanashi' (to speak) and 'au' (to meet, combine), implying a mutual discussion,
+      literally 'to meet to speak'.
+  - english: I wanted to know more about you.
+    japanese:
+      - あなた {に つい て} もっと 知り たい と 思い まし た。
+      - あなた {に つい て} もっと 知り たい と 思っ た。
+    english_literally: Regarding you, I thought I wanted to know more.
+    competing_grammar:
+      - competing_japanese:
+          - あなた {に 関し て} もっと 知り たい と 思い まし た。
+        english: I wanted to know more in relation to you.
+        hint: 「に関して」 would make the sentence sound like you're researching the person as a subject, which
+          is too formal and unnatural in a flirty context. We're looking for a personal desire to know
+          'about' them. It suggests a more detached, analytical interest.
+    scene: During a first date, one person expresses genuine interest in getting to know the other better.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker is a man expressing interest in a woman he likes. The use of 「あなた」 (anata) is
+      a polite and direct way to address someone, which in this intimate context, conveys a personal and
+      sincere desire to understand her on a deeper level. This directness contributes to the flirty tone.
+      「もっと 知りたい」 expresses a desire for deeper knowledge. The nuance of 「について」 here is personal curiosity
+      about the entirety of the person, rather than a specific attribute.
+    etymology: 知る (shiru, to know) is a fundamental verb. あなた (anata, you) is a common pronoun, its nuance
+      changes greatly with context, from formal to intimate depending on usage and context with other
+      terms. In this context, it feels intimate and direct, not formal or distant. The desire to 'know
+      more' about the person implies a holistic interest, not just factual information, which 「について」 conveys
+      well here.
+  - english: This document explains about the new system.
+    japanese:
+      - この 書類 は 新しい 制度 {に つい て} 説明 し て い ます。
+      - この 書類 は 新しい 制度 {に つい て} 説明 し て いる。
+      - この 書類 は 新しい 制度 {に つい て} ご 説明 し て おり ます。
+    english_literally: This document, regarding the new system, is explaining.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 は 新しい 制度 {に 関する} 説明 を し て い ます。
+        english: This document is providing an explanation related to the new system.
+        hint: 「に関する」 can be used but often implies a more official or specific relationship. 「について」 is
+          a more general and common way to ask for an explanation 'about'. 「に関する」 might indicate a specific
+          section or annex of a larger document that 'relates to' the system.
+    scene: A presenter is introducing a technical document to a group of stakeholders.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In a professional presentation, 「について 説明 しています」 (or its more humble 「ご 説明 しております」) is standard
+      for explaining a topic. 「この 書類 は」 clearly indicates the subject providing the explanation. This
+      structure is common for technical or business documents, signaling that the document covers various
+      aspects of the new system. The use of 「ご説明 しております」 indicates a humble and respectful tone appropriate
+      for a formal presentation to stakeholders.
+    etymology: 書類 (shorui, document) combines 'sho' (to write) and 'rui' (type, class). 制度 (seido, system)
+      combines 'sei' (system, institution) and 'do' (degree, system).
+  - english: Could you please explain the payment method in detail?
+    japanese:
+      - 支払い 方法 {に つい て} 詳しく ご 説明 いただけ ます か。
+      - 支払い 方法 {に つい て} 詳しく ご 説明 いただけ ませ ん か。
+    english_literally: Regarding the payment method, could you please explain in detail?
+    competing_grammar:
+      - competing_japanese:
+          - 支払い 方法 {に 関し て} 詳しく ご 説明 いただけ ます か。
+        english: Could you please explain in detail concerning the payment method?
+        hint: 「に関して」 is often used for explanations with a stronger sense of relationship or direct relevance.
+          「について」 is a more general and common way to ask for an explanation 'about' something. While possible,
+          「に関して」 can sometimes imply that the payment method itself is complex or problematic, rather
+          than just needing a detailed explanation.
+    scene: A customer is politely asking a bank teller for more information about a transaction process.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「について」 with 「詳しく ご説明 いただけますか」 is a very polite and common way to request a detailed
+      explanation about a topic in a formal setting. The addition of 「ご」 is a respectful prefix for the
+      explanation, and 「いただけますか」 or 「いただけませんか」 are polite forms for making a request. This phrase is commonly
+      used to seek comprehensive information on a subject without implying an issue.
+    etymology: 支払い (shiharai, payment) comes from the verb 支払う (shiharau, to pay). 方法 (houhou, method)
+      combines 'hou' (direction, way) and 'hou' (law, rule).
+  - english: Do you have any new information about the other day's accident?
+    japanese:
+      - 先日 の 事故 {に つい て} 何 か 新しい 情報 は あり ます か。
+      - 先日 の 事故 {に つい て} 何 か 新しい 情報 ある？
+    english_literally: Regarding the other day's accident, is there any new information?
+    competing_grammar:
+      - competing_japanese:
+          - 先日 の 事故 {の 件 で} 何 か 新しい 情報 は あり ます か。
+        english: Regarding the matter of the other day's accident, is there any new information?
+        hint: 「の件で」 often implies a specific 'case' or 'matter' that might require official attention.
+          「について」 is a more general inquiry 'about' the accident. 「の件で」 might sound too formal or suggest
+          an ongoing official investigation, which may not be the reporter's immediate query.
+    scene: A reporter is asking a police officer for updates on a recent incident.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The direct question with 「何か 新しい 情報 は あります か」 is common for inquiring about updates. 「について」
+      clearly states the accident as the topic of the information. The casual 「ある？」 can be used if the
+      reporter has a more established, informal relationship with the officer. This nuance of 「について」 is
+      to simply identify the subject of the inquiry for updates.
+    etymology: 先日 (senjitsu, the other day) means 'previous day'. 事故 (jiko, accident) combines 'ji' (matter,
+      affair) and 'ko' (happenstance, cause).
+  - english: I'd like to ask your opinion about the recent domestic situation.
+    japanese:
+      - 最近 の 国内 情勢 {に つい て} ご 意見 を 伺い たい です。
+      - 最近 の 国内 情勢 {に つい て} ご 意見 を 伺い たい。
+    english_literally: Regarding the recent domestic situation, I'd like to ask for your opinion.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 国内 情勢 {に 関し て} ご 意見 を 伺い たい です。
+        english: I'd like to ask your opinion concerning the recent domestic situation.
+        hint: 「に関して」 is also a very natural and formal choice for asking opinions on serious topics. However,
+          「について」 is slightly more versatile for general topics and opinions. We're looking for an opinion
+          'about' the situation. While 「に関して」 is formal, 「について」 feels slightly more conversational and
+          open-ended for general opinions.
+    scene: A woman asks her male colleague for his professional opinion during a casual coffee break at
+      work.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「について」 in a professional setting by a female speaker addresses a male colleague
+      with appropriate formality and intellectual curiosity, fitting the serious topic of '国内情勢' (domestic
+      situation). 「ご 意見 を 伺い たい です」 is a humble and polite way to solicit an opinion, showing respect
+      for the listener's expertise. The casual 「伺いたい」 is used if the context allows for slightly less
+      formality. The nuance is to engage in a discussion or solicit a viewpoint on a given subject.
+    etymology: 国内 (kokunai, domestic) combines 'koku' (country) and 'nai' (inside). 情勢 (jousei, situation)
+      combines 'jou' (circumstance, condition) and 'sei' (power, force, tendency).
+  - english: Discussions regarding the new law are progressing.
+    japanese:
+      - 新 しい 法律 {に 関する} 議論 が 進ん で い ます。
+      - 新 しい 法律 {に 関し て}、議論 が 進ん で い ます。
+    english_literally: Regarding new law discussions are progressing.
+    competing_grammar:
+      - competing_japanese:
+          - 新 しい 法律 {に つい て} 議論 が 進ん で い ます。
+        english: Discussions about the new law are progressing.
+        hint: The scene implies a formal context, such as a news report, where 「に関する」 would be preferred
+          over the less formal 「について」. We're looking for a formal expression.
+    scene: A news reporter is giving an update on legislative developments.
+    register: formal
+    setting: informative
+  - english: Regarding this issue, I will explain in detail later.
+    japanese:
+      - この 問題 {に 関し て} は、後ほど 詳しく ご 説明 いたし ます。
+      - この 問題 {に 関し て} は、後ほど 詳しく 説明 し ます。
+    english_literally: This issue regarding, later in detail will explain.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 {に つい て} は、後ほど 詳しく ご 説明 いたし ます。
+        english: About this issue, I will explain in detail later.
+        hint: The professional and public speaking context of a press conference favors the more formal
+          「に関して」. We're looking for a formal expression to introduce the topic.
+    scene: A company spokesperson is addressing a press conference about a complex matter.
+    register: semi-formal
+    setting: professional
+  - english: He is collecting the latest information related to AI.
+    japanese:
+      - 彼 は AI {に 関する} 最新 の 情報 を 集め て い ます。
+      - AI {に 関し て}、彼 は 最新 の 情報 を 集め て い ます。
+    english_literally: He AI related latest information collecting is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は AI {に つい て} 最新 の 情報 を 集め て い ます。
+        english: He is collecting the latest information about AI.
+        hint: The academic context of a university professor discussing research aligns better with the
+          formal and objective nuance of 「に関する」, indicating that the research is directly 'related to'
+          AI. We're looking for a formal way to describe information related to a specific field.
+    scene: A university professor is describing the ongoing research of one of his students.
+    register: semi-formal
+    setting: academic
+  - english: Do you have any questions regarding your health?
+    japanese:
+      - 健康 {に 関し て} 質問 が あり ます か？
+      - 健康 {に 関し まし て} 質問 は ござい ます か？
+      - 健康 {に 関し て} 質問 あり ます か？
+    english_literally: Health regarding questions are there?
+    competing_grammar:
+      - competing_japanese:
+          - 健康 {に つい て} 質問 が あり ます か？
+        english: Do you have any questions about your health?
+        hint: The professional setting of a doctor-patient consultation, even if polite, benefits from
+          the slightly more formal and precise tone of 「に関して」. We're looking for a respectful and professional
+          way to ask about a specific topic.
+    scene: A doctor is speaking to a patient during a routine check-up.
+    register: teineigo (polite)
+    setting: informative
+  - english: I feel anxiety regarding my future career.
+    japanese:
+      - 将来 の キャリア {に 関する} 不安 を 感じ て い ます。
+      - 将来 の キャリア {に 関する} 不安 を 感じ てる。
+      - 将来 の キャリア {に 関し て} 不安 を 感じ て い ます。
+    english_literally: Future career related anxiety feeling am.
+    competing_grammar:
+      - competing_japanese:
+          - 将来 の キャリア {に つい て} 不安 を 感じ て い ます。
+        english: I feel anxiety about my future career.
+        hint: While conversational, the context of discussing significant life choices with a professional
+          leans towards the slightly more formal nuance of 「に関する」, indicating a specific area of concern.
+          We're looking for a precise way to express anxiety related to a specific subject.
+    scene: A university student is confiding in a career counselor about her uncertainties.
+    register: casual
+    setting: sympathetic
+  - english: Regarding her romantic relationships, I'm a little worried.
+    japanese:
+      - 彼女 の 恋愛 {に 関し て}、私 は 少し 心配 し て いる ん だ。
+      - 彼女 の 恋愛 {に 関し て}、ちょっと 心配 な ん だ。
+      - 彼女 の 恋愛 {に 関し て}、少し 心配 し て おり ます。
+    english_literally: Her romance regarding, I little worried am.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 恋愛 {に つい て}、私 は 少し 心配 し て いる ん だ。
+        english: About her romantic relationships, I'm a little worried.
+        hint: The use of 「に関して」 here, even in an informal setting, highlights the specific topic of worry
+          (romantic relationships) in a slightly more precise way than 「について」 might. We're looking for
+          a way to express concern about a specific person's romantic life.
+    scene: A young woman is talking to her best friend about another mutual friend's love life.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「～しているんだ」 at the end, coupled with the topic of 「恋愛」 (romantic relationships),
+      suggests a casual, confiding tone often found in conversations between close female friends. The
+      use of 「に関して」 in this informal setting still maintains a slightly more focused sense of the topic
+      than 「について」.
+    etymology: The word 「恋愛」 (ren'ai) combines 「恋」 (koi, love/romance) and 「愛」 (ai, love/affection). While
+      both kanji relate to love, 「恋」 often implies a more passionate, longing, or romantic love, especially
+      in its initial stages, while 「愛」 suggests a deeper, broader, and often more enduring affection.
+      This nuance makes 「恋愛」 suitable for discussing romantic relationships in general, encompassing both
+      the passionate and the affectionate aspects of love between partners.
+  - english: Regarding that rumor, I don't know anything.
+    japanese:
+      - その 噂 {に 関し て}、私 は 何 も 知り ませ ん。
+      - その 噂 {に 関し て}、私 は 何 も 知り ませ ん よ。
+      - その 噂 {に 関し て} は、私 は 何 も 存じ ませ ん。
+    english_literally: That rumor regarding, I anything don't know.
+    competing_grammar:
+      - competing_japanese:
+          - その 噂 {に つい て}、私 は 何 も 知り ませ ん。
+        english: About that rumor, I don't know anything.
+        hint: The formal and public nature of a celebrity addressing a press conference necessitates the
+          use of 「に関して」 for its authoritative tone, rather than the more general 「について」. We're looking
+          for a definitive, formal denial regarding a specific rumor.
+    scene: A celebrity is addressing a press conference, denying claims made about them.
+    register: formal
+    setting: serious
+  - english: This report summarizes the latest research on global warming.
+    japanese:
+      - この レポート は、地球 温暖 化 {に 関する} 最新 の 研究 を まとめ た もの です。
+      - 地球 温暖 化 {に 関し て}、この レポート は 最新 の 研究 を まとめ た もの です。
+    english_literally: This report, global warming related latest information summarized thing is.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は、地球 温暖 化 {に つい て} 最新 の 研究 を まとめ た もの です。
+        english: This report summarizes the latest research about global warming.
+        hint: The academic setting of publishing a research paper explicitly requires the formal and scientific
+          tone of 「に関する」. We're looking for formal language for academic publications.
+    scene: A scientist is presenting a new paper at a global climate conference.
+    register: formal
+    setting: academic
+  - english: Regarding this plan, we should proceed more carefully, I think.
+    japanese:
+      - この 計画 {に 関し て} は、もっと 慎重 に 進める べき だ な。
+      - この 計画 {に 関し て} は、もっと 慎重 に 進める べき だ よ な。
+      - この 計画 {に 関し て}、もっと 慎重 に 進める べき だ。
+    english_literally: This plan regarding, more carefully proceed should, I think.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 {に つい て} は、もっと 慎重 に 進める べき だ な。
+        english: About this plan, we should proceed more carefully, I think.
+        hint: While the sentence ends casually, the use of 「に関して」 to introduce the topic of a business
+          plan still adds a degree of formality and seriousness appropriate for a boss discussing a sensitive
+          matter, differentiating it from the more casual 「について」. We're looking for a slightly more formal
+          framing for a serious discussion topic.
+    scene: An older male boss is talking to his junior male colleague about a risky business venture.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The sentence ends with 「～だ な」, which is a common casual masculine sentence-final particle.
+      This, combined with the cautious tone, is typical for an older male speaker reflecting on a plan.
+      The choice of 「に関して」 over 「について」 here, even in a casual conversation, adds a subtle emphasis on
+      the specific subject of concern.
+  - english: We will hold a briefing session regarding the new service.
+    japanese:
+      - 新 サービス {に 関し て}、説明 会 を 開催 いたし ます。
+      - 新 サービス {に 関し て}、説明 会 を 開催 し ます。
+      - 新 サービス {に 関する} 説明 会 を 開催 いたし ます。
+    english_literally: New service regarding, briefing session will hold.
+    competing_grammar:
+      - competing_japanese:
+          - 新 サービス {に つい て}、説明 会 を 開催 いたし ます。
+        english: New service about, briefing session will hold.
+        hint: The formal context of an official announcement at a press conference favors the more formal
+          「に関して」 over the general 「について」. We're looking for a formal way to introduce the topic of the
+          briefing.
+    scene: An official announcement is being made at a press conference.
+    register: formal
+    setting: informative
+  - english: He provided some information concerning the incident.
+    japanese:
+      - 彼 は その 事件 {に 関する} いく つ か の 情報 を 提供 し た。
+      - 彼 は その 事件 {に 関し て}、いく つ か の 情報 を 提供 し た。
+    english_literally: He that incident regarding some information provided.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その 事件 {に つい て} いく つ か の 情報 を 提供 し た。
+        english: He provided some information about the incident.
+        hint: The context of reporting on a past incident, possibly in a news or official capacity, calls
+          for the objective and formal nuance of 「に関する」. We're looking for a precise way to state information
+          related to an event.
+    scene: A police detective is briefing a superior about a case.
+    register: formal
+    setting: informative
+  - english: The research team published a paper concerning the rare disease.
+    japanese:
+      - 研究 チーム は 希少 疾患 {に 関する} 論文 を 発表 し た。
+      - 希少 疾患 {に 関し て}、研究 チーム は 論文 を 発表 し た。
+    english_literally: Research team rare disease concerning paper published.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 チーム は 希少 疾患 {に つい て} 論文 を 発表 し た。
+        english: The research team published a paper about the rare disease.
+        hint: The academic setting of publishing a research paper explicitly requires the formal and scientific
+          tone of 「に関する」. We're looking for formal language for academic publications.
+    scene: A medical research team is announcing a breakthrough at a scientific conference.
+    register: formal
+    setting: academic
+  - english: There are many misunderstandings regarding this matter.
+    japanese:
+      - この 件 {に 関し て} は、多く の 誤解 が あり ます。
+      - この 件 {に 関する} 誤解 が 多く あり ます。
+    english_literally: This matter regarding, many misunderstandings exist.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 {に つい て} は、多く の 誤解 が あり ます。
+        english: About this matter, there are many misunderstandings.
+        hint: When correcting misunderstandings, especially in a public or professional setting, 「に関して」
+          is used to precisely identify the subject of the confusion. We're looking for a formal way to
+          address misconceptions about a topic.
+    scene: A company executive is addressing an internal meeting to clarify a complex issue.
+    register: semi-formal
+    setting: informative
+  - english: Questions concerning human rights are extremely important.
+    japanese:
+      - 人権 {に 関する} 問題 は 非常 に 重要 です。
+      - 人権 {に 関し て}、問題 は 非常 に 重要 です。
+    english_literally: Human rights concerning problems are extremely important.
+    competing_grammar:
+      - competing_japanese:
+          - 人権 {に つい て} の 問題 は 非常 に 重要 です。
+        english: Problems about human rights are extremely important.
+        hint: When discussing broad, significant topics like human rights in a serious context, 「に関する」
+          provides the necessary formality and gravity. We're looking for a formal and weighty expression
+          for a serious issue.
+    scene: A speaker is giving a lecture on global social issues at a public forum.
+    register: formal
+    setting: serious
+post_example_writeup: The examples illustrate the versatile usage of both 「について」 and 「に関して・に関する」 across
+  various contexts and registers. While 「について」 serves as a foundational expression for introducing topics
+  in general settings, its counterpart 「に関して・に関する」 is essential for conveying formality and objectivity
+  in professional and academic discourse. The choice between 「に関する」 (noun modifier) and 「に関して」 (adverbial)
+  depends on the grammatical role in the sentence. Understanding these distinctions is key to precise
+  and appropriate communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/について

@@ -1,0 +1,257 @@
+grammar_point: ことだ (should・ought to)
+learn_before:
+  - '[Verb-dictionary]こと (nominalization)'
+  - あまり ない (not very or much)
+  - ことだし (because of; since)
+  - をいいことに (taking advantage)
+  - 気 (feeling・inclination・atmosphere)
+meaning: To express advice, recommendation, or a strong suggestion that something ought to be done or
+  is a general truth.
+pronunciation:
+  katakana: コトダ
+  romaji: koto da
+formation:
+  '[Verb-dictionary]ことだ': Used to express advice, a strong recommendation, or a general truth about what
+    one should do.
+  '[Verb-ない]ことだ': Used to express advice or a strong recommendation about what one should not do.
+jlpt: N3
+etymology: The phrase 「ことだ」 is formed by combining the nominalizer 「こと」 (meaning 'thing' or 'matter')
+  with the copula 「だ」. This structure literally translates to 'it is the matter of...' or 'it is the thing
+  of...', which then takes on the nuanced meaning of 'it is what should be done' or 'it is a general principle'.
+  The nominalizer transforms the preceding verb phrase into a concept or abstract idea, making the statement
+  a general truth or a universally applicable piece of advice, rather than a specific command or mere
+  possibility. This construction emphasizes the inherent nature or logical necessity of an action.
+writeup: |-
+  The grammar point 「ことだ」 is used to express strong advice, recommendation, or to state a general truth about what should or ought to be done. It is often found in instructional contexts, wisdom, or when giving firm guidance.
+
+  It attaches to the dictionary form of verbs for positive advice and to the negative plain form for negative advice. While it conveys a sense of obligation, it is typically understood as a suggestion based on general wisdom, natural course, or logical necessity, rather than a strict command or a moral imperative.
+
+  This construction frames the advice as an undeniable truth or the most appropriate course of action, often implying that failure to follow it would be unwise or against the natural order of things. It is generally applicable and less about a specific duty imposed by external rules. It can also be used to express general observations about human nature or universal principles.
+false_friends:
+  - term: 〜べきだ
+    meaning: should, ought to (stronger obligation)
+    kind: similar expression
+    nuance: 「ことだ」 expresses what is generally advisable or the natural thing to do, often like a piece
+      of wisdom or principle. 「べきだ」 conveys a stronger sense of moral obligation or duty, indicating something
+      that is ethically or socially expected.
+    grammar_point: <suggest>:Verb[dictionary]べき・べきではない (should・should not)
+  - term: 〜なければならない
+    meaning: must do, have to (necessity)
+    kind: similar expression
+    nuance: 「ことだ」 gives advice based on what is good or natural. 「なければならない」 indicates a strong necessity
+      or compulsion, often imposed by rules, laws, or unavoidable circumstances, with less room for personal
+      choice.
+    grammar_point: <suggest>:〜なければならない・なきゃ (must do・have to)
+  - term: 〜ほうがいい
+    meaning: it is better to do
+    kind: similar expression
+    nuance: 「ことだ」 is a firm piece of advice or a statement of general truth, implying a strong recommendation.
+      「ほうがいい」 is a softer suggestion, offering an opinion on what would be a preferable or more advantageous
+      course of action, leaving more choice to the listener.
+    grammar_point: <suggest>:Verb[た]ほうがいい (it is better to do)
+  - term: 〜のだ・〜んだ
+    meaning: explanatory (reason, explanation)
+    kind: often confused with
+    nuance: While both can add an explanatory tone, 「ことだ」 specifically conveys advice or states a general
+      principle for action. 「のだ」 (or 「んだ」) simply adds an explanatory nuance to a statement, providing
+      background or a reason, without necessarily being prescriptive.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+post_false_friends_writeup: When differentiating between these similar expressions, consider the degree
+  of obligation and the nuance of choice. 「ことだ」 offers strong, general advice or states a principle. 「べきだ」
+  implies a duty. 「なければならない」 denotes a necessity with no other option. 「ほうがいい」 is a gentle suggestion,
+  offering a better alternative. 「のだ」 is purely explanatory.
+examples:
+  - english: If you want to improve your Japanese, you should study every day.
+    japanese:
+      - 日本 語 が 上達 し たい なら、毎日 勉強 する こと だ。
+      - 日本 語 が 上達 し たい なら、毎日 勉強 する こと です。
+    english_literally: If Japanese you want to improve, every day to study is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 上達 し たい なら、毎日 勉強 し た ほう が いい。
+        english: If you want to improve your Japanese, it is better to study every day.
+        hint: 「〜ほうがいい」 is a softer suggestion, meaning "it is better to do." We're looking for a stronger,
+          more direct piece of advice or a general truth.
+      - competing_japanese:
+          - 日本 語 が 上達 し たい なら、毎日 勉強 し なけれ ば なら ない。
+        english: If you want to improve your Japanese, you must study every day.
+        hint: 「〜なければならない」 indicates a strong necessity or obligation. We're looking for advice on what
+          *should* be done, not necessarily what *must* be done.
+      - competing_japanese:
+          - 日本 語 が 上達 し たい なら、毎日 勉強 す べき だ。
+        english: If you want to improve your Japanese, you ought to study every day (as a duty).
+        hint: 「〜べきだ」 implies a moral obligation or duty. We're looking for general advice or a principle,
+          not a strict duty.
+    scene: A Japanese language teacher is giving a new student some fundamental advice.
+    register: semi-formal
+    setting: academic
+    nuance: This sentence provides general, universally applicable advice, framing daily study as the
+      essential 'thing' to do for Japanese improvement.
+  - english: It's best not to worry too much about small things.
+    japanese:
+      - 小さな こと は あまり 気 に し ない こと だ。
+      - 小さな こと は あまり 気 に し ない こと です。
+    english_literally: Small things, about them, not to worry too much is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな こと は あまり 気 に し ない ほう が いい。
+        english: It is better not to worry too much about small things.
+        hint: 「〜ほうがいい」 is a softer suggestion. We're looking for a more firm piece of advice or a general
+          principle.
+      - competing_japanese:
+          - 小さな こと は あまり 気 に す べき で は ない。
+        english: You should not worry too much about small things (as a duty).
+        hint: 「〜べきではない」 suggests that one has a moral obligation not to do something. We're looking for
+          advice not to worry, not a strict prohibition.
+    scene: A compassionate friend offers comforting words to someone feeling overwhelmed.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「気にしないことだ」 conveys advice encouraging the avoidance of worry, presented as a general
+      approach to life.
+  - english: To protect nature, we must reduce waste.
+    japanese:
+      - 自然 を 守る に は、ゴミ を 減らす こと だ。
+      - 自然 を 守る に は、ゴミ を 減らす こと です。
+    english_literally: Nature to protect for, waste to reduce is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 自然 を 守る に は、ゴミ を 減らす べき だ。
+        english: To protect nature, we ought to reduce waste (as a duty).
+        hint: 「〜べきだ」 implies a moral obligation or duty. We're looking for a general principle or the
+          natural consequence of the stated goal.
+      - competing_japanese:
+          - 自然 を 守る に は、ゴミ を 減らし た ほう が いい。
+        english: To protect nature, it is better to reduce waste.
+        hint: 「〜ほうがいい」 is a softer suggestion. We're looking for a statement of what is necessary or inherent
+          to achieve the goal.
+    scene: An environmentalist is giving a speech about conservation.
+    register: formal
+    setting: informative
+    nuance: This sentence states a general principle or something that naturally follows as a necessary
+      action to achieve the goal of protecting nature.
+  - english: When you're lost, the first thing you should do is ask for directions.
+    japanese:
+      - 道 に 迷っ た とき は、まず 道 を 尋ねる こと だ。
+      - 道 に 迷っ た とき は、まず 道 を 尋ねる こと です。
+    english_literally: Road when lost, first road to ask is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 道 に 迷っ た とき は、まず 道 を 尋ねる ほう が いい。
+        english: When you're lost, it is better to first ask for directions.
+        hint: 「〜ほうがいい」 is a softer suggestion. We're looking for a firm piece of advice on the primary
+          action to take.
+    scene: A parent is teaching their child how to be resourceful.
+    register: casual
+    setting: instructional
+    nuance: This provides practical, fundamental advice for a specific situation, presented as the logical
+      and appropriate first step.
+  - english: You should really think about your future more seriously.
+    japanese:
+      - 全く、もっと 真剣 に 将来 の こと を 考える こと だ。
+      - 全く、もっと 真剣 に 将来 の こと を 考える こと です。
+    english_literally: Really, more seriously future's matter to think is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 全く、もっと 真剣 に 将来 の こと を 考える べき だ。
+        english: You ought to think about your future more seriously (as a duty).
+        hint: While 「べきだ」 implies duty, 「ことだ」 here carries a more personal, direct, and slightly exasperated
+          tone, implying the listener isn't meeting a reasonable expectation.
+    scene: A frustrated parent is talking to their carefree teenager who isn't planning for college.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The opening 「全く」 along with 「ことだ」 expresses a sense of exasperation and disappointment, implying
+      the listener is neglecting an important and obvious responsibility. This is a common way for male
+      speakers to convey strong advice with a sigh.
+  - english: If you want to master a skill, you should practice every day without fail.
+    japanese:
+      - 何 か を マスター する に は、毎日 欠かさ ず 練習 する こと だ。
+      - 何 か を マスター する に は、毎日 欠かさ ず 練習 する こと です。
+    english_literally: Something to master for, every day without fail to practice is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か を マスター する に は、毎日 欠かさ ず 練習 し なけれ ば なら ない。
+        english: If you want to master a skill, you must practice every day without fail.
+        hint: 「〜なければならない」 indicates a strong necessity. We're looking for general advice drawn from experience,
+          presented as a universal truth, not a strict obligation.
+    scene: A seasoned master craftsman is sharing his wisdom with an apprentice.
+    register: formal
+    setting: academic
+    nuance: This sentence presents an essential condition for mastering a skill as a general, undeniable
+      truth, reflecting accumulated wisdom rather than a personal command.
+  - english: If you're tired, you should get enough sleep.
+    japanese:
+      - 疲れ たら、十分 に 睡眠 を 取る こと だ。
+      - 疲れ たら、十分 に 睡眠 を 取る こと です。
+    english_literally: If tired, sufficiently sleep to take is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ たら、十分 に 睡眠 を 取っ た ほう が いい。
+        english: If you're tired, it is better to get enough sleep.
+        hint: 「〜ほうがいい」 is a softer suggestion. We're looking for more direct and general health advice.
+    scene: A doctor is giving health advice to a patient.
+    register: semi-formal
+    setting: informative
+    nuance: This is straightforward, common-sense advice, presented as the natural and logical action
+      to take when one is tired.
+  - english: When you encounter a problem, it is important to stay calm.
+    japanese:
+      - 問題 に 直面 し たら、落ち着く こと だ。
+      - 問題 に 直面 し たら、落ち着く こと です。
+    english_literally: Problem when faced with, to calm down is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 に 直面 し たら、落ち着く べき だ。
+        english: When you encounter a problem, you ought to stay calm (as a duty).
+        hint: 「〜べきだ」 implies a duty. We're looking for advice on the most appropriate general reaction,
+          a piece of wisdom rather than a strict obligation.
+    scene: A mentor is guiding a new employee on how to handle challenges.
+    register: formal
+    setting: professional
+    nuance: This sentence conveys a fundamental principle for handling difficulties, stating that remaining
+      calm is the correct and natural approach.
+  - english: People tend to realize the importance of things only after losing them.
+    japanese:
+      - 人間 は 失っ て 初めて その 大切 さ に 気づく こと だ。
+      - 人間 は 失っ て 初めて その 大切 さ に 気づく こと です。
+    english_literally: Humans, having lost, for the first time, its importance to realize is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 失っ て 初めて その 大切 さ に 気づく もの だ。
+        english: People realize the importance of things only after losing them, as a general tendency.
+        hint: 「〜ものだ」 expresses a general tendency or something that is generally true. While similar,
+          「ことだ」 here emphasizes it as a fundamental truth or a lesson learned, almost a piece of wisdom,
+          rather than just a common occurrence.
+      - competing_japanese:
+          - 人間 は 失っ て 初めて その 大切 さ に 気づく ん です。
+        english: It is that people realize the importance of things only after losing them.
+        hint: 「〜んです」 (のだ) is an explanatory form, providing background or reason. We're looking to state
+          a general truth or principle.
+    scene: Two friends are having a philosophical discussion over coffee.
+    register: formal
+    setting: reflective
+    nuance: This sentence presents a general observation about human nature as if it were an undeniable
+      truth or a universal lesson. It goes beyond merely stating a common occurrence, giving it a deeper,
+      more profound sense of reality.
+  - english: If you don't understand, you just need to ask.
+    japanese:
+      - 分から なかっ たら、聞け ば いい こと だ。
+      - 分から なかっ たら、聞け ば いい こと です。
+    english_literally: If you didn't understand, if you ask it's good is the thing.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なかっ たら、聞け ば いい。
+        english: If you don't understand, you just need to ask (simple suggestion).
+        hint: The simpler 「〜ばいい」 suggests a solution. Adding 「ことだ」 emphasizes that asking is the obvious,
+          natural, and most logical thing to do, often with a slight tone of 'it's that simple!'
+    scene: A colleague is helping a new team member with a task.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「聞けばいいことだ」 suggests that the solution is straightforward and obvious, emphasizing
+      that there's no need to overcomplicate the situation. It's a casual but firm piece of advice.
+post_example_writeup: As seen in the examples, 「ことだ」 is versatile for conveying different types of advice
+  or general truths. It can be a gentle reminder, a firm recommendation, or a statement of an undeniable
+  principle. The context and preceding words often dictate the precise nuance, but the core meaning of
+  'this is what ought to be done' or 'this is the true nature of the matter' remains consistent.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことだ

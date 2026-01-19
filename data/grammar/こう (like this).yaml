@@ -1,0 +1,279 @@
+grammar_point: こう (like this)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - 〜てはいけない・〜てはならない (must not)
+  - い-Adjective[み] (abstract quality)
+  - かどうか (whether or not)
+  - しでかす (to mess up)
+  - することができる (can・be able to)
+  - そういう (that kind of)
+  - ちょっと (adverb)
+  - ではなくて・じゃなくて (not A but B)
+  - というものだ (inherent nature)
+  - と思う (I think or thought)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - な-Adjective[ではなかった・じゃなかった] (plain past negative)
+  - なくて (negative te-form)
+  - にする (to decide or make)
+  - まず (priority・initial action)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Like this; in this way
+pronunciation:
+  katakana: コウ
+  romaji: kou
+formation:
+  こう + Verb: Indicates performing an action in a manner demonstrated or described by the speaker.
+  こう + い-Adjective: Describes a state or quality as it is observed or felt by the speaker.
+  こう + な-Adjective: Describes a state or quality as it is observed or felt by the speaker.
+jlpt: N5
+etymology: The demonstrative adverb こう (kou) is part of the こ・そ・あ・ど (ko・so・a・do) series of Japanese demonstratives,
+  which indicate proximity to the speaker or listener. Specifically, こう is derived from こ (ko), meaning
+  'this,' combined with an old particle signifying 'manner' or 'state.' This structure is mirrored in
+  そう (sou), ああ (aa), and どう (dou), each referring to a manner or state relative to different points of
+  reference. Its origin clearly links it to the immediate context of the speaker or the method being currently
+  presented.
+writeup: |-
+  こう (kou) is an adverbial demonstrative that translates to “like this” or “in this way.” It is used to refer to a manner or state that is either directly demonstrated by the speaker, about to be explained by the speaker, or implicitly understood from the immediate context or shared experience.
+
+  Think of こう as referring to the 'manner' or 'way' that is physically close to the speaker, or that the speaker is introducing to the conversation. It emphasizes the immediacy of the action or state as perceived or presented by the speaker.
+
+  While こう is most commonly used to modify verbs, describing how an action is performed, it can also modify adjectives to express a state or degree that is currently apparent. For instance, こう 暑い (kou atsui) would mean “this hot” or “so hot like this,” emphasizing the current oppressive heat the speaker is experiencing.
+false_friends:
+  - term: そう (like that)
+    meaning: Like that; in that way
+    kind: similar expression
+    nuance: そう refers to a manner or state that is close to the listener, or something that has already
+      been mentioned or is mutually understood by both speaker and listener. Unlike こう, it does not refer
+      to something the speaker is currently demonstrating or about to explain.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that・that over there・how)
+  - term: ああ (like that)
+    meaning: Like that (over there); in that way (distant or remembered)
+    kind: similar expression
+    nuance: ああ refers to a manner or state that is physically distant from both the speaker and the listener,
+      or something that is recalled from memory or a shared past experience. It implies a sense of realization
+      or nostalgia when used in reference to past events. It is not about the immediate, present demonstration
+      like こう.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that・that over there・how)
+  - term: どう (how)
+    meaning: How; in what way
+    kind: similar expression
+    nuance: どう is an interrogative adverb asking about the manner or state. It is used to inquire about
+      a method or condition, whereas こう, そう, and ああ are answers or statements about a known method or
+      condition.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that・that over there・how)
+post_false_friends_writeup: The set of adverbs こう, そう, ああ, and どう are fundamental for expressing manners
+  and states in Japanese, with each indicating a different proximity or interrogative function. Think
+  of them as the adverbial counterparts to the demonstrative pronouns これ (this), それ (that), あれ (that over
+  there), and どれ (which). Just as これ points to a thing near the speaker, こう refers to a manner or state
+  near the speaker or what the speaker is currently demonstrating. Similarly, そう relates to something
+  near the listener or previously discussed, and ああ points to something distant or recalled. どう is always
+  the question, asking 'how?' Understanding this proximity system is key to correctly distinguishing their
+  usage.
+examples:
+  - english: Please write like this.
+    japanese:
+      - '{こう} 書い て ください。'
+      - '{こう} 書い て 下さい。'
+      - '{こう} お 書き ください。'
+    english_literally: Please write in this way.
+    competing_grammar:
+      - competing_japanese:
+          - その よう に 書い て ください。
+        english: Please write in that way.
+        hint: 「そのように」 is used when the manner is already known or demonstrated by the listener or something
+          previously mentioned. We're looking for the way the speaker is currently demonstrating.
+    scene: A calligraphy teacher demonstrates a stroke to a student.
+    register: formal
+    setting: instructional
+  - english: You hold it like this.
+    japanese:
+      - '{こう} 持つ ん だ よ。'
+      - '{こう} 持つ の よ。'
+      - '{こう} 持つ ん です よ。'
+    english_literally: You hold it in this way.
+    competing_grammar:
+      - competing_japanese:
+          - そう 持つ ん だ よ。
+        english: You hold it that way.
+        hint: 「そう」 typically refers to a manner that is already known or understood. We're looking for
+          a direct demonstration of the manner by the speaker.
+    scene: A seasoned craftsman showing an apprentice how to grip a chisel correctly.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The ending 「んだよ」 is a casual, explanatory tone often used by male speakers to emphasize a
+      point or give advice.
+  - english: First, you do it like this.
+    japanese:
+      - まず、{こう} する ん です。
+      - まず、{こう} し ます。
+      - まず、{こう} する ん だ。
+    english_literally: First, do in this way.
+    competing_grammar:
+      - competing_japanese:
+          - まず、そう する ん です。
+        english: First, you do it that way (as I just told you/as you already know).
+        hint: 「そう」 typically refers to something previously stated or understood, whereas 「こう」 implies
+          the speaker is about to elaborate on 'this way' or is demonstrating it.
+    scene: A chef explaining the initial steps of a complex recipe to a cooking class.
+    register: semi-formal
+    setting: informative
+  - english: It's not easy to write like this.
+    japanese:
+      - '{こう} 書く の は 難しい です ね。'
+      - '{こう} 書く の は 難しい ね。'
+      - '{こう} 書く の って 難しい よ ね。'
+    english_literally: Writing in this way is difficult, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - その よう に 書く の は 難しい です ね。
+        english: It's difficult to write in that manner (referring to something specific in front of them).
+        hint: 「そのように」 can be used when pointing to a specific example, but 「こう」 more directly points to
+          the inherent difficulty of the 'way' itself being currently discussed.
+    scene: Two students are struggling to reproduce a complicated kanji character they just learned.
+    register: teineigo (polite)
+    setting: academic
+  - english: Don't do it like that, do it like this!
+    japanese:
+      - そう じゃ なく て、{こう} やっ て！
+      - そう じゃ なく て、{こう} やり なさい！
+      - そう じゃ なく て、{こう} やれ！
+    english_literally: Not that way, do it this way!
+    competing_grammar:
+      - competing_japanese:
+          - そう じゃ なく て、これ やっ て！
+        english: Not that way, do this!
+        hint: 「これ」 refers to a thing or object, not a manner or way of doing something. We're looking
+          for the way to perform an action.
+    scene: A mother is patiently, yet firmly, showing her child how to tie their shoelaces.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: no one
+  - english: It's so hot like this, isn't it?
+    japanese:
+      - '{こう} 暑い と 大変 だ ね。'
+      - '{こう} 暑い と 大変 です ね。'
+      - '{こう} 暑い の は 大変 だ わ ね。'
+    english_literally: When it's this hot, it's tough, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 暑い と 大変 だ ね。
+        english: If it's that hot, it's tough, isn't it?
+        hint: 「そんなに」 emphasizes degree or extent in relation to what has been perceived or mentioned.
+          While similar, 「こう」 more directly points to the current, immediate sensation of heat the speaker
+          is experiencing and wants to share.
+    scene: Two friends are sweating profusely on a sweltering summer day.
+    register: casual
+    setting: friendly
+    nuance: 「こう 暑い」 (kou atsui) emphasizes 'this kind of heat' or 'heat in this manner,' directly pointing
+      to the intense heat being experienced by the speaker. The 「ね」 (ne) seeks agreement from the listener,
+      making it a shared observation.
+  - english: I shouldn't have said it like this.
+    japanese:
+      - '{こう} 言う べき じゃ なかっ た。'
+      - '{こう} 言う べき で は なかっ た。'
+      - '{こう} 申し上げる べき で は なかっ た。'
+    english_literally: I shouldn't have said it in this way.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと 言う べき じゃ なかっ た。
+        english: I shouldn't have said such a thing.
+        hint: While similar, 'そんなこと' refers to 'such a thing' or 'that kind of thing' (referring to the
+          content). We're looking for regret about 'how' something was said, not 'what' was said.
+    scene: After a heated argument, someone reflects on their own words and tone.
+    register: casual
+    setting: reflective
+  - english: Things can't go on like this.
+    japanese:
+      - '{こう} なっ て は 困る。'
+      - '{こう} なっ て は 困り ます。'
+      - '{こう} なっ て は いけ ませ ん。'
+    english_literally: If it becomes like this, it's a problem.
+    competing_grammar:
+      - competing_japanese:
+          - この よう に なっ て は 困る。
+        english: If it becomes in this manner, it's a problem.
+        hint: 「このように」 is a more formal and slightly more specific way of saying 'in this way' or 'in this
+          manner.' 「こう」 is more direct and immediate, implying the current unsatisfactory situation.
+    scene: A manager facing a rapidly deteriorating situation in the workplace.
+    register: formal
+    setting: professional
+  - english: You can open the box like this.
+    japanese:
+      - 箱 は {こう} 開ける こと が でき ます。
+      - 箱 は {こう} 開け られ ます。
+      - 箱 は {こう} 開け られる よ。
+    english_literally: The box, one can open in this way.
+    competing_grammar:
+      - competing_japanese:
+          - 箱 は こんな ふう に 開ける こと が でき ます。
+        english: You can open the box in this kind of way.
+        hint: 「こんなふう」 often implies 'such a way' or 'this kind of way,' often with a slight nuance of
+          describing an example. 「こう」 is more direct, simply indicating 'this way' as demonstrated or
+          described.
+    scene: A product demonstrator showing the audience a unique way to unbox their new purchase.
+    register: semi-formal
+    setting: informative
+  - english: Life is like this, isn't it?
+    japanese:
+      - 人生 って、{こう} いう もの だ よ ね。
+      - 人生 って、{こう} いう もの です よ ね。
+      - 人生 って、{こう} いう もん だ ね。
+    english_literally: Life, is this kind of thing, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 人生 って、そんな もの だ よ ね。
+        english: Life, is that kind of thing, isn't it?
+        hint: 「そんな もの」 refers to 'that kind of thing' that is already generally known or understood, often
+          with a resigned tone. 「こう いう もの」 refers to 'this kind of thing' that the speaker is currently
+          defining or reflecting on, making it feel more personal and immediate.
+    scene: Two long-time friends, after sharing stories, muse about the unpredictable nature of existence.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「人生 って」 (jinsei tte) is a casual way to introduce the topic of 'life.' The phrase
+      「こう いう もの だ よ ね」 (kou iu mono da yo ne) implies 'it's this kind of thing,' referring to the specific
+      experiences or observations being discussed, and seeks agreement with 「よ ね」 (yo ne), making the
+      reflection feel shared.
+  - english: I never thought it would turn out like this.
+    japanese:
+      - '{こう} なる と は 思わ なかっ た。'
+      - '{こう} なる と は 思い ませ ん でし た。'
+      - '{こう} なる と は 夢 に も 思わ なかっ た。'
+    english_literally: I didn't think it would become like this.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に なる と は 思わ なかっ た。
+        english: I didn't think it would become like this (to this extent).
+        hint: 「こんなに」 emphasizes the degree or extent ('this much') rather than the manner or outcome itself.
+          We are focusing on the 'way' things turned out.
+    scene: Someone reflecting on an unexpected and perhaps overwhelming development in their life.
+    register: casual
+    setting: reflective
+  - english: It's surprisingly difficult when you try to do it like this.
+    japanese:
+      - '{こう} し て みる と、案外 難しい もん だ ね。'
+      - '{こう} し て みる と、案外 難しい もの です ね。'
+      - '{こう} 試し て みる と、案外 難しい です ね。'
+    english_literally: When you try to do it like this, it's unexpectedly difficult, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - その やり 方 で し て みる と、案外 難しい もん だ ね。
+        english: When you try it with that method, it's unexpectedly difficult, isn't it?
+        hint: 「そのやり方」 (sono yarikata) specifically means 'that method' or 'that way of doing.' While correct,
+          「こう」 offers a more immediate, less explicit reference to the current experimental approach.
+    scene: Two colleagues are attempting a new, seemingly simple, task together and find it more challenging
+      than anticipated.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「こう してみる と」 (kou shite miru to) indicates trying an action in 'this' particular
+      way. 「案外 難しい もん だ ね」 (angai muzukashii mon da ne) expresses a casual realization of unexpected difficulty,
+      with 「もん だ ね」 adding a sense of shared observation.

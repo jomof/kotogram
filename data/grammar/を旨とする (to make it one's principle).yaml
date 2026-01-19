@@ -1,0 +1,307 @@
+grammar_point: を旨とする (to make it one's principle)
+better_grammar_point_name:
+  - <suggest>:を旨とする (to make a principle)
+learn_before:
+  - にする (to decide or make)
+  - のみ (only・just)
+  - 以来 (since・ever since)
+  - 何より (more than anything)
+  - 思うに (in my opinion)
+meaning: to make it one's principle; to put first; to value as most important
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: を旨とする
+    rarity: common
+    meaning: to make it one's principle
+  - conjugation-type: non-past polite (～ます)
+    form: を旨とします
+    rarity: common
+    meaning: to make it one's principle (polite)
+  - conjugation-type: past plain (～た)
+    form: を旨とした
+    rarity: common
+    meaning: made it one's principle
+  - conjugation-type: past polite (～ました)
+    form: を旨としました
+    rarity: common
+    meaning: made it one's principle (polite)
+  - conjugation-type: negative plain (～ない)
+    form: を旨としない
+    rarity: common
+    meaning: not to make it one's principle
+  - conjugation-type: negative non-past polite (～ません)
+    form: を旨としません
+    rarity: common
+    meaning: not to make it one's principle (polite)
+  - conjugation-type: te-form (～て)
+    form: を旨として
+    rarity: common
+    meaning: making it one's principle; having made it one's principle
+  - conjugation-type: volitional (～よう)
+    form: を旨としよう
+    rarity: less common
+    meaning: let's make it one's principle; intend to make it one's principle
+  - conjugation-type: volitional polite (～ましょう)
+    form: を旨としましょう
+    rarity: less common
+    meaning: let's make it one's principle (polite)
+pronunciation:
+  katakana: オ ムネ ト スル
+  romaji: o mune to suru
+formation:
+  Noun を 旨と する: To make Noun one's principle or primary focus.
+  Verb-dictionary/ない こと を 旨と する: To make the act of Verb one's principle or primary focus.
+jlpt: N1
+etymology: 「旨 (むね)」 originally means "main point," "gist," or "intention." The phrase 「を旨とする」 literally
+  means "to make something the main point/intention." This construction evolved to signify the adoption
+  of something as a guiding principle or philosophy. The particle 「を」 marks the object that is made into
+  this "旨," and 「とする」 is a common construction meaning "to consider as" or "to make into."
+writeup: 「を旨とする」 is a formal and often literary expression used to state that something is adopted as
+  a fundamental principle, policy, or core value. It emphasizes that a particular idea, action, or goal
+  is prioritized and serves as a guiding force. This phrase is commonly found in official documents, company
+  mottos, academic texts, or when describing a person's deeply held beliefs. It signifies a strong commitment
+  and adherence to the specified principle. Unlike more casual expressions like 「〜を大切にする (to value something)」,
+  「を旨とする」 carries a heavier, more foundational connotation, implying that the principle is not just valued
+  but acts as a cornerstone for decisions and actions.
+false_friends:
+  - term: 〜を大切にする
+    meaning: to value; to cherish
+    kind: similar expression
+    nuance: While both express valuing something, 「を大切にする」 is a more general and less formal expression
+      indicating care or importance. 「を旨とする」 implies a deeper, foundational principle or guiding philosophy,
+      especially in formal contexts.
+    grammar_point: <suggest>:〜を大切にする (to value)
+  - term: 〜を基本とする
+    meaning: to make ~ a basis; to base on
+    kind: similar expression
+    nuance: 「を基本とする」 emphasizes using something as a fundamental foundation or starting point. 「を旨とする」
+      focuses more on making something the core intention, purpose, or guiding spirit, which can be a
+      subtle difference depending on context.
+    grammar_point: <suggest>:〜を基本とする (to make a basis)
+  - term: 〜を理念とする
+    meaning: to make ~ a philosophy/creed
+    kind: synonym
+    nuance: These are very similar and often interchangeable when referring to organizational philosophies
+      or guiding principles. 「理念」 specifically refers to an idea, doctrine, or creed, while 「旨」 can be
+      broader, encompassing intentions or main points.
+    grammar_point: <suggest>:〜を理念とする (to make a philosophy)
+  - term: 〜をモットーとする
+    meaning: to make ~ a motto
+    kind: similar expression
+    nuance: A 「モットー」 is a motto or slogan, often explicitly stated. While it can be a guiding principle,
+      「を旨とする」 implies a deeper, more inherent and lived principle rather than just a stated one.
+    grammar_point: <suggest>:〜をモットーとする (to make a motto)
+post_false_friends_writeup: When distinguishing 「を旨とする」 from similar phrases, consider the level of formality
+  and the depth of commitment implied. While 「〜を大切にする」 suggests valuing, it lacks the strong foundational
+  sense of a guiding principle. 「〜を基本とする」 and 「〜を理念とする」 are very close in meaning and often interchangeable,
+  with 「基本」 emphasizing a foundation and 「理念」 emphasizing a doctrine or idea. 「〜をモットーとする」 implies a stated
+  slogan. 「を旨とする」 carries a nuanced sense of making something the very essence or core intention of an
+  action or entity, often without explicit declaration.
+examples:
+  - english: Our company makes quality first in its manufacturing.
+    japanese:
+      - 我が 社 は 製造 に 品質 を {旨 と する}。
+      - 我が 社 は 製造 に おい て 品質 を {旨 と し て い ます}。
+      - 我が 社 は 製造 に おい て 品質 を {旨 と し て おり ます}。
+    english_literally: Our company, in manufacturing, makes quality the principle.
+    competing_grammar:
+      - competing_japanese:
+          - 我が 社 は 製造 に 品質 を 大切 に する。
+        english: Our company values quality in its manufacturing.
+        hint: 「大切にする」 means to value or cherish, but it doesn't convey the strong sense of a foundational
+          principle or guiding philosophy that 「を旨とする」 does. We're looking for a phrase that expresses
+          a core, guiding principle.
+      - competing_japanese:
+          - 我が 社 は 製造 に 品質 を 重視 する。
+        english: Our company emphasizes quality in its manufacturing.
+        hint: 「重視する」 means to emphasize or attach importance to something. While it shows importance,
+          it lacks the nuance of making something a fundamental, deeply ingrained principle or intention,
+          which is what 「を旨とする」 conveys.
+    scene: A company executive explains the core philosophy of their manufacturing process during a press
+      conference.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence illustrates a company's guiding principle, showing how 「品質を旨とする」 is used in
+      a formal, organizational context. The phrasing indicates that quality is the fundamental and primary
+      focus of their manufacturing efforts.
+  - english: He made kindness his principle in dealing with others.
+    japanese:
+      - 彼 は 人 と の 接し 方 で 優し さ を {旨 と し た}。
+      - 彼 は 人 と の 接し 方 で 優し さ を {旨 と し て い まし た}。
+    english_literally: He, in way of interacting with people, made kindness the principle.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 人 と の 接し 方 で 優し さ を 大切 に し て い た。
+        english: He cherished kindness in his interactions with people.
+        hint: While 「大切にしていた」 conveys valuing, 「を旨とした」 emphasizes that kindness was a guiding principle
+          or philosophy for his actions, not just something he cared about. We're looking for a phrase
+          that implies a core philosophy.
+    scene: A biographer describes a historical figure's personal philosophy.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: Here, 「優しさを旨とした」 describes a personal, deeply held principle guiding behavior, often implying
+      it was a consistent and foundational aspect of his character. This shows its applicability to individual
+      values, not just organizations.
+  - english: This school makes the cultivation of independent thought its principle.
+    japanese:
+      - この 学校 は 自立 し た 思考 の 育成 を {旨 と し ます}。
+      - この 学校 は 自立 し た 思考 の 育成 を {旨 と し て いる}。
+      - この 学校 は 自立 し た 思考 の 育成 を {旨 と し て おり ます}。
+    english_literally: This school, makes cultivation of independent thought, the principle.
+    competing_grammar:
+      - competing_japanese:
+          - この 学校 は 自立 し た 思考 の 育成 を 目指し て いる。
+        english: This school aims for the cultivation of independent thought.
+        hint: 「目指している」 means to aim for or aspire to. While similar, 「を旨とします」 implies that cultivating
+          independent thought is not just an aim, but a fundamental guiding principle or core philosophy
+          of the school. We're looking for a phrase that expresses a foundational principle.
+    scene: A school brochure outlines its educational philosophy.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: This example uses the polite form 「を旨とします」, suitable for formal presentations like school
+      brochures, emphasizing a long-standing, active commitment to the principle of fostering independent
+      thinking.
+  - english: For a lawyer, not compromising on justice should be the principle.
+    japanese:
+      - 弁護 士 と し て、正義 を 妥協 し ない こと を {旨 と す べき だ}。
+      - 弁護 士 と し て、正義 を 妥協 し ない こと を {旨 と する べき です}。
+    english_literally: As a lawyer, making not compromising on justice the principle, it should be.
+    competing_grammar:
+      - competing_japanese:
+          - 弁護 士 と し て、正義 を 妥協 し ない こと が 大事 だ。
+        english: As a lawyer, not compromising on justice is important.
+        hint: 「大事だ」 means important. While true, 「を旨とすべきだ」 goes further to say it *should be* a fundamental
+          guiding principle, not just an important consideration. We're looking for a phrase that indicates
+          a necessary core principle.
+    scene: A senior lawyer advises a junior colleague.
+    register: formal
+    setting: professional
+    nuance: The addition of 「べきだ」 highlights a strong recommendation or obligation, indicating that this
+      principle is essential for the role. 「正義を妥協しないこと」 shows how a phrase can be nominalized with 「こと」
+      to become the principle.
+  - english: Our department will continue to prioritize customer satisfaction.
+    japanese:
+      - 我々 の 部署 は、今後 も 顧客 満足 を {旨 と し て いく 所存 で ござい ます}。
+      - 我々 の 部署 は、今後 も 顧客 満足 を {旨 と し て まいる 所存 で ござい ます}。
+    english_literally: Our department, from now on, intending to continue making customer satisfaction
+      the principle.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 の 部署 は、今後 も 顧客 満足 を 最 優先 いたし ます。
+        english: Our department will prioritize customer satisfaction above all else from now on.
+        hint: 「最優先いたします」 means to prioritize above all else. While it conveys importance, 「を旨としていく所存でございます」
+          implies making it a foundational guiding principle for ongoing actions, often related to a company's
+          mission. We're looking for a phrase that indicates an underlying principle.
+    scene: A department manager addresses their team at a formal meeting, emphasizing future direction.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: This example uses the te-form 「を旨として」 followed by 「いく所存でございます」, demonstrating a continuous
+      commitment into the future in highly formal and humble language. 「顧客満足」 is a common business principle.
+  - english: This political party does not prioritize economic growth alone.
+    japanese:
+      - この 政党 は 経済 成長 のみ を {旨 と し ない}。
+      - この 政党 は 経済 成長 のみ を {旨 と は し ませ ん}。
+    english_literally: This political party, does not make only economic growth the principle.
+    competing_grammar:
+      - competing_japanese:
+          - この 政党 は 経済 成長 のみ を 追求 し ない。
+        english: This political party does not pursue only economic growth.
+        hint: 「追求しない」 means not to pursue. While it can imply a lack of focus, 「旨としない」 specifies that
+          it is not considered a core guiding principle or primary objective, indicating a broader policy.
+          We're looking for a phrase that indicates what is *not* a fundamental principle.
+    scene: A political commentator discusses a party's policy, highlighting what they *don't* prioritize.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    nuance: Using the negative form 「旨としない」 specifies what is *not* considered a core principle, indicating
+      a broader set of values. The addition of 「のみ」 further emphasizes that it's not *solely* economic
+      growth that is prioritized.
+  - english: Our school will prioritize student well-being above all else.
+    japanese:
+      - 当校 は 何 より も 生徒 の 健康 を {旨 と する}。
+      - 当校 は 何 より も 生徒 の 健康 を {旨 と し て い ます}。
+      - 当校 は 何 より も 生徒 の 健康 を {旨 と し て おり ます}。
+    english_literally: Our school, above all, makes student health the principle.
+    competing_grammar:
+      - competing_japanese:
+          - 当校 は 何 より も 生徒 の 健康 を 最も 重要 視 し て いる。
+        english: Our school considers student well-being the most important thing above all else.
+        hint: 「最も重要視している」 means to consider most important. While similar, 「を旨とする」 implies that student
+          health is the *guiding principle* that informs all decisions and actions, rather than just a
+          priority. We're looking for a phrase that suggests a core guiding principle.
+    scene: A school principal announces new policies to parents at a general meeting.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「何よりも」 reinforces the absolute priority given to student well-being, emphasizing
+      its supreme importance as a guiding principle for the school.
+  - english: The architect made harmony with nature her principle in all her designs.
+    japanese:
+      - その 建築 家 は すべて の デザイン で 自然 と の 調和 を {旨 と し た}。
+      - その 建築 家 は すべて の デザイン で 自然 と の 調和 を {旨 と し て い まし た}。
+    english_literally: That architect, in all designs, made harmony with nature the principle.
+    competing_grammar:
+      - competing_japanese:
+          - その 建築 家 は すべて の デザイン で 自然 と の 調和 を テーマ に し て い た。
+        english: That architect made harmony with nature a theme in all her designs.
+        hint: 「テーマにしていた」 means to make something a theme. While related, 「を旨とした」 implies that harmony
+          with nature was a foundational philosophy or guiding principle that informed all aspects of
+          her design, not just a recurring motif. We're looking for a phrase that implies a deep, consistent
+          guiding principle.
+    scene: An art critic discusses the work of a renowned architect.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: This sentence highlights how 「を旨とする」 can describe an overarching artistic or design philosophy
+      that consistently guides someone's creative work. 「自然との調和」 is a common theme in Japanese architecture
+      and art.
+  - english: We should make mutual respect our principle for a harmonious society.
+    japanese:
+      - 共生 社会 の ため に は、相互 尊重 を {旨 と す べき だ}。
+      - 共生 社会 の ため に は、相互 尊重 を {旨 と する べき です}。
+    english_literally: For a harmonious society, mutual respect should be made the principle.
+    competing_grammar:
+      - competing_japanese:
+          - 共生 社会 の ため に は、相互 尊重 を 重んじる べき だ。
+        english: For a harmonious society, mutual respect should be valued.
+        hint: 「重んじるべきだ」 means that it should be valued or respected. While true, 「を旨とすべきだ」 implies that
+          mutual respect should be adopted as a fundamental, guiding principle for the society's operation
+          and interactions. We're looking for a phrase that suggests a core, foundational principle.
+    scene: A speaker at a community forum advocates for core societal values.
+    register: formal
+    setting: academic
+    nuance: Similar to the lawyer example, 「すべきだ」 reinforces that mutual respect is a necessary guiding
+      principle for achieving a harmonious society. This emphasizes the normative aspect of the grammar
+      point.
+  - english: This foundation has made supporting educational research its guiding principle since its
+      establishment.
+    japanese:
+      - この 財団 は 設立 以来、教育 研究 の 支援 を {旨 と し て 参り まし た}。
+      - この 財団 は 設立 以来、教育 研究 の 支援 を {旨 と し て まいり まし た}。
+    english_literally: This foundation, since establishment, has continued making educational research
+      support the principle.
+    competing_grammar:
+      - competing_japanese:
+          - この 財団 は 設立 以来、教育 研究 の 支援 を 使命 と し て い ます。
+        english: This foundation has made supporting educational research its mission since its establishment.
+        hint: 「使命としています」 means to have something as one's mission. While very similar, 「を旨として参りました」 emphasizes
+          that it's a fundamental, long-standing guiding principle that has been consistently applied
+          over time, implying a deeper commitment than just a stated mission. We're looking for a phrase
+          that implies a continuous, core guiding principle.
+    scene: A representative of a foundation speaks about its long-standing mission.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: The use of 「以来」 and 「〜て参りました」 (humble and continuous form of 'to come') emphasizes that this
+      principle has been consistently maintained over a long period since the foundation's inception,
+      showing deep-rooted commitment.
+post_example_writeup: The examples demonstrate that 「を旨とする」 is versatile enough to describe core principles
+  for companies, individuals, institutions, and even abstract concepts. It's primarily used in formal
+  or written contexts and conveys a strong, often foundational, commitment to the principle in question.
+  The specific noun or phrase preceding 「を旨とする」 determines the exact nature of that principle.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%92%E6%97%A8%E3%81%A8%E3%81%99%E3%82%8B

@@ -1,0 +1,263 @@
+grammar_point: のこと (about・concerning)
+learn_before:
+  - Verb[ます] (polite present)
+  - い (friendly particle)
+  - ことだから (given the nature of)
+  - ことなの (it is that)
+  - さ (filler)
+  - っぽい (ish; characteristic of)
+  - どう (how)
+  - 知る (to know or find out)
+meaning: About; concerning; regarding.
+pronunciation:
+  katakana: ノコト
+  romaji: no koto
+formation:
+  Noun + のこと: Indicates 'about', 'in terms of', or 'related to' the noun.
+jlpt: N3
+etymology: 「こと (koto)」 means 'thing' or 'matter.' Attaching 「の (no)」 clarifies the relationship between
+  the noun and the 'thing' being discussed. It essentially means 'the matter of' or 'the thing about'.
+writeup: 「のこと (no koto)」 is a versatile grammatical structure used to indicate "about," "concerning,"
+  or "regarding" a particular noun. It serves to specify or focus on a specific topic within a conversation
+  or text. It's similar to 「に関して (ni kanshite)」 or 「について (ni tsuite)」, but often provides a slightly more
+  casual or conversational feel. It can be used in both formal and informal contexts, depending on the
+  surrounding language. Often paired with 「なんですが (nan desu ga)」 as a lead-in when you want to talk to
+  someone about something, but in a softer, more indirect way.
+false_friends:
+  - term: について
+    meaning: about, concerning
+    kind: similar expression
+    nuance: Unlike 「のこと」, 「について」 is generally more formal and often used in written contexts or formal
+      speeches.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: に関して
+    meaning: regarding, in relation to
+    kind: similar expression
+    nuance: 「に関して」 is more formal and often used in legal, official, or technical contexts compared to
+      「のこと」.
+    grammar_point: 〜について・〜に関して (about・regarding)
+post_false_friends_writeup: While 「のこと」, 「について」, and 「に関して」 all translate to "about" or "concerning,"
+  they have different levels of formality. Use 「のこと」 in everyday conversation. For formal situations or
+  written reports, 「について」 or 「に関して」 are more appropriate. Keep in mind that 「に関して」 has a more formal and
+  technical feel than 「について」.
+examples:
+  - english: About yesterday's party, it was fun, wasn't it?
+    japanese:
+      - 昨日 の パーティー {の こと}、楽しかっ た ね。
+      - 昨日 の パーティー {の こと}、楽しかっ た です ね。
+      - 昨日 の パーティー {の こと}、楽しい 会 だっ た な。
+    english_literally: Regarding yesterday's party, it was fun, wasn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の パーティー {に つい て}、楽しかっ た ね。
+        english: Regarding yesterday's party, it was fun, wasn't it?
+        hint: 「について」 is more formal and topic-focused. 「のこと」 is more casual and indicates personal connection
+          to the subject. We're looking for a casual expression.
+    scene: Two friends reminiscing.
+    register: casual
+    setting: friendly
+    nuance: 「〜ね」 is typically used between close friends to seek confirmation and express shared feelings,
+      emphasizing the friendly and intimate tone of the conversation.
+  - english: I want to know more about Japanese culture.
+    japanese:
+      - 日本 の 文化 {の こと} を、もっと 知り たい です。
+      - 日本 の 文化 {の こと} を、もっと 知り たい な。
+      - 日本 の 文化 {の こと}、たくさん 知り たい です。
+    english_literally: Japanese culture's matters, I want to know more.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 文化 {を} もっと 知り たい です。
+        english: I want to know Japanese culture more.
+        hint: While grammatically correct, omitting 「のこと」 makes the object slightly less emphasized as
+          a broad topic. 「のこと」 emphasizes learning generally "about" the culture. We're looking for an
+          emphasis on learning broadly about the culture.
+      - competing_japanese:
+          - 日本 の 文化 {に つい て}、もっと 知り たい です。
+        english: I want to know more regarding Japanese culture.
+        hint: 「について」 is also acceptable, but 「のこと」 implies a broader interest in 'things related to' the
+          culture, rather than just 'the topic of' it. We're looking for an expression that suggests a
+          broader interest.
+    scene: A student expressing interest in a topic.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「〜たいです」 expresses the speaker's desire in a polite manner, suitable for expressing interest
+      in a topic.
+  - english: I've already forgotten about her.
+    japanese:
+      - 彼女 {の こと} は もう 忘れ まし た。
+      - 彼女 {の こと}、もう 忘れ た よ。
+      - もう 彼女 {の こと} は 忘れ て いる。
+    english_literally: Her matters, I have already forgotten.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 {に つい て} もう 忘れ まし た。
+        english: I have already forgotten about the topic of her.
+        hint: 「について」 focuses on the topic or information. 「のこと」 implies forgetting the person themselves
+          and all associated matters. We're looking for a statement about forgetting the person completely.
+    scene: Someone trying to move on from a past relationship.
+    register: casual
+    setting: melancholic
+    nuance: 「忘れました」 indicates a completed action of forgetting. 「彼女のこと」 emphasizes the speaker is specifically
+      talking about the woman they used to know, encompassing her entire being and associated memories.
+  - english: Could you give me some advice about my future?
+    japanese:
+      - 今後 の {こと} で、少し 相談 に 乗っ て くれ ませ ん か。
+      - 今後 {の こと} です が、相談 に 乗っ て いただけ ませ ん か。
+      - 今後 {の こと} で 相談 が ある ん だ けど、乗っ て もらえる？
+    english_literally: Regarding future matters, won't you give me a little consultation?
+    competing_grammar:
+      - competing_japanese:
+          - 今後 {に つい て}、少し 相談 に 乗っ て くれ ませ ん か。
+        english: Could you give me some advice regarding my future?
+        hint: 「について」 is more direct and objective for a topic. 「のこと」 is softer and implies a more personal
+          or indirect approach to broaching the subject. We're looking for a softer, more indirect way
+          to ask for advice.
+    scene: An employee consulting with their manager.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「〜てくれませんか」 is a common polite way to ask for a favor, suitable for asking a superior or elder.
+      The use of 「少し」 softens the request, making it less demanding. 「今後 の こと」 pinpoints that the advice
+      sought is related to the future.
+  - english: Um, actually, it's about our date the other day...
+    japanese:
+      - あの う、実 は、この 前 の デート {の こと} な ん です が…。
+      - あの、この 前 の デート {の こと} な ん だ けど…。
+      - 実 は、先日 の デート {の こと} な の です が…。
+    english_literally: Um, actually, about the previous date's matter, it is that...
+    competing_grammar:
+      - competing_japanese:
+          - この 前 の デート {に つい て} な ん です が。
+        english: Actually, it's regarding our date the other day...
+        hint: 「のこと」 with 「なんですが」 is used to soften and introduce a sensitive topic indirectly. 「について」
+          can be more direct. We're looking for a softened way to introduce a potentially sensitive topic.
+    scene: A person calling to follow up after a date.
+    register: semi-formal
+    setting: first-date
+    nuance: 「あのう」 and 「実は」 soften the approach and indicate hesitation, typical in a delicate situation
+      like following up after a date. 「〜んですが」 is used to lead into a topic indirectly.
+  - english: Do you know about the president of this company?
+    japanese:
+      - この 会社 の 社長 {の こと}、知っ てる？
+      - この 会社 の 社長 {の こと}、知っ て ます か？
+      - この 会社 の 社長 {の こと} を ご 存知 です か？
+    english_literally: This company's president's matter, do you know?
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 の 社長 {に つい て}、知っ てる？
+        english: Do you know information about the president of this company?
+        hint: 「について」 implies knowing facts or information. 「のこと」 implies knowing the person themselves,
+          including personal details or rumors. We're looking for a nuance of knowing the person more
+          deeply, perhaps even gossip.
+      - competing_japanese:
+          - この 会社 の 社長 {知っ てる}？
+        english: Do you know the president of this company?
+        hint: Omitting 「のこと」 would typically mean 'do you know the person?', rather than 'do you know
+          about the person?'. We're looking for the nuance of 'knowing about' the person.
+    scene: Two coworkers gossiping.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「知ってる？」 instead of 「知っていますか？」 indicates a casual tone between friends. The phrasing
+      「知ってる？」 is common in female speech, especially when gossiping casually with another woman.
+  - english: Shall we have a little meeting about our upcoming drinking party?
+    japanese:
+      - 今度 の 飲み 会 {の こと} で、少し 打ち合わせ し ませ ん か？
+      - 今度 の 飲み 会 {の こと}、打ち合わせ し ましょう か。
+      - 今度 の 飲み 会 {の こと} で 打ち合わせ し ない？
+    english_literally: Regarding the next drinking party's matters, shall we have a little meeting?
+    competing_grammar:
+      - competing_japanese:
+          - 今度 の 飲み 会 {に つい て}、少し 打ち合わせ し ませ ん か？
+        english: Shall we have a little meeting regarding our upcoming drinking party?
+        hint: 「のこと」 implies discussing "matters related to" the party, while 「について」 is more strictly "about
+          the topic of" the party. We're looking for a discussion that covers various aspects related
+          to the party.
+    scene: Someone planning a gathering with colleagues.
+    register: semi-formal
+    setting: friendly
+    nuance: 「〜ませんか？」 is a polite way to suggest or invite someone to do something together, and using
+      「少し」 softens the request, making it less demanding.
+  - english: Hey, don't you want to know more about me?
+    japanese:
+      - ねえ、もっと 私 {の こと} 知り たく ない？
+      - ねえ、私 {の こと}、もっと 知り たい と 思わ ない？
+      - ねえ、もっと 私 {の こと} を 知り たい と は 思わ ない？
+    english_literally: Hey, don't you want to know more about my matters?
+    competing_grammar:
+      - competing_japanese:
+          - もっと 私 {に つい て} 知り たく ない？
+        english: Hey, don't you want to know more about the topic of me?
+        hint: 「について」 implies learning facts or information. 「のこと」 implies wanting to know the person on
+          a deeper, more personal level. We're looking for a desire to know someone personally.
+    scene: A woman flirting with a man.
+    register: casual
+    setting: flirty
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「〜たくない？」 is a casual and slightly suggestive way to ask a question, implying the speaker wants
+      the listener to want to know more about them. This phrasing, especially with 「ねえ」, is common in
+      female speech when initiating playful or intimate conversation.
+  - english: I'm looking forward to our next drinking party.
+    japanese:
+      - 今度 の 飲み 会 {の こと}、楽しみ に し て いる よ。
+      - 今度 の 飲み 会 {の こと} を 楽しみ に し て い ます。
+      - 今度 の 飲み 会 {の こと}、すごく 楽しみ に し てる！
+    english_literally: Regarding the next drinking party's matters, I am looking forward.
+    competing_grammar:
+      - competing_japanese:
+          - 今度 の 飲み 会 {に つい て}、楽しみ に し て いる よ。
+        english: I'm looking forward to the topic of our next drinking party.
+        hint: When expressing anticipation, 「のこと」 refers to the event itself and all its associated aspects.
+          「について」 would imply looking forward to discussing or learning about the topic. We're looking
+          forward to the event itself.
+    scene: A person excited about an upcoming event.
+    register: casual
+    setting: excited
+    nuance: 「〜よ」 is a sentence-ending particle often used in casual speech to express the speaker's feelings
+      or emphasis, especially with excitement or anticipation.
+  - english: Since it's about our important family, let's discuss it thoroughly.
+    japanese:
+      - 大事 な 家族 {の こと} です から、しっかり 話し合い ましょう。
+      - 大事 な 家族 {の こと} です の で、ちゃんと 話し合い ま しょう。
+      - 大事 な 家族 {の こと} だ から、しっかり 話し合お う。
+    english_literally: Because it's about important family matters, let's discuss thoroughly.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 な 家族 {に つい て} です から、しっかり 話し合い ましょう。
+        english: Since it's regarding our important family, let's discuss it thoroughly.
+        hint: 「のこと」 adds emotional weight and suggests the discussion covers all aspects concerning the
+          family. 「について」 is more objective, focusing on the factual topic. We're looking for an emotionally
+          weighty discussion covering all aspects of the family.
+    scene: A serious family discussion.
+    register: teineigo (polite)
+    setting: serious
+    nuance: 「〜です から」 provides a reason or justification for the suggestion. The use of 「しっかり」 emphasizes
+      the need for a thorough discussion due to the importance of 「大事 な 家族」.
+  - english: Son, regarding your career path, what are you thinking?
+    japanese:
+      - 息子 よ、お前 の 進路 {の こと} だ が、どう 考え て いる ん だ？
+      - 息子 よ、お前 の 進路 {の こと} だ けど、どう 思っ てる？
+      - 息子 よ、進路 {の こと} な ん だ が、どう する つもり な ん だ？
+    english_literally: Son, as for your career path's matters, what are you thinking?
+    competing_grammar:
+      - competing_japanese:
+          - お前 の 進路 {に つい て} だ が、どう 考え て いる ん だ？
+        english: Son, regarding the topic of your career path, what are you thinking?
+        hint: 「のこと」 highlights the personal significance and implies a broader, more holistic consideration
+          of the career path. 「について」 is more factual or informational. We're looking for a discussion
+          with personal significance regarding the career path.
+    scene: A father asking his son about his future.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「息子 よ」 and 「お前」 are direct and often used by fathers addressing their sons. The
+      ending 「〜んだ？」 and the particle 「だが」 are also common in male speech, especially when an older male
+      addresses a younger male seriously. This combination implies a direct and weighty inquiry.
+post_example_writeup: The examples illustrate that 「のこと」 often implies a personal connection or a broader
+  scope encompassing all matters related to the noun, rather than just a specific topic. This nuance is
+  crucial when choosing between 「のこと」 and its more formal counterparts like 「について」 or 「に関して」, particularly
+  in emotionally charged or casually conversational contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/195

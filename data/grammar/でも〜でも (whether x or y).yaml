@@ -1,0 +1,322 @@
+grammar_point: でも〜でも (whether x or y)
+learn_before:
+  - でも (but・however)
+meaning: Whether ~ or, Neither ~ nor
+pronunciation:
+  katakana: デモデモ
+  romaji: demodemo
+formation:
+  Noun + でも + Noun + でも: Indicates that the statement applies regardless of which noun is chosen; can
+    imply 'whether...or...', 'either...or...', or 'neither...nor...'
+jlpt: N4
+etymology: The particle 「でも」 (demo) originates from 「とて」 (tote), an older particle meaning 'even if' or
+  'even though', combined with the auxiliary verb 「ある」 (aru) in its attributive form 「の」 (no) and then
+  the particle 「も」 (mo) meaning 'also' or 'too'. Over time, 「とのも」 or 「てのも」 evolved into 「でも」. When used
+  singularly, 「でも」 functions as 'even', 'at least', or 'anything/anyone (at all)'. Its repetition, 「でも〜でも」,
+  specifically emphasizes an inclusive or indifferent choice between two or more options. It asserts that
+  the outcome or statement remains true regardless of which specified option is chosen, highlighting the
+  universal applicability or lack of preference.
+writeup: The grammar point 「Noun+でも〜でも」 is used to express that a statement holds true regardless of which
+  of the specified nouns is chosen. It effectively presents two or more options and states that the main
+  clause applies universally to them. This pattern can be translated as "whether...or..." or "neither...nor...",
+  depending on whether the accompanying statement is affirmative or negative. The core nuance of 「でも」
+  in this context is 'even if' or 'no matter', suggesting that the choice between the presented options
+  does not affect the outcome or truth of the statement. This construction is useful when you want to
+  convey flexibility, indifference, or a comprehensive scope regarding the options. It implies that any
+  of the listed items would lead to the same conclusion or is equally acceptable.
+false_friends:
+  - term: かどうか
+    meaning: Whether or not, If...or not
+    kind: similar expression
+    nuance: Unlike 「Noun+でも〜でも」, which presents two or more concrete options and implies indifference,
+      「かどうか」 presents a binary choice between a statement and its negation, typically asking for confirmation
+      or expressing uncertainty.
+    grammar_point: かどうか (whether or not)
+  - term: にしても〜にしても
+    meaning: Regardless of whether
+    kind: synonym
+    nuance: 「にしても〜にしても」 often implies a stronger sense of concession than 「Noun+でも〜でも」, suggesting that
+      the outcome remains the same even under different, potentially adverse, circumstances. It can also
+      imply a slight critical or dismissive nuance depending on context.
+    grammar_point: にしても〜にしても (regardless of whether a or b)
+  - term: 〜ても〜ても
+    meaning: Even if X, even if Y (repeated effort or state)
+    kind: similar expression
+    nuance: While 「〜ても〜ても」 directly connects two conditional clauses (e.g., 'even if it rains, even if
+      it snows'), 「Noun+でも〜でも」 connects two nouns, implying the statement holds true for either, often
+      with a nuance of 'regardless of' or 'any kind of' in a less conditional sense.
+    grammar_point: 〜ても〜ても (repeated effort or state)
+  - term: にしろ〜にしろ
+    meaning: Whether… or
+    kind: synonym
+    nuance: Similar to 「にしても〜にしても」, 「にしろ〜にしろ」 also implies a stronger emphasis on the alternatives and
+      their potential outcomes, often used in more formal or assertive contexts. It can also carry a nuance
+      of determination or finality.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: か〜か
+    meaning: Whether A or B; A or B (questioning/listing options)
+    kind: similar expression
+    nuance: While 「か〜か」 merely lists options or asks for a choice between two alternatives, 「Noun+でも〜でも」
+      implies that the main clause's statement holds true regardless of which option is chosen, indicating
+      a sense of inclusivity or indifference towards the listed items. It conveys 'either/any of these
+      is fine'.
+    grammar_point: か〜か (whether... or)
+post_false_friends_writeup: While these expressions share the sense of presenting alternatives, 「Noun+でも〜でも」
+  is unique in its simple enumeration of possibilities and its implications of “regardless of which”.
+  It often conveys a sense of flexibility or openness to either choice, rather than a concession. To avoid
+  mixing them up, consider if you simply want to list options in a flexible way where any choice yields
+  the same result (use 「〜でも〜でも」), or if you're trying to express something more nuanced like a concession
+  or a definitive binary choice.
+examples:
+  - english: Whether it's coffee or tea, I want something warm to drink.
+    japanese:
+      - コーヒー {で も} お 茶 {で も}、何 か 温かい 飲み物 が 欲しい な。
+      - コーヒー {で も} お 茶 {で も}、温かい 飲み物 が 欲しい です。
+      - コーヒー {で も} お 茶 {で も}、温かい 飲み物 が 欲しい ん です。
+    english_literally: Coffee even tea even, something warm drinkable desired huh.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー {か} お 茶 {か}、何 か 温かい 飲み物 が 欲しい な。
+        english: Is it coffee or tea? I want something warm to drink.
+        hint: The particle 「か」 simply presents options without the nuance of indifference or 'either/any'
+          which is conveyed by 「でも」. We're looking for an expression that suggests any of the options
+          are fine.
+    scene: A man sitting down in a cafe, feeling a bit chilled, and considering his options for a hot
+      beverage.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The 「〜な」 at the end is a common masculine casual expression for expressing a wish or mild
+      uncertainty. When a man uses 「な」, it can soften the statement and express a mild desire. The repetition
+      of 「でも」 emphasizes the speaker's indifference to the specific choice, conveying that either coffee
+      or tea would be equally satisfying.
+    etymology: The suffix 「な」 comes from the classical Japanese interrogative particle 「なむ」, which evolved
+      to express mild assertion or a soft imperative, and in modern speech often conveys personal feeling
+      or seeking agreement.
+  - english: I can speak either Japanese or English.
+    japanese:
+      - 日本 語 {で も} 英語 {で も}、どちら {で も} 話せ ます。
+      - 日本 語 {で も} 英語 {で も}、どちら も 話せ ます。
+      - 日本 語 {で も} 英語 {で も}、問題 なく 話せ ます。
+    english_literally: Japanese even English even, either can speak.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 {か} 英語 {か}、どちら {か} 話せ ます。
+        english: I can speak either Japanese or English (implying a choice is needed).
+        hint: The construction 「A か B か」 simply lists options. 「でも〜でも」 goes beyond just listing to imply
+          that *any* of the listed options is acceptable or true for the statement. We're looking for
+          a way to express proficiency in both languages without preference.
+    scene: A person being interviewed for a job that requires multilingual skills.
+    register: formal
+    setting: informative
+    etymology: The term 「どちら」 (dochira) literally means 'which of two' and derives from 「どっち」 (docchi),
+      which is a more informal version. The construction here emphasizes proficiency in both, making either
+      equally available options for communication.
+  - english: Whether it rains or snows, I have to go to school every day.
+    japanese:
+      - 雨 {で も} 雪 {で も}、毎日 学校 に 行か なけれ ば なり ませ ん。
+      - 雨 {で も} 雪 {で も}、毎日 学校 へ 行か なく ちゃ なり ませ ん。
+      - 雨 {で も} 雪 {で も}、毎日 学校 に 行く しか あり ませ ん。
+    english_literally: Rain even snow even, every day school to must go.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ {て も} 雪 が 降っ {て も}、毎日 学校 に 行か なけれ ば なり ませ ん。
+        english: Even if it rains, even if it snows, I have to go to school every day.
+        hint: While 「〜ても〜ても」 also expresses concession, it is applied to verbs/actions and sounds more
+          like a conditional 'even if'. 「Noun+でも〜でも」 applies to nouns and implies that the state (rain,
+          snow) itself is irrelevant to the outcome. We want to show that the type of weather doesn't
+          matter.
+    scene: A student feeling resigned about their daily commute during a bad weather season.
+    register: semi-formal
+    setting: serious
+    etymology: The expression 「〜なければなりません」 is a polite form of obligation. 「ねば」 is a classical negative
+      conditional form, and 「ならない」 means 'it doesn't become/happen', combining to mean 'if it doesn't
+      happen, it won't become', hence 'must'.
+  - english: Whether it's him or her, I'll forgive them if they tell me the truth.
+    japanese:
+      - 彼 {で も} 彼女 {で も}、正直 に 話し て くれれ ば 許し ます。
+      - 彼 {で も} 彼女 {で も}、正直 に 話し て くれれ ば 許し て あげ ます。
+      - 彼 {で も} 彼女 {で も}、真実 を 話し て くれれ ば 許し ます。
+    english_literally: Him even her even, honestly if they speak-give, will forgive.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 {か} 彼女 {か} どちら {か} が、正直 に 話し て くれれ ば 許し ます。
+        english: If either him or her tells the truth, I will forgive them.
+        hint: The expression 「どちらか」 explicitly points to 'one or the other'. 「でも〜でも」 implies that the
+          condition for forgiveness holds true for *either* person, without having to choose one. We're
+          looking for an expression that suggests indifference to the specific person.
+    scene: A parent speaking to another family member about their children, emphasizing that an honest
+      confession from either child will lead to forgiveness.
+    register: casual
+    setting: serious
+    etymology: 「正直」 (shōjiki) combines 「正」 (shō, correct/just) and 「直」 (jiki, direct/straight), literally
+      meaning 'correctly direct', referring to honesty and straightforwardness.
+  - english: Whether by phone or email, please contact me.
+    japanese:
+      - 電話 {で も} メール {で も}、連絡 を ください。
+      - 電話 {で も} メール {で も}、ご 連絡 いただけ ます か？
+      - 電話 {で も} メール {で も}、ご 都合 の よい 方法 で ご 連絡 ください。
+    english_literally: Phone even email even, contact please give.
+    competing_grammar:
+      - competing_japanese:
+          - 電話 {か} メール で 連絡 を ください。
+        english: Please contact me by phone or email (listing options).
+        hint: Using 「か」 simply lists the communication methods. 「でも〜でも」 emphasizes that *either* method
+          is equally acceptable or convenient, implying flexibility. We want to convey that there is no
+          preference for the contact method.
+    scene: A colleague explaining to a new team member how to reach them.
+    register: formal
+    setting: instructional
+    etymology: 「連絡」 (renraku) is a compound kanji word, with 「連」 (ren) meaning 'to link/connect' and 「絡」
+      (raku) meaning 'to entwine/coil', together forming the meaning of 'to connect' or 'to contact'.
+  - english: Whether you like it or dislike it, say it clearly.
+    japanese:
+      - 好き {で も} 嫌い {で も}、はっきり 言っ て。
+      - 好き {で も} 嫌い {で も}、はっきり 言っ て ください。
+      - 好き {で も} 嫌い {で も}、遠慮 なく 言っ て ごらん。
+    english_literally: Like even dislike even, clearly say.
+    competing_grammar:
+      - competing_japanese:
+          - 好き で {あろう と} 嫌い で {あろう と}、はっきり 言っ て。
+        english: Whether it be liking it or disliking it, say it clearly.
+        hint: The expression 「〜であろうと〜であろうと」 is more formal and literary. 「でも〜でも」 is a more direct and
+          natural way to list two contrasting states and assert that the main statement applies to both,
+          emphasizing indifference to the specific feeling. We're looking for a conversational way to
+          express that the feeling doesn't matter.
+    scene: Someone urging a friend to be direct and honest about their feelings about a proposal.
+    register: casual
+    setting: commanding
+    etymology: 「はっきり」 (hakkiri) is an adverb often used to describe clarity, distinctness, or decisiveness.
+      Its origin is thought to be onomatopoeic, conveying the sharp, clear sound of something becoming
+      distinct.
+  - english: Whether it's a movie or a meal, I want to go somewhere.
+    japanese:
+      - 映画 {で も} 食事 {で も}、どこ か 行き たい ね。
+      - 映画 {で も} 食事 {で も}、どこ か 行き ませ ん か？
+      - 映画 {で も} 食事 {で も}、何 か 楽しい こと しよう よ。
+    english_literally: Movie even meal even, somewhere want to go, right?
+    competing_grammar:
+      - competing_japanese:
+          - 映画 {か} 食事 {か} どこ か 行き たい ね。
+        english: Movie or meal, I want to go somewhere.
+        hint: Using 「か」 simply presents the options as a choice between one or the other. 「でも〜でも」 implies
+          that *any* of the listed options would be satisfactory, conveying a flexible and open attitude.
+          We want to express that either activity is fine.
+    scene: A couple discussing their plans for a date night, open to various activities.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「ね」 at the end is commonly used by both genders to seek agreement or confirmation from
+      the listener. The speaker's use of 「〜たいね」 expresses a shared desire, and the repetition of 「でも」
+      demonstrates openness to either option, contributing to a flexible and inviting atmosphere typical
+      of a flirty setting.
+    etymology: The word 「映画」 (eiga) meaning 'movie' is a combination of 「映」 (ei, to reflect/project) and
+      「画」 (ga, picture/drawing), literally meaning 'projected pictures'.
+  - english: For lunch, anything is fine, whether it's ramen or sushi.
+    japanese:
+      - 昼 ごはん は ラーメン {で も} 寿司 {で も}、何 で も いい です。
+      - ランチ は ラーメン {で も} 寿司 {で も}、何 で も いい です よ。
+      - 昼食 は ラーメン {で も} 寿司 {で も}、どちら で も 構い ませ ん。
+    english_literally: As for lunch, ramen even sushi even, anything is fine.
+    competing_grammar:
+      - competing_japanese:
+          - ラーメン {か} 寿司 {か}、何 で も いい です。
+        english: Ramen or sushi, anything is fine.
+        hint: The particle 「か」 simply presents options, while 「でも〜でも」 emphasizes an indifference towards
+          the specific choice, implying that any of the listed items is equally acceptable. We're looking
+          for an expression that shows complete flexibility regarding the food choice.
+    scene: Two friends are trying to decide what to eat for lunch, and one expresses complete flexibility.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「何 で も いい です」 reinforces the indifference established by 「でも〜でも」, indicating that
+      the speaker truly has no preference and is agreeable to any choice presented, be it 「ラーメン」 or 「寿司」。
+      The addition of 「よ」 in the second variation makes it slightly more assertive or reassuring, and
+      is commonly used by female speakers as well as male speakers.
+  - english: Whether it's success or failure, you must learn from the experience.
+    japanese:
+      - 成功 {で も} 失敗 {で も}、経験 から 学ぶ べき です。
+      - 成功 {で も} 失敗 {で も}、経験 から 学び なさい。
+      - 成功 {で も} 失敗 {で も}、必ず 経験 から 学ん で ください。
+    english_literally: Success even failure even, from experience should learn.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 {か} 失敗 {か} は 関係 なく、経験 から 学ぶ べき です。
+        english: Regardless of whether it's success or failure, you should learn from the experience.
+        hint: While 「〜か〜か は 関係 なく」 explicitly states 'regardless of', 「でも〜でも」 more concisely conveys that
+          all outcomes, whether positive or negative, offer learning opportunities. We're looking for
+          a more direct way to express learning from any outcome.
+      - competing_japanese:
+          - 成功 で {あろう と} 失敗 で {あろう と}、経験 から 学ぶ べき です。
+        english: Whether it be success or failure, you should learn from the experience.
+        hint: The expression 「〜であろうと〜であろうと」 is more formal and literary. 「でも〜でも」 is a more common and
+          natural way to convey that the main statement applies to both contrasting states. We're looking
+          for a simpler, yet impactful way to state this universal truth.
+    scene: A senior colleague giving advice to a junior team member after a project review.
+    register: formal
+    setting: informative
+    nuance: Using 「〜べき です」 adds a nuance of strong recommendation or obligation, emphasizing the importance
+      of learning from all outcomes, whether positive (「成功」) or negative (「失敗」). The repetition of 「でも」
+      underscores that *either* result serves as valuable learning, making the advice comprehensive.
+    etymology: 「成功」 (seikō) combines 「成」 (sei, to become, achieve) and 「功」 (kō, merit, achievement). 「失敗」
+      (shippai) combines 「失」 (shitsu, to lose, miss) and 「敗」 (pai, to be defeated).
+  - english: Neither money nor power will bring true happiness.
+    japanese:
+      - お 金 {で も} 権力 {で も}、本当 の 幸せ は もたらし ませ ん。
+      - お 金 {で も} 権力 {で も}、真 の 幸せ に は なり ませ ん。
+      - お 金 {で も} 権力 {で も}、本当 の 幸せ と は 言え ませ ん。
+    english_literally: Money even power even, true happiness will not bring.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 {も} 権力 {も}、本当 の 幸せ は もたらし ませ ん。
+        english: Money and power will not bring true happiness.
+        hint: While 「〜も〜も」 can also convey 'neither...nor...', 「でも〜でも」 adds a stronger emphasis on the
+          inadequacy of *even* these highly valued things. It implies that these options, despite their
+          perceived value, are insufficient for true happiness. We want to highlight the surprising insufficiency.
+    scene: An experienced individual sharing a life lesson with a younger, ambitious person.
+    register: semi-formal
+    setting: serious
+    nuance: The negation 「もたらし ませ ん」 combined with 「でも〜でも」 creates the nuance of 'neither...nor...', implying
+      that true happiness cannot be obtained through either money (「お 金」) or power (「権力」), emphasizing
+      their ultimate inadequacy. The repetition highlights the point that *even* these desirable things
+      are not enough.
+  - english: Whether you're young or old, everyone loves this song.
+    japanese:
+      - 若者 {で も} 年配 者 {で も}、この 歌 は みんな 大好き です。
+      - 若者 {で も} 年配 者 {で も}、この 歌 は 誰 に で も 愛さ れ ます。
+      - 若者 {で も} 年配 者 {で も}、この 歌 は いつ まで も 歌わ れ ます。
+    english_literally: Young person even old person even, this song everyone loves.
+    competing_grammar:
+      - competing_japanese:
+          - 若者 と 年配 者、{どちら も} この 歌 が 大好き です。
+        english: Young people and old people, both love this song.
+        hint: The phrasing 「どちら も」 implies that both groups love the song, but 「でも〜でも」 emphasizes that
+          *regardless* of age, the love for the song exists, highlighting a more universal appeal. We
+          want to express that the song transcends age barriers.
+      - competing_japanese:
+          - 若者 {も} 年配 者 {も}、この 歌 が 大好き です。
+        english: Young people and old people also love this song.
+        hint: While 「〜も〜も」 lists both categories, 「でも〜でも」 carries a stronger nuance of 'even if you are
+          X, even if you are Y,' suggesting that the song's appeal is so strong it doesn't matter what
+          age you are. We're looking for an expression that emphasizes the song's broad, unconditional
+          appeal.
+    scene: A group of people from various generations are at a karaoke bar, and a classic song comes on,
+      leading to a sing-along.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: The repeated 「でも」 here emphasizes that the love for the song transcends age groups (「若者」 -
+      young people, 「年配者」 - elderly people). It highlights the universal appeal, implying 'regardless
+      of whether they are young or old.' The use of 「みんな」 (everyone) further reinforces this inclusivity.
+    etymology: 「年配者」 (nenpaisha) combines 「年」 (nen, year) and 「配」 (pai, group/distribution) with 「者」 (sha,
+      person), literally meaning someone who has accumulated many years, i.e., an elderly person.
+post_example_writeup: The repeated 「でも」 can be used to list seemingly exhaustive options, but implicitly
+  acknowledges the existence of more options. It is commonly used when you do not want to list all possible
+  options, but want to give the listener a sense of the possibilities. This structure emphasizes that
+  the conclusion applies irrespective of which specific option is chosen from a group.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でも-でも

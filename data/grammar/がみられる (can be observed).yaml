@@ -1,0 +1,401 @@
+grammar_point: がみられる (can be observed)
+learn_before:
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - 背面 (back surface spatial)
+meaning: Can be seen or observed; is evident
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: がみられる
+    rarity: common
+    meaning: can be seen, can be observed
+  - conjugation-type: non-past polite (～ます)
+    form: がみられます
+    rarity: common
+    meaning: can be seen, can be observed (polite)
+  - conjugation-type: negative plain (～ない)
+    form: がみられない
+    rarity: uncommon
+    meaning: cannot be seen, cannot be observed
+  - conjugation-type: negative non-past polite (～ません)
+    form: がみられません
+    rarity: uncommon
+    meaning: cannot be seen, cannot be observed (polite)
+  - conjugation-type: past plain (～た)
+    form: がみられた
+    rarity: common
+    meaning: could be seen, was observed
+  - conjugation-type: past polite (～ました)
+    form: がみられました
+    rarity: common
+    meaning: could be seen, was observed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: がみられなかった
+    rarity: uncommon
+    meaning: could not be seen, was not observed
+  - conjugation-type: negative past polite (～ませんでした)
+    form: がみられませんでした
+    rarity: uncommon
+    meaning: could not be seen, was not observed (polite)
+  - conjugation-type: te-form (～て)
+    form: がみられて
+    rarity: uncommon
+    meaning: being seen, being observed
+  - conjugation-type: conditional (～ば)
+    form: がみられれば
+    rarity: rare
+    meaning: if can be seen, if can be observed
+  - conjugation-type: conditional (～たら)
+    form: がみられたら
+    rarity: rare
+    meaning: if could be seen, if could be observed
+  - conjugation-type: volitional (～よう)
+    form: がみられよう
+    rarity: very rare
+    meaning: let's be seen, let's observe (hypothetical)
+  - conjugation-type: volitional polite (～ましょう)
+    form: がみられましょう
+    rarity: very rare
+    meaning: let's be seen, let's observe (polite, hypothetical)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: がみられろ
+    rarity: very rare
+    meaning: be seen!, observe!
+  - conjugation-type: imperative polite (～なさい)
+    form: がみられてください
+    rarity: very rare
+    meaning: please be seen, please observe
+  - conjugation-type: potential (～られる/～える)
+    form: がみられる
+    rarity: common
+    meaning: can see, can observe
+  - conjugation-type: passive (～られる/～かれる)
+    form: がみられる
+    rarity: common
+    meaning: is seen, is observed
+  - conjugation-type: causative (～させる)
+    form: がみられさせる
+    rarity: very rare
+    meaning: make someone see/observe
+pronunciation:
+  katakana: ガミラレル
+  romaji: ga mirareru
+formation:
+  '[Noun] + が + 見られる': Indicates that something can be seen, observed, or is evident.
+jlpt: N4
+etymology: 見られる is the potential or passive form of the verb 見る (miru), meaning "to see" or "to look."
+  The potential form indicates the possibility or ability to see something, while the passive form indicates
+  that something is being seen or observed. The が particle marks the subject that is being seen or observed.
+  This grammatical pattern evolved from the straightforward verb conjugations to convey a sense of objective
+  observation or an inherent capacity for something to be seen, rather than an active act of seeing by
+  a person.
+writeup: |-
+  The grammar point 「がみられる」 indicates that something can be seen, observed, or is evident. It is derived from the potential or passive form of the verb 「見る」 (miru, "to see"). Unlike 「見える」, which simply states that something *is* visible, 「がみられる」 emphasizes the ability or possibility to see something, often implying that some effort, specific conditions, or a certain perspective are required or have been met for the observation to occur.
+
+  Because 「見られる」 is both the potential and passive form of 「見る」, it can be interpreted in either way, depending on the context. However, it's worth noting that in some colloquial uses, the 「ら」 sound is dropped in the potential form of some Godan verbs (known as *ra-nuki kotoba*), but 「見られる」 is an Ichidan verb and maintains its form.
+
+  This grammar point is often used to describe natural phenomena, trends, or situations where something becomes apparent. It highlights the observable nature of the subject. The particle 「が」 marks the subject that can be seen or observed, emphasizing its role in the observation.
+false_friends:
+  - term: 見える (to be visible・to seem)
+    meaning: To be visible, to seem, to be in sight
+    kind: similar expression
+    nuance: Unlike 「がみられる」, 「見える」 simply describes that something *is* visible, without implying any specific
+      conditions or effort to see it. 「見える」 often refers to something within one's natural field of vision
+      or an inherent state of visibility. It is a more passive statement of existence of vision.
+    grammar_point: 見える (to be visible・to seem)
+  - term: '[Sentence]らしい (it seems・I hear)'
+    meaning: Indicates hearsay, conjecture, or something that seems to be the case based on available
+      information.
+    kind: similar expression
+    nuance: While 「がみられる」 expresses something that *can be objectively observed or is evident*, 「らしい」
+      conveys that something *seems to be the case* based on indirect information, common knowledge, or
+      someone's impression. It's about an appearance or a general understanding, not direct physical observation.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: ようだ (it seems)
+    meaning: It seems that, It appears that, It looks like
+    kind: similar expression
+    nuance: 「ようだ」 expresses a subjective conjecture or impression based on direct observation or intuition.
+      It indicates something *looks* or *seems* like something. In contrast, 「がみられる」 implies a more objective
+      fact that something *is observable* or *can be observed*, often related to data, trends, or physical
+      phenomena.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: にみえる (to look like)
+    meaning: To look, to seem, to appear
+    kind: similar expression
+    nuance: 「〜にみえる」 often describes how something *appears to someone's eyes* or *seems* in a subjective
+      way, or how an object presents itself. While it involves visibility, it focuses on the *impression*
+      or *perception*. 「がみられる」 is about the objective possibility or fact of something being observable.
+    grammar_point: にみえる (to look like)
+post_false_friends_writeup: |-
+  To avoid mixing these expressions, remember that 「がみられる」 emphasizes that something *can be objectively observed* or *is evident*, often implying a specific condition or effort, or an objective observation of a phenomenon or trend. For instance, you might say a pattern or trend can be observed.
+
+  In contrast, 「見える」 (mieru) simply describes that something *is visible* to the eye, focusing on its inherent state of visibility without implying special conditions or effort.
+
+  When considering things that *seem* or *appear* to be the case:
+  -   「らしい」 (rashii) conveys that something *seems true based on indirect information* or general understanding, rather than direct observation. It's about a common perception or hearsay.
+  -   「ようだ」 (you da) indicates a *subjective impression or conjecture* derived from direct observation or intuition, often implying 'it looks like X' or 'it seems like Y'.
+  -   「〜にみえる」 (ni mieru) focuses on how something *appears to someone's perception* or creates a certain impression, often in a more subjective or interpretive sense.
+
+  While all these terms touch upon perception or appearance, 「がみられる」 stands out for its emphasis on the objective observability of a fact, trend, or phenomenon.
+examples:
+  - english: From this room, the river can be seen.
+    japanese:
+      - この 部屋 から は 川 が {見 られる}。
+      - この 部屋 から は 川 が {見 られ ます}。
+    english_literally: From this room, the river is able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 から は 川 が {見える}。
+        english: From this room, the river is visible.
+        hint: While 「見える」 indicates simple visibility, 「が 見 られる」 suggests the view might depend on conditions
+          or is a noteworthy observation. We're looking for an expression that highlights the opportunity
+          to see, not just constant visibility.
+    scene: Someone is showing a visitor a room with a view.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: If you go to the park, many birds can be seen.
+    japanese:
+      - 公園 に 行く と、多く の 鳥 が {見 られる}。
+      - 公園 に 行く と、多く の 鳥 が {見 られ ます}。
+    english_literally: If you go to the park, many birds are able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 に 行く と、多く の 鳥 が {見える}。
+        english: If you go to the park, many birds are visible.
+        hint: 「が 見 られる」 implies that observing many birds requires a visit and perhaps some active searching,
+          highlighting the opportunity. We're looking for an expression that emphasizes the active observation
+          or potential, not just simple visibility.
+    scene: A friend giving advice about a local park.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: In summer, bears can be seen here.
+    japanese:
+      - 夏 に は、ここ で クマ が {見 られ ます}。
+      - 夏 に は、ここ で クマ が {見 られる}。
+    english_literally: In summer, bears are able to be seen here.
+    competing_grammar:
+      - competing_japanese:
+          - 夏 に は、ここ で クマ が {見え ます}。
+        english: In summer, bears are visible here.
+        hint: 「が 見 られ ます」 indicates bears can be *observed* under specific conditions, implying active
+          observation or probability. We're looking for an expression that conveys this observational
+          aspect, not just constant visibility.
+    scene: A park ranger informing visitors.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: In this country, unusual foods can be seen.
+    japanese:
+      - この 国 で は、変わっ た 食べ物 が {見 られ ます}。
+      - この 国 で は、変わっ た 食べ物 が {見 られる}。
+    english_literally: In this country, unusual foods are able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - この 国 で は、変わっ た 食べ物 が {見える}。
+        english: In this country, unusual foods are visible.
+        hint: 「が 見 られ ます」 means foods *can be observed* or *are evident* as a characteristic. We're looking
+          for an expression that suggests encountering them if one looks, rather than just being visible.
+    scene: Someone describing local cuisine in a foreign country.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: Recently, small electric cars could be seen.
+    japanese:
+      - 最近 は、小さな 電気 車 が {見 られ た}。
+      - 最近 は、小さな 電気 車 が {見 られ まし た}。
+    english_literally: Recently, small electric cars were able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 は、小さな 電気 車 が {見え た}。
+        english: Recently, small electric cars were visible.
+        hint: 「が 見 られ た」 implies one *could observe* or *encounter* cars as a past trend, highlighting
+          their presence. We're looking for an expression that conveys this observational aspect, not
+          just passive visibility.
+    scene: Someone commenting on a past trend in transportation.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: With new research, invisible stars can now be observed.
+    japanese:
+      - 新しい 研究 で、見え ない 星 が {見 られる} よう に なり まし た。
+      - 新しい 研究 で、見え ない 星 が {見 られる} よう に なっ た。
+    english_literally: With new research, invisible stars became able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 研究 で、見え ない 星 が {見える} よう に なり まし た。
+        english: With new research, invisible stars became visible.
+        hint: 「が 見 られる」 emphasizes the *ability* to see stars due to new research, implying active observation.
+          We're looking for an expression that highlights this facilitated observation, not just passive
+          visibility.
+    scene: A scientist talking about recent discoveries.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: I hope I get to see new friends someday.
+    japanese:
+      - いつ か 新しい 友達 が {見 られる} と いい な。
+      - いつ か 新しい 友達 が {見 られる} と いい です ね。
+    english_literally: I hope someday new friends are able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - いつ か 新しい 友達 が {見える} と いい な。
+        english: I hope new friends are visible someday.
+        hint: 「が 見 られる」 expresses desire for the *opportunity* or *chance* to see new friends, emphasizing
+          a future possibility. We're looking for an expression highlighting this potential for interaction,
+          not just visual existence.
+    scene: A lonely person expressing a hopeful wish.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: The end of the tunnel cannot be seen.
+    japanese:
+      - トンネル の 先 が {見 られ ませ ん}。
+      - トンネル の 先 が {見 られ ない}。
+    english_literally: The end of the tunnel is not able to be seen.
+    competing_grammar:
+      - competing_japanese:
+          - トンネル の 先 が {見え ませ ん}。
+        english: The end of the tunnel is not visible.
+        hint: 「が 見 られ ませ ん」 implies active effort or difficulty in perceiving the end. We're looking for
+          an expression that highlights this difficulty in observation, not just passive invisibility.
+    scene: Someone stuck in a long tunnel.
+    register: casual
+    setting: melancholic
+    conjugation: negative non-past polite (～ません)
+  - english: Due to the dense fog, the mountain summit could not be observed.
+    japanese:
+      - 濃い 霧 の ため、山頂 が {見 られ なかっ た}。
+      - 濃い 霧 の ため、山頂 が {見 られ ませ ん でし た}。
+    english_literally: Because of dense fog, the mountain summit is not observable.
+    competing_grammar:
+      - competing_japanese:
+          - 濃い 霧 の ため、山頂 が {見え ない}。
+        english: Due to the dense fog, the mountain summit is not visible.
+        hint: 「が 見えない」 implies that the summit is simply out of sight, a state of invisibility. We're
+          looking for an expression that conveys the inability to observe it due to an obstacle, highlighting
+          a lack of observational capacity or potential.
+    scene: A mountain guide explaining current conditions to a hiking group.
+    register: casual
+    setting: informative
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This uses the plain negative form 「見られなかった」, common for factual statements in a casual setting.
+      The use of 「~のため」 indicates cause, which often pairs with observations of what can or cannot be
+      done under given circumstances. A male mountain guide might use this direct phrasing to a group.
+  - english: Seeing you wearing such cute clothes, today is really a good day.
+    japanese:
+      - こんな 可愛い 服 を 着 て いる 君 が {見 られる} なんて、今日 は 本当 に 良い 日 だ。
+      - こんな 可愛い 服 を 着 て いる 君 が {見 られる} なんて、今日 は 本当 に 良い 日 です ね。
+    english_literally: That you are able to be seen wearing such cute clothes, today is truly a good day.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 可愛い 服 を 着 て いる 君 が {見える} なんて、今日 は 本当 に 良い 日 だ。
+        english: That you are visible wearing such cute clothes, today is truly a good day.
+        hint: 「が 見 られる」 conveys joy at the *opportunity* or *unexpected pleasure* of seeing someone, making
+          it more emotionally charged. We're looking for an Texpression highlighting this special experience,
+          not just simple visibility.
+    scene: A man flirting with a friend.
+    register: casual
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「~なんて」 adds a feeling of pleasant surprise and admiration. This is a casual way of expressing
+      excitement about seeing the girl in the cute outfit, common in male speech, especially with 「君」,
+      a familiar term of address used by men towards women or younger people.
+  - english: Being able to see such a wonderful smile, I'm truly glad I met you.
+    japanese:
+      - こんな 素敵 な 笑顔 が {見 られる} と は、あなた と 出会え て 本当 に 嬉しい です。
+      - こんな 素敵 な 笑顔 が {見 られる} と は、あなた と 出会え て 本当 に 嬉しい な。
+    english_literally: That such a wonderful smile is able to be seen, I am truly happy having met you.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 素敵 な 笑顔 が {見える} と は、あなた と 出会え て 本当 に 嬉しい です。
+        english: That such a wonderful smile is visible, I'm truly glad I met you.
+        hint: 「が 見 られる」 emphasizes the *special occasion* or good fortune of witnessing a smile, suggesting
+          deeper appreciation. We're looking for an expression highlighting this privilege, not just simple
+          visibility.
+    scene: A man on a first date, telling the other person how happy he is.
+    register: formal
+    setting: first-date
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「~とは」 emphasizes the unexpectedness and joy of seeing the smile. The use of 「素敵な笑顔」 and
+      the overall polite yet heartfelt tone are appropriate for a formal first date setting, typical for
+      expressing sincere appreciation.
+  - english: If I can see my favorite singer, I'll go anywhere.
+    japanese:
+      - 好き な 歌手 が {見 られる} なら、どこ へ で も 行き ます。
+      - 好き な 歌手 が {見 られる} なら、どこ へ で も 行く よ。
+    english_literally: If my favorite singer is able to be seen, I will go anywhere.
+    competing_grammar:
+      - competing_japanese:
+          - 好き な 歌手 が {見える} なら、どこ へ で も 行き ます。
+        english: If my favorite singer is visible, I'll go anywhere.
+        hint: 「が 見 られる」 emphasizes the speaker's *ability* or *opportunity* to see the singer, implying
+          deliberate effort. We're looking for an expression that conveys this active pursuit, not just
+          passive visibility.
+    scene: A young woman expressing her devotion to a celebrity to a friend.
+    register: casual
+    setting: excited
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「好きな」 with 「歌手」 and the strong expression 「どこへでも行きます」 are characteristic of passionate
+      female speech when discussing idols or beloved figures. The direct address to a male listener subtly
+      enhances the casual, conversational tone. While both genders can say this, the specific phrasing
+      with 「好きな」 and the expressive tone are very common for women when discussing celebrities.
+  - english: Having observed the changes in the market, we decided to revise our strategy.
+    japanese:
+      - 市場 の 変化 が {見 られ て}、戦略 を 見直す こと に し まし た。
+      - 市場 の 変化 が {見 られ て}、戦略 を 見直す こと に し た。
+    english_literally: Market changes being observed, we decided to revise strategy.
+    competing_grammar:
+      - competing_japanese:
+          - 市場 の 変化 を {見 て}、戦略 を 見直す こと に し まし た。
+        english: Seeing the market changes, we decided to revise our strategy.
+        hint: 「見て」 implies a conscious, active act of seeing by an agent. 「が 見られて」 implies that the changes
+          became observable or evident, leading to the decision. We're looking for an expression that
+          focuses on the changes becoming apparent rather than someone actively looking for them.
+    scene: During a business strategy meeting, a team leader summarizes findings.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The Te-form 「見られて」 connects the observation to the subsequent action, implying that the changes
+      became evident and *as a result*, the strategy was revised. This passive/potential construction
+      is suitable for professional contexts where events are presented objectively. The polite 「〜しました」
+      adds to the formal business tone.
+  - english: If similar patterns can be observed in various regions, it supports our hypothesis.
+    japanese:
+      - 様々 な 地域 で 同様 の パターン が {見 られれ ば}、我々 の 仮説 を 裏付ける こと に なる。
+      - 様々 な 地域 で 同様 の パターン が {見 られれ ば}、我々 の 仮説 を 裏付ける こと に なり ます。
+    english_literally: If similar patterns are observable in various regions, it becomes a thing that
+      supports our hypothesis.
+    competing_grammar:
+      - competing_japanese:
+          - 様々 な 地域 で 同様 の パターン が {見える} なら、我々 の 仮説 を 裏付ける こと に なる。
+        english: If similar patterns are visible in various regions, it supports our hypothesis.
+        hint: 「見えるなら」 suggests patterns are simply visible. 「見られれば」 implies that the patterns can be *discerned*
+          or *identified* through observation, which is more appropriate for scientific or analytical
+          contexts. We're looking for an expression that highlights the analytical observation, not just
+          casual visibility.
+    scene: A researcher presenting findings at an academic conference.
+    register: formal
+    setting: academic
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The 「〜ば」 conditional form 「見られれば」 is used here for a hypothetical condition in an academic
+      context. The formal and objective tone, including phrases like 「我々の仮説を裏付けることになる」, is typical for
+      research presentations. A female researcher might adopt this precise and analytical language.
+post_example_writeup: This grammar point is versatile and often implies an observational effort or the
+  existence of a specific condition that makes something observable. While `見える` conveys passive visibility,
+  `がみられる` implies a more active engagement in the act of seeing or that something is noticeable as a phenomenon.
+  Pay close attention to the nuance to use it effectively.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がみられる

@@ -1,0 +1,277 @@
+grammar_point: 各 (each or every)
+learn_before:
+  - '[Noun]によって (cause・reason)'
+  - ご (honorific prefix for Sino-Japanese words)
+  - 下回る (to fall below)
+  - 様・さま (honorific suffix)
+  - 注意する (to pay attention・to warn・to caution)
+meaning: Each, Every, Respective, Various
+pronunciation:
+  katakana: カク
+  romaji: kaku
+formation:
+  各 + Noun: Indicates each, every, or respective Noun.
+jlpt: N4
+etymology: 「各」 is derived from the pictographic representation of a foot approaching a place, signifying
+  arrival at 'each' individual location or point.
+writeup: The prefix 「各 (かく)」 is used to indicate "each," "every," or "respective." It is generally used
+  before nouns, especially words of Chinese origin (kanji compounds) or katakana words. While it's not
+  typically used with units of time, 「各」 is commonly used to identify items in a sequence, such as floors
+  in a building or houses on a street. It has a slightly more formal and precise tone compared to synonyms
+  like 「それぞれ」. When 「各」 is combined with nouns that denote a person (e.g., 「各人」, 「各自」), it refers to "each
+  person" or "individually." This usage is common in instructions or formal statements where individual
+  responsibility or action is emphasized. While 「各」 serves a similar function to 「各々 (おのおの)」, 「各々」 is
+  predominantly used when referring to people, often with a slightly more personal nuance, whereas 「各」
+  is broader in application and can refer to inanimate objects or abstract concepts as well. 「各」 is frequently
+  encountered in official documents, announcements, and business communications.
+false_friends:
+  - term: 各々
+    meaning: Each, respectively
+    kind: similar expression
+    nuance: 「各々 (おのおの)」 is generally used when referring to people or distinct entities, emphasizing individual
+      action or responsibility. It often carries a slightly more personal or traditional nuance than 「各」,
+      and can be used as a standalone noun or adverb. For example, 「皆、各々考えがある。」 (Everyone has their own
+      thoughts, respectively).
+    grammar_point: <suggest>:各々 (each・respective)
+  - term: それぞれ
+    meaning: Each, respective, severally
+    kind: synonym
+    nuance: 「それぞれ」 is a very common and versatile word that can mean 'each', 'respectively', or 'individually'.
+      It is less formal than 「各」 and can be used with a wider range of nouns, including abstract ones,
+      and often emphasizes individual differences or separate actions. For example, 「それぞれの意見を聞く。」 (Listen
+      to each opinion).
+    grammar_point: <suggest>:それぞれ (each・respective)
+  - term: 個別
+    meaning: Individual, separate
+    kind: similar expression
+    nuance: 「個別 (こべつ)」 is a noun meaning 'individual' or 'separate'. While it implies distinctness, it
+      focuses on the state of being separate rather than the distribution or enumeration of each item
+      within a group, as 「各」 does. For example, 「個別に質問する。」 (Ask a question individually).
+    grammar_point: <suggest>:個別 (individual・separate)
+post_false_friends_writeup: When distinguishing 「各」 from 「各々」, remember that 「各」 is more often a prefix
+  indicating "each" within a defined group, especially with formal or Chinese-derived nouns. 「各々」, on
+  the other hand, is a more standalone word, often referring to "each one" of people, emphasizing individual
+  actions. For 「それぞれ」, consider its flexibility and less formal tone; it's a general term for 'each' that
+  doesn't carry the same formal or systematic nuance as 「各」. Finally, 「個別」 describes things as being 'separate'
+  or 'individual', focusing on their distinct state rather than their count within a set. Choosing the
+  right term depends on the formality, the type of noun, and the specific emphasis desired.
+examples:
+  - english: Each student answered the question.
+    japanese:
+      - 学生 {各人} が 質問 に 答え た。
+      - 学生 {各人} が 質問 に 答え まし た。
+    english_literally: Student each-person question answered.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 {全員} が 質問 に 答え た。
+        english: All students answered the question.
+        hint: The scene implies a focus on individual responses rather than a collective outcome. 「各人」
+          emphasizes individual action within a group, unlike 「全員」 which implies a collective or complete
+          set. We're looking for emphasis on each person's individual response.
+      - competing_japanese:
+          - 生徒 {一人一人} が 質問 に 答え た。
+        english: Each and every student answered the question.
+        hint: The scene implies a straightforward, formal assessment. 「各人」 is more concise and formal
+          than 「一人一人」 which emphasizes each and every one, often implying a more laborious or detailed
+          individual process. We're looking for a formal term that implies each person individually.
+    scene: A teacher is reviewing the results of a pop quiz where everyone had to answer.
+    register: formal
+    setting: informative
+  - english: After the meeting, there were reports from each department.
+    japanese:
+      - 会議 の 後 に {各 部門} から 報告 が あっ た。
+      - 会議 の 後 に {各 部門} から 報告 が あり まし た。
+    english_literally: Meeting's after, from each-department report there was.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 後 に {それぞれ} の 部門 から 報告 が あっ た。
+        english: After the meeting, there were reports from respective departments.
+        hint: The professional setting and the focus on distinct units suggest a more formal and structured
+          enumeration, for which 「各部門」 is more common than 「それぞれ」. We're looking for a formal term for
+          'each department'.
+      - competing_japanese:
+          - 会議 の 後 に {全て} の 部門 から 報告 が あっ た。
+        english: After the meeting, there were reports from all departments.
+        hint: 「各部門」 highlights the individual contribution or separate nature of each department's report,
+          rather than simply stating that all departments reported. We're looking for emphasis on the
+          distinctness of each report.
+    scene: A company executive is debriefing after a large departmental meeting.
+    register: formal
+    setting: professional
+  - english: Experts from various fields gathered and discussed.
+    japanese:
+      - '{各 分野} の 専門 家 が 集まり、議論 し た。'
+      - '{各 分野} の 専門 家 が 集まり、議論 し まし た。'
+    english_literally: Each-field's experts gathered, discussed.
+    competing_grammar:
+      - competing_japanese:
+          - '{それぞれ} の 分野 の 専門 家 が 集まり、議論 し た。'
+        english: Experts from respective fields gathered and discussed.
+        hint: The context of a formal conference implies a systematic representation of distinct, recognized
+          fields, making 「各分野」 a more precise and formal choice over 「それぞれ」. We're looking for a formal
+          way to express 'each field'.
+      - competing_japanese:
+          - '{多様 な} 分野 の 専門 家 が 集まり、議論 し た。'
+        english: Experts from diverse fields gathered and discussed.
+        hint: While 「多様な」 (diverse) emphasizes variety, 「各分野」 specifically highlights that every relevant
+          field was represented, implying completeness rather than just variety, which fits the academic
+          context of experts gathering. We're looking for a term that means 'all fields' were represented
+          individually.
+    scene: Describing a conference where specialists with different backgrounds convened for a deep dive.
+    register: formal
+    setting: academic
+  - english: Please cooperate with electricity saving in each household.
+    japanese:
+      - '{各 家庭} で 節電 に 協力 し て ください。'
+      - '{各 家庭} で の 節電 に ご 協力 お 願い し ます。'
+    english_literally: Each-household in electricity-saving cooperate please.
+    competing_grammar:
+      - competing_japanese:
+          - '{それぞれ} の 家庭 で 節電 に 協力 し て ください。'
+        english: Please cooperate with electricity saving in respective households.
+        hint: The general appeal in a public announcement lends itself to the more formal and inclusive
+          「各家庭」 rather than the slightly more personal 「それぞれの家庭」. We're looking for a formal term for
+          'each household'.
+      - competing_japanese:
+          - '{全} 家庭 で 節電 に 協力 し て ください。'
+        english: Please cooperate with electricity saving in all households.
+        hint: 「各家庭」 emphasizes the individual responsibility of each household to act, which is stronger
+          than a simple statement about the collective total (「全家庭」). We're looking for individual responsibility
+          rather than just a total count.
+    scene: A public service announcement urging community-wide energy conservation.
+    register: formal
+    setting: instructional
+  - english: In the conference room, a microphone is installed at each seat.
+    japanese:
+      - 会議 室 に は {各 席} に マイク が 置か れ て いる。
+      - 会議 室 に は {各 席} に マイク が 置か れ て い ます。
+    english_literally: Conference-room in each-seat at microphone is placed.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 室 に は {それぞれ} の 席 に マイク が 置か れ て いる。
+        english: In the conference room, a microphone is installed at each respective seat.
+        hint: The technical and systematic description of fixed equipment favors 「各席」 for its precision,
+          indicating a uniform setup for every single seat. We're looking for a precise way to say 'each
+          seat'.
+      - competing_japanese:
+          - 会議 室 に は {全て} の 席 に マイク が 置か れ て いる。
+        english: In the conference room, a microphone is installed at all seats.
+        hint: 「各席」 conveys that each seat individually has a microphone, emphasizing the distribution
+          and individual availability, whereas 「全て の 席」 just states the total quantity. We're looking
+          for individual placement, not just the total.
+    scene: An office manager explaining the new equipment in a meeting room.
+    register: formal
+    setting: informative
+  - english: Participants, please bring your own necessary tools.
+    japanese:
+      - 参加 者 は {各自} 必要 な 道具 を 持参 し て ください。
+      - 参加 者 の 皆 様 は {各自} 必要 な 道具 を ご 持参 ください。
+    english_literally: Participants, each-person necessary tools bring please.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は {それぞれ} 必要 な 道具 を 持参 し て ください。
+        english: Participants, please bring your respective necessary tools.
+        hint: 「各自」 is more direct and conveys a sense of individual responsibility for one's own items,
+          commonly used in formal instructions, more so than 「それぞれ」. We're looking for a term that emphasizes
+          individual responsibility.
+      - competing_japanese:
+          - 参加 者 は {自分 の} 必要 な 道具 を 持参 し て ください。
+        english: Participants, please bring your own necessary tools.
+        hint: In formal instructions, 「各自」 is preferred over 「自分 の」 because it is more concise and implies
+          a clear, shared expectation for every individual. We're looking for a concise, formal instruction.
+    scene: An organizer giving instructions to attendees before a workshop.
+    register: formal
+    setting: instructional
+  - english: To pass the exam, it is necessary to study each subject thoroughly.
+    japanese:
+      - 試験 に 合格 する ため に は {各 科目} を しっかり 勉強 する 必要 が ある。
+      - 試験 に 合格 する ため に は {各 科目} を しっかり 勉強 する 必要 が あり ます。
+    english_literally: Exam to pass in order to, each-subject thoroughly study need there is.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 する ため に は {全て} の 科目 を しっかり 勉強 する 必要 が ある。
+        english: To pass the exam, it is necessary to study all subjects thoroughly.
+        hint: 「各科目」 emphasizes the importance of studying each subject individually and comprehensively,
+          highlighting the depth required for each, rather than just the collective total (「全て の 科目」).
+          We're looking for a term that conveys meticulous individual checking, not just a total count.
+      - competing_japanese:
+          - 試験 に 合格 する ため に は {それぞれ} の 科目 を しっかり 勉強 する 必要 が ある。
+        english: To pass the exam, it is necessary to study each respective subject thoroughly.
+        hint: In the context of an exam, 「各科目」 suggests a systematic and complete coverage of a defined
+          set of academic subjects, implying rigor and thoroughness for each. We're looking for a systematic
+          approach to each subject.
+    scene: An experienced student giving advice to a junior about preparing for a tough exam.
+    register: formal
+    setting: informative
+  - english: The project succeeds thanks to each individual's effort.
+    japanese:
+      - プロジェクト は {各自} の 働き に よっ て 成功 する。
+      - プロジェクト は {各自} の 働き に よっ て 成功 し ます。
+      - プロジェクト は {各自} の 働き に よっ て 成功 し た。
+    english_literally: Project each-person's work by succeeds.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト は {それぞれ} の 働き に よっ て 成功 する。
+        english: The project succeeds thanks to respective efforts.
+        hint: 「各自」 more strongly emphasizes the individual and their direct responsibility for their own
+          part in the success of the project compared to 「それぞれ」. We're looking for a strong emphasis on
+          individual responsibility.
+      - competing_japanese:
+          - プロジェクト は {各 個人} の 働き に よっ て 成功 する。
+        english: The project succeeds thanks to each individual's effort.
+        hint: 「各自」 is a widely used and concise term for 'each person' in business and formal contexts,
+          often implying individual responsibility, making it more natural than 「各個人」 in this motivational
+          phrase. We're looking for a concise and common expression for 'each person's effort'.
+    scene: A team leader motivating their members, highlighting personal accountability.
+    register: formal
+    setting: persuasive
+  - english: For the final check of the report, I carefully checked each point.
+    japanese:
+      - レポート の 最終 確認 で {各点} を 注意 深く チェック し た。
+      - レポート の 最終 確認 で {各点} を 注意 深く チェック し まし た。
+    english_literally: Report's final confirmation for, each-point carefully checked.
+    competing_grammar:
+      - competing_japanese:
+          - レポート の 最終 確認 で {全て} の 点 を チェック し た。
+        english: For the final check of the report, I checked all points carefully.
+        hint: 「各点」 emphasizes checking each point individually and meticulously, ensuring nothing is missed,
+          fitting the idea of a thorough review. We're looking for a term that conveys meticulous individual
+          checking, not just a total count.
+      - competing_japanese:
+          - レポート の 最終 確認 で {それぞれ} の 点 を チェック し た。
+        english: For the final check of the report, I carefully checked each respective point.
+        hint: 「各点」 implies a systematic review of a defined set of points, which is typical for official
+          documents or academic work, whereas 「それぞれ の 点」 might suggest a less structured process. We're
+          looking for a systematic review of each point.
+    scene: A student reflecting on the thoroughness of their proofreading process.
+    register: formal
+    setting: reflective
+  - english: Each product comes with a one-year warranty.
+    japanese:
+      - '{各 製品} に 1 年間 の 保証 が つい て いる。'
+      - '{各 製品} に 1 年間 の 保証 が つい て い ます。'
+    english_literally: Each-product to one year of warranty is attached.
+    competing_grammar:
+      - competing_japanese:
+          - '{全て} の 製品 に 1 年間 の 保証 が つい て いる。'
+        english: All products come with a one-year warranty.
+        hint: 「各製品」 emphasizes that each individual product, one by one, has a warranty, highlighting
+          the individual promise, whereas 「全て の 製品」 simply states the collective fact. We're looking for
+          emphasis on the individual warranty for each product.
+      - competing_japanese:
+          - '{それぞれ} の 製品 に 1 年間 の 保証 が つい て いる。'
+        english: Each respective product comes with a one-year warranty.
+        hint: In a professional and informative context like a sales explanation, 「各製品」 is more common
+          and suitable for stating a uniform policy applied to every item in a category. We're looking
+          for a formal and concise way to state this.
+    scene: A salesperson explaining product features to a customer.
+    register: formal
+    setting: informative
+post_example_writeup: As seen in the examples, 「各」 is often used with nouns that denote a collection or
+  series of items, such as 「各階 (かくかい - each floor)」, 「各家庭 (かくかてい - each household)」, or 「各科目 (かくかもく -
+  each subject)」. This highlights its function in systematically referring to every member of a set. When
+  used with words like 「各人 (かくじん - each person)」 or 「各自 (かくじ - each one/person)」, the emphasis shifts
+  to individual responsibility or action within a group, particularly in formal instructions or statements
+  of accountability. Understanding these collocations is key to mastering the precise application of 「各」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/各

@@ -1,0 +1,310 @@
+grammar_point: かどうか (whether or not)
+learn_before:
+  - 気になる (to be concerned or interested)
+meaning: Whether or not; if...or not
+pronunciation:
+  katakana: カドウカ
+  romaji: ka dou ka
+formation:
+  Verb (plain form) + かどうか: Indicates uncertainty or questioning whether something is true or will happen.
+  い-Adjective + かどうか: Expresses doubt or inquiry about whether an adjective is applicable.
+  な-Adjective (stem) + かどうか: Indicates uncertainty about whether a noun-like adjective is applicable.
+  Noun + かどうか: Expresses doubt or inquiry about whether something is a certain noun.
+jlpt: N4
+etymology: The grammar point 「かどうか」 is formed by combining 「か」, a question particle indicating 'or', with
+  「どう」, meaning 'how' or 'in what way'. The combination creates the meaning of 'whether or how', expressing
+  uncertainty or a question about something. Its core concept lies in presenting a binary choice or an
+  unknown state, often implying a 'yes/no' type of inquiry.
+writeup: 「かどうか」 is used to express uncertainty or to ask whether something is the case or not. It literally
+  combines 「か」 (a question marker, or 'or') with 「どう」 (how) to create a phrase that means "whether or
+  how it is." It's commonly translated as "whether or not" in English. This expression attaches directly
+  to the plain form of verbs, adjectives, or nouns to indicate this uncertainty. Think of it as asking,
+  "Is it this way, or how is it?" It strongly emphasizes the binary nature of the inquiry—it's either
+  one way or the other, and the speaker is unsure which. This is often used when a decision hinges on
+  an unknown fact, or when one is expressing worry, curiosity, or the need to confirm something.
+false_friends:
+  - term: か何か
+    meaning: Or something, Or something like that
+    kind: similar expression
+    nuance: 「か何か」 is used to indicate an approximation or something similar, implying a vague or unspecified
+      alternative, while 「かどうか」 is specifically for expressing 'whether or not' a specific condition is
+      true.
+    grammar_point: か何か (or something)
+  - term: Question-phrase+か
+    meaning: Including questions within sentences
+    kind: often confused with
+    nuance: This is used to embed open-ended wh-questions within sentences (e.g., where, when, who), whereas
+      「かどうか」 is specifically for embedding yes/no questions.
+    grammar_point: Question-phrase+か (embedded question)
+  - term: でも〜でも
+    meaning: Whether ~ or, Neither ~ nor
+    kind: similar expression
+    nuance: 「〜でも〜でも」 is used to list alternatives or to indicate 'neither...nor', implying an exhaustive
+      list or a disregard for either option, while 「かどうか」 is about the uncertainty of a single condition
+      without listing alternatives.
+    grammar_point: でも〜でも (whether x or y)
+  - term: 〜ても〜なくても
+    meaning: Whether ~ or not
+    kind: similar expression
+    nuance: 「〜ても〜なくても」 means 'whether or not (something happens)', emphasizing the action itself and its
+      lack of influence on the outcome, while 「かどうか」 focuses on the uncertainty of the condition or state
+      itself.
+    grammar_point: 〜ても〜なくても (whether or not)
+  - term: にしても〜にしても
+    meaning: Regardless of whether
+    kind: similar expression
+    nuance: 「にしても〜にしても」 means 'regardless of whether', emphasizing the lack of difference between two
+      possibilities, while 「かどうか」 is used when there's genuine uncertainty about a single condition.
+    grammar_point: にしても〜にしても (regardless of whether a or b)
+  - term: にしても
+    meaning: Even though, Even if, Even when, Also
+    kind: similar expression
+    nuance: 「にしても」 means 'even if' or 'even though', and it expresses concession or addition, providing
+      context or a hypothetical scenario. In contrast, 「かどうか」 is used to express 'whether or not', showing
+      uncertainty about a fact.
+    grammar_point: にしても (even if)
+  - term: にしろ〜にしろ
+    meaning: Whether… or
+    kind: similar expression
+    nuance: 「にしろ〜にしろ」 expresses alternatives or a choice between options, while 「かどうか」 expresses uncertainty
+      about one particular thing being true or false.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: か否か
+    meaning: Whether or not
+    kind: synonym
+    nuance: 「か否か」 is a more formal or literary way of saying 「かどうか」. While semantically similar, 「かどうか」
+      is significantly more common and natural in everyday conversation, whereas 「か否か」 is often found
+      in written documents, formal speeches, or philosophical discussions.
+    grammar_point: か否か (whether or not)
+post_false_friends_writeup: 'While many expressions have overlapping meanings with 「かどうか」, the key is
+  to remember that 「かどうか」 is specifically for expressing uncertainty about a binary yes/no condition.
+  Other expressions like 「か何か (or something)」 or 「でも〜でも (whether x or y)」 indicate approximations or alternatives,
+  respectively. Using 「かどうか」 correctly ensures you clearly communicate your uncertainty or question about
+  a specific condition. Pay close attention to the context: if you are asking about a simple ''true or
+  false'' state, 「かどうか」 is likely the correct choice. If you are discussing a choice between several options,
+  or the impact of an action regardless of its outcome, other grammar points will be more appropriate.'
+examples:
+  - english: I don't know whether the weather will be good tomorrow or not.
+    japanese:
+      - 明日 天気 が 良い {か どう か} 分から ない。
+      - 明日 天気 が 良い {か どう か} 分かり ませ ん。
+      - 明日 天気 が 良い {か どう か} ちょっと 分から ない。
+    english_literally: Tomorrow weather good {whether or not} I don't know.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 天気 が 良い {か} 分から ない。
+        english: I don't know if the weather will be good tomorrow.
+        hint: Using just 「か」 can also indicate uncertainty, but 「かどうか」 emphasizes the explicit 'yes/no'
+          binary choice more strongly. We're looking for an explicit 'whether or not'.
+      - competing_japanese:
+          - 明日 天気 が 良い か は {定か で は ない}。
+        english: It's not certain whether the weather will be good tomorrow or not.
+        hint: 「定かではない」 is a more formal expression indicating uncertainty or lack of clarity. We're looking
+          for a more casual and personal expression of not knowing.
+    scene: A person making plans for the weekend.
+    register: casual
+    setting: cautious
+  - english: I'm worried about whether or not she will come.
+    japanese:
+      - 彼女 が 来る {か どう か} 心配 です。
+      - 彼女 が 来る {か どう か} 心配 だ。
+      - 彼女 が 来る {か どう か} 気 に なっ て いる。
+    english_literally: She comes {whether or not} I'm worried.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 来る {か} 心配 です。
+        english: I'm worried if she will come.
+        hint: While possible, 「かどうか」 more strongly conveys the 'yes/no' nature of the uncertainty about
+          her arrival, aligning with a friend's explicit worry. We're looking for that explicit 'whether
+          or not'.
+      - competing_japanese:
+          - 彼女 が {来る か 来 ない か} 心配 です。
+        english: I'm worried if she will come or not come.
+        hint: This explicitly states both options, but 「かどうか」 is more concise and natural for expressing
+          this common type of uncertainty. We're looking for a more idiomatic way to express this.
+    scene: A friend waiting for another friend.
+    register: semi-formal
+    setting: sympathetic
+  - english: Let's try this restaurant to see whether or not it's delicious.
+    japanese:
+      - この レストラン が 美味しい {か どう か} 試し て み ましょう。
+      - この レストラン、美味しい {か どう か} 試し て みよう か。
+      - この レストラン が 美味しい {か どう か} 試し て みよう。
+    english_literally: This restaurant is delicious {whether or not} let's try to see.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン が 美味しい {か} 試し て み ましょう。
+        english: Let's try this restaurant to see if it's delicious.
+        hint: 「かどうか」 emphasizes the binary decision (delicious or not) more directly, which fits the context
+          of an exploratory visit to a restaurant. We're looking for a clear 'whether or not'.
+      - competing_japanese:
+          - この レストラン が {美味しい か まずい か} 試し て み ましょう。
+        english: Explicitly stating both 'delicious' and 'bad' is less natural in this casual suggestion;
+          「かどうか」 is more idiomatic and concise. We're looking for a more natural phrasing.
+        hint: While grammatically correct, this phrasing directly states both the positive and negative
+          outcomes, which is less concise than 「かどうか」. The latter more naturally conveys an inquiry into
+          a binary state without needing to list both possibilities. We're looking for a succinct expression
+          of 'whether or not'.
+    scene: Two friends deciding where to eat.
+    register: casual
+    setting: friendly
+  - english: I want to confirm whether or not he's telling the truth.
+    japanese:
+      - 彼 が 本当 の こと を 言っ て いる {か どう か} 確かめ たい。
+      - 彼 が 本当 の こと を 言っ て いる {か どう か} 確かめ たい です。
+      - 彼 が 本当 の こと を 言っ て いる {か どう か} 是非 確かめ たい。
+    english_literally: He truth thing saying {whether or not} I want to confirm.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 本当 の こと を 言っ て いる {か} 確かめ たい。
+        english: I want to confirm if he's telling the truth.
+        hint: 「かどうか」 reinforces the binary nature of 'telling the truth or not', which is crucial when
+          investigating a situation for confirmation. We're looking for that explicit 'whether or not'
+          nuance.
+      - competing_japanese:
+          - 彼 が 本当 の こと を 言っ て いる {か 否 か} 確かめ たい。
+        english: I want to confirm whether he is telling the truth or not.
+        hint: 「か否か (whether or not)」 is a more formal and less common in everyday spoken Japanese. We're
+          looking for a more natural expression in this context.
+    scene: A person investigating a situation.
+    register: semi-formal
+    setting: cautious
+  - english: I want to ask your opinion on whether or not these clothes suit me.
+    japanese:
+      - この 服 が 似合う {か どう か} あなた に 意見 を 聞き たい。
+      - この 服 が 似合う {か どう か} ちょっと 意見 聞か せ て ほしい な。
+      - この 服 が 似合う {か どう か} 意見 聞か せ て。
+    english_literally: These clothes suit {whether or not} your opinion I want to hear.
+    competing_grammar:
+      - competing_japanese:
+          - この 服 が 似合う {か} あなた に 意見 を 聞き たい。
+        english: I want to ask your opinion on if these clothes suit me.
+        hint: 「かどうか」 makes the request for a clear 'yes' or 'no' opinion on suitability more explicit,
+          which is natural when seeking advice. We're looking for that clear 'whether or not'.
+      - competing_japanese:
+          - この 服 が {似合う か 似合わ ない か} あなた に 意見 を 聞き たい。
+        english: I want to ask your opinion on whether these clothes suit me or don't suit me.
+        hint: While grammatically correct, this phrasing is less concise than 「かどうか」, which conveys the
+          same meaning more efficiently. We're looking for a more natural phrasing.
+    scene: Someone asking for fashion advice.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This is something a woman might say to another woman. The phrasing 「意見 を 聞き たい」 is a polite
+      yet direct way to ask for a judgment, which is common in casual female conversation regarding appearance.
+  - english: I'm anxious about whether or not I can pass, but I intend to do my best.
+    japanese:
+      - 合格 できる {か どう か} 不安 だ けど、全力 を 尽くす つもり です。
+      - 合格 できる {か どう か} 不安 だ けど、全力 を 尽くす つもり だ。
+      - 合格 できる {か どう か} 心配 だ けど、全力 を 尽くす つもり です。
+    english_literally: Pass can {whether or not} anxious am, but all power I will do.
+    competing_grammar:
+      - competing_japanese:
+          - 合格 できる {か} 不安 だ けど、全力 を 尽くす つもり です。
+        english: I'm anxious if I can pass, but I intend to do my best.
+        hint: 「かどうか」 emphasizes the clear pass/fail binary outcome of the exam, intensifying the feeling
+          of 「不安」 (anxiety). We're looking for a phrase that highlights this binary outcome.
+      - competing_japanese:
+          - 合格 {できる か でき ない か} 不安 だ けど、全力 を 尽くす つもり です。
+        english: I'm anxious whether I can pass or cannot pass, but I intend to do my best.
+        hint: This alternative is more verbose and less natural for expressing the common feeling of uncertainty
+          about an exam result. We're looking for a more natural and concise expression.
+    scene: A student preparing for an exam.
+    register: semi-formal
+    setting: serious
+  - english: You won't know whether or not this movie is interesting unless you watch it.
+    japanese:
+      - この 映画 が 面白い {か どう か} 見 て み ない と 分から ない よ。
+      - この 映画 が 面白い {か どう か} 見 て み ない と 分から ない。
+      - この 映画 が 面白い {か どう か} 見 て み ない と 分から ない でしょ う。
+    english_literally: This movie is interesting {whether or not} if you don't try watching, you won't
+      know, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 が 面白い {か} 見 て み ない と 分から ない よ。
+        english: You won't know if this movie is interesting unless you watch it.
+        hint: 「かどうか」 clearly sets up the uncertainty about the movie's quality as a binary choice (interesting
+          or not), which the act of watching will resolve. We're looking for a phrase that emphasizes
+          this 'yes/no' condition.
+    scene: Recommending a movie.
+    register: casual
+    setting: friendly
+  - english: I'm curious about whether or not she has feelings for me.
+    japanese:
+      - 彼女 が 私 の こと を どう 思っ て いる {か どう か} 気 に なる。
+      - 彼女 が 僕 の こと を どう 思っ て いる {か どう か} 気 に なる ん だ。
+      - 彼女 が 僕 の こと を どう 思っ て いる {か どう か}、ちょっと 気 に なる な。
+    english_literally: She about me how thinking {whether or not} I am curious.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 僕 の こと を {どう 思っ て いる か} 気 に なる。
+        english: I'm curious how she thinks about me.
+        hint: 「かどうか」 clarifies the 'yes/no' nature of the feelings (does she like me or not?), which is
+          the core of the speaker's curiosity, rather than an open-ended 'how'. We're looking for that
+          binary distinction.
+      - competing_japanese:
+          - 彼女 が 僕 の こと を {どう 思っ て いる か い ない か} 気 に なる。
+        english: I'm curious whether she thinks about me or doesn't.
+        hint: This phrasing is awkward and unnatural compared to the concise and idiomatic 「かどうか」 when
+          discussing personal feelings. We're looking for a more natural expression.
+    scene: A man speaking to a close friend.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is something a man might say to another man. The phrase 「気 に なる」 expresses a personal
+      preoccupation or curiosity, which is a common and natural way for men to discuss such matters in
+      a casual setting.
+  - english: I'm a little worried about whether or not she'll like this present.
+    japanese:
+      - この プレゼント、喜ん で くれる {か どう か} 少し 不安 だ な。
+      - この プレゼント、喜ん で くれる {か どう か} 不安 だ な。
+      - この プレゼント、喜ん で くれる {か どう か} なあ、少し 不安 だ。
+    english_literally: This present, will be pleased {whether or not} a little anxious I am, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この プレゼント、喜ん で くれる {か} 少し 不安 だ な。
+        english: I'm a little worried if she'll like this present.
+        hint: 「かどうか」 explicitly highlights the binary outcome of her reaction (will she be pleased or
+          not?), which is the source of the speaker's anxiety. We're looking for a phrase that emphasizes
+          this 'yes/no' outcome.
+    scene: A man about to give a gift to a woman he likes.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: This is something a man might say to a woman he likes. The sentence-final particle 「な」 (in
+      「不安 だ な」) adds a sense of personal reflection and slight uncertainty, which is common in casual
+      male speech when expressing minor worry or hope in an intimate context.
+  - english: We need to decide whether or not to cancel the event by tomorrow.
+    japanese:
+      - 明日 まで に イベント を 中止 する {か どう か} 決める 必要 が あり ます。
+      - 明日 まで に イベント を 中止 する {か どう か} 決定 する 必要 が あり ます。
+      - 明日 まで に イベント を 中止 する {か どう か} 決め なけれ ば なり ませ ん。
+    english_literally: Tomorrow by event cancel {whether or not} decide need there is.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 まで に イベント を 中止 する {か} 決める 必要 が あり ます。
+        english: We need to decide if we cancel the event by tomorrow.
+        hint: While 「か」 can imply uncertainty, 「かどうか」 explicitly emphasizes the binary nature of the decision
+          (to cancel or not to cancel), which is crucial for a definitive resolution. We're looking for
+          a clearer 'whether or not'.
+      - competing_japanese:
+          - 明日 まで に イベント を 中止 する {べき} です。
+        english: We should cancel the event by tomorrow.
+        hint: Adding 「べき」 implies a sense of obligation or appropriateness, whereas the original sentence
+          is focused solely on the necessity of making the 'cancel or not cancel' decision itself. We're
+          looking for a straightforward 'whether or not' decision.
+    scene: Event organizers discussing a deadline.
+    register: formal
+    setting: professional
+post_example_writeup: The examples provided illustrate the versatility of 「かどうか」 across different contexts
+  and registers. Notice how it consistently maintains its core meaning of expressing a clear 'yes/no'
+  uncertainty, whether the speaker is making plans, expressing worry, or seeking an opinion. The choice
+  of plain or polite forms (e.g., 「分からない」 vs. 「分かりません」) and sentence-final particles (like 「な」 or 「よ」)
+  further refines the nuance of the sentence, aligning with the speaker's gender, emotional state, and
+  relationship with the listener. Understanding these subtle distinctions will help you use 「かどうか」 naturally
+  in your own conversations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かどうか

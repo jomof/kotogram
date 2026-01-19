@@ -1,0 +1,244 @@
+grammar_point: 東 (east)
+learn_before:
+  - ~なくてはいけない・なくちゃ (must do・have to)
+  - から (from)
+  - が (subject marker)
+  - な-Adjectives (adjectival nouns)
+  - に (static location・time)
+  - に向かって (physical direction)
+  - のうち(で) (within・among)
+  - 側 (side or flank)
+  - 側面 (aspect side)
+  - 最初 (first・beginning)
+  - 様・さま (honorific suffix)
+  - ～口 (exit・entrance)
+meaning: East; eastern direction
+pronunciation:
+  katakana: ヒガシ
+  romaji: higashi
+formation:
+  '[Noun] の {東}': Indicates the eastern direction relative to a noun, like 'east of the station'.
+  '{東} に/へ/から': Used with particles to indicate movement to, from, or towards the east.
+  '{東}': Used as the standalone noun 'east' or to modify other nouns (e.g., 東の風 - east wind).
+jlpt: N5
+etymology: The kanji 東 (ひがし) is a pictographic character. Its ancient form depicted the sun (日) rising
+  behind a tree (木), symbolizing the dawn and the direction from which the sun appears. This visual representation
+  directly translates to its meaning of 'east' or 'eastern direction'.
+writeup: |-
+  「東」 (ひがし) is the Japanese word for 'east', one of the four cardinal directions. It is a fundamental noun used to describe location, direction, and origin. You will frequently encounter it in daily conversation, navigation, and geographical descriptions.
+
+  It is commonly used in conjunction with particles to specify movement towards, away from, or a static location in the east:
+
+  *   **東 に** (higashi ni): 'in the east' or 'to the east' (static location or target).
+  *   **東 へ** (higashi e): 'towards the east' (directional movement).
+  *   **東 から** (higashi kara): 'from the east' (origin or starting point).
+
+  When modifying another noun, 「東」 often takes the particle 「の」 (no), functioning like an adjective, as in 「東の風」 (higashi no kaze - east wind) or 「東の空」 (higashi no sora - eastern sky). It can also be used as part of compound nouns, such as 東京 (とうきょう - Tokyo, meaning 'eastern capital'), which historically referred to its location east of Kyoto.
+false_friends:
+  - term: 西 (west)
+    meaning: West
+    kind: antonym
+    nuance: While both are cardinal directions, 西 points in the opposite direction from 東. We are looking
+      for the direction 'east'.
+    grammar_point: 西 (west)
+  - term: 東側 (east side)
+    meaning: East side
+    kind: similar expression
+    nuance: 「東」 refers to the general direction 'east', while 「東側」 (ひがしがわ) specifically denotes the 'eastern
+      side' or 'east-facing part' of something. We are looking for the general direction.
+    grammar_point: <suggest>:東側 (east side)
+  - term: 東方 (eastern direction)
+    meaning: Eastern direction (more formal・literary)
+    kind: synonym
+    nuance: 「東方」 (とうほう) is a more formal, literary, or geographical term for 'eastern direction' or 'the
+      East' (e.g., referring to Eastern countries). 「東」 is the common and simpler term for the cardinal
+      direction.
+    grammar_point: <suggest>:東方 (eastern direction)
+post_false_friends_writeup: When speaking of simple cardinal directions, 「東」 is generally what you'll
+  use. For specifying the *side* of something, you would use 「東側」. If you're discussing a more abstract
+  or formal concept of 'the East' or 'eastern regions', 「東方」 might be more appropriate. Pay attention
+  to the context to choose the most natural expression.
+examples:
+  - english: The sun rises in the east.
+    japanese:
+      - 太陽 は {東} から 昇る。
+      - 太陽 は {東} から 昇り ます。
+      - お 日 様 は {東} から 昇る ん だ。
+    english_literally: The sun, from the east, rises.
+    competing_grammar:
+      - competing_japanese:
+          - 太陽 は {空} から 昇る。
+        english: The sun rises from the sky.
+        hint: While technically true, this sentence lacks the specificity of direction. We're looking
+          for the direction 'east'.
+      - competing_japanese:
+          - 太陽 は {そこ} から 昇る。
+        english: The sun rises from there.
+        hint: This is too vague. We're looking for the specific cardinal direction 'east'.
+    scene: A teacher explains a basic fact about nature to their students.
+    register: formal
+    setting: informative
+  - english: Please head east from here.
+    japanese:
+      - ここ から {東} へ 向かっ て ください。
+      - ここ から {東} へ 向かっ て ちょうだい。
+      - ここ から {東} へ 向かえ。
+    english_literally: From here, towards the east, please head.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から {東側} へ 向かっ て ください。
+        english: Please head to the east side from here.
+        hint: While 東側 specifies a 'side', the original Japanese implies a general direction. We're looking
+          for the broader direction 'east'.
+      - competing_japanese:
+          - ここ から {あっち} へ 向かっ て ください。
+        english: Please head that way from here.
+        hint: This is less specific. We're looking for the cardinal direction 'east'.
+    scene: A tour guide gives directions to a group of tourists.
+    register: teineigo (polite)
+    setting: instructional
+  - english: My house is to the east of the park.
+    japanese:
+      - 私 の 家 は 公園 の {東} に あり ます。
+      - うち は 公園 の {東} に ある よ。
+      - 拙宅 は 公園 の {東} に ござい ます。
+    english_literally: My house, as for, park's east, at, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 は 公園 の {近く} に あり ます。
+        english: My house is near the park.
+        hint: This is less specific about the exact location. We're looking for the directional placement
+          'east'.
+      - competing_japanese:
+          - 私 の 家 は 公園 の {東側} に あり ます。
+        english: My house is on the east side of the park.
+        hint: While similar, this emphasizes the 'side' rather than the general direction relative to
+          the park. We're looking for the general direction.
+    scene: Two friends are discussing their home locations.
+    register: casual
+    setting: friendly
+  - english: The wind is blowing from the east.
+    japanese:
+      - 風 が {東} から 吹い て いる。
+      - 風 が {東} から 吹い て い ます。
+    english_literally: Wind, from the east, is blowing.
+    competing_grammar:
+      - competing_japanese:
+          - 風 が {外} から 吹い て いる。
+        english: The wind is blowing from outside.
+        hint: This is less precise about the wind's origin. We're looking for the specific direction 'east'.
+    scene: A person comments on the weather while standing outside.
+    register: casual
+    setting: reflective
+  - english: Let's meet on the east side of the station.
+    japanese:
+      - 駅 の {東} で 待ち合わせ ましょう。
+      - 駅 の {東} で 待ち合わせ しよう。
+    english_literally: Station's east, at, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の {東方} で 待ち合わせ ましょう。
+        english: Let's meet in the eastern direction of the station.
+        hint: While 東方 refers to the general eastern direction, when specifying a specific location like
+          a 'side' of a place, the simpler 東 or 東側 is more natural. We're looking for the common way to
+          say 'east side'.
+      - competing_japanese:
+          - 駅 の {東口} で 待ち合わせ ましょう。
+        english: Let's meet at the east exit of the station.
+        hint: This is more specific, referring to an 'exit'. We're looking for the general 'east side'
+          of the station.
+    scene: Two colleagues make plans to meet after work.
+    register: teineigo (polite)
+    setting: professional
+  - english: Tokyo is located in the east of Japan.
+    japanese:
+      - 東京 は 日本 の {東} に 位置 し て いる。
+      - 東京 は 日本 の {東} に 位置 し て い ます。
+    english_literally: Tokyo, as for, Japan's east, in, is located.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 は 日本 の {中央} に 位置 し て いる。
+        english: Tokyo is located in the center of Japan.
+        hint: This sentence provides incorrect geographical information. We're looking for 'east'.
+      - competing_japanese:
+          - 東京 は 日本 の {東方} に 位置 し て いる。
+        english: Tokyo is located in the eastern direction of Japan.
+        hint: While grammatically correct, 東方 is more formal/literary than the simpler 東 for cardinal
+          directions. We're looking for the most common way to state the direction.
+    scene: A lecturer explains Japanese geography.
+    register: formal
+    setting: academic
+  - english: From the east, a beautiful view of the mountains can be seen.
+    japanese:
+      - '{東} から は 綺麗 な 山々 の 景色 が 見え ます。'
+      - '{東} から は 綺麗 な 山々 の 景色 が 見える。'
+    english_literally: From the east, beautiful mountains' scenery is visible.
+    competing_grammar:
+      - competing_japanese:
+          - '{向こう} から は 綺麗 な 山々 の 景色 が 見え ます。'
+        english: From over there, a beautiful view of the mountains can be seen.
+        hint: This is less specific about the origin of the view. We're looking for the specific direction
+          'east'.
+    scene: A person describes the scenic view from a viewpoint.
+    register: teineigo (polite)
+    setting: informative
+  - english: I always sit on the east side of the classroom.
+    japanese:
+      - 私 は いつ も 教室 の {東} に 座り ます。
+      - 私 は いつ も 教室 の {東} に 座る。
+    english_literally: I, as for, always classroom's east, at, sit.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は いつ も 教室 の {あの 辺り} に 座り ます。
+        english: I always sit around that area in the classroom.
+        hint: This is less specific about the seating location. We're looking for the specific directional
+          side 'east'.
+      - competing_japanese:
+          - 私 は いつ も 教室 の {東側} に 座り ます。
+        english: I always sit on the east side of the classroom.
+        hint: This emphasizes the 'side' of the classroom rather than simply 'in the east'. While correct,
+          it's a slightly different nuance than the original.
+    scene: A student describes their seating habit in class.
+    register: teineigo (polite)
+    setting: friendly
+  - english: We must navigate carefully, as the current flows strongly to the east.
+    japanese:
+      - 潮 の 流れ が {東} へ 強く 流れる の で、慎重 に 航海 し なけれ ば なり ませ ん。
+      - 潮 の 流れ が {東} へ 強く 流れる から、慎重 に 航海 し なく ちゃ ね。
+    english_literally: Tide's flow, east towards strongly flows, so, carefully, must navigate.
+    competing_grammar:
+      - competing_japanese:
+          - 潮 の 流れ が {こちら} へ 強く 流れる の で、慎重 に 航海 し なけれ ば なり ませ ん。
+        english: The current flows strongly this way, so we must navigate carefully.
+        hint: This is less specific about the current's direction. We're looking for the cardinal direction
+          'east'.
+    scene: A captain instructs their crew during a sea voyage.
+    register: formal
+    setting: commanding
+  - english: Looking towards the east, the first rays of dawn appeared.
+    japanese:
+      - '{東} を 見る と、夜明け の 最初 の 光 が 現れ た。'
+      - '{東} を 見 ます と、夜明け の 最初 の 光 が 現れ まし た。'
+    english_literally: East looking, dawn's first light appeared.
+    competing_grammar:
+      - competing_japanese:
+          - '{空} を 見る と、夜明け の 最初 の 光 が 現れ た。'
+        english: Looking at the sky, the first rays of dawn appeared.
+        hint: This is a more general statement about where one is looking. We're looking for the specific
+          direction 'east'.
+    scene: A narrator describes a serene morning scene.
+    register: formal
+    setting: storytelling
+  - english: Is there a train that goes east from this station?
+    japanese:
+      - この 駅 から {東} に 行く 電車 は あり ます か？
+      - この 駅 から {東} に 行く 電車 は ある？
+    english_literally: This station from, east to go train, is there?
+    competing_grammar:
+      - competing_japanese:
+          - この 駅 から {そっち} に 行く 電車 は あり ます か？
+        english: Is there a train that goes that way from this station?
+        hint: This is less specific about the direction. We're looking for the cardinal direction 'east'.
+    scene: A traveler asks a station attendant for directions.
+    register: teineigo (polite)
+    setting: interrogative

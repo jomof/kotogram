@@ -1,0 +1,291 @@
+grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[ば] (conditional)
+  - '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - んがため (for the purpose of)
+  - 向かい (across from)
+meaning: for the purpose of; in order to; for the sake of
+pronunciation:
+  katakana: タメ (ニ)
+  romaji: tame (ni)
+formation:
+  Verb (dictionary form) + ため (に): 'Indicates the purpose or goal of an action. Example: 勉強する {ため に} (in
+    order to study).'
+  Noun + の + ため (に): 'Indicates the purpose or beneficiary of an action (for the sake of Noun). Example:
+    家族 の {ため に} (for the sake of family).'
+jlpt: N3
+etymology: The word 「為 (ため)」 is fundamentally a noun meaning 'sake,' 'benefit,' or 'purpose.' Its evolution
+  into a grammatical construction, often paired with the particle 「に」, reflects its capacity to express
+  the intended goal of an action. Historically, the concept of 'for the sake of' naturally extended to
+  denote the direct purpose or objective of a volitional act. The optional 「に」 further solidifies this
+  adverbial function, clarifying that the preceding clause serves as the goal for the main action.
+writeup: 'The grammatical structure 「ため(に)」 is derived from the noun 「為 (ため)」, meaning ''sake'' or ''benefit''.
+  It serves to connect a preceding clause or word to a subsequent clause, indicating the **purpose** for
+  which an action is performed. The presence or absence of the particle 「に」 is optional, but its inclusion
+  often strengthens the sense of purpose or a direct goal-oriented relationship. This form is used when
+  the action described in the main clause is a deliberate and volitional one, undertaken with a specific
+  objective in mind. It typically follows: *   **Verbs in their dictionary (plain non-past) form**: For
+  example, 日本語が上手になる**ため に** (in order to become good at Japanese). *   **Nouns followed by の**: For example,
+  家族の**ため に** (for the sake of family). Note that the ''reason/cause'' usage of ため, such as when it follows
+  plain forms of verbs in past tense, i-adjectives, or na-adjectives, is covered by the separate grammar
+  point 「[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)」. This grammar point focuses strictly
+  on **purpose** for volitional actions. Compared to other purpose expressions like 「よう に」, 「ため(に)」 tends
+  to be more formal and objective, clearly stating the direct goal or aim. It implies a conscious decision
+  to act in a certain way to achieve a specific outcome.'
+false_friends:
+  - term: わけだ
+    meaning: for that reason; no wonder; as you'd expect; naturally; thus; this is why
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, which explains purpose, 「わけだ」 typically implies a conclusion or understanding
+      derived from previous information or a situation.
+    grammar_point: わけだ (logical conclusion)
+  - term: のに
+    meaning: although; in spite of; despite
+    kind: similar expression
+    nuance: While 「の に」 can indicate purpose, it often carries a nuance of surprise, regret, or unexpected
+      outcome. 「ため(に)」 is neutral regarding the outcome's expectation.
+    grammar_point: のに (unexpected result)
+  - term: には
+    meaning: in order to; in regard to; for
+    kind: similar expression
+    nuance: 「に は」 focuses more on conditions or requirements that are necessary for something to happen,
+      while 「ため(に)」 directly states the purpose or reason itself.
+    grammar_point: には (in order to)
+  - term: そのため
+    meaning: for that reason; because of that; to that end
+    kind: similar expression
+    nuance: 「そのため(に)」 is a conjunction that explicitly refers back to a previously stated reason or purpose.
+      「ため(に)」 can introduce a new reason or purpose without requiring a preceding context.
+    grammar_point: そのため (for that reason)
+  - term: 向き
+    meaning: suitable for; facing
+    kind: similar expression
+    nuance: 「向き」 describes suitability or orientation, indicating what something is appropriate for, rather
+      than expressing the purpose of an action like 「ため(に)」.
+    grammar_point: '[Noun]向き (suitable for)'
+  - term: んがため
+    meaning: in order to; to; for the purpose of
+    kind: similar expression
+    nuance: 「んがため(に)」 is a more formal, literary, or emphatic version of 「ため(に)」 when expressing purpose,
+      often found in written language or very elevated speech. 「ため(に)」 is more common in everyday spoken
+      Japanese.
+    grammar_point: んがため (for the purpose of)
+  - term: ように
+    meaning: so that; in order to; in such a way that
+    kind: similar expression
+    nuance: Unlike 「ため(に)」, which directly states the objective or benefit of an action, 「よう に」 often
+      implies a purpose that involves a change of state, ability, or an indirect goal, often used with
+      verbs of potential or ability, or for requests/instructions.
+    grammar_point: ように (purpose or desired state)
+  - term: Verb+にいく
+    meaning: to go to do something
+    kind: similar expression
+    nuance: While 「ため(に)」 states a general purpose for an action, 「Verb+にいく」 specifically indicates going
+      somewhere *in order to do* something.
+    grammar_point: '[Verb-stem]に行く (to go in order to do)'
+post_false_friends_writeup: While these expressions share some conceptual overlap with 「ため(に)」, recognizing
+  their distinct nuances is crucial for accurate and natural Japanese. This 「ため(に)」 specifically serves
+  as a versatile tool for stating **purpose**, emphasizing the direct connection between a volitional
+  action and its goal. Other expressions might imply conditions, indirect goals, or different levels of
+  formality. Pay close attention to the connotation, formality, and specific type of purpose relationship
+  each expression conveys.
+examples:
+  - english: I study every day in order to become good at Japanese.
+    japanese:
+      - 日本 語 が 上手 に なる {ため に}、毎日 勉強 し て い ます。
+      - 日本 語 が 上手 に なる {ため に}、毎日 勉強 し て いる。
+    english_literally: Japanese language good at become for sake of, every day study doing am.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 上手 に なり {に}、毎日 勉強 し て い ます。
+        english: I study every day to become good at Japanese.
+        hint: The particle 「に」 with a verb of motion indicates purpose of movement. We're looking for
+          the overarching purpose of the action of studying.
+      - competing_japanese:
+          - 日本 語 が 上手 に なる {よう に}、毎日 勉強 し て い ます。
+        english: I study every day so that I become good at Japanese.
+        hint: 「よう に」 often indicates effort towards a natural outcome or a change in state, not necessarily
+          a direct purpose for the action itself. We're looking for a direct purpose.
+    scene: A student discusses their study habits, explaining their goal to a peer.
+    register: casual
+    setting: informative
+    nuance: This sentence uses 「ため に」 to state a clear, direct purpose. The action of studying is intentionally
+      aimed at achieving the goal of becoming good at Japanese. This is a common and straightforward application
+      of the grammar point for purpose.
+  - english: I work hard for the sake of my family.
+    japanese:
+      - 家族 の {ため に}、私 は 一生 懸命 働き ます。
+      - 家族 の {ため に}、一生 懸命 働く。
+      - 家族 の {ため に}、一生 懸命 努め て おり ます。
+    english_literally: Family's sake of, I desperately hard work do.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 の {こと で}、私 は 一生 懸命 働き ます。
+        english: I work hard concerning my family.
+        hint: 「こと で」 implies 'about' or 'concerning' the family, which doesn't convey the sense of working
+          *for the benefit of* the family. We're looking for the purpose/beneficiary.
+    scene: A man explains his dedication to his job to a friend, emphasizing his motivation.
+    register: teineigo (polite)
+    setting: serious
+    speaker_gender: male
+    nuance: The use of 「家族 の ため に」 highlights that the speaker's hard work is for the benefit and well-being
+      of their family. This is a common phrase expressing dedication. The polite 「働き ます」 indicates a general,
+      earnest statement.
+  - english: I go jogging every morning for my health.
+    japanese:
+      - 健康 の {ため に}、毎朝 ジョギング を し て い ます。
+      - 健康 の {ため に}、毎朝 ジョギング を し て いる。
+    english_literally: Health's sake of, every morning jogging do.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 に なる {の に}、毎朝 ジョギング を し て い ます。
+        english: Although I want to be healthy, I jog every morning.
+        hint: 「の に」 often implies contrast or an unexpected outcome. We're looking for the direct purpose
+          or reason for jogging.
+      - competing_japanese:
+          - 健康 の {ため の} 毎朝 の ジョギング を し て い ます。
+        english: I do my every morning jogging for health.
+        hint: 「ため の」 is an attributive form that modifies a noun, implying something 'for the sake of'
+          that noun. We're looking for the purpose of the verb 'jogging'.
+    scene: A woman tells her coworker about her healthy habits.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: 「健康 の ため に」 clearly states the health-related purpose for daily jogging. This is a common
+      and direct way to express the reason for maintaining a healthy habit. The use of 「し て い ます」 (polite
+      progressive) makes it a common polite conversational phrase.
+  - english: He finished work early in order to see a movie.
+    japanese:
+      - 彼 は 映画 を 見る {ため に}、仕事 を 早く 終え た。
+      - 彼 は 映画 を 見る {ため に}、仕事 を 早く 終え まし た。
+    english_literally: He movie see for sake of, work early finished.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 映画 を 見 {に}、仕事 を 早く 終え た。
+        english: He finished work early to go see a movie.
+        hint: The particle 「に」 with a verb of motion indicates going somewhere *to do* something, but
+          「ため に」 emphasizes the purpose behind the broader action (finishing work early), not just the
+          destination. We're looking for the overarching purpose of an action.
+    scene: Two colleagues discuss why their friend left work earlier than usual.
+    register: teineigo (polite)
+    setting: informative
+    listener_gender: group
+    nuance: 'This example uses 「ため に」 expressing a clear, volitional purpose: finishing work early *for
+      the purpose of* seeing a movie. The politeness of 「終え た」 makes this suitable for general conversation
+      among colleagues.'
+  - english: I'm traveling to enrich my life.
+    japanese:
+      - 私 の 人生 を 豊か に する {ため に}、旅 を し て い ます。
+      - 私 の 人生 を 豊か に する {ため に}、旅 を し て いる。
+    english_literally: My life rich to make for sake of, travel doing am.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 人生 を 豊か に し {に}、旅 を し て い ます。
+        english: I'm traveling to enrich my life.
+        hint: The particle 「に」 with a verb of motion implies going *to do* something, but 「ため に」 expresses
+          a more abstract and profound purpose or goal behind the entire action. We're looking for the
+          deeper purpose of traveling.
+    scene: A person explains their motivation for extensive travel to an interviewer.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: This sentence expresses a deep, personal purpose for traveling. 「豊か に する ため に」 signifies that
+      travel is a means to achieve personal enrichment. The formal tone is suitable for a professional
+      setting like an interview.
+  - english: I worked desperately hard to realize my lifelong dream.
+    japanese:
+      - 昔 から の 夢 を 実現 する {ため に}、必死 に 努力 し た。
+      - 昔 から の 夢 を 実現 する {ため に}、必死 に 努力 し まし た。
+    english_literally: Long ago from's dream realize for sake of, desperately effort did.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 から の 夢 を 実現 し {よう と}、必死 に 努力 し た。
+        english: I worked desperately hard trying to realize my lifelong dream.
+        hint: 「しよう と」 implies an attempt or intention to do something. 「ため に」 explicitly states the objective
+          or goal for which an action was performed. We're looking for the direct purpose of the effort.
+    scene: An elderly man reflects on his past struggles and achievements.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: This sentence uses 「ため に」 to express the clear purpose behind past efforts. The use of 「必死
+      に 努力 し た」 emphasizes the intense, desperate effort. The phrase 「昔 から の 夢」 (lifelong dream) adds
+      emotional depth to the purpose.
+  - english: I am saving money to buy a house.
+    japanese:
+      - 家 を 買う {ため に}、お 金 を 貯め て い ます。
+      - 家 を 買う {ため に}、お 金 を 貯め て いる。
+    english_literally: House buy for sake of, money saving am.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を 買い {に}、お 金 を 貯め て い ます。
+        english: I am saving money to go buy a house.
+        hint: The particle 「に」 with a verb of motion implies going somewhere to do something. Here, we
+          are talking about the purpose of saving money, not going somewhere to buy something.
+    scene: A young adult tells their parents about their financial goals.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 'This example clearly states the volitional purpose for saving money: 「家 を 買う ため に」 (in order
+      to buy a house). The polite form 「貯め て い ます」 is suitable for conversing with parents.'
+  - english: For the development of new technology, research continues day and night.
+    japanese:
+      - 新しい 技術 の 開発 の {ため に}、研究 が 日 夜 続け られ て い ます。
+      - 新しい 技術 の 開発 の {ため に}、研究 を 日 夜 続け て い ます。
+      - 新しい 技術 開発 の {ため に}、研究 が 日 夜 続け られ て おり ます。
+    english_literally: New technology's development's for sake of, research is day and night continued.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 の 開発 {の} 研究 が 日 夜 続け られ て い ます。
+        english: The research for new technology development continues day and night.
+        hint: Omitting 「ため に」 and only using 「の」 would simply connect 'development' and 'research' as
+          a noun phrase, rather than explicitly stating the purpose or beneficiary of the research. We're
+          looking for the purpose.
+    scene: A scientist presents their work at a conference.
+    register: formal
+    setting: academic
+    nuance: This example uses 「Noun の ため に」 to express the purpose, specifically for the beneficiary/goal
+      of 'new technology development'. The formal tone and passive voice 「続け られ て い ます」 are typical for
+      academic presentations.
+  - english: He exercises every day to stay healthy.
+    japanese:
+      - 健康 を 維持 する {ため に}、彼 は 毎日 運動 し て い ます。
+      - 健康 を 維持 する {ため に}、彼 は 毎日 運動 し て いる。
+      - 健康 の {ため に}、彼 は 毎日 エクササイズ を し て い ます。
+    english_literally: Health maintain for sake of, he every day exercise doing is.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 を 維持 できる {よう に}、彼 は 毎日 運動 し て い ます。
+        english: He exercises every day so that he can maintain his health.
+        hint: 「よう に」 often implies an indirect goal or a change in state or ability, like 'so that one
+          can do X'. 「ため に」 more directly states the purpose or objective for the action. We're looking
+          for the direct purpose.
+    scene: A trainer explains a client's routine to a new team member.
+    register: formal
+    setting: professional
+    nuance: 「健康 を 維持 する ため に」 clearly states the purpose of the daily exercise. This usage is common in
+      informative or professional contexts where a clear objective is being explained. The polite form
+      「運動 し て い ます」 is standard.
+  - english: She works part-time for her tuition fees.
+    japanese:
+      - 彼女 は 学費 の {ため に}、アルバイト を し て い ます。
+      - 彼女 は 学費 の {ため に}、アルバイト を し て いる。
+      - 彼女 は 学費 の {ため に}、パート タイム で 働い て いる。
+    english_literally: She tuition fees' for sake of, part-time job doing is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 学費 {の せい で}、アルバイト を し て い ます。
+        english: Because of her tuition fees (as a negative reason), she works part-time.
+        hint: 「せい で」 implies a negative reason or blame, suggesting the tuition fees are a burden causing
+          her to work. 「ため に」 is neutral and simply states the purpose of her work. We're looking for
+          a neutral statement of purpose.
+    scene: A student talks about their financial situation to a classmate.
+    register: casual
+    setting: friendly
+    nuance: 「学費 の ため に」 clearly indicates that her part-time work is for the purpose of covering tuition
+      fees. This is a common and relatable reason for students. The casual polite form 「アルバイト を し て い
+      ます」 is appropriate for a friendly conversation.
+post_example_writeup: When using 「ため(に)」 for purpose, the main clause describes a deliberate, volitional
+  action undertaken to achieve a specific goal. This grammar point specifically applies to verbs in their
+  dictionary form and nouns followed by の. Remember that the 'reason/cause' usage of ため is covered by
+  a separate grammar point, so always ensure the context implies a clear, intentional purpose.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ため-に

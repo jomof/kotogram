@@ -1,0 +1,274 @@
+grammar_point: 豊富 (abundant・rich)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: abundant; rich; plentiful
+pronunciation:
+  katakana: ホウフ
+  romaji: hōfu
+formation:
+  '[Noun]が豊富だ': Indicates that the noun is abundant or rich in something.
+  '[Noun]が豊富にある': Indicates that a noun exists in abundance or plentifully.
+  '[Noun]が豊富に[Verb]': Indicates that something is done abundantly or richly.
+jlpt: N2
+etymology: 'The word 「豊富」 (hōfu) is a combination of two kanji: 「豊」 (hō), meaning ''abundant'' or ''plentiful'',
+  and 「富」 (fu), meaning ''wealth'' or ''richness''. Together, they strongly emphasize the concept of being
+  exceedingly plentiful and rich, often in a way that suggests a positive and desirable state.'
+writeup: |-
+  「豊富」 is a な-adjective used to describe something that is abundant, rich, or plentiful. It can refer to a large quantity, a wide variety, or a significant amount of resources or qualities. Unlike simple terms for 'many' or 'a lot', 「豊富」 carries a nuance of richness and often a positive connotation, suggesting that the abundance is a desirable trait.
+
+  It is commonly used to describe natural resources, knowledge, experience, or variety of items. For example, you might say a country is rich in natural resources (天然資源が豊富だ) or that a store has a wide variety of products (品揃えが豊富だ).
+
+  When used with the particle 「に」, it functions adverbially, describing how an action is performed or how something exists. For instance, 「豊富に含む」 means 'to contain abundantly'.
+
+  While grammatically a な-adjective, it behaves like a noun when directly followed by 「だ」 (e.g., 種類が豊富だ) or can modify a noun directly by adding 「な」 (e.g., 豊富な経験).
+false_friends:
+  - term: 豊か (ゆたか)
+    meaning: rich, abundant, prosperous
+    kind: similar expression
+    nuance: While both imply abundance, 「豊か」 has a broader and often more abstract meaning, referring
+      to general affluence, spiritual richness, or a high quality of life. 「豊富」 specifically emphasizes
+      quantity or a wide variety of tangible things or resources.
+    grammar_point: <suggest>:豊か (rich・abundant)
+  - term: 多い (おおい)
+    meaning: many, numerous
+    kind: similar expression
+    nuance: 「多い」 simply indicates a large number or quantity without the added nuance of richness, variety,
+      or desirability that 「豊富」 conveys. 「豊富」 is a stronger, more descriptive term.
+    grammar_point: 多い (many・a lot・much)
+  - term: 沢山 (たくさん)
+    meaning: a lot, many, much
+    kind: similar expression
+    nuance: 「沢山」 is a more casual and general term for 'a lot' or 'many', applicable to various situations.
+      「豊富」 is more formal and typically used in contexts where the abundance signifies richness, variety,
+      or a significant supply.
+    grammar_point: たくさん (many・a lot)
+  - term: 少ない (すくない)
+    meaning: few, little
+    kind: antonym
+    nuance: 「少ない」 is the direct opposite of 「豊富」, indicating a small quantity or lack thereof.
+    grammar_point: 少ない (few・little)
+post_false_friends_writeup: To summarize the differences, 「豊富」 highlights richness and variety in abundance,
+  often with a positive implication. 「豊か」 describes a state of overall affluence or richness, not strictly
+  quantity. 「多い」 and 「沢山」 are more neutral terms simply indicating a large quantity, with 「沢山」 being more
+  casual.
+examples:
+  - english: Japan is rich in natural beauty.
+    japanese:
+      - 日本 は {豊富} な 自然 に 恵まれ て いる。
+      - 日本 は {豊富} な 自然 に 恵まれ て おり ます。
+      - 日本 は 自然 が {豊富} です。
+    english_literally: Japan is blessed with abundant nature.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 は 自然 が 多い。
+        english: Japan has a lot of nature.
+        hint: While Japan certainly has a lot of nature, we're looking for a word that emphasizes its
+          richness and beauty, not just quantity.
+      - competing_japanese:
+          - 日本 は 自然 が 豊か だ。
+        english: Japan's nature is rich/bountiful.
+        hint: 「豊か」 can describe natural richness, but we're looking for a term that specifically points
+          to abundant variety and plenitude of features.
+    scene: A geography teacher explains Japan's landscape to students.
+    register: formal
+    setting: informative
+    nuance: The phrase 「{豊富}な 自然」 emphasizes not just a lot of nature, but a rich and diverse natural
+      environment, making it a desirable quality. 「恵まれている」 means 'blessed with', reinforcing the positive
+      nuance.
+  - english: This company has abundant financial resources.
+    japanese:
+      - この 会社 は 資金 が {豊富} だ。
+      - この 会社 は 資金 が {豊富} です。
+    english_literally: This company's funds are abundant.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 は 資金 が 沢山 ある。
+        english: This company has a lot of funds.
+        hint: 「沢山」 means 'a lot,' but we're looking for a word that implies a significant and ample supply,
+          suggesting financial strength.
+      - competing_japanese:
+          - この 会社 は 資金 が 多い。
+        english: This company has many funds.
+        hint: 「多い」 indicates a large amount, but we need a term that emphasizes the *richness* and *sufficiency*
+          of the resources, not just the count.
+    scene: A business analyst presents a report on a successful company.
+    register: formal
+    setting: serious
+    nuance: Here, 「資金 が {豊富}だ」 implies that the company possesses a significant and sufficient amount
+      of funds, indicating financial strength. This is a common and straightforward use of 「豊富」 in a business
+      context.
+  - english: His knowledge of history is extensive.
+    japanese:
+      - 彼 の 歴史 の 知識 は {豊富} だ。
+      - 彼 の 歴史 の 知識 は {豊富} です。
+      - 彼 は 歴史 の 知識 が {豊富} だ。
+    english_literally: His history knowledge is abundant.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 歴史 の 知識 は 深い。
+        english: His knowledge of history is deep.
+        hint: 「深い」 emphasizes depth, but we're looking for a term that signifies a wide range and extensive
+          amount of knowledge.
+      - competing_japanese:
+          - 彼 の 歴史 の 知識 は 広い。
+        english: His knowledge of history is wide.
+        hint: 「広い」 suggests breadth, but we're looking for a term that implies both breadth and a significant,
+          rich volume of knowledge.
+    scene: Two colleagues discuss a well-informed coworker.
+    register: semi-formal
+    setting: friendly
+    nuance: 「知識 が {豊富}だ」 means he has a vast and deep understanding, not just many facts, but a rich body
+      of knowledge. This highlights a positive and impressive intellectual trait.
+  - english: This region is known for its rich variety of seafood.
+    japanese:
+      - この 地域 は 魚介 類 の 種類 が {豊富} な こと で 知ら れ て いる。
+      - この 地域 は {豊富} な 種類 の 魚介 類 が ある こと で 知ら れ て いる。
+      - この 地域 の 魚介 類 は 種類 が {豊富} だ。
+    english_literally: This region is known by the fact that the types of seafood are abundant.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は 魚介 類 の 種類 が 多い こと で 知ら れ て いる。
+        english: This region is known for having many types of seafood.
+        hint: While 'many' is correct, we're looking for a word that highlights the *richness* and *desirable
+          variety* of the seafood available.
+      - competing_japanese:
+          - この 地域 は 魚介 類 が 揃っ て いる。
+        english: This region has all kinds of seafood.
+        hint: 「揃っている」 means a full set is available, but we're looking for a word that emphasizes a large
+          and rich quantity of *different types*.
+    scene: A local tour guide describes the specialties of their region.
+    register: formal
+    setting: informative
+    nuance: 「種類 が {豊富}な こと」 specifically points to the *variety* of seafood being plentiful, rather than
+      just the sheer quantity, implying a rich selection for culinary enjoyment. 「〜ことで知られている」 means 'known
+      for'.
+  - english: The soil in this area is rich in nutrients.
+    japanese:
+      - この 土地 の 土壌 は 栄養 分 を {豊富} に 含ん で いる。
+      - この 土地 の 土壌 は 栄養 分 が {豊富} だ。
+    english_literally: The soil of this land abundantly contains nutrients.
+    competing_grammar:
+      - competing_japanese:
+          - この 土地 の 土壌 は 栄養 分 が 多い。
+        english: The soil in this area has many nutrients.
+        hint: 「多い」 indicates a large amount, but we're looking for a term that implies a substantial and
+          beneficial *richness* of nutrients.
+      - competing_japanese:
+          - この 土地 の 土壌 は 栄養 分 で 一杯 だ。
+        english: The soil in this area is full of nutrients.
+        hint: 「一杯だ」 means full, but we're looking for a word that emphasizes a high, beneficial concentration
+          rather than just being filled up.
+    scene: A farmer explains why his crops grow so well.
+    register: casual
+    setting: informative
+    nuance: 「栄養分 を {豊富}に 含んでいる」 means the soil contains a large and beneficial amount of nutrients. The
+      adverbial form 「豊富に」 emphasizes the degree of richness. This is a technical yet natural explanation.
+  - english: She has a wealth of experience in this field.
+    japanese:
+      - 彼女 は この 分野 で {豊富} な 経験 を 持っ て いる。
+      - 彼女 は この 分野 で 経験 が {豊富} だ。
+    english_literally: She has abundant experience in this field.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は この 分野 で 多く の 経験 を 持っ て いる。
+        english: She has many experiences in this field.
+        hint: 「多くの」 simply means 'many,' but we're looking for a word that conveys a deep, rich collection
+          of experience.
+      - competing_japanese:
+          - 彼女 は この 分野 で 経験 を 積ん で いる。
+        english: She has accumulated experience in this field.
+        hint: 「積んでいる」 suggests accumulation, but we need a term that describes the *quantity and quality*
+          of that accumulated experience as rich and extensive.
+    scene: A hiring manager reviews a candidate's resume.
+    register: formal
+    setting: serious
+    nuance: 「{豊富}な 経験」 refers to a deep and wide range of experience, indicating high competence. This
+      is a common and valued attribute in professional settings.
+  - english: The market offers a rich selection of fresh vegetables.
+    japanese:
+      - 市場 に は 新鮮 な 野菜 が {豊富} に 並ん で いる。
+      - 市場 に は 新鮮 な 野菜 が {豊富} だ。
+    english_literally: Fresh vegetables are abundantly lined up in the market.
+    competing_grammar:
+      - competing_japanese:
+          - 市場 に は 新鮮 な 野菜 が たくさん 並ん で いる。
+        english: There are many fresh vegetables lined up in the market.
+        hint: 「沢山」 means 'a lot,' but we're looking for a word that highlights a generous and varied *selection*,
+          not just quantity.
+      - competing_japanese:
+          - 市場 に は 色々 な 新鮮 な 野菜 が 並ん で いる。
+        english: Various fresh vegetables are lined up in the market.
+        hint: 「色々」 points to variety, but we're looking for a term that also implies a *large amount*
+          of that variety, making it 'rich'.
+    scene: A customer is impressed by the produce at a local market.
+    register: casual
+    setting: friendly
+    nuance: 「{豊富}に 並んでいる」 implies that there's a generous and varied display of fresh vegetables, not
+      just many, but a good selection. This phrase creates a vivid image of abundance.
+  - english: Students will gain a lot of knowledge from this lesson.
+    japanese:
+      - この 授業 から 学生 は {豊富} な 知識 を 得る だろう。
+      - この 授業 から 学生 は {豊富} な 知識 を 得る でしょう。
+    english_literally: From this class, students will probably obtain abundant knowledge.
+    competing_grammar:
+      - competing_japanese:
+          - この 授業 から 学生 は 多く の 知識 を 得る だろう。
+        english: Students will gain many pieces of knowledge from this lesson.
+        hint: 「多くの」 means 'many,' but we're looking for a term that emphasizes the depth and richness
+          of the knowledge, not just the count.
+      - competing_japanese:
+          - この 授業 から 学生 は 十分 な 知識 を 得る だろう。
+        english: Students will gain sufficient knowledge from this lesson.
+        hint: 「十分な」 means sufficient, but we're looking for a word that suggests gaining a significant
+          and valuable *richness* of knowledge.
+    scene: A professor outlines the learning objectives for a new course.
+    register: formal
+    setting: academic
+    nuance: 「{豊富}な 知識 を 得る」 indicates that the students will acquire a significant and valuable amount
+      of knowledge, going beyond mere facts. 「だろう」 adds a polite conjecture. This is an encouraging statement
+      from an educator.
+  - english: This dish is rich in protein and vitamins.
+    japanese:
+      - この 料理 は タンパク 質 と ビタミン が {豊富} だ。
+      - この 料理 は タンパク 質 と ビタミン が {豊富} です。
+      - この 料理 は タンパク 質 と ビタミン を {豊富} に 含ん で いる。
+    english_literally: This dish is abundant in protein and vitamins.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は タンパク 質 と ビタミン が 沢山 ある。
+        english: This dish has a lot of protein and vitamins.
+        hint: 「沢山」 indicates a large amount, but we're looking for a word that implies a high, beneficial
+          concentration, making it 'rich' in nutrients.
+      - competing_japanese:
+          - この 料理 は タンパク 質 と ビタミン が 多い。
+        english: This dish has many proteins and vitamins.
+        hint: 「多い」 means many, but we need a term that emphasizes the desirable *richness* or concentration
+          of these components.
+    scene: A nutritionist explains the benefits of a healthy meal.
+    register: formal
+    setting: informative
+    nuance: 「タンパク質 と ビタミン が {豊富}だ」 means the dish provides a high and beneficial amount of nutrients.
+      This is a common way to describe food content in a positive light.
+  - english: Even during hard times, he was rich in spirit.
+    japanese:
+      - 苦しい 時期 で も、彼 は 精神 的 に {豊富} だっ た。
+      - 苦しい 時期 で も、彼 は 精神 的 に {豊富} でし た。
+      - 苦しい 時期 で も、彼 の 精神 は {豊富} だっ た。
+    english_literally: Even during difficult times, he was spiritually abundant.
+    competing_grammar:
+      - competing_japanese:
+          - 苦しい 時期 で も、彼 は 精神 的 に 豊か だっ た。
+        english: Even during hard times, he was spiritually prosperous/rich.
+        hint: While 「豊か」 can describe spiritual richness, we're focusing on the *abundance* or *plenitude*
+          of his inner strength or spirit.
+      - competing_japanese:
+          - 苦しい 時期 で も、彼 は 精神 的 に 強かっ た。
+        english: Even during hard times, he was spiritually strong.
+        hint: 「強かった」 means strong, but we're looking for a term that describes his spirit as being *plentiful*
+          or *abundant* in positive qualities, not just resilient.
+    scene: A biographer discusses the resilience of a historical figure.
+    register: formal
+    setting: reflective
+    nuance: While 「豊富」 usually refers to tangible abundance, here 「精神的に {豊富}」 is used metaphorically to
+      describe a rich inner world or strong spirit, showing its flexibility. This usage conveys depth
+      of character.

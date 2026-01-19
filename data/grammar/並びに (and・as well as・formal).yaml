@@ -1,0 +1,299 @@
+grammar_point: 並びに (and・as well as・formal)
+learn_before:
+  - Verb[stem] (conjunction)
+  - Verb[えば] (conditional)
+  - 〜について・〜に関して (about・regarding)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - にして (at the point of)
+  - に代わって (in place of)
+meaning: And; both ~ and ~; as well as
+pronunciation:
+  katakana: ナラビニ
+  romaji: narabini
+formation:
+  Noun1 並びに Noun2: Connects two nouns or noun phrases, similar to "and" or "as well as," but more formal.
+jlpt: N2
+etymology: 「並びに」 comes from the verb 「並ぶ(ならぶ)」, meaning "to line up" or "to be side by side." It suggests
+  that the items being connected are of equal standing and importance, arranged side-by-side.
+writeup: 「並びに」 is a formal conjunction used to connect two or more nouns or noun phrases. It is similar
+  to "and" or "as well as" in English, but it carries a more sophisticated and official tone. You'll most
+  often encounter 「並びに」 in legal documents, formal announcements, and academic writing. It suggests that
+  the items being connected are of equal importance. 「並びに」 implies a stronger connection than a simple
+  「と」. While it connects elements of equal importance, it tends to be used for larger, more complex items
+  or categories than 「及び」. Think of it as connecting primary groupings or significant entities.
+false_friends:
+  - term: 及び
+    meaning: and
+    kind: similar expression
+    nuance: 「及び」 is also a formal "and," but it's used to connect less significant items, or items in
+      a hierarchical structure. Unlike 「並びに」, it doesn't necessarily imply that the connected items are
+      of equal weight.
+    grammar_point: 及び (and・formal)
+  - term: と
+    meaning: and
+    kind: similar expression
+    nuance: 「と」 is a more general "and" that can be used in various contexts, both formal and informal.
+      「並びに」 is strictly formal and used in specific situations.
+    grammar_point: と (and, connects nouns)
+  - term: 且つ
+    meaning: and; moreover
+    kind: similar expression
+    nuance: 「且つ」 also connects elements in a formal context but often implies that both conditions, qualities,
+      or actions hold true simultaneously or in a reinforcing way. It can connect different parts of speech,
+      not just nouns, whereas 「並びに」 primarily emphasizes the joint inclusion of equally important entities.
+    grammar_point: 且つ (and・moreover)
+  - term: 加えて
+    meaning: in addition to
+    kind: similar expression
+    nuance: 「加えて」 emphasizes adding additional information or items to something already mentioned. It
+      implies a sequential or additive relationship, whereas 「並びに」 introduces elements as being together
+      and equally important from the outset, not as an afterthought or supplement.
+    grammar_point: それに (in addition・moreover)
+  - term: や (non-exhaustive list)
+    meaning: and (non-exhaustive list)
+    kind: similar expression
+    nuance: Unlike 「並びに」, which formally connects all listed items, 「や」 indicates a non-exhaustive list
+      and is informal. It suggests there are other similar items not mentioned.
+    grammar_point: や (non-exhaustive list)
+  - term: も~も (both neither ~ nor)
+    meaning: both ~ and ~
+    kind: similar expression
+    nuance: While 「も~も」 can also mean "both X and Y," it typically uses particles to emphasize the inclusion
+      of each item and is less about forming a single, cohesive formal enumeration than 「並びに」.
+    grammar_point: も~も (both neither ~ nor)
+post_false_friends_writeup: To avoid confusing 「並びに」 with similar expressions, remember that 「並びに」 is
+  reserved for formal contexts where you want to emphasize that the items being connected are of equal
+  importance. When in doubt, if the situation isn't particularly formal, opt for 「と」. Think of 「並びに」 for
+  connecting two primary entities of equal standing, like two high-ranking officials or two major organizations.
+  For conditions or characteristics that hold simultaneously, 「且つ」 might be more appropriate. If you are
+  simply adding supplementary information, 「加えて」 would be a better choice. For informal, non-exhaustive
+  lists, use 「や」. When emphasizing that "both X and Y" are included, consider 「も~も」, but note that it
+  differs in structure and overall formality from 「並びに」.
+examples:
+  - english: The university president as well as the chairman of the board attended the opening ceremony.
+    japanese:
+      - 開会 式 に は、学長 {並び に} 理事 長 が 出席 し まし た。
+      - 開会 式 に は、学長 {並び に} 理事 長 が 出席 し た。
+    english_literally: At the opening ceremony, the university president as well as the chairman of the
+      board attended.
+    competing_grammar:
+      - competing_japanese:
+          - 開会 式 に は、学長 {及び} 理事 長 が 出席 し まし た。
+        english: At the opening ceremony, the university president and the chairman of the board attended.
+        hint: 「及び」 is also formal, but 「並びに」 emphasizes the equal importance of the two high-ranking individuals
+          more strongly.
+      - competing_japanese:
+          - 開会 式 に は、学長 {と} 理事 長 が 出席 し まし た。
+        english: At the opening ceremony, the university president and the chairman of the board attended.
+        hint: 「と」 is too casual for an official announcement about high-ranking officials attending a
+          formal ceremony. We're looking for a formal conjunction.
+    scene: A university representative is formally announcing who attended an important academic ceremony.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「並びに」 is appropriate for formally connecting two high-ranking officials, 「学長」 (university
+      president) and 「理事長」 (chairman of the board), emphasizing their equal status at a significant event.
+      A male university representative would typically use this formal language when making a public announcement.
+  - english: The city and the board of education announced a plan for building a new library.
+    japanese:
+      - 市 {並び に} 教育 委員 会 は、新しい 図書 館 の 建設 計画 を 発表 し た。
+      - 市 {並び に} 教育 委員 会 は、新しい 図書 館 の 建設 計画 を 発表 し まし た。
+    english_literally: The city as well as the board of education announced the new library construction
+      plan.
+    competing_grammar:
+      - competing_japanese:
+          - 市 {及び} 教育 委員 会 は、新しい 図書 館 の 建設 計画 を 発表 し た。
+        english: The city and the board of education announced a plan for building a new library.
+        hint: While 「及び」 is formal, 「並びに」 is often preferred when connecting two equally significant governmental
+          or public bodies in an official announcement.
+      - competing_japanese:
+          - 市 {と} 教育 委員 会 は、新しい 図書 館 の 建設 計画 を 発表 し た。
+        english: The city and the board of education announced a plan for building a new library.
+        hint: 「と」 is not formal enough for an official public announcement from governmental entities.
+          We need a more formal conjunction.
+    scene: A male government official is giving a public address to a female citizen, outlining recent
+      civic developments.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male official might use 「並びに」 to convey the formal and precise nature of an announcement
+      involving two separate government entities like 「市」 (city) and 「教育 委員 会」 (board of education). The
+      use of this conjunction demonstrates a formal and official register suitable for addressing a female
+      citizen on public matters, reflecting the seriousness of the topic.
+  - english: These regulations stipulate matters concerning vehicle parking as well as passage.
+    japanese:
+      - この 規則 は、車両 の 駐車 {並び に} 通行 に 関する 事項 を 定める。
+      - この 規則 は、車両 の 駐車 {並び に} 通行 に 関する 事項 を 定め ます。
+    english_literally: These regulations, regarding vehicle parking as well as passage, stipulate matters.
+    competing_grammar:
+      - competing_japanese:
+          - この 規則 は、車両 の 駐車 {及び} 通行 に 関する 事項 を 定める。
+        english: These regulations stipulate matters concerning vehicle parking and passage.
+        hint: 「及び」 is also appropriate in legal contexts, but 「並びに」 is often chosen for an even stronger
+          emphasis on the parallel and equally important nature of the connected items in a formal listing.
+      - competing_japanese:
+          - この 規則 は、車両 の 駐車 {と} 通行 に 関する 事項 を 定める。
+        english: These regulations stipulate matters concerning vehicle parking and passage.
+        hint: 「と」 is too informal for official regulations. We need a conjunction suitable for legal documents.
+    scene: You are reading a public notice detailing traffic regulations for a specific area, emphasizing
+      comprehensive rules for both parking and movement.
+    register: formal
+    setting: instructional
+  - english: The new law aims to protect consumer rights as well as information.
+    japanese:
+      - 新しい 法律 は、消費 者 の 権利 {並び に} 情報 の 保護 を 目的 と し て いる。
+      - 新しい 法律 は、消費 者 の 権利 {並び に} 情報 の 保護 を 目的 と し て い ます。
+    english_literally: The new law, as for consumer rights as well as information protection, has as its
+      aim.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 法律 は、消費 者 の 権利 {及び} 情報 の 保護 を 目的 と し て いる。
+        english: The new law aims to protect consumer rights and information.
+        hint: 「及び」 is also used in legal contexts, but 「並びに」 can provide a clearer emphasis on the two
+          distinct, equally significant objectives of the law.
+      - competing_japanese:
+          - 新しい 法律 は、消費 者 の 権利 {と} 情報 の 保護 を 目的 と し て いる。
+        english: The new law aims to protect consumer rights and information.
+        hint: 「と」 lacks the necessary formality for describing the purpose of a new law. We need a formal
+          legal conjunction.
+    scene: A legal expert is explaining the key objectives of a recently enacted law to a general audience,
+      highlighting its dual focus.
+    register: formal
+    setting: serious
+  - english: Regarding environmental issues, air pollution as well as river pollution are serious.
+    japanese:
+      - 環境 問題 で は、大気 汚染 {並び に} 河川 汚染 が 深刻 で ある。
+      - 環境 問題 で は、大気 汚染 {並び に} 河川 汚染 が 深刻 で す。
+    english_literally: Regarding environmental issues, air pollution as well as river pollution are serious.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 問題 で は、大気 汚染 {及び} 河川 汚染 が 深刻 で ある。
+        english: Regarding environmental issues, air pollution and river pollution are serious.
+        hint: 「及び」 is a valid formal alternative, but 「並びに」 highlights that both types of pollution are
+          equally severe and significant in the context of environmental problems.
+      - competing_japanese:
+          - 環境 問題 で は、大気 汚染 {と} 河川 汚染 が 深刻 で ある。
+        english: Regarding environmental issues, air pollution and river pollution are serious.
+        hint: 「と」 is too informal for an academic report discussing serious environmental concerns. We
+          need a formal connector.
+    scene: An environmental researcher is presenting a formal report on pressing ecological concerns,
+      detailing two critical forms of pollution.
+    register: formal
+    setting: academic
+  - english: Researchers as well as engineers are participating in this project.
+    japanese:
+      - この プロジェクト に は、研究 者 {並び に} 技術 者 が 参加 し て い ます。
+      - この プロジェクト に は、研究 者 {並び に} 技術 者 が 参加 し て いる。
+    english_literally: In this project, researchers as well as engineers are participating.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は、研究 者 {及び} 技術 者 が 参加 し て い ます。
+        english: Researchers and engineers are participating in this project.
+        hint: 「及び」 is also common in business contexts, but 「並びに」 emphasizes the equal contribution and
+          importance of both researcher and engineer roles in the project.
+      - competing_japanese:
+          - この プロジェクト に は、研究 者 {と} 技術 者 が 参加 し て い ます。
+        english: Researchers and engineers are participating in this project.
+        hint: While 「と」 is possible, 「並びに」 lends a more formal and professional tone appropriate for a
+          project manager's report.
+    scene: A project manager is formally introducing the composition of their team, highlighting the two
+      main professional groups involved.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: The application qualifications are graduates of undergraduate programs as well as those who
+      have completed graduate programs.
+    japanese:
+      - 応募 資格 は、学部 卒業 者 {並び に} 大学 院 修了 者 と する。
+      - 応募 資格 は、学部 卒業 者 {並び に} 大学 院 修了 者 と し ます。
+    english_literally: Application qualifications are undergraduate program graduates as well as graduate
+      program completers.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 資格 は、学部 卒業 者 {及び} 大学 院 修了 者 と する。
+        english: The application qualifications are graduates of undergraduate programs and those who
+          have completed graduate programs.
+        hint: 「及び」 is commonly used for lists of qualifications, but 「並びに」 can emphasize that these two
+          distinct levels of education are equally valid for application.
+      - competing_japanese:
+          - 応募 資格 は、学部 卒業 者 {と} 大学 院 修了 者 と する。
+        english: The application qualifications are graduates of undergraduate programs and those who
+          have completed graduate programs.
+        hint: 「と」 is too informal for official university admissions guidelines. We need a formal conjunction.
+    scene: You are reading a university's formal admissions guideline, which specifies the required academic
+      backgrounds for applicants.
+    register: formal
+    setting: instructional
+  - english: Today, I express my sincere gratitude to all attendees as well as those involved.
+    japanese:
+      - 本日 は、ご 出席 の 皆 様 {並び に} 関係 者 の 皆 様 に 心 より 感謝 申し上げ ます。
+      - 本日 は、ご 出席 の 皆 様 {並び に} 関係 者 の 皆 様 に 心 より 感謝 申し上げる。
+    english_literally: Today, to all attendees as well as all those involved, I express heartfelt gratitude.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 は、ご 出席 の 皆 様 {及び} 関係 者 の 皆 様 に 心 より 感謝 申し上げ ます。
+        english: Today, I express my sincere gratitude to all attendees and those involved.
+        hint: 「及び」 is a formal choice, but 「並びに」 provides slightly more emphasis on the equal importance
+          of both groups being acknowledged in a highly formal expression of gratitude.
+      - competing_japanese:
+          - 本日 は、ご 出席 の 皆 様 {と} 関係 者 の 皆 様 に 心 より 感謝 申し上げ ます。
+        english: Today, I express my sincere gratitude to all attendees and those involved.
+        hint: 「と」 is far too casual for a formal closing address by a CEO. We need a highly formal conjunction.
+    scene: A female CEO is delivering a formal closing address at a major company event, extending thanks
+      to two broad categories of people.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    nuance: 'A female speaker in a formal setting, such as a CEO addressing a large audience, would use
+      「並びに」 to extend a comprehensive expression of gratitude to all significant parties: 「ご 出席 の 皆様」
+      (all attendees) and 「関係者 の 皆様」 (those involved). This choice of conjunction reinforces her professional
+      gravitas and the formal, respectful tone appropriate for addressing a large group.'
+  - english: Applicants must submit a resume as well as a certificate of graduation.
+    japanese:
+      - 応募 者 は、履歴 書 {並び に} 卒業 証明 書 を 提出 する 必要 が ある。
+      - 応募 者 は、履歴 書 {並び に} 卒業 証明 書 を 提出 する 必要 が あり ます。
+    english_literally: Applicants, as for resume as well as graduation certificate, need to submit.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 者 は、履歴 書 {及び} 卒業 証明 書 を 提出 する 必要 が ある。
+        english: Applicants must submit a resume and a certificate of graduation.
+        hint: 「及び」 is also formal and correct, but 「並びに」 can emphasize that both documents are equally
+          significant and required.
+      - competing_japanese:
+          - 応募 者 は、履歴 書 {と} 卒業 証明 書 を 提出 する 必要 が ある。
+        english: Applicants must submit a resume and a certificate of graduation.
+        hint: 「と」 is too informal for an official notice detailing application requirements. We need a
+          more formal conjunction.
+    scene: A human resources department is detailing the necessary documents for a job application on
+      an official notice board.
+    register: formal
+    setting: instructional
+  - english: This agreement stipulates the rights and obligations of Party A as well as Party B.
+    japanese:
+      - 本 契約 に は、甲 {並び に} 乙 の 権利 義務 が 定め られ て い ます。
+      - 本 契約 に は、甲 {並び に} 乙 の 権利 義務 が 定め られ て いる。
+    english_literally: In this agreement, as for Party A as well as Party B's rights and obligations,
+      are stipulated.
+    competing_grammar:
+      - competing_japanese:
+          - 本 契約 に は、甲 {及び} 乙 の 権利 義務 が 定め られ て い ます。
+        english: This agreement stipulates the rights and obligations of Party A and Party B.
+        hint: While 「及び」 is common in legal texts, 「並びに」 can be used to underscore the distinct yet equally
+          significant legal standing and responsibilities of both parties.
+      - competing_japanese:
+          - 本 契約 に は、甲 {と} 乙 の 権利 義務 が 定め られ て い ます。
+        english: This agreement stipulates the rights and obligations of Party A and Party B.
+        hint: 「と」 is far too informal for a legal document like a contract. We need a formal and precise
+          legal conjunction.
+    scene: A lawyer is reviewing a contract with a client, pointing out the sections that define the responsibilities
+      of each party in a formal, precise manner.
+    register: bijinesu nihongo (business)
+    setting: technical
+post_example_writeup: When using 「並びに」, pay attention to the level of formality required by the situation.
+  It is best suited for official, academic, or legal contexts where precision and a formal tone are paramount.
+  Avoid using it in casual conversation, where simpler conjunctions like 「と」 are more appropriate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/並びに

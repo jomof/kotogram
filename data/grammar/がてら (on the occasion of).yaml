@@ -1,0 +1,351 @@
+grammar_point: がてら (on the occasion of)
+learn_before:
+  - Verb[てみる] (try doing)
+  - を (direct object marker)
+meaning: On the occasion of, While ... as well, While ... (one is) at it, During, Along the way
+meaning_warning: Some Japanese speakers use it in a way similar to ながら, such as in ドライブがてら話し合った.
+pronunciation:
+  katakana: ガテラ
+  romaji: gatera
+formation:
+  Verb in 連用形 + がてら: Indicates doing something else while performing a certain action or on a certain
+    occasion.
+  Noun signifying physical movement + がてら: Indicates using a physical activity as an opportunity to do
+    something else.
+jlpt: N1
+etymology: がてら derives from がてり, which is an abbreviation of かてあり, combining the conjunctive form (連用形)
+  of 糅つ (かてつ), meaning "to mix together," and あり (ari, "to exist"). The progression from かてあり to かてり,
+  then through sound changes to がてり and finally がてら, implies the blending or combining of two actions.
+  This historical meaning of 'mixing together' subtly remains in the modern nuance, where one action is
+  undertaken while another is 'mixed in' as an opportune side activity.
+writeup: |-
+  「がてら」 is used to describe a situation where one action is performed, and that action serves as an opportune moment or a convenient occasion to perform a secondary action. It typically connects to the conjunctive form (連用形) of verbs or to nouns that denote physical movement. For example, if you are going for a walk, you might use the opportunity to pick up groceries. Here, the walk is the primary action creating the context for the secondary action (grocery shopping).
+
+  While 「がてら」 can be translated similarly to 「ながら」 (e.g., 'while doing A, also doing B'), there is a crucial difference. 「ながら」 emphasizes simultaneous actions, where both actions are happening concurrently. In contrast, 「がてら」 highlights that the first action provides a **convenient opportunity** to carry out the second action. The two actions are not necessarily happening in parallel but rather one leads naturally to the other, or one is a byproduct of the other. The primary action with 「がてら」 often involves movement or a specific occasion, leveraging that context to accomplish something else.
+
+  「がてら」 is considered a more formal expression than similar grammar points and is often encountered in written language or more polished spoken Japanese.
+false_friends:
+  - term: ついでに
+    meaning: While you are at it, On the occasion
+    kind: synonym
+    nuance: While both express doing something else during an activity, 「ついでに」 is more general and can
+      apply to a wider range of incidental situations. 「がてら」 emphasizes the opportunity or convenience
+      of doing something else during a specific action, usually involving movement, viewing that action
+      as the primary occasion.
+    grammar_point: ついでに (taking the opportunity)
+  - term: ながら
+    meaning: While ~ing, During, As
+    kind: synonym
+    nuance: 「ながら」 implies two actions happening strictly simultaneously, such as 'eating while watching
+      TV'. In contrast, 「がてら」 focuses on leveraging one action (typically a movement or a specific occasion)
+      as an opportune moment to perform a secondary action. For example, one cannot simultaneously walk
+      and buy bread, but one can buy bread 'on the occasion of' their walk.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: を兼ねて
+    meaning: to serve multiple purposes
+    kind: similar expression
+    nuance: 「を兼ねて」 explicitly states that an action is performed with two or more purposes in mind from
+      the outset. In contrast, 「がてら」 implies that one action naturally provides a convenient opportunity
+      for another, where the secondary action might not have been a primary intention but rather an opportune
+      addition.
+    grammar_point: を兼ねて (to serve multiple purposes)
+post_false_friends_writeup: To effectively distinguish between 「がてら」, 「ついでに」, 「ながら」, and 「を兼ねて」, consider
+  their primary focus. 「ながら」 should be used for actions that occur at the exact same time. 「がてら」 is best
+  when a primary action, especially one involving physical movement, naturally creates an opportunity
+  for a secondary action. 「ついでに」 is more versatile and can be used for any incidental side task, whether
+  or not it's linked to movement or a planned opportunity. 「を兼ねて」 is used when an action is intentionally
+  performed with multiple objectives from the start.
+examples:
+  - english: While stepping out for lunch, I stopped by the post office as well.
+    japanese:
+      - 昼食 に 外出 し {がてら}、郵便 局 に 寄っ た。
+      - 昼食 の 外出 {がてら}、郵便 局 に 立ち寄っ た。
+    english_literally: Going out for lunch, on the occasion of that, I stopped by the post office.
+    competing_grammar:
+      - competing_japanese:
+          - 昼食 に 外出 し {ながら}、郵便 局 に 寄っ た。
+        english: While going out for lunch, I stopped by the post office.
+        hint: 「ながら」 implies simultaneous actions. We're looking for an action that provides an an opportunity
+          for another.
+      - competing_japanese:
+          - 昼食 に 外出 し た {ついで に}、郵便 局 に 寄っ た。
+        english: On the occasion of going out for lunch, I stopped by the post office as well.
+        hint: 「ついでに」 implies an incidental side task. We're looking for leveraging a primary action as
+          an opportunity.
+      - competing_japanese:
+          - 昼食 と 郵便 局 を {兼ね て} 外出 し た。
+        english: I went out combining lunch and the post office.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Someone recounting their lunch break.
+    register: casual
+    setting: informative
+    nuance: The use of {がてら} here emphasizes that the act of "外出" (going out) for lunch served as the
+      primary occasion that provided the opportunity to "郵便 局 に 寄った" (stop by the post office). The phrasing
+      is direct and reflects a casual, everyday situation.
+  - english: On the occasion of my business trip, I also visited a local art museum.
+    japanese:
+      - 出張 に 行き {がてら}、現地 の 美術 館 を 訪れ た。
+      - 出張 {がてら}、現地 の 美術 館 を 訪れ まし た。
+    english_literally: Going on a business trip, on the occasion of that, I visited a local art museum.
+    competing_grammar:
+      - competing_japanese:
+          - 出張 に 行き {ながら}、現地 の 美術 館 を 訪れ た。
+        english: While going on a business trip, I visited a local art museum.
+        hint: 「ながら」 implies simultaneous action. We're looking for a primary action that creates an opportunity
+          for a secondary one.
+      - competing_japanese:
+          - 出張 に 行っ た {ついで に}、現地 の 美術 館 を 訪れ た。
+        english: Incidentally, when I went on a business trip, I visited a local art museum.
+        hint: 「ついでに」 implies an incidental side task. We're looking for leveraging a primary action as
+          a recognized opportunity.
+      - competing_japanese:
+          - 出張 と 美術 館 訪問 を {兼ね て} 計画 し た。
+        english: I planned it to combine the business trip and the art museum visit.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: A professional discussing their recent travels.
+    register: formal
+    setting: professional
+    nuance: The use of {がてら} here indicates that the business trip ('出張') served as the primary occasion
+      that enabled the visit to the local art museum ('美術館 を 訪れた'). The formal register and specific phrasing
+      imply a deliberate use of the trip's opportunity rather than a mere incidental stop.
+  - english: While on my morning walk, I bought freshly baked bread at the bakery.
+    japanese:
+      - 朝 の 散歩 {がてら}、パン 屋 で 焼き立て の パン を 買っ た。
+      - 朝 散歩 し {がてら}、パン 屋 で 焼きたて の パン を 買い まし た。
+    english_literally: Morning walk, on the occasion of that, I bought freshly baked bread at the bakery.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 の 散歩 を し {ながら}、パン 屋 で 焼き立て の パン を 買っ た。
+        english: While taking a morning walk, I bought freshly baked bread at the bakery.
+        hint: 「ながら」 implies simultaneous actions. We're looking for a primary action that creates an opportunity
+          for a secondary one.
+      - competing_japanese:
+          - 朝 の 散歩 を し た {ついで に}、パン 屋 で 焼き立て の パン を 買っ た。
+        english: Incidentally, after taking a morning walk, I bought freshly baked bread at the bakery.
+        hint: 「ついでに」 implies an incidental side task. We're looking for leveraging a routine activity
+          as a recognized opportunity.
+      - competing_japanese:
+          - 朝 の 散歩 と パン 購入 を {兼ね て} 出かけ た。
+        english: I went out combining the morning walk and bread purchase.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Someone describing their morning routine.
+    register: casual
+    setting: friendly
+    nuance: The phrase `朝 の 散歩 {がてら}` (on the occasion of a morning walk) highlights how the regular activity
+      of walking provided a convenient opportunity to buy bread. This fits the casual, friendly setting
+      by implying an efficient combination of daily tasks.
+  - english: While going to pick up my child from school, I finished shopping at the supermarket as well.
+    japanese:
+      - 子供 を 学校 に 迎え に 行き {がてら}、スーパー で 買い物 を 済ま せ た。
+      - 子供 の お 迎え {がてら}、スーパー で 買い物 を 済ま せ まし た。
+    english_literally: Going to pick up child from school, on the occasion of that, I finished shopping
+      at the supermarket.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 を 学校 に 迎え に 行き {ながら}、スーパー で 買い物 を 済ま せ た。
+        english: While going to pick up my child from school, I finished shopping at the supermarket.
+        hint: 「ながら」 implies simultaneous actions. We're looking for a primary action that creates an opportunity
+          for a secondary one.
+      - competing_japanese:
+          - 子供 を 学校 に 迎え に 行っ た {ついで に}、スーパー で 買い物 を 済ま せ た。
+        english: Incidentally, after picking up my child from school, I finished shopping at the supermarket.
+        hint: 「ついでに」 implies an incidental side task. We're looking for a deliberate combination of tasks
+          utilizing a primary trip.
+      - competing_japanese:
+          - 子供 の 迎え と 買い物 を {兼ね て} 出かけ た。
+        english: I went out combining picking up my child and shopping.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: A parent multi-tasking on their way to pick up their child.
+    register: semi-formal
+    setting: informative
+    nuance: The use of `~行き {がてら}` attached to the verb `迎え に 行く` (go to pick up) expresses that the primary
+      action of picking up the child provides the ideal opportunity to complete the shopping. This indicates
+      efficient multi-tasking by a parent, fitting the semi-formal and informative context.
+  - english: While taking a walk in the park, why don't we take a break at a cafe as well?
+    japanese:
+      - 公園 を 散歩 {がてら}、カフェ で 一休み し ませ ん か。
+      - 公園 を 散歩 し {がてら}、カフェ で 一休み し ませ ん か。
+      - 公園 散歩 {がてら}、カフェ で 一休み し ない？
+    english_literally: Park walk, on the occasion of that, why don't we take a break at a cafe?
+    competing_grammar:
+      - competing_japanese:
+          - 公園 を 散歩 し {ながら}、カフェ で 一休み し ませ ん か。
+        english: While taking a walk in the park, why don't we take a break at a cafe?
+        hint: 「ながら」 implies simultaneous actions. We're looking for an action that provides an opportunity
+          for another distinct action.
+      - competing_japanese:
+          - 公園 を 散歩 し た {ついで に}、カフェ で 一休み し ませ ん か。
+        english: After taking a walk in the park, incidentally, why don't we take a break at a cafe?
+        hint: 「ついでに」 implies an incidental side task. We're looking for a natural, integrated part of
+          an outing, using the primary activity as an occasion.
+      - competing_japanese:
+          - 散歩 と カフェ を {兼ね て} 公園 に 行き ませ ん か。
+        english: Why don't we go to the park combining a walk and a cafe visit?
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Two friends suggesting an outing.
+    register: casual
+    setting: friendly
+    nuance: The use of `散歩 {がてら}` connected to the noun `散歩` (walk) suggests that the primary activity
+      of walking in the park serves as the opportunity or context for taking a break at a cafe. The polite
+      invitation `しませんか` makes this a friendly suggestion, implying a natural flow of activities within
+      the outing.
+  - english: On the occasion of our inspection visit, we deepened our exchange with local residents as
+      well.
+    japanese:
+      - 視察 に 伺い {がてら}、地域 住民 の 方々 と も 交流 を 深め た。
+      - 視察 {がてら}、地域 住民 の 方々 と も 交流 を 深め まし た。
+    english_literally: Going for an inspection, on the occasion of that, we deepened exchange with local
+      residents as well.
+    competing_grammar:
+      - competing_japanese:
+          - 視察 に 伺い {ながら}、地域 住民 の 方々 と も 交流 を 深め た。
+        english: While performing an inspection visit, we deepened our exchange with local residents.
+        hint: 「ながら」 implies simultaneous action. We're looking for a primary event that creates a distinct
+          opportunity for a secondary activity.
+      - competing_japanese:
+          - 視察 に 伺っ た {ついで に}、地域 住民 の 方々 と も 交流 を 深め た。
+        english: Incidentally, after performing an inspection visit, we deepened our exchange with local
+          residents.
+        hint: 「ついでに」 implies an incidental side task. We're looking for a purposeful integration of a
+          secondary activity into a primary formal event.
+      - competing_japanese:
+          - 視察 と 地域 住民 と の 交流 を {兼ね て} 伺っ た。
+        english: I visited combining the inspection and exchange with local residents.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: A representative reporting on a community visit.
+    register: formal
+    setting: professional
+    nuance: The use of `伺い {がてら}` (on the occasion of visiting for inspection), employing the humble verb
+      `伺う` (to visit), perfectly suits the professional and formal setting. It highlights that the inspection
+      visit was a specific, significant event that provided a structured opportunity to engage with local
+      residents, emphasizing a purposeful integration rather than a casual addition.
+  - english: While on a drive on my day off, I stopped by a secret hot spring I accidentally found.
+    japanese:
+      - 休日 の ドライブ {がてら}、偶然 見つけ た 秘湯 に 立ち寄っ て み た。
+      - 休日 ドライブ し {がてら}、偶然 見つけ た 秘湯 に 立ち寄っ て み た。
+    english_literally: Day-off drive, on the occasion of that, I tried stopping by a secret hot spring
+      I accidentally found.
+    competing_grammar:
+      - competing_japanese:
+          - 休日 の ドライブ を し {ながら}、偶然 見つけ た 秘湯 に 立ち寄っ て み た。
+        english: While driving on my day off, I stopped by a secret hot spring I accidentally found.
+        hint: 「ながら」 implies simultaneous action. We're looking for a primary activity that creates a distinct
+          opportunity for another action.
+      - competing_japanese:
+          - 休日 の ドライブ を し た {ついで に}、偶然 見つけ た 秘湯 に 立ち寄っ て み た。
+        english: Incidentally, after driving on my day off, I stopped by a secret hot spring I accidentally
+          found.
+        hint: 「ついでに」 implies an incidental or unplanned side task. We're looking for the primary activity
+          itself providing the context for an additional, enjoyable outcome.
+      - competing_japanese:
+          - 休日 の ドライブ と 秘湯 探索 を {兼ね て} 出かけ た。
+        english: I went out combining the day-off drive and hot spring exploration.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Someone recounting a spontaneous adventure.
+    register: casual
+    setting: storytelling
+    nuance: The use of `ドライブ {がてら}` (on the occasion of a drive) emphasizes that the leisurely drive on
+      a day off was the primary activity, and discovering and stopping by the hot spring was an opportunity
+      that arose naturally from that drive. This phrasing conveys a sense of enjoying the journey and
+      its spontaneous outcomes, fitting the storytelling setting.
+  - english: On my way home from work, I stopped by the dry cleaner's to pick up my clothes as well.
+    japanese:
+      - 会社 から 帰り {がてら}、クリーニング 店 に 寄っ て 服 を 受け取っ た。
+      - 会社 帰り {がてら}、クリーニング 店 に 寄っ て 服 を 受け取り まし た。
+    english_literally: Returning from company, on the occasion of that, I stopped by the dry cleaner's
+      and picked up clothes.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 から 帰り {ながら}、クリーニング 店 に 寄っ て 服 を 受け取っ た。
+        english: While returning home from work, I stopped by the dry cleaner's to pick up my clothes.
+        hint: 「ながら」 implies simultaneous actions. We're looking for a primary action that creates an opportunity
+          for a secondary, distinct action.
+      - competing_japanese:
+          - 会社 から 帰っ た {ついで に}、クリーニング 店 に 寄っ て 服 を 受け取っ た。
+        english: Incidentally, after returning home from work, I stopped by the dry cleaner's to pick
+          up my clothes.
+        hint: 「ついでに」 implies an incidental side task. We're looking for a primary action that naturally
+          incorporates a related task.
+      - competing_japanese:
+          - 帰り道 と クリーニング の 受け取り を {兼ね て} 寄っ た。
+        english: I stopped by, combining the way home and picking up the dry cleaning.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: A person describing their commute and errands.
+    register: semi-formal
+    setting: informative
+    nuance: The phrase `帰り {がてら}` (on the occasion of returning home) indicates that the act of commuting
+      home from work serves as the primary route and opportunity for picking up clothes from the dry cleaner's.
+      This emphasizes the efficiency of combining tasks within a single trip, fitting the informative,
+      semi-formal context.
+  - english: While we are shopping, why don't we take a look at the newly opened bookstore?
+    japanese:
+      - 買い物 {がてら}、新しく オープン し た 本屋 を 覗い て み ない？
+      - 買い物 に 行き {がてら}、新しく オープン し た 本屋 を 覗い て み ませ ん か。
+    english_literally: Shopping, on the occasion of that, why don't we take a look at the newly opened
+      bookstore?
+    competing_grammar:
+      - competing_japanese:
+          - 買い物 し {ながら}、新しく オープン し た 本屋 を 覗い て み ない？
+        english: While shopping, why don't we take a look at the newly opened bookstore?
+        hint: 「ながら」 implies simultaneous actions. We're looking for a primary action that creates an opportunity
+          for a secondary, distinct activity.
+      - competing_japanese:
+          - 買い物 し た {ついで に}、新しく オープン し た 本屋 を 覗い て み ない？
+        english: Incidentally, after shopping, why don't we take a look at the newly opened bookstore?
+        hint: 「ついでに」 implies an incidental side task. We're looking for an intentional integration of
+          a secondary activity enabled by a primary one.
+      - competing_japanese:
+          - 買い物 と 本屋 見学 を {兼ね て} 行き ませ ん か。
+        english: Why don't we go combining shopping and a bookstore visit?
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Two people planning their day.
+    register: casual
+    setting: friendly
+    nuance: The use of `買い物 {がてら}` (on the occasion of shopping) implies that the shopping trip provides
+      the natural context and opportunity to visit the new bookstore. The casual invitation `覗いて みない？`
+      (Why don't we take a look?) makes this a friendly suggestion between two people planning their day,
+      integrating the bookstore visit as a convenient addition to their main activity.
+  - english: While taking a stroll along the beach, I collected some beautiful seashells.
+    japanese:
+      - 海辺 を 散歩 {がてら}、きれい な 貝殻 を いく つ か 拾っ た。
+      - 海辺 を 散歩 し {がてら}、きれい な 貝殻 を いく つ か 拾い まし た。
+    english_literally: Beachside stroll, on the occasion of that, beautiful seashells some picked up.
+    competing_grammar:
+      - competing_japanese:
+          - 海辺 を 散歩 し {ながら}、きれい な 貝殻 を いく つ か 拾っ た。
+        english: While strolling along the beach, I simultaneously collected some beautiful seashells.
+        hint: 「ながら」 emphasizes two actions happening strictly at the same time. We're looking for one
+          action creating an opportunity for another.
+      - competing_japanese:
+          - 海辺 を 散歩 し た {ついで に}、きれい な 貝殻 を いく つ か 拾っ た。
+        english: Incidentally, after strolling along the beach, I collected some beautiful seashells.
+        hint: 「ついでに」 implies an incidental side task, perhaps less planned. We're looking for the primary
+          activity itself providing the context for an enjoyable additional outcome.
+      - competing_japanese:
+          - 海辺 で の 散歩 と 貝殻 収集 を {兼ね て} 行動 し た。
+        english: I acted combining strolling along the beach and collecting seashells.
+        hint: 「を兼ねて」 implies intentionally combining purposes from the outset. We're looking for one action
+          creating an opportunity for another.
+    scene: Someone sharing a pleasant memory from a trip to the seaside.
+    register: casual
+    setting: reflective
+    nuance: The use of `散歩 {がてら}` (on the occasion of a stroll) indicates that the primary activity of
+      strolling along the beach naturally provided the opportunity to collect seashells. This emphasizes
+      a pleasant, unplanned addition to the main activity, fitting the reflective setting.
+post_example_writeup: The core of 「がてら」 lies in its ability to elegantly link a primary action, often
+  one involving physical movement, with a secondary, opportune action. Unlike 「ながら」, which implies strict
+  simultaneity, or 「ついでに」, which can feel more incidental, 「がてら」 frames the primary action as a purposeful
+  occasion or a pre-planned context for the secondary one. Mastering this nuance allows for more precise
+  and natural expression in Japanese, particularly in describing how daily activities are efficiently
+  combined.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がてら

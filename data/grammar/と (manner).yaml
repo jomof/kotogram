@@ -1,0 +1,295 @@
+grammar_point: と (manner)
+learn_before:
+  - 〜如し・〜ごとし (like・as if)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - と (with)
+  - となると (when it comes to)
+  - に向かって (physical direction)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 先 (ahead・first)
+  - 切る (do completely or thoroughly)
+  - 向かい (across from)
+  - 地面・天井 (ground・floor・ceiling)
+  - 大きな・小さな (big・small)
+  - 超える (to exceed)
+  - 込む (to do thoroughly)
+  - 近く,遠く (proximity・distance spatial)
+meaning: Indicates the manner or state in which an action is performed or a state exists, often used in
+  conjunction with mimetic words.
+pronunciation:
+  katakana: ト
+  romaji: to
+formation:
+  Mimetic Word + と: Describes the sound, state, or manner of an action.
+jlpt: N3
+etymology: The particle 「と」 originally indicated co-occurrence or accompaniment. Its use expanded to encompass
+  the manner or state of an action, retaining the core sense of association or equivalence between the
+  action and its description, particularly evident with mimetic words.
+writeup: |-
+  The particle 「と」 is used to describe the **manner** or **state** in which an action occurs. It connects actions with sounds, states, or appearances, and is most commonly seen paired with various types of mimetic words.
+
+  Japanese is rich in mimetic words, often categorized into two main types:
+
+  *   **Onomatopoeia (擬音語・ぎおんご):** Words that represent sounds, like animal noises, or the sounds of actions and natural phenomena. For example, 「ざあざあ」 (sound of heavy rain) or 「ぶんぶん」 (buzzing or rapid wagging).
+  *   **Phenomimes (擬態語・ぎたいご):** Words that describe states, manners, or appearances, rather than actual sounds. These include words that describe visual states like 「きらきら」 (sparkling) or physical states like 「しっとり」 (damply). A sub-category, **Psychomimes (擬情語・ぎじょうご)**, describes feelings or psychological states, such as 「にこにこ」 (cheerfully smiling) or 「おいおい」 (sobbing bitterly).
+
+  When using 「と」 with mimetic words, an important nuance regarding its usage with repeated versus single mimetic words should be noted. While 「と」 can sometimes be omitted when the mimetic word is repeated (e.g., 「にこにこ 笑う」 is acceptable), it is generally required when the mimetic word is not repeated or is used in a specific, emphatic way (e.g., 「バタンと 閉める」 for a single loud bang). These mimetic expressions are a significant part of the Japanese vocabulary, frequently used by native speakers of all ages and not merely childish utterances; they add vividness and expressiveness to the language.
+false_friends:
+  - term: ～ように
+    meaning: like; as if; in the manner of
+    kind: similar expression
+    nuance: Unlike 「と」, which directly marks the way something is done or said (often with onomatopoeia
+      or mimetics), 「～ように」 describes something as being *like* or *as if* it were a certain way, focusing
+      on comparison rather than direct description of the manner itself. It also has other uses like 'so
+      that' or 'in order to'.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: と (and)
+    meaning: and
+    kind: often confused with
+    nuance: While this grammar point's 「と」 marks the manner of an action, the conjunctive 「と」 is used
+      to exhaustively list nouns or connect them with the meaning 'and'.
+    grammar_point: と (and, connects nouns)
+  - term: と (inevitable consequence)
+    meaning: if; when; whenever; expresses a natural consequence or a general truth.
+    kind: often confused with
+    nuance: This 「と」 creates a conditional clause where the result is a direct and inevitable outcome.
+      It is distinct from its use as a manner marker, which introduces a way of doing something.
+    grammar_point: と (conditional, inevitable result)
+post_false_friends_writeup: To avoid confusion between these expressions, remember that 「と」 is used for
+  the *direct manner* of an action, especially when describing sounds, states, or appearance with mimetic
+  words. 「～ように」, however, introduces a comparison or similarity, meaning 'like' or 'as if', rather than
+  directly describing the manner itself. The other particles and expressions using 'と' (like 'and' or
+  'if') have distinct grammatical roles that do not convey the meaning of manner.
+examples:
+  - english: The rain is falling softly.
+    japanese:
+      - 雨 が しとしと {と} 降っ て い ます。
+      - 雨 が しとしと {と} 降っ て いる。
+    english_literally: Rain 'softly' falling is.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 静か {に} 降っ て い ます。
+        english: The rain is falling quietly.
+        hint: This uses a general adverb. We're looking for a specific mimetic word to describe the manner
+          of the rain.
+      - competing_japanese:
+          - 雨 が しとしと 降る {よう に} 降っ て い ます。
+        english: The rain is falling as if it were falling softly.
+        hint: 「～ように」 expresses comparison ('as if'). We're looking for a direct description of the manner
+          using 「と」.
+      - competing_japanese:
+          - 雨 が {しとしと} 降っ て い ます。
+        english: The rain is falling softly (with omitted 'to').
+        hint: While 「と」 can sometimes be omitted with repeated mimetic words, we are focusing on examples
+          where the particle is explicitly present and functioning.
+    scene: Describing the weather.
+    register: formal
+    setting: creative
+    nuance: 「しとしと」 is a mimetic word describing the gentle falling of rain; 「と」 indicates the manner of
+      the rain falling, showing a direct association between the mimetic word and the action.
+  - english: He suddenly stood up and slammed the door shut.
+    japanese:
+      - 彼 は 急 に 立ち上がり、ドア を バタン {と} 閉め まし た。
+      - 彼 は 急 に 立ち上がっ て、ドア を バタン {と} 閉め た。
+    english_literally: He suddenly stood up, door 'bang' shut.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 急 に 立ち上がり、ドア を {強く} 閉め まし た。
+        english: He suddenly stood up and closed the door forcefully.
+        hint: This uses a general adverb for force. We're looking for an onomatopoeic word to describe
+          the specific sound of the door.
+    scene: Describing someone's angry reaction.
+    register: semi-formal
+    setting: serious
+    nuance: 「バタン」 is an onomatopoeic word that expresses the sound of a door closing forcefully. This
+      「と」 indicates the manner in which the door was closed, directly linking the sound to the action.
+  - english: She smiled cheerfully.
+    japanese:
+      - 彼女 は にこにこ {と} 笑っ た。
+      - 彼女 は にこにこ {と} 笑い まし た。
+    english_literally: She 'cheerfully' smiled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 笑顔 {で} 微笑ん だ。
+        english: She smiled with a smiling face.
+        hint: This describes the expression. We're looking for a psychomime to describe the *manner* of
+          smiling, implying deep sadness.
+      - competing_japanese:
+          - 彼女 は 楽し {そう に} 笑っ た。
+        english: She smiled happily.
+        hint: This uses an adjective ending in ～そう に to describe appearance of happiness. We're looking
+          for a direct mimetic word describing the manner of smiling.
+      - competing_japanese:
+          - 彼女 は {にこにこ} 笑っ た。
+        english: She smiled cheerfully (with omitted 'to').
+        hint: While 「と」 can sometimes be omitted with repeated mimetic words, we are focusing on examples
+          where the particle is explicitly present and functioning.
+    scene: Describing a happy person.
+    register: semi-formal
+    setting: friendly
+    nuance: 「にこにこ」 is a psychomime that expresses a cheerful smile. This 「と」 concretely indicates the
+      manner in which she smiled.
+  - english: The dog wagged its tail cheerfully.
+    japanese:
+      - 犬 が しっぽ を ぶんぶん {と} 振っ て い ます。
+      - 犬 が しっぽ を ぶんぶん {と} 振っ て いる。
+    english_literally: The dog, its tail, 'rapidly' 'that' wagging is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が しっぽ を 嬉し {そう に} 振っ て い ます。
+        english: The dog is wagging its tail happily.
+        hint: This uses a general adverb for appearance of happiness. We're looking for a specific mimetic
+          word for the action.
+      - competing_japanese:
+          - 犬 が しっぽ を {ぶんぶん} 振っ て い ます。
+        english: The dog wagged its tail cheerfully (with omitted 'to').
+        hint: While 「と」 can sometimes be omitted with repeated mimetic words, we are focusing on examples
+          where the particle is explicitly present and functioning.
+    scene: Watching a dog greet its owner.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「ぶんぶん」 is a mimetic word describing the rapid movement of something swinging, here the dog's
+      tail. The 「と」 particle emphasizes the manner of the action. This example is suitable for a casual
+      setting, such as describing a pet to a group of friends.
+  - english: The heavy rain fell suddenly.
+    japanese:
+      - 雨 が ざあざあ {と} 降り 始め た。
+      - 雨 が ざあざあ {と} 降り 始め まし た。
+    english_literally: Rain 'heavily' began to fall.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が {激しく} 降り 始め た。
+        english: The rain started falling intensely.
+        hint: This uses a general adverb. We're looking for a specific onomatopoeic word for the sound
+          of heavy rain.
+      - competing_japanese:
+          - 雨 が ざあざあ 降る {よう に} 降り 始め た。
+        english: The rain started falling as if it were pouring.
+        hint: 「～ように」 expresses comparison ('as if'). We're looking for a direct description of the manner
+          using 「と」.
+    scene: You're caught in a sudden downpour while out walking.
+    register: casual
+    setting: serious
+    nuance: 「ざあざあ」 is an onomatopoeic word for the sound of heavy rain. The 「と」 particle directly links
+      this sound to the action of the rain falling, making the description more vivid and immediate.
+  - english: The jewelry sparkled brilliantly under the light.
+    japanese:
+      - 宝石 は 光 の 下 で きらきら {と} 輝い て い た。
+      - 宝石 は 光 の 下 で きらきら {と} 輝い て い まし た。
+    english_literally: Jewelry, light's under, 'sparkling' shining was.
+    competing_grammar:
+      - competing_japanese:
+          - 宝石 は 光 の 下 で {眩しく} 輝い て い た。
+        english: The jewelry was shining dazzlingly under the light.
+        hint: This uses a general adverb. We're looking for a specific mimetic word for the visual appearance
+          of sparkling.
+      - competing_japanese:
+          - 宝石 は 光 の 下 で きらきら 輝く {よう に} 輝い て い た。
+        english: The jewelry was shining as if it were sparkling.
+        hint: 「～ように」 expresses comparison. We're looking for a direct description of the manner of shining
+          using 「と」.
+    scene: You are admiring a display in a jewelry store.
+    register: formal
+    setting: informative
+    nuance: 「きらきら」 is a mimetic word describing something sparkling or glittering. The 「と」 particle here
+      describes the *manner* of the jewelry shining, enhancing the visual description by directly associating
+      the mimetic word with the action.
+  - english: The child started crying bitterly when his toy broke.
+    japanese:
+      - おもちゃ が 壊れ て、子供 は おい おい {と} 泣き 始め た。
+      - おもちゃ が 壊れ て、子供 は おい おい {と} 泣き 始め まし た。
+    english_literally: Toy broke, child 'bitterly' crying began.
+    competing_grammar:
+      - competing_japanese:
+          - おもちゃ が 壊れ て、子供 は 大声 {で} 泣き 始め た。
+        english: The child started crying loudly when his toy broke.
+        hint: This describes the volume of crying. We're looking for a psychomime to describe the *manner*
+          of crying, implying deep sadness.
+      - competing_japanese:
+          - おもちゃ が 壊れ て、子供 は おいおい 泣く {よう に} 泣き 始め た。
+        english: The child started crying as if sobbing bitterly when his toy broke.
+        hint: 「～ように」 expresses comparison. We're looking for a direct description of the manner of crying
+          using 「と」.
+    scene: Observing a child's reaction to a broken toy.
+    register: semi-formal
+    setting: serious
+    nuance: 「おいおい」 is a psychomime that describes loud, bitter sobbing. The 「と」 particle vividly portrays
+      the *manner* of the child's crying, indicating the intensity of their sadness rather than just the
+      sound.
+  - english: The alarm clock rang clearly at seven in the morning.
+    japanese:
+      - 目覚まし 時計 が 朝 ７ 時 に りんりん {と} 鳴っ た。
+      - 目覚まし 時計 が 朝 ７ 時 に りんりん {と} 鳴り まし た。
+    english_literally: Alarm clock, morning 7 o'clock, 'clearly ringing' sounded.
+    competing_grammar:
+      - competing_japanese:
+          - 目覚まし 時計 が 朝 ７ 時 に 大きな 音 {で} 鳴っ た。
+        english: The alarm clock sounded loudly at seven in the morning.
+        hint: This describes the loudness. We're looking for an onomatopoeic word for a specific clear
+          ringing sound.
+      - competing_japanese:
+          - 目覚まし 時計 が 朝 ７ 時 に りんりん 鳴る {よう に} 鳴っ た。
+        english: The alarm clock sounded as if it were ringing clearly.
+        hint: 「～ように」 expresses comparison. We're looking for a direct description of the manner of ringing
+          using 「と」.
+    scene: Waking up to a traditional alarm clock.
+    register: casual
+    setting: reflective
+    nuance: 「りんりん」 is an onomatopoeic word for a clear, resonant ringing sound, often associated with
+      old-fashioned bells. The 「と」 particle directly connects this distinctive sound to the action of
+      the clock ringing, creating a sensory image.
+  - english: The small light glowed faintly in the distance.
+    japanese:
+      - 遠く に 小さな 明かり が ぼんやり {と} 光っ て い た。
+      - 遠く に 小さな 明かり が ぼんやり {と} 光っ て い まし た。
+    english_literally: Distance, small light, 'faintly' shining was.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く に 小さな 明かり が {薄く} 光っ て い た。
+        english: The small light was dimly shining in the distance.
+        hint: This uses a general adverb for dimness. We're looking for a phenomime to describe the *manner*
+          of glowing, implying haziness.
+      - competing_japanese:
+          - 遠く に 小さな 明かり が ぼんやり 光る {よう に} 光っ て い た。
+        english: The small light was shining as if dimly glowing in the distance.
+        hint: 「～ように」 expresses comparison. We're looking for a direct description of the manner of glowing
+          using 「と」.
+    scene: You are walking alone at night and see a light.
+    register: formal
+    setting: melancholic
+    nuance: 「ぼんやり」 is a phenomime describing a state of being dim, vague, or hazy. The 「と」 particle here
+      describes the *manner* in which the light was shining, emphasizing its subdued and indistinct quality,
+      suitable for a reflective or melancholic setting.
+  - english: He walked briskly to the office, without looking back.
+    japanese:
+      - 彼 は 振り向き も せ ず、さっさと {と} 会社 へ 歩い て 行っ た。
+      - 彼 は 振り向き も せ ず、さっさと {と} 会社 へ 歩い て 行き まし た。
+    english_literally: He, looking back not even doing, 'briskly' to company walked went.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 振り向き も せ ず、{速く} 会社 へ 歩い て 行っ た。
+        english: He walked quickly to the office, without looking back.
+        hint: This uses a general adverb for speed. We're looking for a phenomime to describe the *manner*
+          of walking, implying decisiveness or impatience.
+      - competing_japanese:
+          - 彼 は 振り向き も せ ず、さっさと 歩く {よう に} 会社 へ 歩い て 行っ た。
+        english: He walked as if briskly to the office, without looking back.
+        hint: 「～ように」 expresses comparison. We're looking for a direct description of the manner of walking
+          using 「と」.
+    scene: Describing a colleague's determined stride.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    nuance: 「さっさと」 is a phenomime describing quick, brisk, or decisive movement. The 「と」 particle directly
+      conveys the *manner* of his walking, suggesting a purposeful or perhaps impatient attitude. The
+      phrase 「振り向き も せず」 reinforces this sense of determination. This example suits a professional setting
+      where observation of colleagues' behavior is common.
+post_example_writeup: The particle 「と」 with mimetic words is a powerful tool for adding descriptive depth
+  to Japanese sentences. It helps to vividly illustrate sounds, appearances, and the way actions are performed,
+  making communication more expressive and engaging. Mastering its use with the various categories of
+  mimetic words will significantly enhance your ability to describe situations in a natural and impactful
+  way.

@@ -1,0 +1,290 @@
+grammar_point: Rhetorical Question (emphasizing a point)
+learn_before:
+  - Verb[ていた] (past progressive・resultative)
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - '[Verb-て]ごらん (gentle suggestion)'
+  - 〜のだ・〜んだ (explanatory)
+  - あるもの (something that exists)
+  - だって (even・also)
+  - って (quotation marker, casual)
+  - どうして (why)
+  - ないでもない (not impossible)
+  - のだろうか (I wonder)
+  - ものか・もんか (strong negation・absolutely not)
+  - わけがない (no way)
+  - 今更 (too late・belated)
+meaning: A question asked for effect rather than requiring an answer, often used to express strong emotion
+  or make a point.
+pronunciation:
+  katakana: リトリカルクエスチョン
+  romaji: ritorikaru kuesuchon
+formation:
+  Question + か / だろうか: A general rhetorical question, often expressing doubt, surprise, or strong emotion.
+  Plain form + ものか / もんか: Expresses strong denial or indignation, implying 'there's no way!'
+  Plain form + わけがないじゃないか / はずがないじゃないか: Emphasizes the impossibility of something, implying 'it's impossible,
+    isn't it?'
+  Verb te-form + は / Plain form + ではないか: Asserts a discovery or a self-evident truth, implying 'isn't
+    it so?' or 'it turned out to be!'
+jlpt: N3
+etymology: The concept of a rhetorical question in Japanese, similar to English, serves to make a forceful
+  statement or assertion in the interrogative form. While the specific linguistic mechanisms differ, the
+  underlying pragmatic function of eliciting agreement or emphasizing a self-evident truth is shared across
+  languages.
+writeup: |-
+  A rhetorical question in Japanese functions as a forceful statement. Instead of genuinely seeking an answer, it emphasizes a point or expresses strong emotion. Think of it as a way to make a statement in the form of a question where the answer is either obvious or strongly implied. It is a common technique used to add emphasis, express disbelief, sarcasm, or other strong feelings.
+
+  Several linguistic forms can be used to construct rhetorical questions, each carrying slightly different nuances:
+
+  *   **Question + か / だろうか**: This is a general form for rhetorical questions, often used to express doubt, surprise, or a strong emotional reaction. For example, 「どうしてそんなことができるだろうか」 (How could one do such a thing?) implies that one *cannot* do such a thing.
+
+  *   **Plain form + ものか / もんか**: This structure expresses strong denial or indignation, conveying a feeling of 'there's absolutely no way!' It is often used when the speaker feels insulted or strongly disagrees with something. For example, 「誰があんな人にお金なんか貸すものか」 (Who would lend money to such a person!) implies that no one would.
+
+  *   **Plain form + わけがないじゃないか / はずがないじゃないか**: These phrases emphasize the impossibility of something. 「わけがないじゃないか」 implies 'it's impossible, isn't it?', often with a slight exasperation. 「はずがないじゃないか」 conveys a similar sense of impossibility based on expectation or logic. For example, 「彼女がこんな所へ来るわけがないじゃないか」 (There's no way she would come to a place like this, is there?) implies she definitely wouldn't come.
+
+  *   **Verb te-form + は / Plain form + ではないか**: This form is used to assert a discovery or a self-evident truth, often conveying a sense of realization or confirming something. It implies 'isn't it so?' or 'it turned out to be!'. It can also be used to prompt agreement or to point out something obvious. For example, 「開いたではないか」 (It opened, didn't it?) asserts the fact that it opened.
+
+  Rhetorical questions are powerful tools for communication, allowing speakers to convey conviction and emotional depth without making a direct statement. Their effectiveness often relies on shared understanding between the speaker and listener, as the intended "answer" is left unsaid but understood.
+false_friends:
+  - term: 〜のではないでしょうか
+    meaning: I think that (perhaps it is the case that)...
+    kind: similar expression
+    nuance: Unlike a rhetorical question, `〜のではないでしょうか` is a polite suggestion or a soft assertion of
+      an opinion, typically inviting agreement. It genuinely softens a statement, whereas a rhetorical
+      question strengthens it by implicitly stating the opposite or an obvious truth.
+    grammar_point: のではないだろうか (indirect suggestion)
+  - term: 〜かな
+    meaning: I wonder if...
+    kind: similar expression
+    nuance: '`〜かな` expresses genuine uncertainty or self-inquiry, seeking an answer (even if from oneself).
+      A rhetorical question, conversely, does not seek an answer, but rather makes a forceful point.'
+    grammar_point: かな (I wonder)
+  - term: 〜のですか
+    meaning: Is that so? / Is it that...?
+    kind: similar expression
+    nuance: '`〜のですか` is a genuine question seeking clarification or confirmation of information. While
+      it can express surprise, it expects a verbal response, unlike a rhetorical question.'
+    grammar_point: 〜のだ・〜んだ (explanatory)
+post_false_friends_writeup: While `〜のではないでしょうか`, `〜かな`, and `〜んです・なのです` might appear similar due to their
+  interrogative forms, their fundamental functions differ. Rhetorical questions are not genuine inquiries;
+  they are emphatic statements disguised as questions, designed to convey strong feelings or obvious truths.
+  Conversely, `〜のではないでしょうか` offers a softened opinion, `〜かな` expresses personal doubt, and `〜のですか` seeks
+  information or clarification. Distinguishing their intent is key to proper usage.
+examples:
+  - english: How could I do such a thing?
+    japanese:
+      - こんな こと が 私 に {出来る} か。
+      - こんな こと が 私 に {出来よう} か。
+      - こんな こと が 私 に {出来る だろう} か。
+      - こんな こと が 私 に {出来る もの} か。
+      - こんな こと が 私 に {出来る もん} か。
+      - こんな こと が 私 に {出来る わけ が ない} じゃ ない か。
+      - こんな こと が 私 に {出来る はず が ない} じゃ ない か。
+    english_literally: Could such a thing be done by me?
+    competing_grammar:
+      - competing_japanese:
+          - こんな こと が 私 に {出来 ます} か。
+        english: Can I do such a thing?
+        hint: The original implies a strong personal impossibility rather than genuinely asking if one
+          can do it. We're looking for a rhetorical question expressing disbelief.
+      - competing_japanese:
+          - こんな こと は 私 に {出来 ませ ん}。
+        english: I cannot do such a thing.
+        hint: The original implies a stronger, more emotional rejection than a simple negative statement.
+          We're looking for a rhetorical question expressing disbelief.
+    scene: A person is asked to do something morally questionable or beyond their capability.
+    register: casual
+    setting: serious
+  - english: Who would ever lend money to a person like that?!
+    japanese:
+      - 誰 が あんな 人 に お 金 なんか 貸す {もの} か。
+      - 誰 が あんな 人 に お 金 なんか 貸す {もん} か。
+      - 誰 が あんな 人 に お 金 なんか 貸す {だろう} か。
+      - 誰 が あんな 人 に お 金 なんか 貸す {わけ が ない} じゃ ない か。
+      - 誰 が あんな 人 に お 金 なんか 貸す {はず が ない} じゃ ない か。
+    english_literally: Is it a thing that anyone would lend money to such a person?
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が あんな 人 に お 金 なんか {貸し ます} か。
+        english: Who would lend money to such a person?
+        hint: The original implies strong indignation and an absolute denial, not a genuine inquiry. We're
+          looking for a rhetorical question expressing disbelief.
+      - competing_japanese:
+          - あんな 人 に お 金 を 貸す 人 は {い ませ ん}。
+        english: No one lends money to such a person.
+        hint: The original uses a question form to indicate a forceful, emotional statement, not a simple
+          factual one. We're looking for a rhetorical question expressing disbelief.
+    scene: Two colleagues are discussing a problematic coworker who is known for not repaying debts.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+  - english: What is there to hide now, at this point?
+    japanese:
+      - 今更 何 を 隠す こと が {ある} だろう か。
+      - 今更 何 を 隠す こと が {あろう} か。
+      - 今更 何 を 隠す こと が {ある もの} か。
+      - 今更 何 を 隠す こと が {ある もん} か。
+      - 今更 何 を 隠す こと が {ある わけ が ない} じゃ ない か。
+      - 今更 何 を 隠す こと が {ある はず が ない} じゃ ない か。
+    english_literally: At this point, what would there be to hide?
+    competing_grammar:
+      - competing_japanese:
+          - 今更 何 を 隠す こと が {あり ます} か。
+        english: What is there to hide now?
+        hint: The original expresses that there is nothing left to hide, rather than asking for specific
+          hidden information. We're looking for a rhetorical question.
+    scene: Someone has finally confessed a long-held secret, and a friend is responding.
+    register: formal
+    setting: serious
+  - english: There's no way she would come to a place like this!
+    japanese:
+      - 彼女 が こんな 所 へ 来る {わけ が ない} じゃ ない か。
+      - 彼女 が こんな 所 へ 来る {はず が ない} じゃ ない か。
+      - 彼女 が こんな 所 へ 来る {もの} か。
+      - 彼女 が こんな 所 へ 来る {もん} か。
+      - 彼女 が こんな 所 へ 来る {だろう} か。
+    english_literally: Isn't it the case that there is no reason for her to come to a place like this?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が こんな 所 へ 来る {はず が ない です}。
+        english: She shouldn't come to a place like this.
+        hint: The original emphasizes the speaker's strong conviction and implies an appeal for agreement,
+          making it a rhetorical statement. We're looking for a rhetorical question expressing strong
+          impossibility.
+    scene: Friends are surprised to see a very proper and reserved person at a wild party.
+    register: casual
+    setting: pessimistic
+  - english: How could he possibly not understand that?
+    japanese:
+      - どう し て それ が 彼 に 分から ない こと が {あろう} か。
+      - どう し て それ が 彼 に 分から ない こと が {ある だろう} か。
+      - どう し て それ が 彼 に 分から ない こと が {ある もの} か。
+      - どう し て それ が 彼 に 分から ない こと が {ある もん} か。
+      - どう し て それ が 彼 に 分から ない こと が {ある わけ が ない} じゃ ない か。
+      - どう し て それ が 彼 に 分から ない こと が {ある はず が ない} じゃ ない か。
+    english_literally: How could there be a thing that he does not understand?
+    competing_grammar:
+      - competing_japanese:
+          - どう し て 彼 は それ が {分から ない です} か。
+        english: Why doesn't he understand that?
+        hint: The original expresses strong exasperation, not seeking an explanation for his misunderstanding.
+          We're looking for a rhetorical question.
+    scene: A teacher is frustrated with a student's lack of comprehension regarding a simple concept.
+    register: formal
+    setting: serious
+  - english: He's not going home early, is he?
+    japanese:
+      - 彼 は 早く 帰る {はず が ない} じゃ ない か。
+      - 彼 は 早く 帰る {わけ が ない} じゃ ない か。
+      - 彼 は 早く 帰る {もの} か。
+      - 彼 は 早く 帰る {もん} か。
+      - 彼 は 早く 帰る {だろう} か。
+    english_literally: Isn't it the case that he has no reason to go home early?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 早く 帰り {ませ ん} か。
+        english: Isn't he going home early?
+        hint: The original conveys the speaker's strong belief that something is impossible, functioning
+          as a statement rather than a genuine inquiry. We're looking for a rhetorical question expressing
+          impossibility.
+    scene: Two coworkers are discussing a notoriously diligent colleague who always stays late.
+    register: casual
+    setting: informative
+  - english: There's no need to cry, is there?
+    japanese:
+      - 何 も 泣く 必要 は ない {じゃ ない} か。
+      - 何 も 泣く 必要 は ない {でしょう}。
+      - 何 も 泣く 必要 は ない {の で は ない} か。
+    english_literally: Isn't it that there is no need to cry?
+    competing_grammar:
+      - competing_japanese:
+          - 何 も 泣く 必要 は {あり ませ ん} か。
+        english: Is there no need to cry?
+        hint: The original is rhetorical, suggesting that crying is unnecessary rather than asking if
+          there's a reason not to cry. We're looking for a rhetorical question offering comfort.
+    scene: A kind senior colleague is comforting a junior who is upset about a minor setback.
+    register: casual
+    setting: sympathetic
+  - english: Look! The door finally opened without a sound, didn't it?
+    japanese:
+      - 見 て ごらん、やっと 扉 が 音 も なく 開い た {で は ない か}。
+      - 見 て ごらん、やっと 扉 が 音 も なく 開い た {じゃ ない か}。
+      - 見 て ごらん、やっと 扉 が 音 も なく 開い た {の で は ない か}。
+      - 見 て ごらん、やっと 扉 が 音 も なく 開い た {ん じゃ ない} か。
+    english_literally: Look! The door opened without a sound, isn't it so?
+    competing_grammar:
+      - competing_japanese:
+          - やっと 扉 が 音 も なく {開き まし た} か。
+        english: Did the door finally open without a sound?
+        hint: The original is a declaration of success, emphasizing the outcome, not a genuine inquiry.
+          We're looking for a rhetorical question asserting a discovery.
+    scene: Two adventurers have been struggling with a stubborn door, and it suddenly yields.
+    register: formal
+    setting: excited
+  - english: Oh, so you were here!
+    japanese:
+      - ああ、君 は ここ に {い た} の か。
+      - ああ、君 は ここ に {い た} の だ。
+      - ああ、君 は ここ に {い た} ん だ。
+      - ああ、君 は ここ に {い た} ん じゃ ない か。
+    english_literally: Oh, is it that you were here?
+    competing_grammar:
+      - competing_japanese:
+          - ああ、君 は ここ に {い まし た} か。
+        english: Oh, were you here?
+        hint: The original implies a realization or discovery, not a genuine question. We're looking for
+          a rhetorical question expressing surprise.
+    scene: A person has been searching for someone and finds them in an unexpected place.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+  - english: There's no way you can go home alone on a night like this, is there?
+    japanese:
+      - こんな 夜 に 一人 で 帰れる {わけ が ない} じゃ ない か。
+      - こんな 夜 に 一人 で 帰れる {はず が ない} じゃ ない か。
+      - こんな 夜 に 一人 で 帰れる {もの} か。
+      - こんな 夜 に 一人 で 帰れる {もん} か。
+      - こんな 夜 に 一人 で 帰れる {だろう} か。
+    english_literally: Isn't it the case that there's no reason to be able to go home alone on a night
+      like this?
+    competing_grammar:
+      - competing_japanese:
+          - こんな 夜 に 一人 で {帰っ て は いけ ませ ん}。
+        english: You shouldn't go home alone on a night like this.
+        hint: The original implies concern while subtly positioning the speaker as the only viable solution,
+          characteristic of a 'flirty' setting. We're looking for a rhetorical question.
+    scene: A man is trying to persuade a woman to let him walk her home late at night.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「わけがないじゃないか」 in a casual tone, implying a concern for her safety while also
+      attempting to initiate a deeper connection, characteristic of a slightly persuasive or flirty register.
+      The ending 「じゃないか」 is typical for such persuasive rhetoric.
+  - english: Only you could make such a delicious dish, couldn't you?
+    japanese:
+      - こんな 美味しい 料理 を 作れる の は あなた しか い ない {でしょう}。
+      - こんな 美味しい 料理 を 作れる の は あなた しか い ない {でしょ}。
+      - こんな 美味しい 料理 を 作れる の は あなた しか い ない {じゃ ない} か。
+      - こんな 美味しい 料理 を 作れる の は あなた しか い ない {の で は ない} か。
+      - こんな 美味しい 料理 を 作れる の は あなた しか い ない {だろう} か。
+    english_literally: It is that only you can make such a delicious dish, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あなた し か こんな 美味しい 料理 を {作れ ませ ん}。
+        english: Only you can make such a delicious dish.
+        hint: The original adds a seeking-agreement nuance, making the compliment feel less like a direct
+          statement and more like an appreciative rhetorical question. We're looking for a rhetorical
+          question as a compliment.
+    scene: A woman is complimenting a man's cooking on their first date, intending to flatter him.
+    register: teineigo (polite)
+    setting: first-date
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「でしょう」 in a polite tone to seek confirmation while implying admiration, creating
+      a light and positive atmosphere. The rhetorical question here functions as a strong compliment intended
+      to flatter and engage the listener.
+post_example_writeup: Rhetorical questions can utilize various sentence endings, each imparting a distinct
+  nuance. It is crucial to remember that the implied "answer" to a rhetorical question is often the opposite
+  of what is literally asked, or it is a self-evident truth.

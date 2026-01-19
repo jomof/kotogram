@@ -1,0 +1,245 @@
+grammar_point: お (honorific prefix)
+learn_before:
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+meaning: Honorific prefix
+pronunciation:
+  katakana: オ
+  romaji: o
+formation:
+  お + Noun: Used to make nouns polite or respectful, or for 美化語 (bikago).
+  お + Verb[ます-stem] + になる: Forms respectful expressions (sonkeigo) for the listener's or a third party's
+    action.
+  お + Verb[ます-stem] + する: Forms humble expressions (kenjōgo) for the speaker's action.
+  お + Adjective: Limited use with certain adjectives to add politeness (e.g., お忙しい, お寒い).
+jlpt: N5
+etymology: The origin of 「お」 (o) as an honorific prefix stems from the classical Japanese honorific particle
+  「おほ」 (oho), which was used to refer to things or people of high status. Over time, it underwent phonetic
+  changes, simplifying to 「お」. Its role evolved from solely indicating nobility or divinity to a broader
+  function of conveying politeness, respect, and sometimes simply beautifying language (美化語 bikago), particularly
+  in addressing or referring to things associated with the listener or the context. This evolution reflects
+  the strong emphasis on social hierarchy and politeness in Japanese language and culture, where linguistic
+  forms are used to express deference.
+writeup: |-
+  The prefix 「お」 (o) is a fundamental component of honorific and polite Japanese, serving to elevate the status of a noun or verb, or to humble the speaker's action. It is broadly used across different levels of politeness, including `teineigo` (polite language), `sonkeigo` (respectful language), and `kenjōgo` (humble language).
+
+  When attached to nouns, 「お」 often indicates respect for the object or person. For example, 「お名前」(おなまえ) means "your name" (respectful), 「お茶」(おちゃ) means "tea" (often a polite/beautifying use), or 「お金」(おかね) means "money" (bikago). While some nouns always take 「お」 (e.g., お茶), others take it only when politeness is required or for specific referents (e.g., お電話 for a phone call you receive).
+
+  For verbs, 「お」 is typically combined with the ます-stem to form honorific expressions. In `sonkeigo`, it forms phrases like 「お帰りになる」(おかえりになる - to return, respectful) or 「お読みになる」(およみになる - to read, respectful). In `kenjōgo`, it forms expressions like 「お待ちする」(おまちする - to wait, humble) or 「お伝えする」(おつたえする - to tell, humble). These constructions are crucial for demonstrating proper social hierarchy in interactions.
+
+  It is important to note that 「お」 is not universally applied. There are common words that do not take 「お」, particularly those of foreign origin (e.g., 「ビール」), or words that inherently do not require honorification. Overuse or incorrect application of 「お」 can sound unnatural or even condescending. Furthermore, some native Japanese words use 「ご」 (go) instead of 「お」, primarily words of Chinese origin (e.g., 「ご飯」(ごはん) - meal, 「ご家族」(ごかぞく) - family). The distinction between 「お」 and 「ご」 is usually based on the etymological origin of the word they precede.
+false_friends:
+  - term: ご (honorific prefix)
+    meaning: honorific prefix (Chinese origin)
+    kind: similar expression
+    nuance: While 「お」 is typically used for native Japanese words (和語 wago), 「ご」 is generally used for
+      words of Chinese origin (漢語 kango) when adding politeness. For example, 「ご連絡」(ごれんらく) for 'contact',
+      instead of 「お連絡」.
+    grammar_point: ご (honorific prefix for Sino-Japanese words)
+post_false_friends_writeup: The most common point of confusion when using honorific prefixes is deciding
+  between 「お」 and 「ご」. While both serve to elevate politeness, the general rule of thumb is to use 「お」
+  for words of native Japanese origin (和語 wago) and 「ご」 for words of Chinese origin (漢語 kango). For instance,
+  you would say 「お元気」(おげんき) using 「お」, but 「ご親切」(ごしんせつ) using 「ご」. There are exceptions, and some words
+  can take both depending on context or specific usage, but adhering to the wago/kango distinction is
+  a good starting point. Understanding this distinction helps in applying the correct prefix to maintain
+  natural and appropriate politeness in Japanese.
+examples:
+  - english: What is your name?
+    japanese:
+      - お {名前} は 何 です か。
+      - お {名前} は 何 でしょう か。
+      - お {名前}、伺っ て よろしい です か。
+    english_literally: As for your honorific name, what is it?
+    competing_grammar:
+      - competing_japanese:
+          - 名前 は 何 です か。
+        english: What is your name?
+        hint: While grammatically correct, omitting the honorific 「お」 from 「お名前」 makes the question less
+          polite and less formal. We're looking for a polite and respectful way to ask someone's name.
+    scene: A new acquaintance is politely asking for your name.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The 「お」 in 「お名前」 is a general polite prefix, making the question respectful when asking for
+      someone's name. It's standard polite language used to show deference to the person being addressed.
+  - english: Customer, shall I carry your luggage?
+    japanese:
+      - お 客 様、お {荷物} を お {持ち} し ましょう か。
+      - お 客 様、お {荷物} を お {持ち} いたし ましょう か。
+      - お 客 様、お {荷物} お 預かり し ましょう か。
+    english_literally: Esteemed customer, shall I humbly carry your honorific luggage?
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様、荷物 を 持ち ましょう か。
+        english: Customer, shall I carry the luggage?
+        hint: This version lacks the honorific 「お」 for 'luggage' and the humble 「お持ちする」, making it less
+          polite and not appropriate in a service context. We're looking for an expression that shows
+          humility and respect.
+    scene: A hotel staff member offers assistance to a guest.
+    register: kenjōgo (humble)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「お荷物」 uses 「お」 as a respectful prefix for the customer's belongings. 「お持ちしましょうか」 is a humble
+      expression, combining 「お」 with the ます-stem of 「持つ」 (to carry) and 「する」, showing humility from the
+      speaker towards the listener. This is appropriate in a service context to elevate the customer and
+      humble the speaker's action.
+  - english: Has the teacher already returned?
+    japanese:
+      - 先生 は もう お {帰り} に なり まし た か。
+      - 先生 は もう お {帰り} に なら れ まし た か。
+      - 先生 は もう お {戻り} に なり まし た か。
+    english_literally: As for teacher, has honorific return already happened?
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は もう 帰り まし た か。
+        english: Has the teacher already returned?
+        hint: While grammatically correct, this version uses the simple polite form 「帰りました」 (kaerimashita),
+          which lacks the strong respect shown by 「お帰りになりました」 (okaeri ni narimashita). We're looking for
+          a respectful expression to describe the teacher's action.
+    scene: Students are discussing if their teacher has arrived back.
+    register: sonkeigo (respectful)
+    setting: academic
+    nuance: 「お帰りになる」 is a respectful form of 「帰る」(かえる - to return), used to show reverence for the teacher's
+      action. The 「お」 elevates the action of "returning" to a higher status, appropriate when speaking
+      about someone superior like a teacher.
+  - english: I apologize for interrupting you during your busy time, but could I have a little of your
+      time?
+    japanese:
+      - お {忙しい} ところ 恐れ入り ます が、少し お {時間} を いただけ ます か。
+      - お {忙しい} ところ 申し訳 ござい ませ ん が、少し お {時間} を いただけ ます か。
+      - お {忙しい} ところ 恐縮 です が、お {時間} を 少し 頂戴 でき ます でしょう か。
+    english_literally: Honorific busy place, I apologize, but a little honorific time, may I receive?
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい ところ 恐れ入り ます が、少し 時間 を いただけ ます か。
+        english: I apologize for interrupting you during your busy time, but could I have a little of
+          your time?
+        hint: Omitting the 「お」 prefixes makes the phrase less formal and polite. In a business or highly
+          formal setting, these honorifics are crucial for showing proper respect and consideration. We're
+          looking for a highly polite and considerate expression.
+    scene: A colleague needs to speak with a busy manager.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: 「お忙しい」 uses 「お」 with the i-adjective 「忙しい」(いそがしい - busy) to respectfully refer to the listener's
+      busy state. 「お時間」 uses 「お」 for "time" in a polite context, showing consideration. Both contribute
+      to the highly formal and polite tone suitable for a business interaction, indicating the speaker's
+      awareness and respect for the listener's situation.
+  - english: Please, eat/drink up.
+    japanese:
+      - どうぞ、お {召し上がり} ください。
+      - どうぞ、お {あがり} ください。
+      - どうぞ、お {食べ} ください。
+    english_literally: Please, honorifically eat/drink.
+    competing_grammar:
+      - competing_japanese:
+          - どうぞ、食べ て ください。
+        english: Please, eat.
+        hint: 「食べてください」 is a polite request, but 「お召し上がりください」 is the respectful form used when addressing
+          a superior or guest. We're looking for a highly deferential way to invite someone to eat or
+          drink.
+    scene: A host serving food to guests.
+    register: sonkeigo (respectful)
+    setting: friendly
+    nuance: 「お召し上がりください」 is a respectful command, formed from 「召し上がる」(めしあがる - respectful form of 食べる/飲む)
+      with the imperative 「ください」. The 「お」 here marks the beginning of this respectful verb phrase. This
+      phrasing is used to show great deference to the guest's action of eating or drinking, common in
+      hospitality settings.
+  - english: Would you like some sake?
+    japanese:
+      - お {酒} は いかが です か。
+      - お {酒} は いかが でしょう か。
+      - お {酒}、お 飲み に なり ます か。
+    english_literally: As for honorific sake, how about it?
+    competing_grammar:
+      - competing_japanese:
+          - 酒 は いかが です か。
+        english: How about sake?
+        hint: Omitting the 「お」 from 「お酒」 makes the phrase less refined and polite, especially when offering
+          something to a guest. We're looking for a polite way to offer something.
+    scene: Offering a drink to a guest at a dinner party.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「お酒」 (おさけ) uses 「お」 as a general polite prefix (美化語 bikago) for "sake." It makes the offering
+      sound more refined and polite, suitable for hospitality, implying a soft, welcoming tone.
+  - english: I wrote a letter for you.
+    japanese:
+      - お {手紙} を お {書き} し まし た。
+      - お {手紙} を お {書き} いたし まし た。
+      - お {手紙} を お {書かせ} て いただき まし た。
+    english_literally: Honorific letter, I humbly wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 手紙 を 書き まし た。
+        english: I wrote a letter.
+        hint: This is a simple polite statement without the humble or honorific nuances. In a professional
+          or formal context, using 「お」 for both the object and the action shows greater respect to the
+          recipient or for whom the action was performed. We're looking for an expression that humbly
+          describes the speaker's action for someone else.
+    scene: An assistant informs their boss about completing a task.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: 「お手紙」 is a polite reference to "letter," often used when referring to a letter belonging to
+      or for someone else. 「お書きしました」 is a humble expression of the action "to write" (書く kaku), using
+      the ます-stem 「書き」 with 「お」 and 「する」, emphasizing the speaker's humble service to the listener or
+      recipient, which is appropriate for a subordinate speaking to a superior.
+  - english: The president will speak.
+    japanese:
+      - 社長 が お {話し} に なり ます。
+      - 社長 が お {話し} に なさい ます。
+      - 社長 が お {話} し ください ます。
+    english_literally: The president honorifically speaks.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 が 話し ます。
+        english: The president speaks.
+        hint: 「話します」 is polite, but it doesn't show the high level of respect for the president's action
+          that 「お話しになります」 does. We're looking for a respectful way to describe the president's action.
+    scene: Announcing the president's address at a company meeting.
+    register: sonkeigo (respectful)
+    setting: professional
+    nuance: 「お話しになります」 is a respectful form of 「話す」(はなす - to speak), showing deference to the president's
+      action. The 「お」 elevates the act of speaking, highlighting the president's superior status and the
+      formality of the situation.
+  - english: Please take care of your health.
+    japanese:
+      - お {体}、大切 に し て ください。
+      - お {体}、どうぞ お {大切} に なさっ て ください。
+      - お {体} に お {気 を つけ} ください。
+    english_literally: Honorific body, please make it important.
+    competing_grammar:
+      - competing_japanese:
+          - 体、大切 に し て ください。
+        english: Please take care of your health.
+        hint: Omitting 「お」 from 「お体」 makes the phrase less polite and caring, especially when expressing
+          concern for someone's well-being. We're looking for a considerate and polite expression.
+    scene: Saying goodbye to someone who is not feeling well.
+    register: formal
+    setting: cautious
+    nuance: 「お体」 uses 「お」 as a respectful prefix for "body," implying the listener's precious health.
+      This phrase is a common polite and caring expression used when expressing concern for someone's
+      well-being, demonstrating a considerate and gentle tone.
+  - english: Are you off tomorrow?
+    japanese:
+      - 明日 は お {休み} です か。
+      - 明日 は お {休み} です でしょう か。
+      - 明日 は お {休み} に なら れ ます か。
+    english_literally: As for tomorrow, is it honorific rest?
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 休み です か。
+        english: Are you off tomorrow?
+        hint: While 「休みですか」 is polite, adding 「お」 to 「お休み」 makes the question more considerate and natural
+          when asking about someone's personal time. We're looking for a polite way to inquire about a
+          day off.
+    scene: A coworker asking about your day off.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「お休み」 uses 「お」 for "day off" or "rest." It's a common polite form for this noun, used when
+      inquiring about someone else's personal time, reflecting general consideration and a natural polite
+      tone in professional or semi-formal settings.
+post_example_writeup: As you can see from the examples, the prefix 「お」 plays a vital role in conveying
+  politeness and respect in Japanese. Its usage varies depending on whether it's applied to nouns, adjectives,
+  or verbs, and whether the intention is to show humility (kenjōgo), respect (sonkeigo), or simply to
+  use beautiful language (bikago). Mastering the appropriate use of 「お」 is key to sounding natural and
+  navigating various social situations in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/お

@@ -1,0 +1,250 @@
+grammar_point: てください (polite request)
+learn_before:
+  - どうぞ (here you are・please・invitation)
+meaning: please do something
+pronunciation:
+  katakana: テ クダサイ
+  romaji: te kudasai
+formation:
+  Verb[te] + ください: Used to make a polite request or command.
+jlpt: N5
+etymology: The phrase combines the て (te) form of a verb, which connects clauses or indicates a means,
+  with ください (kudasai), the imperative form of くださる (kudasaru), an honorific verb meaning "to give." Thus,
+  it can be literally interpreted as "please give (the favor of) doing Verb." This etymology highlights
+  the underlying nuance of the listener performing an action as a favor to the speaker.
+writeup: The てください construction is one of the most fundamental and widely used ways to make a polite request
+  in Japanese. It is formed by taking the て form of a verb and attaching ください. This structure directly
+  asks or commands the listener to perform the action of the verb. Despite being classified as "polite,"
+  it is essentially an imperative form. Its politeness comes from the use of ください, which is derived from
+  くださる, an honorific verb indicating that the action is a favor bestowed by the listener upon the speaker
+  or the speaker's in-group. Therefore, while suitable for most everyday polite interactions, particularly
+  with people of equal or lower status, or with strangers where general politeness is required, it can
+  sometimes feel a bit direct when addressing people of significantly higher status or in very formal
+  business settings. In such cases, more indirect or humble expressions might be preferred. It's crucial
+  to understand that てください is a direct request. The listener is expected to perform the action. It is
+  not merely a suggestion or a casual inquiry.
+false_friends:
+  - term: てくれる
+    meaning: to do for (me/us or in-group)
+    kind: often confused with
+    nuance: てくれる describes an action someone has completed for the speaker's benefit, rather than requesting
+      an action from the listener.
+    grammar_point: '[Verb-て]くれる (to do for me・in-group)'
+  - term: てほしい
+    meaning: to want someone to do
+    kind: similar expression
+    nuance: てほしい expresses the speaker's desire for an action to occur, making it a softer, often more
+      indirect request, whereas てください is a direct command.
+    grammar_point: '[Verb-て]ほしい (to want someone to do)'
+  - term: 〜なさい
+    meaning: please do (polite imperative)
+    kind: similar expression
+    nuance: While also a polite imperative, 〜なさい typically conveys a command from a superior to a subordinate
+      (e.g., parent to child, teacher to student), making it less suitable for general polite requests
+      than てください.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+post_false_friends_writeup: While てください is a versatile polite request, understanding its distinction from
+  similar expressions is key. てくれる describes an action that someone has done for you, not a request for
+  an action. てほしい expresses a wish or desire for an action to occur, which is softer and less direct than
+  the command-like nature of てください. Lastly, 〜なさい is also a polite imperative, but its usage is generally
+  restricted to situations where the speaker is in a position of authority over the listener, unlike てください
+  which is more broadly applicable.
+examples:
+  - english: Please wait a moment.
+    japanese:
+      - 少し {待っ て ください}。
+      - ちょっと {待っ て ください}。
+      - どうぞ、少し {待っ て ください}。
+      - どうぞ、ちょっと {待っ て ください}。
+    english_literally: A little, please wait.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 待っ て。
+        english: Wait a moment (casual).
+        hint: While 「待って」is grammatically correct, it's a casual form typically used with close friends
+          or family. We're looking for a polite request.
+    scene: A customer asking a clerk to wait.
+    register: teineigo (polite)
+    setting: professional
+    nuance: This is a very common, general polite request used in everyday situations. 「待ってください」is direct
+      but standardly polite.
+  - english: Please open the window.
+    japanese:
+      - 窓 を {開け て ください}。
+      - どうぞ、窓 を {開け て ください}。
+    english_literally: Window, please open.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 を 開け て くれ ませ ん か。
+        english: Would you open the window for me?
+        hint: This is a polite suggestion using an indirect request. We're looking for a more direct polite
+          request.
+    scene: Someone asking a friend to open a window in a shared space.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: A straightforward request in a casual but still polite setting. The use of 「窓 を 開けてください」is
+      appropriate between friends or colleagues.
+  - english: Please help me.
+    japanese:
+      - '{手伝っ て ください}。'
+      - どうぞ、{手伝っ て ください}。
+      - ちょっと {手伝っ て ください}。
+    english_literally: Please help.
+    competing_grammar:
+      - competing_japanese:
+          - 手伝っ て ほしい。
+        english: I want you to help me.
+        hint: 「手伝ってほしい」expresses your desire for help, making it a softer request. We're looking for a
+          direct polite request for assistance.
+    scene: You are struggling with heavy bags and ask a passerby for help.
+    register: teineigo (polite)
+    setting: casual slang
+    nuance: A common phrase when asking for assistance. Direct and polite.
+  - english: Please read this page.
+    japanese:
+      - この ページ を {読ん で ください}。
+      - こちら の ページ を {読ん で ください}。
+      - どうぞ、この ページ を {読ん で ください}。
+    english_literally: This page, please read.
+    competing_grammar:
+      - competing_japanese:
+          - この ページ を 読み なさい。
+        english: Read this page (imperative, instructional).
+        hint: While 「読みなさい」is also a polite command, it carries a more instructional or authoritative
+          tone, often used by superiors. We're looking for a general polite request.
+    scene: A teacher instructing students during a class.
+    register: teineigo (polite)
+    setting: academic
+    nuance: In an instructional context, 「読んでください」functions as a clear directive. The teacher-student
+      dynamic makes this directness acceptable.
+  - english: Please take this medicine.
+    japanese:
+      - この 薬 を {飲ん で ください}。
+      - どうぞ、この 薬 を {飲ん で ください}。
+    english_literally: This medicine, please drink/take.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 を お 飲み ください。
+        english: Please drink this medicine (more formal honorific).
+        hint: 「お飲みください」uses an honorific prefix, making it more formal. We're looking for a standard polite
+          request suitable for direct instruction.
+    scene: A doctor giving instructions to a patient.
+    register: teineigo (polite)
+    setting: serious
+    nuance: When giving instructions that are important for someone's well-being, 「飲んでください」is commonly
+      used to ensure clarity and compliance.
+  - english: Please be careful.
+    japanese:
+      - '{気 を つけ て ください}。'
+      - どうぞ、{気 を つけ て ください}。
+    english_literally: Please attach spirit.
+    competing_grammar:
+      - competing_japanese:
+          - 気 を つけ て。
+        english: Be careful (casual).
+        hint: 「気をつけて」is a casual version. We're looking for a polite way to say "please be careful."
+    scene: Someone saying goodbye to a friend who is about to travel.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: This phrase often functions more as advice or a caring warning rather than a strict command.
+      The politeness of 「ください」makes it suitable for showing concern.
+  - english: Please tell me your name.
+    japanese:
+      - お 名前 を {教え て ください}。
+      - どうぞ、お 名前 を {教え て ください}。
+    english_literally: Your name, please tell.
+    competing_grammar:
+      - competing_japanese:
+          - お 名前 を 伺っ て も よろしい でしょう か。
+        english: May I ask your name? (very polite, humble).
+        hint: This is a very humble and indirect way to ask. We're looking for a direct polite request
+          for information.
+    scene: A receptionist asking for a visitor's name.
+    register: formal
+    setting: professional
+    nuance: When asking for personal information, 「教えてください」remains polite. The use of the honorific 「お」before
+      「名前」adds extra politeness suitable for a formal setting.
+  - english: Please remember this.
+    japanese:
+      - これ を {覚え て おい て ください}。
+      - どうぞ、これ を {覚え て おい て ください}。
+    english_literally: This, please remember and keep.
+    competing_grammar:
+      - competing_japanese:
+          - これ を 覚え て おい て ね。
+        english: Remember this, okay? (casual, seeking agreement).
+        hint: 「ね」 softens the request and seeks agreement, making it more casual. We're looking for a
+          direct, polite instruction.
+    scene: A manager telling an employee to retain important information for future reference.
+    register: semi-formal
+    setting: professional
+    nuance: The 「ておく」part (short for 「ておいて」) indicates doing something in advance for future benefit or
+      preparation. It's a directive to keep something in mind.
+  - english: Please forgive me.
+    japanese:
+      - '{許し て ください}。'
+      - どう か {許し て ください}。
+      - どうぞ {許し て ください}。
+    english_literally: Please forgive.
+    competing_grammar:
+      - competing_japanese:
+          - 許し て ほしい。
+        english: I want you to forgive me.
+        hint: This phrase expresses a desire for forgiveness. We're looking for a direct, polite plea
+          for pardon.
+    scene: Someone apologizing sincerely for a mistake.
+    register: teineigo (polite)
+    setting: apologetic
+    nuance: Used when asking for pardon, 「許してください」is a very direct and emotionally charged request. The
+      politeness of 「ください」softens the demand for forgiveness.
+  - english: Please come by 3 PM.
+    japanese:
+      - 午後 3 時 まで に {来 て ください}。
+      - どうぞ、午後 3 時 まで に {来 て ください}。
+    english_literally: Afternoon 3 o'clock until, please come.
+    competing_grammar:
+      - competing_japanese:
+          - 午後 3 時 まで に 来 て ください ませ。
+        english: Please come by 3 PM (more formal).
+        hint: Adding 「ませ」can sometimes make it sound more formal or slightly antiquated, but 「来てください」is
+          the common polite form. We're looking for a standard polite request.
+    scene: Organizing a meeting, sending out a memo.
+    register: formal
+    setting: professional
+    nuance: This is a clear instruction with a deadline. The use of 「まで に」specifies a completion time
+      for the requested action.
+  - english: Please be quiet.
+    japanese:
+      - '{静か に し て ください}。'
+      - どうぞ、{静か に し て ください}。
+    english_literally: Please make quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 静か に し て。
+        english: Be quiet (casual).
+        hint: 「静かにして」is a casual command. We're looking for a polite way to request silence.
+    scene: A librarian asking patrons to lower their voices.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「する」attached to a な-adjective like 「静か」makes it a verb. This is a common way to request silence,
+      appropriate in public or professional settings.
+  - english: Please try doing it this way.
+    japanese:
+      - この よう に {やっ て み て ください}。
+      - どうぞ、この よう に {やっ て み て ください}。
+    english_literally: This way, please try doing.
+    competing_grammar:
+      - competing_japanese:
+          - この よう に やっ て み ませ ん か。
+        english: Why don't you try doing it this way? (invitation/suggestion).
+        hint: 「〜ませんか」is an invitation or suggestion. We're looking for a polite request to try an action.
+    scene: A mentor guiding a junior colleague.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The 「てみる」construction (to try doing) followed by 「ください」softens the command into a suggestion
+      or gentle guidance, making it encouraging rather than demanding.
+post_example_writeup: The examples illustrate the versatility of てください in various situations. While always
+  conveying a request or command, the specific nuance can shift based on context, the relationship between
+  speakers, and accompanying particles or auxiliary verbs. For instance, 気をつけてください acts as a caring warning,
+  while 教えてください is a direct plea for information. Combining てください with other verb forms like ておく (for
+  preparatory actions) or てみる (for trying something) allows for more specific and nuanced requests.

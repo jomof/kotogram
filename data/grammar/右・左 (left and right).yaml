@@ -1,0 +1,203 @@
+grammar_point: 右・左 (left and right)
+learn_before:
+  - を (point of departure)
+meaning: right and left (directional terms)
+pronunciation:
+  katakana: ミギ・ヒダリ
+  romaji: migi・hidari
+formation:
+  '[Noun] の 右 / 左': To the right/left of [Noun]
+  右 / 左 に [Verb of movement]: To move to the right/left
+  右 / 左 を 向く: To face right/left
+jlpt: N5
+etymology: The kanji 右 (migi) and 左 (hidari) are ideograms. 右 is said to depict a hand holding a tool
+  or utensil, symbolizing the right hand's common use in various tasks. 左 is often thought to show a hand
+  assisting another, or perhaps even a primitive form of a loom or a person's left hand. Historically,
+  in some cultures, the right was associated with superiority or correctness, while the left sometimes
+  carried connotations of awkwardness or negativity. However, these associations are less pronounced in
+  modern Japanese usage of these directional terms themselves, where they primarily function as neutral
+  spatial indicators.
+writeup: |-
+  右 (migi) and 左 (hidari) are fundamental Japanese nouns used to denote 'right' and 'left,' respectively. They are essential for giving and understanding directions, describing spatial relationships, and indicating orientation. They can refer to a physical direction in space or the right/left side of an object or person.
+
+  When referring to a location relative to an object or person, they are typically used with the possessive particle の (no), such as 「車の右」 (kuruma no {migi} - to the right of the car). This construction indicates a static relative position.
+
+  When indicating a direction of movement, they are often followed by the particle に (ni) or へ (e), as in 「右に曲がる」 ({migi} ni magaru - to turn right). The particle に emphasizes the point or direction of arrival, while へ emphasizes the general direction.
+
+  They are also commonly used as part of compound nouns, such as 「右手」 ({migi}te - right hand) or 「左側」 ({hidari}gawa - left side). These terms are universally understood and used across all demographics, without significant gender or age preferences.
+false_friends:
+  - term: 真っ直ぐ
+    meaning: straight
+    kind: similar expression
+    nuance: Whereas 「右」 and 「左」 indicate a turn or a side, 「真っ直ぐ」 indicates going forward without turning.
+    grammar_point: <suggest>:真っ直ぐ (straight)
+post_false_friends_writeup: While 「右」 and 「左」 specify turning or a side, 「真っ直ぐ」 is used when no turning
+  is involved. If you are instructing someone to go straight ahead, you would use 「真っ直ぐ進んでください」. If they
+  need to turn, you would specify the direction with 「右に曲がってください」 or 「左に曲がってください」. The choice depends
+  on whether the path involves a turn or continues without deviation.
+examples:
+  - english: Please turn right at the next corner.
+    japanese:
+      - 次 の 角 を {右} に 曲がっ て ください。
+      - 次 の 角 を {右} に 曲がれ。
+      - 次 の 角 を {右} に 曲がっ て いただけ ませ ん か。
+      - 次 の 角 を {右} へ 曲がっ て ください。
+    english_literally: Next corner, object marker, right, to, turn, please.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 角 を まっすぐ 進ん で ください。
+        english: Please go straight at the next corner.
+        hint: We are looking for a term that indicates a turn, not going straight.
+    scene: A taxi driver is asking for directions from a pedestrian.
+    register: formal
+    setting: informative
+  - english: The convenience store is to the left of the station.
+    japanese:
+      - コンビニ は 駅 の {左} に あり ます。
+      - コンビニ は 駅 の {左} に ある よ。
+      - コンビニ は 駅 の {左} 側 に ござい ます。
+      - コンビニ は 駅 の {左} に ある。
+    english_literally: Convenience store, topic, station's, left, location, exists.
+    competing_grammar:
+      - competing_japanese:
+          - コンビニ は 駅 の 前 に あり ます。
+        english: The convenience store is in front of the station.
+        hint: We are indicating a side position, not the front.
+    scene: You are giving directions to a friend who is looking for a convenience store.
+    register: casual
+    setting: friendly
+  - english: Raise your right hand.
+    japanese:
+      - '{右} 手 を 上げ て ください。'
+      - '{右} 手 を 上げろ。'
+      - '{右} 手 を お 上げ ください。'
+      - '{右} 手 を 上げ なさい。'
+    english_literally: Right hand, object marker, raise, please.
+    competing_grammar:
+      - competing_japanese:
+          - 左手 を 上げ て ください。
+        english: Raise your left hand.
+        hint: The instruction specifies a particular hand, not the opposite one.
+    scene: A gym teacher is giving instructions during an exercise.
+    register: formal
+    setting: instructional
+  - english: There's a big tree on the left side of the road.
+    japanese:
+      - 道 の {左} 側 に 大きな 木 が あり ます。
+      - 道 の {左} 側 に 大きな 木 が ある よ。
+      - 道 の {左} 手 に 大きな 木 が あり ます。
+      - 道 の {左} 側 に 大きな 木 が ある。
+    english_literally: Road's, left side, location, big tree, subject marker, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 道 の 右側 に 大きな 木 が あり ます。
+        english: There's a big tree on the right side of the road.
+        hint: The description specifically refers to the opposite side of the road.
+    scene: You are describing a landmark to someone trying to find your house.
+    register: casual
+    setting: informative
+  - english: Cars must keep to the left in Japan.
+    japanese:
+      - 日本 で は 車 は {左} 側 通行 です。
+      - 日本 で は 車 は {左} 側 を 通行 する。
+      - 日本 国 にて は 車両 は {左} 側 を 通行 す べき で ある。
+      - 日本 で は 車 は {左} 側 通行 だ。
+    english_literally: Japan, in, topic, car, topic, left side traffic, is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で は 車 は 右側 通行 です。
+        english: In Japan, cars must keep to the right.
+        hint: We are discussing the specific side of the road for driving in Japan.
+    scene: You are explaining Japanese traffic rules to a foreign visitor.
+    register: formal
+    setting: informative
+  - english: The future of the company depends on his right-hand man.
+    japanese:
+      - 会社 の 将来 は 彼 の {右} 腕 に かかっ て い ます。
+      - 会社 の 将来 は 彼 の {右} 腕 に かかっ てる。
+      - 会社 の 将来 は 彼 の {右} 腕 が 握っ て い ます。
+      - 会社 の 将来 は 彼 の {右} 腕 に かかっ て いる。
+    english_literally: Company's, future, topic, his, right arm (man), depends on.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 将来 は 彼 の 左腕 に かかっ て い ます。
+        english: The future of the company depends on his left-hand man.
+        hint: 「右腕」 is the common idiom for a trusted assistant, not 「左腕」.
+    scene: You are discussing business strategy with colleagues.
+    register: formal
+    setting: serious
+    nuance: 「右腕」(migiude) literally means "right arm" but colloquially refers to a trusted assistant or
+      "right-hand man/woman". This example illustrates a more idiomatic use of 右。
+    etymology: The term 「右腕」 (migiude) comes from the idea that a person's dominant arm (often the right)
+      is the most capable and relied-upon, thus metaphorically representing someone's most trusted and
+      indispensable assistant.
+  - english: My right shoulder hurts.
+    japanese:
+      - '{右} 肩 が 痛い です。'
+      - '{右} 肩 が 痛い。'
+      - '{右} 肩 が 痛い ん だ。'
+      - わたくし の {右} 肩 に 痛み が ござい ます。
+    english_literally: Right shoulder, subject marker, hurts (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 左肩 が 痛い です。
+        english: My left shoulder hurts.
+        hint: The pain is specific to one side of the body.
+    scene: A patient is explaining their symptoms to a doctor.
+    register: teineigo (polite)
+    setting: informative
+  - english: Kick with your left foot.
+    japanese:
+      - '{左} 足 で 蹴っ て ください。'
+      - '{左} 足 で 蹴れ。'
+      - '{左} 足 で 蹴り なさい。'
+      - '{左} 足 で 蹴っ て。'
+    english_literally: Left foot, by means of, kick, please.
+    competing_grammar:
+      - competing_japanese:
+          - 右足 で 蹴っ て ください。
+        english: Kick with your right foot.
+        hint: The instruction specifies a particular foot, not the opposite one.
+    scene: A soccer coach is instructing a player during practice.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is a straightforward instruction in a sports context. The particle 「で」 indicates the
+      instrument of action (with the left foot).
+  - english: The restroom is on your left after you enter the door.
+    japanese:
+      - ドア を 入っ て すぐ {左} に トイレ が あり ます。
+      - ドア を 入っ たら すぐ {左} に トイレ が ある よ。
+      - ドア を お 入り に なら れ たら 直ぐ {左} 側 に 御 手洗い が ござい ます。
+      - ドア を 入る と すぐ {左} に トイレ が あり ます。
+    english_literally: Door, object marker, enter (te-form), immediately, left, to, restroom, subject
+      marker, exists.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 入っ て すぐ 右 に トイレ が あり ます。
+        english: The restroom is on your right after you enter the door.
+        hint: The direction is specifically to one side upon entry.
+    scene: A receptionist is giving directions to a visitor in a building.
+    register: teineigo (polite)
+    setting: informative
+  - english: The TV is to the right of the window.
+    japanese:
+      - テレビ は 窓 の {右} に あり ます。
+      - テレビ は 窓 の {右} に ある よ。
+      - テレビ は 窓 の {右} 側 に 置い て あり ます。
+      - テレビ は 窓 の {右} に ある。
+    english_literally: TV, topic, window's, right, location, exists.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ は 窓 の 前 に あり ます。
+        english: The TV is in front of the window.
+        hint: We are describing a side position relative to an object, not a front position.
+    scene: You are explaining the furniture arrangement in your room to a friend.
+    register: casual
+    setting: friendly
+post_example_writeup: As you can see from the examples, 右 and 左 are versatile and can be combined with
+  various particles and nouns to precisely describe spatial relationships and directions. Pay close attention
+  to the particles に and の when using these terms, as they convey different aspects of location and movement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/右・左 (left and right)

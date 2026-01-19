@@ -1,0 +1,245 @@
+grammar_point: おまけに (in addition・on top of that)
+learn_before:
+  - Verb[えば] (conditional)
+  - ちょっと (adverb)
+  - と (with)
+  - もらう (to receive)
+  - 近く,遠く (proximity・distance spatial)
+meaning: In addition, On top of that, What is more, To make matters worse
+meaning_warning: Conversational language
+pronunciation:
+  katakana: オマケニ
+  romaji: omake ni
+formation:
+  Clause A + おまけに + Clause B: Adds Clause B as an additional point to Clause A, implying Clause B is a
+    'bonus' or extra consideration inexperienced learners may overlook. The tone of Clause A and Clause
+    B must align (both positive or both negative).
+jlpt: N2
+etymology: The phrase 「おまけに」 comes from the noun 「おまけ」, meaning "an extra, a bonus, or a freebie." 「に」
+  is a particle indicating direction or purpose. Together, they create a phrase that adds something extra
+  to a situation, whether positive or negative.
+writeup: 「おまけに」 functions as a conjunction to link two clauses, Clause A and Clause B, indicating that
+  Clause B is an additional point to Clause A. Its origin lies in the noun 「おまけ」, meaning "a discount"
+  or "a freebie," which implies something given in addition to a primary purchase.While the noun 「おまけ」
+  primarily conveys positive additional items, 「おまけに」 as a phrase can express "in addition," "on top of
+  that," or "what's more," irrespective of whether the overall situation is positive or negative. A crucial
+  aspect of using 「おまけに」 is that Clause A and Clause B must maintain a consistent tone; both must be either
+  positive or both negative. You will not find a mix.Formed by combining 「おまけ」 with the particle 「に」,
+  this phrase typically appears at the beginning of a new sentence or at the start of the second clause
+  within a two-part sentence. The core nuance of 「おまけに」 is that Clause A, by itself, is already significant
+  or sufficient. Clause B then acts as an 'extra'—either adding 'icing on the cake' for positive scenarios
+  or 'insult to injury' for negative ones. This distinguishes it from more neutral connectors that simply
+  add information.
+false_friends:
+  - term: しかも
+    meaning: Moreover, Furthermore
+    kind: synonym
+    nuance: Unlike 「おまけに」, 「しかも」 does not carry the implicit meaning of the additional point being a bonus
+      or extra. It simply adds another piece of information.
+    grammar_point: それに (in addition・moreover)
+  - term: その上
+    meaning: Besides, In addition, Furthermore
+    kind: synonym
+    nuance: Unlike 「おまけに」, 「その上」 does not imply that the first point is already sufficient on its own.
+      It's a more general way to add information without the 'bonus' connotation.
+    grammar_point: それに (in addition・moreover)
+  - term: それに
+    meaning: And, Besides, Moreover, In addition
+    kind: synonym
+    nuance: Unlike 「おまけに」, 「それに」 is a more general way to add information without implying a bonus or
+      surplus. It functions as a simple additive.
+    grammar_point: それに (in addition・moreover)
+  - term: 上に
+    meaning: As well, Besides, In addition to
+    kind: synonym
+    nuance: Unlike 「おまけに」, 「上に」 is typically more formal and doesn't necessarily suggest the added point
+      is a bonus or extra. It simply indicates additional elements or conditions.
+    grammar_point: 上に (in addition to)
+  - term: だけでなく
+    meaning: Not only... but also
+    kind: similar expression
+    nuance: Unlike 「おまけに」, 「だけでなく」 focuses on expanding the scope of what is true, rather than adding
+      an unexpected or bonus element on top of an already complete situation.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: 加えて
+    meaning: In addition to
+    kind: synonym
+    nuance: While 「おまけに」 implies an additional, often unexpected, bonus or negative consequence, 「加えて」
+      is a more formal and neutral way to simply add another item or piece of information.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While 「しかも」, 「その上」, 「それに」, and 「上に」 can all be used to add information, 「おまけに」
+  has a specific nuance of something being 'extra' or a 'bonus' on top of something else. With 「おまけに」,
+  the first clause is often sufficient on its own, and the second clause just makes it even better or
+  worse, acting as a significant additional factor.
+examples:
+  - english: My bicycle got a flat tire. On top of that, it started raining heavily.
+    japanese:
+      - 自転 車 が パンク し た。{おまけ に} 大雨 まで 降っ て き た。
+      - 自転 車 が パンク し まし た。{おまけ に} 大雨 まで 降っ て き まし た。
+      - 自転 車 が パンク し た よ。{おまけ に} 大雨 まで 降っ て き た さ。
+    english_literally: Bicycle punctured. On top of that, heavy rain even started falling.
+    competing_grammar:
+      - competing_japanese:
+          - 自転 車 が パンク し た。{そして} 大雨 まで 降っ て き た。
+        english: My bicycle got a flat tire, and then it started raining heavily.
+        hint: 「そして」 is a neutral connector that simply lists events, but doesn't convey the sense of an
+          unfortunate addition or bonus like 「おまけに」 does. We're looking for an expression that indicates
+          an unfortunate additional event.
+    scene: Someone recounting a series of unfortunate events that happened back-to-back.
+    register: casual
+    setting: melancholic
+  - english: The new job has interesting work content, and on top of that, the salary is also very good.
+    japanese:
+      - 新しい 仕事 は 内容 も 面白い し、{おまけ に} 給料 も すごく いい。
+      - 新しい 仕事 は 内容 も 面白い です し、{おまけ に} 給料 も すごく いい です。
+      - 新しい 仕事 は 内容 も 面白い し、{おまけ に} 賃金 も 良い。
+    english_literally: New job, content also interesting, on top of that, salary also very good.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事 は 内容 も 面白い し、{それ に} 給料 も すごく いい。
+        english: The new job has interesting work content, and besides, the salary is also very good.
+        hint: 「それに」 is a general additive particle that means 'besides' or 'and'. It doesn't emphasize
+          the salary as an an exceptional 'bonus' on top of already interesting work as strongly as 「おまけに」
+          does. We're looking for an expression that highlights the salary as a significant additional
+          benefit.
+    scene: Someone excitedly telling a friend about a new job offer they've received.
+    register: casual
+    setting: excited
+  - english: I missed the last train. To make matters worse, I forgot my wallet.
+    japanese:
+      - 終電 に 乗り 遅れ た。{おまけ に} 財布 を 忘れ て き て しまっ た。
+      - 終電 に 乗り 遅れ まし た。{おまけ に} 財布 を 忘れ て き て しまい まし た。
+      - 終電 に 乗り 遅れ た。{おまけ に} 財布 忘れ て き ちゃっ た。
+    english_literally: Last train missed. On top of that, wallet forgotten and came.
+    competing_grammar:
+      - competing_japanese:
+          - 終電 に 乗り 遅れ た。{そして} 財布 を 忘れ て き て しまっ た。
+        english: I missed the last train, and then I forgot my wallet.
+        hint: 「そして」 simply links two events neutrally. It fails to convey the sense of compounding misfortune
+          or 'insult to injury' that 「おまけに」 expresses. We're looking for an expression that shows the
+          situation getting worse.
+    scene: A person stuck late at night, realizing the full extent of their predicament.
+    register: casual
+    setting: pessimistic
+  - english: This restaurant's food is delicious, and on top of that, the staff's service is wonderful
+      too.
+    japanese:
+      - この レストラン は 料理 が 美味しい し、{おまけ に} 店員 さん の 対応 も 素晴らしい。
+      - この レストラン は 料理 が 美味しい です し、{おまけ に} 店員 さん の 対応 も 素晴らしい です。
+      - この レストラン は 食事 が うまい し、{おまけ に} サービス も 最高 だ。
+    english_literally: This restaurant food delicious, on top of that, staff's service also wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 料理 が 美味しい し、{そして} 店員 さん の 対応 も 素晴らしい。
+        english: This restaurant's food is delicious, and then the staff's service is wonderful too.
+        hint: 「そして」 is a basic conjunction. It does not emphasize the staff's service as an additional,
+          unexpected positive aspect that makes the restaurant even better, which 「おまけに」 conveys. We're
+          looking for an expression that highlights unexpected delight.
+    scene: A satisfied customer raving to a friend about their dining experience.
+    register: casual
+    setting: friendly
+  - english: I got injured during practice. To make matters worse, I also failed the test.
+    japanese:
+      - 練習 中 に 怪我 を し て しまっ た。{おまけ に} テスト も 不 合格 だっ た。
+      - 練習 中 に 怪我 を し て しまい まし た。{おまけ に} テスト も 不 合格 でし た。
+      - 練習 中 に 怪我 し た。{おまけ に} 試験 も 落ち た。
+    english_literally: During practice injury did. On top of that, test also failed.
+    competing_grammar:
+      - competing_japanese:
+          - 練習 中 に 怪我 を し て しまっ た。{そして} テスト も 不 合格 だっ た。
+        english: I got injured during practice, and then I also failed the test.
+        hint: 「そして」 simply lists events, without conveying the sense of compounding misfortune where one
+          bad event is followed by an additional, unwelcome one, which 「おまけに」 clearly expresses. We're
+          looking for an expression that implies a deepening spiral of bad luck.
+    scene: A student discussing a particularly rough period of bad luck and setbacks.
+    register: casual
+    setting: melancholic
+  - english: This smartphone has great camera performance, and on top of that, the battery lasts a long
+      time.
+    japanese:
+      - この スマホ は カメラ の 性能 が 良い し、{おまけ に} バッテリー も 長持ち する。
+      - この スマホ は カメラ の 性能 が 良い です し、{おまけ に} バッテリー も 長持ち し ます。
+      - この スマホ、カメラ の 性能 が いい し、{おまけ に} バッテリー も 長持ち する。
+    english_literally: This smartphone camera performance good, on top of that, battery also long-lasting.
+    competing_grammar:
+      - competing_japanese:
+          - この スマホ は カメラ の 性能 が 良い し、{それ に} バッテリー も 長持ち する。
+        english: This smartphone has great camera performance, and besides, the battery lasts a long time.
+        hint: 「それに」 is a general additive phrase. It doesn't emphasize the long battery life as an exceptional
+          'bonus' on top of the already good camera, which is the nuance of 「おまけに」. We're looking for
+          an expression that highlights an extra perk.
+    scene: A tech-savvy person recommending a new smartphone model to a friend, highlighting its features.
+    register: casual
+    setting: informative
+  - english: I lost an important game. To make matters worse, I was harshly scolded by the coach.
+    japanese:
+      - 大事 な 試合 に 負け た。{おまけ に} コーチ に 厳しく 怒ら れ て しまっ た。
+      - 大事 な 試合 に 負け まし た。{おまけ に} コーチ に 厳しく 怒ら れ て しまい まし た。
+      - 大事 な 試合 に 負け た。{おまけ に} コーチ に 厳しく 怒ら れ た。
+    english_literally: Important game lost. On top of that, coach by harshly scolded.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 な 試合 に 負け た。{そして} コーチ に 厳しく 怒ら れ て しまっ た。
+        english: I lost an important game, and then I was harshly scolded by the coach.
+        hint: 「そして」 simply links two events. It does not convey the escalating negative impact where being
+          scolded is an additional, painful consequence to losing the game, unlike 「おまけに」. We're looking
+          for an expression that underscores intensified suffering.
+    scene: An athlete expressing their extreme disappointment after a significant loss and subsequent
+      reprimand.
+    register: casual
+    setting: melancholic
+  - english: I caught a cold and feel sluggish. To make matters worse, my cough has also gotten severe.
+    japanese:
+      - 風邪 を 引い て 体 が だるい。{おまけ に} 咳 も ひどく なっ て き た。
+      - 風邪 を 引い て 体 が だるい です。{おまけ に} 咳 も ひどく なっ て き まし た。
+      - 風邪 を 引い て 体 が だるい し、{おまけ に} 咳 も ひどく なっ た。
+    english_literally: Cold caught and body sluggish. On top of that, cough also gotten severe.
+    competing_grammar:
+      - competing_japanese:
+          - 風邪 を 引い て 体 が だるい。{それ に} 咳 も ひどく なっ て き た。
+        english: I caught a cold and feel sluggish, and besides, my cough has also gotten severe.
+        hint: 「それに」 is a general additive expression. It doesn't convey the sense of the cough being an
+          unwelcome 'bonus' that makes the already bad cold even worse, which is the specific nuance of
+          「おまけに」. We're looking for an expression that highlights additional discomfort.
+    scene: Someone feeling unwell, describing their worsening symptoms.
+    register: casual
+    setting: reflective
+  - english: This cafe has a relaxing atmosphere, and on top of that, the music is to my taste, it's perfect.
+    japanese:
+      - この カフェ は 雰囲気 が 落ち着く し、{おまけ に} 音楽 も 好み で 完璧 だ。
+      - この カフェ は 雰囲気 が 落ち着き ます し、{おまけ に} 音楽 も 好み で 完璧 です。
+      - この カフェ、雰囲気 落ち着く し、{おまけ に} 音楽 も ドンピシャ で 最高！
+    english_literally: This cafe atmosphere relaxing, on top of that, music also taste for perfect.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ は 雰囲気 が 落ち着く し、{そして} 音楽 も 好み で 完璧 だ。
+        english: This cafe has a relaxing atmosphere, and then the music is to my taste, it's perfect.
+        hint: 「そして」 simply lists two positive attributes. It doesn't convey the feeling that the music
+          is an added, perfect 'bonus' on top of an already calming atmosphere, which 「おまけに」 emphasizes.
+          We're looking for an expression that highlights unexpected delight.
+    scene: A person happily discovering and enjoying a new cafe that perfectly suits their preferences.
+    register: casual
+    setting: optimistic
+  - english: My date with him was fun, and on top of that, he was also very funny and intelligent.
+    japanese:
+      - 彼 と の デート は 楽しかっ た し、{おまけ に} 彼 も すごく 面白く て 頭 が いい。
+      - 彼 と の デート は 楽しかっ た です し、{おまけ に} 彼 も すごく 面白く て 頭 が いい です。
+      - 彼 と の デート、楽しかっ た し、{おまけ に} 彼 マジ 面白く て 頭 いい ん だ よ ね。
+    english_literally: Date with him was fun, on top of that, he also very funny and intelligent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と の デート は 楽しかっ た し、{さらに} 彼 も すごく 面白く て 頭 が いい。
+        english: My date with him was fun. Furthermore, he was also very funny and intelligent.
+        hint: 「さらに」 means 'furthermore' or 'additionally'. While it adds more positive traits, it might
+          not fully capture the nuance that the date was already enjoyable, and his intelligence and humor
+          are an extra, delightful 'bonus'. We're looking for an expression that emphasizes an unexpected
+          positive discovery.
+    scene: A woman telling her friend about a highly successful first date, detailing why it went so well.
+    register: casual
+    setting: first-date
+post_example_writeup: While 「おまけに」 is described as a 'casual' conjunction, it can still be used with polite
+  verb endings (ます/です forms) to maintain politeness in a casual conversational context, especially when
+  speaking to acquaintances or in situations where politeness is generally observed. The core meaning
+  of adding an 'extra' or 'bonus' remains consistent.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/おまけに

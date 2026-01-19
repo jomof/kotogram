@@ -1,0 +1,333 @@
+grammar_point: ものとして (on the assumption that)
+learn_before:
+  - ものとする (to be considered as; shall)
+meaning: Assuming, supposing, (interpret) as, on the assumption, regarding, considering
+pronunciation:
+  katakana: モノトシテ
+  romaji: mono to shite
+formation:
+  Verb (plain form) + ものとして: Used to assume an action or state expressed by a verb.
+  Noun / な-Adjective (stem) + である + ものとして: Used to assume a noun or な-adjective as a premise, often in
+    formal contexts.
+  Noun / な-Adjective (stem) + な + ものとして: Used to assume a noun or な-adjective as a premise, common in
+    less formal written contexts.
+  い-Adjective (plain form) + ものとして: Used to assume an い-adjective as a premise.
+jlpt: N1
+etymology: The grammar point combines the noun もの (mono, thing, matter) with the particle として (toshite,
+  as, in the capacity of). The word もの here functions as an abstract noun, referring to the 'fact' or
+  'state of affairs' that precedes it. By attaching として to this abstract 'thing' or 'matter', the phrase
+  signifies that the preceding statement is being treated 'as a thing/matter of fact' for a specific purpose.
+  This construction allows for the adoption of a premise or assumption, indicating that the speaker is
+  proceeding as if something were true, without necessarily asserting its absolute truth. It evolved from
+  a more concrete meaning of 'thing' to this abstract sense of 'situation' or 'fact'.
+writeup: 'ものとして is a sophisticated grammatical expression used to establish a premise or assumption for
+  a discussion, plan, or action. It signifies that the preceding statement is being treated as true or
+  valid for the sake of proceeding, even if its absolute truth is not confirmed or is open to interpretation.
+  This phrase conveys a strong determination on the part of the speaker to accept a certain condition
+  or reality as a working basis.It is commonly encountered in formal contexts, such as business meetings,
+  academic presentations, legal documents, or official announcements, where precision and the establishment
+  of clear parameters are important. While it can be used in less formal settings, its inherent formality
+  lends a somewhat stiff or objective tone.Formation: Verb (plain form) + ものとして. Nouns + である or な + ものとして.
+  い-Adjectives + ものとして.Key Difference from として: Unlike として, which indicates that something is definitively
+  viewed or categorized as (A) because it is (A) (e.g., 「彼は 学生として 働いている」 - ''He works as a student''),
+  ものとして introduces a premise that is assumed to be true (e.g., 「彼は 学生である{ものとして} 治療を 任せた」 - ''We entrusted
+  him with treatment, assuming he is a doctor''). The inclusion of もの introduces a layer of abstraction,
+  marking the preceding content as a ''matter'' or ''fact'' that is being adopted as a ''working truth'',
+  allowing for nuanced communication regarding assumptions rather than established facts.'
+false_friends:
+  - term: として (as)
+    meaning: As, in the capacity of
+    kind: similar expression
+    nuance: Unlike ものとして, として implies that something is definitively being viewed in that capacity or
+      role. There is no assumption; it is a statement of fact or identity. For example, 「彼は 学生として 働いている」
+      (He works as a student) states a concrete fact, whereas 「彼は 学生である{ものとして} 治療を 任せた」 (We entrusted
+      him with treatment, assuming he is a doctor) implies a premise for action.
+    grammar_point: として (as)
+  - term: とされている (is considered)
+    meaning: To be considered, to be regarded as
+    kind: similar expression
+    nuance: とされている states something is *considered* a certain way, often implying a general consensus
+      or established view. ものとして introduces a premise *taken by the speaker or agent* for a purpose, while
+      とされている reports an existing consideration or classification. For example, 「違法薬物と {とされている}」 (It is
+      considered an illegal drug) reports its status, while 「違法薬物である{ものとして} 処理する」 (We will process it
+      on the assumption that it is an illegal drug) focuses on the action taken based on that premise.
+    grammar_point: とされている (is considered)
+  - term: を前提に (on the premise of)
+    meaning: On the premise that...
+    kind: similar expression
+    nuance: を前提に (o zentei ni) is very similar in meaning and usage to ものとして. Both establish a premise.
+      However, ものとして can sometimes convey a more implicit or adopted working assumption, while を前提に often
+      implies a more explicit, often agreed-upon, prerequisite condition. For example, 「全員が 参加できる {を前提に}、計画を
+      立てた」 (We made a plan on the premise that everyone can participate) suggests the premise was a discussed
+      condition. 「全員が 参加できる{ものとして}、計画を 立てた」 could imply a more fixed, accepted condition from the outset,
+      possibly less subject to negotiation.
+    grammar_point: を前提に (on the premise of)
+post_false_friends_writeup: While ものとして, として, とされている, and を前提に share some semantic overlap, their specific
+  applications differ. ものとして is used when you are establishing a working assumption or a premise that
+  guides subsequent actions or reasoning. It's about 'treating something as true' for a specific purpose.
+  として indicates a factual role or identity. とされている describes the act of classifying or judging something
+  as such, often in an official capacity. を前提に explicitly states a prerequisite condition, which can sometimes
+  imply a more explicit or agreed-upon condition compared to ものとして.
+examples:
+  - english: Please proceed with this plan on the assumption that it will stay within budget.
+    japanese:
+      - この 計画 は、予算 内 に 収まる {もの と し て} 進め て ください。
+      - この 計画、予算 内 に 収まる {もの と し て}、どうぞ 進め て ください。
+      - 予算 内 に 収まる {もの と し て}、この 計画 を 進め て ください。
+    english_literally: This plan, assuming it stays within budget, please proceed.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は、予算 内 に 収まる {から} 進め て ください。
+        english: Please proceed with this plan because it will stay within budget.
+        hint: から states a direct reason, but ものとして emphasizes that the budget adherence is a *premise*
+          or *condition* for proceeding, rather than just a simple cause. We're looking for an assumption
+          or condition.
+    scene: A project manager is instructing their team.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The speaker, a male project manager, uses the formal imperative 「進めてください」. The phrase 「予算内に
+      収まる{ものとして}」 establishes the budget adherence as a non-negotiable premise for the project's continuation,
+      indicating a firm, professional directive. This phrasing is common in business to set clear expectations
+      based on a given condition.
+    etymology: 「収まる」 (osamaru) means to fit or settle within. The phrase implies the budget is a constraint
+      that must be honored.
+  - english: Everyone believes his words, assuming he is always honest.
+    japanese:
+      - 彼 は いつ も 正直 で ある {もの と し て}、皆 彼 の 言葉 を 信じ て い ます。
+      - 皆 は、彼 が いつ も 正直 で ある {もの と し て}、彼 の 言葉 を 信じ て い ます。
+      - 彼 が いつ も 正直 で ある {もの と し て}、みんな 彼 の 言葉 を 信じ てる よ。
+    english_literally: He is always honest, assuming that, everyone believes his words.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 正直 だ {から}、皆 彼 の 言葉 を 信じ て い ます。
+        english: Everyone believes his words because he is always honest.
+        hint: だから states a direct reason. ものとして emphasizes that his honesty is an an *accepted premise*
+          or *common understanding* on which their trust is based. We're looking for that underlying assumption,
+          not just a simple reason.
+    scene: Friends are discussing a mutual acquaintance known for their integrity.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker, a younger female, uses casual speech like 「皆」 (Minna) and the polite but friendly
+      「信じて います」. The phrase 「正直である{ものとして}」 indicates that his honesty is taken as a reliable, established
+      trait within their social group, forming the basis of their collective trust. It highlights a shared,
+      unspoken agreement to treat his honesty as a given.
+    etymology: 「正直」 (shoujiki) means honesty. The use here implies honesty as a fundamental characteristic,
+      a 'given' within the relationship.
+  - english: We refuse entry to minors, assuming that alcohol consumption is prohibited by law for them.
+    japanese:
+      - 未 成年 は アルコール 摂取 が 法律 で 禁止 さ れ て いる {もの と し て}、入店 を お 断り し て い ます。
+      - アルコール 摂取 が 法律 で 禁止 さ れ て いる {もの と し て}、未 成年 の 方 の 入店 は お 断り し て おり ます。
+    english_literally: Minors, alcohol consumption is prohibited by law, assuming that, we refuse entry.
+    competing_grammar:
+      - competing_japanese:
+          - 未 成年 は アルコール 摂取 が 法律 で 禁止 さ れ て いる {の で}、入店 を お 断り し て い ます。
+        english: We refuse entry to minors, so alcohol consumption is prohibited by law for them.
+        hint: ので provides a factual reason. ものとして frames the legal prohibition as a *premise* for the
+          establishment's policy, emphasizing that this legal fact is the *basis* for their action. We're
+          looking for the foundational assumption for the rule.
+    scene: A bartender is explaining the establishment's policy to a new employee.
+    register: formal
+    setting: informative
+    conjugation: passive (～られる/～かれる)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: An older male bartender uses the formal 「お断り しています」 to explain policy. The phrase 「禁止されている{ものとして}」
+      frames the legal prohibition as a foundational premise for the establishment's action of refusing
+      entry. This objective phrasing ensures clarity and strict adherence to regulations, typical in professional
+      policy explanations.
+    etymology: 「未成年」 (miseinen) refers to minors, while 「禁止」 (kinshi) means prohibition. The structure
+      enforces a rule based on a legal status.
+  - english: Assuming the deadline is strict, I am working with the resolve to not hesitate to do overtime.
+    japanese:
+      - 納期 が 厳しい {もの と し て}、残業 も 辞さ ない 覚悟 で 取り組ん で い ます。
+      - 納期 が 厳しい {もの と し て}、残業 も いとわ ず 取り組ん で い ます。
+    english_literally: The deadline is strict, assuming that, I am working with the resolve to not hesitate
+      on overtime.
+    competing_grammar:
+      - competing_japanese:
+          - 納期 が 厳し い {の で}、残業 も 辞さ ない 覚悟 で 取り組ん で い ます。
+        english: Because the deadline is strict, I am working with the resolve to not hesitate to do overtime.
+        hint: ので states a direct causal relationship. ものとして implies that the strict deadline is an *accepted
+          premise* or *condition* for the speaker's resolve, showing their personal commitment to adopting
+          this condition as a basis for action. We're looking for that sense of adopting a premise.
+    scene: A dedicated employee is describing their work ethic for a challenging project.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The speaker, a younger female, uses 「取り組んで います」 which demonstrates dedication and polite determination.
+      The phrase 「納期が 厳しい{ものとして}」 implies she is personally adopting the strict deadline as a non-negotiable
+      fact for her work approach, demonstrating her commitment and strong work ethic. This nuance is slightly
+      softer than a direct declaration like 「納期は 厳しいので」, suggesting a personal acceptance of the premise.
+    etymology: 「納期」 (nouki) means deadline. 「辞さない 覚悟で」 (jisasanai kakugo de) means 'with resolve not to
+      shrink from', indicating strong determination.
+  - english: We will begin the discussion, assuming all meeting participants have read the materials.
+    japanese:
+      - 会議 の 参加 者 は 全員、資料 を 読ん だ {もの と し て}、議論 を 始め ます。
+      - 全員 が 資料 を 読ん だ {もの と し て}、会議 を 始め ましょう。
+      - 資料 を 読ん だ {もの と し て}、議論 を 始め させ て いただき ます。
+    english_literally: Meeting participants, all, having read the materials, assuming that, we will begin
+      discussion.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 参加 者 は 全員、資料 を 読ん だ {と いう こと} で、議論 を 始め ます。
+        english: Since all meeting participants have read the materials, we will begin the discussion.
+        hint: ということ indicates a general understanding or a basis for action derived from a situation.
+          ものとして emphasizes that the materials being read is a *firm premise* for starting the discussion,
+          setting a non-negotiable baseline. We're looking for that established premise.
+    scene: A meeting facilitator is starting a discussion.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The male facilitator's use of 「始めます」 (formal) sets a clear expectation. By stating 「資料を 読んだ{ものとして}」,
+      he sets a non-negotiable baseline for the discussion, implying that anyone who hasn't read the materials
+      is responsible for catching up. This is a common way to ensure productive meetings in a professional
+      context, making the premise clear before proceeding.
+    etymology: 「資料」 (shiryou) refers to materials or data. The phrase emphasizes the prerequisite condition
+      for effective participation.
+  - english: She was chosen as the leader of this project on the assumption that she is experienced.
+    japanese:
+      - 彼女 は、経験 豊富 で ある {もの と し て}、この プロジェクト の リーダー に 選ば れ まし た。
+      - 彼女 は 経験 豊富 で ある {もの と し て}、本 プロジェクト の リーダー に 選ば れ まし た。
+      - 彼女 が 経験 豊富 で ある {もの と し て}、この プロジェクト の リーダー に 選出 さ れ まし た。
+    english_literally: She, being experienced, assuming that, was chosen as the leader of this project.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 経験 豊富 な {の で}、この プロジェクト の リーダー に 選ば れ まし た。
+        english: Because she is experienced, she was chosen as the leader of this project.
+        hint: なので provides a direct reason. ものとして implies that her experience was the *accepted premise*
+          or *justification* for her selection, highlighting the objective basis of the decision. We're
+          looking for the underlying assumption for the choice.
+    scene: A manager is explaining a personnel decision to another manager.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male manager uses the semi-formal 「選ばれました」. The phrase 「経験豊富である{ものとして}」 establishes her
+      rich experience as the accepted premise for her selection, highlighting the objective basis of the
+      decision. This usage emphasizes that the decision was made *with the assumption* of her qualification.
+    etymology: 「経験豊富」 (keiken houfu) means highly experienced. The grammar point links this assumed quality
+      to the consequence of being chosen.
+  - english: We designed the system with the understanding that customer personal information would be
+      strictly protected.
+    japanese:
+      - 顧客 の 個人 情報 は、厳重 に 保護 さ れる {もの と し て}、システム を 設計 し まし た。
+      - 顧客 個人 情報 は、厳重 に 保護 さ れる {もの と し て}、本 システム は 設計 さ れ まし た。
+      - 厳重 に 保護 さ れる {もの と し て}、顧客 の 個人 情報 システム を 設計 いたし まし た。
+    english_literally: Customer personal information, strictly protected, assuming that, we designed the
+      system.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 の 個人 情報 は 厳重 に 保護 さ れる {よう に}、システム を 設計 し まし た。
+        english: We designed the system so that customer personal information would be strictly protected.
+        hint: ように indicates a purpose or goal. ものとして frames strict protection as a *fundamental premise*
+          or *design principle* that was adopted from the outset, rather than just an intended outcome.
+          We're looking for that established understanding for the design.
+    scene: A system architect is explaining the design principles to a security team.
+    register: formal
+    setting: technical
+    conjugation: passive (～られる/～かれる)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male system architect uses the formal 「設計しました」. The phrase 「厳重に 保護される{ものとして}」 frames strict
+      protection as a fundamental, non-negotiable premise of the system's design. This demonstrates a
+      commitment to security from the outset, typical in technical and security discussions.
+    etymology: 「個人 情報」 (kojin jouhou) refers to personal information. 「保護される」 (hogosareru) means to be
+      protected. The phrase highlights a core principle guiding the system's architecture.
+  - english: His statement was taken as fact, and an investigation was launched.
+    japanese:
+      - 彼 の 発言 は、事実 で ある {もの と し て}、調査 が 開始 さ れ まし た。
+      - 彼 の 発言 が 事実 で ある {もの と し て}、調査 が 開始 さ れ まし た。
+    english_literally: His statement, being fact, assuming that, an investigation was launched.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 発言 は 事実 で ある {から}、調査 が 開始 さ れ まし た。
+        english: Because his statement was fact, an investigation was launched.
+        hint: から states a direct reason. ものとして implies that his statement was *adopted as a working truth*
+          or *premise* for the investigation, without necessarily confirming its absolute truth at that
+          moment. We're looking for the idea of accepting something as true for the purpose of action.
+    scene: A detective is reporting on the start of an investigation.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male detective uses the formal passive voice 「開始されました」. The phrase 「事実である{ものとして}」 emphasizes
+      that his statement was *adopted as a working truth* for the purpose of initiating an investigation,
+      not necessarily that it was definitively proven at that moment. This nuance is crucial in legal
+      or investigative contexts where actions are based on premises that may still require verification.
+    etymology: 「事実」 (jijitsu) means fact. The structure here is about accepting a statement as a factual
+      basis for proceeding.
+  - english: This contract was signed on the assumption that both parties had agreed.
+    japanese:
+      - この 契約 書 は、双方 の 合意 が あっ た {もの と し て}、署名 さ れ まし た。
+      - 双方 の 合意 が あっ た {もの と し て}、この 契約 書 は 署名 さ れ まし た。
+      - この 契約 書 は、双方 に 合意 が あっ た {もの と し て}、署名 さ れ た もの です。
+    english_literally: This contract, both parties had agreement, assuming that, was signed.
+    competing_grammar:
+      - competing_japanese:
+          - この 契約 書 は、双方 の 合意 が あっ た {上 で}、署名 さ れ まし た。
+        english: This contract was signed after both parties had agreed.
+        hint: 上 で indicates that an action is taken after or on the basis of a preceding condition being
+          met. ものとして implies that the mutual agreement was the *established premise* for the signing,
+          framing it as the foundational assumption, not just a sequential event. We're looking for the
+          fundamental assumption.
+    scene: A lawyer is explaining the terms of a signed agreement.
+    register: formal
+    setting: legal
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female lawyer uses the formal passive voice 「署名されました」. The phrase 「双方の 合意があった{ものとして}」 concisely
+      states that mutual agreement was the established premise upon which the contract was signed. This
+      is critical in legal discourse for outlining the preconditions of agreements.
+    etymology: 「合意」 (gou'i) means agreement. The construction highlights the underlying condition that
+      validated the contract's signing.
+  - english: Under these circumstances, we need to take measures, assuming the worst-case scenario.
+    japanese:
+      - この 状況 下 で は、最悪 の 事態 も 想定 する {もの と し て}、対策 を 講じる 必要 が あり ます。
+      - 最悪 の 事態 も 想定 する {もの と し て}、この 状況 下 で 対策 を 講じる 必要 が あり ます。
+      - この 状況 下 で は、最悪 の 事態 を 想定 し た {もの と し て}、対策 を 講じる 必要 が あり ます。
+    english_literally: Under these circumstances, the worst-case scenario also, assuming to consider,
+      measures need to be taken.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 下 で は、最悪 の 事態 が 起こる {に 決まっ て いる} の で、対策 を 講じる 必要 が あり ます。
+        english: Under these circumstances, since the worst-case scenario is sure to happen, measures
+          need to be taken.
+        hint: に決まっている states absolute certainty about an outcome. ものとして frames the worst-case scenario
+          as a *premise* for action, not necessarily a certain outcome. We're looking for the idea of
+          accepting something as true for the purpose of action.
+    scene: A crisis management team is planning their response.
+    register: formal
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The speaker, a male team leader, uses the formal 「必要があります」 which indicates necessity in a
+      firm, authoritative tone. The use of 「最悪の 事態も 想定する{ものとして}」 reinforces the serious, pragmatic approach
+      required in an emergency, indicating that the worst-case scenario is being *actively adopted* as
+      a premise for action, rather than merely considered. This gives a sense of gravitas and strategic
+      foresight to his command.
+    etymology: 「最悪の 事態」 (saiaku no jitai) means worst-case scenario. 「講じる」 (koujiru) means to take measures.
+      The grammar point frames the adoption of the worst-case scenario as a proactive strategic decision.
+post_example_writeup: As you can see, ものとして consistently conveys the nuance of treating something as a
+  given or an established fact for the purpose of a subsequent action or decision. The preceding clause
+  (verb, noun+である/な, or い-adjective) forms the premise upon which the following action is based. This
+  makes it particularly useful in formal or technical contexts where clear, defined conditions are essential
+  for communication and planning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ものとして

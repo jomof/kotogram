@@ -1,0 +1,309 @@
+grammar_point: ことは〜が (concession with nuance)
+learn_before:
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - '[Verb-dictionary]ことがある (there are times when)'
+  - い-Adjective (past negative)
+  - それでも (even so)
+  - な-Adjective (modifying nouns)
+  - ないことはない (not impossible)
+  - のみならず (not only・let alone)
+  - は (emphatic)
+  - はもとより (not only・let alone)
+  - わけだ (logical conclusion)
+  - 知る (to know or find out)
+meaning: It is true...but; although...; but
+pronunciation:
+  katakana: コトハ〜ガ
+  romaji: koto wa ~ ga
+formation:
+  動詞 (普通形) + ことは + 動詞 (普通形) + が/けど: For verbs, the plain form (dictionary, ta-form, negative, etc.) is
+    repeated.
+  イ形容詞 (普通形) + ことは + イ形容詞 (普通形) + が/けど: For i-adjectives, the plain form (dictionary, ta-form, negative,
+    etc.) is repeated.
+  ナ形容詞 (語幹) + な + ことは + ナ形容詞 (語幹) + な + が/けど: For na-adjectives, the stem is followed by な.
+  名詞 + な + ことは + 名詞 + な + が/けど: For nouns, な is used.
+  ナ形容詞・名詞 + である + ことは + ナ形容詞・名詞 + である + が/けど: A more formal or stiff alternative for na-adjectives and
+    nouns.
+jlpt: N2
+etymology: This construction is formed by combining 「こと」 (koto), a nominalizing particle that turns the
+  preceding clause into a noun phrase, with the topic particle 「は」 (wa). The repeated word before 「ことは」
+  and after it, combined with the contrasting particle 「が」 (ga) or 「けど」 (kedo), serves to emphasize the
+  truth of the initial statement while immediately introducing a contradictory or limiting condition.
+  Etymologically, 「ことは」 asserts the 'matter' or 'fact' (こと) as the topic (は), and the subsequent 「が/けど」
+  introduces the counterpoint. This repetition creates a strong concession, acknowledging the primary
+  point before pivoting to a nuance or counter-argument.
+writeup: The grammar point 「ことは〜が」 is a fixed expression used to acknowledge the truth of a statement
+  (A) while simultaneously presenting a contrasting or limiting condition (B). It functions much like
+  saying, "It is true that (A), but (B)," or "Although (A), (B)." The general structure involves repeating
+  the same word (verb, i-adjective, na-adjective, or noun) immediately before 「ことは」 and again after it,
+  before 「が」 (or 「けど」). However, for verbs and i-adjectives in the past tense, it is also common, especially
+  in conversation, for the first instance (before 「ことは」) to be in the non-past (plain) form, while the
+  second instance retains the past tense. This repetition strongly emphasizes that the speaker fully recognizes
+  the veracity of (A), yet wishes to highlight a different, often counter-intuitive, aspect. While the
+  fundamental truth of (A) is conceded, the speaker's main point often lies in the subsequent contrasting
+  information (B).
+false_friends:
+  - term: ないことはない
+    meaning: It's not that (something) isn't (something); It's not entirely impossible that...
+    kind: often confused with
+    nuance: 「ことは〜が」 strongly concedes the truth of a statement before providing a counterpoint, implying
+      "A is true, but here's the nuance/limitation." In contrast, 「ないことはない」 uses a double negative to
+      reluctantly admit a possibility or existence, implying "It's not untrue/impossible, but it's not
+      ideal or strong." The first part of 「ことは〜が」 confirms the truth, whereas 「ないことはない」 denies the negation,
+      a subtle but significant difference.
+    grammar_point: ないことはない (not impossible)
+  - term: ものの
+    meaning: Although, but, even though
+    kind: similar expression
+    nuance: While 「ことは〜が」 concedes a point and then qualifies it with a nuance or limitation, 「ものの」 indicates
+      that the second clause is contrary to what one might expect from the first. It often carries a nuance
+      of disappointment or a situation falling short of expectations, rather than a direct concession
+      followed by a specific condition.
+    grammar_point: ものの (although・but)
+  - term: とはいえ
+    meaning: Though; although; be that as it may; nonetheless
+    kind: similar expression
+    nuance: 「ことは〜が」 emphasizes the truth of the first statement before introducing a contrasting point,
+      often highlighting a specific aspect of something. 「とはいえ」 functions as a concession, meaning 'even
+      though that is true, this is also true,' often leading to a general counter-argument or a statement
+      of reality that is contrary to the preceding claim, without the strong, explicit repetition of the
+      first term.
+    grammar_point: とはいえ (though)
+  - term: と言っても
+    meaning: Even if one says; although one says; having said that
+    kind: similar expression
+    nuance: 「ことは〜が」 concedes a specific point by repeating it and then presents a qualification. 「と言っても」
+      acknowledges a previous statement, often a generalization or an exaggeration, and then immediately
+      qualifies or limits it, implying 'that may be true, but...' or 'it's not as extreme as it sounds.'
+      It often clarifies or corrects a potential misconception rather than strictly conceding a point.
+    grammar_point: '[Clause]と言っても (although・even though)'
+post_false_friends_writeup: It is crucial to understand that this pattern emphasizes a concession and
+  then introduces a counterpoint, allowing for a nuanced expression of truth with a caveat. While other
+  grammatical structures might also connect two contrasting clauses, this specific repetition highlights
+  the speaker's acknowledgment of the initial statement's truth before presenting the limiting information.
+  「ことはない」, despite its structural similarity, has an entirely different meaning of necessity or absence.
+  「とはいえ」 and 「と言っても」 are similar in expressing concession or qualification, but they lack the emphatic
+  repetition of the core truth that 「ことは〜が」 employs.
+examples:
+  - english: It's true that I can speak English, but I still lack confidence.
+    japanese:
+      - 英語 は {話せる こと は 話せる} が、まだ 自信 が ない です。
+      - 英語 は {話せる こと は 話せる} けど、まだ 自信 が ない ん だ。
+      - 英語 は {話せる こと は 話せる} が、まだ 自信 が ない。
+    english_literally: English, as for speaking, speaking (I) can, but still confidence is not present.
+    competing_grammar:
+      - competing_japanese:
+          - 英語 は {話せる が}、まだ 自信 が ない です。
+        english: I can speak English, but I still lack confidence.
+        hint: This sentence simply connects two contrasting ideas. We're looking for a grammar point that
+          strongly acknowledges the truth of the first part before presenting a counterpoint.
+      - competing_japanese:
+          - 英語 は {話せ なく は ない} です が、まだ 自信 が ない です。
+        english: It's not that I can't speak English, but I still lack confidence.
+        hint: The 「なくはない」 structure is a double negative indicating 'it's not that I can't', which is
+          slightly different from strongly conceding the ability.
+    scene: A university student discusses their English speaking ability during an interview for a study
+      abroad program.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The use of 「話せることは話せる」 emphasizes the speaker's acknowledgment of their English ability, but
+      the following 「まだ自信がないです」 expresses a genuine limitation. The formal 「です」 ending and the context
+      of an interview highlight a polite and cautious presentation of self. The female speaker might use
+      「〜んだ」 in a slightly less formal context to convey a more personal feeling, but here the formal register
+      is maintained for the interview.
+  - english: It's true that this cake is delicious, but it's too sweet for me.
+    japanese:
+      - この ケーキ は {美味しい こと は 美味しい} が、私 に は 甘 すぎる。
+      - この ケーキ は {美味しい こと は 美味しい} です が、私 に は 甘 すぎ ます。
+      - この ケーキ は {美味しい こと は 美味しい} けど、私 に は 甘 すぎる な。
+    english_literally: This cake as for delicious (is) delicious, but for me too sweet.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は {美味しい が}、私 に は 甘 すぎる。
+        english: This simply states two facts. The grammar point we are studying is used for emphasizing
+          the concession of the first part.
+        hint: This simply states two facts. The grammar point we are studying is used for emphasizing
+          the concession of the first part.
+    scene: A guest politely gives feedback on a dessert at a dinner party.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「美味しいことは美味しい」 concedes the cake's deliciousness, while the following phrase introduces
+      a personal preference or limitation. The use of 「〜が」 or 「〜です が」 maintains a respectful tone. A male
+      speaker might use 「〜な」 at the end in a casual setting to soften the statement or add a slight self-reflection.
+  - english: It's true that he's kind, but he's a bit clumsy.
+    japanese:
+      - 彼 は {親切 な こと は 親切 な} が、少し ドジ な ところ が ある。
+      - 彼 は {親切 な こと は 親切 です が}、少し ドジ な ところ が あり ます。
+      - 彼 は {親切 な こと は 親切 だ けど}、少し ドジ な ん だ よ ね。
+    english_literally: He as for kind (is) kind, but a little clumsy aspect exists.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {親切 です が}、少し ドジ な ところ が あり ます。
+        english: He is kind, but he has a slightly clumsy side.
+        hint: This is a simple conjunction. We need a phrase that emphasizes the conceded quality before
+          presenting a counterpoint.
+    scene: Two friends are discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: Using 「親切なことは親切な」 acknowledges his kindness definitively before bringing up a slight flaw.
+      The 「〜んだよね」 ending in the casual variation is characteristic of female speech, seeking agreement
+      or empathy from the listener.
+  - english: It's true that he's a professional, but he still makes mistakes.
+    japanese:
+      - 彼 は {プロ な こと は プロ な} が、それ で も ミス を する こと が ある。
+      - 彼 は {プロ な こと は プロ です が}、それ で も ミス を する こと が あり ます。
+      - 彼 は {プロ な こと は プロ だ けど}、それ で も ミス する こと ある よ ね。
+    english_literally: He as for professional (is) professional, but even so mistake to do sometimes exists.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {プロ です が}、それ で も ミス を する こと が あり ます。
+        english: He is a professional, but he still makes mistakes.
+        hint: This sentence simply contrasts two facts. We need a strong concession.
+    scene: Co-workers are discussing a highly-regarded but occasionally error-prone colleague.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: 「プロなことはプロな」 highlights the speaker's acknowledgment of the person's professional status. The
+      use of 「それでもミスをすることがある」 adds a humanizing touch. The nuance here is a nuanced observation, often
+      heard among colleagues who respect someone's skill but are also aware of their imperfections.
+  - english: It's true that I went there, but I don't remember much about it.
+    japanese:
+      - そこ に {行っ た こと は 行っ た} が、あまり 覚え て い ない。
+      - そこ に {行っ た こと は 行き まし た が}、あまり 覚え て い ませ ん。
+      - そこ に {行っ た こと は 行っ た} けど、あんまり 覚え て ない ん だ。
+    english_literally: There to went (is) went, but much remember not.
+    competing_grammar:
+      - competing_japanese:
+          - そこ に {行っ た けど}、あまり 覚え て い ない。
+        english: I went there, but I don't remember much.
+        hint: This is a simple 'but' clause. The grammar point we want emphasizes the truth of the first
+          part.
+    scene: Someone is asked about a place they visited a long time ago.
+    register: casual
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The repetition 「行ったことは行った」 confirms the action of going, while immediately downplaying the
+      extent of the memory. The casual 「あんまり覚えてないんだ」 often indicates a personal feeling or a slightly
+      apologetic tone for not remembering more.
+  - english: It's true that it wasn't bad, but it wasn't particularly good either.
+    japanese:
+      - 悪く {なかっ た こと は なかっ た} が、特別 良かっ た わけ で も ない。
+      - 悪く {なかっ た こと は なかっ た です が}、特別 良か って わけ で も あり ませ ん。
+      - 悪く {なかっ た こと は なかっ た} けど、別 に 良く も なかっ た な。
+    english_literally: Bad not (is) not bad, but especially good was not either.
+    competing_grammar:
+      - competing_japanese:
+          - 悪く {なかっ た です が}、特別 良かっ た わけ で も あり ませ ん。
+        english: It wasn't bad, but it wasn't particularly good either.
+        hint: This simply states two facts. We need to emphasize the concession of the first part.
+    scene: A student gives a lukewarm review of a movie they watched.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「悪くなかったことはなかった」 offers a concession, often used to soften a negative overall impression or
+      to express a nuanced opinion that isn't entirely positive nor entirely negative. The phrase 「別に良くもなかったな」
+      (which is more casual) reflects a personal, somewhat unenthusiastic conclusion.
+  - english: It's true that the design is simple, but its functionality is excellent.
+    japanese:
+      - デザイン は {シンプル で ある こと は シンプル で ある} が、機能 性 は 抜群 だ。
+      - デザイン は {シンプル で ある こと は シンプル です が}、機能 性 は 抜群 です。
+    english_literally: Design as for simple is (is) simple is, but functionality as for excellent is.
+    competing_grammar:
+      - competing_japanese:
+          - デザイン は {シンプル です が}、機能 性 は 抜群 です。
+        english: The design is simple, but its functionality is excellent.
+        hint: This is a straightforward conjunction. The grammar point we want offers a stronger acknowledgement
+          of the first point.
+    scene: A product reviewer describes a new gadget.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「シンプルであることはシンプルである」 with 「である」 emphasizes a formal, objective concession, common
+      in technical or academic contexts. This makes the statement sound authoritative and analytical,
+      suitable for a product review.
+  - english: It's true that he's a genius, but he's also extremely eccentric.
+    japanese:
+      - 彼 は {天才 で ある こと は 天才 で ある} が、極めて 風変わり だ。
+      - 彼 は {天才 で ある こと は 天才 です が}、極めて 風変わり です。
+    english_literally: He as for genius (is) genius, but extremely eccentric is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {天才 です が}、極めて 風変わり です。
+        english: He is a professional, but he still makes mistakes.
+        hint: This is a simple contrast. We are looking for a structure that emphasizes the initial concession
+          about him being a genius.
+    scene: Academics discussing a brilliant but unusual colleague.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The formal 「天才であることは天才である」 acknowledges the person's genius without reservation, a phrasing
+      often used in serious or academic discussions. It sets up a strong contrast with the following observation
+      about their eccentricity, highlighting that both facts are unequivocally true.
+  - english: It's true that I don't know, but I can ask someone.
+    japanese:
+      - '{知ら ない こと は 知ら ない} が、誰 か に 聞く こと が できる。'
+      - '{知ら ない こと は 知り ませ ん が}、誰 か に 聞く こと が でき ます。'
+      - '{知ら ない こと は 知ら ない} けど、誰 か に 聞い て みる よ。'
+    english_literally: Don't know (is) don't know, but someone to ask can do.
+    competing_grammar:
+      - competing_japanese:
+          - '{知り ませ ん が}、誰 か に 聞く こと が でき ます。'
+        english: I don't know, but I can ask someone.
+        hint: This is a simple polite refusal followed by an offer. We want to emphasize the fact that
+          'I don't know' is indeed true before offering a solution.
+    scene: A customer service representative candidly admits lack of knowledge but offers help.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「知らないことは知らない」 is a direct and honest concession of not knowing. This directness, followed
+      by an offer to help, builds trust. The use of 「〜よ」 in the casual variation is a softener and expresses
+      a firm intention to follow through on the offer.
+  - english: It's true that it's not expensive, but the quality isn't very good.
+    japanese:
+      - 値段 は {高く ない こと は 高く ない} が、品質 が あまり 良く ない。
+      - 値段 は {高く ない こと は 高く ない です が}、品質 が あまり 良く あり ませ ん。
+      - 値段 は {高く ない こと は 高く ない} けど、質 が いまいち だ ね。
+    english_literally: Price as for not expensive (is) not expensive, but quality not very good.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 は {高く ない です が}、品質 が あまり 良く あり ませ ん。
+        english: The price isn't expensive, but the quality isn't very good.
+        hint: This is a straightforward statement of two facts. We need to strongly concede the first
+          point.
+    scene: A shopper comments on a product that is cheap but of questionable quality.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「高くないことは高くない」 acknowledges the low price, often with a slight implication that this is its
+      only redeeming quality. The following phrase, 「品質があまり良くない」 or the more casual 「質がいまいちだね」, conveys
+      disappointment. The casual 「〜だね」 seeks agreement from the listener, common when sharing opinions
+      with friends.
+post_example_writeup: The core function of 「ことは〜が」 is to present a concession followed by a contrasting
+  or limiting statement. The specific word repeated before 「ことは」 can be a verb, an i-adjective, a na-adjective,
+  or a noun. The choice between 「が」 and 「けど」 is stylistic; 「が」 is generally more formal or direct, while
+  「けど」 is softer and more conversational.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことは-が

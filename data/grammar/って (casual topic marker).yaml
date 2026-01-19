@@ -1,0 +1,253 @@
+grammar_point: って (casual topic marker)
+learn_before:
+  - '[Noun]で有名 (famous for)'
+  - あの (that)
+  - い-adjective (sentence-ending)
+  - かというと (because)
+  - ことなの (it is that)
+  - って (casual quotation・reason・topic)
+  - って (speaking of)
+  - という (naming and definition)
+  - どんな (what kind of)
+  - の (one)
+  - 何 (what)
+meaning: A casual particle used to mark the topic of a sentence, often replacing は, が, or を in informal
+  speech.
+pronunciation:
+  katakana: ッテ
+  romaji: tte
+formation:
+  Noun + って: To casually mark a noun as the topic.
+  Pronoun + って: To casually mark a pronoun as the topic.
+  Noun Phrase + って: To casually mark a noun phrase as the topic.
+jlpt: N3
+etymology: The particle 『って』 is generally understood as a highly colloquial and contracted form. In its
+  function as a topic marker, it is considered to stem from a contraction of phrases like 『というのは』 (as
+  for saying that) or 『と言うと』 (when it comes to saying...). This linguistic evolution reflects a common
+  pattern in language where more formal or verbose expressions are shortened for speed and informality
+  in spoken contexts. The original nuance of 'speaking of' or 'regarding' from its saying roots naturally
+  evolved into a general topic-marking function in casual conversation.
+writeup: |-
+  The particle 『って』 serves as a versatile and very casual topic marker in Japanese. It is predominantly used in informal speech and casual written communication, such as text messages or social media. Its primary function is to introduce the topic of a sentence, often replacing more formal particles like 『は』, 『が』, or 『を』.
+
+  When 『って』 replaces 『は』, it introduces a topic with a conversational or sometimes slightly emphatic tone, often implying 'as for X...' or 'speaking of X...'. It's a quick way to bring up a subject that might have just been mentioned or to introduce a new one in an informal setting.
+
+  When it replaces 『が』 or 『を』, it highlights the subject or object of discussion in a casual manner. This usage often carries a sense of 'you know, that X' or 'that X, I'm talking about it now'. It's less about strict grammatical roles and more about conversational flow and emphasis. While it can replace these particles, it does not always carry the same precise nuances. It's important to understand the context and the speaker's intention.
+false_friends:
+  - term: って
+    meaning: Casual quotation marker
+    kind: similar expression
+    nuance: This 『って』 is used to casually report what someone said, similar to と. For example, 「彼、明日来ないって」
+      (He said he's not coming tomorrow). This is distinct from the topic-marking 『って』 which introduces
+      what is being talked about.
+    grammar_point: って (quotation marker, casual)
+  - term: って
+    meaning: Casual reason/explanation marker
+    kind: similar expression
+    nuance: This 『って』 provides a casual reason or explanation, similar to から or の. For example, 「疲れたって、寝てないからだよ」
+      (I'm tired because I haven't slept). This 『って』 states the cause, whereas the topic marker introduces
+      the subject.
+    grammar_point: って (casual quotation・reason・topic)
+  - term: は
+    meaning: Topic and contrast marker
+    kind: similar expression
+    nuance: 『は』 is the standard and more formal topic marker, universally applicable across registers.
+      『って』 is its casual, spoken counterpart, often used among close acquaintances.
+    grammar_point: は (topic and contrast)
+  - term: という
+    meaning: To say; what is called
+    kind: similar expression
+    nuance: 『という』 is a more formal and complete expression for quoting or defining. 『って』 is a casual,
+      contracted form, often omitting the verb of saying, and can sometimes be used to introduce a named
+      entity like 「〜というもの」 becomes 「〜ってもの」.
+    grammar_point: という (naming and definition)
+post_false_friends_writeup: While 『って』 can serve multiple functions, distinguishing them depends heavily
+  on context. If it follows a noun or noun phrase and introduces what the sentence is about, it's likely
+  a topic marker. If it comes after a quoted phrase, it's a quotation marker. If it gives a reason for
+  something, it's functioning as a reason marker. Pay attention to the grammatical role of the element
+  preceding 『って』 and the overall sentence structure.
+examples:
+  - english: As for tomorrow, it's a holiday, so it's good.
+    japanese:
+      - 明日 {って}、休み だ から 嬉しい。
+      - 明日 {って}、休み です から 嬉しい です。
+      - 明日 {って}、休み だ から さ、嬉しい ん だ。
+      - 明日 {って}、休み だ から 嬉しい わ。
+    english_literally: Tomorrow, speaking of, holiday so happy.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 休み だ から 嬉しい。
+        english: As for tomorrow, it's a holiday, so I'm happy.
+        hint: 『は』 is a general topic marker, but it doesn't carry the same casual, conversational feel
+          as 『って』, which implies 'speaking of tomorrow...'.
+    scene: A student talking to a friend on the phone about their schedule.
+    register: casual
+    setting: friendly
+    nuance: The use of 「明日って」casually introduces "tomorrow" as the topic, replacing the more neutral 「明日は」.
+      It's typical among young people or close friends when spontaneously bringing up a topic.
+  - english: Oh, that person, he's famous, isn't he?
+    japanese:
+      - あの 人 {って}、有名 だ よ ね？
+      - あの 人 {って}、有名 です よ ね？
+      - あの 人 {って}、有名 だ わ よ ね？
+    english_literally: That person, speaking of, famous is right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 が 有名 だ よ ね？
+        english: That person is famous, isn't he?
+        hint: While 『が』 marks the subject, 『って』 adds a nuance of 'speaking of that person' or 'that person
+          you mentioned', making it more conversational.
+      - competing_japanese:
+          - あの 人 は 有名 だ よ ね？
+        english: That person is famous, isn't he?
+        hint: 『は』 can also mark a topic, but 『って』 is more informal and often used when pointing something
+          out directly in conversation or reacting to something just seen.
+    scene: Two friends noticing a celebrity in public and whispering.
+    register: casual
+    setting: friendly
+    nuance: 「あの人って」emphasizes "that person" as the subject, casually replacing 「あの人が」. The 『って』 here adds
+      a touch of surprise or realization, common in informal observations.
+  - english: This cake? I made it yesterday.
+    japanese:
+      - この ケーキ {って}、昨日 作っ た ん だ。
+      - この ケーキ {って}、昨日 作っ た ん です。
+      - この ケーキ {って} さ、昨日 作っ た ん だ。
+    english_literally: This cake, speaking of, yesterday made (it).
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ を 昨日 作っ た ん だ。
+        english: I made this cake yesterday.
+        hint: 『を』 directly marks the object. 『って』 casually elevates the object to a topic, making the
+          sentence sound more conversational, like 'As for this cake...'.
+    scene: A friend presenting a homemade cake to another friend.
+    register: casual
+    setting: friendly
+    nuance: 「このケーキって」casually marks "this cake" as the object of discussion, replacing 「このケーキを」. It sets
+      up the cake as the focus, implying 'Regarding this cake, I made it yesterday...'
+  - english: Speaking of the exam, was it difficult?
+    japanese:
+      - 試験 {って}、難しかっ た？
+      - 試験 {って}、難しかっ た です か？
+      - 試験 {って}、難しかっ た わ？
+    english_literally: Exam, speaking of, was difficult?
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 難しかっ た？
+        english: As for the exam, was it difficult?
+        hint: 『は』 is also a topic marker, but 『って』 is a more casual and quick way to shift the topic to
+          'the exam' in an ongoing conversation.
+    scene: Two students talking after a test, one asking the other about it.
+    register: casual
+    setting: academic
+    nuance: 「試験って」introduces the exam as the topic of inquiry, implying "What about the exam?" or "As
+      for the exam...". It's a very common, informal way to bring up a specific subject.
+  - english: Me? I didn't do anything!
+    japanese:
+      - 僕 {って}、何に も し て ない よ！
+      - 私 {って}、何に も し て ない わ よ！
+      - あたし {って}、何に も し て ない わ よ！
+      - 俺 {って}、何に も し て ねえ よ！
+    english_literally: Me, speaking of, anything not doing!
+    competing_grammar:
+      - competing_japanese:
+          - 僕 は 何に も し て ない よ！
+        english: As for me, I didn't do anything!
+        hint: While 『は』 can be used for contrast, 『って』 here emphasizes the speaker as the topic in a more
+          defensive or surprised tone, common in casual denials.
+    scene: A boy being accused of something by his friends.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: 「僕って」is a very casual way for a male speaker to refer to himself as the topic, often with
+      a defensive or surprised nuance, replacing 「僕は」. The use of 「僕」is typical for male speakers.
+  - english: Working everyday, that's tough, isn't it?
+    japanese:
+      - 毎日 働く {って}、大変 だ よ ね。
+      - 毎日 働く {って}、大変 です よ ね。
+      - 毎日 働く {って} さ、大変 だ よ ね。
+    english_literally: Every day work, speaking of, tough is, right.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 働く こと は 大変 だ よ ね。
+        english: Working every day is tough, isn't it?
+        hint: 『こと』 nominalizes the verb phrase, but 『って』 offers a more colloquial and direct way to topicalize
+          an action or general truth without explicitly nominalizing it.
+    scene: Colleagues commiserating after a long week at work.
+    register: casual
+    setting: professional
+    nuance: 「毎日働くって」topicalizes the action of "working every day," implying 'As for working every day...'
+      The 『って』 here highlights a general truth or shared experience, common in relatable, casual conversation.
+  - english: That restaurant called 'Kiwami', is it tasty?
+    japanese:
+      - 極 {って} いう レストラン、美味しい の？
+      - 極 {って} いう レストラン、美味しい です か?
+    english_literally: Kiwami, called restaurant, tasty is?
+    competing_grammar:
+      - competing_japanese:
+          - 極 と いう レストラン、美味しい の？
+        english: The restaurant called 'Kiwami', is it tasty?
+        hint: 『という』 is the standard, slightly more formal way to introduce a name or definition. 『って』
+          serves as its casual, contracted equivalent.
+    scene: Friends discussing where to eat dinner.
+    register: casual
+    setting: friendly
+    nuance: Here, 『って』 is part of the casual nominalization 「極って言うレストラン」, functioning to mark the name
+      'Kiwami' as the subject of the restaurant. It's a casual form of 「極というレストラン」, frequently heard in
+      daily conversations.
+  - english: New job? What kind of job is it?
+    japanese:
+      - 新しい 仕事 {って}、どんな 仕事？
+      - 新しい 仕事 {って}、どんな 仕事 です か？
+      - 新しい 仕事 {って}、どんな 仕事 な の?
+    english_literally: New job, speaking of, what kind of job?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事 は どんな 仕事？
+        english: As for your new job, what kind of job is it?
+        hint: 『は』 can introduce a topic, but 『って』 is a more casual and conversational way to focus on
+          something just mentioned and ask for details, implying 'And about that new job...?'
+    scene: A friend inquiring about another's recently announced new employment.
+    register: casual
+    setting: friendly
+    nuance: 「新しい仕事って」casually brings the "new job" into focus for further inquiry. It's a conversational
+      way to transition and ask for details, implying a quick follow-up question about something relevant.
+  - english: Oh, so that's what that means!
+    japanese:
+      - ああ、それ {って} そう いう こと な ん だ。
+      - ああ、それ {って} そう いう こと な ん です。
+      - ああ、それ {って} さ、そう いう こと な ん だ。
+    english_literally: Ah, that, speaking of, that kind of thing is.
+    competing_grammar:
+      - competing_japanese:
+          - ああ、それ は そう いう こと な ん だ。
+        english: Ah, that is that kind of thing.
+        hint: 『って』 emphasizes 'that' as the specific point of realization, giving a nuance of 'Oh, as
+          for that, it's that kind of thing!' rather than a simple statement.
+    scene: Someone finally understanding something after an explanation.
+    register: casual
+    setting: informative
+    nuance: 「それって」highlights "that" (the previously discussed topic) as the subject of the new realization.
+      It conveys a spontaneous understanding, similar to saying 'Ah, as for *that*, it's like this!'
+  - english: My younger brother, he's always playing games!
+    japanese:
+      - 弟 {って}、いつ も ゲーム ばかり し てる ん だ から！
+      - 弟 {って}、いつ も ゲーム ばかり し てる ん だ。
+      - 弟 {って}、いつ も ゲーム ばかり し てる ん だ から ね！
+    english_literally: Younger brother, speaking of, always games only doing!
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は いつ も ゲーム ばかり し てる ん だ から！
+        english: As for my younger brother, he's always playing games!
+        hint: While 『は』 marks the topic, 『って』 adds a stronger, more exasperated or complaining nuance,
+          common when venting about someone to a close friend.
+    scene: An older sibling complaining to a friend about their younger sibling's habits.
+    register: casual
+    setting: friendly
+    nuance: 「弟って」casually introduces the younger brother as the topic of the complaint. The 『って』 here
+      adds a slight emphasis or exasperation, similar to how one might complain about someone with a sigh,
+      'My brother...' It's typical in highly informal complaints.
+post_example_writeup: These examples demonstrate how 『って』 casually marks the topic, often replacing 『は』,
+  『が』, or 『を』, especially in conversational contexts. Its flexibility makes it a very common particle
+  in everyday Japanese, but its casual nature means it should be avoided in formal situations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A3%E3%81%A6

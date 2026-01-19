@@ -1,0 +1,324 @@
+grammar_point: 使う (to use)
+learn_before:
+  - Verb[(ら)れる] (direct passive)
+  - Verb[えば] (conditional)
+  - Verb[させられる] (causative-passive)
+  - Verb[たい] (desiderative)
+  - '[Verb-stem]やすい (easy to do)'
+  - '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - かもしれない (might・maybe)
+  - この (this)
+  - しでかす (to mess up)
+  - たい (want to do)
+  - たくさん (many・a lot)
+  - ちょっと (adverb)
+  - はもちろん (not only... but also)
+  - やや (slightly)
+  - 一番 (superlative)
+  - 入り (containing)
+  - 変わる (to change)
+  - 形 (physical shape)
+meaning: to use, to employ, to spend
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 使う
+    rarity: common
+    meaning: to use
+  - conjugation-type: non-past polite (～ます)
+    form: 使います
+    rarity: common
+    meaning: will use
+  - conjugation-type: negative plain (～ない)
+    form: 使わない
+    rarity: common
+    meaning: won't use
+  - conjugation-type: negative non-past polite (～ません)
+    form: 使いません
+    rarity: common
+    meaning: won't use
+  - conjugation-type: past plain (～た)
+    form: 使った
+    rarity: common
+    meaning: used
+  - conjugation-type: past polite (～ました)
+    form: 使いました
+    rarity: common
+    meaning: used
+  - conjugation-type: negative past plain (～なかった)
+    form: 使わなかった
+    rarity: common
+    meaning: didn't use
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 使いませんでした
+    rarity: common
+    meaning: didn't use
+  - conjugation-type: te-form (～て)
+    form: 使って
+    rarity: common
+    meaning: using, and (connecting actions)
+  - conjugation-type: volitional (～よう)
+    form: 使おう
+    rarity: common
+    meaning: let's use
+  - conjugation-type: volitional polite (～ましょう)
+    form: 使いましょう
+    rarity: common
+    meaning: let's use
+  - conjugation-type: potential (～られる/～える)
+    form: 使える
+    rarity: common
+    meaning: can use, able to use
+  - conjugation-type: passive (～られる/～かれる)
+    form: 使われる
+    rarity: common
+    meaning: be used
+  - conjugation-type: causative (～させる)
+    form: 使わせる
+    rarity: common
+    meaning: make someone use, let someone use
+  - conjugation-type: causative-passive (～させられる)
+    form: 使わせられる
+    rarity: less common
+    meaning: be made to use, be allowed to use
+  - conjugation-type: conditional (～たら)
+    form: 使ったら
+    rarity: common
+    meaning: if (I) use, when (I) use
+  - conjugation-type: conditional (～ば)
+    form: 使えば
+    rarity: common
+    meaning: if (I) use
+  - conjugation-type: concessive (～ても)
+    form: 使っても
+    rarity: common
+    meaning: even if (I) use
+  - conjugation-type: desiderative (～たい)
+    form: 使いたい
+    rarity: common
+    meaning: want to use
+pronunciation:
+  katakana: ツカウ
+  romaji: tsukau
+formation:
+  '[Noun を] + {使う}': Indicates the direct object being used.
+  '[Time/Money を] + {使う}': Indicates the resource (time or money) being spent.
+jlpt: N5
+etymology: The verb 「使う」 (tsukau) has roots in Old Japanese, deriving from 「仕う」 (tsukau), which originally
+  meant 'to serve' or 'to attend to.' This historical connection highlights the underlying concept of
+  applying oneself or one's resources to an object or task. Over time, its meaning broadened from 'serving'
+  or 'handling' to encompass the general act of 'employing' or 'making use of' something, whether it be
+  a tool, time, money, or a skill. This evolution reflects the idea of an agent interacting with an object
+  or resource for a specific purpose.
+writeup: "「使う」 is a fundamental Japanese verb meaning \"to use,\" \"to employ,\" or \"to spend.\" It is\
+  \ an extremely versatile verb that can be applied to a wide range of contexts, from physical objects\
+  \ to abstract concepts. It is a transitive verb, meaning it typically takes a direct object marked by\
+  \ the particle 「を」.\n\nThis verb is used when: \n*   You operate or handle an object (e.g., using a\
+  \ pen, using a computer).\n*   You utilize a resource (e.g., spending money, using time, using energy).\n\
+  *   You apply a method or technique (e.g., using a specific strategy, using a word).\n*   You engage\
+  \ a service or facility (e.g., using a bus, using a library).\n\nWhile 「使う」 is a very common and general\
+  \ verb, its specific nuance can change depending on the context and the particles used. For instance,\
+  \ using a tool 'with' something might employ 「で」, but the act of 'using' the tool itself still falls\
+  \ under 「使う」. The politeness level is conveyed through its conjugation, such as 「使います」 for polite non-past\
+  \ or 「使った」 for plain past."
+false_friends:
+  - term: 使用 する
+    meaning: to use, to apply (formal)
+    kind: similar expression
+    nuance: 「使用 する」 is more formal and often used in official, technical, or written contexts. It frequently
+      refers to the proper or designated use of equipment, facilities, or systems. Unlike the broad and
+      everyday 「使う」, 「使用 する」 carries a slightly more rigid or rule-bound implication. We're looking for
+      a general verb of 'using'.
+    grammar_point: <suggest>:使用する (to use・formal)
+  - term: 用いる
+    meaning: to employ, to make use of (literary/formal)
+    kind: similar expression
+    nuance: 「用いる」 often implies selecting and applying a specific method, tool, or resource, sometimes
+      with a nuance of 'drawing upon' or 'employing effectively.' It's generally more literary or formal
+      than 「使う」 and less common in everyday conversation. We're looking for a general verb of 'using'.
+    grammar_point: <suggest>:用いる (to employ)
+  - term: 利用 する
+    meaning: to utilize, to make good use of
+    kind: similar expression
+    nuance: 「利用 する」 emphasizes making beneficial or effective use of something, often services, opportunities,
+      or resources that are already available. It suggests maximizing advantage from what is provided.
+      While 「使う」 is neutral, 「利用 する」 often has a positive connotation of 'utilizing fully.' We're looking
+      for a general verb of 'using'.
+    grammar_point: <suggest>:利用する (to utilize)
+  - term: 活用 する
+    meaning: to make practical use of, to apply effectively
+    kind: similar expression
+    nuance: 「活用 する」 refers to making practical or effective use of something, often intangible things
+      like knowledge, experience, or skills, by applying them in a way that maximizes their potential.
+      It's about 'active utilization' or 'bringing into play.' We're looking for a general verb of 'using'.
+    grammar_point: <suggest>:活用する (to apply effectively)
+  - term: 消費 する
+    meaning: to consume, to spend (resources)
+    kind: similar expression
+    nuance: 「消費 する」 specifically means 'to consume,' 'to deplete,' or 'to spend' resources, such as time,
+      money, or energy. While 「使う」 can also apply to spending money or time, 「消費 する」 always implies a
+      reduction or exhaustion of the resource. We're looking for a general verb of 'using'.
+    grammar_point: <suggest>:消費する (to consume)
+post_false_friends_writeup: While 「使う」 is the most common and versatile verb for "to use" in general contexts,
+  other verbs like 「使用 する」, 「用いる」, 「利用 する」, 「活用 する」, and 「消費 する」 offer more specific nuances related to
+  formality, the type of item being used, or the nature of its application. 「使用 する」 is for formal or official
+  use, 「用いる」 is for employing specific methods or tools (often literary), 「利用 する」 is for effectively utilizing
+  services or opportunities, 「活用 する」 is for making the best practical use of potential, and 「消費 する」 specifically
+  denotes consumption or depletion of resources. Understanding these distinctions will help you choose
+  the most appropriate verb for your context.
+examples:
+  - english: I always use this pen.
+    japanese:
+      - 私 は いつ も この ペン を {使う}。
+      - 私 は いつ も この ペン を {使い ます}。
+    english_literally: As for me, always this pen use.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は いつ も この ペン を {利用 する}。
+        english: I always utilize this pen.
+        hint: 「利用 する」 often implies making effective use of something. We're looking for a general verb
+          of 'using'.
+    scene: A student habitually uses a specific pen for all their notes.
+    register: casual
+    setting: academic
+  - english: Please use this money freely.
+    japanese:
+      - この お 金 は 自由 に {使っ て ください}。
+      - この お 金 は 自由 に {お 使い ください}。
+    english_literally: This money freely please use.
+    competing_grammar:
+      - competing_japanese:
+          - この お 金 は 自由 に {消費 し て ください}。
+        english: Please consume this money freely.
+        hint: 「消費 する」 means to consume or spend, often implying depletion. We're looking for a broader
+          verb for 'using' money.
+    scene: A parent giving pocket money to their child.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: Let's use our time effectively.
+    japanese:
+      - 時間 を 有効 に {使おう}。
+      - 時間 を 有効 に {使い ましょう}。
+    english_literally: Time effectively let's use.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 を 有効 に {活用 しよう}。
+        english: Let's effectively apply our time.
+        hint: 「活用 する」 implies making the best practical use of something's potential. We're looking for
+          a more general 'let's use' for time.
+    scene: A team leader encouraging their team during a meeting.
+    register: casual
+    setting: professional
+    conjugation: volitional (～よう)
+  - english: You can use this app even offline.
+    japanese:
+      - この アプリ は オフ ライン で も {使える}。
+      - この アプリ は オフ ライン で も {使え ます}。
+    english_literally: This app offline even can use.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ は オフ ライン で も {利用 できる}。
+        english: You can utilize this app even offline.
+        hint: 「利用 する」 often refers to utilizing a service or facility. We're looking for a general 'can
+          use'.
+    scene: A tech support person explaining the features of an application.
+    register: semi-formal
+    setting: informative
+    conjugation: potential (～られる/～える)
+  - english: She used a very polite expression.
+    japanese:
+      - 彼女 は とても 丁寧 な 表現 を {使っ た}。
+      - 彼女 は とても 丁寧 な 表現 を {使い まし た}。
+    english_literally: She very polite expression used.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は とても 丁寧 な 表現 を {用い た}。
+        english: She employed a very polite expression.
+        hint: 「用いる」 is more formal and often used for employing specific expressions or methods. We're
+          looking for a general 'used' in this context.
+    scene: Someone describing a conversation they observed.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: This tool is not used much anymore.
+    japanese:
+      - この 道具 は もう あまり {使わ れ ない}。
+      - この 道具 は もう あまり {使わ れ ませ ん}。
+    english_literally: This tool already not much is used.
+    competing_grammar:
+      - competing_japanese:
+          - この 道具 は もう あまり {使用 さ れ ない}。
+        english: This tool is not officially applied much anymore.
+        hint: 「使用 する」 in passive implies official or formal application. We're looking for a general 'is
+          not used'.
+    scene: An antique collector talking about an old item.
+    register: casual
+    setting: reflective
+    conjugation: passive (～られる/～かれる)
+  - english: My boss made me use the old system.
+    japanese:
+      - 上司 に 古い システム を {使わさ れ た}。
+      - 上司 に 古い システム を {使わ せ られ まし た}。
+    english_literally: By boss old system made (me) use.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 に 古い システム を {使わ せ られ た}。
+        english: My boss coerced me to use the old system.
+        hint: This is a direct causative-passive form. We're looking for a situation where one is made
+          to use something, not necessarily coerced.
+    scene: An employee complaining to a colleague about work.
+    register: casual
+    setting: friendly
+    conjugation: causative-passive (～させられる)
+  - english: If you use too much, it won't last long.
+    japanese:
+      - たくさん {使っ たら}、長持ち し ない よ。
+      - たくさん {使え ば}、長持ち し ませ ん よ。
+    english_literally: If (you) use a lot, won't last long.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん {消費 し たら}、長持ち し ない よ。
+        english: If you consume a lot, it won't last long.
+        hint: 「消費 する」 implies depletion. While it fits here, 「使う」 is more general for the act of using.
+    scene: A mother advising her child about conserving a limited resource.
+    register: casual
+    setting: instructional
+    conjugation: conditional (～たら)
+  - english: Even if you use all your strength, it might be difficult.
+    japanese:
+      - 全力 を {使っ て も}、難しい か も しれ ない。
+      - 全力 を {使っ て も}、難しい か も しれ ませ ん。
+    english_literally: All strength even if use, difficult might be.
+    competing_grammar:
+      - competing_japanese:
+          - 全力 を {尽くし て も}、難しい か も しれ ない。
+        english: Even if you exert all your strength, it might be difficult.
+        hint: 「尽くす」 (tsukusu) means to exhaust or do one's utmost. We're looking for a more direct 'use'
+          of strength.
+    scene: A coach preparing an athlete for a challenging competition.
+    register: semi-formal
+    setting: serious
+    conjugation: concessive (～ても)
+  - english: I didn't want to use that method.
+    japanese:
+      - あの 方法 は {使い たく なかっ た}。
+      - あの 方法 は {使い たく あり ませ ん でし た}。
+    english_literally: That method did not want to use.
+    competing_grammar:
+      - competing_japanese:
+          - あの 方法 は {利用 し たく なかっ た}。
+        english: I didn't want to utilize that method.
+        hint: 「利用 する」 implies utilizing a method effectively. We're looking for a general 'did not want
+          to use'.
+    scene: Someone reflecting on a past decision or strategy.
+    register: casual
+    setting: reflective
+    conjugation: desiderative (～たい)
+post_example_writeup: As seen in the examples, 「使う」 is a foundational verb that describes the general
+  action of applying something. It can be used for tangible objects (pen, money), abstract concepts (time,
+  methods, strength), and even services (apps). The nuance largely comes from the context and accompanying
+  particles or conjugations. Pay attention to the particle 「を」 as it typically marks the direct object
+  of what is being used.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/使う

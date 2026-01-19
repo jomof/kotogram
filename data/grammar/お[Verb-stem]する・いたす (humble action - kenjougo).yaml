@@ -1,0 +1,573 @@
+grammar_point: お[Verb-stem]する・いたす (humble action - kenjougo)
+learn_before:
+  - Verb[ます] (polite present)
+  - お (honorific prefix)
+meaning: To perform an action humbly (kenjōgo), showing respect to the recipient or listener.
+meaning_warning: 「いたす」 is generally considered more humble and formal than 「お〜する」.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: お〜する / ご〜する / いたす
+    rarity: common
+    meaning: to humbly do
+  - conjugation-type: non-past polite (～ます)
+    form: お〜します / ご〜します / いたします
+    rarity: common
+    meaning: will humbly do
+  - conjugation-type: past plain (～た)
+    form: お〜した / ご〜した / いたした
+    rarity: common
+    meaning: humbly did
+  - conjugation-type: past polite (～ました)
+    form: お〜しました / ご〜しました / いたしました
+    rarity: common
+    meaning: humbly did
+  - conjugation-type: negative plain (～ない)
+    form: お〜しない / ご〜しない / いたさない
+    rarity: common
+    meaning: will not humbly do
+  - conjugation-type: negative non-past polite (～ません)
+    form: お〜しません / ご〜しません / いたしません
+    rarity: common
+    meaning: will not humbly do
+  - conjugation-type: negative past plain (～なかった)
+    form: お〜しなかった / ご〜しなかった / いたさなかった
+    rarity: common
+    meaning: did not humbly do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: お〜しませんでした / ご〜しませんでした / いたしませんでした
+    rarity: common
+    meaning: did not humbly do
+  - conjugation-type: te-form (～て)
+    form: お〜して / ご〜して / いたして
+    rarity: common
+    meaning: humbly doing, and
+  - conjugation-type: volitional (～よう)
+    form: お〜しよう / ご〜しよう / いたそう
+    rarity: less common
+    meaning: let's humbly do
+  - conjugation-type: volitional polite (～ましょう)
+    form: お〜しましょう / ご〜しましょう / いたしましょう
+    rarity: common
+    meaning: shall I humbly do
+  - conjugation-type: progressive (～ている)
+    form: お〜しております / ご〜しております
+    rarity: common
+    meaning: am humbly doing
+  - conjugation-type: conditional (～ば)
+    form: お〜すれば / ご〜すれば / いたせば
+    rarity: uncommon
+    meaning: if (one) humbly does
+  - conjugation-type: conditional (～たら)
+    form: お〜したら / ご〜したら / いたしたら
+    rarity: uncommon
+    meaning: if/when (one) humbly did
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: いたせ
+    rarity: very rare
+    meaning: do! (humbly, self-directed resolve)
+  - conjugation-type: imperative polite (～なさい)
+    form: いたしてください
+    rarity: very rare
+    meaning: please do (humbly)
+  - conjugation-type: potential (～られる/～える)
+    form: お〜しうる / ご〜しうる / いたせる
+    rarity: rare
+    meaning: can humbly do
+  - conjugation-type: passive (～られる/～かれる)
+    form: お〜せられる / ご〜せられる / いたされる
+    rarity: rare
+    meaning: to be humbly done
+  - conjugation-type: causative (～させる)
+    form: お〜させる / ご〜させる / いたさせる
+    rarity: very rare
+    meaning: make (one) humbly do
+pronunciation:
+  katakana: オ スル・ゴ スル・イタス
+  romaji: o suru・go suru・itasu
+formation:
+  Verb (する) → いたす: 「いたす」 is the humble form of 「する」, used for direct replacement.
+  お + Japanese origin Verb V-stem + する: Used for native Japanese verbs to humbly describe one's own action
+    (e.g., お話しする, お持ちする).
+  ご + Sino-Japanese Noun + する: Used for Sino-Japanese nouns denoting actions to humbly describe one's
+    own action (e.g., ご連絡する, ご案内する).
+  お + Japanese origin Verb V-stem + いたす: A more formal and humble variant for native Japanese verbs (e.g.,
+    お話しいたします, お持ちいたします).
+  ご + Sino-Japanese Noun + いたす: A more formal and humble variant for Sino-Japanese nouns (e.g., ご連絡いたします,
+    ご案内いたします).
+jlpt: N4
+etymology: The honorific prefixes 「お」 and 「ご」 originate from classical Japanese, with 「お」 typically used
+  for native Japanese words (和語 - wago) and 「ご」 for words of Chinese origin (漢語 - kango). These prefixes
+  combine with verb stems or action nouns, followed by 「する」 (to do), to humble the speaker's action. 「いたす」,
+  written as 「致す」, originally meant "to reach" or "to bring about." Over time, it evolved into a humble
+  form of 「する」, indicating deference. The kanji 「致」 itself conveys a nuance of respect and formality.
+  The combination of these elements forms kenjōgo (humble language), which focuses on lowering the speaker's
+  status to elevate the listener's, distinct from honorifics that elevate the subject's actions (e.g.,
+  「お〜になる」).
+writeup: |-
+  「お[V-stem]する」, 「ご[Noun]する」, and 「いたす」 are fundamental forms of humble language (謙譲語 - kenjōgo) in Japanese. They are used to humbly describe one's own actions, or actions of those within the speaker's inner circle (e.g., their company), thereby showing respect and deference to the person one is speaking to, or the person who is the recipient or beneficiary of the action. This makes the listener feel honored or respected.
+
+  **Usage based on word origin and formality:**
+  *   **お～する**: Generally used with native Japanese verbs (和語動詞 - wago doushi) (e.g., 話す → お話しする, 持つ → お持ちする).
+  *   **ご～する**: Typically used with Sino-Japanese nouns (漢語名詞 - kango meishi) that denote an action (e.g., 連絡 → ご連絡する, 案内 → ご案内する).
+  *   **いたす**: This is the humble form of the verb 「する」 (to do). It can replace 「する」 directly when 「する」 is the main verb (e.g., 準備する → 準備いたします). Additionally, it can be combined with the 「お/ご」 patterns for an even higher level of humility and formality (e.g., お話しいたします, ご連絡いたします). The latter forms (using 「いたす」) are generally considered more formal and humble, making them common in business settings and formal announcements.
+
+  It is important to note that not all verbs or Sino-Japanese nouns can be used with these forms. Some verbs also have their own irregular humble forms (e.g., 行く/来る/いる → 参る; 食べる/飲む → 頂く; 言う → 申す/申し上げる; 会う → お目にかかる). Using these forms correctly is crucial for sounding polite and respectful in formal and business settings, and when interacting with superiors or elders.
+false_friends:
+  - term: お〜になる・ご〜になる
+    meaning: To (honorific action)
+    kind: antonym
+    nuance: This form is honorific (尊敬語 - sonkeigo), used to elevate the actions of someone else (e.g.,
+      the listener or a third party), not your own. For example, 「お話しになる」 means "you speak," while 「お話しする"
+      means "I speak humbly."
+    grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+  - term: する
+    meaning: To do, to make
+    kind: synonym
+    nuance: 「する」 is the plain or polite form of "to do." 「お〜する・いたす」 are its humble equivalents, used to
+      show respect to the listener by lowering the speaker's status.
+    grammar_point: する (to do・make)
+  - term: 〜ていただく
+    meaning: To have someone do something for me (humbly receive a benefit)
+    kind: similar expression
+    nuance: While 「お〜する・いたす」 focus on humbly performing an action for someone, 「〜ていただく」 focuses on humbly
+      receiving a benefaction or favor from someone.
+    grammar_point: '[Verb-て]もらう (to have someone do, receive an action)'
+  - term: さしあげる
+    meaning: To give (humbly)
+    kind: similar expression
+    nuance: 「さしあげる」 is the humble form of 「あげる」 and is specifically used when you are giving something
+      to a superior or someone you wish to show respect to. It is a humble action but specifically for
+      'giving', whereas 「お〜する・いたす」 apply to a wider range of actions.
+    grammar_point: あげる・やる (to give, outward)
+  - term: いただく
+    meaning: To receive, eat, or drink (humbly)
+    kind: similar expression
+    nuance: 「いただく」 is the humble form of 「もらう」 (to receive) and 「食べる/飲む」 (to eat/drink). It is used to
+      show humility when receiving something or consuming food/drink, which is a different type of action
+      from what 「お〜する・いたす」 typically cover.
+    grammar_point: <suggest>:いただく (humble of もらう・食べる・飲む)
+post_false_friends_writeup: When using Japanese humble language, it's essential to distinguish between
+  humbling your own actions (謙譲語 - kenjōgo) and honoring someone else's actions (尊敬語 - sonkeigo). 「お～する」
+  and 「ご～する」, along with the more formal 「いたす」, are used to humble your own actions directed towards a
+  superior, like in 「ご説明いたします」 (I will humbly explain). This contrasts with forms like 「お～になる」, which
+  honor the actions of others, as in 「先生がお話しになります」 (The teacher speaks). Additionally, while all these
+  forms are humble, 「～ていただく」 is about humbly receiving a favor, and 「さしあげる」 and 「いただく」 are specifically
+  about humbly giving or humbly receiving/eating/drinking, respectively, rather than a broader range of
+  actions.
+examples:
+  - english: I will humbly guide you to the meeting room.
+    japanese:
+      - 会議 室 へ {ご 案内 いたし ます}。
+      - 会議 室 へ {ご 案内 し ます}。
+    english_literally: To the meeting room, I will humbly guide.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 室 へ 案内 し ます。
+        english: I will guide you to the meeting room.
+        hint: This is polite, but not humble. 「ご案内いたします」 or 「ご案内します」 show deference to the person you
+          are guiding. We are looking for humble language.
+    scene: A new employee is guiding a senior colleague to a meeting.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will contact you tomorrow.
+    japanese:
+      - 明日、{ご 連絡 いたし ます}。
+      - 明日、{ご 連絡 し ます}。
+    english_literally: Tomorrow, I will humbly contact.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、連絡 し ます。
+        english: I will contact you tomorrow.
+        hint: While technically correct, 「連絡します」 lacks the humility expected in business interactions
+          with clients. We are looking for a humble way to express contact.
+    scene: A business person ending a call with an important client.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: May I humbly carry your bags?
+    japanese:
+      - お 荷物、{お 持ち し ましょう} か。
+      - お 荷物、{お 持ち いたし ましょう} か。
+    english_literally: Your luggage, shall I humbly carry?
+    competing_grammar:
+      - competing_japanese:
+          - お 荷物、持ち ましょう か。
+        english: Shall I carry your bags?
+        hint: This is a polite offer, but the inclusion of 「お」 before the verb stem of 「持つ」 (to carry)
+          and using the humble form further humbles the speaker's action, which is appropriate for a service
+          professional. We are looking for a humble offer.
+    scene: A hotel staff member offering assistance to a guest with their luggage.
+    register: semi-formal
+    setting: professional
+    conjugation: volitional polite (～ましょう)
+    nuance: 「お持ちしましょうか」 or 「お持ちいたしましょうか」 (o-mochi shimashō ka / o-mochi itashimashō ka) are polite offers
+      to perform an action for the listener, indicating service and respect. The 「お～します/お～いたします」 structure
+      is used to humble the speaker's action of 'carrying' to show respect to the guest.
+  - english: Yesterday, I humbly explained the details to the director.
+    japanese:
+      - 昨日、部長 に 詳細 を {ご 説明 いたし まし た}。
+      - 昨日、部長 に 詳細 を {ご 説明 し まし た}。
+    english_literally: Yesterday, to the department head, the details, I humbly explained.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、部長 に 詳細 を 説明 し まし た。
+        english: Yesterday, I explained the details to the director.
+        hint: While 「説明しました」 is polite, 「ご説明いたしました」 or 「ご説明しました」 add humility to your action when speaking
+          about it to a colleague, particularly when the action was directed at a superior. We are looking
+          for a humble explanation.
+    scene: An employee reporting to a colleague about a past interaction with their department head.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: I will humbly wait for you at the entrance.
+    japanese:
+      - 入り口 で {お 待ち し て おり ます}。
+      - 入り口 で {お 待ち し て い ます}。
+    english_literally: At the entrance, I am humbly waiting.
+    competing_grammar:
+      - competing_japanese:
+          - 入り口 で 待っ て い ます。
+        english: I am waiting at the entrance.
+        hint: 「待っています」 is polite, but 「お待ちしております」 or 「お待ちしています」 express a deeper level of humility, essential
+          when speaking to a superior in a professional context. We are looking for a humble continuous
+          action.
+    scene: A subordinate speaking to a superior about where they will be waiting before an outing.
+    register: formal
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: 「お待ちしております」 (omachi shite orimasu) combines the humble 「お～する」 with the humble form of 「いる」
+      (to be/exist), 「おる」, creating a highly polite expression for "I am waiting," suitable for indicating
+      a continued humble state or action. 「お待ちしています」 is slightly less formal but still humble.
+  - english: We will humbly prepare a presentation for you.
+    japanese:
+      - お 客 様 に プレゼンテーション を {ご 用意 いたし ます}。
+      - お 客 様 に プレゼンテーション を {ご 用意 し ます}。
+    english_literally: For the customer, a presentation, we will humbly prepare.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 に プレゼンテーション を 用意 し ます。
+        english: We will prepare a presentation for the customer.
+        hint: The use of 「ご用意いたします」 or 「ご用意します」 conveys a higher level of respect and dedication in a
+          business setting compared to the standard polite form. We are looking for something more humble.
+    scene: A sales team member assuring a new client of their dedication.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will humbly inform you as soon as I know.
+    japanese:
+      - 分かり 次第、{お 知ら せ いたし ます}。
+      - 分かり 次第、{お 知らせ し ます}。
+    english_literally: As soon as I know, I will humbly inform.
+    competing_grammar:
+      - competing_japanese:
+          - 分かり 次第、連絡 し ます。
+        english: I will contact you as soon as I know.
+        hint: While 「連絡します」 is generally polite, 「お知らせいたします」 or 「お知らせします」 specifically indicates providing
+          information humbly, which is more precise and polite in this context. We are looking for a humble
+          way to inform.
+    scene: A customer service representative responding to a client's inquiry that requires checking information.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will humbly accept your kind offer.
+    japanese:
+      - ありがたい お 申し出、{お 受け いたし ます}。
+      - ありがたい お 申し出、{お 受け し ます}。
+    english_literally: Thankful offer, I will humbly accept.
+    competing_grammar:
+      - competing_japanese:
+          - ありがたい お 申し出、受け ます。
+        english: I will accept your kind offer.
+        hint: 「受けます」 is simple acceptance. 「お受けいたします」 or 「お受けします」 add a layer of humility and gratitude,
+          especially suitable for receiving something from a respected person. We are looking for a humble
+          acceptance.
+    scene: Responding to a generous proposal from a business partner or mentor.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will humbly ask my superior about that matter.
+    japanese:
+      - その 件 は 上司 に {お 尋ね いたし ます}。
+      - その 件 は 上司 に {お 尋ね し ます}。
+    english_literally: That matter, to my superior, I will humbly ask.
+    competing_grammar:
+      - competing_japanese:
+          - その 件 は 上司 に 聞き ます。
+        english: I will ask my superior about that matter.
+        hint: 「聞きます」 is a direct polite form. 「お尋ねいたします」 or 「お尋ねします」 are humble ways to say 'I will ask,'
+          showing deference both to the superior being asked and the client being spoken to. We are looking
+          for a humble inquiry.
+    scene: An employee telling a client that they need to consult with a manager regarding a complex issue.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: We will humbly handle all the procedures.
+    japanese:
+      - 全て の 手続き は 弊社 で {ご 対応 いたし ます}。
+      - 全て の 手続き は 弊社 で {ご 対応 し ます}。
+    english_literally: All procedures, at our company, we will humbly handle.
+    competing_grammar:
+      - competing_japanese:
+          - 全て の 手続き は 弊社 で 対応 し ます。
+        english: Our company will handle all procedures.
+        hint: 「対応します」 is polite, but 「ご対応いたします」 or 「ご対応します」 enhance the sense of humble service and commitment
+          in a business context, making the client feel more valued. We are looking for a formal, humble
+          way to handle something.
+    scene: A company representative explaining their service to prospective clients during a presentation.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will humbly deliver the documents to your office.
+    japanese:
+      - 資料 は オフィス まで {お 届け し ます}。
+      - 資料 は オフィス まで {お 届け いたし ます}。
+    english_literally: Documents, to your office, I will humbly deliver.
+    competing_grammar:
+      - competing_japanese:
+          - 資料 は オフィス まで 届け ます。
+        english: I will deliver the documents to your office.
+        hint: 「届けます」 is polite, but in a service context, 「お届けします」 or 「お届けいたします」 add humility to the speaker's
+          action of delivering, showing respect to the recipient. We are looking for humble delivery.
+    scene: A delivery service person confirming the delivery details with the recipient over the phone.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will humbly assist you with the preparations.
+    japanese:
+      - 準備 を {お 手伝い いたし ます}。
+      - 準備 を {お 手伝い し ます}。
+    english_literally: Preparations, I will humbly assist.
+    competing_grammar:
+      - competing_japanese:
+          - 準備 を 手伝い ます。
+        english: I will help with the preparations.
+        hint: 「手伝います」 is polite, but 「お手伝いいたします」 or 「お手伝いします」 show greater deference and willingness to
+          humble oneself for the sake of helping a superior. We are looking for humble assistance.
+    scene: A junior colleague offering help to a senior colleague with a large project's preparations.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I will prepare the presentation.
+    japanese:
+      - プレゼンテーション の 準備 は 私 が {いたし ます}。
+      - 私 が プレゼンテーション の 準備 を {いたし ます}。
+      - プレゼンテーション の 準備 を 私 が {いたし ます}。
+    english_literally: Presentation's preparation, I will do (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - プレゼンテーション の 準備 は 私 が {し ます}。
+        english: I will prepare the presentation (polite).
+        hint: 「します」 is polite, but 「いたします」 adds a layer of humility appropriate when addressing a superior
+          in a business context. We're looking for humble language.
+    scene: A junior colleague offering assistance to a senior colleague.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The speaker uses 「いたします」 (humble form of する) to show deference and politeness to the senior
+      colleague, emphasizing their willingness to assist. This is common in a business setting from a
+      younger to an older person, or junior to senior. The use of 「私 が」 (watashi ga) explicitly states
+      the speaker's humble action.
+  - english: We will keep your luggage here for you.
+    japanese:
+      - お 客 様 の お 荷物 は こちら で お 預かり {いたし ます}。
+      - こちら で お 客 様 の お 荷物 を お 預かり {いたし ます}。
+      - お 荷物 は こちら で お 預かり {いたし ます}。
+    english_literally: Customer's luggage, here, we will receive (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 の お 荷物 は こちら で お 預かり {し ます}。
+        english: We will keep your luggage here for you (polite).
+        hint: 「お預かりします」 is polite, but 「お預かりいたします」 expresses a higher level of humble service, common
+          in hospitality. We're looking for language suitable for a concierge addressing a guest.
+    scene: A hotel concierge addressing a guest in the lobby.
+    register: bijinesu nihongo (business)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The concierge uses 「お預かりいたします」, the humble form of 預かる (to keep/receive), with the honorific
+      prefix 「お」, to express humble service to the customer. This is standard polite language in the service
+      industry, often used by female staff.
+  - english: We successfully handled the matter you requested the other day.
+    japanese:
+      - 先日、ご 依頼 の 件 は 無事 に 処理 {いたし まし た}。
+      - ご 依頼 の 件 は、先日、無事 に 処理 {いたし まし た}。
+      - 無事 に、先日 の ご 依頼 の 件 を 処理 {いたし まし た}。
+    english_literally: The other day, requested matter, safely processed (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 先日、ご 依頼 の 件 は 無事 に 処理 {し まし た}。
+        english: We successfully handled the matter you requested the other day (polite).
+        hint: 「処理しました」 is polite, but 「処理いたしました」 adds an extra layer of humility and formality, which
+          is appropriate for a company representative reporting to a client. We're looking for humble
+          language in a business context.
+    scene: A company representative reporting back to a client about a completed task.
+    register: bijinesu nihongo (business)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    nuance: By using 「処理いたしました」 (humble past polite of 処理する), the speaker conveys humble respect while
+      informing the client of the completed action. This is appropriate for formal business communication
+      between male speaker and female listener.
+  - english: Shall I explain about the new project?
+    japanese:
+      - 新しい 企画 に つい て、ご 説明 {いたし ましょう} か？
+      - ご 説明 {いたし ましょう} か、新しい 企画 に つい て。
+      - 新しい 企画 に つい て、私 が ご 説明 {いたし ましょう} か？
+    english_literally: New project about, explanation shall I do (humbly)?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 企画 に つい て、ご 説明 {し ましょう} か？
+        english: Shall I explain about the new project (polite).
+        hint: 「ご説明しましょうか」 is a polite offer, but 「ご説明いたしましょうか」 conveys a more humble and proactive offer,
+          even from a superior. We're looking for a polite and humble offer of explanation.
+    scene: A team leader offering to clarify details of a proposal to their team members.
+    register: semi-formal
+    setting: informative
+    conjugation: volitional polite (～ましょう)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「ご説明いたしましょうか」 uses the humble form to offer assistance or clarification, even to subordinates,
+      indicating a respectful and proactive attitude. The polite volitional 「〜ましょうか」 makes it an offer,
+      often used by female team leaders to their group.
+  - english: Regarding this matter, I will not contact you.
+    japanese:
+      - この 件 に つい て は、私 の 方 から 連絡 {いたし ませ ん}。
+      - 私 の 方 から は、この 件 に つい て 連絡 {いたし ませ ん}。
+      - この 件 の 連絡 は 私 の 方 から は {いたし ませ ん}。
+    english_literally: This matter about, my side from, contact will not do (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - この 件 に つい て は、私 の 方 から 連絡 {し ませ ん}。
+        english: Regarding this matter, I will not contact you (polite).
+        hint: 「連絡しません」 is polite, but 「連絡いたしません」 adds humility, which is expected from customer service
+          in Japan even when delivering a negative message. We're looking for humble negation.
+    scene: A customer service agent informing a customer that they will not initiate further contact for
+      a closed case.
+    register: bijinesu nihongo (business)
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「連絡いたしません」, the humble negative form of 連絡する (to contact), clearly states the company's
+      action while maintaining politeness and respect for the customer, even when conveying a negative
+      outcome. This phrase is commonly used by female customer service agents to male customers.
+  - english: I sincerely accepted her request.
+    japanese:
+      - 彼女 の お 願い を 誠心 誠意、お 受け {いたし た}。
+      - 誠心 誠意、彼女 の お 願い を お 受け {いたし た}。
+      - お 願い を 誠心 誠意 お 受け {いたし た}。
+    english_literally: Her request, with utmost sincerity, accepted (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の お 願い を 誠心 誠意、お 受け {し た}。
+        english: I sincerely accepted her request (polite).
+        hint: 「お受けした」 is a polite way to say you accepted, but 「お受けいたした」 emphasizes the humble acceptance,
+          making the sincerity even more pronounced. We're looking for a humble past action.
+    scene: A person reflecting on a past action with a trusted friend, using a slightly formal tone.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: While `いたした` is the plain past form, its humble nature, combined with 「誠心誠意 (seishin seii)」
+      (with utmost sincerity), lends a formal or reflective nuance, even in a casual conversation with
+      a close friend. It emphasizes the speaker's humble and genuine effort in accepting the request,
+      a tone often adopted by male speakers in reflective moments.
+  - english: Our company intends to make efforts to meet our customers' expectations.
+    japanese:
+      - 当 社 は お 客 様 の 期待 に 応える べく 努力 を {いたす} 所存 です。
+      - お 客 様 の 期待 に 応える べく、当 社 は 努力 を {いたす} 所存 です。
+      - 努力 を {いたす} 所存 です。当 社 は お 客 様 の 期待 に 応える べく。
+    english_literally: Our company, customers' expectations to meet, efforts to do (humbly) intention
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - 当 社 は お 客 様 の 期待 に 応える べく 努力 を {する} 所存 です。
+        english: Our company intends to make efforts to meet our customers' expectations (polite).
+        hint: 「努力する所存です」 states intention, but 「努力いたす所存です」 elevates the formality and humility, fitting
+          for a corporate statement. We're looking for a formal, humble declaration of intent.
+    scene: A corporate executive giving a formal public statement or presenting an annual report.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The dictionary form 「いたす」 is used here in a highly formal, almost declarative context, common
+      in written statements or speeches. Coupled with 「所存です (shoson desu)」 (we intend to), it conveys
+      a strong, humble commitment from the company. An older male executive's choice of this formal expression
+      enhances the gravitas of the statement to a group of listeners.
+  - english: Should we cause any inconvenience, we would be extremely sorry.
+    japanese:
+      - 万一、ご 不便 を お かけ {いたせ ば}、恐縮 です。
+      - ご 不便 を 万一 お かけ {いたせ ば}、恐縮 です。
+      - 万一、恐縮 です が、ご 不便 を お かけ {いたせ ば}。
+    english_literally: By any chance, inconvenience if we cause (humbly), it's regrettable.
+    competing_grammar:
+      - competing_japanese:
+          - 万一、ご 不便 を お かけ {すれ ば}、恐縮 です。
+        english: Should we cause any inconvenience, we would be extremely sorry (polite).
+        hint: 「おかけすれば」 is polite, but 「おかけいたせば」 intensifies the humility and apology, which is crucial
+          for a formal business apology. We're looking for a very humble conditional apology.
+    scene: A business sending an apology email or notice for potential service disruptions.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    conjugation: conditional (～ば)
+    nuance: The conditional 「おかけいたせば」 (if we humbly cause) is a deeply humble and apologetic expression.
+      It is used to pre-emptively apologize for any possible inconvenience, emphasizing the speaker's
+      (or company's) humble stance and concern for the recipient.
+  - english: I apologize, but I was unable to complete the task by the deadline.
+    japanese:
+      - 期限 まで に 課題 を 完了 {いたし ませ ん でし た}。
+      - 課題 を 期限 まで に 完了 {いたし ませ ん でし た}。
+      - 私 ども の 方 で 期限 まで に 課題 を 完了 {いたし ませ ん でし た}。
+    english_literally: Deadline by, task, completion did not do (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 期限 まで に 課題 を 完了 {し ませ ん でし た}。
+        english: I was unable to complete the task by the deadline (polite).
+        hint: 「しませんでした」 is polite, but 「いたしませんでした」 adds humility, which is appropriate when reporting
+          an uncompleted task to a superior. We're looking for humble negative past.
+    scene: A junior employee reporting to their manager.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「いたしませんでした」 is a humble way of admitting failure to complete a task, showing respect
+      to the superior even in an apology. This is standard in formal business communication, especially
+      when delivering bad news. A female speaker using this form is common when reporting to a male manager.
+  - english: We will conclude the presentation here.
+    japanese:
+      - 本 プレゼンテーション は これ にて 終了 と {いたし ます}。
+      - これ にて 本 プレゼンテーション は 終了 と {いたし ます}。
+      - 本 プレゼンテーション を これ にて 終了 {いたし ます}。
+      - これ にて 本 プレゼンテーション を 終了 {いたし ます}。
+    english_literally: This presentation, with this, conclusion will do (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 本 プレゼンテーション は これ にて 終了 と {し ます}。
+        english: We will conclude the presentation here (polite).
+        hint: 「とします」 is polite, but 「といたします」 is more formal and humble, commonly used in public announcements
+          or formal conclusions. We're looking for a formal humble conclusion.
+    scene: The speaker concluding a formal presentation to an audience.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「終了といたします」 is a highly formal and humble way of announcing the conclusion of an event or action,
+      common in public speaking or official announcements. The speaker, perhaps an older male presenting
+      to a group, uses this to show deference to the audience.
+post_example_writeup: As you can see from these examples, 「お〜する・ご〜する」 and 「いたす」 are versatile forms in
+  humble contexts, ranging from everyday business interactions to formal announcements. Their usage often
+  signals a speaker's respect towards the listener or audience by humbly describing their own actions
+  or actions of their group.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/お-する-ご-する-humble-action

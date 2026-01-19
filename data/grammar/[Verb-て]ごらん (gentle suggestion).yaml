@@ -1,0 +1,263 @@
+grammar_point: '[Verb-て]ごらん (gentle suggestion)'
+learn_before:
+  - Verb[ておく・とく] (preparation・advance action)
+meaning: gentle suggestion to try doing something
+pronunciation:
+  katakana: ゴラン
+  romaji: goran
+formation:
+  Verb[て-form] + ごらん: Used to give a gentle suggestion or advice, implying 'try it and see'.
+jlpt: N4
+etymology: The phrase 『ごらん』 originates from 『ご覧になる』 (goran ni naru), which is the honorific form of 『見る』
+  (miru - to see). Over time, when combined with the te-form of a verb, its meaning evolved from a respectful
+  'please look at' or 'please see' to a gentler, less formal 'try doing (and see for yourself)' or 'why
+  don't you try'. This evolution reflects a linguistic tendency for honorifics to sometimes generalize
+  into more common usage, losing some of their original formality in specific contexts.
+writeup: |-
+  The grammatical pattern 『Verb[て-form] + ごらん』 is used to offer a gentle suggestion, advice, or instruction. It carries a nuance of encouraging someone to “try doing something and see what happens” or “why don’t you try (this action).” It is less direct and demanding than 『〜なさい』 (a polite but firm imperative) and generally softer than 『〜てください』 (a standard polite request).
+
+  This expression is frequently employed by parents to children, teachers to students, or by someone in a more senior or experienced position addressing a less experienced individual. It implies that the speaker believes the action is beneficial or necessary for the listener to try and understand.
+
+  While grammatically rooted in the honorific 『ご覧になる』, in this construction, 『ごらん』 itself does not convey honorific respect to the listener. Instead, it serves to soften the command, making it sound more like an invitation or a piece of helpful advice rather than a strict order. Therefore, it is important to understand the context and the relationship between the speakers when using or interpreting 『〜ごらん』.
+false_friends:
+  - term: '[Verb-stem]なさい'
+    meaning: polite imperative
+    kind: similar expression
+    nuance: 『〜なさい』 is a direct command, often used by adults to children or in instructional settings.
+      It can sound stern or authoritative, whereas 『〜ごらん』 is a softer, more encouraging suggestion.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: 〜てください
+    meaning: please do
+    kind: similar expression
+    nuance: 『〜てください』 is a general polite request that can be used in a wide range of situations. While
+      polite, it is a straightforward request. 『〜ごらん』, conversely, implies a more personal suggestion
+      or encouragement, often with an underlying message of 'experience it for yourself.'
+    grammar_point: てください (polite request)
+  - term: 〜てみる
+    meaning: try doing
+    kind: similar expression
+    nuance: 『〜てみる』 means to 'try' an action, often to see the outcome or gain experience. It can be used
+      by the speaker about themselves or to suggest to others. 『〜ごらん』 specifically functions as a gentle
+      suggestion *to another person* to try something, explicitly inviting them to 'see' or experience
+      the result.
+    grammar_point: Verb[てみる] (try doing)
+  - term: Verb[て]+みろ
+    meaning: try doing (masculine, rough imperative)
+    kind: similar expression
+    nuance: While 『〜ごらん』 comes from 『ご覧になる』 (to see) and implies 'try and see', 『〜みろ』 is the plain imperative
+      form of 『見る』 (to see) and sounds very rough and direct, often confrontational. It is a command to
+      'look' or 'try', typically used by a male speaker to another male in a very casual or aggressive
+      context, and lacks the gentleness of 『〜ごらん』.
+    grammar_point: <suggest>:Verb[て]みろ (rough imperative)
+post_false_friends_writeup: While 『〜ごらん』 offers a gentle suggestion, be careful not to confuse it with
+  more direct commands or simple requests. 『〜なさい』 is more authoritative, and 『〜てください』 is a neutral polite
+  request. 『〜てみる』 focuses on the act of trying itself, rather than inviting someone else to try or observe.
+  Remember, 『〜ごらん』 often implies 'try it and see for yourself,' which distinguishes it from these other
+  expressions.
+examples:
+  - english: Try to eat some vegetables.
+    japanese:
+      - 野菜 も {食べ て ごらん}。
+      - 野菜 を {食べ て ごらん}。
+      - 野菜 も {食べ て ごらん よ}。
+      - 野菜 を {食べ て ごらん よ}。
+    english_literally: Vegetables too, try eating.
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 も 食べ なさい。
+        english: Eat some vegetables.
+        hint: This is a direct command, suitable for a parent speaking to a disobedient child. We're looking
+          for a softer suggestion.
+      - competing_japanese:
+          - 野菜 も 食べ て ください。
+        english: Please eat some vegetables.
+        hint: This is a polite request. We're looking for a gentle suggestion that encourages trying the
+          action.
+    scene: A parent encouraging their young child to eat healthily.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 『〜ごらん』 softens the suggestion, making it sound more like an invitation to try rather
+      than a command. The speaker, a mother, uses this to gently coax her child.
+  - english: If you don't understand, try asking your teacher.
+    japanese:
+      - 分から なけれ ば、先生 に {聞い て ごらん}。
+      - 分から なかっ たら、先生 に {聞い て ごらん}。
+      - 分から なけれ ば、先生 に {聞い て ごらん よ}。
+      - 分から なかっ たら、先生 に {聞い て ごらん よ}。
+    english_literally: If you don't understand, to teacher, try asking.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なけれ ば、先生 に 聞い て み なさい。
+        english: If you don't understand, ask your teacher.
+        hint: This sounds like a stern instruction from a teacher. We need a more encouraging tone.
+    scene: An older sibling advising a younger sibling about their homework.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 『〜ごらん』 here is used to provide helpful advice, implying 'you should try asking your teacher,
+      and you'll see it helps.' It's a common phrase used to encourage someone to take a beneficial action.
+  - english: It's okay, try doing it once.
+    japanese:
+      - 大丈夫 だ よ、一 度 {やっ て ごらん}。
+      - 大丈夫 だ よ、一 度 {やっ て ごらん よ}。
+    english_literally: It's okay, once, try doing.
+    competing_grammar:
+      - competing_japanese:
+          - 大丈夫 だ よ、一 度 やっ て み なさい。
+        english: It's okay, try doing it once.
+        hint: This has a slight nuance of 'you must try it.' We want a softer, more encouraging push.
+    scene: A friend encouraging another who is hesitant to try something new.
+    register: casual
+    setting: supportive
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 『大丈夫 だ よ』 combined with 『やってごらん』 creates a very supportive and gentle encouragement,
+      emphasizing that there's no harm in trying and experiencing it firsthand.
+  - english: If you don't know the answer, try looking it up in the dictionary.
+    japanese:
+      - 答え が 分から なかっ たら、辞書 で {調べ て ごらん}。
+      - 答え が 分から なけれ ば、辞書 で {調べ て ごらん}。
+      - 答え が 分から なかっ たら、辞書 で {調べ て ごらん よ}。
+      - 答え が 分から なけれ ば、辞書 で {調べ て ごらん よ}。
+    english_literally: If answer is unknown, in dictionary, try looking up.
+    competing_grammar:
+      - competing_japanese:
+          - 答え が 分から なかっ たら、辞書 で 調べ て み て。
+        english: If you don't know the answer, try looking it up in the dictionary.
+        hint: 『〜みて』 also suggests trying, but 『〜ごらん』 specifically encourages the learner to 'see for themselves'
+          the result of the action, adding a layer of guidance.
+    scene: A tutor giving advice to their student.
+    register: casual
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: This example shows 『〜ごらん』 used in an instructional context where the speaker guides the listener
+      toward self-discovery. It's a gentle push for the student to take initiative.
+  - english: You should try saying what you want clearly.
+    japanese:
+      - 言い たい こと は はっきり {言っ て ごらん}。
+      - 言い たい こと は はっきり {言っ て ごらん よ}。
+    english_literally: What you want to say, clearly, try saying.
+    competing_grammar:
+      - competing_japanese:
+          - 言い たい こと は はっきり 言い なさい。
+        english: Say what you want clearly.
+        hint: This is a direct command. We want a suggestion for how someone might improve their communication.
+    scene: A supportive mentor giving advice to a shy junior colleague.
+    register: semi-formal
+    setting: supportive
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: Here, 『〜ごらん』 is used to encourage assertiveness. The mentor believes the junior colleague
+      will see positive results by speaking up, framing the advice as a gentle trial rather than a strict
+      order.
+  - english: Even if it's difficult, try to finish it.
+    japanese:
+      - 難しく て も、最後 まで {やっ て ごらん}。
+      - 難しく て も、最後 まで {やっ て ごらん よ}。
+    english_literally: Even if difficult, until the end, try doing.
+    competing_grammar:
+      - competing_japanese:
+          - 難しく て も、最後 まで やっ て 見 て ください。
+        english: Even if it's difficult, please try to finish it.
+        hint: This is a polite request to try. 『〜ごらん』 is much more about personal encouragement and seeing
+          the outcome for oneself.
+    scene: A coach motivating an athlete during practice.
+    register: casual
+    setting: inspirational
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 『やってごらん』 is used to inspire perseverance. The coach is telling the athlete to 'try
+      till the end and see what you can achieve,' emphasizing the personal experience of completing the
+      task.
+  - english: Try wearing this jacket; it might suit you.
+    japanese:
+      - この ジャケット を {着 て ごらん}。似合う か も しれ ない よ。
+      - この ジャケット を {着 て ごらん よ}。似合う か も しれ ない よ。
+    english_literally: This jacket, try wearing. Might suit you.
+    competing_grammar:
+      - competing_japanese:
+          - この ジャケット を 着 て み て。似合う か も しれ ない よ。
+        english: Try wearing this jacket. It might suit you.
+        hint: Both are similar, but 『〜ごらん』 puts slightly more emphasis on the visual result or the experience
+          of wearing it.
+    scene: A sales associate helping a customer choose clothes.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    nuance: In a retail setting, 『着てごらん』 is a polite and encouraging way for a staff member to suggest
+      trying on an item, implying 'try it on and see how it looks/feels on you.'
+  - english: Try speaking in Japanese. Don't worry about making mistakes.
+    japanese:
+      - 日本 語 で {話し て ごらん}。間違え て も 大丈夫 だ よ。
+      - 日本 語 で {話し て ごらん よ}。間違え て も 大丈夫 だ よ。
+    english_literally: In Japanese, try speaking. Even if you make mistakes, it's okay.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 で 話し て み なさい。間違え て も 大丈夫 だ よ。
+        english: Speak in Japanese. Don't worry about making mistakes.
+        hint: This sounds like a teacher giving an instruction rather than a gentle encouragement to overcome
+          shyness.
+    scene: A Japanese language exchange partner encouraging their friend.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 『話してごらん』 here serves as a supportive push for someone hesitant to use Japanese. The speaker
+      wants the listener to 'try speaking and see that it's okay, even with mistakes,' fostering confidence.
+  - english: You're hungry, aren't you? Go on, try eating some more.
+    japanese:
+      - お腹 空い た でしょ？もっと {食べ て ごらん}。
+      - お腹 空い た でしょ？もっと {食べ て ごらん よ}。
+    english_literally: You're hungry, aren't you? More, try eating.
+    competing_grammar:
+      - competing_japanese:
+          - お腹 空い た でしょ？もっと 食べ なさい。
+        english: You're hungry, aren't you? Eat more.
+        hint: This is a direct command. 『〜ごらん』 is much more inviting when offering food.
+    scene: A grandmother offering food to her grandchild.
+    register: casual
+    setting: intimate
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: This is a very common use of 『〜ごらん』 within family contexts, especially from older relatives
+      to younger ones. It expresses warmth and care, gently urging the listener to eat and enjoy.
+  - english: If you are bored, try reading this book.
+    japanese:
+      - 退屈 なら、この 本 を {読ん で ごらん}。
+      - 退屈 なら、この 本 を {読ん で ごらん よ}。
+    english_literally: If bored, this book, try reading.
+    competing_grammar:
+      - competing_japanese:
+          - 退屈 なら、この 本 を 読み なさい。
+        english: If you are bored, read this book.
+        hint: This is a command, sounding less like a suggestion and more like an order. We're looking
+          for a gentle recommendation.
+    scene: A librarian suggesting a book to a child.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 『読んでごらん』 in this context is a kind suggestion, inviting the child to 'try reading this book
+      and see if you like it,' promoting exploration and engagement rather than demanding it.

@@ -1,0 +1,300 @@
+grammar_point: い-Adjective[すぎる] (excessive)
+learn_before:
+  - すぎる (too much・excessive)
+meaning: too much; excessive
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: すぎる
+    rarity: common
+    meaning: to be too much
+  - conjugation-type: non-past polite (～ます)
+    form: すぎます
+    rarity: common
+    meaning: to be too much (polite)
+  - conjugation-type: negative plain (～ない)
+    form: すぎない
+    rarity: common
+    meaning: not too much
+  - conjugation-type: negative non-past polite (～ません)
+    form: すぎません
+    rarity: common
+    meaning: not too much (polite)
+  - conjugation-type: past plain (～た)
+    form: すぎた
+    rarity: common
+    meaning: was too much
+  - conjugation-type: past polite (～ました)
+    form: すぎました
+    rarity: common
+    meaning: was too much (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: すぎなかった
+    rarity: common
+    meaning: was not too much
+  - conjugation-type: negative past polite (～ませんでした)
+    form: すぎませんでした
+    rarity: common
+    meaning: was not too much (polite)
+  - conjugation-type: te-form (～て)
+    form: すぎて
+    rarity: common
+    meaning: being too much; and so
+  - conjugation-type: volitional (～よう)
+    form: すぎよう
+    rarity: less common
+    meaning: let's be too much
+  - conjugation-type: volitional polite (～ましょう)
+    form: すぎましょう
+    rarity: less common
+    meaning: let's be too much (polite)
+  - conjugation-type: potential (～られる/～える)
+    form: すぎられる
+    rarity: uncommon
+    meaning: can be too much
+  - conjugation-type: conditional (～たら)
+    form: すぎたら
+    rarity: common
+    meaning: if it is too much
+  - conjugation-type: concessive (～ても)
+    form: すぎても
+    rarity: common
+    meaning: even if it is too much
+pronunciation:
+  katakana: スギル
+  romaji: sugiru
+formation:
+  い-Adjective[stem] + すぎる: Indicates that the state described by the i-adjective is excessive. The い is
+    dropped and すぎる is attached.
+jlpt: N4
+etymology: The verb すぎる (sugiru) means 'to pass,' 'to exceed,' or 'to go too far.' When affixed to the
+  stem of an i-adjective, it carries this meaning of 'excess' or 'overdoing,' indicating that the quality
+  or state described by the adjective is beyond an appropriate or desirable limit. This grammatical construction
+  reflects the original verbal meaning of 'exceeding' a standard or boundary.
+writeup: |-
+  The grammar point 「〜すぎる」 is used to indicate that something is 'too much' or 'excessive'. It attaches to the stem of い-adjectives, which means you drop the final 「い」 from the adjective and then add 「すぎる」. The resulting phrase then behaves like an Ichidan verb (a verb that ends in -る, like 食べる or 見る), and can be conjugated into various forms such as past tense, negative, te-form, and so on.
+
+  This construction often carries a negative nuance, implying that the degree of the adjective is undesirable, inappropriate, or problematic. For example, something might be 「高すぎる」 (taka-sugiru - too expensive), which is usually a complaint, or 「忙しすぎる」 (isogashi-sugiru - too busy), suggesting an undesirable workload.
+
+  While 「すぎる」 can be applied to many adjectives, its use highlights a departure from a normal or acceptable standard, emphasizing the negative consequences of that excess. It’s a very common expression in everyday Japanese to comment on situations that have gone beyond an optimal point.
+false_friends:
+  - term: い-Adjective[そう]
+    meaning: seems, looks like
+    kind: similar expression
+    nuance: 「〜そう」 expresses an appearance or conjecture based on observation, meaning 'it looks like X'
+      or 'it seems X'. In contrast, 「〜すぎる」 states that something *is* excessively X, often with a negative
+      implication.
+    grammar_point: い-Adjective[そう] (appearance)
+  - term: な-Adjective[すぎる]
+    meaning: excessive
+    kind: similar expression
+    nuance: While both express excessiveness, this form attaches to the stem of な-adjectives (dropping
+      the な). The core meaning of 'too much' or 'excessive' remains the same.
+    grammar_point: な-Adjective[すぎる] (excessive)
+  - term: あまり ない
+    meaning: not very, not much
+    kind: antonym
+    nuance: 「あまり〜ない」 indicates a moderate lack or scarcity, meaning 'not very' or 'not much'. This is
+      the opposite of 「〜すぎる」, which denotes an abundance or excess.
+    grammar_point: あまり ない (not very or much)
+post_false_friends_writeup: It is important to distinguish between 「〜すぎる」 and 「〜そう」. While both can be
+  attached to adjectives, 「〜そう」 describes what *appears* to be the case (e.g., 「美味しそう」 means 'looks delicious'),
+  whereas 「〜すぎる」 describes an actual state of excess (e.g., 「美味しすぎる」 means 'too delicious', possibly implying
+  it's overly rich or sweet). The latter often carries a connotation that the excess is problematic or
+  undesirable. Additionally, remember that 「すぎる」 can also attach to verbs and noun forms to indicate excessive
+  actions or quantities, such as 「食べすぎる」 (tabesugiru - to eat too much) or 「勉強しすぎる」 (benkyou shisugiru
+  - to study too much).
+examples:
+  - english: This apple is too sour.
+    japanese:
+      - この リンゴ は {酸っぱ すぎる}。
+      - この リンゴ は {酸っぱ すぎ ます}。
+      - この リンゴ、{酸っぱ すぎる} よ。
+      - この リンゴ は {酸っぱ すぎる} ね。
+    english_literally: This apple is sour-too-much.
+    competing_grammar:
+      - competing_japanese:
+          - この リンゴ は 酸っぱい そう だ。
+        english: This apple looks sour.
+        hint: 「〜そう」 expresses that something 'looks' or 'appears' a certain way, not that it actually
+          *is* excessively so. We're looking for an actual state of excess here.
+      - competing_japanese:
+          - この リンゴ は あまり 酸っぱく ない。
+        english: This apple is not very sour.
+        hint: 「あまり〜ない」 indicates a moderate lack, the opposite of excess. We're looking for a statement
+          about an excessive quality.
+    scene: A child tastes a piece of fruit and makes a face.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「酸っぱすぎる」 implies that the sourness is beyond what is pleasant or expected, making
+      it difficult or unpleasant to eat.
+  - english: My room is too small for a big bed.
+    japanese:
+      - 私 の 部屋 は 大きい ベッド に は {狭 すぎる}。
+      - 私 の 部屋 は 大きい ベッド に は {狭 すぎ ます}。
+      - うち の 部屋、大きい ベッド だ と {狭 すぎる} な。
+    english_literally: My room big bed for is narrow-too-much.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は 大きい ベッド に は 狭い。
+        english: My room is small for a big bed.
+        hint: This simply states that the room is small. We need to emphasize that it's *excessively*
+          small, making it problematic for the bed.
+    scene: A young adult is trying to furnish their new apartment.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「狭すぎる」 conveys the speaker's frustration that the room's smallness is an obstacle to their
+      desired furniture, implying it's excessively small for the purpose.
+  - english: The weather today is too hot.
+    japanese:
+      - 今日 の 天気 は {暑 すぎる}。
+      - 今日 の 天気 は {暑 すぎ ます}。
+      - 今日、{暑 すぎる} よ。
+      - 今日 は {暑 すぎる} ね。
+    english_literally: Today's weather is hot-too-much.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は 暑い そう だ。
+        english: They say today's weather is hot.
+        hint: 「〜そうだ」 can also mean 'I heard that' or 'it is said that', not necessarily expressing personal
+          feeling of excessive heat. We're looking for a direct statement about the weather's excess.
+    scene: Two friends are walking outside on a summer day.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: 「暑すぎる」 expresses a strong, possibly uncomfortable, feeling of excessive heat, implying it's
+      beyond a pleasant temperature. This is a common phrase used when complaining about the weather.
+  - english: Don't drive too fast!
+    japanese:
+      - '{速 すぎる} 運転 を し ない で！'
+      - '{速 すぎる} 運転 を し ない で ください！'
+      - '{速 すぎる} 運転 は やめろ！'
+      - '{速 すぎる} 運転 は やめ て ね！'
+    english_literally: Fast-too-much driving do not!
+    competing_grammar:
+      - competing_japanese:
+          - 速い 運転 を し ない で！
+        english: Don't drive fast!
+        hint: This simply means 'don't drive fast'. We need to emphasize the excessive speed that is dangerous.
+          We're looking for an adverbial modification.
+    scene: A passenger is nervously advising the driver.
+    register: casual
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    nuance: 「速すぎる 運転」 (hayasugiru unten) implies that the speed is beyond a safe limit, making it dangerous.
+      Here, 「速すぎる」 modifies the noun 「運転」 (driving) as an attributive adjective.
+  - english: This problem is too difficult; I can't solve it.
+    japanese:
+      - この 問題 は {難し すぎる} から、解け ませ ん。
+      - この 問題 は {難し すぎ ます} から、解け ませ ん。
+      - この 問題、{難し すぎる} から 解け ない よ。
+    english_literally: This problem is difficult-too-much because, cannot solve.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 難しい から、解け ませ ん。
+        english: This problem is difficult, so I can't solve it.
+        hint: This simply states the problem is difficult. 「難しすぎる」 emphasizes that the difficulty is *excessive*,
+          directly leading to the inability to solve it.
+    scene: A student is struggling with a math problem.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「難しすぎる」 conveys the speaker's despair or frustration that the difficulty level is overwhelming,
+      making the task impossible for them.
+  - english: Even if it's too cold, we still have to go outside.
+    japanese:
+      - '{寒 すぎ て も}、外 に 行か なけれ ば なり ませ ん。'
+      - '{寒 すぎ て も}、外 に 行か なけれ ば いけ ませ ん。'
+      - '{寒 すぎ て も}、外 行か なきゃ。'
+      - '{寒 すぎ て も}、外 へ 行か なけれ ば なり ませ ん。'
+    english_literally: Cold-too-much-even-if, outside to go must.
+    competing_grammar:
+      - competing_japanese:
+          - 寒く て も、外 に 行か なけれ ば なり ませ ん。
+        english: Even if it's cold, we still have to go outside.
+        hint: 「寒くても」 means 'even if it's cold'. 「寒すぎても」 emphasizes that *despite the excessive cold*,
+          the action is still required. We're looking for the nuance of 'too much'.
+    scene: A group of colleagues are about to step out into freezing weather.
+    register: formal
+    setting: professional
+    conjugation: concessive (～ても)
+    nuance: 「寒すぎても」 emphasizes that even an undesirable, excessive level of cold does not negate the necessity
+      of the action, highlighting a demanding situation.
+  - english: If you eat too much sweet things, it's not good for your health.
+    japanese:
+      - 甘い 物 を {食べ すぎ たら}、体 に 良く ない です よ。
+      - 甘い 物 を {食べ すぎる と}、体 に 良く ない です よ。
+      - 甘い 物 {食べ すぎ たら}、体 に 良く ない よ。
+    english_literally: Sweet things too-eat-if, body to not good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 甘い 物 を 食べ たら、体 に 良く ない です よ。
+        english: If you eat sweet things, it's not good for your health.
+        hint: This implies that simply eating sweet things is bad. The original sentence emphasizes that
+          eating an *excessive amount* is bad for health. We're looking for a verb with すぎる attached to
+          it.
+    scene: A parent is advising their child about healthy eating habits.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: conditional (～たら)
+    nuance: While this example uses 「食べすぎる」 (a verb with すぎる), it demonstrates the same principle of excess.
+      「食べすぎたら」 (tabesugitara) means 'if you eat too much', implying a negative consequence for one's health
+      from the excessive action.
+  - english: He was so sad that he couldn't speak.
+    japanese:
+      - 彼 は {悲し すぎ て}、話せ なかっ た。
+      - 彼 は {悲し すぎ まし て}、話せ ませ ん でし た。
+      - 彼、{悲し すぎ て} 話せ なかっ た ん だ。
+    english_literally: He sadness-too-much-being, could not speak.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 悲しく て、話せ なかっ た。
+        english: He was sad and couldn't speak.
+        hint: 「悲しくて」 indicates sadness as a cause, but not necessarily an overwhelming sadness. 「悲しすぎて」
+          emphasizes that his sadness was *so intense* that it prevented him from speaking.
+    scene: Narrating an emotional event.
+    register: casual
+    setting: storytelling
+    conjugation: te-form (～て)
+    nuance: 「悲しすぎて」 (kanashisugite) uses the te-form of 「悲しすぎる」 to express that the sadness was so overwhelming
+      it caused him to be unable to speak. The excessive degree of the emotion directly led to the consequence.
+  - english: This story is too good to be true.
+    japanese:
+      - この 話 は {良 すぎる} から、本当 で は ない。
+      - この 話 は {良 すぎ ます} から、本当 で は あり ませ ん。
+      - この 話、{良 すぎる} から 嘘 っぽい な。
+    english_literally: This story is good-too-much because, true is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は 良い から、本当 で は ない。
+        english: This simply states the story is good. The original implies that it's *unbelievably* good,
+          so much so that it can't be true. We're looking for the sense of 'too good'.
+        hint: This simply states the story is good. The original implies that it's *unbelievably* good,
+          so much so that it can't be true. We're looking for the sense of 'too good'.
+    scene: Someone hears an incredible tale and expresses disbelief.
+    register: casual
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+    nuance: 「良すぎる」 (yosugiru) implies that the story is so exceedingly good that it becomes suspicious
+      or hard to believe. While 'good' is positive, 'too good' suggests an unrealistic or deceptive quality.
+  - english: I heard that the exam was too easy this year.
+    japanese:
+      - 今年 の 試験 は {簡単 すぎ た} そう です。
+      - 今年 の 試験 は {簡単 すぎ た} よう です。
+      - 今年 の 試験、{簡単 すぎ た} らしい よ。
+    english_literally: This year's exam was easy-too-much apparently.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 の 試験 は 簡単 だっ た そう です。
+        english: I heard this year's exam was easy.
+        hint: This just states the exam was easy. 「簡単すぎた」 conveys that it was *excessively* easy, implying
+          it might have been unfair or didn't properly test knowledge. We're looking for the past tense
+          of 'too easy'.
+    scene: Two students discussing their university entrance exams.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: 「簡単すぎた」 (kantan sugita - past tense of easy-too-much) expresses the idea that the exam's ease
+      was beyond a reasonable level, perhaps leading to questions about its effectiveness or the difficulty
+      curve.

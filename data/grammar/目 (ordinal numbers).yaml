@@ -1,0 +1,301 @@
+grammar_point: 目 (ordinal numbers)
+learn_before:
+  - だ (casual copula)
+  - 加えると (to add)
+meaning: -th; -th one; suffix for ordinal numbers
+pronunciation:
+  katakana: メ
+  romaji: me
+formation:
+  '[Number] + [Counter] + 目': Indicates the ordinal position of an item, person, or occurrence in a sequence.
+jlpt: N3
+etymology: The kanji 「目」 originally means "eye" or "vision," but in this grammatical context, it represents
+  a point in a sequence, similar to marking or numbering items as they are observed or considered. This
+  usage likely stems from the idea of sequentially 'eyeing' or distinguishing items in a series, implying
+  a linear progression or count.
+writeup: |-
+  The suffix 「目」 (me) is used to create ordinal numbers in Japanese, indicating the position or order of something within a sequence. It is attached to a numerical value and a counter word, forming a compound that precisely specifies the 'nth' item, occurrence, or person. For example, 「一人目」 (hitori me) means "the first person," 「二回目」 (nikai me) means "the second time/occurrence," and 「三冊目」 (san satsu me) means "the third volume/book."
+
+  This grammatical construct is fundamental for expressing chronological order, numerical sequence, or repeated actions. It emphasizes the sequential nature of the item being counted, distinguishing it from simply stating a quantity or a general ordinal position (which might use 「番目」).
+
+  The choice of counter word is crucial, as 「目」 adapts to various classifiers such as people (人), times/occurrences (回), objects (個, 冊), or units of time (年, 週).
+
+  **Important Considerations:**
+  *   When counting people, 「一人目」 (hitori me) and 「二人目」 (futari me) use irregular readings for 'one' and 'two' respectively. For three and above, regular counter readings apply (e.g., 「三人目」 san nin me).
+  *   「目」 is often used in contexts implying a progression, a cumulative count, or a specific moment within a series.
+false_friends:
+  - term: 番目
+    meaning: ordinal number suffix (e.g., first, second)
+    kind: similar expression
+    nuance: Unlike 「目」, 「番目」 is more general and doesn't necessarily require a specific counter word,
+      though it still often follows a number to indicate order. 「番目」 can be used when the type of item
+      being counted is already clear from context, or when the counting is abstract.
+    grammar_point: <suggest>:番目 (ordinal number suffix)
+  - term: 目
+    meaning: eye; vision
+    kind: often confused with
+    nuance: This refers to the noun for "eye," which shares the same kanji as the ordinal suffix 「目」 but
+      has a completely different meaning and usage. The confusion arises from the identical kanji, not
+      grammatical similarity.
+    grammar_point: <suggest>:目 (eye)
+  - term: 度目
+    meaning: ~th time/occurrence (alternative counter for occurrences)
+    kind: similar expression
+    nuance: While 「回目」 is generally more common for counting concrete occurrences (like exam attempts
+      or meetings), 「度目」 can also be used and carries a similar nuance of counting 'times' or 'occasions'.
+      It's often interchangeable with 「回目」 in many contexts, but some speakers might perceive subtle differences
+      in formality or nuance.
+    grammar_point: <suggest>:度目 (ordinal counter for occurrences)
+post_false_friends_writeup: |-
+  While both 「目」 and 「番目」 are used to indicate ordinal numbers, their usage subtly differs. 「目」 is almost always attached directly after a number and a specific counter (e.g., 「一人目」 for 'first person', 「二回目」 for 'second time'). This emphasizes the 'count' of that specific item in a sequence. On the other hand, 「番目」 is more general and indicates rank or order without necessarily being tied to a specific counter (e.g., 「一番目」 for 'the first one', 「二番目」 for 'the second one'). It's often used when simply listing items by their order or when the type of item is obvious.
+
+  Furthermore, the counter 「度目」 is quite similar to 「回目」. While 「回目」 is broadly used for counting occurrences, 「度目」 can also be used, sometimes with a slightly more formal or emphatic tone. You may hear either, and in many cases, they are interchangeable. Finally, be mindful that the kanji 「目」 also functions as a noun meaning "eye." Context will always clarify which meaning is intended.
+examples:
+  - english: She is the first person in our group.
+    japanese:
+      - 私 たち の グループ で 彼女 が 一人 {目} です。
+      - 私 たち の グループ で 彼女 が 一人 {目} だ。
+    english_literally: In our group, she is the first person's eye.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の グループ で 彼女 が 一 {番 目} です。
+        english: She is the first one in our group (general order).
+        hint: The phrase 「一人目」 specifically denotes the ordinal position among people, using the counter
+          for people. 「一番目」 is more general and used for ranking in a sequence. We're looking for an expression
+          that highlights the numerical sequence of people.
+      - competing_japanese:
+          - 私 たち の グループ の {最初 の} 人 は 彼女 です。
+        english: The first person in our group is her.
+        hint: 「最初 の 人」 means 'the initial person' but doesn't convey the sense of counting within a sequence
+          like 「一人目」 does. We're looking for an expression that indicates an ordinal position in a counted
+          series.
+    scene: Introducing members of your study group.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: Using 「一人目」 emphasizes her position as the first among the people in the group. The formal
+      「です」 maintains a polite and clear tone suitable for an introduction.
+    etymology: The word 「グループ」 (guriipu) is a loanword from English 'group'.
+  - english: This book is the second novel I've read.
+    japanese:
+      - この 本 は 私 が 読ん だ 二 冊 {目} の 小説 です。
+      - この 本 は 私 が 読ん だ 二 冊 {目} の 小説 だ。
+    english_literally: This book is the second volume's eye novel that I read.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 私 が 読ん だ 二 {番 目} の 小説 です。
+        english: This book is the second novel I've read (general order).
+        hint: While 「番目」 indicates general order, 「冊目」 is specifically used for counting books or volumes,
+          making it more precise for the context of reading. We're looking for an exact count of items.
+    scene: You are talking to a friend about your reading progress for a particular genre.
+    register: formal
+    setting: friendly
+    nuance: Using 「二 冊 目」 with the polite form 「です」, the speaker emphasizes that this is the second book
+      in a series of books they have read, specifically novels. This nuance is highlighted by referring
+      to 'reading progress for a particular genre'.
+    etymology: 「小説」 (shousetsu) means 'novel'.
+  - english: Today marks the third meeting.
+    japanese:
+      - 今日 の 会議 は 三 回 {目} を 迎え ます。
+      - 今日 の 会議 は 三 回 {目} に なり ます。
+    english_literally: Today's meeting welcomes its third time's eye.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は 三 {度 目} です。
+        english: Today's meeting is the third time.
+        hint: The phrase 「回目 を 迎え ます」 implies a formal welcoming of an event's iteration, making it more
+          suitable for announcing a milestone than the simpler 「三 度 目 です」. We're looking for a formal
+          way to state this.
+    scene: You are announcing a significant milestone in a series of ongoing meetings.
+    register: formal
+    setting: informative
+    nuance: The formal phrase 「を 迎え ます」 combined with 「三 回 目」 gives a sense of reaching or celebrating
+      a specific iteration of the meeting, suitable for a formal announcement.
+    etymology: The verb 「迎える」 (mukaeru) means 'to welcome' or 'to meet'.
+  - english: The first phase of the project is scheduled to enter its fourth week next month.
+    japanese:
+      - プロジェクト の 第 一 段階 は 来月 で 四 週 {目} に 入る 予定 です。
+      - プロジェクト の 第 一 段階 は 来月 で 四 週 {目} に 入る 予定 だ。
+    english_literally: The project's first stage next month is planned to enter its fourth week's eye.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 第 一 段階 は 来月 で 四 {番 目} の 週 に 入る 予定 です。
+        english: The first phase of the project is scheduled to enter the fourth week next month (general
+          order).
+        hint: The term 「週目」 is specifically used for counting weeks within a continuous period, especially
+          in project management or scheduling contexts, making it more natural than 「四 番 目 の 週」. We're
+          looking for a precise way to count weeks.
+    scene: A team leader is providing an update to stakeholders about the progress of a large project.
+    register: formal
+    setting: informative
+    nuance: In a professional setting, 「四 週 目」 clearly indicates the progressive count of weeks for the
+      project phase. The use of 「～予定 です」 maintains a formal and planned tone.
+    etymology: 「段階」 (dankai) means 'stage' or 'phase'.
+  - english: This is his tenth goal of the season.
+    japanese:
+      - これ が 今 シーズン の 彼 の 十 ゴール {目} だ。
+      - これ が 今 シーズン の 彼 の 十 ゴール {目} です。
+      - これ が 今 シーズン の 彼 の 十 ゴール {目} です ね。
+    english_literally: This is his current season's tenth goal's eye.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 今 シーズン の 彼 の 十 {番 目} の ゴール だ。
+        english: This is his tenth goal of the season (general order).
+        hint: Using 「十 ゴール 目」 specifically emphasizes the count of goals accumulated, a common way to
+          express a player's statistics in sports commentary, more so than a generic ordinal. We're looking
+          for an expression that counts a specific type of item.
+    scene: A sports commentator is excitedly describing a significant achievement by a player during a
+      live game.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    listener_gender: group
+    nuance: The enthusiastic tone of a male sports commentator is conveyed by the casual 「だ」 and the direct
+      statement of the goal count. 「十 ゴール 目」 is a concise and common way to track a player's scoring progression.
+    etymology: 「シーズン」 is a loanword from English 'season'.
+  - english: It's been two years today since we first met, hasn't it?
+    japanese:
+      - 私 たち が 初めて 会っ て から、今日 で 二 年 {目} だ ね。
+      - 私 たち が 初めて 会っ て から、今日 で 二 年 {目} です ね。
+      - 俺 たち が 初めて 会っ て から、今日 で 二 年 {目} だ な。
+    english_literally: From us first meeting, today is the second year's eye, right?
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 二 {周年} の 日 だ ね。
+        english: It's our second anniversary today, right?
+        hint: The sentence focuses on the passage of time since an event (「会ってから」), rather than just marking
+          an anniversary date, making 「二 年 目」 more appropriate than a general anniversary term. We're
+          looking for a phrase that indicates being in a continuous period of time.
+      - competing_japanese:
+          - 私 たち の 二 {回 目} の 記念 日 だ ね。
+        english: It's our second anniversary (second occurrence) today, right?
+        hint: Similar to the above, 「二 年 目」 implies being in the second year of a continuous period, rather
+          than simply marking a second specific anniversary event. We're looking for a phrase that expresses
+          the current year in a sequence.
+    scene: A couple reflecting on their relationship anniversary.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「だ ね」 or 「です ね」 softens the statement and seeks agreement, which is typical in
+      intimate speech. The phrase 「私たち が 初めて 会っ て から」 sets a personal, reflective tone suitable for an
+      intimate conversation about shared history. For a male speaker, 「俺 たち が 初めて 会っ て から、今日 で 二 年 目 だ
+      な」 uses the male casual pronoun 「俺」 and the assertive but reflective sentence-final particle 「な」.
+    etymology: The word 「記念 日」 (kinenbi) means 'anniversary day'.
+  - english: This is my third game console in my life, dude.
+    japanese:
+      - これ が 俺 の 人生 で 三 台 {目} の ゲーム 機 だ ぜ。
+      - これ が 私 の 人生 で 三 台 {目} の ゲーム 機 です よ。
+      - これ が 僕 の 人生 で 三 台 {目} の ゲーム 機 だ よ。
+    english_literally: This is my life's third unit's eye of game machine, you know.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 俺 の 人生 で 三 {番 目} の ゲーム 機 だ ぜ。
+        english: This is the third game console in my life (general order), dude.
+        hint: The counter 「台」 is specifically used for machines, making 「三 台 目」 a more natural and precise
+          way to count game consoles in a sequence than the generic ordinal 「三 番 目」. We're looking for
+          a specific counter for machines.
+    scene: A teenager showing off his new game console to his friends.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「俺」 by the speaker, a common informal male pronoun, combined with the sentence-final
+      particle 「だ ぜ」, often used by younger males to express assertion or excitement, emphasizes a youthful,
+      casual, and masculine tone. 「三 台 目」 highlights the personal chronology of acquiring game consoles.
+      A female speaker might use 「私」 and 「です よ」 for a polite, slightly emphatic tone, while a male speaker
+      could also use 「僕」 and 「だ よ」 for a softer casual male tone.
+    etymology: 「ゲーム 機」 is a compound word meaning 'game machine' or 'game console'.
+  - english: Our second daughter is very lively.
+    japanese:
+      - うち の 二人 {目} の 娘 は とても 活発 です。
+      - うち の 二人 {目} の 娘 は とても 活発 だ。
+    english_literally: Our second person's eye daughter is very lively.
+    competing_grammar:
+      - competing_japanese:
+          - うち の {次女} は とても 活発 です。
+        english: Our second daughter is very lively (using specific term).
+        hint: While 「次女」 directly means 'second daughter', 「二人目」 emphasizes her position as the second
+          child in birth order, focusing on the count. We're looking for an Mexpression that highlights
+          the numerical sequence of children.
+    scene: A mother proudly talking about her children to a friend.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「二人目」 highlights her place in the family's birth order as the second child. The use of 「うち
+      の」 and the direct conversation with a friend suggest a warm, personal context. The variation with
+      「だ」 is more casual, suitable for close friends, while 「です」 maintains a general politeness.
+    etymology: 「娘」 (musume) means 'daughter'.
+  - english: I finally passed the exam on my third attempt.
+    japanese:
+      - 三 回 {目} の 試験 で やっと 合格 し た。
+      - 三 回 {目} の 試験 で やっと 合格 し まし た。
+      - 三 回 {目} の 試験 で ようやく 合格 し まし た。
+    english_literally: At the third time's eye exam, finally passed.
+    competing_grammar:
+      - competing_japanese:
+          - 三 {度 目} の 試験 で やっと 合格 し た。
+        english: I finally passed the exam on my third attempt (using 度目).
+        hint: While 「度目」 is also used for counting occurrences, 「回目」 is generally more common for counting
+          concrete attempts or repetitions, especially in situations like exams or games. We're looking
+          for the most common way to say 'third attempt'.
+    scene: A student sharing their exam success with a close friend or family member.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「三 回 目」 emphasizes the struggle and persistence through multiple tries. The casual 「合格 した」
+      conveys a sense of personal relief and directness, common among friends. The use of 「やっと」 or 「ようやく」
+      adds to the feeling of finally achieving something after effort.
+    etymology: 「合格」 (goukaku) means 'passing (an exam)', and 「試験」 (shiken) means 'exam'.
+  - english: The museum is the third stop from this station.
+    japanese:
+      - 博物 館 は この 駅 から 三 つ {目} の バス 停 です。
+      - 博物 館 は この 駅 から 三 つ {目} の バス 停 だ よ。
+      - 博物 館 は この 駅 から 三 つ {目} の バス 停 です ね。
+    english_literally: Museum is from this station, third one's eye bus stop.
+    competing_grammar:
+      - competing_japanese:
+          - 博物 館 は この 駅 から 三 {番 目} の バス 停 です。
+        english: The museum is the third stop from this station (general rank).
+        hint: While 「番目」 indicates general rank or order, 「三つ 目」 is specifically used when counting distinct,
+          countable items in a sequence, like bus stops or houses. We're looking for the natural way to
+          count specific items in a line.
+    scene: A local resident giving directions to a tourist who is looking at a map.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「三つ 目」 precisely identifies the specific bus stop by its count in the sequence. The use of
+      「です」 makes the instruction polite and clear, suitable for interaction with a tourist. Adding 「だ
+      よ」 makes it more casual, while 「です ね」 seeks confirmation or agreement from the listener.
+    etymology: 「博物 館」 (hakubutsukan) means 'museum', and 「バス 停」 (basu tei) means 'bus stop'.
+  - english: This is my second serving of ramen.
+    japanese:
+      - これ で ラーメン は 二 杯 {目} です。
+      - これ で ラーメン は 二 杯 {目} だ よ。
+    english_literally: With this, ramen is second bowl's eye.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 二 {番 目} の ラーメン です。
+        english: This is the second ramen (general order).
+        hint: 「二 杯 目」 specifically counts bowls of food, indicating a second portion, whereas 「二 番 目」
+          generally means 'second in order' and doesn't convey the sense of an additional serving. We're
+          looking for an expression that counts a specific serving of food.
+    scene: You are at a ramen shop, and you've just received your second bowl of ramen.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「二 杯 目」 precisely indicates the second *bowl* of ramen, implying a second serving for the
+      same person. The casual tone of 「だ よ」 or the slightly more polite 「です」 is typical in such a relaxed,
+      personal setting, possibly talking to oneself or a dining companion.
+    etymology: 「ラーメン」 is a loanword from English 'ramen'.
+post_example_writeup: As you can see from these examples, 「目」 is incredibly versatile and allows for very
+  precise counting within a sequence. Paying attention to the specific counter word used with 「目」 is key
+  to understanding the exact nature of what is being counted, whether it's people, times, objects, or
+  units of time. This precision helps to avoid ambiguity and makes your Japanese sound much more natural.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E7%9B%AE

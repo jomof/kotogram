@@ -1,0 +1,575 @@
+grammar_point: を以て・をもって (by means of・with)
+learn_before:
+  - つきましては (in connection with that)
+meaning: By means of; with; as of; effective from
+meaning_warning: Generally not used for simple means, such as transportation (e.g., “going by bus”).
+pronunciation:
+  katakana: ヲモッテ
+  romaji: o motte
+  pronunciation_warning: The 'o' in romaji corresponds to the particle を (wo), but is pronounced as 'o'.
+formation:
+  '[Noun] + を以て・をもって': Indicates means, method, or reason in formal or written contexts. Similar to 「で」
+    but more emphatic.
+  '[Abstract Noun] + を以て・をもって': Indicates the means or instrument by which an action is performed, often
+    with a sense of definitive employment of that abstract concept or quality.
+  '[Time/Event] + を以て・をもって': Marks a specific point in time or an event as a clear demarcation, usually
+    signaling a conclusion or the point at which a decision or state becomes effective. It is rarely used
+    to mark a new beginning point.
+jlpt: N1
+etymology: 「を以て」 and 「をもって」 both derive from the classical Japanese form 「以て」 (もって), which historically
+  meant "by means of" or "using." This form is related to the verb 「持つ」 (もつ), meaning "to hold" or "to
+  have." The nuance has evolved to suggest "having reached (A)" or "by means of (A)," emphasizing the
+  instrument, method, or a specific, often conclusive, point in time. Its usage retains a formal and somewhat
+  literary tone.
+writeup: "The grammar patterns 「を以て」 and 「をもって」 are formal expressions that can mean \"by means of,\"\
+  \ \"with,\" \"as of,\" or \"effective from.\" They are largely interchangeable and stem from the same\
+  \ root 「以て」, which indicates 'by means of.' These forms are frequently used in official announcements,\
+  \ formal speeches, and written documents. \n\nWhen preceding a noun or noun phrase, this structure functions\
+  \ similarly to the case-marking particle 「で」 but carries a significantly higher degree of formality\
+  \ and emphasis. It is typically not used for simple or concrete means, such as 'traveling by train'\
+  \ or 'eating with a fork.' Instead, it commonly appears with abstract concepts like 'sincerity' or 'effort'\
+  \ to denote the means by which an action is performed. \n\nWhen used with expressions indicating time\
+  \ or an event, 「を以て」 and 「をもって」 convey 'as of (A)' or 'effective from (A).' For instance, 「本日をもって」 means\
+  \ \"as of today.\" It is crucial to understand that while 'effective from' might imply a starting point\
+  \ in English, these patterns primarily emphasize the **ending** or **completion** of something, or what\
+  \ has happened up until a specified effective date. Therefore, they are generally **not** used to indicate\
+  \ a new beginning from a date that lacked prior significant events. \n\nIn highly polite or official\
+  \ contexts, the more honorific form 「をもちまして」 may be used. Occasionally, a more archaic form 「をもて」 can\
+  \ be encountered, particularly in literary contexts."
+false_friends:
+  - term: によって
+    meaning: By means of; due to; depending on
+    kind: similar expression
+    nuance: Unlike 「を以て・をもって」, 「によって」 is much more common in everyday speech and writing. It's more versatile,
+      covering causes, reasons, and methods without the strong formal nuance or emphasis on a definitive
+      time point.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: で
+    meaning: By means of; with; at; in
+    kind: similar expression
+    nuance: 「で」 is a general particle that can indicate means, location, or cause, but it lacks the formal
+      nuance and specific end-date or declarative focus of 「を以て・をもって」. It is a much more versatile and
+      common particle for everyday use.
+    grammar_point: で (means・method)
+  - term: から
+    meaning: From; since; because
+    kind: often confused with
+    nuance: While 「から」 primarily marks a starting point in time or origin, 「を以て・をもって」 (when used temporally)
+      marks a definitive end point or a specific moment at which something concludes or becomes effective.
+      They are almost opposites in their temporal marking.
+    grammar_point: から (from)
+post_false_friends_writeup: To avoid confusing 「を以て・をもって」 with 「によって」, 「で」, or 「から」, remember that 「を以て・をもって」
+  is generally formal and often used in written or official contexts to emphasize the specific means or
+  method employed, or a definitive point in time (typically a conclusion). If you're describing a common
+  way of doing something or the cause of an event, 「によって」 or 「で」 are generally more appropriate due to
+  their broader usage and less formal tone. 「から」, in contrast, typically denotes a starting point or origin,
+  making it distinct from 「を以て・をもって」's emphasis on conclusion.
+examples:
+  - english: The results of the employment exam will be notified by email.
+    japanese:
+      - 採用 試験 の 結果 は 電子 メール {を 以て} 通知 いたし ます。
+      - 採用 試験 の 結果 は 電子 メール {を 以て} ご 連絡 いたし ます。
+      - 採用 試験 の 結果 に つき まし て は、電子 メール {を 以て} 通知 さ せ て いただき ます。
+    english_literally: Regarding the results of the employment exam, by means of email, we will notify
+      you.
+    competing_grammar:
+      - competing_japanese:
+          - 採用 試験 の 結果 は 電子 メール {で} 通知 いたし ます。
+        english: The results of the employment exam will be notified by email.
+        hint: 「電子メールで」 would sound too informal for an official notification from an HR department. The
+          scene sets a professional and formal context. We're looking for an expression that signifies
+          the email as the designated official method, which 「を以て」 provides.
+      - competing_japanese:
+          - 採用 試験 の 結果 は 電子 メール {に よっ て} 通知 いたし ます。
+        english: The results of the employment exam will be notified by email.
+        hint: While 「電子メールによって」 is grammatically correct and formal, 「を以て」 is often preferred in official
+          announcements to emphasize that the email is the designated and sole official method of communication.
+          We're looking for an expression that strongly emphasizes the channel as the means, which 「を以て」
+          provides.
+    scene: An HR department sends an official email to a job applicant regarding their employment exam
+      results.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: The use of 「通知いたします」 (a humble and polite form) combined with 「を以て」 elevates the formality,
+      making it suitable for official communications like employment notifications. This phrasing emphasizes
+      the email as the official channel.
+  - english: Entry is requested by means of a QR code.
+    japanese:
+      - ご 入場 は QR コード {を 以て} お 願い いたし ます。
+      - QR コード {を 以て} ご 入場 くださる よう お 願い 申し上げ ます。
+      - ご 入場 に つき まし て は、QR コード {を 以て} お 願い 申し上げ ます。
+    english_literally: Regarding entry, by means of a QR code, we request.
+    competing_grammar:
+      - competing_japanese:
+          - ご 入場 は QR コード {で} お 願い いたし ます。
+        english: Entry is requested with a QR code.
+        hint: 「QRコードで」 would be too casual for a formal announcement about entry procedures. The scene
+          implies a public institution setting a clear rule. We're looking for a formal designation of
+          the method, which 「を以て」 provides.
+      - competing_japanese:
+          - ご 入場 は QR コード {に よっ て} お 願い いたし ます。
+        english: Entry is requested via QR code.
+        hint: While 「QRコードによって」 is possible, 「を以て」 gives a more definitive and official tone, making the
+          QR code the established and sole method for entry. We're looking for an expression that designates
+          the QR code as the official method, which 「を以て」 provides.
+    scene: A museum announces its new entry system, where visitors must use QR codes.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「お願いします」 (in the polite form 「お願いいたします」) is a common way to give instructions or make requests
+      in a formal setting. Using 「を以て」 here reinforces the QR code as the obligatory and formal method
+      of entry.
+  - english: By experiencing hardships, he deepened his empathy for others.
+    japanese:
+      - 彼 は 苦労 を 経験 する こと {を 以て} 他者 へ の 共感 を 深め た。
+      - 苦労 の 経験 {を 以て}、彼 は 他者 へ の 共感 を より 深め た。
+      - 彼 は 苦難 の 経験 {を 以て}、他者 へ の 共感 を 深める こと が でき た。
+    english_literally: He, by means of experiencing hardships, empathy towards others deepened.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 苦労 を 経験 する こと {で} 他者 へ の 共感 を 深め た。
+        english: By experiencing hardships, he deepened his empathy for others.
+        hint: 「経験することで」 implies a simple method, but 「を以て」 is more appropriate when discussing a profound
+          process by which a significant personal change or realization occurs. We're looking for an expression
+          that emphasizes a profound means, which 「を以て」 provides.
+      - competing_japanese:
+          - 彼 は 苦労 を 経験 する こと {に よっ て} 他者 へ の 共感 を 深め た。
+        english: He deepened his empathy for others through experiencing hardships.
+        hint: While 「経験することによって」 is grammatically correct, 「を以て」 is used here to emphasize the hardships
+          as the *direct and impactful means* of deepening empathy, lending a more formal and profound
+          tone to the statement. We're looking for an expression that highlights the direct and impactful
+          means, which 「を以て」 provides.
+    scene: A philosopher discusses how personal experience shapes one's character and understanding of
+      others.
+    register: formal
+    setting: reflective
+    nuance: The sentence has a reflective and somewhat philosophical tone, emphasizing the specific 'means'
+      (the experience of hardships) that led to the deepening of empathy. The use of 「を以て」 elevates the
+      expression beyond a simple cause-and-effect.
+  - english: With strong will, any difficulty can be overcome.
+    japanese:
+      - 強い 意志 {を 以て} すれ ば、どんな 困難 も 乗り越え られる。
+      - 強い 意志 {を 以て} すれ ば、いかなる 困難 も 克服 できる。
+      - いかなる 困難 も、強い 意志 {を 以て} すれ ば 乗り越え 可能 です。
+    english_literally: If it were by means of strong will, any difficulty can be overcome.
+    competing_grammar:
+      - competing_japanese:
+          - 強い 意志 {で} すれ ば、どんな 困難 も 乗り越え られる。
+        english: If you act with strong will, any difficulty can be overcome.
+        hint: 「強い意志ですれば」 is less common and sounds awkward in this context. 「を以てすれば」 is a standard, emphatic
+          expression for outlining a condition or means for achieving something. We're looking for an
+          idiomatic expression that states a condition as a means, which 「を以てすれば」 provides.
+      - competing_japanese:
+          - 強い 意志 {に よっ て} すれ ば、どんな 困難 も 乗り越え られる。
+        english: If it's done by strong will, any difficulty can be overcome.
+        hint: While grammatically plausible, 「によって」 lacks the common idiomatic usage of 「を以てすれば」, which
+          specifically conveys the meaning of 'if one were to use' or 'assuming one has'. We're looking
+          for an idiomatic expression that states a condition as a means, which 「を以てすれば」 provides.
+    scene: A motivational speaker inspires an audience to face challenges with determination.
+    register: semi-formal
+    setting: inspirational
+    nuance: The pattern 「を以てすれば」 is a strong, slightly formal way to express that if a certain means or
+      condition is met, a specific outcome is possible. It highlights the 'strong will' as the essential
+      tool for overcoming difficulties.
+  - english: If you use hard work, you should definitely grasp success.
+    japanese:
+      - 努力 {を 以て} すれ ば、必ず 成功 を 掴める はず だ。
+      - 努力 {を 以て} すれ ば、間違い なく 成功 を 手 に できる はず だ。
+      - 成功 は 努力 {を 以て} すれ ば、きっと 掴める もの です。
+    english_literally: If it were by means of effort, you should definitely grasp success.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 {で} すれ ば、必ず 成功 を 掴める はず だ。
+        english: If you make an effort, you should definitely grasp success.
+        hint: 「努力ですれば」 is not idiomatic. 「を以てすれば」 is the established phrase. We're looking for an idiomatic
+          expression that states a condition as a means, which 「を以てすれば」 provides.
+      - competing_japanese:
+          - 努力 {に よっ て} すれ ば、必ず 成功 を 掴める はず だ。
+        english: If it's done by effort, you should definitely grasp success.
+        hint: While 「努力によってすれば」 is grammatically correct but does not carry the same idiomatic weight
+          and naturalness as 「を以てすれば」 when expressing a hypothetical condition or means. We're looking
+          for an idiomatic expression that states a condition as a means, which 「を以てすれば」 provides.
+    scene: A mentor gives encouraging advice to a struggling student, emphasizing the importance of diligence.
+    register: formal
+    setting: persuasive
+    nuance: This sentence uses the same 「を以てすれば」 pattern, reinforcing the idea that 'effort' is the key
+      means to achieve 'success.' The 「〜はずだ」 adds certainty to the prediction based on this premise.
+  - english: A new art form, drawn by means of light refraction, is gathering attention.
+    japanese:
+      - 光 の 屈折 {を 以て} 描か れる 新しい 芸術 が 注目 を 集め て いる。
+      - 光 の 屈折 {を 以て} 表現 さ れる 新しい 芸術 が 関心 を 集め て いる。
+      - 新しい 芸術 の 形 は 光 の 屈折 {を 以て} 創造 さ れ、注目 を 浴び て いる。
+    english_literally: A new art, drawn by means of light refraction, is gathering attention.
+    competing_grammar:
+      - competing_japanese:
+          - 光 の 屈折 {で} 描か れる 新しい 芸術 が 注目 を 集め て いる。
+        english: A new art form, drawn with light refraction, is gathering attention.
+        hint: 「光の屈折で」 would be too informal for describing an innovative artistic technique. The scene
+          implies a formal, descriptive, or academic context. We're looking for a formal description of
+          the medium, which 「を以て」 provides.
+      - competing_japanese:
+          - 光 の 屈折 {に よっ て} 描か れる 新しい 芸術 が 注目 を 集め て いる。
+        english: A new art form, drawn by light refraction, is gathering attention.
+        hint: While 「光の屈折によって」 is grammatically correct and formal, 「を以て」 emphasizes the medium (light
+          refraction) as the foundational and distinct method of creation for this new art form, fitting
+          for an artistic critique. We're looking for a formal description of the medium, which 「を以て」
+          provides.
+    scene: An art critic describes an innovative new exhibit that uses light refraction as its primary
+      artistic medium.
+    register: formal
+    setting: informative
+    nuance: The use of 「を以て」 here emphasizes the innovative and specific medium of 'light refraction'
+      as the central method for creating this new art form, lending a precise and formal tone to the description.
+  - english: The decision of the meeting was made by consensus of all members.
+    japanese:
+      - 会議 の 決定 は 全員 の 合意 {を 以て} なさ れ た。
+      - 会議 の 決定 は 全員 の 合意 {を 以て} 決定 さ れ た。
+      - 全 メンバー の 合意 {を 以て}、会議 の 決定 が なさ れ まし た。
+    english_literally: The decision of the meeting, by means of everyone's consensus, was made.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 決定 は 全員 の 合意 {で} なさ れ た。
+        english: The decision of the meeting was made with the consensus of all members.
+        hint: 「全員の合意で」 would sound too casual for an official announcement of a board decision. The scene
+          indicates a formal and serious context. We're looking for a formal expression of the authoritative
+          method, which 「を以て」 provides.
+      - competing_japanese:
+          - 会議 の 決定 は 全員 の 合意 {に よっ て} なさ れ た。
+        english: The decision of the meeting was made by the consensus of all members.
+        hint: While 「全員の合意によって」 is acceptable, 「を以て」 provides a higher degree of formality and emphasis,
+          underscoring the consensus as the authoritative method by which the decision was reached. We're
+          looking for a formal expression of the authoritative method, which 「を以て」 provides.
+    scene: A company spokesperson explains that a board decision was reached through the unanimous agreement
+      of all members.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: The passive form 「なされた」 (from なす - to do/make) combined with 「を以て」 creates a very formal and
+      official tone, common when announcing decisions made through a specific, authorized process like
+      consensus.
+  - english: Your donation will be accepted via written document this time.
+    japanese:
+      - この 度 の ご 寄付 は 書面 {を 以て} 受理 さ せ て いただき ます。
+      - ご 寄付 に つき まし て は、書面 {を 以て} 受理 さ せ て いただき ます。
+      - この 度 の ご 寄付 は、書面 {を 以て} 承諾 さ せ て いただき ます。
+    english_literally: This time's donation, by means of written document, I will humbly accept.
+    competing_grammar:
+      - competing_japanese:
+          - この 度 の ご 寄付 は 書面 {で} 受理 さ せ て いただき ます。
+        english: Your donation will be accepted with a written document this time.
+        hint: 「書面で」 is too informal for a formal acknowledgment of a donation. The scene implies a professional
+          and respectful communication. We're looking for a formal designation of the official method,
+          which 「を以て」 provides.
+      - competing_japanese:
+          - この 度 の ご 寄付 は 書面 {に よっ て} 受理 さ せ て いただき ます。
+        english: Your donation will be accepted by means of a written document this time.
+        hint: While 「書面によって」 is grammatically correct, 「を以て」 is used here to emphasize that the written
+          document is the official and proper method for accepting the donation, adding weight to the
+          process. We're looking for a formal designation of the official method, which 「を以て」 provides.
+    scene: A non-profit organization formally acknowledges a large donation, stating that the acceptance
+      will be processed through official documentation.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: 「この度」 is a formal phrase meaning "this time," and 「受理させていただきます」 is a highly polite and humble
+      expression used for accepting something from a superior or a client. 「を以て」 fits this formal and
+      respectful context perfectly, specifying the official means of acceptance.
+  - english: Let's welcome our new president with grand applause.
+    japanese:
+      - 新しい 社長 を 盛大 な 拍手 {を 以て} お 迎え し ましょう。
+      - 盛大 な 拍手 {を 以て}、新しい 社長 を 歓迎 し ましょう。
+      - 新 社長 を 盛大 な 拍手 {を 以て} お 迎え いたし ましょう。
+    english_literally: Our new president, let's welcome him by means of grand applause.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 社長 を 盛大 な 拍手 {で} お 迎え し ましょう。
+        english: Let's welcome our new president with grand applause.
+        hint: 「盛大な拍手で」 would sound too casual for formally welcoming a new president in a professional
+          setting. The scene requires a more elevated expression. We're looking for a formal designation
+          of the welcoming means, which 「を以て」 provides.
+      - competing_japanese:
+          - 新しい 社長 を 盛大 な 拍手 {に よっ て} お 迎え し ましょう。
+        english: Let's welcome our new president by grand applause.
+        hint: While grammatically acceptable, 「によって」 does not flow as naturally with the imperative 「お迎えしましょう」
+          when suggesting a collective action, where 「を以て」 provides a more formal and appropriate tone
+          for 'by means of' in this welcoming context. We're looking for a formal designation of the welcoming
+          means, which 「を以て」 provides.
+    scene: An employee addresses colleagues, encouraging them to give a warm reception to their incoming
+      new president.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「お迎えしましょう」 is a polite volitional form, inviting collective action. 「を以て」 adds formality to
+      the manner of welcoming, suitable for a significant event like the arrival of a new company president.
+  - english: As of today, the project will be completed.
+    japanese:
+      - 本日 {を 以て} プロジェクト は 完了 と なり ます。
+      - 本日 {を 以て}、本 プロジェクト は 完了 と なり ます。
+      - プロジェクト は 本日 {を 以て} 完了 いたし ます。
+    english_literally: By means of today, the project becomes completed.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 {で} プロジェクト は 完了 と なり ます。
+        english: The project will be completed today.
+        hint: 「本日で」 is too informal for an official announcement of a project's completion. The scene
+          implies a formal declaration. We're looking for a formal declaration of completion at a specific
+          time, which 「を以て」 provides.
+      - competing_japanese:
+          - 本日 {に よっ て} プロジェクト は 完了 と なり ます。
+        english: The project will be completed by today.
+        hint: While 「本日によって」 is technically possible, 「を以て」 is commonly used to formally declare a point
+          in time (like 'today') as the official cutoff or completion point for an event or project. We're
+          looking for a formal declaration of completion at a specific time, which 「を以て」 provides.
+    scene: A project manager announces the official conclusion of a long-term project on a specific date.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: The expression 「本日を以て」 is a very common and formal way to signify 'as of today' or 'effective
+      today,' often used for official announcements of deadlines, conclusions, or changes.
+  - english: As of the New Year, I have set new goals.
+    japanese:
+      - 新年 を {もっ て}、目標 を 新た に し まし た。
+      - 新年 を {もっ て}、目標 を 新た に し た。
+      - 新年 を {もち まし て}、目標 を 新た に いたし まし た。
+    english_literally: Taking the New Year, I made goals anew.
+    competing_grammar:
+      - competing_japanese:
+          - 新年 {で}、目標 を 新た に し まし た。
+        english: I set new goals in the New Year.
+        hint: While 「で」 could indicate the timing, 「をもって」 is chosen here to emphasize the New Year as
+          a distinct, formal demarcation point for setting new goals, rather than just a general time.
+          「で」 expresses a general timing or location for an action to occur, while 「をもって」 establishes
+          a definitive boundary or point from which something becomes effective or concludes. We're looking
+          for an 'as of' meaning that marks a turning point or conclusion, which 「をもって」 provides.
+      - competing_japanese:
+          - 新年 {から}、目標 を 新た に し まし た。
+        english: From the New Year, I have set new goals.
+        hint: 「から」 emphasizes the beginning point of an action or state. While grammatically correct,
+          「をもって」 in this context signals a formal or decisive 'as of' point, often with a sense of finality
+          to the previous state, which isn't conveyed by a simple starting point. 「から」 simply marks the
+          start of an action or state. 「をもって」, when used temporally, emphasizes a point in time as the
+          formal or official effective date of a change or the conclusion of something that existed previously.
+          We're looking for a way to mark a definitive turning point, not just a simple start time.
+    scene: A person reflecting on their personal resolutions at the start of a new year.
+    register: casual
+    setting: reflective
+    nuance: This is a straightforward, common use of 「をもって」 to mark a definitive point in time from which
+      something new begins or changes, often in a personal context. The casual register is evident in
+      「しました」.
+  - english: This project will conclude as of the end of this month.
+    japanese:
+      - 本 事業 は 本月 末日 を {もっ て} 終了 いたし ます。
+      - 本 事業 は 本月 末日 を {もっ て} 終了 し ます。
+      - 本 事業 は 本月 末日 を {もち まし て} 終了 いたし ます。
+    english_literally: This project, taking the last day of this month, will conclude.
+    competing_grammar:
+      - competing_japanese:
+          - 本 事業 は 本月 末日 {で} 終了 し ます。
+        english: This project will end by the end of this month.
+        hint: In a formal business announcement, 「をもって」 lends a sense of officiality and finality to the
+          termination date, making it more appropriate than the simple and less formal 「で」. 「で」 expresses
+          a general time limit or location. In contrast, 「をもって」 emphasizes the specific time or event
+          as a formal, definitive cut-off point or conclusion for something, often used in official pronouncements.
+          We're looking for a formal declaration of conclusion, which 「をもって」 provides.
+      - competing_japanese:
+          - 本 事業 は 本月 末日 {から} 終了 し ます。
+        english: This project will start concluding from the end of this month.
+        hint: 「から」 indicates a starting point. Here, we need to mark the definitive end point of the project's
+          operation. 「をもって」 emphasizes the finality of the action at that specific time. 「から」 marks the
+          beginning of an action or state. 「をもって」, however, signifies a point in time as the official
+          or absolute end of something, indicating that after this point, it will no longer continue.
+          We're looking for a term that conveys a definitive end, not a beginning.
+    scene: A project manager making a formal announcement about the project's termination to team members.
+    register: formal
+    setting: informative
+    nuance: 「いたします」 signals a formal and polite tone, characteristic of business or official communications.
+      The use of 「をもって」 reinforces the formal nature of the announcement of a definitive end date.
+  - english: Our store will be closing as of next Saturday.
+    japanese:
+      - 弊店 は 来週 土曜 日 を {もち まし て} 閉店 さ せ て いただき ます。
+      - 弊店 は 来週 土曜 日 を {もち まし て} 閉店 いたし ます。
+      - 弊店 は 来週 土曜 日 を {もっ て} 閉店 さ せ て いただき ます。
+    english_literally: Our store, taking next Saturday, we will close (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 弊店 は 来週 土曜 日 {で} 閉店 し ます。
+        english: Our store will close on next Saturday.
+        hint: As a formal announcement to a public, particularly one conveying unfortunate news, the highly
+          polite 「をもちまして」 is chosen over the simpler 「で」 to show utmost respect and deference to the customers.
+          「させていただきます」 further enhances this. 「で」 simply states a time. 「をもって」 (or its more polite form
+          「をもちまして」) formally declares an event's conclusion at a specific time, emphasizing the official
+          nature of the cessation. We're looking for a formal, polite way to announce a definitive closure,
+          which 「をもって」 delivers.
+      - competing_japanese:
+          - 弊店 は 来週 土曜 日 {から} 閉店 さ せ て いただき ます。
+        english: 「から」 denotes a beginning or starting point. In this context, the store's closure is definitive
+          at that date, not initiating a process from it. 「をもって」 conveys this definitive end point.
+        hint: 「から」 denotes a beginning or starting point. In this context, the store's closure is definitive
+          at that date, not initiating a process from it. 「をもって」 conveys this definitive end point. 「から」
+          marks the start of an action or state. 「をもって」, in contrast, marks a point in time as the definitive
+          end or conclusion of something, especially in formal announcements. We're looking for a phrase
+          that expresses a final end, not a beginning.
+    scene: A female store manager making a public announcement to her loyal customers about the permanent
+      closure of the branch.
+    register: formal
+    setting: apologetic
+    nuance: 「をもちまして」 is a highly polite form of 「をもって」, frequently used in formal business announcements
+      to express regret or important information to a general audience. The combination with 「させていただきます」
+      makes the statement incredibly deferential and humble, suitable for a manager announcing a store
+      closure to customers.
+  - english: With sincerity, he apologized to everyone involved.
+    japanese:
+      - 彼 は 誠意 を {もっ て}、関係 者 全員 に 謝罪 し た。
+      - 彼 は 誠意 を {もち まし て}、関係 者 全員 に 謝罪 いたし まし た。
+      - 彼 は 誠意 を {もっ て}、関係 者 全員 に 謝罪 し ます。
+    english_literally: He, taking sincerity, apologized to all involved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 誠意 {で}、関係 者 全員 に 謝罪 し た。
+        english: He apologized to everyone involved with sincerity.
+        hint: While 「で」 could imply 'by means of sincerity,' 「をもって」 emphasizes the abstract quality of
+          sincerity as the definitive instrument or attribute employed for the apology, lending a more
+          solemn and emphatic tone to the action. 「で」 indicates a general means. 「をもって」, however, emphasizes
+          the abstract noun as a specific, intentional instrument or quality used to achieve the action,
+          adding a formal and often more profound nuance. We're looking for a phrase that highlights the
+          profound impact of the means used, which 「をもって」 does.
+    scene: A man explaining to a third party how another person handled a difficult situation, emphasizing
+      their genuine regret.
+    register: formal
+    setting: serious
+    nuance: This usage emphasizes the abstract quality of sincerity 「誠意」 as the direct means or tool by
+      which the apology 「謝罪」 was performed. The formality of 「をもって」 reinforces the gravity of the situation
+      and the depth of the apology.
+  - english: With the above, I will conclude today's presentation.
+    japanese:
+      - 以上 を {もち まし て}、本日 の プレゼンテーション を 終了 いたし ます。
+      - 以上 を {もっ て}、本日 の プレゼンテーション を 終了 いたし ます。
+    english_literally: Taking the above, I will conclude today's presentation.
+    competing_grammar:
+      - competing_japanese:
+          - これ {で}、本日 の プレゼンテーション を 終了 いたし ます。
+        english: With this, I will conclude today's presentation.
+        hint: In formal public speaking, 「をもって」 (or 「をもちまして」) is the standard and most appropriate phrase
+          to mark a conclusion, conveying a sense of authority and finality that 「これで」, while grammatically
+          correct, lacks in formality. 「これで」 is a casual or general way to say 'with this'. 「をもって」 (or
+          「をもちまして」) is specifically used in formal contexts to make a definitive declaration of completion
+          or cessation, carrying a weight of officiality. We're looking for a formal, authoritative way
+          to conclude, which 「をもって」 provides.
+    scene: A male speaker, possibly a CEO or senior manager, formally wrapping up a business presentation
+      to a large audience.
+    register: formal
+    setting: professional
+    nuance: This is a fixed and highly formal closing phrase for presentations, meetings, or speeches.
+      The use of 「をもちまして」 combined with 「終了いたします」 conveys a strong sense of official completion and professionalism,
+      typically used by someone in a position of authority addressing a group.
+  - english: By means of his words, the situation completely changed.
+    japanese:
+      - 彼 の 言葉 を {もっ て}、事態 は 一変 し た。
+      - 彼 の 言葉 を {もち まし て}、事態 は 一変 いたし まし た。
+    english_literally: Taking his words, the situation completely changed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 {で}、事態 は 一変 し た。
+        english: The situation completely changed with his words.
+        hint: While 「で」 could indicate the cause, 「をもって」 here emphasizes the words as the direct and potent
+          instrument or vehicle through which the profound change occurred, lending a more dramatic and
+          formal narrative quality. 「で」 indicates a general means or cause. 「をもって」, however, highlights
+          the specific means as a direct, instrumental force causing the change, often adding a more decisive
+          or impactful nuance in formal contexts. We're looking for a phrase that emphasizes the direct,
+          powerful means of change, which 「をもって」 does.
+    scene: A historian describing how a pivotal speech by a leader dramatically altered the course of
+      events.
+    register: casual
+    setting: storytelling
+    nuance: This example highlights the instrumental use of 「をもって」, emphasizing 'his words' as the decisive
+      means or tool that brought about a complete change. This usage is common in more analytical or descriptive
+      contexts, such as historical accounts or literary analyses.
+  - english: With that news, hope was shattered.
+    japanese:
+      - その 知らせ を {もて}、希望 が 打ち砕か れ た。
+      - その 知らせ を {もっ て}、希望 が 打ち砕か れ た。
+    english_literally: Taking that news, hope was shattered.
+    competing_grammar:
+      - competing_japanese:
+          - その 知らせ {で}、希望 が 打ち砕か れ た。
+        english: Hope was shattered by that news.
+        hint: The archaic and literary 「をもて」 is used here to imbue the statement with a dramatic, almost
+          poetic sense of irreversible finality and profound impact, far beyond the factual report of
+          a simple 「で」. 「で」 states a general cause. 「をもて」, an archaic variant of 「をもって」, strongly emphasizes
+          the means as the direct and potent instrument of a severe or impactful outcome, conveying a
+          heightened sense of drama and finality, often seen in literary contexts. We're looking for a
+          phrase with strong dramatic emphasis on the means, which 「をもて」 provides.
+    scene: A character in a classical drama receiving devastating news that irrevocably ends their aspirations.
+    register: bungo (literary)
+    setting: melancholic
+    nuance: 「をもて」 is a rare, more classical or literary variant of 「をもって」. Its use imparts a strong sense
+      of drama and finality, often found in older texts or highly stylized modern narratives to describe
+      an event or piece of information as the direct and unavoidable instrument of a drastic outcome.
+  - english: With extraordinary effort, she seized success.
+    japanese:
+      - 彼女 は 人 並み 外れ た 努力 を {もっ て}、成功 を 掴ん だ。
+      - 彼女 は 人 並み 外れ た 努力 を {もち まし て}、成功 を 掴み まし た。
+    english_literally: She, taking extraordinary effort, grasped success.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 人 並み 外れ た 努力 {で}、成功 を 掴ん だ。
+        english: She seized success with extraordinary effort.
+        hint: While 「で」 could express the means, 「をもって」 here elevates the 'extraordinary effort' to a
+          definitive, intentional method or quality by which success was achieved, adding a tone of admiration
+          and recognition of a profound cause-and-effect. 「で」 expresses a general means. 「をもって」 emphasizes
+          the specific abstract quality (e.g., 'extraordinary effort') as the direct and powerful instrument
+          used to achieve the outcome, often implying high regard for that means. We're looking for a
+          phrase that conveys a high degree of respect for the means employed, which 「をもって」 does.
+    scene: A female coach commending her female athlete's perseverance and ultimate achievement.
+    register: formal
+    setting: inspirational
+    nuance: This usage of 「をもって」 emphasizes the 'extraordinary effort' 「人並み外れた努力」 as the direct and decisive
+      means or instrument leading to success. It adds a more formal and respectful tone to the statement,
+      highlighting the significance of the effort put in.
+  - english: I will consider this matter closed as of this meeting.
+    japanese:
+      - 本 会議 を {もっ て}、本件 は 終了 と さ せ て いただき ます。
+      - 本 会議 を {もち まし て}、本件 は 終了 と さ せ て いただき ます。
+    english_literally: Taking this meeting, this matter will be concluded (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 本 会議 {で}、本件 は 終了 と さ せ て いただき ます。
+        english: This matter will be concluded at this meeting.
+        hint: 「をもって」 provides a more formal and definitive declaration of closure at a specific point
+          in time, such as a meeting, giving a sense of finality that the more general 「で」 does not. 「で」
+          indicates a general time or place. 「をもって」 formally designates a specific event (like a meeting)
+          as the definitive point at which something (like a matter) is concluded, emphasizing the official
+          finality. We're looking for a formal, decisive declaration of closure, which 「をもって」 conveys.
+    scene: A manager or team leader formally concluding a discussion or issue in a meeting.
+    register: formal
+    setting: professional
+    nuance: The phrase 「をもって」 is particularly apt here to officially declare the end of a matter, reinforcing
+      the authority and finality of the decision made during the meeting. The use of 「とさせていただきます」 further
+      enhances the formality and humility of the speaker in making such a declaration.
+  - english: By means of deep reflection, he found the answer.
+    japanese:
+      - 彼 は 深い 考察 を {もっ て}、その 答え を 見つけ た。
+      - 彼 は 深い 考察 を {もち まし て}、その 答え を 見つけ まし た。
+    english_literally: He, taking deep reflection, found that answer.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 深い 考察 {で}、その 答え を 見つけ た。
+        english: He found the answer with deep reflection.
+        hint: While 「で」 indicates means, 「をもって」 emphasizes 'deep reflection' as the specific, instrumental
+          method that directly led to finding the answer, giving it a more deliberate and formal tone
+          suitable for intellectual processes. 「で」 indicates a general means. 「をもって」, however, highlights
+          the specific abstract concept (e.g., 'deep reflection') as the direct and chosen instrument
+          for achieving the outcome, implying a more deliberate and focused application of that method,
+          often suitable for intellectual or analytical descriptions. We're looking for a phrase that
+          emphasizes the precise and direct means to a intellectual discovery, which 「をもって」 provides.
+    scene: A professor or researcher discussing a complex problem-solving process.
+    register: formal
+    setting: academic
+    nuance: This example showcases the instrumental use of 「をもって」, where 'deep reflection' 「深い考察」 is highlighted
+      as the specific and decisive means by which the answer was found. It carries a more intellectual
+      and precise nuance than general particles, making it suitable for academic or analytical contexts.
+post_example_writeup: The examples illustrate how 「を以て・をもって」 is frequently used in formal and business
+  contexts, particularly when defining official methods, processes, or effective dates. Its usage imparts
+  a sense of authority and precision, distinguishing it from more casual alternatives. When used with
+  a date or time, remember that it focuses on the conclusion or end point rather than the starting point.
+  For example, while you can say 「本日をもって閉店します」 (We are closing as of today), it would be unnatural to
+  say something like 「明日をもって開店します」 to mean "We are opening tomorrow." For starting dates, other grammar
+  is preferable. Additionally, 「を以て・をもって」 can denote the means by which something is achieved, particularly
+  with abstract nouns.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/をもって

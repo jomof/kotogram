@@ -1,0 +1,269 @@
+grammar_point: 加えると (to add)
+learn_before:
+  - 加えて (in addition・adding to that)
+meaning: To add, to include, to join, to give (e.g., strength, influence)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 加える
+    rarity: common
+    meaning: to add
+  - conjugation-type: non-past polite (～ます)
+    form: 加えます
+    rarity: common
+    meaning: to add (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 加えない
+    rarity: common
+    meaning: not to add
+  - conjugation-type: negative non-past polite (～ません)
+    form: 加えません
+    rarity: common
+    meaning: not to add (polite)
+  - conjugation-type: past plain (～た)
+    form: 加えた
+    rarity: common
+    meaning: added
+  - conjugation-type: past polite (～ました)
+    form: 加えました
+    rarity: common
+    meaning: added (polite)
+  - conjugation-type: te-form (～て)
+    form: 加えて
+    rarity: common
+    meaning: adding, having added
+  - conjugation-type: passive (～られる/～かれる)
+    form: 加えられる
+    rarity: common
+    meaning: to be added
+  - conjugation-type: potential (～られる/～える)
+    form: 加えられる
+    rarity: common
+    meaning: can add
+  - conjugation-type: causative (～させる)
+    form: 加えさせる
+    rarity: less common
+    meaning: to make/let someone add
+  - conjugation-type: volitional (～よう)
+    form: 加えよう
+    rarity: common
+    meaning: let's add
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 加えろ
+    rarity: less common
+    meaning: add! (plain)
+  - conjugation-type: imperative polite (～なさい)
+    form: 加えなさい
+    rarity: less common
+    meaning: please add (polite imperative)
+pronunciation:
+  katakana: クワエル
+  romaji: kuwaeru
+formation:
+  Noun を 加える: To add a direct object noun.
+  Noun に Noun を 加える: To add a direct object noun to an indirect object/location noun.
+jlpt: N3
+etymology: The verb 加える (kuwaeru) is a native Japanese word, likely originating from concepts of joining,
+  assembling, or bringing things together. Its etymological root conveys the action of accumulation or
+  supplementing, which has evolved to encompass both concrete and abstract additions in modern Japanese.
+writeup: |-
+  The verb 加える (kuwaeru) means "to add," "to include," or "to join." It is a versatile transitive verb used in a wide array of contexts, from physically adding ingredients to a dish, to numerically increasing a sum, or even incorporating abstract elements like conditions or explanations.
+
+  When used for physical objects or ingredients, it describes the action of putting something into or onto another thing. For example, you might 加える (kuwaeru) salt to a dish, or 加える (kuwaeru) new furniture to a room.
+
+  In numerical contexts, 加える (kuwaeru) can signify adding numbers, similar to the English "plus." However, for simple arithmetic, 足す (tasu) is often more common.
+
+  Beyond the tangible, 加える (kuwaeru) frequently appears when adding intangible things such as rules, conditions, comments, or even abstract qualities like "strength" or "influence." For instance, you could 加える (kuwaeru) a new clause to a contract, or 加える (kuwaeru) pressure to a negotiation. The emphasis is on supplementing or contributing to an existing entity or situation.
+
+  Its usage is generally neutral and applicable across various registers, from casual conversation to formal writing. Understanding its broad application for both concrete and abstract additions is key to mastering this fundamental verb.
+false_friends:
+  - term: 足す
+    meaning: to add (numbers, simple summation)
+    kind: similar expression
+    nuance: While both mean "to add," 足す (tasu) is more commonly used for numerical addition or simple
+      summation, like adding two numbers. 加える (kuwaeru) has a broader usage, applying to physical items,
+      ingredients, or abstract concepts beyond mere arithmetic.
+    grammar_point: <suggest>:足す (to add・to sum)
+  - term: 増やす
+    meaning: to increase (transitive)
+    kind: similar expression
+    nuance: 増やす (fuyasu) specifically means "to increase" the quantity or amount of something that already
+      exists. 加える (kuwaeru) focuses on introducing new elements to an existing entity, which may or may
+      not result in an increase in quantity. The emphasis of 加える is on the act of placing or incorporating,
+      rather than just the outcome of growth.
+    grammar_point: <suggest>:増やす (to increase・to multiply)
+post_false_friends_writeup: While 加える (kuwaeru), 足す (tasu), and 増やす (fuyasu) can all relate to increasing
+  or adding, their specific nuances differ. 加える emphasizes the act of combining or supplementing. 足す primarily
+  focuses on numerical or simple item summation. 増やす, on the other hand, means to make something that
+  already exists larger in quantity. Choose 加える when you are actively introducing something to an existing
+  whole, whether tangible or intangible.
+examples:
+  - english: Please add a little sugar to the coffee.
+    japanese:
+      - コーヒー に 少し 砂糖 を 加え て ください。
+      - コーヒー に 少し 砂糖 を 加え て。
+      - コーヒー に 少し 砂糖 を お 加え ください。
+    english_literally: To coffee, a little sugar, please add.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー に 少し 砂糖 を 足し て ください。
+        english: Please add a little sugar to the coffee.
+        hint: While 足す is also correct here, 加える is more natural for adding ingredients to food or drink,
+          implying integration rather than just summation. We're looking for the verb that suggests incorporating
+          an element.
+    scene: A barista asks a customer for their preference.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+  - english: The teacher decided to add a new rule to the class regulations.
+    japanese:
+      - 先生 は クラス の 規則 に 新しい ルール を 加える こと に し た。
+      - 先生 は クラス の 規則 に 新しい ルール を 加える こと に し まし た。
+      - 先生 は クラス の 規則 に 新しい ルール を 付け加える こと に し た。
+    english_literally: Teacher, to class's rules, new rule, to add, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は クラス の 規則 に 新しい ルール を 増やす こと に し た。
+        english: The teacher decided to increase the number of rules in the class regulations.
+        hint: 増やす emphasizes increasing the quantity, whereas 加える emphasizes introducing a new item to
+          a set. We're looking for the verb that expresses introducing a new rule.
+    scene: A school meeting discussing classroom rules.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: We need to add another member to our project team.
+    japanese:
+      - 私 たち の プロジェクト チーム に もう 一人 メンバー を 加える 必要 が ある。
+      - 私 たち の プロジェクト チーム に もう 一人 メンバー を 加える 必要 が あり ます。
+      - 私 たち の プロジェクト チーム に もう 一人 メンバー を 加える 必要 が ある よ。
+    english_literally: Our project team to another one person member to add is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の プロジェクト チーム に もう 一人 メンバー を 増やす 必要 が ある。
+        english: We need to increase the number of members in our project team by one.
+        hint: While 増やす could imply this, 加える specifically means to bring in a new person. We're looking
+          for the verb for integrating a new member.
+    scene: A team leader discussing staffing needs.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: He seems to have added a lot of weight during the holidays.
+    japanese:
+      - 彼 は 休日 の 間 に かなり 体重 を 加え た よう だ。
+      - 彼 は 休日 の 間 に かなり 体重 を 加え た よう です。
+      - 彼 は 休日 の 間 に かなり 体重 加え た みたい だ。
+      - 彼 は 休日 の 間 に かなり 体重 加え た っぽい な。
+    english_literally: He, during holidays, quite weight, added, seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 休日 の 間 に かなり 体重 を 増やし た よう だ。
+        english: He seems to have increased his weight significantly during the holidays.
+        hint: While 増やす is also very natural here, 加える also works and implies the weight was 'added on'
+          to his body. Both are acceptable, but we're focusing on 加える for this lesson.
+    scene: Friends catching up after a holiday break.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: I'd like to add a few comments to your proposal.
+    japanese:
+      - あなた の 提案 に いく つ か コメント を 加え たい の です が。
+      - あなた の 提案 に いく つ か コメント を 加え たい。
+      - あなた の 提案 に いく つ か コメント を 加え させ て いただき たい の です が。
+    english_literally: Your proposal to, a few comments, I'd like to add, but...
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 提案 に いく つ か コメント を 足し たい の です が。
+        english: I'd like to sum up a few comments for your proposal.
+        hint: 足す isn't appropriate for adding comments; it's for numerical summation. We're looking for
+          the verb that means to append or include remarks.
+    scene: A team member giving feedback on a document.
+    register: semi-formal
+    setting: professional
+    conjugation: desiderative (～たい)
+  - english: More wood was added to the fire, making it burn brighter.
+    japanese:
+      - 火 に もっと 木 が 加え られ て、さらに 明るく 燃え上がっ た。
+      - 火 に もっと 木 が 加え られ、さらに 明るく 燃え上がっ た。
+      - 火 に もっと 薪 が 加え られ、炎 は 一層 明る さ を 増し た。
+    english_literally: To fire, more wood, was added, further brightly burned up.
+    competing_grammar:
+      - competing_japanese:
+          - 火 に もっと 木 が 入れ られ て、さらに 明るく 燃え上がっ た。
+        english: More wood was put into the fire, making it burn brighter.
+        hint: 入れる (ireru) means to put in, but 加えられる (kuwaerareru) implies that the wood contributed to
+          the fire's intensity, which fits the context of 'adding' to a process. We're looking for the
+          passive form of the verb for addition.
+    scene: Describing a campfire becoming more intense.
+    register: casual
+    setting: storytelling
+    conjugation: passive (～られる/～かれる)
+  - english: Let's add this new feature to the software update.
+    japanese:
+      - この 新 機能 を ソフトウェア の アップデート に 加えよう。
+      - この 新 機能 を ソフトウェア の アップデート に 加え ましょう。
+      - この 新 機能 を ソフトウェア の アップデート に 加える べき だ。
+    english_literally: This new feature, to software's update, let's add.
+    competing_grammar:
+      - competing_japanese:
+          - この 新 機能 を ソフトウェア の アップデート に 入れよう。
+        english: Let's put this new feature into the software update.
+        hint: 入れる (ireru) means to put in, but 加える is more appropriate for integrating a feature into
+          a system or plan. We're looking for the verb for incorporating a new element.
+    scene: Software developers discussing upcoming changes.
+    register: casual
+    setting: professional
+    conjugation: volitional (～よう)
+  - english: He added a final sentence to his essay before submitting it.
+    japanese:
+      - 彼 は 提出 する 前 に、論文 に 最後 の 文 を 加え た。
+      - 彼 は 提出 する 前 に、論文 に 最後 の 文 を 加え まし た。
+      - 提出 する 前 に、論文 に 最後 の 文 を 加え た ん だ。
+    english_literally: He, before submitting, to essay, final sentence, added.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 提出 する 前 に、論文 に 最後 の 文 を 足し た。
+        english: He summed up a final sentence to his essay before submitting it.
+        hint: 足す (tasu) is not typically used for adding sentences or clauses to text; 加える is the more
+          suitable verb for this kind of textual addition. We're looking for the verb that means to append
+          a sentence.
+    scene: A student finishing up a university assignment.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+  - english: The additional funds will be added to the existing budget.
+    japanese:
+      - 追加 の 資金 は 既存 の 予算 に 加え られる 予定 です。
+      - 追加 の 資金 は 既存 の 予算 に 加え られる こと に なり ます。
+      - 既存 の 予算 に 追加 の 資金 が 加え られる 予定 です。
+    english_literally: Additional funds, to existing budget, will be added, it is planned.
+    competing_grammar:
+      - competing_japanese:
+          - 追加 の 資金 は 既存 の 予算 に 足さ れる 予定 です。
+        english: The additional funds will be summed to the existing budget.
+        hint: While 足す can be used for numerical addition, 加えられる (passive of 加える) is more natural for
+          funds being incorporated into a budget or total sum. We're looking for the passive form of the
+          verb for adding funds.
+    scene: A finance meeting discussing budget allocations.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: passive (～られる/～かれる)
+  - english: To add insult to injury, it started raining heavily after we lost the game.
+    japanese:
+      - 負け た 後、さらに ひどい 雨 が 加え て、まさに 泣きっ面 に 蜂 だっ た。
+      - 負け た 後、さらに ひどい 雨 が 加わり、まさに 泣きっ面 に 蜂 だっ た。
+    english_literally: After losing, furthermore heavy rain was added, truly a bee on a crying face.
+    competing_grammar:
+      - competing_japanese:
+          - 負け た 後、さらに ひどい 雨 が 降っ て、まさに 泣きっ面 に 蜂 だっ た。
+        english: After losing, furthermore heavy rain fell, truly a bee on a crying face.
+        hint: 降る (furu) means 'to fall' (rain), but 加える in this figurative context conveys the idea of
+          an additional misfortune being 'piled on' to an already bad situation. We're looking for the
+          verb that implies adding to a negative situation.
+    scene: Someone recounting a very unlucky day.
+    register: casual
+    setting: melancholic
+    conjugation: te-form (～て)
+    nuance: In this figurative use, 「加えて」is used to mean 'on top of that' or 'to make matters worse,'
+      implying an additional negative event piling onto an already bad situation. This usage is common
+      for emphasizing compounding misfortunes, much like the English idiom 'to add insult to injury'.
+      The phrase 「泣きっ面に蜂」(nakittsura ni hachi) literally means 'a bee on a crying face,' serving as an
+      equivalent idiom for 'adding insult to injury'.

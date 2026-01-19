@@ -1,0 +1,218 @@
+grammar_point: ということ(は) (that means)
+learn_before:
+  - ということだ (it means that)
+meaning: that means
+pronunciation:
+  katakana: トイウコトハ
+  romaji: to iu koto wa
+formation:
+  Casual sentence + ということ(は): Indicates a logical conclusion or inference based on the preceding statement.
+  Noun + ということ(は): Connects a noun to a logical consequence or interpretation.
+jlpt: N3
+etymology: The phrase 「ということ」 is formed from the quotative particle 「と」 (to), the verb 「言う」 (iu, to say),
+  and the nominalizer 「こと」 (koto, thing/fact). Together, 「と言うこと」 literally means 'the thing/fact that
+  is said' or 'the fact of saying'. When followed by 「は」 (wa), the topic particle, it highlights this
+  'fact' as the topic of the subsequent deduction. Over time, it evolved to introduce a logical inference
+  or conclusion, essentially asking the listener to consider 'what this fact means'.
+writeup: |-
+  「ということ(は)」 is a useful phrase for drawing logical conclusions or making inferences based on a preceding statement or observation. It essentially means "that means" or "in other words, it implies that...". It's often used when you're connecting two pieces of information, where the second piece is a logical consequence or interpretation of the first. The inclusion of 「は」 (wa) emphasizes the preceding statement as the topic about which the conclusion is being made, sometimes implying a slight contrast or a 'given that fact, then...' nuance.
+
+  This grammar point is versatile and can be used in various contexts to explain deductions, clarify implications, or confirm understanding. It bridges a statement with its logical outcome, allowing for clearer communication of thought processes.
+false_friends:
+  - term: つまり (in short)
+    meaning: in short; in other words; to sum up
+    kind: similar expression
+    nuance: While 「つまり」 also means "in other words," it is typically used for summarizing, restating something
+      in simpler terms, or clarifying a point. It emphasizes equivalence or rephrasing. 「ということ(は)」, however,
+      focuses on drawing a *logical conclusion* or *inference* from a preceding statement.
+    grammar_point: <suggest>:つまり (in short)
+  - term: ということは (it means that)
+    meaning: it means that; that implies
+    kind: synonym
+    nuance: This is essentially the same grammar point, with the 「は」 making the preceding clause the topic
+      of the deduction. There is little to no difference in meaning or usage, often interchangeable.
+    grammar_point: <suggest>:ということは (it means that)
+  - term: だから (so)
+    meaning: so; therefore; that's why
+    kind: similar expression
+    nuance: '「だから」 indicates a direct cause-and-effect relationship, implying ''because of X, Y happened''.
+      「ということ(は)」, conversely, implies a logical deduction or interpretation: ''X is true, *therefore it
+      means* Y is also true or implied''. It''s more about drawing an inference than stating a direct
+      cause.'
+    grammar_point: <suggest>:だから (so)
+post_false_friends_writeup: It is important to distinguish 「ということ(は)」 from similar expressions. While
+  「つまり」 is used for rephrasing or summarizing, 「ということ(は)」 is for drawing a logical inference. 「だから」 expresses
+  a direct cause-and-effect. Understanding these nuances will help you use each phrase accurately to convey
+  your intended meaning.
+examples:
+  - english: It's raining, that means we can't go to the park.
+    japanese:
+      - 雨 が 降っ て いる、{と いう こと は} 公園 に 行け ない。
+      - 雨 が 降っ て いる、{と いう こと は} 公園 に 行け ませ ん。
+      - 雨 が 降っ て いる から、{と いう こと は} 公園 に 行け ない ね。
+    english_literally: Rain is falling, that means park to cannot go.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ て いる から、公園 に 行け ない。
+        english: Because it's raining, we can't go to the park.
+        hint: 「から」 states a direct reason. We're looking for a phrase that implies a logical deduction
+          from a given fact.
+    scene: A family is planning a trip to the park, but it starts raining.
+    register: casual
+    setting: friendly
+  - english: He's not answering his phone, that means he's probably still sleeping.
+    japanese:
+      - 彼 は 電話 に 出 ない、{と いう こと は} まだ 寝 て いる ん だろう。
+      - 彼 は 電話 に 出 ませ ん、{と いう こと は} まだ 寝 て いる の でしょう。
+      - 彼 は 電話 に 出 ない ね、{と いう こと は} まだ 寝 て いる ん だ ね。
+    english_literally: He phone to does not answer, that means still sleeping probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 電話 に 出 ない。つまり、まだ 寝 て いる ん だろう。
+        english: He's not answering his phone. In other words, he's probably still sleeping.
+        hint: 「つまり」 is for rephrasing or clarifying. We're looking for an inference based on the observation.
+    scene: Two friends are trying to reach a mutual friend in the morning.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses a casual tone with 「だろう」, suitable for a friendly conversation. 「ということ(は)」
+      naturally fits into this deductive reasoning in a relaxed setting.
+  - english: The train is delayed by an hour, that means I'll be late for the meeting.
+    japanese:
+      - 電車 が 1 時間 遅れ て いる、{と いう こと は} 会議 に 遅れる な。
+      - 電車 が 1 時間 遅れ て い ます、{と いう こと は} 会議 に 遅れ ます ね。
+      - 電車 が 1 時間 遅れ て いる、{と いう こと は} 会議 に 遅れる こと に なり ます ね。
+    english_literally: Train 1 hour delayed, that means meeting to will be late.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 1 時間 遅れ て いる の で、会議 に 遅れる な。
+        english: Since the train is delayed by an hour, I'll be late for the meeting.
+        hint: 「ので」 expresses a reason. We're inferring a consequence from the situation, not just stating
+          a reason.
+    scene: Someone realizing the impact of a train delay on their schedule.
+    register: casual
+    setting: serious
+  - english: The lights are off, that means no one is home.
+    japanese:
+      - 電気 が 消え て いる、{と いう こと は} 誰 も 家 に い ない ね。
+      - 電気 が 消え て い ます、{と いう こと は} 誰 も 家 に い ませ ん ね。
+      - 電気 が 消え て いる、{と いう こと は} 誰 も 家 に い ない。
+    english_literally: Electricity is off, that means no one house in is there, right?
+    competing_grammar:
+      - competing_japanese:
+          - 電気 が 消え て いる から、誰 も 家 に い ない ね。
+        english: Because the lights are off, no one is home.
+        hint: While correct, 「から」 states a direct reason. We are drawing a logical conclusion from the
+          observation.
+    scene: A person arriving at a friend's house.
+    register: casual
+    setting: friendly
+  - english: You said you have no money, that means you can't buy this expensive bag.
+    japanese:
+      - お 金 が ない って 言っ た、{と いう こと は} この 高い バッグ は 買え ない ね。
+      - お 金 が ない って 言い まし た、{と いう こと は} この 高い バッグ は 買え ませ ん ね。
+      - お 金 が ない って こと だ ね、{と いう こと は} この 高い バッグ は 買え ない って こと だ ね。
+    english_literally: Money is not, said you, that means this expensive bag cannot buy, right?
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が ない って 言っ た。だ から、この 高い バッグ は 買え ない ね。
+        english: You said you have no money. So, you can't buy this expensive bag.
+        hint: 「だから」 states a direct consequence. We're looking for an inference based on a previous statement.
+    scene: A friend gently reminds another about their budget while shopping.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker's use of 「ね」 at the end softens the implication, making the statement sound like
+      a gentle reminder rather than a harsh judgment, suitable between female friends discussing finances.
+      「ということ(は)」 frames this as a logical deduction.
+  - english: If the deadline is tomorrow, that means we have to work overnight.
+    japanese:
+      - 締め切り が 明日 なら、{と いう こと は} 徹夜 し なけれ ば なら ない。
+      - 締め切り が 明日 なら、{と いう こと は} 徹夜 し なけれ ば なり ませ ん。
+      - 締め切り が 明日 なら、{と いう こと は} 徹夜 し ない と いけ ませ ん。
+    english_literally: Deadline tomorrow if, that means all night work must do.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 明日 なら、徹夜 し なけれ ば なら ない。
+        english: If the deadline is tomorrow, we have to work overnight.
+        hint: This is a direct conditional statement. We're emphasizing the logical consequence inferred
+          from the condition.
+    scene: Colleagues discussing a tight project deadline.
+    register: formal
+    setting: professional
+  - english: He passed the exam without studying, that means he's naturally intelligent.
+    japanese:
+      - 彼 は 勉強 せ ず に 試験 に 合格 し た、{と いう こと は} もともと 頭 が いい ん だ。
+      - 彼 は 勉強 せ ず に 試験 に 合格 し まし た、{と いう こと は} もともと 頭 が いい ん です ね。
+      - 彼 は 勉強 せ ず に 試験 に 合格 し た、{と いう こと は} もともと 頭 が いい と いう こと です ね。
+    english_literally: He studying without exam passed, that means originally head is good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 勉強 せ ず に 試験 に 合格 し た。だ から、もともと 頭 が いい ん だ。
+        english: He passed the exam without studying. So, he's naturally intelligent.
+        hint: 「だから」 focuses on a direct cause. Here, we're making an observation and inferring something
+          about his intelligence.
+    scene: Students discussing a high-achieving classmate.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「んだ」 at the end emphasizes the speaker's personal conclusion, common in casual
+      male speech. 「ということ(は)」 introduces this conclusion as a natural deduction from the observed fact.
+  - english: The shop is closed today, that means it must be a holiday.
+    japanese:
+      - あの 店 は 今日 休み だ、{と いう こと は} 祝日 な ん だろう。
+      - あの 店 は 今日 休み です、{と いう こと は} 祝日 でしょう。
+      - あの 店 は 今日 休み だ、{と いう こと は} 祝日 な ん です か ね。
+    english_literally: That shop today day off is, that means holiday probably.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 は 今日 休み だ。きっと 祝日 な ん だろう。
+        english: That shop is closed today. It must be a holiday.
+        hint: 「きっと」 expresses certainty. We're looking for a phrase that introduces the logical reasoning
+          behind the certainty.
+    scene: Someone walking past a closed store on a weekday.
+    register: casual
+    setting: reflective
+  - english: Everyone is quiet, that means the teacher must have arrived.
+    japanese:
+      - 皆 が 静か だ、{と いう こと は} 先生 が 来 た ん だろう。
+      - 皆 が 静か です ね、{と いう こと は} 先生 が 来 た ん です ね。
+      - 皆 が 静か だ、{と いう こと は} 先生 が いらっしゃる の でしょう。
+    english_literally: Everyone is quiet, that means teacher came probably.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 が 静か だ。きっと 先生 が 来 た ん だろう。
+        english: Everyone is quiet. The teacher must have arrived.
+        hint: 「きっと」 expresses high probability. We're seeking to infer the reason for the quietness based
+          on the observation.
+    scene: A student observing the classroom atmosphere.
+    register: casual
+    setting: academic
+  - english: If the budget has been cut, that means we need to reconsider the project plan.
+    japanese:
+      - 予算 が 削減 さ れ た なら、{と いう こと は} プロジェクト の 計画 を 見直す 必要 が あり ます。
+      - 予算 が 削減 さ れ た なら、{と いう こと は} プロジェクト の 計画 を 見直す 必要 が あり ます ね。
+      - 予算 が 削減 さ れ た なら、{と いう こと は} プロジェクト の 計画 を 見直す 必要 が ある と いう こと です ね。
+    english_literally: Budget reduced if, that means project's plan to review necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が 削減 さ れ た なら、プロジェクト の 計画 を 見直す 必要 が あり ます。
+        english: If the budget has been cut, we need to reconsider the project plan.
+        hint: This is a direct conditional statement. We are highlighting the logical implication of the
+          budget cut.
+    scene: During a team meeting discussing a project.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: Using the polite 「〜あります」 and formal construction, this example demonstrates 「ということ(は)」 in
+      a professional context. The female speaker uses standard polite language, which is gender-neutral.
+      The phrase here allows her to logically connect the budget cut to the necessary action of re-evaluating
+      the plan for the group.
+post_example_writeup: As shown in the examples, 「ということ(は)」 is extremely versatile. It can be used in casual
+  conversations to make simple deductions or in more formal settings to logically connect facts and their
+  implications. The key is its role in presenting a logical inference derived from a preceding statement
+  or situation.

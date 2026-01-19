@@ -1,0 +1,296 @@
+grammar_point: Verb[てみる] (try doing)
+learn_before:
+  - てみる (try and see)
+meaning: to try doing (something)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 動詞てみる
+    rarity: common
+    meaning: to try doing
+  - conjugation-type: non-past polite (～ます)
+    form: 動詞てみます
+    rarity: common
+    meaning: to try doing (polite)
+  - conjugation-type: past plain (～た)
+    form: 動詞てみた
+    rarity: common
+    meaning: tried doing
+  - conjugation-type: past polite (～ました)
+    form: 動詞てみました
+    rarity: common
+    meaning: tried doing (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 動詞てみない
+    rarity: common
+    meaning: not try doing
+  - conjugation-type: negative non-past polite (～ません)
+    form: 動詞てみません
+    rarity: common
+    meaning: not try doing (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 動詞てみなかった
+    rarity: common
+    meaning: didn't try doing
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 動詞てみませんでした
+    rarity: common
+    meaning: didn't try doing (polite)
+  - conjugation-type: te-form (～て)
+    form: 動詞てみて
+    rarity: common
+    meaning: trying doing / try doing (and)
+  - conjugation-type: potential (～られる/～える)
+    form: 動詞てみられる
+    rarity: common
+    meaning: can try doing
+  - conjugation-type: volitional (～よう)
+    form: 動詞てみよう
+    rarity: common
+    meaning: let's try doing
+  - conjugation-type: volitional polite (～ましょう)
+    form: 動詞てみましょう
+    rarity: common
+    meaning: shall we try doing?
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 動詞てみろ
+    rarity: less common
+    meaning: try doing!
+  - conjugation-type: imperative polite (～なさい)
+    form: 動詞てみなさい
+    rarity: common
+    meaning: please try doing
+  - conjugation-type: conditional (～たら)
+    form: 動詞てみたら
+    rarity: common
+    meaning: if/when you try doing
+  - conjugation-type: conditional (～ば)
+    form: 動詞てみれば
+    rarity: less common
+    meaning: if you try doing
+  - conjugation-type: concessive (～ても)
+    form: 動詞てみても
+    rarity: common
+    meaning: even if you try doing
+pronunciation:
+  katakana: テミル
+  romaji: temiru
+formation:
+  Verb[te-form] + 見る (みる): Expresses trying an action to see what happens, or performing an action experimentally.
+jlpt: N4
+etymology: The construction Verb[て] + 見る literally combines the 連用形 (ren'yōkei) of the main verb followed
+  by the particle て (which here functions as a connective, indicating sequential or resultant action)
+  and the verb 見る (みる), meaning "to see" or "to observe." Over time, this combination evolved from a literal
+  "do and see the result" to a more abstract "try doing" or "do experimentally." This highlights that
+  the act of "trying" inherently involves an element of observation or discovery regarding the outcome.
+writeup: |-
+  Verb[てみる] is a very common and useful grammar pattern in Japanese that expresses the idea of "trying to do something" or "doing something to see what happens." It is formed by taking the **te-form** of a verb and attaching みる. The みる part then conjugates like a regular る-verb.
+
+  The core meaning comes from the literal sense of "do [X] and then see." For example, 寿司を食べてみる (sushi o tabete miru) literally means "eat sushi and see (what it's like)." This implies an element of experimentation, curiosity, or a test. It's not just "eating sushi," but "trying eating sushi" to experience it.
+
+  This grammar point is versatile and can be used in various contexts, from suggesting an action to expressing a personal attempt. It often carries a nuance of trying something for the first time, or trying something to evaluate its outcome.
+false_friends:
+  - term: 試す (tamesu)
+    meaning: to test, to try out (a method, product)
+    kind: similar expression
+    nuance: 試す is more about testing a method or thing to see if it works or if it's effective. てみる is
+      about trying an *action* for the first time, often with a nuance of personal experience or curiosity.
+      For example, 「新しい薬を{試す}」 (to test a new medicine) vs. 「このケーキを{食べてみる}」 (to try eating this cake).
+      試す can also imply evaluating something.
+    grammar_point: <suggest>:試す (to test)
+  - term: Verb[よう]とする
+    meaning: to try to do
+    kind: similar expression
+    nuance: Verb[よう]とする emphasizes the *effort* or *attempt* to do something, often implying that the
+      action might not be completed or might be difficult. てみる implies completing the action to see the
+      result. For example, 「ドアを開けようとした」 (I tried to open the door - implying it might have been stuck)
+      vs. 「新しいドアを開けてみた」 (I tried opening the new door - implying I succeeded in opening it to see how
+      it works).
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+post_false_friends_writeup: While Verb[てみる] implies engaging in an action to experience or evaluate it,
+  試す focuses on testing the functionality or effectiveness of something. On the other hand, Verb[よう]とする
+  highlights the effort made to initiate an action, even if the action is not fully completed or succeeds.
+  The key distinction for てみる is the actual *performance* of the action followed by an observation of
+  its outcome or experience.
+examples:
+  - english: Why don't you try eating this cake?
+    japanese:
+      - この ケーキ を {食べ て み ませ ん か}？
+      - この ケーキ、{食べ て み ない}？
+      - この ケーキ を {食べ て み て ください}。
+    english_literally: This cake (object marker) try eating (polite negative question)?
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ を 食べ ませ ん か？
+        english: Won't you eat this cake?
+        hint: We're looking for a suggestion to *experience* eating something.
+    scene: A friend offers a new dessert.
+    register: formal
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+  - english: I tried living alone for the first time.
+    japanese:
+      - 初めて 一人暮らし を {し て み た}。
+      - 初めて 一人暮らし を {し て み まし た}。
+      - 初めて の 一人暮らし、{やっ て み た}。
+    english_literally: First time living alone (object marker) tried doing.
+    competing_grammar:
+      - competing_japanese:
+          - 初めて 一人暮らし を し た。
+        english: I lived alone for the first time.
+        hint: The speaker is trying out living alone to see what it's like, not just stating the action.
+    scene: A young person reflecting on a new life experience.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: I tried turning the computer off and on again, but it still won't work.
+    japanese:
+      - パソコン の 電源 を 入れ直し て {み た} けど、まだ 動か ない。
+      - パソコン の 電源 を 入れ直し て {み まし た} けど、まだ 動き ませ ん。
+      - パソコン の 電源 入れ直し て {み た} けど、まだ 動か ない。
+    english_literally: Computer's power (object marker) re-inserted tried but, still won't move.
+    competing_grammar:
+      - competing_japanese:
+          - パソコン の 電源 を 入れ直し た けど、まだ 動か ない。
+        english: I turned the computer off and on again, but it still won't work.
+        hint: The speaker performed the action as a test to see if it would fix the problem.
+    scene: Someone troubleshooting a technical issue.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: I wonder what it tastes like, I'll try eating it.
+    japanese:
+      - どんな 味 か な？{食べ て みよう}。
+      - どんな 味 か な？{食べ て み ましょう}。
+      - どんな 味 だろ？{食べ て みよう}。
+    english_literally: What kind of taste? Let's try eating.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 味 か な？食べよう。
+        english: I wonder what it tastes like? Let's eat.
+        hint: The speaker is expressing curiosity and the desire to *experience* the taste, not just to
+          eat.
+    scene: Someone is looking at an unfamiliar food.
+    register: casual
+    setting: excited
+    conjugation: volitional (～よう)
+    speaker_gender: female
+    nuance: The casual volitional 「〜みよう」 combined with 「どんな味かな？」 emphasizes curiosity and the desire to
+      experience the taste. The female speaker's language slightly softens the tone.
+  - english: If you're tired, please try taking a short break.
+    japanese:
+      - 疲れ たら、少し 休憩 {し て み て} ください。
+      - 疲れ たら、少し 休憩 {し て み なさい}。
+      - 疲れ たら、ちょっと 休憩 {し て み な}。
+    english_literally: If tired, a little break try taking please.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ たら、少し 休憩 し て ください。
+        english: If you're tired, please take a short break.
+        hint: The speaker is suggesting the listener *try* the break to see if it helps, not just take
+          one.
+    scene: A colleague advising another.
+    register: formal
+    setting: supportive
+    conjugation: te-form (～て)
+  - english: I tried asking my boss, but he said it was impossible.
+    japanese:
+      - 上司 に {聞い て み た} けど、無理 だ と 言わ れ た。
+      - 上司 に {聞い て み まし た} けど、無理 だ と 言わ れ まし た。
+      - 上司 に {聞い て み た} ん だ けど、無理 だ って 言わ れ た。
+    english_literally: Boss (to) tried asking but, impossible (it is) (quotative particle) was said.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 に 聞い た けど、無理 だ と 言わ れ た。
+        english: I asked my boss, but he said it was impossible.
+        hint: The speaker performed the action of asking to see what the outcome would be, implying an
+          attempt or test of the situation.
+    scene: Someone reporting the result of an inquiry.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+  - english: It looks difficult, but I want to try climbing that mountain.
+    japanese:
+      - 難し そう だ けど、あの 山 に {登っ て み たい}。
+      - 難し そう です が、あの 山 に {登っ て み たい です}。
+      - 難し そう だ けど、あの 山、{登っ て み たい} な。
+    english_literally: Looks difficult but, that mountain (to) want to try climbing.
+    competing_grammar:
+      - competing_japanese:
+          - 難し そう だ けど、あの 山 に 登り たい。
+        english: It looks difficult, but I want to climb that mountain.
+        hint: The speaker wants to *experience* climbing the mountain, implying a test of their ability
+          or a new challenge.
+    scene: Someone looking at a challenging task or goal.
+    register: casual
+    setting: inspirational
+    conjugation: desiderative (～たい)
+  - english: The new system seemed difficult at first, but when I tried using it, it was surprisingly
+      easy.
+    japanese:
+      - 新しい システム は 難し そう だっ た けど、{使っ て み たら} 意外 と 簡単 だっ た。
+      - 新しい システム は 難し そう でし た が、{使っ て み たら} 意外 と 簡単 でし た。
+      - 新しい システム、難し そう だっ た けど、{使っ て み たら} 意外 と 簡単 だっ た。
+    english_literally: New system (topic particle) looked difficult was but, tried using (if/when) unexpectedly
+      easy was.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム は 難し そう だっ た けど、使っ たら 意外 と 簡単 だっ た。
+        english: The new system seemed difficult at first, but when I used it, it was surprisingly easy.
+        hint: The speaker used the system to *evaluate* its ease of use, implying an experimental action
+          to discover an outcome.
+    scene: Someone evaluating a new tool or process.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+  - english: Don't try to open that box without permission.
+    japanese:
+      - 許可 なく その 箱 を {開け て み ない で} ください。
+      - 許可 なく その 箱 を {開け て み ない} で。
+      - 許可 なく その 箱 を {開け て みる} な。
+    english_literally: Without permission that box (object marker) don't try opening please.
+    competing_grammar:
+      - competing_japanese:
+          - 許可 なく その 箱 を 開け ない で ください。
+        english: Don't open that box without permission.
+        hint: The warning specifically prohibits the act of *trying* to open the box to see its contents
+          or how it works.
+    scene: A warning from a parent or guardian.
+    register: formal
+    setting: commanding
+    conjugation: negative plain (～ない)
+  - english: If you can't carry that, I'll try carrying it for you.
+    japanese:
+      - もし それ が 運べ ない なら、私 が {運ん で み ましょう} か？
+      - もし それ が 運べ ない なら、私 が {運ん で み ましょう}？
+      - もし それ 運べ ない なら、俺 が {運ん で みよう} か？
+    english_literally: If that (subject marker) cannot carry if, I (subject marker) shall try carrying?
+    competing_grammar:
+      - competing_japanese:
+          - もし それ が 運べ ない なら、私 が 運び ましょう か？
+        english: If you can't carry that, shall I carry it for you?
+        hint: The speaker is offering to *attempt* the action to see if they can succeed, not just offering
+          to carry it.
+    scene: Someone offering assistance.
+    register: formal
+    setting: supportive
+    conjugation: volitional polite (～ましょう)
+    speaker_gender: male
+    nuance: The use of 「〜ましょうか」 indicates an offer of assistance, combining politeness with the "try"
+      nuance. The male speaker's usage would be standard.
+  - english: I wish I had tried to speak to him before he left.
+    japanese:
+      - 彼 が 帰る 前 に {話し て み て} おけ ば よかっ た。
+      - 彼 が 帰る 前 に {話し て み て} おけ ば よかっ た です。
+      - 彼 が 帰る 前 に {話し て みりゃ} よかっ た。
+    english_literally: He (subject marker) leaves before (particle) tried speaking (do in advance) had
+      been good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 帰る 前 に 話し て おけ ば よかっ た。
+        english: I wish I had spoken to him before he left.
+        hint: The speaker regrets not *attempting* to speak to him to see what would happen or what they
+          could achieve.
+    scene: Someone regretting a missed opportunity.
+    register: casual
+    setting: melancholic
+    conjugation: te-form (～て)

@@ -1,0 +1,253 @@
+grammar_point: お〜ください (polite request)
+learn_before:
+  - お (honorific prefix)
+meaning: Polite request; Please do (honorific)
+pronunciation:
+  katakana: オ・クダサイ
+  romaji: o kudasai
+formation:
+  お + Verb[ます-stem] + ください: Used with most Japanese verbs.
+  ご + Noun + ください: Used with Sino-Japanese verbs (noun + する).
+jlpt: N3
+etymology: The honorific prefix 「お」 comes from 「大」(ō), meaning 'great' or 'large,' which evolved to show
+  respect. 「ください」 is the imperative form of 「くださる」(kudasaru), the respectful equivalent of 「くれる」(kureru,
+  'to give to me/us/in-group'). Thus, 「お〜ください」 literally means 'please respectfully give (the action),'
+  signifying a request made with deference.
+writeup: This grammar point, 「お〜ください」, is used to make polite requests or give instructions. It is a more
+  formal and respectful alternative to the common 「〜てください」 form. The 「お」 prefix is an honorific marker
+  attached to the ます-stem of most Japanese verbs, followed by 「ください」. This construction elevates the politeness
+  of the request, making it suitable for situations where you need to show deference to the listener,
+  such as in customer service, formal business settings, or public announcements. The structure typically
+  involves adding 「お」 to the ます-stem of verbs (e.g. 読みます → お読みください). For Sino-Japanese verbs (verbs formed
+  from a noun + する, like 連絡する or 利用する), 「ご」 is often used instead of 「お」, placed before the noun part
+  of the verb (e.g. ご連絡ください, ご利用ください). However, some Sino-Japanese verbs or verbs that describe actions
+  performed by the speaker for the benefit of the listener, might still take 「お」 (e.g. お待ちください). 「お〜ください」
+  implies that the requested action is either for the listener's benefit or is an action they are expected
+  to perform out of respect or duty. It is less of a direct command and more of a polite directive or
+  invitation to act. It is commonly seen on signs, in announcements, or when a service person addresses
+  a client.
+false_friends:
+  - term: 〜てください
+    meaning: Please do (polite, general)
+    kind: similar expression
+    nuance: お〜ください is more formal and shows higher respect to the listener than 〜てください. 〜てください is a general
+      polite request suitable for most everyday situations, while お〜ください is reserved for more formal contexts
+      or when addressing those of higher social standing.
+    grammar_point: てください (polite request)
+  - term: 〜なさい
+    meaning: Do (polite imperative)
+    kind: similar expression
+    nuance: While 〜なさい is also a polite imperative, it is typically used by a superior to a subordinate
+      (e.g. parent to child, teacher to student) and carries a tone of mild command or advice. お〜ください
+      is used when the speaker wishes to show respect to the listener, regardless of status, or to maintain
+      high formality. It is generally perceived as softer than 〜なさい.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: 〜ていただけませんか
+    meaning: Would you please do (humble request)
+    kind: similar expression
+    nuance: お〜ください focuses on the speaker's politeness and respect towards the listener in making the
+      request. 〜ていただけませんか emphasizes the speaker's humility and gratitude for the listener's potential
+      action, implying a favor being done for the speaker. It is often used when explicitly asking for
+      help or a specific action that benefits the speaker.
+    grammar_point: '[Verb-て]いただけませんか (humble request)'
+post_false_friends_writeup: When choosing between お〜ください, 〜てください, 〜なさい, and 〜ていただけませんか, consider the social
+  context and your relationship with the listener. お〜ください is ideal for formal settings and showing general
+  respect. 〜てください is the standard polite request for everyday interactions. 〜なさい conveys a gentle command
+  from a higher-status individual. For situations requiring even greater humility and deference, especially
+  when asking for a favor, 〜ていただけませんか is more appropriate. Understanding these subtle differences will
+  greatly enhance the naturalness of your Japanese communication.
+examples:
+  - english: Please wait here.
+    japanese:
+      - こちら で {お 待ち ください}。
+      - こちら で {お 待ち ください ませ}。
+    english_literally: Here, please wait.
+    competing_grammar:
+      - competing_japanese:
+          - こちら で 待っ て ください。
+        english: Please wait here (general polite).
+        hint: The nuance of this sentence is general politeness, not elevated respect. We're looking for
+          a more formal request that shows respect.
+      - competing_japanese:
+          - こちら で お 待ち いただけ ませ ん か。
+        english: Would you please wait here (humble request)?
+        hint: This phrase emphasizes your humility in asking for a favor. We're looking for a polite request
+          that shows general respect without necessarily implying a favor.
+    scene: A staff member at a clinic instructs a patient.
+    register: formal
+    setting: professional
+    nuance: The use of 「お待ちください」 (o-machi kudasai) signifies a standard polite request in a service setting,
+      showing respect towards the patient through the honorific prefix 「お」 and the polite imperative 「ください」.
+  - english: Please contact us.
+    japanese:
+      - ご {連絡 ください}。
+      - ご {連絡 ください ませ}。
+    english_literally: Please contact us.
+    competing_grammar:
+      - competing_japanese:
+          - 連絡 し て ください。
+        english: Please contact us (general polite).
+        hint: This phrase is polite but lacks the formal deference needed for a business context. We're
+          looking for a more formal and respectful request.
+    scene: A business email or sign instructs clients.
+    register: formal
+    setting: professional
+    nuance: For Sino-Japanese verbs like 「連絡する」(renraku suru), the honorific prefix 「ご」 is used before
+      the noun part, as seen in 「ご連絡ください」. This is a very common and appropriate phrase for formal business
+      communication.
+  - english: Please be careful with your step.
+    japanese:
+      - 足元 に {ご 注意 ください}。
+      - 足元 に {ご 注意 ください ませ}。
+    english_literally: To your feet, please pay attention.
+    competing_grammar:
+      - competing_japanese:
+          - 足元 に 注意 し て ください。
+        english: Please be careful with your step (general polite).
+        hint: This is a polite instruction, but it doesn't carry the formal tone suitable for public announcements.
+          We're looking for a formal instruction.
+    scene: An announcement on a train or in a public facility.
+    register: formal
+    setting: informative
+    nuance: The phrase 「ご注意ください」 (go-chūi kudasai) uses 「ご」 with 「注意する」(chūi suru, to be careful) to create
+      a formal and respectful warning, commonly heard in public service announcements to ensure safety.
+  - english: Please cooperate with the survey.
+    japanese:
+      - アンケート に {ご 協力 ください}。
+      - アンケート に {ご 協力 ください ませ}。
+    english_literally: To the questionnaire, please cooperate.
+    competing_grammar:
+      - competing_japanese:
+          - アンケート に 協力 し て ください。
+        english: Please cooperate with the survey (general polite).
+        hint: While polite, this expression is too casual for a formal request for public participation.
+          We're looking for a more formal request.
+    scene: An organizer addressing an audience for a survey.
+    register: formal
+    setting: professional
+    nuance: 「ご協力ください」 (go-kyōryoku kudasai) uses 「ご」 with 「協力する」(kyōryoku suru, to cooperate) and is a
+      formal and polite request for collective participation, often used in public or professional contexts.
+  - english: Please refrain from smoking.
+    japanese:
+      - 喫煙 は {ご 遠慮 ください}。
+      - 喫煙 は {ご 遠慮 ください ませ}。
+    english_literally: Smoking, please refrain.
+    competing_grammar:
+      - competing_japanese:
+          - 喫煙 は し ない で ください。
+        english: Please do not smoke (general polite).
+        hint: This is a direct negative command, but it's not as polite or indirect as an honorific request.
+          We're looking for a polite prohibition.
+    scene: A sign in a non-smoking area.
+    register: formal
+    setting: informative
+    nuance: 「ご遠慮ください」 (go-enryo kudasai) uses 「ご」 with 「遠慮する」(enryo suru, to refrain) to express a polite
+      prohibition. It is a very common and softened way to request that people do not perform an action,
+      frequently found on public signs.
+  - english: Please use this.
+    japanese:
+      - こちら を {お 使い ください}。
+      - こちら を {お 使い ください ませ}。
+    english_literally: This, please use.
+    competing_grammar:
+      - competing_japanese:
+          - これ 使っ て ください。
+        english: Please use this (casual/general polite).
+        hint: This is a standard polite request but lacks the additional respect appropriate for addressing
+          a superior or client. We're looking for a more formal offering.
+    scene: A colleague offering a tool or resource to a superior or client.
+    register: formal
+    setting: professional
+    nuance: 「お使いください」 (o-tsukai kudasai) uses 「お」 with 「使う」(tsukau, to use) to form a polite invitation
+      for the listener to utilize something. This expression shows respect and is suitable when offering
+      something to someone of higher status or a client.
+  - english: Please have a seat.
+    japanese:
+      - どうぞ {お 座り ください}。
+      - どうぞ {お 座り ください ませ}。
+    english_literally: Please, sit.
+    competing_grammar:
+      - competing_japanese:
+          - どうぞ 座っ て ください。
+        english: Please sit (general polite).
+        hint: This is a polite invitation, but 「お座りください」 adds an extra layer of deference, which is missing
+          here. We're looking for a more formal and respectful invitation.
+    scene: Welcoming a guest into a room.
+    register: formal
+    setting: friendly
+    nuance: 「お座りください」 (o-suwari kudasai) uses 「お」 with 「座る」(suwaru, to sit) and is a common, polite invitation
+      in hospitality settings, emphasizing respect for the guest.
+  - english: Please fill in your name.
+    japanese:
+      - お 名前 を {ご 記入 ください}。
+      - お 名前 を {ご 記入 ください ませ}。
+    english_literally: Your name, please fill in.
+    competing_grammar:
+      - competing_japanese:
+          - 名前 を 記入 し て ください。
+        english: Please fill in your name (general polite).
+        hint: This is a polite instruction, but it lacks the formality expected on an official document.
+          We're looking for a formal request for information.
+    scene: Instructions on a form or application.
+    register: formal
+    setting: professional
+    nuance: 「ご記入ください」 (go-kinyū kudasai) uses 「ご」 with 「記入する」(kinyū suru, to fill in) and is standard
+      formal phrasing for requesting information on official documents or applications. The 「お」 before
+      「名前」 (namae) also adds politeness to 'your name'.
+  - english: Please evacuate quickly.
+    japanese:
+      - 速やか に {ご 避難 ください}。
+      - 速やか に {ご 避難 ください ませ}。
+    english_literally: Promptly, please evacuate.
+    competing_grammar:
+      - competing_japanese:
+          - 速やか に 避難 し て ください。
+        english: Please evacuate quickly (general polite).
+        hint: This is a polite command, but it doesn't convey the official tone of an emergency instruction.
+          We're looking for a formal instruction for a critical event.
+    scene: An emergency announcement.
+    register: formal
+    setting: emergency/alarm
+    nuance: In an emergency context, 「ご避難ください」 (go-hinan kudasai) uses 「ご」 with 「避難する」(hinan suru, to
+      evacuate) to issue a formal and urgent instruction, emphasizing the seriousness and official nature
+      of the directive.
+  - english: Please view the exhibits from a distance.
+    japanese:
+      - 展示 物 から 離れ て {ご 鑑賞 ください}。
+      - 展示 物 から 離れ て {ご 鑑賞 ください ませ}。
+    english_literally: From the exhibit, separated, please appreciate.
+    competing_grammar:
+      - competing_japanese:
+          - 展示 物 から 離れ て 鑑賞 し て ください。
+        english: Please view (the exhibits) from a distance (general polite).
+        hint: This general polite request doesn't quite fit the refined atmosphere of a museum setting.
+          We're looking for a formal and respectful instruction.
+    scene: A sign in a museum.
+    register: formal
+    setting: informative
+    nuance: 「ご鑑賞ください」 (go-kanshō kudasai) uses 「ご」 with 「鑑賞する」(kanshō suru, to appreciate/view) to politely
+      instruct visitors in a museum. This elevated phrasing is appropriate for encouraging respectful
+      behavior in cultural settings.
+  - english: Please decide on your order.
+    japanese:
+      - ご 注文 を {お 決め ください}。
+      - ご 注文 を {お 決め ください ませ}。
+    english_literally: Your order, please decide.
+    competing_grammar:
+      - competing_japanese:
+          - 注文 を 決め て ください。
+        english: Please decide on your order (general polite).
+        hint: This general polite request is common, but in a customer service context, a more respectful
+          phrase is preferred. We're looking for a formal request from staff to customers.
+    scene: A waiter or waitress addressing customers.
+    register: formal
+    setting: professional
+    nuance: In a restaurant setting, 「お決めください」 (o-kime kudasai) uses 「お」 with 「決める」(kimeru, to decide)
+      to politely prompt customers to make their selection. The 「ご」 before 「注文」(chūmon) also elevates
+      the politeness of 'your order'.
+post_example_writeup: As demonstrated by these examples, the choice between 「お〜ください」 and 「ご〜ください」 depends
+  on the type of verb. Generally, 「お」 is used with Japanese-origin verbs (和語, wago), while 「ご」 is used
+  with Sino-Japanese verbs (漢語, kango). Mastering this distinction is key to using this polite request
+  form correctly and naturally in various formal and service-oriented contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/お〜ください

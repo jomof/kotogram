@@ -1,0 +1,301 @@
+grammar_point: '[Verb-stem・Adj・Noun]ながら (although・despite)'
+learn_before:
+  - '[Verb-stem]ながら・つつ (while doing)'
+meaning: Although, despite, while (indicating concession or contrast)
+pronunciation:
+  katakana: ナガラ
+  romaji: nagara
+formation:
+  Verb (masu-stem) + ながら (も): Indicates that despite the action of the verb, an unexpected or contradictory
+    situation occurs.
+  Noun + ながら (も): Indicates that despite being a noun, an unexpected or contradictory situation occurs.
+  い-Adjective (stem) + ながら (も): Indicates that despite the adjective, an unexpected or contradictory situation
+    occurs.
+  な-Adjective + ながら (も): Indicates that despite the adjective, an unexpected or contradictory situation
+    occurs. (Commonly with the adjectival noun form)
+jlpt: N2
+etymology: The particle ながら originally derives from a combination of な (a particle indicating state) and
+  がら (a suffix from がる, meaning "to show signs of" or "to be inclined"). While its root is associated
+  with simultaneous actions (like 泣きながら meaning "while crying, showing signs of crying"), it evolved to
+  encompass a concessive meaning. This extension likely came from the idea of "while being in a state
+  X, Y unexpectedly happens." The addition of も (nagara mo) further reinforces this "even though" aspect,
+  making the concession explicit and often highlighting an admirable overcoming of circumstances.
+writeup: |-
+  While ながら is commonly known for indicating simultaneous actions (e.g., 「音楽 を 聴きながら 勉強 する」 - to study while listening to music), it also has a significant use to express concession or contrast. In this sense, it means "although," "despite," or "even though."
+
+  This usage highlights that the situation described in the main clause occurs despite, or unexpectedly, given the condition or state described in the preceding clause.
+
+  It can attach to:
+  *   The ます-stem of a verb (e.g., 「残念ながら」 - although regrettable).
+  *   Nouns (e.g., 「子供ながら」 - despite being a child).
+  *   The stem of い-adjectives (e.g., 「狭いながら」 - although narrow).
+  *   な-adjectives (often using their root form, e.g., 「未熟ながら」 - although immature).
+
+  The particle も is frequently added after ながら (ながらも) to further emphasize the concessive meaning, making the "even though" aspect more explicit and often highlighting a strong contrast or overcoming of a difficulty. While ながら alone can imply concession, ながらも makes it undeniable.
+
+  This form is generally more formal or literary than simple けれども or のに, and it often carries a nuance of acknowledging a situation while presenting a contrasting reality.
+false_friends:
+  - term: Verb-stem ながら
+    meaning: While doing, simultaneous action
+    kind: similar expression
+    nuance: This ながら indicates two actions happening concurrently by the same subject. The action of the
+      main verb occurs while the action of the ながら verb is ongoing. It does not imply a contradiction
+      or concession between the two actions.
+    grammar_point: <suggest>:[Verb-stem]ながら (while doing)
+  - term: ものの
+    meaning: Although, but, even though
+    kind: synonym
+    nuance: ものの also expresses concession, but it often implies a more direct contradiction or a general
+      truth, sometimes with a stronger sense of regret or disappointment. ながら can also express surprise
+      or admiration for overcoming. ながら can apply to nouns and adjectives more naturally in this concessive
+      sense.
+    grammar_point: ものの (although・but)
+  - term: にもかかわらず
+    meaning: Despite, in spite of, regardless
+    kind: synonym
+    nuance: にもかかわらず is a more formal and stronger expression of "despite." It often implies that something
+      happened (or didn't happen) regardless of a condition that should have prevented it. ながら can be
+      softer and can simply acknowledge a state while presenting a contrasting one.
+    grammar_point: にかかわらず (regardless of)
+  - term: けれども
+    meaning: But, although
+    kind: similar expression
+    nuance: けれども is a general conjunction for "but" or "although." It's less specific than ながら in conveying
+      the "despite being X, Y unexpectedly occurs" nuance, and is more casual.
+    grammar_point: しかし (but・however)
+post_false_friends_writeup: 'While all these expressions convey some form of contrast or concession, ながら
+  specifically highlights an unexpected outcome given a certain state or action, often with a nuanced
+  feeling of acknowledgment or slight surprise. In contrast, ものの might convey more direct contradiction
+  or regret, and にもかかわらず is a stronger, more formal way to say "despite." The "while doing" ながら (Verb
+  masu-stem + ながら) is distinct in that it only describes simultaneous actions without implying concession.
+  When choosing between them, consider the nuance: is it a simple "but" (けれども), a strong "despite" (にもかかわらず),
+  a general "although" (ものの), or a nuanced "even though X, Y unexpectedly happens" (ながら)?'
+examples:
+  - english: Unfortunately, the plan failed.
+    japanese:
+      - 残念 ながら、その 計画 は 失敗 し た。
+      - 残念 ながら、その 計画 は 失敗 いたし まし た。
+    english_literally: Regrettable though it is, that plan failed.
+    competing_grammar:
+      - competing_japanese:
+          - 残念 だ が、その 計画 は 失敗 し た。
+        english: It's regrettable, but the plan failed.
+        hint: This is a simple conjunction that states two facts. 「残念ながら」 more tightly links the feeling
+          to the outcome, implying "as regrettable as it is, it's true."
+    scene: A team leader reporting bad news to their colleagues.
+    register: formal
+    setting: professional
+    nuance: The speaker acknowledges the unfortunate nature of the situation while stating the fact of
+      the failure. 「残念ながら」 is a very common fixed expression using this grammar.
+    etymology: The fixed phrase 「残念ながら」 (zannen nagara) explicitly connects the feeling of regret (残念)
+      with a subsequent statement, highlighting that the outcome is indeed regrettable, yet a reality.
+      This form is derived from the concessive usage of ながら.
+  - english: Despite being a child, he understands complex things.
+    japanese:
+      - 彼 は 子供 ながら、複雑 な こと を 理解 し て いる。
+      - 彼 は 子供 ながら も、複雑 な こと を 理解 し て いる。
+      - あの 子 は 子供 ながら、複雑 な こと が 分かる。
+    english_literally: He, child though he is, understands complex things.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 子供 な の に、複雑 な こと を 理解 し て いる。
+        english: Although he's a child, he understands complex things (with a nuance of surprise or complaint).
+        hint: 「のに」 often implies a stronger sense of unexpectedness or even mild dissatisfaction, whereas
+          「ながら」 here highlights admiration for overcoming the condition.
+    scene: A teacher discussing a surprisingly mature student.
+    register: semi-formal
+    setting: academic
+    nuance: Expresses admiration for the child's understanding, which is unexpected given their age. The
+      use of 「子供ながら」 emphasizes that despite the inherent limitation of being a child, this individual
+      performs beyond expectations.
+    etymology: The combination of a noun like 「子供」 (kodomo, child) with ながら in a concessive context emphasizes
+      that the subject's actions or qualities are unexpected given their status, signifying overcoming
+      or surprising maturity. This construction is a key part of ながら's concessive meaning.
+  - english: Although small, the room is very cozy.
+    japanese:
+      - 部屋 は 狭い ながら、とても 居心地 が いい。
+      - 部屋 は 狭い ながら も、とても 居心地 が いい。
+      - この 部屋 は 狭い ながら、すごく 居心地 が いい よ。
+    english_literally: Room is narrow though, very comfortable is.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 は 狭い けれど、とても 居心地 が いい。
+        english: The room is narrow, but it's very cozy.
+        hint: 「けれど」 is a more general conjunction for 'but' or 'although'. 「狭いながら」 implies a slightly
+          stronger, more unexpected contrast, often with a nuance of finding something positive despite
+          a negative condition.
+    scene: Friends visiting a new apartment.
+    register: casual
+    setting: friendly
+    nuance: Acknowledges the smallness but emphasizes the positive aspect (coziness), implying it's unexpectedly
+      good given the size. The use of 「狭いながら」 (semai nagara) suggests that despite the obvious drawback
+      of being small, the positive quality of coziness is particularly noteworthy or unexpected.
+    etymology: The use of ながら with い-adjective stems, such as 「狭いながら」, directly presents a concessive
+      quality. It suggests that even though something possesses a certain characteristic (like being narrow),
+      it unexpectedly exhibits another, often contradictory, trait (like being cozy). This pattern highlights
+      the inherent nature of the characteristic as a backdrop for the unexpected outcome.
+  - english: Although I am inexperienced, I will do my best.
+    japanese:
+      - 未熟 ながら、最善 を 尽くし ます。
+      - 未熟 ながら も、最善 を 尽くし ます。
+      - 未熟 ながら、精 一杯 頑張り ます。
+    english_literally: Immature though I am, best will do.
+    competing_grammar:
+      - competing_japanese:
+          - 未熟 です が、最善 を 尽くし ます。
+        english: I am inexperienced, but I will do my best.
+        hint: 「ですが」 is a simpler, more direct conjunction. 「未熟ながら」 carries a stronger nuance of humility
+          and a slight formality, suggesting a personal acknowledgment of one's limitations while still
+          pledging effort.
+    scene: A new employee addressing their seniors.
+    register: formal
+    setting: professional
+    nuance: Speaker humbly acknowledges their lack of experience while expressing determination. 「未熟ながら」
+      (mijuku nagara) is a common humble expression, used when one is aware of their shortcomings but
+      is determined to perform their best despite them.
+    etymology: 「未熟ながら」 is a set phrase that employs ながら to express humility. It highlights a personal
+      state of being "immature" or "inexperienced" while simultaneously asserting a positive intent or
+      action that goes against this perceived limitation. This construction demonstrates how ながら can be
+      used to set up a contrasting clause where the second part is an overcoming or an unexpected effort
+      despite the first.
+  - english: Although they were poor, they lived happily.
+    japanese:
+      - 彼 ら は 貧しい ながら も、幸せ に 暮らし て い た。
+      - 彼 ら は 貧しい ながら、幸せ に 暮らし て い た。
+      - あの 人 たち は 貧しい ながら も、幸せ に 暮らし て い た そう だ よ。
+    english_literally: They, poor though they were, happily were living.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 貧しかっ た が、幸せ に 暮らし て い た。
+        english: They were poor, but they lived happily.
+        hint: This is a simple contrast. 「ながらも」 emphasizes the unexpectedness or the act of overcoming
+          the poverty to find happiness.
+      - competing_japanese:
+          - 彼 ら は 貧しかっ た もの の、幸せ に 暮らし て い た。
+        english: Although they were poor, they lived happily.
+        hint: 「ものの」 can be similar, but 「ながらも」 often implies a stronger sense of perseverance or admirable
+          contrast, highlighting the unexpected positive outcome.
+    scene: A narrator telling a story about a resilient family.
+    register: casual
+    setting: reflective
+    nuance: Emphasizes the unexpected happiness despite poverty, often used to express admiration or resilience.
+      The addition of 「も」 to 「貧しいながら」 (mazushii nagara) intensifies the concession, stressing that even
+      with their poverty, they managed to find happiness.
+    etymology: The suffix 「ながらも」 is a strong indicator of concession, combining ながら with the emphatic
+      particle も. This construction heightens the sense of "even though" and is often used to commend
+      resilience or highlight an admirable quality that persists despite challenging circumstances.
+  - english: Despite being a student, she manages her own business.
+    japanese:
+      - 彼女 は 学生 ながら も、自分 の ビジネス を 経営 し て いる。
+      - 彼女 は 学生 ながら、自分 の ビジネス を 経営 し て いる。
+      - あの 子 は 学生 ながら も、自分 で 仕事 を し て いる ん だ。
+    english_literally: She, student though she is, her own business is managing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 学生 です が、自分 の ビジネス を 経営 し て いる。
+        english: She is a student, but she manages her own business.
+        hint: This is a neutral statement of facts. 「学生ながらも」 expresses admiration or surprise for her
+          ability to balance studies and business, an unexpected feat for a student.
+    scene: A university counselor advising a student.
+    register: semi-formal
+    setting: academic
+    nuance: Expresses surprise or admiration for her ability to balance studies and business, an unexpected
+      feat for a student. 「学生ながらも」 highlights the unexpected accomplishment of managing a business while
+      still being a student, a period usually associated with study and development.
+    etymology: Similar to 「子供ながら」, this construction with a noun 「学生」 (gakusei, student) and 「ながらも」 accentuates
+      that the subject's actions are remarkable or surprising given their social status or role. It underlines
+      the contrast between the expected role and the actual achievement.
+  - english: Although old, the car still runs well.
+    japanese:
+      - その 車 は 古い ながら も、まだ よく 走る。
+      - その 車 は 古い ながら、まだ よく 走る。
+      - この 車、古い ながら も、結構 走る ん だ よ。
+    english_literally: That car, old though it is, still well runs.
+    competing_grammar:
+      - competing_japanese:
+          - その 車 は 古い の に、まだ よく 走る。
+        english: Although that car is old, it still runs well (implying mild surprise or something unexpected).
+        hint: While 「のに」 can also convey unexpectedness, 「ながらも」 here carries a more profound nuance of
+          admiration for overcoming the brevity of life to make significant contributions, suitable for
+          more formal or reflective contexts.
+    scene: A person showing off their well-maintained vintage car.
+    register: casual
+    setting: friendly
+    nuance: Acknowledges the car's age but highlights its surprising functionality, indicating pride or
+      satisfaction. 「古いながらも」 (furui nagara mo) conveys that despite the natural wear and tear associated
+      with age, the car performs remarkably well, often used with a sense of pride or appreciation for
+      its longevity.
+    etymology: The pattern of 「い-adjective stem + ながらも」 is particularly effective in demonstrating a concession.
+      It sets up a common expectation (old cars don't run well) and then contrasts it with an unexpected
+      reality (this old car runs well), thus highlighting the enduring quality despite the initial condition.
+      It's a way of saying, "even given X, Y is true."
+  - english: Though enthusiastic, he lacks practical experience.
+    japanese:
+      - 彼 は 熱心 ながら も、実践 的 な 経験 が 少ない。
+      - 彼 は 熱心 ながら、実践 的 な 経験 が 少ない。
+      - 彼 は 熱心 ながら も、実際 の 経験 が 足り ない ん だ。
+    english_literally: He, enthusiastic though he is, practical experience is little.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 熱心 だ が、実践 的 な 経験 が 少ない。
+        english: He is enthusiastic, but he lacks practical experience.
+        hint: This is a simple contrast. 「熱心ながらも」 (nesshin nagara mo) implies that while enthusiasm is
+          a positive trait, it doesn't fully compensate for the lack of experience, suggesting an inherent
+          limitation despite the positive quality.
+    scene: A manager evaluating a new team member.
+    register: semi-formal
+    setting: serious
+    nuance: Points out a contrast between his positive quality (enthusiasm) and a deficiency (lack of
+      experience), leading to an incomplete positive assessment. 「熱心ながらも」 is used to present a positive
+      attribute (enthusiasm) followed by a contrasting, often negative, reality (lack of experience),
+      suggesting that the positive trait does not entirely overcome the negative one.
+    etymology: The construction with な-adjectives and ながらも (e.g., 「熱心ながらも」) indicates that despite the
+      presence of a certain quality, there is a contrasting or unexpected aspect. This highlights the
+      complexity of the situation or person being described, where positive attributes do not necessarily
+      lead to entirely positive outcomes.
+  - english: Even though his life was short, he achieved great things.
+    japanese:
+      - 彼 の 人生 は 短い ながら も、偉大 な 功績 を 残し た。
+      - 彼 の 人生 は 短い ながら、偉大 な 功績 を 残し た。
+      - あの 人 は 短い 人生 だっ た ながら も、すごい 功績 を 残し た。
+    english_literally: His life, short though it was, great achievements left behind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 人生 は 短かっ た の に、偉大 な 功績 を 残し た。
+        english: Although his life was short, he achieved great things (implying mild surprise or something
+          unexpected).
+        hint: 「のに」 conveys surprise, but 「ながらも」 here carries a more profound nuance of admiration for
+          overcoming the brevity of life to make significant contributions, suitable for more formal or
+          reflective contexts.
+    scene: A eulogy being delivered.
+    register: formal
+    setting: serious
+    nuance: Emphasizes the significant achievements despite the brevity of life, conveying admiration.
+      「短いながらも」 (mijikai nagara mo) is often used in solemn or admiring contexts to highlight how great
+      accomplishments were made despite a limited time or resource, emphasizing the quality over quantity.
+    etymology: This literary usage of ながらも, particularly with temporal adjectives like 「短い」 (mijikai,
+      short), reflects a deeper concessive meaning. It acknowledges a limiting factor (shortness of life)
+      but powerfully asserts the unexpected greatness achieved within those constraints, often seen in
+      biographical or historical narratives.
+  - english: Although it's frustrating, I have to admit he's right.
+    japanese:
+      - 悔しい ながら、彼 の 言う こと は 正しい と 認め なけれ ば なら ない。
+      - 悔しい ながら も、彼 の 言う こと は 正しい と 認め なけれ ば なら ない。
+      - 悔しい ながら、あの 人 の 言っ てる こと は 正しい って 認め なく ちゃ いけ ない。
+    english_literally: Frustrating though it is, his saying thing is correct to admit must.
+    competing_grammar:
+      - competing_japanese:
+          - 悔しい が、彼 の 言う こと は 正しい と 認め なけれ ば なら ない。
+        english: It's frustrating, but I have to admit he's right.
+        hint: 「が」 is a simple contrast. 「悔しいながら」 (kuyashii nagara) specifically links the internal feeling
+          of frustration with the reluctant acceptance of truth, showing an emotional overcoming or concession.
+    scene: A competitor acknowledging defeat.
+    register: casual
+    setting: pessimistic
+    nuance: Expresses a personal feeling of frustration while acknowledging an unavoidable truth. It shows
+      overcoming an emotional barrier. The phrase 「悔しいながら」 encapsulates the internal struggle of acknowledging
+      something unpleasant but undeniable, highlighting a personal concession.
+    etymology: The usage of ながら with feelings (like 「悔しい」 - kuyashii, frustrating/regrettable) captures
+      a nuanced internal concession. It indicates that despite strong personal emotions, an objective
+      truth or action must be accepted, showcasing the grammatical point's ability to convey complex emotional
+      states and their contrasting realities.

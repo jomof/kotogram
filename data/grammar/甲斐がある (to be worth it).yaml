@@ -1,0 +1,289 @@
+grammar_point: 甲斐がある (to be worth it)
+learn_before:
+  - '[Clause]と言っても (although・even though)'
+  - すっかり (completely)
+  - 大きな・小さな (big・small)
+meaning: To be worth it, to pay off, to have a worthwhile effect
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 甲斐がある
+    rarity: common
+    meaning: To be worth it
+  - conjugation-type: non-past polite (～ます)
+    form: 甲斐があります
+    rarity: common
+    meaning: To be worth it (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 甲斐がない
+    rarity: common
+    meaning: To not be worth it
+  - conjugation-type: negative non-past polite (～ません)
+    form: 甲斐がありません
+    rarity: common
+    meaning: To not be worth it (polite)
+  - conjugation-type: past plain (～た)
+    form: 甲斐があった
+    rarity: common
+    meaning: It was worth it
+  - conjugation-type: past polite (～ました)
+    form: 甲斐がありました
+    rarity: common
+    meaning: It was worth it (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 甲斐がなかった
+    rarity: common
+    meaning: It was not worth it
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 甲斐がありませんでした
+    rarity: common
+    meaning: It was not worth it (polite)
+  - conjugation-type: te-form (～て)
+    form: 甲斐があって
+    rarity: common
+    meaning: Being worth it, due to something being worth it
+  - conjugation-type: conditional (～ば)
+    form: 甲斐があれば
+    rarity: uncommon
+    meaning: If it is worth it
+  - conjugation-type: conditional (～たら)
+    form: 甲斐があったら
+    rarity: uncommon
+    meaning: If it was worth it
+pronunciation:
+  katakana: カイ ガ アル
+  romaji: kai ga aru
+formation:
+  '[Verb (た form)] + 甲斐がある': Expresses that the action was worth doing.
+  '[Noun + の] + 甲斐がある': Indicates that the noun's effect or worth exists.
+  Verb[masu-stem] + がいがある: Used to denote that a specific action itself is worthwhile or rewarding, often
+    implying personal satisfaction or purpose derived from the act itself. This form of 「甲斐」 is often
+    pronounced as 「がい」.
+jlpt: N2
+etymology: 「甲斐」 originally referred to a region in present-day Yamanashi Prefecture, known for its skilled
+  warriors. Over time, it came to mean "effectiveness" or "worth," reflecting the region's reputation
+  for producing capable individuals.
+writeup: The grammar point 「甲斐がある」 expresses that something is "worth doing" or "pays off." 「甲斐」 itself
+  means "worth" or "effect." It is often used after verbs or nouns to indicate that an action or effort
+  was worthwhile. You will often see it in hiragana as 「かい」 or 「がい」. When following verbs, 「がい」 is used
+  after the ます-stem, indicating a general sense of worth. 「かい」 can follow any standard verb form, emphasizing
+  the tense of the verb. 「甲斐がない」 means something is "not worth doing." This expression is primarily used
+  when the speaker wants to convey that a positive result will come from something that is either difficult
+  or unpleasant, validating the effort or hardship.
+false_friends:
+  - term: やりがい
+    meaning: Worth doing, rewarding
+    kind: similar expression
+    nuance: Unlike 「甲斐がある」, 「やりがい」 specifically refers to the rewarding or fulfilling nature of a task,
+      job, or activity, often implying personal satisfaction or motivation derived from the work itself.
+      「甲斐がある」 is broader, focusing on the return on effort or value of an action in general.
+    grammar_point: <suggest>:やりがい (worthwhile feeling)
+post_false_friends_writeup: 「甲斐がある」 implies that an effort or action was worthwhile because it yielded
+  a specific, usually positive outcome or payoff. In contrast, 「やりがい」 emphasizes the intrinsic reward
+  or satisfaction derived from the process of doing something, regardless of the final outcome. While
+  both relate to worth, 「甲斐がある」 is about the result validating the effort, whereas 「やりがい」 is about the
+  personal fulfillment found *in* the effort.
+examples:
+  - english: It was worth continuing my morning jogs. My physical strength has greatly improved.
+    japanese:
+      - 毎朝 の ジョギング を 続け た {甲斐 が あっ た}
+      - 毎朝 の ジョギング を 続け た {甲斐 が あり まし た}
+    english_literally: Continuing the jogging every morning, there was worth. My physical strength greatly
+      increased.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝 の ジョギング を 続け た {結果}、体力 が ぐんと つい た
+        english: As a result of continuing my morning jogs, my physical strength greatly improved.
+        hint: 「結果」 simply states the outcome, but 「甲斐があった」 emphasizes that the effort was validated and
+          paid off. We're looking for a phrase that implies the effort was worthwhile.
+    scene: A person feels the tangible benefits of their consistent exercise routine.
+    register: casual
+    setting: optimistic
+    conjugation: past plain (～た)
+  - english: I feel that my life has meaning in the time I spend with my children.
+    japanese:
+      - 子供 たち と 過ごす 時間 に、私 の 人生 の {甲斐 が ある} と 感じる
+      - 子供 たち と 過ごす 時間 に、私 の 人生 の {甲斐 が あり ます} と 感じ ます
+    english_literally: In the time I spend with children, I feel that there is worth in my life.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち と 過ごす 時間 が {楽しい} と 感じる
+        english: I feel that the time I spend with my children is enjoyable.
+        hint: While enjoyable, 「楽しい」 doesn't convey the deeper sense of meaning or purpose derived from
+          the time spent. We're looking for an expression that signifies intrinsic worth or significance.
+    scene: A parent reflecting on the profound fulfillment found in their family life, beyond mere happiness.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: There's no point teaching him anymore; he won't listen no matter how many times I tell him.
+    japanese:
+      - 何 度 言っ て も 聞き入れ ない 彼 に は、もう 教える {甲斐 が ない}
+      - 何 度 言っ て も 聞き入れ ない 彼 に は、もう 教える {甲斐 が あり ませ ん}
+    english_literally: To him who won't listen no matter how many times I say it, there is no worth in
+      teaching anymore.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 言っ て も 聞き入れ ない 彼 に は、もう 教える の は 時間 の {無駄 だ}
+        english: For him, who won't listen no matter how many times I tell him, teaching is a waste of
+          time.
+        hint: 「無駄だ」 means it's a waste, but 「甲斐がない」 specifically conveys that the effort yields no worthwhile
+          result or benefit. We're looking for a phrase that implies futility of effort.
+    scene: A mentor or senior colleague expresses frustration over a junior who consistently disregards
+      advice, making their efforts seem futile.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: Our team's all-nighter was worth it. The presentation was successfully completed.
+    japanese:
+      - チーム 全員 で 徹夜 し た {甲斐 が あり まし た}
+      - チーム 全員 で 徹夜 し た {甲斐 が あっ た}
+    english_literally: Our whole team pulled an all-nighter, and there was worth. The presentation was
+      successfully completed.
+    competing_grammar:
+      - competing_japanese:
+          - チーム 全員 で 徹夜 し た {おかげ で}、無事 に プレゼン が 成功 し まし た
+        english: Thanks to our whole team pulling an all-nighter, the presentation was successfully completed.
+        hint: 「おかげで」 attributes success to effort, but 「甲斐がありました」 emphasizes that the intense effort itself
+          was justified by the positive outcome. We're looking for a phrase that shows the effort paid
+          off.
+    scene: A team member proudly reports the successful outcome of a demanding project, validating their
+      hard work and long hours.
+    register: formal
+    setting: excited
+    conjugation: past polite (～ました)
+  - english: It paid off to continue the long treatment; the illness completely recovered.
+    japanese:
+      - 長い 治療 を 続け た {甲斐 が あっ て}、病気 が すっかり 回復 し まし た
+      - 長い 治療 を 続け た {甲斐 が あっ て}、病気 が すっかり 回復 し た
+    english_literally: Continuing the long treatment, there was worth, and the illness completely recovered.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 治療 の {末 に}、病気 が すっかり 回復 し まし た
+        english: After a long treatment, the illness completely recovered.
+        hint: 「末に」 indicates that something happened after a long process, but 「甲斐があって」 emphasizes that
+          the enduring effort of the treatment was worthwhile because of the recovery. We're looking for
+          a phrase that expresses the effort leading to a worthwhile return.
+    scene: Someone expresses relief and satisfaction after a difficult and prolonged medical treatment
+      proves entirely successful.
+    register: casual
+    setting: supportive
+    conjugation: te-form (～て)
+  - english: I feel it's not worth working hard for such a small achievement, honestly.
+    japanese:
+      - こんな 小さな 成果 の ため に 努力 し た なんて、正直、働き {甲斐 が ない} と 感じる
+      - こんな 小さな 成果 の ため に 努力 し た なんて、正直、働き {甲斐 が あり ませ ん} と 感じ ます
+    english_literally: For such a small achievement, to have made an effort, honestly, I feel there is
+      no worth in working.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 小さな 成果 の ため に 努力 し た なんて、正直、努力 が {無駄 だ} と 感じる
+        english: Honestly, I feel that effort is useless for such a small achievement.
+        hint: 「無駄だ」 means useless, but 「甲斐がない」 conveys a lack of meaning or reward in the effort itself.
+          We're looking for an expression that states the effort doesn't feel worthwhile.
+    scene: A worker expresses deep disappointment and demotivation about receiving a meager return for
+      significant effort, feeling unrewarded.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: The new product I struggled to develop became a hit, and I truly felt it was worth living
+      as an engineer.
+    japanese:
+      - 苦労 し て 開発 し た 新 製品 が ヒット し て、本当 に 技術 者 と し て 生き て き た {甲斐 が あっ た} と 思っ た
+      - 苦労 し て 開発 し た 新 製品 が ヒット し て、本当 に 技術 者 と し て 生き て き た {甲斐 が あり まし た} と 思い まし た
+    english_literally: The new product I struggled to develop became a hit, and I truly thought there
+      was worth in having lived as an engineer.
+    competing_grammar:
+      - competing_japanese:
+          - 苦労 し て 開発 し た 新 製品 が ヒット し て、本当 に {嬉しかっ た} と 思っ た
+        english: While the new product I struggled to develop became a hit, I truly felt happy.
+        hint: While happiness is present, 「嬉しかった」 doesn't convey the profound sense of validation and
+          purpose for one's entire career that 「甲斐があった」 does. We're looking for a phrase that expresses
+          that the whole journey was justified.
+    scene: A male engineer reflects on his career, finding deep satisfaction and validation in a successful
+      product launch after considerable effort.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「技術者として生きてきた甲斐があった」 emphasizes that the speaker's life as an engineer has found
+      its ultimate purpose and validation through this success. This reflective and self-validating tone
+      is common in personal monologues.
+  - english: It was worth continuing the tough practice every day. I was able to give my all in the match.
+    japanese:
+      - 毎日 大変 な 練習 を 続け た {甲斐 が あっ た} わ。試合 で 全力 を 出せ た から。
+      - 毎日 大変 な 練習 を 続け た {甲斐 が あっ た}。試合 で 全力 を 出せ た から。
+      - 毎日 大変 な 練習 を 続け た {甲斐 が あり まし た}。試合 で 全力 を 出せ まし た から。
+    english_literally: Continuing the tough practice every day, there was worth. Because I was able to
+      give my full effort in the match.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 大変 な 練習 を 続け た {から}、試合 で 全力 を 出せ た
+        english: Because I continued the tough practice every day, I was able to give my all in the match.
+        hint: 「から」 explains the reason, but 「甲斐があった」 emphasizes that the arduous daily effort proved to
+          be a valuable and worthwhile investment. We're looking for a phrase that implies the effort
+          was rewarded.
+    scene: A female athlete, exhausted but satisfied after a tough match, reflects on how her disciplined
+      training paid off.
+    register: casual
+    setting: optimistic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The final particle 「わ」 is predominantly used by female speakers, adding a soft, reflective,
+      and often agreeable tone, signifying a personal and somewhat emotional reflection on her achievement.
+  - english: All the effort I put into my research over the past few years has paid off, and I've finally
+      published it in a prestigious journal.
+    japanese:
+      - ここ 数 年 の 研究 に 費やし た 努力 は、有名 な 学術 誌 に 掲載 さ れ た {甲斐 が あり まし た}
+      - ここ 数 年 の 研究 に 費やし た 努力 は、有名 な 学術 誌 に 掲載 さ れ た {甲斐 が あっ た}
+    english_literally: The effort spent on research over the past few years, it had worth, and it was
+      published in a famous academic journal.
+    competing_grammar:
+      - competing_japanese:
+          - ここ 数 年 の 研究 に 費やし た 努力 が {実っ て}、有名 な 学術 誌 に 掲載 さ れ まし た
+        english: The effort spent on research over the past few years bore fruit, and it was published
+          in a famous academic journal.
+        hint: 「実る」 means 'to bear fruit' or 'to come to fruition,' simply stating the success. 「甲斐がありました」
+          emphasizes that the effort was justified and yielded a positive outcome, giving a sense of validation
+          for the work. We're looking for a phrase that specifically highlights the worth of the effort.
+    scene: A researcher, speaking in a professional setting, announces a significant achievement in their
+      academic career, feeling proud of their perseverance.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example showcases 「甲斐がありました」 in a formal, professional context, emphasizing the validation
+      of long-term effort in an academic or business achievement. The polite form 「ありました」 is suitable
+      for reporting a positive outcome to a group or colleagues.
+  - english: I studied so hard for that exam, but it wasn't worth it; I still failed.
+    japanese:
+      - あんな に 試験 勉強 を 頑張っ た の に、全く {甲斐 が なかっ た}。結局、不 合格 だっ た。
+      - あんな に 試験 勉強 を 頑張っ た の に、全く {甲斐 が あり ませ ん でし た}。結局、不 合格 でし た。
+    english_literally: Even though I worked so hard studying for that exam, there was no worth at all.
+      In the end, I failed.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 試験 勉強 を 頑張っ た の に、全く {無駄 だっ た}。結局、不 合格 だっ た。
+        english: Even though I worked so hard studying for that exam, it was completely useless. In the
+          end, I failed.
+        hint: 「無駄だった」 means it was 'useless' or 'a waste,' focusing on the lack of practical result. 「甲斐がなかった」
+          carries a stronger nuance of disappointment that the effort itself proved to have no value or
+          didn't bring about the desired return, often implying personal emotional impact. We're looking
+          for a phrase that conveys the effort was not worthwhile.
+    scene: A student expresses their profound disappointment after receiving a failing grade despite extensive
+      preparation, feeling their hard work was unrewarded.
+    register: casual
+    setting: pessimistic
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「あんなに」 ('that much') emphasizes the significant effort put in, making the subsequent
+      「全く甲斐がなかった」 ('there was absolutely no worth') sound even more disheartened. This reflects a personal
+      lament about unrewarded effort, typical in casual self-reflection.
+post_example_writeup: The examples illustrate how 「甲斐がある」 and its negative form 「甲斐がない」 are used to express
+  the worth or lack thereof of an effort or action, often highlighting a sense of payoff or vindication
+  for the time and energy invested. The nuanced meanings often distinguish it from simpler expressions
+  of cause-and-effect or mere happiness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/甲斐がある

@@ -1,0 +1,331 @@
+grammar_point: 徐々に (gradually・slowly)
+learn_before:
+  - い-Adjective[く] (adverbial form)
+  - ときいた (I heard that)
+meaning: gradually; slowly
+pronunciation:
+  katakana: ジョジョニ
+  romaji: jojo ni
+formation:
+  徐々に + Verb: Modifies the verb to indicate that the action happens gradually.
+  徐々に + Change Verb (なる・変わる): Emphasizes a slow, steady transformation.
+jlpt: N3
+etymology: The word 徐々に (jojo ni) is derived from 徐々 (jojo), which is a reduplication of 徐 (jo), meaning
+  "slowly" or "gently." The particle に (ni) here functions to turn the adverbial noun into an adverb modifying
+  verbs or adjectives. This reduplication emphasizes the continuous, steady, and unhurried nature of the
+  progression.
+writeup: 徐々に (jojo ni) is an adverb used to describe a slow, gradual, and continuous change or progression.
+  It implies that something is happening little by little, almost imperceptibly, rather than abruptly.
+  This adverb is often paired with verbs that express change, such as 変わる (kawaru - to change), 進む (susumu
+  - to advance), or 増える (fueru - to increase). While だんだん (dandan) also means "gradually," 徐々に often carries
+  a slightly more formal or literary nuance. It can also imply a more controlled or intentional process
+  of gradualness, whereas だんだん is often used for natural, spontaneous changes. Think of 徐々に as a steady,
+  measured pace, like a slow ascent or a gentle fading. It is suitable for describing both physical and
+  abstract changes.
+false_friends:
+  - term: だんだん
+    meaning: gradually; little by little
+    kind: similar expression
+    nuance: だんだん is more commonly used for natural, spontaneous changes and generally sounds more casual.
+      It focuses on the increasing degree of change.
+    grammar_point: だんだん (gradually)
+  - term: 少しずつ
+    meaning: little by little; bit by bit
+    kind: similar expression
+    nuance: 少しずつ emphasizes the small, discrete increments of change. While it also implies gradualness,
+      the focus is on the size of each step, making the process feel more deliberate.
+    grammar_point: <suggest>:少しずつ (little by little)
+  - term: ゆっくり
+    meaning: slowly; leisurely; at ease
+    kind: similar expression
+    nuance: ゆっくり primarily describes the speed of an action, not necessarily a change over time. It can
+      also mean 'at ease' or 'relaxedly,' and does not imply incremental change.
+    grammar_point: <suggest>:ゆっくり (slowly)
+post_false_friends_writeup: While 徐々に, だんだん, 少しずつ, and ゆっくり can all be translated as 'gradually' or 'slowly'
+  in English, their nuances differ. 徐々に implies a smooth, continuous, and often subtle progression. だんだん
+  suggests a more spontaneous and noticeable increase or decrease over time. 少しずつ emphasizes the discrete,
+  small steps taken in a process. ゆっくり simply describes the pace of an action as slow, without necessarily
+  implying change or incremental progress.
+examples:
+  - english: The plants are gradually growing.
+    japanese:
+      - 植物 が {徐々 に} 成長 し て い ます。
+      - 植物 が {徐々 に} 成長 し て いる。
+    english_literally: Plants gradually are growing.
+    competing_grammar:
+      - competing_japanese:
+          - 植物 が だんだん 成長 し て い ます。
+        english: The plants are gradually growing (with focus on the increasing degree).
+        hint: 「だんだん」 is often used for a natural, noticeable increase in degree, whereas 「徐々に」 emphasizes
+          a smooth, continuous change. We're looking for a smooth, continuous change here.
+      - competing_japanese:
+          - 植物 が 少し ずつ 成長 し て い ます。
+        english: The plants are growing little by little (in small increments).
+        hint: 「少しずつ」 highlights the small, discrete steps of the growth. We're looking for a smooth, continuous
+          change here.
+    scene: You are observing your garden over time.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This sentence describes a natural and continuous growth process. The use of 「います」 indicates
+      an ongoing state.
+    etymology: 成長 (seichō) means 'growth' and is a common term for biological development.
+  - english: The economy is gradually recovering.
+    japanese:
+      - 経済 は {徐々 に} 回復 し て い ます。
+      - 経済 は {徐々 に} 回復 し て いる。
+    english_literally: The economy gradually is recovering.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 は だんだん 回復 し て い ます。
+        english: The economy is gradually recovering (with focus on increasing improvement).
+        hint: 「だんだん」 implies a more general or spontaneous progression. We're looking for a formal, steady,
+          continuous recovery.
+      - competing_japanese:
+          - 経済 は 少し ずつ 回復 し て い ます。
+        english: The economy is recovering bit by bit.
+        hint: 「少しずつ」 emphasizes the individual small steps of recovery. We're looking for a smooth, continuous
+          recovery.
+    scene: A news report is discussing economic trends.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: group
+    nuance: Used in a formal context like a news report, emphasizing a steady, controlled recovery process.
+    etymology: 経済 (keizai) meaning 'economy' originates from concepts of governing and managing resources.
+  - english: My Japanese has gradually improved.
+    japanese:
+      - 私 の 日本 語 は {徐々 に} 上達 し まし た。
+      - 私 の 日本 語 は {徐々 に} 上達 し た。
+    english_literally: My Japanese gradually improved.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 日本 語 は だんだん 上達 し まし た。
+        english: My Japanese has gradually improved (with emphasis on increasing proficiency).
+        hint: 「だんだん」 can be used here but sounds more casual and focuses on the increasing degree. We're
+          looking for a smooth, continuous process of improvement.
+      - competing_japanese:
+          - 私 の 日本 語 は 少し ずつ 上達 し まし た。
+        english: My Japanese has improved little by little.
+        hint: 「少しずつ」 emphasizes the small, incremental improvements. We're looking for a smooth, continuous
+          process of improvement.
+    scene: A student reflects on their language learning progress.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Describes a personal, positive, and incremental skill improvement.
+    etymology: 上達 (joutatsu) implies 'progressing upwards' or 'becoming skilled'.
+  - english: The sky gradually brightened.
+    japanese:
+      - 空 が {徐々 に} 明るく なり まし た。
+      - 空 が {徐々 に} 明るく なっ た。
+    english_literally: The sky gradually became bright.
+    competing_grammar:
+      - competing_japanese:
+          - 空 が だんだん 明るく なり まし た。
+        english: The sky gradually brightened (with emphasis on the increasing brightness).
+        hint: 「だんだん」 is good for natural, observable changes but might imply a less smooth transition.
+          We're looking for a smooth, continuous brightening.
+      - competing_japanese:
+          - 空 が ゆっくり 明るく なり まし た。
+        english: The sky slowly brightened.
+        hint: 「ゆっくり」 refers to speed, not necessarily a continuous change or process of transformation.
+          We're looking for a smooth, continuous brightening.
+    scene: You are watching the sunrise.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Describes a natural, continuous change in the environment, often used in descriptive contexts.
+    etymology: 明るく (akaruku) is the adverbial form of 明るい (akarui) 'bright'.
+  - english: His feelings gradually changed.
+    japanese:
+      - 彼 の 気持ち は {徐々 に} 変わっ て いき まし た。
+      - 彼 の 気持ち は {徐々 に} 変わっ て いっ た。
+    english_literally: His feelings gradually changed and went.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 気持ち は だんだん 変わっ て いき まし た。
+        english: His feelings gradually changed (with focus on the accumulating change).
+        hint: 「だんだん」 is often used for a more noticeable or accumulating change in emotion. We're looking
+          for a subtle, continuous shift.
+      - competing_japanese:
+          - 彼 の 気持ち は 少し ずつ 変わっ て いき まし た。
+        english: His feelings changed little by little.
+        hint: 「少しずつ」 emphasizes the small, discrete shifts in feeling. We're looking for a smooth, continuous
+          change.
+    scene: Two friends are discussing a third person's emotional state.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    nuance: This phrase describes a subtle, continuous shift in emotion over time. The use of 「いきました」
+      emphasizes the change progressing away from the initial state.
+    etymology: 変わって いきました is the te-form of 変わる (kawaru - to change) followed by いく (iku - to go), indicating
+      a change that progresses and moves forward.
+  - english: Through training, her skills gradually improved.
+    japanese:
+      - 訓練 に よっ て、彼女 の 技術 は {徐々 に} 向上 し まし た。
+      - 訓練 に よっ て、彼女 の 技術 は {徐々 に} 向上 し た。
+    english_literally: By training, her skills gradually improved.
+    competing_grammar:
+      - competing_japanese:
+          - 訓練 に よっ て、彼女 の 技術 は だんだん 向上 し まし た。
+        english: Through training, her skills gradually improved (with focus on increasing proficiency).
+        hint: 「だんだん」 can be used for skill improvement but might imply a less systematic progression.
+          We're looking for a steady, controlled improvement.
+      - competing_japanese:
+          - 訓練 に よっ て、彼女 の 技術 は 少し ずつ 向上 し まし た。
+        english: Through training, her skills improved little by little.
+        hint: 「少しずつ」 emphasizes the individual small improvements. We're looking for a steady, continuous
+          improvement.
+    scene: A coach is evaluating an athlete's performance over time.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Highlights a deliberate, controlled improvement in skills through consistent effort. 「によって」
+      indicates the means or cause.
+    etymology: 向上 (kōjō) means 'improvement' or 'progress,' often implying a rise to a higher level.
+  - english: My weight has gradually increased.
+    japanese:
+      - 体重 が {徐々 に} 増え て き まし た。
+      - 体重 が {徐々 に} 増え て き た。
+    english_literally: Weight gradually has increased and come.
+    competing_grammar:
+      - competing_japanese:
+          - 体重 が だんだん 増え て き まし た。
+        english: My weight has gradually increased (with focus on the accumulating change).
+        hint: 「だんだん」 is commonly used for a noticeable increase. We're looking for a smooth, continuous
+          accumulation.
+      - competing_japanese:
+          - 体重 が 少し ずつ 増え て き まし た。
+        english: My weight has increased little by little.
+        hint: 「少しずつ」 emphasizes the small, discrete increments of weight gain. We're looking for a smooth,
+          continuous accumulation.
+    scene: Someone notices a change in their physical condition.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Used to describe a slow, accumulating change, often in a personal context. 「きました」 indicates
+      the change progressing towards the speaker's present state.
+    etymology: 増えて きました is the te-form of 増える (fueru - to increase) followed by くる (kuru - to come), indicating
+      a change that progresses towards the speaker or present.
+  - english: My health is gradually getting better.
+    japanese:
+      - 健康 が {徐々 に} 良く なっ て い ます。
+      - 健康 が {徐々 に} 良く なっ て いる。
+    english_literally: Health gradually is becoming good.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 が だんだん 良く なっ て い ます。
+        english: My health is gradually getting better (with emphasis on increasing improvement).
+        hint: 「だんだん」 works for health improvement but might imply a less steady or controlled recovery.
+          We're looking for a smooth, continuous improvement.
+      - competing_japanese:
+          - 健康 が 少し ずつ 良く なっ て い ます。
+        english: My health is getting better little by little.
+        hint: 「少しずつ」 focuses on the small, incremental steps of getting better. We're looking for a smooth,
+          continuous improvement.
+    scene: A doctor is giving a patient an update on their recovery.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: female
+    nuance: Conveys a steady, positive improvement in one's condition, implying a continuous process.
+    etymology: 良く なって います combines 良い (yoi - good), its adverbial form 良く (yoku), なる (naru - to become),
+      and the progressive form of いる (iru - to be).
+  - english: Gradually, a solution to that problem became apparent.
+    japanese:
+      - '{徐々 に}、その 問題 の 解決 策 が 見え て き まし た。'
+      - '{徐々 に}、その 問題 の 解決 策 が 見え て き た。'
+    english_literally: Gradually, that problem's solution became visible and came.
+    competing_grammar:
+      - competing_japanese:
+          - だんだん、その 問題 の 解決 策 が 見え て き まし た。
+        english: Gradually, a solution to that problem became apparent (with focus on the increasing clarity).
+        hint: 「だんだん」 can describe things becoming clear but might suggest a more general progression.
+          We're looking for a smooth, continuous unfolding of clarity.
+      - competing_japanese:
+          - 少し ずつ、その 問題 の 解決 策 が 見え て き まし た。
+        english: Little by little, a solution to that problem became apparent.
+        hint: 「少しずつ」 emphasizes the individual increments in clarity. We're looking for a smooth, continuous
+          unfolding of clarity.
+    scene: A team is working on a difficult project and finally sees progress.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    nuance: Describes the slow, unfolding process of understanding or discovery, often in a complex situation.
+      「見えてきました」 suggests something becoming clear over time.
+    etymology: 見えて きました is the te-form of 見える (mieru - to be visible/to seem), followed by くる (kuru -
+      to come), indicating something becoming visible or clear progressively.
+  - english: Her confidence gradually dwindled.
+    japanese:
+      - 彼女 の 自信 は {徐々 に} 失わ れ て いき まし た。
+      - 彼女 の 自信 は {徐々 に} 失わ れ て いっ た。
+    english_literally: Her confidence gradually was lost and went.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 自信 は だんだん 失わ れ て いき まし た。
+        english: Her confidence gradually dwindled (with focus on the accumulating loss).
+        hint: 「だんだん」 can describe emotional changes but might imply a more noticeable decline. We're looking
+          for a continuous, subtle dwindling.
+      - competing_japanese:
+          - 彼女 の 自信 は 少し ずつ 失わ れ て いき まし た。
+        english: Her confidence dwindled little by little.
+        hint: 「少しずつ」 highlights the small, discrete steps in the loss of confidence. We're looking for
+          a smooth, continuous dwindling.
+    scene: Narrating a character's emotional journey in a story.
+    register: teineigo (polite)
+    setting: storytelling
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Illustrates a continuous, subtle decline in an abstract quality like confidence. 「失われていきました」
+      implies a passive process of loss over time.
+    etymology: 失われて いきました is the passive te-form of 失う (ushinau - to lose), followed by いく (iku - to go),
+      indicating a process of gradual loss.
+  - english: We plan to gradually transition to the new system in the future.
+    japanese:
+      - 今後、{徐々 に} 新しい システム に 移行 し て いく 予定 です。
+      - 今後、{徐々 に} 新しい システム に 移行 し て いく 予定 だ。
+    english_literally: From now on, gradually to new system will transition plan is.
+    competing_grammar:
+      - competing_japanese:
+          - 今後、だんだん 新しい システム に 移行 し て いく 予定 です。
+        english: We plan to gradually transition to the new system (with emphasis on increasing implementation).
+        hint: 「だんだん」 might suggest a less structured or formal progression. We're looking for a planned,
+          systematic, gradual transition.
+      - competing_japanese:
+          - 今後、少し ずつ 新しい システム に 移行 し て いく 予定 です。
+        english: We plan to transition to the new system little by little.
+        hint: 「少しずつ」 highlights the individual phases of the transition. We're looking for a smooth, continuous
+          transition.
+    scene: A project manager explains the rollout plan to their team.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: Indicates a planned, phased implementation, emphasizing the systematic and unhurried nature
+      of the change. 「移行していく」 suggests a gradual movement towards a new state.
+    etymology: 移行して いく is the te-form of 移行する (ikō suru - to transition), followed by いく (iku - to go),
+      suggesting a process of moving towards a future state.
+post_example_writeup: As seen in the examples, 徐々に is highly versatile and can be applied to various types
+  of gradual change, from biological growth to abstract concepts like feelings or economic trends. Its
+  use often highlights the smooth, continuous, and sometimes imperceptible nature of the progression.
+  While other adverbs might emphasize the *pace* (ゆっくり) or *discrete steps* (少しずつ), 徐々に focuses on the
+  *uninterrupted continuity* of the change itself.

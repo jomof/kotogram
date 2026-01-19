@@ -1,0 +1,453 @@
+grammar_point: 思うに (in my opinion)
+learn_before:
+  - あの (that)
+meaning: In my opinion; it seems to me; when I think about it; considering.
+pronunciation:
+  katakana: オモウニ
+  romaji: omou ni
+formation:
+  思うに + Sentence: Expresses the speaker's personal view or opinion on a subject.
+  Noun/Phrase + を + 思うに: Used when reflecting on a certain topic or situation.
+jlpt: N2
+etymology: 「思うに」 comes from the verb 「思う」 (omou), meaning "to think," combined with the particle 「に」 (ni).
+  The 「に」 adds a sense of purpose or direction, indicating that the thought is being directed towards
+  a particular viewpoint or conclusion.
+writeup: 「思うに」 is a phrase employed to express the speaker's personal opinion or viewpoint. It is akin
+  to saying "in my opinion" or "it seems to me." This expression is typically used in more formal contexts,
+  such as academic discourse, business communications, or thoughtful discussions. It conveys a sense of
+  careful consideration and personal judgment. It can be placed at the beginning of a sentence to introduce
+  a comprehensive personal view on a matter. Alternatively, it can follow a noun or phrase connected by
+  「を」 to signify deep reflection upon that particular topic or situation. The nuance implies that the
+  expressed opinion is not merely a fleeting thought but one that has been carefully contemplated and
+  is presented with a certain weight or conviction.
+false_friends:
+  - term: 考えるに
+    meaning: Considering; when I think about
+    kind: similar expression
+    nuance: While similar to 「思うに」, 「考えるに」 often implies a more analytical or reasoned thought process,
+      focusing on logical deduction, whereas 「思うに」 leans towards a personal feeling or opinion derived
+      from reflection.
+    grammar_point: <strongly-suggest>:考えるに (considering)
+  - term: 〜と思っている
+    meaning: I think; I believe
+    kind: similar expression
+    nuance: 「〜と思っている」 is a more direct and straightforward way of expressing one's current thoughts or
+      beliefs. In contrast, 「思うに」 is a more formal and reflective way of introducing an opinion that has
+      been deliberated upon.
+    grammar_point: <strongly-suggest>:〜と思っている (I think・I believe)
+  - term: 私の意見では
+    meaning: In my opinion
+    kind: similar expression
+    nuance: 「私の意見では」 is a direct statement of personal opinion, often used to assert a viewpoint. 「思うに」,
+      while also expressing an opinion, carries a nuanced sense of deep consideration or reflection, making
+      the opinion sound more thoughtful or conclusive.
+    grammar_point: <strongly-suggest>:私の意見では (in my opinion)
+  - term: 私としては
+    meaning: As for me; from my perspective
+    kind: similar expression
+    nuance: 「私としては」 introduces the speaker's personal stance or preference on a matter. It is more about
+      their individual position than a generalized opinion derived from thought, which is conveyed by
+      「思うに」.
+    grammar_point: としては (as a standard or viewpoint)
+post_false_friends_writeup: 'It is crucial to differentiate 「考えるに」 and 「思うに」: the former suits logical
+  reasoning, while the latter fits personal opinions from deeper contemplation. Similarly, 「〜と思っている」 is
+  a more direct, less formal expression of a continuous belief or thought, and 「私の意見では」 asserts a viewpoint
+  without the reflective depth of 「思うに」. 「私としては」 focuses on the speaker''s individual position or preference,
+  distinct from the broader, considered opinion conveyed by 「思うに」.'
+examples:
+  - english: In my view, the new policy will contribute to the national interest in the long run.
+    japanese:
+      - 新しい 政策 は、{思う に}、長期 的 に は 国益 に 資する でしょう。
+      - 新しい 政策 は、{思う に}、長期 的 に は 国益 に 資する と 思わ れ ます。
+      - '{思う に}、新しい 政策 は、長期 的 に 国益 に 資する こと でしょう。'
+      - 新しい 政策 は、{思う に}、長期 的 に は 国益 に 資する と 断言 いたし ます。
+      - 長期 的 に は 国益 に 資する と、{思う に}、新しい 政策 は 貢献 する でしょう。
+    english_literally: New policy, when I think about it, long-term, to national interest will contribute,
+      likely.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は、長期 的 に は 国益 に 資する と 思い ます。
+        english: I think the new policy will contribute to the national interest in the long run.
+        hint: The scene sets a formal context for a government official, where a more considered and formal
+          introduction to a personal conviction is appropriate than a simple 'I think' statement. We're
+          looking for a more reflective expression.
+      - competing_japanese:
+          - 私見 で は、新しい 政策 は、長期 的 に は 国益 に 資する でしょう。
+        english: In my humble opinion, the new policy will contribute to the national interest in the
+          long run.
+        hint: Consider the nuance of introducing an opinion that comes from a deep, thoughtful reflection
+          rather than a direct statement. We're looking for a more nuanced personal conviction.
+      - competing_japanese:
+          - 新しい 政策 に つい て 考える に、長期 的 に は 国益 に 資する でしょう。
+        english: Considering the new policy, it will contribute to the national interest in the long run.
+        hint: This emphasizes a more analytical, logical consideration rather than a deeply felt, considered
+          personal opinion. We're looking for an expression of personal reflection.
+      - competing_japanese:
+          - 私 と し て は、新しい 政策 は、長期 的 に は 国益 に 資する と 考え ます。
+        english: As for me, I think the new policy will contribute to the national interest in the long
+          run.
+        hint: This states a personal stance or preference, rather than a considered opinion resulting
+          from deep thought. We're looking for a more contemplative expression.
+    scene: A government official presents a new policy during a press conference, expressing confidence
+      in its long-term benefits.
+    register: formal
+    setting: informative
+  - english: When I reflect on that tumultuous era, I truly feel that people overcame great difficulties.
+    japanese:
+      - 激動 の 時代 を {思う に}、人々 は 困難 を 乗り越え て き た の だ と 実感 し ます。
+      - 激動 の 時代 を {思う に}、人々 は 困難 を 乗り越え て き た の だ と 実感 さ せ られ ます。
+      - 激動 の 時代 を {思う に}、人々 は 困難 を 乗り越え て き た もの と 痛感 いたし ます。
+      - 激動 の 時代 を {思う に}、人々 は 困難 を 乗り越え て き た に 違い あり ませ ん。
+      - '{思う に}、激動 の 時代 の 人々 は 困難 を 乗り越え て き た の です。'
+    english_literally: Tumultuous era, when I reflect on it, people overcame difficulties, I truly feel
+      it.
+    competing_grammar:
+      - competing_japanese:
+          - 激動 の 時代 に つい て 考える と、人々 は 困難 を 乗り越え て き た の だ と 実感 し ます。
+        english: When I think about the tumultuous era, I truly feel that people overcame great difficulties.
+        hint: The scene emphasizes a historian's deep, almost emotional reflection, where a more profound
+          sense of contemplation is suitable than a merely analytical 'to think about' phrase. We're looking
+          for a reflection with personal feeling.
+      - competing_japanese:
+          - 激動 の 時代 を 顧みる に、人々 は 困難 を 乗り越え て き た の だ と 実感 し ます。
+        english: Reflecting on the tumultuous era, I truly feel that people overcame great difficulties.
+        hint: This expression emphasizes 'looking back' or 'recalling' with a sense of retrospection,
+          not necessarily the deep, personal contemplation of the target grammar. We're looking for a
+          deeper reflection.
+      - competing_japanese:
+          - 激動 の 時代 を 振り返っ て、人々 は 困難 を 乗り越え て き た と 思っ て い ます。
+        english: Looking back at the tumultuous era, I believe people overcame great difficulties.
+        hint: This is a more direct statement of belief, lacking the reflective and considered tone of
+          the target grammar. We're looking for a more contemplative expression.
+      - competing_japanese:
+          - 私 の 意見 で は、激動 の 時代 の 人々 は 困難 を 乗り越え て き た と 思い ます。
+        english: In my opinion, people of the tumultuous era overcame great difficulties.
+        hint: This directly states an opinion, without the nuance of deep personal reflection on the era
+          itself. We're looking for an expression that signifies deep reflection on a topic.
+      - competing_japanese:
+          - 私 と し て は、激動 の 時代 を 経 て、人々 は 困難 を 乗り越え て き た の だ と 実感 し ます。
+        english: As for me, I truly feel that people overcame great difficulties through the tumultuous
+          era.
+        hint: This expresses a personal stance or preference, rather than a profound, considered reflection
+          on a historical period. We're looking for a reflective nuance.
+    scene: A historian is giving a lecture on a significant period in history, sharing a profound reflection
+      on human resilience.
+    register: formal
+    setting: storytelling
+  - english: Considering his words and actions, I can't help but suspect he might be hiding something.
+    japanese:
+      - 彼 の 言動 を {思う に}、何 か 隠し て いる こと が ある の で は ない か と 疑わ ざる を 得 ませ ん。
+      - 彼 の 言動 を {思う に}、何 か 隠し て いる の か も しれ ませ ん。
+      - 彼 の 言動 を {思う に}、何 か 隠し て いる の で は ない か と 強く 感じ ます。
+      - 彼 の 言動 を {思う に}、何 か よから ぬ 事 を 企ん で いる 可能 性 が あり ます。
+      - '{思う に}、彼 の 言動 に は 矛盾 が 見受け られ ます。'
+    english_literally: His words and actions, when I consider them, something he might be hiding, I can't
+      help but suspect.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言動 に つい て 考える なら ば、何 か 隠し て いる こと が ある の で は ない か と 疑わ ざる を 得 ませ ん。
+        english: If I think about his words and actions, I can't help but suspect he might be hiding something.
+        hint: The scene highlights a personal, slightly informal but still serious reflection on someone's
+          character, where a considered opinion stemming from observation is expressed rather than a purely
+          logical deduction. We're looking for a reflection that leads to a personal conviction.
+      - competing_japanese:
+          - 彼 の 言動 から 判断 する と、何 か 隠し て いる こと が ある の で は ない か と 疑わ ざる を 得 ませ ん。
+        english: Judging from his words and actions, I can't help but suspect he might be hiding something.
+        hint: This phrase indicates a conclusion drawn from concrete evidence or observation, rather than
+          a deeper, internal reflection. We're looking for a more personal, considered judgment.
+      - competing_japanese:
+          - 彼 の 言動 を 見る と、何 か 隠し て いる と 思っ て い ます。
+        english: When I look at his words and actions, I think he is hiding something.
+        hint: This is a more direct and less formal expression of a belief, without the nuanced sense
+          of deep contemplation. We're looking for a more reflective phrasing.
+      - competing_japanese:
+          - 私 の 意見 で は、彼 は 何 か 隠し て いる の で は ない か と 思い ます。
+        english: In my opinion, he might be hiding something.
+        hint: This is a straightforward statement of opinion, lacking the implication that the opinion
+          is derived from considering specific actions. We're looking for an opinion rooted in reflection.
+      - competing_japanese:
+          - 私 と し て は、彼 の 言動 から し て、何 か 隠し て いる の で は ない か と 思わ ざる を 得 ませ ん。
+        english: As for me, judging from his words and actions, I can't help but suspect he might be hiding
+          something.
+        hint: This expresses a personal stance, rather than a deeply considered judgment based on reflecting
+          on the specifics. We're looking for a phrase that implies deep consideration.
+    scene: A concerned colleague is discussing a suspicious behavior of another colleague with a trusted
+      mutual friend over coffee.
+    register: semi-formal
+    setting: serious
+  - english: Hey, when I think about the finale of that drama, I wonder if it was a happy ending after
+      all.
+    japanese:
+      - ねぇ、あの ドラマ の 最終 回 を {思う に}、結局 ハッピー エンド だっ た の か なぁ。
+      - ねぇ、あの ドラマ の 最終 回 を {思う に}、結局 ハッピー エンド だっ た の か な？
+      - ねぇ、あの ドラマ の 最終 回 を {思う に}、ハッピー エンド だっ た の か、どう な の か な。
+      - ねぇ、あの ドラマ の 最終 回 を {思う に}、あれ は 不思議 な 終わり 方 だっ た よ ね。
+      - '{思う に}、あの ドラマ の 最終 回 は、見る 人 に よっ て 意見 が 分かれる と 思う な。'
+    english_literally: Hey, that drama's finale, when I think about it, after all, was it a happy ending,
+      I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - ねぇ、あの ドラマ の 最終 回 に つい て 考える と、結局 ハッピー エンド だっ た の か なぁ。
+        english: Hey, when I think about the finale of that drama, I wonder if it was a happy ending after
+          all.
+        hint: The scene implies a casual, conversational tone among close friends, where a shared, thoughtful
+          reflection on a subjective outcome feels more natural than a more analytical alternative. We're
+          looking for a more reflective expression.
+      - competing_japanese:
+          - ねぇ、あの ドラマ の 最終 回 を 思い返す と、結局 ハッピー エンド だっ た の か なぁ。
+        english: Hey, when I recall the finale of that drama, I wonder if it was a happy ending after
+          all.
+        hint: This expression suggests recalling a memory, but not necessarily engaging in deep thought
+          or reflection on it. We're looking for a deeper, contemplative nuance.
+      - competing_japanese:
+          - ねぇ、あの ドラマ の 最終 回、結局 ハッピー エンド だっ た と 思っ てる？
+        english: Hey, for the finale of that drama, do you think it was a happy ending after all?
+        hint: This is a direct question about a belief, lacking the introspective and wondering tone of
+          the target grammar. We're looking for a more contemplative query.
+      - competing_japanese:
+          - ねぇ、私 の 意見 で は、あの ドラマ の 最終 回 は ハッピー エンド だっ た と 思う ん だ けど？
+        english: Hey, in my opinion, I think the finale of that drama was a happy ending, don't you?
+        hint: While expressing an opinion, this is a more assertive statement rather than a personal,
+          contemplative wondering. We're looking for an expression of thoughtful reflection.
+      - competing_japanese:
+          - ねぇ、私 と し て は、あの ドラマ の 最終 回 は ハッピー エンド だっ た と 思う な。
+        english: Hey, as for me, I think the finale of that drama was a happy ending.
+        hint: This states a personal feeling or preference, not a deeper, considered reflection on a past
+          event. We're looking for a reflective nuance.
+    scene: Two female friends are chatting leisurely after watching the last episode of a popular TV drama,
+      reflecting on its ending.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle 「かなぁ」 (kanaa) and the opening interjection 「ねぇ」 (nee) contribute
+      to a casual, contemplative, and slightly feminine tone, suggesting a shared, inviting reflection
+      on the matter.
+  - english: In my opinion regarding the new software, there are still many points that need improvement.
+    japanese:
+      - 新しい ソフトウェア を {思う に}、まだ 改善 す べき 点 が 多々 あり ます ね。
+      - 新しい ソフトウェア を {思う に}、まだ 改善 す べき 点 が 多々 ござい ます。
+      - 新しい ソフトウェア を {思う に}、改善 が 必要 な 点 が 数多く 見受け られ ます。
+      - 新しい ソフトウェア を {思う に}、更なる 検討 が 必要 だ と 考え ます。
+      - '{思う に}、この ソフトウェア は、今後 の 成長 の 余地 を 大いに 残し て い ます。'
+    english_literally: New software, when I think about it, still many points that should be improved,
+      there are.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ソフトウェア に 関し て、まだ 改善 す べき 点 が 多々 あり ます ね。
+        english: Regarding the new software, there are still many points that need improvement.
+        hint: The scene is a professional setting where the project leader is expressing a thoughtful
+          assessment. The target grammar adds a sense of personal judgment and consideration to the feedback,
+          beyond simply stating facts. We're looking for an expression of personal assessment.
+      - competing_japanese:
+          - 新しい ソフトウェア を 評価 する と、まだ 改善 す べき 点 が 多々 あり ます ね。
+        english: Evaluating the new software, there are still many points that need improvement.
+        hint: This phrase suggests a formal assessment or critique based on criteria, rather than a more
+          subjective, considered personal opinion. We're looking for a more personal, considered judgment.
+      - competing_japanese:
+          - 新しい ソフトウェア に つい て 考える に、まだ 改善 す べき 点 が 多々 あり ます ね。
+        english: Considering the new software, there are still many points that need improvement.
+        hint: This indicates a more analytical thought process, rather than a deeply considered personal
+          opinion. We're looking for an expression of considered opinion.
+      - competing_japanese:
+          - 新しい ソフトウェア は、まだ 改善 す べき 点 が 多々 ある と 思っ て い ます。
+        english: I think there are still many points that need improvement with the new software.
+        hint: This is a direct statement of opinion, lacking the reflective nuance of the target grammar
+          which implies a deeply considered viewpoint. We're looking for a more reflective expression.
+      - competing_japanese:
+          - 私 の 意見 で は、新しい ソフトウェア に は まだ 改善 す べき 点 が 多々 あり ます ね。
+        english: In my opinion, there are still many points that need improvement with the new software.
+        hint: This directly states an opinion, but without the implied depth of consideration that '思うに'
+          conveys. We're looking for a phrase that implies deep thought leading to an an opinion.
+      - competing_japanese:
+          - 私 と し て は、新しい ソフトウェア は まだ 改善 す べき 点 が 多々 ある と 感じ て い ます。
+        english: As for me, I feel that there are still many points that need improvement with the new
+          software.
+        hint: This expresses a personal feeling or stance, rather than a considered professional judgment.
+          We're looking for an expression of considered judgment.
+    scene: A project leader is giving feedback during a team meeting after reviewing a newly developed
+      software application.
+    register: bijinesu nihongo (business)
+    setting: instructional
+  - english: When I consider what life is, it is a continuous series of choices.
+    japanese:
+      - 人生 と は 何 か を {思う に}、それ は 絶え間 ない 選択 の 連続 で ある。
+      - 人生 と は 何 か を {思う に}、それ は 絶え間 ない 選択 の 連続 だ と 痛感 し ます。
+      - 人生 と は 何 か を {思う に}、絶え間 ない 選択 の 連続 だ と 結論 づけ られ ます。
+      - 人生 と は 何 か を {思う に}、自己 と の 対話 の 連続 で も ある の です。
+      - '{思う に}、人生 と は 未知 の 探求 の 旅 で あり ましょう。'
+    english_literally: What life is, when I consider it, that is a continuous series of choices.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 と は 何 か に つい て 考える なら ば、それ は 絶え間 ない 選択 の 連続 で ある。
+        english: If one thinks about what life is, it is a continuous series of choices.
+        hint: The scene depicts a profound, philosophical reflection. The target grammar is fitting for
+          presenting a deeply pondered insight or conclusion, emphasizing personal contemplation over
+          a purely logical premise. We're looking for a deeply pondered insight.
+      - competing_japanese:
+          - 人生 と は 何 か を 考察 する なら、それ は 絶え間 ない 選択 の 連続 で ある。
+        english: If one examines what life is, it is a continuous series of choices.
+        hint: This expression implies a more academic or analytical investigation, rather than a personal,
+          reflective rumination. We're looking for a personal reflection.
+      - competing_japanese:
+          - 人生 と は 絶え間 ない 選択 の 連続 で ある と 思っ て い ます。
+        english: I think life is a continuous series of choices.
+        hint: This is a direct statement of belief, lacking the profound, reflective tone implied by the
+          target grammar in this philosophical context. We're looking for a deeply contemplative expression.
+      - competing_japanese:
+          - 私 の 意見 で は、人生 と は 絶え間 ない 選択 の 連続 です。
+        english: In my opinion, life is a continuous series of choices.
+        hint: This is a straightforward statement of opinion, not necessarily implying the deep philosophical
+          reflection that leads to such a conclusion. We're looking for an opinion born from deep contemplation.
+      - competing_japanese:
+          - 私 と し て は、人生 と は 絶え間 ない 選択 の 連続 だ と 考え て い ます。
+        english: As for me, I consider life to be a continuous series of choices.
+        hint: This expresses a personal viewpoint or consideration, rather than a deeply profound and
+          considered philosophical insight. We're looking for a deeper philosophical reflection.
+    scene: An author sits at their desk, deeply engrossed in writing a philosophical essay about the nature
+      of existence.
+    register: formal
+    setting: reflective
+  - english: When I think about the old days, our high school life was truly splendid, wasn't it?
+    japanese:
+      - 昔 の こと を {思う に}、私 たち の 高校 生活 は 本当 に 素晴らしかっ た ね。
+      - 昔 の こと を {思う に}、私 たち の 高校 生活 は 本当 に 素晴らしかっ た なぁ。
+      - '{思う に}、あの 頃 は 本当 に 輝い て い た よ ね。'
+      - 昔 を {思う に}、あの 夏 の 日々 が 忘れ られ ませ ん。
+      - あの 時 の こと を {思う に}、もう 一 度 戻り たい と 心底 思う よ。
+    english_literally: Old days, when I think about it, our high school life was truly splendid, wasn't
+      it?
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の こと を 考える と、私 たち の 高校 生活 は 本当 に 素晴らしかっ た ね。
+        english: When I think about the old days, our high school life was truly splendid, wasn't it?
+        hint: This implies a more detached, analytical recollection rather than a deep, personal reflection
+          filled with nostalgia. We're looking for an expression that conveys a sense of deep, nostalgic
+          contemplation.
+      - competing_japanese:
+          - 昔 を 振り返る と、私 たち の 高校 生活 は 本当 に 素晴らしかっ た ね。
+        english: Looking back at my childhood, our high school life was truly splendid, wasn't it?
+        hint: This phrase focuses on retrospection or reviewing the past, which is slightly different
+          from deeply pondering or reflecting on it. We're looking for a deeper, reflective sentiment.
+    scene: Two male friends in their late twenties are sharing a drink at an izakaya, reminiscing about
+      their high school days.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The informal tone, established by 「ね」 (ne) at the end of the sentence, and the setting of
+      friends reminiscing naturally lend themselves to the reflective nuance of 「思うに」 when used to ponder
+      shared past experiences.
+  - english: When I think about this research, it seems there's still a lot of room for further investigation
+      into this phenomenon.
+    japanese:
+      - この 研究 を {思う に}、この 現象 に つい て は まだ 更なる 調査 の 余地 が ある よう に 思い ます。
+      - この 研究 を {思う に}、この 現象 は 依然 と し て 多く の 謎 を 残し て い ます。
+      - '{思う に}、この 研究 は 新た な 疑問 を 提起 し て いる の で は ない でしょ う か。'
+      - この 研究 を {思う に}、より 多角 的 な 視点 から の アプローチ が 必要 です ね。
+      - この 研究 を {思う に}、これ から の 進展 が 大変 楽しみ です。
+    english_literally: This research, when I think about it, regarding this phenomenon, there seems to
+      be still room for further investigation.
+    competing_grammar:
+      - competing_japanese:
+          - この 研究 から 考える と、この 現象 に つい て は まだ 更なる 調査 の 余地 が ある よう に 思い ます。
+        english: Considering this research, it seems there's still a lot of room for further investigation
+          into this phenomenon.
+        hint: In an academic context, while '考える' can work, '思うに' offers a more considered, deeply reflected
+          conclusion drawn from comprehensive thought, rather than a mere logical deduction. We're looking
+          for a more profound academic reflection.
+      - competing_japanese:
+          - この 研究 を 考察 する と、この 現象 に つい て は まだ 更なる 調査 の 余地 が ある よう に 思い ます。
+        english: When examining this research, it seems there's still a lot of room for further investigation
+          into this phenomenon.
+        hint: This suggests a critical analysis, but '思うに' conveys a personal intellectual judgment and
+          reflection on the research's implications. We're looking for a personal, informed reflection.
+    scene: A senior professor is discussing a recent research paper with a graduate student in a university
+      lab, contemplating future directions.
+    register: formal
+    setting: academic
+    speaker_age: older
+  - english: When I think about the challenges ahead, I realize the importance of teamwork.
+    japanese:
+      - 今後 の 課題 を {思う に}、チーム ワーク の 重要 性 を 痛感 し ます。
+      - 今後 の 課題 を {思う に}、私 たち は 一丸 と なっ て 取り組む 必要 が ある と 感じ ます。
+      - '{思う に}、これ から の 道のり は 決して 楽 で は ない だろ う。'
+      - 将来 を {思う に}、今 こそ 団結 す べき 時 だ と 確信 し ます。
+      - 目 の 前 の 困難 を {思う に}、乗り越える ため に は 協力 が 不可欠 です。
+    english_literally: Future challenges, when I think about them, I deeply feel the importance of teamwork.
+    competing_grammar:
+      - competing_japanese:
+          - 今後 の 課題 に つい て 考える と、チーム ワーク の 重要 性 を 痛感 し ます。
+        english: When I think about the challenges ahead, I realize the importance of teamwork.
+        hint: This can convey a more straightforward thought process. '思うに' carries the nuance of deeper
+          consideration and personal conviction about the strategic necessity. We're looking for a phrase
+          indicating deep consideration and personal conviction.
+      - competing_japanese:
+          - 今後 の 課題 を 鑑みる と、チーム ワーク の 重要 性 を 痛感 し ます。
+        english: Considering the challenges ahead, I realize the importance of teamwork.
+        hint: This implies taking something into account for judgment, which is slightly different from
+          a deeper, reflective process leading to personal insight. We're looking for a phrase that implies
+          gaining insights from reflection.
+    scene: A CEO is addressing their employees, reflecting on future challenges and emphasizing the collective
+      effort required.
+    register: bijinesu nihongo (business)
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+  - english: When I think about my childhood, it's amazing how much I've changed since then.
+    japanese:
+      - 子供 の 頃 を {思う に}、あの 頃 から ずいぶん 成長 し た もの だ と 感じ ます。
+      - 子供 の 頃 を {思う に}、懐かしい 思い出 が たくさん 蘇り ます。
+      - '{思う に}、あの 時 の 無邪気 さ が 羨ましい な。'
+      - 自分 の 過去 を {思う に}、様々 な 経験 が 今 の 自分 を 形作っ て いる と 思い ます。
+      - 若かり し 頃 を {思う に}、失敗 も また 成長 の 糧 だっ た と 気づき ます。
+    english_literally: Childhood, when I think about it, I feel how much I've grown since that time.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃 の こと を 考える と、あの 頃 から ずいぶん 成長 し た もの だ と 感じ ます。
+        english: When I think about my childhood, I feel how much I've grown since then.
+        hint: This can imply a more factual recall or logical deduction, whereas '思うに' better captures
+          the depth of personal reflection and the emotional connection to past memories. We're looking
+          for a deeper, emotional reflection.
+      - competing_japanese:
+          - 子供 の 頃 を 振り返る と、あの 頃 から ずいぶん 成長 し た もの だ と 感じ ます。
+        english: Looking back at my childhood, I feel how much I've grown since then.
+        hint: This focuses on simply reviewing past events. '思うに' delves into the deeper, personal insights
+          gained from those reflections. We're looking for a phrase that implies gaining insights from
+          reflection.
+    scene: An individual is quietly reflecting on their past during a moment of solitude, perhaps while
+      looking at old photographs.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: When I think about the true meaning of justice, it's not always simple.
+    japanese:
+      - 正義 の 真 の 意味 を {思う に}、必ず しも 単純 で は ない。
+      - 正義 と は 何 か を {思う に}、深く 考え させ られ ます。
+      - '{思う に}、正義 と は 常 に 状況 に よっ て 変化 する もの だ。'
+      - 正義 に つい て {思う に}、唯一 の 答え は 存在 し ない の で は ない だろ う か。
+      - あの 出来事 を {思う に}、正義 の 難し さ を 痛感 し た。
+    english_literally: Justice's true meaning, when I think about it, it's not always simple.
+    competing_grammar:
+      - competing_japanese:
+          - 正義 の 真 の 意味 に つい て 考える と、必ず しも 単純 で は ない。
+        english: When I think about the true meaning of justice, it's not always simple.
+        hint: This suggests a more analytical process. '思うに' implies a deeper, more personal contemplation
+          of a complex concept, often without a clear-cut answer. We're looking for a phrase that expresses
+          deep contemplation.
+      - competing_japanese:
+          - 正義 の 真 の 意味 を 考察 する と、必ず しも 単純 で は ない。
+        english: When examining the true meaning of justice, it's not always simple.
+        hint: This is more formal and academic, suitable for a scholarly investigation. '思うに' is more
+          about personal reflection and musing on a concept. We're looking for a more personal reflection.
+    scene: A philosopher or a thoughtful individual is pondering a profound ethical question, perhaps
+      during a debate or while writing.
+    register: formal
+    setting: academic
+post_example_writeup: These examples illustrate the versatile application of 「思うに」 in conveying personal
+  opinions and reflections across various settings and registers. It consistently maintains a nuanced
+  sense of considered personal judgment, whether in formal discourse or casual conversation. Note how
+  it implies a deep, thoughtful process leading to the expressed opinion or conclusion.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/思うに

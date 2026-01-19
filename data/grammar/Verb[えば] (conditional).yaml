@@ -1,0 +1,223 @@
+grammar_point: Verb[えば] (conditional)
+matcher: '{verb-eba}'
+matcher_enforce_examples: true
+meaning: if (conditional)
+conjugations:
+  - conjugation-type: conditional (～ば)
+    form: 〜えば
+    rarity: common
+    meaning: if (verb)
+pronunciation:
+  katakana: エバ
+  romaji: eba
+formation:
+  Verb (Group 1): Change final う to えば (e.g., 読む -> 読めば)
+  Verb (Group 2): Add れば to stem (e.g., 食べる -> 食べれば)
+  Verb (Group 3): する -> すれば; くる -> くれば
+jlpt: N4
+etymology: The 〜ば form, often called the 'provisional form,' historically derived from the classical Japanese
+  'ば' particle, which indicated a consequence following a condition. Over time, its usage evolved to specifically
+  denote a hypothetical or conditional relationship.
+writeup: |-
+  The 〜ば form is a conditional conjugation in Japanese, primarily used to express 'if' or 'when.' It establishes a condition (the clause before 〜ば) that, if met, will lead to a particular outcome (the clause after 〜ば). This form implies a general or natural consequence, or a situation where the speaker expects the outcome to occur. Unlike 〜たら, which can be used for a wide range of conditional statements, 〜ば often suggests a more direct or logical relationship between the condition and the result.
+
+  It is commonly used in general statements, rules, or when providing advice. While 〜ば can connect a condition to a consequence, it typically implies that the consequence is a direct and often natural result of the condition. It is less frequently used for specific, one-time hypothetical situations in the future, where 〜たら or 〜と might be more appropriate. For example, it is natural to say 「春になれば桜が咲く」 (If spring comes, the cherry blossoms will bloom), as this is a natural, expected event. However, for a specific, non-natural outcome, other conditional forms may be preferred.
+
+  Note that the ば form cannot be used when the main clause expresses a command, request, or intention of the speaker in the second clause. For such expressions, 〜たら is generally used. For instance, you cannot say 「時間があれば、来てください」; instead, you would say 「時間があったら、来てください」 (If you have time, please come).
+false_friends:
+  - term: Verb[たら] (conditional)
+    meaning: if, when
+    kind: similar expression
+    nuance: While 〜ば indicates a general or natural consequence, 〜たら is more versatile, covering both
+      general and specific, one-time hypothetical conditions. 〜たら can also be followed by commands, requests,
+      or expressions of speaker's intention, which 〜ば generally cannot. We're looking for a general conditional
+      statement.
+    grammar_point: Verb[たら] (conditional)
+  - term: なら (conditional, if it's the case that A)
+    meaning: if it's the case that
+    kind: similar expression
+    nuance: 〜なら is used to state a condition that has already been mentioned or is assumed to be true,
+      often presenting advice or a suggestion based on that information. It usually places emphasis on
+      the consequence or subsequent action. We're looking for a direct conditional relationship, not a
+      response to a given situation.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: と (conditional, inevitable result)
+    meaning: if, when (inevitable result)
+    kind: similar expression
+    nuance: 〜と indicates an inevitable or automatic result, often used for natural phenomena, mechanisms,
+      or habits. The consequence always follows the condition. We're looking for a more general 'if' statement
+      that implies a logical, but not necessarily automatic, outcome.
+    grammar_point: と (conditional, inevitable result)
+post_false_friends_writeup: Understanding the subtle differences between 〜ば, 〜たら, 〜なら, and 〜と is crucial
+  for natural Japanese expression. While all can be translated as 'if,' their nuances in usage reflect
+  different relationships between the condition and the consequence. 〜ば denotes a more direct, often general,
+  and expected outcome, setting it apart from the others.
+examples:
+  - english: If you read many books, you will become smarter.
+    japanese:
+      - たくさん 本 を 読め ば、もっと 賢く なり ます。
+      - たくさん 本 を 読め ば、もっと 賢く なる。
+    english_literally: If you read many books, you become more intelligent.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 本 を 読ん だら、もっと 賢く なり ます。
+        english: If you read many books, you will become smarter.
+        hint: While 〜たら can also be used here, 〜ば emphasizes the general truth or natural consequence
+          of reading more. We're looking for a statement about a general truth.
+    scene: A teacher is explaining the benefits of reading to their students.
+    register: formal
+    setting: informative
+    conjugation: conditional (～ば)
+  - english: If it rains, the game will be canceled.
+    japanese:
+      - 雨 が 降れ ば、試合 は 中止 に なり ます。
+      - 雨 が 降れ ば、試合 は 中止 に なる。
+    english_literally: If rain falls, the game will be cancellation.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ たら、試合 は 中止 に なり ます。
+        english: If it rains, the game will be canceled.
+        hint: Both 〜ば and 〜たら are acceptable here, but 〜ば emphasizes the direct, logical consequence.
+          We're looking for a direct, logical consequence.
+    scene: A sports announcer is giving an update on the weather.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: conditional (～ば)
+  - english: If you drink too much, you'll feel sick tomorrow.
+    japanese:
+      - 飲み すぎれ ば、明日 気分 が 悪く なり ます よ。
+      - 飲み すぎれ ば、明日 気分 が 悪く なる よ。
+    english_literally: If you drink too much, tomorrow feeling will become bad, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 飲み すぎ たら、明日 気分 が 悪く なり ます よ。
+        english: If you drink too much, you'll feel sick tomorrow.
+        hint: Both are possible, but 〜ば highlights the expected negative outcome. We're looking for an
+          expected negative outcome.
+    scene: A friend is warning another friend about overindulgence.
+    register: casual
+    setting: friendly
+    listener_gender: male
+    nuance: The final particle 「よ」 adds a sense of conviction or a gentle warning to the listener, suitable
+      for a friendly conversation.
+    etymology: The particle 「よ」 is believed to have originated from an exclamation and evolved into a
+      particle used to convey new information or emphasize a statement.
+  - english: If you eat your vegetables, you'll grow big and strong.
+    japanese:
+      - 野菜 を 食べれ ば、大きく 強く なり ます よ。
+      - 野菜 を 食べれ ば、大きく 強く なる よ。
+    english_literally: If you eat vegetables, you become big and strong, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 を 食べ たら、大きく 強く なり ます よ。
+        english: If you eat your vegetables, you'll grow big and strong.
+        hint: 〜ば is effective here for stating a general benefit or advice. We're looking for general
+          advice.
+    scene: A parent encouraging their child to eat healthy.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「〜なります よ」 or 「〜なる よ」 with the final particle 「よ」 is common in casual speech when
+      an older female speaker offers encouragement or a gentle suggestion to a younger person, like a
+      child.
+    etymology: The use of 「よ」 for emphasis or gentle persuasion can be traced back to earlier forms of
+      spoken Japanese, serving to directly address the listener with a sense of shared understanding.
+  - english: If you go early, you'll avoid the crowds.
+    japanese:
+      - 早く 行け ば、混雑 を 避け られ ます。
+      - 早く 行け ば、混雑 を 避け られる。
+    english_literally: If you go early, crowds can be avoided.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 行っ たら、混雑 を 避け られ ます。
+        english: If you go early, you'll avoid the crowds.
+        hint: 〜ば presents this as a general strategy or natural consequence. We're looking for a general
+          strategy.
+    scene: Giving advice to a friend planning a trip.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: conditional (～ば)
+  - english: If you work hard, you will eventually achieve success.
+    japanese:
+      - 努力 すれ ば、いつ か 成功 を 掴め ます。
+      - 努力 すれ ば、いつ か 成功 を 掴める。
+    english_literally: If you make effort, sometime success can be grasped.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 し たら、いつ か 成功 を 掴め ます。
+        english: If you work hard, you will eventually achieve success.
+        hint: 〜ば emphasizes the direct correlation and general truth about hard work leading to success.
+          We're looking for a general truth.
+    scene: A motivational speaker is addressing an audience.
+    register: formal
+    setting: inspirational
+    conjugation: conditional (～ば)
+  - english: If you don't understand, please ask questions.
+    japanese:
+      - 分から なけれ ば、質問 し て ください。
+      - 分から なけれ ば、質問 し て。
+    english_literally: If you do not understand, please ask questions.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なかっ たら、質問 し て ください。
+        english: If you don't understand, please ask questions.
+        hint: 〜ば is appropriate here for a general instruction or rule. Note that the imperative in the
+          second clause is allowed when the condition is 'don't understand.' We're looking for a general
+          instruction.
+    scene: A professor is explaining class rules to their students.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: conditional (～ば)
+  - english: If you want to pass the exam, you should study every day.
+    japanese:
+      - 試験 に 合格 し たけれ ば、毎日 勉強 す べき だ。
+      - 試験 に 合格 し たけれ ば、毎日 勉強 す べき です。
+    english_literally: If you want to pass the exam, should study every day.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 し たかっ たら、毎日 勉強 す べき だ。
+        english: If you want to pass the exam, you should study every day.
+        hint: While both can be used, 〜ば highlights the direct relationship between desire and the necessary
+          action. We're looking for a direct relationship between a desire and an action.
+    scene: A tutor is advising their student.
+    register: casual
+    setting: informative
+    conjugation: conditional (～ば)
+  - english: If there is still time, let's go for a walk.
+    japanese:
+      - まだ 時間 が あれ ば、散歩 しよう か。
+      - まだ 時間 が あれ ば、散歩 し ましょう か。
+    english_literally: If still time exists, let's walk, maybe?
+    competing_grammar:
+      - competing_japanese:
+          - まだ 時間 が あっ たら、散歩 しよう か。
+        english: If there is still time, let's go for a walk.
+        hint: While 〜たら is also common for suggestions, 〜ば can be used for a general condition leading
+          to a proposed action. We're looking for a general condition leading to a proposed action.
+    scene: A couple is deciding what to do next on their date.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「〜しよう か」 is a casual volitional form, inviting the listener to do something together.
+      The polite equivalent is 「〜しましょう か」。 The question particle 「か」 makes it a softer suggestion rather
+      than a direct command.
+    etymology: The volitional form 「〜しよう」 originates from the classical auxiliary verb 「む」 or 「う/よう」,
+      expressing intention or suggestion. The particle 「か」 added to the end often softens questions or
+      suggestions.
+  - english: If you want to understand, you must listen carefully.
+    japanese:
+      - 理解 し たけれ ば、よく 聞く べき だ。
+      - 理解 し たけれ ば、よく 聞く べき です。
+    english_literally: If you want to understand, should listen well.
+    competing_grammar:
+      - competing_japanese:
+          - 理解 し たかっ たら、よく 聞く べき だ。
+        english: If you want to understand, you must listen carefully.
+        hint: Both 〜ば and 〜たら can be used here, but 〜ば emphasizes the logical prerequisite for understanding.
+          We're looking for a logical prerequisite.
+    scene: A teacher emphasizing the importance of active listening during a lecture.
+    register: formal
+    setting: instructional
+    conjugation: conditional (～ば)

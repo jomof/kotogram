@@ -1,0 +1,254 @@
+grammar_point: をもとに (based on)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - にする (to decide or make)
+meaning: Based on, From, According to
+pronunciation:
+  katakana: ヲモトニ
+  romaji: o moto ni
+formation:
+  Noun + をもとに: Indicates that something is based on, from, or according to the preceding noun, used as
+    a source for creation or derivation.
+jlpt: N2
+etymology: 「を」 is a particle indicating the object of an action. 「元 (もと)」 means "origin" or "source."
+  「に」 is a particle indicating a direction or purpose. Therefore, 「をもとに」 literally translates to "with
+  (something) as the origin."
+writeup: |-
+  The grammar pattern 「**をもとに**」, formed by the object particle 「を」, the noun 「元 (もと)」 meaning 'origin' or 'source', and the particle 「に」, serves to indicate that something is **based on**, **from**, or **according to** a particular source. It literally conveys the idea of "with (something) as the origin."
+
+  This expression is primarily used to reference a foundational source from which something is created, started, or derived. It emphasizes the origin as the raw material, inspiration, or primary information that enables the subsequent action or creation. Therefore, it frequently appears with verbs related to creation, production, or derivation, such as 「書く」 (to write), 「作る」 (to make), 「開発する」 (to develop), and 「分析する」 (to analyze).
+
+  While 「**をもとに**」 can be written with the kanji 「を元に」, it is more commonly seen written entirely in hiragana as 「をもとに」.
+
+  It is crucial to distinguish 「**をもとに**」 from similar expressions like 「**に基づいて**」. While both can be translated as "based on," their nuances differ significantly. 「**をもとに**」 focuses on the source as an origin or inspiration for creation, suggesting something new is developed *from* it. In contrast, 「**に基づいて**」 implies a stricter adherence to a rule, standard, or established foundation from which a judgment, decision, or conclusion is made. Think of 「**をもとに**」 as using the source as a blueprint or raw material, while 「**に基づいて**」 uses it as a strict guideline or rule to follow.
+false_friends:
+  - term: から (from)
+    meaning: From
+    kind: similar expression
+    nuance: While 「から」 indicates a general source or origin, 「をもとに」 specifically emphasizes using the
+      source as the foundational raw material, inspiration, or primary information for creating or deriving
+      something new.
+    grammar_point: から (from)
+  - term: にしたがって
+    meaning: As, Following, As then, According to, In accordance with
+    kind: similar expression
+    nuance: Unlike 「をもとに」, 「にしたがって」 implies adherence to a rule, guideline, or progression, focusing on
+      following a path or condition.
+    grammar_point: に従って・従い (in accordance with and proportional change)
+  - term: に応じて
+    meaning: Depending or based on, According to, In response to, Suitable for or to
+    kind: similar expression
+    nuance: Unlike 「をもとに」, 「に応じて」 suggests a response, adaptation, or suitability that changes according
+      to a condition or demand, rather than being derived from a fixed source.
+    grammar_point: に応じて (depending on)
+  - term: によると・によれば
+    meaning: According to
+    kind: similar expression
+    nuance: Unlike 「をもとに」, 「によると・によれば」 focuses on reporting information from a source, typically used
+      for quoting or attributing information, not for creation or derivation.
+    grammar_point: によると・によれば (according to)
+  - term: にもとづいて
+    meaning: Based on, In accordance with
+    kind: often confused with
+    nuance: Unlike 「をもとに」, which focuses on the source or inspiration for creation, 「に基づいて」 indicates
+      a strict foundation from which a judgment, decision, or action is made, implying adherence to a
+      rule or standard.
+    grammar_point: にもとづいて (based on)
+  - term: を踏まえて (based on)
+    meaning: Based on; taking into account
+    kind: similar expression
+    nuance: Unlike 「をもとに」, which focuses on utilizing a source as foundational material for creation or
+      derivation, 「を踏まえて」 implies taking existing facts, conditions, or insights into consideration to
+      inform an action, decision, or plan.
+    grammar_point: を踏まえて (based on)
+post_false_friends_writeup: To avoid confusion, remember that 「**をもとに**」 emphasizes the source of inspiration
+  or the basis for creation, suggesting something new is derived from it. In contrast, 「**に基づいて**」 implies
+  strict adherence to a rule or standard for a judgment or action. 「**から**」 denotes a general origin,
+  while 「**にしたがって**」 implies following a rule or progression. 「**に応じて**」 involves adapting to conditions,
+  and 「**によると・によれば**」 is primarily about reporting information from an external source. Lastly, 「**を踏まえて**」
+  indicates taking existing facts or circumstances into account for a decision or action, rather than
+  using them as raw material for creation.
+examples:
+  - english: This story was written based on a folk tale.
+    japanese:
+      - この 物語 は 民話 を {もと に} 書か れ まし た。
+      - この 物語 は 民話 を {もと に} 書か れ た。
+      - この 物語 は 民話 を {もと に} 作ら れ まし た。
+      - この 物語 は 民話 を {もと に} 作ら れ た。
+    english_literally: This story, based on a folk tale, was written.
+    competing_grammar:
+      - competing_japanese:
+          - この 物語 は 民話 {から} 書か れ まし た。
+        english: This story was written from a folk tale.
+        hint: 「から」 indicates a general source or origin, but 「をもとに」 emphasizes the folk tale as the specific
+          blueprint or foundational material for the new story. We're looking for an expression that highlights
+          a foundational source for creation.
+    scene: A librarian is describing a new book to a patron.
+    register: formal
+    setting: informative
+  - english: Let's analyze market trends based on the latest data.
+    japanese:
+      - 最新 の データ を {もと に}、市場 の 動向 を 分析 し ましょう。
+      - 最新 の データ を {もと に}、市場 の 動向 を 分析 しよう。
+      - 最新 の データ を {もと に}、市場 の 動向 を 分析 し ます。
+    english_literally: Based on the latest data, let's analyze market trends.
+    competing_grammar:
+      - competing_japanese:
+          - 最新 の データ {に 基づい て}、市場 の 動向 を 分析 し ましょう。
+        english: Let's analyze market trends in accordance with the latest data.
+        hint: 「に基づいて」 implies adherence to rules or principles derived from the data, but 「をもとに」 focuses
+          on the data itself being the raw material or foundational input for the analysis. We're looking
+          for an expression that treats the data as the direct source for the analysis.
+    scene: A business team meeting to discuss strategy.
+    register: formal
+    setting: professional
+  - english: A new product was developed based on her idea.
+    japanese:
+      - 彼女 の アイデア を {もと に}、新 製品 が 開発 さ れ まし た。
+      - 彼女 の アイデア を {もと に}、新 製品 が 開発 さ れ た。
+    english_literally: Based on her idea, a new product was developed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の アイデア {に よっ て}、新 製品 が 開発 さ れ まし た。
+        english: A new product was developed due to her idea.
+        hint: 「によって」 indicates the cause or means, but 「をもとに」 highlights her idea as the foundational
+          source or blueprint from which the new product was specifically created. We're looking for an
+          expression that emphasizes the idea as the original basis for the development.
+    scene: A company executive announces a successful project at an internal meeting.
+    register: formal
+    setting: professional
+  - english: This ruling was handed down based on past judicial precedents.
+    japanese:
+      - この 判決 は 過去 の 判例 を {もと に} 下さ れ まし た。
+      - この 判決 は 過去 の 判例 を {もと に} 下さ れ た。
+      - この 判決 は 過去 の 判例 を {もと に} 決定 さ れ まし た。
+    english_literally: This ruling, based on past judicial precedents, was handed down.
+    competing_grammar:
+      - competing_japanese:
+          - この 判決 は 過去 の 判例 {に 基づい て} 下さ れ まし た。
+        english: This ruling was handed down based on past judicial precedents.
+        hint: While both can be used, 「に基づいて」 implies strict adherence to established rules or standards.
+          「をもとに」 emphasizes the precedents as the direct, foundational information or cases from which
+          the specific ruling was derived, rather than a strict rule. We're looking for an expression
+          that treats the precedents as the source material for the derivation.
+    scene: A judge explains a complex legal decision in court.
+    register: formal
+    setting: legal
+  - english: I began drawing this piece based on my childhood dreams.
+    japanese:
+      - 私 は 子供 の 頃 の 夢 を {もと に}、この 作品 を 描き 始め た の です。
+      - 私 は 子供 の 頃 の 夢 を {もと に}、この 作品 を 描き 始め た。
+      - 私 は 子供 の 頃 の 夢 を {もと に}、この 作品 を 描き 始め まし た。
+    english_literally: Based on my childhood dreams, I began drawing this piece.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 子供 の 頃 の 夢 {から}、この 作品 を 描き 始め た の です。
+        english: I began drawing this piece from my childhood dreams.
+        hint: 「から」 can indicate a starting point, but 「をもとに」 signifies that the childhood dreams are the
+          fundamental source of inspiration and the core subject matter for the artistic creation. We're
+          looking for an expression that emphasizes the dreams as the foundational inspiration.
+    scene: An artist at an exhibition explaining the inspiration behind their work to a visitor.
+    register: semi-formal
+    setting: creative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker, a woman, is using 「作品」 (sakuhin) to imply a finished artistic work, while 「描き始めました」
+      (kaki hajimemashita) adds an explanatory nuance, common in more reflective or informative contexts.
+      The verb 「描き始める」 focuses on the initiation of the creative process based on the inspiration.
+    etymology: 「判断」 (はんだん) combines 「判」 (han), meaning 'judgment' or 'seal', and 「断」 (dan), meaning 'to
+      cut off' or 'to decide'. Together, they form 'to make a decision or judgment'.
+  - english: Modern clothes were made based on old designs.
+    japanese:
+      - 古い デザイン を {もと に}、モダン な 服 が 作ら れ まし た。
+      - 古い デザイン を {もと に}、モダン な 服 が 作ら れ た。
+      - 古い デザイン を {もと に}、モダン な 服 が 制作 さ れ まし た。
+    english_literally: Based on old designs, modern clothes were made.
+    competing_grammar:
+      - competing_japanese:
+          - 古い デザイン {から}、モダン な 服 が 作ら れ まし た。
+        english: Modern clothes were made from old designs.
+        hint: 「から」 implies a source, but 「をもとに」 signifies that the old designs served as the original
+          blueprint or core concept for the creation of the new modern clothes. We're looking for an expression
+          that implies a direct adaptation or reinterpretation.
+    scene: A fashion designer describes their new collection during a press interview.
+    register: formal
+    setting: informative
+  - english: Let's create a service improvement plan based on the survey results.
+    japanese:
+      - アンケート 結果 を {もと に}、サービス の 改善 計画 を 立て ましょう。
+      - アンケート 結果 を {もと に}、サービス の 改善 計画 を 立てよう。
+      - アンケート 結果 を {もと に}、サービス の 改善 計画 を 立て ます。
+    english_literally: Based on the survey results, let's create a service improvement plan.
+    competing_grammar:
+      - competing_japanese:
+          - アンケート 結果 {に 基づい て}、サービス の 改善 計画 を 立て ましょう。
+        english: Let's create a service improvement plan based on the survey results.
+        hint: 「に基づいて」 implies adherence to rules or standards derived from the results, but 「をもとに」 emphasizes
+          the survey results as the primary data or source of information used to formulate the plan.
+          We're looking for an expression that treats the results as direct input.
+    scene: A manager proposes a plan during a team meeting.
+    register: formal
+    setting: persuasive
+  - english: Based on his behavior, I judged that he was angry.
+    japanese:
+      - 彼 の 行動 を {もと に}、私 は 彼 が 怒っ て いる と 判断 し まし た。
+      - 彼 の 行動 を {もと に}、私 は 彼 が 怒っ て いる と 判断 し た。
+      - 彼 の 行動 を {もと に}、彼 が 怒っ て いる と 判断 し た。
+    english_literally: Based on his behavior, I judged that he was angry.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 {から}、私 は 彼 が 怒っ て いる と 判断 し まし た。
+        english: From his behavior, I judged that he was angry.
+        hint: 「から」 can indicate a source, but 「をもとに」 emphasizes his behavior as the direct source of observation
+          and the primary basis for the judgment, implying an analytical process. We're looking for an
+          expression that highlights the derivation of the conclusion from observed facts.
+    scene: A woman explains her observation about a friend to another friend.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a woman, is using 「判断しました」 to express a personal conclusion drawn from direct
+      observation of another person's actions. This straightforward phrasing is common in casual conversations
+      among friends.
+    etymology: 「判断」 (はんだん) combines 「判」 (han), meaning 'judgment' or 'seal', and 「断」 (dan), meaning 'to
+      cut off' or 'to decide'. Together, they form 'to make a decision or judgment'.
+  - english: This architecture is a recreation based on ancient temples.
+    japanese:
+      - この 建築 は 古代 の 寺院 を {もと に} 再現 さ れ た もの です。
+      - この 建築 は 古代 の 寺院 を {もと に} 再現 さ れ た もの だ。
+      - この 建築 は 古代 の 寺院 を {もと に} 復元 さ れ た もの です。
+    english_literally: This architecture, based on ancient temples, is a recreated thing.
+    competing_grammar:
+      - competing_japanese:
+          - この 建築 は 古代 の 寺院 {に 基づい て} 再現 さ れ た もの です。
+        english: This architecture is a recreation based on ancient temples.
+        hint: While 「に基づいて」 could imply strict adherence to historical accuracy, 「をもとに」 specifically points
+          to the ancient temples as the original source or blueprint that was used for the recreation.
+          We're looking for an expression that emphasizes them as the foundational model.
+    scene: A tour guide explaining the design of a newly restored historical building.
+    register: formal
+    setting: informative
+  - english: The manga artist created a new character based on submissions from readers.
+    japanese:
+      - 漫画 家 は 読者 から の 投稿 を {もと に}、新しい キャラクター を 生み出し た。
+      - 漫画 家 は 読者 から の 投稿 を {もと に}、新しい キャラクター を 生み出し まし た。
+      - 漫画 家 は 読者 から の 投稿 を {もと に}、新しい キャラクター を 作成 し まし た。
+    english_literally: The manga artist, based on submissions from readers, created a new character.
+    competing_grammar:
+      - competing_japanese:
+          - 漫画 家 は 読者 から の 投稿 {から}、新しい キャラクター を 生み出し た。
+        english: The manga artist created a new character from submissions from readers.
+        hint: 「から」 is a general source indicator, but 「をもとに」 emphasizes the reader submissions as the
+          direct inspiration and source material for the creation of the new character. We're looking
+          for an expression that showcases how the character was derived from them.
+    scene: An editor talks about the creative process behind a popular manga series.
+    register: formal
+    setting: storytelling
+post_example_writeup: When selecting examples for 「**をもとに**」, it's important to consider that this grammar
+  point emphasizes the source or origin from which something is created, developed, or derived. It highlights
+  the foundational element, rather than strict adherence to a rule or standard. Thus, it is often used
+  in contexts of creation, such as art, literature, or reports.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/をもとに

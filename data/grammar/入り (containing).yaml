@@ -1,0 +1,220 @@
+grammar_point: 入り (containing)
+matcher: '{noun}⌈ˢ入りᵖ~ʳイリ⌉'
+learn_before:
+  - ちょっと (adverb)
+meaning: containing
+pronunciation:
+  katakana: イリ
+  romaji: iri
+formation:
+  Noun + 入り: Indicates that the noun preceding 入り is contained within or included with something.
+jlpt: N3
+etymology: 入り (iri) originates from the noun form of the verb 入る (hairu), meaning “to enter” or “to contain.”
+  Historically, it refers to “what is inside” or “what has entered.” This core meaning evolved to signify
+  the inclusion or contents of an item, particularly in commercial or descriptive contexts where one specifies
+  what an item “comes with” or “has within it.” It functions similarly to English “with” or “-filled”
+  suffixes in certain contexts.
+writeup: 「入り」 (iri) is a suffix commonly attached to nouns to indicate that something **contains** or
+  **includes** that noun. It is frequently seen on packaging, menus, and descriptive labels to specify
+  ingredients, components, or additional items that come with a product. For instance, コーヒー牛乳 (coffee
+  milk) might be labeled 「砂糖入り」 (satou-iri) meaning “sugar included/with sugar.” This clearly indicates
+  the presence of sugar within the product. It is a very practical and common expression in daily life,
+  especially when describing food, drinks, or sets of items. While it shares a semantic field with expressions
+  indicating composition, 「入り」 specifically denotes a contained element, often an additive or a component
+  that can be distinguished from the main item. It is less about what something is *made of* entirely,
+  and more about what it *has inside* or *comes with*.
+false_friends:
+  - term: 〜付き
+    meaning: attached with, comes with (an accessory)
+    kind: similar expression
+    nuance: 「付き」 indicates something comes as an accessory or attachment, often external or a distinct
+      component. 「入り」 indicates something is contained *within* or *mixed into* the main item.
+    grammar_point: 〜付き (attached with)
+  - term: 〜まみれ
+    meaning: covered in, smeared with (often negative connotation)
+    kind: similar expression
+    nuance: 「まみれ」 describes being heavily covered or smeared with a substance, implying a mess or undesirable
+      state. 「入り」 is neutral and simply indicates inclusion.
+    grammar_point: 〜まみれ (covered in)
+  - term: 〜だらけ
+    meaning: full of (negative nuance)
+    kind: similar expression
+    nuance: 「だらけ」 means “full of” and carries a negative connotation, often implying an undesirable abundance.
+      「入り」 is neutral and simply indicates inclusion.
+    grammar_point: '[Noun]だらけ (full of, negative nuance)'
+  - term: 〜ずくめ
+    meaning: entirely, completely (often positive nuance)
+    kind: similar expression
+    nuance: 「ずくめ」 implies being entirely composed of or experiencing only one type of thing, often with
+      a positive or celebratory nuance. 「入り」 indicates specific contents, not necessarily an exclusive
+      composition.
+    grammar_point: '[Noun]ずくめ (entirely・completely)'
+  - term: 〜でできる
+    meaning: made of (material)
+    kind: often confused with
+    nuance: 「〜でできる」 states the material something is primarily composed of. 「入り」 specifies an ingredient
+      or component that is *in* something, but not necessarily its sole or primary material.
+    grammar_point: でできる (made of)
+post_false_friends_writeup: While 「入り」, 「〜付き」, 「〜まみれ」, 「〜だらけ」, 「〜ずくめ」, and 「〜でできる」 all relate to the composition
+  or contents of something, their nuances and specific uses differ. 「入り」 is used neutrally to state that
+  a particular component is included within an item. 「〜付き」 implies an accessory or attachment. 「〜まみれ」
+  and 「〜だらけ」 both convey being “full of” something, but typically with negative implications. 「〜ずくめ」,
+  in contrast, suggests being entirely filled with something, often positively. 「〜でできる」, on the other
+  hand, describes what something is fundamentally made of. Understanding these distinctions is crucial
+  for accurate description in Japanese.
+examples:
+  - english: This chocolate has nuts in it.
+    japanese:
+      - この チョコレート は {ナッツ 入り} です。
+      - この チョコレート は {ナッツ 入り} だ。
+      - この チョコレート、{ナッツ 入り}。
+      - この チョコレート は {ナッツ 入り} で ござい ます。
+    english_literally: This chocolate is nut-containing.
+    competing_grammar:
+      - competing_japanese:
+          - この チョコレート は ナッツ を 含み ます。
+        english: This chocolate contains nuts.
+        hint: 「含む」 is a more formal verb for containing, often used in ingredient lists. We are looking
+          for a common descriptive suffix.
+    scene: A person is looking at a chocolate bar.
+    register: teineigo (polite)
+    setting: informative
+  - english: I bought a pen with blue ink.
+    japanese:
+      - 青 インク {入り} の ペン を 買い まし た。
+      - 青 インク {入り} の ペン、買っ た よ。
+      - 青 インク {入り} の ペン、買っ ちゃっ た。
+    english_literally: I bought a blue ink containing pen.
+    competing_grammar:
+      - competing_japanese:
+          - 青 インク の ペン を 買い まし た。
+        english: I bought a pen of blue ink.
+        hint: While 「青インクのペン」 is possible, adding 「入り」 emphasizes the ink being a component of the pen,
+          especially if other ink colors are available.
+    scene: A student is showing a new pen.
+    register: casual
+    setting: friendly
+  - english: Could I have an iced coffee with milk, please?
+    japanese:
+      - 牛乳 {入り} アイス コーヒー を お 願い し ます。
+      - 牛乳 {入り} アイス コーヒー、ください。
+      - 牛乳 {入り} アイス コーヒー、もらえ ます か？
+    english_literally: Milk-containing iced coffee, please.
+    competing_grammar:
+      - competing_japanese:
+          - 牛乳 が 入っ て いる アイス コーヒー を お 願い し ます。
+        english: I'd like an iced coffee that has milk in it.
+        hint: 「入っている」 describes the state of having milk, whereas 「牛乳入り」 acts as a direct modifier for
+          the type of iced coffee.
+    scene: At a cafe, ordering a drink.
+    register: formal
+    setting: professional
+  - english: This story has a lot of emotion in it.
+    japanese:
+      - この 物語 は 感情 {入り} です ね。
+      - この 物語 は 感情 {入り} だ ね。
+      - この 物語 は 感情 {入り} です。
+    english_literally: This story is emotion-containing, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 物語 は 感情 的 です ね。
+        english: This story is emotional.
+        hint: 「感情的」 is an adjective describing something as emotional. 「感情入り」 specifically points out
+          the inclusion of emotion as a component.
+    scene: Two friends discussing a novel or film.
+    register: casual
+    setting: reflective
+  - english: This supplement contains vitamin C.
+    japanese:
+      - この サプリメント は ビタミン C {入り} です。
+      - この サプリメント は ビタミン C {入り} だ。
+      - この サプリメント、ビタミン C {入り}。
+    english_literally: This supplement is vitamin C-containing.
+    competing_grammar:
+      - competing_japanese:
+          - この サプリメント は ビタミン C を 含ん で い ます。
+        english: This supplement contains vitamin C.
+        hint: 「含んでいます」 is a more formal, verb-based way to state contents. 「入り」 is a concise adjectival
+          form.
+    scene: A pharmacist explaining a product to a customer.
+    register: formal
+    setting: informative
+  - english: I bought a bento box with fried chicken.
+    japanese:
+      - 唐揚げ {入り} 弁当 を 買い まし た。
+      - 唐揚げ {入り} 弁当、買っ た よ。
+      - 唐揚げ {入り} 弁当、買っ ちゃっ た。
+    english_literally: I bought a fried chicken-containing bento box.
+    competing_grammar:
+      - competing_japanese:
+          - 唐揚げ の 弁当 を 買い まし た。
+        english: I bought a fried chicken bento.
+        hint: 「唐揚げの弁当」 might imply a bento *for* fried chicken. 「入り」 clearly indicates fried chicken *is
+          in* the bento.
+    scene: Someone explaining what they got for lunch.
+    register: casual
+    setting: friendly
+  - english: She said it with a laugh.
+    japanese:
+      - 彼女 は 笑い {入り} で 言い まし た。
+      - 彼女 は 笑い {入り} で 言っ た よ。
+      - 彼女 は 笑い {入り} で 述べ まし た。
+    english_literally: She said it laugh-containing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 笑い ながら 言い まし た。
+        english: She said it while laughing.
+        hint: 「〜ながら」 describes simultaneous actions. 「笑い入り」 indicates the speech itself carried the element
+          of laughter.
+    scene: Describing someone's manner of speaking.
+    register: casual
+    setting: storytelling
+  - english: Do you want soup with egg in it?
+    japanese:
+      - 卵 {入り} スープ は いかが です か？
+      - 卵 {入り} スープ、どう？
+      - 卵 {入り} スープ、いる？
+    english_literally: How about egg-containing soup?
+    competing_grammar:
+      - competing_japanese:
+          - 卵 が 入っ て いる スープ は いかが です か？
+        english: How about soup that has egg in it?
+        hint: 「入っている」 is descriptive, while 「卵入り」 is a concise adjectival modifier for the soup.
+    scene: A host offering food to a guest.
+    register: teineigo (polite)
+    setting: supportive
+  - english: This set comes with batteries.
+    japanese:
+      - 電池 {入り} の セット です。
+      - 電池 {入り} の セット だ よ。
+      - 電池 {入り} の セット。
+    english_literally: It is a battery-containing set.
+    competing_grammar:
+      - competing_japanese:
+          - この セット は 電池 が {付い て い ます}。
+        english: This set comes with batteries.
+        hint: 「付いている」 suggests something is attached or provided alongside as an accessory. 「入り」 emphasizes
+          inclusion *within* the package itself.
+    scene: Explaining contents of a product package.
+    register: formal
+    setting: informative
+  - english: The painting had a signature.
+    japanese:
+      - その 絵 は サイン {入り} でし た。
+      - その 絵 は サイン {入り} だっ た よ。
+      - その 絵、サイン {入り} だっ た。
+    english_literally: That painting was signature-containing.
+    competing_grammar:
+      - competing_japanese:
+          - その 絵 に は サイン が し て あり まし た。
+        english: A signature had been put on that painting.
+        hint: 「してありました」 describes the action of putting a signature. 「サイン入り」 describes the painting *as
+          having* a signature, implying it is part of the work itself.
+    scene: Someone admiring a piece of art.
+    register: casual
+    setting: intimate
+post_example_writeup: As seen in the examples, 「入り」 is versatile and can be applied to both tangible and
+  intangible concepts, consistently denoting the presence or inclusion of the preceding noun. Its concise
+  nature makes it a highly efficient descriptor in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/入り

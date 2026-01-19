@@ -1,0 +1,224 @@
+grammar_point: することができる (can・be able to)
+learn_before:
+  - Number+も (emphatic quantity)
+  - Verb[dictionary] (dictionary form)
+  - '[Verb-dictionary]こと (nominalization)'
+  - できない (cannot do・unable to do)
+  - 代わりに (instead of・in exchange for)
+meaning: can; be able to
+pronunciation:
+  katakana: スル コト ガ デキル
+  romaji: suru koto ga dekiru
+formation:
+  Verb[dictionary form] + ことができる: Indicates that one has the ability or is allowed to perform an action.
+  Noun + を + することができる: Indicates the ability to do the action represented by the noun (e.g., to be able
+    to play sports, to be able to study).
+jlpt: N4
+etymology: The phrase 「することができる」 is a compound construction combining a verb in its dictionary form, followed
+  by 「こと」 (koto), which nominalizes the verb, and then 「ができる」 (ga dekiru), meaning 'can' or 'is possible'.
+  The verb 「できる」 (dekiru) itself originally stems from 「出きる」 (dekiru), meaning 'to come out' or 'to be
+  completed/accomplished.' Over time, its meaning evolved to 'to be capable' or 'to be possible.' Thus,
+  「Verb[dictionary form] + ることができる」 literally translates to 'the matter/act of doing [Verb] is possible/can
+  be accomplished.' This explicit nominalization provides clarity and can be used when emphasizing the
+  action as a distinct event that one is capable of.
+writeup: |-
+  The grammar point 「〜することができる」 (suru koto ga dekiru) is a way to express ability or possibility in Japanese. It literally translates to "to be able to do ~" or "the matter of ~ing is possible." This construction is formed by attaching 「こと」 (koto) and 「ができる」 (ga dekiru) to the dictionary form of a verb. For nouns that function as verbs (e.g., 勉強する for 'to study', 運転する for 'to drive'), the pattern can be 「Noun + を + することができる」.
+
+  While many verbs have a simple potential form (e.g., 食べる can become 食べられる for 'can eat', 行く can become 行ける for 'can go'), the 「〜することができる」 construction provides a universal way to express potential for any verb, including 「する」 itself (which becomes 「できる」 in its simple potential form).
+
+  The key difference between 「〜することができる」 and the simple potential form (e.g., 食べられる, 行ける, できる) often lies in nuance and emphasis.
+  -   **Simple Potential Form**: Generally more common and natural in everyday conversation. It's concise and directly conveys the ability.
+  -   **〜することができる**: Can be used when you want to explicitly state the *fact* of being able to do something, or when you are emphasizing the *possibility* or *capability* of a specific action. It tends to sound slightly more formal, objective, or analytical. It is also useful when the verb itself is 「する」, as 「することができる」 clearly distinguishes "can do" from other meanings of 「できる」 (e.g., "to be made," "to be completed").
+
+  This construction is particularly useful in written Japanese, formal settings, or when you want to avoid the potential ambiguity of simple potential forms, especially with verbs that also have passive forms that look identical (e.g., 食べられる can mean both 'can eat' and 'be eaten'). However, for 「する」, its potential form 「できる」 is distinct from its passive form 「される」.
+false_friends:
+  - term: Verb[potential form]
+    meaning: can; be able to
+    kind: similar expression
+    nuance: The simple potential form is generally more concise and common in casual speech. 「〜することができる」
+      explicitly nominalizes the action, which can convey a slightly more formal or emphatic tone.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: Verb[られる] (passive/potential)
+    meaning: can; be able to (potential) OR to be done (passive)
+    kind: often confused with
+    nuance: For many verbs, the potential form 「〜られる」 is identical to the passive form 「〜られる」, which can
+      lead to ambiguity. 「〜することができる」 avoids this ambiguity by explicitly stating capability. For する, its
+      potential form できる is distinct from passive される, but this ambiguity is common for other Ichidan
+      and Godan verbs.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: できる
+    meaning: can; be able to (potential form of する)
+    kind: similar expression
+    nuance: 「できる」 is the direct potential form of 「する」. 「することができる」 is a more explicit and sometimes formal
+      way to express the same meaning, emphasizing the action as a 'matter' that can be done. 「できる」 is
+      usually sufficient and more common.
+    grammar_point: Verb[(ら)れる] (potential)
+post_false_friends_writeup: While 「〜することができる」 expresses ability clearly and unambiguously, particularly
+  in formal contexts or when emphasizing the 'fact' of capability, the simple potential form of verbs
+  is often preferred for its conciseness and naturalness in everyday conversation. For most verbs, the
+  simple potential form (e.g., 食べられる, 行ける) is sufficient. For the verb 「する」, its direct potential form
+  is 「できる」, which is generally more common than 「することができる」, especially in casual speech. However, using
+  「することができる」 ensures clarity, especially when there might be a risk of confusing potential and passive
+  forms for other verbs.
+examples:
+  - english: I can speak Japanese.
+    japanese:
+      - 私 は 日本 語 を {話す こと が できる}。
+      - 私 は 日本 語 を {話す こと が でき ます}。
+    english_literally: As for me, Japanese to speak is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 日本 語 が {話せる}。
+        english: I can speak Japanese.
+        hint: 「話せる」 is the simpler, more common potential form of 話す. We're looking for the more explicit
+          'ことができる' construction.
+    scene: A student introducing themselves to a new Japanese class.
+    register: teineigo (polite)
+    setting: informative
+  - english: I can't swim.
+    japanese:
+      - 私 は 泳ぐ こと が {でき ない}。
+      - 私 は 泳ぐ こと が {でき ませ ん}。
+    english_literally: As for me, to swim is not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {泳げ ない}。
+        english: I can't swim.
+        hint: 「泳げない」 is the simpler, more natural potential form. We're looking for the 'ことができない' construction.
+    scene: A child explaining to friends why they can't join a pool game.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+  - english: He can drive a car.
+    japanese:
+      - 彼 は 車 の 運転 を {する こと が できる}。
+      - 彼 は 車 の 運転 を {する こと が でき ます}。
+    english_literally: As for him, car driving to do is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 車 の 運転 が {できる}。
+        english: He can drive a car.
+        hint: 「できる」 is the direct potential form of 「する」 and more common. We're looking for the explicit
+          nominalization.
+    scene: Explaining someone's skills during a job interview.
+    register: formal
+    setting: informative
+  - english: Can you cook?
+    japanese:
+      - 料理 を {する こと が でき ます か}。
+      - 料理 を {する こと が できる か}。
+    english_literally: Cooking to do is possible?
+    competing_grammar:
+      - competing_japanese:
+          - 料理 {でき ます か}。
+        english: Can you cook?
+        hint: This is a more direct and concise way to ask. We need the polite 'することができますか' form.
+    scene: Asking a new friend about their abilities for a potluck party.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Due to the snow, we cannot go outside today.
+    japanese:
+      - 雪 の ため、今日 は 外出 {する こと が でき ませ ん}。
+      - 雪 の ため、今日 は 外出 {する こと が でき ない}。
+    english_literally: Snow's reason, today, going out to do is not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 雪 の ため、今日 は {外出 でき ませ ん}。
+        english: Due to the snow, we cannot go out today.
+        hint: This is a more concise negative form using the verb directly. We're looking for the more
+          explicit 'することができません' construction.
+    scene: An office worker informing colleagues that the company is closed due to severe weather.
+    register: formal
+    setting: serious
+  - english: My grandmother can still walk long distances.
+    japanese:
+      - 私 の 祖母 は まだ 長い 距離 を {歩く こと が でき ます}。
+      - 私 の 祖母 は まだ 長い 距離 を {歩く こと が できる}。
+    english_literally: As for my grandmother, still long distance to walk is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 祖母 は まだ 長い 距離 が {歩け ます}。
+        english: My grandmother can still walk long distances.
+        hint: 「歩けます」 is the potential form of 歩く. We are focusing on the 'ことができる' construction.
+    scene: Talking about a family member's surprising physical health to a relative.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+  - english: With this new software, I can now create professional presentations.
+    japanese:
+      - この 新しい ソフト で、プロ の プレゼンテーション を {作成 する こと が でき ます}。
+      - この 新しい ソフト で、プロ の プレゼンテーション を {作成 する こと が できる}。
+    english_literally: With this new software, professional presentations to create is possible.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい ソフト で、プロ の プレゼンテーション が {作成 でき ます}。
+        english: With this new software, professional presentations can be created (by me).
+        hint: 「作成できます」 is a more direct way to express ability with a noun verb. We are looking for the
+          'することができる' construction.
+    scene: A business person demonstrating newly acquired tools in a team meeting.
+    register: formal
+    setting: informative
+  - english: Anyone can make mistakes.
+    japanese:
+      - 誰 で も 間違い を {する こと が できる}。
+      - 誰 で も 間違い を {する こと が でき ます}。
+    english_literally: Anyone, mistake to do is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 で も 間違い が {できる}。
+        english: Anyone can make mistakes.
+        hint: 「できる」 here implies 'can make a mistake'. We are looking for the explicitly nominalized 'することができる'
+          form.
+    scene: A teacher giving general life advice to students after an exam.
+    register: formal
+    setting: instructional
+  - english: You can use this room until 5 PM.
+    japanese:
+      - この 部屋 は 午後 5 時 まで {使用 する こと が でき ます}。
+      - この 部屋 は 午後 5 時 まで {使用 する こと が できる}。
+    english_literally: As for this room, until 5 PM to use is possible.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 午後 5 時 まで {使用 でき ます}。
+        english: You can use this room until 5 PM.
+        hint: 「使用できます」 is a more direct statement of permission/possibility. We're looking for the 'することができる'
+          construction.
+    scene: A receptionist informing a client about the availability of a meeting room.
+    register: teineigo (polite)
+    setting: professional
+  - english: If you practice diligently, you will be able to play the piano.
+    japanese:
+      - 熱心 に 練習 すれ ば、ピアノ を {弾く こと が できる} でしょう。
+      - 熱心 に 練習 すれ ば、ピアノ を {弾く こと が できる} だろう。
+    english_literally: If you practice diligently, piano to play will be possible.
+    competing_grammar:
+      - competing_japanese:
+          - 熱心 に 練習 すれ ば、ピアノ が {弾ける} でしょう。
+        english: If you practice diligently, you will be able to play the piano.
+        hint: 「弾ける」 is the potential form of 弾く. We are focusing on the 'ことができる' construction.
+    scene: A music teacher encouraging a student who is struggling but showing potential.
+    register: teineigo (polite)
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: female
+  - english: When I was a child, I could run very fast.
+    japanese:
+      - 子供 の 時、とても 速く {走る こと が でき まし た}。
+      - 子供 の 時、とても 速く {走る こと が でき た}。
+    english_literally: When child, very fast to run was possible.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 時、とても 速く {走れ まし た}。
+        english: When I was a child, I could run very fast.
+        hint: 「走れました」 is the past potential form of 走る. We're looking for the 'ことができました' construction.
+    scene: An adult male reminiscing with a younger family member about his childhood athletic abilities.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: older
+post_example_writeup: As illustrated in the examples, 「〜することができる」 is a versatile phrase for expressing
+  ability and possibility across various contexts, from daily conversation to formal announcements, from
+  plain to polite speech. While often interchangeable with simpler potential verb forms, its explicit
+  structure can be advantageous for clarity and emphasis, especially when you want to highlight the *feasibility*
+  of an action.

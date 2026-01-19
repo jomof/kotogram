@@ -1,0 +1,281 @@
+grammar_point: ことによって (by virtue of)
+learn_before:
+  - ことで (by means of)
+meaning: by means of; due to
+pronunciation:
+  katakana: コトニヨッテ
+  romaji: koto ni yotte
+formation:
+  Verb[plain form] + ことによって: Indicates that the action of the verb is the means or cause of a result.
+  Noun + ことによって: Indicates that the noun (often representing an action or state) is the means or cause
+    of a result. This is less common and often implies a nominalized concept, sometimes interchangeable
+    with Noun + によって.
+jlpt: N2
+etymology: 'The phrase 「ことによって」 is composed of three elements: 「こと」(事), 「に」, and 「よって」. 「こと」(事) functions
+  as a nominalizer, transforming the preceding verb or clause into a noun-like concept, referring to an
+  ''act'', ''fact'', or ''matter''. 「に」 is a particle often indicating a point of contact, method, or
+  cause. 「よって」 is the te-form of the verb 「寄る」(yoru), which means ''to approach'', ''to rely on'', or
+  ''to be based on''. Therefore, 「ことによって」 literally means ''by relying on the fact/act of'' or ''through
+  the matter of'', conveying the sense of ''by means of'' or ''due to''. Its evolution highlights a shift
+  from a concrete physical reliance to a more abstract causal relationship, emphasizing the action or
+  state as the direct means to an outcome.'
+writeup: |-
+  The grammatical pattern 「ことによって」 is used to indicate the means or cause through which a certain outcome or result is brought about. It directly links an action or a state (expressed by the preceding verb or nominalized noun) to its consequence, highlighting how something was achieved or why something happened. This expression carries a more formal and objective tone than simpler causal forms like 「から」 or 「ので」.
+
+  **Key Differences with 「によって」:**
+  While 「によって」 alone can also mean 'by means of' or 'due to', 「ことによって」 places specific emphasis on the *action* or *fact* that serves as the means or cause. The 「こと」 nominalizes the preceding verb phrase, essentially turning 'doing X' into 'the act of doing X' or 'the fact that X happened'. This makes 「ことによって」 particularly suitable when you want to pinpoint a specific action or event as the precise catalyst for a result. For example, 「努力することによって」(by making efforts) emphasizes the act of making efforts, whereas 「努力によって」(by efforts) is slightly more general.
+
+  **Usage Contexts:**
+  「ことによって」 is frequently encountered in formal writing, academic papers, news reports, and explanatory contexts where clarity and objectivity are important. It is less common in casual conversation, where more informal causal expressions would typically be preferred. Its usage implies a clear, direct, and often logical cause-and-effect relationship.
+
+  **Interchangeability:**
+  In some contexts, 「ことによって」 can be interchangeable with 「ことにより」 (attributive form) or 「ことによる」 (also attributive, often followed by a noun). For instance, 「努力することによって成功した」 (I succeeded by making efforts) and 「努力することにより成功した」 convey very similar meanings.
+false_friends:
+  - term: によって (by means of)
+    meaning: by means of; by; due to; according to
+    kind: similar expression
+    nuance: 「によって」 is a broader term and can refer to an agent (e.g., by an artist), a rule (according
+      to regulations), or a general cause. 「ことによって」 specifically emphasizes a *specific act* or *fact*
+      as the means or cause, making it more focused.
+    grammar_point: <suggest>:によって (means・method)
+  - term: から (because)
+    meaning: because; from
+    kind: similar expression
+    nuance: 「から」 is a general causal particle, often used for subjective reasons and in casual speech.
+      「ことによって」 is more formal, objective, and emphasizes the *means* or *method* that led to a result,
+      rather than just a general reason.
+    grammar_point: <suggest>:から (because・so)
+  - term: ために (for the purpose of・because of)
+    meaning: for the sake of; for the purpose of; because of
+    kind: similar expression
+    nuance: 「ために」 can express both purpose and cause. When expressing cause, it's generally more subjective
+      than 「ことによって」. More importantly, 「ために」 often implies a *reason* for something, whereas 「ことによって」
+      specifically refers to the *method* or *action* that produces a result.
+    grammar_point: <suggest>:Verb[casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)
+  - term: おかげで・せいで (because of, positive・negative result)
+    meaning: thanks to; due to (negative nuance)
+    kind: similar expression
+    nuance: These expressions carry a subjective, emotional nuance (gratitude for 「おかげで」, blame for 「せいで」).
+      「ことによって」 is objective and neutral, simply stating the means or cause without personal feeling.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+post_false_friends_writeup: When distinguishing 「ことによって」 from similar expressions, remember that 「ことによって」
+  highlights the concrete action or fact as the *mechanism* leading to a result. Unlike the broader 「によって」,
+  it emphasizes the role of the preceding action. It is also more formal and objective than other causal
+  expressions, which often carry subjective or emotional undertones.
+examples:
+  - english: By studying hard, I was able to pass the exam.
+    japanese:
+      - 一生 懸命 勉強 {する こと に よっ て}、試験 に 合格 でき まし た。
+      - 一生 懸命 勉強 {する こと に よっ て}、試験 に 合格 でき た。
+    english_literally: By means of studying hard, I was able to pass the exam.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 勉強 に よっ て、試験 に 合格 でき まし た。
+        english: By means of hard study, I was able to pass the exam.
+        hint: 「によって」 generally connects a noun (like 'study') as the means, but 「ことによって」 specifically
+          emphasizes the *act* of studying. We're looking for an emphasis on the action.
+      - competing_japanese:
+          - 一生 懸命 勉強 し た から、試験 に 合格 でき まし た。
+        english: Because I studied hard, I was able to pass the exam.
+        hint: 「から」 states a reason in a general way. We're looking for an expression that emphasizes the
+          *method* or *means* of achieving the result.
+    scene: A student is explaining their success to a friend.
+    register: semi-formal
+    setting: informative
+  - english: Through the development of new technology, our lives have become much more convenient.
+    japanese:
+      - 新しい 技術 を 開発 {する こと に よっ て}、私 達 の 生活 は 大変 便利 に なり まし た。
+      - 新しい 技術 を 開発 {する こと に よっ て}、私 達 の 生活 は 大変 便利 に なっ た。
+    english_literally: By means of developing new technology, our lives became very convenient.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 の 開発 に よっ て、私 達 の 生活 は 大変 便利 に なり まし た。
+        english: Due to the development of new technology, our lives became very convenient.
+        hint: 「によって」 is broader. We're looking for an expression that highlights the *act* of developing
+          as the specific means.
+      - competing_japanese:
+          - 新しい 技術 を 開発 し た の で、私 達 の 生活 は 大変 便利 に なり まし た。
+        english: Because new technology was developed, our lives became very convenient.
+        hint: 「ので」 expresses a reason. We're looking for a phrase that specifically states the *means*
+          or *method* that brought about the change.
+    scene: A presenter is giving a speech on technological progress.
+    register: formal
+    setting: academic
+  - english: By raising prices, the company's profits increased significantly.
+    japanese:
+      - 価格 を 値上げ {する こと に よっ て}、会社 の 利益 は 大幅 に 増加 し た。
+      - 価格 を 値上げ {する こと に よっ て}、会社 の 利益 は 大幅 に 増加 し まし た。
+    english_literally: By means of raising prices, the company's profits greatly increased.
+    competing_grammar:
+      - competing_japanese:
+          - 価格 の 値上げ に よっ て、会社 の 利益 は 大幅 に 増加 し た。
+        english: Due to the price increase, the company's profits significantly increased.
+        hint: 「によって」 focuses on the general cause. We're looking for an expression that specifies the
+          *action* of raising prices as the method.
+      - competing_japanese:
+          - 価格 を 値上げ し た ため、会社 の 利益 は 大幅 に 増加 し た。
+        english: For the purpose of raising prices, the company's profits significantly increased. (or
+          Due to raising prices...)
+        hint: 「ため」 can imply purpose or a general reason. We're looking for an expression that clearly
+          indicates the *means* or *way* something was achieved.
+    scene: An economist is analyzing market trends.
+    register: formal
+    setting: professional
+  - english: Through repeated practice, anyone can improve their skills.
+    japanese:
+      - 繰り返し 練習 {する こと に よっ て}、誰 で も スキル を 向上 さ せる こと が でき ます。
+      - 繰り返し 練習 {する こと に よっ て}、誰 で も スキル を 向上 さ せる こと が できる。
+    english_literally: By means of repeatedly practicing, anyone can improve their skills.
+    competing_grammar:
+      - competing_japanese:
+          - 繰り返し 練習 に よっ て、誰 で も スキル を 向上 さ せる こと が でき ます。
+        english: By means of repeated practice, anyone can improve their skills.
+        hint: While similar, 「によって」 here refers to the noun 'practice'. We're looking for an expression
+          that emphasizes the *action* of practicing.
+      - competing_japanese:
+          - 繰り返し 練習 する なら、誰 で も スキル を 向上 さ せる こと が でき ます。
+        english: If you practice repeatedly, anyone can improve their skills.
+        hint: 「なら」 introduces a condition. We're looking for a phrase that expresses the *method* or *way*
+          to achieve the result.
+    scene: A coach is motivating their team.
+    register: formal
+    setting: instructional
+  - english: By improving communication, team efficiency will improve.
+    japanese:
+      - コミュニケーション を 改善 {する こと に よっ て}、チーム の 効率 が 高まる でしょう。
+      - コミュニケーション を 改善 {する こと に よっ て}、チーム の 効率 が 高まる だろう。
+    english_literally: By means of improving communication, the team's efficiency will likely increase.
+    competing_grammar:
+      - competing_japanese:
+          - コミュニケーション の 改善 に よっ て、チーム の 効率 が 高まる でしょう。
+        english: Due to the improvement of communication, team efficiency will likely improve.
+        hint: 「によって」 refers to the noun 'improvement'. We're looking for an expression that emphasizes
+          the *action* of improving communication as the means.
+      - competing_japanese:
+          - コミュニケーション を 改善 すれ ば、チーム の 効率 が 高まる でしょう。
+        english: If communication is improved, team efficiency will likely improve.
+        hint: 「すれば」 expresses a conditional. We're looking for a phrase that indicates the *method* by
+          which efficiency will increase.
+    scene: A manager is explaining a new strategy to their team.
+    register: formal
+    setting: professional
+  - english: By listening carefully to others' opinions, one can gain new perspectives.
+    japanese:
+      - 他 の 人 の 意見 に よく 耳 を 傾ける {こと に よっ て}、新しい 視点 を 得る こと が でき ます。
+      - 他 の 人 の 意見 に よく 耳 を 傾ける {こと に よっ て}、新しい 視点 を 得る こと が できる。
+    english_literally: By means of listening carefully to other people's opinions, one can gain new perspectives.
+    competing_grammar:
+      - competing_japanese:
+          - 他 の 人 の 意見 に よく 耳 を 傾ける こと で、新しい 視点 を 得る こと が でき ます。
+        english: By listening carefully to others' opinions, one can gain new perspectives.
+        hint: 「ことで」 can also mean 'by means of', but 「ことによって」 tends to be more formal and emphasizes the
+          specific action as the instrumental cause.
+      - competing_japanese:
+          - 他 の 人 の 意見 に よく 耳 を 傾ける から、新しい 視点 を 得る こと が でき ます。
+        english: Because one listens carefully to others' opinions, one can gain new perspectives.
+        hint: 「から」 states a general reason. We're looking for an expression that specifically identifies
+          the *action* as the means.
+    scene: A mentor is advising a mentee.
+    register: formal
+    setting: supportive
+  - english: By conducting thorough research, they discovered a new phenomenon.
+    japanese:
+      - 徹底 的 な 研究 を 行う {こと に よっ て}、彼 ら は 新しい 現象 を 発見 し た。
+      - 徹底 的 な 研究 を 行う {こと に よっ て}、彼 ら は 新しい 現象 を 発見 し まし た。
+    english_literally: By means of conducting thorough research, they discovered a new phenomenon.
+    competing_grammar:
+      - competing_japanese:
+          - 徹底 的 な 研究 に よっ て、彼 ら は 新しい 現象 を 発見 し た。
+        english: Through thorough research, they discovered a new phenomenon.
+        hint: 「によって」 can apply to a noun like 'research'. We're looking for an expression that emphasizes
+          the *action* of conducting research as the method.
+      - competing_japanese:
+          - 徹底 的 な 研究 を 行っ た 結果、彼 ら は 新しい 現象 を 発見 し た。
+        english: As a result of conducting thorough research, they discovered a new phenomenon.
+        hint: 「結果」 emphasizes the outcome following an action. We're looking for a phrase that specifies
+          the *means* or *method* that led to the discovery.
+    scene: A scientist is presenting findings at a conference.
+    register: formal
+    setting: academic
+  - english: By reducing waste, the factory aims to achieve zero emissions.
+    japanese:
+      - 廃棄 物 を 削減 {する こと に よっ て}、工場 は ゼロ エミッション を 目指し ます。
+      - 廃棄 物 を 削減 {する こと に よっ て}、工場 は ゼロ エミッション を 目指す。
+    english_literally: By means of reducing waste, the factory aims for zero emissions.
+    competing_grammar:
+      - competing_japanese:
+          - 廃棄 物 の 削減 に よっ て、工場 は ゼロ エミッション を 目指し ます。
+        english: Due to the reduction of waste, the factory aims for zero emissions.
+        hint: 「によって」 refers to the general noun 'reduction'. We're looking for a phrase that emphasizes
+          the *action* of reducing waste as the means.
+      - competing_japanese:
+          - 廃棄 物 を 削減 する ため に、工場 は ゼロ エミッション を 目指し ます。
+        english: In order to reduce waste, the factory aims for zero emissions.
+        hint: 「ために」 expresses purpose. We're looking for an expression that describes the *means* used
+          to achieve the goal, not just the purpose.
+    scene: An environmental report about a factory's efforts.
+    register: formal
+    setting: technical
+  - english: By learning from past mistakes, we can avoid similar failures in the future.
+    japanese:
+      - 過去 の 失敗 から 学ぶ {こと に よっ て}、将来 同様 の 失敗 を 避ける こと が でき ます。
+      - 過去 の 失敗 から 学ぶ {こと に よっ て}、将来 同様 の 失敗 を 避ける こと が できる。
+    english_literally: By means of learning from past failures, we can avoid similar failures in the future.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 失敗 から 学ぶ こと で、将来 同様 の 失敗 を 避ける こと が でき ます。
+        english: By learning from past mistakes, we can avoid similar failures in the future.
+        hint: 「ことで」 can also express means, but 「ことによって」 provides a slightly more formal and emphatic
+          tone regarding the specific action.
+      - competing_japanese:
+          - 過去 の 失敗 から 学ぶ なら、将来 同様 の 失敗 を 避ける こと が でき ます。
+        english: If you learn from past mistakes, you can avoid similar failures in the future.
+        hint: 「なら」 introduces a conditional statement. We're looking for an expression that explicitly
+          states the *means* by which future failures can be avoided.
+    scene: A team reflecting on a project.
+    register: formal
+    setting: reflective
+  - english: By regularly reviewing, one can deepen their understanding.
+    japanese:
+      - 定期 的 に 復習 {する こと に よっ て}、理解 を 深める こと が でき ます。
+      - 定期 的 に 復習 {する こと に よっ て}、理解 を 深める こと が できる。
+    english_literally: By means of regularly reviewing, one can deepen their understanding.
+    competing_grammar:
+      - competing_japanese:
+          - 定期 的 に 復習 する こと で、理解 を 深める こと が でき ます。
+        english: By regularly reviewing, one can deepen their understanding.
+        hint: 「ことで」 is similar but 「ことによって」 adds a slightly more formal and precise nuance emphasizing
+          the means.
+      - competing_japanese:
+          - 定期 的 に 復習 する と、理解 を 深める こと が でき ます。
+        english: If you review regularly, you can deepen your understanding.
+        hint: 「と」 describes an inevitable consequence or a general truth. We're looking for an expression
+          that highlights the *action* of reviewing as the method for deepening understanding.
+    scene: A teacher giving study advice to students.
+    register: formal
+    setting: instructional
+  - english: By accepting various opinions, we can arrive at a better solution.
+    japanese:
+      - 様々 な 意見 を 受け入れる {こと に よっ て}、より 良い 解決 策 に たどり着く こと が でき ます。
+      - 様々 な 意見 を 受け入れる {こと に よっ て}、より 良い 解決 策 に たどり着く こと が できる。
+    english_literally: By means of accepting various opinions, we can reach a better solution.
+    competing_grammar:
+      - competing_japanese:
+          - 様々 な 意見 を 受け入れる こと で、より 良い 解決 策 に たどり着く こと が でき ます。
+        english: By accepting various opinions, we can arrive at a better solution.
+        hint: 「ことで」 is similar, but 「ことによって」 provides a more formal and slightly stronger emphasis on
+          the action as the means.
+      - competing_japanese:
+          - 様々 な 意見 を 受け入れる から、より 良い 解決 策 に たどり着く こと が でき ます。
+        english: Because we accept various opinions, we can arrive at a better solution.
+        hint: 「から」 states a general reason. We're looking for a phrase that specifically identifies the
+          *action* of accepting opinions as the method for finding a solution.
+    scene: A facilitator leading a group discussion.
+    register: formal
+    setting: negotiating
+post_example_writeup: These examples demonstrate how 「ことによって」 serves to clarify the causal link between
+  an action or a state and its resulting outcome. It is a precise and objective way to explain how something
+  was achieved, making it a valuable tool in formal communication and detailed explanations. Pay attention
+  to how it always points to a specific action or fact as the instrumental factor.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことによって

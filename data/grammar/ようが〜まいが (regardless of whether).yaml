@@ -1,0 +1,412 @@
+grammar_point: ようが〜まいが (regardless of whether)
+learn_before:
+  - Verb[まい] (negative volitional)
+meaning: Even if; no matter what; whether or not (emphatic)
+pronunciation:
+  katakana: ヨウガ〜マイガ
+  romaji: you ga ~ mai ga
+formation:
+  Verb (volitional) + が + Verb (negative volitional/dictionary) + が: Used for verbs to express 'whether
+    or not' something happens.
+  い-Adjective (かろう) + が + い-Adjective (negative plain) + が: Used for い-adjectives to express 'whether
+    or not' a state is true, typically using an antonym for the negative.
+  Noun/な-Adjective (であろう/だろう) + が + Noun/な-Adjective (negative plain) + が: Used for nouns and な-adjectives
+    to express 'whether or not' something is true, typically using an antonym for the negative.
+  Interrogative + Verb (volitional) + が: Used with interrogatives (e.g., 何を, 誰が) to mean 'no matter what/who'.
+jlpt: N1
+etymology: This grammar point is formed by combining the volitional form of a verb (う or よう) with the
+  negative volitional form (まい), joined by the particle が. The volitional form, originating from classical
+  Japanese, expresses intent or possibility, while まい (a contraction of まい+ある) serves as a negative volitional
+  or presumptive. The particle が, functioning concessively, links these two opposing possibilities. Historically,
+  the structure reflects a robust expression of indifference to outcomes, implying 'whether it is to be
+  so or not to be so, still X.'
+writeup: The structure 「ようが〜まいが」 combines the positive and negative volitional forms of a verb to express
+  that, **regardless of whether something happens or not**, the result will be the same. It is an emphatic
+  way of stating "whether or not (A), (B) will happen.". The particle が is used after both the positive
+  and negative forms. While this pattern is most commonly used with verbs (e.g., 行こうが 行くまいが), it can also
+  be applied to い-adjectives and な-adjectives/nouns. For い-adjectives, the hypothetical volitional form
+  (かろう) is used, and for な-adjectives and nouns, the auxiliary verb だ conjugates to であろう or だろう. In cases
+  where まい cannot be used (i.g., with adjectives and nouns), an antonym or a contrasting concept is typically
+  paired with the positive volitional form (e.g., 難しかろうが 易しかろうが, 社長であろうが 平社員であろうが). This creates a similar
+  'whether or not' meaning. This grammar pattern often reflects the speaker's strong will, determination,
+  or unwavering opinion that will not change, irrespective of the conditions described. It conveys a sense
+  of certainty about the inevitable outcome or the speaker's resolve.
+false_friends:
+  - term: 〜ても〜なくても (whether or not)
+    meaning: Whether ~ or not
+    kind: synonym
+    nuance: While similar in meaning, 「〜ても〜なくても」 focuses more on the condition as a general concession,
+      whereas 「ようが〜まいが」 emphasizes a stronger, more indifferent, or determined stance that the outcome
+      is fixed regardless of the opposing conditions. It conveys a more emphatic and determined nuance.
+    grammar_point: 〜ても〜なくても (whether or not)
+  - term: ～てでも (even if I have to・no matter what it takes)
+    meaning: Even if I have to, by any or all means, no matter what
+    kind: synonym
+    nuance: 「てでも」 emphasizes the *effort* one is willing to expend or the extreme measure one might take
+      to achieve something. In contrast, 「ようが〜まいが」 focuses on the *result* being unchanged regardless
+      of opposing conditions, rather than the effort involved in causing that result.
+    grammar_point: ～てでも (even if I have to・no matter what it takes)
+  - term: とも (even if・no matter)
+    meaning: Even if, no matter
+    kind: synonym
+    nuance: 「とも」 is a broader, more general concessive expression that doesn't inherently require the
+      volitional form. 「ようが〜まいが」 specifically highlights two opposing volitional possibilities, making
+      it more specific and emphatic about a binary choice or condition.
+    grammar_point: とも (even if・no matter)
+  - term: ても (even if・even though)
+    meaning: Even if, even though
+    kind: synonym
+    nuance: 「ても」 is a more general expression of concession. 「ようが〜まいが」 is significantly more emphatic
+      and specifically contrasts two opposing volitional possibilities, suggesting an unshakeable outcome
+      or stance despite either possibility.
+    grammar_point: ても (even if・even though)
+  - term: (っ)たって (even if・even though)
+    meaning: Even if, even though, no matter how
+    kind: synonym
+    nuance: 「たって」 is a more colloquial and emphatic version of 「ても」, often emphasizing the degree or extent
+      of something. While it conveys concession, 「ようが〜まいが」 specifically contrasts two opposing possibilities
+      (often volitional) and asserts that the outcome is unchanged regardless of which of the two occurs.
+    grammar_point: (っ)たって (even if・even though)
+  - term: にしろ〜にしろ (whether... or...)
+    meaning: Whether A or B; Regardless of A or B
+    kind: similar expression
+    nuance: 「〜にしろ〜にしろ」 functions similarly to 「ようが〜まいが」 in presenting two contrasting possibilities with
+      the same outcome. However, 「ようが〜まいが」 often implies a stronger, more assertive stance of indifference
+      or determination, whereas 「〜にしろ〜にしろ」 can sometimes just state that the conditions are equally irrelevant,
+      without necessarily implying the same degree of speaker's resolve.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+post_false_friends_writeup: While several expressions can convey a sense of 'even if' or 'no matter what',
+  「ようが〜まいが」 stands out due to its emphatic nature and its specific focus on two contrasting, often volitional,
+  possibilities. It asserts that the outcome is fixed, irrespective of either condition. Other forms,
+  like 「ても」 or 「てでも」, might highlight general concession or the effort required, but they lack the distinct
+  binary emphasis inherent in 「ようが〜まいが」.
+examples:
+  - english: Whether I go or not, his attitude probably won't change.
+    japanese:
+      - 私 が {行こう が 行く まい が}、彼 の 態度 は 変わら ない だろう。
+      - 私 が {行こう が 行く まい が}、彼 の 態度 は 変わら ない でしょう。
+    english_literally: As for me, whether I go or don't go, his attitude probably won't change.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が {行っ て も 行か なく て も}、彼 の 態度 は 変わら ない だろう。
+        english: Whether I go or not, his attitude probably won't change.
+        hint: 「〜ても〜なくても」 is a more general concession, stating that both possibilities lead to the same
+          result. 「ようが〜まいが」 emphasizes a stronger, more indifferent, or determined stance that the outcome
+          is fixed regardless of the opposing conditions. We're looking for a more emphatic expression
+          of indifference.
+      - competing_japanese:
+          - 私 が {行こう と 行く まい と}、彼 の 態度 は 変わら ない だろう。
+        english: Whether I go or not, his attitude probably won't change.
+        hint: 「とも」 is a broader concessive. While similar, 「ようが〜まいが」 often carries a stronger, more emphatic
+          binary contrast, specifically pairing the positive and negative volitional actions, highlighting
+          that the outcome is fixed irrespective of either. We're looking for a more direct pairing of
+          opposite volitional choices.
+      - competing_japanese:
+          - 私 が {行く に しろ 行か ない に しろ}、彼 の 態度 は 変わら ない だろう。
+        english: Whether I go or don't go, his attitude probably won't change.
+        hint: 「〜にしろ〜にしろ」 states that both conditions are equally irrelevant to the outcome. 「ようが〜まいが」
+          here conveys a stronger, more assertive commitment that won't be swayed by the job's difficulty.
+          We're aiming for a slightly more determined nuance.
+    scene: A friend is debating attending an event where someone they dislike will be present, expressing
+      resignation about the situation.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「行こう が 行く まい が」 expresses the speaker's strong conviction that their action (going
+      or not going) will have no bearing on the other person's behavior, conveying a sense of resignation
+      or indifference. The casual register and the use of plain form ending 「変わらないだろう」 are suitable for
+      a younger female speaker talking to a male friend.
+  - english: Whether that job is difficult or easy, I will do my best.
+    japanese:
+      - その 仕事 が {難しかろう が 易しかろう が}、最善 を 尽くし ます。
+      - その 仕事 が {難しかろう が 易しかろう が}、最善 を 尽くす。
+    english_literally: As for that job, whether it is difficult or easy, I will do my best.
+    competing_grammar:
+      - competing_japanese:
+          - その 仕事 が {難しく て も 易しく て も}、最善 を 尽くし ます。
+        english: Even if that job is difficult or easy, I will do my best.
+        hint: 「〜ても〜ても」 (with antonyms) is a general concession, stating that both possibilities lead to
+          the same result. 「ようが〜まいが」 with い-adjectives (using 「かろうが」) provides a more emphatic and determined
+          tone that the effort will be given regardless of the extreme conditions. We want to express
+          a stronger commitment.
+      - competing_japanese:
+          - その 仕事 が {難しかろう と 易しかろう と}、最善 を 尽くし ます。
+        english: Whether that job is difficult or easy, I will do my best.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 in this context slightly enhances the sense of
+          the speaker's unyielding determination despite the contrasting qualities of the job. We're looking
+          for a slightly more resolute nuance.
+      - competing_japanese:
+          - その 仕事 が {難しい に しろ 易しい に しろ}、最善 を 尽くし ます。
+        english: Whether that job is difficult or easy, I will do my best.
+        hint: 「〜にしろ〜にしろ」 states that both conditions are equally irrelevant to the outcome. 「ようが〜まいが」
+          here conveys a stronger, more assertive commitment that won't be swayed by the job's difficulty.
+          We're aiming for a slightly more determined nuance.
+    scene: A new employee is assuring their boss during a performance review that they are committed to
+      any task.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「難しかろう が 易しかろう が」 demonstrates a strong, unwavering commitment to putting in full
+      effort, regardless of the challenge level of the task, conveying a sense of commitment and resolve.
+      The formal register and polite ending 「尽くします」 align with a younger male employee addressing a group
+      in a professional setting, conveying respect while asserting determination.
+  - english: Whether he's the company president or a regular employee, I don't trust him.
+    japanese:
+      - 彼 が {社長 で あろう が 平 社員 で あろう が}、私 は 彼 を 信用 し ない。
+      - 彼 が {社長 で あろう が 平 社員 で あろう が}、私 は 彼 を 信用 し ませ ん。
+    english_literally: As for him, whether he is the company president or a regular employee, I do not
+      trust him.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が {社長 で も 平 社員 で も}、私 は 彼 を 信用 し ない。
+        english: Even if he is the company president or a regular employee, I don't trust him.
+        hint: While 「〜でも〜でも」 conveys concession, 「ようが〜まいが」 (using 「であろうが」) more strongly emphasizes that
+          the speaker's firm opinion is completely uninfluenced by the contrasting statuses. We're expressing
+          an unwavering personal conviction.
+      - competing_japanese:
+          - 彼 が {社長 で あろう と 平 社員 で あろう と}、私 は 彼 を 信用 し ない。
+        english: Whether he's the company president or a regular employee, I don't trust him.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 gives a slightly stronger emphasis to the speaker's
+          deep-seated, unshakable distrust, regardless of the person's status. We're looking for a more
+          decisive expression of distrust.
+      - competing_japanese:
+          - 彼 が {社長 に しろ 平 社員 に しろ}、私 は 彼 を 信用 し ない。
+        english: Whether he's the company president or a regular employee, I will not trust him.
+        hint: 「〜にしろ〜にしろ」 states that both statuses are irrelevant to the speaker's trust. However, 「ようが〜まいが」
+          provides a slightly more emphatic tone, highlighting that the speaker's firm personal conviction
+          is unswayed by status. We're emphasizing a strong, personal judgment.
+    scene: Someone expressing deep distrust towards a colleague, indicating that their opinion is personal
+      and not based on status.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「社長であろう が 平社員であろう が」 emphasizes that the speaker's lack of trust is a fundamental
+      personal judgment, completely uninfluenced by the individual's position or title. The plain form
+      ending 「信用しない」 is appropriate for a semi-formal setting where an older female speaker expresses
+      a firm opinion to a male listener.
+  - english: Whether this plan succeeds or fails, let's use the experience we gained for the next one.
+    japanese:
+      - この 計画 が {成功 しよう が 失敗 しよう が}、我々 は 得 た 経験 を 次 に 活かそう。
+      - この 計画 が {成功 しよう が 失敗 しよう が}、我々 は 得 た 経験 を 次 に 活かし ましょう。
+    english_literally: As for this plan, whether it succeeds or fails, let us make use of the gained experience
+      for the next one.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が {成功 し て も 失敗 し て も}、我々 は 得 た 経験 を 次 に 活かそう。
+        english: Even if this plan succeeds or fails, let's use the experience we gained for the next
+          one.
+        hint: 「〜ても〜ても」 (with antonyms) is a general concession. 「ようが〜まいが」 emphasizes a more proactive
+          and resilient stance, highlighting that the team's commitment to learning remains constant despite
+          the contrasting outcomes. We want to express a stronger commitment to learning from *any* outcome.
+      - competing_japanese:
+          - この 計画 が {成功 しよう と 失敗 しよう と}、我々 は 得 た 経験 を 次 に 活かそう。
+        english: Whether this plan succeeds or fails, I will use the experience we gained for the next
+          one.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 here reinforces the team's unwavering commitment
+          to growth and learning regardless of the project's fate, carrying a slightly more resolute tone.
+          We're emphasizing an unwavering commitment to improvement.
+      - competing_japanese:
+          - この 計画 が {成功 する に しろ 失敗 する に しろ}、我々 は 得 た 経験 を 次 に 活かそう。
+        english: Whether this plan succeeds or fails, we will use the experience we gained for the next
+          one.
+        hint: 「〜にしろ〜にしろ」 focuses on the irrelevance of the two conditions. 「ようが〜まいが」 highlights a stronger,
+          more proactive determination to derive value from either outcome. We want to emphasize a resilient
+          and forward-looking perspective.
+    scene: A team leader encourages their team after a significant project, regardless of its outcome,
+      focusing on future growth.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「成功しよう が 失敗しよう が」 uses two volitional forms for contrasting ideas, expressing a
+      proactive mindset. It indicates that the team's commitment to learning and improvement remains constant,
+      irrespective of the project's success or failure. The use of the volitional ending 「活かそう」 demonstrates
+      a leader's encouragement to a group in an inspirational, formal setting.
+  - english: No matter what her parents say, she will continue to chase her dream.
+    japanese:
+      - 親 が {何 を 言おう が}、彼女 は 夢 を 追い 続ける だろう。
+      - 親 が {何 を 言おう が}、彼女 は 夢 を 追い 続ける でしょう。
+    english_literally: As for her parents, no matter what they say, she will continue to chase her dream.
+    competing_grammar:
+      - competing_japanese:
+          - 親 が {何 を 言おう と}、彼女 は 夢 を 追い 続ける だろう。
+        english: No matter what her parents say, she will continue to chase her dream.
+        hint: Both 「何を言おうが」 and 「何を言おうと」 convey the same meaning. 「ようが」 tends to be slightly more emphatic
+          in its assertion of the outcome being unaffected by the condition. We're looking for a strong
+          emphasis on her unwavering resolve.
+      - competing_japanese:
+          - 親 が {何 を 言っ て も}、彼女 は 夢 を 追い 続ける だろう。
+        english: Even if her parents say anything, she will continue to chase her dream.
+        hint: While 「〜ても」 is a general concessive, 「何を言おうが」 specifically highlights the unyielding nature
+          of her resolve against any parental advice or objection, making it more emphatic. We want to
+          express a powerful sense of independence against any external opinions.
+      - competing_japanese:
+          - 親 が {何 を 言っ たって}、彼女 は 夢 を 追い 続ける だろう。
+        english: No matter what her parents say, she will continue to chase her dream.
+        hint: 「〜たって」 (colloquial 「〜ても」) also conveys concession but lacks the specific emphasis of 「何を言おうが」
+          on the unyielding nature of her determination. We're looking for a more emphatic statement of
+          her resolve.
+    scene: Someone discusses a friend's determination and independence in pursuing her dreams despite
+      potential parental disapproval.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「誰 が 何 を 言おう が」 (interrogative + volitional) strongly conveys that the friend possesses
+      unwavering resolve; external opinions, even from her parents, will not influence her path. This
+      highlights a powerful sense of independence. The casual register and plain form ending 「追い続けるだろう」
+      are suitable for a younger female speaker discussing a friend with another female friend.
+  - english: Whether I decide to go or not, I won't regret it.
+    japanese:
+      - 私 が {行こう が 行く まい が}、後悔 し ない。
+      - 私 が {行こう が 行く まい が}、後悔 し ませ ん。
+    english_literally: As for me, whether I decide to go or not, I won't regret it.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が {行っ て も 行か なく て も}、後悔 し ない。
+        english: Even if I go or don't go, I won't regret it.
+        hint: 「〜ても〜なくても」 is a more general concession. 「ようが〜まいが」 emphasizes a strong, proactive commitment
+          to one's decision and a determination to accept the outcome without regret. We're looking for
+          an emphatic statement of personal resolve.
+      - competing_japanese:
+          - 私 が {行く か 行か ない か} は 問題 で は なく、後悔 し ない。
+        english: Whether I go or don't go is not the problem, I won't regret it.
+        hint: This phrasing focuses on the irrelevance of the choice itself. 「ようが〜まいが」 directly states
+          that the outcome (no regret) is fixed regardless of the specific action chosen. We're emphasizing
+          the unshakeable resolve about the future emotional state.
+    scene: Someone contemplating a big life decision, such as moving to another city or changing careers,
+      and affirming their resolve.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「行こう が 行く まい が」 expresses a deep personal resolve to stand by a decision and avoid
+      regret, regardless of the choice made. It highlights an internal strength and self-acceptance. The
+      casual tone and self-reflection are fitting for a younger male speaker talking to himself.
+  - english: Whether you apologize or not, I won't forgive you.
+    japanese:
+      - 君 が {謝ろう が 謝る まい が}、私 は 許さ ない。
+      - 君 が {謝ろう が 謝る まい が}、私 は 許し ませ ん。
+    english_literally: As for you, whether you apologize or don't apologize, I won't forgive you.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が {謝っ て も 謝ら なく て も}、私 は 許さ ない。
+        english: Even if you apologize or don't apologize, I won't forgive you.
+        hint: While 「〜ても〜なくても」 conveys concession, 「ようが〜まいが」 emphasizes a stronger, unyielding stance
+          of unforgiveness, indicating that the speaker's decision is fixed and will not be swayed by
+          the other person's actions. We're looking for a more emphatic statement of unwavering resolve.
+      - competing_japanese:
+          - 君 が {謝ろう と 謝る まい と}、私 は 許さ ない。
+        english: Whether you apologize or not, I won't forgive you.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 often carries a stronger sense of personal determination
+          and finality in the decision not to forgive. We're looking for a slightly more assertive tone.
+    scene: A heated discussion between two friends after one has deeply hurt the other, and the injured
+      party expresses their firm decision.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「謝ろう が 謝る まい が」 conveys a strong, unyielding stance of unforgiveness, indicating
+      that the speaker's decision is fixed. The casual register and direct language (`許さない`) are typical
+      for a younger female speaker expressing firm resolve to a male friend after a betrayal.
+  - english: The road is long or short, I will walk it to the end.
+    japanese:
+      - 道 が {長かろう が 短かろう が}、私 は 最後 まで 歩き 抜く。
+      - 道 が {長かろう が 短かろう が}、私 は 最後 まで 歩き 抜き ます。
+    english_literally: As for the road, whether it is long or short, I will walk it to the end.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が {長く て も 短く て も}、私 は 最後 まで 歩き 抜く。
+        english: Even if the road is long or short, I will walk it to the end.
+        hint: While 「〜ても〜ても」 (with antonyms) is a general concession. 「ようが〜まいが」 (using 「かろうが」) provides
+          a more emphatic and determined tone of perseverance regardless of the specific length or difficulty
+          of the path. We want to express a stronger, unwavering commitment.
+      - competing_japanese:
+          - 道 が {長かろう と 短かろう と}、私 は 最後 まで 歩き 抜く。
+        english: Whether the road is long or short, I will walk it to the end.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 in this context slightly enhances the sense of
+          the speaker's unyielding determination to complete the journey, irrespective of its characteristics.
+          We're looking for a slightly more resolute nuance.
+    scene: Someone reflecting on a challenging journey or life path, expressing their resolve to see it
+      through, no matter the difficulty or duration.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「長かろう が 短かろう が」 highlights an unwavering commitment to seeing something through,
+      regardless of its duration or perceived difficulty. It expresses strong personal resolve. The reflective
+      setting and casual tone (`歩き抜く`) suggest a personal resolution common for older individuals reflecting
+      on their life path.
+  - english: The product is expensive or cheap, quality is the most important.
+    japanese:
+      - その 製品 が {高かろう が 安かろう が}、品質 が 最も 重要 だ。
+      - その 製品 が {高かろう が 安かろう が}、品質 が 最も 重要 です。
+    english_literally: As for that product, whether it is expensive or cheap, quality is the most important.
+    competing_grammar:
+      - competing_japanese:
+          - その 製品 が {高く て も 安く て も}、品質 が 最も 重要 だ。
+        english: Even if that product is expensive or cheap, quality is the most important.
+        hint: While 「〜ても〜ても」 (with antonyms) is a general concession. 「ようが〜まいが」 (using 「かろうが」) provides
+          a more emphatic and absolute statement of principle, indicating that quality takes precedence
+          over cost regardless of the extremes. We want to express an uncompromisable standard.
+      - competing_japanese:
+          - その 製品 が {高かろう と 安かろう と}、品質 が 最も 重要 だ。
+        english: Whether the product is expensive or cheap, quality is the most important.
+        hint: 「とも」 is a valid alternative, but 「ようが〜まいが」 here conveys a stronger, more assertive declaration
+          of an unyielding standard. We're looking for a slightly more emphatic statement of a core value.
+    scene: A manager setting expectations for their team regarding manufacturing standards, emphasizing
+      that quality is non-negotiable.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「高かろう が 安かろう が」 emphasizes an absolute commitment to quality that transcends price
+      point. This is a directive statement, highlighting that the speaker's priority is fixed regardless
+      of cost considerations. The formal and instructional tone fits a female manager addressing her team,
+      setting clear, uncompromisable standards.
+  - english: No matter what anyone says, I will believe in myself.
+    japanese:
+      - '{誰 が 何 を 言おう が}、私 は 自分 を 信じる。'
+      - '{誰 が 何 を 言おう が}、私 は 自分 を 信じ ます。'
+    english_literally: No matter who says what, I will believe in myself.
+    competing_grammar:
+      - competing_japanese:
+          - '{誰 が 何 を 言っ て も}、私 は 自分 を 信じる。'
+        english: Even if anyone says anything, I will believe in myself.
+        hint: While 「〜ても」 is a general concessive, 「誰が何を言おうが」 specifically highlights an unwavering internal
+          resolve against *any* external criticism or doubt, making it more emphatic. We want to express
+          a powerful sense of independence and self-affirmation.
+      - competing_japanese:
+          - '{誰 が 何 を 言おう と}、私 は 自分 を 信じる。'
+        english: No matter what anyone says, I will believe in myself.
+        hint: Both 「誰が何を言おうが」 and 「誰が何を言おうと」 convey a similar meaning. 「ようが」 tends to be slightly more
+          emphatic in its assertion that the outcome (self-belief) remains unaffected by any external
+          opinion. We're looking for a stronger emphasis on unwavering resolve.
+    scene: A young person affirming their self-belief amidst criticism or doubt, expressing a strong,
+      independent spirit.
+    register: casual
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「誰 が 何 を 言おう が」 strongly asserts unwavering self-belief against any external criticism
+      or opinion. This indicates a firm, independent stance and personal resilience. The casual register
+      and plain form (`信じる`) are typical for a younger speaker expressing personal determination or self-affirmation,
+      perhaps to themselves or as a general statement of conviction.
+post_example_writeup: 'This grammar pattern effectively conveys a sense of inevitability or strong resolve.
+  While the examples above showcase its use with verbs, adjectives, and nouns, the core meaning remains
+  consistent: despite any contrasting conditions, the outcome or the speaker''s stance will not change.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/-よう-う-まい - が-と

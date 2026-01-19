@@ -1,0 +1,385 @@
+grammar_point: のに (unexpected result)
+learn_before:
+  - いっぱい (full・a lot)
+  - が (subject marker)
+  - がある (possessed feature)
+  - こんなに (this much)
+  - だが (but・however)
+  - なぜか (for some reason)
+  - のに (requires・takes)
+meaning: Despite, although, even though
+pronunciation:
+  katakana: ノニ
+  romaji: noni
+formation:
+  Verb (plain form) + のに: Despite [verb]
+  い-adjective + のに: Despite [i-adjective]
+  な-adjective stem + な + のに: Despite [na-adjective]
+  Noun + な + のに: Despite [noun]
+jlpt: N4
+etymology: The particle 「のに」 originates from the nominalizing particle 「の」, which turns a preceding clause
+  into a noun phrase, combined with the particle 「に」, which indicates a contrast or purpose. This construction
+  evolved to express a situation where an outcome is contrary to what would be expected from the preceding
+  condition or reason. The core idea is that something happens 'in relation to' (に) a prior state (の),
+  but in an unexpected way.
+writeup: '「のに」 expresses a sense of surprise or disappointment that the expected result did not occur.
+  It conveys "despite" or "even though." The basic structure is [clause 1] + 「のに」 + [clause 2], where
+  clause 2 is contrary to what would be expected from clause 1.「のに」 can also mean "in order to" when the
+  result in clause 2 is a logical consequence of clause 1. However, this lesson primarily focuses on the
+  "despite" nuance, which is used when clause 2 presents an illogical or unexpected outcome.For connecting
+  to different word types: verbs and い-adjectives connect directly to 「のに」 using their plain form.な-adjectives
+  and nouns require 「な」 before 「のに」. For example, 「静か な のに」 (despite being quiet) or 「雨 な のに」 (despite
+  the rain).While you might occasionally encounter 「だ のに」, especially in certain dialects, 「な のに」 is generally
+  considered the standard and correct form when connecting to な-adjectives and nouns.'
+false_friends:
+  - term: ものの
+    meaning: Although, but, even though
+    kind: synonym
+    nuance: 「ものの」 tends to emphasize a weaker contrast or qualification compared to 「のに」, often implying
+      a sense of acceptance rather than strong opposition.
+    grammar_point: ものの (although・but)
+  - term: にしても
+    meaning: Even though, even if, even when, also
+    kind: synonym
+    nuance: 「にしても」 is used to indicate that even under certain circumstances, something is still the case.
+      It can also introduce an additional point or a concession, often implying a logical deduction rather
+      than an unexpected outcome.
+    grammar_point: にしても (even if)
+  - term: くせに
+    meaning: Even though, and yet, despite
+    kind: synonym
+    nuance: 「くせに」 often carries a negative connotation or criticism towards the subject, implying a sense
+      of blame or strong disapproval, whereas 「の に」 is generally more neutral and focuses on the unexpectedness
+      itself.
+    grammar_point: くせに (despite and yet)
+  - term: ながらも
+    meaning: But, Even while, Even though, Despite, Although
+    kind: synonym
+    nuance: 「ながらも」 indicates simultaneous actions or states, and can also express a contrast, often in
+      a more formal or literary context than 「の に」, and might emphasize a continuous state or action.
+    grammar_point: '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - term: それなのに
+    meaning: And yet, despite this
+    kind: synonym
+    nuance: 「それ な の に」 is used as a conjunction to introduce a strongly contradictory result to a previously
+      stated fact or situation, often implying a stronger sense of indignation or surprise than 「の に」,
+      and always stands at the beginning of the second clause.
+    grammar_point: それなのに (and yet・despite that)
+  - term: それでも
+    meaning: But still, and yet, even so, nevertheless
+    kind: synonym
+    nuance: 「それ で も」 implies that despite a stated condition, the action or situation persists or happens
+      anyway. It functions as a conjunction introducing the persistence, whereas 「の に」 highlights the
+      unexpectedness of a contrary outcome.
+    grammar_point: それでも (even so)
+post_false_friends_writeup: While these expressions share similar meanings of concession or contrast,
+  they have subtle differences in nuance and usage. 「の に」 is versatile for expressing unexpected outcomes
+  or disappointment, while expressions like 「くせに」 carry a critical tone, and 「ながらも」 indicates simultaneous
+  actions or formal contrast. Other expressions like 「それ な の に」 or 「それ で も」 might imply a stronger sense
+  of indignation or persistence. Always consider the context and intended nuance to choose the most appropriate
+  expression.
+examples:
+  - english: Even though he has a test tomorrow, he's playing games instead of studying.
+    japanese:
+      - 明日 テスト が ある {の に}、彼 は 勉強 を し ない で ゲーム を し て いる。
+      - 明日 テスト が ある {の に}、彼 は 勉強 も せ ず に ゲーム を し て い ます。
+      - 明日 テスト な {の に}、あいつ 勉強 も せ ず に ゲーム ばっか し てる。
+    english_literally: Tomorrow test exists despite, he study does not do and game is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 テスト が ある {けれど} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: He has a test tomorrow, but he's playing games instead of studying.
+        hint: 「けれど」 expresses a simple contrast or opposition between two clauses, without the strong
+          sense of surprise or disappointment that 「の に」 conveys.
+      - competing_japanese:
+          - 明日 テスト が ある {に も かかわら ず} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: Notwithstanding that he has a test tomorrow, he's playing games instead of studying.
+        hint: 「に も かかわら ず」 conveys a strong sense of 'notwithstanding' or 'despite' and is generally more
+          formal than 「の に」. We're looking for a more common, slightly more emotionally charged expression
+          of unexpectedness.
+      - competing_japanese:
+          - 明日 テスト が ある {もの の} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: Although he has a test tomorrow, he's playing games instead of studying.
+        hint: 「もの の」 presents a contrast or qualification but often with a weaker sense of surprise or
+          disappointment. It simply states a fact despite another fact, without implying strong criticism
+          or unexpectedness.
+      - competing_japanese:
+          - 明日 テスト が ある {に し て も} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: Even if he has a test tomorrow, he's playing games instead of studying.
+        hint: 「に し て も」 typically means 'even if' or 'even assuming'. It introduces a concession where
+          the second clause is still true. It doesn't carry the sense of unexpectedness or disappointment
+          about a contrary outcome that 「の に」 does.
+      - competing_japanese:
+          - 明日 テスト が ある {くせ に} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: He has a test tomorrow, and yet he's playing games instead of studying (implying blame/criticism).
+        hint: 「くせ に」 strongly implies blame or criticism for the action taken despite the preceding condition.
+          「の に」 is more neutral, focusing on the unexpectedness rather than directly blaming the subject.
+      - competing_japanese:
+          - 明日 テスト が ある。{それ な の に} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: He has a test tomorrow. And yet, he's playing games instead of studying.
+        hint: 「それ な の に」 is a conjunctive phrase used to introduce a strongly contradictory result to
+          a preceding statement. It stands independently at the beginning of the second clause and often
+          conveys a stronger sense of indignation or surprise than 「の に」, which functions as a particle
+          connecting clauses.
+      - competing_japanese:
+          - 明日 テスト が ある。{それ で も} 彼 は 勉強 を し ない で ゲーム を し て いる。
+        english: He has a test tomorrow. Still, he's playing games instead of studying.
+        hint: 「それ で も」 implies that despite a stated condition, the action or situation persists or happens
+          anyway. It functions as a conjunction introducing the persistence, whereas 「の に」 highlights
+          the unexpectedness of a contrary outcome.
+    scene: A parent observes their child procrastinating.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The speaker's frustration is conveyed through 「の に」, highlighting the illogical action of
+      playing games despite the impending test. The use of 「彼」 is neutral, but the context implies a close
+      relationship, typical for casual register.
+    etymology: The phrase 「ゲーム を する」 (to play games) in Japanese is a common and direct translation, distinct
+      from English where 'play' might be used for instruments or sports. In Japanese, it's a specific
+      verb for playing digital games. The verb 「する」 (to do) is often used with nouns to create verbal
+      phrases.
+  - english: It's raining, but the kids are still playing outside.
+    japanese:
+      - 雨 が 降っ て いる {の に}、子供 達 は まだ 外 で 遊ん で いる。
+      - 雨 な {の に}、子供 達 が 外 で 遊ん で いる。
+    english_literally: Rain is falling despite, children still outside playing are.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ て いる {けれど} 子供 達 は まだ 外 で 遊ん で いる。
+        english: It's raining, but the kids are still playing outside.
+        hint: 「けれど」 expresses a simple contrast or opposition between two clauses, without the strong
+          sense of surprise or disappointment that 「の に」 conveys.
+      - competing_japanese:
+          - 雨 が 降っ て いる {から} 子供 達 は 外 で 遊ん で い ない。
+        english: Because it's raining, the kids aren't playing outside.
+        hint: 「から」 indicates a reason or cause. This sentence states the expected outcome, whereas 「の
+          に」 highlights an an unexpected outcome. We are looking for an unexpected outcome.
+    scene: A parent looking out the window during playtime.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker expresses mild surprise and perhaps slight exasperation that the children are
+      still playing outside despite the rain. The expectation is that rain would stop outdoor play. The
+      phrase 「降って いる のに」 emphasizes this unexpected continuation.
+  - english: This coffee is expensive, but it doesn't taste good.
+    japanese:
+      - この コーヒー は 高い {の に}、美味しく ない。
+      - 高い {の に}、美味しく ない コーヒー だ。
+    english_literally: This coffee is expensive despite, not delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この コーヒー は 高い {が} 美味しく ない。
+        english: This coffee is expensive, but it doesn't taste good.
+        hint: 「が」 expresses a simple contrast without implying the speaker's surprise or disappointment,
+          unlike 「の に」.
+      - competing_japanese:
+          - この コーヒー は 高く {て} 美味しく ない。
+        english: This coffee is expensive and doesn't taste good.
+        hint: 「〜て」 connects adjectives or verbs. While it can imply a sequence or cause, it doesn't carry
+          the specific nuance of unexpectedness or disappointment that 「の に」 does.
+    scene: Someone trying a fancy coffee at a cafe.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The 「高い のに」 highlights the speaker's disappointment. The high price typically leads one to
+      expect good taste, so the lack of good taste is an unexpected outcome, expressed by 「の に」.
+  - english: She's usually so quiet, but today she's really talkative.
+    japanese:
+      - 彼女 は いつ も 静か な {の に}、今日 は とても よく 喋る ね。
+      - いつ も 静か な {の に}、今日 は 喋り すぎ だ よ。
+    english_literally: She always quiet despite, today very well talks, ね.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 静か だ {けれど}、今日 は とても よく 喋る ね。
+        english: She's usually quiet, but today she's really talkative.
+        hint: 「けれど」 simply states a contrast. 「の に」 conveys a sense of surprise or mild disbelief at the
+          unexpected change in behavior.
+      - competing_japanese:
+          - 彼女 は いつ も 静か だ {が}、今日 は とても よく 喋る ね。
+        english: She's usually quiet, but today she's really talkative.
+        hint: 「が」 is a formal conjunctive particle showing contrast. It lacks the nuance of personal surprise
+          or emotional reaction present in 「の に」.
+    scene: Two friends noticing a mutual acquaintance's unusual behavior.
+    register: casual
+    setting: casual slang
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「静か な のに」 conveys the speaker's surprise at the sudden change in the friend's behavior.
+      The expectation is that a quiet person remains quiet. The sentence-ending 「ね」 seeks agreement from
+      the listener, emphasizing the shared observation.
+  - english: It's Sunday today, but I still have to work.
+    japanese:
+      - 今日 は 日曜 日 な {の に}、まだ 仕事 を し なけれ ば なら ない。
+      - 日曜 日 な {の に}、なん で 仕事 なんか し なきゃ いけ ない ん だ。
+    english_literally: Today Sunday despite, still work must do.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 日曜 日 だ {が}、まだ 仕事 を し なけれ ば なら ない。
+        english: Today is Sunday, but I still have to work.
+        hint: 「が」 simply states a factual contrast. 「の に」 adds a tone of disappointment or complaint about
+          the unexpected situation of working on a Sunday.
+      - competing_japanese:
+          - 今日 は 日曜 日 です。{しかし}、まだ 仕事 を し なけれ ば なり ませ ん。
+        english: Today is Sunday. However, I still have to work.
+        hint: 「しかし」 is a formal conjunctive adverb. While it connects contrasting statements, it doesn't
+          carry the personal feeling of disappointment or unfairness that 「の に」 implies.
+    scene: A frustrated individual complaining about their work schedule.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker expresses disappointment and mild complaint. Sunday is typically a day off, so
+      having to work is an unexpected and unwelcome reality. The phrase 「日曜日 な のに」 highlights this incongruity.
+  - english: I can speak Japanese, but I can't understand what he's saying at all.
+    japanese:
+      - 日本 語 が 話せる {の に}、彼 の 言う こと が 全く 理解 でき ない。
+      - 日本 語 が 話せる {の に}、聞き取り が 苦手 な ん だ。
+    english_literally: Japanese can speak despite, his saying thing entirely cannot understand.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 話せる {が}、彼 の 言う こと が 全く 理解 でき ない。
+        english: I can speak Japanese, but I can't understand what he's saying at all.
+        hint: 「が」 connects contrasting statements neutrally. 「の に」 conveys the speaker's personal frustration
+          or sense of inadequacy given the unexpected gap between speaking and listening skills.
+      - competing_japanese:
+          - 日本 語 が 話せる {けれど}、彼 の 言う こと が 全く 理解 でき ない。
+        english: I can speak Japanese, but I can't understand what he's saying at all.
+        hint: 「けれど」 functions similarly to 「が」, introducing a simple contrast. It lacks the emotional
+          nuance of disappointment or frustration that 「の に」 expresses about the unexpected difficulty.
+    scene: A Japanese learner struggling with comprehension in a conversation.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker uses 「話せる のに」 to convey their frustration and disappointment in their listening
+      ability, despite being able to speak the language. The expectation is that speaking ability would
+      naturally lead to understanding, making the lack of understanding unexpected.
+  - english: The exam was easy, but I still failed.
+    japanese:
+      - 試験 は 簡単 だっ た {の に}、私 は 落ち て しまっ た。
+      - あんな に 簡単 な 試験 だっ た {の に}、なん で 落ち た ん だろう。
+    english_literally: Exam was easy despite, I failed.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 簡単 だっ た {が}、私 は 落ち て しまっ た。
+        english: The exam was easy, but I failed.
+        hint: 「が」 states a factual contrast. 「の に」 highlights the speaker's personal disappointment or
+          regret over the unexpected failure of an easy exam.
+      - competing_japanese:
+          - 試験 は 簡単 だっ た {けれど}、私 は 落ち て しまっ た。
+        english: The exam was easy, but I failed.
+        hint: 「けれど」 offers a simple contrast without emphasizing the unexpected or regrettable nature
+          of the outcome, which 「の に」 specifically conveys.
+    scene: A student lamenting their exam results.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The 「簡単 だった のに」 expresses the speaker's deep disappointment and self-reproach. An easy exam
+      should result in a pass, so failure is a highly unexpected and regrettable outcome.
+  - english: He was healthy just yesterday, but today he has a fever.
+    japanese:
+      - 昨日 は 健康 だっ た な {の に}、今日 は 熱 が ある。
+      - あんな に 元気 だっ た {の に}、どう し て 急 に 熱 が 出 た ん だろう。
+    english_literally: Yesterday was healthy despite, today fever exists.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 健康 だっ た {が}、今日 は 熱 が ある。
+        english: He was healthy yesterday, but today he has a fever.
+        hint: 「が」 is a neutral connector for contrasting facts. 「の に」 adds a sense of surprise and concern
+          over the sudden, unexpected change in health.
+      - competing_japanese:
+          - 昨日 は 健康 だっ た {けれど}、今日 は 熱 が ある。
+        english: He was healthy yesterday, but today he has a fever.
+        hint: 「けれど」 provides a simple, direct contrast. 「の に」 carries a stronger nuance of unexpectedness
+          and the speaker's reaction (surprise/worry) to it.
+    scene: A friend or family member expressing concern about someone's sudden illness.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「健康 だっ た な のに」 highlights the speaker's surprise and concern over the sudden deterioration
+      of health. The implication is that a healthy person should remain healthy, making the fever unexpected.
+  - english: I haven't eaten anything yet, but I'm already full.
+    japanese:
+      - まだ 何 も 食べ て い ない {の に}、もう お腹 が いっぱい だ。
+      - まだ な {の に}、もう お腹 が いっぱい だ よ。
+    english_literally: Still anything not eaten despite, already stomach is full.
+    competing_grammar:
+      - competing_japanese:
+          - まだ 何 も 食べ て い ない {けれど}、もう お腹 が いっぱい だ。
+        english: I haven't eaten anything yet, but I'm already full.
+        hint: 「けれど」 offers a plain contrast. 「の に」 emphasizes the unexpectedness or ironic twist of feeling
+          full without having eaten anything.
+      - competing_japanese:
+          - まだ 何 も 食べ て い ない。{そして}、もう お腹 が いっぱい だ。
+        english: I haven't eaten anything yet. And then, I'm already full.
+        hint: 「そして」 connects sequential or additional facts without implying any unexpected or contradictory
+          relationship between them, unlike 「の に」.
+    scene: Someone at a meal, feeling full unexpectedly quickly.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    listener_gender: male
+    nuance: The 「食べて い ない のに」 emphasizes the unexpectedness and slight amusement of feeling full without
+      having eaten. It points to an illogical or unusual personal physical state. The 「まだ」 reinforces
+      this sense of surprise.
+  - english: You're a professional, but why did you make such a simple mistake?
+    japanese:
+      - プロ な {の に}、なぜ そんな 簡単 な ミス を し た の です か？
+      - プロ な {の に}、あり え ない ミス だ よ。
+    english_literally: Professional despite, why such easy mistake did?
+    competing_grammar:
+      - competing_japanese:
+          - プロ です {が}、なぜ そんな 簡単 な ミス を し た の です か？
+        english: You are a professional, but why did you make such a simple mistake?
+        hint: 「が」 provides a straightforward contrast. 「の に」 carries a nuance of reproach or disbelief,
+          implying that a professional should not make such a mistake.
+      - competing_japanese:
+          - プロ で ある {に も かかわら ず}、なぜ そんな 簡単 な ミス を し た の です か？
+        english: Notwithstanding that you are a professional, why did you make such a simple mistake?
+        hint: 「に も かかわら ず」 is more formal and states a condition despite which something happens. While
+          it conveys 'despite,' 「の に」 is more direct in expressing the speaker's disappointment or question
+          about an unexpected error.
+    scene: A team leader questioning a subordinate's error.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The 「プロ な のに」 conveys the speaker's disappointment and slight reproach. A professional is
+      expected to avoid simple mistakes, making this error unexpected and concerning. The formal ending
+      「の です か」 softens the criticism slightly, making it a professional inquiry rather than an outright
+      accusation.
+  - english: Even though the lights are on, it's still dark in here.
+    japanese:
+      - 電気 が 付い て いる {の に}、部屋 は まだ 暗い。
+      - まだ 電気 が 付い て いる {の に}、こんな に 暗い なんて。
+    english_literally: Electricity attached is despite, room still dark.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 が 付い て いる {けれど}、部屋 は まだ 暗い。
+        english: The lights are on, but it's still dark in here.
+        hint: 「けれど」 offers a neutral observation of two contrasting facts. 「の に」 adds a subtle sense of
+          surprise or oddness, implying that the room should be brighter if the lights are on.
+      - competing_japanese:
+          - 電気 が 付い て いる {が}、部屋 は まだ 暗い。
+        english: The lights are on, but it's still dark in here.
+        hint: 「が」 is a simple conjunctive particle for contrast. It lacks the nuance of an unexpected
+          or illogical situation that 「の に」 highlights.
+    scene: Someone entering a room at dusk, finding it darker than expected.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「付いて いる のに」 expresses subtle surprise at the incongruity. The expectation is that
+      with the lights on, the room should be bright. The word 「まだ」 reinforces this sense of surprise.
+post_example_writeup: As seen in these examples, 「の に」 serves to highlight a contrast where the second
+  clause presents an outcome contrary to what would logically be expected from the first clause. The nuance
+  can range from mild surprise to strong disappointment or even criticism, depending on the context and
+  the speaker's intent.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のに-despite

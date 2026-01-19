@@ -1,0 +1,475 @@
+grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+learn_before:
+  - ところを (while or in circumstances)
+  - やめる (to stop)
+meaning: In the process of doing ~ right now/at this moment
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ているところだ
+    rarity: common
+    meaning: in the process of doing (plain)
+  - conjugation-type: non-past polite (～ます)
+    form: ているところです
+    rarity: common
+    meaning: in the process of doing (polite)
+  - conjugation-type: past plain (～た)
+    form: ていたところだ
+    rarity: common
+    meaning: was in the process of doing (plain)
+  - conjugation-type: past polite (～ました)
+    form: ていたところでした
+    rarity: common
+    meaning: was in the process of doing (polite)
+pronunciation:
+  katakana: テイルトコロダ
+  romaji: teiru tokoro da
+formation:
+  Verb in te-form + (い)る + ところ + だ: Indicates an action is currently in progress (plain form).
+  Verb in te-form + (い)る + ところ + です: Indicates an action is currently in progress (polite form).
+  Verb in te-form + (い)る + ところ + なんです/なんだ: Indicates an action is currently in progress, often with an
+    explanatory or assertive nuance.
+jlpt: N4
+etymology: The grammar point is constructed from the verb ending 「ている」 (expressing continuous action),
+  the noun 「ところ」 (meaning 'place,' 'situation,' or 'point in time'), and the copula 「だ」 (a plain form
+  of 'is'). The literal meaning of 'being in the place/time of X' evolved to mean 'being in the process
+  of X,' highlighting the specific point in time an action is taking Faking.
+writeup: 「ているところだ」 expresses that someone is in the middle of doing something **right now**. Think of
+  it as being "in the process of" or "in the middle of" an action. It's important to note that using 「ているところだ」
+  implies that someone is currently engaged in an activity and might be unavailable or busy. You wouldn't
+  use this if you suddenly switch actions; 「ていたところだった」 would be more appropriate in those cases. While
+  the default form uses 「だ」 for plain speech, it can also be used with 「です」 for polite speech, or with
+  explanatory endings like 「なの」 or 「なんだ」 to convey an explanatory or slightly assertive nuance. The presence
+  of 「いる」 (or its abbreviated form 「る」, especially in casual speech) is central to conveying the continuous
+  aspect.
+false_friends:
+  - term: ている (~ing)
+    meaning: Is, Am, Are (~ing)
+    kind: similar expression
+    nuance: While 「ている」 also indicates a continuous state, 「ているところだ」 emphasizes the current process or
+      stage of an action, often implying being 'busy' with it, whereas simple 「ている」 just states the continuous
+      action.
+    grammar_point: <suggest>:Verb[て]いる (ongoing state・habitual action・resultant state)
+  - term: とき
+    meaning: When, At the time of
+    kind: often confused with
+    nuance: 「とき」 describes a point in time. 「ているところだ」 describes an action in progress *at* that point
+      in time, specifically focusing on the ongoing nature of the action.
+    grammar_point: とき (when)
+  - term: 途中に・途中で
+    meaning: On the way, Partway, In the middle of
+    kind: similar expression
+    nuance: 「途中に」 refers to being midway through a journey or a specific process (e.g., in the middle
+      of a trip), while 「ているところだ」 specifically indicates that an action is ongoing right now.
+    grammar_point: 途中に・途中で (in the middle of)
+  - term: 中
+    meaning: During, While, Throughout, In the process of
+    kind: similar expression
+    nuance: 「〜中」 generally describes being within a timeframe or a broader state (e.g., 勉強中 'during study'),
+      but 「ているところだ」 focuses on the continuous act itself being performed at a specific moment.
+    grammar_point: 中 (duration・entirety)
+  - term: ところに・ところへ
+    meaning: At the time, When, While, Timing
+    kind: often confused with
+    nuance: 「〜ところに」 describes a specific moment when something occurs or when one arrives. 「ているところだ」 describes
+      the action happening *at* that moment, emphasizing the ongoing nature of the action.
+    grammar_point: ところに・ところへ (timing a new event)
+  - term: かけ
+    meaning: Half-, Not yet finished, About to, Begin to
+    kind: similar expression
+    nuance: 「〜かけだ」 implies an action that has started but is incomplete or unfinished. 「ているところだ」 emphasizes
+      being actively engaged in the process, not necessarily that it's incomplete, but that it's ongoing
+      *right now*.
+    grammar_point: かける・かけ (in process・incomplete・on the verge)
+  - term: 最中に
+    meaning: In the middle of; at the height of; in the midst of
+    kind: similar expression
+    nuance: 「〜最中」 strongly emphasizes being *deeply* immersed in an action or event, often implying a
+      point of intense activity or when something unexpected might happen. 「ているところだ」 is a more neutral
+      statement of an ongoing process.
+    grammar_point: 最中に (in the middle of)
+post_false_friends_writeup: To avoid confusion, remember that 「ているところだ」 highlights the **action itself**
+  being performed right now. While other expressions may describe the surrounding circumstances or time
+  frame, this grammar point keeps the focus on what is actively happening. Pay close attention to whether
+  the nuance is simply about being 'in the middle of' an action, or if it implies incompletion (〜かけだ),
+  intense immersion (〜最中), or simply being within a general time period (〜中).
+examples:
+  - english: I am in the middle of doing my homework right now.
+    japanese:
+      - 今、私 は 宿題 を {し て いる ところ} です。
+      - 今、私 は 宿題 を {し て いる ところ} だ よ。
+      - 今、私 は 宿題 を {し て いる ところ} な ん です。
+    english_literally: Now, I homework doing in process is.
+    competing_grammar:
+      - competing_japanese:
+          - 今、私 は 宿題 を {し て い ます}。
+        english: I am doing my homework now.
+        hint: While 「います」 indicates an ongoing action, it does not emphasize being in the middle of the
+          process. We're looking for an expression that highlights being currently engaged in an activity.
+      - competing_japanese:
+          - 今、私 は 宿題 を {し かけ て いる} ん です。
+        english: I'm halfway through doing my homework.
+        hint: 「〜かけ」 means an action is only partially completed or unfinished. We're looking for an action
+          that is currently ongoing, not necessarily incomplete.
+      - competing_japanese:
+          - 今、私 は 宿題 の {最中} な ん です。
+        english: I'm in the very middle of my homework.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: A parent asks their child what they're doing.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「です」 makes the statement polite, suitable for a child responding to a parent in
+      a polite manner. The use of 「いるところ」 emphasizes the child's current engagement in homework, implicitly
+      explaining why they might not be available.
+  - english: Yesterday, when my friend came to my house, I was in the middle of making dinner.
+    japanese:
+      - 昨日、友達 が 家 に 来 た 時、私 は 夕食 を 作っ て {いる ところ} でし た。
+      - 昨日、友達 が 家 に 来 た 時、夕食 作っ て {い た ところ} だっ た よ。
+      - 昨日、友達 が 家 に 来 た 時、私 は 夕食 を 作っ て {い た ところ} だっ た。
+    english_literally: Yesterday, friend came to house when, I dinner making in process was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、友達 が 家 に 来 た 時、私 は 夕食 を {作っ て い まし た}。
+        english: Yesterday, when my friend came to my house, I was making dinner.
+        hint: While 「ていました」 indicates a continuous action in the past, 「ているところでした」 emphasizes the exact
+          moment of being in the middle of it. We're looking for a grammar point that highlights the timing
+          of an ongoing action.
+      - competing_japanese:
+          - 昨日、友達 が 家 に 来 た 時、夕食 を {作り かけ て い まし た}。
+        english: Yesterday, when my friend came to my house, I was halfway through making dinner.
+        hint: 「〜かけ」 implies the action was incomplete. We're looking for an action that was simply ongoing
+          at that moment, not necessarily unfinished.
+      - competing_japanese:
+          - 昨日、友達 が 家 に 来 た 時、夕食 の {最中} でし た。
+        english: Yesterday, when my friend came to my house, I was in the very middle of making dinner.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: Describing a past event where one action interrupted another.
+    register: teineigo (polite)
+    setting: storytelling
+    conjugation: past polite (～ました)
+    nuance: 「でした」 indicates politeness and a past state, typical when narrating an event politely. 「作っているところでした」
+      clearly conveys being 'caught' in the middle of cooking when the friend arrived, emphasizing the
+      immediate context of the action.
+  - english: Sorry, I'm in the middle of playing a game right now.
+    japanese:
+      - 悪い、今 ゲーム を し て {いる ところ} な ん だ。
+      - すみ ませ ん、今 ゲーム を し て {いる ところ} な ん です。
+      - 悪い、今 ゲーム {し てる とこ}。
+    english_literally: Bad, now game playing in process is.
+    competing_grammar:
+      - competing_japanese:
+          - 悪い、今 ゲーム を {し て いる} よ。
+        english: Sorry, I'm playing a game now.
+        hint: The simple continuous form doesn't carry the same nuance of being 'busy' or 'unavailable'
+          due to the ongoing action. We're looking for an explanation for why someone might be momentarily
+          engaged.
+      - competing_japanese:
+          - 悪い、今 ゲーム を {し かけ て いる} ん だ。
+        english: Sorry, I'm halfway through playing a game right now.
+        hint: 「〜かけ」 means an action is only partially completed or unfinished. We're looking for an action
+          that is currently ongoing, not necessarily incomplete.
+      - competing_japanese:
+          - 悪い、今 ゲーム の {最中} な ん だ。
+        english: Sorry, I'm in the very middle of a game right now.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: A young man is interrupted by his roommate for a chore.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「なんだ」 adds an explanatory or slightly assertive nuance, often used by male speakers in casual
+      conversation when stating a reason. 「ゲームをしているところなんだ」 implies the speaker is engrossed in the game
+      and thus currently busy, providing a polite reason for not being able to do the chore immediately.
+  - english: I saw him in the park, in the middle of walking his dog.
+    japanese:
+      - 公園 で 彼 が 犬 を 散歩 さ せ て {いる ところ} を 見 た。
+      - 公園 で 彼 が 犬 の 散歩 を し て {いる ところ} を 見 た よ。
+    english_literally: Park at he dog walking in process saw.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 で 彼 が 犬 を {散歩 さ せ て いる の を} 見 た。
+        english: I saw him in the park, walking his dog.
+        hint: While 「〜ているのを見た」 can describe seeing an ongoing action, 「ているところを見た」 specifically emphasizes
+          seeing the *moment* or *process* of the action. We're looking for a grammar point that highlights
+          observing someone in the very act.
+      - competing_japanese:
+          - 公園 で 彼 が 犬 を {散歩 さ せ かけ て いる の を} 見 た。
+        english: I saw him in the park, halfway through walking his dog.
+        hint: 「〜かけ」 implies the action was incomplete. We're looking for an action that was simply ongoing
+          at that moment.
+      - competing_japanese:
+          - 公園 で 彼 が 犬 を 散歩 さ せ て いる {最中} を 見 た。
+        english: I saw him in the park, in the very middle of walking his dog.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: Recounting seeing someone engaged in an activity.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: Using 「見た」 provides a direct, casual recounting of an observation. 「散歩させているところを見た」 conveys
+      that the observation captured the subject precisely *in the act* of dog walking, rather than just
+      seeing them walking.
+  - english: Yesterday, I was in the middle of reading a book, but suddenly there was a power outage.
+    japanese:
+      - 昨日、本 を 読ん で {い た ところ} だっ た が、急 に 停電 し た。
+      - 昨日、本 を 読ん で {い た ところ} でし た が、急 に 停電 し まし た。
+    english_literally: Yesterday, book reading in process was, but suddenly power outage happened.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、本 を {読ん で い た} が、急 に 停電 し た。
+        english: Yesterday, I was reading a book, but suddenly there was a power outage.
+        hint: The simple past continuous form doesn't emphasize the 'in the middle of' aspect as strongly.
+          We're looking for a grammar point that highlights an action being interrupted while it was in
+          progress.
+      - competing_japanese:
+          - 昨日、本 を {読み かけ て い た} が、急 に 停電 し た。
+        english: Yesterday, I was halfway through reading a book, but suddenly there was a power outage.
+        hint: 「〜かけ」 implies the action was incomplete. We're looking for an action that was simply ongoing
+          when interrupted.
+      - competing_japanese:
+          - 昨日、本 を 読ん で いる {最中} だっ た が、急 に 停電 し た。
+        english: Yesterday, I was in the very middle of reading a book, but suddenly there was a power
+          outage.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: Explaining why a past activity was cut short.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: The use of 「～だったが」 shows the sudden shift from an ongoing state to an unexpected event. 「読んでいたところだった」
+      precisely conveys that the reading was in progress right at the moment the power went out, emphasizing
+      the interruption of the current activity.
+  - english: She is in the middle of writing her thesis right now, so it's better not to disturb her.
+    japanese:
+      - 今、彼女 は 論文 を 書い て {いる ところ} な の で、邪魔 し ない 方 が いい です よ。
+      - 今、彼女 は 論文 を 書い て {いる ところ} です の で、邪魔 し ない 方 が いい です よ。
+      - 今、彼女 は 論文 を 書い て {いる ところ} な ん です の で、邪魔 し ない 方 が いい です よ。
+    english_literally: Now, she thesis writing in process is, so disturb not better is.
+    competing_grammar:
+      - competing_japanese:
+          - 今、彼女 は 論文 を {書い て いる} の で、邪魔 し ない 方 が いい です よ。
+        english: She is writing her thesis now, so it's better not to disturb her.
+        hint: The simple continuous form might not sufficiently emphasize the 'busyness' or deep engagement.
+          We're looking for an expression that suggests disturbing her would be particularly inconvenient.
+      - competing_japanese:
+          - 今、彼女 は 論文 を {書き かけ て いる} の で、邪魔 し ない 方 が いい です よ。
+        english: She is halfway through writing her thesis right now, so it's better not to disturb her.
+        hint: 「〜かけ」 implies the action is incomplete. We're looking for an action that is currently ongoing.
+      - competing_japanese:
+          - 今、彼女 は 論文 を 書い て いる {最中} な の で、邪魔 し ない 方 が いい です よ。
+        english: She is in the very middle of writing her thesis right now, so it's better not to disturb
+          her.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: Advising someone not to bother a third person.
+    register: teineigo (polite)
+    setting: persuasive
+    conjugation: non-past polite (～ます)
+    nuance: 「～ので」 indicates a reason, and 「～方 が いい です よ」 is a polite way to give advice. 「論文を書いているところ」
+      strongly suggests she is actively engaged and busy, making the advice not to disturb her more compelling.
+      This is a common way to indicate someone is occupied.
+  - english: Hey, I'm in the middle of cooking right now.
+    japanese:
+      - ねえ、今 料理 を 作っ て {いる ところ} な の。
+      - ねえ、今 料理 を 作っ て {いる ところ} だ よ。
+      - ねえ、今 料理 {作っ てる とこ} な の。
+    english_literally: Hey, now cooking making in process is.
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、今 料理 を {作っ て いる} の。
+        english: Hey, I'm cooking now.
+        hint: The simple continuous form lacks the emphasis on being specifically 'in the middle of' an
+          action. We're looking for a grammar point that implies being currently busy or unable to attend
+          to something else.
+      - competing_japanese:
+          - ねえ、今 料理 を {作り かけ て いる} の。
+        english: Hey, I'm halfway through cooking right now.
+        hint: 「〜かけ」 means an action is only partially completed or unfinished. We're looking for an action
+          that is currently ongoing.
+      - competing_japanese:
+          - ねえ、今 料理 を 作っ て いる {最中} な の。
+        english: Hey, I'm in the very middle of cooking right now.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: A woman is busy cooking and gently fending off an interruption.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「なの」 is a common sentence-ending particle used by female speakers in casual speech to provide
+      explanation or add a softer tone. 「作っているところなの」 conveys that she is currently occupied with cooking,
+      gently suggesting she cannot be disturbed.
+  - english: The new system is currently in the process of being developed.
+    japanese:
+      - 新しい システム は、現在 開発 し て {いる ところ} です。
+      - 新しい システム は、今 開発 し て {いる ところ} だ。
+    english_literally: New system is, currently development doing in process is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム は、現在 {開発 中} です。
+        english: The new system is currently under development.
+        hint: While 「開発中」 means "under development," 「開発しているところです」 specifically emphasizes the *ongoing
+          process* of development rather than just the state, often implying progress towards completion.
+          We're looking for an expression that highlights the active state of development.
+      - competing_japanese:
+          - 新しい システム は、現在 {開発 し かけ て いる ところ} です。
+        english: The new system is currently halfway through development.
+        hint: 「〜かけ」 implies the action is incomplete. We're looking for an action that is currently ongoing.
+      - competing_japanese:
+          - 新しい システム は、現在 開発 の {最中} です。
+        english: The new system is currently in the very middle of development.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: A manager providing an update on a project's status.
+    register: semi-formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「現在」 (currently) reinforces the present ongoing nature of the development, common
+      in professional contexts. 「開発しているところです」 implies active progress and that the development is currently
+      in full swing, giving a comprehensive status update.
+  - english: When the meeting started, I was in the middle of preparing the presentation.
+    japanese:
+      - 会議 が 始まっ た 時、プレゼンテーション の 準備 を し て {い た ところ} でし た。
+      - 会議 が 始まっ た 時、プレゼンテーション の 準備 を し て {い た ところ} だっ た。
+    english_literally: Meeting started when, presentation's preparation doing in process was.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 始まっ た 時、プレゼンテーション の 準備 を {し て い まし た}。
+        english: When the meeting started, I was preparing the presentation.
+        hint: While 「ていました」 indicates a continuous action, 「ていたところでした」 explicitly conveys being "caught"
+          in the middle of an action at a past moment. We're looking for a grammar point that highlights
+          the precise timing of an ongoing activity when something else occurred.
+      - competing_japanese:
+          - 会議 が 始まっ た 時、プレゼンテーション の 準備 を {し かけ て い まし た}。
+        english: When the meeting started, I was halfway through preparing the presentation.
+        hint: 「〜かけ」 implies the action was incomplete. We're looking for an action that was simply ongoing
+          when interrupted.
+      - competing_japanese:
+          - 会議 が 始まっ た 時、プレゼンテーション の 準備 を し て いる {最中} でし た。
+        english: When the meeting started, I was in the very middle of preparing the presentation.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged when interrupted.
+    scene: Explaining to a superior why one might have been slightly late or rushed.
+    register: formal
+    setting: apologetic
+    conjugation: past polite (～ました)
+    nuance: The formal setting and polite past tense make this suitable for explaining a situation to
+      a superior. 「準備をしていたところでした」 clarifies that the speaker was actively engaged in preparation right
+      up to the start of the meeting, which might explain any slight delay or hurriedness.
+  - english: Sorry, I'm just in the middle of packing for my trip.
+    japanese:
+      - ごめん、今、旅行 の 荷造り を し て {いる ところ} な の。
+      - ごめん、今、旅行 の 荷造り し て {いる ところ} な ん だ。
+    english_literally: Sorry, now, trip's packing doing in process is.
+    competing_grammar:
+      - competing_japanese:
+          - ごめん、今、旅行 の 荷造り を {し て いる} の。
+        english: Sorry, I'm packing for my trip now.
+        hint: The simple continuous form is more general. We're looking for an expression that strongly
+          emphasizes being actively engaged and therefore busy or unavailable right at this moment.
+      - competing_japanese:
+          - ごめん、今、旅行 の 荷造り を {し かけ て いる} の。
+        english: Sorry, I'm halfway through packing for my trip now.
+        hint: 「〜かけ」 implies the action is unfinished or incomplete. We're looking for an action that is
+          currently ongoing, not necessarily halfway done.
+      - competing_japanese:
+          - ごめん、今、旅行 の 荷造り の {最中} な の。
+        english: Sorry, I'm in the very middle of packing for my trip now.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point. We're looking for a more general
+          statement of being currently engaged in an activity.
+    scene: A friend calls asking to hang out spontaneously.
+    register: casual
+    setting: apologetic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of 「なの」 (or 「なんだ」) adds an explanatory or slightly apologetic nuance often used in
+      casual conversation. 「荷造りをしているところなの」 conveys that the speaker is currently busy with packing and
+      thus cannot immediately join, providing a clear reason for declining the invitation.
+  - english: I'm in the middle of doing the laundry, so I can't talk right now.
+    japanese:
+      - 今、洗濯 を し て {いる ところ} だ から、今 は 話せ ない よ。
+      - 今、洗濯 を し て {いる ところ} です から、今 は 話せ ませ ん よ。
+    english_literally: Now, laundry doing in process is, so now cannot talk.
+    competing_grammar:
+      - competing_japanese:
+          - 今、洗濯 を {し て いる} から、今 は 話せ ない よ。
+        english: I'm doing laundry now, so I can't talk right now.
+        hint: The simple continuous form is more general and doesn't emphasize being actively 'in the
+          middle of' the task, implying a stronger reason for unavailability. We're looking for a grammar
+          point that highlights being currently engaged in an activity.
+      - competing_japanese:
+          - 今、洗濯 を {し かけ て いる} から、今 は 話せ ない よ。
+        english: I'm halfway through doing the laundry, so I can't talk right now.
+        hint: 「〜かけ」 means an action is only partially completed or unfinished. We're looking for an action
+          that is currently ongoing, not necessarily incomplete.
+      - competing_japanese:
+          - 今、洗濯 の {最中} だ から、今 は 話せ ない よ。
+        english: I'm in the very middle of doing the laundry, so I can't talk right now.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: A person is busy with chores and needs to politely end a conversation.
+    register: casual
+    setting: apologetic
+    conjugation: dictionary (plain non-past)
+    nuance: Using 「〜だから」 provides a direct reason for not being able to talk. 「洗濯をしているところだ」 clearly indicates
+      being occupied with laundry, conveying that the current task requires attention and prevents conversation.
+  - english: The professor is currently in the middle of a lecture, so please wait a moment.
+    japanese:
+      - 先生 は 今、授業 を し て {いる ところ} です から、少々 お 待ち ください。
+      - 先生 は 今、授業 を し て {いる ところ} な の で、少々 お 待ち ください。
+    english_literally: Teacher now, class doing in process is, so please wait a moment.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 今、授業 を {し て い ます} から、少々 お 待ち ください。
+        english: The professor is lecturing now, so please wait a moment.
+        hint: The simple continuous form is less specific about being 'in the middle of' the action. We're
+          looking for an expression that specifically states the professor is engaged in the lecture at
+          this very moment.
+      - competing_japanese:
+          - 先生 は 今、授業 の {最中} です から、少々 お 待ち ください。
+        english: The professor is in the very middle of a lecture, so please wait a moment.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged in a lecture.
+    scene: A student asks to see a professor during class time.
+    register: formal
+    setting: informative
+    nuance: The formal politeness markers 「です から」 and 「お待ち ください」 are appropriate when addressing someone
+      in a university setting. 「授業をしているところです」 clarifies that the professor is currently delivering a lecture
+      and is therefore unavailable, providing a clear and polite reason for the request to wait.
+  - english: I was in the middle of preparing for the exam, when my brother suddenly called.
+    japanese:
+      - 試験 の 準備 を し て {い た ところ} に、兄 が 急 に 電話 を かけ て き た。
+      - 試験 の 準備 を し て {い た ところ} へ、兄 が 急 に 電話 を かけ て き た。
+    english_literally: Exam's preparation doing in process at, elder brother suddenly call made.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 準備 を {し て い た 時 に}、兄 が 急 に 電話 を かけ て き た。
+        english: When I was preparing for the exam, my brother suddenly called.
+        hint: While 「〜ていた時に」 indicates an ongoing action at a specific time, 「〜ていたところに」 emphasizes the
+          precise moment the interruption occurred while the action was in progress. We're looking for
+          a grammar point that highlights the timing of an interruption.
+      - competing_japanese:
+          - 試験 の 準備 を {し かけ て い た 時 に}、兄 が 急 に 電話 を かけ て き た。
+        english: I was halfway through preparing for the exam when my brother suddenly called.
+        hint: 「〜かけ」 implies the action was incomplete. We're looking for an action that was simply ongoing
+          when interrupted.
+      - competing_japanese:
+          - 試験 の 準備 の {最中} に、兄 が 急 に 電話 を かけ て き た。
+        english: I was in the very middle of preparing for the exam, when my brother suddenly called.
+        hint: 「〜最中」 implies being deeply engrossed or at a critical point in an activity. We're looking
+          for a more general statement of being currently engaged.
+    scene: Recounting a past event where an important task was interrupted.
+    register: casual
+    setting: storytelling
+    nuance: The use of 「〜ところに/へ」 highlights the moment of interruption, precisely when the exam preparation
+      was in progress. 「試験の準備をしていたところ」 emphasizes that the call came exactly when the speaker was busy
+      with the preparation, indicating it was an inconvenient interruption.
+post_example_writeup: Keep in mind that 「ているところ」 implies a sense of immediacy and being actively engaged
+  in an action at the present moment. When describing past situations, 「ていたところだった」 is used to convey that
+  an action was in progress when something else happened. The choice of ending (だ, です, なの, なんだ) determines
+  the formality and nuance of the statement, allowing for flexibility across various communicative contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ているところだ

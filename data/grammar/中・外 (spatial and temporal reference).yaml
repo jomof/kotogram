@@ -1,0 +1,410 @@
+grammar_point: 中・外 (spatial and temporal reference)
+learn_before:
+  - な (prohibitive particle)
+  - 中 (duration・entirety)
+  - 中を (movement through or within condition)
+meaning: inside, middle, outside
+pronunciation:
+  katakana: ナカ, ソト
+  romaji: naka, soto
+formation:
+  Noun + の + 中/外: Indicates a location relative to a noun (e.g., inside the box, outside the house).
+  Verb (dictionary form) + 中: Indicates something is currently in the process of happening (e.g., in the
+    middle of eating).
+  Noun + 中: Indicates that something is in the process of happening (often for ongoing events or periods,
+    like during a meeting or throughout the day).
+  Noun + 中で: Indicates 'among' or 'within' a group or context, often implying a choice or selection.
+jlpt: N5
+etymology: The kanji 中 (naka) originally depicted an arrow piercing the center of a target, symbolizing
+  'middle' or 'interior.' The kanji 外 (soto) is believed to have evolved from a pictograph of a person
+  standing outside a gate, representing 'outside' or 'exterior.' Their roles as spatial indicators are
+  deeply rooted in these ancient visual representations.
+writeup: |-
+  The Japanese words **中 (naka)** and **外 (soto)** are fundamental for expressing spatial relationships. **中 (naka)** primarily means "inside" or "middle," and it can be used for both physical spaces and more abstract concepts like being "in the middle of" an action or a period of time. For example, 「箱 の 中」 means "inside the box," while 「食事 中」 means "during a meal" or "in the middle of eating."
+
+  **外 (soto)** means "outside" or "exterior." It is generally used for physical spaces outside of something. For instance, 「家 の 外」 means "outside the house."
+
+  It's important to pay attention to how **中** is used with verbs. When attached to the **dictionary form of a verb**, it signifies that an action is currently in progress, similar to the English "-ing" form. For example, 「走る 中」 would mean "while running" or "in the middle of running." When **中** follows a noun, it often denotes a state of being *during* a particular period or event, such as 「会議 中」 ("during the meeting").
+
+  The usage of **中 (naka)** can be quite versatile, extending beyond simple physical location to encompass temporal states and abstract contexts. Understanding the core meaning of "middle" or "interior" helps connect these various uses.
+false_friends:
+  - term: うち (uchi)
+    meaning: inside (often refers to one's own home or group)
+    kind: similar expression
+    nuance: While **中 (naka)** refers to the general interior of any space, **うち (uchi)** often implies
+      the interior of one's own space, like one's home or inside one's own group/company. It has a more
+      personal or belonging connotation.
+    grammar_point: うち (within or while)
+  - term: 間 (aida)
+    meaning: between, during, interval
+    kind: often confused with
+    nuance: '**間 (aida)** denotes an interval *between* two points or actions, or a period *during* which
+      something happens, emphasizing the duration. **中 (naka)** focuses on being *within* a larger context
+      or *in the middle of* an ongoing state, rather than an interval between two distinct points.'
+    grammar_point: あいだ (between・among・while・during)
+  - term: 上 (ue)
+    meaning: on, above
+    kind: antonym
+    nuance: '**上 (ue)** indicates a position *above* or *on top of* something, directly contrasting with
+      **中 (naka)** which signifies *inside* or *within*.'
+    grammar_point: 上、下 (vertical position)
+  - term: 下 (shita)
+    meaning: under, below
+    kind: antonym
+    nuance: '**下 (shita)** indicates a position *below* or *under* something, forming another direct spatial
+      contrast with **中 (naka)**.'
+    grammar_point: 上、下 (vertical position)
+  - term: 以内 (inai)
+    meaning: within (a limit, range, or period)
+    kind: similar expression
+    nuance: While **中 (naka)** refers to a general interior space or being *in the middle of* something,
+      **以内 (inai)** specifically denotes being *within a defined limit, boundary, or period*, often implying
+      compliance or a constraint. It emphasizes the scope or range.
+    grammar_point: 以内 (within)
+  - term: 以外 (igai)
+    meaning: other than, besides, except for
+    kind: similar expression
+    nuance: Whereas **外 (soto)** refers to the physical exterior of something, **以外 (igai)** is used to
+      mean 'other than,' 'besides,' or 'except for' a specific category or item. It functions more conceptually
+      to exclude items from a set rather than indicating a physical location.
+    grammar_point: 以外 (except)
+post_false_friends_writeup: When distinguishing between **中 (naka)** and **うち (uchi)**, remember that
+  **うち (uchi)** often carries a sense of belonging or being part of one's own sphere, whereas **中 (naka)**
+  is more neutral and simply refers to the interior space. For instance, you would say 「家 の 中」 for 'inside
+  the house' in general, but 「うち の 中」 if you mean 'inside *my* house' with a sense of personal connection.
+  As for **間 (aida)**, think of it as the space *between* things or the *duration* of an event, while
+  **中 (naka)** is more about being *within* something or *in the midst* of an ongoing state. Regarding
+  **以内 (inai)** and **以外 (igai)**, these particles delineate *boundaries* or *exclusions*. **以内 (inai)**
+  specifies being *within a defined limit or range*, often relating to time, quantity, or scope, whereas
+  **中 (naka)** denotes a more general 'inside' or 'during' an ongoing state. Conversely, **以外 (igai)**
+  indicates 'everything but' a specified item or category, functioning to *exclude*, while **外 (soto)**
+  simply means 'outside' a physical boundary.
+examples:
+  - english: There's a cat inside the box.
+    japanese:
+      - 箱 の {中} に 猫 が いる。
+      - 箱 の {中} に 猫 が い ます。
+      - 箱 の {中} に 猫 が おる。
+      - 箱 の {中} に 猫 が おり ます。
+      - 箱 の {中} に にゃんこ が いる よ。
+      - 箱 の {中} に にゃんこ が い ます ね。
+    english_literally: Box's inside, cat is there.
+    competing_grammar:
+      - competing_japanese:
+          - 箱 の {外} に 猫 が いる。
+        english: There's a cat outside the box.
+        hint: This sentence places the cat outside the box, not inside. We're looking for a sentence that
+          indicates the cat is inside.
+      - competing_japanese:
+          - 箱 の {上} に 猫 が いる。
+        english: There's a cat on top of the box.
+        hint: This means the cat is on top of the box. We're looking for the cat to be inside.
+      - competing_japanese:
+          - 箱 の {下} に 猫 が いる。
+        english: There's a cat under the box.
+        hint: This means the cat is under the box. We're looking for the cat to be inside.
+      - competing_japanese:
+          - 箱 の {うち} に 猫 が いる。
+        english: There's a cat inside our box.
+        hint: This implies the cat is in 'our' box, not just any box. We're looking for a general statement
+          about a cat being inside a box.
+      - competing_japanese:
+          - 部屋 {に} 猫 が いる。
+        english: There's a cat in the room.
+        hint: This is too general; it doesn't specify 'inside a box'. We're looking for the cat's specific
+          location.
+    scene: You're looking for your pet cat and finally spot it.
+    register: casual
+    setting: friendly
+  - english: Please wait outside the building.
+    japanese:
+      - 建物 の {外} で 待っ て ください。
+      - 建物 の {外} で お 待ち ください。
+      - 建物 の {外} で 待て。
+      - 建物 の {外} で 待っ て て くれ。
+      - ビル の {外} で 待っ て い て ください ね。
+      - ビル の {外} で 待機 し て ください。
+    english_literally: Building's outside, please wait.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 の {中} で 待っ て ください。
+        english: Please wait inside the building.
+        hint: This tells someone to wait inside. We want them to wait outside.
+      - competing_japanese:
+          - 建物 の {上} で 待っ て ください。
+        english: Please wait on top of the building.
+        hint: This tells someone to wait on the roof or higher floor. We want them to wait outside.
+      - competing_japanese:
+          - 建物 の {下} で 待っ て ください。
+        english: Please wait under the building.
+        hint: This tells someone to wait underneath the building. We want them to wait outside.
+      - competing_japanese:
+          - 建物 {以外} で 待っ て ください。
+        english: Please wait other than the building.
+        hint: This implies 'wait anywhere but the building,' which is too broad. We're looking for 'outside
+          the building'.
+      - competing_japanese:
+          - 建物 の {周り} で 待っ て ください。
+        english: Please wait around the building.
+        hint: This indicates waiting generally around the building, not specifically outside its perimeter.
+          We're looking for 'outside the building'.
+    scene: A staff member is instructing visitors at an event.
+    register: formal
+    setting: instructional
+  - english: He is in the middle of eating.
+    japanese:
+      - 彼 は 食事 {中} です。
+      - 彼 は 食事 {中} で ござい ます。
+      - 彼 は 食事 {中} だ。
+      - 彼 は 食事 {中} でし て。
+      - 彼 は 今、食事 {中} よ。
+      - 彼 は ご飯 の {中} です よ。
+    english_literally: He, meal middle is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 食事 の {間} です。
+        english: He is during the meal (referring to the interval).
+        hint: This implies he's in the interval of a meal. We're looking for an ongoing action, meaning
+          he's currently eating.
+      - competing_japanese:
+          - 彼 は 食事 を し {て いる} ます。
+        english: He is eating.
+        hint: This is a simple progressive form. We're looking for an expression that specifically means
+          'in the middle of' an activity.
+      - competing_japanese:
+          - 彼 は 食事 時間 {以内} です。
+        english: He is within the mealtime.
+        hint: This means he is within the permitted duration for a meal. We're looking for 'in the middle
+          of eating'.
+      - competing_japanese:
+          - 彼 は 食事 を する {つもり です}。
+        english: He intends to eat.
+        hint: This means he has the intention to eat, not that he is currently eating. We're looking for
+          a state of being currently eating.
+    scene: Someone asks if he's available.
+    register: semi-formal
+    setting: informative
+  - english: It is dangerous to play outside.
+    japanese:
+      - '{外} で 遊ぶ の は 危険 です。'
+      - '{外} で 遊ぶ の は 危ない です。'
+      - '{外} で 遊び なさい。危ない わ よ。'
+      - '{外} で 遊ん じゃ だめ だ よ。'
+    english_literally: Outside, playing is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - '{うち} で 遊ぶ の は 危険 です。'
+        english: It is dangerous to play inside (one's own home).
+        hint: This refers to playing inside one's own home, not generally outside. We're looking for 'playing
+          outside'.
+      - competing_japanese:
+          - '{中} で 遊ぶ の は 危険 です。'
+        english: This suggests playing inside a general space is dangerous. We want to say playing outside
+          is dangerous.
+        hint: This suggests playing inside a general space is dangerous. We want to say playing outside
+          is dangerous.
+      - competing_japanese:
+          - '{上} で 遊ぶ の は 危険 です。'
+        english: It is dangerous to play on high places.
+        hint: This refers to playing on a high position. We are looking for playing outside.
+      - competing_japanese:
+          - '{下} で 遊ぶ の は 危険 です。'
+        english: This refers to playing in a lower position. We are looking for playing outside.
+        hint: This refers to playing in a lower position. We are looking for playing outside.
+      - competing_japanese:
+          - '{外} {以外} で 遊ぶ の は 危険 です。'
+        english: It is dangerous to play other than outside (i.e., playing inside is dangerous).
+        hint: This implies that playing indoors is dangerous. We're looking for a sentence that says playing
+          outdoors is dangerous.
+    scene: A parent warns their child.
+    register: teineigo (polite)
+    setting: cautious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「危ない (abunai)」 is a common, slightly less formal way for parents or guardians to
+      warn children about danger. It's often used with a softer, caring tone compared to the more formal
+      「危険 (kiken)」. Although the English states 'casual', the Japanese uses the polite 'です' which classifies
+      it as 'teineigo'.
+  - english: I'm currently working.
+    japanese:
+      - 私 は 仕事 {中} です。
+      - 私 は 仕事 {中} で ござい ます。
+      - 仕事 {中} です。
+      - 仕事 {中} だ。
+      - 今、仕事 {中} な の で。
+      - 現在、仕事 {中} でし て。
+    english_literally: I, work middle, am.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 仕事 を し {て いる} ます。
+        english: I am doing work.
+        hint: This is a direct progressive form. We're looking for the phrase that means 'in the middle
+          of work'.
+      - competing_japanese:
+          - 私 は 仕事 の {間} です。
+        english: I am during the interval of work.
+        hint: This refers to the duration between work tasks. We're looking for an expression that indicates
+          you are actively performing work.
+      - competing_japanese:
+          - 私 は 勤務 時間 {以内} です。
+        english: I am within working hours.
+        hint: This means you are within the designated work period. We're looking for an expression that
+          indicates you are actively performing work.
+      - competing_japanese:
+          - 私 は 仕事 {以外} は 予定 が あり ませ ん。
+        english: I have no plans other than work.
+        hint: This sentence implies you are free outside of work. We're looking for an expression that
+          states you are currently working.
+      - competing_japanese:
+          - 私 は 今、仕事 が {ある}。
+        english: I have work now.
+        hint: This means you have work to do, but not necessarily that you are currently doing it. We're
+          looking for being 'in the middle of' work.
+    scene: You answer the phone during your office hours.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: Among the many options, this one is the best.
+    japanese:
+      - たくさん の 選択 肢 の {中} で、これ が 一番 いい です。
+      - たくさん の 選択 肢 の {中} で、これ が 一番 良い です。
+      - 多く の 選択 肢 の {中} で、これ が ベスト だ。
+      - 数 ある 選択 肢 の {中} で、これ が 最適 です ね。
+      - 多く の 選択 肢 の {中} から、これ を 選び まし た。
+    english_literally: Many options's midst, this is most good.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん の 選択 肢 の {間} で、これ が 一番 いい です。
+        english: Between many options, this one is the best.
+        hint: This phrasing emphasizes the interval between options. We're looking for 'among' a group
+          of options.
+      - competing_japanese:
+          - 選択 肢 の 範囲 {以内} で、これ が 一番 いい です。
+        english: Within the range of options, this is the best.
+        hint: This emphasizes the defined scope or limit of the options. We're looking for a more general
+          'among' them.
+    scene: You are presenting a proposal to a client.
+    register: formal
+    setting: persuasive
+  - english: The birds are outside the window.
+    japanese:
+      - 鳥 が 窓 の {外} に いる。
+      - 鳥 が 窓 の {外} に い ます。
+      - 窓 の {外} に 鳥 が いる。
+      - 窓 の {外} に 小鳥 が い ます ね。
+      - 窓 {外} に 鳥 が 飛ん で い ます。
+    english_literally: Birds, window's outside, are.
+    competing_grammar:
+      - competing_japanese:
+          - 鳥 が 窓 の {中} に いる。
+        english: The birds are inside the window.
+        hint: This implies the birds are inside the window frame or room. We want to say they are outside.
+      - competing_japanese:
+          - 鳥 が 窓 の {上} に いる。
+        english: The birds are on top of the window (frame/sill).
+        hint: This means the birds are on the window sill or frame. We want them to be outside the window.
+      - competing_japanese:
+          - 鳥 が 窓 の {下} に いる。
+        english: This means the birds are below the window. We want them to be outside the window.
+        hint: This means the birds are below the window. We want them to be outside the window.
+      - competing_japanese:
+          - 窓 {以外} に 鳥 が いる。
+        english: This implies birds exist in places that are not windows, which is not the specific meaning.
+          We're looking for birds outside the window.
+        hint: This implies birds exist in places that are not windows, which is not the specific meaning.
+          We're looking for birds outside the window.
+      - competing_japanese:
+          - 鳥 が 窓 の {そば} に いる。
+        english: The birds are near the window.
+        hint: This means birds are close to the window, not necessarily outside of it. We're looking for
+          birds outside the window.
+    scene: You're observing nature from indoors.
+    register: casual
+    setting: reflective
+  - english: No talking during the class, please.
+    japanese:
+      - 授業 {中} は お 静か に お 願い し ます。
+      - 授業 {中} は 静か に し て ください。
+      - 授業 {中} は 話さ ない で ください。
+      - 授業 {中} は お しゃべり 禁止 です。
+    english_literally: Class during, quietly please do.
+    competing_grammar:
+      - competing_japanese:
+          - 授業 の {間} は 静か に し て ください。
+        english: During the interval of class, please be quiet.
+        hint: This emphasizes the duration between start and end of class, rather than the state of being
+          actively in class. We're looking for the state of being 'during' the ongoing class.
+      - competing_japanese:
+          - 授業 が 行わ れ て いる {時} は 静か に し て ください。
+        english: When class is being held, please be quiet.
+        hint: This is a more verbose and general way to say it. We're looking for a concise expression
+          meaning 'during class'.
+    scene: A teacher addresses students at the beginning of a lesson.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「お 静か に お願い し ます」 is a polite yet firm request, commonly used by teachers to maintain
+      order. The use of 「授業 中」 precisely defines the temporal context during which the request applies.
+      This form is suitable for an authoritative figure addressing a group.
+  - english: I saw a strange person while crossing the street.
+    japanese:
+      - 道 を 渡る {中}、変 な 人 を 見かけ た。
+      - 道 を 渡る {中}、おかしな 人 を 見 た。
+      - 通り を 渡る {中} に、奇妙 な 人物 を 見 た よ。
+      - 交差 点 を 渡る {中}、なん か 変 な 人 が い た。
+    english_literally: Road crossing during, strange person saw.
+    competing_grammar:
+      - competing_japanese:
+          - 道 を 渡っ て いる {時} に、変 な 人 を 見かけ た。
+        english: When I was crossing the road, I saw a strange person.
+        hint: This uses a general temporal phrase and the progressive form. We're looking for the expression
+          that emphasizes being 'in the middle of' the action of crossing.
+      - competing_japanese:
+          - 道 を 渡り {ながら}、変 な 人 を 見かけ た。
+        english: While crossing the road, I saw a strange person.
+        hint: This form implies doing two actions simultaneously. We're looking for the phrase that focuses
+          on the state of being 'in the process of' the primary action.
+    scene: You are recounting a curious incident to a friend over coffee.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The construction 「渡る 中」 is a concise way to express being 'in the midst of' or 'during' an
+      action. It can imply a sudden occurrence during an ongoing activity. The use of 「変 な 人」 is typical
+      for a casual conversation about an unexpected sighting.
+  - english: She is the best singer among all her friends.
+    japanese:
+      - 彼女 は 友達 の {中} で、一番 歌 が うまい です。
+      - 彼女 は 友達 の {中} で、一番 歌 が 上手 だ。
+      - 彼女 は 友人 の {中} で、歌 が 誰 より も 素晴らしい です。
+      - あの 子 は みんな の {中} で、歌 が 飛び抜け て うまい よ。
+    english_literally: She, friends' midst, best singing is good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 友達 の {間} で 歌 が 上位 です。
+        english: She is among the top singers among her friends.
+        hint: This implies she's in a higher rank, but not necessarily the absolute best. We're looking
+          for a definitive statement that she is 'the best'.
+      - competing_japanese:
+          - 友達 の みんな の {中} で、彼女 の 歌 が 一番 です。
+        english: Among all friends, her singing is the best.
+        hint: While similar in meaning, this phrasing is slightly different structurally. We're looking
+          for the standard phrasing using 'Noun + の + 中で' to express 'among'.
+    scene: You are discussing mutual friends and their talents.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: Using 「友達 の 中 で」 effectively sets the context for comparison, meaning 'within the group of
+      friends.' The phrase 「一番 歌 が うまい です」 is a clear and direct compliment, making the sentence natural
+      and warm. This expresses a personal opinion within a casual setting.
+post_example_writeup: As you can see from the examples, **中 (naka)** and **外 (soto)** are quite versatile.
+  Remember that **中 (naka)** can refer to both literal interior space and an ongoing state, while **外
+  (soto)** is strictly about exterior space. Paying close attention to the context will help you choose
+  the correct word and nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/中-外-(interior・exterior-spatial)

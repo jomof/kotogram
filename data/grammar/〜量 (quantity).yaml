@@ -1,0 +1,252 @@
+grammar_point: 〜量 (quantity)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Number]は (at least)'
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - ~なければならない・なきゃ (must do・have to)
+  - から (from)
+  - けっこう (quite・ample・no thanks)
+  - ずに・ないで・ことなく (without doing)
+  - ぜ (male emphatic particle)
+  - たら〜で (inherent consequence)
+  - どうか (earnestly・please)
+  - どうぞ (here you are・please・invitation)
+  - にすぎない (no more than)
+  - にする (to decide or make)
+  - ようにする (make an effort to)
+  - わ (feminine sentence-ending particle)
+  - 以前 (before)
+  - 加えると (to add)
+  - 少ない (few・little)
+meaning: quantity, amount, volume, capacity
+pronunciation:
+  katakana: リョウ
+  romaji: ryō
+formation:
+  Noun + 量: Indicates the quantity or amount of that noun.
+  量 (independent use): Refers to quantity in general, often in contexts of measurement or adjustment.
+jlpt: N3
+etymology: The kanji 「量」 (ryō) fundamentally means 'quantity,' 'measure,' or 'amount.' Its origin relates
+  to measuring grains or liquids. As a standalone noun, it directly denotes quantity. When attached as
+  a suffix, as in 「水の量」 (mizu no ryō), it functions to specify 'the amount of [Noun],' thereby emphasizing
+  the measurable aspect rather than just the number of discrete units. This dual usage reflects its core
+  meaning of measurement and enumeration.
+writeup: |-
+  The grammar point 「〜量」 refers to the **quantity**, **amount**, **volume**, or **capacity** of something. It can be used both as a standalone noun 「量」 (ryō) meaning 'quantity' in general, or as a suffix 「〜量」 attached to another noun, indicating 'the quantity of that noun.'
+
+  When used as a suffix, 「〜量」 follows a noun, often connected with the particle 「の」, as in 「水の量」 (mizu no ryō - amount of water) or 「荷物の量」 (nimotsu no ryō - amount of luggage). This construction allows you to express how much of a particular item there is. It's particularly useful for things that are often measured in terms of volume, weight, or a collective amount, rather than just being counted individually.
+
+  For example, you might talk about 「仕事の量」 (shigoto no ryō - amount of work) to describe your workload, or 「情報の量」 (jōhō no ryō - amount of information) when discussing data. You can use adjectives like 「多い」 (ōi - a lot/much) or 「少ない」 (sukunai - a little/few) to describe the quantity: 「量が多い」 (ryō ga ōi - the quantity is large) or 「量が少ない」 (ryō ga sukunai - the quantity is small).
+
+  「量」 can also be used independently, such as when instructing someone to adjust something: 「量を調整してください」 (ryō o chōsei shite kudasai - Please adjust the quantity). It's a versatile term that covers a wide range of measurable aspects of things.
+false_friends:
+  - term: 数 (number)
+    meaning: number, count
+    kind: similar expression
+    nuance: 「数」 specifically refers to a **count** of discrete items (e.g., 個数 kōsu - number of pieces),
+      whereas 「量」 refers to a **quantity** or **amount** of something, which can be continuous or discrete
+      items viewed as a collective mass (e.g., 水の量 mizu no ryō - amount of water).
+    grammar_point: <suggest>:数 (number)
+  - term: 分量 (amount・portion)
+    meaning: amount, portion, share, quantity
+    kind: similar expression
+    nuance: While both refer to quantity, 「分量」 often implies a **given or specific amount** that is divided
+      or allocated, especially in cooking or distributing. 「量」 is a more general term for quantity.
+    grammar_point: <suggest>:分量 (amount・portion)
+  - term: 程度 (degree・extent)
+    meaning: degree, extent, level
+    kind: similar expression
+    nuance: 「程度」 focuses on the **level or grade** of something, often qualitative (e.g., 痛みの程度 itami
+      no teido - degree of pain). 「量」 focuses on the measurable quantity.
+    grammar_point: <suggest>:程度 (degree・extent)
+  - term: くらい (approximate quantity or degree)
+    meaning: about, approximately, to the extent that
+    kind: often confused with
+    nuance: 「くらい」 is a particle used to indicate approximation or degree, often related to quantity, but
+      it *modifies* an amount or idea. 「量」 itself *is* the amount. For example, 「３キロぐらい」 (san kiro gurai
+      - about 3 kg) vs. 「３キロの量」 (san kiro no ryō - a quantity of 3 kg).
+    grammar_point: くらい (approximate quantity or degree)
+post_false_friends_writeup: When distinguishing 「量」 from similar terms, remember that 「数」 is for countable
+  items, focusing on the individual units. 「分量」 implies a specific, often allocated, share of a quantity.
+  「程度」 is about the level or degree of something, which might not be numerically quantifiable. Lastly,
+  「くらい」 is a particle expressing approximation of a quantity, rather than being the quantity itself.
+examples:
+  - english: The amount of water is small.
+    japanese:
+      - 水 の {量} が 少ない。
+      - 水 の {量} は 少ない。
+      - 水 の {量} が 少ない です。
+      - 水 の {量} が 少なめ だ。
+    english_literally: Water's quantity is small.
+    competing_grammar:
+      - competing_japanese:
+          - 水 が 少ない。
+        english: There is little water.
+        hint: While this sentence also conveys a small amount of water, it doesn't explicitly use the
+          concept of 'quantity' as a distinct noun. We're looking for an example that highlights the use
+          of '量'.
+    scene: You are looking at a glass of water that is almost empty.
+    register: casual
+    setting: informative
+  - english: The amount of homework is increasing.
+    japanese:
+      - 宿題 の {量} が 増え て いる。
+      - 宿題 の {量} が 増え て い ます。
+      - 宿題 の {量} が 増大 し て いる。
+      - 宿題 の {量}、増え て いる なあ。
+    english_literally: Homework's quantity is increasing.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 が 増え て いる。
+        english: Homework is increasing.
+        hint: This sentence is grammatically correct but emphasizes the homework itself, not specifically
+          its 'amount.' We want to highlight the '量' aspect.
+    scene: A student is complaining about their workload as new assignments are given out.
+    register: casual
+    setting: storytelling
+  - english: It's important to adjust the quantity.
+    japanese:
+      - '{量} を 調整 する の が 大切 だ。'
+      - '{量} を 調整 する の が 大切 です。'
+      - '{量} の 調整 が 大切 だ。'
+      - '{量} は 調整 が 大切 だ。'
+    english_literally: Quantity to adjust is important.
+    competing_grammar:
+      - competing_japanese:
+          - 調整 する の が 大切 だ。
+        english: It's important to adjust.
+        hint: This is too general; it doesn't specify *what* needs adjusting. We are focusing on adjusting
+          the '量' (quantity).
+    scene: A cooking instructor is explaining to students how to properly measure ingredients for a dish.
+    register: formal
+    setting: instructional
+  - english: There was a large amount of luggage.
+    japanese:
+      - 荷物 の {量} が 多かっ た。
+      - 荷物 の {量} が 多かっ た です。
+      - 荷物 の {量}、結構 多かっ た な。
+      - 荷物 の {量} が かなり 多かっ た。
+    english_literally: Luggage's quantity was large.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 が たくさん あっ た。
+        english: There was a lot of luggage.
+        hint: 「たくさん」 means 'a lot' but doesn't explicitly refer to the '量' (quantity/amount) as a specific
+          noun. We're emphasizing the specific concept of '量'.
+    scene: You are describing your recent trip and how much stuff you had to carry.
+    register: casual
+    setting: storytelling
+  - english: Please make sure the quantity is not too much.
+    japanese:
+      - '{量} が 多く なり すぎ ない よう に し て ください。'
+      - '{量} が 多く なり すぎ ない よう に し ましょう。'
+      - '{量} を 多め に し ない で ください。'
+      - '{量} は 多 すぎ ない ほう が いい です。'
+    english_literally: Please make it so the quantity does not become too much.
+    competing_grammar:
+      - competing_japanese:
+          - 多く なり すぎ ない よう に し て ください。
+        english: Please make sure it doesn't become too much.
+        hint: This is vague about what 'too much' refers to. The original sentence specifically mentions
+          '量' (quantity) to be precise.
+    scene: A parent is advising their child to not put too much food on their plate.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The information quantity is enormous.
+    japanese:
+      - 情報 の {量} が 膨大 だ。
+      - 情報 の {量} が 膨大 です。
+      - 情報 の {量} は 膨大 だ。
+      - 情報 の {量} が ものすごい。
+    english_literally: Information's quantity is enormous.
+    competing_grammar:
+      - competing_japanese:
+          - 情報 が 膨大 だ。
+        english: The information is enormous.
+        hint: This focuses on the information itself being enormous, not specifically the 'quantity' of
+          information. We want to highlight the '量'.
+    scene: Two researchers are discussing the vast amount of data they need to analyze for their project.
+    register: formal
+    setting: academic
+  - english: He drinks a considerable amount of alcohol.
+    japanese:
+      - 彼 は お 酒 の {量} が かなり 多い です。
+      - 彼 は お 酒 の {量} が かなり 多い。
+      - 彼 は 随分 と お 酒 の {量} を 飲む。
+      - 彼 は お 酒 の {量} が 多い ん です よ ね。
+    english_literally: As for him, alcohol's quantity is considerably much.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は お 酒 を かなり 飲み ます。
+        english: He drinks quite a lot of alcohol.
+        hint: This sentence describes the action of drinking a lot, not the '量' (amount/quantity) of alcohol
+          as a specific characteristic.
+    scene: You are describing a friend's drinking habits to another mutual friend.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「お酒の量」 emphasizes the *volume* or *amount* of alcohol consumed, which can sound
+      slightly more objective or observational compared to simply saying 'drinks a lot'. The polite register
+      「〜です」 is neutral for both genders.
+  - english: Please add a suitable amount of sugar.
+    japanese:
+      - 砂糖 を 適 {量} 加え て ください。
+      - 砂糖 を 適 {量} 入れ て ください。
+      - 適 {量} の 砂糖 を 加え て ください。
+      - 砂糖 は 適 {量} に し て ください。
+    english_literally: Sugar a suitable amount please add.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 を 適当 に 加え て ください。
+        english: Please add sugar appropriately.
+        hint: 「適当に」 (tekitou ni) means 'appropriately' or 'suitably' but implies a more casual or approximate
+          addition without focusing on a precise 'amount'. We're looking for the specific term for 'suitable
+          quantity'.
+    scene: A chef is instructing their assistant on how to prepare a dessert.
+    register: formal
+    setting: instructional
+  - english: The amount of work that needs to be done today is huge.
+    japanese:
+      - 今日 やら なけれ ば なら ない 仕事 の {量} が 半端 ない。
+      - 今日 やる べき 仕事 の {量} が 半端 ない。
+      - 今日 の 仕事 の {量}、マジ 半端 ない わ。
+      - 今日 の 仕事 の {量} が すごい。
+    english_literally: Today must-do work's quantity is ridiculous.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 やら なけれ ば なら ない 仕事 が 半端 ない。
+        english: The work that needs to be done today is ridiculous.
+        hint: This phrase focuses on the work itself. We need to specifically mention the 'quantity' of
+          work, which 「量」 provides.
+    scene: A colleague is complaining to you about their overwhelming workload for the day.
+    register: casual
+    setting: sarcastic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「半端ない」 (hanpa nai) is very casual and often used by younger speakers or in informal
+      settings to mean 'incredible,' 'ridiculous,' or 'no joke,' emphasizing the immense quantity. This
+      combines well with the casual tone of the male speaker.
+  - english: The quantity in the old package was larger.
+    japanese:
+      - 古い パッケージ の 方 が {量} が 多かっ た です。
+      - 古い パッケージ の 方 が {量} が 多かっ た。
+      - 旧 パッケージ の 方 が {量} が 多かっ た です ね。
+      - 以前 の パッケージ の 方 が {量} が 多かっ た。
+    english_literally: Old package's side, quantity was more.
+    competing_grammar:
+      - competing_japanese:
+          - 古い パッケージ の 方 が 多かっ た です。
+        english: The old package had more.
+        hint: This sentence is grammatically correct but doesn't explicitly refer to the 'quantity' or
+          'amount.' It's a more general statement. We want to be specific with '量'.
+    scene: You are comparing two different versions of a product in a supermarket, noting the change in
+      packaging and content size.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: As seen in the examples, 「量」 is highly versatile and can describe quantities of
+  various items, from tangible objects like water and luggage to abstract concepts like homework and information.
+  Pay attention to whether 「量」 is used independently or as a suffix with 「の」, as both are common and indicate
+  a focus on the 'amount' rather than just a simple count or general 'lot.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/〜量

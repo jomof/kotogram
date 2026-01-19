@@ -1,0 +1,235 @@
+grammar_point: 代わりに (in return)
+learn_before:
+  - 代わりに (instead of・in exchange for)
+meaning: as a substitute or in return for
+pronunciation:
+  katakana: カワリニ
+  romaji: kawari ni
+formation:
+  Verb[dictionary form] + 代わりに: Indicates that one action is done as a substitute for another, or in return
+    for another.
+  Verb[plain past] + 代わりに: Indicates that one action was done in return for or as a substitute for a past
+    action.
+  Noun + の + 代わりに: Indicates that something is given or received as a substitute or in return for a noun.
+jlpt: N3
+etymology: The phrase 「代わりに」 originates from the noun 「代わり (kawari)」, meaning “substitute,” “alternative,”
+  or “change.” When combined with the particle 「に」, which indicates location, purpose, or result, it signifies
+  “in the place of,” “as a substitute,” or “in return for.” This historical root highlights the core concept
+  of one thing standing in for another, or one action being performed as a direct response to another.
+writeup: 「代わりに」 is a versatile expression used to indicate an exchange or substitution. Its core meaning
+  revolves around the idea of one thing serving as a return or equivalent for another. This can apply
+  to actions, favors, or items.When used with a verb in its dictionary form or plain past form, it means
+  “instead of doing (something)” or “in return for doing (something).” It sets up a relationship where
+  the action in the main clause is performed as a consequence or compensation for the action in the 「代わりに」
+  clause.When used with a noun followed by 「の」, it means “in return for (noun)” or “as a substitute for
+  (noun).” This structure is commonly used when one item or service is exchanged for another.The nuance
+  of 「代わりに」 is that of a direct trade or reciprocity. It implies that there is a balance, where something
+  is given or done, and something else is given or done in return.
+false_friends:
+  - term: に代わって
+    meaning: in place of, on behalf of
+    kind: similar expression
+    nuance: While 「代わりに」 implies an exchange or substitution of equivalent value, 「に代わって」 signifies taking
+      the place of someone or something, often in a role or duty, rather than an exchange. It focuses
+      on succession or representation.
+    grammar_point: に代わって (in place of)
+  - term: 代わりに
+    meaning: instead of (choosing one option over another)
+    kind: similar expression
+    nuance: This usage of 「代わりに」 indicates a choice between two alternatives, where one is chosen in preference
+      to the other, often without the implication of an equivalent trade or compensation. For example,
+      'I went to the library instead of going to the cafe.' The focus is on the alternative taken, not
+      necessarily a reciprocal act.
+    grammar_point: <strongly-suggest>:代わりに (instead of choosing)
+post_false_friends_writeup: To differentiate between 「代わりに (in return)」, 「に代わって」, and the other usage
+  of 「代わりに (instead of choosing)」, remember the core concept of exchange. 「代わりに (in return)」 always implies
+  a direct trade-off or compensation, a 'this for that' relationship. 「に代わって」 is about 'taking the place
+  of' someone or something, as in a substitute teacher. The other 「代わりに」 is simply 'choosing one option
+  over another' without any sense of reciprocity.
+examples:
+  - english: I'll do the dishes, in return you cook dinner.
+    japanese:
+      - 僕 が 皿洗い する 代わり に 君 が 晩ごはん を 作っ て。
+      - 僕 が 皿洗い する 代わり に 君 が 晩ごはん を 作っ て よ。
+    english_literally: I will do the dishes, in return you make dinner.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 が 皿洗い し て、そして 君 が 晩ごはん を 作っ て。
+        english: I'll do the dishes, and then you cook dinner.
+        hint: 「そして」 simply connects actions sequentially, but doesn't imply an exchange or reciprocal
+          condition. We're looking for an 'in return' relationship.
+    scene: A couple is deciding on household chores for the evening.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses the casual form 「僕」 and 「君」, common between intimate partners. 「皿洗い する 代わりに」
+      shows a direct exchange of tasks.
+  - english: She helped me with my homework, and in return I bought her a drink.
+    japanese:
+      - 彼女 は 私 の 宿題 を 手伝っ て くれ た 代わり に、私 は 彼女 に ドリンク を おごっ た。
+      - 彼女 は 私 の 宿題 を 手伝っ て くれ た 代わり に、私 が ドリンク を おごっ た の。
+    english_literally: She helped me with my homework, in return I treated her to a drink.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 私 の 宿題 を 手伝っ て くれ た。その おかげ で 私 は 彼女 に ドリンク を おごっ た。
+        english: She helped me with my homework. Thanks to that, I bought her a drink.
+        hint: 「おかげで」 implies a positive result or gratitude, but not necessarily a direct exchange of
+          actions. We're looking for a reciprocal action.
+    scene: Two friends recounting their day to a third person.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This example uses the plain past form 「手伝って くれた 代わりに」, indicating a completed action followed
+      by a reciprocal action. 「おごった」 (treated) reinforces the friendly exchange.
+  - english: You can use my car, in return you have to fill up the tank.
+    japanese:
+      - 車 を 使っ て いい よ、代わり に ガソリン を 満タン に し て ね。
+      - 車 を 使っ て も 構わ ない が、代わり に ガソリン は 満タン に し て くれ。
+    english_literally: You can use my car, in return please make the gasoline full.
+    competing_grammar:
+      - competing_japanese:
+          - 車 を 使っ て いい よ、だ から ガソリン を 満タン に し て ね。
+        english: You can use my car, so fill up the tank.
+        hint: 「だから」 indicates a reason or consequence, but it doesn't clearly convey the idea of a reciprocal
+          condition or exchange. We're looking for an 'in return' condition.
+    scene: One friend offering their car to another for a trip.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual 「いいよ」 and 「してね」 indicate a friendly but clear condition for the exchange. The speaker
+      grants permission with a condition attached using 「代わりに」.
+  - english: I'll handle this difficult client for you, but in return you owe me a favor.
+    japanese:
+      - この 厄介 な クライアント は 私 が 担当 する 代わり に、後 で 恩 を 貸し て ね。
+      - この 厄介 な クライアント は 私 が 担当 し ます。代わり に、後日 恩 を 貸し て ください。
+    english_literally: This troublesome client, I will handle, in return, owe me a favor later, okay?
+    competing_grammar:
+      - competing_japanese:
+          - この 厄介 な クライアント は 私 が に 代わっ て 担当 し ます。
+        english: I will handle this troublesome client on your behalf.
+        hint: 「に代わって」 means 'on behalf of' or 'in place of,' implying representation, not an exchange
+          or repayment of a favor. We're looking for a reciprocal arrangement.
+    scene: Two colleagues discussing who will deal with a challenging task.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「厄介なクライアント」 and 「恩を貸してね」 suggests a slightly more serious, but still somewhat informal,
+      professional context. The phrase 「担当する代わりに」 clearly lays out the condition for the help offered.
+  - english: The company provides housing; in return employees must work weekends.
+    japanese:
+      - 会社 は 社宅 を 提供 し ます、代わり に 社員 は 週末 も 働く 必要 が あり ます。
+      - 会社 は 社宅 を 提供 する。代わり に 社員 は 週末 も 働く 必要 が ある。
+    english_literally: The company provides company housing, in return employees have the necessity to
+      work weekends too.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は 社宅 を 提供 し ます。その ため、社員 は 週末 も 働く 必要 が あり ます。
+        english: The company provides housing. For that reason, employees must work weekends.
+        hint: 「そのため」 indicates a reason or purpose, but not necessarily a direct contractual exchange
+          or condition. We're looking for a clear 'in return' clause.
+    scene: An HR representative explaining company benefits to new recruits.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: This formal sentence uses 「提供します」 and 「必要が あります」, appropriate for a business setting. 「代わりに」
+      here signifies a condition or trade-off in an employment contract.
+  - english: I always listen to his complaints, and in return he often gives me good advice.
+    japanese:
+      - 彼 の 不満 を いつ も 聞い て あげる 代わり に、彼 は よく 良い アドバイス を くれる。
+      - 彼 の 不満 を いつ も 聞い て あげる 代わり に、彼 は よく 良い アドバイス を くれる ん だ。
+    english_literally: I always listen to his complaints, in return, he often gives good advice.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 不満 を いつ も 聞い て あげる。その 上、彼 は よく 良い アドバイス を くれる。
+        english: I always listen to his complaints. On top of that, he often gives me good advice.
+        hint: 「その上」 adds additional information but doesn't imply a direct exchange or a reciprocal relationship
+          between the two actions. We're looking for a clear 'in return' connection.
+    scene: A person describing a friendship dynamic.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「聞いて あげる 代わりに」 indicates a habitual reciprocal action in a friendly relationship. 「くれる」 emphasizes
+      that the advice is given 'to me' (the speaker), which is a common way to express receiving a favor.
+  - english: If you help me move, in return I'll bake you a cake.
+    japanese:
+      - 引っ越し を 手伝っ て くれ たら、代わり に ケーキ を 焼い て あげる よ。
+      - 引っ越し を 手伝っ て くれる なら、代わり に ケーキ を 焼い て あげる よ。
+    english_literally: If you help me move, in return I will bake a cake for you.
+    competing_grammar:
+      - competing_japanese:
+          - 引っ越し を 手伝っ て くれ たら、ケーキ を 焼い て あげる よ。
+        english: If you help me move, I'll bake you a cake.
+        hint: This sentence is grammatically correct but lacks the explicit 'in return' nuance of 「代わりに」,
+          which emphasizes the reciprocal nature of the offer. We're looking for that specific exchange.
+    scene: A person asking a friend for help with moving.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: The conditional 「手伝って くれたら」 sets up the offer of a return favor. 「焼いて あげるよ」 clearly indicates
+      the speaker's intention to give a benefit in return for the help.
+  - english: I let him borrow my notes, and in return he treated me to lunch.
+    japanese:
+      - 彼 に ノート を 貸し て あげ た 代わり に、彼 が 昼食 を おごっ て くれ た。
+      - 彼 に ノート を 貸し た 代わり に、彼 が 昼食 を おごっ て くれ た。
+    english_literally: I lent him my notes, in return, he treated me to lunch.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に ノート を 貸し て あげ た。そして、彼 が 昼食 を おごっ て くれ た。
+        english: I lent him my notes. And then, he treated me to lunch.
+        hint: 「そして」 implies a sequence of events but doesn't convey that the second action is a direct
+          exchange or compensation for the first. We're looking for a clear 'in return' meaning.
+    scene: A student discussing how they got a free lunch.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: 「貸して あげた 代わりに」 shows a past action done for someone, followed by a reciprocal action from
+      them. 「おごって くれた」 (treated me) is a natural way to express being treated to a meal.
+  - english: He took care of the children all day, and in return I did all the housework.
+    japanese:
+      - 彼 が 一 日 中 子供 達 の 面倒 を 見 て くれ た 代わり に、私 は 家事 を 全部 やっ た。
+      - 彼 が 一 日 中 子供 達 の 面倒 を 見 て くれ た。代わり に、私 は 家事 を 全部 やり まし た。
+    english_literally: He took care of the children all day, in return, I did all the housework.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 一 日 中 子供 達 の 面倒 を 見 て くれ た。その 上、私 は 家事 を 全部 やっ た。
+        english: He took care of the children all day. On top of that, I did all the housework.
+        hint: 「その上」 means 'in addition' or 'moreover,' which lists another action, but doesn't imply that
+          it's a direct exchange for the first action. We're looking for a reciprocal relationship.
+    scene: A parent talking to their friend about sharing responsibilities with their partner.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: This example shows two significant efforts exchanged. 「見て くれた」 emphasizes the partner's action
+      for the speaker's benefit, and 「代わりに」 marks the speaker's reciprocal effort in household chores.
+  - english: I offered a homemade cake in return for the store-bought one they had sold out of.
+    japanese:
+      - 売り切れ て い た 店 の ケーキ の 代わり に、手作り の ケーキ を 提供 し た。
+      - 売り切れ て い た 店 の ケーキ の 代わり に、手作り の ケーキ を 提供 いたし まし た。
+    english_literally: Of the store's cake that was sold out, in return, I offered a handmade cake.
+    competing_grammar:
+      - competing_japanese:
+          - 売り切れ て い た 店 の ケーキ が 無かっ た の で、手作り の ケーキ を 提供 し た。
+        english: Because the store's cake was sold out, I offered a handmade cake.
+        hint: 「ので」 expresses a reason, but it doesn't convey the idea of one item being given 'in place
+          of' or 'as a substitute for' another in an exchange. We're looking for that direct substitution.
+    scene: A baker explaining a substitution made for a customer.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「ケーキ の 代わりに」 uses the noun + の + 代わりに form, indicating an item (homemade cake) offered
+      as a substitute for another (store-bought cake). 「提供した」 is a formal verb for 'offered'.
+post_example_writeup: As you can see, 「代わりに」 consistently conveys the idea of a direct exchange or substitution.
+  Whether it's an action for an action, or an item for an item, the grammatical function remains focused
+  on this reciprocal relationship. Pay attention to the form preceding 「代わりに」 (verb or noun+の) to understand
+  the nature of what is being exchanged.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AB-in-return

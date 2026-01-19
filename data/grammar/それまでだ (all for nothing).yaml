@@ -1,0 +1,368 @@
+grammar_point: それまでだ (all for nothing)
+learn_before:
+  - Verb[ても] (concessive)
+meaning: If (a certain condition is met), then everything up to that point is in vain / it's useless /
+  there's no point / it's all for nothing.
+pronunciation:
+  katakana: ソレマデダ
+  romaji: sore made da
+formation:
+  '[Condition] + それまでだ': Indicates that if the condition is met, everything accomplished up to that point
+    becomes futile or pointless.
+  '[Topic] + と言われればそれまでだ': A set phrase used to politely acknowledge an undeniable truth or a given statement,
+    often followed by a counter-argument or further explanation, meaning 'while it is true that (A), there
+    is nothing more to say, but...'
+jlpt: N1
+etymology: The expression 「それまでだ」 is a combination of 「それ」 (that), 「まで」 (until), and 「だ」 (the plain form
+  of 「です」, meaning 'to be'). Literally, it signifies 'until that point.' In context, this implies that
+  once 'that point' (the condition) is reached, further effort or continuation is rendered meaningless
+  or futile, thus leading to the meaning 'everything up to that point is in vain.' The structure highlights
+  a critical threshold beyond which previous efforts lose their value.
+writeup: '「それまでだ」 is a powerful hypothetical expression used to convey that if a specific condition (A)
+  comes to pass, all previous efforts or achievements leading up to that point will become completely
+  meaningless or wasted. This often carries a feeling of resignation or futility. While the standard form
+  for the conditional clause preceding 「それまでだ」 is often with the conjunction particle 「ば」, indicating
+  a hypothetical or general condition (e.g., 「〜ばそれまでだ」), it can also be used with 「たら」, which implies
+  a more definite or completed action leading to the consequence (e.g., 「〜たらそれまでだ」). It is common to see
+  this structure in sentences that include 「ても」 or 「でも」 in the first half, implying that "even if (A)
+  is done, if (B) occurs, then all is for naught." This highlights a situation where extensive effort
+  might still be undone by a critical failure point. **Special Usage: 「〜と言われればそれまでだ」** This is a unique,
+  set expression within the broader usage of 「それまでだ」. It means ''while it is true that (A), (B)'' or ''if
+  you say that (A), then there''s nothing more to say, but (B)''. This phrase is frequently employed when
+  one wants to politely acknowledge a point made by someone else, even if that point might be absolute
+  or difficult to refute, before subtly introducing one''s own opinion or an alternative perspective.
+  It literally translates to ''if it is said to be (A), then that''s as far as it goes (in terms of argument/dispute),
+  but (B)''. This demonstrates a sophisticated level of communication, allowing for polite disagreement
+  or a nuanced addition to a conversation.'
+false_friends:
+  - term: 無駄になる
+    meaning: to become useless, to be wasted
+    kind: similar expression
+    nuance: While 「無駄になる」 (muda ni naru) also means 'to be wasted' or 'become useless,' 「それまでだ」 often
+      implies a more absolute and complete nullification of all prior efforts, suggesting a critical failure
+      point beyond which everything collapses. 「無駄になる」 can sometimes imply that some partial benefit might
+      still exist, or that only a specific effort was wasted, not the entire endeavor.
+    grammar_point: <suggest>:無駄になる (to become useless)
+  - term: 終わりだ
+    meaning: It's the end / It's over
+    kind: similar expression
+    nuance: 「終わりだ」 (owari da) directly states that something has ended. While it can also convey a sense
+      of finality or defeat, 「それまでだ」 specifically emphasizes that all *previous efforts* or the *entire
+      accumulation* leading to that point have become pointless or futile due to a specific condition
+      being met. 「終わりだ」 is more about the cessation, 「それまでだ」 is about the futility of what came before.
+    grammar_point: <suggest>:終わりだ (it's the end)
+  - term: 意味がない
+    meaning: It's meaningless / There's no point
+    kind: similar expression
+    nuance: 「意味がない」 (imi ga nai) suggests a lack of purpose or significance. 「それまでだ」, in contrast, often
+      implies that something *had* meaning or purpose, but that meaning is now lost or invalidated because
+      a particular condition has been met, leading to a sense of regret or resignation over the invested
+      effort.
+    grammar_point: <suggest>:意味がない (it's meaningless)
+post_false_friends_writeup: To differentiate these expressions, remember that 「それまでだ」 specifically highlights
+  the undoing of previous efforts due to a critical turning point. It suggests that while progress might
+  have been made, a specific failure or condition negates all that came before. 「無駄になる」 is a more general
+  term for something becoming wasted. 「終わりだ」 signals completion or defeat without necessarily focusing
+  on the invalidation of past efforts. 「意味がない」 simply states a lack of purpose.
+examples:
+  - english: If this confidential information leaks, then everything is ruined.
+    japanese:
+      - この 極秘 情報 が 漏れれ ば {それ まで だ}。
+      - この 機密 情報 が 漏れ て しまえ ば {それ まで だ}。
+    english_literally: If this confidential information leaks, then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - この 極秘 情報 が 漏れれ ば {台無し だ}。
+        english: If this confidential information leaks, it will be ruined.
+        hint: While 「台無しだ」 indicates something is ruined, 「それまでだ」 emphasizes that all prior efforts become
+          completely futile, suggesting a critical failure point.
+    scene: A CEO discussing sensitive company data with executives, emphasizing the catastrophic consequences
+      of a data breach.
+    register: formal
+    setting: serious
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This sentence uses the conditional 「〜ば」 form, which is appropriate for a formal, serious context
+      to express a hypothetical but critical outcome. The use of 「漏れれ ば」 emphasizes the immediate and
+      catastrophic result of the information leaking. The grammar point 「それまでだ」 here underlines the complete
+      and absolute futility of all prior security efforts should the leak occur.
+    etymology: The word 「極秘」 (gokuhi) combines 「極」 (goku) meaning 'extreme' or 'ultimate' and 「秘」 (hi)
+      meaning 'secret', emphasizing the highly classified nature of the information.
+  - english: No matter how perfect a plan is, if it's not executed, it's all for nothing.
+    japanese:
+      - どんな に 完璧 な 計画 で も、実行 さ れ なけれ ば {それ まで だ}。
+      - いくら 完璧 な 計画 だ と し て も、実行 さ れ なけれ ば {それ まで だ}。
+    english_literally: No matter how perfect a plan, if not executed, then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 完璧 な 計画 で も、実行 さ れ なけれ ば {無駄 に なる}。
+        english: No matter how perfect a plan is, if it's not executed, it will be wasted.
+        hint: 「無駄になる」 means to be wasted, but 「それまでだ」 specifically highlights that all prior efforts and
+          the entire endeavor become futile due to a critical missing action.
+    scene: A project manager addressing their team, stressing the importance of action over mere planning.
+    register: semi-formal
+    setting: instructional
+    conjugation: conditional (～ば)
+    nuance: The phrase 「どんなに 〜 でも」 sets up a concessive clause, highlighting that even extreme perfection
+      in planning will be undone without execution. 「実行されなければ」 (if not executed) uses the passive conditional,
+      reinforcing the idea of a necessary action. 「それまでだ」 here expresses the complete nullification of
+      all the meticulous planning, emphasizing the manager's point about practical application.
+    etymology: The word 「完璧」 (kanpeki) comes from 「完」 (kan) meaning 'complete' and 「璧」 (heki) referring
+      to a jade disk, symbolizing flawlessness. Thus, 'complete jade' metaphorically means 'perfect'.
+  - english: If they find us here, it's all over for us.
+    japanese:
+      - もし ここ で 彼 ら に 見つかっ たら {それ まで だ} ぞ。
+      - ここ で 見つかっ たら、もう お しまい だ {それ まで だ} ぞ。
+    english_literally: If they find us here, then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - もし ここ で 彼 ら に 見つかっ たら {終わり だ} ぞ。
+        english: If they find us here, it's the end for us.
+        hint: 「終わりだ」 means it's over, but 「それまでだ」 emphasizes that all efforts to remain hidden up to this
+          point will be completely nullified.
+    scene: Two spies hiding, with one whispering to the other about the consequence of being discovered.
+    register: casual
+    setting: cautious
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「もし 〜 たら」 indicates a concrete hypothetical scenario. The ending particle 「ぞ」 adds
+      a masculine, emphatic, and slightly warning tone, commonly used by male speakers to add conviction
+      or admonishment to their statements. 「それまでだ」 conveys the utter futility of their mission should
+      they be discovered, implying all prior efforts to remain hidden would be undone.
+    etymology: The word 「見つかる」 (mitsukaru) comes from 「見つける」 (mitsukeru) meaning 'to find,' and the passive
+      suffix 「〜かる」, indicating that something is found by someone else. The 「ぞ」 particle dates back to
+      Old Japanese, originally serving as an assertive or warning final particle, particularly common
+      in male speech.
+  - english: Thinking that years of effort will be for nothing if I fail the exam makes me feel down.
+    japanese:
+      - 長年 の 努力 も、試験 に 落ちれ ば {それ まで だ} と 思う と 気 が 重い。
+      - 何 年 も の 頑張り も、試験 に 落ち たら {それ まで だ} と 思う と 気 が 重い。
+    english_literally: Long years of effort, if I fall in exam, then that's it, thinking makes my mood
+      heavy.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 努力 も、試験 に 落ちれ ば {意味 が ない} と 思う と 気 が 重い。
+        english: Thinking that years of effort will be meaningless if I fail the exam makes me feel down.
+        hint: While 「意味がない」 conveys meaninglessness, 「それまでだ」 emphasizes that the past effort, which once
+          had meaning, will be entirely invalidated by the failure.
+    scene: A university student studying late at night, feeling the pressure of an upcoming crucial exam.
+    register: casual
+    setting: melancholic
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The casual tone and the use of 「〜と思うと気が重い」 (thinking about it makes me feel heavy) reflect
+      the student's internal monologue and sense of pressure. 「長年 の 努力 も」 highlights the significant investment.
+      The grammar point 「それまでだ」 here expresses the student's fear that all these past efforts will be
+      rendered completely useless if they fail, creating a strong sense of despair.
+    etymology: 「気が重い」 (ki ga omoi) literally means 'spirit is heavy,' conveying a feeling of burden or
+      gloominess. This idiom reflects how emotional states are often perceived as physical sensations
+      in Japanese, connecting to the idea of the heart or spirit (気) being weighed down.
+  - english: If you say it's a foolish plan, there's nothing more to say, but I think it's worth a try.
+    japanese:
+      - 『そんな 馬鹿 な 計画 だ』と 言わ れれ ば {それ まで だ} が、やっ て みる 価値 は ある と 思う。
+      - 『全く くだら ない 案 だ』と 言わ れれ ば {それ まで だ} が、試す 価値 は ある と 思う。
+    english_literally: '''It''s such a foolish plan,'' if it is said, then that''s it, but I think it
+      has value to try.'
+    competing_grammar:
+      - competing_japanese:
+          - 『そんな 馬鹿 な 計画 だ』と 言わ れれ ば {反論 の 余地 が ない} が、やっ て みる 価値 は ある と 思う。
+        english: If you say 'it's a foolish plan,' there's no room for counterargument, but I think it's
+          worth a try.
+        hint: While 「反論 の 余地 が ない」 indicates no argument is possible, 「〜と言われればそれまでだ」 is a more nuanced
+          phrase that acknowledges the truth of a statement as a concession, often before subtly introducing
+          a differing view.
+    scene: A young entrepreneur pitching an unconventional business idea to a skeptical potential investor,
+      trying to persuade them despite initial reservations.
+    register: formal
+    setting: persuasive
+    conjugation: conditional (～ば)
+    nuance: This example uses the specific set phrase 「〜と言われればそれまでだ」, which gracefully acknowledges a
+      potentially harsh but undeniable truth before pivoting to a counter-argument with 「が」 (but). The
+      entrepreneur concedes the point ('nothing more to say' if called foolish) while immediately asserting
+      their belief in the plan's potential, showcasing polite but firm persuasion.
+    etymology: The word 「価値」 (kachi) meaning 'value' or 'worth' combines 「価」 (ka) referring to 'price'
+      or 'value' and 「値」 (chi) also meaning 'value'. Its use in 「〜価値がある」 is a common way to express that
+      something is 'worth doing' or 'has merit'.
+  - english: No matter how much you try your best, if you ruin your health, it's all for nothing.
+    japanese:
+      - いくら 頑張っ て も、健康 を 損なえ ば {それ まで だ} よ。
+      - どれ だけ 努力 し て も、健康 を 壊し たら {それ まで だ} よ ね。
+    english_literally: No matter how much you try, if you ruin your health, then that's it, you know.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 頑張っ て も、健康 を 損なえ ば {無駄 に なる} よ。
+        english: No matter how much you try your best, if you ruin your health, it will be wasted.
+        hint: 「無駄になる」 conveys that effort is wasted, but 「それまでだ」 implies a complete nullification of all
+          prior efforts, suggesting a critical failure point beyond which everything collapses.
+    scene: An older woman giving advice to a younger man who is overworking himself.
+    register: casual
+    setting: supportive
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The ending particle 「よ」 adds a gentle but firm assertion, common when giving advice or sharing
+      a truth, especially from an older, caring perspective. The use of 「いくら 〜 ても」 emphasizes the extent
+      of effort. 「健康を損なえば」 (if you ruin your health) highlights the critical condition. 「それまでだ」 here expresses
+      the complete nullification of all hard work, implying that health is paramount.
+    etymology: The phrase 「健康 を 損なう」 (kenkou o sokonau) means 'to damage one's health'. 「損なう」 carries
+      a nuance of causing harm or spoiling something, often resulting in a negative state. The female
+      sentence-final particle 「よ」 has its roots in classical Japanese, indicating emphasis or a call to
+      attention, commonly used by female speakers for advice or strong assertion.
+  - english: If this gets exposed, all my efforts will be for nothing, huh?
+    japanese:
+      - もし これ が バレ たら、僕 の 全て の 努力 は {それ まで だ} ね。
+      - もし これ が 明るみ に なっ たら、俺 の 今 まで の 苦労 は {それ まで だ} ね。
+    english_literally: If this gets exposed, my all efforts then that's it, huh?
+    competing_grammar:
+      - competing_japanese:
+          - もし これ が バレ たら、僕 の 全て の 努力 は {水 の 泡 に なる} ね。
+        english: If this gets exposed, all my efforts will come to nothing, huh?
+        hint: 「水の泡になる」 is an idiom for efforts becoming futile, but 「それまでだ」 more directly conveys the
+          complete undoing of all accumulated work due to a specific critical event.
+    scene: A young man nervously contemplating the consequences of a secret project or endeavor being
+      revealed.
+    register: casual
+    setting: cautious
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「ね」 at the end, coupled with the first-person pronoun 「僕」 (boku) or 「俺」 (ore),
+      indicates a reflective or self-addressed thought, seeking confirmation or expressing a shared understanding
+      with an imagined listener. 「バレたら」 (if it gets exposed) is a colloquial expression. 「それまでだ」 conveys
+      the utter waste of all his previous efforts if the secret is revealed, highlighting his anxiety.
+    etymology: 「バレる」 (bareru) is a colloquial verb meaning 'to be exposed' or 'to be found out.' It is
+      derived from the more formal 「現れる」 (arawareru), meaning 'to appear' or 'to become visible,' and
+      has evolved into a common term for secrets being revealed. 「僕」 (boku) as a first-person pronoun,
+      used commonly by young males, has a history rooted in formality, but its usage evolved to be more
+      casual among younger men.
+  - english: If you say 'it's impossible,' there's nothing more to say, but I don't want to give up until
+      the end.
+    japanese:
+      - 『もう 無理 だ』と 言わ れれ ば {それ まで だ} けど、最後 まで 諦め たく ない。
+      - 『もう これ 以上 は 無理 だ』と 言わ れれ ば {それ まで だ} が、最後 まで 粘り たい。
+    english_literally: '''It''s impossible,'' if it is said, then that''s it, but I don''t want to give
+      up until the end.'
+    competing_grammar:
+      - competing_japanese:
+          - 『もう 無理 だ』と 言わ れれ ば {引き下がる しか ない} けど、最後 まで 諦め たく ない。
+        english: If you say 'it's impossible,' I have no choice but to back down, but I don't want to
+          give up until the end.
+        hint: 「引き下がる しか ない」 means you have no choice but to concede, but 「〜と言われればそれまでだ」 is a more refined
+          way to acknowledge a point gracefully before stating a different resolve.
+    scene: An athlete exhausted during a marathon, acknowledging their coach's realistic assessment but
+      refusing to quit.
+    register: semi-formal
+    setting: serious
+    conjugation: conditional (～ば)
+    nuance: This uses the 「〜と言われればそれまでだ」 construction, where 「もう無理だ」 is the undeniable truth. The particle
+      「けど」 (kedo) or 「が」 (ga) allows the speaker to acknowledge the truth while immediately introducing
+      their own strong will. 「それまでだ」 here signifies a concession, like 'if you put it that way, there's
+      nothing more I can argue,' but it doesn't mean the end of the effort.
+    etymology: The verb 「諦める」 (akirameru) meaning 'to give up' or 'to abandon' originally meant 'to make
+      clear' or 'to discern' (明らかに). Over time, its meaning shifted to 'to give up' or 'to resign oneself,'
+      perhaps from the idea of clearly seeing that something is impossible and thus abandoning it.
+  - english: No matter how famous a designer is, if they run out of ideas, that's the end of their career.
+    japanese:
+      - どんな に 有名 な デザイナー で も、アイデア が なくなれ ば {それ まで だ}。
+      - どれ ほど 著名 な デザイナー で あっ て も、アイデア が 枯渇 すれ ば {それ まで だ}。
+    english_literally: No matter how famous a designer, if ideas disappear, then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 有名 な デザイナー で も、アイデア が なくなれ ば {お しまい だ}。
+        english: No matter how famous a designer is, if they run out of ideas, their career is over.
+        hint: While 「おしまいだ」 states something is over, 「それまでだ」 specifically emphasizes that all previous
+          success and fame become meaningless due to the critical loss of creative ability.
+    scene: A veteran fashion critic commenting on the fleeting nature of success in the creative industry.
+    register: formal
+    setting: reflective
+    conjugation: conditional (～ば)
+    nuance: The formal setting and the use of 「どんなに 〜 でも」 emphasize the universal truth being expressed
+      by the critic. 「アイデアがなくなれば」 (if ideas disappear) sets the critical condition. 「それまでだ」 clearly states
+      that all the fame and success up to that point become utterly meaningless and futile if the creative
+      wellspring dries up, reflecting the harsh reality of the industry.
+    etymology: 「著名」 (chomei) meaning 'famous' or 'well-known' combines 「著」 (cho) meaning 'remarkable'
+      or 'prominent' and 「名」 (mei) meaning 'name.' It implies being widely recognized for one's achievements.
+      「枯渇」 (kokatsu) meaning 'drying up' or 'exhaustion' is often used metaphorically for resources or,
+      as in this case, ideas.
+  - english: If you fail this important job, it'll all be for nothing, so be careful.
+    japanese:
+      - この 大事 な 仕事 で 失敗 し たら {それ まで だ} から、慎重 に な。
+      - この 重要 な 任務 で 失敗 し たら、全て が {それ まで だ} から、気 を つけろ。
+    english_literally: This important job, if you fail, then that's it, so be careful.
+    competing_grammar:
+      - competing_japanese:
+          - この 大事 な 仕事 で 失敗 し たら、全て が {水 の 泡 に なる} から、慎重 に な。
+        english: If you fail this important job, everything will come to nothing, so be careful.
+        hint: 「すべて が 水 の 泡 に なる」 signifies total futility of efforts, but 「それまでだ」 carries a stronger sense
+          of definitive and irreversible failure that nullifies all prior progress and investment.
+    scene: A manager warning a junior employee about the high stakes of a critical assignment.
+    register: semi-formal
+    setting: commanding
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The particle 「な」 (na) or the imperative 「気をつけろ」 is commonly used by older male speakers to
+      give a gentle warning or command to younger individuals, conveying serious counsel. 「大事な仕事で失敗したら」
+      (if you fail this important job) sets the high-stakes scenario. 「それまでだ」 imparts a strong sense of
+      irreversible failure and the complete loss of all invested effort, fitting the manager's serious
+      admonition to be careful.
+    etymology: The particle 「な」 (na) when used as a sentence-final particle for commands or advice in
+      informal speech has a long history, often implying a softer or more persuasive command compared
+      to stronger imperatives. 「慎重」 (shinchou) means 'careful' or 'prudent,' combining 「慎」 (shin) meaning
+      'to be careful' and 「重」 (chou) meaning 'heavy' or 'important', thus emphasizing the weight given
+      to careful consideration.
+  - english: If you forget to save your work, all your efforts will be for nothing.
+    japanese:
+      - 保存 する の を 忘れ たら、全部 {それ まで だ} よ。
+      - 作業 を 保存 し なけれ ば、頑張っ た こと も {それ まで だ} から ね。
+    english_literally: If you forget to save, everything then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - 保存 する の を 忘れ たら、全部 {無駄 に なる} よ。
+        english: If you forget to save your work, everything will become useless.
+        hint: While 「無駄になる」 means to be wasted, 「それまでだ」 implies a complete nullification of efforts and
+          previous work.
+    scene: A university student tells a friend how crucial it is to save digital work after an incident
+      of losing a long assignment.
+    register: casual
+    setting: instructional
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of the sentence-final particle 「よ」 in 「それまでだ よ」 adds a softening and slightly explanatory
+      tone, commonly used by female speakers to offer advice or share understanding. The casual context
+      with a friend makes this relatable.
+  - english: If the economy collapses, then all our efforts to start this business will be for nothing.
+    japanese:
+      - 経済 が 破綻 し たら、これ まで の 起業 の 努力 は {それ まで だ}。
+      - もし 経済 が 崩壊 し たら、全て の 準備 も {それ まで だ} と なっ て しまう。
+    english_literally: If economy collapses, efforts for starting business up to now then that's it.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 が 破綻 し たら、これ まで の 起業 の 努力 は {泡 と 消える}。
+        english: If the economy collapses, all our efforts to start this business will disappear like
+          foam.
+        hint: 「泡と消える」 is an idiom for efforts vanishing, but 「それまでだ」 more directly conveys the entire
+          endeavor becoming pointless, implying an irreversible loss.
+    scene: Two business partners, facing an uncertain global market, discuss the high risks involved in
+      their new venture.
+    register: formal
+    setting: serious
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The professional register and serious setting are conveyed through the formal vocabulary like
+      「経済が破綻 (keizai ga hatan)」 for 'economy collapses' and 「起業の努力 (kigyou no doryoku)」 for 'efforts to
+      start a business.' The tone is direct and factual, reflecting a business discussion.
+post_example_writeup: As these examples demonstrate, 「それまでだ」 is a versatile phrase, used across different
+  registers and situations to convey the undoing of efforts. Pay close attention to the conditional clauses
+  that precede it (often 「〜ば」 or 「〜たら」) as they specify the critical turning point. The specific context
+  and accompanying particles or phrases can also add nuances like resignation, warning, or polite concession,
+  particularly in the 「〜と言われればそれまでだ」 form.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それまでだ

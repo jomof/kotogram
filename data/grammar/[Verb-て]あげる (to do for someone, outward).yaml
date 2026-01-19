@@ -1,0 +1,337 @@
+grammar_point: '[Verb-て]あげる (to do for someone, outward)'
+learn_before:
+  - あげる・やる (to give, outward)
+meaning: To do something for someone, expressing an outward giving action or favor.
+meaning_warning: This expression can sound patronizing or condescending, especially when used with people
+  of higher status or with elderly individuals.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てあげる
+    rarity: common
+    meaning: to do something for someone's benefit
+  - conjugation-type: non-past polite (～ます)
+    form: てあげます
+    rarity: common
+    meaning: to do something for someone's benefit (polite)
+  - conjugation-type: negative plain (～ない)
+    form: てあげない
+    rarity: common
+    meaning: not to do something for someone's benefit
+  - conjugation-type: negative non-past polite (～ません)
+    form: てあげません
+    rarity: common
+    meaning: not to do something for someone's benefit (polite)
+  - conjugation-type: past plain (～た)
+    form: てあげた
+    rarity: common
+    meaning: did something for someone's benefit
+  - conjugation-type: past polite (～ました)
+    form: てあげました
+    rarity: common
+    meaning: did something for someone's benefit (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: てあげなかった
+    rarity: common
+    meaning: did not do something for someone's benefit
+  - conjugation-type: negative past polite (～ませんでした)
+    form: てあげませんでした
+    rarity: common
+    meaning: did not do something for someone's benefit (polite)
+  - conjugation-type: te-form (～て)
+    form: てあげて
+    rarity: less common
+    meaning: doing something for someone's benefit (often in a request)
+  - conjugation-type: conditional (～ば)
+    form: てあげれば
+    rarity: uncommon
+    meaning: if one does something for someone's benefit
+  - conjugation-type: conditional (～たら)
+    form: てあげたら
+    rarity: uncommon
+    meaning: if/when one does something for someone's benefit
+  - conjugation-type: volitional (～よう)
+    form: てあげよう
+    rarity: uncommon
+    meaning: let's do something for someone's benefit
+  - conjugation-type: volitional polite (～ましょう)
+    form: てあげましょう
+    rarity: uncommon
+    meaning: let's do something for someone's benefit (polite)
+  - conjugation-type: passive (～られる/～かれる)
+    form: てあげられる
+    rarity: uncommon
+    meaning: to be done for someone's benefit
+  - conjugation-type: causative (～させる)
+    form: てあげさせる
+    rarity: very rare
+    meaning: to make someone do something for another's benefit
+  - conjugation-type: potential (～られる/～える)
+    form: てあげられる
+    rarity: uncommon
+    meaning: can do something for someone's benefit
+pronunciation:
+  katakana: テアゲル
+  romaji: te ageru
+formation:
+  Verb て-form + あげる: Indicates performing an action for someone else's benefit or as a favor; it implies
+    the giver is superior to the receiver in terms of status or benevolence for this particular action.
+    It is often used with family, close friends, or those of lower status, but can be condescending if
+    used with those of equal or higher status. The て-form links the preceding verb to the act of 'giving'
+    the action represented by あげる (to give).
+jlpt: N4
+etymology: The grammar point 「てあげる」 combines the 連用形 (ren'yōkei - continuative form) of a verb, followed
+  by the particle 「て」, with the verb 「あげる」 (ageru), which means "to give." Historically, 「あげる」 implies
+  giving or bestowing, and its use in this construction extends to 'giving' an action. This structure
+  developed to express an action performed by the speaker for the benefit of another, highlighting the
+  'giving' aspect of the action itself.
+writeup: |-
+  The grammar point 「てあげる」 is used to express performing an action for someone else's benefit or as a favor. It consists of a verb conjugated into its て-form, followed by the auxiliary verb 「あげる」. Conceptually, it signifies "to give the action of [verb] to [someone]."
+
+  One must exercise considerable caution when using 「てあげる」, as it carries a nuance that can be perceived as patronizing or condescending. This is primarily because the verb 「あげる」 inherently suggests bestowing something upon someone, which can imply a hierarchical relationship where the giver is superior to the receiver. This makes it particularly inappropriate when speaking to individuals of higher social status, superiors, or elderly people, as it might inadvertently suggest they are incapable of doing it themselves, thus coming across as rude.
+
+  For instance, saying 「手伝ってあげる」 (I will help you) to a senior colleague or someone older could be interpreted as implying they are incapable of doing it themselves, thus coming across as rude.
+
+  In situations where 「てあげる」 might be inappropriate, alternative expressions or grammatical structures should be considered. For example, using neutral expressions or asking if assistance is needed can be more polite. The appropriate usage of 「てあげる」 is generally limited to interactions with family members, close friends, or individuals of lower status (e.g., a parent to a child, an older sibling to a younger one). In such contexts, the benevolent nuance of doing a favor is understood and accepted.
+
+  Historically, there's an interesting parallel with the verb 「やる」 (yaru), which also means "to give" but is typically used for things given to plants, animals, or people of clearly lower status, and can sound very rude if used inappropriately. While 「てやる」 used to exist, it is now extremely rare in polite or even casual conversation, largely replaced by 「てあげる」. However, the patronizing undertone of 「あげる」 in certain contexts stems from this historical background and the inherent 'giving' connotation.
+
+  It is crucial to consider the social context and the relationship dynamic between the speaker and the listener to avoid causing offense. When in doubt, it is always safer to opt for a more neutral or humble expression.
+false_friends:
+  - term: てくれる
+    meaning: To do something for someone (usually you or your in-group)
+    kind: similar expression
+    nuance: 「てくれる」 indicates that someone is doing something for the speaker's benefit, or for the benefit
+      of someone within the speaker's in-group, whereas 「てあげる」 indicates that the speaker is doing something
+      for someone else's benefit.
+    grammar_point: '[Verb-て]くれる (to do for me・in-group)'
+  - term: てもらう
+    meaning: To receive the favor of someone doing something
+    kind: similar expression
+    nuance: 「てもらう」 means that the speaker (or someone in the speaker's in-group) is receiving a favor
+      from someone else, while 「てあげる」 means that the speaker is giving a favor.
+    grammar_point: '[Verb-て]もらう (to have someone do, receive an action)'
+  - term: あげる
+    meaning: To give (away), to present, to provide (a thing)
+    kind: often confused with
+    nuance: When used alone, 「あげる」 simply means to give an object. When combined with the て-form of a
+      verb, it takes on the nuance of performing an action as a favor, extending the concept of 'giving'
+      to actions rather than just objects.
+    grammar_point: あげる・やる (to give, outward)
+post_false_friends_writeup: The expressions 「てくれる」 and 「てもらう」 are often confused with 「てあげる」 because they
+  all involve someone doing something for someone else. However, the key difference lies in the direction
+  of the favor. 「てあげる」 is used when you are doing something for someone else. 「てくれる」 is used when someone
+  is doing something for you (or your in-group). 「てもらう」 is used when you are receiving a favor from someone.
+  The verb 「あげる」 on its own refers to giving an object, whereas 「てあげる」 refers to giving an action as a
+  favor.
+examples:
+  - english: I'll teach my younger brother his homework.
+    japanese:
+      - 弟 に 宿題 を 教え て {あげる}。
+      - 弟 に 宿題 を 教え て {あげ ます}。
+      - 弟 の 宿題 を 手伝っ て {あげる}。
+      - 弟 の 宿題 を 手伝っ て {あげ ます}。
+    english_literally: I will teach homework to my younger brother for his benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 に 宿題 を 教える。
+        english: I will teach my younger brother his homework.
+        hint: 「教える」 is a neutral statement of teaching. 「てあげる」 emphasizes doing it as a favor. We're looking
+          for the act of providing assistance.
+    scene: A busy older sister offers to help her younger brother with his homework.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The speaker is a female older sibling, offering help to her younger brother. The casual tone
+      is conveyed by the simple plain form 「教えてあげる」. This is a common and appropriate use of てあげる within
+      a family setting, where the older sibling is doing a favor for the younger. Although not present
+      in this example, if the brother were to thank her, she might say 「どう いたしまして」 (you're welcome) or
+      「いいんだよ」 (it's fine) to acknowledge her act of kindness without making it sound like a burden or
+      an over-the-top favor, further cementing the benevolent relationship.
+  - english: My father fixed my bicycle for me yesterday.
+    japanese:
+      - 昨日、父 が 私 の 自転 車 を 直し て {あげ た}。
+      - 昨日、父 が 私 の 自転 車 を 直し て {あげ まし た}。
+    english_literally: Yesterday, my father fixed my bicycle for my benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、父 が 私 の 自転 車 を 直し た。
+        english: Yesterday, my father fixed my bicycle.
+        hint: The nuance of 'for me' or 'for my benefit' is missing in a simple declarative sentence.
+          We're looking for an expression that conveys this favor.
+    scene: A child is happy because their father repaired their broken bicycle.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: Here, a daughter is talking about her father's action. The use of 「直し て あげた」 is natural as
+      a parent doing something for their child is a common context where 'te ageru' is appropriate and
+      not perceived as condescending.
+  - english: I will help you with your presentation.
+    japanese:
+      - プレゼン の 準備 を 手伝っ て {あげ ます}。
+      - プレゼン を 手伝っ て {あげ ます}。
+    english_literally: I will assist with the presentation preparation for your benefit.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン の 準備 を 手伝い ます。
+        english: I will assist with the presentation preparation.
+        hint: While 「手伝います」 states the action, it lacks the explicit offer of doing it as a benefit or
+          favor. We're looking for a grammar point that expresses assistance given for another's benefit.
+    scene: A colleague offers assistance to a stressed co-worker who is preparing a presentation.
+    register: semi-formal
+    setting: supportive
+    conjugation: non-past polite (～ます)
+    nuance: In this professional but supportive context between colleagues of potentially equal status,
+      「手伝っ て あげます」 might carry a subtle nuance of the speaker taking initiative or being in a slightly
+      more capable position. However, it's generally accepted in situations where one person is clearly
+      providing help to another, as long as it's not directed upwards to a superior.
+  - english: The kind student picked up the dropped pen for the teacher.
+    japanese:
+      - 親切 な 生徒 が 先生 の 落とし た ペン を 拾っ て {あげ まし た}。
+      - 親切 な 生徒 が 先生 の 落とし た ペン を 拾っ て {あげ た}。
+    english_literally: The kind student picked up the teacher's dropped pen for the teacher's benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 親切 な 生徒 が 先生 の 落とし た ペン を 拾い まし た。
+        english: The kind student picked up the teacher's dropped pen.
+        hint: This version simply states the action. We need a form that emphasizes the student's act
+          as a courtesy or favor given to the teacher.
+    scene: During class, a teacher accidentally drops their pen, and a student quickly retrieves it for
+      them.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: While using 「てあげる」 for a teacher might seem inappropriate due to status, this example describes
+      the action from a third-person perspective (e.g., a narrator or an observer), not the student directly.
+      It highlights the student's benevolent act. In such a narrative, it emphasizes that the student
+      did something *for* the teacher, rather than just performing the action. If the student were speaking
+      to the teacher, they would use a humble form like 「お拾いしました」 or simply 「拾いました」.
+  - english: I didn't lend him money, so he got angry.
+    japanese:
+      - 彼 に お 金 を 貸し て {あげ なかっ た} から、彼 は 怒っ た。
+      - 彼 に お 金 を 貸し て {あげ ませ ん でし た} から、彼 は 怒っ た。
+    english_literally: Because I didn't lend money for his benefit, he got angry.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に お 金 を 貸さ なかっ た から、彼 は 怒っ た。
+        english: I didn't lend him money, so he got angry.
+        hint: The nuance of 'not for his benefit' is lost in the neutral negative. We're looking for the
+          negative form of 'to do something for someone'.
+    scene: A person explains why their friend is upset, acknowledging that their refusal to help was the
+      cause.
+    register: casual
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    nuance: This example uses the negative form 「貸し て あげなかった」, indicating that the speaker *did not* perform
+      the action as a favor. It implies that the friend *expected* the favor, and the speaker chose not
+      to provide it. This highlights the speaker's agency and the 'giving' aspect of the action, even
+      in its absence. The polite form 「貸してあげませんでした」 carries the same nuance but with added politeness.
+  - english: Let's cook dinner for Mom tonight.
+    japanese:
+      - 今晩、お 母 さん に 晩ご飯 を 作っ て {あげよう}！
+      - 今晩、お 母 さん に 晩ご飯 を 作っ て {あげ ましょ う}！
+    english_literally: Tonight, let's cook dinner for Mom's benefit!
+    competing_grammar:
+      - competing_japanese:
+          - 今晩、お 母 さん の 晩ご飯 を 作ろう！
+        english: Tonight, let's cook dinner for Mom!
+        hint: This is a simple volitional suggestion. We want to emphasize that the act of cooking is
+          intended as a thoughtful gesture or favor for Mom.
+    scene: A child suggests to their sibling that they surprise their mother by preparing dinner.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+    nuance: Used here in the volitional form 「作っ て あげよう」, it's a direct suggestion to perform an action
+      for the mother's benefit. It conveys a warm, considerate feeling within a family context, showing
+      affection and a desire to help their mother. This is a very common and natural usage among family
+      members. The polite version 「作りましょう」 conveys the same sentiment with a more formal tone, suitable
+      for slightly less intimate family interactions or when addressing an older sibling/family member
+      more formally.
+  - english: If you clean your room, I'll buy you a new toy.
+    japanese:
+      - 部屋 を 掃除 し たら、新しい おもちゃ を 買っ て {あげよう}。
+      - 部屋 を 掃除 し たら、新しい おもちゃ を 買っ て {あげ ましょ う}。
+    english_literally: If you clean your room, I will buy a new toy for your benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 を 掃除 し たら、新しい おもちゃ を 買っ て あげる。
+        english: If you clean your room, I will buy a new toy.
+        hint: Both are valid, but the plain volitional suggests a promise or decision rather than a simple
+          statement of fact. We're looking for a conditional promise.
+    scene: A parent encourages their child to tidy up their room by offering a reward.
+    register: casual
+    setting: instructional
+    conjugation: volitional (～よう)
+    nuance: This example shows 「てあげる」 used in a conditional promise from a parent to a child. The use
+      of 「買っ て あげよう」 implies that the act of buying the toy is a benefit or reward provided by the parent,
+      contingent on the child's action. This clearly illustrates the benefactor-beneficiary relationship.
+      The polite volitional 「買ってあげましょう」 would typically be used in a more formal parental setting or by
+      a caretaker to a child.
+  - english: I couldn't finish the report for my junior colleague.
+    japanese:
+      - 後輩 の ため に レポート を 仕上げ て {あげ られ ませ ん でし た}。
+      - 後輩 の ため に レポート を 仕上げ て {あげ られ なかっ た}。
+    english_literally: I could not finish the report for my junior colleague's benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 後輩 の ため に レポート を 仕上げ られ ませ ん でし た。
+        english: I couldn't finish the report for my junior colleague.
+        hint: The nuance of intending to perform the action *as a favor* is slightly less explicit without
+          the 'te ageru' construction. We need to express inability to provide a benefit.
+    scene: A senior colleague apologizes for not being able to complete a task for a junior team member.
+    register: semi-formal
+    setting: apologetic
+    conjugation: negative past polite (～ませんでした)
+    nuance: Here, 「てあげられませんでした」 combines the potential form (できる/られる) with the negative past polite form.
+      It expresses regret that the speaker was unable to provide a favor (finishing the report) for a
+      subordinate. This shows appropriate use of 「てあげる」 in a hierarchical context where the speaker is
+      the one doing the favor. The casual counterpart 「仕上げてあげられなかった」 would be used in less formal settings
+      or with close colleagues.
+  - english: I think it would be better if you explain the rules of the game to her.
+    japanese:
+      - 彼女 に ゲーム の ルール を 説明 し て {あげ たら いい と 思う} よ。
+      - 彼女 に ゲーム の ルール を 説明 し て {あげ た ほう が いい と 思う} よ。
+    english_literally: I think it would be good if you explain the rules of the game for her benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に ゲーム の ルール を 説明 し たら いい と 思う よ。
+        english: I think it would be better if you explain the rules of the game to her.
+        hint: This simply suggests the action. We're looking for an expression that suggests doing the
+          action as a helpful gesture for the other person.
+    scene: Two friends are discussing how to help a third friend understand a new game.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+    nuance: The phrase 「説明 し て あげたら いい と 思う」 is a suggestion or advice given to someone else, recommending
+      that they perform the action of explaining as a favor to the third person. It implies that the explanation
+      would greatly benefit the recipient, making it a good action to perform.
+  - english: I always read storybooks to my younger sister.
+    japanese:
+      - 妹 に いつ も 絵本 を 読ん で {あげ て いる}。
+      - 妹 に いつ も 絵本 を 読ん で {あげ ます}。
+    english_literally: I always read storybooks for my younger sister's benefit.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 に いつ も 絵本 を 読ん で いる。
+        english: I always read storybooks to my younger sister.
+        hint: While technically correct, this version lacks the nuance of performing the action as a specific
+          act of kindness or benefit for the sister. We're looking for an expression that highlights the
+          benevolent aspect.
+    scene: An older sibling describes their routine of reading to their younger sister before bedtime.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「読ん で あげている」 emphasizes the ongoing, habitual action of reading as a favor or act
+      of care for the younger sister. It conveys a gentle, nurturing nuance, typical of an older sibling
+      providing comfort and entertainment to a younger one.
+post_example_writeup: Remember that while 「てあげる」 is useful, it's important to be mindful of the context
+  and relationship with the person you're speaking to. Overuse or using it in inappropriate situations
+  can come across as condescending. Consider the alternatives when speaking to superiors or those you
+  don't know well.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てあげる

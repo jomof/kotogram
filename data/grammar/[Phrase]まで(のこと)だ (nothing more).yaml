@@ -1,0 +1,246 @@
+grammar_point: '[Phrase]まで(のこと)だ (nothing more)'
+learn_before:
+  - '[Clause]ので (because・so)'
+  - '[Verb-た]までだ (just・merely)'
+  - 〜付き (attached with)
+  - 〜任せ (leaving to or relying on)
+  - いただく (humbly receive)
+  - いっぱい (full・a lot)
+  - ぜ (male emphatic particle)
+  - だ (casual copula)
+  - で (for)
+  - な-Adjective[だ] (plain present)
+  - な-Adjective[で] (te-form)
+  - は〜だ (topic & copula)
+  - を経て (after process or experience)
+  - 加えて (in addition・adding to that)
+meaning: nothing more; it's just that
+pronunciation:
+  katakana: マデノコトダ
+  romaji: made no koto da
+formation:
+  Verb[plain form] + まで(のこと)だ: Indicates that an action or state is limited to what is stated, implying
+    nothing more or beyond it.
+  い-Adjective[plain form] + まで(のこと)だ: Used to express that a quality or condition is merely to the stated
+    extent.
+  な-Adjective[plain form] + まで(のこと)だ: Functions similarly to い-adjectives, emphasizing the limitation
+    of a characteristic.
+  Noun + のことだ: States that something is merely or only a particular noun or matter.
+jlpt: N2
+etymology: The expression combines the particle 「まで」 (until, to the extent of) with the noun 「こと」 (thing,
+  fact, matter) and the copula 「だ」. This literally translates to 'it is a matter up to [X],' emphasizing
+  that the preceding phrase or idea represents the absolute limit or sole truth of the situation. It functions
+  to define the boundary of an action, state, or intention, leaving no room for further interpretation
+  or hidden motives.
+writeup: |-
+  The grammatical pattern 「まで(のこと)だ」 is used to express that a certain action, state, or intention is limited to a specific degree, implying 'nothing more' or 'it's just that.' It highlights the boundary or extent of something, often to simplify, downplay, or express a sense of resignation. This phrase indicates that there are no hidden reasons, ulterior motives, or further complexities beyond what has been stated. It's akin to saying, 'that's the long and short of it.'
+
+  This expression can attach to the plain form of verbs, い-adjectives, and な-adjectives, as well as nouns (often with の). The inclusion of 「のこと」 emphasizes the 'matter' or 'fact' being limited, giving it a slightly more formal or definitive feel than simply 「までだ」, although in casual conversation, 「までだ」 is also common with the same nuance.
+
+  It's frequently used when someone wants to explicitly state the limited nature of their actions or feelings, or to assert that a situation is as simple as it appears. For example, if you say something out of concern, and someone asks why, you might respond with 「心配したまで(のこと)だ」 (I was just worried, that's all), implying no deeper meaning or obligation.
+false_friends:
+  - term: 〜だけだ
+    meaning: only; just
+    kind: similar expression
+    nuance: While 「〜だけだ」 also means 'only' or 'just,' 「〜まで(のこと)だ」 often carries a stronger sense of resignation
+      or a definitive boundary. 「〜だけだ」 can simply state a quantity or limitation, whereas 「〜まで(のこと)だ」
+      emphasizes that the stated action or situation is the *absolute extent* or the *sole reason*, leaving
+      no room for other interpretations or expectations.
+    grammar_point: だけ (only・just)
+  - term: 〜にすぎない
+    meaning: no more than; merely
+    kind: similar expression
+    nuance: 「〜にすぎない」 emphasizes that something is trivial or insufficient, highlighting a lack of significance
+      or value beyond the stated minimum. In contrast, 「〜まで(のこと)だ」 is more about defining a clear, often
+      resigned, boundary or extent of an action or intention, rather than implying insufficiency.
+    grammar_point: にすぎない (no more than)
+  - term: 〜しかない
+    meaning: only; no choice but
+    kind: similar expression
+    nuance: 「〜しかない」 implies a lack of alternatives or options, signifying that there is 'nothing but'
+      the stated option, often due to circumstances. 「〜まで(のこと)だ」, however, focuses on the *extent* or
+      *limit* of an action or intention, not necessarily the absence of other choices. It clarifies that
+      what was done or felt was *merely* that, with no further implications.
+    grammar_point: しか〜ない (only, nothing but)
+post_false_friends_writeup: When distinguishing 「まで(のこと)だ」 from similar expressions like 「だけだ」, 「にすぎない」,
+  or 「しかない」, remember that 「まで(のこと)だ」 is particularly useful when you want to explicitly state that an
+  action or feeling is *solely* for the reason given, or *only* to the extent described, and no further.
+  It often comes across as a definitive, sometimes resigned, statement about a limited scope, whereas
+  the others might emphasize insufficiency, lack of alternatives, or simple quantity.
+examples:
+  - english: I just told him the truth, that's all.
+    japanese:
+      - 彼 に 本当 の こと を 伝え {たま で だ}。
+      - 彼 に 本当 の こと を 伝え {たま で です}。
+      - 彼 に 本当 の こと を 伝え {た まで の こと だ}。
+      - 彼 に 本当 の こと を 伝え {た まで の こと です}。
+    english_literally: To him, the true thing, I conveyed, that's all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 本当 の こと を 伝え {た だけ だ}。
+        english: I only told him the truth.
+        hint: While 「だけだ」 expresses 'only,' 「までだ」 emphasizes the act itself as the sole extent of the
+          action, often with a hint of finality or resignation. We're looking for that stronger sense
+          of 'that's all there was to it.'
+    scene: You are explaining a misunderstanding to a friend who thinks you had a hidden agenda.
+    register: casual
+    setting: friendly
+  - english: I was just worried, that's all.
+    japanese:
+      - 心配 し {たま で です}。
+      - 心配 し {たま で だ}。
+      - 心配 し {た まで の こと だ}。
+      - 心配 し {た まで の こと です}。
+    english_literally: Worried, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し {た だけ です}。
+        english: I just worried.
+        hint: Both are similar, but 「までです」 can imply a bit more of a 'no more, no less' or 'that's the
+          full extent of it' nuance. We're looking for the sense of limited intention.
+    scene: A person asks why you helped them, and you want to convey it was simply out of concern.
+    register: teineigo (polite)
+    setting: sympathetic
+  - english: It was just a joke, there's nothing more to it.
+    japanese:
+      - 冗談 だっ{たま で だ}。
+      - 冗談 だっ{たま で です}。
+      - 冗談 だっ{た まで の こと だ}。
+      - 冗談 だっ{た まで の こと です}。
+    english_literally: It was a joke, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 冗談 {に すぎ ない}。
+        english: It's merely a joke.
+        hint: 「にすぎない」 suggests something is insignificant. Here, we want to state that it was *only* a
+          joke, with no other meaning or consequence. We're looking for the expression that defines the
+          boundary of the situation.
+    scene: Someone has taken a casual comment too seriously.
+    register: casual
+    setting: humorous
+  - english: I just asked a question, that's all.
+    japanese:
+      - 質問 し {たま で だ}。
+      - 質問 し {たま で です}。
+      - 質問 し {た まで の こと だ}。
+      - 質問 し {た まで の こと です}。
+    english_literally: Asked a question, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 質問 {し た だけ}。
+        english: I just asked a question.
+        hint: This phrase explicitly states that the action was limited to just asking, implying no deeper
+          meaning or challenge. We're looking for the stronger sense of 'nothing beyond this action'.
+    scene: You are clarifying your intention after someone misinterpreted your question as an accusation.
+    register: casual
+    setting: informative
+  - english: I was only thinking about what I could do.
+    japanese:
+      - 自分 に できる こと を 考え {て い た まで だ}。
+      - 自分 に できる こと を 考え {て い た まで です}。
+      - 自分 に できる こと を 考え {て い た まで の こと だ}。
+      - 自分 に できる こと を 考え {て い た まで の こと です}。
+    english_literally: What I could do, I was thinking, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 に できる こと を 考え {る しか あり ませ ん でし た}。
+        english: I had no choice but to think about what I could do.
+        hint: 「〜しかない」 implies a lack of options. Here, the speaker is explaining that their thoughts were
+          *limited* to what they could do, not that they had no other choice but to think that way. We're
+          looking for an expression that sets the boundary of their mental activity.
+    scene: You are explaining your limited contribution to a difficult situation.
+    register: casual
+    setting: reflective
+  - english: I just tried to do my best, that's all.
+    japanese:
+      - ベスト を 尽くし {たま で です}。
+      - ベスト を 尽くし {たま で だ}。
+      - ベスト を 尽くし {た まで の こと だ}。
+      - ベスト を 尽くし {た まで の こと です}。
+    english_literally: My best, I tried, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - ベスト を 尽く {す に すぎ ませ ん でし た}。
+        english: I merely tried my best.
+        hint: 「にすぎない」 can suggest the effort was insufficient. Here, the speaker wants to convey that
+          their action was *only* to try their best, with no other hidden agenda or expectation of a different
+          outcome. We're looking for the phrase that clearly defines the limit of their endeavor.
+    scene: After a challenging project, you want to convey that you did what you could, nothing more.
+    register: teineigo (polite)
+    setting: professional
+  - english: It was just a suggestion.
+    japanese:
+      - 提案 だっ{たま で だ}。
+      - 提案 だっ{たま で です}。
+      - 提案 だっ{た まで の こと だ}。
+      - 提案 だっ{た まで の こと です}。
+    english_literally: It was a suggestion, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 提案 {に 過ぎ ない}。
+        english: It's merely a suggestion.
+        hint: 「に過ぎない」 might imply the suggestion has little weight. Here, the nuance is that it was *only*
+          a suggestion, not a command or expectation. We're looking for the phrase that limits the nature
+          of the statement.
+    scene: You made a suggestion that was taken as an order, and you wish to clarify.
+    register: casual
+    setting: informative
+  - english: I just reported the facts.
+    japanese:
+      - 事実 を 報告 し {たま で だ}。
+      - 事実 を 報告 し {たま で です}。
+      - 事実 を 報告 し {た まで の こと だ}。
+      - 事実 を 報告 し {た まで の こと です}。
+    english_literally: The facts, I reported, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 事実 を 報告 {し た だけ}。
+        english: I only reported the facts.
+        hint: This phrase strongly implies that the action was strictly confined to reporting facts, with
+          no personal opinion or manipulation. We're looking for that definitive sense of 'nothing more,
+          nothing less'.
+    scene: In a formal setting, you are clarifying that your role was simply to convey information, not
+      to interpret it.
+    register: formal
+    setting: professional
+  - english: I just expressed my feelings.
+    japanese:
+      - 気持ち を 伝え {たま で です}。
+      - 気持ち を 伝え {たま で だ}。
+      - 気持ち を 伝え {た まで の こと だ}。
+      - 気持ち を 伝え {た まで の こと です}。
+    english_literally: My feelings, I conveyed, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - 気持ち を 伝え {た だけ です}。
+        english: I only conveyed my feelings.
+        hint: 「までです」 here emphasizes that the act of conveying feelings was the *entirety* of the action,
+          without any expectation of a specific response or further action. We're looking for the phrase
+          that sets a clear boundary on the speaker's intent.
+    scene: You are explaining why you were direct about your emotions, wanting to convey sincerity without
+      demanding anything.
+    register: teineigo (polite)
+    setting: intimate
+  - english: It was just an accident.
+    japanese:
+      - ただ の 事故 だっ{たま で だ}。
+      - ただ の 事故 だっ{たま で です}。
+      - ただ の 事故 だっ{た まで の こと だ}。
+      - ただ の 事故 だっ{た まで の こと です}。
+    english_literally: Just an accident, that's all it was.
+    competing_grammar:
+      - competing_japanese:
+          - ただ の 事故 {に すぎ ない}。
+        english: It's merely an accident.
+        hint: While similar, 「にすぎない」 might imply the accident itself was trivial. Here, the speaker is
+          asserting that it was *only* an accident, nothing intentional or premeditated. We're looking
+          for the expression that emphasizes the sole nature of the event.
+    scene: You are defending yourself or explaining a situation where an unfortunate event occurred unintentionally.
+    register: casual
+    setting: serious
+post_example_writeup: As seen in the examples, 「まで(のこと)だ」 emphasizes that an action, feeling, or state
+  is strictly limited to what is stated. It often functions to clarify, downplay, or express a sense of
+  finality about a situation, ensuring the listener understands there are no hidden depths or further
+  expectations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%A7%EF%BC%88%E3%81%AE%E3%81%93%E3%81%A8%EF%BC%89%E3%81%A0

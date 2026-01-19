@@ -1,0 +1,292 @@
+grammar_point: こんな (this kind of)
+learn_before:
+  - そもそも (in the first place)
+meaning: this kind of
+pronunciation:
+  katakana: コンナ
+  romaji: konna
+formation:
+  こんな + Noun: Refers to a noun that is of 'this kind' or 'like this', indicating proximity or relevance
+    to the speaker, often expressing a quality or characteristic.
+jlpt: N5
+etymology: The word こんな (konna) is a contracted form of このような (kono yō na). It combines この (kono), meaning
+  'this' and referring to something near the speaker, with ような (yō na), meaning 'like a certain way' or
+  'similar to'. This contraction allows for a more fluid and casual expression, much like how English
+  phrases can be shortened in informal speech. The core idea is to describe something as being 'of this
+  manner or type' in relation to the speaker's immediate perception or context.
+writeup: |-
+  こんな (konna) is a demonstrative adjective, functioning similarly to an adjectival phrase meaning 'this kind of' or 'like this'. It is used to describe nouns that possess qualities or characteristics similar to something implicitly understood or physically close to the speaker. While この (kono) simply points to a specific item, こんな goes further by describing its nature or quality.
+
+  It is part of the こ・そ・あ・ど (ko-so-a-do) series, which indicates proximity or relation to the speaker and listener.
+  *   **こんな**: Refers to something near the speaker, or a quality perceived by the speaker. It often carries a nuance of surprise, emphasis, or a subjective judgment about the nature of the thing.
+  *   **そんな**: Refers to something near the listener, or a quality related to the listener's context. It can also be used to express disbelief or rejection ("no way, that kind of thing?").
+  *   **あんな**: Refers to something far from both the speaker and listener, or a quality generally known or understood. It often carries a more objective or distant tone.
+  *   **どんな**: An interrogative, asking "what kind of?" or "what sort of?".
+
+  こんな is always followed by a noun or a noun phrase. It cannot stand alone as a pronoun, unlike これ (kore) or それ (sore). Its usage is very common in everyday conversation.
+false_friends:
+  - term: そんな (that kind of)
+    meaning: that kind of (near listener)
+    kind: similar expression
+    nuance: While こんな refers to things or qualities near or perceived by the speaker, そんな refers to things
+      or qualities near the listener or within the listener's context. It can also imply a sense of 'such'
+      or 'that kind of' with surprise or disagreement.
+    grammar_point: <suggest>:そんな (that kind of)
+  - term: あんな (that kind of)
+    meaning: that kind of (far from both)
+    kind: similar expression
+    nuance: あんな refers to things or qualities far from both speaker and listener, or something generally
+      known/understood, often with a sense of reminiscence or detachment.
+    grammar_point: あんな (that kind of)
+  - term: どんな (what kind of)
+    meaning: what kind of?
+    kind: similar expression
+    nuance: どんな is an interrogative term used to ask about the kind or nature of something, whereas こんな
+      describes it.
+    grammar_point: どんな (what kind of)
+  - term: この (this)
+    meaning: this (specific)
+    kind: similar expression
+    nuance: この is a direct demonstrative adjective that points to a specific item. こんな describes the kind
+      or quality of something, often with a subjective nuance, rather than merely pointing.
+    grammar_point: この (this)
+  - term: こう (like this)
+    meaning: this way; like this
+    kind: often confused with
+    nuance: こう is an adverb meaning 'this way' or 'like this', describing an action or state. こんなは adjective
+      that modifies a noun, meaning 'this kind of'. They function differently grammatically.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that way・how)
+post_false_friends_writeup: Understanding the nuances of the こ・そ・あ・ど series is crucial for natural Japanese.
+  こんな, そんな, あんな, and どんな all function as adjectival demonstratives modifying nouns, but they differ in
+  terms of the speaker's and listener's proximity and shared context. この is a direct pointer to a specific
+  noun, unlike こんな which describes its nature. こう, on the other hand, is an adverb describing the manner
+  of an action or state, not the kind of a noun. Pay close attention to whether you are describing the
+  'kind of' something (こんな) or the 'way' something is done (こう) to avoid confusion.
+examples:
+  - english: This kind of weather is good for a picnic.
+    japanese:
+      - '{こんな} 天気 は ピクニック に 良い です。'
+      - '{こんな} 天気 は ピクニック に いい です。'
+      - '{こんな} 天気 なら ピクニック に ちょうど いい です。'
+    english_literally: This kind of weather picnic to good is.
+    competing_grammar:
+      - competing_japanese:
+          - この 天気 は ピクニック に 良い です。
+        english: This weather is good for a picnic.
+        hint: 「この」 (kono) simply points to a specific item. We're looking for an expression that describes
+          the *kind* of weather, not just *this specific* weather.
+      - competing_japanese:
+          - こう いう 天気 は ピクニック に 良い です。
+        english: This kind of weather (more formal) is good for a picnic.
+        hint: 「こういう」 (kō iu) also means 'this kind of' but has a slightly more formal or explanatory nuance.
+          We're looking for the more common, slightly less formal expression.
+    scene: Two friends are looking out the window on a sunny day.
+    register: casual
+    setting: friendly
+    nuance: 「こんな天気」 (konna tenki) refers to the current pleasant weather, perceived directly by the speaker.
+  - english: I can't believe he said such a thing.
+    japanese:
+      - 彼 が {こんな} こと を 言う なんて 信じ られ ませ ん。
+      - 彼 が {こんな} こと 言う なんて 信じ られ ない。
+    english_literally: He that kind of thing to say cannot believe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が そんな こと を 言う なんて 信じ られ ませ ん。
+        english: I can't believe he said that kind of thing (within your context).
+        hint: 「そんな」 (sonna) is used when referring to something within the listener's immediate context
+          or when expressing disbelief about something just mentioned or perceived by the listener. Here,
+          the speaker is reacting to what they perceive as 'this kind of' unexpected thing.
+      - competing_japanese:
+          - 彼 が あんな こと を 言う なんて 信じ られ ませ ん。
+        english: I can't believe he said that kind of thing (distant from both).
+        hint: 「あんな」 (anna) refers to something distant from both speaker and listener, or something generally
+          known. We're looking for an expression referring to something perceived by the speaker in the
+          immediate context.
+    scene: A person is shocked by a comment made by someone.
+    register: formal
+    setting: serious
+  - english: I've never eaten this kind of delicious food before.
+    japanese:
+      - '{こんな} 美味しい 料理 を 食べ た こと が あり ませ ん。'
+      - '{こんな} 美味しい 料理 は 食べ た こと ない。'
+      - '{こんな} 旨い 飯 を 食っ た こと は ない です。'
+    english_literally: This kind of delicious food eaten experience has not.
+    competing_grammar:
+      - competing_japanese:
+          - この 美味しい 料理 を 食べ た こと が あり ませ ん。
+        english: I've never eaten this delicious food (specific item) before.
+        hint: 「この」 (kono) points to a specific item. We're describing the *type* or *quality* of food,
+          not just this singular dish.
+      - competing_japanese:
+          - こう いう 美味しい 料理 を 食べ た こと が あり ませ ん。
+        english: I've never eaten this kind of delicious food (more formal) before.
+        hint: 「こういう」 (kō iu) is a more formal or generalized way to say 'this kind of'. We're looking
+          for a common, direct expression of the speaker's immediate impression.
+    scene: Someone is trying a new dish at a restaurant.
+    register: casual
+    setting: excited
+    nuance: 「こんな美味しい料理」 (konna oishii ryōri) expresses the speaker's direct experience and impression
+      of the food's quality.
+  - english: Such beautiful scenery is rare.
+    japanese:
+      - '{こんな} 美しい 景色 は 珍しい です。'
+      - '{こんな} 美しい 景色 は 珍しい ね。'
+      - '{こんな} 綺麗 な 景色 は 滅多 に ない です よ。'
+    english_literally: This kind of beautiful scenery is rare.
+    competing_grammar:
+      - competing_japanese:
+          - この 美しい 景色 は 珍しい です。
+        english: This beautiful scenery (specific) is rare.
+        hint: 「この」 (kono) refers to a specific instance. We are emphasizing the *kind* of beauty or rarity,
+          not just this particular view.
+      - competing_japanese:
+          - あんな 美しい 景色 は 珍しい です。
+        english: That kind of beautiful scenery (distant) is rare.
+        hint: 「あんな」 (anna) refers to something distant or known to both, possibly not in the immediate
+          vicinity. We're describing the scenery right in front of the speaker.
+    scene: A tourist admiring a breathtaking landscape.
+    register: formal
+    setting: reflective
+    nuance: 「こんな美しい景色」 (konna utsukushii keshiki) highlights the speaker's immediate appreciation of the
+      scenery's unique beauty.
+  - english: I want a car like this.
+    japanese:
+      - '{こんな} 車 が 欲しい です。'
+      - '{こんな} 車 が 欲しい な。'
+      - '{こんな} 車 が 欲しく なっ た。'
+    english_literally: This kind of car want.
+    competing_grammar:
+      - competing_japanese:
+          - この 車 が 欲しい です。
+        english: I want this car (specific item).
+        hint: 「この」 (kono) indicates a desire for *this specific car*. We're expressing a desire for a
+          car that is *of this type or quality*.
+      - competing_japanese:
+          - こう いう 車 が 欲しい です。
+        english: I want this kind of car (more formal).
+        hint: 「こういう」 (kō iu) is a more formal or explanatory way to say 'this kind of'. We're looking
+          for the simpler, more direct expression.
+    scene: A person looking at a car in a showroom.
+    register: formal
+    setting: cautious
+    nuance: 「こんな車」 (konna kuruma) indicates the speaker's desire for a car that possesses the specific
+      qualities or appearance of the one they are currently observing.
+  - english: I didn't expect such a difficult problem.
+    japanese:
+      - '{こんな} 難しい 問題 だ と は 思い ませ ん でし た。'
+      - '{こんな} 難しい 問題 と は 思わ なかっ た。'
+      - '{こんな} 難しい 問題 だ と は 思っ て も い ませ ん でし た。'
+    english_literally: This kind of difficult problem is was not think.
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい 問題 だ と は 思い ませ ん でし た。
+        english: I didn't expect this difficult problem (specific).
+        hint: 「この」 (kono) refers to a specific instance. We are emphasizing the *kind* of difficulty or
+          the *nature* of the problem, not just this particular one.
+      - competing_japanese:
+          - そう いう 難しい 問題 だ と は 思い ませ ん でし た。
+        english: I didn't expect that kind of difficult problem (previously mentioned).
+        hint: 「そういう」 (sō iu) implies the problem was previously discussed or is within the listener's
+          shared context. We're focusing on the speaker's immediate perception.
+    scene: A student struggling with a math problem.
+    register: casual
+    setting: serious
+    nuance: 「こんな難しい問題」 (konna muzukashii mondai) conveys the speaker's personal experience of the problem's
+      difficulty.
+  - english: Could you please tell me this kind of story again?
+    japanese:
+      - '{こんな} 話 を もう 一 度 聞か せ て いただけ ます か。'
+      - '{こんな} 話 を もう 一 度 聞か せ て もらえ ませ ん か。'
+      - '{こんな} お 話 を もう 一 度 お 願い でき ます か。'
+    english_literally: This kind of story again let me hear could you.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 を もう 一 度 聞か せ て いただけ ます か。
+        english: Could you please tell me this story (specific) again?
+        hint: 「この」 (kono) refers to a specific story. We're asking for a story that is *of this type*
+          or *has this characteristic*.
+      - competing_japanese:
+          - そう いう 話 を もう 一 度 聞か せ て いただけ ます か。
+        english: Could you please tell me that kind of story (previously known) again?
+        hint: 「そういう」 (sō iu) refers to a topic or kind of story that is already known or has been discussed.
+          We're implying a preference for the kind of story currently being experienced or described by
+          the speaker.
+    scene: A child asking an adult to retell a favorite story.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker (a child) is referring to a specific type of story they are fond of, implying
+      a direct experience or preference for 「こんな話」 (konna hanashi). The use of 「聞かせていただけますか」 (kikasete
+      itadakemasu ka) makes the request polite and deferential, typical from a child to an adult.
+  - english: I can't deal with this kind of person anymore.
+    japanese:
+      - '{こんな} 人 と は もう 関わり たく ない。'
+      - '{こんな} 人 と は もう 関わり たく ない ん だ。'
+      - '{こんな} 人 は もう こりごり だ。'
+    english_literally: This kind of person with is already want not involved.
+    competing_grammar:
+      - competing_japanese:
+          - この 人 と は もう 関わり たく ない。
+        english: I can't deal with this person (specific) anymore.
+        hint: 「この」 (kono) refers to a specific person. We're expressing frustration with a *type* of person,
+          not just one individual.
+      - competing_japanese:
+          - そう いう 人 と は もう 関わり たく ない。
+        english: I can't deal with that kind of person (general, known) anymore.
+        hint: 「そういう」 (sō iu) refers to a type of person that is already understood or discussed. We're
+          expressing the speaker's immediate, personal experience and dislike.
+    scene: A man complaining to a friend about a difficult colleague.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker is referring to a type of person who is personally annoying or problematic to
+      him, hence 「こんな人」 (konna hito). The use of plain form ending 「たくない」 (takunai) is typical of casual
+      male speech expressing strong personal dislike.
+  - english: This kind of information is helpful for everyone.
+    japanese:
+      - '{こんな} 情報 は 誰 に で も 役立ち ます。'
+      - '{こんな} 情報 は 誰 に で も 役 に 立つ。'
+      - '{こんな} 情報 は みんな の 役 に 立ち ます。'
+    english_literally: This kind of information everyone to useful.
+    competing_grammar:
+      - competing_japanese:
+          - この 情報 は 誰 に で も 役立ち ます。
+        english: This information (specific) is helpful for everyone.
+        hint: 「この」 (kono) points to a specific piece of information. We're highlighting the *type* or
+          *quality* of information.
+      - competing_japanese:
+          - こう いう 情報 は 誰 に で も 役立ち ます。
+        english: This kind of information (more formal) is helpful for everyone.
+        hint: 「こういう」 (kō iu) is a more formal or explanatory way to say 'this kind of'. We're using the
+          common, direct expression of the speaker's assessment.
+    scene: A presenter explaining the benefits of a new system.
+    register: formal
+    setting: informative
+    nuance: 「こんな情報」 (konna jōhō) points to the information currently being presented or discussed by the
+      speaker, highlighting its perceived utility.
+  - english: This kind of mistake must not be repeated.
+    japanese:
+      - '{こんな} 間違い は 二 度 と 繰り返し て は なり ませ ん。'
+      - '{こんな} 間違い は 二 度 と 繰り返し て は なら ない。'
+      - '{こんな} 失敗 は 決して 繰り返す べき で は ない。'
+    english_literally: This kind of mistake again repeated must not.
+    competing_grammar:
+      - competing_japanese:
+          - この 間違い は 二 度 と 繰り返し て は なり ませ ん。
+        english: This mistake (specific) must not be repeated.
+        hint: 「この」 (kono) refers to a specific mistake. We are emphasizing the *type* or *nature* of the
+          mistake, not just this particular incident.
+      - competing_japanese:
+          - そう いう 間違い は 二 度 と 繰り返し て は なり ませ ん。
+        english: That kind of mistake (general, known) must not be repeated.
+        hint: 「そういう」 (sō iu) refers to a mistake that is already understood or has been discussed. We're
+          focusing on the speaker's immediate, critical assessment.
+    scene: A team leader addressing a group after an error occurred.
+    register: formal
+    setting: commanding
+    listener_gender: group
+    nuance: The speaker is referencing a recent mistake that is understood by the entire group, emphasizing
+      the immediate and negative nature of 「こんな間違い」 (konna machigai). The formal tone and phrase 「繰り返してはなりません」
+      (kurikaeshite wa narimasen) is appropriate for a commanding leader addressing a team.

@@ -1,0 +1,250 @@
+grammar_point: そういう (that kind of)
+learn_before:
+  - こう (like this)
+meaning: Like that, that kind of, of that sort
+pronunciation:
+  katakana: ソウイウ
+  romaji: sou iu
+formation:
+  こう + いう + noun: Refers to a type or kind of noun 'like this' (close to the speaker).
+  そう + いう + noun: Refers to a type or kind of noun 'like that' (close to the listener or previously mentioned).
+  ああ + いう + noun: Refers to a type or kind of noun 'like that' (far from both speaker and listener).
+  どう + いう + noun: Asks 'what kind of' or 'what sort of' noun.
+jlpt: N4
+etymology: 「そう」 is a demonstrative adverb indicating "that way" or "that manner." 「いう」 is the dictionary
+  form of the verb 「言う (iu)」, meaning "to say." Thus, 「そういう」 literally means "saying that way," but idiomatically,
+  it's used to describe something that is of that particular type or manner.
+writeup: |-
+  「そういう」 is a pre-noun adjectival phrase used to describe a type or kind of something. It translates to "like that," "that kind of," or "of that sort." It is part of the extensive こそあど言葉 (kosoado kotoba) family, which encompasses demonstrative words for location, direction, and manner. Specifically, 「こういう」, 「そういう」, 「ああいう」, and 「どういう」 are formed by combining the demonstrative adverbs こう (this way), そう (that way), ああ (that way over there), and どう (what way) with the verb 「言う (iu)」 (to say). While literally meaning "saying that way," they are idiomatically used to describe something that is of a particular type or manner.
+
+  **こう いう** (kou iu): Refers to something of 'this kind' or 'this sort', pertaining to something close to the speaker.
+  **そう いう** (sou iu): Refers to something of 'that kind' or 'that sort', pertaining to something close to the listener or previously mentioned/understood by both parties.
+  **ああ いう** (aa iu): Refers to something of 'that kind over there' or 'that sort', pertaining to something distant from both speaker and listener.
+  **どう いう** (dou iu): Asks 'what kind of' or 'what sort of'.
+
+  It is crucial to distinguish the adverb そう (often written with the kanji 然う, although typically in hiragana), used in 「そういう」, from the auxiliary verb そう. The auxiliary verb そう attaches to verb stems or adjective roots to mean "it seems" or "I hear" and does not have a kanji form.
+false_friends:
+  - term: そんな・こんな・あんな・どんな
+    meaning: Such a, this kind of, that kind of, what kind of
+    kind: similar expression
+    nuance: Unlike 「そういう」, which specifically refers to 'that kind of' based on a previously mentioned
+      or understood manner, 「そんな」, 「こんな」, 「あんな」, and 「どんな」 are more general and can introduce new information
+      or express a broader range of similarity.
+    grammar_point: そんな (such)
+post_false_friends_writeup: 「そういう」 implies a specific understanding or reference point, where you and
+  the listener share an understanding of what 'that kind of' refers to. When the context is less clear,
+  or you want to be more general, 「そんな」, 「こんな」, 「あんな」, and 「どんな」 are more appropriate.
+examples:
+  - english: I like this kind of weather.
+    japanese:
+      - '{こう いう} 天気 が 好き だ。'
+      - '{こう いう} 天気 が 好き です。'
+      - '{こう いう} 天気、最高！'
+    english_literally: This kind of weather, I like.
+    competing_grammar:
+      - competing_japanese:
+          - '{この} 天気 が 好き だ'
+        english: I like this weather.
+        hint: 「この天気」 refers to the specific current weather. We're looking for a phrase that implies a
+          preference for a type of weather, not just this specific instance.
+    scene: After a week of heavy rain, a person steps outside to find a perfectly clear and sunny day,
+      expressing their satisfaction.
+    register: casual
+    setting: reflective
+  - english: You often think that way, don't you?
+    japanese:
+      - あなた は {そう いう} 考え を よく する ね。
+      - あなた は {そう いう} 考え 方 を よく なさる ね。
+      - 君 は {そう いう} こと を よく 考える よ ね。
+    english_literally: As for you, that kind of thought, you often do, right?
+    competing_grammar:
+      - competing_japanese:
+          - あなた は {その} 考え を よく する ね
+        english: You often have that thought, don't you?
+        hint: 「その考え」 refers to a single specific idea. We're looking for a phrase that indicates a recurring
+          pattern or style of thinking.
+    scene: During a brainstorming session, one friend presents a solution, and another friend recognizes
+      it as a pattern in their thinking.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual 「ね」 indicates a soft assertion or seeking of agreement, typical in friendly conversations.
+      The use of 「そう いう」 refers to a habitual or characteristic way of thinking that the listener often
+      exhibits, making it a familiar observation.
+  - english: He yearns for that kind of life.
+    japanese:
+      - 彼 は {ああ いう} 人生 に 憧れ て いる。
+      - 彼 は {ああ いう} 人生 に 憧れ て いらっしゃい ます。
+      - あいつ、{ああ いう} 人生 に 憧れ て ん だ って。
+    english_literally: As for him, that kind of life, he is longing for.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {あの} 人生 に 憧れ て いる
+        english: He yearns for that life.
+        hint: 「あの人生」 refers to a specific life. We're looking for a phrase that describes an aspirational
+          type or quality of life.
+    scene: Two colleagues are discussing a famous celebrity's opulent lifestyle, which one of them openly
+      admires.
+    register: semi-formal
+    setting: informative
+  - english: In what kind of situation did you say that?
+    japanese:
+      - '{どう いう} 状況 で そう 言っ た の です か？'
+      - '{どう いう} 状況 で そう 言っ た ん です か？'
+      - '{どう いう} 状況 で 言っ た の？'
+    english_literally: What kind of situation, in, did you say that?
+    competing_grammar:
+      - competing_japanese:
+          - '{どの} 状況 で そう 言っ た の です か'
+        english: In which situation did you say that?
+        hint: 「どの状況」 implies selecting from known situations. We're looking for a phrase that asks for
+          a description or classification of the circumstances.
+    scene: A manager asks an employee for clarification regarding a comment made during a meeting, seeking
+      to understand the context.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: If that's the reason, it can't be helped.
+    japanese:
+      - '{そう いう} 理由 なら 仕方 が ない。'
+      - '{そう いう} 理由 なら 仕方 が ござい ませ ん。'
+      - '{そう いう} 理由 でし たら 仕方ない です ね。'
+      - '{そう いう} わけ なら しょう が ない よ。'
+    english_literally: That kind of reason, if it is, there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - '{その} 理由 なら 仕方 が ない'
+        english: If that reason, it can't be helped.
+        hint: 「その理由」 refers to a single, specific reason. We're looking for a phrase that acknowledges
+          the nature or type of explanation, suggesting it's a valid and understandable cause.
+    scene: After hearing a detailed explanation for an unfortunate cancellation, a person accepts the
+      situation as unavoidable.
+    register: casual
+    setting: serious
+  - english: I can't do this kind of thing.
+    japanese:
+      - 私 に は {こう いう} こと が でき ない。
+      - 僕 に は {こう いう} こと が でき ない よ。
+      - 私、{こう いう} の 苦手 な の。
+    english_literally: For me, this kind of thing, I cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に は {これ} が でき ない
+        english: I can't do this.
+        hint: 「これ」 refers to the specific problem. We're looking for a phrase that conveys a general inability
+          for a type of task or concept.
+    scene: A student struggles with a particularly abstract math problem, admitting to their tutor that
+      such conceptual tasks are beyond their current ability.
+    register: formal
+    setting: apologetic
+  - english: That kind of information is strictly confidential.
+    japanese:
+      - '{そう いう} 情報 は 厳重 に 管理 さ れ て い ます。'
+      - '{そう いう} 情報 は 厳重 に 管理 さ れ ます。'
+      - '{そう いう} 情報、極秘 だ から ね。'
+    english_literally: That kind of information, is strictly managed.
+    competing_grammar:
+      - competing_japanese:
+          - '{その} 情報 は 厳重 に 管理 さ れ て い ます。'
+        english: That specific piece of information is strictly confidential.
+        hint: 「その情報」 refers to a particular piece of information. We're looking for a phrase that emphasizes
+          the confidential nature or category of the information.
+    scene: During a security briefing, an instructor warns the participants about handling sensitive documents.
+    register: formal
+    setting: informative
+  - english: I really dislike this kind of behavior.
+    japanese:
+      - '{こう いう} 行動 は 本当 に 嫌い だ。'
+      - '{こう いう} 行動 は 本当 に 嫌 です。'
+      - '{こう いう} 行動、マジ 嫌い。'
+    english_literally: This kind of behavior, truly disliked.
+    competing_grammar:
+      - competing_japanese:
+          - '{この} 行動 は 本当 に 嫌い だ。'
+        english: I really dislike this specific action.
+        hint: 「この行動」 refers to a single, specific action. We're looking for a phrase that expresses dislike
+          for a type or pattern of behavior.
+    scene: Someone observes a public display of rudeness and expresses their strong disapproval.
+    register: casual
+    setting: serious
+  - english: What kind of meaning does that phrase have?
+    japanese:
+      - その 言葉 は {どう いう} 意味 です か？
+      - その 言葉 は {どう いう} 意味 な の？
+      - その 言葉 の 意味 は {どう いう} の？
+    english_literally: That word, what kind of meaning is it?
+    competing_grammar:
+      - competing_japanese:
+          - その 言葉 は {どんな} 意味 です か？
+        english: What sort of meaning does that phrase have?
+        hint: 「どんな意味」 is a more general inquiry about meaning. We're looking for a phrase that specifically
+          asks for the type or nature of the meaning, perhaps expecting a more detailed explanation of
+          its nuance or context.
+    scene: A student encounters an unfamiliar idiom in a Japanese text and asks their teacher for an explanation.
+    register: teineigo (polite)
+    setting: academic
+  - english: She's always giving that kind of elegant impression.
+    japanese:
+      - 彼女 は いつ も {ああ いう} 上品 な 印象 を 与える。
+      - 彼女 は いつ も {ああ いう} 上品 な 印象 を 与え ます。
+      - 彼女 って、いつ も {ああ いう} 上品 な 感じ だ よ ね。
+    english_literally: As for her, always that kind of elegant impression she gives.
+    competing_grammar:
+      - competing_japanese:
+          - '{あの} 人 は いつ も 上品 な 印象 を 与える。'
+        english: That person always gives an elegant impression.
+        hint: 「あの人」 refers to a person generally. We're looking for a phrase that describes the characteristic
+          type of impression they consistently give, highlighting a specific quality.
+    scene: Two friends are observing a well-dressed and poised woman from afar at a social gathering.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「ああ いう」 when observing someone from a slight distance emphasizes the consistent
+      type of impression the person gives. The casual 「よね」 seeks agreement from the listener, common in
+      female conversation, making it a shared observation. 「彼女って」 is a common casual way to introduce
+      a topic about someone in female speech.
+  - english: I'm not interested in that kind of story.
+    japanese:
+      - '{そう いう} 話 に は 興味 が ない。'
+      - '{そう いう} お 話 に は 興味 が ござい ませ ん。'
+      - '{そう いう} 話、どう で も いい。'
+    english_literally: To that kind of story, interest is not.
+    competing_grammar:
+      - competing_japanese:
+          - '{その} 話 に は 興味 が ない。'
+        english: I'm not interested in that specific story.
+        hint: 「その話」 refers to a single, particular story. We're looking for a phrase that expresses a
+          general lack of interest in a category or type of story.
+    scene: A person is being told gossip or a sensational tale, and they express their disinterest in
+      such topics.
+    register: casual
+    setting: serious
+  - english: He's the kind of person who always keeps his promises.
+    japanese:
+      - 彼 は いつ も 約束 を 守る {こう いう} 人 だ。
+      - 彼 は いつ も 約束 を 守る {そう いう} 人 です。
+      - 彼 って さ、約束 ちゃん と 守る {そう いう} タイプ だ よ ね。
+    english_literally: He is always promises keeping, this kind of person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {約束 を 守る 人} だ。
+        english: He is a person who keeps promises.
+        hint: While correct, 「約束 を 守る 人」 is a direct description using Verb + Noun. We're looking for
+          a phrase that defines him as that kind of person, emphasizing the characteristic as a defining
+          type.
+    scene: Two friends are discussing a mutual acquaintance, praising his reliability.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「こう いう 人」 or 「そう いう 人」 is used here to categorize the person based on their characteristic
+      behavior, emphasizing that keeping promises is a defining trait of their type of personality. 「彼ってさ」
+      is a casual, conversational opener often used by male speakers.
+post_example_writeup: As you can see from the examples, the choice between 「こう いう」, 「そう いう」, and 「ああ いう」
+  depends entirely on the relative proximity of the thing or concept being described to the speaker and
+  listener, similar to how 'this', 'that', and 'that over there' work in English. 「どう いう」 is always used
+  for questioning the 'type' or 'manner'. Remember to consider the register and setting to choose the
+  most appropriate ending for your sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/そういう

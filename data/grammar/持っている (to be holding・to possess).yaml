@@ -1,0 +1,279 @@
+grammar_point: 持っている (to be holding・to possess)
+learn_before:
+  - 先 (ahead・first)
+  - 向かい (across from)
+meaning: to be holding・to possess
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 持っている
+    rarity: common
+    meaning: to be holding / to possess
+  - conjugation-type: non-past polite (～ます)
+    form: 持っています
+    rarity: common
+    meaning: to be holding / to possess (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 持っていない
+    rarity: common
+    meaning: not to be holding / not to possess
+  - conjugation-type: negative non-past polite (～ません)
+    form: 持っていません
+    rarity: common
+    meaning: not to be holding / not to possess (polite)
+  - conjugation-type: past plain (～た)
+    form: 持っていた
+    rarity: common
+    meaning: was holding / possessed
+  - conjugation-type: past polite (～ました)
+    form: 持っていました
+    rarity: common
+    meaning: was holding / possessed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 持っていなかった
+    rarity: common
+    meaning: was not holding / did not possess
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 持っていませんでした
+    rarity: common
+    meaning: was not holding / did not possess (polite)
+  - conjugation-type: te-form (～て)
+    form: 持っていて
+    rarity: common
+    meaning: being in the state of holding/possession
+  - conjugation-type: conditional (～ば)
+    form: 持っていれば
+    rarity: common
+    meaning: if one is holding/possessing
+  - conjugation-type: conditional (～たら)
+    form: 持っていたら
+    rarity: common
+    meaning: if one is holding/possessing
+  - conjugation-type: concessive (～ても)
+    form: 持っていても
+    rarity: common
+    meaning: even if one is holding/posessing
+pronunciation:
+  katakana: モッテイル
+  romaji: motte iru
+formation:
+  Verb (持つ) + ている: To express the continuous action of holding or the resultant state of possessing.
+jlpt: N5
+etymology: The grammar point 「持っている」 combines the verb 「持つ」 (motsu), meaning "to hold," "to have," or
+  "to possess," with the auxiliary verb construction 「〜ている」 (te iru). The 「〜ている」 form originally signified
+  an ongoing action (progressive). However, for verbs like 「持つ」 that describe a change of state or an
+  instantaneous action, the 「〜ている」 form often signifies the resultant state of that action. In the case
+  of 「持つ」, 「持っている」 thus conveys the state of having or possessing something, which is a result of having
+  taken hold of it. It can also imply the ongoing action of holding something. This dual interpretation
+  arises from the versatile nature of the 「〜ている」 form in Japanese.
+writeup: |-
+  The Japanese verb 「持つ」 (motsu) translates to "to hold," "to carry," or "to have/possess." When conjugated into the 「〜ている」 form, as in 「持っている」 (motte iru), it expresses two primary meanings: a continuous action of holding something, or a resultant state of possessing something.
+
+  The first meaning, "to be holding" or "to be carrying," indicates an ongoing physical action. For example, if someone is actively holding a book in their hands, you would say 「本 を {持っている}」. This emphasizes the immediate physical act.
+
+  The second and very common meaning is "to possess" or "to own." This refers to a state of having something, regardless of whether it is physically in one's hands at that moment. For instance, if you own a car, you would say 「車 を {持っている}」, even if the car is parked in your garage and you are not currently driving it. This usage describes a long-term or general state of possession.
+
+  It's crucial to understand the context to differentiate these two uses. Generally, if the object is something that can be actively held, the meaning can be either. If the object is something that one "owns" but doesn't constantly hold (like a house, a skill, or a passport), it almost always refers to possession.
+false_friends:
+  - term: ある
+    meaning: to exist (inanimate), to have (for inanimate objects, no implication of personal possession
+      or holding)
+    kind: often confused with
+    nuance: 「ある」 indicates the existence of an inanimate object or a general "having" without implying
+      a personal connection or active holding. 「{持っている}」 implies personal possession or active holding.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: いる
+    meaning: to exist (animate)
+    kind: often confused with
+    nuance: 「いる」 indicates the existence of an animate object. It is not used for possessing inanimate
+      objects. 「{持っている}」 is specifically for possessing inanimate objects or holding any object.
+    grammar_point: いる (to exist, animate)
+  - term: Verb[ている・てる]
+    meaning: expresses ongoing action or resultant state
+    kind: similar expression
+    nuance: While `持っている` uses the `〜ている` form, many `〜ている` forms indicate a continuous action (e.g.,
+      走っている - "is running"). For `持つ`, `持っている` often emphasizes the resultant state of possession rather
+      than purely a continuous action of holding. This is a common pattern for verbs that describe an
+      instantaneous change of state.
+    grammar_point: Verb[ている・てる] (progressive・resultative)
+post_false_friends_writeup: The distinction between `持っている`, `ある`, and `いる` can be subtle. While `ある`
+  and `いる` primarily indicate existence (for inanimate and animate things, respectively), `持っている` specifically
+  denotes possession or the active state of holding. You would use 「私は車を{持っている}」 (I own a car) for possession,
+  but 「ここに車がある」 (There is a car here) to simply state its existence. Similarly, for animate objects, 「犬が庭にいる」
+  (There is a dog in the garden) states existence, whereas `持っている` is not typically used for animate "possession"
+  in the same way (e.g., you wouldn't say 「私は犬を{持っている}」 unless you're literally holding the dog). It's
+  more common to use verbs like 「飼っている」 (to be raising/keeping a pet). Remember that `持っている` always implies
+  a connection of having or holding by a person or entity.
+examples:
+  - english: I have a pen.
+    japanese:
+      - 私 は ペン を {持っ て いる}。
+      - 私 は ペン を {持っ て い ます}。
+    english_literally: As for me, a pen I am having/holding.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に ペン が ある。
+        english: There is a pen here.
+        hint: 「ある」 just states existence, not that someone personally has it. We're looking for an expression
+          of personal possession.
+    scene: A student showing their stationery.
+    register: casual
+    setting: informative
+    nuance: This is a straightforward example of possession. 「持っている」 here signifies owning or having the
+      pen, not necessarily holding it at that exact moment.
+  - english: He is holding a camera.
+    japanese:
+      - 彼 は カメラ を {持っ て いる}。
+      - 彼 は カメラ を {持っ て い ます}。
+    english_literally: As for him, a camera he is holding.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は カメラ を 運ん で いる。
+        english: He is carrying a camera.
+        hint: 「運んでいる」 implies transporting. We're looking for the state of physically having something
+          in one's hand.
+    scene: Describing someone at a tourist spot.
+    register: casual
+    setting: informative
+    nuance: This example clearly shows the progressive action of physically holding the camera.
+  - english: She has a lot of knowledge.
+    japanese:
+      - 彼女 は たくさん 知識 を {持っ て いる}。
+      - 彼女 は たくさん 知識 を {持っ て い ます}。
+    english_literally: As for her, a lot of knowledge she is possessing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 知識 が 豊富 だ。
+        english: She is rich in knowledge.
+        hint: 「豊富だ」 describes being abundant. We're looking for a verb that expresses possessing knowledge.
+    scene: Praising a colleague.
+    register: formal
+    setting: professional
+    nuance: 「持っている」 can also be used for abstract concepts like knowledge or skills, indicating that someone
+      possesses them.
+  - english: Do you have your passport?
+    japanese:
+      - パスポート を {持っ て い ます} か？
+      - パスポート を {持っ て いる}？
+    english_literally: Passport are you having/holding?
+    competing_grammar:
+      - competing_japanese:
+          - パスポート は あり ます か？
+        english: Is there a passport?
+        hint: 「ありますか」 asks about the existence of the passport generally. We're asking if the person personally
+          possesses it.
+    scene: At the airport check-in counter.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: This is a polite inquiry about possessing an important document. 「持っていますか」 is the polite form.
+  - english: Could you hold my bag for a moment?
+    japanese:
+      - 少し 私 の 鞄 を {持っ て い て} くれ ませ ん か？
+      - 少し 私 の 鞄 を {持っ て い て} くれ ない？
+    english_literally: A little, my bag, won't you hold?
+    competing_grammar:
+      - competing_japanese:
+          - 少し 私 の 鞄 を 預かっ て くれ ませ ん か？
+        english: Could you take care of my bag for a moment?
+        hint: 「預かる」 means to take temporary custody. We're asking someone to simply hold the bag.
+    scene: Asking a friend to help carry something.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: Uses the `〜ていて` form to request a temporary action of holding. The `くれませんか` adds politeness
+      for a request.
+  - english: That family has a lot of money.
+    japanese:
+      - あの 家族 は お 金 を たくさん {持っ て いる}。
+      - あの 家族 は お 金 を たくさん {持っ て い ます}。
+    english_literally: As for that family, money a lot they possess.
+    competing_grammar:
+      - competing_japanese:
+          - あの 家族 は お 金 が ある。
+        english: That family has money (existence).
+        hint: 「お金がある」 can simply mean money exists with them. 「持っている」 emphasizes their personal possession
+          or ownership of the money.
+    scene: Talking about a wealthy family.
+    register: casual
+    setting: reflective
+    nuance: Describes possession of an abstract asset like money.
+  - english: The baby is holding a toy.
+    japanese:
+      - 赤ちゃん は おもちゃ を {持っ て いる}。
+      - 赤ちゃん は おもちゃ を {持っ て い ます}。
+    english_literally: As for the baby, a toy it is holding.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は おもちゃ を 掴ん で いる。
+        english: The baby is gripping the toy.
+        hint: 「掴んでいる」 means gripping tightly. We're looking for the general action of holding.
+    scene: Watching a baby play.
+    register: casual
+    setting: friendly
+    nuance: Simple statement of a child actively holding an object.
+  - english: He has important responsibilities.
+    japanese:
+      - 彼 は 大切 な 責任 を {持っ て いる}。
+      - 彼 は 大切 な 責任 を {持っ て い ます}。
+    english_literally: As for him, important responsibilities he possesses.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大切 な 責任 が ある。
+        english: He has important responsibilities (existence).
+        hint: 「責任がある」 implies responsibilities exist for him. 「持っている」 suggests he personally shoulders
+          or bears those responsibilities.
+    scene: Discussing a leader's role.
+    register: formal
+    setting: serious
+    nuance: '`持っている` here refers to bearing or having responsibility.'
+  - english: She holds the key to success.
+    japanese:
+      - 彼女 は 成功 へ の 鍵 を {持っ て いる}。
+      - 彼女 は 成功 へ の 鍵 を {持っ て い ます}。
+    english_literally: As for her, success-to key she holds.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 成功 の 鍵 を 握っ て いる。
+        english: She grasps the key to success.
+        hint: 「握っている」 implies a firm grip or control. While similar figuratively, 「持っている」 is a more general
+          statement of possessing the means.
+    scene: A motivational speaker.
+    register: formal
+    setting: inspirational
+    nuance: This is a figurative use, indicating that she possesses the means or ability to achieve success.
+  - english: This company has unique technology.
+    japanese:
+      - この 会社 は ユニーク な 技術 を {持っ て いる}。
+      - この 会社 は ユニーク な 技術 を {持っ て い ます}。
+    english_literally: As for this company, unique technology it possesses.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 に は ユニーク な 技術 が ある。
+        english: This company has unique technology (existence within the company).
+        hint: 「〜には〜がある」 describes something existing within a place/entity. 「持っている」 directly states the
+          company possesses the technology.
+    scene: A business presentation.
+    register: formal
+    setting: informative
+    nuance: Used to describe a characteristic or quality that a company possesses.
+  - english: I don't have any cash right now.
+    japanese:
+      - 今、現金 を {持っ て い ませ ん}。
+      - 今、現金 を {持っ て い ない}。
+    english_literally: Now, cash I am not having/holding.
+    competing_grammar:
+      - competing_japanese:
+          - 今、現金 が あり ませ ん。
+        english: There is no cash now.
+        hint: 「現金がありません」 is a general statement about the absence of cash. 「持っていません」 specifically indicates
+          that *you* do not possess it.
+    scene: At a store, trying to pay.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative non-past polite (～ません)
+    nuance: Polite negative form, indicating lack of possession.
+post_example_writeup: As you can see from the examples, `持っている` is a versatile expression used for both
+  actively holding physical objects and possessing abstract concepts or valuable assets. The context usually
+  makes it clear which meaning is intended.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/持っている

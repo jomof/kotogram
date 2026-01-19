@@ -1,0 +1,257 @@
+grammar_point: あいだ (between・among・while・during)
+learn_before:
+  - Verb[た] (past tense)
+  - Verb[ました] (polite past)
+  - '[Noun]をください (please give me)'
+  - '[Verb-よう]に〜ない (cannot despite desire)'
+  - つ〜つ (alternating actions)
+  - も (addition or emphasis particle)
+meaning: between; among; while; during
+pronunciation:
+  katakana: アイダ
+  romaji: aida
+formation:
+  Noun の あいだ: Indicates a spatial interval (between/among nouns) or a temporal duration (during a noun-defined
+    period).
+  Verb-dictionary form あいだ: Indicates a continuous action or state occurring throughout the duration of
+    the verb's action.
+  Verb-て いる form あいだ: Indicates a continuous action or state occurring throughout the duration of the
+    ongoing verb's action.
+  Noun の あいだ に: Indicates an event occurring at some point within a noun-defined period, or in the space
+    between nouns.
+  Verb-dictionary form あいだ に: Indicates an event occurring at some point while performing the verb's action.
+  Verb-ている form あいだ に: Indicates an event occurring at some point while the verb's action is ongoing.
+jlpt: N5
+etymology: The character 間 (かん/ま/あいだ) inherently represents a "gate" (門) with a "sun" (日) shining through
+  it, symbolizing an "interval" or "space." This foundational meaning naturally extended to encompass
+  both physical spaces "between" objects or people and temporal "intervals" or "durations." The reading
+  「あいだ」 specifically emphasizes this concept of the space or time that exists *between* two defined points
+  or within a specified period, serving as the root for its diverse applications.
+writeup: |-
+  The Japanese word 「あいだ」, written with the kanji 間, is a versatile term that primarily denotes an "interval." This interval can be either a physical space or a period of time. Understanding its core meaning of "between" or "during" is key to mastering its usage.
+
+  When referring to **spatial intervals**, 「あいだ」 indicates the space *between* two objects, locations, or people, or *among* a group. For example, 「机と椅子のあいだ」 means "between the desk and the chair."
+
+  When referring to **temporal intervals**, 「あいだ」 indicates a duration *while* an action or state is ongoing, or *during* a specific period. It is often translated as "while," "during," or "for the duration of."
+
+  There is a subtle but important distinction when 「あいだ」 is followed by the particle 「に」, resulting in 「あいだに」.
+  *   **あいだ (without に):** When used without 「に」, it typically emphasizes that an action or state continues **throughout the entire duration** of the specified period. For example, 「夏休みのあいだ、ずっと勉強した」 (I studied the *entire* summer vacation).
+  *   **あいだに (with に):** When used with 「に」, it emphasizes that an action or event occurred **at some point within** the specified period, rather than continuously throughout. For example, 「夏休みのあいだに、旅行に行った」 (I went on a trip *at some point during* summer vacation). This distinction is crucial for conveying precise meaning.
+
+  「あいだ」 can attach to nouns (using の), plain forms of verbs (dictionary form), or the -ている form of verbs.
+false_friends:
+  - term: 中 (duration・entirety)
+    meaning: In the middle of; throughout; during
+    kind: similar expression
+    nuance: While both 「あいだ」 and 「中」 can mean "during" or "while," 「中」 often implies that the activity
+      is ongoing within a broader, often less defined, period, or that it's "in the middle of" something.
+      「あいだ」 emphasizes the *interval* or the space *between* two points, whether temporal or spatial.
+      For instance, 「食事中」 (during the meal) implies the act of eating is ongoing, whereas 「食卓のあいだ」 (between
+      the dining tables) refers to a spatial interval.
+    grammar_point: 中 (duration・entirety)
+  - term: うちに (while・before change)
+    meaning: While, during, before (a change occurs)
+    kind: similar expression
+    nuance: 「うちに」 also means "while" or "during," but it carries a strong nuance that something *should
+      be done* before a condition changes or an opportunity is lost. 「あいだ」 simply states that something
+      happened or is happening *within* an interval, without implying urgency or a changing condition.
+    grammar_point: '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+  - term: ところ (timing expression)
+    meaning: Just finished doing; was just doing; about to do
+    kind: similar expression
+    nuance: 「ところ」 refers to a specific *point* in time (e.g., just about to, in the middle of, just finished).
+      「あいだ」, on the other hand, refers to a *duration* or *interval* between two points, not a single
+      moment.
+    grammar_point: '[Verb-た]ところだ (just finished doing)'
+post_false_friends_writeup: While these expressions can sometimes overlap in translation, their underlying
+  concepts differ. 「あいだ」 consistently refers to the span or space *between* two points. 「中」 often emphasizes
+  being *inside* an activity or period. 「うちに」 stresses doing something *before* a condition shifts. 「ところ」
+  pinpoints a precise *moment* in time. By focusing on these core distinctions, you can choose the most
+  appropriate expression.
+examples:
+  - english: There is a small park between the two buildings.
+    japanese:
+      - 二 つ の ビル の {あいだ} に 小さな 公園 が ある。
+      - 二 つ の ビル の {あいだ} に 小さな 公園 が あり ます。
+    english_literally: Between the two buildings, a small park exists.
+    competing_grammar:
+      - competing_japanese:
+          - 二 つ の ビル の 中 に 小さな 公園 が ある。
+        english: A small park is *inside* the two buildings (implying being enclosed or part of).
+        hint: 「中」 implies being enclosed within something, or being centrally located *within* it, rather
+          than just in the space *between* them. We're looking for the space *between*.
+    scene: Talking about city landscape.
+    register: formal
+    setting: informative
+  - english: While my parents were out, I cleaned the house.
+    japanese:
+      - 両親 が 留守 の {あいだ}、家 を 掃除 し た。
+      - 両親 が 留守 の {あいだ}、家 を 掃除 し まし た。
+    english_literally: While my parents were absent, I cleaned the house.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 が 留守 の うち に、家 を 掃除 し た。
+        english: While my parents were out, I cleaned the house (implying I did it before they came back
+          or before the chance was gone).
+        hint: 「うちに」 emphasizes acting before a condition changes or an opportunity is lost. We're simply
+          stating what happened for the duration.
+    scene: A student telling a friend about their weekend.
+    register: casual
+    setting: friendly
+  - english: I met an old friend while I was traveling.
+    japanese:
+      - 旅行 し て いる {あいだ} に、昔 の 友達 に 会っ た。
+      - 旅行 し て いる {あいだ} に、昔 の 友達 に 会い まし た。
+    english_literally: While traveling, I met an old friend.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 の 中 で、昔 の 友達 に 会っ た。
+        english: I met an old friend *during* my travel (emphasizes being within the activity of travel).
+        hint: 「あいだに」 highlights an event occurring *at a specific point* within a time interval. 「中」 is
+          broader, meaning 'within' or 'during', but for an event within a defined period, 「あいだに」 is more
+          precise.
+    scene: Sharing a travel experience.
+    register: casual
+    setting: storytelling
+  - english: During the summer vacation, I started learning to play the guitar.
+    japanese:
+      - 夏休み の {あいだ} に ギター を 習い 始め た。
+      - 夏休み の {あいだ} に ギター を 習い 始め まし た。
+    english_literally: During summer vacation, I started learning guitar.
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み の うち に ギター を 習い 始め た。
+        english: During summer vacation, I started learning guitar (implying I did it while I had the
+          chance).
+        hint: 「うちに」 can imply a sense of urgency or taking advantage of an opportunity. Here, it's a simple
+          statement of an event within a timeframe.
+    scene: A student discussing their summer activities.
+    register: casual
+    setting: informative
+  - english: The child was sleeping peacefully between the parents.
+    japanese:
+      - 子供 は 両親 の {あいだ} で 静か に 眠っ て い た。
+      - 子供 は 両親 の {あいだ} で 静か に 眠っ て い まし た。
+    english_literally: The child was quietly sleeping between the parents.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 両親 の そば で 静か に 眠っ て い た。
+        english: The child was sleeping peacefully *next to* the parents.
+        hint: 「そば」 means 'next to' or 'nearby,' implying proximity, not necessarily being positioned directly
+          in the middle of two entities. We are talking about being *between* them.
+    scene: Observing a peaceful family moment.
+    register: formal
+    setting: reflective
+  - english: While waiting for the train, I read a book.
+    japanese:
+      - 電車 を 待つ {あいだ}、本 を 読ん だ。
+      - 電車 を 待つ {あいだ}、本 を 読み まし た。
+      - 電車 を 待っ て いる {あいだ}、本 を 読ん だ。
+      - 電車 を 待っ て いる {あいだ}、本 を 読み まし た。
+    english_literally: While waiting for the train, I read a book.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 を 待っ て いる ところ に、本 を 読ん だ。
+        english: When I was waiting for the train, I read a book.
+        hint: 「ところ」 indicates a specific *point* in time (e.g., just about to, in the middle of). 「あいだ」
+          refers to the *duration* of an activity. We're looking for the activity that continued for the
+          duration of waiting.
+    scene: Describing daily commute.
+    register: casual
+    setting: informative
+  - english: I was so busy, I didn't even have time to eat while working.
+    japanese:
+      - 忙し すぎ て、仕事 の {あいだ} は 食事 する {あいだ} も なかっ た。
+      - 忙し すぎ て、仕事 の {あいだ} は 食事 する {あいだ} も あり ませ ん でし た。
+      - 忙し すぎ て、仕事 の {あいだ} は 食事 を とる 時間 も なかっ た。
+      - 忙し すぎ て、仕事 の {あいだ} は 食事 を とる 時間 も あり ませ ん でし た。
+    english_literally: Too busy, during work, there was no time to even eat.
+    competing_grammar:
+      - competing_japanese:
+          - 忙し すぎ て、仕事 の 中 は 食事 する 時間 も なかっ た。
+        english: I was so busy, I didn't even have time to eat *within* work.
+        hint: While similar, 「仕事のあいだ」 specifically refers to the *interval* of work hours, emphasizing
+          that *no time within that interval* was available for eating. 「仕事の中」 could refer more broadly
+          to being immersed in the work activity.
+    scene: Complaining about being busy.
+    register: casual
+    setting: pessimistic
+  - english: She stood among the trees, admiring their height.
+    japanese:
+      - 彼女 は 木々 の {あいだ} に 立っ て、その 高 さ を 眺め て い た。
+      - 彼女 は 木々 の {あいだ} に 立っ て、その 高 さ を 眺め て い まし た。
+    english_literally: She stood among the trees, gazing at their height.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 木々 の 中 に 立っ て、その 高 さ を 眺め て い た。
+        english: She stood *inside* the trees (implying being deeply within or surrounded by them).
+        hint: 「木々 の あいだ」 specifically refers to the space *between* the individual trees in a group. 「木々
+          の 中」 implies being surrounded *within* the general area of the trees, which is slightly less
+          specific about the gaps.
+    scene: Describing a person in a forest.
+    register: formal
+    setting: creative
+  - english: Please contact me while I'm away.
+    japanese:
+      - 私 が 留守 に する {あいだ} に、連絡 を ください。
+      - 私 が 留守 に する {あいだ} に、連絡 し て ください。
+      - 私 が 留守 に する {あいだ} に、ご 連絡 を お 願い し ます。
+    english_literally: While I am absent, please contact.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 留守 の うち に、連絡 を ください。
+        english: Please contact me while I'm away (implying before I return).
+        hint: 「うちに」 implies a time limit or opportunity that might close. 「あいだに」 simply refers to an action
+          occurring at some point within the specified duration without that added nuance.
+    scene: Giving instructions before leaving.
+    register: teineigo (polite)
+    setting: instructional
+  - english: While the store is open, we need to serve customers.
+    japanese:
+      - 店 が 開い て いる {あいだ} は、お 客 様 を 対応 する 必要 が ある。
+      - 店 が 開い て いる {あいだ} は、お 客 様 を 対応 する 必要 が あり ます。
+      - 店 が 開い て いる {あいだ} は、お 客 様 へ の ご 対応 が 必要 です。
+    english_literally: While the store is open, there is a need to serve customers.
+    competing_grammar:
+      - competing_japanese:
+          - 店 が 開店 中 は、お 客 様 を 対応 する 必要 が ある。
+        english: During the store's open hours, we need to serve customers.
+        hint: 「開店中」 (during opening hours) uses 「中」 to express 'during' as being within a state or process.
+          「あいだ」, while similar, specifically refers to the *interval* from opening to closing.
+    scene: Manager instructing staff.
+    register: bijinesu nihongo (business)
+    setting: instructional
+  - english: I've known him ever since we were children.
+    japanese:
+      - 彼 と は 子供 の {あいだ} から の 付き合い です。
+      - 彼 と は 子供 の {あいだ} から の 付き合い だ。
+      - 彼 と は 子供 の {あいだ} から 知っ て いる。
+    english_literally: With him, it's a relationship from between children.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と は 子供 の 時 から の 付き合い です。
+        english: I've known him ever since childhood.
+        hint: 「時」 refers to a general period or point in time. 「あいだ」 emphasizes the *duration* of being
+          a child, from beginning to end, from which the relationship started.
+    scene: Introducing a long-time friend.
+    register: semi-formal
+    setting: friendly
+  - english: While he's playing games, he often forgets about time.
+    japanese:
+      - 彼 は ゲーム を し て いる {あいだ}、よく 時間 を 忘れる。
+      - 彼 は ゲーム を し て いる {あいだ}、よく 時間 を 忘れ ます。
+      - 彼 は ゲーム を し て いる {あいだ}、よく 時 の 流れ を 忘れる。
+      - 彼 は ゲーム を し て いる {あいだ}、よく 時 の 流れ を 忘れ ます。
+    english_literally: He, while playing games, often forgets time.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ゲーム 中、よく 時間 を 忘れる。
+        english: He often forgets about time *during* games.
+        hint: 「ゲーム中」 (during a game) uses 「中」 which implies being immersed *within* the activity. 「あいだ」
+          emphasizes the *duration* of the game playing.
+    scene: Describing someone's habit.
+    register: casual
+    setting: informative
+post_example_writeup: Notice how the choice between 「あいだ」 and 「あいだに」 depends on whether the action or
+  state is continuous throughout the interval, or occurs as a single event within that interval. This
+  subtle difference is crucial for precise communication in Japanese.

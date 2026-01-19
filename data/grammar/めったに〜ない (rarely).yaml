@@ -1,0 +1,307 @@
+grammar_point: めったに〜ない (rarely)
+learn_before:
+  - Verb[ない] (plain negative)
+  - がみられる (can be observed)
+  - ものではない (shouldn't・cannot)
+  - 気に入らない (not to one's liking)
+meaning: Hardly, Rarely, Seldom
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: めったに〜ない
+    rarity: common
+    meaning: Hardly, Rarely, Seldom
+  - conjugation-type: negative non-past polite (～ません)
+    form: めったに〜ません
+    rarity: common
+    meaning: Hardly, Rarely, Seldom
+  - conjugation-type: negative past plain (～なかった)
+    form: めったに〜なかった
+    rarity: common
+    meaning: Hardly, Rarely, Seldom
+  - conjugation-type: negative past polite (～ませんでした)
+    form: めったに〜ませんでした
+    rarity: common
+    meaning: Hardly, Rarely, Seldom
+pronunciation:
+  katakana: メッタニ〜ナイ
+  romaji: metta ni ~ nai
+formation:
+  めったに + [verb negative form]: Indicates that a certain event or action rarely occurs.
+  めったに + は + [noun] + ない: Indicates that matters related to a certain noun are rare. It is often used
+    with a noun indicating a matter or issue, and emphasizes the rarity of such a matter occurring or
+    existing. For example, 「めったにはないチャンス」(a rare chance).
+jlpt: N3
+etymology: The term 「めった」 originally meant 'thoughtless' or 'reckless.' Therefore, 「めったに〜ない」 carries the
+  nuance of 'not doing something without a good reason' or 'not happening unintentionally.' It emphasizes
+  the infrequency of the action or event, suggesting that if it does occur, it is not by chance but due
+  to a specific, rare circumstance.
+writeup: |-
+  "めったに〜ない" expresses that something occurs very rarely, is seldom, or hardly ever happens. The kanji "滅多" originally referred to a "thoughtless" or "reckless" state. Therefore, as an adverb, "めったに" literally carried the nuance of "thoughtlessly" or "carelessly." When combined with a negative verb form as "めったに〜ない," it implies "not doing something thoughtlessly (unintentionally)" or "not happening without a specific reason." This emphasizes that if the action or event does occur, it is not by chance but due to some unusual or specific circumstance, highlighting its infrequency.
+
+  **Important Considerations:**
+  *   While "めったに" can be written with the kanji "滅多に," it is generally more common to see it written in hiragana. Both notations are used.
+false_friends:
+  - term: ほとんど
+    meaning: Almost all, Most, Hardly any, Few
+    kind: synonym
+    nuance: Unlike 'めったに〜ない' which emphasizes the low frequency of an event, 'ほとんど〜ない' refers to a quantity
+      or degree being close to zero. For example, 'ほとんど食べない' means 'eats very little,' whereas 'めったに食べない'
+      means 'rarely eats (due to lack of opportunity).'
+    grammar_point: ほとんど (almost all or hardly any)
+  - term: あまり
+    meaning: Not very, Not much
+    kind: synonym
+    nuance: Unlike 'めったに〜ない' which signifies a very low frequency of occurrence, 'あまり〜ない' indicates a
+      low degree or intensity. For example, 'あまり高くない' means 'not very expensive.' 'あまり' can also be used
+      in situations where the frequency is higher than 'めったに'.
+    grammar_point: あまり ない (not very or much)
+  - term: なかなか
+    meaning: Not easily or readily, By no means, Far from
+    kind: synonym
+    nuance: Unlike 'めったに〜ない' which emphasizes the inherent rarity of an event, 'なかなか〜ない' implies that
+      something expected does not easily materialize, or that achievement is difficult. For example, 'なかなか勝てない'
+      means 'it's hard to win,' suggesting difficulty due to ability or circumstances.
+    grammar_point: なかなか〜ない (not easily)
+  - term: 陸に
+    meaning: Not well or properly, Not much or enough, Barely, Hardly
+    kind: similar expression
+    nuance: Unlike 'めったに〜ない' which refers to a rare frequency of actions, '陸に〜ない' (ろくに〜ない) describes a
+      state where something is not functioning sufficiently or as expected. For instance, '陸に眠れない' means
+      'cannot sleep properly,' indicating insufficiency rather than rarity of occurrence.
+    grammar_point: ろくに〜ない (not properly)
+post_false_friends_writeup: These expressions are often used with negative forms and can be confused due
+  to the common "〜ない" ending. However, "めったに" focuses on the low frequency of an occurrence, whereas "ほとんど"
+  indicates a small quantity or degree, as in "ほとんど残っていない" (hardly any left). "あまり" denotes a low degree,
+  such as "あまり美味しくない" (not very tasty). "なかなか" suggests difficulty in achieving something, as in "なかなか理解できない"
+  (hard to understand). Lastly, "陸に" (ろくに) implies an insufficient state, as in "陸に食べられない" (can't eat
+  properly). Understanding the core nuance of each allows for accurate usage in appropriate situations.
+examples:
+  - english: For her health, she rarely eats meat.
+    japanese:
+      - 彼女 は 健康 の ため、{めった に} 肉 を 食べ ない の。
+      - 彼女 は 健康 の ため、{めった に} 肉 を 食べ ませ ん の。
+      - 彼女 は 健康 の ため、{めった に} 肉 を 食べ ない。
+    english_literally: She, for health, rarely eats meat, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 健康 の ため、肉 を {食べ ない} の。
+        english: For her health, she doesn't eat meat.
+        hint: Removing 「めったに」 would imply she *never* eats meat, which might be too absolute. We're looking
+          for an expression that means 'rarely' or 'seldom'.
+    scene: A woman is explaining her dietary habits to a close friend over coffee.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The sentence ending with 「〜の」 softens the statement, indicating a personal reason or habit.
+      This is a common softening particle often used by female speakers in casual conversation to explain
+      something, making the statement feel more personal and less direct than a plain negative sentence.
+  - english: This kind of opportunity doesn't come along very often.
+    japanese:
+      - この よう な 機会 は {めった に は} ない。
+      - この よう な 機会 は {めった に} ない。
+      - この よう な 機会 は {めった に は} あり ませ ん。
+      - この よう な 機会 は {めった に} あり ませ ん。
+    english_literally: This kind of opportunity, rarely, there is not.
+    competing_grammar:
+      - competing_japanese:
+          - この よう な 機会 は {ほとんど ない}。
+        english: This kind of opportunity is almost non-existent.
+        hint: 「ほとんどない」 suggests near-total absence or scarcity in terms of quantity, whereas 「めったにない」
+          emphasizes rarity of occurrence or frequency. We're looking for an expression about infrequency
+          of appearance.
+    scene: A manager encouraging their team to seize a new business opportunity.
+    register: formal
+    setting: persuasive
+    conjugation: negative plain (～ない)
+    nuance: This sentence is straightforward and doesn't inherently carry strong gendered or age-specific
+      nuances, making it suitable for a professional setting. The phrase 「このような 機会」 is a formal way to
+      refer to 'this kind of opportunity'.
+  - english: He rarely shows his emotions.
+    japanese:
+      - 彼 は 感情 を {めった に} 表さ ない。
+      - 彼 は 感情 を {めった に} 表し ませ ん。
+    english_literally: He, emotions, rarely, does not show.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 感情 を {あまり 表さ ない}。
+        english: He doesn't show his emotions much.
+        hint: 「あまり」 suggests a low degree or infrequency, but 「めったに」 implies a much rarer occurrence,
+          emphasizing the unusualness when it *does* happen. We're looking for a stronger sense of rarity.
+    scene: Two colleagues discussing their reserved boss.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: The use of 「表さ ない」 is a standard, neutral way to express not showing emotions, without specific
+      gender or age markers.
+  - english: I rarely go out on weekdays.
+    japanese:
+      - 平日 は {めった に} 外出 し ない ん です。
+      - 平日 は {めった に} 外出 し ませ ん の です。
+      - 平日 は {めった に} 外出 し ませ ん。
+      - 平日 は {めった に} 外出 し ない。
+    english_literally: Weekdays, rarely, go out, it is.
+    competing_grammar:
+      - competing_japanese:
+          - 平日 は {出かけ ない} ん です。
+        english: I don't go out on weekdays.
+        hint: Simply stating 「出かけ ない」 implies *never* going out, making the statement stronger than intended.
+          We need an expression that means 'rarely' rather than 'never'.
+    scene: A student explaining their busy schedule to a friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: The use of 「〜んです」 softens the statement, indicating an explanation or personal situation,
+      common in polite, friendly conversations regardless of gender or age.
+  - english: You rarely find such honesty these days.
+    japanese:
+      - 最近、こんな 正直 さ は {めった に} 見つから ない よ。
+      - 最近、こんな 正直 さ は {めった に} 見つかり ませ ん よ。
+      - 最近、こんな 正直 さ は {めった に} 見つから ない ね。
+      - 最近、こんな 正直 さ は {めった に} 見つかり ませ ん ね。
+    english_literally: Recently, such honesty, rarely, is not found, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、こんな 正直 さ は {あまり 見つから ない} よ。
+        english: Recently, such honesty is not found much.
+        hint: While 「あまり見つからない」 indicates a low frequency, 「めったに 見つからない」 emphasizes the extreme rarity
+          or near absence. We're aiming for a stronger sense of rarity.
+    scene: Two older friends lamenting about current social trends.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The sentence ends with 「〜ない よ」. While 「よ」 can be used by anyone, when combined with the reflective
+      tone and the sentiment of lamenting 'these days' (「最近」) about 'honesty' (「正直 さ」), it sounds quite
+      natural for an older male speaker expressing a personal observation or mild complaint to a close
+      peer.
+  - english: This is such a rare ticket that you can hardly get your hands on it.
+    japanese:
+      - これ は {めった に} 手 に 入ら ない チケット な ん です。
+      - これ は {めった に} 手 に 入り ませ ん チケット な ん です。
+      - これ は {めった に} 手 に 入ら ない チケット だ。
+      - これ は {めった に} 手 に 入り ませ ん。
+    english_literally: This, rarely, enters hands, ticket, it is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は {なかなか 手 に 入ら ない} チケット な ん です。
+        english: This is a ticket that's hard to get.
+        hint: 「なかなか〜ない」 implies difficulty or stubbornness in achieving something, but 「めったに〜ない」 emphasizes
+          the infrequency or rarity of the item itself. We're talking about how rare the ticket is, not
+          how hard it is to get it if it were available.
+    scene: A concert-goer explaining the difficulty of acquiring tickets for a popular band.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: The use of 「〜んです」 provides a softer, explanatory tone suitable for sharing information in
+      a polite context. The potential form 「入ら ない」 combined with 「めったに」 reinforces the rarity.
+  - english: Such a beautiful sunset is rare here.
+    japanese:
+      - ここ で は、こんな に 美しい 夕焼け は {めった に は} ない。
+      - ここ で は、こんな に 美しい 夕焼け は {めった に} ない。
+      - ここ で は、こんな に 美しい 夕焼け は {めった に は} あり ませ ん。
+      - ここ で は、こんな に 美しい 夕焼け は {めった に} あり ませ ん。
+      - ここ で は、こんな に 美しい 夕焼け は {めった に} 見 られ ない。
+      - ここ で は、こんな に 美しい 夕焼け は {めった に} 見 られ ませ ん。
+    english_literally: Here, such beautiful sunset, rarely, there is not.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で は、こんな に 美しい 夕焼け は {あまり 見 られ ない}。
+        english: Such a deep silence is not experienced much.
+        hint: While 「あまり見られない」 indicates a low frequency, 「めったに見られない」 implies a much rarer occurrence,
+          emphasizing the unusualness when it *does* happen. We're aiming for a stronger sense of rarity.
+    scene: A tourist guide pointing out a unique natural phenomenon to a group.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: The use of 「ここ では」 to specify the location, combined with the descriptive 「こんなに 美しい 夕焼け」 and
+      the declarative 「めった に は ない」, creates a formal, informative tone suitable for a guide addressing
+      a group. The structure with 「は」 after 「めったに」 emphasizes the rarity of the specific noun (sunset).
+  - english: He rarely complains, so when he does, it's serious.
+    japanese:
+      - 彼 は {めった に} 文句 を 言わ ない から、言う 時 は 大変 だ よ。
+      - 彼 は {めった に} 文句 を 言い ませ ん から、言う 時 は 大変 です よ。
+    english_literally: He, rarely, complaints, does not say, so, when he says, it is serious, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {文句 を 言わ ない} から、言う 時 は 大変 だ よ。
+        english: He doesn't complain, so when he does, it's serious.
+        hint: This competing sentence implies he *never* complains, making the statement stronger than
+          intended. We need an expression that means he 'rarely' complains.
+    scene: Two male friends discussing their mutual, usually easy-going friend.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The sentence uses 「言わ ない から」 (because he doesn't say) as a causal link and ends with 「大変 だ
+      よ」 (it's serious, you know). The final 「よ」 is a sentence-ending particle that can add emphasis or
+      a sense of informing the listener, often used by male speakers in casual conversation.
+  - english: Our team rarely loses at home.
+    japanese:
+      - 私 たち の チーム は ホーム で {めった に} 負け ない。
+      - 私 たち の チーム は ホーム で {めった に} 負け ませ ん。
+    english_literally: Our team, at home, rarely, does not lose.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の チーム は ホーム で {ほとんど 負け ない}。
+        english: Our team almost never loses at home.
+        hint: 「ほとんど負けない」 implies that losing is very rare, close to never happening. While similar, 「めったに負けない」
+          emphasizes the infrequency of losing as a distinct, rare event rather than a near-total absence
+          of losses. We're focusing on the rarity of each loss.
+    scene: A sports commentator analyzing a team's performance.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: This sentence is direct and factual, typical of sports commentary. The use of 「負け ない」 in plain
+      negative form is common in such contexts for concise reporting, lacking specific gendered or age-related
+      markers.
+  - english: My cat rarely sleeps on my lap.
+    japanese:
+      - 私 の 猫 は {めった に} 私 の 膝 の 上 で 寝 ない ん です。
+      - 私 の 猫 は {めった に} 私 の 膝 の 上 で 寝 ませ ん の です。
+      - 私 の 猫 は {めった に} 私 の 膝 の 上 で 寝 ませ ん。
+    english_literally: My cat, rarely, my lap's top, does not sleep, it is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 猫 は 私 の 膝 の 上 で {あまり 寝 ない} ん です。
+        english: My cat doesn't sleep on my lap much.
+        hint: 「あまり〜ない」 suggests a low frequency, but 「めったに〜ない」 implies an even rarer occurrence. The nuance
+          here is that it happens so infrequently that it's noteworthy when it does. We are looking for
+          emphasis on the extreme rarity.
+    scene: Someone sharing a cute but infrequent behavior of their pet.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The use of 「寝 ない んです」 includes the explanatory 「んです」, which is frequently used by female speakers
+      to share personal observations in a gentle, conversational manner. The entire phrase expresses a
+      somewhat endearing personal detail.
+  - english: Such a deep silence is rarely experienced.
+    japanese:
+      - これ ほど の 静寂 は {めった に} 経験 できる もの で は ない。
+      - これ ほど の 静寂 は {めった に} 経験 できる もの で は あり ませ ん。
+      - これ ほど の 静寂 は {めった に} 経験 さ れ る もの で は ない。
+      - これ ほど の 静寂 は {めった に} 経験 さ れ る もの で は あり ませ ん。
+    english_literally: This much silence, rarely, can be experienced, thing, it is not.
+    competing_grammar:
+      - competing_japanese:
+          - これ ほど の 静寂 は {あまり 経験 さ れ ない}。
+        english: Such a deep silence is not experienced much.
+        hint: While 「あまり経験されない」 suggests that it is not experienced frequently, 「めったに経験できるもの で は ない」 conveys
+          a stronger sense of rarity and difficulty in experiencing it, implying it's almost a once-in-a-lifetime
+          occurrence. We want to emphasize extreme rarity.
+    scene: A historian reflecting on historical events and their impact.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    nuance: The phrase 「これほど の 静寂」 (such a deep silence) and the formal negative construction 「経験 できる
+      もの で は ない」 elevate the register to an academic or literary level. This type of reflective, analytical
+      language is gender-neutral and often associated with scholarly discourse.
+post_example_writeup: '"めったに〜ない" is used to emphasize that the occurrence of an event is extremely low.
+  As seen in the examples, it conveys the nuance that a habit or event will not happen unless there is
+  a special reason.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/めったに-ない

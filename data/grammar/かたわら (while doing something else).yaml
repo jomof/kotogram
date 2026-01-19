@@ -1,0 +1,428 @@
+grammar_point: かたわら (while doing something else)
+learn_before:
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - '[Verb-stem]ながら・つつ (while doing)'
+  - 〜なくても (even if not)
+  - のみならず (not only・let alone)
+  - はもとより (not only・let alone)
+meaning: While, Besides, In addition to
+pronunciation:
+  katakana: カタワラ
+  romaji: katawara
+formation:
+  Noun + の + かたわら: Indicates a secondary activity or state existing alongside a primary noun-related context.
+  Verb (dictionary form) + かたわら: Indicates a secondary activity or state existing alongside a primary
+    verb-related action.
+jlpt: N1
+etymology: The word 「傍ら」(かたわら) originally means 'side' or 'nearby'. It indicates something that exists
+  or happens alongside something else, but is not the primary focus. This nuance is retained in the grammar
+  point, where the action or state described by 「かたわら」 is secondary to the main action. It conveys the
+  sense of 'being at the side of' or 'doing something alongside' the main activity.
+writeup: "「かたわら」 (傍ら), typically written in hiragana, is a versatile grammatical construction used to\
+  \ express that something occurs **in addition to**, **besides**, or **while** another primary activity\
+  \ or state is ongoing. It implies a secondary or incidental action that complements a main pursuit,\
+  \ often describing a side job, hobby, or additional responsibility. \n\n**Formation:** \n*   It attaches\
+  \ to nouns followed by `の` (e.g., `本業の かたわら` - \"besides one's main job\"). \n*   It attaches to verbs\
+  \ in their dictionary form (e.g., `研究する かたわら` - \"while researching\"). \n\n**Nuance and Usage:** \n\
+  The core nuance of `かたわら` stems from its original meaning of \"bystander\" or \"alongside.\" The action\
+  \ or state preceding `かたわら` is considered the primary focus, with the action or state that follows being\
+  \ secondary, incidental, or a supplementary activity. This often highlights someone balancing multiple\
+  \ roles or responsibilities, with one clearly being their main endeavor. It suggests a sustained, ongoing\
+  \ secondary activity, not merely a fleeting simultaneous action. \n\n**Important Considerations:** \n\
+  Unlike `ながら`, which strongly implies two actions happening simultaneously (e.g., `テレビを見ながら食べる` - \"\
+  eat while watching TV\"), `かたわら` does not necessarily mean the actions are occurring at the exact same\
+  \ moment. Instead, it describes a situation where one activity exists or is performed *in the context\
+  \ of* another primary one, even if they are not temporally overlapping at every instant. For example,\
+  \ a person might work their main job during the day and pursue a hobby or side business in the evenings\
+  \ or weekends. Both are ongoing aspects of their life, but one is clearly the main focus. \n\nThis structure\
+  \ is generally used in **formal** or **literary** contexts and adds a sophisticated tone. It's often\
+  \ found in biographical descriptions, academic papers, or formal speeches."
+false_friends:
+  - term: ながら
+    meaning: While ~ing, During, As
+    kind: often confused with
+    nuance: 「ながら」 indicates two actions happening simultaneously. Unlike 「かたわら」, which suggests one action
+      is primary and another secondary or incidental, 「ながら」 implies both actions occur at the same time
+      and often with equal emphasis, or one directly accompanying the other.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: 一方で
+    meaning: On the other hand, At the same time, While
+    kind: often confused with
+    nuance: 「一方で」 emphasizes a contrast or simultaneous existence of two distinct aspects. While it can
+      suggest two things happening at once, it often highlights a dual nature or a 'on the one hand...
+      on the other hand' scenario, which differs from 「かたわら」's focus on one activity being supplementary
+      to a primary one.
+    grammar_point: 一方で (on the other hand・while)
+  - term: と共に
+    meaning: Together with, at the same time as, as well as
+    kind: often confused with
+    nuance: 「と共に」 generally indicates actions or states occurring simultaneously or in conjunction, often
+      implying a more equal or collaborative relationship between them. Unlike 「かたわら」, it does not typically
+      highlight one activity as primary and the other as a sustained, secondary pursuit.
+    grammar_point: と共に (together with)
+  - term: に加えて
+    meaning: In addition to; not only... but also; moreover; what's more
+    kind: similar expression
+    nuance: 「に加えて」 simply adds another item or piece of information. It does not carry the nuance of a
+      sustained secondary activity existing alongside a primary one, which is central to 「かたわら」.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While 「かたわら」, 「ながら」, 「一方で」, 「とともに」, and 「に加えて」 all express the co-occurrence
+  or addition of actions or states, their nuances are distinct. 「ながら」 indicates two actions performed
+  genuinely simultaneously, often by the same subject. 「一方で」 highlights contrasting or parallel aspects,
+  similar to 'on the one hand... on the other hand'. 「とともに」 emphasizes joint action or simultaneous occurrence,
+  often implying equality between the elements. 「に加えて」 simply lists an additional item or factor without
+  the continuous, secondary activity implication of 「かたわら」. In contrast, 「かたわら」 specifically denotes a
+  **sustained, secondary activity** that exists **alongside** a more primary, ongoing pursuit, clearly
+  distinguishing the main endeavor from the complementary one.
+examples:
+  - english: Besides being a company employee, she volunteers on weekends.
+    japanese:
+      - 彼女 は 会社 員 の {かたわら}、週末 は ボランティア 活動 を し て いる。
+      - 彼女 は 会社 員 と し て の {かたわら}、週末 に ボランティア に 参加 し て いる。
+      - 彼女 は 会社 員 の {傍ら}、週末 に は ボランティア を し て いる。
+    english_literally: She, while being a company employee, on weekends, does volunteer activities.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 会社 員 {ながら}、週末 は ボランティア 活動 を し て いる。
+        english: While she is a company employee, she volunteers on weekends.
+        hint: While she might volunteer on weekends, 「ながら」 suggests both being an employee and volunteering
+          happen at the exact same time. We're looking for an activity that occurs alongside her main
+          job, not necessarily at the same moment.
+      - competing_japanese:
+          - 彼女 は 会社 員 で ある {一方 で}、週末 は ボランティア 活動 を し て いる。
+        english: She is a company employee, but on the other hand, she volunteers on weekends.
+        hint: 「一方で」 highlights two distinct aspects or contrasts them, but here we want to show one activity
+          as supplementary to a primary one. We're looking for an activity that is in addition to her
+          main job.
+      - competing_japanese:
+          - 彼女 は 会社 員 {に 加え て}、週末 は ボランティア 活動 を し て いる。
+        english: She volunteers on weekends in addition to being a company employee.
+        hint: 「に加えて」 simply states an addition. 「かたわら」 emphasizes that one activity (volunteering) is
+          a sustained secondary pursuit alongside a primary one (company employee).
+    scene: Describing a woman who effectively balances her main job with altruistic activities.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The speaker, an older man, uses this formal phrasing to commend her dedication. 「会社員 の かたわら」
+      highlights that her main identity is a company employee, with volunteering being a notable but secondary
+      pursuit. This mirrors the original meaning of 傍ら as something alongside but not central, highlighting
+      her commitment to both roles without blurring the line between them. It is not about simultaneous
+      actions, but rather, one being in addition to the other.
+    etymology: The use of 「かたわら」 in this example emphasizes the distinction between her primary occupation
+      and her additional volunteer work, much like how the word 'side' or 'alongside' implies a supplementary
+      role rather than a concurrent one. It underscores the dedication required to manage both aspects
+      of her life effectively, lending a sense of admirable effort to her character.
+  - english: While teaching at the university, Professor Tanaka continues to publish numerous research
+      papers.
+    japanese:
+      - 田中 教授 は 大学 で 教える {かたわら}、数多く の 研究 論文 を 発表 し 続け て いる。
+      - 田中 教授 は 大学 で の 教育 の {傍ら}、数多く の 研究 論文 を 発表 し 続け て いる。
+      - 田中 教授 は 大学 で の 教育 に 携わる {かたわら}、多数 の 研究 論文 を 執筆 し て いる。
+    english_literally: Professor Tanaka, while teaching at the university, continues to publish numerous
+      research papers.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 教授 は 大学 で 教える {と 同時 に}、数多く の 研究 論文 を 発表 し 続け て いる。
+        english: Professor Tanaka teaches at the university and, at the same time, continues to publish
+          numerous research papers.
+        hint: 「同時に」 implies strict simultaneity. While publishing may happen alongside teaching, it's
+          not always happening at the exact same moment. We're looking for an ongoing secondary activity
+          alongside a primary one.
+      - competing_japanese:
+          - 田中 教授 は 大学 で 教える {と とも に}、数多く の 研究 論文 を 発表 し 続け て いる。
+        english: Professor Tanaka teaches at the university, and along with that, continues to publish
+          numerous research papers.
+        hint: 「と共に」 implies actions occurring in conjunction, often with a sense of equality. 「かたわら」 distinguishes
+          teaching as primary and publishing as a sustained, secondary activity.
+    scene: Discussing Professor Tanaka's impressive academic career.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: This usage emphasizes Professor Tanaka's dedication to both teaching, which is a primary duty,
+      and research, which is an additional, ongoing contribution. 「教える かたわら」 suggests that even with the
+      demands of teaching, he maintains his research output. This shows an admirable commitment to both
+      aspects of his profession.
+    etymology: The etymological root of 'side' in 「かたわら」 is evident here. Teaching is the central, 'front-and-center'
+      activity, while research is performed 'alongside' or 'on the side,' yet still continuously and significantly.
+  - english: The writer, in addition to being a diplomat, wrote several acclaimed novels.
+    japanese:
+      - 彼 は 外交 官 の {かたわら}、いく つ か の 高い 評価 を 受け た 小説 を 書い た。
+      - 彼 は 外交 官 の {傍ら}、幾 つ か の 傑作 小説 を 世 に 出し た。
+      - 彼 は 外交 官 と し て の {かたわら}、評価 の 高い 小説 を 数多く 執筆 し た。
+    english_literally: He, while a diplomat, wrote several highly acclaimed novels.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 外交 官 で ある {に も かかわら ず}、いく つ か の 高い 評価 を 受け た 小説 を 書い た。
+        english: Despite being a diplomat, he wrote several acclaimed novels.
+        hint: 「にもかかわらず」 emphasizes a contrast or unexpectedness. Here, we want to highlight that novel
+          writing was an additional activity, not necessarily surprising given his diplomatic role. We're
+          looking for something that occurred as a supplementary role.
+      - competing_japanese:
+          - 彼 は 外交 官 で ある {と とも に}、いく つ か の 高い 評価 を 受け た 小説 を 書い た。
+        english: He was a diplomat, and along with that, he wrote several acclaimed novels.
+        hint: While 「とともに」 expresses joint occurrence, it doesn't emphasize the primary/secondary relationship
+          between diplomacy and writing that 「かたわら」 conveys. We're looking for a grammar point that suggests
+          one role is primary and the other is a continuous, side pursuit.
+    scene: A biographical account of a multi-talented public figure.
+    register: formal
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「外交官 の かたわら」 points out that diplomacy was his main profession, and writing novels was a secondary,
+      yet notable and successful, endeavor. It suggests a balance of two significant life paths, with
+      one being the primary public role. This phrasing elevates the impressive nature of his achievement,
+      showing his ability to excel in two demanding fields.
+    etymology: This example highlights the 'secondary but important' aspect of 「かたわら」. His role as a diplomat
+      was his primary identity, but his literary pursuit was a consistent 'side' activity that brought
+      him recognition, fitting the original sense of 'alongside' a main function.
+  - english: In addition to her clinical practice, the doctor dedicates time to medical research.
+    japanese:
+      - 彼女 は 臨床 の {かたわら}、医学 研究 に 時間 を 捧げ て いる。
+      - 彼女 は 臨床 医 の {傍ら}、医学 研究 に も 尽力 し て いる。
+      - 彼女 は 臨床 業務 の {かたわら}、医学 研究 に 注力 し て いる。
+    english_literally: She, while in clinical practice, dedicates time to medical research.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 臨床 {と とも に}、医学 研究 に 時間 を 捧げ て いる。
+        english: She dedicates time to medical research along with clinical practice.
+        hint: 「とともに」 implies an equal partnership or accompaniment. Here, clinical practice is typically
+          the primary role. We're looking for a secondary activity that is pursued alongside the main
+          one.
+      - competing_japanese:
+          - 彼女 は 臨床 {に 加え て}、医学 研究 に 時間 を 捧げ て いる。
+        english: She dedicates time to medical research in addition to clinical practice.
+        hint: 「に加えて」 simply lists another activity. 「かたわら」 specifically implies that research is a sustained,
+          secondary activity alongside her primary clinical practice.
+    scene: Discussing a doctor's contributions to medicine beyond her daily patient care.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「臨床 の かたわら」 emphasizes that her clinical work is her main professional identity, while medical
+      research is a significant, ongoing, but secondary commitment. It reflects a sustained effort to
+      contribute to both areas. This phrasing conveys respect for her dedication to both direct patient
+      care and scientific advancement.
+    etymology: Similar to the other examples, the 'side' meaning of 「かたわら」 comes through. Clinical practice
+      is the central activity, and research is an important endeavor pursued 'on the side' of her main
+      professional duties, indicating a continuous commitment.
+  - english: My grandfather worked as a farmer and, at the same time, was also a village elder respected
+      by everyone.
+    japanese:
+      - 祖父 は 農業 の {かたわら}、皆 に 尊敬 さ れる 村 の 長老 で も あっ た。
+      - 祖父 は 農業 を 営む {傍ら}、皆 から 慕わ れる 村 の 長老 で も あっ た。
+      - 祖父 は 農業 を 行う {かたわら}、村人 から 敬愛 さ れる 長老 と し て も 活躍 し た。
+    english_literally: Grandfather, while farming, was also a village elder respected by everyone.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 農業 を し て い た が、{一方 で} 皆 に 尊敬 さ れる 村 の 長老 で も あっ た。
+        english: My grandfather was farming, but on the other hand, he was also a village elder respected
+          by everyone.
+        hint: 「一方で」 can imply a contrast. While there might be a subtle contrast between physical labor
+          and community leadership, the main idea is that he held both roles concurrently and continuously.
+          We're looking to emphasize the concurrent pursuit of two distinct roles.
+      - competing_japanese:
+          - 祖父 は 農業 {と とも に}、皆 に 尊敬 さ れる 村 の 長老 で も あっ た。
+        english: My grandfather worked in agriculture, and along with that, he was a village elder respected
+          by everyone.
+        hint: 「とともに」 indicates two things happening together, but 「かたわら」 specifically highlights farming
+          as his primary livelihood and being an elder as a continuous, secondary role. We're looking
+          to emphasize the concurrent pursuit of two distinct roles, with one being primary.
+    scene: A grandchild fondly describing their late grandfather's life and roles in the community.
+    register: formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「農業 の かたわら」 highlights that farming was his primary livelihood, but being a village elder
+      was another significant, ongoing role he performed concurrently. This shows respect for his dual
+      contributions to both his family's sustenance and community welfare. It evokes the image of a steadfast
+      individual who managed multiple, important responsibilities.
+    etymology: This example emphasizes the dual, continuous roles of the grandfather. Farming was his
+      livelihood, his 'main' occupation, but being a village elder was an active, consistent 'side' role,
+      reinforcing the idea of a supplementary but equally important continuous activity.
+  - english: When you're studying for your exams, you should also make time for exercise.
+    japanese:
+      - 試験 勉強 する {かたわら}、適度 な 運動 も する べき だ。
+      - 試験 勉強 の {傍ら}、軽い 運動 も 取り入れる べき だ。
+      - 試験 対策 を 行う {かたわら}、適度 な 体 を 動かす こと も 大切 だ。
+    english_literally: While studying for exams, you should also do moderate exercise.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 勉強 を し {ながら}、適度 な 運動 も する べき だ。
+        english: While doing exam studying, you should also do moderate exercise.
+        hint: 「ながら」 suggests doing both at the exact same time, which is not usually the case for studying
+          and exercise. We want to convey that exercise is a healthy, ongoing activity to do *in addition*
+          to studying. We're looking for an additional, sustained activity.
+      - competing_japanese:
+          - 試験 勉強 {に 加え て}、適度 な 運動 も する べき だ。
+        english: In addition to studying for exams, you should also do moderate exercise.
+        hint: 「に加えて」 simply adds exercise as another task. 「かたわら」 suggests that exercise should be a continuous,
+          secondary activity alongside the primary study focus, emphasizing balance.
+    scene: A mentor advising a student on maintaining a healthy lifestyle during exam preparation.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「試験勉強 する かたわら」 suggests that exam study is the primary focus, but regular exercise should
+      be a sustained, secondary activity that supports overall well-being. This advice emphasizes balancing
+      demanding tasks with self-care, where the exercise is 'alongside' the main study effort, not strictly
+      simultaneous.
+    etymology: Here, 「かたわら」 denotes a beneficial 'side' activity that supports the main endeavor. Studying
+      is primary, but exercise, while secondary in focus, is a continuous activity that runs alongside
+      and contributes to the student's overall success and health.
+  - english: Despite struggling as an artist, he continued his pursuit of painting while working part-time
+      at a cafe.
+    japanese:
+      - 画家 と し て 苦しむ {かたわら}、カフェ で バイト を し ながら 絵画 の 追求 を 続け た。
+      - 画家 と し て 奮闘 する {傍ら}、カフェ で 働き つつ 絵画 の 創作 を 続け た。
+      - 絵描き と し て の 苦難 の {かたわら}、生活 の ため に 喫茶 店 で 働き、絵 を 描き 続け た。
+    english_literally: While struggling as a painter, he continued his pursuit of painting while working
+      part-time at a cafe.
+    competing_grammar:
+      - competing_japanese:
+          - 画家 と し て 苦しん で い た が、カフェ で バイト を し {ながら も} 絵画 の 追求 を 続け た。
+        english: Although he was struggling as a painter, he continued his pursuit of painting even while
+          working part-time at a cafe.
+        hint: The 'even while' nuance of 「ながらも」 implies a stronger sense of overcoming difficulty. 「かたわら」
+          here means the part-time work is simply an additional, necessary activity to sustain his art.
+          We're looking for a simple additional activity.
+      - competing_japanese:
+          - 画家 と し て 苦しむ {に も かかわら ず}、カフェ で バイト を し て 絵画 の 追求 を 続け た。
+        english: Despite struggling as an artist, he worked part-time at a cafe and continued his pursuit
+          of painting.
+        hint: 「にもかかわらず」 highlights a contrast or unexpectedness. While his struggle is a reality, 「かたわら」
+          frames the cafe work as a consistent secondary activity, not just a fact that exists despite
+          the struggle. We're looking for a sustained secondary activity that supports the primary one.
+    scene: A biographer describing the dedicated but challenging life of an artist.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This phrasing, using 「苦しむ かたわら」, implies that his struggles as an artist are an ongoing state,
+      and his cafe work is a supplementary activity undertaken to support his artistic passion. It evokes
+      a sense of enduring dedication despite hardship, with the cafe work existing 'alongside' his primary
+      artistic identity.
+    etymology: This use of 「かたわら」 illustrates an unavoidable 'side' activity necessary for survival, pursued
+      in parallel with one's main passion. The struggle as an artist is the 'primary' reality, and the
+      cafe work is a persistent 'adjacent' activity to make ends meet.
+  - english: The mayor, in addition to his official duties, actively participates in various community
+      events.
+    japanese:
+      - 市長 は 公務 の {かたわら}、地域 の 様々 な イベント に 積極 的 に 参加 し て いる。
+      - 市長 は 公務 を 務める {傍ら}、地域 の 行事 に も 熱心 に 顔 を 出し て いる。
+      - 市長 は 本来 の 職務 の {かたわら}、地元 の イベント に 進ん で 出席 し て いる。
+    english_literally: The mayor, while on official duties, actively participates in various community
+      events.
+    competing_grammar:
+      - competing_japanese:
+          - 市長 は 公務 {に 加え て}、地域 の 様々 な イベント に 積極 的 に 参加 し て いる。
+        english: In addition to his official duties, the mayor actively participates in various community
+          events.
+        hint: 「に加えて」 implies simply adding another item to a list. 「かたわら」 suggests a sustained, continuous
+          secondary activity that exists alongside the primary duty. We're looking for something that
+          is continuously done in addition to the main task.
+      - competing_japanese:
+          - 市長 は 公務 を 務める {一方 で}、地域 の 様々 な イベント に 積極 的 に 参加 し て いる。
+        english: The mayor performs his official duties, but on the other hand, he actively participates
+          in various community events.
+        hint: 「一方で」 highlights contrasting or parallel aspects. While his duties and community work are
+          distinct, 「かたわら」 emphasizes the community involvement as a consistent secondary activity complementing
+          his main role. We're looking for a grammar point that suggests one role is primary and the other
+          is a continuous, side pursuit.
+    scene: A news report highlighting a local politician's engagement with the community.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「公務 の かたわら」 indicates that his official duties are primary, and community event participation
+      is a continuous, supplementary activity. This showcases the mayor's commitment beyond his formal
+      responsibilities, suggesting that community involvement is a constant 'side' aspect of his public
+      life.
+    etymology: Here, 「かたわら」 conveys the idea of continuous community engagement as an 'additional' or
+      'side' role that complements the mayor's main official duties. It's not a one-off event but an ongoing
+      aspect of his public service.
+  - english: That renowned scholar, besides being a leading expert in his field, also dedicated himself
+      to nurturing young talent.
+    japanese:
+      - その 著名 な 学者 は、自己 の 研究 の {かたわら}、若手 の 育成 に も 力 を 注い だ。
+      - その 著名 な 学者 は、専門 分野 で の 研究 の {傍ら}、若手 人材 の 育成 に 尽力 し た。
+      - その 著名 な 学者 は、自己 の 専門 研究 を 行う {かたわら}、将来 を 担う 若者 の 育成 に も 貢献 し た。
+    english_literally: That renowned scholar, while doing his own research, also poured effort into fostering
+      young talent.
+    competing_grammar:
+      - competing_japanese:
+          - その 著名 な 学者 は、自己 の 研究 に 専念 する {一方 で}、若手 の 育成 に も 力 を 注い だ。
+        english: That renowned scholar, while dedicating himself to his own research, also poured effort
+          into fostering young talent.
+        hint: 「一方で」 can imply a contrast between two activities or that they are happening in parallel,
+          perhaps without a clear primary/secondary relationship. 「かたわら」 emphasizes the research as primary
+          and nurturing as a significant 'side' endeavor. We're looking for an additional, sustained activity.
+      - competing_japanese:
+          - その 著名 な 学者 は、自己 の 研究 {と とも に}、若手 の 育成 に も 力 を 注い だ。
+        english: That renowned scholar, along with his own research, also poured effort into fostering
+          young talent.
+        hint: 「とともに」 implies actions occurring in conjunction, often with a sense of equality. 「かたわら」
+          highlights his research as primary and nurturing talent as a continuous, complementary role.
+          We're looking for a grammar point that suggests one role is primary and the other is a continuous,
+          side pursuit.
+    scene: A university speech honoring a respected scholar's legacy.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「自己 の 研究 の かたわら」 implies that his personal research was the primary focus, while nurturing
+      young talent was an equally important, continuous secondary contribution. It highlights his multifaceted
+      dedication, portraying the youth development as an ongoing effort existing 'alongside' his main
+      academic pursuit. This shows a holistic commitment to his field.
+    etymology: This usage of 「かたわら」 illustrates the continuous nature of a secondary but important activity—nurturing
+      young talent—that runs parallel to the primary focus of personal research. It shows a dedication
+      that extends beyond his immediate scholarly work.
+  - english: Even while pursuing his dream of becoming a professional musician, he worked a full-time
+      job to support himself.
+    japanese:
+      - プロ の 音楽 家 を 目指す {かたわら}、生活 の ため に フル タイム で 働い て い た。
+      - プロ 音楽 家 を 目指す {傍ら}、生計 を 立てる ため に 常勤 で 仕事 を し て い た。
+      - 音楽 家 と し て の 夢 を 追う {かたわら}、自活 の ため に 会社 勤め を し て い た。
+    english_literally: While aiming to become a professional musician, he was working full-time for his
+      livelihood.
+    competing_grammar:
+      - competing_japanese:
+          - プロ の 音楽 家 を 目指す {が}、生活 の ため に フル タイム で 働い て い た。
+        english: He aims to be a professional musician, but he works full-time for his livelihood.
+        hint: Using a simple 'but' (が) does not convey the continuous, sustained nature of the two activities
+          happening in parallel. We're looking for a grammar point that shows one activity exists alongside
+          the other.
+      - competing_japanese:
+          - プロ の 音楽 家 を 目指す こと {と とも に}、生活 の ため に フル タイム で 働い て い た。
+        english: Along with pursuing his dream of becoming a professional musician, he worked full-time
+          to support himself.
+        hint: 「とともに」 implies that two activities happen concurrently, often with a sense of equal importance.
+          「かたわら」 specifically conveys that one activity (the job) is a necessary, continuous secondary
+          activity supporting the primary one (pursuing music). We're looking for a grammar point that
+          shows one activity exists alongside the other, with a primary/secondary relationship.
+    scene: A friend encouraging another aspiring artist, reflecting on a shared experience.
+    register: formal
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「プロ の 音楽家 を 目指す かたわら」 indicates that his musical ambition is the primary, overarching goal,
+      while his full-time job is a continuous, necessary 'side' activity that enables him to pursue that
+      dream. It emphasizes the balance and dedication required for such a demanding path. This expresses
+      admiration for his perseverance.
+    etymology: This example clearly shows how 「かたわら」 is used to describe a primary ambition—becoming a
+      professional musician—and a continuous, necessary 'side' activity—working a full-time job—that exists
+      in parallel to support that ambition. It highlights the dual paths being pursued simultaneously.
+post_example_writeup: As these examples demonstrate, 「かたわら」 is particularly useful for describing individuals
+  who balance a main role or activity with a significant, ongoing secondary pursuit. It highlights their
+  dedication to both, with a clear distinction of what constitutes the primary focus.

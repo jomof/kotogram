@@ -1,0 +1,239 @@
+grammar_point: '[Verb-た]ことがある (experience of having done)'
+learn_before:
+  - '[Verb-dictionary]ことがある (there are times when)'
+meaning: To have the experience of (doing something); to have done (something) before.
+pronunciation:
+  katakana: コト ガ アル
+  romaji: koto ga aru
+formation:
+  Verb (た-form) + ことがある: Expresses having the experience of doing something at some point in the past.
+jlpt: N4
+etymology: The phrase combines the past tense of a verb (た) with 「こと」(koto), which nominalizes the preceding
+  clause, making it a "thing" or "matter." 「がある」(ga aru) then indicates the existence of this "thing"
+  or "matter." So, literally, it means "there is the matter of having done (something)." This construction
+  highlights the experience itself as an existing fact, focusing on whether something has happened in
+  one's life, rather than when it specifically happened.
+writeup: The grammar pattern 「動詞 た形 + ことがある」(doushi ta-kei + koto ga aru) is used to express that one
+  has the experience of having performed a certain action at some point in their life. It focuses on the
+  existence of the experience, rather than the specific time the action occurred. It is distinct from
+  the simple past tense (e.g., 「食べた」 tabeta), which indicates that an action occurred at a specific point
+  in the past. While the simple past describes an event, 「たことがある」 describes a state of having experienced
+  that event. For example, 「寿司を食べた」 means "I ate sushi (at a specific time)," whereas 「寿司を食べたことがある」 means
+  "I have had the experience of eating sushi (at some point in my life)." This pattern is versatile and
+  can be used with a wide range of verbs to convey various types of life experiences, from mundane activities
+  to significant events.
+false_friends:
+  - term: たばかり
+    meaning: just did
+    kind: similar expression
+    nuance: 「たばかり」 emphasizes that an action happened very recently, focusing on the recency of the event.
+      In contrast, 「たことがある」 emphasizes the existence of the experience at any point in the past.
+    grammar_point: たばかり (just did)
+  - term: たものだ
+    meaning: used to (nostalgic recollection)
+    kind: similar expression
+    nuance: 「たものだ」 is used for nostalgic recollection of past habitual actions or states, implying something
+      that occurred repeatedly or was characteristic of a past period. 「たことがある」, however, simply states
+      that an action has been experienced at least once, without implying habit or nostalgia.
+    grammar_point: たものだ (nostalgic recollection)
+  - term: Verb[dictionary-form]ことがある
+    meaning: there are times when
+    kind: similar expression
+    nuance: 「Verb[dictionary-form]ことがある」 indicates that an action or state occurs occasionally or sometimes,
+      focusing on a recurring pattern in the present or general truth. This is different from 「たことがある」,
+      which confirms a past experience.
+    grammar_point: <suggest>:Verb[dictionary-form]ことがある (there are times when)
+post_false_friends_writeup: While 「たことがある」 refers to having a past experience, be careful not to confuse
+  it with similar-sounding expressions. 「たばかり」 indicates that an action has just been completed very recently.
+  For example, 「食べたばかりだ」 means "I just ate." This is about recency, not the existence of a past experience.
+  「たものだ」 is used to describe things that regularly happened in the past, often with a nostalgic feeling,
+  like "I used to play there every day." It's about past habits, not a single past experience. 「Verb[dictionary-form]ことがある」
+  means "there are times when..." or "sometimes...", indicating occasional occurrences. For example, 「食べることもある」
+  means "Sometimes I eat." This talks about a present or general tendency, not a specific past experience.
+  Understanding these distinctions is key to using each expression correctly.
+examples:
+  - english: I have eaten sushi.
+    japanese:
+      - 寿司 を {食べ た} こと が ある。
+      - 寿司 を {食べ た} こと が あり ます。
+    english_literally: As for sushi, (I) have the matter of having eaten (it).
+    competing_grammar:
+      - competing_japanese:
+          - 寿司 を 食べ た。
+        english: I ate sushi.
+        hint: This simply states you ate sushi, not that you've had the experience of eating it. We're
+          looking for an experience.
+      - competing_japanese:
+          - 寿司 を 食べ た ばかり だ。
+        english: I just ate sushi.
+        hint: This means you ate it very recently. We're looking for a general past experience.
+    scene: A friend asks about your food preferences.
+    register: casual
+    setting: friendly
+  - english: I have never climbed Mt. Fuji.
+    japanese:
+      - 富士 山 に 登っ た こと は ない。
+      - 富士 山 に {登っ た} こと は あり ませ ん。
+    english_literally: As for Mt. Fuji, the matter of having climbed (it) does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 富士 山 に 登ら なかっ た。
+        english: I didn't climb Mt. Fuji.
+        hint: This says you didn't climb it at a specific time. We're looking for never having had the
+          experience.
+      - competing_japanese:
+          - 富士 山 に は まだ 登っ て い ない。
+        english: I haven't climbed Mt. Fuji yet.
+        hint: This implies you might climb it later. We're looking for never having had the experience
+          at all.
+    scene: Discussing travel experiences.
+    register: casual
+    setting: informative
+  - english: I have had the opportunity to speak with the president.
+    japanese:
+      - 社長 と お 話し し た こと が ござい ます。
+      - 社長 と お 話し し た こと が あり ます。
+    english_literally: With the president, there is the matter of having spoken.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 と お 話し し まし た。
+        english: I spoke with the president.
+        hint: This is a statement of a past action. We're emphasizing the experience of having done it.
+    scene: In a business meeting, referring to a past interaction.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Have you ever seen a real ghost?
+    japanese:
+      - 本当 の 幽霊 を {見 た} こと が ある？
+      - 本当 の 幽霊 を {見 た} こと が あり ます か？
+    english_literally: As for a real ghost, have you the matter of having seen (it)?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 の 幽霊 を 見 た？
+        english: Did you see a real ghost?
+        hint: This asks if you saw it at a specific time. We're asking if you've ever had the experience.
+    scene: A spooky campfire story.
+    register: casual
+    setting: storytelling
+  - english: I've tried bungee jumping.
+    japanese:
+      - バンジー ジャンプ を {やっ た} こと が ある よ。
+      - バンジー ジャンプ を {し た} こと が あり ます。
+    english_literally: As for bungee jumping, (I) have done the matter of having done (it) you know.
+    competing_grammar:
+      - competing_japanese:
+          - バンジー ジャンプ を やっ た よ。
+        english: I did bungee jumping.
+        hint: This simply states you did it. We're focusing on the experience.
+    scene: Two male friends talking about adventurous activities.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「やった」 instead of 「した」 is more casual and common among male speakers when referring
+      to experiences. The 「よ」 particle adds a sense of assertion or information sharing, common in casual
+      male speech.
+  - english: I've sung karaoke many times.
+    japanese:
+      - カラオケ で よく {歌っ た} こと が ある わ。
+      - カラオケ で よく {歌っ た} こと が あり ます。
+    english_literally: At karaoke, often, there is the matter of having sung.
+    competing_grammar:
+      - competing_japanese:
+          - カラオケ で よく 歌っ た わ。
+        english: I often sang karaoke.
+        hint: This talks about past frequent action. We're talking about the experience of having sung.
+      - competing_japanese:
+          - カラオケ で よく 歌っ て いる わ。
+        english: I often sing karaoke.
+        hint: This indicates a current or general habit. We're talking about a past experience.
+    scene: A woman reminiscing about her past hobbies with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-ending particle 「わ」 is primarily used by female speakers to express a softer,
+      more reflective tone or to add a touch of emphasis, common in casual feminine speech.
+  - english: I have volunteered for disaster relief.
+    japanese:
+      - 災害 救援 の ボランティア に {参加 し た} こと が ある。
+      - 災害 救援 の ボランティア に {参加 し た} こと が あり ます。
+    english_literally: As for disaster relief volunteer, there is the matter of having participated.
+    competing_grammar:
+      - competing_japanese:
+          - 災害 救援 の ボランティア に 参加 し た。
+        english: I volunteered for disaster relief.
+        hint: This states a past action. We're expressing the experience.
+    scene: Applying for a job, discussing past experiences.
+    register: semi-formal
+    setting: professional
+  - english: I've been to Okinawa, but never Hokkaido.
+    japanese:
+      - 沖縄 へ は {行っ た} こと は ある が、北海道 は ない。
+      - 沖縄 へ は {行っ た} こと は あり ます が、北海道 は あり ませ ん。
+    english_literally: As for Okinawa, the matter of having gone, there is, but Hokkaido, there isn't.
+    competing_grammar:
+      - competing_japanese:
+          - 沖縄 へ は 行っ た が、北海道 は 行か なかっ た。
+        english: I went to Okinawa, but didn't go to Hokkaido.
+        hint: This describes specific past actions. We're talking about the experience of visiting.
+    scene: Discussing travel plans.
+    register: casual
+    setting: informative
+  - english: I have been seriously scolded by my teacher.
+    japanese:
+      - 先生 に 真剣 に {叱ら れ た} こと が ある。
+      - 先生 に 真剣 に {叱ら れ た} こと が あり ます。
+    english_literally: By teacher, seriously, there is the matter of having been scolded.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に 真剣 に 叱ら れ た。
+        english: I was seriously scolded by the teacher.
+        hint: This states a past event. We're talking about the experience of having been scolded.
+    scene: Sharing a past negative experience with a friend.
+    register: casual
+    setting: reflective
+    conjugation: passive (～られる/～かれる)
+  - english: I have had the experience of traveling abroad for work.
+    japanese:
+      - 仕事 で 海外 へ 出張 し た こと が ござい ます。
+      - 仕事 で 海外 へ {出張 し た} こと が あり ます。
+    english_literally: For work, to abroad, there is the matter of having gone on a business trip.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 で 海外 へ 出張 し まし た。
+        english: I traveled abroad for work.
+        hint: This states a past action. We're emphasizing the experience.
+    scene: In a formal interview.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: I've never thought about such a strange thing.
+    japanese:
+      - そんな 変 な こと を {考え た} こと は 一 度 も ない。
+      - そんな 変 な こと を {考え た} こと は 一 度 も あり ませ ん。
+    english_literally: Such a strange thing, the matter of having thought (about it) not even once exists.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 変 な こと を 考え なかっ た。
+        english: I didn't think about such a strange thing.
+        hint: This simply states you didn't think about it. We're looking for never having had the experience
+          of thinking about it.
+    scene: Someone expressing surprise at a bizarre idea.
+    register: casual
+    setting: excited
+  - english: Haven't you ever doubted your parents?
+    japanese:
+      - 親 を {疑っ た} こと は ない の？
+      - 親 を {疑っ た} こと は あり ませ ん か？
+    english_literally: As for parents, the matter of having doubted does not exist, no?
+    competing_grammar:
+      - competing_japanese:
+          - 親 を 疑わ なかっ た の？
+        english: Didn't you doubt your parents?
+        hint: This asks if you didn't doubt them at a specific time. We're asking if you've ever had the
+          experience of doubting them.
+    scene: A teenager talking to their friend about family.
+    register: casual
+    setting: intimate
+    nuance: The casual 「の？」 at the end is a common question particle used by both genders in informal
+      settings, seeking confirmation or explanation in a soft manner.

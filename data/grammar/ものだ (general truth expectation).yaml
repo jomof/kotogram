@@ -1,0 +1,298 @@
+grammar_point: ものだ (general truth expectation)
+learn_before:
+  - ものではない (shouldn't・cannot)
+meaning: Indicates something is natural, expected, or supposed to be a certain way.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ものだ
+    rarity: common
+    meaning: is natural; is expected to be
+  - conjugation-type: negative plain (～ない)
+    form: ものではない
+    rarity: common
+    meaning: is not natural; is not expected to be
+pronunciation:
+  katakana: モノダ
+  romaji: mono da
+formation:
+  '[Verb in dictionary form] + ものだ': Expresses a general truth, expectation, or something that naturally
+    happens.
+  '[Noun] + だ + ものだ': Indicates the inherent nature or quality of something.
+  '[い-adjective] + ものだ': States an inherent quality or a generally accepted truth about something.
+  '[な-adjective] + な + ものだ': Describes a general characteristic or quality associated with something.
+jlpt: N3
+etymology: 「物 (mono)」originally means "thing" or "object." In this grammar, it acts as a nominalizer,
+  transforming a preceding verb or adjective into a noun-like concept. The addition of 「だ (da)」 then asserts
+  a state or condition, collectively forming an expression that signifies a general truth, an inherent
+  quality, or a widely accepted expectation. This reflects how an abstract concept or characteristic is
+  presented as a fundamental 'thing' or 'state'.
+writeup: '「ものだ」 is used to express general truths, expectations, or inherent qualities. It conveys that
+  something is natural, typical, or "the way things are." It is often used to describe common sense, customs,
+  or predictable outcomes. This grammatical structure is versatile and can be applied to various situations
+  to highlight the expected nature of things. It emphasizes a general characteristic or a universally
+  accepted fact about something. Key Uses: Expressing General Truths: Used to state facts or widely accepted
+  ideas, such as "children are energetic" or "cake is sweet." Indicting Expectations: Describes what is
+  typically expected in a given situation, like "one should work hard at their job." Describing Inherent
+  Qualities: Highlights the natural characteristics of something. Important Considerations: 「もの」 (物) is
+  a 形式名詞 (keishikimeishi), or dummy noun, functioning similarly to "thing" in English, but used here to
+  nominalize the preceding phrase. It transforms the preceding verb or adjective into a concept or a general
+  characteristic. 「ものだ」 can be softened to 「もんだ」 in casual spoken Japanese, especially when expressing
+  a shared understanding or a slightly informal admonition. The negative form, 「ものではない」 or its casual
+  variant 「もんじゃない」, is used to express that something should not be or is not supposed to be a certain
+  way, often implying a breach of common sense or social norms.'
+false_friends:
+  - term: べきではない
+    meaning: Should not, Must not, Ought not to
+    kind: antonym
+    nuance: Unlike 「ものだ」, which states a general expectation or inherent quality, 「べきではない」 expresses a
+      stronger obligation or moral imperative not to do something. It implies a rule or duty.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ものですから・もので
+    meaning: Because, My excuse is, My explanation is
+    kind: similar expression
+    nuance: 「ものですから」 is used to provide a reason or justification, often with a nuance of excuse or explanation
+      for one's actions or circumstances. In contrast, 「ものだ」 states what is generally expected or true.
+    grammar_point: もので・ものだから (because・as an excuse)
+  - term: はずだ
+    meaning: Bound to (be), Expected to (be), Should be (able)
+    kind: similar expression
+    nuance: 「はずだ」 indicates a strong expectation based on logical reasoning, evidence, or previous knowledge.
+      「ものだ」 refers to general truths, inherent qualities, or common customs without necessarily relying
+      on specific logical deduction.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: ことだ
+    meaning: Should, Ought
+    kind: similar expression
+    nuance: 「ことだ」 is primarily used to give direct advice or instructions, often implying that something
+      is the most important or natural course of action. 「ものだ」 expresses a more general sense of what
+      is expected or typical, less as a direct instruction.
+    grammar_point: ことだ (should・ought to)
+  - term: べき
+    meaning: Must, Should, Ought to
+    kind: similar expression
+    nuance: Similar to 「べきではない」, 「べき」 expresses a strong sense of obligation or moral duty. 「ものだ」, on
+      the other hand, describes general expectations or inherent truths, without the same level of imperative.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ものだから
+    meaning: Because, The reason is
+    kind: similar expression
+    nuance: 「ものだから」 is used to provide a reason or explanation for a particular situation or action. It
+      functions as a conjunction expressing cause. 「ものだ」, conversely, states what is generally expected
+      or true as a characteristic or commonality.
+    grammar_point: もので・ものだから (because・as an excuse)
+post_false_friends_writeup: To avoid confusion, remember that 「ものだ」 typically describes inherent qualities,
+  general expectations, or common sense truths. The other expressions, while sometimes conveying expectation,
+  generally imply stronger obligations, logical deductions, or serve as explanations or direct advice.
+  「ものですから」 and 「ものだから」 are used to provide reasons, not to state general truths.
+examples:
+  - english: You should put all your effort into work.
+    japanese:
+      - 仕事 は 一生 懸命 する {もの だ}。
+      - 仕事 は 一生 懸命 する {もの です}。
+      - 仕事 は 一生 懸命 する {もん だ}。
+      - 仕事 は 一生 懸命 する {もん だ ぜ}。
+    english_literally: Work is something one should do with all their effort.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 は 一生 懸命 する {べき だ}。
+          - 仕事 は 一生 懸命 する {べき です}。
+        english: You must put all your effort into work.
+        hint: 「べきだ」 indicates a stronger sense of obligation or duty. We're looking for a general expectation
+          about what's natural or proper.
+    scene: Advising someone about their work ethic.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The sentence uses 「ものだ」 to convey a general expectation about how one should approach work.
+      It's a standard way to express advice or a common belief.
+    etymology: 「一生懸命」 means to do something with all your might.
+  - english: Children are supposed to be energetic.
+    japanese:
+      - 子供 は 元気 な {もの だ}。
+      - 子供 は 元気 な {もの です}。
+      - 子供 は 元気 な {もん だ}。
+    english_literally: Children are energetic things.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 元気 な {はず だ}。
+          - 子供 は 元気 な {はず です}。
+        english: Children should be energetic (logically expected).
+        hint: 「はずだ」 implies a logical expectation based on information or common knowledge. We're looking
+          for a general, inherent quality.
+    scene: Observing children playing.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The sentence uses 「ものだ」 to state a general truth about children, indicating that being energetic
+      is a typical characteristic of children.
+  - english: Cake is supposed to be sweet.
+    japanese:
+      - ケーキ は 甘い {もの だ}。
+      - ケーキ は 甘い {もの です}。
+      - ケーキ は 甘い {もん だ}。
+    english_literally: Cake is a sweet thing.
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ は 甘い {はず だ}。
+          - ケーキ は 甘い {はず です}。
+        english: Cake should be sweet (logically expected).
+        hint: 「はずだ」 implies a logical expectation, perhaps based on a recipe or standard. We're looking
+          for an inherent quality.
+    scene: Discussing the qualities of cake.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The sentence uses 「ものだ」 to highlight the expected sweetness of cake, expressing a common understanding.
+    etymology: 「甘い」 means sweet.
+  - english: You shouldn't abandon your family.
+    japanese:
+      - 家族 は 捨てる {もの じゃ ない}。
+      - 家族 は 捨てる {もの で は ない}。
+      - 家族 は 捨てる {もん じゃ ねえ}。
+    english_literally: Family is not something to throw away.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 は 捨てる {べき で は ない}。
+          - 家族 は 捨てる {べき じゃ ない}。
+        english: You must not abandon your family.
+        hint: 「べきではない」 expresses a stronger moral obligation or rule against doing something. We're looking
+          for a general truth or common sense.
+    scene: Expressing strong disapproval of abandoning family.
+    register: semi-formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: The negative form 「ものじゃない」 (a casual abbreviation of 「ものではない」) is used here to strongly advise
+      against abandoning family, indicating it's something that should not be done, often conveying a
+      breach of common decency.
+    etymology: 「捨てる」 means to abandon.
+  - english: You shouldn't waste food!
+    japanese:
+      - 食べ物 を 無駄 に する {もん じゃ ない よ}！
+      - 食べ物 を 無駄 に する {もの で は ない}。
+      - 食べ物 を 無駄 に する {もん じゃ ねえ}。
+    english_literally: Food is not something you should waste!
+    competing_grammar:
+      - competing_japanese:
+          - 食べ物 を 無駄 に する {べき で は ない}！
+          - 食べ物 を 無駄 に する {べき じゃ ない}！
+        english: You must not waste food!
+        hint: 「べきではない」 conveys a stronger sense of moral duty or a rule. We're looking for what is generally
+          considered unacceptable.
+    scene: Scolding someone for wasting food.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: 「もんじゃないよ」 (a casual abbreviation of 「ものではない」) is a casual, emphatic way of saying something
+      should not be done. The 「よ」 adds extra emphasis, suitable for a scolding tone.
+    etymology: 「無駄にする」 means to waste.
+  - english: You should do work proactively.
+    japanese:
+      - 仕事 は 自分 から 進ん で する {もの だ}。
+      - 仕事 は 自分 から 進ん で する {もの です}。
+      - 仕事 は 自分 から 進ん で する {もん だ}。
+    english_literally: Work is something one should do proactively.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 は 自分 から 進ん で する {べき だ}。
+          - 仕事 は 自分 から 進ん で する {べき です}。
+        english: You must do work proactively.
+        hint: 「べきだ」 expresses a stronger obligation or recommendation based on a duty. We're looking for
+          a general expectation or common practice.
+    scene: Encouraging a coworker to take initiative.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The sentence uses 「ものだ」 to express the idea that taking initiative is the expected behavior
+      in the workplace.
+    etymology: 「進んでする」 means to do proactively.
+  - english: Life isn't so easy.
+    japanese:
+      - 人生 は そんな に 簡単 な {物 で は ない}。
+      - 人生 は そんな に 簡単 な {もん じゃ ない}。
+    english_literally: Life is not such an easy thing.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は そんな に 簡単 な {はず が ない}。
+          - 人生 は そんな に 簡単 な {はず は ない}。
+        english: Life cannot possibly be that easy.
+        hint: 「はずがない」 implies a strong denial based on logical certainty. We're looking for a general
+          truth or common understanding.
+    scene: Reflecting on the challenges of life.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    nuance: The negative form emphasizes that life is not expected to be easy, which is a common sentiment.
+    etymology: 「簡単」 means easy.
+  - english: You're supposed to be nice to people you like, you know.
+    japanese:
+      - 好き な 人 に は 優しく する {もん だ} よ。
+      - 好き な 人 に は 優しく する {もの だ} よ。
+    english_literally: To people you like, it's natural to be nice, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 好き な 人 に は 優しく する {べき だ} よ。
+          - 好き な 人 に は 優しく する {べき だ から ね}。
+        english: You really should be nice to people you like, you know.
+        hint: 「べきだ」 suggests a stronger obligation or a moral imperative. We're looking for a natural
+          expectation.
+    scene: Flirting with a potential love interest.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「もんだ」 (a casual abbreviation of 「ものだ」) is used here to express a general expectation in a
+      friendly or slightly flirty way. The 「よ」 adds a soft emphasis, appealing to the listener. A male
+      speaker might use this for a more intimate and slightly teasing tone.
+  - english: You shouldn't be so familiar when talking to someone you've just met.
+    japanese:
+      - 初 対面 の 人 に そんな に 馴れ馴れしく 話しかける {もん じゃ ない}。
+      - 初 対面 の 人 に そんな に 馴れ馴れしく 話しかける {もの で は ない}。
+    english_literally: Talking to someone for the first time in such a familiar way is not something you
+      should do.
+    competing_grammar:
+      - competing_japanese:
+          - 初 対面 の 人 に そんな に 馴れ馴れしく 話しかける {べき で は ない}。
+          - 初 対面 の 人 に そんな に 馴れ馴れしく 話しかける {べき じゃ ない}。
+        english: You must not be so familiar when talking to someone you've just met.
+        hint: 「べきではない」 conveys a stronger rule or a moral obligation. We're looking for what is generally
+          considered inappropriate behavior.
+    scene: An older woman giving advice on proper etiquette to a younger woman.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「もんじゃない」 (a casual abbreviation of 「ものではない」) is a casual negative form used to advise against
+      behaving too familiarly, especially in an initial encounter. An older woman might use this form
+      when imparting wisdom on social conduct to a younger person, implying it's a generally accepted
+      rule of proper behavior.
+  - english: You're supposed to use honorific language when talking to a teacher.
+    japanese:
+      - 先生 に は 敬語 を 使う {もの だ} よ。
+      - 先生 に は 敬語 を 使う {もの です}。
+      - 先生 に は 敬語 を 使う {もん だ} よ。
+    english_literally: To teachers, using honorific language is something one should do, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に は 敬語 を 使う {べき だ} よ。
+          - 先生 に は 敬語 を 使う {べき です} よ。
+        english: You must use honorific language when talking to a teacher.
+        hint: 「べきだ」 expresses a stronger obligation or rule regarding conduct. We're looking for a general
+          expectation or common understanding.
+    scene: A female teacher instructing a male student about politeness.
+    register: semi-formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The sentence uses 「ものだ」 to convey the expected behavior towards a teacher. The 「よ」 at the
+      end softens the tone, making it friendly advice, which is common for a female teacher addressing
+      a student, indicating a general truth about respect.
+post_example_writeup: To fully grasp the nuances, remember that 「ものだ」 is about universal truths, expectations,
+  or the inherent nature of things. It reflects a shared understanding of how things are or how they ought
+  to be.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ものだ

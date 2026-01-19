@@ -1,0 +1,304 @@
+grammar_point: '[Clause]以上(は)・上は (since・now that)'
+learn_before:
+  - 以上です (that's all・conclusion)
+meaning: Since a certain situation is true, or now that a certain condition is met, a natural consequence
+  or obligation follows.
+pronunciation:
+  katakana: イジョウハ・ウエハ
+  romaji: ijou wa・ue wa
+formation:
+  Plain form of Verb + 以上(は)・上は: Used after verbs.
+  い-Adjective + 以上(は)・上は: Used after い-adjectives. For example, 危険な以上は.
+  な-Adjective + である以上(は)・である上は (or な-Adjective + な以上(は)・な上は): Used after な-adjectives, with 'である' for
+    formality or 'な' for less formal contexts.
+  Noun + である以上(は)・である上は: Used after nouns, with 'である' for formality.
+jlpt: N2
+etymology: The kanji 「以上」 (いじょう) literally means 'more than' or 'beyond,' and 「上」 (うえ) means 'above' or
+  'on top of.' When used in this grammatical structure, they combine to imply that something is 'beyond'
+  or 'on top of' a given state, thus establishing a premise from which a logical conclusion or obligation
+  must follow. It evolved from expressions indicating a state has been reached or surpassed, hence 'now
+  that it's beyond this point' or 'given that it's already at this level.'
+writeup: 「[Clause]以上(は)」 and 「[Clause]上は」 are both used to express that **since** a certain situation
+  or condition is true, or **now that** a certain event has occurred, a particular consequence or obligation
+  naturally follows. This structure implies a strong logical connection between the premise and the ensuing
+  statement, often conveying a sense of conviction, inevitability, or necessity. While both 「以上(は)」 and
+  「上は)」 share this core meaning, 「以上(は)」 is generally more common and versatile. 「上は」 tends to be slightly
+  more formal or literary and often implies a more significant or weighty premise, leading to a more serious
+  obligation or consequence. The nuance is that 「以上(は)」 suggests "given that X is the case," implying
+  a direct, almost mathematical logical consequence, while 「上は」 can sometimes lean towards "now that the
+  decision/situation is X, there's no turning back," implying a moral or social obligation that must be
+  upheld. This grammar point is frequently used when discussing rules, decisions, or commitments that,
+  once made or established, require a certain course of action. It can also express a sense of responsibility
+  or determination.
+false_friends:
+  - term: からには (since; obligation)
+    meaning: Since (a certain condition is met), (a strong determination or obligation follows).
+    kind: similar expression
+    nuance: 「からには」 often emphasizes the speaker's strong will or determination to fulfill an obligation,
+      sometimes implying a sense of "there's no turning back." 「以上は・上は」 is broader and can simply state
+      a logical consequence or general obligation without necessarily conveying the speaker's personal
+      resolve.
+    grammar_point: からには (since; obligation)
+  - term: だからと言って (just because)
+    meaning: Just because (X is true), (it doesn't mean Y is true / don't assume Y).
+    kind: similar expression
+    nuance: 「だからと言って」 introduces a statement that might seem like a natural consequence but is not. It's
+      often used to refute an assumption or a perceived logical step, while 「以上は・上は」 is used to *affirm*
+      a logical consequence.
+    grammar_point: <suggest>:だからと言って (just because)
+  - term: ので (because・so)
+    meaning: Because (X is true), (Y happens).
+    kind: similar expression
+    nuance: 「ので」 is a neutral and common way to state a reason, implying a natural or factual cause-and-effect.
+      「以上は・上は」 is much stronger, implying that the premise leads to an **inevitable** conclusion, often
+      one involving obligation or strong necessity. It carries more weight and determination than a simple
+      causal 「ので」.
+    grammar_point: '[Clause]ので (because・so)'
+post_false_friends_writeup: 'While 「からには」, 「だからと言って」, and 「ので」 all relate to expressing reasons or conditions,
+  their nuances differ significantly from 「以上は・上は」. 「からには」 is the most similar, and in many contexts,
+  they can be interchangeable, particularly when expressing personal determination. However, 「からには」 tends
+  to highlight the speaker''s firm resolve or commitment, whereas 「以上は・上は」 can simply state a natural
+  or logical consequence or a general rule/obligation without that added personal emphasis. 「だからと言って」
+  serves almost the opposite function: it counters an expected consequence, stating that "just because"
+  something is true, a certain outcome doesn''t necessarily follow. This is in direct contrast to 「以上は・上は」,
+  which * establishes * that a consequence * does * follow. Lastly, 「ので」 is a simple, neutral conjunction
+  used to express a reason or cause. It lacks the strong sense of obligation, inevitability, or the "no
+  turning back" nuance inherent in 「以上は・上は」. When you use 「以上は・上は」, you are stressing that given the premise,
+  the subsequent action or state is not just a possibility, but a logical or required outcome.'
+examples:
+  - english: Since you've promised, you must keep your word.
+    japanese:
+      - '{約束 し た 以上 は}、守ら なけれ ば なり ませ ん。'
+      - '{約束 し た 以上 は}、守る べき だ。'
+      - '{約束 し た 上 は}、守ら なけれ ば なり ませ ん。'
+      - '{約束 し た 上 は}、守る べき だ.'
+    english_literally: Since (you) promised, (you) must keep (your) word.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 し た から に は、守ら なけれ ば なら ない。
+        english: Since you've promised, you have no choice but to keep your word.
+        hint: 「からには」 emphasizes a stronger personal resolve. We're looking for a general strong logical
+          consequence.
+      - competing_japanese:
+          - 約束 し た の で、守ら なけれ ば なり ませ ん。
+        english: Because you promised, you must keep your word.
+        hint: 「ので」 is a simple reason, lacking the strong obligation or 'given that' nuance. We're looking
+          for a firmer logical consequence.
+    scene: A friend reminding another friend of a commitment.
+    register: semi-formal
+    setting: serious
+    nuance: The use of 「以上は」 emphasizes that the promise is a clear premise, and therefore, keeping it
+      is an absolute obligation.
+  - english: Now that I've started, I will see it through to the end.
+    japanese:
+      - '{始め た 上 は}、最後 まで やり遂げ ます。'
+      - '{始め た 以上 は}、最後 まで やり遂げ ます。'
+      - '{始め た 以上 は}、最後 まで やり遂げる つもり です。'
+      - '{始め た 上 は}、最後 まで やり遂げる つもり です.'
+    english_literally: Now that (I) started, (I) will accomplish until the end.
+    competing_grammar:
+      - competing_japanese:
+          - 始め た から に は、最後 まで やり遂げ ます。
+        english: Since I've started, I'm determined to see it through to the end.
+        hint: 「からには」 often implies a stronger, personal determination. We're looking for a more general
+          logical consequence.
+      - competing_japanese:
+          - 始め たら、最後 まで やり遂げ ます。
+        english: If I start, I will see it through to the end.
+        hint: 「たら」 is a simple conditional, it doesn't carry the strong sense of commitment once the action
+          has begun. We're looking for a phrase that means 'now that X has happened'.
+    scene: A student talking about a challenging project.
+    register: formal
+    setting: serious
+    nuance: 「上は」 here adds a sense of strong personal commitment and inevitability once the action has
+      begun.
+  - english: Since he's a professional, he must take responsibility for his actions.
+    japanese:
+      - '{プロ で ある 以上 は}、自分 の 行動 に 責任 を 持つ べき です。'
+      - '{プロ で ある 以上}、自分 の 行動 に 責任 を 持つ べき だ。'
+      - '{プロ で ある 上 は}、自分 の 行動 に 責任 を 持つ べき です。'
+      - '{プロ で ある 上}、自分 の 行動 に 責任 を 持つ べき だ.'
+    english_literally: Since (he) is a professional, (he) should take responsibility for his own actions.
+    competing_grammar:
+      - competing_japanese:
+          - プロ だ から こそ、自分 の 行動 に 責任 を 持つ べき です。
+        english: Precisely because he is a professional, he must take responsibility for his actions.
+        hint: 「だからこそ」 emphasizes the reason more strongly. We're looking for 'given that he is a professional'.
+      - competing_japanese:
+          - プロ な の で、自分 の 行動 に 責任 を 持つ べき です。
+        english: Because he is a professional, he should take responsibility for his actions.
+        hint: 「ので」 is a neutral reason, not emphasizing the inherent obligation of the state of being
+          a professional. We're looking for a phrase that implies a stronger, more unavoidable consequence.
+    scene: A manager discussing an employee's conduct.
+    register: formal
+    setting: professional
+    nuance: 「である以上は」 clearly establishes the status "professional" as the premise for the obligation.
+  - english: Since it's dangerous, we shouldn't approach it carelessly.
+    japanese:
+      - '{危険 な 以上 は}、不 用意 に 近づく べき で は ない。'
+      - '{危険 で ある 以上 は}、不 用意 に 近づく べき で は ない。'
+      - '{危険 な 上 は}、不 用意 に 近づく べき で は ない。'
+      - '{危険 で ある 上 は}、不 用意 に 近づく べき で は ない.'
+    english_literally: Since (it) is dangerous, (we) should not approach carelessly.
+    competing_grammar:
+      - competing_japanese:
+          - 危険 だ から、不 用意 に 近づく べき で は ない。
+        english: Because it's dangerous, we shouldn't approach it carelessly.
+        hint: 「から」 is a simple causal particle. We're looking for a stronger implication that the inherent
+          danger dictates the necessity of caution.
+      - competing_japanese:
+          - 危険 なら、不 用意 に 近づく べき で は ない。
+        english: If it's dangerous, we shouldn't approach it carelessly.
+        hint: 「なら」 is a simple conditional that can imply a hypothetical or a suggestion. We're looking
+          for a phrase that states 'given that it is dangerous'.
+    scene: A warning from a tour guide about a specific area.
+    register: formal
+    setting: informative
+    nuance: The adjective establishes the inherent quality as the basis for caution. Both 「危険な以上は」 and
+      「危険である以上は」 are grammatically correct, with the latter being slightly more formal.
+  - english: Now that it's clear, there's no room for misunderstanding.
+    japanese:
+      - '{明らか な 以上 は}、誤解 の 余地 は あり ませ ん。'
+      - '{明らか で ある 以上 は}、誤解 の 余地 は あり ませ ん。'
+      - '{明らか な 上 は}、誤解 の 余地 は あり ませ ん。'
+      - '{明らか で ある 上 は}、誤解 の 余地 は あり ませ ん.'
+    english_literally: Now that (it) is clear, there is no room for misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - 明らか に なっ た の だ から、誤解 の 余地 は あり ませ ん。
+        english: Because it has become clear, there is no room for misunderstanding.
+        hint: 「のだから」 states a reason, but lacks the strong 'given the fact that' logical consequence implied
+          by 以上は.
+      - competing_japanese:
+          - 明らか に なっ た の で、誤解 の 余地 は あり ませ ん。
+        english: Since it has become clear, there is no room for misunderstanding.
+        hint: 「ので」 is a neutral causal connector. We're looking for a phrase that implies an unavoidable
+          consequence from the clarity.
+    scene: A judge making a ruling.
+    register: formal
+    setting: serious
+    nuance: The clarity of the situation dictates the lack of ambiguity. Both forms are possible, with
+      「明らかな以上は」 being more common in spoken language.
+  - english: Since it is going to rain, we should bring an umbrella.
+    japanese:
+      - '{雨 が 降る 以上 は}、傘 を 持っ て いく べき だ。'
+      - '{雨 が 降る 以上}、傘 を 持っ て いく べき です。'
+      - '{雨 が 降る 上 は}、傘 を 持っ て いく べき だ。'
+      - '{雨 が 降る 上 は}、傘 を 持っ て いく べき です.'
+    english_literally: Since rain will fall, (we) should take an umbrella.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降る から、傘 を 持っ て いく べき だ。
+        english: Because it will rain, we should bring an umbrella.
+        hint: 「から」 simply states a reason. We're looking for a stronger sense that the impending rain
+          dictates the necessity of bringing an umbrella.
+      - competing_japanese:
+          - 雨 が 降っ たら、傘 を 持っ て いく べき だ.
+        english: If it rains, we should bring an umbrella.
+        hint: 「たら」 is a simple conditional, suggesting action *if* it rains. We're looking for 'given
+          that it *is going to* rain'.
+    scene: Two friends discussing the weather forecast before heading out.
+    register: casual
+    setting: friendly
+    nuance: Though less common than past tense, it still works for an anticipated event that creates an
+      obligation. The use of 「以上は」 here makes the decision to take an umbrella seem like a logical and
+      necessary consequence of the rain forecast.
+  - english: Since you couldn't do it, you must admit your mistake.
+    japanese:
+      - '{でき なかっ た 以上 は}、自分 の 非 を 認める べき です。'
+      - '{でき なかっ た 以上}、自分 の 非 を 認める べき だ。'
+      - '{でき なかっ た 上 は}、自分 の 非 を 認める べき です。'
+      - '{でき なかっ た 上}、自分 の 非 を 認める べき だ.'
+    english_literally: Since (you) couldn't do (it), (you) should admit your own fault.
+    competing_grammar:
+      - competing_japanese:
+          - でき なかっ た の で、自分 の 非 を 認める べき です。
+        english: Because you couldn't do it, you should admit your mistake.
+        hint: 「ので」 is a neutral reason. We're looking for a phrase that implies the inability to do something
+          *compels* admitting the mistake.
+      - competing_japanese:
+          - でき なかっ た わけ だ から、自分 の 非 を 認める べき です。
+        english: Since it's the case that you couldn't do it, you should admit your mistake.
+        hint: 「わけだから」 explains a reason, but 「以上は」 has a stronger tone of inevitability or obligation
+          once a fact is established.
+    scene: A teacher giving feedback to a student.
+    register: formal
+    setting: instructional
+    nuance: The failure to perform an action becomes the premise for accepting responsibility. The strong
+      phrasing with 「以上は」 leaves no room for excuses.
+  - english: Now that you're the leader, you have to guide everyone.
+    japanese:
+      - '{リーダー で ある 上 は}、皆 を 導か なけれ ば なら ない。'
+      - '{リーダー で ある 上}、皆 を 導か なけれ ば なり ませ ん。'
+      - '{リーダー で ある 以上 は}、皆 を 導か なけれ ば なら ない。'
+      - '{リーダー で ある 以上}、皆 を 導か なけれ ば なり ませ ん.'
+    english_literally: Now that (you) are the leader, (you) must guide everyone.
+    competing_grammar:
+      - competing_japanese:
+          - リーダー な の だ から、皆 を 導か なけれ ば なら ない。
+        english: Because you are the leader, you have to guide everyone.
+        hint: 「なのだから」 explains a reason. We're looking for a phrase that emphasizes the obligation *due
+          to the position*.
+      - competing_japanese:
+          - リーダー なら、皆 を 導か なけれ ば なら ない。
+        english: If you're the leader, you have to guide everyone.
+        hint: 「なら」 is a conditional and can imply a suggestion or a weaker condition. We're looking for
+          a phrase that asserts 'now that you *are* the leader'.
+    scene: An elder advising a newly appointed leader.
+    register: formal
+    setting: serious
+    nuance: The elevated status of being a leader carries specific duties. 「上は」 adds a slightly more solemn
+      or weighty tone to the expectation.
+  - english: Since I've made up my mind, I won't hesitate anymore.
+    japanese:
+      - '{決心 し た 以上 は}、もう 迷わ ない。'
+      - '{決心 し た 以上}、もう 迷い ませ ん。'
+      - '{決心 し た 上 は}、もう 迷わ ない。'
+      - '{決心 し た 上}、もう 迷い ませ ん.'
+    english_literally: Since (I) made up my mind, (I) will not hesitate anymore.
+    competing_grammar:
+      - competing_japanese:
+          - 決心 し た から に は、もう 迷い ませ ん。
+        english: Since I've made up my mind, I'm resolved not to hesitate anymore.
+        hint: 「からには」 is very similar and often interchangeable in this context, but it can emphasize personal
+          determination even more strongly. We're looking for a general strong consequence.
+      - competing_japanese:
+          - 決心 し た から、もう 迷わ ない。
+        english: Because I've made up my mind, I won't hesitate anymore.
+        hint: 「から」 is a simple causal particle. We're looking for a phrase that implies a firm, inevitable
+          outcome once the decision is set.
+    scene: A person talking to themselves about a significant life decision.
+    register: casual
+    setting: reflective
+    nuance: The strong personal decision acts as the unshakeable premise for subsequent action. This shows
+      a firm resolve.
+  - english: Now that we've come this far, there's no turning back.
+    japanese:
+      - '{ここ まで 来 た 上 は}、後 に は 引け ない。'
+      - '{ここ まで 来 た 上}、後 に は 引け ませ ん。'
+      - '{ここ まで 来 た 以上 は}、後 に は 引け ない。'
+      - '{ここ まで 来 た 以上}、後 に は 引け ませ ん.'
+    english_literally: Now that (we) came this far, (we) cannot pull back.
+    competing_grammar:
+      - competing_japanese:
+          - ここ まで 来 た から に は、後 に は 引け ない。
+        english: Since we've come this far, we're determined not to turn back.
+        hint: 「からには」 can emphasize a strong personal determination not to turn back. We're looking for
+          a general logical consequence.
+      - competing_japanese:
+          - ここ まで 来 たら、後 に は 引け ない.
+        english: If we come this far, there's no turning back.
+        hint: 「たら」 is a simple conditional, it doesn't carry the strong sense of inevitability or 'given
+          that we have already done so much'. We're looking for a phrase that implies the extent of progress
+          dictates the lack of retreat options.
+    scene: A group of hikers nearing a difficult summit.
+    register: casual
+    setting: serious
+    nuance: The extent of progress made dictates the impossibility of retreat. The phrasing emphasizes
+      the point of no return.
+post_example_writeup: These examples demonstrate how 「以上は・上は」 firmly link a preceding condition or action
+  to an unavoidable consequence or obligation. The choice between 「以上は」 and 「上は」 often depends on the
+  level of formality and the desired nuance of gravity or conviction. Generally, 「以上は」 is more versatile
+  and commonly used, while 「上は」 imparts a slightly more formal or decisive tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/以上は

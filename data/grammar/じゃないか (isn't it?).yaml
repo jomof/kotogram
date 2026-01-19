@@ -1,0 +1,388 @@
+grammar_point: じゃないか (isn't it?)
+learn_before:
+  - あり (possibility・with)
+meaning: Isn't it?, Is it not?
+pronunciation:
+  katakana: ジャナイカ
+  romaji: janai ka
+formation:
+  '[Phrase] + じゃないか': Indicates a question or a suggestion with a degree of casualness. Similar to asking
+    "isn't it?" in English.
+jlpt: N4
+etymology: じゃないか is derived from the negative form of the copula だ (ja nai) followed by the question particle
+  か (ka). The copula だ indicates affirmation or identification, its negative form ではない (or its casual
+  contraction じゃない) means "is not." Adding か turns this into a question, giving it the nuance of seeking
+  agreement or making a rhetorical observation.
+writeup: The expression じゃないか, often translated as "Isn't it?" or "Right?", is a versatile phrase used
+  in casual Japanese. It combines the negative form of the copula, じゃない (casual contraction of ではない),
+  with the interrogative particle か. While literally meaning "is not?", its function extends beyond a
+  simple negative question. It is primarily used to seek confirmation, express a suggestion, or pose a
+  rhetorical question, often implying that the speaker believes the listener will agree or already knows
+  the fact. When used with a slightly rising intonation, it asks for agreement. With a falling intonation,
+  it can express a strong assertion, an observation, or even a mild admonition. For a more formal or polite
+  tone, ではないか is used. However, ではないか can sound somewhat stiff or academic, making it more suitable for
+  formal discussions, presentations, or written contexts.
+false_friends:
+  - term: でしょう (conjecture and confirmation)
+    meaning: Right?, Probably, Isn't it?
+    kind: synonym
+    nuance: でしょう (conjecture and confirmation) is a more polite way to express a guess or seek agreement.
+      It's often used in formal settings or when speaking to someone older or of higher status.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: だろう (conjecture)
+    meaning: Right?, Probably, Isn't it?
+    kind: synonym
+    nuance: だろう (conjecture) is a less formal version of でしょう and is used to express a guess or seek agreement.
+      It's more commonly used among friends and family.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: じゃない (negation noun and na-adj)
+    meaning: Is not, Isn't
+    kind: similar expression
+    nuance: じゃない (negation noun and na-adj) is the short form of ではない and simply means "is not." It does
+      not inherently carry the interrogative nuance of じゃないか unless followed by an implied or actual か.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: ね (seeking agreement)
+    meaning: Isn't it?, Right? (Sentence ending particle)
+    kind: synonym
+    nuance: ね (seeking agreement) is a softer way to seek agreement, often used for shared observations.
+      じゃないか can convey more of the speaker's conviction.
+    grammar_point: ね (seeking agreement)
+  - term: のではないだろうか (indirect suggestion)
+    meaning: I think ... isn't it?, It might be that..., Don't you agree?
+    kind: synonym
+    nuance: のではないだろうか (indirect suggestion) expresses a more hesitant or thoughtful suggestion or speculation.
+      It implies a degree of uncertainty and encourages the listener to consider the possibility, rather
+      than seeking direct confirmation of a shared understanding.
+    grammar_point: のではないだろうか (indirect suggestion)
+  - term: かもしれない (might)
+    meaning: Might, Maybe, Probably
+    kind: similar expression
+    nuance: かもしれない (might) expresses a possibility. It doesn't invite confirmation in the same way じゃないか
+      does; it simply states that something might be the case without implying the speaker's strong belief.
+    grammar_point: かもしれない (might・maybe)
+  - term: のだろうか (I wonder)
+    meaning: I wonder...
+    kind: similar expression
+    nuance: のだろうか (I wonder) expresses a sense of wondering or doubt. It's a more introspective question
+      than じゃないか, which is often used to seek external confirmation or assert a shared reality.
+    grammar_point: のだろうか (I wonder)
+post_false_friends_writeup: While these expressions share some overlapping functions with じゃないか, understanding
+  their specific nuances helps in choosing the most appropriate one. じゃないか often carries a sense of the
+  speaker's conviction or expectation, asking for agreement or asserting a perceived truth. Other particles
+  like ね or formal expressions like でしょう achieve similar functions but with different levels of politeness,
+  certainty, or speaker's involvement.
+examples:
+  - english: Isn't Kiyoko coming soon?
+    japanese:
+      - キヨコ は もう すぐ 来る {じゃ ない か}。
+      - キヨコ は もう すぐ 来 ます {じゃ ない です か}。
+      - キヨコ は もう すぐ 来る ん {じゃ ない か}。
+      - キヨコ は もう すぐ 来る {の で は ない か}。
+    english_literally: Kiyoko is soon coming, is she not?
+    competing_grammar:
+      - competing_japanese:
+          - キヨコ は もう すぐ 来 ます {か}。
+        english: Is Kiyoko coming soon?
+        hint: 「ですか」is a neutral way to ask a question. じゃないか implies you already have an expectation or
+          belief. We're looking for a phrase that seeks confirmation based on an existing expectation.
+    scene: Asking for confirmation about someone's arrival.
+    register: casual
+    setting: friendly
+    nuance: This usage seeks confirmation, implying the speaker has an expectation that Kiyoko will arrive
+      soon. The rising intonation makes it a question. The phrase 「来るじゃないか」implies a prior belief or observation,
+      making the question less neutral than a simple 「来ますか」. Often used by female speakers to express
+      a softer, more inquisitive tone, but not exclusively.
+  - english: That camera is expensive, isn't it?
+    japanese:
+      - その カメラ は 高い {じゃ ない か}。
+      - その カメラ は 高い {じゃ ない です か}。
+      - その カメラ は 高い ん {じゃ ない か}。
+      - その カメラ は 高い {の で は ない か}。
+    english_literally: That camera is expensive, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - その カメラ は 高い です {ね}。
+        english: That camera is expensive, isn't it?
+        hint: 「ね」is a softer way to seek agreement, often used for shared observations. じゃないか can convey
+          more of the speaker's conviction. We're looking for a phrase that expresses conviction and invites
+          agreement.
+    scene: Commenting on the price of an item.
+    register: casual
+    setting: informative
+    nuance: Here, じゃないか seeks agreement on an obvious fact or shared observation. The speaker believes
+      the camera is expensive and is inviting the listener to concur. The neutral tone here could be used
+      by any gender but is common in male-to-male conversations for factual observations.
+  - english: This kimono is beautiful, isn't it?
+    japanese:
+      - この 着物 は 綺麗 {じゃ ない か}。
+      - この 着物 は 綺麗 {じゃ ない です か}。
+      - この 着物 は 綺麗 な ん {じゃ ない か}。
+      - この 着物 は 綺麗 な {の で は ない か}。
+    english_literally: This kimono is beautiful, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - この 着物 は 綺麗 {です}！
+        english: This kimono is beautiful!
+        hint: While both express admiration, 「綺麗です」is a simple statement. じゃないか actively invites agreement
+          based on a shared perception. We're looking for a phrase that expresses admiration and invites
+          agreement.
+    scene: Expressing admiration for traditional clothing.
+    register: casual
+    setting: friendly
+    nuance: This sentence uses じゃないか to express admiration and invite agreement from the listener, implying
+      the beauty is apparent to both. It's a way of sharing an impression and seeking shared positive
+      sentiment. This kind of expressive inquiry is common among female friends discussing aesthetics.
+  - english: Your car is faster than my car, isn't it?
+    japanese:
+      - あなた の 車 は 私 の 車 より 速い {じゃ ない か}。
+      - あなた の 車 は 私 の 車 より 速い {じゃ ない です か}。
+      - あなた の 車 は 私 の 車 より 速い ん {じゃ ない か}。
+      - あなた の 車 は 私 の 車 より 速い {の で は ない か}。
+    english_literally: Your car is faster than my car, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 車 は 私 の 車 より 速い {です}。
+        english: Your car is faster than my car.
+        hint: This is a simple statement of fact. じゃないか adds a nuance of seeking agreement or making a
+          playful observation, not just stating. We're looking for a phrase that makes an observation
+          and seeks agreement.
+    scene: Teasing someone about their vehicle.
+    register: casual
+    setting: humorous
+    nuance: Here, じゃないか functions as an observation of a clear fact or a playful challenge, seeking affirmation
+      from the listener rather than a neutral inquiry. The playful tone often appears in casual conversations
+      between male friends.
+  - english: This is a problem, isn't it?
+    japanese:
+      - これ は 問題 {で は ない か}。
+      - これ は 問題 {じゃ ない か}。
+      - これ は 問題 な ん {じゃ ない か}。
+      - これ は 問題 {じゃ ない です か}。
+    english_literally: This is a problem, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - これ は 問題 {です か}。
+        english: Is this a problem?
+        hint: 「ですか」is a neutral interrogative. 「ではないか」is a more formal, rhetorical question implying a
+          strong assertion or observation. We're looking for a formal phrase that implies a strong assertion
+          or observation.
+    scene: Suggesting a cause for a phenomenon.
+    register: formal
+    setting: serious
+    nuance: The formal ではないか implies the speaker has a strong hypothesis or deduction based on observable
+      facts and is presenting it for agreement, not just asking if it's the cause. This formal and somewhat
+      rhetorical usage is common in academic or professional discussions, often by speakers in positions
+      of authority or delivering a presentation.
+  - english: Wouldn't it be better if you studied for tomorrow's test instead of messing around?
+    japanese:
+      - 遊ん で ない で 明日 の テスト の 勉強 を し た 方 が いい ん {じゃ ない か}。
+      - 遊ん で ない で 明日 の テスト の 勉強 を し た 方 が いい ん {じゃ ない です か}。
+      - 遊ん で ない で 明日 の テスト の 勉強 を し た 方 が いい {じゃ ない か}。
+      - 遊ん で ない で 明日 の テスト の 勉強 を し た 方 が いい {の で は ない か}。
+    english_literally: Without messing around, regarding tomorrow's test, studying would be better, is
+      it not?
+    competing_grammar:
+      - competing_japanese:
+          - 遊ん で ない で 明日 の テスト の 勉強 を し た 方 が いい {です よ}。
+        english: You should study for tomorrow's test instead of messing around.
+        hint: 「ですよ」is a direct suggestion. じゃないか softens the suggestion, making it sound more like an
+          obvious truth the listener should already recognize. We're looking for a softer way to suggest
+          an obvious truth.
+    scene: Suggesting someone study instead of playing.
+    register: casual
+    setting: persuasive
+    nuance: This phrase, especially with the rising intonation implied by the persuasive context, carries
+      a mildly scolding or advising tone, implying that the suggested action is the obvious and correct
+      one. The addition of 「ん」before じゃないか often adds an explanatory or emphatic nuance. This kind of
+      gentle but firm persuasion is a common communication style among female friends or family members.
+  - english: You came a little early for the meeting, didn't you?
+    japanese:
+      - 待ち合わせ に 来る の が 早い {じゃ ない か}。
+      - 待ち合わせ に 来る の が 早い {じゃ ない です か}。
+      - 待ち合わせ に 来る の が 早い ん {じゃ ない か}。
+      - 待ち合わせ に 来る の が 早い {の で は ない か}。
+    english_literally: Regarding coming to the meeting, you are early, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - 待ち合わせ に 来る の が 早い {です ね}。
+        english: You came early for the meeting, didn't you?
+        hint: 「ですね」is a gentler way to comment on an observation. じゃないか can imply a slight surprise or
+          a rhetorical observation. We're looking for a phrase that conveys a subtle surprise or rhetorical
+          observation.
+    scene: Pointing out someone's early arrival.
+    register: casual
+    setting: informative
+    nuance: じゃ ない か here expresses a gentle observation or a slightly surprised comment, seeking confirmation
+      of the apparent earliness. The tone is observational rather than accusatory, common in casual exchanges
+      between male acquaintances or colleagues.
+  - english: Didn't your mom tell you to be home by nine?
+    japanese:
+      - あなた の お 母 さん は 九 時 まで に 帰っ て き て と 言っ て い た {じゃ ない です か}。
+      - あなた の お 母 さん は 九 時 まで に 帰っ て き て と 言っ て い た {じゃ ない か}。
+      - あなた の お 母 さん は 九 時 まで に 帰っ て き て と 言っ て い た ん {じゃ ない です か}。
+    english_literally: Your mother said 'come home by nine', did she not?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の お 母 さん は 九 時 まで に 帰っ て き て と 言い まし た {ね}。
+        english: Your mother told you to be home by nine, right?
+        hint: 「ですね」is a softer confirmation. じゃないですか is used to remind someone of a fact they should know,
+          often with a hint of exasperation. We're looking for a phrase that reminds someone of a fact
+          with a hint of exasperation.
+    scene: Reminding someone of their curfew.
+    register: semi-formal
+    setting: serious
+    nuance: This phrase uses the slightly more polite ですか ending. じゃないですか is used to remind someone of
+      a well-known fact or a past instruction, implying the listener should remember it or act upon it.
+      This semi-formal reminder, often with a hint of mild exasperation, can be heard in conversations
+      between older female figures and younger ones.
+  - english: It is scary crossing this road, isn't it?
+    japanese:
+      - この 道 を 渡る の が 怖い ん {じゃ ない か}？
+      - この 道 を 渡る の が 怖い ん {じゃ ない です か}？
+      - この 道 を 渡る の が 怖い {じゃ ない か}？
+      - この 道 を 渡る の が 怖い {の で は ない か}？
+    english_literally: Regarding crossing this road, it's scary, is it not?
+    competing_grammar:
+      - competing_japanese:
+          - この 道 を 渡る の は 怖い {です}。
+        english: Crossing this road is scary.
+        hint: 「怖いです」is a statement of personal fear. 「んじゃないか」seeks agreement or shared feeling, implying
+          the fear is mutual or obvious. We're looking for a phrase that seeks agreement on a shared feeling.
+    scene: Expressing concern about crossing a road.
+    register: casual
+    setting: cautious
+    nuance: The ん じゃ ない か here indicates the speaker perceives a shared feeling of fear or observes the
+      listener's fear, seeking agreement or empathy. The question mark suggests a seeking of confirmation.
+      This empathetic inquiry is common in conversations seeking shared emotional experience, often between
+      female speakers.
+  - english: It was about that, wasn't it?
+    japanese:
+      - その こと {じゃ なかっ た か}。
+      - その こと {じゃ なかっ た です か}。
+      - その こと な ん {じゃ なかっ た か}。
+      - その こと {で は なかっ た の で は ない か}。
+    english_literally: It was about that, was it not?
+    competing_grammar:
+      - competing_japanese:
+          - その こと {でし た か}。
+        english: Was it about that?
+        hint: 「でしたか」is a neutral past question. じゃないか implies the speaker already had that thought and
+          is seeking confirmation, often with a hint of self-correction. We're looking for a phrase that
+          confirms a prior thought with a hint of self-correction.
+    scene: Confirming the topic of discussion.
+    register: casual
+    setting: informative
+    nuance: じゃ なかった か confirms a previous understanding or a fact that was already somewhat certain in
+      the speaker's mind, often implying "I thought so." This is a common way to seek clarification while
+      implying prior knowledge, frequently observed in casual conversations between male peers.
+  - english: It will finish already, won't it?
+    japanese:
+      - もう 終わる {じゃ ない か}。
+      - もう 終わる {じゃ ない です か}。
+      - もう 終わる ん {じゃ ない か}。
+      - もう 終わる {の で は ない か}。
+    english_literally: It will already finish, will it not?
+    competing_grammar:
+      - competing_japanese:
+          - もう 終わり ます {よ}。
+        english: It will finish soon.
+        hint: 「ますよ」is a direct statement of expectation. じゃないか adds a rhetorical nuance, implying the
+          speaker believes the ending is obvious and inevitable, often with relief. We're looking for
+          a rhetorical phrase that implies an obvious and inevitable outcome.
+    scene: Expressing anticipation about something ending.
+    register: casual
+    setting: optimistic
+    nuance: Here, じゃないか expresses an expectation or a hopeful anticipation that something is nearing completion,
+      seeking confirmation of this perceived reality. With a falling intonation, it can sound like a positive
+      affirmation. This optimistic observation is not gender-specific but fits well in a general, cheerful
+      context.
+  - english: Hey, isn't this cake from that famous shop we talked about yesterday?
+    japanese:
+      - ねえ、この ケーキ、昨日 話し て た、あの 有名 店 の {じゃ ない か}？
+      - ねえ、この ケーキ、昨日 話し て た、あの 有名 店 の {じゃ ない です か}？
+      - ねえ、この ケーキ、昨日 話し て た、あの 有名 店 の な ん {じゃ ない か}？
+      - ねえ、この ケーキ、昨日 話し て た、あの 有名 店 の ん {じゃ ない か}？
+      - ねえ、この ケーキ、昨日 話し て い た、あの 有名 店 の {で は ない か}？
+    english_literally: Hey, isn't this cake from that famous shop we talked about yesterday?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、この ケーキ、昨日 話し て た、あの 有名 店 の {です か}？
+        english: Hey, is this cake from that famous shop we talked about yesterday?
+        hint: 「ですか」is a neutral question. じゃないか conveys a stronger conviction or excitement, expecting
+          agreement based on a shared context. We're looking for a phrase that conveys strong conviction
+          and expects agreement in a shared context.
+    scene: Recognizing a cake from a previous conversation and seeking confirmation/excitement.
+    register: casual
+    setting: friendly
+    nuance: The use of 「ねえ」 (hey) sets a casual, intimate tone. じゃないか implies a stronger conviction or
+      excitement about the cake's origin, expecting agreement. This shared excitement and eager confirmation
+      are typical in friendly conversations, particularly between female friends.
+  - english: This new project is tougher than I thought, isn't it?
+    japanese:
+      - この 新しい プロジェクト、思っ た より 大変 {じゃ ない か}。
+      - この 新しい プロジェクト、思っ た より 大変 {じゃ ない です か}。
+      - この 新しい プロジェクト、思っ た より 大変 な ん {じゃ ない か}。
+      - この 新しい プロジェクト、思っ た より 大変 な {の で は ない か}。
+    english_literally: This new project is harder than I thought, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい プロジェクト、思っ た より 大変 {です ね}。
+        english: This new project is tougher than I thought, right?
+        hint: 「ですね」is a softer way to seek agreement on a shared observation. じゃないか can express a stronger
+          conviction or shared frustration, implying the difficulty is quite apparent. We're looking for
+          a phrase that expresses stronger conviction or shared frustration.
+    scene: Talking to a colleague about a new work project, seeking agreement on its difficulty.
+    register: semi-formal
+    setting: professional
+    nuance: じゃないか here is used to express a shared observation or frustration, seeking agreement and solidarity
+      rather than just asking about the project's difficulty. This expression of shared experience and
+      mutual understanding is common among colleagues in a professional setting.
+  - english: Hey, isn't this dress a little too short for me, I wonder?
+    japanese:
+      - ねえ、この ドレス、私 に は ちょっと 短 すぎる ん {じゃ ない か しら}？
+      - ねえ、この ドレス、私 に は ちょっと 短 すぎる ん {じゃ ない か}？
+    english_literally: Hey, isn't this dress a little too short for me, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、この ドレス、私 に は ちょっと 短 すぎ ます {か}？
+        english: Hey, is this dress a little too short for me?
+        hint: 「ますか」is a direct question. 「んじゃないかしら」is a softer, more tentative way to express doubt and
+          seek an opinion, often used by female speakers. We're looking for a phrase that expresses gentle
+          doubt and seeks an opinion.
+    scene: A woman asking her female friend for an honest opinion on a dress before a party.
+    register: casual
+    setting: friendly
+    nuance: The use of 「ねえ」 (hey) as an opening and 「しら」 as a sentence-ending particle are common in casual
+      female speech when seeking an Pnion or expressing a gentle uncertainty. The phrase 「んじゃじゃないかしら」softens
+      the directness of the question, making it more tentative and reflective, which is characteristic
+      of feminine speech, particularly when discussing personal appearance with a close friend.
+  - english: Hey, shouldn't you be getting back to work soon?
+    japanese:
+      - お前、そろそろ 仕事 に 戻る ん {じゃ ない か}？
+      - お前、そろそろ 仕事 に 戻る ん {じゃ ない です か}？
+      - お前、そろそろ 仕事 に 戻る {じゃ ない か}？
+    english_literally: You, shouldn't you be getting back to work soon?
+    competing_grammar:
+      - competing_japanese:
+          - お前、そろそろ 仕事 に 戻れ {よ}。
+        english: Hey, get back to work already.
+        hint: 「戻れよ」is a direct, informal command. じゃないか is a softer, rhetorical way to imply that the
+          action is obvious and expected, often used as a mild admonition. We're looking for a softer,
+          rhetorical phrase that implies an obvious and expected action as a mild admonition.
+    scene: A male boss to a male subordinate who has been on a long break, implying he should return to
+      work.
+    register: casual
+    setting: professional
+    nuance: The term 「お前」 (omae) is predominantly used by male speakers, particularly when speaking to
+      male peers or subordinates in a casual or familiar, sometimes admonishing, context. The directness
+      of the question and its slight admonishing tone, conveyed through the falling intonation of 「じゃないか」,
+      are also common in masculine communication styles, especially from a superior to a subordinate.
+      This implies a gentle but firm push to return to duty.
+post_example_writeup: As seen in these examples, じゃないか can convey various nuances depending on context
+  and intonation. A rising intonation typically seeks confirmation or agreement, while a falling intonation
+  can imply an assertion or a gentle admonition. The inclusion of ん before じゃないか (as んじゃないか) often adds
+  an explanatory or emphatic nuance, highlighting the reason or the speaker's personal feeling about the
+  statement. Observing how じゃないか is used in different scenarios helps to grasp its flexibility and the
+  subtle meanings it can convey.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/じゃないか

@@ -1,0 +1,266 @@
+grammar_point: Verb[まい] (negative volitional)
+learn_before:
+  - ようが〜まいが (regardless of whether)
+meaning: will not; probably will not; should not
+pronunciation:
+  katakana: マイ
+  romaji: mai
+formation:
+  Godan verbs (dictionary form) + まい: 'Indicates the speaker''s strong will not to do something, or a
+    strong conjecture that something will not happen. Example: 行くまい (I will not go / It probably won''t
+    go).'
+  Godan verbs (V-ない stem) + まい: 'A less common but valid formation for negative volition. Example: 行かまい
+    (I will not go).'
+  Ichidan verbs (dictionary form) + まい: 'Indicates the speaker''s strong will not to do something, or
+    a strong conjecture that something will not happen. Example: 食べるまい (I will not eat / It probably won''t
+    eat).'
+  Ichidan verbs (stem form) + まい: 'A common alternative formation for negative volition, often sounding
+    more concise. Example: 食べまい (I will not eat).'
+  する + まい: 'Special forms for the irregular verb する: するまい or the less common すまい.'
+  くる + まい: 'Special forms for the irregular verb くる: くるまい or the less common こまい.'
+jlpt: N2
+etymology: 'The auxiliary verb 「まい」 is a modern evolution of the classical Japanese negative auxiliary
+  verb 「まじ」. Historically, 「まじ」 was formed from the negative suffix 「ま」 combined with the conjectural/volitional
+  suffix 「じ」. This etymology explains 「まい」''s dual functions: expressing a firm refusal or strong intention
+  not to do something (volition), and conveying a strong belief that something will not happen or exist
+  (conjecture). Its classical roots contribute to its often formal or literary tone in modern Japanese.'
+writeup: |-
+  The Japanese auxiliary verb 「まい」 is used to express either **negative volition** (the speaker's strong intention not to do something) or **negative conjecture** (the speaker's strong belief that something probably will not happen). It carries a more formal or literary nuance compared to the more common expressions like 「〜ないだろう」 (for conjecture) or 「〜つもりはない」 (for volition).
+
+  When expressing **negative volition**, 「まい」 signifies a firm, often decisive, personal resolve not to perform an action. This usage is typically found in the first person. For example, 「二度と 同じ 失敗 は {するまい}。」 (I will never make the same mistake again.) conveys a powerful internal commitment. It can also be used in self-admonition or a strong vow to oneself.
+
+  When expressing **negative conjecture**, 「まい」 conveys a high degree of certainty that something will not occur or exist. This usage can be applied to any person (first, second, or third) or impersonal situations. For example, 「彼 は 来るまい。」 (He probably won't come.) implies a strong conviction based on observation or logical deduction. It suggests a more definitive non-occurrence than simply 「来ないだろう」.
+
+  **Formation of 「まい」**:
+
+  *   **Godan Verbs**: Can attach to the dictionary form (e.g., 行くまい 'ikuma-i') or the V-ない stem (e.g., 行かまい 'ikama-i'). The dictionary form attachment is more common in modern Japanese, while the V-ない stem attachment is somewhat older or literary, though still understood.
+  *   **Ichidan Verbs**: Can attach to the dictionary form (e.g., 食べるまい 'taberuma-i') or the verb stem (e.g., 食べまい 'tabema-i'). Both are common, with the stem form often sounding slightly more concise or firm.
+  *   **Irregular Verbs (する and くる)**:
+      *   する: Becomes 「するまい」 or the more concise, less common 「すまい」.
+      *   くる: Becomes 「くるまい」 or the more concise, less common 「こまい」.
+
+  「まい」 is often found in combination with adverbs like 「決して」 (kesshite - never) or 「断じて」 (danjite - absolutely), which further emphasize the strong negative meaning. While versatile, its formal or literary tone means it is less frequently heard in casual, everyday conversation.
+false_friends:
+  - term: 〜ないだろう
+    meaning: probably won't; probably isn't
+    kind: similar expression
+    nuance: While both express negative conjecture, 「〜ないだろう」 is a more general and common expression,
+      implying a casual prediction or possibility. 「まい」 conveys a stronger, more decisive certainty about
+      non-occurrence and is more formal or literary.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: 〜つもりはない
+    meaning: don't intend to; have no intention of
+    kind: similar expression
+    nuance: Both express negative volition. 「〜つもりはない」 is a straightforward statement of intention. 「まい」,
+      especially with the first person, expresses a stronger, more emphatic, and often more formal personal
+      resolve not to do something. It implies a firm decision or a solemn vow.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: 〜べきではない
+    meaning: should not; ought not to
+    kind: similar expression
+    nuance: 「〜べきではない」 expresses a moral obligation or a general principle that something should not be
+      done. 「まい」, when used for 'should not', often reflects a strong personal conviction or a rhetorical
+      prohibition, implying 'I would never do X' or 'X must not be done' due to its nature rather than
+      an external rule.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: 〜てはいけない
+    meaning: must not; may not
+    kind: similar expression
+    nuance: 「〜てはいけない」 conveys a direct, often external, prohibition or rule. 「まい」 can express a strong,
+      almost internal, prohibition or admonition (e.g., a self-vow 'I must not do this') or a rhetorical
+      prohibition where the impossibility or inappropriateness of the action is emphasized.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: When choosing between 「まい」 and other negative expressions, consider the level
+  of formality and the strength of the speaker's conviction or certainty. Use 「まい」 for more definitive
+  statements of non-volition or non-conjecture, particularly in formal or written contexts. For everyday,
+  casual expressions of 'probably won't' or 'don't intend to', 「〜ないだろう」 and 「〜つもりはない」 are generally more
+  appropriate. 「〜べきではない」 and 「〜てはいけない」 emphasize obligation or rule-based prohibition, whereas 「まい」 leans
+  more towards personal resolve or strong conjecture.
+examples:
+  - english: I will never forget this day.
+    japanese:
+      - この 日 は {忘れる まい}。
+      - この 日 は {忘れ まい}。
+    english_literally: This day, I will probably not forget.
+    competing_grammar:
+      - competing_japanese:
+          - この 日 は 忘れ ない だろう。
+        english: I probably won't forget this day.
+        hint: 「〜ないだろう」 is a softer, more general conjecture. We're looking for a stronger, more determined
+          personal resolve.
+    scene: Someone reflecting on a deeply significant and memorable event, making a solemn vow to themselves.
+    register: formal
+    setting: reflective
+    nuance: The use of 「忘れるまい」 expresses a strong, almost solemn, personal resolve not to forget, highlighting
+      a deep emotional impact of the day. It's a firmer statement than a simple 'I won't forget'.
+  - english: I won't lose this time!
+    japanese:
+      - 今度 こそ {負ける まい}！
+      - 今度 こそ {負け まい}！
+    english_literally: This time for sure, I will not lose!
+    competing_grammar:
+      - competing_japanese:
+          - 今度 こそ 負け ない！
+        english: I won't lose this time!
+        hint: 「負けない」 is a direct negative statement. We're looking for a phrase that expresses a strong,
+          determined personal vow not to lose.
+    scene: A competitor, having lost previously, expresses intense determination before a rematch.
+    register: casual
+    setting: reflective
+    nuance: 「負けるまい」 conveys a powerful, resolute personal determination to not lose, often spoken with
+      strong conviction. It emphasizes the speaker's inner vow and fighting spirit.
+  - english: He probably won't come to the party.
+    japanese:
+      - 彼 は パーティー に は {くる まい}。
+      - 彼 は パーティー に は {こまい}。
+    english_literally: As for him, to the party, he probably will not come.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は パーティー に は 来 ない だろう。
+        english: He probably won't come to the party.
+        hint: While similar in meaning, 「来ないだろう」 is a more common, less definitive conjecture. We're looking
+          for a stronger conviction about non-occurrence.
+    scene: Two friends discussing a mutual acquaintance's attendance at a party, one expressing a strong
+      belief about their absence.
+    register: formal
+    setting: informative
+    nuance: 「来まい」 here expresses a strong negative conjecture about a third party's action, suggesting
+      a high degree of certainty that they will not come, perhaps due to their known habits or circumstances.
+      It is more definitive than a mere prediction.
+  - english: This kind of opportunity probably won't come again.
+    japanese:
+      - この よう な 機会 は 二 度 と {ある まい}。
+      - この よう な 機会 は 二 度 と {あら まい}。
+    english_literally: This kind of opportunity, a second time, probably will not exist.
+    competing_grammar:
+      - competing_japanese:
+          - この よう な 機会 は 二 度 と ない だろう。
+        english: This kind of opportunity probably won't exist a second time.
+        hint: 「ないだろう」 is a more common, general way to express non-existence. We're looking for a stronger,
+          more conclusive statement about the unlikelihood of something occurring again.
+    scene: Someone lamenting a lost or missed opportunity, expressing a sense of finality about its uniqueness.
+    register: formal
+    setting: melancholic
+    nuance: The use of 「あるまい」 impersonally emphasizes the definitive unlikelihood of such a rare opportunity
+      recurring, conveying a sense of regret or finality.
+  - english: How could I possibly say such a thing?
+    japanese:
+      - 私 が そんな こと を {言う まい} か。
+      - 私 が そんな こと を {言わ まい} か。
+    english_literally: As for me, such a thing, will I possibly say?
+    competing_grammar:
+      - competing_japanese:
+          - 私 が そんな こと を 言う はず が ない。
+        english: It's impossible for me to say such a thing.
+        hint: 「〜はずがない」 indicates impossibility based on logical expectation. We're looking for a rhetorical
+          question that strongly denies the speaker's own action.
+    scene: Someone being falsely accused of saying something, vehemently denying it with a rhetorical
+      question.
+    register: formal
+    setting: serious
+    nuance: 「言うまいか」 functions as a rhetorical question, strongly asserting that the speaker would never
+      say such a thing. It emphasizes the speaker's disbelief and firm conviction about their own character
+      or actions.
+  - english: You absolutely should not talk about such things here.
+    japanese:
+      - ここ で そんな 話 を {する まい}。
+      - ここ で そんな 話 を {す まい}。
+    english_literally: Here, such a conversation, should absolutely not be done.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で そんな 話 を する べき で は ない。
+        english: You should not talk about such things here.
+        hint: 「〜べきではない」 expresses 'should not' based on general propriety or duty. We're looking for a
+          stronger, almost admonishing, prohibition.
+    scene: A senior colleague or mentor firmly advises a junior one against discussing sensitive topics
+      in an inappropriate setting.
+    register: formal
+    setting: instructional
+    nuance: When used in a prohibitive sense like this, 「するまい」 carries a strong, almost admonishing tone,
+      conveying that the action is highly inappropriate or impermissible in the given context. It's a
+      firmer caution than simply 'should not'.
+  - english: They resolved not to surrender.
+    japanese:
+      - 彼 ら は 決して {降伏 する まい} と 誓っ た。
+      - 彼 ら は 決して {降伏 す まい} と 誓っ た。
+    english_literally: They, absolutely, will not surrender, resolved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 決して 降伏 し ない だろう と 誓っ た。
+        english: They resolved that they would definitely not surrender.
+        hint: 「〜ないだろう」 implies conjecture. We're looking for a phrase that expresses a strong, collective
+          determination and resolve not to perform an action.
+    scene: Narrating a historical event where a group of people made a firm, collective decision or oath.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: In this context, 「降伏 するまい」 emphasizes a resolute and collective vow or decision not to surrender,
+      often found in formal or historical narratives to convey strong determination. Its literary feel
+      suits historical accounts.
+  - english: I think he probably won't agree.
+    japanese:
+      - 彼 は 賛成 {する まい} と 思う。
+      - 彼 は 賛成 {す まい} と 思う。
+    english_literally: As for him, he probably won't agree, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 賛成 し ない と 思う。
+        english: I think he won't agree.
+        hint: 「しないと思う」 is a milder statement of expected non-agreement. We're looking for an expression
+          that suggests a stronger conviction or higher certainty that he will not agree.
+    scene: Someone predicting another's reaction based on their knowledge of that person, expressing a
+      strong internal conviction.
+    register: formal
+    setting: informative
+    nuance: Combining 「するまい」 with 「と 思う」 expresses the speaker's strong conviction or a well-informed
+      prediction that the third party will not agree. It implies a higher degree of certainty than simply
+      「賛成 し ない と 思う」.
+  - english: I won't eat fast food anymore.
+    japanese:
+      - もう ファスト フード は {食べる まい}。
+      - もう ファスト フード は {食べ まい}。
+    english_literally: Already, fast food, I will not eat.
+    competing_grammar:
+      - competing_japanese:
+          - もう ファスト フード は 食べ ない つもり だ。
+        english: I don't intend to eat fast food anymore.
+        hint: 「〜ないつもりだ」 states an intention. We're looking for a more decisive, almost vow-like, personal
+          resolution.
+    scene: Someone making a firm personal decision to change their dietary habits.
+    register: casual
+    setting: reflective
+    nuance: The direct attachment of 「まい」 to the ichidan verb's dictionary form (食べる) shows a clear and
+      firm personal decision. It sounds more resolute than a mere intention, conveying a strong personal
+      commitment.
+  - english: I won't buy unnecessary things.
+    japanese:
+      - 無駄 な もの は {買う まい}。
+      - 無駄 な もの は {買わ まい}。
+    english_literally: Unnecessary things, I will not buy.
+    competing_grammar:
+      - competing_japanese:
+          - 無駄 な もの は 買わ ない。
+        english: I won't buy unnecessary things.
+        hint: 「買わない」 is a simple negative statement. We're looking for a statement that conveys a strong
+          resolve not to buy something.
+    scene: Someone creating a budget or lifestyle plan, expressing a firm decision to avoid wasteful spending.
+    register: casual
+    setting: informative
+    nuance: Attaching 「まい」 to the godan verb's dictionary form (買う) expresses a firm and resolute personal
+      decision, indicating a strong commitment to avoid an action. It carries a sense of determination.
+  - english: I must not repeat the same mistake.
+    japanese:
+      - 同じ 失敗 は {繰り返す まい}。
+      - 同じ 失敗 は {繰り返さ まい}。
+    english_literally: The same mistake, I must not repeat.
+    competing_grammar:
+      - competing_japanese:
+          - 同じ 失敗 は 繰り返す べき で は ない。
+        english: One should not repeat the same mistake.
+        hint: 「〜べきではない」 is more general advice. We're looking for a strong personal commitment or admonition
+          from the speaker to themselves.
+    scene: Someone reflecting on past errors and making a strong internal vow not to make them again,
+      showing self-discipline.
+    register: formal
+    setting: reflective
+    nuance: 「繰り返すまい」 conveys a strong personal commitment and self-admonition to avoid repeating an action.
+      It's a powerful statement of learning from experience and firm resolve, often used in internal monologue.

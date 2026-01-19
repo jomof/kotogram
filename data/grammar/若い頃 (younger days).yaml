@@ -1,0 +1,218 @@
+grammar_point: 若い頃 (younger days)
+learn_before:
+  - な-Adjective[でした] (polite past)
+meaning: one's younger days; youth (a past period)
+pronunciation:
+  katakana: ワカイコロ
+  romaji: wakai koro
+formation:
+  い-Adjective[若い] + 頃: Refers to a past period when one was young.
+  若い + 時: Can also be used with 時, meaning 'young time' or 'when young'.
+jlpt: N4
+etymology: The phrase combines the い-adjective 若い (wakai), meaning 'young,' with the noun 頃 (koro), which
+  refers to a 'time' or 'period.' Together, they literally mean 'young time' or 'young period,' denoting
+  a specific stage in one's past life. The concept of 頃 for 'time' can also be seen in expressions like
+  いつ頃 (itsugoro - around when) or あの頃 (anokoro - that time).
+writeup: |-
+  「若い頃」(wakai koro) is a common phrase used to refer to the period of one's youth or younger days. It is generally used to speak about a time in the past when the speaker or the subject was young, typically from adolescence through early adulthood. This phrase often carries a nostalgic or reflective tone, as it naturally contrasts with the present.
+
+  While grammatically straightforward, combining the adjective 若い (young) with the noun 頃 (time/period), its usage implies a completed phase of life. It's frequently used when recounting memories, comparing past self to present self, or describing events that occurred during that specific life stage.
+
+  It is a gender-neutral term and can be used by speakers of any age when reminiscing about their past.
+false_friends:
+  - term: 青春
+    meaning: youth, springtime of life
+    kind: similar expression
+    nuance: 「青春」(seishun) carries a strong emotional and often nostalgic nuance, emphasizing the vitality,
+      passion, and idealism of one's youth. It's more poetic and evokes a sense of 'the best years of
+      one's life.' In contrast, 「若い頃」is a neutral term simply referring to the period when one was young,
+      without necessarily implying a heightened emotional state or peak of life.
+    grammar_point: <suggest>:青春 (youth・springtime of life)
+  - term: 子供の頃
+    meaning: childhood
+    kind: similar expression
+    nuance: 「子供の頃」(kodomo no koro) specifically refers to the period of one's childhood (typically before
+      adolescence), when one was literally a 'child.' 「若い頃」refers to a slightly later period, generally
+      encompassing adolescence and early adulthood, when one is 'young' but no longer a 'child' in the
+      strict sense.
+    grammar_point: <suggest>:子供の頃 (childhood)
+post_false_friends_writeup: While 「若い頃」, 「青春」, and 「子供の頃」all refer to past periods of life, they highlight
+  different aspects. 「若い頃」is a neutral descriptor of a time when one was young. 「青春」emphasizes the vibrant,
+  emotional peak of youth, often used in a more idealized sense. 「子供の頃」is strictly about one's time as
+  a child.
+examples:
+  - english: In my younger days, I used to play soccer every day.
+    japanese:
+      - '{若い 頃}、毎日 サッカー を し て い た。'
+      - '{若い 頃}、毎日 サッカー を し て い まし た。'
+    english_literally: Younger days, every day soccer was doing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃、毎日 サッカー を し て い た。
+        english: When I was a child, I used to play soccer every day.
+        hint: 「子供の頃」 refers specifically to childhood. We're looking for a phrase that encompasses a broader
+          period of youth, including adolescence and early adulthood.
+      - competing_japanese:
+          - 昔、毎日 サッカー を し て い た。
+        english: A long time ago, I used to play soccer every day.
+        hint: 「昔」 is a general term for 'old times.' We need a phrase that specifically indicates 'when
+          you were young.'
+    scene: A man in his 40s is reminiscing with a friend about his active past.
+    register: casual
+    setting: friendly
+    nuance: This is a straightforward use of 「若い頃」to refer to a past period of youth. The casual register
+      fits the friendly setting.
+    etymology: The use of the simple past tense 「していた」 (shite ita) suggests a habitual action in the past,
+      a common way to express 'used to do' in Japanese.
+  - english: When I was young, I lived in Tokyo for a short time.
+    japanese:
+      - '{若い 頃}、少し の 間 東京 に 住ん で い まし た。'
+      - '{若い 頃}、少し の 間 東京 に 住ん で い た。'
+    english_literally: Younger days, for a short while in Tokyo was living.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃、少し の 間 東京 に 住ん で い まし た。
+        english: When I was a child, I lived in Tokyo for a short time.
+        hint: The focus is on being 'young', not specifically a 'child'.
+      - competing_japanese:
+          - 以前、少し の 間 東京 に 住ん で い まし た。
+        english: Previously, I lived in Tokyo for a short time.
+        hint: 「以前」 is too general and doesn't convey the meaning of 'when young'.
+    scene: An elderly woman is sharing an anecdote with her grandchild.
+    register: teineigo (polite)
+    setting: intimate
+    nuance: The use of 「～ていました」 and the polite register 「～ました」 is appropriate when an elder speaks to
+      a younger family member, showing respect while sharing personal history.
+  - english: She was quite an energetic person in her younger days.
+    japanese:
+      - 彼女 は {若い 頃}、かなり 活動 的 な 人 でし た。
+      - 彼女 は {若い 頃}、かなり 活動 的 な 人 だっ た。
+    english_literally: She younger days, quite active person was.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 の 彼女 は、かなり 活動 的 な 人 でし た。
+        english: The former her was quite an energetic person.
+        hint: While correct, 「以前」 does not specify that the person was *young* at that time.
+    scene: Two colleagues are discussing an older manager, reflecting on her past.
+    register: formal
+    setting: professional
+    nuance: This example shows the neutral descriptive use of 「若い頃」in a formal, professional context when
+      discussing someone's past attributes.
+  - english: Compared to my younger days, I've gained a bit of weight.
+    japanese:
+      - '{若い 頃} と 比べ て、少し 太り まし た。'
+      - '{若い 頃} と 比べ て、少し 太っ た。'
+    english_literally: Younger days compared to, a little became fat.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 と 比べ て、少し 太り まし た。
+        english: Compared to old times, I've gained a bit of weight.
+        hint: 「昔」 is a general term for 'old times'. We need to emphasize that the comparison is to 'when
+          you were young'.
+    scene: A person sighs while looking at an old photo album.
+    register: casual
+    setting: reflective
+    nuance: This common phrase uses 「若い頃と比べて」 to express a comparison between past and present self, often
+      with a hint of self-deprecation. The particle 「と」 marks the object of comparison.
+  - english: My parents often tell stories about their younger days.
+    japanese:
+      - 両親 は よく {若い 頃} の 話 を し ます。
+      - 両親 は よく {若い 頃} の 話 を する。
+    english_literally: Parents often younger days' stories do.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 は よく 昔 の 話 を し ます。
+        english: My parents often tell stories about old times.
+        hint: 「昔」 refers to 'old times' in general, not necessarily when they were young.
+    scene: A teenager talks about their parents' habits.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The phrase 「若い頃の話」 is very natural for describing stories from one's youth. The polite form
+      「します」 is appropriate for general statements.
+    etymology: 「～の話をする」 is a common collocation meaning 'to tell stories about ~'.
+  - english: This song was popular when I was young.
+    japanese:
+      - この 歌 は 私 が {若い 頃} に 流行っ て い まし た。
+      - この 歌 は 私 が {若い 頃} に 流行っ て い た。
+    english_literally: This song I was younger days at was popular.
+    competing_grammar:
+      - competing_japanese:
+          - この 歌 は 私 が 子供 の 頃 に 流行っ て い まし た。
+        english: This song was popular when I was a child.
+        hint: This is too specific; we're looking for the broader 'younger days' which includes adolescence.
+    scene: A group of friends listening to old music.
+    register: casual
+    setting: friendly
+    nuance: 「～頃に」 is a common construction to specify 'at the time of...' or 'when...'. Here, it defines
+      the period of popularity.
+  - english: You were so handsome in your younger days, weren't you?
+    japanese:
+      - '{若い 頃} は、イケメン だっ た でしょう？'
+      - '{若い 頃} は、イケメン だっ た よ ね？'
+    english_literally: Younger days, handsome was, right?
+    competing_grammar:
+      - competing_japanese:
+          - あなた は 以前 イケメン だっ た でしょう？
+        english: You were handsome before, weren't you?
+        hint: 「以前」 is a general term for 'before' and doesn't specifically refer to someone's youth.
+    scene: A woman teases her husband playfully while looking at an old photo.
+    register: casual
+    setting: intimate
+    nuance: The particle 「は」 emphasizes 'as for your younger days', drawing a contrast to the present.
+      The interrogative 「でしょう？」 seeks agreement. This use of 「イケメン」 and the casual tone is characteristic
+      of intimate, playful conversation.
+    etymology: 「イケメン」 is a colloquial term derived from イケてる (iketeru - cool, attractive) and メン (men
+      - man, from English 'man'). It typically refers to a handsome man and is common in casual speech.
+      The use of 「だったでしょう」 (datta deshou) is a casual way to seek confirmation about a past state, often
+      used playfully or teasingly.
+  - english: He was quite rebellious in his younger days.
+    japanese:
+      - 彼 は {若い 頃}、随分 反抗 的 でし た。
+      - 彼 は {若い 頃}、随分 反抗 的 だっ た。
+    english_literally: He younger days, quite rebellious was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 子供 の 頃、随分 反抗 的 でし た。
+        english: He was quite rebellious as a child.
+        hint: 「子供の頃」 strictly refers to childhood. 「若い頃」 includes adolescence and early adulthood.
+    scene: A teacher is explaining a student's background to a colleague.
+    register: formal
+    setting: professional
+    nuance: This sentence describes a past characteristic using 「若い頃」 in a formal context. 「随分」 (zuibun)
+      emphasizes the degree of rebelliousness.
+  - english: I heard that she achieved great success in her younger days.
+    japanese:
+      - 彼女 は {若い 頃} に 大きな 成功 を 収め た と 聞き まし た。
+      - 彼女 は {若い 頃} に 大きな 成功 を 収め た と 聞い た。
+    english_literally: She younger days in big success achieved, heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 昔、大きな 成功 を 収め た と 聞き まし た。
+        english: I heard she achieved great success in old times.
+        hint: 「昔」 is a general term and does not specify that she was 'young' during that period.
+    scene: A reporter is researching a famous personality.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「～と聞きました」 is a polite way to state what one has heard. The use of 「若い頃に」 specifies the timing
+      of the success.
+  - english: People tend to make many mistakes in their younger days.
+    japanese:
+      - 人 は {若い 頃} に 多く の 過ち を 犯し がち です。
+      - 人 は {若い 頃} に 多く の 過ち を 犯し がち だ。
+    english_literally: People younger days in many mistakes tend to commit.
+    competing_grammar:
+      - competing_japanese:
+          - 人 は 子供 の 頃 に 多く の 過ち を 犯し がち です。
+        english: People tend to make many mistakes in their childhood.
+        hint: 「子供の頃」 is limited to childhood, while 「若い頃」 covers a broader period of youth.
+    scene: A philosopher is giving a lecture on human nature.
+    register: formal
+    setting: academic
+    nuance: This is a general observation about human behavior, using 「若い頃」 as a phase when people commonly
+      make mistakes. The formal 「です」 and 「～がちです」 (tend to) are appropriate for an academic setting.
+post_example_writeup: The examples illustrate how 「若い頃」 can be used across various registers and settings,
+  from casual reminiscing to formal observation. It consistently refers to a past period of youth, serving
+  as a neutral temporal marker for that phase of life. Pay attention to the particles used with 「若い頃」,
+  such as 「に」 to mark a specific time, or 「は」 for emphasis or contrast, and 「と比べて」 for comparison.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/若い頃

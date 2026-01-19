@@ -1,0 +1,386 @@
+grammar_point: 前・後ろ (front and back spatial orientation)
+learn_before:
+  - Verb[えば] (conditional)
+  - な (prohibitive particle)
+meaning: front, back (spatial orientation)
+pronunciation:
+  katakana: マエ・ウシロ
+  romaji: mae・ushiro
+formation:
+  Noun の {前/後ろ}: Indicates the front or back position relative to a specific noun.
+  '{前/後ろ} に Verb': Indicates an action happening at the front or back.
+  Noun の {前/後ろ} に Noun がある/いる: Indicates the existence of a noun at the front or back of another noun.
+jlpt: N5
+etymology: The word 「前」 (mae) historically referred to the 'face' or 'front part' of something, as well
+  as 'before' in a temporal sense. Its meaning evolved to broadly signify the leading or forward position
+  in space. 「後ろ」 (ushiro) similarly comes from the concept of being 'behind' or the 'back side,' establishing
+  its fundamental use for rear spatial orientation. Both terms are core to expressing relative position,
+  rooted in direct physical perspective.
+writeup: 「前」 (mae) and 「後ろ」 (ushiro) are fundamental Japanese words used to describe spatial orientation,
+  specifically 'front' and 'back.' They are typically used in relation to another object or the speaker's
+  perspective.When describing the front or back of a specific noun, you will often see them used with
+  the possessive particle 「の」 (no), forming phrases like 「〜の 前」 (〜 no mae, 'in front of ~') or 「〜の 後ろ」
+  (〜 no ushiro, 'behind ~'). For instance, 「車の 前」 means 'in front of the car,' and 「家の 後ろ」 means 'behind
+  the house.'These terms can also be used adverbially with the particle 「に」 (ni) to indicate a location
+  or direction, as in 「前に 進む」 (mae ni susumu, 'to move forward') or 「後ろに 立つ」 (ushiro ni tatsu, 'to stand
+  behind').**Important Considerations:** *   **Relative Position:** The 'front' and 'back' can be subjective.
+  For example, 'in front of me' (私の 前) depends on where the speaker is facing.*   **Inherent Orientation:**
+  Many objects have an inherent front (e.g., a TV, a person). In such cases, 「前」 refers to that inherent
+  front. When there isn't an inherent front (e.g., a box), the 'front' is typically relative to the observer
+  or a specified direction.*   **Other Uses:** While this entry focuses on their spatial use, 「前」 can
+  also mean 'before' in time (e.g., 「三年前」 - san-nen mae, 'three years ago'). 「後ろ」 is almost exclusively
+  spatial, but 「後」 (ato) can mean 'after' in time.
+false_friends:
+  - term: 手前
+    meaning: in front (closer to observer), this side of
+    kind: similar expression
+    nuance: Unlike 「前」, 「手前」 (temae) often implies a closer proximity to the speaker or a designated reference
+      point, suggesting 'just before' or 'on this side of'.
+    grammar_point: 手前 (before; in front of; on account of)
+  - term: 奥
+    meaning: back, interior, inner part
+    kind: similar expression
+    nuance: Unlike 「後ろ」, 「奥」 (oku) refers to a deeper, more interior part of something, often implying
+      being further inside or out of immediate view.
+    grammar_point: 奥,手前 (depth・foreground spatial)
+  - term: 正面
+    meaning: front (of a building, person facing you), facade
+    kind: similar expression
+    nuance: Unlike 「前」, 「正面」 (shoumen) specifically refers to the designated or official 'front face'
+      of something, such as the entrance of a building or the side a person faces when directly addressing
+      someone.
+    grammar_point: 正面 (front face spatial)
+  - term: 背面
+    meaning: back (of a building, machine), rear
+    kind: similar expression
+    nuance: Unlike 「後ろ」, 「背面」 (haimen) is a more formal or technical term for the designated 'back surface'
+      of an object, often used for machinery, documents, or architecture.
+    grammar_point: 背面 (back surface spatial)
+  - term: 先
+    meaning: ahead, before (in order/time/position)
+    kind: often confused with
+    nuance: 「先」 refers to being 'ahead' in a sequence, progress, or general direction, whereas 「前」 specifies
+      a direct spatial 'front' of an object or position relative to an observer.
+    grammar_point: 先 (ahead・first)
+  - term: 裏
+    meaning: back side, reverse, hidden side
+    kind: similar expression
+    nuance: While 「後ろ」 is a general spatial 'back', 「裏」 specifically refers to the reverse or hidden side
+      of something, like the back of a paper, a building (less formal than 背面), or the inside of a garment.
+    grammar_point: 裏 (back side)
+  - term: 向こう
+    meaning: beyond, the other side, over there
+    kind: similar expression
+    nuance: 「向こう」 refers to a more distant "other side" or "beyond" a point, not necessarily the immediate
+      back of an object like 「後ろ」.
+    grammar_point: 向こう (beyond)
+post_false_friends_writeup: When distinguishing between 「前」/「後ろ」 and similar expressions like 「手前」/「奥」
+  or 「正面」/「背面」, consider the nuance of specificity and perspective. 「前」 and 「後ろ」 are general terms for
+  'front' and 'back' relative to a basic orientation. 「手前」 adds proximity to the speaker, while 「奥」 implies
+  a deeper interior. 「正面」 and 「背面」 are more formal and denote the distinct, often official, front or back
+  face/surface of an object. Additionally, 「先」 indicates being ahead in sequence or general direction,
+  not necessarily the direct front, and 「裏」 refers to a specific reverse or hidden side.
+examples:
+  - english: There's a cat in front of the car.
+    japanese:
+      - 車 の {前} に 猫 が いる。
+      - 車 の {前} に 猫 が い ます。
+      - 車 の {前} に 猫 が 居る。
+      - 車 の {前} に 猫 が 居 ます。
+      - 車 の {前} に 猫 が いる ね。
+      - 車 の {前} に 猫 が いる よ。
+      - 車 の {前} に 猫 が いる ぜ。
+      - 車 の {前} に 猫 が いる わ。
+      - 車 の {前} に 猫 が おる。
+      - 車 の {前} に 猫 が い ます ね。
+    english_literally: Car's front-at cat exists.
+    competing_grammar:
+      - competing_japanese:
+          - 車 の {手前} に 猫 が いる。
+        english: There's a cat just this side of the car.
+        hint: 「手前」 emphasizes proximity to the speaker or a reference point, often implying 'just before'
+          or 'on this side of.' We're looking for a general 'in front of' here.
+      - competing_japanese:
+          - 車 の {正面} に 猫 が いる。
+        english: There's a cat directly at the front face of the car.
+        hint: 「正面」 refers to the designated front face, like the side with the headlights. We're looking
+          for a more general 'in front of' position.
+      - competing_japanese:
+          - 車 の {前} {で} 猫 が いる。
+        english: There's a cat existing at the front of the car (where an action happens).
+        hint: The particle 「で」 indicates the location of an action, while 「に」 indicates the location of
+          existence. We're looking for where the cat *is*, not where it's *doing* something.
+    scene: You and a friend are walking down the street and spot an animal near a parked car.
+    register: casual
+    setting: informative
+  - english: The teacher is standing behind the desk.
+    japanese:
+      - 先生 は 机 の {後ろ} に 立っ て い ます。
+      - 先生 は 机 の {後ろ} に 立っ て いる。
+      - 先生 は 机 の {後ろ} に 立っ て いる。
+      - 先生 は 机 の {後ろ} に いらっしゃい ます。
+      - 先生 は 机 の {後ろ} に お 立ち です。
+      - 先生 は 机 の {後ろ} に 立っ て いらっしゃる。
+      - 先生 は 机 の {後ろ} に 立っ て おら れ ます。
+      - 先生 が 机 の {後ろ} に 立っ て いらっしゃい ます。
+    english_literally: Teacher topic desk's back-at standing exists polite.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 机 の {奥} に 立っ て い ます。
+        english: The teacher is standing in the inner part/deep end behind the desk.
+        hint: 「奥」 implies a deeper, more interior position, often behind other things. We're looking for
+          a general 'behind'.
+      - competing_japanese:
+          - 先生 は 机 の {背面} に 立っ て い ます。
+        english: The teacher is standing at the rear surface of the desk.
+        hint: 「背面」 refers to the designated back surface of an object, often used for machines or documents.
+          We're looking for a more general 'behind'.
+      - competing_japanese:
+          - 先生 {が} 机 の {後ろ} に 立っ て い ます。
+        english: The teacher (specifically the teacher) is standing behind the desk.
+        hint: 「は」 marks the topic of the sentence, focusing on what is being said *about* the teacher.
+          「が」 identifies the subject, often when it's new information or to emphasize *who* is doing the
+          action. We're stating a general fact about the teacher.
+      - competing_japanese:
+          - 先生 は 机 の {後} に 立っ て い ます。
+        english: The teacher is standing after the desk (temporally).
+        hint: 「後 (ato)」 refers to 'after' in time or sequence, not usually 'behind' in a spatial sense
+          for objects. We're looking for the spatial 'behind' here.
+    scene: You're explaining the classroom layout to a new student.
+    register: formal
+    setting: academic
+  - english: Please go to the front.
+    japanese:
+      - '{前} に 行っ て ください。'
+      - '{前} に 行っ て くれ。'
+      - '{前} に 行き なさい。'
+      - '{前} へ 行っ て ください。'
+      - '{前} へ お 進み ください。'
+      - '{前} に 進ん で ください。'
+      - '{前} に 行こう。'
+      - '{前} に 行く ぞ。'
+      - '{前} に 行っ て ね。'
+      - '{前} に どうぞ。'
+      - '{前} の 方 へ お 進み ください。'
+    english_literally: Front-to go please.
+    competing_grammar:
+      - competing_japanese:
+          - '{手前} に 行っ て ください。'
+        english: Please go directly to this side of the front.
+        hint: 「手前」 emphasizes proximity and often 'this side of.' We're looking for a general 'to the
+          front'.
+      - competing_japanese:
+          - '{正面} に 行っ て ください。'
+        english: Please go to the very front/face.
+        hint: 「正面」 indicates the designated front face. We're looking for a general 'to the front'.
+      - competing_japanese:
+          - '{前} に {い} ます。'
+        english: I am in the front.
+        hint: This sentence expresses static location. We are looking for an action of moving to the front.
+      - competing_japanese:
+          - '{先} に 行っ て ください。'
+        english: Please go first/ahead.
+        hint: 「先 (saki) に 行ってください」 means 'Please go first' or 'Please go ahead.' We're looking for moving
+          to the 'front' position.
+    scene: A tour guide is instructing the group to move forward.
+    register: semi-formal
+    setting: instructional
+  - english: Please stand in front of me.
+    japanese:
+      - 私 の {前} に 立っ て ください。
+      - 私 の {前} に 立っ て くれ。
+      - 僕 の {前} に 立っ て ください。
+      - あたし の {前} に 立っ て ください。
+      - 私 の {前} に 立っ て ください ね。
+      - 私 の {前} に 立っ て いただけ ます か。
+      - 俺 の {前} に 立っ て くれ。
+      - 私 の {前} よ。
+      - 私 の {前} に 立ち な よ。
+      - 私 の {前} へ 立っ て ちょうだい。
+    english_literally: My front-at stand please.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {手前} に 立っ て ください。
+        english: Please stand right this side of me.
+        hint: 「手前」 emphasizes being close to or just before the reference point. We're looking for a general
+          'in front of'.
+      - competing_japanese:
+          - 私 の {正面} に 立っ て ください。
+        english: Please stand directly facing me.
+        hint: 「正面」 implies standing directly face-to-face. We're looking for a more general 'in front
+          of'.
+      - competing_japanese:
+          - 私 の {目 の 前} に 立っ て ください。
+        english: Please stand right in front of my eyes.
+        hint: 「目の前 (me no mae)」 emphasizes being very close or directly within one's line of sight. We're
+          looking for a general 'in front of me'.
+    scene: A male photographer is directing a female model for a shot.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「僕」 (boku) for 'I' is typically used by male speakers. The phrase 「私の 前 に 立っ て
+      ください」 is a neutral and common polite request, fitting for a professional setting like a photoshoot.
+      The addition of 「ね」 (ne) in 「立っ て ください ね」 softens the command, implying a gentle request or seeking
+      mild agreement, which can be used by any gender for added politeness. 「俺」 (ore) is a very casual
+      and masculine way to say 'I', making 「俺 の 前 に 立っ て くれ」 a more informal and direct request often
+      used among close male friends. 「私の 前 よ」 is a colloquial, softer way to indicate position, often
+      with an implied gentle instruction, frequently used by female speakers. 「私の 前 に 立ち な よ」 is an informal,
+      slightly suggestive or assertive phrase, usable by any gender. 「私の 前 へ 立っ て ちょうだい」 is a feminine,
+      informal request.
+  - english: I'll support you from behind.
+    japanese:
+      - '{後ろ} から あなた を 支え ます。'
+      - '{後ろ} から あなた を 支える よ。'
+      - '{後ろ} から 君 を 支える わ。'
+      - '{後ろ} から 支える から ね。'
+      - '{後ろ} から 君 を 支え て あげる。'
+      - '{後ろ} から 応援 し ます。'
+      - 私 が {後ろ} から 支える から。
+      - 私 は {後ろ} から 支える つもり です。
+      - '{後ろ} から いつ で も 支え ます から。'
+    english_literally: Behind-from you object support polite.
+    competing_grammar:
+      - competing_japanese:
+          - '{奥} から あなた を 支え ます。'
+        english: I'll support you from the deep interior.
+        hint: 「奥」 implies a deeper, more hidden interior. We're looking for a general 'from behind'.
+      - competing_japanese:
+          - '{背面} から あなた を 支え ます。'
+        english: I'll support you from the rear surface.
+        hint: 「背面」 is a more technical term for the back surface of an object. We're looking for a more
+          general 'from behind'.
+      - competing_japanese:
+          - '{裏} から あなた を 支え ます。'
+        english: I'll support you from the hidden/back side.
+        hint: 「裏 (ura) から」 implies support from a hidden or 'back side' (e.g., backstage, illicitly).
+          We're looking for general support from the rear.
+    scene: A female mentor is reassuring her junior colleagues before a challenging project.
+    register: formal
+    setting: supportive
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「後ろ から 支えます」 (ushiro kara sasaemasu) is a common idiom meaning 'to support from
+      behind,' often implying quiet or indirect support. The use of 「支えます」 (sasaemasu) is polite and appropriate
+      for a supportive, formal context. The female speaker's gentle reassurance can be subtly conveyed
+      through the polite ending 「わ」 (wa) when speaking more casually, as in 「支える わ」. The use of 「から ね」
+      (kara ne) at the end of 「支える から ね」 adds a nuance of mild reassurance or a softer implication of
+      support, making it feel more personal and empathetic. 「支えてあげる」 implies doing something as a favor
+      or for the other person's benefit, which can be used by female speakers in a supportive context.
+      「支える つもり です」 expresses the speaker's intention. 「いつでも 支え ます から」 adds emphasis on continuous support
+      and a softening tone.
+  - english: Please line up in front of the door.
+    japanese:
+      - ドア の {前} に 並ん で ください。
+      - ドア の {前} に 並ん で くれ。
+      - ドア の {前} に 並び なさい。
+      - ドア の {前} へ お 並び ください。
+      - ドア の {前} に 並ん で ね。
+      - ドア の {前} に 並ん で もらえる か な。
+    english_literally: Door's front-at line up please.
+    competing_grammar:
+      - competing_japanese:
+          - ドア の {手前} に 並ん で ください。
+        english: Please line up just this side of the door.
+        hint: 「手前」 emphasizes proximity to the speaker or a reference point, often implying 'just before'
+          or 'on this side of.' We're looking for a general 'in front of' here.
+      - competing_japanese:
+          - ドア の {正面} に 並ん で ください。
+        english: Please line up directly at the front face of the door.
+        hint: 「正面」 refers to the designated front face, like the side you enter from. We're looking for
+          a more general 'in front of' position.
+    scene: A staff member is instructing guests to form a queue.
+    register: semi-formal
+    setting: instructional
+  - english: The dog is hiding behind the couch.
+    japanese:
+      - 犬 は ソファ の {後ろ} に 隠れ て い ます。
+      - 犬 は ソファ の {後ろ} に 隠れ て いる。
+      - 犬 が ソファ の {後ろ} に 隠れ てる ね。
+      - ソファ の {後ろ} に 犬 が い ます よ。
+      - ソファ の {後ろ} に 犬 が 隠れ て い た。
+    english_literally: Dog topic couch's back-at hiding is.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 は ソファ の {奥} に 隠れ て い ます。
+        english: The dog is hiding in the deep interior of the couch.
+        hint: 「奥」 implies a deeper, more secluded or interior part, often out of immediate view or deeper
+          within something. We're looking for a general 'behind'.
+      - competing_japanese:
+          - 犬 は ソファ の {陰} に 隠れ て い ます。
+        english: The dog is hiding in the shadow/shade of the couch.
+        hint: 「陰」 refers to a shaded area or being hidden in the 'shadow' of something. We're looking
+          for a general 'behind' location.
+    scene: You're looking for your pet and point out its hiding spot to a friend.
+    register: casual
+    setting: informative
+  - english: I put my bag in the back of the car.
+    japanese:
+      - 車 の {後ろ} に カバン を 置き まし た。
+      - 車 の {後ろ} に カバン を 置い た。
+      - 車 の {後ろ} に カバン を 置い て おい た よ。
+      - 車 の {後ろ} に カバン を 置い とい た。
+      - カバン を 車 の {後ろ} に 置き まし た。
+      - 車 の {後ろ} に カバン を 入れ た。
+    english_literally: Car's back-at bag object put polite past.
+    competing_grammar:
+      - competing_japanese:
+          - 車 の {トランク} に カバン を 置き まし た。
+        english: I put my bag in the car's trunk.
+        hint: 「トランク」 is the specific English loanword for 'trunk.' We're looking for the general 'back
+          part of the car'.
+      - competing_japanese:
+          - 車 の {後部} に カバン を 置き まし た。
+        english: I put my bag in the rear part of the car.
+        hint: 「後部」 (koubu) is a more technical term for the 'rear part' of a vehicle or object. We're
+          looking for a more common, general term for the back.
+    scene: You're telling someone where your luggage is stored in the car.
+    register: casual
+    setting: informative
+  - english: The man in front of me suddenly stopped.
+    japanese:
+      - 私 の {前} の 男 の 人 が 急 に 止まり まし た。
+      - 私 の {前} の 男 の 人 が 急 に 止まっ た。
+      - 私 の {前} の 人 が 急 に 止まっ た よ。
+      - 僕 の {前} の 男 の 人 が 急 に 止まっ た。
+      - 私 の {前} に い た 男 の 人 が 急 に 止まり まし た。
+    english_literally: My front's man subject suddenly stopped polite past.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {先} の 男 の 人 が 急 に 止まり まし た。
+        english: The man ahead of me suddenly stopped.
+        hint: 「先 (saki)」 can mean 'ahead' or 'earlier' in a sequence, but 「前」 is more commonly used for
+          direct spatial 'in front of' in a line or queue. We're looking for the direct spatial position.
+    scene: You are walking down a busy street and describe an unexpected event to a companion.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    nuance: The use of 「私 の 前 の 男 の 人」 is a direct and natural way to refer to 'the man in front of me.'
+      While 「私」 is gender-neutral, a female speaker might commonly use it. The inclusion of 「よ」 in 「止まった
+      よ」 adds a casual, assertive, or explanatory nuance. A male speaker might use 「僕 の 前 の 男 の 人」 for
+      a similar casual tone. The phrase 「私 の 前 に い た」 emphasizes that the person *was* in front of the
+      speaker.
+  - english: There's a park behind my house.
+    japanese:
+      - 私 の 家 の {後ろ} に 公園 が あり ます。
+      - 私 の 家 の {後ろ} に 公園 が ある。
+      - 私 の 家 の {後ろ} に は 公園 が ある よ。
+      - 僕 の 家 の {後ろ} に 公園 が ある ん だ。
+      - 家 の {後ろ} に 公園 が あり ます ね。
+    english_literally: My house's back-at park subject exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 の {奥} に 公園 が あり ます。
+        english: There's a park deep behind/further in from my house.
+        hint: 「奥」 implies a deeper, more secluded or interior part, often suggesting it's not immediately
+          visible or easily accessible from the house. We're looking for a general 'behind' location.
+    scene: You are describing the layout of your neighborhood to a new acquaintance.
+    register: casual
+    setting: informative
+post_example_writeup: Understanding the subtle differences in nuance and common collocations for 「前」 and
+  「後ろ」 allows for more precise and natural expression of spatial relationships in Japanese. Pay attention
+  to the particles used, as 「に」 often indicates static location or destination, while 「で」 indicates the
+  location of an action. The choice between general terms and more specific alternatives like 「手前」, 「奥」,
+  「正面」, or 「背面」 depends entirely on the context and the precise spatial relationship you wish to convey.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/前-後ろ

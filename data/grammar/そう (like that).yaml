@@ -1,0 +1,344 @@
+grammar_point: そう (like that)
+better_grammar_point_name:
+  - <suggest>:そう (appearance・hearsay・conjecture)
+learn_before:
+  - い-Adjective[そう] (appearance)
+meaning: it seems; it looks like; I hear (based on appearance, direct observation, or reported information)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: そう
+    rarity: common
+    meaning: it seems; it looks like; I hear
+  - conjugation-type: non-past polite (～ます)
+    form: そうです
+    rarity: common
+    meaning: it seems; it looks like; I hear (polite)
+  - conjugation-type: past plain (～た)
+    form: そうだった
+    rarity: common
+    meaning: it seemed; it looked like; I heard
+  - conjugation-type: past polite (～ました)
+    form: そうでした
+    rarity: common
+    meaning: it seemed; it looked like; I heard (polite)
+  - conjugation-type: negative plain (～ない)
+    form: そうではない
+    rarity: common
+    meaning: it doesn't seem; it doesn't look like; I don't hear (casual)
+  - conjugation-type: negative plain (～ない)
+    form: なさそう
+    rarity: common
+    meaning: it doesn't seem to be; it doesn't look like (for 'ない')
+  - conjugation-type: negative non-past polite (～ません)
+    form: そうではありません
+    rarity: common
+    meaning: it doesn't seem; it doesn't look like; I don't hear (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: なさそうです
+    rarity: common
+    meaning: it doesn't seem to be; it doesn't look like (for 'ない', polite)
+pronunciation:
+  katakana: ソウ
+  romaji: sou
+formation:
+  Verb[stem] + そうだ: Indicates something is 'about to happen' or 'looks like it will happen' based on immediate
+    observation. For example, 降る (to fall) becomes 降りそうだ (looks like it will rain).
+  い-Adjective[stem] + そうだ: Indicates something 'looks' or 'seems' a certain way based on appearance. The
+    final い is dropped. For example, 美味しい (delicious) becomes 美味しそうだ (looks delicious). For いい (good),
+    it becomes よさそうだ. For ない (not/there isn't), it becomes なさそうだ.
+  な-Adjective[stem] + そうだ: Indicates something 'looks' or 'seems' a certain way based on appearance. The
+    な is dropped when directly followed by そうだ. For example, 元気 (healthy/energetic) becomes 元気そうだ (looks
+    energetic).
+  Plain form (Verb, い-Adj, な-Adj, Noun) + そうだ: Indicates reported speech or hearsay ('I hear that', 'it
+    is said that'). The plain form (dictionary, plain past, plain negative) is used. For example, 雨が降るそうだ
+    (I hear it will rain), 学生だそうだ (I hear he is a student), 美味しいそうだ (I hear it's delicious).
+jlpt: N4
+etymology: The grammatical suffix 「そう」, indicating appearance or hearsay, originates from the noun 「様
+  (さま)」(sama) meaning 'state' or 'condition'. Over time, it evolved into 「さう」 and then 「そう」, attaching
+  to verb and adjective stems to describe the 'state' or 'manner' in which something appears or is heard.
+  This evolution allowed for expressions of conjecture based on sensory input or reported information,
+  making it a versatile tool for conveying subjective observation or secondhand accounts.
+writeup: |-
+  The grammar point 「そう」 is a highly versatile expression in Japanese, primarily used to convey two main meanings: appearance/conjecture and reported speech/hearsay. Understanding which meaning is intended depends on the part of speech it attaches to and whether the plain form or a stem form is used.
+
+  When 「そう」 attaches to the **stem form of verbs and adjectives**, it indicates appearance or conjecture based on direct observation. This means you're making a judgment about something based on what you see, hear, or otherwise perceive directly. For verbs, it often means 'looks like it will [verb]' or 'is about to [verb],' especially with instantaneous actions. For adjectives, it means 'looks [adjective]' or 'seems [adjective].'
+
+  On the other hand, when 「そう」 attaches to the **plain form of verbs, adjectives, or nouns**, it signifies reported speech or hearsay. In this case, it means 'I hear that...' or 'it is said that....' This usage is essentially conveying information that you have heard from someone else or from a source, rather than a direct observation.
+
+  It's crucial to distinguish between these two usages based on the preceding word's form. This distinction is fundamental for correctly interpreting and using 「そう」 in Japanese communication.
+false_friends:
+  - term: そう (that way・like that)
+    meaning: that way; like that; in such a way
+    kind: similar expression
+    nuance: This 「そう」 refers to a manner or state that is evident or previously mentioned, functioning
+      as a demonstrative adverb. It does not combine with adjective stems or verb stems to indicate appearance
+      or hearsay like the current grammar point. For example, 「そうしてください」 means 'Please do it that way,'
+      not 'It seems like you are doing it.'
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that way・how)
+  - term: 〜ようだ・〜みたいだ (seems・like)
+    meaning: it seems; it looks like; just like
+    kind: synonym
+    nuance: 「そう」 expresses appearance based on direct observation or reported information, often with
+      higher certainty or immediacy. 「ようだ」 and 「みたいだ」 express conjecture based on various cues, implying
+      a more indirect or inferential judgment, and can also mean 'just like.' 「そうだ」 is usually more direct.
+      For example, '雨が降りそうだ' (It looks like it's going to rain, based on current clouds/feel) versus '雨が降るようだ'
+      (It seems it will rain, based on forecast or subtle signs).
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: らしい (it seems, based on evidence・I hear)
+    meaning: it seems; it appears; I hear (based on evidence or reputation)
+    kind: similar expression
+    nuance: 「らしい」 indicates a conjecture based on objective evidence, reputation, or what is generally
+      known, carrying a sense of 'it seems to be the case.' 「そう」 (hearsay) directly reports what was heard,
+      while 「そう」 (appearance) is based on visual or sensory observation. 「らしい」 is more about logical inference,
+      while 「そう」 (appearance) is more about direct sensory perception, and 「そう」 (hearsay) is about direct
+      reporting. For example, '彼は日本人らしい' (He seems Japanese, based on his behavior/appearance) versus
+      '彼は日本人だそうだ' (I hear he is Japanese).
+    grammar_point: らしい (it seems, based on evidence・I hear)
+  - term: 〜ている + そう (often 〜てそう)
+    meaning: looks like (someone is) doing ~
+    kind: often confused with
+    nuance: When 「そう」 is appended to the 「て-form」 of a verb (often contracted from 「〜ている + そう」), it creates
+      an expression meaning 'looks like someone is currently doing something.' This is distinct from 「Verb[stem]
+      + そう」 (about to do or looks like it will happen). For example, '彼は寝ていそうだ' or '彼は寝てそうだ' (He looks
+      like he is sleeping) vs. '彼は寝そうだ' (He looks like he's about to sleep/looks sleepy).
+    grammar_point: <suggest>:Verb[てい]そう (looks like someone is doing)
+post_false_friends_writeup: While 「そう」 is useful for expressing appearance, hearsay, and conjecture, it's
+  easy to confuse it with other expressions that also convey 'seeming' or 'like.' Pay close attention
+  to the form preceding 「そう」 (stem vs. plain) to differentiate between appearance/conjecture and reported
+  speech. For instance, 「 Verb[stem] + そう」 implies an immediate observation or an impending action, whereas
+  「Plain form + そう」 is about secondhand information. The demonstrative adverb 「そう」 (like in 「そうですね」) is
+  entirely distinct in its function and doesn't attach to verb or adjective stems. Understanding these
+  nuances will prevent misunderstandings.
+examples:
+  - english: It looks like it's going to rain.
+    japanese:
+      - 雨 が {降り そう} です。
+      - 雨 が {降り そう} だ。
+    english_literally: Rain looks like it will fall.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降る {よう だ}。
+        english: It seems it will rain.
+        hint: While both convey conjecture, 「ようだ」 suggests a more indirect inference, perhaps based on
+          general signs, whereas 「そう」 (stem form) is a more direct visual observation. We're looking for
+          a direct observation.
+      - competing_japanese:
+          - 雨 が {降り そう} に 見える。
+        english: It looks like it will rain (visually).
+        hint: 「〜に見える」 explicitly states 'looks like' focusing on visual appearance, but 「そう」 can often
+          imply this directly without the additional verb. We're looking for a more concise expression.
+    scene: You're looking out the window and see dark clouds gathering.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: That cake looks delicious!
+    japanese:
+      - その ケーキ、{美味し そう} です ね！
+      - その ケーキ、{美味し そう} だ ね！
+    english_literally: That cake, looks delicious, doesn't it!
+    competing_grammar:
+      - competing_japanese:
+          - その ケーキ、美味しい {らしい} です ね！
+        english: That cake seems delicious (based on reputation).
+        hint: 「らしい」 implies a judgment based on external information or reputation, not necessarily direct
+          visual appearance like 「そう」. We're looking for a judgment based on appearance.
+      - competing_japanese:
+          - その ケーキ、美味しい {みたい} です ね！
+        english: That cake seems delicious (inferential).
+        hint: 「みたいだ」 is also about appearance, but often more casual and can be based on less direct observation
+          or a feeling. 「そう」 (stem form) often conveys a more immediate, direct visual impression. We're
+          looking for a direct visual impression.
+    scene: You're at a cafe, admiring a cake in the display.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I heard that the exam results will be announced tomorrow.
+    japanese:
+      - 試験 の 結果 は 明日 発表 {さ れる そう} です。
+      - 試験 の 結果 は 明日 発表 {さ れる そう} だ。
+      - 試験 の 結果 は 明日 発表 さ れる {って}。
+    english_literally: Exam's results tomorrow announced will be, I hear, polite.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 結果 は 明日 発表 さ れる らしい です。
+        english: It seems that the exam results will be announced tomorrow (based on evidence).
+        hint: 「らしい」 suggests a conjecture based on indirect evidence or reputation, whereas 「そう」 indicates
+          direct reported information. We're looking for reported speech here.
+      - competing_japanese:
+          - 試験 の 結果 は 明日 発表 さ れる {と} 聞き まし た。
+        english: I heard that the results will be announced tomorrow (direct report).
+        hint: This is a very direct way to say 'I heard.' While correct, 「そう」 (plain form) is a more natural
+          and common way to convey hearsay concisely. We're looking for a more common usage.
+    scene: You're talking to a classmate about upcoming exam results.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: He looks busy.
+    japanese:
+      - 彼 は 忙し {そう} です。
+      - 彼 は 忙し {そう} だ。
+    english_literally: He busy looks like, polite.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙しい {みたい} です。
+        english: He seems busy (inferential).
+        hint: 「みたいだ」 implies a subjective feeling or less direct evidence, while 「そう」 often implies a
+          more direct observation of appearance. We're looking for a direct observation.
+      - competing_japanese:
+          - 彼 は 忙しい {よう だ}。
+        english: He appears busy (formal/inferential).
+        hint: Similar to 「みたいだ」, 「ようだ」 suggests an inference rather than a direct visual cue like 「そう」
+          (stem form). We're looking for a direct observation.
+    scene: You see your colleague rushing around the office.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: It doesn't seem like there's enough time.
+    japanese:
+      - 時間 が {なさ そう} です。
+      - 時間 が {なさ そう} だ。
+      - 十分 な 時間 が {なさ そう} です。
+    english_literally: Time doesn't seem to be, polite.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が ない {みたい} です。
+        english: It seems there isn't time.
+        hint: Both convey a lack of time, but 「みたいだ」 is more general for 'it seems,' whereas 「そう」 (stem
+          form) for ない specifically highlights the *appearance* of insufficient time. We're looking for
+          an observation about insufficient time.
+      - competing_japanese:
+          - 時間 が 足り ない {よう だ}。
+        english: It appears time is insufficient.
+        hint: 「ようだ」 implies an appearance based on inference, while 「なさそう」 directly states the *unlikelihood*
+          or *absence* of something based on observation. We're looking for an observation about insufficient
+          time.
+    scene: You're evaluating the remaining tasks and the deadline.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+  - english: He looks tired.
+    japanese:
+      - 彼 は 疲れ {て い そう} だ。
+      - 彼 は 疲れ {て い そう} です。
+      - 彼、疲れ {て そう} だ ね。
+    english_literally: He is tired-looking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 疲れ そう だ。
+        english: He looks like he's about to get tired (or looks like he will get tired).
+        hint: 「Verb[stem] + そうだ」 implies an action is about to happen, while 「Verb[てい]そう」 indicates the
+          appearance of an ongoing state. We're looking for an ongoing state of tiredness.
+    scene: You observe a friend who has been working long hours.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The usage of 「疲れ{ていそう}だ」 implies that the speaker is observing an ongoing state of being tired.
+      If it were 「疲れ{そう}だ」, it would imply the person looks like they are about to become tired, which
+      is a different nuance.
+  - english: I heard that restaurant is popular, so it might be crowded.
+    japanese:
+      - あの レストラン は 人気 {だそう} だ から、混ん で いる か も しれ ない。
+      - あの レストラン は 人気 {だそう} です から、混ん で いる か も しれ ませ ん。
+      - あの レストラン 人気 {だ って}。だ から、混ん で いる か も しれ ない。
+    english_literally: That restaurant popular, I hear, so crowded might be.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 人気 {らしい} から、混ん で いる か も しれ ない。
+        english: It seems that restaurant is popular (based on reputation), so it might be crowded.
+        hint: 「らしい」 infers popularity from general knowledge or reputation, while 「そう」 (plain form) explicitly
+          states it's something you *heard*. We're looking for something you heard.
+      - competing_japanese:
+          - あの レストラン は 人気 {だ} と 聞き まし た から、混ん で いる か も しれ ませ ん。
+        english: I heard that restaurant is popular, so it might be crowded.
+        hint: This phrase is grammatically correct but longer and more direct. 「そう」 (plain form) is a
+          concise and common way to convey hearsay. We're looking for a concise expression.
+    scene: You're discussing dinner plans with a friend.
+    register: casual
+    setting: friendly
+  - english: That box looks heavy.
+    japanese:
+      - あの 箱 は 重 {そう} だ。
+      - あの 箱 は 重 {そう} です。
+      - あの 箱 は かなり 重 {そう} だ。
+    english_literally: That box heavy looks like.
+    competing_grammar:
+      - competing_japanese:
+          - あの 箱 は 重い {みたい} だ。
+        english: That box seems heavy (inferential).
+        hint: 「みたいだ」 is more general and can be based on intuition, while 「そう」 (stem form) for adjectives
+          highlights a direct visual impression. We're looking for a direct visual impression.
+      - competing_japanese:
+          - あの 箱 は 重い {よう だ}。
+        english: That box appears heavy (formal/inferential).
+        hint: Similar to 「みたいだ」, 「ようだ」 suggests an inference rather than a direct visual cue like 「そう」
+          (stem form). We're looking for a direct visual cue.
+    scene: You're considering moving a large box.
+    register: casual
+    setting: informative
+  - english: It seemed like she was about to cry.
+    japanese:
+      - 彼女 は {泣き そう} だっ た。
+      - 彼女 は {泣き そう} でし た。
+      - 彼女、泣き {そう} だっ た ね。
+    english_literally: She cry-looks-like was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 泣く {ところ} だっ た。
+        english: She was on the verge of crying.
+        hint: 「ところだった」 implies an action was almost completed but didn't quite happen, whereas 「泣きそうだった」
+          focuses on the appearance or likelihood of the action. We're looking for the appearance of being
+          about to cry.
+      - competing_japanese:
+          - 彼女 は 泣き 出し {そう} だっ た。
+        english: She looked like she was about to burst into tears.
+        hint: 「泣き出す」 means 'to burst into tears'. While similar, 「泣きそう」 is a more general expression for
+          'looking like crying'. We're looking for a more general expression for 'about to cry'.
+    scene: You recall seeing someone who was on the verge of tears.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: That movie seemed interesting.
+    japanese:
+      - その 映画 は 面白 {そう だっ た} ね。
+      - その 映画 は 面白 {そう でし た} ね。
+      - あの 映画、面白 {そう} だっ た ね。
+    english_literally: That movie interesting-seemed, right.
+    competing_grammar:
+      - competing_japanese:
+          - その 映画 は 面白い {みたい} だっ た ね。
+        english: That movie seemed interesting (based on indirect info).
+        hint: 「みたいだ」 often implies conjecture based on indirect information or general impression, whereas
+          「そう」 (stem form) for adjectives highlights a more direct visual impression. We're looking for
+          a direct visual impression.
+      - competing_japanese:
+          - その 映画 は 面白い {よう} だっ た ね。
+        english: That movie appeared interesting (formal/inferential).
+        hint: Similar to 「みたいだ」, 「ようだ」 suggests an inference rather than a direct visual cue like 「そう」
+          (stem form). We're looking for a direct visual cue.
+    scene: You're talking to a friend about a movie you both saw advertised.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: The weather doesn't look good for tomorrow.
+    japanese:
+      - 明日 の 天気 は {よく なさ そう} です。
+      - 明日 の 天気 は {よく なさ そう} だ。
+      - 明日 は 天気 が {よく なさ そう} です。
+    english_literally: Tomorrow's weather good-doesn't-seem, polite.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 天気 は よく ない {みたい} です。
+        english: The weather doesn't seem good for tomorrow (inferential).
+        hint: 「みたいだ」 conveys an appearance based on general impression or feeling, while 「よくなさそう」 is more
+          specific to the direct observation of things not looking good. We're looking for a direct observation.
+      - competing_japanese:
+          - 明日 の 天気 は よく ない {らしい} です。
+        english: It seems the weather won't be good for tomorrow (based on forecast/indirect info).
+        hint: 「らしい」 suggests a judgment based on external information like a weather forecast, while 「よくなさそう」
+          indicates a more immediate impression from looking at the sky, for example. We're looking for
+          an immediate impression.
+    scene: You check the weather forecast for an upcoming event.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative non-past polite (～ません)

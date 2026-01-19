@@ -1,0 +1,224 @@
+grammar_point: '[Verb-dictionary]こと (nominalization)'
+learn_before:
+  - ことは〜が (concession with nuance)
+meaning: the act of doing; to do
+pronunciation:
+  katakana: コト
+  romaji: koto
+formation:
+  Verb[dictionary form] + こと: Transforms a verb into a noun, indicating the action itself.
+jlpt: N5
+etymology: The Japanese word こと (事) originally referred to 'things,' 'affairs,' or 'matters.' Its use
+  as a nominalizer allows verbs to be treated as such abstract concepts or facts. This evolution enables
+  actions and situations to be conceptualized and discussed as discrete 'things' or 'events' within a
+  sentence.
+writeup: "The grammatical construct Verb[dictionary form]こと is a crucial nominalizer in Japanese, transforming\
+  \ a verb or an entire verb clause into a noun phrase. This allows the action or state described by the\
+  \ verb to be treated as a grammatical entity—a subject, object, or the topic of a sentence.\n\nWhen\
+  \ a verb is followed by こと, it becomes a noun phrase representing the action or event itself. For example,\
+  \ 読む (yomu - to read) becomes 読むこと (yomu koto - the act of reading / reading). This newly formed noun\
+  \ phrase can then be used in various grammatical structures, much like any other noun.\n\nこと nominalization\
+  \ is often used when discussing: \n- **General truths or concepts**: For instance, 水を飲むことは大切だ (Mizu\
+  \ o nomu koto wa taisetsu da - Drinking water is important).\n- **Rules or instructions**: 走ることは禁止されている\
+  \ (Hashiru koto wa kinshi sareteiru - Running is forbidden).\n- **Abilities or possibilities**: ピアノを弾くことができます\
+  \ (Piano o hiku koto ga dekimasu - I can play the piano).\n- **Personal experiences or observations**:\
+  \ 富士山に登ったことがある (Fujisan ni nobotta koto ga aru - I have climbed Mt. Fuji before).\n\nWhile こと and の\
+  \ can both serve as nominalizers, こと generally carries a more objective, conceptual, or formal nuance.\
+  \ It refers to the 'fact' or 'affair' of the action. の on the other hand, often nominalizes a specific\
+  \ event that one perceives with the senses (seeing, hearing, feeling) or a more personal, subjective\
+  \ experience. This distinction is subtle but important for natural Japanese expression."
+false_friends:
+  - term: Verb[dictionary form]の (nominalization)
+    meaning: the act of doing; to do
+    kind: similar expression
+    nuance: While both こと and の can nominalize verbs, の often implies a more specific, sensory, or personal
+      observation of an action or state. こと objectifies the action as a general concept or fact.
+    grammar_point: <suggest>:の (nominalization)
+  - term: '[Clause]ことだ (should/ought to)'
+    meaning: should do; ought to do; it is important to do
+    kind: similar expression
+    nuance: This grammatical pattern expresses advice, recommendation, or a moral obligation. It uses
+      ことだ as a fixed phrase with a prescriptive meaning, distinct from こと purely functioning as a nominalizer.
+    grammar_point: ことだ (should・ought to)
+  - term: '[Clause]ということ (the fact that)'
+    meaning: the fact that; it means that
+    kind: similar expression
+    nuance: This form typically introduces a statement as a reported fact or explains the meaning of a
+      preceding statement. It emphasizes the content of the clause as a 'fact' or 'meaning,' whereas こと
+      alone is a general nominalizer for the action.
+    grammar_point: ということだ (it means that)
+post_false_friends_writeup: When こと acts as a nominalizer, it transforms a verb into a noun phrase referring
+  to the action or state itself as a concept. It's often used for general statements, rules, or when discussing
+  'the matter of X.' In contrast, の nominalizes an action for a more subjective or sensory focus, often
+  implying direct observation. For example, 彼の走ることを知っている (I know the fact of his running - perhaps his
+  running technique) versus 彼が走るのを見た (I saw him running - a specific event). Patterns like ことだ or ということ
+  are distinct grammatical structures that utilize こと but add specific meanings beyond simple nominalization.
+  Remember to identify the core function of こと in context.
+examples:
+  - english: Reading books is fun.
+    japanese:
+      - 本 を {読む こと} は 楽しい です。
+      - 本 を {読む こと} は 楽しい。
+    english_literally: As for the act of reading books, it is enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を 読む の は 楽しい です。
+        english: Reading books (the action itself) is fun.
+        hint: 「の」 can also nominalize verbs, but it often has a more subjective or sensory nuance. We're
+          looking for a more general statement about the activity.
+    scene: A student shares their hobby with a friend.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: This uses こと to nominalize 本を読む (to read books), turning it into a noun phrase that functions
+      as the topic of the sentence. The statement is a general truth about the activity.
+  - english: Drawing pictures is my hobby.
+    japanese:
+      - 絵 を {描く こと} が 私 の 趣味 です。
+      - 絵 を {描く こと} が 私 の 趣味 だ。
+    english_literally: As for the act of drawing pictures, it is my hobby.
+    competing_grammar:
+      - competing_japanese:
+          - 絵 を 描く の が 私 の 趣味 です。
+        english: Drawing pictures (the action itself) is my hobby.
+        hint: Both 「こと」 and 「の」 can nominalize, but 「こと」 emphasizes the activity as a concept or fact,
+          which is suitable for stating a hobby as a factual interest.
+    scene: Someone is introducing themselves and their interests.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 絵を描くこと nominalizes the action 'to draw pictures,' making it the subject of the sentence (絵を描くこと
+      が) and stating it as a fact about one's hobby. It treats the activity as a concept.
+  - english: It is important to study every day.
+    japanese:
+      - 毎日 勉強 {する こと} は 大切 です。
+      - 毎日 勉強 {する こと} は 大切 だ。
+    english_literally: As for the act of studying every day, it is important.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 勉強 す べき だ。
+        english: You should study every day.
+        hint: 「べきだ」 expresses an obligation or recommendation. We're looking for a general statement about
+          the importance of an action.
+    scene: A teacher is giving advice to their students.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 勉強すること nominalizes 'to study,' making the daily act of studying the topic (勉強すること は). This
+      sentence expresses a general principle or piece of advice.
+  - english: I have been to Japan once.
+    japanese:
+      - 日本 に 行っ た {こと} が あり ます。
+      - 日本 に 行っ た {こと} が ある。
+    english_literally: As for the act of going to Japan, there is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 行き まし た。
+        english: I went to Japan.
+        hint: While 「行きました」 is simple past, 「行ったことがある」 specifically marks the experience of having gone.
+          We're looking for an expression of past experience.
+    scene: Someone is talking about their past travels.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: The pattern Verb[た]こと が ある is a fixed expression using こと to denote having the experience
+      of doing something. Here, 行ったこと refers to the past experience of 'having gone'.
+  - english: Smoking is prohibited here.
+    japanese:
+      - ここ で タバコ を {吸う こと} は 禁止 さ れ て い ます。
+      - ここ で タバコ を {吸う こと} は 禁止 だ。
+    english_literally: As for the act of smoking here, it is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - ここ は 禁煙 です。
+        english: This place is non-smoking.
+        hint: 「禁煙」 is a noun meaning 'no smoking.' We're looking for a sentence that nominalizes the verb
+          'to smoke' itself.
+    scene: A sign in a public place states a rule.
+    register: formal
+    setting: informative
+    nuance: 吸うこと nominalizes 'to smoke,' forming a noun phrase that is the subject of the prohibition.
+      This usage is common in formal rules and regulations, emphasizing the general act.
+  - english: It's difficult to run a marathon.
+    japanese:
+      - マラソン を {走る こと} は 難しい です。
+      - マラソン を {走る こと} は 難しい。
+    english_literally: As for the act of running a marathon, it is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - マラソン を 走る の は 難しい です。
+        english: Running a marathon (the act) is difficult.
+        hint: While 「の」 can also nominalize, 「こと」 tends to be used for more objective or conceptual statements,
+          such as describing a general difficulty.
+    scene: Two friends are discussing physical challenges.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 走ること nominalizes 'to run,' allowing the action of 'running a marathon' to be described as
+      'difficult.' It refers to the general challenge of the activity.
+  - english: It is not good to tell lies.
+    japanese:
+      - 嘘 を {つく こと} は よく ない です。
+      - 嘘 を {つく こと} は よく ない。
+    english_literally: As for the act of telling lies, it is not good.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 を つい て は いけ ませ ん。
+        english: You must not tell lies.
+        hint: 「〜てはいけません」 is a prohibitive expression. We're looking for a statement about the general
+          negative quality of the act of lying.
+    scene: A parent is teaching a child about honesty.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 嘘をつくこと nominalizes the action 'to tell lies,' making it the topic of a moral statement. This
+      uses こと to express a general principle.
+  - english: Can you speak Japanese?
+    japanese:
+      - 日本 語 を {話す こと} が でき ます か？
+      - 日本 語 を {話す こと} が できる か？
+    english_literally: As for the act of speaking Japanese, can you do it?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 話せ ます か？
+        english: Can you speak Japanese? (using potential form)
+        hint: The potential form 「話せます」 directly expresses ability. We're looking for the usage involving
+          「こと」 to express an ability.
+    scene: Someone is asking about another person's language ability.
+    register: teineigo (polite)
+    setting: interrogative
+    nuance: The pattern Verb[dictionary]こと が できる signifies ability. 話すこと here refers to the 'ability to
+      speak,' treating the action of speaking as a capacity.
+  - english: My dream is to travel the world.
+    japanese:
+      - 私 の 夢 は 世界 を {旅行 する こと} です。
+      - 私 の 夢 は 世界 を {旅行 する こと} だ。
+    english_literally: My dream is the act of traveling the world.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 夢 は 世界 旅行 です。
+        english: My dream is world travel.
+        hint: 「世界旅行」 is a noun phrase. We're looking for an example that nominalizes the verb 'to travel'
+          using 「こと」.
+    scene: A young person expresses their aspirations.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 旅行すること nominalizes 'to travel,' making 'traveling the world' the predicate describing 'my
+      dream.' This abstract use of こと is common for goals and aspirations.
+  - english: It is important for everyone to have a dream.
+    japanese:
+      - 誰 に とっ て も 夢 を {持つ こと} は 大切 だ。
+      - 誰 に とっ て も 夢 を {持つ こと} は 大切 です。
+    english_literally: For everyone, the act of having a dream is important.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 で も 夢 を 持つ べき だ。
+        english: Everyone should have a dream.
+        hint: 「べきだ」 indicates a moral obligation or strong recommendation. We're looking for a general
+          statement about the importance of having a dream.
+    scene: A philosopher writes down an insightful thought.
+    register: casual
+    setting: academic
+    nuance: 持つこと nominalizes 'to have,' making the act of 'having a dream' the general concept that is
+      important. The use of だ makes it a casual, definitive statement.
+post_example_writeup: These examples illustrate how Verb[dictionary form]こと transforms an action into
+  a conceptual noun, enabling it to function as a subject, object, or part of a larger grammatical structure.
+  Pay attention to the particle that follows こと, as it dictates the role of the nominalized phrase in
+  the sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%93%E3%81%AE%E3%81%93%E3%81%A8

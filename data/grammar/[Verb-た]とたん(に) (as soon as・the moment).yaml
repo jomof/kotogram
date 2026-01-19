@@ -1,0 +1,240 @@
+grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+learn_before:
+  - Verb[て] (and then)
+meaning: as soon as; the moment; right after
+pronunciation:
+  katakana: トタン ニ
+  romaji: totan ni
+formation:
+  Verb[た形] + とたん(に): Used with the plain past form (た形) of a verb, followed by とたん or とたんに. It expresses
+    that immediately after an action or event occurs, another sudden or unexpected event follows.
+jlpt: N3
+etymology: 'The term 「途端」(とたん) is composed of two kanji: 途 (to), meaning ''way'' or ''route'', and 端 (tan),
+  meaning ''edge'' or ''end''. Historically, it refers to the very moment one thing ends and another begins,
+  like reaching the ''end of a path'' or ''the edge of a moment''. When used with the particle 「に」, it
+  emphasizes the precise point in time at which the second action immediately and often unexpectedly commences.'
+writeup: |-
+  The grammar pattern 「〜た途端(に)」 (〜ta totan (ni)) is used to describe an event that happens immediately after another, often with a sense of suddenness or unexpectedness. It highlights that action B occurs at the precise moment action A finishes, making the connection feel abrupt or surprising. While it often implies a cause-effect relationship, the primary focus is on the unexpected immediacy of the second event.
+
+  It is commonly used to express an unforeseen turn of events or something that happens almost simultaneously. The particle 「に」 can be omitted without changing the meaning, but its inclusion often adds a slight emphasis on the exact timing.
+false_friends:
+  - term: '[Verb-た]ばかり'
+    meaning: just did; just finished
+    kind: similar expression
+    nuance: 「〜たばかり」 emphasizes that an action has just been completed, focusing on the recency of the
+      action. It does not necessarily imply a sudden or unexpected subsequent event, unlike 「〜た途端(に)」.
+    grammar_point: たばかり (just did)
+  - term: 〜や否や
+    meaning: as soon as; no sooner... than
+    kind: similar expression
+    nuance: 「〜や否や」 expresses extreme immediacy, almost as if the two actions are simultaneous. It is more
+      formal and literary than 「〜た途端(に)」 and often implies a strong, almost automatic reaction or consequence,
+      sometimes unexpected. The nuance of "no sooner... than" is very strong.
+    grammar_point: <suggest>:Verb[dictionary]や否や (as soon as・no sooner than)
+  - term: 〜が早いか
+    meaning: as soon as; no sooner... than
+    kind: similar expression
+    nuance: Similar to 「〜や否や」, 「〜が早いか」 emphasizes the speed and almost simultaneous occurrence of the
+      second action after the first. It often carries a nuance of surprise at how quickly the second event
+      transpired, or a lack of time for any other action in between. It can be used for both intentional
+      and unintentional actions.
+    grammar_point: <suggest>:Verb[dictionary]が早いか (as soon as・no sooner than)
+  - term: 〜なり
+    meaning: as soon as; no sooner... than (same subject)
+    kind: similar expression
+    nuance: 「〜なり」 indicates that the second action immediately follows the first, with a strong sense
+      that the first action *triggers* the second. It implies an impulsive or reflexive action, usually
+      performed by the *same subject* immediately after completing the first action. The second action
+      is often unintentional or automatic.
+    grammar_point: <suggest>:Verb[dictionary]なり (as soon as・same subject)
+  - term: 〜次第
+    meaning: as soon as; upon completion
+    kind: similar expression
+    nuance: 「〜次第」 means 'as soon as' but often implies a pre-planned or determined action that will take
+      place upon the completion of the first. It lacks the element of suddenness or unexpectedness present
+      in 「〜た途端(に)」, focusing instead on a set sequence.
+    grammar_point: 次第 (as soon as)
+  - term: '[Verb-た]ところ'
+    meaning: just when; at the point when
+    kind: similar expression
+    nuance: 「〜たところ」 indicates that something *was discovered* or *found out* at the exact moment an action
+      was completed. It highlights the timing of a realization or a new state, rather than a sudden, external
+      event immediately following the first action.
+    grammar_point: '[Verb-た]ところだ (just finished doing)'
+  - term: 〜てから
+    meaning: after; since
+    kind: similar expression
+    nuance: 「〜てから」 simply indicates a sequential relationship, meaning 'after X, then Y'. It does not
+      carry the strong nuance of immediacy, suddenness, or unexpectedness that 「〜た途端(に)」 does. The time
+      gap between actions can vary.
+    grammar_point: てから (after and since)
+  - term: 〜と同時に
+    meaning: at the same time as; simultaneously
+    kind: similar expression
+    nuance: 「〜と同時に」 expresses that two actions or events occur at the exact same time, or one happens
+      concurrently with the completion of another. While it implies close timing, it does not convey the
+      unexpected or cause-effect suddenness of 「〜た途端(に)」.
+    grammar_point: と同時に (at the same time as)
+  - term: 〜かと思ったら・かと思うと
+    meaning: no sooner... than; just when... then (unexpected succession)
+    kind: similar expression
+    nuance: 「〜かと思ったら・かと思うと」 is very similar to 「〜た途端(に)」 in conveying an immediate, often surprising sequence
+      of events. However, it often highlights a noticeable *shift* or *change* in situation, and can sometimes
+      imply a slightly longer, though still quick, interval between the actions than 「〜た途端(に)」.
+    grammar_point: かと思ったら・かと思うと (unexpected succession)
+post_false_friends_writeup: While many of these expressions convey a sequence of events, 「〜た途端(に)」 specifically
+  emphasizes the *suddenness* and often *unexpectedness* of the second event occurring immediately after
+  the first. Pay close attention to the nuance of surprise and abruptness when choosing to use 「〜た途端(に)」.
+examples:
+  - english: As soon as I opened the door, a cat jumped out.
+    japanese:
+      - ドア を {開け た 途端}、猫 が 飛び出し た。
+      - ドア を {開け た 途端 に}、猫 が 飛び出し た。
+    english_literally: Door object opened the moment, cat subject jumped out.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 開け て から、猫 が 飛び出し た。
+        english: After opening the door, a cat jumped out.
+        hint: The nuance of this sentence is simply a sequence of events. We're looking for an expression
+          that emphasizes the *suddenness* of the cat jumping out at the very moment the door opened.
+    scene: You recount a sudden, surprising event that happened right as you were opening a door.
+    register: casual
+    setting: storytelling
+  - english: The moment I stepped onto the platform, the train started to move.
+    japanese:
+      - ホーム に {降り立っ た 途端}、電車 が 動き 出し た。
+      - ホーム に {降り立っ た 途端 に}、電車 が 動き 出し た。
+    english_literally: Platform to stepped down the moment, train subject started to move.
+    competing_grammar:
+      - competing_japanese:
+          - ホーム に 降り立つ と 同時 に、電車 が 動き 出し た。
+        english: At the same time as I stepped onto the platform, the train started to move.
+        hint: This implies simultaneous action. We want to convey that the train started moving *immediately
+          after* you stepped on, with a sense of unfortunate timing or abruptness.
+    scene: You are explaining how you just barely missed your train, emphasizing the precise timing of
+      the train's departure.
+    register: casual
+    setting: reflective
+  - english: As soon as I finished speaking, everyone burst into laughter.
+    japanese:
+      - 私 が 話し 終え た {途端}、皆 が どっと 笑い 出し た。
+      - 私 が 話し 終え た {途端 に}、皆 が どっと 笑い 出し た。
+    english_literally: I subject finished speaking the moment, everyone burst into laughter.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 話し 終わっ た ばかり の 時、皆 が どっと 笑い 出し た。
+        english: Just when I had finished speaking, everyone burst into laughter.
+        hint: This emphasizes the recency of your speaking. We're looking for the immediate, sudden reaction
+          of laughter following your words.
+    scene: You just told a joke, and you describe the audience's immediate reaction.
+    register: casual
+    setting: humorous
+  - english: The child, the moment he saw his mother, started crying.
+    japanese:
+      - 子供 は 母親 を 見 た {途端}、泣き 出し た。
+      - 子供 は 母親 を 見 た {途端 に}、泣き 出し た。
+    english_literally: Child topic mother object saw the moment, started crying.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 母親 を 見る なり、泣き 出し た。
+        english: The child, as soon as he saw his mother, started crying (reflexively).
+        hint: This focuses on the child's reflexive action. We're looking for the immediate and sudden
+          onset of crying right at the moment of seeing the mother.
+    scene: A young child, separated from their mother, suddenly spots her in the crowd.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+  - english: As soon as the alarm rang, he jumped out of bed.
+    japanese:
+      - 目覚まし 時計 が 鳴っ た {途端}、彼 は ベッド から 飛び起き た。
+      - 目覚まし 時計 が 鳴っ た {途端 に}、彼 は ベッド から 飛び起き た。
+    english_literally: Alarm clock subject rang the moment, he topic bed from jumped up.
+    competing_grammar:
+      - competing_japanese:
+          - 目覚まし 時計 が 鳴る や 否 や、彼 は ベッド から 飛び起き た。
+        english: No sooner had the alarm clock rung than he jumped out of bed (very formal/literary).
+        hint: This is a more formal and literary expression for extreme immediacy. We're describing a
+          sudden and quick action, but not necessarily in such a formal tone.
+    scene: Describing someone's immediate and disciplined reaction to their alarm.
+    register: semi-formal
+    setting: informative
+  - english: The moment I got home, it started raining heavily.
+    japanese:
+      - 家 に {着い た 途端}、大雨 が 降り 出し た。
+      - 家 に {着い た 途端 に}、大雨 が 降り 出し た。
+    english_literally: House to arrived the moment, heavy rain subject started falling.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 着い て から、大雨 が 降り 出し た。
+        english: After arriving home, it started raining heavily.
+        hint: This is a simple sequence. We want to convey the immediate and somewhat frustrating timing
+          of the rain's onset.
+    scene: You arrive home just in time before a downpour, highlighting the precise timing.
+    register: casual
+    setting: reflective
+  - english: He sneezed the moment he smelled the pollen.
+    japanese:
+      - 彼 は 花粉 の 匂い を 嗅い だ {途端}、くしゃみ を し た。
+      - 彼 は 花粉 の 匂い を 嗅い だ {途端 に}、くしゃみ を し た。
+    english_literally: He topic pollen of smell object smelled the moment, sneezed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 花粉 の 匂い を 嗅ぐ が 早い か、くしゃみ を し た。
+        english: No sooner had he smelled the pollen than he sneezed (emphasizing speed).
+        hint: This emphasizes the extreme speed of the action, almost a reflex. We're simply stating the
+          sudden occurrence right after smelling the pollen.
+    scene: Describing someone's allergic reaction to pollen.
+    register: casual
+    setting: informative
+  - english: As soon as I pressed the button, the machine started moving with a loud noise.
+    japanese:
+      - ボタン を {押し た 途端}、機械 が 大きな 音 を 立て て 動き 出し た。
+      - ボタン を {押し た 途端 に}、機械 が 大きな 音 を 立て て 動き 出し た。
+    english_literally: Button object pressed the moment, machine subject loud sound object making started
+      to move.
+    competing_grammar:
+      - competing_japanese:
+          - ボタン を 押し たら、機械 が 大きな 音 を 立て て 動き 出し た。
+        english: When I pressed the button, the machine started moving with a loud noise (conditional
+          or simple sequence).
+        hint: This is a general conditional or sequential statement. We're looking for the precise and
+          immediate initiation of movement the instant the button was pressed.
+    scene: You are describing the immediate and somewhat surprising activation of a machine.
+    register: formal
+    setting: technical
+  - english: The moment she heard the news, her expression changed dramatically.
+    japanese:
+      - 彼女 は その 知らせ を 聞い た {途端}、表情 が 一変 し た。
+      - 彼女 は その 知らせ を 聞い た {途端 に}、表情 が 一変 し た。
+    english_literally: She topic that news object heard the moment, expression subject changed completely.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は その 知らせ を 聞く や 否 や、表情 が 一変 し た。
+        english: No sooner had she heard the news than her expression changed completely (very strong
+          immediacy).
+        hint: This is a very strong and formal way to express immediate succession. We are describing
+          a sudden, visible change in expression.
+    scene: Observing someone's immediate and strong emotional reaction to news.
+    register: semi-formal
+    setting: serious
+  - english: The moment I received his call, I knew something was wrong.
+    japanese:
+      - 彼 から の 電話 を {受け た 途端}、何 か が おかしい と 感じ た。
+      - 彼 から の 電話 を {受け た 途端 に}、何 か が おかしい と 感じ た。
+    english_literally: He from possessive phone object received the moment, something subject wrong to
+      felt.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 から の 電話 を 受け て から と いう もの、何 か が おかしい と 感じ た。
+        english: Since receiving his call, I have felt that something is wrong (lasting state).
+        hint: This implies a continuous state of feeling something wrong *since* the call. We're focusing
+          on the immediate feeling *at the moment* the call was received.
+    scene: You describe an instant premonition upon receiving a phone call.
+    register: casual
+    setting: reflective
+post_example_writeup: As you can see from the examples, 「〜た途端(に)」 is frequently used to describe a sharp,
+  often unexpected, transition from one state or action to another. It implies that the second event is
+  a direct and immediate consequence of the first, occurring with no perceivable delay. This makes it
+  a very impactful expression for conveying sudden changes or surprising developments.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%9F%E3%82%93

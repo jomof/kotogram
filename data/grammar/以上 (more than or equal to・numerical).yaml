@@ -1,0 +1,247 @@
+grammar_point: 以上 (more than or equal to・numerical)
+learn_before:
+  - 以上です (that's all・conclusion)
+meaning: more than or equal to; above; beyond; that is all; that's it; since; now that
+pronunciation:
+  katakana: イジョウ
+  romaji: ijō
+formation:
+  '[数値] 以上': Indicates a quantity that is equal to or greater than a specified number.
+  '[状態・条件] 以上': Signifies that a certain condition or state has been met, implying a consequence or conclusion.
+jlpt: N3
+etymology: 'The word 「以上」 (いじょう) literally combines 「以」 (i), meaning ''by means of, taking as a basis,''
+  and 「上」 (jō), meaning ''above, up, superior.'' This etymology directly reflects its two primary uses:
+  ''taking this point as a basis and going upwards'' (i.e., ''more than or equal to'') and ''beyond this
+  point'' (i.e., ''that''s all, it''s over, since this is the case''). It signifies a boundary or a foundation
+  from which something extends or on which a conclusion is based.'
+writeup: |-
+  The grammar point 「以上」 (いじょう) is a versatile expression used primarily in two contexts: specifying a numerical or quantitative minimum, and indicating a condition that, once met, leads to a logical consequence. While its core meaning revolves around 'being equal to or greater than' a certain point, its application extends to conveying 'that's all,' or 'since/now that a certain situation exists.'
+
+  When used with numerical values, 「以上」 means "at least" or "X and above." For instance, 「１０歳以上」 (juusai ijō) means "10 years old and above." This usage is common in setting criteria, requirements, or describing quantities. It is inclusive, meaning the specified number itself is included in the range.
+
+  In its conditional sense, 「以上」 typically follows a clause, often in plain form, to establish a premise. It implies that "since" or "now that" a particular state or action has occurred, a certain outcome or obligation logically follows. For example, 「約束した以上、守らなければならない」 (yakusoku shita ijō, mamoranakereba naranai) means "Now that I've promised, I must keep it." This usage highlights a commitment or an undeniable consequence based on a fulfilled condition.
+
+  It can also be used as a standalone phrase, 「以上です」 (ijō desu), to mean "That's all" or "I'm done." This is a common way to conclude a presentation, a report, or a conversation, indicating that no further information will be provided. This usage directly stems from the meaning of 'beyond this point' or 'nothing more than this.'
+false_friends:
+  - term: 以下 (less than or equal to・the following)
+    meaning: less than or equal to; below; no more than; the following
+    kind: antonym
+    nuance: 「以下」 is the direct opposite of 「以上」, meaning 'less than or equal to' a numerical value or
+      'the following' in a list. 「以上」 signifies 'greater than or equal to' or 'that's all.'
+    grammar_point: <suggest>:以下 (less than or equal to・the following)
+  - term: より (comparative)
+    meaning: than (in comparison); from
+    kind: similar expression
+    nuance: While 「より」 can mean 'more than,' it typically implies a strict inequality (X > Y), whereas
+      「以上」 means 'greater than or equal to' (X ≥ Y). 「より」 also marks a starting point (from).
+    grammar_point: より (comparative)
+  - term: だけ (only・just)
+    meaning: only; just; as much as
+    kind: often confused with
+    nuance: When 「以上」 concludes a statement (e.g., 「以上です」), it can feel similar to 'only' or 'just.' However,
+      「だけ」 emphasizes limitation ('only this much'), while 「以上」 indicates completion or reaching a minimum
+      threshold.
+    grammar_point: だけ (only・just)
+  - term: 〜超 (over・exceeding)
+    meaning: exceeding; over; super-
+    kind: similar expression
+    nuance: 「〜超」 indicates strictly 'more than' a certain number (X > Y), without including the number
+      itself. 「以上」 includes the number (X ≥ Y).
+    grammar_point: <suggest>:超 (exceeding)
+  - term: のみ (only・just)
+    meaning: only; alone; merely
+    kind: often confused with
+    nuance: Similar to 「だけ」, 「のみ」 also expresses exclusivity or limitation, often in a more formal context.
+      「以上」 focuses on a threshold or conclusion, not necessarily exclusivity.
+    grammar_point: のみ (only・just)
+post_false_friends_writeup: 'While 「以上」 can signify a boundary or conclusion, expressions like 「だけ」 and
+  「のみ」 specifically denote exclusivity or limitation. Be mindful of the subtle difference: 「以上」 refers
+  to ''at least'' or ''beyond a point,'' while 「だけ」 and 「のみ」 mean ''nothing more than.'''
+examples:
+  - english: Children 6 years old and older are eligible.
+    japanese:
+      - ６ 歳 以上 の 子供 が 対象 です。
+      - ６ 歳 以上 の 子供 が 対象 だ。
+      - ６ 歳 以上 の お 子 様 が 対象 で ござい ます。
+    english_literally: Six years old and above children are target.
+    competing_grammar:
+      - competing_japanese:
+          - ６ 歳 より の 子供 が 対象 です。
+        english: Children more than 6 years old are eligible.
+        hint: 「より」 typically means 'strictly more than' (e.g., 7, 8, 9...), not including the number itself.
+          We're looking for '6 years old and older,' which means including 6.
+    scene: A kindergarten explains their enrollment criteria.
+    register: formal
+    setting: informative
+  - english: Please write 500 characters or more.
+    japanese:
+      - ５００ 字 以上 で 書い て ください。
+      - ５００ 字 以上 書い て ください。
+      - ５００ 字 以上 で 書く こと。
+    english_literally: 500 characters and above, please write.
+    competing_grammar:
+      - competing_japanese:
+          - ５００ 字 まで 書い て ください。
+        english: Please write up to 500 characters.
+        hint: 「まで」 indicates an upper limit or 'up to.' We're looking for a lower limit, '500 characters
+          or more.'
+    scene: An editor gives instructions to a writer.
+    register: formal
+    setting: instructional
+  - english: Now that you've started, you must finish it.
+    japanese:
+      - 始める 以上、最後 まで やり遂げる べき だ。
+      - 始める 以上、最後 まで やり遂げる べき です。
+      - 始め た 以上、最後 まで やり遂げ なけれ ば なり ませ ん。
+    english_literally: Since you started, should complete until the end.
+    competing_grammar:
+      - competing_japanese:
+          - 始める なら、最後 まで やり遂げる べき だ。
+        english: If you start, you should finish it.
+        hint: '「なら」 is a conditional meaning ''if it''s the case that A.'' 「以上」 implies a stronger logical
+          consequence: ''now that A is the case, then B must follow.'''
+    scene: A coach motivates an athlete.
+    register: semi-formal
+    setting: inspirational
+  - english: If that's the case, there's nothing more to say.
+    japanese:
+      - そう で ある 以上、もう 何 も 言う こと は ない。
+      - そう で ある 以上、もう 何 も 言え ませ ん。
+      - そう で ある 以上、何 も 言う まい。
+    english_literally: Since that is so, already nothing to say is not.
+    competing_grammar:
+      - competing_japanese:
+          - そう だ と し たら、もう 何 も 言う こと は ない。
+        english: If that were the case, there's nothing more to say.
+        hint: 「としたら」 sets up a hypothetical situation ('if assuming'). 「以上」 states a factual premise ('since
+          it is the case').
+    scene: Two colleagues discussing a resolved issue.
+    register: formal
+    setting: serious
+  - english: That's all I have to report.
+    japanese:
+      - 報告 は 以上 です。
+      - 報告 は 以上 で ござい ます。
+      - 報告 は これ で 以上 です。
+    english_literally: Report is above/that's all.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 は 終わり です。
+        english: The report is over.
+        hint: 「終わり」 simply means 'the end' or 'finished.' 「以上」 in this context implies 'that's all there
+          is to it,' marking a comprehensive conclusion.
+    scene: A subordinate finishes presenting to their superior.
+    register: formal
+    setting: professional
+  - english: This product is for ages 18 and up.
+    japanese:
+      - この 製品 は 18 歳 以上 が 対象 です。
+      - この 製品 は 18 歳 以上 を 対象 と し て い ます。
+      - 本 製品 は 18 歳 以上 を 対象 と し ます。
+    english_literally: This product is 18 years old and above is target.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 18 歳 より が 対象 です。
+        english: This product is for ages over 18.
+        hint: 「より」 implies strictly 'older than 18.' We need to include 18 years old, so 「以上」 is appropriate.
+    scene: A warning label on a product packaging.
+    register: formal
+    setting: informative
+  - english: As long as you're a member, you can use the facilities freely.
+    japanese:
+      - 会員 で ある 以上、施設 を 自由 に 利用 でき ます。
+      - 会員 で ある 以上、施設 は 自由 に 利用 でき ます。
+      - 会員 で ある 以上、施設 を 自由 に ご 利用 いただけ ます。
+    english_literally: Since you are a member, facilities can be freely used.
+    competing_grammar:
+      - competing_japanese:
+          - 会員 なら ば、施設 を 自由 に 利用 でき ます。
+        english: If you are a member, you can use the facilities freely.
+        hint: 「ならば」 sets a condition. 「以上」 implies that the condition is already met, and thus a certain
+          right or consequence follows.
+    scene: A staff member explains club rules.
+    register: formal
+    setting: instructional
+  - english: More than 100 people gathered for the event.
+    japanese:
+      - イベント に 100 人 以上 が 集まっ た。
+      - イベント に 100 人 以上 が 集まり まし た。
+      - イベント に 100 名 以上 が 参集 し た。
+    english_literally: To the event, 100 people and above gathered.
+    competing_grammar:
+      - competing_japanese:
+          - イベント に 100 人 だけ が 集まっ た。
+        english: Only 100 people gathered for the event.
+        hint: 「だけ」 limits the number to exactly 100. We're looking for '100 or more.'
+    scene: A news report describes attendance at a local festival.
+    register: casual
+    setting: informative
+  - english: Since I've decided to go, I won't back out now.
+    japanese:
+      - 行く と 決め た 以上、もう 後 に は 引け ない。
+      - 行く と 決め た 以上、もう 後 に は 引け ませ ん。
+      - 行く と 決め た 以上、後 に 引く こと は でき ない。
+    english_literally: Since decided to go, already cannot pull back.
+    competing_grammar:
+      - competing_japanese:
+          - 行く と 決め た から に は、もう 後 に は 引け ない。
+        english: Since I've decided to go, I won't back out now.
+        hint: 「からには」 also expresses a strong logical consequence, but 「以上」 often implies a slightly more
+          formal or definitive setting of a premise.
+    scene: A person expresses their firm resolve.
+    register: casual
+    setting: serious
+  - english: Is that all for today's meeting?
+    japanese:
+      - 今日 の 会議 は 以上 で よろしい でしょう か。
+      - 本日 の 会議 は 以上 で よろしい でしょう か。
+      - 会議 は これ にて 以上 で よろしい です か。
+    english_literally: Today's meeting is above/that's all, is it good?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は 終わり で よろしい でしょう か。
+        english: Is today's meeting over?
+        hint: While 「終わり」 simply means 'the end,' 「以上」 formally indicates 'that's all' in a presentation
+          or report context, implying no more information will be provided.
+    scene: The chairperson concludes a meeting.
+    register: formal
+    setting: professional
+  - english: The test result must be 80 points or higher.
+    japanese:
+      - テスト の 結果 は ８０ 点 以上 で ある べき だ。
+      - テスト の 結果 は ８０ 点 以上 で ある べき です。
+      - テスト の 結果 は ８０ 点 以上 と する。
+    english_literally: Test's result is 80 points and above should be.
+    competing_grammar:
+      - competing_japanese:
+          - テスト の 結果 は ８０ 点 より 高い べき だ。
+        english: The test result should be higher than 80 points.
+        hint: 「より」 implies strictly 'higher than' 80, meaning 80 itself would not pass. 「以上」 includes
+          80 points.
+    scene: A teacher sets a passing grade.
+    register: formal
+    setting: academic
+  - english: It's a matter of life or death, so we must be fully prepared.
+    japanese:
+      - 生死 に 関わる 以上、万全 の 準備 を する べき だ。
+      - 生死 に 関わる 以上、万全 の 準備 を する べき です。
+      - 生死 に 関わる 以上 の こと ゆえ、万全 の 準備 が 必要 です。
+    english_literally: Since it concerns life and death, full preparation should be made.
+    competing_grammar:
+      - competing_japanese:
+          - 生死 に 関わる こと だ から、万全 の 準備 を する べき だ。
+        english: Because it's a matter of life or death, we must be fully prepared.
+        hint: 「から」 gives a reason. 「以上」 implies a stronger, almost unavoidable consequence that logically
+          follows from the established premise.
+    scene: A military commander addresses their troops before a critical mission.
+    register: formal
+    setting: commanding
+    nuance: The phrase 「生死 に 関わる 以上」 (seishi ni kakawaru ijō) implies that 'since it's a matter concerning
+      life and death,' there is an absolute necessity for complete preparedness. This use of 「以上」 strongly
+      emphasizes the logical and unavoidable consequence of the given serious condition.
+post_example_writeup: Understanding 「以上」 hinges on recognizing whether it is setting a quantitative minimum
+  or establishing a definitive premise. In both cases, it signifies a point that has been met or exceeded,
+  leading to a specific outcome or conclusion. Paying attention to the context will help you correctly
+  interpret its meaning and use.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/192

@@ -1,0 +1,500 @@
+grammar_point: の (possession)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+meaning: Indicates possession or relationship.
+pronunciation:
+  katakana: ノ
+  romaji: 'no'
+formation:
+  Noun A + の + Noun B: Indicates that Noun B belongs to, is an attribute of, or is related to Noun A.
+  Noun + の + Noun: Links two nouns, showing relationship, material, origin, or attribute.
+  Noun + の + Adjective/Noun: Modifies a subsequent adjective or noun by providing more information about
+    it.
+jlpt: N5
+etymology: The particle 「の」 is believed to have originated from the possessive particle 「つ」 in Old Japanese.
+  Over time, 「つ」 evolved into 「の」, taking on a broader role in indicating not only possession but also
+  various relationships between nouns. Its evolution reflects a linguistic shift from specific possessive
+  markers to a more generalized relational particle, capable of linking diverse concepts.
+writeup: |-
+  The particle 「の」 is a fundamental element in Japanese grammar, primarily used to indicate possession or to show a relationship between two nouns. Think of it as creating a link where the noun before 「の」 (Noun A) is related to or owns the noun after it (Noun B). In essence, "A の B" signifies that B is associated with A in some way.
+
+  *   **Possession:** This is the most straightforward use. For instance, 「私 の ペン」 (watashi no pen) means "my pen," where the pen belongs to me.
+  *   **Relationship:** 「の」 can specify a broader connection beyond strict ownership. For example, 「先生 の 傘」 (sensei no kasa), meaning "the teacher's umbrella," could imply that the umbrella belongs to the teacher, or it might simply refer to an umbrella that the teacher is using or is associated with. The context typically clarifies the precise connection.
+  *   **Attribute:** It can also denote an attribute or characteristic. For example, 「日本 の 車」 (Nihon no kuruma) means "a Japanese car," indicating the car's origin or type. Similarly, 「今日 の ニュース」 (kyō no nyūsu) refers to "today's news," showing a temporal relationship.
+
+  While 「の」 is predominantly used after nouns, it can also appear after other parts of speech when they are nominalized (transformed into a noun-like phrase). This advanced usage is covered in the grammar point for 「の」 - Nominalization. The specific register of a sentence containing 「の」 is determined by the surrounding particles and verb conjugations, as 「の」 itself is register-neutral.
+false_friends:
+  - term: の (making a verb a noun)
+    meaning: Verb nominalizer, The one who..., That which...
+    kind: similar expression
+    nuance: Unlike the possessive 「の」, this usage transforms a verb or an adjective into a noun-like phrase,
+      often referring to an action or a concept related to the action. For example, 「走る の」 (hashiru no)
+      means "the act of running" or "the one who runs." Also, this nominalizing 「の」 is often used with
+      phrases that would use the particle 「が」 to mark the subject in a regular sentence.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: な-Adjective (modifying nouns)
+    meaning: Connects an adjectival noun (na-adjective) to a noun.
+    kind: similar expression
+    nuance: While 「な」 modifies a noun to describe its quality (e.g., 「静か な 町」 - a quiet town), 「の」 connects
+      nouns to indicate possession, origin, or a broader relationship (e.g., 「町 の 静けさ」 - the quietness
+      of the town). 「な」 directly describes the noun, while 「の」 typically establishes a relationship between
+      two separate noun concepts or nominalized phrases.
+    grammar_point: な-Adjective (modifying nouns)
+  - term: 的 (adjectivizer)
+    meaning: Suffix to form adjectival nouns, meaning '-ic', '-cal', '-like', 'related to'.
+    kind: similar expression
+    nuance: The suffix 「的」 forms an adjectival noun that describes something as being characteristic of,
+      related to, or in the manner of the preceding noun (e.g., 「日本 的 な」 - typically Japanese). In contrast,
+      「の」 indicates a more direct connection, such as possession or origin (e.g., 「日本 の」 - Japan's, from
+      Japan). While both can describe attributes, 「的」 often implies a 'style' or 'nature', whereas 「の」
+      indicates a more concrete link or origin.
+    grammar_point: 的 (adjectivizer)
+post_false_friends_writeup: It's important to differentiate between 「の」 as a possessive/relationship marker
+  and 「の」 as a nominalizer. The possessive 「の」 connects two nouns, while the nominalizing 「の」 turns a
+  verb or adjective into a noun-like entity. Pay attention to the word directly preceding 「の」. If it's
+  a noun, it's likely possessive; if it's a verb or adjective, it's likely nominalizing. Similarly, distinguish
+  「の」 from adjectival endings like 「な」 or the suffix 「的」; these directly describe the quality or nature
+  of a noun; whereas 「の」 establishes a broader relational link.
+examples:
+  - english: This is my book.
+    japanese:
+      - これ は {私 の} 本 だ。
+      - これ、{私 の} 本。
+      - これ は {私 の} 本 です。
+      - '{俺 の} 本 だ よ。'
+      - '{私 の} 本 でしょ？'
+      - これ は {私 の} 本 だ ぞ。
+      - こっち、{私 の} 本。
+      - これ、{僕 の} 本 だ よ。
+      - これ、{あたし の} 本 よ。
+      - これ は {自分 の} 本 です。
+    english_literally: This (topic) I (possessive) book (copula).
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 私 {の です}。
+        english: This states the book as belonging to you, but the target grammar forms a combined noun
+          phrase 'my book'. We're looking for a simple possessive noun phrase.
+        hint: This states the book as belonging to you, but the target grammar forms a combined noun phrase
+          'my book'. We're looking for a simple possessive noun phrase.
+      - competing_japanese:
+          - 私 が {持っ て いる} 本 です。
+        english: This describes the act of you possessing the book using a relative clause, not a particle
+          indicating a direct possessive relationship. We're looking for a simple possessive noun phrase.
+        hint: This describes the act of you possessing the book using a relative clause, not a particle
+          indicating a direct possessive relationship. We're looking for a simple possessive noun phrase.
+      - competing_japanese:
+          - 私 が 本 を {読む の} は 楽しい。
+        english: Reading books is fun for me.
+        hint: This 「の」 nominalizes the action of 'reading books'. We're looking for 「の」 that shows possession,
+          connecting 'my' to 'book'.
+      - competing_japanese:
+          - これ は {きれい な} 本 だ。
+        english: This is a beautiful book.
+        hint: This 「な」 connects an adjective describing a characteristic ('beautiful') to the noun. We're
+          looking for 「の」 that shows possession, connecting 'my' to 'book'.
+      - competing_japanese:
+          - これ は 私 の {個人 的 な} 本 です。
+        english: This is my personal book.
+        hint: This 「的」 describes the purpose or nature of the book as 'personal'. We're looking for 「の」
+          that shows direct possession ('my book').
+    scene: You are showing your new book to a friend.
+    register: casual
+    setting: friendly
+    nuance: 「私 の 本」 clearly indicates direct possession. The use of 「だ」 shows a casual register, common
+      in informal settings. The variant using 「俺 の 本 だ よ」 uses the masculine pronoun 「俺」 and the assertive
+      sentence-final particle 「よ」, common in informal male speech. 「僕 の 本」 uses a softer, often younger
+      male pronoun. The phrase 「あたし の 本 よ」 uses the feminine pronoun 「あたし」 and a softer sentence-final
+      particle 「よ」 typical of female speech. 「自分 の 本」 emphasizes 'one's own' book, adding a subtle nuance
+      of personal ownership beyond mere possession.
+  - english: That is the teacher's book.
+    japanese:
+      - あの {先生 の} 本 です。
+      - あれ は {先生 の} 本 だ。
+      - あれ は {先生 の} 本 です ね。
+      - '{先生 の} 本 だ ぜ。'
+      - あれ は {先生 の} 本 か な。
+      - ほら、{先生 の} 本。
+      - そう、{先生 の} 本。
+      - あちら は {先生 の} 本 です。
+      - あれ は {先生 の} 本 みたい です。
+      - '{先生 の} 本 と いう こと です。'
+      - '{先生 の} 本 だ と 思い ます。'
+    english_literally: That (topic) teacher (possessive) book (polite verb).
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 本 が {あり ます}。
+        english: There is the teacher's book.
+        hint: This states the existence of the book, not identifying it as 'the teacher's book'. We're
+          looking for a direct identification of ownership.
+      - competing_japanese:
+          - あの 本 は 先生 が {持っ て いる} 本 です。
+        english: This explains who possesses the book using a relative clause, rather than a direct possessive
+          noun phrase. We're looking for a simple possessive noun phrase.
+        hint: This explains who possesses the book using a relative clause, rather than a direct possessive
+          noun phrase. We're looking for a simple possessive noun phrase.
+      - competing_japanese:
+          - あの 本 を {読む の} は 先生 です。
+        english: It is the teacher who reads that book.
+        hint: This 「の」 nominalizes the action 'reads that book'. We're looking for 「の」 that shows possession,
+          connecting 'teacher' to 'book'.
+      - competing_japanese:
+          - あの 先生 は {親切 な} 人 です。
+        english: That teacher is a kind person.
+        hint: This 「な」 connects an adjective describing a characteristic ('kind') to the noun. We're looking
+          for 「の」 that shows possession or direct association ('teacher's book').
+      - competing_japanese:
+          - あれ は 先生 の {教育 的 な} 本 です。
+        english: This 「的」 describes the purpose or nature of the book as 'educational'. We're looking
+          for 「の」 that shows direct association ('teacher's book').
+        hint: This 「的」 describes the purpose or nature of the book as 'educational'. We're looking for
+          「の」 that shows direct association ('teacher's book').
+    scene: You are pointing out the teacher's book on the desk in a classroom.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「先生 の 本」 shows an association where the book belongs to the teacher, common in an academic
+      or formal context. The use of 「です」 maintains a polite register. The variant using 「先生 の 本 だ ぜ」 employs
+      the very masculine and assertive sentence-final particle 「ぜ」, typically used by male speakers in
+      casual settings. Using 「あちら」 instead of 「あれ」 adds a slightly more polite and formal tone when referring
+      to something. 「みたい です」 conveys that it 'seems like' it's the teacher's book, indicating an observation
+      rather than a definite statement. 「と いう こと です」 emphasizes that this is a stated fact or understanding.
+      「だ と 思い ます」 expresses a polite opinion.
+  - english: Japan's history is long.
+    japanese:
+      - 日本 {の} 歴史 は 長い です。
+      - 日本 {の} 歴史 は 長い。
+      - 日本 {の} 歴史 は 長い ん です よ。
+      - 日本 {の} 歴史 は 長い もん だ。
+      - 日本 {の} 歴史 は 長い です ね。
+      - やっぱ 日本 {の} 歴史 は 長い よ な。
+      - わが 国 {の} 歴史 は 長い です。
+      - 日本 {の} 歴史 は とても 長い です よ。
+    english_literally: Japan (possessive) history (topic) long (polite verb).
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で {の} 歴史 は 長い です。
+        english: The history in Japan is long.
+        hint: This implies historical events *within* Japan, not the history *belonging to* Japan as a
+          nation's characteristic. We're looking for history as an attribute of Japan itself.
+      - competing_japanese:
+          - 日本 と いう 国 {の} 歴史 は 長い です。
+        english: The history of the country called Japan is long.
+        hint: This emphasizes 'Japan as a country,' which is more specific than simply 'Japan's history.'
+          We're looking for a more general attribution.
+      - competing_japanese:
+          - 歴史 を 勉強 する {の は} 大変 です。
+        english: Studying history is tough.
+        hint: This 「の」 nominalizes the verb phrase 'studying history'. We're looking for 「の」 that shows
+          the relationship between 'Japan' and 'history'.
+      - competing_japanese:
+          - 日本 は {豊か な} 歴史 を 持っ て いる。
+        english: Japan has a rich history.
+        hint: This 「な」 describes the quality of history ('rich'). We're looking for 「の」 that links 'history'
+          as an attribute of Japan.
+      - competing_japanese:
+          - 日本 の 歴史 は {文化 的 に} 興味 深い です。
+        english: Japan's history is culturally interesting.
+        hint: This 「的 に」 (adverbial form) describes *how* it is interesting. We're looking for 「の」 that
+          links 'history' as an attribute of Japan, without adding an adverbial nuance.
+    scene: You are discussing world history with a classmate in an academic setting.
+    register: formal
+    setting: academic
+    nuance: 「日本 の 歴史」 highlights the inherent characteristic or origin, specifying that the history is
+      *of* Japan, not just *in* Japan. The use of 「です」 maintains a formal tone appropriate for academic
+      discussion. The phrase 「やっぱ 日本 の 歴史 は 長い よ な」 is more casual, using 「やっぱ」 (colloquial for やっぱり)
+      and the sentence-final particles 「よ な」 to seek agreement or confirmation, often used by male speakers.
+      「わが国 の 歴史」 uses the formal and patriotic term 「わが国」 ('our country') to refer to Japan, suitable
+      for a more elevated or respectful context. 「とても 長い です よ」 adds emphasis and a slightly more assertive
+      tone through 「とても」 and the sentence-final particle 「よ」.
+  - english: Tomorrow's weather is sunny.
+    japanese:
+      - 明日 {の} 天気 は 晴れ だ。
+      - 明日 {の} 天気 は 晴れ だ よ。
+      - 明日 {の} 天気 は 晴れ です。
+      - 明日 {の} 天気 は 晴れ みたい です ね。
+      - 明日 {の} 天気 は 晴れ みたい。
+      - 明日 {の} 天気、晴れ に なる らしい よ。
+      - 明日 {の} 天気 は 晴天 です。
+      - 明日 {の} 天気 は 快晴 だ そう です。
+      - 明日 {の} 天気 は 晴れる でしょ う。
+      - 明日 {の} 天気、晴れ って さ。
+    english_literally: Tomorrow (possessive) weather (topic) sunny (copula).
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 天気 が {晴れ です}。
+        english: Tomorrow, the weather is sunny.
+        hint: This sentence places emphasis on 'tomorrow' as the topic, then describes the weather, whereas
+          the target forms 'tomorrow's weather' as a single concept. We're looking for a unified noun
+          phrase.
+      - competing_japanese:
+          - 明日、{天候 は 晴れる でしょう}。
+        english: Tomorrow, the weather will probably clear up.
+        hint: This expresses a prediction and uses a more formal term for weather, not a direct statement
+          about 'tomorrow's weather' as an entity. We're looking for a direct description.
+      - competing_japanese:
+          - '{晴れる の が} 好き です。'
+        english: I like it when it's sunny.
+        hint: This 「の」 nominalizes the state 'sunny'. We're looking for 「の」 that links 'tomorrow' and
+          'weather' as a single concept.
+      - competing_japanese:
+          - 明日 の 天気 は {穏やか な} 天気 だろう。
+        english: Tomorrow's weather will probably be mild weather.
+        hint: This 「な」 describes the quality of the weather ('mild'). We're looking for 「の」 that establishes
+          the temporal relationship of 'tomorrow' to 'weather'.
+      - competing_japanese:
+          - 明日 の 天気 は {比較 的 に} 安定 し て い ます。
+        english: Tomorrow's weather is relatively stable.
+        hint: This 「的 に」 (adverbial form) describes *how* stable the weather is. We're looking for 「の」
+          that establishes the temporal relationship of 'tomorrow' to 'weather'.
+    scene: You are checking the weather forecast for an upcoming trip with a friend.
+    register: casual
+    setting: informative
+    nuance: 「明日 の 天気」 forms a temporal compound noun, linking 'tomorrow' directly to 'weather' as a specific
+      forecast for that day. The use of 「だ」 makes it appropriate for casual conversation. 「晴れ に なる らしい
+      よ」 conveys that the information is based on hearsay or what one has heard, common in casual explanations.
+      「晴天 です」 uses a more formal term for 'sunny sky'. 「快晴 だ そう です」 indicates a 'clear, cloudless sky'
+      based on what one has heard. 「晴れる でしょ う」 is a polite prediction. 「晴れ っ て さ」 is a very casual way
+      to convey hearsay, typically used among close friends.
+  - english: The noise of a big city is loud.
+    japanese:
+      - 大きい 町 {の} 音 は うるさい。
+      - 都会 {の} 騒音 は 大きい です。
+      - 大きい 町 {の} 音 って 本当 に うるさい ね。
+      - 都会 {の} 騒音 って もの凄い よ ね。
+      - 大 都市 {の} 騒音 は 我慢 でき ない。
+      - この 町 {の} 音、半端 ない ね。
+      - 大 都市 {の} 喧騒 は 耳障り だ。
+      - 都市 {の} 喧騒 は 落ち着か ない。
+      - 大 都市 {の} 騒音 は かなり の もの だ。
+      - 都会 {の} 音 は 本当 に 響く ね。
+    english_literally: Big town (possessive) sound (topic) noisy (copula).
+    competing_grammar:
+      - competing_japanese:
+          - 大きい 町 は 音 が {うるさい です}。
+        english: A big city has loud noise.
+        hint: This states that the city *possesses* loud noise, rather than the noise *originating from*
+          or being an attribute *of* the city. We're looking for an attribute or origin.
+      - competing_japanese:
+          - 大 都市 で は 騒音 が {問題 です}。
+        english: In big cities, noise pollution is a problem.
+        hint: This describes noise as a general problem *in* big cities, not the specific noise *of* a
+          big city itself. We're looking for a direct attribute.
+      - competing_japanese:
+          - 都会 の 騒音 が 問題 だ と {思う の は} 私 だけ だろう か。
+        english: Am I the only one who thinks the noise of a big city is a problem?
+        hint: This 「の」 is part of the explanatory 「の だろうか」. We're looking for 「の」 that specifies the source
+          of the noise, linking 'big city' to 'noise'.
+      - competing_japanese:
+          - 大 都市 は {騒がしい な} 場所 です。
+        english: A big city is a noisy place.
+        hint: This 「な」 describes the quality of the place ('noisy'). We're looking for 「の」 that specifies
+          the *source* of the noise, linking 'big city' to 'noise'.
+      - competing_japanese:
+          - 都会 の 騒音 は {物理 的 な} 問題 です。
+        english: The noise of a big city is a physical problem.
+        hint: This 「的」 describes the type of problem as 'physical'. We're looking for 「の」 that specifies
+          the source of the noise, linking 'big city' to 'noise'.
+    scene: You are complaining about the constant noise while visiting a bustling metropolis with a companion.
+    register: casual
+    setting: serious
+    nuance: 「大きい 町 の 音」 specifies the source of the noise, clearly indicating that the sound is *from*
+      the big city. The plain form 「うるさい」 is suitable for expressing a casual personal feeling like annoyance.
+      「半端 ない」 is a very casual expression, common among younger speakers, meaning 'incredible' or 'extreme',
+      emphasizing the intensity of the noise. 「喧騒 は 耳障り だ」 uses a more formal term for 'noise/bustle'
+      (喧騒) and describes it as 'unpleasant to the ear' (耳障り). 「落ち着か ない」 means 'unsettling' or 'cannot
+      calm down'. 「かなり の もの だ」 emphasizes the considerable degree or intensity of the noise. 「本当 に 響く
+      ね」 conveys a personal feeling that the sound 'really resonates/echos', often used when something
+      is overwhelming.
+  - english: That is in front of the school.
+    japanese:
+      - あの {学校 の} 前 です。
+      - あれ は {学校 の} 前 だ。
+      - '{学校 の} 前 だ よ。'
+      - あれ は {学校 の} 前 です ね。
+      - ここ が {学校 の} 前 です。
+      - '{学校 の} 前 に ある よ。'
+      - ちょうど {学校 の} 前 だ ね。
+      - あそこ が {学校 の} 正面 です。
+      - そちら が {学校 の} 玄関 です。
+      - '{学校 の} 前 で 待ち合わせ しよ う。'
+      - '{学校 の} 正門 の 前 です。'
+    english_literally: That (topic) school (possessive) front (polite verb).
+    competing_grammar:
+      - competing_japanese:
+          - 学校 に {ある 前 です}。
+        english: It's the front that is at the school.
+        hint: This awkwardly describes a 'front' that happens to be at the school, not the location 'in
+          front of the school.' We're looking for a clear spatial relationship.
+      - competing_japanese:
+          - 学校 の {近く です}。
+        english: It is near the school.
+        hint: This describes proximity, which is less specific than 'in front of'. We're looking for the
+          exact position.
+      - competing_japanese:
+          - 学校 に 行く {の は} 毎日 です。
+        english: Going to school is a daily routine.
+        hint: This 「の」 nominalizes the action 'going to school'. We're looking for 「の」 that shows a spatial
+          relationship between 'school' and 'front'.
+      - competing_japanese:
+          - あれ は {静か な} 場所 です。
+        english: That is a quiet place.
+        hint: This 「な」 describes the quality of the place ('quiet'). We're looking for 「の」 that shows
+          a spatial relationship, linking 'school' to 'front'.
+      - competing_japanese:
+          - 学校 の 周り は {衛生 的 です}。
+        english: The area around the school is sanitary.
+        hint: This 「的」 describes the condition of the area as 'sanitary'. We're looking for 「の」 that shows
+          a direct spatial relationship ('in front of the school').
+    scene: You are guiding a new student to the school's entrance after classes have started.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「学校 の 前」 expresses a fixed spatial relationship, indicating the location directly in front
+      of the school. The polite form 「です」 is suitable for providing instructions to a student. 「ちょうど 学校
+      の 前 だ ね」 uses 「ちょうど」 to mean 'exactly' and 「ね」 to seek agreement, making it a more conversational
+      and reassuring tone. 「正面」 refers to the direct front of a building, more specific than just '前'.
+      「玄関」 specifies the main entrance or foyer. 「待ち合わせ しよ う」 is a volitional form used to suggest meeting.
+      「正門 の 前」 is even more specific, referring to the area directly in front of the main gate.
+  - english: This is a product from Kyoto.
+    japanese:
+      - これ は 京都 {の} 製品 です。
+      - これ は 京都 {の} 製品 だ。
+      - これ、京都 {の} 製品 な ん だ よ。
+      - こちら は 京都 {の} お 土産 です。
+      - こちら は 京都 {の} 名産 品 で ござい ます。
+      - これ、京都 {の} もん や で。
+    english_literally: This (topic) Kyoto (possessive) product (polite copula).
+    competing_grammar:
+      - competing_japanese:
+          - 京都 で {作ら れ た} 製品 です。
+        english: It's a product made in Kyoto.
+        hint: This emphasizes the act of creation using a passive verb, rather than directly stating the
+          origin as an attribute. We're looking for a simple statement of origin.
+      - competing_japanese:
+          - 京都 {から 来 た} 製品 です。
+        english: It's a product that came from Kyoto.
+        hint: This highlights the movement from Kyoto using 「から 来 た」, not directly attributing the origin
+          through 「の」. We're looking for a simple statement of origin.
+    scene: A salesperson presenting an item at a trade show.
+    register: formal
+    setting: informative
+    nuance: 「京都 の 製品」 indicates the origin or provenance of the product. The phrase is neutral, but the
+      context and politeness level (「です」 vs 「だ」) can change its feel. Using 「お 土産」 implies a souvenir,
+      while 「名産 品」 indicates a famous local product, often implying higher quality. 「で ござい ます」 is a very
+      humble and polite copula. 「もん や で」 is a very casual Kansai dialect expression, typical in informal
+      speech from that region, often used to assert a fact.
+  - english: He is a university student.
+    japanese:
+      - 彼 は 大学 {の} 学生 です。
+      - 彼 は 大学 {の} 学生 だ。
+      - あいつ、大学 {の} 学生 らしい よ。
+      - 彼 は 大学 {の} 関係 者 です。
+      - うち {の} 大学 {の} 学生 だ よ。
+    english_literally: He (topic) university (possessive) student (polite copula).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {大学 生} です。
+        english: He is a university student.
+        hint: While technically correct, 「大学生」 is a single compound noun. We're looking for an example
+          that explicitly uses 「の」 to show affiliation. This is a common, simpler alternative.
+      - competing_japanese:
+          - 大学 に {通っ て いる} 学生 です。
+        english: He is a student who attends university.
+        hint: This emphasizes the action of attending university. We're looking for 「の」 to indicate direct
+          affiliation or status.
+    scene: Introducing a new intern at an informal office gathering.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    nuance: 「大学 の 学生」 specifies the type of student by indicating their affiliation with a university.
+      While 「大学生」 is more common, 「大学 の 学生」 emphasizes the institution they belong to. The use of 「あいつ」
+      (a casual, slightly dismissive male term for 'he') with 「らしい よ」 (hearsay) is typical of casual male
+      speech. 「大学 の 関係 者」 is a broader term for anyone affiliated with the university. 「うち の 大学 の 学生」
+      emphasizes personal connection, using 「うち の」 for 'my' or 'our' (in-group) university.
+  - english: This is next week's meeting.
+    japanese:
+      - これ は 来週 {の} 会議 です。
+      - これ は 来週 {の} 会議 だ。
+      - 来週 {の} 会議 って これ で 合っ てる？
+      - 今度 {の} 会議 は 来週 だ よ。
+      - 来週 {の} 会議 の 件 です。
+    english_literally: This (topic) next week (possessive) meeting (polite copula).
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は {来週 です}。
+        english: The meeting is next week.
+        hint: This sentence places emphasis on 'next week' as a separate piece of information. We're looking
+          for 'next week' to directly modify 'meeting'.
+      - competing_japanese:
+          - 来週 に {行わ れる} 会議 です。
+        english: It is a meeting that will be held next week.
+        hint: This emphasizes the action of the meeting being held, not just a simple temporal attribute.
+          We're looking for a direct temporal modification.
+    scene: A manager confirms the schedule with a team member after a busy day.
+    register: formal
+    setting: informative
+    nuance: 「来週 の 会議」 forms a temporal compound, meaning the meeting *of* next week. It's a common way
+      to specify the timing of an event. 「合っ てる？」 is a very casual way to ask for confirmation, often
+      used among peers. 「開催 される」 is a formal verb for 'to be held'. 「今度 の 会議」 means 'the next meeting',
+      which could be next week or later, depending on context. 「の 件 です」 is a common business phrase meaning
+      'it's about the matter of...'
+  - english: This is a wooden chair.
+    japanese:
+      - これ は 木 {の} 椅子 です。
+      - これ は 木 {の} 椅子 だ。
+      - 木製 {の} 椅子 です。
+      - これ は 木目 {の} きれい な 椅子 です。
+    english_literally: This (topic) wood (possessive) chair (polite copula).
+    competing_grammar:
+      - competing_japanese:
+          - この 椅子 は {木 です}。
+        english: This implies the chair *is* wood, not that it is *made of* wood. We're looking for 「の」
+          to indicate material.
+        hint: This implies the chair *is* wood, not that it is *made of* wood. We're looking for 「の」 to
+          indicate material.
+      - competing_japanese:
+          - 木 で {作ら れ た} 椅子 です。
+        english: It's a chair made from wood.
+        hint: This uses a passive construction to specify the material. We're looking for 「の」 to directly
+          link the material to the object.
+    scene: A furniture store clerk describing an item to a customer, pointing out its craftsmanship.
+    register: semi-formal
+    setting: informative
+    nuance: 「木 の 椅子」 indicates the material composition. While 「木製 の 椅子」 is more formal and specific,
+      「木 の 椅子」 is common in daily conversation. 「木 で でき た 椅子」 explicitly states 'an chair made out of
+      wood', using the te-form of できる to describe the material. 「木目 の きれい な 椅子」 specifies an attribute
+      of the wood itself, meaning 'a chair with beautiful wood grain'.
+  - english: That is everyone's opinion.
+    japanese:
+      - それ は 皆 {の} 意見 です。
+      - それ は 皆 {の} 意見 だ。
+      - それ、みんな {の} 意見 だ よ ね。
+      - それ が 全員 {の} 意見 で ござい ます。
+      - 我々 {の} 総意 です。
+      - それ は 皆 さん {の} 共通 認識 です。
+    english_literally: That (topic) everyone (possessive) opinion (polite copula).
+    competing_grammar:
+      - competing_japanese:
+          - 皆 は そう {意見 し て い ます}。
+        english: Everyone is giving that opinion.
+        hint: This emphasizes the action of expressing an opinion. We're looking for 「の」 to attribute
+          the opinion directly to the group.
+      - competing_japanese:
+          - 皆 が {同意 し た} 意見 です。
+        english: It's an opinion everyone agreed to.
+        hint: This focuses on the process of agreement. We're looking for a simple attribution of the
+          opinion to the group.
+    scene: A team leader concluding a discussion, summarizing the consensus.
+    register: semi-formal
+    setting: professional
+    listener_gender: group
+    nuance: 「皆 の 意見」 attributes the opinion to the group. 「皆」 (minna) is common in speech, while 「全員」
+      (zen'in) is more formal. 「みんな の 意見 だ よ ね」 is a casual way to confirm a group opinion, seeking agreement
+      from the listeners. 「で ござい ます」 is a very humble and polite copula, used in formal business contexts.
+      「総意」 is a more formal term for 'consensus' or 'unanimous agreement'. 「共通 認識」 means 'common understanding'
+      or 'shared recognition', implying that the opinion is broadly accepted by the group.
+post_example_writeup: The examples showcase the versatility of 「の」 in indicating possession, relationships,
+  attributes, and temporal/spatial connections. Notice how the choice of particles like 「は」 or informal
+  contractions like 「って」, along with sentence-final particles such as 「よ」, 「ね」, 「だ ぜ」, and 「よ な」, significantly
+  alters the register and nuance, reflecting various speech styles from polite formal to casual male or
+  female speech.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/の

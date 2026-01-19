@@ -1,0 +1,677 @@
+grammar_point: なり〜なり (either... or)
+learn_before:
+  - なり~なり (either... or...)
+meaning: either... or; do X or Y; you can X or Y
+pronunciation:
+  katakana: ナリナリ
+  romaji: nari nari
+formation:
+  Noun + なり + Noun + なり: Indicates a choice or possibility between listed nouns.
+  Verb[dictionary form] + なり + Verb[dictionary form] + なり: Indicates a choice or possibility between listed
+    actions.
+jlpt: N1
+etymology: The particle 「なり」 originally indicated something that is in its natural or original state.
+  In this grammar point, it's used to present alternatives in a non-exhaustive list. The repetition of
+  「なり」 emphasizes the 'either... or' nature of the choices, suggesting that one of the listed options,
+  or something similar, is a suitable way to proceed.
+writeup: The 「なり〜なり」 construction presents a non-exhaustive list of options, indicating that one of the
+  listed items will be chosen, but also implying that similar options are acceptable. It translates to
+  "either... or" and can be used in both formal and casual contexts. It connects nouns directly, or verbs
+  in their dictionary form. It cannot follow the particles 「が」 or 「を」. It differs from similar structures
+  like 「など」 and 「や」 by emphasizing a choice between the listed items, rather than simply listing examples.
+  It implies that either of the suggested options is sufficient to achieve a particular goal or resolve
+  a situation.
+false_friends:
+  - term: たり〜たりする
+    meaning: do things like ~ and ~; among other things
+    kind: similar expression
+    nuance: 「たり〜たりする」 lists actions in a non-exhaustive way, implying there might be other similar actions
+      or that actions are performed intermittently. Unlike 「なり〜なり」, it doesn't necessarily suggest a choice
+      or preference between the listed items as sufficient options for a purpose.
+    grammar_point: Verb[たり] (representative listing)
+  - term: とか〜とか
+    meaning: among other things, for example, such as
+    kind: similar expression
+    nuance: 「とか〜とか」 lists examples in a non-exhaustive way, implying there are more options. Unlike 「なり〜なり」,
+      it doesn't suggest a choice is to be made from the listed items as sufficient solutions, but rather
+      provides illustrative examples. It is generally more casual than 「なり〜なり」.
+    grammar_point: とか〜とか (listing examples)
+  - term: か (or)
+    meaning: or
+    kind: similar expression
+    nuance: 「か」 simply connects two or more options in an exclusive or inclusive choice. 「なり〜なり」 offers
+      a more expansive range of possibilities within a similar category, with the strong implication of
+      choosing one from those presented as sufficient, and often suggests a solution or course of action.
+    grammar_point: か (or)
+  - term: にしろ〜にしろ
+    meaning: whether... or... (it doesn't matter)
+    kind: similar expression
+    nuance: 「にしろ〜にしろ」 expresses indifference or neutrality towards the alternatives, implying that the
+      outcome or situation is the same regardless of which option is chosen. In contrast, 「なり〜なり」 typically
+      offers options as suitable or recommended ways to achieve a goal, suggesting a choice should be
+      made from them to resolve a situation.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: であれ〜であれ
+    meaning: Whether X or Y; be it X or Y; or
+    kind: similar expression
+    nuance: While 「なり〜なり」 suggests choosing one of the listed options as a suitable solution to a problem,
+      「であれ〜であれ」 implies that a certain condition or outcome applies regardless of which of the listed
+      alternatives is chosen, indicating indifference or universality. It tends to be more formal than
+      「なり〜なり」.
+    grammar_point: であれ〜であれ (regardless of)
+post_false_friends_writeup: The key distinction between 「なり〜なり」 and other expressions is the sense of
+  definitive choice and sufficiency. 「なり〜なり」 implies that a selection is to be made from a group of options,
+  and that either of the listed options is a suitable means to an end. Other constructions, such as 「たり〜たり」
+  or 「とか〜とか」, merely list examples or possibilities without necessarily implying a specific choice or
+  sufficiency. While 「か」 also offers a choice, 「なり〜なり」 provides a broader sense of selection from a non-exhaustive
+  set of effective options. 「にしろ〜にしろ」 and 「であれ〜であれ」, on the other hand, convey indifference to the choice,
+  highlighting that the result will be the same regardless of the option taken, which contrasts with the
+  problem-solving or recommendation nuance of 「なり〜なり」.
+examples:
+  - english: If there's anything you don't understand, ask your teacher or a friend.
+    japanese:
+      - わから ない こと が あれ ば、先生 {なり} 友達 {なり} に 聞き なさい。
+      - わから ない こと が あれ ば、先生 {なり} 友達 {なり} に 聞く が いい よ。
+      - わから ない こと が あれ ば、先生 {なり} 友達 {なり} に 尋ね て み て ください。
+    english_literally: If things you don't understand exist, teacher or friend, ask.
+    competing_grammar:
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 {や} 友達 に 聞き なさい。
+        english: If there's anything you don't understand, ask your teacher or a friend, etc.
+        hint: 「や」 simply lists examples, implying there might be many other options. We're looking for
+          an expression that suggests either of the listed options are sufficient and recommended.
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 {と か} 友達 {と か} に 聞き なさい。
+        english: If there's anything you don't understand, ask your teacher or a friend, for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples, not necessarily implying a choice or sufficiency
+          from the listed items. We're looking for an expression that suggests either choice is sufficient.
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 {か} 友達 に 聞き なさい。
+        english: If there's anything you don't understand, ask your teacher or a friend.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that offers a non-exhaustive
+          list of options, implying that similar alternatives might also be acceptable, but these two
+          are sufficient and recommended.
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 に {聞い たり} 友達 に {聞い たり} し なさい。
+        english: If there's anything you don't understand, try asking your teacher or asking your friend.
+        hint: 「〜たり〜たりする」 lists various actions that might be done, often intermittently or without a specific
+          purpose in mind. We're looking for an expression that gives a definite choice between two sufficient
+          options for solving a problem.
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 に 聞く {に しろ} 友達 に 聞く {に しろ}、どちら で も いい です よ。
+        english: If you don't understand something, whether you ask your teacher or your friend, either
+          is fine.
+        hint: 「にしろ〜にしろ」 conveys that the outcome is the same regardless of which option is chosen, implying
+          indifference. We're looking for an expression that recommends the listed options as suitable
+          ways to achieve a goal.
+      - competing_japanese:
+          - わから ない こと が あれ ば、先生 {で あれ} 友達 {で あれ}、誰 か に 尋ね なさい。
+        english: If you don't understand something, whether it's your teacher or your friend, ask someone.
+        hint: 「であれ〜であれ」 implies that the instruction to solve the problem applies regardless of which
+          person it is, suggesting indifference to the choice. We're looking for an expression that recommends
+          the listed options as suitable ways to achieve a goal.
+    scene: A new student is struggling with their studies. Their senior advises them on who to ask for
+      help, presenting two clear options.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: The phrase 「〜なさい」 is an imperative form often used by older individuals when instructing younger
+      ones, conveying a sense of parental or authoritative guidance. In this context, 「先生 なり 友達 なり」 suggests
+      that either a teacher or a friend is an equally valid and sufficient source of help, implying a
+      direct and effective means to get clarification.
+  - english: If you have free time, please spend it reading a book or watching a movie.
+    japanese:
+      - もし 暇 な 時間 が あれ ば、本 を 読む {なり} 映画 を 見る {なり} し て 過ごし て ください。
+      - もし 暇 な 時間 が あれ ば、本 を 読む {なり} 映画 を 見る {なり} し て お 過ごし ください。
+      - もし 暇 な 時間 が あれ ば、本 を 読む {なり} 映画 を 見る {なり} する と いい でしょう。
+    english_literally: If free time exists, book read or movie watch, please spend.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を {読ん だり} 映画 を {見 たり} し て 過ごし て ください。
+        english: Please spend your time reading books, watching movies, and doing other such things.
+        hint: The nuance of 「〜なり〜なり」 here is 'either X or Y is fine,' suggesting these two specific options
+          are sufficient. 「〜たり〜たり」 would imply other activities are also possible beyond the listed ones.
+      - competing_japanese:
+          - もし 暇 な 時間 が あれ ば、本 を 読む {と か} 映画 を 見る {と か} し て 過ごし て ください。
+        english: If you have free time, please spend it reading a book or watching a movie, for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples, not necessarily implying a choice or sufficiency
+          from the listed items. We're looking for an expression that suggests either choice is sufficient.
+      - competing_japanese:
+          - もし 暇 な 時間 が あれ ば、本 を 読む {か} 映画 を 見る {か} し て 過ごし て ください。
+        english: If you have free time, please spend it reading a book or watching a movie.
+        hint: 「か」 presents an exclusive choice. 「なり〜なり」 implies that either of the listed options is a
+          suitable and sufficient choice among others.
+      - competing_japanese:
+          - もし 暇 な 時間 が あれ ば、本 を 読む {に しろ} 映画 を 見る {に しろ}、暇 を 潰 し て ください。
+        english: If you have free time, whether you read a book or watch a movie, please pass the time.
+        hint: 「にしろ〜にしろ」 implies indifference to the choice. We're looking for an expression that recommends
+          these specific activities as suitable ways to spend free time.
+      - competing_japanese:
+          - もし 暇 な 時間 が あれ ば、本 を 読む {で あれ} 映画 を 見る {で あれ}、気分 転換 し なさい。
+        english: If you have free time, whether it's reading a book or watching a movie, refresh your
+          mood.
+        hint: 「であれ〜であれ」 implies that refreshing your mood applies regardless of which activity is chosen.
+          We're looking for an expression that recommends these specific activities as suitable ways to
+          spend free time.
+    scene: A supervisor gives an employee options for how to use their break time, implying these two
+      activities are sufficient.
+    register: teineigo (polite)
+    setting: instructional
+  - english: If you're in trouble, you should consult someone or rely on an expert to solve it quickly.
+    japanese:
+      - 困っ て いる なら、誰 か に 相談 する {なり}、専門 家 に 頼る {なり} し て、早 く 解決 し た 方 が いい です よ。
+      - 困っ て いる なら、誰 か に 相談 する {なり}、専門 家 に 頼る {なり} とにかく 早 く 解決 し た 方 が いい です よ。
+      - 困っ て いる なら、誰 か に 相談 する {なり} 専門 家 に 頼る {なり}、どちら で も いい から 早く 解決 し て ください。
+    english_literally: If trouble you are in, someone consult or expert rely, quickly solve is better.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か に {相談 し たり} 専門 家 に {頼っ たり} し た 方 が いい です よ。
+        english: It would be better to consult someone or rely on an expert, among other things.
+        hint: The speaker presents two clear, viable paths to resolution, implying a direct choice between
+          them for immediate action, unlike the more general listing of 「〜たり〜たり」 (do things like x and
+          y).
+      - competing_japanese:
+          - 困っ て いる なら、誰 か に 相談 する {と か} 専門 家 に 頼る {と か} し て、早く 解決 し た 方 が いい です よ。
+        english: If you're in trouble, you should consult someone or rely on an expert, for example, to
+          solve it quickly.
+        hint: 「とか〜とか」 is more casual and simply lists examples, not necessarily implying a choice or sufficiency
+          from the listed items. We're looking for an expression that suggests either choice is sufficient
+          to resolve the issue.
+      - competing_japanese:
+          - 困っ て いる なら、誰 か に 相談 する {か} 専門 家 に 頼る {か} し て、早く 解決 し た 方 が いい です よ。
+        english: If you're in trouble, you should consult someone or rely on an expert to solve it quickly.
+        hint: 「か」 presents an exclusive choice. 「なり〜なり」 offers a non-exhaustive list of suitable options,
+          implying that either of the listed options is a good way to proceed.
+      - competing_japanese:
+          - 困っ て いる なら、誰 か に 相談 する {に しろ} 専門 家 に 頼る {に しろ}、とにかく 解決 し なさい。
+        english: If you're in trouble, whether you consult someone or rely on an expert, just solve it.
+        hint: 「にしろ〜にしろ」 expresses indifference to the chosen method, emphasizing the common outcome (solving
+          the problem). We're looking for an expression that actively recommends these specific options
+          as suitable solutions.
+      - competing_japanese:
+          - 困っ て いる なら、誰 か に 相談 する {で あれ} 専門 家 に 頼る {で あれ}、解決 し なさい。
+        english: If you're in trouble, whether it's your teacher or your friend, ask someone.
+        hint: 「であれ〜であれ」 implies that the instruction to solve the problem applies regardless of which
+          method is chosen. We're looking for an expression that actively recommends these specific options
+          as suitable solutions.
+    scene: A friend is clearly distressed but not asking for help. Another friend suggests two concrete
+      ways to find a solution.
+    register: casual
+    setting: supportive
+  - english: If you're feeling unwell, you should go to a pharmacy or a hospital.
+    japanese:
+      - 気分 が 悪 い なら、薬局 {なり} 病院 {なり} に 行く べき だ。
+      - 気分 が 悪 い なら、薬局 {なり} 病院 {なり} へ 行く べき だ。
+      - 気分 が 悪 い なら、薬局 {なり} 病院 {なり} へ 行き なさい。
+    english_literally: If feeling bad, pharmacy or hospital go should.
+    competing_grammar:
+      - competing_japanese:
+          - 薬局 {と か} 病院 {と か} に 行く べき だ。
+        english: You should go to a pharmacy or a hospital, for example.
+        hint: The directness of 「〜なり〜なり」 here implies a strong recommendation for immediate action using
+          one of the listed options, whereas 「〜とか〜とか」 (listing examples) would be too casual and vague
+          for this serious context.
+      - competing_japanese:
+          - 気分 が 悪 い なら、薬局 {か} 病院 {か} に 行く べき だ。
+        english: If you're feeling unwell, you should go to a pharmacy or a hospital.
+        hint: 「か」 presents a direct choice between two specific places. We're looking for an expression
+          that offers these options as sufficient and recommended, without ruling out similar alternatives.
+      - competing_japanese:
+          - 気分 が 悪 い なら、薬局 に 行く {に しろ} 病院 に 行く {に しろ}、早く 行き なさい。
+        english: If you're feeling unwell, whether you go to a pharmacy or a hospital, just go quickly.
+        hint: 「にしろ〜にしろ」 implies indifference to the choice. We're looking for an expression that recommends
+          these options as suitable places to seek help.
+      - competing_japanese:
+          - 気分 が 悪 い なら、薬局 {で あれ} 病院 {で あれ}、早く 行き なさい。
+        english: If you're feeling unwell, whether it's a pharmacy or a hospital, go quickly.
+        hint: 「であれ〜であれ」 implies that the instruction to go quickly applies regardless of which destination
+          is chosen. We're looking for an expression that recommends these options as suitable places
+          to seek help.
+    scene: A parent is concerned about their child's health and gives them two primary options for medical
+      attention, emphasizing immediate action.
+    register: casual
+    setting: serious
+    speaker_age: older
+  - english: If you're feeling stressed, it's good to find some exercise or a hobby to release it.
+    japanese:
+      - ストレス が 溜 まっ て いる なら、運動 {なり} 趣味 {なり} を 探 し て 発散 する の が いい。
+      - ストレス が 溜 まっ て いる なら、運動 {なり} 趣味 {なり} を 見つけ て 発散 する の が いい。
+      - ストレス が 溜 まっ て いる なら、運動 {なり} 趣味 {なり} で 発散 する の が いい でしょう。
+    english_literally: If stress accumulated, exercise or hobby find release is good.
+    competing_grammar:
+      - competing_japanese:
+          - 運動 {や} 趣味 を 探し て 発散 する の が いい。
+        english: It's good to find exercise or a hobby, among other things, to release stress.
+        hint: The 「〜なり〜なり」 emphasizes these as primary, effective methods for stress release, suggesting
+          a direct selection from these categories, rather than just listing general examples with 「や」
+          (non-exhaustive list).
+      - competing_japanese:
+          - ストレス が 溜 まっ て いる なら、運動 {と か} 趣味 {と か} を 探し て 発散 する の が いい。
+        english: If you're feeling stressed, it's good to find some exercise or a hobby, for example,
+          to release it.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that suggests
+          either of the listed options are effective and sufficient means.
+      - competing_japanese:
+          - ストレス が 溜 まっ て いる なら、運動 {か} 趣味 {か} を 探し て 発散 する の が いい。
+        english: If you're feeling stressed, it's good to find some exercise or a hobby to release it.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that suggests that either
+          of the listed categories provides a suitable way to achieve the goal.
+      - competing_japanese:
+          - ストレス が 溜 まっ て いる なら、運動 {に しろ} 趣味 {に しろ}、何 か 発散 する の が いい。
+        english: If you're feeling stressed, whether it's exercise or a hobby, it's good to release it
+          somehow.
+        hint: 「にしろ〜にしろ」 suggests indifference to the specific method, only that some form of release is
+          needed. We're looking for an expression that actively recommends these specific options as suitable
+          for stress release.
+      - competing_japanese:
+          - ストレス が 溜 まっ て いる なら、運動 {で あれ} 趣味 {で あれ}、何 か 発散 する の が いい。
+        english: If you're feeling stressed, whether it's exercise or a hobby, it's good to release it
+          somehow.
+        hint: 「であれ〜であれ」 implies that some form of release is good regardless of which activity is chosen.
+          We're looking for an expression that actively recommends these specific options as suitable
+          for stress release.
+    scene: A therapist suggests effective ways for their client to manage stress, emphasizing these two
+      categories of activities.
+    register: formal
+    setting: academic
+  - english: If you have a complaint, please tell me or the department head directly.
+    japanese:
+      - 文句 が ある なら、私 {なり} 部 長 {なり} に 直接 言っ て ください。
+      - 文句 が ある なら、私 {なり} 部 長 {なり} に 直接 申告 し て ください。
+      - 文句 が ある なら、私 {なり} 部 長 {なり} に 直接 おっしゃっ て ください。
+    english_literally: If complaint exists, I or department head directly say please.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {と か} 部 長 {と か} に 直接 言っ て ください。
+        english: If you have a complaint, please tell me or the department head, for example, directly.
+        hint: The usage here implies a clear, direct channel for complaints, expecting the complainant
+          to choose one of the specified recipients, whereas 「〜とか〜とか」 (listing examples) would be too
+          casual for this confrontational and semi-formal tone.
+      - competing_japanese:
+          - 私 {か} 部 長 {か} に 直接 言っ て ください。
+        english: If you have a complaint, please tell me or the department head directly.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that implies that either
+          of the listed individuals are appropriate and sufficient contacts for the complaint.
+      - competing_japanese:
+          - 文句 が ある なら、私 に 言う {に しろ} 部 長 に 言う {に しろ}、直接 言っ て ください。
+        english: If you have a complaint, whether you tell me or the department head, please tell us directly.
+        hint: 「にしろ〜にしろ」 conveys that the instruction (telling directly) applies regardless of who is chosen.
+          We're looking for an expression that specifies suitable individuals to address the complaint.
+      - competing_japanese:
+          - 文句 が ある なら、私 {で あれ} 部 長 {で あれ}、直接 言っ て ください。
+        english: If you have a complaint, whether it's me or the department head, tell us directly.
+        hint: 「であれ〜であれ」 implies that the instruction to tell directly applies regardless of which individual
+          is chosen. We're looking for an expression that specifies suitable individuals to address the
+          complaint.
+    scene: A manager overhears an employee complaining behind their back and confronts them, specifying
+      the proper channels for complaints.
+    register: semi-formal
+    setting: commanding
+    speaker_age: older
+  - english: If it's about money, there must be a way, like using my savings or asking your parents.
+    japanese:
+      - お 金 の こと なら、私 の 貯金 を 使う {なり} 親 に 頼む {なり}、何 か 方法 は ある でしょう。
+      - お 金 の こと なら、私 の 貯金 を 使う {なり} 親 に 頼む {なり}、きっと 何 か 方法 は ある でしょう。
+      - お 金 の こと なら、私 の 貯金 を 使う {なり} 親 に 頼む {なり} すれ ば、何 か 方法 は 見つかる でしょう。
+    english_literally: If money matter, my savings use or parents ask, some method exists likely.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 貯金 を 使う {と か} 親 に 頼む {と か}、何 か 方法 は ある でしょう。
+        english: If it's about money, there must be a way, like using my savings or asking your parents,
+          for example.
+        hint: 「〜なり〜なり」 here lists concrete options, presenting them as readily available solutions to
+          choose from, providing a more decisive and reassuring tone than the vaguer 「〜とか〜とか」 (listing
+          examples).
+      - competing_japanese:
+          - 私 の 貯金 を {使っ たり} 親 に {頼ん だり}、何 か 方法 は ある でしょう。
+        english: If it's about money, there must be a way, by using my savings or asking my parents.
+        hint: 「〜たり〜たりする」 (do things like x and y) lists various actions that might be done. We're looking
+          for an expression that offers concrete, sufficient solutions to choose from.
+      - competing_japanese:
+          - 私 の 貯金 を 使う {か} 親 に 頼む {か}、何 か 方法 は ある でしょう。
+        english: If it's about money, there must be a way, by using my savings or asking your parents.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that offers these options
+          as sufficient and recommended, implying similar alternatives could also exist.
+      - competing_japanese:
+          - お 金 の こと なら、私 の 貯金 を 使う {に しろ} 親 に 頼む {に しろ}、何 か 方法 は 見つかる でしょう。
+        english: If it's about money, whether you use my savings or ask your parents, a solution will
+          surely be found.
+        hint: 「にしろ〜にしろ」 implies indifference to the specific financial approach, emphasizing that a solution
+          *will* be found. We're looking for an expression that suggests these as concrete, viable options
+          to pick from.
+      - competing_japanese:
+          - お 金 の こと なら、私 の 貯金 を 使う {で あれ} 親 に 頼む {で あれ}、何 か 方法 は ある でしょう。
+        english: If it's about money, whether it's using my savings or asking your parents, there must
+          be a way.
+        hint: 「であれ〜であれ」 implies that a way exists regardless of which financial approach is taken. We're
+          looking for an expression that suggests these as concrete, viable options to pick from.
+    scene: A character trying to reassure another about financial difficulties, offering two concrete,
+      practical solutions to choose from.
+    register: casual
+    setting: supportive
+  - english: If you get lost, solve it by looking at a map or asking a station attendant.
+    japanese:
+      - もし 道 に 迷っ たら、地図 を 見る {なり} 駅員 に 聞く {なり} し て 解決 し なさい。
+      - もし 道 に 迷っ たら、地図 を 見る {なり} 駅員 に 聞く {なり} し て 解決 する こと。
+    english_literally: If path lost, map look or station attendant ask, solve do.
+    competing_grammar:
+      - competing_japanese:
+          - 地図 を {見 たり} 駅員 に {聞い たり} し て 解決 し なさい。
+        english: If you get lost, solve it by looking at a map or asking a station attendant, etc.
+        hint: The instruction clearly outlines two primary, effective methods for resolving being lost,
+          emphasizing that a choice from these specific methods is expected, rather than simply listing
+          potential actions with 「〜たり〜たり」 (do things like x and y).
+      - competing_japanese:
+          - もし 道 に 迷っ たら、地図 を 見る {と か} 駅員 に 聞く {と か} し て 解決 し なさい。
+        english: If you get lost, solve it by looking at a map or asking a station attendant, for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that provides
+          clear, sufficient methods to resolve the situation.
+      - competing_japanese:
+          - もし 道 に 迷っ たら、地図 を 見る {か} 駅員 に 聞く {か} し て 解決 し なさい。
+        english: If you get lost, solve it by looking at a map or asking a station attendant.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that offers these options
+          as sufficient and recommended courses of action.
+      - competing_japanese:
+          - もし 道 に 迷っ たら、地図 を 見る {に しろ} 駅員 に 聞く {に しろ}、とにかく 解決 し なさい。
+        english: If you get lost, whether you look at a map or ask a station attendant, just solve it.
+        hint: 「にしろ〜にしろ」 implies indifference to the specific method, focusing only on the need to resolve
+          the situation. We're looking for an expression that presents these options as suitable and recommended
+          actions.
+      - competing_japanese:
+          - もし 道 に 迷っ たら、地図 を 見る {で あれ} 駅員 に 聞く {で あれ}、解決 し なさい。
+        english: If you get lost, whether it's looking at a map or asking a station attendant, solve it.
+        hint: 「であれ〜であれ」 implies that solving the problem applies regardless of which method is chosen.
+          We're looking for an expression that presents these options as suitable and recommended actions.
+    scene: A tour guide instructs their group on what to do if they get separated and lost, providing
+      two clear courses of action.
+    register: teineigo (polite)
+    setting: informative
+    listener_gender: group
+  - english: If you want to convey your opinion, take action by speaking up in the meeting or sending
+      an email.
+    japanese:
+      - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {なり} メール で 送る {なり}、どちら か で 行動 し なさい。
+      - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {なり} メール で 送る {なり}、どちら か の 方法 で 行動 し なさい。
+      - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {なり} メール で 送る {なり} どちら か お 選び ください。
+    english_literally: If own opinion convey want, meeting speak up or email send, by either action take.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 で 発言 する {と か} メール で 送る {と か}、どちら か で 行動 し なさい。
+        english: If you want to convey your opinion, take action by speaking up in the meeting or sending
+          an email, for example.
+        hint: The 「〜なり〜なり」 emphasizes these as the appropriate and expected channels for expressing opinions
+          in this context, demanding a choice between them, conveying a more formal and direct tone than
+          「〜とか〜とか」 (listing examples).
+      - competing_japanese:
+          - 会議 で {発言 し たり} メール で {送っ たり}、どちら か で 行動 し なさい。
+        english: If you want to convey your opinion, take action by speaking up in the meeting or sending
+          an email.
+        hint: 「〜たり〜たりする」 (do things like x and y) lists various actions that might be done. We're looking
+          for an expression that suggests two specific, acceptable channels for expressing opinions.
+      - competing_japanese:
+          - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {か} メール で 送る {か}、どちら か で 行動 し なさい。
+        english: If you want to convey your opinion, take action by speaking up in the meeting or sending
+          an email.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that implies that either
+          of the listed options is an appropriate and sufficient channel for expressing opinions.
+      - competing_japanese:
+          - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {に しろ} メール で 送る {に しろ}、何 か 行動 し なさい。
+        english: If you want to convey your opinion, whether you speak up in the meeting or send an email,
+          take some action.
+        hint: 「にしろ〜にしろ」 expresses indifference to the specific communication channel, emphasizing the
+          need for some action. We're looking for an expression that recommends these specific options
+          as suitable channels.
+      - competing_japanese:
+          - 自分 の 意見 を 伝え たい なら、会議 で 発言 する {で あれ} メール で 送る {で あれ}、何 か 行動 し なさい。
+        english: If you want to convey your opinion, whether it's speaking up in the meeting or sending
+          an email, take some action.
+        hint: 「であれ〜であれ」 implies that taking action applies regardless of which communication channel is
+          chosen. We're looking for an expression that recommends these specific options as suitable channels.
+    scene: A team leader encourages a quiet team member to express their thoughts, providing specific,
+      acceptable avenues for doing so.
+    register: semi-formal
+    setting: persuasive
+  - english: If you need to contact him urgently, you can call him or send an email.
+    japanese:
+      - 急 ぎ で 彼 に 連絡 する なら、電話 する {なり} メール を 送る {なり} し て ください。
+      - 急 ぎ で 彼 に 連絡 する なら、電話 する {なり} メール を 送る {なり} すれ ば、確実 に 連絡 が 取れる でしょう。
+      - 急 ぎ で 彼 に 連絡 する なら、電話 する {なり} メール を 送る {なり}、どちら か で 連絡 し て ください。
+    english_literally: If urgently him contact, call or email send, please do.
+    competing_grammar:
+      - competing_japanese:
+          - 急ぎ で 彼 に 連絡 する なら、電話 する {と か} メール を 送る {と か} し て ください。
+        english: If you need to contact him urgently, you can call him or send an email, for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples, not necessarily implying a choice or sufficiency
+          from the listed items. We're looking for an expression that suggests either choice is sufficient
+          for urgent contact.
+      - competing_japanese:
+          - 急ぎ で 彼 に 連絡 する なら、電話 する {か} メール を 送る {か} し て ください。
+        english: If you need to contact him urgently, you can call him or send an email.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that suggests either of
+          the listed options is a suitable and sufficient method for urgent contact.
+      - competing_japanese:
+          - 急ぎ で 彼 に 連絡 する なら、電話 {し たり} メール を {送っ たり} し て ください。
+        english: If you need to contact him urgently, do things like call him or send an email.
+        hint: 「〜たり〜たりする」 (do things like x and y) lists actions that might be done, often without a specific
+          focus on sufficiency or urgency. We's looking for an expression that offers concrete, sufficient
+          ways to contact him urgently.
+      - competing_japanese:
+          - 急ぎ で 彼 に 連絡 する なら、電話 する {に しろ} メール を 送る {に しろ}、連絡 し なさい。
+        english: If you need to contact him urgently, whether you call or email, just contact him.
+        hint: 「にしろ〜にしろ」 implies indifference to the specific method, emphasizing the need for contact.
+          We're looking for an expression that recommends these options as suitable for urgent communication.
+      - competing_japanese:
+          - 急ぎ で 彼 に 連絡 する なら、電話 する {で あれ} メール を 送る {で あれ}、連絡 し なさい。
+        english: If you need to contact him urgently, whether it's calling or emailing, contact him.
+        hint: 「であれ〜であれ」 implies that contacting him applies regardless of which method is chosen. We're
+          looking for an expression that recommends these options as suitable for urgent communication.
+    scene: A colleague is looking for a manager who is not at their desk. Another colleague gives advice
+      on how to reach them.
+    register: semi-formal
+    setting: professional
+    nuance: 「なり〜なり」 here provides two direct and effective ways to establish urgent contact, implying
+      that either method is suitable and sufficient for the task. The phrase 「急ぎで」 emphasizes the urgency,
+      making the directness of 「なり〜なり」 appropriate.
+  - english: When you're feeling down, you can listen to music or watch a funny video to cheer yourself
+      up.
+    japanese:
+      - 元気 が ない とき は、音楽 を 聴く {なり} 面白い 動画 を 見る {なり} し て、気分 を 上げ なさい。
+      - 元気 が ない とき は、音楽 を 聴く {なり} 面白い 動画 を 見る {なり} すれ ば、気分 が 楽 に なる でしょう。
+      - 元気 が ない とき は、音楽 を 聴く {なり} 面白い 動画 を 見る {なり} し て、元気 を 出し て ください。
+    english_literally: When energy not have, music listen or funny video watch, mood raise do.
+    competing_grammar:
+      - competing_japanese:
+          - 音楽 を {聴い たり} 面白い 動画 を {見 たり} し て、気分 を 上げ なさい。
+        english: When you're feeling down, do things like listen to music or watch funny videos to cheer
+          yourself up.
+        hint: 「〜たり〜たりする」 (do things like x and y) describes a non-exhaustive list of actions you *might*
+          do. 「なり〜なり」 presents two specific, sufficient options as direct recommendations for cheering
+          up.
+      - competing_japanese:
+          - 元気 が ない とき は、音楽 を 聴く {と か} 面白い 動画 を 見る {と か} し て、気分 を 上げ なさい。
+        english: When you're feeling down, you can listen to music or watch a funny video, for example,
+          to cheer yourself up.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that offers
+          concrete, sufficient ways to improve one's mood.
+      - competing_japanese:
+          - 元気 が ない とき は、音楽 を 聴く {か} 面白い 動画 を 見る {か} し て、気分 を 上げ なさい。
+        english: When you're feeling down, you can listen to music or watch a funny video to cheer yourself
+          up.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that suggests either of
+          the listed options is a suitable and sufficient method for cheering up.
+      - competing_japanese:
+          - 元気 が ない とき は、音楽 を 聴く {に しろ} 面白い 動画 を 見る {に しろ}、気分 転換 し なさい。
+        english: When you're feeling down, whether you listen to music or watch a funny video, just try
+          to change your mood.
+        hint: 「にしろ〜にしろ」 conveys indifference to the specific mood-boosting activity, emphasizing the need
+          for some change. We're looking for an expression that recommends these options as suitable for
+          cheering up.
+      - competing_japanese:
+          - 元気 が ない とき は、音楽 を 聴く {で あれ} 面白い 動画 を 見る {で あれ}、気分 転換 し なさい。
+        english: When you're feeling down, whether it's listening to music or watching a funny video,
+          change your mood.
+        hint: 「であれ〜であれ」 implies that changing your mood applies regardless of which activity is chosen.
+          We're looking for an expression that recommends these options as suitable for cheering up.
+    scene: A friend gives advice to another who is feeling down, suggesting two common and effective ways
+      to lift their spirits.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「なり〜なり」 here indicates that either listening to music or watching funny videos
+      is a valid and effective method to improve one's mood. The instruction 「気分を上げなさい」 (raise your mood)
+      implies a gentle suggestion from a friend. This construction makes the advice feel practical and
+      actionable. The female speaker and listener genders align with a friendly, supportive tone often
+      associated with such exchanges.
+  - english: If you want to improve your Japanese, you should try reading Japanese books or watching Japanese
+      dramas.
+    japanese:
+      - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {なり} 日本 の ドラマ を 見る {なり} し て みる と いい です よ。
+      - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {なり} 日本 の ドラマ を 見る {なり} する の が お 勧め です。
+      - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {なり} 日本 の ドラマ を 見る {なり}、何 か 始め なさい。
+    english_literally: If Japanese improve want, Japanese books read or Japanese dramas watch, try do
+      is good.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 本 を {読ん だり} 日本 の ドラマ を {見 たり} し て みる と いい です よ。
+        english: If you want to improve your Japanese, you should try doing things like reading Japanese
+          books or watching Japanese dramas.
+        hint: 「〜たり〜たりする」 (do things like x and y) lists potential activities, but 「なり〜なり」 specifically
+          highlights two effective and sufficient paths for improvement, giving a stronger sense of direct
+          recommendation.
+      - competing_japanese:
+          - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {と か} 日本 の ドラマ を 見る {と か} し て みる と いい です よ。
+        english: If you want to improve your Japanese, you should try reading Japanese books or watching
+          Japanese dramas, for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that offers
+          concrete, sufficient ways to improve Japanese.
+      - competing_japanese:
+          - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {か} 日本 の ドラマ を 見る {か} し て みる と いい です よ。
+        english: If you want to improve your Japanese, you should try reading Japanese books or watching
+          Japanese dramas.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that suggests either of
+          the listed options is a suitable and sufficient method for improving Japanese.
+      - competing_japanese:
+          - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {に しろ} 日本 の ドラマ を 見る {に しろ}、何 か 始め なさい。
+        english: If you want to improve your Japanese, whether you read Japanese books or watch Japanese
+          dramas, just start something.
+        hint: 「にしろ〜にしろ」 implies indifference to the specific learning method, emphasizing the need to
+          simply start. We're looking for an expression that recommends these specific options as effective
+          ways to improve.
+      - competing_japanese:
+          - 日本 語 を 上達 さ せ たい なら、日本 語 の 本 を 読む {で あれ} 日本 の ドラマ を 見る {で あれ}、何 か 始め なさい。
+        english: If you want to improve your Japanese, whether it's reading Japanese books or watching
+          Japanese dramas, start something.
+        hint: 「であれ〜であれ」 implies that starting something applies regardless of which method is chosen.
+          We're looking for an expression that recommends these specific options as effective ways to
+          improve.
+    scene: A Japanese teacher gives a student practical advice on how to immerse themselves in the language
+      outside of class.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「〜てみる」 suggests trying something out, and combined with 「〜なり〜なり」, it offers two
+      specific and highly recommended methods for Japanese improvement. The polite 「〜といいですよ」 softens the
+      advice, making it encouraging rather than demanding. The male speaker addressing a group of students
+      in an academic setting makes this a very natural phrasing.
+  - english: If you want to cook something quick, you can make instant ramen or frozen pasta.
+    japanese:
+      - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {なり} 冷凍 パスタ を 温める {なり} し て ください。
+      - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {なり} 冷凍 パスタ を 温める {なり} すれ ば いい でしょう。
+      - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {なり} 冷凍 パスタ を 温める {なり}、どちら か で 済ま せ なさい。
+    english_literally: If easily something make, instant ramen make or frozen pasta heat, please do.
+    competing_grammar:
+      - competing_japanese:
+          - インスタント ラーメン を {作っ たり} 冷凍 パスタ を {温め たり} し て ください。
+        english: If you want to cook something quick, do things like make instant ramen or heat frozen
+          pasta.
+        hint: 「〜たり〜たりする」 (do things like x and y) implies a more general set of actions, while 「なり〜なり」
+          provides two specific, easy-to-do options that are sufficient for a quick meal, highlighting
+          direct solutions.
+      - competing_japanese:
+          - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {と か} 冷凍 パスタ を 温める {と か} し て ください。
+        english: If you want to cook something quick, you can make instant ramen or frozen pasta, for
+          example.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that suggests
+          either choice is sufficient for a quick meal.
+      - competing_japanese:
+          - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {か} 冷凍 パスタ を 温める {か} し て ください。
+        english: If you want to cook something quick, you can make instant ramen or frozen pasta.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that suggests either of
+          the listed options is a suitable and sufficient method for quick cooking.
+      - competing_japanese:
+          - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {に しろ} 冷凍 パスタ を 温める {に しろ}、何 か 作 り なさい。
+        english: If you want to cook something quick, whether you make instant ramen or heat frozen pasta,
+          just cook something.
+        hint: 「にしろ〜にしろ」 implies indifference to the specific quick meal, focusing on the need to cook
+          something. We're looking for an expression that recommends these options as convenient and suitable.
+      - competing_japanese:
+          - 手 軽 に 何 か 作 る なら、インスタント ラーメン を 作 る {で あれ} 冷凍 パスタ を 温める {で あれ}、何 か 作 り なさい。
+        english: If you want to cook something quick, whether it's making instant ramen or heating frozen
+          pasta, cook something.
+        hint: 「であれ〜であれ」 implies that cooking applies regardless of which quick meal is chosen. We're looking
+          for an expression that recommends these options as convenient and suitable.
+    scene: A busy student is talking to their roommate about quick meal options.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「手軽に何か作るなら」 sets the context of needing a quick and easy solution. 「インスタントラーメンを作るなり冷凍パスタを温めるなり」
+      provides two concrete, accessible choices, implying that either is perfectly acceptable for the
+      situation. This casual advice between male roommates reflects a common scenario for quick meal ideas.
+  - english: If you're unsure, you should consult your senior colleague or your boss.
+    japanese:
+      - 分から ない こと が あれ ば、先輩 に 聞く {なり} 上司 に 相談 する {なり} し て ください。
+      - 分から ない こと が あれ ば、先輩 に 聞く {なり} 上司 に 相談 する {なり} すれ ば いい でしょう。
+      - 分から ない こと が あれ ば、先輩 に 聞く {なり} 上司 に 相談 する {なり}、どちら か に 頼ん で ください。
+    english_literally: If not understand things exist, senior colleague ask or boss consult, please do.
+    competing_grammar:
+      - competing_japanese:
+          - 分から ない こと が あれ ば、先輩 に {聞い たり} 上司 に {相談 し たり} し て ください。
+        english: If you don't know something, do things like ask your senior colleague or consult your
+          boss.
+        hint: 「〜たり〜たりする」 (do things like x and y) suggests a range of actions that might be taken. 「なり〜なり」
+          offers two primary, sufficient points of contact for advice, implying a more direct and focused
+          approach to seeking help.
+      - competing_japanese:
+          - 分から ない こと が あれ ば、先輩 に 聞く {と か} 上司 に 相談 する {と か} し て ください。
+        english: If you don't know something, you can ask your senior colleague or consult your boss,
+          for example.
+        hint: 「とか〜とか」 is more casual and simply lists examples. We're looking for an expression that suggests
+          either choice is a suitable and sufficient channel for seeking guidance.
+      - competing_japanese:
+          - 分から ない こと が あれ ば、先輩 に 聞く {か} 上司 に 相談 する {か} し て ください。
+        english: If you don't know something, you can ask your senior colleague or consult your boss.
+        hint: 「か」 presents an exclusive choice. We're looking for an expression that implies that either
+          of the listed individuals is an appropriate and sufficient source of help.
+      - competing_japanese:
+          - 分から ない こと が あれ ば、先輩 に 聞く {に しろ} 上司 に 聞く {に しろ}、誰 か に 相談 し なさい。
+        english: If you don't know something, whether you ask your senior colleague or consult your boss,
+          just ask someone.
+        hint: 「にしろ〜にしろ」 conveys indifference to the specific person, emphasizing the need to consult someone.
+          We're looking for an expression that recommends these specific individuals as suitable sources
+          of help.
+      - competing_japanese:
+          - 分から ない こと が あれ ば、先輩 {で あれ} 上司 {で あれ}、誰 か に 相談 し なさい。
+        english: If you don't know something, whether it's your senior colleague or your boss, ask someone.
+        hint: 「であれ〜であれ」 implies that consulting someone applies regardless of which person is chosen.
+          We're looking for an expression that recommends these specific individuals as suitable sources
+          of help.
+    scene: A mentor advises a new employee on who to turn to for help when they encounter difficulties
+      at work.
+    register: formal
+    setting: professional
+    nuance: In a professional setting, 「先輩に聞くなり上司に相談するなり」 clearly outlines acceptable channels for seeking
+      help. The politeness of 「〜してください」 or 「〜すればいいでしょう」 maintains professional decorum while providing
+      clear, actionable advice. This phrasing is common in workplace mentorship, indicating viable options
+      for problem-solving.
+post_example_writeup: This grammar point presents a non-exhaustive list of options and implies that one
+  of the listed actions or items should be chosen, and that these choices are sufficient to achieve a
+  particular goal. Unlike a simple listing with 「と」 or 「や」, 「なり〜なり」 emphasizes that the given choices
+  are recommended and effective, often in the context of advice or instructions. It is generally more
+  polite and provides a stronger sense of guidance than the casual 「〜とか」. It also differs from 「にしろ〜にしろ」
+  and 「であれ〜であれ」 by actively recommending the options as suitable solutions, rather than merely stating
+  that an outcome will occur regardless of the choice.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/-なり-なり

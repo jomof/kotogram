@@ -1,0 +1,386 @@
+grammar_point: ましだ (better or preferable)
+learn_before:
+  - '[Noun]によって (means・method)'
+  - '[Verb-た]ほうがいい (it is better to do)'
+  - かというと (because)
+  - の? (question)
+meaning: Better, preferable, less objectionable; might as well
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ましだ
+    rarity: common
+    meaning: better
+  - conjugation-type: non-past polite (～ます)
+    form: ましです
+    rarity: common
+    meaning: better (polite)
+  - conjugation-type: past plain (～た)
+    form: ましだった
+    rarity: common
+    meaning: was better
+  - conjugation-type: past polite (～ました)
+    form: ましでした
+    rarity: common
+    meaning: was better (polite)
+  - conjugation-type: negative plain (～ない)
+    form: ましではない
+    rarity: common
+    meaning: not better
+  - conjugation-type: negative non-past polite (～ません)
+    form: ましではありません
+    rarity: common
+    meaning: not better (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: ましではなかった
+    rarity: common
+    meaning: was not better
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ましではありませんでした
+    rarity: common
+    meaning: was not better (polite)
+pronunciation:
+  katakana: マシダ
+  romaji: mashida
+formation:
+  Noun/Noun phrase + より + ましだ: Used to indicate that something is preferable compared to a noun or a state.
+  Verb (plain form) + くらいなら + Verb (た-form or plain form) + ほうが + ましだ: Used to indicate that doing one
+    action (even if undesirable) is preferable to doing another, or to a certain situation.
+  ましな + Noun: Used to modify a noun, indicating that it is better, more acceptable, or less objectionable.
+  Situation/Clause + ほうが + ましだ: Used to state that a particular action or state is preferable given a
+    certain situation subjected to an undesirable option, implying a choice of the 'lesser of two evils'.
+jlpt: N3
+etymology: The term 「まし」 comes from the verb 「増す (ます)」 meaning "to increase" or "to improve." Over time,
+  it evolved to describe something that is "better" or "more desirable" compared to something else. 「だ」
+  is the plain form copula.
+writeup: The grammar point 「ましだ」 is used to express that something is **better**, **preferable**, or **less
+  objectionable** than something else. It implies a comparison where one option is considered more favorable,
+  even if neither is perfect. It's similar to saying "might as well" or "it's better than nothing" in
+  English. It is often used with 「〜くらいなら」 to indicate that doing one thing is better than doing another,
+  typically when faced with undesirable alternatives. While not strictly formal, it’s versatile enough
+  for various casual to semi-formal situations.
+false_friends:
+  - term: いい
+    meaning: good
+    kind: similar expression
+    nuance: Unlike 「ましだ」, 「いい」 simply means "good" and doesn't necessarily imply a comparison between
+      two options or a choice between undesirable options.
+    grammar_point: いい (good)
+  - term: ほうがいい
+    meaning: better to
+    kind: often confused with
+    nuance: While 「ほうがいい」 also indicates preference, it's generally used for advice or suggestions, whereas
+      「ましだ」 expresses a personal opinion about what is preferable, often implying a compromise or choosing
+      the lesser of two evils.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: まだマシ
+    meaning: still better, not as bad
+    kind: similar expression
+    nuance: 「まだマシ」 emphasizes that something is *still* preferable or not as bad as a worse alternative,
+      implying an even lower baseline than 「ましだ」 alone.
+    grammar_point: <suggest>:まだマシ (still better)
+  - term: むしろ
+    meaning: rather, instead
+    kind: often confused with
+    nuance: 「むしろ」 expresses a preference for an alternative that might be contrary to expectations or
+      a more direct, strong preference for an action, without the nuance of choosing the 'lesser of two
+      evils' present in 「ましだ」.
+    grammar_point: むしろ (rather・instead)
+  - term: 〜だけましだ
+    meaning: at least, it's better
+    kind: similar expression
+    nuance: 「〜だけましだ」 highlights that something is *at least* acceptable or preferable given a potentially
+      worse situation, often with a nuance of resignation or relief that things aren't worse. It is often
+      used in fixed phrases like 「ないよりましだ」 (better than nothing).
+    grammar_point: だけましだ (at least・it's better)
+post_false_friends_writeup: While 「いい」 and 「ほうがいい」 can sometimes overlap in meaning with 「ましだ」, it's important
+  to remember that 「ましだ」 specifically implies a comparison where one option is less objectionable or more
+  desirable than another. 「ほうがいい」 is often used for advice, and 「いい」 simply means "good" without any comparative
+  context. 「まだマシ」 emphasizes that something is *still* preferable from a very low baseline, whereas 「〜だけましだ」
+  (often seen as 「ないよりましだ」) focuses on the "at least" aspect, expressing relief that things aren't worse.
+  「むしろ」 implies a direct preference for an alternative rather than a choice between suboptimal options.
+examples:
+  - english: This ramen is better than the one I ate yesterday.
+    japanese:
+      - この ラーメン は 昨日 食べ た の より {まし だ}。
+      - この ラーメン は 昨日 食べ た の より {まし です}。
+      - この ラーメン は 昨日 食べ た の より まだ {まし だ}。
+    english_literally: This ramen, compared to the one I ate yesterday, is better.
+    competing_grammar:
+      - competing_japanese:
+          - この ラーメン は 昨日 食べ た の より {良い}。
+          - この ラーメン は 昨日 食べ た の より {いい} です。
+        english: This ramen is better than the one I ate yesterday.
+        hint: 「良い / いい」 is a general term for 'good' or 'better' without the nuance of 'less objectionable'
+          that 「ましだ」 conveys. We're looking for a comparison that implies a slightly critical or resigned
+          assessment.
+      - competing_japanese:
+          - この ラーメン は 昨日 食べ た の より {むしろ} 良い。
+        english: This ramen is rather better than the one I ate yesterday.
+        hint: 「むしろ」 suggests a strong, perhaps surprising, preference or a counter-expectation. We're
+          looking for a simple statement of preference between two options, implying one is simply 'less
+          bad' than the other.
+    scene: A friend trying a new ramen shop after a disappointing meal yesterday.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: My current smartphone is much better than my old one.
+    japanese:
+      - 今 の スマホ は 古い の より ずっと {まし です}。
+      - 今 の スマホ は 古い の より ずっと {まし だ}。
+      - 今 の スマホ は 古い の より ずっと まだ {まし です}。
+    english_literally: My current smartphone, compared to the old one, is much better.
+    competing_grammar:
+      - competing_japanese:
+          - 今 の スマホ は 古い の より ずっと {良い} です。
+          - 今 の スマホ は 古い の より ずっと {いい} です。
+        english: My current smartphone is much better than my old one.
+        hint: 「良い / いい」 is a general positive assessment. 「ましです」 subtly conveys that while it's an improvement,
+          it's not necessarily perfect or amazing, just better in a comparative sense.
+      - competing_japanese:
+          - 今 の スマホ は 古い の より ずっと {むしろ} 良い です。
+        english: My current smartphone is rather much better than my old one.
+        hint: 「むしろ」 implies a strong, direct preference or a surprising counter-expectation. We're looking
+          for a simple comparison of one option being preferable to another.
+    scene: Explaining a recent purchase to a colleague.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: If it's this cold, I'd rather stay warm at home.
+    japanese:
+      - こんな に 寒い なら、家 で 暖かく し てる {ほう が まし だ}。
+      - こんな に 寒い なら、家 で 暖かく し てる {ほう が まし です}。
+    english_literally: If it's this cold, staying warm at home is better.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 寒い なら、家 で 暖かく し てる {ほう が いい}。
+          - こんな に 寒い なら、家 で 暖かく し てる {ほう が 良い} です。
+        english: If it's this cold, staying warm at home is a good idea.
+        hint: 「ほうがいい」 is often used for advice or general suggestions. Here, the speaker is expressing
+          a personal preference for the 'lesser of two evils' given the undesirable alternative of going
+          out in the cold. We're looking for that nuanced preference.
+      - competing_japanese:
+          - こんな に 寒い なら、{むしろ} 家 で 暖かく し て いる べき だ。
+        english: If it's this cold, I should rather stay warm at home.
+        hint: 「むしろ」 implies a strong, direct sense of what should have been done. We're looking for a
+          more resigned choice between undesirable options.
+    scene: Complaining about unexpected cold weather.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: If I was going to make such a mistake, it would have been better not to do it from the start.
+    japanese:
+      - あんな 失敗 を する くらい なら、最初 から やら ない {ほう が まし だっ た}。
+      - あんな 失敗 を する くらい なら、最初 から やら ない {ほう が まし でし た}。
+    english_literally: If I was going to make such a mistake, it would have been better not doing it from
+      the start.
+    competing_grammar:
+      - competing_japanese:
+          - あんな 失敗 を する くらい なら、最初 から やら ない {ほう が 良かっ た}。
+          - あんな 失敗 を する くらい なら、最初 から やら ない {ほう が いい} です。
+        english: If I was going to make such a mistake, it would have been good not to do it from the
+          start.
+        hint: 「良かった / いい」 is a more general positive past assessment. 「ましだった」 conveys a stronger sense
+          of regret, implying that even doing nothing would have been superior to the bad outcome.
+      - competing_japanese:
+          - あんな 失敗 を する くらい なら、{むしろ} 最初 から やら ない べき だっ た。
+        english: If I was going to make such a mistake, I should have rather not done it from the start.
+        hint: 「むしろ」 with 「べきだった」 implies a strong, direct sense of what should have been done. 「ましだった」
+          indicates a past preference for the less bad option given the outcome.
+    scene: Reflecting on a past regretted action.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: Even a small income, I think it's better than nothing.
+    japanese:
+      - 少し の 収入 で も、ない より {まし だ} と 思っ て いる。
+      - 少し の 収入 で も、ない より {まし です} と 思っ て いる。
+      - 少し の 収入 で も、ない より まだ {まし だ} と 思っ て いる。
+    english_literally: Even a small income, compared to nothing, I think it is better.
+    competing_grammar:
+      - competing_japanese:
+          - 少し の 収入 で も、ない より {良い} と 思っ て いる。
+          - 少し の 収入 で も、ない より {いい} と 思っ て いる。
+        english: Even a small income, I think it's good compared to nothing.
+        hint: 「ないよりましだ」 is a common fixed phrase specifically meaning "better than nothing," conveying
+          a sense of relief or resignation. 「良い / いい」 is a more general positive statement.
+      - competing_japanese:
+          - 少し の 収入 で も、{むしろ} ない より 良い と 思っ て いる。
+        english: Even a small income, I rather think it's better than nothing.
+        hint: While 「むしろ」 could work, the phrase 「ないよりましだ」 is a very common idiom for "better than nothing."
+          We're looking for that specific idiomatic expression.
+    scene: A new graduate discussing their first job's pay.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He asked if there wasn't a slightly better method.
+    japanese:
+      - もう 少し {まし な} 方法 は ない の か と 彼 は 尋ね た。
+      - もう 少し {まし な} 方法 は ない の です か と 彼 は 尋ね た。
+    english_literally: He asked if there isn't a slightly better method.
+    competing_grammar:
+      - competing_japanese:
+          - もう 少し {良い} 方法 は ない の か と 彼 は 尋ね た。
+          - もう 少し {いい} 方法 は ない の です か と 彼 は 尋ね た。
+        english: He asked if there wasn't a slightly good method.
+        hint: 「良い / いい」 is a general adjective for 'good.' Here, 「ましな」 implies looking for a method that
+          is 'less bad' or more acceptable than the current one, rather than simply 'good.' We're looking
+          for that specific nuance of improvement from a less-than-ideal state.
+      - competing_japanese:
+          - もう 少し {むしろ} 良い 方法 は ない の か と 彼 は 尋ね た。
+        english: He asked if there wasn't a slightly rather good method.
+        hint: 「むしろ」 would imply a strong, perhaps surprising, preference for a completely different or
+          surprising method. 「ましな」 is about finding an improved version of something that might already
+          exist.
+    scene: A frustrated manager seeking alternatives in a meeting.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    nuance: The use of 「ましな」 implies that the current method is not ideal and a search for a more acceptable,
+      though not necessarily perfect, alternative is needed. His questioning tone, conveyed by 「彼は尋ねた」,
+      suggests a desire for improvement.
+  - english: That restaurant wasn't as bad as I thought it would be.
+    japanese:
+      - あの レストラン は 思っ て い た より {まし で は あり ませ ん でし た}。
+      - あの レストラン は 思っ て い た より {まし で は なかっ た}。
+      - あの レストラン は 思っ て い た より まだ {まし で は あり ませ ん でし た}。
+    english_literally: That restaurant, compared to what I thought, was not better.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 思っ て い た より {良く なかっ た} です。
+          - あの レストラン は 思っ て い た より {良く なかっ た}。
+        english: That restaurant was not good compared to what I thought.
+        hint: 「良くなかった」 is a direct negative statement. 「ましではありませんでした」 implies a subtle positive surprise
+          – it wasn't great, but it was better than the low expectations. We're looking for that nuance
+          of 'not as bad as expected'.
+      - competing_japanese:
+          - あの レストラン は 思っ て い た より {むしろ} {良く なかっ た} です。
+        english: That restaurant was rather not good compared to what I thought.
+        hint: 「むしろ」 would emphasize a strong, perhaps surprising, negative assessment. Here, the nuance
+          is about relief that it wasn't *worse*.
+    scene: Discussing a restaurant experience with a friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past polite (～ませんでした)
+  - english: She wished she wanted to lead a slightly better life.
+    japanese:
+      - 彼女 は『もっと {まし な} 人生 を 送り たい』と 願っ た。
+      - 彼女 は『もっと {まし な} 人生 を 送り たい です』と 願っ た。
+    english_literally: She wished, "I want to lead a slightly better life."
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は『もっと {良い} 人生 を 送り たい』と 願っ た。
+          - 彼女 は『もっと {いい} 人生 を 送り たい です』と 願っ た。
+        english: She wished, "I want to lead a more good life."
+        hint: 「良い / いい」 is general 'good.' 「ましな」 implies a desire for improvement from a current state
+          that is not ideal, suggesting incremental betterment. We're looking for that sense of 'less
+          bad' or 'more acceptable'.
+      - competing_japanese:
+          - 彼女 は『{むしろ} 良い 人生 を 送り たい』と 願っ た。
+        english: She wished, "I rather want to lead a good life."
+        hint: 「むしろ」 would imply a desire for a life that is fundamentally different or contrary to her
+          current one, with a stronger emphasis on the change. 「ましな」 is about making the existing situation
+          more tolerable or improved.
+    scene: A woman reflecting on her life and hopes for the future.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The word 「ましな」 expresses a desire for an improved situation, even if it's not perfection.
+      The direct quote 「もっと ましな 人生 を 送り たい」 shows her personal wish for incremental betterment rather
+      than a radical change.
+  - english: If this relationship continues like this, isn't it better to break up?
+    japanese:
+      - 今 の 関係 が 続く くらい なら、別れ た {ほう が まし じゃ ない}？
+      - 今 の 関係 が 続く くらい なら、別れ た {ほう が まし で は ない}？
+      - 今 の 関係 が 続く くらい なら、別れ た ほう が まだ {まし じゃ ない}？
+    english_literally: If the current relationship continues like this, isn't breaking up better?
+    competing_grammar:
+      - competing_japanese:
+          - 今 の 関係 が 続く くらい なら、別れ た {ほう が いい} じゃ ない？
+          - 今 の 関係 が 続く くらい なら、別れ た {ほう が 良い} で は ない？
+        english: If this relationship continues like this, isn't it good to break up?
+        hint: 「ほうがいい」 gives general advice. 「ほうがましだ」 implies that breaking up is the preferable option
+          among unpleasant alternatives, highlighting it as the 'lesser of two evils'. We're looking for
+          that specific nuance of choosing the least bad option.
+      - competing_japanese:
+          - 今 の 関係 が 続く くらい なら、{むしろ} 別れる べき じゃ ない？
+        english: If this relationship continues like this, shouldn't you rather break up?
+        hint: 「むしろ」 with 「べき」 implies a strong, direct recommendation or even a duty. 「ましだ」 emphasizes
+          a choice between undesirable options.
+    scene: Giving advice to a friend about their troubled relationship.
+    register: casual
+    setting: sympathetic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「〜じゃない？」 seeks agreement or confirmation from the listener, presenting breaking
+      up as the less undesirable option given the current state of the relationship. The use of 「まし」 here
+      indicates that breaking up is the preferable choice among bad options.
+  - english: I'd rather be with you than do this kind of work. For me, being with you is much better.
+    japanese:
+      - こんな 仕事 を する くらい なら、お前 と 一緒 に い たい。俺 に は、お前 と いる {ほう が ずっと まし だ}。
+      - こんな 仕事 を する くらい なら、お前 と 一緒 に い たい。俺 に は、お前 と いる {ほう が ずっと まし です}。
+    english_literally: If I were to do this kind of work, I want to be with you. For me, being with you
+      is much better.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 仕事 を する くらい なら、お前 と 一緒 に い たい。俺 に は、お前 と いる ほう が ずっと {良い}。
+          - こんな 仕事 を する くらい なら、お前 と 一緒 に い たい。俺 に は、お前 と いる ほう が ずっと {いい} です。
+        english: I'd rather be with you than do this kind of work. For me, being with you is much good.
+        hint: While 「良い / いい」 is a general positive, 「ましだ」 emphasizes the comparative aspect, implying
+          a choice between an undesirable job and the highly preferable companionship, making it the 'lesser
+          of two evils' in a strong way. We're looking for that sense of personal preference despite negative
+          circumstances.
+      - competing_japanese:
+          - こんな 仕事 を する くらい なら、{むしろ} お前 と 一緒 に いる べき だ。
+        english: If I were to do this kind of work, I should rather be with you.
+        hint: 「むしろ」 would imply a strong, direct preference or duty for being with the person. 「ましだ」 highlights
+          a personal preference based on a comparison, framing it as the overwhelmingly better option
+          in a difficult situation.
+    scene: A man confessing his feelings to his girlfriend, preferring her company over his undesirable
+      job.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「お前」 (an intimate, often masculine-used pronoun for one's partner) and 「俺」 (a masculine
+      first-person pronoun) highlights the intimate and personal nature of the statement. The final 「だ」
+      adds a sense of certainty and determination to his preference.
+    etymology: 「お前」 used to be a polite term of address, but over time has come to be more casual. While
+      intimate, in certain contexts, particularly for males, it can be flirty.
+  - english: Even if it's an imperfect plan, it's still better than having no plan at all.
+    japanese:
+      - 不 完全 な 計画 で も、全く ない より は {まし だ}。
+      - 不 完全 な 計画 で も、全く ない より は {まし です}。
+      - 不 完全 な 計画 で も、全く ない より は まだ {まし だ}。
+      - 不 完全 な 計画 で も、全く ない より は まだ {まし です}。
+    english_literally: Even an imperfect plan, compared to having none at all, is better.
+    competing_grammar:
+      - competing_japanese:
+          - 不 完全 な 計画 で も、全く ない より は {良い}。
+          - 不 完全 な 計画 で も、全く ない より は {いい} です。
+        english: Even if it's an imperfect plan, it's good compared to having no plan at all.
+        hint: 「良い / いい」 is a general positive assessment. 「ましだ」 conveys the nuance of choosing a less-than-ideal
+          option over a completely non-existent or worse one, emphasizing a compromise.
+      - competing_japanese:
+          - 不 完全 な 計画 で も、全く ない より は {むしろ} 良い。
+        english: Even if it's an imperfect plan, it's rather better than having no plan at all.
+        hint: 「むしろ」 suggests a strong, perhaps surprising, preference or a counter-expectation. 「ましだ」
+          in this context implies a pragmatic choice for improvement despite imperfection.
+    scene: Two project managers discussing a difficult situation and a less-than-ideal solution.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「不完全な計画でも」 highlights the acceptance of a suboptimal option, while 「全くないよりはましだ」
+      emphasizes that even such a plan is preferable to having nothing. This demonstrates a pragmatic
+      and resigned acceptance of a 'lesser of two evils' in a professional problem-solving context.
+post_example_writeup: As you can see from the examples, 「ましだ」 is a versatile expression used to denote
+  that something is 'better' or 'preferable' in a comparative sense, often implying a choice between less-than-ideal
+  options. Its strength lies in conveying a sense of relief or resignation that an alternative is not
+  as bad as it could be, or is simply more acceptable than another. Pay close attention to the context,
+  especially when it appears with phrases like 「〜より」 (compared to) or 「〜くらいなら」 (if it comes to that),
+  to fully grasp its nuanced meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ましだ

@@ -1,0 +1,254 @@
+grammar_point: の上では (in terms of)
+learn_before:
+  - '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - 考えられる・考えられない (can be considered・unthinkable)
+meaning: In terms of; regarding; from the point of view of
+pronunciation:
+  katakana: ノウエデハ
+  romaji: no ue de wa
+formation:
+  Noun + の上では: Indicates that a statement or situation is true or valid only within a specific context,
+    condition, or viewpoint.
+jlpt: N2
+etymology: The phrase 「の上では」 (no ue de wa) literally combines 「の」 (no, a possessive particle), 「上」 (ue,
+  meaning 'above' or 'on'), 「で」 (de, indicating location or state), and 「は」 (wa, a topic marker). The
+  literal sense of 'on top of' or 'above' has metaphorically extended to mean 'from the perspective of'
+  or 'in terms of a certain standard or document'. This reflects a common linguistic phenomenon where
+  spatial relationships are applied to abstract concepts, limiting the scope of a statement as if placing
+  it 'on' a specific conceptual plane.
+writeup: |-
+  The grammar point 「の上では」 is used to specify that a statement, fact, or situation is true or applies only within a particular context, condition, or viewpoint. It acts as a qualifier, highlighting that the validity of what is being said is confined to a specific domain, often implying that it might not be true under different circumstances or from other perspectives.
+
+  This expression is frequently encountered in formal discourse, including business, academic, legal, and technical settings. It serves to precisely define the boundaries of an assertion, allowing for nuanced communication. Common collocations include words like 「理論」 (theory), 「書類」 (documents), 「法律」 (law), 「数字」 (figures), or 「計画」 (plan), indicating that the statement's truth is relative to these specific frameworks.
+
+  For instance, 「理論の上では」 means 'in theory' or 'theoretically,' implying that while something might be conceptually sound, its practical application could differ. Similarly, 「法律の上では」 signifies 'legally' or 'from a legal standpoint,' indicating that the statement holds true according to legal statutes, regardless of moral or practical considerations.
+
+  Understanding 「の上では」 is crucial for grasping statements that delineate specific conditions or perspectives, often setting up a contrast between an ideal or formal situation and a different reality. It's not merely stating a topic; it's defining the specific lens through which something is being viewed.
+false_friends:
+  - term: においては
+    meaning: In; on; regarding (formal)
+    kind: similar expression
+    nuance: While 「の上では」 emphasizes a specific viewpoint or condition under which something is true, 「においては」
+      is used to specify a broader context or domain where something holds. 「においては」 is more about defining
+      the arena, whereas 「の上では」 is about the perspective within that arena.
+    grammar_point: <suggest>:においては (in, on)
+  - term: に関して
+    meaning: Regarding; concerning
+    kind: similar expression
+    nuance: 「に関して」 introduces the topic of a discussion or refers to something in a general sense. It
+      is a more general phrase for 'about' or 'concerning,' lacking the nuance of conditionality or specific
+      viewpoint that 「の上では」 conveys. 「に関して」 does not imply a limitation, unlike 「の上では」.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: によると
+    meaning: According to
+    kind: often confused with
+    nuance: 「によると」 is used to state the source of information, such as a report, a person, or a rumor.
+      While there is overlap with 「の上では」 when the source is a document or statistic, 「の上では」 emphasizes
+      that something is true *from the viewpoint or within the framework* of that source, often implying
+      a contrast with other realities. 「によると」 is simply reporting the source, without necessarily implying
+      a conditional truth.
+    grammar_point: によると・によれば (according to)
+  - term: 的には
+    meaning: In terms of; from the perspective of (suffix)
+    kind: similar expression
+    nuance: The suffix 「的には」 (teki ni wa) expresses 'in terms of X' or 'from an X standpoint', similar
+      to 「の上では」. However, 「の上では」 often carries a stronger implication of a distinction between what is
+      true 'on paper' or 'in theory' and what is true in practice or reality, making that distinction
+      more explicit. 「的には」 is more broadly applicable to various perspectives without necessarily implying
+      such a strong contrast.
+    grammar_point: <suggest>:的には (in terms of)
+post_false_friends_writeup: To differentiate these expressions, remember that 「の上では」 is primarily used
+  when you want to explicitly state that a claim is valid *only* within a specific context, condition,
+  or viewpoint, often contrasting it with what might be true otherwise. 「においては」 defines the scope or domain.
+  「に関して」 introduces the general topic. 「によると」 specifies the source of information. And while 「的には」 offers
+  a perspective, it doesn't carry the same strong implication of a conditional truth or an 'on paper'
+  vs. 'in reality' contrast as 「の上では」.
+examples:
+  - english: On paper, this project should be fine.
+    japanese:
+      - 書類 の {上 で は}、この プロジェクト は 問題 ない はず です。
+      - 書類 の {上 で は}、この プロジェクト は 問題 ない はず だ。
+    english_literally: As for documents' 'on top of it', this project has no problem it should be.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 に {よる と}、この プロジェクト は 問題 ない はず です。
+        english: According to the documents, this project should be fine.
+        hint: 「によると」 is used to state the source of information. We're looking for a phrase that defines
+          the specific context or viewpoint from which the statement is true.
+    scene: A project manager is reviewing the documentation for a new initiative and is confident about
+      its viability based solely on what's written.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: The use of 「～はずです」 (should be) combined with 「書類の上では」 (on paper) implies a conclusion drawn
+      strictly from documented facts, possibly contrasting with an unstated reality.
+  - english: According to the plan, we are scheduled to open a new branch by next year.
+    japanese:
+      - 計画 の {上 で は}、来年 まで に 新しい 支店 を オープン する こと に なっ て い ます。
+      - 計画 の {上 で は}、来年 まで に 新しい 支店 を オープン する こと に なっ て いる。
+    english_literally: As for plan's 'on top of it', by next year new branch to open is decided.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 に {よる と}、来年 まで に 新しい 支店 を オープン する こと に なっ て い ます。
+        english: According to the plan, we are scheduled to open a new branch by next year.
+        hint: 「によると」 simply reports the source of information. We're looking for a phrase that emphasizes
+          the statement is true within the framework of the plan, hinting at potential real-world deviations.
+    scene: A company executive is updating stakeholders on the timeline for a new business expansion,
+      emphasizing what has been formally decided and documented.
+    register: formal
+    setting: informative
+    nuance: 「ことになっています」 (it has been decided that) signifies a scheduled or decided event. 「計画の上では」 limits
+      this scheduled event's existence to the context of the formal plan, suggesting it's not yet a physical
+      reality.
+  - english: Statistically, he has the best performance in the team.
+    japanese:
+      - 数字 の {上 で は}、彼 は チーム で 一番 の 成績 を 収め て い ます。
+      - 数字 の {上 で は}、彼 は チーム で 一番 の 成績 を 収め て いる。
+    english_literally: As for numbers' 'on top of it', he team in best results has achieved.
+    competing_grammar:
+      - competing_japanese:
+          - 数字 に {よれ ば}、彼 は チーム で 一番 の 成績 を 収め て い ます。
+        english: If based on numbers, he has the best performance in the team.
+        hint: 「によれば」 is generally used to cite a source. We're looking for a phrase that specifies the
+          'best performance' is a conclusion drawn strictly from the numerical perspective, potentially
+          contrasting with qualitative aspects.
+    scene: A coach is presenting performance data to a team, pointing out a player's strong quantitative
+      results, while perhaps acknowledging other factors not captured by numbers.
+    register: formal
+    setting: informative
+    nuance: The phrase 「成績を収めています」 (has achieved results) is a polite and formal way to describe performance.
+      By using 「数字の上では」, the speaker emphasizes that the assessment is based solely on quantitative data,
+      which can often differ from qualitative observations.
+  - english: In theory, this method should work, but in practice, it might be difficult.
+    japanese:
+      - 理論 の {上 で は}、この 方法 は うまく いく はず です が、実際 に は 難しい か も しれ ませ ん。
+      - 理論 の {上 で は}、この 方法 は うまく いく はず だ が、実際 に は 難しい か も しれ ない。
+    english_literally: As for theory's 'on top of it', this method well go should, but actually difficult
+      perhaps.
+    competing_grammar:
+      - competing_japanese:
+          - 理論 {的 に は}、この 方法 は うまく いく はず です が、実際 に は 難しい か も しれ ませ ん。
+        english: Theoretically, this method should work, but in practice, it might be difficult.
+        hint: 「的には」 broadly expresses 'in terms of'. We're looking for a phrase that strongly implies
+          the statement is true within the realm of theory itself, setting up a direct contrast with practical
+          reality.
+    scene: Two scientists are discussing a new experimental procedure. One explains its theoretical soundness,
+      but expresses reservations about its real-world application.
+    register: formal
+    setting: serious
+    nuance: 'This example effectively demonstrates a common use of 「の上では」: to set up a contrast between
+      an ideal or theoretical state (「理論の上では」) and a practical reality (「実際には難しい」). The auxiliary verb
+      「はずです」 reinforces the theoretical expectation.'
+  - english: Legally, that is not permitted.
+    japanese:
+      - 法律 の {上 で は}、それ は 許可 さ れ て い ませ ん。
+      - 法律 の {上 で は}、それ は 許可 さ れ て い ない。
+    english_literally: As for law's 'on top of it', that is not permitted.
+    competing_grammar:
+      - competing_japanese:
+          - 法律 {的 に は}、それ は 許可 さ れ て い ませ ん。
+        english: Legally, that is not permitted.
+        hint: 「的には」 indicates 'from a legal perspective'. We're looking for a phrase that emphasizes the
+          restriction is strictly according to the legal statutes, regardless of personal opinion.
+    scene: A lawyer is advising a client about the legality of a certain action, making it clear that
+      while it might seem harmless, it violates the law.
+    register: formal
+    setting: serious
+    nuance: The direct statement 「許可されていません」 (is not permitted) is made unequivocally clear by the preceding
+      「法律の上では」, indicating that the restriction is strictly according to the law, regardless of personal
+      opinion or other considerations.
+  - english: Formally, we are still friends.
+    japanese:
+      - 形式 の {上 で は}、私 たち は まだ 友人 です。
+      - 形式 の {上 で は}、私 たち は まだ 友人 だ。
+    english_literally: As for formality's 'on top of it', we are still friends.
+    competing_grammar:
+      - competing_japanese:
+          - 形式 {的 に は}、私 たち は まだ 友人 です。
+        english: Formally, we are still friends.
+        hint: 「的には」 indicates 'in terms of formality'. We're looking for a phrase that emphasizes the
+          friendship exists on the plane of formality, contrasting it with the underlying emotional reality.
+    scene: After a falling out, two former close friends maintain a cordial but distant relationship in
+      public, adhering to social norms despite their personal feelings.
+    register: formal
+    setting: serious
+    nuance: This sentence highlights the distinction between outward appearance or social convention (「形式の上では」)
+      and deeper, unstated feelings or realities. The formal register implied by 「形式」 is maintained throughout.
+  - english: Based on the data, this medicine is very effective.
+    japanese:
+      - データ の {上 で は}、この 薬 は 非常 に 効果 的 です。
+      - データ の {上 で は}、この 薬 は 非常 に 効果 的 だ。
+    english_literally: As for data's 'on top of it', this medicine is very effective.
+    competing_grammar:
+      - competing_japanese:
+          - データ に {よる と}、この 薬 は 非常 に 効果 的 です。
+        english: According to the data, this medicine is very effective.
+        hint: 「によると」 states the data as a source. We're looking for a phrase that specifies the effectiveness
+          is true within the realm of the data analysis, suggesting other factors might not be captured.
+    scene: A medical researcher is presenting findings from a clinical trial, showing clear evidence of
+      a drug's efficacy according to collected statistics.
+    register: formal
+    setting: informative
+    nuance: Using 「データの上では」 specifies that the conclusion about the medicine's effectiveness is derived
+      purely from the collected data, suggesting that while the data supports it, other factors (like
+      individual patient variability) are not being considered in this statement.
+  - english: According to rumors, she seems to be the president's secret child.
+    japanese:
+      - 噂 の {上 で は}、彼女 は 社長 の 隠し子 らしい。
+      - 噂 の {上 で は}、彼女 は 社長 の 隠し子 らしい です。
+    english_literally: As for rumor's 'on top of it', she is president's secret child seems.
+    competing_grammar:
+      - competing_japanese:
+          - 噂 に {よる と}、彼女 は 社長 の 隠し子 らしい。
+        english: According to rumors, she seems to be the president's secret child.
+        hint: 「によると」 simply cites rumor as the source. We're looking for a phrase that highlights the
+          information's validity exists only within the domain of rumor, implying its unreliability.
+    scene: Two colleagues are engaged in office gossip, speculating about the new employee's mysterious
+      connection to the company president.
+    register: casual
+    setting: humorous
+    nuance: The casual tone is established by 「噂」 (rumor) and the auxiliary 「らしい」 (it seems). 「噂の上では」
+      strengthens the implication that the information is unverified and exists purely in the realm of
+      hearsay, reinforcing the speculative nature of gossip.
+  - english: From a philosophical standpoint, human nature is inherently good.
+    japanese:
+      - 哲学 の {上 で は}、人間 は 本来 善 で ある。
+      - 哲学 の {上 で は}、人間 は 本来 善 で ある と 考え られ て い ます。
+    english_literally: As for philosophy's 'on top of it', human is inherently good.
+    competing_grammar:
+      - competing_japanese:
+          - 哲学 {的 に は}、人間 は 本来 善 で ある。
+        english: Philosophically, human nature is inherently good.
+        hint: 「的には」 (teki ni wa) provides a general perspective. We're looking for a phrase that specifically
+          states the truth of the statement within the framework of philosophy.
+    scene: A university lecturer is explaining different philosophical views on human nature to their
+      students.
+    register: formal
+    setting: academic
+    nuance: The phrase 「善である」 (is good) is a formal philosophical assertion. 「哲学の上では」 specifies that this
+      assertion is valid within the domain of philosophical thought, implying it might be debatable outside
+      that context. The use of 「と考えられる」 (is considered) further softens the assertion, presenting it as
+      a recognized philosophical view.
+  - english: As far as promises go, everything is perfect, but reality is different.
+    japanese:
+      - 約束 の {上 で は}、すべて が 完璧 です が、現実 は 異なり ます。
+      - 約束 の {上 で は}、すべて が 完璧 だ が、現実 は 異なる。
+    english_literally: As for promises' 'on top of it', everything is perfect, but reality differs.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 に {関し て は}、すべて が 完璧 です が、現実 は 異なり ます。
+        english: Regarding promises, everything is perfect, but reality is different.
+        hint: 「に関して」 (ni kanshite) simply introduces the topic. We're looking for a phrase that emphasizes
+          the 'perfection' is only true within the scope of the promises themselves, suggesting a discrepancy
+          with actual events.
+    scene: A friend is complaining about a difficult situation where someone's grand promises did not
+      align with the actual outcome.
+    register: semi-formal
+    setting: reflective
+    nuance: 「完璧です」 (is perfect) describes the ideal state based on promises. By using 「約束の上では」, the speaker
+      sets up a clear contrast with 「現実」 (reality), highlighting that the perfection exists only in the
+      realm of the promises made, not necessarily in their fulfillment.
+post_example_writeup: When using 「の上では」, always consider the implied contrast or limitation. It is rarely
+  used when a statement is universally true without any qualifying conditions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/799

@@ -1,0 +1,218 @@
+grammar_point: '[な-Adjective]に (adverbial form)'
+matcher: |-
+  (
+    ⌈ˢ~ᵖshp:~⌉|
+    ⌈ˢ~ᵖadv~⌉|
+    ⌈ˢ~ᵖn:~⌉
+  )
+  (
+    ⌈ˢにᵖauxv:auxv-da:conjunctive-niᵇだᵈだʳニ⌉|
+    ⌈ˢにᵖprt:case_particleᵇにʳニ⌉
+  )
+learn_before:
+  - な-Adjectives (adjectival nouns)
+meaning: to convert a な-adjective into an adverb, describing the manner or state of an action
+pronunciation:
+  katakana: ナアドジェクティブニ
+  romaji: na-adjective ni
+formation:
+  な-Adjective stem + に: Forms an adverb from a な-adjective, indicating how an action is performed.
+jlpt: N5
+etymology: The particle 「に」 has a wide range of functions, often indicating direction, time, or a state.
+  With な-adjectives, it transforms them into adverbs, signifying the 'manner' or 'state' in which an action
+  occurs. This usage stems from the historical development of な-adjectives (also known as adjectival nouns)
+  as deriving from nouns. Just as a noun followed by 「に」 can describe a state (e.g., 「自由 に」 'freely'),
+  a な-adjective stem + 「に」 allows the adjective's quality to describe the way an action is carried out,
+  conceptually directing the action 'into' that quality.
+writeup: |-
+  The particle 「に」 is attached to the stem of a な-adjective to create an adverb. This adverbial form describes the **manner** or **state** in which an action is performed. It answers the question 'how?' or 'in what way?'. For example, if you want to say something is done 'quietly,' you take the な-adjective 「静か」 (shizuka, quiet) and add 「に」 to its stem, resulting in 「静かに」 (shizukani, quietly).
+
+  This is a very common and essential way to modify verbs and sometimes other adjectives or adverbs in Japanese. It allows for precise descriptions of actions.
+
+  **Important Considerations:**
+  *   **Location**: The adverbial form typically precedes the verb it modifies. For example, 「静かに話す」 (shizukani hanasu, to speak quietly).
+  *   **Meaning Nuance**: While the base な-adjective describes a noun (e.g., 「静かな部屋」 shizukana heya, 'a quiet room'), the 「に」 form describes an action (e.g., 「静かに歩く」 shizukani aruku, 'to walk quietly').
+  *   **Common Mistakes**: Students sometimes confuse this with the particle 「で」 when it links clauses or provides a reason (see false friends section below). Remember, 「に」 here describes the *manner* of an action, not a state of being or a cause.
+false_friends:
+  - term: な-Adjective[で] (te-form)
+    meaning: being [な-adjective], and...; because it is [な-adjective]
+    kind: often confused with
+    nuance: Unlike な-Adjective[に] which describes the manner of an action, な-Adjective[で] functions as
+      the te-form of a な-adjective, linking clauses or providing a reason. For example, 「静かに話す」 means
+      'to speak quietly,' while 「静かで話す」 would mean 'it is quiet, and then I speak' or 'because it is quiet,
+      I speak,' which is usually grammatically awkward or incorrect in this context. We're looking for
+      an adverb here, not a reason.
+    grammar_point: な-Adjective[で] (te-form)
+post_false_friends_writeup: Understanding the distinction between 「に」 and 「で」 with な-adjectives is crucial.
+  The 「に」 form explicitly functions as an adverb, modifying a verb to describe *how* something is done.
+  The 「で」 form, on the other hand, is the conjunctive (te-form) of the な-adjective, used to connect clauses
+  or express a cause or reason. While both use the adjective stem, their roles in the sentence are fundamentally
+  different. Always consider whether you are describing *how* an action is performed (use 「に」) or stating
+  *what* something is or *why* something is happening (use 「で」).
+examples:
+  - english: Please speak quietly.
+    japanese:
+      - 静か {に} 話し て ください。
+      - 静か {に} 話し て いただけ ます か。
+      - どう か 静か {に} 話し て ください。
+    english_literally: Quietly speak please.
+    competing_grammar:
+      - competing_japanese:
+          - 静か {で} 話し て ください。
+        english: It is quiet, and please speak.
+        hint: 「静かで」 links clauses or gives a reason, but here we want to describe *how* to speak. We're
+          looking for an adverb to modify the verb.
+    scene: A librarian addressing a patron in a library.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「静か {に}」 (shizuka ni) is formed by taking the stem of the な-adjective 「静か」 (shizuka, quiet)
+      and adding 「に」. This transforms it into an adverb meaning 'quietly,' describing the manner in which
+      the action of 'speaking' (話して) should be done. The polite request 「ください」 (kudasai) reinforces the
+      formal setting.
+    etymology: The phrase 「どうぞ」 is a general polite word originating from 「如何ぞ」 (ikaga zo), meaning 'how
+      indeed'. Over time, it softened to imply 'please' or 'kindly', inviting action or agreement in a
+      polite manner.
+  - english: Please write clearly.
+    japanese:
+      - はっきり {に} 書い て ください。
+      - はっきり {に} 書い て いただけ ます か。
+      - 文字 を はっきり {に} 書い て ください。
+    english_literally: Clearly write please.
+    competing_grammar:
+      - competing_japanese:
+          - はっきり {で} 書い て ください。
+        english: It is clear, and please write.
+        hint: 「はっきりで」 isn't the correct adverbial form. We need the form that describes *how* to write,
+          not a linking form.
+    scene: A teacher giving instructions to students for an assignment.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「はっきり {に}」 (hakkiri ni) is formed from 「はっきり」 (hakkiri, clear/distinct). While 「と」 is more
+      commonly used with this word, 「に」 is also grammatically possible and used here to adhere to the
+      な-adjective + に grammar pattern. It means 'to write clearly' or 'distinctly.'
+  - english: She always works diligently.
+    japanese:
+      - 彼女 は いつ も 真面目 {に} 働き ます。
+      - 彼女 は いつ も 真面目 {に} 仕事 を し ます。
+      - 彼女 は 常 に 真面目 {に} 取り組ん で い ます。
+    english_literally: She always diligently works.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 真面目 {で} 働き ます。
+        english: She is diligent, and always works.
+        hint: We are describing *how* she works, not linking a state to an action. The particle 'で' implies
+          causation or a linking of conditions.
+    scene: Colleagues are discussing a new team member.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「真面目 {に}」 (majime ni) is formed from 「真面目」 (majime, diligent/serious). The addition of 「に」
+      allows it to modify the verb 「働きます」 (hatarakimasu, works), describing her working style. This is
+      a common and natural way to describe someone's habits or characteristics in a professional setting.
+  - english: Please open the door slowly.
+    japanese:
+      - ゆっくり {に} ドア を 開け て ください。
+      - ドア を ゆっくり {に} 開け て ください。
+      - ゆっくり {に} ドア を 開け て いただけ ます か。
+    english_literally: Slowly door open please.
+    competing_grammar:
+      - competing_japanese:
+          - ゆっくり {で} ドア を 開け て ください。
+        english: It is slow, and please open the door.
+        hint: 「ゆっくりで」 would imply a cause or sequence, but we need to describe the *manner* of opening
+          the door.
+    scene: A parent instructing a child not to wake up sleeping siblings.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「ゆっくり {に}」 (yukkuri ni) comes from 「ゆっくり」 (yukkuri, slow/relaxed). While 「と」 is more commonly
+      used with 「ゆっくり」, 「に」 is also a valid adverbial particle. This instruction is polite but firm, characteristic
+      of a parent-child interaction where a direct command is softened slightly.
+  - english: He smiled happily.
+    japanese:
+      - 彼 は 嬉し そう {に} 微笑み まし た。
+      - 彼 は 嬉し そう {に} 笑い まし た。
+      - 彼 は 嬉し そう {に} ニコッ と し まし た。
+    english_literally: He happily smiled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 嬉し そう {で} 微笑み まし た。
+        english: He was happy, and smiled.
+        hint: We are describing the *manner* of his smile. 「嬉しそうで」 would describe his state or link clauses,
+          which isn't the primary focus here.
+    scene: Narrating a moment of joy.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: 「嬉しそう {に}」 (ureshisō ni) is an interesting case. 「そう」 (sō) attaches to adjectives to mean
+      'seems/looks like,' turning 「嬉しい」 (ureshii, happy, an い-adjective) into a な-adjective-like form
+      「嬉しそう」 (looking happy). Adding 「に」 then creates an adverb 'happily' or 'looking happy.' This example
+      shows how complex adjectival forms can still be made adverbial with 「に」.
+  - english: He spoke frankly.
+    japanese:
+      - 彼 は 率直 {に} 話し まし た。
+      - 彼 は 率直 {に} 物事 を 言い まし た。
+      - 彼 は 率直 {に} 意見 を 述べ まし た。
+    english_literally: He frankly spoke.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 率直 {で} 話し まし た。
+        english: He was frank, and spoke.
+        hint: 「率直で」 links clauses or indicates a state; we need to describe *how* he spoke.
+    scene: Describing a person's communication style.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「率直 {に}」 (socchoku ni) is formed from the な-adjective 「率直」 (socchoku, frank/candid). The addition
+      of 「に」 allows it to modify the verb 「話しました」 (hanashimashita, spoke), indicating the manner of speaking.
+      This demonstrates a common and straightforward application of な-adjective + に to describe an action.
+  - english: Please use it freely.
+    japanese:
+      - ご 自由 {に} お 使い ください。
+      - どうぞ ご 自由 {に} お 使い ください。
+      - ご 自由 {に} 使っ て いただい て 構い ませ ん。
+    english_literally: Freely use please.
+    competing_grammar:
+      - competing_japanese:
+          - ご 自由 {で} お 使い ください。
+        english: It is free, and please use.
+        hint: We want to describe the *manner* of usage ('freely'), not state a condition or reason ('it
+          is free').
+    scene: A host offering food or amenities to guests.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「ご 自由 {に}」 (go jiyū ni) is from 「自由」 (jiyū, freedom/free) with the honorific prefix 「ご」. 「自由」
+      is a な-adjective (or sometimes treated as a noun). Adding 「に」 makes it 'freely.' This is a common
+      and polite expression used to invite someone to act without reservation.
+  - english: He lived simply.
+    japanese:
+      - 彼 は シンプル {に} 生き まし た。
+      - 彼 は シンプル {に} 考え ます。
+      - 彼 は 質素 {に} 生き まし た。
+    english_literally: He simply lived.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は シンプル {で} 生き まし た。
+        english: He was simple, and lived.
+        hint: The goal is to describe *how* he lived, not to say that he was simple and then lived. This
+          implies a cause/effect or sequence, which is incorrect.
+    scene: Describing someone's lifestyle.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 「シンプル {に}」 (shinpuru ni) comes from the loanword な-adjective 「シンプル」 (shinpuru, simple). Many
+      foreign loanwords function as な-adjectives in Japanese. The 「に」 here clearly indicates the manner
+      of living, meaning 'simply' or 'in a simple way.'
+  - english: She elegantly walked into the room.
+    japanese:
+      - 彼女 は 優雅 {に} 部屋 へ 歩い て 入り まし た。
+      - 彼女 は 優雅 {に} 室内 に 歩み 入り まし た。
+      - 彼女 は 優雅 {に} 姿 を 現し まし た。
+    english_literally: She elegantly room to walked entered.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 優雅 {で} 部屋 へ 歩い て 入り まし た。
+        english: She was elegant, and walked into the room.
+        hint: 「優雅で」 describes her state; we need to describe the *manner* of her walking.
+    scene: Describing someone's graceful movement.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: 「優雅 {に}」 (yūga ni) is formed from the な-adjective 「優雅」 (yūga, elegant/graceful). The addition
+      of 「に」 transforms it into an adverb meaning 'elegantly,' modifying the verb phrase 「歩いて入りました」 (aruite
+      hairimashita, walked and entered). This showcases how the な-adjective + に form can add refined descriptive
+      detail to actions.

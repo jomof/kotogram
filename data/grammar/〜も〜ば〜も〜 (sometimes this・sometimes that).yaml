@@ -1,0 +1,396 @@
+grammar_point: 〜も〜ば〜も〜 (sometimes this・sometimes that)
+learn_before:
+  - に気をつける (to be careful of)
+meaning: Sometimes... and sometimes...; there are times when... and there are times when...
+conjugations:
+  - conjugation-type: conditional (～ば)
+    form: Verb(ば-conditional)
+    rarity: common
+    meaning: if (verb); when (verb)
+pronunciation:
+  katakana: モアレバモアル
+  romaji: mo areba mo aru
+formation:
+  Verb(ます-stem) + も + Verb(ば-conditional) + Verb(ます-stem) + も + Verb: Expresses that an action sometimes
+    occurs and sometimes another related action also occurs, highlighting the variability of situations
+    or behaviors. (e.g., 笑いもすれば泣きもする - sometimes laughs, sometimes cries)
+  Noun (+ particle, optional) + も + Verb(ば-conditional) + Noun (+ particle, optional) + も + Verb: Describes
+    situations where certain entities or events exist or occur alongside others, indicating a range of
+    possibilities or a balance between different states. (e.g., 晴れの日もあれば雨の日もある - there are sunny days
+    and rainy days)
+  い-Adjective(く-form) + も + なれば + い-Adjective(く-form) + も + なる: Describes how a quality or state can change
+    or be sometimes one way and sometimes another. (e.g., 面白くもなればつまらなくもなる - sometimes becomes interesting,
+    sometimes becomes boring)
+  な-Adjective(に-form) + も + なれば + な-Adjective(に-form) + も + なる: Describes how a quality or state can change
+    or be sometimes one way and sometimes another. (e.g., 有利にもなれば不利にもなる - sometimes becomes advantageous,
+    sometimes disadvantageous)
+jlpt: N1
+etymology: The structure combines the particle 「も」 (also, even) with the conditional 「ば」 form of a verb,
+  which denotes a condition or cause. The repetition of 「も」 highlights that both listed possibilities
+  or states are equally valid or occur within a given context. The phrase essentially asserts the existence
+  or occurrence of 'this' (V1) and 'that' (V2), implying a variability or range of states or actions.
+  Historically, the conditional 'ば' form evolved from 'は' combined with the indicative form, indicating
+  a condition or consequence. The addition of 'も' before each clause emphasizes that each condition is
+  equally viable or present.
+writeup: |-
+  The grammar point 「Noun+も+Verb[ば-conditional]+Noun+も+Verb」, more broadly represented as 「〜も Vば 〜も V」, is used to express that there are times when one thing happens, and other times when something else happens. This structure effectively presents a range of possibilities, typical examples, or alternating situations.
+
+  It is commonly employed in formal writing and speech, including academic texts, business contexts, and general observations where a comprehensive and balanced perspective is desired. Unlike simply listing possibilities, this pattern emphasizes that both (or all) mentioned conditions or outcomes are part of the overall experience or phenomenon. It implies a sense of 'sometimes this, and sometimes that' or 'there exist both this and that' within a given scope.
+
+  While the grammar point title specifically mentions 'Noun', the pattern is highly versatile and can apply to various linguistic elements preceding 「も」, including nominalized clauses, verb stems, and adjective forms, as detailed in the 'Formation' section. This flexibility allows for its application in diverse contexts to describe the fluctuating nature of events, characteristics, or states. This pattern is particularly useful when you want to highlight the duality or the full spectrum of a situation.
+false_friends:
+  - term: たり〜たりする (do things like x and y)
+    meaning: to do things like ~ and ~; sometimes ~ sometimes ~
+    kind: similar expression
+    nuance: Unlike 「〜も〜ば〜も〜」, 「〜たり〜たりする」 implies a non-exhaustive list of actions or states, often suggesting
+      a casual enumeration of typical behaviors or occurrences. It focuses on the alternation of actions
+      rather than the comprehensive existence of possibilities or extremes, and it can sometimes imply
+      a certain randomness or lack of purpose.
+    grammar_point: Verb[たり] (representative listing)
+  - term: も~も (both neither ~ nor)
+    meaning: both ~ and ~
+    kind: similar expression
+    nuance: While 「〜も〜も〜」 simply lists items or concepts as being true or present together (e.g., コーヒーも紅茶も好き
+      - I like both coffee and tea), 「〜も〜ば〜も〜」 specifically highlights variability, contrast, or the range
+      of situations where both listed possibilities or states can exist or occur. It implies a conditional
+      or alternating nature, showing a broader spectrum of possibilities.
+    grammar_point: も~も (both neither ~ nor)
+post_false_friends_writeup: While 「〜たり〜たりする」 and 「〜も〜も〜」 share some semantic overlap with 「〜も〜ば〜も〜」, their
+  nuances differ. 「〜も〜ば〜も〜」 distinctly emphasizes the *coexistence* or *alternation* of different states
+  or events within a given context, often presenting a comprehensive view of a phenomenon. This contrasts
+  with 「〜たり〜たりする」, which simply lists non-exhaustive examples of actions, and 「〜も〜も〜」, which just denotes
+  inclusion without the conditional or alternating aspect.
+examples:
+  - english: Life has its enjoyable moments, and it also has its painful ones.
+    japanese:
+      - 人生 は 楽しい こと も {あれ ば}、辛い こと も {ある}。
+      - 人生 って 楽しい こと も {あれ ば}、辛い こと も {ある} よ ね。
+      - 人生 に は、楽しい こと も {あれ ば}、辛い こと も {ある} もの だ。
+      - 人生 に は、楽しい 時 も {あれ ば}、辛い 時 も {ある}。
+    english_literally: As for life, enjoyable things exist, and painful things also exist.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は 楽しい こと に なっ {たり}、辛い こと に なっ {たり する}。
+        english: Life becomes enjoyable sometimes, and painful sometimes.
+        hint: The verb `〜たり〜たりする` focuses on an alternation of actions or states, often implying a less
+          comprehensive or inherent nature than what we are looking for.
+      - competing_japanese:
+          - 人生 は 楽しい こと {も} 辛い こと {も} ある。
+        english: Life has both enjoyable things and painful things.
+        hint: This phrase uses `も〜も` to simply list two facts, but it doesn't convey the sense of 'sometimes
+          this, sometimes that' or a comprehensive range as strongly as the intended grammar.
+    scene: Someone reflecting on the complexities of life.
+    register: formal
+    setting: reflective
+    conjugation: conditional (～ば)
+    speaker_age: older
+    nuance: This sentence presents a balanced view of life's experiences, emphasizing that both positive
+      and negative aspects are inherent. It's a common observation made by someone reflecting on life's
+      journey, often an older individual, using the phrase 「〜こと も {あれば} 、 〜こと も {ある}」 to show the inevitable
+      dual nature of things.
+  - english: This job has busy periods and slow periods.
+    japanese:
+      - 忙しい 時期 も {あれ ば}、暇 な 時期 も {ある} の が、この 仕事 だ。
+      - この 仕事 は 忙しい 時期 も {あれ ば}、暇 な 時期 も {ある}。
+      - この 仕事 に は、忙しい 時期 も {あれ ば}、暇 な 時期 も {ござい ます}。
+      - この 仕事、忙しい 時 も {あれ ば}、暇 な 時 も {ある} よ ね。
+    english_literally: Regarding this job, there are busy periods and also free periods.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 忙しい 時期 {も}、暇 な 時期 {も} ある。
+        english: While correct, this simply lists possibilities without the emphasis on the 'sometimes
+          this, sometimes that' dynamic that the intended grammar conveys.
+        hint: While correct, this simply lists possibilities without the emphasis on the 'sometimes this,
+          sometimes that' dynamic that the intended grammar conveys.
+      - competing_japanese:
+          - この 仕事 は 忙しい 時 {も ある し}、暇 な 時 {も ある}。
+        english: This job sometimes has busy times, and sometimes has free times.
+        hint: The `〜時 も あるし` conjunction lists occurrences and can imply alternation, but it doesn't carry
+          the same formal or comprehensive nuance of the intended grammar.
+      - competing_japanese:
+          - この 仕事 は 忙しかっ {たり}、暇 だっ{たり する}。
+        english: This job is sometimes busy, sometimes slow.
+        hint: The `〜たり〜たりする` pattern lists actions or states that occur intermittently, often with a nuance
+          of randomness or simply listing. We are focusing on a more inherent and comprehensive range
+          of possibilities.
+    scene: A seasoned employee explaining the nature of their work to a newcomer.
+    register: semi-formal
+    setting: informative
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「忙しい 時期 も {あれば} 、 暇 な 時期 も {ある}」 is used to describe the fluctuating workload of
+      a job, a common topic in professional settings. This kind of pragmatic observation is typically
+      shared by a more experienced male colleague to a newer male employee, setting expectations.
+  - english: In the new class, there will be kind people, and also some strict people.
+    japanese:
+      - 新しい クラス に は、優しい 人 も {いれ ば}、少し 厳しい 人 も {いる} だろう。
+      - 新しい クラス、優しい 人 も {いれ ば}、厳しい 人 も {いる} だろう ね。
+      - 新しい クラス に は、優しい 人 も {いれ ば}、厳しい 人 も {いる} もの だ。
+      - 新しい クラス、優しい 人 も {いれ ば}、厳しい 人 も {いる} から ね。
+    english_literally: In the new class, kind people will exist, and slightly strict people will also
+      exist.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい クラス に は、優しい 人 {も いる し}、厳しい 人 {も いる} だろう。
+        english: In the new class, there will be kind people, and there will also be strict people.
+        hint: The `〜し` conjunction lists reasons or facts. While similar in meaning, it lacks the specific
+          'range of possibilities' emphasis of the intended grammar.
+      - competing_japanese:
+          - 新しい クラス に は 優しい 人 {も}、厳しい 人 {も} いる だろう。
+        english: In the new class, both kind people and strict people will be there.
+        hint: This simply lists two types of people. It doesn't convey the idea of experiencing 'sometimes
+          one, sometimes the other' or a comprehensive range of possibilities as directly as the intended
+          grammar.
+      - competing_japanese:
+          - 新しい クラス の 人 は 優しい 人 だっ{たり}、厳しい 人 だっ{たり する} だろう。
+        english: People in the new class will be sometimes kind, sometimes strict.
+        hint: The `〜たり〜たりする` pattern suggests an alternation of characteristics or actions. This grammar
+          point implies the *coexistence* of both types of people.
+    scene: A teacher preparing students for a new school year.
+    register: semi-formal
+    setting: instructional
+    conjugation: conditional (～ば)
+    nuance: This sentence uses 「優しい 人 も {いれば} 、 少し 厳しい 人 も {いる}」 to describe the diversity of personalities
+      in a group. It's a general observation, suitable for a teacher guiding students, indicating that
+      they should be prepared for various types of interactions without judgment.
+  - english: That restaurant sometimes has amazing food, and sometimes it's unbelievably bad, so be careful.
+    japanese:
+      - あの レストラン は、最高 に 美味しい 時 も {あれ ば}、信じ られ ない くらい まずい 時 も {ある} から 気 を つけ て。
+      - あの レストラン、最高 に 美味しい 時 も {あれ ば}、めっちゃ まずい 時 も {ある} から 気 を つけ て ね。
+      - あの レストラン は、美味しい 時 も {あれ ば}、まずい 時 も {ある} から、気 を つける べき だ よ。
+    english_literally: Regarding that restaurant, there are times when it's supremely delicious, and times
+      when it's unbelievably bad, so be careful.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は、最高 に 美味しい 時 {も ある し}、信じ られ ない くらい まずい 時 {も ある} から 気 を つけ て。
+        english: That restaurant sometimes has amazing food, and it also sometimes has unbelievably bad
+          food, so be careful.
+        hint: The `〜時 も あるし` conjunction lists occurrences and can imply alternation, but it doesn't emphasize
+          the comprehensive range of experiences as strongly as the intended grammar.
+      - competing_japanese:
+          - あの レストラン は 美味しかっ {たり}、まずかっ {たり する} から 気 を つけ て。
+        english: That restaurant does things like being delicious and being bad, so be careful.
+        hint: The `〜たり〜たりする` emphasizes alternation of actions or states. While related, it focuses more
+          on the sequential actions rather than the inherent variability of situations.
+      - competing_japanese:
+          - あの レストラン は、最高 に 美味しい 時 {も} まずい 時 {も} ある から 気 を つけ て。
+        english: That restaurant has both times of amazing food and bad food, so be careful.
+        hint: This simply lists two types of days using `〜も〜も`. It lacks the alternating or conditional
+          nuance of the intended grammar that highlights a range of conditions.
+    scene: Friends discussing dining options, with one giving a cautionary review.
+    register: casual
+    setting: humorous
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The extreme contrast expressed by 「最高に 美味しい 時 も {あれば} 、 信じられない くらい まずい 時 も {ある}」 creates a
+      humorous tone, typical in casual conversation between close friends. The cautionary 「気 を つけて」 adds
+      to the friendly warning, often exchanged among women when sharing tips or experiences.
+  - english: I praise my children often, but if they do something wrong, I sometimes scold them strictly,
+      and sometimes I talk to them gently.
+    japanese:
+      - 私 は 子供 を よく 褒める けれど、悪い こと を し たら 厳しく 叱り も {すれ ば}、優しく 話し も {する}。
+      - 私 は 子供 を よく 褒める けれど、悪い こと を し たら 厳しく 叱る こと も {あれ ば}、優しく 話す こと も {ある}。
+      - 子供 に は、厳しく する こと も {あれ ば}、優しく する こと も {ある} の よ。
+      - 私、子供 の こと は よく 褒める ん だ けど、悪い こと し たら 厳しく 叱る 時 も {あれ ば}、優しく 話す 時 も {ある} ん だ よ ね。
+    english_literally: I praise my children often, but if they do bad things, I also strictly scold them,
+      and I also gently talk to them.
+    competing_grammar:
+      - competing_japanese:
+          - 悪い こと を し たら 厳しく 叱っ {たり}、優しく 話し {たり する}。
+        english: If they do something wrong, I do things like scold them strictly and talk to them gently.
+        hint: The `〜たり〜たりする` construction focuses on listing alternating actions or states, rather than
+          emphasizing a comprehensive or balanced approach.
+      - competing_japanese:
+          - 悪い こと を し たら 厳しく 叱る 時 {も ある し}、優しく 話す 時 {も ある}。
+        english: If they do something wrong, there are times when I scold them strictly, and times when
+          I talk to them gently.
+        hint: This phrase lists time instances when actions occur. It doesn't convey the sense of a balanced
+          or comprehensive method as clearly as the intended grammar.
+      - competing_japanese:
+          - 子供 を 厳しく 叱る こと {も} 優しく 話す こと {も} ある。
+        english: There are both times of scolding children strictly and talking to them gently.
+        hint: This simply states the existence of both. The intended grammar emphasizes the alternating
+          nature of the actions or approaches taken.
+    scene: A parent discussing their parenting philosophy with a friend.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「厳しく 叱り も {すれば} 、 優しく 話し も {する}」 describes a balanced parenting approach, showing
+      both firmness and kindness. The use of 「〜けれど」 (although, but) creates a conversational flow. This
+      kind of shared parenting philosophy is a common topic in informal discussions among mothers.
+  - english: No matter how difficult a problem, if you learn from the basics, it can become interesting,
+      and you can also become able to solve it easily.
+    japanese:
+      - どんな 難しい 問題 も、基本 から 学べ ば 面白く も {なれ ば}、簡単 に 解ける よう に も {なる}。
+      - どんな 難しい 問題 も、基本 から 学べ ば 面白く も {なれ ば}、簡単 に 解ける よう に も {なれる} よ。
+      - どんな 難しい 問題 も、基本 から 学べ ば 面白く も {なれ ば}、簡単 に 解ける よう に も {なる} もの だ。
+    english_literally: No matter how difficult a problem, if you learn from basics, it will also become
+      interesting, and you will also become able to solve it easily.
+    competing_grammar:
+      - competing_japanese:
+          - 基本 から 学べ ば、面白く なる {し}、そして 簡単 に も 解ける よう に なる。
+        english: If you learn from basics, it will become interesting, and also you will become able to
+          solve it easily.
+        hint: The `〜し` conjunction lists reasons or facts. While correct, it doesn't emphasize the comprehensive
+          range of outcomes as strongly as the intended grammar.
+      - competing_japanese:
+          - 基本 から 学べ ば、面白く なる 可能 性 {も ある し}、簡単 に 解ける よう に なる 可能 性 {も ある}。
+        english: If you learn from basics, there is also a possibility it will become interesting, and
+          a possibility you will become able to solve it easily.
+        hint: This phrase explicitly states possibilities, which is less natural for describing a direct
+          consequence or the inherent dual nature of learning as the intended grammar does.
+      - competing_japanese:
+          - 基本 から 学べ ば、問題 が 面白く なっ {たり}、簡単 に 解ける よう に なっ {たり する}。
+        english: If you learn from basics, problems will sometimes become interesting, and sometimes you
+          will become able to solve them easily.
+        hint: The `〜たり〜たりする` pattern suggests an alternation of states, often with a nuance of randomness
+          or simply listing. This grammar point implies that both outcomes are inherent possibilities
+          from the given condition.
+      - competing_japanese:
+          - 基本 から 学べ ば、問題 が 面白く {も} 簡単 に {も} 解ける よう に なる。
+        english: If you learn from basics, problems will become both interesting and easy to solve.
+        hint: This simply states that two qualities are present together. The intended grammar emphasizes
+          a range or the alternating nature of the outcomes.
+    scene: A tutor explaining learning strategies to a frustrated student.
+    register: semi-formal
+    setting: instructional
+    conjugation: conditional (～ば)
+    nuance: This sentence employs 「面白く も {なれば} 、 簡単 に 解ける よう に も {なる}」 to show a transformative process
+      in learning. The conditional 「〜ば」 indicates the necessary step (learning from basics) to achieve
+      these dual positive outcomes. This encouraging and logical explanation is characteristic of an instructor
+      guiding a student.
+  - english: In this region, even in summer, there are cool days, and there are also days hot enough to
+      make you sweat.
+    japanese:
+      - この 地域 は、夏 で も 涼しい 日 も {あれ ば}、汗 ばむ ほど 暑い 日 も {ある}。
+      - この 地域 は、夏 で も 涼しい 日 も {あれ ば}、汗 が 止まら ない くらい 暑い 日 も {ある} よ。
+      - この 地域 は、夏 で も 涼しい 日 も {あれ ば}、とても 暑い 日 も {ある}。
+    english_literally: Regarding this region, even in summer, cool days exist, and days hot enough to
+      sweat also exist.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は、夏 で も 涼しい 時 {も ある し}、汗 ばむ ほど 暑い 時 {も ある}。
+        english: In this region, even in summer, there are cool times, and there are also times hot enough
+          to make you sweat.
+        hint: The `〜時 も あるし` conjunction lists occurrences and can imply alternation, but it doesn't convey
+          the comprehensive range of weather possibilities as directly as the intended grammar.
+      - competing_japanese:
+          - この 地域 は、夏 で も 涼しい 日 {も} 暑い 日 {も} ある。
+        english: In this region, even in summer, both cool days and hot days exist.
+        hint: This sentence simply lists two types of days using `〜も〜も`. It lacks the alternating or conditional
+          nuance of the intended grammar that highlights a range of conditions.
+      - competing_japanese:
+          - この 地域 は、夏 で も 涼しかっ {たり}、汗 ばむ ほど 暑かっ {たり する}。
+        english: In this region, even in summer, it's sometimes cool, and sometimes hot enough to make
+          you sweat.
+        hint: The `〜たり〜たりする` pattern implies an alternation of conditions, often suggesting a casual observation.
+          This grammar point emphasizes the comprehensive range of weather conditions that exist.
+    scene: A local resident describing the climate of their area to a visitor.
+    register: semi-formal
+    setting: informative
+    conjugation: conditional (～ば)
+    nuance: The phrase 「涼しい 日 も {あれば} 、 汗ばむ ほど 暑い 日 も {ある}」 precisely describes the variable summer climate,
+      highlighting the presence of both extremes. It's a typical way to provide factual information about
+      a local condition, suitable for informing a visitor.
+  - english: Dating, you know, sometimes you feel excited, and sometimes you feel a sense of relief.
+    japanese:
+      - デート は、ドキドキ する 時 も {あれ ば}、ホッと 安心 する 時 も {ある} もの だ よ ね。
+      - デート って、ドキドキ する 時 も {あれ ば}、ホッと する 時 も {ある} よ ね。
+      - デート に は ドキドキ する 時 も {あれ ば}、ホッと 安心 する 時 も {ある}。
+    english_literally: As for dating, there are times when you feel excited, and times when you feel a
+      sense of relief.
+    competing_grammar:
+      - competing_japanese:
+          - デート は ドキドキ する 時 {も} 安心 する 時 {も} ある。
+        english: Dating has exciting times and relieving times.
+        hint: This phrase simply lists possibilities. It doesn't convey the dynamic sense of 'sometimes
+          this, sometimes that' or the comprehensive emotional range as clearly as the intended grammar.
+      - competing_japanese:
+          - デート は ドキドキ し {たり}、ホッと 安心 し {たり する}。
+        english: Dating involves doing things like getting excited and feeling relieved.
+        hint: The `〜たり〜たりする` emphasizes alternation of actions or states. While related, it focuses more
+          on the sequential actions rather than the inherent variability of situations.
+    scene: Two female friends sharing dating experiences over coffee.
+    register: casual
+    setting: intimate
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The emotional range described by 「ドキドキ する 時 も {あれば} 、 ホッと 安心 する 時 も {ある}」 captures the complex
+      feelings during dating. The sentence ends with 「もの だ よ ね」, a phrase often used by women to express
+      a shared understanding or to seek agreement on a common experience in intimate conversation.
+  - english: Our manager, sometimes they're in a good mood, and sometimes they're a bit angry, so you
+      need to be careful.
+    japanese:
+      - うち の 部長 は、機嫌 が 良い 時 も {あれ ば}、少し 怒っ て いる 時 も {ある} から、気 を つける 必要 が ある よ。
+      - うち の 部長、機嫌 が 良い 時 も {あれ ば}、悪い 時 も {ある} から 気 を つけ て。
+      - 部 長 は、機嫌 が 良い 時 も {あれ ば}、そう で ない 時 も {ある} よう です から、ご 注意 ください。
+    english_literally: Regarding our manager, there are times when they are in a good mood, and times
+      when they are a bit angry, so it's necessary to be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は 機嫌 が 良い 時 {も} 少し 怒っ て いる 時 {も} ある から 気 を つけ て。
+        english: The manager has times when they are in a good mood, and times when they are a bit angry,
+          so be careful.
+        hint: This sentence simply lists two possibilities. It doesn't convey the dynamic alternation
+          or the comprehensive range of moods as effectively as the intended grammar.
+      - competing_japanese:
+          - 部 長 は 機嫌 が 良い 時 {も ある し}、少し 怒っ て いる 時 {も ある} から、気 を つける 必要 が ある よ。
+        english: The manager sometimes has good moods, and also sometimes has angry moods, so you need
+          to be careful.
+        hint: The `〜時 も あるし` conjunction lists occurrences and can imply alternation, but it doesn't carry
+          the same nuance of a comprehensive or inherent variability as the intended grammar.
+      - competing_japanese:
+          - うち の 部長 は 機嫌 が 良かっ {たり}、悪かっ {たり する} から 気 を つけ て。
+        english: Our manager is sometimes in a good mood, and sometimes in a bad mood, so be careful.
+        hint: The `〜たり〜たりする` pattern emphasizes the intermittent change in mood. This grammar point focuses
+          on the *existence* of both moods as part of their character.
+    scene: A senior colleague advising a new team member about their manager's temperament.
+    register: semi-formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The observation 「機嫌 が 良い 時 も {あれば} 、 少し 怒って いる 時 も {ある}」 provides a practical warning about
+      the manager's unpredictable mood. The concluding 「気 を つける 必要 が ある よ」 is a direct yet casual advisory
+      tone often adopted by senior male colleagues when guiding junior male team members in a professional
+      setting.
+  - english: This project has easy parts, but also difficult parts.
+    japanese:
+      - この プロジェクト は、簡単 な 部分 も {あれ ば}、難しい 部分 も {ある}。
+      - この プロジェクト に は、簡単 な 部分 も {あれ ば}、難しい 部分 も {ある}。
+      - この プロジェクト、簡単 な 部分 も {あれ ば}、難しい 部分 も {ある} よ ね。
+    english_literally: Regarding this project, there are easy parts, and difficult parts also exist.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 簡単 な 部分 {も}、難しい 部分 {も} ある。
+        english: This project has both easy parts and difficult parts.
+        hint: This simply lists two types of parts. It does not convey the dynamic sense of 'sometimes
+          this, sometimes that' or a comprehensive range of characteristics as clearly as the intended
+          grammar.
+      - competing_japanese:
+          - この プロジェクト は 簡単 な 部分 {も ある し}、難しい 部分 {も ある}。
+        english: This project has easy parts, and it also has difficult parts.
+        hint: The `〜し` conjunction lists reasons or facts. While similar in meaning, it lacks the specific
+          'range of possibilities' emphasis of the intended grammar.
+      - competing_japanese:
+          - この プロジェクト は 簡単 だっ{たり}、難しかっ {たり する}。
+        english: This project is sometimes easy, sometimes difficult.
+        hint: The `〜たり〜たりする` pattern suggests an alternation of characteristics or actions. This grammar
+          point implies the *coexistence* of both types of parts as inherent to the project.
+    scene: A team leader explaining the scope of a new project to their team.
+    register: semi-formal
+    setting: informative
+    conjugation: conditional (～ば)
+    nuance: The phrase 「簡単な 部分 も {あれば} 、 難しい 部分 も {ある}」 effectively communicates the dual nature of the
+      project. This is a common way to manage expectations in a professional setting, highlighting that
+      both positive and challenging aspects are present and to be expected.
+post_example_writeup: It's important to note that the nouns connected by 「も」 can represent a wide range
+  of concepts, from concrete objects to abstract ideas or even people. This grammatical pattern allows
+  for a nuanced description of variability and the coexistence of different states or actions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1140

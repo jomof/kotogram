@@ -1,0 +1,221 @@
+grammar_point: がいいなら (if preferred)
+learn_before:
+  - でもいいなら (if even this is okay)
+meaning: if one prefers; if one wishes to; if it is good for
+pronunciation:
+  katakana: ガイイナラ
+  romaji: ga ii nara
+formation:
+  Noun + が いいなら: Used when the preferred option is a noun.
+  Verb[dictionary] + のが いいなら: Used when the preferred option is an action, nominalized with の.
+  い-Adjective[い] + のが いいなら: Used when the preferred quality is an i-adjective, nominalized with の.
+  な-Adjective[な] + なのが いいなら: Used when the preferred quality is a na-adjective, nominalized with の.
+jlpt: N3
+etymology: The construction 「がいいなら」 is a combination of 「〜がいい」 (meaning 'X is good' or 'X is preferable')
+  and the conditional particle 「なら」 (meaning 'if that is the case'). This structure evolved to express
+  'if X is good/preferable/desired,' providing a way to introduce a condition based on a subjective evaluation
+  of what is favorable or wanted.
+writeup: |-
+  「がいいなら」 is a versatile grammatical construction used to convey a condition based on someone's preference, desire, or what is deemed 'good' or 'suitable' in a given context. It literally translates to 'if (X) is good/preferred.' This phrase is formed by attaching 「がいいなら」 to a noun, or to the nominalized form of a verb or adjective using 「のが」 or 「なのが」 respectively. The preceding element specifies the item or action that is considered 'good' or 'preferred.'
+
+  The primary nuance of 「がいいなら」 lies in its conditional nature, which allows the speaker to propose options or proceed with an action contingent on the listener's preference or the perceived suitability of a situation. It is frequently employed in polite and considerate interactions, signaling the speaker's willingness to accommodate a preference or to act in accordance with what is deemed advantageous. For instance, in customer service, it offers flexibility: 'If coffee {がいいなら}...' to mean 'If coffee is what you prefer...' This construction makes it clear that the choice is left to the other party, fostering a respectful and accommodating tone.
+false_friends:
+  - term: 〜ほうがいい (it is better to do)
+    meaning: it is better to do; one should do
+    kind: similar expression
+    nuance: 「〜ほうがいい」 expresses a recommendation or advice based on what is objectively or generally considered
+      the better option. It implies a stronger suggestion for a specific course of action, whereas 「がいいなら」
+      expresses subjective preference without necessarily implying one option is superior.
+    grammar_point: <suggest>:Verb[た]ほうがいい (it is better to do)
+  - term: 〜たいなら (if you want to)
+    meaning: if you want to
+    kind: similar expression
+    nuance: 「〜たいなら」 focuses directly on the speaker's or listener's explicit desire or wish, using the
+      desiderative form. While similar in offering a condition based on desire, 「がいいなら」 can be broader,
+      encompassing suitability or general preference beyond just a direct 'want.'
+    grammar_point: たい (want to do)
+  - term: 〜たらどうですか (how about if you do?)
+    meaning: how about if you do?; why don't you?
+    kind: similar expression
+    nuance: 「〜たらどうですか」 is a more direct and sometimes stronger suggestion or piece of advice. It asks
+      the listener to consider an action. 「がいいなら」 is less direct, offering a choice based on preference
+      rather than prompting the listener to take a specific action.
+    grammar_point: たらどう (how about)
+post_false_friends_writeup: While 「がいいなら」, 「〜ほうがいい」, 「〜たいなら」, and 「〜たらどうですか」 all involve choices or suggestions,
+  they differ in their nuance. 「がいいなら」 emphasizes accommodating a preference, making it a polite way to
+  offer options. 「〜ほうがいい」 gives stronger advice based on objective judgment. 「〜たいなら」 directly addresses
+  a personal desire. 「〜たらどうですか」 is a direct suggestion or question about a course of action. Understanding
+  these subtle differences allows for more precise and natural communication in Japanese.
+examples:
+  - english: If coffee is preferred, I will make it.
+    japanese:
+      - コーヒー {が いい なら}、淹れ ます よ。
+      - コーヒー {が いい なら}、淹れる よ。
+      - コーヒー {が いい なら}、淹れる。
+    english_literally: If coffee is good, I will brew.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー を 飲み たい なら、淹れ ます よ。
+        english: If you want to drink coffee, I will brew it.
+        hint: This uses 'want to drink' rather than 'is good/preferred.' We're looking for an expression
+          of general preference or suitability.
+      - competing_japanese:
+          - コーヒー の ほう が いい、淹れ ます よ。
+        english: Coffee is better, so I will brew it.
+        hint: This sounds like an objective statement that coffee is superior, not an offering based on
+          preference. We're looking for a conditional preference.
+    scene: A host is offering a guest a drink after dinner.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+  - english: If coming by train is easier, please do so.
+    japanese:
+      - 電車 で 来る の が {いい なら}、そう し て ください。
+      - 電車 で 来る の が {いい なら}、そう し て ね。
+    english_literally: If coming by train is good, please do so.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で 来 た ほう が いい なら、そう し て ください。
+        english: If it's better to come by train, please do so.
+        hint: This implies that coming by train is objectively better, not just preferred. We're looking
+          for a general preference.
+      - competing_japanese:
+          - 電車 で 来 たい なら、そう し て ください。
+        english: If you want to come by train, please do so.
+        hint: This emphasizes 'wanting' to come by train, not necessarily what is convenient or good for
+          them. We're looking for an expression of preference or suitability.
+    scene: A colleague is giving directions to a new employee for commuting.
+    register: formal
+    setting: professional
+  - english: If tomorrow is better for you, then let's do it tomorrow.
+    japanese:
+      - 明日 {が いい なら}、明日 に し ましょう。
+      - 明日 {が いい なら}、明日 に しよう。
+    english_literally: If tomorrow is good, let's make it tomorrow.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 なら、明日 に し ましょう。
+        english: If it's tomorrow, let's do it tomorrow.
+        hint: This is a simple conditional, not explicitly about what is 'good' or 'preferred.' We're
+          looking for that specific nuance.
+    scene: Two friends are trying to schedule a meeting.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+  - english: If staying here is good, you can stay longer.
+    japanese:
+      - ここ に いる の が {いい なら}、もっと い て も いい です よ。
+      - ここ に いる の が {いい なら}、もっと い て も いい よ。
+      - ここ に いる の が {いい なら}、もっと い て も いい わ よ。
+    english_literally: If staying here is good, you may stay more.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に いたい なら、もっと い て も いい です よ。
+        english: If you want to stay here, you may stay longer.
+        hint: This emphasizes 'wanting' to stay, not the suitability or preference of staying. We're looking
+          for 'if it's good/preferred.'
+    scene: A guest is visiting a friend's house and is about to leave.
+    register: semi-formal
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+  - english: If a quiet place is preferred, I know a good cafe.
+    japanese:
+      - 静か な 場所 が {いい なら}、いい カフェ を 知っ て い ます。
+      - 静か な 場所 が {いい なら}、いい カフェ を 知っ てる よ。
+      - 静か な 場所 が {いい なら}、いい カフェ を 知っ て いる。
+    english_literally: If a quiet place is good, I know a good cafe.
+    competing_grammar:
+      - competing_japanese:
+          - 静か な 場所 の ほう が いい なら、いい カフェ を 知っ て い ます。
+        english: If a quiet place is better, I know a good cafe.
+        hint: This suggests a quiet place is objectively better, not just preferred. We're looking for
+          a conditional based on preference.
+    scene: Someone is suggesting a meeting spot to a colleague.
+    register: teineigo (polite)
+    setting: professional
+  - english: If using a pen is fine, please use this one.
+    japanese:
+      - ペン を 使う の が {いい なら}、これ を 使っ て ください。
+      - ペン を 使う の が {いい なら}、これ を 使っ て ね。
+    english_literally: If using a pen is good, please use this.
+    competing_grammar:
+      - competing_japanese:
+          - ペン を 使い たけれ ば、これ を 使っ て ください。
+        english: If you want to use a pen, please use this one.
+        hint: This explicitly states 'if you want to use a pen.' We're looking for 'if using a pen is
+          good/preferred.'
+    scene: A teacher is distributing materials to students for an assignment.
+    register: formal
+    setting: academic
+  - english: If going shopping now is preferable, let's go.
+    japanese:
+      - 今 買い物 に 行く の が {いい なら}、行き ましょう。
+      - 今 買い物 に 行く の が {いい なら}、行こう。
+      - 今 買い物 に 行く の が {いい なら}、行こっ か。
+    english_literally: If going shopping now is good, let's go.
+    competing_grammar:
+      - competing_japanese:
+          - 今 買い物 に 行っ た ほう が いい なら、行き ましょう。
+        english: If it's better to go shopping now, let's go.
+        hint: This suggests going shopping now is the objectively better choice, not just a preferred
+          one. We're looking for 'if it's good/preferred.'
+    scene: A family member is asking about timing for an errand.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+  - english: If payment by credit card is preferred, that's fine.
+    japanese:
+      - クレジット カード 払い が {いい なら}、構い ませ ん よ。
+      - クレジット カード 払い が {いい なら}、構わ ない よ。
+      - クレジット カード 払い が {いい なら}、構わ ない。
+    english_literally: If credit card payment is good, it doesn't matter.
+    competing_grammar:
+      - competing_japanese:
+          - クレジット カード 払い なら、構い ませ ん よ。
+        english: If it's credit card payment, it doesn't matter.
+        hint: This is a simple conditional, but it misses the nuance of 'preference' or 'what is good'
+          for the customer. We're looking for that specific nuance.
+    scene: A cashier is confirming a customer's preferred payment method.
+    register: teineigo (polite)
+    setting: professional
+  - english: If spicy food is to your liking, please try this.
+    japanese:
+      - 辛い もの が {いい なら}、これ を 試し て み て ください。
+      - 辛い もの が {いい なら}、これ を 試し て み て ね。
+      - 辛い もの が {いい なら}、これ を お 試し ください。
+    english_literally: If spicy food is good, please try this.
+    competing_grammar:
+      - competing_japanese:
+          - 辛い もの が 好き なら、これ を 試し て み て ください。
+        english: If you like spicy food, please try this.
+        hint: This directly refers to 'liking' (好き), which is a specific feeling, while 'がいいなら' is more
+          general for 'what is good' or 'preferred.' We're looking for the broader 'if it's good/preferred'
+          meaning.
+    scene: A chef is recommending a dish to a customer at a restaurant.
+    register: semi-formal
+    setting: professional
+  - english: If you want to handle it yourself, that's also fine.
+    japanese:
+      - 自分 で やる の が {いい なら}、それ で も いい です よ。
+      - 自分 で やる の が {いい なら}、それ で も いい よ。
+      - 自分 で やる の が {いい なら}、それ で も いい。
+    english_literally: If doing it by oneself is good, that is also fine.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 で やり たい なら、それ で も いい です よ。
+        english: If you want to do it yourself, that's also fine.
+        hint: This uses the direct 'want' form (〜たい), which is more about personal desire. We're looking
+          for 'if it's good/preferred' for them to do it.
+    scene: A manager is delegating a task and giving an employee autonomy.
+    register: formal
+    setting: professional
+post_example_writeup: These examples illustrate how 「がいいなら」 can be applied to both nouns and nominalized
+  verb/adjective phrases, always retaining the nuance of a conditional preference. Pay attention to how
+  the speaker respectfully offers a choice or adjusts to the listener's perceived suitability, making
+  this a polite and accommodating expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がいいなら

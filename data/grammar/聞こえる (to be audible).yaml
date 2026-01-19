@@ -1,0 +1,333 @@
+grammar_point: 聞こえる (to be audible)
+learn_before:
+  - と (and, connects nouns)
+  - な-Adjectives (adjectival nouns)
+  - まい〜のように (almost every time)
+  - よく (frequently・often・well)
+meaning: to be audible; to sound (like); (can) hear; to be heard
+meaning_warning: 聞こえる was originally a conjugation of 聞く, but nowadays it is treated as a standalone intransitive
+  verb.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 聞こえる
+    rarity: common
+    meaning: to be audible; can hear
+  - conjugation-type: non-past polite (～ます)
+    form: 聞こえます
+    rarity: common
+    meaning: to be audible (polite); can hear (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 聞こえない
+    rarity: common
+    meaning: cannot be heard; inaudible
+  - conjugation-type: negative non-past polite (～ません)
+    form: 聞こえません
+    rarity: common
+    meaning: cannot be heard (polite); inaudible (polite)
+  - conjugation-type: past plain (～た)
+    form: 聞こえた
+    rarity: common
+    meaning: was audible; could hear
+  - conjugation-type: past polite (～ました)
+    form: 聞こえました
+    rarity: common
+    meaning: was audible (polite); could hear (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 聞こえなかった
+    rarity: common
+    meaning: could not be heard; was inaudible
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 聞こえませんでした
+    rarity: common
+    meaning: could not be heard (polite); was inaudible (polite)
+  - conjugation-type: te-form (～て)
+    form: 聞こえて
+    rarity: common
+    meaning: being audible; hearing (and then something else)
+  - conjugation-type: conditional (～ば)
+    form: 聞こえれば
+    rarity: uncommon
+    meaning: if it is audible; if one can hear
+  - conjugation-type: conditional (～たら)
+    form: 聞こえたら
+    rarity: uncommon
+    meaning: if it becomes audible; if one hears
+  - conjugation-type: volitional (～よう)
+    form: 聞こえよう
+    rarity: very rare
+    meaning: will probably be heard (formal/literary conjecture)
+  - conjugation-type: volitional polite (～ましょう)
+    form: 聞こえましょう
+    rarity: very rare
+    meaning: will probably be heard (polite conjecture)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 聞こえろ
+    rarity: rare
+    meaning: be audible! (unnatural command)
+  - conjugation-type: imperative polite (～なさい)
+    form: 聞こえなさい
+    rarity: rare
+    meaning: please be audible! (unnatural polite command)
+  - conjugation-type: potential (～られる/～える)
+    form: 聞こえられる
+    rarity: rare
+    meaning: can be heard (often redundant or grammatically questionable)
+  - conjugation-type: passive (～られる/～かれる)
+    form: 聞こえられる
+    rarity: rare
+    meaning: to be made audible (often redundant or grammatically questionable)
+  - conjugation-type: causative (～させる)
+    form: 聞こえさせる
+    rarity: very rare
+    meaning: to make something audible (uncommon usage, usually implies forcing audibility)
+pronunciation:
+  katakana: キコエル
+  romaji: kikoeru
+formation:
+  Sound source が + 聞こえる: Indicates that a sound can be heard or is audible.
+  Something + Adverbial modifier (く or に) + 聞こえる: Indicates how something sounds or seems (e.g., 'sounds
+    beautiful,' 'sounds strange').
+jlpt: N4
+etymology: The verb 「聞こえる」 originally derived from the potential form of 「聞く (kiku)」, meaning "to hear."
+  Over time, 「聞こえる」 evolved into an independent intransitive verb, emphasizing the passive reception of
+  sound rather than the active act of listening.
+writeup: |-
+  「聞こえる」 is an intransitive verb that describes sounds that **can be heard** or **the way something sounds**. It emphasizes the audibility of sound without requiring active listening. Thus, it means "to be audible," "can hear," or "to sound like."
+
+  *   When using 「聞こえる」, the sound source is marked with 「が」. For example, 「音楽 が 聞こえる (ongaku ga kikoeru)」 means "I can hear music."
+  *   To describe *how* something sounds, use an adverbial modifier. For い-adjectives, change the ending to 「く」; for な-adjectives or nouns, add 「に」. For example, 「声 が 美しく 聞こえる (koe ga utsukushiku kikoeru)」 means "the voice sounds beautiful."
+
+  **Key Difference**: 「聞こえる」 describes sounds that are passively received, while 「聞ける (kikeru)」 (the potential form of 「聞く」) refers to the *ability* to hear when actively trying to listen.
+false_friends:
+  - term: 聞ける
+    meaning: Can hear (when actively listening)
+    kind: similar expression
+    nuance: Unlike 「聞こえる」, 「聞ける」 emphasizes the ability to hear something by actively trying to listen.
+      For instance, 「静か な 部屋 に いる と 聞ける よ」 implies that you need to concentrate to hear it, whereas 「静か
+      な 部屋 に いる と 聞こえる よ」 suggests that the sound is naturally audible.
+    grammar_point: <suggest>:聞ける (can hear - active)
+  - term: 聞く
+    meaning: To hear; to listen (actively)
+    kind: similar expression
+    nuance: Unlike the passive 「聞こえる」, which describes sound being audible, 「聞く」 implies an active effort
+      to listen or perceive a sound. For example, 「音楽 を 聞く」 means 'to listen to music'.
+    grammar_point: <suggest>:聞く (to hear・listen)
+  - term: れる・られる (Potential)
+    meaning: To be able to, can
+    kind: often confused with
+    nuance: While 「聞こえる」 focuses specifically on sounds being audible, 「れる・られる」 indicates a general ability
+      to do something. For example, 「食べられる」 means 'can eat,' while 「聞こえる」 means 'can be heard'.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: 見える
+    meaning: To be visible; can see
+    kind: similar expression
+    nuance: While 「聞こえる」 refers to audibility, 「見える」 refers to visibility. Both describe passive perception,
+      where something is perceivable without active effort, but they apply to different senses.
+    grammar_point: 見える (to be visible・to seem)
+  - term: '[Adj-stem]・[V-stem]そうだ (looks・seems like)'
+    meaning: Seems like; looks like; sounds like
+    kind: similar expression
+    nuance: While 「聞こえる」 directly describes a sound's quality (e.g., 「悲しそうに聞こえる」 vs. 「悲しく聞こえる」), 「そう」
+      is a general expression for appearance or seeming, applicable to all senses or information, not
+      just sound.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: To avoid mixing up 「聞こえる」 with other similar expressions, remember that 「聞こえる」
+  refers specifically to the audibility of sound, 「聞ける」 refers to the ability to hear actively, 「れる・られる」
+  indicates a general ability, and 「見える」 is its visual counterpart. 「そう」 describes a general appearance,
+  which can include how something sounds, but without the direct audibility of 「聞こえる」. Using the correct
+  verb depends on the context and what you want to emphasize.
+examples:
+  - english: The lively sounds of the festival can be heard from afar.
+    japanese:
+      - 遠く から 祭り の 賑やか な 音 が {聞こえる}。
+      - 遠く から 祭り の 賑やか な 音 が {聞こえ ます}。
+    english_literally: From far away, festival's lively sounds are audible.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く から 祭り の 賑やか な 音 を {聞け ます}。
+        english: I can hear the lively sounds of the festival from afar (by actively listening).
+        hint: 「聞け ます」 (kikemasu) implies an active effort or ability to hear. We're looking for a verb
+          that indicates the sound is simply audible without effort.
+    scene: You are describing the atmosphere of a distant event to someone who isn't actively listening
+      for it.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「聞こえる」 emphasizes that the sound is simply audible without any active effort from
+      the listener. The polite form 「聞こえ ます」 makes the statement suitable for general, polite conversation.
+  - english: His explanation sounded a little unnatural.
+    japanese:
+      - 彼 の 説明 は 少し 不 自然 に {聞こえ た}。
+      - 彼 の 説明 は 少し 不 自然 に {聞こえ まし た}。
+    english_literally: His explanation a little unnatural sounded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 説明 を 少し 不 自然 に {聞き まし た}。
+        english: I listened to his explanation and found it a little unnatural.
+        hint: 「聞き まし た」 (kikimashita) implies actively listening. We're looking for a verb that describes
+          how his explanation was perceived as unnatural, not that you actively listened for its unnaturalness.
+    scene: You're discussing a conversation you had, reflecting on how someone's words came across.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual use of 「聞こえ た」 reflects a shared, informal context between female friends, subtly
+      conveying a nuanced observation about 'his explanation'.
+  - english: Even a small breath can be heard in this quiet room.
+    japanese:
+      - この 静か な 部屋 で は 小さな 息遣い も {聞こえる}。
+      - この 静か な 部屋 で は 小さな 息遣い も {聞こえ ます}。
+    english_literally: This quiet room in small breath also is audible.
+    competing_grammar:
+      - competing_japanese:
+          - この 静か な 部屋 で は 小さな 息遣い も {聞ける}。
+        english: In this quiet room, you can hear even a small breath (if you try).
+        hint: 「聞ける」 (kikeru) implies that you have the *ability* to hear if you make an effort. We're
+          looking for a verb that means the sound is simply audible without effort.
+    scene: You are in a very quiet place, noticing every faint sound.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: 「小さな 息遣い も 聞こえる」 (chiisana ikizukai mo kikoeru) highlights the extreme quietness of the room,
+      making even very subtle sounds audible. The casual 「聞こえる」 indicates a simple fact about the environment.
+  - english: The sound of the piano from next door can be heard, and it's very soothing.
+    japanese:
+      - 隣 の 家 から ピアノ の 音 が {聞こえ て}、とても 癒さ れ ます。
+      - 隣 の 家 から ピアノ の 音 が {聞こえ て}、とても 癒さ れる。
+    english_literally: Next door house from piano sound is audible, very soothes.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 家 から ピアノ の 音 を {聞い て}、とても 癒さ れ ます。
+        english: I listen to the sound of the piano from next door, and it's very soothing.
+        hint: 「聞い て」 (kiite) implies actively listening to the piano. We're looking for a verb that indicates
+          the piano sound is simply audible, naturally reaching your ears.
+    scene: You are enjoying the ambient sounds from your neighbor's house.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_age: older
+    nuance: The use of 「癒さ れ ます」 (iyasaremasu) indicates a feeling of being soothed, a sentiment often
+      expressed by older individuals. The polite form adds a gentle, reflective tone suitable for sharing
+      a pleasant observation with others, even if not explicitly a group.
+  - english: His jokes sound funny, but if you think about it closely, they are unpleasant.
+    japanese:
+      - 彼 の 冗談 は 面白く {聞こえる} が、よく 考える と 不快 だ。
+      - 彼 の 冗談 は 面白く {聞こえ ます} が、よく 考える と 不快 です。
+    english_literally: His jokes funny sound, but well if think unpleasant.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 冗談 は {面白い} が、よく 考える と 不快 だ。
+        english: His jokes are funny, but if you think about it closely, they are unpleasant.
+        hint: This sentence directly states the jokes *are* funny, rather than describing how they *sound*
+          or how they are *perceived* initially. We're looking for a verb that conveys the initial impression.
+    scene: You're discussing someone's humor, noting that while initially amusing, it has an underlying
+      unpleasantness.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「面白く 聞こえる」 (omoshiroku kikoeru) uses the adverbial form of an い-adjective (面白い -> 面白く) to
+      describe how the jokes are perceived initially. The conjunction 「が」 introduces a contrasting realization.
+  - english: In the depths of the mountains, it's common for cellphone signals to not be received.
+    japanese:
+      - 山奥 で は 携帯 の 電波 が {聞こえ ない} こと が よく ある。
+      - 山奥 で は 携帯 の 電波 が {聞こえ ませ ん} こと が よく あり ます。
+    english_literally: Mountain depths in cell phone signal is inaudible often exists.
+    competing_grammar:
+      - competing_japanese:
+          - 山奥 で は 携帯 の 電波 が {繋がら ない} こと が よく ある。
+        english: In the depths of the mountains, it's common for cellphone signals to not connect.
+        hint: 「繋がら ない」 (tsunagaranai) means the connection cannot be established. While the result is
+          similar, 「聞こえ ない」 specifically describes the signal as 'inaudible' or not being received by
+          the device's 'ear'. We're looking for a verb that describes the signal's audibility/receivability.
+    scene: You are advising someone about poor cell reception in remote areas.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: 「聞こえ ない」 (kikoenai) in this context refers to the inability for a signal to be 'heard' or
+      received, indicating a lack of audibility due to environmental factors. The polite casual tone fits
+      an informative advisory.
+  - english: Suddenly, someone's scream was heard, so everyone was surprised.
+    japanese:
+      - 突然、誰 か の 叫び声 が {聞こえ た} の で、皆 驚い た。
+      - 突然、誰 か の 叫び声 が {聞こえ まし た} の で、皆 驚き まし た。
+    english_literally: Suddenly, someone's scream was audible, so everyone was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 突然、誰 か の 叫び声 を {聞い た} の で、皆 驚い た。
+        english: Suddenly, I heard someone's scream, so everyone was surprised.
+        hint: 「聞い た」 (kiita) implies actively hearing or listening. We're looking for a verb that conveys
+          the passive perception of the scream, where it simply became audible without active effort.
+    scene: You are recounting a sudden alarming event that startled a group of people.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: 「聞こえ た」 (kikoeta) indicates a sudden, passive perception of a sound (the scream) that caused
+      a reaction. The casual register is appropriate for recounting a story.
+  - english: It sounds like the new project will start next month.
+    japanese:
+      - 新しい プロジェクト は 来月 から 始まる よう に {聞こえる}。
+      - 新しい プロジェクト は 来月 から 始まる よう に {聞こえ ます}。
+    english_literally: New project next month from starts as sounds.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト は 来月 から 始まる {らしい}。
+          - 新しい プロジェクト は 来月 から 始まる {そう だ}。
+        english: It seems/I heard the new project will start next month.
+        hint: 「らしい」 and 「そう だ」 indicate something *seems* to be the case or is *heard* to be the case,
+          based on external information or reports. We're looking for a verb that conveys an impression
+          or how something 'sounds' like it will happen, rather than a direct report or a general appearance.
+    scene: You are in an office setting, discussing upcoming work with a colleague.
+    register: casual
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「～よう に 聞こえる」 (you ni kikoeru) is used to convey an impression or a rumor, suggesting
+      that the speaker has gathered information that 'sounds like' the project will start soon. It's a
+      way of indirectly stating what is perceived from information, not a direct audibility of a sound.
+  - english: I can hear the waves from my room.
+    japanese:
+      - 私 の 部屋 から 波 の 音 が {聞こえる}。
+      - 私 の 部屋 から 波 の 音 が {聞こえ ます}。
+    english_literally: My room from waves' sound is audible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 から 波 の 音 を {聞く}。
+          - 私 の 部屋 から 波 の 音 を {聞い て いる}。
+        english: I listen to the sound of the waves from my room.
+        hint: 「聞く」 (kiku) and 「聞い て いる」 (kiite iru) imply an active effort to listen. We're looking for
+          a verb that expresses the passive perception of the waves, where the sound naturally reaches
+          your ears without active effort.
+    scene: You are relaxing in your room near the ocean and notice the ambient sounds.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「波 の 音 が 聞こえる」 (nami no oto ga kikoeru) emphasizes that the sound of the waves is simply audible
+      from your location, highlighting the natural environment. The casual 「聞こえる」 in a self-reflective
+      context is a common way for male speakers to quietly acknowledge ambient sounds.
+  - english: If you listen closely, you can hear a faint melody.
+    japanese:
+      - よく 耳 を 澄ま せ ば、かすか な メロディー が {聞こえる} だろう。
+      - よく 耳 を 澄ま せ ば、かすか な メロディー が {聞こえ ます} よ。
+    english_literally: Well ears if clear, faint melody will be audible probably.
+    competing_grammar:
+      - competing_japanese:
+          - よく 耳 を 澄ま せ ば、かすか な メロディー が {聞ける} だろう。
+          - よく 耳 を 澄ま せ ば、かすか な メロディー を {聞く こと が できる} だろう。
+        english: If you listen closely, you will be able to hear a faint melody.
+        hint: 「聞ける」 and 「聞く こと が できる」 imply an *ability* to hear if one makes an effort. We're looking
+          for a verb that suggests the melody will simply become *audible* under the given condition,
+          not necessarily an active ability to perceive it.
+    scene: You are with a friend in a quiet place, trying to identify a barely audible sound.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_age: younger
+    nuance: 「聞こえる だろう」 uses the plain form of 「聞こえる」 combined with 「だろう」 to express an inference or probability
+      that the faint melody will become audible if the listener makes an effort to concentrate (`よく 耳
+      を 澄ま せ ば`). This gentle encouragement is typical of a younger person instructing peers.
+post_example_writeup: Remember that 「聞こえる」 describes the audibility of sounds that can be heard without
+  effort, while 「聞ける」 implies the ability to hear when actively trying to listen.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/聞こえる

@@ -1,0 +1,256 @@
+grammar_point: '[Clause]こと (the act of・the fact that)'
+learn_before:
+  - (という)わけではない (it's not that...)
+  - '[Verb-dictionary]こと (formal imperative・rule)'
+  - '[Verb-ない]ことには〜ない (unless one does)'
+  - その (that)
+  - まだ (still・not yet)
+meaning: The act of; the fact that; an abstract concept or matter
+pronunciation:
+  katakana: コト
+  romaji: koto
+formation:
+  Verb (plain form) + こと: Transforms a verb clause into a noun phrase representing the action or event.
+  い-adjective (plain form) + こと: Transforms an い-adjective clause into a noun phrase representing the
+    state or quality.
+  な-adjective (な form) + こと: Transforms a な-adjective clause into a noun phrase representing the state
+    or quality.
+  Noun + の + こと: Transforms a noun phrase into a noun, often referring to a matter or incident involving
+    the noun.
+jlpt: N4
+etymology: The word こと (koto) originally referred to 'thing' or 'matter,' and its usage evolved to encompass
+  abstract 'matters,' 'affairs,' 'facts,' or 'events.' This reflects its function in modern Japanese as
+  a nominalizer, transforming actions or states into conceptual 'things' or 'facts' that can be discussed,
+  observed, or affected.
+writeup: The particle こと (koto) serves as a crucial nominalizer in Japanese grammar. Its primary function
+  is to transform a clause (a verb phrase, adjective phrase, or noun phrase) into a noun phrase, allowing
+  it to function as a grammatical subject, object, or other noun complement. This transformation allows
+  speakers to discuss actions, states, or facts as abstract concepts or matters. When こと follows a plain
+  form verb, it refers to the *act* or *experience* of that verb. For example, 毎日散歩すること (mainichi sanpo
+  suru koto) means "the act of walking every day." When it follows a plain form い-adjective or a な-adjective
+  (in its な form), it refers to the *state* or *quality* described by that adjective, abstracting it into
+  a concept. For instance, 難しいこと (muzukashii koto) can mean "the difficult thing" or "the difficulty."
+  In some cases, こと can also follow a noun with の (e.g., 彼の親切なこと - kare no shinsetsu na koto, "his kindness").
+  This usage often highlights a specific aspect or matter related to that noun. こと is versatile and appears
+  in many fixed expressions and grammatical patterns. It often brings a sense of objectivity or a more
+  conceptual understanding to the statement, making it suitable for explanations, formal discussions,
+  or expressing general truths.
+false_friends:
+  - term: の (explanatory softening particle)
+    meaning: Used at the end of a sentence to indicate explanation, seek confirmation, or express emotion,
+      often with a softening effect.
+    kind: similar expression
+    nuance: While both こと and の can nominalize clauses, の often describes a situation, direct observation,
+      or personal experience, sometimes with an emotional or explanatory nuance. こと refers to a more abstract
+      fact, action, or event. For example, 彼の歌っているのを聴いた (kare no utatte iru no o kiita - I heard *him
+      singing*) focuses on the direct perception, while 彼の歌うことが好きだ (kare no utau koto ga suki da - I like
+      *his singing*) refers to the abstract act of singing.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+  - term: ということ
+    meaning: '''Nominalization: The act of ~ing; The thing that ~; The fact that ~; You mean that ~?'''
+    kind: similar expression
+    nuance: ということ emphasizes the *meaning*, *conclusion*, or *gist* of a statement, often used when explaining
+      or rephrasing something that has been said or implied. こと alone is a more direct nominalizer of
+      an action or fact, without necessarily adding the explanatory or conclusive emphasis of ということ.
+    grammar_point: ということだ (it means that)
+  - term: もの・もん (because・since)
+    meaning: because; since; the reason is
+    kind: similar expression
+    nuance: When used as a nominalizer, もの can often imply a reason, a general tendency, or something
+      that is naturally expected, often with a more informal or empathetic tone. こと, in contrast, is typically
+      more neutral and factual, focusing purely on the abstraction of an action or state into a concept.
+    grammar_point: もの・もん (because・since)
+post_false_friends_writeup: When differentiating between こと, の, ということ, and もの, consider the nuance. こと
+  generally abstracts an action or state into a factual concept. の, as a nominalizer, often implies direct
+  observation or a more personal, explanatory tone. ということ emphasizes explanation, rephrasing, or drawing
+  a conclusion. Lastly, もの suggests a reason, a general tendency, or something expected or natural.
+examples:
+  - english: Walking every day is good for your health.
+    japanese:
+      - 毎日 散歩 する {こと} は 健康 に いい。
+      - 毎日 散歩 する {こと} は 健康 に 良い です。
+      - 毎日 散歩 する {こと} は 健康 に 良い で ござい ます。
+    english_literally: The act of walking every day is good for health.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 散歩 する の は 健康 に いい。
+        english: Walking every day is good for your health.
+        hint: Both 「こと」 and 「の」 can nominalize, but 「こと」 tends to refer to the action as a more abstract
+          or conceptual fact, while 「の」 often describes a more immediate or observed situation. We're
+          looking for the more abstract, conceptual phrasing.
+    scene: A doctor giving health advice to their patient.
+    register: formal
+    setting: informative
+  - english: I was surprised by the fact that he quit his job.
+    japanese:
+      - 彼 が 仕事 を 辞め た {こと} に 驚い た。
+      - 彼 が 仕事 を 辞め た {こと} に 驚き まし た。
+      - 彼 が 仕事 を 辞め た {こと} に は 驚き まし た。
+    english_literally: Regarding the fact that he quit his job, I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 仕事 を 辞め た の に 驚い た。
+        english: I was surprised that he quit his job.
+        hint: 「こと」 emphasizes the abstract fact or matter, making it sound more objective, while 「の」 would
+          refer to the observed situation. We are focusing on the abstract fact.
+    scene: Two friends discussing a mutual acquaintance's unexpected career change.
+    register: casual
+    setting: friendly
+  - english: The fact that it's difficult doesn't mean it's impossible.
+    japanese:
+      - 難しい {こと} が でき ない と いう わけ で は ない。
+      - 難しい {こと} が でき ない と いう わけ で は あり ませ ん。
+      - 難しい {こと} が でき ない と いう わけ で は ござい ませ ん。
+    english_literally: The difficult thing doesn't mean it's impossible.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい と いう の は でき ない と いう わけ で は ない。
+        english: Saying it's difficult doesn't mean it's impossible.
+        hint: 「こと」 directly nominalizes the adjective 'difficult' into an abstract concept. 「というの」 would
+          emphasize the *statement* 'it is difficult'. We are looking for the abstract concept of difficulty.
+    scene: A mentor encouraging a mentee who is struggling with a challenging task.
+    register: semi-formal
+    setting: inspirational
+  - english: His silence was an unexpected thing.
+    japanese:
+      - 彼 の 無口 な {こと} は 意外 だっ た。
+      - 彼 の 無口 な {こと} は 意外 でし た。
+      - 彼 の 無口 な {こと} は 意外 で ござい まし た。
+    english_literally: His being quiet was unexpected.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 無口 な の は 意外 だっ た。
+        english: His quietness was unexpected.
+        hint: Both are possible, but 「こと」 here sounds more like referring to his 'state of being quiet'
+          as a general characteristic or an abstract fact, fitting the nuance of the grammar point.
+    scene: Colleagues discussing a normally talkative person who has suddenly become quiet.
+    register: formal
+    setting: informative
+  - english: The important thing is preparation.
+    japanese:
+      - 大切 な {こと} は 準備 だ。
+      - 大切 な {こと} は 準備 です。
+      - 大切 な {こと} は 準備 で ござい ます。
+    english_literally: The important thing/matter is preparation.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な の は 準備 だ。
+        english: What's important is preparation.
+        hint: 「こと」 refers to 'matters' or 'abstract things', making it suitable for general truths or
+          principles. 「の」 can also mean 'thing' but is often used when replacing a specific, implied noun.
+          Here, we're talking about an abstract principle.
+    scene: A project leader emphasizing a crucial step before starting a new initiative.
+    register: formal
+    setting: professional
+  - english: It's a miracle that he could still walk after the accident.
+    japanese:
+      - 事故 後 に まだ 歩ける {こと} は 奇跡 だ。
+      - 事故 後 に まだ 歩ける {こと} は 奇跡 です。
+      - 事故 後 に まだ 歩ける {こと} は 奇跡 で ござい ます。
+    english_literally: The fact that he can still walk after the accident is a miracle.
+    competing_grammar:
+      - competing_japanese:
+          - 事故 後 に まだ 歩ける の は 奇跡 だ。
+        english: That he can still walk after the accident is a miracle.
+        hint: Both are grammatically correct, but 「こと」 emphasizes the abstract 'fact' or 'state' of being
+          able to walk, making it sound more profound or a recognized phenomenon, which fits the meaning
+          of 'miracle' better than the observational 'の'.
+    scene: Family members discussing a patient's unexpected recovery from a severe accident.
+    register: casual
+    setting: sympathetic
+    nuance: The use of 「こと」 here abstracts the ability to walk into a concept or a fact, underscoring
+      the miraculous nature of the situation. It highlights the 'fact of his being able to walk'.
+  - english: The fact that I don't smoke is a good thing for my health.
+    japanese:
+      - 私 が タバコ を 吸わ ない {こと} は 健康 に 良い。
+      - 私 が タバコ を 吸わ ない {こと} は 健康 に 良い です。
+      - 私 が タバコ を 吸わ ない {こと} は 健康 に 良い で ござい ます。
+    english_literally: The fact that I don't smoke is good for health.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が タバコ を 吸わ ない の は 健康 に 良い。
+        english: My not smoking is good for my health.
+        hint: While both are similar, 「こと」 emphasizes the abstract 'fact' of not smoking as a general
+          concept beneficial for health. 「の」 might imply a more specific instance of not smoking.
+    scene: Someone explaining their healthy lifestyle choice to a friend.
+    register: casual
+    setting: friendly
+  - english: It's commonly known that pandas eat bamboo.
+    japanese:
+      - パンダ が 竹 を 食べる {こと} は よく 知ら れ て いる。
+      - パンダ が 竹 を 食べる {こと} は よく 知ら れ て い ます。
+      - パンダ が 竹 を 食べる {こと} は 広く 知ら れ て いる。
+    english_literally: The fact that pandas eat bamboo is well known.
+    competing_grammar:
+      - competing_japanese:
+          - パンダ が 竹 を 食べる の は よく 知ら れ て いる。
+        english: That pandas eat bamboo is well known.
+        hint: 「こと」 is generally preferred when stating widely known facts or general truths, as it frames
+          the statement as an abstract concept or piece of information. 「の」 can also work but might feel
+          slightly less formal for a universally accepted fact.
+    scene: A nature guide explaining basic animal facts to a group of tourists.
+    register: formal
+    setting: informative
+  - english: It's important to remember that mistakes are part of learning.
+    japanese:
+      - 失敗 は 学び の 一部 で ある {こと} を 忘れ て は なら ない。
+      - 失敗 は 学び の 一部 で ある {こと} を 忘れ て は なり ませ ん。
+      - 失敗 は 学び の 一部 で ある {こと} を 忘れ て は いけ ませ ん。
+    english_literally: Must not forget the fact that mistakes are part of learning.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 は 学び の 一部 で ある と いう こと を 忘れ て は なら ない。
+        english: Must not forget the fact that mistakes are part of learning.
+        hint: Both are correct. 「ということ」 adds a nuance of 'what is meant by' or 'the idea that'. 「こと」 alone
+          is more direct, simply nominalizing the entire clause 'mistakes are part of learning' into a
+          fact.
+    scene: A teacher advising students on how to approach challenges and learn from errors.
+    register: formal
+    setting: academic
+  - english: The most important thing is to finish it.
+    japanese:
+      - 一番 大切 な {こと} は 終わら せる {こと} だ。
+      - 一番 大切 な {こと} は 終わら せる {こと} です。
+      - 一番 大切 な {こと} は 終わら せる {こと} で ござい ます。
+    english_literally: The most important thing is the act of finishing it.
+    competing_grammar:
+      - competing_japanese:
+          - 一番 大切 な の は 終わら せる の だ。
+        english: What's most important is finishing it.
+        hint: This example uses 「こと」 twice, emphasizing the abstract 'matter' (the most important thing)
+          and the 'act' (to finish it). While 「の」 can also nominalize, 「こと」 provides a more objective
+          and conceptual framing for both parts of the statement.
+    scene: A manager setting priorities for their team on a critical project.
+    register: formal
+    setting: professional
+  - english: The problem is that he doesn't listen to others.
+    japanese:
+      - 問題 は 彼 が 他人 の 意見 を 聞か ない {こと} だ。
+      - 問題 は 彼 が 他人 の 意見 を 聞か ない {こと} です。
+      - 問題 は 彼 が 他人 の 意見 を 聞か ない {こと} で ござい ます。
+    english_literally: The problem is the fact that he doesn't listen to others' opinions.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 彼 が 他人 の 意見 を 聞か ない の だ。
+        english: The problem is him not listening to others.
+        hint: While both 「こと」 and 「の」 can be used here, 「こと」 frames 'his not listening' as a clear, objective
+          fact or issue, while 「の」 might lean slightly more towards an observation of his behavior.
+    scene: Someone complaining to a friend about a colleague's stubbornness.
+    register: casual
+    setting: friendly
+  - english: It's been a great experience to work abroad.
+    japanese:
+      - 海外 で 働く {こと} は 素晴らしい 経験 だっ た。
+      - 海外 で 働く {こと} は 素晴らしい 経験 でし た。
+      - 海外 で 働く {こと} は 素晴らしい 経験 で ござい まし た。
+    english_literally: The act of working abroad was a wonderful experience.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 で 働く の は 素晴らしい 経験 だっ た。
+        english: Working abroad was a wonderful experience.
+        hint: While both are possible, 「こと」 emphasizes the abstract 'act' or 'experience' of working abroad
+          as a whole concept, which is suitable for reflecting on it as a significant life event. 「の」
+          might be used for a more specific instance.
+    scene: Someone reflecting on their past career and a significant period spent working overseas.
+    register: formal
+    setting: reflective

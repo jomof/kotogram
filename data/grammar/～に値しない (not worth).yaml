@@ -1,0 +1,275 @@
+grammar_point: ～に値しない (not worth)
+learn_before:
+  - '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - に値する (to be worth, to deserve)
+meaning: Not worth; not deserving of; does not warrant
+pronunciation:
+  katakana: ニ アタイ シナイ
+  romaji: ni atai shinai
+formation:
+  Noun + に 値しない: Used to express that a noun is not deserving of something or does not have sufficient
+    worth for it.
+  Verb[dictionary] + に 値しない: Used to express that an action is not worth doing or does not warrant a certain
+    outcome.
+jlpt: N2
+etymology: The expression `〜に値しない` is composed of `値 (atai)`, meaning 'value' or 'worth', and `しない (shinai)`,
+  the negative form of `する (suru)`, 'to do' or 'to make'. The particle `に` indicates the object or standard
+  against which the subject's worth is being judged. Thus, it literally translates to something like 'does
+  not do/make worth for (that thing)', evolving to mean 'is not worthy of' or 'does not deserve'. This
+  construction emphasizes a qualitative judgment, suggesting a deficit in inherent merit or a failure
+  to meet a certain standard.
+writeup: |-
+  The grammar point `〜に値しない` is used to state that something, be it a noun or an action, is **not worthy of**, **does not deserve**, or **does not warrant** something. It conveys a strong sense of unworthiness or inadequacy. This phrase is typically used in contexts where a judgment or assessment of value, merit, or deservingness is being made. It can express disappointment, disapproval, or even a sense of indignation.
+
+  When used with a **noun**, it indicates that the noun itself is not deserving of the stated quality, treatment, or recognition. For example, you might say someone's actions are `非難 (hinan)` criticism `に値しない` (not worthy of criticism) meaning they are so bad they don't even warrant being criticized, or they are so good they are above criticism (context matters).
+
+  When used with a **verb in dictionary form**, it means that the action described by the verb is not worth undertaking, or that a certain consequence is not deserved based on that action. For instance, `見るに値しない` means 'not worth watching', implying it's of poor quality or has no merit.
+
+  This expression is generally found in more serious or formal discussions, reflecting a considered judgment rather than a casual remark. Its strength lies in conveying a definitive assessment of inadequacy.
+false_friends:
+  - term: 〜する価値がない
+    meaning: to have no value or worth
+    kind: similar expression
+    nuance: '`〜に値しない` often refers to inherent merit, dignity, or deservingness, implying a moral or qualitative
+      judgment. In contrast, `〜する価値がない` is broader, referring to practical, monetary, or abstract value.
+      The former often carries a stronger sense of disappointment or indignation regarding a standard
+      not being met, while the latter can simply state a lack of utility or benefit.'
+    grammar_point: <suggest>:Verb[dictionary]・する + 価値がない (to have no value)
+post_false_friends_writeup: While `〜に値しない` and `〜する価値がない` both convey a sense of 'not being worth', their
+  nuances differ. Use `〜に値しない` when you want to express that something lacks the **inherent merit, dignity,
+  or moral deservingness** to warrant a certain status, recognition, or action. It's often about a judgment
+  of quality or ethical standing. For instance, '彼の行動は信頼に値しない' (His actions are not worthy of trust).
+  On the other hand, `〜する価値がない` is more general and refers to a lack of **utility, benefit, or overall
+  value**. This can be applied to practical situations or things that simply don't provide a return. For
+  example, 'この映画は見る価値がない' (This movie isn't worth watching) could imply it's just boring or poorly made,
+  without necessarily judging its 'dignity'.
+examples:
+  - english: His words are not worthy of consideration.
+    japanese:
+      - 彼 の 言葉 は {考慮 に 値 し ない}。
+      - 彼 の 言葉 は {考慮 に 値 し ませ ん}。
+    english_literally: His words as for, consideration not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 は 考える 必要 が ない。
+        english: His words do not need to be considered.
+        hint: This phrase suggests there's no necessity or obligation to think about the words, but it
+          doesn't carry the strong judgment of unworthiness. We're looking for an expression of unworthiness.
+      - competing_japanese:
+          - 彼 の 言葉 は 考慮 する 価値 が ない。
+        english: His words have no value for consideration.
+        hint: While similar, this expression focuses on the lack of practical or inherent 'value' rather
+          than 'deservingness' or 'merit'. We're looking for an expression of lack of merit.
+    scene: A journalist dismisses a politician's statement as empty rhetoric.
+    register: formal
+    setting: professional
+    nuance: The use of `考慮に値しない` implies that the politician's words lack substance or credibility to
+      the point where they don't even warrant being seriously considered.
+  - english: That kind of behavior is not worthy of praise.
+    japanese:
+      - そんな 行動 は {称賛 に 値 し ない}。
+      - そんな 行動 は {称賛 に 値 し ませ ん}。
+    english_literally: That kind of behavior as for, praise not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 行動 は 褒める べき で は ない。
+        english: That kind of behavior should not be praised.
+        hint: This expresses that praising is inappropriate, but not necessarily that the behavior inherently
+          lacks the quality to be praised. We're looking for a judgment of unworthiness for praise.
+      - competing_japanese:
+          - そんな 行動 は ひどい。
+        english: That kind of behavior is terrible.
+        hint: This is a general negative evaluation, not specifically about whether the behavior 'deserves'
+          praise or not. We're looking for a statement about what it is not worthy of.
+    scene: A mentor scolds their protégé for an unethical act.
+    register: semi-formal
+    setting: serious
+    nuance: '`称賛に値しない` strongly expresses that the action falls below the standard for receiving admiration,
+      highlighting its negative moral quality.'
+  - english: His betrayal of his friends is not worthy of forgiveness.
+    japanese:
+      - 彼 の 友人 へ の 裏切り は {許し に 値 し ない}。
+      - 彼 の 友人 へ の 裏切り は {許し に 値 し ませ ん}。
+    english_literally: His friends to betrayal as for, forgiveness not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 を 裏切っ た 彼 の こと は 許せ ない。
+        english: I cannot forgive him for betraying his friends.
+        hint: This expresses the speaker's personal inability to forgive, not an objective statement that
+          the act itself is unworthy of forgiveness. We're looking for a statement about the act's unworthiness.
+      - competing_japanese:
+          - 彼 の 裏切り は 許す まじき 行為 だ。
+        english: His betrayal is an unforgivable act.
+        hint: This emphasizes that the act is something one 'must not forgive', but `〜に値しない` focuses on
+          the inherent lack of merit for forgiveness. We're looking for an expression of not deserving
+          forgiveness.
+    scene: A group of friends discusses a mutual acquaintance's hurtful actions.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: This statement, especially from a female speaker, uses `許しに値しない` to express deep personal
+      hurt and a strong moral judgment that the betrayal is so severe it cannot be pardoned. It conveys
+      a firm, emotional boundary.
+  - english: This old car is not worth repairing anymore.
+    japanese:
+      - この 古い 車 は もう {修理 に 値 し ない}。
+      - この 古い 車 は もう {修理 に 値 し ませ ん}。
+    english_literally: This old car as for, already repair not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 車 は もう 修理 する 意味 が ない。
+        english: There's no point in repairing this old car anymore.
+        hint: This implies a lack of meaning or purpose in the action, which is slightly different from
+          lacking the 'worth' or 'deservingness' for repair. We're looking for an expression of unworthiness
+          for repair.
+      - competing_japanese:
+          - この 古い 車 は もう 修理 に お 金 を 使う 価値 が ない。
+        english: It's no longer worth spending money on repairing this old car.
+        hint: This emphasizes the monetary cost and value, whereas `〜に値しない` can imply a more general lack
+          of merit regardless of cost. We're looking for a general statement of unworthiness.
+    scene: A car owner consults with a mechanic about their dilapidated vehicle.
+    register: semi-formal
+    setting: informative
+    nuance: '`修理に値しない` indicates that the cost or effort of repair outweighs the car''s remaining utility
+      or value, making it an impractical decision. It''s a pragmatic judgment.'
+  - english: This trivial mistake is not worth mentioning.
+    japanese:
+      - この 些細 な 間違い は {言及 に 値 し ない}。
+      - この 些細 な 間違い は {言及 に 値 し ませ ん}。
+    english_literally: This trivial mistake as for, mention not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - この 些細 な 間違い は 言う 必要 が ない。
+        english: There's no need to mention this trivial mistake.
+        hint: This implies a lack of necessity, not necessarily a lack of 'worth' for mentioning. We're
+          looking for a judgment of unworthiness for mention.
+      - competing_japanese:
+          - この 些細 な 間違い は どう で も いい。
+        english: This trivial mistake doesn't matter.
+        hint: This is a dismissive statement about the mistake's importance, but it doesn't specify that
+          it's 'unworthy of mention'. We're looking for a statement about what it is not worthy of.
+    scene: A manager downplays a minor error made by an employee.
+    register: formal
+    setting: professional
+    nuance: Using `言及に値しない` minimizes the importance of the mistake, suggesting it's too insignificant
+      to be brought up or discussed further.
+  - english: His cowardly act is not worthy of respecting.
+    japanese:
+      - 彼 の 臆病 な 行為 は {尊敬 に 値 し ない}。
+      - 彼 の 臆病 な 行為 は {尊敬 に 値 し ませ ん}。
+    english_literally: His cowardly act as for, respect not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 臆病 な 行為 は 尊敬 でき ない。
+        english: His cowardly act cannot be respected.
+        hint: This states an inability to respect, but `〜に値しない` focuses on the inherent quality of the
+          act lacking the merit for respect. We're looking for a statement about the act's unworthiness.
+      - competing_japanese:
+          - 彼 の 臆病 な 行為 は 軽蔑 に 値 する。
+        english: His cowardly act deserves contempt.
+        hint: This uses the positive `〜に値する` for a negative emotion, which is a different construction
+          and meaning. We're looking for an expression of not being worthy of respect.
+    scene: A soldier expresses disdain for a comrade's actions during battle.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: '`尊敬に値しない` from a male speaker in a serious setting conveys a strong sense of disappointment
+      and a judgment that the action entirely lacks the qualities that would command respect, aligning
+      with traditional masculine values of bravery.'
+  - english: Such a petty argument is not worth fighting over.
+    japanese:
+      - そんな 些細 な 議論 は {争う に 値 し ない}。
+      - そんな 些細 な 議論 は {争う に 値 し ませ ん}。
+    english_literally: Such trivial argument as for, fight not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 些細 な 議論 は 争う べき で は ない。
+        english: Such a petty argument should not be fought over.
+        hint: This emphasizes what one 'should not do' rather than the inherent unworthiness of the argument
+          for a fight. We're looking for a statement about its lack of merit for fighting.
+      - competing_japanese:
+          - そんな ちっぽけ な こと で 喧嘩 する な。
+        english: Don't fight over such a small thing.
+        hint: This is a direct command or suggestion, not a statement about the argument's inherent lack
+          of worth for a fight. We're looking for a statement about what it is not worthy of.
+    scene: Two siblings are bickering, and their parent intervenes.
+    register: casual
+    setting: friendly
+    nuance: '`争うに値しない` indicates that the subject of the argument is too trivial to warrant conflict,
+      emphasizing a desire for harmony or a dismissal of its importance.'
+  - english: Her dedication to the project is truly worthy of admiration.
+    japanese:
+      - 彼女 の プロジェクト へ の 献身 は 真 に {賞賛 に 値 する}。
+      - 彼女 の プロジェクト へ の 献身 は 真 に {賞賛 に 値 し ます}。
+    english_literally: Her project to dedication as for, truly praise worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の プロジェクト へ の 献身 は 本当 に 素晴らしい。
+        english: Her dedication to the project is truly wonderful.
+        hint: This is a general positive evaluation. `〜に値する` specifically states that it 'deserves' or
+          'is worthy of' admiration. We're looking for an expression of deservedness.
+      - competing_japanese:
+          - 彼女 の プロジェクト へ の 献身 は 評価 できる。
+        english: Her dedication to the project can be evaluated positively.
+        hint: This implies it's possible to evaluate it well, but not as strongly as saying it 'deserves'
+          praise. We're looking for an expression of deservedness.
+    scene: A team leader praises a member's exceptional effort.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses the positive form `〜に値する` to express that her dedication truly merits praise.
+      It's included to show the complementary positive usage of the root expression, demonstrating `値する`
+      in action for comparison.
+  - english: That old rumor is not worth believing anymore.
+    japanese:
+      - その 古い 噂 は もう {信じる に 値 し ない}。
+      - その 古い 噂 は もう {信じる に 値 し ませ ん}。
+    english_literally: That old rumor as for, already believe not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 噂 は もう 信じる べき で は ない。
+        english: That old rumor should no longer be believed.
+        hint: This expresses what one 'should not do', but `〜に値しない` implies the rumor itself lacks the
+          credibility to be believed. We're looking for a statement about the rumor's unworthiness for
+          belief.
+      - competing_japanese:
+          - その 古い 噂 は 信用 でき ない。
+        english: That old rumor cannot be trusted.
+        hint: This focuses on the inability to trust, but `〜に値しない` specifically addresses the rumor's
+          lack of merit for belief. We're looking for a statement about what it is not worthy of.
+    scene: Someone reassuring a friend not to worry about outdated gossip.
+    register: casual
+    setting: friendly
+    nuance: '`信じるに値しない` implies that the rumor lacks credibility or factual basis, thus it should not
+      be given credence. It dismisses the rumor''s validity.'
+  - english: A lie that causes such deep sadness is not worthy of telling.
+    japanese:
+      - そこ まで 悲しみ を 引き起こす 嘘 は {つく に 値 し ない}。
+      - そこ まで 悲しみ を 引き起こす 嘘 は {つく に 値 し ませ ん}。
+    english_literally: To that extent sadness to cause lie as for, tell not worthy of.
+    competing_grammar:
+      - competing_japanese:
+          - そこ まで 悲しみ を 引き起こす 嘘 は つく べき で は ない。
+        english: A lie that causes such deep sadness should not be told.
+        hint: This highlights what one 'should not do' from a moral standpoint, but `〜に値しない` emphasizes
+          the inherent lack of justification for telling such a lie. We're looking for a statement about
+          its unworthiness for telling.
+      - competing_japanese:
+          - そんな 嘘 は 許さ れる こと で は ない。
+        english: Such a lie is not permissible.
+        hint: This states that the lie is not allowed or acceptable, which is a broader judgment than
+          it not being 'worthy' of being told. We're looking for a statement about what it is not worthy
+          of.
+    scene: A therapist advises a client on the consequences of dishonesty.
+    register: formal
+    setting: serious
+    nuance: '`つくに値しない` (from 嘘をつく - to tell a lie) here implies a moral judgment against telling a lie
+      that causes significant emotional harm, asserting it''s not justified or permissible given its severe
+      impact.'
+post_example_writeup: As seen in the examples, `〜に値しない` can be applied to both abstract concepts (like
+  'praise' or 'forgiveness') and actions (like 'watching' or 'believing'), always conveying a strong judgment
+  about the lack of merit or deservingness. Remember that while `〜に値しない` indicates something is 'not worthy',
+  its positive counterpart `〜に値する` means 'worthy of' or 'deserving of', as shown in example 8. Understanding
+  both forms will help you express a full range of judgments regarding value and merit.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/~に値しない

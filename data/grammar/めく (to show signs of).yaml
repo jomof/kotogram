@@ -1,0 +1,376 @@
+grammar_point: めく (to show signs of)
+learn_before:
+  - 〜如し・〜ごとし (like・as if)
+  - かというと (because)
+  - くる (come)
+  - ものがある (subjective feeling)
+  - ものを (if only・should have)
+  - 興味がある (to have an interest in)
+meaning: Like, To show signs of, To have the appearance of, To come to a (state) similar to, Somewhat,
+  An air of, Feels almost like
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: めく
+    rarity: common
+    meaning: to show signs of (A), to have the appearance of (A)
+  - conjugation-type: non-past polite (～ます)
+    form: めきます
+    rarity: less common
+    meaning: to show signs of (A), to have the appearance of (A) (polite)
+  - conjugation-type: negative plain (～ない)
+    form: めかない
+    rarity: less common
+    meaning: not to show signs of (A)
+  - conjugation-type: negative non-past polite (～ません)
+    form: めきません
+    rarity: very rare
+    meaning: not to show signs of (A) (polite)
+  - conjugation-type: past plain (～た)
+    form: めいた
+    rarity: common
+    meaning: having the appearance of (A), that showed signs of (A) (past, noun-modifying)
+  - conjugation-type: past polite (～ました)
+    form: めきました
+    rarity: very rare
+    meaning: showed signs of (A), had the appearance of (A) (polite past)
+  - conjugation-type: negative past plain (～なかった)
+    form: めかなかった
+    rarity: very rare
+    meaning: didn't show signs of (A) (plain past negative)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: めきませんでした
+    rarity: very rare
+    meaning: didn't show signs of (A) (polite past negative)
+  - conjugation-type: te-form (～て)
+    form: めいて
+    rarity: uncommon
+    meaning: showing signs of (A), having the appearance of (A) (te-form)
+  - conjugation-type: conditional (～ば)
+    form: めけば
+    rarity: very rare
+    meaning: if it shows signs of (A)
+  - conjugation-type: conditional (～たら)
+    form: めいたら
+    rarity: very rare
+    meaning: if it shows signs of (A) (past or hypothetical)
+  - conjugation-type: volitional (～よう)
+    form: めこう
+    rarity: very rare
+    meaning: let's show signs of (A)
+  - conjugation-type: volitional polite (～ましょう)
+    form: めきましょう
+    rarity: very rare
+    meaning: shall we show signs of (A) (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: めけ
+    rarity: very rare
+    meaning: show signs of (A)!
+  - conjugation-type: imperative polite (～なさい)
+    form: めきなさい
+    rarity: very rare
+    meaning: please show signs of (A)
+  - conjugation-type: potential (～られる/～える)
+    form: めける
+    rarity: very rare
+    meaning: can show signs of (A)
+  - conjugation-type: passive (～られる/～かれる)
+    form: めかれる
+    rarity: very rare
+    meaning: to be made to show signs of (A)
+  - conjugation-type: causative (～させる)
+    form: めかせる
+    rarity: very rare
+    meaning: to make someone show signs of (A)
+pronunciation:
+  katakana: メク・メイタ
+  romaji: meku, meita
+formation:
+  '[Noun] + めく': To show signs of (a noun), to have the appearance of (a noun), to feel like (a noun).
+    This form conjugates like a Godan verb.
+  '[Noun] + めいた': Noun-modifying form indicating something has the qualities of (a noun). This is the
+    past tense form of めく, often used directly before another noun to describe it.
+jlpt: N1
+etymology: 「めく」 is derived from the verb 「兆す(きざす)」, meaning "to show signs of" or "to indicate". Over
+  time, 「めく」 evolved to express a sense of resemblance or approximation, often used to describe something
+  that has the *feeling* or *appearance* of something else, without actually being it. It's a classical
+  Japanese verb stem that has largely fossilized into a suffix-like function in modern Japanese.
+writeup: |-
+  「めく」 is a unique Godan verb in Japanese that primarily functions as a suffix. It signifies "to show signs of (A)" or "to have the appearance of (A)." It attaches to nouns, reflecting the speaker's personal perception or experience. As 「めく」 itself is a verb, it can conjugate into various forms depending on how it describes the rest of the sentence. When directly modifying a second noun, the past-tense form 「めいた」 is commonly used.
+
+  It's **important** to note that 「めく」 often highlights the speaker's personal feelings about (A) and their subjective perception. The described thing is not necessarily (A) in reality, and the speaker is usually aware of this distinction. This subjective nature is why many of its conjugations, such as imperative or causative forms, are pragmatically very rare or even unnatural, as 'showing signs of' something is generally not an action one can intentionally command or cause another to do.
+
+  「めく」 is often used with established expressions, so it's best to use it with combinations you've encountered before. Some common examples include:
+  *   「春めく」 (haru meku): to show signs of spring
+  *   「秋めく」 (aki meku): to show signs of autumn
+  *   「謎めく」 (nazo meku): to appear mysterious
+  *   「皮肉めく」 (hiniku meku): to appear sarcastic
+  *   「冗談めく」 (jōdan meku): to appear like a joke
+  *   「作り物めく」 (tsukurimono meku): to appear artificial
+false_friends:
+  - term: ～らしい
+    meaning: seems like, appears to be, it is typical of
+    kind: similar expression
+    nuance: Unlike 「めく」 which describes something *showing signs* or *having the appearance* of X, often
+      with a subjective or implied non-authenticity, 「らしい」 suggests something *is characteristic of* X
+      or appears to be X based on evidence or common understanding.
+    grammar_point: '[Noun]らしい (typical of・-like)'
+  - term: ～みたいだ
+    meaning: looks like, seems like (colloquial)
+    kind: similar expression
+    nuance: While 「めく」 conveys a subtle, often inherent quality of 'being like' X, 「みたいだ」 is a more direct
+      and colloquial comparison, simply stating that something resembles or appears to be X, without necessarily
+      implying the subjective or 'signs of' aspect of 「めく」.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: ～そうだ
+    meaning: it looks like, it seems that (from observation)
+    kind: similar expression
+    nuance: 「めく」 expresses a perceived or emerging quality of X, often subjective. 「そうだ」, when indicating
+      appearance, is based on direct visual observation, stating what something *looks like* or *seems
+      like* to the observer at that moment.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: When distinguishing between these expressions, consider the degree of resemblance
+  and the speaker's perspective. 「めく」 often implies a subtle, perceived resemblance, where something isn't
+  quite X but has qualities of X. 「らしい」 suggests a more confirmed, characteristic resemblance. 「みたいだ」
+  is a straightforward, general comparison. 「そうだ」 (appearance) is based on immediate sensory input.
+examples:
+  - english: The sunlight has finally become warm, and the plants by the roadside are showing signs of
+      spring.
+    japanese:
+      - ようやく 日差し が 暖かく なり、道端 の 草木 が {春 めい て} き た。
+      - ようやく 日差し が 暖かく なり、道端 の 草木 が {春 めい て} き まし た。
+      - ようやく 日差し が 暖かく なり、道端 の 草木 が {春 めい て} き た な。
+    english_literally: Finally, the sunlight became warm, and the roadside plants have become spring-like.
+    competing_grammar:
+      - competing_japanese:
+          - ようやく 日差し が 暖かく なり、道端 の 草木 が 春 {らしく} なっ て き た。
+          - ようやく 日差し が 暖かく なり、道端 の 草木 が 春 {らしく} なっ て き まし た。
+        english: Finally, the sunlight became warm, and the roadside plants have become characteristic
+          of spring.
+        hint: 「らしい」 suggests something is characteristic of a noun or typical of it, often based on common
+          knowledge or perception, rather than simply showing subtle signs or appearance. We are looking
+          for something that subtly *shows signs* of spring, not just *is* spring-like.
+    scene: You're observing the slow but sure arrival of spring after a long winter.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: The use of 「～て きた」 emphasizes the gradual process of the plants acquiring spring-like qualities,
+      reflecting the subtle shift of seasons. It highlights the emergent nature of the spring feeling,
+      which is precisely what 「めく」 conveys.
+    etymology: The Japanese word for spring, 「春 (はる)」, often implies new beginnings and growth, which
+      aligns with the sense of something emerging or 'showing signs' of itself.
+  - english: Her mysterious smile made him suspect she was hiding something.
+    japanese:
+      - 彼女 の {謎 めい た} 微笑み に、彼 は 何 か を 隠し て いる の か と 疑っ た。
+      - 彼女 の {謎 めい た} 微笑み から、彼 は 何 か を 隠し て いる の か と 疑念 を 抱い た。
+    english_literally: To her mysterious smile, he suspected if she was hiding something.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 微笑み は 謎 の {よう だっ た}。
+        english: Her smile seemed mysterious, making him suspect she was hiding something.
+        hint: 「ようだった」 directly compares the smile to a mystery. 「めいた」 implies the smile itself had an
+          inherent quality or atmosphere of mystery, which led to suspicion. We are looking for a smile
+          that *radiates* mystery, not just *is like* a mystery.
+    scene: A man is intrigued by a woman's enigmatic expression during a conversation.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: The term 「謎めいた」 attached to 「微笑み」 (smile) indicates that the smile itself possessed an inherent,
+      subtle quality of mystery, making it intriguing and leading to suspicion. It describes the appearance
+      of the smile as mysterious.
+    etymology: 「謎 (なぞ)」 means mystery or riddle, often implying something that is difficult to understand
+      or explain. The addition of 「めいた」 suggests that the smile 'took on the quality' of a mystery, making
+      it enigmatic.
+  - english: He said it as if it were a joke, but for me, it was a serious topic.
+    japanese:
+      - 彼 は {冗談 めい て} 言っ た が、私 に とっ て は 真剣 な 話題 だっ た。
+      - 彼 は {冗談 めい て} 言い まし た が、私 に とっ て は 真剣 な 話題 でし た。
+    english_literally: He spoke appearing like a joke, but for me, it was a serious topic.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 冗談 の {よう に} 言っ た が、私 に とっ て は 真剣 な 話題 だっ た。
+          - 彼 は 冗談 の {よう に} 言い まし た が、私 に とっ て は 真剣 な 話題 でし た。
+        english: He said it like a joke, but for me, it was a serious topic.
+        hint: 「のように」 is a direct comparison, meaning "like" or "as if." 「めいて」 describes the *manner* of
+          speaking as having the inherent *quality* or *atmosphere* of a joke, suggesting it wasn't a
+          direct comparison but a characteristic of his speech. We are looking for speech that *had the
+          air of* a joke.
+    scene: Someone recounts a conversation where their feelings were hurt by a comment that the other
+      person seemed to think was humorous.
+    register: casual
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: 「冗談めいて」 indicates that the *manner* of his speech had the *quality* of a joke, suggesting
+      he spoke lightheartedly or in a jesting way, even if the content itself was serious to the listener.
+      It implies a subjective perception of his tone.
+    etymology: 「冗談 (じょうだん)」 refers to a joke or jest. When combined with 「めいて」, it describes speech or
+      actions that 'appear to be a joke' or 'have the air of a joke', without necessarily being one definitively.
+  - english: She clearly showed discomfort at his sarcastic way of speaking.
+    japanese:
+      - 彼 の {皮肉 な} 物言い に、彼女 は 明らか に 不快 感 を 示し た。
+      - 彼 の {皮肉 な} 物言い に、彼女 は 明らか に 不快 感 を 示し まし た。
+    english_literally: To his sarcastic-seeming way of speaking, she clearly showed discomfort.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の {皮肉 な} 物言い に、彼女 は 明らか に 不快 感 を 示し た。
+          - 彼 の {皮肉 な} 物言い に、彼女 は 明らか に 不快 感 を 示し まし た。
+        english: She clearly showed discomfort at his sarcastic way of speaking.
+        hint: 「皮肉な」 directly states something is sarcastic. 「めいた」 suggests that the 'manner of speaking'
+          possessed a *quality* of sarcasm, implying it wasn't explicitly sarcastic but had an inherent
+          sarcastic *feel* to it. We are looking for a way of speaking that *had the air of* sarcasm.
+    scene: A woman reacts negatively to a man's cutting remarks in a discussion.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: 「皮肉めいた」 suggests that his 'manner of speaking' (物言い) possessed a quality of sarcasm or irony,
+      rather than merely being sarcastic. It implies that his tone or choice of words had an inherent
+      ironic or cynical feel to it.
+    etymology: 「皮肉 (ひにく)」 means sarcasm or irony. 「皮肉めいた」 describes something that 'takes on the quality
+      of sarcasm' or 'appears sarcastic', highlighting a perceived characteristic in speech or manner.
+  - english: The painting was so beautiful, it was almost like it was man-made.
+    japanese:
+      - その 絵 は あまり に も 美しく、まるで {作り物 めく} よう だっ た。
+      - その 絵 は あまり に も 美しく、まるで {作り物 めく} よう でし た。
+    english_literally: That painting was too beautiful, it was like it appeared man-made.
+    competing_grammar:
+      - competing_japanese:
+          - その 絵 は あまり に も 美しく、まるで 作り物 の {よう だっ た}。
+          - その 絵 は あまり に も 美しく、まるで 作り物 の {よう だっ た}。
+        english: That painting was so beautiful, it was like a man-made object.
+        hint: 「のよう」 is a direct simile, comparing one thing to another. 「めく」 implies that the painting's
+          perfection made it *take on the quality* or *feel* of something artificial, suggesting an inherent
+          characteristic rather than just a comparison. We are looking for a painting that *seemed to
+          be artificial*.
+    scene: Admiring a work of art that looks almost too perfect to be real.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「作り物めく」 used with 「ようだった」 emphasizes that the painting's beauty was so perfect it had the
+      *quality* or *feel* of being artificial, almost too flawless to be natural. It highlights the subjective
+      impression of artificiality.
+    etymology: 「作り物 (つくりもの)」 means a man-made object or artifact. 「作り物めく」 therefore describes something
+      that 'appears to be man-made' or 'has the characteristic of being artificial', focusing on its fabricated
+      quality.
+  - english: The story was too convenient; I felt it had a false ring to it.
+    japanese:
+      - 話 が あまり に も 都合 が 良く、どこ か {嘘 めい て} いる と 感じ た。
+      - 話 が あまり に も 都合 が 良く、どこ か {嘘 めい て} いる と 感じ まし た。
+    english_literally: The story was too convenient, I felt it was somewhere appearing like a lie.
+    competing_grammar:
+      - competing_japanese:
+          - 話 が あまり に も 都合 が 良く、どこ か {嘘 っぽい} と 感じ た。
+          - 話 が あまり に も 都合 が 良く、どこ か {嘘 っぽい} と 感じ まし た。
+        english: The story was too convenient; I felt it looked like a lie (was fishy).
+        hint: 「っぽい」 means "ish" or "like," often implying a strong resemblance or tendency. 「めいている」 suggests
+          the story is *currently possessing a 'lie-like' quality*, making it feel inherently dishonest.
+          We are looking for something that *radiates a lie-like quality*.
+    scene: Listening to someone's explanation that seems too good to be true.
+    register: casual
+    setting: cautious
+    conjugation: progressive (～ている)
+    nuance: 「嘘めいている」 describes the story as currently possessing a 'lie-like' quality, making it feel
+      inherently dishonest or suspicious. The progressive form indicates this feeling is ongoing or perceived
+      at the moment of observation.
+    etymology: 「嘘 (うそ)」 means a lie or falsehood. 「嘘めいて」 indicates that something 'appears to be a lie'
+      or 'has the quality of a lie', suggesting a deceptive appearance.
+  - english: Mornings and evenings have become cool, and the scenery has started to take on an autumn
+      feel.
+    japanese:
+      - 朝夕 は 涼しく なり、景色 も だいぶ {秋 めい て} き まし た。
+      - 朝夕 は 涼しく なり、景色 も だいぶ {秋 めい て} き た。
+    english_literally: Mornings and evenings have become cool, and the scenery has quite become autumn-like.
+    competing_grammar:
+      - competing_japanese:
+          - 朝夕 は 涼しく なり、景色 も だいぶ 秋 {らしく} なっ て き まし た。
+          - 朝夕 は 涼しく なり、景色 も だいぶ 秋 {らしく} なっ て き た。
+        english: Mornings and evenings have become cool, and the scenery has quite become characteristic
+          of autumn.
+        hint: 「らしい」 suggests something is characteristic or typical. 「めいて」 suggests the scenery is subtly
+          *showing signs* of autumn, conveying an emergent state. We are looking for the scenery to subtly
+          *feel like* autumn.
+    scene: Writing a letter to a distant friend about the change of seasons.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「秋めいて きました」 indicates a gradual shift where the scenery is beginning to *exhibit characteristics*
+      of autumn, even if it's not officially autumn yet. It conveys the subtle emergence of the season's
+      atmosphere.
+    etymology: 「秋 (あき)」 refers to autumn. 「秋めいて」 means to 'show signs of autumn' or 'have an autumn-like
+      feel', reflecting the transition of seasons.
+  - english: Her secretive actions piqued the interest of those around her.
+    japanese:
+      - 彼女 の {秘密 めい た} 行動 に、周り の 人々 は 興味 を 惹か れ た。
+      - 彼女 の {秘密 めい た} 行動 に、周り の 人々 は 興味 を 惹か れ まし た。
+    english_literally: To her secret-seeming actions, the people around were drawn to interest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 行動 は 秘密 {らしい}。
+          - 彼女 の 行動 は 秘密 {らしい} です。
+        english: Her actions seem secret, piquing the interest of those around her.
+        hint: 「らしい」 suggests her actions are characteristic of being secret or appear to be secret based
+          on evidence. 「めいた」 implies her actions inherently possessed a *secretive quality*, making them
+          mysterious rather than just being performed in secret. We are looking for actions that *radiate
+          secrecy*.
+    scene: Observing someone who consistently behaves in an enigmatic way.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: 「秘密めいた」 describes her actions as inherently possessing a secretive quality, making them seem
+      mysterious and thus piquing others' curiosity. It's not just a secret action, but one that radiates
+      secrecy.
+    etymology: 「秘密 (ひみつ)」 means secret. 「秘密めいた」 describes something that 'appears secret' or 'has a secretive
+      quality', indicating an elusive or mysterious nature.
+  - english: Stop saying such omen-like things. Something bad will happen!
+    japanese:
+      - そんな {縁起 めい た} こと を 言う の は やめろ。悪い こと が 起こる ぞ。
+      - そんな {縁起 めい た} こと を 言う の は やめ て。悪い こと が 起こる わ よ。
+    english_literally: Stop saying such omen-seeming things. Bad things will happen!
+    competing_grammar:
+      - competing_japanese:
+          - そんな 縁起 が 悪い {みたい な} こと を 言う の は やめろ。
+          - そんな 縁起 が 悪い {みたい な} こと を 言う の は やめ て。悪い こと が 起こる わ よ。
+        english: Stop saying things like bad omens. Something bad will happen!
+        hint: 「みたい」 offers a direct, casual comparison. 「めいた」 implies the words inherently possessed an
+          ominous feel, suggesting a superstitious interpretation rather than a direct comparison to something
+          explicitly bad luck. We are looking for words that *have the air of* an omen.
+    scene: A superstitious older woman admonishes a younger person for casually speaking about bad omens.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The older female speaker's choice of 「やめろ」 (an informal imperative) and 「ぞ」 (a male-coded
+      emphatic particle) in the first Japanese option, or 「やめて」 (a softer imperative) and 「わよ」 (a female-coded
+      emphatic particle) in the second, combined with the superstitious tone of 「縁起めいた」, reinforces a
+      scolding or warning typical of an older person to a younger one. 「縁起めいた」 implies something *appears*
+      to be an omen, carrying a sense of superstition or potential misfortune, rather than being definitively
+      'bad luck'.
+    etymology: 「縁起 (えんぎ)」 refers to omens, signs, or auspiciousness. 「縁起めいた」 means to 'appear like an
+      omen' or 'have an ominous feel', often implying a superstitious interpretation.
+  - english: Her poetry has a deep sadness to it, almost mournful.
+    japanese:
+      - 彼女 の 詩 に は、深く {悲しみ めい た} もの が ある。
+      - 彼女 の 詩 に は、深く {悲しみ めい た} もの が あり ます。
+    english_literally: In her poetry, there is something deeply sorrow-like.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 詩 に は、深く {悲しい} もの が ある。
+          - 彼女 の 詩 に は、深く {悲しい} もの が あり ます。
+        english: Her poetry has something deeply sad.
+        hint: 「悲しい」 simply describes something as sad. 「悲しみめいた」 implies that the poetry itself possesses
+          a *quality* or *atmosphere* of sorrow, rather than just being sad. We are looking for something
+          that *has the air of* sadness.
+    scene: Discussing the emotional depth of a poet's work.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: 「悲しみめいた」 attached to 「もの」 (thing/quality) indicates that the poetry has a profound quality
+      or atmosphere of sadness, implying a deeper, more inherent sense of lament. It describes the emotional
+      resonance as being mournful in nature.
+    etymology: 「悲しみ (かなしみ)」 means sadness or sorrow. When combined with 「めいた」, it describes something
+      that 'appears to be sorrowful' or 'has a mournful quality', suggesting an intrinsic emotional tone.
+post_example_writeup: As these examples demonstrate, 「めく」 and 「めいた」 are particularly useful for expressing
+  subtle, often subjective perceptions about something acquiring certain qualities or an atmosphere. The
+  verb forms emphasize the *appearance* or *feeling* of a state rather than its definitive existence,
+  often evoking a sense of emergence or inherent characteristic.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/めく-めいた

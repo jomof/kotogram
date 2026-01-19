@@ -1,0 +1,250 @@
+grammar_point: を前提に (on the premise of)
+learn_before:
+  - すでに (already・too late)
+  - ちょっと (adverb)
+meaning: On the premise of
+pronunciation:
+  katakana: オゼンテイニ
+  romaji: o zentei ni
+formation:
+  Noun + を前提に: Assuming Noun as the premise.
+  Verb (dictionary form) + こと + を前提に: Assuming Verb as the premise.
+  Sentence + ことを前提に: Assuming Sentence as the premise.
+jlpt: N1
+etymology: 「前提 (ぜんてい)」 literally means "pre-presentation" or "pre-established condition." The phrase 「を前提に」
+  uses the particle 「を」 to mark 「前提」 as the object of consideration, and 「に」 to indicate that something
+  is based on that premise.
+writeup: 「を前提に」 is a pattern that combines the adverbial particle 「を」, the noun 「前提」 (premise) or (hypothesis),
+  and the case-marking particle 「に」. It is often translated as "on the premise of (A)," and marks something
+  as the base thought or goal toward which some other (B) action is being taken. This structure will be
+  used following nouns, or verbs that have been nominalized with 「こと」. Alternatively, either 「にして」 or
+  「として」 may be used in place of 「に」 by itself. This only slightly changes the nuance in the same way that
+  is to be expected of these structures. 「を前提にして」 will sound more active as “toward the premise of (A),
+  (B).” While 「を前提として」 sounds more passive as “with (A) as the premise (B).
+false_friends:
+  - term: に基づいて
+    meaning: based on; in accordance with
+    kind: similar expression
+    nuance: Unlike 「を前提に」, which sets a condition or foundational assumption for a subsequent action or
+      design, 「に基づいて」 indicates that something is being done strictly according to a particular standard,
+      rule, or piece of information. 「を前提に」 allows for projection or future-oriented conditions, while
+      「に基づいて」 implies adherence to existing facts or guidelines.
+    grammar_point: にもとづいて (based on)
+  - term: と仮定して
+    meaning: assuming; supposing
+    kind: similar expression
+    nuance: 「を前提に」 implies a more established or foundational condition upon which something is built
+      or decided, often with a sense of certainty or agreement. 「と仮定して」 suggests a temporary assumption
+      or hypothesis for the sake of argument or calculation, implying less certainty or permanence.
+    grammar_point: <suggest>:と仮定して (assuming)
+  - term: を目的 に
+    meaning: with the aim of; for the purpose of
+    kind: similar expression
+    nuance: 「を前提に」 refers to a pre-existing condition or assumption that forms the foundation for an action
+      or plan. 「を目的 に」 indicates the specific goal or objective for which an action is carried out. The
+      former is a starting point, the latter is an end goal.
+    grammar_point: <suggest>:を目的 に (with the aim of)
+post_false_friends_writeup: While both 「を前提に」 and 「に基づいて」 involve a foundational element, the key distinction
+  lies in their nature. 「を前提に」 emphasizes an underlying assumption or pre-condition upon which a decision
+  or action is based, often implying a projective or hypothetical scenario. In contrast, 「に基づいて」 signifies
+  that an action or conclusion is derived directly from established facts, rules, or data, indicating
+  strict adherence or reliance on existing information. To choose correctly, consider whether the basis
+  is an assumption/condition for future action or a rule/fact guiding present action.
+examples:
+  - english: We plan to proceed with the project on the premise of securing the budget by next month.
+    japanese:
+      - 来月 まで に 予算 を 確保 する こと {を 前提 に}、プロジェクト を 進める 予定 です。
+      - 来月 まで に 予算 を 確保 する こと {を 前提 と し て}、プロジェクト を 進める 予定 です。
+      - 来月 まで に 予算 を 確保 する こと {を 前提 に し て}、プロジェクト を 進める 予定 です。
+      - 来月 まで に 予算 を 確保 する こと {を 前提 に}、プロジェクト を 進める 予定 だ。
+      - 来月 まで に 予算 を 確保 する こと {を 前提 と し て}、プロジェクト を 進める 予定 だ。
+      - 来月 まで に 予算 を 確保 する こと {を 前提 に し て}、プロジェクト を 進める 予定 だ。
+    english_literally: Regarding the project, we plan to proceed on the premise that we will secure the
+      budget by next month.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 まで に 予算 を 確保 し {た 上 で}、プロジェクト を 進める 予定 です。
+        english: We plan to proceed with the project after securing the budget by next month.
+        hint: 「た 上 で」 means 'after securing,' which implies a sequential action rather than a foundational
+          premise for the current plan. We're looking for a conditional assumption.
+      - competing_japanese:
+          - 来月 まで に 予算 を 確保 する {ため に}、プロジェクト を 進める 予定 です。
+        english: We plan to proceed with the project in order to secure the budget by next month.
+        hint: 「ため に」 indicates the purpose or reason for the action, which is a different logical relationship
+          than an underlying premise. We're looking for a foundational assumption.
+    scene: A project manager explains the timeline and key conditions to their team.
+    register: formal
+    setting: informative
+  - english: This new system was developed on the premise that all users have basic IT literacy.
+    japanese:
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 に} 開発 さ れ まし た。
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 と し て} 開発 さ れ まし た。
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 に し て} 開発 さ れ まし た。
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 に} 開発 さ れ た。
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 と し て} 開発 さ れ た。
+      - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ こと {を 前提 に し て} 開発 さ れ た。
+    english_literally: This new system was developed on the premise that all users possess basic IT literacy.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい システム は、全て の 利用 者 が 基本 的 な IT リテラシー を 持つ {と 仮定 し て} 開発 さ れ まし た。
+        english: This new system was developed assuming all users have basic IT literacy.
+        hint: 「と 仮定 して」 means 'assuming' or 'hypothesizing,' which can imply a less certain or more speculative
+          condition than a foundational premise. We're looking for a firm assumption for design.
+    scene: A software engineer presents a recently completed system to stakeholders.
+    register: formal
+    setting: technical
+  - english: He bought a small car on the premise of living alone.
+    japanese:
+      - 彼 は 1人 で 住む こと {を 前提 に} 小さな 車 を 買っ た。
+      - 彼 は 1人 で 住む こと {を 前提 と し て} 小さな 車 を 買っ た。
+      - 彼 は 1人 で 住む こと {を 前提 に し て} 小さな 車 を 買っ た。
+    english_literally: He purchased a small car on the premise of living alone.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 1人 で 住む {の で} 小さな 車 を 買っ た。
+        english: He bought a small car because he lives alone.
+        hint: 「の で」 merely states a reason or cause, which doesn't capture the foundational assumption
+          aspect of the purchase. We're looking for an underlying condition that influenced the decision.
+    scene: Friends discuss a recent purchase made by a mutual acquaintance.
+    register: casual
+    setting: friendly
+  - english: We started this venture on the premise that we would expand globally.
+    japanese:
+      - 私 たち は 世界 進出 する こと {を 前提 に し て}、この 事業 を 始め た。
+      - 私 たち は 世界 進出 する こと {を 前提 に}、この 事業 を 始め た。
+      - 私 たち は 世界 進出 する こと {を 前提 と し て}、この 事業 を 始め た。
+      - 私 たち は 世界 進出 する こと {を 前提 に し て}、この 事業 を 始め まし た。
+      - 私 たち は 世界 進出 する こと {を 前提 に}、この 事業 を 始め まし た。
+      - 私 たち は 世界 進出 する こと {を 前提 と し て}、この 事業 を 始め まし た。
+    english_literally: We started this business with global expansion as the premise.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 世界 進出 {を 目的 に}、この 事業 を 始め た。
+        english: We started this venture with the aim of global expansion.
+        hint: 「目的 に」 refers to a goal or objective, which is a future aim rather than a current foundational
+          condition. We're looking for a fundamental assumption.
+    scene: An entrepreneur explains the initial vision and foundation of their successful company.
+    register: semi-formal
+    setting: storytelling
+  - english: This presentation was created with the assumption that the audience already knows the basics.
+    japanese:
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 と し て} 作成 さ れ まし た。
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 に} 作成 さ れ まし た。
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 に し て} 作成 さ れ まし た。
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 と し て} 作成 さ れ た。
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 に} 作成 さ れ た。
+      - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる こと {を 前提 に し て} 作成 さ れ た。
+    english_literally: This presentation was created with the audience already knowing the basics as the
+      premise.
+    competing_grammar:
+      - competing_japanese:
+          - この プレゼンテーション は、聴衆 が すでに 基本 を 知っ て いる {から} 作成 さ れ まし た。
+        english: This presentation was created because the audience already knows the basics.
+        hint: 「から」 indicates a reason or cause, not the foundational assumption that guided the creation.
+          We're looking for a pre-existing knowledge that structured the presentation.
+    scene: A speaker outlines the design philosophy behind an academic presentation.
+    register: formal
+    setting: academic
+  - english: The contract is based on the premise that both parties will meet their obligations.
+    japanese:
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 に} 結ば れ て い ます。
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 と し て} 結ば れ て い ます。
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 に し て} 結ば れ て い ます。
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 に} 結ば れ て いる。
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 と し て} 結ば れ て いる。
+      - この 契約 は、両者 が 義務 を 果たす こと {を 前提 に し て} 結ば れ て いる。
+    english_literally: This contract is concluded on the premise that both parties fulfill their obligations.
+    competing_grammar:
+      - competing_japanese:
+          - この 契約 は、両者 が 義務 を 果たす {場合 に} 結ば れ て い ます。
+        english: This contract is concluded if both parties fulfill their obligations.
+        hint: 「場合 に」 implies 'in the case that,' suggesting a conditional situation rather than an underlying
+          foundational premise. We're looking for a fundamental assumption upon which the contract is
+          built.
+    scene: Lawyers discuss the fundamental terms of a new business agreement.
+    register: bijinesu nihongo (business)
+    setting: legal
+  - english: This negotiation will proceed on the premise of mutual trust.
+    japanese:
+      - この 交渉 は、相互 信頼 {を 前提 に} 進め られ ます。
+      - この 交渉 は、相互 信頼 {を 前提 と し て} 進め られ ます。
+      - この 交渉 は、相互 信頼 {を 前提 に し て} 進め られ ます。
+      - この 交渉 は、相互 信頼 {を 前提 に} 進め られ る。
+      - この 交渉 は、相互 信頼 {を 前提 と し て} 進め られ る。
+      - この 交渉 は、相互 信頼 {を 前提 に し て} 進め られ る。
+    english_literally: This negotiation will be advanced on the premise of mutual trust.
+    competing_grammar:
+      - competing_japanese:
+          - この 交渉 は、相互 信頼 {の 上 に} 進め られ ます。
+        english: This negotiation will proceed based on mutual trust.
+        hint: 「の 上 に」 means 'on top of' or 'based on,' which is similar but less directly expresses the
+          'pre-existing condition' aspect of 「を前提に」. We're looking for a foundational condition.
+    scene: Diplomats outline the guiding principles for upcoming international talks.
+    register: formal
+    setting: negotiating
+  - english: This instruction manual was written on the premise that the user has prior experience with
+      similar devices.
+    japanese:
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 に} 書か れ て い ます。
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 と し て} 書か れ て い ます。
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 に し て} 書か れ て い ます。
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 に} 書か れ て いる。
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 と し て} 書か れ て いる。
+      - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある こと {を 前提 に し て} 書か れ て いる。
+    english_literally: This instruction manual is written on the premise that the reader has experience
+      handling similar equipment.
+    competing_grammar:
+      - competing_japanese:
+          - この 取扱 説明 書 は、読者 が 同様 の 機器 を 扱っ た 経験 が ある {はず だ から} 書か れ て い ます。
+        english: This instruction manual was written because the reader should have experience handling
+          similar devices.
+        hint: 「はず だ から」 means 'because it should be that,' implying a reasoned guess rather than a guiding
+          premise for the writing. We're looking for an assumption that sets the content level.
+    scene: An engineer explains why a product's manual is concise.
+    register: formal
+    setting: instructional
+  - english: Many companies design their employee benefits on the premise that employees will work there
+      for a long time.
+    japanese:
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 に} 福利 厚生 を 設計 し て いる。
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 と し て} 福利 厚生 を 設計 し て いる。
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 に し て} 福利 厚生 を 設計 し て いる。
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 に} 福利 厚生 を 設計 し て い ます。
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 と し て} 福利 厚生 を 設計 し て い ます。
+      - 多く の 会社 は、従業 員 が 長く 働く こと {を 前提 に し て} 福利 厚生 を 設計 し て い ます。
+    english_literally: Many companies are designing welfare benefits on the premise that employees will
+      work for a long time.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 会社 は、従業 員 が 長く 働く {と 期待 し て} 福利 厚生 を 設計 し て いる。
+        english: Many companies are designing employee benefits expecting that employees will work there
+          for a long time.
+        hint: 「と 期待 して」 means 'expecting that,' which is a hope or belief rather than a foundational operating
+          premise. We're looking for a fundamental assumption structuring benefits.
+    scene: A business consultant analyzing corporate human resources policies.
+    register: formal
+    setting: professional
+  - english: It seems my parents are proceeding with rebuilding the house on the premise that I will return
+      to live with them.
+    japanese:
+      - 私 の 両親 は、私 が 実家 に 戻っ て くる こと {を 前提 に}、家 の 建て替え を 進め て いる よう だ。
+      - 私 の 両親 は、私 が 実家 に 戻っ て くる こと {を 前提 と し て}、家 の 建て替え を 進め て いる よう だ。
+      - 私 の 両親 は、私 が 実家 に 戻っ て くる こと {を 前提 に し て}、家 の 建て替え を 進め て いる よう だ。
+    english_literally: My parents, on the premise that I will return to my family home, seem to be proceeding
+      with rebuilding the house.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 両親 は、私 が 実家 に 戻っ て くる {の で}、家 の 建て替え を 進め て いる よう だ。
+        english: My parents seem to be proceeding with rebuilding the house because I am returning to
+          live with them.
+        hint: 「の で」 would state it as a reason for the rebuilding, rather than the foundational condition
+          it is based upon. We're looking for an underlying assumption for the project.
+    scene: Someone discussing their parents' plans with a close friend.
+    register: casual
+    setting: intimate
+post_example_writeup: As you can see from the examples, 「を前提に」 can be used with various levels of formality
+  by adjusting the verb ending of the main clause. The inclusion of 「として」 or 「にして」 offers a slight nuance,
+  with 「として」 often implying a more passive or state-like premise, and 「にして」suggesting a more active consideration
+  of the premise. However, in many contexts, these variations are interchangeable.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を前提に

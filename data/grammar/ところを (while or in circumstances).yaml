@@ -1,0 +1,275 @@
+grammar_point: ところを (while or in circumstances)
+learn_before:
+  - '[Verb-て]すみません (apologizing for action)'
+meaning: at the moment of; while; in the circumstances where
+pronunciation:
+  katakana: トコロヲ
+  romaji: tokoro o
+formation:
+  Verb[dictionary/た/ている/ない] + ところを: Used to describe the state or action at the moment something else
+    occurs.
+  い-Adjective + ところを: Used to describe the state at the moment something else occurs. Less common.
+  な-Adjective + な + ところを: Used to describe the state at the moment something else occurs.
+  Noun + の + ところを: Used to describe the situation or context at the moment something else occurs.
+jlpt: N2
+etymology: The word 「ところ」 (tokoro) originally meant 'place' or 'location.' Over time, its meaning expanded
+  metaphorically to include 'time,' 'point,' or 'situation.' The particle 「を」 (o), typically a direct
+  object marker, is used here to indicate the 'point' or 'situation' that is being passed through or affected
+  by the subsequent action. Thus, 「ところを」 literally means 'passing through/at this point/situation,' emphasizing
+  the specific circumstances or timing.
+writeup: 'The expression 「ところを」 is used to precisely pinpoint a moment or a situation during which another
+  event occurs. It functions to set the scene or context for the subsequent action, often highlighting
+  that the action is an interruption, a polite intrusion, or something done despite the prevailing circumstances.
+  It lends a sense of politeness or formality, particularly when used in apologies or requests, implying
+  "at such a busy/inconvenient time." This grammar point can be attached to various forms: dictionary
+  form verbs (indicating an action about to happen), past tense verbs (indicating an action that has just
+  happened or completed), -ている form verbs (indicating an ongoing action), -ない form verbs (indicating a
+  state of not doing something), い-adjectives, な-adjectives (with な), and nouns (with の). The choice of
+  preceding form sets the specific temporal or situational context. While often translated simply as "while"
+  or "when," 「ところを」 carries a stronger nuance of highlighting the specific *context* or *point in time*
+  that makes the following action significant, often in an apologetic or considerate way. It''s frequently
+  used in formal or polite situations, particularly when apologizing for an imposition or expressing gratitude
+  for an action taken despite difficult conditions. For instance, if someone is busy, you might say, 「お忙しいところを申し訳ありません」
+  (I apologize for disturbing you while you are busy).'
+false_friends:
+  - term: ところだ
+    meaning: about to; just did; in the process of
+    kind: similar expression
+    nuance: 「ところだ」 primarily expresses the immediate timing of an action (just about to, just did, or
+      currently doing), focusing on the temporal proximity. In contrast, 「ところを」 emphasizes the *circumstances*
+      or *situation* at that time, often leading to a secondary nuance of apology or consideration.
+    grammar_point: '[Verb-dictionary]ところだ (about to do)'
+  - term: ときに
+    meaning: at the time of; when
+    kind: similar expression
+    nuance: 「ときに」 is a more general temporal marker that simply indicates 'when' or 'at the time of' an
+      event, without necessarily implying interruption, apology, or a particular circumstance. 「ところを」
+      specifically highlights the *particular state* or *specific moment* as the context for the subsequent
+      action, often with an implied sense of politeness or imposition.
+    grammar_point: とき (when)
+  - term: にもかかわらず
+    meaning: despite; even though
+    kind: similar expression
+    nuance: While both can indicate an action taken despite circumstances, 「にもかかわらず」 explicitly states
+      a contradiction or defiance against the preceding condition. 「ところを」 merely sets the scene of the
+      circumstance, with the nuance of 'despite' being *implied* by the context of the second clause (e.g.,
+      apologizing for interrupting).
+    grammar_point: にかかわらず (regardless of)
+  - term: 際に
+    meaning: on the occasion of; at the time of (formal)
+    kind: similar expression
+    nuance: 「際に」 is a more formal and objective way to state 'at the time of' or 'on the occasion of,'
+      suitable for official or descriptive contexts. 「ところを」 retains a more personal and subjective feel,
+      emphasizing the specific 'point' or 'situation' and often carrying emotional or interpersonal nuances
+      like apology or consideration.
+    grammar_point: 際に (at the time of・when・on the occasion of)
+post_false_friends_writeup: When differentiating 「ところを」 from similar expressions, remember that 「ところを」
+  places a strong emphasis on the *specific situation* or *exact moment* that precedes the main action,
+  often to imply that the second action is somehow out of place or considerate given the first. It's less
+  about simple timing like 「ときに」, or merely stating a contradiction like 「にもかかわらず」, and more about establishing
+  a precise, often sensitive, context. Its use frequently carries an underlying tone of politeness, apology,
+  or gratitude.
+examples:
+  - english: I apologize for disturbing you while you are busy.
+    japanese:
+      - お 忙しい {ところ を} 申し訳 あり ませ ん。
+      - お 忙しい {ところ を} 申し訳 ござい ませ ん。
+      - 忙しい {ところ を} すみ ませ ん。
+    english_literally: While you are busy, I am very sorry.
+    competing_grammar:
+      - competing_japanese:
+          - お 忙しい とき に 申し訳 あり ませ ん。
+        english: I apologize for disturbing you when you are busy.
+        hint: 「ときに」 is a general temporal marker, less emphasizing the specific (perhaps inconvenient)
+          state of being busy. We're looking for a phrase that highlights the specific busy circumstance
+          as the reason for the apology.
+    scene: You are approaching a colleague who is clearly engrossed in their work.
+    register: formal
+    setting: professional
+  - english: Thank you for coming despite it being such a cold day.
+    japanese:
+      - 寒い {ところ を}、よく お 越し ください まし た。
+      - 寒い {ところ を}、よく 来 て くれ まし た。
+      - 寒い {ところ を}、来 て くれ て ありがとう。
+    english_literally: It being a cold situation, you came well.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い に も かかわら ず、よく お 越し ください まし た。
+        english: Despite it being cold, you came well.
+        hint: 「にもかかわらず」 explicitly states 'despite,' but 「ところを」 focuses on the specific *circumstance*
+          of it being cold, subtly implying gratitude for their effort in that condition. We're looking
+          for an expression that directly points to the difficult circumstance.
+    scene: A host greets guests who have arrived on a particularly chilly day.
+    register: formal
+    setting: friendly
+  - english: Excuse me for calling you late at night.
+    japanese:
+      - 夜 遅い {ところ を}、お 電話 し て すみ ませ ん。
+      - 夜 遅い {ところ を}、電話 し て ごめん なさい。
+      - 夜 遅い {ところ を}、電話 し て 悪い ね。
+    english_literally: It being late at night, I'm sorry for calling.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 遅い とき に、お 電話 し て すみ ませ ん。
+        english: I'm sorry for calling you when it's late at night.
+        hint: 「ときに」 is broader. We need to emphasize the specific, potentially inconvenient *situation*
+          of it being late at night.
+    scene: You've realized you need to make an urgent call, but it's very late.
+    register: semi-formal
+    setting: apologetic
+  - english: It was difficult to ask for help when he was in such a good mood.
+    japanese:
+      - 彼 が とても 楽し そう に し て いる {ところ を}、助け を 求める の は 気 が 引け た。
+      - 彼 が すごく 楽し そう に し てる {ところ を}、助け を 求める の は 気 が 引け た。
+    english_literally: While he was looking very happy, I felt hesitant to ask for help.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が とても 楽し そう に し て いる とき に、助け を 求める の は 気 が 引け た。
+        english: When he was looking very happy, I felt hesitant to ask for help.
+        hint: 「ときに」 simply marks the time. We want to highlight the specific *joyful state* as the context
+          that made asking for help difficult.
+    scene: Observing a friend who is having a great time, you feel bad about bringing up a problem.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「楽しそうにしているところを」 points out the specific positive mood of the person, making the
+      act of asking for help seem like an imposition. This nuanced use of 「ところを」 emphasizes the contrast
+      between the person's state and the speaker's need.
+  - english: Just as I was about to go out, an unexpected visitor arrived.
+    japanese:
+      - 出かけよう と し て いる {ところ を}、急 な 来客 が あっ た。
+      - 出かけよう と し て い た {ところ を}、急 な 来客 が あっ た。
+    english_literally: While I was about to go out, there was a sudden visitor.
+    competing_grammar:
+      - competing_japanese:
+          - 出かけよう と し て いる とき に、急 な 来客 が あっ た。
+        english: When I was about to go out, an unexpected visitor arrived.
+        hint: 「ときに」 indicates the timing generally. 「ところを」 specifies the exact *point* of being 'about
+          to' do something, implying an interruption at that critical moment. We're looking for that precise
+          timing.
+    scene: You were just putting on your shoes to leave the house.
+    register: casual
+    setting: storytelling
+  - english: I found it hard to refuse his request, as he had come all this way.
+    japanese:
+      - 遠い {ところ を} わざわざ 来 て くれ た {ところ を}、彼 の 頼み を 断る の は 忍び なかっ た。
+      - 遠い {ところ を} わざわざ 来 て くれ た {ところ を}、頼み を 断る の は 忍び なかっ た。
+    english_literally: Having come all the way from far, his request was difficult to refuse.
+    competing_grammar:
+      - competing_japanese:
+          - 遠い に も かかわら ず わざわざ 来 て くれ た が、彼 の 頼み を 断る の は 忍び なかっ た。
+        english: Even though he came all the way from far, his request was difficult to refuse.
+        hint: This sentence uses two 「ところを」 for emphasis. The first 「遠いところを」 highlights the distance traveled
+          (a difficult circumstance), and the second 「来てくれたところを」 emphasizes the act of him coming. 「にもかかわらず」
+          is just a general 'despite'. We want to highlight the specific situation.
+    scene: A friend has traveled a great distance to meet you and asks for a favor.
+    register: formal
+    setting: reflective
+    nuance: The repetition of 「ところを」 amplifies the emphasis on the challenging circumstances the person
+      overcame (traveling a long distance) and the specific act of their arrival, making it even harder
+      for the speaker to refuse. 「遠いところを」 specifies the geographical challenge, and 「来てくれたところを」 highlights
+      the effort of their visit itself.
+  - english: Sorry to bother you while you're eating.
+    japanese:
+      - お 食事 中 の {ところ を}、恐れ入り ます。
+      - 食事 中 の {ところ を}、すみ ませ ん。
+    english_literally: While you are in the middle of eating, I will excuse myself.
+    competing_grammar:
+      - competing_japanese:
+          - お 食事 中 に、恐れ入り ます。
+        english: Excuse me while you're eating.
+        hint: 「〜中に」 is a more direct way to say 'during'. 「ところを」 adds a layer of politeness by acknowledging
+          the specific, potentially inconvenient, act of eating. We are looking for an expression that
+          conveys this consideration.
+    scene: You need to speak to someone who is currently having a meal.
+    register: formal
+    setting: professional
+  - english: He disappeared just as I was about to call out to him.
+    japanese:
+      - 声 を かけよう と し た {ところ を}、彼 は 姿 を 消し た。
+      - 声かけ よう と し た {ところ を}、あいつ は 姿 を 消し た。
+    english_literally: While I was about to call out, he disappeared.
+    competing_grammar:
+      - competing_japanese:
+          - 声 を かけよう と し た とき に、彼 は 姿 を 消し た。
+        english: When I was about to call out to him, he disappeared.
+        hint: 「ときに」 is a neutral temporal connector. 「ところを」 highlights the *precise moment* of attempting
+          an action, emphasizing the missed opportunity or frustration.
+    scene: You saw someone you knew and were just about to greet them, but they vanished.
+    register: casual
+    setting: storytelling
+  - english: He helped me even though he was in a difficult situation himself.
+    japanese:
+      - 彼 自身 も 大変 な {ところ を}、助け て くれ て 感謝 し て い ます。
+      - 彼 自身 も 大変 な {ところ を}、助け て くれ て ありがとう。
+      - あいつ も 大変 な {ところ を}、助け て くれ て マジ 感謝。
+    english_literally: Even though he himself was in a difficult situation, I'm grateful for him helping
+      me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 自身 も 大変 だっ た が、助け て くれ て 感謝 し て い ます。
+        english: He himself was difficult, but I'm grateful for him helping me.
+        hint: This simple conjunction does not capture the nuance of helping *despite* being in a difficult
+          situation. We're looking for an expression that points out the specific challenging circumstances.
+    scene: Someone has provided assistance despite facing their own challenges.
+    register: formal
+    setting: pessimistic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「ところを」 here, especially with 「大変なところを」, emphasizes the speaker's recognition of
+      the helper's own difficult circumstances. It's a way to express deeper gratitude, acknowledging
+      the selflessness involved. This is a common way for both genders to express gratitude in such situations.
+  - english: We deeply apologize for calling you during your precious break.
+    japanese:
+      - 貴重 な 休憩 中 の {ところ を}、誠 に 申し訳 ござい ませ ん。
+      - 貴重 な 休憩 中 の {ところ を}、大変 申し訳 ござい ませ ん。
+    english_literally: While you are in the middle of a precious break, we are truly sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 貴重 な 休憩 中 に、誠 に 申し訳 ござい ませ ん。
+        english: We are truly sorry during your precious break.
+        hint: 「〜中に」 is simply 'during'. 「ところを」 enhances the apology by acknowledging the *sacredness*
+          of the break and the imposition. We need a phrase that emphasizes the specific, valuable time
+          being interrupted.
+    scene: A company representative calls a customer during their lunch break.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+  - english: I'm sorry to interrupt your conversation.
+    japanese:
+      - お 話 中 の {ところ を} 失礼 いたし ます。
+      - お 話 中 の {ところ を}、すみ ませ ん。
+    english_literally: While you are in the middle of talking, I will excuse myself.
+    competing_grammar:
+      - competing_japanese:
+          - お 話 中 に 失礼 いたし ます。
+        english: Excuse me while you're talking.
+        hint: Similar to the previous example, 「〜中に」 is 'during'. 「ところを」 is more nuanced, specifically
+          acknowledging the *act* of conversation and the imposition of interrupting it.
+    scene: You need to interject into a conversation already in progress.
+    register: formal
+    setting: professional
+  - english: I'm sorry to visit you so late.
+    japanese:
+      - こんな 遅い {ところ を}、お 邪魔 し て 申し訳 あり ませ ん。
+      - こんな 遅い {ところ を}、お 邪魔 し て すみ ませ ん。
+      - こんな 遅い {ところ を}、来 ちゃっ て ごめん。
+    english_literally: While it is so late, I'm sorry to disturb you.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 遅い とき に、お 邪魔 し て 申し訳 あり ませ ん。
+        english: I'm sorry to disturb you when it's so late.
+        hint: 「ときに」 is a simpler 'when'. 「ところを」 highlights the specific, inconvenient *late hour* as the
+          circumstance for the apology. We're looking for that emphasis on the specific time.
+    scene: You arrive at someone's house much later than anticipated.
+    register: semi-formal
+    setting: apologetic
+    speaker_age: younger
+    nuance: The phrase 「こんな遅いところを」 specifically points out the lateness of the hour as the inconvenient
+      circumstance, making the apology more pointed and sincere. This usage is common across age groups
+      when expressing apologies for late visits.
+post_example_writeup: As you can see from these examples, 「ところを」 is highly versatile in expressing a specific
+  context or timing. It often carries a nuance of politeness, apology, or recognition of effort, particularly
+  when the second action might be an imposition or occur despite challenging circumstances. Pay attention
+  to the preceding verb or adjective form, as it sets the scene for the following event, and the particle
+  「を」 then highlights that particular moment or state as the 'point' of interaction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ところを

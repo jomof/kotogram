@@ -1,0 +1,254 @@
+grammar_point: '[Verb-て]もいい (it''s okay to)'
+learn_before:
+  - 〜てもかまわない (it doesn't matter if)
+meaning: to express that an action is permissible or acceptable
+pronunciation:
+  katakana: テモイイ
+  romaji: te mo ii
+formation:
+  Verb[て] + もいい: To indicate that an action is allowed or permissible.
+jlpt: N5
+etymology: The construction 〜てもいい combines the て-form of a verb with the particle も (meaning "even") and
+  the adjective いい (meaning "good" or "acceptable"). Historically, this literally translates to "even
+  if one does [Verb-te], it is good," thus conveying the nuance of "it is permissible" or "it is okay
+  to do." The て-form itself, deriving from a conjunctive form, naturally leads into expressing a resulting
+  state or condition, which いい then evaluates as positive.
+writeup: |-
+  The 〜てもいい grammar point is used to express that an action is allowed, permissible, or acceptable. It translates to phrases like "it's okay to," "you may," "can," or "it's fine to."
+
+  It is formed by taking the て-form of a verb and attaching もいい. The て-form connects the action to the evaluation いい. The particle も acts to include the action as being "even acceptable."
+
+  While 〜てもいい primarily indicates permission, it can also be used to offer a suggestion or to state that something is an acceptable option among others. For example, 「食べてもいいです」 could mean "You may eat" (permission) or "It's fine to eat (if you want to)" (suggestion/option).
+false_friends:
+  - term: 〜てもかまわない
+    meaning: it doesn't matter if
+    kind: similar expression
+    nuance: While often interchangeable in granting permission, 〜てもかまわない carries a nuance of "I don't
+      care," "I don't mind," or "it's indifferent to me." It grants permission by stating there's no objection,
+      which can sometimes sound less warm or less explicitly affirmative than 〜てもいい, which positively
+      states it's "good" or "okay."
+    grammar_point: 〜てもかまわない (it doesn't matter if)
+  - term: 〜てはいけない
+    meaning: must not
+    kind: antonym
+    nuance: This is the direct opposite, expressing prohibition.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: 〜てはならない
+    meaning: must not, prohibition
+    kind: antonym
+    nuance: Similar to 〜てはいけない, but often sounds more formal or absolute, used for rules or strong prohibitions.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: 〜てもいいですか
+    meaning: may I?
+    kind: similar expression
+    nuance: This is a question asking for permission, whereas 〜てもいい grants permission.
+    grammar_point: <suggest>:〜てもいいですか (may I?)
+post_false_friends_writeup: When choosing between 〜てもいい and 〜てもかまわない, consider the nuance. 〜てもいい is a
+  straightforward statement of permission, implying that the action is positive or acceptable. 〜てもかまわない,
+  on the other hand, conveys that there is no objection or negative consequence, often used when one is
+  indifferent or simply allows something without enthusiastic approval. For prohibitions, 〜てはいけない is the
+  common direct opposite, while 〜てはならない conveys a stronger, more formal sense of prohibition. Finally,
+  remember that 〜てもいいですか is used to ask for permission, while 〜てもいい is used to give it.
+examples:
+  - english: You can eat this cake.
+    japanese:
+      - この ケーキ、{食べ て も いい} よ。
+      - この ケーキ、{食べ て も いい} です よ。
+    english_literally: This cake, it is okay even if you eat it.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ を 食べ て ください。
+        english: Please eat this cake.
+        hint: 「〜てください」 is a request, not a statement of permission. We're looking for an expression that
+          states something is permissible.
+    scene: A friend offers a piece of cake to another friend.
+    register: casual
+    setting: friendly
+    nuance: 「食べてもいい よ」 is a direct permission from a peer, made casual with the sentence-final particle
+      「よ」, which adds a sense of informing or reassuring the listener.
+  - english: You may use this room.
+    japanese:
+      - この 部屋 を {使っ て も いい} です。
+      - この 部屋 を {使っ て も かまい ませ ん}。
+    english_literally: This room, it is okay even if you use it.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 を 使っ て かまい ませ ん。
+        english: You may use this room (I don't mind).
+        hint: 「〜てもかまいません」 implies indifference or no objection. We're looking for a clearer statement
+          of permission or acceptability.
+    scene: A receptionist at a community center tells a visitor which room they can use.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「使ってもいい です」 is a polite and clear statement of permission. The addition of 「です」 makes it suitable
+      for formal or professional settings.
+  - english: If you're tired, you can rest a little.
+    japanese:
+      - 疲れ たら、少し {休ん で も いい} です よ。
+      - 疲れ たら、少し {休ん で いい} です よ。
+    english_literally: If you are tired, even if you rest a little, it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ たら、少し 休ん だ ほう が いい です よ。
+        english: If you're tired, it's better to rest a little.
+        hint: 「〜たほうがいい」 is a strong recommendation. We're looking for a more permissive statement or suggestion
+          that an action is acceptable.
+    scene: A colleague notices their coworker looks tired and suggests taking a break.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「休んでもいい ですよ」 here acts more as a gentle suggestion rather than strict permission, indicating
+      that resting is an acceptable option. The 「ですよ」 adds a slightly emphatic and reassuring tone.
+  - english: Customers are allowed to take pictures inside the museum.
+    japanese:
+      - 館内 で は 写真 を {撮っ て も いい} です。
+      - 館内 で は 写真 を {撮っ て も よろしい} です。
+    english_literally: Inside the building, as for photos, it is okay even if one takes them.
+    competing_grammar:
+      - competing_japanese:
+          - 館内 で は 写真 を 撮る こと が でき ます。
+        english: Customers can take pictures inside the museum (ability).
+        hint: 「〜ことができる」 expresses ability or possibility. We're looking for a statement of permission,
+          not just capability.
+    scene: A sign in a museum.
+    register: formal
+    setting: informative
+    nuance: This is a formal statement of permission, often found in public notices. It emphasizes that
+      photography is explicitly permitted within the building.
+  - english: Even if you don't understand, you can ask questions.
+    japanese:
+      - 分から なく て も、質問 {し て も いい} です よ。
+      - 分から なく て も、質問 {し て かまい ませ ん} よ。
+    english_literally: Even if you don't understand, even if you ask questions, it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なく て も、質問 し て は いけ ませ ん。
+        english: Even if you don't understand, you must not ask questions.
+        hint: 「〜てはいけません」 is a prohibition, which is the opposite of permission. We're looking for a statement
+          that encourages asking questions.
+    scene: A teacher encouraging students who are struggling.
+    register: teineigo (polite)
+    setting: academic
+    nuance: 「質問してもいい ですよ」 implies that it's acceptable to ask questions, even if one feels embarrassed
+      or hesitant. The 「ですよ」 encourages the listener to take the permitted action.
+  - english: Yes, you may go home now.
+    japanese:
+      - ええ、もう {帰っ て も いい} です よ。
+      - ええ、もう {帰っ て も よろしい} です よ。
+    english_literally: Yes, now, it is okay even if you go home.
+    competing_grammar:
+      - competing_japanese:
+          - ええ、もう 帰れ ます よ。
+        english: Yes, you can go home now (potential).
+        hint: 「〜れます」 indicates capability or possibility. We're looking for explicit permission being
+          granted.
+    scene: A boss responding to an employee's request to leave early.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The male speaker's use of 「ええ」 and the clear, polite 「帰ってもいい ですよ」 grants permission directly
+      after a request, maintaining a formal yet accommodating tone.
+  - english: You can play outside, but don't go too far.
+    japanese:
+      - 外 で {遊ん で も いい} けど、あまり 遠く に 行か ない で ね。
+      - 外 で {遊ん で も 大丈夫} だ けど、あまり 遠く に 行か ない で ね。
+    english_literally: Outside, even if you play, it is good, but don't go too far, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 外 で 遊ん で も かまわ ない けど、あまり 遠く に 行か ない で ね。
+        english: It doesn't matter if you play outside, but don't go too far.
+        hint: 「〜てもかまわない」 implies indifference. We're looking for a direct permission from a parent with
+          a condition.
+    scene: A father speaking to his child.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「遊んでもいい けど」 uses the casual form of いい and adds 「けど」 (but) to introduce a condition, characteristic
+      of a parent setting boundaries for a child.
+  - english: It's okay to eat all of this.
+    japanese:
+      - これ、全部 {食べ て も いい} わ よ。
+      - これ、全部 {食べ ちゃっ て いい} わ よ。
+      - これ、全部 {食べ て も かまわ ない} わ よ。
+    english_literally: This, all of it, it is okay even if you eat it.
+    competing_grammar:
+      - competing_japanese:
+          - これ、全部 食べ て ください。
+        english: Please eat all of this.
+        hint: 「〜てください」 is a request. We're looking for a statement granting permission, encouraging the
+          listener to eat all of it.
+    scene: A grandmother encouraging her grandchild to eat.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of the sentence-final particle 「わよ」 by a female speaker adds a gentle, reassuring,
+      and slightly emphatic tone, commonly used by older women or when speaking to younger family members.
+  - english: You can take one piece of candy.
+    japanese:
+      - キャンディー を 一 つ {取っ て も いい} です。
+      - キャンディー を 一 つ {取っ て いい} です。
+    english_literally: As for candy, it is okay even if you take one.
+    competing_grammar:
+      - competing_japanese:
+          - キャンディー を 一 つ 取っ て かまい ませ ん。
+        english: You may take one piece of candy (I don't mind).
+        hint: 「〜てもかまわない」 implies indifference. We're looking for a clear statement of permission from
+          someone who is actively allowing it.
+    scene: A shop owner allowing a child to take candy from a bowl.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: A polite permission given to a child or someone in a casual setting, specifying the quantity
+      that is permitted.
+  - english: If you like, you can stay here.
+    japanese:
+      - よかっ たら、ここ に {い て も いい} です よ。
+      - よかっ たら、ここ に {い て も かまい ませ ん} よ。
+    english_literally: If it is good, here, it is okay even if you are.
+    competing_grammar:
+      - competing_japanese:
+          - よかっ たら、ここ に い て ください。
+        english: If you like, please stay here.
+        hint: 「〜てください」 is a request or command. We're looking for a gentle invitation that offers staying
+          as an acceptable option.
+    scene: Someone inviting a new acquaintance to stay longer.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「いてもいい ですよ」 conveys a warm invitation, indicating that staying is an acceptable and welcome
+      choice for the listener, softened by 「よかったら」 (if it's alright with you).
+  - english: It's okay to cry if it hurts.
+    japanese:
+      - 痛かっ たら、{泣い て も いい} ん です よ。
+      - 痛かっ たら、{泣い て も 大丈夫} です よ。
+    english_literally: If it hurts, it is okay even if you cry.
+    competing_grammar:
+      - competing_japanese:
+          - 痛かっ たら、泣い て もらっ て も かまい ませ ん よ。
+        english: If it hurts, it's okay for you to cry (I don't mind).
+        hint: 「〜てもかまわない」 implies indifference. We're looking for an empathetic statement of permission,
+          reassuring the listener.
+    scene: A doctor speaking gently to a patient experiencing pain.
+    register: teineigo (polite)
+    setting: serious
+    nuance: 「泣いてもいい んですよ」 uses 「んですよ」 to add an explanatory and empathetic nuance, reassuring the patient
+      that crying is a valid and understandable reaction to pain.
+  - english: In this library, you can drink water, but not coffee.
+    japanese:
+      - この 図書 館 で は、水 は {飲ん で も いい} けど、コーヒー は ダメ です。
+      - この 図書 館 で は、水 は {飲ん で も 大丈夫} です が、コーヒー は ダメ です。
+    english_literally: In this library, as for water, it is okay even if you drink it, but as for coffee,
+      it is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 で は、水 は 飲め ます けど、コーヒー は 飲め ませ ん。
+        english: In this library, you can drink water (potential), but you cannot drink coffee.
+        hint: 「〜飲めます」 refers to the ability to drink. We're looking for a statement about what is permissible
+          or allowed by the rules.
+    scene: A librarian explaining rules to a new user.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This sentence clearly outlines a rule, specifying what is permitted and what is prohibited
+      within the library. The structure contrasts permitted (「飲んでもいい」) and prohibited (「ダメです」) items.

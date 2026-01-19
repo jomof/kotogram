@@ -1,0 +1,286 @@
+grammar_point: 影響する (to affect・to influence)
+learn_before:
+  - '[Verb-よう]にする (to make an effort to establish a habit)'
+  - 影響を与える (to influence・to affect)
+  - 面 (aspect)
+meaning: to affect, to influence, to impact
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 影響する
+    rarity: common
+    meaning: to affect
+  - conjugation-type: non-past polite (～ます)
+    form: 影響します
+    rarity: common
+    meaning: to affect (polite)
+  - conjugation-type: past plain (～た)
+    form: 影響した
+    rarity: common
+    meaning: affected
+  - conjugation-type: past polite (～ました)
+    form: 影響しました
+    rarity: common
+    meaning: affected (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 影響しない
+    rarity: common
+    meaning: does not affect
+  - conjugation-type: negative non-past polite (～ません)
+    form: 影響しません
+    rarity: common
+    meaning: does not affect (polite)
+  - conjugation-type: passive (～られる/～かれる)
+    form: 影響される
+    rarity: common
+    meaning: to be affected
+  - conjugation-type: te-form (～て)
+    form: 影響して
+    rarity: common
+    meaning: affecting and...
+  - conjugation-type: volitional (～よう)
+    form: 影響しよう
+    rarity: less common
+    meaning: let's affect
+pronunciation:
+  katakana: エイキョウスル
+  romaji: eikyō suru
+formation:
+  Noun に 影響 する: To influence or affect Noun.
+  Verb Phrase こと・の に 影響 する: To influence or affect the act of doing the Verb.
+  Noun に 影響 を 与える: To give or exert influence on Noun (similar meaning, but emphasizes the 'giving' action).
+  Noun から 影響 を 受ける: To receive influence from Noun (passive voice, emphasizing the 'receiving' action).
+jlpt: N2
+etymology: 'The term 影響 (えいきょう) is composed of two kanji: 影 (ei), meaning ''shadow'' or ''reflection,''
+  and 響 (kyō), meaning ''echo'' or ''sound.'' Combined, they beautifully encapsulate the idea of an indirect
+  but noticeable result or impression, akin to a shadow cast or an echo returned. This etymology highlights
+  how influence, while not always direct or physical, leaves a distinct mark or resonance.'
+writeup: |-
+  影響する is a versatile verb in Japanese that means 'to affect,' 'to influence,' or 'to impact.' It's formed by combining the noun 影響 (influence, effect) with the verb する (to do). This structure is very common in Japanese for creating verbs from nouns, especially those of Chinese origin. This verb is widely used in both spoken and written Japanese, particularly in formal or analytical contexts like news reports, academic discussions, or business conversations.
+
+  When using 影響する, you will often find it paired with the particle に to indicate the target or recipient of the influence, as in 「AがBに影響する」 (A influences B). It can also sometimes take を, especially when used in the pattern 「影響を及ぼす」 (to exert an influence), though this is a slightly different construction. The nuance of 影響する is generally neutral, meaning it can describe both positive and negative influences without explicit judgment. For example, a new policy might positively 影響する the economy, or bad weather might negatively 影響する travel plans.
+
+  Understanding 影響する is crucial for discussing cause-and-effect relationships, analyzing trends, or describing how one factor impacts another. Its broad applicability makes it a fundamental verb for expressing complex ideas in Japanese.
+false_friends:
+  - term: 影響を与える
+    meaning: to give influence, to exert an influence
+    kind: similar expression
+    nuance: While very similar in meaning to 影響する, 影響を与える explicitly highlights the act of 'giving' or
+      'exerting' the influence. 影響する is a more direct verb form, whereas 影響を与える uses 影響 as a noun with
+      the verb 与える (to give). We're looking for a direct verb meaning 'to affect'.
+    grammar_point: <suggest>:影響を与える (to give influence)
+  - term: 左右する
+    meaning: to sway, to control, to influence decisively
+    kind: similar expression
+    nuance: 左右する carries a stronger nuance of decisive control or swaying power, implying that the outcome
+      is heavily determined by the influencing factor. 影響する is broader and can describe a milder or less
+      controlling impact. We're looking for a verb that describes a general 'affect' or 'influence'.
+    grammar_point: 左右する (to influence or control)
+  - term: 作用する
+    meaning: to act on, to operate, to function
+    kind: similar expression
+    nuance: 作用する is often used in scientific or technical contexts to describe how something 'acts' or
+      'operates' on another thing, focusing on its functional effect rather than a general 'influence.'
+      It describes a more mechanical or inherent action. We're looking for a verb that describes a more
+      general 'affect' or 'influence'.
+    grammar_point: <suggest>:作用する (to act on)
+  - term: 及ぼす
+    meaning: to exert, to cause, to extend (often with negative implications)
+    kind: similar expression
+    nuance: '及ぼす is often used when the influence or effect is negative, such as causing damage or harm
+      (例: 損害を及ぼす - to cause damage). 影響する is neutral in connotation. We''re looking for a verb that describes
+      a general ''affect'' or ''influence''.'
+    grammar_point: <suggest>:及ぼす (to exert)
+post_false_friends_writeup: When distinguishing 影響する from similar expressions, remember that 影響する is a
+  direct, neutral verb for 'to affect' or 'to influence'. 影響を与える emphasizes the act of 'giving' influence.
+  左右する implies a stronger, more decisive control. 作用する describes a functional or operational effect. 及ぼす
+  often carries a negative connotation, indicating a detrimental effect. Choosing the right term depends
+  on the specific nuance of how something is affecting or influencing something else.
+examples:
+  - english: Climate change will affect our lives in many ways.
+    japanese:
+      - 気候 変動 は 様々 な 面 で 私 達 の 生活 に {影響 する} でしょう。
+      - 気候 変動 は 様々 な 面 で 私 達 の 生活 に {影響 し ます} でしょう。
+      - 気候 変動 は 様々 な 面 で 私 達 の 生活 に {影響 する} だろう。
+    english_literally: Climate change in various aspects our lives will affect likely.
+    competing_grammar:
+      - competing_japanese:
+          - 気候 変動 は 様々 な 面 で 私 達 の 生活 に 影響 を 与える でしょう。
+        english: Climate change will *give* influence to our lives in many ways.
+        hint: 「影響を与える」 emphasizes the 'giving' or 'exerting' of influence, whereas 「影響する」 is a direct
+          verb. We're looking for a direct verb meaning 'to affect'.
+    scene: Discussing global issues in an environmental studies class.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: The economy significantly affected the company's performance.
+    japanese:
+      - 経済 は その 会社 の 業績 に 大きく {影響 し まし た}。
+      - 経済 は その 会社 の 業績 に 大きく {影響 し た}。
+    english_literally: The economy as for that company's performance greatly affected.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 は その 会社 の 業績 に 大きな 影響 を 及ぼし まし た。
+        english: The economy *exerted* a significant influence on the company's performance.
+        hint: 「影響を及ぼす」 is another way to say 'to influence' but often implies causing a specific effect,
+          sometimes with a negative nuance, or refers to a broader impact. We're looking for a direct
+          verb meaning 'to affect'.
+    scene: A business analyst presenting a quarterly report.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: His words didn't affect me at all.
+    japanese:
+      - 彼 の 言葉 は 私 に 全く {影響 し なかっ た}。
+      - 彼 の 言葉 は 私 に 全く {影響 し ませ ん でし た}。
+    english_literally: His words as for me at all did not affect.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 は 私 に 全く 効き ませ ん でし た。
+        english: His words *had no effect on* me at all.
+        hint: 「効く」 means 'to be effective' or 'to work.' While it can imply not affecting someone, 「影響しない」
+          specifically means 'not to influence' or 'not to impact.' We're looking for a verb meaning 'not
+          to affect'.
+    scene: Someone recounting an argument they had.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: What factors affect children's growth?
+    japanese:
+      - 何 の 要因 が 子供 の 成長 に {影響 し ます} か？
+      - 何 の 要因 が 子供 の 成長 に {影響 する} か？
+    english_literally: What factors as for children's growth will affect?
+    competing_grammar:
+      - competing_japanese:
+          - 何 の 要因 が 子供 の 成長 に 影響 を 及ぼし ます か？
+        english: What factors *exert an influence on* children's growth?
+        hint: 「影響を及ぼす」 is a common collocation meaning 'to exert influence,' but 「影響する」 is a more concise
+          direct verb. We're looking for a direct verb meaning 'to affect'.
+    scene: A parent asking a pediatrician about child development.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: They should consider how this decision will affect the local community.
+    japanese:
+      - 彼 ら は この 決定 が 地域 社会 に どう {影響 する} か 考慮 する べき だ。
+      - 彼 ら は この 決定 が 地域 社会 に どう {影響 し ます} か 考慮 する べき だ。
+    english_literally: They as for this decision local community to how affect should consider.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は この 決定 が 地域 社会 に どう 影響 を 及ぼす か 考慮 する べき だ。
+        english: They should consider how this decision will *exert an influence on* the local community.
+        hint: 「影響を及ぼす」 emphasizes the 'exertion' of influence. We're looking for a direct verb meaning
+          'to affect'.
+    scene: A community meeting discussing a new development project.
+    register: semi-formal
+    setting: negotiating
+  - english: My parents' divorce deeply affected me.
+    japanese:
+      - 両親 の 離婚 は 私 に 深く {影響 し まし た}。
+      - 両親 の 離婚 は 私 に 深く {影響 し た}。
+    english_literally: Parents' divorce as for me deeply affected.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 の 離婚 は 私 に 大きな 傷 を 残し まし た。
+        english: My parents' divorce *left a deep wound on* me.
+        hint: While 'leaving a deep wound' describes a strong impact, 「影響する」 specifically refers to a
+          general 'affect' or 'influence' without implying a wound. We're looking for a verb meaning 'to
+          affect'.
+    scene: Someone opening up about a past trauma to a close friend.
+    register: casual
+    setting: intimate
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 影響しました here implies a profound personal impact. In Japanese, discussing personal
+      feelings about family matters often uses polite forms even in casual settings to convey seriousness,
+      particularly for women.
+  - english: His innovative ideas have influenced many young artists.
+    japanese:
+      - 彼 の 革新 的 な アイデア は 多く の 若い 芸術 家 に {影響 し て い ます}。
+      - 彼 の 革新 的 な アイデア は 多く の 若い 芸術 家 に {影響 し て おり ます}。
+    english_literally: His innovative ideas many young artists to affecting are.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 革新 的 な アイデア は 多く の 若い 芸術 家 に 影響 を 与え て い ます。
+        english: His innovative ideas *have been giving* influence to many young artists.
+        hint: 「影響を与える」 highlights the act of 'giving' or 'exerting' influence. We're looking for the direct
+          verb 「影響する」.
+    scene: An art critic discussing the impact of a famous artist.
+    register: formal
+    setting: academic
+    conjugation: progressive (～ている)
+    nuance: While the main grammar point is 影響する, this example shows its progressive form. The form 「影響を与える」
+      emphasizes the 'giving' of influence, whereas 「影響する」 is a more direct verb. The polite progressive
+      form 「影響して おります」 is humble and suitable for formal contexts.
+  - english: Students are easily affected by their friends' behavior.
+    japanese:
+      - 生徒 は 友達 の 行動 に 簡単 に {影響 さ れ ます}。
+      - 生徒 は 友達 の 行動 に 簡単 に {影響 さ れる}。
+    english_literally: Students as for friends' behavior easily are affected.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 は 友達 の 行動 に 簡単 に 左右 さ れ ます。
+        english: Students are easily *swayed* by their friends' behavior.
+        hint: 「左右される」 implies being decisively controlled or swayed, often in a stronger sense. 「影響される」
+          is a more general 'being affected.' We're looking for 'being affected'.
+    scene: A teacher discussing peer pressure with parents.
+    register: formal
+    setting: informative
+    conjugation: passive (～られる/～かれる)
+  - english: They aim to influence public opinion through various campaigns.
+    japanese:
+      - 彼 ら は 様々 な キャンペーン を 通じ て 世論 に {影響 しよう} と し て い ます。
+      - 彼 ら は 様々 な キャンペーン を 通じ て 世論 に {影響 しよう} と し て いる。
+    english_literally: They as for various campaigns through public opinion to try to affect are doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 様々 な キャンペーン を 通じ て 世論 を 左右 しよう と し て い ます。
+        english: They aim to *sway* public opinion through various campaigns.
+        hint: 「左右する」 implies a stronger, more decisive control over something. 「影響する」 is a more general
+          'to influence.' We're looking for 'to influence' in a broader sense.
+    scene: A political strategist explaining their campaign goals.
+    register: formal
+    setting: professional
+    conjugation: volitional (～よう)
+  - english: I hope my mistakes don't affect your future plans.
+    japanese:
+      - 私 の 失敗 が あなた の 将来 の 計画 に {影響 し ませ ん} よう に。
+      - 私 の 失敗 が あなた の 将来 の 計画 に {影響 し ない} よう に。
+    english_literally: My mistakes as for your future plans not affect hope.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 失敗 が あなた の 将来 の 計画 に 悪 影響 を 及ぼし ませ ん よう に。
+        english: I hope my mistakes don't *cause a negative influence on* your future plans.
+        hint: 「悪影響を及ぼす」 specifically means 'to cause a negative influence.' 「影響しない」 is a more general
+          'not to affect.' We're looking for 'not to affect'.
+    scene: A mentor advising a younger colleague after a setback.
+    register: semi-formal
+    setting: supportive
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 影響しません ように expresses a hope that a negative influence will not occur. This is a
+      common way to use the negative form of 'affect' in a hopeful or apologetic context, regardless of
+      gender, but male speakers often use direct phrasing like this.
+  - english: The heavy rain affected traffic for hours.
+    japanese:
+      - 大雨 が 数 時間 に わたり 交通 に {影響 し た}。
+      - 大雨 が 数 時間 に わたり 交通 に {影響 し まし た}。
+    english_literally: Heavy rain for several hours traffic to affected.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 が 数 時間 に わたり 交通 に 影響 を 及ぼし た。
+        english: The heavy rain *exerted an influence on* traffic for hours.
+        hint: 「影響を及ぼす」 is a common collocation that means 'to exert influence.' We're looking for the
+          direct verb 「影響する」.
+    scene: A news reporter giving an update on weather conditions.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+post_example_writeup: The examples provided demonstrate the versatility of 影響する across different registers
+  and contexts. Pay close attention to the particles used, especially に, which often marks the entity
+  being influenced. While 影響する is generally neutral, the context and the speaker's tone can convey whether
+  the impact is perceived as positive or negative. Additionally, note how the passive form 影響される is frequently
+  used when discussing something being 'affected by' an external factor.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E5%BD%B1%E9%9F%BF%E3%81%99%E3%82%8B

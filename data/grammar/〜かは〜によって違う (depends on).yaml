@@ -1,0 +1,347 @@
+grammar_point: 〜かは〜によって違う (depends on)
+learn_before:
+  - Question-phrase+か (embedded question)
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Verb-た]が早いか (as soon as・no sooner than)'
+  - い-Adjective[み] (abstract quality)
+  - お (honorific prefix)
+  - それぞれ (each・respectively)
+meaning: Depends on, Changes depending on, Differs depending on
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 違う
+    rarity: common
+    meaning: to differ
+  - conjugation-type: non-past polite (～ます)
+    form: 違います
+    rarity: common
+    meaning: to differ (polite)
+  - conjugation-type: past plain (～た)
+    form: 違った
+    rarity: common
+    meaning: differed
+  - conjugation-type: past polite (～ました)
+    form: 違いました
+    rarity: common
+    meaning: differed (polite)
+  - conjugation-type: dictionary (plain non-past)
+    form: よる
+    rarity: common
+    meaning: to depend on
+  - conjugation-type: non-past polite (～ます)
+    form: よります
+    rarity: common
+    meaning: to depend on (polite)
+  - conjugation-type: past plain (～た)
+    form: よった
+    rarity: common
+    meaning: depended on
+  - conjugation-type: past polite (～ました)
+    form: よりました
+    rarity: common
+    meaning: depended on (polite)
+pronunciation:
+  katakana: カハニヨッテチガウ
+  romaji: ka wa ni yotte chigau
+formation:
+  '[X] + かは + [Y] + によって違う': Indicates that whether [X] is the case differs depending on [Y].
+  '[X] + かどうかは + [Y] + によって違う': Indicates that whether or not [X] is the case differs depending on [Y].
+  '[X] + かは + [Y] + による': Indicates that whether [X] is the case depends on [Y].
+jlpt: N3
+etymology: The structure is built from 「か」 (a question marker), 「は」 (the topic marker), 「によって」 (depending
+  on), and 「違う」 (to differ). Thus, it literally means 'whether... differs depending on...'
+writeup: 「〜かは〜によって違う」 is used to express that something varies depending on different factors. 「かは」 marks
+  the topic of the sentence, indicating "whether (A)." 「によって違う」 indicates that the outcome or state differs
+  "depending on (B)." You can use this expression to show that a certain condition or result is not fixed
+  but changes based on a particular factor. 「〜かは」 can be replaced with 「〜かどうか」 to mean "whether or not
+  (A)" differs. If you remove 「違う」, then 「によって」 becomes 「による」.
+false_friends:
+  - term: 次第だ・次第で
+    meaning: Depending on, So
+    kind: synonym
+    nuance: Unlike 「〜かは〜によって違う」, 「次第だ」/「次第で」 can also imply a sequential relationship or consequence,
+      not just a difference based on something.
+    grammar_point: '[Noun]次第だ・[Noun]次第で(は) (depending on・as a result of)'
+  - term: によって・による
+    meaning: By means of, According to, Depending on, Because of, Due to
+    kind: synonym
+    nuance: 「によって」/「による」 indicates a direct cause or means, whereas 「〜かは〜によって違う」 specifically highlights
+      a difference or variation based on a condition.
+    grammar_point: '[Noun]によって (means・method)'
+post_false_friends_writeup: While both expressions share the concept of 'depending on,' 「〜かは〜によって違う」 emphasizes
+  a difference or variation, whereas the similar expressions may imply causation or sequential relationships.
+examples:
+  - english: Whether they like Japan or not depends on the person.
+    japanese:
+      - 日本 が 好き か 嫌い {か は} 人 {に よっ て 違う}。
+      - 日本 が 好き か どう か は 人 {に よっ て 違う}。
+      - 日本 が 好き か 嫌い {か は} 人 {に よる}。
+      - 日本 が 好き か どう か は 人 {に よる}。
+    english_literally: Whether Japan is liked or disliked differs depending on the person.
+    competing_grammar:
+      - competing_japanese:
+          - 人 に よっ て、日本 が 好き か 嫌い か は {異なり ます}。
+        english: Whether they like Japan or not differs depending on the person.
+        hint: While 異なります is a more formal way of saying 'to differ', 違う is more common in casual conversation.
+          We're looking for the more natural expression for this friendly setting.
+    scene: Two friends discussing their travel experiences.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「好きか嫌いか」 expresses a binary choice. 「人によって違う」 indicates that preferences are subjective.
+      The casual tone and topic are suitable for a conversation between female friends.
+  - english: Whether someone's complexion will turn red or not after drinking depends on their body's
+      condition.
+    japanese:
+      - お 酒 を 飲ん で 顔色 が 赤く なる か なら ない {か は} 体 の 状態 {に よっ て 違う}。
+      - お 酒 を 飲ん で 顔色 が 赤く なる か どう か は 体 の 状態 {に よっ て 違う}。
+      - お 酒 を 飲ん で 顔色 が 赤く なる か なら ない {か は} 体 の 状態 {に よる}。
+      - お 酒 を 飲ん で 顔色 が 赤く なる か なら ない {か は} 体 の 状態 {に よっ て 異なり ます}。
+    english_literally: Whether one's complexion becomes red or not after drinking alcohol differs depending
+      on the body's condition.
+    competing_grammar:
+      - competing_japanese:
+          - お 酒 を 飲む と 顔色 が 赤く なる か どう か は 体 の 状態 {に よる}。
+        english: Whether someone's complexion will turn red or not after drinking will depend on their
+          body's condition.
+        hint: 「〜による」 is more concise and emphasizes a direct dependence, but 「〜によって違う」 explicitly states
+          the variation or difference, which is more appropriate when discussing a physiological variation.
+    scene: A friend explaining why some people blush after drinking.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「顔色 が 赤く なる」 refers to blushing. The speaker is explaining a general physiological
+      difference, which is suitable for an informative conversation between friends.
+  - english: Whether the river flows fast or slow depends on the location.
+    japanese:
+      - 川 の 流れ が 早い か 遅い {か は} 場所 {に よっ て 違う}。
+      - 川 の 流れ が 早い か 遅い か どう か は 場所 {に よっ て 違う}。
+      - 川 の 流れ が 早い か 遅い {か は} 場所 {に よる}。
+      - 川 の 流れ が 早い か 遅い {か は} 場所 {に よっ て 異なり ます}。
+    english_literally: Whether the river's flow is fast or slow differs depending on the location.
+    competing_grammar:
+      - competing_japanese:
+          - 川 の 流れ の 速 さ は 場所 で {変わる}。
+        english: The speed of the river's flow changes depending on the location.
+        hint: While 「場所で変わる」 means it changes by location, our grammar point specifies 'whether fast or
+          slow', highlighting a varying characteristic rather than a general change.
+    scene: A tour guide pointing out features of a river.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「早い か 遅い か」 contrasts the speed of the river's flow. 「場所 によって違う」 highlights that the speed
+      is not constant and varies based on location. The semi-formal register is appropriate for a female
+      tour guide addressing a group.
+  - english: Whether this dish is delicious or not depends on the chef.
+    japanese:
+      - この 料理 が 美味しい {か どう か は} 料理 人 {に よっ て 違う}。
+      - この 料理 が 美味しい {か は} 料理 人 {に よっ て 違う}。
+      - この 料理 が 美味しい {か どう か は} 料理 人 {に よる}。
+      - この 料理 が 美味しい {か どう か は} 料理 人 {に よっ て 異なり ます}。
+    english_literally: Whether this dish is delicious or not differs depending on the chef.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 の 美味し さ は 料理 人 {次第 だ}。
+        english: The deliciousness of this dish is up to the chef.
+        hint: 「次第だ」 implies that the outcome is entirely up to or dependent on the chef's skill. Our grammar
+          point emphasizes that the deliciousness 'differs' based on the chef, suggesting variation rather
+          than sole responsibility.
+    scene: Two food critics discussing a new restaurant.
+    register: semi-formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「美味しい か どう か」 questions the quality of the food. 「料理人 によって違う」 indicates that the taste is
+      subjective and depends on the specific chef. The academic setting suits a male food critic discussing
+      with a female colleague.
+  - english: Whether this trick is amazing or not depends on who judges.
+    japanese:
+      - この 技 が 凄い {か どう か は} 見る 人 {に よっ て 違う}。
+      - この 技 が 凄い {か は} 見る 人 {に よっ て 違う}。
+      - この 技 が 凄い {か どう か は} 見る 人 {に よる}。
+      - この 技 が 凄い {か どう か は} 見る 人 {に よっ て 異なり ます}。
+    english_literally: Whether this trick is amazing or not differs depending on the viewer.
+    competing_grammar:
+      - competing_japanese:
+          - この 技 は 見る 人 {次第} で 凄い か どう か が {決まる}。
+        english: Whether this trick is amazing or not is decided depending on who judges.
+        hint: 「〜次第で決まる」 implies a decision or determination based on someone. Our grammar point expresses
+          that the perception 'differs' among judges, highlighting subjectivity rather than a definitive
+          decision.
+    scene: Two people discussing a magic trick they just saw.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「凄い か どう か」 expresses whether something is impressive or not. 「見る 人 によって違う」 emphasizes that
+      the perception of impressiveness varies among viewers. The casual context is suitable for a female
+      speaker talking to a male friend.
+  - english: Whether I can go home early or not today will depend on how work goes.
+    japanese:
+      - 今日、早く 帰れる か 帰れ ない {か は} 仕事 の 進み 具合 {に よる}。
+      - 今日、早く 帰れる か どう か は 仕事 の 進み 具合 {に よる}。
+      - 今日、早く 帰れる か 帰れ ない {か は} 仕事 の 進み 具合 {に よっ て 違う}。
+      - 今日、早く 帰れる か 帰れ ない {か は} 仕事 の 進み 具合 {に より ます}。
+    english_literally: Whether I can go home early or not today depends on the progress of work.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 の 進み 具合 {次第} で 早く 帰れる か どう か {決まる}。
+        english: Whether I can go home early or not today is decided depending on how work goes.
+        hint: While 「〜次第で決まる」 indicates a definite outcome based on a condition, 「〜による」 suggests a direct
+          dependence, implying a varying outcome rather than a fixed decision.
+    scene: An employee talking to their coworker about their workload.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Replacing 「によって違う」 with 「による」 makes it more concise and emphasizes the direct dependence on
+      work progress. The phrase 「進み 具合」 is a colloquial way to refer to the status of work. The casual
+      tone is appropriate for a male employee speaking to a male coworker.
+  - english: Whether one finds exercise fun or not depends on personal preference.
+    japanese:
+      - 運動 が 楽しい {か どう か は} 人 の 好み {に よる}。
+      - 運動 が 楽しい {か は} 人 の 好み {に よる}。
+      - 運動 が 楽しい {か どう か は} 人 の 好み {に よっ て 違う}。
+      - 運動 が 楽しい {か どう か は} 人 の 好み {に より ます}。
+    english_literally: Whether exercise is fun or not depends on personal preference.
+    competing_grammar:
+      - competing_japanese:
+          - 運動 が 楽しい か どう か は 人 の 好み {次第 だ}。
+        english: Whether one finds exercise fun or not is up to personal preference.
+        hint: 「次第だ」 implies that the fun is entirely determined by preference. Our grammar point focuses
+          on the simple dependence, stating that whether it's fun 'depends on' preference without implying
+          a definitive outcome.
+    scene: A fitness instructor explaining that personal preference plays a role in finding activities
+      enjoyable.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「運動」 (exercise) and 「楽しい か どう か」 (whether it's fun or not) highlights the subjective
+      experience of physical activity. 「人 の 好み による」 emphasizes that enjoyment is based on individual preference.
+      The semi-formal and professional setting suits a female instructor advising a male client.
+  - english: It depends on the person, whether they like music or not.
+    japanese:
+      - 音楽 が 好き か 嫌い {か は} 人 それぞれ {に よっ て 違う}。
+      - 音楽 が 好き か どう か は 人 それぞれ {に よっ て 違う}。
+      - 音楽 が 好き か 嫌い {か は} 人 それぞれ {に よる}。
+      - 音楽 が 好き か 嫌い {か は} 人 それぞれ {に よっ て 異なり ます}。
+    english_literally: Whether music is liked or disliked differs depending on each person.
+    competing_grammar:
+      - competing_japanese:
+          - 音楽 の 好み は {人 それぞれ だ}。
+        english: Music preference is different for each person.
+        hint: While 「人それぞれだ」 states that preferences vary, our grammar point explicitly links whether
+          they like it or not to 'depending on the person,' emphasizing the conditional aspect.
+    scene: A radio DJ introducing a segment on music preferences.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: Adding 「人 それぞれ」 emphasizes that individual preferences differ widely. The semi-formal register
+      is appropriate for a male radio DJ addressing his audience.
+  - english: Whether fruit is expensive or not depends on the store.
+    japanese:
+      - 果物 が 高い {か どう か は} 店 {に よっ て 違う}。
+      - 果物 が 高い {か は} 店 {に よっ て 違う}。
+      - 果物 が 高い {か どう か は} 店 {に よる}。
+      - 果物 が 高い {か どう か は} 店 {に よっ て 異なり ます}。
+    english_literally: Whether fruit is expensive or not differs depending on the store.
+    competing_grammar:
+      - competing_japanese:
+          - 果物 の 値段 は 店 に よっ て {変わる}。
+        english: The price of fruit changes depending on the store.
+        hint: 「店によって変わる」 generally states that prices change. Our grammar point focuses specifically on
+          'whether expensive or not', highlighting the varying status of expensiveness.
+    scene: A shopper comparing prices between different grocery stores.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「店」 specifies that the price variation is due to the store. 「高い か どう か」 is a standard
+      way to ask whether something is expensive. The casual tone is appropriate for a female shopper talking
+      to a male companion.
+  - english: What is good depends on people's ways of thinking.
+    japanese:
+      - 何 が 良い {か は} 人々 の 考え 方 {に よっ て 違う}。
+      - 何 が 良い {か どう か は} 人々 の 考え 方 {に よっ て 違う}。
+      - 何 が 良い {か は} 人々 の 考え 方 {に よる}。
+      - 何 が 良い {か は} 人々 の 考え 方 {に よっ て 異なり ます}。
+    english_literally: What is good differs depending on people's ways of thinking.
+    competing_grammar:
+      - competing_japanese:
+          - 何 が 良い か は 人々 の 考え 方 {に よる}。
+        english: What is good will depend on people's ways of thinking.
+        hint: While 「〜による」 is more concise, 「〜によって違う」 explicitly states that 'what is good' varies or
+          differs based on ways of thinking, emphasizing the relativity of the concept.
+    scene: A philosophy student discussing ethical relativism.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「考え方」 (way of thinking) highlights that what is considered 'good' is subjective
+      and varies based on individual perspectives. This example is suitable for an academic discussion
+      on philosophical concepts.
+  - english: Whether this plan succeeds or not depends on our cooperation.
+    japanese:
+      - この 計画 が 成功 する か し ない {か は} 私 たち の 協力 {に よる}。
+      - この 計画 が 成功 する か どう か は 私 たち の 協力 {に よる}。
+      - この 計画 が 成功 する か し ない {か は} 私 たち の 協力 {に よっ て 違う}。
+      - この 計画 が 成功 する か し ない {か は} 私 たち の 協力 {に より ます}。
+    english_literally: Whether this plan succeeds or not depends on our cooperation.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 成功 は 私 たち の 協力 {次第 だ}。
+        english: The success of this plan is up to our cooperation.
+        hint: 「次第だ」 implies that success is entirely determined by cooperation. Our grammar point simply
+          states that success 'depends on' cooperation, suggesting a varying outcome based on the level
+          of cooperation.
+    scene: A team leader giving a pep talk before a major project begins.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「成功 する か しない」 focuses on the binary outcome of the plan. 「私たち の 協力 による」 directly
+      links success to the team's combined effort. This phrase is appropriate for a team leader emphasizing
+      collective responsibility.
+  - english: The age at which one can marry differs depending on the country.
+    japanese:
+      - 何 歳 で 結婚 できる {か は} 国 {に よっ て 違う}。
+      - 何 歳 で 結婚 できる {か どう か は} 国 {に よっ て 違う}。
+      - 何 歳 で 結婚 できる {か は} 国 {に よる}。
+      - 何 歳 で 結婚 できる {か は} 国 {に よっ て 異なり ます}。
+    english_literally: At what age one can marry differs depending on the country.
+    competing_grammar:
+      - competing_japanese:
+          - 国 に よっ て 結婚 できる 年齢 は {異なり ます}。
+        english: The age at which one can marry differs depending on the country.
+        hint: 「異なります」 is a more formal verb for 'to differ' and the sentence structure is slightly different.
+          Our grammar point explicitly frames it as 'whether one can marry at what age differs depending
+          on the country'.
+    scene: An international law expert explaining marriage laws in different countries.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The term 「結婚 できる か」 questions the legal possibility of marriage at a certain age. 「国 によって違う」
+      clearly states that this legal age is not universal but varies from country to country. This is
+      suitable for a factual, informative context.
+post_example_writeup: As demonstrated in the examples, this grammar point can end with either 「〜によって違う」
+  or the more concise 「〜による」, both conveying the meaning of something varying or depending on a factor.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かは-によって違う

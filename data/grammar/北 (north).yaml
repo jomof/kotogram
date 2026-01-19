@@ -1,0 +1,215 @@
+grammar_point: 北 (north)
+learn_before:
+  - '[Noun]向き (facing)'
+  - '[Noun]向き (suitable for)'
+  - 〜如し・〜ごとし (like・as if)
+  - 南 (south)
+  - 点 (aspect・point)
+  - 見える (to be visible・to seem)
+meaning: North; the northern direction
+pronunciation:
+  katakana: キタ
+  romaji: kita
+formation:
+  Noun alone: Indicates the cardinal direction north.
+  Noun + の + Noun: Modifies another noun, indicating 'northern' or 'of the north'.
+  Noun + Particle (e.g., に, へ, から): Used with particles to express location, direction, or origin related
+    to the north.
+  Compound Nouns: Combines with other kanji to form words related to the north (e.g., 北国).
+jlpt: N5
+etymology: The kanji 「北」 originally depicted two people standing back-to-back. This image conveyed the
+  concept of "back" or "to turn one's back." In ancient China, when facing south (the direction associated
+  with warmth and light), one's back would be to the north. Thus, the character evolved to represent the
+  cardinal direction "north." Its current form still retains this underlying meaning of "back" in certain
+  compounds, like 「敗北」 (haiboku - defeat, literally "broken back").
+writeup: |-
+  「北」 (きた) は日本語で「北」、四方の一つです。場所、方向、または起源を示すために使用される基本的な名詞です。しばしば「北の風」 (きたの かぜ - 北風) や「北の国」 (きたの くに - 北国) のように、他の名詞を修飾するために使われます。
+
+  目的地や北への移動を示す場合、助詞の「へ」 (e) や「に」 (ni) がよく使われます。例えば、「北へ向かう」 (きた へ むかう - 北へ向かう) のように。何かが北にあることを示すには、「に」を使います: 「駅は北にあります」 (えき は きた に あります - 駅は北にあります)。
+
+  「北」は複合語の一部にもなります。その中には非常に一般的なものもあります。例えば、「北海道」 (ほっかいどう - 北海道) は日本の最北端の主要な島を指し、「北極」 (ほっきょく - 北極) は「北極」を意味します。単独では「きた」と読まれることが多いですが、特に漢語系の複合語では「ほく」 (hoku) と読まれることが多く、例えば「北極」 (ほっきょく) や「東北」 (とうほく - 東北) などに見られます。これらの異なる読み方を理解することは、この漢字を含む単語を正しく使用し、認識するために重要です。
+false_friends:
+  - term: 南
+    meaning: The cardinal direction south.
+    kind: antonym
+    nuance: 「北」 refers to the opposite direction, "north." While both are cardinal directions, they represent
+      opposing concepts.
+    grammar_point: 南 (south)
+  - term: 東
+    meaning: The cardinal direction east.
+    kind: similar expression
+    nuance: 「東」 is another cardinal direction, distinct from "north." Both are used in the same grammatical
+      constructions (e.g., 「東へ行く」 vs. 「北へ行く」), but refer to different spatial orientations.
+    grammar_point: 東 (east)
+  - term: 西
+    meaning: The cardinal direction west.
+    kind: similar expression
+    nuance: Like "east," 「西」 is another cardinal direction. It functions grammatically similarly to 「北」
+      but denotes a different direction.
+    grammar_point: 西 (west)
+  - term: 方位
+    meaning: A general term for direction or orientation.
+    kind: similar expression
+    nuance: 「方位」 is a broader concept encompassing all directions, whereas 「北」 specifically refers to
+      "north." You would use 「方位」 when asking for a general direction, but 「北」 when specifying north.
+    grammar_point: <suggest>:方位 (direction・orientation)
+post_false_friends_writeup: While 「北」 specifically designates "north," other cardinal directions like
+  「南」 (south), 「東」 (east), and 「西」 (west) are used in similar ways but refer to different points on the
+  compass. 「方位」, on the other hand, is a more general term for "direction" or "orientation," used when
+  not specifying a particular cardinal point. It's important to remember that all these terms function
+  as nouns and combine with particles like 「に」 and 「へ」 to indicate location or movement.
+examples:
+  - english: The station is to the north.
+    japanese:
+      - 駅 は {北} に あり ます。
+      - 駅 は {北} に ある。
+    english_literally: Station, as for it, north in is.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 は 南 に あり ます。
+        english: The station is to the south.
+        hint: This sentence tells you the station is in the opposite direction. We're looking for 'north'.
+    scene: A person giving directions to a tourist.
+    register: teineigo (polite)
+    setting: informative
+  - english: Let's head north from here.
+    japanese:
+      - ここ から {北} へ 向かい ましょう。
+      - ここ から {北} へ 行き ましょう。
+      - ここ から {北} へ 向かおう。
+      - ここ から {北} へ 行こう。
+    english_literally: Here from, north toward, let's head.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から 東 へ 向かい ましょう。
+        english: Let's head east from here.
+        hint: This suggests a different compass direction for movement. We're looking for 'north'.
+    scene: A group of friends planning a hiking route.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Hokkaido is in the north of Japan.
+    japanese:
+      - 北海道 は 日本 の {北} に あり ます。
+      - 北海道 は 日本 の {北} に ある。
+    english_literally: Hokkaido, as for it, Japan's north in is.
+    competing_grammar:
+      - competing_japanese:
+          - 北海道 は 日本 の 中央 に あり ます。
+        english: Hokkaido is in the center of Japan.
+        hint: This sentence places Hokkaido in a different geographical region. We're looking for 'north'.
+    scene: A teacher explaining Japanese geography to students.
+    register: formal
+    setting: academic
+  - english: A cold wind blows from the north.
+    japanese:
+      - '{北} から 冷たい 風 が 吹き ます。'
+      - '{北} から 冷たい 風 が 吹く。'
+    english_literally: North from, cold wind blows.
+    competing_grammar:
+      - competing_japanese:
+          - 南 から 冷たい 風 が 吹き ます。
+        english: A cold wind blows from the south.
+        hint: The wind is coming from the opposite direction here. We're looking for 'north'.
+    scene: A weather reporter giving the forecast.
+    register: formal
+    setting: informative
+  - english: My house faces north.
+    japanese:
+      - 私 の 家 は {北} 向き です。
+      - 私 の 家 は {北} 向き だ。
+    english_literally: My house, as for it, north facing is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 は 南 向き です。
+        english: My house faces south.
+        hint: This describes the house facing the opposite direction. We're looking for 'north'.
+    scene: Two neighbors discussing their homes.
+    register: casual
+    setting: friendly
+  - english: The North Star is always visible in the night sky.
+    japanese:
+      - '{北} 極 星 は いつ も 夜空 に 見え ます。'
+      - '{北} 極 星 は いつ も 夜空 に 見える。'
+    english_literally: North Star, always night sky in, is visible.
+    competing_grammar:
+      - competing_japanese:
+          - 南極 星 は いつ も 夜空 に 見え ます。
+        english: The South Star is always visible in the night sky.
+        hint: This refers to a star at the opposite pole. We're looking for the star in the 'north'.
+    scene: A parent teaching their child about constellations.
+    register: casual
+    setting: instructional
+    etymology: 「北極星」 (Hokkyokusei - North Star) combines 「北極」 (hokkyoku - North Pole) and 「星」 (hoshi -
+      star). This shows 「北」 taking the `hoku` reading in a compound, specifically referring to the geographic
+      North Pole's celestial counterpart.
+  - english: Many unique cultures exist in northern countries.
+    japanese:
+      - '{北} 国 に は 独特 の 文化 が たくさん あり ます。'
+      - '{北} 国 に は 独特 の 文化 が たくさん ある。'
+    english_literally: North countries in, unique cultures lots exist.
+    competing_grammar:
+      - competing_japanese:
+          - 南国 に は 独特 の 文化 が たくさん あり ます。
+        english: Many unique cultures exist in southern countries.
+        hint: This refers to countries in a different climate zone. We're looking for 'northern' countries.
+    scene: A geography lecture discussing global cultures.
+    register: formal
+    setting: academic
+  - english: The old road leads to the north.
+    japanese:
+      - その 古い 道 は {北} へ 続い て い ます。
+      - その 古い 道 は {北} へ 続い て いる。
+    english_literally: That old road, north toward, continues.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 道 は 南 へ 続い て い ます。
+        english: The old road leads to the south.
+        hint: The road goes in the opposite direction in this sentence. We're looking for 'north'.
+    scene: A historian describing an ancient trade route.
+    register: semi-formal
+    setting: storytelling
+  - english: Turn north at the next intersection.
+    japanese:
+      - 次 の 交差 点 で {北} に 曲がっ て ください。
+      - 次 の 交差 点 で {北} に 曲がれ。
+      - 次 の 交差 点 で {北} に 曲がっ て。
+    english_literally: Next intersection at, north to, please turn.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 交差 点 で 東 に 曲がっ て ください。
+        english: Turn east at the next intersection.
+        hint: This instructs to turn in a different cardinal direction. We're looking for 'north'.
+    scene: A driving instructor giving directions to a student.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The wind is blowing from the north today.
+    japanese:
+      - 今日 は {北} 風 だ ね。
+      - 今日 は {北} 風 です ね。
+      - 今日 は {北} 風 です。
+    english_literally: Today, north wind, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 南 風 だ ね。
+        english: The wind is blowing from the south today.
+        hint: This indicates the wind is coming from the opposite direction. We're looking for 'north'
+          wind.
+    scene: Two friends noticing the weather while walking outside.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: 「北風だね」 is a common, casual way to comment on the direction of the wind, implying a cold wind.
+      The particle 「ね」 softens the statement and seeks agreement.
+  - english: Relations with the northern region are improving.
+    japanese:
+      - '{北} 方 地域 と の 関係 が 改善 し て い ます。'
+      - '{北} 方 地域 と の 関係 が 改善 し て いる。'
+    english_literally: Northern region with of relations are improving.
+    competing_grammar:
+      - competing_japanese:
+          - 南方 地域 と の 関係 が 改善 し て い ます。
+        english: Relations with the southern region are improving.
+        hint: This refers to a different geopolitical region. We're looking for the 'northern' region.
+    scene: A government official discussing international affairs.
+    register: bijinesu nihongo (business)
+    setting: professional

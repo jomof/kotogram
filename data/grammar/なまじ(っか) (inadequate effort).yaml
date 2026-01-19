@@ -1,0 +1,549 @@
+grammar_point: なまじ(っか) (inadequate effort)
+learn_before:
+  - かえって (on the contrary)
+  - 恐れがある (risk or fear)
+  - 逆に (on the contrary)
+meaning: Halfheartedly; slightly; unwisely; inadequately; imperfectly; somewhat.
+pronunciation:
+  katakana: ナマジッカ
+  romaji: namajikka
+formation:
+  なまじ(っか) + Verb (potential/plain form) + から / ために / だけに / ので: Used with a verb indicating a limited ability
+    or state, explaining the negative consequence.
+  なまじ(っか) + Verb (potential/plain form) + たら / と: Used with a verb indicating a limited ability or state,
+    expressing a conditional negative outcome.
+  なまじ(っか) + Noun/な-adjective + なだけに / なので: Used with a noun or な-adjective to describe a state that, due
+    to its limited nature, leads to a negative result.
+  なまじ(っか) + い-adjective / Noun + と: Used with an い-adjective or noun to describe a state that, due to
+    its limited nature, leads to a negative result.
+  なまじ(っか) + の / な + Noun: Modifies a noun to indicate a half-hearted or inadequate quality of that noun.
+  なまじ(っか) + Verb (plain non-past) + のは: Used as a topic to state that an action, if done half-heartedly
+    or imperfectly, is dangerous or undesirable.
+jlpt: N1
+etymology: The term 「なまじ」 comes from 「生」 (nama), meaning raw or incomplete, combined with 「強し」 (tsuyoshi),
+  an old form of 「強い」 (tsuyoi), meaning strong. Together, they suggest something is 'incompletely strong'
+  or 'half-baked,' leading to the negative outcome implied by the word. The 「っか」 is an emphatic suffix.
+writeup: '**なまじ(っか)** is an adverb that expresses that something is done half-heartedly or inadequately,
+  leading to an undesirable result. It implies that it would have been better if the action had not been
+  done at all, conveying a sense of regret or criticism regarding the insufficient nature of something.
+  This nuance is crucial, as the grammar point highlights how a seemingly positive or neutral attribute,
+  when incomplete or superficial, paradoxically becomes the cause of a negative outcome. It can modify
+  verbs, adjectives, or nouns to add this nuance. The form 「なまじか」 (without the っ) is also acceptable,
+  though 「なまじっか」 is more commonly encountered. The kanji form is 生強し, but this is almost never seen in
+  modern Japanese.'
+false_friends:
+  - term: 中途半端 (ちゅうとはんぱ)
+    meaning: Halfway, unfinished, incomplete
+    kind: similar expression
+    nuance: Unlike 「なまじ(っか)」, 「中途半端」 describes something that is literally unfinished or incomplete, without
+      necessarily implying negative consequences resulting from an insufficient effort or state. 「中途半端」
+      is more neutral regarding the outcome.
+    grammar_point: <suggest>:中途半端 (halfway, unfinished)
+  - term: いい加減 (いいかげん)
+    meaning: Irresponsible, sloppy, half-hearted
+    kind: similar expression
+    nuance: While both terms can describe something done half-heartedly, 「いい加減」 often carries a stronger
+      sense of irresponsibility, negligence, or being arbitrary. 「なまじ(っか)」 focuses more on the unfortunate
+      or problematic outcome that arises precisely because something was done with insufficient effort,
+      skill, or consideration, often implying it would have been better not to do it at all.
+    grammar_point: <suggest>:いい加減 (irresponsible, sloppy)
+post_false_friends_writeup: When using these expressions, be mindful of the specific nuance you wish to
+  convey. If you want to emphasize the negative consequences resulting from insufficient effort or ability,
+  「なまじ(っか)」 is appropriate. If you want to describe something that is simply unfinished or incomplete,
+  「中途半端」 is a better choice. If you want to express irresponsibility or negligence, 「いい加減」 is more suitable.
+examples:
+  - english: Because I can somewhat speak English, I keep getting assigned translation tasks at work.
+    japanese:
+      - 英語 が {なまじっか} 使える から、会社 で 翻訳 ばかり 任さ れ て しまう。
+      - 英語 が {なまじっか} 使える もの です から、会社 で 翻訳 ばかり 任さ れ て しまう の です。
+      - 英語 が {なまじ} 使える せい で、会社 で 翻訳 ばかり 任さ れ て しまう。
+      - 英語 が {なまじっか} 中途 半端 に 使える が ため に、会社 で 翻訳 ばかり やらさ れ て しまう。
+      - 英語 が {なまじ} 多少 使える もの だ から、会社 で 翻訳 ばかり 回っ て くる。
+    english_literally: Because English half-heartedly can be used, at company translation tasks only are
+      assigned.
+    competing_grammar:
+      - competing_japanese:
+          - 英語 が {中途 半端} だ から、会社 で 翻訳 ばかり 任さ れ て しまう。
+        english: Because my English is incomplete, I keep getting assigned translation tasks at work.
+        hint: 「中途半端」 describes something that is unfinished or incomplete. While your English might be
+          incomplete, 「なまじっか」 emphasizes the *negative consequence* of having *some* ability, making it
+          worse than having no ability. We're looking for the negative consequence of a partial ability.
+      - competing_japanese:
+          - 英語 が {いい 加減} だ から、会社 で 翻訳 ばかり 任さ れ て しまう。
+        english: Because my English is sloppy, I keep getting assigned translation tasks at work.
+        hint: 「いい加減」 implies irresponsibility or sloppiness. While you might be sloppy, 「なまじっか」 focuses
+          on the regret that having *some* ability led to an undesirable outcome. We're looking for the
+          regret of a partial ability.
+      - competing_japanese:
+          - 英語 が {少し} 使える から、会社 で 翻訳 ばかり 任さ れ て しまう。
+        english: Because I can speak English a little, I keep getting assigned translation tasks at work.
+        hint: 「少し」 simply means 'a little'. 「なまじっか」 adds the nuance that this *slight ability* is actually
+          a *problem* or causes regret. We're looking for the sense of an unwanted consequence from a
+          partial ability.
+    scene: A man at a drinking party with colleagues complains about his workload.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The use of 「しまう」 (in 「任されて しまう」) adds a nuance of regret or an undesirable outcome, which
+      perfectly aligns with the implied negative consequence of having a half-baked ability in English.
+      The phrase 「ばかり」 emphasizes that it's *only* these undesirable tasks he receives.
+    etymology: The verb 「任せる」 (makaseru) means 'to entrust' or 'to leave to someone.' The passive form
+      「任される」 (makasareru) means 'to be entrusted with' or 'to have something left to one.' Combined with
+      「しまう」, it conveys a sense of being burdened with tasks unwillingly or regrettably. 「ばかり」 emphasizes
+      'only' or 'nothing but' these tasks.
+  - english: When you have even a little money, you end up wasting it and can't save.
+    japanese:
+      - '{なまじっか} お 金 が ある と、無駄遣い し て しまっ て 貯金 が でき ない。'
+      - '{なまじっか} お 金 が ある と、無駄遣い を し て しまい、貯金 が でき ない もの だ。'
+      - '{なまじ} お 金 が ある と、無駄遣い し て しまっ て 貯金 が でき ない の です。'
+      - '{なまじっか} 多少 お 金 が ある と、無駄遣い を し て しまう 傾向 が ある。'
+    english_literally: Half-heartedly money exists, then wasteful spending is done, and savings cannot
+      be made.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} に お 金 が ある と、無駄遣い し て しまっ て 貯金 が でき ない。'
+        english: If you have money in an incomplete way, you end up wasting it and can't save.
+        hint: 「中途半端」 doesn't naturally apply to having money in this context. 「なまじっか」 conveys that having
+          *some* money (rather than none) leads to the negative outcome of wasteful spending. We're looking
+          for the idea that *some* money is problematic.
+      - competing_japanese:
+          - '{いい 加減} に お 金 が ある と、無駄遣い し て しまっ て 貯金 が でき ない。'
+        english: If you have money in a sloppy way, you end up wasting it and can't save.
+        hint: 「いい加減」 refers to irresponsibility or sloppiness. 「なまじっか」 means that having *just enough*
+          money is the reason for the wasteful spending. We're looking for the idea that *some* money
+          is problematic.
+      - competing_japanese:
+          - '{少々} お 金 が ある と、無駄遣い し て しまっ て 貯金 が でき ない。'
+        english: If you have a little money, you end up wasting it and can't save.
+        hint: 「少々」 means 'a little' but lacks the nuance of regret or negative consequence that 「なまじっか」
+          carries. We're looking for the implication that having a bit of money is the *cause* of the
+          problem.
+    scene: A young woman lamenting her financial habits to her friend.
+    register: casual
+    setting: pessimistic
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「無駄遣い して しまって」 (muda zukai shite shimatte) implies regret over wasteful spending,
+      which is a common sentiment among younger individuals. The use of 「しまう」 reinforces the undesirable
+      consequence of having money.
+    etymology: 「無駄遣い」 (mudazukai) is a compound word formed from 「無駄」 (muda), meaning 'futile' or 'wasteful,'
+      and 「遣い」 (tsukai, from tsukau), meaning 'use' or 'expenditure.' Thus, it literally means 'futile
+      expenditure' or 'wasteful use of money.'
+  - english: If you give half-hearted advice, you risk confusing the other person instead.
+    japanese:
+      - '{なまじっか} 助言 を する と、かえって 相手 を 混乱 さ せる 可能 性 が ある。'
+      - '{なまじっか} 助言 を する と、かえって 相手 を 混乱 さ せる 恐れ が あり ます。'
+      - '{なまじ} 助言 を する と、かえって 相手 を 混乱 さ せ て しまう こと も あり ます。'
+      - '{なまじっか} 不 十分 な 助言 は、却って 混乱 を 招き かね ない。'
+    english_literally: Half-heartedly advice is given, then instead the other person is confused, possibility
+      exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} な 助言 を する と、かえって 相手 を 混乱 さ せる 可能 性 が ある。'
+        english: If you give incomplete advice, you risk confusing the other person instead.
+        hint: 「中途半端」 refers to literally unfinished advice. 「なまじっか」 emphasizes that giving *some* advice,
+          even if not fully wrong, is worse than giving no advice at all due to its insufficiency. We're
+          looking for the negative consequence of partial advice.
+      - competing_japanese:
+          - '{いい 加減} な 助言 を する と、かえって 相手 を 混乱 さ せる 可能 性 が ある。'
+        english: If you give irresponsible advice, you risk confusing the other person instead.
+        hint: 「いい加減」 implies recklessness or irresponsibility. While giving irresponsible advice is bad,
+          「なまじっか」 focuses on the problem arising from advice that is merely *insufficient* or *half-baked*,
+          not necessarily malicious. We're looking for the adverse effect of insufficient advice.
+      - competing_japanese:
+          - '{少し} 助言 を する と、かえって 相手 を 混乱 さ せる 可能 性 が ある。'
+        english: If you give a little advice, you risk confusing the other person instead.
+        hint: 「少し」 just means 'a little'. 「なまじっか」 implies that giving *only a little* advice (insufficiently)
+          is the cause of the problem. We're looking for the nuance that partial advice leads to negative
+          outcomes.
+    scene: A senior employee advises a junior team on handling client interactions.
+    register: semi-formal
+    setting: cautious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「可能性が ある」 (kanōsei ga aru) or 「恐れが あります」 (osore ga arimasu) convey a sense of caution
+      and potential risk, fitting for a senior advising a junior team. The use of 「かえって」 (kaette) emphasizes
+      the unexpected opposite effect of providing insufficient advice.
+    etymology: 「助言」 (jogen) is a noun meaning 'advice' or 'counsel,' formed from 「助」 (jo), meaning 'help'
+      or 'assistance,' and 「言」 (gen), meaning 'word' or 'speech.' It implies words given to help someone.
+  - english: Just because you're somewhat good-looking, if there's no substance, people will quickly get
+      bored of you.
+    japanese:
+      - '{なまじっか} 見 た 目 が いい から って、中身 が ない と すぐ に 飽き られる よ。'
+      - '{なまじっか} 見 た 目 が いい から と いっ て、中身 が なけれ ば すぐ に 飽き られ て しまう わ よ。'
+      - '{なまじ} 見 た 目 が いい から って、中身 が ない と すぐ に 飽き られる の よ。'
+      - '{なまじ} 見 た 目 だけ は いい と、結局 中身 の な さ が 露呈 する。'
+    english_literally: Half-heartedly appearance is good, if there is no substance, quickly you are bored
+      of.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} な 見 た 目 が いい から って、中身 が ない と すぐ に 飽き られる よ。'
+        english: Just because your appearance is incomplete, if there's no substance, people will quickly
+          get bored of you.
+        hint: 「中途半端」 refers to something literally unfinished. An 'incomplete appearance' doesn't fit
+          the context of being 'somewhat good-looking'. 「なまじっか」 means that *just being good-looking to
+          some extent* (without substance) is the problem. We're looking for the idea that superficial
+          looks are problematic.
+      - competing_japanese:
+          - '{いい 加減} な 見 た 目 が いい から って、中身 が ない と すぐ に 飽き られる よ。'
+        english: Just because your appearance is sloppy, if there's no substance, people will quickly
+          get bored of you.
+        hint: 「いい加減」 implies a sloppy or irresponsible appearance, which doesn't fit being 'somewhat good-looking'.
+          「なまじっか」 highlights the negative consequence of *only* having partial good looks without substance.
+          We're looking for the adverse effect of superficial beauty.
+      - competing_japanese:
+          - '{ちょっと} 見 た 目 が いい から って、中身 が ない と すぐ に 飽き られる よ。'
+        english: Just because your appearance is a little good, if there's no substance, people will quickly
+          get bored of you.
+        hint: 「ちょっと」 is merely 'a little'. 「なまじっか」 conveys that this 'a little good' appearance is the
+          *reason* for the negative outcome. We're looking for the nuance that a partial truth is insufficient.
+    scene: An older sister giving life advice to her younger sister about prioritizing character over
+      superficial traits.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「よ」 (in 「飽きられる よ」) or 「わ よ」 (in 「飽きられて しまう わ よ」) at the end of the sentence adds
+      a sense of assertion and advice, often used by an older person advising a younger one, or between
+      close friends. 「からって」 (karatte) or 「からといって」 (karatoitte) emphasize 'just because... doesn't mean...'.
+    etymology: 「見た目」 (mitame) combines 「見」 (mi, from miru, to see) and 「目」 (me, eye), literally meaning
+      'what is seen by the eyes' or 'appearance.' 「中身」 (nakami) refers to 'contents' or 'substance,' formed
+      from 「中」 (naka, inside) and 「身」 (mi, body/self).
+  - english: If you dabble a little in a specialized field, there's a risk that you might actually cause
+      misunderstandings.
+    japanese:
+      - '{なまじっか} 専門 分野 を かじる と、逆 に 誤解 を 生む 危険 性 も ある。'
+      - '{なまじっか} 専門 分野 を かじる と、かえって 誤解 を 生む 危険 性 が 伴う こと も あり ます。'
+      - '{なまじ} 専門 分野 を かじる と、逆 に 誤解 を 生じ させる 可能 性 も あり ます。'
+      - '{なまじっか} 専門 知識 を 齧る と、却って 混乱 を 招き かね ない。'
+    english_literally: Half-heartedly specialized field is nibbled, then conversely misunderstandings
+      are born, danger also exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} に 専門 分野 を かじる と、逆 に 誤解 を 生む 危険 性 も ある。'
+        english: If you incompletely dabble in a specialized field, there's a risk that you might actually
+          cause misunderstandings.
+        hint: While similar, 「中途半端」 implies the dabbling is literally unfinished. 「なまじっか」 emphasizes that
+          having *just a little bit* of knowledge is what leads to the *worse outcome* of creating misunderstandings.
+          We're looking for the idea that a partial understanding is dangerous.
+      - competing_japanese:
+          - '{いい 加減} に 専門 分野 を かじる と、逆 に 誤解 を 生む 危険 性 も ある。'
+        english: If you sloppily dabble in a specialized field, there's a risk that you might actually
+          cause misunderstandings.
+        hint: 「いい加減」 suggests sloppiness or carelessness in dabbling. 「なまじっか」 points to the danger of
+          *only having a superficial* understanding, making it worse than no understanding at all. We're
+          looking for the problem that arises from superficial knowledge.
+      - competing_japanese:
+          - '{少し} 専門 分野 を かじる と、逆 に 誤解 を 生む 危険 性 も ある。'
+        english: If you dabble a little in a specialized field, there's a risk that you might actually
+          cause misunderstandings.
+        hint: 「少し」 just means 'a little'. 「なまじっか」 adds the nuance that this *slight dabbling* is precisely
+          the *reason* for the negative outcome. We're looking for the implication that superficial knowledge
+          leads to negative results.
+    scene: A university lecturer explaining the pitfalls of superficial knowledge to students during a
+      seminar.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The verb 「かじる」 (kajiru, 'to nibble') is used metaphorically here to mean 'to dabble' or 'to
+      have superficial knowledge.' The phrase 「危険性も ある」 (kikensei mo aru) or 「可能性も あります」 (kanōsei mo arimasu)
+      indicate a potential risk, fitting the cautious tone of a lecturer warning students against shallow
+      understanding.
+    etymology: 「専門分野」 (senmon bunya) refers to a 'specialized field.' 「専門」 (senmon) means 'specialty'
+      or 'expert,' and 「分野」 (bunya) means 'field' or 'sphere.' The phrase emphasizes knowledge within
+      a specific domain. 「誤解を 生む」 (gokai o umu) means 'to give rise to misunderstanding,' where 「生む」 literally
+      means 'to give birth to.'
+  - english: If you're somewhat robust, you tend to take on unreasonable schedules.
+    japanese:
+      - '{なまじっか} 体 が 丈夫 だ と、無理 な スケジュール を こなし がち だ。'
+      - '{なまじっか} 体 が 丈夫 な もの です から、無理 な スケジュール を 引き受け がち です。'
+      - '{なまじ} 体 が 丈夫 な もの だ から、無理 な スケジュール を こなし がち だ。'
+      - '{なまじっか} 丈夫 な せい で、かえって 体 を 酷使 し がち だ。'
+    english_literally: Half-heartedly body is strong, then unreasonable schedules tend to be managed.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} な 体 が 丈夫 だ と、無理 な スケジュール を こなし がち だ。'
+        english: If your body is incompletely strong, you tend to take on unreasonable schedules.
+        hint: 「中途半端」 doesn't logically apply to being 'somewhat robust'. 「なまじっか」 conveys that *being robust
+          to some extent* (rather than not at all) leads to the negative habit of overworking. We're looking
+          for the idea that partial robustness is problematic.
+      - competing_japanese:
+          - '{いい 加減} な 体 が 丈夫 だ と、無理 な スケジュール を こなし がち だ。'
+        english: If your body is sloppily strong, you tend to take on unreasonable schedules.
+        hint: 「いい加減」 implies sloppiness or irresponsibility, which doesn't fit the context of being 'somewhat
+          robust'. 「なまじっか」 means that *having some robustness* makes you prone to overcommit, to your
+          detriment. We're looking for the negative consequence of partial strength.
+      - competing_japanese:
+          - '{少し} 体 が 丈夫 だ と、無理 な スケジュール を こなし がち だ。'
+        english: If your body is a little strong, you tend to take on unreasonable schedules.
+        hint: 「少し」 means 'a little'. 「なまじっか」 adds the nuance that this *partial strength* is the *reason*
+          for the negative tendency. We're looking for the implication that being somewhat robust leads
+          to negative habits.
+    scene: A man discussing work-life balance with his friend who consistently works too much.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The construction 「〜がちだ」 (〜gachi da) expresses a tendency to do something, often implying a
+      negative habit. This perfectly reflects the nuance of being prone to taking on excessive work due
+      to one's physical robustness. The casual tone and reflective setting are typical for a conversation
+      between male friends.
+    etymology: 「丈夫」 (jōbu) means 'healthy,' 'robust,' or 'durable.' It is composed of 「丈」 (jō), meaning
+      'height' or 'length,' and 「夫」 (bu), which can mean 'man' or 'husband,' but here relates to a sense
+      of solidity or firmness. 「無理な スケジュール」 (muri na sukejūru) means 'unreasonable schedule,' with 「無理」
+      (muri) indicating something impossible or unreasonable.
+  - english: Rather than speaking a superficial truth, perhaps imagination enriches the human heart more.
+    japanese:
+      - '{なまじ} 真実 を 語る より、むしろ 想像 が 人 の 心 を 豊か に する の だろう。'
+      - '{なまじ} 真実 を 語る くらい なら、想像 の 方 が 人 の 心 を 豊か に する だろう。'
+      - '{なまじ} 真実 を 述べる より も、想像 こそ が 人 の 心 を 豊か に する の で あろう。'
+      - '{なまじ} 浅い 真実 より、豊か な 想像 力 の 方 が 人 を 魅了 する。'
+    english_literally: Half-heartedly truth is spoken, rather imagination human heart enriches it may
+      be.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} な 真実 を 語る より、むしろ 想像 が 人 の 心 を 豊か に する の だろう。'
+        english: Rather than speaking an incomplete truth, perhaps imagination enriches the human heart
+          more.
+        hint: 「中途半端」 refers to literally unfinished truth. 「なまじ」 implies that a truth that is *only superficial*
+          is less enriching than imagination. We're looking for the idea that a partial truth is insufficient.
+      - competing_japanese:
+          - '{いい 加減} な 真実 を 語る より、むしろ 想像 が 人 の 心 を 豊か に する の だろう。'
+        english: Rather than speaking an irresponsible truth, perhaps imagination enriches the human heart
+          more.
+        hint: 「いい加減」 implies irresponsibility or sloppiness. 「なまじ」 suggests that a truth that is *only
+          partially* or *superficially* expressed is less valuable. We're looking for the idea that superficial
+          truth is less enriching.
+      - competing_japanese:
+          - '{少し} の 真実 を 語る より、むしろ 想像 が 人 の 心 を 豊か に する の だろう。'
+        english: Rather than speaking a little truth, perhaps imagination enriches the human heart more.
+        hint: 「少しの」 simply means 'a little bit of'. 「なまじ」 emphasizes that this 'superficial truth' is
+          the problematic element. We're looking for the nuance that a partial truth is insufficient.
+    scene: An author reflecting on the nature of storytelling and its impact, preferring the depth of
+      fiction over shallow facts.
+    register: bungo (literary)
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The literary register, indicated by phrases like 「語るより」 (kataru yori, 'rather than speaking')
+      and 「〜であろう」 (〜dearou, a literary form of 'deshou'), and the philosophical tone, suggest a reflective
+      and profound statement typical of an author. The use of 「むしろ」 (musiro, 'rather') emphasizes the
+      contrast.
+    etymology: 「真実」 (shinjitsu) means 'truth' or 'reality,' formed from 「真」 (shin, true) and 「実」 (jitsu,
+      reality). 「想像」 (sōzō) means 'imagination' or 'fancy,' composed of 「想」 (sō, thought/idea) and 「像」
+      (zō, image). 「心を 豊か に する」 (kokoro o yutaka ni suru) means 'to enrich the heart/mind,' where 「豊か」
+      (yutaka) means 'abundant' or 'rich.'
+  - english: That half-hearted help might have, on the contrary, made him weaker.
+    japanese:
+      - '{なまじっか} の 助け が、逆 に 彼 を 弱く し て しまっ た の か も しれ ない。'
+      - '{なまじ} の 助け が、かえって 彼 を 弱く し て しまっ た の か も しれ ない。'
+      - '{なまじっか} の 助け が、むしろ 彼 を 弱体 化 さ せ て しまっ た 可能 性 も あり ます。'
+      - '{なまじ} の 支援 が、かえって 自立 を 妨げ た 恐れ が ある。'
+    english_literally: Half-hearted help, on the contrary, might have made him weaker.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} な 助け が、逆 に 彼 を 弱く し て しまっ た の か も しれ ない。'
+        english: That incomplete help might have, on the contrary, made him weaker.
+        hint: While conceptually similar, 「中途半端」 specifically means unfinished help. 「なまじっか」 suggests
+          that the help was *just enough to interfere*, but *not enough to truly assist*, leading to a
+          worse outcome. We're looking for the idea that partial help was detrimental.
+      - competing_japanese:
+          - '{いい 加減} な 助け が、逆 に 彼 を 弱く し て しまっ た の か も しれ ない。'
+        english: That irresponsible help might have, on the contrary, made him weaker.
+        hint: 「いい加減」 implies carelessness or irresponsibility. 「なまじっか」 emphasizes that the help was *superficial*
+          or *insufficiently thorough*, making it worse than no help at all. We're looking for the adverse
+          effect of insufficient help.
+      - competing_japanese:
+          - '{少し} の 助け が、逆 に 彼 を 弱く し て しまっ た の か も しれ ない。'
+        english: A little help might have, on the contrary, made him weaker.
+        hint: 「少しの」 just means 'a little bit of'. 「なまじっか」 adds the nuance that this *slight help* was
+          actually detrimental. We're looking for the implication that partial help was harmful.
+    scene: A teacher lamenting the unintended negative consequences of well-intentioned but insufficient
+      support given to a struggling student.
+    register: formal
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「のかもしれない」 (no kamoshirenai) expresses possibility or conjecture with a hint of
+      resignation or regret, suitable for a teacher reflecting on an unfortunate outcome. The use of 「逆に」
+      (gyakuni) or 「むしろ」 (musiro) emphasizes the unexpected opposite effect of the help.
+    etymology: 「助け」 (tasuke) is a noun meaning 'help' or 'assistance,' derived from the verb 「助ける」 (tasukeru,
+      to help). 「弱く して しまった」 (yowaku shite shimatta) uses 「してしまう」 (shite shimau) to indicate an undesirable
+      outcome, suggesting regret that the help ultimately led to weakening. 「弱体化」 (jakutaika) is a more
+      formal term meaning 'weakening' or 'enfeeblement,' combining 「弱体」 (jakutai, weak body/structure)
+      and 「化」 (-ka, suffix for 'to become' or 'to change into').
+  - english: Just because I half-heartedly studied Japanese, I can't express myself well in real conversations.
+    japanese:
+      - 日本 語 を {なまじっか} 勉強 し た もの だ から、実際 の 会話 で は うまく 表現 でき ない。
+      - 日本 語 を {なまじ} 勉強 し た せい で、実際 の 会話 で は うまく 表現 でき ない の です。
+    english_literally: Japanese half-heartedly studied, therefore, in real conversations well cannot express.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を {少し} 勉強 し た から、実際 の 会話 で は うまく 表現 でき ない。
+        english: Because I studied Japanese a little, I can't express myself well in real conversations.
+        hint: 「少し」 just states a small amount. 「なまじっか」 implies that the *partial* nature of your study
+          is the *problematic cause* of your difficulty. We're looking for the nuance that insufficient
+          study leads to a negative outcome.
+      - competing_japanese:
+          - 日本 語 を {中途 半端} に 勉強 し た から、実際 の 会話 で は うまく 表現 でき ない。
+        english: Because I incompletely studied Japanese, I can't express myself well in real conversations.
+        hint: 「中途半端」 refers to literal incompleteness. 「なまじっか」 emphasizes the regret that having *some*
+          knowledge, rather than none, is the cause of the struggle. We're looking for the negative consequence
+          of partial effort.
+      - competing_japanese:
+          - 日本 語 を {いい 加減} に 勉強 し た から、実際 の 会話 で は うまく 表現 でき ない。
+        english: Because I sloppily studied Japanese, I can't express myself well in real conversations.
+        hint: 「いい加減」 implies irresponsibility or sloppiness. 「なまじっか」 focuses on the undesirable outcome
+          resulting from a *limited* or *superficial* effort, implying it would have been better not to
+          have started at all. We're looking for the regret of a partial effort.
+    scene: A student talking to their language exchange partner, feeling frustrated with their speaking
+      ability.
+    register: casual
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「ものだから」 or 「せいで」 expresses the reason or cause for the negative outcome, perfectly
+      aligning with 「なまじっか」. The speaker expresses regret over their insufficient Japanese study, which
+      prevents them from communicating effectively. This sentiment is common among language learners.
+    etymology: The verb 「表現する」 (hyōgen suru) means 'to express' or 'to represent,' combining 「表」 (hyō,
+      surface/table) and 「現」 (gen, current/appear). It refers to making something internal external or
+      visible.
+  - english: Giving a half-hearted compliment can, on the contrary, make the other person feel uncomfortable.
+    japanese:
+      - '{なまじっか} 褒める と、かえって 相手 を 不快 に さ せる こと が ある。'
+      - '{なまじっか} 褒める と、かえって 相手 を 不快 に さ せ て しまう 場合 が あり ます。'
+      - '{なまじ} 褒める と、かえって 相手 に 気まずい 思い を さ せる こと も ある。'
+    english_literally: Half-heartedly compliment, then conversely the other person uncomfortable makes
+      sometimes.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し} 褒める と、かえって 相手 を 不快 に さ せる こと が ある。'
+        english: If you compliment a little, you can, on the contrary, make the other person feel uncomfortable.
+        hint: 「少し」 simply means 'a little'. 「なまじっか」 implies that the *insufficient* or *insincere* nature
+          of the compliment is what causes the negative reaction. We're looking for the nuance that a
+          partial compliment is detrimental.
+      - competing_japanese:
+          - '{中途 半端} に 褒める と、かえって 相手 を 不快 に さ せる こと が ある。'
+        english: If you incompletely compliment, you can, on the contrary, make the other person feel
+          uncomfortable.
+        hint: 「中途半端」 refers to something literally unfinished. A compliment isn't 'unfinished' in the
+          same way. 「なまじっか」 conveys that a compliment that is *superficial* or *not fully heartfelt* leads
+          to a worse outcome than no compliment at all. We're looking for the negative consequence of
+          a partial or insincere compliment.
+      - competing_japanese:
+          - '{いい 加減} に 褒める と、かえって 相手 を 不快 に さ せる こと が ある。'
+        english: If you sloppily compliment, you can, on the contrary, make the other person feel uncomfortable.
+        hint: 「いい加減」 implies carelessness or irresponsibility. 「なまじっか」 focuses on the problem arising
+          from a compliment that is *insufficiently thorough* or *lacks depth*, rather than being simply
+          careless. We're looking for the adverse effect of an insincere compliment.
+    scene: A mentor advising a junior colleague on effective communication and interpersonal skills in
+      a professional setting.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「不快 に させる」 (fukai ni saseru, 'to make uncomfortable') and 「こと が ある」 (koto ga aru,
+      'there are times when') clearly indicate a potential negative outcome. This example uses a formal
+      register, appropriate for a mentor giving advice to a group. The nuance of 「なまじっか」 here is that
+      a superficial compliment can be worse than no compliment at all.
+    etymology: 「褒める」 (homeru) means 'to praise' or 'to compliment.' 「不快」 (fukai) means 'unpleasant' or
+      'uncomfortable,' formed from 「不」 (fu, negation/un-) and 「快」 (kai, pleasant/comfortable).
+  - english: If you try a difficult task half-heartedly, you'll surely fail.
+    japanese:
+      - '{なまじっか} 難しい こと に 手 を 出す と、かえって 失敗 し ます よ。'
+      - '{なまじ} 難しい こと に 手 を 出し たら、きっと 失敗 する で あろう。'
+      - '{なまじっか} 難しい こと を やろう と する と、かえって 失敗 する だろう。'
+    english_literally: Half-heartedly difficult things to try to do, then on the contrary fail will likely.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} に 難しい こと に 手 を 出す と、かえって 失敗 し ます よ。'
+        english: If you incompletely try a difficult task, you'll surely fail.
+        hint: 「中途半端」 implies unfinished action. 「なまじっか」 emphasizes that attempting something *without
+          sufficient effort* leads to failure. We're looking for the idea that inadequate effort leads
+          to failure.
+      - competing_japanese:
+          - '{いい 加減} に 難しい こと に 手 を 出す と、かえって 失敗 し ます よ。'
+        english: If you sloppily try a difficult task, you'll surely fail.
+        hint: 「いい加減」 implies carelessness. 「なまじっか」 focuses on the problem arising from an *insufficiently
+          thorough* or *half-hearted* attempt, implying it would have been better not to attempt it at
+          all. We're looking for the adverse effect of insufficient effort.
+      - competing_japanese:
+          - '{少し} 難しい こと に 手 を 出す と、かえって 失敗 し ます よ。'
+        english: If you try a little of a difficult task, you'll surely fail.
+        hint: 「少し」 simply means 'a little'. 「なまじっか」 adds the nuance that this *slight attempt* is precisely
+          the *reason* for the negative outcome. We're looking for the implication that partial effort
+          leads to negative results.
+    scene: A seasoned project manager warning a new team member about overconfidence.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「〜に 手 を 出す」 (ni te o dasu, 'to put one's hand to' or 'to get involved in') implies
+      attempting something. The use of 「かえって」 (kaette, 'on the contrary') reinforces the idea that the
+      partial effort leads to the opposite of the desired outcome (failure). The sentence is a warning,
+      common in professional settings from an experienced person. The casual 「〜ます よ」 adds a personal,
+      advisory tone.
+    etymology: 「手 を 出す」 is an idiom meaning to start something. 「失敗」 (shippai) means failure, formed from
+      「失」 (shitsu, lose) and 「敗」 (hai, defeat).
+  - english: Having a large inheritance without proper management can, paradoxically, lead to ruin.
+    japanese:
+      - '{なまじっか} 莫大 な 遺産 が ある と、かえって 身 を 滅ぼす こと も ある。'
+      - '{なまじ} 莫大 な 遺産 が ある と、かえって 不幸 に なる こと も 少なく ない。'
+      - '{なまじっか} 巨額 の 財産 を 持つ と、却って 不幸 を 招き かね ない。'
+    english_literally: Half-heartedly vast inheritance exists, then on the contrary self ruins sometimes.
+    competing_grammar:
+      - competing_japanese:
+          - '{中途 半端} に 莫大 な 遺産 が ある と、かえって 身 を 滅ぼす こと も ある。'
+        english: Having an incomplete large inheritance can, paradoxically, lead to ruin.
+        hint: 「中途半端」 suggests an incomplete state, which doesn't fit the context of having a large inheritance.
+          「なまじっか」 emphasizes that the *mere existence* of such wealth, when not managed properly, is the
+          cause of the negative outcome. We're looking for the idea that wealth without wisdom is problematic.
+      - competing_japanese:
+          - '{いい 加減} に 莫大 な 遺産 が ある と、かえって 身 を 滅ぼす こと も ある。'
+        english: Having a sloppily managed large inheritance can, paradoxically, lead to ruin.
+        hint: 「いい加減」 implies irresponsibility in management. While true, 「なまじっか」 highlights the irony
+          that the *very possession* of large wealth, without the matching capability to handle it, leads
+          to ruin. We're looking for the problem that arises from possessing something without the ability
+          to manage it.
+      - competing_japanese:
+          - '{少し} 莫大 な 遺産 が ある と、かえって 身 を 滅ぼす こと も ある。'
+        english: Having a slightly large inheritance can, paradoxically, lead to ruin.
+        hint: 「少し」 just means 'a little'. 「なまじっか」 adds the nuance that having *some* (even large) wealth,
+          *without the wisdom to use it*, is what leads to ruin. We're looking for the implication that
+          wealth without proper handling leads to negative results.
+    scene: A wise elder giving advice about the dangers of unearned wealth.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「身 を 滅ぼす」 (mi o horobosu, 'to ruin oneself') strongly conveys the negative outcome.
+      The use of 「かえって」 (kaette) highlights the irony that something seemingly good (a large inheritance)
+      can lead to ruin when handled without proper wisdom, which aligns perfectly with `なまじっか`. The sentence
+      carries a serious, cautionary tone typical of life advice from an elder, suitable for a formal setting
+      and a group listener.
+    etymology: 「莫大」 (bakudai) means 'enormous' or 'vast.' 「遺産」 (isan) means 'inheritance' or 'legacy,'
+      often associated with family wealth. 「身 を 滅ぼす」 is an idiom meaning 'to ruin oneself' or 'to bring
+      oneself to ruin,' where 「身」 (mi) refers to one's body, self, or existence, and 「滅ぼす」 (horobosu)
+      means 'to destroy' or 'to ruin.'
+post_example_writeup: As these examples demonstrate, 「なまじ(っか)」 is consistently used to convey the idea
+  that an action or state, despite seemingly positive or neutral, leads to an undesired or problematic
+  outcome precisely because it is insufficient or incomplete. It often carries a tone of regret or a warning
+  against half-heartedness, emphasizing that sometimes, doing something incompletely is worse than doing
+  nothing at all. Pay close attention to the context and the speaker's implied feelings to fully grasp
+  its nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なまじ(っか)

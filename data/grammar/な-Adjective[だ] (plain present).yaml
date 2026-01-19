@@ -1,0 +1,256 @@
+grammar_point: な-Adjective[だ] (plain present)
+learn_before:
+  - だ (casual copula)
+meaning: is [na-adjective]
+pronunciation:
+  katakana: ダ
+  romaji: da
+formation:
+  '[な-Adjective Stem] + だ': Used to state a fact or describe a characteristic in a casual, plain affirmative
+    present tense.
+jlpt: N5
+etymology: The copula だ (da) is a contraction of である (de aru). It serves as the plain, informal equivalent
+  of です (desu), used to assert facts or describe states of being.
+writeup: |-
+  な-adjectives, also known as adjectival nouns, describe qualities or states. When a な-adjective directly precedes a noun, it requires な (na) to connect (e.g., きれいな花 - a beautiful flower). However, when a な-adjective is used as a predicate at the end of a sentence in the plain, affirmative present tense, it is followed by だ (da). This form is highly casual and commonly used in everyday conversations among people who are close, such as friends, family members, or colleagues of equal or lower status.
+
+  It's crucial to understand that な-adjectives do not conjugate like い-adjectives. Instead, they behave similarly to nouns in their predicate forms, using forms of the copula (だ, だった, じゃない, じゃなかった, etc.) to express tense and negation. The plain present affirmative form with だ is the most fundamental way to state a characteristic or fact casually.
+
+  For example, to say "It is quiet" in a casual way, you would say 「静かだ」 (Shizuka da). This structure directly states that the subject possesses the quality of being quiet. This form is common in direct speech, monologues, or informal writing.
+false_friends:
+  - term: です
+    meaning: is [polite]
+    kind: similar expression
+    nuance: です is the polite form of the copula, used in formal or polite contexts. Unlike だ, です can be
+      used with both nouns and な-adjectives to form polite affirmative statements. The choice between
+      だ and です depends entirely on the level of formality and the relationship between the speakers. We're
+      looking for the casual, plain form.
+    grammar_point: です (polite copula)
+  - term: い-Adjectives (sentence-ending)
+    meaning: is [i-adjective]
+    kind: often confused with
+    nuance: い-adjectives directly end sentences without a copula like だ or です in the plain form (e.g.,
+      寒い - cold). な-adjectives, when used as predicates, *require* だ in their plain affirmative form.
+      This is a key difference in their grammatical behavior. We're looking for the na-adjective form
+      ending in だ.
+    grammar_point: い-adjective (sentence-ending)
+  - term: じゃない
+    meaning: is not [noun/na-adjective]
+    kind: antonym
+    nuance: じゃない is the plain negative form for both nouns and な-adjectives. While な-Adjective[だ] affirms
+      a characteristic, じゃない denies it. For example, 静かだ (It is quiet) versus 静かじゃない (It is not quiet).
+      We're looking for the affirmative plain form.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: だった
+    meaning: was [noun/na-adjective]
+    kind: similar expression
+    nuance: だった is the plain past affirmative form for nouns and な-adjectives. It indicates that something
+      *was* a certain way in the past, while な-Adjective[だ] indicates it *is* a certain way in the present.
+      We're looking for the present tense.
+    grammar_point: だった (past copula, casual)
+post_false_friends_writeup: When differentiating な-Adjective[だ] from other forms, remember that だ explicitly
+  marks the casual, plain present tense for な-adjectives acting as predicates. Its absence or replacement
+  with other particles/copula forms changes the politeness, tense, or part of speech. For instance, comparing
+  楽しい (tanoshii - い-adjective, plain present) with 静かだ (shizuka da - な-adjective, plain present) highlights
+  their distinct grammatical endings. Understanding that な-adjectives conjugate like nouns in their predicate
+  role, taking forms of the copula, is crucial.
+examples:
+  - english: That park is quiet.
+    japanese:
+      - あの 公園 は 静か {だ}。
+      - あの 公園 は 静か {だ よ}。
+      - あの 公園 は 静か {だ ね}。
+      - あの 公園 は 静か {だ よ な}。
+    english_literally: That park, as for it, is quiet.
+    competing_grammar:
+      - competing_japanese:
+          - あの 公園 は 静か {です}。
+        english: That park is quiet. (polite)
+        hint: The nuance here is casual, suited for talking with friends. We're looking for the casual
+          form of the copula.
+      - competing_japanese:
+          - あの 公園 は 静か {じゃ ない}。
+        english: That park is not quiet.
+        hint: The sentence states that the park *is* quiet. We're looking for the affirmative form.
+    scene: A student is talking to their friend about a local park.
+    register: casual
+    setting: friendly
+  - english: The weather today is beautiful.
+    japanese:
+      - 今日 の 天気 は きれい {だ}。
+      - 今日 の 天気 は きれい {だ よ}。
+      - 今日 の 天気 は きれい {だ ね}。
+    english_literally: Today's weather, as for it, is beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は きれい {でし た}。
+        english: The weather today was beautiful. (polite past)
+        hint: The sentence is in the present tense. We're looking for the plain present form.
+    scene: A person comments on the weather while walking with a close family member.
+    register: casual
+    setting: casual slang
+  - english: My room is comfortable.
+    japanese:
+      - 私 の 部屋 は 快適 {だ}。
+      - 私 の 部屋 は 快適 {だ よ}。
+      - 私 の 部屋 は 快適 {だ ね}。
+    english_literally: My room, as for it, is comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は 広い {だ}。
+        english: My room is spacious. (using an い-adjective with だ)
+        hint: The word '広い' is an い-adjective and does not take だ at the end in the plain form. We're
+          looking for a な-adjective example.
+    scene: A young man is bragging to his roommate about his new apartment.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「だ」 after the な-adjective 「快適」 (comfortable) is typical in casual male speech,
+      although it is not exclusive to men.
+  - english: This book is convenient.
+    japanese:
+      - この 本 は 便利 {だ}。
+      - この 本 は 便利 {だ よ}。
+      - この 本 は 便利 {だ ね}。
+    english_literally: This book, as for it, is convenient.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 便利 {です ね}。
+        english: This book is convenient, isn't it?
+        hint: The sentence is a simple statement of fact, not seeking agreement. We're looking for the
+          plain statement form.
+    scene: A student shows a textbook to a classmate during a study session.
+    register: casual
+    setting: academic
+  - english: His answer is honest.
+    japanese:
+      - 彼 の 答え は 正直 {だ}。
+      - 彼 の 答え は 正直 {だ よ}。
+      - 彼 の 答え は 正直 {だ ね}。
+    english_literally: His answer, as for it, is honest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 答え は 正直 {だっ た}。
+        english: His answer was honest.
+        hint: The statement is about a present characteristic, not a past event. We're looking for the
+          plain present form.
+    scene: Two friends are discussing their impressions of a mutual acquaintance.
+    register: casual
+    setting: friendly
+  - english: This restaurant is famous.
+    japanese:
+      - この レストラン は 有名 {だ}。
+      - この レストラン は 有名 {だ よ}。
+      - この レストラン は 有名 {だ ね}。
+    english_literally: This restaurant, as for it, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 有名 {だ よ}。
+        english: This restaurant is famous, you know.
+        hint: The sentence is a simple statement. The nuance requested does not include emphasis or information
+          sharing. We're looking for the plain form without additional particles.
+    scene: Someone points out a popular eatery to their sibling.
+    register: casual
+    setting: friendly
+  - english: Her personality is kind.
+    japanese:
+      - 彼女 の 性格 は 親切 {だ}。
+      - 彼女 の 性格 は 親切 {だ よ}。
+      - 彼女 の 性格 は 親切 {だ ね}。
+    english_literally: Her personality, as for it, is kind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 性格 は 親切 {な 人 だ}。
+        english: She is a kind person.
+        hint: The sentence describes her personality directly, not that she is a kind person. We're looking
+          for the predicate use of the na-adjective.
+    scene: Two female friends are chatting about a mutual friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The simple 「だ」 at the end is perfectly natural for female speakers in casual conversation,
+      especially when stating a fact about someone's personality. Adding 「だよ」 or 「だね」 is also very common
+      for women to add emphasis or seek agreement.
+  - english: That story is strange.
+    japanese:
+      - あの 話 は 変 {だ}。
+      - あの 話 は 変 {だ よ}。
+      - あの 話 は 変 {だ ね}。
+    english_literally: That story, as for it, is strange.
+    competing_grammar:
+      - competing_japanese:
+          - あの 話 は 変 {です}。
+        english: That story is strange. (polite)
+        hint: The context implies a casual setting, so a polite form would be unnatural. We're looking
+          for the plain form.
+    scene: A group of teenagers are discussing a rumor.
+    register: casual
+    setting: friendly
+  - english: This task is simple.
+    japanese:
+      - この 作業 は 簡単 {だ}。
+      - この 作業 は 簡単 {だ よ}。
+      - この 作業 は 簡単 {だ ね}。
+    english_literally: This task, as for it, is simple.
+    competing_grammar:
+      - competing_japanese:
+          - この 作業 は 簡単 {な こと だ}。
+        english: This task is a simple thing.
+        hint: The sentence describes the task itself as simple, not as a simple 'thing.' We're looking
+          for the direct predicate use.
+    scene: A supervisor explains a basic procedure to a new hire in a casual tone.
+    register: casual
+    setting: professional
+  - english: The test results are satisfactory.
+    japanese:
+      - テスト の 結果 は 満足 {だ}。
+      - テスト の 結果 は 満足 {だ よ}。
+      - テスト の 結果 は 満足 {だ ね}。
+    english_literally: The test results, as for them, are satisfactory.
+    competing_grammar:
+      - competing_japanese:
+          - テスト の 結果 は 満足 {し て い ます}。
+        english: I am satisfied with the test results.
+        hint: The sentence describes the results as satisfactory, not the speaker's feeling of satisfaction.
+          We're looking for the direct description.
+    scene: A father reviews his child's test scores and comments to his spouse.
+    register: casual
+    setting: intimate
+  - english: The city at night is vibrant.
+    japanese:
+      - 夜 の 街 は 賑やか {だ}。
+      - 夜 の 街 は 賑やか {だ よ}。
+      - 夜 の 街 は 賑やか {だ ね}。
+    english_literally: The city at night, as for it, is vibrant.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 の 街 は 賑やか {だっ た}。
+        english: The city at night was vibrant.
+        hint: The sentence refers to the current state of the city at night. We're looking for the present
+          tense.
+    scene: Two friends on a late-night walk admire the scenery.
+    register: casual
+    setting: friendly
+  - english: That explanation is unclear.
+    japanese:
+      - その 説明 は 不 明瞭 {だ}。
+      - その 説明 は 不 明瞭 {だ よ}。
+      - その 説明 は 不 明瞭 {だ ね}。
+    english_literally: That explanation, as for it, is unclear.
+    competing_grammar:
+      - competing_japanese:
+          - その 説明 は 不 明瞭 {だっ た}。
+        english: That explanation was unclear.
+        hint: The sentence is about the current state of the explanation. We need the present tense form.
+    scene: A student expresses confusion to another student about a lecture they just attended.
+    register: casual
+    setting: academic
+post_example_writeup: The examples illustrate how な-Adjective[だ] is consistently used to casually state
+  a characteristic or quality in the present tense. Notice that the use of だ does not change based on
+  the gender or age of the speaker or listener when simply stating a fact, but its casual nature dictates
+  the social context. It is a fundamental building block for expressing descriptive information in informal
+  Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-adjective-だ-plain-present

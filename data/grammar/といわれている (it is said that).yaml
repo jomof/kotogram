@@ -1,0 +1,318 @@
+grammar_point: といわれている (it is said that)
+learn_before:
+  - となると (when it comes to)
+  - は (topic and contrast)
+  - ば (conditional, if A then B)
+  - 若い頃 (younger days)
+meaning: It is said that, Is known as
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: といわれている
+    rarity: common
+    meaning: It is said that (plain non-past)
+  - conjugation-type: non-past polite (～ます)
+    form: といわれています
+    rarity: common
+    meaning: It is said that (polite non-past)
+  - conjugation-type: negative plain (～ない)
+    form: といわれていない
+    rarity: common
+    meaning: It is not said that (plain negative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: といわれていません
+    rarity: common
+    meaning: It is not said that (polite negative)
+  - conjugation-type: past plain (～た)
+    form: といわれていた
+    rarity: common
+    meaning: It was said that (plain past)
+  - conjugation-type: past polite (～ました)
+    form: といわれていました
+    rarity: common
+    meaning: It was said that (polite past)
+  - conjugation-type: negative past plain (～なかった)
+    form: といわれていなかった
+    rarity: common
+    meaning: It was not said that (plain negative past)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: といわれていませんでした
+    rarity: common
+    meaning: It was not said that (polite negative past)
+  - conjugation-type: te-form (～て)
+    form: といわれていて
+    rarity: rare
+    meaning: It is said that, and (te-form)
+  - conjugation-type: conditional (～ば)
+    form: といわれていれば
+    rarity: uncommon
+    meaning: If it is said that (conditional - ba)
+  - conjugation-type: conditional (～たら)
+    form: といわれていたら
+    rarity: uncommon
+    meaning: If it was said that (conditional - tara)
+pronunciation:
+  katakana: トイワレテイル
+  romaji: to iwareteiru
+formation:
+  Sentence + といわれている: Expresses a rumor, belief, or common knowledge about something.
+jlpt: N4
+etymology: 「といわれている」 is derived from the verb 「言う(いう)」 (to say) in its passive form 「言われる(いわれる)」, combined
+  with 「と」 indicating the content of what is said, and 「いる」 indicating a state or condition. Thus, it
+  literally means 'is in the state of being said'.
+writeup: |-
+  The grammar point 「といわれている」 translates to "it is said that (A)" or "it is known that (A)." It's used to express a commonly held or public opinion. The verb 「言う(いう)」, meaning "to say," is used in its passive form 「言われる」 (to be said). This form is then combined with 「と」, which marks the quoted content, and 「いる」, indicating an an ongoing state, resulting in 「といわれている」 (is being said / is commonly said).
+
+  This construction implies that the information is widely circulated and generally accepted by many people, rather than being a personal observation or something heard from a single source. It's often used when presenting facts, rumors, or conventional wisdom.
+
+  To use 「といわれている」, simply attach it to the end of a phrase or sentence that represents the content being said. For example, to say "It is said that coffee is good for health," you would form 「コーヒーは健康に良い{といわれている}」.
+
+  This grammar point can be seen with or without the kanji for 「言う」 (言われている or いわれている), and its meaning remains unchanged regardless of the writing. It is a standard and versatile expression for conveying shared knowledge.
+false_friends:
+  - term: そうだ
+    meaning: I heard that, It is said that
+    kind: synonym
+    nuance: 「そうだ」 is used when you directly heard the information from someone, or if you are expressing
+      something that *appears* to be the case. 「といわれている」 is used for more general or widely known information
+      that is common knowledge or a widespread rumor.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: と考えられる (can be considered)
+    meaning: Is considered, Is thought of as
+    kind: synonym
+    nuance: 「とかんがえられている」 focuses on a specific thought or consideration, often implying a deliberate intellectual
+      process or a conclusion reached by experts or a group. 「といわれている」 is more about a general statement,
+      rumor, or conventional wisdom that is simply 'said' by many.
+    grammar_point: 考えられる・考えられない (can be considered・unthinkable)
+  - term: という
+    meaning: Called, Named, Known as, As much as
+    kind: similar expression
+    nuance: 「という」 refers to a direct naming or description. It is a defining statement. For example, 「犬という動物」
+      (an animal called 'dog'). 「といわれている」 indicates something is rumored or generally understood to be
+      the case, without necessarily being a formal definition or universally accepted naming.
+    grammar_point: という (naming and definition)
+  - term: らしい
+    meaning: It seems that, It appears that
+    kind: often confused with
+    nuance: 「らしい」 indicates an inference based on what one has observed or heard, suggesting a strong
+      likelihood but still a personal judgment. 「といわれている」 states something as being widely said or known,
+      often implying a more established, albeit unverified, common belief.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+post_false_friends_writeup: To avoid confusing 「といわれている」 with similar expressions, remember that 「そうだ」
+  implies you heard the information directly or it appears to be the case, 「と考えられる」 emphasizes a deliberate
+  consideration or thought, and 「という」 is for direct naming or description. 「らしい」 suggests a personal inference.
+  「といわれている」 should be used when you want to express something that is generally said, commonly believed,
+  or widely rumored.
+examples:
+  - english: It is said that Mount Fuji is the tallest mountain in Japan.
+    japanese:
+      - 富士 山 は 日本 で 一 番 高い 山 だ と {言わ れ て いる}。
+      - 富士 山 は 日本 で 一 番 高い 山 だ と {いわ れ て いる}。
+      - 富士 山 は 日本 で 一 番 高い 山 だ と {言わ れ て い ます}。
+    english_literally: Mount Fuji, in Japan, the number one tallest mountain, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 富士 山 は 日本 で 一 番 高い 山 {だ}。
+        english: Mount Fuji is the tallest mountain in Japan.
+        hint: This is a direct statement of fact, implying certainty. We're looking for an expression
+          that conveys common knowledge or rumor.
+    scene: A teacher explaining basic geography to a class of students.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: The statement 「富士山 は 日本 で 一 番 高い 山 だ と {言われている}」 conveys a widely known, established fact.
+      In an educational setting, this is presented as common knowledge rather than a newly reported piece
+      of information.
+  - english: This town is said to have many ancient legends.
+    japanese:
+      - この 町 は 古い 伝説 が 多い と {言わ れ て い ます}。
+      - この 町 は 古い 伝説 が 多い と {いわ れ て い ます}。
+      - この 町 は 古い 伝説 が 多い と {言わ れ て い る}。
+    english_literally: This town, ancient legends are many, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 は 古い 伝説 が 多い {そう です}。
+        english: I heard that this town has many ancient legends.
+        hint: 「そうです」 indicates information heard directly from someone else, while the grammar point implies
+          a general consensus or widespread knowledge. We're looking for a commonly held belief.
+    scene: A local historian giving a guided tour to tourists.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+    nuance: The use of 「といわれています」 in 「この 町 は 古い 伝説 が 多い と {言われています}」 is appropriate for a historian conveying
+      folklore and commonly recounted stories. The polite form 「言われています」 respects the audience and the
+      subject matter.
+  - english: It is not said that the problem has been resolved.
+    japanese:
+      - その 問題 は 解決 済み だ と は {言わ れ て い ない}。
+      - その 問題 は 解決 済み だ と は {いわ れ て い ない}。
+      - その 問題 は 解決 済み だ と は {言わ れ て い ませ ん}。
+    english_literally: That problem, resolved is, that is not said.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 解決 済み だ と は {考え られ て い ませ ん}。
+        english: It is not considered that the problem has been resolved.
+        hint: 「と考えられていない」 suggests a lack of deliberate thought or conclusion, while the grammar point
+          indicates a lack of widespread verbal communication or rumor. We're looking for the absence
+          of a common statement or rumor.
+    scene: Project manager updating the team on a difficult issue, indicating a lack of confirmed solution.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: The negative form 「{言われていない}」 in 「その 問題 は 解決 済み だ と は {言われていない}」 indicates that there is no
+      general consensus or public statement confirming the problem's resolution. This phrasing is direct
+      and factual, fitting for a professional update.
+  - english: It was said that dinosaurs lived in this area long ago.
+    japanese:
+      - 昔 は この 地域 に 恐竜 が い た と {言わ れ て い た}。
+      - 昔 は この 地域 に 恐竜 が い た と {いわ れ て い た}。
+      - 昔 は この 地域 に 恐竜 が い た と {言わ れ て い まし た}。
+    english_literally: Long ago, in this area, dinosaurs were, it was said.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は この 地域 に 恐竜 が い た と {思わ れ て い まし た}。
+        english: It was thought that dinosaurs lived in this area long ago.
+        hint: 「と思われていた」 implies a past belief or thought, while the grammar point emphasizes that it was
+          commonly spoken or rumored. We're looking for a past, widely circulated saying.
+    scene: An archaeologist discussing local paleontological theories at a lecture.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    listener_gender: group
+    nuance: The past tense 「{言われていた}」 in 「昔 は この 地域 に 恐竜 が いた と {言われていた}」 refers to a belief or theory
+      that was commonly held in the past. This is suitable for an academic context when discussing historical
+      scientific ideas.
+  - english: It was said that she was a genius singer when she was young, but it seems she has retired.
+    japanese:
+      - 彼女 は 若い 頃、天才 歌手 だ と {言わ れ て い まし た} が、引退 し た そう です。
+      - 彼女 は 若い 頃、天才 歌手 だ と {いわ れ て い まし た} が、引退 し た そう です。
+      - 彼女 は 若い 頃、天才 歌手 だ と {言わ れ て い た} が、引退 し た そう です。
+    english_literally: She, young time, genius singer was, it was said, but retired, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 若い 頃、天才 歌手 だっ た {らしい です}。
+        english: She seemed/was apparently a genius singer when she was young.
+        hint: 「らしい」 indicates an inference based on what one has observed or heard, suggesting a strong
+          likelihood. We're looking for a past, widely spoken about fact or rumor.
+    scene: An older woman recalling a famous singer from her youth to a younger acquaintance.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「{言われていました}」 in 「彼女 は 若い 頃 、 天才 歌手 だ と {言われていました}」 suggests that the singer's talent
+      was widely acknowledged and discussed in the past. The polite past form is appropriate for an older
+      woman speaking respectfully about a public figure to a younger person. The subsequent 「引退 し た そう
+      です」 shifts to hearsay about her retirement, highlighting the distinction between general knowledge
+      and reported information.
+  - english: It is said that chicken is good for dieting, so I often eat it.
+    japanese:
+      - ダイエット に は 鶏肉 が いい と {言わ れ て い て}、よく 食べ ます。
+      - ダイエット に は 鶏肉 が いい と {いわ れ て い て}、よく 食べ ます。
+      - ダイエット に は 鶏肉 が いい と {言わ れ て い て}、よく 食べる よ。
+    english_literally: For dieting, chicken is good, it is said, and I often eat it.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット に は 鶏肉 が いい {らしい です} から、よく 食べ ます。
+        english: Chicken seems to be good for dieting, so I often eat it.
+        hint: 「らしい」 implies an inference based on what one has heard or observed, while the grammar point
+          emphasizes a widely circulated belief. We're looking for common knowledge, not personal inference.
+    scene: Two male colleagues discussing their diet plans during lunch.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「鶏肉 が いい と {言われていて}」 uses the te-form of 「といわれている」, creating a causal link where
+      the common belief about chicken's benefits leads to the speaker's action of eating it often. This
+      casual register and topic are common between male colleagues discussing everyday matters like diet.
+  - english: If it were said that he is innocent, we could feel relieved.
+    japanese:
+      - もし 彼 が 潔白 だ と {言わ れ て いれ ば}、私 達 は 安心 でき ます。
+      - もし 彼 が 潔白 だ と {いわ れ て いれ ば}、私 達 は 安心 でき ます。
+      - もし 彼 が 潔白 だ と {言わ れ て いれ ば}、私 達 は 安心 できる でしょう。
+    english_literally: If he innocent is, it were said, we can feel relieved.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 が 潔白 だ と {考え られ て いれ ば}、私 達 は 安心 でき ます。
+        english: If it were considered that he is innocent, we could feel relieved.
+        hint: 「と考えられる」 means if it were considered or deemed. We're looking for a conditional based on
+          what is commonly said or rumored.
+    scene: A legal team discussing the public perception and potential outcomes of a high-profile case.
+    register: semi-formal
+    setting: serious
+    conjugation: conditional (～ば)
+    listener_gender: group
+    nuance: The conditional 「{言われていれば}」 in 「もし 彼 が 潔白 だ と {言われていれば}」 sets a hypothetical condition based
+      on a widely asserted public opinion. This structure is suitable for a legal team discussing the
+      implications of public perception on a case.
+  - english: It was said that that politician would be arrested for corruption, and it really happened.
+    japanese:
+      - あの 政治 家 は 汚職 で 逮捕 さ れる と {言わ れ て い たら}、本当 に なっ た。
+      - あの 政治 家 は 汚職 で 逮捕 さ れる と {いわ れ て い たら}、本当 に なっ た。
+      - あの 政治 家 は 汚職 で 逮捕 さ れる と {言わ れ て い まし たら}、本当 に そう なり まし た。
+    english_literally: That politician, corruption by arrested will be, it was said, it really happened.
+    competing_grammar:
+      - competing_japanese:
+          - あの 政治 家 は 汚職 で 逮捕 さ れる と {さ れ て い たら}、本当 に なっ た。
+        english: If that politician had been considered to be arrested for corruption, it really happened.
+        hint: 「とされている」 implies it was considered or established. We're looking for a conditional based
+          on a past widespread saying or rumor.
+    scene: Friends discussing a scandal, noting how a widespread rumor turned out to be true.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～たら)
+    listener_gender: group
+    nuance: The conditional past form 「{言われていたら}」 in 「あの 政治家 は 汚職 で 逮捕 される と {言われていたら}」 describes a past
+      rumor that turned out to be true. This reflects a casual conversation among friends reminiscing
+      about a public event.
+  - english: Isn't it true that young people nowadays don't own cars?
+    japanese:
+      - 最近 の 若者 は 車 を 持た ない と {言わ れ て い ませ ん} か。
+      - 最近 の 若者 は 車 を 持た ない と {いわ れ て い ませ ん} か。
+      - 最近 の 若者 は 車 を 持た ない と {言わ れ て い ない} の か な。
+    english_literally: Recent young people, car do not own, is not said?
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 若者 は 車 を 持た ない と {思わ れ て い ませ ん} か。
+        english: Isn't it thought that young people nowadays don't own cars?
+        hint: 「思われていませんか」 asks if it's commonly thought or believed, while the grammar point asks if it's
+          commonly said or rumored. We're looking for confirmation of a common saying or observation.
+    scene: An elderly person asking a younger relative about current societal trends.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: negative non-past polite (～ません)
+    speaker_age: older
+    nuance: The phrasing 「{言われていません} か」 uses the polite negative interrogative form, suggesting the speaker
+      (an older person) is seeking confirmation on a widely held belief or common observation about younger
+      people (「最近 の 若者 は 車 を 持た ない」). It implies 'Is this common knowledge or perception not true?' rather
+      than simply 'Haven't you heard?' This is a common way for older individuals to ask about current
+      societal trends that they may not be directly experiencing.
+  - english: It is said that eating breakfast is important for children's growth.
+    japanese:
+      - 子供 の 成長 に は 朝ご飯 が 大切 だ と {言わ れ て い ます}。
+      - 子供 の 成長 に は 朝ご飯 が 大切 だ と {いわ れ て い ます}。
+      - 子供 の 成長 に は 朝ご飯 が 大切 だ と {言わ れ て い る}。
+    english_literally: For children's growth, breakfast is important, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 成長 に は 朝ご飯 が 大切 だ と {思い ます}。
+        english: I think breakfast is important for children's growth.
+        hint: This expresses a personal opinion, while the grammar point conveys a widely accepted belief
+          or common knowledge. We're looking for common knowledge, not a personal thought.
+    scene: Two mothers are chatting at a park while their children play. One is sharing a common parenting
+      tip.
+    register: semi-formal
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「子供 の 成長 に は 朝ご飯 が 大切 だ と {言われています}」 uses the polite form of 「といわれている」, indicating
+      a piece of common knowledge or widely accepted advice among parents. It frames the importance of
+      breakfast as something that is generally acknowledged, rather than a personal belief, making it
+      a natural piece of advice shared between mothers.
+post_example_writeup: 「といわれている」 effectively frames information as a general consensus or widely known
+  fact, distinguishing it from personal reports or direct observations. Its usage often depends on the
+  formality and context of the conversation.

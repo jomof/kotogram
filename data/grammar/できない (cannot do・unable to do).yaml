@@ -1,0 +1,299 @@
+grammar_point: できない (cannot do・unable to do)
+learn_before:
+  - することができる (can・be able to)
+meaning: cannot do, unable to do, impossible
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: できない
+    rarity: common
+    meaning: cannot do
+  - conjugation-type: non-past polite (～ます)
+    form: できます
+    rarity: common
+    meaning: can do
+  - conjugation-type: negative non-past polite (～ません)
+    form: できません
+    rarity: common
+    meaning: cannot do (polite)
+  - conjugation-type: past plain (～た)
+    form: できた
+    rarity: common
+    meaning: could do
+  - conjugation-type: past polite (～ました)
+    form: できました
+    rarity: common
+    meaning: could do (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: できなかった
+    rarity: common
+    meaning: could not do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: できませんでした
+    rarity: common
+    meaning: could not do (polite)
+  - conjugation-type: te-form (～て)
+    form: できて
+    rarity: common
+    meaning: being able to do, and
+  - conjugation-type: negative plain (～ない)
+    form: できない
+    rarity: common
+    meaning: cannot do
+pronunciation:
+  katakana: デキナイ
+  romaji: dekinai
+formation:
+  Verb[dictionary] + ことができない: Indicates inability to perform an action due to lack of skill, physical
+    limitation, or external factors. This emphasizes the 'event' or 'act' of doing something.
+  Verb[potential-negative]: Expresses inherent inability or impossibility for the subject, or a general
+    impossibility. For する-verbs, this directly leads to the use of できない.
+jlpt: N5
+etymology: The term 「できる」 (dekiru), from which 「できない」 is derived, originally stemmed from the combination
+  of 「出(で)」 (de, to come out or appear) and 「来(く)る」 (kuru, to come). This linguistic fusion initially
+  conveyed the sense of 'to come into existence,' 'to be completed,' or 'to be accomplished.' Over time,
+  its meaning broadened to include 'to be able to do' or 'to be possible.' Consequently, 「できない」 (dekinai)
+  as the plain negative form of 「できる」, directly translates to 'cannot come into existence,' 'cannot be
+  accomplished,' or 'cannot be done,' thus signifying 'inability' or 'impossibility.'
+writeup: |-
+  「できない」 is a fundamental and widely used expression in Japanese to convey inability or impossibility. It is the plain negative form of the verb 「できる」 (can do). While 「できる」 itself functions as the potential form of many verbs (e.g., 食べる → 食べられる 'to be able to eat'), 「できない」 is extensively used as a standalone verb meaning "cannot do" or "it is impossible." This grammatical point primarily focuses on the direct use of 「できない」 and its common construction.
+
+  One primary way to use 「できない」 is in the structure **Verb[dictionary form] + ことができない**. This construction is employed when a speaker wishes to express that they are **unable to perform a specific action**. The 「こと」 nominalizes the preceding verb, transforming the action into a noun phrase, and then 「ができない」 indicates the inability to carry out that nominalized action. For instance, 「泳ぐ ことが できない」 (Oyogu koto ga dekinai) means "I cannot swim," typically due to a lack of ability.
+
+  Additionally, 「できない」 serves as the direct negative potential form of the verb 「する」 (to do). Thus, 「する」 (to do) becomes potential 「できる」 (can do), and its negative is 「できない」 (cannot do). This conveys a more direct sense of inherent impossibility or a subject's lack of capacity, especially with noun + する verbs (e.g., 勉強する (to study) → 勉強できない (cannot study)).
+
+  「できない」 is highly versatile and can be used in various registers simply by attaching polite endings like 「～ません」 or expressing past tense with 「～なかった」. Understanding these applications helps in correctly conveying inability in diverse situations.
+false_friends:
+  - term: Verb[ない]
+    meaning: plain negative of a verb (does not do)
+    kind: often confused with
+    nuance: While 「できない」 expresses 'cannot do' (inability), the plain negative form of a verb like 「食べない」
+      (tabenai) simply means 'does not eat' or 'will not eat' (non-action or a decision), without implying
+      inability. For example, 「私は食べない」 (Watashi wa tabenai) means 'I won't eat' (by choice), whereas 「私は食べることができない」
+      (Watashi wa taberu koto ga dekinai) means 'I cannot eat' (due to an inability).
+    grammar_point: Verb[ない] (plain negative)
+  - term: 〜はずがない
+    meaning: cannot be, there's no way that
+    kind: similar expression
+    nuance: 「〜はずがない」 expresses a strong conviction that something *cannot logically be* or *should not
+      be* the case, based on expectation or common sense. It's about improbability or strong disbelief,
+      not necessarily an inability. For example, 「彼がそんなことをするはずがない」 (Kare ga sonna koto wo suru hazu ga
+      nai) means 'There's no way he would do such a thing.' This is different from 「彼がそんなことをできない」 (Kare
+      ga sonna koto ga dekinai) which implies he *lacks the ability* to do it.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: 〜わけがない
+    meaning: no way, impossible
+    kind: similar expression
+    nuance: Similar to 「〜はずがない」, 「〜わけがない」 expresses an even stronger denial or assertion of impossibility,
+      often implying that something is utterly unreasonable or illogical. It emphasizes the lack of any
+      'reason' or 'circumstance' for something to be true. For example, 「そんな簡単な問題が分からないわけがない」 (Sonna kantan
+      na mondai ga wakaranai wake ga nai) means 'There's no way I wouldn't understand such an easy problem.'
+      This focuses on the logical impossibility rather than a personal inability.
+    grammar_point: わけがない (no way)
+  - term: Verb[stem]かねる
+    meaning: unable to, cannot bring oneself to, hesitant to
+    kind: similar expression
+    nuance: 「〜かねる」 often expresses a polite reluctance or difficulty in performing an action, rather than
+      a complete inability. It suggests that while it might technically be possible, the speaker finds
+      it difficult or inappropriate. For example, 「ご要望にはお答えしかねます」 (Goyōbō ni wa okotae shikanemasu) means
+      'I am unable/reluctant to answer your request.' This implies a choice or a delicate situation, whereas
+      「できない」 simply states the impossibility.
+    grammar_point: <suggest>:Verb[stem]かねる (unable to・hesitant to)
+post_false_friends_writeup: To differentiate these expressions from 「できない」, remember that 「できない」 is a
+  direct statement of **inability or impossibility** (e.g., 'I can't lift this heavy box' because I lack
+  the strength). In contrast, a simple verb negative like 「食べない」 is about **non-action or choice** (e.g.,
+  'I won't eat meat'). 「〜はずがない」 and 「〜わけがない」 focus on **logical impossibility or strong disbelief** ('That
+  can't be true'). Lastly, 「〜かねる」 conveys **polite reluctance or difficulty** ('I find it difficult to
+  comply'), rather than a fundamental lack of capability.
+examples:
+  - english: I cannot speak Japanese yet.
+    japanese:
+      - 私 は まだ 日本 語 が {でき ない}。
+      - 私 は まだ 日本 語 が {でき ませ ん}。
+      - まだ 日本 語 が {でき ない}。
+    english_literally: As for me, still Japanese cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は まだ 日本 語 を 話さ ない。
+        english: I don't speak Japanese yet.
+        hint: 「〜ない」 simply states a negative action or decision, not an inability or skill. We're looking
+          for an expression of capacity or capability.
+    scene: A beginner Japanese learner tries to communicate in Japan.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This is a straightforward statement of current inability. The particle 「が」 (ga) marks the
+      object of inability, 'Japanese'. Using 「私 は」 explicitly states the speaker, while omitting it (as
+      in the third variation) makes it more casual.
+  - english: I'm sorry, I cannot go to the party tomorrow.
+    japanese:
+      - すみ ませ ん、明日 の パーティー に は 行く こと が {でき ませ ん}。
+      - すみ ませ ん、明日 の パーティー に は 行く こと が {でき ない}。
+      - 申し訳 ござい ませ ん、明日 の パーティー に は 参る こと が {でき ませ ん}。
+    english_literally: Excuse me, tomorrow's party to cannot go the act.
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん、明日 の パーティー に は 行き ませ ん。
+        english: I'm sorry, I won't go to the party tomorrow.
+        hint: 「〜ません」 simply states a future non-action or decision, without implying inability. We're
+          looking for a reason of inability due to circumstances.
+    scene: A busy professional declines an invitation from a colleague.
+    register: formal
+    setting: apologetic
+    conjugation: negative non-past polite (～ません)
+    nuance: Using 「行く こと が できません」 emphasizes the inability to attend due to external circumstances, making
+      it a polite refusal. 「〜に は」 highlights 'the party' as the specific point of inability. The variation
+      with 「参る」 makes it more humble and formal.
+  - english: I was unable to finish the homework last night.
+    japanese:
+      - 昨夜、宿題 が {でき ませ ん でし た}。
+      - 昨夜、宿題 が {でき なかっ た}。
+      - 昨夜、宿題 を 終える こと が {でき ませ ん でし た}。
+    english_literally: Last night, homework could not do.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜、宿題 を し ませ ん でし た。
+        english: Last night, I didn't do homework.
+        hint: 「〜ませんでした」 simply states that the action wasn't performed, not necessarily due to an inability
+          to complete it. We're looking for an expression that implies 'couldn't'.
+    scene: A student confesses to their teacher the next morning.
+    register: casual
+    setting: apologetic
+    conjugation: negative past polite (～ませんでした)
+    nuance: This uses the polite past negative form, indicating a past inability. The phrasing is direct
+      and often implies external factors or insufficient time rather than a lack of understanding. Adding
+      「終える こと が」 makes the act of finishing explicit.
+  - english: My old car can't go that fast anymore.
+    japanese:
+      - 私 の 古い 車 は もう そんな に 速く 走る こと が {でき ない}。
+      - 私 の 古い 車 は もう そんな に 速く 走る こと が {でき ませ ん}。
+    english_literally: My old car as for, already that much fast run the act cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 古い 車 は もう そんな に 速く 走ら ない。
+        english: My old car doesn't go that fast anymore.
+        hint: 「〜ない」 implies it just doesn't perform that way, not necessarily that it physically 'cannot'
+          due to limitation. We're looking for the sense of an inherent limitation.
+    scene: Someone explains why they drive slowly on the highway.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「できない」 refers to the car's physical limitation. 「もう」 (mou) indicates a change from a
+      previous state, implying it 'used to be able to' but 'can't anymore'. The polite form 「できません」 can
+      be used in the same context.
+  - english: Even if it's cheap, if it's difficult to use, I can't buy it.
+    japanese:
+      - 安く て も、使い にくけれ ば、買う こと が {でき ない}。
+      - 安く て も、使い にくけれ ば、買う こと が {でき ませ ん}。
+    english_literally: Even if cheap, if hard to use, buy the act cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 安く て も、使い にくけれ ば、買い ませ ん。
+        english: Even if it's cheap, if it's difficult to use, I won't buy it.
+        hint: 「〜ません」 here implies a decision not to buy, not an impossibility of buying. We're looking
+          for a statement that it's unfeasible to acquire given the condition.
+    scene: A shopper deliberates over a product.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence combines a conditional clause with 「できない」, expressing an inability to purchase
+      if a certain condition (difficulty of use) is met. It reflects a practical impossibility for the
+      user. Both plain and polite forms fit here.
+  - english: I couldn't understand the complex theory.
+    japanese:
+      - その 複雑 な 理論 は {理解 でき ませ ん でし た}。
+      - その 複雑 な 理論 は {理解 でき なかっ た}。
+      - その 複雑 な 理論 を 理解 する こと が {でき ませ ん でし た}。
+    english_literally: That complex theory as for could not understand.
+    competing_grammar:
+      - competing_japanese:
+          - その 複雑 な 理論 は 分かり ませ ん でし た。
+        english: I didn't understand that complex theory.
+        hint: 「分かる」 (wakaru) means to understand, and its negative simply states non-understanding, not
+          necessarily an inability to grasp or comprehend due to complexity. 「理解できない」 specifically emphasizes
+          the *difficulty* or *impossibility* of comprehension.
+    scene: A university student discussing a lecture with a classmate.
+    register: casual
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    nuance: This uses 「理解できませんでした」 (Rikai dekimasen deshita), a direct application of 「できない」 with the
+      する-verb 「理解する」 (rikai suru, to understand) in the past polite negative. The explicit 「理解 する こと が」
+      variant clarifies the nominalized action.
+  - english: I cannot sleep because I'm worried about the test.
+    japanese:
+      - 試験 の こと が 心配 で、寝る こと が {でき ませ ん}。
+      - 試験 の こと が 心配 で、寝る こと が {でき ない}。
+    english_literally: Test's thing worried, sleep the act cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の こと が 心配 で、寝 ませ ん。
+        english: I don't sleep because I'm worried about the test.
+        hint: 「〜ません」 describes a state of not sleeping, not the *inability* to fall asleep despite wanting
+          to. We are looking for an expression of inability.
+    scene: A student tossing and turning in bed the night before an exam.
+    register: casual
+    setting: melancholic
+    conjugation: negative non-past polite (～ません)
+    nuance: 「寝る こと が できません」 uses the common construction for inability due to an internal state (worry).
+      This is a very natural way to express being unable to sleep due to external factors, highlighting
+      the physical impossibility.
+  - english: Even for a professional, it's impossible to solve this problem quickly.
+    japanese:
+      - プロ で あっ て も、この 問題 を すぐ に 解決 する こと は {でき ない}。
+      - プロ で あっ て も、この 問題 を すぐ に 解決 する こと は {でき ませ ん}。
+    english_literally: Even if professional, this problem immediately solve the act cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - プロ で あっ て も、この 問題 を すぐ に 解決 する の は 難しい。
+        english: Even for a professional, solving this problem quickly is difficult.
+        hint: 「難しい」 (muzukashii) means difficult, but 「できない」 implies it's beyond capability or objectively
+          impossible, not just hard to do.
+    scene: Experts discussing a highly complex technical issue.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「プロ であっても」 (Pro de attemo, even for a professional) emphasizes the difficulty or impossibility.
+      「解決 する こと は できない」 highlights that this action is impossible even for highly skilled individuals.
+  - english: Since I'm sick, I can't eat anything.
+    japanese:
+      - 病気 な の で、何 も 食べる こと が {でき ませ ん}。
+      - 病気 な の で、何 も 食べる こと が {でき ない}。
+    english_literally: Since sick, anything eat the act cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 病気 な の で、何 も 食べ ませ ん。
+        english: Since I'm sick, I don't eat anything.
+        hint: 「〜ません」 can imply a choice or routine, but 「できません」 clearly states physical inability to perform
+          the action due to sickness.
+    scene: Someone explains their limited diet to a friend while feeling unwell.
+    register: casual
+    setting: friendly
+    conjugation: negative non-past polite (～ません)
+    nuance: 「何も 〜ない」 (nani mo ~nai) is a common pattern for 'not anything'. 「食べる こと が できません」 expresses
+      a physical inability to eat, often due to illness. Both plain and polite forms are natural here.
+  - english: This old machine cannot be repaired anymore.
+    japanese:
+      - この 古い 機械 は もう {修理 でき ませ ん}。
+      - この 古い 機械 は もう {修理 でき ない}。
+      - この 古い 機械 は もう 修理 する こと が {でき ませ ん}。
+    english_literally: This old machine as for already cannot repair.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 機械 は もう 修理 し ませ ん。
+        english: This old machine won't be repaired anymore.
+        hint: This implies a decision not to repair, not a physical impossibility of repair. We are looking
+          for the sense that it is irreparable.
+    scene: A technician explains why a broken machine must be replaced.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    nuance: 「修理する」 (shūri suru, to repair) is a する-verb, and thus 「修理できない」 (shūri dekinai) is its potential
+      negative form, directly using 「できない」 to express an objective impossibility. The 「修理 する こと が」 variant
+      is also common.
+post_example_writeup: As demonstrated by the examples, 「できない」 is a highly versatile expression. It can
+  be paired with Verb[dictionary form] + こと to specify the action that cannot be done due to external
+  factors or lack of skill, or it can be used as the direct negative potential form of a する-verb to convey
+  inherent inability. Its conjugation follows regular い-adjective patterns (e.g., できません, できなかった), making
+  it straightforward to adapt to different tenses and politeness levels. Pay attention to context to discern
+  whether an inability stems from an external constraint or a personal limitation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84

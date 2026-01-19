@@ -1,0 +1,290 @@
+grammar_point: Verb[imperative] (imperative)
+matcher: '{verb-imperative}'
+matcher_enforce_examples: true
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - 真上 (directly above)
+meaning: imperative
+conjugations:
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 行け
+    rarity: common
+    meaning: go!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 食べろ
+    rarity: common
+    meaning: eat!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: しろ
+    rarity: common
+    meaning: do it!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: こい
+    rarity: common
+    meaning: come!
+pronunciation:
+  katakana: めいれいけい
+  romaji: meirei-kei
+formation:
+  Group 1 Verbs (う-ending) + え: 'Example: 行く (iku) -> 行け (ike) - ''Go!'''
+  Group 2 Verbs (る-ending) + ろ: 'Example: 食べる (taberu) -> 食べろ (tabero) - ''Eat!'''
+  'Irregular Verbs: する -> しろ': 'Example: する (suru) -> しろ (shiro) - ''Do it!'''
+  'Irregular Verbs: くる -> こい': 'Example: くる (kuru) -> こい (koi) - ''Come!'''
+jlpt: N4
+etymology: The imperative form (命令形) has deep roots in classical Japanese, evolving from various endings
+  that conveyed direct instruction or strong desire. Its structure reflects ancient linguistic patterns
+  for expressing immediate and forceful directives. The forms for Godan verbs (Group 1) often derive from
+  the 'e' sound in classical Japanese, indicating direct address, while Ichidan verbs (Group 2) and irregular
+  verbs have developed their unique patterns, though all serve the fundamental purpose of commanding.
+  Over time, while the forms largely remained, their social usage became more restricted to casual or
+  hierarchical contexts, or situations of urgency.
+writeup: 'The imperative form, or 命令形 (meirei-kei), is a direct way to give commands or strong instructions
+  in Japanese. It is typically used in casual speech among close friends or family, by superiors to subordinates,
+  or in urgent situations like warnings or shouts. Due to its directness, it can often sound forceful
+  or even rude if used inappropriately with someone of higher status or someone you don''t know well.
+  For Group 1 verbs (五段動詞, godan doushi), the final ''u'' sound changes to an ''e'' sound (e.g., 行く (iku)
+  becomes 行け (ike)). For Group 2 verbs (一段動詞, ichidan doushi), the final ''ru'' changes to ''ro'' (e.g.,
+  食べる (taberu) becomes 食べろ (tabero)). Irregular verbs する (suru) and くる (kuru) have their own unique imperative
+  forms: しろ (shiro) and こい (koi) respectively. While the imperative form is common in casual male speech,
+  both genders use it in specific contexts, such as when giving instructions to children, subordinates,
+  or in sports and emergencies. It is less common for women to use the plain imperative in general conversation,
+  especially with male speakers, favoring softer alternatives. The nuance of the imperative can shift
+  significantly based on the speaker''s tone. A harsh tone makes it a strict command, while a gentler
+  or encouraging tone can make it a supportive instruction, especially in contexts like cheering someone
+  on. For prohibitions, the plain negative form of the verb is combined with the particle な (e.g., 行くな
+  (ikuna) - ''Don''t go''). This negative imperative also carries a strong, direct tone.'
+false_friends:
+  - term: 〜なさい (polite imperative)
+    meaning: Polite imperative
+    kind: similar expression
+    nuance: While also an imperative, 「〜なさい」 is softer and generally used by adults to children or by
+      teachers to students, suggesting a gentle instruction rather than a forceful command. We're looking
+      for the more direct, casual imperative.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: 〜てください (please do)
+    meaning: Please do
+    kind: similar expression
+    nuance: 「〜てください」 is a polite request form, emphasizing politeness and asking for cooperation, rather
+      than issuing a direct command. We're looking for a direct command.
+    grammar_point: てください (polite request)
+  - term: 〜てはいけない (must not)
+    meaning: Must not do
+    kind: similar expression
+    nuance: 「〜てはいけない」 expresses a strong prohibition or rule, which is a negative command. The imperative
+      form itself is primarily for positive commands, though it can combine with な for negative imperative.
+      We're looking for the basic positive imperative.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: 〜べきだ (should do)
+    meaning: Should do
+    kind: similar expression
+    nuance: 「〜べきだ」 indicates a strong obligation or recommendation, often based on moral or logical reasoning,
+      rather than a direct order. We're looking for a command, not a suggestion of what 'should' be done.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+post_false_friends_writeup: When choosing between the imperative (plain or polite form), or 「〜てください」,
+  consider the social hierarchy and your relationship with the listener. The plain imperative is the most
+  direct and can sound harsh if not used with care, while the polite imperative softens the command, making
+  it more suitable for giving instructions to those younger or of lower status in a gentle manner. 「〜てください」
+  is a neutral polite request, emphasizing politeness and cooperation, suitable for broader situations.
+examples:
+  - english: Go!
+    japanese:
+      - '{行け}！'
+      - '{行け} よ！'
+      - '{行け}っ！'
+    english_literally: Go!
+    competing_grammar:
+      - competing_japanese:
+          - 行っ て ください！
+        english: Please go!
+        hint: 「〜てください」 is a polite request. We're looking for a direct, informal command.
+    scene: A soccer coach yells at a player during a practice.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The coach uses 「行け」, the plain imperative, to give a sharp, immediate command to his player.
+      This is typical in sports or urgent situations where directness and speed are prioritized. It reflects
+      the hierarchical relationship between a coach and player, and the expectation of immediate compliance.
+      The male speaker's use of this direct form is also very common in male speech, especially when issuing
+      commands.
+  - english: Eat your vegetables!
+    japanese:
+      - 野菜 を {食べろ}！
+      - 野菜 を {食え}！
+    english_literally: Vegetables eat!
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 を 摂取 する の が いい！
+        english: It's good to consume vegetables!
+        hint: This states a general recommendation. We're looking for a direct command to eat.
+    scene: A father tells his child to eat dinner.
+    register: casual
+    setting: instructional
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The father uses 「食べろ」, a direct and common way for parents to instruct children. This form
+      is very typical in a family setting, where directness is acceptable and expected. The use of the
+      imperative here reflects the parent's authority over the child. While it's a command, in this family
+      context, it's not necessarily harsh but rather a firm instruction.
+  - english: Sit down!
+    japanese:
+      - '{座れ}！'
+      - '{座れ} よ！'
+      - '{座れ}っ！'
+    english_literally: Sit!
+    competing_grammar:
+      - competing_japanese:
+          - 座っ てろ！
+        english: Keep sitting! / Sit and stay! (Continuous imperative)
+        hint: 「座ってろ」 emphasizes a continuous state or an order to stay put, as opposed to the simple command
+          to 'sit down' at this moment. We're looking for a direct, one-time action command.
+      - competing_japanese:
+          - 座っ て ください！
+        english: Please sit down!
+        hint: 「〜てください」 is a polite request. We're looking for a direct command, often used in urgent situations
+          or when frustrated.
+    scene: A frustrated teacher tells a disruptive student to sit down.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: Even though female speakers often use softer language, in a situation of frustration or when
+      dealing with misbehavior, 「座れ」 is a direct command that a female teacher might use to exert authority.
+      It conveys a strong, no-nonsense directive. This example highlights that context can override typical
+      gendered speech patterns.
+  - english: Come here!
+    japanese:
+      - '{来い}！'
+      - '{来い} よ！'
+      - '{来い}っ！'
+    english_literally: Come!
+    competing_grammar:
+      - competing_japanese:
+          - 来 て！
+        english: Come (te-form casual request)!
+        hint: 「来て」 is a casual request using the te-form. We're looking for a more direct and commanding
+          imperative, typical in urgent or hierarchical situations.
+    scene: A dog owner calls their dog.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: When addressing animals, the plain imperative form like 「来い」 is perfectly natural and common.
+      There's no need for politeness, so the directness of the imperative is appropriate. This demonstrates
+      a non-human context where the imperative is used without any negative social implications.
+  - english: Listen carefully!
+    japanese:
+      - よく {聞け}！
+      - よく {聞け} よ！
+    english_literally: Well listen!
+    competing_grammar:
+      - competing_japanese:
+          - よく 聞い て ください！
+        english: Please listen carefully!
+        hint: 「〜てください」 is a polite request. We're looking for a direct instruction, typically used in
+          a coaching or mentoring context.
+    scene: A mentor instructs their mentee on an important point.
+    register: casual
+    setting: instructional
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: In a mentoring relationship, 「聞け」 can be used to emphasize the importance of the instruction.
+      While direct, it can convey sincerity and a strong desire for the mentee to truly understand. This
+      usage highlights that the imperative is not always negative; it can also show earnestness and care
+      when used appropriately within a close relationship.
+  - english: Run!
+    japanese:
+      - '{走れ}！'
+      - '{走れ} よ！'
+      - '{走れ}っ！'
+    english_literally: Run!
+    competing_grammar:
+      - competing_japanese:
+          - 走っ て！
+        english: Run (te-form casual request)!
+        hint: 「走って」 is a more general casual request. We're looking for a direct and urgent command, common
+          in emergency situations.
+    scene: Someone shouts a warning during an emergency.
+    register: casual
+    setting: emergency/alarm
+    conjugation: imperative plain (～ろ/～え)
+    nuance: In an emergency, direct commands like 「走れ」 are used for clarity and urgency, overriding typical
+      politeness conventions. The focus is on immediate action, and the imperative form perfectly conveys
+      this without any nuanced social implications beyond the necessity of the moment.
+  - english: Wait!
+    japanese:
+      - '{待て}！'
+      - '{待て} よ！'
+      - '{待て}っ！'
+    english_literally: Wait!
+    competing_grammar:
+      - competing_japanese:
+          - 待っ て！
+        english: Wait (te-form casual request)!
+        hint: 「待って」 is a common casual request. We're looking for a firmer, more direct command, often
+          used when someone is about to do something you want to stop.
+    scene: A police officer shouts at a suspect who is trying to flee.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    nuance: The imperative 「待て」 is used in situations of authority, especially by law enforcement. It
+      demands immediate compliance and signals the serious nature of the situation. This usage is common
+      in formal professional contexts where direct commands are part of the job function.
+  - english: Throw it!
+    japanese:
+      - '{投げろ}！'
+      - '{投げろ} よ！'
+    english_literally: Throw!
+    competing_grammar:
+      - competing_japanese:
+          - 物 を 離し て！
+        english: Release the object!
+        hint: This is a request to let go of an object, not specifically to throw it. We're looking for
+          a direct command to throw.
+    scene: A baseball coach instructs his pitcher during a game.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: Similar to the 'Go!' example, 「投げろ」 is a straightforward command used in sports for efficiency
+      and clear communication. The coach's male gender and older age reinforce the common association
+      of the imperative with male speech and hierarchical roles in Japanese society, though its primary
+      function here is purely practical for the game.
+  - english: Read this book!
+    japanese:
+      - この 本 を {読め}！
+      - この 本 を {読め} よ！
+    english_literally: This book read!
+    competing_grammar:
+      - competing_japanese:
+          - この 本 を 読ん で ください！
+        english: Please read this book!
+        hint: 「〜てください」 is a polite request. We're looking for a direct, informal command.
+    scene: A librarian sternly tells a student to read a particular book.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: Here, 「読め」 is a direct command. While a female speaker might typically use softer language,
+      in a context of authority like a librarian giving an instruction, the plain imperative can be used
+      to convey a firm expectation. It is direct and leaves no room for ambiguity.
+post_example_writeup: Understanding the context and relationship is crucial when using the imperative
+  form. While it can be a straightforward command, its impact varies greatly from a coach shouting instructions
+  to a parent disciplining a child, or even a friend cheering you on. Always consider if the directness
+  is appropriate for the situation and your relationship with the listener to avoid sounding impolite
+  or demanding.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/229

@@ -1,0 +1,258 @@
+grammar_point: Question-phrase+か (embedded question)
+learn_before:
+  - 〜かは〜によって違う (depends on)
+meaning: Embedding questions within larger sentences.
+meaning_warning: Avoid using 「だ」 or 「です」 directly before 「か」 when it follows a noun or na-adjective.
+pronunciation:
+  katakana: ギモンシ+カ
+  romaji: gimon shi + ka
+formation:
+  Verb (plain form) + か: Used to embed a verb clause as a question.
+  い-Adjective (plain form) + か: Used to embed an い-adjective clause as a question.
+  な-Adjective (stem) + か: Used to embed a な-adjective clause as a question. The copula 「だ」 is omitted.
+  Noun + か: Used to embed a noun phrase as a question. The copula 「だ」 is omitted.
+jlpt: N4
+etymology: 'The particle 「か」 has two primary functions: as a sentence-ending particle indicating a question
+  and as an adverbial particle highlighting uncertainty. In this grammar point, 「か」 functions as an adverbial
+  particle, similar to its use in words like 「どこか」 (somewhere) or 「誰か」 (someone). It marks the preceding
+  question phrase as an uncertain element being inquired about within the main sentence.'
+writeup: |-
+  The particle 「か」 serves to embed a question within a larger statement. It transforms a direct question into a clause that functions as a noun within the sentence. This is different from using 「か」 as a sentence-ending particle, which forms a direct question.
+
+  When using 「か」 in this way, **avoid** placing 「だ」 or 「です」 immediately before it when following nouns or na-adjectives. For example, instead of 「どこだか」, use 「どこか」.
+
+  The embedded question is often followed by verbs like 「知っている」 (to know), 「分かる」 (to understand), or 「決める」 (to decide), which indicate an action or state related to the uncertain information. While the embedded question implies uncertainty, a direct question marker at the end of the main sentence is not strictly required but can be added for emphasis or clarity, especially in spoken language.
+false_friends:
+  - term: かどうか
+    meaning: Whether or not
+    kind: similar expression
+    nuance: 「かどうか」 is specifically used when there are only two possibilities (e.g., 'yes' or 'no', 'true'
+      or 'false'). 「か」 with a question phrase can cover a wider range of open-ended inquiries within a
+      sentence.
+    grammar_point: かどうか (whether or not)
+  - term: か (or)
+    meaning: Or
+    kind: often confused with
+    nuance: This 「か」 connects two alternatives in a list (e.g., りんごかみかん 'apple or orange'), and does not
+      embed a question or denote uncertainty within a larger sentence.
+    grammar_point: か (or)
+  - term: か〜ないかのうちに
+    meaning: Right after, As soon as, Just when, Barely
+    kind: similar expression
+    nuance: This is a set phrase used to describe the immediacy of one action following another. Despite
+      containing 「か」, its meaning and grammatical function are completely unrelated to embedding questions.
+    grammar_point: か〜ないかのうちに (immediately after)
+  - term: ことか
+    meaning: How surprising or emotional
+    kind: often confused with
+    nuance: While both use 「か」, 「ことか」 is an exclamatory expression used to convey strong emotion or surprise,
+      not to embed a factual question within another sentence.
+    grammar_point: ことか (how surprising or emotional)
+post_false_friends_writeup: To avoid confusion, remember that the primary function of 「Question-phrase
+  + か」 is to embed a question or an unknown within a larger sentence. In contrast, 「かどうか」 is used for
+  binary choices, 「か」 (as a false friend) connects alternatives, 「か〜ないかのうちに」 expresses a temporal relationship,
+  and 「ことか」 is for strong emotional emphasis. Each serves a distinct purpose in Japanese grammar.
+examples:
+  - english: Do you know when he will come?
+    japanese:
+      - 彼 が いつ 来る {か} 知っ てる？
+      - 彼 が いつ いらっしゃる {か}、ご 存知 です か？
+      - 彼 は いつ 来る {か}、教え て いただけ ます か？
+      - 彼 が いつ 来る {か}、まだ 分かり ませ ん。
+    english_literally: When he comes, do you know?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ 来 ます {か}
+        english: When will he come?
+        hint: This is a direct question asking for information. We are looking for an embedded question
+          within a larger sentence.
+    scene: You're asking a colleague about a new team member's start date.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: This sentence structure embeds the question 「いつ 来る」 (when he will come) within the larger
+      question 「知っていますか」 (Do you know?). This is different from a direct question about his arrival. The
+      polite form 「知っていますか」 is suitable for a professional setting.
+    etymology: The usage of 「か」 here originates from its function as a marker of uncertainty, which is
+      then 'known' or 'unknown' by the main verb.
+  - english: We don't know yet if this plan will succeed.
+    japanese:
+      - この 計画 が 成功 する {か} は、まだ 分かり ませ ん。
+      - この 計画 が うまく いく {か}、まだ 分かり ませ ん ね。
+      - この 計画 が 成功 する {か}、誰 も 断言 でき ませ ん。
+    english_literally: This plan succeeding or not, we don't know yet.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が 成功 する {か どう か} まだ 分かり ませ ん。
+        english: We don't know yet whether or not this plan will succeed.
+        hint: 「かどうか」 specifically refers to a binary 'yes/no' type of uncertainty. While similar, the
+          simple 「か」 can be used more broadly for general unknowns, not just two options.
+    scene: A project manager is giving an update on a new, risky venture.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「成功する か」 (whether it will succeed) is an embedded clause that functions as the
+      object of 「分かりません」 (don't know). This expresses uncertainty about the plan's outcome, fitting a
+      professional update where outcomes are not yet guaranteed.
+    etymology: The use of 「か」 in embedded clauses like this traces back to its role in indicating a choice
+      or alternative, here between 'succeed' and 'not succeed', which then becomes the subject of uncertainty.
+  - english: No one knows where he went.
+    japanese:
+      - 彼 が どこ へ 行っ た {か}、誰 も 知ら ない よ。
+      - 彼 が どこ へ 行っ た {か}、誰 も 知ら ない。
+      - 彼 が どこ に 行っ た の {か}、誰 も 知り ませ ん。
+      - 彼 が どちら へ 行か れ た の {か}、存じ上げ ませ ん。
+      - 奴 が どこ へ 行き や がっ た {か}、誰 も 知ら ねえ よ。
+    english_literally: Where he went, no one knows, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は どこ へ 行っ {た}。
+        english: He went somewhere.
+        hint: This sentence makes a statement without expressing uncertainty about a location. We are
+          looking for an embedded question about 'where' someone went.
+    scene: Friends are talking casually about a mutual friend who disappeared abruptly.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「よ」 at the end adds a sense of assertion or emphasis, common in casual speech among
+      friends. While sometimes associated with male speech, it is also used by female speakers in a friendly,
+      conversational context. The phrase 「誰 も 知らない よ」 (no one knows, you know) embeds the question of
+      his whereabouts as the unknown information.
+    etymology: 「よ」 as a sentence-final particle has evolved to convey various pragmatic meanings, from
+      informing to asserting, often reflecting the speaker's emotional stance or desire for shared understanding.
+  - english: I'm looking forward to when Mom will bake the cake.
+    japanese:
+      - お 母 さん が いつ ケーキ を 焼い て くれる {か}、楽しみ だ なあ。
+      - お 母 さん が いつ ケーキ を 焼い て くれる {か}、楽しみ だ よ ね。
+      - お 母 さん が いつ ケーキ を 焼い て くれる {か}、今 から 待ち遠しい な。
+      - お 母 さん が いつ ケーキ を 焼く {か}、すごく 楽しみ！
+      - ママ が いつ ケーキ を 焼い て くれる {か}、ワクワク する ね！
+    english_literally: When Mom bakes the cake for me, it's fun, you know.
+    competing_grammar:
+      - competing_japanese:
+          - お 母 さん が ケーキ を 焼い て くれる {の} が 楽しみ だ な。
+        english: I'm looking forward to Mom baking the cake.
+        hint: This sentence expresses general anticipation for an event, not specifically for the unknown
+          'when' of the event. We are looking for an embedded question about the timing.
+    scene: A young child excitedly talking about their mom's baking.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The particle 「な」 at the end conveys a sense of personal feeling or light exclamation, common
+      in casual speech, especially among younger speakers like a child. The embedded question 「いつ 焼いて
+      くれる か」 (when she will bake) acts as the object of anticipation for 「楽しみだ」 (I'm looking forward to
+      it).
+    etymology: The particle 「な」 has roots in older forms of Japanese, often used to express strong emotion
+      or emphasis, and it continues to be prevalent in casual, expressive speech, particularly among children
+      and women.
+  - english: Please think carefully about whether this is really necessary.
+    japanese:
+      - これ が 本当 に 必要 {か}、よく 考え て ください。
+      - これ が 本当 に 必要 {か}、今 一 度 よく 検討 し て ください。
+      - これ が 本当 に 必要 な の {か}、よく 考え て み て ください。
+      - これ が 本当 に 必要 {か}、君 自身 で 判断 し なさい。
+    english_literally: This truly necessary, please think carefully.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 本当 に 必要 {か どう か} よく 考え て ください。
+        english: Please think carefully whether or not this is really necessary.
+        hint: While 「かどうか」 is common for 'whether or not' questions, the simpler 「か」 is also grammatically
+          correct and often used when the alternatives are implied. We are looking for the direct use
+          of 「か」 with a question phrase.
+    scene: A manager instructing their team to review a requirement before proceeding.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「これ が 本当 に 必要 か」 (whether this is really necessary) is an embedded question that
+      serves as the object of the command 「よく 考えて ください」 (please think carefully). This semi-formal tone
+      is appropriate for a manager addressing a team, implying a directive to evaluate the necessity.
+    etymology: The imperative form 「〜て ください」 is a polite request, stemming from the verb 「くださる」 (to give),
+      which implies the action is being 'given' to the listener as a favor or instruction.
+  - english: Let's decide where to eat dinner.
+    japanese:
+      - 晩ごはん、どこ に する {か} 決めよう。
+      - 夕食 を どこ で 食べる {か} 決め ましょう。
+      - 食事 を どこ で とる {か}、決定 し ましょう。
+    english_literally: Dinner, where to make it, let's decide.
+    competing_grammar:
+      - competing_japanese:
+          - 晩ごはん は 何 を {食べる}
+        english: What are we eating for dinner?
+        hint: This is a direct question about *what* to eat, not an embedded question about *where* to
+          eat. We are looking to embed the location question.
+    scene: Two friends are brainstorming dinner plans for the evening.
+    register: casual
+    setting: friendly
+  - english: I wonder what he's thinking.
+    japanese:
+      - 彼 は 何 を 考え て いる {か} なあ。
+      - 彼 が 何 を お 考え な の {か}、気 に なり ます ね。
+      - 彼 は 何 を 考え て いる の だ {か}、不明 です。
+    english_literally: What he is thinking, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 を 考え て いる {の}
+        english: What is he thinking?
+        hint: This is a direct question asking someone else what he's thinking. We are looking for an
+          internal wondering or speculation about what he's thinking.
+    scene: You see a colleague sitting quietly at their desk, looking deep in thought.
+    register: casual
+    setting: reflective
+  - english: Could you tell me how I should fill out this form?
+    japanese:
+      - この 用紙 は どの よう に 記入 すれ ば よい {か}、教え て ください。
+      - この 用紙、どう 書け ば いい {か}、教え て くれる？
+      - この 書類 を いかに 記載 すれ ば よろしい {か}、ご 教示 願え ます か？
+    english_literally: This form, how should I fill it out, please tell me.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 の 記入 方法 を 教え て いただけ ます {か}
+        english: Could you tell me the method for filling out this document?
+        hint: This asks for the 'method' directly. We are looking to embed the 'how' as a question within
+          the request.
+    scene: You are at a municipal office trying to fill out an unfamiliar document.
+    register: teineigo (polite)
+    setting: informative
+  - english: It's uncertain whether she will truly agree.
+    japanese:
+      - 彼女 が 本当 に 同意 する {か} は 分から ない。
+      - 彼女 が 心底 承諾 する {か} は 不明 だ。
+      - 彼女 は 本当 に 首 を 縦 に 振る {か}、怪しい もの だ。
+    english_literally: Whether she will truly agree, it is unknown.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 同意 する {か どう か}、まだ 不明 です。
+        english: It's still uncertain whether or not she will agree.
+        hint: This emphasizes a binary 'yes' or 'no' outcome. We are looking for a more general expression
+          of uncertainty about her agreement, not necessarily a two-option choice.
+    scene: Two business partners are discussing a difficult client's potential decision on a new proposal.
+    register: semi-formal
+    setting: serious
+  - english: I can't recall what time the meeting starts.
+    japanese:
+      - 会議 が 何 時 に 始まる {か}、思い出せ ない。
+      - 会議 の 開始 時間 が 何 時 な の {か}、思い出せ ませ ん。
+      - 打ち合わせ の 開始 時刻 が 何 時 {か}、記憶 が 定か で は ない。
+    english_literally: What time the meeting starts, I can't recall.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 何 時 に 始まり ます {か}
+        english: What time does the meeting start?
+        hint: This is a direct question asking for the meeting time. We are looking to express an inability
+          to recall the time, embedding the 'what time' as the object of 'recall'.
+    scene: A busy professional quickly checks their calendar, realizing they can't remember the exact
+      start time for an upcoming meeting.
+    register: teineigo (polite)
+    setting: professional
+post_example_writeup: The usage of 「Question-phrase + か」 allows for flexible and nuanced communication,
+  integrating uncertain or unknown information smoothly into broader statements or requests. This construction
+  is highly common in everyday Japanese for expressing thoughts about information, rather than directly
+  asking for it.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/question-phrase-か

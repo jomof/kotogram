@@ -1,0 +1,217 @@
+grammar_point: あんなに (that much over there)
+better_grammar_point_name:
+  - <suggest>:あんなに (that much・to that extent)
+learn_before:
+  - Verbて (uncontrollable consequence)
+  - あんな (that kind of)
+  - とする (feel ~)
+  - な-Adjectives (adjectival nouns)
+  - ～なかったでしょう (past negative conjecture)
+meaning: That much; to that extent; so much; such a great amount or degree, often expressing surprise
+  or emphasis.
+pronunciation:
+  katakana: アンナニ
+  romaji: annani
+formation:
+  あんなに + Verb/い-Adjective/な-Adjective/Adverb: Modifies a verb, adjective, or another adverb to express
+    a large degree or extent.
+jlpt: N5
+etymology: あんなに is derived from the demonstrative series あ- (as in あの, あそこ, あれ), which indicates something
+  physically or psychologically distant from both the speaker and the listener. The な part is a nominalizing
+  particle (similar to こんな, そんな, どんな), and に is a particle indicating degree or manner, forming an adverb.
+  Thus, あんなに literally means "in such a manner/degree as that (over there)." It highlights the degree
+  or extent of something observed or recalled.
+writeup: あんなに is an adverb used to express a large degree, extent, or quantity of something, often implying
+  surprise, emphasis, or even a sense of being overwhelmed. It belongs to the "あ" (a) series of demonstratives,
+  which refers to things physically or psychologically distant from both the speaker and the listener,
+  or something that is generally known or understood, not necessarily immediately present. While its literal
+  meaning points to "that much over there," it's more commonly used to convey "so much" or "to such an
+  extent" when referring to something previously mentioned or understood, or when expressing a strong
+  feeling about something's magnitude. It can modify verbs, adjectives, or other adverbs.
+false_friends:
+  - term: こんなに
+    meaning: This much; to this extent; so much (near speaker)
+    kind: similar expression
+    nuance: Unlike あんなに, こんなに refers to a degree or amount close to the speaker, implying "this much"
+      or "to this extent" (e.g., "this much (like what I'm experiencing now)").
+    grammar_point: <suggest>:こんなに (this much・to this extent)
+  - term: そんなに
+    meaning: That much; to that extent; so much (near listener)
+    kind: similar expression
+    nuance: Unlike あんなに, そんなに refers to a degree or amount close to the listener, implying "that much"
+      or "to that extent" (e.g., "that much (like what you're experiencing)").
+    grammar_point: <suggest>:そんなに (that much・to that extent)
+  - term: どんなに
+    meaning: How much; to what extent
+    kind: similar expression
+    nuance: Unlike あんなに, どんなに is used to ask about the degree or extent, or to express "no matter how
+      much/how."
+    grammar_point: <suggest>:どんなに (how much・to what extent)
+post_false_friends_writeup: The key to distinguishing こんなに, そんなに, あんなに, and どんなに lies in the basic principles
+  of the こ・そ・あ・ど demonstrative series. こんなに refers to something near the speaker, そんなに to something near
+  the listener, and あんなに to something far from both, or something generally acknowledged. どんなに is the
+  interrogative form, asking about the degree. Understanding these spatial and interrogative distinctions
+  will help you choose the correct adverb.
+examples:
+  - english: I didn't think it would be that much fun.
+    japanese:
+      - あんな に 楽しい と は 思わ なかっ た。
+      - あんな に 楽しい と は 思い ませ ん でし た。
+    english_literally: That much fun it was I did not think.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 楽しい と は 思わ なかっ た。
+        english: I didn't think it would be that much fun (referring to something the listener knows well).
+        hint: Use 「あんなに」 when referring to something distant or generally understood, not something primarily
+          associated with the listener. We're looking for a general surprise.
+    scene: A friend is reflecting on an unexpectedly enjoyable event.
+    register: casual
+    setting: reflective
+  - english: The sunset was so incredibly beautiful.
+    japanese:
+      - 夕焼け は あんな に 綺麗 だっ た。
+      - 夕焼け は あんな に 綺麗 でし た。
+    english_literally: Sunset was that much beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 夕焼け は とても 綺麗 だっ た。
+        english: The sunset was very beautiful.
+        hint: 「とても」 emphasizes 'very', but 「あんなに」 adds a nuance of 'to such an amazing extent' or 'like
+          that (unforgettable)'. We're looking for emphasis on an observed, remarkable degree.
+    scene: Two friends are reminiscing about a trip.
+    register: casual
+    setting: storytelling
+  - english: I studied so much for the exam that I felt sick.
+    japanese:
+      - 試験 に あんな に 勉強 し て 気分 が 悪く なっ た。
+      - 試験 に あんな に 勉強 し て 気分 が 悪く なり まし た。
+    english_literally: For exam that much studied and felt sick.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に たくさん 勉強 し て 気分 が 悪く なっ た。
+        english: I studied a lot for the exam and felt sick.
+        hint: 「たくさん」 means 'a lot' or 'many', but 「あんなに」 implies 'to such an excessive degree' or 'like
+          that (overwhelmingly)'. We're emphasizing the surprising or regrettable extent of the action.
+    scene: A student complaining to a friend after an exam.
+    register: casual
+    setting: melancholic
+  - english: Why did he get so angry at that time?
+    japanese:
+      - あの 時、彼 は なぜ あんな に 怒っ た の だろう？
+      - あの 時、彼 は なぜ あんな に 怒っ た の でしょう か？
+    english_literally: That time, he why that much got angry I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、彼 は なぜ とても 怒っ た の だろう？
+        english: Why was he very angry at that time?
+        hint: 「とても」 simply states a high degree of anger. 「あんなに」 questions the *unexpected or surprising
+          extent* of that anger. We're looking for an expression that questions the specific, high degree
+          of anger observed.
+    scene: Someone is trying to understand a past argument.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「あんなに」 here reflects the speaker's surprise or bewilderment at the degree of his
+      anger. It's an expression of "why *so* angry, like that?" rather than just "why angry?". The 「だろう」
+      adds a sense of pondering.
+  - english: I never expected it to be that bad.
+    japanese:
+      - あんな に 酷い と は 思わ なかっ た。
+      - あんな に 酷い と は 思い ませ ん でし た。
+    english_literally: That much terrible it was I did not think.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 酷い と は 思わ なかっ た。
+        english: I didn't think it would be that bad (referring to something the listener has some knowledge
+          of).
+        hint: 「そんなに」 is closer to the listener's perspective. 「あんなに」 suggests a general, often overwhelming,
+          negative degree not directly tied to the listener's immediate understanding. We're looking for
+          a general strong negative degree.
+    scene: Someone discussing a disappointing event or situation.
+    register: casual
+    setting: serious
+  - english: He looked so tired that I was worried.
+    japanese:
+      - 彼 は あんな に 疲れ た 顔 を し て い た の で、心配 し た。
+      - 彼 は あんな に 疲れ た 顔 を し て い まし た の で、心配 し まし た。
+    english_literally: He that much tired face was doing so, I worried.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 疲れ た 顔 を し て い た の で、心配 し た。
+        english: He looked very tired, so I worried.
+        hint: While 「とても」 means 'very', 「あんなに」 emphasizes the *degree* of tiredness, implying "to such
+          an extent that it was noticeable" or "like that (unusually so)". We're highlighting a remarkable
+          level of fatigue.
+    scene: A colleague is talking about another colleague's appearance.
+    register: semi-formal
+    setting: supportive
+  - english: Is it really that far?
+    japanese:
+      - 本当 に あんな に 遠い の です か？
+      - 本当 に あんな に 遠い の？
+    english_literally: Really that much far is it?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 遠い の です か？
+        english: Is it really far?
+        hint: Omitting 「あんなに」 removes the nuance of questioning the *extent* or *degree* of farness, suggesting
+          surprise. We're looking to emphasize the "that much" aspect of the distance.
+    scene: A tourist asking a local about a destination's distance.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: Thank you for giving me so much.
+    japanese:
+      - あんな に たくさん 頂い て、ありがとう ござい ます。
+      - あんな に たくさん 頂戴 し て、本当 に ありがとう ござい ます。
+    english_literally: That much many having received, thank you very much.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 頂い て、ありがとう ござい ます。
+        english: Thank you for receiving a lot.
+        hint: 「たくさん」 simply means 'a lot'. 「あんなに」 adds a nuance of "to such an extent" or "so generously",
+          emphasizing the surprising or overwhelming quantity received. We're conveying appreciation for
+          an unexpectedly large amount.
+    scene: A guest thanking a host after a meal or gathering.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: I've never seen that much snow before.
+    japanese:
+      - あんな に 雪 が 降っ た の は 初めて だ。
+      - あんな に 雪 が 降っ た の は 初めて です。
+    english_literally: That much snow fell it was first time.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 雪 が 降っ た の は 初めて だ。
+        english: I've never seen that much snow before (referring to snow in the listener's area).
+        hint: 「そんなに」 would imply the snow amount is relative to the listener's general experience or location.
+          「あんなに」 refers to a general, remarkable amount of snow, distant from common experience. We're
+          describing an unprecedented amount of snow.
+    scene: A person experiencing heavy snow for the first time in a new place.
+    register: casual
+    setting: reflective
+  - english: I want to be that strong.
+    japanese:
+      - あんな に 強く なり たい。
+      - あんな に 強く なり たい です。
+    english_literally: That much strong I want to become.
+    competing_grammar:
+      - competing_japanese:
+          - とても 強く なり たい。
+          - すごく 強く なり たい。
+        english: I want to be very strong.
+        hint: 「とても」 or 「すごく」 indicate general high strength. 「あんなに」 expresses a desire to reach a *specific,
+          high level* of strength, often observed in someone else. We're looking for an aspiration to
+          a specific degree of strength.
+    scene: A child watching a superhero on TV.
+    register: casual
+    setting: inspirational
+    speaker_age: younger
+    nuance: The use of 「あんなに」 here indicates aspiration to reach a *degree* of strength like the distant,
+      perhaps idolized, figure. It's not just "I want to be strong," but "I want to be strong *to that
+      extent*." This highlights the ambitious nature of the desire.
+post_example_writeup: As you can see, あんなに is very versatile and can be used to express emphasis and surprise
+  across various contexts. It focuses on the degree or extent of something, highlighting its remarkable
+  or unexpected nature.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/annani

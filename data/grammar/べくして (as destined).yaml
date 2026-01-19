@@ -1,0 +1,316 @@
+grammar_point: べくして (as destined)
+learn_before:
+  - Verb[imperative] (imperative)
+  - それぞれ (each・respectively)
+  - まるで…ようだ (just like)
+  - ような気がする (to have a feeling or hunch)
+meaning: As expected, meant to, supposed, destined, sure to
+pronunciation:
+  katakana: ベクシテ
+  romaji: bekushite
+formation:
+  Verb (dictionary form) + べくして + Verb (same verb, various forms): Used to express that an event or outcome
+    occurred, or will occur, exactly as expected or was destined to happen, typically due to prior circumstances
+    or inherent nature. The verb before and after 「べくして」 is usually the same.
+  する verbs: The verb する typically transforms to すべくして (rather than するべくして).
+jlpt: N1
+etymology: べくして is derived from classical Japanese. 「べく」is the conjunctive form of the classical auxiliary
+  verb 「べし」, indicating necessity or obligation. 「して」 is a conjunctive particle indicating a reason or
+  cause. So, the phrase literally means "because it should be," implying that something occurred because
+  it was inevitable or predetermined.
+writeup: |-
+  「べくして」 is a formal expression combining 「べく」, the conjunctive form of the classical auxiliary verb 「べし」, and the conjunctive particle 「して」. It signifies that something happened as expected, due to logical reasons or a natural course of action. 「べく」 itself indicates the word it attaches to as a "purpose" or "end goal."
+
+  It is often translated as "as expected of (A), (B)" or "as was supposed to (A), (B)," where (A) and (B) are often the same verb repeated. The nuance suggests inevitability or destiny.
+
+  This expression is quite formal and is rarely heard in everyday speech.
+
+  Its origin derives from the kanji 「可」 (ka), meaning "permissible" or "allowed," implying a situation certain to arise as the most logical course of events.
+false_friends:
+  - term: べき
+    meaning: Should, ought to
+    kind: similar expression
+    nuance: Unlike 「べくして」, 「べき」 expresses a moral or logical obligation, not a predetermined outcome.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: はず
+    meaning: Supposed to
+    kind: similar expression
+    nuance: While 「はず」 also suggests something should happen, 「べくして」 implies a stronger sense of inevitability
+      based on circumstances.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: やはり・やっぱり
+    meaning: As expected, after all
+    kind: synonym
+    nuance: 「やはり・やっぱり」 also convey an 'as expected' nuance, but they are generally less formal and do
+      not carry the strong sense of inherent inevitability or destiny that 「べくして」 does. 「べくして」 implies
+      the outcome was a logical or predetermined consequence of the situation, while 「やはり・やっぱり」 can simply
+      denote that something turned out as anticipated.
+    grammar_point: やはり (as expected・after all・still)
+post_false_friends_writeup: 「べくして」 implies an outcome was inevitable due to certain circumstances, whereas
+  「べき」 expresses obligation or advisability. 「はず」 indicates a reasonable expectation based on prior arrangements
+  or assumptions. 「やはり・やっぱり」 denote an outcome as expected but lack the strong sense of inherent inevitability
+  or destiny found in 「べくして」. Be mindful of these subtle differences to use them correctly.
+examples:
+  - english: He's a talented pianist. He won the competition as he was destined to win.
+    japanese:
+      - 彼 は 才能 ある ピアニスト だ。コンクール で {優勝 す べく し て} 優勝 し た。
+      - 彼 は 才能 豊か な ピアニスト で あり、コンクール で は まさに {優勝 す べく し て} 優勝 し まし た。
+      - その 才能 から、彼 は コンクール で {優勝 す べく し て} 優勝 し た と 言える でしょう。
+    english_literally: He is talented pianist. At competition, win-meant-to-win won.
+    competing_grammar:
+      - competing_japanese:
+          - 優勝 し て {当然 だ}
+        english: He naturally won.
+        hint: 「〜て当然だ」 implies an outcome that is obvious or expected, but it doesn't carry the same strong
+          sense of inherent destiny or inevitability as 「べくして」. We're looking for an outcome that was
+          predetermined.
+      - competing_japanese:
+          - '{やはり} 優勝 し た'
+        english: He won after all.
+        hint: 「やはり」 suggests something turned out as anticipated. It's a general confirmation, not implying
+          the deep-seated inevitability that 「べくして」 does. We're looking for a victory that was destined.
+    scene: A music critic praising a young prodigy's predictable victory.
+    register: formal
+    setting: academic
+    nuance: The use of 「才能あるピアニスト」 sets up the inherent quality that makes the victory 「優勝すべくして優勝した」 (won
+      as destined to win). This implies a natural progression from talent to success。
+  - english: Because their management was sloppy, that company went bankrupt as it was destined to.
+    japanese:
+      - 経営 が 杜撰 だっ た から、あの 会社 は {倒産 す べく し て} 倒産 し た ん だ。
+      - 杜撰 な 経営 だっ た ため、あの 会社 は {倒産 す べく し て} 倒産 し まし た。
+      - あの 会社 は 経営 が 杜撰 だっ た から {倒産 す べく し て} 倒産 し た。
+    english_literally: Management sloppy was because, that company bankrupt-meant-to-bankrupt went bankrupt,
+      you see.
+    competing_grammar:
+      - competing_japanese:
+          - 倒産 し て {当然 だ}
+        english: They naturally went bankrupt.
+        hint: 「〜て当然だ」 indicates something is obvious or self-evident. While the bankruptcy might be obvious,
+          「べくして」 emphasizes it was an unavoidable result of their actions. We're looking for bankruptcy
+          that was inevitable given the circumstances.
+      - competing_japanese:
+          - 倒産 する {こと に なっ た}
+        english: It ended up going bankrupt.
+        hint: 「ことになる」 expresses that something has been decided or that an outcome naturally occurs. While
+          it describes the final outcome, it lacks the strong sense of inherent inevitability or predetermined
+          consequence that 「べくして」 conveys. We're looking for a bankruptcy that was destined.
+      - competing_japanese:
+          - 倒産 する {はず だっ た}
+        english: They were supposed to go bankrupt.
+        hint: 「はず」 expresses an expectation or belief based on information, but it doesn't convey the
+          strong sense of destiny or inevitability that 「べくして」 does. We're looking for an outcome that
+          was unavoidable.
+    scene: A former employee discussing why a company failed.
+    register: casual
+    setting: serious
+    nuance: The 「〜ん だ」 at the end adds a sense of personal conviction or explanation, implying that the
+      speaker understands the clear cause-and-effect. 「杜撰」 (sloppy) highlights the inherent flaw leading
+      to the inevitable outcome。
+  - english: I feel like I was meant to meet you.
+    japanese:
+      - 俺 は 君 と {出会う べく し て} 出会っ た 気 が する よ。
+      - 私 は あなた と {出会う べく し て} 出会っ た よう な 気 が いたし ます。
+      - 私 は あなた と {出会う べく し て} 出会っ た 気 が する わ。
+      - 君 と は {出会う べく し て} 出会っ た ん だ、きっと。
+    english_literally: I, with you, meet-meant-to-meet met, feeling does, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 出会う {はず だっ た}
+        english: We were supposed to meet.
+        hint: 「はず」 expresses an expectation or belief that something should happen. While it suggests
+          a predetermined outcome, it does not carry the same strong sense of inherent, logical inevitability
+          tied to the nature of things as 「べくして」 does. We're looking for a meeting that was destined to
+          happen naturally.
+      - competing_japanese:
+          - 私 たち は 出会う {こと に なっ て い た}
+        english: It was decided that we would meet.
+        hint: 「ことになる」 indicates something has been decided or that an outcome naturally occurs. While
+          it can imply a certain inevitability, it lacks the inherent, logical sense of being 'meant to
+          be' from internal conditions that 「べくして」 conveys. We're looking for a meeting that was destined
+          to happen.
+    scene: A man confessing his feelings to someone.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「俺」 is a casual, masculine pronoun. 「気がするよ」 makes the statement less assertive
+      and more suggestive, fitting a male speaker expressing romantic interest in a casual way。
+  - english: If you keep driving dangerously, an accident will inevitably happen.
+    japanese:
+      - 危険 な 運転 を 続け て いれ ば、事故 は {起こる べく し て} 起こる。
+      - 危険 な 運転 を 続け られる なら ば、事故 は {起こる べく し て} 起こる もの です。
+      - その 運転 の 仕方 で は、いつ か 事故 が {起こる べく し て} 起こり ます よ。
+    english_literally: Dangerous driving if keep doing, accident happen-meant-to-happen will happen.
+    competing_grammar:
+      - competing_japanese:
+          - 事故 が 起こっ て {当然 だ}
+        english: An accident will naturally happen.
+        hint: 「〜て当然だ」 indicates something is obvious or self-evident. 「べくして」 conveys a stronger sense
+          of it being a logical, unavoidable consequence of the dangerous actions. We're looking for an
+          accident that was inevitable.
+      - competing_japanese:
+          - 事故 が 起こる {に 決まっ て いる}
+        english: An accident is sure to happen.
+        hint: 「に決まっている」 expresses strong certainty that something is true or will happen. While it conveys
+          a sense of inevitability, it lacks the nuance of being an inherent, logical outcome stemming
+          from underlying conditions, which 「べくして」 emphasizes. We're looking for an accident that was
+          destined to happen.
+    scene: A concerned friend warning another about their reckless driving habits.
+    register: casual
+    setting: cautious
+    nuance: The conditional 「続けて いれば」 clearly links the dangerous behavior to the unavoidable outcome
+      「起こるべくして起こる」. The future tense verb emphasizes the certainty of the future event。
+  - english: Precisely because of her years of effort, she succeeded as she was destined to.
+    japanese:
+      - 彼女 の 長年 の 努力 が あっ た から こそ、{成功 す べく し て} 成功 し た の だ。
+      - 彼女 の 長年 の 努力 が あっ た から こそ、{成功 す べく し て} 成功 し た の です。
+      - 彼女 は 長年 の 努力 に より、まさに {成功 す べく し て} 成功 し た と 言える でしょう。
+    english_literally: Her many years' effort existed precisely because, succeed-meant-to-succeed succeeded,
+      you see.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 し て {当然 だ}
+        english: She naturally succeeded.
+        hint: 「〜て当然だ」 implies an expected outcome. 「べくして」 emphasizes that her success was the logical,
+          unavoidable result of her significant effort. We're looking for a success that was destined
+          because of her effort.
+      - competing_japanese:
+          - 努力 の {結果} 成功 し た
+        english: She succeeded as a result of her efforts.
+        hint: 「結果」 simply states an outcome. 「べくして」 adds the nuance that the success was not just a result,
+          but an inevitable consequence of the effort, almost predetermined. We're looking for a success
+          that was destined.
+    scene: A mentor discussing a student's well-deserved achievement.
+    register: formal
+    setting: supportive
+    nuance: 「あったからこそ」 emphasizes the strong causal link, indicating that her success was an absolute and
+      logical consequence of her sustained hard work. This makes the success 「成功すべくして成功した」 (succeeded
+      as destined to succeed)。
+  - english: I feel like it was destiny that we met, as if we were meant to meet.
+    japanese:
+      - 私 たち が {出会う べく し て} 出会っ た の は、まるで 運命 の よう に 感じる わ。
+      - 私 たち が {出会う べく し て} 出会っ た こと は、まるで 運命 の よう に 感じ ます。
+      - これ は {出会う べく し て} 出会っ た、まさしく 運命 だ と 思い ます。
+    english_literally: We meet-meant-to-meet met, is like destiny, feel, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 出会う {はず だっ た}
+        english: We were supposed to meet.
+        hint: 「はず」 expresses an expectation or belief that something should happen. While it suggests
+          a predetermined outcome, it does not carry the same strong sense of inherent, logical inevitability
+          tied to the nature of things as 「べくして」 does. We're looking for a meeting that was destined to
+          happen naturally.
+      - competing_japanese:
+          - 偶然 {で は なかっ た}
+        english: It wasn't a coincidence.
+        hint: 「偶然ではなかった」 simply means it wasn't by chance. 「べくして」 implies a deeper, inherent inevitability,
+          suggesting that the meeting was destined to occur due to underlying reasons. We're looking for
+          a meeting that was destined.
+    scene: A woman reflecting on a profound connection with someone new.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of 「わ」 marks this as distinctly female speech, adding a softer, more emotional tone
+      to the reflection that 「まるで運命のように感じる」。
+  - english: Perhaps all things exist as they are meant to exist, based on their reason for being.
+    japanese:
+      - 全て の 物事 は、その 存在 する 理由 に 基づい て {ある べく し て} ある の だろう。
+      - 万物 は、それぞれ の 存在 理由 に 基づき {ある べく し て} ある の だろう。
+      - 宇宙 の 全て は、必然 的 に {ある べく し て} ある の でしょう。
+    english_literally: All things, their exist reason based on, exist-meant-to-exist exist, perhaps.
+    competing_grammar:
+      - competing_japanese:
+          - あっ て {当然 だ}
+        english: They naturally exist.
+        hint: 「〜て当然だ」 implies an obvious state. 「べくして」 conveys that existence is inherently justified
+          and predetermined by its own nature or reason for being. We're looking for things that exist
+          because they are meant to.
+      - competing_japanese:
+          - そう ある {べき だ}
+        english: They should be that way.
+        hint: 「べき」 expresses obligation or advisability. 「べくして」 implies an inherent, unavoidable state
+          of being, not something that merely 'should' be. We're looking for things that exist as they
+          were destined to.
+    scene: A philosopher contemplating the nature of existence.
+    register: formal
+    setting: reflective
+    nuance: 「全ての物事」 and 「その存在する理由に基づいて」 elevate the sentence to a philosophical level, where 「あるべくしてある」
+      suggests an inherent, almost predetermined, state of existence. 「のだろう」 adds a touch of thoughtful
+      speculation。
+  - english: Our team lost the game as it was destined to, given the opponent's overwhelming strength.
+    japanese:
+      - 相手 が 強 すぎ た から、我々 の チーム は {負ける べく し て} 負け た の だ。
+      - あんな 強い 相手 だっ た から、私 たち は {負ける べく し て} 負け た ん です。
+      - 我々 の チーム は、強豪 相手 に {負ける べく し て} 負け て しまい まし た。
+    english_literally: Opponent too strong was because, our team lose-meant-to-lose lost.
+    competing_grammar:
+      - competing_japanese:
+          - 負け て {当然 だ}
+        english: We naturally lost.
+        hint: 「〜て当然だ」 implies an outcome that is obvious or expected, but it doesn't carry the same strong
+          sense of inherent destiny or inevitability as 「べくして」. We're looking for a loss that was predetermined
+          due to overwhelming circumstances.
+      - competing_japanese:
+          - 負ける {こと に なっ た}
+        english: We ended up losing.
+        hint: 「ことになる」 expresses that something has been decided or that an outcome naturally occurs. While
+          it describes the final outcome, it lacks the strong sense of inherent inevitability or predetermined
+          consequence that 「べくして」 conveys. We're looking for a loss that was destined.
+    scene: A coach reflecting on a tough loss against a superior opponent.
+    register: formal
+    setting: serious
+    nuance: The phrase 「強すぎたから」 clearly establishes the overwhelming cause that made the defeat 「負けるべくして負けた」
+      (lost as destined to lose), highlighting the inevitability stemming from the opponent's strength。
+  - english: The scandal was bound to come to light. It was revealed as it was destined to.
+    japanese:
+      - その 不祥 事 は {明るみ に 出る べく し て} 明るみ に 出 た の だ。
+      - 隠し きれ ない こと でし た から、その 不祥 事 は {明るみ に 出る べく し て} 明るみ に 出 た の です。
+      - あれ は いつ か {明るみ に 出る べく し て} 明るみ に 出る と 思っ て い た。
+    english_literally: That scandal expose-meant-to-expose exposed.
+    competing_grammar:
+      - competing_japanese:
+          - '{やはり} 明るみ に 出 た'
+        english: It came to light after all.
+        hint: 「やはり」 suggests something turned out as anticipated. It's a general confirmation, not implying
+          the deep-seated inevitability that 「べくして」 does based on the nature of the secret. We're looking
+          for a revelation that was destined to happen.
+      - competing_japanese:
+          - 明るみ に 出る {はず だっ た}
+        english: It was supposed to come to light.
+        hint: 「はず」 expresses an expectation or belief based on information. It implies probability, but
+          not the same strong sense of intrinsic inevitability or predestination as 「べくして」. We're looking
+          for a truth that was destined to be revealed.
+    scene: A journalist commenting on a political scandal that finally broke.
+    register: formal
+    setting: informative
+    nuance: 「不祥事」 (scandal) implies something inherently problematic, leading to its inevitable exposure,
+      reinforced by 「明るみに出るべくして明るみに出た」. The 「〜の だ」 adds an explanatory tone, suggesting a logical conclusion。
+  - english: That large earthquake occurred exactly as it was destined to, given the long history of seismic
+      activity in the region.
+    japanese:
+      - あの 大 地震 は、その 地域 の 長い 地震 活動 の 歴史 から {起こる べく し て} 起こっ た の だ。
+      - 長年 の 地震 活動 の 蓄積 が あっ た ため、あの 大 地震 は {起こる べく し て} 起こっ た と 言える でしょう。
+      - 専門 家 の 間 で は、いつ か {起こる べく し て} 起こる と 言わ れ て い た 地震 だっ た。
+    english_literally: That large earthquake, that region's long seismic activity history from, happen-meant-to-happen
+      happened.
+    competing_grammar:
+      - competing_japanese:
+          - 起こっ て {当然 だ}
+        english: It naturally occurred.
+        hint: 「〜て当然だ」 indicates an obvious or self-evident outcome. 「べくして」 conveys a stronger sense of
+          it being an unavoidable consequence stemming from the inherent geological conditions. We're
+          looking for an earthquake that was inevitable.
+      - competing_japanese:
+          - 起こる {に 決まっ て いる}
+        english: It is sure to happen.
+        hint: 「に決まっている」 expresses strong certainty that something is true or will happen. While it conveys
+          a sense of inevitability, it lacks the nuance of being an inherent, logical outcome stemming
+          from underlying conditions, which 「べくして」 emphasizes. We're looking for an event that was destined
+          to occur.
+    scene: A seismologist explaining the inevitability of a major earthquake in a geologically active
+      area.
+    register: formal
+    setting: informative
+    nuance: The phrase 「長い地震活動の歴史から」 provides the scientific basis for the inevitability, making the earthquake
+      「起こるべくして起こった」 (occurred as destined to occur). This emphasizes that the event was a logical, almost
+      predictable outcome of natural processes。

@@ -1,0 +1,410 @@
+grammar_point: なら (conditional, if it's the case that A)
+learn_before:
+  - もし・もしも (if, emphasis)
+meaning: If, If it's the case, As for (Conditional)
+meaning_warning: 「なら」 directly attaches to nouns and な-adjectives, often implicitly indicating 'if it
+  is X' without requiring the copula 「だ」 (e.g., 学生なら vs 学生だなら).
+pronunciation:
+  katakana: ナラ
+  romaji: nara
+formation:
+  Verb (plain form) + なら: Expresses a condition or supposition based on a verb.
+  い-adjective + なら: Expresses a condition or supposition based on an い-adjective.
+  な-adjective + なら: Expresses a condition or supposition based on a な-adjective.
+  Noun + なら: Expresses a condition or supposition based on a noun.
+  Noun + だった + なら: Expresses a condition based on a past state of being.
+  Verb (past) + なら: Expresses a condition or supposition based on a verb in the past.
+jlpt: N4
+etymology: 「なら」 is considered to be an abbreviation of 「ならば」, the hypothetical form of 「なり」, a classical
+  auxiliary verb. 「なり」 originally meant "to be," similar to the auxiliary verb 「だ」. This explains its
+  use with nouns and na-adjectives. Unlike 「だ」, 「なら」 can be attached directly to verbs and i-adjectives
+  without needing to nominalize them using 「の」. Its core meaning relates to "being" or "existence," which
+  evolved into "if it is the case that X."
+writeup: The grammar point 「なら」 expresses a condition or supposition. It translates to "if," "if it's
+  the case," or "as for." It's essentially a shortened version of 「ならば」. Originating from the classical
+  auxiliary verb 「なり」, which meant "to be" (similar to modern 「だ」), 「なら」 functions with a similar sense
+  of establishing a premise. It commonly pairs with nouns and な-adjectives directly, often omitting the
+  copula 「だ」. Crucially, unlike 「だ」, 「なら」 can also attach directly to verbs and い-adjectives without needing
+  nominalization (e.g., using 「の」). 「なら」 is particularly used when the speaker is making a judgment or
+  assumption based on what *they perceive* or what *has been said*, rather than stating universal truths
+  or automatic consequences. It sets up a condition that leads to a specific action or statement from
+  the speaker. It's important to note that this usage is distinct from the particle 「なり」, which can mean
+  "as soon as" or "just after."
+false_friends:
+  - term: ば
+    meaning: If… then, (Conditional)
+    kind: similar expression
+    nuance: 「ば」 indicates a more general or habitual condition, or a natural consequence. 「なら」 often refers
+      to a specific situation or an assumption of a present/future state, often in response to something.
+    grammar_point: ば (conditional, if A then B)
+  - term: こそ
+    meaning: For sure, For certain, Precisely because
+    kind: similar expression
+    nuance: 「こそ」 emphasizes the preceding word or phrase as the *reason* or *source*. 「なら」 introduces
+      a condition that serves as a premise for a subsequent statement or action.
+    grammar_point: こそ (emphasis)
+  - term: ばあいは
+    meaning: In the event of, In the case of
+    kind: similar expression
+    nuance: 「ばあいは」 specifies a particular event or circumstance. 「なら」 offers a more general condition
+      or a supposition based on perceived information, often leading to a specific piece of advice or
+      action.
+    grammar_point: ばあいは (in the event of)
+  - term: としたら・とすれば・とすると
+    meaning: If it were the case that, Assuming that...
+    kind: similar expression
+    nuance: These phrases introduce a hypothetical or speculative situation, often with a sense of 'what
+      if.' 「なら」 states a more direct condition often based on immediate information or assumption, or
+      an observed reality.
+    grammar_point: としたら (if assuming)
+  - term: たら
+    meaning: When, From when, Just when, If
+    kind: similar expression
+    nuance: 「たら」 indicates a condition that leads to a result *after* the condition is met, and can also
+      refer to a completed action. 「なら」 is purely conditional, often used to respond to something previously
+      stated or observed, focusing on the premise itself rather than its completion.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: と (quotation)
+    meaning: If, When, Whenever, As soon as (natural consequence)
+    kind: similar expression
+    nuance: 「と」 in conditional sentences describes natural consequences or habitual actions that *automatically*
+      follow. 「なら」 specifies a particular condition or a supposition related to the speaker's judgment,
+      leading to a decision or suggestion.
+    grammar_point: と (conditional, inevitable result)
+post_false_friends_writeup: Understanding the subtle differences between 「なら」 and other conditional forms
+  is crucial for natural Japanese. While all express "if," they differ in nuance and usage. 「なら」 emphasizes
+  the speaker's judgment or supposition about the condition, often used when responding to an observed
+  situation or someone's statement. 「ば」 suggests a more general or habitual condition that yields an automatic
+  result. 「たら」 indicates a condition that leads to a result after the condition is met, and can also refer
+  to a completed action. 「と」 denotes an automatic consequence or habitual action. For highly hypothetical
+  or speculative situations, 「としたら」 or 「とすれば」 are often more appropriate. Choosing the right conditional
+  requires considering the specific context and the speaker's intent and perspective.
+examples:
+  - english: If the weather is good tomorrow, let's go on a picnic.
+    japanese:
+      - 明日 天気 が 良い {なら}、ピクニック に 行き ましょう。
+      - 明日 天気 が 良い {なら}、ピクニック に 行こう よ。
+      - 明日 晴れる {なら}、ピクニック に 行き ましょう。
+      - もし 明日 晴れる {なら}、ピクニック に 行き ませ ん か。
+    english_literally: If the weather is good tomorrow, let's go to a picnic.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 天気 が 良い {と}、ピクニック に 行き ましょう。
+        english: If the weather is good tomorrow, we will go on a picnic (as a natural outcome).
+        hint: 「と」 suggests a natural or automatic consequence. We're looking for a suggestion for a conditional
+          future action, where 「なら」 is more appropriate as it depends on the speaker's decision.
+      - competing_japanese:
+          - 明日 天気 が 良い {たら}、ピクニック に 行き ましょう。
+        english: If it turns out to be good weather tomorrow, I will go on a picnic.
+        hint: 「たら」 often implies a completed action or a more definite future event. We're looking for
+          a current supposition about a future event, where 「なら」 is more suitable for proposing an action
+          based on an assumed state.
+      - competing_japanese:
+          - 明日 天気 が 良けれ {ば}、ピクニック に 行き ましょう。
+        english: If the weather is good tomorrow, let's go on a picnic (as a general condition).
+        hint: 「ば」 is used for more general or habitual conditions. We're looking for a specific hypothetical
+          situation that prompts a speaker's proposal, making 「なら」 more appropriate.
+      - competing_japanese:
+          - 明日 天気 が 良い {ばあい は}、ピクニック に 行き ましょう。
+        english: In the case that the weather is good tomorrow, let's go on a picnic.
+        hint: 「ばあいは」 specifies a particular event or circumstance as the condition. We're looking for
+          a more general supposition and a personal decision based on it.
+      - competing_japanese:
+          - 明日 天気 が 良い の で {あれ ば}、ピクニック に 行き ましょう。
+        english: If it is indeed the case that the weather is good tomorrow, let's go on a picnic.
+        hint: 「であれば」 often implies the condition is known or accepted as fact, or is more formal. We're
+          looking for a general supposition that leads to a suggestion.
+      - competing_japanese:
+          - 明日 天気 が 良い {ん だっ たら}、ピクニック に 行き ましょう。
+        english: If it's going to be good weather tomorrow, let's go on a picnic.
+        hint: 「んだったら」 is a more colloquial and direct conditional, often used when confirming or responding
+          to existing information. We're looking for a slightly more neutral conditional when making a
+          proposal.
+    scene: Two friends making plans for tomorrow.
+    register: casual
+    setting: friendly
+    nuance: The speaker is suggesting a picnic, using 「行きましょう」 to propose a joint activity if the weather
+      condition 「良いなら」 is met, indicating a decision based on an assumption about the future state.
+  - english: If you are free, could you please help me.
+    japanese:
+      - もし 暇 {なら}、手伝っ て いただけ ませ ん か。
+      - もし 暇 {なら}、手伝っ て ください ませ ん か。
+      - もし 暇 {なら}、手伝っ て もらえ ませ ん か。
+      - 暇 {なら}、手伝っ て くれる？
+    english_literally: If you are free, could you please help me?
+    competing_grammar:
+      - competing_japanese:
+          - もし 暇 で {あれ ば}、手伝っ て いただけ ませ ん か。
+        english: If you are free (and that is the established condition), could you please help me?
+        hint: 「であれば」 often implies a more formal or written context, or an established premise. We're
+          looking for a direct, polite request in a professional setting where 「なら」 provides a more direct
+          and slightly less formal conditional based on a current assumption.
+      - competing_japanese:
+          - もし 暇 でし {たら}、手伝っ て いただけ ませ ん か。
+        english: If you are free, could you please help me? (more polite)
+        hint: 「でしたら」 is a polite form of 「なら」 when used with nouns or な-adjectives, emphasizing politeness.
+          The original uses a slightly more direct 「なら」 for a straightforward conditional.
+      - competing_japanese:
+          - もし 暇 だ {と}、手伝っ て いただけ ませ ん か。
+        english: If it's that you're free, will you help me?
+        hint: 「と」 implies a natural or automatic consequence. Here, we're making a request contingent
+          on a state as perceived by the speaker, making 「なら」 more suitable for a conditional request.
+    scene: Asking a colleague for assistance.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The polite request 「手伝っていただけませんか」 softens the conditional phrase 「暇なら」, indicating that the
+      speaker is making an assumption about the listener's availability as a premise for the request.
+  - english: If it's expensive, I won't buy it.
+    japanese:
+      - 高い {なら}、買い ませ ん。
+      - 高い {なら}、買わ ない。
+      - 値段 が 高い {なら}、買い ませ ん。
+      - ちょっと 高い {なら}、買わ ない です ね。
+      - もし 高い {なら}、買わ ない つもり です。
+    english_literally: If it is expensive, I will not buy it.
+    competing_grammar:
+      - competing_japanese:
+          - 高い {と}、買い ませ ん。
+        english: If it gets expensive, I won't buy it (as a natural reaction).
+        hint: 「と」 implies a natural outcome or a general truth. We're looking for the speaker's personal
+          decision based on a perceived or assumed condition, which 「なら」 conveys better.
+      - competing_japanese:
+          - 高い {たら}、買い ませ ん。
+        english: If it turns out to be expensive, I won't buy it.
+        hint: 「たら」 suggests a result after a condition is met. We're looking for a current decision based
+          on a condition the speaker assumes or observes, where 「なら」 is more direct.
+      - competing_japanese:
+          - 高けれ {ば}、買い ませ ん。
+        english: If it is expensive, I won't buy it (as a general rule).
+        hint: 「ば」 sets a general condition. 「なら」 here emphasizes the speaker's decision *given* the perceived
+          expensiveness, focusing on the specific situation.
+      - competing_japanese:
+          - 高い {から こそ}、買い ませ ん。
+        english: It is precisely because it's expensive that I won't buy it.
+        hint: 「こそ」 emphasizes the preceding reason as the definitive factor. We're looking for a simple
+          conditional that states a premise for the speaker's decision.
+      - competing_japanese:
+          - 高い の で {あれ ば}、買い ませ ん。
+        english: If it is indeed expensive, I won't buy it.
+        hint: 「のであれば」 often suggests the condition is already known or a premise. 「なら」 is a more direct
+          conditional statement based on a supposition about the price.
+    scene: Deciding not to purchase something due to the price.
+    register: casual
+    setting: cautious
+    nuance: 'The speaker states a clear condition for not buying something: 「高いなら」, indicating a personal
+      decision or stance based on the assumption of high price.'
+  - english: If I were a bird, I would fly to you.
+    japanese:
+      - もし 私 が 鳥 {なら}、あなた の ところ へ 飛ん で 行く の に。
+      - もし 私 が 鳥 {なら} ば、あなた の 元 へ 飛ん で 行く の に。
+      - 私 が 鳥 {なら}、君 の 所 に 飛ん で 行く の に。
+      - 鳥 {なら}、今 すぐ に で も 飛ん で 行き たい よ。
+    english_literally: If I were a bird, I would fly to your place.
+    competing_grammar:
+      - competing_japanese:
+          - もし 私 が 鳥 {だっ たら}、あなた の ところ へ 飛ん で 行く の に。
+        english: If I were a bird, I would fly to you (emphasizing the completed hypothetical action).
+        hint: 「だったら」 often implies a completed hypothetical action. We're looking for a hypothetical wish
+          about a current unrealizable state, which 「なら」 captures well as a premise.
+      - competing_japanese:
+          - もし 私 が 鳥 {だ と し たら}、あなた の ところ へ 飛ん で 行く の に。
+        english: If it were the case that I was a bird, I would fly to you.
+        hint: 「だとしたら」 or 「だとすれば」 can imply a more hypothetical or even contrary-to-fact condition, sometimes
+          sounding more speculative than 「なら」, which here states a simple premise.
+    scene: Expressing a wistful desire.
+    register: casual
+    setting: melancholic
+    nuance: The speaker expresses a romantic wish 「飛んでいくのに」, hinging on the hypothetical condition 「鳥なら」,
+      emphasizing the state of being a bird as the premise for the action.
+  - english: If he is coming, I'm going home.
+    japanese:
+      - 彼 が 来る {なら}、私 は 帰り ます。
+      - 彼 が 来る {なら}、私 は 帰る。
+      - 彼 が 来る {なら} ば、私 は 帰り ます。
+      - あいつ が 来る {なら}、俺 は 帰る ぜ。
+      - もし 彼 が 来る {なら}、私 は すぐ 帰り ます。
+    english_literally: If he comes, I will go home.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来る {と}、私 は 帰り ます。
+        english: When he comes, I will go home (as a natural consequence).
+        hint: 「と」 implies an automatic and general consequence. We're looking for a personal decision
+          based on a condition, which 「なら」 conveys better as a response to a situation.
+      - competing_japanese:
+          - 彼 が 来る {時 は}、私 は 帰り ます。
+        english: When he comes, I will go home.
+        hint: 「時」 specifies a point in time or a general occasion. We're looking for a personal decision
+          or response based on a specific, assumed condition, which 「なら」 conveys more directly.
+      - competing_japanese:
+          - 彼 が 来 {たら}、私 は 帰り ます。
+        english: When he comes, I'll go home.
+        hint: 「たら」 can imply a completed action or a sequence, suggesting 'after he comes.' 「なら」 simply
+          states the condition for the decision to go home, based on the assumption of his arrival.
+    scene: Avoiding someone.
+    register: casual
+    setting: serious
+    nuance: 'The speaker states a condition for leaving: 「彼が来るなら」, indicating a personal decision or reaction
+      based on the assumption of the other person''s arrival.'
+  - english: If you're going to the beach, take your swimsuit.
+    japanese:
+      - 海 に 行く {なら}、水着 を 持っ て 行き なさい。
+      - 海 に 行く {なら}、水着 を 持っ て 行け。
+      - 海 に 行く {なら}、水着 を 持っ て いき なさい。
+      - 海 に 行く {なら}、水着 は 忘れ ず に ね。
+      - 海 へ 行く {なら}、水着 を 忘れ ちゃ だめ だ よ。
+    english_literally: If you are going to the sea, take your swimsuit.
+    competing_grammar:
+      - competing_japanese:
+          - 海 に 行く {時 は}、水着 を 持っ て 行き なさい。
+        english: When you go to the beach, take your swimsuit.
+        hint: 「時」 simply refers to a time when something happens. We're looking for a conditional premise
+          for giving advice, which 「なら」 provides by assuming the listener's intent.
+      - competing_japanese:
+          - 海 に 行く {際 は}、水着 を 持っ て 行き なさい。
+        english: On the occasion of going to the beach, take your swimsuit.
+        hint: 「際」 refers to a specific occasion or time, often more formal. We're looking for a conditional
+          premise for giving advice, which 「なら」 provides by assuming the listener's intent.
+      - competing_japanese:
+          - 海 に 行く {の だっ たら}、水着 を 持っ て 行き なさい。
+        english: If it's that you're going to the beach, take your swimsuit.
+        hint: 「のだったら」 is a more colloquial and direct conditional, often used when responding to an assumed
+          plan. 「なら」 is suitable for direct advice based on a perceived future action.
+    scene: Parent advising their child.
+    register: casual
+    setting: instructional
+    nuance: 'The speaker is giving advice to their child: 「水着を持って行きなさい」, hinging on the condition 「海に行くなら」,
+      framing the advice as a direct response to the child''s presumed action.'
+  - english: If you don't intend to be serious, don't get my hopes up.
+    japanese:
+      - 本気 で 付き合う 気 が ない {なら}、期待 さ せ ない で。
+      - 本気 で 付き合う 気 が ない {なら} ば、期待 さ せ ない で。
+      - 本気 で 付き合う 気 が ない {なら}、期待 さ せる な よ。
+      - もし 本気 で 付き合う 気 が ない {なら}、はっきり 言っ て。
+    english_literally: If you do not have the intention to seriously date, do not make me hope.
+    competing_grammar:
+      - competing_japanese:
+          - 本気 で 付き合う 気 が ない {場合 は}、期待 さ せ ない で。
+        english: In the case that you don't intend to be serious, don't get my hopes up.
+        hint: 「場合」 specifically refers to a particular case or situation. We're looking for a direct conditional
+          statement based on a perception of intent, which 「なら」 conveys more naturally.
+      - competing_japanese:
+          - 本気 で 付き合う 気 が ない {だ と し たら}、期待 さ せ ない で。
+        english: If it were the case that you don't intend to be serious, don't get my hopes up.
+        hint: 「だとしたら」 can suggest a more remote or speculative hypothetical situation. Here, the condition
+          is a direct assessment of the listener's current intent, making 「なら」 more fitting.
+    scene: Expressing frustration in a relationship.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a woman, is confronting a man regarding their relationship and states 「期待させないで」
+      based on the condition 「本気で付き合う気が無いなら」. The use of 「なら」 emphasizes this condition as the basis for
+      her strong feeling, implying she has observed his behavior.
+  - english: If you liked it, would it be okay to invite you again sometime?
+    japanese:
+      - もし よかっ た {なら}、また 今度 誘っ て も いい か な？
+      - もし よかっ た {なら} ば、また 今度 誘っ て も いい か な？
+      - もし よかっ た {なら}、また 誘っ て も いい？
+      - 楽しかっ た {なら}、また 会い たい な。
+    english_literally: If it was good, is it okay if I invite you again next time?
+    competing_grammar:
+      - competing_japanese:
+          - もし よかっ {たら}、また 今度 誘っ て も いい か な？
+        english: If it was good, would it be okay to invite you again sometime?
+        hint: While 「よかったら」 is common and can be similar, 「よかったなら」 in this context emphasizes the speaker's
+          assumption or consideration of the listener's enjoyment as the premise for the invitation, slightly
+          more tentative and responsive.
+      - competing_japanese:
+          - もし よかっ た {場合 は}、また 今度 誘っ て も いい か な？
+        english: If it was good, in that case, would it be okay to invite you again sometime?
+        hint: 「場合」 refers to a specific case or scenario. We're looking for a more tentative inquiry based
+          on a past condition, where 「なら」 is suitable for a supposition based on the listener's enjoyment.
+    scene: Flirting after a first meeting.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker is tentatively suggesting another meeting 「誘っても良いかな？」, conditioning it on
+      whether the listener enjoyed herself 「よかったなら」. The use of 「なら」 subtly implies the speaker is making
+      an inference about her feelings.
+  - english: If that report is necessary, please submit it by tomorrow.
+    japanese:
+      - その レポート が 必要 {なら}、明日 まで に 提出 し て ください。
+      - その レポート が 必要 {なら}、明日 まで に 提出 し て ください。
+      - その レポート が 必要 {なら} ば、明日 まで に 提出 し て 頂け ます か。
+      - もし その レポート が 必要 {なら}、明日 中 に 出し て ください。
+    english_literally: If that report is necessary, please submit it by tomorrow.
+    competing_grammar:
+      - competing_japanese:
+          - その レポート が 必要 で {あれ ば}、明日 まで に 提出 し て ください。
+        english: If that report is necessary (and that's the established case), please submit it by tomorrow.
+        hint: 「であれば」 often implies a more formal or written context, or an established premise. We're
+          looking for a direct instruction based on a specific current condition where 「なら」 is appropriate,
+          indicating a conditional instruction.
+      - competing_japanese:
+          - その レポート が 必要 でし {たら}、明日 まで に 提出 し て ください。
+        english: If that report is necessary, please submit it by tomorrow. (more polite)
+        hint: 「でしたら」 is a polite form of 「なら」 when used with nouns or な-adjectives, emphasizing politeness.
+          The original is also formal but uses the direct 「なら」 for a conditional request.
+    scene: A manager speaking to an employee.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: 「提出して下さい」 is a polite request within a business context, triggered by the condition 「必要なら」.
+      The speaker is basing the instruction on the assumption or understanding that the report is necessary.
+  - english: If you're joking, that's fine, but if you're serious, I won't forgive you.
+    japanese:
+      - 冗談 {なら} いい けど、本当 {なら} 許さ ない よ。
+      - 冗談 {なら} いい けど、本当 {なら} 許さ ない わ よ。
+      - 冗談 {なら} 大丈夫 だ けど、本気 {なら} 許さ ない よ。
+      - もし 冗談 {なら} いい けど、本気 {なら} 覚悟 し て ね。
+    english_literally: If it is a joke, it is fine, but if it is real, I will not forgive you.
+    competing_grammar:
+      - competing_japanese:
+          - 冗談 {だっ たら} いい けど、本当 {だっ たら} 許さ ない よ。
+        english: If it's a joke, that's fine, but if it's serious, I won't forgive you (emphasizing the
+          hypothetical outcome).
+        hint: 「だったら」 can imply a completed hypothetical action or result. We're looking for the speaker's
+          consideration of two possible current states, where 「なら」 is used to assume or accept the premise
+          of each, providing a direct contrast.
+      - competing_japanese:
+          - 冗談 {だ と し たら} いい けど、本当 {だ と し たら} 許さ ない よ。
+        english: If it were the case that it's a joke, that's fine, but if it were the case that it's
+          real, I won't forgive you.
+        hint: 「だとしたら」 implies a more hypothetical or speculative scenario. Here, the speaker is directly
+          confronting a situation and stating terms based on their perception, making 「なら」 more suitable
+          for a direct conditional.
+    scene: Expressing serious boundaries.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a woman, is drawing a line, stating 「許さないよ」 if it's not a joke, based on the
+      condition 「冗談ならいいけど」. The repeated use of 「なら」 emphasizes her direct confrontation of the perceived
+      reality. The 「よ」 at the end adds a strong assertion.
+  - english: If that's the case, there's nothing we can do.
+    japanese:
+      - そう {なら}、仕方 が ない ね。
+      - そう {なら} ば、仕方 が ない ね。
+      - そう {なら}、仕方 ない ね。
+      - もし そう {なら}、どう しよう も ない ね。
+    english_literally: If it is so, there is nothing that can be done, right?
+    competing_grammar:
+      - competing_japanese:
+          - そう {だっ たら}、仕方 が ない ね。
+        english: If that had been the case, there would be nothing we could do.
+        hint: 「だったら」 might imply a completed past event or a stronger hypothetical leading to a result.
+          We're looking for a current acceptance of an understood situation, which 「なら」 conveys directly
+          as a response to a premise.
+      - competing_japanese:
+          - そう {だ と し たら}、仕方 が ない ね。
+        english: If that were the case, there's nothing we can do.
+        hint: 「だとしたら」 implies a more hypothetical or speculative scenario. We're looking for a direct
+          acceptance of an understood current situation, which 「なら」 conveys more simply as a response.
+    scene: Accepting a situation.
+    register: casual
+    setting: serious
+    nuance: The speaker is expressing acceptance of an unchangeable situation, indicated by 「仕方がないね」,
+      implying a resignation based on the premise stated by 「そうなら」. The 「ね」 softens the statement, seeking
+      agreement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/212

@@ -1,0 +1,388 @@
+grammar_point: からある (at least as much as)
+learn_before:
+  - Verb[ていた] (past progressive・resultative)
+  - することができる (can・be able to)
+  - といわれている (it is said that)
+  - 持っている (to be holding・to possess)
+  - 誰 (who)
+meaning: As much as, As many as, At least
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: からある
+    rarity: common
+    meaning: as much as (inanimate, plain non-past)
+  - conjugation-type: dictionary (plain non-past)
+    form: からいる
+    rarity: less common
+    meaning: as many as (animate, plain non-past)
+  - conjugation-type: non-past polite (～ます)
+    form: からあります
+    rarity: common
+    meaning: as much as (inanimate, polite non-past)
+  - conjugation-type: non-past polite (～ます)
+    form: からいます
+    rarity: less common
+    meaning: as many as (animate, polite non-past)
+  - conjugation-type: past plain (～た)
+    form: からあった
+    rarity: common
+    meaning: as much as (inanimate, plain past)
+  - conjugation-type: past plain (～た)
+    form: からいた
+    rarity: less common
+    meaning: as many as (animate, plain past)
+  - conjugation-type: past polite (～ました)
+    form: からありました
+    rarity: common
+    meaning: as much as (inanimate, polite past)
+  - conjugation-type: past polite (～ました)
+    form: からいました
+    rarity: less common
+    meaning: as many as (animate, polite past)
+  - conjugation-type: te-form (～て)
+    form: からあって
+    rarity: uncommon
+    meaning: being as much as (inanimate, te-form)
+  - conjugation-type: te-form (～て)
+    form: からいて
+    rarity: uncommon
+    meaning: being as many as (animate, te-form)
+pronunciation:
+  katakana: カラアル
+  romaji: kara aru
+formation:
+  '[Number] + [Counter] + からある': Indicates a minimum estimated quantity or amount.
+  '[Number] + [Counter] + からいる': Indicates a minimum estimated quantity or amount for living beings. (Less
+    common)
+jlpt: N1
+etymology: The grammar point 「からある」 is derived from 「から」 (from) and 「ある」 (to exist). It suggests the existence
+  of something starting from a certain quantity or amount.
+writeup: 「からある」 is a formal expression used to indicate a minimum estimated quantity or amount. It is
+  similar to 「からする」, but instead of indicating the value *from* which something is priced, 「からある」 indicates
+  that something *exists from* a certain value. It is often used with numbers and counters to describe
+  things like distances, sizes, weights, or the number of items, implying "at least" or "as many as."
+  While 「ある」 is used for inanimate objects, the corresponding 「いる」 for living beings (e.g., 「からいる」) is
+  less commonly encountered in this grammatical structure, with other expressions often preferred for
+  counting living things. This structure is generally found in more formal contexts.
+false_friends:
+  - term: 以上 (more than or equal)
+    meaning: More than (or equal to), Over・(and) above, Any more・Greater, Exceeding
+    kind: synonym
+    nuance: While 「からある」 implies a minimum estimated quantity, 「以上」 simply means "more than" or "greater
+      than" a specific number. 「からある」 emphasizes the idea of "at least," while 「以上」 focuses on surpassing
+      a specific value.
+    grammar_point: '[Noun]以上 (more than or equal to)'
+  - term: からする
+    meaning: priced at, costing at least
+    kind: similar expression
+    nuance: 「からする」 is specifically used for prices or values, indicating a minimum cost, while 「からある」
+      is used for physical quantities like weights, lengths, or counts, indicating a minimum existence
+      or extent.
+    grammar_point: からする (at least)
+post_false_friends_writeup: To avoid confusion, remember that 「からある」 is often used when providing a lower
+  bound estimate for physical quantities like weight, length, or number, whereas 「以上」 indicates that a
+  value is above a certain threshold without necessarily implying an estimation, and 「からする」 is exclusively
+  used for monetary value or price.
+examples:
+  - english: Even though my grandpa is 80 years old, he is able to lift dumbbells that weigh at least
+      60 kilos.
+    japanese:
+      - お じい ちゃん は 80 歳 な の に 60 キロ {から ある} ダンベル を 持ち上げる こと が できる。
+      - お じい ちゃん は 80 歳 な の に 60 キロ {から あり ます} ダンベル を 持ち上げる こと が でき ます。
+      - 祖父 は 80 歳 な の に 60 キロ {から ある} ダンベル を 持ち上げる こと が できる。
+      - 祖父 は 80 歳 な の に 60 キロ {から あり ます} ダンベル を 持ち上げる こと が でき ます。
+    english_literally: Grandpa, despite being 80 years old, is able to lift dumbbells that are from 60
+      kilos existing.
+    competing_grammar:
+      - competing_japanese:
+          - 60 キロ {以上} の ダンベル
+        english: dumbbells of 60 kilos or more
+        hint: 「以上」 means "or more", whereas 「からある」 implies an impressive, estimated minimum weight. We're
+          looking for an expression that suggests an impressive, estimated minimum weight.
+      - competing_japanese:
+          - お じい ちゃん は 80 歳 な の に {少なく と も} 60 キロ の ダンベル を 持ち上げる こと が できる。
+        english: Even though my grandpa is 80 years old, he is able to lift dumbbells that weigh at least
+          60 kilos.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the quantity it possesses. We're looking for an expression that directly describes the
+          dumbbell's weight.
+    scene: A grandchild bragging about their grandfather's strength.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    nuance: The casual speech 「お じい ちゃん」 indicates an intimate or familiar context, suggesting a warm
+      family bond rather than a strictly factual statement of weight capability alone. The phrasing emphasizes
+      the impressive nature of the feat given his age and the estimated minimum weight of the dumbbells,
+      showing pride and a touch of humor rather than precise measurement.
+  - english: When I tried to buy concert tickets for a band that I have liked since middle school, I couldn't
+      because at least 5000 tickets were sold out instantly.
+    japanese:
+      - 中学 生 の 頃 から 好き な バンド の コンサート チケット を 買おう と し たら、5000 枚 {から ある} チケット が すぐ に 売り切れ て い て、買う こと が でき
+        なかっ た。
+      - 中学 生 の 頃 から 好き な バンド の コンサート チケット を 買おう と し まし たら、5000 枚 {から あり ます} チケット が すぐ に 売り切れ て おり、買う こと
+        が でき ませ ん でし た。
+    english_literally: When I tried to buy concert tickets for a band I've liked since middle school,
+      5000 tickets from existing were immediately sold out, and I couldn't buy them.
+    competing_grammar:
+      - competing_japanese:
+          - 5000 枚 {以上} の チケット
+        english: 5000 tickets or more
+        hint: 「以上」 means "or more", whereas 「からある」 implies an impressive, estimated minimum quantity that
+          was unexpectedly gone. We're looking for an expression that emphasizes the surprisingly large,
+          estimated quantity.
+      - competing_japanese:
+          - 中学 生 の 頃 から 好き な バンド の コンサート チケット を 買おう と し たら、{少なく と も} 5000 枚 の チケット が すぐ に 売り切れ て い て、買う
+            こと が でき なかっ た。
+        english: When I tried to buy concert tickets for a band that I have liked since middle school,
+          I couldn't because at least 5000 tickets were sold out instantly.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the quantity it possesses. We're looking for an expression that directly describes the
+          number of tickets.
+    scene: Someone lamenting their inability to get concert tickets.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「～ていて」 indicates a resultant state, adding a sense of regret or disappointment
+      about the tickets being sold out, fitting the melancholic setting. The speaker is emphasizing the
+      sheer volume of tickets, making their failure to purchase them even more frustrating, as if the
+      quantity itself was part of the problem.
+  - english: Although he is smaller in stature, he can lift refrigerators that weigh at least 70 kilos
+      by himself.
+    japanese:
+      - 彼 は 小柄 で ある に も 関わら ず、７０ キロ {から ある} 冷蔵 庫 を 一人 で 持ち上げる こと が できる。
+      - 彼 は 小柄 で ある に も 関わら ず、７０ キロ {から あり ます} 冷蔵 庫 を 一人 で 持ち上げる こと が でき ます。
+    english_literally: Despite him being small in stature, he can lift refrigerators that are from 70
+      kilos existing, by himself.
+    competing_grammar:
+      - competing_japanese:
+          - 70 キロ {以上} の 冷蔵 庫
+        english: refrigerators of 70 kilos or more
+        hint: 「以上」 means "or more", whereas 「からある」 conveys the impressive, estimated minimum weight, making
+          his feat more remarkable. We're looking for an expression that highlights the surprising nature
+          of his strength.
+      - competing_japanese:
+          - 彼 は 小柄 で ある に も 関わら ず、{少なく と も} ７０ キロ の 冷蔵 庫 を 一人 で 持ち上げる こと が できる。
+        english: Although he is smaller in stature, he can lift refrigerators that weigh at least 70 kilos
+          by himself.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the quantity it possesses. We're looking for an expression that directly describes the
+          refrigerator's weight.
+    scene: Describing someone's surprising strength.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「で ある に も 関わら ず」 is a formal construction indicating "despite" or "although," emphasizing
+      the surprising contrast between his small stature and his impressive strength. 「からある」 here underlines
+      the sheer, estimated weight of the refrigerator, making his ability more striking to the listener
+      in this informative context.
+  - english: There are at least 3000 full-time workers in this company.
+    japanese:
+      - この 会社 に は 正 社員 が 3000 人 {から いる}。
+      - この 会社 に は 正 社員 が 3000 人 {から い ます}。
+    english_literally: In this company, full-time employees from 3000 people exist.
+    competing_grammar:
+      - competing_japanese:
+          - 3000 人 {以上} の 正 社員
+        english: 3000 or more full-time employees
+        hint: 「以上」 means "or more", whereas 「からいる」 implies a substantial, estimated minimum number, adding
+          a sense of scale to the company. We're looking for an expression that conveys a substantial,
+          estimated minimum number.
+      - competing_japanese:
+          - この 会社 に は 正 社員 が {少なく と も} 3000 人 いる。
+        english: There are at least 3000 full-time workers in this company.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からいる」 functions as part of
+          a phrase modifying the noun to express the quantity it possesses. We're looking for an expression
+          that directly describes the number of employees.
+    scene: Someone stating the number of full-time employees at a company.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「からいる」 highlights the sheer scale of the company's workforce, suggesting it's a
+      remarkably large number of employees rather than just a minimum count. This nuance is appropriate
+      for an informative setting, as it subtly adds to the impressiveness of the company's size.
+  - english: There were at least 10,000 people at that concert.
+    japanese:
+      - あの コンサート に は 1 万 人 {から いる} 人 が い まし た。
+      - あの コンサート に は 1 万 人 {から いる} 人 が い た よ。
+      - あの コンサート に は 1 万 人 {から い た} 人 が い まし た。
+      - あの コンサート に は 1 万 人 {から い た} 人 が い た よ。
+    english_literally: At that concert, people from 10,000 existed.
+    competing_grammar:
+      - competing_japanese:
+          - 1 万 人 {以上} の 人
+        english: 10,000 or more people
+        hint: 「以上」 means "or more", whereas 「からいる」 conveys the impression of a very large, estimated crowd.
+          We're looking for an expression that gives the impression of a large, estimated crowd.
+      - competing_japanese:
+          - あの コンサート に は {少なく と も} 1 万 人 の 人 が い まし た。
+        english: There were at least 10,000 people at that concert.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からいる」 functions as part of
+          a phrase modifying the noun to express the quantity it possesses. We're looking for an expression
+          that directly describes the number of people.
+    scene: Discussing the attendance at a concert.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「いる」 is used instead of 「ある」 because the subjects are living beings (people). The casual
+      「い た よ」 emphasizes the speaker's personal experience and observation, sharing information about
+      the large crowd in a relaxed, conversational tone.
+  - english: How do you get rid of at least 100 mice!
+    japanese:
+      - 百 匹 {から いる} ネズミ を どう やっ て 退治 する の か！
+      - 百 匹 {から い ます} ネズミ を どう やっ て 退治 する の です か！
+    english_literally: How do you get rid of mice from 100 creatures existing!
+    competing_grammar:
+      - competing_japanese:
+          - 百 匹 {以上} の ネズミ
+        english: 100 or more mice
+        hint: 「以上」 means "or more", whereas 「からいる」 expresses exasperation regarding a daunting, estimated
+          minimum number of mice. We're looking for an expression that conveys this sense of overwhelming
+          quantity.
+      - competing_japanese:
+          - '{少なく と も} 百 匹 の ネズミ を どう やっ て 退治 する の か！'
+        english: How do you get rid of at least 100 mice!
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からいる」 functions as part of
+          a phrase modifying the noun to express the quantity it possesses. We're looking for an expression
+          that directly describes the number of mice.
+    scene: Expressing frustration about a mouse infestation.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    nuance: 「～か！」 adds a strong sense of exclamation or exasperation, fitting the humorous yet frustrated
+      tone of dealing with a large, estimated number of mice. Here, 「いる」 is used instead of 「ある」 because
+      「ネズミ」 refers to living beings.
+  - english: I'm sure your eyes shine with at least a thousand stars, don't they?
+    japanese:
+      - あなた の 瞳 に は、千 個 {から ある} 星 が 輝い て いる ん だろう ね。
+      - あなた の 瞳 に は、千 個 {から あり ます} 星 が 輝い て いる の でしょう ね。
+    english_literally: In your eyes, I'm sure stars from a thousand existing are shining, aren't they?
+    competing_grammar:
+      - competing_japanese:
+          - 千 個 {以上} の 星
+        english: 1000 or more stars
+        hint: 「以上」 means "or more", whereas 「からある」 conveys a romanticized, estimated minimum number, adding
+          charm to the compliment. We're looking for an expression that adds this poetic touch.
+      - competing_japanese:
+          - あなた の 瞳 に は、{少なく と も} 千 個 の 星 が 輝い て いる ん だろう ね。
+        english: I'm sure your eyes shine with at least a thousand stars, don't they?
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the quantity it possesses. We're looking for an expression that directly describes the
+          number of stars.
+    scene: A person complimenting someone they are attracted to.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    nuance: 「ん だろう ね」 adds a softness and a hint of shared understanding, suitable for an intimate, flirty
+      context. The use of 「からある」 rather than just a number emphasizes the astonishing, almost unbelievable
+      quantity of stars imagined in the person's eyes, enhancing the romantic effect.
+  - english: This city has many buildings with at least 500 years of history.
+    japanese:
+      - この 街 に は、五百 年 {から ある} 歴史 が ある 建物 が たくさん ある ん です よ。
+      - この 街 に は、五百 年 {から あっ た} 歴史 が ある 建物 が たくさん ある ん です よ。
+    english_literally: In this city, there are many buildings that have history from 500 years existing,
+      you know.
+    competing_grammar:
+      - competing_japanese:
+          - 五百 年 {以上} の 歴史 が ある 建物
+        english: buildings with 500 or more years of history
+        hint: 「以上」 means "or more", whereas 「からある」 subtly emphasizes the impressive, estimated minimum
+          age, adding depth and interest to the information. We're looking for an expression that adds
+          this impressive nuance.
+      - competing_japanese:
+          - この 街 に は、{少なく と も} 五百 年 の 歴史 が ある 建物 が たくさん ある ん です よ。
+        english: This city has many buildings with at least 500 years of history.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the duration it possesses. We're looking for an expression that directly describes the
+          history's length.
+    scene: Two people on a first date exploring a historic town.
+    register: teineigo (polite)
+    setting: first-date
+    conjugation: dictionary (plain non-past)
+    nuance: 「ん です よ」 adds an explanatory nuance, common in conversational settings, making the statement
+      more engaging. The use of 「からある」 here conveys a sense of wonder and deep history associated with
+      the buildings, making the city sound particularly ancient and impressive to a date.
+  - english: It is believed that there are at least three accomplices involved in this case.
+    japanese:
+      - この 事件 に は、三 人 {から い ます} 協力 者 が いる と 思わ れ ます。
+      - この 事件 に は、三 人 {から いる} 協力 者 が いる と 思わ れ ます。
+    english_literally: Regarding this case, it is thought that accomplices from at least three people
+      exist.
+    competing_grammar:
+      - competing_japanese:
+          - 三 人 {以上} の 協力 者 が いる
+        english: three or more accomplices
+        hint: 「以上」 means "or more", whereas 「からいます」 conveys a deduction based on evidence, suggesting
+          an estimated minimum number of accomplices. We're looking for an expression that implies a minimum
+          estimate based on evidence.
+      - competing_japanese:
+          - この 事件 に は、{少なく と も} 三 人 の 協力 者 が いる と 思わ れ ます。
+        english: It is believed that there are at least three accomplices involved in this case.
+        hint: 「少なくとも」 is an adverb that indicates a minimum, while 「からいます」 is a phrasal expression modifying
+          the noun to indicate its minimum quantity. We're looking for an expression that directly describes
+          the number of accomplices using the latter.
+    scene: A police detective discussing a case with colleagues.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    nuance: 「と 思わ れ ます」 is a formal and indirect way of stating a deduction, suitable for a professional
+      setting, conveying objectivity and a degree of certainty about the estimate. The polite form 「から
+      い ます」 further reinforces the professional and serious tone of the discussion about the number of
+      accomplices.
+  - english: That shop had a line of at least a hundred people from morning, you should give up too.
+    japanese:
+      - あの 店、朝 から １００ 人 {から いる} 行列 だっ た ぞ、君 も 諦めろ よ。
+      - あの 店、朝 から １００ 人 {から い ます} 行列 だっ た ぞ、君 も 諦めろ よ。
+    english_literally: That shop, from morning, was a line of from 100 people existing, so you should
+      give up too.
+    competing_grammar:
+      - competing_japanese:
+          - 100 人 {以上} の 行列
+        english: a line of 100 or more people
+        hint: 「以上」 means "or more", whereas 「からいる」 suggests an impression of the crowd size rather than
+          a precise count. We're looking for an expression that conveys a large, estimated crowd.
+      - competing_japanese:
+          - あの 店、朝 から {少なく と も} １００ 人 の 行列 だっ た ぞ、君 も 諦めろ よ。
+        english: That shop had a line of at least 100 people from morning, you should give up too.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からいる」 functions as part of
+          a phrase modifying the noun to express the quantity it possesses. We're looking for an expression
+          that directly describes the number of people in the line.
+    scene: A man telling his wife about a popular store.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「～だっ た ぞ」 is a masculine sentence ending used for emphasis or assertion. 「諦めろ よ」, while not
+      exclusively masculine, contributes to the direct, slightly exasperated male tone when speaking to
+      a close female companion. 「君」 is a second-person pronoun primarily used by men towards subordinates
+      or close companions, here conveying a familiar, slightly commanding tone.
+  - english: This temple bell is said to weigh at least a ton.
+    japanese:
+      - この 寺 の 鐘 は 一 トン {から ある} と 言わ れ て いる。
+      - この 寺 の 鐘 は 一 トン {から あり ます} と 言わ れ て い ます。
+    english_literally: This temple's bell, from one ton existing, is said to be.
+    competing_grammar:
+      - competing_japanese:
+          - 一 トン {以上} の 重 さ が ある
+        english: weighs one ton or more
+        hint: 「以上」 means "or more", whereas 「からある」 emphasizes an impressive, estimated minimum weight.
+          We're looking for an expression that implies a significant, estimated minimum weight.
+      - competing_japanese:
+          - この 寺 の 鐘 は {少なく と も} 一 トン の 重 さ が ある と 言わ れ て いる。
+        english: This temple bell is said to weigh at least one ton.
+        hint: 「少なくとも」 emphasizes the minimum quantity as an adverb, while 「からある」 modifies the noun to
+          express the quantity it possesses. We're looking for an expression that directly describes the
+          bell's weight.
+    scene: A tour guide explaining the history of an ancient temple to a group of visitors.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「と言わ れ て いる」 is a common way to express something that is widely known or believed, adding
+      a sense of historical context and shared knowledge. 「からある」 highlights the remarkable, estimated
+      weight of the bell, making the information more striking and memorable in an informative context.
+post_example_writeup: The usage of 「からある」 and 「からいる」 adds a layer of emphasis to the quantity, suggesting
+  that the amount is notable or impressive. While "at least" can be conveyed by other expressions like
+  「以上」 or 「少なく と も」, 「からある・いる」 specifically highlights the existence of that minimum quantity in a way
+  that suggests it's a significant or impressive lower bound.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/からある

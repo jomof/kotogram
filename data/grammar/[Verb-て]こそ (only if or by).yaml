@@ -1,0 +1,250 @@
+grammar_point: '[Verb-て]こそ (only if or by)'
+learn_before:
+  - こそ (emphasis)
+meaning: Only after doing X, can Y truly be achieved or understood.
+pronunciation:
+  katakana: テ コソ
+  romaji: te koso
+formation:
+  Verb[て-form] + こそ: Emphasizes that a certain result or understanding can truly be achieved or realized
+    only through or after the action described by the te-form verb.
+jlpt: N2
+etymology: The particle 「こそ」 is an emphatic particle, deriving from the Old Japanese demonstrative root
+  「こ」 (ko) meaning 'this' or 'here,' combined with 「そ」 (so). It serves to highlight and emphasize the
+  preceding word or phrase. When affixed to the te-form of a verb, as in 「〜てこそ」, it emphasizes the action
+  of that verb as the critical and often sole condition for a subsequent outcome or realization. This
+  intensifies the conditional meaning beyond simple 'if/when' constructions, stressing that 'only through
+  this action' can something truly be achieved or understood.
+writeup: The grammar pattern 「〜てこそ」 is used to convey that something can *only* be achieved, understood,
+  or realized *after* a specific action (represented by the verb in its te-form) has been completed. It
+  places strong emphasis on the preceding action as a necessary and often unique prerequisite. This pattern
+  implies that without this particular action, the subsequent result, insight, or achievement is impossible
+  or incomplete. It is often found in proverbs, truisms, or statements expressing a profound life lesson
+  or a deeply held belief about cause and effect. It's typically used to highlight the exclusivity of
+  the condition, suggesting that while other factors might contribute, the action expressed by the te-form
+  verb is the irreplaceable key. For instance, if one says 「苦労 {し て こそ}、成功 の 喜び が わかる」 (Only after experiencing
+  hardship can one understand the joy of success), it implies that superficial success without struggle
+  won't bring the same depth of happiness. The phrase is not merely stating a condition, but asserting
+  a profound truth about the relationship between effort and reward.
+false_friends:
+  - term: 〜からこそ
+    meaning: precisely because; for this very reason
+    kind: similar expression
+    nuance: While both emphasize a preceding element, 「〜からこそ」 focuses on the *reason* or *cause* for something.
+      It explains *why* something is the case. In contrast, 「〜てこそ」 emphasizes the *action* as the indispensable
+      condition for a subsequent outcome or understanding. It explains *how* or *by what means* something
+      can be achieved.
+    grammar_point: からこそ (emphasized reason)
+  - term: 〜てはじめて
+    meaning: only after doing X, then for the first time Y happened or was realized
+    kind: similar expression
+    nuance: Both 「〜てこそ」 and 「〜てはじめて」 imply a prerequisite action. However, 「〜てはじめて」 specifically denotes
+      a *first-time realization* or understanding that occurs *only after* a particular action. It often
+      describes a personal 'aha!' moment. 「〜てこそ」, on the other hand, expresses a more general truth or
+      principle, suggesting that the action is always and fundamentally essential for the outcome, not
+      just for a first-time experience.
+    grammar_point: て初めて (for the first time after)
+  - term: 〜たら
+    meaning: if; when (conditional)
+    kind: similar expression
+    nuance: 「〜たら」 is a general conditional expressing 'if A, then B' or 'when A, B occurs.' It simply
+      links two events or states. 「〜てこそ」 adds a strong emphatic nuance of 'only by doing A' or 'it is
+      precisely A that allows B.' The result (B) is presented as uniquely dependent on the action (A)
+      in the case of 「〜てこそ」, a nuance absent in a simple 「〜たら」 conditional.
+    grammar_point: たら (conditional, when・if A then B)
+post_false_friends_writeup: 'To differentiate, consider the emphasis: 「〜てこそ」 points to the *action* as
+  the unique path to a desired outcome or deep understanding. 「〜からこそ」 highlights the *reason* behind something.
+  「〜てはじめて」 is about a *new discovery* made after an action. Simple conditionals like 「〜たら」 merely state
+  a condition, lacking the strong ''''only through'''' emphasis of 「〜てこそ」.'
+examples:
+  - english: Only after experiencing hardship can one understand life's joys.
+    japanese:
+      - 苦労 {し て こそ}、人生 の 喜び が わかる。
+      - 苦労 {し て こそ}、人生 の 喜び が わかり ます。
+      - 苦労 {し て こそ}、人生 の 喜び を 知る。
+    english_literally: Hardship doing-only, life's joy subject understands.
+    competing_grammar:
+      - competing_japanese:
+          - 苦労 すれ ば、人生 の 喜び が わかる。
+        english: If you struggle, you will understand life's joys.
+        hint: This is a general conditional. We're looking for an expression that emphasizes hardship
+          as the *only* way to truly understand joy.
+    scene: A wise elder shares a life lesson with a young, inexperienced person.
+    register: formal
+    setting: inspirational
+    nuance: The phrase 「苦労 {してこそ}」 implies that the joy of success is truly understood *only* when one
+      has personally experienced and overcome hardships. It suggests a deeper, more profound appreciation
+      that cannot be gained otherwise. This is a common idiom expressing a universal truth.
+    etymology: The idiom itself reflects a long-standing cultural value in Japan where perseverance and
+      enduring difficulty are seen as essential for growth and genuine appreciation.
+  - english: Only after raising children do you truly understand a parent's feelings.
+    japanese:
+      - 子育て {し て こそ}、親 の 気持ち が わかる。
+      - 子育て {し て こそ}、親 の 気持ち が わかり ます。
+    english_literally: Child-raising doing-only, parent's feelings subject understands.
+    competing_grammar:
+      - competing_japanese:
+          - 子育て し たら、親 の 気持ち が わかる。
+        english: If you raise children, you will understand a parent's feelings.
+        hint: This simply states a condition. We need to emphasize that child-rearing is the *sole* way
+          to gain this deep understanding.
+    scene: A group of friends discusses family and life experiences.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: Using 「子育て {してこそ}」 implies that theoretical knowledge about parenting is insufficient; true
+      understanding of a parent's feelings comes *exclusively* through the personal, hand-on experience
+      of raising children. It suggests this is a common sentiment expressed by mothers.
+  - english: Only through effort can there be success.
+    japanese:
+      - 努力 {し て こそ}、成功 が ある。
+      - 努力 {し て こそ}、成功 が あり ます。
+      - 努力 {し て こそ}、成功 が 得 られる もの だ。
+    english_literally: Effort doing-only, success exists.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 が あれ ば、成功 が ある。
+        english: If there is effort, there will be success.
+        hint: This is a simple conditional. The grammar point implies that success *only* comes through
+          effort, making it a necessary condition.
+    scene: A coach motivates their team before a big game.
+    register: semi-formal
+    setting: inspirational
+    nuance: The phrase 「努力 {してこそ}」 highlights that effort is not just one factor, but the *fundamental
+      and exclusive* prerequisite for success. It's a motivational statement emphasizing that without
+      true effort, success is not genuinely achieved.
+  - english: Only by overcoming difficult times together can true friendship grow.
+    japanese:
+      - 困難 な 時 を 乗り越え て {こそ}、真 の 友情 が 育つ。
+      - 困難 な 時 を 乗り越え て {こそ}、真 の 友情 が 育ち ます。
+      - 困難 な 時 を 乗り越え て {こそ}、真 の 友情 が 築か れる。
+    english_literally: Difficult times overcoming-only, true friendship grows.
+    competing_grammar:
+      - competing_japanese:
+          - 困難 な 時 を 乗り越え たら、真 の 友情 が 育つ。
+        english: If you overcome difficult times, true friendship will grow.
+        hint: This suggests a possibility, not a strong exclusive condition. We're looking for the sense
+          that overcoming challenges is *essential* for true friendship.
+    scene: Two long-time friends reflecting on their relationship over coffee.
+    register: casual
+    setting: reflective
+    nuance: 「乗り越えて {こそ}」 signifies that true friendship is forged and strengthened *specifically and uniquely*
+      through shared experiences of hardship. It's not merely 'if you overcome,' but 'it is only by overcoming'
+      that this deeper bond can develop.
+  - english: Only by actually experiencing it can you truly understand the essence of things.
+    japanese:
+      - 実際 に 経験 {し て こそ}、物事 の 本質 が 理解 できる。
+      - 実際 に 経験 {し て こそ}、物事 の 本質 が 理解 でき ます。
+      - 実際 に 経験 {し て こそ}、物事 の 本質 を 掴む こと が できる。
+    english_literally: Actually experience doing-only, things' essence subject understands can.
+    competing_grammar:
+      - competing_japanese:
+          - 実際 に 経験 し て から、物事 の 本質 が 理解 できる。
+        english: After actually experiencing it, you can understand the essence of things.
+        hint: This implies a temporal sequence but doesn't strongly emphasize exclusivity. We need to
+          stress that direct experience is the *only* way to understand.
+    scene: A university professor explaining the importance of hands-on learning.
+    register: formal
+    setting: academic
+    nuance: The use of 「経験 {してこそ}」 emphasizes that true, profound understanding of the essence (本質) of
+      something is unattainable through mere theoretical knowledge or observation; it requires direct,
+      personal experience. This implies experience is the ultimate and irreplaceable teacher.
+  - english: Only by trusting and entrusting tasks to your subordinates can you gain trust as a leader.
+    japanese:
+      - 部下 を 信じ て 任せ て {こそ}、リーダー と し て の 信頼 が 得 られる。
+      - 部下 を 信じ て 任せ て {こそ}、リーダー と し て の 信頼 が 得 られ ます。
+      - 部下 を 信じ て 任せ て {こそ}、リーダー と し て の 信頼 を 勝ち得る。
+    english_literally: Subordinates object believing entrusting-only, leader as trustworthiness subject
+      gains.
+    competing_grammar:
+      - competing_japanese:
+          - 部下 を 信じ て 任せる から 信頼 が 得 られる。
+        english: You gain trust because you believe in and entrust tasks to your subordinates.
+        hint: This provides a reason, but not the exclusive, emphatic condition. We're looking for the
+          idea that trust is gained *only through* this action.
+    scene: A CEO delivers a speech on effective management strategies.
+    register: formal
+    setting: professional
+    nuance: 「信じて 任せて {こそ}」 highlights that a leader's trust is built *exclusively* and *fundamentally*
+      through the act of entrusting responsibilities to subordinates, not merely through words or other
+      actions. It suggests this specific approach is paramount for effective leadership.
+  - english: Only by fulfilling your own role can you contribute to the team.
+    japanese:
+      - 自分 の 役割 を 全う {し て こそ}、チーム に 貢献 できる。
+      - 自分 の 役割 を 全う {し て こそ}、チーム に 貢献 でき ます。
+      - 自分 の 役割 を 全う {し て こそ}、チーム へ の 貢献 が 可能 と なる。
+    english_literally: Self's role object fulfill doing-only, team to contribute can.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 の 役割 を 全う する こと が できれ ば、チーム に 貢献 できる。
+        english: If you can fulfill your own role, you can contribute to the team.
+        hint: This is a general possibility. We want to express that fulfilling one's role is a *necessary*
+          condition for team contribution.
+    scene: A project manager addresses their team during a performance review.
+    register: semi-formal
+    setting: professional
+    nuance: 「全う {してこそ}」 conveys that genuine contribution to a team relies *solely* and *directly* on
+      each individual fulfilling their specific role completely. It underscores the importance of individual
+      accountability as the foundation for collective success.
+  - english: Only after losing your health do you truly realize its preciousness.
+    japanese:
+      - 健康 を 損なっ て {こそ}、その あり がたみ が わかる。
+      - 健康 を 損なっ て {こそ}、その あり がたみ が わかり ます。
+      - 健康 を 損なっ て {こそ}、その 価値 が わかる もの だ。
+    english_literally: Health object lose doing-only, its preciousness subject understands.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 を 損なっ て はじめて、その あり がたみ が わかっ た。
+        english: Only after losing my health did I realize its preciousness for the first time.
+        hint: This emphasizes a *first-time realization*. We're looking for a general truth about understanding
+          preciousness *only* through loss, not necessarily the first time.
+    scene: An individual recovering from an illness shares their newfound perspective.
+    register: casual
+    setting: reflective
+    nuance: 「損なって {こそ}」 emphasizes that the deep appreciation for health comes *uniquely* and *fully*
+      after its loss. It's a common observation that people often take things for granted until they are
+      gone, and this phrase strongly conveys that sentiment.
+  - english: Only by accepting each other's flaws can true love be born.
+    japanese:
+      - 互い の 欠点 を 受け入れ て {こそ}、本当 の 愛 が 生まれる。
+      - 互い の 欠点 を 受け入れ て {こそ}、本当 の 愛 が 生まれ ます。
+      - 互い の 欠点 を 受け入れ て {こそ}、真実 の 愛 が 芽生える。
+    english_literally: Each other's flaws object accepting-only, true love subject is born.
+    competing_grammar:
+      - competing_japanese:
+          - 互い の 欠点 を 受け入れ たら、本当 の 愛 が 生まれる。
+        english: If you accept each other's flaws, true love will be born.
+        hint: This is a simple conditional. The grammar point implies that acceptance of flaws is the
+          *exclusive* path to true love.
+    scene: A relationship counselor offering advice to a couple.
+    register: semi-formal
+    setting: intimate
+    nuance: 「受け入れて {こそ}」 asserts that the acceptance of flaws is not just a good idea, but the *indispensable*
+      and *exclusive* condition for genuine love to emerge. It suggests that without this acceptance,
+      what one has is not 'true love'.
+  - english: Only by making mistakes do people grow.
+    japanese:
+      - 失敗 {し て こそ}、人 は 成長 する。
+      - 失敗 {し て こそ}、人 は 成長 し ます。
+      - 失敗 {し て こそ}、人 は 成長 する もの だ。
+    english_literally: Failure doing-only, person topic grows.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 から、人 は 成長 する。
+        english: From failure, people grow.
+        hint: This states failure as a source, but doesn't emphasize it as the *exclusive* way to grow.
+          We're looking for the idea that growth *only* happens through mistakes.
+    scene: A mentor encouraging a mentee who is feeling down after a setback.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    nuance: 「失敗 {してこそ}」 is a strong affirmation that personal growth is *inherently tied to* and *contingent
+      upon* the experience of making mistakes. It implies that growth cannot truly occur without the lessons
+      learned from errors, often used by an older male to impart wisdom.
+post_example_writeup: As these examples demonstrate, 「〜てこそ」 consistently emphasizes that the preceding
+  action is not merely a contributing factor but the singular, essential condition for the subsequent
+  outcome or realization. It often appears in contexts where a profound truth or a necessary life lesson
+  is being conveyed, highlighting that some things can only be understood or achieved through specific,
+  often challenging, experiences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/280-%E3%81%A6%E3%81%93%E3%81%9D

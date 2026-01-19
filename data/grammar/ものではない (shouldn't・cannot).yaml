@@ -1,0 +1,277 @@
+grammar_point: ものではない (shouldn't・cannot)
+learn_before:
+  - ものだ (general truth expectation)
+  - もので・ものだから (because・as an excuse)
+meaning: Shouldn't; not possibly; naturally cannot; cannot bear to.
+pronunciation:
+  katakana: モノデハナイ
+  romaji: mono de wa nai
+formation:
+  Verb (plain non-past) + ものではない: Indicates a general prohibition or advice against doing something; 'one
+    shouldn't'.
+  Verb (potential plain non-past) + ものではない: Expresses that something is naturally impossible or goes against
+    common sense; 'one cannot possibly'.
+  Verb (potential plain past) + ものではない: Indicates that something was impossible or unbearable in the past;
+    'one could not bear to'.
+jlpt: N2
+etymology: The grammar point 「ものではない」 is composed of 「もの」 (thing), 「で」 (copula), 「は」 (topic marker), and
+  「ない」 (negative). Literally, it means something along the lines of "it is not the case that something
+  is."
+writeup: |-
+  The grammar point 「ものではない」 is used to express that something **should not** be done, is **impossible** to do, or is simply **not the natural course of things**. It carries a sense of advice, prohibition, or impossibility. Think of it as a stronger, more emphatic way of saying 「～べきではない」 or 「～てはいけない」.
+
+  It's often used to express general truths, social norms, or strong personal feelings about something. For example, 「人に嘘をつくものではない」 (You shouldn't lie to people) expresses a fundamental moral principle.
+
+  When used with the potential form of a verb, it often indicates that something is simply impossible or unbearable, such as 「彼の歌は聞けたものではない」 (I couldn't bear to listen to his song).
+false_friends:
+  - term: べきではない
+    meaning: should not
+    kind: similar expression
+    nuance: 「べきではない」 is a more direct and forceful way of saying something should not be done, often carrying
+      a sense of moral obligation, whereas 「ものではない」 is a softer, more general prohibition or piece of
+      advice.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: てはいけない
+    meaning: must not
+    kind: similar expression
+    nuance: 「てはいけない」 is a stronger prohibition, indicating that something is strictly forbidden, while
+      「ものではない」 is a gentler suggestion of what is generally considered inappropriate or impossible.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: できない
+    meaning: cannot
+    kind: similar expression
+    nuance: While 「できない」 states a simple inability, 「ものではない」 (especially with potential forms) emphasizes
+      the inherent impossibility or unbearable nature of something as a natural consequence or strong
+      judgment, often implying a deeper reason than mere lack of ability.
+    grammar_point: 得る (to be able to・to be possible)
+post_false_friends_writeup: While 「べきではない」 and 「てはいけない」 can be used similarly to 「ものではない」, it's important
+  to understand the subtle differences in nuance. 「べきではない」 implies a moral or logical necessity, while
+  「てはいけない」 is a direct prohibition. 「ものではない」 often carries a softer tone, suggesting general norms or
+  impossibilities rather than strict rules.
+examples:
+  - english: You shouldn't speak loudly in public places.
+    japanese:
+      - 公共 の 場 で 大声 で 話す {もの で は ない}。
+      - 公共 の 場 で 大声 で 話す {もの で は あり ませ ん}。
+      - 公共 の 場 で 大声 で 話す {もん じゃ あり ませ ん}。
+    english_literally: In public places, speaking loudly is not something one should do.
+    competing_grammar:
+      - competing_japanese:
+          - 公共 の 場 で 大声 で 話す {べき で は ない}。
+        english: You morally should not speak loudly in public places.
+        hint: 「べきではない」 expresses a stronger moral or logical obligation. We're looking for a general social
+          norm.
+    scene: A parent is teaching their child about polite behavior in public. The parent wants to emphasize
+      a general social norm rather than a strict prohibition.
+    register: semi-formal
+    setting: instructional
+    nuance: This statement serves as general advice for public conduct, emphasizing a widely accepted
+      social norm rather than a strict command. The phrase 「大声 で 話す ものではない」 emphasizes this general social
+      norm, implying what is generally not done or is inappropriate.
+    etymology: The concept of 'public places' (公共 の 場) and 'loud voice' (大声) are fundamental to understanding
+      social etiquette across cultures, but the nuance here stems from the Japanese cultural emphasis
+      on not bothering others (周り に 迷惑 を かけない).
+  - english: You shouldn't use casual speech with your superiors.
+    japanese:
+      - 目上 の 人 に ため口 を 使う {もの で は ない}。
+      - 目上 の 人 に ため口 を 使う {もの で は あり ませ ん}。
+      - 目上 の 人 に ため口 を 使う {もん じゃ あり ませ ん}。
+    english_literally: Using casual speech with superiors is not something one should do.
+    competing_grammar:
+      - competing_japanese:
+          - 目上 の 人 に ため口 を 使っ {て は いけ ない}。
+        english: You must not use casual speech with your superiors.
+        hint: 「てはいけない」 is a direct and strict prohibition. We're looking for a more subtle advice on social
+          norms.
+    scene: A new employee receives subtle advice from a senior colleague about workplace etiquette, highlighting
+      common Japanese business norms.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: This phrase gently advises against using casual speech (ため口) with superiors (目上 の 人), reflecting
+      a common social norm in Japanese professional settings. It's a suggestion for appropriate conduct
+      rather than a strict command.
+    etymology: The term 「ため口」 (casual speech) literally translates to 'equal mouth' or 'level mouth',
+      indicating speech used between equals. Its use highlights the Japanese hierarchical social structure
+      where formal language (敬語 - keigo) is expected towards those of higher status.
+  - english: With this old computer, such complex tasks are not something one can possibly do.
+    japanese:
+      - この 古い パソコン で は、そんな 複雑 な 作業 は できる {もの で は ない}。
+      - この 古い パソコン で は、そんな 複雑 な 作業 は できる {もの で は あり ませ ん}。
+      - この 古い パソコン じゃ、そんな 複雑 な 作業 は できる {もん じゃ あり ませ ん}。
+    english_literally: With this old computer, such complex tasks are not something that can be done.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い パソコン で は、そんな 複雑 な 作業 は {でき ない}。
+        english: With this old computer, such complex tasks cannot be done.
+        hint: 「できない」 states a simple inability. We're looking for an inherent impossibility due to the
+          nature of the situation.
+    scene: An IT technician explains to a frustrated user that a very old computer lacks the capacity
+      for demanding modern software, highlighting a practical impossibility.
+    register: semi-formal
+    setting: informative
+    nuance: The phrase 「できるものではない」 in this context emphasizes that certain tasks are inherently impossible
+      or impractical given the limitations of the old computer. It's not about personal inability, but
+      the natural consequence of the computer's state.
+    etymology: The word 「パソコン」 is a common abbreviation for 'personal computer' (パーソナルコンピュータ), a Japanese-English
+      loanword. Its juxtaposition with 「古い」 (old) and 「できない」 highlights a practical limitation inherent
+      in the object itself.
+  - english: It was such a sad story, I couldn't bear to listen to it.
+    japanese:
+      - あまり に 悲しい 話 で、聞け た {もの で は ない}。
+      - あまり に 悲しい 話 で、聞け た {もの で は あり ませ ん} でし た。
+      - あまり に 悲しい 話 で、聞け た {もん じゃ なかっ た}。
+    english_literally: It was such a sad story, it was not something that could be listened to.
+    competing_grammar:
+      - competing_japanese:
+          - あまり に 悲しい 話 で、{聞く こと が でき なかっ た}。
+        english: It was such a sad story, I simply could not listen to it.
+        hint: 「聞くことができなかった」 implies a simple inability to hear or continue listening. We're looking for
+          an emotional impossibility or unbearable nature.
+    scene: A woman confides in her friend about a traumatic event she witnessed, describing how emotionally
+      difficult it was to process the details.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「聞けたものではない」 expresses a deep emotional impact, indicating that the content was
+      so distressing that it was impossible to continue listening. The casual tone suits a private conversation
+      between friends.
+    etymology: 「悲しい」 (sad) is an adjective describing emotional state. The construction here combines
+      this emotional state with the 'unbearable' sense of ものではない, highlighting a subjective experience
+      rather than an objective fact.
+  - english: Just because you failed once, you shouldn't give up immediately.
+    japanese:
+      - 一 度 失敗 し た から と いっ て、すぐ に 諦める {もの で は ない}。
+      - 一 度 失敗 し た から と いっ て、すぐ に 諦める {もの で は あり ませ ん}。
+      - 一 度 失敗 し た から と いっ て、すぐ に 諦める {もん じゃ あり ませ ん}。
+    english_literally: Saying "I failed once," and immediately giving up is not something one should do.
+    competing_grammar:
+      - competing_japanese:
+          - 一 度 失敗 し た から と いっ て、すぐ に 諦める {べき で は ない}。
+        english: Just because you failed once, you morally should not give up immediately.
+        hint: 「べきではない」 conveys a stronger moral or logical obligation. We're looking for general advice
+          on what is not considered appropriate conduct.
+    scene: A seasoned mentor encourages a younger colleague not to be disheartened by a setback, offering
+      a general life lesson about perseverance.
+    register: semi-formal
+    setting: inspirational
+    nuance: The phrase 「諦めるものではない」 conveys this general piece of advice about resilience, presented as
+      a common-sense principle rather than a strict moral obligation. It's an inspirational message about
+      what is generally considered inappropriate for a successful person.
+    etymology: The particle 「と いって」 here means 'just because... (doesn't mean...)', indicating a causal
+      relationship that doesn't justify the following action. The word 「諦める」 (to give up) literally combines
+      'give up' (諦) and 'bear/endure' (める), highlighting the effort required to not surrender.
+  - english: His cooking was so terrible, it was unbearable to eat.
+    japanese:
+      - 彼 の 料理 は、ひど すぎ て 食べ られ た {もの で は ない}。
+      - 彼 の 料理 は、ひど すぎ て 食べ られ た {もの で は あり ませ ん} でし た。
+      - 彼 の 料理 は、ひど すぎ て 食べ られ た {もん じゃ なかっ た}。
+    english_literally: His cooking was too terrible, it was not something that could be eaten.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 料理 は、ひど すぎ て {食べ られ なかっ た}。
+        english: His cooking was too terrible, I simply could not eat it.
+        hint: 「食べられなかった」 indicates a simple inability to eat, perhaps due to taste or quantity. We're
+          looking for an unbearable quality that makes it impossible to consume.
+    scene: Two friends are whispering conspiratorially after trying a mutual friend's notoriously bad
+      cooking, emphasizing how truly awful it was.
+    register: casual
+    setting: humorous
+    nuance: The phrase 「食べられたものではない」 expresses that something is so bad that it is naturally impossible
+      or unbearable to experience. The casual register and setting of two friends enhance the informal,
+      somewhat exaggerated complaint about the food.
+    etymology: 「ひどい」 (terrible/awful) is an adjective indicating extreme negativity. The potential form
+      「食べられた」 (could be eaten) combined with ものではない strongly conveys that the quality of the cooking was
+      so low it transcended mere distaste to become truly inedible.
+  - english: Students shouldn't sleep during class.
+    japanese:
+      - 学生 が 授業 中 に 寝る {もの で は ない} ぞ。
+      - 学生 が 授業 中 に 寝る {もの で は あり ませ ん}。
+      - 学生 が 授業 中 に 寝る {もん じゃ あり ませ ん}。
+    english_literally: For students, sleeping during class is not something one should do.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 授業 中 に 寝 {て は いけ ない}。
+        english: Students must not sleep during class.
+        hint: 「てはいけない」 is a direct prohibition. We're looking for a general principle of student conduct.
+    scene: A strict male teacher, known for his no-nonsense attitude, reprimands a student caught dozing
+      off, using a firm but educational tone.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「ぞ」 at the end of the sentence adds a strong, masculine, and somewhat admonishing
+      tone, typical for an older male teacher asserting a general principle. This emphasizes that it's
+      a fundamental expectation for students.
+    etymology: The word 「授業」 (class/lesson) combines characters for 'teach' (授) and 'profession/business'
+      (業), indicating a formal instructional setting. The particle 「ぞ」 is a sentence-final particle primarily
+      used by male speakers to add emphasis or assertion, making the statement more direct and commanding.
+  - english: It's impossible to finish this project in just one day.
+    japanese:
+      - たっ た 一日 で、この プロジェクト を 終わら せ られる {もの で は ない}。
+      - たっ た 一日 で、この プロジェクト を 終わら せ られる {もの で は あり ませ ん}。
+      - たっ た 一日 で、この プロジェクト は 終わら せ られる {もん じゃ あり ませ ん}。
+    english_literally: In just one day, finishing this project is not something that can be done.
+    competing_grammar:
+      - competing_japanese:
+          - たっ た 一日 で、この プロジェクト を {終わら せ られ ない}。
+        english: It's simply not possible to finish this project in just one day.
+        hint: 「終わらせられない」 states a straightforward inability. We're looking for an inherent or logical
+          impossibility that goes against common sense.
+    scene: A project manager explains to a superior that a proposed deadline is entirely unrealistic given
+      the scope of work, stressing the logical impossibility.
+    register: semi-formal
+    setting: persuasive
+    nuance: The phrase 「終わらせられるものではない」 expresses that completing the project in one day is inherently
+      impossible or goes against common sense, given the project's nature. It's used to persuade the superior
+      of the unreasonableness of the deadline.
+    etymology: The word 「プロジェクト」 (project) is a common loanword from English. The phrase 「たった 一日 で」 (in
+      just one day) highlights the extremely limited time frame, setting up the logical impossibility
+      expressed by ものではない.
+  - english: One shouldn't make promises they can't keep.
+    japanese:
+      - 守れ ない 約束 は する {もの で は ない}。
+      - 守れ ない 約束 は する {もの で は あり ませ ん}。
+    english_literally: Promises one cannot keep are not something one should make.
+    competing_grammar:
+      - competing_japanese:
+          - 守れ ない 約束 は する {べき で は ない}。
+        english: One morally should not make promises they cannot keep.
+        hint: 「べきではない」 conveys a stronger moral obligation. Here, we are discussing a general principle
+          of good conduct or reliability.
+    scene: A seasoned individual is giving life advice to a younger person about integrity and reliability.
+    register: semi-formal
+    setting: informative
+    nuance: The phrase 「するものではない」 implies that making promises one cannot keep goes against widely accepted
+      social norms and principles of trust. It's a piece of wisdom rather than a strict rule.
+    etymology: The word 「約束」 (promise) combines characters for 'appointment' (約) and 'binding' (束), emphasizing
+      the reciprocal nature of a promise. The phrase is a common cautionary saying about integrity.
+  - english: After such a huge meal, I couldn't possibly eat anything more.
+    japanese:
+      - あんな に 大盛り を 食べ た 後 で は、もう 何 も 食べ られる {もの で は ない}。
+      - あんな に 大盛り を 食べ た 後 で は、もう 何 も 食べ られる {もの で は あり ませ ん}。
+    english_literally: After eating such a huge serving, eating anything more is not something that can
+      be done.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 大盛り を 食べ た 後 で は、もう 何 も {食べ られ ない}。
+        english: After such a huge meal, I simply cannot eat anything more.
+        hint: 「食べられない」 indicates a simple inability to eat due to fullness. 「ものではない」 here conveys a sense
+          of inherent impossibility or the unbearable nature of trying to eat more.
+    scene: Someone has just finished a very large portion of food and is asked if they want more, emphasizing
+      their extreme fullness.
+    register: casual
+    setting: humorous
+    nuance: The use of 「食べられるものではない」 conveys that eating anything further is beyond what is physically
+      or comfortably possible, given the amount already consumed. It expresses a strong, almost emphatic,
+      sense of being full to the point of impossibility.
+    etymology: 「大盛り」 (oomori) means a 'large serving' or 'extra large portion,' commonly used in restaurants.
+      Its combination with the potential form of 'to eat' (食べられる) and ものではない stresses the overwhelming
+      quantity that makes further consumption impossible.
+post_example_writeup: 'Understanding 「ものではない」 involves grasping its dual nature: expressing what should
+  not be done (a norm or advice) and what cannot possibly be done (an inherent impossibility). The context,
+  especially the verb form it attaches to (plain vs. potential), usually clarifies which meaning is intended.
+  Pay close attention to the overall situation to correctly interpret its nuance.'
+sources:
+  bunpro: resources/original/dojg/all/ものではない.yaml

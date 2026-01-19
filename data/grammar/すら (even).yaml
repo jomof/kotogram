@@ -1,0 +1,383 @@
+grammar_point: すら (even)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - ちょっと (adverb)
+meaning: Even
+meaning_warning: Sometimes you can encounter 「すらさえ」 in song lyrics, which is used to emphasize すら more.
+  However, this should be avoided as it is not a common expression.
+pronunciation:
+  katakana: スラ
+  romaji: sura
+formation:
+  Noun + すら: Indicates 'even [noun]' or 'not even [noun],' emphasizing the unexpectedness or extremity
+    of the statement.
+  Noun + Particle + すら: Applies to a noun that is already marked by a case particle, further emphasizing
+    the extreme case.
+  Noun + すら + も: Adds extra emphasis to the 'even' nuance, highlighting an even greater degree of unexpectedness.
+jlpt: N1
+etymology: The particle 「すら」 is believed to have originated from the verb 「する」 (suru, to do). Over time,
+  it evolved to signify 'even' by highlighting an action or state's extreme reach, implying that if something
+  is true for the most unlikely case, it is certainly true for less extreme ones. This transformation
+  from a verb root to an emphasizing particle reflects a common linguistic process where elements signifying
+  'doing' or 'achieving' come to denote 'extensiveness' or 'inclusion,' akin to how 'even' functions in
+  English.
+writeup: |-
+  The particle 「すら」 is an adverbial particle in Japanese that translates as "even." Its primary function is to highlight an extreme case, implying that if something applies to this most unlikely or difficult scenario, it necessarily applies to all less extreme ones. This often carries a negative or surprising nuance.
+
+  「すら」 can be placed directly after nouns or after nouns followed by case-marking particles (e.g., に、で). For added emphasis, 「すら」 can also be followed by 「も」, creating 「すらも」, though this is less common than simple 「すら」.
+
+  While 「すら」 shares a similar meaning with 「さえ」 and 「も」, there are distinct differences. 「すら」 is generally more formal than 「さえ」 and cannot be used in the common conditional construction 「さえ〜ば」. In terms of emphasis, 「すら」 tends to present the **most extreme** example within a large group, indicating that anything below that level also applies. In contrast, 「さえ」 focuses more on the surprising nature of a specific individual case, while 「も」 simply indicates "also" or "too" without the same degree of extremity or surprise.
+
+  Consider the linear relationship of these adverbial particles in terms of intensity:
+  *   **[A] は**: [A] is as expected, with nothing surprising about it.
+  *   **[A] も**: [A] also fits the category of the main topic, but might be slightly unexpected.
+  *   **[A] さえ**: [A] also fits the category, but is quite surprising when examined individually.
+  *   **[A] すら**: [A] also fits the category, and is the most extreme example possible, thereby strongly implying that anything below that level also applies.
+false_friends:
+  - term: さえ
+    meaning: even; if only; as long as
+    kind: similar expression
+    nuance: While 「さえ」 and 「すら」 both translate to "even," 「すら」 is more formal and emphasizes the extreme
+      nature of the example. 「さえ」 can also mean "if only" or "as long as," and it can be used in the 「さえ〜ば」
+      conditional construction, which 「すら」 cannot. 「さえ」 places more emphasis on a specific individual
+      or single surprising instance.
+    grammar_point: さえ (even・if only)
+  - term: も
+    meaning: also; too; as well
+    kind: often confused with
+    nuance: 「も」 indicates "also" or "too" and is less emphatic than 「すら」. 「すら」 implies an extreme case,
+      presenting an example that is at the very boundary of what might be expected, often with a negative
+      or surprising connotation. 「も」 simply adds another item to a list or indicates something applies
+      in an additional instance without the same degree of extremity.
+    grammar_point: も (addition or emphasis particle)
+  - term: まで
+    meaning: even; to the extent
+    kind: similar expression
+    nuance: 「まで」 indicates that an action or state extends to a certain limit or extreme, including that
+      limit. While it can translate to "even," it often focuses on the range or scope of something, implying
+      inclusion up to an unexpected point. 「すら」, on the other hand, highlights the unlikelihood or criticality
+      of the extreme example itself, often with a negative connotation, implying that if even this is
+      true, then everything less extreme is also true.
+    grammar_point: まで (even to the extent)
+  - term: だに
+    meaning: just; (not) even
+    kind: similar expression
+    nuance: 「だに」 is highly formal and literary, often used with negative expressions to emphasize that
+      not even a minimal action or thought is possible. It can also imply "just" or "merely." While sharing
+      the "even" nuance, 「すら」 is slightly less archaic and focuses more on the extreme example that serves
+      as a benchmark for other less extreme cases, whereas 「だに」 often implies the absence of even the
+      slightest action or quality.
+    grammar_point: '[Noun]だに(~しない) (even・not even)'
+  - term: はおろか
+    meaning: let alone; much less; not to mention
+    kind: similar expression
+    nuance: 「はおろか」 means "let alone" or "not to mention," implying that something is obviously impossible
+      or out of the question, and then extending that impossibility to a lesser thing. It emphasizes a
+      gap or disparity where even the easier thing is not possible. 「すら」, while also dealing with extremes,
+      focuses on the inclusion of the extreme case to prove a point about everything else, rather than
+      dismissing a higher level of possibility.
+    grammar_point: はおろか (let alone・not to mention)
+post_false_friends_writeup: To differentiate 「すら」 from similar particles like 「さえ」 and 「も」, remember that
+  「すら」 consistently highlights an extreme case, often with a sense of strong emphasis, surprise, or negative
+  nuance. Use 「すら」 when you want to emphasize that something applies even in the most unlikely situation,
+  implying it applies to everything else as well. 「さえ」 is similar in conveying "even" but has additional
+  conditional uses and is slightly less formal, while 「も」 simply means "also" or "too" without the same
+  strong sense of an unexpected extreme. Furthermore, 「まで」 emphasizes the extent to which something reaches,
+  including an extreme, while 「だに」 focuses on the absolute absence of even a minimal action or quality,
+  often in more literary contexts. Lastly, 「はおろか」 implies that a certain thing is impossible, let alone
+  something else, establishing a clear hierarchy of impossibility.
+examples:
+  - english: I was so busy, I couldn't even remember my own name.
+    japanese:
+      - 忙しく て、自分 の 名前 {すら} 思い出せ なかっ た。
+      - 忙し すぎ て、自分 の 名前 {すら} 思い出せ ませ ん でし た。
+      - 忙しく て、自分 の 名前 {すら} 思い出せ なかっ た ん だ。
+      - 忙しく て、自分 の 名前 {すら} 思い出せ なかっ た ん です。
+      - 忙し すぎ て、自分 の 名前 {すら} 思い出せ なかっ た わ。
+    english_literally: Being busy, even my own name I couldn't remember.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しく て、自分 の 名前 {さえ} 思い出せ なかっ た。
+        english: I was so busy, I couldn't even remember my own name (surprisingly).
+        hint: 「さえ」 also means "even," but it often emphasizes the surprising nature of the specific instance,
+          while 「すら」 highlights the extreme example in a more formal or critical tone. We're looking for
+          the stronger, more formal emphasis on an extreme situation.
+      - competing_japanese:
+          - 忙しく て、自分 の 名前 {も} 思い出せ なかっ た。
+        english: I was so busy, I couldn't remember my own name either.
+        hint: 「も」 indicates "also" or "too" without the strong sense of an extreme or unexpected case
+          that 「すら」 provides. We're looking for emphasis on the extreme degree of busyness.
+    scene: A person explains how overwhelmed they were by work.
+    register: casual
+    setting: melancholic
+    nuance: The use of 「すら」 highlights the extreme degree of the speaker's busy state. Forgetting one's
+      own name is an unlikely and extreme outcome, emphasizing just how overwhelmed they were.
+  - english: He has a terrible cold; he can't even drink water.
+    japanese:
+      - 彼 は ひどい 風邪 で、水 {すら} 飲め ない 状態 だ。
+      - 彼 は ひどい 風邪 で、水 {すら} 飲め ない 状態 です。
+      - ひどい 風邪 で、水 {すら} 飲め ませ ん。
+      - ひどい 風邪 で、水 {すら} 飲め ない ん だ。
+      - 水 {すら} 飲め ない よ。
+    english_literally: He has a terrible cold, water even he cannot drink state it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ひどい 風邪 で、水 {さえ} 飲め ない 状態 だ。
+        english: He has a terrible cold; he can't even drink water (which is surprising).
+        hint: While 「さえ」 can be used here, 「すら」 emphasizes the extreme debilitation more strongly. We
+          need to convey the severity of his condition by showing that even the most basic necessities
+          are impossible.
+      - competing_japanese:
+          - 彼 は ひどい 風邪 で、水 {も} 飲め ない 状態 だ。
+        english: He has a terrible cold; he can't drink water either.
+        hint: 「も」 simply adds water to a list of things he can't drink. 「すら」 is used to highlight that
+          water is an extreme, essential item he cannot consume, indicating greater severity.
+    scene: A concerned friend describes someone's severe illness.
+    register: casual
+    setting: serious
+    nuance: 「すら」 emphasizes that even something as fundamental as water, crucial for survival, cannot
+      be consumed. This highlights the severe extent of his illness.
+  - english: He hasn't read manga since he was a child, so he doesn't even know Doraemon.
+    japanese:
+      - 彼 は 子供 の ころ から 漫画 を 読ん で い なかっ た から、ドラえもん {すら} 知ら ない。
+      - 彼 は 子供 の ころ から 漫画 を 読ん で い なかっ た から、ドラえもん {すら} 知り ませ ん。
+      - 子供 の ころ から 漫画 読ん で なかっ た から、ドラえもん {すら} 知ら ない ん だ よ。
+      - ドラえもん {すら} 知ら ない ん だ って。
+      - 子供 の ころ から 漫画 を 読ん で い なかっ た ん です から、ドラえもん {すら} 知り ませ ん よ。
+    english_literally: He from childhood manga not reading because, Doraemon even doesn't know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 子供 の ころ から 漫画 を 読ん で い なかっ た から、ドラえもん {さえ} 知ら ない。
+        english: He hasn't read manga since he was a child, so he surprisingly doesn't even know Doraemon.
+        hint: 「さえ」 could work here, but 「すら」 emphasizes that not knowing Doraemon—a universally recognized
+          character—is an *extreme* indicator of his unfamiliarity with manga, which might be humorous
+          or astonishing. We're looking for that sense of extremity.
+      - competing_japanese:
+          - 彼 は 子供 の ころ から 漫画 を 読ん で い なかっ た から、ドラえもん {も} 知ら ない。
+        english: He hasn't read manga since he was a child, so he doesn't know Doraemon either.
+        hint: 「も」 implies he doesn't know Doraemon *in addition to* other manga characters, without the
+          same strong emphasis on Doraemon being an extreme example. We want to highlight the surprising
+          extent of his lack of knowledge.
+    scene: Two friends discussing someone's surprising lack of common knowledge.
+    register: casual
+    setting: humorous
+    nuance: 「すら」 emphasizes that Doraemon is such a widely known character that not knowing him indicates
+      an extreme lack of exposure to manga culture, which the speaker finds amusing or surprising.
+  - english: Apparently, in this company, new employees aren't even allowed to greet people.
+    japanese:
+      - この 会社 で は、新入 社員 に 挨拶 {すら} 許さ れ て い ない らしい。
+      - この 会社 で は、新入 社員 に 挨拶 {すら} 許さ れ て い ない よう です。
+      - この 会社、新入 社員 に 挨拶 {すら} 許し て ない らしい よ。
+      - 新入 社員 に 挨拶 {すら} 許さ れ ない ん です って。
+      - 新入 社員 が 挨拶 する こと {すら} 許さ れ て い ない らしい。
+    english_literally: This company in, new employees to greetings even not allowed it seems.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 で は、新入 社員 に 挨拶 {さえ} 許さ れ て い ない らしい。
+        english: Apparently, in this company, new employees aren't even allowed to greet people (surprisingly).
+        hint: 「さえ」 conveys surprise, but 「すら」 emphasizes the extreme and unreasonable nature of denying
+          even a basic social interaction like greeting. We're highlighting the severity of the company
+          culture.
+      - competing_japanese:
+          - この 会社 で は、新入 社員 に 挨拶 {も} 許さ れ て い ない らしい。
+        english: Apparently, in this company, new employees also aren't allowed to greet people.
+        hint: 「も」 would imply that greeting is just one of many things new employees aren't allowed to
+          do, without the strong emphasis on it being an extreme or basic right. We want to convey the
+          shocking strictness.
+    scene: Employees complaining about overly strict company rules.
+    register: semi-formal
+    setting: serious
+    nuance: The use of 「すら」 emphasizes the unreasonable strictness of the company, implying that a fundamental
+      courtesy like greeting is denied to new employees, which is shocking.
+  - english: She is so busy that she can't even make time for her family.
+    japanese:
+      - 彼女 は 忙し すぎ て、家族 と の 時間 {すら} 取れ ない 状態 だ。
+      - 彼女 は 忙し すぎ て、家族 と の 時間 {すら} 取れ ない 状態 です。
+      - 彼女、忙し すぎ て 家族 と の 時間 {すら} 取れ て ない ん だ よ。
+      - 家族 と の 時間 {すら} 取れ ない ん です。
+      - 彼女 は 忙し すぎ て、家族 と の 時間 {すら} 持て ない。
+    english_literally: She is too busy, family with time even cannot take state it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 忙し すぎ て、家族 と の 時間 {さえ} 取れ ない 状態 だ。
+        english: She is so busy that she surprisingly can't even make time for her family.
+        hint: 「さえ」 focuses on the surprising aspect of this particular situation. 「すら」 emphasizes that
+          family time, typically a high priority, is sacrificed, making it an extreme indication of her
+          busyness. We're looking for that extreme emphasis.
+      - competing_japanese:
+          - 彼女 は 忙し すぎ て、家族 と の 時間 {も} 取れ ない 状態 だ。
+        english: She is so busy that she also can't make time for her family.
+        hint: 「も」 would mean family time is just one of the things she can't make time for. 「すら」 highlights
+          that even family time, usually prioritized, is impossible, underscoring the severity of her
+          schedule.
+    scene: A colleague expresses concern over a friend's demanding work schedule.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    nuance: The speaker, likely a female colleague, uses polite forms. 「家族との時間すら」 emphasizes that even
+      the time for one's family, a crucial aspect of life, is unobtainable, highlighting the extreme demands
+      of her work.
+  - english: His illness is so severe, it's difficult for him to even get out of bed.
+    japanese:
+      - 彼 は 病気 が 重く て、ベッド から 起き上がる {すら} 困難 だ。
+      - 彼 は 病気 が 重く て、ベッド から 起き上がる {すら} 困難 です。
+      - 病気 が 重く て、ベッド から 起き上がる の {すら} 大変 らしい よ。
+      - ベッド から 起き上がる こと {すら} 難しい らしい。
+      - 彼 は 病気 が 重く て、ベッド から 起き上がる こと {すら} でき ませ ん。
+    english_literally: He illness is heavy, bed from getting up even difficult it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 病気 が 重く て、ベッド から 起き上がる {さえ} 困難 だ。
+        english: His illness is so severe, it's surprisingly difficult for him to even get out of bed.
+        hint: While 「さえ」 can imply surprise, 「すら」 is more formal and emphasizes that getting out of bed
+          is an extreme, basic action made impossible by the illness. We need to convey the extreme weakness.
+      - competing_japanese:
+          - 彼 は 病気 が 重く て、ベッド から 起き上がる の {も} 困難 だ。
+        english: His illness is so severe, it's also difficult for him to get out of bed.
+        hint: 「も」 simply states that getting out of bed is difficult. 「すら」 highlights this action as an
+          extreme example of his debilitated state. We're looking for strong emphasis on the severity.
+    scene: A doctor updates a family on a patient's critical condition.
+    register: formal
+    setting: serious
+    nuance: 「すら」 emphasizes that even the most fundamental movement, getting out of bed, is a struggle
+      due to the severity of the illness. This indicates an extreme state of weakness.
+  - english: Politicians should take responsibility for their words, but they don't even keep their promises.
+    japanese:
+      - 政治 家 は 自分 の 言葉 に 責任 を 持つ べき だ が、彼 ら は 約束 {すら} 守ら ない。
+      - 政治 家 は 自分 の 言葉 に 責任 を 持つ べき です が、彼 ら は 約束 {すら} 守り ませ ん。
+      - 政治 家 って 自分 の 言葉 に 責任 持つ べき だ けど、約束 {すら} 守ん ない ん だ よ ね。
+      - 政治 家 は 約束 {すら} 守ろう と し ない。
+      - 政治 家 は 約束 {すら} 守り ませ ん ね。
+    english_literally: Politicians their own words responsibility should take, but they promises even
+      don't keep.
+    competing_grammar:
+      - competing_japanese:
+          - 政治 家 は 自分 の 言葉 に 責任 を 持つ べき だ が、彼 ら は 約束 {さえ} 守ら ない。
+        english: Politicians should take responsibility for their words, but they surprisingly don't even
+          keep their promises.
+        hint: 「さえ」 conveys surprise. 「すら」 conveys strong disappointment or criticism, emphasizing that
+          keeping promises is a most basic expectation that politicians fail at, highlighting an extreme
+          lack of integrity. We need to express this stronger disapproval.
+      - competing_japanese:
+          - 政治 家 は 自分 の 言葉 に 責任 を 持つ べき だ が、彼 ら は 約束 {も} 守ら ない。
+        english: Politicians should take responsibility for their words, but they also don't keep their
+          promises.
+        hint: 「も」 simply adds keeping promises to a list of failures. 「すら」 points to it as an extreme,
+          fundamental failure. We're looking for the stronger, critical nuance.
+    scene: A citizen expresses cynicism about politicians' integrity.
+    register: formal
+    setting: serious
+    nuance: 「すら」 is used here to express strong disapproval and cynicism. It highlights that politicians
+      fail even at the most basic and expected level of integrity, emphasizing their extreme untrustworthiness.
+  - english: Winters in this region are harsh, and nighttime temperatures can even drop below -20 degrees
+      Celsius.
+    japanese:
+      - この 地域 の 冬 は 厳しく、夜間 は マイナス 20 度 {すら} 下回る こと も ある。
+      - この 地域 の 冬 は 厳しく、夜間 は マイナス 20 度 {すら} 下回る こと も あり ます。
+      - この 地域 の 冬 は 厳しい の で、夜間 は マイナス 20 度 {すら} 下回る こと も。
+      - 夜間 は マイナス 20 度 {すら} 下回る ん です。
+      - この 地域 の 冬 は 厳しく て、夜間 は マイナス 20 度 {すら} 下回っ ちゃう こと も ある。
+    english_literally: This region's winter is harsh, night even minus 20 degrees even drops below sometimes.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 の 冬 は 厳しく、夜間 は マイナス 20 度 {さえ} 下回る こと も ある。
+        english: Winters in this region are harsh, and nighttime temperatures can surprisingly even drop
+          below -20 degrees Celsius.
+        hint: 「さえ」 implies surprise. 「すら」 emphasizes that -20 degrees Celsius is an extreme low, highlighting
+          the severe harshness of winter. We need to convey the extremity of the cold.
+      - competing_japanese:
+          - この 地域 の 冬 は 厳しく、夜間 は マイナス 20 度 {も} 下回る こと も ある。
+        english: Winters in this region are harsh, and nighttime temperatures can drop as much as -20
+          degrees Celsius too.
+        hint: 「も」 can indicate 'as much as' or 'also,' but lacks the strong 'even' emphasis on an extreme
+          point that 「すら」 provides. We are highlighting an unusual, extreme occurrence.
+    scene: A meteorologist reports on extreme weather conditions.
+    register: formal
+    setting: informative
+    nuance: 「すら」 emphasizes the extreme cold, highlighting that temperatures can reach an unusually low
+      point, suggesting an exceptionally harsh winter.
+  - english: Despite years of research, he didn't even understand the basics of the theory.
+    japanese:
+      - 彼 は 長年 の 研究 に も かかわら ず、その 理論 の 基礎 {すら} 理解 し て い なかっ た。
+      - 彼 は 長年 の 研究 に も かかわら ず、その 理論 の 基礎 {すら} 理解 し て い ませ ん でし た。
+      - 長年 研究 し て た の に、その 理論 の 基礎 {すら} 分かっ て なかっ た ん だ って。
+      - その 理論 の 基礎 {すら} 分かっ て い なかっ た ん です。
+      - 彼 は その 理論 の 基礎 {すら} 把握 し て い なかっ た。
+    english_literally: He long years research despite, that theory's basics even not understood.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 長年 の 研究 に も かかわら ず、その 理論 の 基礎 {さえ} 理解 し て い なかっ た。
+        english: Despite years of research, he surprisingly didn't even understand the basics of the theory.
+        hint: 「さえ」 highlights the surprising aspect of his lack of understanding. 「すら」 emphasizes that
+          not understanding the *basics* after years of research is an extreme and profound deficiency.
+          We're looking for that stronger emphasis on the extent of his failure.
+      - competing_japanese:
+          - 彼 は 長年 の 研究 に も かかわら ず、その 理論 の 基礎 {も} 理解 し て い なかっ た。
+        english: Despite years of research, he also didn't understand the basics of the theory.
+        hint: 「も」 indicates that the basics are just one of the things he didn't understand. 「すら」 focuses
+          on the basics as an extreme example of his lack of comprehension, indicating a deep deficiency.
+    scene: An academic committee evaluates a researcher's progress.
+    register: formal
+    setting: academic
+    nuance: The phrase 「基礎すら」 strongly implies a profound and surprising lack of understanding, especially
+      given "years of research." It emphasizes that the most fundamental aspect was not grasped, underscoring
+      the severity of his academic deficiency.
+  - english: Even after becoming a great actress, she still meticulously instructs on how to greet people.
+    japanese:
+      - 大 女優 に なっ て も、彼女 は 挨拶 の 仕方 {すら も} 丁寧 に 指導 する。
+      - 大 女優 に なっ て も、彼女 は 挨拶 の 仕方 {すら も} 丁寧 に 指導 し て い ます。
+      - 大 女優 に なっ て も、彼女 は 挨拶 の 仕方 {すら} 丁寧 に 指導 する。
+      - 挨拶 の 仕方 {すら も} 丁寧 に 指導 なさる。
+      - 大 女優 に なっ て も、挨拶 の 仕方 {すら も} 丁寧 に 指導 さ れる ん です よ。
+    english_literally: Great actress even after becoming, she greetings manner even meticulously instructs.
+    competing_grammar:
+      - competing_japanese:
+          - 大 女優 に なっ て も、彼女 は 挨拶 の 仕方 {さえ も} 丁寧 に 指導 する。
+        english: Even after becoming a great actress, she surprisingly still meticulously instructs on
+          how to greet people.
+        hint: 「さえも」 is very similar and can be used, but 「すらも」 often carries a slightly more formal or
+          emphatic tone when highlighting an unexpected extreme, such as a celebrity teaching basic etiquette.
+          We're emphasizing the surprising dedication.
+      - competing_japanese:
+          - 大 女優 に なっ て も、彼女 は 挨拶 の 仕方 {も} 丁寧 に 指導 する。
+        english: Even after becoming a great actress, she also meticulously instructs on how to greet
+          people.
+        hint: 「も」 simply indicates that this is one of the things she teaches. 「すらも」 emphasizes that even
+          something as basic as greetings receives her meticulous attention, highlighting an extreme level
+          of dedication or humility. We want to convey that heightened emphasis.
+    scene: A veteran actor praises a famous actress's humility and attention to detail.
+    register: formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: group
+    nuance: The speaker, likely an older male, uses formal language. 「挨拶の仕方すらも」 emphasizes that even the
+      most basic social gesture is given meticulous attention, highlighting the actress's surprising humility
+      and dedication despite her high status.
+  - english: This machine is so complex that even experts are having trouble repairing it.
+    japanese:
+      - この 機械 は 複雑 すぎ て、専門 家 {で すら も} 修理 に 手間取っ て いる。
+      - この 機械 は 複雑 すぎ て、専門 家 {で すら も} 修理 に 手間取っ て い ます。
+      - この 機械 は 複雑 すぎ て、専門 家 {で すら} 修理 に 手間取っ て いる。
+      - 専門 家 {で すら も} 修理 に 難航 し て い ます。
+      - 専門 家 {で すら} 修理 に 手こずっ てる らしい よ。
+    english_literally: This machine is too complex, experts even repair to struggling.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は 複雑 すぎ て、専門 家 {さえ も} 修理 に 手間取っ て いる。
+        english: This machine is so complex that even experts surprisingly are having trouble repairing
+          it.
+        hint: 「さえも」 is very similar, but 「すらも」 (especially with 「ですらも」) can convey a slightly stronger
+          or more formal emphasis on the extreme difficulty, indicating that if even highly skilled individuals
+          are struggling, the task is truly formidable. We need to express this extreme difficulty.
+      - competing_japanese:
+          - この 機械 は 複雑 すぎ て、専門 家 {も} 修理 に 手間取っ て いる。
+        english: This machine is so complex that experts are also having trouble repairing it.
+        hint: 「も」 simply includes experts among those having trouble. 「ですらも」 emphasizes that experts,
+          who should be capable, are struggling, highlighting an extreme level of complexity. We want
+          to convey that heightened emphasis on the machine's complexity.
+    scene: Engineers discuss a highly intricate piece of machinery.
+    register: formal
+    setting: technical
+    nuance: The use of 「すらも」 emphasizes the extreme difficulty of the task; if even experts are having
+      trouble, it truly must be complex. This elevates the perceived difficulty for the listener.

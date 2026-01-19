@@ -1,0 +1,363 @@
+grammar_point: からなる (to consist of)
+learn_before:
+  - Noun・Adjective+は〜となっている (established state)
+  - からある (at least as much as)
+  - てならない (cannot help but feel)
+  - で構成される (to be composed of)
+  - といわれている (it is said that)
+  - となる (to become・result in)
+  - となると (when it comes to)
+  - になる・くなる (to become)
+meaning: to consist of; to be composed of
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: からなる
+    rarity: common
+    meaning: to consist of
+  - conjugation-type: non-past polite (～ます)
+    form: からなります
+    rarity: common
+    meaning: to consist of
+  - conjugation-type: negative plain (～ない)
+    form: からならない
+    rarity: less common
+    meaning: not to consist of
+  - conjugation-type: negative non-past polite (～ません)
+    form: からなりません
+    rarity: less common
+    meaning: not to consist of
+  - conjugation-type: past plain (～た)
+    form: からなった
+    rarity: common
+    meaning: consisted of
+  - conjugation-type: past polite (～ました)
+    form: からなりました
+    rarity: common
+    meaning: consisted of
+  - conjugation-type: negative past plain (～なかった)
+    form: からならなかった
+    rarity: less common
+    meaning: did not consist of
+  - conjugation-type: negative past polite (～ませんでした)
+    form: からなりませんでした
+    rarity: less common
+    meaning: did not consist of
+  - conjugation-type: te-form (～て)
+    form: からなって
+    rarity: less common
+    meaning: consisting of, being composed of
+  - conjugation-type: conditional (～ば)
+    form: からなれば
+    rarity: uncommon
+    meaning: if it consists of
+  - conjugation-type: conditional (～たら)
+    form: からなったら
+    rarity: uncommon
+    meaning: if it consists of
+  - conjugation-type: potential (～られる/～える)
+    form: からなれる
+    rarity: uncommon
+    meaning: can consist of
+pronunciation:
+  katakana: カラナル
+  romaji: kara naru
+formation:
+  '[Subject は] + Noun1 と Noun2 (と…) (と) からなる / からなっている': Indicates that the subject is composed of Noun1,
+    Noun2, and so on, emphasizing the listing of components.
+  '[Subject は] + Noun + から なる / なっている': Indicates that the subject is composed of Noun (singular or collective),
+    emphasizing the whole composition.
+  Noun1 (と Noun2 (と…) (と)) からなる Noun3: Indicates Noun3 that is composed of Noun1, Noun2, and so on. Used
+    attributively.
+  '[Noun/Phrase] + からなって, [Clause]': Connects the composition of a subject to a subsequent action or state.
+jlpt: N2
+etymology: 「から」 indicates the starting point or source, and 「なる」 (成る) means "to become" or "to be formed".
+  So, 「からなる」 literally means "to be formed from" something. This foundational understanding highlights
+  that the grammar point describes something's origins or constituent parts.
+writeup: 「からなる」 (成る) is a grammar point used to describe what something is composed of or what it consists
+  of. It is often translated as "to consist of" or "to be composed of." This expression emphasizes the
+  inherent or stable components that make up a whole entity. It is typically used in more formal or academic
+  contexts to describe the structure, elements, or constituents of a subject. While similar in meaning
+  to 「でできている」, 「からなる」 specifically highlights that the subject is formed **from** distinct components,
+  rather than merely being made **of** a certain material. For instance, a committee **からなる** from members,
+  but a table **でできている** of wood. The most common forms are 「からなる」 (dictionary form) and 「からなっている」 (present
+  progressive form), with the latter emphasizing the current state of composition. When listing multiple
+  components, they are often connected by 「と」 (and). This grammar point can also be used attributively
+  before a noun, as in 「〜からなるチーム」 (a team consisting of 〜).
+false_friends:
+  - term: でできている
+    meaning: to be made of
+    kind: similar expression
+    nuance: While 「からなる」 describes composition from distinct components, 「でできている」 focuses on the material
+      composition. For example, a house 「木材 で でき て いる」 (is made of wood), but a musical ensemble 「様々な
+      楽器 からなる」 (consists of various instruments).
+    grammar_point: でできる (made of)
+  - term: で構成される
+    meaning: to be organized/composed of
+    kind: similar expression
+    nuance: 「からなる」 emphasizes the natural or inherent makeup of something, often without implying an active
+      agent. 「で構成される」 suggests that something is *structured* or *organized* by specific elements, implying
+      a more active or designed composition, and is very common in official or technical descriptions.
+    grammar_point: <strongly-suggest>:で構成される (to be composed of)
+post_false_friends_writeup: 「からなる」 focuses on the inherent components of something. In contrast, 「でできている」
+  emphasizes the raw material it's made from, while 「で構成される」 (and its active form 「を構成する」) often implies
+  a more deliberate or organized structure. Understanding these subtle differences helps in choosing the
+  most appropriate expression for describing composition.
+examples:
+  - english: This university's East Asian Studies Department consists of language, literature, and history.
+    japanese:
+      - この 大学 の 東洋 学 部 は、言語 と 文学 と 歴史 学 {から なる}。
+      - この 大学 の 東洋 学 部 は、言語 と 文学 と 歴史 学 {から なっ て いる}。
+    english_literally: This university's East Asian Studies Department, language and literature and history,
+      consists of.
+    competing_grammar:
+      - competing_japanese:
+          - この 大学 の 東洋 学 部 は、言語 と 文学 と 歴史 学 {で 構成 さ れ て い ます}。
+        english: This university's East Asian Studies Department is composed of language, literature,
+          and history.
+        hint: While 「で構成されている」 implies a structured composition, 「からなる」 emphasizes the inherent elements
+          that form the whole. We're looking for a formal description of the department's components.
+    scene: A university prospectus is describing the structure of a department, highlighting its core
+      academic disciplines.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「からなる」 in an academic setting emphasizes the inherent and fundamental composition
+      of the department, which includes 「言語 (げんご)」, 「文学 (ぶんがく)」, and 「歴史学 (れきしがく)」. The formality of the
+      setting aligns with the register of 「からなる」. This example shows how the listed disciplines are the
+      essential components that form the department.
+    etymology: The formation with 「と」 before 「からなる」 emphasizes the listing of distinct components. 「東洋
+      学部 (とうようがくぶ)」 refers to the East Asian Studies Department.
+  - english: Our local community is comprised of diverse cultures and traditions.
+    japanese:
+      - 私 達 の 地域 共同 体 は、多 様 な 文化 と 伝統 {から なり ます}。
+      - 私 達 の 地域 共同 体 は、多 様 な 文化 と 伝統 {から なっ て い ます}。
+      - 私 達 の 地域 共同 体 は、多 様 な 文化 と 伝統 と {から なり ます}。
+    english_literally: Our local community, diverse cultures and traditions, is comprised of.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 の 地域 共同 体 は、多 様 な 文化 と 伝統 {で でき て い ます}。
+        english: Our local community is made of diverse cultures and traditions.
+        hint: 「でできている」 is often used for physical materials or simpler compositions. We're describing
+          the inherent elements that comprise the community in a more formal sense.
+    scene: A community leader is explaining the unique characteristics of their neighborhood to new residents
+      during an orientation meeting.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: Using 「からなります」 in a polite context emphasizes the composition of the community, which is fitting
+      for an informative explanation to new residents. The inclusion of 「からなっています」 also shows the current
+      state of composition. 「私達 (わたしたち)」 is a common way to refer to 'us' or 'our group'.
+    etymology: 「地域 共同体 (ちいききょうどうたい)」 means 'local community' or 'regional cooperative body'.
+  - english: A successful team does not consist merely of excellent individual players.
+    japanese:
+      - 成功 する チーム は、単に 優れ た 個々 の 選手 {から なる} だけ で は ない。
+      - 成功 する チーム は、単に 優れ た 個々 の 選手 {から なっ て いる} だけ で は ない。
+    english_literally: A successful team, merely excellent individual players, does not consist of.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 する チーム は、単に 優れ た 個々 の 選手 {で 構成 さ れ て いる} だけ で は ない。
+        english: A successful team is not merely composed of excellent individual players.
+        hint: 「で構成される」 often implies a deliberate structure or organization. 「からなる」 describes the inherent
+          elements that naturally form the team.
+    scene: A sports commentator is analyzing the deeper dynamics of a championship-winning team, explaining
+      that synergy is more important than individual talent.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This example uses 「からなる」 in a philosophical or analytical context, appropriate for a commentator
+      discussing the fundamental composition of a team. The phrase 「だけ で は ない」 means 'not merely' or 'not
+      just', emphasizing that the team's success is not solely formed from 「単に 優れ た 個々 の 選手 (たんに すぐれ た
+      ここ の せんしゅ)」, or merely excellent individual players.
+    etymology: 「個々 の 選手 (ここ の せんしゅ)」 means 'individual players'. 「成功 する (せいこう する)」 means 'to succeed'.
+  - english: It is said that the human body is composed of approximately 60 trillion cells.
+    japanese:
+      - 人体 は、約 六十 兆 個 の 細胞 {から なっ て いる} と 言わ れ て い ます。
+      - 人体 は、約 六十 兆 個 の 細胞 {から なる} と 言わ れ て い ます。
+      - 人体 は、約 六十 兆 個 の 細胞 と {から なっ て いる} と 言わ れ て い ます。
+    english_literally: Human body, approximately 60 trillion cells, is said to be composed of.
+    competing_grammar:
+      - competing_japanese:
+          - 人体 は、約 六十 兆 個 の 細胞 {で でき て いる} と 言わ れ て い ます。
+        english: It is said that the human body is made of approximately 60 trillion cells.
+        hint: While 「でできている」 focuses on what something is materially made of, 「からなっている」 describes the
+          fundamental components that inherently form the entity.
+    scene: A biology professor is lecturing to their university students about the fundamental building
+      blocks of life, emphasizing the vast complexity of the human organism.
+    register: formal
+    setting: academic
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「からなっている」 in an academic setting emphasizes the inherent and fundamental composition
+      of the human body, indicating that 「細胞 (さいぼう)」 (cells) are the constitutive elements that form it.
+      The phrase 「と 言わ れ て い ます」 indicates this is a widely accepted scientific fact.
+    etymology: 「人体 (じんたい)」 means 'human body'. 「細胞 (さいぼう)」 means 'cell'. The large number 「六十 兆 (ろくじゅうちょう)」
+      is typical in scientific facts.
+  - english: Their company was a small venture comprised of three founders.
+    japanese:
+      - 彼 ら の 会社 は、三 人 の 創設 者 {から なっ た} 小さな ベンチャー 企業 だっ た。
+      - 彼 ら の 会社 は、三 人 の 創設 者 {から なっ て いる} 小さな ベンチャー 企業 だっ た。
+      - 彼 ら の 会社 は、三 人 の 創設 者 と {から なっ た} 小さな ベンチャー 企業 だっ た。
+    english_literally: Their company, three founders, was a small venture company comprised of.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 会社 は、三 人 の 創設 者 {で 構成 さ れ た} 小さな ベンチャー 企業 だっ た。
+        english: Their company was a small venture enterprise composed of three founders.
+        hint: 「で構成された」 suggests a more active process of organization. 「からなった」 describes the inherent
+          structure of the company's beginnings.
+    scene: A historian is recounting the origins of a successful startup, focusing on its humble beginnings
+      and the core group of people who started it.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: Using the past plain form 「からなった」 is appropriate for recounting a historical fact. It emphasizes
+      that the company's fundamental composition *was* these 「三 人 の 創設 者 (さんにん の そうせつしゃ)」 (three founders)
+      at its inception. 「創設 者 (そうせつしゃ)」 means 'founder'.
+    etymology: 「ベンチャー 企業 (ベンチャーきぎょう)」 is a loanword for 'venture company' or 'startup'.
+  - english: This novel is composed of multiple stories, each consisting of different perspectives.
+    japanese:
+      - この 小説 は、異なる 視点 {から なる} 複数 の 物語 で 構成 さ れ て い ます。
+      - この 小説 は、異なる 視点 {から なっ て いる} 複数 の 物語 で 構成 さ れ て い ます。
+    english_literally: This novel, different perspectives consisting of, multiple stories is composed
+      of.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は、異なる 視点 を 持つ 複数 の 物語 {で 構成 さ れ て い ます}。
+        english: This novel is composed of multiple stories that have different perspectives.
+        hint: 「視点 を 持つ」 means 'to have perspectives'. We're looking for a way to describe the stories
+          as being *formed from* those perspectives, which is the nuance of 「からなる」.
+    scene: A literary critic is discussing the unique narrative structure of a complex novel, explaining
+      how different viewpoints contribute to the overall work.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This example shows 「からなる」 used attributively (「視点 から なる 物語」) to describe the nature of the
+      「物語 (ものがたり)」 (stories) themselves, which in turn form the novel. This demonstrates the versatility
+      of the grammar point in complex sentence structures within an academic discussion. The overall structure
+      uses 「で 構成 さ れ て います」, which is also very formal and suitable for academic discussion. 「小説 (しょうせつ)」
+      means 'novel', 「視点 (してん)」 means 'perspective', and 「物語 (ものがたり)」 means 'story'.
+  - english: A true leader does not consist of mere authority.
+    japanese:
+      - 真 の リーダー は、単なる 権威 {から なら ない}。
+      - 真 の リーダー は、単なる 権威 {から なっ て い ない}。
+    english_literally: True leader, mere authority, does not consist of.
+    competing_grammar:
+      - competing_japanese:
+          - 真 の リーダー は、単なる 権威 {で 構成 さ れ ない}。
+        english: A true leader is not composed of mere authority.
+        hint: While 「で構成されない」 implies a lack of structured composition, 「からならない」 focuses on what something
+          is not inherently formed from. We're looking for what a leader's essence is not comprised of.
+    scene: A philosophy lecture discussing the qualities of leadership.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This example uses the negative plain form 「からならない」 to assert what a true leader's composition
+      is *not*. The nuance here is that leadership is not inherently formed from just 「単なる 権威 (たんなる けんい)」
+      (mere authority). 「真 の リーダー」 means 'true leader'.
+    etymology: 「単なる 権威 (たんなる けんい)」 means 'mere authority'.
+  - english: The project team, consisting of members from various departments, worked diligently.
+    japanese:
+      - 異 なる 部門 の メンバー {から なっ て}、プロジェクト チーム は 勤勉 に 働い た。
+      - 異 なる 部門 の メンバー {から なる} プロジェクト チーム は 勤勉 に 働い た。
+      - 異 なる 部門 の メンバー {から なっ て いる} プロジェクト チーム は 勤勉 に 働い た。
+    english_literally: Different departments' members consisting, the project team worked diligently.
+    competing_grammar:
+      - competing_japanese:
+          - 異 なる 部門 の メンバー が {いる} プロジェクト チーム は 勤勉 に 働い た。
+        english: A project team that has members from various departments worked diligently.
+        hint: This simpler construction directly describes the team's composition but doesn't convey the
+          sense of the team being *formed from* those members. We're looking for an expression that links
+          the team's composition as a preceding condition for its actions.
+    scene: A manager reporting on the successful completion of a complex project, highlighting the collaborative
+      effort.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The te-form 「からなって」 connects the team's composition directly to its action, showing cause
+      or manner. It describes the state of the team and then what they did. This structure is common for
+      describing a group's characteristics before detailing its actions. The phrase 「異なる 部門 (ことなる ぶもん)
+      の メンバー」 refers to 'members from various departments', and 「勤勉 に 働い た (きんべん に はたらいた)」 means 'worked
+      diligently'.
+    etymology: 「勤勉 に 働く (きんべん に はたらく)」 means 'to work diligently'.
+  - english: This complex network system is comprised of multiple servers, routers, and firewalls.
+    japanese:
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール {から なる}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール {から なっ て いる}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール {から なり ます}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール {から なっ て い ます}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール と {から なる}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール と {から なっ て いる}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール と {から なり ます}。
+      - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール と {から なっ て い ます}。
+    english_literally: This complex network system, multiple servers and routers and firewalls, is comprised
+      of.
+    competing_grammar:
+      - competing_japanese:
+          - この 複雑 な ネットワーク システム は、複数 の サーバー と ルーター と ファイアウォール {で 構成 さ れ て い ます}。
+        english: This complex network system is composed of multiple servers, routers, and firewalls.
+        hint: While 「で構成されている」 emphasizes a structured setup, 「からなっている」 describes the inherent components
+          that form the system, often focusing on their contribution to the whole. We're emphasizing the
+          foundational elements of the system.
+    scene: An IT engineer explaining the architecture of a new system to a team.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: This example uses 「からなっています」 in a professional, technical context, employing the listing pattern
+      with 「と」 for specific components like 「サーバー」, 「ルーター」, and 「ファイアウォール」. This emphasizes the functional
+      elements of the system. 「複雑 な ネットワーク システム (ふくざつ な ネットワーク システム)」 means 'complex network system'.
+    etymology: 「複雑 な ネットワーク システム (ふくざつ な ネットワーク システム)」 means 'complex network system', 「サーバー」 is 'server',
+      「ルーター」 is 'router', and 「ファイアウォール」 is 'firewall'.
+  - english: True happiness does not consist of material possessions.
+    japanese:
+      - 本当 の 幸福 は、物質 的 な 豊か さ {から なら ない}。
+      - 本当 の 幸福 は、物質 的 な 豊か さ {から なっ て い ない}。
+    english_literally: True happiness, material wealth, does not consist of.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 の 幸福 は、物質 的 な 豊か さ {で でき て いる} の で は ない。
+        english: True happiness is not made of material possessions.
+        hint: 「でできている」 is more about physical materials. 「からならない」 is about the fundamental elements something
+          is comprised of, or not comprised of in this case, conveying a more abstract or philosophical
+          idea. We're looking for what happiness is inherently *not* formed from.
+    scene: A spiritual leader giving a sermon or a philosopher pondering the meaning of life.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This is another negative example, using 「からならない」 in a philosophical sense to define what happiness
+      *is not* fundamentally comprised of. It implies that 「物質 的 な 豊かさ (ぶっしつ てき な ゆたかさ)」 (material possessions)
+      are not the inherent components of 「本当 の 幸福 (ほんとう の こうふく)」 (true happiness).
+    etymology: 「本当 の 幸福 (ほんとう の こうふく)」 means 'true happiness', and 「物質 的 な 豊かさ (ぶっしつ てき な ゆたかさ)」 means
+      'material possessions' or 'material wealth'.
+post_example_writeup: When using 「からなる」, remember to focus on the elements that constitute the whole.
+  The grammar point emphasizes the components rather than the overall nature of the subject. The **からなっている**
+  form is very common, emphasizing the current state of composition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/からなる

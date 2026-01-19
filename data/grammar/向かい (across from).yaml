@@ -1,0 +1,267 @@
+grammar_point: 向かい (across from)
+learn_before:
+  - Verb[imperative] (imperative)
+meaning: Across from, Opposite
+pronunciation:
+  katakana: ムカイ
+  romaji: mukai
+formation:
+  Noun + の + 向かい: Indicates a location directly across from a noun.
+  Location/Direction + に + 向かい: Specifies a position or direction directly facing. Often used with the
+    particle に.
+  Standalone noun/adverb: Used as a direct reference to 'the opposite' or 'the facing side'.
+jlpt: N4
+etymology: 「向かい」 originates from the verb 「向かう」(mukau - to face, to go towards), evolving from its continuative
+  form to a noun signifying 'the place one faces' or 'what is directly opposite'. This root highlights
+  its core meaning of referring to a directly opposing or facing position.
+writeup: '「向かい」 (mukai) is a fundamental Japanese term used to describe a spatial relationship, specifically
+  denoting a position that is directly opposite or facing something. It typically implies a relatively
+  close distance and a clear, unobstructed line of sight. Think of it as ''across from'' or ''facing''.
+  It is commonly used for locations directly across a street, a building opposite yours, or a person sitting
+  across the table.Key Usages:Direct Opposition: When something is directly in front of or facing another
+  object or person.Proximity: Often used for relatively close distances where a direct line of sight is
+  implied.Common Forms:Noun + の + 向かい: Describes a noun''s location relative to another noun (e.g., 「駅の向かい」
+  - across from the station).Location + に + 向かい: Indicates where something is located (e.g., 「道の向かいに」
+  - across the street).Standalone: Can be used on its own when the context is clear (e.g., 「向かいに座る」 -
+  to sit across).'
+false_friends:
+  - term: 向こう (beyond)
+    meaning: Over there, beyond, the other side
+    kind: similar expression
+    nuance: While 「向こう」 implies a general 'over there' or 'beyond', often suggesting a greater distance
+      or an obscured view, 「向かい」 specifically means 'directly across from' or 'facing'. 「向こう」 can refer
+      to a less defined 'other side' or even abstract concepts, whereas 「向かい」 is typically for concrete,
+      directly opposing positions.
+    grammar_point: 向こう (beyond)
+  - term: 反対 (opposition, reverse)
+    meaning: Opposite, reverse, objection
+    kind: often confused with
+    nuance: 「反対」 (hantai) can mean 'opposite direction' (反対方向), but it more broadly refers to an abstract
+      or conceptual opposite, or disagreement. It does not typically describe a physical location directly
+      opposite in the same way 「向かい」 does. Instead, 「反対」 emphasizes the state of being reversed or contrary.
+    grammar_point: <suggest>:反対 (opposition・reverse)
+  - term: 隣 (immediately next to)
+    meaning: Next to, adjacent
+    kind: similar expression
+    nuance: 「隣」 (tonari) refers to something immediately beside you, indicating adjacency. In contrast,
+      「向かい」 means directly across from you, implying a facing position. They describe fundamentally different
+      spatial relationships.
+    grammar_point: 隣 (immediately next to)
+post_false_friends_writeup: To effectively use 「向かい」, remember its core meaning of **direct, facing opposition**.
+  If you are talking about something directly across from you, like a person at a table or a shop across
+  the street, 「向かい」 is the appropriate choice. If the concept is more general 'over there,' 'beyond an
+  obstacle,' or even metaphorical 'the other side,' then 「向こう」 would be more suitable. For conceptual
+  opposition or disagreement, 「反対」 is used, and for simple adjacency, 「隣」.
+examples:
+  - english: The bank is across the street.
+    japanese:
+      - 銀行 は 道 の {向かい} に あり ます。
+      - 銀行 は 道 の {向かい} です。
+      - 道 の {向かい} に 銀行 が あり ます。
+      - 道 の {向かい} に 銀行 ある よ。
+      - 道 の {向かい} に 銀行 が ある ぜ。
+      - 銀行 は 道 の {向かい} だ よ。
+      - 銀行 は 道 の {向かい} よ。
+      - 道 の {向かい} に 銀行 が ござい ます。
+      - 銀行 は 道 の {向かい} に ある よ。
+      - ちょうど 道 の {向かい} だ。
+    english_literally: Bank, as for, road's opposite, at, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 銀行 は 道 の {反対 側} に あり ます。
+        english: The bank is on the opposite side of the road.
+        hint: While 「反対 側」 means 'opposite side,' 「向かい」 specifically indicates a position directly facing
+          yours, like across a street, implying a clear line of sight. We're looking for a direct, facing
+          opposite.
+      - competing_japanese:
+          - 銀行 は 道 の {隣} に あり ます。
+        english: The bank is next to the street.
+        hint: 「隣」 means 'next to' or 'adjacent,' not directly across from you. We're looking for a position
+          that is directly opposite.
+      - competing_japanese:
+          - 銀行 は 道 の {向こう} に あり ます。
+        english: The bank is over there, beyond the road.
+        hint: 「向こう」 indicates a general 'over there' or 'beyond,' often for things further away or less
+          directly facing. 「向かい」 specifically means 'directly across from' or 'facing.' We're looking
+          for a position that is 'directly across from'.
+    scene: You are giving directions to a tourist who asks where the nearest bank is.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please wait in the seat across from me.
+    japanese:
+      - 私 の {向かい} の 席 で お 待ち ください。
+      - 私 の {向かい} の 席 にて お 待ち ください。
+      - '{向かい} の 席 で お 待ち いただけ ます か。'
+      - '{向かい} の 席 に 座っ て 待っ て て。'
+      - 私 の {向かい} の 席 に 座っ て お 待ち ください。
+      - '{向かい} の 席 に お 座り ください。'
+      - どうぞ 私 の {向かい} の 席 へ。
+      - お 客 様 は 私 の {向かい} の 席 で お 待ち ください。
+      - こちら の {向かい} の 席 へ どうぞ。
+    english_literally: My opposite's seat, at, please wait.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {反対} の 席 で お 待ち ください。
+        english: Please wait in my opposite seat.
+        hint: While understandable, 「反対 の 席」 can sound less natural for a direct facing seat. 「向かい の 席」
+          specifically describes a seat directly facing you, implying an opposing position. We're looking
+          for a seat that is directly facing you.
+      - competing_japanese:
+          - 私 の {隣} の 席 で お 待ち ください。
+        english: Please wait in the seat next to me.
+        hint: 「隣」 means 'next to' or 'adjacent,' not directly across from you. We're looking for the seat
+          directly across from you.
+    scene: A host is guiding a guest to their seat in a restaurant or meeting room.
+    register: teineigo (polite)
+    setting: instructional
+  - english: My boss is sitting across from me in the office.
+    japanese:
+      - 上司 は 私 の {向かい} に 座っ て い ます。
+      - 上司 が 私 の {向かい} に 座っ て い ます。
+      - 私 の {向かい} に 上司 が 座っ て いる。
+      - 私 の {向かい} に 上司 が いる。
+      - 上司 は 私 の {向かい} の 席 です。
+      - 上司 は 私 の {向かい} に 座っ て おら れ ます。
+      - 上司 が 私 の {向かい} で 仕事 を し て い ます。
+    english_literally: Boss, as for, my opposite, at, sitting.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 は 私 の {反対 側} に 座っ て い ます。
+        english: My boss is sitting on the opposite side from me.
+        hint: While 「反対 側」 means 'opposite side', 「向かい」 specifically refers to a position directly facing
+          you, implying a clear line of sight. We're looking for a direct, facing position.
+      - competing_japanese:
+          - 上司 は 私 の {隣} に 座っ て い ます。
+        english: My boss is sitting next to me.
+        hint: 「隣」 means 'next to'. We're looking for a position that is directly across from you.
+    scene: In a busy office, you are describing the seating arrangement.
+    register: teineigo (polite)
+    setting: informative
+  - english: The waiter is standing across from our table.
+    japanese:
+      - ウェイター は 私 達 の テーブル の {向かい} に 立っ て い ます。
+      - ウェイター が 私 達 の テーブル の {向かい} に 立っ て い ます。
+      - 私 達 の テーブル の {向かい} に ウェイター が 立っ て いる。
+      - ウェイター が テーブル の {向かい} に 立っ て おら れる。
+      - ウェイター は テーブル の {向かい} に い ます。
+      - テーブル の {向かい} に ウェイター が い ます ね。
+    english_literally: Waiter, as for, our table's opposite, at, standing.
+    competing_grammar:
+      - competing_japanese:
+          - ウェイター は 私 達 の テーブル の {反対 側} に 立っ て い ます。
+        english: The waiter is standing on the opposite side of our table.
+        hint: While 「反対 側」 means 'opposite side', 「向かい」 specifically refers to a position directly facing
+          you, such as across a table. We're looking for a direct, facing position.
+      - competing_japanese:
+          - ウェイター は 私 達 の テーブル の {横} に 立っ て い ます。
+        english: The waiter is standing beside our table.
+        hint: 「横」 means 'beside' or 'next to'. We're looking for a position that is directly across from
+          the table.
+    scene: You are at a restaurant, telling your dining companion about the waiter's position.
+    register: teineigo (polite)
+    setting: informative
+  - english: Who is that person across from you?
+    japanese:
+      - あなた の {向かい} に いる 人 は 誰？
+      - あなた の {向かい} に いる 方 は 誰 です か？
+      - '{向かい} に いる 人、誰？'
+      - '{向かい} の 人 は 誰？'
+      - 君 の {向かい} に いる 人 は 誰 だ？
+      - '{向かい} に 座っ て いる 人 は 誰 です か？'
+    english_literally: Your opposite, at, existing person, as for, who?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の {反対 側} に いる 人 は 誰？
+        english: Who is the person on the opposite side from you?
+        hint: While 「反対 側」 means 'opposite side', 「向かい」 specifically refers to a position directly facing
+          you, such as across a table. We're looking for a direct, facing position.
+      - competing_japanese:
+          - あなた の {隣} に いる 人 は 誰？
+        english: 「隣」 means 'next to'. We're looking for a person who is directly across from you.
+        hint: 「隣」 means 'next to'. We're looking for a person who is directly across from you.
+    scene: You're at a cafe, asking your friend about someone they're with at the same table.
+    register: casual
+    setting: interrogative
+  - english: He sat across from me, quietly eating his breakfast.
+    japanese:
+      - 彼 は 私 の {向かい} に 座っ て、静か に 朝食 を 食べ て い た。
+      - 彼 は 私 の {向かい} に 座っ て、静か に 朝食 を 食べ て た。
+      - 私 の {向かい} に 彼 が 静か に 朝食 を 食べ て た。
+      - あいつ 私 の {向かい} に 座っ て、静か に 朝飯 食っ て た よ。
+    english_literally: He, as for, my opposite, at, sitting, quietly breakfast was eating.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 の {隣} に 座っ て、静か に 朝食 を 食べ て い た。
+        english: He sat next to me, quietly eating his breakfast.
+        hint: 「隣」 means 'next to'. We're looking for a position that is directly across from you.
+    scene: You are describing a quiet morning scene with a housemate or family member.
+    register: casual
+    setting: reflective
+    nuance: This use of 「向かい」 emphasizes the direct, face-to-face spatial relationship between two individuals.
+      The phrase 「私 の 向かい」 clearly indicates a position directly opposite the speaker. This contrasts
+      with simply being 'near' or 'beside' someone, which would use 「隣」.
+  - english: Let's sit across from each other at the cafe.
+    japanese:
+      - カフェ で {向かい} に 座ろ う。
+      - カフェ で {向かい} 合っ て 座ろ う よ。
+    english_literally: Cafe, at, across, let's sit.
+    competing_grammar:
+      - competing_japanese:
+          - カフェ の {隣} に 座ろ う。
+        english: Let's sit next to the cafe.
+        hint: 「隣に座ろう」 would mean 'let's sit next to (something),' not across from each other. We're looking
+          for a position facing each other.
+    scene: Two friends arriving at a cafe, deciding where to sit.
+    register: casual
+    setting: friendly
+  - english: The new building will be constructed across from the city hall.
+    japanese:
+      - 新しい ビル は 市 役所 の {向かい} に 建設 さ れ ます。
+      - 新 ビル は 市 役所 {向かい} に 建つ 予定 です。
+    english_literally: New building, as for, city hall's opposite, at, will be constructed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ビル は 市 役所 の {後ろ} に 建設 さ れ ます。
+        english: The new building will be constructed behind the city hall.
+        hint: 「後ろ」 means 'behind'. We're looking for a position that is directly across from the city
+          hall.
+    scene: An architect explaining urban development plans in a business meeting.
+    register: formal
+    setting: professional
+  - english: You'll find the convenience store just across from the bus stop.
+    japanese:
+      - コンビニ は バス 停 の {向かい} に ある ぞ。
+      - バス 停 の {向かい} 側 に コンビニ が ある から な。
+    english_literally: Convenience store, as for, bus stop's opposite, at, exists, strong emphasis.
+    competing_grammar:
+      - competing_japanese:
+          - コンビニ は バス 停 の {そば} に ある ぞ。
+        english: You'll find the convenience store near the bus stop.
+        hint: 「そば」 means 'near'. We're looking for a position directly across from the bus stop.
+    scene: A local giving directions to a young person asking for a convenience store.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+  - english: I can see the beautiful cherry blossoms across from my window.
+    japanese:
+      - 窓 の {向かい} に 綺麗 な 桜 が 見える わ。
+      - 窓 の {向かい} に 美しい 桜 が ある ん だ な。
+    english_literally: Window's opposite, at, beautiful cherry blossoms, visible, female particle.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 の {外} に 綺麗 な 桜 が 見える わ。
+        english: I can see the beautiful cherry blossoms outside my window.
+        hint: 「窓の外」 means 'outside the window,' which is more general than 'directly across from' for
+          a specific view.
+    scene: A person looking out their window, admiring the view.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+post_example_writeup: These examples illustrate the distinct usage of 「向かい」 when referring to a direct,
+  facing opposition. It is precise about a clear line of sight and often implies a relatively close distance.
+  Understanding this will help you accurately describe spatial relationships in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/276

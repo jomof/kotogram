@@ -1,0 +1,201 @@
+grammar_point: です (polite copula)
+matcher: ⌈ˢですᵖ~auxv-desu~ʳデス⌉
+matcher_enforce_examples: true
+learn_before:
+  - は (topic and contrast)
+meaning: polite copula (is/am/are)
+pronunciation:
+  katakana: デス
+  romaji: desu
+formation:
+  V[dictionary] です: Used to state that something is or equals a noun, in a polite manner.
+  Na-Adjective です: Used to state that something is a na-adjective, in a polite manner.
+  I-Adjective です: Used to state that something is an i-adjective, in a polite manner.
+jlpt: N5
+etymology: 'The copula です (desu) is widely believed to be a contraction and phonetic evolution of であります
+  (de arimasu). The original form, であります, combines the particle で (de), which indicates a state or location,
+  with the polite verb あります (arimasu), meaning ''to exist''. Over time, であります streamlined into です, becoming
+  the ubiquitous polite copula. This linguistic journey explains its core function: politely stating that
+  something ''exists as'' or ''is'' a particular noun or adjective, a foundational element in Japanese
+  polite speech.'
+writeup: です (desu) is the fundamental polite copula in Japanese, equivalent to 'is,' 'am,' or 'are' in
+  English. It is an essential component of `teineigo` (polite language), making it suitable for most everyday
+  conversations with people you are not intimately familiar with, or in formal settings.Its primary function
+  is to express a state of being, identification, or description. It is attached to nouns and `na`-adjectives
+  directly. For `i`-adjectives, です is typically added after the dictionary form to add politeness, although
+  the `i`-adjective can stand alone in polite contexts without です. Verbs do not use です; instead, they
+  use the `ます` (masu) form to achieve politeness.です does not inherently carry tense; its tense is determined
+  by context or by changing to its past form, でした (deshita). It is a highly versatile and frequently used
+  word, crucial for forming polite sentences and interacting appropriately in Japanese society. It is
+  used by speakers of all genders and ages when politeness is desired.
+false_friends:
+  - term: だ (casual copula)
+    meaning: casual form of 'to be'
+    kind: similar expression
+    nuance: While both だ and です function as copulas, だ is used in casual and informal contexts among friends
+      or family, whereas です is used in polite contexts. 「学生だ」 (Gakusei da) is 'I am a student' (casual),
+      while 「学生です」 (Gakusei desu) is 'I am a student' (polite).
+    grammar_point: だ (casual copula)
+  - term: である (formal present)
+    meaning: formal/literary form of 'to be'
+    kind: similar expression
+    nuance: である is a very formal and literary copula, commonly found in written Japanese, academic papers,
+      news reports, or formal speeches. It is rarely used in spoken everyday conversation. です is the standard
+      polite copula for general spoken communication.
+    grammar_point: な-Adjective[である] (formal present)
+  - term: ございます (polite copula, formal)
+    meaning: highly polite form of 'to be'
+    kind: similar expression
+    nuance: ございます is an even more polite and humble form of です, often used in business settings, customer
+      service, or situations requiring extreme deference. です is generally sufficient for polite everyday
+      interaction, while ございます indicates a higher level of respect.
+    grammar_point: でございます (polite copula, formal)
+  - term: ます (polite non-past verb ending)
+    meaning: polite ending for verbs
+    kind: often confused with
+    nuance: ます is used for verbs to make them polite, for example, 食べます (tabemasu, 'eat'). です is used
+      for nouns and adjectives. Students often confuse them; remember, you wouldn't say 「食べです」 for 'I
+      eat politely,' nor would you say 「学生ます」 for 'I am a student.'
+    grammar_point: Verb[ます] (polite present)
+post_false_friends_writeup: Understanding the differences between です and similar expressions is key to
+  speaking natural and appropriate Japanese. です is your go-to for general politeness with nouns and adjectives.
+  だ is for casual speech. である is for very formal written or spoken contexts. ございます elevates politeness
+  to a humble or business level. Finally, remember that verbs use ます, not です, to achieve politeness.
+examples:
+  - english: I am Tanaka.
+    japanese:
+      - 私 は 田中 {です}。
+      - 私、田中 {です}。
+    english_literally: As for me, it is Tanaka.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 田中 だ。
+        english: I am Tanaka (casual).
+        hint: This uses the casual copula. We're looking for the polite form.
+    scene: Introducing yourself politely to someone new.
+    register: teineigo (polite)
+    setting: professional
+  - english: This is a book.
+    japanese:
+      - これ は 本 {です}。
+      - これ、本 {です}。
+    english_literally: As for this, it is a book.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 本 だ。
+        english: This is a book (casual).
+        hint: This uses the casual copula. We're looking for the polite form.
+    scene: Pointing out an object to a friend during a study session.
+    register: teineigo (polite)
+    setting: informative
+  - english: She is a kind person.
+    japanese:
+      - 彼女 は 親切 {です}。
+      - 彼女、親切 {です}。
+    english_literally: As for her, she is kind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 親切 だ。
+        english: She is a kind person (casual).
+        hint: This uses the casual copula for a na-adjective. We're looking for the polite form.
+    scene: Describing a mutual acquaintance to a colleague.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The weather is good today.
+    japanese:
+      - 今日 は 天気 が いい {です}。
+      - 今日、天気 いい {です}。
+    english_literally: As for today, the weather is good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 天気 が いい。
+        english: The weather is good today (less polite).
+        hint: While correct, omitting です makes it slightly less polite. We're looking for the polite form.
+    scene: Making small talk with a neighbor in the morning.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: This problem is difficult.
+    japanese:
+      - この 問題 は 難しい {です}。
+      - この 問題、難しい {です}。
+    english_literally: As for this problem, it is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 難しい。
+        english: This problem is difficult (less polite).
+        hint: This uses a direct i-adjective ending. We're looking for the polite form using です.
+    scene: A student discussing homework with a teacher.
+    register: teineigo (polite)
+    setting: academic
+  - english: That restaurant is famous.
+    japanese:
+      - あの レストラン は 有名 {です}。
+      - あの レストラン、有名 {です}。
+    english_literally: As for that restaurant, it is famous.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 有名 だ。
+        english: That restaurant is famous (casual).
+        hint: This uses the casual copula for a na-adjective. We're looking for the polite form.
+    scene: Recommending a place to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+  - english: I am thirty years old.
+    japanese:
+      - 私 は 三十 歳 {です}。
+      - 私、三十 歳 {です}。
+    english_literally: As for me, it is thirty years old.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 三十 歳 だ。
+        english: I am thirty years old (casual).
+        hint: This uses the casual copula. We're looking for the polite form.
+    scene: Stating your age when filling out a form or in a polite introduction.
+    register: teineigo (polite)
+    setting: informative
+  - english: The flower is beautiful.
+    japanese:
+      - その 花 は きれい {です}。
+      - その 花、きれい {です}。
+    english_literally: As for that flower, it is beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - その 花 は きれい だ。
+        english: The flower is beautiful (casual).
+        hint: This uses the casual copula for a na-adjective. We're looking for the polite form.
+    scene: Admiring flowers with an elderly neighbor.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Tokyo is a big city.
+    japanese:
+      - 東京 は 大きい 都市 {です}。
+      - 東京、大きい 都市 {です}。
+    english_literally: As for Tokyo, it is a big city.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 は 大きい 都市 だ。
+        english: Tokyo is a big city (casual).
+        hint: This uses the casual copula. We're looking for the polite form.
+    scene: Explaining geographical facts to a tourist.
+    register: teineigo (polite)
+    setting: informative
+  - english: This computer is new.
+    japanese:
+      - この コンピューター は 新しい {です}。
+      - この コンピューター、新しい {です}。
+    english_literally: As for this computer, it is new.
+    competing_grammar:
+      - competing_japanese:
+          - この コンピューター は 新しい。
+        english: This computer is new (less polite).
+        hint: This uses a direct i-adjective ending. We're looking for the polite form using です.
+    scene: Describing a recently purchased item to a friend.
+    register: teineigo (polite)
+    setting: friendly
+post_example_writeup: The examples provided demonstrate the versatility of です across various contexts,
+  from self-introductions to descriptions of objects and qualities. Notice how です always attaches to the
+  end of nouns or adjectives to form a polite statement. While `i`-adjectives can stand alone to convey
+  politeness, adding です often softens the expression or adds a slight emphasis on the statement's politeness,
+  as seen in examples like 「天気 が いい です」 or 「難しい です」。Mastering です is a cornerstone of polite Japanese communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/です

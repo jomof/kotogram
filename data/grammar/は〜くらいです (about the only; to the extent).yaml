@@ -1,0 +1,335 @@
+grammar_point: は〜くらいです (about the only; to the extent)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - くらい (approximate quantity or degree)
+  - ほとんど (almost all or hardly any)
+meaning: About the only; To the extent that
+pronunciation:
+  katakana: ハ クライ デス
+  romaji: wa ~ kurai desu
+formation:
+  '[Topic] は + [Limit] くらいです': Indicates that something is limited to a certain extent or degree.
+  '[Topic] は + [Limit] くらいなものです': Used for emphasis, particularly when describing an exceptional case
+    or limited characteristic.
+  '[Topic] は + [Limit] くらいのものでした': Used for emphasis, particularly when describing a limited extent of
+    something that has already occurred.
+jlpt: N3
+etymology: This grammar pattern combines the topic marker 「は」 (wa), the approximate/extent particle 「くらい」
+  (kurai), and the polite copula 「です」 (desu). Historically, 「くらい」 evolved from 「くらべ」 (kurabe), meaning
+  'comparison'. When combined with 「は」, it sets the scope of the topic, and then 「くらい」 limits it, literally
+  meaning 'the extent is that'. This creates the nuance of 'about the only' or 'to the extent that'.
+writeup: The grammar pattern 「は〜くらいです」 is used to convey that something (B) is the limit or extent of
+  something else (A). It's a precise way to state that very little else exists beyond a specified boundary,
+  often implying a sense of 'only' or 'just' within that context.To use this pattern, the element being
+  limited (A) comes before 「は」, highlighting the situation, place, thing, or person that has a defined
+  limit. The limitation itself (B) then follows, with 「くらいです」 (or its casual equivalent 「くらいだ」) completing
+  the sentence. This structure frames B as the absolute or approximate boundary for A.For additional emphasis,
+  especially when highlighting an exceptional case or a limited characteristic, 「くらいなものです」 or 「くらいのものでした」
+  can be used. These variations reinforce the idea that the specified condition is truly the sole or primary
+  factor.
+false_friends:
+  - term: くらい (about)
+    meaning: About; approximately
+    kind: similar expression
+    nuance: 「くらい」 alone is used for approximation or general degree, without emphasizing a strict limit.
+      「は〜くらいです」 specifically sets a boundary for the topic.
+    grammar_point: くらい (approximate quantity or degree)
+  - term: ほど
+    meaning: The more... the more; about; to the extent that; so much that...
+    kind: similar expression
+    nuance: 「ほど」 can express degree, similarity, or extent, but it does not carry the explicit 'only'
+      or 'just' limitation that 「は〜くらいです」 conveys.
+    grammar_point: ほど (extent・approximation)
+  - term: だけ
+    meaning: Only; just
+    kind: similar expression
+    nuance: 「だけ」 is a direct marker for 'only' or 'just', often implying exclusivity. 「は〜くらいです」, while
+      conveying a similar sense of limitation, emphasizes the *extent* or *degree* to which something
+      is limited, rather than simply stating it as the sole item.
+    grammar_point: だけ (only・just)
+post_false_friends_writeup: While 「くらい」, 「ほど」, and 「だけ」 can all express degrees or limitations, it is
+  crucial to understand their distinct nuances. Use 「くらい」 alone for approximation. Use 「ほど」 to indicate
+  a degree or comparison. When you want to convey that something is *only* a certain amount or *to the
+  extent that* a specific condition applies, emphasizing the boundary or rarity of that condition, then
+  「は〜くらいです」 is the appropriate choice. It highlights a limited scope by framing the specified item as
+  the boundary.
+examples:
+  - english: The only time I call is when I call my mother.
+    japanese:
+      - 毎日 電話 を する の は、母 に する とき {くらい です}。
+      - 毎日 電話 を する の は、母 に する とき {くらい だ}。
+      - 毎日 電話 すん の は、母 に する 時 {くらい だ}。
+      - 毎日 電話 すん の は、母 に する 時 {くらい だ ぜ}。
+    english_literally: Making calls every day is calling my mother about.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 電話 を する の は、母 に する とき {だけ} です。
+        english: The only time I call is *only* when I call my mother.
+        hint: 「だけ」 emphasizes strict exclusivity, meaning *only* that and nothing else. 「くらいです」 highlights
+          that calling his mother is the *extent* of his phone calls, implying a limited scope rather
+          than absolute exclusivity.
+      - competing_japanese:
+          - 毎日 電話 を する の は、母 に する とき {に 限り ます}。
+        english: The only time I call is *limited to* when I call my mother.
+        hint: 「に限ります」 indicates a strict limit or condition, implying that it is exclusively that situation.
+          「くらいです」 focuses on the *degree* or *extent* of the situation, often conveying a sense of 'about
+          the only' rather than an absolute restriction.
+    scene: A busy professional explains their limited phone communication to a friend.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker is a male professional explaining his limited social communication. The use of
+      「くらいです」 emphasizes that his phone calls are *limited to the extent* of calling his mother, implying
+      a very narrow scope of communication. This phrase choice highlights the boundary of his calling
+      habits. The phrase 「電話すんのは」 is a colloquial contraction of 「電話をするのは」 and is more common in male
+      casual speech.
+  - english: Spicy food is about the only thing I'm not good with.
+    japanese:
+      - 私 が 苦手 な の は、辛い 食べ物 {くらい です}。
+      - 私 が 苦手 な の は、辛い 食べ物 {くらい だ}。
+      - 俺 が 苦手 な の は、辛い 食べ物 {くらい だ}。
+      - 私 が 苦手 な の は、辛い 食べ物 {くらい な もの です}。
+    english_literally: My not good thing is spicy food about.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 辛い 食べ物 が {苦手} です。
+        english: I am not good with spicy food.
+        hint: This sentence simply states a dislike. 「くらいです」 adds the nuance that this dislike is the
+          *only* significant one, or the *extent* of their dislikes among many other things.
+      - competing_japanese:
+          - 私 が 苦手 な の は、辛い 食べ物 {だけ} です。
+        english: The only thing I'm not good with is *only* spicy food.
+        hint: 「だけです」 strongly emphasizes that spicy food is the *sole* item disliked, implying exclusivity.
+          「くらいです」 highlights that spicy food is the *extent* of their dislikes, suggesting a very limited
+          range of disliked items.
+    scene: A person confidently states their broad culinary preferences, then adds a minor exception.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: This statement uses 「くらいです」 to show that spicy food is the *extent* of what the speaker dislikes.
+      It subtly implies that their dislikes are very limited, reinforcing their general confidence in
+      their culinary preferences. The casual tone suits a friendly conversation. The use of 「俺」 in one
+      variation indicates a male speaker.
+  - english: The only time he succeeds is when he's lucky.
+    japanese:
+      - 彼 が 成功 する の は、運 が いい 時 {くらい です}。
+      - 彼 が 成功 する の は、運 が いい 時 {くらい だ}。
+      - あいつ が 成功 すん の は、運 が いい 時 {くらい な もん だ}。
+    english_literally: His succeeding is luck good time about.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 成功 する の は、運 が いい 時 {しか あり ませ ん}。
+        english: He *only* succeeds when he's lucky.
+        hint: 「しか～ない」 strongly implies that *only* luck allows him to succeed and no other factors. 「くらいです」
+          highlights that his success is *limited to the extent* of when he's lucky, focusing on the boundary
+          of his ability rather than the sole factor.
+      - competing_japanese:
+          - 彼 が 成功 する の は、運 が いい 時 {に 限る}。
+        english: He succeeds *only* when he's lucky.
+        hint: 「に限る」 states that success is strictly limited to fortunate moments. 「くらいです」 implies success
+          is *to the extent of* when he's lucky, suggesting it's the primary or almost exclusive condition,
+          but not necessarily an absolute rule.
+    scene: Someone critically assessing a colleague's inconsistent performance.
+    register: semi-formal
+    setting: serious
+    nuance: In this critical assessment, 「くらいです」 emphasizes that his success is *limited to the extent*
+      of when he's lucky. This implies that luck is the primary, almost exclusive, factor in his success,
+      rather than skill or effort. The semi-formal register fits the critical and serious tone. The more
+      casual variation using 「あいつ」 and 「すんの」 implies a slightly more dismissive tone.
+  - english: About the only things in the room are a bed and a desk.
+    japanese:
+      - 部屋 に ある の は、ベッド と 机 {くらい な もの です}。
+      - 部屋 に ある の は、ベッド と 机 {くらい です}。
+      - 部屋 に ある の は、ベッド と 机 {くらい な もん だ}。
+      - 部屋 に ある の は、ベッド と 机 {くらい だ}。
+    english_literally: Things in room are bed and desk about things.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 に は、ベッド と 机 が {あり ます}。
+        english: There is a bed and a desk in the room.
+        hint: This sentence simply lists items in the room. 「くらいなものです」 emphasizes that the bed and desk
+          represent the *entire extent* of what's in the room, highlighting its minimalist nature.
+      - competing_japanese:
+          - 部屋 に は、ベッド と 机 {しか あり ませ ん}。
+        english: There is *only* a bed and a desk in the room.
+        hint: 「しかありません」 strongly asserts that there is *nothing else* besides the listed items. 「くらいなものです」
+          emphasizes that the items are *to the extent* of what's present, implying a very limited nature,
+          but perhaps less absolute than 「しかありません」.
+    scene: A minimalist describing their spartan living space to a curious visitor.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    nuance: The female speaker uses 「くらいなものです」 to explain to a male visitor that her room contains *only
+      to the extent* of a bed and a desk. The use of 「〜なものです」 emphasizes the *limited nature* of what's
+      present, conveying a subtle sense of it being the bare minimum or a deliberate choice. This expression
+      feels polite and slightly explanatory. The casual variations using 「もん だ」 reflect a more informal
+      reflection.
+  - english: The amount of sugar needed is about a teaspoon.
+    japanese:
+      - 必要 な 砂糖 の 量 は、ティースプーン 一 杯 {くらい です}。
+      - 必要 な 砂糖 の 量 は、ティースプーン 一 杯 {くらい だ}。
+      - 必要 な 砂糖 の 量 は、ティースプーン 一 杯 {くらい で 良い です}。
+    english_literally: Needed sugar's amount is teaspoon one cup about.
+    competing_grammar:
+      - competing_japanese:
+          - 必要 な 砂糖 の 量 は、ティースプーン 一 杯 {ぐらい} です。
+        english: The amount of sugar needed is *approximately* a teaspoon.
+        hint: 「ぐらいです」 alone indicates an approximation. With 「は」 preceding the item, 「は〜くらいです」 emphasizes
+          that a teaspoon is the *extent* or *limit* of the necessary amount, not just a casual approximation.
+      - competing_japanese:
+          - 必要 な 砂糖 の 量 は、ティースプーン 一 杯 {だけ} です。
+        english: The amount of sugar needed is *only* a teaspoon.
+        hint: 「だけです」 asserts that the amount is strictly *only* a teaspoon, implying no more and no less.
+          「くらいです」 indicates the amount is *to the extent of* a teaspoon, suggesting it's an approximate
+          but sufficient limit.
+    scene: A chef giving a rough estimate for an ingredient in a recipe, implying precision isn't paramount.
+    register: formal
+    setting: instructional
+    nuance: The chef uses 「くらいです」 to indicate that the amount of sugar is *to the extent of* a teaspoon.
+      This implies an approximation rather than an exact measurement, conveying that a precise amount
+      is not strictly necessary. The formal register is appropriate for instructional contexts. The variation
+      「くらいで良いです」 adds the nuance that this amount is sufficient.
+  - english: I like almost all foods, but natto is about the only one I don't care for.
+    japanese:
+      - ほとんど の 食べ物 は 好き です が、納豆 {くらい} は 苦手 です。
+      - ほとんど の 食べ物 は 好き です が、納豆 {くらい} は 苦手 な もの です。
+      - ほとんど の 食べ物 は 好き だ けど、納豆 {くらい} は 苦手 だ。
+      - ほとんど の 食べ物 は 好き だ けど、納豆 {くらい} は 苦手 な ん だ。
+    english_literally: Most foods like, but natto about is not good at.
+    competing_grammar:
+      - competing_japanese:
+          - ほとんど の 食べ物 は 好き です が、納豆 {だけ} は 苦手 です。
+        english: I like almost all foods, but I *only* dislike natto.
+        hint: 「納豆だけは苦手です」 emphasizes that natto is the *sole* exception. 「くらいは苦手です」 highlights that natto
+          is the *extent* of their dislikes, implying a very limited range of disliked foods.
+      - competing_japanese:
+          - ほとんど の 食べ物 は 好き です が、納豆 {を 除い て} 全部 好き です。
+        english: I like almost all foods, but I like everything *excluding* natto.
+        hint: 「を除いて」 directly states an exclusion. 「くらいは苦手です」 implies natto is the *extent* of what they
+          dislike, without explicitly stating an exclusion.
+    scene: Someone talking about their food preferences, highlighting a rare exception.
+    register: teineigo (polite)
+    setting: informative
+    nuance: By saying 「納豆くらいは苦手です」, the speaker emphasizes that natto represents the *extent* of their
+      food dislikes. It conveys that this dislike is a rare exception among their generally broad preferences,
+      implying a very limited scope of things they dislike. The polite register is suitable for an informative
+      conversation. The use of 「だけど」 and 「なんだ」 in other variations makes the tone more casual and explanatory.
+  - english: He's about the only one who can fix this old machine.
+    japanese:
+      - この 古い 機械 を 直せる の は、彼 {くらい です}。
+      - この 古い 機械 を 直せる の は、彼 {くらい だ}。
+      - この 古い 機械 を 直せる の は、アイツ {くらい な もん だ}。
+    english_literally: This old machine can fix is, he about.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 機械 を 直せる の は、彼 {だけ} です。
+        english: He's *the only one* who can fix this old machine.
+        hint: 「だけです」 emphasizes strict exclusivity; he is literally the *only one*. 「くらいです」 indicates
+          he is *about* the only one, or to the *extent* that he's the only one, allowing for a slight
+          possibility of others, but highlighting his uniqueness.
+    scene: Two colleagues are discussing a broken, outdated piece of equipment that no one seems to be
+      able to repair.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker, a male, states that the colleague is the *extent* of people who can fix the machine,
+      implying his unique skill or the machine's difficulty. The phrase 「彼くらい」 emphasizes that he is almost
+      the sole person capable. This is common in professional settings when acknowledging specialized
+      skills. The use of 「アイツくらいなもんだ」 is much more casual and could imply a slight exasperation or familiarity
+      with the person.
+  - english: The festival is about the only thing that brings everyone together in this town.
+    japanese:
+      - この 町 で みんな が 集まる の は、お 祭り {くらい です}。
+      - この 町 で みんな が 集まる の は、お 祭り {くらい だ}。
+      - この 町 で みんな が 集まる の は、お 祭り {くらい な もん だ}。
+    english_literally: In this town everyone gathers is, festival about.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 で みんな が 集まる の は、お 祭り {だけ} です。
+        english: The festival is *the only thing* that brings everyone together in this town.
+        hint: 「だけです」 asserts the festival is the *absolute sole* reason for gathering. 「くらいです」 suggests
+          it's *about* the only reason, emphasizing the limited number of such events.
+    scene: A long-time resident lamenting the lack of community spirit in their town, noting one exception.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    nuance: The female speaker uses 「お祭りくらい」 to express that the festival is the *extent* to which people
+      gather in the town, highlighting a sense of isolation or lack of other community events. The casual
+      register fits the reflective and slightly melancholic tone. The use of 「なもんだ」 further emphasizes
+      this limited characteristic as a regrettable truth. This implies a lament over a lack of other community
+      activities.
+  - english: The only thing that makes me truly happy is seeing my child smile.
+    japanese:
+      - 私 が 本当 に 幸せ に なる の は、子供 の 笑顔 を 見る 時 {くらい です}。
+      - 私 が 本当 に 幸せ に なる の は、子供 の 笑顔 を 見る 時 {くらい だ}。
+      - 俺 が 本当 に 幸せ に なる の は、子供 の 笑顔 を 見る 時 {くらい な もん だ}。
+    english_literally: I truly happy become is, child's smile see time about.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 本当 に 幸せ に なる の は、子供 の 笑顔 を 見る 時 {だけ} です。
+        english: The only thing that makes me truly happy is *only* seeing my child smile.
+        hint: 「だけです」 implies it is the exclusive source of happiness. 「くらいです」 emphasizes that it's the
+          *extent* of what makes them truly happy, suggesting other things might bring minor joy, but
+          this is the primary source.
+    scene: A parent confides in a close friend about the simple joys in their life.
+    register: shitashii kuchō (intimate)
+    setting: reflective
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male speaker shares an intimate feeling, using 「〜時くらいです」 to convey that seeing his child's
+      smile is the *extent* of what brings him true happiness. This doesn't mean *nothing else* makes
+      him happy, but that this specific event stands out as the primary or most profound source of joy.
+      The intimate register makes this heartfelt statement feel natural. The use of 「俺」 and 「なもんだ」 further
+      emphasizes the casual and personal nature of the reflection.
+  - english: There's about enough water for one more day.
+    japanese:
+      - 水 は もう 一 日 分 {くらい です}。
+      - 水 は もう 一 日 分 {くらい だ}。
+      - 水 は もう 一 日 分 {くらい しか ない}。
+    english_literally: Water is already one day's worth about.
+    competing_grammar:
+      - competing_japanese:
+          - 水 は もう 一 日 分 {しか あり ませ ん}。
+        english: There is *only* enough water for one more day.
+        hint: 「しかありません」 strongly emphasizes the absolute scarcity, meaning *no more* than one day's worth.
+          「くらいです」 states the *extent* or *approximate limit* of the water, which can imply scarcity but
+          perhaps less absolute than 「しかありません」.
+    scene: Someone checking supplies in a survival situation or during a resource shortage.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    listener_gender: group
+    nuance: The female speaker uses 「〜くらいです」 to state that the water supply is *to the extent of* lasting
+      one more day. This conveys a sense of limited resources, often implying a need for careful conservation.
+      The serious setting and cautious tone fit the context of limited supplies. The alternative with
+      「くらいしかない」 is a common, slightly stronger way to say 'only about this much' in a casual context,
+      explicitly adding the negative to emphasize scarcity.
+  - english: His contribution was about the only thing that saved the project.
+    japanese:
+      - 彼 の 貢献 は、プロジェクト を 救っ た の は、それ {くらい の もの でし た}。
+      - 彼 の 貢献 は、プロジェクト を 救っ た の は、それ {くらい の もん だっ た}。
+    english_literally: His contribution is, project saved is, that about thing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 貢献 は、プロジェクト を 救っ た の は、それ {だけ} でし た。
+        english: His contribution was *the only thing* that saved the project.
+        hint: 「だけでした」 explicitly states it was the *sole* reason. 「くらいのものでした」 implies it was *about* the
+          only reason or to the *extent* that it was the only reason, emphasizing the rarity and significance
+          of that particular contribution.
+    scene: A team leader reflecting on a past project's challenges and triumphs, crediting a key individual.
+    register: formal
+    setting: reflective
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male team leader uses 「〜くらいのものでした」 to convey that his colleague's contribution was *to the
+      extent that it was the only thing* that saved the project. This highlights the critical and rare
+      nature of that contribution. The use of past tense `でした` and the emphatic `なものでした` form suggests
+      a retrospective, significant assessment. This is appropriate for a formal, reflective setting. The
+      casual variation 「もんだった」 is less formal but retains the emphatic nuance.
+post_example_writeup: Notice how 「は〜くらいです」 consistently focuses on setting a boundary or defining the
+  scope. It's not just about listing the only item, but about emphasizing that something is *only to that
+  extent* or *only that much* within a broader context. This makes it particularly useful for conveying
+  nuances of limitation, rarity, or approximation.

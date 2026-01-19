@@ -1,0 +1,358 @@
+grammar_point: と〜と・どちらが (between A and B)
+learn_before:
+  - どっち (which way・which direction)
+  - の〜のと (contradictory statements・annoyance)
+meaning: Between ~ which one
+pronunciation:
+  katakana: ト〜ト、ドチラガ
+  romaji: to ~ to, dochira ga
+formation:
+  '[Option A] + と + [Option B] + と、どちらが + [Question]?': Used to ask which option someone prefers or which
+    is better, specifically between two distinct options in a polite manner.
+  '[Option A] + と + [Option B] + と、どっちが + [Question]?': A more casual version for asking preferences between
+    two options.
+  Verb dictionary form/Noun + の/こと + と + Verb dictionary form/Noun + の/こと + と、どちらが/どっちが + [Question]?: Used
+    when comparing two actions or concepts, nominalized with の or こと.
+  '[Option A] + と + [Option B] + と、どちらのほうが + [Question]?': Adds emphasis to the 'side' or 'direction'
+    being chosen, often used to slightly reinforce the comparative aspect in formal contexts.
+  '[Option A] + と + [Option B] + と、どっちのほうが + [Question]?': Casual equivalent of どちらのほうが, emphasizing the
+    chosen side.
+jlpt: N4
+etymology: 'The grammar point 「と〜と、どちらが」 is composed of: 「と」 (to): The particle 「と」 here functions to
+  list items or options, similar to "and". 「どちら」 (dochira): This is the polite form of 「どっち」 (docchi),
+  meaning "which". It''s derived from 「ど」 (do), indicating direction or way, and 「方」 (chira), meaning
+  side or direction. 「が」 (ga): The subject marker particle, indicating the focus of the question.'
+writeup: |-
+  The grammatical structure 「と〜と、どちらが」 is employed to pose a question about a preference or choice between **exactly two** distinct options. It translates to phrases such as "Between A and B, which...?" or "Which one, A or B?"
+
+  **Components and Usage:**
+  *   **と (to)**: This particle is used to list the two items being compared. The second 「と」 can often be omitted, as the interrogative 「どちら」 or 「どっち」 inherently implies a comparison between the two previously mentioned items.
+  *   **どちら (dochira)**: This is the polite form of 「どっち」 (docchi), both meaning "which". While 「どちら」 lends a more formal tone, 「どっち」 is commonly used in casual conversation. The choice between them depends on the formality of the situation and your relationship with the listener.
+  *   **が (ga)**: This is the subject particle, marking the subject of the question.
+
+  **Nominalization:**
+  When comparing actions or concepts (which are verbs or adjectives), they must first be nominalized using either 「こと」 or 「の」. For instance, 「運動すること」 (exercising) or 「勉強するの」 (studying).
+
+  **「どちらのほう」 vs. 「どちら」:**
+  You may also encounter 「どちらのほう」 (or 「どっちのほう」). The addition of 「ほう」 (direction/side) adds a slight emphasis on the 'side' or 'direction' of the choice, similar to asking "which *one*" or "which *side* are you leaning towards?" in English. While it adds a nuanced emphasis, it does not fundamentally change the meaning or the overall usage of the structure.
+false_friends:
+  - term: のなかで〜がいちばん〜
+    meaning: Out of ~, ~ is the best/most ~
+    kind: similar expression
+    nuance: Unlike 「と〜と、どちらが」 which is strictly for comparing two specific options, 「のなかで〜がいちばん〜」 is used
+      for selecting the best or most (superlative) from a group of three or more options.
+    grammar_point: の中で一番 (the most among)
+  - term: 〜か〜か・どちらが・どっちが
+    meaning: whether A or B, which
+    kind: often confused with
+    nuance: While 「と〜と、どちらが」 lists items for direct comparison, 「〜か〜か、どちらが」 emphasizes a choice between
+      mutually exclusive alternatives, typically implying an 'either/or' situation.
+    grammar_point: か〜か (whether... or)
+  - term: 〜より〜のほうが
+    meaning: more ~ than ~
+    kind: similar expression
+    nuance: 「〜より〜のほうが」 directly compares two items without posing a question of choice, simply stating
+      which is 'more' of a certain quality. 「と〜と、どちらが」 explicitly asks the listener to choose between
+      two options.
+    grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+post_false_friends_writeup: It is crucial to distinguish between comparing only two items and comparing
+  more than two. 「と〜と、どちらが」 is exclusively for binary choices. When you have three or more items and want
+  to identify the best, the most, or the least, you should use expressions like 「のなかで〜がいちばん〜」. Furthermore,
+  while 「と」 is used for listing options in comparison, 「か」 serves to present alternatives, implying an
+  'either/or' scenario. 「〜より〜のほうが」 is a declarative comparison, stating a preference rather than asking
+  for one.
+examples:
+  - english: Between hot summers and cold winters, which do you prefer?
+    japanese:
+      - 暑い 夏 と 寒い 冬 と、{どちら が} 好き です か。
+      - 暑い 夏 と 寒い 冬、{どちら が} 好き です か。
+      - 暑い 夏 と 寒い 冬 と、{どちら の 方 が} 好き です か。
+      - 暑い 夏 と 寒い 冬、{どちら の 方 が} 好き です か。
+    english_literally: Hot summer and cold winter, which one is liked?
+    competing_grammar:
+      - competing_japanese:
+          - 暑い 夏 と 寒い 冬、{どっち が} 好き？
+        english: Hot summers and cold winters, which do you like?
+        hint: The scene implies a polite, getting-to-know-you conversation with someone you don't know
+          well, making the more formal 「どちら」 natural. We're looking for a polite expression.
+      - competing_japanese:
+          - 暑い 夏 か 寒い 冬 か、{どちら が} 好き です か。
+        english: Hot summers or cold winters, which do you like?
+        hint: The scene suggests a conversational flow where the 「と」 particle, used for listing, is more
+          natural than 「か」 which emphasizes alternatives. We're looking for a listing of options rather
+          than a disjunctive choice.
+    scene: You're chatting with a new acquaintance at a social gathering and asking about their seasonal
+      preferences to find common ground.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Between exercising every day and studying every day, which is harder?
+    japanese:
+      - 毎日 運動 する こと と、毎日 勉強 する こと と、{どちら が} 大変 です か。
+      - 毎日 運動 する こと と、毎日 勉強 する こと、{どちら が} 大変 です か。
+      - 毎日 運動 する の と、毎日 勉強 する の と、{どちら が} 大変 です か。
+      - 毎日 運動 する の と、毎日 勉強 する の、{どちら が} 大変 です か。
+      - 毎日 運動 する こと と、毎日 勉強 する こと と、{どちら の 方 が} 大変 です か。
+      - 毎日 運動 する こと と、毎日 勉強 する こと、{どちら の 方 が} 大変 です か。
+      - 毎日 運動 する の と、毎日 勉強 する の と、{どちら の 方 が} 大変 です か。
+      - 毎日 運動 する の と、毎日 勉強 する の、{どちら の 方 が} 大変 です か。
+    english_literally: Doing exercise every day and studying every day, which is hard?
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 運動 する の と 毎日 勉強 する の、{どっち が} 大変？
+        english: Exercising every day and studying every day, which is harder?
+        hint: The scene with university students discussing routines suggests a context where polite speech
+          is still appropriate, even if they are peers. We're looking for a polite expression.
+    scene: Two university students are discussing their daily routines and comparing the difficulties
+      of their commitments.
+    register: teineigo (polite)
+    setting: academic
+  - english: Between watching a movie on the weekend and cooking at home, which allows you to relax more?
+    japanese:
+      - 週末 に 映画 を 観る の と、家 で 料理 する の と、{どちら が} リラックス でき ます か。
+      - 週末 に 映画 を 観る の と、家 で 料理 する の、{どちら が} リラックス でき ます か。
+      - 週末 に 映画 を 観る こと と、家 で 料理 する こと と、{どちら が} リラックス でき ます か。
+      - 週末 に 映画 を 観る こと と、家 で 料理 する こと、{どちら が} リラックス でき ます か。
+      - 週末 に 映画 を 観る の と、家 で 料理 する の と、{どちら の 方 が} リラックス でき ます か。
+      - 週末 に 映画 を 観る の と、家 で 料理 する の、{どちら の 方 が} リラックス でき ます か。
+      - 週末 に 映画 を 観る こと と、家 で 料理 する こと と、{どちら の 方 が} リラックス でき ます か。
+      - 週末 に 映画 を 観る こと と、家 で 料理 する こと、{どちら の 方 が} リラックス でき ます か。
+    english_literally: Watching movie on weekend and cooking at home, which can relax?
+    competing_grammar:
+      - competing_japanese:
+          - 週末 に 映画 を 観る の と 家 で 料理 する の、{どっち が} リラックス できる？
+        english: Watching a movie on the weekend and cooking at home, which allows you to relax more?
+        hint: The interaction between colleagues implies a professional setting, making the polite form
+          「どちら」 more suitable than casual 「どっち」. We're looking for a polite expression.
+    scene: A colleague asks you about your preferred way to unwind after a busy week, aiming to understand
+      your lifestyle for better teamwork.
+    register: teineigo (polite)
+    setting: professional
+  - english: Between dogs and cats, which do you want to keep as a pet?
+    japanese:
+      - 犬 と 猫、{どっち が} 飼い たい？
+      - 犬 と 猫 と、{どっち が} 飼い たい？
+      - 犬 と 猫、{どっち の 方 が} 飼い たい？
+      - 犬 と 猫 と、{どっち の 方 が} 飼い たい？
+    english_literally: Dog and cat, which one want to keep?
+    competing_grammar:
+      - competing_japanese:
+          - 犬 か 猫 か、{どっち が} 飼い たい？
+        english: Dogs or cats, which do you want to keep as a pet?
+        hint: The use of 「と」 to list options is natural in casual speech, and the scene emphasizes a relaxed
+          conversation between friends rather than a formal choice. We're looking for a natural listing
+          using 「と」.
+    scene: Two close friends are casually discussing what kind of pet they might eventually get.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The directness of 「どっちが飼いたい？」 with the omission of the second 「と」 and the use of 「どっち」 is
+      characteristic of casual speech among young female friends. It implies a close relationship where
+      formalities are unnecessary.
+  - english: Between Japanese food and Western food, which do you eat more frequently?
+    japanese:
+      - 和食 と 洋食 と、{どちら が} 頻繁 に 食べ ます か。
+      - 和食 と 洋食、{どちら が} 頻繁 に 食べ ます か。
+      - 和食 と 洋食 と、{どちら の 方 が} 頻繁 に 食べ ます か。
+      - 和食 と 洋食、{どちら の 方 が} 頻繁 に 食べ ます か。
+    english_literally: Japanese food and Western food, which side do you eat more frequently?
+    competing_grammar:
+      - competing_japanese:
+          - 和食 と 洋食 と {どっち が} 頻繁 に 食べる？
+        english: Japanese food and Western food, which do you eat more frequently?
+        hint: The context of a survey conducted by a professional (chef) suggests a slightly more precise
+          and emphasized inquiry, where 「の方が」 adds that nuance of asking for a clear 'side' or 'preference'.
+          We're looking for a nuanced comparative question.
+    scene: A chef is conducting a brief survey among customers about their eating habits to gather preferences
+      for menu planning.
+    register: teineigo (polite)
+    setting: informative
+    speaker_age: older
+    nuance: The use of 「の方が」 adds a subtle emphasis on the comparative aspect, literally asking "which
+      *side*" is preferred. An older chef might use this slightly more formal phrasing, maintaining a
+      professional distance and seeking a clear, direct answer.
+  - english: Between ramen and udon, which do you like better?
+    japanese:
+      - ラーメン と うどん、{どっち が} 好き？
+      - ラーメン と うどん と、{どっち が} 好き？
+      - ラーメン と うどん、{どっち の 方 が} 好き？
+      - ラーメン と うどん と、{どっち の 方 が} 好き？
+    english_literally: Ramen and udon, which liked?
+    competing_grammar:
+      - competing_japanese:
+          - ラーメン か うどん か、{どっち が} 好き？
+        english: Ramen or udon, which do you like better?
+        hint: While 「か」 can be used for alternatives, 「と」 is more common when simply listing options for
+          comparison in casual conversation, especially when deciding on something together. We're looking
+          for a direct comparison of preferences using 「と」.
+      - competing_japanese:
+          - ラーメン と うどん と、{どちら が} 好き です か。
+        english: Between ramen and udon, which do you like better?
+        hint: The scene describes friends having a casual conversation, so the more formal 「どちら」 and polite
+          「です か」 would be unnatural. We're looking for a casual expression.
+    scene: Two friends are trying to decide where to go for lunch, and one asks the other about their
+      preference between two popular noodle dishes.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual 「どっちが」 is typical for friends, and the question is direct and informal, fitting
+      the relaxed atmosphere of deciding on a meal together.
+  - english: Between working from home and working at the office, which is more efficient for you?
+    japanese:
+      - 在宅 勤務 と オフィス 勤務、{どちら が} あなた に とっ て 効率 的 です か。
+      - 在宅 勤務 と オフィス 勤務 と、{どちら が} あなた に とっ て 効率 的 です か。
+      - 在宅 勤務 と オフィス 勤務、{どちら の 方 が} あなた に とっ て 効率 的 です か。
+      - 在宅 勤務 と オフィス 勤務 と、{どちら の 方 が} あなた に とっ て 効率 的 です か。
+    english_literally: Working at home and office working, which is efficient for you?
+    competing_grammar:
+      - competing_japanese:
+          - 在宅 勤務 と オフィス 勤務、{どっち が} 効率 的 です か。
+        english: Working from home and working at the office, which is more efficient?
+        hint: In a professional setting, choosing 「どちらが」 over 「どっちが」 maintains a more formal and respectful
+          tone suitable for a manager-employee discussion. We're looking for a more professional expression.
+      - competing_japanese:
+          - 在宅 勤務 と オフィス 勤務、{どちら が} 効率 的 だ と 思い ます か。
+        english: Working from home and working at the office, which do you think is more efficient?
+        hint: The direct question 「どちらが効率的ですか」 is more precise when asking for a personal assessment,
+          rather than a general opinion. We're looking for a direct query about personal efficiency.
+    scene: A manager is having a one-on-one discussion with an employee about their work preferences and
+      productivity, seeking input for future work arrangements.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「どちらが」 maintains a professional tone, suitable for a manager speaking to an employee,
+      even when discussing personal efficiency. 「あなたにとって」 emphasizes the personal relevance of the question,
+      making it clear the manager is asking about the employee's experience.
+  - english: Between exercising and reading a book, which would you rather do right now?
+    japanese:
+      - 運動 する の と 本 を 読む の、今 {どっち が} し たい？
+      - 運動 する の と 本 を 読む の と、今 {どっち が} し たい？
+      - 運動 する こと と 本 を 読む こと、今 {どっち が} し たい？
+      - 運動 する こと と 本 を 読む こと と、今 {どっち が} し たい？
+      - 運動 する の と 本 を 読む の、今 {どっち の 方 が} し たい？
+      - 運動 する の と 本 を 読む の と、今 {どっち の 方 が} し たい？
+      - 運動 する こと と 本 を 読む こと、今 {どっち の 方 が} し たい？
+      - 運動 する こと と 本 を 読む こと と、今 {どっち の 方 が} し たい？
+    english_literally: Exercising and reading a book, now which want to do?
+    competing_grammar:
+      - competing_japanese:
+          - 運動 する こと と 本 を 読む こと と、今 {どちら が} し たい です か。
+        english: Between exercising and reading a book, which would you rather do right now?
+        hint: Among siblings in a casual setting, the omission of the second 「と」, the use of 「の」 for nominalization,
+          and the casual 「どっちが」 are more natural than the formal alternatives. We're looking for an intimate
+          and casual expression.
+      - competing_japanese:
+          - 運動 と 読書、今 {どっち が} し たい？
+        english: Exercise and reading, which would you rather do right now?
+        hint: While simpler, directly nominalizing the verbs with 「の」 (運動するの、本を読むの) is more explicit and
+          natural than just using the nouns 「運動」 and 「読書」 when referring to the activities themselves
+          in this context. We're looking for a precise way to refer to the actions.
+    scene: Two siblings are lounging around on a weekend afternoon, trying to decide how to spend their
+      time, and one asks the other for their immediate preference.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The informal 「どっちが」 and direct 「したい？」 are common among close family members and younger speakers,
+      reflecting an intimate and casual relationship. The nominalization with 「の」 is a very natural way
+      to refer to actions in such contexts.
+  - english: Between convenience and sustainability, which do you prioritize more when shopping?
+    japanese:
+      - 利便 性 と 持続 可能 性 と、買い物 の 際、{どちら が} より 優先 事項 です か。
+      - 利便 性 と 持続 可能 性、買い物 の 際、{どちら が} より 優先 事項 です か。
+      - 利便 性 と 持続 可能 性 と、買い物 の 際、{どちら の 方 が} より 優先 事項 です か。
+      - 利便 性 と 持続 可能 性、買い物 の 際、{どちら の 方 が} より 優先 事項 です か。
+    english_literally: Convenience and sustainability, shopping occasion, which is more priority item?
+    competing_grammar:
+      - competing_japanese:
+          - 利便 性 と 持続 可能 性 と、買い物 の 際、{どっち が} 優先 事項 です か。
+        english: Between convenience and sustainability, which is a priority item when shopping?
+        hint: In a formal research or academic context, 「どちらが」 is more appropriate than the casual 「どっちが」,
+          and 「より」 emphasizes a comparative prioritization. We're looking for a formal and precise question.
+      - competing_japanese:
+          - 利便 性 と 持続 可能 性 の 中 で、{どちら が} 優先 事項 です か。
+        english: Among convenience and sustainability, which is a priority item?
+        hint: While 「の 中 で」 implies 'among', the direct use of 「と〜と」 is perfectly natural for comparing
+          two explicit items, and fits the structure of the grammar point. We're looking for a binary
+          comparison as implied by the grammar point.
+    scene: During a consumer behavior focus group, a researcher is asking participants to weigh different
+      values when making purchasing decisions.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「どちらが」 with 「より優先事項ですか」 indicates a formal and analytical context, typical of academic
+      or research settings. The phrase 「買い物 の 際」 (at the time of shopping) also adds to the formal nuance.
+      The speaker's age and the setting suggest a careful, objective inquiry.
+  - english: Between coffee and tea, which do you drink more often?
+    japanese:
+      - コーヒー と 紅茶 と、{どっち が} よく 飲む？
+      - コーヒー と 紅茶、{どっち が} よく 飲む？
+      - コーヒー と 紅茶 と、{どっち の 方 が} よく 飲む？
+      - コーヒー と 紅茶、{どっち の 方 が} よく 飲む？
+    english_literally: Coffee and black tea, which do you often drink?
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー か 紅茶 か、{どっち が} よく 飲む？
+        english: Coffee or tea, which do you drink more often?
+        hint: The particle 「と」 is used to list items for comparison in this context, implying a choice
+          between two specific things. 「か」 is used for 'or' to present alternatives, which is slightly
+          different in nuance. We're looking for a direct comparison of preferences using 「と」.
+      - competing_japanese:
+          - コーヒー と 紅茶 と、{どちら が} よく 飲み ます か。
+        english: Between coffee and tea, which do you drink more often?
+        hint: The scene describes a casual conversation between friends, making the polite form 「どちら」
+          and 「飲みますか」 less natural for this specific interaction. We're looking for a casual expression
+          among friends.
+    scene: At a cafe, two friends are discussing their beverage preferences.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「どっちが」 and the plain verb form 「飲む」 are characteristic of casual speech between
+      friends. The repetition of 「と」 after both items is optional but common in natural, informal conversation.
+      This reflects an intimate and relaxed relationship.
+  - english: Between lowering the price and increasing services, which proposal is more attractive to
+      the client?
+    japanese:
+      - 価格 を 下げる の と サービス を 増やす の と、クライアント に とっ て {どちら の 方 が} 魅力 的 です か。
+      - 価格 を 下げる の と サービス を 増やす の、クライアント に とっ て {どちら の 方 が} 魅力 的 です か。
+      - 価格 を 下げる こと と サービス を 増やす こと と、クライアント に とっ て {どちら の 方 が} 魅力 的 です か。
+      - 価格 を 下げる こと と サービス を 増やす こと、クライアント に とっ て {どちら の 方 が} 魅力 的 です か。
+    english_literally: Lowering price and increasing services, for client which side is more attractive?
+    competing_grammar:
+      - competing_japanese:
+          - 価格 を 下げる の と サービス を 増やす の、クライアント に とっ て {どっち が} 魅力 的 です か。
+        english: Between lowering the price and increasing services, which proposal is more attractive
+          to the client?
+        hint: In a professional and negotiating setting, the more formal 「どちら」 is preferred over the casual
+          「どっち」 to maintain a respectful tone. We're looking for a professional expression.
+      - competing_japanese:
+          - 価格 を 下げる の か サービス を 増やす の か、クライアント に とっ て {どちら の 方 が} 魅力 的 です か。
+        english: Lowering the price or increasing services, which proposal is more attractive to the client?
+        hint: The use of 「と〜と」 is typical for comparing two distinct proposals, while 「か〜か」 can imply
+          a more disjunctive choice. We're looking for a direct comparison of two options.
+    scene: During a business meeting, a sales manager is asking a team member about the best strategy
+      to secure a deal with a hesitant client.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「どちらのほうが」 subtly emphasizes seeking a comparative advantage between two business
+      strategies, fitting a negotiation context. The formal tone with 「魅力的な提案」 is appropriate for a business
+      setting, reflecting the manager's expectation of a well-considered answer from their team member.
+post_example_writeup: As you can see from the examples, the choice between 「どちらが」 and 「どっちが」 largely depends
+  on the formality of the situation and your relationship with the listener. 「どちらが」 is always safe in
+  polite or formal contexts, while 「どっちが」 is perfectly natural and common among friends and family. Remember
+  to nominalize verbs or adjectives with 「こと」 or 「の」 when comparing actions or concepts. The addition
+  of 「のほうが」 can add a slight emphasis on the 'side' or 'direction' of the choice, but does not change
+  the core meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と-と-どちらが

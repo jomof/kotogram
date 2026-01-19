@@ -1,0 +1,268 @@
+grammar_point: Verb[stem] (continuative)
+learn_before:
+  - いただく (humbly receive)
+meaning: The stem form of a verb, used as a base for various conjugations and connections, or occasionally
+  as a noun.
+pronunciation:
+  katakana: レンヨウケイ
+  romaji: ren'youkei
+formation:
+  Group 1 (Godan) Verbs: Change the final U-sound syllable to an I-sound syllable (e.g., 飲む nomu → 飲み
+    nomi; 買う kau → 買い kai).
+  Group 2 (Ichidan) Verbs: Remove the final る (ru) (e.g., 食べる taberu → 食べ tabe; 見る miru → 見 mi).
+  Irregular Verbs: する (suru) → し (shi); くる (kuru) → き (ki).
+jlpt: N5
+etymology: The term 「連用形 (ren'youkei)」 literally translates to "form for continuous use" or "form for
+  connecting to usage." This etymology highlights its fundamental role in joining and modifying other
+  grammatical elements within a sentence, allowing verbs to connect seamlessly with suffixes, auxiliaries,
+  and other verbs to create more complex expressions.
+writeup: |-
+  The **Verb[stem]** form, also known as the **連用形 (ren'youkei)**, is one of the most fundamental and versatile forms in Japanese grammar. It serves as the base for a wide array of conjugations and grammatical constructions.
+
+  ### Primary Uses:
+
+  1.  **Polite Form (〜ます)**: The most common use you will encounter early on is connecting the verb stem to `〜ます` (e.g., 食べます - `tabemasu`, 飲みます - `nomimasu`), forming the polite present/future tense.
+  2.  **Connecting to Auxiliaries and Suffixes**: The stem form is crucial for attaching various auxiliary verbs and suffixes that add meaning, such as desire (`〜たい`), ease/difficulty (`〜やすい・〜にくい`), beginning (`〜始める`), ending (`〜終える`), and many more. This is why it's called the "continuative" form; it allows the verb to continue its grammatical function by connecting to other elements.
+  3.  **Nominalization**: In some cases, the verb stem itself can function as a noun, representing the action or state of the verb (e.g., 休み - `yasumi` from 休む - `yasumu`, meaning "rest"; 踊り - `odori` from 踊る - `odoru`, meaning "dance"). While not all verb stems can function as standalone nouns, many common ones do.
+
+  Understanding the stem form is essential for building a solid foundation in Japanese, as it underpins many of the conjugations and grammatical patterns you will learn.
+false_friends:
+  - term: Verb[dictionary] (plain non-past)
+    meaning: The basic, unconjugated form of a verb, used for simple statements, to modify nouns directly,
+      or in casual speech.
+    kind: often confused with
+    nuance: While both are basic forms, the stem form is a base for *conjugation and connection* to other
+      grammatical elements (like polite endings or auxiliaries), whereas the dictionary form is primarily
+      used for *standalone statements*, *modifying nouns*, or *quotations*. They are foundational but
+      serve distinct grammatical roles.
+    grammar_point: <suggest>:Verb[dictionary] (plain non-past)
+  - term: Verb[て] (te-form)
+    meaning: A conjunctive form of verbs used to connect sentences, indicate cause/reason, sequential
+      actions, or permission.
+    kind: often confused with
+    nuance: Both are conjunctive forms, but the stem form often connects to *suffixes or auxiliaries*
+      to create new verb forms or nominalizations (e.g., 食べたい - `tabetai`). The te-form typically connects
+      to other *verbs or particles* to express relationships between clauses or actions (e.g., 食べてから -
+      `tabete kara`).
+    grammar_point: <suggest>:Verb[て] (te-form)
+  - term: Verb[dictionary]こと (the act of)
+    meaning: Nominalizes a verb or clause, turning an action or event into a noun phrase.
+    kind: similar expression
+    nuance: While the verb stem can sometimes function as a noun (e.g., 休み - `yasumi` for "rest"), this
+      is often a more idiomatic or fixed usage. `Verb[dictionary]こと` is a general and explicit way to
+      nominalize any verb or clause, emphasizing the 'fact' or 'act' of doing something. It is more versatile
+      for creating noun phrases from entire actions.
+    grammar_point: <suggest>:Verb[dictionary]こと (the act of)
+post_false_friends_writeup: The key to distinguishing the stem form from other verb forms and nominalization
+  methods lies in understanding its primary function as a **connective base**. It's the building block
+  for many grammatical structures, allowing you to attach different meanings and functions to the core
+  verb. Focus on what comes *after* the stem form to grasp its role in a given sentence.
+examples:
+  - english: I eat breakfast every morning.
+    japanese:
+      - 毎朝、朝ごはん を {食べ ます}。
+      - 毎朝、朝ごはん を {いただき ます}。
+    english_literally: Every morning, breakfast I eat (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝、朝ごはん を 食べる。
+        english: I eat breakfast every morning. (plain)
+        hint: This uses the plain dictionary form, which is less formal. We're looking for the polite
+          form using the stem.
+      - competing_japanese:
+          - 毎朝、朝ごはん を 食べ た。
+        english: I ate breakfast every morning. (past tense)
+        hint: This is in the past tense. We're looking for the present/future polite form.
+    scene: A person talks about their daily routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: I want to go to Japan next year.
+    japanese:
+      - 来年、日本 へ {行き たい} です。
+      - 来年、日本 へ {行き たい}。
+      - 来年、日本 へ {参り たい} です。
+    english_literally: Next year, Japan to want to go (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 来年、日本 へ 行く つもり です。
+        english: Next year, I intend to go to Japan.
+        hint: This expresses intention (`つもりだ`) rather than desire. We're looking for the desiderative
+          form (`〜たい`).
+    scene: A student expresses their future aspirations.
+    register: teineigo (polite)
+    setting: optimistic
+  - english: This book is easy to read.
+    japanese:
+      - この 本 は {読み やすい} です。
+      - この 本 は {読み やすい}。
+    english_literally: This book, easy to read (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 読み ます。
+        english: This book reads (or I will read this book).
+        hint: This is a simple polite statement. We're looking for the expression of 'ease of reading'.
+    scene: A book review or recommendation.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The combination of the verb stem 「読み」 (from 読む - `yomu`) with `〜やすい` (easy to do) expresses
+      that the action of reading this specific book is easy. It highlights a quality of the object (the
+      book) that facilitates the action.
+    etymology: The suffix `〜やすい` evolved from `易し (yasushi)`, an old form of `易しい (yasashii)` meaning
+      'easy'. When combined with the verb stem, it denotes the inherent ease of performing that action.
+  - english: The child started crying suddenly.
+    japanese:
+      - 子供 が 急 に {泣き 出し た}。
+      - 子供 が 急 に {泣き 出し まし た}。
+    english_literally: Child suddenly began to cry.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 急 に 泣い た。
+        english: The child cried suddenly.
+        hint: This is just the simple past tense. We're looking for an expression that indicates the *beginning*
+          of an action.
+      - competing_japanese:
+          - 子供 が 急 に 泣き 始め た。
+        english: The child began to cry suddenly.
+        hint: 「始める」 (hajimeru) also means 'to begin', but 「出す」 (dasu) with the stem often implies a sudden,
+          often outward, burst of action.
+    scene: Observing a child's sudden change in mood.
+    register: casual
+    setting: reflective
+    nuance: The verb stem 「泣き」 (from 泣く - `naku`) combined with `〜出す` indicates a sudden, abrupt start
+      of the action of crying. 「出す」 (dasu) literally means 'to put out', and when used as a suffix here,
+      it implies an 'outburst' or 'commencement' of the action.
+    etymology: The auxiliary verb `〜出す` (dasu) evolved from the verb `出す` meaning 'to put out' or 'to
+      begin'. Its usage with verb stems signifies an abrupt or sudden initiation of the action, as if
+      the action is 'coming out' from within.
+  - english: I'm on a break now.
+    japanese:
+      - 今、{休み} です。
+      - 今、{休み} だ。
+      - 今、{お 休み} を いただい て おり ます。
+    english_literally: Now, rest it is.
+    competing_grammar:
+      - competing_japanese:
+          - 今、休ん で いる ところ です。
+        english: I am in the middle of resting now.
+        hint: This expresses being in the process of resting. We're looking for the nominalized form of
+          'rest'.
+    scene: A colleague asking about availability.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The verb stem 「休み」 (from 休む - `yasumu`) is used here directly as a noun meaning "rest" or
+      "a break." This is a common way for certain verb stems to function nominally, often in more specific,
+      conventional contexts.
+    etymology: The use of verb stems as nouns is a common linguistic phenomenon, reflecting a process
+      of lexicalization where the action itself becomes a concrete concept. This allows for brevity and
+      directness, as seen in many compound nouns derived from verb stems (e.g., 読み物 yomimono - reading
+      material).
+  - english: Please write your name here.
+    japanese:
+      - ここ に 名前 を {書き なさい}。
+      - ここ に 名前 を {お 書き ください}。
+      - ここ に 名前 を {ご 記入 ください}。
+    english_literally: Here name to write (polite command).
+    competing_grammar:
+      - competing_japanese:
+          - ここ に 名前 を 書い て ください。
+        english: Please write your name here. (polite request)
+        hint: 「〜てください」 is a more general polite request. 「〜なさい」 is a softer, often parental or instructive
+          command.
+    scene: A teacher instructing students.
+    register: meirei-kei no teineigo (polite imperative)
+    setting: instructional
+    nuance: The stem form 「書き」 (from 書く - `kaku`) is combined with `〜なさい`, which is a polite imperative
+      form. This form is often used by someone in a position of authority (like a teacher or parent) to
+      someone younger or subordinate, giving a gentle but firm instruction.
+    etymology: The `〜なさい` ending is a contraction of `なさる (nasaru)`, an honorific verb meaning 'to do',
+      and the imperative `〜ませい (masei)`. Over time, it became a common, albeit slightly softer than plain
+      imperative, command form often used by adults towards children or students.
+  - english: He seems busy.
+    japanese:
+      - 彼 は {忙し そう} です。
+      - 彼 は {忙し そう} だ。
+    english_literally: He busy seems (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙しい よう です。
+        english: He seems busy. (more objective appearance)
+        hint: 「〜ようです」 indicates a more objective observation or inference. 「〜そう」 is for visual appearance
+          or immediate impression.
+    scene: Observing someone from a distance.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: While `忙しい (isogashii)` is an i-adjective, its stem form `忙し` (isogashi) is used here with
+      `〜そう` (sou), indicating an appearance derived from direct observation. This pattern is common for
+      both i-adjectives and verb stems, expressing how something 'looks' or 'seems'.
+    etymology: The suffix `〜そう` originates from the word `そう (sou)` meaning 'appearance' or 'seems'. When
+      attached to the stem of adjectives or verbs, it conveys that something 'looks' or 'appears' to be
+      in a certain state or about to perform an action.
+  - english: His way of speaking is interesting.
+    japanese:
+      - 彼 の {話し} 方 は 面白い です。
+      - 彼 の {話し} 方 が 面白い。
+    english_literally: His way of speaking is interesting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 面白い 話 を し ます。
+        english: He tells interesting stories/talks interestingly.
+        hint: This focuses on the content of his speech, not his manner of speaking. We're looking for
+          'way of speaking'.
+    scene: Two friends discussing a mutual acquaintance.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The verb stem 「話し」 (from 話す - `hanasu`) combines with 「方」 (kata) to form 「話し方」, meaning 'way
+      of speaking'. This illustrates a common nominalization pattern where the stem signifies the action,
+      and 「方」 denotes the manner or method.
+    etymology: The suffix `〜方` (`kata`), meaning 'way' or 'method', commonly attaches to verb stems to
+      describe the manner in which an action is performed. This construction is a highly productive means
+      of forming nouns of action or manner.
+  - english: This is an important point to note.
+    japanese:
+      - これ は 重要 な {注意} 点 です。
+      - これ は 重要 な {注意} 点 だ。
+      - これ は 重要 な {確認} 点 です。
+    english_literally: This important note point is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 注意 す べき 重要 な 点 です。
+        english: This is an important point that should be noted.
+        hint: This adds `〜すべき` ('should'), which changes the nuance of necessity. We're looking for a
+          simple nominalization where the verb stem becomes a noun.
+    scene: In a professional meeting or academic lecture.
+    register: formal
+    setting: informative
+    nuance: 「注意」 (chūi) is the stem form of `注意する` (chūi suru, to pay attention/to note) and functions
+      as a noun here meaning 'attention' or 'a note'. When combined with 「点」 (ten, point), it forms 「注意点」
+      (chūiten), literally 'point of attention', meaning 'a point to note' or 'a cautionary point'. This
+      illustrates the stem form's ability to create compound nouns.
+    etymology: The formation of compound nouns by combining a verb stem with another noun is highly productive
+      in Japanese. This method allows for concise and precise expression of concepts, where the stem often
+      specifies the action or purpose related to the second noun.
+  - english: I want to continue studying Japanese.
+    japanese:
+      - 日本 語 を {勉強 し 続け たい} です。
+      - 日本 語 を {勉強 し 続け たい}。
+      - 日本 語 の 勉強 を {続け たい} です。
+    english_literally: Japanese study continue want (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 勉強 し 続け ます。
+        english: I will continue studying Japanese. (polite, non-desire)
+        hint: This states a continuous action without expressing a desire. We're looking for the desire
+          to continue.
+    scene: A student expressing their commitment to language learning.
+    register: teineigo (polite)
+    setting: serious
+    nuance: The verb stem 「勉強し」 (from 勉強する - `benkyousuru`) is used to connect to `続ける` (tsuzukeru, to
+      continue), forming the compound verb `勉強し続ける` (benkyoushitsuzukeru, to continue studying). This
+      combined verb is then conjugated to the desiderative `〜たい`, showing a desire to continue the action.
+      This illustrates the versatile connective power of the stem form.
+    etymology: Compound verbs formed by combining a verb stem with another verb (like `続ける` here) are
+      very common in Japanese. This allows for precise expression of nuances related to the action's progression,
+      initiation, or completion.
+post_example_writeup: As you can see from these examples, the **Verb[stem]** form is incredibly versatile.
+  It's not just for making polite `〜ます` forms; it's the gateway to expressing desire, capability, the
+  beginning or end of an action, and even turning verbs into nouns. Mastering this fundamental form will
+  significantly expand your ability to construct complex and nuanced Japanese sentences. Always pay attention
+  to the grammatical element that follows the stem form, as it dictates the overall meaning and function.

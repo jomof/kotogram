@@ -1,0 +1,247 @@
+grammar_point: に (frequency)
+learn_before:
+  - Verb[よう] (volitional)
+meaning: Times (In each time period), Every, Frequency of
+pronunciation:
+  katakana: ニ
+  romaji: ni
+formation:
+  Time Frame + に + Number of Times + Action: Indicates the frequency with which an action occurs within
+    a given time frame or context. It indicates how many times a given action occurs within a defined
+    timeframe.
+jlpt: N4
+etymology: The particle 「に」 generally marks a location or time. In this case, it marks a point within
+  a timeframe at which something occurs a certain number of times. Think of it as "within" or "during"
+  the specified period, where the action takes place or occurs a certain number of times.
+writeup: |-
+  The particle 「に」, when used with time expressions, indicates frequency. It describes how often something happens or is done within a specific timeframe. The structure is straightforward: **[Timeframe] + に + [Number of Times] + [Action]**. 「に」 retains its basic meaning of indicating a "goal" or "destination," but in this context, it signifies the period within which the action occurs. For example, in 「一日 に 三回」 (three times a day), 「一日」 is the timeframe, and 「三回」 is the number of occurrences.
+
+  **Important Considerations**
+
+  *   Do not confuse this use of 「に」 with 「で」 in relation to time. 「で」 expresses the *duration* it takes to do something, or the total amount of time something is expected to take. For example, 「三時間 で 本を読んだ」 (I read a book in three hours) implies completion within that duration. In contrast, 「に」 expresses the *frequency* of an action within a time period.
+  *   「に」 marks portions (or points) of time within a larger timeframe, within which something happens. However, 「で」 marks a whole span of time, within which something can be completed or takes place.
+false_friends:
+  - term: ごとに
+    meaning: Each, Every
+    kind: similar expression
+    nuance: While 「に」 indicates frequency *within* a time period, 「ごとに」 emphasizes *each instance* of
+      that time period. 「に」 is more common for general frequency and can be used with numbers.
+    grammar_point: ごとに (each・every)
+  - term: おきに
+    meaning: Repeated at intervals, Every other, Every, At intervals of
+    kind: similar expression
+    nuance: 「おきに」 specifically means "every other" or "at intervals of." It is more specific than 「に」,
+      which can indicate any frequency. For example, 「一日 おきに」 (every other day) or 「三メートル おきに」 (every
+      three meters).
+    grammar_point: おきに (at intervals of)
+  - term: で (by time)
+    meaning: In (duration), within (a period)
+    kind: often confused with
+    nuance: 「に」 marks how many times something happens *within* a period (frequency), while 「で」 marks
+      the *total time taken* to complete an action or the entire period over which an action occurs. For
+      example, 「一時間 で 本を読む」 (read a book in one hour) implies completion within that hour.
+    grammar_point: で (by time)
+  - term: ずつ
+    meaning: Each; one at a time; little by little
+    kind: similar expression
+    nuance: While 「に」 expresses how many times an action occurs within a period, 「ずつ」 emphasizes the distribution
+      or increment of items or actions over time or among entities. It answers 'how much at a time,' not
+      'how many times in total.'
+    grammar_point: ずつ (each; one at a time; little by little)
+  - term: 〜も〜ば〜も〜
+    meaning: Sometimes... and sometimes...
+    kind: similar expression
+    nuance: This pattern describes alternating occurrences or states. While it touches on frequency, it
+      specifically indicates that both options occur, implying variety rather than a fixed rate of a single
+      action like 「に」.
+    grammar_point: 〜も〜ば〜も〜 (sometimes this・sometimes that)
+post_false_friends_writeup: While 「ごとに」 and 「おきに」 can express similar ideas of frequency, 「に」 is generally
+  the most straightforward way to indicate how many times something happens within a specific timeframe.
+  Use 「ごとに」 when you want to emphasize each individual instance and 「おきに」 when you specifically mean 'every
+  other' or 'at set intervals'. The particle 「で」 is often confused with 「に」 when discussing time, but
+  it focuses on the total duration or completion within a period, not the frequency of an action. Understanding
+  this distinction is vital for accurate expression.
+examples:
+  - english: I eat one piece of bread once a day.
+    japanese:
+      - 一 日 {に} パン を 一 つ 食べる。
+      - 一 日 {に} パン を 一 つ 食べ ます。
+    english_literally: One day, I eat one piece of bread.
+    competing_grammar:
+      - competing_japanese:
+          - 一 日 {ごと に} パン を 一 つ 食べる。
+        english: Every single day, I eat one piece of bread.
+        hint: 「ごとに」 emphasizes *each* individual instance of the time period, suggesting a strict routine.
+          We are looking for a more general statement of daily frequency.
+    scene: A student explaining their simple daily eating habits to a new roommate.
+    register: casual
+    setting: friendly
+  - english: Hey, I've been so busy lately, I can only go home once a month.
+    japanese:
+      - ねぇ、最近 は 忙しく て、実家 {に} は 一 ヶ月 に 一 回 しか 帰れ ない ん だ。
+      - ねえ、最近 は 忙しく て、実家 {に} は 一 ヶ月 に 一 回 しか 帰れ ませ ん。
+    english_literally: Hey, recently because I'm busy, to my home once a month I can only return.
+    competing_grammar:
+      - competing_japanese:
+          - ねぇ、最近 は 忙しく て、実家 に は 一 ヶ月 {ごと に} 一 回 しか 帰れ ない ん だ。
+        english: Hey, lately I've been so busy, I can only go home once *every single* month.
+        hint: 「ごとに」 emphasizes that the action occurs in *each* month, which can sound slightly repetitive
+          or exhaustive in this context. 「に」 simply states the frequency within the month. We are looking
+          for a natural expression of frequency.
+    scene: A young woman confiding in her closest friend about her busy schedule preventing her from visiting
+      her family more often.
+    register: shitashii kuchō (intimate)
+    setting: melancholic
+    nuance: The opening 「ねぇ」 and the sentence-ending 「んだ」 convey a sense of intimacy and casualness, common
+      when confiding in a close friend. 「一ヶ月 に 一回 しか 帰れ ない」 uses 「しか～ない」 for emphasis on the limited frequency.
+  - english: The children play in the park two or three times a week.
+    japanese:
+      - 子供 たち は 週 {に} 二、三 回 公園 で 遊ぶ。
+      - 子供 たち は 週 {に} 二、三 回 公園 で 遊び ます。
+    english_literally: Children weekly two, three times in the park play.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 週 {ごと に} 二、三 回 公園 で 遊ぶ。
+        english: The children play in the park two or three times *every single* week.
+        hint: 「ごとに」 highlights *each* week as a distinct interval. 「に」 is more common for stating general
+          frequency over a typical week. We are looking for the frequency within a week.
+    scene: A parent observing their children's play habits and describing them to a neighbor.
+    register: casual
+    setting: informative
+    nuance: This is a factual statement about routine. 「二、三回」 (ni-san kai) literally means 'two, three
+      times' and is a common way to express 'two or three times'. The usage of 「遊びます」 (asobimasu) and
+      「遊ぶ」 (asobu) is neutral and acceptable across various contexts.
+  - english: I brush my teeth three times a day.
+    japanese:
+      - 私 は 一 日 {に} 三 回 歯 を 磨く。
+      - 私 は 一 日 {に} 三 回 歯 を 磨き ます。
+    english_literally: As for me, one day, three times, teeth, brush.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {一 日 置き に} 歯 を 磨く。
+        english: I brush my teeth every other day.
+        hint: 「一日置きに」 means "every other day". We are looking for "three times a day".
+    scene: A person describing their daily hygiene routine.
+    register: casual
+    setting: informative
+  - english: This magazine comes out once a week.
+    japanese:
+      - この 雑誌 は 週 {に} 一 回 発行 さ れる。
+      - この 雑誌 は 週 {に} 一 回 発行 さ れ ます。
+    english_literally: This magazine, weekly, once, is published.
+    competing_grammar:
+      - competing_japanese:
+          - この 雑誌 は {毎週} 発行 さ れる。
+        english: This magazine is published weekly.
+        hint: 「毎週」 means "every week" or "weekly" and is a general statement. We need to specify "once
+          a week" using 「に」.
+    scene: A librarian informing a patron about a publication schedule.
+    register: formal
+    setting: informative
+  - english: Our company holds a meeting once every two months.
+    japanese:
+      - 私 達 の 会社 は 二 ヶ月 {に} 一 回 会議 を 開く。
+      - 私 達 の 会社 は 二 ヶ月 {に} 一 回 会議 を 開き ます。
+    english_literally: Our company, two months, once, meeting, holds.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 の 会社 は 二 ヶ月 {ごと に} 会議 を 開く。
+        english: Our company holds a meeting *every* two months.
+        hint: 「ごと」 emphasizes regularity for each interval. 「に」 states the frequency within the interval.
+          We're looking for frequency *within* a two-month period.
+    scene: A team leader explaining the meeting schedule to a new employee.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: You should take this medicine three times a day.
+    japanese:
+      - この 薬 は 一 日 {に} 三 回 飲ん で ください。
+      - この 薬 は 一 日 {に} 三 回 服用 し て ください。
+      - この 薬 は 一 日 {に} 三 回 お 飲み ください。
+    english_literally: This medicine, one day, three times, please drink.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は {一 日 三 回} 飲ん で ください。
+        english: Please take this medicine three times a day.
+        hint: While 「一日三回」 is a common omission of 「に」 for simple frequency, the grammar point explicitly
+          teaches the use of 「に」 for this. We're focusing on the use of 「に」.
+    scene: A doctor giving instructions to a patient.
+    register: formal
+    setting: instructional
+  - english: We have English class five times a week.
+    japanese:
+      - 私 達 は 週 {に} 五 回 英語 の 授業 が ある。
+      - 私 達 は 週 {に} 五 回 英語 の 授業 が あり ます。
+    english_literally: As for us, weekly, five times, English class, there is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 は {毎週} 五 回 英語 の 授業 が ある。
+        english: We have English class five times *every* week.
+        hint: 「毎週」 implies that it's five times *each* week, which is similar, but 「に」 specifically marks
+          the frequency within the week.
+    scene: Students discussing their school timetable.
+    register: casual
+    setting: academic
+  - english: I go swimming once a week.
+    japanese:
+      - 私 は 週 {に} 一 回 泳ぎ に 行く。
+      - 私 は 週 {に} 一 回 泳ぎ に 行き ます。
+    english_literally: As for me, weekly, once, to swim, go.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {毎週} 泳ぎ に 行く。
+        english: I go swimming every week.
+        hint: 「毎週」 specifies a weekly routine but doesn't specify how many times per week. We are specifying
+          "once a week."
+    scene: A friend asking another about their hobbies.
+    register: casual
+    setting: friendly
+  - english: I visit my grandparents once a year.
+    japanese:
+      - 私 は 年 {に} 一 回 祖父母 の 家 を 訪れる。
+      - 私 は 年 {に} 一 回 祖父母 の 家 を 訪れ ます。
+    english_literally: As for me, yearly, once, grandparents' house, visit.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 一 年間 {で} 祖父母 の 家 を 一 回 訪れ た。
+        english: I visited my grandparents' house once *within* the year.
+        hint: 「で」 here would imply a count *within* a duration or completion, whereas 「に」 sets the frequency.
+          The nuance is slightly different.
+    scene: A family member talking about their visits to relatives.
+    register: casual
+    setting: intimate
+  - english: My company's president travels abroad many times a year.
+    japanese:
+      - 私 の 会社 の 社長 は 年 {に} 何 度 も 海外 へ 行く。
+      - 私 の 会社 の 社長 は 年 {に} 何 度 も 海外 へ 行き ます。
+    english_literally: My company's president, yearly, many times, abroad, goes.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 会社 の 社長 は {年間} 何 度 も 海外 へ 行く。
+        english: My company's president travels abroad many times *per* year.
+        hint: 「年間」 is a common way to express "yearly" as a general time frame, but 「に」 specifically marks
+          the frequency within the year. Both are correct but 「に」 is the focus.
+    scene: Colleagues discussing their busy boss.
+    register: formal
+    setting: professional
+  - english: She checks her email only once a month at most.
+    japanese:
+      - 彼女 は 一 ヶ月 {に} 一 回 くらい しか メール を 確認 し ない。
+      - 彼女 は 一 ヶ月 {に} 一 回 くらい しか メール を 確認 し ませ ん。
+    english_literally: As for her, one month, once, about, only, email, does not check.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は メール を {めった に} 確認 し ない。
+        english: She rarely checks her email.
+        hint: 「めったに～ない」 means "rarely" or "seldom" but doesn't specify a numerical frequency. 「に」 + number
+          allows for precise frequency.
+    scene: Friends complaining about someone's poor communication habits.
+    register: casual
+    setting: humorous
+post_example_writeup: The particle 「に」 indicates frequency within a given timeframe, focusing on *how
+  many times* an action occurs. For example, 「一日 に 三回」 (three times a day). In contrast, the particle
+  「で」, when used with time expressions, indicates the *duration* it takes to complete an action or the
+  entire period over which something happens. For instance, 「二年間 で 50万円貯めた」 (I saved 500,000 yen *in*
+  two years) specifies the total amount saved during that two-year period, not a frequency of saving.
+  It is crucial to distinguish between these two uses to avoid misunderstandings.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に-frequency

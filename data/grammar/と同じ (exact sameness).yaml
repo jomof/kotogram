@@ -1,0 +1,281 @@
+grammar_point: と同じ (exact sameness)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - '[Verb-(た・ている)]Noun (verb-modified noun)'
+  - '[Verb-stem]やすい (easy to do)'
+  - '[Verb-た・Nounの]結果 (as a result of)'
+  - 〜付き (attached with)
+  - 〜量 (quantity)
+  - い-Adjective[ければ] (conditional)
+  - い-adjective (sentence-ending)
+  - かた (way of doing)
+  - がする (sense perception)
+  - この (this)
+  - さえ (even・if only)
+  - ちょっと (adverb)
+  - で (for)
+  - と同じで・と違って (similarity and contrast)
+  - は〜だ (topic & copula)
+  - も (addition or emphasis particle)
+  - やや (slightly)
+  - 入り (containing)
+meaning: the same as
+pronunciation:
+  katakana: ト オナジ
+  romaji: to onaji
+formation:
+  '[Noun] + と + 同じ': Indicates sameness with a specified noun.
+  '[Noun] + と + 同じだ/です': States that something is the same as the noun.
+jlpt: N5
+etymology: The particle 「と」 often indicates conjunction or comparison, and here it links the item being
+  compared to a reference item. 「同じ」 (おなじ) is an adjective-like noun meaning 'same' or 'identical.' It
+  is derived from the older form 「同じき」 (onajiki), which evolved into its current noun form. The combination
+  「と 同じ」 emphasizes a direct and precise comparison, asserting that two entities are exactly alike or
+  indistinguishable in the discussed aspect.
+writeup: The grammar point 「と 同じ」 is used to express that something is **the same as** something else.
+  It is a fundamental comparative expression in Japanese. The particle 「と」 connects the item being compared
+  to the reference item, functioning as a comparative marker. 「同じ」 then declares their sameness. While
+  seemingly straightforward, its usage requires careful attention to the nuances of comparison, especially
+  when distinguishing between exact identity and mere similarity. This expression implies a strong degree
+  of sameness, suggesting that the two items are indistinguishable in the aspect being discussed. It is
+  often followed by the copula 「だ」 (casual) or 「です」 (polite) to complete the sentence.
+false_friends:
+  - term: と 同じくらい
+    meaning: about the same as
+    kind: similar expression
+    nuance: 「と 同じくらい」 expresses approximate similarity or degree, whereas 「と 同じ」 denotes exact sameness
+      or identity.
+    grammar_point: <suggest>:と 同じくらい (about the same as)
+  - term: まるで…ようだ
+    meaning: just like
+    kind: similar expression
+    nuance: 「まるで…ようだ」 is used for metaphor or strong resemblance, indicating something is 'as if' it were
+      the other, but not identical. 「と 同じ」 states actual identity.
+    grammar_point: まるで…ようだ (just like)
+  - term: 〜ようだ・〜みたいだ
+    meaning: seems・like
+    kind: similar expression
+    nuance: 「〜ようだ」 or 「〜みたいだ」 are used for conveying a strong similarity or appearance, often based on
+      subjective impression, but not necessarily exact sameness. 「と 同じ」 is for objective identicalness.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: When choosing between 「と 同じ」 and other expressions of similarity, consider
+  the degree and nature of the comparison. 「と 同じ」 is best for literal identity or equivalence. For approximate
+  comparisons or metaphorical resemblance, other expressions like 「と 同じくらい」 or 「まるで…ようだ」 are more appropriate.
+  These nuances help convey whether things are truly identical or just very similar in some aspect.
+examples:
+  - english: My bag is the same as hers.
+    japanese:
+      - 私 の カバン は 彼女 の と {同じ} だ。
+      - 私 の カバン は 彼女 の と {同じ} です。
+      - 私 の カバン は 彼女 の カバン と {同じ} だ。
+      - 私 の カバン は 彼女 の カバン と {同じ} です。
+    english_literally: As for my bag, it is the same as hers.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の カバン は 彼女 の と 似 て いる。
+        english: My bag resembles hers.
+        hint: 「似ている」 means 'to resemble' or 'to be similar to', indicating a likeness, not necessarily
+          an exact match. We're looking for exact sameness.
+    scene: Two friends are comparing their belongings.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「彼女 の と」 implies "her bag," making the comparison direct and concise. The casual
+      copula 「だ」 reinforces the relaxed setting.
+  - english: This design is the same as the one from last year.
+    japanese:
+      - この デザイン は 昨年 の と {同じ} です。
+      - この デザイン は 昨年 の と {同じ} だ。
+      - この デザイン は 昨年 の デザイン と {同じ} です。
+    english_literally: As for this design, it is the same as last year's.
+    competing_grammar:
+      - competing_japanese:
+          - この デザイン は 昨年 の と 似 て い ます。
+        english: This design resembles last year's.
+        hint: 「似ている」 suggests a resemblance, not an identical match. We're looking for a statement of
+          exact sameness.
+      - competing_japanese:
+          - この デザイン は 昨年 の と よく 似 た デザイン です。
+        english: This design is a design that closely resembles last year's.
+        hint: This phrase describes a 'similar type' of design rather than stating they are the very same
+          design. We're looking for a statement of identity.
+    scene: A designer is presenting new products to a client.
+    register: formal
+    setting: professional
+    nuance: The polite copula 「です」 makes this statement suitable for a professional and formal setting,
+      conveying respect to the client.
+  - english: My opinion is the same as Tanaka-sensei's.
+    japanese:
+      - 私 の 意見 は 田中 先生 の と {同じ} です。
+      - 私 の 意見 は 田中 先生 の と {同じ} だ。
+      - 私 の 意見 は 田中 先生 の 意見 と {同じ} です。
+    english_literally: As for my opinion, it is the same as Tanaka-sensei's.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 意見 は 田中 先生 と 一緒 です。
+        english: My opinion is together with Tanaka-sensei's (implies agreement).
+        hint: 「一緒」 can mean 'together with' or 'shared', which implies agreement but not necessarily that
+          the opinions are identical in content. We're looking for exact sameness of the opinion itself.
+      - competing_japanese:
+          - 私 の 意見 は 田中 先生 の 意見 と 共通 し て い ます。
+        english: My opinion has commonality with Tanaka-sensei's opinion.
+        hint: 「共通 しています」 means there are 'common points' or 'shared aspects', not that the opinions are
+          entirely identical. We're looking for exact sameness.
+    scene: A student is discussing a topic with a classmate.
+    register: semi-formal
+    setting: academic
+    nuance: The particle 「と」 links 意見 (opinion) to 田中 先生 (Tanaka-sensei), forming the basis for comparison.
+      The respectful term 「先生」 indicates a hierarchical relationship appropriate for an academic setting.
+  - english: The book I read yesterday was the same as the one you recommended.
+    japanese:
+      - 昨日 読ん だ 本 は あなた が お 勧め し た 本 と {同じ} だっ た。
+      - 昨日 読ん だ 本 は あなた が お 勧め し た 本 と {同じ} でし た。
+      - 昨日 読ん だ 本 は あなた が お 勧め し た の と {同じ} だっ た。
+      - 昨日 読ん だ 本 は あなた が お 勧め し た の と {同じ} でし た。
+    english_literally: As for the book I read yesterday, it was the same as the book you recommended.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 読ん だ 本 は あなた が お 勧め し た の と 似 て い た。
+        english: The book I read yesterday resembled the one you recommended.
+        hint: 「似ていた」 implies resemblance or similarity, not that it was the identical book. We're looking
+          for a statement that it was the very same book.
+    scene: Two friends talking about books.
+    register: casual
+    setting: friendly
+    nuance: The past tense 「だった」 applies to 「同じ」, indicating that the state of being the same occurred
+      in the past. This casual phrasing fits the friendly conversation.
+  - english: Is this flavor the same as that one?
+    japanese:
+      - この 味 は それ と {同じ} です か？
+      - この 味 は それ と {同じ}？
+      - この 味 は その 味 と {同じ} です か？
+    english_literally: As for this taste, is it the same as that?
+    competing_grammar:
+      - competing_japanese:
+          - この 味 は それ と 似 て い ます か？
+        english: Does this flavor resemble that one?
+        hint: 「似ていますか」 asks if it's similar, not if it's identical. We're looking to confirm exact sameness.
+      - competing_japanese:
+          - この 味 は それ と 全く {同じ} です か？
+        english: Is this flavor *exactly* the same as that one?
+        hint: Adding 「全く」 emphasizes *exact* sameness, but the core grammar is still 「同じ」. The current
+          example implies exactness without needing the intensifier.
+    scene: A customer asking a shop assistant about two different products.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: male
+    nuance: The 「です か」 ending forms a polite question, directly inquiring about the sameness of two flavors.
+      This polite form is appropriate for a customer-service interaction.
+  - english: Even the color is the same!
+    japanese:
+      - 色 も {同じ} です！
+      - 色 も {同じ} だ！
+      - 色 さえ {同じ} です！
+    english_literally: Even the color is the same!
+    competing_grammar:
+      - competing_japanese:
+          - 色 も 似 て い ます ね！
+        english: The color is similar too, isn't it!
+        hint: 「似ていますね」 implies similarity, not identity. We're looking for an exclamation of exact sameness.
+      - competing_japanese:
+          - 色 も 一緒 です。
+        english: The color is also together/the same.
+        hint: While 「一緒」 can sometimes mean identical, it more commonly implies 'together with' or 'shared'.
+          We're looking for a clearer statement of identity.
+    scene: Friends are looking at two cars that look identical.
+    register: casual
+    setting: friendly
+    nuance: The particle 「も」 (also/even) emphasizes that not only other features, but even the color,
+      is identical, showing a slight surprise or strong affirmation.
+  - english: Your idea is not the same as mine.
+    japanese:
+      - あなた の アイデア は 私 の と {同じ} じゃ ない。
+      - あなた の アイデア は 私 の と {同じ} で は あり ませ ん。
+      - あなた の アイデア は 私 の アイデア と {同じ} じゃ ない。
+      - あなた の アイデア は 私 の アイデア と {同じ} で は あり ませ ん。
+    english_literally: As for your idea, it is not the same as mine.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の アイデア は 私 の と 違い ます。
+        english: Your idea is different from mine.
+        hint: 「違います」 directly states a difference, which is a common way to express 'not the same'. We're
+          looking for the specific phrasing with 「同じ」.
+      - competing_japanese:
+          - あなた の アイデア は 私 の と 似 て い ませ ん。
+        english: Your idea doesn't resemble mine.
+        hint: 「似ていません」 means 'it doesn't resemble', implying a lack of similarity, not necessarily a direct
+          statement of non-identity. We're looking for 'not the same'.
+    scene: Two colleagues discussing a project plan.
+    register: casual
+    setting: professional
+    nuance: 「じゃない」 is the casual negative form of the copula 「だ」, indicating a clear difference between
+      the two ideas. This casual negation is often used among colleagues in a relatively informal professional
+      setting.
+  - english: The result was not the same as I expected.
+    japanese:
+      - 結果 は 期待 し て い た の と {同じ} じゃ なかっ た。
+      - 結果 は 期待 し て い た の と {同じ} で は あり ませ ん でし た。
+      - 結果 は 期待 し て い た 結果 と {同じ} じゃ なかっ た。
+    english_literally: As for the result, it was not the same as what I was expecting.
+    competing_grammar:
+      - competing_japanese:
+          - 結果 は 期待 し て い た の と 違い まし た。
+        english: The result was different from what I expected.
+        hint: 「違いました」 states that the result was 'different', which is a direct contrast to 'the same'.
+          We're looking for the specific phrase 「同じ じゃなかった」.
+      - competing_japanese:
+          - 結果 は 期待 外れ でし た。
+        english: The result was disappointing/not what was expected.
+        hint: 「期待 外れ でした」 means 'it was disappointing' or 'it fell short of expectations', implying a
+          negative outcome rather than a simple statement of non-identity. We're looking for 'not the
+          same'.
+    scene: A scientist discussing experimental results.
+    register: semi-formal
+    setting: academic
+    nuance: 「じゃなかった」 is the casual past negative, expressing disappointment or a factual discrepancy from
+      expectation. The use of 「期待 していた の と」 concisely refers to "that which I was expecting."
+  - english: The amount of sugar is the same as specified in the recipe.
+    japanese:
+      - 砂糖 の 量 は レシピ に 書い て ある の と {同じ} です。
+      - 砂糖 の 量 は レシピ に 書い て ある の と {同じ} だ。
+      - 砂糖 の 量 は レシピ に 書い て ある 量 と {同じ} です。
+    english_literally: As for the amount of sugar, it is the same as what is written in the recipe.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 の 量 は レシピ 通り です。
+        english: The amount of sugar is according to the recipe.
+        hint: 「レシピ 通り」 (according to the recipe) implies adherence, which is a related but distinct meaning
+          from stating exact sameness. We're looking for the phrase 「同じ」.
+    scene: A person baking, following a recipe.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「レシピ に 書いてある の と」 literally means "with that which is written in the recipe," clearly linking
+      the measured sugar amount to the recipe's requirement. The polite 「です」 maintains a neutral, informative
+      tone.
+  - english: Her way of thinking is the same as her mother's.
+    japanese:
+      - 彼女 の 考え 方 は お 母 さん の と {同じ} です。
+      - 彼女 の 考え 方 は お 母 さん の と {同じ} だ。
+      - 彼女 の 考え 方 は お 母 さん の 考え 方 と {同じ} です。
+    english_literally: As for her way of thinking, it is the same as her mother's.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 考え 方 は お 母 さん の と 似 て い ます。
+        english: Her way of thinking resembles her mother's.
+        hint: 「似ています」 means 'resembles' or 'is similar to', indicating likeness, not exact sameness of
+          the way of thinking. We're looking for a statement of identity.
+      - competing_japanese:
+          - 彼女 の 考え 方 は お 母 さん の と 似 た タイプ です。
+        english: Her way of thinking is a similar type to her mother's.
+        hint: This phrase describes a 'similar type' of thinking, not that their ways of thinking are
+          identical. We're looking for exact sameness.
+    scene: Two people discussing someone's personality.
+    register: semi-formal
+    setting: friendly
+    nuance: 「考え方」 (way of thinking) is a noun, allowing a direct comparison with 「お母さん の (お母さん の 考え方)」.
+      The polite 「です」 is appropriate for a casual yet respectful discussion about someone else.
+post_example_writeup: Understanding the precise application of 「と 同じ」 requires practice with various comparisons,
+  from concrete objects to abstract concepts. Pay close attention to the context to determine if exact
+  sameness or a degree of similarity is implied, as this will guide your choice between 「と 同じ」 and other
+  comparative expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と-同じ

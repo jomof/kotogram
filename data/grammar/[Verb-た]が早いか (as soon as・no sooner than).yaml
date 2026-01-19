@@ -1,0 +1,230 @@
+grammar_point: '[Verb-た]が早いか (as soon as・no sooner than)'
+learn_before:
+  - Verb[ました] (polite past)
+  - やがる (speaker's scorn disdain)
+meaning: as soon as; no sooner than; the moment that
+meaning_warning: While often translatable as 'as soon as', it carries a stronger nuance of extreme immediacy,
+  often with a sense of surprise or inevitability.
+pronunciation:
+  katakana: がはやいか
+  romaji: ga hayai ka
+formation:
+  Verb[た形] + が早いか: Used to describe an action (B) that follows immediately and unexpectedly after a completed
+    action (A). The verb must be in the past tense (た形).
+jlpt: N2
+etymology: The expression combines the past tense of a verb with 「が早いか」, which literally translates to
+  'or is it fast?' or 'is it fast yet?'. This rhetorical phrasing underscores the extreme immediacy between
+  two sequential events. It suggests that the second event occurs so rapidly after the first that there's
+  barely enough time to register the completion of the first before the second is already underway. This
+  linguistic structure evolved to emphasize the instantaneous and often surprising nature of the subsequent
+  action, highlighting the speed and lack of a noticeable interval.
+writeup: |-
+  The grammar pattern **[Verb-た]が早いか** is used to express that as soon as one action or event occurs, another action or event immediately follows it. It emphasizes the extreme rapidity and close succession of the two events, often implying that the second event is an inevitable or surprising consequence of the first. The phrase conveys a strong sense of 'no sooner has A happened than B happened.' The verb preceding **が早いか** must always be in its past tense (た形).
+
+  This pattern is typically employed to describe spontaneous or quick reactions, often by someone or something other than the speaker, or to describe natural phenomena. It is rarely used to describe the speaker's own intentional actions. The event described by the second clause is usually a factual occurrence, not a command, request, or speaker's volition.
+false_friends:
+  - term: '[Verb-た]とたんに (as soon as)'
+    meaning: as soon as; the moment that
+    kind: synonym
+    nuance: 「とたんに」 is a very close synonym and often interchangeable. However, 「が早いか」 often carries a
+      stronger nuance of extreme rapidity and a sense of surprise or unexpectedness regarding the second
+      action, almost as if it happens *before* the first is fully completed. 「とたんに」 can be used for more
+      general, objective immediate sequences.
+    grammar_point: <suggest>:[Verb-た]とたんに (as soon as)
+  - term: '[Verb-る・た]やいなや (as soon as)'
+    meaning: as soon as; no sooner than
+    kind: synonym
+    nuance: 「やいなや」 is also very similar, emphasizing immediate succession. While often interchangeable,
+      「が早いか」 might slightly emphasize the 'speed' of the occurrence, whereas 「やいなや」 can imply a more sudden,
+      abrupt onset of the second action. 「やいなや」 can also attach to a plain non-past verb, unlike 「が早いか」.
+    grammar_point: <suggest>:[Verb-る・た]やいなや (as soon as)
+  - term: '[Verb-た]なり (as soon as)'
+    meaning: as soon as; immediately after
+    kind: similar expression
+    nuance: 「なり」 also expresses immediate succession, but it often implies that the subject of the first
+      action *continues* to be involved in the second action or state. It can also carry a slightly unexpected
+      or negative nuance. Unlike 「が早いか」, the subject is typically the same for both verbs, and the second
+      clause often describes a state or action that *continues* from the first. 「が早いか」 is broader and
+      can have different subjects.
+    grammar_point: <suggest>:[Verb-た]なり (as soon as)
+  - term: と同時に (at the same time as)
+    meaning: at the same time as; simultaneously with
+    kind: antonym
+    nuance: While both describe close temporal relations, 「と同時に」 implies two actions or events happening
+      *at the exact same moment*. 「が早いか」 explicitly states that one action *precedes* the other, albeit
+      by an infinitesimally tiny fraction of time, emphasizing the speed of the follow-up.
+    grammar_point: と同時に (at the same time as)
+  - term: てから (after and since)
+    meaning: after; since
+    kind: similar expression
+    nuance: 「てから」 simply indicates that one action occurs after another. It does not carry the strong
+      nuance of immediacy, surprise, or inevitability that 「が早いか」 does. The time gap between actions can
+      be significant with 「てから」.
+    grammar_point: てから (after and since)
+  - term: たら (conditional, when・if A then B)
+    meaning: when; if; after
+    kind: similar expression
+    nuance: 「たら」 can indicate sequence ('when A, then B'), but it is much more general and does not emphasize
+      extreme immediacy or an unexpected outcome. It can also express a hypothetical conditional relationship.
+    grammar_point: たら (conditional, when・if A then B)
+post_false_friends_writeup: 'When distinguishing **[Verb-た]が早いか** from other expressions of immediate
+  succession like 「とたんに」 or 「やいなや」, remember that **が早いか** often carries a heightened sense of *surprise*
+  or *inevitability* regarding the second event, as if it happens even before the first action is fully
+  completed. While these expressions are frequently interchangeable, paying attention to this subtle nuance
+  can help you choose the most fitting one. For expressions like 「てから」 or 「たら」, the key difference is
+  the *degree* of immediacy: **が早いか** implies near-simultaneous occurrence, whereas the others allow for
+  a more significant time gap.'
+examples:
+  - english: As soon as the alarm rang, he jumped out of bed.
+    japanese:
+      - 目覚まし 時計 が 鳴る が 早い か、彼 は ベッド から 飛び起き た。
+      - 目覚まし 時計 が 鳴る が 早い か、彼 は ベッド から 飛び起き まし た。
+      - 目覚まし 時計 が 鳴る が 早い か、奴 は ベッド から 飛び起き やがっ た。
+    english_literally: Alarm clock ring as soon as, he from bed jumped up.
+    competing_grammar:
+      - competing_japanese:
+          - 目覚まし 時計 が 鳴っ て から、彼 は ベッド から 飛び起き た。
+        english: After the alarm clock rang, he jumped out of bed.
+        hint: 「てから」 simply states a sequence. We're looking for an expression that emphasizes the *immediacy*
+          of the second action right after the first, almost as if it's an automatic reaction, even before
+          the first action is fully processed.
+    scene: A man quickly reacting to his alarm.
+    register: casual
+    setting: serious
+  - english: As soon as the teacher sat down, the students started making noise.
+    japanese:
+      - 先生 が 座る が 早い か、生徒 たち は 騒ぎ 始め た。
+      - 先生 が 座る が 早い か、生徒 たち は 騒ぎ 始め まし た。
+    english_literally: Teacher sit as soon as, students started making noise.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 座っ たら、生徒 たち は 騒ぎ 始め た。
+        english: When the teacher sat down, the students started making noise.
+        hint: 「たら」 indicates a general temporal relationship. We need a phrase that conveys the *instantaneous*
+          and perhaps mischievous reaction of the students, implying no hesitation.
+    scene: A classroom setting where students take advantage of the teacher's momentary inattention.
+    register: casual
+    setting: storytelling
+  - english: As soon as I opened the door, the cat darted out.
+    japanese:
+      - ドア を 開ける が 早い か、猫 が 飛び出し て いっ た。
+      - ドア を 開ける が 早い か、猫 が 飛び出し て いき まし た。
+    english_literally: Door open as soon as, cat darted out.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 開ける と 同時 に、猫 が 飛び出し て いっ た。
+        english: The cat darted out at the same time I opened the door.
+        hint: 「と同時に」 implies perfect simultaneity. Here, the cat's action strictly *followed* the door
+          opening, even if by a tiny fraction of a second. We're looking for immediate succession, not
+          perfect simultaneity.
+    scene: Someone opening a door, and a pet immediately escaping.
+    register: casual
+    setting: informative
+  - english: As soon as the race started, he sprinted ahead.
+    japanese:
+      - レース が 始まる が 早い か、彼 は 先頭 を 走っ た。
+      - レース が 始まる が 早い か、彼 は 先頭 を 走り まし た。
+    english_literally: Race start as soon as, he in front ran.
+    competing_grammar:
+      - competing_japanese:
+          - レース が 始まっ た とたん に、彼 は 先頭 を 走っ た。
+        english: As soon as the race started, he sprinted ahead (less emphasis on surprise).
+        hint: 「とたんに」 is very similar and often interchangeable, but 「が早いか」 can add a stronger sense of
+          *immediacy* and *suddenness*, almost implying the sprint began *before* the start was fully
+          registered.
+    scene: A sports event where an athlete shows immediate prowess.
+    register: casual
+    setting: informative
+  - english: As soon as the news came out, the stock price plummeted.
+    japanese:
+      - その ニュース が 出る が 早い か、株価 が 急落 し た。
+      - その ニュース が 出る が 早い か、株価 は 急落 いたし まし た。
+    english_literally: That news come out as soon as, stock price plummeted.
+    competing_grammar:
+      - competing_japanese:
+          - その ニュース が 出 た や いな や、株価 が 急落 し た。
+        english: As soon as the news came out, the stock price plummeted (abrupt onset).
+        hint: 「やいなや」 emphasizes an abrupt and sudden start. While applicable, 「が早いか」 highlights the *speed*
+          of the reaction, suggesting the plummeting started almost *instantaneously* with the news release.
+    scene: A financial market reacting swiftly to breaking news.
+    register: formal
+    setting: professional
+  - english: As soon as I arrived home, I collapsed onto the sofa.
+    japanese:
+      - 家 に 着く が 早い か、ソファ に 倒れ込ん だ。
+      - 家 に 着く が 早い か、ソファ に 倒れ込み まし た。
+      - 家 に 着く が 早い か、ソファ に 倒れ込ん だ ぜ。
+    english_literally: Home arrive as soon as, sofa onto collapsed.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 着い て、ソファ に 倒れ込ん だ。
+        english: Arrived home, and then collapsed onto the sofa.
+        hint: The て-form simply connects actions sequentially. We need to convey that the collapsing happened
+          *immediately* upon arriving home, with no time in between, as if an unavoidable reaction to
+          exhaustion.
+    scene: Someone returning home exhausted after a long day.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+  - english: As soon as he saw the police, he fled.
+    japanese:
+      - 彼 は 警察 官 を 見る が 早い か、逃げ出し た。
+      - 彼 は 警察 官 を 見る が 早い か、逃げ出し まし た。
+      - 警察 官 を 見る が 早い か、逃げ やがっ た。
+    english_literally: He police officer see as soon as, fled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 警察 官 を 見る と すぐ に、逃げ出し た。
+        english: As soon as he saw the police, he fled.
+        hint: 「するとすぐに」 expresses immediate action. 「が早いか」 adds a stronger sense of instinctive, almost
+          reflex-like speed, common in such tense and sudden situations, as if there was no thought, only
+          reaction.
+    scene: A suspect reacting instantly to the sight of law enforcement.
+    register: casual
+    setting: serious
+    speaker_gender: male
+  - english: As soon as the plane landed, everyone unbuckled their seatbelts.
+    japanese:
+      - 飛行 機 が 着陸 する が 早い か、皆 が シート ベルト を 外し た。
+      - 飛行 機 が 着陸 する が 早い か、皆 が シート ベルト を 外し まし た。
+    english_literally: Plane land as soon as, everyone seatbelt unbuckled.
+    competing_grammar:
+      - competing_japanese:
+          - 飛行 機 が 着陸 し た とたん、皆 が シート ベルト を 外し た。
+        english: As soon as the plane landed, everyone unbuckled their seatbelts.
+        hint: While 「とたん」 is a good fit, 「が早いか」 can better capture the sense of *eagerness* or *impatience*
+          that drives the immediate action, implying it happened even before the plane fully stopped or
+          permission was given.
+    scene: Passengers on a plane exhibiting common impatient behavior.
+    register: formal
+    setting: humorous
+  - english: As soon as I heard the fire alarm, I ran outside.
+    japanese:
+      - 火災 報知 器 の 音 を 聞く が 早い か、外 へ 走っ た。
+      - 火災 報知 器 の 音 を 聞く が 早い か、外 へ 走り まし た。
+    english_literally: Fire alarm sound hear as soon as, outside to ran.
+    competing_grammar:
+      - competing_japanese:
+          - 火災 報知 器 の 音 を 聞い て、すぐ 外 へ 走っ た。
+        english: Hearing the fire alarm, I immediately ran outside.
+        hint: 「てすぐ」 emphasizes immediate action. 「が早いか」 highlights the *instinctive* and *rapid* nature
+          of the response to a sudden, urgent sound, as if there was no conscious decision, just pure
+          reaction.
+    scene: Reacting quickly to an emergency signal.
+    register: casual
+    setting: emergency/alarm
+  - english: As soon as the baby opened his eyes, he started crying.
+    japanese:
+      - 赤ちゃん が 目 を 開ける が 早い か、泣き 出し た。
+      - 赤ちゃん が 目 を 開ける が 早い か、泣き 出し まし た。
+    english_literally: Baby eyes open as soon as, started crying.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん が 目 を 開け たら、泣き 出し た。
+        english: When the baby opened his eyes, he started crying.
+        hint: 「たら」 is a general 'when' clause. 「が早いか」 is better here because it emphasizes the *instantaneous*
+          transition from opening eyes to crying, almost as if one directly triggered the other without
+          any pause or intermediate state.
+    scene: A baby's immediate reaction upon waking.
+    register: casual
+    setting: storytelling

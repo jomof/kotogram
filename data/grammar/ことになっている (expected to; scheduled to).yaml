@@ -1,0 +1,279 @@
+grammar_point: ことになっている (expected to; scheduled to)
+learn_before:
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - ということ(は) (that means)
+meaning: To be expected to, to be scheduled to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ことになっている
+    rarity: common
+    meaning: to be expected to; to be scheduled to
+  - conjugation-type: negative plain (～ない)
+    form: ことになっていない
+    rarity: common
+    meaning: to not be expected to; to not be scheduled to
+  - conjugation-type: past plain (～た)
+    form: ことになっていた
+    rarity: common
+    meaning: was expected to; was scheduled to
+  - conjugation-type: negative past plain (～なかった)
+    form: ことになっていなかった
+    rarity: common
+    meaning: was not expected to; was not scheduled to
+  - conjugation-type: non-past polite (～ます)
+    form: ことになっています
+    rarity: common
+    meaning: is expected to; is scheduled to (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ことになっていません
+    rarity: common
+    meaning: is not expected to; is not scheduled to (polite)
+  - conjugation-type: past polite (～ました)
+    form: ことになっていました
+    rarity: common
+    meaning: was expected to; was scheduled to (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ことになっていませんでした
+    rarity: common
+    meaning: was not expected to; was not scheduled to (polite)
+pronunciation:
+  katakana: コトニナッテイル
+  romaji: koto ni natteiru
+formation:
+  '[Verb (dictionary form)] + ことになっている': Expresses expectation or scheduling of an action.
+  '[Verb (negative form)] + ことになっている': Expresses that something is not expected or scheduled to occur.
+jlpt: N2
+etymology: This grammar point is derived from 「ことになる」, which indicates a decision made by someone other
+  than the speaker. It combines the nominalizer 「こと」 with the 「ている」 form of the verb 「なる」 (to become),
+  to express an ongoing expectation or schedule.
+writeup: |-
+  「ことになっている」 expresses that something is expected or scheduled to happen. It implies that a rule, custom, or plan is in place, and actions are expected to align with it. The key difference from 「ことになる」 is that 「ことになっている」 emphasizes the expectation or scheduled nature of the event, meaning it is "becoming that (A)," but it hasn't necessarily happened yet.
+
+  This grammar point can be used with both the dictionary (plain non-past) and negative forms of verbs. When used with the dictionary form, it indicates that an action is expected to occur. When used with the negative form, it indicates that an action is not expected to occur.
+false_friends:
+  - term: はずだ
+    meaning: Bound to (be), expected to (be), should be (able)
+    kind: similar expression
+    nuance: 「はずだ」 expresses the speaker's belief or expectation based on reason or evidence, while 「ことになっている」
+      indicates an expectation based on a rule, custom, or schedule.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: ことになる
+    meaning: It will end up being, It is the result of, It has been decided that
+    kind: similar expression
+    nuance: 「ことになる」 signifies a decision or result, while 「ことになっている」 indicates a scheduled or expected
+      action based on an established rule or plan.
+    grammar_point: '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+post_false_friends_writeup: To avoid confusion, remember that 「ことになっている」 focuses on established rules
+  or schedules, while 「はずだ」 is based on personal expectations or beliefs, and 「ことになる」 is about outcomes
+  or decisions.
+examples:
+  - english: University classes are scheduled to begin from noon.
+    japanese:
+      - 大学 の 授業 は 正午 から 始まる {こと に なっ て い ます}。
+      - 大学 の 授業 は 正午 から 始まる {こと に なっ て いる}。
+    english_literally: Regarding university classes, from noon, they are expected to begin.
+    competing_grammar:
+      - competing_japanese:
+          - 大学 の 授業 は 正午 から 始まる {よてい だ}。
+        english: University classes are scheduled to begin from noon (as a plan).
+        hint: 「よていだ」 suggests a plan. We're looking for an established rule or schedule.
+    scene: A university student explaining the regular schedule to a new transfer student.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: The company president is not expected to attend next week's social gathering.
+    japanese:
+      - 社長 は 来週 の 懇親 会 に 参加 し ない {こと に なっ て い ます}。
+      - 社長 は 来週 の 懇親 会 に 参加 し ない {こと に なっ て い ない}。
+    english_literally: Regarding the president, to next week's social gathering, not participating is
+      expected.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 は 来週 の 懇親 会 に 参加 し ない {だろう}。
+        english: The company president probably won't attend next week's social gathering.
+        hint: 「だろう」 expresses a guess or prediction. We're looking for a confirmed arrangement.
+    scene: An administrative assistant informing team members about executive attendance for an upcoming
+      event.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: In this country, it's customary to enter a taxi from the left side.
+    japanese:
+      - この 国 で は、タクシー は 左側 から 乗る {こと に なっ て い ます}。
+      - この 国 で は、タクシー は 左側 から 乗る {こと に なっ て いる}。
+    english_literally: In this country, regarding taxis, from the left side to ride is customary.
+    competing_grammar:
+      - competing_japanese:
+          - この 国 で は、タクシー は 左側 から 乗る {べき だ}。
+        english: In this country, one should enter a taxi from the left side.
+        hint: 「べきだ」 implies an obligation. We're looking for an established custom or practice.
+    scene: A tour guide explaining local customs to tourists arriving in a new country.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: Students are not allowed to leave the classroom during class.
+    japanese:
+      - 生徒 たち は 授業 中 に 教室 を 出る こと が でき ない {こと に なっ て い ます}。
+      - 生徒 たち は 授業 中 に 教室 を 出る こと が でき ない {こと に なっ て い ない}。
+    english_literally: Regarding students, during class, leaving the classroom is not possible, it is
+      expected.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 たち は 授業 中 に 教室 を 出 て は {いけ ない}。
+        english: Students must not leave the classroom during class.
+        hint: 「てはいけない」 is a direct prohibition. We're looking for an established school rule or policy.
+    scene: A teacher reviewing classroom rules with students on the first day of school.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: The next meeting is scheduled to be held at the central government office in Tokyo.
+    japanese:
+      - 次 の 会議 は 東京 の 中央 官庁 で 開催 さ れる {こと に なっ て い ます}。
+      - 次 の 会議 は 東京 の 中央 官庁 で 開催 さ れる {こと に なっ て いる}。
+    english_literally: The next meeting, in Tokyo's central government office, to be held is expected.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 会議 は 東京 の 中央 官庁 で 開催 さ れる {よてい だ}。
+        english: The next meeting is planned to be held at the central government office in Tokyo.
+        hint: 「よていだ」 indicates a plan. We're looking for a confirmed, established arrangement.
+    scene: A corporate planner confirming logistics for an important upcoming meeting.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: In traditional Japanese temples, it is customary to remove your shoes at the entrance.
+    japanese:
+      - 日本 の 伝統 的 な 寺院 で は、入口 で 靴 を 脱ぐ {こと に なっ て い ます}。
+      - 日本 の 伝統 的 な 寺院 で は、入口 で 靴 を 脱ぐ {こと に なっ て いる}。
+    english_literally: In traditional Japanese temples, at the entrance, to remove shoes is customary.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 伝統 的 な 寺院 で は、入口 で 靴 を 脱ぐ {べき だ}。
+        english: In traditional Japanese temples, one should remove their shoes at the entrance.
+        hint: 「べきだ」 implies an strong recommendation. We're looking for an established custom or practice.
+    scene: A cultural etiquette instructor explaining customs to a group of foreign visitors.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: The express train is scheduled to pass through this station punctually every day.
+    japanese:
+      - 特急 列車 は 毎日、定刻 通り に この 駅 を 通過 する {こと に なっ て い ます}。
+      - 特急 列車 は 毎日、定刻 通り に この 駅 を 通過 する {こと に なっ て いる}。
+    english_literally: Regarding the express train, every day, punctually, this station to pass through
+      is scheduled.
+    competing_grammar:
+      - competing_japanese:
+          - 特急 列車 は 毎日、定刻 通り に この 駅 を 通過 する {よてい だ}。
+        english: The express train is planned to pass through this station punctually every day.
+        hint: 「よていだ」 indicates a plan. We're looking for a fixed, official timetable.
+    scene: A station attendant explaining the express train schedule to a passenger.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: In this student dormitory, the wake-up time is set for 6:00 AM.
+    japanese:
+      - この 学生 寮 で は、起床 時間 は 午前 6 時 と いう {こと に なっ て い ます}。
+      - この 学生 寮 で は、起床 時間 は 午前 6 時 と いう {こと に なっ て いる}。
+    english_literally: In this student dormitory, the wake-up time is 6:00 AM, it is expected.
+    competing_grammar:
+      - competing_japanese:
+          - この 学生 寮 で は、起床 時間 は 午前 6 時 {だ}。
+        english: In this student dormitory, the wake-up time is 6:00 AM.
+        hint: Simply stating a fact with 「だ」 doesn't convey an official rule. We're looking for an established
+          regulation.
+    scene: A resident assistant explaining the daily routine to new residents moving into the dorm.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: At our company, it is expected that we always use polite language during work hours.
+    japanese:
+      - 私 たち の 会社 で は、業務 中 は 常 に 丁寧 語 を 使う {こと に なっ て い ます}。
+      - 私 たち の 会社 で は、業務 中 は 常 に 丁寧 語 を 使う {こと に なっ て いる}。
+    english_literally: At our company, during work hours, always polite language to use is expected.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 会社 で は、業務 中 は 常 に 丁寧 語 を 使う {べき だ}。
+        english: At our company, we should always use polite language during work hours.
+        hint: 「べきだ」 implies a strong recommendation. We're looking for an established company rule or
+          policy.
+    scene: An HR manager explaining the company's communication policy during a new employee orientation.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I am assigned to be in charge of this new project.
+    japanese:
+      - この 新規 プロジェクト は、私 が 担当 する {こと に なっ て い ます}。
+      - この 新規 プロジェクト は、私 が 担当 する {こと に なっ て いる}。
+    english_literally: Regarding this new project, I am in charge, it is expected.
+    competing_grammar:
+      - competing_japanese:
+          - この 新規 プロジェクト は、私 が 担当 する {よてい だ}。
+        english: I am planned to be in charge of this new project.
+        hint: 「よていだ」 indicates a plan. We're looking for a responsibility assigned by authority or established
+          plan.
+    scene: A team leader informing a colleague about their new responsibilities.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: Are you also scheduled to attend next week's drinking party?
+    japanese:
+      - 来週 の 飲み会、君 も 参加 する {こと に なっ て いる} の？
+      - 来週 の 飲み会、君 も 参加 する {こと に なっ て い ます} か？
+    english_literally: Next week's drinking party, you too participate, is it expected?
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 飲み会、君 も 参加 する {の}？
+        english: Are you also attending next week's drinking party?
+        hint: This is a simple question. We're looking for a question about an existing arrangement or
+          expectation.
+    scene: A male colleague casually asking a female colleague about her attendance at an upcoming social
+      event.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「君も」 by a male speaker to a female listener suggests a casual and familiar relationship,
+      possibly with a slightly informal or friendly tone. Adding 「の」 at the end makes it a more natural
+      question in casual conversation. The polite variation uses 「ますか」 at the end.
+  - english: In this area, it is customary to plant cherry trees every spring.
+    japanese:
+      - この 地域 で は、毎年 春 に は 桜 を 植える {こと に なっ て いる} わ。
+      - この 地域 で は、毎年 春 に は 桜 を 植える {こと に なっ て い ます} わ。
+    english_literally: In this area, every year in spring, cherry trees to plant is customary.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 で は、毎年 春 に は 桜 を 植える {もの だ} わ。
+        english: In this area, planting cherry trees every spring is a common practice.
+        hint: 「ものだ」 describes a general truth or common practice. We're looking for an established rule
+          or schedule.
+    scene: An older woman sharing local traditions with a younger female neighbor who has recently moved
+      into the community.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The sentence-final particle 「わ」 is often used by female speakers to add a softer, more emotive,
+      or explanatory tone. When spoken by an older woman, it can convey a gentle, familiar authority or
+      shared understanding about local customs. Both plain and polite forms can be used with 「わ」, depending
+      on the desired level of politeness and familiarity.
+  - english: Last night's meeting was supposed to be canceled, but it was held at the last minute.
+    japanese:
+      - 昨夜 の 会議 は 中止 に なる {こと に なっ て い た} が、急遽 開催 さ れ た。
+      - 昨夜 の 会議 は 中止 に なる {こと に なっ て い まし た} が、急遽 開催 さ れ まし た。
+    english_literally: Last night's meeting, to be canceled was expected, but suddenly it was held.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 の 会議 は 中止 に なる {はず だっ た} が、急遽 開催 さ れ た。
+        english: Last night's meeting should have been canceled, but it was held at the last minute.
+        hint: 「はずだった」 expresses an unfulfilled expectation. We're looking for a prior official arrangement
+          that was changed.
+    scene: A project manager explaining a sudden change in plans from the previous day to their team.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+post_example_writeup: When using 「ことになっている」, it's important to consider the context and the implied authority
+  or source of the expectation. It is often used to describe rules, schedules, or common practices.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことになっている

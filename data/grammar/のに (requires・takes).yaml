@@ -1,0 +1,260 @@
+grammar_point: のに (requires・takes)
+learn_before:
+  - 要る・いる (need)
+meaning: Requires, takes (time, effort, means)
+pronunciation:
+  katakana: ノニ
+  romaji: noni
+formation:
+  Verb plain form + のに: Expresses what is required (e.g., time, effort, tools) to perform an action, or
+    the means by which an action is carried out.
+jlpt: N3
+etymology: のに is a combination of the particle の, which nominalizes the preceding verb (turning it into
+  a noun-like phrase), and the particle に, which indicates direction or purpose. Thus, のに literally means
+  "to that which is (A)", which can be interpreted as "in order to (A)". This structure inherently suggests
+  a goal or destination for an action or state.
+writeup: |-
+  The grammar point のに is primarily used to express the necessary means, effort, time, or resources required for an action. It is constructed by attaching のに to the plain (dictionary) form of a verb. The clause preceding のに indicates the action, and the clause that follows describes the conditions, time, or effort required to achieve that action.
+
+  **Key Usages:**
+
+  *   **Indicating Requirements:** It specifies what is necessary to perform an action, such as time, effort, resources, or specific tools. For example, if a dish *requires* a lot of effort to make, のに would connect the effort to the act of making the dish.
+  *   **Highlighting Effort or Time:** のに can emphasize the amount of effort, time, or resources expended in the process of achieving something. It often appears in sentences describing how much time it took to complete a task, or how difficult something was to do.
+  *   **Necessary Conditions/Means:** It can also point to a necessary item or condition needed to accomplish the verb's action.
+
+  This lesson focuses exclusively on its 'requires/takes' meaning, which centers on the resources, time, or means associated with an action.
+false_friends:
+  - term: ため(に)
+    meaning: For, for the sake of, in order to
+    kind: similar expression
+    nuance: While often translatable as 'in order to', ために implies a more direct and explicit purpose
+      or benefit for the *result* or *object* of an action. It often focuses on the direct objective or
+      beneficiary, whereas のに tends to highlight the *effort, time, or means* required to *perform* the
+      action itself.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: には
+    meaning: In order to, in regard to, for
+    kind: similar expression
+    nuance: には typically expresses a necessary *condition* or *prerequisite* for achieving a goal, emphasizing
+      'for what purpose' or 'what needs to be true for something to happen.' In contrast, のに focuses more
+      on the actual effort, time, or process involved *in doing* something.
+    grammar_point: には (in order to)
+post_false_friends_writeup: While ため(に) and には can sometimes appear similar to のに, it is crucial to understand
+  their distinct nuances. Use のに when the emphasis is on the effort, time, or specific means to accomplish
+  an action. Opt for ため(に) when the purpose is more about the direct benefit or result for an object or
+  outcome. Use には when you want to highlight a necessary condition or prerequisite for achieving a goal.
+examples:
+  - english: It takes a lot of effort to cook this dish.
+    japanese:
+      - この 料理 を {作る の に}、たくさん の 労力 が いる。
+      - この 料理 を {作る の に}、たくさん の 労力 が いり ます。
+      - この 料理 を {作る の に}、労力 が かかる。
+      - この 料理 を {作る の に}、手間 が かかる。
+    english_literally: To make this dish, a lot of effort is needed.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 を 作る {ため に}、たくさん の 労力 が いる。
+        english: To make this dish, a lot of effort is needed (for the dish's benefit).
+        hint: 「ために」 emphasizes the direct purpose or benefit. Here, we're focusing on the effort *involved
+          in the process* of making the dish.
+      - competing_japanese:
+          - この 料理 を 作る {に は}、たくさん の 労力 が いる。
+        english: To make this dish, a lot of effort is necessary.
+        hint: 「には」 highlights a necessary condition or prerequisite. We are looking for the effort *required
+          for the act* of cooking.
+    scene: A chef explaining the complexity of a recipe to an apprentice.
+    register: casual
+    setting: instructional
+  - english: You need a special key to open this door.
+    japanese:
+      - この ドア を {開ける の に}、特別 な 鍵 が 必要 です。
+      - この ドア を {開ける の に}、特別 な 鍵 が 必要 だ。
+      - この ドア を {開ける の に}、専用 の 鍵 が 要り ます。
+    english_literally: To open this door, a special key is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この ドア を 開ける {ため に}、特別 な 鍵 が 必要 です。
+        english: To open this door, a special key is needed (for the door's purpose).
+        hint: 「ために」 often states the reason for an action. Here, we want to emphasize the item that is
+          *required for the act of opening* the door.
+      - competing_japanese:
+          - この ドア を 開ける {に は}、特別 な 鍵 が 必要 です。
+        english: To open this door, a special key is necessary.
+        hint: 「には」 highlights a necessary condition or prerequisite. We are looking for something that
+          emphasizes the *means* needed for the action.
+    scene: A maintenance worker explaining access restrictions for a specific area.
+    register: teineigo (polite)
+    setting: informative
+  - english: I use the train to go to school.
+    japanese:
+      - 学校 に {行く の に}、電車 を 使っ て いる。
+      - 学校 に {行く の に}、電車 を 使っ て い ます。
+      - 学校 に {行く の に}、電車 使う。
+    english_literally: To go to school, I use the train.
+    competing_grammar:
+      - competing_japanese:
+          - 学校 に 行く {ため に}、電車 を 使っ て いる。
+        english: I use the train for the purpose of going to school.
+        hint: 「ために」 focuses on the direct purpose or result. Here, we're expressing the *method* or *means*
+          of transportation used for a routine action.
+    scene: A student describing their daily commute to a new friend.
+    register: casual
+    setting: informative
+  - english: It took too long to pack, so I missed the bus.
+    japanese:
+      - 荷物 を {詰める の に} 時間 が かかり すぎ て、バス に 乗り 遅れ て しまっ た。
+      - 荷物 を {詰める の に} 時間 が かかり すぎ て、バス に 乗り 遅れ て しまい まし た。
+      - 荷物 を {詰める の に}、時間 かかり すぎ て、バス 乗り 遅れ た。
+    english_literally: To pack luggage, too much time was taken, so I missed the bus.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 を 詰める {ため に} 時間 が かかり すぎ て、バス に 乗り 遅れ て しまっ た。
+        english: Due to packing, I missed the bus.
+        hint: 「ために」 indicates purpose. Here, we're highlighting the *duration or process* that led to
+          a negative outcome.
+    scene: Someone recounting a frustrating morning delay to a roommate.
+    register: casual
+    setting: melancholic
+  - english: I struggled to connect the wires.
+    japanese:
+      - コード を {繋ぐ の に} 苦労 し た。
+      - コード を {繋ぐ の に} 苦労 し まし た。
+      - コード を {繋ぐ の に} 手間取っ た。
+    english_literally: To connect the wires, I struggled.
+    competing_grammar:
+      - competing_japanese:
+          - コード を 繋ぐ {ため に} 苦労 し た。
+        english: I struggled for the purpose of connecting the wires.
+        hint: 「ために」 implies direct purpose. We are emphasizing the *difficulty and effort* encountered
+          *during the action* itself.
+    scene: A person recounting a difficult DIY challenge they faced.
+    register: casual
+    setting: storytelling
+  - english: I forgot my wallet to pay at the store.
+    japanese:
+      - 店 で {払う の に}、財布 を 忘れ て しまっ た。
+      - 店 で {払う の に}、財布 を 忘れ て しまい まし た。
+      - 店 で {払う の に}、財布 忘れ ちゃっ た。
+    english_literally: To pay at the store, I forgot my wallet.
+    competing_grammar:
+      - competing_japanese:
+          - 店 で 払う {ため に}、財布 を 忘れ て しまっ た。
+        english: I forgot my wallet for the purpose of paying at the store.
+        hint: 「ために」 suggests a direct purpose. Here, we are stating what was needed *for the act of paying*,
+          emphasizing a necessary means or requirement for the process.
+    scene: Someone realizing their mistake at the cashier, unable to pay.
+    register: casual
+    setting: melancholic
+  - english: Man, it takes courage to tell her how I feel.
+    japanese:
+      - なあ、彼女 に 気持ち を {伝える の に}、勇気 が いる ん だ。
+      - 彼女 に 気持ち を {伝える の に}、勇気 が いり ます。
+    english_literally: Man, to tell her my feelings, courage is needed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に 気持ち を 伝える {に は}、勇気 が いる。
+        english: To tell her how I feel, courage is necessary.
+        hint: 「には」 expresses a necessary condition. We are focusing on the *effort or requirement involved
+          in the process* of communicating feelings.
+      - competing_japanese:
+          - 彼女 に 気持ち を 伝える {ため に}、勇気 が いる ん だ。
+        english: For the purpose of telling her my feelings, courage is needed.
+        hint: 「ために」 emphasizes the direct purpose. Here, the focus is on the *personal struggle or resource*
+          needed *for the action* of expressing feelings.
+    scene: A young man confiding in his male friend about his anxiety over confessing feelings.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The opening 「なあ」 is a common male interjection used when addressing a close friend, and the
+      ending 「いる ん だ」 reinforces a personal necessity or realization. The expression is characteristic
+      of younger male casual speech.
+  - english: You need to finish your vegetables to grow up big and strong.
+    japanese:
+      - 大きく {なる の に}、野菜 を 全部 食べ なさい よ。
+      - 大きく {なる の に}、野菜 を 全部 食べ なさい。
+      - 大きく {なる の に}、野菜 全部 食べ なさい ね。
+      - 大きく {なる の に}、野菜 を 全部 食べ なきゃ ダメ よ。
+    english_literally: To grow big, eat all your vegetables.
+    competing_grammar:
+      - competing_japanese:
+          - 大きく なる {ため に}、野菜 を 全部 食べ なさい よ。
+        english: For the purpose of growing big, eat all your vegetables.
+        hint: 「ために」 states a direct objective. Here, we're pointing to the action required *as part of
+          the process* of growing.
+    scene: A mother encouraging her child to eat all their vegetables at dinner.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    speaker_age: older
+    nuance: The direct command 「食べなさい よ」 combined with 「よ」 at the end, is typical of an older female (like
+      a mother) giving firm yet gentle instruction to a child. 「なる の に」 indicates the process of growing
+      up.
+  - english: I have to save money to buy a new game console.
+    japanese:
+      - 新しい ゲーム 機 を {買う の に}、お 金 を 貯め なきゃ なら ない ん だ。
+      - 新しい ゲーム 機 を {買う の に}、お 金 を 貯め なけれ ば なり ませ ん。
+      - 新しい ゲーム 機 を {買う の に}、お 金 貯め なきゃ。
+    english_literally: To buy a new game console, I must save money.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ゲーム 機 を 買う {ため に}、お 金 を 貯め なきゃ なら ない。
+        english: For the purpose of buying a new game console, I have to save money.
+        hint: 「ために」 indicates direct purpose. This sentence emphasizes the *action or effort required*
+          as a prerequisite for the purchase.
+    scene: A boy talking to his friend about his financial goals to acquire a new toy.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The ending 「貯めなきゃ ならない ん だ」 (contracted from 貯めなければならないのだ) is a common casual expression for
+      a personal obligation or necessity, typical of younger male speech, especially when discussing a
+      goal.
+  - english: I need to learn to dance for our next date.
+    japanese:
+      - 次 の デート で {踊る の に}、ダンス を 習わ なく ちゃ な。
+      - 次 の デート で {踊る の に}、ダンス を 習わ なけれ ば なり ませ ん。
+      - 次 の デート で {踊る の に}、ダンス 習わ なく ちゃ。
+    english_literally: To dance on our next date, I must learn dancing.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の デート で 踊る {ため に}、ダンス を 習わ なく ちゃ な。
+        english: For the purpose of dancing on our next date, I need to learn to dance.
+        hint: 「ために」 states a direct purpose. Here, the emphasis is on the *preparation or effort needed*
+          for the act of dancing.
+    scene: A young man mentions an activity for an upcoming date to his girlfriend, playfully hinting.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual ending 「習わなくちゃ な」 (a contraction of 習わなければならないね) expresses a lighthearted sense
+      of necessity or self-motivation, often used by younger speakers. It implies a personal goal for
+      the sake of the listener and the relationship.
+  - english: It takes a lot of practice to master this technique.
+    japanese:
+      - この 技 を {習得 する の に}、大量 の 練習 が 必要 です。
+      - この 技 を {習得 する の に}、大量 の 練習 が 必要 だ。
+      - この 技 を {習得 する の に}、たくさん の 練習 が 要り ます。
+    english_literally: To master this technique, a large amount of practice is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 技 を 習得 する {に は}、大量 の 練習 が 必要 です。
+        english: To master this technique, a large amount of practice is necessary.
+        hint: 「には」 focuses on necessary conditions. This sentence highlights the *extensive effort involved
+          in the process* of mastering the technique.
+      - competing_japanese:
+          - この 技 を 習得 する {ため に}、大量 の 練習 が 必要 です。
+        english: For the purpose of mastering this technique, a lot of practice is needed.
+        hint: 「ために」 emphasizes a direct purpose or goal. Here, we're talking about the *amount of effort*
+          required *for the act of mastering* the technique.
+    scene: A martial arts instructor explaining the difficulty of mastering a specific technique to students.
+    register: teineigo (polite)
+    setting: academic
+post_example_writeup: As these examples demonstrate, のに is a versatile grammatical construction for expressing
+  requirements. It often emphasizes the effort, time, or specific means needed to achieve a goal or perform
+  an action. Pay attention to the context to fully grasp whether it denotes a process, a necessary item,
+  or the duration of an action toward an objective.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のに

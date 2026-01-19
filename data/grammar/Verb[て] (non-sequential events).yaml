@@ -1,0 +1,229 @@
+grammar_point: Verb[て] (non-sequential events)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - 側 (side or flank)
+  - 本当に (genuinely)
+meaning: Connecting clauses to indicate cause, means, manner, or simultaneous state/action
+pronunciation:
+  katakana: テ
+  romaji: te
+formation:
+  Verb[て] + Verb/Adjective/Noun phrase: Connects clauses where the preceding action/state provides context,
+    reason, or manner for the following, without implying strict chronological order.
+jlpt: N5
+etymology: The `て-form` itself is a versatile conjunctive form of verbs and adjectives, tracing its origins
+  to classical Japanese. Its evolution allowed it to express not only sequential actions but also causality,
+  means, and concurrent states, reflecting the language's tendency to create complex sentences by concatenating
+  simpler clauses without explicit conjunctions. This broadening of function highlights how dependent
+  clauses can describe the *condition* or *context* for the main clause, rather than just a preceding
+  event.
+writeup: |-
+  The `て-form` of verbs and adjectives is incredibly versatile, extending beyond its basic function of indicating sequential actions. This grammar point focuses on its non-sequential uses, where the first clause connected by `て` provides context, reason, means, or describes a simultaneous state or manner for the action or state in the second clause.
+
+  ### Indicating Cause or Reason
+  When `て` connects two clauses, the first clause can indicate the cause or reason for the second. This usage is common with verbs describing emotional states or involuntary actions, or when an adjective describes a state leading to a consequence. For example, if you say `お腹が空い {て} 力が出ない` (I'm hungry, so I have no energy), the hunger (`お腹が空い {て}`) is the reason for lacking energy (`力が出ない`).
+
+  ### Indicating Means or Method
+  Another common non-sequential use is to show the means or method by which an action is performed. Here, the `て-form` clause explains *how* something is done. For instance, `バスに乗っ {て} 駅に行った` (I went to the station by bus) indicates that the bus was the means of transportation to the station. The act of 'riding the bus' is the method for 'going to the station'.
+
+  ### Describing a State or Manner
+  This usage describes a continuous state or the manner in which an action occurs. The action in the first clause provides the ongoing condition or describes *how* the action in the second clause is performed. An example is `座っ {て} 本を読んでいる` (I am sitting and reading), where `座っ {て}` describes the state of sitting while reading. Similarly, `笑っ {て} 話した` (I spoke while laughing) indicates the manner of speaking, which was 'laughing'.
+
+  ### Important Considerations
+  While this `て-form` can imply simultaneity, it's not always a strict 'at the same time' meaning. Often, the first clause simply sets the stage or provides a background condition for the second. The context usually makes it clear whether the actions are simultaneous, causative, or descriptive of a state.
+false_friends:
+  - term: Verb[て] (and then)
+    meaning: Sequential action (and then)
+    kind: similar expression
+    nuance: Unlike the non-sequential `て`, this form strictly implies that the action in the first clause
+      happens *before* and leads to the action in the second clause. For example, `ご飯を食べ {て} 寝た` (I ate
+      and then slept) indicates a clear sequence.
+    grammar_point: Verb[て] (and then)
+  - term: '[Clause]から'
+    meaning: Because of; from
+    kind: similar expression
+    nuance: While `て` can express cause, `から` emphasizes the reason or cause more directly and strongly.
+      `から` often implies a more explicit logical connection or consequence. For example, `雨が降ったから、行かない`
+      (Because it rained, I won't go) sounds like a more definite reason than `雨が降っ {て} 行かない` (It rained
+      and I won't go, implying 'so I won't go').
+    grammar_point: '[Clause]から (because・so)'
+  - term: '[Verb-stem]ながら・つつ'
+    meaning: While doing (simultaneous actions)
+    kind: similar expression
+    nuance: Both `ながら` and `て` can express simultaneous actions. However, `ながら` more strongly emphasizes
+      two actions performed by the *same subject* at the *exact same time*. For example, `音楽を聞き {ながら}
+      勉強する` (I study while listening to music) highlights the simultaneity of the two actions. `て` in
+      `座っ {て} 本を読んでいる` is more about the state (sitting) accompanying the action (reading), rather than
+      two distinct actions occurring simultaneously.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+post_false_friends_writeup: Understanding the subtle differences between these forms is crucial. While
+  `て` can cover various relationships between clauses, `から` specifies a strong cause-effect link, and
+  `ながら` emphasizes concurrent actions by the same agent. Distinguishing these nuances will make your Japanese
+  sound more natural and precise.
+examples:
+  - english: I got sleepy and fell asleep.
+    japanese:
+      - 眠く {て} 寝 て しまっ た。
+      - 眠く {て} 寝 て しまい まし た。
+    english_literally: Being sleepy, I ended up sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 眠く なっ た から、寝 て しまっ た。
+        english: Because I got sleepy, I ended up sleeping.
+        hint: 「から」 emphasizes the cause more directly. We're looking for a more natural connection where
+          the state of being sleepy leads to falling asleep.
+    scene: A person recounts why they unexpectedly fell asleep.
+    register: casual
+    setting: reflective
+  - english: I went to the library by bicycle.
+    japanese:
+      - 自転 車 に 乗っ {て} 図書 館 に 行っ た。
+      - 自転 車 に 乗っ {て} 図書 館 に 行き まし た。
+    english_literally: Riding a bicycle, I went to the library.
+    competing_grammar:
+      - competing_japanese:
+          - 自転 車 で 図書 館 に 行っ た。
+        english: I went to the library by bicycle (using the bicycle as a means).
+        hint: 「で」 as a particle indicates the means or instrument. We're looking for the `て-form` to express
+          the means.
+    scene: Someone explains their mode of transport.
+    register: casual
+    setting: informative
+  - english: The window is open.
+    japanese:
+      - 窓 が 開い {て} いる。
+      - 窓 が 開い {て} い ます。
+      - 窓 が 開い {て} る。
+    english_literally: The window has opened (and is in that state).
+    competing_grammar:
+      - competing_japanese:
+          - 窓 は 開い て いる。
+        english: The window is open (general statement).
+        hint: While technically correct, this sentence omits the explicit `て` form's contribution to indicating
+          a resulting state. We're focusing on the `て` form here.
+    scene: Describing the current state of a window.
+    register: casual
+    setting: informative
+  - english: She cried and laughed.
+    japanese:
+      - 彼女 は 泣い {て} 笑っ た。
+      - 彼女 は 泣い {て} 笑い まし た。
+    english_literally: She cried and laughed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 泣き {ながら} 笑っ た。
+        english: She cried while laughing.
+        hint: 「ながら」 emphasizes simultaneity more strongly, often when one action is primary and the other
+          secondary. This sentence implies the actions occurred close in time or intertwined, but not
+          necessarily literally at the exact same moment.
+      - competing_japanese:
+          - 彼女 は 泣き、笑っ た。
+        english: She cried, and she laughed.
+        hint: This uses the conjunctive form directly, which sounds more formal or literary. We're looking
+          for the common `て-form` connection.
+    scene: Observing someone's mixed emotions.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+  - english: I'm sorry for being late.
+    japanese:
+      - 遅れ {て} すみ ませ ん。
+      - 遅れ {て} 申し訳 ござい ませ ん。
+      - 遅れ {て} ごめん。
+    english_literally: Being late, I am sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 遅れ た の で、すみ ませ ん。
+        english: Since I was late, I am sorry.
+        hint: 「ので」 is another way to express reason but is generally more formal and explicit. We're looking
+          for the common `て-form` connection for apologies.
+    scene: Apologizing for tardiness.
+    register: formal
+    setting: apologetic
+  - english: The concert was so good, I cried.
+    japanese:
+      - コンサート が 良かっ {て} 泣い て しまっ た。
+      - コンサート が 良かっ {て} 泣い て しまい まし た。
+    english_literally: The concert being good, I cried.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート が 良かっ た から、泣い て しまっ た。
+        english: Because the concert was good, I cried.
+        hint: 「から」 gives a stronger, more explicit reason. This `て-form` connects the feeling of goodness
+          to the subsequent action as a natural consequence.
+    scene: Recounting an emotional experience at a concert.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    listener_gender: group
+  - english: He wasn't hearing well.
+    japanese:
+      - 彼 は よく 聞こえ {て} い なかっ た。
+      - 彼 は よく 聞こえ {て} い ませ ん でし た。
+      - 彼 は よく 聞こえ {て} ない。
+      - 彼 は よく 聞こえ {て} ませ ん。
+    english_literally: He was not hearing well.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は よく 聞い て い なかっ た。
+        english: He was not listening well.
+        hint: 「聞こえる」 (to be audible) is a potential verb, indicating something *can be heard*. 「聞く」 (to
+          listen) implies an active effort. This sentence uses the `て-form` to describe a state (not hearing
+          well).
+    scene: Someone observing a person who seems distracted.
+    register: casual
+    setting: informative
+  - english: You can solve this problem by trying several methods.
+    japanese:
+      - いく つ か の 方法 を 試し て み {て}、この 問題 を 解決 できる。
+      - いく つ か の 方法 を 試し て み {て}、この 問題 を 解決 でき ます。
+      - いく つ か の 方法 を 試み {て}、この 問題 を 解決 でき ます。
+    english_literally: Trying several methods, this problem can be solved.
+    competing_grammar:
+      - competing_japanese:
+          - いく つ か の 方法 を 試す こと で、この 問題 を 解決 できる。
+        english: By trying several methods, this problem can be solved.
+        hint: 「〜ことで」 explicitly states the means by which something is achieved. The `て-form` offers a
+          slightly more concise way to express the same idea.
+    scene: A teacher giving advice on problem-solving.
+    register: formal
+    setting: instructional
+  - english: The child, scared, hid behind their mother.
+    japanese:
+      - 子供 は 怖 がっ {て}、母親 の 後ろ に 隠れ た。
+      - 子供 は 怖 がっ {て}、母親 の 後ろ に 隠れ まし た。
+    english_literally: The child, being scared, hid behind their mother.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 怖 がっ た の で、母親 の 後ろ に 隠れ た。
+        english: Because the child was scared, they hid behind their mother.
+        hint: 「ので」 gives a clear reason. The `て-form` here describes the state of being scared as the
+          condition for hiding.
+    scene: Describing a child's reaction to fear.
+    register: casual
+    setting: storytelling
+  - english: Please take a seat and wait.
+    japanese:
+      - どうぞ 座っ {て} お 待ち ください。
+      - どうぞ 座っ {て} 待っ て ください。
+      - 座っ {て} 待っ て。
+    english_literally: Please sit and wait.
+    competing_grammar:
+      - competing_japanese:
+          - どうぞ 座っ て から、お 待ち ください。
+        english: Please sit, and then wait.
+        hint: Adding `から` emphasizes the sequence, implying waiting *only after* sitting. The simpler
+          `て-form` here means 'sit and wait' where sitting is the posture while waiting.
+    scene: A receptionist or staff member instructing a customer.
+    register: teineigo (polite)
+    setting: professional
+post_example_writeup: These examples illustrate how the `て-form` facilitates a fluid connection between
+  clauses, conveying a variety of relationships beyond simple sequence. Mastering these nuances allows
+  for more natural and expressive Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/200

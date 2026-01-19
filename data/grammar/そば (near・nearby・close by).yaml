@@ -1,0 +1,244 @@
+grammar_point: そば (near・nearby・close by)
+learn_before:
+  - Verb[えば] (conditional)
+meaning: near; nearby; close by; by one's side
+pronunciation:
+  katakana: ソバ
+  romaji: soba
+formation:
+  Noun の そば: Indicates physical proximity to a noun.
+  Verb[dictionary] そば: Though less common for this specific grammar point, this usage denotes 'just before'
+    or 'on the verge of' an action. However, the primary focus of そば in this context is spatial proximity.
+    This is a distinct usage.
+jlpt: N5
+etymology: The word 「そば」 (側) originally referred to the 'side' or 'edge' of something. Over time, its
+  meaning expanded to encompass the concept of 'nearness' or 'proximity' to that side. This historical
+  usage helps explain why it conveys a sense of being 'right there' or 'at one's side', rather than just
+  generally close.
+writeup: |-
+  The Japanese word 「そば」 is a fundamental term for expressing spatial proximity. It directly translates to "near", "nearby", or "close by". While simple in its core meaning, its nuance lies in suggesting a relatively intimate or immediate closeness compared to other words like 「近く」 (chikaku). It is commonly used in the pattern 「Noun の そば」, indicating that something is at the side of or in close vicinity to the noun.
+
+  For example, if you say 「駅 の そば」 (eki no soba), it means "near the station," implying that the location is quite close, perhaps within a short walking distance. When referring to people, 「そば」 can carry a warmer, more personal nuance, suggesting emotional closeness or attentive presence. For instance, 「母 の そば に いる」 (haha no soba ni iru) implies "to be by my mother's side," conveying not just physical proximity but also a sense of companionship or support.
+
+  It's important to differentiate 「そば」 from other spatial terms to grasp its precise usage. Unlike 「隣」 (tonari), which means "immediately adjacent" or "next door" and often implies direct contact or being in the very next position, 「そば」 indicates closeness without necessarily being touching. And while 「近く」 (chikaku) also means "near," it refers to a more general sense of proximity that can be a bit further away than 「そば」. Think of 「そば」 as being within arm's reach or a very short distance.
+false_friends:
+  - term: 近く (chikaku)
+    meaning: near; close (general proximity)
+    kind: similar expression
+    nuance: 「近く」 refers to a more general sense of proximity. It can mean 'nearby' but often implies a
+      slightly larger or less immediate distance than 「そば」. For example, a convenience store might be
+      「駅 の 近く」 (eki no chikaku - near the station), but not necessarily 「駅 の そば」 unless it's right outside
+      the exit. We're looking for 'by one's side' or 'very close' with そば.
+    grammar_point: 近く,遠く (proximity・distance spatial)
+  - term: 隣 (tonari)
+    meaning: next to; immediately adjacent
+    kind: often confused with
+    nuance: 「隣」 specifies immediate adjacency, often implying direct contact or the very next spot in
+      a sequence (e.g., next house, next seat). 「そば」 indicates closeness, but not necessarily direct adjacency.
+      For example, if you are sitting at a table, your friend is 「あなた の そば」 (anata no soba - by your side),
+      but the person in the very next chair is 「あなた の 隣」 (anata no tonari - next to you). We're looking
+      for 'near' or 'by the side of', not 'immediately next to'.
+    grammar_point: 隣 (immediately next to)
+  - term: 横 (yoko)
+    meaning: side; horizontal
+    kind: similar expression
+    nuance: 「横」 generally means 'side' or 'horizontal direction' and does not inherently imply closeness
+      or proximity, only direction relative to an object. One can be 'on the side' but far away. 「そば」
+      specifically means 'near' or 'at the side of'. We're looking for 'nearness', not just 'side'.
+    grammar_point: 横 (side・horizontal)
+post_false_friends_writeup: To differentiate these terms, remember that 「そば」 emphasizes being "right by"
+  someone or something, often implying a personal or attentive closeness. 「隣」 signifies immediate adjacency,
+  often touching or being the very next item. 「近く」 is a more general term for "nearness" that allows for
+  greater distance than 「そば」. Lastly, 「横」 simply denotes being "to the side of" something, without specifying
+  proximity. Choose 「そば」 when you want to convey a sense of being close at hand or intimately near.
+examples:
+  - english: Please put your bag by the door.
+    japanese:
+      - カバン を ドア の {そば} に 置い て ください。
+      - カバン を ドア の {そば} に 置い て。
+    english_literally: Bag object marker door possessive marker near location marker putください.
+    competing_grammar:
+      - competing_japanese:
+          - カバン を ドア の 隣 に 置い て ください。
+        english: Please put your bag right next to the door.
+        hint: 「隣」 implies immediately adjacent, possibly touching. We're looking for 'by' or 'near', not
+          necessarily touching.
+    scene: A teacher instructing a student in a classroom.
+    register: teineigo (polite)
+    setting: instructional
+  - english: My grandfather always keeps a photo of his grandmother by his bedside.
+    japanese:
+      - 祖父 は いつ も 祖母 の 写真 を 枕元 の {そば} に 置い て いる。
+      - 祖父 は いつ も 祖母 の 写真 を 枕元 の {そば} に 置い て い ます。
+    english_literally: Grandfather topic marker always grandmother possessive marker photo object marker
+      bedside possessive marker near location marker is putting.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は いつ も 祖母 の 写真 を 枕元 の 近く に 置い て いる。
+        english: My grandfather always keeps a photo of his grandmother near his bedside (but could be
+          a bit further).
+        hint: 「近く」 is more general. 「そば」 conveys a more intimate, immediate proximity, suggesting it's
+          right there, possibly on the nightstand.
+    scene: A granddaughter describing her grandfather's habits.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「そば」 here emphasizes the photo being very close to his pillow, reinforcing the
+      affectionate memory of his grandmother. If 「近く」 were used, it would imply proximity but lack this
+      specific nuance of being 'right by his side'.
+  - english: I want to be by your side forever.
+    japanese:
+      - ず っと あなた の {そば} に い たい。
+      - ず っと あなた の {そば} に い たい です。
+    english_literally: Forever you possessive marker side location marker want to be.
+    competing_grammar:
+      - competing_japanese:
+          - ず っと あなた の 近く に い たい。
+        english: I want to be near you forever (less intimate).
+        hint: While 「近く」 also means near, 「そば」 implies a deeper, more personal and protective sense of
+          being 'by someone's side'. We're looking for that emotional closeness.
+    scene: A heartfelt confession between two people.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    nuance: The phrase 「あなた の そば に いたい」 specifically conveys a desire for emotional and physical closeness,
+      a wish to be present and supportive in a partner's life. Using 「そば」 here is much more personal and
+      intimate than simply 「近く」 (chikaku).
+  - english: There's a small park near my house.
+    japanese:
+      - 家 の {そば} に 小さな 公園 が あり ます。
+      - 家 の {そば} に 小さな 公園 が ある。
+    english_literally: House possessive marker near location marker small park subject marker exists.
+    competing_grammar:
+      - competing_japanese:
+          - 家 の 近く に 小さな 公園 が あり ます。
+        english: There's a small park near my house (general area).
+        hint: 「近く」 is fine for general proximity, but 「そば」 suggests it's quite close, perhaps across the
+          street or just around the corner, more immediately accessible.
+    scene: Giving directions to a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Please stay by me.
+    japanese:
+      - 私 の {そば} に い て ください。
+      - 私 の {そば} に い て。
+    english_literally: I possessive marker side location marker stay please.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 近く に い て ください。
+        english: Please stay near me (less of a direct plea for presence).
+        hint: 「そば」 carries a nuance of comfort, protection, or close companionship, making the request
+          more heartfelt. 「近く」 is more objective about location.
+    scene: A child asking their parent to stay close in a crowded place.
+    register: teineigo (polite)
+    setting: apologetic
+    speaker_age: younger
+  - english: The cat is sleeping peacefully by the window.
+    japanese:
+      - 猫 が 窓 の {そば} で 静か に 寝 て いる。
+      - 猫 が 窓 の {そば} で 静か に 寝 て い ます。
+    english_literally: Cat subject marker window possessive marker near location marker quietly sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が 窓 の 近く で 静か に 寝 て いる。
+        english: The cat is sleeping peacefully near the window (could be anywhere in the general vicinity).
+        hint: 「そば」 implies the cat is right next to the window, perhaps basking in the sunlight coming
+          through it, highlighting its direct vicinity.
+    scene: Observing a pet at home.
+    register: casual
+    setting: reflective
+  - english: I found a lost wallet near the park entrance.
+    japanese:
+      - 公園 の 入り口 の {そば} で 落とし物 の 財布 を 見つけ た。
+      - 公園 の 入り口 の {そば} で 落とし物 の 財布 を 見つけ まし た。
+    english_literally: Park possessive marker entrance possessive marker near location marker lost thing
+      possessive marker wallet object marker found.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の 入り口 の 近く で 落とし物 の 財布 を 見つけ た。
+        english: I found a lost wallet near the park entrance (general area).
+        hint: 「そば」 specifies a more precise, immediate location, suggesting it was right at the entrance,
+          not just in the general vicinity of the park entrance.
+    scene: Reporting a finding to a police officer.
+    register: teineigo (polite)
+    setting: informative
+  - english: He often sits by the river, deep in thought.
+    japanese:
+      - 彼 は よく 川 の {そば} に 座っ て 考え事 を し て いる。
+      - 彼 は よく 川 の {そば} に 座っ て 考え事 を し て い ます。
+    english_literally: He topic marker often river possessive marker near location marker sitting thinking
+      is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は よく 川 の 近く に 座っ て 考え事 を し て いる。
+        english: He often sits near the river, deep in thought (less specific about how close).
+        hint: 「そば」 evokes a scene where he is quite close to the riverbank, perhaps even dipping his feet
+          in, emphasizing his direct proximity to the water.
+    scene: Describing a friend's habit to another friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+  - english: The children gathered around the teacher.
+    japanese:
+      - 子供 たち は 先生 の {そば} に 集まっ た。
+      - 子供 たち は 先生 の {そば} に 集まり まし た。
+    english_literally: Children topic marker teacher possessive marker side location marker gathered.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 先生 の 周り に 集まっ た。
+        english: The children gathered around the teacher (implying a circle around her).
+        hint: While 「周り」 means 'around', 「そば」 focuses on being 'by her side' or 'near her', suggesting
+          closeness and attentiveness rather than just forming a circle.
+    scene: A scene in a kindergarten.
+    register: casual
+    setting: informative
+  - english: The café near the station is always crowded.
+    japanese:
+      - 駅 の {そば} の カフェ は いつ も 混ん で いる。
+      - 駅 の {そば} の カフェ は いつ も 混ん で い ます。
+    english_literally: Station possessive marker near possessive marker cafe topic marker always crowded
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の 近く の カフェ は いつ も 混ん で いる。
+        english: The café near the station is always crowded (could be a few blocks away).
+        hint: 「そば」 suggests the cafe is very conveniently located, perhaps right outside the station or
+          a very short walk, which explains why it's always crowded. 「近く」 is less specific.
+    scene: Discussing popular spots in town.
+    register: casual
+    setting: friendly
+  - english: The dog always stays by its owner's side.
+    japanese:
+      - その 犬 は いつ も 飼い主 の {そば} に 寄り添っ て いる。
+      - その 犬 は いつ も 飼い主 の {そば} に 寄り添っ て い ます。
+    english_literally: That dog topic marker always owner possessive marker side location marker cuddling
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - その 犬 は いつ も 飼い主 の 近く に 寄り添っ て いる。
+        english: The dog always stays near its owner (less affectionate, could be a few feet away).
+        hint: 「そば」 here conveys affection and loyalty, implying the dog is always right next to its owner,
+          possibly touching. 「近く」 is more distant and lacks this emotional nuance.
+    scene: Observing an animal's behavior.
+    register: casual
+    setting: reflective
+  - english: I saw a famous actor walking near the theater.
+    japanese:
+      - 劇場 の {そば} を 有名 な 俳優 が 歩い て いる の を 見 た。
+      - 劇場 の {そば} を 有名 な 俳優 が 歩い て いる の を 見 まし た。
+    english_literally: Theater possessive marker near object marker famous actor subject marker walking
+      nominalizer object marker saw.
+    competing_grammar:
+      - competing_japanese:
+          - 劇場 の 近く を 有名 な 俳優 が 歩い て いる の を 見 た。
+        english: I saw a famous actor walking near the theater (in the general vicinity).
+        hint: 「そば」 suggests the actor was very close to the theater, perhaps right outside its entrance,
+          making the sighting more specific and direct. 「近く」 would be less precise.
+    scene: Gossiping with a friend about a celebrity sighting.
+    register: casual
+    setting: friendly
+post_example_writeup: As these examples demonstrate, 「そば」 is versatile for describing physical proximity,
+  but often carries a nuance of immediacy, directness, or even emotional closeness. It implies being within
+  easy reach or directly at someone's side, whether literally or figuratively, making it a valuable tool
+  for precise spatial and relational descriptions in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/そば

@@ -1,0 +1,510 @@
+grammar_point: 横 (side・horizontal)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - な (prohibitive particle)
+  - にする (to decide or make)
+meaning: Side; horizontal direction; beside
+pronunciation:
+  katakana: ヨコ
+  romaji: yoko
+formation:
+  Noun の + 横: Indicates the side of a noun, or next to a noun, emphasizing horizontal or general adjacency.
+  何かが横になる: Describes something becoming horizontal or lying on its side.
+jlpt: N4
+etymology: 「横」 (yoko) originally denoted the 'horizontal direction' or 'breadth', stemming from the idea
+  of something laid flat or extending across. Its meaning evolved to include 'beside' in a general sense,
+  focusing on the orientation or a non-specific side.
+writeup: |-
+  「横」 (yoko) is a versatile term primarily used to describe the **side** of an object, a general **position beside** something, or something being in a **horizontal** orientation. It is often translated as 'side', 'beside', or 'horizontal'.
+
+  Unlike 「隣」 (tonari), which implies immediate, direct adjacency, often sharing a boundary or being in a series (like the seat right next to you or the house next door), 「横」 is more general. When you use 「横」, you're indicating that something is situated broadly to the side, without necessarily touching or being the very next item in a structured sequence. It's about being 'on the side of' or 'to the side'.
+
+  For example, if you talk about the **side of a car** (車 の 横), you are referring to its physical side surface. If you say something is **beside a building** (ビル の 横), it means it's generally in that area, not necessarily sharing a wall or being the very next structure.
+
+  「横」 can also describe orientation. For instance, if a book is **lying on its side** (本 が 横 に なっ て いる), it means it's positioned horizontally, not standing upright. This usage highlights its connection to the concept of 'horizontal'.
+
+  When choosing between 「横」 and other spatial words, consider the degree of specificity. 「横」 offers a balance between general proximity (like 「そば」 or 「近く」) and strict immediate adjacency (like 「隣」). It's crucial to understand these nuances for natural communication in Japanese.
+false_friends:
+  - term: 隣 (immediately next to)
+    meaning: Immediately next to; neighboring; adjacent
+    kind: similar expression
+    nuance: 「隣」 specifies immediate, direct adjacency, often implying a shared boundary or being in the
+      same line or category. 「横」 is broader, referring to a general side or horizontal position without
+      necessarily implying direct contact.
+    grammar_point: 隣 (immediately next to)
+  - term: そば (near・nearby・close by)
+    meaning: Near, nearby, close by
+    kind: similar expression
+    nuance: 「そば」 indicates general closeness, without specifying immediate adjacency or a particular side.
+      It's less precise than 「横」 regarding exact position.
+    grammar_point: そば (near・nearby・close by)
+  - term: 近く (near, vicinity, close)
+    meaning: Near, vicinity, close
+    kind: similar expression
+    nuance: 「近く」 is the broadest term for proximity, referring to a general area or vicinity. It does
+      not imply direct adjacency at all, unlike 「横」.
+    grammar_point: 近く,遠く (proximity・distance spatial)
+  - term: 側面 (side surface)
+    meaning: Side surface; flank
+    kind: similar expression
+    nuance: 「側面」 is a more technical or formal term for 'side surface' of an object, often used in descriptive
+      or technical contexts. 「横」 is the more common and natural way to refer to the side of something
+      in everyday conversation.
+    grammar_point: 側面 (aspect side)
+  - term: 真横 (directly beside)
+    meaning: Directly beside; right next to; squarely horizontal
+    kind: similar expression
+    nuance: 「真横」 adds emphasis to '横', meaning 'directly beside' or 'right next to' with strong horizontal
+      alignment. 「横」 is a general 'beside' or 'to the side'.
+    grammar_point: 真横 (directly beside)
+post_false_friends_writeup: While 「横」 describes a general position 'to the side' or 'horizontal', 「隣」
+  pinpoints direct, immediate adjacency, usually implying a shared border or category. 「そば」 and 「近く」 refer
+  to general proximity without specifying orientation. 「側面」 is a more formal term for a physical side
+  surface, and 「真横」 emphasizes a precise 'right beside' position, making it more specific than a simple
+  「横」. Carefully choosing between these terms allows for more precise and natural expression of spatial
+  relationships.
+examples:
+  - english: I sat by his side.
+    japanese:
+      - 私 は 彼 の {横} に 座り まし た。
+      - 私 は 彼 の {横} に 座っ た。
+      - 私 は 彼 の {横} に 座っ た ん だ。
+      - 彼 の {横} に 座っ た よ。
+      - 彼 の {横} に 座っ た ぜ。
+      - 私 は 彼 の {横} に 座っ ちゃっ た。
+      - 彼 の {横} に 座っ た ん です。
+      - 私 は 彼 の {横} に 座ら せ て いただき まし た。
+      - 彼 の {横} に 座っ た し。
+      - 彼 の {横} に 座り まし た よ。
+      - 彼 の {横} に 座っ ちゃっ た ん だ。
+      - '{横} に 座り まし た。'
+      - '{横} に 座っ た よ。'
+      - '{横} に 座っ た。'
+      - 彼 の {横} に 座っ た の。
+    english_literally: I, him's side at, sat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼 の {隣} に 座り まし た。
+        english: I sat immediately next to him.
+        hint: 「隣」 specifies the seat right next to him. 「横」 indicates a general position beside him, which
+          might not be the very next seat. We're looking for sitting generally by his side.
+      - competing_japanese:
+          - 私 は 彼 の {そば} に 座っ た。
+        english: I sat near him.
+        hint: 「そば」 indicates general closeness, not necessarily directly to his side or in a seat next
+          to him. We're focusing on placement specifically by his side.
+      - competing_japanese:
+          - 私 は 彼 の {近く} に 座っ た。
+        english: I sat close to him.
+        hint: 「近く」 implies general proximity, not sitting specifically by his side. We're looking for
+          sitting specifically by his side.
+    scene: You enter a room and find a vacant spot generally beside someone you know.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Using 「横」 (yoko) here implies sitting generally 'by his side', allowing for some space or
+      not necessarily being in the very next seat, unlike 「隣」 (tonari) which would suggest immediate adjacency.
+      This emphasizes the general position.
+  - english: There's a plant placed beside the bookshelf.
+    japanese:
+      - 本棚 の {横} に 植物 が 置い て ある。
+      - 本棚 の {横} に 植物 が 置い て あり ます。
+      - 本棚 の {横} に 植物 が 置い て ある ん だ。
+      - 本棚 の {横} に 植物 置い て ある。
+      - 本棚 の {横} に 植物 ある よ。
+      - 本棚 の {横} に 植物 が 配置 さ れ て い ます。
+      - 本棚 の {横} に 植物。
+      - 本棚 の {横} に 大きな 窓 が ある。
+      - 本棚 の {横} に 観葉 植物 が 置い て あり ます。
+      - 本棚 の {横} に 鉢植え が ある よ。
+      - 本棚 の {横} に 観葉 植物 が 飾っ て ある。
+      - 本棚 の {横} に 観葉 植物 が ある。
+    english_literally: Bookshelf's side at plant is placed.
+    competing_grammar:
+      - competing_japanese:
+          - 本棚 の {隣} に 植物 が 置い て ある。
+        english: There's a plant placed immediately next to the bookshelf.
+        hint: While 「隣」 is for immediate adjacency, 「横」 is more natural here as the plant isn't 'part'
+          of the bookshelf arrangement or sharing a boundary in the same way. We're describing general
+          placement beside it.
+      - competing_japanese:
+          - 本棚 の {そば} に 植物 が 置い て ある。
+        english: There's a plant placed near the bookshelf.
+        hint: 「そば」 indicates general closeness, not necessarily directly to the side or touching. We're
+          focusing on placement specifically beside it.
+      - competing_japanese:
+          - 本棚 の {近く} に 植物 が 置い て ある。
+        english: There's a plant placed in the vicinity of the bookshelf.
+        hint: 「近く」 implies a broader area, not a specific position directly next to it. We're looking
+          for placement specifically beside it.
+    scene: You are describing the arrangement of furniture in a living room.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「横」 (yoko) is used here because the plant is simply positioned 'to the side' of the bookshelf.
+      It doesn't necessarily imply the plant is touching it or is of the same category as the books. It's
+      a general 'beside' rather than an 'immediately adjacent' that 「隣」 would suggest.
+  - english: The book is lying on its side.
+    japanese:
+      - 本 が {横} に なっ て い ます。
+      - 本 が {横} に なっ て いる。
+      - 本 が {横} に なっ ちゃっ た。
+      - 本 が {横} に なっ た よ。
+      - この 本 {横} に なっ てる ね。
+      - 教科 書 が {横} に なっ て いる。
+    english_literally: Book is side becoming is.
+    competing_grammar:
+      - competing_japanese:
+          - 本 が {縦} に なっ て い ます。
+        english: The book is standing vertically.
+        hint: This describes the book's orientation as vertical, not horizontal. We're looking for the
+          book being on its side.
+      - competing_japanese:
+          - 本 が {開い て い ます}。
+        english: The book is open.
+        hint: This describes the state of the book being open, not its orientation. We're looking for
+          the book being on its side.
+    scene: You find a book left open on the floor.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This usage of 「横」 describes the book's **orientation**, specifically that it is lying horizontally,
+      not standing upright. The phrase 「横になる」 means to lie down or become horizontal.
+  - english: Can you cut this paper horizontally?
+    japanese:
+      - この 紙 を {横} に 切っ て くれ ませ ん か。
+      - この 紙 を {横} に 切っ て もらえ ます か。
+      - この 紙 を {横} に 切っ て ほしい ん です が。
+      - この 紙 を {横} に 切っ て ください。
+      - ねえ、この 紙、{横} に 切れる？
+      - この 紙、{横} に 切っ て くれる？
+    english_literally: This paper horizontally cut please give me?
+    competing_grammar:
+      - competing_japanese:
+          - この 紙 を {縦} に 切っ て くれ ませ ん か。
+        english: Can you cut this paper vertically?
+        hint: This describes cutting vertically, not horizontally. We're asking for a horizontal cut.
+      - competing_japanese:
+          - この 紙 を {半分} に 切っ て くれ ませ ん か。
+        english: Can you cut this paper in half?
+        hint: This describes cutting in half, not specifically horizontally. We're asking for a horizontal
+          cut.
+    scene: You are working on a craft project with a friend and need help with a specific cut.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    nuance: 「横に切る」 (yoko ni kiru) specifically instructs to cut along the horizontal dimension, emphasizing
+      the direction of the cut. This is a common and precise use of 「横」 for orientation in actions. The
+      polite request form 「～てくれませんか」 is suitable for asking for a favor.
+  - english: He passed by my side.
+    japanese:
+      - 彼 は 私 の {横} を 通り過ぎ た。
+      - 彼 は 私 の {横} を 通り過ぎ まし た。
+      - 彼 は 私 の {横} を すっ と 通り過ぎ た。
+      - 彼、私 の {横} 通り過ぎ た。
+      - 彼 は 俺 の {横} で 通り過ぎ た ぜ。
+      - 彼 は 私 の {横} を 通り過ぎ て いっ た。
+      - 私 の {横} を 彼 が 通り過ぎ た。
+      - 彼 は 私 の {横} を 通り過ぎ て いき まし た。
+      - 彼 は 私 の {横} を さっ と 通り過ぎ た。
+      - 彼 は 私 の {横} を 通過 し た。
+      - 私 の {横} を 通り過ぎ まし た。
+      - 彼 は 私 の {横} を 通り過ぎ て 行き まし た。
+      - 私 の {横} を 通り過ぎ て いっ た よ。
+      - 彼 は {横} を 走り去っ た。
+      - 私 の {横} を 彼 が 駆け抜け た。
+      - 彼 は 私 の {横} を 静か に 通り過ぎ て いっ た。
+    english_literally: He my side passed through.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 の {隣} を 通り過ぎ た。
+        english: He passed through right next to me.
+        hint: 「隣」 (tonari) implies sharing a direct boundary, which is less fitting for a movement 'passing
+          by'. 「横」 (yoko) captures the sense of moving along one's side or horizontally past them.
+      - competing_japanese:
+          - 彼 は 私 の {そば} を 通り過ぎ た。
+        english: He passed near me.
+        hint: 「そば」 implies passing within one's general proximity, not specifically along one's immediate
+          side. We're focusing on the side-by-side motion.
+      - competing_japanese:
+          - 彼 は 私 の {近く} を 通り過ぎ た。
+        english: He passed close to me.
+        hint: 「近く」 indicates general closeness, not the specific act of moving along one's side. We're
+          focusing on the side-by-side motion.
+    scene: You are standing still, and someone walks past you.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「横」 (yoko) is used here to describe the motion of passing along the 'side' of the speaker.
+      It denotes movement in a horizontal plane relative to the speaker, rather than implying the passerby
+      was *immediately adjacent* and sharing a boundary (which is what 「隣」 would suggest, and is awkward
+      for passing motion). Adding 「すっと」 emphasizes the smooth, quick manner of passing.
+  - english: There's a river flowing along the side of the village.
+    japanese:
+      - 村 の {横} を 川 が 流れ て いる。
+      - 村 の {横} を 川 が 流れ て い ます。
+      - 村 の {横} を 川 が 流れ て いる ん だ。
+      - 村 の {横} を 川 が 流れ て いる よ。
+      - 村 の {横} に 川 が 流れ て いる。
+      - この 村 の {横} に は 美しい 川 が 流れ て いる。
+    english_literally: Village's side, river flows.
+    competing_grammar:
+      - competing_japanese:
+          - 村 の {そば} を 川 が 流れ て いる。
+        english: A river flows near the village.
+        hint: 「そば」 indicates general closeness, not necessarily specifically along its side. We're describing
+          the river's position specifically to the side of the village.
+      - competing_japanese:
+          - 村 の {近く} を 川 が 流れ て いる。
+        english: A river flows close to the village.
+        hint: 「近く」 implies a broader area, not a specific position directly to the side. We're describing
+          the river's position specifically to the side of the village.
+      - competing_japanese:
+          - 村 の {中} を 川 が 流れ て いる。
+        english: A river flows through the village.
+        hint: This implies the river passes *through* the village, not just along its side. We're describing
+          the river's position specifically to the side of the village.
+    scene: You are describing the geography of a village.
+    register: teineigo (polite)
+    setting: informative
+    nuance: Using 「横」 (yoko) here precisely places the river alongside the village without implying it's
+      an immediate, continuous boundary like 「隣」 might suggest for buildings. It conveys the general 'beside'
+      aspect.
+  - english: There's a window to the side of the TV.
+    japanese:
+      - テレビ の {横} に 窓 が ある。
+      - テレビ の {横} に 窓 が あり ます。
+      - テレビ の {横} に 窓 が ある ん だ。
+      - テレビ の {横} に 窓 ある よ。
+      - テレビ の {横} に 窓 が ござい ます。
+      - テレビ の {横} に コンビニエンス ストア が あり ます。
+      - テレビ の {横} に 窓、ある ん だ。
+      - テレビ の {横} に 大きな 窓 が ある。
+      - あの テレビ の {横} に 窓 が ある よ。
+      - テレビ の {横} に 大きな 窓 が ござい ます。
+      - テレビ の {横} に 窓 が 設け られ て いる。
+    english_literally: TV's side at window exists.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ の {隣} に 窓 が ある。
+        english: There's a window immediately next to the TV.
+        hint: While a window can be next to a TV, 「隣」 is often used for objects of the *same type* or
+          those sharing a defined 'boundary' in a series. 「横」 is more suitable for general positioning
+          'beside' something like a TV.
+      - competing_japanese:
+          - テレビ の {そば} に 窓 が ある。
+        english: There's a window near the TV.
+        hint: 「そば」 indicates general closeness, not specifically to the side of the TV. We're giving directions
+          that specify the side.
+      - competing_japanese:
+          - テレビ の {近く} に 窓 が ある。
+        english: There's a window close to the TV.
+        hint: 「近く」 indicates the general vicinity, not a specific position like 'to the side'. We're giving
+          directions that specify the side.
+    scene: You are describing the layout of a room to a friend.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「横」 (yoko) is appropriate here as it denotes the general 'side' or 'beside' the TV. A window
+      is not typically considered to be 'next door' or 'sharing a boundary' with a TV in the way buildings
+      or seats might. It's simply positioned to its side.
+  - english: My father is sleeping beside me.
+    japanese:
+      - 父 は 私 の {横} で 寝 て いる。
+      - 父 は 私 の {横} で 寝 て い ます。
+      - お 父 さん、私 の {横} で 寝 てる。
+      - 親父 が 俺 の {横} で 寝 てる。
+      - 私 の {横} で 父 が 寝 てる。
+      - うち の 父 が 私 の {横} で 寝 てる ん だ。
+      - お 父 さん が 私 の {横} で 眠っ て い ます。
+      - 私 の {横} で お 父 さん が 寝 て い まし た。
+      - お 父 さん、俺 の {横} に いる よ。
+      - 父 が 私 の {横} で お 休み に なっ て い ます。
+      - 私 の {横} で 父 は 眠っ て いる。
+      - 私 の {横} で 静か に 寝 て いる。
+      - 彼 は 私 の {横} で ぐっすり 寝 て いる。
+      - パパ が 私 の {横} で 寝 てる。
+      - 親父 が 私 の {横} で いびき を かい て 寝 て いる。
+    english_literally: Father my side sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 父 は 私 の {隣} で 寝 て いる。
+        english: My father is sleeping immediately next to me.
+        hint: While 「隣」 (tonari) could also mean sleeping next to someone, 「横」 is often used when both
+          people are lying down side-by-side, such as in the same bed or on a futon, emphasizing the horizontal
+          alignment. 「隣」 might imply separate beds right next to each other.
+      - competing_japanese:
+          - 父 は 私 の {そば} で 寝 て いる。
+        english: My father is sleeping near me.
+        hint: 「そば」 suggests general closeness, not necessarily lying horizontally beside you in the same
+          bed or futon. We're emphasizing the side-by-side sleeping position.
+      - competing_japanese:
+          - 父 は 私 の {近く} で 寝 て いる。
+        english: My father is sleeping close to me.
+        hint: 「近く」 indicates general proximity, not specifically the side-by-side horizontal alignment.
+          We're emphasizing the side-by-side sleeping position.
+    scene: You wake up and notice your father sleeping near you.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    speaker_age: younger
+    nuance: When two people are lying down, 「横」 (yoko) is often used to convey 'side by side' or 'horizontally
+      beside', especially in the context of sleeping in the same bed or on adjacent futons. It emphasizes
+      the side-to-side orientation. 「隣」 could imply separate sleeping surfaces that are immediately adjacent.
+      The use of 「お父さん」 and the contracted verb form 「寝てる」 indicate a casual and intimate relationship,
+      typical of a younger female speaker.
+  - english: There are cherry trees planted along the side of the road.
+    japanese:
+      - 道 の {横} に 桜 の 木 が 植え られ て いる。
+      - 道 の {横} に 桜 の 木 が 植え られ て い ます。
+      - 道 の {横} に 桜 並木 が ある よ。
+      - 道 の {横} に 桜 の 木 が たくさん 植え られ て いる。
+      - 道 の {横} に は 桜 が 満開 だ。
+      - この 道 の {横} に 桜 の 木 が きれい に 植え られ て いる。
+    english_literally: Road's side at cherry trees are planted.
+    competing_grammar:
+      - competing_japanese:
+          - 道 {沿い} に 桜 の 木 が 植え られ て いる。
+        english: Cherry trees are planted along the road.
+        hint: 「沿い」 (zoi) implies following a line or edge, similar to 'along'. While correct, 「横」 focuses
+          more on the position 'to the side' of the road. We're looking for the general position beside
+          the road.
+      - competing_japanese:
+          - 道 の {そば} に 桜 の 木 が 植え られ て いる。
+        english: Cherry trees are planted near the road.
+        hint: 「そば」 indicates general closeness, not necessarily specifically along its side. We're describing
+          the trees' position specifically to the side of the road.
+      - competing_japanese:
+          - 道 の {近く} に 桜 の 木 が 植え られ て いる。
+        english: Cherry trees are planted close to the road.
+        hint: 「近く」 implies a broader area, not a specific position directly to the side. We're describing
+          the trees' position specifically to the side of the road.
+    scene: You are describing a scenic route during spring.
+    register: teineigo (polite)
+    setting: informative
+    nuance: Using 「横」 (yoko) here positions the cherry trees to the side of the road, suggesting a parallel
+      arrangement without implying immediate contact or a continuous line like 「沿い」 (zoi) might. It's
+      a natural way to describe objects situated alongside a path.
+  - english: There's a convenience store next to that building.
+    japanese:
+      - あの ビル の {横} に コンビニ が ある よ。
+      - あの ビル の {横} に コンビニ が あり ます よ。
+      - あの ビル の {横}、コンビニ。
+      - あの ビル の {横} に コンビニ ある。
+      - あの ビル の {横} に コンビニ が あり ます。
+      - あの ビル の {横} に コンビニエンス ストア が あり ます。
+      - あの ビル の {横} だ よ、コンビニ。
+      - あの ビル の {横} に コンビニエンス ストア が ござい ます。
+      - あの ビル の {横} に コンビニ が ござい ます から。
+      - あの ビル の {横} に コンビニ が ある じゃん。
+      - あの ビル の {横} の 道 を 進む と コンビニ が ある。
+      - あの ビル の {横} に 新しい コンビニ が でき た ん だ。
+      - あの ビル の {横} に は コンビニ が ある ん です。
+      - あの ビル の {横} 手 に コンビニ が ある。
+    english_literally: That building's side at convenience store exists you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの ビル の {隣} に コンビニ が ある よ。
+        english: There's a convenience store immediately next door to that building.
+        hint: While 「隣」 is often used for adjacent buildings, 「横」 can also be used, especially if the
+          convenience store isn't *directly* sharing a wall or might be slightly set back but still 'on
+          the side' of the building. 「横」 is more flexible for general 'beside' a large structure like
+          a building.
+      - competing_japanese:
+          - あの ビル の {そば} に コンビニ が ある よ。
+        english: There's a convenience store near that building.
+        hint: 「そば」 indicates general closeness, not specifically to the side of the TV. We're giving directions
+          that specify the side.
+      - competing_japanese:
+          - あの ビル の {近く} に コンビニ が ある よ。
+        english: There's a convenience store close to that building.
+        hint: 「近く」 indicates the general vicinity, not a specific position like 'to the side'. We're giving
+          directions that specify the side.
+    scene: You are giving directions to a friend on the street.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: Here, 「横」 (yoko) is used casually to indicate general proximity 'to the side' of the building.
+      While 「隣」 (tonari) could also be used if the store is truly next door, 「横」 allows for a slight offset
+      or general area, making it a flexible choice for giving directions. The sentence-final particle
+      「よ」 adds emphasis and makes it sound more assertive and friendly, often used by male speakers. The
+      very casual 「あの ビル の 横、コンビニ。」 is a concise way to give directions, typical of younger speakers.
+  - english: The dog is sleeping by the side of the sofa.
+    japanese:
+      - ソファ の {横} で 犬 が 寝 て いる。
+      - ソファ の {横} で 犬 が 寝 て い ます。
+      - ソファ の {横} で 犬 が 寝 てる よ。
+      - ソファ の {横} で ワン ちゃん が 寝 て ます。
+      - ソファ の {横} で 犬 が ぐっすり 寝 て いる。
+      - うち の 犬 が ソファ の {横} で 寝 てる ん だ。
+      - ソファ の {横} で ワンコ が スヤスヤ 寝 て ます よ。
+      - ソファ の {横} で イヌ が 寝 とる。
+    english_literally: Sofa's side at dog sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - ソファ の {隣} で 犬 が 寝 て いる。
+        english: The dog is sleeping immediately next to the sofa.
+        hint: While 「隣」 (tonari) can mean 'next to', 「横」 (yoko) is more appropriate when describing something
+          like a pet lying generally 'by the side' of an object, not necessarily sharing a direct boundary
+          or being in a strictly aligned position. We're looking for the general 'beside'.
+      - competing_japanese:
+          - ソファ の {そば} で 犬 が 寝 て いる。
+        english: The dog is sleeping near the sofa.
+        hint: 「そば」 indicates general closeness, not specifically 'by the side' in a horizontal sense.
+          We're describing its position directly to the side.
+      - competing_japanese:
+          - ソファ の {近く} で 犬 が 寝 て いる。
+        english: The dog is sleeping close to the sofa.
+        hint: 「近く」 implies a broader area, not a specific position directly to the side. We're describing
+          its position directly to the side.
+    scene: You come home and see your pet dog napping in the living room.
+    register: casual
+    setting: intimate
+    nuance: 「横」 (yoko) is fitting here as it describes the dog's position generally 'by the side' of the
+      sofa, rather than strictly 'next to' it as if sharing a defined space (like two people on a couch).
+      The casual tone and use of 「寝てる」 are natural for talking about a pet in an intimate home setting.
+      The variant using 「ワンちゃん」 or 「ワンコ」 is a common affectionate term for dogs.
+  - english: The car was damaged on the side.
+    japanese:
+      - 車 の {横} が 傷つい た。
+      - 車 の {横} が 傷つき まし た。
+      - 車 の {横} が 傷ん でる。
+      - 車 の {横} に 傷 が 入っ た よ。
+      - 車 の {横} が へこん だ。
+      - 車 の {横} が ダメージ を 受け た。
+      - 車 の {横} が ちょっと 傷ん でる。
+      - 車 の {横} が 擦れ た ん だ。
+      - 車 の {横} に 擦り傷 が ある。
+    english_literally: Car's side was scratched.
+    competing_grammar:
+      - competing_japanese:
+          - 車 の {そば} が 傷つい た。
+        english: The area near the car was damaged.
+        hint: 「そば」 refers to the general vicinity, not the actual surface of the car. We're talking about
+          damage *to* the car itself, specifically its side.
+      - competing_japanese:
+          - 車 の {近く} が 傷つい た。
+        english: The area close to the car was damaged.
+        hint: 「近く」 refers to the general vicinity, not the specific part of the car's body. We're talking
+          about damage *to* the car itself, specifically its side.
+      - competing_japanese:
+          - 車 の {側面} が 傷つい た。
+        english: The side surface of the car was damaged.
+        hint: 「側面」 is a more technical or formal term for 'side surface'. While correct, 「横」 is the more
+          common and natural way to refer to the side of a vehicle in everyday conversation. We're looking
+          for the everyday term.
+    scene: You are inspecting your car after a minor accident or scrape.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: This example uses 「横」 (yoko) to refer to the physical 'side' of the car, specifically the
+      body panel, which is a common usage. This distinguishes it from simply being 'next to' the car.
+      The casual forms like 「傷ついた」 and 「へこん だ」 are typical for discussing such incidents informally, common
+      among male speakers.
+post_example_writeup: As these examples demonstrate, 「横」 is used for describing general positions 'to
+  the side' of something, the physical 'side' of an object, or a horizontal orientation. It is distinct
+  from the more specific 'immediately next to' implied by 「隣」, or the more general 'near' of 「そば」 and
+  「近く」. Understanding these distinctions will greatly enhance your ability to communicate spatial relationships
+  accurately and naturally in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/横-隣-adjacency-spatial

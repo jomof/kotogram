@@ -1,0 +1,228 @@
+grammar_point: ないといけない (must do・have to)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[ておく・とく] (preparation・advance action)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - ~なければならない・なきゃ (must do・have to)
+  - あげる・やる (to give, outward)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - のを (direct object nominalizer)
+  - までに (by the time)
+  - 背面 (back surface spatial)
+meaning: must do; have to
+pronunciation:
+  katakana: ナイ ト イケナイ
+  romaji: nai to ikenai
+formation:
+  Verb[ない form] + と + いけない: Indicates an obligation or necessity to do something.
+jlpt: N4
+etymology: The phrase combines the negative form of a verb with the particle 「と」 (meaning 'if' or 'when')
+  and 「いけない」, which is the negative form of 「いける」 (to be acceptable, to be good). Literally, it means
+  'if one does not do X, it is not good/acceptable,' which evolved to imply 'one must do X.'
+writeup: The expression 「ないといけない」 is used to convey a sense of obligation or necessity. It literally means
+  "if one does not do X, it is not good." This phrasing emphasizes that a certain action is required or
+  expected. It is a common and versatile way to express "must" or "have to" in Japanese, frequently used
+  in daily conversations. While it is generally casual, its usage can vary depending on the specific context
+  and the verb it's attached to. It often implies a personal or commonly understood necessity, rather
+  than a strict rule or law.
+false_friends:
+  - term: 〜なければならない
+    meaning: must do; have to
+    kind: similar expression
+    nuance: While often interchangeable, 「ないといけない」 tends to convey a personal or commonly understood obligation,
+      whereas 「なければならない」 can feel more formal or convey an external rule or strong necessity.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: 〜なくてはいけない
+    meaning: must do; have to
+    kind: similar expression
+    nuance: 「ないといけない」 and 「なくてはいけない」 are virtually identical in meaning and usage, with the latter often
+      being a slightly more emphatic or formal phrasing of the same necessity.
+    grammar_point: ~なくてはいけない・なくちゃ (must do・have to)
+  - term: 〜てもいい
+    meaning: it's okay to do
+    kind: antonym
+    nuance: 「ないといけない」 expresses obligation ('must do'), while 「てもいい」 expresses permission ('it's okay
+      to do'), making them conceptual opposites.
+    grammar_point: <suggest>:Verb[て]+もいい (permission)
+  - term: 〜てはいけない
+    meaning: must not do
+    kind: antonym
+    nuance: 「ないといけない」 states what one 'must do', while 「てはいけない」 states what one 'must not do' or is prohibited
+      from doing.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: Understanding the subtle differences and relationships between 「ないといけない」 and
+  similar expressions is key. While 「〜なければならない」 and 「〜なくてはいけない」 often function identically in conveying
+  obligation, the former can sometimes carry a slightly more formal or external sense of compulsion. Conversely,
+  expressions like 「〜てもいい」 and 「〜てはいけない」 represent the opposite poles of permission and prohibition, respectively,
+  serving as critical counterparts to the concept of necessity conveyed by 「ないといけない」.
+examples:
+  - english: I have to study for tomorrow's test.
+    japanese:
+      - 明日 の テスト の ため に、勉強 {し ない と いけ ない}。
+      - 明日 の テスト の ため に、勉強 {し ない と いけ ませ ん}。
+      - 明日 の テスト の ため に、勉強 {し ない と}。
+      - 明日 の テスト の ため に、勉強 {し なきゃ}。
+    english_literally: Tomorrow's test's sake for, study must do.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の テスト の ため に、勉強 し なけれ ば なら ない。
+        english: I must study for tomorrow's test.
+        hint: Both mean 'must', but 「なければならない」 is often perceived as slightly more formal or direct, sometimes
+          implying an external rule, while 「ないといけない」 often feels more like a personal obligation. We're
+          looking for the one that sounds like a personal 'have to'.
+    scene: A student talking to a friend about their plans.
+    register: casual
+    setting: academic
+  - english: I have to submit this report by Friday.
+    japanese:
+      - この レポート は 金曜 日 まで に 提出 {し ない と いけ ませ ん}。
+      - この レポート は 金曜 日 まで に 提出 {し ない と いけ ない}。
+    english_literally: This report, Friday by, submission must do.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は 金曜 日 まで に 提出 する 必要 が あり ます。
+        english: It is necessary to submit this report by Friday.
+        hint: 「〜する必要がある」 also expresses necessity but is more formal and objective. We're looking for
+          a slightly more direct 'have to'.
+    scene: An office worker discussing deadlines with a colleague.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I need to call my parents.
+    japanese:
+      - 両親 に 電話 {し ない と いけ ない}。
+      - 両親 に 電話 {し ない と いけ ませ ん}。
+      - 両親 に 電話 {し ない と}。
+      - 両親 に 電話 {し なきゃ}。
+    english_literally: Parents to phone must do.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 に 電話 する べき だ。
+        english: I should call my parents.
+        hint: 「〜べきだ」 implies a strong recommendation or moral obligation. We're looking for a simpler
+          'have to'.
+    scene: Someone realizing they haven't contacted family in a while.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The casual tone and the personal nature of calling parents make 「電話しないといけない」 a natural choice.
+      While not exclusively female speech, it fits a softer, more reflective female speaker.
+  - english: I have to clean my room before my friends come over.
+    japanese:
+      - 友達 が 来る 前 に、部屋 を 掃除 {し ない と いけ ない}。
+      - 友達 が 来る 前 に、部屋 を 掃除 {し ない と}。
+      - 友達 が 来る 前 に、部屋 を 掃除 {し なきゃ}。
+    english_literally: Friends coming before, room object marker cleaning must do.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 来る 前 に、部屋 を 掃除 し なきゃ。
+        english: I gotta clean my room.
+        hint: 「〜しなきゃ」 is a very casual contraction. We're looking for the slightly less contracted, but
+          still casual, form.
+    scene: A teenager talking to themselves about household chores.
+    register: casual
+    setting: casual slang
+    listener_gender: no one
+  - english: If I don't apologize soon, it'll get worse.
+    japanese:
+      - 早く 謝罪 {し ない と いけ ない}、そう し ない と もっと 悪く なる。
+      - 早く 謝罪 {し ない と いけ ませ ん}、そう し ない と もっと 悪く なり ます。
+    english_literally: Quickly apology must do, if don't do that more worse become.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 謝罪 し ない と ダメ だ。
+        english: If I don't apologize quickly, it's no good.
+        hint: 「〜とダメだ」 is a stronger, more blunt way of saying something is 'not good' if not done. We're
+          looking for the more common and slightly softer 'must do'.
+    scene: Someone feeling guilty and deciding to apologize.
+    register: casual
+    setting: serious
+  - english: You really have to try this ramen; it's so good!
+    japanese:
+      - この ラーメン は 絶対 に {食べ ない と いけ ない} よ、すごく おいしい から！
+      - この ラーメン は 絶対 に {食べ ない と いけ ませ ん} よ、すごく おいしい です から！
+      - この ラーメン は 絶対 に {食べ ない と} よ、すごく おいしい から！
+      - この ラーメン は 絶対 に {食べ なきゃ} よ、すごく おいしい から！
+    english_literally: This ramen absolutely must eat, very delicious because!
+    competing_grammar:
+      - competing_japanese:
+          - この ラーメン は 絶対 に 食べる べき だ よ、すごく おいしい から！
+        english: You absolutely should eat this ramen; it's so good!
+        hint: 「〜べきだ」 implies a stronger recommendation based on what's proper or right. We're looking
+          for a personal 'have to' recommendation.
+    scene: Recommending a delicious dish to a friend.
+    register: casual
+    setting: friendly
+  - english: We have to discuss the budget for next quarter.
+    japanese:
+      - 次 の 四半 期 の 予算 に つい て 話し合わ {ない と いけ ませ ん}。
+      - 次 の 四半 期 の 予算 に つい て 話し合わ {し ない と いけ ない}。
+    english_literally: Next quarter's budget about discuss must do.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 四半 期 の 予算 に つい て 話し合う 必要 が あり ます。
+        english: It is necessary to discuss the budget for next quarter.
+        hint: 「〜必要がある」 is more detached and objective. We're looking for an expression that suggests a
+          collective obligation.
+    scene: A team leader talking to their team.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I have to remember to buy milk on the way home.
+    japanese:
+      - 帰り道 で 牛乳 を 買う の を 忘れ {ない と いけ ない}。
+      - 帰り道 で 牛乳 を 買う の を 忘れ {ない と いけ ませ ん}。
+      - 帰り道 で 牛乳 を 買う の を 忘れ {ない と}。
+      - 帰り道 で 牛乳 を 買う の を 忘れ {なきゃ}。
+    english_literally: Way home at milk buying of to not forget must do.
+    competing_grammar:
+      - competing_japanese:
+          - 帰り道 で 牛乳 を 買う の を 忘れ ちゃ いけ ない。
+        english: I mustn't forget to buy milk on the way home.
+        hint: 「〜ちゃいけない」 is a more direct prohibition, often used for rules or strong warnings. We're looking
+          for a personal necessity.
+    scene: Someone reminding themselves of a chore.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: One must not forget gratitude.
+    japanese:
+      - 感謝 を 忘れ {ない と いけ ない}。
+      - 感謝 を 忘れ {ない と いけ ませ ん}。
+    english_literally: Gratitude to forget must not do.
+    competing_grammar:
+      - competing_japanese:
+          - 感謝 を 忘れ て は いけ ない。
+        english: One must not forget gratitude.
+        hint: 「〜てはいけない」 is a stronger, more direct prohibition. We're looking for a slightly softer, more
+          commonly expressed 'must not'.
+    scene: A mentor giving advice to a younger person.
+    register: casual
+    setting: inspirational
+    speaker_age: older
+  - english: It's getting late, so I really have to go home.
+    japanese:
+      - もう 遅い から、本当 に 帰ら {ない と いけ ない}。
+      - もう 遅い から、本当 に 帰ら {ない と いけ ませ ん}。
+      - もう 遅い から、本当 に 帰ら {ない と}。
+      - もう 遅い から、本当 に 帰ら {なきゃ}。
+    english_literally: Already late because, truly return must do.
+    competing_grammar:
+      - competing_japanese:
+          - もう 遅い から、本当 に 帰る べき だ。
+        english: It's getting late, so I really should go home.
+        hint: 「〜べきだ」 implies a stronger sense of moral correctness. We're looking for a simpler 'have
+          to go'.
+    scene: A person at a gathering signaling they need to leave.
+    register: casual
+    setting: friendly
+post_example_writeup: The usage of 「ないといけない」 effectively communicates necessity or obligation in a natural
+  and commonly understood way. Its flexibility allows it to be used across various situations, from personal
+  reflections to formal announcements, by adjusting the verb's negative form and politeness level of 「いけない」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/gp0244

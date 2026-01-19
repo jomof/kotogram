@@ -1,0 +1,263 @@
+grammar_point: 知る (to know or find out)
+matcher: |-
+  ⌈ˢ知~ᵖv:~ᵇ知る~⌉
+learn_before:
+  - が (subject marker)
+meaning: to know or to find out
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 知る
+    rarity: common
+    meaning: to know, to find out
+  - conjugation-type: non-past polite (～ます)
+    form: 知ります
+    rarity: common
+    meaning: to know, to find out (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 知らない
+    rarity: common
+    meaning: do not know, do not find out
+  - conjugation-type: negative non-past polite (～ません)
+    form: 知りません
+    rarity: common
+    meaning: do not know, do not find out (polite)
+  - conjugation-type: past plain (～た)
+    form: 知った
+    rarity: common
+    meaning: knew, found out
+  - conjugation-type: past polite (～ました)
+    form: 知りました
+    rarity: common
+    meaning: knew, found out (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 知らなかった
+    rarity: common
+    meaning: did not know, did not find out
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 知りませんでした
+    rarity: common
+    meaning: did not know, did not find out (polite)
+  - conjugation-type: te-form (～て)
+    form: 知って
+    rarity: common
+    meaning: knowing, having found out
+  - conjugation-type: progressive (～ている)
+    form: 知っている
+    rarity: common
+    meaning: to know (state of knowing)
+  - conjugation-type: potential (～られる/～える)
+    form: 知れる
+    rarity: common
+    meaning: can know, can find out
+  - conjugation-type: causative (～させる)
+    form: 知らせる
+    rarity: common
+    meaning: to inform, to let know
+  - conjugation-type: passive (～られる/～かれる)
+    form: 知られる
+    rarity: common
+    meaning: to be known, to become known
+pronunciation:
+  katakana: シル
+  romaji: shiru
+formation:
+  Verb[dictionary form]: Indicates the base form of the verb 'to know' or 'to find out'.
+  Verb[ている形]: Used to express the state of 'knowing' or 'being aware'.
+jlpt: N5
+etymology: The verb 知る (shiru) has ancient roots, and its original meaning encompassed both 'to know'
+  and 'to perceive.' Over time, while its core meaning of 'to know' has remained, it also acquired the
+  nuance of 'to find out' or 'to learn' through experience or discovery. This dual nature reflects how
+  knowledge is acquired and possessed, and the dynamic process of becoming aware.
+writeup: |-
+  知る (shiru) is a fundamental Japanese verb meaning "to know" or "to find out." It is used to express that one has acquired information, is aware of a fact, or has learned something. Unlike 分かる (wakaru), which often implies understanding or comprehension, 知る (shiru) focuses more on the possession or acquisition of information itself. For instance, you might 知る a person's name (you know their name), but 分かる their feelings (you understand their feelings).
+
+  When used to mean "to know," it typically refers to knowledge of facts, people, places, or skills. When it means "to find out," it suggests the discovery or learning of new information. The plain past form 知った (shitta) is frequently used in this sense, indicating the moment of discovery.
+
+  The verb 知る (shiru) can be used with various particles depending on the context. For knowing a fact or specific information, を (o) is common, e.g., その事実を{知っています}か (Do you know that fact?). For knowing a person or place, を (o) or に (ni) can be used, though を (o) is more common for direct knowledge. When referring to the result of an action, such as 'learning about something,' に (ni) might be used with a nominalized clause, e.g., 彼の計画について{知った} (I found out about his plan).
+false_friends:
+  - term: 分かる
+    meaning: to understand, to comprehend
+    kind: often confused with
+    nuance: While 知る is about possessing information or fact, 分かる is about grasping the meaning, concept,
+      or being able to follow. You can 知る (know) a word but not 分かる (understand) its usage.
+    grammar_point: 分かる (understand and know)
+  - term: 学ぶ
+    meaning: to learn, to study
+    kind: similar expression
+    nuance: 学ぶ emphasizes the process of acquiring knowledge or skills through study or experience, often
+      over a period of time. 知る can be a more immediate acquisition of a fact or an existing state of
+      knowledge, without the implication of a learning process.
+    grammar_point: <suggest>:学ぶ (to learn or study)
+  - term: 覚える
+    meaning: to memorize, to remember
+    kind: often confused with
+    nuance: 覚える focuses on committing information to memory or recalling it, whereas 知る is about having
+      the information or discovering it. You might 覚える (memorize) a phone number, but then 知る (know/have)
+      that number after memorizing it.
+    grammar_point: <suggest>:覚える (to memorize or remember)
+post_false_friends_writeup: |-
+  When distinguishing 知る from 分かる, remember that 知る relates to factual knowledge or awareness, while 分かる is about comprehension and understanding. For example, あなたの名前を{知っています} (I know your name) uses 知る, but 彼の気持ちが{分かります} (I understand his feelings) uses 分かる.
+
+  Compared to 学ぶ, 知る is less about the process of learning and more about the outcome of possessing information. 学ぶ implies a deliberate effort to acquire knowledge or a skill. Similarly, 覚える is specifically about committing something to memory. You might 覚える (memorize) a phrase, and through that act, you come to 知る (know) its meaning.
+examples:
+  - english: I know that.
+    japanese:
+      - それ を {知っ て い ます}。
+      - それ を {知っ てる}。
+    english_literally: That I know (state of knowing).
+    competing_grammar:
+      - competing_japanese:
+          - それ が {分かり ます}。
+        english: I understand that.
+        hint: 「分かる」means to understand or comprehend. We're looking for an expression that indicates you
+          possess factual information.
+    scene: You are confirming your awareness of a fact.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: progressive (～ている)
+  - english: Do you know that person?
+    japanese:
+      - あの 人 を {知っ て い ます} か。
+      - あの 人 {知っ てる}？
+    english_literally: That person I know (state of knowing)?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 が {分かり ます} か。
+        english: Do you understand that person?
+        hint: 「分かる」means to understand or comprehend a person's character or feelings. We're asking if
+          you are acquainted with them.
+    scene: You are asking if someone is acquainted with a particular individual.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: progressive (～ている)
+  - english: I found out a new method.
+    japanese:
+      - 新しい 方法 を {知り まし た}。
+      - 新しい 方法 を {知っ た}。
+    english_literally: New method I found out.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 方法 を {学び まし た}。
+        english: I learned a new method.
+        hint: 「学ぶ」implies a process of studying or training. We're focusing on the discovery of the method.
+    scene: You have recently discovered or become aware of a new way to do something.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: I don't know his name.
+    japanese:
+      - 彼 の 名前 を {知ら ない}。
+      - 彼 の 名前 を {知り ませ ん}。
+    english_literally: His name I don't know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 名前 が {分から ない}。
+        english: I don't understand his name (e.g., how it's pronounced).
+        hint: 「分からない」implies a lack of comprehension or inability to make sense of something. We're simply
+          stating a lack of knowledge of a fact.
+    scene: You are casually stating your lack of knowledge about someone's name.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: You should know this.
+    japanese:
+      - これ ぐらい は {知る べき} だ。
+      - これ ぐらい は {知る べき} です。
+    english_literally: About this much, should know.
+    competing_grammar:
+      - competing_japanese:
+          - これ ぐらい は {分かる べき} だ。
+        english: You should understand this much.
+        hint: 「分かる」implies understanding. Here, we're talking about possessing a basic piece of information
+          that one is expected to have.
+    scene: A teacher admonishes a student about a basic piece of knowledge.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「知るべきだ」emphasizes a moral or practical obligation to be aware of a fact. It's a
+      direct statement of what is expected.
+    etymology: The suffix 「べき」comes from classical Japanese and indicates obligation or appropriateness.
+  - english: It became known that he lied.
+    japanese:
+      - 彼 が 嘘 を つい た こと が {知ら れ まし た}。
+      - 彼 が 嘘 を つい た こと が {知ら れ た}。
+    english_literally: He lied fact became known.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 嘘 を つい た こと が {明らか に なり まし た}。
+        english: It became clear that he lied.
+        hint: 「明らかになる」means to become clear or obvious. While similar, 「知られる」specifically refers to something
+          becoming known to people.
+    scene: News spreads about someone's dishonesty.
+    register: formal
+    setting: serious
+    conjugation: passive (～られる/～かれる)
+  - english: I want to know more about Japanese culture.
+    japanese:
+      - 日本 の 文化 に つい て もっと {知り たい} です。
+      - 日本 の 文化 に つい て もっと {知り たい}。
+    english_literally: Japan's culture about more want to know.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 文化 に つい て もっと {学び たい} です。
+        english: I want to learn more about Japanese culture.
+        hint: 「学びたい」implies a desire for an active learning process. 「知りたい」is about the desire to gain
+          the knowledge itself.
+    scene: A student expresses their curiosity and desire to gain knowledge.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: desiderative (～たい)
+  - english: I didn't know you could speak Japanese!
+    japanese:
+      - 日本 語 が 話せる って {知ら なかっ た}！
+      - 日本 語 が 話せる って {知り ませ ん でし た}！
+    english_literally: Japanese can speak (casual quote) didn't know!
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 話せる って {気づか なかっ た}！
+        english: I didn't notice you could speak Japanese!
+        hint: 「気づく」means to notice or realize. While often interchangeable in such contexts, 「知らなかった」emphasizes
+          the previous lack of knowledge.
+    scene: You are surprised to discover a friend's ability.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: The exclamation mark and casual 「って」indicate surprise and informality. 「知らなかった」here implies
+      a recent discovery of a fact previously unknown.
+  - english: I didn't know such a thing existed.
+    japanese:
+      - そんな もの が ある なんて {知り ませ ん でし た}。
+      - そんな もの が ある なんて {知ら なかっ た}。
+    english_literally: Such a thing exists (exclamatory) didn't know (polite).
+    competing_grammar:
+      - competing_japanese:
+          - そんな もの が ある なんて {思い ませ ん でし た}。
+        english: I didn't think such a thing existed.
+        hint: 「思わなかった」means 'didn't think.' Here, the emphasis is on not having the knowledge, not on
+          a thought process.
+    scene: Someone expresses surprise at the existence of something previously unknown to them, in a polite
+      setting.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: negative past polite (～ませんでした)
+  - english: Please let me know if you know anything.
+    japanese:
+      - 何 か {知っ て いる} こと が あっ たら、教え て ください。
+      - 何 か {知っ てる} こと が あっ たら、教え て ください。
+    english_literally: Something knowing (state of) if there is, please tell.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か {分かっ て いる} こと が あっ たら、教え て ください。
+        english: If there's something you understand, please tell me.
+        hint: 「分かっている」refers to something one comprehends. We're asking for any factual information they
+          might possess.
+    scene: A person asks for any information others might have about a situation.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: progressive (～ている)
+post_example_writeup: As seen in the examples, 知る is versatile and can be used in various tenses and forms
+  to express both the act of gaining knowledge and the state of possessing it. Pay close attention to
+  the nuance when choosing between 知る and similar verbs like 分かる, 学ぶ, or 覚える, as each carries a distinct
+  emphasis on the type of knowledge or the process of acquisition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/知る

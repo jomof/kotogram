@@ -1,0 +1,296 @@
+grammar_point: したがって (therefore)
+learn_before:
+  - 単位で (in units of)
+  - 直ちに (immediately)
+meaning: therefore, consequently, accordingly
+pronunciation:
+  katakana: シタガッテ
+  romaji: shitagatte
+formation:
+  「動詞・い形容詞・な形容詞・名詞」の普通形 + 。したがって、 + 「文」: Used as a conjunction between sentences, the first sentence states
+    the cause or reason, and the second sentence states the logical consequence or result.
+  「動詞・い形容詞・な形容詞・名詞」の普通形 + 。したがって + 「文」: This form, without a comma, is also common in formal written Japanese.
+jlpt: N2
+etymology: The conjunction 「したがって」 originates from the verb 「したがう」 (to follow, to comply with). The conjunctive
+  form 「したがって」 literally meant 'following that' or 'in accordance with that.' Over time, this evolved
+  into its current meaning of 'therefore' or 'consequently,' signifying that the subsequent statement
+  logically follows from the preceding one. This etymological root highlights its core function of expressing
+  a direct and reasoned consequence.
+writeup: |-
+  「したがって」 (したがって) is a formal conjunction used to indicate that the subsequent statement is a logical consequence or result of the preceding statement. It functions much like "therefore," "consequently," or "accordingly" in English. This conjunction is typically encountered in formal writing, academic papers, scientific reports, legal documents, and official speeches, making it less common in everyday, casual conversation.
+
+  It expresses a clear cause-and-effect relationship, a deduction, or a conclusion drawn from a premise. The preceding clause provides the reason, premise, or situation, and the following clause states the conclusion, outcome, or necessary action derived from that. Unlike more general causal conjunctions like 「だから」 or 「なので」, 「したがって」 implies a more rigorous and direct logical link, emphasizing the reasoned derivation of the consequence. It is preferred when presenting arguments, explaining findings, or stating formal decisions due to its precise and formal tone.
+false_friends:
+  - term: だから (therefore)
+    meaning: so, therefore, that's why
+    kind: similar expression
+    nuance: 「だから」 is a much more casual and widely used conjunction for expressing reasons and consequences.
+      It can be used in spoken language and less formal writing, unlike the strictly formal 「したがって」. It
+      doesn't necessarily imply a strong logical deduction.
+    grammar_point: だから (so・therefore)
+  - term: それで (so)
+    meaning: so, then, because of that
+    kind: similar expression
+    nuance: 「それで」 indicates a causal relationship or a sequence of events, often leading to a natural
+      or conversational outcome. It's less about logical deduction and more about the flow of events or
+      conversation. It is much more informal than 「したがって」.
+    grammar_point: それで (so・and then)
+  - term: そのため (for that reason)
+    meaning: for that reason, therefore
+    kind: similar expression
+    nuance: 「そのため」 is similar to 「したがって」 in meaning and can be formal, but it puts more emphasis on the
+      'reason' itself rather than the logical 'consequence' or 'deduction'. It's frequently used to explain
+      why something happened or needs to happen, often introducing a purpose or outcome based on a prior
+      statement.
+    grammar_point: <suggest>:「Verb-casual・い-Adj・な-Adjな・Nounの」ため(に) (because of・due to)
+  - term: ゆえに (therefore)
+    meaning: therefore, consequently, hence
+    kind: similar expression
+    nuance: 「ゆえに」 is even more formal and archaic than 「したがって」. It is typically found in highly academic,
+      philosophical, or literary contexts, conveying a strong, almost conclusive logical deduction. It
+      is rarely used in modern everyday Japanese.
+    grammar_point: ゆえに (because・therefore)
+  - term: その結果 (as a result)
+    meaning: as a result, consequently
+    kind: similar expression
+    nuance: 「その結果」 focuses purely on the outcome or consequence of an action or event, without necessarily
+      implying a deep logical deduction. It presents a factual result. While it shares the meaning of
+      'consequently' with 「したがって」, it lacks the formal logical weight.
+    grammar_point: <suggest>:「Verb-た・Nounの」結果 (as a result of)
+post_false_friends_writeup: While 「したがって」, 「だから」, 「それで」, 「そのため」, 「ゆえに」, and 「その結果」 all express a relationship
+  between a preceding event/reason and a following consequence/result, their nuances in formality, logical
+  weight, and common usage differ. 「したがって」 is reserved for formal, logical conclusions, typically in written
+  contexts. 「だから」 and 「それで」 are more casual and conversational, with 「だから」 expressing a direct reason
+  and 「それで」 indicating a sequence or conversational flow. 「そのため」 emphasizes the reason, 「ゆえに」 is highly
+  archaic and formal, and 「その結果」 strictly highlights the outcome.
+examples:
+  - english: The research data clearly shows a correlation. Therefore, we can conclude that the hypothesis
+      is correct.
+    japanese:
+      - 研究 データ は 明らか に 相関 関係 を 示し て いる。したがっ て、我々 は 仮説 が 正しい と 結論 できる。
+      - 研究 データ は 明らか に 相関 関係 を 示し て いる。したがっ て 我々 は 仮説 が 正しい と 結論 できる。
+    english_literally: Research data clearly correlation relationship is showing. Therefore, we hypothesis
+      is correct conclude can.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 データ は 明らか に 相関 関係 を 示し て いる。その ため、我々 は 仮説 が 正しい と 結論 できる。
+        english: The research data clearly shows a correlation. For that reason, we can conclude that
+          the hypothesis is correct.
+        hint: 「そのため」 emphasizes the reason for the conclusion. We're looking for a formal conjunction
+          that signifies a logical consequence.
+      - competing_japanese:
+          - 研究 データ は 明らか に 相関 関係 を 示し て いる。その 結果、我々 は 仮説 が 正しい と 結論 できる。
+        english: The research data clearly shows a correlation. As a result, we can conclude that the
+          hypothesis is correct.
+        hint: 「その結果」 focuses on the factual outcome rather than a logical deduction. We're looking for
+          a formal conjunction that signifies a logical consequence.
+    scene: A scientist presenting findings at an academic conference.
+    register: formal
+    setting: academic
+  - english: Sales targets were not met last quarter. Therefore, a review of our marketing strategy is
+      necessary.
+    japanese:
+      - 先 四半 期 の 販売 目標 は 達成 さ れ なかっ た。したがっ て、マーケティング 戦略 の 見直し が 必要 だ。
+      - 先 四半 期 の 販売 目標 は 達成 さ れ なかっ た。したがっ て マーケティング 戦略 の 見直し が 必要 だ。
+    english_literally: Last quarter's sales targets were not achieved. Therefore, marketing strategy's
+      review is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 先 四半 期 の 販売 目標 は 達成 さ れ なかっ た。その ため、マーケティング 戦略 の 見直し が 必要 だ。
+        english: Sales targets were not met last quarter. For that reason, a review of our marketing strategy
+          is necessary.
+        hint: 「そのため」 emphasizes the reason for the necessity. We're looking for a formal conjunction that
+          signifies a logical consequence.
+      - competing_japanese:
+          - 先 四半 期 の 販売 目標 は 達成 さ れ なかっ た。だ から、マーケティング 戦略 の 見直し が 必要 だ。
+        english: Sales targets were not met last quarter. So, a review of our marketing strategy is necessary.
+        hint: 「だから」 is less formal and generally used for direct reasons. We're looking for a formal conjunction
+          that signifies a logical consequence.
+    scene: A business manager addressing their team in a meeting.
+    register: semi-formal
+    setting: professional
+  - english: The river overflowed its banks due to heavy rainfall. Therefore, residents in low-lying areas
+      were advised to evacuate.
+    japanese:
+      - 大雨 の ため 河川 が 氾濫 し た。したがっ て、低地 の 住民 は 避難 する よう 勧告 さ れ た。
+      - 大雨 の ため 河川 が 氾濫 し た。したがっ て 低地 の 住民 は 避難 する よう 勧告 さ れ た。
+    english_literally: Heavy rain's sake river overflowed. Therefore, low-lying area's residents evacuate
+      to like advised were.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 の ため 河川 が 氾濫 し た。その 結果、低地 の 住民 は 避難 する よう 勧告 さ れ た。
+        english: The river overflowed its banks due to heavy rainfall. As a result, residents in low-lying
+          areas were advised to evacuate.
+        hint: 「その結果」 focuses on the factual outcome. We're looking for a formal conjunction that signifies
+          a logical consequence.
+      - competing_japanese:
+          - 大雨 の ため 河川 が 氾濫 し た。それ で、低地 の 住民 は 避難 する よう 勧告 さ れ た。
+        english: The river overflowed its banks due to heavy rainfall. So, residents in low-lying areas
+          were advised to evacuate.
+        hint: 「それで」 is more conversational and indicates a sequence of events. We're looking for a formal
+          conjunction that signifies a logical consequence.
+    scene: A news reporter delivering a severe weather update.
+    register: formal
+    setting: informative
+  - english: All legal procedures have been completed. Therefore, the contract can now be officially signed.
+    japanese:
+      - すべて の 法的 手続き が 完了 し た。したがっ て、契約 は 今、正式 に 締結 できる。
+      - すべて の 法的 手続き が 完了 し た。したがっ て 契約 は 今、正式 に 締結 できる。
+    english_literally: All legal procedures have completed. Therefore, contract is now officially concluded
+      can.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 法的 手続き が 完了 し た。その ため、契約 は 今、正式 に 締結 できる。
+        english: All legal procedures have been completed. For that reason, the contract can now be officially
+          signed.
+        hint: 「そのため」 emphasizes the reason for the contract signing. We're looking for a formal conjunction
+          that signifies a logical consequence.
+      - competing_japanese:
+          - すべて の 法的 手続き が 完了 し た。その 結果、契約 は 今、正式 に 締結 できる。
+        english: All legal procedures have been completed. As a result, the contract can now be officially
+          signed.
+        hint: 「その結果」 focuses on the factual outcome. We're looking for a formal conjunction that signifies
+          a logical consequence.
+    scene: A lawyer informing their client about the status of an agreement.
+    register: formal
+    setting: legal
+  - english: The evidence presented was insufficient. Therefore, the defendant was acquitted.
+    japanese:
+      - 提示 さ れ た 証拠 は 不 十分 で あっ た。したがっ て、被告 は 無罪 と なっ た。
+      - 提示 さ れ た 証拠 は 不 十分 で あっ た。したがっ て 被告 は 無罪 と なっ た。
+    english_literally: Presented evidence was insufficient. Therefore, defendant was innocent became.
+    competing_grammar:
+      - competing_japanese:
+          - 提示 さ れ た 証拠 は 不 十分 で あっ た。その ため、被告 は 無罪 と なっ た。
+        english: The evidence presented was insufficient. For that reason, the defendant was acquitted.
+        hint: 「そのため」 emphasizes the reason for the acquittal. We're looking for a formal conjunction that
+          signifies a logical consequence.
+      - competing_japanese:
+          - 提示 さ れ た 証拠 は 不 十分 で あっ た。だ から、被告 は 無罪 と なっ た。
+        english: The evidence presented was insufficient. So, the defendant was acquitted.
+        hint: 「だから」 is less formal and directly states the reason. We're looking for a formal conjunction
+          that signifies a logical consequence.
+    scene: A judge delivering a verdict in court.
+    register: formal
+    setting: serious
+  - english: The company's profits have been declining for five consecutive years. Therefore, drastic
+      restructuring is unavoidable.
+    japanese:
+      - 会社 の 利益 は 5 年 連続 で 減少 し て いる。したがっ て、抜本 的 な 事業 再編 は 避け られ ない。
+      - 会社 の 利益 は 5 年 連続 で 減少 し て いる。したがっ て 抜本 的 な 事業 再編 は 避け られ ない。
+    english_literally: Company's profits five years consecutively decreasing are. Therefore, drastic business
+      restructuring is unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 利益 は 5 年 連続 で 減少 し て いる。その ため、抜本 的 な 事業 再編 は 避け られ ない。
+        english: The company's profits have been declining for five consecutive years. For that reason,
+          drastic restructuring is unavoidable.
+        hint: 「そのため」 emphasizes the reason for the unavoidable restructuring. We're looking for a formal
+          conjunction that signifies a logical consequence.
+      - competing_japanese:
+          - 会社 の 利益 は 5 年 連続 で 減少 し て いる。その 結果、抜本 的 な 事業 再編 は 避け られ ない。
+        english: The company's profits have been declining for five consecutive years. As a result, drastic
+          restructuring is unavoidable.
+        hint: 「その結果」 focuses on the factual outcome. We're looking for a formal conjunction that signifies
+          a logical consequence.
+    scene: A financial analyst explaining the state of a corporation.
+    register: semi-formal
+    setting: professional
+  - english: The machine part is worn out and can no longer function properly. Therefore, it must be replaced
+      immediately.
+    japanese:
+      - この 機械 部品 は 摩耗 し て おり、もはや 適切 に 機能 し ない。したがっ て、直ちに 交換 する 必要 が ある。
+      - この 機械 部品 は 摩耗 し て おり、もはや 適切 に 機能 し ない。したがっ て 直ちに 交換 する 必要 が ある。
+    english_literally: This machine part is worn out, no longer properly functioning does not. Therefore,
+      immediately replace needs to be.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 部品 は 摩耗 し て おり、もはや 適切 に 機能 し ない。その ため、直ちに 交換 する 必要 が ある。
+        english: The machine part is worn out and can no longer function properly. For that reason, it
+          must be replaced immediately.
+        hint: 「そのため」 emphasizes the reason for the immediate replacement. We're looking for a formal conjunction
+          that signifies a logical consequence.
+      - competing_japanese:
+          - この 機械 部品 は 摩耗 し て おり、もはや 適切 に 機能 し ない。だ から、直ちに 交換 する 必要 が ある。
+        english: The machine part is worn out and can no longer function properly. So, it must be replaced
+          immediately.
+        hint: 「だから」 is less formal and states a direct consequence. We're looking for a formal conjunction
+          that signifies a logical consequence.
+    scene: An engineer writing a maintenance report.
+    register: formal
+    setting: technical
+  - english: The student consistently failed to submit assignments. Therefore, he was unable to obtain
+      enough credits to graduate.
+    japanese:
+      - その 学生 は 継続 的 に 課題 を 提出 し なかっ た。したがっ て、卒業 に 必要 な 単位 を 取得 でき なかっ た。
+      - その 学生 は 継続 的 に 課題 を 提出 し なかっ た。したがっ て 卒業 に 必要 な 単位 を 取得 でき なかっ た。
+    english_literally: That student continuously assignments did not submit. Therefore, graduation to
+      necessary credits acquire could not.
+    competing_grammar:
+      - competing_japanese:
+          - その 学生 は 継続 的 に 課題 を 提出 し なかっ た。その ため、卒業 に 必要 な 単位 を 取得 でき なかっ た。
+        english: The student consistently failed to submit assignments. For that reason, he was unable
+          to obtain enough credits to graduate.
+        hint: 「そのため」 emphasizes the reason for not graduating. We're looking for a formal conjunction
+          that signifies a logical consequence.
+      - competing_japanese:
+          - その 学生 は 継続 的 に 課題 を 提出 し なかっ た。その 結果、卒業 に 必要 な 単位 を 取得 でき なかっ た。
+        english: The student consistently failed to submit assignments. As a result, he was unable to
+          obtain enough credits to graduate.
+        hint: 「その結果」 focuses on the factual outcome. We're looking for a formal conjunction that signifies
+          a logical consequence.
+    scene: A university professor explaining a student's academic record.
+    register: formal
+    setting: academic
+  - english: The new policy received overwhelming public support. Therefore, its implementation will proceed
+      as planned.
+    japanese:
+      - 新しい 政策 は 圧倒 的 な 国民 の 支持 を 得 た。したがっ て、その 実施 は 予定 通り 進め られる。
+      - 新しい 政策 は 圧倒 的 な 国民 の 支持 を 得 た。したがっ て その 実施 は 予定 通り 進め られる。
+    english_literally: New policy overwhelming public support obtained. Therefore, its implementation
+      schedule通り will proceed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は 圧倒 的 な 国民 の 支持 を 得 た。その ため、その 実施 は 予定 通り 進め られる。
+        english: The new policy received overwhelming public support. For that reason, its implementation
+          will proceed as planned.
+        hint: 「そのため」 emphasizes the reason for proceeding as planned. We're looking for a formal conjunction
+          that signifies a logical consequence.
+      - competing_japanese:
+          - 新しい 政策 は 圧倒 的 な 国民 の 支持 を 得 た。その 結果、その 実施 は 予定 通り 進め られる。
+        english: The new policy received overwhelming public support. As a result, its implementation
+          will proceed as planned.
+        hint: 「その結果」 focuses on the factual outcome. We're looking for a formal conjunction that signifies
+          a logical consequence.
+    scene: A government official announcing the next steps for a policy.
+    register: formal
+    setting: informative
+  - english: The patient showed severe allergic reactions to the medication. Therefore, a different treatment
+      plan must be considered.
+    japanese:
+      - 患者 は その 薬剤 に 対し 重度 の アレルギー 反応 を 示し た。したがっ て、異なる 治療 計画 を 検討 する 必要 が ある。
+      - 患者 は その 薬剤 に 対し 重度 の アレルギー 反応 を 示し た。したがっ て 異なる 治療 計画 を 検討 する 必要 が ある。
+    english_literally: Patient that medication towards severe allergic reaction showed. Therefore, different
+      treatment plan consider needs to be.
+    competing_grammar:
+      - competing_japanese:
+          - 患者 は その 薬剤 に 対し 重度 の アレルギー 反応 を 示し た。その ため、異なる 治療 計画 を 検討 する 必要 が ある。
+        english: The patient showed severe allergic reactions to the medication. For that reason, a different
+          treatment plan must be considered.
+        hint: 「そのため」 emphasizes the reason for considering a different plan. We're looking for a formal
+          conjunction that signifies a logical consequence.
+      - competing_japanese:
+          - 患者 は その 薬剤 に 対し 重度 の アレルギー 反応 を 示し た。だ から、異なる 治療 計画 を 検討 する 必要 が ある。
+        english: The patient showed severe allergic reactions to the medication. So, a different treatment
+          plan must be considered.
+        hint: 「だから」 is less formal and directly states the reason. We're looking for a formal conjunction
+          that signifies a logical consequence.
+    scene: A doctor discussing a patient's case with a colleague.
+    register: formal
+    setting: serious
+post_example_writeup: As seen in these examples, 「したがって」 serves to clearly delineate a logical consequence.
+  Its formal nature makes it indispensable in academic, professional, and journalistic contexts where
+  precision and a reasoned flow of information are paramount. While it is rarely heard in casual daily
+  conversations, its mastery is crucial for comprehending and producing high-level Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/したがって

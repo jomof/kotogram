@@ -1,0 +1,243 @@
+grammar_point: こちら (this way, formal)
+learn_before:
+  - でございます (polite copula, formal)
+meaning: this way, here, this side, or this person/party (formal/polite)
+pronunciation:
+  katakana: コチラ
+  romaji: kochira
+formation:
+  こちら: Refers to a location or direction near the speaker, or can humbly refer to the speaker or their
+    group.
+  こちら + Particle: Used with particles like へ (e), に (ni), から (kara) to specify movement or origin.
+  こちら の Noun: Used to modify a noun, indicating possession or association with the speaker's side/group.
+jlpt: N5
+etymology: The こ- (ko-) prefix, seen in demonstratives like これ (kore) and ここ (koko), signifies proximity
+  to the speaker. The suffix ちら (chira) derives from 辺 (chi), meaning "side" or "direction." Thus, こちら
+  literally translates to "this side" or "this direction." Over time, its usage expanded to politely refer
+  to locations, directions, or even individuals/groups associated with the speaker, evolving into a versatile
+  formal demonstrative.
+writeup: 'こちら (kochira) is a highly versatile Japanese demonstrative that functions as a polite and formal
+  equivalent to ここ (koko - here), これ (kore - this thing), and sometimes 私 (watashi - I). While ここ and
+  これ are direct and casual, こちら adds a layer of politeness and indirectness, making it suitable for a
+  wide range of formal and business situations. It primarily serves three main functions: *   **Indicating
+  Location or Direction**: When referring to a place or direction near the speaker, こちら is the polite
+  choice. For instance, in a department store, a clerk might say 「こちらへどうぞ」(Kochira e douzo - Please come
+  this way). *   **Referring to a Person or Group**: In formal introductions or when referring to oneself
+  or one''s group humbly, こちら is often used. For example, when introducing a colleague, you might say
+  「こちらが田中さんです」(Kochira ga Tanaka-san desu - This is Mr./Ms. Tanaka). It can also be used by an individual
+  to refer to themselves or their company when being humble, such as 「こちらとしては」(Kochira to shite wa - From
+  our side/perspective). *   **Referring to a Thing (less common but possible)**: Although これ is typically
+  used for things, こちら can occasionally be used for emphasis or extreme politeness, though this is less
+  common than its use for locations, directions, or people. Understanding the nuance of こちら is crucial.
+  It softens the directness of its casual counterparts, conveying respect and consideration. It is an
+  essential term for professional settings, customer service, and any situation where politeness is paramount.'
+false_friends:
+  - term: ここ
+    meaning: here (specific location)
+    kind: similar expression
+    nuance: ここ is a direct and less formal way to point to a specific location. こちら is more polite and
+      can also refer to a general direction or a person/party.
+    grammar_point: ここ (here)
+  - term: これ
+    meaning: this (thing)
+    kind: similar expression
+    nuance: これ specifically refers to an object or concept, and is less formal. こちら is primarily for locations,
+      directions, or people, and carries a polite nuance.
+    grammar_point: これ (this)
+  - term: こっち
+    meaning: this way (casual)
+    kind: similar expression
+    nuance: こっち is the casual equivalent of こちら, primarily used in informal conversation. こちら is reserved
+      for polite and formal contexts.
+    grammar_point: こっち (this way・this direction)
+  - term: 私
+    meaning: I / me
+    kind: similar expression
+    nuance: While 私 is the standard first-person pronoun, こちら can be used to refer to oneself or one's
+      party in a more humble or formal way, especially in business or customer service, to avoid directness.
+      For example, 「こちらで承ります」(Kochira de uketamawarimasu - We will take care of it here/on our side).
+    grammar_point: <strongly-suggest>:私 (i・me)
+  - term: そちら
+    meaning: that way / there (formal, near listener)
+    kind: similar expression
+    nuance: そちら refers to the listener's side or direction, or the listener themselves, in a polite manner.
+      It's the polite counterpart to そこ (soko) or それ (sore). こちら refers to the speaker's side.
+    grammar_point: そちら (that way, formal)
+  - term: どちら
+    meaning: which way / which one (formal)
+    kind: similar expression
+    nuance: どちら is the interrogative polite demonstrative, asking "which way," "which one," or "who" (politely).
+      It functions as the question form for こちら, そちら, あちら.
+    grammar_point: どちら (which way, formal)
+post_false_friends_writeup: While こちら shares semantic overlap with other demonstratives and pronouns,
+  its consistent role is to convey politeness and formality. Remember that ここ (koko) and これ (kore) are
+  for direct, informal reference to location and objects respectively. こっち (kocchi) is the casual version
+  of こちら. Using こちら thoughtfully ensures you maintain appropriate social distance and respect in formal
+  interactions. When referring to oneself or one's group, using こちら is a way to be humble and indirect,
+  characteristic of Japanese polite communication.
+examples:
+  - english: Please come this way.
+    japanese:
+      - '{こちら} へ どうぞ。'
+      - '{こちら} へ お 越し ください。'
+      - '{こちら} の 方 へ お 願い いたし ます。'
+      - '{こちら} に お 進み ください。'
+    english_literally: Towards this way, please.
+    competing_grammar:
+      - competing_japanese:
+          - ここ へ どうぞ。
+        english: Please come here.
+        hint: 「ここ」 is a less formal, more direct way to point to a spot. We're looking for a polite invitation.
+    scene: A hotel concierge is guiding a guest to their room.
+    register: formal
+    setting: professional
+  - english: The restrooms are on this side.
+    japanese:
+      - お 手洗い は {こちら} です。
+      - お 手洗い は {こちら} 側 です。
+      - お 手洗い は {こちら} に ござい ます。
+    english_literally: As for the restrooms, they are this way.
+    competing_grammar:
+      - competing_japanese:
+          - お 手洗い は ここ です。
+        english: The restrooms are here.
+        hint: 「ここ」 is too direct and less polite for a customer service interaction. We're looking for
+          a polite indication of location.
+    scene: A store employee is helping a customer find the restrooms.
+    register: teineigo (polite)
+    setting: professional
+  - english: This is Mr. Tanaka.
+    japanese:
+      - '{こちら} が 田中 さん です。'
+      - '{こちら} は 田中 さん で ござい ます。'
+      - '{こちら} は 田中 さま です。'
+    english_literally: This person is Mr. Tanaka.
+    competing_grammar:
+      - competing_japanese:
+          - この 人 が 田中 さん です。
+        english: This person is Mr. Tanaka.
+        hint: While grammatically correct, 「この人」 can sometimes feel less polite than 「こちら」 when introducing
+          someone. We're looking for a respectful introduction.
+    scene: A manager is introducing a new employee to the team.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    nuance: The use of 「こちら」 instead of 「この人」 is a polite and respectful way to introduce someone, suitable
+      for formal settings.
+  - english: From our side, we would like to propose a new plan.
+    japanese:
+      - '{こちら} と し まし て は、新し い 案 を 提案 し たい と 思い ます。'
+      - '{こちら} から は、新し い 案 を 提案 さ せ て いただき たい と 存じ ます。'
+      - '{こちら} 側 と し まし て は、新し い 案 を 提案 申し 上げ たい と 存じ ます。'
+    english_literally: As for this side, we want to propose a new plan.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は、新し い 案 を 提案 し たい と 思い ます。
+        english: We want to propose a new plan.
+        hint: 「私たち」 is direct. 「こちら としましては」 is a common business phrase to refer to one's own company
+          or group in a more humble and formal manner.
+    scene: A business meeting where a representative is presenting their company's view.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: female
+    nuance: 「こちら としましては」 is a common business phrase used to refer to one's own company or group in a
+      humble and formal manner, avoiding the directness of 「私たち は」.
+  - english: Could you please sign here?
+    japanese:
+      - 署名 は {こちら} で お 願い し ます か？
+      - 署名 は {こちら} に お 願い でき ます でしょう か？
+      - 署名 は {こちら} の 方 に お 願い いたし ます。
+    english_literally: As for signature, at this place, please?
+    competing_grammar:
+      - competing_japanese:
+          - 署名 は ここ で お 願い し ます か？
+        english: Could you please sign here?
+        hint: While 「ここ」 could be understood, 「こちら」 maintains a higher level of politeness and formality
+          appropriate for customer service. We're looking for a polite way to indicate where to sign.
+    scene: A bank clerk is assisting a customer with paperwork.
+    register: teineigo (polite)
+    setting: professional
+  - english: Which one would you prefer? This one?
+    japanese:
+      - どちら が よろしい です か？{こちら} です か？
+      - どちら が よろしい で ござい ましょう か？{こちら} で ござい ましょう か？
+      - どちら を お 選び に なり ます か？{こちら} で よろしゅう ござい ましょう か？
+    english_literally: Which one is good? Is it this one?
+    competing_grammar:
+      - competing_japanese:
+          - どちら が よろしい です か？これ です か？
+        english: Which one would you prefer? This one?
+        hint: Using 「これ」 is fine when asking about an object, but 「こちら」 adds a touch more politeness,
+          especially in a sales context where you are offering a choice.
+    scene: A salesperson is showing a customer two different products.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The second 「こちら です か？」 implies "Do you mean this one (near me)?" as a polite follow-up to
+      "Which one?". It's a nuanced way to confirm the customer's preference politely.
+  - english: This particular item has a special discount.
+    japanese:
+      - '{こちら} の 商品 は、特別 割引 が ござい ます。'
+      - '{こちら} の 商品 に は、特別 割引 が 適用 さ れ ます。'
+      - '{こちら} の 商品 は、現在、特別 割引 中 で ござい ます。'
+    english_literally: This item, as for it, there is a special discount.
+    competing_grammar:
+      - competing_japanese:
+          - この 商品 は、特別 割引 が ござい ます。
+        english: This item has a special discount.
+        hint: While 「この」 is correct, 「こちら の 商品」 adds an extra layer of politeness and formality, often
+          used in sales and customer service. We're looking for a polite reference to the item.
+    scene: A store employee is explaining a promotion to a customer.
+    register: teineigo (polite)
+    setting: professional
+  - english: The entrance is on this side of the building.
+    japanese:
+      - 入り口 は 建物 の {こちら} 側 です。
+      - 入り口 は 建物 の {こちら} 側 に ござい ます。
+      - 入り口 は 建物 の {こちら} の 方 に 御座 居 ます。
+    english_literally: As for the entrance, it is the building's this side.
+    competing_grammar:
+      - competing_japanese:
+          - 入り口 は 建物 の こっち 側 です。
+        english: The entrance is on this side of the building.
+        hint: 「こっち」 is casual. 「こちら」 is the formal and polite way to indicate direction or side, suitable
+          for giving directions to a group.
+    scene: A guide is giving directions to a group of tourists.
+    register: formal
+    setting: informative
+    nuance: Using 「こちら 側」 (this side) is a polite and slightly more indirect way to indicate a general
+      area compared to simply 「ここ」, making it suitable for professional guidance.
+  - english: We are happy to help you here.
+    japanese:
+      - '{こちら} で お 手伝い さ せ て いただき ます。'
+      - '{こちら} で お 手伝い さ せ て いただく 所存 で ござい ます。'
+      - '{こちら} にて、お 手伝い さ せ て いただき ます。'
+    english_literally: At this place, we will humbly allow ourselves to help you.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で お 手伝い し ます。
+        english: I will help you here.
+        hint: 「ここ で」 is direct. 「こちら で」 combined with humble language like 「お手伝い させて いただきます」 emphasizes
+          the service provider's humility and politeness.
+    scene: A service desk employee is addressing a customer.
+    register: kenjōgo (humble)
+    setting: professional
+    speaker_gender: female
+    nuance: 「こちら で」 (at this place / on our side) combined with a humble verb 「お手伝い させて いただきます」 emphasizes
+      the service provider's readiness to assist, showing humility and respect to the customer.
+  - english: The application procedure starts from here.
+    japanese:
+      - 申請 手続き は {こちら} から 始まり ます。
+      - 申請 手続き は {こちら} より 開始 さ れ ます。
+      - 申請 手続き は {こちら} の 方 から 開始 いたし ます。
+    english_literally: As for the application procedure, it starts from this place.
+    competing_grammar:
+      - competing_japanese:
+          - 申請 手続き は ここ から 始まり ます。
+        english: The application procedure starts from here.
+        hint: 「ここ から」 is technically correct but less formal. 「こちら から」 maintains a polite and respectful
+          tone in a formal setting, such as a government office.
+    scene: A government office clerk is explaining paperwork to a citizen.
+    register: formal
+    setting: professional
+sources:
+  bunpro: https://bunpro.jp/grammar_points/こちら (this way, formal)

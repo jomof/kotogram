@@ -1,0 +1,246 @@
+grammar_point: の? (question)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - ん (slang)
+meaning: Casual question particle, often seeking confirmation, explanation, or expressing mild surprise.
+pronunciation:
+  katakana: ノ
+  romaji: 'no'
+formation:
+  Verb (plain form) + の?: Forms a casual question from a verb in its plain form.
+  い-Adjective (plain form) + の?: Forms a casual question from an い-adjective in its plain form.
+  な-Adjective (plain form) + なの?: Forms a casual question from a な-adjective in its plain form, requiring
+    な before の.
+  Noun + なの?: Forms a casual question from a noun, requiring な before の.
+jlpt: N5
+etymology: The particle 「の」, when used at the end of a sentence to form a question, is believed to be
+  a contraction or a functional shift from the nominalizing particle 「の」, which nominalizes the preceding
+  clause. The interrogative 「の」 functions similarly to the formal interrogative particle 「か」, but adds
+  a nuance of seeking explanation or confirmation, as if asking "the reason for (X) is what?". This makes
+  it more suitable for casual, conversational contexts where an immediate response or clarification is
+  expected.
+writeup: |-
+  The particle **の** (no) when used at the end of a sentence with a rising intonation (often indicated by a question mark in writing) transforms a statement into a casual question. This is a fundamental particle for informal communication in Japanese. Unlike the more neutral and formal **か** (ka), **の** often carries a nuance of seeking **explanation**, **confirmation**, or expressing **mild surprise** or **curiosity**. It implies that the speaker is looking for more information or a reason.
+
+  It is primarily used in casual settings among close friends, family, or people of equal or lower status. When used with nouns or な-adjectives, a **な** (na) is required before **の** (e.g., 元気なの？ _Genki nano?_ - "Are you well?"). For verbs and い-adjectives, it attaches directly to the plain form (e.g., 食べるの？ _Taberu no?_ - "Are you eating?", 寒いの？ _Samui no?_ - "Is it cold?").
+false_friends:
+  - term: か (question)
+    meaning: Question marking particle
+    kind: often confused with
+    nuance: 「か」is a neutral interrogative particle, used more formally or simply to ask a question without
+      implying the speaker expects an explanation, unlike「の?」which often seeks clarification or expresses
+      curiosity.
+    grammar_point: か (question)
+  - term: ね (seeking agreement)
+    meaning: Isn't it?, Right? (Sentence ending particle)
+    kind: often confused with
+    nuance: 「ね」is used to seek agreement or confirm shared information, whereas「の?」is a direct question
+      seeking new information or an explanation.
+    grammar_point: ね (seeking agreement)
+  - term: よ (emphasis・information sharing)
+    meaning: Emphasis; Information Sharing (Sentence-ending particle)
+    kind: often confused with
+    nuance: 「よ」adds emphasis or provides new information to the listener, while「の?」is strictly used to
+      ask a question.
+    grammar_point: よ (emphasis・information sharing)
+  - term: じゃないか (isn't it?)
+    meaning: Isn't it?, Is it not?
+    kind: similar expression
+    nuance: 「じゃないか」is used for rhetorical questions or to express agreement with a statement, often with
+      a sense of "I told you so" or "You should know this," unlike the simple inquisitive nature of「の?」.
+    grammar_point: じゃないか (isn't it?)
+post_false_friends_writeup: The particle 「の?」 is distinct from other sentence-ending particles. While
+  「か」 is a general question marker, 「の?」 specifically asks for an explanation or confirms something with
+  a casual, slightly inquisitive tone. 「ね」 seeks agreement and 「よ」 provides information or asserts something.
+  「じゃないか」 poses a rhetorical question or implies an obvious conclusion. Understanding these nuances is
+  crucial to using sentence-ending particles naturally.
+examples:
+  - english: Are you going?
+    japanese:
+      - 行く {の}？
+      - 行く {の} か？
+      - 行く {ん}？
+    english_literally: Going?
+    competing_grammar:
+      - competing_japanese:
+          - 行き ます {か}？
+        english: Are you going? (polite)
+        hint: 「か」is a more neutral and polite question particle. We're looking for a casual question that
+          seeks a reason or confirmation.
+    scene: A friend asks if you are going to the party.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual tone with 「の?」 implies a friendly inquiry about plans, often expecting a brief
+      explanation or confirmation.
+  - english: Did you eat?
+    japanese:
+      - 食べ た {の}？
+      - 食べ た {の} か？
+      - 食べ た {ん}？
+    english_literally: Ate?
+    competing_grammar:
+      - competing_japanese:
+          - 食べ まし た {か}？
+        english: Did you eat? (polite)
+        hint: 「か」is more formal. We're looking for a casual inquiry with a softer, explanatory nuance.
+    scene: Your roommate comes home and you ask if they already had dinner.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: This casual use of 「の?」 in the past tense is a simple, caring inquiry, implying mild curiosity
+      about the reason for their current state (e.g., looking tired or hungry).
+  - english: Is it cold?
+    japanese:
+      - 寒い {の}？
+      - 寒い {の} か？
+      - 寒い {ん}？
+    english_literally: Cold?
+    competing_grammar:
+      - competing_japanese:
+          - 寒い {です}？
+          - 寒い {？}
+        english: Is it cold? (polite/simple casual)
+        hint: While 「寒い？」is casual, 「の？」adds a nuance of concern, seeking an explanation or confirmation
+          for the visible coldness. We're looking for that inquisitive tone.
+    scene: You see your friend shivering and ask about the temperature.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This phrasing expresses concern and seeks confirmation about a state, implicitly asking "Why
+      are you shivering? Is it because it's cold?"
+  - english: Are you alright?
+    japanese:
+      - 大丈夫 な {の}？
+      - 大丈夫 な {の} か？
+      - 大丈夫 な {ん}？
+    english_literally: Alright, is it?
+    competing_grammar:
+      - competing_japanese:
+          - 大丈夫 {です} {か}？
+        english: Are you alright? (polite)
+        hint: 「ですか」is polite. We need the casual, direct inquiry that prompts an explanation.
+    scene: Someone stumbles, and you immediately ask if they are okay.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    nuance: Shows immediate concern and seeks reassurance, using 「な」before「の?」 because 大丈夫 is a な-adjective.
+      It implies "Are you alright, tell me what happened?"
+  - english: Are you a student?
+    japanese:
+      - 学生 な {の}？
+      - 学生 な {の} か？
+      - 学生 な {ん}？
+    english_literally: Student, is it?
+    competing_grammar:
+      - competing_japanese:
+          - 学生 {です} {か}？
+        english: Are you a student? (polite)
+        hint: This is a casual question about identity, requiring 「な」before「の?」 for nouns. The formal
+          alternative uses 「ですか」.
+    scene: You meet someone new at a casual gathering and ask about their occupation.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: A direct, but casual, question about identity. The 「な」is essential before 「の?」 when used with
+      a noun, making it feel more conversational and less like an interrogation.
+  - english: You're not going?
+    japanese:
+      - 行か ない {の}？
+      - 行か ない {の} か？
+      - 行か ない {ん}？
+    english_literally: Not going?
+    competing_grammar:
+      - competing_japanese:
+          - 行き ませ ん {か}？
+        english: Won't you go? (polite invitation)
+        hint: 「行きませんか」is an an invitation or polite negative question. Here, we're expressing surprise
+          and seeking clarification for a decision not to go.
+    scene: You thought your friend was going, but they are staying home.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: Expresses mild surprise and seeks clarification for a perceived change in plans, implicitly
+      asking "Why aren't you going, I thought you were?"
+  - english: Are you going to study abroad?
+    japanese:
+      - 留学 する {の}？
+      - 留学 する {の} か？
+      - 留学 する {ん}？
+    english_literally: Study abroad, are you?
+    competing_grammar:
+      - competing_japanese:
+          - 留学 し ます {か}？
+        english: Are you going to study abroad? (polite)
+        hint: The nuance of 「の?」here is more personal, seeking explanation or details, unlike the general
+          question with 「か」.
+    scene: You overhear a friend talking about studying abroad and want to confirm.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: A simple, direct inquiry about a significant future plan, implying a desire for more information
+      or context from a close acquaintance.
+  - english: Was it a lie?
+    japanese:
+      - 嘘 だっ た {の}？
+      - 嘘 だっ た {の} か？
+      - 嘘 だっ た {ん}？
+    english_literally: It was a lie?
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 {でし た} {か}？
+        english: Was it a lie? (polite)
+        hint: The casual tone with 「の?」emphasizes personal impact or disbelief upon learning the truth,
+          rather than just asking for confirmation.
+    scene: You just found out something was not true and express disbelief.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Expresses shock or disbelief upon learning something unexpected, often spoken to oneself or
+      with a sense of revelation. The 「の?」here adds an emotional, questioning tone.
+  - english: Can you really do it?
+    japanese:
+      - 本当 に できる {の}？
+      - 本当 に できる {の} か？
+      - 本当 に できる {ん}？
+    english_literally: Really can?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に でき ます {か}？
+        english: Can you really do it? (polite)
+        hint: 「の?」in this context softens the skepticism, making it a curious question rather than a challenging
+          one. It asks for explanation or reassurance.
+    scene: Someone makes a bold claim, and you question their ability gently.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: female
+    nuance: Questions the feasibility or ability, often with a hint of doubt but in a soft, inquisitive
+      way, inviting the other person to explain how they can do it.
+  - english: Is that why you're sad?
+    japanese:
+      - だ から 悲しい {の}？
+      - だ から 悲しい {の} か？
+      - だ から 悲しい {ん}？
+    english_literally: Therefore sad?
+    competing_grammar:
+      - competing_japanese:
+          - だ から 悲しい {の} {です} {か}？
+        english: Is that why you're sad? (polite)
+        hint: The 「の?」here directly seeks the reason for their sadness, showing empathy and inviting an
+          explanation in a casual manner.
+    scene: You've heard a reason for someone's sadness and are connecting the dots.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: female
+    nuance: Seeks an explanation for an emotional state, implying a thoughtful connection of previous
+      information with the current observation. The 「の?」makes it feel personal and understanding.

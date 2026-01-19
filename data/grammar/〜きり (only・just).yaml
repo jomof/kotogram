@@ -1,0 +1,261 @@
+grammar_point: 〜きり (only・just)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - ちょっと (adverb)
+  - 一人で (physically alone)
+  - 一度も〜ない (not even once)
+  - 数量・しか・ない (limited quantity)
+meaning: only; just; no more than (emphasizing limitation or small quantity)
+pronunciation:
+  katakana: キリ
+  romaji: kiri
+formation:
+  Noun + きり: Used to indicate that there is only that noun, or that the action applies only to that noun.
+  Number + Counter + きり: Used to express a quantity is limited to that specific number.
+  これきり・それきり・あれきり: Means "only this/that much."
+jlpt: N3
+etymology: The particle きり originates from 切る (kiru, to cut) and its noun form 切り (kiri, a cut or division).
+  This etymological root conveys the idea of "cutting off" or "limiting" something, establishing a definitive
+  boundary beyond which nothing more exists or occurs. Over time, this concept evolved to express exclusivity
+  or restriction, meaning "only" or "just," as if everything else has been "cut off" or excluded. This
+  explains why きり implies a strict limit or a singular occurrence.
+writeup: The grammar point 〜きり is used to express that something is "only," "just," or "no more than"
+  a certain amount, number, or instance. It emphasizes limitation and exclusivity, often carrying a stronger
+  or more definitive nuance than だけ. When attached to a noun, it strictly limits the scope to that noun.
+  For example, 「一人きり」 (hitori kiri) means "only one person," implying a sense of being alone or just a
+  single entity, often with a subtle feeling of isolation or singularity. Similarly, 「これきり」 (kore kiri)
+  means "only this much" or "only this one time," indicating a strict limit to the current item or occurrence.
+  Unlike the more general だけ, 〜きり tends to highlight the lack of anything beyond the specified item or
+  quantity. It can also imply a sense of finality, as if a boundary has been firmly established. While
+  commonly used in casual and semi-formal contexts, its specific nuance can lend a slightly more decisive
+  or even slightly emotional tone compared to simpler expressions of limitation. It is crucial to distinguish
+  this usage from Verb[た]きり, which means "since (an action occurred, and nothing has changed)." This 〜きり
+  focuses on the quantity or scope of something, rather than a temporal state.
+false_friends:
+  - term: だけ (only・just)
+    meaning: only; just; as much as
+    kind: similar expression
+    nuance: だけ is a general particle for "only" and can be used in a wider range of contexts without strong
+      emotional nuance. 〜きり often emphasizes a small, limited, or exclusive quantity, sometimes with a
+      sense of finality or even slight regret.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない (only, nothing but)
+    meaning: only; no more than; nothing but
+    kind: similar expression
+    nuance: しか〜ない also expresses exclusivity ("only"), but it must be followed by a negative verb. 〜きり
+      does not require a negative verb and can be used with affirmative sentences. しか〜ない often carries
+      a nuance of insufficiency or dissatisfaction, whereas 〜きり can simply state a fact of limitation.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: ばかり (only・just, often with nuance of excess)
+    meaning: only; nothing but; just; full of
+    kind: similar expression
+    nuance: ばかり can mean "only" (e.g., 「本ばかり読んでいる」 - only reading books), but it often implies "nothing
+      but" or "too much of" something, or an action that is done excessively. It can also mean "just finished."
+      〜きり focuses more on a strict limit of quantity or instance.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: のみ (only・just)
+    meaning: only; alone
+    kind: similar expression
+    nuance: のみ is a more formal and literary way of saying "only" or "alone," often used in written language
+      or very formal speech. 〜きり is more common in spoken Japanese and can be more casual, carrying a
+      slightly more personal or emphatic feel of limitation.
+    grammar_point: のみ (only・just)
+  - term: Verb[た]きり (since・no change)
+    meaning: since (an action occurred, and nothing has changed)
+    kind: often confused with
+    nuance: This きり is used for actions that have occurred and a state has continued unchanged since then
+      (e.g., 「彼は日本へ行ったきり、連絡がない」 - He went to Japan and hasn't contacted since). The current 〜きり emphasizes
+      limitation of quantity or scope, not temporal continuity. They share the same spelling and kanji
+      but have distinct functions.
+    grammar_point: <suggest>:Verb[た]きり (since・no change)
+post_false_friends_writeup: While 〜きり expresses a sense of "only" or "just," it is crucial to understand
+  its unique flavor compared to similar expressions. Unlike the general-purpose だけ, 〜きり often implies
+  a stricter, more definitive limit, sometimes carrying a subtle emotional weight like a sense of finality
+  or isolation. For instance, 「一人きり」 highlights being truly alone, whereas 「一人だけ」 simply states the number.
+  Similarly, しか〜ない also conveys exclusivity but *requires* a negative verb, often implying insufficiency
+  or dissatisfaction. ばかり can also mean "only," but it suggests an excess or a focus on doing "nothing
+  but" a particular action. Furthermore, be careful not to confuse 〜きり (quantity/limitation) with Verb[た]きり
+  (since something happened and the state remains unchanged), as they are homophones with different applications.
+examples:
+  - english: I was the only one in the classroom.
+    japanese:
+      - 教室 に は 私 {一人 きり} だっ た。
+      - 教室 に は 私 {一人 きり} でし た。
+      - 教室 に 私 {一人 きり} だっ た の よ。
+      - 教室 に 私 {一人 きり} だっ た ぜ。
+    english_literally: In the classroom, it was only me.
+    competing_grammar:
+      - competing_japanese:
+          - 教室 に は 私 一人 だけ だっ た。
+        english: In the classroom, there was only me (emphasis on being the sole one).
+        hint: Both imply 'only me,' but 'だけ' is a general marker, while 'きり' often emphasizes a sense
+          of isolation or strict exclusivity. We're looking for the sense of being entirely alone.
+    scene: A student arrives early or stays late at school.
+    register: casual
+    setting: reflective
+    nuance: 「一人きり」 (hitori kiri) emphasizes a sense of being entirely alone or isolated, more strongly
+      than 「一人だけ」. This usage highlights the singularity and exclusion of others.
+  - english: There are only two apples left.
+    japanese:
+      - りんご は あと {二 つ きり} しか ない。
+      - りんご は あと {二 つ きり} しか あり ませ ん。
+      - りんご あと {二 つ きり} しか ない よ。
+    english_literally: As for apples, only two are left.
+    competing_grammar:
+      - competing_japanese:
+          - りんご は あと 二 つ だけ しか ない。
+        english: There are only two apples left (general statement).
+        hint: While 'だけ' is common, 'きり' emphasizes a stricter, more definitive limit to the quantity.
+          We're looking for a sense of scarcity.
+    scene: A shopkeeper is checking inventory and sees very few apples.
+    register: casual
+    setting: informative
+    nuance: 「二つきり」 (futatsu kiri) implies a strict limit of quantity, emphasizing the scarcity. The phrase
+      「しか ない」 (shika nai) further reinforces the meaning of 'only' and highlights the lack.
+  - english: I will tell you only this time.
+    japanese:
+      - '{これ きり} 言い ませ ん よ。'
+      - '{これ きり} 言わ ない わ よ。'
+      - '{これ きり} 言わ ない ぞ。'
+      - '{これ きり} 言う の は やめ ましょう。'
+    english_literally: Only this, I will not say.
+    competing_grammar:
+      - competing_japanese:
+          - これ だけ 言い ませ ん よ。
+        english: I will tell you only this much (general limiting).
+        hint: 「これきり」 carries a stronger sense of finality and setting a clear boundary for the action.
+          We're looking for a decisive statement.
+    scene: A parent sternly warns a child about repeating a misbehavior.
+    register: casual
+    setting: commanding
+    nuance: 「これきり」 (kore kiri) means "only this time" or "only this much," conveying a strong sense of
+      finality and setting a clear boundary. The sentence-final particle 「よ」 adds a gentle assertion or
+      emphasis.
+  - english: She eats nothing but vegetables.
+    japanese:
+      - 彼女 は 野菜 {きり} しか 食べ ない。
+      - 彼女 は 野菜 {きり} しか 食べ ませ ん。
+      - 彼女、野菜 {きり} しか 食べ ない の よ。
+    english_literally: As for her, only vegetables she eats.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 野菜 だけ 食べ ます。
+        english: She only eats vegetables (simple fact).
+        hint: Both mean 'only vegetables,' but 'きり' combined with 'しか' creates a stronger emphasis on
+          exclusivity and implies a very strict dietary habit. We're highlighting her limited diet.
+    scene: Friends are discussing a mutual acquaintance who is a picky eater.
+    register: casual
+    setting: friendly
+    nuance: 「野菜きり」 (yasai kiri) emphasizes that her diet is strictly limited to vegetables. This combination
+      with 「しか 食べない」 (shika tabenai) strongly highlights the exclusivity of her food choices.
+  - english: Since coming to Japan, I've done nothing but study.
+    japanese:
+      - 日本 へ 来 て から、勉強 {きり} だ。
+      - 日本 へ 来 て から、勉強 {きり} です。
+      - 日本 へ 来 て から、勉強 {きり} な ん だ よ。
+      - 日本 へ 来 て から、勉強 {きり} な の よ。
+    english_literally: Since coming to Japan, it's only study.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 へ 来 て から、勉強 ばかり だ。
+        english: Since coming to Japan, it's just studying (implies excessive study).
+        hint: While 'ばかり' can also imply 'only,' it often carries a nuance of 'nothing but' or 'too much
+          of something.' 'きり' here emphasizes a singular focus, excluding other activities. We're looking
+          for the idea of 'exclusively studying.'
+    scene: A student studying abroad explains their busy schedule to a friend.
+    register: casual
+    setting: reflective
+    nuance: 「勉強きりだ」 (benkyou kiri da) emphasizes that the person has done *only* studying, implying a
+      singular focus and the exclusion of other activities. It conveys a strong sense of dedication or,
+      depending on context, even a feeling of being overwhelmed by study.
+  - english: I only have a little bit of money.
+    japanese:
+      - お 金 は {少し きり} しか ない。
+      - お 金 は {少し きり} しか あり ませ ん。
+      - お 金、{少し きり} しか ない の。
+    english_literally: As for money, only a little bit, there is not.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 は 少し しか ない。
+        english: I only have a little bit of money (general insufficiency).
+        hint: Both mean 'only a little,' but 'きり' often adds a stronger nuance of meagerness or a strict
+          limit. We're expressing a feeling of scarcity.
+    scene: A student complains to their friend about their financial situation.
+    register: casual
+    setting: pessimistic
+    nuance: 「少しきり」 (sukoshi kiri) highlights the meager amount, implying insufficiency or a very strict
+      limit on the quantity of money available. This phrasing emphasizes the smallness of the amount more
+      strongly than just '少ししかない'.
+  - english: I've only met him once.
+    japanese:
+      - 彼 と は {一 度 きり} しか 会っ て い ない。
+      - 彼 と は {一 度 きり} しか 会っ て い ませ ん。
+      - 彼 と は {一 度 きり} しか 会っ た こと ない よ。
+    english_literally: With him, only once I have not met.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と は 一 度 しか 会っ て い ない。
+        english: I've only met him once (general statement).
+        hint: '''きり'' adds emphasis to the single occurrence, implying a definitive lack of further meetings.
+          We''re focusing on the rarity of the encounter.'
+    scene: Someone is trying to recall an acquaintance but realizes they've only had a single encounter.
+    register: casual
+    setting: informative
+    nuance: 「一度きり」 (ichido kiri) stresses that the encounter was limited to a single instance, emphasizing
+      its rarity or uniqueness. The phrase 「しか 会って いない」 (shika atte inai) reinforces the "only once" meaning.
+  - english: Only authorized personnel are allowed beyond this point.
+    japanese:
+      - この 先 は 関係 者 {きり} 入場 でき ます。
+      - この 先 は 関係 者 {きり} 入場 いただけ ます。
+      - この 先 は 関係 者 {きり} ご 入場 いただけ ます。
+    english_literally: Beyond this point, only related persons can enter.
+    competing_grammar:
+      - competing_japanese:
+          - この 先 は 関係 者 だけ 入場 でき ます。
+        english: Beyond this point, only authorized personnel can enter (general statement).
+        hint: 「きり」 here is used to express a strict and exclusive limitation, often seen in official or
+          formal contexts, making it more definitive than 'だけ'. We're looking for a formal restriction.
+    scene: A security guard informs visitors at an event or restricted area.
+    register: formal
+    setting: instructional
+    nuance: 「関係者きり」 (kankei-sha kiri) makes it clear that entry is strictly limited to authorized individuals,
+      excluding all others. This usage is common in more formal or official contexts to denote strict
+      access control.
+  - english: This special offer is only until today.
+    japanese:
+      - この 特別 オファー は {今日 きり} です。
+      - この 特別 オファー は {今日 きり} だ よ。
+      - この 特別 オファー は {今日 きり} な ん だ。
+      - この 特別 オファー は {今日 きり} な ん です。
+    english_literally: This special offer, only today it is.
+    competing_grammar:
+      - competing_japanese:
+          - この 特別 オファー は 今日 まで です。
+        english: This special offer is until today.
+        hint: While '今日まで' indicates a deadline, '今日きり' emphasizes that today is the *exclusive* and final
+          day, implying a stronger sense of urgency. We're highlighting a strict time limit.
+    scene: A shop announces a limited-time sale to customers.
+    register: semi-formal
+    setting: persuasive
+    nuance: 「今日きり」 (kyou kiri) signifies that the offer is exclusively for today, emphasizing the limited
+      duration and urging immediate action. It conveys a stronger sense of finality than simply saying
+      "until today" (今日まで).
+  - english: She talks only about herself.
+    japanese:
+      - 彼女 は 自分 の こと {きり} しか 話さ ない。
+      - 彼女 は 自分 の こと {きり} しか 話し ませ ん。
+      - 彼女、自分 の こと {きり} しか 話さ ない の よ ね。
+    english_literally: As for her, only about herself she doesn't talk.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 自分 の こと ばかり 話す。
+        english: She talks about nothing but herself (often implying excess).
+        hint: Both phrases indicate a focus on self, but 'きり' combined with 'しか 話さない' emphasizes the strict
+          limitation of her conversation topics more pointedly than 'ばかり 話す'. We're expressing an exclusive
+          focus on self.
+    scene: A friend is gossiping about another friend who is perceived as self-centered.
+    register: casual
+    setting: friendly
+    nuance: 「自分のこときり」 (jibun no koto kiri) indicates that her conversation is strictly limited to herself,
+      implying a self-centered nature or a lack of interest in others' topics. The negative verb 「話さない」
+      (hanasanai) reinforces this exclusivity.

@@ -1,0 +1,282 @@
+grammar_point: そんなに (that much)
+learn_before:
+  - Verb[なくて] (negative te-form)
+  - 〜なくても (even if not)
+  - い-Adjective (past negative)
+  - って (casual quotation・reason・topic)
+  - と (with)
+  - どうして (why)
+  - ないでください・ないで (please don't)
+  - の (noun omission)
+  - を気にする (to mind)
+  - 何も〜ない (no reason to・no need to)
+meaning: that much; so much
+pronunciation:
+  katakana: ソンナニ
+  romaji: sonnani
+formation:
+  そんなに + い-Adjective/な-Adjective: Modifies adjectives, indicating 'that much' or 'so', often with a nuance
+    of surprise or comparison.
+  そんなに + Verb: Modifies verbs, indicating 'to that extent' or 'so much' an action is performed.
+  そんなに + Adverb: Modifies adverbs, emphasizing the degree or extent of another adverb.
+  そんなに + Negative form (～ない・～ません): Frequently used with negative expressions to mean 'not that much' or
+    'not so much'.
+jlpt: N4
+etymology: The term そんなに is formed from 「そう」 (sou), meaning 'like that' or 'such,' combined with the attributive
+  particle 「な」 (na), and then the particle 「に」 (ni), which indicates manner or degree. Over time, this
+  combination evolved to signify 'to that extent' or 'that much,' often implying a degree that is surprising
+  or different from what was expected. It inherently carries a demonstrative sense, pointing to a degree
+  or quantity that is known or inferred from the context, similar to how 『その』 points to a noun 'near the
+  listener.'
+writeup: |-
+  そんなに is an adverb used to express degree or extent, typically translating to "that much," "so much," or "to that extent." It functions by modifying adjectives, verbs, or other adverbs. The key characteristic of そんなに is its demonstrative nature; it refers to a degree or quantity that is implicitly understood from the context, or that the speaker is reacting to. This often gives it a nuance of surprise, comparison, or a response to an observed situation.
+
+  It is very commonly used in negative sentences (e.g., そんなに～ない) to mean "not that much" or "not so much." In such cases, it suggests that the actual degree or quantity is less than implied or expected.
+
+  While そんなに is versatile, it often implies a connection to something previously mentioned or understood. For instance, if someone says "The food was delicious!" you might reply "そんなに美味しかったですか？" (Was it *that* delicious?), expressing surprise at the extent of the deliciousness.
+false_friends:
+  - term: こんなに (this much)
+    meaning: this much; so much (close to speaker)
+    kind: similar expression
+    nuance: Both are demonstrative adverbs indicating degree. 『こんなに』 refers to a degree or quantity that
+      is physically or psychologically close to the speaker, something immediately apparent or experienced.
+      『そんなに』 refers to something conceptually or contextually 'that' far, often related to what the listener
+      or third party has mentioned or is experiencing.
+    grammar_point: <suggest>:こんなに・そんなに・あんなに・どんなに (this much・so much・that much・how much)
+  - term: あんなに (that much over there)
+    meaning: that much; so much (distant from both speaker and listener)
+    kind: similar expression
+    nuance: Similar to 『こんなに』 and 『そんなに』, 『あんなに』 is a demonstrative adverb. It refers to a degree or quantity
+      that is physically or psychologically distant from both the speaker and the listener, often used
+      for things in the past, or things observed from afar.
+    grammar_point: <suggest>:こんなに・そんなに・あんなに・どんなに (this much・so much・that much・how much)
+  - term: たくさん (many・a lot)
+    meaning: a lot; many (quantity)
+    kind: often confused with
+    nuance: 『たくさん』 refers specifically to a large quantity or amount, primarily for countable or mass
+      nouns. 『そんなに』, on the other hand, expresses a degree or extent, modifying adjectives, verbs, or
+      adverbs, and can imply a comparison or reaction to an unexpected level, not just a high quantity.
+    grammar_point: たくさん (many・a lot)
+  - term: あまり ない (not very or much)
+    meaning: not very; not much (often with negative)
+    kind: similar expression
+    nuance: 『そんなに』 often co-occurs with negative forms to mean 'not that much.' 『あまり』 also expresses 'not
+      very' or 'not much,' but it can stand alone with a negative verb without the demonstrative nuance
+      of 'that much.' When combined (e.g., そんなにあまり…ない), it adds even more emphasis on the low degree.
+    grammar_point: あまり ない (not very or much)
+  - term: とても (very・extremely)
+    meaning: very; extremely
+    kind: similar expression
+    nuance: 『とても』 is used to simply intensify an adjective or adverb to a high degree. 『そんなに』 also indicates
+      a degree, but it carries a demonstrative nuance, implying 'to *that* extent,' often in reaction
+      to a perceived level or in a question to ascertain that level. It's less about raw intensity and
+      more about comparing to an understood standard.
+    grammar_point: とても (very・extremely)
+  - term: ずいぶん (quite・considerably)
+    meaning: quite; considerably; surprisingly
+    kind: similar expression
+    nuance: 『ずいぶん』 implies a degree that is unexpectedly high or considerable, often expressing the speaker's
+      surprise. 『そんなに』 also relates to degree and can be used with surprise, but its core function is
+      demonstrative ('to that extent') rather than purely emphasizing a surprising amount.
+    grammar_point: ずいぶん (quite・considerably)
+post_false_friends_writeup: 'The core distinction among こんなに, そんなに, and あんなに lies in their deictic reference:
+  こんなに for something close to the speaker, そんなに for something related to the listener or context, and
+  あんなに for something distant from both. While たくさん quantifies ''a lot,'' そんなに indicates ''to that degree.''
+  When choosing between そんなに and other intensifiers like とても or ずいぶん, consider if you are simply emphasizing
+  a high degree (とても, ずいぶん) or responding to/referring to a specific, contextually understood degree (そんなに).'
+examples:
+  - english: Is it that important?
+    japanese:
+      - そんな に 大事 です か？
+      - そんな に 大事 な の？
+    english_literally: To that extent, important is it?
+    competing_grammar:
+      - competing_japanese:
+          - とても 大事 です か？
+        english: Is it very important?
+        hint: 『とても』 emphasizes a high degree, while 『そんなに』 refers to 'that' specific degree. We are looking
+          for 'that important', implying a reference to a previously mentioned level.
+    scene: A coworker asks if a task is urgent.
+    register: teineigo (polite)
+    setting: professional
+  - english: I don't really like natto that much.
+    japanese:
+      - 納豆 は {そんな に} 好き じゃ ない です。
+      - 納豆 は {そんな に} 好き じゃ ない。
+    english_literally: Natto as for, that much like is not.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 は あまり 好き じゃ ない です。
+        english: I don't like natto very much.
+        hint: Both 『そんなに』 and 『あまり』 can be used with negatives. 『そんなに』 specifically refers to 'that' extent
+          of liking, often implying comparison or a reaction to an assumed level. 『あまり』 is a general 'not
+          very much'.
+    scene: Someone asks about your food preferences.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The use of 「そんなに」 with the negative 「好きじゃない」 emphasizes 'not *that* much,' indicating a moderate
+      dislike rather than strong aversion. This polite negative form with 「です」 softens the statement.
+  - english: Did you really drink that much last night?
+    japanese:
+      - きのう、{そんな に} 飲ん だ の？
+      - きのう、{そんな に} 飲み まし た か？
+    english_literally: Yesterday, that much drank, is it?
+    competing_grammar:
+      - competing_japanese:
+          - きのう、たくさん 飲ん だ の？
+        english: Did you drink a lot last night?
+        hint: 『たくさん』 means 'a lot' in terms of quantity. 『そんなに』 refers to 'that' specific degree or quantity,
+          often with a nuance of surprise or reference to an expected amount. We are questioning the *extent*
+          of drinking, not just the large quantity.
+    scene: You see a friend looking very tired after a night out.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The feminine final particle 「の？」 conveys a gentle, inquisitive tone, typical of female speech,
+      expressing mild surprise or concern about the amount of drinking indicated by 「そんなに 飲んだ」.
+  - english: Don't worry that much about it.
+    japanese:
+      - '{そんな に} 気 に し ない で ください。'
+      - '{そんな に} 気 に する 必要 は ない です。'
+    english_literally: That much mind don't please.
+    competing_grammar:
+      - competing_japanese:
+          - あまり 気 に し ない で ください。
+        english: Please don't worry very much about it.
+        hint: 『あまり』 with a negative means 'not very much' generally. 『そんなに』 specifies 'not *that* much,'
+          referring to an implied or observed level of worrying. The context suggests reducing an existing
+          level of concern.
+    scene: Comforting a friend who is overly anxious about a minor issue.
+    register: teineigo (polite)
+    setting: supportive
+  - english: It's not that difficult, you know.
+    japanese:
+      - '{そんな に} 難しく ない よ。'
+      - '{そんな に} 難しい もの じゃ ない よ。'
+    english_literally: That much difficult is not, you know.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 難しく ない よ。
+        english: This is not difficult, you know.
+        hint: The English 'that difficult' implies a comparison to an assumed level of difficulty. 『そんなに』
+          captures this nuance, whereas simply saying 'not difficult' (難しくない) lacks the comparative element.
+    scene: Encouraging a student who is struggling with a task.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    nuance: The sentence-final particle 「よ」 in 「ない よ」 adds a sense of informing or assuring the listener,
+      often used by male speakers to soften advice or make it feel more direct and personal.
+  - english: I didn't think he would get that angry.
+    japanese:
+      - 彼 が {そんな に} 怒る と は 思わ なかっ た。
+      - 彼 が {そんな に} 怒る と は 思い ませ ん でし た。
+    english_literally: He as for that much get angry would, is not thought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が すごく 怒る と は 思わ なかっ た。
+        english: I didn't think he would get extremely angry.
+        hint: 『すごく』 means 'extremely' or 'very' and is a general intensifier. 『そんなに』 refers to 'that'
+          specific degree of anger, implying a level that was surprising or unexpected. We want to convey
+          the surprise at the *extent* of his anger.
+    scene: Discussing a surprising reaction from someone.
+    register: casual
+    setting: reflective
+  - english: You don't have to push yourself that much.
+    japanese:
+      - '{そんな に} 頑張ら なく て も いい よ。'
+      - '{そんな に} 頑張ら なく て も 大丈夫 だ よ。'
+    english_literally: That much try hard don't have to, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 無理 し ない で ください。
+        english: Please don't overdo it.
+        hint: 『無理 しない で ください』 is a more general phrase meaning 'please don't overdo it' or 'don't push
+          yourself.' 『そんなに 頑張ら なく て も いい よ』 specifically advises against *that extent* of effort, implying
+          the speaker sees the listener putting in too much.
+    scene: A teammate is overworking and you want them to relax.
+    register: casual
+    setting: friendly
+  - english: Why is it that hot today?
+    japanese:
+      - な ん で 今日 は {そんな に} 暑い の？
+      - どう し て 今日 は {そんな に} 暑い です か？
+    english_literally: Why today as for that much hot is it?
+    competing_grammar:
+      - competing_japanese:
+          - な ん で 今日 は とても 暑い の？
+        english: Why is it very hot today?
+        hint: 『とても』 is a simple intensifier. 『そんなに』 implies a specific degree ('that hot'), often conveying
+          surprise or a comparison to typical expectations. The English 'that hot' points to a specific,
+          unexpected level of heat.
+    scene: You step outside and are surprised by the heat.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The casual question particle 「の？」 at the end, coupled with 「なんで」 (casual for 'why'), expresses
+      a sense of personal inquiry or a rhetorical question, often used by female speakers to convey mild
+      surprise or exasperation about the weather's unexpected heat.
+  - english: I'm not that rich.
+    japanese:
+      - 私 は {そんな に} お 金持ち じゃ ない です。
+      - 私 は {そんな に} お 金持ち で は ない です。
+    english_literally: I as for that much rich is not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は お 金持ち じゃ ない です。
+        english: I am not rich.
+        hint: Omitting 『そんなに』 would simply state 'I am not rich'. Adding 『そんなに』 specifies 'not *that*
+          rich,' implying that while you might not be poor, you are certainly not wealthy to the extent
+          implied by the suggestion.
+    scene: Someone suggests an expensive activity.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: Is the new game that fun?
+    japanese:
+      - 新しい ゲーム は {そんな に} 面白い です か？
+      - 新しい ゲーム は {そんな に} 面白い の？
+    english_literally: New game as for that much interesting is it?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ゲーム は 面白い です か？
+        english: Is the new game fun?
+        hint: The English 'that fun' implies a reference to a reported level of fun, often conveying surprise
+          or seeking confirmation of an assumed degree. Omitting 『そんなに』 would just ask generally if it's
+          fun.
+    scene: Asking a friend about a video game they've been playing constantly.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: It doesn't smell that bad.
+    japanese:
+      - '{そんな に} 臭く ない です よ。'
+      - '{そんな に} 臭く ない よ。'
+    english_literally: That much smelly is not, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 臭く ない です よ。
+        english: It doesn't smell bad, you know.
+        hint: 『そんなに』 clarifies 'not *that* bad,' referring to the degree of bad smell perceived by the
+          other person. Without it, it simply states 'it doesn't smell bad'.
+    scene: Someone complains about a smell, but you don't find it strong.
+    register: teineigo (polite)
+    setting: friendly
+  - english: He doesn't talk that much usually.
+    japanese:
+      - 彼 は 普段、{そんな に} 喋ら ない です。
+      - 彼 は 普段、{そんな に} 話し ませ ん。
+    english_literally: He as for usually, that much talk not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 普段、あまり 喋ら ない です。
+        english: He doesn't talk very much usually.
+        hint: While 『あまり』 is a general 'not very much,' 『そんなに』 refers to 'not *that* much,' specifically
+          in response to an implied or observed level of talkativeness. It suggests a lower-than-expected
+          or assumed level.
+    scene: Explaining someone's quiet nature to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: As you can see from the examples, そんなに often appears in negative sentences to soften
+  a statement or indicate that something is not true to a certain extent. When used in questions, it typically
+  conveys surprise or asks for confirmation about the degree of something. Pay attention to the context
+  and the speaker's implied reaction to fully grasp its nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%9D%E3%82%93%E3%81%AA%E3%81%AB

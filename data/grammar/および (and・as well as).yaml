@@ -1,0 +1,408 @@
+grammar_point: および (and・as well as)
+learn_before:
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - となる (to become・result in)
+  - どこ (where)
+  - を (direct object marker)
+  - 以上です (that's all・conclusion)
+  - 注意する (to pay attention・to warn・to caution)
+  - 関係がある (to be related・to have a connection)
+meaning: And, As well as
+pronunciation:
+  katakana: オヨビ
+  romaji: oyobi
+  pronunciation_warning: This is the hiragana spelling of the kanji 及び.
+formation:
+  Noun + および + Noun: Connects two nouns, similar to 'and' or 'as well as' in English.
+  Clause + 、および + Clause: Connects two clauses, indicating inclusion or a comprehensive list of elements
+    within a formal context. This usage is less common than connecting nouns and tends to be reserved
+    for highly structured or legalistic texts where precision is paramount. While grammatically permissible,
+    it often results in a somewhat stiff or archaic tone if not used carefully to maintain parallel structure
+    and a clear, formal register, ensuring that the clauses are of equal grammatical weight and thematic
+    importance, thereby creating a tightly bound, exhaustive statement rather than a simple narrative
+    progression or casual addition of thoughts. The connection between clauses implies a direct relationship
+    or logical consequence, making it stronger than simple sequential connectors. The formality of および
+    means that the clauses linked by it are typically complete sentences or highly formal phrases, and
+    their combination is meant to convey a unified concept or a comprehensive statement.
+jlpt: N2
+etymology: The term および originates from the conjunctive form of the verb 及ぶ (およぶ), meaning "to reach"
+  or "to extend to". Thus, および, which is the hiragana spelling of the kanji 及び, literally carries the
+  nuance of extending to include something else, which is why it functions as a formal "and".
+writeup: |-
+  および functions as a formal conjunction, similar to "and" or "as well as" in English. It derives from the verb 及ぶ (およぶ), meaning "to reach" or "to extend to", carrying the nuance of adding something comprehensively to what has already been mentioned.
+
+  This grammar point is primarily used in formal writing, official documents, articles, and notifications, where a precise and exhaustive listing or connection of items or clauses is necessary. Due to its high formality, it is rarely encountered in casual conversation, where simpler connectors like **と**, **や**, or **また** would be used. While および translates simply as "and" or "as well as," its underlying meaning emphasizes that the second item or clause is explicitly included or extends to the first, implying a complete and definitive enumeration rather than a mere casual listing.
+false_friends:
+  - term: や
+    meaning: Things like, And the like
+    kind: similar expression
+    nuance: や is less formal and implies that the list is not exhaustive. および is more formal and suggests
+      a complete listing.
+    grammar_point: や (non-exhaustive list)
+  - term: と
+    meaning: And
+    kind: similar expression
+    nuance: と simply lists items together. および is more formal and emphasizes a comprehensive inclusion
+      of both items, often in official or written contexts.
+    grammar_point: と (and, connects nouns)
+  - term: 並びに
+    meaning: And, as well as
+    kind: similar expression
+    nuance: 並びに is similar to および in formality and function but is generally used for connecting items
+      of equal standing or for listing elements in official documents where a clear hierarchy is maintained,
+      or when connecting three or more elements. および can connect a broader range of elements.
+    grammar_point: 並びに (and・as well as・formal)
+  - term: 且つ
+    meaning: And, moreover, furthermore
+    kind: similar expression
+    nuance: 且つ connects elements where the second element adds to or reinforces the first, or indicates
+      simultaneous states/actions. It often implies a stronger logical connection or a cumulative effect
+      than および.
+    grammar_point: 且つ (and・moreover)
+  - term: また
+    meaning: Again, also, moreover, in addition
+    kind: similar expression
+    nuance: また is a general-purpose additive or sequential connector. It is far less formal than および and
+      can be used in a wider range of contexts, including casual conversation, without the implication
+      of exhaustive listing.
+    grammar_point: また (again; also; or)
+  - term: それに
+    meaning: And, Besides, Moreover, In addition
+    kind: similar expression
+    nuance: それに is a more conversational and less formal way to add information or items. Unlike および,
+      it doesn't carry the weight of formality or the implication of a comprehensive, exhaustive list.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: To avoid confusion, remember that および, 並びに, and 且つ are all formal connectors.
+  および is a general formal 'and' for inclusive listing. 並びに is used for comprehensive listing of items
+  of equal rank, often when three or more items are listed. 且つ is used when the second item adds to or
+  reinforces the first, or when two conditions/actions occur simultaneously or cumulatively. For casual
+  conversation or when listing examples that are not necessarily exhaustive, や, と, また, or それに are more
+  appropriate.
+examples:
+  - english: Please submit your certificate of residence and identification.
+    japanese:
+      - 住民 票 {および} 身分 証明 書 を 提出 し て ください。
+      - 住民 票 {および} 身分 証明 書 を ご 提出 ください。
+      - 住民 票 {および} 身分 証明 書 の 提出 を お 願い いたし ます。
+    english_literally: Certificate of residence and identification, please submit.
+    competing_grammar:
+      - competing_japanese:
+          - 住民 票 {と} 身分 証明 書 を 提出 し て ください。
+        english: Please submit your certificate of residence and identification.
+        hint: In a formal government context, 「および」 is preferred over 「と」 to indicate a comprehensive
+          and official list of required items, emphasizing that both are equally necessary for the procedure.
+          We're looking for a formal conjunction that implies a complete listing.
+      - competing_japanese:
+          - 住民 票 {や} 身分 証明 書 を 提出 し て ください。
+        english: Please submit things like your certificate of residence and identification.
+        hint: In a formal government context, 「および」 is preferred over 「や」 to indicate a comprehensive
+          and official list of required items, emphasizing that both are equally necessary, rather than
+          implying a non-exhaustive list. We're looking for a formal conjunction that implies a complete
+          listing.
+      - competing_japanese:
+          - 住民 票 {並び に} 身分 証明 書 を 提出 し て ください。
+        english: Please submit your certificate of residence as well as identification.
+        hint: While 「並びに」 is also formal, 「および」 is often used for broader inclusive connections. 「並びに」
+          might suggest a stricter hierarchy or a longer list where the order matters. We're looking for
+          a general formal 'and'.
+    scene: A clerk at a government office is instructing a citizen on required documents for an application.
+    register: formal
+    setting: informative
+  - english: This scholarship is for students with excellent academic records and those who require financial
+      aid.
+    japanese:
+      - この 奨学 金 は、成績 優秀 者 {および} 経済 的 支援 を 必要 と する 学生 が 対象 です。
+      - この 奨学 金 は、成績 優秀 者 {および} 経済 的 支援 を 必要 と する 学生 が 対象 と なり ます。
+      - この 奨学 金 は、成績 優秀 者 {および} 経済 的 支援 を 必要 と する 学生 を 対象 と し て い ます。
+    english_literally: This scholarship is for excellent academic record holders and students who require
+      financial aid, the target is.
+    competing_grammar:
+      - competing_japanese:
+          - この 奨学 金 は、成績 優秀 者 {と} 経済 的 支援 を 必要 と する 学生 が 対象 です。
+        english: This scholarship is for students with excellent academic records and financial aid needs.
+        hint: When defining eligibility criteria for an official program like a scholarship, 「および」 is
+          used to state a comprehensive and precise list of conditions, ensuring no ambiguity compared
+          to 「と」. We're looking for a formal conjunction that implies a complete and unambiguous listing
+          of conditions.
+      - competing_japanese:
+          - この 奨学 金 は、成績 優秀 者 {や} 経済 的 支援 を 必要 と する 学生 が 対象 です。
+        english: This scholarship is for like those with excellent academic records or financial aid needs.
+        hint: When defining eligibility criteria for an official program like a scholarship, 「および」 is
+          used to state a comprehensive and precise list of conditions, ensuring all criteria are explicitly
+          included, unlike the implied non-exhaustiveness of 「や」. We're looking for a formal conjunction
+          that implies a complete and unambiguous listing of conditions.
+      - competing_japanese:
+          - この 奨学 金 は、成績 優秀 者 {並び に} 経済 的 支援 を 必要 と する 学生 が 対象 です。
+        english: This scholarship is for students with excellent academic records as well as financial
+          aid needs.
+        hint: While 「並びに」 is also formal, 「および」 is often chosen when connecting two distinct, yet equally
+          important categories. 「並びに」 might be preferred for connecting items within a more explicitly
+          structured list, such as clauses in a legal document. We're looking for a general formal 'and'.
+    scene: A university admissions officer is explaining the eligibility criteria for a scholarship program
+      to a prospective student.
+    register: formal
+    setting: informative
+  - english: Additional towels and amenities will incur a fee.
+    japanese:
+      - 追加 の タオル {および} アメニティ は 有料 と なり ます。
+      - 追加 の タオル {および} アメニティ は 有料 です。
+      - 追加 の タオル {および} アメニティ に は 料金 が 発生 いたし ます。
+    english_literally: Additional towels and amenities, fee will incur.
+    competing_grammar:
+      - competing_japanese:
+          - 追加 の タオル {と} アメニティ は 有料 と なり ます。
+        english: Additional towels and amenities will incur a fee.
+        hint: In an official hotel notice, 「および」 is used to clearly and formally list distinct items that
+          fall under the same charging policy, ensuring explicit clarity. We're looking for a formal conjunction
+          for official notices.
+      - competing_japanese:
+          - 追加 の タオル {や} アメニティ は 有料 と なり ます。
+        english: Things like additional towels or amenities will incur a fee.
+        hint: In an official hotel notice, 「および」 is used to clearly and formally list distinct items that
+          fall under the same charging policy, emphasizing that both are included, unlike the implied
+          non-exhaustiveness of 「や」. We're looking for a formal conjunction for official notices.
+      - competing_japanese:
+          - 追加 の タオル {並び に} アメニティ は 有料 と なり ます。
+        english: Additional towels as well as amenities will incur a fee.
+        hint: Although 「並びに」 is also very formal, 「および」 is frequently used when clearly stating two items
+          that are equally affected by a rule or policy. 「並びに」 might imply a slightly more rigid or enumerated
+          listing, often seen in legal statutes. We're looking for a general formal 'and'.
+    scene: A hotel receptionist is informing guests about extra charges for certain items in their room.
+    register: formal
+    setting: informative
+  - english: For safety, wearing a helmet and safety shoes is essential.
+    japanese:
+      - 安全 の ため、ヘルメット {および} 安全 靴 の 着用 が 必須 です。
+      - 安全 の ため、ヘルメット {および} 安全 靴 の 着用 が 必須 と なり ます。
+      - 安全 の ため、ヘルメット {および} 安全 靴 は 必ず 着用 し て ください。
+    english_literally: For safety, helmet and safety shoes wearing is essential.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 の ため、ヘルメット {と} 安全 靴 の 着用 が 必須 です。
+        english: For safety, wearing a helmet and safety shoes is essential.
+        hint: In a formal safety instruction, 「および」 is used to emphatically state that both items are
+          mandatory without exception, conveying a non-negotiable directive that is more precise than
+          「と」. We're looking for a formal conjunction for mandatory rules.
+      - competing_japanese:
+          - 安全 の ため、ヘルメット {や} 安全 靴 の 着用 が 必須 です。
+        english: For safety, wearing things like a helmet or safety shoes is essential.
+        hint: In a formal safety instruction, 「および」 is used to emphatically state that both items are
+          mandatory without exception, implying a complete list of required gear rather than a mere example
+          with 「や」. We're looking for a formal conjunction for mandatory rules.
+      - competing_japanese:
+          - 安全 の ため、ヘルメット {並び に} 安全 靴 の 着用 が 必須 です。
+        english: For safety, wearing a helmet as well as safety shoes is essential.
+        hint: While 「並びに」 is also formal, 「および」 is often used for inclusive mandatory requirements. 「並びに」
+          could suggest a slightly more emphasized connection or be part of a longer list where items
+          are enumerated. We're looking for a general formal 'and'.
+    scene: A site manager is conducting a safety briefing for new workers at a construction site.
+    register: formal
+    setting: instructional
+  - english: The library's closing days are Sundays and public holidays.
+    japanese:
+      - 図書 館 の 休館 日 は、日曜 日 {および} 祝日 です。
+      - 図書 館 の 休館 日 は、日曜 日 {および} 祝日 と なり ます。
+      - 図書 館 は 日曜 日 {および} 祝日 を 休館 日 と さ せ て いただい て おり ます。
+    english_literally: Library's closing days are Sundays and public holidays.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 の 休館 日 は、日曜 日 {と} 祝日 です。
+        english: The library's closing days are Sundays and public holidays.
+        hint: For a clear public announcement like library closing days, 「および」 is preferred over 「と」 to
+          list the definitive and complete set of closure days, ensuring clarity and avoiding any ambiguity.
+          We're looking for a formal conjunction for official announcements.
+      - competing_japanese:
+          - 図書 館 の 休館 日 は、日曜 日 {や} 祝日 です。
+        english: The library's closing days are Sundays or public holidays, among others.
+        hint: For a clear public announcement like library closing days, 「および」 is preferred over 「や」 to
+          list the definitive and complete set of closure days, avoiding the implication of a non-exhaustive
+          list. We're looking for a formal conjunction for official announcements.
+      - competing_japanese:
+          - 図書 館 の 休館 日 は、日曜 日 {並び に} 祝日 です。
+        english: The library's closing days are Sundays as well as public holidays.
+        hint: While 「並びに」 is also formal, 「および」 is generally used for straightforward, inclusive connections
+          in public announcements. 「並びに」 might imply a slightly more structured enumeration, such as in
+          regulations. We're looking for a general formal 'and'.
+    scene: A public announcement sign posted at the entrance of a library.
+    register: formal
+    setting: informative
+  - english: In this conference, we will discuss market analysis and new product development.
+    japanese:
+      - 今回 の 会議 で は、市場 分析 {および} 新 製品 開発 に つい て 議論 し ます。
+      - 今回 の 会議 で は、市場 分析 {および} 新 製品 開発 に つい て 議論 を 行い ます。
+      - 今回 の 会議 で は、市場 分析 {および} 新 製品 開発 に 関する 議論 が 行わ れ ます。
+    english_literally: In this conference, market analysis and new product development regarding, we will
+      discuss.
+    competing_grammar:
+      - competing_japanese:
+          - 今回 の 会議 で は、市場 分析 {と} 新 製品 開発 に つい て 議論 し ます。
+        english: In this conference, we will discuss market analysis and new product development.
+        hint: In a formal conference setting, 「および」 is used to explicitly state the specific and comprehensive
+          topics for discussion, conveying a structured agenda rather than a simple listing with 「と」.
+          We're looking for a formal conjunction for a comprehensive agenda.
+      - competing_japanese:
+          - 今回 の 会議 で は、市場 分析 {や} 新 製品 開発 に つい て 議論 し ます。
+        english: In this conference, we will discuss market analysis or new product development, among
+          other things.
+        hint: In a formal conference setting, 「および」 is used to explicitly state the specific and comprehensive
+          topics for discussion, indicating a complete set of discussion points rather than a non-exhaustive
+          list with 「や」. We're looking for a formal conjunction for a comprehensive agenda.
+      - competing_japanese:
+          - 今回 の 会議 で は、市場 分析 {並び に} 新 製品 開発 に つい て 議論 し ます。
+        english: In this conference, we will discuss market analysis as well as new product development.
+        hint: While 「並びに」 is also formal, 「および」 is often used for general comprehensive listing of topics.
+          「並びに」 might imply a slightly more sequential or ordered listing, or be used for connecting clauses.
+          We're looking for a general formal 'and'.
+    scene: A speaker is presenting the agenda for an upcoming business conference.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: The terms of service describe matters concerning service usage and personal information protection.
+    japanese:
+      - ご 利用 規約 に は、サービス 利用 {および} 個人 情報 保護 に 関する 事項 が 記載 さ れ て い ます。
+      - ご 利用 規約 に は、サービス 利用 {および} 個人 情報 保護 に 関する 事項 が 記載 さ れ て おり ます。
+      - ご 利用 規約 に は、サービス 利用 {および} 個人 情報 保護 に 関する 事項 が 明記 さ れ て い ます。
+    english_literally: In the terms of use, service usage and personal information protection regarding
+      matters are described.
+    competing_grammar:
+      - competing_japanese:
+          - ご 利用 規約 に は、サービス 利用 {と} 個人 情報 保護 に 関する 事項 が 記載 さ れ て い ます。
+        english: The terms of service describe matters concerning service usage and personal information
+          protection.
+        hint: In legal documentation, 「および」 is crucial for precisely enumerating distinct but equally
+          important clauses, ensuring a complete and unambiguous legal statement, which 「と」 might not
+          fully convey. We're looking for a formal conjunction for legal precision.
+      - competing_japanese:
+          - ご 利用 規約 に は、サービス 利用 {や} 個人 情報 保護 に 関する 事項 が 記載 さ れ て い ます。
+        english: The terms of service describe matters concerning service usage or personal information
+          protection, among others.
+        hint: In legal documentation, 「および」 is crucial for precisely enumerating distinct but equally
+          important clauses, ensuring a complete and unambiguous legal statement, whereas 「や」 would imply
+          a non-exhaustive list. We're looking for a formal conjunction for legal precision.
+      - competing_japanese:
+          - ご 利用 規約 に は、サービス 利用 {並び に} 個人 情報 保護 に 関する 事項 が 記載 さ れ て い ます。
+        english: The terms of service describe matters concerning service usage as well as personal information
+          protection.
+        hint: While 「並びに」 is also used in legal contexts, 「および」 is more commonly used to connect distinct
+          but equally important clauses. 「並びに」 might be preferred when listing clauses that have a specific
+          order or hierarchy. We're looking for a general formal 'and'.
+    scene: A legal expert is reviewing a company's terms of service document.
+    register: bijinesu nihongo (business)
+    setting: technical
+  - english: The contract clearly states the payment terms and delivery deadlines.
+    japanese:
+      - 契約 書 に は、支払 条件 {および} 納期 が 明確 に 記載 さ れ て い ます。
+      - 契約 書 に は、支払 条件 {および} 納期 が 明確 に 記載 さ れ て おり ます。
+      - 契約 書 に は、支払 条件 {および} 納期 が 明確 に 定め られ て い ます。
+    english_literally: In the contract, payment terms and delivery deadlines are clearly stated.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 書 に は、支払 条件 {と} 納期 が 明確 に 記載 さ れ て い ます。
+        english: The contract clearly states the payment terms and delivery deadlines.
+        hint: In a legal context, 「および」 is chosen over 「と」 to precisely and comprehensively list crucial,
+          distinct elements within a formal document, ensuring absolute clarity and preventing any misinterpretation.
+          We're looking for a formal conjunction for legal contracts.
+      - competing_japanese:
+          - 契約 書 に は、支払 条件 {や} 納期 が 明確 に 記載 さ れ て い ます。
+        english: The contract clearly states things like payment terms or delivery deadlines.
+        hint: In a legal context, 「および」 is chosen over 「や」 to precisely and comprehensively list crucial,
+          distinct elements within a formal document, ensuring absolute clarity and preventing any misinterpretation,
+          rather than implying a non-exhaustive list. We're looking for a formal conjunction for legal
+          contracts.
+      - competing_japanese:
+          - 契約 書 に は、支払 条件 {並び に} 納期 が 明確 に 記載 さ れ て い ます。
+        english: The contract clearly states the payment terms as well as delivery deadlines.
+        hint: While 「並びに」 is commonly used in legal documents for connecting elements, 「および」 often serves
+          as a more general formal 'and' for distinct items. 「並びに」 is sometimes used for clauses that
+          follow a specific sequential or hierarchical order within a list. We're looking for a general
+          formal 'and'.
+    scene: A lawyer is explaining the key clauses of a business contract to a client.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: For the investigation of the incident, please submit relevant documents and communication
+      records.
+    japanese:
+      - 事件 の 調査 の ため、関連 書類 {および} 通信 記録 を 提出 願い ます。
+      - 事件 の 調査 の ため、関連 書類 {および} 通信 記録 を ご 提出 ください。
+      - 事件 の 調査 の ため、関連 書類 {および} 通信 記録 を 提出 し て いただき たい と 存じ ます。
+    english_literally: Incident's investigation for, relevant documents and communication records, please
+      submit.
+    competing_grammar:
+      - competing_japanese:
+          - 事件 の 調査 の ため、関連 書類 {と} 通信 記録 を 提出 願い ます。
+        english: For the investigation of the incident, please submit relevant documents and communication
+          records.
+        hint: In a formal request by law enforcement, 「および」 is used to clearly delineate the specific
+          categories of evidence required, implying a comprehensive and official demand for all listed
+          items, unlike a simple conjunction. We're looking for a formal conjunction for official requests.
+      - competing_japanese:
+          - 事件 の 調査 の ため、関連 書類 {や} 通信 記録 を 提出 願い ます。
+          - 事件 の 調査 の ため、関連 書類 {や} 通信 記録 を 提出 し て ください。
+        english: For the investigation of the incident, please submit things like relevant documents or
+          communication records.
+        hint: In a formal request by law enforcement, 「および」 is used to clearly delineate the specific
+          categories of evidence required, implying a comprehensive and official demand for all listed
+          items, rather than a non-exhaustive list. We're looking for a formal conjunction for official
+          requests.
+      - competing_japanese:
+          - 事件 の 調査 の ため、関連 書類 {並び に} 通信 記録 を 提出 願い ます。
+        english: For the investigation of the incident, please submit relevant documents as well as communication
+          records.
+        hint: While 「並びに」 is highly formal and can connect listed items, 「および」 is often chosen for connecting
+          distinct but required items, emphasizing their collective importance. 「並びに」 is more common for
+          enumerating a series of distinct clauses or items in legal texts. We're looking for a general
+          formal 'and'.
+    scene: A police officer is formally requesting evidence from a suspect's legal representative.
+    register: formal
+    setting: interrogative
+  - english: Please exercise extreme caution when handling confidential information and personal data.
+    japanese:
+      - 機密 情報 {および} 個人 データ の 取り扱い に は 十分 注意 し て ください。
+      - 機密 情報 {および} 個人 データ の 取り扱い に は 十分 ご 注意 ください。
+      - 機密 情報 {および} 個人 データ の 取り扱い に は 十分 な 注意 が 必要 です。
+    english_literally: Confidential information and personal data handling, sufficiently please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 機密 情報 {と} 個人 データ の 取り扱い に は 十分 注意 し て ください。
+        english: Please exercise extreme caution when handling confidential information and personal data.
+        hint: In a formal instructional setting, 「および」 is used to emphasize the comprehensive and equally
+          important nature of handling both types of data, conveying a strong, clear directive that 「と」
+          might not fully capture. We're looking for a formal conjunction for important instructions.
+      - competing_japanese:
+          - 機密 情報 {や} 個人 データ の 取り扱い に は 十分 注意 し て ください。
+          - 機密 情報 {や} 個人 データ の 取り扱い に は 十分 ご 注意 ください。
+        english: Please exercise extreme caution when handling things like confidential information or
+          personal data.
+        hint: In a formal instructional setting, 「および」 is used to emphasize the comprehensive and equally
+          important nature of handling both types of data, indicating a complete set of sensitive data
+          types rather than implying a non-exhaustive list. We're looking for a formal conjunction for
+          important instructions.
+      - competing_japanese:
+          - 機密 情報 {並び に} 個人 データ の 取り扱い に は 十分 注意 し て ください。
+        english: Please exercise extreme caution when handling confidential information as well as personal
+          data.
+        hint: While 「並びに」 is also formal, 「および」 is often chosen for general comprehensive instructions.
+          「並びに」 can be used when enumerating a list of items or clauses with a certain order or structure,
+          typically found in formal documentation. We're looking for a general formal 'and'.
+      - competing_japanese:
+          - 機密 情報 {且つ} 個人 データ の 取り扱い に は 十分 注意 し て ください。
+        english: Please exercise extreme caution when handling confidential information and also personal
+          data.
+        hint: 「且つ」 implies that the two elements are not just listed together but are simultaneously relevant
+          or that the second element builds upon the first. 「および」 is more about a comprehensive inclusion
+          of distinct items. We're looking for a general formal 'and' for distinct items.
+    scene: A male cybersecurity expert is giving a training session to a group of new employees.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: In this formal instruction regarding sensitive data, the male speaker uses 「および」 to precisely
+      and comprehensively group "confidential information" and "personal data" together. The choice of
+      「および」 here underscores the critical importance and exhaustive nature of the caution required for
+      both categories, fitting a professional and instructive tone.
+post_example_writeup: As you can see from these examples, および is consistently used in formal and official
+  contexts to connect nouns or clauses, indicating a comprehensive and exhaustive listing. Its formality
+  makes it unsuitable for casual conversation but essential for clarity and precision in written communication
+  and formal speech.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/および

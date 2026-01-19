@@ -1,0 +1,272 @@
+grammar_point: どんな (what kind of)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]が好きだ (to like)'
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - ある (to exist, inanimate・to have)
+  - あれ (that over there)
+  - あれ? (surprise・confusion)
+  - い (friendly particle)
+  - い-Adjective[み] (abstract quality)
+  - いい (good)
+  - です (polite copula)
+  - と (and, connects nouns)
+  - の (nominalizer・question particle)
+  - は (topic and contrast)
+  - 真上 (directly above)
+meaning: What kind of; what sort of
+pronunciation:
+  katakana: ドンナ
+  romaji: donna
+formation:
+  どんな + Noun: Used to inquire about the characteristics, type, or nature of a noun.
+jlpt: N5
+etymology: The word 「どんな」 is a contraction derived from the phrase 「どの様な」 (dono you na), which literally
+  means “of what kind” or “in what manner.” Here, 「どの」 functions as an interrogative demonstrative, and
+  「様」 (you) signifies “way,” “manner,” or “kind.” Over time, this phrase evolved into the more colloquial
+  and common 「どんな」, retaining its core meaning of inquiring about the nature or characteristics of something.
+  This evolution reflects the natural tendency in language to simplify and shorten frequently used expressions.
+writeup: |-
+  「どんな」 is an interrogative determiner used to ask about the **nature, type, or characteristics** of a noun. It directly precedes the noun it modifies, functioning similarly to 'what kind of' or 'what sort of' in English. It is a very common and versatile expression used in everyday conversation.
+
+  Unlike simply asking 'what' (何 - nan/nani), which asks for identification, 「どんな」 seeks a description or classification. For example, if you ask 「何の本ですか？」 (Nan no hon desu ka?), you might be asking for the title or subject of the book. But if you ask 「どんな本ですか？」 (Donna hon desu ka?), you are inquiring about its genre, its quality (e.g., interesting, difficult), or its physical attributes (e.g., thick, old).
+
+  It can be used to ask about a wide range of attributes, including appearance, personality, quality, type, or general impression. Its broad applicability makes it a fundamental part of expressing curiosity and gathering information in Japanese.
+false_friends:
+  - term: どのような
+    meaning: What kind of (polite/formal)
+    kind: similar expression
+    nuance: 「どのような」 is a more formal and polite alternative to 「どんな」. It is typically used in more respectful
+      contexts, such as business settings, formal speeches, or when addressing someone of higher status.
+      「どんな」 is the standard, more casual form used in daily conversation.
+    grammar_point: <suggest>:どのような (what kind of, polite)
+  - term: どういう
+    meaning: What kind of (explanatory)
+    kind: often confused with
+    nuance: While both 「どんな」 and 「どういう」 translate to 'what kind of,' their nuances differ. 「どんな」 directly
+      asks for a general type or characteristic. 「どういう」, on the other hand, often implies a request for
+      a more detailed explanation, definition, or the rationale behind something. For instance, 「どんなスポーツが好きですか？」
+      (What kind of sports do you like?) asks about preferred types of sports, whereas 「どういう意味ですか？」 (Dō
+      iu imi desu ka? - What does that mean?) asks for an explanation of meaning.
+    grammar_point: <suggest>:どういう (what kind of, explanatory)
+  - term: 何の
+    meaning: What (kind of); what is it for
+    kind: often confused with
+    nuance: 「何の」 is generally used to inquire about the purpose, material, affiliation, or a more direct
+      classification where 'what' precedes the noun. For example, 「何の飲み物ですか？」 (Nan no nomimono desu ka?
+      - What drink/Drink of what?) asks for the specific name or category of the drink. In contrast, 「どんな飲み物ですか？」
+      (Donna nomimono desu ka? - What kind of drink?) asks about its characteristics, such as taste (sweet,
+      sour) or temperature (hot, cold).
+    grammar_point: 何 (what)
+post_false_friends_writeup: To differentiate, remember that 「どんな」 seeks a **description or characteristic**.
+  「どのような」 is its **polite equivalent**. 「どういう」 asks for a **detailed explanation or the reason/method
+  behind something**. 「何の」 typically inquires about **purpose, material, or direct classification**.
+examples:
+  - english: What kind of movies do you like?
+    japanese:
+      - どんな 映画 が 好き です か？
+      - どんな 映画 が 好き？
+      - どの よう な 映画 が お 好き です か？
+    english_literally: What kind of movie (topic) like is it?
+    competing_grammar:
+      - competing_japanese:
+          - 何 の 映画 が 好き です か？
+        english: What movie do you like?
+        hint: 「何の」 asks for the name or specific identification of the movie. We're looking for the type
+          or genre of movie.
+      - competing_japanese:
+          - どう いう 映画 が 好き です か？
+        english: What sort of movies do you like (implying a more detailed explanation)?
+        hint: 「どういう」 often implies a request for a more detailed explanation or reason behind the type.
+          We're looking for a general classification of movies.
+    scene: You are getting to know a new friend and want to find out their movie preferences.
+    register: casual
+    setting: friendly
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a casual way to ask about someone's general preferences. The use of 「好きですか？」 is polite
+      but informal, suitable for friendly conversation with someone you are getting to know.
+  - english: What kind of person is Tanaka-san?
+    japanese:
+      - 田中 さん は どんな 人 です か？
+      - 田中 さん は どの よう な 方 です か？
+      - 田中 さん て どんな 人？
+    english_literally: Tanaka-san (topic) what kind of person is?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は どう いう 人 です か？
+        english: What kind of person is Tanaka-san (implying a more detailed character sketch)?
+        hint: 「どういう」 implies asking for a more detailed explanation of their nature or character. We're
+          looking for a general description or broad classification of their personality.
+    scene: You are talking to a mutual acquaintance about Tanaka-san, whom you haven't met yet.
+    register: teineigo (polite)
+    setting: informative
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a standard polite inquiry about someone's general characteristics or personality.
+      It's a neutral and common way to ask for a broad description.
+  - english: What kind of weather is good for a picnic?
+    japanese:
+      - ピクニック に は どんな 天気 が いい です か？
+      - ピクニック に は どんな 天気 が いい？
+      - ピクニック に は どの よう な 天気 が よろしい でしょう か？
+    english_literally: Picnic for (topic) what kind of weather is good?
+    competing_grammar:
+      - competing_japanese:
+          - ピクニック に は どう いう 天気 が いい です か？
+        english: What kind of weather is good for a picnic (implying specific conditions and reasons)?
+        hint: 「どういう」 might lead to a more specific discussion about atmospheric conditions or precise
+          reasons. We're asking for a general type of weather.
+    scene: You are planning a picnic with friends and checking the weather forecast.
+    register: teineigo (polite)
+    setting: friendly
+    listener_gender: group
+    speaker_age: younger
+    nuance: This straightforward question asks about the ideal type of weather for an event, emphasizing
+      the quality rather than a detailed explanation.
+  - english: What kind of house do you want to live in?
+    japanese:
+      - どんな 家 に 住み たい です か？
+      - どんな 家 に 住み たい？
+      - どの よう な お 家 に お 住まい に なり たい です か？
+    english_literally: What kind of house in want to live?
+    competing_grammar:
+      - competing_japanese:
+          - どう いう 家 に 住み たい です か？
+        english: What concept of house do you want to live in?
+        hint: 「どういう」 asks for the concept or underlying idea of the desired house. We're looking for a
+          general type or characteristic of the house.
+    scene: A real estate agent is asking a young couple about their preferences for a new home.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「住みたい ですか？」 makes it a polite and professional inquiry. 「どんな」 is used to understand
+      the general preferences for the dwelling's characteristics (e.g., spacious, modern, traditional).
+  - english: What kind of dog is that?
+    japanese:
+      - あれ は どんな 犬 です か？
+      - あれ どんな 犬？
+      - あれ は どの よう な 犬 で ござい ます か？
+    english_literally: That (topic) what kind of dog is?
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 何 の 犬 です か？
+        english: What kind of dog is that (asking for its name or specific identification)?
+        hint: 「何の」 is generally used to ask for the name or specific identification, not the breed or
+          type. We're asking about its type or breed.
+      - competing_japanese:
+          - あれ は どう いう 犬 です か？
+        english: What sort of dog is that (implying a detailed explanation of its characteristics)?
+        hint: 「どういう」 might seek a more detailed explanation of the dog's characteristics or nature. We're
+          looking for its general type or breed.
+    scene: You see a cute dog at the park and ask its owner about its breed.
+    register: teineigo (polite)
+    setting: friendly
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a simple, direct question inquiring about the breed or general appearance of the dog.
+      It's a common phrase used out of curiosity.
+  - english: What kind of job are you looking for?
+    japanese:
+      - どんな 仕事 を 探し て い ます か？
+      - どんな 仕事 探し て る？
+      - どの よう な お 仕事 を お 探し です か？
+    english_literally: What kind of job (object) searching are you?
+    competing_grammar:
+      - competing_japanese:
+          - どう いう 仕事 を 探し て い ます か？
+        english: What kind of job are you looking for (implying a more detailed explanation of its principles
+          or nature)?
+        hint: 「どういう」 asks for a more conceptual definition or the underlying principles of the job. We're
+          looking for the general type or field of work.
+    scene: During a career counseling session, an advisor asks a student about their job search.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: no one
+    speaker_age: older
+    nuance: In this professional setting, 「どんな」 is used to ask about the general nature or type of work
+      being sought, allowing for a broad initial response.
+  - english: What kind of problems did you have?
+    japanese:
+      - どんな 問題 が あり まし た か？
+      - どんな 問題 あっ た？
+      - どの よう な 問題 が お あり に なり まし た か？
+    english_literally: What kind of problem (subject) existed?
+    competing_grammar:
+      - competing_japanese:
+          - どう いう 問題 が あり まし た か？
+        english: What sort of problems did you have (implying an explanation of their nature)?
+        hint: 「どういう」 seeks a more detailed explanation of the nature or cause of the problems. We're asking
+          for the general categories of problems.
+    scene: A project manager is debriefing their team after a challenging task.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: group
+    speaker_age: older
+    nuance: This question seeks to identify the categories or types of issues encountered, rather than
+      a deep dive into the specifics of each problem, making it suitable for a general overview.
+  - english: What kind of music do you listen to recently?
+    japanese:
+      - 最近 どんな 音楽 を 聞き ます か？
+      - 最近 どんな 音楽 聞く？
+      - 最近 どの よう な 音楽 を お 聞き に なり ます か？
+    english_literally: Recently what kind of music (object) listen?
+    competing_grammar:
+      - competing_japanese:
+          - 最近 何 の 音楽 を 聞き ます か？
+        english: What specific music do you listen to recently?
+        hint: 「何の」 usually asks for a specific title or identification, not a genre. We're asking about
+          the type or genre of music.
+      - competing_japanese:
+          - 最近 どう いう 音楽 を 聞き ます か？
+        english: What kind of music do you listen to recently (implying a more detailed explanation of
+          style)?
+        hint: 「どういう」 asks for a more detailed explanation of the style or characteristics. We're asking
+          for the general genre.
+    scene: You are chatting with a classmate after school.
+    register: casual
+    setting: friendly
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a casual, friendly question about musical preferences. The use of 「聞きますか？」 makes it
+      polite but still maintains a light, conversational tone.
+  - english: What kind of day was it today?
+    japanese:
+      - 今日 は どんな 一日 でし た か？
+      - 今日 どんな 一日 だっ た？
+    english_literally: Today (topic) what kind of one day was?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は どう でし た か？
+        english: How was today?
+        hint: 「どうでしたか」 is a broader question asking 'how was it?', not specifically 'what kind of day'.
+          We're looking for a question about the general nature of the day.
+    scene: A parent asks their child about their day after school.
+    register: casual
+    setting: intimate
+    listener_gender: no one
+    speaker_age: older
+    nuance: This is an informal, warm inquiry from a parent to a child, asking about the general feeling
+      or nature of the day (e.g., was it fun, tiring, busy?).
+  - english: What kind of experiences are necessary for this job?
+    japanese:
+      - この 仕事 に は どんな 経験 が 必要 です か？
+      - この 仕事 に は どんな 経験 が 必要？
+      - この お 仕事 に は どの よう な ご 経験 が 必要 で ござい ます か？
+    english_literally: This job for (topic) what kind of experience (subject) necessary is?
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 に は どう いう 経験 が 必要 です か？
+        english: What kind of experiences are necessary for this job (implying a detailed explanation
+          of their nature)?
+        hint: 「どういう」 asks for a more detailed explanation of the nature of the required experience (e.g.,
+          practical vs. theoretical). We're asking for the general type of experience.
+    scene: Someone is inquiring about job requirements at a career fair.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This is a polite and direct question about the types of experience required for a position,
+      focusing on the nature of the experience rather than specific examples.

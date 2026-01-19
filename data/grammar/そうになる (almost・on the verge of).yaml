@@ -1,0 +1,345 @@
+grammar_point: そうになる (almost・on the verge of)
+learn_before:
+  - '[Verb-dictionary]ところだ (about to do)'
+  - うっかり (carelessly)
+  - に合わせる・に合う (match or fit)
+  - 何とか (somehow manage)
+  - 思わず (involuntarily)
+  - 途中に・途中で (in the middle of)
+meaning: almost; on the verge of; close to (doing something)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: そうになる
+    rarity: common
+    meaning: almost happen
+  - conjugation-type: non-past polite (～ます)
+    form: そうになります
+    rarity: common
+    meaning: almost happen (polite)
+  - conjugation-type: negative plain (～ない)
+    form: そうにならない
+    rarity: less common
+    meaning: does not almost happen
+  - conjugation-type: negative non-past polite (～ません)
+    form: そうになりません
+    rarity: less common
+    meaning: does not almost happen (polite)
+  - conjugation-type: past plain (～た)
+    form: そうになった
+    rarity: common
+    meaning: almost happened
+  - conjugation-type: past polite (～ました)
+    form: そうになりました
+    rarity: common
+    meaning: almost happened (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: そうにならなかった
+    rarity: less common
+    meaning: did not almost happen
+  - conjugation-type: negative past polite (～ませんでした)
+    form: そうになりませんでした
+    rarity: less common
+    meaning: did not almost happen (polite)
+  - conjugation-type: te-form (～て)
+    form: そうになって
+    rarity: uncommon
+    meaning: almost happening and then...
+  - conjugation-type: conditional (～ば)
+    form: そうになれば
+    rarity: uncommon
+    meaning: if it almost happens
+  - conjugation-type: conditional (～たら)
+    form: そうになったら
+    rarity: uncommon
+    meaning: if it almost happened
+pronunciation:
+  katakana: ソウニナル
+  romaji: sou ni naru
+formation:
+  Verb (ます stem) + そうになる: Expresses that an action or event almost occurred.
+jlpt: N3
+etymology: The grammar point 「そうになる」 combines 「そう」, indicating a state or appearance, with 「になる」, meaning
+  "to become". Therefore, it literally means "to become like that state," implying that something is on
+  the verge of happening.
+writeup: 'The grammar point 「そうになる」 expresses that something almost happened. It''s used to convey a sense
+  of near occurrence or being on the verge of something. The structure is typically: Verb (ます stem) +
+  「そうになる」. This grammar point is commonly used in spoken Japanese to describe situations where an action
+  or event nearly occurred but was ultimately avoided. It highlights the *proximity* to an event without
+  necessarily emphasizing the speaker''s relief or regret, unlike some similar expressions.'
+false_friends:
+  - term: '[Adj-stem]・[V-stem]そうだ (looks・seems like)'
+    meaning: looks like; seems like; appears that
+    kind: similar expression
+    nuance: 「そう」 is used to describe something based on appearance or hearsay, while 「そうになる」 indicates
+      that something almost occurred.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: ところだった (near miss)
+    meaning: was about to; nearly did
+    kind: similar expression
+    nuance: Both 「そうになる」 and 「ところだった」 express that something almost happened, but 「ところだった」 often implies
+      a sense of relief or regret, while 「そうになる」 focuses on the near occurrence itself.
+    grammar_point: '[Verb-dictionary]ところだった (was just about to)'
+  - term: そうにない・そうもない (unlikely to)
+    meaning: unlikely to
+    kind: antonym
+    nuance: While 「そうになる」 indicates something is on the verge of happening, 「そうにない」 indicates that something
+      is unlikely to happen or shows no signs of happening.
+    grammar_point: そうにない・そうもない (unlikely to)
+  - term: かける (half-done)
+    meaning: half-done; on the verge of starting
+    kind: similar expression
+    nuance: 「そうになる」 emphasizes being on the verge of *completing* an action or entering a state, often
+      involuntarily. 「かける」 implies an action is *halfway done* or *just beginning* and is still incomplete.
+    grammar_point: かける・かけ (in process・incomplete・on the verge)
+  - term: Verb[volitional]+とする (try about to)
+    meaning: to try to; to be about to
+    kind: similar expression
+    nuance: 「そうになる」 describes an involuntary or natural progression towards a state or action. In contrast,
+      「Verb[volitional]+とする」 indicates a *deliberate intention* to do something or being *on the point*
+      of doing it with effort.
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - term: 危うく
+    meaning: barely; narrowly; almost
+    kind: similar expression
+    nuance: 「そうになる」 describes the internal state of being on the verge of an action or state. 「危うく」 is
+      an adverb emphasizing that something negative *almost* happened but was narrowly avoided, similar
+      to 「ところだった」 in nuance but modifying the entire clause.
+    grammar_point: <suggest>:危うく (barely・almost)
+post_false_friends_writeup: While 「そう」 indicates appearance or hearsay, 「そうになる」 specifies that an action
+  or event nearly occurred or is on the verge of happening. In contrast, 「そうにない」 suggests that an action
+  or event is unlikely to happen, serving as an antonym. 「ところだった」 similarly expresses a near occurrence
+  but often implies a sense of relief or regret. 「かける」 denotes an action that is halfway done or just
+  beginning, not simply on the verge. 「Verb[volitional]+とする」 implies a deliberate attempt or intention
+  to do something. Lastly, the adverb 「危うく」 highlights that something negative was narrowly avoided. When
+  you want to simply state that something was on the brink of happening due to circumstances or an involuntary
+  impulse, 「そうになる」 is often the more neutral choice.
+examples:
+  - english: I fell asleep on the train and almost missed my stop.
+    japanese:
+      - 電車 で 眠っ て、乗り過ごし {そう に なっ た}。
+      - 電車 で 眠っ て、乗り過ごし {そう に なり まし た}。
+    english_literally: On train, slept, almost missed my stop.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で 眠っ て、乗り過ごす {ところ だっ た}。
+        english: I fell asleep on the train and was on the verge of missing my stop (and I'm relieved
+          I didn't).
+        hint: 「ところだった」 often implies relief or regret that something *almost* happened but was avoided.
+          「そうになる」 focuses more on the near occurrence itself without as strong an emotional implication
+          of relief/regret. We're describing the near miss.
+    scene: A person talking about their commute.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: I was holding a hot coffee and almost dropped it.
+    japanese:
+      - 熱い コーヒー を 持っ て い て、落とし {そう に なっ た}。
+      - 熱い コーヒー を 持っ て い て、落とし {そう に なり まし た}。
+    english_literally: Hot coffee holding, almost dropped it.
+    competing_grammar:
+      - competing_japanese:
+          - 熱い コーヒー を 持っ て い て、落とす {ところ だっ た}。
+        english: I was holding a hot coffee and was on the verge of dropping it (and I'm relieved I didn't).
+        hint: 「ところだった」 implies a sense of relief or regret that an action was narrowly avoided. 「そうになる」
+          describes the state of being on the verge of an action, focusing on the proximity of the event.
+          We're describing the near drop itself.
+    scene: A person describing an accident they almost had.
+    register: casual
+    setting: cautious
+    conjugation: past plain (～た)
+  - english: Seeing her smile, I almost told her how I felt.
+    japanese:
+      - 彼女 の 笑顔 を 見 て、気持ち を 伝え {そう に なり まし た}。
+      - 彼女 の 笑顔 を 見 て、気持ち を 伝え {そう に なっ た}。
+    english_literally: Her smile seeing, feelings almost conveyed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 笑顔 を 見 て、気持ち を 伝える {ところ だっ た}。
+        english: Seeing her smile, I was on the verge of telling her how I felt (and I'm glad/regret I
+          didn't).
+        hint: While both express a near occurrence, 「ところだった」 carries a stronger nuance of relief or regret
+          regarding the unfulfilled action. 「そうになる」 expresses being on the verge of doing something, often
+          due to an internal feeling or impulse. Here, it emphasizes the strong impulse.
+    scene: A person on a first date, feeling smitten.
+    register: teineigo (polite)
+    setting: flirty
+    conjugation: past polite (～ました)
+  - english: The presentation was so long that the listeners almost fell asleep.
+    japanese:
+      - プレゼンテーション が 長 すぎ て、聞い て いる 人 が 居眠り し {そう に なっ た}。
+      - プレゼンテーション が 長 すぎ て、聞い て いる 人 が 居眠り し {そう に なり まし た}。
+    english_literally: Presentation too long, listeners almost fell asleep.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼンテーション が 長 すぎ て、聞い て いる 人 が 居眠り する {ところ だっ た}。
+        english: The presentation was so long that the listeners were on the verge of falling asleep.
+        hint: 「そうになる」 describes an event that nearly occurs due to circumstances or natural consequence.
+          「ところだった」 often implies a more conscious or fortunate avoidance. We're describing the natural
+          effect of a long presentation.
+    scene: An employee commenting on a lengthy meeting.
+    register: casual
+    setting: humorous
+    conjugation: past plain (～た)
+  - english: I got lost and almost became anxious.
+    japanese:
+      - 道 に 迷っ て、不安 に なり {そう に なっ た}。
+      - 道 に 迷っ て、不安 に なり {そう に なり まし た}。
+    english_literally: Lost on the road, almost became anxious.
+    competing_grammar:
+      - competing_japanese:
+          - 道 に 迷っ て、不安 に なる {ところ だっ た}。
+        english: I got lost and was on the verge of becoming anxious.
+        hint: 「ところだった」 can also be used for internal states, but it often emphasizes the relief or avoidance.
+          「そうになる」 simply indicates the close proximity to that state without necessarily implying relief.
+          We're describing the near-occurrence of anxiety.
+    scene: A person recounting a time they were scared.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+  - english: The exam was so difficult that I almost gave up halfway through, but I persevered.
+    japanese:
+      - 試験 が 難しく て、やめ {そう に なっ た} けど、頑張っ た。
+      - 試験 が 難しく て、やめ {そう に なり まし た} けど、頑張り まし た。
+    english_literally: Exam difficult, almost gave up, but persevered.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 が 難しく て、やめる {ところ だっ た} けど、頑張っ た。
+        english: The exam was so difficult that I was on the verge of giving up halfway through, but I
+          persevered.
+        hint: 「ところだった」 can convey relief or regret. 「そうになる」 highlights the internal feeling of being on
+          the verge of an action, emphasizing the mental state rather than the fortunate outcome. We're
+          emphasizing the internal struggle.
+    scene: A student talking about a difficult test.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+  - english: I almost burst out laughing at the section chief's joke, but I managed to hold it in.
+    japanese:
+      - 課長 の 冗談 で、うっかり 笑い {そう に なっ た} が、何 と か こらえ た。
+      - 課長 の 冗談 で、うっかり 笑い {そう に なり まし た} が、何 と か こらえ まし た。
+    english_literally: Section chief's joke, unintentionally almost burst out laughing, but somehow endured.
+    competing_grammar:
+      - competing_japanese:
+          - 課長 の 冗談 で、うっかり 笑う {ところ だっ た} が、何 と か こらえ た。
+        english: I was on the verge of bursting out laughing at the section chief's joke, but I managed
+          to hold it in.
+        hint: 「そうになる」 emphasizes the involuntary nature of the near-action and the internal struggle to
+          prevent it. 「ところだった」 can also be used, but 「そうになる」 fits well with uncontrollable impulses. We're
+          describing the near-uncontrollable urge.
+    scene: A person in a professional setting struggling to maintain composure.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+  - english: After being told such cruel things, I almost became sad.
+    japanese:
+      - こんな ひどい こと を 言わ れ て、悲しく なり {そう に なっ た} わ。
+      - こんな ひどい こと を 言わ れ て、悲しく なり {そう に なり まし た} わ。
+    english_literally: Being told such cruel things, almost became sad.
+    competing_grammar:
+      - competing_japanese:
+          - こんな ひどい こと を 言わ れ て、悲しく なる {ところ だっ た} わ。
+        english: After being told such cruel things, I was on the verge of becoming sad.
+        hint: 「そうになる」 expresses being on the brink of an emotional state. While 「ところだった」 is possible,
+          「そうになる」 often highlights the internal process leading to that near-state. We're focusing on
+          the internal shift towards sadness.
+    scene: A woman confiding in a close friend about a painful experience.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The sentence-ending particle 「わ」 is predominantly used by female speakers, adding a soft,
+      emotional, and declarative tone, which makes this expression sound distinctly feminine.
+  - english: When our eyes met, I almost fell in love.
+    japanese:
+      - 彼 と 目 が 合っ た 時、恋 に 落ち {そう に なっ た}。
+      - 彼 と 目 が 合っ た 時、恋 に 落ち {そう に なり まし た}。
+    english_literally: With him eyes met, almost fell in love.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と 目 が 合っ た 時、恋 に 落ちる {ところ だっ た}。
+        english: When our eyes met, I was on the verge of falling in love.
+        hint: 「そうになる」 emphasizes the spontaneous or natural progression towards a state, especially an
+          emotional one. 「ところだった」 can imply a more decisive turning point or a conscious avoidance. We're
+          describing the feeling of falling, not necessarily relief.
+    scene: A person describing a strong romantic attraction.
+    register: casual
+    setting: flirty
+    conjugation: past plain (～た)
+  - english: I wasn't prepared for the meeting at all, and the section chief almost scolded me.
+    japanese:
+      - 会議 の 準備 が 全然 でき て い なく て、部長 に 叱ら れ {そう に なり まし た}。
+      - 会議 の 準備 が 全然 でき て い なく て、部長 に 叱ら れ {そう に なっ た}。
+    english_literally: Meeting preparation not at all done, section chief almost scolded me.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 準備 が 全然 でき て い なく て、部長 に 叱ら れる {ところ だっ た}。
+        english: I wasn't prepared for the meeting at all, and the section chief was on the verge of scolding
+          me.
+        hint: 「そうになる」 describes a situation where an action nearly occurs as a natural consequence. 「ところだった」
+          can also be used, but 「そうになる」 emphasizes the inevitability or strong likelihood of the scolding.
+          We're describing the near-occurrence due to circumstances.
+    scene: An employee recounting a near miss at work.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: I was so tired, I almost collapsed, you know.
+    japanese:
+      - 疲れ て、もう 倒れ {そう に なっ た} よ。
+      - 疲れ て、もう 倒れ {そう に なり まし た} よ。
+    english_literally: Tired, almost collapsed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ て、もう 倒れる {ところ だっ た} よ。
+        english: I was so tired, I was on the verge of collapsing, you know.
+        hint: 「そうになる」 indicates a state of being on the brink of an action, often a physical one, due
+          to a prevailing condition. 「ところだった」 often implies a more discrete event that was narrowly avoided.
+          We're describing the state of being exhausted to the point of collapse.
+    scene: A person confiding in a partner after a long day.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    conjugation: past plain (～た)
+  - english: This job was so tough, I almost gave up halfway through, wasn't it?
+    japanese:
+      - この 仕事、あまり に も 大変 で、途中 で 投げ出し {そう に なっ た} よ、なぁ？
+      - この 仕事、あまり に も 大変 で、途中 で 投げ出し {そう に なり まし た} よ、ね？
+    english_literally: This job too tough, halfway through almost gave up, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事、あまり に も 大変 で、途中 で 投げ出す {ところ だっ た} よ、なぁ？
+        english: This job was so tough, I was on the verge of giving up halfway through, wasn't it?
+        hint: 「そうになる」 focuses on the strong impulse or feeling that brought one to the brink of an action.
+          「ところだった」 highlights the narrow avoidance of that action. Here, it emphasizes the internal struggle.
+    scene: A man complaining to his male colleague about a difficult project they just finished.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The sentence-ending particle 「なぁ」 is commonly used by male speakers to seek agreement or confirm
+      understanding, often in a casual context with another male.
+  - english: Even though I'm on a diet, seeing the cake, I almost instinctively reached out for it, you
+      know.
+    japanese:
+      - ダイエット 中 な の に、ケーキ を 見 て、思わ ず 手 を 出し {そう に なっ た} の よ。
+      - ダイエット 中 な の に、ケーキ を 見 て、思わ ず 手 を 出し {そう に なり まし た} の よ。
+    english_literally: On diet, despite, cake seeing, unconsciously almost reached out, you know.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット 中 な の に、ケーキ を 見 て、思わ ず 手 を 出す {ところ だっ た} の よ。
+        english: Even though I'm on a diet, seeing the cake, I was on the verge of instinctively reaching
+          out for it, you know.
+        hint: 「そうになる」 describes an action that was almost performed, often driven by an involuntary impulse.
+          「ところだった」 can also be used but may suggest a more conscious decision to pull back. We're describing
+          the strong, almost uncontrolled urge.
+    scene: A woman confessing to her female friend about a moment of weakness during her diet.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The sentence-ending particle 「のよ」 is a gentle, somewhat emphatic, and common ending used by
+      female speakers, conveying a sense of personal feeling or explanation.
+post_example_writeup: As you can see from the examples, 「そうになる」 is versatile for describing moments where
+  an action or state was nearly realized but ultimately wasn't. It's often used when an external circumstance
+  or internal impulse brings one to the brink of something, highlighting the close call.

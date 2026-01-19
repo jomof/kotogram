@@ -1,0 +1,299 @@
+grammar_point: かと思ったら・かと思うと (unexpected succession)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[たら] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - かというと (because)
+  - かというと (if I were to say)
+  - する (to have a characteristic)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - の (noun modifier)
+  - まさか (no way)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Just when I thought, No sooner than, Then again
+conjugations:
+  - conjugation-type: conditional (～たら)
+    form: かと思ったら
+    rarity: common
+    meaning: Just when I thought (A), (B) happened (often unexpected or surprising).
+  - conjugation-type: conditional (～たら)
+    form: かと思うと
+    rarity: common
+    meaning: No sooner than (A), (B) happened (immediate transition, often surprising).
+pronunciation:
+  katakana: カトオモッタラ・カトオモウト
+  romaji: ka to omottara / ka to omou to
+formation:
+  '[Verb (past tense)] + かと思ったら / かと思うと': To express a surprising or unexpected event immediately following
+    a previous event, where the subject of both clauses is usually the same and the second clause is non-emotive.
+  '[Verb (dictionary form)] + かと思うと': To express a thought or feeling that immediately leads to an emotive
+    reaction in the second clause.
+  '[Noun] + (なの/の) + かと思ったら / かと思うと': To express a surprising or unexpected event immediately following
+    a previous thought or perception about a noun, where the second clause can be either emotive or non-emotive.
+jlpt: N2
+etymology: The grammar point is derived from the combination of 「か」 (a question particle implying uncertainty),
+  「と」 (a particle indicating a thought or assumption), and 「思う」 (to think). 「思ったら」 or 「思うと」 indicates
+  'as soon as I thought' or 'just when I thought'. Thus, the whole expression implies that something happened
+  contrary to what one expected or thought. It suggests a moment of realization followed by a subsequent
+  and often surprising or contradictory outcome.
+writeup: When the adverbial particle 「か」 combines with 「と」, the u-verb 「思う」, and either the hypothetical
+  markers 「たら」 or 「と」, it forms an expression indicating that something happened unexpectedly or contrary
+  to one's thoughts or perceptions. It conveys a sense of "just when I thought (A), (B) happened" or "no
+  sooner than (A), (B)". The nuance is that the second event (B) occurred quickly and often contrary to
+  what was expected, or before (A) could be fully confirmed. This phrase typically follows verbs in their
+  dictionary or past forms, and also nouns. When the predicate in the second clause is non-emotive, the
+  subjects in both clauses are typically the same. However, when the second clause expresses the speaker's
+  feelings or an emotive state, the subject of the first clause might be different, or the phrase might
+  express the speaker's personal realization. When following nouns, especially when the meaning focuses
+  on the speaker's feelings about the first clause, 「なの」 (or 「の」 when used with verbs) may appear before
+  「かと思ったら/かと思うと」. Occasionally, the 「か」 may be omitted, resulting in 「と思うと」 or 「と思ったら」. While the meaning
+  remains the same, this omission generally softens the expression.
+false_friends:
+  - term: なり
+    meaning: As soon as, The moment, When
+    kind: similar expression
+    nuance: Unlike 「かと思ったら・かと思うと」, 「なり」 emphasizes immediate succession without the element of surprise
+      or unexpectedness, focusing purely on the temporal sequence.
+    grammar_point: <suggest>:Verb[た]とたん(に) (as soon as・the moment)
+  - term: たとたんに
+    meaning: The instant or moment, As soon as, Just as
+    kind: similar expression
+    nuance: While 「たとたんに」 indicates quick succession, it lacks the element of surprise or contrast found
+      in 「かと思ったら・かと思うと」, focusing solely on the immediacy.
+    grammar_point: <suggest>:Verb[た]とたん(に) (as soon as・the moment)
+  - term: か〜ないかのうちに
+    meaning: Right after, As soon as, Just when, Barely
+    kind: similar expression
+    nuance: This expression denotes events happening almost simultaneously but doesn't necessarily imply
+      surprise or a deviation from expectation, which is central to 「かと思ったら・かと思うと」.
+    grammar_point: か〜ないかのうちに (immediately after)
+  - term: 直ちに
+    meaning: At once, Immediately, As soon as
+    kind: similar expression
+    nuance: 「直ちに」 emphasizes the speed of the action without highlighting the contrast or change in expectations
+      present in 「かと思ったら・かと思うと」; it's a more formal term for 'immediately'.
+    grammar_point: 直ちに (immediately)
+  - term: と思いきや
+    meaning: Despite initial thoughts, it turned out to be the opposite; just when one thought X, Y happened
+      unexpectedly.
+    kind: similar expression
+    nuance: 「と思いきや」 is very similar in conveying surprise or a contrary outcome, but it often implies
+      a more deliberate thought process or expectation that is then overturned, whereas 「かと思ったら・かと思うと」
+      can refer to a more immediate perception or event.
+    grammar_point: 思いきや (unexpectedly opposite result)
+post_false_friends_writeup: 「かと思ったら・かと思うと」 is often confused with other expressions that indicate the
+  immediacy of events. However, the key difference lies in the nuance of surprise or unexpectedness. While
+  expressions like 「なり」, 「たとたんに」, 「か〜ないかのうちに」, and 「直ちに」 simply indicate that one event followed another
+  quickly, 「かと思ったら・かと思うと」 adds the layer of surprise or contrast.
+examples:
+  - english: No sooner than I thought the dog was asleep, it started barking.
+    japanese:
+      - 犬 が 寝 た {か と 思う と}、すぐ に 吠え 始め た。
+      - 犬 が 寝 た {か と 思っ たら}、すぐ に 吠え 始め た。
+    english_literally: As for dog, it slept I thought no sooner than, immediately started barking.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が 寝 た {後}、すぐ に 吠え 始め た。
+        english: After the dog fell asleep, it immediately started barking.
+        hint: 「後」 simply indicates a temporal sequence. We're looking for an expression that emphasizes
+          the unexpectedness of the immediate change.
+    scene: Observing a pet's unpredictable behavior.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: This example highlights the sudden and unexpected change in the dog's state, implying a quick
+      shift from one perception to a surprising reality.
+  - english: Just when I thought the rain had stopped, it started falling again.
+    japanese:
+      - 雨 が 止ん だ {か と 思っ たら}、また 降り 出し た。
+      - 雨 が 止ん だ {か と 思う と}、また 降り 出し た。
+    english_literally: As for rain, it stopped I thought just when, again started falling.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 止ん だ {後}、また 降り 出し た。
+        english: After the rain stopped, it immediately started falling again.
+        hint: 「後」 indicates a simple sequence. We're looking for an expression that conveys surprise at
+          the rain starting again so quickly.
+    scene: Experiencing unpredictable weather during a walk.
+    register: casual
+    setting: melancholic
+    conjugation: conditional (～たら)
+    nuance: The phrase captures the immediate and often annoying return of the rain, emphasizing the speaker's
+      expectation being quickly overturned.
+  - english: Just when I thought he was going to start studying seriously, he began reading a manga.
+    japanese:
+      - 彼 が 真面目 に 話す の {か と 思う と}、漫画 を 読み 始め た。
+      - 彼 が 真面目 に 話す の {か と 思っ たら}、漫画 を 読み 始め た。
+    english_literally: As for him, seriously talks I think no sooner than, manga he started reading.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 真面目 に 話す と 期待 し た {が}、突然 冗談 を 言い 始め た。
+        english: I expected him to talk seriously, but he suddenly started telling jokes.
+        hint: 「〜と期待したが」 explicitly states an definite expectation. We're looking for an expression that
+          describes a sudden, unexpected shift in action, rather than a stated expectation.
+    scene: Witnessing an unexpected shift in someone's demeanor during a conversation.
+    register: casual
+    setting: humorous
+    conjugation: conditional (～たら)
+    nuance: The use of `の` after the verb `話す` emphasizes the speaker's observation of the expected action.
+      The sudden shift to telling jokes `冗談を言い始めた` creates a humorous contrast, highlighting the unexpectedness.
+  - english: Just when I thought the new project had started, it was canceled immediately.
+    japanese:
+      - 新しい プロジェクト が 始まっ た {か と 思っ たら}、すぐ に 中止 に なっ た。
+      - 新しい プロジェクト が 始まっ た {か と 思う と}、すぐ に 中止 に なっ た。
+    english_literally: New project started I thought just when, immediately was canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト が 始まっ た {が}、すぐ に 中止 に なっ た。
+        english: The new project started, but it was canceled immediately.
+        hint: 「が」 simply connects two clauses, indicating a contrast. We're looking for an expression
+          that conveys surprise and immediacy of the cancellation after a perceived start.
+    scene: A team discussing the abrupt cancellation of a new work initiative.
+    register: formal
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: This example illustrates the abrupt and often frustrating reality of plans being changed or
+      canceled right after they seemed to have begun, showing how a situation can quickly reverse.
+  - english: Just when I thought there was a heated argument in the next room, I heard cheerful laughter.
+    japanese:
+      - 隣 の 部屋 で 激しい 議論 を し て いる {か と 思う と}、楽し そう な 笑い声 が 聞こえ て き た。
+      - 隣 の 部屋 で 激しい 議論 を し て いる {か と 思っ たら}、楽し そう な 笑い声 が 聞こえ て き た。
+    english_literally: In the next room heated argument is happening I think no sooner than, cheerful
+      laughter could be heard.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 部屋 で 激しい 議論 を し て いる と 思っ た {が}、楽し そう な 笑い声 が 聞こえ て き た。
+        english: I thought there was a heated argument in the next room, but I heard cheerful laughter.
+        hint: 「〜と思ったが」 expresses a thought followed by a contrast. We're looking for an expression that
+          emphasizes the immediate and surprising revelation of a contradictory reality.
+    scene: Overhearing sounds from a neighboring room and forming an initial misjudgment.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: This illustrates a rapid and unexpected shift in the atmosphere from what was initially perceived
+      as a `激しい議論` (heated argument) to `楽しそうな笑い声` (cheerful laughter), emphasizing the suddenness of
+      the discovery.
+  - english: Just when I thought he was terribly depressed, he was already cheerful.
+    japanese:
+      - ひどく 落ち込ん で いる {か と 思っ たら}、もう 元気 に なっ て い た。
+      - ひどく 落ち込ん で いる {か と 思う と}、もう 元気 に なっ て い た。
+    english_literally: Terribly depressed I thought just when, already he was cheerful.
+    competing_grammar:
+      - competing_japanese:
+          - ひどく 落ち込ん で い た {が}、もう 元気 に なっ て い た。
+        english: He was terribly depressed, but he was already cheerful.
+        hint: 「が」 simply indicates a contrast. We're looking for an expression that conveys surprise at
+          the immediate and unexpected recovery from a state of sadness.
+    scene: Observing someone's surprisingly quick recovery from sadness.
+    register: casual
+    setting: optimistic
+    conjugation: conditional (～たら)
+    nuance: This highlights the unexpected resilience or rapid recovery of a person's mood. The use of
+      `落ち込んでいる` (progressive form) emphasizes the state of being depressed just before the surprising
+      change.
+  - english: That politician's approval rating, no sooner than I thought it had risen, fell again quickly.
+    japanese:
+      - あの 政治 家 は 支持 率 が 上がっ た {か と 思っ たら}、また すぐ に 下がっ た。
+      - あの 政治 家 は 支持 率 が 上がっ た {か と 思う と}、また すぐ に 下がっ た。
+    english_literally: As for that politician, approval rating rose I thought just when, again immediately
+      fell.
+    competing_grammar:
+      - competing_japanese:
+          - あの 政治 家 は 支持 率 が 上がっ た {が}、また すぐ に 下がっ た。
+        english: That politician's approval rating rose, but it fell again quickly.
+        hint: 「が」 simply indicates a contrast. We're looking for an expression that conveys surprise and
+          the immediate reversal of a trend.
+    scene: Analyzing the fluctuating popularity of a public figure.
+    register: formal
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: This example illustrates the fickle nature of public opinion or transient success, where a
+      positive change (`上がった`) is immediately followed by a negative one (`下がった`), emphasizing the quick
+      turnaround.
+  - english: Just when I thought he was going to propose something, he unexpectedly submitted his resignation.
+    japanese:
+      - 彼 が 何 か 提案 する {か と 思っ たら}、まさか の 辞表 を 提出 し た。
+      - 彼 が 何 か 提案 する {か と 思う と}、まさか の 辞表 を 提出 し た。
+    english_literally: As for him, something proposes I thought just when, unexpectedly submitted resignation.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 何 か 提案 する と 思っ た {が}、まさか の 辞表 を 提出 し た。
+        english: I thought he was going to propose something, but he unexpectedly submitted his resignation.
+        hint: 「〜と思ったが」 expresses a thought followed by a contrast. We're looking for an expression that
+          emphasizes the immediate and dramatic subversion of an expectation.
+    scene: A manager recalling a surprising meeting with an employee.
+    register: formal
+    setting: serious
+    conjugation: conditional (～たら)
+    nuance: This highlights a significant and unexpected turn of events, where the speaker's expectation
+      (`何か提案する`) is dramatically subverted by the reality (`辞表を提出した`), conveying a strong sense of surprise.
+  - english: Just when I thought she had a very quiet personality, she was actually incredibly adventurous.
+    japanese:
+      - 彼女 は とても 大人しい 性格 {か と 思っ たら}、実 は ものすごい 冒険 好き だっ た。
+      - 彼女 は とても 大人しい 性格 だ {か と 思っ たら}、とても 優しい 方 だっ た。
+      - 彼女 は とても 大人しい 性格 な の {か と 思っ たら}、とても 優しい 方 だっ た。
+      - 彼女 は とても 大人しい 性格 {か と 思う と}、実 は ものすごい 冒険 好き だっ た。
+      - 彼女 は とても 大人しい 性格 だ {か と 思う と}、とても 優しい 方 だっ た。
+      - 彼女 は とても 大人しい 性格 な の {か と 思う と}、とても 優しい 方 だっ た。
+    english_literally: As for her, very quiet personality I thought just when, actually was incredibly
+      adventurous.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は とても 大人しい 性格 だっ た {が}、実 は ものすごい 冒険 好き だっ た。
+        english: She had a very quiet personality, but she was actually incredibly adventurous.
+        hint: 「が」 simply indicates a contrast. We're looking for an expression that conveys surprise at
+          the immediate and unexpected discovery of a contradictory personality.
+    scene: Discovering a hidden side of a friend's personality.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: This showcases the contrast between an initial perception (`大人しい性格` - quiet personality) and
+      a surprising reality (`ものすごい冒険好き` - incredibly adventurous), emphasizing the unexpected nature of
+      her true nature.
+  - english: Just when I realized I could go to my favorite singer's concert, my heart raced with excitement.
+    japanese:
+      - 憧れ の 歌手 の ライブ に 行ける {か と 思う と}、胸 が 躍る。
+      - 憧れ の 歌手 の ライブ に 行ける {か と 思っ たら}、胸 が 躍る。
+    english_literally: Admired singer's live concert can go I think no sooner than, my heart races.
+    competing_grammar:
+      - competing_japanese:
+          - 憧れ の 歌手 の ライブ に 行ける {の で}、胸 が 躍る。
+        english: Because I can go to my favorite singer's concert, my heart races with excitement.
+        hint: 「ので」 expresses a reason or cause. We're looking for an expression that emphasizes the immediate
+          emotional reaction upon a sudden realization, rather than just a reason.
+    scene: Receiving news about a highly anticipated event.
+    register: casual
+    setting: excited
+    conjugation: conditional (～たら)
+    nuance: The phrase `胸が躍る` vividly expresses the speaker's immediate and overwhelming excitement upon
+      the realization of being able to attend the concert, showing how a thought can immediately lead
+      to an intense emotional state.
+  - english: Just when I thought he had no interest at all, he started asking questions with sparkling
+      eyes.
+    japanese:
+      - 彼 は 全然 興味 が ない {か と 思っ たら}、目 を 輝か せ て 質問 し 始め た。
+      - 彼 は 全然 興味 が ない {か と 思う と}、目 を 輝か せ て 質問 し 始め た。
+    english_literally: As for him, no interest at all I thought just when, with sparkling eyes he started
+      asking questions.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 全然 興味 が ない と 思っ た {が}、目 を 輝か せ て 質問 し 始め た。
+        english: I thought he had no interest at all, but he started asking questions with sparkling eyes.
+        hint: 「〜と思ったが」 expresses a thought followed by a contrast. We're looking for an expression that
+          conveys a stronger sense of immediate and surprising shift from disinterest to enthusiasm.
+    scene: Observing someone who suddenly becomes engaged in a topic.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+    nuance: 'This demonstrates a surprising reversal of initial perception: from apparent disinterest
+      (`全然興味がない`) to enthusiastic engagement (`目を輝かせて質問し始めた`), highlighting the unexpected nature of his
+      sudden curiosity.'

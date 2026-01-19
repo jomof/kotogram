@@ -1,0 +1,454 @@
+grammar_point: ね (seeking agreement)
+learn_before:
+  - けっこう (quite・ample・no thanks)
+  - これ (this)
+  - ちょっと (adverb)
+  - って (casual quotation・reason・topic)
+  - です (polite copula)
+  - わ (feminine sentence-ending particle)
+meaning: Isn't it?, Right? (Sentence ending particle)
+pronunciation:
+  katakana: ネ
+  romaji: ne
+formation:
+  Statement + ね: Used to seek agreement or confirmation from the listener.
+jlpt: N5
+etymology: The particle 「ね」 doesn't have a clear etymological origin, but it's believed to have evolved
+  from interjections or emphasis markers used in spoken Japanese to soften statements and seek agreement.
+  It functions primarily as a pragmatic particle, focusing on the speaker's intention to connect with
+  the listener.
+writeup: 「ね」 is a sentence-ending particle in Japanese, functioning similarly to English tag questions
+  like "right?" or "isn't it?". Its primary use is to seek agreement or confirmation from the listener,
+  indicating a shared understanding or expectation of agreement. You simply append 「ね」 to the end of a
+  sentence. While 「ね」 and 「な」 are both sentence-ending particles, their nuances differ. 「ね」 is used when
+  expressing a shared opinion or something you anticipate the listener will agree with. In contrast, 「な」
+  tends to focus more exclusively on the speaker's own thoughts or feelings. The combination 「よね」 is frequently
+  used when you have a strong expectation that the listener will agree with you. It is important to note
+  that 「ね」 is generally softer and less assertive than particles or phrases like 「でしょう」 or 「だろう」. It can
+  sometimes be used purely out of habit, particularly in casual conversation, without carrying a strong
+  nuance of seeking confirmation.
+false_friends:
+  - term: でしょう
+    meaning: Probably, isn't it?
+    kind: similar expression
+    nuance: 「でしょう」 expresses a higher degree of uncertainty or is used to make a more formal conjecture
+      compared to the simple confirmation sought by 「ね」. It can also be used to make a polite suggestion.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: だろう
+    meaning: Probably, isn't it?
+    kind: similar expression
+    nuance: 「だろう」 is the casual form of 「でしょう」 and conveys a similar degree of uncertainty or conjecture.
+      It's not generally used for direct confirmation in the same way as 「ね」.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: じゃないか
+    meaning: Isn't it?
+    kind: often confused with
+    nuance: 「じゃないか」 is often used to express a stronger sense of agreement or realization, sometimes with
+      a touch of surprise or slight accusation, unlike the milder and more collaborative confirmation
+      sought by 「ね」.
+    grammar_point: じゃないか (isn't it?)
+  - term: よね
+    meaning: Right?; Isn't it?; You know, right?
+    kind: similar expression
+    nuance: 「よね」 is a combination of 「よ」 and 「ね」, and it expresses a stronger expectation of agreement
+      from the listener, often implying a shared understanding that is being reinforced. It's more assertive
+      than 「ね」 alone.
+    grammar_point: よね (seeking strong agreement)
+post_false_friends_writeup: 'To avoid confusion, remember that 「ね」 is primarily for seeking agreement
+  or sharing a common understanding with the listener, creating a softer, more collaborative tone. In
+  contrast, 「でしょう」 and 「だろう」 (the casual form of でしょう) are used for making conjectures or expressing probabilities,
+  often with a sense of uncertainty or formality, or to seek confirmation in a more direct or rhetorical
+  way. 「じゃないか」 implies a stronger sense of confirmation or a realization, sometimes with an accusatory
+  or surprised tone, which is quite different from the gentle agreement sought by 「ね」. 「よね」, while also
+  seeking agreement, does so with a stronger expectation that the listener already agrees or knows the
+  information. Focus on the intent: mutual agreement with 「ね」 versus conjecture or strong realization
+  with the others.'
+examples:
+  - english: This flower is beautiful, isn't it?
+    japanese:
+      - この 花、きれい です {ね}。
+      - この 花、きれい だ {ね}。
+      - この 花、美しい です {ね}。
+      - この お 花、きれい だ {ね}。
+      - この 花、めっちゃ きれい だ {ね}。
+      - この 花、とても きれい です {ね}。
+      - うわあ、きれい だ {ね}。
+      - ねぇ、この 花、きれい だ {ね}。
+      - この 花、本当 に きれい です {ね}。
+      - この 花、綺麗 だ {ね}.
+    english_literally: This flower, beautiful is, right?
+    competing_grammar:
+      - competing_japanese:
+          - この 花、きれい {です}。
+        english: This flower is beautiful.
+        hint: Using a plain statement without 「ね」 indicates a simple observation or declaration, not an
+          invitation for shared sentiment or agreement. We're looking for an expression that seeks confirmation
+          or shared feeling.
+      - competing_japanese:
+          - この 花、きれい {でしょう}？
+        english: This flower is probably beautiful, isn't it?
+        hint: 「でしょう」 is used for conjectures or polite suggestions, often with a higher degree of uncertainty
+          or formality, while 「ね」 seeks agreement or shared sentiment.
+      - competing_japanese:
+          - この 花、きれい {だろう}？
+        english: This flower is probably beautiful, isn't it?
+        hint: 「だろう」 is a casual conjecture about beauty, while 「ね」 is a softer way to seek agreement on
+          shared beauty.
+      - competing_japanese:
+          - この 花、きれい {じゃ ない か}。
+        english: This flower IS beautiful, isn't it?!
+        hint: 「じゃないか」 implies a stronger realization or emphasis, sometimes with surprise. 「ね」 is a gentle
+          invitation for agreement.
+    scene: Two friends are admiring flowers in a park.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「ね」 softens the statement 「きれいですね」, inviting the listener to share the appreciation for the
+      flower's beauty. This fosters a shared positive experience between the speakers.
+  - english: Mr. Yamada, tomorrow is your day off, right?
+    japanese:
+      - 山田 さん、明日 は お 休み です {ね}。
+      - 山田 さん、明日 お 休み だ {ね}。
+      - 山田 さん、明日 は 休み です {ね}。
+      - 山田 さん、明日 は お 休み な の です {ね}。
+      - 山田 さん、明日 は お 休み です よ {ね}。
+      - 山田 さん、明日 は 休暇 です {ね}.
+    english_literally: Yamada Mr., tomorrow is day off, right?
+    competing_grammar:
+      - competing_japanese:
+          - 山田 さん、明日 は 休暇 です {か}。
+        english: Mr. Yamada, is tomorrow your day off?
+        hint: Using 「か」 makes it a direct question, indicating you don't know the answer. We're looking
+          for a polite confirmation where the speaker already believes it to be true.
+      - competing_japanese:
+          - 山田 さん、明日 は お 休み {でしょう}？
+        english: Mr. Yamada, tomorrow is probably your day off, isn't it?
+        hint: 「でしょう」 implies you are making a conjecture or a more formal assumption. 「ね」 seeks confirmation
+          based on an already expected shared understanding.
+      - competing_japanese:
+          - 山田 さん、明日 は お 休み {だろう}？
+        english: Mr. Yamada, tomorrow is probably your day off, isn't it?
+        hint: 「だろう」 is very casual and sounds like a casual guess, which might be impolite in this professional
+          context. 「ね」 is more appropriate for polite confirmation.
+      - competing_japanese:
+          - 山田 さん、明日 は お 休み {じゃ ない です か}。
+        english: Mr. Yamada, tomorrow IS your day off, isn't it?
+        hint: 「じゃないか」 implies a stronger sense of confirmation or a slight surprise/accusation, which
+          might be inappropriate in a professional context. 「ね」 is more polite for simple confirmation.
+    scene: A manager is confirming an employee's schedule.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: Using 「ね」 here softens the direct inquiry, implying the speaker already believes it to be
+      true and is simply confirming, not questioning. It's more gentle than a direct 「か」 question, especially
+      in a professional context.
+  - english: This cake is sweet, isn't it?
+    japanese:
+      - この ケーキ、甘い です {ね}。
+      - この ケーキ、甘い {ね}。
+      - この ケーキ、めっちゃ 甘い {ね}。
+      - これ、甘い {ね}。
+      - この ケーキ、とても 甘い です {ね}.
+      - わあ、甘い {ね}。
+      - ねぇ、この ケーキ、甘い {ね}。
+      - この ケーキ、かなり 甘い です {ね}。
+      - この ケーキ、本当 に 甘い {ね}.
+    english_literally: This cake, sweet is, right?
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ、甘い {です}。
+        english: This cake is sweet.
+        hint: A plain statement merely describes the cake. We're looking for an expression that invites
+          the listener to agree with the speaker's observation.
+      - competing_japanese:
+          - この ケーキ、甘い {でしょう}？
+        english: This cake is probably sweet, isn't it?
+        hint: 「でしょう」 suggests a conjecture about the sweetness or a more formal inquiry. 「ね」 invites agreement
+          on a shared observation or experience.
+      - competing_japanese:
+          - この ケーキ、甘い {だろう}？
+        english: This cake is probably sweet, isn't it?
+        hint: 「だろう」 suggests you're guessing about the sweetness. 「ね」 is for inviting agreement on a shared
+          observation.
+      - competing_japanese:
+          - この ケーキ、甘い {じゃ ない か}。
+        english: This cake IS sweet, isn't it?!
+        hint: 「じゃないか」 indicates a stronger realization or emphasis on the cake's sweetness. 「ね」 is for
+          a shared, gentle agreement.
+    scene: Two friends are sharing a slice of cake at a café.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「ね」 is used here to seek agreement on a shared sensory experience (the taste of the cake),
+      strengthening the bond between speakers. The casual register fits the interaction between friends.
+  - english: Your work must have been tough, wasn't it?
+    japanese:
+      - 仕事、大変 でし た {ね}。
+      - 仕事、大変 だっ た {ね}。
+      - お 仕事、本当 に 大変 でし た {ね}。
+      - 仕事、マジ で 大変 だっ た {ね}。
+      - お 疲れ 様 でし た {ね}。
+      - 大変 だっ た ん です {ね}。
+      - お 仕事、大変 だっ た よ {ね}。
+      - 仕事、きつかっ た です {ね}。
+      - お 仕事、ご 苦労 様 でし た {ね}.
+    english_literally: Work, tough was, right?
+    competing_grammar:
+      - competing_japanese:
+          - 仕事、{大変 でし た}。
+        english: Your work was tough.
+        hint: Stating 「大変でした」 is a simple observation. We're looking for an expression that conveys empathy
+          and invites confirmation from the listener.
+      - competing_japanese:
+          - 仕事、大変 だっ た {でしょう}？
+        english: Your work must have been tough, wasn't it?
+        hint: 「でしょう」 in this context sounds like you're stating an assumption you expect them to confirm,
+          rather than gently seeking shared empathy as 「ね」 does.
+      - competing_japanese:
+          - 仕事、大変 だっ た {だろう}？
+        english: Your work must have been tough, wasn't it?
+        hint: 「だろう」 expresses a strong casual assumption about difficulty. 「ね」 is more empathetic, inviting
+          the listener to share their experience.
+      - competing_japanese:
+          - 仕事、大変 だっ た {じゃ ない か}。
+        english: Your work WAS tough, isn't it?!
+        hint: 「じゃないか」 carries a stronger tone of realization or even mild accusation, implying 'I knew
+          it was tough'. 「ね」 is more empathetic and invites shared understanding.
+    scene: A colleague offering words of sympathy to another after a busy project.
+    register: semi-formal
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「ね」 here expresses empathy and acknowledges the listener's difficult experience, inviting
+      them to confirm or elaborate. It shows understanding and concern in a professional context, making
+      the statement less like an accusation and more like shared observation.
+  - english: It's about time we went, isn't it?
+    japanese:
+      - そろそろ 行き ましょう {ね}。
+      - そろそろ 行こう {ね}。
+      - そろそろ 行か ない と {ね}。
+      - じゃあ、そろそろ 行き ましょう {ね}。
+      - そろそろ 行く 時間 です {ね}。
+      - そろそろ 帰ろう {ね}。
+      - ねぇ、そろそろ 行こう {ね}。
+      - そろそろ 出発 し ましょう {ね}。
+      - そろそろ 帰ら ない と {ね}.
+    english_literally: Soon, let's go, right?
+    competing_grammar:
+      - competing_japanese:
+          - そろそろ {行き ましょう}。
+        english: Without 「ね」, this is a direct suggestion. 「ね」 softens the invitation, making it a more
+          collaborative proposal.
+        hint: Without 「ね」, this is a direct suggestion. 「ね」 softens the invitation, making it a more collaborative
+          proposal.
+      - competing_japanese:
+          - そろそろ 行き ましょう {か}。
+        english: Shall we go to that new cafe?
+        hint: Adding 「か」 makes it a direct question asking for a decision. 「ね」, in contrast, subtly nudges
+          towards agreement without demanding an immediate choice.
+      - competing_japanese:
+          - そろそろ 行こう {か}。
+        english: Shall we go soon?
+        hint: 「行こうか」 is a direct casual proposal, while 「ね」 softens the suggestion by seeking collaborative
+          agreement.
+      - competing_japanese:
+          - そろそろ 行く {じゃ ない か}。
+        english: It's about time we went, isn't it?!
+        hint: 「じゃないか」 here would express a stronger, more demanding tone of realization or impatience
+          about needing to go. 「ね」 is a gentle suggestion for collective action.
+      - competing_japanese:
+          - そろそろ 行く {でしょう}？
+        english: It's probably about time we went, isn't it?
+        hint: 「でしょう」 expresses a conjecture or a more formal assumption. 「ね」 seeks confirmation or shared
+          agreement for collective action.
+      - competing_japanese:
+          - そろそろ 行く {だろう}？
+        english: It's probably about time we went, isn't it?
+        hint: 「だろう」 expresses a casual conjecture. 「ね」 softens the suggestion by seeking collaborative
+          agreement.
+    scene: A group of friends at a cafe, one gently nudges the others to leave.
+    register: teineigo (polite)
+    setting: persuasive
+    nuance: When used with a volitional form like 「行きましょう」, 「ね」 softens the suggestion or invitation,
+      making it sound less like a command and more like a shared idea. It seeks subtle agreement and encourages
+      participation from the listener, fostering a warm, inclusive atmosphere.
+  - english: It's already this late, isn't it?
+    japanese:
+      - もう こんな 時間 だ {ね}。
+      - もう こんな 時間 です {ね}。
+      - もう こんな 時間 {ね}。
+      - もう こんな 時間 に なっ ちゃっ た {ね}。
+      - もう こんな 時間 な ん だ {ね}。
+      - うわあ、もう こんな 時間 だ {ね}。
+      - あれ、もう こんな 時間 です {ね}。
+      - もう こんな 時間 です よ {ね}.
+    english_literally: Already this time is, right?
+    competing_grammar:
+      - competing_japanese:
+          - もう こんな 時間 {だ}。
+        english: It's already this late.
+        hint: A plain statement is a factual declaration. We're looking for an expression that conveys
+          a personal realization or internal confirmation, as if processing a thought aloud.
+      - competing_japanese:
+          - もう こんな 時間 {でしょう}？
+        english: It's probably this late, isn't it?
+        hint: When talking to oneself, 「でしょう」 implies a stronger internal question or a guess, whereas
+          「ね」 expresses a mild realization or internal confirmation.
+      - competing_japanese:
+          - もう こんな 時間 {だろう}？
+        english: It's probably this late, isn't it?
+        hint: 「だろう」 used when talking to oneself implies a stronger, more definite internal question or
+          assumption. 「ね」 is a softer internal realization.
+      - competing_japanese:
+          - もう こんな 時間 {じゃ ない か}。
+        english: It's already THIS late, isn't it?!
+        hint: 「じゃないか」 implies a stronger, more emphatic realization or surprise about the time. 「ね」 is
+          a milder, more reflective self-confirmation.
+    scene: A student checks the clock while studying late at night, realizing how much time has passed.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: When used alone or to oneself, 「ね」 indicates a realization or an internal confirmation of
+      a fact. 「もうこんな時間だね」 expresses a mild surprise or acknowledgement of the passing time, as if confirming
+      it to oneself, making the thought more relatable.
+  - english: It's quite cold today, isn't it?
+    japanese:
+      - 今日 は かなり 寒い です {ね}。
+      - 今日 は 寒い {ね}。
+      - いやあ、今日 は 寒い です {ね}。
+      - 今日 は 随分 寒い です {ね}。
+      - うん、寒い {ね}.
+    english_literally: Today, quite cold is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は かなり 寒い {です}。
+        english: It's quite cold today.
+        hint: A plain statement merely states a fact. We're looking for an expression that invites shared
+          experience or agreement about the weather.
+      - competing_japanese:
+          - 今日 は かなり 寒い {でしょう}？
+        english: It's probably quite cold today, isn't it?
+        hint: 「でしょう」 expresses a conjecture or a more formal assumption. 「ね」 seeks confirmation on a shared
+          observation.
+    scene: Two neighbors encounter each other outside on a chilly morning.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: In Japanese culture, discussing the weather with 「ね」 is a very common way to initiate conversation
+      or acknowledge a shared experience, fostering a sense of connection. Here, 「ね」 invites the other
+      person to agree with the shared observation of the cold.
+  - english: Let's go to that new cafe, shall we?
+    japanese:
+      - あの 新しい カフェ に 行き ましょう {ね}。
+      - あの 新しい カフェ に 行こう {ね}。
+      - ねぇ、あの 新しい カフェ 行こう {ね}。
+      - 新しい カフェ に 行き ませ ん か {ね}。
+      - あの カフェ、行か ない {ね}.
+    english_literally: That new cafe to, let's go, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい カフェ に {行き ましょう}。
+        english: Without 「ね」, this is a direct suggestion. 「ね」 softens the invitation, making it a more
+          collaborative proposal.
+        hint: Without 「ね」, this is a direct suggestion. 「ね」 softens the invitation, making it a more collaborative
+          proposal.
+      - competing_japanese:
+          - あの 新しい カフェ に 行き ましょう {か}。
+        english: Shall we go to that new cafe?
+        hint: Adding 「か」 makes it a direct question asking for a decision. 「ね」, in contrast, subtly nudges
+          towards agreement without demanding an immediate choice.
+    scene: A group of friends are deciding on weekend plans, and one makes a suggestion.
+    register: teineigo (polite)
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: group
+    nuance: When used with a volitional form like 「行きましょう」, 「ね」 softens the suggestion or invitation,
+      making it sound less like a command and more like a shared idea. It seeks subtle agreement and encourages
+      participation from the listener, fostering a warm, inclusive atmosphere.
+  - english: Oh, that's right, the meeting is tomorrow, isn't it?
+    japanese:
+      - ああ、そう だ、会議 は 明日 です {ね}。
+      - そうそう、会議 は 明日 だっ た {ね}。
+      - あれ、会議 って 明日 です {ね}？
+      - ねぇ、会議 明日 だ よ {ね}？
+      - 会議 明日 だ っけ {ね}.
+    english_literally: Ah, that's right, meeting is tomorrow, right?
+    competing_grammar:
+      - competing_japanese:
+          - ああ、そう だ、会議 は 明日 {です}。
+        english: This is a simple factual statement. We're looking for an expression that conveys a realization
+          or seeks quick confirmation.
+        hint: This is a simple factual statement. We're looking for an expression that conveys a realization
+          or seeks quick confirmation.
+      - competing_japanese:
+          - ああ、そう だ、会議 は 明日 です {か}。
+        english: Oh, that's right, is the meeting tomorrow?
+        hint: Using 「か」 turns it into a direct question, indicating uncertainty. 「ね」 is for confirming
+          something you mostly know but want reassurance on.
+    scene: A student suddenly remembers an important detail and turns to a classmate to confirm.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: In this context, 「ね」 can be used for self-confirmation or to seek light confirmation from
+      the listener about something the speaker just remembered or realized. It implies 'I thought so,
+      and you agree, right?' The 「そうそう」 or 「あれ」 often precedes this usage, marking a sudden thought.
+  - english: You're supposed to turn left here, aren't you?
+    japanese:
+      - ここ を 左 に 曲がる ん です {ね}。
+      - あれ？ここ 左 だ よ {ね}？
+      - ここ は 左折 する ん です {ね}。
+      - ここ、左 だっ た {ね}。
+      - 確か に ここ 左 です {ね}.
+    english_literally: Here, left turn is, right?
+    competing_grammar:
+      - competing_japanese:
+          - ここ を 左 に {曲がり ます}。
+        english: This is a direct instruction. We're looking for a gentler reminder that assumes shared
+          knowledge.
+        hint: This is a direct instruction. We're looking for a gentler reminder that assumes shared knowledge.
+      - competing_japanese:
+          - ここ を 左 に 曲がる ん です {か}。
+        english: Are we supposed to turn left here?
+        hint: Using 「か」 turns it into a direct question, indicating genuine uncertainty. 「ね」 implies you
+          have a strong suspicion and are gently prompting or confirming.
+    scene: A passenger in a car notices the driver is about to miss a turn and gently points it out.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: female
+    nuance: When used with 「～んです」, 「ね」 softens a potential correction or reminder, making it less confrontational
+      and more collaborative. It frames the statement as a shared understanding or a gentle nudge, rather
+      than a direct instruction. The speaker assumes the listener knows, but might have forgotten.
+  - english: It's difficult, isn't it?
+    japanese:
+      - 難しい です {ね}。
+      - 難しい {ね}。
+      - うん、これ 難しい {ね}。
+      - 本当 に 難しい です {ね}。
+      - これ、結構 難しい {ね}.
+    english_literally: Difficult is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 難しい {です}。
+        english: A plain statement merely expresses an opinion. We're looking for an expression that seeks
+          shared sentiment or agreement on the difficulty.
+        hint: A plain statement merely expresses an opinion. We're looking for an expression that seeks
+          shared sentiment or agreement on the difficulty.
+    scene: Two students struggling with a complex math problem together.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: female
+    nuance: Used here, 「ね」 fosters a sense of solidarity and shared struggle. It's an invitation for the
+      listener to commiserate and agree on the difficulty, strengthening their bond through a common experience.
+post_example_writeup: As you can see from the examples, 「ね」 adds a layer of shared understanding, agreement,
+  or gentle confirmation to a statement. Whether you are seeking explicit agreement from a listener or
+  simply confirming something to yourself, 「ね」 allows for a more collaborative or reflective tone than
+  a simple declarative sentence. Pay attention to how it softens directness and invites engagement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AD

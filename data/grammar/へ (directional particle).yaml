@@ -1,0 +1,395 @@
+grammar_point: へ (directional particle)
+learn_before:
+  - と (with)
+meaning: To, toward
+pronunciation:
+  katakana: ヘ
+  romaji: he
+formation:
+  Place + へ: Indicates movement towards a place.
+  Recipient + へ: Indicates the recipient of an action like sending or giving. (e.g. 手紙を送る)
+jlpt: N5
+etymology: The particle へ originates from the verb 「経 (へ)」, meaning "to pass through" or "to go via".
+  This etymology highlights the particle's core function of indicating direction and movement towards
+  a destination.
+writeup: へ is a particle used when describing a place that someone or something is moving toward or in
+  contact with. In many cases, the particles に and へ are interchangeable, but there is a slight difference
+  in nuance. へ focuses more on the distance・effort required to get between (A) and (B), while に focuses
+  more on the connection between (A) and (B). へ always comes after the noun signifying the destination.
+  While they may seem the same at first glance, へ shows that there is a space between (A) and (B), while
+  に puts the emphasis solely on the destination. This is why common expressions such as 「city/country
+  name へ ようこそ」 sound very polite. It is like saying, "Welcome, and we acknowledge your journey/effort
+  to get here." In the TV-show example, this commonly means "thank you for your effort to watch this particular
+  show, out of all the ones you could have chosen."
+false_friends:
+  - term: に
+    meaning: To, at, in
+    kind: often confused with
+    nuance: While both indicate direction, 「に」 emphasizes the destination itself or the point of arrival,
+      whereas 「へ」 emphasizes the movement toward the destination or the path taken. 「に」 can also indicate
+      existence or location, which 「へ」 cannot.
+    grammar_point: に (static location・time)
+  - term: まで
+    meaning: Until, to (a point, a degree)
+    kind: similar expression
+    nuance: 「まで」 indicates the endpoint or limit of movement, time, or extent, while 「へ」 indicates the
+      general direction of movement. 「まで」 can include the destination as part of the range, while 「へ」
+      points *towards* it, without necessarily implying arrival at the final point.
+    grammar_point: まで (limit extent)
+  - term: に向かって (physical direction)
+    meaning: Towards, facing (physical direction)
+    kind: similar expression
+    nuance: 「に向かって」 specifically denotes physical movement or orientation *towards* something, often implying
+      a deliberate or active facing. Unlike 「へ」, which can be a general destination, 「に向かって」 suggests
+      a more direct and intentional physical trajectory.
+    grammar_point: に向かって (physical direction)
+  - term: に向けて (aim and purpose)
+    meaning: Towards, for the purpose of, aiming for
+    kind: similar expression
+    nuance: 「に向けて」 implies a direction of effort or intention *towards* a goal, purpose, or a specific
+      future event. It carries a nuance of planning or preparation, rather than just physical movement
+      like 「へ」.
+    grammar_point: に向けて (aim and purpose)
+  - term: を
+    meaning: Movement through space
+    kind: similar expression
+    nuance: While 「へ」 indicates movement *towards* a destination, 「を」 indicates movement *through*, *across*,
+      or *along* a path or space. 「へ」 is about the end goal, 「を」 is about the traversal.
+    grammar_point: を (path of movement)
+  - term: から
+    meaning: From (starting point)
+    kind: similar expression
+    nuance: 「から」 specifies the starting point or origin of movement, contrasting directly with 「へ」 which
+      specifies the destination or direction *to*.
+    grammar_point: から (from)
+post_false_friends_writeup: To differentiate between 「へ」 and 「に」, remember that 「へ」 focuses on the act
+  of moving towards something, while 「に」 emphasizes the arrival or existence at a particular location.
+  For instance, you might say 「学校へ行く」 (go towards school), but 「学校にいる」 (be at school). While both can
+  be used for destination, 「へ」 highlights the process or journey, while 「に」 highlights the result or static
+  location. Furthermore, while 「まで」 indicates a clear endpoint or limit of movement, 「へ」 denotes an ongoing
+  trajectory. 「に向かって」 adds a stronger sense of physical orientation or movement directly *towards* something,
+  and 「に向けて」 implies an aim or purpose *towards* a goal, both being more deliberate than the general direction
+  indicated by 「へ」. In contrast, 「を」 marks movement *through* or *across* a space, and 「から」 indicates
+  the *origin* or starting point of movement, directly opposing the directional meaning of 「へ」.
+examples:
+  - english: Every Sunday, I go to the station.
+    japanese:
+      - 毎週 日曜 日 に、駅 {へ} 行き ます。
+      - 毎週 日曜 日 に、駅 {へ} 行く。
+      - 毎週 日曜 日 に、駅 {へ} 参り ます。
+      - 毎週 日曜 日 に、駅 {へ} 向かい ます。
+      - 毎週 日曜 日 に、駅 {へ} 行っ てる。
+      - 毎週 日曜 日 に、駅 {へ} 参っ て おり ます。
+      - 毎週 日曜 日 に、駅 {へ} と 行き ます。
+      - 毎週 日曜 日 に、駅 {へ} と 向かい ます。
+      - 毎週 日曜 日 に、駅 {へ} 行く ん だ。
+      - 毎週 日曜 日 に、駅 {へ} 帰る。
+    english_literally: Every Sunday, to the station, I go.
+    competing_grammar:
+      - competing_japanese:
+          - 毎週 日曜 日 に、駅 {に} 行き ます。
+        english: Every Sunday, I go to the station.
+        hint: While 「に」 is also correct for indicating destination, the scene implies a regular journey,
+          which might be better emphasized by a particle that focuses on the act of moving toward a destination.
+      - competing_japanese:
+          - 毎週 日曜 日 に、駅 {まで} 行き ます。
+        english: Every Sunday, I go as far as the station.
+        hint: This particle indicates reaching a specific endpoint or limit, suggesting you might not
+          go beyond the station. We're looking for emphasis on the direction of movement, not necessarily
+          the boundary.
+      - competing_japanese:
+          - 毎週 日曜 日 に、駅 {に 向かっ て} 行き ます。
+        english: Every Sunday, I go, facing towards the station.
+        hint: This phrase emphasizes the orientation or facing of the movement. The sentence describes
+          a regular trip, where the simple direction is enough, not necessarily a deliberate 'facing towards'.
+    scene: A busy commuter explains their consistent weekend routine to a new colleague, highlighting
+      the regular journey they undertake.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「へ」 in 「駅へ行きます」 slightly emphasizes the physical movement towards the station,
+      fitting for a routine commute. The polite 「ます」 form indicates a formal register suitable for conversation
+      between colleagues.
+  - english: Welcome to Japan.
+    japanese:
+      - よう こそ 日本 {へ}。
+      - 日本 {へ} よう こそ！
+      - 皆 様、日本 {へ} よう こそ。
+    english_literally: Welcome to Japan.
+    competing_grammar:
+      - competing_japanese:
+          - よう こそ 日本 {に}。
+        english: Welcome to Japan.
+        hint: This specific welcoming phrase typically uses a particle that acknowledges the effort and
+          journey of travel. The alternative particle isn't usually paired with 「ようこそ」 in this fixed expression.
+      - competing_japanese:
+          - よう こそ 日本 {まで}。
+        english: Welcome up to Japan.
+        hint: This particle implies reaching a limit or endpoint. The welcome phrase specifically acknowledges
+          the journey to the destination itself, not just up to a boundary.
+    scene: A flight attendant greets international passengers as they disembark at a bustling airport
+      in Tokyo.
+    register: formal
+    setting: informative
+    nuance: The phrase 「ようこそ 日本へ」 is a common, polite greeting that specifically uses 「へ」 to acknowledge
+      the journey and effort of the person arriving, making it suitable for formal welcome speeches or
+      signs at official entry points.
+  - english: I wrote a birthday card to my friend.
+    japanese:
+      - 友達 {へ} 誕生 日 カード を 書き まし た。
+      - 友達 {へ} の 誕生 日 カード を 書き まし た。
+      - 友達 {へ} と 誕生 日 カード を 書き まし た。
+      - 友人 {へ} の バースデー カード を 用意 し まし た。
+    english_literally: To friend, birthday card, I wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 {に} 誕生 日 カード を 書き まし た。
+        english: I wrote a birthday card to my friend.
+        hint: While the alternative particle is common for recipients, a particle that emphasizes the
+          'direction' of the action (writing *to* the friend) rather than just the final recipient might
+          be more appropriate for a thoughtful gesture.
+      - competing_japanese:
+          - 友達 {まで} 誕生 日 カード を 書き まし た。
+        english: I wrote a birthday card to the friend's extent.
+        hint: This particle indicates reaching a limit or extent. The context is about directing a card
+          *towards* a person, not the extent of a person.
+      - competing_japanese:
+          - 友達 {に 向かっ て} 誕生 日 カード を 書き まし た。
+        english: I wrote a birthday card facing my friend.
+        hint: This phrase implies physically facing or orienting towards someone. The context is sending
+          a card *to* a friend, not the physical act of writing while facing them.
+    scene: A young woman tells her grandmother about a thoughtful gesture she made for a friend's birthday.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The use of 「友達へ」 subtly emphasizes the card's direction *towards* the friend, highlighting
+      the effort of sending. The polite register and the use of 「〜ました」 indicates a straightforward, respectful
+      conversation, even among family.
+  - english: Do you have any questions for the manager?
+    japanese:
+      - 部 長 {へ} の 質問 は あり ます か。
+      - 部 長 {へ} の 質問 は ある？
+      - 部 長 {へ} の ご 質問 は ござい ます か。
+      - 部 長 {へ} の 問い合わせ は あり ます か。
+      - 部 長 {へ} 何 か 質問 は ござい ませ ん か。
+    english_literally: To manager, questions, exist (polite question)?
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 {に} 質問 は あり ます か。
+        english: Do you have any questions for the manager?
+        hint: When questions are specifically directed *towards* someone, a particle that emphasizes the
+          target of the inquiry might be more suitable than a more neutral particle.
+      - competing_japanese:
+          - 部 長 {まで} 質問 は あり ます か。
+        english: Are there any questions up to the manager?
+        hint: This particle specifies a limit or range. We are asking if questions are directed *to* the
+          manager, not questions *up to* the manager's level or presence.
+      - competing_japanese:
+          - 部 長 {に 向かっ て} の 質問 は あり ます か。
+        english: Are there any questions directed *at* the manager?
+        hint: This phrase suggests a very deliberate aim or target for the questions. While similar, the
+          original particle implies a more general direction of inquiry rather than a pointed confrontation.
+    scene: During a team meeting, the team leader asks colleagues if they have any inquiries specifically
+      directed at the department head.
+    register: formal
+    setting: interrogative
+    nuance: The 「部長へ」 construction emphasizes that the questions are specifically *directed towards* the
+      manager, reinforcing the professional and hierarchical context of a business meeting. This indicates
+      a clear flow of communication.
+  - english: The airplane took off towards the Pacific Ocean.
+    japanese:
+      - 飛行 機 は 太平 洋 {へ} 飛び立ち まし た。
+      - 飛行 機 は 太平 洋 {へ} 飛び立っ た。
+      - 飛行 機 は 太平 洋 {へ} と 飛び立ち まし た。
+      - 飛行 機 は 太平 洋 {へ} 向かい まし た。
+      - 飛行 機 は 太平 洋 {へ} と 進み まし た。
+      - 飛行 機 は 太平 洋 {へ} の 飛行 を 開始 し まし た。
+    english_literally: Airplane, towards Pacific Ocean, took off.
+    competing_grammar:
+      - competing_japanese:
+          - 飛行 機 は 太平 洋 {に} 飛び立ち まし た。
+        english: The airplane took off to the Pacific Ocean.
+        hint: The scene highlights the trajectory and vastness of the journey, suggesting a particle that
+          emphasizes continuous movement *across* a large area rather than just arrival *at* a static
+          point.
+      - competing_japanese:
+          - 飛行 機 は 太平 洋 {まで} 飛び立ち まし た。
+        english: The airplane took off until the Pacific Ocean (and stopped there).
+        hint: This particle indicates an endpoint. We are describing the general direction of flight,
+          not implying the plane only went *up to* the Pacific Ocean and stopped.
+      - competing_japanese:
+          - 飛行 機 は 太平 洋 {に 向かっ て} 飛び立ち まし た。
+        english: The airplane took off facing the Pacific Ocean.
+        hint: This phrase emphasizes the orientation of the aircraft. While relevant, the original particle
+          highlights the general direction of movement over a vast area, not just the initial facing.
+      - competing_japanese:
+          - 飛行 機 は 太平 洋 {を} 飛び まし た。
+        english: The airplane flew across the Pacific Ocean.
+        hint: This particle indicates movement *through* or *across* a space. We are describing the river's
+          movement *towards* the sea, not its flow *within* or *across* the sea itself.
+    scene: A news reporter describes an aircraft's departure, highlighting its trajectory over a vast
+      expanse of water.
+    register: formal
+    setting: informative
+    nuance: 「太平洋へ」 emphasizes the plane's continuous movement *towards* and *over* the Pacific, underscoring
+      the vastness of the journey. This formal, informative setting suits the objective description of
+      movement, as often heard in news reports.
+  - english: This package will be sent to the customer.
+    japanese:
+      - この 荷物 は お 客 様 {へ} 送ら れ ます。
+      - この 荷物 は お 客 様 {へ} の 送付 と なり ます。
+      - この 荷物 は お 客 様 {へ} 配達 さ れ ます。
+    english_literally: This package, to the customer, will be sent.
+    competing_grammar:
+      - competing_japanese:
+          - この 荷物 は お 客 様 {に} 送ら れ ます。
+        english: This package will be sent to the customer.
+        hint: While 「に」 is also correct, 「へ」 can be preferred in a formal or business context to emphasize
+          the destination or recipient of the shipment.
+      - competing_japanese:
+          - この 荷物 は お 客 様 の 元 {まで} 送ら れ ます。
+        english: This package will be sent to the customer's location.
+        hint: The expression 「〜の元まで」 means 'to the place where ~ is'. While similar, it adds an extra
+          layer of specificity about the physical location, which is not always necessary.
+    scene: A logistics manager instructs their staff about the final destination of a delivery.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「お客様へ」 clearly designates the customer as the ultimate destination for the delivery, typical
+      in professional communication when discussing a parcel's journey. The passive form 「送られます」 maintains
+      a formal, objective tone.
+  - english: I'm going home now.
+    japanese:
+      - 今 から 家 {へ} 帰り ます。
+      - そろそろ 家 {へ} 帰ろ う か な。
+      - じゃあ、家 {へ} 帰る ね。
+      - お 先 に、家 {へ} 帰り ます。
+    english_literally: From now, to home, I return.
+    competing_grammar:
+      - competing_japanese:
+          - 今 から 家 {に} 帰り ます。
+        english: I'm going home now.
+        hint: Both are grammatically correct and common. However, 「へ」 can subtly emphasize the *movement*
+          towards home, suitable for indicating you are beginning your journey.
+      - competing_japanese:
+          - 今 から 家 {に} 着き ます。
+        english: I will arrive home now.
+        hint: This phrase indicates *arrival* at the destination, not the act of *going* towards it. We
+          are looking for an expression that signifies leaving to go home.
+    scene: A tired worker tells their colleague they are leaving the office to go home for the day.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「家へ帰ります」 signifies the movement back to one's residence. While 「家に帰ります」 is equally common,
+      「へ」 can add a subtle emphasis on the journey home itself, rather than just the endpoint.
+  - english: Please send your inquiries to the sales department.
+    japanese:
+      - お 問い合わせ は 営業 部 {へ} お 願い し ます。
+      - ご 質問 は 営業 部 {へ}。
+      - お 問い合わせ は 営業 部 {へ} ご 連絡 ください。
+      - 何 か ご 用 でし たら、営業 部 {へ} どうぞ。
+    english_literally: Inquiries, to Sales Department, please.
+    competing_grammar:
+      - competing_japanese:
+          - お 問い合わせ は 営業 部 {に} お 願い し ます。
+        english: Please send your inquiries to the sales department.
+        hint: Both 「へ」 and 「に」 are possible here. However, 「へ」 can be preferred in formal directives to
+          emphasize the *direction* of the communication, especially in written instructions.
+      - competing_japanese:
+          - お 問い合わせ は 営業 部 宛 {に} お 願い し ます。
+        english: Please send your inquiries addressed to the sales department.
+        hint: This phrase literally means 'addressed to' and is typically used for written correspondence
+          like letters or emails, not general verbal directives for inquiries.
+    scene: A company's customer service representative or website directs customers to the appropriate
+      department for their specific questions.
+    register: formal
+    setting: informative
+    nuance: 「営業部へ」 clearly designates the sales department as the specific destination for inquiries,
+      a common formal instruction in business contexts. The use of 「お〜お願いします」 is a highly polite way to
+      make a request.
+  - english: The river flows towards the sea.
+    japanese:
+      - 川 は 海 {へ} 流れ て い ます。
+      - 川 は 海 {へ} と 流れ て いく。
+      - この 川 は ずっと 海 {へ} 繋がっ て いる。
+      - 川 は その まま 海 {へ} 流れ込み ます。
+    english_literally: River, to sea, is flowing.
+    competing_grammar:
+      - competing_japanese:
+          - 川 は 海 {に} 流れ て い ます。
+        english: The river flows into the sea.
+        hint: While 「に」 emphasizes the point of entry or destination, 「へ」 describes the continuous movement
+          *towards* the sea, highlighting the direction and journey of the flow.
+      - competing_japanese:
+          - 川 は 海 {まで} 流れ て い ます。
+        english: The river flows up to the sea.
+        hint: This phrase implies a limit or endpoint where the flow might stop. The river, however, flows
+          *into* or *towards* the sea continuously, not just up to its boundary.
+      - competing_japanese:
+          - 川 は 海 {を} 流れ て い ます。
+        english: The river flows through the sea (e.g. as a current).
+        hint: This particle indicates movement *through* or *across* a space. We are describing the river's
+          movement *towards* the sea, not its flow *within* or *across* the sea itself.
+    scene: A nature documentary narrator describes the natural course of a river.
+    register: formal
+    setting: informative
+    nuance: 「海へ流れています」 describes the natural, continuous movement of the river towards the sea, emphasizing
+      the ongoing direction rather than a static point of arrival. This descriptive use of 「へ」 is common
+      in factual or academic contexts.
+  - english: Let's head towards the summit.
+    japanese:
+      - 頂上 {へ} 向かい ましょ う。
+      - さあ、頂上 {へ}！
+      - 頂上 {へ} と 登っ て いき ます。
+      - 皆 で 頂上 {へ} 行き ましょ う。
+    english_literally: Summit, to, let's head.
+    competing_grammar:
+      - competing_japanese:
+          - 頂上 {に} 向かい ましょ う。
+        english: Let's head to the summit.
+        hint: Both are common, but 「へ」 can convey a slightly stronger sense of the progressive movement
+          and effort involved in going towards a goal, suitable for encouragement during a hike.
+      - competing_japanese:
+          - 頂上 {まで} 行き ましょ う。
+        english: Let's go as far as the summit.
+        hint: This phrase implies reaching a boundary or limit. While the summit is a destination, the
+          nuance here is about the active process of moving *towards* it, not just reaching its edge.
+      - competing_japanese:
+          - 頂上 {を} 目指し ましょ う。
+        english: Let's aim for the summit.
+        hint: This expression means to *aim for* or *set one's sights on* something, rather than describing
+          the physical movement *towards* it. We're discussing the act of heading there.
+    scene: A hiking guide encourages their group to continue climbing towards the top of the mountain.
+    register: semi-formal
+    setting: inspirational
+    nuance: 「頂上へ向かいましょう」 uses 「へ」 to indicate the direction of a shared goal (the summit), suitable for
+      motivating a group during an endeavor. The volitional 「〜ましょう」 adds a sense of collective action
+      and determination.
+  - english: I sent a message to my friend.
+    japanese:
+      - 友達 {へ} メッセージ を 送っ た。
+      - 友達 {へ} LINE を 送っ とい た。
+      - 彼 女 {へ} メッセージ を 送っ て おい た。
+      - あいつ {へ} メッセージ を 送っ とこ う。
+    english_literally: Friend, to, message, sent.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 {に} メッセージ を 送っ た。
+        english: I sent a message to my friend.
+        hint: While 「に」 is also correct for the recipient, 「へ」 can emphasize the message's direction *towards*
+          the friend, suitable for informal conversations about communication.
+      - competing_japanese:
+          - 友達 の ため {に} メッセージ を 送っ た。
+        english: I sent a message for my friend.
+        hint: This phrase means 'for the sake of' or 'for the benefit of' your friend. We are talking
+          about sending a message *to* someone, not sending it *on their behalf* or *for their benefit*.
+    scene: Two friends are chatting about their day, and one mentions sending a message to a mutual friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「友達へ」 highlights the direction of the message. The casual 「送った」 reflects an informal
+      conversation between close friends. This nuance is common in daily exchanges about communication.
+post_example_writeup: As you can see from these examples, 「へ」 is a versatile particle that clearly indicates
+  direction or the recipient of an action. While it often overlaps with 「に」, remember that 「へ」 puts a
+  subtle emphasis on the journey, movement, or the very act of directing something towards a target, making
+  it a powerful choice when that nuance is important.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/へ

@@ -1,0 +1,302 @@
+grammar_point: 上で (after doing)
+learn_before:
+  - 〜の上で (on the basis of)
+meaning: After, upon
+meaning_warning: 'In A上でB: A cannot be passive'
+pronunciation:
+  katakana: ウエデ
+  romaji: ue de
+formation:
+  Verb[plain past form] + 上で: Indicates that something will happen after or upon completing the action
+    described by the verb.
+  Noun + の + 上で: Indicates that something will happen after or upon considering the noun.
+jlpt: N3
+etymology: The grammar point 「上で」 is derived from 「上」 (ue), meaning "above" or "on," and 「で」 (de), which
+  can indicate means or condition. Literally, it can be understood as "with the above/previous," implying
+  that something is done based on a prior action or consideration. The use of 「で」 as a case-marking particle
+  highlights the conditional nature of the construction.
+writeup: 「上で」 is an expression used to indicate that an action or decision (B) is made *after* a prior
+  action or consideration (A) has been completed. It's akin to saying "upon (A)" or "after (A), (B)."
+  This grammar point suggests a **logical progression** where A serves as a necessary prerequisite or
+  a foundational step for B. It carries a formal and somewhat official tone, making it more common in
+  written Japanese, official statements, or polite conversation rather than casual speech.When used with
+  verbs, 「上で」 attaches to the plain past form (e.g., 読んだ上で). When used with nouns, it attaches as 「名詞の上で」
+  (e.g., 調査の上で).The action or consideration before 「上で」 is typically a deliberate, crucial step that forms
+  the basis for the subsequent action. It's not just a simple sequence of events, but rather a dependency.This
+  expression leans towards formal or semi-formal contexts. While it can be understood in casual settings,
+  other simpler expressions like 「てから」 or 「あとで」 are more common for mere chronological sequence.A key
+  restriction of 「上で」 is that the verb preceding it cannot be in the passive voice. This is because 「上で」
+  implies a deliberate, controlled action or consideration (A) that leads to (B). Passive verbs often
+  denote a lack of agency or control over the action, which conflicts with the intentionality conveyed
+  by 「上で」.
+false_friends:
+  - term: てから
+    meaning: after; since; once (something is done)
+    kind: similar expression
+    nuance: 「てから」 simply indicates a sequence of events. Unlike 「上で」, it doesn't necessarily imply a logical
+      connection or prerequisite between the two actions, or the deliberate nature of the preceding action.
+    grammar_point: てから (after and since)
+  - term: 上に
+    meaning: in addition to; as well as; besides
+    kind: often confused with
+    nuance: 「上に」 adds information, meaning 'in addition to' or 'as well as'; it doesn't show a sequential
+      dependency or a prerequisite. Unlike 「上で」, which implies a condition for a subsequent action, 「上に」
+      presents supplemental details.
+    grammar_point: 上に (in addition to)
+  - term: たら
+    meaning: if; when
+    kind: similar expression
+    nuance: 「たら」 introduces a conditional clause or a simple temporal consequence. Unlike 「上で」, which
+      requires the first action to be completed as a basis, 「たら」 can describe a hypothetical situation
+      or a more casual cause-and-effect.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: あとで
+    meaning: later; afterwards
+    kind: similar expression
+    nuance: 「あとで」 merely indicates temporal succession. Unlike 「上で」, it does not necessarily establish
+      a prior condition or basis for the second action, merely a temporal order.
+    grammar_point: あとで (after・later)
+  - term: た末・の末
+    meaning: after; as a conclusion of
+    kind: similar expression
+    nuance: 「た末・の末」 emphasizes the culmination of a long process or effort, often implying a final outcome
+      or consequence after considerable difficulty or deliberation. Unlike 「上で」, 「た末・の末」 often carries
+      a stronger sense of finality or result after a prolonged effort.
+    grammar_point: た末・の末・末に (culmination)
+  - term: て初めて
+    meaning: only after; not until
+    kind: similar expression
+    nuance: 「て初めて」 highlights a realization, discovery, or new state that was achieved *only* after a
+      particular action or experience. Unlike 「上で」, it emphasizes the change in understanding or ability
+      resulting from the action, rather than the action being a deliberate prerequisite for a subsequent
+      planned action.
+    grammar_point: て初めて (for the first time after)
+  - term: にもとづいて
+    meaning: based on; in accordance with
+    kind: similar expression
+    nuance: 「にもとづいて」 indicates that something is done *based on* a rule, fact, principle, or data, acting
+      as a foundation or criterion. In contrast, 「上で」 indicates an action is taken *after* a preceding
+      action or consideration has been completed and serves as a deliberate prerequisite. The emphasis
+      is on the source of the basis (`にもとづいて`) versus the act of using a prior step as a foundation (`上で`).
+    grammar_point: にもとづいて (based on)
+  - term: を経て
+    meaning: via; through; after (experience, time, etc.); having gone through
+    kind: similar expression
+    nuance: 「を経て」 focuses on the process of *going through* a period, experience, or route to reach a
+      certain state or outcome. While it implies succession like 「上で」, it emphasizes the *passage* and
+      *experience* rather than a deliberate, foundational action or consideration that serves as a direct
+      prerequisite for the next step.
+    grammar_point: を経て (after process or experience)
+post_false_friends_writeup: To avoid confusion, remember that 「上で」 signifies that an action or consideration
+  directly influences the subsequent action, serving as its deliberate foundation. While 「てから」 and 「あとで」
+  indicate simple sequence, 「上に」 adds information, and 「たら」 sets a condition. 「た末・の末」 suggests a final
+  outcome after a long process, and 「て初めて」 emphasizes a realization or new understanding that occurs only
+  after an action. Furthermore, 「に基づいて」 specifies that an action is based on rules or information, and
+  「を経て」 focuses on the experience of going through a process.
+examples:
+  - english: After thoroughly discussing it with my family, I decided to move.
+    japanese:
+      - 家族 と よく 話し合っ た {上 で}、引っ越し を 決め まし た。
+      - 家族 と よく 話し合っ た {上 で}、引っ越し を 決め た。
+    english_literally: Having well discussed with family, upon that, decided to move.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 と よく 話し合っ {て から}、引っ越し を 決め まし た。
+        english: After discussing thoroughly with family, I decided to move.
+        hint: 「てから」 simply indicates a chronological sequence. We are looking for a grammar point that
+          emphasizes a deliberate, foundational action before the decision.
+      - competing_japanese:
+          - 家族 と よく 話し合っ {たら}、引っ越し を 決め まし た。
+        english: If/When I discussed thoroughly with family, I decided to move.
+        hint: 「たら」 can describe a conditional or a simple temporal consequence. We are looking for a grammar
+          point that emphasizes a completed, foundational discussion as a prerequisite for the decision.
+      - competing_japanese:
+          - 家族 と よく 話し合っ た {あと で}、引っ越し を 決め まし た。
+        english: After discussing thoroughly with family, I decided to move.
+        hint: 「あとで」 merely indicates temporal succession. We are looking for a grammar point that highlights
+          a decision based on a prerequisite discussion.
+    scene: A woman informing close friends or colleagues about a significant family decision that required
+      careful thought and consensus among family members.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「話し合った上で」 here by a female speaker emphasizes that the decision to move was made
+      only after a comprehensive and deliberate discussion within the family, highlighting the consensual
+      and well-considered process that preceded the final decision.
+  - english: Please sign after confirming the contract.
+    japanese:
+      - 契約 書 を 確認 し た {上 で}、署名 し て ください。
+      - 契約 書 を 確認 し た {上 で}、署名 する。
+    english_literally: Contract document having confirmed, upon that, please sign.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 書 を 確認 し {て から}、署名 し て ください。
+        english: Confirm the contract, then please sign.
+        hint: 「てから」 indicates a simple chronological sequence. We are looking for a phrase that implies
+          confirmation is a mandatory prerequisite for signing.
+      - competing_japanese:
+          - 契約 書 を 確認 し {たら}、署名 し て ください。
+        english: If you confirm the contract, please sign.
+        hint: 「たら」 can imply a casual condition. We are looking for a phrase that stresses the necessity
+          of prior confirmation for the validity of the signing.
+    scene: A legal assistant guiding a client through a crucial document, stressing the importance of
+      reviewing details before committing.
+    register: formal
+    setting: persuasive
+  - english: We plan to start the new project after a thorough investigation.
+    japanese:
+      - 十分 な 調査 の {上 で}、新しい プロジェクト を 開始 する 予定 です。
+      - 十分 な 調査 の {上 で}、新しい プロジェクト を 開始 する 予定 だ。
+    english_literally: Sufficient investigation, upon that, new project will start plan is.
+    competing_grammar:
+      - competing_japanese:
+          - 十分 な 調査 を し {て から}、新しい プロジェクト を 開始 する 予定 です。
+        english: After a thorough investigation, we plan to start the new project.
+        hint: 「てから」 simply indicates a chronological sequence. We are looking for a phrase that emphasizes
+          the deliberative and foundational nature of the investigation as a prerequisite for the project.
+    scene: A project manager announces a major initiative to the team, emphasizing the groundwork and
+      analysis completed beforehand.
+    register: formal
+    setting: informative
+  - english: After consulting with my doctor, I chose this treatment method.
+    japanese:
+      - 医者 と 相談 し た {上 で}、この 治療 法 を 選択 し まし た。
+      - 医者 と 相談 し た {上 で}、この 治療 法 を 選択 し た。
+    english_literally: Doctor with having consulted, upon that, this treatment method chose.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 と 相談 し {て から}、この 治療 法 を 選択 し まし た。
+        english: After consulting with my doctor, I chose this treatment method.
+        hint: 「てから」 indicates a simple chronological sequence. We are looking for a phrase that implies
+          a significant decision made after careful consideration and professional guidance.
+    scene: A man explains to his family why he decided on a particular medical procedure, highlighting
+      that it was a well-considered choice based on professional advice.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    nuance: This sentence from a male speaker emphasizes that the selection of the treatment method 「選択しました」
+      was a deliberate decision made after professional medical consultation 「医者と相談した上で」, indicating a
+      responsible and informed approach to health.
+  - english: After considering multiple options, we will make the final decision.
+    japanese:
+      - 多数 の 選択 肢 を 検討 し た {上 で}、最終 的 な 決定 を 下し ます。
+      - 多数 の 選択 肢 を 検討 し た {上 で}、最終 的 な 決定 を 下す。
+    english_literally: Many options having reviewed, upon that, final decision will make.
+    competing_grammar:
+      - competing_japanese:
+          - 多数 の 選択 肢 を 検討 し {て から}、最終 的 な 決定 を 下し ます。
+        english: After considering multiple options, we will make the final decision.
+        hint: 「てから」 implies a general temporal connection. We are looking for a phrase that emphasizes
+          a thorough, deliberate review as a foundational step for the decision.
+    scene: A committee chair explains the decision-making process for a complex issue, assuring members
+      that all possibilities will be thoroughly reviewed.
+    register: formal
+    setting: professional
+    listener_gender: group
+    nuance: The phrase 「検討した上で」 assures the group that the final decision 「最終的な決定」 will be a well-informed
+      one, made only after a comprehensive evaluation of all available options 「多数の選択肢」. This indicates
+      a meticulous and responsible approach.
+  - english: Based on many years of experience, I have come to understand the challenges of this industry.
+    japanese:
+      - 長年 の 経験 の {上 で}、この 業界 の 課題 を 理解 し まし た。
+      - 長年 の 経験 の {上 で}、この 業界 の 課題 を 理解 し た。
+    english_literally: Long years of experience, upon that, this industry's challenges understood.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 経験 を {経 て}、この 業界 の 課題 を 理解 し まし た。
+        english: Having gone through many years of experience, I have come to understand the challenges
+          of this industry.
+        hint: 「経て」 (hete) means 'having gone through' and focuses on the passage of time and the experience
+          itself, not necessarily a deliberate action taken as a prerequisite. We are looking for a phrase
+          that emphasizes a deep understanding derived from accumulated experience as a foundational basis.
+    scene: An experienced industry veteran reflects on their career during a keynote speech, attributing
+      their insights to their prolonged engagement in the field.
+    register: formal
+    setting: reflective
+    speaker_age: older
+    nuance: The speaker, an older individual, uses 「長年の経験の上で」 to convey that their understanding of the
+      industry's challenges 「業界の課題を理解しました」 is not superficial, but a deep insight gained through accumulated,
+      long-term experience, adding weight to their statement.
+  - english: Let's decide the meeting schedule after everyone has agreed.
+    japanese:
+      - 全員 が 同意 し た {上 で}、会議 の 日時 を 決定 し ましょう。
+      - 全員 が 同意 し た {上 で}、会議 の 日時 を 決定 し よう。
+    english_literally: All members having agreed, upon that, meeting's date and time let's decide.
+    competing_grammar:
+      - competing_japanese:
+          - 全員 が 同意 し {て から}、会議 の 日時 を 決定 し ましょう。
+        english: After everyone agrees, let's decide the meeting schedule.
+        hint: 「てから」 indicates a simple chronological sequence. We are looking for a phrase that highlights
+          unanimous agreement as a necessary precondition for scheduling.
+      - competing_japanese:
+          - 全員 が 同意 し {たら}、会議 の 日時 を 決定 し ましょう。
+        english: If everyone agrees, let's decide the meeting schedule.
+        hint: 「たら」 can imply a general conditional. We are looking for a phrase that implies achieving
+          full agreement is a foundational and deliberate step before making the decision.
+    scene: A team leader proposes a collaborative decision-making process for scheduling, emphasizing
+      the need for consensus before proceeding.
+    register: semi-formal
+    setting: negotiating
+  - english: After confirming the safety, the construction will proceed.
+    japanese:
+      - 安全 を 確認 し た {上 で}、工事 を 進め ます。
+      - 安全 を 確認 し た {上 で}、工事 を 進める。
+    english_literally: Safety having confirmed, upon that, construction will proceed.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 を 確認 し {て から}、工事 を 進め ます。
+        english: After confirming the safety, the construction will proceed.
+        hint: 「てから」 indicates a simple chronological sequence. We are looking for a grammar point that
+          emphasizes confirmation as a prerequisite for proceeding with construction.
+      - competing_japanese:
+          - 安全 を 確認 し {たら}、工事 を 進め ます。
+        english: If safety is confirmed, the construction will proceed.
+        hint: 「たら」 can describe a conditional. We are looking for a grammar point that emphasizes the
+          completed safety confirmation as a foundational step.
+    scene: A construction manager explains the project timeline to the team, emphasizing adherence to
+      safety protocols.
+    register: formal
+    setting: informative
+  - english: It's important to make a decision after thoroughly understanding the situation.
+    japanese:
+      - 状況 を 十分 に 理解 し た {上 で}、判断 する こと が 重要 です。
+      - 状況 を 十分 に 理解 し た {上 で}、判断 する こと が 重要 だ。
+    english_literally: Situation having sufficiently understood, upon that, judging is important.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 を 十分 に 理解 し {て から}、判断 する こと が 重要 です。
+        english: After sufficiently understanding the situation, it's important to make a decision.
+        hint: 「てから」 indicates a simple chronological sequence. We are looking for a grammar point that
+          emphasizes a deep, thorough understanding as a necessary foundation for decision-making.
+      - competing_japanese:
+          - 状況 を 十分 に 理解 し {たら}、判断 する こと が 重要 です。
+        english: If you sufficiently understand the situation, it's important to make a decision.
+        hint: 「たら」 can describe a general condition. We are looking for a grammar point that highlights
+          the completed understanding as a prerequisite for making a sound judgment.
+    scene: A mentor advises a junior colleague on effective problem-solving and decision-making.
+    register: semi-formal
+    setting: instructional
+    speaker_age: older
+  - english: We will make a judgment based on the established rules.
+    japanese:
+      - 定め られ た 規則 の {上 で}、判断 を 下し ます。
+      - 定め られ た 規則 の {上 で}、判断 を 下す。
+    english_literally: Established rules, upon that, judgment will be made.
+    competing_grammar:
+      - competing_japanese:
+          - 定め られ た 規則 に {基づい て}、判断 を 下し ます。
+        english: We will make a judgment based on the established rules.
+        hint: 「に基づいて」 means 'based on' or 'according to', often implying a standard or criterion. While
+          similar, 「上で」 emphasizes that the rules are the foundational premise upon which the judgment
+          is made.
+    scene: A legal professional or official explaining the criteria for a decision.
+    register: formal
+    setting: professional
+    nuance: The phrase 「規則の上で」 explicitly states that the judgment 「判断を下します」 is made squarely within the
+      framework and constraints of the established rules 「定められた規則」, indicating strict adherence and impartiality.
+post_example_writeup: When using 「上で」, it's essential to ensure that the first action logically precedes
+  the second. The first action often serves as a foundation or necessary step for the subsequent action.
+  It's a more formal way of indicating sequential actions compared to expressions like 「てから」. Also, be
+  mindful of the restriction against passive verbs before 「上で」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/上で

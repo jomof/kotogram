@@ -1,0 +1,312 @@
+grammar_point: い-Adjective[stem] (stem)
+matcher: |-
+  ⌈ˢ~ᵖadj:general:adjective:stemᵇ~ᵈ~ʳ~⌉|
+  ⌈ˢ~ᵖadj:non_self_reliant:adjectiveᵇ~ᵈ~ʳ~⌉
+matcher_enforce_examples: true
+meaning: stem
+pronunciation:
+  katakana: イケイヨウシ クキ
+  romaji: i-keiyōshi kuki
+  pronunciation_warning: This is a grammatical term, not a word to be spoken in isolation. The katakana
+    and romaji represent its linguistic classification.
+formation:
+  い-Adjective (dictionary form) - い: Remove the final い from an い-adjective in its dictionary form to
+    obtain the stem. For example, 寒い (samui) becomes 寒 (samu).
+jlpt: N5
+etymology: The concept of a 'stem' (語幹, gokan) in Japanese grammar, particularly for い-adjectives, is
+  derived from traditional linguistic analysis. It refers to the invariant part of a word that remains
+  after inflectional endings are removed. This stem serves as the base onto which various suffixes are
+  attached to form different grammatical functions, such as expressing appearance (～そう), excess (～すぎる),
+  or showing signs of feeling (～がる). It's a fundamental element in understanding how adjectives modify
+  and connect within sentences.
+writeup: |-
+  The stem form of an い-adjective is created by removing the final 「い」 from its dictionary form. For example, 寒い (samui, cold) becomes 寒 (samu), and 嬉しい (ureshii, happy) becomes 嬉し (ureshi). This stem form is not a complete word on its own and cannot be used independently in a sentence. Instead, it acts as a foundational base to which various grammatical suffixes or other words are attached, allowing the adjective to express a wide range of meanings and nuances.
+
+  This form is crucial for creating more complex expressions, such as stating how something 'looks' (～そう), how a quality is 'too much' (～すぎる), or how someone 'shows signs of' a feeling (～がる). It is also used in certain compound word formations. Understanding the い-adjective stem is fundamental to mastering Japanese adjective conjugation and usage.
+false_friends:
+  - term: い-Adjective[く]
+    meaning: adverbial form
+    kind: similar expression
+    nuance: While the い-Adjective stem is the base, adding 「く」 forms the adverbial form, which modifies
+      verbs or other adjectives. For instance, 速い (hayai, fast) becomes 速く (hayaku) to mean 'quickly'.
+      We're looking for the simple stem, not its adverbial use.
+    grammar_point: い-Adjective[く] (adverbial form)
+  - term: い-Adjective[さ]
+    meaning: nominalizer
+    kind: similar expression
+    nuance: Adding 「さ」 to the い-Adjective stem creates a noun that expresses the abstract quality or state.
+      For example, 嬉しい (ureshii, happy) becomes 嬉しさ (ureshi-sa), meaning 'happiness'. This is a different
+      function than merely being the stem for conjugation.
+    grammar_point: い-Adjective[さ] (nominalizer)
+  - term: い-Adjective[くて]
+    meaning: te-form
+    kind: similar expression
+    nuance: The 「くて」 form is derived from the stem and is used to connect adjectives or clauses, or to
+      state a reason. For example, 寒い (samui, cold) becomes 寒くて (samukute, and it's cold / because it's
+      cold). The stem is just the base, while 「くて」 adds a connective function.
+    grammar_point: い-Adjective[くて] (te-form)
+post_false_friends_writeup: 'The い-Adjective stem is the core component from which many other forms are
+  built. The key distinction lies in the suffix that follows the stem: 「く」 creates an adverb, 「さ」 creates
+  a noun, and 「くて」 connects clauses. All these forms utilize the basic stem, but each adds a unique grammatical
+  function that the bare stem does not possess on its own.'
+examples:
+  - english: It looks like the cat is cold.
+    japanese:
+      - 猫 は {寒 そう} です。
+      - 猫 は {寒 そう} だ。
+    english_literally: As for cat, looks cold is.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は {無 気力 な} {様子} {です}。
+        english: The cat looks listless.
+        hint: This implies a listless or unenergetic appearance. We're looking for an appearance of being
+          cold based on visual cues.
+      - competing_japanese:
+          - 猫 は {きっと} {体} が {冷え て} {いる} {でしょう}。
+        english: The cat is surely cold.
+        hint: This expresses a certain belief that the cat's body is cold. We're looking for how something
+          appears visually.
+    scene: You are at home, observing your cat curled up tightly.
+    register: teineigo (polite)
+    setting: informative
+  - english: Don't eat too much sweet food.
+    japanese:
+      - '{甘 すぎる} 食べ物 は 食べ ない で ください。'
+      - '{甘 すぎる} 食べ物 は 食べ ちゃ だめ だ よ。'
+    english_literally: Too sweet food, please don't eat.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 が {大量 に} {入っ た} 食べ物 は 食べ ない で ください。
+        english: Please don't eat food with plenty of sugar.
+        hint: This describes food with a large amount of sugar, but not necessarily 'too sweet' in an
+          excessive sense. We're looking for an excessive amount of sweetness.
+      - competing_japanese:
+          - '{必要} {以上} に {砂糖} が {多い} 食べ物 は 食べ ない で ください。'
+        english: Please don't eat food that has excessive sugar.
+        hint: This describes food with a general sense of being 'more than necessary' in terms of sugar
+          quantity. We're looking for the sense of 'excessive' conveyed by the adjective stem form.
+    scene: A parent advises their child about healthy eating habits.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: The stem 甘 (ama) from 甘い (amai, sweet) combines with すぎる to express 'too sweet'. The use of
+      「ください」 makes it a polite request.
+    etymology: The suffix ～すぎる (sugiru) derives from the verb 過ぎる (sugiru), meaning 'to pass, to exceed'.
+      When attached to the stem of an adjective, it indicates an excessive degree of that quality.
+  - english: My little sister always acts lonely when I'm not home.
+    japanese:
+      - 妹 は 私 が い ない と いつ も {寂し がる} {ん です}。
+      - 妹 は 私 が い ない と いつ も {寂し がる} の さ。
+    english_literally: Little sister, I am not, then always acts lonely is.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 は 私 が い ない と いつ も {一人ぼっち} {に} {なる} {です}。
+        english: My little sister always becomes all alone when I'm not home.
+        hint: This describes her becoming alone, but not her actively 'showing signs' of loneliness through
+          behavior. We're looking for the active display of a feeling.
+      - competing_japanese:
+          - 妹 は 私 が い ない と いつ も {静か に} {なる} {です}。
+        english: My little sister always becomes quiet when I'm not home.
+        hint: This implies quietness. We're looking for the active display of feeling lonely through behavior,
+          not just a general quietness.
+    scene: Talking to a friend about your family.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The stem 寂し (sabishi) from 寂しい (sabishii, lonely) combines with がる to describe the observable
+      behavior of showing loneliness. The 「んです」 adds an explanatory nuance.
+    etymology: The suffix ～がる (garu) originates from the verb がる (garu), meaning 'to show signs of, to
+      be inclined to'. It's used when describing someone else's feelings based on their outward behavior,
+      as direct feelings are typically expressed with the adjective itself.
+  - english: That building is too big, it feels oppressive.
+    japanese:
+      - あの 建物 は {大き すぎる} の で、圧迫 感 が ある。
+      - あの 建物 は {大き すぎ ます} の で、圧迫 感 が あり ます。
+    english_literally: That building is too big, so, feeling of pressure exists.
+    competing_grammar:
+      - competing_japanese:
+          - あの 建物 は とても {巨大} {です} の で、圧迫 感 が ある。
+        english: That building is very big/gigantic, so it feels oppressive.
+        hint: 「とても 巨大」 emphasizes vastness, but it doesn't necessarily convey 'too big' in an excessive
+          or problematic sense. We're looking for the sense of an excessive degree.
+      - competing_japanese:
+          - あの 建物 は {途方 も ない} {規模} {です} の で、圧迫 感 が ある。
+        english: That building is of an immense scale, so it feels oppressive.
+        hint: This describes the scale as immense, but not necessarily 'too much' or 'excessive' to the
+          point of being a problem. We're looking for the concept of 'too big'.
+    scene: Two people are walking through a city and come across a large, imposing skyscraper.
+    register: casual
+    setting: reflective
+    nuance: 大きすぎる (ooki-sugiru) uses the stem 大き (ooki) from 大きい (ookii, big) to convey 'too big'. The
+      sentence expresses a subjective feeling triggered by the building's excessive size.
+    etymology: The particle ので (node) serves as a common, milder way to express cause or reason compared
+      to から. It implies a situation or fact that leads to a result.
+  - english: He looked happy when he received the present.
+    japanese:
+      - 彼 は プレゼント を もらっ て {嬉し そう} {だっ た}。
+      - 彼 は プレゼント を もらっ て {嬉し そう} {でし た}。
+    english_literally: He, present receiving, looked happy was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プレゼント を もらっ て とても {喜ん で} {い まし た}。
+        english: He was very happy/rejoicing after receiving the present.
+        hint: This describes his internal state or action of rejoicing. We're looking for a statement
+          about his 'appearance' or 'how he looked'.
+      - competing_japanese:
+          - 彼 は プレゼント を もらっ て {満足} {し た} {様子} {でし た}。
+        english: He seemed satisfied after receiving the present.
+        hint: This describes him having a 'satisfied appearance'. We're looking for a clear visual impression
+          of happiness using the い-adjective stem to describe how he 'looked'.
+    scene: Recounting a past event to a friend.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    nuance: 嬉しそう (ureshisō) combines the stem 嬉し (ureshi) from 嬉しい (ureshii, happy) with そう to mean 'looked
+      happy'. The sentence focuses on the observable appearance of happiness, rather than a direct statement
+      of his internal feeling.
+    etymology: The construction ～そう (sō) indicating appearance is thought to derive from the verb 様子 (yōsu,
+      appearance) or 相 (sō, aspect, form), suggesting 'looking like' or 'having the appearance of'.
+  - english: The child looked sad as he watched the rain.
+    japanese:
+      - 子供 は 雨 を 見 て {悲し げ} {な} 目 を {し て いる}。
+      - 子供 は 雨 を 見 て {悲し げ} {な} 目 を {し て い まし た}。
+    english_literally: Child, rain looking, sad-looking eyes is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 雨 を 見 て {沈ん だ} {様子} {だっ た}。
+        english: The child had a downcast appearance as he watched the rain.
+        hint: This describes a 'downcast appearance'. We're looking for the nuance of a subtle, outward
+          appearance of sadness.
+      - competing_japanese:
+          - 子供 は 雨 を 見 て {気落ち} {し た} {表情} {だっ た}。
+        english: The child had a dejected expression as he watched the rain.
+        hint: This describes a 'dejected expression'. We're looking for the nuance of a subtle, outward
+          appearance of sadness.
+    scene: Observing a child by a window on a rainy day.
+    register: casual
+    setting: reflective
+    nuance: 悲しげ (kanashige) uses the stem 悲し (kanashi) from 悲しい (kanashii, sad) with げ, indicating an
+      outward appearance or impression of sadness. This is often used for subtle expressions.
+    etymology: The suffix ～げ (ge) is a classical Japanese suffix used to describe the appearance or atmosphere
+      of something, often indicating a feeling or quality that is apparent from someone's demeanor or
+      a situation. It emphasizes the 'look' or 'sense' of a state.
+  - english: The weather is way too hot this summer.
+    japanese:
+      - この 夏 は {暑 すぎる} {よ}。
+      - この 夏 は {暑 すぎ ます} {ね}。
+    english_literally: This summer, too hot is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 夏 は {非常 に} {高温} {です} {よ}。
+        english: This summer is extremely high temperature, you know.
+        hint: This describes the weather as being of 'extremely high temperature', focusing on the factual
+          state rather than an excessive degree of the adjective. We're looking for an excessive degree
+          of 'hotness' using the adjective stem.
+      - competing_japanese:
+          - この 夏 は {我慢 でき ない} {レベル} {の} {気温} {です}。
+        english: This summer has an unbearable level of temperature.
+        hint: This describes the 'temperature level' as unbearable. We're looking for the specific expression
+          of being 'too hot' using the adjective stem.
+    scene: Complaining about the heat to a family member.
+    register: casual
+    setting: friendly
+    nuance: 暑すぎる (atsu-sugiru) uses the stem 暑 (atsu) from 暑い (atsui, hot) to express 'too hot', implying
+      an unpleasant excess. The particle 「よ」 adds emphasis.
+    etymology: The particle よ (yo) is an assertive particle used to inform the listener of something new
+      or to emphasize a statement. It's often used in casual conversation.
+  - english: Looking at her expression, it seems like she's really happy.
+    japanese:
+      - 彼女 の 表情 から、本当 に {楽し そう} {だ}。
+      - 彼女 の 表情 から、本当 に {楽し そう} {です}。
+    english_literally: Her expression from, truly looks fun is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 表情 から、本当 に {喜び} {に} {満ち た} {様子} {です}。
+        english: From her expression, she truly has a look filled with joy.
+        hint: This describes a 'look filled with joy'. We're looking for a direct visual impression of
+          happiness using the い-adjective stem to describe how she 'looked'.
+      - competing_japanese:
+          - 彼女 は 本当 に {気分} が {上々} {らしい} {です}。
+        english: It seems she is truly in top spirits.
+        hint: This describes her mood as 'top-notch'. We're looking for a visual appearance of happiness
+          based on observation.
+    scene: Observing someone from a distance and commenting on their demeanor.
+    register: casual
+    setting: informative
+    nuance: 楽しそう (tanoshi-sō) combines the stem 楽し (tanoshi) from 楽しい (tanoshii, fun/happy) with そう, indicating
+      that she 'looks happy' based on her expression. This is a common way to infer someone's feelings
+      from their appearance.
+    etymology: The particle から (kara) can indicate a source or starting point, in this case, the source
+      of the observation (her expression) from which the conclusion is drawn.
+  - english: My parents worry about me acting lonely.
+    japanese:
+      - 両親 は 私 が {寂し がる} の を 心配 {し て いる}。
+      - 両親 は 私 が {寂し がる} の を 心配 {し て い ます}。
+    english_literally: Parents, I act lonely, that worried are.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 は 私 が {しょんぼり} {する} の を 心配 {し て い ます}。
+        english: My parents worry about me being dejected.
+        hint: This describes a general state of dejection. We're looking for the specific active display
+          of a feeling of loneliness, not a general mood.
+      - competing_japanese:
+          - 両親 は 私 が {独り} {に} {なる} の を 心配 {し て い ます}。
+        english: My parents worry about me being alone.
+        hint: This describes her being alone, but not her actively 'showing signs' of loneliness through
+          behavior. We're looking for the outward behavior of showing a feeling.
+    scene: You're talking to a friend about your parents' concern.
+    register: casual
+    setting: friendly
+    nuance: 寂しがる (sabishigaru) uses the stem 寂し (sabishi) from 寂しい (sabishii, lonely) with がる, meaning
+      'to show signs of loneliness'. The phrase focuses on the parents observing this behavior.
+    etymology: The nominalizer の (no) turns the preceding clause (私 が 寂しがる, I act lonely) into a noun
+      phrase, which then becomes the direct object of 心配している (shinpai shite iru, are worrying).
+  - english: That plan looks good.
+    japanese:
+      - あの 計画 は {よさ そう} です。
+      - あの 計画 は {よさ そう} だ。
+    english_literally: That plan, looks good is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 計画 は {特に} {欠点} が {見当たら ない} {です}。
+        english: That plan seems to have no particular flaws.
+        hint: This suggests an absence of problems. We're looking for a sentence that conveys it *looks*
+          good or *seems* good based on appearance or impression.
+      - competing_japanese:
+          - あの 計画 は {順調 に} {進む} {でしょう}。
+        english: That plan will probably go well.
+        hint: This expresses a prediction about the plan's success. We're looking for a statement about
+          its apparent quality.
+    scene: Two colleagues are reviewing a proposal.
+    register: semi-formal
+    setting: professional
+    nuance: よさそう (yosasō) uses the irregular stem よ (yo) from 良い (ii, good) to express "looks good" or
+      "seems good" based on appearance or general impression. This demonstrates the use of the irregular
+      stem of 良い.
+    etymology: The irregular stem よ (yo) for 良い (ii) is a remnant of older Japanese, where the adjective
+      was commonly inflected from a base form beginning with よ. This historical development contributes
+      to its unique conjugation pattern in modern Japanese.
+  - english: The coffee was too bitter, I couldn't drink it.
+    japanese:
+      - コーヒー は {苦 すぎる}、飲め なかっ た。
+      - コーヒー は {苦 すぎ まし た}、飲め ませ ん でし た。
+    english_literally: Coffee, too bitter, couldn't drink.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー は とても {刺激 的} {な} {味} が {し て}、飲め なかっ た。
+        english: The coffee had a very strong/stimulating taste, so I couldn't drink it.
+        hint: This expresses 'very strong/stimulating taste', but not specifically 'bitter'. We're looking
+          for the specific expression of being 'too bitter' using the adjective stem.
+      - competing_japanese:
+          - コーヒー は {到底} {飲める} {よう な} {代物} {で は} {なかっ た}。
+        english: The coffee was something utterly undrinkable.
+        hint: This focuses on the undrinkable nature of the coffee. We're looking for the specific expression
+          of being 'too bitter' using the adjective stem.
+    scene: Explaining why you didn't finish your coffee at a cafe.
+    register: casual
+    setting: informative
+    nuance: 苦すぎる (niga-sugiru) uses the stem 苦 (niga) from 苦い (nigai, bitter) to express that the coffee
+      was excessively bitter. This clearly indicates the bitterness was beyond an acceptable level, preventing
+      consumption.
+    etymology: The verb 飲む (nomu, to drink) has a potential form 飲める (nomeru, can drink), and its negative
+      is 飲めない (nomenai, cannot drink). This ability form is frequently used to express what is possible
+      or impossible to do.

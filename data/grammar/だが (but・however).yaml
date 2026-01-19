@@ -1,0 +1,241 @@
+grammar_point: だが (but・however)
+learn_before:
+  - Verbて (uncontrollable consequence)
+meaning: but, however
+pronunciation:
+  katakana: ダガ
+  romaji: daga
+formation:
+  Verb[plain form] + だが: Connects two clauses, introducing a contrasting or qualifying statement.
+  い-Adjective[plain form] + だが: Connects two clauses, introducing a contrasting or qualifying statement.
+  な-Adjective[plain form] + だが: Connects two clauses, introducing a contrasting or qualifying statement.
+  Noun + だが: Connects two clauses, introducing a contrasting or qualifying statement.
+jlpt: N3
+etymology: だが is derived from the plain form of the copula だ followed by the conjunctive particle が. The
+  particle が itself has a long history of introducing clauses that contrast or present a condition. In
+  Old Japanese, が served various functions, including marking a concessive or contrastive relationship.
+  Over time, the combination with the copula だ solidified its role as a conjunction for 'but' or 'however,'
+  maintaining a slightly more formal or assertive tone than けれど or けど. It often implies that what follows
+  contradicts or qualifies what came before.
+writeup: だが is a versatile conjunction in Japanese that serves to connect two clauses with a sense of
+  contrast, contradiction, or unexpectedness. Similar to "but" or "however" in English, it introduces
+  a statement that modifies or opposes the preceding one. While it can be used in both spoken and written
+  Japanese, だが tends to carry a slightly more formal or assertive nuance compared to けれど or けど, especially
+  in spoken contexts where けれど is often preferred for its softer tone. It is commonly used when presenting
+  a counter-argument, a qualification, or an obstacle to what was just stated. だが attaches directly to
+  the plain form of verbs, i-adjectives, na-adjectives (dropping the だ), and nouns (adding だ).
+false_friends:
+  - term: しかし
+    meaning: however, but
+    kind: synonym
+    nuance: しかし is generally more formal and often used at the beginning of a sentence or clause to introduce
+      a strong contrast or shift in topic. だが can be used similarly, but it feels slightly less formal
+      and can sound more abrupt or direct, especially in speech.
+    grammar_point: しかし (but・however)
+  - term: けれど
+    meaning: but, although
+    kind: similar expression
+    nuance: けれど (and its more casual form けど) is softer, less assertive, and more conversational than
+      だが. It often implies a milder contrast or concession and is frequently used to politely introduce
+      a differing opinion or a question.
+    grammar_point: <suggest>:けれど (but)
+  - term: ところが
+    meaning: however, by contrast (with unexpectedness)
+    kind: similar expression
+    nuance: ところが strongly emphasizes an unexpected or surprising turn of events that contrasts with what
+      was anticipated or previously stated. だが simply states a contrast, while ところが often implies "contrary
+      to expectation."
+    grammar_point: ところが (unexpected contrast)
+  - term: ものの
+    meaning: although, but
+    kind: similar expression
+    nuance: ものの implies a concession or acknowledgment of a fact, followed by a contrasting or somewhat
+      negative outcome, often feeling more literary or formal. だが is more of a direct counter-statement.
+    grammar_point: ものの (although・but)
+post_false_friends_writeup: While だが and its counterparts like しかし, けれど, ところが, and ものの all convey a sense
+  of contrast or opposition, their usage differs in formality, nuance, and the strength of the unexpectedness
+  they express. だが occupies a middle ground, being more direct than けれど and less formal than しかし, while
+  ところが highlights surprise and ものの emphasizes concession with a subsequent negative or unexpected result.
+  Choosing the right one depends on the specific context and the speaker's desired emphasis.
+examples:
+  - english: I studied a lot, but I didn't pass the exam.
+    japanese:
+      - たくさん 勉強 し た {だ が} 試験 に 合格 し なかっ た。
+      - たくさん 勉強 し た。{だ が} 試験 に 合格 し なかっ た。
+    english_literally: A lot studied, but exam to pass did not.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 勉強 し た けれど 試験 に 合格 し なかっ た。
+        english: I studied a lot, but I didn't pass the exam. (softer nuance)
+        hint: けれど offers a softer, more conversational contrast. We're looking for a slightly more direct
+          "but" here.
+    scene: A student talking to a friend about a recent exam.
+    register: casual
+    setting: academic
+  - english: That restaurant is famous, but the food isn't very delicious.
+    japanese:
+      - あの レストラン は 有名 {だ が} 料理 は あまり 美味しく ない。
+      - あの レストラン は 有名 だ。{だ が} 料理 は あまり 美味しく ない。
+    english_literally: That restaurant is famous, but food is not very delicious.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 有名。しかし、料理 は あまり 美味しく ない。
+        english: That restaurant is famous. However, the food isn't very delicious.
+        hint: しかし is more formal and often used to start a new sentence for a stronger, more independent
+          contrasting statement. We're looking for a conjunction that flows directly.
+    scene: Two colleagues discussing a restaurant review.
+    register: formal
+    setting: professional
+  - english: The plan was simple, but its execution was very difficult.
+    japanese:
+      - 計画 は 簡単 {だ が} その 実行 は とても 困難 だっ た。
+      - 計画 は 簡単 だ。{だ が} その 実行 は とても 困難 だっ た。
+    english_literally: Plan is simple, but its execution is very difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 は 簡単 な の に その 実行 は とても 困難 だっ た。
+        english: Although the plan was simple, its execution was very difficult (unexpectedly).
+        hint: のに often carries a nuance of "even though" or "despite," implying dissatisfaction or surprise
+          about the unexpected outcome. We're looking for a more neutral contrast.
+    scene: A project manager explaining project challenges to a team.
+    register: semi-formal
+    setting: professional
+  - english: He is a genius, but he lacks common sense.
+    japanese:
+      - 彼 は 天才 {だ が} 常識 が ない。
+      - 彼 は 天才 だ。{だ が} 常識 が ない。
+    english_literally: He is genius, but common sense does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 天才。しかし、常識 が ない。
+        english: He is a genius. However, he lacks common sense.
+        hint: しかし is a more formal conjunction, often initiating a new sentence or a stronger, more independent
+          contrast. We're looking for a conjunction that integrates smoothly.
+    scene: A critic analyzing a famous personality.
+    register: formal
+    setting: academic
+  - english: I understand what you're saying, but I cannot agree.
+    japanese:
+      - あなた の 言う こと は 分かる {だ が} 同意 でき ない。
+      - あなた の 言う こと は 分かる。{だ が} 同意 でき ない。
+    english_literally: Your saying thing is understand, but agree cannot.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 言う こと は 分かる けど 同意 でき ない。
+        english: I understand what you're saying, but I cannot agree. (more casual)
+        hint: けど is a more casual and softer alternative. We need a slightly more direct, formal connector
+          in this context.
+    scene: A debate between two individuals with differing opinions.
+    register: formal
+    setting: serious
+  - english: It was cheap, but it broke quickly.
+    japanese:
+      - 安かっ た {だ が} すぐ に 壊れ た。
+      - 安かっ た。{だ が} すぐ に 壊れ た。
+    english_literally: Was cheap, but immediately broke.
+    competing_grammar:
+      - competing_japanese:
+          - 安かっ た もの の すぐ に 壊れ た。
+        english: Although it was cheap, it broke quickly.
+        hint: ものの implies "although" or "despite," often used in more literary or formal contexts, and
+          conveys a concession. We're looking for a more direct "but" for this casual complaint.
+    scene: Someone complaining about a purchase to a friend.
+    register: casual
+    setting: friendly
+  - english: He was healthy yesterday, but today he has a fever.
+    japanese:
+      - 昨日 は 健康 だっ た {だ が} 今日 は 熱 が ある。
+      - 昨日 は 健康 だっ た。{だ が} 今日 は 熱 が ある。
+    english_literally: Yesterday was healthy, but today fever there is.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 健康 だっ た ところ が 今日 は 熱 が ある。
+        english: He was healthy yesterday, but (surprisingly) today he has a fever.
+        hint: ところが emphasizes a surprising or unexpected turn of events. Here, the contrast is more of
+          a straightforward fact.
+    scene: A family member explaining someone's sudden illness.
+    register: casual
+    setting: intimate
+  - english: It was a dream, but the memory is still vivid.
+    japanese:
+      - それ は 夢 だっ た {だ が} 記憶 は 今 で も 鮮明 だ。
+      - それ は 夢 だっ た。{だ が} 記憶 は 今 で も 鮮明 だ。
+    english_literally: That was dream, but memory is even now vivid.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 夢 だっ た が 記憶 は 今 で も 鮮明 だ。
+        english: That was a dream, but the memory is still vivid. (more neutral)
+        hint: While が can also mean "but," だが provides a slightly stronger, more explicit contrast, often
+          used to introduce a qualifying or opposing statement.
+    scene: Someone reflecting on a past experience.
+    register: formal
+    setting: melancholic
+  - english: She usually smiles, but today she looks a bit sad.
+    japanese:
+      - 彼女 は いつ も 笑っ て いる {だ が} 今日 は 少し 悲し そう に 見える。
+      - 彼女 は いつ も 笑っ て いる。{だ が} 今日 は 少し 悲し そう に 見える。
+    english_literally: She is always smiling, but today is a little sad-looking appears.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 笑っ て いる けれど 今日 は 少し 悲し そう に 見える。
+        english: She usually smiles, but today she looks a bit sad. (softer)
+        hint: けれど gives a softer, more gentle tone to the contrast. だが is more direct and assertive.
+    scene: An observation by a concerned friend.
+    register: casual
+    setting: supportive
+  - english: The proposal has its merits, but it presents several challenges.
+    japanese:
+      - その 提案 は 利点 が ある {だ が} いく つ か の 課題 を 提示 する。
+      - その 提案 は 利点 が ある。{だ が} いく つ か の 課題 を 提示 する。
+    english_literally: That proposal has merits, but several challenges presents.
+    competing_grammar:
+      - competing_japanese:
+          - その 提案 は 利点 が ある。しかし、いく つ か の 課題 を 提示 する。
+        english: The proposal has its merits. However, it presents several challenges.
+        hint: しかし is commonly used at the beginning of a sentence in formal writing to clearly mark a
+          strong contrast. だが is also formal but can be integrated more directly into the sentence.
+    scene: A business meeting discussing a new project proposal.
+    register: formal
+    setting: negotiating
+  - english: I wanted to go to the concert, but my mom wouldn't let me.
+    japanese:
+      - コンサート に 行き たかっ た {だ が} 母 さん が 行か せ て くれ なかっ た。
+      - コンサート に 行き たかっ た。{だ が} 母 さん が 行か せ て くれ なかっ た。
+    english_literally: Concert to wanted to go, but Mom did not let me go.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート に 行き たかっ た けど 母 さん が 行か せ て くれ なかっ た。
+        english: I wanted to go to the concert, but my mom wouldn't let me. (more typical casual speech)
+        hint: In very casual speech among friends, けど is often more natural than だが for expressing a simple
+          "but."
+    scene: A teenage boy complaining to his friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The casual tone and the use of 「母さん」 (Mom) along with the negative potential 「行かせてくれなかった」
+      (wouldn't let me go) are common in a younger male's conversation with friends.
+  - english: The weather was fine this morning, but now it's starting to rain.
+    japanese:
+      - 今朝 は 晴れ て い た {だ が} 今 は 雨 が 降り 始め た。
+      - 今朝 は 晴れ て い た。{だ が} 今 は 雨 が 降り 始め た。
+    english_literally: This morning was sunny, but now rain started falling.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は 晴れ て い た の に 今 は 雨 が 降り 始め た。
+        english: Even though the weather was fine this morning, it's starting to rain now (unexpectedly).
+        hint: のに would emphasize the unexpectedness or slight frustration of the sudden change in weather.
+          Here, it's more of a neutral statement of fact.
+    scene: An older woman commenting on the changing weather to her neighbor.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: older
+    nuance: The plain forms 「晴れて いた」 and 「降り始めた」 are natural for a casual conversation among older individuals.
+post_example_writeup: The examples illustrate how だが can be used across various contexts, from casual
+  conversations among friends to more formal discussions. Notice its flexibility in connecting different
+  parts of speech, always maintaining its core function of introducing a contrast or qualification. Pay
+  attention to the subtle differences in nuance when comparing だが with other similar conjunctions, as
+  this will greatly enhance your naturalness in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だが

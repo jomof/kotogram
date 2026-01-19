@@ -1,0 +1,215 @@
+grammar_point: い-Adjective[く] (adverbial form)
+learn_before:
+  - Verb[よう] (volitional)
+meaning: to (do something) in an [i-adjective] way; to become [i-adjective]
+pronunciation:
+  katakana: ク
+  romaji: ku
+  pronunciation_warning: This is a suffix that changes an い-adjective into an adverb. It is not a standalone
+    word.
+formation:
+  い-Adjective (minus い) + く + Verb: Describes how an action is performed.
+  い-Adjective (minus い) + く + なる: Indicates a change of state to become [i-adjective].
+  い-Adjective (minus い) + く + Other Adjective/Adverb: Modifies another adjective or adverb.
+jlpt: N5
+etymology: The 『く』 ending for い-adjectives is a remnant of Classical Japanese grammar, where it functioned
+  as the adverbial form (連用形 - ren'yōkei) of adjectives. This ancient form allowed adjectives to directly
+  modify verbs, a role now primarily fulfilled by adverbs. This historical continuity explains why い-adjectives,
+  unlike な-adjectives, transform with 『く』 to describe actions or changes in state.
+writeup: |-
+  The い-Adjective『く』form converts an い-adjective into an adverb. This transformation allows the adjective to modify verbs, describing *how* an action is performed, or to modify other adjectives and adverbs, indicating *to what extent* something is.
+
+  It is most commonly seen modifying verbs such as 『なる』 (to become) or 『する』 (to do/to make). When used with 『なる』, it expresses a change of state, for example, 『暗く なる』 (to become dark). When modifying other verbs, it describes the manner of the action, such as 『速く 走る』 (to run fast).
+false_friends:
+  - term: い-Adjective (connecting and adverbial form)
+    meaning: describes an action or connects clauses
+    kind: similar expression
+    nuance: While both use the 『く』 form, this grammar point specifically focuses on the modification of
+      a verb or another adverb/adjective within a single phrase to describe *how* something is done or
+      *to what extent*. The 'connecting and adverbial form' often extends to linking multiple clauses,
+      sometimes providing a reason or sequential action.
+    grammar_point: い-Adjective (connecting and adverbial form)
+  - term: な-Adjective + に
+    meaning: to (do something) in a [na-adjective] way
+    kind: similar expression
+    nuance: This highlights the fundamental difference in how い-adjectives and な-adjectives form adverbs.
+      い-adjectives use 『く』, while な-adjectives use 『に』.
+    grammar_point: に (adverbializer)
+  - term: い-adjective (sentence-ending)
+    meaning: is [i-adjective] (predicate use)
+    kind: often confused with
+    nuance: The sentence-ending form directly describes a noun, functioning as the predicate of a sentence
+      (e.g., 『この 本 は 面白い』 - This book is interesting). In contrast, the adverbial 『く』 form modifies a
+      verb or another adverb/adjective, describing *how* something is done or becomes (e.g., 『彼 は 面白く
+      話す』 - He speaks interestingly).
+    grammar_point: い-adjective (sentence-ending)
+post_false_friends_writeup: It is common for learners to confuse the adverbial 『く』 form of い-adjectives
+  with their predicate (sentence-ending) forms or with the adverbialization of な-adjectives. Remember,
+  the 『く』 form transforms an い-adjective into something that describes *how* an action occurs or *what*
+  something becomes, acting like an English adverb. The simple い-adjective at the end of a sentence simply
+  states what something *is*. For な-adjectives, the adverbial change is made by adding 『に』, not 『く』.
+examples:
+  - english: The room became bright.
+    japanese:
+      - 部屋 が {明るく} なっ た。
+      - 部屋 が {明るく} なり まし た。
+    english_literally: Room subject bright became.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 は 明るい です。
+        english: The room is bright.
+        hint: We are expressing a change of state, not just describing the room's current state. Look
+          for a verb of becoming.
+    scene: After turning on the lights, you observe the change in the room's illumination.
+    register: casual
+    setting: informative
+  - english: Please speak a little louder.
+    japanese:
+      - もう 少し {大きく} 話し て ください。
+      - もう 少し {大きく} 話し て。
+    english_literally: A little more loudly speak please.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 大きい 声 で 話し て ください。
+        english: Please speak with a louder voice.
+        hint: We are modifying the verb 'to speak', describing *how* to speak, rather than modifying the
+          noun 'voice'.
+    scene: You are in a noisy cafe trying to hear your friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: He usually walks slowly.
+    japanese:
+      - 彼 は いつ も {ゆっくり} 歩く。
+      - 彼 は いつ も {ゆっくり} 歩き ます。
+    english_literally: He subject always slowly walks.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 歩き 方 は 遅い です。
+        english: His way of walking is slow.
+        hint: We want to describe the action of walking, not describe his manner of walking as a noun.
+    scene: You are describing a friend's habitual pace to someone else.
+    register: casual
+    setting: informative
+    nuance: 『ゆっくり』 is often treated like an い-adjective in terms of its adverbial usage here, even though
+      it's technically a な-adjective or adverb by itself that doesn't follow the regular 『〜く』 formation.
+      It's included to show adverbial usage with a verb.
+  - english: The baby sleeps peacefully.
+    japanese:
+      - 赤ちゃん は {すやすや} 眠る。
+      - 赤ちゃん は {すやすや} 眠り ます。
+    english_literally: Baby subject peacefully sleeps.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は 安らか に 寝る。
+        english: The baby sleeps peacefully (using な-adjective adverbial form).
+        hint: 『すやすや』 is an onomatopoeia often used adverbially, representing a specific sound/manner of
+          sleeping, similar to how い-adjectives modify verbs.
+    scene: You are observing a baby sleeping soundly in a crib.
+    register: casual
+    setting: intimate
+  - english: Please write the characters beautifully.
+    japanese:
+      - 文字 を {美しく} 書い て ください。
+      - 文字 を {美しく} 書い て。
+    english_literally: Characters object beautifully write please.
+    competing_grammar:
+      - competing_japanese:
+          - 文字 を 綺麗 に 書い て ください。
+        english: Please write the characters cleanly (using な-adjective adverbial form).
+        hint: We are specifically using an い-adjective to describe the manner of writing.
+    scene: A calligraphy teacher is giving instructions to a student.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The temperature will become hot tomorrow.
+    japanese:
+      - 明日 は 気温 が {暑く} なる でしょう。
+      - 明日 は 気温 が {暑く} なる だろう。
+      - 明日 は 気温 が {暑く} なり ます。
+    english_literally: Tomorrow subject temperature subject hot will become probably.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 気温 が 暑い です。
+        english: Tomorrow the temperature will be hot.
+        hint: We are predicting a change in state for tomorrow, not merely stating a fact about the temperature.
+    scene: You are listening to the weather forecast for the next day.
+    register: formal
+    setting: informative
+  - english: They lived happily ever after.
+    japanese:
+      - 彼 ら は {幸せ} に 暮らし まし た。
+      - 彼 ら は {幸せ} に 暮らし た。
+    english_literally: They subject happily lived.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 幸せ だっ た。
+        english: They were happy.
+        hint: We are describing the manner of living, not just stating their past state of being happy.
+          『幸せ』 is a な-adjective, so it takes 『に』.
+    scene: Concluding a fairy tale to a group of children.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: While 『幸せ』 is a な-adjective and uses 『に』 as an adverb, this example illustrates the *function*
+      of an adverbial form to describe how a verb is performed, which is the core concept this grammar
+      point conveys. It's important to differentiate 『い』 and 『な』 adjective adverbialization.
+  - english: The child laughed loudly.
+    japanese:
+      - 子供 は {大きく} 笑っ た。
+      - 子供 は {大きく} 笑い まし た。
+    english_literally: Child subject loudly laughed.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 大声 で 笑っ た。
+        english: The child laughed with a loud voice.
+        hint: This example uses the 『く』 form to directly modify the verb 'laughed', describing the manner
+          of the action.
+    scene: You are recounting a memorable moment of a child's joy.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+  - english: I'm going to cook something delicious tonight.
+    japanese:
+      - 今夜 は {美味しく} 料理 し ます。
+      - 今夜 は {美味しく} 料理 する。
+      - 今夜 は {美味しく} 料理 いたし ます。
+    english_literally: Tonight subject deliciously cook will.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は 美味しい 料理 を 作り ます。
+        english: Tonight I will make delicious food.
+        hint: We are describing *how* you will cook, rather than describing the food itself before cooking.
+    scene: You are planning your evening meal.
+    register: teineigo (polite)
+    setting: optimistic
+    speaker_gender: male
+  - english: I'll try to wake up early tomorrow.
+    japanese:
+      - 明日 は {早く} 起きる よう に し ます。
+      - 明日 は {早く} 起きる よう に する。
+    english_literally: Tomorrow subject early wake up so will do.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 早い 時間 に 起き ます。
+        english: Tomorrow I will wake up at an early time.
+        hint: The 『く』 form directly modifies the verb 『起きる』 (to wake up), emphasizing the speed or earliness
+          of the action itself.
+    scene: You are setting a personal goal for the next day.
+    register: casual
+    setting: reflective
+  - english: It's important to live correctly.
+    japanese:
+      - '{正しく} 生きる こと は 大切 だ。'
+      - '{正しく} 生きる こと は 大切 です。'
+      - '{正しく} 生きる こと は 大切 だ よ。'
+    english_literally: Correctly live thing subject important is.
+    competing_grammar:
+      - competing_japanese:
+          - 正しい 生き 方 は 大切 だ。
+        english: A correct way of living is important.
+        hint: We are describing *how* to live, using the adverbial form of 'correct', rather than using
+          it as an adjective to modify 'way of living'.
+    scene: You are discussing life principles with a close friend.
+    register: formal
+    setting: serious
+post_example_writeup: Notice how the 『く』 form always precedes the verb or adjective it modifies, functioning
+  like an adverb in English. This simple transformation is fundamental for expressing the manner or degree
+  of actions and states in Japanese.

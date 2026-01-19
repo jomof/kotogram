@@ -1,0 +1,220 @@
+grammar_point: まず (priority・initial action)
+learn_before:
+  - Question-phrase+か (embedded question)
+  - Verb[て] (and then)
+  - '[Noun]をください (please give me)'
+  - '[Verb-た]ほうがいい (it is better to do)'
+  - ちょっと (adverb)
+  - どこか (somewhere・some place)
+  - にかけて (over a period or range)
+  - 先 (ahead・first)
+  - 是非 (by all means・definitely・without fail)
+meaning: To start with, firstly
+pronunciation:
+  katakana: マズ
+  romaji: mazu
+formation:
+  まず + [Clause]: Indicates something should be done or discussed before anything else.
+jlpt: N4
+etymology: 「まず」 is an adverb that originated from 「先ず」. The kanji 「先」 (saki) means 'ahead' or 'before'.
+  Thus, its core meaning relates to 'first' or 'to begin with', indicating an initial or primary action.
+  It is not related to 「真面目」(majime), which means 'serious' or 'earnest'.
+writeup: 「まず」 is an adverb that frequently **modifies an entire phrase or sentence**, often appearing
+  at the beginning. Its core meaning conveys 'first' or 'to start with,' emphasizing that an action or
+  topic **has priority** or must be addressed before anything else. While seemingly similar to 「最初に」 (saisho
+  ni) or 「一番」 (ichiban), 「まず」 carries a distinct nuance of **necessity or importance** in the sequence,
+  rather than simply temporal order or ranking. It's crucial to note that 「まず」 can often sound like you
+  are giving advice or a recommendation. Therefore, when using it, it is advisable to employ polite language
+  or qualify the suggestion with phrases like 「～と思います」 (to omoimasu) to indicate that it is an opinion
+  rather than a command.
+false_friends:
+  - term: 最初に (saisho ni)
+    meaning: At first, initially
+    kind: similar expression
+    nuance: While both indicate something coming first, 「まず」 implies priority or importance, while 「最初に」
+      simply denotes temporal order.
+    grammar_point: <suggest>:最初に (at first)
+  - term: 一番 (ichiban)
+    meaning: The best, number one
+    kind: similar expression
+    nuance: 「まず」 suggests priority of action, 「一番」 indicates the highest rank or best quality.
+    grammar_point: 一番 (superlative)
+  - term: 手始めに (tehajime ni)
+    meaning: As a start, to begin with
+    kind: similar expression
+    nuance: 「手始めに」 often implies a tentative or preliminary first step, possibly to test the waters or
+      just to get started on a task among many. 「まず」 implies a definite, necessary first step due to its
+      foundational importance.
+    grammar_point: <suggest>:手始めに (as a start)
+post_false_friends_writeup: 「まず」 is about what to do first because it's the most important or necessary
+  step. 「最初に」 simply indicates what happened or will happen first in a chronological sequence. 「一番」 is
+  used to denote rankings or something being the best. 「手始めに」 suggests a preliminary or initial step to
+  get started, which might be tentative or not the most critical element, but simply a starting point.
+examples:
+  - english: First, it would be best for me to do my homework.
+    japanese:
+      - '{まず} 宿題 を し た ほう が いい。'
+      - '{まず} 宿題 を し た ほう が いい です。'
+      - '{まず} 宿題 を なさる の が よろしい か と 存じ ます。'
+    english_literally: First, as for homework, it's better to do it.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 宿題 を し た ほう が いい。'
+        english: Initially, it would be best for me to do my homework.
+        hint: 「最初に」 indicates the first action in a simple chronological sequence. 「まず」 implies this action
+          is the most important or necessary step. We're looking for emphasis on priority.
+    scene: A student deciding what to do with their time.
+    register: casual
+    setting: reflective
+  - english: First, wash your hands.
+    japanese:
+      - '{まず} 手 を 洗っ て。'
+      - '{まず} 手 を 洗っ て ください。'
+      - '{まず} 手 を お 洗い ください。'
+    english_literally: First, hands, wash them.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 手 を 洗っ て。'
+        english: Initially, wash your hands.
+        hint: 「最初に」 simply indicates the first action in a temporal sequence. 「まず」 emphasizes this action
+          as a necessary and prioritized step before proceeding. We're looking for an essential prior
+          action.
+    scene: A parent telling a child to wash their hands before dinner.
+    register: casual
+    setting: instructional
+  - english: First, please turn on the engine.
+    japanese:
+      - '{まず} エンジン を かけ て ください。'
+      - '{まず} エンジン を かけろ。'
+      - '{まず} エンジン を お かけ ください。'
+    english_literally: First, please start the engine.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} エンジン を かけ て ください。'
+        english: Initially, please turn on the engine.
+        hint: 「最初に」 denotes the initial step in a simple series of instructions. 「まず」 emphasizes that
+          this is the primary or essential step that must be done first. We're looking for emphasis on
+          an essential first step.
+    scene: Giving instructions to someone about to drive.
+    register: teineigo (polite)
+    setting: instructional
+  - english: First, where would you like to go?
+    japanese:
+      - '{まず} どこ へ 行き たい です か。'
+      - '{まず} どこ へ 行き たい？'
+    english_literally: First, where do you want to go?
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} どこ へ 行き たい です か。'
+        english: Initially, where would you like to go?
+        hint: 「最初に」 asks about the very first place you want to go in a sequence of destinations. 「まず」
+          implies this is the most important decision to make first, before other considerations. We're
+          looking for the primary decision to make.
+    scene: Asking someone their preference at the beginning of an outing.
+    register: teineigo (polite)
+    setting: first-date
+  - english: First, let's start with introductions.
+    japanese:
+      - '{まず} 自己 紹介 から 始め ましょう。'
+      - '{まず} 自己 紹介 から 始め よう。'
+    english_literally: First, let's begin from self-introductions.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 自己 紹介 から 始め ましょう。'
+        english: Initially, let's start with introductions.
+        hint: 「最初に」 indicates simply the first item on an agenda. 「まず」 suggests that introductions are
+          a fundamental and necessary prerequisite before proceeding with the main content. We're looking
+          for a necessary preparatory step.
+    scene: Beginning a meeting or gathering.
+    register: formal
+    setting: professional
+  - english: First, could you give me your contact information?
+    japanese:
+      - '{まず} 君 の 連絡 先 を 教え て くれる か な。'
+      - '{まず} 連絡 先 を 教え て ください ます か。'
+      - '{まず} 連絡 先 を 教える？'
+    english_literally: First, your contact information, can you tell me?
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 君 の 連絡 先 を 教え て くれる か な。'
+        english: Initially, could you give me your contact information?
+        hint: 「最初に」 would imply that getting her contact information is merely the first item on a list
+          of demands. 「まず」 emphasizes this as the most important and immediate step for furthering the
+          interaction. We're looking for the most crucial initial step.
+    scene: A man speaking to a woman he likes
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「くれるかな」 adds a soft, seeking tone, common in male speech when trying to be charming or gently
+      persuasive, especially when asking for something personal.
+  - english: First, taking a bath will help you get rid of your fatigue.
+    japanese:
+      - '{まず} お 風呂 に 入る と 疲れ が 取れ ます よ。'
+      - '{まず} お 風呂 に 入る と 疲れ が 取れる よ。'
+    english_literally: First, if you enter the bath, fatigue will be removed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} お 風呂 に 入る と 疲れ が 取れ ます よ。'
+        english: Initially, taking a bath will help you get rid of your fatigue.
+        hint: 「最初に」 would suggest a bath is just one option you might try first for tiredness. 「まず」 highlights
+          it as the most effective and prioritized action for relief. We're looking for the primary recommended
+          action.
+    scene: Suggesting a remedy for tiredness.
+    register: teineigo (polite)
+    setting: supportive
+    nuance: The 「よ」 at the end adds a gentle, supportive tone, indicating the speaker is providing helpful
+      information or a suggestion with confidence.
+  - english: First, let's calm down.
+    japanese:
+      - '{まず} 落ち着き ましょう。'
+      - '{まず} 落ち着こう。'
+    english_literally: First, let's calm down.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 落ち着き ましょう。'
+        english: Initially, let's calm down.
+        hint: 「最初に」 suggests calming down is merely the first in a sequence of actions. 「まず」 emphasizes
+          it as the fundamental and necessary first action before anything else can be productively addressed.
+          We're looking for the essential first step in a critical situation.
+    scene: Trying to de-escalate a tense situation.
+    register: teineigo (polite)
+    setting: cautious
+  - english: First, apologize to me.
+    japanese:
+      - '{まず} 謝っ て よ。'
+      - '{まず} 謝っ て ください。'
+      - '{まず} 謝罪 し なさい。'
+    english_literally: First, apologize to me, you know.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 謝っ て よ。'
+        english: Initially, apologize to me.
+        hint: 「最初に」 implies an apology is just the first item on a list of demands. 「まず」 emphasizes it
+          as the most critical and immediate action required, prioritizing it above all else. We're looking
+          for the most urgent first action.
+    scene: Demanding an apology.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual 「謝ってよ」 combined with the 「よ」 particle adds emphasis, making the demand stronger
+      and more direct, often used by female speakers to express frustration or insistence.
+  - english: First, I will explain the overall picture.
+    japanese:
+      - '{まず} 全体 を 説明 し ます。'
+      - '{まず} 全体 を 説明 する。'
+    english_literally: First, the whole thing, I will explain.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初 に} 全体 を 説明 し ます。'
+        english: Initially, I will explain the overall picture.
+        hint: 「最初に」 would imply simply that explaining the overview is the very first thing to do. 「まず」
+          stresses that it's a fundamental and crucial first step to ensure the audience's understanding
+          of the context. We're looking for a foundational initial explanation.
+    scene: Beginning a presentation or explanation.
+    register: formal
+    setting: informative
+post_example_writeup: As you can see from the examples, 「まず」 is not merely about temporal sequence, but
+  about establishing **priority** or **necessity**. It guides the listener to understand what action or
+  topic is considered most important to address at the outset.

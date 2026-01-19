@@ -1,0 +1,304 @@
+grammar_point: 考えられる・考えられない (can be considered・unthinkable)
+learn_before:
+  - が原因で (due to)
+  - と考えられている (is considered to be)
+  - に照らして・に照らすと (in light of)
+  - 更に (even more)
+  - ～にふさわしい (suitable for)
+meaning: Can be considered; is conceivable; cannot be considered; is inconceivable.
+pronunciation:
+  katakana: カンガエラレル・カンガエラレナイ
+  romaji: kangaerareru・kangaerarenai
+formation:
+  '[Sentence] + と 考えられる': Indicates that a certain situation or fact is considered to be true or possible.
+  '[Noun] + として 考えられる': Indicates that a noun can be considered or classified as something.
+  '[Sentence] + と 考えられない': Indicates that a certain situation or fact is inconceivable or impossible to
+    think.
+  '[Noun] + として 考えられない': Indicates that a noun cannot be considered or classified as something.
+jlpt: N2
+etymology: The phrase derives from the verb 考える (kangaeru, 'to think, to consider') combined with the
+  passive/potential/spontaneous auxiliary verb られる. While literally meaning 'can be thought' or 'is thought,'
+  its common usage in expressions like 『～と考えられる』 has evolved to convey 'it is conceivable,' 'it can be
+  considered,' or 'it is believed.' This suggests an objective or spontaneous assessment rather than a
+  direct, active thought process by a specific person. The negative 『考えられない』 signifies 'unthinkable' or
+  'inconceivable,' expressing that something is beyond logical consideration or acceptance.
+writeup: 『考えられる』 and 『考えられない』 are formal expressions derived from the verb 考える (to think/consider) using
+  the passive/potential auxiliary verb られる. They are used to objectively present a situation or fact as
+  being conceivable/possible or inconceivable/impossible, respectively. Unlike a subjective opinion like
+  『～と思います』 (I think that...), 『考えられる』 implies a logical deduction or an assessment based on evidence or
+  common understanding. It suggests that something 'can be thought of' or 'is considered' to be true by
+  a general consensus or logical reasoning. It is frequently employed in academic writing, news reports,
+  and formal discussions to convey conclusions or possibilities with an air of objectivity and neutrality.
+  For instance, when analyzing data or a situation, you might use 『～と考えられる』 to state a logical inference.
+  The negative form, 『考えられない』, conveys a strong sense of inconceivability or impossibility. It's not merely
+  'I cannot think about it,' but rather 'it is unthinkable' or 'it is inconceivable' for anyone, often
+  suggesting something is illogical, morally unacceptable, or beyond comprehension. It can express a profound
+  disbelief or a situation that simply cannot exist given the circumstances.
+false_friends:
+  - term: かもしれない (might・maybe)
+    meaning: Might be; perhaps; possibly.
+    kind: similar expression
+    nuance: 『かもしれない』 expresses a subjective possibility or conjecture, often with less certainty and formality
+      than 『考えられる』. 『考えられる』 implies a more objective or logical assessment of what is conceivable, rather
+      than just a potential outcome.
+    grammar_point: かもしれない (might・maybe)
+  - term: はずだ・はずがない (is expected to be・cannot be)
+    meaning: Is expected to be; should be; cannot be.
+    kind: similar expression
+    nuance: 『はずだ』 indicates an expectation or certainty based on logic or prior knowledge, suggesting
+      something 'should' or 'must' be true. 『考えられる』, on the other hand, indicates what is 'conceivable'
+      or 'possible' without necessarily implying a strong expectation. 『はずがない』 expresses strong certainty
+      that something 'cannot' be true, often with an emotional undertone, whereas 『考えられない』 implies something
+      is logically or conceptually impossible.
+    grammar_point: <suggest>:はずだ・はずがない (is expected to be・cannot be)
+  - term: とみえる (seems from observation)
+    meaning: It seems; it appears (based on observation).
+    kind: similar expression
+    nuance: 『とみえる』 is used to express an inference drawn from direct observation or visible evidence.
+      『考えられる』 is based on logical reasoning or general knowledge, not necessarily direct observation.
+    grammar_point: とみえる (seems from observation)
+post_false_friends_writeup: When differentiating between these expressions, consider the basis of the
+  speaker's assessment. 『考えられる』 relies on logic, reasoning, or widely accepted facts, presenting a conclusion
+  as objectively conceivable. In contrast, 『かもしれない』 conveys subjective possibility, 『はずだ』 expresses certainty
+  or expectation, and 『とみえる』 is an inference purely from visible evidence. Choosing the right expression
+  depends on whether you are stating a logical deduction, a personal guess, a strong expectation, or an
+  observation.
+examples:
+  - english: It is considered that the cause of the accident was human error.
+    japanese:
+      - 事故 の 原因 は 人為 的 ミス だ と {考え られる}。
+      - 事故 の 原因 は 人為 的 ミス だ と {考え られ ます}。
+    english_literally: Accident's cause, human error, is considered.
+    competing_grammar:
+      - competing_japanese:
+          - 事故 の 原因 は 人為 的 ミス だ と 言わ れ て いる。
+        english: It is said that the cause of the accident was human error.
+        hint: 「と言われている」 indicates that something is 'said' or 'rumored,' which is based on common report
+          rather than objective consideration.
+      - competing_japanese:
+          - 事故 の 原因 は 人為 的 ミス だっ た よう だ。
+        english: It appears the cause of the accident was human error.
+        hint: 「ようだ」 expresses appearance or conjecture based on sensory information or general impression,
+          which is more subjective than a logical consideration.
+    scene: A news reporter is delivering a segment on a recent incident.
+    register: formal
+    setting: informative
+  - english: It's unthinkable that such a thing could happen.
+    japanese:
+      - そんな こと が 起こる なんて {考え られ ない}。
+      - そんな こと が 起こる なんて、{考え られ ませ ん}。
+    english_literally: Such thing happening, it's unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと は 決して 起こら ない。
+        english: Such a thing will absolutely not happen.
+        hint: 「決して～ない」 expresses a strong, definite negation, often with a sense of impossibility, but
+          without the underlying logical inconceivability of 「考えられない」.
+      - competing_japanese:
+          - そんな こと が 起こる わけ が ない。
+        english: There's no way such a thing could happen.
+        hint: 「わけがない」 expresses strong conviction or certainty that something cannot be true, often implying
+          an emotional response, while 「考えられない」 emphasizes logical impossibility.
+    scene: A person reacting with shock to an unexpected event.
+    register: casual
+    setting: serious
+  - english: It is conceivable that there are unknown species in the deep sea.
+    japanese:
+      - 深海 に は 未知 の 生物 が 存在 する と {考え られる}。
+      - 深海 に は 未知 の 生物 が 存在 する と {考え られ ます}。
+    english_literally: In the deep sea, unknown creatures exist, it is considered.
+    competing_grammar:
+      - competing_japanese:
+          - 深海 に は 未知 の 生物 が 存在 する 可能 性 が ある。
+        english: There is a possibility that unknown species exist in the deep sea.
+        hint: 「可能性 が ある」 states that something 'has a possibility' of being true, which is a more direct
+          expression of probability than the objective consideration of 「考えられる」.
+      - competing_japanese:
+          - 深海 に は 未知 の 生物 が 存在 する か も しれ ない。
+        english: Unknown species might exist in the deep sea.
+        hint: 「かもしれない」 expresses a subjective guess or conjecture, often with less certainty and formality
+          than the logical assessment implied by 「考えられる」.
+    scene: A scientist presenting research findings.
+    register: formal
+    setting: academic
+  - english: It's unthinkable to make such a sacrifice.
+    japanese:
+      - その よう な 犠牲 を 払う こと は {考え られ ない}。
+      - その よう な 犠牲 を 払う こと は {考え られ ませ ん}。
+    english_literally: Such a sacrifice to pay, it is unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 犠牲 を 払う べき で は ない。
+        english: Such a sacrifice should not be made.
+        hint: 「べきではない」 implies a moral or logical obligation not to do something, while 「考えられない」 expresses
+          that the action itself is beyond conceptualization or acceptance.
+      - competing_japanese:
+          - その よう な 犠牲 は 許さ れ ない。
+        english: Such a sacrifice is unacceptable.
+        hint: 「許されない」 means something is 'unforgivable' or 'not permitted,' focusing on acceptability
+          rather than conceivability.
+    scene: A team leader is firmly rejecting a proposal that involves too much risk.
+    register: semi-formal
+    setting: professional
+  - english: This approach can be considered as the most effective solution.
+    japanese:
+      - この アプローチ は 最も 効果 的 な 解決 策 と し て {考え られる}。
+      - この アプローチ は 最も 効果 的 な 解決 策 と し て {考え られ ます}。
+    english_literally: This approach, as the most effective solution, can be considered.
+    competing_grammar:
+      - competing_japanese:
+          - この アプローチ は 最も 効果 的 な 解決 策 と さ れ て いる。
+        english: This approach is believed to be the most effective solution.
+        hint: 「とされている」 means something 'is regarded as' or 'is assumed to be,' often based on common understanding
+          or past decisions, whereas 「考えられる」 is a more active consideration.
+      - competing_japanese:
+          - この アプローチ は 最も 効果 的 な 解決 策 だ と 思う。
+        english: I think this approach is the most effective solution.
+        hint: 「と思う」 expresses a personal opinion or belief, which is subjective, unlike the objective
+          assessment conveyed by 「考えられる」.
+    scene: An engineer proposing a new method to their team.
+    register: semi-formal
+    setting: professional
+  - english: Such behavior is unthinkable for a public servant.
+    japanese:
+      - その よう な 行為 は 公務 員 と し て {考え られ ない}。
+      - その よう な 行為 は 公務 員 と し て {考え られ ませ ん}。
+    english_literally: Such behavior, as a public servant, is unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 行為 は 公務 員 と し て 許さ れ ない。
+        english: Such behavior is unacceptable for a public servant.
+        hint: 「許されない」 focuses on the moral or ethical unacceptability of an action, rather than its logical
+          inconceivability.
+      - competing_japanese:
+          - その よう な 行為 は 公務 員 と し て し て は いけ ない。
+        english: Such behavior should not be done by a public servant.
+        hint: 「してはいけない」 indicates a prohibition or something that is not permitted, which is a rule-based
+          statement, unlike the conceptual impossibility of 「考えられない」.
+    scene: A supervisor reprimanding an employee for inappropriate conduct.
+    register: formal
+    setting: serious
+  - english: From the current situation, it is considered that prices will continue to rise.
+    japanese:
+      - 現状 から は、物価 は 更に 上がる と {考え られる}。
+      - 現状 から は、物価 は 更に 上がる と {考え られ ます}。
+    english_literally: From current situation, prices will further rise, it is considered.
+    competing_grammar:
+      - competing_japanese:
+          - 現状 から は、物価 は 更に 上がる はず だ。
+        english: From the current situation, prices are expected to rise further.
+        hint: 「はずだ」 implies a strong expectation or certainty based on logic or external evidence, which
+          is a more definite prediction than the objective consideration of 「考えられる」.
+      - competing_japanese:
+          - 現状 から は、物価 は 更に 上がる だろう。
+        english: From the current situation, prices will probably rise further.
+        hint: 「だろう」 expresses a probability or conjecture, which is a personal assessment rather than
+          an objective consideration.
+    scene: An economist discussing market trends on a television show.
+    register: semi-formal
+    setting: informative
+  - english: I can't believe he would betray us.
+    japanese:
+      - 彼 が 私 達 を 裏切る なんて、{考え られ ない}。
+      - 彼 が 私 達 を 裏切る なんて、{考え られ ませ ん}。
+    english_literally: Him betraying us, unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 私 達 を 裏切る わけ が ない。
+        english: There's no way he would betray us.
+        hint: 「わけがない」 expresses a strong conviction that something is impossible or shouldn't happen,
+          often with an emotional nuance, which is distinct from the logical inconceivability of 「考えられない」.
+      - competing_japanese:
+          - 彼 が 私 達 を 裏切る と は 思え ない。
+        english: I don't think he would betray us.
+        hint: 「とは思えない」 expresses a personal inability to believe something, which is a subjective opinion,
+          whereas 「考えられない」 refers to something being objectively inconceivable.
+    scene: A friend expressing shock and disbelief about a betrayal.
+    register: casual
+    setting: serious
+    nuance: The use of 『なんて』 after 『裏切る』 adds a strong emotional tone of surprise and disbelief, emphasizing
+      how truly 'unthinkable' the betrayal is for the speaker. This casual usage is common among close
+      friends.
+  - english: Given the rapid progress of technology, new possibilities can be considered for the future.
+    japanese:
+      - 科学 技術 の 急速 な 進歩 を 考える と、将来 的 に 新しい 可能 性 が {考え られる}。
+      - 科学 技術 の 急速 な 進歩 を 考える と、将来 的 に 新しい 可能 性 が {考え られ ます}。
+    english_literally: Considering the rapid progress of science technology, new possibilities are conceivable
+      in the future.
+    competing_grammar:
+      - competing_japanese:
+          - 科学 技術 の 急速 な 進歩 を 考える と、将来 的 に 新しい 可能 性 が ある はず だ。
+        english: Given the rapid progress of technology, new possibilities should exist for the future.
+        hint: 「はずだ」 implies a strong expectation based on a logical premise, suggesting a higher degree
+          of certainty than 「考えられる」.
+      - competing_japanese:
+          - 科学 技術 の 急速 な 進歩 を 考える と、将来 的 に 新しい 可能 性 が 生まれる か も しれ ない。
+        english: Given the rapid progress of technology, new possibilities might emerge for the future.
+        hint: 「かもしれない」 expresses a possibility or conjecture, which is a less definite statement than
+          「考えられる」, which implies a reasoned consideration.
+    scene: A speaker giving a presentation on technological innovation.
+    register: formal
+    setting: academic
+  - english: It's unthinkable to achieve that goal with such limited resources.
+    japanese:
+      - そんな 限ら れ た 資源 で その 目標 を 達成 する こと は {考え られ ない}。
+      - そんな 限ら れ た 資源 で その 目標 を 達成 する こと は {考え られ ませ ん}。
+    english_literally: With such limited resources, achieving that goal is unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 限ら れ た 資源 で その 目標 を 達成 する こと は とても でき ない。
+        english: It's impossible to achieve that goal with such limited resources.
+        hint: 「とても～ない」 expresses a strong impossibility in a direct sense, meaning something 'cannot possibly'
+          be done, whereas 「考えられない」 implies it's beyond conceptual understanding or logic.
+      - competing_japanese:
+          - そんな 限ら れ た 資源 で その 目標 を 達成 する こと は っこ ない。
+        english: There's no chance of achieving that goal with such limited resources.
+        hint: 「っこない」 is a strong, casual negation emphasizing absolute impossibility, often with a dismissive
+          or emotional tone, which differs from the more objective inconceivability of 「考えられない」.
+    scene: A project manager expressing skepticism about an overly ambitious plan.
+    register: semi-formal
+    setting: serious
+  - english: From the current data, it seems that the number of users is increasing.
+    japanese:
+      - 現在 の データ から、ユーザー 数 は 増加 し て いる と {考え られる}。
+      - 現在 の データ から、ユーザー 数 は 増加 し て いる と {考え られ ます}。
+    english_literally: From current data, user number is increasing, it is considered.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の データ から、ユーザー 数 は 増加 し て いる よう だ。
+        english: From the current data, it seems that the number of users is increasing.
+        hint: 「ようだ」 indicates something 'seems' or 'appears' to be the case based on sensory evidence
+          or general impression, which is more subjective than the logical deduction implied by 「考えられる」.
+      - competing_japanese:
+          - 現在 の データ から、ユーザー 数 は 増加 し て いる と 思わ れる。
+        english: From the current data, the number of users is thought to be increasing.
+        hint: 「と思われる」 means 'is thought to be' or 'is considered,' which is quite similar to 「考えられる」 but
+          often implies a slightly more indirect or passive assessment.
+    scene: A marketing analyst presenting a report.
+    register: semi-formal
+    setting: informative
+  - english: It's unthinkable that he would forget his wife's birthday.
+    japanese:
+      - 彼 が 妻 の 誕生 日 を 忘れる なんて {考え られ ない}。
+      - 彼 が 妻 の 誕生 日 を 忘れる なんて、{考え られ ませ ん}。
+    english_literally: Him, wife's birthday forgetting, unthinkable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 妻 の 誕生 日 を 忘れる はず が ない。
+        english: He shouldn't forget his wife's birthday. (It's impossible he would forget)
+        hint: 「はずがない」 expresses a strong conviction or certainty that something 'cannot' be true based
+          on logical expectation, often with an emotional undertone. While similar, 「考えられない」 emphasizes
+          the logical inconceivability, not necessarily a prior expectation.
+      - competing_japanese:
+          - 彼 が 妻 の 誕生 日 を 忘れる なんて あり え ない。
+        english: It's impossible that he would forget his wife's birthday.
+        hint: 「ありえない」 directly states that something is 'impossible' or 'unthinkable' in a more general
+          sense, without necessarily implying the logical 'consideration' aspect of 「考えられない」.
+    scene: Two friends talking about a mutual friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual tone and the use of 『なんて』 express strong disbelief. This is a common emotional
+      reaction in casual conversation, implying that it's beyond belief for 'him' to do something so forgetful,
+      especially for his wife's birthday.

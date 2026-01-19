@@ -1,0 +1,310 @@
+grammar_point: 単位で (in units of)
+learn_before:
+  - にする (to decide or make)
+meaning: In units of; in increments of; per (unit or group); in terms of
+pronunciation:
+  katakana: タンイデ
+  romaji: tan'i de
+formation:
+  Number + Counter + 単位で: Indicates actions or quantities are grouped or measured in specified units.
+  Noun + 単位で: Indicates that something is done or considered in terms of a particular unit or category.
+jlpt: N1
+etymology: 「単位」 (tan'i) means "unit" or "denomination." The particle 「で」 (de) indicates the means or method
+  by which something is done. Thus, 「単位で」 literally means "by means of units" or "in units of."
+writeup: The grammar point 「単位で」 (tan'i de) is used to specify the unit or increment in which an action
+  occurs, or by which something is measured, grouped, or sold. It delineates the smallest or standard
+  division of a quantity, time, or category. This phrase is highly versatile, applicable across various
+  contexts from financial transactions and academic analyses to daily purchases and organizational structures.
+  It can be paired with numerical counters to denote specific quantities, such as 'in increments of 100
+  yen,' or with nouns to define a conceptual unit, such as 'by department' or 'per page.'
+false_friends:
+  - term: ずつ
+    meaning: each; apiece; one by one
+    kind: similar expression
+    nuance: While 「単位で」 refers to measurements or groupings, 「ずつ」 implies distributing something equally
+      or individually. For example, 「一人ずつ」 (hitori zutsu) means "one person each," emphasizing distribution,
+      whereas 「一人単位で」 (hitori tan'i de) would focus on individuals as units in a structured group.
+    grammar_point: ずつ (each; one at a time; little by little)
+  - term: ごとに
+    meaning: every; each; at intervals of
+    kind: similar expression
+    nuance: 「ごとに」 indicates intervals or frequencies. 「5分ごとに」 (go fun goto ni) means "every 5 minutes"
+      (a regular occurrence), while 「5分単位で」 (go fun tan'i de) refers to something measured in 5-minute
+      increments (the standard unit of time).
+    grammar_point: ごとに (each・every)
+post_false_friends_writeup: The distinction between 「単位で」, 「ずつ」, and 「ごとに」 lies in what each grammar point
+  emphasizes. 「単位で」 is about measurement or organization into units, 「ずつ」 is about equal distribution,
+  and 「ごとに」 is about regular intervals. Understanding these differences will help you choose the correct
+  expression for your intended meaning.
+examples:
+  - english: This vending machine only accepts payments in 100-yen increments.
+    japanese:
+      - この 自動 販売 機 は 100 円 {単位 で} しか 使え ませ ん。
+      - この 自動 販売 機 は 100 円 {単位 で} ない と 使え ませ ん。
+      - この 自動 販売 機、100 円 {単位 で} しか 使え ない よ。
+    english_literally: This vending machine, only in 100-yen units, cannot be used.
+    competing_grammar:
+      - competing_japanese:
+          - この 自動 販売 機 は 100 円 {ずつ} しか 使え ませ ん。
+        english: This vending machine only accepts 100 yen one by one.
+        hint: 「ずつ」 emphasizes distribution of individual items, not the minimum accepted unit. We're looking
+          for how payments are measured.
+      - competing_japanese:
+          - この 自動 販売 機 は 100 円 {ごと に} しか 使え ませ ん。
+        english: This vending machine only accepts payments every 100 yen.
+        hint: 「ごとに」 refers to regular intervals or frequency, not the unit of transaction. We're looking
+          for how payments are measured.
+    scene: A person is attempting to buy a drink from a vending machine, but is having trouble because
+      they only have large bills.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「しか使えません」 clearly indicates a limitation or restriction, emphasizing that payments
+      must be made in 100-yen units and nothing smaller. The casual alternative 「使えないよ」 is common in informal
+      settings and softens the statement with the sentence-final particle 「よ」.
+  - english: Please adjust the meeting schedule in 15-minute increments.
+    japanese:
+      - 会議 の スケジュール は 15 分 {単位 で} 調整 し て ください。
+      - 会議 の スケジュール は 15 分 {単位 で} 調整 を お 願い し ます。
+    english_literally: Regarding the meeting schedule, please adjust in 15-minute units.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の スケジュール は 15 分 {ずつ} 調整 し て ください。
+        english: Please adjust the meeting schedule 15 minutes at a time.
+        hint: 「ずつ」 suggests incremental distribution or individual progression. We're looking for the
+          fixed unit of adjustment, not a step-by-step process.
+      - competing_japanese:
+          - 会議 の スケジュール は 15 分 {ごと に} 調整 し て ください。
+        english: Please adjust the meeting schedule every 15 minutes.
+        hint: 「ごとに」 refers to regular intervals or frequency, not the unit of adjustment. We're looking
+          for how payments are measured.
+    scene: A project manager is instructing their team on the precise method for setting up meeting times
+      in a shared calendar.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The polite request 「調整してください」 is appropriate for a manager giving instructions to a team in
+      a professional setting, maintaining a respectful tone. The alternative 「調整をお願いします」 offers a slightly
+      softer, more indirect request, often preferred in professional contexts to imply collaboration rather
+      than a direct command.
+  - english: These sweets are sold in boxes of six.
+    japanese:
+      - この お 菓子 は 一 箱 6 個 {単位 で} 販売 さ れ て い ます。
+      - この お 菓子 は 1 箱 6 個 {単位 で} 売っ て い ます。
+      - この お 菓子 は 1 箱 6 個 {単位 で} 売ら れ て い ます。
+    english_literally: These sweets, in one box, are sold in 6-piece units.
+    competing_grammar:
+      - competing_japanese:
+          - この お 菓子 は 一 箱 6 個 {ずつ} 販売 さ れ て い ます。
+        english: These sweets are sold 6 pieces at a time per box.
+        hint: 「ずつ」 emphasizes distribution or individual allocation. We're looking for the standard packaging
+          quantity, not how they are given out one by one.
+      - competing_japanese:
+          - この お 菓子 は 一 箱 6 個 {ごと に} 販売 さ れ て い ます。
+        english: These sweets are sold per 6 pieces per box.
+        hint: 「ごとに」 indicates intervals or frequency. We're looking for the fixed unit of sale, not that
+          they are sold in groups that repeat at certain intervals.
+    scene: A customer is browsing at a specialty food store and asks a sales assistant about the packaging
+      of a particular item.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「販売されています」 is a formal passive construction describing how products are sold, suitable for
+      an informative retail setting. 「売っています」 is a more direct, active statement meaning 'we sell' or
+      'they sell,' while 「売られています」 is another passive form, slightly less formal than 「販売されています」 but still
+      polite, both conveying the same meaning regarding the selling unit.
+  - english: From next month, we will introduce the new system department by department.
+    japanese:
+      - 来月 から 部署 {単位 で} 新しい システム を 導入 し ます。
+      - 来月 から 新しい システム を 部署 {単位 で} 導入 いたし ます。
+    english_literally: From next month, department by department, we will introduce a new system.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 から 部署 {ずつ} 新しい システム を 導入 し ます。
+        english: From next month, we will introduce the new system one department at a time.
+        hint: 「ずつ」 implies a distribution or sequential approach, like handling one department before
+          moving to the next. We're looking for how each department functions as a self-contained unit
+          for implementation.
+      - competing_japanese:
+          - 来月 から 部署 {ごと に} 新しい システム を 導入 し ます。
+        english: From next month, we will introduce the new system for each department.
+        hint: 「ごとに」 suggests repetition for each item in a group or at regular intervals. We're looking
+          for how each department is treated as a single unit for the rollout, not just a repeated action.
+    scene: During a company-wide meeting, a senior executive outlines the phased implementation plan for
+      a new operational system.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「導入します」 signifies a formal announcement typical in a corporate environment. The
+      alternative 「導入いたします」 uses humble language (謙譲語, kenjōgo), which further elevates the formality
+      and politeness, appropriate for a senior executive addressing a large group in a professional setting.
+  - english: For the online course, assignments are submitted section by section.
+    japanese:
+      - オン ライン 講座 で は 課題 を セクション {単位 で} 提出 し ます。
+      - オン ライン 講座 の 課題 は セクション {単位 で} 出し ます。
+      - オン ライン 講座 の 課題 は セクション {単位 で} 出す ん だ よ。
+    english_literally: In the online course, assignments are submitted in section units.
+    competing_grammar:
+      - competing_japanese:
+          - オン ライン 講座 で は 課題 を セクション {ずつ} 提出 し ます。
+        english: For the online course, assignments are submitted one section at a time.
+        hint: 「ずつ」 suggests that sections are handled sequentially or individually. We're looking for
+          how each section functions as a single unit for assignment submission.
+      - competing_japanese:
+          - オン ライン 講座 で は 課題 を セクション {ごと に} 提出 し ます。
+        english: For the online course, assignments are submitted for each section.
+        hint: 「ごとに」 implies repetition or frequency for each item. We're looking for the unit of submission,
+          not that submissions happen for every section.
+    scene: A university student explains to a new classmate how the online course is structured and when
+      assignments are due.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「提出します」 is a standard polite way to express submitting something. 「出します」 is also polite and
+      commonly used, being a more general verb for 'to put out' or 'to submit.' The casual 「出すんだよ」 uses
+      the explanatory particle 「んだ」 (n'da) and the sentence-final particle 「よ」, which is very common among
+      female speakers to provide information or explanation to a close peer.
+  - english: The data was analyzed city by city, and regional differences became clear.
+    japanese:
+      - データ は 市 {単位 で} 分析 さ れ て おり、地域 差 が 明らか に なっ た。
+      - データ は 市 {単位 で} 分析 さ れ、地域 差 が 明らか に なり まし た。
+      - データ は 市 {単位 で} 分析 さ れ て い て、地域 差 が 明らか に なっ た。
+    english_literally: The data, in city units, was analyzed, and regional differences became clear.
+    competing_grammar:
+      - competing_japanese:
+          - データ は 市 {ずつ} 分析 さ れ て おり、地域 差 が 明らか に なっ た。
+        english: The data was analyzed city by city (one after another), and regional differences became
+          clear.
+        hint: 「ずつ」 emphasizes a sequential or individual processing of each city. We're looking for how
+          each city was treated as a distinct unit for comprehensive analysis, not just a step-by-step
+          process.
+      - competing_japanese:
+          - データ は 市 {ごと に} 分析 さ れ て おり、地域 差 が 明らか に なっ た。
+        english: The data was analyzed for each city, and regional differences became clear.
+        hint: 「ごとに」 implies repetition or frequency for each item in a group. We're looking for how each
+          city served as a defined unit for the analysis, not merely that analysis was repeated for every
+          city.
+    scene: A research scientist presents their findings at an academic conference, explaining the methodology
+      and results of their study.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「分析されており」 is a formal passive form typical in academic presentations, providing
+      an objective description. 「分析され、地域差が明らかになりました」 offers a slightly more direct and commonly used polite
+      form of reporting findings. 「分析されていて、地域差が明らかになった」 uses the 「～ていて」 form, implying a continuous state
+      or an ongoing analysis leading to the result, while maintaining a formal but less stiff tone.
+  - english: Consulting fees are calculated in 30-minute blocks.
+    japanese:
+      - コンサルティング 料金 は 30 分 {単位 で} 計算 さ れ ます。
+      - コンサルティング 料金 は 30 分 {単位 で} 申し受け ます。
+    english_literally: Consulting fees, in 30-minute units, are calculated.
+    competing_grammar:
+      - competing_japanese:
+          - コンサルティング 料金 は 30 分 {ずつ} 計算 さ れ ます。
+        english: Consulting fees are calculated 30 minutes at a time.
+        hint: 「ずつ」 implies a sequential accumulation of time. We're looking for the standard unit for
+          billing, not a step-by-step calculation.
+      - competing_japanese:
+          - コンサルティング 料金 は 30 分 {ごと に} 計算 さ れ ます。
+        english: Consulting fees are calculated every 30 minutes.
+        hint: 「ごとに」 refers to calculations occurring at regular 30-minute intervals. We're looking for
+          the fixed block used for measurement, not the frequency of calculation.
+    scene: A consultant is explaining their billing structure to a new client during an initial meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「計算されます」 is a standard polite passive form, suitable for describing a fixed policy. 「申し受けます」
+      is a humble verb (謙譲語, kenjōgo) that means 'to accept' or 'to receive an order,' used by the speaker
+      (the company) to humbly receive something (in this case, fees), which elevates the politeness and
+      formality, often used in business contexts when discussing charges.
+  - english: Credits for this course are awarded in 2-unit increments.
+    japanese:
+      - この 授業 の 単位 は 2 単位 {単位 で} 認定 さ れ ます。
+      - この 授業 は 2 単位 {単位 で} 認め られ ます。
+    english_literally: Credits of this class are certified in 2-unit increments.
+    competing_grammar:
+      - competing_japanese:
+          - この 授業 の 単位 は 2 単位 {ずつ} 認定 さ れ ます。
+        english: Credits for this course are awarded two units at a time.
+        hint: 「ずつ」 would imply a sequential or gradual awarding of credits. We're looking for the predefined
+          block of credits for the course, not a progressive accumulation.
+      - competing_japanese:
+          - この 授業 の 単位 は 2 単位 {ごと に} 認定 さ れ ます。
+        english: Credits for this course are awarded every 2 units.
+        hint: 「ごとに」 suggests that credit awards happen repeatedly for every two units. We're looking for
+          the standard unit of credit, not the frequency of awarding.
+    scene: A university academic advisor explains the credit system for a specific course to a student
+      during registration.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「認定されます」 and 「認められます」 are both polite passive forms indicating that the university officially
+      grants credits. Both are appropriate for an academic setting when explaining official rules. The
+      choice between them is often stylistic, with 「認定」 sometimes implying a more formal certification
+      process than 「認める」.
+  - english: For international shipping, orders are handled in full pallet units.
+    japanese:
+      - 国際 輸送 で は 注文 は パレット {単位 で} 扱わ れ ます。
+      - 国際 輸送 で は ご 注文 は パレット {単位 で} 承り ます。
+    english_literally: In international shipping, orders are handled in pallet units.
+    competing_grammar:
+      - competing_japanese:
+          - 国際 輸送 で は 注文 は パレット {ずつ} 扱わ れ ます。
+        english: For international shipping, orders are handled one pallet at a time.
+        hint: 「ずつ」 suggests sequential handling of individual pallets. We're looking for the fixed unit
+          size for processing, not a step-by-step process.
+      - competing_japanese:
+          - 国際 輸送 で は 注文 は パレット {ごと に} 扱わ れ ます。
+        english: For international shipping, orders are handled for each pallet.
+        hint: 「ごとに」 implies repetitive handling for each pallet. We're looking for the standard unit of
+          handling, not that each pallet is handled individually.
+    scene: A logistics manager is explaining the company's international shipping policies to a potential
+      new business client.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「扱われます」 is a polite passive form, suitable for describing how orders are processed. 「承ります」
+      is a humble verb (謙譲語, kenjōgo) that means 'to accept' or 'to receive an order,' used by the speaker
+      (the company) towards the client to show respect and humility when explaining their service. The
+      use of 「ご」 before 「注文」 is also a polite prefix, further elevating the formal business tone.
+  - english: Fabric is sold by the meter here.
+    japanese:
+      - ここ で は 生地 は メートル {単位 で} 売ら れ て い ます。
+      - ここ で は 生地 は メートル {単位 で} 販売 し て い ます。
+      - 生地 は メートル {単位 で} 売っ てる よ。
+    english_literally: Here, fabric is sold in meter units.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で は 生地 は メートル {ずつ} 売ら れ て い ます。
+        english: Here, fabric is sold meter by meter.
+        hint: 「ずつ」 emphasizes selling individual meters sequentially. We're looking for the standard unit
+          of measurement for purchase, not a step-by-step transaction.
+      - competing_japanese:
+          - ここ で は 生地 は メートル {ごと に} 売ら れ て い ます。
+        english: Here, fabric is sold every meter.
+        hint: 「ごとに」 implies that fabric is sold in repetitive meter intervals. We're looking for the defined
+          unit of sale, not the frequency of selling.
+    scene: A shop assistant is informing a customer about how fabric is measured and sold in their store.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「売られています」 is a standard polite passive form, commonly used in retail to describe how goods
+      are sold. 「販売しています」 uses the more formal verb for 'to sell,' common in business settings. The casual
+      「売ってるよ」 uses the contracted form of 「ている」 and the sentence-final particle 「よ」, which is very common
+      in informal conversation between friends or family, providing information in a friendly, assertive
+      manner. This expression is natural for a female speaker to a close acquaintance.
+post_example_writeup: The expression 「単位で」 provides a flexible way to talk about how things are measured,
+  sold, or grouped. Being able to use it naturally is important for understanding and conveying precise
+  information in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/単位で

@@ -1,0 +1,305 @@
+grammar_point: 活用する (to make practical use of)
+learn_before:
+  - '[Verb-dictionary]のが上手だ・下手だ (to be good at・bad at doing)'
+  - かもしれない (might・maybe)
+meaning: to make practical use of, to utilize, to apply (knowledge, skills, resources)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 活用する
+    rarity: common
+    meaning: to make practical use of
+  - conjugation-type: non-past polite (～ます)
+    form: 活用します
+    rarity: common
+    meaning: will make practical use of
+  - conjugation-type: past plain (～た)
+    form: 活用した
+    rarity: common
+    meaning: made practical use of
+  - conjugation-type: past polite (～ました)
+    form: 活用しました
+    rarity: common
+    meaning: made practical use of
+  - conjugation-type: negative plain (～ない)
+    form: 活用しない
+    rarity: common
+    meaning: does not make practical use of
+  - conjugation-type: negative non-past polite (～ません)
+    form: 活用しません
+    rarity: common
+    meaning: will not make practical use of
+  - conjugation-type: te-form (～て)
+    form: 活用して
+    rarity: common
+    meaning: making practical use of, having made practical use of
+  - conjugation-type: volitional (～よう)
+    form: 活用しよう
+    rarity: common
+    meaning: let's make practical use of
+  - conjugation-type: volitional polite (～ましょう)
+    form: 活用しましょう
+    rarity: common
+    meaning: let's make practical use of
+  - conjugation-type: potential (～られる/～える)
+    form: 活用できる
+    rarity: common
+    meaning: can make practical use of
+  - conjugation-type: passive (～られる/～かれる)
+    form: 活用される
+    rarity: common
+    meaning: to be made practical use of
+pronunciation:
+  katakana: カツヨウ スル
+  romaji: katsuyou suru
+formation:
+  Noun を 活用する: To utilize/make use of a noun.
+jlpt: N2
+etymology: 活用 (かつよう) combines 活 (かつ) meaning 'lively, active, living' and 用 (よう) meaning 'use, utilize.'
+  Thus, 活用する literally means 'to make live use' or 'to put into lively use,' emphasizing dynamic and effective
+  application rather than mere usage. This contrasts with simpler verbs like 使う (to simply use) or 利用する
+  (to make use of, often for a specific purpose). The 活 element adds a nuance of making something productive
+  or bringing it to life in its application.
+writeup: 活用する is a versatile verb that expresses the idea of making effective, productive, or practical
+  use of something. It often implies maximizing the potential of resources, knowledge, skills, or opportunities.
+  Unlike simpler verbs like 使う (tsukau) which means "to use" in a general sense, or 利用する (riyou suru)
+  which means "to utilize" often for a specific purpose, 活用する emphasizes a more active, strategic, and
+  often beneficial application. It suggests that the thing being used is being put to good, active use,
+  or is being "activated" to its full potential. This verb is commonly encountered in formal, business,
+  and academic contexts, where efficient and intelligent use of assets is a key concept. For example,
+  one might 活用する a skill learned, data collected, or a resource obtained, ensuring it contributes positively
+  to an outcome. It can also be used in the context of 動詞の活用 (doushi no katsuyou), meaning "verb conjugation,"
+  where the verb forms are "activated" into various usages.
+false_friends:
+  - term: 使う
+    meaning: to use
+    kind: similar expression
+    nuance: 使う is a general term for "to use" anything, without the specific nuance of maximizing potential
+      or effective application. 活用する implies a more thoughtful and strategic deployment.
+    grammar_point: 使う (to use)
+  - term: 利用する
+    meaning: to utilize
+    kind: similar expression
+    nuance: 利用する means to make use of something, often for a specific purpose or benefit, but 活用する emphasizes
+      maximizing its inherent potential or bringing it into active, productive use. 利用する can sometimes
+      have a negative connotation (e.g., taking advantage of someone), which 活用する generally does not.
+    grammar_point: <suggest>:利用する (to utilize)
+  - term: 生かす
+    meaning: to make good use of, to leverage, to bring to life
+    kind: synonym
+    nuance: 生かす is very close in meaning to 活用する, often implying bringing something dormant to life or
+      leveraging an inherent quality. 活用する can be slightly more formal or technical, while 生かす sometimes
+      carries a more natural, organic nuance (e.g., 個性を生かす - to make good use of one's individuality).
+    grammar_point: 活かす (to make good use of)
+  - term: 応用する
+    meaning: to apply (a theory, knowledge)
+    kind: similar expression
+    nuance: 応用する specifically refers to applying principles, theories, or knowledge to a practical situation.
+      活用する is broader, covering resources, skills, and opportunities, not just abstract concepts.
+    grammar_point: <suggest>:応用する (to apply)
+post_false_friends_writeup: While 活用する, 使う, 利用する, 生かす, and 応用する all relate to "using" something, their
+  nuances differ. 使う is the most general term for simple usage. 利用する implies using something for a specific
+  purpose or benefit, and can sometimes carry a negative sense of taking advantage. 生かす focuses on making
+  the most of inherent qualities or potential, often bringing something to life or leveraging it. 応用する
+  is specific to applying abstract knowledge or principles to practical situations. 活用する stands out for
+  its emphasis on active, effective, and often strategic utilization, maximizing the potential of what
+  is being used.
+examples:
+  - english: We must effectively utilize this data for future planning.
+    japanese:
+      - この データ を 未来 の 計画 に {活用 する} べき です。
+      - この データ を 未来 の 計画 に {活用 す べき} です。
+    english_literally: This data (object) future planning (target) utilize should.
+    competing_grammar:
+      - competing_japanese:
+          - この データ を 未来 の 計画 に 使う べき です。
+        english: We must use this data for future planning.
+        hint: 使う is a general term for "to use," but 活用する specifically means to "make effective or practical
+          use of," maximizing its potential. We're looking for active and effective utilization.
+      - competing_japanese:
+          - この データ を 未来 の 計画 に 利用 する べき です。
+        english: We must utilize this data for future planning.
+        hint: 利用する implies using for a purpose, but 活用する emphasizes drawing out the full potential and
+          actively making the most of something. We're looking for maximizing data's value.
+    scene: A team leader instructing their members during a business meeting.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: She is skilled at utilizing her English abilities in her work.
+    japanese:
+      - 彼女 は 仕事 で 英語 の 能力 を {活用 する} の が 上手 です。
+      - 彼女 は 仕事 で 英語 の 能力 を {活用 し ます}。
+    english_literally: She (topic) work (at) English's ability (object) utilize (nominalizer) is good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 仕事 で 英語 の 能力 を 使う の が 上手 です。
+        english: She is skilled at using her English abilities in her work.
+        hint: 使う means simple 'use.' 活用する implies a more sophisticated and effective application of skills.
+          We're looking for how she *leverages* her ability.
+      - competing_japanese:
+          - 彼女 は 仕事 で 英語 の 能力 を 生かす の が 上手 です。
+        english: She is skilled at making good use of her English abilities in her work.
+        hint: 生かす is close, focusing on bringing out inherent qualities. 活用する emphasizes the dynamic and
+          practical application in work. We're looking for the active application aspect.
+    scene: Colleagues discussing a high-performing team member.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: Let's take advantage of this opportunity to learn more.
+    japanese:
+      - この 機会 を もっと 学ぶ ため に {活用 し ましょう}。
+      - この 機会 を もっと 学ぶ ため に {活用 しよう}。
+    english_literally: This opportunity (object) more learn for utilize-let's.
+    competing_grammar:
+      - competing_japanese:
+          - この 機会 を もっと 学ぶ ため に 利用 し ましょう。
+        english: Let's use this opportunity to learn more.
+        hint: 利用する means to "utilize" or "make use of," but 活用する implies a more active and effective application,
+          focusing on maximizing the opportunity's potential. We're looking for fully leveraging the chance.
+    scene: A teacher encouraging students during a workshop.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: volitional polite (～ましょう)
+  - english: We successfully utilized the leftover materials to create a new product.
+    japanese:
+      - 残り の 材料 を {活用 し て}、新しい 製品 を 作り まし た。
+      - 残り の 材料 を {活用 し まし て}、新しい 製品 を 作り まし た。
+    english_literally: Remaining's materials (object) utilizing, new product (object) made.
+    competing_grammar:
+      - competing_japanese:
+          - 残り の 材料 を 使っ て、新しい 製品 を 作り まし た。
+        english: We successfully used the leftover materials to create a new product.
+        hint: 使う simply means 'used.' 活用する implies a clever or strategic use that maximizes value. We're
+          looking for the idea of making the best use of the materials.
+      - competing_japanese:
+          - 残り の 材料 を 利用 し て、新しい 製品 を 作り まし た。
+        english: We successfully utilized the leftover materials to create a new product.
+        hint: 利用する is close but 活用する conveys a stronger sense of putting the materials into productive,
+          active use. We're looking for bringing out the full potential.
+    scene: A project manager reporting on a successful initiative.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: If we can utilize big data, we might be able to find a solution to this problem.
+    japanese:
+      - ビッグ データ を {活用 できれ ば}、この 問題 の 解決 策 が 見つかる か も しれ ませ ん。
+      - ビッグ データ を {活用 でき たら}、この 問題 の 解決 策 が 見つかる か も しれ ませ ん。
+    english_literally: Big data (object) if can utilize, this problem's solution (subject) might be found.
+    competing_grammar:
+      - competing_japanese:
+          - ビッグ データ を 利用 できれ ば、この 問題 の 解決 策 が 見つかる か も しれ ませ ん。
+        english: If we can utilize big data, we might be able to find a solution to this problem.
+        hint: 利用できる focuses on being able to use, while 活用できる emphasizes the capability to make active,
+          practical, and highly effective use of the data, maximizing its output. We're looking for leveraging
+          the data's full potential.
+    scene: Researchers brainstorming solutions to a complex issue.
+    register: formal
+    setting: academic
+    conjugation: potential (～られる/～える)
+  - english: Make sure to effectively use the local ingredients when you cook!
+    japanese:
+      - 料理 する とき は、地元 の 食材 を 上手 に {活用 なさい}！
+      - 料理 する とき は、地元 の 食材 を 上手 に {活用 し なさい}！
+    english_literally: Cook when (topic), local's ingredients (object) skillfully utilize-do!
+    competing_grammar:
+      - competing_japanese:
+          - 料理 する とき は、地元 の 食材 を 上手 に 使い なさい！
+        english: Make sure to skillfully use the local ingredients when you cook!
+        hint: 使いなさい is a general command to 'use.' 活用なさい implies making the most of the ingredients' qualities.
+          We're looking for advice on how to best *exploit* the ingredients' potential.
+      - competing_japanese:
+          - 料理 する とき は、地元 の 食材 を 上手 に 生かし なさい！
+        english: Make sure to make good use of the local ingredients when you cook!
+        hint: 生かしなさい focuses on bringing out the best in the ingredients. 活用なさい is similar but slightly
+          broader, including strategic and effective application. We're looking for the active, productive
+          use of them.
+    scene: A veteran chef giving advice to a young apprentice.
+    register: meirei-kei no teineigo (polite imperative)
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+  - english: The city plans to utilize empty buildings for community spaces.
+    japanese:
+      - 市 は 空き家 を コミュニティ スペース と し て {活用 する} 予定 です。
+      - 市 は 空き家 を コミュニティ スペース と し て {活用 し ます}。
+    english_literally: City (topic) empty houses (object) community space as utilize plan is.
+    competing_grammar:
+      - competing_japanese:
+          - 市 は 空き家 を コミュニティ スペース と し て 利用 する 予定 です。
+        english: The city plans to utilize empty buildings as community spaces.
+        hint: 利用する suggests simply using them for a purpose. 活用する implies transforming them into vibrant,
+          fully functional community spaces, maximizing their societal value. We're looking for activating
+          the buildings for public benefit.
+    scene: A news report about urban development.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He made a conscious effort to utilize his past failures as a stepping stone for growth.
+    japanese:
+      - 彼 は 過去 の 失敗 を 成長 の 糧 と し て {活用 し まし た}。
+      - 彼 は 過去 の 失敗 を 成長 の 糧 と し て {活用 し た}。
+    english_literally: He (topic) past's failures (object) growth's food as utilized.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 過去 の 失敗 を 成長 の 糧 と し て 生かし まし た。
+        english: He made a conscious effort to make good use of his past failures as a stepping stone
+          for growth.
+        hint: 生かす emphasizes bringing out the positive aspects or learning from something. 活用する emphasizes
+          the active and strategic use of something, even failures, for a desired outcome. We're looking
+          for actively putting failures to work for growth.
+    scene: A motivational speaker sharing a personal anecdote.
+    register: formal
+    setting: inspirational
+    conjugation: past polite (～ました)
+  - english: This technology allows us to utilize solar energy more efficiently.
+    japanese:
+      - この 技術 は 太陽 エネルギー を より 効率 的 に {活用 できる} よう に し ます。
+      - この 技術 は 太陽 エネルギー を より 効率 的 に {活用 でき ます}。
+    english_literally: This technology (topic) solar energy (object) more efficiently utilize-can able
+      makes.
+    competing_grammar:
+      - competing_japanese:
+          - この 技術 は 太陽 エネルギー を より 効率 的 に 利用 できる よう に し ます。
+        english: This technology allows us to utilize solar energy more efficiently.
+        hint: 利用できる refers to the ability to use. 活用できる highlights the capacity to make active, practical,
+          and highly effective use of the energy, maximizing its output. We're looking for the full exploitation
+          of the energy's potential.
+    scene: A scientist explaining a new invention at a conference.
+    register: formal
+    setting: technical
+    conjugation: potential (～られる/～える)
+  - english: Students should actively utilize the library's resources for their research.
+    japanese:
+      - 学生 は 図書 館 の 資料 を 積極 的 に {活用 す べき} です。
+      - 学生 は 図書 館 の 資料 を 積極 的 に {活用 する} べき です。
+    english_literally: Students (topic) library's resources (object) actively utilize-should.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 図書 館 の 資料 を 積極 的 に 使う べき です。
+        english: Students should actively use the library's resources for their research.
+        hint: 使う is general. 活用する specifically means to make the most of the resources, applying them
+          effectively to research. We're looking for the strategic and beneficial application of resources.
+    scene: A librarian advising students.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: He cunningly utilized his friends' weaknesses for his own gain.
+    japanese:
+      - 彼 は 友人 の 弱点 を 巧み に {活用 し て} 自分 の 利益 と し まし た。
+      - 彼 は 友人 の 弱点 を 巧み に {活用 し} 自分 の 利益 と し まし た。
+    english_literally: He (topic) friend's weaknesses (object) cunningly utilizing, his own profit made.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 友人 の 弱点 を 巧み に 利用 し て 自分 の 利益 と し まし た。
+        english: He cunningly utilized his friends' weaknesses for his own gain.
+        hint: 利用する can carry a nuance of taking advantage, which fits this negative context. However,
+          活用する here emphasizes the active and clever exploitation of weaknesses to maximize personal gain.
+          We're looking for the deliberate and effective manipulation.
+    scene: People gossiping about a manipulative person.
+    register: casual
+    setting: casual slang
+    conjugation: te-form (～て)
+post_example_writeup: The examples provided illustrate how 活用する can be applied across various contexts,
+  from professional and academic settings to more casual, instructional, or even slightly negative scenarios,
+  always maintaining its core nuance of effective and strategic utilization. Pay attention to the accompanying
+  adverbs and context to fully grasp the intended tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/活用する

@@ -1,0 +1,255 @@
+grammar_point: Verb[stem] (conjunction)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - 〜ていく (change toward future・movement away from speaker)
+  - い-Adjective[stem] (stem)
+  - かた (way of doing)
+  - これ (this)
+  - と (with)
+  - どうか (earnestly・please)
+  - な (prohibitive particle)
+  - に (target・destination)
+  - の (nominalizer・question particle)
+  - 更に (even more)
+meaning: To connect actions or states in a concise manner, often implying a sequence or close relationship
+  between them. It is frequently used in formal or literary contexts, and also to form compound verbs.
+pronunciation:
+  katakana: ステム
+  romaji: stem
+formation:
+  Verb[ます-stem] + Verb[ます-stem] + ... + Verb[dictionary/conjugated form]: Used to connect multiple verbs
+    in a sentence, often implying a sequence of actions.
+  Verb[ます-stem] + Noun: Used to create compound nouns, or to modify nouns more concisely than a full clause.
+  Verb[ます-stem] + Auxiliary Verb: Used to form various compound verb constructions.
+jlpt: N3
+etymology: The ます-stem, also known as the continuative form (連用形 ren'yōkei), is one of the foundational
+  inflectional forms of Japanese verbs and adjectives. Its origin lies in the classical Japanese language,
+  where it served as a versatile connecting form. Historically, it was used to connect a verb to a following
+  verb or auxiliary, or to nominalize a verb to function like a noun. This inherent ability to "continue"
+  the action or state led to its widespread use for linking clauses concisely and forming compound expressions,
+  a function that persists in modern Japanese.
+writeup: |-
+  The verb stem, or ます-stem (連用形 ren'yōkei), is a fundamental inflectional form of Japanese verbs. It is primarily used to connect verbs or clauses in a concise and often formal or literary manner, or to form compound verbs and nouns.
+
+  When connecting multiple verbs, the ます-stem offers a more elegant and compact alternative to the て-form, particularly in written Japanese such as newspapers, academic texts, or official documents. It implies a strong, often sequential or closely related, connection between the actions. For example, rather than saying 「電車に乗って、会社へ行った」 (densha ni notte, kaisha e itta - I got on the train and went to the office), one might encounter 「電車に乗り、会社へ行った」 (densha ni nori, kaisha e itta). This usage emphasizes the flow of actions without explicitly stating the causal or temporal relationship as strongly as the て-form might.
+
+  The verb stem is also crucial for forming compound verbs (e.g., 読み書き yomikaki - reading and writing) and combining a verb with an auxiliary verb to add nuance (e.g., 始めます hajime-masu - to begin, 続けます tsuzuke-masu - to continue). It can also function to nominalize verbs when combined with certain nouns, creating expressions like 「話し方」 (hanashi-kata - way of speaking) or 「動き出し」 (ugoki-dashi - start of movement).
+
+  While the ます-stem can link actions, its nuance differs from the て-form. The て-form often implies a clearer temporal sequence, cause-and-effect, or means. The ます-stem, on the other hand, tends to present actions as a list or a series of closely related events, with a greater emphasis on brevity and stylistic elegance, especially in more formal or academic contexts.
+false_friends:
+  - term: Verb[て]
+    meaning: and then
+    kind: similar expression
+    nuance: The て-form often implies a clearer temporal sequence, cause-and-effect, or means. The stem
+      form is more concise and can be more formal, often used for listing actions without emphasizing
+      causality as strongly. We're looking for a simple sequential connection with a concise flow.
+    grammar_point: Verb[て] (and then)
+  - term: ながら
+    meaning: while doing
+    kind: similar expression
+    nuance: ながら explicitly indicates simultaneous actions. The stem form linking verbs usually suggests
+      sequential or closely related actions, not necessarily simultaneous ones. We're looking for a sequence
+      of actions.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: し〜し
+    meaning: and; listing reasons
+    kind: similar expression
+    nuance: し...し connects clauses and lists reasons, often with a nuance of 'and what's more'. The stem
+      form directly links verbs or clauses to show a flow of actions or states, not typically to list
+      reasons. We're looking for a straightforward connection of events.
+    grammar_point: し〜し (and; listing reasons)
+  - term: つつ
+    meaning: while doing
+    kind: similar expression
+    nuance: つつ is a more formal or literary equivalent to ながら, indicating simultaneous actions. The stem
+      form is for connecting sequential or closely related actions, not parallel ones. We're looking for
+      a sequence of actions.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+post_false_friends_writeup: The verb stem's conjunctive use can be easily confused with other linking
+  forms. While the て-form is a general connector for sequential actions or cause-and-effect, the stem
+  form often conveys a more concise, sometimes formal or literary linking of actions without explicitly
+  detailing their relationship. For concurrent actions, forms like ながら or つつ are used. When listing reasons
+  or adding supplementary information, し...し is more appropriate. The choice depends on the desired nuance
+  of formality, brevity, and the precise relationship between the linked elements.
+examples:
+  - english: He woke up early and started studying.
+    japanese:
+      - 彼 は 早起き {し}、勉強 を 始め た。
+      - 彼 は 早起き {し}、勉強 を 始め まし た。
+    english_literally: As for him, early rising did, study started.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 早起き し て、勉強 を 始め た。
+        english: He woke up early, and then started studying.
+        hint: The て-form implies a clearer temporal sequence or cause-and-effect, and is generally more
+          conversational. We're looking for a more concise connection, often found in formal writing.
+    scene: Describing a diligent student's morning routine in a written report.
+    register: formal
+    setting: academic
+  - english: I often read and write in the library.
+    japanese:
+      - 私 は 図書 館 で よく {読み書き} する。
+      - 私 は 図書 館 で よく {読み書き} し ます。
+    english_literally: As for me, in library often reading-writing do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 図書 館 で よく 読ん だり 書い たり する。
+        english: I often do things like reading and writing in the library.
+        hint: The たり...たり construction lists representative actions, implying other similar activities.
+          We're looking for a single compound action of 'reading and writing'.
+    scene: A student discussing their regular study habits.
+    register: casual
+    setting: informative
+  - english: The wind blew, the leaves danced, and autumn arrived.
+    japanese:
+      - 風 は {吹き}、葉 は {舞い}、秋 が 訪れ た。
+      - 風 は {吹き}、葉 は {舞い}、秋 が 訪れ まし た。
+    english_literally: As for wind, blew, as for leaves, danced, autumn arrived.
+    competing_grammar:
+      - competing_japanese:
+          - 風 が 吹い て、葉 が 舞っ て、秋 が 訪れ た。
+        english: The wind blew, the leaves danced, and then autumn arrived.
+        hint: The て-form connects actions sequentially in a more conversational tone. We're looking for
+          a more poetic or literary flow of events.
+    scene: A passage from a novel describing the change of seasons.
+    register: bungo (literary)
+    setting: creative
+  - english: Due to a sudden rain, the game was canceled.
+    japanese:
+      - 急 な 雨 が {降り}、試合 は 中止 と なっ た。
+      - 急 な 雨 が {降り}、試合 は 中止 と なり まし た。
+    english_literally: Sudden rain fell, game became canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 急 な 雨 が 降っ た ため、試合 は 中止 に なっ た。
+        english: Because sudden rain fell, the game was canceled.
+        hint: 〜ため implies a more explicit reason or cause. We're looking for a concise, descriptive link
+          where the falling rain directly leads to the cancellation.
+    scene: An announcer giving a brief, formal update on a rescheduled event.
+    register: formal
+    setting: informative
+  - english: I will continue to work hard from now on.
+    japanese:
+      - 私 は これ から も {頑張り} 続ける。
+      - 私 は これ から も {頑張り} 続け ます。
+    english_literally: As for me, from now on too effort-doing continue.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は これ から も 頑張っ て 続ける。
+        english: I will make an effort and continue from now on.
+        hint: While て-form can connect, for auxiliary verbs like 続ける (to continue), the stem form is the
+          natural and common way to form the compound verb. We're looking for 'to continue *doing* something'.
+    scene: A student expressing their resolve after receiving encouragement.
+    register: casual
+    setting: inspirational
+  - english: This is a way of writing kanji.
+    japanese:
+      - これ は 漢字 の {書き 方} です。
+      - これ は 漢字 の {書き 方} で ござい ます。
+    english_literally: This is kanji's writing-method.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 漢字 を 書く 方法 です。
+        english: This is a method of writing kanji.
+        hint: 「方法」 is a more general term for 'method' or 'way'. 「〜方」 specifically indicates 'the way
+          of doing something' and is a common compound noun. We're looking for the specific way of writing.
+    scene: A teacher pointing to an example on a whiteboard.
+    register: teineigo (polite)
+    setting: instructional
+  - english: The company relocated its headquarters, expanding its business overseas.
+    japanese:
+      - その 会社 は 本社 を {移転} し、海外 事業 を 拡大 し た。
+      - その 会社 は 本社 を {移転} し、海外 事業 を 拡大 し まし た。
+    english_literally: That company headquarters relocated, overseas business expanded.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 は 本社 を 移転 し て、海外 事業 を 拡大 し た。
+        english: That company relocated its headquarters, and then expanded its business overseas.
+        hint: The て-form, while correct, is slightly less formal than the stem form for connecting clauses
+          in written reports or news. We're looking for a formal, concise narrative.
+    scene: A business news report detailing a company's recent activities.
+    register: formal
+    setting: professional
+  - english: Having prepared all the materials, we began the experiment.
+    japanese:
+      - 全て の 材料 を {用意} し、実験 を 開始 し た。
+      - 全て の 材料 を {用意} し、実験 を 開始 し まし た。
+    english_literally: All materials prepared, experiment started.
+    competing_grammar:
+      - competing_japanese:
+          - 全て の 材料 を 用意 し て から、実験 を 開始 し た。
+        english: After preparing all the materials, we began the experiment.
+        hint: 〜てから emphasizes that the first action was completed before the second began. The stem form
+          linking implies a smooth transition or a direct consequence without as strong a temporal emphasis.
+          We're looking for a concise, factual statement of sequential actions.
+    scene: A lab report entry by researchers.
+    register: formal
+    setting: academic
+  - english: Some prefer to read, others prefer to write.
+    japanese:
+      - ある 者 は {読み}、ある 者 は {書く}。
+      - ある 者 は {読み}、ある 者 は 書き ます。
+    english_literally: Certain ones read, certain ones write.
+    competing_grammar:
+      - competing_japanese:
+          - ある 者 は 読ん だり、ある 者 は 書い たり する。
+        english: Some read, while others do things like writing.
+        hint: 〜たり...たり implies a list of representative actions or a non-exhaustive list. The stem form
+          here creates a more direct and often contrasting pair of actions. We're looking for a clear,
+          parallel contrast.
+    scene: A philosophical text discussing different human tendencies.
+    register: bungo (literary)
+    setting: creative
+  - english: The sun set, and the city lights began to twinkle.
+    japanese:
+      - 陽 は {沈み}、街 の 灯り が 瞬き 始め た。
+      - 陽 は {沈み}、街 の 灯り が 瞬き 始め まし た。
+    english_literally: Sun set, city's lights began to twinkle.
+    competing_grammar:
+      - competing_japanese:
+          - 陽 が 沈ん で、街 の 灯り が 瞬き 始め た。
+        english: The sun set, and then the city lights began to twinkle.
+        hint: The て-form is more common in spoken language for simple sequences. The stem form here gives
+          a more narrative or descriptive feel to the natural progression of events. We're looking for
+          an elegant description of concurrent, flowing events.
+    scene: Describing an evening scene in a formal or poetic context.
+    register: formal
+    setting: reflective
+  - english: He devoted himself to research and published numerous papers.
+    japanese:
+      - 彼 は 研究 に {没頭} し、多く の 論文 を {発表} し た。
+      - 彼 は 研究 に {没頭} し、多く の 論文 を {発表} し まし た。
+    english_literally: He to research immersed, many papers published.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 研究 に 没頭 し て、多く の 論文 を 発表 し た。
+        english: He devoted himself to research, and then published many papers.
+        hint: The て-form works, but the stem form often provides a more concise and formal connection
+          between successive actions in a narrative, common in biographies or reports. We're looking for
+          a formal summary of achievements.
+    scene: A biographical entry about a renowned scholar.
+    register: formal
+    setting: academic
+  - english: Please make sure to check and confirm the details.
+    japanese:
+      - 詳細 を {確認} し、必ず {承認} し て ください。
+      - 詳細 を {確認} し、必ず 承認 し て ください ます よう お 願い し ます。
+    english_literally: Details confirm, definitely approve please.
+    competing_grammar:
+      - competing_japanese:
+          - 詳細 を 確認 し て から、必ず 承認 し て ください。
+        english: Please check the details, and then definitely approve.
+        hint: 〜てから emphasizes that the checking must be fully completed before approval. The stem form
+          is used here for a more direct coupling of two necessary actions without emphasizing strict
+          temporal separation. We're looking for a smooth connection between two tasks.
+    scene: A manager giving instructions to a subordinate.
+    register: semi-formal
+    setting: professional
+post_example_writeup: The nuance of the verb stem as a conjunction is subtle but significant. It often
+  signals a more formal or literary tone, especially when connecting independent clauses. While it indicates
+  a sequence, it does so with a sense of flow rather than the explicit cause-and-effect or strict temporal
+  progression sometimes conveyed by the て-form. Its conciseness makes it a powerful tool for sophisticated
+  expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/Verb[stem] (conjunction)

@@ -1,0 +1,299 @@
+grammar_point: なお (supplementary information)
+learn_before:
+  - 関係がある (to be related・to have a connection)
+meaning: In addition, Incidentally, Furthermore, Moreover
+pronunciation:
+  katakana: ナオ
+  romaji: nao
+formation:
+  '[Sentence 1]. なお, [Sentence 2]': Indicates that Sentence 2 adds additional information to Sentence
+    1.
+jlpt: N2
+etymology: The word 「尚 (なお)」 originally meant "still" or "even more." Over time, it evolved to also indicate
+  the addition of further information, retaining a sense of something being "on top" of what was previously
+  mentioned. Thus, 「なお」 connects two statements, with the second supplementing or emphasizing the first.
+writeup: The adverb 「なお」, often written in hiragana, functions to introduce additional information that
+  supplements a previous statement. It carries the nuances of "in addition," "furthermore," "incidentally,"
+  or "moreover." This usage is particularly common in formal contexts like letters, announcements, or
+  official notices. 「なお」 essentially signals that what follows is something to be considered alongside
+  the initial information, often highlighting a surprising or unexpected element. Think of it as saying,
+  "Taking the previous information into account, *this* is also true."
+false_friends:
+  - term: なお
+    meaning: Still, Even, Yet
+    kind: similar expression
+    nuance: This is another usage of 「なお」 itself. While this grammar point 「なお」 adds supplementary information
+      (in addition), 「なお (still)」 indicates that a state or condition continues or remains the same, or
+      that something is 'even more' the case (e.g., 「なお 美しい」 - even more beautiful). It doesn't introduce
+      new, unrelated information, and typically modifies a verb or adjective directly.
+    grammar_point: <suggest>:なお (still・even・yet・still more)
+  - term: しかも
+    meaning: Moreover, Furthermore
+    kind: similar expression
+    nuance: 「しかも」 often emphasizes a surprising, unexpected, or stronger element that is added to the
+      preceding statement. It tends to highlight an additional positive or negative aspect, intensifying
+      the previous point, whereas 「なお」 provides additional, usually factual, information in a more neutral
+      tone, without necessarily implying emphasis or surprise.
+    grammar_point: それに (in addition・moreover)
+  - term: その上
+    meaning: Besides, In addition, Furthermore
+    kind: similar expression
+    nuance: 「その上」 typically connects ideas that build upon each other logically or add another item to
+      a list, often implying an accumulation or layering of facts. 「なお」 can introduce related but somewhat
+      distinct details, serving more as a supplementary note rather than a continuation of a layered argument
+      or description.
+    grammar_point: それに (in addition・moreover)
+  - term: それに
+    meaning: And, Besides, Moreover, In addition
+    kind: similar expression
+    nuance: 「それに」 is a more general and often more conversational connective particle. It serves to add
+      one more item or piece of information. Unlike 「なお」, which is quite formal and is specifically used
+      to add *supplementary* or *ancillary* information, 「それに」 can simply list additional points without
+      the same formal or clarifying nuance.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: When distinguishing 「なお」 from these similar expressions, consider the level
+  of formality and the specific relationship between the ideas you want to connect. 「なお」 is best suited
+  for formal contexts where you need to add supplementary, often crucial, information that clarifies or
+  completes the previous statement. 「しかも」 implies a heightened or surprising addition. 「その上」 suggests
+  a logical layering or accumulation. 「それに」 is a more casual, general connector for additional points.
+examples:
+  - english: Today's meeting starts at 3 PM. Additionally, the materials have already been distributed.
+    japanese:
+      - 今日 の 会議 は 午後 3 時 に 開始 し ます。{なお}、資料 は 事前 に 配布 済み です。
+      - 本日 の 会議 は 午後 3 時 に 開始 と なり ます。{なお}、資料 は 事前 に 配布 済み で ござい ます。
+      - 今日 の 会議 は 午後 3 時 から です。{なお}、資料 は すでに 配布 し て い ます。
+    english_literally: Today's meeting at 3 PM begins. Additionally, materials previously distributed
+      already.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は 午後 3 時 に 開始 し ます。{そして}、資料 は 事前 に 配布 済み です。
+        english: Today's meeting starts at 3 PM, and the materials have already been distributed.
+        hint: 「そして」 simply connects two actions or facts sequentially, without implying the second is
+          a supplementary, often crucial, note to the first. We're looking for a word that adds important
+          additional information in a formal context.
+    scene: A busy professional announces a meeting and provides a quick update to colleagues.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「ます」 form, combined with the formal context of a business meeting announcement,
+      reinforces the formal register. The structure of the sentence, starting with a main announcement
+      and then adding a specific related detail with 「なお」, is typical of formal, informational communication.
+    etymology: The use of 「開始 し ます」 (kaishi shimasu) and 「配布 済み です」 (haifu zumi desu) highlights the business
+      formality. 「開始」 implies a formal commencement, while 「配布 済み」 indicates a state of completion, which
+      is a concise way to deliver information in a professional setting.
+  - english: Tickets go on sale from 10 AM. Furthermore, we are limiting purchases to two per person.
+    japanese:
+      - チケット は 午前 10 時 より 販売 開始 です。{なお}、お 一人 様 2 枚 まで と さ せ て いただき ます。
+      - チケット は 午前 10 時 より 販売 開始 と なり ます。{なお}、お 一人 様 2 枚 まで と さ せ て いただき ます。
+      - チケット は 午前 10 時 から 販売 し ます。{なお}、お 一人 様 2 枚 まで と さ せ て いただき ます。
+    english_literally: Tickets 10 AM from sale start. Furthermore, one person up to two tickets will be
+      allowed.
+    competing_grammar:
+      - competing_japanese:
+          - チケット は 午前 10 時 より 販売 開始 です。{それ に}、お 一人 様 2 枚 まで と さ せ て いただき ます。
+        english: Tickets go on sale from 10 AM. In addition, we are limiting purchases to two per person.
+        hint: 「それに」 is a more general, often casual connective for adding information. 「なお」 specifically
+          introduces a significant, formal supplement or restriction to what was just stated.
+    scene: A concert venue posts a notice about ticket sales, including an important restriction.
+    register: formal
+    setting: instructional
+    etymology: 「お 一人 様」 (ohitori sama) is a polite expression for "one person," using the honorific prefix
+      「お」 and the polite suffix 「様」. 「～まで と さ せ て いただき ます」 (made to sasete itadakimasu) is a highly polite
+      and deferential way to state a rule or limitation, common in official announcements.
+  - english: The product you ordered will be shipped tomorrow. In addition, it usually takes 2-3 days
+      for delivery.
+    japanese:
+      - ご 注文 いただい た 商品 は 明日 発送 いたし ます。{なお}、到着 まで に は 通常 2～3 日 かかり ます。
+      - ご 注文 いただい た 商品 は 明日 発送 さ せ て いただき ます。{なお}、お 手元 に 届く まで に は 通常 2～3 日 ほど かかり ます。
+      - ご 注文 の 商品 は 明日 発送 と なり ます。{なお}、お 届け まで に は 2～3 日 ほど かかり ます。
+    english_literally: Ordered product tomorrow ship. Additionally, arrival until usually 2-3 days takes.
+    competing_grammar:
+      - competing_japanese:
+          - ご 注文 いただい た 商品 は 明日 発送 いたし ます。{また}、到着 まで に は 通常 2～3 日 かかり ます。
+        english: The product you ordered will be shipped tomorrow. Also, it usually takes 2-3 days for
+          delivery.
+        hint: 「また」 adds another point, but 「なお」 is used when the additional information is a crucial clarification
+          or detail related to the preceding statement, especially in formal communication.
+    scene: A customer service representative sends a confirmation email to a client.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「いたします」 and the overall polite and business-oriented vocabulary makes this sentence
+      suitable for a business context. The addition of delivery time after the shipping confirmation with
+      「なお」 is a common way to provide complete information in a business communication.
+    etymology: 「ご 注文 いただく」 (gochūmon itadaku) is a humble expression for "to receive an order," using
+      the honorific prefix 「ご」 and the humble verb 「いただく」. Similarly, 「発送 いたし ます」 (hassō itashimasu) uses
+      the humble verb 「いたす」 for "to ship," reinforcing the formal business tone.
+  - english: After changing the settings, please be sure to click the Save button. Furthermore, if you
+      close it without saving, the changes will not be applied.
+    japanese:
+      - 設定 を 変更 し た 後、必ず『保存』ボタン を クリック し て ください。{なお}、保存 せ ず に 閉じる と 変更 は 適用 さ れ ませ ん。
+      - 設定 を 変更 さ れ た 後 は、必ず『保存』ボタン を クリック し て ください。{なお}、保存 なし で 閉じ た 場合、変更 は 反映 さ れ ませ ん。
+      - 設定 を 変更 し たら、『保存』ボタン を 押し て ください。{なお}、保存 せ ず に 終了 し たら、変更 は 反映 さ れ ませ ん。
+    english_literally: Settings change after, certainly Save button click please. Additionally, save without
+      closing, changes not applied.
+    competing_grammar:
+      - competing_japanese:
+          - 設定 を 変更 し た 後、必ず『保存』ボタン を クリック し て ください。{その ため}、保存 せ ず に 閉じる と 変更 は 適用 さ れ ませ ん。
+        english: After changing the settings, please be sure to click the Save button. Therefore, if you
+          close it without saving, the changes will not be applied.
+        hint: 「そのため」 indicates a direct consequence. 「なお」 introduces an important, related piece of information
+          or a crucial warning that should be noted alongside the primary instruction.
+    scene: A software manual provides instructions for users, including a crucial warning.
+    register: formal
+    setting: instructional
+    etymology: 「適用 さ れ ませ ん」 (tekiyou saremasen) uses the passive voice to state that changes "will not
+      be applied," which is common in instructional or technical writing to describe system behavior objectively
+      rather than assigning blame. 「保存」 (hozon) literally means "preservation" or "storage," and is the
+      standard term for "save" in software contexts.
+  - english: Starting next month, our library's opening hours will change. In addition, please check our
+      website for details.
+    japanese:
+      - 来月 より、当 図書 館 の 開館 時間 を 変更 いたし ます。{なお}、詳細 に つい て は ウェブサイト を ご 確認 ください。
+      - 来月 より、当 図書 館 の 開館 時間 が 変更 と なり ます。{なお}、詳細 は ウェブサイト にて ご 確認 いただけ ます。
+      - 来月 から、図書 館 の 開館 時間 が 変わる よ。{なお}、詳しく は ウェブサイト を 見 て ください。
+    english_literally: Next month from, this library opening hours change. Additionally, details regarding
+      website confirm please.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 より、当 図書 館 の 開館 時間 を 変更 いたし ます。{そして}、詳細 に つい て は ウェブサイト を ご 確認 ください。
+        english: Starting next month, our library's opening hours will change, and please check our website
+          for details.
+        hint: 「そして」 is a simple conjunctive particle. 「なお」 is chosen here to formally and concisely add
+          a related, important piece of information, instructing where to find more details.
+    scene: A notice is posted at a public library about new operating hours.
+    register: formal
+    setting: informative
+    etymology: 「開館 時間」 (kaikan jikan) literally means "open-building hours," which is the specific term
+      for library or museum opening hours. The phrase 「詳細 に つい て は」 (shōsai ni tsuite wa) literally means
+      "as for details" and is a common, formal way to introduce a topic for further information.
+  - english: Our findings suggest a significant correlation between diet and heart disease. Furthermore,
+      further studies are needed to confirm these results.
+    japanese:
+      - 我々 の 研究 結果 は、食 生活 と 心臓 病 の 間 に 著しい 相関 関係 が ある こと を 示唆 し ます。{なお}、これ ら の 結果 を 確認 する に は さらなる 研究
+        が 必要 です。
+      - 本 研究 で は、新しい 治療 法 が 患者 の 生存 率 を 向上 さ せ まし た。{なお}、副 作用 は 既存 の 治療 法 と 同 程度 でし た。
+      - 私 たち の 研究 で は、食 生活 と 心臓 病 に すごく 関係 が ある こと が 分かり まし た。{なお}、もっと 調べる 必要 が あり ます。
+    english_literally: Our research findings diet and heart disease between significant correlation exists
+      suggests. Furthermore, these results confirm to further studies are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 研究 で は、新しい 治療 法 が 患者 の 生存 率 を 向上 さ せ る こと が 示唆 し ます。{しかも}、副 作用 は 既存 の 治療 法 と 同 程度 で あっ
+            た。
+        english: This study showed that the new treatment improved patient survival rates, and what's
+          more, side effects were comparable to existing treatments.
+        hint: 「しかも」 is used to add something surprising or to emphasize an additional point. 「なお」 is used
+          to add objective, supplementary information without implying surprise or strong emphasis, typical
+          of formal academic writing.
+    scene: A scientist presents findings at an academic conference, providing a complete picture of the
+      research.
+    register: bijinesu nihongo (business)
+    setting: informative
+    etymology: 「相関 関係」 (sōkan kankei) refers to a correlation or relationship, a key term in research.
+      「示唆 する」 (shisa suru) means to suggest or imply, commonly used to present findings that are not yet
+      definitive. 「必須」 (hissu) means essential or indispensable, emphasizing the necessity of future work.
+  - english: Our store will be open without closing during the New Year's holidays. In addition, please
+      be aware that some products may be out of stock.
+    japanese:
+      - 当店 は 年末 年始 も 休ま ず 営業 いたし ます。{なお}、一部 商品 の 品切れ に ご 注意 ください。
+      - 当店 は 年末 年始 も 休ま ず 営業 さ せ て いただき ます。{なお}、一部 商品 は 品切れ の 場合 も ござい ます の で ご 了承 ください。
+      - うち の 店 は 年末 年始 も 休み なく 開い て い ます。{なお}、商品 に よっ て は 売り切れ の 可能 性 も あり ます。
+    english_literally: Our store year-end new-year also without resting operate. Additionally, some products
+      out of stock please be aware.
+    competing_grammar:
+      - competing_japanese:
+          - 当店 は 年末 年始 も 休ま ず 営業 いたし ます。{その 上}、一部 商品 の 品切れ に ご 注意 ください。
+        english: Our store will be open without closing during the New Year's holidays. Furthermore, please
+          be aware that some products may be out of stock.
+        hint: 「その上」 is often used to add another point to a list or a further positive/negative aspect.
+          「なお」 is used here for a concise, formal additional note or warning.
+    scene: A store announces its holiday hours and adds a small caveat for customers.
+    register: teineigo (polite)
+    setting: informative
+    etymology: 「年末 年始」 (nenmatsu nenshi) refers to the period spanning the end of the year and the beginning
+      of the new year, a common phrase for holiday periods in Japan. 「品切れ」 (shinagire) means "out of stock,"
+      combining 「品」 (shina, goods) and 「切れ」 (kire, cut/run out), literally "goods cut out" or "goods run
+      out."
+  - english: The deadline for submitting reports is next Friday. In addition, collaborative work is not
+      permitted.
+    japanese:
+      - レポート の 提出 締め切り は 来週 金曜 日 です。{なお}、共同 作業 は 認め られ て い ませ ん。
+      - レポート の 提出 締め切り は 来週 金曜 日 と なり ます。{なお}、共同 作業 は 許可 さ れ て おり ませ ん。
+      - レポート の 提出 は 来週 の 金曜 日 まで です。{なお}、一緒 に 作業 する こと は でき ませ ん。
+    english_literally: Report submission deadline next week Friday. Additionally, collaborative work not
+      permitted.
+    competing_grammar:
+      - competing_japanese:
+          - レポート の 提出 締め切り は 来週 金曜 日 です。{そして}、共同 作業 は 認め られ て い ませ ん。
+        english: The deadline for submitting reports is next Friday, and collaborative work is not permitted.
+        hint: 「そして」 simply connects two statements. 「なお」 is used to append a specific, often crucial,
+          rule or clarification directly related to the preceding information in a formal instructional
+          context.
+    scene: A university professor announces an assignment to students and clarifies a rule.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal 「です」 and the instructional nature of the sentence are typical of a professor addressing
+      students. The clarity provided by 「なお」 for a specific rule like 「共同 作業 は 認められて いません」 is crucial
+      in an academic setting, ensuring no ambiguity.
+    etymology: 「提出 締め切り」 (teishutsu shimekiri) combines 「提出」 (teishutsu, submission) and 「締め切り」 (shimekiri,
+      deadline). 「締め切り」 originally referred to closing a gate or a boundary, evolving to mean a time limit.
+      「共同 作業」 (kyōdō sagyō) literally means "joint work" or "collaborative work," and is a formal term
+      for group assignments.
+  - english: Smoking is prohibited in all public parks. Additionally, designated smoking areas will be
+      provided outside the park gates.
+    japanese:
+      - 市内 の 全て の 公園 で 喫煙 は 禁止 さ れ ます。{なお}、指定 の 喫煙 場所 は 公園 ゲート の 外 に 設置 さ れ ます。
+      - 市内 全域 の 公園 に おき まし て は 喫煙 は 禁止 と なり ます。{なお}、喫煙 所 は 公園 の 外 に 設け られ ます。
+      - 全部 の 公園 で たばこ は ダメ だ よ。{なお}、吸える 場所 は 公園 の 外 に ある から ね。
+    english_literally: City's all public parks in smoking is prohibited. Additionally, designated smoking
+      areas park gates outside will be provided.
+    competing_grammar:
+      - competing_japanese:
+          - 市内 の 全て の 公園 で 喫煙 は 禁止 さ れ ます。{そして}、指定 の 喫煙 場所 は 公園 ゲート の 外 に 設置 さ れ ます。
+        english: Smoking is prohibited in all public parks, and designated smoking areas will be provided
+          outside the park gates.
+        hint: 「そして」 merely connects two facts. 「なお」 is used here to add an essential, related piece of
+          information or a condition that clarifies the primary rule, often a provision or exception.
+    scene: A public announcement or signage regarding new smoking regulations in city parks.
+    register: formal
+    setting: informative
+    etymology: 「喫煙」 (kitsuen) means smoking, combining 「喫」 (kitsu, to drink/eat/smoke) and 「煙」 (en, smoke).
+      「禁止」 (kinshi) means prohibition, a common formal term for rules. 「設置」 (secchi) means installation
+      or establishment, typically used for public facilities.
+  - english: Our findings suggest a significant correlation between diet and heart disease. Furthermore,
+      further studies are needed to confirm these results.
+    japanese:
+      - 我々 の 研究 結果 は、食 生活 と 心臓 病 の 間 に 著しい 相関 関係 が ある こと を 示唆 し ます。{なお}、これ ら の 結果 を 確認 する に は さらなる 研究
+        が 必要 です。
+      - 本 研究 で は、新しい 治療 法 が 患者 の 生存 率 を 向上 さ せ まし た。{なお}、副 作用 は 既存 の 治療 法 と 同 程度 でし た。
+      - 私 たち の 研究 で は、食 生活 と 心臓 病 に すごく 関係 が ある こと が 分かり まし た。{なお}、もっと 調べる 必要 が あり ます。
+    english_literally: Our research findings diet and heart disease between significant correlation exists
+      suggests. Furthermore, these results confirm to further studies are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 の 研究 結果 は、食 生活 と 心臓 病 の 間 に 著しい 相関 関係 が ある こと を 示唆 し ます。{しかし}、これ ら の 結果 を 確認 する に は さらなる
+            研究 が 必要 です。
+        english: Our findings suggest a significant correlation between diet and heart disease. However,
+          further studies are needed to confirm these results.
+        hint: 「しかし」 introduces a contradictory or contrasting point. 「なお」 is used to add supplementary
+          information that complements or provides context to the preceding statement, without contradicting
+          it.
+    scene: A researcher presents scientific findings at a conference or in a paper, outlining both the
+      discovery and the next steps.
+    register: bijinesu nihongo (business)
+    setting: informative
+    etymology: 「相関 関係」 (sōkan kankei) refers to a correlation or relationship, a key term in research.
+      「示唆 する」 (shisa suru) means to suggest or imply, commonly used to present findings that are not yet
+      definitive. 「必須」 (hissu) means essential or indispensable, emphasizing the necessity of future work.
+post_example_writeup: As you can see from these examples, 「なお」 is consistently used in formal settings
+  to append important, often clarifying or supplementary information to a previous statement. It functions
+  to ensure comprehensive understanding by providing crucial details without disrupting the primary flow
+  of information. Pay close attention to its usage in official announcements, business communications,
+  and instructional texts. While other connectors might seem similar, 「なお」 carries a specific weight and
+  formality that makes it distinct.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なお2

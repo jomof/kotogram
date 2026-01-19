@@ -1,0 +1,220 @@
+grammar_point: たびたび (frequently)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - うっかり (carelessly)
+  - が (subject marker)
+  - にする (to decide or make)
+  - よ (emphasis・information sharing)
+  - ～口 (exit・entrance)
+meaning: frequently; often; repeatedly
+pronunciation:
+  katakana: タビタビ
+  romaji: tabitabi
+formation:
+  たびたび: Used as an adverb modifying verbs or adjectives, emphasizing repeated occurrences.
+jlpt: N3
+etymology: The term たびたび is a reduplication of たび (度), meaning 'time' or 'occurrence.' This repetition,
+  a common linguistic device in Japanese (重語 - jōgo), serves to emphasize the repeated nature of an action
+  or event, much like 時々 (sometimes) or 日々 (day by day). This structure inherently conveys the meaning
+  of 'time and again' or 'repeatedly,' thereby evolving to signify 'frequently.'
+writeup: |-
+  たびたび is an adverb that expresses that an action or event occurs **frequently** or **repeatedly**. It emphasizes the notion of "many times" or "each time." While often translated simply as "frequently" or "often," it carries a nuance of something happening with noticeable recurrence. This can sometimes imply a recurring pattern, or in certain contexts, even a slight sense of annoyance or something unexpected happening repeatedly.
+
+  It is generally used to modify verbs, indicating that the action happens repeatedly. It can also describe a state that is frequently observed. たびたび often highlights distinct, separate occurrences rather than a continuous or ceaseless state.
+
+  To grasp its specific nuance, it is helpful to compare たびたび with similar words such as よく, しばしば, 何度も, and 頻繁に. たびたび tends to be a bit more personal or subjective than the more formal 頻繁に。
+false_friends:
+  - term: よく
+    meaning: often; frequently; well; skillfully
+    kind: similar expression
+    nuance: よく is a more general adverb of frequency and manner. It can mean "well" or "skillfully" in
+      addition to "often." たびたび specifically emphasizes repetition and often implies a noticeable or perhaps
+      even slightly bothersome recurrence, whereas よく is more neutral and broad.
+    grammar_point: <suggest>:よく (frequently・often)
+  - term: しばしば
+    meaning: often; frequently
+    kind: synonym
+    nuance: しばしば is a very close synonym to たびたび in meaning "often" or "frequently." However, しばしば tends
+      to be more formal or literary in tone compared to たびたび, which is more common in everyday speech.
+    grammar_point: <suggest>:しばしば (often・frequently)
+  - term: 何度も
+    meaning: many times; over and over again
+    kind: similar expression
+    nuance: 何度も explicitly emphasizes the count of repetitions, meaning "many times." たびたび emphasizes
+      the frequency or recurring nature, without necessarily focusing on the exact number of instances.
+      何度も can imply a more exhaustive repetition than たびたび.
+    grammar_point: <suggest>:何度も (many times)
+  - term: 頻繁に
+    meaning: frequently; often; constantly
+    kind: similar expression
+    nuance: 頻繁に (ひんぱんに) is a more formal and objective term for high frequency. It sounds more like a
+      statistic or observation. たびたび can carry a more subjective feeling, sometimes with a nuance of slight
+      exasperation or a pattern being noticed.
+    grammar_point: <suggest>:頻繁に (frequently)
+  - term: 常に
+    meaning: always; constantly; habitually
+    kind: similar expression
+    nuance: 常に indicates something happening "always" or "constantly," implying a higher and more continuous
+      level of frequency than たびたび. たびたび suggests frequent, but not necessarily ceaseless, occurrences.
+    grammar_point: <suggest>:常に (always・constantly)
+post_false_friends_writeup: When choosing between たびたび と its similar expressions, consider the context
+  and the nuance you wish to convey. Use たびたび when you want to highlight repeated occurrences, especially
+  if there's a slight implication of regularity or a sense of things happening again and again. For a
+  more general "often," よく is usually the safest choice. If you want to emphasize the sheer number of
+  times, 何度も is more appropriate. For formal or objective discussions of high frequency, 頻繁に fits better.
+  Lastly, しばしば is a good alternative when aiming for a slightly more literary or formal tone than たびたび。
+examples:
+  - english: She frequently travels abroad for work.
+    japanese:
+      - 彼女 は {たびたび} 仕事 で 海外 に 行き ます。
+      - 彼女 は {たびたび} 仕事 で 海外 に 行く。
+      - 彼女 は {たびたび} 海外 出張 し ます。
+    english_literally: As for her, frequently for work, abroad goes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 仕事 で 海外 に {よく} 行き ます。
+        english: She often travels abroad for work.
+        hint: よく is a general term for "often" or "well," whereas たびたび emphasizes the repeated nature
+          of the action. We're looking for the sense of "time and again."
+    scene: A colleague talking about a busy coworker.
+    register: formal
+    setting: professional
+  - english: My car frequently breaks down.
+    japanese:
+      - 私 の 車 は {たびたび} 故障 し ます。
+      - 私 の 車 は {たびたび} 故障 する。
+      - 私 の 車 は {たびたび} 壊れ ます。
+    english_literally: As for my car, frequently it breaks down.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 車 は {何 度 も} 故障 し ます。
+        english: My car breaks down many times.
+        hint: 何度も emphasizes the number of times, while たびたび focuses on the frequency or repeated occurrences.
+          We're looking for the nuance of "frequently" rather than just a count.
+    scene: Someone complaining about their old car.
+    register: casual
+    setting: serious
+  - english: He frequently visits that cafe.
+    japanese:
+      - 彼 は あの カフェ に {たびたび} 顔 を 出し ます。
+      - 彼 は あの カフェ に {たびたび} 顔 を 出す。
+      - 彼 は あの カフェ に {たびたび} 行き ます。
+    english_literally: As for him, to that cafe, frequently shows his face.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は あの カフェ に {頻繁 に} 顔 を 出し ます。
+        english: He frequently/constantly shows up at that cafe.
+        hint: 頻繁に is a more formal and objective term for high frequency. たびたび can have a more personal
+          or slightly informal feel. We're looking for an adverb that expresses repeated occurrences.
+    scene: Two friends noticing someone's habit.
+    register: casual
+    setting: friendly
+  - english: We frequently receive inquiries about this matter.
+    japanese:
+      - この 件 に つい て は {たびたび} お 問い合わせ を 頂戴 し て おり ます。
+      - この 件 に つい て は {たびたび} お 問い合わせ を 頂い て おり ます。
+      - この 件 に つい て は {たびたび} お 問い合わせ が あり ます。
+    english_literally: Regarding this matter, frequently inquiries we are receiving.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 に つい て は {常 に} お 問い合わせ を 頂戴 し て おり ます。
+        english: We are always receiving inquiries about this matter.
+        hint: 常に means "always" or "constantly," implying a continuous state. たびたび indicates frequent,
+          but not necessarily ceaseless, occurrences. We're looking for repeated but distinct occurrences.
+    scene: A customer service representative addressing an internal meeting.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: In ancient times, this area was frequently affected by floods.
+    japanese:
+      - 古代、この 地域 は {たびたび} 洪水 に 見舞わ れ まし た。
+      - 古代、この 地域 は {たびたび} 洪水 に 見舞わ れ た。
+      - 古代、この 地域 は {たびたび} 洪水 の 被害 を 受け まし た。
+    english_literally: Ancient times, this area, frequently by floods was afflicted.
+    competing_grammar:
+      - competing_japanese:
+          - 古代、この 地域 は {しばしば} 洪水 に 見舞わ れ まし た。
+        english: In ancient times, this area was often affected by floods.
+        hint: しばしば is a close synonym, but it often carries a more literary or formal tone than たびたび.
+          We're looking for the specific sense of "frequently, time and again."
+    scene: A historian giving a lecture.
+    register: formal
+    setting: informative
+  - english: Surprisingly, she frequently makes simple mistakes.
+    japanese:
+      - 意外 に も 彼女 は {たびたび} 簡単 な ミス を し ます。
+      - 意外 に も 彼女 は {たびたび} 簡単 な ミス を する。
+      - 意外 に も 彼女 は {たびたび} うっかり ミス を し ます。
+    english_literally: Surprisingly, as for her, frequently simple mistakes she makes.
+    competing_grammar:
+      - competing_japanese:
+          - 意外 に も 彼女 は {よく} 簡単 な ミス を し ます。
+        english: Surprisingly, she often makes simple mistakes.
+        hint: よく is a general adverb for "often." たびたび emphasizes the repeated, noticeable nature, sometimes
+          with a nuance of slight exasperation. We're looking for a word that highlights repeated occurrences.
+    scene: A teacher discussing a student's performance.
+    register: formal
+    setting: informative
+  - english: You should frequently check the safety precautions.
+    japanese:
+      - 安全 注意 は {たびたび} 確認 する べき です。
+      - 安全 注意 は {たびたび} 確認 する べき だ。
+      - 安全 注意 は {たびたび} 確認 し なけれ ば なり ませ ん。
+    english_literally: Safety precautions, frequently check should do.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 注意 は {常 に} 確認 する べき です。
+        english: You should always check the safety precautions.
+        hint: 常に means "always" or "constantly." たびたび means "frequently," indicating regular but distinct
+          checks rather than ceaseless ones. We're looking for frequent, repeated checks.
+    scene: A supervisor instructing new employees.
+    register: formal
+    setting: instructional
+  - english: That cat frequently comes to our garden.
+    japanese:
+      - あの 猫、{たびたび} うち の 庭 に 来る ん だ よ。
+      - あの 猫 は {たびたび} うち の 庭 に 来 ます。
+      - あの 猫 が {たびたび} うち の 庭 に やっ て 来る。
+    english_literally: That cat, frequently to our garden comes, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 猫、{よく} うち の 庭 に 来る ん だ よ。
+        english: That cat often comes to our garden.
+        hint: よく は一般的な「しばしば」の意味を持つ単語です。たびたび は、繰り返される、目立つ訪問を強調します。ここでは、繰り返される訪問のパターンを示す副詞を探しています。
+    scene: A man talking to his neighbor about a stray cat.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of the sentence-final particle 「んだよ」 adds a casual, explanatory tone, typical of male
+      speech in informal settings.
+  - english: My grandmother frequently sends me homemade cookies.
+    japanese:
+      - お ばあ ちゃん が {たびたび} 手作り クッキー を 送っ て くれる の。
+      - お ばあ ちゃん が {たびたび} 手作り クッキー を 送っ て くれ ます。
+      - お ばあ ちゃん が {たびたび} 手作り クッキー を 送っ て くれる。
+    english_literally: Grandmother, frequently handmade cookies sends me, you see.
+    competing_grammar:
+      - competing_japanese:
+          - お ばあ ちゃん が {何 度 も} 手作り クッキー を 送っ て くれる の。
+        english: My grandmother sends me homemade cookies many times.
+        hint: 何度も は、発生回数に焦点を当てます。たびたび は、行動の頻度や繰り返しの性質を強調します。「頻繁に」という意味合いを探しています。
+    scene: A young woman talking to her friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle 「の」 softens the statement and is often used by female speakers
+      in casual conversation to explain something or express a gentle assertion.
+  - english: In the past, I frequently forgot my umbrella.
+    japanese:
+      - 昔 は {たびたび} 傘 を 忘れ て しまい まし た。
+      - 昔 は {たびたび} 傘 を 忘れ て しまっ た。
+      - 昔 は {たびたび} 傘 を 忘れ まし た。
+    english_literally: In the past, frequently umbrella forgot.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は 傘 を {いつ も} 忘れ て しまい まし た。
+        english: In the past, I always forgot my umbrella.
+        hint: いつも は「常に」という意味です。たびたび は「頻繁に」という意味で、継続的ではなく、規則的な忘れ方を示します。頻繁に、個別の忘れ方を探しています。
+    scene: Someone reminiscing about their past habits.
+    register: casual
+    setting: reflective
+    conjugation: past polite (～ました)

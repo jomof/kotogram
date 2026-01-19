@@ -1,0 +1,232 @@
+grammar_point: い-Adjective[くて] (te-form)
+learn_before:
+  - Verb[なかった] (past negative)
+  - い-Adjective[dictionary] (dictionary)
+  - い-Adjective[くなかった] (past negative)
+  - い-Adjective[み] (abstract quality)
+  - すぐ (immediately・easily)
+  - する (to have a characteristic)
+  - どこ (where)
+  - な-Adjectives (adjectival nouns)
+  - は (topic and contrast)
+  - 注意する (to pay attention・to warn・to caution)
+meaning: connecting i-adjectives to form compound phrases or to indicate a cause/reason, meaning "and"
+  or "because".
+pronunciation:
+  katakana: クテ
+  romaji: kute
+formation:
+  い-Adjective (remove final い) + くて: Connects two i-adjectives or an i-adjective to a verb/adjective,
+    indicating sequence or cause.
+jlpt: N5
+etymology: The `~くて` ending for i-adjectives derives from the classical Japanese adverbial form of adjectives,
+  where `い` changes to `く` (e.g., 美しい becomes 美しく). The particle `て` (originally `にて`) is then suffixed,
+  serving to connect clauses sequentially or causally, much like its function with verbs. Essentially,
+  it transforms the adjective into an adverbial phrase that links to the subsequent part of the sentence.
+writeup: |-
+  The `い-Adjective[くて]` form is a crucial and versatile conjugation of i-adjectives. It functions primarily in two ways:
+
+  **1. Connecting Multiple I-Adjectives or Adjectives to Verbs:**
+  This form allows you to link two or more i-adjectives together to describe a single noun or situation. For instance, to say "big and heavy," you would use `大きく て 重い` (Ōkī kute omoi). The `くて` form acts like "and," creating a compound description. You can also connect an i-adjective to a verb, effectively turning the adjective into an adverbial modifier of the verb, describing the manner or state in which the action occurs. For example, `速く て 走る` (Hayakute hashiru) means "run quickly."
+
+  **2. Expressing Cause or Reason:**
+  Similar to the `て` form of verbs, `い-Adjective[くて]` can be used to state a reason or cause for a subsequent action or state. In this case, it can be translated as "because (it is/was)..." or "so (it is/was)..." The cause precedes the effect. For example, `忙しく て、パーティー に 行け ませ ん でし た` (Isogashikute, pātī ni ikenakatta) means "Because I was busy, I couldn't go to the party." It implies a natural consequence or explanation.
+false_friends:
+  - term: な-Adjective[で] (te-form)
+    meaning: connecting na-adjectives or indicating cause/reason.
+    kind: similar expression
+    nuance: 「い-Adjective[くて]」 is specifically for i-adjectives, forming the adverbial `く` form plus `て`.
+      「な-Adjective[で]」 is for na-adjectives, which behave like nouns and take the `で` particle in their
+      connective form. Both can express "and" or "because", but their application depends on the adjective
+      type.
+    grammar_point: な-Adjective[で] (te-form)
+  - term: Verb[て] (and then)
+    meaning: connecting verbs, actions, or expressing cause/reason.
+    kind: similar expression
+    nuance: While both 「い-Adjective[くて]」 and 「Verb[て]」 are "te-forms" and can link clauses or express
+      cause, 「い-Adjective[くて]」 is used for adjectives to describe qualities or states, while 「Verb[て]」
+      is used for verbs to describe actions or processes.
+    grammar_point: Verb[て] (and then)
+  - term: '[Clause]から (because・so)'
+    meaning: indicating a reason or cause (stronger, more direct).
+    kind: similar expression
+    nuance: 「い-Adjective[くて]」 can imply a reason as part of a descriptive phrase (e.g., 寒く て 震え た - I
+      shivered because it was cold). 「から」 explicitly states the reason after a complete clause and often
+      implies a direct consequence or assertion (e.g., 寒い から、震える - It's cold, so I'm shivering).
+    grammar_point: '[Clause]から (because・so)'
+  - term: '[Clause]ので (because・so)'
+    meaning: indicating a reason or cause (softer, often used for explanations or polite requests).
+    kind: similar expression
+    nuance: Similar to 「から」, 「ので」 follows a full clause to give a reason. However, 「ので」 creates a softer,
+      more explanatory tone compared to the more direct cause/effect implied by 「い-Adjective[くて]」 when
+      used for reason, or the assertive tone of 「から」.
+    grammar_point: '[Clause]ので (because・so)'
+  - term: い-Adjective + Noun (describing nouns)
+    meaning: directly modifying a noun.
+    kind: similar expression
+    nuance: 「い-Adjective[くて]」 is a conjunctive form that connects adjectives or clauses, for example,
+      「大きく て 速い 犬」 (a big and fast dog) where 「大きい」 is linked to 「速い」. In contrast, 「大きい 犬」 (a big dog)
+      simply uses the dictionary form to directly modify the noun. The `くて` form cannot directly modify
+      a noun.
+    grammar_point: <suggest>:い-Adjective + Noun (describing nouns)
+post_false_friends_writeup: While `い-Adjective[くて]` serves to connect i-adjectives and express cause,
+  it's important to distinguish it from other grammatical constructions. The key is to recognize that
+  `くて` forms an adverbial phrase, allowing adjectives to modify other adjectives, verbs, or the entire
+  subsequent clause. Particles like `から` and `ので` explicitly state reasons, often for a full preceding
+  sentence, with varying degrees of directness or politeness. Adjectives in their dictionary form directly
+  precede and modify nouns. Understanding these distinctions will help you accurately convey complex ideas
+  and reasons in Japanese.
+examples:
+  - english: This room is small and dark.
+    japanese:
+      - この 部屋 は 小さく て 暗い です。
+      - この 部屋、小さく て 暗い。
+    english_literally: This room, small and dark is.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 小さく て、そして 暗い です。
+        english: This room is small, and then it is dark.
+        hint: Adding 「そして」 creates a stronger pause and implies a sequence or additional thought rather
+          than a single unified description. We're looking for a simple, natural connection of two qualities.
+    scene: Describing a room's characteristics.
+    register: teineigo (polite)
+    setting: informative
+  - english: The test was difficult, so I couldn't answer.
+    japanese:
+      - 試験 は 難しく て、答え られ ませ ん でし た。
+      - 試験、難しく て、答え られ なかっ た。
+    english_literally: Test, difficult, could not answer.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 難しかっ た の で、答え られ ませ ん でし た。
+        english: Because the test was difficult, I couldn't answer.
+        hint: 「ので」 explicitly states the reason for the inability to answer. We're looking for a connection
+          where the difficulty of the test naturally leads to not being able to answer, without explicitly
+          stating 'because'.
+      - competing_japanese:
+          - 試験 は 難しかっ た から です、答え られ ませ ん でし た。
+        english: It is because the test was difficult that I couldn't answer.
+        hint: 「から です」 provides a very strong and assertive reason. We're looking for a more direct, flowing
+          connection of the two clauses.
+    scene: A student explaining their poor performance on an exam.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: That dog is big and cute.
+    japanese:
+      - あの 犬 は 大きく て 可愛い です。
+      - あの 犬、大きく て 可愛い。
+    english_literally: That dog, big and cute is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 犬 は 大きな 犬 です。
+        english: That dog is a big dog.
+        hint: Using the dictionary form of the adjective directly modifies the noun, rather than connecting
+          two adjectives describing the same noun. We're looking to express two distinct qualities connected
+          by 'and'.
+    scene: Admiring a pet.
+    register: casual
+    setting: friendly
+  - english: The sky is blue and beautiful today.
+    japanese:
+      - 今日 は 空 が 青く て 綺麗 です。
+      - 今日 は 空 が 青く て 綺麗 だ ね。
+    english_literally: Today, sky, blue and beautiful is.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 空 が 青い し、綺麗 です。
+        english: Today, the sky is blue, and it's beautiful.
+        hint: The `し` particle lists multiple reasons or qualities with an implication of more to come,
+          or a slightly stronger 'and'. We're looking for a simple compound description.
+    scene: Enjoying the weather.
+    register: teineigo (polite)
+    setting: optimistic
+  - english: The road was narrow and dangerous, so we had to be careful.
+    japanese:
+      - 道 は 狭く て 危ない の で、注意 する 必要 が あり まし た。
+      - 道 は 狭く て 危ない から、注意 し なきゃ なら なかっ た。
+    english_literally: Road, narrow and dangerous, so attention doing need there was.
+    competing_grammar:
+      - competing_japanese:
+          - 道 は 狭く て、それ から 危ない の で、注意 する 必要 が あり まし た。
+        english: The road was narrow, and then dangerous, so we had to be careful.
+        hint: 「それから」 implies a sequence of events or separate items, not a combined description of the
+          road's characteristics. We want to list the traits as a single cause.
+    scene: Recounting a challenging journey.
+    register: teineigo (polite)
+    setting: cautious
+  - english: This book is interesting and easy to read.
+    japanese:
+      - この 本 は 面白く て 読み やすい です。
+      - この 本、面白く て 読み やすい ね。
+    english_literally: This book, interesting and easy to read is.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 面白い、そして 読み やすい です。
+        english: This book is interesting, and it is easy to read.
+        hint: Using the plain form and 「そして」 separates the two descriptions more strongly. We want to
+          combine them seamlessly as characteristics of the same book.
+    scene: Giving a book recommendation.
+    register: teineigo (polite)
+    setting: informative
+  - english: The soup was hot and delicious.
+    japanese:
+      - スープ は 熱く て 美味しかっ た です。
+      - スープ、熱く て 美味しかっ た。
+    english_literally: Soup, hot and delicious was.
+    competing_grammar:
+      - competing_japanese:
+          - スープ は 熱い から、美味しい です。
+        english: Because the soup is hot, it is delicious.
+        hint: This suggests the heat is the reason for its deliciousness, which may not be the intended
+          meaning. We want to describe two qualities simultaneously present.
+    scene: Enjoying a meal.
+    register: casual
+    setting: friendly
+  - english: He is kind and funny.
+    japanese:
+      - 彼 は 優しく て 面白い 人 です。
+      - 彼、優しく て 面白い 人 だ。
+    english_literally: He, kind and interesting person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 優しく て、面白い 人 です。
+        english: He is kind, and he is an interesting person.
+        hint: The comma implies a slight pause or separate statement. We're looking for a smooth, single
+          description of the person's traits.
+    scene: Describing a friend's personality.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The coffee was hot, so I couldn't drink it right away.
+    japanese:
+      - コーヒー は 熱く て、すぐ に は 飲め ませ ん でし た。
+      - コーヒー、熱く て、すぐ に は 飲め なかっ た。
+    english_literally: Coffee, hot, immediately could not drink.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー は 熱かっ た の で、すぐ に は 飲め ませ ん でし た。
+        english: Because the coffee was hot, I couldn't drink it right away.
+        hint: While 「の で」 also expresses reason, the `くて` form here integrates the reason more smoothly
+          into the sentence flow, creating a slightly less explicit causal link.
+    scene: Explaining why one hesitated to drink coffee.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: The bag is light and durable.
+    japanese:
+      - その バッグ は 軽く て 丈夫 です。
+      - その バッグ、軽く て 丈夫 だ。
+    english_literally: That bag, light and durable is.
+    competing_grammar:
+      - competing_japanese:
+          - その バッグ は 軽い そして 丈夫 です。
+        english: That bag is light, and it is durable.
+        hint: Using the dictionary form and 「そして」 makes it sound like two separate statements rather than
+          two connected attributes of the same item. We want a compound description.
+    scene: Shopping for a bag.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: As seen in these examples, the `い-Adjective[くて]` form is indispensable for concisely
+  expressing multiple qualities or linking a cause to an effect involving i-adjectives. Remember that
+  the final verb or adjective dictates the overall tense and politeness of the sentence. Mastering this
+  form allows for more natural and fluid Japanese expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%84-Adjective%5B%E3%81%8F%E3%81%A6%5D-te-form

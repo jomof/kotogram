@@ -1,0 +1,358 @@
+grammar_point: つつある (gradual process)
+learn_before:
+  - '[Verb-stem]ながら・つつ (while doing)'
+meaning: -ing, Be -ing (indicating a gradual process)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: つつある
+    rarity: common
+    meaning: to be in the process of
+  - conjugation-type: non-past polite (～ます)
+    form: つつあります
+    rarity: common
+    meaning: to be in the process of (polite)
+  - conjugation-type: past plain (～た)
+    form: つつあった
+    rarity: common
+    meaning: was in the process of
+  - conjugation-type: past polite (～ました)
+    form: つつありました
+    rarity: common
+    meaning: was in the process of (polite)
+pronunciation:
+  katakana: ツツアル
+  romaji: tsutsu aru
+formation:
+  Verb stem + つつ + ある: Indicates an ongoing process of change or gradual progression.
+jlpt: N2
+etymology: The etymology of 「つつある」 is rooted in the adverbial particle 「つつ」, which originally meant 'while'
+  or 'as'. The addition of 「ある」, the verb 'to be,' transforms the phrase to indicate a continuous or ongoing
+  state of action. The nuance of gradual progression comes from the combined effect of both elements.
+writeup: |-
+  The grammar point 「つつある」 combines 「つつ」 (meaning "while doing") with 「ある」 (meaning "to be"). Together, they indicate that something is **in the process of changing or gradually progressing**. The verb before 「つつ」 is in its ます-stem form. This structure emphasizes that the action is **slowly but surely continuing or changing**, often involving an increase, decrease, expansion, or contraction. A simple translation is "to be -ing," but it implies a gradual, evolving state. It is a more formal expression than the simple continuous tense formed with 「ている」.
+
+  **Important Considerations:**
+
+  *   「つつある」 is generally used for actions indicating an ongoing state of change, such as a flower blooming or a situation evolving, rather than simple, noticeable physical motions.
+  *   It's less common with verbs that have a clear and definite completion point.
+false_friends:
+  - term: ている
+    meaning: is -ing
+    kind: often confused with
+    nuance: 「ている」 indicates a continuous action or state without necessarily implying a gradual change
+      like 「つつある」.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: ているあいだに
+    meaning: While, During the time that ~
+    kind: similar expression
+    nuance: 「ているあいだに」 specifies a timeframe within which something occurs, whereas 「つつある」 describes a
+      gradual process itself.
+    grammar_point: あいだ (between・among・while・during)
+  - term: ながら
+    meaning: While ~ing, During, As
+    kind: similar expression
+    nuance: 「ながら」 indicates doing two actions simultaneously. 「つつある」 signifies the gradual progression
+      of one action.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+post_false_friends_writeup: To avoid confusion, remember that 「つつある」 emphasizes the gradual progression
+  of an action or state, whereas 「ている」 simply indicates a continuous state. 「ながら」 means doing two things
+  at the same time, and 「ているあいだに」 specifies a timeframe.
+examples:
+  - english: Every year, more and more elderly people are having trouble making ends meet because their
+      pension benefits are decreasing.
+    japanese:
+      - 毎年、年金 の 受給 額 が 減り {つつ ある} の で、生活 に 困っ て いる 高齢 者 が 増え て き て いる。
+      - 毎年、年金 の 受給 額 が 減り {つつ あり ます} の で、生活 に 困っ て いる 高齢 者 が 増え て き て い ます。
+    english_literally: Every year, pension benefit amounts are decreasing, so elderly people who are struggling
+      with life are increasing.
+    competing_grammar:
+      - competing_japanese:
+          - 毎年、年金 の 受給 額 が 減っ て {いる} の で、生活 に 困っ て いる 高齢 者 が 増え て き て いる。
+        english: Every year, pension benefits are decreasing, so elderly people are struggling with life
+          and their numbers are increasing.
+        hint: The simple continuous form 「減っ て いる」 focuses on the state of decreasing. We're looking for
+          an expression that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - 毎年、年金 の 受給 額 が 減り {始め て いる} の で、生活 に 困っ て いる 高齢 者 が 増え て き て いる。
+        english: Every year, pension benefits are starting to decrease, so elderly people are struggling
+          with life and their numbers are increasing.
+        hint: 「減り 始め て いる」 emphasizes the *start* of the decrease. We're looking for an expression that
+          emphasizes the ongoing gradual *process* of change.
+    scene: Discussing the economic challenges faced by the elderly within a societal context.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This sentence describes a societal trend, emphasizing a slow but continuous change. The formal
+      register and serious setting are fitting for discussing such a systemic issue.
+    etymology: The phrase 「生活 に 困る」 (seikatsu ni komaru) means 'to have trouble making ends meet' or 'struggle
+      with daily life'. 「増え て き て いる」 implies a continuous increase that has been developing over time
+      and is still ongoing.
+  - english: Prices in general are rising in Japan.
+    japanese:
+      - 日本 で は 物価 が 上がり {つつ ある}。
+      - 日本 で は 物価 が 上がり {つつ あり ます}。
+    english_literally: In Japan, prices are rising.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で は 物価 が 上がっ て {いる}。
+        english: Prices in general are rising in Japan.
+        hint: The simple continuous form 「上がっ て いる」 focuses on the current state. We're looking for an
+          expression that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - 日本 で は 物価 が 上がり {始め て いる}。
+        english: Prices in general are starting to rise in Japan.
+        hint: 「上がり 始め て いる」 emphasizes the *start* of the rise. We're looking for an expression that emphasizes
+          the ongoing gradual *process* of change.
+    scene: Commenting on the current economic situation in a news report or economic discussion.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This sentence highlights an ongoing economic trend. The semi-formal register and informative
+      setting make it suitable for a general statement about the economy.
+    etymology: 「物価」 (bukka) refers to 'prices of commodities,' a common term in economic discourse. 「上がりつつある」
+      specifically denotes the gradual and continuous ascent of prices, as opposed to a sudden jump.
+  - english: These days, because people can shop online, fewer people are going out of their way to go
+      to stores to shop.
+    japanese:
+      - 最近 は インターネット を 使っ て 買い物 が できる の で、わざわざ お 店 に 行っ て 買い物 を する 人 が 減り {つつ ある}。
+      - 最近 は インターネット を 使っ て 買い物 が できる の で、わざわざ お 店 に 行っ て 買い物 を する 人 が 減り {つつ あり ます}。
+    english_literally: Recently, since shopping can be done using the internet, the number of people who
+      bother to go to stores to shop is decreasing.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 は インターネット を 使っ て 買い物 が できる の で、わざわざ お 店 に 行っ て 買い物 を する 人 が 減っ て {いる}。
+        english: These days, fewer people are going out of their way to go to stores to shop.
+        hint: The simple continuous form 「減っ て いる」 focuses on the current state of decreasing. We're looking
+          for an expression that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - 最近 は インターネット を 使っ て 買い物 が できる の で、わざわざ お 店 に 行っ て 買い物 を する 人 が 減り {始め て いる}。
+        english: These days, fewer people are starting to go out of their way to go to stores to shop.
+        hint: 「減り 始め て いる」 emphasizes the *start* of the decrease. We're looking for an expression that
+          emphasizes the ongoing gradual *process* of change.
+    scene: Describing the changing shopping habits of people in a societal observation.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This example describes a shift in behavior over time, emphasizing a gradual decrease in store
+      visits. The phrase 「わざわざ」 (wazawaza) adds the nuance of 'going out of one's way' or 'troubling oneself
+      to do something'.
+    etymology: 「わざわざ」 is an adverb that indicates bothering to do something or taking the trouble to do
+      something, often implying that it's unnecessary or unexpected in the context. 「減りつつある」 directly
+      implies a trend of reduction.
+  - english: It is a pity that the number of wild animals in Africa is decreasing.
+    japanese:
+      - アフリカ の 野生 動物 の 数 が 減り {つつ ある} の は 残念 だ。
+      - アフリカ の 野生 動物 の 数 が 減り {つつ あり ます} の は 残念 です。
+    english_literally: It is regrettable that the number of wild animals in Africa is decreasing.
+    competing_grammar:
+      - competing_japanese:
+          - アフリカ の 野生 動物 の 数 が 減っ て {いる} の は 残念 だ。
+        english: It is a pity that the number of wild animals in Africa is decreasing.
+        hint: The simple continuous form 「減っ て いる」 describes the current state. We're looking for an expression
+          that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - アフリカ の 野生 動物 の 数 が 減り {始め て いる} の は 残念 だ。
+        english: It is a pity that the number of wild animals in Africa is starting to decrease.
+        hint: 「減り 始め て いる」 emphasizes the *start* of the decrease. We're looking for an expression that
+          emphasizes the ongoing gradual *process* of change.
+    scene: Expressing concern about the environment and species conservation.
+    register: semi-formal
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This sentence expresses a regretful, ongoing environmental decline. The use of 「残念 だ」 (zannen
+      da) conveys sadness or regret, fitting the melancholic setting.
+    etymology: 「残念」 (zannen) means 'regrettable' or 'pity'. The structure 「〜の は 残念 だ」 is a common way
+      to express that something is regrettable. 「減りつつある」 emphasizes the continuous nature of the decline.
+  - english: In recent years, the economic relationship between Country A and Country B is strengthening,
+      but militarily, small-scale conflicts continue near the border.
+    japanese:
+      - 近年、経済 的 に は A 国 と B 国 の 協力 関係 は 強化 さ れ {つつ ある} が、軍事 的 に は 国境 付近 に おい て 小 規模 紛争 が 絶え ない。
+      - 近年、経済 的 に は A 国 と B 国 の 協力 関係 は 強化 さ れ {つつ あり ます} が、軍事 的 に は 国境 付近 に おい て 小 規模 紛争 が 絶え ませ ん。
+    english_literally: In recent years, economically, the cooperative relationship between Country A and
+      Country B is strengthening, but militarily, small-scale conflicts do not cease near the border.
+    competing_grammar:
+      - competing_japanese:
+          - 近年、経済 的 に は A 国 と B 国 の 協力 関係 は 強化 さ れ て {いる} が、軍事 的 に は 国境 付近 に おい て 小 規模 紛争 が 絶え ない。
+        english: In recent years, the economic relationship between Country A and Country B is strengthening,
+          but militarily, small-scale conflicts continue near the border.
+        hint: The simple continuous form 「強化 さ れ て いる」 describes the current state. We're looking for
+          an expression that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - 近年、経済 的 に は A 国 と B 国 の 協力 関係 は 強化 さ れ {始め て いる} が、軍事 的 に は 国境 付近 に おい て 小 規模 紛争 が 絶え ない。
+        english: In recent years, the economic relationship between Country A and Country B is starting
+          to strengthen, but militarily, small-scale conflicts continue near the border.
+        hint: 「強化 さ れ 始め て いる」 emphasizes the *start* of the strengthening. We're looking for an expression
+          that emphasizes the ongoing gradual *process* of change.
+    scene: Analyzing international relations and geopolitical trends.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example describes evolving international dynamics, highlighting a gradual strengthening
+      of relationships. The contrasting nature with 「が」 (ga) and the phrase 「絶え ない」 (taenai, 'does not
+      cease') emphasizes the ongoing conflict despite the economic cooperation.
+    etymology: 「絶え ない」 is formed from the verb 「絶える」 (taeru, 'to cease, to run out') in its negative form.
+      When combined with 「ない」, it means 'uninterrupted' or 'continuous'. This starkly contrasts with the
+      strengthening relationship indicated by 「強化されつつある」.
+  - english: There are countries that are changing into deserts due to global warming, and there are also
+      island nations that are sinking into the ocean.
+    japanese:
+      - 地球 温暖 化 の ため に 砂漠 に 変わり {つつ ある} 国 が ある。また、海 に 沈み {つつ ある} 島国 も ある。
+      - 地球 温暖 化 の ため に 砂漠 に 変わり {つつ あり ます} 国 が あり ます。また、海 に 沈み {つつ あり ます} 島国 も あり ます。
+    english_literally: Due to global warming, there are countries that are changing into deserts. Also,
+      there are island nations that are sinking into the ocean.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 温暖 化 の ため に 砂漠 に 変わっ て {いる} 国 が ある。また、海 に 沈ん で {いる} 島国 も ある。
+        english: There are countries that have changed into deserts due to global warming, and there are
+          also island nations that are sinking into the ocean.
+        hint: The simple continuous form 「変わっ て いる」 focuses on the current state. We're looking for an
+          expression that emphasizes the gradual process of this change.
+      - competing_japanese:
+          - 地球 温暖 化 の ため に 砂漠 に 変わり {始め て いる} 国 が ある。また、海 に 沈み {始め て いる} 島国 も ある。
+        english: There are countries that are starting to change into deserts due to global warming, and
+          there are also island nations that are starting to sink into the ocean.
+        hint: 「変わり 始め て いる」 emphasizes the *start* of the change. We're looking for an expression that
+          emphasizes the ongoing gradual *process* of change.
+    scene: Discussing the long-term, ongoing effects of climate change.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This sentence illustrates ongoing environmental transformations, emphasizing the slow, continuous
+      process of change (desertification, sinking). The repeated use of 「つつある」 underscores the grave,
+      ongoing nature of these global issues.
+    etymology: 「地球 温暖 化」 (chikyuu ondan ka) means 'global warming'. 「~の ため に」 (no tame ni) indicates 'due
+      to' or 'for the sake of'. The use of 「また」 (mata) functions as 'also' or 'in addition', linking two
+      related but distinct consequences.
+  - english: In the 70s, because the price of oil was rising rapidly, bicycle usage became widespread
+      in the Netherlands.
+    japanese:
+      - 70 年 代 中、石油 の 価格 が 急 に 上がり {つつ あっ た} の で、オランダ で は 自転 車 の 使用 が 広まっ た。
+      - 70 年 代 中、石油 の 価格 が 急 に 上がり {つつ あり まし た} の で、オランダ で は 自転 車 の 使用 が 広まり まし た。
+    english_literally: In the mid-70s, because the price of oil was rapidly rising, the use of bicycles
+      became widespread in the Netherlands.
+    competing_grammar:
+      - competing_japanese:
+          - 70 年 代 中、石油 の 価格 が 急 に 上がっ て {い た} の で、オランダ で は 自転 車 の 使用 が 広まっ た。
+        english: In the mid-70s, because the price of oil was rapidly rising, the use of bicycles became
+          widespread in the Netherlands.
+        hint: The simple continuous past form 「上がっ て い た」 describes a state that was ongoing. We're looking
+          for an expression that emphasizes the gradual *process* of this change over a period of time.
+      - competing_japanese:
+          - 70 年 代 中、石油 の 価格 が 急 に 上がり {始め て い た} の で、オランダ で は 自転 車 の 使用 が 広まっ た。
+        english: In the mid-70s, because the price of oil was rapidly starting to rise, bicycle usage
+          became widespread in the Netherlands.
+        hint: 「上がり 始め て い た」 emphasizes the *start* of the rise in the past. We're looking for an expression
+          that emphasizes the ongoing gradual *process* of change.
+    scene: Explaining a historical shift in transportation habits over a period of time.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example describes a past, prolonged period of change (rising oil prices), where the process
+      was ongoing. The phrase 「急 に」 (kyuu ni, 'suddenly' or 'rapidly') indicates the speed of the increase,
+      while 「つつあった」 shows its continuous nature.
+    etymology: 「年 代 中」 (nendai chuu) refers to 'in the middle of a decade.' 「広まっ た」 (hiromatta) is the
+      past form of 「広まる」 (hiromaru), meaning 'to spread' or 'to become widespread'.
+  - english: Fortunately, my disease is healing.
+    japanese:
+      - おかげ さま で、病気 は 治り {つつ あり ます}。
+      - おかげ さま で、病気 は 治り {つつ ある}。
+    english_literally: Thanks to your kindness, my illness is in the process of healing.
+    competing_grammar:
+      - competing_japanese:
+          - おかげ さま で、病気 は 治っ て {い ます}。
+        english: Fortunately, my disease is healing.
+        hint: The simple continuous polite form 「治っ て い ます」 describes the current state. We're looking
+          for an expression that emphasizes the gradual process of healing.
+      - competing_japanese:
+          - おかげ さま で、病気 は 治り {始め て い ます}。
+        english: Fortunately, my disease is starting to heal.
+        hint: 「治り 始め て い ます」 emphasizes the *start* of the healing. We're looking for an expression that
+          emphasizes the ongoing gradual *process* of healing.
+    scene: Providing a hopeful update on health during a polite conversation.
+    register: teineigo (polite)
+    setting: optimistic
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「おかげ さま で」 (okage sama de) is a polite expression meaning 'Thanks to you' or 'Thanks
+      to your kindness', often used when something good happens. This, combined with the polite 「つつあります」,
+      creates a very thankful and optimistic tone.
+    etymology: 「おかげ さま で」 comes from 「おかげ」 (okage, 'grace, divine favor') and the honorific suffix 「さま」.
+      It expresses gratitude for indirect support or good fortune. 「治りつつあります」 indicates the gradual, ongoing
+      process of recovery in a polite form.
+  - english: There's no way I'm starting to forget about you, is there?
+    japanese:
+      - 君 の こと が 忘れ られ {つつ ある} なんて、そんな こと ある わけ ない だろう？
+      - 君 の こと が 忘れ られ {つつ あり ます} なんて、そんな こと ある わけ あり ませ ん か？
+    english_literally: There's no way I am starting to forget about you, is there?
+    competing_grammar:
+      - competing_japanese:
+          - 君 の こと が 忘れ られ て {いる} なんて、そんな こと ある わけ ない だろう？
+        english: There's no way you are being forgotten, is there?
+        hint: The simple passive continuous 「忘れ られ て いる」 describes a state of being forgotten. We're looking
+          for an expression that implies a gradual *process* of forgetting.
+    scene: A young man on a first date, trying to reassure his date with an intimate, slightly rhetorical
+      question.
+    register: casual
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「だろう？」 (darou?) at the end is a characteristic male speech pattern in casual contexts,
+      adding a strong, assertive, yet slightly questioning tone to the statement. This contributes to
+      the flirty and confident setting. The phrase 「そんな こと ある わけ ない」 (sonna koto aru wake nai) emphatically
+      means 'there's no way such a thing could happen'.
+    etymology: 「わけ ない」 is a common idiom meaning 'there's no way' or 'it's impossible'. 「忘れられつつある」 combines
+      the passive form of 'to forget' (忘れられる) with 「つつある」 to express the gradual process of being forgotten.
+  - english: I hope these feelings are slowly reaching you.
+    japanese:
+      - この 気持ち は、君 に 伝わり {つつ ある} と いい な。
+      - この 気持ち は、君 に 伝わり {つつ あり ます} と いい です ね。
+    english_literally: I hope these feelings are in the process of being conveyed to you.
+    competing_grammar:
+      - competing_japanese:
+          - この 気持ち は、君 に 伝わっ て {いる} と いい な。
+        english: I hope these feelings are reaching you.
+        hint: The simple continuous 「伝わっ て いる」 describes a state of being conveyed. We're looking for
+          an expression that implies a gradual *process* of feelings being conveyed.
+      - competing_japanese:
+          - この 気持ち は、君 に 伝わり {始め て いる} と いい な。
+        english: I hope these feelings are starting to reach you.
+        hint: 「伝わり 始め て いる」 emphasizes the *start* of the feelings being conveyed. We're looking for an
+          expression that emphasizes the ongoing gradual *process* of conveyance.
+    scene: A person, perhaps a young woman, secretly wishing their feelings are gradually being understood
+      by their crush.
+    register: semi-formal
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「〜と いい な」 (to ii na) expresses a wish or hope in a gentle, slightly informal way,
+      fitting for an internal thought or a subtle expression of desire. 「伝わりつつある」 emphasizes the gradual,
+      rather than immediate, conveyance of feelings.
+    etymology: 「伝わる」 (tsutawaru) means 'to be conveyed' or 'to be communicated'. The 「〜と いい な」 construction
+      comes from 「〜と いい」 (it would be good if ~) plus the sentence-final particle 「な」, which adds a sense
+      of personal reflection or a soft wish.
+post_example_writeup: As you can see from the examples, 「つつある」 is primarily used to describe processes
+  of change or progression that are ongoing and gradual. It is often found in more formal or written contexts,
+  especially when discussing societal trends, environmental shifts, or personal developments that occur
+  over time. Remember to distinguish it from simple continuous actions, as its core meaning lies in the
+  *process* of becoming.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/つつある

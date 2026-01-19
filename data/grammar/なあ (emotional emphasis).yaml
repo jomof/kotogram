@@ -1,0 +1,254 @@
+grammar_point: なあ (emotional emphasis)
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+  - Verb[imperative] (imperative)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - うまくいく (to go well)
+  - といい (hope・suggestion)
+  - とは (unexpected discovery)
+  - どうして (why)
+  - に (if only・regret)
+  - 若い頃 (younger days)
+meaning: Expresses admiration, wonder, desire, or doubt, often with a sense of longing or hope.
+pronunciation:
+  katakana: ナー
+  romaji: naa
+formation:
+  Informal sentence + なあ: Used to express strong emotion such as admiration, wonder, or deep feeling (e.g.,
+    'How ~!', 'What a ~!').
+  Informal sentence + かなあ: Used to express doubt, a wish, or hope ('I wonder if ~', 'I wish ~').
+jlpt: N3
+etymology: The particle 「な」 is a simplified form of 「ね」, used to seek agreement or confirmation. Adding
+  「あ」 lengthens the vowel, intensifying the emotion or emphasis. Historically, final particles evolved
+  from older forms, and the lengthening in 「なあ」 serves to draw out the sentiment, making it feel more
+  personal and deeply felt.
+writeup: The particle 「なあ」 is typically used at the end of a sentence to express a strong personal feeling,
+  be it admiration, wonder, desire, or doubt. It is an emphatic form of 「な」 and often carries a sense
+  of longing or hoping. This particle is considered informal and is more commonly used by males, particularly
+  when expressing strong personal sentiments or reflecting internally. However, it is not exclusively
+  male and can be used by women in certain contexts, often when speaking to themselves or expressing deep
+  emotion. It is similar to saying "I wonder..." or "I wish..." in English, but with a stronger emotional
+  tone. It can also be used rhetorically, not necessarily seeking an answer from a listener but rather
+  as an exclamation or a deep thought.
+false_friends:
+  - term: ね
+    meaning: right?, isn't it?
+    kind: similar expression
+    nuance: While 「なあ」 expresses more personal emotion and internal feeling, 「ね」 primarily seeks agreement
+      or confirmation from the listener. 「ね」 makes a statement feel collaborative, whereas 「なあ」 makes
+      it feel more individual and reflective.
+    grammar_point: ね (seeking agreement)
+post_false_friends_writeup: While 「ね」 is used to seek agreement or confirmation, 「なあ」 conveys more emotion
+  and doesn't necessarily expect a response. Think of 「ね」 as a gentle nudge for agreement and 「なあ」 as
+  a sigh of feeling. Use 「なあ」 when you are expressing a deep personal sentiment, and 「ね」 when you want
+  to confirm or share information with someone. The elongated 'a' sound in 「なあ」 visually and audibly emphasizes
+  the depth of the speaker's emotion.
+examples:
+  - english: Mount Fuji, it's truly beautiful!
+    japanese:
+      - 富士 山、本当 に 綺麗 {なあ}。
+      - 富士 山 は 本当 に 綺麗 だ {なあ}。
+      - 富士 山、綺麗 だ {なあ}。
+    english_literally: Mount Fuji, truly beautiful, naa.
+    competing_grammar:
+      - competing_japanese:
+          - 富士 山、本当 に 綺麗 だ {ね}。
+        english: Mount Fuji, it's truly beautiful, isn't it?
+        hint: 「ね」 seeks agreement, while 「なあ」 expresses a personal, internal feeling of admiration. We're
+          looking for an internal reflection.
+    scene: A hiker stands at a viewpoint, gazing at Mount Fuji, expressing deep admiration.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a man, uses 「なあ」 to express profound personal admiration for Mount Fuji's beauty.
+      The usage highlights the strong emotional impact of the sight on him, as an internal reflection
+      rather than a direct address to anyone.
+  - english: I hope this project succeeds.
+    japanese:
+      - この プロジェクト、成功 する と いい {なあ}。
+      - この プロジェクト が 成功 する と いい {なあ}。
+      - プロジェクト、うまく いく と いい {なあ}。
+    english_literally: This project, hope it succeeds, naa.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト、成功 する と いい {ね}。
+        english: I hope this project succeeds, don't you think?
+        hint: 「ね」 seeks confirmation or shared sentiment, while 「なあ」 conveys a personal wish or hope without
+          necessarily expecting a response. We're looking for an internal wish.
+    scene: A team leader looks at the project plan, silently wishing for its success.
+    register: semi-formal
+    setting: optimistic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a man in a professional context, uses 「なあ」 to express a deep, personal hope for
+      the project's success. This is an internal sentiment, conveying the emotional investment in the
+      outcome rather than an external query.
+  - english: I wonder if that cafe is open today.
+    japanese:
+      - あの カフェ、今日 開い て いる か {なあ}。
+      - あの カフェ は 今日 開い て いる か {なあ}。
+      - あの カフェ、今日 開い てる か {なあ}。
+    english_literally: That cafe, today is open, I wonder, naa.
+    competing_grammar:
+      - competing_japanese:
+          - あの カフェ、今日 開い て いる {か な}。
+        english: I wonder if that cafe is open today.
+        hint: 「かな」 is a simpler inquiry, while 「かなあ」 expresses a deeper, more personal sense of wonder,
+          desire, or slight anxiety. We're looking for a more wistful wonder.
+    scene: A student walks towards their favorite cafe, hoping it's open for study.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker, a woman, uses 「かなあ」 to express a mild uncertainty mixed with a personal hope
+      that the cafe is open. The prolonged vowel emphasizes the personal desire to visit the cafe.
+  - english: I wish I could relax slowly on the weekend.
+    japanese:
+      - 週末、ゆっくり 休め たら いい {なあ}。
+      - 週末 は ゆっくり 休め たら いい {なあ}。
+      - 週末、ゆっくり 過ごせ たら いい {なあ}。
+    english_literally: Weekend, if I could relax slowly, it would be good, naa.
+    competing_grammar:
+      - competing_japanese:
+          - 週末、ゆっくり 休め たら {たら いい}。
+        english: It would be good if I could relax slowly on the weekend.
+        hint: 「たらいい」 expresses a general desire, while 「なあ」 adds a stronger, more emotional, and perhaps
+          wistful emphasis to the wish. We're looking for a deep, personal longing.
+    scene: A busy office worker sighs at their desk on Friday, longing for rest.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker, a woman, expresses a strong yearning for relaxation on the weekend. The use of
+      「なあ」 emphasizes the depth of her desire and personal exhaustion, making it an internal reflection
+      on her need for a break.
+  - english: I wonder if today's meeting will ever end.
+    japanese:
+      - 部 長、今日 の 会議、終わる か {なあ}。
+      - 今日 の 会議、終わる の か {なあ}。
+      - この 会議、いつ まで 続く の か {なあ}。
+    english_literally: Manager, today's meeting, will it end, I wonder, naa.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議、終わる {か な}。
+        english: I wonder if today's meeting will end.
+        hint: 「かな」 is a simple inquiry, whereas 「かなあ」 conveys a stronger sense of exasperation, doubt,
+          or internal complaint about the situation. We're looking for an exasperated internal thought.
+    scene: An employee glances at the clock during a lengthy meeting, internally questioning its duration.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a male employee, uses 「かなあ」 to express a mix of weariness and doubt about the
+      meeting's conclusion. It conveys an internal, slightly complaining thought about a formal situation,
+      rather than a direct question to the manager.
+  - english: I wonder when this traffic jam will end.
+    japanese:
+      - この 渋滞、いつ 終わる ん だろう {なあ}。
+      - 渋滞、いつ 終わる ん だろう {なあ}。
+      - この 渋滞、いつ 解消 する ん だろう {なあ}。
+    english_literally: This traffic jam, when will it end, I wonder, naa.
+    competing_grammar:
+      - competing_japanese:
+          - この 渋滞、いつ 終わる ん だろう {ね}。
+        english: I wonder when this traffic jam will end, right?
+        hint: 「ね」 implies seeking shared understanding or agreement, while 「なあ」 expresses a more personal
+          lament or frustration. We're looking for a personal, internal lament.
+    scene: A driver stuck in heavy traffic taps their fingers on the steering wheel, sighing.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a man, uses 「なあ」 to express frustration and a wondering, but internal, thought
+      about the traffic jam's end. This usage adds emotional weight to his internal complaint about the
+      prolonged delay.
+  - english: I wonder if that presentation went well.
+    japanese:
+      - あの 発表、うまく いっ た か {なあ}。
+      - あの 発表 は うまく いっ た か {なあ}。
+      - 発表、うまく いっ た の か {なあ}。
+    english_literally: That presentation, went well, I wonder, naa.
+    competing_grammar:
+      - competing_japanese:
+          - あの 発表、うまく いっ た {か な}。
+        english: I wonder if that presentation went well.
+        hint: 「かな」 is a neutral question, while 「かなあ」 expresses a stronger, more personal anxiety or deep
+          reflection about the outcome. We're looking for a worried internal reflection.
+    scene: A presenter sits alone after giving a presentation, replaying it in their mind and feeling
+      uncertain.
+    register: formal
+    setting: cautious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker, a woman in a professional context, uses 「かなあ」 to express personal doubt and anxiety
+      about the success of her presentation. This is an internal, worried reflection after a significant
+      professional event.
+  - english: I have to finish this report by the end of today.
+    japanese:
+      - この レポート、今日 中 に 終わら ない と {なあ}。
+      - この レポート、今日 中 に 終わら ない と いけ ない {なあ}。
+      - レポート、今日 中 に 終わら ない と {なあ}。
+    english_literally: This report, by end of today, if I don't finish, naa.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート、今日 中 に 終わら ない と いけ ない {ね}。
+        english: I have to finish this report by the end of today, right?
+        hint: 「ね」 can imply seeking confirmation or agreement from others, while 「なあ」 expresses a personal
+          resolve or internal admonition without external validation. We're looking for a self-directed,
+          urgent thought.
+    scene: A student looks at their watch, realizing the deadline for their report is approaching rapidly.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a man, uses 「なあ」 with 「～ないと」 to express his personal obligation and resolve to
+      finish the report. This is a self-directed, somewhat urgent thought about a task.
+  - english: If only I had challenged myself more when I was younger.
+    japanese:
+      - 若い 頃、もっと 挑戦 し て いれ ば {なあ}。
+      - 若い 頃 に、もっと 挑戦 し て いれ ば {なあ}。
+      - 若い 頃、もっと 頑張っ て いれ ば {なあ}。
+    english_literally: Younger age, more challenge, if I had done, naa.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 頃、もっと 挑戦 し て い れ {ば よかっ た}。
+        english: It would have been good if I had challenged myself more when I was younger.
+        hint: 「ばよかった」 expresses what would have been good, but 「なあ」 adds a deeper sense of wistful longing,
+          regret, or a profound "if only" feeling. We're looking for a deep, melancholic reflection.
+    scene: An elderly person sits by a window, reflecting on missed opportunities in their youth.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The speaker, an older woman, uses 「なあ」 to express deep, personal regret and longing for a
+      different past. The phrase 「～ていればなあ」 captures a profound "if only" sentiment, emphasizing an internal,
+      melancholic reflection on life choices.
+  - english: Yamamoto, I'm surprised that quiet guy gave a speech!
+    japanese:
+      - 山本 さん、まさか あんな 静か な 彼 が スピーチ し た と は、驚い た {なあ}。
+      - 山本 さん、まさか あんな 静か な 彼 が スピーチ し た と は、びっくり し た {なあ}。
+      - 山本 さん、あの 静か な 彼 が スピーチ なんて、驚い た {なあ}。
+    english_literally: Yamamoto, unexpectedly that quiet him gave a speech, I'm surprised, naa.
+    competing_grammar:
+      - competing_japanese:
+          - 山本 さん、まさか あんな 静か な 彼 が スピーチ し た と は、驚い た {ね}。
+        english: Yamamoto, I'm surprised that quiet guy gave a speech, aren't you?
+        hint: 「ね」 explicitly seeks agreement, while 「なあ」, even when addressed to someone, conveys a personal
+          exclamation of surprise, inviting a shared sentiment more subtly. We're looking for a personal
+          exclamation of surprise.
+    scene: A woman talks to her male colleague, Yamamoto, about a surprisingly extroverted act by a notoriously
+      shy person.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    nuance: While 「なあ」 is often associated with male speech, a woman can use it to express strong personal
+      surprise or emotion, especially when sharing a striking observation. Here, the female speaker addresses
+      「山本さん」 to convey her astonishment, inviting a shared sentiment without a direct question, typical
+      of a casual, reflective conversation.
+post_example_writeup: Observe how 「なあ」 amplifies the speaker's personal emotion—be it admiration, desire,
+  or doubt—often without necessarily requiring a direct response from a listener. This distinguishes it
+  from other particles that explicitly seek confirmation or agreement. The extended vowel sound of 「なあ」
+  itself contributes to the emotional weight.

@@ -1,0 +1,222 @@
+grammar_point: どこ (where)
+matcher: ⌈ˢどこᵖpronᵇどこᵈ何処ʳドコ⌉
+matcher_enforce_examples: true
+learn_before:
+  - どこか (somewhere・some place)
+meaning: where
+pronunciation:
+  katakana: ドコ
+  romaji: doko
+formation:
+  どこ + Copula (だ/です): Used to ask "Where is it?".
+  どこ + Particle (に/へ/で): Specifies the role of "where" in the sentence (e.g., static location, direction,
+    place of action).
+  どこ + Noun (colloquial): Occasionally used like どの, especially in informal speech or with specific nouns.
+jlpt: N5
+etymology: The Japanese interrogative pronoun どこ (doko), meaning "where," has evolved from older forms
+  of the language. Its root can be traced back to Classical Japanese いづこ (izuko), which also meant "where"
+  or "which place." The いづ (izu) component is related to words like いずれ (izure), meaning "which, where,
+  or when," and is indicative of an interrogative or indefinite nature. The こ (ko) part is likely a nominalizing
+  or demonstrative suffix, similar to how it appears in ここ (koko - here) and そこ (soko - there). Over centuries,
+  the pronunciation simplified, leading to the modern どこ. This linguistic lineage highlights どこ's fundamental
+  role in questioning location, deriving from a core concept of asking "which specific place."
+writeup: 'どこ (doko) is a fundamental interrogative pronoun in Japanese, directly translating to "where."
+  It serves to inquire about the physical location of objects, people, or events, as well as the destination
+  or origin of actions. Its versatility makes it an indispensable word in daily conversation.The politeness
+  level of sentences using どこ is typically determined by the ending auxiliary verb or copula. For example,
+  どこですか？ (doko desu ka?) is a polite way to ask "Where is it?", suitable for general situations. In contrast,
+  どこ？ (doko?), omitting the polite copula, is casual and appropriate for friends or family.どこ frequently
+  combines with various particles to specify the nuance of the location or movement: に (ni): When どこに
+  is used, it usually asks about the static location of something, indicating "where something exists
+  or is located." For instance, ペンはどこにありますか？ (Pen wa doko ni arimasu ka?) means "Where is the pen located?".
+  へ (e): This particle denotes direction, so どこへ asks "to where?" or "whither?". It''s used when inquiring
+  about the destination of movement. For example, どこへ行きますか？ (Doko e ikimasu ka?) means "Where are you
+  going?". で (de): When used with どこで, it asks "where an action takes place." It indicates the location
+  of an activity. For example, どこで食べますか？ (Doko de tabemasu ka?) means "Where will you eat?".Beyond direct
+  questions, どこ can also be part of broader expressions conveying indefiniteness or uncertainty. For instance,
+  どこか (dokoka) means "somewhere" or "anywhere," implying an unspecified location. どこも (dokomo) can mean
+  "everywhere" in positive contexts or "nowhere" in negative contexts, suggesting a sweeping generalization
+  about places. While less common, どこ can sometimes colloquially modify a noun, similar to どの (dono -
+  which), particularly in very informal speech or specific idiomatic phrases. Understanding these combinations
+  is key to mastering どこ''s usage in diverse contexts.'
+false_friends:
+  - term: どちら
+    meaning: which way, which one, where (polite)
+    kind: similar expression
+    nuance: どちら is a more polite equivalent of どこ, but it also carries the nuance of "which of two or
+      more" options, or "which direction," making it more versatile than just a polite "where."
+    grammar_point: どちら (which way, formal)
+  - term: どこか
+    meaning: somewhere, anywhere
+    kind: similar expression
+    nuance: どこか refers to an unspecified or indefinite location, whereas どこ is a direct question asking
+      for a specific location.
+    grammar_point: 誰か (someone・somebody)
+  - term: どこも
+    meaning: everywhere, nowhere (with negative)
+    kind: similar expression
+    nuance: どこも is used to generalize about all places or the lack thereof, in contrast to どこ which seeks
+      a single, specific location.
+    grammar_point: 誰か (someone・somebody)
+  - term: どの
+    meaning: which (determiner)
+    kind: often confused with
+    nuance: どの directly modifies a noun (e.g., どの本 - which book) to ask about a specific item from a group,
+      while どこ is a standalone pronoun for place.
+    grammar_point: この (this)
+  - term: ここ・そこ・あそこ
+    meaning: here, there, over there
+    kind: antonym
+    nuance: ここ, そこ, and あそこ are demonstrative pronouns that point to specific locations, serving as answers
+      to どこ.
+    grammar_point: ここ (here)
+post_false_friends_writeup: When distinguishing どこ from similar terms, remember its core function as a
+  direct interrogative about location. While どちら offers a polite alternative, it often implies a choice
+  among options or refers to a direction. どこか and どこも transform どこ from a question into indefinite statements
+  about existence or non-existence across various places. Lastly, どの is a determiner that always precedes
+  a noun to ask "which [noun]," fundamentally different from どこ as a standalone pronoun for place.
+examples:
+  - english: Where is the restroom?
+    japanese:
+      - お 手洗い は {どこ} です か？
+      - トイレ は {どこ} です か？
+      - お 手洗い は {どこ}？
+      - トイレ は {どこ}？
+    english_literally: Restroom, as for it, where is it?
+    competing_grammar:
+      - competing_japanese:
+          - お 手洗い は どちら です か？
+        english: Where is the restroom? (Politer)
+        hint: どちら is a more polite way to ask "where," or it can mean "which way" or "which one." We're
+          looking for the most common and direct way to ask "where."
+    scene: You are at a restaurant and need to ask for the restroom.
+    register: formal
+    setting: professional
+  - english: Where are you?
+    japanese:
+      - '{どこ} に いる の？'
+      - '{どこ} に いる ん だ？'
+      - '{どこ} に いる の よ？'
+    english_literally: Where are (you) existing?
+    competing_grammar:
+      - competing_japanese:
+          - '{どちら} に いらっしゃい ます か？'
+        english: Where are you? (Respectful)
+        hint: 「いらっしゃいます」 is the respectful form of 「いる」 and 「どこ」 would be replaced by 「どちら」 for increased
+          politeness. We're looking for a casual way to ask "where."
+    scene: You are calling your friend who is late.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「いる」 and the casual sentence ending 「の？」 indicates a familiar and casual tone,
+      typically used between close friends or family.
+  - english: Where are you going today?
+    japanese:
+      - 今日 は {どこ} へ 行き ます か？
+      - 今日 は {どこ} へ 行く？
+      - 今日 は {どこ} へ 行か れる の？
+    english_literally: Today, as for it, to where are (you) going?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {どちら} へ 行か れ ます か？
+        english: Where are you going today? (Respectful)
+        hint: どちら is more polite than どこ and 行かれます is the respectful passive form of 行く. We're looking
+          for a standard polite question.
+    scene: A colleague asks about your plans for the day after work.
+    register: formal
+    setting: informative
+  - english: Where should we meet?
+    japanese:
+      - '{どこ} で 会おう か？'
+      - '{どこ} で 会い ましょう か？'
+      - '{どこ} で 会う？'
+    english_literally: Where, shall we meet?
+    scene: You are planning to meet a friend.
+    register: casual
+    setting: friendly
+    nuance: The volitional form 「会おう」 combined with 「か？」 is a casual way to suggest or ask for a decision,
+      suitable among friends.
+  - english: Where will the party be held?
+    japanese:
+      - パーティー は {どこ} で 開催 さ れ ます か？
+      - パーティー は {どこ} で あり ます か？
+      - パーティー は {どこ} で やる の？
+    english_literally: Party, as for it, where is it held?
+    competing_grammar:
+      - competing_japanese:
+          - パーティー は {どちら} で 開催 さ れ ます か？
+        english: Where will the party be held? (Politer)
+        hint: どちら is generally a more polite alternative to どこ, often used in formal settings or when
+          asking for choices. We're looking for a standard formal inquiry.
+    scene: You are asking an organizer about an upcoming event.
+    register: formal
+    setting: informative
+  - english: Where is my phone?
+    japanese:
+      - 私 の 携帯 は {どこ} に あり ます か？
+      - 僕 の 携帯 は {どこ} に ある？
+      - 俺 の 携帯 {どこ}？
+    english_literally: My phone, as for it, where is it existing?
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 携帯 は どちら に あり ます か？
+        english: Where is my phone? (Politer)
+        hint: どちら can be used to make the question more polite. We're looking for a standard casual inquiry.
+    scene: You are looking for your phone at home.
+    register: casual
+    setting: intimate
+  - english: Where is the cat?
+    japanese:
+      - 猫 は {どこ} に い ます か？
+      - 猫 は {どこ} に いる？
+      - 猫 {どこ}？
+    english_literally: Cat, as for it, where is it existing?
+    scene: You are looking for your pet cat.
+    register: casual
+    setting: intimate
+  - english: Where can I buy tickets?
+    japanese:
+      - チケット は {どこ} で 買え ます か？
+      - チケット は {どこ} で 買える？
+      - チケット は {どこ} で 買い ます か？
+    english_literally: Tickets, as for them, where can (I) buy?
+    scene: You are at a train station asking about buying tickets.
+    register: formal
+    setting: professional
+    conjugation: potential (～られる/～える)
+  - english: That place is amazing, isn't it?
+    japanese:
+      - あの 場所 は {どこ} も すごい ね！
+      - あの 場所 は {どこ} も すごい です ね！
+      - あの 場所 は {どこ} も すごい ぜ！
+    english_literally: That place, every part, is amazing, isn't it!
+    competing_grammar:
+      - competing_japanese:
+          - あの 場所 は {全部} すごい ね！
+        english: That place is all amazing, isn't it!
+        hint: 「全部」 means "all" or "everything" and is a direct synonym. 「どこも」 implies "everywhere" or
+          "every part" in this context. We're looking for the idiomatic use of 「どこも」.
+    scene: Talking about a newly opened amusement park with a friend.
+    register: casual
+    setting: friendly
+    nuance: This use of 「どこも」 is similar to 「全部」 (zenbu - all) or 「どこを見ても」 (doko o mite mo - wherever
+      you look), emphasizing that every aspect or part of the place is amazing. It's a common casual expression.
+  - english: Where are we going with this conversation?
+    japanese:
+      - この 話 は {どこ} へ 向かっ て いる の でしょう か？
+      - この 話 は {どこ} へ 向かっ て いる の？
+      - この 話 は {どこ} へ 向かっ て いる ん です か？
+    english_literally: This talk, to where is it heading?
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は {何} を 目指し て いる の でしょう か？
+        english: What is this conversation aiming for?
+        hint: 「何を目指している」 asks about the goal or purpose, while 「どこへ向かっている」 asks about the direction or
+          trajectory. We're looking for the latter, a metaphorical use of "where."
+    scene: During a long, meandering meeting, a participant asks for clarity.
+    register: semi-formal
+    setting: professional
+    nuance: This sentence uses 「どこへ向かっているのでしょうか」 to ask about the direction or purpose of the conversation,
+      using 「どこ」 in a metaphorical sense. The phrase 「〜のでしょうか」 adds a polite and slightly speculative
+      tone, suitable for a semi-formal meeting.

@@ -1,0 +1,301 @@
+grammar_point: 変わる (to change)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Noun]をください (please give me)'
+  - ずいぶん (quite・considerably)
+meaning: to change, to vary, to be transformed (intransitive)
+meaning_warning: This verb is intransitive; it describes something changing by itself, not someone changing
+  something else.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 変わる
+    rarity: common
+    meaning: to change
+  - conjugation-type: non-past polite (～ます)
+    form: 変わります
+    rarity: common
+    meaning: to change (polite)
+  - conjugation-type: past plain (～た)
+    form: 変わった
+    rarity: common
+    meaning: changed
+  - conjugation-type: te-form (～て)
+    form: 変わって
+    rarity: common
+    meaning: changing, and
+  - conjugation-type: negative plain (～ない)
+    form: 変わらない
+    rarity: common
+    meaning: does not change
+  - conjugation-type: negative non-past polite (～ません)
+    form: 変わりません
+    rarity: common
+    meaning: does not change (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 変わらなかった
+    rarity: common
+    meaning: did not change
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 変わりませんでした
+    rarity: common
+    meaning: did not change (polite)
+pronunciation:
+  katakana: カワル
+  romaji: kawaru
+formation:
+  '[Subject が] + 変わる': Indicates that the subject itself undergoes a change.
+  '[Noun に] + 変わる': Indicates changing into a different state, form, or thing.
+  '[State/Situation が] + 変わる': Describes a change in a condition, situation, or environment.
+jlpt: N4
+etymology: The verb '変わる' (kawaru) originates from Old Japanese 'かへる' (kaheru), which meant 'to return'
+  or 'to change'. Over time, the meaning evolved and specialized, with '変わる' (intransitive) focusing on
+  the internal process of shifting from one state to another, and '変える' (transitive) developing to describe
+  the act of causing something else to change. This distinction highlights whether the change is self-initiated
+  or externally induced.
+writeup: |-
+  The verb '変わる' (kawaru) is an **intransitive verb** meaning 'to change', 'to vary', or 'to be transformed'. This means the subject of the sentence itself undergoes the change, without needing a direct object. It is a fundamental verb for expressing any kind of alteration, whether it's a physical transformation, a change in emotion, a shift in plans, or an alteration in circumstances.
+
+  Understanding the intransitive nature of '変わる' is crucial, as it contrasts with its transitive counterpart, '変える' (kaeru), which means 'to change something' or 'to alter'. While '変わる' describes something *becoming* different, '変える' describes *making* something different. For example, '天気が {変わる}' (The weather changes) uses '変わる' because the weather itself undergoes the change. In contrast, 'チャンネルを {変える}' (to change the channel) uses '変える' because an external agent (you) is causing the change to the channel.
+
+  '変わる' can be used in a wide range of contexts, from describing subtle shifts to complete transformations. It is commonly used with particles like 'が' to mark the subject that changes, and 'に' to indicate the new state or form it changes into. For instance, '考え方が {変わる}' (one's way of thinking changes) or '水が氷に {変わる}' (water changes into ice).
+
+  When using '変わる', you are focusing on the *result* of the change or the *process* as it happens to the subject, rather than the agent causing the change. This verb is versatile and can describe both gradual and sudden changes.
+false_friends:
+  - term: 変える (to change)
+    meaning: to change (something), to alter (transitive)
+    kind: similar expression
+    nuance: While '変わる' is intransitive (the subject changes itself), '変える' is transitive (an agent changes
+      something else).
+    grammar_point: <suggest>:変える (to change)
+  - term: 移る (to move)
+    meaning: to move, to shift (intransitive)
+    kind: similar expression
+    nuance: '''変わる'' implies a change in state or quality, whereas ''移る'' specifically refers to a change
+      in location or position.'
+    grammar_point: <suggest>:移る (to move)
+  - term: 変化する (to change)
+    meaning: to change, to vary, to undergo a change (more formal/broader)
+    kind: synonym
+    nuance: '''変わる'' is a common, everyday verb. ''変化する'' is a noun-verb compound, often used in more
+      formal or academic contexts, referring to a general concept of change or variation.'
+    grammar_point: <suggest>:変化する (to change)
+post_false_friends_writeup: It is very important to distinguish between '変わる' (intransitive) and '変える'
+  (transitive). The key difference lies in whether the subject performs the action of changing itself
+  ('変わる') or if an agent performs the action of changing something else ('変える'). For instance, '季節が {変わる}'
+  (The seasons change) implies a natural, inherent change, whereas '髪型を {変える}' (to change one's hairstyle)
+  implies an intentional act by a person. When thinking about '移る' and '変わる', remember that '移る' is specific
+  to movement or shifting place, while '変わる' is a broader term for any kind of transformation. '変化する'
+  is a more formal or academic synonym for '変わる', often used when discussing broader, more abstract changes.
+examples:
+  - english: The weather changed suddenly.
+    japanese:
+      - 天気 が 急 に {変わっ た}。
+      - 天気 が 急 に {変わり まし た}。
+      - 天気 が 急激 に {変わっ た}。
+    english_literally: The weather suddenly changed.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 を 急 に 変え た。
+        english: I suddenly changed the weather.
+        hint: '''変える'' is a transitive verb, meaning someone *causes* the change. We''re looking for an
+          intransitive verb where the weather itself changes.'
+    scene: A person looks outside the window and notices a rapid shift in weather conditions.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: Her expression changed instantly.
+    japanese:
+      - 彼女 の 表情 が 瞬時 に {変わっ た}。
+      - 彼女 の 表情 が 瞬時 に {変わり まし た}。
+    english_literally: Her expression instantly changed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 表情 を 瞬時 に 変え た。
+        english: She instantly changed her expression.
+        hint: '''変える'' implies an intentional act of changing. We''re looking for an involuntary change
+          in expression.'
+      - competing_japanese:
+          - 彼女 の 表情 が 瞬時 に 移っ た。
+        english: Her expression instantly moved (to somewhere else).
+        hint: '''移る'' refers to a change in location or position. We''re looking for a change in quality
+          or state of her expression.'
+    scene: A man observes a woman's face as she receives some news.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of '{変わった}' emphasizes the sudden, perhaps involuntary, shift in her facial expression,
+      indicating a change in her emotional state.
+  - english: Lately, my perspective on work has changed.
+    japanese:
+      - 最近、仕事 に 対する 考え 方 が {変わり まし た}。
+      - 最近、仕事 に 対する 考え 方 が {変わっ た}。
+    english_literally: Recently, my way of thinking towards work changed (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 最近、仕事 に 対する 考え 方 を 変え まし た。
+        english: Recently, I changed my way of thinking about work.
+        hint: '''変える'' indicates a deliberate act of changing. We''re looking for a more natural, gradual
+          shift in perspective.'
+    scene: During a casual conversation with a colleague about career paths.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I hope the situation changes for the better.
+    japanese:
+      - 状況 が 良い 方向 に {変わる と いい} です ね。
+      - 状況 が 良い 方向 に {変わる と いい}。
+      - 状況 が 良い 方向 に {変われ ば いい} です ね。
+    english_literally: The situation changing in a good direction would be good, wouldn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 状況 を 良い 方向 に 変える と いい です ね。
+        english: It would be good if you changed the situation in a good direction.
+        hint: '''変える'' implies an agent causing the change. We are expressing a hope for a natural improvement
+          in the situation itself.'
+    scene: Two friends are discussing a difficult ongoing problem.
+    register: teineigo (polite)
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+    nuance: The structure '変わるといい' expresses a wish for the situation to naturally improve, rather than
+      demanding someone actively change it.
+  - english: Water changes into ice at 0 degrees Celsius.
+    japanese:
+      - 水 は 0 度 で 氷 に {変わる}。
+      - 水 は 0 度 で 氷 に {変わり ます}。
+    english_literally: Water at 0 degrees Celsius changes into ice.
+    competing_grammar:
+      - competing_japanese:
+          - 水 は 0 度 で 氷 を 変える。
+        english: Water changes the ice at 0 degrees Celsius.
+        hint: '''変える'' takes a direct object. Here, water itself transforms into ice, so an intransitive
+          verb is needed.'
+    scene: A science teacher explaining a fundamental concept in a classroom.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: No matter how much time passes, some things never change.
+    japanese:
+      - どれ だけ 時 が 経っ て も、{変わら ない} もの も ある。
+      - どれ だけ 時 が 経っ て も、{変わり ませ ん}。
+      - どれ だけ 時 が 経っ て も、{変わら ぬ} もの も ある。
+    english_literally: No matter how much time passes, things that do not change also exist.
+    competing_grammar:
+      - competing_japanese:
+          - どれ だけ 時 が 経っ て も、変え ない もの も ある。
+        english: No matter how much time passes, there are things one does not change.
+        hint: '''変えない'' implies a deliberate choice not to change something. We''re talking about things
+          that inherently remain unchanged.'
+    scene: A reflective moment, perhaps a conversation between old friends.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+  - english: He seems to have changed a lot since last year.
+    japanese:
+      - 彼 は 去年 から ずいぶん {変わっ た} よう だ。
+      - 彼 は 去年 から ずいぶん {変わっ た} らしい。
+      - 彼 は 去年 から ずいぶん {変わっ た} みたい だ。
+    english_literally: He from last year considerably changed, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 去年 から ずいぶん 変え た よう だ。
+        english: He seems to have changed something considerably since last year.
+        hint: '''変える'' would mean he changed *something* about himself, implying intentional action. We''re
+          looking for a general, perhaps passive, change in him.'
+    scene: Two acquaintances are catching up and discussing a mutual friend.
+    register: semi-formal
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+  - english: The color of the leaves will change in autumn.
+    japanese:
+      - 葉 の 色 は 秋 に {変わる} でしょう。
+      - 葉 の 色 は 秋 に {変わり ます}。
+      - 葉 の 色 は 秋 に {変わる} はず です。
+    english_literally: The leaves' color in autumn will change, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 葉 の 色 を 秋 に 変える でしょう。
+        english: Someone will change the color of the leaves in autumn, probably.
+        hint: '''変える'' implies an agent changing the color. We are talking about the natural process of
+          leaves changing color.'
+    scene: Discussing seasonal changes during a nature walk.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: If the plan changes, please let me know.
+    japanese:
+      - 計画 が {変わっ たら}、教え て ください。
+      - 計画 が {変われ ば}、教え て ください。
+      - 計画 が {変わっ た} 場合、教え て ください。
+    english_literally: If the plan changes, please tell me.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 を 変え たら、教え て ください。
+        english: If you change the plan, please tell me.
+        hint: '''変える'' suggests someone deliberately alters the plan. We''re asking to be informed if
+          the plan itself undergoes an alteration, possibly by an external factor.'
+    scene: A project manager giving instructions to a team member.
+    register: formal
+    setting: professional
+    conjugation: conditional (～たら)
+  - english: The world keeps changing, doesn't it?
+    japanese:
+      - 世の中 は 常 に {変わっ て} いき ます ね。
+      - 世の中 は 常 に {変わっ て いき ます} よ ね。
+      - 世の中 は 常 に {変わっ て いく} もの です ね。
+    english_literally: The world constantly changes and goes on, doesn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 世の中 を 常 に 変え て いき ます ね。
+        english: You constantly keep changing the world, don't you?
+        hint: '''変える'' would imply an agent actively changing the world. Here, the world itself is undergoing
+          continuous change.'
+    scene: A thoughtful conversation between two elderly people reflecting on life.
+    register: semi-formal
+    setting: reflective
+    conjugation: te-form (～て)
+    speaker_age: older
+    nuance: The combination of '変わって いきます' indicates a continuous, ongoing process of change into the
+      future, often used to reflect on the dynamic nature of things. The sentence-final 'ね' invites agreement.
+  - english: Your voice has changed a lot.
+    japanese:
+      - 声 が ずいぶん {変わっ た} ね。
+      - 声 が ずいぶん {変わり まし た} ね。
+    english_literally: Your voice considerably changed, didn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 声 を ずいぶん 変え た ね。
+        english: You changed your voice considerably, didn't you?
+        hint: '''変える'' would mean someone intentionally altered their voice. We''re looking for a natural
+          change in the voice itself.'
+    scene: Two friends who haven't seen each other in a long time are talking.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    listener_gender: female
+  - english: The schedule might change.
+    japanese:
+      - スケジュール が {変わる} か も しれ ませ ん。
+      - スケジュール が {変わる} 可能 性 が あり ます。
+      - スケジュール が {変わる} か も。
+    english_literally: The schedule might change.
+    competing_grammar:
+      - competing_japanese:
+          - スケジュール を 変える か も しれ ませ ん。
+        english: I/someone might change the schedule.
+        hint: '''変える'' indicates that someone will actively modify the schedule. We are stating the possibility
+          of the schedule changing on its own or by external factors.'
+    scene: A team leader informing their team about potential changes.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+post_example_writeup: 'The verb ''変わる'' is versatile and can describe both gradual and sudden changes.
+  Pay close attention to the particles used: ''が'' marks the subject that changes, and ''に'' marks the
+  state or entity it changes into. For example, ''信号が {青に変わる}'' (the traffic light changes to green) demonstrates
+  this usage. The nuances in its usage, especially when compared with ''変える'', come from whether the change
+  is self-initiated or externally caused. Mastering this distinction is key to natural Japanese expression.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E5%A4%89%E5%8C%96%E3%81%99%E3%82%8B

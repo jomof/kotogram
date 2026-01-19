@@ -1,0 +1,235 @@
+grammar_point: 以来 (since・ever since)
+learn_before:
+  - に気をつける (to be careful of)
+  - めったに〜ない (rarely)
+  - 愛する (to love)
+meaning: Since, henceforth, ever since
+meaning_warning: Cannot be used with recent events. Focuses on a continuous state or action.
+pronunciation:
+  katakana: イライ
+  romaji: irai
+formation:
+  Noun + 以来: Indicates that something has continued or will continue uninterrupted since a specific event
+    or time.
+  Verb in te-form + 以来: Indicates a continuous state or action that began after a certain action.
+  Demonstrative Adjective + 以来: Since a specific past event indicated by the demonstrative.
+jlpt: N2
+etymology: The term 「以来」 is derived from the verb 「以る (iru)」, meaning "to take; to use", combined with
+  「来 (rai)」, meaning "to come". Thus, 「以来」 literally implies "coming from that which was taken", evolving
+  to its current meaning of "since" or "from that point forward."
+writeup: |-
+  「以来 (irai)」 indicates that something has continued non-stop since a particular event or time. Think of it as "ever since". It emphasizes the ongoing state or action that began after the specified event.
+
+  **Key Point**: 「以来」 focuses on something that continues without interruption unless there's an external change.
+  **Caution**: While 「以来」 can express a number of occurrences since, it emphasizes the lasting impact more than a simple 「から」. It cannot be used with recent events; instead, 「から」 should be used to mark a starting point in the present.
+false_friends:
+  - term: から
+    meaning: from, since
+    kind: often confused with
+    nuance: 「から」 is a general particle marking a starting point in time or space, and can be used for
+      very recent events. 「以来」 specifically implies a continuous state or action from that point onward,
+      often for a longer, unbroken period.
+    grammar_point: から (from)
+  - term: てからというもの
+    meaning: ever since, after
+    kind: similar expression
+    nuance: While both indicate a continuation since an event, 「てからというもの」 carries a stronger nuance of
+      a significant, often unexpected or irreversible, change in one's life or a situation. 「以来」 is broader,
+      simply stating continuous occurrence.
+    grammar_point: てからというもの (lasting change since)
+  - term: 以上
+    meaning: Since, now that, as long as, if
+    kind: similar expression
+    nuance: Unlike 「以来」 which describes continuous states, 「以上」 emphasizes a logical consequence, obligation,
+      or speaker's determination based on a preceding fact or assumption.
+    grammar_point: '[Clause]以上(は)・上は (since・now that)'
+  - term: 上は
+    meaning: Once, since, now that, as long as
+    kind: similar expression
+    nuance: 「上は」 is similar to 「以上」 and, like it, carries a sense of commitment or consequence once a
+      certain condition is met. It does not describe continuous events like 「以来」.
+    grammar_point: '[Clause]以上(は)・上は (since・now that)'
+post_false_friends_writeup: When distinguishing 「以来」 from other forms that can be translated as "since"
+  or "after," consider the nuance of continuity and the nature of the consequence. 「以来」 focuses on an
+  unbroken continuation of a state or action from a past point. In contrast, 「から」 simply marks a starting
+  point, without necessarily implying unbroken continuity or a long duration, making it suitable for recent
+  events. 「てからというもの」 emphasizes a significant, often life-altering, change that has continued since a
+  specific event. Lastly, 「以上」 and 「上は」 denote that given a certain fact, a logical conclusion, determination,
+  or obligation follows, rather than a continuous state over time.
+examples:
+  - english: Ever since he graduated from university, he has been living at his parents' home.
+    japanese:
+      - 彼 は 大学 を 卒業 し て {以来}、ずっと 実家 で 暮らし て いる。
+      - 彼 は 大学 を 卒業 し て {以来}、ずっと 実家 で 暮らし て い ます。
+    english_literally: As for him, university graduated since, continually at parents' home living.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大学 を 卒業 し て {から}、ずっと 実家 で 暮らし て いる。
+        english: He has been living at his parents' home since graduating from university.
+        hint: While 「から」 indicates a simple starting point, this sentence emphasizes a continuous, uninterrupted
+          living situation from that time. We're looking for a continuous, uninterrupted living situation.
+    scene: A college student discussing a friend's post-graduation life with another friend.
+    register: casual
+    setting: reflective
+  - english: Ever since she moved, she rarely sees her old friends.
+    japanese:
+      - 彼女 は 引っ越し て {以来}、めった に 前 の 友達 と 会っ て い ない。
+      - 彼女 は 引っ越し て {以来}、めった に 前 の 友達 と 会っ て い ませ ん。
+    english_literally: As for her, moved since, rarely old friends with meeting not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 引っ越し て {から}、めった に 前 の 友達 と 会っ て い ない。
+        english: She rarely sees her old friends since moving.
+        hint: 「から」 simply states a starting point. This sentence emphasizes a continuous lack of contact
+          since the move. We're looking for a continuous state.
+    scene: A woman reflecting on her life changes since moving abroad.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: A woman might share this personal reflection using 「めったに」 to express a continuous rare occurrence
+      regarding seeing friends.
+  - english: Meeting you is for the first time since that summer trip, isn't it?
+    japanese:
+      - 君 に 会う の は、あの 夏 の 旅行 {以来} だ ね。
+      - 君 に 会う の は、あの 夏 の 旅行 {以来} です ね。
+    english_literally: You meeting is, that summer trip since, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 君 に 会う の は、あの 夏 の 旅行 {から} だ ね。
+        english: It's since that summer trip that I'm meeting you.
+        hint: 「から」 can mark a starting point. This sentence implies a long period of time having passed,
+          emphasizing the duration of separation. We're looking for emphasizing the duration of separation.
+    scene: Two old friends, Kenji and Mika, unexpectedly reuniting at a cafe.
+    register: casual
+    setting: friendly
+  - english: This store has been loved by the local people ever since its establishment.
+    japanese:
+      - この 店 は 創業 {以来}、地域 の 人々 に 愛さ れ 続け て いる。
+      - この 店 は 創業 {以来}、地域 の 人々 に 愛さ れ 続け て い ます。
+    english_literally: This store, establishment since, local people by loved continuing is.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 は 創業 し て {から}、地域 の 人々 に 愛さ れ 続け て いる。
+        english: This store has continued to be loved by local people since its establishment.
+        hint: 「から」 marks a starting point. This sentence emphasizes a continuous, unbroken state or action
+          from that point forward. We're looking for the continuous love of the people.
+    scene: A local historian giving a presentation about a long-standing business in the community.
+    register: formal
+    setting: informative
+  - english: Since he was transferred overseas, he hasn't returned to Japan once.
+    japanese:
+      - 彼 は 海外 赴任 し て {以来}、一 度 も 日本 に 帰国 し て い ない。
+      - 彼 は 海外 赴任 し て {以来}、一 度 も 日本 に 帰国 し て い ませ ん。
+    english_literally: As for him, overseas transfer since, not even once Japan to returned not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 海外 赴任 し て {から}、一 度 も 日本 に 帰国 し て い ない。
+        english: He hasn't returned to Japan once since being transferred overseas.
+        hint: 「から」 indicates a point in time. This sentence emphasizes that something has continued or
+          *not* continued without interruption since that point. We're looking for a continuous state
+          of not returning.
+    scene: An expat reflecting on how long they's been away to a friend.
+    register: formal
+    setting: reflective
+  - english: Since entering high school, she has never missed a club activity.
+    japanese:
+      - 高校 に 入学 し て {以来}、彼女 は 一 度 も クラブ 活動 を 休ん で い ない。
+      - 高校 に 入学 し て {以来}、彼女 は 一 度 も クラブ 活動 を 休ん で い ませ ん。
+    english_literally: High school to entered since, as for her, not even once club activities missed
+      not.
+    competing_grammar:
+      - competing_japanese:
+          - 高校 に 入学 し て {から}、彼女 は 一 度 も クラブ 活動 を 休ん で い ない。
+        english: She has never missed a club activity since entering high school.
+        hint: 「から」 denotes a starting point. This sentence emphasizes the continuous, unbroken dedication
+          since an event. We're looking for a continuous record of perfect attendance.
+    scene: A club advisor praising a diligent student to their new assistant.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The phrase 「一度も～ない」 (not even once) emphasizes the continuous nature of not missing club activities.
+      This is common phrasing for younger individuals discussing their dedication.
+  - english: Ever since he started caring about his health, he has been jogging every day.
+    japanese:
+      - 彼 は 健康 に 気 を つけ 始め て {以来}、毎日 ジョギング を し て いる。
+      - 彼 は 健康 に 気 を つけ 始め て {以来}、毎日 ジョギング を し て い ます。
+    english_literally: As for him, health to mind put starting since, every day jogging doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 健康 に 気 を つけ 始め て {から}、毎日 ジョギング を し て いる。
+        english: He has been jogging every day since he started caring about his health.
+        hint: While 「から」 marks the beginning of an action, this sentence stresses the continuation of
+          a habit or state without interruption. We're looking for a continuous daily routine.
+    scene: A dedicated person proudly sharing their journey to a healthier lifestyle with a friend.
+    register: casual
+    setting: informative
+  - english: Since my father retired, he has been engrossed in his home garden.
+    japanese:
+      - 父 が 定年 退職 し て {以来}、家庭 菜園 に 没頭 し て いる。
+      - 父 が 定年 退職 し て {以来}、家庭 菜園 に 没頭 し て い ます。
+    english_literally: Father, retirement doing since, home garden in engrossed doing.
+    competing_grammar:
+      - competing_japanese:
+          - 父 が 定年 退職 し て {から}、家庭 菜園 に 没頭 し て いる。
+        english: My father has been engrossed in his home garden since he retired.
+        hint: 「から」 simply denotes a starting point. This sentence describes an activity that has continued
+          without interruption since that point. We're looking for a continuous state of being engrossed.
+    scene: A son telling his mother about his father's retirement hobby.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「父が」 and the casual phrasing is suitable for family conversation, with the son
+      informing his mother about their shared family member.
+  - english: Since that day, I haven't been able to contact him at all.
+    japanese:
+      - あの 日 {以来}、彼 と は 全く 連絡 が 取れ て い ない。
+      - あの 日 {以来}、彼 と は 全く 連絡 が 取れ て い ませ ん。
+    english_literally: That day since, him with, completely contact can't doing.
+    competing_grammar:
+      - competing_japanese:
+          - あの 日 {から}、彼 と は 全く 連絡 が 取れ て い ない。
+        english: Since that day, I haven't been able to contact him at all.
+        hint: 「から」 indicates a starting point. This sentence specifically implies a continuous lack of
+          contact or a sustained state since that particular past event. We're looking for a continuous
+          absence of contact.
+    scene: A sister confiding in her friend about her missing brother.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The expression 「全く連絡が取れていない」 (not able to contact him at all) emphasizes the continuous lack
+      of communication. This emotional tone is common in female friendships.
+  - english: Since that new policy was introduced, prices have continued to rise.
+    japanese:
+      - その 新 政策 が 導入 さ れ て {以来}、物価 が 上昇 し 続け て いる。
+      - その 新 政策 が 導入 さ れ て {以来}、物価 が 上昇 し 続け て い ます。
+    english_literally: That new policy introduced since, prices rising continuing is.
+    competing_grammar:
+      - competing_japanese:
+          - その 新 政策 が 導入 さ れ て {から}、物価 が 上昇 し 続け て いる。
+        english: Prices have continued to rise since that new policy was introduced.
+        hint: 「から」 marks a starting point. This sentence emphasizes an uninterrupted trend or continuous
+          state since that time. We're looking for a continuous rising trend.
+    scene: Two male citizens lamenting the current economic climate over drinks.
+    register: formal
+    setting: pessimistic
+  - english: Since the factory was damaged by the typhoon, production has completely stopped.
+    japanese:
+      - 台風 で 工場 が 被災 し て {以来}、生産 が 完全 に ストップ し て いる。
+      - 台風 で 工場 が 被災 し て {以来}、生産 が 完全 に ストップ し て い ます。
+    english_literally: Typhoon by factory damaged since, production completely stopped doing.
+    competing_grammar:
+      - competing_japanese:
+          - 台風 で 工場 が 被災 し て {から}、生産 が 完全 に ストップ し て いる。
+        english: Production has completely stopped since the factory was damaged by the typhoon.
+        hint: 「から」 denotes a simple starting point. This sentence highlights a continuous, unbroken state
+          or action from that point. We're looking for production being continuously stopped.
+    scene: A business owner speaking to a government official about their stalled operations.
+    register: formal
+    setting: serious
+post_example_writeup: 「以来」 indicates a continuous state, so avoid using it with very recent events. Instead,
+  use 「から」 to mark a starting point in the present.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/以来

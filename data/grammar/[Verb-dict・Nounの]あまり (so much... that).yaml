@@ -1,0 +1,369 @@
+grammar_point: '[Verb-dict・Nounの]あまり (so much... that)'
+learn_before:
+  - Verb[stem] (continuative)
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - '[Verb-dictionary・Noun-の]限り (as long as・to the extent that)'
+  - '[Verb-て] (means・method)'
+  - 〜まま(に) (as is・unchanged)
+  - い (friendly particle)
+  - ずに・ないで・ことなく (without doing)
+  - と言える (it can be said)
+  - 中・外 (spatial and temporal reference)
+  - 夢中になる (to be absorbed in)
+  - 込む (to do thoroughly)
+meaning: So much...that
+pronunciation:
+  katakana: アマリ
+  romaji: amari
+formation:
+  Verb (dictionary form) + あまり: Indicates an excessive degree of an action resulting in a negative consequence.
+  い-adjective (stem + さ/み) + の + あまり: Indicates an excessive degree of an attribute resulting in a negative
+    consequence.
+  な-adjective + な + あまり: Indicates an excessive degree of an attribute resulting in a negative consequence.
+  Noun + の + あまり: Indicates an excessive degree of something resulting in a negative consequence.
+jlpt: N3
+etymology: The word 「余り (amari)」 itself means "remainder" or "surplus." The grammar point builds upon
+  this by indicating that something has been done to excess, leading to a particular result. The nuance
+  is that the 'remainder' of the thing after the action led to this outcome.
+writeup: As a noun, 「あまり」 means "excess" and refers to an amount of something that is in surplus. This
+  noun is often used after various words to indicate that something happened or exists to an excessive
+  degree, resulting in something negative. While 「余り」 itself isn't inherently negative, this grammar point
+  generally appears in negative situations.To use 「あまり」, attach it to the end of these structures:A verb
+  (dictionary form)An い-adjective (turned into a noun using 「さ」 or 「み」) + 「の」A な-adjective + 「な」A noun
+  + 「の」A phrase following 「あまり」 then highlights the negative result. The tense of the overall sentence
+  depends on the first clause; therefore, the verb before 「あまり」 can appear in different tenses.
+false_friends:
+  - term: すぎる
+    meaning: Too much, Very
+    kind: similar expression
+    nuance: Unlike 「あまり」, 「すぎる」 is directly attached to verbs or adjectives to indicate something is overdone.
+      「食べすぎる」 means "to eat too much".
+    grammar_point: すぎる (too much・excessive)
+  - term: あまり〜ない
+    meaning: Not very, Not much, Not really, Hardly
+    kind: often confused with
+    nuance: 「あまり〜ない」 means "not very" and is used to express a low degree or frequency. This is completely
+      different from the 「あまり」 grammar point, which describes an excessive degree leading to a result.
+      For example, 「あまり食べない」 means "I don't eat very much."
+    grammar_point: あまり ない (not very or much)
+  - term: なかなか
+    meaning: While 「なかなか」 can mean "very" or "quite", it doesn't imply a negative consequence like 「あまり」.
+      It also modifies the adjective directly or adverbially rather than forming a clause with a consequence.
+    kind: similar expression
+    nuance: While 「なかなか」 can mean "very" or "quite", it doesn't imply a negative consequence like 「あまり」.
+      It also modifies the adjective directly or adverbially rather than forming a clause with a consequence.
+    grammar_point: なかなか (quite not easily)
+  - term: あまりに
+    meaning: So much...that, (Way) too...
+    kind: similar expression
+    nuance: 「あまりに」 is an adverb that can also mean "so much that", but its construction differs. 「あまりに」
+      often directly modifies an adjective or adverb, whereas 「あまり」 requires a preceding verb or noun
+      structure, leading to a specific clause.
+    grammar_point: あまりに (excessively・too much)
+  - term: こそ
+    meaning: For sure, For certain, Even more so, Underlined or bolded text
+    kind: often confused with
+    nuance: Unlike 「あまり」, 「こそ」 emphasizes a preceding word or phrase and does not indicate excessiveness
+      or a resulting negative consequence. For example, 「明日こそ」 means "Tomorrow for sure".
+    grammar_point: こそ (emphasis)
+  - term: からこそ
+    meaning: Emphasized because, Precisely because
+    kind: often confused with
+    nuance: 「からこそ」 emphasizes the reason for something, highlighting its certainty or unique nature, whereas
+      「あまり」 indicates an excessive quantity or degree leading to an (often negative) outcome. For example,
+      「愛しているからこそ」 means "precisely because I love you."
+    grammar_point: からこそ (emphasized reason)
+  - term: 〜ので
+    meaning: Because, So
+    kind: often confused with
+    nuance: 「〜ので」 simply indicates a cause or reason, without necessarily implying an excessive degree
+      or a negative consequence. 「あまり」 specifically conveys that an action or state was so excessive that
+      it led to a particular result.
+    grammar_point: '[Clause]から (because・so)'
+  - term: 〜限りだ
+    meaning: Extremely, Really, Very, As ... as one can be
+    kind: similar expression
+    nuance: 「〜限りだ」 expresses the utmost extent of a feeling or condition, often conveying a subjective
+      impression. 「あまり」 describes an excessiveness of an action or state that objectively leads to a separate,
+      often negative, consequence.
+    grammar_point: '[Adjective]限りだ (the utmost・peak of)'
+post_false_friends_writeup: To avoid confusion, remember that 「あまり」 describes an excessive degree leading
+  to a consequence. Pay attention to the structures used with each expression; 「すぎる」 directly attaches
+  to verbs and adjectives, 「あまりに」 is an adverb, and 「あまり〜ない」 expresses a lack of something, not an excess.
+  「こそ」 and 「からこそ」は used for emphasis and reason, respectively. 「〜ので」 provides a general reason. 「〜限りだ」
+  expresses the extent of a feeling.
+examples:
+  - english: He got so engrossed in the game that he even forgot to eat.
+    japanese:
+      - 彼 は ゲーム に 夢中 に {なる あまり}、食事 も 忘れ て しまっ た。
+      - ゲーム に 熱中 する {あまり}、ご飯 を 食べる の を 忘れ て しまっ た。
+      - 夢中 に {なる あまり}、食事 を 取る の も 忘れ た そう だ。
+    english_literally: He became engrossed in the game to such an extent that he forgot even to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ゲーム に 夢中 に なり {すぎ て}、食事 も 忘れ て しまっ た。
+        english: He got too engrossed in the game and forgot to eat.
+        hint: 「〜すぎる (too much, excessive)」 indicates something is overdone. We're looking for a phrase
+          that implies an excessive degree leading to a negative consequence.
+      - competing_japanese:
+          - 彼 は ゲーム に 夢中 に なっ た {の で}、食事 も 忘れ て しまっ た。
+        english: Because he got engrossed in the game, he forgot to eat.
+        hint: 「〜ので (reason)」 states a simple reason. We're looking for a phrase that emphasizes the *excessive*
+          nature of the engrossment as the cause.
+      - competing_japanese:
+          - '{あまり に} 彼 が ゲーム に 夢中 で、食事 も 忘れ て しまっ た。'
+        english: He was so engrossed in the game that he forgot to eat.
+        hint: 「あまりに (excessively, too much)」 is an adverb modifying an adjective or adverb. We're looking
+          for a construction that links a verb/noun phrase to an excessive degree and consequence.
+    scene: You're describing a friend who is notoriously bad at balancing hobbies and basic needs.
+    register: casual
+    setting: informative
+  - english: She was so busy that she couldn't make time for her family.
+    japanese:
+      - 彼女 は 忙し さ の {あまり}、家族 と の 時間 も 取れ なかっ た。
+      - 忙し さ の {あまり}、家族 と 過ごす 時間 が なかっ た。
+      - 彼女、忙し さ の {あまり}、家族 と の 時間 取れ なかっ た ん だ って。
+    english_literally: Due to her excessive busyness, she could not take time with her family.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 忙し {すぎ た} の で、家族 と の 時間 を 取れ なかっ た。
+        english: Because she was too busy, she couldn't make time for her family.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly busy. We're looking for a phrase that
+          implies an *excessive degree* of busyness causing a specific negative outcome.
+      - competing_japanese:
+          - 彼女 は 忙しく {て}、家族 と の 時間 を 取れ なかっ た。
+        english: She was busy, so she couldn't make time for her family.
+        hint: The 「〜て」 form simply links reasons. We're looking for a phrase that emphasizes the *intensity*
+          of her busyness as the direct cause.
+      - competing_japanese:
+          - '{あまり に} 彼女 が 忙しく て、家族 と の 時間 を 取れ なかっ た。'
+        english: She was so busy that she couldn't make time for her family.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun phrase (from an adjective) to an excessive degree and consequence.
+    scene: A colleague is explaining why a mutual friend seems distant and overworked.
+    register: semi-formal
+    setting: sympathetic
+  - english: It was so delicious that I ate the entire cake by myself.
+    japanese:
+      - 美味し さ の {あまり}、その ケーキ を 一人 で 全部 食べ て しまっ た。
+      - 美味し さ の {あまり}、ケーキ 全部 食べ ちゃっ た。
+      - その 美味し さ の {あまり}、ケーキ を 一人 で 全て 平らげ て しまっ た。
+    english_literally: Due to its excessive deliciousness, I ended up eating the entire cake by myself.
+    competing_grammar:
+      - competing_japanese:
+          - 美味し {すぎ て}、その ケーキ を 一人 で 全部 食べ て しまっ た。
+        english: It was too delicious, so I ate the entire cake by myself.
+        hint: 「〜すぎる (too much, excessive)」 indicates something is overdone. We're looking for a phrase
+          that attributes the action to an *extreme quality* leading to an (often unintended) outcome.
+      - competing_japanese:
+          - 美味しかっ た {の で}、その ケーキ を 一人 で 全部 食べ て しまっ た。
+        english: Because it was delicious, I ate the entire cake by myself.
+        hint: 「〜ので (reason)」 states a simple reason. We're looking for a phrase that highlights the *overwhelming*
+          deliciousness as the direct cause.
+      - competing_japanese:
+          - '{あまり に} 美味しく て、その ケーキ を 一人 で 全部 食べ て しまっ た。'
+        english: It was so delicious that I ate the entire cake by myself.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          the noun form of an adjective to an excessive degree and consequence.
+    scene: Someone is confessing a momentary lapse of self-control after trying an amazing dessert.
+    register: casual
+    setting: humorous
+  - english: She was so kind that he couldn't refuse her request.
+    japanese:
+      - 彼女 の 優し さ の {あまり}、彼 は その 頼み を 断れ なかっ た。
+      - 優し さ の {あまり}、彼 に は 頼み を 断る なんて でき なかっ た。
+      - 彼女 の 優し さ の {あまり}、彼、断れ なかっ た ん だ よ。
+    english_literally: Due to her excessive kindness, he could not refuse that request.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 優し {すぎ た} の で、彼 は その 頼み を 断れ なかっ た。
+        english: Because she was too kind, he couldn't refuse her request.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly kind. We're looking for a phrase that
+          conveys a profound influence of kindness making refusal impossible.
+      - competing_japanese:
+          - 彼女 は 優しかっ た {の で}、彼 は その 頼み を 断れ なかっ た。
+        english: Because she was kind, he couldn't refuse her request.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that emphasizes the *extreme
+          degree* of kindness as the direct cause.
+      - competing_japanese:
+          - '{あまり に} 彼女 が 優しく て、彼 は その 頼み を 断れ なかっ た。'
+        english: She was so kind that he couldn't refuse her request.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          the noun form of an adjective to an excessive degree and consequence.
+    scene: Explaining why someone agreed to an inconvenient favor.
+    register: semi-formal
+    setting: informative
+  - english: He was so diligent at work that he worked even on his days off without rest.
+    japanese:
+      - 彼 は 仕事 に 真面目 な {な あまり}、休日 も 休ま ず 働い て い た。
+      - 仕事 に 真面目 な {あまり}、休み の 日 も 休ま なかっ た。
+      - 真面目 な {あまり}、彼 は 休み なく 働き 続け た。
+    english_literally: He was diligent at work to such an extent that he worked without rest even on holidays.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 仕事 に 真面目 {すぎ た} の で、休日 も 休ま ず 働い て い た。
+        english: Because he was too diligent at work, he worked even on his days off without rest.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly diligent. We're looking for a phrase
+          that implies diligence reached an *excessive point*, leading to overwork.
+      - competing_japanese:
+          - 彼 は 仕事 に 真面目 だっ た {の で}、休日 も 休ま ず 働い て い た。
+        english: Because he was diligent at work, he worked even on his days off without rest.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that highlights that
+          his diligence was *so intense* that it resulted in him working without rest.
+      - competing_japanese:
+          - '{あまり に} 彼 が 仕事 に 真面目 で、休日 も 休ま ず 働い て い た。'
+        english: He was so diligent at work that he worked even on his days off without rest.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a な-adjective phrase to an excessive degree and consequence.
+    scene: A coworker is remarking on a colleague's excessive dedication to work, implying it's not entirely
+      healthy.
+    register: formal
+    setting: serious
+  - english: She was so terrified that she couldn't even speak.
+    japanese:
+      - 恐怖 の {あまり}、彼女 は 声 も 出 なかっ た。
+      - 恐怖 の {あまり}、彼女、声 も 出 なく なっ ちゃっ た ん だ。
+      - 恐怖 の {あまり}、彼女 は 何 も 言え なかっ た。
+    english_literally: Due to excessive fear, she could not even speak.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 怖 {すぎ て}、声 も 出 なかっ た。
+        english: Because she was too scared, she couldn't speak.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly scared. We're looking for a phrase that
+          conveys a profound impact of terror leading to speechlessness.
+      - competing_japanese:
+          - 彼女 は 怖かっ た {の で}、声 も 出 なかっ た。
+        english: Because she was scared, she couldn't speak.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that emphasizes the *intensity*
+          of her fear as the direct cause.
+      - competing_japanese:
+          - '{あまり に} 彼女 が 怖く て、声 も 出 なかっ た。'
+        english: She was so terrified that she couldn't even speak.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun to an excessive degree and consequence.
+    scene: Recounting a scary experience where someone was completely paralyzed by fear.
+    register: semi-formal
+    setting: storytelling
+  - english: He was so happy that he jumped for joy on the spot.
+    japanese:
+      - 喜び の {あまり}、彼 は その 場 で 飛び跳ね て 喜ん だ。
+      - 喜び の {あまり}、その 場 で 飛び跳ね ちゃっ た。
+      - '{あまり} の 喜び で、彼 は 飛び跳ね た。'
+    english_literally: Due to excessive joy, he jumped and rejoiced on the spot.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 喜び {すぎ て}、その 場 で 飛び跳ね て 喜ん だ。
+        english: He was too happy, so he jumped for joy on the spot.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly happy. We're looking for a phrase that
+          emphasizes that his joy was so overwhelming it led to an unrestrained physical reaction.
+      - competing_japanese:
+          - 彼 は 喜ん だ {の で}、その 場 で 飛び跳ね て 喜ん だ。
+        english: Because he was happy, he jumped for joy on the spot.
+        hint: The 「〜nde (reason)」 states a simple reason. We're looking for a phrase that highlights that
+          his joy was *so intense* that he literally jumped.
+      - competing_japanese:
+          - '{あまり に} 彼 が 喜ん で、その 場 で 飛び跳ね て 喜ん だ。'
+        english: He was so happy that he jumped for joy on the spot.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun to an excessive degree and consequence.
+    scene: Describing someone's overwhelming reaction to unexpectedly good news.
+    register: casual
+    setting: excited
+  - english: The exam pressure was so immense that I got a stomachache.
+    japanese:
+      - 試験 の プレッシャー の {あまり}、胃 が 痛く なっ て しまっ た。
+      - テスト の プレッシャー の {あまり}、お腹 が 痛く なっ た。
+      - 試験 の プレッシャー の {あまり}、腹痛 に なっ て しまっ た。
+    english_literally: Due to the excessive pressure of the exam, I ended up getting a stomachache.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の プレッシャー が ひど {すぎ た} の で、胃 が 痛く なっ て しまっ た。
+        english: Because the exam pressure was too severe, I got a stomachache.
+        hint: 「〜すぎる (too much, excessive)」 indicates something is overdone. We're looking for a phrase
+          that attributes the physical symptom directly to the *overwhelming* pressure.
+      - competing_japanese:
+          - 試験 の プレッシャー が あっ た {の で}、胃 が 痛く なっ て しまっ た。
+        english: Because there was exam pressure, I got a stomachache.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that specifically links
+          this *excessive* pressure to the stomachache.
+      - competing_japanese:
+          - '{あまり に} 試験 の プレッシャー が ひどく て、胃 が 痛く なっ て しまっ た。'
+        english: The exam pressure was so immense that I got a stomachache.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun to an excessive degree and consequence.
+    scene: A student expressing physical symptoms due to severe stress before a big exam.
+    register: casual
+    setting: pessimistic
+    speaker_age: younger
+    nuance: This sentence describes a common experience for younger students facing exams, where extreme
+      pressure can lead to physical discomfort. The use of 「〜て しまっ た」 indicates an unintended or regrettable
+      outcome.
+  - english: He was so angry that he couldn't control himself and shouted.
+    japanese:
+      - 怒り の {あまり}、彼 は 我 を 忘れ て 叫ん で しまっ た。
+      - 怒り の {あまり}、あいつ、我 を 忘れ て 叫ん じゃっ た よ。
+      - 怒り の {あまり}、彼 は 自分 を コントロール でき なく なっ て、大声 で 叫ん だ。
+    english_literally: Due to excessive anger, he lost himself and ended up shouting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 怒り {すぎ て}、我 を 忘れ て 叫ん で しまっ た。
+        english: He got too angry and lost himself and shouted.
+        hint: 「〜すぎる (too much, excessive)」 indicates something is overdone. We're looking for a phrase
+          that attributes the outburst to an *excessive degree* of anger, leading to a loss of control.
+      - competing_japanese:
+          - 彼 は 怒っ た {の で}、我 を 忘れ て 叫ん で しまっ た。
+        english: Because he was angry, he lost himself and shouted.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that highlights the *intensity*
+          of his anger as the direct cause of losing control.
+      - competing_japanese:
+          - '{あまり に} 彼 が 怒っ て、我 を 忘れ て 叫ん で しまっ た。'
+        english: He was so angry that he lost himself and shouted.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun to an excessive degree and consequence.
+    scene: You are recounting an incident where someone lost their temper in a public setting.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「我 を 忘れ て」 combined with 「怒り の {あまり}」 emphasizes a complete loss of control due
+      to overwhelming anger, leading to an undesirable outburst. The use of 「〜て しまっ た」 also indicates
+      a regrettable outcome.
+  - english: She was so sleepy that she fell asleep right there during the lecture.
+    japanese:
+      - 眠気 の {あまり}、彼女 は 講義 中 に その 場 で 眠り 込ん で しまっ た。
+      - 眠気 の {あまり}、授業 中 に その まま 寝 ちゃっ た ん だ。
+      - 眠気 の {あまり}、彼女 は 授業 中 に ガクッ と 寝 て しまっ た。
+      - 眠気 の {あまり}、彼女 は 講義 室 で 寝 落ち し て しまっ た。
+    english_literally: Due to excessive sleepiness, she ended up falling asleep right there during the
+      lecture.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 眠 {すぎ て}、講義 中 に その 場 で 眠り 込ん で しまっ た。
+        english: She was too sleepy, so she fell asleep right there during the lecture.
+        hint: 「〜すぎる (too much, excessive)」 indicates being overly sleepy. We're looking for a phrase that
+          attributes falling asleep directly to the *overwhelming* feeling of sleepiness.
+      - competing_japanese:
+          - 彼女 は 眠かっ た {の で}、講義 中 に その 場 で 眠り 込ん で しまっ た。
+        english: Because she was sleepy, she fell asleep right there during the lecture.
+        hint: 「〜nde (reason)」 states a simple reason. We're looking for a phrase that specifically links
+          this *excessive* sleepiness to falling asleep.
+      - competing_japanese:
+          - '{あまり に} 彼女 が 眠く て、講義 中 に その 場 で 眠り 込ん で しまっ た。'
+        english: She was so sleepy that she fell asleep right there during the lecture.
+        hint: 「あまりに (excessively, too much)」 is an adverb. We're looking for a construction that links
+          a noun to an excessive degree and consequence.
+    scene: You're gossiping with a friend about a classmate who is always tired.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「眠気 の {あまり}」 highlights the overpowering nature of sleepiness. The phrase 「眠り 込ん で しまっ た」
+      uses 「〜て しまう」 to convey an unintended or regrettable action, emphasizing that falling asleep was
+      an involuntary outcome of the extreme drowsiness.
+post_example_writeup: The 「あまり」 grammar point emphasizes the **excessive degree** to which something occurs,
+  leading to a particular result. The result is usually negative or undesirable, though the degree of
+  negativity can vary from mild inconvenience to a serious consequence. Keep in mind that 「あまり」 requires
+  a specific structure before it – a verb in dictionary form, an い-adjective converted to a noun, a な-adjective
+  + 「な」, or a noun + 「の」. This differentiates it from other expressions of degree.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あまり

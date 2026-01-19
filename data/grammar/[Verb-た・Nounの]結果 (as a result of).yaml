@@ -1,0 +1,257 @@
+grammar_point: '[Verb-た・Nounの]結果 (as a result of)'
+learn_before:
+  - と (quotation marker)
+  - 上 (from the standpoint of)
+  - 何らかの (some kind of)
+meaning: indicates that something is the consequence or outcome of a preceding action or situation.
+pronunciation:
+  katakana: ケッカ
+  romaji: kekka
+formation:
+  Verb[た] + 結果: Used to state the outcome or consequence of a past action.
+  Noun の + 結果: Used to state the outcome or consequence of a noun (event, cause, etc.).
+jlpt: N3
+etymology: 「結果」 (kekka) comes from the kanji 「結」 (ketsu, meaning to tie, bind, conclude) and 「果」 (ka,
+  meaning fruit, result, outcome). Historically, it literally refers to the "fruit" or "outcome" of a
+  process or effort, similar to how a tree bears fruit after blooming. This conceptualization extends
+  to abstract results, signifying the conclusion or consequence of an action or event. The particle 「の」
+  functions as a possessive, indicating that the result "belongs to" or is "derived from" the preceding
+  noun. When used with a verb in the past tense (た形), it implies that the completed action led directly
+  to the result.
+writeup: |-
+  The grammar point `[Verb-た・Nounの]結果` is used to express that something is the direct consequence or outcome of a preceding action or situation. It clearly links a cause or an event to its resulting effect.
+
+  This pattern is versatile and can be applied to various situations, from daily events to more formal reports. It functions similarly to "as a result of," "due to," or "in consequence of" in English.
+
+  When connecting to a verb, the verb must be in its past tense (た形), indicating a completed action that has led to the result. For example, 「努力した結果、成功した」 (As a result of effort, I succeeded). Here, the completed action of "effort" (努力した) directly leads to "success" (成功した).
+
+  When connecting to a noun, the particle 「の」 is used to link the noun to 「結果」. This noun typically represents an event, a decision, or a cause. For instance, 「会議の結果、決定した」 (As a result of the meeting, a decision was made). The noun 「会議」 (meeting) is identified as the source of the result.
+
+  While it specifies a direct cause-and-effect relationship, it does not inherently carry a positive or negative connotation, unlike similar expressions such as 「〜おかげで」 (positive outcome) or 「〜せいで」 (negative outcome). The nuance of the result (positive, negative, or neutral) is determined by the context of the sentence itself.
+false_friends:
+  - term: 〜おかげで (because of, positive result)
+    meaning: due to (positive outcome)
+    kind: similar expression
+    nuance: While both `〜結果` and `〜おかげで` indicate a cause and effect, `〜おかげで` specifically implies that
+      the preceding action/event led to a positive or beneficial outcome, often with a nuance of gratitude
+      or appreciation. `〜結果` is neutral.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: 〜せいで (because of, negative result)
+    meaning: due to (negative outcome/blame)
+    kind: similar expression
+    nuance: '`〜せいで` implies that the preceding action/event led to a negative or undesirable outcome,
+      often with a nuance of blame or regret. `〜結果` is neutral.'
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: 〜ため (because of)
+    meaning: due to; for the sake of
+    kind: similar expression
+    nuance: 「〜ため」 can indicate a reason or cause, but it doesn't always convey the sense of a definitive
+      outcome or conclusion in the same way 「〜結果」 does. It's more about the reason why something happened,
+      rather than the final consequence of something.
+    grammar_point: '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - term: 〜によって (due to; by means of)
+    meaning: by; due to; according to
+    kind: similar expression
+    nuance: 「〜によって」 can denote a cause or means, but 「〜結果」 specifically emphasizes the final result or
+      conclusion of a process or action, whereas 「〜によって」 can describe the agent or method that led to
+      something.
+    grammar_point: '[Noun]によって (cause・reason)'
+post_false_friends_writeup: While expressions like `〜おかげで`, `〜せいで`, `〜ため`, and `〜によって` all relate to causality,
+  `〜結果` stands out by its explicit focus on the definitive outcome or consequence. `〜おかげで` and `〜せいで`
+  carry inherent positive or negative connotations, respectively, whereas `〜結果` remains neutral, simply
+  presenting what transpired. `〜ため` often emphasizes the reason for an action, and `〜によって` can describe
+  the means or agent, but `〜結果` is about the final, tangible result that emerged from a preceding state
+  or action. When you want to clearly state "this is what happened *as a result of* that," `〜結果` is the
+  most direct choice.
+examples:
+  - english: As a result of studying hard, I passed the exam.
+    japanese:
+      - 一生 懸命 勉強 {し た 結果}、試験 に 合格 し た。
+      - 一生 懸命 勉強 {し た 結果}、試験 に 合格 し まし た。
+    english_literally: Hard study, as a result, exam passed.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 勉強 {し た ため}、試験 に 合格 し た。
+        english: Because I studied hard, I passed the exam.
+        hint: 「〜ため」 (tame) emphasizes the reason or cause, while 「〜結果」 (kekka) emphasizes the specific
+          outcome or conclusion that follows. We're looking for the outcome.
+      - competing_japanese:
+          - 一生 懸命 勉強 {し た の で}、試験 に 合格 し た。
+        english: Since I studied hard, I passed the exam.
+        hint: 「〜ので」 (node) is a general reason/cause marker, often used in casual conversation. 「〜結果」
+          (kekka) highlights the final consequence more formally. We're looking for the final outcome.
+    scene: A student tells their friend about their exam results.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses casual language, common among friends. The use of 「した結果」 emphasizes
+      the direct consequence of his effort.
+  - english: As a result of the discussion, we decided on a new plan.
+    japanese:
+      - 議論 {の 結果}、新しい 計画 に 決定 し た。
+      - 議論 {の 結果}、新しい 計画 に 決定 し まし た。
+    english_literally: Discussion's result, new plan decided.
+    competing_grammar:
+      - competing_japanese:
+          - 議論 {に よっ て}、新しい 計画 に 決定 し た。
+        english: By means of the discussion, we decided on a new plan.
+        hint: 「〜によって」 (ni yotte) can express means or cause, but 「〜結果」 (kekka) specifically points to
+          the *outcome* or *conclusion* of the discussion. We're looking for the direct outcome.
+    scene: Colleagues discussing a project update.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker uses professional, neutral language. 「議論の結果」 concisely presents the outcome of
+      the collective discussion.
+  - english: As a result of staying up late every night, my health deteriorated.
+    japanese:
+      - 毎晩 夜更かし {し た 結果}、体調 を 崩し て しまっ た。
+      - 毎晩 夜更かし {し た 結果}、体調 を 崩し て しまい まし た。
+    english_literally: Every night staying up late, as a result, health broke down.
+    competing_grammar:
+      - competing_japanese:
+          - 毎晩 夜更かし {し た せい で}、体調 を 崩し て しまっ た。
+        english: Because I stayed up late every night (negative nuance), my health deteriorated.
+        hint: 「〜せいで」 (sei de) strongly implies a negative reason or blame, while 「〜結果」 (kekka) presents
+          the outcome neutrally, even if the outcome itself is negative. We're looking for the factual
+          outcome.
+    scene: A person reflecting on their unhealthy habits.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「〜しまった」 adds a sense of regret or completion, reinforcing the negative outcome
+      of 「夜更かしした結果」.
+  - english: The product's defect was a result of a manufacturing error.
+    japanese:
+      - 製品 の 欠陥 は 製造 上 {の 結果} だっ た。
+      - 製品 の 欠陥 は 製造 上 {の 結果} でし た。
+    english_literally: Product's defect manufacturing-related result was.
+    competing_grammar:
+      - competing_japanese:
+          - 製品 の 欠陥 は 製造 上 の {ミス に よる もの} だっ た。
+        english: The product's defect was due to a manufacturing error.
+        hint: While 「〜によるもの」 (ni yoru mono) also indicates cause, 「〜結果」 (kekka) specifically emphasizes
+          the final outcome or conclusion of the process. We're looking for the outcome.
+    scene: An engineer explaining a product recall.
+    register: formal
+    setting: technical
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal register and specific terminology like 「製造上の」 indicate a technical or business
+      context, where 「結果」 precisely describes the outcome of a process.
+  - english: As a result of trying it, I found it surprisingly enjoyable.
+    japanese:
+      - やっ て {み た 結果}、意外 と 楽しかっ た。
+      - やっ て {み た 結果}、意外 と 楽しかっ た です。
+    english_literally: Trying, as a result, surprisingly enjoyable was.
+    competing_grammar:
+      - competing_japanese:
+          - やっ て {み たら}、意外 と 楽しかっ た。
+        english: When I tried it, it was surprisingly enjoyable.
+        hint: 「〜たら」 (tara) is a conditional and often implies a sequence but doesn't explicitly state
+          the decision is a *result*. 「〜結果」 (kekka) clearly presents it as a consequence. We're looking
+          for the consequence.
+    scene: Someone trying a new hobby and being surprised.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual tone and use of 「意外と」 (surprisingly) make this a natural expression among friends.
+      「やってみた結果」 highlights that the enjoyable outcome was directly due to the act of trying.
+  - english: The election results will be announced this evening.
+    japanese:
+      - 選挙 {の 結果} は 今晩 発表 さ れる。
+      - 選挙 {の 結果} は 今晩 発表 さ れ ます。
+    english_literally: Election's result this evening announced will be.
+    competing_grammar:
+      - competing_japanese:
+          - 選挙 {の 発表} は 今晩 さ れる。
+        english: The announcement of the election will be made this evening.
+        hint: This sentence is grammatically correct but changes the focus. The original emphasizes that
+          the *results* themselves are what will be announced, not just a general announcement. We're
+          looking for the specific results.
+    scene: A news anchor reporting on an election.
+    register: formal
+    setting: informative
+    nuance: This is a standard, neutral announcement. The use of the passive voice 「発表される」 makes it objective,
+      common in news reporting.
+  - english: As a result of thinking it over, I decided to move.
+    japanese:
+      - よく 考え {た 結果}、引っ越す こと に し た。
+      - よく 考え {た 結果}、引っ越す こと に し まし た。
+    english_literally: Thinking well, as a result, moving decided to.
+    competing_grammar:
+      - competing_japanese:
+          - よく 考え {て}、引っ越す こと に し た。
+        english: Thinking well, I decided to move.
+        hint: The te-form 「考えて」 (kangaete) implies a sequence but doesn't explicitly state the decision
+          is a *result*. 「〜結果」 (kekka) clearly presents it as a consequence. We're looking for the consequence.
+    scene: Someone telling a friend about a big life decision.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker is sharing a personal decision, and 「考えた結果」 emphasizes that the decision was a
+      direct outcome of thorough consideration.
+  - english: All human actions yield certain results.
+    japanese:
+      - 人間 の あらゆる 行為 は 何 ら か {の 結果} を 生む。
+      - 人間 の あらゆる 行為 は 何 ら か {の 結果} を 生み ます。
+    english_literally: Human's all actions some kind of result give birth to.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 の あらゆる 行為 は 何 ら か の {実} を 生む。
+        english: All human actions bear some fruit.
+        hint: 「実」 (mi) means fruit, which can metaphorically mean results, but 「結果」 (kekka) is the more
+          direct and common word for "result" in this philosophical context. We're looking for "result"
+          in a general sense.
+    scene: A philosopher giving a lecture.
+    register: formal
+    setting: serious
+    nuance: The academic register and abstract concept of "human actions" (人間のあらゆる行為) make this sentence
+      appropriate for a lecture setting. 「結果」 here denotes a universal truth about causality.
+  - english: You are responsible for the results of your own actions.
+    japanese:
+      - 自分 の 行動 {し た 結果} に は 責任 を 持つ べき だ。
+      - 自分 の 行動 {し た 結果} に は 責任 を 持つ べき です。
+    english_literally: Own action's done result, responsibility should have.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 の 行動 {に 対する} 責任 を 持つ べき だ。
+        english: You should take responsibility for your actions.
+        hint: This sentence is also correct but loses the specific nuance of "results" of actions. The
+          original explicitly states the responsibility for the *consequences* of actions. We're looking
+          for responsibility for the outcome.
+    scene: A parent advising their child.
+    register: formal
+    setting: instructional
+    speaker_age: older
+    nuance: The phrase 「持つべきだ」 (should have/bear) is a common way for an older person to impart wisdom
+      or instruction to a younger person, emphasizing accountability for the consequences of one's actions.
+      「行動した結果」 clearly links the action to the outcome.
+  - english: The war ended with an unfavorable outcome for our country.
+    japanese:
+      - その 戦争 は 我が 国 に とっ て 不利 {な 結果} と なっ た。
+      - その 戦争 は 我が 国 に とっ て 不利 {な 結果} と なり まし た。
+    english_literally: That war our country for unfavorable result became.
+    competing_grammar:
+      - competing_japanese:
+          - その 戦争 は 我が 国 に とっ て 不利 {な 終わり 方} と なっ た。
+        english: That war ended in an unfavorable way for our country.
+        hint: While 「終わり方」 (owarikata) describes the manner of ending, 「結果」 (kekka) specifically refers
+          to the final state or consequence. We're looking for the ultimate outcome.
+    scene: A historian recounting past events.
+    register: formal
+    setting: serious
+    nuance: The use of 「我が国」 (wagakuni - our country) is formal and often used in historical or national
+      contexts. 「不利な結果となった」 directly describes the final, negative outcome for the nation.
+post_example_writeup: The examples provided illustrate how `[Verb-た・Nounの]結果` is used across various contexts,
+  from casual conversation to formal academic discourse. Notice how the preceding element, whether a verb
+  in its past tense or a noun followed by 「の」, clearly sets up the cause or event, leading directly to
+  the stated result. This structure makes it a highly effective way to explain direct causal links in
+  Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/648

@@ -1,0 +1,266 @@
+grammar_point: '[Verb-た]ところだ (just finished doing)'
+learn_before:
+  - (にし)たところで (even if)
+  - '[Verb-dictionary]ところだ (about to do)'
+meaning: just finished doing
+pronunciation:
+  katakana: タ トコロ ダ
+  romaji: ta tokoro da
+formation:
+  Verb[た形] + ところだ: Indicates that an action has just been completed.
+jlpt: N4
+etymology: The noun 「ところ」 (tokoro) originally meant "place" or "spot". Over time, its meaning extended
+  to abstract "points" or "stages" in time or a process. When combined with verb forms, it functions as
+  a temporal indicator, pinpointing the exact stage of an action. For 「Verb-たところだ」, the 「た」 form signifies
+  past completion, and 「ところだ」 marks that precise 'point' of completion, implying it just happened. This
+  evolution from a concrete "place" to an abstract "point in time" is common in language for words referring
+  to location.
+writeup: 「Verb-たところだ」 is a grammar pattern used to express that an action has just been completed. The
+  「ところ」 (tokoro) here refers to a "point" or "moment" in time, and when preceded by the past tense (た
+  form) of a verb, it signifies that the action has reached its completion at that precise, very recent
+  moment. This pattern emphasizes the immediacy of the action's conclusion. It is commonly used when the
+  event has literally just finished, often within seconds or minutes of the statement. For example, if
+  you just finished eating, you would say 「たった今 食べたところだ」 (I just ate right now). This conveys a sense
+  of "freshness" about the completed action. This expression is highly versatile and can be used in both
+  casual and more polite contexts simply by changing the ending copula to 「だ」 for casual speech or 「です」
+  for polite speech. The core meaning of "just finished" remains consistent.
+false_friends:
+  - term: '[Verb-dictionary]ところだ'
+    meaning: about to do
+    kind: similar expression
+    nuance: This indicates an action that is about to happen, contrasting with 「Verb-たところだ」 which signifies
+      an action that has just completed. The difference lies in the verb form attached to 「ところだ」.
+    grammar_point: '[Verb-dictionary]ところだ (about to do)'
+  - term: '[Verb-て]いるところだ'
+    meaning: in the process of doing
+    kind: similar expression
+    nuance: This implies an action that is currently ongoing, while 「Verb-たところだ」 specifically states completion
+      in the immediate past.
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+  - term: たばかり
+    meaning: just did
+    kind: similar expression
+    nuance: Both express "just did". 「Verb-たところだ」 emphasizes the point in time of completion, making it
+      suitable for very recent, immediate past. 「たばかり」 emphasizes the short duration since the action
+      finished, suggesting the action is still 'new' or 'fresh' in memory, and can refer to events that
+      happened a bit longer ago but are still considered "recent" by the speaker. 「たばかり」 can also describe
+      a state, e.g., 「生まれたばかりの赤ちゃん」 (a newly born baby). 「ところだ」 implies more immediacy.
+    grammar_point: たばかり (just did)
+post_false_friends_writeup: The core concept of 「ところ」 (tokoro) in these constructions is 'point' or 'stage'.
+  When combined with different verb forms, it pinpoints the stage of an action. 「Verb-たところだ」 indicates
+  the action has just passed that 'point of completion'. In contrast, 「Verb-dictionaryところだ」 means the
+  action is at the 'point of beginning' (about to start), and 「Verb-ていいるところだ」 means the action is at the
+  'point of ongoing execution' (in the middle of it). While 「たばかり」 also means 'just did', it has a broader
+  sense of recentness and can apply to actions that finished a little while ago, whereas 「Verb-たところだ」
+  focuses on something that has happened literally moments ago, emphasizing the recency and immediacy
+  of the completion.
+examples:
+  - english: I just ate.
+    japanese:
+      - ちょうど {食べ た ところ だ}。
+      - ちょうど {食べ た ところ です}。
+      - 今、{食べ た ところ よ}。
+    english_literally: Just now, I ate point is.
+    competing_grammar:
+      - competing_japanese:
+          - ちょうど 食べ た。
+        english: I just ate.
+        hint: While 「ちょうど食べた」 also means "I just ate," 「Verb-たところだ」 adds a nuance of immediacy, implying
+          the action was completed literally moments ago. We're looking for that emphasis.
+      - competing_japanese:
+          - ちょうど 食べ 終わっ た。
+        english: I just finished eating.
+        hint: 「食べ終わった」 focuses on the finishing of the action, whereas 「Verb-たところだ」 emphasizes the very
+          recent point in time of that completion. We're looking for that 'point in time' emphasis.
+    scene: A friend asks if you want to grab lunch.
+    register: casual
+    setting: friendly
+    nuance: The use of 「ちょうど」 further emphasizes the immediacy. 「食べたところだ」 indicates that the action of
+      eating has only just been completed, making the timing very fresh.
+  - english: The meeting has just finished.
+    japanese:
+      - 会議 は {終わっ た ところ です}。
+      - 会議 は {終わっ た ところ だ}。
+      - 今、会議 は {終わっ た ところ です}。
+    english_literally: Meeting, as for, finished point is.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 終わり まし た。
+        english: The meeting finished.
+        hint: 「終わりました」 is a simple past tense. 「Verb-たところだ」 adds the nuance of 'just now', emphasizing
+          the very recent completion. We're looking for that specific immediacy.
+    scene: A secretary informs a manager about a meeting status.
+    register: formal
+    setting: professional
+    nuance: The use of 「です」 makes this a polite statement, suitable for a professional setting. 「終わったところです」
+      conveys that the meeting's conclusion is very recent.
+  - english: I just arrived home now.
+    japanese:
+      - 今、家 に {帰っ て き た ところ です}。
+      - 今、家 に {帰っ て き た ところ だ}。
+      - 今、家 に {着い た とこ だ}。
+    english_literally: Now, home to, came back point is.
+    competing_grammar:
+      - competing_japanese:
+          - 今、家 に 帰っ て き まし た。
+        english: I just came home now.
+        hint: While 「帰ってきました」 is also recent past, 「Verb-たところだ」 specifically marks the precise point of
+          completion, giving a stronger sense of 'just this very moment'.
+    scene: You call your parent immediately after getting home.
+    register: casual
+    setting: intimate
+    nuance: 「今」 (ima) reinforces the immediate past aspect of 「帰ってきたところです」. This is a common way to express
+      that an action happened right this moment.
+  - english: Oh, the movie just ended!
+    japanese:
+      - あっ、映画 が {終わっ た ところ だ}！
+      - あっ、映画 が {終わっ た ところ です}！
+    english_literally: Oh, movie subject finished point is!
+    competing_grammar:
+      - competing_japanese:
+          - あっ、映画 が ちょうど 終わっ た！
+        english: Oh, the movie just ended!
+        hint: Both are similar, but 「終わったところだ」 emphasizes the precise point of completion, suggesting
+          you just caught the very end. We're looking for that 'on the dot' feeling.
+    scene: You walk into the living room and see the credits rolling on the TV.
+    register: casual
+    setting: casual slang
+    nuance: The interjection 「あっ」 suggests a sudden realization or discovery of the movie's recent completion,
+      aligning with the immediacy of 「終わったところだ」.
+  - english: The package has just been delivered.
+    japanese:
+      - 荷物 が {届け られ た ところ だ}。
+      - 荷物 が {届け られ た ところ です}。
+      - 荷物 が {届い た ところ です}。
+    english_literally: Package subject, was delivered point is.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 が 届き まし た。
+        english: The package was delivered.
+        hint: 「届きました」 states that the delivery happened. 「届けられたところだ」 specifies that it happened literally
+          moments ago. We're looking for that very recent nuance.
+    scene: You ask your roommate if the package arrived, and they point to it.
+    register: casual
+    setting: friendly
+    conjugation: passive (～られる/～かれる)
+    nuance: While less common for passive verbs, 「届けられたところだ」 still conveys the recent completion of the
+      delivery action.
+  - english: Did you just wake up?
+    japanese:
+      - 今、{起き た ところ}？
+      - 今、{起き た ところ です か}？
+      - 今、ちょうど {起き た ところ}？
+    english_literally: Now, woke up point?
+    competing_grammar:
+      - competing_japanese:
+          - 今、起き た？
+        english: Did you wake up just now?
+        hint: 「起きた？」 is a simple past question. Adding 「ところ」 emphasizes the exact moment of waking up,
+          implying a very fresh state. We're looking for that 'right this second' feeling.
+    scene: Your friend is still rubbing their eyes first thing in the morning.
+    register: casual
+    setting: friendly
+    nuance: The rising intonation for 「起きたところ？」 makes it a casual question asking about immediate past
+      action.
+  - english: The concert just ended, so let's go home.
+    japanese:
+      - コンサート が {終わっ た ところ だ から}、帰り ましょう。
+      - コンサート が {終わっ た ところ だ から}、帰ろう。
+    english_literally: Concert subject finished point is so, let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート が 終わっ た の で、帰り ましょう。
+        english: Since the concert ended, let's go home.
+        hint: 「終わったので」 just states the reason. 「終わったところだから」 emphasizes that the concert *just now* ended,
+          providing a more immediate reason to leave. We're looking for that temporal emphasis.
+    scene: At a concert, the final song finishes and the lights come on.
+    register: formal
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+    nuance: The use of 「だから」 indicates a reason for the next action, emphasizing that the concert's fresh
+      completion is the direct cause to leave. 「帰りましょう」 is a polite suggestion.
+  - english: I just wrote that email.
+    japanese:
+      - その メール を {書い た ところ だ}。
+      - その メール を {書い た ところ です}。
+    english_literally: That email object, wrote point is.
+    competing_grammar:
+      - competing_japanese:
+          - その メール を 書き まし た。
+        english: I wrote that email.
+        hint: 「書きました」 simply states the past action. 「書いたところだ」 adds the specific nuance that the action
+          was completed moments ago. We're looking for that sense of immediacy.
+    scene: Your boss asks if you sent the email.
+    register: casual
+    setting: professional
+    nuance: 「書いたところだ」 precisely states that the writing of the email has very recently concluded.
+  - english: The customer service representative just hung up the phone.
+    japanese:
+      - 顧客 サービス の 担当 者 が 電話 を {切っ た ところ です}。
+      - 顧客 サービス の 担当 者 が 電話 を {切っ た ところ だ}。
+    english_literally: Customer service's person in charge subject, phone object, hung up point is.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 サービス の 担当 者 が 電話 を 切り まし た。
+        english: The customer service representative hung up the phone.
+        hint: 「切りました」 is a general past statement. 「切ったところです」 highlights that the action was completed
+          very recently, emphasizing the immediate state.
+    scene: An observer reporting on a situation.
+    register: semi-formal
+    setting: professional
+    nuance: This sentence describes an observed action that has just finished, highlighting the immediacy
+      for the reporter.
+  - english: I just remembered I have homework.
+    japanese:
+      - 宿題 が ある こと を {思い出し た ところ だ}。
+      - 宿題 が ある こと を {思い出し た ところ です}。
+      - 宿題 ある の {思い出し た とこ だ}。
+    english_literally: Homework subject is fact object, remembered point is.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 が ある こと を 思い出し た。
+        english: I remembered I have homework.
+        hint: 「思い出した」 states the memory. 「思い出したところだ」 emphasizes the very recent moment of that realization,
+          as if the thought just popped into your head.
+    scene: Talking to oneself or a friend after a moment of sudden realization.
+    register: casual
+    setting: casual slang
+    nuance: While remembering isn't a physical action, 「思い出したところだ」 indicates the very recent moment of
+      realization, emphasizing the fresh impact of the memory.
+  - english: The train just departed.
+    japanese:
+      - 電車 が {出 た ところ です}。
+      - 電車 が {出 た ところ だ}。
+    english_literally: Train subject, departed point is.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 出発 し まし た。
+        english: The train departed.
+        hint: 「出発しました」 is a general past statement. 「出たところです」 specifically indicates that the train's
+          departure was extremely recent, almost simultaneous with the observation.
+    scene: You arrive at the station just as the train pulls away.
+    register: formal
+    setting: casual slang
+    nuance: 「出たところです」 captures the moment of the train's departure, highlighting that you barely missed
+      it.
+  - english: I just finished cleaning the bathroom.
+    japanese:
+      - トイレ の 掃除 を {終え た ところ だ}。
+      - トイレ の 掃除 を {終え た ところ です}。
+    english_literally: Toilet's cleaning object, finished point is.
+    competing_grammar:
+      - competing_japanese:
+          - トイレ の 掃除 を 終え た。
+        english: I finished cleaning the bathroom.
+        hint: 「終えた」 is a simple past statement. 「終えたところだ」 emphasizes the immediate completion of the chore,
+          implying you literally just put the cleaning supplies away.
+    scene: Complaining to a friend about a chore.
+    register: casual
+    setting: friendly
+    nuance: 「終えたところだ」 indicates the recent completion of an action, regardless of whether it was pleasant
+      or unpleasant. Here, it might imply relief.
+post_example_writeup: The key to correctly using 「Verb-たところだ」 is to grasp the nuance of "just now" or
+  "momentarily." It signifies an action that has literally just concluded, and its result is fresh and
+  immediate. While seemingly similar to 「たばかり」, 「ところだ」 emphasizes the point in time of completion, making
+  it ideal for events that have finished mere seconds or minutes ago. Always consider the precise timing
+  you wish to convey when choosing between these expressions.

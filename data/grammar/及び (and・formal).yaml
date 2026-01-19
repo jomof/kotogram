@@ -1,0 +1,383 @@
+grammar_point: 及び (and・formal)
+learn_before:
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - 〜について・〜に関して (about・regarding)
+  - とする (to assume・to decide)
+  - のだろうか (I wonder)
+  - のみ (only・just)
+  - へ (directional particle)
+meaning: And (formal)
+pronunciation:
+  katakana: オヨビ
+  romaji: oyobi
+formation:
+  Noun1 及び Noun2: Connects two or more nouns or noun phrases, typically in formal contexts.
+  Sentence (plain form) + こと 及び Sentence (plain form) + こと: Connects two clauses or phrases that have
+    been nominalized by 'こと', often used for conditions, qualifications, or facts.
+jlpt: N2
+etymology: Derived from the verb 「及ぶ (およぶ)」, meaning "to reach" or "to extend to." The particle 「及び」 extends
+  the scope to include the items or conditions it connects.
+writeup: 「及び」 serves as a formal conjunction meaning "and." It is employed to connect nouns, phrases,
+  or clauses, predominantly in **formal written documents** and **official speech**. While 「と」 and 「そして」
+  are common in everyday conversation, 「及び」 conveys a higher degree of formality and precision. It is
+  frequently encountered in contexts such as **legal contracts**, **academic papers**, **business reports**,
+  and **public announcements**. Its usage implies a clear, exhaustive listing or a strong, interdependent
+  relationship between the connected elements.
+false_friends:
+  - term: と
+    meaning: and
+    kind: similar expression
+    nuance: 「と」 is a more common and generally less formal particle for connecting nouns, often used in
+      everyday conversation and informal writing.
+    grammar_point: と (and, connects nouns)
+  - term: そして
+    meaning: and, and then
+    kind: similar expression
+    nuance: 「そして」 is a less formal connective that also implies a sequence of events or actions, or a
+      continuation of a narrative. It connects sentences or clauses more often than just nouns.
+    grammar_point: そして (and・and then)
+  - term: 並びに
+    meaning: And; both ~ and ~; as well as
+    kind: similar expression
+    nuance: 「並びに」 is typically considered even more formal and rigid than 「及び」. It is used in highly official
+      or legal documents to connect items of equal importance within a parallel structure, often when
+      there are multiple layers of items being listed.
+    grammar_point: 並びに (and・as well as・formal)
+  - term: のみならず
+    meaning: not only... but also
+    kind: similar expression
+    nuance: While 「及び」 simply joins items, 「のみならず」 emphasizes that the second item is true in addition
+      to the first, often implying a greater extent or an unexpected additional factor.
+    grammar_point: はもとより (not only・let alone)
+  - term: 且つ
+    meaning: And; moreover; furthermore
+    kind: similar expression
+    nuance: While 「及び」 primarily lists items, 「且つ」 often signifies an additional quality or simultaneous
+      condition, connecting elements that are concurrently true or logically compounded. It is highly
+      formal, often used in legal or academic contexts.
+    grammar_point: 且つ (and・moreover)
+post_false_friends_writeup: To effectively distinguish 「及び」 from 「と」 and 「そして」, remember that 「及び」 is
+  specifically reserved for formal contexts, such as official documents and formal presentations. 「並びに」
+  represents an even higher degree of formality, usually for very structured, hierarchical lists. 「且つ」,
+  while formal, often suggests simultaneous conditions or additive properties. For daily conversation
+  and informal writing, 「と」 is the standard connector, while 「そして」 is used when emphasizing a sequence
+  or continuation. 「のみならず」 also connects but carries an additional nuance of emphasis on the second item.
+examples:
+  - english: The report lists sales figures and costs.
+    japanese:
+      - 報告 書 に は、売上 高 {及び} 費用 が 記さ れ て いる。
+      - 報告 書 に は、売上 高 {及び} 費用 が 記載 さ れ て いる。
+      - 報告 書 に は、売上 高 {及び} 費用 が 記載 さ れ て い ます。
+      - 報告 書 に は、売上 高 {及び} 経費 が 記さ れ て いる。
+      - 報告 書 に は、売上 高 {及び} 経費 が 記載 さ れ て いる。
+      - 報告 書 に は、売上 高 {及び} 経費 が 記載 さ れ て い ます。
+      - 報告 書 に は、売上 高 {及び} 費用 が 明記 さ れ て いる。
+      - 報告 書 に は、売上 高 {及び} 費用 に 関する 情報 が 記さ れ て いる。
+    english_literally: Regarding the report, sales figures and costs are written.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 に は、売上 高 {と} 費用 が 記さ れ て いる。
+        english: The report lists sales figures and costs.
+        hint: 「と」 is a general connector for listing items. We are looking for a formal conjunction typically
+          used in written documents.
+      - competing_japanese:
+          - 報告 書 に は、売上 高 {そして} 費用 が 記さ れ て いる。
+        english: The report lists sales figures, and then costs are written.
+        hint: 「そして」 implies a sequence or continuation between clauses. We're looking for a formal conjunction
+          that simply lists items.
+      - competing_japanese:
+          - 報告 書 に は、売上 高 {並び に} 費用 が 記さ れ て いる。
+        english: The report lists sales figures and costs (even more formally).
+        hint: 「並びに」 is used for even higher formality and often implies a hierarchical or highly structured
+          list. We're looking for a formal but more general connector.
+    scene: A financial auditor is explaining the required content of a formal business report.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: Please fill in your name and address in the signature field.
+    japanese:
+      - 署名 欄 に は、氏名 {及び} 住所 を 記入 し て ください。
+      - 署名 欄 に は、氏名 {及び} 住所 を ご 記入 ください。
+      - 署名 欄 に は、氏名 {及び} 住所 を 記入 願い ます。
+      - 署名 欄 に は、氏名 {及び} 住所 を ご 記入 願い ます。
+      - 署名 欄 に は、氏名 {及び} 住所 を 記入 する こと。
+      - 署名 欄 に は、氏名 {及び} 住所 を 記載 し て ください。
+    english_literally: Into the signature field, please fill in name and address.
+    competing_grammar:
+      - competing_japanese:
+          - 署名 欄 に は、氏名 {と} 住所 を 記入 し て ください。
+        english: Please fill in your name and address in the signature field.
+        hint: 「と」 connects items in a general way. We are looking for a more formal connection for official
+          instructions.
+      - competing_japanese:
+          - 署名 欄 に は、氏名。{そして} 住所 を 記入 し て ください。
+        english: Please fill in your name. And then, please fill in your address in the signature field.
+        hint: 「そして」 implies a sequence or separate actions. We need a single conjunction to list items
+          within a phrase.
+      - competing_japanese:
+          - 署名 欄 に は、氏名 {並び に} 住所 を 記入 し て ください。
+        english: Please fill in your name and address (even more formally) in the signature field.
+        hint: 「並びに」 implies a stricter, often hierarchical connection in very formal documents. We need
+          a formal conjunction that is less rigid.
+    scene: An administrative assistant is providing instructions for completing an official government
+      application form.
+    register: formal
+    setting: informative
+  - english: For the success of this plan, gathering accurate data and appropriate analysis are necessary.
+    japanese:
+      - この 計画 の 成功 に は、正確 な データ の 集め {及び} 適切 な 分析 が 必要 だ。
+      - この 計画 の 成功 に は、正確 な データ の 収集 {及び} 適切 な 分析 が 必要 です。
+      - この 計画 の 成功 に は、正確 な データ の 集め {及び} 適切 な 分析 が 必要 です。
+      - この プロジェクト の 成功 に は、正確 な データ の 収集 {及び} 適切 な 分析 が 必要 です。
+      - この 計画 の 成功 に は、正確 な データ の 収集 {及び} 適正 な 分析 が 必要 です。
+      - この 計画 の 成功 に は、正確 な データ の 収集 {及び} 適切 な 分析 が 必要 と さ れる。
+      - 計画 の 成功 を 図る 上 で、正確 な データ の 収集 {及び} 適切 な 分析 が 不可欠 で ある。
+    english_literally: For the success of this plan, accurate data gathering and appropriate analysis
+      are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 成功 に は、正確 な データ の 集め {と} 適切 な 分析 が 必要 だ。
+        english: For the success of this plan, gathering accurate data and appropriate analysis are necessary.
+        hint: 「と」 is a common particle for linking items. We need a formal expression suitable for academic
+          or professional contexts.
+      - competing_japanese:
+          - この 計画 の 成功 に は、正確 な データ の 収集。{そして} 適切 な 分析 が 必要 です。
+        english: For the success of this plan, gathering accurate data. And then, appropriate analysis
+          is necessary.
+        hint: 「そして」 typically links separate clauses or expresses sequential actions. We need a formal
+          conjunction to combine elements within a single statement.
+      - competing_japanese:
+          - この 計画 の 成功 に は、正確 な データ の 収集 {並び に} 適切 な 分析 が 必要 です。
+        english: For the success of this plan, gathering accurate data and appropriate analysis are necessary
+          (even more formally).
+        hint: 「並びに」 implies a stricter, often hierarchical connection in very formal documents. We need
+          a formal conjunction for a general connection.
+    scene: A project manager is presenting the critical requirements for a new, large-scale research initiative
+      to their team.
+    register: formal
+    setting: academic
+  - english: The provision of this service is limited to domestic Japan and specific regions overseas.
+    japanese:
+      - 本 サービス の 提供 は、日本 国内 {及び} 海外 の 特定 地域 に 限定 さ れ ます。
+      - 本 サービス の 提供 は、日本 国内 {及び} 海外 の 特定 地域 へ のみ 限定 さ れ ます。
+      - 本 サービス の 提供 は、日本 国内 {及び} 特定 の 海外 地域 に 限定 さ れ ます。
+      - 本 サービス の 提供 は、日本 国内 {及び} 海外 の 特定 地域 に 限ら れ ます。
+      - 本 サービス の 提供 は、日本 国内 {及び} 海外 の 特定 地域 に 限定 さ れる もの と なり ます。
+      - 本 サービス の 提供 範囲 は、日本 国内 {及び} 海外 の 特定 地域 に 限定 さ れ ます。
+    english_literally: This service's provision is limited to Japan's domestic area and specific overseas
+      regions.
+    competing_grammar:
+      - competing_japanese:
+          - 本 サービス の 提供 は、日本 国 内 {と} 海外 の 特定 地域 に 限定 さ れ ます。
+        english: The provision of this service is limited to domestic Japan and specific regions overseas.
+        hint: 「と」 is suitable for casual connections. We need a formal connector for official announcements.
+      - competing_japanese:
+          - 本 サービス の 提供 は、日本 国内。{そして} 海外 の 特定 地域 に 限定 さ れ ます。
+        english: This service's provision is limited to domestic Japan. And then, to specific overseas
+          regions.
+        hint: 「そして」 usually connects distinct sentences or actions. We're looking for a formal conjunction
+          to list locations.
+      - competing_japanese:
+          - 本 サービス の 提供 は、日本 国内 {並び に} 海外 の 特定 地域 に 限定 さ れ ます。
+        english: The provision of this service is limited to domestic Japan and specific regions overseas
+          (even more formally).
+        hint: 「並びに」 implies a very high level of formality and strictness, suitable for highly structured
+          legal or official documents. We need a formal conjunction that is less rigid.
+    scene: A company is issuing a public announcement regarding the geographical scope of its new service.
+    register: formal
+    setting: informative
+  - english: Employees must follow company rules and laws.
+    japanese:
+      - 社員 は、会社 の 規則 {及び} 法律 を 守ら なけれ ば なら ない。
+      - 社員 は、会社 の 規則 {及び} 法律 を 遵守 し なけれ ば なら ない。
+      - 社員 は、会社 の 規則 {及び} 法律 を 遵守 する 必要 が あり ます。
+      - 従業 員 は、社内 規定 {及び} 法令 を 遵守 し なけれ ば なら ない。
+      - 従業 員 は、社内 規定 {及び} 法令 を 遵守 する 必要 が あり ます。
+      - 社員 は、会社 の 規則 {及び} 法律 に 従う こと。
+      - 従業 員 に は、社内 規定 {及び} 法令 の 遵守 が 求め られ ます。
+    english_literally: Employees, company rules and laws must follow.
+    competing_grammar:
+      - competing_japanese:
+          - 社員 は、会社 の 規則 {と} 法律 を 守ら なけれ ば なら ない。
+        english: Employees must follow company rules and laws.
+        hint: 「と」 is a common particle for linking items in a general context. We're looking for a formal
+          conjunction suitable for official directives.
+      - competing_japanese:
+          - 社員 は、会社 の 規則 を 守り ます。{そして} 法律 も 守り ます。
+        english: Employees follow company rules. And they also follow laws.
+        hint: 「そして」 connects independent sentences or phrases, often implying sequence. We need a single
+          conjunction to connect two nouns within one obligation.
+      - competing_japanese:
+          - 社員 は、会社 の 規則 {並び に} 法律 を 守ら なけれ ば なら ない。
+        english: Employees must follow company rules and laws (even more formally).
+        hint: 「並びに」 is typically used for the highest level of formality, often in legal or highly structured
+          contexts. We need a general formal connector.
+    scene: A corporate compliance officer is outlining strict adherence requirements for all employees.
+    register: bijinesu nihongo (business)
+    setting: serious
+  - english: In historical research, the verification of facts and explanation are extremely important.
+    japanese:
+      - 歴史 の 研究 に おい て、事実 の 確認 {及び} 説明 が 非常 に 重要 で ある。
+      - 歴史 の 研究 に おい て、事実 の 確認 {及び} 解釈 が 非常 に 重要 です。
+      - 歴史 の 研究 に おい て、事実 の 確認 {及び} 説明 が 非常 に 重要 です。
+      - 歴史 的 研究 に おい て、事実 的 研究 に おい て、事実 の 確認 {及び} 解釈 が 非常 に 重要 で ある。
+      - 歴史 的 研究 に おい て、事実 の 確認 {及び} 説明 が 非常 に 重要 です。
+      - 歴史 研究 に おい て、事実 の 確認 {及び} 説明 は 不可欠 で ある。
+      - 歴史 の 研究 を 進める 上 で、事実 の 確認 {及び} 説明 は 極めて 重要 で ある。
+    english_literally: In historical research, the confirmation of facts and explanation are extremely
+      important.
+    competing_grammar:
+      - competing_japanese:
+          - 歴史 の 研究 に おい て、事実 の 確認 {と} 説明 が 非常 に 重要 で ある。
+        english: In historical research, the verification of facts and explanation are extremely important.
+        hint: 「と」 is a basic connector. We need a more formal expression suitable for academic writing.
+      - competing_japanese:
+          - 歴史 の 研究 に おい て、事実 の 確認。{そして} 説明 が 非常 に 重要 です。
+        english: In historical research, confirmation of facts. And then, explanation is extremely important.
+        hint: 「そして」 connects independent statements or signifies a progression. We need a formal conjunction
+          for linking two components of importance.
+      - competing_japanese:
+          - 歴史 の 研究 に おい て、事実 の 確認 {並び に} 説明 が 非常 に 重要 で ある。
+        english: In historical research, the verification of facts and explanation are extremely important
+          (even more formally).
+        hint: 「並びに」 often implies a highly structured or hierarchical relationship in very formal contexts.
+          We need a formal but more common connector.
+    scene: A university professor is explaining the methodological principles of historical analysis in
+      a graduate seminar.
+    register: formal
+    setting: academic
+  - english: All members and guests are requested to arrive by 9 AM.
+    japanese:
+      - 会員 {及び} 来賓 の 皆 様 は ９ 時 まで に ご 来場 ください。
+      - 会員 {及び} 来賓 の 皆 様 は 午前 ９ 時 まで に ご 来場 ください。
+      - 会員 {及び} 来賓 の 方々 は ９ 時 まで に お 集まり ください。
+      - 会員 {及び} 来賓 の 方 は ９ 時 まで に ご 集合 ください。
+    english_literally: Members and guests, everyone, please arrive by 9 AM.
+    competing_grammar:
+      - competing_japanese:
+          - 会員 {と} 来賓 の 皆 様 は ９ 時 まで に ご 来場 ください。
+        english: All members and guests are requested to arrive by 9 AM.
+        hint: 「と」 is a casual connector. We're looking for a formal expression suitable for a public notice.
+      - competing_japanese:
+          - 会員 の 皆 様 は ９ 時 まで に ご 来場 ください。{そして} 来賓 の 皆 様 も。
+        english: Members are requested to arrive by 9 AM. And guests also.
+        hint: 「そして」 implies a sequence or separate actions. We need a conjunction that lists items together.
+      - competing_japanese:
+          - 会員 {並び に} 来賓 の 皆 様 は ９ 時 まで に ご 来場 ください。
+        english: All members and guests are requested to arrive by 9 AM (even more formally).
+        hint: 「並びに」 often implies a hierarchical or highly structured list. We need a formal but more
+          general connector for a public announcement.
+    scene: A notice is being posted for an upcoming formal event.
+    register: formal
+    setting: informative
+  - english: The marketing department and sales division will collaborate on this project.
+    japanese:
+      - マーケティング 部 {及び} 営業 部 が この プロジェクト で 協力 する。
+      - マーケティング 部 {及び} 営業 部 が 本 プロジェクト に て 協力 いたし ます。
+      - マーケティング 部門 {及び} 営業 部門 が この プロジェクト で 協働 する。
+      - マーケティング 部署 {及び} 営業 部署 が この プロジェクト を 共同 で 推進 する。
+    english_literally: Marketing department and sales division will collaborate on this project.
+    competing_grammar:
+      - competing_japanese:
+          - マーケティング 部 {と} 営業 部 が この プロジェクト で 協力 する。
+        english: The marketing department and sales division will collaborate on this project.
+        hint: 「と」 is a general particle for linking. We need a more formal connector appropriate for a
+          business document.
+      - competing_japanese:
+          - マーケティング 部 が この プロジェクト で 協力 する。{そして} 営業 部 も。
+        english: The marketing department will collaborate on this project. And then, the sales division
+          also.
+        hint: 「そして」 connects independent sentences or signifies a progression. We need a single conjunction
+          to connect two entities within one statement.
+      - competing_japanese:
+          - マーケティング 部 {並び に} 営業 部 が この プロジェクト で 協力 する。
+        english: The marketing department and sales division will collaborate on this project (even more
+          formally).
+        hint: 「並びに」 is used for the utmost formality and often implies a highly structured or hierarchical
+          relationship. We need a general formal connector for business communication.
+    scene: A company director is outlining the collaborative structure for a new initiative in a formal
+      internal memo.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: Understanding the terms and adhering to the conditions are essential for contract validity.
+    japanese:
+      - 契約 の 有効 性 に は、条項 を 理解 する こと {及び} 条件 を 順守 する こと が 不可欠 です。
+      - 契約 の 有効 性 に は、条項 の 理解 {及び} 条件 の 順守 が 不可欠 です。
+      - 契約 の 有効 性 に は、条項 を 理解 する こと {及び} 条件 を 遵守 する こと が 必要 です。
+    english_literally: For contract validity, understanding terms and adhering to conditions are essential.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 の 有効 性 に は、条項 を 理解 する こと {と} 条件 を 順守 する こと が 不可欠 です。
+        english: Understanding the terms and adhering to the conditions are essential for contract validity.
+        hint: 「と」 is generally for casual listings. We need a formal connector suitable for legal or academic
+          language.
+      - competing_japanese:
+          - 条項 を 理解 する こと が 不可欠 です。{そして} 条件 を 順守 する こと も。
+        english: Understanding the terms is essential. And then, adhering to the conditions also.
+        hint: 「そして」 connects separate ideas or implies a sequence. We need a single conjunction to combine
+          two requirements into one essential point.
+      - competing_japanese:
+          - 契約 の 有効 性 に は、条項 を 理解 する こと {並び に} 条件 を 順守 する こと が 不可欠 です。
+        english: Understanding the terms and adhering to the conditions are essential for contract validity
+          (even more formally).
+        hint: 「並びに」 suggests the highest level of formality and strictness, often in deeply structured
+          legal texts. We need a formal but more generally applicable connector.
+    scene: A lawyer is explaining the prerequisites for a legally binding agreement to a client.
+    register: formal
+    setting: legal
+  - english: Safety equipment and emergency procedures must be checked regularly.
+    japanese:
+      - 安全 設備 {及び} 緊急 手順 は 定期 的 に 確認 する 必要 が ある。
+      - 安全 設備 {及び} 緊急 手順 は 定期 的 に 点検 する 必要 が ある。
+      - 安全 設備 {及び} 緊急 手順 は 定期 的 な 確認 が 義務 付け られ て いる。
+      - 安全 設備 {及び} 緊急 手順 は 定期 的 に 確認 す べし。
+      - 安全 設備 {及び} 緊急 手順 は 定期 的 に 確認 さ れる べき で ある。
+    english_literally: Safety equipment and emergency procedures, regularly checking is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 設備 {と} 緊急 手順 は 定期 的 に 確認 する 必要 が ある。
+        english: Safety equipment and emergency procedures must be checked regularly.
+        hint: 「と」 is a casual connector. We're looking for a formal expression suitable for regulations
+          or instructions.
+      - competing_japanese:
+          - 安全 設備 を 確認 する 必要 が ある。{そして} 緊急 手順 も。
+        english: Safety equipment needs to be checked. And then, emergency procedures also.
+        hint: 「そして」 indicates a sequence or separate actions. We need a single conjunction to list items
+          that are part of a combined requirement.
+      - competing_japanese:
+          - 安全 設備 {並び に} 緊急 手順 は 定期 的 に 確認 する 必要 が ある。
+        english: Safety equipment and emergency procedures must be checked regularly (even more formally).
+        hint: 「並びに」 is often used for highly structured lists or legal documents where the formality is
+          paramount. We need a general formal connector for a directive.
+    scene: A safety officer is issuing guidelines for workplace safety to employees.
+    register: formal
+    setting: instructional
+  - english: The research aims to clarify the causes of the phenomenon and its impact on the environment.
+    japanese:
+      - この 研究 は、その 現象 の 原因 {及び} 環境 へ の 影響 を 明らか に する こと を 目標 と する。
+      - この 研究 は、その 現象 の 原因 {及び} 環境 へ の 影響 の 解明 を 目指す。
+      - 本 研究 は、当該 現象 の 原因 {及び} 環境 へ の 影響 を 究明 する こと を 目的 と する。
+      - この 研究 は、現象 の 原因 {及び} 環境 へ の 影響 を 明確 に する もの で ある。
+    english_literally: This research, that phenomenon's cause and its environmental impact, aims to clarify.
+    competing_grammar:
+      - competing_japanese:
+          - この 研究 は、その 現象 の 原因 {と} 環境 へ の 影響 を 明らか に する こと を 目標 と する。
+        english: The research aims to clarify the causes of the phenomenon and its impact on the environment.
+        hint: 「と」 is a basic connector. We need a more formal expression suitable for academic writing.
+      - competing_japanese:
+          - この 研究 は、その 現象 の 原因 を 明らか に する こと を 目標 と する。{そして} 環境 へ の 影響 も。
+        english: This research aims to clarify the causes of the phenomenon. And then, its impact on the
+          environment also.
+        hint: 「そして」 connects separate sentences or implies a sequence. We need a single conjunction to
+          link two related aspects of the research objective.
+      - competing_japanese:
+          - この 研究 は、その 現象 の 原因 {並び に} 環境 へ の 影響 を 明らか に する こと を 目標 と する。
+        english: The research aims to clarify the causes of the phenomenon and its impact on the environment
+          (even more formally).
+        hint: 「並びに」 often implies a highly structured or hierarchical relationship in very formal contexts.
+          We need a formal but more generally applicable connector for academic aims.
+    scene: A scientist is writing the abstract for a research paper on an environmental study.
+    register: formal
+    setting: academic
+post_example_writeup: The examples provided demonstrate the versatility of 「及び」 in various formal contexts,
+  from business and legal documents to academic discussions and official announcements. Notice how it
+  seamlessly connects nouns and nominalized phrases, always maintaining a high level of formality.

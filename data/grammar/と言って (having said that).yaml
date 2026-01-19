@@ -1,0 +1,806 @@
+grammar_point: と言って (having said that)
+learn_before:
+  - 確かに (certainly・indeed)
+  - ～とは言えないが (cannot say that)
+meaning: Having said that; however; but
+pronunciation:
+  katakana: トイッテ
+  romaji: to itte
+formation:
+  Sentence 1 (plain form) + と言って + Sentence 2: Introduces a contrasting or limiting statement to Sentence
+    1.
+jlpt: N1
+etymology: The phrase 「と言って」 comes from the verb 「言う」(iu), meaning "to say." In this context, it literally
+  means "having said that," and it functions as a conjunction to introduce a contrasting thought or reservation.
+  This grammatical function evolved from the literal meaning of someone having just stated something,
+  followed by a contrasting remark.
+writeup: 「と言って」 is a conjunction employed to introduce a contrasting or qualifying statement, functioning
+  similarly to "however" or "but." It acknowledges the preceding statement but then presents an opposing
+  or limiting perspective. This construction is more formal and literary compared to casual alternatives
+  such as 「でも」 or 「けれど」. It is frequently used to express a reservation or to soften a potentially contradictory
+  statement. The nuance implied is that despite what was said immediately before, there is another aspect
+  or reality that must be considered. This often creates a sense of internal deliberation or a careful
+  qualification of a given situation, making it suitable for nuanced discussions or arguments, especially
+  in written form or formal speech.
+false_friends:
+  - term: かと言って
+    meaning: On the other hand; but then; that's not to say
+    kind: similar expression
+    nuance: 「かと言って」 often implies that a given reason does not justify a certain action or conclusion,
+      while 「と言って」 simply introduces a contrasting point without necessarily negating the first statement.
+    grammar_point: かと言うと (contrary to expectation)
+  - term: だからと言って
+    meaning: Just because; that's not to say
+    kind: similar expression
+    nuance: 「だからと言って」 is used to negate an assumption or logical consequence of the preceding statement,
+      emphasizing that the first statement doesn't automatically lead to a certain conclusion. 「と言って」
+      simply provides a contrast.
+    grammar_point: からと言って・だからと言って (just because・even so)
+  - term: けれども
+    meaning: but, although
+    kind: similar expression
+    nuance: 「けれども」 is a general conjunction for contrast, while 「と言って」 carries a more specific nuance
+      of 'having said that', acknowledging the previous statement before introducing the contrasting view.
+    grammar_point: しかし (but・however)
+  - term: しかし
+    meaning: but, however
+    kind: similar expression
+    nuance: 「しかし」 provides a direct contrast between two statements. 「と言って」, while also introducing a
+      contrast, carries a nuance of acknowledging a preceding statement before presenting a reservation
+      or a dilemma, often implying that the initial statement, though true, does not fully resolve the
+      situation.
+    grammar_point: しかし (but・however)
+  - term: けど
+    meaning: but, though
+    kind: similar expression
+    nuance: 「けど」 is a very casual conjunction for contrast. 「と言って」 is much more formal and often used
+      to introduce a counterpoint that acknowledges the preceding statement but highlights a complex reality
+      or limitation, especially in reflective or deliberative contexts.
+    grammar_point: しかし (but・however)
+post_false_friends_writeup: While 「と言って」, 「かと言って」, 「だからと言って」, 「けれども」, 「しかし」, and 「けど」 all introduce contrasting
+  information, they differ in nuance and usage. 「と言って」 acknowledges the previous statement and then offers
+  a contrasting view, often implying a dilemma or a reservation. 「かと言って」 often introduces a reason or
+  outcome preventing the initial statement from being fully true, with a sense of 'even if that's the
+  case.' 「だからと言って」 denies an assumption that might logically follow from the first statement. 「けれども」 and
+  「しかし」 are general conjunctions for "but" or "however," with 「けれども」 being slightly more formal than 「けど」.
+  「と言って」 carries a more specific, reflective tone of 'having said that' that isn't present in the more
+  direct opposition of 「しかし」 or the simple conjunction of 「けれども」/「けど」.
+examples:
+  - english: The deadline for this project is short. Having said that, we can't compromise on quality.
+    japanese:
+      - この プロジェクト は 納期 が 短い。{と 言っ て}、品質 を 下げる わけ に は いか ない。
+      - 当 プロジェクト は 納期 が 短縮 さ れ まし た。{と 言っ て}、品質 を 犠牲 に する わけ に は 参り ませ ん。
+      - 確か に 納期 は 厳しい。{と 言っ て}、品質 の 保持 は 絶対 条件 だ。
+      - 納期 が 短い。{と 言っ て}、手 を 抜く こと は でき ない。
+      - この 計画 は 期間 が 短い。{と 言っ て}、質 は 妥協 でき ませ ん。
+      - 納期 は 厳しい 状況 です。{と 言っ て}、仕事 の 質 は 守り 続ける 必要 が あり ます。
+      - 今回 の 案件 は 期間 が 短い。{と 言っ て}、成果 物 の クオリティ は 譲れ ませ ん。
+      - スケジュール の 余裕 は ない。{と 言っ て}、細部 を おろそか に する わけ に は いか ない。
+      - 急ぎ の 仕事 だ。{と 言っ て}、手 を 抜く こと は 許さ れ ない。
+      - 厳しい 納期 だ。{と 言っ て}、質 は 妥協 する べき で は ない。
+    english_literally: This project's deadline is short. Having said that, we can't compromise on quality.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{か と 言っ て}、品質 を 下げる わけ に は いか ない。
+        english: The deadline for this project is short. That's not to say we can compromise on quality.
+        hint: 「かと言って」 often implies that a given reason does not justify a certain action or conclusion.
+          While it can convey contrast, it usually suggests an unwarranted implication or a dismissal
+          of a potential course of action, which is less about presenting a dilemma and more about rejecting
+          a logical jump. We're looking for a grammar that acknowledges a situation before introducing
+          a limiting condition or a difficult choice.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{だ から と 言っ て}、品質 を 下げる わけ に は いか ない。
+        english: The deadline for this project is short. Just because of that, we can't compromise on
+          quality.
+        hint: 「だからと言って」 explicitly states that the preceding reason does not justify the following conclusion
+          or action. This is often used to prevent an over-simplification or an illogical leap. The target
+          grammar is more about acknowledging a conflicting reality or a dilemma rather than negating
+          a perceived implication.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{けれど も}、品質 を 下げる わけ に は いか ない。
+        english: The deadline for this project is short, but we can't compromise on quality.
+        hint: 「けれども」 is a general conjunction for contrast. While grammatically correct, this grammar
+          adds a nuanced feeling of acknowledging the initial statement while presenting a counterpoint
+          that often implies a careful consideration or a dilemma, which is more specific than a simple
+          'but'.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{しかし}、品質 を 下げる わけ に は いか ない。
+        english: The deadline for this project is short. However, we can't compromise on quality.
+        hint: While 'しかし' directly introduces a contrast, this grammar implies a more nuanced internal
+          consideration or dilemma before presenting the contrasting point, which is suitable for a leader
+          explaining a complex situation to a team, acknowledging difficulty while upholding standards.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{けど}、品質 を 下げる わけ に は いか ない。
+        english: The deadline for this project is short. But, the quality being compromised is not possible.
+        hint: 「けど」 is a casual conjunction for simple contrast. This grammar is more formal and carries
+          a specific nuance of 'having said that', suggesting a careful weighing of conflicting facts
+          or a difficult choice in a formal context, which differs from a casual 'but'.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{だ が}、品質 は 決して 譲れ ない。
+        english: The deadline for this project is short. But, we absolutely cannot concede on quality.
+        hint: 「だが」 is a strong, direct conjunction that provides a sharp contrast. This grammar maintains
+          a sense of acknowledgment of the first statement before introducing a counterpoint, suggesting
+          a more deliberative process rather than a simple 'but'.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{と は いえ}、品質 を 落とす こと は 許さ れ ない。
+        english: The deadline for this project is short. That being said, we cannot allow the quality
+          to drop.
+        hint: 「とはいえ」 is similar in meaning to 'that being said' but is generally more direct and less
+          introspective in its nuance. This grammar often implies a slightly more internal struggle or
+          careful consideration of two conflicting realities.
+      - competing_japanese:
+          - この プロジェクト は 納期 が 短い。{けれど も}、品質 は 守ら なけれ ば なら ない。
+        english: The deadline for this project is short. But, quality must be maintained.
+        hint: 「けれども」 is a general conjunction for contrast, often used in less formal or more narrative
+          contexts. This grammar highlights a logical tension or a dilemma, making it more suitable for
+          presenting a carefully weighed decision.
+    scene: A team leader is addressing their team about a challenging project with tight constraints.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「納期 が 短い」 (the deadline is short) presents a challenging reality. The subsequent
+      「品質 を 下げる わけ には いかない」 (we cannot compromise on quality) demonstrates a firm commitment to standards
+      despite the initial constraint. This usage highlights a necessary choice in a difficult situation,
+      expressed with the decisive tone expected from an older male leader addressing his team.
+  - english: I gained confidence studying abroad. Having said that, it's not as if I don't get homesick.
+    japanese:
+      - 留学 し て 自信 は つい た。{と 言っ て}、ホームシック に なら ない わけ で は ない。
+      - 留学 を 通し て 自信 が つき まし た。{と 言っ て}、全く ホーム シック に なら ない わけ で も あり ませ ん。
+      - 外国 で 自信 を 得 た よ。{と 言っ て}、やっぱり ホームシック に なら ない わけ じゃ ない ん だ。
+      - 海外 で 自信 は つい た。{と 言っ て}、寂しく ない か と 言え ば そう で も ない。
+      - 海外 生活 で 自信 は 得 られ た。{と 言っ て}、寂しい と 思わ ない 日 は ない。
+      - 留学 で 成長 は 感じ た。{と 言っ て}、家族 が 恋しく ない わけ で は ない。
+      - 海外 で 自立 心 は 育っ た。{と 言っ て}、故郷 が 恋しく ない か と 言え ば 嘘 に なる。
+      - 確か に 経験 値 は 増え た。{と 言っ て}、一人 で 寂しい と 感じ ない 日 は ない。
+      - 自信 は つい た。{と 言っ て}、不安 が 全く ない わけ で は ない。
+      - 経験 は 豊富 に なっ た。{と 言っ て}、故郷 へ の 思い が 消える わけ で は ない。
+    english_literally: Studying abroad, confidence was gained. Having said that, it is not that I do not
+      get homesick.
+    competing_grammar:
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{か と 言っ て}、ホームシック に なら ない わけ で は ない。
+        english: I gained confidence studying abroad. That's not to say I don't get homesick.
+        hint: 「かと言って」 often implies that a preceding reason does not justify a certain outcome or assumption,
+          focusing on invalidating a logical step. This grammar is used more for acknowledging a truth
+          while simultaneously presenting a counter-reality or a conflicting feeling, suitable for personal
+          reflection.
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{だ から と 言っ て}、ホームシック に なら ない わけ で は ない。
+        english: I gained confidence studying abroad. Just because of that, it's not to say I don't get
+          homesick.
+        hint: 「だからと言って」 explicitly refutes a presumed logical connection or consequence. The target grammar
+          is about presenting two co-existing realities, one of which contrasts with the other, rather
+          than denying an assumption.
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{けれど}、ホームシック に なら ない わけ で は ない。
+        english: I gained confidence studying abroad. But, it's not as if I don't get homesick.
+        hint: '''けれど'' offers a direct contradiction. This grammar is more suited for a reflective context,
+          where the speaker acknowledges one truth (''自信 は ついた'') before presenting a nuanced, often emotional,
+          counter-reality (''ホームシック に ならない わけでは ない'') that exists simultaneously, fitting for personal
+          journaling.'
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{しかし}、ホームシック は 避け られ ない。
+        english: I gained confidence studying abroad. However, homesickness is unavoidable.
+        hint: 「しかし」 is a formal conjunction for contrast. This grammar suggests a more personal reflection
+          where the speaker acknowledges the positive before admitting to a persistent negative feeling.
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{けど}、ホームシック に なら ない わけ で は ない。
+        english: I gained confidence studying abroad, but it's not as if I don't get homesick.
+        hint: 「けど」 is a casual conjunction for simple contrast. This grammar carries a more introspective
+          and careful tone, acknowledging one aspect of reality before presenting another that often reveals
+          a deeper, sometimes conflicting, truth, which is more suitable for nuanced self-reflection.
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{だ が}、ホームシック に なる 時 も ある。
+        english: I gained confidence studying abroad. But, there are times I get homesick.
+        hint: 「だが」 provides a direct contrast. This grammar frames the second part as a qualification
+          or a different aspect of the experience that co-exists with the first statement, rather than
+          a simple 'but'.
+      - competing_japanese:
+          - 留学 し て 自信 は つい た。{それ で も}、ホームシック に なる こと も ある。
+        english: I gained confidence studying abroad. Even so, there are times I get homesick.
+        hint: 「それでも」 emphasizes that despite the preceding positive, the following negative statement
+          is still true. This grammar implies a more direct acknowledgement of the previous statement
+          followed by a qualifying counterpoint.
+    scene: A university student is writing a reflective journal entry about their experiences abroad.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The statement 「自信 は ついた」 (gained confidence) acknowledges a positive outcome. The follow-up
+      「ホームシック に ならない わけでは ない」 (it's not as if I don't get homesick) adds a layer of emotional complexity,
+      indicating that despite the positive, a negative feeling persists. This subtle admission makes the
+      nuance of this grammar appropriate here for a younger female reflecting on her feelings.
+  - english: This room gets good sunlight. But, the rent being too high is a problem.
+    japanese:
+      - この 部屋 は 日当たり が 良い。{と 言っ て}、家賃 が 高 すぎる の は 困る。
+      - この 部屋、日当たり が いい ね。{と 言っ て}、家賃 が 高 すぎる の は ちょっと ね。
+      - 日当たり は 最高。{と 言っ て}、この 家賃 は 無理 だ ね。
+      - 日当たり は いい。{と 言っ て}、家賃 が 高い の は 悩ましい。
+      - この 物件 は 採光 が 素晴らしい。{と 言っ て}、この 金額 で は 手 が 出 ない。
+      - 日当たり が いい の は 魅力 だ。{と 言っ て}、家賃 の 負担 が 大き すぎる の は 悩み の 種 だ。
+      - 窓 から 光 が よく 入る。{と 言っ て}、あの 家賃 は どう か な と 思う よ。
+      - 陽当たり は 文句 なし だ。{と 言っ て}、毎月 の 支払い は 大変 だ よ な。
+      - 明るい の は いい ね。{と 言っ て}、初期 費用 が 高い の は ちょっと 引く。
+      - 陽当たり は 申し分 ない。{と 言っ て}、これ 以上 の 家賃 は 払え ない。
+    english_literally: This room's sunlight is good. Having said that, the rent being too high is troublesome.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{か と 言っ て}、家賃 が 高 すぎる の は 困る。
+        english: This room gets good sunlight. That's not to say the high rent isn't a problem.
+        hint: 「かと言って」 often implies that a preceding reason does not justify the following statement or
+          a potential outcome, focusing on invalidating a logical step. This grammar is more about presenting
+          a dilemma where a positive aspect does not negate a significant negative practical issue.
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{だ から と 言っ て}、家賃 が 高 すぎる の は 困る。
+        english: This room gets good sunlight. Just because of that, it's not to say the high rent isn't
+          a problem.
+        hint: 「だからと言って」 explicitly denies an assumption that might logically follow from the preceding
+          statement. The target grammar presents a conflicting reality, where a positive feature doesn't
+          resolve a negative problem, making it suitable for weighing pros and cons.
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{けれど も}、家賃 が 高 すぎる の は 困る。
+        english: This room gets good sunlight, but the rent being too high is a problem.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar highlights a tension between
+          a positive feature and a practical drawback, implying a thoughtful consideration rather than
+          a simple 'but'.
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{しかし}、家賃 が 高 すぎる の は 難点 だ。
+        english: This room gets good sunlight. However, the high rent is a drawback.
+        hint: 「しかし」 provides a strong, formal contrast. This grammar softens the contrast by acknowledging
+          the initial positive point before introducing the negative one, suggesting a more balanced consideration.
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{けど}、家賃 が 高 すぎる の は 困る。
+        english: This room gets good sunlight. But, the rent being too high is a problem.
+        hint: '''けど'' is common for simple contrasts. However, this grammar implies a more significant
+          logical constraint or a choice to be made despite the positive, emphasizing that the positive
+          aspect does not negate the problem of high rent, which is more fitting for a serious discussion
+          of a practical issue.'
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{それ で も}、家賃 が 高 すぎる の は 困る。
+        english: This room gets good sunlight. Even so, the rent being too high is a problem.
+        hint: 「それでも」 emphasizes that despite the preceding point, the following statement remains true.
+          This grammar implies a more direct acknowledgement of the previous statement followed by a qualifying
+          counterpoint.
+      - competing_japanese:
+          - この 部屋 は 日当たり が 良い。{ただ}、家賃 が 高 すぎる の が 問題 だ。
+        english: This room gets good sunlight. However, the rent being too high is the problem.
+        hint: 「ただ」 introduces a simple reservation or additional fact. This grammar carries a stronger
+          sense of 'having said that', suggesting a consideration of conflicting points.
+    scene: Two friends are discussing an apartment they just viewed, pointing out its pros and cons.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The initial positive 「日当たり が 良い」 (gets good sunlight) is contrasted with the practical problem
+      「家賃 が 高すぎる のは 困る」 (the rent being too high is a problem). The nuance conveyed by this grammar is
+      that the positive quality does not outweigh the negative practicality, highlighting a common dilemma
+      in real estate, often discussed casually between younger male friends.
+  - english: I worked really hard. Having said that, a good result is not necessarily guaranteed.
+    japanese:
+      - 一生 懸命 努力 し た。{と 言っ て}、必ず しも 良い 結果 が 出る と は 限ら ない。
+      - 一生 懸命 頑張り まし た。{と 言っ て}、必ず しも 良い 結果 に つながる わけ で は あり ませ ん。
+      - めちゃくちゃ 頑張っ た よ。{と 言っ て}、良い 結果 に なる か は 別 問題 だ。
+      - 努力 は し た。{と 言っ て}、結果 が 出る と は 限ら ない。
+      - 全力 を 尽くし た。{と 言っ て}、必ず しも 成功 が 約束 さ れる わけ で は ない。
+      - できる 限り は やっ た よ。{と 言っ て}、これ で 完璧 と は 言え ない の も 事実 だ。
+      - 相当 頑張っ た つもり だ。{と 言っ て}、それ が 報わ れる か は まだ 分から ない。
+      - 最大 限 の 努力 は 払っ た。{と 言っ て}、これ で 万全 と は 限ら ない。
+      - できる こと は 全部 やっ た。{と 言っ て}、望む 結果 が 出る か は 別 の 話 だ。
+      - 最善 は 尽くし た。{と 言っ て}、必ず しも それ が 報わ れる と は 限ら ない。
+    english_literally: I worked with all my might and effort. Having said that, a good result is not necessarily
+      guaranteed to come out.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{か と 言っ て}、必ず しも 良い 結果 が 出る と は 限ら ない。
+        english: I worked really hard. That's not to say a good result is necessarily guaranteed.
+        hint: 「かと言って」 often implies that a preceding fact does not justify a particular outcome or assumption,
+          focusing on invalidating a logical step. This grammar is more about acknowledging the effort
+          while presenting a realistic counterpoint that not all effort guarantees a desired result, suitable
+          for expressing a nuanced truth.
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{だ から と 言っ て}、良い 結果 が 約束 さ れる わけ で は ない。
+        english: I worked really hard. That's not to say a good result is promised.
+        hint: 「だからといって」 explicitly negates a logical consequence or assumption. While similar, this grammar
+          is broader in simply introducing a contrasting or qualifying point, not necessarily a denial
+          of a presumed outcome.
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{けれど も}、良い 結果 が 出る と は 限ら ない。
+        english: I worked really hard. But, a good result is not necessarily guaranteed.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar adds a layer of 'despite what
+          one might assume or hope,' making it suitable for expressing a nuanced, sometimes disappointing,
+          truth.
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{しかし}、必ず しも 良い 結果 が 出る と は 限ら ない。
+        english: I worked really hard. However, a good result is not necessarily guaranteed.
+        hint: '''しかし'' works, but this grammar carries a slightly more resigned or realistic tone, acknowledging
+          the effort while soberly stating the unpredictable nature of outcomes, fitting for a student
+          expressing disappointment to a teacher.'
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{けど}、必ず しも 良い 結果 が 出る と は 限ら ない。
+        english: I worked really hard, but a good result is not necessarily guaranteed.
+        hint: 「けど」 is a casual conjunction for simple contrast. This grammar is more formal and carries
+          a specific nuance of acknowledging the effort while introducing a pragmatic or sometimes disappointing
+          counterpoint, implying a more profound reflection on the nature of outcomes.
+      - competing_japanese:
+          - 一生 懸命 努力 し た。{な の に}、良い 結果 が 出る と は 限ら ない。
+        english: I worked really hard. Even so, a good result is not necessarily guaranteed.
+        hint: 「なのに」 expresses a sense of unexpectedness or disappointment despite the preceding statement.
+          This grammar implies that despite the good preparation, a crucial element was missing.
+    scene: A student is talking to their teacher after receiving test results, expressing their disappointment.
+    register: semi-formal
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「一生懸命 努力 した」 (worked really hard) establishes the speaker's effort. The subsequent
+      「必ずしも 良い 結果 が 出るとは 限らない」 (a good result is not necessarily guaranteed) introduces a dose of realism,
+      suggesting that effort, while commendable, does not always guarantee success. This nuance reflects
+      a mature and sometimes melancholic understanding of cause and effect, as conveyed by a younger female
+      student to her teacher.
+  - english: It's important to respect the other person's opinion. However, we can't just do everything
+      they say.
+    japanese:
+      - 相手 の 意見 を 尊重 する の は 大事 だ。{と 言っ て}、何 で も 相手 の 言う 通り に する わけ に は いか ない。
+      - 他者 の 意見 を 尊重 する こと は 重要 です。{と 言っ て}、全て を 相手 の 意 の まま に する わけ に は いき ませ ん。
+      - 相手 の 意見 を 尊重 する 必要 は ある。{と 言っ て}、言い なり に なる の は 違う。
+      - 相手 の 意見 は 聞く べき だ。{と 言っ て}、言い なり に なる わけ に は いか ない。
+      - 相手 の 考え を 尊重 す べき だ。{と 言っ て}、全て を 受け入れる 義務 は ない。
+      - 他人 の 意見 に 耳 を 傾ける の は 重要 だ。{と 言っ て}、言い なり に なっ て い て は 成長 でき ない。
+      - 他者 の 見解 を 尊重 する 姿勢 は 大切 だ。{と 言っ て}、ただ 従う だけ で は いけ ない。
+      - 相手 の 主張 は 聞く べき だ。{と 言っ て}、全て を 鵜呑み に する の は 危険 だ。
+      - 協調 性 は 必要 だ が、{と 言っ て}、主体 性 を 失っ て は 意味 が ない。
+      - 人 の 意見 は 大切 だ。{と 言っ て}、自分 の 軸 を ぶらす わけ に は いか ない。
+    english_literally: Respecting the other person's opinion is important. Having said that, we cannot
+      just do everything the other person says.
+    competing_grammar:
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{か と 言っ て}、何 で も 相手 の 言う 通り に する わけ に は いか ない。
+        english: It's important to respect the other person's opinion. That's not to say we have to do
+          everything they say.
+        hint: 「かと言って」 often implies that a preceding reason does not justify the following statement or
+          a potential outcome, focusing on invalidating a logical step. This grammar is used more for
+          acknowledging a principle while presenting a necessary boundary or limitation, suitable for
+          thoughtful guidance.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{だ から と 言っ て}、何 で も 相手 の 言う 通り に する わけ に は いか ない。
+        english: It's important to respect the other person's opinion. That's not to say we have to do
+          everything they say.
+        hint: While 'だからと言って' is a close synonym, this grammar is slightly more formal and less direct
+          in its denial, making it more suitable for a diplomatic and advisory context like a mentor-mentee
+          conversation on negotiation.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{けれど も}、何 で も 相手 の 言う 通り に する わけ に は いか ない。
+        english: It's important to respect the other person's opinion, but we can't just do everything
+          they say.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar conveys a more subtle balance
+          between a principle and its practical limitations, implying a thoughtful consideration rather
+          than a simple 'but'.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{しかし}、全て を 受け入れる わけ に は いか ない。
+        english: It's important to respect the other person's opinion. However, we cannot accept everything.
+        hint: 「しかし」 is a general conjunction for contrast. This grammar introduces a more nuanced counterpoint,
+          acknowledging the initial statement while presenting a necessary limitation or condition.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{けど}、何 で も 相手 の 言う 通り に する わけ に は いか ない。
+        english: It's important to respect the other person's opinion, but we can't just do everything
+          they say.
+        hint: 「けど」 is a casual conjunction for simple contrast. This grammar is more formal and carries
+          a specific nuance of acknowledging a positive principle while introducing a necessary practical
+          limitation or a boundary, which is more suitable for considered advice.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{だ が}、言い なり に なる わけ で は ない。
+        english: It's important to respect the other person's opinion. But, it doesn't mean we just obey
+          them.
+        hint: 「だが」 provides a more direct contrast. This grammar suggests a careful consideration of the
+          boundary between respect and compliance, implying a thoughtful reservation.
+      - competing_japanese:
+          - 相手 の 意見 を 尊重 する の は 大事 だ。{それ で も}、全て を 受け入れる べき で は ない。
+        english: It's important to respect the other person's opinion. Even so, we shouldn't accept everything.
+        hint: 「それでも」 emphasizes that despite the preceding point, the following statement remains true.
+          This grammar suggests a more active mental process of acknowledging a point and then introducing
+          a reservation or dilemma.
+    scene: A mentor is advising a junior colleague on effective negotiation strategies.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The initial statement 「相手 の 意見 を 尊重 する のは 大事だ」 (it's important to respect the other person's
+      opinion) sets a foundational principle. The following 「何でも 相手 の 言う 通りに する わけには いかない」 (we can't just
+      do everything they say) introduces a crucial practical limitation or strategic necessity. This use
+      highlights the need to balance ideals with reality, common in persuasive or instructional discourse,
+      as delivered by an older male mentor to a younger female colleague.
+  - english: Playing games is fun. Having said that, I can't just spend all my time on them.
+    japanese:
+      - ゲーム は 楽しい。{と 言っ て}、それ ばかり し て いる わけ に は いか ない。
+      - ゲーム は 面白い です。{と 言っ て}、それ に 時間 を 全て 費やす わけ に は いき ませ ん。
+      - ゲーム は 楽しい よ な。{と 言っ て}、ずっと やり 続ける わけ に も いか ない し。
+      - ゲーム は 気晴らし に なる。{と 言っ て}、一 日 中 ゲーム ばかり し て いる わけ に は いか ない。
+      - 趣味 は 大切。{と 言っ て}、現実 から 逃げ て ばかり も い られ ない。
+      - 娯楽 は 必要 だ が、{と 言っ て}、義務 を 怠る わけ に は いか ない。
+      - リラックス は 大事。{と 言っ て}、遊び 呆け て ばかり も い られ ない。
+      - 楽しい こと も 必要。{と 言っ て}、生活 が 疎か に なっ て は 困る。
+      - ゲーム が 好き だ。{と 言っ て}、本業 を 疎か に する わけ に は いか ない。
+      - 息抜き は 大切 だ。{と 言っ て}、毎日 ずっと ゲーム に 没頭 する わけ に も いか ない。
+    english_literally: Games are fun. Having said that, I cannot just spend all my time on them.
+    competing_grammar:
+      - competing_japanese:
+          - ゲーム は 楽しい。{けれど}、それ ばかり し て いる わけ に は いか ない。
+        english: Games are fun, but I can't just spend all my time on them.
+        hint: 「けれど」 offers a general contrast. This grammar is more reflective of a personal dilemma,
+          acknowledging a desire but highlighting a practical constraint, making it suitable for introspective
+          thought.
+      - competing_japanese:
+          - ゲーム は 楽しい。{か と 言っ て}、それ ばかり し て いる わけ に は いか ない。
+        english: Games are fun. That's not to say I should just spend all my time on them.
+        hint: 「かと言って」 implies that the previous statement does not justify a particular action or conclusion.
+          While similar, this grammar focuses on acknowledging a desire while facing a constraint of responsibility,
+          rather than negating a justification.
+      - competing_japanese:
+          - ゲーム は 楽しい。{だ が}、それ ばかり し て いる わけ に は いか ない。
+        english: Games are fun. But, I can't just spend all my time on them.
+        hint: 「だが」 provides a stronger, more direct contrast. This grammar maintains a sense of acknowledging
+          the enjoyment before introducing a necessary limitation or complaint, implying a more nuanced
+          internal deliberation.
+      - competing_japanese:
+          - ゲーム は 楽しい。{ただし}、それ ばかり し て いる わけ に は いか ない。
+        english: Games are fun. However, I can't just spend all my time on them.
+        hint: 「ただし」 introduces a condition or limitation. This grammar implies a subtle acknowledgment
+          of the preceding point before presenting a counterpoint that is often a practical boundary or
+          dilemma.
+    scene: A young adult is reflecting on their daily schedule and hobbies.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「ゲーム は 楽しい」 (games are fun) acknowledges the enjoyment. The contrast 「それ ばかり し
+      て いる わけ には いかない」 (I can't just spend all my time on them) highlights a sense of responsibility and
+      prioritization. This illustrates a personal dilemma between desire and obligation, as reflected
+      by a younger male in his thoughts.
+  - english: While this theory is widely accepted, having said that, recent findings suggest a need for
+      re-evaluation.
+    japanese:
+      - この 理論 は 広く 受け入れ られ て い た。{と 言っ て}、最近 の 発見 は 再 評価 の 必要 性 を 示唆 する。
+      - この 理論 は 一般 に 認知 さ れ て い ます。{と 言っ て}、最新 の 知見 は その 再考 を 促し ます。
+      - 確か に この 理論 は 有名 だ。{と 言っ て}、全て が 正しい と は 言え ない 部分 も ある。
+      - 既存 の 理論 は 確立 さ れ て いる。{と 言っ て}、新しい データ は 疑問 を 投げかける。
+      - これ まで の 研究 は 重要。{と 言っ て}、新た な 観点 が 必要 と なる 時 も ある。
+      - この 定説 は 支持 さ れ て いる。{と 言っ て}、異論 が 全く ない わけ で は ない。
+      - 広く 信じ られ て いる 説 だ。{と 言っ て}、完全 に 解明 さ れ て いる わけ で は ない。
+      - その 説 は 有力 だ。{と 言っ て}、新た な 証拠 が その 見 方 を 変える 可能 性 が ある。
+      - これ は 一般 的 な 見解 だ。{と 言っ て}、常 に 最新 の 情報 を 取り入れる 必要 が ある。
+      - 昔 から の 研究 は 大切 だ。{と 言っ て}、それ だけ で は 全て を 説明 でき ない 部分 も ある。
+    english_literally: This theory is widely accepted. Having said that, recent discoveries indicate the
+      necessity of re-evaluation.
+    competing_grammar:
+      - competing_japanese:
+          - この 理論 は 広く 受け入れ られ て い た。{けれど も}、最近 の 発見 は 再 評価 の 必要 性 を 示唆 する。
+        english: This theory is widely accepted, but recent findings suggest a need for re-evaluation.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar is more suited for academic discourse,
+          acknowledging an existing consensus while introducing new evidence that necessitates further
+          consideration.
+      - competing_japanese:
+          - この 理論 は 広く 受け入れ られ て い た。{だ が}、明確 な 結論 が 欠け て い た。
+        english: This theory is widely accepted. But, recent findings suggest a need for re-evaluation.
+        hint: 「だが」 provides a direct and strong contrast. This grammar implies a more subtle acknowledgment
+          of the preceding statement before presenting a counterpoint, suitable for nuanced academic arguments
+          where a direct rebuttal might be too harsh.
+      - competing_japanese:
+          - この 理論 は 広く 受け入れ られ て い た。{か と 言っ て}、最近 の 発見 は 再 評価 の 必要 性 を 示唆 する わけ で は ない。
+        english: This theory is widely accepted. That's not to say recent findings don't suggest a need
+          for re-evaluation.
+        hint: 「かと言って」 implies that a preceding reason does not justify a conclusion. Here, the nuance
+          is slightly off as the original sentence directly contrasts rather than refutes a justification.
+          We're looking for a grammar that acknowledges an existing truth while introducing a new, conflicting
+          point.
+      - competing_japanese:
+          - この 理論 は 広く 受け入れ られ て い た。{ただ}、最近 の 発見 は 再 評価 の 必要 性 を 示唆 する。
+        english: This theory is widely accepted. However, recent findings suggest a need for re-evaluation.
+        hint: 「ただ」 introduces a reservation or an additional point. This grammar carries a more formal
+          and academic tone, acknowledging established knowledge while gently suggesting a necessary revision
+          based on new evidence.
+    scene: A researcher is presenting their findings at an academic conference.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The initial statement 「この 理論 は 広く 受け入れ られている」 (this theory is widely accepted) acknowledges
+      a consensus. The contrast 「最近 の 発見 は 再 評価 の 必要 性 を 示唆 する」 (recent findings suggest a need for re-evaluation)
+      introduces a critical scientific perspective, emphasizing that even established truths are subject
+      to new evidence. This shows academic rigor and a nuanced approach to knowledge, as presented by
+      an experienced female researcher.
+  - english: Children should be given freedom to explore. Having said that, there are rules they must
+      follow for their safety.
+    japanese:
+      - 子供 に は 自由 な 探求 を さ せる べき だ。{と 言っ て}、安全 の ため に 守ら せる べき ルール は ある。
+      - 子供 に は 自由 に 探求 さ せる べき です。{と 言っ て}、安全 の ため に 守る べき 規則 は ござい ます。
+      - 子供 に は のびのび 育っ て ほしい。{と 言っ て}、何 で も 好き な こと を さ せる わけ に は いか ない。
+      - 自由 に さ せる の は 大切 だ。{と 言っ て}、危険 な こと は 止め なけれ ば なら ない。
+      - 自主 性 を 育む の は 必要。{と 言っ て}、全て を 子供 の 好き に さ せる の は 無 責任 だ。
+      - 子供 の 意思 は 尊重 する。{と 言っ て}、最低 限 の ルール は 守ら せる 必要 が ある。
+      - 探求 心 を 育む の は 良い。{と 言っ て}、無 条件 に 自由 を 与える わけ に は いか ない。
+      - 子供 の 可能 性 を 伸ばし たい。{と 言っ て}、危険 を 顧み ない わけ に は いか ない。
+      - 自ら 学ぶ こと は 重要 だ。{と 言っ て}、親 の 監督 なし で 放置 する わけ に は いか ない。
+      - 創造 性 を 伸ばす の は 大事。{と 言っ て}、常識 を 外れる 行動 は 許さ れ ない。
+    english_literally: To children, free exploration should be allowed. Having said that, for safety's
+      sake, rules they must follow exist.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 に は 自由 な 探求 を さ せる べき だ。{けれど も}、安全 の ため に 守ら せる べき ルール は ある。
+        english: Children should be given freedom to explore, but there are rules they must follow for
+          their safety.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar presents a balanced perspective,
+          acknowledging the positive ideal while introducing a necessary practical limitation for the
+          children's safety, which is suitable for educational contexts.
+      - competing_japanese:
+          - 子供 に は 自由 な 探求 を さ せる べき だ。{か と 言っ て}、安全 の ため に 守ら せる べき ルール は ない わけ で は ない。
+        english: Children should be given freedom to explore. That's not to say there aren't rules they
+          must follow for their safety.
+        hint: 「かと言って」 often implies that the preceding statement doesn't justify a certain outcome. This
+          grammar, while similar, emphasizes acknowledging a principle while stating a necessary boundary,
+          which is different from refuting a justification.
+      - competing_japanese:
+          - 子供 に は 自由 な 探求 を さ せる べき だ。{だ が}、安全 の ため に 守ら せる べき ルール は ある。
+        english: Children should be given freedom to explore. But, there are rules they must follow for
+          their safety.
+        hint: 「だが」 provides a direct contrast. This grammar implies a careful consideration of the boundary
+          between freedom and safety, reflecting a thoughtful approach to education.
+      - competing_japanese:
+          - 子供 に は 自由 な 探求 を さ せる べき だ。{その 一方 で}、安全 の ため に 守ら せる べき ルール は ある。
+        english: Children should be given freedom to explore. On the other hand, there are rules they
+          must follow for their safety.
+        hint: 「その一方で」 emphasizes two contrasting aspects existing simultaneously. This grammar suggests
+          a deliberate balancing act between an ideal (freedom) and a practical necessity (rules).
+    scene: A parent or educator discussing parenting philosophies.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The statement 「子供 には 自由な 探求 を させる べきだ」 (children should be given freedom to explore) expresses
+      an ideal. The contrast 「安全 の ために 守らせる べき ルール は ある」 (there are rules they must follow for their safety)
+      introduces a practical boundary. This highlights the balance between fostering independence and
+      ensuring well-being, as conveyed by an older female educator.
+  - english: His presentation was well-prepared. Having said that, it lacked a clear conclusion.
+    japanese:
+      - 彼 の プレゼン は よく 準備 さ れ て い た。{と 言っ て}、明確 な 結論 が 欠け て い た。
+      - 彼 の プレゼンテーション は 丹念 に 準備 さ れ て い まし た。{と 言っ て}、結論 が 不 明確 でし た。
+      - 準備 は 完璧 だっ た よ。{と 言っ て}、肝心 の 結論 が 弱かっ た な。
+      - 資料 は よく 作ら れ て い た。{と 言っ て}、結局 何 を 言い たい の か 分から なかっ た。
+      - 彼 の 説明 は 論理 的 だっ た。{と 言っ て}、最終 的 な 提言 が 曖昧 だっ た。
+      - 発表 は 素晴らしかっ た。{と 言っ て}、聞く 側 に 何 を 期待 する か が 不 明瞭 だっ た。
+      - 彼 は 一生 懸命 準備 し た。{と 言っ て}、肝心 な 点 が 伝わら なかっ た の は 残念 だ。
+      - 内容 は 充実 し て い た。{と 言っ て}、全体 の メッセージ が ぼやけ て い た。
+      - よく 調べ られ て い た。{と 言っ て}、聞い た 後 に 何 を する べき か が 分から なかっ た。
+      - 細部 まで こだわっ て い た。{と 言っ て}、結局 何 が 言い たい の か が 分から なかっ た。
+    english_literally: His presentation was well prepared. Having said that, a clear conclusion was lacking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の プレゼン は よく 準備 さ れ て い た。{けれど も}、明確 な 結論 が 欠け て い た。
+        english: His presentation was well-prepared, but it lacked a clear conclusion.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar allows for giving feedback that
+          acknowledges positive aspects while pointing out areas for improvement in a professional context.
+      - competing_japanese:
+          - 彼 の プレゼン は よく 準備 さ れ て い た。{だ が}、明確 な 結論 が 欠け て い た。
+        english: His presentation was well-prepared. But, it lacked a clear conclusion.
+        hint: 「だが」 provides a direct contrast. This grammar suggests a careful consideration of the presentation's
+          strengths and weaknesses, suitable for constructive criticism.
+      - competing_japanese:
+          - 彼 の プレゼン は よく 準備 さ れ て い た。{だ の に}、明確 な 結論 が 欠け て い た。
+        english: His presentation was well-prepared. Even so, it lacked a clear conclusion.
+        hint: 「なのに」 expresses a sense of unexpectedness or disappointment. This grammar implies a sense
+          of regret that despite the good preparation, a crucial element was missing.
+      - competing_japanese:
+          - 彼 の プレゼン は よく 準備 さ れ て い た。{ただし}、明確 な 結論 が 欠け て い た。
+        english: His presentation was well-prepared. However, it lacked a clear conclusion.
+        hint: 「ただし」 introduces a condition or a caveat. This grammar implies acknowledging a positive
+          aspect while introducing a significant limitation or flaw.
+    scene: A manager providing feedback to an employee after a presentation.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The initial positive assessment 「彼 の プレゼン は よく 準備 されていた」 (his presentation was well-prepared)
+      acknowledges effort and quality. The contrasting 「明確な 結論 が 欠けていた」 (it lacked a clear conclusion)
+      introduces a critical but constructive point. This shows the use of the grammar to deliver feedback
+      that is both appreciative and critical, typically from an older male manager.
+  - english: This diet plan is effective for weight loss. Having said that, it's difficult to sustain
+      long-term.
+    japanese:
+      - この ダイエット は 痩せる の に 効果 的 だ。{と 言っ て}、長続き する の は 難しい。
+      - この 食事 療法 は 減量 に 効果 が あり ます。{と 言っ て}、継続 する の が 困難 です。
+      - 痩せる に は いい と 思う。{と 言っ て}、ずっと 続ける の は しんどい な。
+      - 効果 は ある。{と 言っ て}、現実 的 で は ない 部分 も ある。
+      - 短期 的 に は 結果 が 出る。{と 言っ て}、一生 続け られる か と 言え ば そう で も ない。
+      - この 方法 は 成果 が 出る。{と 言っ て}、ストレス が かかる こと も ある。
+      - 確か に 体重 は 減る。{と 言っ て}、心身 の 負担 は 無視 でき ない。
+      - 結果 は 出る。{と 言っ て}、その 後 の リバウンド が 怖い。
+      - 痩せる の は いい。{と 言っ て}、栄養 バランス が 偏る の は 避け たい。
+      - 健康 的 と は 言え ない。{と 言っ て}、効果 が ない わけ で は ない。
+    english_literally: This diet is effective for weight loss. Having said that, continuing it long-term
+      is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この ダイエット は 痩せる の に 効果 的 だ。{けれど も}、長続き する の は 難しい。
+        english: This diet is effective for weight loss, but it's difficult to sustain long-term.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar allows for a balanced discussion
+          of pros and cons in everyday conversations, like discussing diet trends.
+      - competing_japanese:
+          - この ダイエット は 痩せる の に 効果 的 だ。{だ が}、長続き する の は 難しい。
+        english: This diet is effective for weight loss. But, it's difficult to sustain long-term.
+        hint: 「だが」 provides a direct contrast. This grammar implies acknowledging the diet's effectiveness
+          while highlighting a significant practical obstacle, reflecting a realistic assessment.
+      - competing_japanese:
+          - この ダイエット は 痩せる の に 効果 的 だ。{ただ}、長続き する の は 難しい。
+        english: This diet is effective for weight loss. However, it's difficult to sustain long-term.
+        hint: 「ただ」 introduces a reservation or an additional fact. This grammar allows for a nuanced expression
+          of a positive aspect followed by a practical drawback, common in informal discussions about
+          personal experiences.
+      - competing_japanese:
+          - この ダイエット は 痩せる の に 効果 的 だ。{それ な の に}、長続き する の は 難しい。
+        english: This diet is effective for weight loss. Even so, it's difficult to sustain long-term.
+        hint: 「それなのに」 expresses a sense of unexpectedness or mild disappointment. This grammar implies
+          that despite the diet's effectiveness, the difficulty in sustaining it is a somewhat frustrating
+          reality.
+    scene: Two friends discussing a new diet trend.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The statement 「この ダイエット は 痩せる の に 効果的だ」 (this diet is effective for weight loss) acknowledges
+      a benefit. The contrast 「長続き する の は 難しい」 (it's difficult to sustain long-term) introduces a practical
+      drawback, highlighting the common challenge of balancing desired outcomes with sustainability, as
+      expressed between younger female friends.
+  - english: Life is full of challenges. Having said that, it is precisely in overcoming them that one
+      truly grows.
+    japanese:
+      - 人生 は 困難 の 連続 だ。{と 言っ て}、それ を 乗り越え て こそ、真 に 成長 できる。
+      - 人生 は 困難 の 連続 で ござい ます。{と 言っ て}、それ を 乗り越える こと で、真 の 成長 が 期待 でき ます。
+      - 人生 に は 辛い こと も たくさん ある。{と 言っ て}、それ を 乗り越え て こそ 得 られる もの も ある。
+      - 山 あり 谷 あり だ。{と 言っ て}、乗り越え た 後 に 大きく なれる。
+      - 苦労 は 尽き ない。{と 言っ て}、それ が 人 を 強く する。
+      - 困難 は 避け られ ない。{と 言っ て}、逃げ て ばかり い て も 意味 が ない。
+      - 人生 は 簡単 で は ない。{と 言っ て}、諦め たら そこ で 終わり だ。
+      - 辛い 時 こそ 踏ん張り 時 だ。{と 言っ て}、楽 な 道 を 選 ん で ばかり い て は いけ ない。
+      - 壁 に ぶつかる こと も ある。{と 言っ て}、そこ から 逃げ ず に 立ち向かう べき だ。
+      - 挫折 も 経験 の 一部 だ。{と 言っ て}、それ を 恐れ て い たら 何 も 始まら ない。
+    english_literally: Life is a series of difficulties. Having said that, it is precisely by overcoming
+      them that one can truly grow.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は 困難 の 連続 だ。{けれど も}、それ を 乗り越え て こそ、真 に 成長 できる。
+        english: Life is a series of difficulties, but it is precisely by overcoming them that one can
+          truly grow.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar is more suited to emphasize a
+          deeper truth or a philosophical point that exists despite a superficial reality.
+      - competing_japanese:
+          - 人生 は 困難 の 連続 だ。{しかし}、それ を 乗り越え て こそ、真 に 成長 できる。
+        english: Life is a series of difficulties. However, it is precisely by overcoming them that one
+          can truly grow.
+        hint: 「しかし」 provides a direct contrast. This grammar implies a more subtle acknowledgment of the
+          preceding statement before presenting a counterpoint, suitable for reflective advice.
+      - competing_japanese:
+          - 人生 は 困難 の 連続 だ。{そう か と 言っ て}、それ を 乗り越え て こそ、真 に 成長 できる わけ で は ない。
+        english: Life is a series of difficulties. That's not to say it is precisely by overcoming them
+          that one can truly grow.
+        hint: 「そうかと言って」 implies that a preceding reason does not justify a conclusion. This grammar emphasizes
+          a truth that co-exists with the initial statement, highlighting a deeper life lesson rather
+          than negating a logical step.
+      - competing_japanese:
+          - 人生 は 困難 の 連続 だ。{と は 言え}、それ を 乗り越え て こそ、真 に 成長 できる。
+        english: Life is a series of difficulties. That being said, it is precisely by overcoming them
+          that one can truly grow.
+        hint: 「とは言え」 is generally more direct. This grammar offers a more introspective and gentle nuance,
+          perfect for sharing wisdom that acknowledges life's hardships while still emphasizing growth.
+    scene: An older woman shares life wisdom with a group of younger individuals at a community gathering.
+    register: formal
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The initial statement 「人生 は 困難 の 連続 だ」 (life is full of challenges) acknowledges a universal
+      truth. The following 「それ を 乗り越え て こそ、真 に 成長 できる」 (it is precisely in overcoming them that one truly
+      grows) offers a profound counterpoint that inspires and encourages. This is fitting for an older
+      female sharing wisdom about resilience, using a formal yet warm tone.
+  - english: This new game is super fun. Having said that, the endless grinding is killing me!
+    japanese:
+      - この 新しい ゲーム は めっちゃ 楽しい よ。{と 言っ て}、終わり の ない 経験 値 稼ぎ に は うんざり だ よ。
+      - この 新作 ゲーム、超 面白い です。{と 言っ て}、ひたすら レベル 上げ する の は 苦痛 です。
+      - 新作 ゲーム 最高！{と 言っ て}、毎日 同じ 作業 の 繰り返し は 飽きる な。
+      - この ゲーム、神 ゲー だ な。{と 言っ て}、作業 が 多 すぎ て 萎える。
+      - 面白い けど、{と 言っ て}、同じ こと ばかり は もう やり たく ない。
+      - 時間 を 忘れる くらい 面白い。{と 言っ て}、課金 し ない と 進ま ない の は どう か と 思う。
+      - 最高 の 暇つぶし だ。{と 言っ て}、やり 込み 要素 が 多 すぎ て 時間 が ない。
+      - 寝る 間 も 惜しん で プレイ し てる。{と 言っ て}、現実 が おろそか に なる の は まずい。
+      - 友達 と 盛り上がっ てる。{と 言っ て}、ソロ プレイ が 作業 感 満載 で 辛い。
+      - やり 応え は ある。{と 言っ て}、単調 な 作業 が 多 すぎ て 眠く なる。
+    english_literally: This new game is extremely fun. Having said that, I am fed up with endless experience
+      point farming.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい ゲーム は めっちゃ 楽しい よ。{けど}、終わり の ない 経験 値 稼ぎ に は うんざり だ よ。
+        english: This new game is super fun, but the endless grinding is killing me!
+        hint: 「けど」 offers a simple, casual contrast. This grammar implies a more nuanced feeling of acknowledging
+          enjoyment while expressing a frustrating reality that co-exists with it, common in casual complaints.
+      - competing_japanese:
+          - この 新しい ゲーム は めっちゃ 楽しい よ。{で も}、終わり の ない 経験 値 稼ぎ に は うんざり だ よ。
+        english: This new game is super fun. Even so, the endless grinding is killing me!
+        hint: 「でも」 emphasizes an unexpected or frustrating aspect. This grammar is used when acknowledging
+          a positive aspect before presenting a significant, often frustrating, drawback.
+      - competing_japanese:
+          - この 新しい ゲーム は めっちゃ 楽しい よ。{だ が}、終わり の ない 経験 値 稼ぎ に は うんざり だ よ。
+        english: This new game is super fun. But, the endless grinding is killing me!
+        hint: 「だが」 provides a more assertive contrast. This grammar maintains a sense of acknowledging
+          the enjoyment before introducing a necessary limitation or complaint, implying a more nuanced
+          internal deliberation.
+    scene: A young man casually complains to his friend about a new video game they are both playing.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual phrase 「めっちゃ 楽しい よ」 (super fun) conveys enthusiasm. The contrasting 「終わり の ない 経験
+      値 稼ぎ に は うんざり だ よ」 (I'm fed up with endless experience point farming) expresses a common frustration
+      among gamers. The use of 「と 言っ て」 here allows for a lighthearted complaint that acknowledges the
+      fun aspect without fully negating it, typical of younger male friends talking about hobbies.
+  - english: While privacy is important, having said that, public safety must also be considered.
+    japanese:
+      - 個人 情報 の 保護 は 重要 だ。{と 言っ て}、公共 の 安全 も 考慮 し なけれ ば なら ない。
+      - 個人 情報 の 保護 は 重要 です。{と 言っ て}、公共 の 安全 も また 考慮 す べき です。
+      - プライバシー 保護 は 大事。{と 言っ て}、社会 全体 の 安全 も 忘れ て は なら ない。
+      - 情報 の 管理 は 必要 だ。{と 言っ て}、治安 の 維持 も 欠か せ ない。
+      - 個々 の 権利 は 守る べき だ。{と 言っ て}、集団 の 利益 も 軽視 でき ない。
+      - 秘密 は 大切。{と 言っ て}、透明 性 も また 求め られる。
+      - 個人 の 自由 は 尊重 さ れる。{と 言っ て}、社会 の 秩序 も 大事 だ。
+      - 人権 は 絶対 だ。{と 言っ て}、同時 に 義務 も 伴う。
+      - プライベート は 守る べき だ。{と 言っ て}、公共 の 場 で は 節度 が 必要 だ。
+      - 国民 の 権利 は 大切 だ。{と 言っ て}、それ に 伴う 責任 も ある。
+    english_literally: The protection of personal information is important. Having said that, public safety
+      must also be considered.
+    competing_grammar:
+      - competing_japanese:
+          - 個人 情報 の 保護 は 重要 だ。{けれど も}、公共 の 安全 も 考慮 し なけれ ば なら ない。
+        english: While privacy is important, but public safety must also be considered.
+        hint: 「けれども」 is a general conjunction for contrast. This grammar is used to balance two important,
+          sometimes conflicting, principles, adding a nuanced consideration rather than a simple 'but'.
+      - competing_japanese:
+          - 個人 情報 の 保護 は 重要 だ。{しかし}、公共 の 安全 も 考慮 し なけれ ば なら ない。
+        english: While privacy is important. However, public safety must also be considered.
+        hint: 「しかし」 provides a direct contrast. This grammar implies a subtle acknowledgment of the preceding
+          statement before presenting a counterpoint, suitable for formal discussions balancing complex
+          issues.
+      - competing_japanese:
+          - 個人 情報 の 保護 は 重要 だ。{その 一方 で}、公共 の 安全 も 考慮 し なけれ ば なら ない。
+        english: While privacy is important. On the other hand, public safety must also be considered.
+        hint: 「その一方で」 highlights two co-existing aspects, potentially less of a direct counterpoint and
+          more of a parallel consideration. This grammar is used when acknowledging one important factor
+          while introducing another equally important one.
+      - competing_japanese:
+          - 個人 情報 の 保護 は 重要 だ。{と は 言え}、公共 の 安全 も 考慮 し なけれ ば なら ない。
+        english: While privacy is important, that being said, public safety must also be considered.
+        hint: 「とは言え」 is a slightly more direct transition. This grammar implies a careful balance between
+          two critical, sometimes conflicting, societal values, common in serious and informative discourse.
+    scene: A news analyst discusses a complex societal issue on a public affairs program.
+    register: formal
+    setting: serious
+    nuance: The initial statement 「個人 情報 の 保護 は 重要 だ」 (privacy is important) states one widely accepted
+      principle. The contrasting 「公共 の 安全 も 考慮 し なけれ ば ならない」 (public safety must also be considered) introduces
+      another equally vital, yet potentially conflicting, principle. This use demonstrates a balanced
+      and objective approach to presenting complex issues, common in formal and serious discussions.
+post_example_writeup: As these examples demonstrate, 「と言って」 is highly versatile. It is primarily used
+  to introduce a statement that acknowledges a preceding point but then presents a contrasting, qualifying,
+  or limiting perspective. This nuanced use often reflects a careful consideration of facts, a dilemma,
+  or a need to clarify boundaries, making it suitable for both formal discourse and reflective personal
+  expression. It is especially useful when you want to show that you understand the initial point, but
+  need to add an important 'however' or 'on the other hand' that prevents a simplistic interpretation
+  of the situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と言って

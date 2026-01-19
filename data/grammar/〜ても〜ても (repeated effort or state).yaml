@@ -1,0 +1,316 @@
+grammar_point: 〜ても〜ても (repeated effort or state)
+learn_before:
+  - い-Adjective[くても] (concessive)
+meaning: No matter how much/often/hard/etc.・no matter how many times
+pronunciation:
+  katakana: テモ～テモ
+  romaji: te mo ~ te mo
+formation:
+  Verb[て] + も + Verb[て] + も: Repeated action, unachieved outcome.
+  Adjective[て] + も + Adjective[て] + も: Extreme state, incoherent outcome or condition occurs. For example,
+    even if the state is 'cold', it doesn't get 'warm'.
+jlpt: N2
+etymology: The 「～ても」 form is derived from the conjunctive form of verbs and adjectives plus the particle
+  「も」, which adds the meaning of "even if" or "even though." Repeating this structure emphasizes the persistence
+  or intensity of the action or state being described. Its roots can be traced back to classical Japanese
+  literature, where similar constructions were used to convey strong emphasis and emotional weight.
+writeup: This grammar point, 「Verb[て]・Adjective[て]+も〜ても」, is used to emphasize the repetition of an action
+  or state, implying that even with repeated effort or an extreme condition, the expected or desired outcome
+  is not achieved. It conveys a strong sense of futility or frustration. The 「て」-form of the verb or adjective
+  is repeated, connected by the particle 「も」. This repetition amplifies the sense of continuous or excessive
+  action without the desired result. It's similar in meaning to 「いくら～ても」 (ikura ~ te mo) but the 「～ても～ても」
+  construction often carries a stronger emotional weight.
+false_friends:
+  - term: いくら～でも
+    meaning: no matter how much
+    kind: similar expression
+    nuance: Unlike 「〜ても〜ても」, 「いくら〜でも」 simply states "no matter how much" without inherently emphasizing
+      repeated effort or the emotional weight of futility. It indicates quantity or degree rather than
+      persistent action.
+    grammar_point: いくら〜でも (no matter how much)
+  - term: ばかりだ
+    meaning: only continues to
+    kind: similar expression
+    nuance: While 「〜ても〜ても」 emphasizes futile effort in repeating an action or experiencing a state, 「ばかりだ」
+      describes a situation that only progresses or remains in a particular state, usually negative, without
+      implying the speaker's repeated efforts against it.
+    grammar_point: ばかりだ (only continues to)
+post_false_friends_writeup: The key difference between 「～ても～ても」 and 「いくら～ても」 lies in the emphasis. 「～ても～ても」
+  highlights the continuous or repeated action and the lack of a desired outcome, often conveying a sense
+  of frustration or futility. 「いくら～ても」 simply indicates that something does not change regardless of the
+  amount or degree of the action performed. Choose 「～ても～ても」 when you want to stress the repetition and
+  the resulting lack of progress, and 「いくら～ても」 when you simply want to state that something doesn't change
+  despite the quantity or intensity. Meanwhile, 「ばかりだ」 describes a trend that just keeps going, usually
+  in a negative direction, but doesn't necessarily imply the speaker's effort or futility in the same
+  way 「～ても～ても」 does.
+examples:
+  - english: No matter how much I practice, I just can't improve.
+    japanese:
+      - '{練習 し て も 練習 し て も}、なかなか 上達 し ない。'
+      - '{練習 し て も 練習 し て も}、なかなか 上達 し ませ ん。'
+      - '{練習 し て も 練習 し て も}、なかなか 上達 し ねえ。'
+      - '{練習 し て も 練習 し て も}、なかなか 上達 し ない ん です。'
+      - '{練習 し て も 練習 し て も}、全然 上達 し ない な。'
+      - '{練習 し て も 練習 し て も}、ちっとも 上達 し ねえ や。'
+      - '{練習 し て も 練習 し て も}、どう も 上達 し ませ ん ね。'
+      - '{練習 し て も 練習 し て も}、全然 良く なら ない。'
+      - '{練習 し て も 練習 し て も}、もう 嫌 に なる くらい 上達 し ない。'
+    english_literally: Even if I practice, even if I practice, I just don't improve.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 練習 し て も}、なかなか 上達 し ない。'
+        english: No matter how much I practice, I just can't improve.
+        hint: The scene focuses on the *sustained and continuous nature* of the practice, beyond just
+          quantity, which the repetition in the grammar point emphasizes. We're looking for an emphasis
+          on repeated efforts without success, not just the quantity of practice overall.
+    scene: A musician feeling frustrated with their slow progress despite putting in many hours of practice.
+    register: casual
+    setting: melancholic
+    nuance: The repeated 「練習 しても 練習 しても」 highlights the consistent effort without the desired outcome,
+      conveying a sense of resignation. The use of 「なかなか」 further emphasizes the difficulty of achieving
+      improvement despite continued effort.
+    etymology: The word 「練習」 (renshū) combines 「練」 (ren), meaning 'to train' or 'to knead,' and 「習」 (shū),
+      meaning 'to learn' or 'to practice.' The repetition of the 「ても」 conditional emphasizes the continuous
+      nature of this training and learning process without the expected result, leading to the sense of
+      futility expressed in the sentence overall.
+  - english: No matter how many times I explain, he just doesn't understand.
+    japanese:
+      - '{説明 し て も 説明 し て も}、彼 は 全然 理解 し て くれ ない。'
+      - '{説明 し て も 説明 し て も}、彼 は 全然 理解 し て くださら ない。'
+      - '{説明 し て も 説明 し て も}、彼 は 全く 理解 し て くれ ませ ん。'
+      - '{説明 し て も 説明 し て も}、あいつ は 全然 分から ねえ。'
+      - '{説明 し て も 説明 し て も}、全然 分かっ て くれ ない。'
+      - '{説明 し て も 説明 し て も}、分かっ て もらえ ない。'
+      - '{説明 し て も 説明 し て も}、なかなか 理解 し て くれ ない。'
+      - 何 回 {説明 し て も 説明 し て も}、全然 ピン と 来 て ない よ ね。
+      - 何 度 {説明 し て も 説明 し て も}、彼 は ちっとも 理解 し ない。
+      - '{言い聞かせ て も 言い聞かせ し て も}、全然 耳 を 傾け ない。'
+    english_literally: Even if I explain, even if I explain, he completely doesn't understand.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 説明 し て も}、彼 は 全然 理解 し て くれ ない。'
+        english: No matter how much I explain, he just doesn't understand.
+        hint: The repetition of the verb emphasizes the *repeated attempts* at explanation, suggesting
+          the speaker has tried many times, which the scene supports. We're looking for an emphasis on
+          continuous, persistent attempts to explain, not just the quantity of explanation.
+    scene: A teacher trying to patiently explain a complex concept to a student who is struggling to grasp
+      it, feeling a bit exasperated.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    nuance: The phrase 「説明 しても 説明 しても」 emphasizes the speaker's repeated and perhaps increasingly desperate
+      efforts to make someone understand. The casual tone is conveyed by 「～てくれない」, indicating a personal
+      frustration with the lack of understanding from the listener.
+    etymology: 「説明」 (setsumei) combines 「説」 (setsu), meaning 'to explain' or 'to preach,' and 「明」 (mei),
+      meaning 'clear' or 'bright.' The doubling of the conditional form vividly highlights the repeated
+      act of trying to clarify something, underscoring the speaker's exasperation when the intended clarity
+      is never achieved, implying a deeply frustrating, persistent failure to communicate effectively.
+  - english: No matter how much I eat, I still feel hungry.
+    japanese:
+      - '{食べ て も 食べ て も}、まだ お腹 が 空く。'
+      - '{食べ て も 食べ て も}、お腹 が 空き ます。'
+      - '{食べ て も 食べ て も}、全然 満腹 に なら ない。'
+      - '{食べ て も 食べ て も}、なん で だ か お腹 が いっぱい に なら ない の よ ね。'
+      - '{食べ て も 食べ て も}、全然 満足 し ない わ。'
+    english_literally: Even if I eat, even if I eat, my stomach still becomes empty.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 食べ て も}、まだ お腹 が 空く。'
+        english: No matter how much I eat, I still feel hungry.
+        hint: This expression emphasizes the continuous act of eating that yields no satisfaction. The
+          repeated verb form is crucial for conveying this sense of ongoing, futile action.
+    scene: Someone at an all-you-can-eat buffet, feeling frustrated because they can't seem to get full
+      despite eating a lot.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    nuance: The repetition of 「食べても食べても」 highlights the endless cycle of eating without satisfaction,
+      often used with a touch of exasperated humor. The male speaker's use of 「～よ ね」 adds a soft, seeking-agreement
+      tone, despite the frustration.
+    etymology: The verb 「食べる」 (taberu) means 'to eat.' Its te-form repetition with 「も」 emphasizes a relentless,
+      almost obsessive, action of eating that leads to an unexpected or undesired result, capturing a
+      common frustration in daily life.
+  - english: No matter how much I study, I keep failing exams.
+    japanese:
+      - '{勉強 し て も 勉強 し て も}、試験 に 落ち て しまう。'
+      - '{勉強 し て も 勉強 し て も}、試験 に 落ち て しまい ます。'
+      - '{勉強 し て も 勉強 し て も}、また テスト が 駄目 だっ た。'
+      - '{勉強 し て も 勉強 し て も}、結果 が 出 ない ん です よ ね。'
+      - '{勉強 し て も 勉強 し て も}、なかなか 点 が 上がら ない。'
+    english_literally: Even if I study, even if I study, I end up failing exams.
+    competing_grammar:
+      - competing_japanese:
+          - 頑張っ て 勉強 し た {の に}、試験 に 落ち て しまっ た。
+        english: Even though I studied hard, I failed the exam.
+        hint: The grammar point specifically stresses repeated attempts at studying over time, not just
+          a single instance of hard work. We're looking for emphasis on the continuous, recurring nature
+          of the effort.
+    scene: A university student lamenting their poor academic performance to a friend, despite feeling
+      like they put in a lot of effort.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The repeated 「勉強 しても 勉強 しても」 perfectly captures the student's persistent but fruitless efforts,
+      expressing a deep sense of discouragement. The phrase 「落ち て しまう」 (to end up failing) adds to the
+      feeling of regret and inevitability.
+    etymology: 「勉強」 (benkyō) combines 「勉」 (ben), meaning 'exertion' or 'effort,' and 「強」 (kyō), meaning
+      'strong' or 'force.' The repetition of the conditional form highlights the continuous, forceful
+      exertion put into studying, making the lack of success all the more disheartening.
+  - english: No matter how much I save, I just can't accumulate any money.
+    japanese:
+      - '{貯金 し て も 貯金 し て も}、お 金 が 貯まら ない。'
+      - '{貯金 し て も 貯金 し て も}、全然 お 金 が 貯まり ませ ん。'
+      - '{貯金 し て も 貯金 し て も}、結局 赤字 だ よ。'
+      - '{貯金 し て も 貯金 し て も}、いつ も 給料 日 前 に は 無く なっ ちゃう ん だ よ ね。'
+      - '{貯金 し て も 貯金 し て も}、なかなか 貯まら ない から 困る。'
+    english_literally: Even if I save money, even if I save money, money doesn't accumulate.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 貯金 し て も}、お 金 が 貯まら ない。'
+        english: No matter how much I save, money doesn't accumulate.
+        hint: This sentence emphasizes the *repeated actions* of saving, each individually failing to
+          build wealth. The repeated verb form highlights the persistent but unsuccessful effort.
+    scene: A young professional discussing their financial woes with a coworker during a lunch break,
+      feeling exasperated by their inability to save.
+    register: casual
+    setting: serious
+    nuance: The phrase 「貯金 しても 貯金 しても」 conveys a sense of endless effort in saving that never yields results,
+      often due to unexpected expenses or low income. It reflects a common struggle and frustration.
+    etymology: 「貯金」 (chokin) combines 「貯」 (cho), meaning 'to store' or 'to save,' and 「金」 (kin), meaning
+      'money.' The repetition of the conditional form accentuates the continuous act of putting money
+      aside, highlighting the futility when the savings simply do not grow.
+  - english: No matter how hot it gets, this room just won't cool down.
+    japanese:
+      - '{暑く て も 暑く て も}、この 部屋 は 涼しく なら ない。'
+      - '{暑く て も 暑く て も}、この 部屋 は 全然 涼しく なり ませ ん。'
+      - '{暑く て も 暑く て も}、エアコン が 効か ない。'
+      - '{暑く て も 暑く て も}、もう 汗 が 止まら ない よ ね。'
+      - '{暑く て も 暑く て も}、この 蒸し暑 さ は 何 な ん だろう。'
+    english_literally: Even if it's hot, even if it's hot, this room won't become cool.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 暑く て も}、この 部屋 は 涼しく なら ない。'
+        english: No matter how hot it gets, this room won't cool down.
+        hint: The repetition of the adjective emphasizes the *persistent and unchanging* state of heat,
+          despite any efforts to cool down. It conveys a stronger sense of being stuck in that hot state
+          than simply 'no matter how hot'.
+    scene: Someone trying to relax at home on a sweltering summer day, constantly fanning themselves,
+      but the room remains uncomfortably warm.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The repeated 「暑く て も 暑く て も」 conveys the unyielding and oppressive heat, emphasizing that
+      the condition persists despite hopes for relief. It implies a sense of exasperation with the environment.
+    etymology: The adjective 「暑い」 (atsui) means 'hot.' Its repeated te-form usage with 「も」 paints a picture
+      of a relentless, unchanging heat, underscoring the discomfort and futility of trying to escape it.
+      This structure is effective for describing persistent, undesirable environmental conditions.
+  - english: No matter how many times I apologize, she won't forgive me.
+    japanese:
+      - '{謝っ て も 謝っ て も}、彼女 は 許し て くれ ない。'
+      - '{謝っ て も 謝っ て も}、彼女 は 許し て くれ ませ ん。'
+      - '{謝っ て も 謝っ て も}、まだ 怒っ てる みたい だ。'
+      - '{謝っ て も 謝っ て も}、彼女 の 気持ち は 変わら ない の か な。'
+      - '{謝っ て も 謝っ て も}、聞い て もらえ ない。'
+    english_literally: Even if I apologize, even if I apologize, she doesn't forgive me.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 謝っ た {の に}、彼女 は 許し て くれ ない。
+        english: Even though I apologized many times, she won't forgive me.
+        hint: This structure emphasizes the *repeated, consecutive acts* of apologizing. The repetition
+          highlights the speaker's persistent attempts at reconciliation, which is distinct from just
+          stating 'many times'.
+    scene: A person feeling heartbroken after a fight with their partner, recounting to a close friend
+      how their repeated apologies have been fruitless.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: The repetition of 「謝っても謝っても」 signifies a continuous, often desperate, attempt to seek forgiveness.
+      The phrase 「許し て くれない」 (she won't forgive me) adds to the feeling of personal disappointment and
+      the severity of the situation.
+    etymology: The verb 「謝る」 (ayamaru) means 'to apologize.' The repeated te-form with 「も」 intensifies
+      the act of apologizing, portraying a relentless and earnest effort to mend a relationship. It effectively
+      conveys the emotional weight of repeated, unaccepted apologies.
+  - english: No matter how much I search, I can't find my keys anywhere.
+    japanese:
+      - '{探し て も 探し て も}、鍵 が どこ に も 見つから ない。'
+      - '{探し て も 探し て も}、鍵 が どこ に も 見つかり ませ ん。'
+      - '{探し て も 探し て も}、どこ 行っ ちゃっ た の か な。'
+      - '{探し て も 探し て も}、全く 出 て こ ない ん だ けど。'
+      - '{探し て も 探し て も}、見当たら ない な。'
+    english_literally: Even if I search, even if I search, the keys are nowhere to be found.
+    competing_grammar:
+      - competing_japanese:
+          - どれ だけ 探し て {も}、鍵 が どこ に も 見つから ない。
+        english: No matter how much I search, I can't find my keys anywhere.
+        hint: The repeated verb emphasizes the *continuous, exhaustive effort* of searching, as if every
+          corner has been checked repeatedly. This repetition underscores the speaker's increasing frustration.
+    scene: Someone frantically tearing their house apart, looking for their lost keys, getting increasingly
+      frustrated as time passes.
+    register: casual
+    setting: friendly
+    nuance: 「探し て も 探し て も」 expresses the relentless and exhaustive nature of the search, highlighting
+      the exasperation when an item remains elusive despite thorough efforts. It’s a common expression
+      of daily frustration.
+    etymology: The verb 「探す」 (sagasu) means 'to search' or 'to look for.' The repetition of the te-form
+      with 「も」 creates a vivid image of a diligent, continuous search, conveying the increasing frustration
+      when the object remains unfound, making the listener empathize with the speaker's predicament.
+  - english: No matter how much I complain, the system never changes.
+    japanese:
+      - '{文句 を 言っ て も 文句 を 言っ て も}、体制 は 変わら ない。'
+      - '{文句 を 言っ て も 文句 を 言っ て も}、体制 は 全然 変わり ませ ん。'
+      - '{文句 を 言っ て も 文句 を 言っ て も}、無駄 だ よ ね。'
+      - '{文句 を 言っ て も 文句 を 言っ て も}、誰 も 聞く 耳 を 持た ない。'
+      - '{文句 を 言っ て も 文句 を 言っ て も}、毎回 同じ こと の 繰り返し だ よ。'
+    english_literally: Even if I complain, even if I complain, the system doesn't change.
+    competing_grammar:
+      - competing_japanese:
+          - '{いくら 文句 を 言っ て も}、体制 は 変わら ない。'
+        english: No matter how much I complain, the system never changes.
+        hint: This pattern conveys the *persistent and repetitive act* of complaining over time, indicating
+          a continuous and futile struggle against an unchanging situation. The repeated phrase highlights
+          this ongoing effort.
+    scene: A group of employees discussing workplace issues, expressing their resignation that their feedback
+      never leads to improvements.
+    register: casual
+    setting: serious
+    listener_gender: group
+    nuance: The phrase 「文句 を 言って も 文句 を 言って も」 emphasizes the ongoing, often fruitless, cycle of complaining.
+      It reflects a common sentiment of powerlessness against an entrenched system. The use of 「無駄 だ よ
+      ね」 (it's useless, right?) further reinforces the futility.
+    etymology: 「文句」 (monku) means 'complaint' or 'objection.' The repetition of 「言って も」 (even if I say)
+      with 「文句」 emphasizes the continuous and possibly exasperated act of voicing complaints, highlighting
+      the unchanging nature of the target of the complaint.
+  - english: No matter how long I wait, he never shows up.
+    japanese:
+      - '{待っ て も 待っ て も}、彼 は 来 ない。'
+      - '{待っ て も 待っ て も}、彼 は 来 ませ ん。'
+      - '{待っ て も 待っ て も}、結局 連絡 が なかっ た。'
+      - '{待っ て も 待っ て も}、いつ も 裏切ら れる ん だ よ ね。'
+      - '{待っ て も 待っ て も}、来る 気配 が 全く ない。'
+    english_literally: Even if I wait, even if I wait, he doesn't come.
+    competing_grammar:
+      - competing_japanese:
+          - ずいぶん 長い 間 待っ た {の に}、彼 は 来 なかっ た。
+        english: Even though I waited for a very long time, he didn't come.
+        hint: This construction emphasizes the *continuous act of waiting* over an extended period, stressing
+          the duration and the speaker's perseverance, rather than just the length of time. This repetition
+          is key to the grammar's nuance.
+    scene: A person sitting alone at a cafe, constantly checking their phone, increasingly disappointed
+      as the friend they're waiting for remains absent.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The repetitive 「待って も 待って も」 conveys the speaker's prolonged and ultimately futile waiting,
+      leading to a feeling of disappointment or abandonment. The phrasing is emotionally charged, highlighting
+      the unfulfilled expectation.
+    etymology: The verb 「待つ」 (matsu) means 'to wait.' The doubling of the conditional te-form creates
+      a sense of endless waiting, emphasizing the passage of time and the futility of the action when
+      the expected outcome (someone arriving) does not materialize. This structure is potent for conveying
+      anticipation turning into resignation.
+post_example_writeup: The repetitive structure of 「～ても～ても」 vividly expresses a sense of exasperation or
+  futility when an action or state persists despite continuous effort or a persistent condition. It's
+  a way to highlight a continuous struggle or an unchanging situation. While 「いくら～ても」 can also convey
+  "no matter how much/many," 「～ても～ても」 specifically emphasizes the repetition of the action or the persistence
+  of the state itself.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1171

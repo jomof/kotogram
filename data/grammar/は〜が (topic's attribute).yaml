@@ -1,0 +1,366 @@
+grammar_point: は〜が (topic's attribute)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: Indicates a topic with a specific attribute or characteristic; As for A, B is...
+pronunciation:
+  katakana: ハ～ガ
+  romaji: wa ~ ga
+formation:
+  Topic (A) + は + Attribute/Part (B) + が + Description (C): Used to describe a specific characteristic
+    or attribute of a broader topic. The description (C) applies to the attribute/part (B), which in turn
+    relates to the topic (A)
+jlpt: N5
+etymology: 'The particles 「は」 (wa) and 「が」 (ga) have distinct historical roles. 「は」 evolved from the emphatic
+  particle 「は」 used in Old Japanese, becoming the primary topic marker. It sets the theme or common ground
+  for the sentence. 「が」, on the other hand, originated as a possessive particle (similar to ''of'') and
+  developed into the subject marker. In the 「は〜が」 construction, the historical functions combine: 「は」
+  establishes the overarching topic, and 「が」 then singles out the specific element within that topic that
+  the following predicate describes. This creates a logical flow from general (topic) to specific (attribute/subject)'
+writeup: |-
+  The 「は〜が」 construction is a fundamental structure in Japanese that allows speakers to describe a specific attribute or characteristic of a broader topic. The part before 「は」 (A) introduces the overall topic or theme of the sentence, setting the context. The part before 「が」 (B) then specifies a particular element, attribute, or part *of* that previously introduced topic. Finally, the predicate (C) describes the characteristic of that specified element (B).
+
+  This construction is crucial for expressing intrinsic qualities, abilities, desires, or states that are often beyond the direct control of the topic. For instance, when you say 「象は鼻が長い」 (Elephants have long noses), you are not saying elephants *do* long noses, but rather that long noses are an inherent characteristic *of* elephants. The 「は」 sets 'elephants' as the general topic, and then 「鼻が」 specifically points to 'noses' *as the part that is long*.
+
+  It is often used in situations where:
+  *   **Describing physical attributes or inherent characteristics:** 「彼は背が高い」 (He is tall – lit. 'As for him, back is tall').
+  *   **Expressing abilities or aptitudes:** 「田中さんは料理が上手だ」 (Tanaka-san is good at cooking – lit. 'As for Tanaka-san, cooking is skillful').
+  *   **Stating desires or feelings:** 「私は喉が渇いた」 (I am thirsty – lit. 'As for me, throat is parched').
+  *   **Highlighting a specific aspect of a general category:** 「日本は冬が寒い」 (In Japan, winter is cold – lit. 'As for Japan, winter is cold').
+
+  **Important Considerations:**
+  *   The particle 「が」 in this construction is not marking the primary subject of the entire sentence in the traditional sense, but rather the subject *of the description (C)* that applies to the attribute (B) of the initial topic (A). The main topic (A) is marked by 「は」.
+  *   This structure allows for a clear distinction between the broad topic and the specific attribute being discussed, often implying that while the topic might have many aspects, this particular one is being highlighted
+false_friends:
+  - term: 〜は
+    meaning: As for ~; indicates topic
+    kind: similar expression
+    nuance: While 「は」 alone introduces a topic, it does not explicitly specify an attribute or part of
+      that topic that is being described by a predicate. The 「は〜が」 structure creates a tighter link between
+      the topic and a specific characteristic
+    grammar_point: は (topic and contrast)
+  - term: 〜が
+    meaning: indicates subject
+    kind: similar expression
+    nuance: When 「が」 alone marks a subject, it often introduces new information or is used in contrast.
+      The 「は〜が」 structure, however, introduces a topic first with 「は」 and then uses 「が」 to highlight an
+      attribute *within* that established topic, often describing an inherent quality or state, rather
+      much like the primary agent of an action
+    grammar_point: が (subject marker)
+  - term: 〜の
+    meaning: possessive particle; of
+    kind: often confused with
+    nuance: 「〜の」 indicates possession or association (e.g., 「象の鼻」 - 'elephant's nose'). While it can describe
+      a relationship, it doesn't carry the same 'as for X, its Y is Z' nuance as 「は〜が」, which explicitly
+      sets the initial topic and then details a characteristic of its part or attribute. For example,
+      「象の鼻は長い」 would mean 'The elephant's nose is long', focusing on the nose itself as the topic, rather
+      than the elephant
+    grammar_point: の (possession)
+post_false_friends_writeup: The key distinction among these similar expressions lies in their focus. While
+  「は」 establishes a general topic, and 「が」 marks a subject (often new information), the 「は〜が」 construction
+  specifically sets a broad topic and then drills down to highlight an an attribute or part of that topic.
+  「〜の」 simply shows a possessive relationship. Understanding this difference in emphasis is crucial for
+  natural Japanese expression
+examples:
+  - english: I like English.
+    japanese:
+      - 私 {は} 英語 {が} 好き です。
+      - 私 {は} 英語 {が} 好き だ。
+      - 私、英語 {が} 好き。
+    english_literally: As for me, English is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 英語 {は} 好き です。
+        english: As for English, I like it.
+        hint: This phrase makes 'English' the primary topic. The 「は〜が」 structure here sets 'I' as the
+          main topic, then specifies 'English' as the thing I like. We're looking for a statement about
+          *my* preference.
+      - competing_japanese:
+          - 私 {が} 英語 {が} 好き です。
+        english: It is I who likes English.
+        hint: This phrase strongly emphasizes 'I' as the one who likes English, often for contrast (e.g.,
+          'Others may not, but *I* do'). The 「は〜が」 structure here simply states a fact about me and my
+          preference without such strong emphasis. We're looking for a general statement about my liking.
+      - competing_japanese:
+          - 私 {の} 英語 {は} 好き です。
+        english: As for my English (skill), I like it.
+        hint: This phrase refers to your personal skill in English, not the subject itself. The 「は〜が」
+          structure here expresses a liking for the subject 'English'. We're looking for a statement about
+          your preference for the subject 'English'.
+    scene: A new student introduces themselves in a language class, sharing their preferences.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker, a woman, uses 「好きです」 to politely state her preference. The structure 「私は英語が好きです」
+      explicitly positions 'English' as the attribute that is 'liked' within the broader topic of 'myself'.
+      「私、英語が好き」 is a more casual way to express this.
+  - english: Elephants have long trunks.
+    japanese:
+      - 象 {は} 鼻 {が} 長い。
+      - 象 {は} 鼻 {が} 長い です。
+    english_literally: As for elephants, their noses are long.
+    competing_grammar:
+      - competing_japanese:
+          - 象 {の} 鼻 {は} 長い。
+        english: The elephant's nose is long.
+        hint: This phrase focuses on the elephant's nose as the main topic, saying that *its* nose is
+          long. The 「は〜が」 structure instead sets 'elephants' as the primary topic, then describes 'long
+          noses' as a specific attribute of them. We're looking for a general statement about elephants'
+          physical characteristics.
+      - competing_japanese:
+          - 鼻 {は} 長い。
+        english: As for the nose, it is long.
+        hint: This phrase makes 'nose' the topic but doesn't connect it to 'elephants'. The 「は〜が」 structure
+          first establishes 'elephants' as the topic, then describes their 'noses' as long. We're looking
+          for a statement that describes a characteristic *of elephants*.
+      - competing_japanese:
+          - 象 {が} 鼻 {が} 長い。
+        english: It is the elephant whose nose is long.
+        hint: This phrase emphasizes 'elephant' as the specific creature whose nose is long, often for
+          contrast. The 「は〜が」 structure introduces 'elephants' as a general topic, then specifies 'noses'
+          as the long part. We're looking for a general factual statement.
+    scene: A zookeeper is giving a tour, describing animal characteristics.
+    register: formal
+    setting: informative
+    nuance: This is a classic example. 「象は」 sets 'elephants' as the topic, while 「鼻が長い」 specifically points
+      to their 'long noses' as the attribute being described. It’s a factual statement about an inherent
+      characteristic. The casual form 「象は鼻が長い」 is often used in descriptive contexts like documentaries.
+  - english: This town is cold in winter.
+    japanese:
+      - この 町 {は} 冬 {が} 寒い です。
+      - この 町 {は} 冬 {が} 寒い。
+    english_literally: As for this town, winter is cold.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 {の} 冬 {は} 寒い です。
+        english: The winter of this town is cold.
+        hint: This phrase focuses on 'the winter of this town' as the topic. The 「は〜が」 structure first
+          establishes 'this town' as the topic, then points out that its 'winter' is being cold as a feature.
+          We're describing a feature *of* the town, not making the winters themselves the primary topic.
+      - competing_japanese:
+          - 冬 {は} 寒い です。
+        english: As for winter, it is cold.
+        hint: This phrase makes 'winter' the topic, but doesn't specify *where* it's cold. The 「は〜が」 structure
+          establishes 'this town' as the context for winter's coldness. We're looking for a statement
+          about the town's climate.
+      - competing_japanese:
+          - この 町 {が} 冬 {が} 寒い です。
+        english: It is this town where winter is cold.
+        hint: This phrase emphasizes 'this town' as the one where winter is cold, often in a comparative
+          sense. The 「は〜が」 structure states a general characteristic of the town. We're looking for a
+          general description of the town's winter.
+    scene: Someone new to a region asks about the local climate.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「この町は」 establishes 'this town' as the topic, and then 「冬が寒い」 specifies that 'winter is cold'
+      as a characteristic *of this town*. This implies that other seasons might be different, but winter
+      is particularly notable for its coldness. The plain form 「この町は冬が寒い」 would be used in a more casual
+      setting, such as describing one's own apartment to a friend.
+  - english: My son is good at soccer.
+    japanese:
+      - 息子 {は} サッカー {が} 上手 です。
+      - 息子 {は} サッカー {が} 上手 だ。
+      - 息子、サッカー {が} 上手。
+    english_literally: As for my son, soccer is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 息子 {は} サッカー を する {の が じょうず} です。
+        english: My son is good at playing soccer.
+        hint: This phrase describes the *act of playing soccer* as skillful. The 「は〜が」 structure directly
+          states that 'soccer' is the field in which the 'son' is skilled. We're looking for a direct
+          statement about his aptitude in soccer, not the action.
+      - competing_japanese:
+          - サッカー {は} 上手 です。
+        english: As for soccer, he is good (at it).
+        hint: This phrase makes 'soccer' the main topic. The 「は〜が」 structure here sets 'my son' as the
+          topic, then describes his skill in 'soccer'. We're looking for a statement about *my son's*
+          abilities.
+      - competing_japanese:
+          - 息子 {が} サッカー {が} 上手 です。
+        english: It is my son who is good at soccer.
+        hint: This phrase emphasizes 'my son' as the one good at soccer, often for contrast. The 「は〜が」
+          structure simply states a fact about his ability. We're looking for a general statement about
+          his skill.
+    scene: A parent proudly talks about their child's athletic abilities.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker, a mother, uses 「上手です」 to express her son's skill. The structure clearly indicates
+      that 'soccer' is the specific area where the 'son' excels. 「息子、サッカーが上手」 is a more casual way a parent
+      might express this to a friend.
+  - english: I'm hungry.
+    japanese:
+      - 私 {は} お腹 {が} 空き まし た。
+      - 私 {は} お腹 {が} 空い た。
+      - お腹 {が} 空き まし た。
+      - お腹 {が} 空い た。
+      - 俺 {は} お腹 {が} 空い た。
+      - 俺 {は} お腹 {が} 空い た。
+    english_literally: As for me, my stomach became empty.
+    competing_grammar:
+      - competing_japanese:
+          - お腹 {が} 空き まし た。
+        english: I became hungry.
+        hint: While grammatically correct, this phrase simply states 'I'm hungry'. The 「は〜が」 structure
+          with 「私は」 puts a subtle emphasis on *who* is hungry, especially if clarifying among a group.
+          We're looking for a statement that highlights the individual experiencing hunger.
+      - competing_japanese:
+          - お腹 {は} 空き まし た。
+        english: As for my stomach, it became empty.
+        hint: This phrase emphasizes 'stomach' as the topic, which sounds less natural for expressing
+          one's own hunger. The 「は〜が」 structure with 「私は」 more naturally expresses the state of 'I' feeling
+          hungry. We're looking for a statement about *your* hunger.
+      - competing_japanese:
+          - 私 {が} お腹 {が} 空き まし た。
+        english: It is I who became hungry.
+        hint: This phrase emphasizes 'I' as the specific person who got hungry, possibly in contrast to
+          others. The 「は〜が」 structure without this emphasis is a more straightforward statement. We're
+          looking for a general statement about your hunger.
+    scene: A student loudly announces their hunger during a study break.
+    register: casual
+    setting: casual slang
+    speaker_gender: male
+    listener_gender: group
+    nuance: This is a common way to express a physical state. While 「お腹が空きました」 alone is grammatically
+      correct, adding 「私は」 puts emphasis on the speaker as the one experiencing the hunger, useful when
+      others are present. The male speaker might use 「俺は」 for a casual, personal tone, or drop the particle
+      completely as in 「俺お腹空いた」.
+  - english: This room has large windows.
+    japanese:
+      - この 部屋 {は} 窓 {が} 大きい です。
+      - この 部屋 {は} 窓 {が} 大きい。
+    english_literally: As for this room, its windows are large.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 {の} 窓 {は} 大きい です。
+        english: The windows of this room are large.
+        hint: This phrase topicalizes 'the windows of this room'. The 「は〜が」 structure first establishes
+          'this room' as the topic, then points out that its 'windows are large' as a feature. We're describing
+          a feature *of* the room, not making the windows themselves the primary topic.
+      - competing_japanese:
+          - 窓 {は} 大きい です。
+        english: As for the windows, they are large.
+        hint: This phrase makes 'windows' the topic, but doesn't specify *which* windows. The 「は〜が」 structure
+          establishes 'this room' as the context for the large windows. We're looking for a statement
+          about a feature *of this room*.
+      - competing_japanese:
+          - この 部屋 {が} 窓 {が} 大きい です。
+        english: It is this room that has large windows.
+        hint: This phrase emphasizes 'this room' as the one with large windows, possibly distinguishing
+          it from others. The 「は〜が」 structure states a general characteristic of the room. We're looking
+          for a general description of the room's features.
+    scene: A real estate agent is showing a client a new apartment, pointing out features.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: The agent uses polite language to describe a characteristic of the room. 「この部屋は」 establishes
+      'this room' as the topic, and 「窓が大きいです」 points out the large windows as a key attribute of that
+      room. The plain form 「この部屋は窓が大きい」 would be used in a more casual setting, such as describing one's
+      own apartment to a friend.
+  - english: My mother is good at drawing pictures.
+    japanese:
+      - 母 {は} 絵 {が} 上手 です。
+      - 母 {は} 絵 {が} 上手 だ。
+      - 母、絵 {が} 上手。
+    english_literally: As for my mother, drawing pictures is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 母 {の} 絵 {は} 上手 です。
+        english: The pictures my mother draws are skillful.
+        hint: This phrase focuses on the *pictures themselves* as being skillful. The 「は〜が」 structure
+          describes the *mother's ability* in drawing. We're looking for a statement about her skill.
+      - competing_japanese:
+          - 母 {が} 絵 {が} 上手 です。
+        english: It is my mother who is good at drawing pictures.
+        hint: This phrase emphasizes 'my mother' as the one who is good at drawing, often for contrast.
+          The 「は〜が」 structure states her ability more generally. We're looking for a general statement
+          about her skill.
+    scene: A child proudly tells their teacher about their mother's talent.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: A child using 「母」 and the polite 「上手です」 to convey respect. This structure highlights that
+      'drawing' is the specific skill the 'mother' possesses.
+  - english: My eyes hurt.
+    japanese:
+      - 私 {は} 目 {が} 痛い です。
+      - 目 {が} 痛い です。
+      - 私 {は} 目 {が} 痛い。
+      - 目 {が} 痛い。
+    english_literally: As for me, eyes are painful.
+    competing_grammar:
+      - competing_japanese:
+          - 目 {は} 痛い です。
+        english: As for eyes, they hurt.
+        hint: This phrase focuses on 'eyes' as the topic, which sounds less natural when describing one's
+          own physical discomfort. The 「は〜が」 structure with 「私は」 or implied 'I' more naturally expresses
+          the state of 'I' feeling pain in the eyes. We're looking for a statement about your physical
+          sensation.
+      - competing_japanese:
+          - 私 {が} 目 {が} 痛い です。
+        english: It is I whose eyes hurt.
+        hint: This phrase emphasizes 'I' as the specific person whose eyes hurt, possibly for contrast.
+          The 「は〜が」 structure states the physical symptom more directly. We're looking for a general statement
+          about your physical state.
+    scene: A person has been working at a computer for a long time and feels discomfort.
+    register: casual
+    setting: melancholic
+    nuance: 「目 が 痛い」 is a common, direct way to express pain in the eyes. Adding 「私は」 makes it explicitly
+      clear who is experiencing the pain, useful when others are present. The lack of 「です」 makes it casual.
+  - english: Japan has four distinct seasons.
+    japanese:
+      - 日本 {は} 四季 {が} あり ます。
+      - 日本 {は} 四季 {が} ある。
+    english_literally: As for Japan, four seasons exist.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 {の} 四季 {は} あり ます。
+        english: Japan's four seasons exist.
+        hint: This phrase makes 'Japan's four seasons' the topic, implying they are a known entity. The
+          「は〜が」 structure introduces 'Japan' as the overall topic, and then specifies 'four seasons' as
+          an inherent characteristic it possesses. We're looking for a general statement about Japan's
+          climate.
+      - competing_japanese:
+          - 四季 {は} あり ます。
+        english: As for four seasons, they exist.
+        hint: This phrase makes 'four seasons' the topic but doesn't specify *where* they exist. The 「は〜が」
+          structure establishes 'Japan' as the context for having four seasons. We're looking for a statement
+          about Japan's climate.
+    scene: A tour guide explains the climate to a group of foreign visitors.
+    register: formal
+    setting: informative
+    nuance: This example demonstrates using 「は〜が」 to describe an inherent characteristic of a country
+      or region. 「日本は」 sets Japan as the topic, and 「四季があります」 specifies that having four seasons is a
+      characteristic of Japan. It is a factual, descriptive statement.
+  - english: Tanaka-san has a kind personality.
+    japanese:
+      - 田中 さん {は} 性格 {が} 優しい です。
+      - 田中 さん {は} 性格 {が} 優しい。
+      - 田中 さん、性格 {が} 優しい。
+    english_literally: As for Tanaka-san, personality is kind.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん {は} 優しい です。
+        english: Tanaka-san is kind.
+        hint: While this is correct, it's a more direct statement about Tanaka-san's kindness. The 「は〜が」
+          structure specifically attributes 'kindness' to their 'personality'. We're looking for a statement
+          that specifies the *aspect* of kindness.
+      - competing_japanese:
+          - 田中 さん {が} 性格 {が} 優しい です。
+        english: It is Tanaka-san whose personality is kind.
+        hint: This phrase emphasizes 'Tanaka-san' as the specific person with a kind personality, often
+          for contrast. The 「は〜が」 structure states a general characteristic of Tanaka-san. We're looking
+          for a general description of their personality.
+    scene: Two colleagues are discussing a new team member.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: This describes an inherent personality trait. 「田中さんは」 sets Tanaka-san as the topic, and 「性格が優しい」
+      specifies that 'personality is kind' as their attribute. This is a common way to describe someone's
+      character.
+post_example_writeup: The examples illustrate how 「は〜が」 is used to describe an inherent characteristic
+  or attribute of a given topic. It allows for a precise way to state what something *is* or *has* rather
+  than what it *does*. This nuanced distinction is key to natural Japanese expression, especially when
+  discussing physical traits, abilities, or inherent qualities of people, places, or things.

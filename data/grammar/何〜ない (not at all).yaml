@@ -1,0 +1,257 @@
+grammar_point: 何〜ない (not at all)
+learn_before:
+  - 何も〜ない (no reason to・no need to)
+meaning: Not at all; not any
+pronunciation:
+  katakana: ナニナイ
+  romaji: nani nai
+formation:
+  何 + [Verb negative]: Indicates a complete absence of an action, emphasizing that 'nothing' or 'not any'
+    action is taken.
+  何 + [い-Adjective negative]: Indicates a complete lack of a quality described by an i-adjective, meaning
+    'not at all' that quality.
+  何 + [な-Adjective negative]: Indicates a complete lack of a quality described by a na-adjective, meaning
+    'not at all' that quality.
+  何 + [Noun negative]: Indicates a complete absence or non-existence of a noun, meaning 'not any' noun
+    or 'no' noun.
+jlpt: N3
+etymology: The expression combines 『何』 (nani), originally an interrogative pronoun for 'what,' with a
+  negative predicate. In this usage, 『何』 transitions from asking 'what?' to implying 'any' or 'nothing
+  at all' when paired with negation. This evolution is common across many languages where interrogatives
+  can serve as negative polarity items in negative contexts. The underlying concept is that if one cannot
+  even identify 'what' (何), then 'nothing' (〜ない) exists or happens.
+writeup: "The construction 『何〜ない』 is used to express a strong, complete negation. It conveys that 'not\
+  \ anything at all' or 'nothing whatsoever' is the case. This phrase amplifies the negative meaning,\
+  \ indicating a total lack or absolute absence of something. It is often used in situations where one\
+  \ wants to convey a sense of frustration, surprise, or firm assertion regarding the non-existence or\
+  \ non-occurrence of something. For instance, if you are feeling utterly unmotivated, you might say 『何も\
+  \ {する 気 が ない}』 (I don't feel like doing anything at all). \n\nWhile 『何』 typically means 'what' or 'something,'\
+  \ when combined with a negative predicate, it functions similarly to 'any' in English negative sentences\
+  \ (e.g., 'I don't have any money'). The nuance is often one of helplessness or strong dismissal. It\
+  \ can apply to various types of predicates: verbs, i-adjectives, na-adjectives, and nouns, as long as\
+  \ they are in their negative forms. This grammatical pattern is versatile and frequently appears in\
+  \ spoken Japanese to add emphasis to a negative statement. It is commonly used by speakers of all genders\
+  \ and ages in casual conversation."
+false_friends:
+  - term: 全く〜ない
+    meaning: Completely not; not at all
+    kind: similar expression
+    nuance: While 『何〜ない』 emphasizes the absence of 'anything' specific and often carries a nuanced feeling
+      of helplessness or frustration, 『全く〜ない』 is a more general intensifier that means 'completely not'
+      or 'not at all.' It is a straightforward adverbial negation, lacking the specific 'any-thing' implication
+      of 『何』.
+    grammar_point: 全く〜ない (not at all)
+  - term: 少しも〜ない
+    meaning: Not even a little; not in the slightest
+    kind: similar expression
+    nuance: 『少しも〜ない』 specifically emphasizes that not even a 'small amount' or 'little bit' is present
+      or occurring. It focuses on the quantity or degree of absence, whereas 『何〜ない』 focuses on the absolute
+      absence of 'anything' or 'any kind' of something.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: 決して〜ない
+    meaning: Never; under no circumstances
+    kind: similar expression
+    nuance: 『決して〜ない』 is a strong, definitive negation primarily used for future actions, firm prohibitions,
+      or absolute impossibilities. It expresses a strong determination or a certainty that something will
+      'never' happen or is 'absolutely not' the case, unlike 『何〜ない』 which expresses a total absence of
+      'anything' in the present or generally.
+    grammar_point: 決して〜ない (emphatic never)
+post_false_friends_writeup: While 『何〜ない』, 『全く〜ない』, 『少しも〜ない』, and 『決して〜ない』 all express negation, their
+  nuances and common usages differ. 『何〜ない』 implies a complete absence of 'anything' specific, often with
+  a nuance of helplessness or frustration, stemming from the interrogative '何' (what/any) being paired
+  with negation. 『全く〜ない』 is a more general intensifier meaning 'completely not' or 'not at all,' applying
+  broadly without necessarily implying 'anything' as the object. 『少しも〜ない』 emphasizes that not even a 'small
+  amount' or 'little bit' is present. 『決して〜ない』 is a strong, definitive negation, meaning 'never' or 'under
+  no circumstances,' often referring to future actions or firm denials.
+examples:
+  - english: I have no motivation at all to study.
+    japanese:
+      - 私 は 何 も 勉強 する 気 が ない。
+      - 私 は 何 も 勉強 する 気 が あり ませ ん。
+      - 俺、何 も 勉強 する 気 が ねえ。
+      - 私 は 何 も 勉強 する 気力 が ない。
+    english_literally: As for me, anything, study-do feeling doesn't exist.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 全く 勉強 する 気 が ない。
+        english: I completely don't have any motivation to study.
+        hint: 『全く〜ない』 is a general intensifier meaning 'completely not,' but it doesn't carry the nuanced
+          sense of 'anything' being absent like 『何〜ない』 does. We're looking for the sense of 'nothing whatsoever.'
+    scene: A student is feeling very unmotivated for their upcoming exam.
+    register: casual
+    setting: melancholic
+  - english: This movie is not good at all.
+    japanese:
+      - この 映画 は 何 も 面白く ない。
+      - この 映画 は 何 も 面白く あり ませ ん。
+      - この 映画、何 も 面白く ねー。
+      - この 映画 は 何 も 良く ない。
+    english_literally: This movie, anything, interesting isn't.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は 全く 面白く ない。
+        english: This movie is completely uninteresting.
+        hint: While 『全く』 works here, 『何 も 面白く ない』 emphasizes the total lack of 'any' good aspects in the
+          movie, making it a stronger, more personal dismissal. We're looking for that 'nothing at all'
+          nuance.
+    scene: A friend is giving a harsh review of a movie they just watched.
+    register: casual
+    setting: serious
+    nuance: The phrase 『何 も 面白く ない』 carries a stronger sense of disappointment or strong negative opinion
+      compared to just 『面白く ない』. The 『何 も』 emphasizes that there isn't 'anything' about the movie that
+      is interesting.
+  - english: I have nothing to say about that.
+    japanese:
+      - 私 は その こと に 何 も 言う こと が ない。
+      - 私 は その こと に 何 も 申し上げる こと が あり ませ ん。
+      - 俺、あの 件 に つい て 何 も 言え ねー。
+      - 私 は その 件 に つき 何 も コメント する こと は ない。
+    english_literally: As for me, about that thing, anything say thing doesn't exist.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は その こと に は コメント し ない。
+        english: I will not comment on that.
+        hint: 『コメント し ない』 is a statement of intent, whereas we are expressing that literally 'nothing
+          to say' exists for the speaker. We're looking for a stronger sense of utter lack of words.
+    scene: A person is asked about a controversial topic and wishes to remain silent or has no opinion.
+    register: formal
+    setting: professional
+    nuance: Even in a formal setting, 『何 も 言う こと が ない』 can be used to convey a complete lack of input
+      or opinion, emphasizing that 'anything' that could be said is absent. It's a strong way to shut
+      down a topic.
+  - english: There's no problem at all.
+    japanese:
+      - 何 の 問題 も ない。
+      - 何 の 問題 も あり ませ ん。
+      - 何 の 問題 も ねー よ。
+      - 何 の 差し障り も ない。
+    english_literally: Any problem also isn't.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は ない。
+        english: There is no problem.
+        hint: Adding 『何 の』 before 『問題 も ない』 makes the negation stronger, emphasizing that 'absolutely
+          no' problems exist, rather than just 'no problem.' We're looking for that reinforced negation.
+    scene: A teacher reassures a student who is worried about a small mistake.
+    register: casual
+    setting: supportive
+  - english: I can't do anything about it.
+    japanese:
+      - もう 何 も でき ない。
+      - もう 何 も でき ませ ん。
+      - もう 何 も でき ねー。
+      - もう 何 も 為す 術 が ない。
+    english_literally: Already, anything cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - もう どう に も なら ない。
+        english: It's already hopeless.
+        hint: 『どうにもならない』 conveys hopelessness, but 『何 も できない』 specifically states that 'nothing can be
+          done' by the speaker, emphasizing their own powerlessness. We're looking for an expression of
+          personal inability.
+    scene: A character in a drama expresses despair after a significant setback.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: The phrase 『もう 何 も できない』 implies a complete lack of options or ability, expressing deep resignation.
+      The use of 『何 も』 emphasizes that 'anything' that could be done is now beyond reach. This is a common
+      expression for a male speaker in a moment of despair.
+  - english: I don't know anything about that incident.
+    japanese:
+      - あの 事件 に つい て は 何 も 知ら ない。
+      - あの 事件 に つい て は 何 も 存じ上げ ませ ん。
+      - あの 事件 に つい て は 何 も 知ら ねえ。
+      - あの 件 に 関し て は 何 も 情報 が ない。
+    english_literally: About that incident, anything don't know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 事件 に つい て は 無知 だ。
+        english: I am ignorant about that incident.
+        hint: 『無知だ』 means ignorant in a more general sense. We're looking for a direct statement that
+          'nothing at all' is known about a specific topic.
+    scene: A witness is being questioned by the police about a crime.
+    register: formal
+    setting: serious
+    nuance: Using 『何 も 知ら ない』 emphasizes a complete and total lack of knowledge, often implying a denial
+      of involvement or even being purposefully uninformed. It's stronger than simply 『知ら ない』.
+  - english: This explanation is not clear at all.
+    japanese:
+      - この 説明 は 何 も 分かり やすく ない。
+      - この 説明 は 何 も 分かり やすく あり ませ ん。
+      - この 説明、何 も 分かり やすく ねー。
+      - この 説明 は 何 も 納得 でき ない。
+    english_literally: This explanation, anything, easy-to-understand isn't.
+    competing_grammar:
+      - competing_japanese:
+          - この 説明 は 分かり づらい。
+        english: This explanation is hard to understand.
+        hint: 『分かり づらい』 means 'hard to understand,' but 『何 も 分かり やすく ない』 conveys that the explanation
+          completely lacks 'any' clarity or ease of understanding. We're looking for the stronger, absolute
+          negation.
+    scene: A student expresses frustration with a professor's confusing lecture.
+    register: casual
+    setting: academic
+  - english: There's no meaning at all to doing such a thing.
+    japanese:
+      - そんな こと を する の は 何 の 意味 も ない。
+      - その よう な こと を する の は 何 の 意味 も あり ませ ん。
+      - そんな こと し て も 何 の 意味 も ねえ。
+      - そんな こと を し て も 何 の 価値 も ない。
+    english_literally: Such a thing to do is, any meaning also isn't.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと を する の は 無 意味 だ。
+        english: Doing such a thing is meaningless.
+        hint: 『無意味だ』 means meaningless. 『何 の 意味 も ない』 specifically asserts that there is 'not any' meaning
+          to it, making the negation more emphatic and absolute.
+    scene: A senior colleague advises a junior one against a pointless task.
+    register: semi-formal
+    setting: professional
+  - english: She doesn't say anything these days.
+    japanese:
+      - 彼女 は 最近 何 も 言わ ない。
+      - 彼女 は 最近 何 も おっしゃら ない。
+      - あの 子、最近 何 も 言わ ねえ な。
+      - 彼女 は 最近 何 も 口 に し ない。
+    english_literally: She, recently, anything doesn't say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 最近 口数 が 少ない。
+        english: She talks little recently.
+        hint: 『口数 が 少ない』 means she is not talkative. 『何 も 言わ ない』 implies a complete lack of speech, indicating
+          that 'anything' she might say is currently absent. We're looking for a complete silence.
+    scene: Two friends discuss their quiet mutual friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: 『何 も 言わ ない』 emphasizes a complete silence or lack of communication from her, suggesting a
+      notable change or a strong observation. For a female speaker, this might imply concern or mild frustration
+      about the friend's quietness.
+  - english: I don't want anything for my birthday.
+    japanese:
+      - 誕生 日 に は 何 も 欲しく ない。
+      - 誕生 日 に は 何 も 欲しく あり ませ ん。
+      - 誕生 日、何 も 欲しく ねー わ。
+      - 誕生 日 に は 何 も 要ら ない。
+    english_literally: For birthday, anything don't want.
+    competing_grammar:
+      - competing_japanese:
+          - 誕生 日 に は 特に 欲しい 物 は ない。
+        english: For my birthday, I don't particularly want anything.
+        hint: 『特に 欲しい 物 は ない』 implies a general lack of strong desire, but 『何 も 欲しく ない』 conveys a complete
+          absence of 'any' desire for gifts, making the statement more absolute. We're looking for an
+          unequivocal 'nothing'.
+    scene: Someone is asked what they want for their birthday.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: older
+    nuance: When an older male speaker uses 『何 も 欲しく ない』, it can convey a sense of contentment or a desire
+      to avoid fuss, emphasizing that there isn't 'anything' specific they wish for. It's a straightforward
+      and firm statement.
+post_example_writeup: As seen in the examples, 『何〜ない』 can be used with various negative forms of verbs,
+  i-adjectives, na-adjectives, and nouns to express a strong, absolute negation. The inclusion of 『何』
+  amplifies the negative sentiment, suggesting a complete absence or total lack, often carrying a nuance
+  of frustration or a definitive statement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/何〜ない

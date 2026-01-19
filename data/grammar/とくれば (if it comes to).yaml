@@ -1,0 +1,247 @@
+grammar_point: とくれば (if it comes to)
+learn_before:
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Noun]で有名 (famous for)'
+  - あそこ (over there)
+  - あの (interjection)
+  - あの (that)
+  - い-Adjective[ければ] (conditional)
+  - ずいぶん (quite・considerably)
+  - そういう (that kind of)
+  - です (polite copula)
+  - な (prohibitive particle)
+  - も〜ば〜も (sometimes this・sometimes that)
+  - 是非 (by all means・definitely・without fail)
+meaning: When it comes to X, naturally/as expected Y; If it's X, then Y.
+pronunciation:
+  katakana: トクれば
+  romaji: tokureba
+formation:
+  Verb[dictionary form] + とくれば: Used when the preceding verb describes the topic or condition.
+  Noun + とくれば: Used when the preceding noun is the topic or condition.
+  い-Adjective[い] + とくれば: Used when the preceding い-adjective describes the topic or condition.
+  な-Adjective[だ] + とくれば: Used when the preceding な-adjective describes the topic or condition.
+jlpt: N1
+etymology: The と particle here likely derives from its function of introducing a condition or a quoted
+  statement, leading to an expected result. 来れば (くれば) is the ば-form of 来る (くる, to come), literally meaning
+  'if it comes.' So, 'if it comes to (X)' or 'when (X) comes into consideration,' implying a natural progression
+  to the expected outcome. It expresses that if a certain situation or topic 'comes' to be discussed,
+  then a particular outcome or characteristic naturally follows.
+writeup: |-
+  `とくれば` is a versatile grammar pattern used to introduce a topic or condition and state an expected or typical consequence that follows. It carries the nuance of 'when it comes to X, then naturally Y' or 'given X, it's expected that Y.' This pattern implies a strong, often inherent, connection between the preceding clause and the succeeding statement. It can be used in both positive and negative contexts, often leading to a logical or typical conclusion. For instance, when talking about a certain person, `とくれば` can introduce an action or trait that is characteristic of them. When discussing a situation, it can indicate a predictable result.
+
+  While often translated as 'if it comes to,' the `と` here functions more like a conditional or quotative marker, and `くれば` is the conditional form of `来る` (to come), literally 'if it comes.' The combination creates a sense of 'when the topic/situation arrives, then...'
+
+  It is generally used in speech and writing that leans towards a semi-formal or formal register, but it is not overly stiff. It's a useful expression for making observations about inherent qualities or predictable patterns.
+false_friends:
+  - term: 〜となると
+    meaning: When it comes to X, then Y (implying a change in situation or focus).
+    kind: similar expression
+    nuance: '`〜となると` often implies a shift in context or a consequence that arises *because* a certain
+      situation is realized. It can introduce a new perspective or a logical conclusion that follows from
+      the preceding information. While `とくれば` emphasizes a predictable, inherent characteristic or outcome,
+      `〜となると` focuses on a consequence that *arises* when a specific condition is met, sometimes with
+      a sense of inevitability or critical juncture.'
+    grammar_point: となると (when it comes to)
+  - term: なら
+    meaning: If A (then B); As for A.
+    kind: similar expression
+    nuance: '`なら` is a general conditional, often used when responding to a previous statement or setting
+      a hypothetical condition. It''s broader and less specific than `とくれば`. `とくれば` suggests a *typical*
+      or *expected* outcome tied to the specific subject, whereas `なら` simply states a condition.'
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: について・〜に関して
+    meaning: About; regarding.
+    kind: similar expression
+    nuance: These simply introduce a topic for discussion without implying a specific consequence or expectation,
+      which `とくれば` always does.
+    grammar_point: <suggest>:について・〜に関して (about・regarding)
+post_false_friends_writeup: While `とくれば`, `〜となると`, and `なら` all deal with conditionals or establishing
+  context, their nuances differ significantly. `とくれば` is used to highlight an **expected, inherent outcome**
+  based on a particular topic or individual. It often implies a 'given X, then naturally Y' scenario.
+  `〜となると` suggests a **logical consequence or change of situation** when a certain condition is met, often
+  implying a critical juncture or a new focus. `なら` is a more general conditional, often used for **hypothetical
+  statements or responding to a previous comment**. Finally, `について・〜に関して` simply **states the topic**
+  of discussion without implying any expected outcome or consequence. Pay attention to the underlying
+  sense of expectation and inherent typicality when choosing `とくれば`.
+examples:
+  - english: When it comes to him, he's always on time.
+    japanese:
+      - 彼 と くれ ば、いつ も 時間 通り だ。
+      - 彼 と くれ ば、いつ も 時間 通り です。
+    english_literally: Speaking of him, always on time.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 なら、いつ も 時間 通り だ。
+        english: If it's him, he's always on time.
+        hint: '`なら` sets a condition, but `とくれば` emphasizes an expected, inherent characteristic of the
+          person. We''re looking for the expected nature of his punctuality.'
+    scene: Talking about a reliable friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of `とくれば` highlights that being on time is a well-known, inherent trait of 「彼」. It
+      implies, 'You know him, so you know this about him.'
+  - english: If it's a matter of money, it always causes problems.
+    japanese:
+      - 金 の 話 と くれ ば、必ず 揉める もの だ。
+      - 金 の 話 と くれ ば、必ず 揉める もの です。
+    english_literally: When it comes to money talk, it is something that always causes trouble.
+    competing_grammar:
+      - competing_japanese:
+          - 金 の 話 だ と、必ず 揉める もの だ。
+        english: If it's money talk, it always causes problems.
+        hint: '`だと` presents a general conditional. `とくれば` conveys a stronger sense of ''as expected for
+          this topic.'' We''re looking for the predictable trouble that comes with discussing money.'
+    scene: Two colleagues discussing a past dispute related to finances.
+    register: semi-formal
+    setting: serious
+    nuance: '`とくれば` here points to the predictable, almost inevitable, negative outcome associated with
+      discussions about money. The speaker implies this is a universally acknowledged truth.'
+  - english: When it comes to Japanese cuisine, their restaurant is truly the best.
+    japanese:
+      - 和食 と くれ ば、あそこ の 店 が 一番 だ ね。
+      - 和食 と くれ ば、あそこ の 店 が 一番 です ね。
+      - 和食 と くれ ば、あそこ の 店 が 一番 だ。
+    english_literally: As for Japanese food, that restaurant is the best, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 和食 に つい て は、あそこ の 店 が 一番 だ ね。
+        english: Regarding Japanese food, that restaurant is the best, isn't it?
+        hint: '`については` merely states the topic. `とくれば` expresses that the restaurant being the best is
+          the *natural, expected* conclusion when the topic of Japanese food arises. We''re looking for
+          that sense of natural expectation.'
+    scene: Friends discussing where to eat out.
+    register: casual
+    setting: friendly
+    nuance: '`とくれば` highlights that the restaurant''s excellence is a widely accepted fact or a natural
+      conclusion when discussing Japanese cuisine. The `ね` softens the assertion, seeking agreement.'
+  - english: If it's a professional chef, they'll surely know how to handle this ingredient.
+    japanese:
+      - プロ の 料理 人 と くれ ば、この 食材 の 扱い 方 を 知っ て いる はず だ。
+      - プロ の 料理 人 と くれ ば、この 食材 の 扱い 方 を 知っ て いる はず です。
+    english_literally: If it comes to a professional chef, they should know how to handle this ingredient.
+    competing_grammar:
+      - competing_japanese:
+          - プロ の 料理 人 なら、この 食材 の 扱い 方 を 知っ て いる はず だ。
+        english: If it's a professional chef, they should know how to handle this ingredient.
+        hint: '`なら` sets a condition, but `とくれば` emphasizes the *inherent skill* expected from a professional
+          chef. We''re looking for the natural capability of a professional.'
+    scene: A cooking class where a student is struggling with an ingredient, and the instructor makes
+      an observation.
+    register: semi-formal
+    setting: informative
+    nuance: This sentence uses `とくれば` to express the natural and expected knowledge a professional chef
+      would possess. The phrase `知っているはずだ` further strengthens this expectation, implying it's a given.
+  - english: When it comes to my younger brother, he'll definitely forget his homework.
+    japanese:
+      - 弟 と くれ ば、きっと 宿題 を 忘れる だろう。
+      - 弟 と くれ ば、きっと 宿題 を 忘れる でしょう。
+    english_literally: As for my younger brother, he will surely forget his homework.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は きっと 宿題 を 忘れる だろう。
+        english: My younger brother will surely forget his homework.
+        hint: The simple topic marker `は` states a fact. `とくれば` adds the nuance that this forgetfulness
+          is a *characteristic, expected* behavior of the younger brother. We're looking for the predictability
+          of his actions.
+    scene: An older sibling talking about their younger brother's habits.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: The use of `とくれば` conveys that the brother's forgetfulness is a well-known trait, almost a
+      running joke. The `きっと` (surely) reinforces this strong expectation. This is common male speech
+      when making observations about family members.
+  - english: If it's a problem like this, it always takes time to resolve.
+    japanese:
+      - こう いう 問題 と くれ ば、解決 に 時間 が かかる もの だ。
+      - こう いう 問題 と くれ ば、解決 に 時間 が かかる もの です。
+    english_literally: If it comes to this kind of problem, it is something that takes time to resolve.
+    competing_grammar:
+      - competing_japanese:
+          - こう いう 問題 は、解決 に 時間 が かかる もの だ。
+        english: This kind of problem takes time to resolve.
+        hint: '`は` simply marks the topic. `とくれば` specifically emphasizes that taking time is the *inherent
+          nature* or *expected difficulty* of this type of problem. We''re looking for the intrinsic challenge.'
+    scene: During a project review meeting, discussing a recurring issue.
+    register: formal
+    setting: academic
+    nuance: Here, `とくれば` highlights that the time-consuming nature of such problems is an inherent, universally
+      acknowledged characteristic. The use of `ものだ` (it is a thing that) further solidifies this as a
+      general truth or tendency.
+  - english: When it comes to that idol group, their concerts are always lively.
+    japanese:
+      - あの アイドル グループ と くれ ば、ライブ は いつ も 盛り上がる。
+      - あの アイドル グループ と くれ ば、ライブ は いつ も 盛り上がり ます。
+    english_literally: As for that idol group, their live shows always get exciting.
+    competing_grammar:
+      - competing_japanese:
+          - あの アイドル グループ の ライブ は いつ も 盛り上がる。
+        english: That idol group's concerts are always lively.
+        hint: The competing Japanese describes the concerts directly. `とくれば` sets the idol group as the
+          topic and implies that lively concerts are their *defining, expected* quality. We're looking
+          for the characteristic that comes to mind when talking about them.
+    scene: Friends chatting excitedly about their favorite idol group.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: '`とくれば` conveys that the liveliness of their concerts is a well-known, defining characteristic
+      of this specific idol group. The speaker uses `いつも盛り上がる` (always get lively) to underscore this
+      consistent expectation. This kind of excited talk about idols is typical among female fans.'
+  - english: If it's a rush job, then mistakes are bound to happen.
+    japanese:
+      - 急ぎ の 仕事 と くれ ば、ミス が 出 やすい。
+      - 急ぎ の 仕事 と くれ ば、ミス が 出 やすい です。
+    english_literally: If it comes to a rushed job, mistakes are prone to appear.
+    competing_grammar:
+      - competing_japanese:
+          - 急ぎ の 仕事 だ と、ミス が 出 やすい。
+        english: If it's a rushed job, mistakes are prone to appear.
+        hint: '`だと` expresses a general conditional. `とくれば` emphasizes the *inevitable tendency* for mistakes
+          when the job is rushed. We''re looking for the inherent risk.'
+    scene: A manager discussing project risks with a team member.
+    register: semi-formal
+    setting: cautious
+    nuance: This sentence uses `とくれば` to point out the expected, inherent risk of mistakes in hurried
+      tasks. It serves as a pragmatic observation within a professional context.
+  - english: When it comes to that old car, it probably won't start in winter.
+    japanese:
+      - あの 古い 車 と くれ ば、冬 は エンジン が かから ない だろう。
+      - あの 古い 車 と くれ ば、冬 は エンジン が かから ない でしょう。
+    english_literally: As for that old car, in winter the engine probably won't start.
+    competing_grammar:
+      - competing_japanese:
+          - あの 古い 車 は、冬 は エンジン が かから ない だろう。
+        english: That old car probably won't start in winter.
+        hint: '`は` marks the topic. `とくれば` suggests that the car''s difficulty starting in winter is a
+          *known, characteristic flaw* of that specific vehicle. We''re looking for the predictable malfunction.'
+    scene: Two people discussing a problematic old car.
+    register: casual
+    setting: pessimistic
+    nuance: '`とくれば` here conveys a sense of resigned predictability regarding the old car''s performance.
+      The speaker implies this is a known issue for that particular vehicle.'
+  - english: If it's someone like her who hates losing, she'll never give up.
+    japanese:
+      - 負け ず 嫌い の 彼女 と くれ ば、諦める こと は ない。
+      - 負け ず 嫌い の 彼女 と くれ ば、諦める こと は あり ませ ん。
+    english_literally: If it comes to her, a bad loser, she will not give up.
+    competing_grammar:
+      - competing_japanese:
+          - 負け ず 嫌い の 彼女 なら、諦める こと は ない。
+        english: If it's her who hates losing, she'll never give up.
+        hint: '`なら` sets a condition. `とくれば` emphasizes that *not giving up* is an inherent, defining
+          trait of someone who hates losing, particularly *her*. We''re looking for the characteristic
+          determination.'
+    scene: Friends discussing a determined competitor.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    nuance: '`とくれば` emphasizes that ''not giving up'' is a direct and expected consequence of her ''hating
+      to lose'' (「負けず嫌い」). The male speaker''s use of this phrase highlights her strong, admirable trait.'
+post_example_writeup: As you can see from the examples, `とくれば` is used when a particular topic or situation
+  naturally leads to a predictable outcome or observation. It adds a subtle layer of 'as one would expect'
+  or 'given this, then inevitably that' to the statement, making it more expressive than a simple conditional
+  or topic marker.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とくれば

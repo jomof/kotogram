@@ -1,0 +1,227 @@
+grammar_point: に際して (on the occasion of・at the time of
+better_grammar_point_name:
+  - <suggest>:に際して (at the time of)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - '[Verb-て]もらう (to have someone do, receive an action)'
+meaning: at the time of; on the occasion of; upon
+pronunciation:
+  katakana: ニ サイシテ
+  romaji: ni saishite
+formation:
+  Noun + に際して: Used to describe an action taken at the specific time or occasion of the noun event.
+  Verb[dictionary form] + に際して: Used to describe an action taken at the specific time or occasion of the
+    verb action.
+jlpt: N2
+etymology: The word 「際」 (sai) originally means 'edge,' 'boundary,' or 'occasion,' suggesting a critical
+  juncture or turning point. The particle 「に」 indicates location or time, and 「する」 (to do) in its 連用形
+  (ren'yōkei) combines to form 「際して」. Thus, 「に際して」 literally means 'at the boundary/occasion of doing,'
+  emphasizing an action or event happening at a particular, often significant, moment or turning point.
+writeup: |-
+  「に際して」 is a formal expression used to indicate that something is done at a significant juncture or occasion. It conveys a sense of formality, importance, or solemnity compared to simpler expressions like 「〜の時」 or 「〜際に」. It often used in official announcements, formal speeches, or when discussing important life events.
+
+  This grammar point implies that the action described is taken *in response to* or *at the moment of* the preceding event. It often suggests a necessary or appropriate action that must be taken given the specific circumstances.
+
+  While it can be used with both nouns and verbs in their dictionary form, it is less common with everyday actions and more frequently appears with events that require some deliberation or formality, such as entering a new phase of life, starting a project, or making an important decision. It can also imply a sense of readiness or preparation for the event.
+
+  It is rarely used in casual conversation and is generally reserved for written language or formal spoken contexts. Pay attention to the context and register when choosing to use 「に際して」.
+false_friends:
+  - term: 際に
+    meaning: at the time of; when (more general)
+    kind: similar expression
+    nuance: 「際に」 is a more general expression for 'when' or 'at the time of' and can be used in a wider
+      range of situations, including both formal and informal contexts. 「に際して」 carries a stronger sense
+      of formality and significance for the occasion.
+    grammar_point: <suggest>:際に・折に・に当たって・に際して (on the occasion of・when)
+  - term: 折に
+    meaning: on the occasion of; when (often implies an opportunity)
+    kind: similar expression
+    nuance: 「折に」 often suggests that the occasion or timing is also an *opportunity*. It can be slightly
+      less formal than 「に際して」 and is often used for events that are somewhat special but not necessarily
+      as grand or ceremonious as those implied by 「に際して」. For example, 'on the occasion of my visit'.
+    grammar_point: <suggest>:際に・折に・に当たって・に際して (on the occasion of・when)
+  - term: に当たって
+    meaning: upon; on the occasion of (often implies a fresh start or commencement)
+    kind: similar expression
+    nuance: 「に当たって」 typically implies that something is *commencing* or *starting*, often involving a
+      fresh start or a new phase. It is very close to 「に際して」 in formality and meaning, but 「に当たって」 strongly
+      emphasizes the 'starting point' or 'facing' a new situation, while 「に際して」 simply refers to an action
+      taken *at* a significant moment.
+    grammar_point: <suggest>:際に・折に・に当たって・に際して (on the occasion of・when)
+  - term: とき
+    meaning: when; at the time (most general)
+    kind: similar expression
+    nuance: 「時」 is the most general word for 'when' or 'time' and lacks any specific nuance of formality
+      or significance that 「に際して」 conveys. It can be used in any context, from casual to formal.
+    grammar_point: とき (when)
+  - term: に先立ち
+    meaning: prior to; before (formal)
+    kind: antonym
+    nuance: While formal, 「に先立ち」 explicitly means 'prior to' or 'before' a certain event, emphasizing
+      an action that happens *in advance*. In contrast, 「に際して」 refers to an action that occurs *at the
+      very moment* or *on the occasion of* the event itself.
+    grammar_point: に先立ち (prior to)
+post_false_friends_writeup: While all these expressions relate to timing, 「に際して」 stands out due to its
+  high level of formality and its specific use for significant, often ceremonial, events. Think of it
+  as marking a 'critical moment' where specific actions or considerations are called for. The others are
+  either more general (「時」「際に」), imply an opportunity (「折に」), or a commencement (「に当たって」).
+examples:
+  - english: Upon the opening of the new school, a grand ceremony was held.
+    japanese:
+      - 新 学校 の {開校 に 際し て}、盛大 な 式典 が 開催 さ れ た。
+      - 新 学校 の {開校 に 際し て}、盛大 な 式典 が 開催 さ れ まし た。
+    english_literally: New school's opening upon, a grand ceremony was held.
+    competing_grammar:
+      - competing_japanese:
+          - 新 学校 の 開校 の 時 に、盛大 な 式典 が 開催 さ れ た。
+        english: At the time of the new school's opening, a grand ceremony was held.
+        hint: This uses a very general 'when' expression. We're looking for a more formal and ceremonious
+          phrasing for a significant event.
+      - competing_japanese:
+          - 新 学校 の 開校 に 当たっ て、盛大 な 式典 が 開催 さ れ た。
+        english: Upon the new school's opening, a grand ceremony was held.
+        hint: This implies a focus on the *commencement* or *new start* of the school. We're looking for
+          an expression that highlights the 'occasion' itself where actions are taken.
+    scene: A news report is being read, detailing an official event.
+    register: formal
+    setting: informative
+  - english: When deciding on a career path, it's important to think carefully about your future.
+    japanese:
+      - 進路 を {決定 する に 際し て} は、将来 を よく 考える こと が 大切 です。
+      - 進路 を {決定 する に 際し て} は、将来 を よく 考える こと が 大切 だ。
+    english_literally: Career path to decide upon, future well to think about is important.
+    competing_grammar:
+      - competing_japanese:
+          - 進路 を 決定 する 時 に は、将来 を よく 考える こと が 大切 です。
+        english: When deciding on a career path, it's important to think carefully about your future.
+        hint: This uses the most common 'when' expression. We want to emphasize the significance of this
+          particular 'occasion' for careful consideration.
+      - competing_japanese:
+          - 進路 を 決定 する 際 に は、将来 を よく 考える こと が 大切 です。
+        english: At the time of deciding on a career path, it's important to think carefully about your
+          future.
+        hint: This is a good general phrase for 'at the time of'. We are looking for a more formal and
+          slightly heavier nuance, indicating a moment of serious consideration.
+    scene: A university counselor is advising a student about their future.
+    register: semi-formal
+    setting: academic
+  - english: Upon signing the contract, please confirm all the terms.
+    japanese:
+      - 契約 に {署名 する に 際し て}、全て の 条項 を ご 確認 ください。
+      - 契約 に {署名 する に 際し て}、全て の 条項 を 確認 し て ください。
+    english_literally: Contract to sign upon, all terms please confirm.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 に 署名 する 時 に、全て の 条項 を ご 確認 ください。
+        english: When signing the contract, please confirm all the terms.
+        hint: This is a simple 'when' statement. We need a phrase that highlights the importance and specific
+          timing of the action (signing the contract) that requires a specific step (confirmation).
+    scene: A lawyer is giving instructions to a client.
+    register: teineigo (polite)
+    setting: professional
+  - english: A warning will be issued upon entering the restricted area.
+    japanese:
+      - 制限 区域 へ の {立ち入り に 際し て}、警告 が 発せ られ ます。
+      - 制限 区域 へ の {立ち入り に 際し て}、警告 が 発せ られる。
+    english_literally: Restricted area to entry upon, a warning will be issued.
+    competing_grammar:
+      - competing_japanese:
+          - 制限 区域 へ の 立ち入り の 時 に、警告 が 発せ られ ます。
+        english: At the time of entering the restricted area, a warning will be issued.
+        hint: This is too casual for a formal warning. We're looking for a phrase that conveys a formal
+          and official tone for an action with consequences.
+    scene: An automated public announcement in a secure facility.
+    register: formal
+    setting: informative
+  - english: Upon receiving the award, she expressed her gratitude to everyone.
+    japanese:
+      - 賞 を {受賞 する に 際し て}、彼女 は 皆 に 感謝 の 意 を 表し た。
+      - 賞 を {受賞 する に 際し て}、彼女 は 皆 に 感謝 の 意 を 表し まし た。
+    english_literally: Award to receive upon, she everyone to gratitude's intent expressed.
+    competing_grammar:
+      - competing_japanese:
+          - 賞 を 受賞 し た 時 に、彼女 は 皆 に 感謝 の 意 を 表し た。
+        english: When she received the award, she expressed her gratitude to everyone.
+        hint: This is a simple past tense 'when'. We want to convey the specific, ceremonial moment of
+          receiving the award.
+    scene: A commentator describes a celebrity's acceptance speech.
+    register: formal
+    setting: storytelling
+    speaker_gender: female
+  - english: When constructing a new building, strict safety measures are essential.
+    japanese:
+      - 新 しい ビル を {建設 する に 際し て}、厳重 な 安全 対策 が 不可欠 です。
+      - 新 しい ビル を {建設 する に 際し て}、厳重 な 安全 対策 が 不可欠 だ。
+    english_literally: New building to construct upon, strict safety measures are indispensable.
+    competing_grammar:
+      - competing_japanese:
+          - 新 しい ビル を 建設 する 際 に、厳重 な 安全 対策 が 不可欠 です。
+        english: When constructing a new building, strict safety measures are essential.
+        hint: While correct, this is a more general 'when'. We're looking for a phrase that emphasizes
+          the specific, important occasion of construction.
+    scene: A project manager explains building regulations.
+    register: teineigo (polite)
+    setting: professional
+  - english: Upon leaving the company, I was given a farewell gift.
+    japanese:
+      - 会社 を {退職 する に 際し て}、餞別 を いただき まし た。
+      - 会社 を {退職 する に 際し て}、餞別 を もらい まし た。
+    english_literally: Company to retire upon, farewell gift received.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 を 退職 する 時 に、餞別 を いただき まし た。
+        english: When leaving the company, I received a farewell gift.
+        hint: This uses a very common 'when'. We want a more formal way to describe the significant occasion
+          of leaving a company.
+    scene: An employee is recounting their departure from a previous job.
+    register: semi-formal
+    setting: reflective
+  - english: Upon welcoming new students, we strive to make them feel comfortable.
+    japanese:
+      - 新入 生 を {迎える に 際し て}、彼 ら が 安心 できる よう に 努め て い ます。
+      - 新入 生 を {迎える に 際し て}、彼 ら が 安心 できる よう に 努め て おり ます。
+    english_literally: New students to welcome upon, they relax can so to endeavoring am.
+    competing_grammar:
+      - competing_japanese:
+          - 新入 生 を 迎える 時 に、彼 ら が 安心 できる よう に 努め て い ます。
+        english: When welcoming new students, we strive to make them feel comfortable.
+        hint: This is too casual. We're describing an institutional effort during a formal welcome.
+    scene: A university administrator explains student orientation efforts.
+    register: teineigo (polite)
+    setting: informative
+  - english: When making a major decision, it is crucial to consider various perspectives.
+    japanese:
+      - 重大 な {決断 を する に 際し て} は、様々 な 視点 を 考慮 する べき です。
+      - 重大 な {決断 を する に 際し て} は、様々 な 視点 を 考慮 す べき です。
+      - 重大 な {決断 を する に 際し て} は、様々 な 視点 を 考慮 する べき だ。
+    english_literally: Serious decision to make upon, various viewpoints to consider should.
+    competing_grammar:
+      - competing_japanese:
+          - 重大 な 決断 を する 際 に は、様々 な 視点 を 考慮 する べき です。
+        english: At the time of making a major decision, it is crucial to consider various perspectives.
+        hint: This is a suitable alternative, but lacks the slightly heavier, more formal nuance of acting
+          *upon* a significant decision point.
+    scene: A business consultant provides strategic advice.
+    register: teineigo (polite)
+    setting: persuasive
+  - english: Upon receiving a large donation, the university will establish a new research fund.
+    japanese:
+      - 多額 の {寄付 を 受ける に 際し て}、大学 は 新た な 研究 基金 を 設立 し ます。
+      - 多額 の {寄付 を 受ける に 際し て}、大学 は 新た な 研究 基金 を 設立 する。
+    english_literally: Large amount of donation to receive upon, university new research fund will establish.
+    competing_grammar:
+      - competing_japanese:
+          - 多額 の 寄付 を 受ける 時 に、大学 は 新た な 研究 基金 を 設立 し ます。
+        english: When receiving a large donation, the university will establish a new research fund.
+        hint: This is a simple 'when'. We want to convey the formal condition or specific occasion for
+          establishing the fund.
+    scene: A university press release announcing a new initiative.
+    register: formal
+    setting: informative
+post_example_writeup: As seen in these examples, 「に際して」 is consistently used in formal contexts to highlight
+  an action that occurs at a significant or important moment. It often implies a sense of responsibility,
+  preparation, or formality associated with the occasion, making it distinct from more general expressions
+  of time.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に際して

@@ -1,0 +1,190 @@
+grammar_point: 背面 (back surface spatial)
+matcher: ⌈ˢ背面ᵖn:common_nounᵇ背面ʳハイメン⌉
+learn_before:
+  - 真上 (directly above)
+meaning: back surface; rear side
+pronunciation:
+  katakana: ハイメン
+  romaji: haimen
+formation:
+  '[Object] の 背面': Refers to the back surface of an object.
+  背面 に: Indicates a location on the back surface.
+  背面 から: Indicates movement or origin from the back surface.
+jlpt: N3
+etymology: The word 「背面」 (haimen) is a compound noun formed from 「背」 (hai), meaning 'back' or 'rear',
+  and 「面」 (men), meaning 'surface' or 'face'. This combination directly translates to 'back surface' or
+  'rear face', precisely describing its function as the posterior side of an object. The use of 「面」 emphasizes
+  the planar quality, distinguishing it from more general concepts of 'behind' or 'back' as a direction
+  or internal space.
+writeup: |-
+  The Japanese noun 「背面」 (haimen) refers to the **back surface** or **rear side** of an object. It is a precise term often used in technical, architectural, or descriptive contexts when specifying a particular face of something, in contrast to its front (前面), top (上面), or bottom (下面).
+
+  While 「後ろ」 (ushiro) is a general term for 'behind' or 'the back' in a broader sense, 「背面」 specifically denotes a defined, external surface. For example, you would use 「背面」 when talking about the back of a television, a computer, a building, or a piece of furniture. It implies a relatively flat or distinct rear face. It is less commonly used for the 'back' of a person or animals, where 「背中」 (senaka) would be appropriate.
+
+  Understanding 「背面」 helps distinguish between general spatial relationships and specific anatomical or structural descriptions. It's a useful term for clarity when precision regarding an object's physical dimensions or orientation is required.
+false_friends:
+  - term: 後ろ
+    meaning: behind; back (general position)
+    kind: often confused with
+    nuance: 「後ろ」is a general term for position "behind" something or the "back" side in a broader sense.
+      「背面」specifically refers to the *rear surface* of an object, often mechanical or architectural, or
+      its exterior.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 裏
+    meaning: reverse side; inside; lining
+    kind: often confused with
+    nuance: 「裏」refers to the hidden or reverse side of something, like the back of a card or the lining
+      of clothing. 「背面」is specifically the external rear surface, typically visible and not hidden.
+    grammar_point: <suggest>:裏 (reverse side・lining)
+post_false_friends_writeup: To avoid confusion between 「背面」, 「後ろ」, and 「裏」, remember that 「背面」 pinpoints
+  the defined rear surface of an object, like the back panel of a device. 「後ろ」 indicates a general position
+  behind something or the general 'back' area. 「裏」 refers to the opposite or hidden side, often implying
+  an interior or less visible aspect.
+examples:
+  - english: Please look at the back surface of the TV.
+    japanese:
+      - テレビ の {背面} を 見 て ください。
+      - テレビ の {背面} を 見ろ。
+    english_literally: Please look at the TV's back surface.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ の 後ろ を 見 て ください。
+        english: Please look behind the TV.
+        hint: 「後ろ」is a general location 'behind' the TV. We're looking for the specific flat 'back surface'
+          of the TV.
+      - competing_japanese:
+          - テレビ の 裏 を 見 て ください。
+        english: Please look at the reverse side of the TV.
+        hint: 「裏」often implies a less visible, or opposite side, sometimes hidden, like the inside of
+          a box or the back of a paper. We're referring to the distinct external rear surface.
+    scene: A customer service representative is explaining something to a customer over the phone.
+    register: formal
+    setting: informative
+  - english: The building's back surface faces the river.
+    japanese:
+      - その 建物 の {背面} は 川 に 面し て い ます。
+      - その 建物 の {背面} は 川 に 面し て いる。
+    english_literally: That building's back surface faces the river.
+    competing_grammar:
+      - competing_japanese:
+          - その 建物 の 後ろ は 川 に 面し て い ます。
+        english: Behind the building faces the river.
+        hint: 「後ろ」refers to the general area behind the building. We're focusing on the architectural
+          'back surface' of the structure itself.
+    scene: An architect is describing a building design.
+    register: formal
+    setting: academic
+  - english: The power cable connects to the back surface of the main unit.
+    japanese:
+      - 電源 コード は 本体 の {背面} に 接続 し ます。
+      - 電源 コード は 本体 の {背面} に 接続 する。
+      - 電源 コード は 本体 の {背面} に 繋がっ て い ます。
+      - 電源 コード は 本体 の {背面} に 繋がっ て いる。
+    english_literally: The power cord connects to the main unit's back surface.
+    competing_grammar:
+      - competing_japanese:
+          - 電源 コード は 本体 の 後ろ に 接続 し ます。
+        english: The power cable connects to the back of the main unit (general area).
+        hint: 「後ろ」 is for the general back area, not the specific flat surface. We're talking about the
+          precise connection point on the object's surface.
+    scene: An IT technician is giving instructions to a user.
+    register: formal
+    setting: instructional
+  - english: The new smartphone has a beautiful design on its back surface.
+    japanese:
+      - 新しい スマート フォン は その {背面} に 美しい デザイン が あり ます。
+      - 新しい スマート フォン は その {背面} に 美しい デザイン が ある。
+    english_literally: The new smartphone has a beautiful design on its back surface.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマート フォン は その 裏 に 美しい デザイン が あり ます。
+        english: The new smartphone has a beautiful design on its reverse side (implying hidden/lining).
+        hint: 「裏」 usually implies a less visible or hidden reverse side, often without a specific design.
+          We're describing the visible, designed rear surface.
+    scene: A person is showing off their new phone to a friend.
+    register: casual
+    setting: friendly
+  - english: The back surface of the device can be easily detached.
+    japanese:
+      - その 機器 の {背面} は 簡単 に 取り外せ ます。
+      - その 機器 の {背面} は 簡単 に 取り外せる。
+    english_literally: That device's back surface can be easily detached.
+    competing_grammar:
+      - competing_japanese:
+          - その 機器 の 後ろ の 部分 は 簡単 に 取り外せ ます。
+        english: The back part of the device can be easily detached.
+        hint: 「後ろ の 部分」 refers to a general 'back part'. We're specifically talking about the defined
+          *surface* that detaches.
+    scene: A product designer is presenting a new prototype.
+    register: formal
+    setting: informative
+  - english: There are many ports on the back surface of the monitor.
+    japanese:
+      - モニター の {背面} に は 多く の ポート が あり ます。
+      - モニター の {背面} に は 多く の ポート が ある。
+    english_literally: On the monitor's back surface, there are many ports.
+    competing_grammar:
+      - competing_japanese:
+          - モニター の 後ろ に は 多く の ポート が あり ます。
+        english: Behind the monitor, there are many ports.
+        hint: 「後ろ」 points to the space behind the monitor. We mean the ports are *on* the monitor's rear
+          panel.
+    scene: A user setting up a new computer.
+    register: casual
+    setting: instructional
+  - english: Turn the machine around to see its back surface.
+    japanese:
+      - 機械 を 回し て {背面} を 見 て ください。
+      - 機械 を 回し て {背面} を 見 て くれ。
+    english_literally: Turn the machine around and please look at its back surface.
+    competing_grammar:
+      - competing_japanese:
+          - 機械 を 回し て 後ろ側 を 見 て ください。
+        english: Turn the machine around to see its rear side.
+        hint: 「後ろ側」 is a more general term for the 'rear side'. 「背面」 is more specific to a distinct, flat
+          back surface.
+    scene: A factory worker instructing a new colleague.
+    register: formal
+    setting: instructional
+  - english: Do not stick anything to the back surface of the door.
+    japanese:
+      - ドア の {背面} に は 何 も 貼り付け ない で ください。
+      - ドア の {背面} に は 何 も 貼り付ける な。
+    english_literally: Please do not stick anything to the door's back surface.
+    competing_grammar:
+      - competing_japanese:
+          - ドア の 裏 に は 何 も 貼り付け ない で ください。
+        english: Do not stick anything to the reverse side of the door.
+        hint: 「裏」 might imply the hidden or inside surface, such as the inside of a closet door. We mean
+          the external back surface of the door, perhaps facing another room or corridor.
+    scene: A security guard giving instructions in a public building.
+    register: formal
+    setting: commanding
+  - english: The artist's signature is on the bottom corner of the back surface.
+    japanese:
+      - 芸術 家 の サイン は {背面} の 右下 に あり ます。
+      - 芸術 家 の サイン は {背面} の 右下 に ある。
+    english_literally: The artist's signature is on the lower right of the back surface.
+    competing_grammar:
+      - competing_japanese:
+          - 芸術 家 の サイン は 後ろ の 右下 に あり ます。
+        english: The artist's signature is on the bottom right of the back (general area).
+        hint: 「後ろ」 is general. 「背面」 specifically refers to the prepared, displayable rear surface of a
+          piece of art where a signature might be found.
+    scene: A museum curator describing a painting.
+    register: formal
+    setting: informative
+  - english: The front surface is smooth, but the back surface has a rough texture.
+    japanese:
+      - 前面 は 滑らか です が、{背面} は 粗い 質感 です。
+      - 前面 は 滑らか です が、{背面} は 粗い 質感 だ。
+    english_literally: The front surface is smooth, but the back surface is a rough texture.
+    competing_grammar:
+      - competing_japanese:
+          - 前面 は 滑らか です が、裏 は 粗い 質感 です。
+        english: The front surface is smooth, but the reverse side has a rough texture.
+        hint: 「裏」 often implies a contrast between inside/outside or primary/secondary sides. Here, the
+          contrast is between two distinct external surfaces, front and back.
+    scene: A material scientist analyzing a sample.
+    register: formal
+    setting: academic

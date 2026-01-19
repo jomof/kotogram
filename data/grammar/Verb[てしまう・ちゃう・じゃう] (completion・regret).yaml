@@ -1,0 +1,342 @@
+grammar_point: Verb[てしまう・ちゃう・じゃう] (completion・regret)
+learn_before:
+  - 切る (do completely or thoroughly)
+meaning: completion or regret
+pronunciation:
+  katakana: テ シマウ チャウ ジャウ
+  romaji: te shimau chau jau
+formation:
+  Verb[て-form] + しまう: Indicates completion of an action, often with a sense of finality, regret, or unintended
+    consequence.
+  Verb[て-form] + ちゃう: Casual contraction of 'te shimau', common in spoken Japanese, conveying the same
+    meanings.
+  Verb[て-form] + じゃう: Casual contraction of 'te shimau' for verbs ending in '-んで', '-んで' becoming '-んじゃう',
+    common in spoken Japanese.
+jlpt: N4
+etymology: The verb 「しまう」 originally meant 'to put away' or 'to finish.' When affixed to the te-form of
+  another verb, it carries this nuance of 'putting something away' or 'finishing something completely.'
+  This evolved into expressing the completion of an action, and from there, the nuances of regret (as
+  in, 'I've finished it, and now I can't undo it') or accidental completion (as in, 'it just happened
+  and finished on its own') naturally developed. The contractions 「ちゃう」 and 「じゃう」 are phonetic shortenings
+  that emerged from rapid speech.
+writeup: "The auxiliary verb 「しまう」 attaches to the te-form of a verb and conveys a sense of completion,\
+  \ often with additional nuances of regret, unexpectedness, or doing something thoroughly. It signifies\
+  \ that an action has been carried out to its end, leaving no room for further action or undoing. This\
+  \ completion can be a straightforward statement of fact, but it frequently carries an emotional overtone\
+  \ depending on the context.\n\nWhen used to express regret, 「〜てしまう」 implies that the action was something\
+  \ one wishes had not happened, or that it led to an undesirable outcome. It's often translated as 'ended\
+  \ up doing' or 'did completely (to my regret)'. For example, if you say 「ケーキを全部食べてしまった」 (I ate all the\
+  \ cake), it might mean you finished it all, and now regret it because you feel sick, or it was for someone\
+  \ else. \n\nIt can also convey that an action happened accidentally or unintentionally, where the speaker\
+  \ might not have had full control. For instance, 「財布を忘れてしまった」 (I forgot my wallet) implies it was an\
+  \ accidental, completed action. \n\nThe contracted forms 「ちゃう」 (from verbs ending in consonant + て or\
+  \ い-ending verbs) and 「じゃう」 (from verbs ending in んで) are highly common in casual spoken Japanese. These\
+  \ contractions maintain the same core meanings of completion, regret, or unexpectedness but are less\
+  \ formal than 「〜てしまう」. They are ubiquitous in daily conversation, making them essential for natural\
+  \ Japanese communication.\n\nUnderstanding 「しまう」 is key to grasping the full emotional and circumstantial\
+  \ context of a completed action in Japanese. It's not just about what was done, but how the speaker\
+  \ feels about it, or how it came to pass."
+false_friends:
+  - term: Verb[て] + おく (preparation・advance action)
+    meaning: to do something in advance for a future purpose
+    kind: often confused with
+    nuance: While 「〜てしまう」 emphasizes completion or consequence, 「〜ておく」 emphasizes performing an action
+      in preparation for something else, or leaving something in a certain state. It implies foresight
+      and purpose. For instance, 「本を読んでおいた」 (I read the book in advance) vs. 「本を読んでしまった」 (I finished reading
+      the book / I accidentally read the book).
+    grammar_point: Verb[ておく・とく] (preparation・advance action)
+  - term: Verb[て] + いく (change toward future・movement away from speaker)
+    meaning: to go on doing; to continue; to become (change moving away)
+    kind: similar expression
+    nuance: 「〜ていく」 indicates an action that progresses into the future or moves away from the speaker,
+      focusing on continuity or change over time. It doesn't carry the sense of finality or regret found
+      in 「〜てしまう」. For example, 「日本語を勉強していく」 (I will continue studying Japanese) vs. 「日本語を勉強してしまった」 (I
+      finished studying Japanese / I regretted studying Japanese).
+    grammar_point: 〜ていく (change toward future・movement away from speaker)
+  - term: Verb[て] + くる (change toward present・movement toward speaker)
+    meaning: to come doing; to have done (change moving toward)
+    kind: similar expression
+    nuance: 「〜てくる」 indicates an action that has continued up to the present, or a change that has progressed
+      up to the present. It implies a sense of action or change moving towards the speaker or the present
+      moment, lacking the definitive completion or regret of 「〜てしまう」. For example, 「日本語を勉強してきた」 (I have
+      been studying Japanese up till now) vs. 「日本語を勉強してしまった」 (I finished studying Japanese / I regretted
+      studying Japanese).
+    grammar_point: 〜てくる (change toward present・movement toward speaker)
+post_false_friends_writeup: 「〜てしまう」 is distinct from 「〜ておく」, 「〜ていく」, and 「〜てくる」 primarily in its nuance
+  of completion, often with a sense of finality, regret, or accidental occurrence. Whereas 「〜ておく」 implies
+  preparatory action, and 「〜ていく」/「〜てくる」 describe actions or changes over time and space, 「〜てしまう」 marks
+  an action as done and dusted, sometimes to the speaker's chagrin or surprise.
+examples:
+  - english: I finished writing the report.
+    japanese:
+      - レポート を {書い て しまい まし た}。
+      - レポート を {書い て しまっ た}。
+    english_literally: Report (object) wrote finished.
+    competing_grammar:
+      - competing_japanese:
+          - レポート を 書き まし た。
+        english: I wrote the report.
+        hint: Using just the plain past tense 「書きました」 states the action simply occurred, without the nuance
+          of full completion or any associated feeling like satisfaction or relief. We're looking for
+          an expression that emphasizes the finality of the action.
+      - competing_japanese:
+          - レポート を 書い て おき まし た。
+        english: I wrote the report in advance (for a future purpose).
+        hint: 「〜ておく」 implies doing something as a preparation for later. Here, the emphasis is on the
+          action being fully done, perhaps with a sense of relief, not as a preparation. We're looking
+          for an expression of completion.
+    scene: You successfully completed a task you've been working on.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Oh no, I accidentally drank all the juice!
+    japanese:
+      - あー、ジュース を 全部 {飲ん じゃっ た}！
+      - あー、ジュース を 全部 {飲ん で しまっ た}！
+      - あー、ジュース を 全部 {飲ん じゃい まし た}！
+      - あー、ジュース を 全部 {飲ん で しまい まし た}！
+    english_literally: Ah, juice (object) all drank (casual contraction of te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - あー、ジュース を 全部 飲ん だ！
+        english: Ah, I drank all the juice!
+        hint: The plain past tense 「飲んだ」 simply states the fact. The speaker feels regret or surprise
+          at having consumed all the juice, which 「〜ちゃった」 conveys. We're looking for a nuance of accidental
+          or regrettable completion.
+    scene: You were thirsty and drank a whole carton of juice without realizing how much was left.
+    register: casual
+    setting: casual slang
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The exclamation 「あー」 and the casual contraction 「〜ちゃった」 indicate the speaker's mild dismay
+      or surprise at her own action. This casual form is very common for expressing accidental actions
+      or regret in everyday speech among young people or within intimate relationships.
+  - english: I ended up buying an unnecessary item.
+    japanese:
+      - 不 必要 な 物 を {買っ て しまっ た}。
+      - 不 必要 な 物 を {買っ て しまい まし た}。
+      - 不 必要 な 物 を {買っ ちゃっ た}。
+      - 不 必要 な 物 を {買っ ちゃい まし た}。
+    english_literally: Unnecessary thing (object) bought (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 不 必要 な 物 を 買っ た。
+        english: I bought an unnecessary item.
+        hint: 「買った」 simply states that the purchase occurred. The speaker expresses regret or the sense
+          that it was an unintended consequence, which 「〜てしまった」 emphasizes. We're looking for a completed
+          action with a sense of negative consequence.
+    scene: You went shopping and made an impulse purchase you now regret.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「〜てしまった」 here conveys the speaker's regret or slight self-reproach for buying the
+      item. It implies that the action is completed and cannot be undone, leading to a negative feeling.
+      This casual form can be used by both genders in self-reflection.
+  - english: The cake was so delicious, I ate it all up!
+    japanese:
+      - ケーキ が あまり に おいしかっ た の で、全部 {食べ ちゃっ た}！
+      - ケーキ が あまり に おいしかっ た の で、全部 {食べ て しまっ た}！
+      - ケーキ が あまり に おいしかっ た の で、全部 {食べ ちゃい まし た}！
+      - ケーキ が あまり に おいしかっ た の で、全部 {食べ て しまい まし た}！
+    english_literally: Cake (subject) was so delicious, so all ate (casual contraction of te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ が あまり に おいしかっ た の で、全部 食べ た！
+        english: The cake was so delicious, so I ate it all!
+        hint: The plain past 「食べた」 lacks the enthusiastic nuance of complete consumption often associated
+          with 「〜ちゃった」 in positive contexts. We're looking for an expression that conveys a thorough,
+          possibly enthusiastic, completion of the action.
+    scene: You finished a delicious cake.
+    register: casual
+    setting: excited
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    nuance: In this context, 「〜食べちゃった」 doesn't imply regret but rather a thorough, complete, and perhaps
+      even enthusiastic consumption of the cake due to its deliciousness. The casual contraction and the
+      exclamation mark contribute to the excited tone. This is common when expressing something good that
+      happened completely.
+  - english: The student finished the homework quickly.
+    japanese:
+      - 生徒 は 宿題 を さっ と {やっ て しまっ た}。
+      - 生徒 は 宿題 を さっ と {やっ て しまい まし た}。
+    english_literally: Student (topic) homework (object) quickly did (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 は 宿題 を さっ と やっ た。
+        english: The student did the homework quickly.
+        hint: While 「やった」 conveys speed, 「〜てしまった」 here emphasizes that the task was completed entirely
+          and efficiently. We're looking for an expression that highlights the thorough completion.
+    scene: A teacher is observing a diligent student.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: In this context, 「〜てしまった」 highlights the complete and swift execution of the homework. It
+      emphasizes the thoroughness of the action, conveying a sense of finality in a neutral or positive
+      way. This usage is common in more formal or informative settings.
+  - english: I inadvertently stepped on the cat's tail!
+    japanese:
+      - 猫 の しっぽ を {踏ん で しまっ た}！
+      - 猫 の しっぽ を {踏ん で しまい まし た}！
+      - 猫 の しっぽ を {踏ん じゃっ た}！
+      - 猫 の しっぽ を {踏ん じゃい まし た}！
+    english_literally: Cat's tail (object) stepped on (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 猫 の しっぽ を 踏ん だ！
+        english: I stepped on the cat's tail!
+        hint: 「踏んだ」 merely states the action. 「〜てしまった」 conveys the accidental nature of stepping on the
+          tail and the speaker's immediate regret or surprise. We're looking for a phrase that conveys
+          a completed action with a sense of misfortune.
+    scene: You were walking around at home and accidentally hurt your pet.
+    register: casual
+    setting: apologetic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「〜てしまった」 clearly expresses the accidental nature of the action and the speaker's
+      implied distress or apology for hurting the cat. It’s a common way to describe mishaps, especially
+      when speaking to oneself or close family.
+  - english: I forgot to lock the door.
+    japanese:
+      - ドア の 鍵 を {かけ 忘れ ちゃっ た}。
+      - ドア の 鍵 を {かけ 忘れ て しまっ た}。
+      - ドア の 鍵 を {かけ 忘れ ちゃい まし た}。
+      - ドア の 鍵 を {かけ 忘れ て しまい まし た}。
+    english_literally: Door's lock (object) forgot to hang (casual contraction of te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - ドア の 鍵 を かけ 忘れ た。
+        english: I forgot to lock the door.
+        hint: 「忘れた」 simply states the omission. 「〜忘れちゃった」 adds a nuance of mild regret or self-reproach
+          for the mistake. We're looking for an expression that highlights the regrettable outcome of
+          an oversight.
+    scene: You just left your house and suddenly remember you didn't lock the door.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Using 「〜忘れちゃった」 highlights the speaker's oversight and the resulting, completed negative consequence
+      (the door is unlocked). The casual tone of 「〜ちゃった」 is typical for expressing such minor mishaps
+      to oneself or close acquaintances.
+  - english: I used up all the money.
+    japanese:
+      - お 金 を 全部 {使っ て しまっ た}。
+      - お 金 を 全部 {使っ て しまい まし た}。
+      - お 金 を 全部 {使っ ちゃっ た}。
+      - お 金 を 全部 {使っ ちゃい まし た}。
+    english_literally: Money (object) all used (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - お 金 を 全部 使っ た。
+        english: I used all the money.
+        hint: While 「使った」 conveys the action, 「〜てしまった」 emphasizes the completeness of using up all the
+          money, often with a nuance of regret or concern about the depleted funds. We're looking for
+          an expression that highlights the exhaustive use with a potential negative feeling.
+    scene: You realize you've spent all your available funds.
+    register: casual
+    setting: pessimistic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「〜てしまった」 here strongly implies regret or concern over having spent all the money.
+      It signifies a completed action with a negative impact, a common application for this grammatical
+      construction.
+  - english: The train has already departed.
+    japanese:
+      - 電車 は もう {出 て しまっ た}。
+      - 電車 は もう {出 て しまい まし た}。
+    english_literally: Train (topic) already exited (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は もう 出 た。
+        english: The train already departed.
+        hint: 「出た」 states the fact. 「〜てしまった」 here conveys a sense of finality and perhaps disappointment
+          or urgency because the train's departure is now a completed, unchangeable event. We're looking
+          for an expression that emphasizes the irrevocability of the event.
+    scene: You arrive at the station just to see your train pulling away.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: In this context, 「〜てしまった」 highlights the completed and irreversible nature of the train's
+      departure, often implying missed opportunity or a negative consequence (e.g., 'Now I'm late'). It's
+      a factual statement with a subtle emotional undertone of resignation or slight frustration, suitable
+      for a more formal or serious situation.
+  - english: I accidentally broke the vase.
+    japanese:
+      - 花瓶 を {壊し ちゃっ た}。
+      - 花瓶 を {壊し て しまっ た}。
+      - 花瓶 を {壊し ちゃい まし た}。
+      - 花瓶 を {壊し て しまい まし た}。
+    english_literally: Vase (object) broke (casual contraction of te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 花瓶 を 壊し た。
+        english: I broke the vase.
+        hint: 「壊した」 is a neutral statement of fact. 「〜ちゃった」 adds the nuance of an accidental or regrettable
+          action, showing the speaker's dismay. We're looking for a phrase that conveys a completed action
+          with a sense of misfortune.
+    scene: You are clumsy and just knocked over a delicate item.
+    register: casual
+    setting: apologetic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「〜壊しちゃった」 emphasizes the accidental nature of breaking the vase and conveys the
+      speaker's regret or embarrassment. This is a very common expression for admitting accidental damage,
+      particularly in casual settings and when speaking to others.
+  - english: The deadline has already passed.
+    japanese:
+      - 締め切り は もう {過ぎ て しまい まし た}。
+      - 締め切り は もう {過ぎ て しまっ た}。
+    english_literally: Deadline (topic) already passed (te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り は もう 過ぎ まし た。
+        english: The deadline already passed.
+        hint: 「過ぎました」 simply states that the deadline passed. 「〜てしまいました」 emphasizes the finality of it
+          and often implies that it's too late now, carrying a nuance of regret or concern about the missed
+          opportunity. We're looking for an expression that highlights the irreversible completion of
+          an event.
+    scene: You just realized you missed an important deadline.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+    nuance: Here, 「〜てしまいました」 signifies the complete and irreversible passing of the deadline. This usage
+      implies that the action (or non-action) is now final, often with a sense of consequence or missed
+      opportunity, suitable for a serious or regretful context. The polite form makes it appropriate for
+      a formal discussion or self-reflection in a formal setting.
+  - english: I forgot my umbrella at home.
+    japanese:
+      - 家 に 傘 を {忘れ ちゃっ た}。
+      - 家 に 傘 を {忘れ て しまっ た}。
+      - 家 に 傘 を {忘れ ちゃい まし た}。
+      - 家 に 傘 を {忘れ て しまい まし た}。
+    english_literally: Home (location) umbrella (object) forgot (casual contraction of te shimau).
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 傘 を 忘れ た。
+        english: I forgot my umbrella at home.
+        hint: 「忘れた」 states the fact of forgetting. 「〜忘れちゃった」 expresses the slight annoyance or regret
+          over the oversight, particularly if it's raining now. We're looking for an expression that highlights
+          the regrettable outcome of an oversight.
+    scene: It started raining and you realize you left your umbrella at home.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The casual contraction 「〜忘れちゃった」 conveys the speaker's mild frustration or self-reproach for
+      having forgotten the umbrella, especially if the weather turned bad. It highlights the completed,
+      inconvenient outcome of the oversight, commonly used in casual self-talk or with close friends.
+post_example_writeup: The examples illustrate how 「〜てしまう」 and its contracted forms 「〜ちゃう」/「〜じゃう」 can convey
+  various nuances, from simple completion to accidental occurrence or regret. Pay close attention to the
+  context and the speaker's emotion to discern the precise meaning. While sometimes expressing sheer completion,
+  it is often imbued with a sense of finality that might be positive (like finishing a task) or negative
+  (like breaking something or missing a deadline).
+sources:
+  bunpro: https://bunpro.jp/grammar_points/27-te-shimau

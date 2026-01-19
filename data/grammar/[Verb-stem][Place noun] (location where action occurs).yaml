@@ -1,0 +1,245 @@
+grammar_point: '[Verb-stem][Place noun] (location where action occurs)'
+learn_before:
+  - でございます (polite copula, formal)
+meaning: A compound noun indicating a location specifically designated for or associated with the action
+  described by the verb stem.
+pronunciation:
+  katakana: アソビバ
+  romaji: asobiba
+  pronunciation_warning: The pronunciation varies depending on the specific verb stem and place noun.
+    'Asobiba' is an example for 遊び場 (playground).
+formation:
+  Verb-stem + 場 (ba): Forms a noun denoting a general place or facility used for the verb's action (e.g.,
+    遊び場 (playground), 売り場 (sales floor), 休み場 (resting place)).
+  Verb-stem + 口 (kuchi): Forms a noun denoting an entrance or exit point related to the verb's action
+    (e.g., 乗り口 (boarding gate/entrance), 出し口 (dispensing outlet)).
+  Verb-stem + 所 (tokoro): Forms a noun denoting a specific spot or location for the verb's action (e.g.,
+    待ち合わせ所 (meeting spot)).
+  Verb-stem + 台 (dai): Forms a noun denoting a stand, platform, or base associated with the verb's action
+    (e.g., 滑り台 (slide), 見張り台 (lookout platform)).
+jlpt: N4
+etymology: The formation of these compound nouns stems from the Japanese language's agglutinative nature,
+  where verb stems (連用形 - ren'yōkei) naturally combine with nouns to create new concepts. This particular
+  pattern specializes in indicating a *place* directly associated with the verb's action, a linguistic
+  shortcut that evolved for efficiency and clarity in naming common locations or facilities.
+writeup: |-
+  The grammatical pattern `[Verb-stem][Place noun]` is used to form compound nouns that denote a place or area where a specific action typically occurs or is designated to occur. This construction is a type of nominalization where the verb stem (連用形 - ren'yōkei) combines directly with a noun indicating a place.
+
+  While the concept is straightforward, the specific `Place noun` used often carries a nuance about the type of place:
+  *   **~場 (ba):** This is the most common and versatile, referring to a general area, venue, or facility. Examples include 遊び場 (asobiba - playground), 売り場 (uriba - sales floor), and 休み場 (yasumiba - resting place).
+  *   **~口 (kuchi):** This refers to an entrance, exit, or opening where the action occurs. Examples are 乗り口 (norikuchi - boarding gate/entrance) and 出し口 (dashiguchi - dispensing outlet).
+  *   **~所 (tokoro):** This often denotes a more specific spot or a public/designated place for the action. An example is 待ち合わせ所 (machiawasejo - meeting spot).
+  *   **~台 (dai):** This refers to a stand, platform, or base used for the action. Examples include 滑り台 (suberidai - slide) and 見張り台 (miharidai - lookout platform).
+
+  These compound nouns function grammatically like any other noun in a sentence. Understanding this pattern helps in recognizing and forming names for various common locations in Japanese.
+false_friends:
+  - term: Verb[dictionary] + こと
+    meaning: nominalization of a verb to refer to the action or fact itself
+    kind: similar expression
+    nuance: While `[Verb-stem][Place noun]` creates a noun for a *place* of action, `Verb[dictionary]
+      + こと` nominalizes the verb to refer to the *act* or *occurrence* of the action itself, not a physical
+      location. For example, 「泳ぐこと」 (oyogu koto) means 'the act of swimming' or 'swimming (in general)'.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: Verb[dictionary] + の
+    meaning: nominalization of a verb to refer to the action or fact itself (informal)
+    kind: similar expression
+    nuance: Similar to `こと`, `Verb[dictionary] + の` also nominalizes the verb to refer to the action itself.
+      It's often used in more casual contexts. For example, 「泳ぐの」 (oyogu no) also means 'the act of swimming'
+      but in a more conversational tone, still referring to the action, not a place.
+    grammar_point: の (that ~)
+  - term: Verb[stem] + 方
+    meaning: the method or way of doing something
+    kind: similar expression
+    nuance: Though it also uses a verb stem combined with a noun, `Verb[stem] + 方` (`~kata`) refers to
+      the *method* or *how* an action is performed, not a physical location. For example, 「泳ぎ方」 (oyogikata)
+      means 'the way to swim' or 'how to swim', which is distinct from a 'swimming place'.
+    grammar_point: かた (way of doing)
+  - term: Verb[dictionary] + Noun
+    meaning: a noun modified by a verb in its dictionary form
+    kind: similar expression
+    nuance: This construction (e.g., 「泳ぐ 場所」 - oyogu basho, 'the place where one swims') uses a verb in
+      its dictionary form to descriptively modify a general noun like `場所` (place). In contrast, `[Verb-stem][Place
+      noun]` forms a fixed compound noun (e.g., 「遊び場」 - asobiba, 'playground'), often implying a designated
+      facility, and the relationship is more inherent than descriptive.
+    grammar_point: <suggest>:[Verb-dictionary]Noun (nominalization)
+post_false_friends_writeup: It's crucial to distinguish `[Verb-stem][Place noun]` from other nominalizations
+  or verb-noun combinations. While some might express a similar idea, the `[Verb-stem][Place noun]` pattern
+  specifically forms a *compound noun* for a *designated or characteristic place* where the action occurs.
+  Pay attention to whether you are referring to the *act itself*, the *method*, or a *descriptive phrase*
+  versus a *named place*.
+examples:
+  - english: Children are playing joyfully in the playground.
+    japanese:
+      - 子供 達 が 楽し そう に {遊び場} で 遊ん で いる。
+      - お 子 さん 方 は 楽し そう に {遊び場} で 遊ん で いらっしゃい ます。
+      - 子供 ら が 楽し そう に {遊び場} で 遊ん で ん だ。
+      - 子供 たち が 楽し そう に {遊び場} で 遊ん でる の ね。
+    english_literally: Children happily in the playground are playing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 達 が 楽し そう に {遊ぶ こと} を し て いる。
+        english: Children are doing the act of playing happily.
+        hint: We're looking for a specific location for playing, not the general act of playing.
+    scene: A scene at a local park, sunny day.
+    register: casual
+    setting: friendly
+    nuance: The use of 「遊び場」 (asobiba) directly refers to a dedicated area for playing, such as a playground,
+      which is a common compound noun in Japanese. This phrase is neutral in register and common in daily
+      conversation.
+  - english: Please wait at the boarding area for the bus.
+    japanese:
+      - バス の {乗り場} で お 待ち ください。
+      - バス の {乗り場} にて お 待ち いただけ ます でしょう か。
+      - バス の {乗り場} で 待っ て て ください。
+    english_literally: Bus's boarding area at please wait.
+    competing_grammar:
+      - competing_japanese:
+          - バス に {乗る 場所} で 待っ て ください。
+        english: Please wait at the place where you will ride the bus.
+        hint: We're looking for the fixed term for a designated boarding spot, not just 'a place to ride'.
+    scene: At a busy bus terminal during rush hour.
+    register: formal
+    setting: informative
+    nuance: 「乗り場」 (noriba) is a standard, formal term for a designated boarding spot, often used in public
+      transportation contexts. The use of 「お待ちください」 (omachi kudasai) reinforces the formal register.
+  - english: This is the drop-off point for taxis.
+    japanese:
+      - ここ が タクシー の {降り場} です。
+      - こちら が タクシー の {降り場} で ござい ます。
+      - ここ タクシー の {降り場} な の。
+    english_literally: Here is taxi's drop-off point.
+    competing_grammar:
+      - competing_japanese:
+          - ここ が タクシー を {降りる 場所} です。
+        english: Here is the place where you get off a taxi.
+        hint: We're looking for the specific designated area for alighting, not a generic description.
+    scene: Outside a hotel entrance.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「降り場」 (oriba) is the established term for a designated drop-off or alighting point. The politeness
+      of 「です」 (desu) makes the sentence suitable for providing information in a public or service context.
+  - english: There's a shared washing area behind the house.
+    japanese:
+      - 家 の 裏 に 共同 の {洗い場} が あり ます。
+      - 家 の 裏手 に 共同 の {洗い場} が ござい ます。
+      - 家 の 裏 に 共同 の {洗い場} が ある よ。
+    english_literally: House's back at common washing area exists.
+    competing_grammar:
+      - competing_japanese:
+          - 家 の 裏 に 共同 で {洗う こと} が できる 場所 が あり ます。
+        english: Behind the house there is a place where one can do the act of washing commonly.
+        hint: We're looking for the noun for a 'washing area', not a description of a place where washing
+          can happen.
+    scene: Talking about facilities in a shared living situation.
+    register: casual
+    setting: friendly
+    nuance: 「洗い場」 (araiba) specifically refers to a designated space for washing, such as a communal laundry
+      area or a place for washing dishes/vegetables. The sentence structure is typical for describing
+      features of a residence.
+  - english: Let's meet at the usual meeting place at 7 PM.
+    japanese:
+      - 午後 7 時 に いつ も の {待ち合わせ 場所} で 会い ましょう。
+      - 午後 7 時 に いつ も の {待ち合わせ 場所} で お 会い し ましょう。
+      - 7 時 に いつ も の {待ち合わせ 場所} で 会おう よ。
+    english_literally: PM 7 o'clock at usual meeting place at let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 午後 7 時 に いつ も {待つ こと} が できる 場所 で 会い ましょう。
+        english: At 7 PM let's meet at the place where we can always do the act of waiting.
+        hint: We're looking for a compound noun for a 'meeting place', not a general description of a
+          waiting spot.
+    scene: Friends planning to meet up for dinner.
+    register: casual
+    setting: friendly
+    nuance: 「待ち合わせ場所」 (machiawase basho) is a common and natural compound noun for 'meeting place.' While
+      「場所」 (basho) is a general noun for 'place,' combined with 「待ち合わせ」 (machiawase, from `待つ` and `合わせる`
+      stems), it forms a specific concept. 「会おましょう」 (aimashou) is the volitional form of the verb for
+      meeting, making it a suggestion.
+  - english: Kids love the slide at the park.
+    japanese:
+      - 子供 達 は 公園 の {滑り台} が 大好き です。
+      - お 子 様 方 は 公園 の {滑り台} が 大変 お 好き で いらっしゃい ます。
+      - 子供 ら 公園 の {滑り台} 超 好き な ん だ。
+    english_literally: Children park's slide is very much liked.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 達 は 公園 で {滑る の が} 大好き です。
+        english: Children love sliding at the park.
+        hint: We're talking about the physical piece of equipment, not the act of sliding itself.
+    scene: A parent talking about their child's favorite park feature.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「滑り台」 (suberidai) is a specific compound noun for 'slide.' This is a very common and natural
+      term for children's play equipment. The use of 「が 大好き です」 (ga daisuki desu) shows a strong liking
+      in polite language.
+  - english: The watchman stood on the lookout platform.
+    japanese:
+      - 見張り 番 は {見張り 台} の 上 に 立っ て い た。
+      - 見張り 番 は {見張り 台} の 上 に 立っ て おり まし た。
+    english_literally: Watchman lookout platform's top on was standing.
+    competing_grammar:
+      - competing_japanese:
+          - 見張り 番 は {見張る 場所} の 上 に 立っ て い た。
+        english: The watchman was standing on the place to look out.
+        hint: We're looking for the specific structure, not a general place to watch from.
+    scene: A description from a story or historical account.
+    register: formal
+    setting: storytelling
+    nuance: 「見張り台」 (miharidai) refers to a specific elevated platform for surveillance. This term is precise
+      and often used in descriptive or historical contexts, as reflected by the formal register and narrative
+      setting.
+  - english: The entrance to the train is on this side.
+    japanese:
+      - 電車 の {乗り口} は こちら 側 です。
+      - 電車 の {乗り口} は こちら 側 で ござい ます。
+      - 電車 の {乗り口} こっち だ よ。
+    english_literally: Train's boarding entrance is this side.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 に {乗る 方法} は こちら 側 です。
+        english: The method to ride the train is on this side.
+        hint: We are looking for the physical entrance, not the 'way' or 'method' of boarding.
+    scene: A station staff guiding passengers on a busy platform.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「乗り口」 (norikuchi) specifically means the entrance for boarding, differentiating it from a
+      general entrance or exit (`入り口` or `出口`). This is a functional term used in contexts like public
+      transport, implying clear, direct information.
+  - english: This machine has a coin dispensing outlet on the left.
+    japanese:
+      - この 機械 は 左側 に 硬貨 の {出し 口} が ある。
+      - こちら の 機械 は 左側 に 硬貨 の {出し 口} が ござい ます。
+      - この 機械 左側 に お 金 出 て くる とこ が ある よ。
+    english_literally: This machine left side on coin's dispensing outlet exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は 左側 に 硬貨 を {出す ため の 場所} が ある。
+        english: This machine has a place for taking out coins on the left side.
+        hint: We're looking for the specific opening where something is dispensed, not a general area.
+    scene: Describing the features of a vending machine or similar device.
+    register: casual
+    setting: informative
+    nuance: 「出し口」 (dashiguchi) is the specific term for an outlet or opening from which something is dispensed.
+      It implies a functional part of a device rather than a general 'place where things come out'. The
+      casual register suits a descriptive explanation.
+  - english: We found a quiet resting place under a big tree.
+    japanese:
+      - 大きな 木 の 下 に 静か な {休み場} を 見つけ た。
+      - 大きな 木 の 下 に 静か な {休み場} を 見つけ まし た。
+      - 大きな 木 の 下 に 静か な {休み場} を 見つけ た ん だ。
+    english_literally: Big tree's under at quiet resting place found.
+    competing_grammar:
+      - competing_japanese:
+          - 大きな 木 の 下 に 静か に {休む こと} が できる 場所 を 見つけ た。
+        english: We found a place under a big tree where we can quietly do the act of resting.
+        hint: We need a compound noun for a 'resting place', not a descriptive phrase for a place to rest.
+    scene: Hiking in the mountains and finding a spot to take a break.
+    register: casual
+    setting: reflective
+    nuance: 「休み場」 (yasumiba) refers to a place designated or naturally suited for resting. While less
+      common than 休憩所 (kyuukeijo), it is a valid compound noun formed from the verb stem of `休む` (yasumu
+      - to rest). The usage here implies a simple, natural resting spot.
+post_example_writeup: As demonstrated in these examples, `[Verb-stem][Place noun]` consistently forms
+  fixed terms for specific locations. This distinguishes it from more general descriptions of places or
+  nominalizations of actions. Mastering these common compounds is essential for natural Japanese expression,
+  particularly when referring to facilities or designated areas.

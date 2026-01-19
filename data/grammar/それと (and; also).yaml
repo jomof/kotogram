@@ -1,0 +1,448 @@
+grammar_point: それと (and; also)
+learn_before:
+  - Verb[て] (and then)
+  - する (to do・make)
+  - それ (that)
+  - と (with)
+  - 何 (what)
+meaning: And; also; in addition; as well
+pronunciation:
+  katakana: ソレト
+  romaji: sore to
+formation:
+  Noun/Phrase A + 、それと + Noun/Phrase B: Adds another item to a list of nouns or short phrases.
+  Sentence A + それと + Sentence B: Connects two related sentences by adding a new, additional point.
+jlpt: N3
+etymology: 「それ」 refers to something previously mentioned, and 「と」 is the conjunction 'and'. So, 「それと」
+  literally means 'and that', indicating a simple addition to what has been said or implied.
+writeup: 「それと」 is a versatile conjunction used primarily in casual conversation to add an additional item
+  or statement. While similar in function to 「それから」 and 「それに」, it is generally more colloquial and direct.
+  You can use it to append items to a list of nouns or to connect complete sentences, providing further
+  information or an additional thought. Think of it as a natural, conversational way to say "and also"
+  or "in addition," without implying a strong sequence or hierarchical importance.
+false_friends:
+  - term: それに (in addition)
+    meaning: in addition to that; moreover
+    kind: similar expression
+    nuance: 「それに」 is often used in more formal contexts or when the added information strengthens or elaborates
+      on the previous statement, sometimes implying 'moreover' or 'to make matters worse/better.' 「それと」
+      is a simpler, more neutral additive.
+    grammar_point: それに (in addition・moreover)
+  - term: それから (and then・after that)
+    meaning: and then; after that
+    kind: similar expression
+    nuance: 「それから」 implies a strict sequence or order of events, or a next item in a list of actions or
+      thoughts. 「それと」 simply adds information without emphasizing the order or consequence.
+    grammar_point: それから (and then・after that)
+  - term: そして (and・and then)
+    meaning: and; and then
+    kind: similar expression
+    nuance: 「そして」 is a general connective for sentences and often implies a logical or temporal flow,
+      or a stronger connection between ideas. 「それと」 is more casual and often used for quick, simple additions
+      of related information.
+    grammar_point: そして (and・and then)
+  - term: また (again; also; or)
+    meaning: again; also; in addition
+    kind: similar expression
+    nuance: When used to add information, 「また」 can be more formal than 「それと」 and often introduces a new,
+      distinct point rather than simply adding to an existing thought or list within the same context.
+      It can also imply repetition ('again').
+    grammar_point: また (again; also; or)
+  - term: あと (casual addition)
+    meaning: also; next; in addition (casual)
+    kind: similar expression
+    nuance: 「あと」 is a very casual way to say 'also' or 'next,' typically used for adding one more simple
+      item to a list or a quick additional point. It is often interchangeable with 「それと」 in highly informal
+      settings, but 「それと」 can connect slightly more developed ideas.
+    grammar_point: <suggest>:あと (casual addition)
+post_false_friends_writeup: When choosing between 「それと」 and its similar expressions, consider the nuance
+  and context. 「それと」 is your go-to for casual, simple additions to a statement or list, particularly in
+  conversation. 「それに」 often adds a stronger, more emphatic point. 「それから」 is best for indicating a sequence
+  of events. 「そして」 is a more general 'and then' that often implies a stronger narrative or logical connection.
+  「また」 can be used for 'also' in more varied contexts, including formal ones, or for repetition. Lastly,
+  「あと」 is a very casual choice for quick additions, often for physical items or brief points.
+examples:
+  - english: Please give me three apples and two oranges, and also a banana.
+    japanese:
+      - りんご ３ つ と みかん ２ つ、{それ と} バナナ を ください。
+      - りんご 三 つ と みかん 二 つ、{それ と} バナナ を ください。
+      - リンゴ ３ つ と ミカン ２ つ、{それ と} バナナ を いただけ ます か。
+    english_literally: Apple three items and mandarin two items, and that banana please give me.
+    competing_grammar:
+      - competing_japanese:
+          - りんご ３ つ と みかん ２ つ、{それ に} バナナ を ください。
+        english: Please give me three apples and two oranges, and in addition, a banana.
+        hint: 「それに」 can also add items, but 「それと」 is more typical for casual conversation and simple additions.
+      - competing_japanese:
+          - りんご ３ つ と みかん ２ つ、{それ から} バナナ を ください。
+        english: Please give me three apples and two oranges, and then a banana.
+        hint: 「それから」 often implies a sequence of events or items listed in order. Here, you're just adding
+          another item to the list.
+      - competing_japanese:
+          - りんご ３ つ と みかん ２ つ {と} バナナ を ください。
+        english: Please give me three apples, two oranges, and a banana.
+        hint: While simple 「と」 can connect multiple nouns, 「それと」 emphasizes adding something after a previous
+          thought or request.
+    scene: Ordering at a fruit stand.
+    register: semi-formal
+    setting: informative
+    nuance: 「ください」 is a polite request, making the overall register semi-formal. Using numbers as digits
+      (３) is common in casual writing, while kanji (三) is also acceptable.
+    etymology: 「３つ」 is the counter for small round things.
+  - english: I read books and watched movies. And I went out to eat with my friends.
+    japanese:
+      - 本 を 読ん だり、映画 を 見 たり し まし た。{それ と}、友達 と ご飯 を 食べ に 行き まし た。
+      - 本 を 読ん だり、映画 を 見 たり し た。{それ と}、友達 と ご飯 を 食べ に 行っ た。
+      - 本 読ん だり、映画 見 たり し た。{それ と}、友達 と ご飯 食い に 行っ た。
+    english_literally: Books read, movies watched, did such things. And that, friends with meal eat went.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を 読ん だり、映画 を 見 たり し まし た。{それ に}、友達 と ご飯 を 食べ に 行き まし た。
+        english: I read books and watched movies. In addition, I went out to eat with my friends.
+        hint: 「それに」 is often used to add information that strengthens or elaborates on the previous statement,
+          sometimes implying 'merely.' 「それと」 is a simpler addition.
+      - competing_japanese:
+          - 本 を 読ん だり、映画 を 見 たり し まし た。{それ から}、友達 と ご飯 を 食べ に 行き まし た。
+        english: I read books and watched movies. After that, I went out to eat with my friends.
+        hint: 「それから」 clearly indicates a sequence of events. While eating with friends might have happened
+          after, the original sentence uses 「それと」 to simply add another activity, not necessarily imply
+          a strict order.
+      - competing_japanese:
+          - 本 を 読ん だり、映画 を 見 たり し まし た。{そして}、友達 と ご飯 を 食べ に 行き まし た。
+        english: I read books and watched movies. And then, I went out to eat with my friends.
+        hint: 「そして」 is a general 'and then' or 'and' that connects sentences, but can imply a stronger
+          sequential or cumulative relationship than 「それと」.
+    scene: Describing what you did on vacation.
+    register: casual
+    setting: storytelling
+    nuance: The use of the plain past form 「した」 and casual verbs like 「食いに行った」 (colloquial for 食べに行った)
+      indicates a casual register.
+    etymology: 「～たり～たりする」 is the grammar point for 'doing things such as'.
+  - english: I've already finished preparing for tomorrow. Also, let's check to make sure we don't forget
+      anything.
+    japanese:
+      - 明日 の 準備 は もう でき まし た。{それ と}、忘れ物 は ない か 確認 し ましょう。
+      - 明日 の 準備 は もう でき た。{それ と}、忘れ物 は ない か 確認 し よう。
+      - 明日 の 準備 は もう 済ん だ。{それ と}、忘れ物 が ない か 確認 し よう。
+    english_literally: Tomorrow's preparation already finished. And that, forgotten things are there not
+      if confirm let's.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 準備 は もう でき まし た。{それ に}、忘れ物 は ない か 確認 し ましょう。
+        english: I've already finished preparing for tomorrow. Moreover, let's check to make sure we don't
+          forget anything.
+        hint: 「それに」 often adds information that reinforces or is a stronger point. 「それと」 is a simpler
+          addition.
+      - competing_japanese:
+          - 明日 の 準備 は もう でき まし た。{それ から}、忘れ物 は ない か 確認 し ましょう。
+        english: I've already finished preparing for tomorrow. After that, let's check to make sure we
+          don't forget anything.
+        hint: 「それから」 clearly indicates a sequence of events. While eating with friends might have happened
+          after, the original sentence uses 「それと」 to simply add another activity, not necessarily imply
+          a strict order.
+      - competing_japanese:
+          - 明日 の 準備 は もう でき まし た。{あと}、忘れ物 は ない か 確認 し ましょう。
+        english: I've already finished preparing for tomorrow. Also, let's check to make sure we don't
+          forget anything.
+        hint: 「あと」 is a very casual way to say 'also' or 'next,' often used for simple additions or remaining
+          items. 「それと」 feels slightly more formal for connecting clauses.
+    scene: A parent reminding their child before a trip.
+    register: semi-formal
+    setting: informative
+    nuance: The use of 「～ましょう」 (let's) is a polite form of suggestion, making the register semi-formal.
+      Using 「済ん だ」 (finished, completed) instead of 「できた」 is a slight variation for nuance.
+    etymology: 「忘れ物」 means 'something forgotten'.
+  - english: I like tennis, and I also often swim.
+    japanese:
+      - テニス が 好き です。{それ と}、水泳 も よく し ます。
+      - テニス が 好き だ。{それ と}、水泳 も よく する。
+      - テニス が 好き な ん だ。{それ と}、水泳 も よく やる よ。
+    english_literally: Tennis like is. And that, swimming also often do.
+    competing_grammar:
+      - competing_japanese:
+          - テニス が 好き です。{それ に}、水泳 も よく し ます。
+        english: I like tennis. In addition, I also often swim.
+        hint: 「それに」 can connect related statements, but 「それと」 is a very common and natural way to add
+          a simple, related fact in casual conversation.
+      - competing_japanese:
+          - テニス が 好き です。{それ から}、水泳 も よく し ます。
+        english: I like tennis. And then, I also often swim.
+        hint: 「それから」 implies a sequence or a next item in a list of actions or thoughts. Here, you're
+          just adding another hobby, not describing an order.
+      - competing_japanese:
+          - テニス が 好き です。{あと}、水泳 も よく し ます。
+        english: I like tennis. Also, I often swim.
+        hint: 「あと」 is similar to 「それと」 for adding points, but 「それと」 is often preferred for connecting
+          slightly more developed ideas or sentences.
+    scene: Talking about your hobbies.
+    register: casual
+    setting: friendly
+    nuance: The plain form 「好き だ」 and the use of 「～んだ」 combined with 「やるよ」 create a very casual and natural
+      expression. 「～も」 is a particle indicating 'also'.
+    etymology: 「水泳」 means swimming.
+  - english: This job is tough, but it's rewarding, and the salary isn't bad either.
+    japanese:
+      - この 仕事 は 大変 だ けど、やりがい が ある。{それ と}、給料 も 悪く ない し。
+      - この 仕事 は 大変 だ けど、やりがい が ある。{それ と}、給料 も 悪く ない。
+      - この 仕事、大変 だ けど、やりがい ある し。{それ と}、給料 も 悪く ない し ね。
+    english_literally: This job tough is but, worth doing has. And that, salary also bad not is and.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 大変 だ けど、やりがい が ある。{それ に}、給料 も 悪く ない し。
+        english: This job is tough, but it's rewarding. Moreover, the salary isn't bad either.
+        hint: 「それに」 often adds a stronger, more conclusive point. 「それと」 is a more neutral way to add another
+          piece of information.
+      - competing_japanese:
+          - この 仕事 は 大変 だ けど、やりがい が ある。{それ から}、給料 も 悪く ない し。
+        english: This job is tough, but it's rewarding. After that, the salary isn't bad either.
+        hint: 「それから」 doesn't fit well here, as you're listing concurrent qualities, not sequential events.
+      - competing_japanese:
+          - この 仕事 は 大変 だ けど、やりがい が ある。{あと}、給料 も 悪く ない し。
+        english: This job is tough, but it's rewarding. Also, the salary isn't bad either.
+        hint: 「あと」 is often used for enumerating points, similar to 「それと」, but 「それと」 feels a bit more
+          natural for connecting sentences with a mild additive relationship.
+    scene: Talking about the pros and cons of your job.
+    register: casual
+    setting: reflective
+    nuance: 「～し」 is used to list reasons or qualities, emphasizing the cumulative nature of the points
+      being made. The slightly truncated phrases like 「やりがい あるし」 make it very casual.
+    etymology: 「給料」 means salary.
+  - english: He's smart, athletic, and good looking, so he's super popular, right?
+    japanese:
+      - 彼 は 頭 が いい し、運動 も できる。{それ と}、顔 も 良い から モテモテ だ よ ね。
+      - あいつ は 頭 が いい し、運動 も できる。{それ と}、顔 も 良い から モテモテ だ よ な。
+      - 彼、頭 いい し、運動 も できる。{それ と}、顔 も いい から、めっちゃ モテる よ ね。
+    english_literally: He head good is and, sports also can do. And that, face also good is so popular-popular
+      is you know right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頭 が いい し、運動 も できる。{それ に}、顔 も 良い から モテモテ だ よ ね。
+        english: He's smart, athletic. Moreover, he's good looking, so he's super popular, right?
+        hint: 「それに」 suggests adding a point that adds weight or emphasis. 「それと」 is more casual and simply
+          adds another reason to the list without strong emphasis.
+      - competing_japanese:
+          - 彼 は 頭 が いい し、運動 も できる。{それ から}、顔 も 良い から モテモテ だ よ ね。
+        english: He's smart, athletic. And then, he's good looking, so he's super popular, right?
+        hint: 「それから」 is used for sequential actions or a next step, which doesn't fit when listing characteristics
+          that all contribute to popularity.
+      - competing_japanese:
+          - 彼 は 頭 が いい し、運動 も できる。{その 上}、顔 も 良い から モテモテ だ よ ね。
+        english: He's smart, athletic. On top of that, he's good looking, so he's super popular, right?
+        hint: 「その上」 means 'on top of that' and usually introduces an additional, often superior or more
+          significant, point. 「それと」 is a more neutral additive.
+    scene: Gossiping about someone popular.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「モテモテ だ よ ね」 with the sentence-ending particle 「よ ね」 is common in intimate conversation,
+      seeking confirmation or agreement among a group. The second Japanese option, using 「あいつ」 and 「な」,
+      is typical for a male speaker in a very casual, intimate setting. It carries a slightly rougher,
+      more familiar tone.
+    etymology: 「モテモテ」 is slang meaning 'very popular'.
+  - english: This restaurant has a great atmosphere, and the food is also very delicious.
+    japanese:
+      - この レストラン は 雰囲気 が いい です よ。{それ と}、料理 も とても 美味しい です。
+      - この レストラン は 雰囲気 が いい です よ。{それ と}、お 料理 も とても 美味しい です。
+      - この レストラン、雰囲気 いい です よ。{それ と}、料理 も すごく 美味しい です。
+    english_literally: This restaurant atmosphere good is. And that, food also very delicious is.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 雰囲気 が いい です よ。{それ に}、料理 も とても 美味しい です。
+        english: This restaurant has a great atmosphere. In addition, the food is also very delicious.
+        hint: 「それに」 can be used in polite contexts for adding points, but 「それと」 is also perfectly acceptable
+          and commonly used for simple additions even in polite speech.
+      - competing_japanese:
+          - この レストラン は 雰囲気 が いい です よ。{それ から}、料理 も とても 美味しい です。
+        english: This restaurant has a great atmosphere. And then, the food is also very delicious.
+        hint: 「それから」 implies a sequence or a next point in a narrative, which doesn't quite fit when simply
+          listing qualities of a restaurant.
+      - competing_japanese:
+          - この レストラン は 雰囲気 が いい です よ。{また}、料理 も とても 美味しい です。
+        english: This restaurant has a great atmosphere. Also, the food is very delicious.
+        hint: 「また」 means 'also' or 'again,' and can be used to add new points, often suitable for formal
+          reports or presentations. 「それと」 is equally valid but might feel slightly more informal.
+    scene: Recommending a restaurant to someone.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「～です」 and 「～ですよ」 marks this as polite speech suitable for giving recommendations.
+      Adding 「お」 to 「お料理」 is a polite honorific prefix commonly used in service or when referring to food
+      respectfully. 「すごく」 is a common casual intensifier.
+    etymology: 「美味しい」 means delicious.
+  - english: When I go shopping, I buy vegetables, meat, and also some fruit.
+    japanese:
+      - 買い物 に 行く と、野菜 と 肉 を 買い ます。{それ と}、果物 も 少し 買い ます。
+      - 買い物 に 行く と、野菜 と 肉 買う。{それ と}、果物 も 少し 買う。
+      - 買い物 に 行っ たら、野菜 と 肉 買っ て。{それ と}、果物 も 買っ て き て。
+    english_literally: Shopping to go when, vegetables and meat buy. And that, fruit also a little buy.
+    competing_grammar:
+      - competing_japanese:
+          - 買い物 に 行く と、野菜 と 肉、{それ に} 果物 を 買い ます。
+        english: When I go shopping, I buy vegetables, meat, and in addition, some fruit.
+        hint: 「それに」 can be used to add items, but it often carries a slightly more formal or emphatic
+          tone than a simple 「それと」.
+      - competing_japanese:
+          - 買い物 に 行く と、野菜 と 肉、{それ から} 果物 を 買い ます。
+        english: When I go shopping, I buy vegetables, meat, and then some fruit.
+        hint: 「それから」 suggests a sequence of events or a linear progression of items. Here, you're simply
+          adding another item to a general list of purchases, not implying a specific order.
+      - competing_japanese:
+          - 買い物 に 行く と、野菜 と 肉、{あと} 果物 も 買い ます。
+        english: When I go shopping, I buy vegetables, meat, also some fruit.
+        hint: 「あと」 is a very casual way to add something to a list. 「それと」 is slightly more formal when
+          connecting clauses or more complex ideas.
+    scene: Someone describing their routine grocery shopping habits.
+    register: casual
+    setting: informative
+    nuance: The plain form 「行く」 and 「買う」 are typical of casual speech. 「少し」 means 'a little' or 'some'.
+      The use of 「～と」 for 'when' or 'if' is common for habitual actions.
+    etymology: 「果物」(くだもの) literally means 'fruit things', deriving from 木の物 (きのもの), meaning 'things from
+      trees'.
+  - english: I have a lot of homework tonight. And, I also have to prepare for tomorrow's presentation.
+    japanese:
+      - 今夜 は 宿題 が たくさん あり ます。{それ と}、明日 の プレゼン の 準備 も し なけれ ば なり ませ ん。
+      - 今夜 は 宿題 が たくさん ある。{それ と}、明日 の プレゼン の 準備 も し なきゃ。
+      - 今晩 は 宿題 が いっぱい ある ん だ。{それ と}、明日 の プレゼン の 準備 も ある から さ。
+    english_literally: Tonight homework much exists. And that, tomorrow's presentation's preparation also
+      must do.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は 宿題 が たくさん あり ます。{それ に}、明日 の プレゼン の 準備 も し なけれ ば なり ませ ん。
+        english: I have a lot of homework tonight. Moreover, I also have to prepare for tomorrow's presentation.
+        hint: 「それに」 often adds a stronger, more emphasizing point, sometimes implying 'on top of that.'
+          「それと」 is a more neutral additive.
+      - competing_japanese:
+          - 今夜 は 宿題 が たくさん あり ます。{あと}、明日 の プレゼン の 準備 も し なけれ ば なり ませ ん。
+        english: I have a lot of homework tonight. Also, I have to prepare for tomorrow's presentation.
+        hint: 「あと」 is similar to 「それと」 for simple additions, but 「それと」 feels slightly more appropriate
+          for connecting two distinct, somewhat complex statements about obligations.
+    scene: A female student complaining to a friend about her busy schedule.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「し なきゃ」 is a common contraction of 「しなければならない」, meaning 'must do,' and is often
+      used by younger speakers, particularly females, in casual conversation. The various ways of saying
+      'a lot' (「たくさんあります」, 「たくさんある」, 「いっぱいある」) convey the burden of tasks.
+    etymology: 「宿題」(しゅくだい) means homework, combining 宿 (やど - lodging/dwelling, here implying 'assigned')
+      and 題 (だい - topic/theme).
+  - english: I finished setting up the new system. And, I also sent an email to all staff.
+    japanese:
+      - 新しい システム の 設定 が 終わり まし た。{それ と}、全 スタッフ に メール を 送り まし た。
+      - 新しい システム の 設定 が 済ん だ。{それ と}、全 スタッフ に メール 送っ た よ。
+      - 新しい システム の 設定 終わり まし た。{それ と}、メール も 送っ て おき まし た。
+    english_literally: New system's setup finished. And that, all staff to email sent.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム の 設定 が 終わり まし た。{それ に}、全 スタッフ に メール を 送り まし た。
+        english: I finished setting up the new system. In addition, I also sent an email to all staff.
+        hint: 「それに」 is common in business contexts for adding important points. 「それと」 is also fine, but
+          can feel slightly more conversational for listing completed actions.
+      - competing_japanese:
+          - 新しい システム の 設定 が 終わり まし た。{それ から}、全 スタッフ に メール を 送り まし た。
+        english: I finished setting up the new system. After that, I also sent an email to all staff.
+        hint: 「それから」 clearly indicates a sequence of actions, which might fit here. 「それと」 focuses more
+          on simply adding another completed task rather than emphasizing the order.
+      - competing_japanese:
+          - 新しい システム の 設定 が 終わり まし た。{また}、全 スタッフ に メール を 送り まし た。
+        english: I finished setting up the new system. Also, I sent an email to all staff.
+        hint: 「また」 means 'also' or 'again,' and can be used to add new points, often suitable for formal
+          reports or presentations. 「それと」 is equally valid but might feel slightly more informal.
+    scene: A male employee reporting progress on a task to his manager.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The consistent use of 「～ました」 indicates polite speech suitable for a professional setting.
+      The phrase 「送っておきました」 (in the third variation) conveys that the email was sent in preparation for
+      something or for the benefit of someone else, which is a common nuance in Japanese business communication.
+    etymology: 「設定」(せってい) means 'setting' or 'configuration', combining 設 (せつ - establishment) and 定 (てい
+      - decide/fix).
+  - english: The weather today is great, and I also went for a walk.
+    japanese:
+      - 今日 は 天気 が いい です。{それ と}、散歩 も し まし た。
+      - 今日 は 天気 が いい。{それ と}、散歩 も し た。
+      - 今日、天気 めっちゃ いい し。{それ と}、散歩 も 行っ た ん だ。
+    english_literally: Today weather good is. And that, walk also did.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 天気 が いい です。{それ に}、散歩 も し まし た。
+        english: The weather today is great. In addition, I also went for a walk.
+        hint: 「それに」 can add information, sometimes with a nuance of reinforcing the previous statement.
+          「それと」 is a more neutral way to add a related piece of information.
+      - competing_japanese:
+          - 今日 は 天気 が いい です。{それ から}、散歩 も し まし た。
+        english: The weather today is great. And then, I also went for a walk.
+        hint: 「それから」 implies a sequence of events. While walking might have occurred after noting the
+          good weather, 「それと」 simply adds another related fact without emphasizing the order.
+    scene: A person sharing details about their pleasant day.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The first variation uses the polite 「です」, while the second uses the plain form 「いい」 and 「した」
+      for casual reflection. The third variation, 「めっちゃいいし」 and 「行ったんだ」, which are highly casual expressions,
+      common among younger speakers reflecting on daily events. This can also be a reflection to oneself.
+    etymology: 「散歩」(さんぽ) means 'walk' or 'stroll', from 散 (さん - scatter) and 歩 (ぽ - walk).
+  - english: Let's gather at 7 PM. And, please don't be late.
+    japanese:
+      - 午後 ７ 時 に 集合 し ましょう。{それ と}、遅刻 し ない で ください。
+      - 夜 ７ 時 に 集まろ う。{それ と}、遅刻 す ん な よ。
+      - ７ 時 に 集合 です。{それ と}、時間 厳守 で お 願い し ます。
+    english_literally: PM 7 o'clock meet let's. And that, late do not please.
+    competing_grammar:
+      - competing_japanese:
+          - 午後 ７ 時 に 集合 し ましょう。{それ に}、遅刻 し ない で ください。
+        english: Let's gather at 7 PM. In addition, please don't be late.
+        hint: 「それに」 often adds a point of importance or emphasis. 「それと」 is a direct and neutral way to
+          add an instruction or request.
+      - competing_japanese:
+          - 午後 ７ 時 に 集合 し ましょう。{それ から}、遅刻 し ない で ください。
+        english: Let's gather at 7 PM. After that, please don't be late.
+        hint: 「それから」 implies a sequence, which isn't the primary function here. The two statements are
+          concurrent instructions, not sequential events.
+    scene: A leader giving instructions to a team before an event.
+    register: semi-formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「～ましょう」 is a polite suggestion often used for group action. 「遅刻 し ない で ください」 is a polite request
+      not to be late. The second Japanese option uses a very casual, masculine imperative 「すん な よ」 which
+      is a strong prohibition, common from an older male leader to a younger, familiar group. The third
+      option uses business-like formality with 「時間 厳守 で お願い し ます」 (please be strictly on time).
+    etymology: 「遅刻」(ちこく) means 'lateness' or 'being late', combining 遅 (ち - late) and 刻 (こく - time/engrave).
+  - english: I'm going to the supermarket. And, do you want anything?
+    japanese:
+      - スーパー に 行き ます。{それ と}、何 か 欲しい もの は あり ます か？
+      - スーパー 行く よ。{それ と}、なん か 欲しい もの ある？
+      - 今 から スーパー 行き ます けど。{それ と}、何 か 買っ て き ましょう か？
+    english_literally: Supermarket to go. And that, something wanted thing exists?
+    competing_grammar:
+      - competing_japanese:
+          - スーパー に 行き ます。{それ に}、何 か 欲しい もの は あり ます か？
+        english: I'm going to the supermarket. In addition, do you want anything?
+        hint: 「それに」 can add a new point, but 「それと」 is a very common and natural conversational connector
+          when adding a related question or offer.
+      - competing_japanese:
+          - スーパー に 行き ます。{あと}、何 か 欲しい もの は あり ます か？
+        english: I'm going to the supermarket. Also, do you want anything?
+        hint: 「あと」 is similar for simple additions, but 「それと」 is often preferred when connecting an action
+          with a follow-up question or request.
+    scene: A family member asking others before going to the supermarket.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「行き ます」 and 「あり ます か」 indicate polite speech. The casual variation 「なんか 欲しい もの ある？」 is very
+      common among family members. The third variation, 「～けど、何か 買ってきましょう か？」, uses a slightly tentative
+      polite form, common when offering help.
+    etymology: 「欲しい」(ほしい) means 'wanted' or 'desirable', an adjective for expressing desire.
+post_example_writeup: As you can see from these examples, 「それと」 is versatile and can connect both lists
+  of nouns and entire sentences. It maintains a casual or semi-formal tone and is frequently used in spoken
+  Japanese to simply add a piece of information without implying a strong sequence or emphasis. It is
+  a very natural way to continue a thought or conversation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それと

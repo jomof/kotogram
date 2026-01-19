@@ -1,0 +1,266 @@
+grammar_point: おり (humble formal connective)
+learn_before:
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+  - ご (honorific prefix for Sino-Japanese words)
+  - そちら (that way, formal)
+  - また (again; also; or)
+meaning: occasion (humble/formal)
+pronunciation:
+  katakana: オリ
+  romaji: ori
+formation:
+  Verb[dictionary form] + おり: Used to denote 'when' or 'at the time of' a certain action in a humble/formal
+    context.
+  Verb[た form] + おり: Used to denote 'when' or 'at the time of' a certain completed action in a humble/formal
+    context.
+  Noun + の + おり: Used to denote 'at the time of' a specific event or situation, for nouns, in a humble/formal
+    context.
+jlpt: N2
+etymology: The word 「おり」 is derived from the noun 「折」 (ori), which literally means 'a bend' or 'a fold,'
+  but metaphorically refers to a 'chance,' 'occasion,' or 'turning point.' This etymological root explains
+  its use as a temporal marker signifying 'at the time' or 'on the occasion of.' Its humble and formal
+  nuance evolved as part of the broader development of honorific (keigo) language in Japanese, where specific
+  vocabulary and grammatical structures were adopted to express respect and humility in social interactions.
+writeup: |-
+  The term 「おり」 is a noun used to express 'when' or 'on the occasion of' in highly formal or humble contexts. It is a more deferential alternative to 「とき」, which is neutral and can be used in any register. 「おり」 is particularly common in written Japanese, such as formal letters, official documents, and business emails, as well as in polite speech directed towards superiors or in formal presentations. Its use reflects the speaker's humility or respect towards the listener or the situation being discussed.
+
+  While 「とき」 is generally applicable, 「おり」 specifically signals a formal or humble tone. It is not used in casual conversations among friends or family. It is often followed by particles like 「に」 or 「は」, but can also stand alone as a connective, much like 「とき」.
+
+  Consider the context: if you are writing a business email to a client or a formal report, 「おり」 would be the appropriate choice. If you are discussing plans with a colleague of equal status, 「とき」 would be more natural. The choice between 「おり」 and 「とき」 is crucial for conveying the correct level of respect and formality in Japanese communication.
+false_friends:
+  - term: とき (when)
+    meaning: when; at the time of
+    kind: similar expression
+    nuance: 「とき」 is a general temporal noun and can be used in all registers (casual, polite, formal).
+      It carries no inherent humble or formal nuance, making it suitable for everyday conversation.
+    grammar_point: とき (when)
+  - term: 際 (occasion)
+    meaning: occasion; circumstance
+    kind: similar expression
+    nuance: 「際」 is also a formal temporal noun, similar to 「おり」, meaning 'on the occasion of' or 'at the
+      time of'. However, unlike 「おり」, 「際」 does not inherently carry a humble nuance. It signifies a specific,
+      often important, point in time or a particular situation without explicitly lowering the speaker's
+      status.
+    grammar_point: <suggest>:際に・折に (on the occasion of・when)
+  - term: 折 (occasion)
+    meaning: occasion; chance
+    kind: similar expression
+    nuance: 「折」 can be used very similarly to 「おり」, often interchangeably in formal contexts. However,
+      「おり」 specifically implies a humble nuance when referring to the speaker's own actions or presence.
+      While both are formal, 「おり」 emphasizes the speaker's humility more directly.
+    grammar_point: <suggest>:際に・折に (on the occasion of・when)
+post_false_friends_writeup: Understanding the subtle differences between 「おり」, 「とき」, 「際」, and 「折」 is key
+  to mastering Japanese nuance. 「とき」 is the most versatile and neutral. 「際」 adds formality and emphasizes
+  a specific, often significant, point in time. 「折」 is also formal and denotes an occasion, often with
+  a subtle nuance of chance or a suitable moment. 「おり」, while formal like 「際」 and 「折」, distinctively carries
+  a humble nuance, making it appropriate for situations where the speaker wishes to show deference or
+  humility, particularly in self-referential statements or when addressing superiors.
+examples:
+  - english: Thank you for the other day, when I caused you trouble.
+    japanese:
+      - 先日 は 大変 お 世話 に なり まし た。その {おり} に は 本当 に 助かり まし た。
+      - 先日 は 大変 お 世話 に なり まし た。その {おり}、本当 に 助かり まし た。
+    english_literally: The other day, I received great help. On that occasion, I was truly helped.
+    competing_grammar:
+      - competing_japanese:
+          - 先日 は 大変 お 世話 に なり まし た。その とき は 本当 に 助かり まし た。
+        english: Thank you for the other day. At that time, I was truly helped.
+        hint: 「とき」 is a general temporal noun and doesn't carry the same humble nuance as 「おり」。 We're
+          looking for a formal and humble expression.
+      - competing_japanese:
+          - 先日 は 大変 お 世話 に なり まし た。その 際 は 本当 に 助かり まし た。
+        english: Thank you for the other day. On that occasion, I was truly helped.
+        hint: 「際」 is formal but lacks the specific humble nuance of 「おり」。 We're looking for a formal and
+          humble expression.
+    scene: A formal thank-you note or email to a business contact or a superior after they helped you.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: The use of 「おり」 here, combined with 「お世話 に なりました」 and 「助かりました」, emphasizes the speaker's humility
+      and gratitude for the help received on that specific occasion. It’s highly formal and respectful.
+  - english: Please contact us again if there is a similar opportunity.
+    japanese:
+      - また その よう な {おり} が ござい まし たら、ぜひ ご 連絡 ください。
+      - また その よう な {おり} に は、ぜひ ご 連絡 ください。
+    english_literally: Again, if there is such an occasion, please contact us.
+    competing_grammar:
+      - competing_japanese:
+          - また その よう な とき が ござい まし たら、ぜひ ご 連絡 ください。
+        english: Again, if there is such a time, please contact us.
+        hint: 「とき」 is less formal and doesn't convey the deferential tone. We're looking for a formal
+          expression of possibility.
+      - competing_japanese:
+          - また その よう な 際 が ござい まし たら、ぜひ ご 連絡 ください。
+        english: Again, if there is such an occasion, please contact us.
+        hint: 「際」 is formal but doesn't specifically imply a humble request for future interaction. We're
+          looking for a formal expression that includes a humble nuance.
+    scene: A business professional concluding a meeting with a client, expressing hope for future collaboration.
+    register: formal
+    setting: professional
+    nuance: 「その ような おり」 uses 「おり」 to refer to a potential future occasion in a formal and polite manner.
+      「ございまし たら」 is the humble form of 「あったら」, reinforcing the formality. This phrasing is common in business
+      communication.
+  - english: When I left the company, I received a lot of encouragement.
+    japanese:
+      - 会社 を 退職 する {おり}、多く の 励まし を いただき まし た。
+      - 会社 を 退職 し た {おり} に、多く の 励まし を いただき まし た。
+      - 会社 を 退職 する {おり} に、多く の 励まし を いただき まし た。
+    english_literally: When resigning from the company, I received a lot of encouragement.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 を 退職 する とき、多く の 励まし を いただき まし た。
+        english: When I left the company, I received a lot of encouragement.
+        hint: 「とき」 is a neutral temporal marker. We're looking for a formal or humble expression of the
+          occasion.
+      - competing_japanese:
+          - 会社 を 退職 する 際、多く の 励まし を いただき まし た。
+        english: Upon my resignation from the company, I received a lot of encouragement.
+        hint: 「際」 is formal but less personal and humble than 「おり」 in this context. We're looking for
+          a formal and humble expression.
+    scene: A person recounting their experience of leaving a company, speaking to former colleagues or
+      a mentor.
+    register: formal
+    setting: reflective
+    nuance: 「退職 する おり」 uses the dictionary form of the verb followed by 「おり」 to describe the occasion
+      of resignation. This is a common formal construction for defining the time of an event. 「いただきました」
+      further adds to the humble register, indicating that the speaker received something (encouragement)
+      from someone superior or in a respectful context.
+  - english: Please feel free to ask questions when you have any concerns.
+    japanese:
+      - ご 不明 な 点 が {おり} まし たら、お 気軽 に お 尋ね ください。
+      - ご 不明 な 点 が ある {おり} に は、お 気軽 に お 尋ね ください。
+    english_literally: If there are unclear points, on the occasion, please feel free to ask.
+    competing_grammar:
+      - competing_japanese:
+          - ご 不明 な 点 が ある とき は、お 気軽 に お 尋ね ください。
+        english: If there are unclear points, when that happens, please feel free to ask.
+        hint: Using 「とき」 would make the sentence less formal. We're looking for a polite, advisory tone.
+    scene: A customer service representative addressing a client, offering assistance.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This example uses 「おり」 in a polite, advisory context. While the humble nuance is present,
+      it primarily serves to formalize the request for questions. 「ご不明な点」 (unclear points) and 「お気軽に」
+      (feel free) are typical polite expressions.
+  - english: When he came to Japan, I had the opportunity to meet him.
+    japanese:
+      - 彼 が 来日 し た {おり} に、お 会い する 機会 が あり まし た。
+      - 彼 が 来日 の {おり} に、お 会い する 機会 が あり まし た。
+    english_literally: When he came to Japan, I had the opportunity to meet.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来日 し た とき に、お 会い する 機会 が あり まし た。
+        english: When he came to Japan, I had the opportunity to meet him.
+        hint: Using 「とき」 is grammatically correct but doesn't convey the same level of formality or implied
+          respect for the person who came to Japan. We're looking for a formal expression.
+      - competing_japanese:
+          - 彼 が 来日 し た 際 に、お 会い する 機会 が あり まし た。
+        english: On the occasion he came to Japan, I had the opportunity to meet him.
+        hint: 「際」 is formal but might suggest a more significant, official event rather than a general
+          occasion with humble implications. We're looking for a formal expression that includes a humble
+          nuance in the overall sentence.
+    scene: Someone talking about meeting an important person who visited Japan.
+    register: formal
+    setting: storytelling
+    nuance: 「来日 した おり に」 uses the past tense verb followed by 「おり に」 to mark a specific past occasion.
+      「お会い する」 is a humble expression for 'to meet', reinforcing the formal and respectful tone of the
+      sentence. This implies the person met was of higher status.
+  - english: We will provide guidance when the meeting takes place.
+    japanese:
+      - 会議 の 開催 の {おり} に は、ご 案内 いたし ます。
+      - 会議 が 開催 さ れる {おり} に は、ご 案内 いたし ます。
+    english_literally: On the occasion of the meeting's holding, we will guide.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 開催 の とき に は、ご 案内 いたし ます。
+        english: At the time of the meeting, we will guide.
+        hint: 「とき」 is less formal. We're looking for a formal expression suitable for an official announcement.
+      - competing_japanese:
+          - 会議 の 開催 の 際 に は、ご 案内 いたし ます。
+        english: On the occasion of the meeting, we will guide.
+        hint: 「際」 is formal, but 「おり」 can sometimes be preferred when emphasizing the specific moment
+          of an event within a formal process. We're looking for a formal expression that implies a planned
+          occasion.
+    scene: An administrator sending out an official notice about a future meeting.
+    register: formal
+    setting: informative
+    nuance: 「会議 の 開催 の おり には」 uses 「おり」 to refer to a future formal event. The 'の' before 'おり' indicates
+      that 'おり' is a noun here modifying '開催'. 「ご案内 いたします」 is a humble expression for 'we will guide you',
+      fitting the formal communication context.
+  - english: I will visit you again when I am in your area.
+    japanese:
+      - また そちら へ 参る {おり} に、お 伺い いたし ます。
+      - また そちら へ 参り まし た {おり} に、お 伺い いたし ます。
+    english_literally: Again, when going there, I will humbly visit.
+    competing_grammar:
+      - competing_japanese:
+          - また そちら へ 行く とき に、お 伺い いたし ます。
+        english: Again, when going there, I will humbly visit.
+        hint: Using 「行く とき」 is less humble and less formal. We're looking for a sentence that conveys
+          deep humility from the speaker.
+    scene: A business person making a promise to visit a client or partner in the future.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: 「参る おり」 uses the humble verb 「参る」 (to go/come) with 「おり」, signifying a humble intention to
+      visit. 「お伺い いたします」 is also a humble expression for 'to visit/ask', doubling down on the deference
+      shown to the listener and their location.
+  - english: We received your order when you contacted us.
+    japanese:
+      - ご 連絡 いただい た {おり} に、ご 注文 を 承り まし た。
+      - ご 連絡 を いただき まし た {おり} に、ご 注文 を 承り まし た。
+    english_literally: When we received your contact, we accepted the order.
+    competing_grammar:
+      - competing_japanese:
+          - ご 連絡 いただい た とき に、ご 注文 を 承り まし た。
+        english: When you contacted us, we accepted the order.
+        hint: 「とき」 is neutral and does not emphasize the recipient's humble stance towards the customer's
+          action. We're looking for a humble expression in a business context.
+    scene: A company representative confirming an order with a customer.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: 「ご連絡 いただいた おり に」 is a very polite and humble way to refer to the customer's previous action
+      of contacting. 「承りました」 is the humble form of 'received' or 'accepted', demonstrating the highest
+      level of respect towards the customer's action and their order.
+  - english: When you have the chance to come to Tokyo, please let me know.
+    japanese:
+      - 東京 へ お 越し に なる {おり} が ござい まし たら、ご 一報 ください。
+      - 東京 へ お 越し の {おり} が ござい まし たら、ご 一報 ください。
+    english_literally: If there is an occasion when you come to Tokyo, please give a report.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 へ いらっしゃる とき が ござい まし たら、ご 一報 ください。
+        english: If there is a time you come to Tokyo, please let me know.
+        hint: Using 「とき」 makes the request less formal, even with respectful verbs. We're looking for
+          a highly formal and respectful invitation.
+      - competing_japanese:
+          - 東京 へ いらっしゃる 際 が ござい まし たら、ご 一報 ください。
+        english: If there is an occasion you come to Tokyo, please let me know.
+        hint: While 「際」 is formal, 「おり」 can convey a slightly softer, more welcoming tone in this context,
+          fitting the invitation. We're looking for a highly formal and respectful invitation.
+    scene: Inviting someone of higher status to Tokyo.
+    register: sonkeigo (respectful)
+    setting: friendly
+    nuance: 「お越し に なる」 is a respectful expression for 'to come'. Combining it with 「おり」 and 「ございまし たら」
+      (respectful for 'if there is') creates a very polite invitation. 「ご一報ください」 means 'please inform
+      me (with humility)'.
+  - english: I was very surprised when I heard the news.
+    japanese:
+      - その 知らせ を 聞い た {おり}、大変 驚き まし た。
+      - その 知らせ を 聞い た {おり} に、大変 驚き まし た。
+    english_literally: When I heard that news, I was very surprised.
+    competing_grammar:
+      - competing_japanese:
+          - その 知らせ を 聞い た とき、大変 驚き まし た。
+        english: When I heard that news, I was very surprised.
+        hint: Using 「とき」 is neutral and less formal for recounting an event. We're looking for a formal
+          statement about the occasion.
+    scene: Someone recounting a past event where they received surprising news.
+    register: formal
+    setting: reflective
+    nuance: This usage is formal, using 「聞いた おり」 to mark the point in time when the news was heard. It
+      elevates the recounting of the event, making it suitable for a formal report or sharing with someone
+      to whom respect is due.
+post_example_writeup: As demonstrated by these examples, 「おり」 is versatile across various formal and humble
+  scenarios, from expressing gratitude and making requests to recounting past events or setting future
+  appointments. Its consistent role is to add a layer of politeness and deference, making it an indispensable
+  part of formal Japanese communication, particularly in business and respectful social interactions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/おり

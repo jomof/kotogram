@@ -1,0 +1,243 @@
+grammar_point: で (location of action)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+meaning: Indicates the location where an action or event takes place.
+pronunciation:
+  katakana: デ
+  romaji: de
+formation:
+  '[Location Noun] + で + [Action Verb]': Indicates the place where an action is performed.
+  '[Location Noun] + で + [Event Noun] + が + ある': Indicates the location where an event takes place.
+jlpt: N5
+etymology: The particle 「で」 is believed to have originated from the te-form of the classical Japanese
+  copula 「なり」, which evolved into 「にて」 and then shortened to 「で」. This origin implies a state or condition
+  from which an action arises or within which it occurs, leading to its function of marking the location
+  or means of an action. It essentially signifies "being at (a place)" or "being by means of (a method),"
+  connecting the location or means to the verb's action. This explains its various uses in modern Japanese,
+  including marking location of action, means, and cause.
+writeup: |-
+  The particle 「で」 is used to indicate the location where an action or event takes place. It answers the question "where?" in relation to a verb of action. Think of it as specifying the "venue" or "site" of an activity.
+
+  It is crucial to differentiate 「で」 from other particles that mark location, such as 「に」 and 「を」. While 「に」 typically marks the static location where something exists or the destination of movement, 「で」 explicitly marks the location *where an action is performed*. For instance, if you are *at* a library (static location), you would use 「図書館にいます」. However, if you *study at* the library (action performed), you would say 「図書館で勉強します」.
+
+  Similarly, 「で」 differs from 「を」, which marks the path or area through which movement occurs (e.g., 「道を歩く」 - "walk *along* the road"). 「で」, on the other hand, marks the confined space *within which* an action occurs (e.g., 「部屋で読む」 - "read *in* the room").
+
+  「で」 can also indicate the location where an event happens. For example, a concert happening in a hall would be 「ホールでコンサートがある」.
+
+  This particle is fundamental for clearly expressing the setting of actions in Japanese sentences. Its usage emphasizes the dynamic relationship between the action and its physical environment.
+false_friends:
+  - term: に (static location・time)
+    meaning: Indicates the static location where something exists or the time an event occurs.
+    kind: often confused with
+    nuance: 「で」 marks the location where an action takes place, emphasizing the *activity*. 「に」 marks
+      the static location of existence or the destination/result of movement, emphasizing the *state or
+      endpoint*.
+    grammar_point: に (static location・time)
+  - term: を (path of movement)
+    meaning: Indicates the location or path through which movement occurs.
+    kind: often confused with
+    nuance: While 「で」 marks the place where an action happens, 「を」 marks the space or path traversed by
+      a verb of movement.
+    grammar_point: を (path of movement)
+  - term: で (means・method)
+    meaning: Indicates the means, method, or instrument used for an action.
+    kind: similar expression
+    nuance: This is the same particle but with a different function. 「で (location of action)」 specifies
+      *where* an action occurs, while 「で (means・method)」 specifies *how* or *with what* an action occurs.
+    grammar_point: で (means・method)
+  - term: で (cause・reason)
+    meaning: Indicates the cause or reason for something.
+    kind: similar expression
+    nuance: This 「で」 functions as a causal particle, linking a reason to a consequence, whereas 「で (location
+      of action)」 purely specifies the physical place of an event.
+    grammar_point: で (cause・reason)
+  - term: で (by time)
+    meaning: Indicates a time limit or deadline.
+    kind: similar expression
+    nuance: This 「で」 marks a deadline or time constraint, distinct from the locative 「で」 which specifies
+      where an action happens.
+    grammar_point: で (by time)
+post_false_friends_writeup: To avoid confusion, remember that 「で」 (location of action) always highlights
+  the place where an *activity* happens. In contrast, 「に」 often indicates a static *state of existence*
+  or a *destination*, while 「を」 marks the *path* taken. The other uses of 「で」 (means, cause, time limit)
+  are distinct functions of the same particle; context and the type of verb or noun they accompany are
+  key to distinguishing them.
+examples:
+  - english: I eat lunch at the cafe.
+    japanese:
+      - 私 は カフェ {で} 昼ごはん を 食べ ます。
+      - 私 は カフェ {で} 昼ごはん を 食べる。
+      - カフェ {で} 昼ごはん 食べる。
+    english_literally: As for me, at the cafe, I eat lunch.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は カフェ に い ます。
+        english: I am at the cafe.
+        hint: 「に」 marks static existence, not an action. We're looking for where an action is performed.
+    scene: A casual conversation about daily routines.
+    register: teineigo (polite)
+    setting: informative
+  - english: My younger brother is playing games in his room.
+    japanese:
+      - 弟 は 部屋 {で} ゲーム を し て いる。
+      - 弟 は 部屋 {で} ゲーム を し て い ます。
+      - 弟 は 部屋 {で} ゲーム し てる。
+    english_literally: As for my younger brother, in the room, he is doing games.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は 部屋 に いる。
+        english: My younger brother is in his room.
+        hint: 「に」 marks existence in a location. We're looking for an action happening there.
+    scene: A parent describing what their child is doing.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: The casual register and the use of 「している」 indicate a direct observation or statement in informal
+      family conversation. 「弟は部屋でゲームをしている」 implies the action of playing is actively happening 「部屋で」 within
+      the room.
+  - english: There will be a party at the community center.
+    japanese:
+      - 公民 館 {で} パーティー が ある。
+      - 公民 館 {で} パーティー が あり ます。
+    english_literally: At the community center, a party exists/will be.
+    competing_grammar:
+      - competing_japanese:
+          - 公民 館 に パーティー が あり ます。
+        english: There is a party at the community center.
+        hint: While 「に」 can be used for existence, 「で」 is more common and natural when describing an *event
+          taking place* at a location. We're looking for where an event will happen.
+    scene: Announcing an upcoming event.
+    register: casual
+    setting: informative
+  - english: We watched a movie at home yesterday.
+    japanese:
+      - 昨日、家 {で} 映画 を 見 た。
+      - 昨日、家 {で} 映画 を 見 まし た。
+      - 昨日、家 {で} 映画 見 た。
+    english_literally: Yesterday, at home, we watched a movie.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、家 に 映画 が ある。
+        english: Yesterday, there was a movie at home.
+        hint: 「に」 indicates existence. We're talking about *watching* the movie, which is an action.
+    scene: Talking about weekend activities with a friend.
+    register: casual
+    setting: friendly
+  - english: I will buy souvenirs at the airport.
+    japanese:
+      - 空港 {で} お 土産 を 買い ます。
+      - 空港 {で} お 土産 を 買う。
+    english_literally: At the airport, I will buy souvenirs.
+    competing_grammar:
+      - competing_japanese:
+          - 空港 に お 土産 が あり ます。
+        english: There are souvenirs at the airport.
+        hint: We are describing an *action* of buying, not merely the existence of souvenirs.
+    scene: Someone planning their trip.
+    register: teineigo (polite)
+    setting: informative
+  - english: Many different cultures coexist in this city.
+    japanese:
+      - この 都市 {で} は 様々 な 文化 が 共存 し て いる。
+      - この 都市 {で} は 様々 な 文化 が 共存 し て い ます。
+      - この 都市 {で} 様々 な 文化 が 共存 し て いる。
+    english_literally: In this city, various cultures are coexisting.
+    competing_grammar:
+      - competing_japanese:
+          - この 都市 に 様々 な 文化 が 共存 し て いる。
+        english: Various cultures exist in this city.
+        hint: While 「に」 can denote existence, 「で」 emphasizes the area where a complex state or process
+          (like "coexistence") is *active*.
+    scene: A discussion about urban diversity.
+    register: formal
+    setting: academic
+    nuance: The use of 「この都市では」 emphasizes the city as the broader context or scope within which the coexistence
+      occurs. 「で」 clearly marks the city as the arena of this "coexistence" action/state.
+  - english: We had a serious discussion at the meeting.
+    japanese:
+      - 会議 室 {で} 真剣 な 議論 を し た。
+      - 会議 室 {で} 真剣 な 議論 を し まし た。
+    english_literally: In the meeting room, we did a serious discussion.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 室 に 真剣 な 議論 が ある。
+        english: There is a serious discussion in the meeting room.
+        hint: 「に」 marks static existence. We are looking for where the *discussion took place*.
+    scene: Reporting on a business meeting.
+    register: semi-formal
+    setting: professional
+  - english: The students study together at the library.
+    japanese:
+      - 学生 たち は 図書 館 {で} 一緒 に 勉強 する。
+      - 学生 たち は 図書 館 {で} 一緒 に 勉強 し ます。
+    english_literally: As for the students, at the library, they study together.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 たち は 図書 館 に いる。
+        english: The students are in the library.
+        hint: We're specifying the action of "studying," not just being present.
+    scene: Describing student routines.
+    register: casual
+    setting: informative
+  - english: You can buy fresh fish at that market.
+    japanese:
+      - あの 市場 {で} 新鮮 な 魚 を 買える。
+      - あの 市場 {で} 新鮮 な 魚 を 買え ます。
+    english_literally: At that market, you can buy fresh fish.
+    competing_grammar:
+      - competing_japanese:
+          - あの 市場 に 新鮮 な 魚 が ある。
+        english: There is fresh fish at that market.
+        hint: We are talking about the *action* of buying the fish, not just its existence.
+    scene: Giving directions or recommendations.
+    register: casual
+    setting: friendly
+  - english: I'll wait for you at the station entrance.
+    japanese:
+      - 駅 の 入り口 {で} 待っ て いる ね。
+      - 駅 の 入り口 {で} 待っ て い ます ね。
+      - 駅 の 入り口 {で} 待っ てる ね。
+    english_literally: At the station's entrance, I am waiting, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の 入り口 に いる ね。
+        english: I will be at the station entrance.
+        hint: While 「に」 indicates presence, 「で」 emphasizes the place where the *action of waiting* occurs.
+    scene: Making plans with a friend.
+    register: shitashii kuchō (intimate)
+    setting: friendly
+    nuance: The use of 「待っているね」 with 「ね」 softens the statement and seeks agreement, typical in intimate
+      conversations. 「駅の入り口で」 specifies the exact meeting point for the action of waiting.
+  - english: They are talking loudly in the park.
+    japanese:
+      - 公園 {で} 大声 で 話し て いる。
+      - 公園 {で} 大声 で 話し て い ます。
+      - 公園 {で} 大声 で 話し てる。
+    english_literally: In the park, they are talking with a loud voice.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 に 大声 で 話し て いる 人 が いる。
+        english: There are people speaking loudly in the park.
+        hint: The sentence focuses on the *action* of talking and its location, not merely the existence
+          of people.
+    scene: Observing people in a park.
+    register: casual
+    setting: informative
+  - english: If you play sports in the gym, be careful.
+    japanese:
+      - 体育 館 {で} スポーツ を する なら、気 を つけ て ください。
+      - 体育 館 {で} スポーツ を する なら、気 を つけ て。
+    english_literally: If you do sports in the gym, please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 体育 館 に スポーツ が ある なら、気 を つけ て ください。
+        english: If there is sports in the gym, please be careful.
+        hint: 「で」 marks the location of the *action* of playing sports. 「に」 implies the existence of sports
+          equipment.
+    scene: Giving advice or instructions.
+    register: teineigo (polite)
+    setting: instructional
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A7%EF%BC%88location-of-action%EF%BC%89

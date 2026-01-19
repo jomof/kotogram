@@ -1,0 +1,215 @@
+grammar_point: だいたい (in the first place)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[なくて] (negative te-form)
+  - ~なくてはいけない・なくちゃ (must do・have to)
+  - じゃないか (isn't it?)
+  - そのもの (itself)
+  - ってば・ったら (insistence or exasperation)
+  - な-Adjective[がる] (showing signs of)
+  - な-Adjective[ではない・じゃない] (plain negative)
+  - なぜか (for some reason)
+  - に足りない (not worthy or sufficient)
+meaning: In the first place; for crying out loud
+pronunciation:
+  katakana: ダイタイ
+  romaji: daitai
+formation:
+  だいたい + [Statement of fundamental reason/complaint]: Introduces a fundamental reason, a strong complaint,
+    or a basic truth that underpins an argument, often with a sense of exasperation.
+jlpt: N4
+etymology: 大体 (だいたい) is formed from the kanji 大 (dai), meaning "large" or "great," and 体 (tai), meaning
+  "body" or "substance." Together, they suggest the main, essential, or foundational part of something.
+  This meaning evolved to encompass the idea of 'in the first place' or 'fundamentally,' as one addresses
+  the 'main body' or 'core' of an issue before anything else. It highlights the primary, underlying point.
+writeup: |-
+  だいたい (daitai) serves as an adverb that introduces a fundamental reason, a core complaint, or a basic truth. Unlike its other nuance which indicates approximation, this usage of だいたい emphasizes a point that should be considered first or that underpins an entire situation, often with a sense of frustration or exasperation from the speaker.
+
+  It's frequently used to express an opinion about a situation that has gone wrong, or to question the very basis of an argument. When used in this manner, it can convey a tone similar to "for crying out loud," "honestly," or "what it comes down to." It highlights a core issue that, from the speaker's perspective, is so obvious or essential it should have been acknowledged earlier or handled differently.
+false_friends:
+  - term: そもそも
+    meaning: in the first place, to begin with
+    kind: similar expression
+    nuance: 「そもそも」 strictly refers to the origin or fundamental premise of something, often used to challenge
+      or question the very basis of a situation, implying it shouldn't have happened or started at all.
+      While similar to だいたい in meaning 'in the first place,' だいたい can be used more broadly to introduce
+      a fundamental reason or complaint without necessarily challenging the initial premise in the same
+      absolute way. だいたい focuses on the core truth or immediate flaw, whereas そもそも questions the genesis
+      itself.
+    grammar_point: そもそも (in the first place)
+  - term: だいたい (approximate)
+    meaning: roughly, approximately, mostly
+    kind: similar expression
+    nuance: While phonetically identical, this sense of 「だいたい」 refers to estimation or generalization,
+      indicating a non-precise amount or state. The grammar point 「だいたい (in the first place)」, however,
+      introduces a fundamental reason or an exasperated complaint, focusing on a core underlying truth.
+    grammar_point: <suggest>:だいたい (approximate)
+post_false_friends_writeup: 「だいたい」 has two primary meanings. One refers to approximation, meaning 'roughly'
+  or 'mostly'. The other, as discussed here, introduces a fundamental reason or an exasperated complaint.
+  For instance, if you say 「だいたい３０分かかります」 ("It takes roughly 30 minutes"), you are using the approximation
+  sense. In contrast, when you say 「だいたい、なぜこんなことになったんだ？」 ("In the first place, why did this happen?"),
+  you are using the fundamental reason sense, often with frustration. This distinction is crucial for
+  correct usage. Similarly, 「だいたい」 and 「そもそも」 both translate to "in the first place," but their core nuances
+  differ. 「そもそも」 is about the origin and challenges the very beginning of something. For instance, if
+  you say 「そもそも、そんな計画を立てるべきではなかった」 ("In the first place, you shouldn't have made such a plan"), you're
+  criticizing the foundational decision. On the other hand, 「だいたい」, while also introducing a fundamental
+  point, often conveys exasperation about a current situation or a general truth, rather than strictly
+  focusing on the absolute origin. For example, 「だいたい、そんな言い方はないでしょう？」 ("For crying out loud, you can't
+  say that, can you?") expresses a general complaint about manners, not necessarily their origin.
+examples:
+  - english: In the first place, why did you do such a thing?
+    japanese:
+      - '{だいたい} なぜ あなた は そんな こと を し た の です か？'
+      - '{だいたい} なぜ あなた は そんな こと を し た の？'
+      - '{だいたい} なぜ そんな こと を し た の？'
+      - '{だいたい} そんな こと を なぜ し た ん だ？'
+    english_literally: In the first place, why did you do such a thing?
+    competing_grammar:
+      - competing_japanese:
+          - '{そもそも} なぜ あなた は そんな こと を し た の です か？'
+        english: Why did you do such a thing to begin with?
+        hint: 「そもそも」 strongly questions the fundamental premise or origin, implying the action should
+          not have happened at all. We're looking for a slightly broader, exasperated fundamental question.
+    scene: A parent scolding their child for a mischievous act.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「なぜ」 combined with 「だいたい」 conveys strong exasperation and a questioning of fundamental
+      logic, implying that the action should not have happened at all. The direct question form 「…したのですか？」
+      reinforces the scolding tone often used by parents towards children, or between older individuals
+      towards younger ones when expressing disappointment or bewilderment.
+  - english: In the first place, it's weird to think like that!
+    japanese:
+      - '{だいたい} そんな 風 に 考える の が おかしい！'
+      - '{だいたい} そんな 風 に 考える の は おかしい です よ！'
+    english_literally: In the first place, thinking in such a way is strange!
+    competing_grammar:
+      - competing_japanese:
+          - '{正直}、そんな 風 に 考える の は おかしい よ！'
+        english: Honestly, thinking that way is strange!
+        hint: 「正直」 emphasizes honesty, but not necessarily a fundamental, exasperated truth. We're looking
+          for a strong, basic criticism of a thought process.
+    scene: Two friends arguing about a controversial topic.
+    register: casual
+    setting: serious
+  - english: In the first place, this plan itself has too many flaws.
+    japanese:
+      - '{だいたい} この 計画 その もの に 欠陥 が 多 すぎる。'
+      - '{だいたい} この 計画 その もの に 欠陥 が 多 すぎ ます。'
+    english_literally: In the first place, this plan itself has too many flaws.
+    competing_grammar:
+      - competing_japanese:
+          - '{そもそも} この 計画 自体 に 問題 が ある。'
+        english: To begin with, this plan itself has problems.
+        hint: 「そもそも」 would imply the plan shouldn't have been conceived. 「だいたい」 highlights current, fundamental
+          flaws within the plan.
+    scene: A team meeting where a manager is critically reviewing a proposed project plan.
+    register: formal
+    setting: professional
+  - english: In the first place, he's always late, isn't he?
+    japanese:
+      - '{だいたい} 彼 は いつ も 遅刻 する 人 じゃ ない か。'
+      - '{だいたい} 彼 は いつ も 遅刻 する でしょ？'
+    english_literally: In the first place, he is a person who is always late, isn't he?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 遅刻 する 人 {だ よ ね}。
+        english: He's always the type of person who is late, isn't he?
+        hint: This is a simple statement of fact. We're looking for an exasperated, foundational complaint
+          about a person's habit.
+    scene: Two colleagues discussing a habitually late coworker.
+    register: casual
+    setting: friendly
+  - english: In the first place, no one likes to be told what to do.
+    japanese:
+      - '{だいたい} 人 は 指図 さ れる の を 嫌 がる もの だ。'
+      - '{だいたい} 人 は 指図 さ れる の を 嫌 がる もの です。'
+    english_literally: In the first place, people are things that dislike being given orders.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 も 指図 さ れる の は 好き {じゃ ない よ ね}。
+        english: No one likes being told what to do, right?
+        hint: This is a softer, agreement-seeking statement. We're looking for a firm, general truth about
+          human nature.
+    scene: A mentor advising a junior colleague on managing a team effectively.
+    register: semi-formal
+    setting: informative
+  - english: In the first place, the way you started was wrong.
+    japanese:
+      - '{だいたい} やり 方 が 間違っ て い た ん だ。'
+      - '{だいたい} やり 方 が 間違っ て い まし た よ。'
+    english_literally: In the first place, the method was wrong.
+    competing_grammar:
+      - competing_japanese:
+          - '{最初} の やり 方 が 間違っ て い た ね。'
+        english: The initial way of doing it was wrong.
+        hint: 「最初」 means 'at the beginning', a simple temporal point. We're looking for a fundamental,
+          exasperated criticism of the approach itself.
+    scene: A senior engineer critiquing a junior's code or project approach.
+    register: formal
+    setting: professional
+  - english: In the first place, that's not even the main issue.
+    japanese:
+      - '{だいたい} それ は 問題 の 本質 じゃ ない。'
+      - '{だいたい} それ は 問題 の 本質 で は あり ませ ん。'
+    english_literally: In the first place, that is not the essence of the problem.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {論点 が 違う よ}。
+        english: That's a different point of discussion.
+        hint: This indicates a shift in topic. We're looking for a statement that fundamentally dismisses
+          the relevance of the point being made.
+    scene: During a heated debate, someone trying to refocus the discussion on the core problem.
+    register: formal
+    setting: academic
+  - english: In the first place, we didn't have enough time.
+    japanese:
+      - '{だいたい} 時間 が 足り なかっ た ん だ。'
+      - '{だいたい} 時間 が 足り なかっ た ん です よ。'
+    english_literally: In the first place, time was insufficient.
+    competing_grammar:
+      - competing_japanese:
+          - '{そもそも} 時間 が なかっ た。'
+        english: To begin with, there was no time.
+        hint: 「そもそも」 implies that the lack of time was the root cause from the very start. 「だいたい」 here
+          states a fundamental reason for a current problem with a sense of frustration.
+    scene: A student explaining why they couldn't complete a complex assignment.
+    register: casual
+    setting: serious
+  - english: In the first place, why do I have to do it alone?
+    japanese:
+      - '{だいたい} な ん で 私 だけ が やら なく ちゃ いけ ない の？'
+      - '{だいたい} なぜ 私 だけ が やら なけれ ば なら ない の です か？'
+    english_literally: In the first place, why only I must do?
+    competing_grammar:
+      - competing_japanese:
+          - '{な ん で 私 だけ な の}？'
+        english: Why is it just me?
+        hint: This is a simple question of unfairness. We're looking for an exasperated complaint highlighting
+          a fundamental injustice.
+    scene: A team member complaining about uneven distribution of work.
+    register: casual
+    setting: friendly
+  - english: In the first place, I told you not to touch it!
+    japanese:
+      - '{だいたい} 触る な って 言っ た だろう！'
+      - '{だいたい} 触る な って 言い まし た でしょ！'
+    english_literally: In the first place, I said 'don't touch'!
+    competing_grammar:
+      - competing_japanese:
+          - 触る な って 言っ た {じゃ ない か}！
+        english: I told you not to touch it, didn't I?
+        hint: This is a statement seeking agreement or confirmation. We're looking for a strong, exasperated
+          reprimand based on a prior instruction.
+    scene: A frustrated person reacting to someone messing with something they were explicitly told not
+      to touch.
+    register: casual
+    setting: serious
+post_example_writeup: This usage of だいたい clearly expresses the speaker's frustration or assertion of a
+  fundamental truth. It often implies a sense of "why are we even discussing this, the basic fact is..."
+  or "I told you so, this is the root of the problem." It's a useful phrase for cutting to the chase and
+  stating what the speaker perceives as the indisputable core issue.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だいたい

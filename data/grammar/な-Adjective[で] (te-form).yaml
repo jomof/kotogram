@@ -1,0 +1,236 @@
+grammar_point: な-Adjective[で] (te-form)
+learn_before:
+  - Verb[ます] (polite present)
+  - '[Clause]ので (because・so)'
+  - い-Adjective[さ] (nominalizer)
+  - です (polite copula)
+  - とあって (given that)
+  - な-Adjective[でした] (polite past)
+  - な-Adjective[でも] (concessive)
+  - ないでください・ないで (please don't)
+  - 入り (containing)
+  - 利用する (to use)
+meaning: and, because
+pronunciation:
+  katakana: デ
+  romaji: de
+formation:
+  な-Adjective stem + で: Connects clauses; can indicate cause, means, or simply join descriptive elements.
+jlpt: N5
+etymology: The particle 「で」 is historically derived from the locative case particle 「に」 and a form of
+  the verb 「あり」 (to be/exist). Over time, its function expanded to include means, cause, and sequential
+  actions, and it became a common connective form for nouns and な-adjectives. For な-adjectives, it links
+  the adjectival stem to subsequent clauses, functioning similarly to the te-form of verbs.
+writeup: 'The な-Adjective + 「で」 form, often referred to as the te-form of な-adjectives, serves as a versatile
+  connective in Japanese grammar. It allows you to link clauses, indicating various relationships such
+  as cause and effect, concurrent states, or simply listing attributes in a continuous flow. When connecting
+  two clauses, 「で」 can imply that the first clause describes a state or condition that leads to the second
+  clause. For example, if you say 「静かで、勉強しやすいです」 (It''s quiet, and easy to study), 「静かで」 explains why
+  it''s easy to study. In this sense, it functions much like "because it''s quiet" or "being quiet." It
+  can also be used to list multiple qualities of a noun or situation. For instance, 「この部屋は広くてきれいです」 (This
+  room is spacious and clean) uses the te-form of an い-adjective, but the principle is the same for な-adjectives:
+  「この部屋はきれいで広いです」 (This room is clean and spacious). Here, 「で」 simply links two descriptive adjectives.
+  「で」 can also indicate the means or method, though this is less common with な-adjectives themselves and
+  more so with nouns followed by 「で」. However, in phrases like 「無料で利用できます」 (You can use it for free),
+  「無料」 (free of charge) is a な-adjective, and 「で」 indicates the condition under which something is done.
+  It''s important to remember that 「で」 for な-adjectives creates a smooth connection between ideas, often
+  indicating a reason or a sequence of descriptive elements, without necessarily implying a strict temporal
+  order like the te-form for verbs often does.'
+false_friends:
+  - term: い-Adjective[くて]
+    meaning: (te-form of い-adjectives) and, because
+    kind: similar expression
+    nuance: While both forms connect adjectives and can indicate cause or simply join ideas, 「い-Adjective[くて]」
+      is used for い-adjectives, whereas 「な-Adjective[で]」 is used for な-adjectives. They are structurally
+      similar but apply to different adjective types.
+    grammar_point: い-Adjective[くて] (te-form)
+  - term: Clauseから
+    meaning: because, so
+    kind: similar expression
+    nuance: 「 Clauseから」 more explicitly states a cause or reason, often implying a stronger causal link.
+      な-Adjective[で] can imply cause, but it's often more subtle, sometimes simply connecting descriptive
+      clauses without a strong causal implication. 「から」 directly follows a complete clause.
+    grammar_point: '[Clause]から (because・so)'
+  - term: Verb[て]
+    meaning: (te-form of verbs) and then, by means of
+    kind: similar expression
+    nuance: The te-form of verbs often implies a sequential action or a means to an end. While な-Adjective[で]
+      connects clauses, it primarily describes a state or characteristic, or provides a reason, rather
+      than a direct action or temporal sequence.
+    grammar_point: Verb[て] (and then)
+  - term: と (and, connects nouns)
+    meaning: and, with
+    kind: similar expression
+    nuance: 「と」 is used to connect nouns in an exhaustive list, or to mean "with". な-Adjective[で] connects
+      adjectives or nouns acting as adjectives to subsequent clauses, functioning as a connective for
+      descriptive elements rather than listing distinct nouns.
+    grammar_point: と (and, connects nouns)
+post_false_friends_writeup: When distinguishing between な-Adjective[で] and other connective forms, consider
+  the part of speech being connected and the strength of the relationship implied. The te-form for い-adjectives,
+  「い-Adjective[くて]」, functions identically for its respective adjective type. 「Clauseから」 provides a more
+  direct and often stronger causal link. The te-form of verbs, 「Verb[て]」, generally connects actions,
+  often implying sequence or means, which differs from the descriptive or causal roles of な-Adjective[で].
+  Finally, 「と」 is strictly for listing nouns or indicating accompaniment, not for connecting descriptive
+  clauses.
+examples:
+  - english: This park is quiet and beautiful.
+    japanese:
+      - この 公園 は {静か で} 綺麗 です。
+      - この 公園 は {静か で} 綺麗 で ござい ます。
+      - この 公園 は {静か で} 綺麗 だ よ。
+    english_literally: This park is quiet and beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - この 公園 は 静か で 綺麗 と いい ます。
+        english: This park is called quiet and beautiful.
+        hint: 「と いいます」 is used for naming or quoting, not simply listing qualities. We're looking for
+          a connective that joins attributes.
+    scene: Describing a park to a friend during a casual conversation.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Because it's convenient, I often use this cafe.
+    japanese:
+      - この カフェ は {便利 で}、よく 利用 し ます。
+      - この カフェ は {便利 で}、よく 利用 いたし ます。
+      - この カフェ は {便利 で}、よく 利用 する ん だ。
+    english_literally: This cafe is convenient, and I often use it.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ は 便利 な の で、よく 利用 し ます。
+        english: Because this cafe is convenient, I often use it.
+        hint: 「なので」 also indicates a reason, but 「な-Adjective[で]」 is a simpler connective here. We're
+          looking for the te-form of the な-adjective.
+    scene: Explaining to a colleague why you frequent a certain cafe.
+    register: teineigo (polite)
+    setting: informative
+  - english: She is kind and diligent.
+    japanese:
+      - 彼女 は {親切 で} 勤勉 です。
+      - 彼女 は {親切 で} 勤勉 だ。
+      - 彼女 は {親切 で}、とても 勤勉 です。
+    english_literally: She is kind and diligent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 親切 そして 勤勉 です。
+        english: She is kind and, also, diligent.
+        hint: 「そして」 connects phrases or sentences and implies a sequence or addition. We're looking for
+          a simple way to list attributes.
+    scene: Describing a new colleague to your manager.
+    register: teineigo (polite)
+    setting: professional
+  - english: Since it's dangerous, please don't go near it.
+    japanese:
+      - '{危険 で} ある の で、近づか ない で ください。'
+      - '{危険 で}、近づか ない で ください。'
+      - '{危険 で} ござい ます の で、近づか ない で ください ませ。'
+    english_literally: Because it is dangerous, please do not approach.
+    competing_grammar:
+      - competing_japanese:
+          - 危険 だ から、近づか ない で ください。
+        english: Because it's dangerous, please don't go near it.
+        hint: 「だから」 is a more direct and casual way to state a reason. We're looking for a slightly more
+          formal or softened causal connection.
+    scene: A park ranger warning visitors about a restricted area.
+    register: formal
+    setting: instructional
+  - english: That movie was really interesting, and I cried a lot.
+    japanese:
+      - あの 映画 は {感動 的 で}、すごく 泣い た よ。
+      - あの 映画 は {感動 的 で}、すごく 泣い た ぜ。
+      - あの 映画 は {感動 的 で}、すごく 泣い た ね。
+    english_literally: That movie was moving, and I cried a lot.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画 は 感動 的 だっ た から、すごく 泣い た よ。
+        english: Because that movie was moving, I cried a lot.
+        hint: 「だった から」 explicitly states the past reason. We're looking for a more seamless connection
+          between the adjective and the consequence.
+    scene: Talking with a close friend after watching a movie together.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The speaker's casual tone is indicated by the plain past tense 「泣いた」 and the sentence-ending
+      particle 「よ」. While 「よ」 can be used by any gender, when combined with the emotional expression,
+      it contributes to a generally feminine, intimate conversational style.
+  - english: He speaks Japanese fluently and naturally.
+    japanese:
+      - 彼 は 日本 語 が {流暢 で} 自然 です。
+      - 彼 は 日本 語 が {流暢 で} 自然 だ。
+      - 彼 は 日本 語 が {流暢 で}、本当 に 自然 です。
+    english_literally: He is fluent in Japanese and natural.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 が 流暢、そして 自然 です。
+        english: He is fluent in Japanese, and also natural.
+        hint: 「そして」 emphasizes an additional point, whereas 「で」 here simply links two descriptive qualities
+          about his Japanese.
+    scene: Commenting on a new international student's Japanese speaking ability to another student.
+    register: teineigo (polite)
+    setting: informative
+  - english: Since the road was complicated, it took a long time to get there.
+    japanese:
+      - 道 が {複雑 で}、着く の に 時間 が かかっ た。
+      - 道 が {複雑 で}、着く の に 時間 が かかり まし た。
+      - 道 が とても {複雑 で}、着く の に 時間 が かかっ た。
+    english_literally: The road was complicated, and it took time to arrive.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が 複雑 だっ た ため、着く の に 時間 が かかっ た。
+        english: Due to the road being complicated, it took a long time to get there.
+        hint: 「ため」 is a more formal and explicit way to state a reason. We're looking for a more conversational
+          or descriptive link.
+    scene: Recalling a difficult journey to a friend.
+    register: casual
+    setting: reflective
+  - english: This restaurant is very stylish and the food is also delicious.
+    japanese:
+      - この レストラン は とても {おしゃれ で}、料理 も 美味しい です。
+      - この レストラン は とても {おしゃれ で}、料理 も 美味しい よ。
+      - この レストラン は とても {おしゃれ で} ござい ます。料理 も 美味しい で ござい ます。
+    english_literally: This restaurant is very stylish, and the food is also delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は とても おしゃれ です。それ に、料理 も 美味しい です。
+        english: This restaurant is very stylish. In addition, the food is also delicious.
+        hint: 「それに」 explicitly adds another point as a separate sentence. We're looking for a smooth,
+          single-sentence connection of attributes.
+    scene: Recommending a restaurant to a friend you're planning to meet.
+    register: teineigo (polite)
+    setting: friendly
+  - english: He is generally quiet, but he talks a lot when it comes to anime.
+    japanese:
+      - 彼 は 普段 は {静か で} も、アニメ の 話 に なる と よく 喋る。
+      - 彼 は 普段 は {静か で} も、アニメ の 話 に なる と よく 喋り ます。
+      - 彼 は 普段 は {静か で} も、アニメ の 話 に なる と めっちゃ 喋る。
+    english_literally: He is usually quiet, but even so, when it becomes a topic of anime, he talks a
+      lot.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 普段 は 静か です が、アニメ の 話 に なる と よく 喋る。
+        english: He is usually quiet, but when it comes to anime, he talks a lot.
+        hint: 「ですが」 or 「けれど」 directly provides a contrasting statement. 「静かで も」 here implies 'even if
+          he is quiet' or 'even in his quiet state,' setting up a nuance that despite his usual quietness,
+          this exception exists. We're looking for that nuanced use of 'de'.
+    scene: Describing a friend's personality quirks to another mutual friend.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: The use of 「普段は静かでも」 combines the te-form with 「も」 to create a concessive meaning, implying
+      'even though he is usually quiet.' This construction is common and not gender-specific. The male
+      speaker's casual speech is evident from the plain verb forms like 「喋る」.
+  - english: Since it's important, please handle it carefully.
+    japanese:
+      - '{重要 で} ござい ます の で、丁重 に 扱っ て ください。'
+      - 重要 です の で、丁重 に 扱っ て ください。
+      - 大変 {重要 で} ござい ます の で、丁重 に 扱っ て ください。
+    english_literally: Because it is important, please handle it carefully.
+    competing_grammar:
+      - competing_japanese:
+          - 重要 な の で、丁重 に 扱っ て ください。
+        english: Because it is important, please handle it carefully.
+        hint: 「なので」 is a common connective for な-adjectives, but 「ございます ので」 is a more formal and deferential
+          way to state the reason, used in business or highly polite contexts. We're looking for a business
+          polite expression.
+    scene: A manager instructing an employee on how to handle sensitive documents.
+    register: bijinesu nihongo (business)
+    setting: professional

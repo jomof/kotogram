@@ -1,0 +1,347 @@
+grammar_point: 求める (to seek・to ask for・to demand・to wish for)
+learn_before:
+  - 〜てはいけない・〜てはならない (must not)
+  - だい (informal question or request emphasis)
+  - とは限らない (not necessarily)
+  - を (emotion's object or cause)
+meaning: to seek, to ask for, to demand, to wish for, to desire
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 求める
+    rarity: common
+    meaning: to seek, to ask for, to demand, to wish for
+  - conjugation-type: non-past polite (～ます)
+    form: 求めます
+    rarity: common
+    meaning: seek, ask for, demand, wish for (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 求めない
+    rarity: common
+    meaning: do not seek, do not ask for, do not demand, do not wish for
+  - conjugation-type: negative non-past polite (～ません)
+    form: 求めません
+    rarity: common
+    meaning: do not seek, do not ask for, do not demand, do not wish for (polite)
+  - conjugation-type: past plain (～た)
+    form: 求めた
+    rarity: common
+    meaning: sought, asked for, demanded, wished for
+  - conjugation-type: past polite (～ました)
+    form: 求めました
+    rarity: common
+    meaning: sought, asked for, demanded, wished for (polite)
+  - conjugation-type: te-form (～て)
+    form: 求めて
+    rarity: common
+    meaning: seeking, asking for, demanding, wishing for (te-form)
+  - conjugation-type: potential (～られる/～える)
+    form: 求められる
+    rarity: common
+    meaning: can be sought, can be asked for, can be demanded
+  - conjugation-type: passive (～られる/～かれる)
+    form: 求められる
+    rarity: common
+    meaning: is sought, is asked for, is demanded
+  - conjugation-type: causative (～させる)
+    form: 求めさせる
+    rarity: less common
+    meaning: make/let someone seek/ask for/demand/wish for
+  - conjugation-type: causative-passive (～させられる)
+    form: 求めさせられる
+    rarity: uncommon
+    meaning: made/let someone seek/ask for/demand/wish for (passive)
+  - conjugation-type: volitional (～よう)
+    form: 求めよう
+    rarity: common
+    meaning: let's seek/ask for/demand/wish for
+  - conjugation-type: volitional polite (～ましょう)
+    form: 求めましょう
+    rarity: common
+    meaning: let's seek/ask for/demand/wish for (polite)
+pronunciation:
+  katakana: モトメル
+  romaji: motomeru
+formation:
+  Noun + を + 求める: To seek, ask for, demand, or wish for a tangible or intangible noun.
+  Verb[dictionary] + ことを + 求める: To request or demand that an action be performed.
+  Verb[て] + 求める: To seek or request something by performing an action (less common, often implied).
+jlpt: N3
+etymology: The kanji 求 (kyuu, motomeru) depicts an ancient image of an animal's hide, perhaps suggesting
+  the act of seeking or hunting for it. Over time, its meaning expanded to encompass the broader concept
+  of 'seeking,' 'demanding,' or 'wishing for' something, whether tangible or intangible. The verb 求める
+  thus carries the inherent sense of active pursuit or strong inclination towards an object or outcome.
+writeup: |-
+  求める is a versatile verb with several core meanings: to seek, to ask for, to demand, and to wish for. Its specific nuance depends heavily on context and the direct object it takes.
+
+  **1. To Seek/Search:** This usage often applies to abstract concepts or things that are not easily found, emphasizing an active pursuit. Examples include seeking truth (真実を求める), happiness (幸せを求める), knowledge (知識を求める), or solutions (解決策を求める).
+
+  **2. To Ask For/Request:** When used in this sense, 求める implies making a request or asking for something, often in a formal or earnest manner. This can range from asking for an interview (面会を求める) to requesting cooperation (協力を求める).
+
+  **3. To Demand/Claim:** This is a stronger usage, indicating a firm insistence on something, often related to rights, compensation, or explanations. For instance, demanding compensation (賠償を求める) or demanding an apology (謝罪を求める). In this context, it implies that the speaker believes they are entitled to what they are asking for.
+
+  **4. To Wish For/Desire:** This meaning expresses a strong desire or aspiration for something to exist or happen, often peace (平和を求める) or a better future (より良い未来を求める). While similar to 'wish,' it often carries a more proactive or heartfelt connotation than a simple desire.
+
+  When using 求める, pay attention to the context to understand whether it implies a gentle wish, a firm demand, or a dedicated search.
+false_friends:
+  - term: 要求する
+    meaning: to demand or request (often official/stronger)
+    kind: similar expression
+    nuance: While both can mean 'to request,' 要求する typically implies a more formal, official, or forceful
+      demand, often related to rights or responsibilities. 求める can be a softer request or a general seeking.
+    grammar_point: <suggest>:要求する (to demand or request)
+  - term: 探す
+    meaning: to search for, to look for (physical or concrete)
+    kind: similar expression
+    nuance: 探す specifically refers to physically searching for something lost or unknown, or looking for
+      something concrete. 求める can refer to seeking abstract things (e.g., truth, peace) as well as making
+      requests or demands.
+    grammar_point: <suggest>:探す (to search or look for)
+  - term: 願う
+    meaning: to wish, to hope, to pray, to request (often polite/earnest)
+    kind: similar expression
+    nuance: 願う implies a heartfelt wish or a polite, humble request. 求める can also be a request, but it
+      lacks the strong sense of personal desire or supplication often present in 願う, and can even imply
+      a strong demand.
+    grammar_point: <suggest>:願う (to wish or hope)
+post_false_friends_writeup: While 求める covers a broad range of 'seeking' or 'desiring' actions, it's important
+  to differentiate it from other verbs that might seem similar. For instance, **要求する** carries a stronger
+  sense of insistence or demanding what one believes they are owed, whereas 求める can be a more general
+  act of seeking or a less forceful request. **探す** is specifically about physically looking for something,
+  while 求める extends to abstract concepts like truth or peace. Lastly, **願う** often implies a more personal,
+  heartfelt wish or a humble plea, which can be part of 求める's range but isn't its primary focus when emphasizing
+  active pursuit or demand.
+examples:
+  - english: Humans have always sought meaning in their lives.
+    japanese:
+      - 人間 は 常 に 人生 の 意味 を {求め て} き た。
+      - 人間 は 常 に 人生 の 意味 を {求め て} 来 まし た。
+    english_literally: Humans always life's meaning have sought.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 常 に 人生 の 意味 を 探し て き た。
+        english: Humans have always looked for meaning in their lives.
+        hint: 「探す」 typically implies a physical search for something lost or unknown. We're looking for
+          a verb that encompasses a broader, often abstract, quest or desire.
+      - competing_japanese:
+          - 人間 は 常 に 人生 の 意味 を 見つけ て き た。
+        english: Humans have always found meaning in their lives.
+        hint: 「見つける」 means to find, implying success in locating something. We're looking for the act
+          of seeking, not necessarily the result of finding.
+    scene: A philosophy professor is lecturing on existentialism.
+    register: formal
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: This sentence uses {求めて}きた to express a continuous seeking or striving, emphasizing the inherent
+      human desire for purpose. The phrase 「常に」 (always) reinforces the ongoing nature of this quest.
+  - english: The victims demanded an explanation from the company.
+    japanese:
+      - 被害 者 は 企業 に 説明 を {求め た}。
+      - 被害 者 は 企業 に 説明 を {求め まし た}。
+    english_literally: Victims company from explanation sought.
+    competing_grammar:
+      - competing_japanese:
+          - 被害 者 は 企業 に 説明 を 要求 し た。
+        english: The victims requested/demanded an explanation from the company.
+        hint: 「要求する」 often carries a stronger, more official, or forceful nuance of demand. While similar,
+          「求める」 here indicates a clear asking or insistence without necessarily being an official 'request'.
+      - competing_japanese:
+          - 被害 者 は 企業 に 説明 を 言い張っ た。
+        english: The victims insisted on an explanation from the company.
+        hint: 「言い張る」 means to insist on one's point or claim, often stubbornly. We're looking for the
+          act of demanding, not necessarily a stubborn insistence.
+    scene: News report about a corporate scandal.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: Here, {求めた} implies a strong demand, as in 'demanded an explanation,' rather than a mere request.
+      The context of 'victims' and 'explanation' makes the demand imperative. This use of 求める shows the
+      forceful side of the verb.
+  - english: He strongly desires a peaceful world.
+    japanese:
+      - 彼 は 平和 な 世界 を 強く {求め て いる}。
+      - 彼 は 平和 な 世界 を 強く {求め て い ます}。
+    english_literally: He peaceful world strongly is seeking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 平和 な 世界 を 強く 望ん で いる。
+        english: He strongly hopes for a peaceful world.
+        hint: 「望む」 expresses hope or desire, often less active than 「求める」. We're looking for a verb that
+          suggests a deeper, more active yearning or pursuit.
+      - competing_japanese:
+          - 彼 は 平和 な 世界 を 強く 願っ て いる。
+        english: He strongly wishes/prays for a peaceful world.
+        hint: 「願う」 often implies a heartfelt wish, supplication, or prayer. While related, 「求める」 can suggest
+          a more proactive stance towards achieving that world.
+    scene: A political activist speaks about their ideals.
+    register: formal
+    setting: inspirational
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    nuance: The use of {求めている} with 「強く」 (strongly) conveys an earnest and deep desire for a peaceful
+      world. It's not just a wish, but an active yearning, implying a continuous mental or even physical
+      effort towards that goal.
+  - english: Please seek out more detailed information.
+    japanese:
+      - もっと 詳しい 情報 を {求め て} ください。
+      - もっと 詳しい 情報 を お {求め} ください。
+    english_literally: More detailed information seek please.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 詳しい 情報 を 探し て ください。
+        english: Please look for more detailed information.
+        hint: 「探す」 (to look for) implies a search, often physical. 「求める」 suggests actively obtaining or
+          requesting something, which can include a search but focuses on the acquisition.
+      - competing_japanese:
+          - もっと 詳しい 情報 を 集め て ください。
+        english: Please gather more detailed information.
+        hint: 「集める」 (to gather) focuses on collecting information. We're looking for a verb that means
+          to actively seek or obtain it.
+    scene: A boss instructs an employee.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: This example uses {求めて} ください as a polite command, instructing someone to 'seek out' or 'obtain'
+      information. It's a direct instruction for an active search rather than a passive desire.
+  - english: What is it that you truly seek?
+    japanese:
+      - 君 が 本当 に {求め て いる} もの は 何 だ？
+      - あなた が 本当 に {求め て いる} もの は 何 です か？
+    english_literally: You truly are seeking thing what is?
+    competing_grammar:
+      - competing_japanese:
+          - 君 が 本当 に 望ん で いる もの は 何 だ？
+        english: What is it that you truly hope for?
+        hint: 「望む」 (to hope for) carries a sense of desire or aspiration. While similar, 「求める」 suggests
+          a more active internal or external search for something.
+      - competing_japanese:
+          - 君 が 本当 に 探し て いる もの は 何 だ？
+        english: What is it that you are truly looking for?
+        hint: 「探す」 (to look for) implies searching, often for something concrete. 「求める」 can refer to seeking
+          abstract concepts like meaning or purpose.
+    scene: A mentor asks a profound question to their student.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: Using 「君」 (you, casual) and a direct question, this sentence reflects a casual but profound
+      inquiry. {求めている} here refers to an inner, deep desire or objective, not a physical item.
+  - english: She came to Kyoto to seek beauty.
+    japanese:
+      - 彼女 は 美 を {求め に} 京都 へ 来 た。
+      - 彼女 は 美 を {求め に} 京都 へ 来 まし た。
+    english_literally: She beauty to seek Kyoto to came.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 美 を 探し に 京都 へ 来 た。
+        english: She came to Kyoto to look for beauty.
+        hint: 「探しに」 implies physically searching for something. While one might 'search' for beauty, 「求めに」
+          better conveys the active pursuit or seeking of an ideal.
+      - competing_japanese:
+          - 彼女 は 美 を 見 に 来 た 京都 へ 来 た。
+        english: She came to Kyoto to see beauty.
+        hint: 「見に来た」 (came to see) implies observation. We're looking for the act of seeking or pursuing,
+          not just seeing.
+    scene: A tour guide explains a traveler's motivation.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The construction 「〜を求めに」 (to seek something) is a common way to express the purpose of movement.
+      Here, {求めに} implies an active journey undertaken for the pursuit of 'beauty,' an abstract concept.
+  - english: We must not demand too much from nature.
+    japanese:
+      - 自然 に 多く を {求め て は} なら ない。
+      - 自然 に 多く を {求め て は} いけ ない。
+    english_literally: Nature from much demanding must not do.
+    competing_grammar:
+      - competing_japanese:
+          - 自然 に 多く を 要求 し て は なら ない。
+        english: We must not demand too much from nature (stronger).
+        hint: 「要求する」 often has a stronger, more insistent tone for demanding. While similar, 「求める」 here
+          emphasizes the act of asking or expecting, which should not be excessive.
+      - competing_japanese:
+          - 自然 から 多く を 奪っ て は なら ない。
+        english: We must not take/deprive too much from nature.
+        hint: 「奪う」 (to take/deprive) implies an act of seizing or removing. We're looking for a verb related
+          to expecting or asking for, not taking by force.
+    scene: An environmentalist speaks about sustainability.
+    register: formal
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: The phrase 「〜てはならない」 (must not) indicates a prohibition. Combined with {求めては}, it means 'must
+      not demand' or 'must not ask too much of.' It highlights a moral or ethical stance regarding demands
+      on nature.
+  - english: He always seeks perfection in his work.
+    japanese:
+      - 彼 は いつ も 仕事 に 完璧 を {求め ます}。
+      - 彼 は いつ も 仕事 に 完璧 を {求める}。
+    english_literally: He always work in perfection seeks.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 仕事 に 完璧 を 目指し ます。
+        english: He always aims for perfection in his work.
+        hint: 「目指す」 (to aim for) focuses on setting a goal and working towards it. While related to seeking,
+          「求める」 emphasizes the desire or expectation of having that quality.
+      - competing_japanese:
+          - 彼 は いつ も 仕事 に 完璧 を 追求 し ます。
+        english: He always pursues perfection in his work.
+        hint: 「追求する」 (to pursue) suggests actively chasing or investigating something in detail. While
+          applicable, 「求める」 here implies a more inherent desire or standard.
+    scene: A colleague describes a meticulous coworker.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: This sentence uses {求めます} to describe a consistent characteristic or habit, implying that
+      'he always aims for perfection.' The polite form makes it suitable for describing someone in a professional
+      setting.
+  - english: The student requested an extension for the deadline.
+    japanese:
+      - 学生 は 締め切り の 延長 を {求め た}。
+      - 学生 は 締め切り の 延長 を {求め まし た}。
+    english_literally: Student deadline's extension sought.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 締め切り の 延長 を 願い出 た。
+        english: The student pleaded for an extension of the deadline.
+        hint: 「願い出る」 (to plead/request) often implies a more earnest or formal plea, sometimes in writing.
+          「求める」 is more general for 'asking for' or 'requesting'.
+      - competing_japanese:
+          - 学生 は 締め切り の 延長 を 依頼 し た。
+        english: The student made a request for an extension of the deadline.
+        hint: 「依頼する」 (to request/commission) implies asking for a service or favor. While an extension
+          is a favor, 「求める」 is more direct for 'asking for' something.
+    scene: A university administrative office.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: Here, {求めた} means 'requested' in a formal academic context. It's a standard way to say a student
+      asked for something from an institution, such as an extension or permission.
+  - english: Even if you seek happiness, it won't always be found.
+    japanese:
+      - 幸せ を {求め て も}、いつ も 見つかる と は 限ら ない。
+      - 幸せ を {求め て も}、いつ も 見つけ られる と は 限ら ない。
+    english_literally: Happiness even if seek, always found not necessarily.
+    competing_grammar:
+      - competing_japanese:
+          - 幸せ を 探し て も、いつ も 見つかる と は 限ら ない。
+        english: Even if you look for happiness, it won't always be found.
+        hint: 「探す」 (to look for) implies a more direct search, often physical. 「求める」 encompasses the broader
+          idea of pursuing or desiring happiness, not just searching for it.
+      - competing_japanese:
+          - 幸せ を 追求 し て も、いつ も 見つかる と は 限ら ない。
+        english: Even if you pursue happiness, it won't always be found.
+        hint: 「追求する」 (to pursue) suggests a continuous effort to achieve or investigate something. While
+          very close in meaning here, 「求める」 is often simpler and can imply a desire as much as an active
+          pursuit.
+    scene: A character reflects on life's difficulties.
+    register: casual
+    setting: reflective
+    conjugation: concessive (～ても)
+    nuance: The concessive form {求めても} (even if one seeks) highlights the potential futility despite effort.
+      It's a more philosophical usage, acknowledging that even active pursuit doesn't guarantee a desired
+      outcome. The phrase 「見つかるとは限らない」 (not necessarily found) reinforces this uncertainty.
+post_example_writeup: As you can see from the examples, 求める is a versatile verb. It can describe anything
+  from an abstract pursuit like seeking truth or happiness, to a concrete request or demand like asking
+  for an extension or demanding an explanation. The nuance largely depends on the context and the noun
+  that is being 'sought' or 'demanded'. Always consider the intensity and formality conveyed by the situation
+  when using this verb.

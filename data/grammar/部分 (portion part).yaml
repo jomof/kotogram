@@ -1,0 +1,386 @@
+grammar_point: 部分 (portion part)
+learn_before:
+  - '[Verb-て]いただけませんか (humble request)'
+  - が (subject marker)
+  - しい (emotional suffix)
+  - な-Adjective (modifying nouns)
+meaning: portion; part; section; segment
+pronunciation:
+  katakana: ブブン
+  romaji: bubun
+formation:
+  Noun の 部分: Refers to a part of a larger whole noun.
+  Verb[dictionary] + 部分: Refers to a part related to an action, e.g., the part that was eaten.
+  部分 + Noun: Acts as a modifier for a noun, indicating a partial aspect.
+jlpt: N3
+etymology: '「部分」(ぶぶん) is a compound noun derived from two kanji: 「部」 (ぶ), meaning "section," "department,"
+  or "part," and 「分」 (ぶん), meaning "portion," "share," or "divide." The combination directly translates
+  to "section portion," reinforcing the meaning of a discrete segment or component of a larger entity.
+  This etymology highlights its fundamental role in indicating division or segmentation.'
+writeup: 「部分」(ぶぶん) is a noun meaning "portion," "part," "section," or "segment." It is used to refer to
+  a constituent element of a larger whole, whether physical, abstract, or temporal. It implies that the
+  part is distinct but still belongs to and contributes to the entire entity. Unlike some other words
+  for 'part' or 'piece', 部分 often refers to a designated or identifiable section, rather than a random
+  fragment. For instance, when discussing a machine, you might refer to its various 「部分」, or when analyzing
+  a text, you might focus on a specific 「部分」. It's a neutral term and can be used in various contexts,
+  from casual to formal.
+false_friends:
+  - term: かけら
+    meaning: fragment
+    kind: similar expression
+    nuance: While both mean 'part', かけら implies a small, often broken-off, irregular piece, typically
+      from something shattered or incomplete. 部分 suggests a more integral or intended segment of a whole.
+    grammar_point: <suggest>:かけら (fragment)
+  - term: 一部
+    meaning: one part
+    kind: similar expression
+    nuance: 一部 specifically means "one part" or "a portion" out of a larger quantity, often implying a
+      specific, sometimes smaller, quantity, or one of several identical parts. 部分 is more general, referring
+      to *any* part or section.
+    grammar_point: <suggest>:一部 (one part)
+  - term: 破片
+    meaning: splinter; fragment
+    kind: similar expression
+    nuance: 破片 implies a broken piece, typically sharp or from something that has shattered, like glass
+      or pottery. It has a stronger connotation of damage or destruction than 部分.
+    grammar_point: <suggest>:破片 (splinter・fragment)
+  - term: 要素
+    meaning: element; component
+    kind: similar expression
+    nuance: 要素 refers to a fundamental or essential constituent, often abstract or conceptual, that makes
+      up a whole. While a 要素 can be a 部分, 部分 is more about the physical or structural division. 要素 is
+      more about what something is *made of* or *comprises*.
+    grammar_point: <suggest>:要素 (element・component)
+  - term: 成分
+    meaning: ingredient; component
+    kind: similar expression
+    nuance: 成分 is used for components or ingredients, especially in chemical, biological, or food contexts.
+      It refers to what something is composed of at a molecular or constituent level. While these are
+      'parts', 部分 is a broader term for any segment.
+    grammar_point: <suggest>:成分 (ingredient・component)
+post_false_friends_writeup: When choosing between 「部分」 and similar words, consider the nature of the "part"
+  you are describing. 「部分」 is a versatile term for any section or segment of a whole. If the part is small
+  and broken off, like from glass, 「破片」 or 「かけら」 might be more appropriate. If you are talking about a
+  specific "one part" out of many, 「一部」 is the word to use. For the fundamental building blocks, especially
+  in a chemical or abstract sense, 「要素」 or 「成分」 are better choices. Remember that 「部分」 maintains a sense
+  of integrity with the whole, even if it's a distinct segment.
+examples:
+  - english: The important part of the book is this chapter.
+    japanese:
+      - 本 の 重要 な {部分} は この 章 です。
+      - 本 の 重要 な {部分} は この 章 だ。
+    english_literally: Book's important part is this chapter.
+    competing_grammar:
+      - competing_japanese:
+          - 本 の この 章 が 重要 な ところ です。
+          - 本 の この 章 が 重要 な ところ だ。
+        english: The important *place* in the book is this chapter.
+        hint: 「ところ」 can mean 'place' or 'point,' and while it might refer to a section, it emphasizes
+          the *location* or *spot* of importance, not necessarily an integral segment. We're looking for
+          an integral segment that makes up part of the book.
+      - competing_japanese:
+          - 本 の 大事 な シーン は この 章 です。
+          - 本 の 大事 な シーン は この 章 だ。
+        english: The important *scene* in the book is this chapter.
+        hint: 「シーン」 refers more to a 'scene' in a narrative, common in film or drama, which doesn't quite
+          fit a textbook chapter. We're looking for a word that refers to a component of the book's structure.
+    scene: A student is explaining their favorite part of a textbook to a friend.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「重要 な」 (jūyō na) for 'important' and the polite copula 「です」 (desu) creates a clear,
+      respectful tone suitable for discussing academic content with a peer. 「部分」 refers to a defined segment
+      of the book.
+  - english: The building's damaged part needs to be repaired.
+    japanese:
+      - 建物 の 損傷 し た {部分} は 修理 が 必要 です。
+      - 建物 の 損傷 し た {部分} は 修理 が 必要 だ。
+    english_literally: Building's damaged part repair is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 の 損傷 箇所 は 修理 が 必要 です。
+          - 建物 の 損傷 箇所 は 修理 が 必要 だ。
+        english: The building's damaged *spot* needs to be repaired.
+        hint: 「箇所」 (kasho) also means 'spot' or 'place' and can be used for a damaged area, but 「部分」 is
+          often preferred for a larger, more integral segment of a structure. We're looking for a word
+          that describes a larger segment rather than just a small spot.
+      - competing_japanese:
+          - 建物 の 損傷 し て いる ところ は 修理 が 必要 です。
+          - 建物 の 損傷 し て いる ところ は 修理 が 必要 だ。
+        english: The *place* where the building is damaged needs to be repaired.
+        hint: 「ところ」 (tokoro) can refer to a 'place' or 'point', but 「部分」 specifically denotes a 'part'
+          or 'section' of an object. We're looking for a noun that refers to an actual component of the
+          building.
+    scene: A construction worker reports on the state of a building.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「損傷 した」 (sonshō shita) for 'damaged' and the formal 「必要 です」 (hitsuyō desu) emphasizes
+      the seriousness and professionalism of the context. 「部分」 here refers to a significant, integral
+      segment of the building, not just a small spot.
+  - english: I like the part where the hero saves the princess.
+    japanese:
+      - 私 は ヒーロー が お 姫 様 を 助ける {部分} が 好き です。
+      - 私 は ヒーロー が お 姫 様 を 助ける {部分} が 好き だ。
+    english_literally: As for me, hero princess saves part like.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は ヒーロー が お 姫 様 を 助ける シーン が 好き です。
+          - 私 は ヒーロー が お 姫 様 を 助ける シーン が 好き だ。
+        english: I like the *scene* where the hero saves the princess.
+        hint: 「シーン」 (shīn) refers specifically to a 'scene' in a movie, play, or story. While often interchangeable
+          with 「部分」 in this context, 「部分」 is broader and can refer to any segment, not just a narrative
+          scene. We're looking for a word that can be used for a segment of any content, not just a dramatic
+          scene.
+      - competing_japanese:
+          - 私 は ヒーロー が お 姫 様 を 助ける 場面 が 好き です。
+          - 私 は ヒーロー が お 姫 様 を 助ける 場面 が 好き だ。
+        english: I like the *scene* (or *moment*) where the hero saves the princess.
+        hint: 「場面」 (bamen) is similar to 「シーン」 and refers to a 'scene' or 'moment', especially in a dramatic
+          or narrative context. 「部分」 is more general for any kind of 'part' or 'segment'. We're looking
+          for a more general term for a segment of content.
+    scene: Two friends are discussing their favorite movie scene.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「お姫様」 (ohimesama) shows politeness and admiration. The expression 「好き です」 (suki
+      desu) is commonly used among friends. 「部分」 here refers to a specific segment of the movie that the
+      speaker enjoys.
+  - english: Only a small part of the problem has been solved.
+    japanese:
+      - 問題 の ほんの 小さな {部分} だけ が 解決 さ れ た。
+      - 問題 の ほんの 小さな {部分} だけ が 解決 さ れ まし た。
+    english_literally: Problem's mere small part only was solved.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 の ほんの 小さな 一部 だけ が 解決 さ れ た。
+          - 問題 の ほんの 小さな 一部 だけ が 解決 さ れ まし た。
+        english: Only a small *portion* of the problem has been solved.
+        hint: 「一部」 (ichibu) implies 'one part' or 'a portion' out of a larger whole, often suggesting
+          a quantity. While similar, 「部分」 is more about a distinguishable segment or aspect. We're looking
+          for a term that emphasizes a specific, definable segment of the problem.
+      - competing_japanese:
+          - 問題 の ごく 一面 だけ が 解決 さ れ た。
+          - 問題 の ごく 一面 だけ が 解決 さ れ まし た。
+        english: Only a very *aspect* of the problem has been solved.
+        hint: 「一面」 (ichimen) refers to 'one aspect' or 'one side' of a situation, implying a perspective
+          rather than a physical or logical segment. We're looking for a word that denotes a component
+          or segment of the problem itself.
+    scene: A team leader updates their colleagues on project progress.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「ほんの 小さな」 (honno chiisana) emphasizes the smallness of the solved part. The use
+      of 「解決 された」 (kaiketsu sareta) in the passive voice is common in professional reports. 「部分」 here
+      denotes a segment or aspect of the overall problem.
+  - english: The lower part of the mountain is covered in snow.
+    japanese:
+      - 山 の 下 の {部分} は 雪 で 覆わ れ て いる。
+      - 山 の 下 の {部分} は 雪 で 覆わ れ て い ます。
+    english_literally: Mountain's lower part snow by covered is.
+    competing_grammar:
+      - competing_japanese:
+          - 山 の 麓 は 雪 で 覆わ れ て いる。
+          - 山 の 麓 は 雪 で 覆わ れ て い ます。
+        english: The *foot* of the mountain is covered in snow.
+        hint: 「麓」 (fumoto) specifically refers to the 'foot' or 'base' of a mountain. While it's a part
+          of the mountain, 「部分」 is a more general term for any segment, not just the base. We're looking
+          for a general term for a section of the mountain.
+      - competing_japanese:
+          - 山 の 下 の 方 は 雪 で 覆わ れ て いる。
+          - 山 の 下 の 方 は 雪 で 覆わ れ て い ます。
+        english: The *lower area* of the mountain is covered in snow.
+        hint: 「下 の 方」 (shita no hō) refers to the 'lower area' or 'direction', which describes a general
+          region. 「部分」 is more precise, referring to a distinct 'part' or 'section'. We're looking for
+          a word that defines a specific segment.
+    scene: A person describes a scenic view.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The casual 「覆われて いる」 (ōwarete iru) is used when observing and commenting to oneself or generally.
+      「下 の 部分」 clearly specifies which segment of the mountain is being discussed. This phrase refers
+      to a distinct physical segment of the mountain.
+  - english: Could you repeat that part for me?
+    japanese:
+      - その {部分} を もう 一 度 繰り返し て いただけ ます か。
+      - その {部分} を もう 一 度 繰り返し て もらえ ます か。
+    english_literally: That part again repeat could you please.
+    competing_grammar:
+      - competing_japanese:
+          - その ところ を もう 一 度 繰り返し て いただけ ます か。
+          - その ところ を もう 一 度 繰り返し て もらえ ます か。
+        english: Could you repeat that *point* for me?
+        hint: 「ところ」 (tokoro) can mean 'point' or 'section' and is often used colloquially in such requests.
+          However, 「部分」 more formally and clearly specifies a distinct segment of information. We're looking
+          for a term that clearly refers to a section of spoken content.
+      - competing_japanese:
+          - その 箇所 を もう 一 度 繰り返し て いただけ ます か。
+          - その 箇所 を もう 一 度 繰り返し て もらえ ます か。
+        english: Could you repeat that *segment* for me?
+        hint: 「箇所」 (kasho) refers to a 'place' or 'passage' and can be used for a specific segment of
+          text or speech. While appropriate, 「部分」 is a more common and natural choice for an unspecified
+          'part' in general conversation. We're looking for the most natural way to ask to repeat a section.
+    scene: A student asks their teacher to clarify something.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「繰り返して いただけますか」 (kurikaeshite itadakemasu ka) is a very polite request, appropriate
+      for a student addressing a teacher. 「その 部分」 refers to a specific piece of information or a section
+      of an explanation given earlier. The politeness of the phrase is key here.
+  - english: This part of the song is really emotional.
+    japanese:
+      - この 曲 の {部分} は とても 感動 的 です。
+      - この 曲 の {部分} は とても 感動 的 だ。
+    english_literally: This song's part very emotional is.
+    competing_grammar:
+      - competing_japanese:
+          - この 曲 の メロディー は とても 感動 的 です。
+          - この 曲 の メロディー は とても 感動 的 だ。
+        english: This song's *melody* is really emotional.
+        hint: If the emotion comes specifically from the tune, 「メロディー」 (merodī) would be more precise.
+          「部分」 is broader and could refer to lyrics, instrumentation, or a specific segment. We're looking
+          for a word that denotes a segment without specifying the musical element.
+      - competing_japanese:
+          - この 曲 の 歌詞 は とても 感動 的 です。
+          - この 曲 の 歌詞 は とても 感動 的 だ。
+        english: This song's *lyrics* are really emotional.
+        hint: If the emotion stems from the words, 「歌詞」 (kashi) would be the correct term. 「部分」 allows
+          for ambiguity, covering any aspect of the song's segment. We're looking for a more general term
+          for a segment of the song.
+    scene: Someone shares their feelings about a piece of music.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「感動的 です」 (kandōteki desu) expresses a strong emotional impact. 「部分」 here highlights a specific
+      section of the song, like a verse, chorus, or bridge, that evokes this feeling. This phrase describes
+      a specific segment of the song that is emotionally impactful.
+  - english: The most difficult part of the exam was the essay question.
+    japanese:
+      - 試験 の 最も 難しい {部分} は 論文 問題 だっ た。
+      - 試験 の 最も 難しい {部分} は 論文 問題 でし た。
+    english_literally: Exam's most difficult part essay question was.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 最も 難しい 項目 は 論文 問題 だっ た。
+          - 試験 の 最も 難しい 項目 は 論文 問題 でし た。
+        english: The most difficult *item* of the exam was the essay question.
+        hint: 「項目」 (kōmoku) refers to an 'item' or 'entry' in a list, like a bullet point or a question
+          number. While the essay question is an item, 「部分」 highlights it as a distinct section of the
+          exam. We're looking for a term that specifies a section of the exam.
+      - competing_japanese:
+          - 試験 の 最も 難しい 内容 は 論文 問題 だっ た。
+          - 試験 の 最も 難しい 内容 は 論文 問題 でし た。
+        english: The most difficult *content* of the exam was the essay question.
+        hint: 「内容」 (naiyō) refers to the 'content' or 'substance' of something. While the essay question
+          has content, 「部分」 focuses on it as a specific, discrete segment of the overall exam structure.
+          We're looking for a word that refers to a specific section, not just the content.
+    scene: A student complains to a friend after an exam.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual past tense 「だった」 (datta) is typical for friends discussing an event. 「最も 難しい」 (mottomo
+      muzukashii) means 'the most difficult.' 「部分」 here refers to a distinct section or question type
+      within the exam. The casual register is fitting for a complaint among peers.
+  - english: This is the most critical part of the entire operation.
+    japanese:
+      - これ は 全体 の 作業 の 最も 肝心 な {部分} です。
+      - これ は 全体 の 作業 の 最も 肝心 な {部分} だ。
+    english_literally: This entire operation's most critical part is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 全体 の 作業 の 最も 肝心 な 局面 です。
+          - これ は 全体 の 作業 の 最も 肝心 な 局面 だ。
+        english: This is the most critical *phase* of the entire operation.
+        hint: 「局面」 (kyokumen) refers to a 'phase' or 'situation,' often implying a turning point or stage
+          in a process. While an operation has phases, 「部分」 is broader and can refer to any distinct segment,
+          not necessarily a time-based phase. We're looking for a word that denotes a component or segment
+          of the overall operation.
+      - competing_japanese:
+          - これ は 全体 の 作業 の 最も 肝心 な 要点 です。
+          - これ は 全体 の 作業 の 最も 肝心 な 要点 だ。
+        english: This is the most critical *point* of the entire operation.
+        hint: 「要点」 (yōten) means 'crucial point' or 'gist.' While the critical part is a crucial point,
+          「部分」 focuses on it as a distinguishable segment or component of the entire operation. We're
+          looking for a word that emphasizes a segment as opposed to a summary point.
+    scene: A military commander briefs their troops.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「肝心な」 (kanjin na) means 'critical' or 'essential.' The formal 「です」 (desu) and serious tone
+      are appropriate for a military briefing. 「部分」 here refers to a specific, crucial segment of the
+      operation that requires utmost attention. This highlights a vital segment of the operation.
+  - english: The bright part of the painting caught my eye.
+    japanese:
+      - 絵画 の 明るい {部分} が 私 の 目 を 引い た。
+      - 絵画 の 明るい {部分} が 私 の 目 を 引き まし た。
+    english_literally: Painting's bright part my eye caught.
+    competing_grammar:
+      - competing_japanese:
+          - 絵画 の 明るい 箇所 が 私 の 目 を 引い た。
+          - 絵画 の 明るい 箇所 が 私 の 目 を 引き まし た。
+        english: The bright *spot* of the painting caught my eye.
+        hint: 「箇所」 (kasho) refers to a specific 'spot' or 'place.' While often interchangeable, 「部分」 emphasizes
+          a more defined section or segment, not just a random point. We're looking for a term that denotes
+          a particular section of the painting.
+      - competing_japanese:
+          - 絵画 の 明るい 色 が 私 の 目 を 引い た。
+          - 絵画 の 明るい 色 が 私 の 目 を 引き まし た。
+        english: The bright *color* of the painting caught my eye.
+        hint: If the emphasis is purely on the hue, 「色」 (iro) meaning 'color' would be more direct. 「部分」
+          encompasses the entire bright area, regardless of its specific elements. We're looking for a
+          word that refers to a specific area of the painting that is bright, not just the color itself.
+    scene: Someone admires a piece of art in a museum.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「明るい」 (akarui) means 'bright.' The phrase 「目 を 引いた」 (me o hiita) means 'caught one's eye.'
+      「部分」 here refers to a visually distinct segment of the painting. The casual register fits someone
+      speaking to themselves or a close companion while contemplating art.
+  - english: They removed the affected part of the organ.
+    japanese:
+      - 彼 ら は 臓器 の 患部 の {部分} を 切除 し た。
+      - 彼 ら は 臓器 の 患部 の {部分} を 切除 し まし た。
+    english_literally: They organ's affected part removed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 臓器 の 患部 を 切除 し た。
+          - 彼 ら は 臓器 の 患部 を 切除 し まし た。
+        english: They removed the *affected area* of the organ.
+        hint: 「患部」 (kanbu) already means 'affected part/area.' Adding 「の部分」 is often redundant in medical
+          contexts, as 「患部」 itself sufficiently conveys the idea of a specific affected segment. We're
+          looking for a term that clearly refers to a specific segment of the organ that was removed,
+          using the most precise terminology.
+      - competing_japanese:
+          - 彼 ら は 臓器 の 病ん だ ところ を 切除 し た。
+          - 彼 ら は 臓器 の 病ん だ ところ を 切除 し まし た。
+        english: They removed the *diseased spot* of the organ.
+        hint: 「病んだ ところ」 (yanda tokoro) means 'diseased spot,' which is more general and less formal than
+          「患部」. 「部分」 coupled with 「患部」 specifies a precise surgical segment. We're looking for formal
+          and precise medical terminology.
+    scene: A surgeon explains a medical procedure.
+    register: formal
+    setting: technical
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「患部 の 部分」 (kanbu no bubun) is a medical term for 'the affected section.' 「切除 した」
+      (setsujo shita) is a formal verb for 'excised' or 'removed.' This phrase is highly technical and
+      precise, typical of medical explanations. The formality and technical vocabulary are key here.
+post_example_writeup: As demonstrated in the examples, 「部分」 can be used across various contexts, from
+  describing physical segments like a mountain's lower part or a building's damaged area, to abstract
+  sections such as a chapter of a book or a portion of a problem. It can also refer to a specific moment
+  or segment within a larger process, like a part of a song or an operation. The neutrality and flexibility
+  of 「部分」 make it widely applicable when you need to specify a component of a whole.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E9%83%A8%E5%88%86

@@ -1,0 +1,217 @@
+grammar_point: 最も (most)
+learn_before:
+  - Verb[stem] (continuative)
+  - のなかで (in・among)
+  - 影響する (to affect・to influence)
+  - 点 (aspect・point)
+meaning: most; the most; -est (superlative)
+pronunciation:
+  katakana: モットモ
+  romaji: mottomo
+formation:
+  最も + い-Adjective: Used to describe the highest degree of a quality expressed by an い-adjective (e.g.,
+    最も高い, 最も美しい).
+  最も + な-Adjective: Used to describe the highest degree of a quality expressed by a な-adjective, whether
+    used attributively before a noun (e.g., 最も重要な点) or predicatively (e.g., 最も困難です).
+  最も + Adverb: Used to describe the highest degree of an action or quality expressed by an adverb (e.g.,
+    最も速く走る, 最もよく知られている).
+  最も + Verb (plain form): Used to describe the highest degree of an action or state expressed by a verb
+    (e.g., 最も理解している).
+jlpt: N3
+etymology: The word 「最も」(mottomo) originates from 「尤も」(mottomo), which originally meant 'most reasonable',
+  'most natural', or 'most proper'. Over time, its meaning broadened from 'the most appropriate' or 'the
+  most justifiable' to simply 'the highest degree' or 'most'. This evolution highlights its historical
+  connection to logical and definitive assessment, which explains its formal and objective nuance in modern
+  Japanese.
+writeup: |-
+  「最も」(mottomo) is a superlative adverb in Japanese that corresponds to 'most' or '-est' in English. It is used to indicate the highest degree of a quality, state, or action among a group or in a particular context. It primarily modifies adjectives and adverbs, but can also be used with verbs or nouns, especially in formal or literary contexts.
+
+  Unlike 「一番」(ichiban), which is commonly used in everyday conversation and can convey a more subjective 'best' or 'first', 「最も」 carries a formal and objective nuance. It is frequently encountered in written language, academic papers, news reports, official statements, and formal speeches. When you see 「最も」, it implies a factual and definitive superlative, often based on data, established criteria, or widely accepted truths.
+
+  For example, to say 'the most beautiful flower', you would typically use 「最も美しい花」(mottomo utsukushii hana). To describe 'running the fastest', you would say 「最も速く走る」(mottomo hayaku hashiru). While 「一番」 could also be used in these contexts (e.g., 「一番美しい花」), the choice of 「最も」 signals a higher degree of formality and a more objective statement.
+
+  It's important to note that while 「最も」 is grammatically versatile, its usage context is quite specific. Using it in casual conversation might sound stiff or overly academic. Its strength lies in presenting information clearly and authoritatively, making it a staple in formal discourse.
+false_friends:
+  - term: 一番 (ichiban)
+    meaning: most; best; first
+    kind: similar expression
+    nuance: 「一番」 is the most common and versatile superlative, used in both casual and formal settings.
+      It can mean 'first', 'best', or 'most', and often carries a more subjective or personal feeling
+      compared to the objective and formal 「最も」. We're looking for a formal, objective superlative.
+    grammar_point: 一番 (superlative)
+  - term: 最高 (saikou)
+    meaning: the best; the highest
+    kind: similar expression
+    nuance: 「最高」 conveys a strong, often emotional, sense of 'the absolute best' or 'supreme'. It is highly
+      subjective and expresses personal preference or excitement, whereas 「最も」 is objective and factual.
+      We're looking for an objective superlative.
+    grammar_point: <suggest>:最高 (the best)
+  - term: 最大 (saidai)
+    meaning: the largest; maximum
+    kind: similar expression
+    nuance: 「最大」 specifically refers to the largest in size or quantity, or the maximum extent. While
+      it's a superlative, its scope is limited to physical or quantitative attributes, unlike 「最も」 which
+      applies to a broader range of qualities and actions. We're looking for a general superlative for
+      any quality.
+    grammar_point: <suggest>:最大 (largest)
+  - term: もっと (motto)
+    meaning: more; further
+    kind: often confused with
+    nuance: 「もっと」 is a comparative adverb meaning 'more' or 'further', indicating a higher degree than
+      the current state. It is not a superlative; it does not mean 'the most'. We're looking for 'the
+      most', not 'more'.
+    grammar_point: <suggest>:もっと (more)
+post_false_friends_writeup: 'To differentiate between these expressions: use 「最も」 when you want to make
+  a formal, objective statement about something being ''the most'' in a definitive sense. Use 「一番」 for
+  general everyday superlative statements that can be subjective or objective, and for indicating ''first''.
+  Use 「最高」 to express personal enthusiasm or declare something as ''the best'' from a subjective viewpoint.
+  And remember, 「最大」 is specifically for size or quantity, while 「もっと」 is a comparative, meaning ''more'',
+  not ''the most''.'
+examples:
+  - english: Mount Everest is the most tall mountain in the world.
+    japanese:
+      - エベレスト は 世界 で {最も} 高い 山 です。
+      - エベレスト は 世界 で {最も} 高い 山 だ。
+    english_literally: Everest in the world the most tall mountain is.
+    competing_grammar:
+      - competing_japanese:
+          - エベレスト は 世界 で 一番 高い 山 です。
+        english: Mount Everest is the best/first tall mountain in the world.
+        hint: 「一番」 is more common and versatile, but can also imply 'first' or 'best' in a general sense.
+          We're looking for a formal and objective statement about height.
+    scene: A geography textbook describing mountains.
+    register: formal
+    setting: informative
+  - english: This is the most important point in the report.
+    japanese:
+      - これ が レポート で {最も} 重要 な 点 です。
+      - これ が レポート で {最も} 重要 な 点 だ。
+    english_literally: This report in the most important point is.
+    competing_grammar:
+      - competing_japanese:
+          - これ が レポート で 一番 重要 な 点 です。
+        english: This is the most important point in the report.
+        hint: 「一番」 is perfectly acceptable here, but 「最も」 adds a layer of formality and objective weight,
+          fitting a professional report. We're looking for a formal, objective emphasis.
+    scene: A project manager presenting findings to a team.
+    register: formal
+    setting: serious
+  - english: She is the person who understands me the most.
+    japanese:
+      - 彼女 は 私 の こと を {最も} 理解 し て いる 人 です。
+      - 彼女 は 私 の こと を {最も} 理解 し て いる 人 だ。
+    english_literally: She me about most understanding is person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 私 の こと を 一番 理解 し て いる 人 です。
+        english: She is the person who understands me the best/most.
+        hint: 「一番」 would be more common in a personal statement, implying a subjective 'best'. We're looking
+          for a statement with a more objective or emphatic tone, perhaps in a written context.
+    scene: A character reflecting on a deep connection in a novel.
+    register: formal
+    setting: reflective
+    speaker_gender: female
+  - english: Among all the challenges, this was the most difficult.
+    japanese:
+      - すべて の 課題 の 中 で これ が {最も} 困難 でし た。
+      - すべて の 課題 の 中 で これ が {最も} 困難 だっ た。
+    english_literally: All challenges among this was the most difficult.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 課題 の 中 で これ が 一番 困難 でし た。
+        english: Among all the challenges, this was the most difficult.
+        hint: While 「一番」 is common, 「最も」 conveys a more formal and definitive assessment of difficulty,
+          suitable for a formal review. We're looking for a formal, objective superlative.
+    scene: A team leader giving a post-mortem analysis of a complex project.
+    register: formal
+    setting: serious
+  - english: This region is known for producing the most delicious grapes.
+    japanese:
+      - この 地域 は {最も} おいしい ぶどう を 生産 する こと で 知ら れ て い ます。
+      - この 地域 は {最も} おいしい ぶどう を 生産 する こと で 知ら れ て いる。
+    english_literally: This region most delicious grapes producing by known is.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は 一番 おいしい ぶどう を 生産 する こと で 知ら れ て い ます。
+        english: This region is known for producing the most delicious grapes.
+        hint: While 「一番」 is generally fine, 「最も」 provides a more authoritative and factual tone, typical
+          for descriptive information. We're looking for an informative, objective statement.
+    scene: A documentary narrator describing agricultural specialties.
+    register: formal
+    setting: informative
+  - english: Learning from past mistakes is the most important thing for growth.
+    japanese:
+      - 過去 の 失敗 から 学ぶ こと が 成長 に とっ て {最も} 重要 です。
+      - 過去 の 失敗 から 学ぶ こと が 成長 に とっ て {最も} 重要 だ。
+    english_literally: Past mistakes from learning thing growth for most important is.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 失敗 から 学ぶ こと が 成長 に とっ て 一番 重要 です。
+        english: Learning from past mistakes is the most important thing for growth.
+        hint: While 「一番」 can be used, 「最も」 emphasizes the objective and fundamental importance, fitting
+          a philosophical or instructive statement. We're looking for a formal, general truth.
+    scene: A motivational speaker giving advice to an audience.
+    register: formal
+    setting: inspirational
+  - english: The research identified the most effective method.
+    japanese:
+      - その 研究 は {最も} 効果 的 な 方法 を 特定 し まし た。
+      - その 研究 は {最も} 効果 的 な 方法 を 特定 し た。
+    english_literally: That research most effective method identified did.
+    competing_grammar:
+      - competing_japanese:
+          - その 研究 は 一番 効果 的 な 方法 を 特定 し まし た。
+        english: The research identified the most effective method.
+        hint: In an academic or research context, 「最も」 is preferred for its objective and precise connotation
+          when stating findings. We're looking for a precise scientific finding.
+    scene: A scientist presenting findings at a conference.
+    register: formal
+    setting: informative
+  - english: This painting is considered to be the most representative work of the artist.
+    japanese:
+      - この 絵画 は その 画家 の {最も} 代表 的 な 作品 と さ れ て い ます。
+      - この 絵画 は その 画家 の {最も} 代表 的 な 作品 と さ れ て いる。
+    english_literally: This painting that artist's most representative work is considered.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵画 は その 画家 の 一番 代表 的 な 作品 と さ れ て い ます。
+        english: This painting is considered to be the most representative work of the artist.
+        hint: While 「一番」 works, 「最も」 is more common in art criticism or formal descriptions to denote
+          a definitive representation. We're looking for an objective critical assessment.
+    scene: An art critic describing a famous painting in a museum catalog.
+    register: formal
+    setting: informative
+  - english: Achieving world peace is our most earnest wish.
+    japanese:
+      - 世界 平和 の 実現 は 私 たち の {最も} 切実 な 願い です。
+      - 世界 平和 の 実現 は 私 たち の {最も} 切実 な 願い だ。
+    english_literally: World peace realization our most earnest wish is.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 平和 の 実現 は 私 たち の 一番 切実 な 願い です。
+        english: Achieving world peace is our most earnest wish.
+        hint: 「最も」 conveys a profound and formal emphasis on the depth of the wish, suitable for expressing
+          a collective, serious aspiration. We're looking for a serious, collective wish.
+    scene: A diplomat giving a speech at the United Nations.
+    register: formal
+    setting: serious
+  - english: The economic impact of the pandemic was the most severe in the service industry.
+    japanese:
+      - パンデミック の 経済 的 影響 は サービス 業 で {最も} 深刻 でし た。
+      - パンデミック の 経済 的 影響 は サービス 業 で {最も} 深刻 だっ た。
+    english_literally: Pandemic's economic impact service industry in most severe was.
+    competing_grammar:
+      - competing_japanese:
+          - パンデミック の 経済 的 影響 は サービス 業 で 一番 深刻 でし た。
+        english: The economic impact of the pandemic was the most severe in the service industry.
+        hint: In economic analysis or official reports, 「最も」 is preferred for its objective and factual
+          emphasis on the degree of severity. We're looking for an objective, analytical statement.
+    scene: An economist presenting an analysis of market trends.
+    register: formal
+    setting: informative
+post_example_writeup: The examples provided demonstrate how 「最も」 consistently functions to convey a definitive,
+  often objectively verifiable, superlative degree across various formal contexts. Notice its frequent
+  appearance in informative, academic, or professional settings, reinforcing its formal nuance compared
+  to more colloquial alternatives.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/最も

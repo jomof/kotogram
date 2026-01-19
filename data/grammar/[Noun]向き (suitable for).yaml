@@ -1,0 +1,268 @@
+grammar_point: '[Noun]向き (suitable for)'
+learn_before:
+  - '[Noun]向き (facing)'
+meaning: suitable for; intended for; aimed at
+pronunciation:
+  katakana: ムキ
+  romaji: muki
+formation:
+  '[Noun] + 向き': Indicates that something is suitable for or oriented towards the specified noun.
+jlpt: N3
+etymology: The term 「向き」 (muki) literally means 'direction' or 'facing.' It is derived from the verb 「向く」
+  (muku), meaning 'to face,' 'to turn towards,' or 'to be suited for.' Over time, its meaning evolved
+  to encompass the idea of something being 'oriented towards' or 'suitable for' a specific purpose, person,
+  or situation. This concept of inherent direction or orientation gives rise to the nuance of natural
+  suitability rather than just a superficial match.
+writeup: |-
+  The grammar point 「〜向き」 (muki) attaches to nouns to indicate that something is **suitable for**, **intended for**, or **aimed at** the preceding noun. It suggests an inherent characteristic or a natural fit, implying that the item or situation possesses qualities that make it particularly appropriate for the given context. For instance, if something is 「子供向き」 (kodomo muki), it means it is inherently well-suited for children, perhaps due to its design, safety features, or content. This differs subtly from simply being 'for' children; it implies a natural alignment.
+
+  「〜向き」 can modify another noun (e.g., 「初心者向きの教科書」 - a textbook suitable for beginners) or stand alone as a predicate (e.g., 「この仕事は彼向きだ」 - This job is suited for him). When used as a predicate, it functions as a na-adjective.
+
+  It is a versatile expression used in various contexts, from describing products and services to personal attributes or situations. It carries a nuance of natural compatibility or design purpose, making it a strong choice when you want to convey that something is an excellent fit for a particular audience or scenario.
+false_friends:
+  - term: 向け
+    meaning: intended for; designed for; aimed at
+    kind: similar expression
+    nuance: 「向き」 implies inherent suitability or natural fit (e.g., a toy naturally suited for children),
+      focusing on the intrinsic qualities. 「向け」 emphasizes explicit targeting or production for a specific
+      audience or purpose (e.g., anime specifically produced/directed at children), focusing on the creator's
+      intention or external action.
+    grammar_point: 向け (intended for)
+  - term: に合う
+    meaning: to fit; to suit; to match
+    kind: similar expression
+    nuance: 「向き」 functions as a suffix/noun indicating a general, often inherent suitability. 「に合う」 is
+      a verb phrase expressing a direct match or fit, implying that something actively 'fits' or 'suits'
+      a person or situation.
+    grammar_point: に合わせる・に合う (match or fit)
+  - term: に適する
+    meaning: to be suitable for; to be appropriate for
+    kind: similar expression
+    nuance: 「向き」 is a more concise and often more casual way to express inherent suitability. 「に適する」 is
+      a more formal verb phrase, frequently used in objective, official, or technical contexts to describe
+      suitability based on specific criteria or standards.
+    grammar_point: <suggest>:に適する (to be suitable for)
+post_false_friends_writeup: While 「向き」, 「向け」, 「に合う」, and 「に適する」 all relate to suitability, distinguishing
+  their nuances is key. 「向き」 often describes a natural or inherent fit due to existing qualities. 「向け」
+  highlights intentional design or targeting by someone. 「に合う」 is about a specific match or fit, often
+  discovered. 「に適する」 is a more formal expression for objective appropriateness. Choose 「向き」 when emphasizing
+  natural aptitude or inherent suitability, especially in descriptive contexts for products, jobs, or
+  personal characteristics.
+examples:
+  - english: These toys are perfect for children.
+    japanese:
+      - この おもちゃ は {子供 向き} だ。
+      - この おもちゃ は {子供 向き} です。
+      - '{子供 向き} の おもちゃ だ。'
+    english_literally: This toy is child-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この おもちゃ は 子供 向け だ。
+        english: This toy is designed for children.
+        hint: 「向け」 emphasizes explicit design intention or targeting, while 「向き」 suggests inherent suitability.
+          We're looking for something that is naturally well-suited for children.
+      - competing_japanese:
+          - この おもちゃ は 子供 に 合う。
+        english: This toy suits children.
+        hint: 「に合う」 means 'to suit' or 'to fit' in a general sense, but 「向き」 implies a more inherent characteristic
+          of being 'perfect for' or 'suited for' that group. We're looking for inherent suitability.
+    scene: A parent is browsing toys in a store, commenting on their suitability.
+    register: casual
+    setting: friendly
+  - english: This textbook is suitable for beginners.
+    japanese:
+      - この 教科 書 は {初心 者 向き} だ。
+      - この 教科 書 は {初心 者 向き} です。
+      - '{初心 者 向き} の 教科 書 だ。'
+    english_literally: This textbook is beginner-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この 教科 書 は 初心 者 向け だ。
+        english: This textbook is for beginners (designed for them).
+        hint: 「向け」 emphasizes that the textbook was specifically created for beginners, focusing on the
+          intention behind its design. We're looking for inherent suitability.
+      - competing_japanese:
+          - この 教科 書 は 初心 者 に 適する。
+        english: This textbook is appropriate for beginners.
+        hint: 「に適する」 is a more formal way to say 'suitable' and often implies meeting specific criteria.
+          We're looking for something naturally well-suited.
+    scene: A teacher recommends study materials to a new student.
+    register: teineigo (polite)
+    setting: informative
+  - english: This job is suited for him.
+    japanese:
+      - この 仕事 は 彼 {向き} だ。
+      - この 仕事 は 彼 {向き} です。
+      - 彼 に は この 仕事 が {向き} だ。
+    english_literally: This job is him-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 彼 に 合う。
+        english: This job suits him.
+        hint: 「に合う」 simply means 'to suit' or 'to fit'. 「向き」 goes further to imply an inherent fit based
+          on his qualities. We're looking for a natural fit for his capabilities.
+      - competing_japanese:
+          - この 仕事 は 彼 に 適する。
+        english: This job is appropriate for him.
+        hint: 「に適する」 is more formal and suggests appropriateness based on objective standards. We're looking
+          for a natural suitability, not just correctness.
+    scene: Two colleagues are discussing a promotion and a suitable candidate.
+    register: semi-formal
+    setting: professional
+    nuance: The use of 「彼向き」 implies that the job aligns well with his inherent skills and personality,
+      suggesting a natural fit for his capabilities. The casual setting makes this a straightforward observation
+      between colleagues.
+  - english: These clothes are perfect for summer.
+    japanese:
+      - この 服 は {夏 向き} だ。
+      - この 服 は {夏 向き} です。
+      - '{夏 向き} の 服 だ。'
+    english_literally: These clothes are summer-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この 服 は 夏 向け だ。
+        english: These clothes are designed for summer.
+        hint: 「向け」 would mean the clothes were specifically designed or marketed for summer, focusing
+          on the creator's intent. We're looking for clothes that are inherently suitable for summer weather.
+      - competing_japanese:
+          - この 服 は 夏 に 合う。
+        english: These clothes suit summer.
+        hint: 「に合う」 means 'to suit' or 'to fit'. 「向き」 implies a more natural or ideal suitability for
+          the season. We're looking for clothes that are perfectly suited for summer.
+    scene: Someone is picking out an outfit on a hot day.
+    register: casual
+    setting: casual slang
+  - english: This design is aimed at women.
+    japanese:
+      - この デザイン は {女性 向き} だ。
+      - この デザイン は {女性 向き} です。
+      - '{女性 向き} の デザイン だ。'
+    english_literally: This design is woman-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この デザイン は 女性 向け だ。
+        english: This design is designed for women.
+        hint: 「向け」 emphasizes that the design was specifically created or intended for women. 「向き」 suggests
+          it's naturally appealing or well-suited to women. We're looking for a design that naturally
+          appeals to women.
+      - competing_japanese:
+          - この デザイン は 女性 に 合う。
+        english: This design suits women.
+        hint: 「に合う」 means 'to suit' or 'to fit'. 「向き」 implies a stronger, more inherent alignment of the
+          design's characteristics with female preferences. We're looking for a design that is ideal for
+          women.
+    scene: A designer presents their new collection to a client, explaining the target audience.
+    register: formal
+    setting: professional
+  - english: This isn't suitable for students.
+    japanese:
+      - これ は {学生 向き} じゃ ない。
+      - これ は {学生 向き} で は あり ませ ん。
+      - '{学生 向き} の もの じゃ ない。'
+    english_literally: This is not student-suited.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 学生 向け で は ない。
+        english: This is not designed for students.
+        hint: 「向けではない」 means it was not specifically created for students. 「向きじゃない」 means it's inherently
+          inappropriate. We're looking for something that is not inherently appropriate for students.
+      - competing_japanese:
+          - これ は 学生 に 合わ ない。
+        english: This does not suit students.
+        hint: 「に合わない」 simply means 'does not suit'. 「向きじゃない」 implies it's inherently unsuitable or inappropriate
+          for students. We're looking for something that is not naturally suited for students.
+    scene: A mentor advises a student against a certain path, deeming it inappropriate.
+    register: teineigo (polite)
+    setting: instructional
+  - english: His voice is good for presentations.
+    japanese:
+      - 彼 の 声 は {プレゼン 向き} だ。
+      - 彼 の 声 は {プレゼン 向き} です。
+      - '{プレゼン 向き} の 声 だ。'
+    english_literally: His voice is presentation-suited.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 声 は プレゼン に 合う。
+        english: His voice suits presentations.
+        hint: 「に合う」 expresses a general fit. 「向き」 suggests a more ideal or natural suitability, implying
+          his voice is inherently perfect for presentations. We're looking for inherent suitability for
+          presentations.
+      - competing_japanese:
+          - 彼 の 声 は プレゼン に 適する。
+        english: His voice is appropriate for presentations.
+        hint: 「に適する」 is a more formal term implying objective appropriateness. We're looking for a natural
+          suitability, rather than just meeting criteria.
+    scene: A director comments on an actor's vocal qualities during a rehearsal.
+    register: semi-formal
+    setting: professional
+  - english: He is well-suited for a sales position.
+    japanese:
+      - 彼 は 営業 職 {向き} だ。
+      - 彼 は 営業 職 {向き} です。
+      - 営業 職 に は 彼 が {向き} だ。
+    english_literally: He is sales position-suited.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 営業 職 に 合う。
+        english: He suits a sales position.
+        hint: 「に合う」 expresses a general fit. 「向き」 suggests he is inherently and perfectly suited for the
+          role. We're looking for a natural aptitude for the sales position.
+      - competing_japanese:
+          - 彼 は 営業 職 に 適する。
+        english: He is appropriate for a sales position.
+        hint: 「に適する」 is more formal and implies meeting the requirements for the position. We're looking
+          for someone who is naturally well-suited, beyond just being appropriate.
+    scene: A HR manager discusses a candidate's potential during a review.
+    register: formal
+    setting: professional
+  - english: This cafe is good for studying.
+    japanese:
+      - この カフェ は {勉強 向き} だ。
+      - この カフェ は {勉強 向き} です。
+      - '{勉強 向き} の カフェ だ。'
+    english_literally: This cafe is study-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ は 勉強 向け だ。
+        english: This cafe is designed for studying.
+        hint: 「向け」 implies the cafe was intentionally set up or marketed for studying. 「向き」 suggests it
+          has inherent qualities that make it good for studying. We're looking for a cafe that is naturally
+          conducive to studying.
+      - competing_japanese:
+          - この カフェ は 勉強 に 合う。
+        english: This cafe suits studying.
+        hint: 「に合う」 means 'to suit' or 'to fit'. 「向き」 suggests a more ideal or natural suitability due
+          to the cafe's atmosphere or features. We're looking for a cafe that is perfectly suited for
+          studying.
+    scene: Two friends are looking for a quiet place to prepare for an exam.
+    register: casual
+    setting: friendly
+  - english: This feature is for professionals.
+    japanese:
+      - この 機能 は {プロ 向き} だ。
+      - この 機能 は {プロ 向き} です。
+      - '{プロ 向き} の 機能 だ。'
+    english_literally: This feature is pro-suited.
+    competing_grammar:
+      - competing_japanese:
+          - この 機能 は プロ 向け だ。
+        english: This feature is designed for professionals.
+        hint: 「向け」 emphasizes that the feature was explicitly created for professionals. 「向き」 implies
+          it is inherently well-adapted to their needs. We're looking for a feature that is naturally
+          suitable for professionals.
+      - competing_japanese:
+          - この 機能 は プロ に 適する。
+        english: This feature is appropriate for professionals.
+        hint: 「に適する」 is a more formal term for appropriateness, often based on objective criteria. We're
+          looking for a feature that is inherently suitable, beyond just being appropriate.
+    scene: A tech company unveils a new product, highlighting advanced features.
+    register: formal
+    setting: informative
+    nuance: The phrase 「プロ向き」 implies that the feature is specifically designed with the needs and capabilities
+      of professionals in mind, making it inherently suitable for their use. The setting indicates this
+      is likely a formal announcement or product description.
+post_example_writeup: As seen in the examples, 「〜向き」 can be applied to a wide range of nouns, indicating
+  suitability for people, groups, objects, situations, or even abstract concepts. Its flexibility in connecting
+  nouns to describe a natural fit makes it a very useful expression in everyday Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/125

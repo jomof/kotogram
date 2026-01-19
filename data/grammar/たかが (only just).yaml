@@ -1,0 +1,308 @@
+grammar_point: たかが (only just)
+learn_before:
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - くらい (approximate quantity or degree)
+  - そんなに (that much)
+  - 一体 (emphasis in questions)
+meaning: Only; just; merely
+pronunciation:
+  katakana: タカガ
+  romaji: takaga
+formation:
+  Noun + だ: For emphasizing that the noun is merely that. (e.g., たかが子供だ - just a child)
+  Noun/Number(+Counter) + (くらい){と/で}: For expressing that something is just a trivial noun or amount.
+    (e.g., たかがレポートくらいと - just a report)
+  Verb/い-adjective (plain form) + くらい (のこと)で: For indicating that an action or state is insignificant.
+    (e.g., たかが英語ができるくらいのことだ - just being able to speak English)
+  な-adjective (stem) + な/だった + くらい (のこと)で: For highlighting that a quality or situation is trivial. (e.g.,
+    たかが下手な料理 - just bad cooking)
+  たかが知れている: A fixed expression meaning something's extent or capability is limited.
+jlpt: N1
+etymology: 「たかが」 likely originates from the verb 「高が (takaga)」, which historically meant "at most" or
+  "at best." Over time, its meaning evolved to emphasize the small, limited, or insignificant nature of
+  something, functioning adverbially to downplay importance.
+writeup: |-
+  The expression 「{たかが}」 is used to minimize the significance, importance, or value of a particular thing or situation. It translates to "only," "just," or "merely," conveying the speaker's dismissive or condescending attitude towards the subject. It is commonly used to argue that something is not a big deal or not worth excessive concern.
+
+  「{たかが}」 can be used in several ways:
+
+  *   **たかが + Noun**: This is the most straightforward use, directly stating that a noun is insignificant. For example, 「たかが風邪」 means "it's just a cold."
+  *   **たかが + Noun/Number + くらい/と/で**: When combined with particles like 「くらい」, 「と」, or 「で」, it intensifies the dismissive tone, implying that the subsequent action or reaction is an overstatement given the triviality of the preceding noun. For example, 「たかがテストの結果くらいで」 means "just for a test result (you shouldn't overreact)."
+  *   **たかが + Verb/い-adjective/な-adjective (plain form) + くらい (のこと)で**: This construction applies 「たかが」 to verbs or adjectives, suggesting that the action, state, or quality is trivial. For instance, 「たかが少し遅れたくらいで」 means "just for being a little late."
+  *   **たかが知れている**: This is a fixed phrase meaning "its extent is limited" or "it doesn't amount to much." It expresses the belief that something's capabilities, knowledge, or value are minimal.
+false_friends:
+  - term: ただの
+    meaning: Just, only, merely
+    kind: similar expression
+    nuance: 「ただの」 is used to describe the plain nature or commonness of something, implying it's nothing
+      special. Unlike 「たかが」, it doesn't necessarily convey a dismissive attitude about its importance.
+      For example, 「ただの石」 (just a stone) versus 「たかが石」 (it's only a stone, so it's not important).
+    grammar_point: ただの (just・only)
+  - term: たった
+    meaning: Only, just, merely (emphasizing a small quantity or amount)
+    kind: similar expression
+    nuance: 「たった」 focuses on the smallness of a quantity or amount, making it sound insignificant due
+      to its size. 「たかが」, on the other hand, minimizes the overall importance or significance of something,
+      which might or might not be related to its quantity. For example, 「たった100円」 (only 100 yen) emphasizes
+      the small amount, while 「たかが100円」 (it's just 100 yen, so don't fuss) emphasizes its insignificance.
+    grammar_point: たった (only・just)
+post_false_friends_writeup: While 「ただの」, 「たった」, and 「たかが」 all translate to "only" or "just," their nuances
+  differ significantly. 「ただの」 describes something as ordinary or unexceptional. 「たった」 highlights a small
+  quantity or amount. In contrast, 「たかが」 is used to diminish the importance or value of something, often
+  with a dismissive or condescending tone. To avoid confusion, remember that 「たかが」 carries a subjective
+  judgment about insignificance, whereas 「ただの」 describes inherent commonness and 「たった」 quantifies smallness.
+examples:
+  - english: It's just something a child said. There's no need to take it so seriously.
+    japanese:
+      - '{たか が} 子供 の 言っ た こと だ。そんな に 深刻 に 考える 必要 は ない。'
+      - '{たか が} 子供 の 言っ た こと です。そんな に 深刻 に 考える 必要 は あり ませ ん。'
+      - '{たか が} 子供 の 言っ た こと だ。そんな に 深刻 に 考える 必要 なんて ない ぜ。'
+      - '{たか が} 子供 の 言っ た こと だ し、そんな に 考える 必要 ない わ よ。'
+    english_literally: It's just a child's words. There's no need to think so seriously.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} 子供 の 言っ た こと だ'
+        english: It's just an ordinary thing a child said.
+        hint: 「ただの」 implies something is common or unspecial, not necessarily insignificant in impact.
+          We're looking for a word that dismisses the importance of what was said.
+    scene: A parent calming down another adult who is upset by a child's comment.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a man, uses the plain form 「だ」 and 「ない」, common in casual male speech, to sound
+      reassuring and direct. The phrase 「必要は ない」 indicates there's no logical reason to overreact. The
+      variations demonstrate differing levels of politeness and gendered speech, with 「ないぜ」 for a masculine,
+      assertive tone and 「ないわよ」 for a softer, feminine tone.
+  - english: Don't be so upset about just being bad at singing.
+    japanese:
+      - '{たか が} 下手 な 歌 くらい で、そんな に 気 に し ない で。'
+      - '{たか が} 下手 な 歌 くらい で、そんな に 気 に なさら なく て 結構 です よ。'
+      - '{たか が} 下手 な 歌 くらい で、へこむ な よ。'
+    english_literally: Just for a bad song, don't worry so much.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} 下手 な 歌 くらい で'
+        english: Just an ordinary bad song.
+        hint: 「ただの」 describes something as common or unexceptional, not necessarily insignificant in value.
+          We're looking for a phrase that implies the bad singing is too trivial to warrant such concern.
+      - competing_japanese:
+          - '{たった} 下手 な 歌 くらい で'
+        english: Only for a bad song.
+        hint: 「たった」 emphasizes a small quantity or amount. Here, the focus is on the insignificance of
+          the quality, not the quantity of songs. We're looking for a word that minimizes the importance.
+    scene: A friend comforting another who is shy about their singing skills at karaoke.
+    register: casual
+    setting: supportive
+  - english: Don't get so depressed over just a test result.
+    japanese:
+      - '{たか が} テスト の 結果 {くらい で}、そんな に 落ち込ま ない で。'
+      - '{たか が} テスト の 結果 くらい で、そんな に 落ち込ま ない で ください。'
+      - '{たか が} テスト の 結果 くらい で、そこ まで 落ち込む な よ。'
+    english_literally: Just for a test result, don't get so depressed.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} テスト の 結果 で'
+        english: Just an ordinary test result.
+        hint: 「ただの」 implies something is common or unspecial. The scene implies that the test result's
+          significance should be minimized relative to the sadness.
+      - competing_japanese:
+          - '{たった} テスト の 結果 で'
+        english: Only for a test result.
+        hint: 「たった」 focuses on the smallness of quantity. The scene implies that the main point is the
+          insignificance of the result itself for causing such depression, rather than solely focusing
+          on the quantity of results.
+    scene: A friend comforting another who is feeling down after receiving a bad grade on an exam.
+    register: casual
+    setting: sympathetic
+  - english: Is it really necessary to argue that much over just 100 yen?
+    japanese:
+      - '{たか が} 百 円 {くらい で}、そこ まで 揉める 必要 ある？'
+      - '{たか が} 百 円 くらい で、そこ まで 揉める 必要 が ある ん です か。'
+      - '{たか が} 百 円 くらい で、何 で そんな に 揉め て ん だ よ？'
+    english_literally: Just for 100 yen, is it necessary to argue that much?
+    competing_grammar:
+      - competing_japanese:
+          - '{たった} 百 円 で'
+        english: Just 100 yen.
+        hint: While 「たった」 emphasizes the small quantity, 「たかが」 shows that the dispute is petty and unwarranted
+          because the amount is so insignificant, focusing on the dismissive judgment rather than just
+          the quantity.
+      - competing_japanese:
+          - '{ただ の} 百 円 で'
+        english: Just an ordinary 100 yen.
+        hint: 「ただの」 implies something is common or unspecial. Here, the emphasis is on the triviality
+          of the amount for causing an argument, not its commonness.
+    scene: Two friends mediating a dispute between two others who are fighting over a small amount of
+      money.
+    register: casual
+    setting: serious
+  - english: It's a waste to give up on your dream over just one failure.
+    japanese:
+      - '{たか が} 一 度 の 失敗 {くらい で}、夢 を 諦める の は もったい ない よ。'
+      - '{たか が} 一 度 の 失敗 くらい で、夢 を 諦める の は もったい ない です よ。'
+      - '{たか が} 一 度 の 失敗 くらい で、夢 を 諦め て しまう の は 勿体 ない です。'
+    english_literally: Just for one failure, giving up on your dream is a waste.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} 一 度 の 失敗 で'
+        english: Just an ordinary single failure.
+        hint: 「ただの」 implies something is common or unspecial. The scene encourages the use of 「たかが」 to
+          communicate that the single failure is too trivial to abandon a dream, highlighting its insignificance
+          as a reason for giving up.
+      - competing_japanese:
+          - '{たった} 一 度 の 失敗 で'
+        english: Only one failure.
+        hint: While emphasizing it's 'only one' failure, the scene implies that this failure is too minor
+          to warrant giving up on a dream, a judgment that 「たかが」 conveys more strongly than 「たった」.
+    scene: A mentor encouraging a discouraged student who is about to quit after a setback.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 「もったいないよ」 with the masculine 「よ」 particle to add a soft, encouraging
+      tone. This phrasing is common when giving gentle advice.
+  - english: It's better not to act like an expert with such limited programming knowledge.
+    japanese:
+      - '{たか が} 知れ て いる プログラム の 知識 {くらい で}、専門 家 を 気取ら ない 方 が いい。'
+      - '{たか が} 知れ て いる プログラム の 知識 くらい で、専門 家 を 気取ら ない 方 が いい です よ。'
+      - '{たか が} 知れ て いる プログラム の 知識 程度 で、専門 家 面 し ない 方 が いい。'
+    english_literally: With knowledge of programming that is merely limited, it's better not to act like
+      an expert.
+    competing_grammar:
+      - competing_japanese:
+          - その {程度} の プログラム の 知識 で
+        english: With that level of programming knowledge.
+        hint: The scene directly addresses the context where one's knowledge is known to be limited, which
+          is the precise meaning of 「たかが知れている」, steering the user away from more general phrases about
+          'small knowledge' that lack this fixed-expression nuance.
+    scene: An experienced software engineer advising a junior colleague who is overly confident about
+      their basic skills.
+    register: formal
+    setting: professional
+    nuance: The use of 「いい」 at the end, coupled with 「方が」, creates a gentle suggestion or advice. This
+      kind of nuanced admonition is common in formal professional settings.
+  - english: What can you really understand from just a personal experience story?
+    japanese:
+      - '{たか が} 体験 談 {くらい で}、何 が わかる って 言う ん です か。'
+      - '{たか が} 体験 談 くらい で、一体 何 が 理解 できる と 言う の です か。'
+      - '{たか が} 体験 談 くらい で、何 が わかる ん だ よ。'
+    english_literally: Just for an experience story, what can you understand, is what you're saying?
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} 体験 談 で'
+        english: Just an ordinary experience story.
+        hint: 「ただの」 implies something is common or unspecial. The academic setting and the question of
+          "what can you understand" direct the user to use 「たかが」 to express the speaker's judgment that
+          an experience story is too trivial or limited to provide real insight.
+    scene: A researcher questioning the validity of relying solely on anecdotal evidence in an academic
+      discussion.
+    register: formal
+    setting: academic
+  - english: Working overtime for just one person's worth of work is impossible.
+    japanese:
+      - '{たか が} 一人 分 の 仕事 {くらい で}、残業 する なんて 無理 だ。'
+      - '{たか が} 一人 分 の 仕事 くらい で、残業 する なんて 無理 です よ。'
+      - '{たか が} 一人 分 の 仕事 くらい で、残業 さ せ られる なんて 冗談 じゃ ない。'
+    english_literally: Just for one person's worth of work, doing overtime is impossible.
+    competing_grammar:
+      - competing_japanese:
+          - '{たった} 一人 分 の 仕事 で'
+        english: Only one person's worth of work.
+        hint: The scene implies that the workload is too insignificant to justify mandatory overtime,
+          implying a dismissal of the situation's importance, which 「たった」 focuses on quantity rather than
+          dismissal.
+      - competing_japanese:
+          - '{ただ の} 一人 分 の 仕事 で'
+        english: Just an ordinary person's worth of work.
+        hint: 「ただの」 describes something as common or unexceptional. Here, the emphasis is on the triviality
+          of the work for causing overtime, not its commonness.
+    scene: An employee complaining to a colleague about an unfair workload.
+    register: casual
+    setting: pessimistic
+  - english: With just that level of practice, there's no way you can become a professional.
+    japanese:
+      - '{たか が} その 程度 の 練習 で、プロ に なれる はず が ない。'
+      - '{たか が} その 程度 の 練習 で、プロ に なれる はず は あり ませ ん。'
+      - '{たか が} その 程度 の 練習 で、プロ なんて 無理 だ。'
+    english_literally: Just with that level of practice, there's no way you can become a professional.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} その 程度 の 練習 で'
+        english: Just an ordinary level of practice.
+        hint: 「ただの」 implies something is common or unspecial. The scene implies that the level of practice
+          is not merely ordinary, but also trivial or inadequate for the goal. 「たかが」 conveys this strong
+          dismissive judgment.
+      - competing_japanese:
+          - '{たった} その 程度 の 練習 で'
+        english: Only that level of practice.
+        hint: While 「たった」 emphasizes the small quantity of practice, 「たかが」 in this scene strongly conveys
+          the speaker's judgment that this specific level of practice is utterly inadequate for becoming
+          a professional, reflecting a dismissive assessment.
+    scene: A coach sternly telling an athlete that their current effort is insufficient for their goals.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The coach, a male, uses the direct and assertive tone typical of instructional or critical
+      feedback. The phrase 「なれるはずが ない」 strongly conveys the impossibility, common in firm guidance.
+  - english: There's no need to change yourself just for a trendy fashion.
+    japanese:
+      - '{たか が} 流行り の ファッション {くらい で}、自分 を 変える 必要 は ない。'
+      - '{たか が} 流行り の ファッション くらい で、自分 を 変える 必要 は あり ませ ん。'
+      - '{たか が} 流行り の ファッション くらい で、なん で 自分 を 変える ん だ よ。'
+    english_literally: Just for trendy fashion, there's no need to change yourself.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ の} 流行り の ファッション で'
+        english: Just an ordinary trendy fashion.
+        hint: 「ただの」 implies something is common or unspecial. The scene implies that trendy fashion is
+          too superficial or transient to be a valid reason for changing one's fundamental self, emphasizing
+          its insignificance, which 「ただの」 would not fully capture.
+      - competing_japanese:
+          - '{たった} 流行り の ファッション で'
+        english: Only trendy fashion.
+        hint: 「たった」 emphasizes small quantity. Here, the emphasis is on the triviality of the fashion
+          as a reason to change oneself, not its quantity.
+    scene: An older sibling giving advice to a younger sibling who is obsessed with fitting in.
+    register: casual
+    setting: supportive
+    speaker_age: older
+    nuance: The older speaker uses the direct form 「必要は ない」, but the context implies supportive advice
+      rather than a harsh command, common when an elder advises a younger family member.
+  - english: Teacher, please don't be so angry just for forgetting my homework.
+    japanese:
+      - 先生、{たか が} 宿題 を 忘れ た {くらい で}、そんな に 怒ら ない で ください。
+      - 先生、{たか が} 宿題 を 忘れ た くらい で、そんな に お 怒り に なら ない で ください。
+    english_literally: Teacher, just for forgetting homework, please don't be so angry.
+    competing_grammar:
+      - competing_japanese:
+          - '{ただ} 宿題 を 忘れ た くらい で'
+        english: Just for forgetting homework.
+        hint: 「ただ」 can mean 'just' but doesn't convey the dismissive judgment. The scene prompts the user
+          to choose 「たかが」 to convey the student's perspective that the act of forgetting homework is trivial
+          enough that the teacher's intense anger is an overreaction.
+      - competing_japanese:
+          - '{たった} 宿題 を 忘れ た くらい で'
+        english: Only for forgetting homework.
+        hint: While 「たった」 focuses on the singular instance of forgetting, 「たかが」 more strongly conveys
+          the student's plea that forgetting homework is a minor offense that shouldn't provoke such a
+          severe reaction, which is the core of the scene.
+    scene: A student apologetically pleading with their teacher.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The male student uses 「ください」, a polite command, when speaking to a teacher, indicating respect
+      for authority and age. The phrase 「そんなに 怒らないで」 shows an attempt to de-escalate the teacher's anger,
+      common when a younger person addresses an older authority figure.
+post_example_writeup: The examples showcase how 「たかが」 is used to downplay the significance of various
+  nouns, numbers, verbs, and adjectives. Notice its common collocation with 「くらいで」, which further emphasizes
+  the triviality of the preceding element as a cause for an exaggerated reaction or concern. The choice
+  of register and sentence endings varies depending on the speaker's relationship with the listener and
+  the desired nuance, ranging from casual dismissal to formal admonition. Pay close attention to the context
+  to understand the subjective judgment of insignificance conveyed by 「たかが」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たかが

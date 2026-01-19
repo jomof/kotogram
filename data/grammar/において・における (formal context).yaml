@@ -1,0 +1,346 @@
+grammar_point: において・における (formal context)
+learn_before:
+  - と並んで (comparable with)
+  - 影響を与える (to influence・to affect)
+meaning: In, on, at, regarding, in terms of
+pronunciation:
+  katakana: ニオイテ・ニオケル
+  romaji: ni oite / ni okeru
+formation:
+  Noun + において: Indicates location, time, or situation where an action or event takes place.
+  Noun + における + Noun: Connects two nouns, specifying the scope or context of the first noun in relation
+    to the second.
+jlpt: N3
+etymology: The grammar point において・における originates from the classical Japanese particle 於いて (おいて) and 於ける
+  (おける), which use the kanji 於 (お), meaning 'at', 'in', or 'on'. This classical particle itself functions
+  similarly to modern locative and contextual particles, directly forming the basis for the formal expressions
+  used today.
+writeup: '**において** and **における** are formal expressions used to indicate location, time, situation, or
+  context. Think of them as meaning "in," "on," "at," or "regarding." They are often used in formal writing
+  and speech, such as academic papers, news reports, and business presentations. *   **において** typically
+  follows a noun and indicates the place, time, or situation where something happens. *   **における** is
+  used to modify another noun, specifying the scope or context. It''s similar to saying "in terms of"
+  or "regarding the." These expressions are generally considered more formal than simpler alternatives
+  like **で** or **に**, so it''s best to use them in appropriate settings. The kanji 「於」 means "at, in,
+  on, as for," giving において and における a broad range of applications.'
+false_friends:
+  - term: にかかわる
+    meaning: To relate to, To have to do with, Concerning, Depends on
+    kind: synonym
+    nuance: にかかわる implies a more direct connection or influence than において・における.
+    grammar_point: にかかわる (to concern or involve)
+  - term: について
+    meaning: Concerning, About, Regarding
+    kind: synonym
+    nuance: について is less formal and more versatile than において・における. While において can refer to a location
+      or time, について primarily refers to a topic.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: に関する・に関して
+    meaning: Related to, About, Regarding
+    kind: synonym
+    nuance: に関する・に関して is similar in meaning to 'regarding' but is typically used for specific topics,
+      indicating 'in relation to' or 'concerning'. において・における is broader and can indicate location, time,
+      or situation beyond just a topic.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: に対して
+    meaning: In contrast to, While, In regard to, Whereas
+    kind: synonym
+    nuance: に対して implies a comparison or opposition, or direction towards someone/something, unlike the
+      neutral indication of location or context in において・における.
+    grammar_point: に対して (towards; in contrast)
+  - term: にとって
+    meaning: To, For, Concerning
+    kind: synonym
+    nuance: にとって indicates perspective or benefit, addressing 'for whom' or 'from whose viewpoint', unlike
+      the locational or contextual meaning of において・における.
+    grammar_point: にとって (from the standpoint of)
+  - term: にて
+    meaning: In, At, With, Using, By
+    kind: synonym
+    nuance: にて is a more versatile but slightly archaic substitute for で and に, often used in formal writing
+      like official notices. において・における is strictly formal and context-specific to events, situations,
+      or broader domains.
+    grammar_point: にて (formal at・by means of)
+  - term: で (location of action)
+    meaning: At, In
+    kind: synonym
+    nuance: で is the most basic particle indicating location, time, or cause in general conversation.
+      において is a much more formal and specific expression used for events and circumstances, particularly
+      in written or official contexts.
+    grammar_point: で (location of action)
+  - term: 上 (from the standpoint of)
+    meaning: From the standpoint of; In terms of
+    kind: similar expression
+    nuance: While において・における can indicate a broad location, time, or context, 上 (e.g., 法律上, 理論上) specifically
+      refers to a theoretical, formal, or practical dimension or basis. It highlights the perspective
+      from which something is considered.
+    grammar_point: 上 (from the standpoint of)
+  - term: 点 (aspect・point)
+    meaning: Aspect, respect, point, way, in terms of, from the point of view
+    kind: similar expression
+    nuance: While において can be used to specify an aspect (e.g., この点において), 点 itself as a noun, or in phrases
+      like 〜の点から, emphasizes a singular, specific point or aspect of consideration rather than a broader
+      context or setting.
+    grammar_point: 点 (aspect・point)
+post_false_friends_writeup: To avoid confusing において・における with similar expressions, remember that it is
+  primarily used in formal contexts to indicate location, time, or circumstances. When deciding whether
+  to use it, consider the level of formality required and whether you are specifically highlighting the
+  setting or context of an event. While some expressions might share a similar English translation, their
+  Japanese usage often carries distinct nuances regarding formality, scope, or implied meaning.
+examples:
+  - english: In modern times, smartphones have become indispensable in daily life.
+    japanese:
+      - 現代 {に おい て}、スマート フォン は 生活 に 欠かせ ない もの と なっ た。
+      - 現代 {に おい て}、スマート フォン は 生活 に とっ て 欠かせ ない もの と なっ た。
+      - 現代 {に 於い て}、スマート フォン は 生活 に 欠かせ ない もの と なっ た。
+      - 現代 {に 於い て}、スマート フォン は 生活 に とっ て 欠かせ ない もの と なっ た。
+    english_literally: In modern times, smartphones have become indispensable things for life.
+    competing_grammar:
+      - competing_japanese:
+          - 現代 {で は}、スマート フォン は 生活 に 欠かせ ない もの と なっ た。
+        english: In modern times, smartphones have become indispensable in daily life.
+        hint: 「では」 is a general locative particle, but 「において」 adds a more formal and specific emphasis
+          on the particular period or situation. We're looking for a formal expression for the context
+          or setting.
+    scene: A speaker delivering a presentation on technological advancements.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The speaker uses the formal 「において」 to convey the importance of the setting ('in modern times')
+      in an informative, academic context. The formal tone of the phrase is typical of an older male delivering
+      a presentation to a group.
+    etymology: The use of 「現代」 (modern times) as a temporal context is common in academic and formal discussions.
+  - english: The results of university research will likely have a significant impact on society.
+    japanese:
+      - 大学 {に おけ る} 研究 の 成果 が、社会 に 大きな 影響 を 与える だろう。
+      - 大学 {に 於け る} 研究 の 成果 が、社会 に 大きな 影響 を 与える だろう。
+    english_literally: University's research results will likely give a big impact to society.
+    competing_grammar:
+      - competing_japanese:
+          - 大学 {の} 研究 の 成果 が、社会 に 大きな 影響 を 与える だろう。
+        english: The results of university research will likely have a significant impact on society.
+        hint: While 「の」 can connect nouns, 「における」 explicitly specifies the domain or scope of the research,
+          adding a formal and precise nuance. We're looking for a formal way to show the context of the
+          research.
+    scene: A professor discussing the importance of academic work.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「における」 is appropriate for a formal academic setting, specifying the domain of the
+      research. This phrasing is common for a professor, regardless of gender, when discussing impactful
+      research.
+    etymology: 「成果」 (seika) comes from 「成る」 (naru, to become/bear fruit) and 「果」 (ka, fruit/result), meaning
+      'results' or 'achievements'.
+  - english: The challenge in this plan is securing funding.
+    japanese:
+      - この 計画 {に おい て の} 課題 は、資金 の 確保 です。
+      - この 計画 {に 於い て の} 課題 は、資金 の 確保 です。
+    english_literally: The challenge in this plan is securing of funds.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 {で の} 課題 は、資金 の 確保 です。
+        english: The challenge in this plan is securing funding.
+        hint: 「での」 can also link concepts, but 「においての」 is more formal and emphasizes the specific context
+          'within this plan'. We're looking for a formal way to specify the context of the challenge.
+    scene: A business team discussing project hurdles.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In a professional business discussion, 「においての」 emphasizes the specific context of the challenge
+      within the plan. The use of 「です」 maintains a polite and professional tone for a group discussion.
+    etymology: 「確保」 (kakuho) combines 「確」 (kaku, certain/firm) and 「保」 (ho, protect/preserve), literally
+      meaning 'to firmly hold' or 'to secure'.
+  - english: The issue of elder care in regional cities is an urgent problem.
+    japanese:
+      - 地方 都市 {に おけ る} 高齢 者 の 介護 問題 は 喫緊 の 課題 です。
+      - 地方 都市 {に 於け る} 高齢 者 の 介護 問題 は 喫緊 の 課題 です。
+    english_literally: The elder care problem in regional cities is an urgent issue.
+    competing_grammar:
+      - competing_japanese:
+          - 地方 都市 {で の} 高齢 者 の 介護 問題 は 喫緊 の 課題 です。
+        english: The issue of elder care in regional cities is an urgent problem.
+        hint: 「での」 can serve a similar function but 「における」 is specifically used in formal contexts to
+          define the scope or domain. We're looking for a formal way to specify the location of the problem.
+    scene: A social worker presenting on demographic challenges.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「における」 clearly specifies the location or domain of the issue ('in regional cities').
+      This formal phrasing is suitable for an informative presentation by a social worker on a critical
+      societal challenge.
+    etymology: 「喫緊」 (kikkin) literally means 'eating quickly' or 'urgent', emphasizing the immediate and
+      pressing nature of a problem.
+  - english: Our nation's foreign policy requires careful consideration.
+    japanese:
+      - 我が 国 {に おい て の} 外交 政策 に は、慎重 な 検討 が 必要 だ。
+      - 我が 国 {に 於い て の} 外交 政策 に は、慎重 な 検討 が 必要 だ。
+    english_literally: For our nation's foreign policy, careful consideration is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 我が 国 の 外交 政策 {で の} 慎重 な 検討 が 必要 だ。
+        english: Our nation's foreign policy requires careful consideration.
+        hint: 「での」 is a less formal alternative, whereas 「においての」 provides a more formal and specific way
+          to link the careful consideration to the context of foreign policy. We're looking for a formal
+          expression to indicate the domain.
+    scene: A political analyst commenting on international relations.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The construction 「においての」 in this context highlights the specific scope ('in our nation's foreign
+      policy') for careful consideration, typical of academic commentary on national affairs. The concluding
+      「だ」 maintains a formal yet assertive tone.
+    etymology: 「政策」 (seisaku) combines 「政」 (sei, government) and 「策」 (saku, scheme/plan), indicating a
+      governmental plan.
+  - english: Training on harassment was conducted in the workplace.
+    japanese:
+      - 職場 {に おい て}、ハラスメント に 関する 研修 が 実施 さ れ た。
+      - 職場 {に 於い て}、ハラスメント に 関する 研修 が 実施 さ れ た。
+    english_literally: At the workplace, training concerning harassment was carried out.
+    competing_grammar:
+      - competing_japanese:
+          - 職場 {で}、ハラスメント に 関する 研修 が 実施 さ れ た。
+        english: Training on harassment was conducted in the workplace.
+        hint: While 「で」 indicates location, 「において」 adds a more formal and official nuance, suitable for
+          formal announcements or reports. We're looking for a formal way to state the location of an
+          event.
+    scene: A manager relaying news about an internal company event.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「において」 is used to formally state the location where the training took place, appropriate for
+      an official announcement or report within a professional setting. The passive form 「実施された」 further
+      adds to the formal tone.
+    etymology: 「研修」 (kenshū) is formed from 「研」 (ken, polish/study) and 「修」 (shū, learn/master), meaning
+      'training' or 'study session'.
+  - english: In ancient times, nature was respected.
+    japanese:
+      - 古代 {に 於い て}、自然 は 尊敬 さ れ た。
+      - 古代 {に おい て}、自然 は 尊敬 さ れ た。
+    english_literally: In ancient times, nature was respected.
+    competing_grammar:
+      - competing_japanese:
+          - 古代 {で は}、自然 は 尊敬 さ れ た。
+        english: In ancient times, nature was respected.
+        hint: 「では」 can indicate a temporal setting, but 「に於いて」 specifically emphasizes the context of
+          'ancient times' in a historical or academic discourse. We're looking for a formal way to specify
+          the historical period.
+    scene: A historian lecturing on ancient civilizations.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of the kanji 「於いて」 (oite) instead of the kana form 「において」 adds a heightened sense
+      of classical formality, suitable for a historian lecturing on ancient subjects. The passive voice
+      「尊敬された」 ('was respected') reinforces the academic tone.
+    etymology: 「尊敬」 (sonkei) combines 「尊」 (son, noble/respect) and 「敬」 (kei, respect/honor), meaning 'to
+      revere' or 'to hold in high esteem'.
+  - english: The participation of residents in local communities is essential.
+    japanese:
+      - 地域 社会 {に 於け る} 住民 の 参加 は 重要 だ。
+      - 地域 社会 {に おけ る} 住民 の 参加 は 重要 だ。
+    english_literally: The participation of residents in local communities is important.
+    competing_grammar:
+      - competing_japanese:
+          - 地域 社会 {で の} 住民 の 参加 は 重要 だ。
+        english: The participation of residents in local communities is essential.
+        hint: 「での」 is a more casual way to specify a location or scope, while 「に於ける」 provides a formal
+          and precise indication of the domain. We're looking for a formal expression for the context
+          of participation.
+    scene: A community leader advocating for civic engagement.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: Using 「に於ける」 in this context emphasizes the domain of participation ('in local communities')
+      in a formal, persuasive manner, common for a community leader addressing an audience. The concluding
+      「だ」 conveys a strong assertion.
+    etymology: 「住民」 (jūmin) means 'residents', combining 「住」 (jū, live/reside) and 「民」 (min, people).
+  - english: This product excels in terms of quality, but it has low competitiveness in terms of price.
+    japanese:
+      - この 製品 は 品質 {に おい て は} 優れ て いる が、価格 {に おい て は} 競争 力 が 低い。
+      - この 製品 は 品質 {に 於い て は} 優れ て いる が、価格 {に 於い て は} 競争 力 が 低い。
+    english_literally: This product is excellent in terms of quality, but in terms of price, its competitiveness
+      is low.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 品質 {に つい て は} 優れ て いる が、価格 {に つい て は} 競争 力 が 低い。
+        english: This product excels concerning quality, but concerning price, it has low competitiveness.
+        hint: 「については」 can also mean 'in terms of', but it is generally less formal and more conversational
+          than 「においては」, which is used for precise and comparative analysis. We're looking for a formal
+          expression for 'in terms of'.
+    scene: A market analyst evaluating product performance.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The repeated use of 「においては」 highlights a comparative analysis 'in terms of' specific aspects
+      (quality vs. price). This precise and formal structure is characteristic of a market analyst presenting
+      detailed findings.
+    etymology: 「競争力」 (kyōzōryoku) combines 「競争」 (kyōsō, competition) and 「力」 (ryoku, power/strength),
+      meaning 'competitive power'.
+  - english: In daily life, saving money is an important habit.
+    japanese:
+      - 日常 生活 {に 於い て}、節約 は 大切 な 習慣 です。
+      - 日常 生活 {に おい て}、節約 は 大切 な 習慣 です。
+    english_literally: In daily life, saving is an important habit.
+    competing_grammar:
+      - competing_japanese:
+          - 日常 生活 {で は}、節約 は 大切 な 習慣 です。
+        english: In daily life, saving money is an important habit.
+        hint: While 「では」 can indicate a setting, 「に於いて」 is used for a more formal or generalized statement
+          about a domain or context. We're looking for a formal way to state the sphere of activity.
+    scene: A financial advisor giving general advice.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「に於いて」 frames 'daily life' as the context for the advice, giving it a formal and universal
+      scope suitable for a financial advisor. The polite 「です」 maintains a professional yet accessible
+      tone.
+    etymology: 「節約」 (setsuyaku) means 'saving' or 'frugality', combining 「節」 (setsu, moderation/節) and
+      「約」 (yaku, economize/約束).
+  - english: The argument in this paper is groundbreaking.
+    japanese:
+      - この 論文 {に おい て の} 主張 は、斬新 で ある。
+      - この 論文 {に 於い て の} 主張 は、斬新 で ある。
+    english_literally: The argument in this paper is groundbreaking.
+    competing_grammar:
+      - competing_japanese:
+          - この 論文 {で の} 主張 は、斬新 で ある。
+        english: The argument in this paper is groundbreaking.
+        hint: 「での」 is a less formal way to specify the source of the argument, while 「においての」 is typical
+          for academic or formal writing. We're looking for a formal way to indicate the location of the
+          argument within the paper.
+    scene: An academic peer reviewing a research paper.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「においての」 precisely specifies the location of the argument ('in this paper'), which is common
+      in academic critique. The use of 「である」 (de aru) instead of 「です」 (desu) further elevates the academic
+      register. This expression is suitable for a female academic peer reviewing a male colleague's work,
+      maintaining formality.
+    etymology: 「斬新」 (zanshin) means 'novel' or 'groundbreaking', combining 「斬」 (zan, cut/kill) and 「新」
+      (shin, new), literally 'cuttingly new'.
+post_example_writeup: These examples demonstrate how において and における are used across various formal contexts,
+  from academic discussions and business meetings to official reports. Pay close attention to the specific
+  nouns they modify and the overall formality of the sentence to ensure correct usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/において-における

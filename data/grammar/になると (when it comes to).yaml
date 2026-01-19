@@ -1,0 +1,266 @@
+grammar_point: になると (when it comes to)
+learn_before:
+  - となると (when it comes to)
+meaning: When it becomes; when it comes to; when; if
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: になると
+    rarity: common
+    meaning: When it becomes / when it comes to
+  - conjugation-type: non-past polite (～ます)
+    form: になりますと
+    rarity: common
+    meaning: When it becomes (polite) / when it comes to (polite)
+  - conjugation-type: negative plain (～ない)
+    form: にならないと
+    rarity: common
+    meaning: Unless it becomes / unless it comes to
+  - conjugation-type: negative non-past polite (～ません)
+    form: になりませんと
+    rarity: common
+    meaning: Unless it becomes (polite) / unless it comes to (polite)
+pronunciation:
+  katakana: ニナルト
+  romaji: ni naru to
+formation:
+  Noun (time) + になると: When it becomes; at (time)
+  Noun (non-time) + になると: When it comes to (topic), if (condition)
+jlpt: N3
+etymology: The grammar point 「になると」 is derived from 「に」 (particle indicating time or topic) and 「なる」 (to
+  become), followed by 「と」 (conjunction indicating condition or time). Therefore, it literally translates
+  to 「when (something) becomes」.
+writeup: |-
+  The grammatical pattern 「になると」 is a versatile expression used to indicate either a temporal condition or a shift in topic. It literally means "when it becomes" or "when it comes to."
+
+  **1. Temporal Trigger:**
+  This usage indicates a specific point in time or a recurring period (e.g., a season, time of day) when an uncontrollable state or a habitual action occurs. It highlights a natural, inevitable, or consistent consequence that follows a particular temporal transition. For instance, expressing that "when summer arrives, it invariably gets hot" points to a general truth or a recurring phenomenon. This pattern suggests that once the specified time or condition is met, the subsequent event or state naturally follows.
+
+  **2. Topical Shift:**
+  「になると」 can also introduce a specific subject or topic of discussion, conveying a sense of "when it comes to" that particular matter. This allows the speaker to pivot the conversation to a subject that often eliciting a strong reaction, special consideration, or a characteristic behavior from someone. It highlights a specific aspect or area where a certain phenomenon or trait is consistently observed.
+
+  Structurally, 「になると」 is composed of:
+  *   The particle 「に」: Marks the time or the object/topic of change.
+  *   The verb 「なる」: Meaning "to become" or "to reach a state."
+  *   The conditional particle 「と」: Signifies a natural, habitual, or immediate outcome when the preceding condition is met.
+
+  While the base form is 「になると」, it can be conjugated to polite forms like 「になりますと」 or negative forms like 「にならないと」 and 「になりませんと」, adapting to various registers and contexts.
+false_friends:
+  - term: になったら
+    meaning: if or when it becomes (specific, often one-time event or condition)
+    kind: often confused with
+    nuance: Unlike 「になると」, which typically describes a natural, habitual, or general consequence, 「になったら」
+      refers to a condition that, once met, triggers an specific action or state. It is commonly used
+      for specific future events or completed conditions, whereas 「によると」 is more often for general truths,
+      recurring events, or characteristic behaviors when a topic is introduced.
+    grammar_point: たら (conditional, when・if A then B)
+post_false_friends_writeup: 'The choice between 「になると」 and 「になったら」 hinges on the nuance of the condition.
+  「になると」 indicates a more predictable, general, or habitual outcome tied to a state or time. It implies
+  that "every time X happens, Y naturally follows." In contrast, 「になったら」 implies a specific, perhaps one-time,
+  conditional event: "if X happens, then Y will follow." While both convey a conditional relationship,
+  「によると」 speaks to tendencies and general truths, while 「になったら」 focuses on individual instances or prerequisites
+  for a subsequent action.'
+examples:
+  - english: Every year, when spring comes, the cherry blossoms bloom fully.
+    japanese:
+      - 毎年 春 {に なる と}、桜 が 満開 に なり ます。
+      - 毎年 春 {に なる と}、桜 が 満開 に なる。
+      - 毎年 春 {に なり ます と}、桜 が 満開 に なり ます。
+    english_literally: Every year, when spring becomes, cherry blossoms become full bloom.
+    competing_grammar:
+      - competing_japanese:
+          - 毎年 春 {は} 桜 が 満開 に なり ます。
+        english: Every year, in spring, the cherry blossoms bloom fully.
+        hint: 「によると」 emphasizes the *transition* to spring as the trigger for the cherry blossoms' blooming,
+          highlighting the temporal connection and natural progression, rather than a simple statement
+          about spring using {は}. We're looking for an natural or habitual outcome following a specific
+          time point.
+    scene: A local discussing the annual beauty of their town's cherry blossoms.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: When it comes to work, our section chief's expression changes.
+    japanese:
+      - うち の 課長 は 仕事 の 話 {に なる と}、表情 が 変わり ます。
+      - うち の 課長 は 仕事 の 話 {に なる と}、表情 が 変わる。
+      - うち の 課長 は 仕事 の 話 {に なり ます と}、表情 が 変わり ます。
+    english_literally: Our section chief, when it comes to work talk, his expression changes.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 課長 は 仕事 の 話 {に つい て}、表情 が 変わり ます。
+        english: Our section chief, regarding work talk, his expression changes.
+        hint: 「によると」 highlights an immediate and often predictable change in behavior or state *triggered*
+          by the specific topic, emphasizing the impact of the subject itself. {について} simply marks the
+          topic. We're looking for a phrase that indicates a shift to a topic causing a characteristic
+          reaction.
+    scene: Two colleagues observing their boss's demeanor.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    nuance: The phrase 「うち の 課長」 is common in professional settings to refer to one's own manager. The
+      polite 「変わります」 keeps the tone appropriate for office conversation. This sentence would be naturally
+      spoken by a female employee observing her male boss.
+  - english: When the weekend comes, I always go to the gym to exercise.
+    japanese:
+      - 週末 {に なる と}、必ず ジム に 行っ て 運動 し ます。
+      - 週末 {に なる と}、必ず ジム に 行っ て 運動 する。
+      - 週末 {に なり ます と}、必ず ジム に 行っ て 運動 し ます。
+    english_literally: When weekend becomes, certainly gym to go exercise do.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 {は} 必ず ジム に 行っ て 運動 し ます。
+        english: On weekends, I always go to the gym to exercise.
+        hint: 「によると」 emphasizes the *arrival* of the weekend as the consistent trigger for the routine,
+          focusing on the habitual nature tied to the time transition. {は} simply indicates the time period.
+          We're looking for an expression that conveys a habitual action that occurs when a specific time
+          arrives.
+    scene: Someone describing their regular fitness routine.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: When I was a student, when summer vacation came, I traveled to Hokkaido every year.
+    japanese:
+      - 学生 時代、夏休み {に なる と}、毎年 北海道 へ 旅 し まし た。
+      - 学生 時代、夏休み {に なる と}、毎年 北海道 へ 旅 し た。
+      - 学生 時代、夏休み {に なり ます と}、毎年 北海道 へ 旅 し まし た。
+    english_literally: Student era, when summer vacation becomes, every year Hokkaido to traveled.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 時代、夏休み {の 時 は}、毎年 北海道 へ 旅 し まし た。
+        english: When I was a student, at the time of summer vacation, I traveled to Hokkaido every year.
+        hint: 「によると」 describes a consistent, recurring activity that happened *each time* summer vacation
+          arrived, highlighting the habitual nature tied to the periodic return of the vacation. {〜の時}
+          is a more general temporal marker. We're looking for an expression that conveys a habitual action
+          tied to a recurring time.
+    scene: An adult reminiscing about their travel habits during university.
+    register: casual
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+  - english: When it comes to anime, he instantly becomes energetic.
+    japanese:
+      - 彼 は アニメ の 話 {に なる と}、途端 に 元気 に なり ます。
+      - 彼 は アニメ の 話 {に なる と}、途端 に 元気 に なる。
+      - 彼 は アニメ の 話 {に なり ます と}、途端 に 元気 に なり ます。
+    english_literally: He, anime talk becomes, instantly energetic becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は アニメ の 話 {に つい て}、途端 に 元気 に なり ます。
+        english: He, regarding anime talk, instantly becomes energetic.
+        hint: 「によると」 highlights an abrupt and noticeable change in his state *as soon as* the topic shifts
+          to anime, emphasizing the direct causal link between the subject and his reaction. {について} simply
+          indicates the topic. We're looking for a phrase that expresses a characteristic reaction when
+          a specific topic is introduced.
+    scene: A female friend observing a male friend's passion.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual tone with 「彼 は」 and 「元気 に なります」 for observing a friend's behavior is natural for
+      a female speaker in a friendly context. The phrase 「途端 に」 (instantly) underscores the immediate
+      and predictable nature of his reaction.
+  - english: When winter arrives, the snowy scenery is very beautiful.
+    japanese:
+      - 冬 {に なり ます と}、雪 の 景色 が とても 綺麗 です。
+      - 冬 {に なる と}、雪 の 景色 が とても 綺麗 です。
+      - 冬 {に なる と}、雪 の 景色 が とても 綺麗 だ。
+    english_literally: When winter becomes, snow scenery is very beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 冬 {は} 雪 の 景色 が とても 綺麗 です。
+        english: In winter, the snowy scenery is very beautiful.
+        hint: 「になりますと」 emphasizes the regular, natural arrival of winter and its beautiful outcome, fitting
+          for informing an audience about a natural phenomenon that *occurs when* winter begins. {は} simply
+          states a fact about winter. We're looking for a polite expression indicating a habitual outcome
+          when a season changes.
+    scene: A tour guide explaining seasonal attractions to a group of visitors.
+    register: teineigo (polite)
+    setting: informative
+    speaker_age: older
+    nuance: The use of 「〜になりますと」 is a very polite and slightly formal way to express a temporal condition,
+      often used in public speaking or informative contexts, typical for an older, experienced speaker
+      addressing an audience.
+  - english: Unless my test score becomes 80 points, I'm not allowed to play games.
+    japanese:
+      - テスト の 点数 が ８０ 点 {に なら ない と}、ゲーム を し て は いけ ない。
+      - テスト の 点数 が ８０ 点 {に なら ない と}、ゲーム を し て は いけ ませ ん。
+      - テスト の 点数 が ８０ 点 {に なり ませ ん と}、ゲーム を し て は いけ ませ ん。
+    english_literally: Test score becomes 80 points unless, game play not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - テスト の 点数 が ８０ 点 {を 取ら ない と}、ゲーム を し て は いけ ない。
+        english: If I don't get 80 points on the test, I'm not allowed to play games.
+        hint: 「にならないと」 emphasizes that the *state* of the score must reach 80 points, highlighting the
+          condition of "becoming" that specific state, rather than just the act of obtaining a score.
+          We're looking for an expression that signifies a condition that must be met by a state change.
+    scene: A child complaining to their friend about a strict parental rule.
+    register: casual
+    setting: serious
+    speaker_age: younger
+    nuance: The informal 「してはいけない」 (not allowed) and the use of plain forms like 「にならないと」 are typical
+      for a younger speaker expressing a personal restriction imposed by an authority figure.
+  - english: Unless it comes to the budget discussion, concrete plans cannot be made.
+    japanese:
+      - 予算 の 話 {に なり ませ ん と}、具体 的 な 計画 は 立て られ ませ ん。
+      - 予算 の 話 {に なら ない と}、具体 的 な 計画 は 立て られ ませ ん。
+      - 予算 の 話 {に なら ない と}、具体 的 な 計画 は 立て られ ない。
+    english_literally: Budget talk unless it becomes, concrete plans cannot be made.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 の 話 {が ない と}、具体 的 な 計画 は 立て られ ませ ん。
+        english: If there isn't budget talk, concrete plans cannot be made.
+        hint: 「になりませんと」 politely and formally emphasizes that the discussion *must arrive at* the budget
+          for concrete plans, implying a step-by-step process crucial for business. {が ない と} is more general
+          about the absence of the topic. We're looking for a polite expression indicating a necessary
+          condition for progressing to the next stage.
+    scene: Business colleagues discussing project planning during a meeting.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal 「になりませんと」 and passive potential 「立てられません」 are characteristic of professional, polite
+      communication, often used by a male speaker addressing a team or colleagues in a business context,
+      emphasizing a necessary condition.
+  - english: When evening comes, this park becomes lively with the laughter of children.
+    japanese:
+      - 夕方 {に なる と}、この 公園 は 子供 たち の 笑い声 で 賑やか に なり ます。
+      - 夕方 {に なる と}、この 公園 は 子供 たち の 笑い声 で 賑やか に なる。
+      - 夕方 {に なり ます と}、この 公園 は 子供 たち の 笑い声 で 賑やか に なり ます。
+    english_literally: Evening becomes, this park children laughter sound by lively becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 夕方 {に は}、この 公園 は 子供 たち の 笑い声 で 賑やか に なり ます。
+        english: In the evening, this park becomes lively with the laughter of children.
+        hint: 「によると」 describes a regular, observable transformation of the park *as* evening arrives,
+          emphasizing the change in atmosphere directly tied to the time, which is more specific than
+          the general temporal marker {には}. We're looking for an expression that highlights a natural
+          or habitual transformation tied to a specific time.
+    scene: Observing the daily transformation of a public park.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: When it comes to old TV dramas, my mother can talk about them forever.
+    japanese:
+      - 母 は 昔 の ドラマ の 話 {に なる と}、いつ まで も 語っ て い られ ます。
+      - 母 は 昔 の ドラマ の 話 {に なる と}、いつ まで も 語っ て い られる。
+      - 母 は 昔 の ドラマ の 話 {に なり ます と}、いつ まで も 語っ て い られ ます。
+    english_literally: Mother, old drama talk becomes, forever can talk.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は 昔 の ドラマ の 話 {に つい て}、いつ まで も 語っ て い られ ます。
+        english: My mother, regarding old drama talk, can talk about them forever.
+        hint: 「によると」 illustrates a characteristic and passionate behavior of the mother that *only occurs
+          when* the specific topic of old dramas is introduced, highlighting the causal link and deep
+          engagement. {について} simply marks the topic. We're looking for an expression that signifies a
+          specific behavior or trait that emerges when a particular topic is introduced.
+    scene: A son describing his mother's passionate hobby to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「母 は」 to refer to one's mother and the casual but expressive 「語って いられます」 (can talk
+      on and on) fits a male speaker in a relaxed setting discussing a family member's enthusiasm.
+post_example_writeup: 「になると」 can describe both predictable natural phenomena and specific behavioral patterns
+  tied to time or topic. It’s important to note that while it sets a condition, the focus is on the habitual
+  or inevitable consequence rather than a single conditional event. The nuances of politeness and formality
+  are typically conveyed by the verb endings following 「になると」, allowing for flexible usage in various
+  social contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%A8

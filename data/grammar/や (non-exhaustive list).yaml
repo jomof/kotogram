@@ -1,0 +1,333 @@
+grammar_point: や (non-exhaustive list)
+learn_before:
+  - といった (such as)
+meaning: Things like, and so on
+meaning_warning: Cannot be used after verbs; use 「とか」 or 「たり」 instead.
+pronunciation:
+  katakana: ヤ
+  romaji: ya
+formation:
+  Noun + や + Noun + (など): Lists non-exhaustive examples of nouns.
+jlpt: N5
+etymology: The particle 「や」 is thought to have originated from the verb 「止(や)む」 (yamu), meaning "to stop"
+  or "to cease." Over time, it evolved to indicate a pause or break in a list, implying that more items
+  could be added but are not explicitly mentioned.
+writeup: The particle 「や」 is used to list **non-exhaustive examples** of nouns, indicating that the items
+  mentioned are just a few instances from a larger group. It is similar to "and so on" or "things like"
+  in English. Unlike 「と」, which implies a complete list of all possibilities, 「や」 suggests that there
+  are other unmentioned items within the same category. For instance, saying 「りんご や みかん」 indicates that
+  there are other fruits besides apples and oranges. This particle is exclusively used with nouns and
+  cannot follow verb phrases. For listing verbs or actions, 「とか」 or 「たり」 would be used instead.
+false_friends:
+  - term: と (and)
+    meaning: And (exhaustive list)
+    kind: antonym
+    nuance: Unlike 「や」, 「と」 implies a complete list. For example, 「りんご と みかん」 means *only* apples and
+      oranges were involved, whereas 「りんご {や} みかん」 means apples and oranges, *among other things*.
+    grammar_point: と (and, connects nouns)
+  - term: および
+    meaning: And, as well as
+    kind: synonym
+    nuance: 「および」 is more formal than 「や」 and is often used in official or written contexts.
+    grammar_point: および (and・as well as)
+  - term: たり〜たりする
+    meaning: Doing things like ~ and ~
+    kind: similar expression
+    nuance: '「たり〜たりする」 is used for listing actions or verbs, while 「や」 is used for listing nouns. Example:
+      「本 を 読んだり、映画 を 見たり する」 (reading books and watching movies, among other things).'
+    grammar_point: Verb[たり] (representative listing)
+  - term: とか〜とか
+    meaning: Among other things, such as
+    kind: synonym
+    nuance: '「とか〜とか」 is similar to 「や」 but can be used with both nouns and verbs. However, it is considered
+      less formal and more conversational. Example: 「りんご とか みかん と か」 (apples and oranges, among other
+      things).'
+    grammar_point: とか〜とか (listing examples)
+  - term: やら〜やら
+    meaning: Whether or not; Things like... and...; And so on
+    kind: synonym
+    nuance: '「やら〜やら」 expresses uncertainty or lists things in a somewhat disorganized manner. Example:
+      「宿題 やら 仕事 やら で 忙しい」 (busy with homework and work, and and so on).'
+    grammar_point: やら (uncertainty・listing)
+post_false_friends_writeup: When selecting between 「や」, 「と」, 「とか」, and 「たり」, consider the context carefully.
+  「や」 is ideal for providing a few examples from a larger set of nouns. 「と」 is used for a complete list.
+  「とか」 is a less formal option that can list both nouns and verbs. 「たり」 is specifically for verbs, detailing
+  a sequence or variety of actions.
+examples:
+  - english: On the weekend, I bought meat and vegetables, among other things, at the supermarket.
+    japanese:
+      - 週末 に スーパー で 肉 {や} 野菜 を 買い まし た。
+      - 週末 スーパー で 肉 {や} 野菜 買い まし た。
+      - 週末、スーパー で 肉 {や} 野菜 買い まし た。
+    english_literally: Weekend on supermarket at meat things like vegetables bought.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 に スーパー で 肉 {と} 野菜 を 買い まし た。
+        english: On the weekend, I bought meat and vegetables (and only those two) at the supermarket.
+        hint: The particle 「と」 implies an exhaustive list, meaning nothing else was bought. We're looking
+          for a non-exhaustive list.
+      - competing_japanese:
+          - 週末 に スーパー で 肉 {と か} 野菜 {と か} を 買い まし た。
+        english: On the weekend, I bought things like meat and vegetables at the supermarket.
+        hint: 「とか」 can also list examples, but it carries a more casual and often less precise nuance.
+          We're looking for a general non-exhaustive list suitable for a broad context.
+      - competing_japanese:
+          - 週末 に スーパー で 肉 {および} 野菜 を 買い まし た。
+        english: On the weekend, I purchased meat and vegetables at the supermarket (formal).
+        hint: 「および」 is a formal conjunction used mainly in written or official contexts. We're looking
+          for a more natural, spoken way to list items.
+    scene: A busy person quickly recounting their weekend grocery shopping to a friend, mentioning a couple
+      of items without listing everything they purchased.
+    register: casual
+    setting: friendly
+  - english: I want to go to places like the sea and mountains during summer vacation.
+    japanese:
+      - 夏休み に 海 {や} 山 へ 行き たい です。
+      - 夏休み に 海 {や} 山 に 行き たい です。
+      - 夏休み、海 {や} 山 に 行き たい な。
+      - 夏休み、海 {や} 山 に 行き たい ん だ。
+    english_literally: Summer vacation in sea things like mountains to want to go.
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み に 海 {と} 山 へ 行き たい です。
+        english: During summer vacation, I want to go to the sea and the mountains (and nowhere else).
+        hint: The particle 「と」 implies an exhaustive list of destinations. We're looking for a non-exhaustive
+          list, suggesting other possibilities.
+      - competing_japanese:
+          - 夏休み に 海 {と か} 山 {と か} へ 行き たい です。
+        english: During summer vacation, I want to go to places like the sea or mountains.
+        hint: 「とか」 implies a casual or uncertain list, often with a sense of 'or something like that.'
+          We're looking for a clearer non-exhaustive list of examples.
+    scene: A student discussing their summer vacation plans with a classmate, mentioning preferred types
+      of destinations but implying they are open to other similar places.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: The speaker, a young woman, uses 「や」 to convey a preference for types of destinations like
+      「海」 (umi, sea) and 「山」 (yama, mountains) without limiting her options. The phrase 「行きたい です」 (ikitai
+      desu) is polite and expresses desire, suitable for a casual but clear expression of plans.
+  - english: In the classroom, there are things like desks and chairs.
+    japanese:
+      - 教室 に は、机 {や} 椅子 が あり ます。
+      - 教室 に は 机 {や} 椅子 が ある。
+      - 教室 に は、机 {や} 椅子 など が あり ます。
+    english_literally: Classroom in, desk things like chair exists.
+    competing_grammar:
+      - competing_japanese:
+          - 教室 に は、机 {と} 椅子 が あり ます。
+        english: In the classroom, there are desks and chairs (and only those two items).
+        hint: The particle 「と」 indicates a complete list, implying only desks and chairs are present.
+          We're looking for a non-exhaustive list of examples.
+      - competing_japanese:
+          - 教室 に は、机 {と か} 椅子 {と か} が あり ます。
+        english: In the classroom, there are desks or chairs or something.
+        hint: 「とか」 suggests a casual or less precise listing, often implying uncertainty or a vague selection.
+          We're looking for a clear illustrative list of examples.
+      - competing_japanese:
+          - 教室 に は 机 {も} 椅子 {も} あり ます。
+        english: In the classroom, there are both desks and chairs.
+        hint: The particle 「も」 (mo) means 'also' or 'too,' and when used repeatedly, it means 'both A
+          and B.' This implies that all items mentioned are present, but it doesn't clearly suggest a
+          non-exhaustive list like 「や」.
+    scene: A teacher describing a typical classroom setting to new students, highlighting the main pieces
+      of furniture without listing every item present.
+    register: formal
+    setting: informative
+  - english: He likes reading and watching movies, among other things.
+    japanese:
+      - 彼 は 読書 {や} 映画 鑑賞 が 好き です。
+      - 彼 は 読書 {や} 映画 を 見る の が 好き です。
+      - 彼、読書 {や} 映画 が 好き だ ね。
+    english_literally: He reading things like movie appreciation likes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 読書 {と} 映画 鑑賞 が 好き です。
+        english: He likes reading and watching movies (and only those two activities).
+        hint: The particle 「と」 indicates an exhaustive list of hobbies. We're looking for a non-exhaustive
+          list, suggesting other interests.
+      - competing_japanese:
+          - 彼 は 読書 {と か} 映画 鑑賞 {と か} が 好き です。
+        english: He likes things like reading or watching movies.
+        hint: 「とか」 implies a casual or uncertain listing. We're looking for a more straightforward illustrative
+          list of interests.
+    scene: Two friends casually discussing a mutual acquaintance's broad range of interests, giving a
+      couple of prominent examples.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+    nuance: The speaker, a man, uses 「や」 to provide examples of interests like 「読書」 (dokushō, reading)
+      and 「映画鑑賞」 (eigakanshō, movie appreciation), naturally implying that the person has other hobbies
+      not explicitly mentioned. This is a common way to give a general overview of someone's preferences
+      in a conversational setting, using polite form 「です」.
+  - english: Mr. Yamada and Ms. Sato, among others, came to the party.
+    japanese:
+      - パーティー に 山田 さん {や} 佐藤 さん が 来 まし た。
+      - パーティー に 山田 さん {や} 佐藤 さん など が 来 まし た。
+      - パーティー に 山田 さん {や} 佐藤 さん 来 て た よ。
+    english_literally: Party to Yamada-san things like Sato-san came.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に 山田 さん {と} 佐藤 さん が 来 まし た。
+        english: Mr. Yamada and Ms. Sato (and only those two) came to the party.
+        hint: The particle 「と」 implies an exhaustive list of attendees. We're looking for a non-exhaustive
+          list, implying others were present.
+      - competing_japanese:
+          - パーティー に 山田 さん {と か} 佐藤 さん {と か} が 来 まし た。
+        english: People like Mr. Yamada or Ms. Sato came to the party.
+        hint: 「とか」 implies a casual or somewhat vague listing, sometimes used when you're not sure or
+          don't want to be precise. We're looking for a clearer illustrative list of examples.
+    scene: Someone reporting to a friend about the attendees at a recent party, listing a couple of prominent
+      guests without needing to provide a full guest list.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The speaker, a woman, uses 「や」 to list a few key attendees, such as 「山田 さん」 (Yamada-san) and
+      「佐藤 さん」 (Satō-san), naturally implying that other people were also present. The polite form 「来ました」
+      (kimashita) maintains a standard respectful tone suitable for informing someone.
+  - english: When you're in trouble, please ask people like your teacher or friends.
+    japanese:
+      - 困っ た とき は、先生 {や} 友達 に 聞い て ください。
+      - 困っ た とき は 先生 {や} 友達 に 聞く と いい よ。
+      - 困っ た とき は、先生 {や} 友達 に 相談 し て ください。
+    english_literally: Troubled when, teacher things like friend to please ask.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ た とき は、先生 {と} 友達 に 聞い て ください。
+        english: When you're in trouble, please ask your teacher and friends (and only them).
+        hint: The particle 「と」 implies an exhaustive list of people to ask. We're looking for a non-exhaustive
+          list, suggesting other potential sources of help.
+      - competing_japanese:
+          - 困っ た とき は、先生 {と か} 友達 {と か} に 聞い て ください。
+        english: When you're in trouble, please ask people like your teacher or friends, or someone.
+        hint: 「とか」 implies a casual or more vague listing. We're looking for a more general suggestion
+          of examples without implying uncertainty.
+      - competing_japanese:
+          - 困っ た とき は、先生 {か} 友達 に 聞い て ください。
+        english: When you're in trouble, please ask your teacher or a friend.
+        hint: The particle 「か」 means 'or,' presenting a choice between two specific options. We're looking
+          for a way to list examples, implying other possibilities, not just a binary choice.
+    scene: An older advisor giving a student advice on who to consult for help, suggesting various possible
+      sources of support.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The speaker, an older male advisor, uses 「や」 to give examples of who to ask for help, such
+      as 「先生」 (sensei, teacher) and 「友達」 (tomodachi, friend), indicating that there are other potential
+      sources of support. The phrase 「聞いてください」 (kiite kudasai) or 「相談して ください」 (sōdanshite kudasai) is
+      a polite instruction, appropriate for an older person advising a younger one, emphasizing guidance
+      rather than a strict directive.
+  - english: This project requires skills like programming and data analysis.
+    japanese:
+      - この プロジェクト に は、プログラミング {や} データ 分析 など の スキル が 必要 です。
+      - この プロジェクト に は、プログラミング {や} データ 分析 の スキル が 必要 です。
+      - この プロジェクト に は、プログラミング {や} データ 分析 と いっ た スキル が 必要 です。
+      - この プロジェクト に は、プログラミング {や} データ 分析 など の スキル が 求め られ ます。
+    english_literally: This project for, programming things like data analysis etc. skills are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は、プログラミング {と} データ 分析 が 必要 です。
+        english: This project requires programming and data analysis (and only those two).
+        hint: The particle 「と」 implies an exhaustive list of required skills. We're looking for a non-exhaustive
+          list, suggesting other beneficial skills.
+      - competing_japanese:
+          - この プロジェクト に は、プログラミング {と か} データ 分析 {と か} の スキル が 必要 です。
+        english: This project requires skills like programming or data analysis, or something.
+        hint: 「とか」 implies a casual or vague listing, sometimes used when being less precise. We're looking
+          for a clear illustrative list of examples.
+    scene: A team leader outlining the specific expertise needed for an upcoming, complex software development
+      project during a team meeting.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: The male team leader uses 「や」 to highlight key skills like 「プログラミング」 (programming) and 「データ分析」
+      (data analysis) that are essential for the project, implying that other related skills might also
+      be beneficial but are not explicitly listed. The formal 「必要です」 (hitsuyō desu) is standard professional
+      language for stating requirements.
+  - english: Please prepare ingredients like flour and eggs for the cake.
+    japanese:
+      - ケーキ に は、小麦 粉 {や} 卵 など の 材料 を 用意 し て ください。
+      - ケーキ に は、小麦 粉 {や} 卵 の 材料 を 用意 し て ください。
+      - ケーキ に は、小麦 粉 {や} 卵 など を 用意 し て ください。
+      - ケーキ に は、小麦 粉 {や} 卵 など の 材料 を ご 用意 ください。
+    english_literally: Cake for, flour things like eggs etc. ingredients please prepare.
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ に は、小麦 粉 {と} 卵 を 用意 し て ください。
+        english: Please prepare flour and eggs (and only those two) for the cake.
+        hint: The particle 「と」 implies an exhaustive list of ingredients. We're looking for a non-exhaustive
+          list, suggesting other ingredients will also be needed.
+      - competing_japanese:
+          - ケーキ に は、小麦 粉 {と か} 卵 {と か} を 用意 し て ください。
+        english: Please prepare things like flour or eggs for the cake.
+        hint: 「とか」 implies a casual or vague listing, or suggesting options. We're looking for a clear
+          illustrative list of examples for primary ingredients.
+    scene: A cooking instructor giving clear instructions to students about basic ingredients for a cake,
+      implying other common baking items will also be needed.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The female cooking instructor uses 「や」 to list essential ingredients like 「小麦粉」 (komugiko,
+      flour) and 「卵」 (tamago, eggs), indicating that these are primary examples among other ingredients
+      needed for the cake. The polite imperative 「用意してください」 (yōi shite kudasai) is a standard instruction,
+      common in teaching settings.
+  - english: I've faced various challenges, such as difficult exams and job interviews.
+    japanese:
+      - これ まで 難しい 試験 {や} 面接 など、様々 な 困難 に 直面 し て き まし た。
+      - これ まで 難しい 試験 {や} 面接 と いっ た 困難 に 直面 し て き まし た。
+      - これ まで 難しい 試験 {や} 面接 など、様々 な 困難 を 経験 し て き まし た。
+      - 難しい 試験 {や} 面接 など、様々 な 困難 が あっ た ん です。
+    english_literally: Until now difficult exams things like interviews etc., various difficulties faced
+      have come.
+    competing_grammar:
+      - competing_japanese:
+          - これ まで 難しい 試験 {と} 面接 に 直面 し て き まし た。
+        english: Until now, I've faced difficult exams and job interviews (and only those two).
+        hint: The particle 「と」 implies an exhaustive list of challenges. We're looking for a non-exhaustive
+          list, suggesting other types of struggles were also encountered.
+      - competing_japanese:
+          - これ まで 難しい 試験 {と か} 面接 {と か} に 直面 し て き まし た。
+        english: Until now, I've faced things like difficult exams or job interviews.
+        hint: 「とか」 implies a casual or less formal way of listing. We're looking for a more formal and
+          reflective illustrative list of examples.
+    scene: A graduating student giving a speech about their academic journey and personal growth, highlighting
+      key difficulties overcome.
+    register: formal
+    setting: reflective
+    speaker_gender: male
+    nuance: The male speaker uses 「や」 to offer examples of the challenges he has overcome, such as 「難しい試験」
+      (muzukashii shiken, difficult exams) and 「面接」 (mensetsu, job interviews), implying that his journey
+      included many other types of struggles. The formal 「直面してきました」 (chokumen shite kimashita) suits the
+      reflective and serious tone of a graduation speech.
+  - english: At the festival, there were stalls selling things like takoyaki and yakisoba.
+    japanese:
+      - お 祭り に は、たこ焼き {や} 焼きそば など の 屋台 が あり まし た。
+      - お 祭り に は、たこ焼き {や} 焼きそば の 屋台 が あり まし た。
+      - お 祭り に たこ焼き {や} 焼きそば など の 屋台 が あり まし た。
+      - お 祭り に は、たこ焼き {や} 焼きそば なんか の 屋台 が あっ た よ。
+    english_literally: Festival at, takoyaki things like yakisoba etc. stalls existed.
+    competing_grammar:
+      - competing_japanese:
+          - お 祭り に は、たこ焼き {と} 焼きそば の 屋台 が あり まし た。
+        english: At the festival, there were stalls selling takoyaki and yakisoba (and only those two).
+        hint: The particle 「と」 implies an exhaustive list of stalls. We're looking for a non-exhaustive
+          list, suggesting other types of food stalls were also present.
+      - competing_japanese:
+          - お 祭り に は、たこ焼き {と か} 焼きそば {と か} の 屋台 が あり まし た。
+        english: At the festival, there were stalls selling things like takoyaki or yakisoba.
+        hint: 「とか」 is a more casual, less precise way to list things. We're looking for a straightforward
+          illustrative list of examples.
+    scene: Two friends recalling their fun experience at a recent summer festival, describing some of
+      the popular food stalls they saw.
+    register: casual
+    setting: storytelling
+    nuance: The speaker uses 「や」 to casually list popular festival foods like 「たこ焼き」 (takoyaki) and 「焼きそば」
+      (yakisoba), indicating these are just a couple of examples among many other food stalls. The casual
+      「ありました」 (arimashita) is natural in this storytelling context between friends.
+post_example_writeup: Remember that 「や」 implies a non-exhaustive list, indicating that the listener can
+  infer other possibilities beyond those explicitly mentioned. This crucial nuance distinguishes it from
+  「と」, which conveys a complete and exhaustive list.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/や

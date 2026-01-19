@@ -1,0 +1,328 @@
+grammar_point: おそらく (probably)
+learn_before:
+  - 思われる (to seem・impersonal)
+meaning: Probably, perhaps, (most) likely, (I) fear that
+pronunciation:
+  katakana: オソラク
+  romaji: osoraku
+formation:
+  おそらく + [Conjecture]: Indicates a high probability or possibility of something.
+jlpt: N2
+etymology: 「おそらく」 originates from the verb 「恐る」 (osoru), meaning "to fear." The adverbial form retains
+  a nuance of apprehension or uncertainty, though it primarily functions as a formal equivalent of "probably."
+  This linguistic evolution highlights how expressions of fear or caution can become markers of a high
+  degree of probability, especially in more formal contexts.
+writeup: 「おそらく」 is an adverb that conveys a high degree of probability or possibility. While it is derived
+  from the verb 「恐る」 ("to fear"), in modern Japanese, it is generally used as a more formal way of saying
+  "probably" or "perhaps." It frequently appears alongside other expressions of conjecture, such as 「だろう」,
+  「でしょう」, or 「かもしれない」. As an adverb, 「おそらく」 typically appears at the beginning of a sentence or phrase,
+  preceding the statement of conjecture. Although it can sometimes carry the nuance of "I fear that (A),"
+  this specific apprehension is not always present. When it *does* convey this meaning, it often implies
+  a sense of modesty on the speaker's part, suggesting a hesitation to assert their assumption as absolutely
+  correct, even when the available information strongly supports it. This subtle nuance adds a layer of
+  politeness or cautiousness to the statement.
+false_friends:
+  - term: かもしれない
+    meaning: might, maybe, probably
+    kind: synonym
+    nuance: 「かもしれない」 expresses a lower degree of certainty than 「おそらく」. While 「おそらく」 indicates a high
+      likelihood, 「かもしれない」 suggests a weaker possibility.
+    grammar_point: かもしれない (might・maybe)
+  - term: もしかしたら
+    meaning: perhaps, maybe, possibly
+    kind: synonym
+    nuance: Similar to 「かもしれない」, 「もしかしたら」 also indicates lower certainty than 「おそらく」 and is typically
+      used in less formal or more speculative contexts.
+    grammar_point: もしかしたら (perhaps)
+  - term: たぶん
+    meaning: probably, maybe
+    kind: similar expression
+    nuance: 「たぶん」 also means 'probably', but it is considerably less formal than 「おそらく」. While both convey
+      a high probability, 「たぶん」 is common in casual conversation, whereas 「おそらく」 is reserved for more
+      formal or written contexts.
+    grammar_point: <suggest>:たぶん (probably・maybe)
+  - term: きっと
+    meaning: surely, certainly, undoubtedly
+    kind: similar expression
+    nuance: 「きっと」 expresses a stronger conviction or certainty on the part of the speaker than 「おそらく」.
+      While 「おそらく」 suggests a high probability based on available information, 「きっと」 conveys a personal
+      assurance that something will happen or is true.
+    grammar_point: <suggest>:きっと (surely・certainly・undoubtedly)
+post_false_friends_writeup: When choosing among 「おそらく」, 「かもしれない」, 「もしかしたら」, 「たぶん」, and 「きっと」, consider
+  the level of certainty and formality you wish to convey. 「おそらく」 implies a high degree of probability
+  with a formal tone. 「かもしれない」 and 「もしかしたら」 suggest lower certainty. 「たぶん」 is a more casual equivalent
+  of 'probably'. 「きっと」 expresses a very strong conviction, almost a certainty, on the speaker's part.
+examples:
+  - english: The new project will probably start next month.
+    japanese:
+      - 新しい プロジェクト は、{おそらく} 来月 に 開始 する でしょう。
+      - 新しい プロジェクト は、{おそらく} 来月 に 開始 する と 思わ れ ます。
+    english_literally: New project, probably next month will start.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 来月 に 開始 する でしょう。'
+        english: Probably, it will start next month.
+        hint: This grammar point is more formal than 'たぶん'. We're looking for a formal way to say 'probably'.
+    scene: A project manager informs their team during a formal meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    nuance: The use of 「でしょう」 combined with 「おそらく」 creates a polite and formal prediction suitable for
+      a business setting. The speaker's use of this formal language indicates their professional role
+      and the importance of the information being conveyed.
+  - english: He hasn't been well lately, so he probably has some worries.
+    japanese:
+      - 彼 は 最近 元気 が ない から、{おそらく} 何 か 悩み が ある の だろう。
+      - 彼 は 最近 元気 が ない から、何 か 悩み が {おそらく} ある の だろう。
+    english_literally: He lately not well, so probably some worry he has.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 何 か 悩み が ある の だろう。'
+        english: He probably has some worries.
+        hint: While 'たぶん' is common, 'おそらく' conveys a more considered observation, which is suitable for
+          discussing a friend's troubles. We're looking for a slightly more formal and thoughtful way
+          to say 'probably'.
+      - competing_japanese:
+          - '{きっと} 何 か 悩み が ある の だろう。'
+        english: He surely has some worries.
+        hint: '''きっと'' implies a strong conviction, but in this empathetic context, ''おそらく'' allows for
+          a more speculative and compassionate tone. We''re looking for a prediction based on observation,
+          not strong certainty.'
+    scene: Two women discussing a mutual friend who seems troubled.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: Despite the casual register of 「〜だろう」, the inclusion of 「おそらく」 still carries a formal weight,
+      suggesting the speaker is making a considered observation rather than a simple guess. This can be
+      used by female speakers to convey thoughtful concern.
+  - english: With this plan, I'm afraid it might cost more than expected.
+    japanese:
+      - この 計画 で は、{おそらく} 予想 以上 の 費用 が かかる か も しれ ませ ん。
+      - この 計画 で は、予想 以上 の 費用 が {おそらく} かかる か も しれ ませ ん。
+      - この 計画 で は、{おそらく} 予想 以上 の 費用 が かかる でしょ う。
+    english_literally: This plan, probably more than expected expenses might incur.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 予想 以上 の 費用 が かかる か も しれ ませ ん。'
+        english: It might probably cost more than expected.
+        hint: When discussing serious concerns with a superior, 'おそらく' provides a more formal and apprehensive
+          tone than 'たぶん'. We're looking for a way to express strong likelihood with professionalism.
+      - competing_japanese:
+          - '{きっと} 予想 以上 の 費用 が かかる か も しれ ませ ん。'
+        english: It will surely cost more than expected.
+        hint: '''きっと'' expresses strong certainty, which might be too assertive in this context. ''おそらく''
+          allows for expressing a strong possibility with caution. We''re looking for a polite, cautious
+          prediction.'
+    scene: A man presents a budget concern to his supervisor, hinting at potential problems.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    nuance: The combination of 「おそらく」 with 「かもしれません」 adds a layer of cautious speculation and polite apprehension.
+      This phrasing is common in professional settings where direct assertions might be impolitic, allowing
+      the speaker to express a strong likelihood with a respectful tentativeness.
+  - english: Due to the effects of global warming, extreme weather events will probably increase in the
+      future.
+    japanese:
+      - 地球 温暖 化 の 影響 で、今後 は {おそらく} 極端 な 気象 現象 が 増える でしょう。
+      - 地球 温暖 化 の 影響 で、今後 は {おそらく} 極端 な 気象 現象 が 増える と 思わ れ ます。
+      - 地球 温暖 化 の 影響 で、今後 は {おそらく} 極端 な 気象 現象 が 増加 する でしょ う。
+    english_literally: Earth warming's influence, from now on, probably extreme weather phenomena will
+      increase.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 極端 な 気象 現象 が 増える でしょう。'
+        english: Probably, extreme weather events will increase.
+        hint: In an academic lecture, 'おそらく' conveys authority and a researched probability, unlike the
+          casual 'たぶん'. We're looking for a formal, authoritative prediction.
+      - competing_japanese:
+          - '{きっと} 極端 な 気象 現象 が 増える でしょう。'
+        english: Surely, extreme weather events will increase.
+        hint: Scientific discourse prefers nuanced predictions. 'きっと' implies absolute certainty, while
+          'おそらく' allows for high probability without being definitive, which is more appropriate for complex
+          topics. We're looking for a highly probable, yet not absolute, prediction.
+    scene: A university professor lectures to a group of students about climate change.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal 「おそらく」 combined with 「でしょう」 is highly appropriate for an academic setting, indicating
+      a well-reasoned prediction based on evidence. The speaker, as an older male professor, uses this
+      phrasing to convey credibility and a scholarly tone to a group of students.
+  - english: The train will probably be delayed because of the heavy snow.
+    japanese:
+      - 大雪 の 影響 で、電車 は {おそらく} 遅れる でしょう。
+      - 大雪 の 影響 で、電車 は {おそらく} 遅れる と 思わ れ ます。
+      - 大雪 の 影響 で、電車 は {おそらく} 遅延 する でしょう。
+    english_literally: Heavy snow's influence, because of, train probably will be delayed.
+    competing_grammar:
+      - competing_japanese:
+          - 大雪 の 影響 で、電車 は {た ぶん} 遅れる でしょう。
+        english: The train will probably be delayed because of the heavy snow.
+        hint: While 'たぶん' is acceptable, 'おそらく' adds a more formal and official tone, often heard in announcements
+          or professional contexts. We're looking for a formal statement of probability.
+      - competing_japanese:
+          - 大雪 の 影響 で、電車 は {きっと} 遅れる でしょう。
+        english: The train will surely be delayed because of the heavy snow.
+        hint: '''きっと'' conveys personal conviction, which might be too strong for a general statement
+          about a train delay. ''おそらく'' expresses a high likelihood based on circumstances. We''re looking
+          for a likely prediction, not a certain one.'
+    scene: An announcement at a train station during bad weather.
+    register: formal
+    setting: informative
+    nuance: The use of 「おそらく」 with 「でしょう」 is common in public announcements, adding a layer of formal
+      politeness and caution. It implies that while the delay is highly likely, it's presented as an informed
+      prediction rather than an absolute certainty, which is appropriate for managing public expectations.
+  - english: Given the current market trends, our sales will probably increase next quarter.
+    japanese:
+      - 現在 の 市場 の 動向 から 見る と、来期 の 売上 は {おそらく} 増加 する と 思わ れ ます。
+      - 現在 の 市場 の 動向 から 見る と、来期 の 売上 は {おそらく} 増加 する でしょう。
+      - 現在 の 市場 の 動向 から 見る と、来期 の 売上 は {おそらく} 伸びる と 思わ れ ます。
+    english_literally: Current market trends from looking at, next quarter's sales probably increase will
+      think.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 市場 の 動向 から 見る と、来期 の 売上 は {た ぶん} 増加 する と 思わ れ ます。
+        english: Given current market trends, our sales will probably increase next quarter.
+        hint: In a business presentation, 'おそらく' lends a more professional and well-reasoned tone than
+          the casual 'たぶん'. We're looking for a formal and analytical prediction.
+      - competing_japanese:
+          - 現在 の 市場 の 動向 から 見る と、来期 の 売上 は {きっと} 増加 する と 思わ れ ます。
+        english: Given current market trends, our sales will surely increase next quarter.
+        hint: '''きっと'' expresses a personal conviction or strong certainty that might be too absolute
+          for a financial forecast. ''おそらく'' conveys a high probability based on analysis, which is more
+          appropriate in a business context. We''re looking for a highly probable, yet carefully stated,
+          prediction.'
+    scene: A CEO addressing shareholders during an annual meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The combination of 「おそらく」 and the humble/passive expression 「と思われます」 ('it is thought') projects
+      a highly professional and objective tone. An older male speaker in a position of authority might
+      use this phrasing to convey a confident yet measured outlook, suitable for addressing a group of
+      stakeholders.
+  - english: If we don't start soon, we'll probably miss the last bus.
+    japanese:
+      - 早く 出発 し ない と、{おそらく} 最終 バス に 間に合わ ない でしょう。
+      - 早く 出発 し ない と、{おそらく} 最終 バス に 間に合わ ない だろう。
+      - 早く 出発 し ない と、{おそらく} 最終 バス に 乗り 遅れる でしょう。
+    english_literally: Quickly depart not if, probably last bus to make it will not.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 出発 し ない と、{た ぶん} 最終 バス に 間に合わ ない でしょう。
+        english: If we don't start soon, we'll probably miss the last bus.
+        hint: While 'たぶん' is common in casual talk, 'おそらく' here adds a sense of 'I fear that' or a more
+          serious apprehension about missing the bus. We're looking for a prediction with a hint of concern.
+      - competing_japanese:
+          - 早く 出発 し ない と、{きっと} 最終 バス に 間に合わ ない でしょう。
+        english: If we don't start soon, we'll surely miss the last bus.
+        hint: '''きっと'' is too strong here; it expresses a certainty that may not be present in the speaker''s
+          mind. ''おそらく'' suggests a high likelihood with an underlying note of worry, fitting the ''fear
+          that'' nuance. We''re looking for a prediction with a sense of apprehension.'
+    scene: Friends deciding whether to leave a party or stay longer.
+    register: casual
+    setting: cautious
+    nuance: Even in a casual context, 「おそらく」 adds a slightly formal or grave tone to the speaker's warning.
+      The phrase 「間に合わないでしょう」 further emphasizes the high probability and the implied negative outcome,
+      making it sound like a serious, well-considered warning rather than a mere guess. This can be used
+      by any gender to convey urgency and concern.
+  - english: Based on these results, the hypothesis is probably correct.
+    japanese:
+      - これ ら の 結果 に 基づく と、この 仮説 は {おそらく} 正しい と 言える でしょう。
+      - これ ら の 結果 に 基づく と、この 仮説 は {おそらく} 正しい と 考え られ ます。
+      - これ ら の 結果 に 基づく と、{おそらく} この 仮説 は 正しい と 言える でしょう。
+    english_literally: These results based on if, this hypothesis probably correct can be said will.
+    competing_grammar:
+      - competing_japanese:
+          - これ ら の 結果 に 基づく と、この 仮説 は {た ぶん} 正しい と 言える でしょう。
+        english: Based on these results, the hypothesis is probably correct.
+        hint: In scientific discourse, 'おそらく' provides a precise, data-driven estimation of probability,
+          suitable for academic rigor. 'たぶん' lacks this formal precision. We're looking for a formally
+          presented conclusion.
+      - competing_japanese:
+          - '{きっと} この 仮説 は 正しい と 言える でしょう。'
+        english: Based on these results, the hypothesis is surely correct.
+        hint: '''きっと'' suggests an unshakeable certainty, which is rarely appropriate in scientific statements
+          that always allow for revision. ''おそらく'' allows for a strong likelihood with scientific modesty.
+          We''re looking for a highly probable, yet carefully stated, prediction.'
+    scene: A scientist presenting research findings at a conference.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The combination of 「おそらく」 with the formal 「と言えるでしょう」 ('it can be said') is characteristic
+      of academic and scientific presentations. A female speaker, especially an older academic, would
+      use this precise language to convey a well-founded yet appropriately cautious conclusion, reflecting
+      intellectual honesty and professionalism to her audience.
+  - english: He's been very quiet, so he's probably feeling down.
+    japanese:
+      - 彼 は ずっと 静か だ から、{おそらく} 落ち込ん で いる の だろう。
+      - 彼 は ずっと 静か だ から、{おそらく} 落ち込ん で いる と 思う。
+      - 彼 は ずっと 静か だ から、{おそらく} 元気 が ない の だろう。
+    english_literally: He continuously quiet is, so probably depressed being is will.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ずっと 静か だ から、{た ぶん} 落ち込ん で いる の だろう。
+        english: He's been very quiet, so he's probably feeling down.
+        hint: While 'たぶん' is a common casual choice, 'おそらく' here adds a thoughtful, considered nuance
+          to the observation, making it sound more like an empathetic deduction. We're looking for a sympathetic,
+          observed probability.
+      - competing_japanese:
+          - 彼 は ずっと 静か だ から、{きっと} 落ち込ん で いる の だろう。
+        english: He's been very quiet, so he's surely feeling down.
+        hint: '''きっと'' implies a strong, almost absolute certainty, which might come across as presumptive
+          when speculating about someone''s feelings. ''おそらく'' allows for a strong likelihood while acknowledging
+          it''s an observation. We''re looking for a sympathetic, likely observation, not a definitive
+          judgment.'
+    scene: Two friends discussing a quiet mutual friend over coffee.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: male
+    nuance: Even in a casual conversation between male friends, 「おそらく」 can be used to convey a more thoughtful
+      and considered deduction about someone's emotional state, rather than a mere guess. It suggests
+      a certain gravity to the observation, making the speaker's empathy sound more profound. The use
+      of 「だろう」 keeps the overall tone conversational.
+  - english: Due to the aging population, social security costs will probably continue to rise.
+    japanese:
+      - 高齢 化 に 伴い、社会 保障 費 は {おそらく} 増加 し 続ける でしょう。
+      - 高齢 化 に 伴い、社会 保障 費 は {おそらく} 増加 し 続ける と 思わ れ ます。
+      - 高齢 化 に 伴い、社会 保障 費 は {おそらく} 増え 続ける でしょう。
+    english_literally: Aging population accompanying, social security costs probably increase continue
+      will.
+    competing_grammar:
+      - competing_japanese:
+          - 高齢 化 に 伴い、社会 保障 費 は {た ぶん} 増加 し 続ける でしょう。
+        english: Due to the aging population, social security costs will probably continue to rise.
+        hint: When discussing broad societal trends in a formal setting, 'おそらく' conveys a well-informed
+          and authoritative prediction. 'たぶん' would be too casual. We're looking for a formal, policy-oriented
+          prediction.
+      - competing_japanese:
+          - 高齢 化 に 伴い、社会 保障 費 は {きっと} 増加 し 続ける でしょう。
+        english: Due to the aging population, social security costs will surely continue to rise.
+        hint: '''きっと'' implies an absolute certainty that may not be suitable for complex societal predictions,
+          which often involve variables. ''おそらく'' allows for a high probability based on expert analysis,
+          while maintaining an appropriate level of professional caution. We''re looking for a highly
+          probable, yet responsibly stated, prediction.'
+    scene: A policy expert giving an interview on national television about demographic changes.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal 「おそらく」 combined with 「でしょう」 and a subject like 「社会保障費」 ('social security costs')
+      is typical of discussions on policy or societal trends. An older female speaker, possibly a researcher
+      or expert, uses this phrasing to offer a well-supported prediction in a formal, public setting,
+      underscoring the gravity and likelihood of the trend.
+post_example_writeup: The examples illustrate how 「おそらく」 is primarily used in formal or semi-formal contexts
+  to indicate a high degree of probability. Even when used in more casual settings, as seen in some examples,
+  it still lends a slightly more serious or considered tone compared to its more common counterparts like
+  「たぶん」. This formality can be leveraged to convey authority, seriousness, or a nuanced sense of apprehension,
+  stemming from its etymological roots in 'fear'. It often pairs with other conjecture expressions like
+  「でしょう」 or 「かもしれません」 to complete the probabilistic statement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/おそらく

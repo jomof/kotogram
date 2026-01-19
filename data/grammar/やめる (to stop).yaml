@@ -1,0 +1,345 @@
+grammar_point: やめる (to stop)
+learn_before:
+  - ちょっと (adverb)
+meaning: To stop; to quit; to cease (an action, habit, or state)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: やめる
+    rarity: common
+    meaning: to stop
+  - conjugation-type: non-past polite (～ます)
+    form: やめます
+    rarity: common
+    meaning: to stop (polite)
+  - conjugation-type: negative plain (～ない)
+    form: やめない
+    rarity: common
+    meaning: not to stop
+  - conjugation-type: negative non-past polite (～ません)
+    form: やめません
+    rarity: common
+    meaning: not to stop (polite)
+  - conjugation-type: past plain (～た)
+    form: やめた
+    rarity: common
+    meaning: stopped
+  - conjugation-type: past polite (～ました)
+    form: やめました
+    rarity: common
+    meaning: stopped (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: やめなかった
+    rarity: common
+    meaning: did not stop
+  - conjugation-type: negative past polite (～ませんでした)
+    form: やめませんでした
+    rarity: common
+    meaning: did not stop (polite)
+  - conjugation-type: te-form (～て)
+    form: やめて
+    rarity: common
+    meaning: stopping, having stopped
+  - conjugation-type: potential (～られる/～える)
+    form: やめられる
+    rarity: common
+    meaning: can stop
+  - conjugation-type: passive (～られる/～かれる)
+    form: やめられる
+    rarity: common
+    meaning: is stopped, forced to stop
+  - conjugation-type: causative (～させる)
+    form: やめさせる
+    rarity: common
+    meaning: make someone stop
+  - conjugation-type: causative-passive (～させられる)
+    form: やめさせられる
+    rarity: common
+    meaning: be made to stop
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: やめろ
+    rarity: common
+    meaning: stop! (plain command)
+  - conjugation-type: imperative polite (～なさい)
+    form: やめなさい
+    rarity: common
+    meaning: please stop (polite command)
+  - conjugation-type: volitional (～よう)
+    form: やめよう
+    rarity: common
+    meaning: let's stop
+  - conjugation-type: volitional polite (～ましょう)
+    form: やめましょう
+    rarity: common
+    meaning: let's stop (polite)
+  - conjugation-type: conditional (～たら)
+    form: やめたら
+    rarity: common
+    meaning: if/when stop
+  - conjugation-type: conditional (～ば)
+    form: やめれば
+    rarity: common
+    meaning: if stop
+  - conjugation-type: concessive (～ても)
+    form: やめても
+    rarity: common
+    meaning: even if stop
+  - conjugation-type: desiderative (～たい)
+    form: やめたい
+    rarity: common
+    meaning: want to stop
+pronunciation:
+  katakana: ヤメル
+  romaji: yameru
+formation:
+  Verb ({る}-verb): The core form of the verb itself.
+  '[Action] を {やめる}': To stop or quit a specific action or activity.
+  '[Habit/Custom] を {やめる}': To stop or quit a habit or custom.
+  '[Smoking/Drinking] を {やめる}': To quit smoking or drinking.
+  '[Company/Job] を {やめる}': To quit a company or job.
+jlpt: N5
+etymology: The verb やめる (yameru) derives from the classical Japanese verb 止む (yamu), which means "to stop"
+  or "to cease" (intransitive). The transition to やめる (transitive) signifies a shift from an action ceasing
+  by itself to an action being actively stopped or brought to an end by an agent. This reflects the evolution
+  of the language to distinguish between an action naturally stopping and someone intentionally making
+  it stop.
+writeup: '{やめる} is a fundamental Japanese verb primarily meaning "to stop," "to quit," or "to cease."
+  It is a transitive verb, meaning it typically takes a direct object marked by the particle を (o), indicating
+  what is being stopped or quit. This makes it distinct from its intransitive counterpart, 止む (yamu),
+  which refers to something stopping on its own (e.g., 雨が止む - Ame ga yamu, "The rain stops"). Commonly,
+  {やめる} is used to describe stopping an ongoing action, a habit, or a job. For example, 煙草を{やめる} (tabako
+  o yameru) means "to quit smoking," and 会社を{やめる} (kaisha o yameru) means "to quit a company/job." It
+  can also refer to ceasing an activity, such as 勉強を{やめる} (benkyou o yameru - "to stop studying"). The
+  decision to stop is usually voluntary, but context can sometimes imply an involuntary cessation if the
+  subject is external to the action. Understanding the distinction between transitive {やめる} and intransitive
+  止む is crucial for accurate usage.'
+false_friends:
+  - term: 止む (yamu)
+    meaning: To stop, to cease (intransitive)
+    kind: similar expression
+    nuance: 止む (yamu) refers to something stopping *on its own*, like rain or wind. {やめる} is used when
+      *someone* actively stops something. For example, 雨が止む (ame ga yamu) means "the rain stops," while
+      喫煙を{やめる} (kitsuen o yameru) means "I quit smoking."
+    grammar_point: <suggest>:止む (to stop・intransitive)
+  - term: 中止する
+    meaning: To cancel, to suspend, to discontinue
+    kind: similar expression
+    nuance: 中止する (chuushi suru) often implies a formal or planned cancellation of an event or project,
+      usually by an authority or group decision. {やめる} is more general and can refer to an individual's
+      decision to stop.
+    grammar_point: <suggest>:中止する (to cancel)
+  - term: 終える
+    meaning: To finish, to complete (transitive)
+    kind: similar expression
+    nuance: 終える (oeru) emphasizes the completion of a task or process, implying a natural end. {やめる} focuses
+      on the act of *stopping*, which might not necessarily mean completion, or it could imply discontinuation.
+      You might {やめる} a task halfway, but you 終える it when it's done.
+    grammar_point: <suggest>:終える (to finish・transitive)
+post_false_friends_writeup: When distinguishing between {やめる} and similar expressions, consider the intention
+  and outcome. While 止む refers to an action ceasing naturally, {やめる} implies an active decision to halt
+  something. 中止する suggests a formal cancellation, and 終える points to the completion of an action. Choose
+  {やめる} when the nuance is about an active discontinuation of an action, habit, or involvement.
+examples:
+  - english: I decided to quit my job.
+    japanese:
+      - 仕事 を {やめ まし た}。
+      - 仕事 を {やめ た}。
+      - 仕事 を {やめる} こと に し まし た。
+    english_literally: As for job, I stopped it.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が {終わり まし た}。
+        english: My work has finished.
+        hint: 「終わる」 means to finish naturally. Here, the speaker made a conscious decision to stop their
+          job. We're looking for an active decision to cease.
+    scene: Talking to a friend over coffee about recent life changes.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    nuance: This is a straightforward use of {やめる} for quitting a job. 「仕事 を {やめました}」 is a common way
+      to express this decision. The plain form 「やめた」 or the phrase 「やめる こと に しました」 emphasizing the decision,
+      can also be used.
+  - english: Please don't stop studying Japanese.
+    japanese:
+      - 日本 語 の 勉強 を {やめ ない で} ください。
+      - 日本 語 の 勉強 を {やめ ない で}。
+    english_literally: Japanese language's study, please do not stop.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 勉強 を {続け ましょう}。
+        english: Let's continue studying Japanese.
+        hint: While this conveys the same sentiment, we're looking for a direct request *not* to stop,
+          using the negative form of the grammar point.
+    scene: A teacher encouraging a student who is feeling discouraged.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The negative 「{やめないで}」 is used here as a request not to cease an action. The phrase 「勉強 を
+      {やめないで} ください」 emphasizes continuation rather than cessation. The plain 「やめないで」 is more casual.
+  - english: I stopped smoking last year.
+    japanese:
+      - 去年、タバコ を {やめ た}。
+      - 去年、タバコ を {やめ まし た}。
+    english_literally: Last year, tobacco, I stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 去年、タバコ を {禁煙 し た}。
+        english: Last year, I gave up smoking (formally).
+        hint: 「禁煙する」 implies a more formal or official act of abstaining from smoking. We're looking for
+          a general statement about quitting a habit using the more common verb.
+    scene: Talking with a peer about health improvements.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This shows {やめる} used for quitting a habit. 「タバコ を {やめた}」 is a very common and direct expression
+      in casual conversation. Adding 「やめました」 makes it polite.
+  - english: Stop making excuses!
+    japanese:
+      - 言い訳 を {やめろ}！
+      - 言い訳 を {やめ なさい}！
+      - 言い訳 を {やめ て ください}！
+    english_literally: Excuses, stop!
+    competing_grammar:
+      - competing_japanese:
+          - 言い訳 を {する な}！
+        english: Don't make excuses!
+        hint: This is a prohibitive command. We're looking for a direct imperative using the target verb,
+          telling someone to stop the action of making excuses.
+    scene: A parent scolding a child.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The plain imperative 「{やめろ}」 is a very strong and direct command, typically used by someone
+      in a position of authority towards someone subordinate, or in a very casual, frustrated tone among
+      close friends. 「やめなさい」 is a slightly softer but still firm polite imperative. 「やめてください」 is a polite
+      request.
+  - english: I'm thinking of quitting that part-time job.
+    japanese:
+      - その アルバイト を {やめよう} と 思っ て い ます。
+      - その アルバイト を {やめよう} と 思う。
+    english_literally: That part-time job, I am thinking to stop.
+    competing_grammar:
+      - competing_japanese:
+          - その アルバイト を {辞職 しよう} と 思っ て い ます。
+        english: I'm thinking of resigning from that part-time job.
+        hint: 「辞職する」 is more formal and typically used for official resignation from a professional position.
+          We're looking for a general expression of considering quitting a part-time job.
+    scene: Discussing future plans with a colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: volitional (～よう)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「{やめよう} と 思っています」 expresses the speaker's intention or consideration of quitting, using the
+      volitional form followed by 「と思う」. 「思います」 is polite, while 「思う」 is casual.
+  - english: I can't stop thinking about it.
+    japanese:
+      - それ を 考える の を {やめ られ ない}。
+      - それ を 考える の を {やめ られ ませ ん}。
+    english_literally: That, thinking, stopping, not able to.
+    competing_grammar:
+      - competing_japanese:
+          - それ を 考える の を {止め られ ない}。
+        english: I can't prevent myself from thinking about it.
+        hint: 「止める (tomeru)」 means to physically stop something or someone. Here, we're talking about
+          being unable to stop an internal action of one's own will.
+    scene: Confiding in a friend about an obsessive thought.
+    register: casual
+    setting: intimate
+    conjugation: potential (～られる/～える)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「{やめられない}」 uses the potential negative form to indicate an inability to stop an action, implying
+      a lack of control despite a desire to cease. 「やめられません」 is the polite version.
+  - english: I'm in the process of quitting the baseball team.
+    japanese:
+      - 野球 チーム を {やめ て いる} ところ です。
+      - 野球 チーム を {やめ て いる} ところ だ。
+    english_literally: Baseball team, in the process of stopping.
+    competing_grammar:
+      - competing_japanese:
+          - 野球 チーム を {辞退 する ところ です}。
+        english: I'm about to withdraw from the baseball team.
+        hint: 「辞退する」 means to decline or withdraw, often used in more formal contexts like elections or
+          invitations. We're looking for the continuous state of actively quitting.
+    scene: Explaining current situation to a coach.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「{やめている} ところ です」 conveys that the action of quitting is currently in progress, not yet completed.
+      The plain form 「ところ だ」 is for casual contexts.
+  - english: If you stop doing that, let's go home.
+    japanese:
+      - それ を {やめ て}、帰り ましょう。
+      - それ を {やめ て}、帰ろう。
+    english_literally: That, stopping, let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - それ を {止め て}、帰り ましょう。
+        english: Let's stop that (thing) and go home.
+        hint: 「止める (tomeru)」 means to physically stop an object or action, implying intervention. We're
+          looking for the act of someone choosing to cease their own action.
+    scene: A friend urging another to finish up an activity.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 'The te-form 「{やめて}」 connects the act of stopping to a subsequent action, implying a sequence:
+      "stop X, and then let''s do Y." 「帰りましょう」 is polite volitional, while 「帰ろう」 is plain volitional.'
+  - english: Even if I stop eating sweets, I probably won't lose weight.
+    japanese:
+      - 甘い 物 を {やめ て も}、多分 痩せ ない でしょう。
+      - 甘い 物 を {やめ て も}、多分 痩せ ない だろう。
+    english_literally: Sweet things, even if I stop, probably won't get thin, right?
+    competing_grammar:
+      - competing_japanese:
+          - 甘い 物 を {控え て も}、多分 痩せ ない でしょう。
+        english: Even if I cut back on sweets, I probably won't lose weight.
+        hint: 「控える」 means to refrain or cut back, which is a softer action than completely stopping. We're
+          looking for the absolute cessation implied by the grammar point.
+    scene: Self-deprecating comment to a family member about dieting.
+    register: casual
+    setting: humorous
+    conjugation: concessive (～ても)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「{やめても}」 expresses a concession, indicating that even if the action of stopping sweets occurs,
+      the expected positive outcome (losing weight) is unlikely. 「でしょう」 is polite conjecture, 「だろう」 is
+      plain conjecture.
+  - english: I was forced to quit the club activities.
+    japanese:
+      - 部活 を {やめ させ られ た}。
+      - 部活 を {やめ させ られ まし た}。
+    english_literally: Club activities, was made to stop.
+    competing_grammar:
+      - competing_japanese:
+          - 部活 を {諦め させ られ た}。
+        english: I was made to give up on club activities.
+        hint: 「諦めさせられた」 implies being forced to abandon hope or give up on something internally. We're
+          looking for being forced to physically cease participation.
+    scene: Complaining to a friend about a situation.
+    register: casual
+    setting: sympathetic
+    conjugation: causative-passive (～させられる)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「{やめさせられた}」 is the causative-passive form, meaning "was made to quit" or "was forced to quit,"
+      highlighting an involuntary action. This construction is common when expressing something negative
+      imposed by an external party. 「やめさせられました」 is the polite form.
+post_example_writeup: The examples illustrate the versatility of {やめる} across various contexts and conjugations.
+  Notice how the choice of conjugation, such as casual vs. polite, or active vs. passive, changes the
+  nuance of who is performing the action or experiencing the cessation. Pay close attention to the object
+  marked by を, as it clarifies what exactly is being stopped or quit.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/やめる

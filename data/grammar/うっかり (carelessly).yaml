@@ -1,0 +1,293 @@
+grammar_point: うっかり (carelessly)
+meaning: inadvertently, carelessly, by mistake, by accident
+pronunciation:
+  katakana: ウッカリ
+  romaji: ukkari
+formation:
+  うっかり + Verb[dictionary/te-form/past plain]: Describes an action done carelessly or inadvertently.
+  うっかり + Verb[te-form] + しまう: Emphasizes the unintended completion or regret of a careless action.
+jlpt: N3
+etymology: The origin of うっかり is believed to be an onomatopoeic word (gitaigo) expressing a light, fleeting,
+  or absent-minded state. The "うっ" sound might suggest a sudden, almost imperceptible lapse of attention,
+  and "かり" could relate to a light or swift action. Over time, it evolved to describe actions done inadvertently
+  or carelessly due to such a lapse.
+writeup: うっかり is an adverb used to describe an action that was performed **carelessly, inadvertently,
+  or by mistake**, often due to a momentary lapse in attention. It implies that the mistake was unintentional,
+  rather than due to a lack of ability or malicious intent. This adverb is frequently used when one wishes
+  to express mild self-reproach or to apologize for a minor error. It commonly precedes verbs, typically
+  in their past tense (た-form) or te-form, to indicate that the action was done *carelessly*. For instance,
+  「うっかり忘れた」 (I carelessly forgot) or 「うっかり落としてしまった」 (I accidentally dropped it). The nuance is that the
+  speaker did not intend to forget or drop something; it just happened due to a lapse. While うっかり can
+  be used in various situations, it is more prevalent in casual to semi-formal contexts. It's less common
+  in highly formal or business Japanese, where more precise or formal expressions for errors might be
+  preferred. It's often paired with 「〜てしまう」 (to do completely, often with regret) to emphasize the accidental
+  completion of the careless action, such as 「うっかりしてしまった」 (I ended up doing it carelessly).
+false_friends:
+  - term: ぼんやり
+    meaning: absent-mindedly, vaguely, dimly
+    kind: similar expression
+    nuance: ぼんやり describes a state of being unfocused, hazy, or vague, either mentally or visually. An
+      action done ぼんやり implies it was done while one's mind was wandering or not fully present. うっかり specifically
+      describes the *result* of a momentary lapse, leading to a mistake, even if one was otherwise focused.
+      ぼんやり describes the *state* that might lead to うっかり actions.
+    grammar_point: <suggest>:ぼんやり (absent-mindedly・vaguely)
+  - term: ついつい
+    meaning: unintentionally, impulsively, without thinking
+    kind: similar expression
+    nuance: ついつい combines つい (unintentionally, impulsively) with a reduplication for emphasis. It implies
+      an action done almost instinctively or impulsively despite one's better judgment, or something that
+      just "slipped out." So, ついつい implies an even stronger sense of an *unintended* action that just
+      "happened" because of a moment of carelessness or impulse. While うっかり focuses on the carelessness,
+      ついつい emphasizes the *unintentional, impulsive nature* of the resulting action due to that carelessness.
+    grammar_point: <suggest>:ついつい (unintentionally・impulsively)
+  - term: うかつ
+    meaning: careless, thoughtless, negligent
+    kind: similar expression
+    nuance: うかつ (usually written 迂闊) can be an adjective (迂闊な) or an adverb (迂闊にも). It also describes
+      carelessness, but often carries a stronger sense of being **unprepared, negligent, or lacking foresight**,
+      which can lead to more significant consequences. While うっかり is for minor, momentary oversights,
+      うかつ suggests a more fundamental flaw in attention or preparation. An うかつな person might make うっかり
+      mistakes frequently.
+    grammar_point: <suggest>:うかつ (careless・thoughtless)
+  - term: 不注意
+    meaning: carelessness, inattention, negligence
+    kind: similar expression
+    nuance: 不注意 is a noun or a な-adjective (不注意な). It refers to the *state or quality* of being careless
+      or inattentive. うっかり describes the *manner* in which an action is performed. So, one might act うっかり
+      (carelessly) *due to* 不注意 (carelessness). 不注意 is more general and can apply to a broader range of
+      situations, including those where actual mistakes aren't made, but the potential for them exists
+      due to lack of attention.
+    grammar_point: <suggest>:不注意 (carelessness・inattention)
+post_false_friends_writeup: While うっかり describes an action done inadvertently or by mistake, usually with
+  a sense of minor oversight, other terms like ぼんやり refer to a state of being mentally unfocused, which
+  might lead to うっかり actions. ついつい adds an impulsive nuance to the carelessness. うかつ suggests a deeper,
+  more culpable lack of foresight or preparation than a simple うっかり mistake. 不注意 is a general noun for
+  the quality of being careless or inattentive, distinct from うっかり which is an adverb describing the manner
+  of an action. Understanding these distinctions helps in choosing the most appropriate word to convey
+  the precise nature of the oversight.
+examples:
+  - english: I accidentally forgot my wallet.
+    japanese:
+      - 財布 を {うっかり} 忘れ て しまっ た。
+      - 財布 を {うっかり} 忘れ て しまい まし た。
+    english_literally: Wallet, inadvertently, forgot and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を わざと 忘れ て しまっ た。
+          - 財布 を わざと 忘れ て しまい まし た。
+        english: I purposely forgot my wallet.
+        hint: 「わざと」 means on purpose or intentionally. We're looking for an action that was done unintentionally
+          due to a lapse in attention.
+    scene: A person realizes they left their wallet at home right as they are about to pay.
+    register: casual
+    setting: emergency/alarm
+    nuance: The use of 「うっかり」 emphasizes that forgetting the wallet was a momentary oversight, not intentional.
+      「〜てしまった」 adds a nuance of regret or completion. This is a common way to express minor, unintentional
+      mistakes.
+  - english: I carelessly mistook the appointment date.
+    japanese:
+      - 待ち合わせ の 日付 を {うっかり} 間違え た。
+      - 待ち合わせ の 日付 を {うっかり} 間違え まし た。
+    english_literally: Meeting's date, inadvertently, I mistook.
+    competing_grammar:
+      - competing_japanese:
+          - 待ち合わせ の 日付 を 故意 に 間違え た。
+          - 待ち合わせ の 日付 を 故意 に 間違え まし た。
+        english: I intentionally mistook the appointment date.
+        hint: 「故意に」 means intentionally or deliberately. We're looking for a mistake that happened due
+          to a lapse in attention, not on purpose.
+    scene: A student arrives on the wrong day for an appointment with a professor.
+    register: semi-formal
+    setting: apologetic
+    nuance: 「うっかり」 highlights the unintentional nature of the mistake, common when admitting an oversight
+      to someone you respect or to whom you feel slightly apologetic. It emphasizes it was a simple oversight.
+  - english: I carelessly spilled coffee on the document.
+    japanese:
+      - 大切 な 書類 に コーヒー を {うっかり} こぼし て しまっ た。
+      - 大切 な 書類 に コーヒー を {うっかり} こぼし て しまい まし た。
+    english_literally: Important document on, coffee, inadvertently, spilled and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な 書類 に コーヒー を 不 注意 で こぼし て しまっ た。
+          - 大切 な 書類 に コーヒー を 不 注意 で こぼし て しまい まし た。
+        english: I spilled coffee on the important document due to my carelessness.
+        hint: While 「不注意で」 also means due to carelessness, 「うっかり」 focuses on the momentary, accidental
+          nature of the act itself. We're looking for the adverb that describes the manner of the spilling.
+    scene: A busy office worker spills coffee on important papers.
+    register: formal
+    setting: apologetic
+    nuance: Using 「うっかり」 here mitigates the perceived fault, implying it was an accident due to a brief
+      lapse, not deliberate clumsiness or incompetence. Even in a formal setting, acknowledging an accidental
+      mistake with 「うっかり」 is common when expressing an apology.
+  - english: I carelessly blurted out something I shouldn't have.
+    japanese:
+      - '{うっかり} 余計 な こと を 言っ て しまっ た。'
+      - '{うっかり} 余計 な こと を 言っ て しまい まし た。'
+    english_literally: Inadvertently, unnecessary thing, said and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - ついつい 余計 な こと を 言っ て しまっ た。
+          - ついつい 余計 な こと を 言っ て しまい まし た。
+        english: I impulsively blurted out something unnecessary.
+        hint: 「ついつい」 implies an action done impulsively, almost without thinking, often against one's
+          better judgment. 「うっかり」 is more about a simple oversight or lapse in attention. We're looking
+          for the nuance of a momentary lapse.
+    scene: A friend accidentally reveals a secret during a conversation.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: 「うっかり」 emphasizes the unintentional nature of the verbal slip. 「余計な こと を 言って しまった」 is a common
+      phrase to express regret over saying something unnecessary. The casual register fits the confession
+      between close friends, showing a moment of carelessness.
+  - english: I accidentally forgot to lock the door.
+    japanese:
+      - ドア を {うっかり} 閉め 忘れ まし た。
+      - ドア を {うっかり} 閉め 忘れ た。
+    english_literally: Door, inadvertently, I forgot to close.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 閉め 忘れ て しまい まし た。
+          - ドア を 閉め 忘れ て しまっ た。
+        english: I forgot to lock the door (and regret it).
+        hint: While omitting 「うっかり」 still conveys forgetting and regret, adding it specifically highlights
+          that the act of forgetting was a *momentary lapse* or oversight, not a general tendency to forget.
+          We're looking for that specific nuance of unintentional carelessness.
+    scene: A person returns home and realizes they left the door unlocked.
+    register: teineigo (polite)
+    setting: cautious
+    nuance: 「うっかり」 implies a simple, momentary oversight. 「閉め忘れました」 specifically means "forgot to close/lock,"
+      indicating a specific type of careless action. The polite 「〜ました」 ending makes it suitable for reporting
+      the oversight to someone without implying strong self-blame.
+  - english: I carelessly misheard and went to the wrong place.
+    japanese:
+      - '{うっかり} 聞き 間違え て、違う 場所 に 行っ て しまっ た。'
+      - '{うっかり} 聞き 間違え て、違う 場所 に 行っ て しまい まし た。'
+    english_literally: Inadvertently, misheard, wrong place to, went and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - ぼんやり 聞き 間違え て、違う 場所 に 行っ て しまっ た。
+          - ぼんやり 聞き 間違え て、違う 場所 に 行っ て しまい まし た。
+        english: I vaguely misheard and went to the wrong place.
+        hint: 「ぼんやり」 suggests being unfocused or hazy in thought, leading to the mistake. 「うっかり」 implies
+          a quick, momentary lapse of attention. We're looking for the sudden, accidental nature.
+    scene: A person tells their friend how they ended up at the wrong train station.
+    register: casual
+    setting: humorous
+    nuance: 「聞き間違えて」 (misheard) clearly states the nature of the mistake. 「うっかり」 preceding it frames the
+      mishearing as unintentional and a result of momentary inattention, adding a lighthearted or self-deprecating
+      tone.
+  - english: I carelessly overlooked that detail.
+    japanese:
+      - その 詳細 を {うっかり} 見落とし て い まし た。
+      - その 詳細 を {うっかり} 見落とし て い た。
+    english_literally: That detail, inadvertently, I had overlooked.
+    competing_grammar:
+      - competing_japanese:
+          - その 詳細 を 迂闊 に 見落とし て い まし た。
+          - その 詳細 を 迂闊 に 見落とし て い た。
+        english: I negligently overlooked that detail.
+        hint: 「迂闊に」 implies a more fundamental lack of foresight or negligence. 「うっかり」 implies a simple,
+          momentary oversight. We're looking for the lighter, accidental nuance.
+    scene: A team member admits to their superior that they missed a crucial detail in a report.
+    register: formal
+    setting: apologetic
+    nuance: 「見落としていました」 means "I had overlooked." 「うっかり」 here indicates that the oversight was due to
+      a temporary lack of focus, not a permanent inability to see details, which is a key nuance when
+      taking responsibility professionally and implies it was a one-time slip.
+  - english: I carelessly replied before thinking.
+    japanese:
+      - '{うっかり} 考える 前 に 返事 し て しまっ た。'
+      - '{うっかり} 考える 前 に 返事 し て しまい まし た。'
+    english_literally: Inadvertently, before thinking, replied and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - 考え ず に 返事 し て しまっ た。
+          - 考え ず に 返事 し て しまい まし た。
+        english: I replied without thinking.
+        hint: While 「考えずに」 conveys the lack of thought, 「うっかり」 adds the nuance that the lack of thought
+          was due to a momentary, accidental lapse rather than a deliberate omission of thought. We're
+          looking for that specific accidental nuance.
+    scene: A student confesses to a friend about answering a difficult question too quickly.
+    register: casual
+    setting: reflective
+    nuance: This emphasizes the quick, unintended nature of the reply due to carelessness, implying a
+      momentary lack of consideration rather than a deliberate, thoughtful response. The casual tone fits
+      conversation between close friends.
+  - english: I accidentally left my phone on the train.
+    japanese:
+      - 電車 に 携帯 を {うっかり} 置き 忘れ て き た。
+      - 電車 に 携帯 を {うっかり} 置き 忘れ て き まし た。
+    english_literally: Train on, phone, inadvertently, left behind and came.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 に 携帯 を 置き 忘れ て き た。
+          - 電車 に 携帯 を 置き 忘れ て き まし た。
+        english: I left my phone on the train (and came back).
+        hint: Omitting 「うっかり」 still conveys the action, but adding it explicitly states that the action
+          was due to a momentary oversight or accidental lapse in memory, emphasizing the unintentional
+          nature of leaving the phone behind. We're looking for that nuance.
+    scene: Someone frantically searches for their phone only to realize they left it on public transport.
+    register: casual
+    setting: emergency/alarm
+    nuance: 「置き忘れてきた」 means "forgot and left behind" with a sense of having come back from the place where
+      it was left. 「うっかり」 makes it clear it was an unintended oversight, stressing the accidental nature
+      of leaving the phone behind.
+  - english: I carelessly made a silly mistake during the test.
+    japanese:
+      - テスト で {うっかり} 変 な ミス を し て しまっ た。
+      - テスト で {うっかり} 変 な ミス を し て しまい まし た。
+    english_literally: Test in, inadvertently, strange mistake, made and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - テスト で 変 な ミス を し て しまっ た。
+          - テスト で 変 な ミス を し て しまい まし た。
+        english: I made a silly mistake during the test.
+        hint: While the sentence without 「うっかり」 conveys making a mistake, adding 「うっかり」 specifies that
+          the mistake was due to a momentary lapse in attention, a simple oversight rather than a lack
+          of knowledge or general ability. We're looking for that particular aspect of unintentional carelessness.
+    scene: A male student complains to his male friend about a test.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「変な ミス」 (a strange/silly mistake) combined with 「うっかり」 and 「〜てしまった」 is a common way for a
+      male speaker to express frustration about an avoidable error. The casual tone fits conversation
+      between male friends, indicating a self-reproach for a preventable error.
+  - english: I carelessly mixed up the order of operations.
+    japanese:
+      - 手順 を {うっかり} 逆 に し て しまっ た。
+      - 手順 を {うっかり} 逆 に し て しまい まし た。
+    english_literally: Procedure, inadvertently, reversed and ended up.
+    competing_grammar:
+      - competing_japanese:
+          - 手順 を 間違え て 逆 に し て しまっ た。
+          - 手順 を 間違え て 逆 に し て しまい まし た。
+        english: I made a mistake in the procedure and reversed it.
+        hint: While 「間違えて」 means 'by mistake', 「うっかり」 specifically highlights that the mistake was due
+          to a momentary lack of attention or oversight, implying it was a simple, accidental error. We're
+          looking for that specific nuance of inadvertence.
+    scene: A chef explains a culinary mishap to a colleague.
+    register: casual
+    setting: informative
+    nuance: 「逆に してしまった」 means "ended up doing it in reverse." 「うっかり」 attributes the error to a momentary
+      lapse rather than incompetence, implying it's an uncommon mistake for the speaker.
+  - english: I carelessly forgot to inform everyone.
+    japanese:
+      - 皆 に {うっかり} 伝え 忘れ まし た。
+      - 皆 に {うっかり} 伝え 忘れ た。
+    english_literally: Everyone to, inadvertently, I forgot to convey.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 に 連絡 を 怠り まし た。
+          - 皆 に 連絡 を 怠っ た。
+        english: I neglected to contact everyone.
+        hint: 「怠る」 implies a more conscious neglect or failure to do something. 「うっかり」 emphasizes that
+          the oversight was accidental and unintentional, a simple lapse rather than a deliberate omission.
+          We're looking for the unintentional nuance.
+    scene: A project manager apologizes to their team for a communication error.
+    register: teineigo (polite)
+    setting: apologetic
+    nuance: 「伝え忘れました」 (forgot to convey) is direct. 「うっかり」 emphasizes the unintentional nature of the
+      oversight in a professional apology, conveying that it was a slip, not a deliberate omission.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%86%E3%81%A3%E3%81%8B%E3%82%8A

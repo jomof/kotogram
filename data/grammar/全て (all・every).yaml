@@ -1,0 +1,242 @@
+grammar_point: 全て (all・every)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - の (that ~)
+  - 以前 (before)
+meaning: all, every, everything
+pronunciation:
+  katakana: スベテ
+  romaji: subete
+formation:
+  Noun + の + 全て: Refers to 'all' or 'everything' of a specific noun.
+  全て + Verb: Functions as an adverb, meaning 'completely' or 'entirely'.
+  全て: Used as a noun meaning 'everything'.
+jlpt: N3
+etymology: The term 全て (subete) combines the kanji 全 (zen), meaning 'all' or 'whole,' with a nominalizing
+  suffix or particle て. Historically, this combination evolved to represent the concept of 'the entirety'
+  or 'everything' within a given context. The underlying idea is a complete and exhaustive inclusion,
+  stemming from the sense of 'whole' or 'complete' inherent in 全.
+writeup: |-
+  全て (subete) is a versatile word in Japanese that can function as a noun, meaning 'everything,' or as an adverb, meaning 'completely' or 'entirely.' It is used to convey a sense of totality or comprehensiveness. While often interchangeable with similar words like 全部, 全て generally carries a slightly more formal or literary tone, and can refer to abstract concepts or non-countable things more fluidly.
+
+  When used as a noun, 全て refers to 'all things' or 'the entirety.' For example, あなたの全てを愛している (Anata no subete o aishiteiru) means 'I love everything about you.' Here, it encapsulates all aspects of a person, not just physical items.
+
+  As an adverb, 全て modifies verbs to indicate that an action is performed completely or entirely. For instance, 全てを話した (Subete o hanashita) means 'I told everything' or 'I spoke completely.' In this context, it emphasizes the exhaustive nature of the action.
+
+  It is a common word in various registers, from formal speeches to everyday conversation, although in casual spoken Japanese, 全部 or みんな might be encountered more frequently, especially for concrete collections of things. Understanding the nuances allows for more precise and natural expression.
+false_friends:
+  - term: 全部
+    meaning: all, whole, entire
+    kind: similar expression
+    nuance: 全部 (zenbu) typically refers to 'the whole lot,' 'the entire amount,' or 'all of a defined
+      group.' It often emphasizes the physical completeness or numerical totality of concrete items, or
+      a specific portion that is entirely included. While interchangeable with 全て in many contexts, 全部
+      is generally more common in casual speech and tends to imply a collection of discrete parts.
+    grammar_point: <suggest>:全部 (all・whole)
+  - term: 皆
+    meaning: everyone, all (people)
+    kind: similar expression
+    nuance: 皆 (minna, or mina) specifically refers to 'all people' or 'everyone.' It is used exclusively
+      for animate beings, whereas 全て can refer to people, objects, or abstract concepts.
+    grammar_point: <suggest>:皆 (everyone・all)
+  - term: あらゆる
+    meaning: every conceivable kind of, all sorts of
+    kind: similar expression
+    nuance: あらゆる (arayuru) is a prenominal adjective (連体詞) that modifies a noun, meaning 'every possible'
+      or 'all kinds of,' implying a wide variety and comprehensiveness of types. It emphasizes the exhaustive
+      *range* or *variety* of something, rather than the totality of a single entity or set as 全て often
+      does.
+    grammar_point: <suggest>:あらゆる (every・all sorts of)
+post_false_friends_writeup: While 全て, 全部, 皆, and あらゆる can all be translated as 'all' or 'every' in English,
+  their specific uses differ. 全て is the most encompassing, able to apply to concrete and abstract things
+  as a noun or adverb, often with a slightly formal nuance. 全部 focuses more on the physical totality of
+  a set. 皆 is strictly for people. あらゆる acts as an adjective to emphasize 'all kinds' or 'every possible
+  type' of something. Choosing the correct word depends on whether you are referring to the totality of
+  something, a complete set of physical items, a group of people, or a comprehensive range of varieties.
+examples:
+  - english: I will tell you everything.
+    japanese:
+      - あなた に {全て} を 話し ます。
+      - あなた に {全て} を お 話し ます。
+      - お前 に {全て} を 話す。
+      - あんた に {全て} を 話す わ。
+    english_literally: To you, everything, I will speak.
+    competing_grammar:
+      - competing_japanese:
+          - あなた に 全部 を 話し ます。
+        english: I will tell you *all of it*.
+        hint: '`全部` emphasizes a collection of distinct items or a definite quantity. We''re looking for
+          a comprehensive ''everything'' that includes abstract ideas.'
+    scene: A serious conversation where one person is about to confess or disclose full information.
+    register: teineigo (polite)
+    setting: serious
+    nuance: The use of 全て emphasizes the comprehensive nature of the disclosure, meaning 'absolutely everything'
+      rather than just 'some things'.
+    etymology: The particle に marks the indirect object 'あなた' (you). を marks '全て' (everything) as the
+      direct object of 話す (to speak/tell).
+  - english: She devoted her entire life to her children.
+    japanese:
+      - 彼女 は 人生 の {全て} を 子ども たち に 捧げ まし た。
+      - 彼女 は 人生 の {全て} を 子ども たち に 捧げ た。
+    english_literally: As for her, life's everything to children she devoted.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 人生 の 全部 を 子ども たち に 捧げ まし た。
+        english: She devoted *all parts* of her life to her children.
+        hint: '`全部` focuses on the sum of discrete parts. We''re looking for a word that signifies the
+          comprehensive totality of her life, including its abstract aspects.'
+    scene: A biographical account or reflection on a parent's dedication.
+    register: formal
+    setting: reflective
+    nuance: The phrase 人生の全て (jinsei no subete) highlights the totality of her life's devotion, encompassing
+      time, effort, and affection. The polite ます-form makes it suitable for a formal or respectful context.
+    etymology: 人生の全て uses the possessive particle の to show that '全て' refers to '人生' (life).
+  - english: He seems to know everything about that incident.
+    japanese:
+      - 彼 は その 事件 の {全て} を 知っ て いる よう です。
+      - 彼 は その 事件 の {全て} を 知っ て いる よう だ。
+      - 彼 は その 事件 の {全て} を 知っ て いる みたい だ。
+    english_literally: As for him, that incident's everything knows it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その 事件 の 全貌 を 知っ て いる よう です。
+        english: He seems to know the *whole picture* of that incident.
+        hint: '`全貌` refers to the entire picture or full details. We''re looking for a more general ''everything''
+          related to the incident.'
+    scene: Discussing a rumor or a person's involvement in a past event.
+    register: semi-formal
+    setting: informative
+    nuance: 知っているようです (shitteiru you desu) implies 'seems to know,' softened by ような気がする (you na ki ga
+      suru - 'have a feeling'). 全て here implies comprehensive knowledge, not just partial facts.
+    etymology: 事件の全て refers to 'all aspects' or 'the whole truth' of the incident.
+  - english: Let's give it our all for the next game!
+    japanese:
+      - 次 の 試合 は {全て} を 出し 切り ましょう！
+      - 次 の 試合 は {全て} を 出し 切ろう！
+      - 次 の 試合 は {全て} を 出し 切る ぞ！
+    english_literally: Next game, everything let's put out completely!
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 試合 は 全力 を 尽くし ましょう！
+        english: Let's *exert our full strength* for the next game!
+        hint: '`全力を尽くす` explicitly means to ''exert one''s full strength.'' We''re looking for a more
+          general ''give it our all.'''
+    scene: A coach motivating their team before a crucial game.
+    register: teineigo (polite)
+    setting: inspirational
+    nuance: 全てを出し切る (subete o dashikiru) is an idiom meaning 'to give one's all' or 'to pour everything
+      out.' It emphasizes maximal effort.
+    etymology: 出し切る (dashikiru) combines 出す (dasu - to put out/give) with 切る (kiru - to completely/thoroughly),
+      reinforcing the 'all' aspect.
+  - english: Everything started from that one phone call.
+    japanese:
+      - '{全て} は あの 一 本 の 電話 から 始まり まし た。'
+      - '{全て} は あの 一 本 の 電話 から 始まっ た。'
+    english_literally: Everything, that one phone call from, began.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も か も あの １ 本 の 電話 から 始まっ た。
+        english: '*Absolutely everything* started from that one phone call.'
+        hint: '`何もかも` emphasizes ''absolutely everything'' with a slight nuance of exhaustiveness or even
+          overwhelm. We''re looking for a more neutral ''everything.'''
+    scene: Reflecting on the turning point of a significant series of events.
+    register: formal
+    setting: reflective
+    nuance: The use of 全て at the beginning of the sentence as a noun implies 'all subsequent events' or
+      'the entire situation' originated from that single point, highlighting its foundational role.
+    etymology: 一本 (ippon) is a counter for long, cylindrical objects, including phone calls. から (kara)
+      indicates the starting point.
+  - english: The results of the experiment confirmed everything we hypothesized.
+    japanese:
+      - 実験 の 結果 は 私 たち が 仮説 を 立て た {全て} を 裏付け まし た。
+      - 実験 の 結果 は 私 たち が 仮説 を 立て た {全て} を 裏付け た。
+    english_literally: Experiment's results, we who hypothesis established, everything, confirmed.
+    competing_grammar:
+      - competing_japanese:
+          - 実験 の 結果 は 私 たち の 仮説 を 完全 に 裏付け まし た。
+        english: The results of the experiment *completely* confirmed our hypothesis.
+        hint: '`完全に` is an adverb meaning ''completely.'' We''re looking for a noun that refers to ''everything''
+          that was confirmed.'
+    scene: Scientists discussing their findings in a laboratory.
+    register: formal
+    setting: academic
+    nuance: 裏付けました (urazukemashita - 'confirmed' or 'supported') is a formal verb. 全て here refers to 'all
+      parts of the hypothesis,' emphasizing the comprehensive validation.
+    etymology: 仮説を立てる (kasetsu o tateru) means 'to form a hypothesis.'
+  - english: You must understand everything thoroughly before making a decision.
+    japanese:
+      - 決断 する 前 に、{全て} を 十分 に 理解 する べき です。
+      - 決断 する 前 に、{全て} を 十分 に 理解 する べき だ。
+    english_literally: Decision do before, everything sufficiently understand should.
+    competing_grammar:
+      - competing_japanese:
+          - 決断 する 前 に、あらゆる 点 を 十分 に 理解 する べき です。
+        english: You must understand *every point/aspect* thoroughly before making a decision.
+        hint: '`あらゆる点` refers to ''every single point or aspect.'' We''re looking for a more encompassing
+          ''everything.'''
+    scene: An elder advising a younger person on an important life choice.
+    register: semi-formal
+    setting: instructional
+    nuance: 十分に理解する (jūbun ni rikai suru - 'to understand sufficiently') combined with 全て emphasizes that
+      no detail should be overlooked. べきです (beki desu) adds a sense of obligation or strong recommendation.
+    etymology: 決断する (ketsudan suru) means 'to make a decision.'
+  - english: From here, you can see all of Tokyo's night view.
+    japanese:
+      - ここ から は、東京 の 夜景 の {全て} を 見る こと が でき ます。
+      - ここ から は、東京 の 夜景 の {全て} を 見る こと が できる。
+    english_literally: From here, Tokyo's night view's everything see can.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から は、東京 の 夜景 が 全部 見え ます。
+        english: From here, you can see *all of* Tokyo's night view.
+        hint: '`全部` is often used for countable or well-defined visual entities. We''re looking for a
+          word emphasizing the holistic ''entirety'' of the view.'
+    scene: Someone showing a visitor a scenic viewpoint.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 夜景の全て (yakei no subete) implies the complete, panoramic view of the nightscape, suggesting
+      its vastness and beauty. ることができます (koto ga dekimasu) expresses ability.
+    etymology: 夜景 (yakei) means 'night view,' formed from 夜 (yoru - night) and 景 (kei - scene/view).
+  - english: I've forgotten everything that happened that day.
+    japanese:
+      - その 日 に あっ た {全て} を 忘れ て しまい まし た。
+      - その 日 に あっ た {全て} を 忘れ て しまっ た。
+    english_literally: That day happened everything, I forgot completely.
+    competing_grammar:
+      - competing_japanese:
+          - その 日 に あっ た 出来事 を すっかり 忘れ て しまい まし た。
+        english: I've *completely* forgotten the events that happened that day.
+        hint: '`すっかり` is an adverb meaning ''completely.'' We''re looking for a noun that refers to ''everything
+          that happened.'''
+    scene: Someone trying to recall a traumatic or hazy memory.
+    register: casual
+    setting: melancholic
+    nuance: 忘れてしまいました (wasurete shimaimashita) uses the てしまう (te shimau) form to express completion with
+      a nuance of regret or unintended action, emphasizing that the forgetting is total.
+    etymology: その日にあった (sono hi ni atta) means 'that which happened on that day.'
+  - english: Everything he said was a lie.
+    japanese:
+      - 彼 が 言っ た {全て} は 嘘 でし た。
+      - 彼 が 言っ た {全て} は 嘘 だっ た。
+    english_literally: He said, everything, was a lie.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 言っ た こと は 全部 嘘 でし た。
+        english: '*Everything he said* was a lie.'
+        hint: '`全部` can work here, but `全て` often implies a more exhaustive, systematic untruth, rather
+          than just a collection of false statements.'
+    scene: Someone realizing they have been deceived.
+    register: casual
+    setting: serious
+    nuance: 彼が言った全て (kare ga itta subete) implies that every single word or statement he uttered was false,
+      highlighting the complete untruthfulness.
+    etymology: 嘘 (uso) means 'lie.'
+post_example_writeup: As these examples demonstrate, 全て is highly versatile. It can be used with both
+  concrete and abstract nouns, emphasizing the entirety of something. It is also common to see it modify
+  verbs, especially in phrases like 全てを話す (subete o hanasu - to tell everything) or 全てを理解する (subete o
+  rikai suru - to understand everything), where it functions adverbially to indicate thoroughness or completeness
+  of an action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E5%85%A8%E3%81%A6

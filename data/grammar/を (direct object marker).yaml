@@ -1,0 +1,408 @@
+grammar_point: を (direct object marker)
+learn_before:
+  - Verb[ました] (polite past)
+  - を (path of movement)
+meaning: Particle marking the direct object of a transitive verb.
+pronunciation:
+  katakana: ヲ
+  romaji: o
+  pronunciation_warning: Pronounced 'o', not 'wo'.
+formation:
+  Noun + を + Transitive Verb: Marks the direct object of a transitive verb.
+  Place Noun + を + Verb of Motion: Indicates the path or place traversed by a verb of motion.
+jlpt: N5
+etymology: The particle を (historically wo) is believed to have originated from the ancient verb root
+  乎 (o) or 於 (o), which conveyed meanings like 'to carry,' 'to hold,' or 'to bear.' This verbal root,
+  particularly its conjunctive form, grammaticalized over time to become a particle that marks the object
+  of an action. This evolution reflects the idea of an object being 'taken up' or 'acted upon' by the
+  verb. Though the kana を (wo) persists, its pronunciation merged with お (o) in most modern contexts.
+writeup: The particle を marks the direct object of a transitive verb. In simpler terms, it identifies
+  **what** or **whom** the subject is acting upon. Think of it as connecting the verb to the thing receiving
+  the action. For example, in the sentence "I read a book," を would mark "book" because the action of
+  reading is being done to the book.When primarily used to mark direct objects, を can also indicate the
+  place **through** which an action occurs, particularly with verbs of motion like 歩く (aruku - to walk)
+  or 走る (hashiru - to run). In such cases, it emphasizes the interaction with the place itself.
+false_friends:
+  - term: が (subject marker)
+    meaning: Subject marking particle, identification particle
+    kind: often confused with
+    nuance: Unlike を, が marks the subject of a sentence or identifies a specific element. が emphasizes
+      "who" or "what" is performing the action, while を emphasizes "what" is being acted upon.
+    grammar_point: が (subject marker)
+  - term: は (topic and contrast)
+    meaning: Topic marking particle, contrast
+    kind: often confused with
+    nuance: は indicates the topic of the sentence or provides contrast, not the direct object. は sets
+      the context, while を pinpoints the receiver of the action.
+    grammar_point: は (topic and contrast)
+  - term: に (static location・time)
+    meaning: Particle marking indirect object, location, direction, or time.
+    kind: often confused with
+    nuance: Unlike を, which marks the path traversed by motion, に indicates the destination or specific
+      point where an action occurs. For example, 「学校に行く」 (go to school) uses に for destination, while
+      「道を歩く」 (walk along the road) uses を for the path.
+    grammar_point: に (static location・time)
+  - term: で (location of action)
+    meaning: Particle marking the location where an action takes place, the means, or the instrument.
+    kind: often confused with
+    nuance: While を indicates movement through or along a place, で specifies the location at which an
+      action happens or the means by which it is performed. For instance, 「図書館で本を読む」 (read a book at the
+      library) uses で for location, distinct from を's use for path traversal.
+    grammar_point: で (location of action)
+post_false_friends_writeup: Distinguishing between を, が, は, に, and で is crucial for understanding sentence
+  structure. Remember that を identifies the direct object or the path of motion, が indicates the subject
+  or identifies a specific element, は introduces the topic or provides contrast, に marks a destination
+  or specific point, and で specifies the location of an action or the means. Pay attention to the role
+  each particle plays in conveying the meaning of the sentence to avoid confusion.
+examples:
+  - english: I eat apples every day.
+    japanese:
+      - 私 は 毎日 りんご {を} 食べ ます。
+      - 私 は 毎日 りんご {を} 食べる。
+      - 私 は 毎日 りんご {を} 食べる よ。
+      - 毎日 りんご {を} 食べ ます。
+      - 毎日 りんご {を} 食べる ん だ。
+      - 毎日 りんご {を} 食べ て い ます。
+      - 私 は 毎日 りんご {を} 食べ て いる の。
+      - 私 は 毎日 りんご {を} いただき ます。
+      - もっと りんご {を} 食べ たい。
+      - 私 は よく りんご {を} 食べ ます。
+      - 最近 りんご {を} よく 食べ ます。
+    english_literally: I every day apple (object marker) eat (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 毎日 りんご {を} 食べ ます。
+        english: I eat apples every day.
+        hint: Using 「が」 with 「りんご」 would imply that the apples are doing the eating, which is incorrect
+          here. 「を」 is used to mark the direct object of the verb 「食べる」.
+      - competing_japanese:
+          - 私 は 毎日 りんご {を} 食べ ます。
+        english: I eat apples every day.
+        hint: While 「は」 can be used for contrast, simply using 「りんご は」 would imply a topic change or a
+          contrastive statement about apples. 「を」 is needed to clearly mark 「りんご」 as the direct object.
+      - competing_japanese:
+          - 私 は 毎日 りんご {を} 食べ ます。
+        english: I eat apples every day.
+        hint: Although を is sometimes omitted in casual speech, for clear and grammatically correct sentences,
+          it's essential to include 「を」 to mark the direct object. We're looking for a sentence where
+          the object is explicitly marked.
+    scene: A person is describing their consistent dietary habits.
+    register: teineigo (polite)
+    setting: informative
+  - english: My friend wrote a letter.
+    japanese:
+      - 友達 が 手紙 {を} 書き まし た。
+      - 友達 が 手紙 {を} 書い た。
+      - 友達 が 手紙 {を} 書い た よ。
+      - 友達 が 手紙 {を} 書き まし た よ。
+      - 友達 が 手紙 {を} 書い て い まし た。
+      - 友達 が 手紙 {を} 書い た みたい です。
+      - 友達 が 手紙 {を} 書い て くれ た。
+      - 友達 は 手紙 {を} 書い た らしい です。
+      - 友達 が 手紙 {を} 書き 終え まし た。
+      - 友達 が 手紙 {を} 上手 に 書き まし た。
+    english_literally: Friend (subject) letter (object marker) wrote (polite past).
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 手紙 {を} 書き まし た。
+        english: My friend wrote a letter.
+        hint: Using 「が」 with 「手紙」 would make the letter the subject, meaning 'the letter wrote'. 「を」 clearly
+          marks 「手紙」 as the direct object, meaning 'wrote the letter'.
+      - competing_japanese:
+          - 友達 が 手紙 {を} 書き まし た。
+        english: My friend wrote a letter.
+        hint: 「は」 often implies contrast or setting the topic. Here, we're simply stating the object of
+          the action, not contrasting it with something else. 「を」 is the neutral object marker.
+      - competing_japanese:
+          - 友達 が 手紙 {を} 書き まし た。
+        english: My friend wrote a letter.
+        hint: The particle を is necessary to clearly mark 「手紙」 as the direct object of the verb 「書きました」.
+          We're looking for a sentence that explicitly states what was written.
+    scene: Someone is recounting an event involving their friend.
+    register: teineigo (polite)
+    setting: informative
+  - english: Yesterday, I saw a new movie.
+    japanese:
+      - 昨日、新しい 映画 {を} 見 た。
+      - 昨日、新しい 映画 {を} 見 まし た。
+      - 昨日、新しい 映画 {を} 見 た よ。
+      - 昨日、新しい 映画 {を} 見 まし た よ。
+      - 昨日、新しい 映画 {を} 見 た ん だ。
+      - 昨日、新しい 映画 {を} 見 に 行き まし た。
+      - 昨日、新しい 映画 {を} 見 たかっ た。
+      - 昨日、アニメ 映画 {を} 見 まし た。
+      - この 間、面白い 映画 {を} 見 た ん です。
+      - 彼 と 映画 {を} 見 まし た。
+    english_literally: Yesterday, new movie (object marker) saw.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、新しい 映画 {を} 見 た。
+        english: Yesterday, I saw a new movie.
+        hint: Using 「が」 with 「映画」 would imply that the movie saw something, which is incorrect. 「を」 is
+          correctly used to mark 「映画」 as the direct object of 「見た」.
+      - competing_japanese:
+          - 昨日、新しい 映画 {を} 見 た。
+        english: Yesterday, I saw a new movie.
+        hint: 「は」 would imply that you saw a new movie, but perhaps not an old one, or that you saw a
+          new movie as opposed to doing something else. 「を」 is a neutral object marker, focusing on the
+          action's direct recipient.
+      - competing_japanese:
+          - 昨日、新しい 映画 {を} 見 まし た。
+        english: Yesterday, I saw a new movie.
+        hint: To correctly indicate that 「新しい映画」 is the direct object of 「見ました」, the particle を is required.
+          We're looking for the clear object of the seeing action.
+    scene: Two friends are casually discussing what they did recently.
+    register: casual
+    setting: friendly
+  - english: Every morning, I read the newspaper.
+    japanese:
+      - 毎朝、新聞 {を} 読み ます。
+      - 毎朝、新聞 {を} 読む。
+      - 毎朝、新聞 {を} 読ん で い ます。
+      - 私 は 毎朝、新聞 {を} 読み ます。
+      - 毎朝、新聞 {を} 読み ます よ。
+      - 今朝 も 新聞 {を} 読み まし た。
+      - カフェ で 新聞 {を} 読み まし た。
+      - 父 は 毎朝 新聞 {を} 読み ます。
+      - 毎朝、新聞 {を} 読む の が 習慣 です。
+      - 昨日、新聞 {を} 買っ て 読み まし た。
+    english_literally: Every morning, newspaper (object marker) read (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝、新聞 {を} 読み ます。
+        english: Every morning, I read the newspaper.
+        hint: Using 「が」 with 「新聞」 would make the newspaper the subject, meaning 'the newspaper reads'.
+          「を」 correctly marks 「新聞」 as the direct object of 「読みます」.
+      - competing_japanese:
+          - 毎朝、新聞 {を} 読み ます。
+        english: Every morning, I read the newspaper.
+        hint: 「は」 often implies contrast or setting the topic. While you might read the newspaper, it
+          suggests you might not read other things. 「を」 simply states the newspaper is the direct object.
+      - competing_japanese:
+          - 毎朝、新聞 {を} 読み ます。
+        english: Every morning, I read the newspaper.
+        hint: Although を is sometimes omitted in casual speech, for clear and grammatically correct sentences,
+          it's essential to include 「を」 to mark the direct object. We're looking for a sentence where
+          the object is explicitly marked.
+    scene: A person is describing their consistent morning routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please confirm the contract.
+    japanese:
+      - 契約 書 {を} 確認 し て ください。
+      - 契約 書 {を} 確認 しろ。
+      - 契約 書 {を} ご 確認 ください。
+      - 契約 書 {を} 確認 し て ほしい です。
+      - 契約 書 {を} 読み 確認 し て ください。
+      - 契約 書 {を} ちゃん と 確認 し て ください。
+      - この 書類 {を} 提出 し て ください。
+      - その 件 {を} 検討 し て ください。
+      - 今 すぐ 契約 書 {を} 見 て ください。
+    english_literally: Contract (object marker) confirm please.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 書 {を} 確認 し て ください。
+        english: Please confirm the contract.
+        hint: Using 「が」 with 「契約書」 would imply the contract is doing the confirming, which is incorrect.
+          「を」 marks 「契約書」 as the direct object receiving the action of confirmation.
+      - competing_japanese:
+          - 契約 書 {を} 確認 し て ください。
+        english: Please confirm the contract.
+        hint: 「は」 often introduces the topic, or implies contrast. Here, the focus is on the direct action
+          of confirming the contract, not contrasting it with other documents. 「を」 is the correct object
+          marker.
+      - competing_japanese:
+          - 契約 書 {を} 確認 し て ください。
+        english: Please confirm the contract.
+        hint: For direct commands involving a direct object like 「契約書」, を is needed to clarify what needs
+          to be confirmed. We're looking for the object of the confirmation.
+    scene: A manager is instructing an employee about an important document.
+    register: semi-formal
+    setting: professional
+  - english: You shouldn't give up on your dreams.
+    japanese:
+      - 夢 {を} 諦める べき で は ない。
+      - 夢 {を} 諦め て は いけ ませ ん。
+      - 夢 {を} 諦める べき じゃ ない。
+      - 夢 {を} 諦め て は いけ ませ ん よ。
+      - 夢 {を} 諦める べき じゃ ない よ。
+      - 夢 {を} 追いかける の が 大事 です。
+      - 夢 {を} 絶対 に 諦める な。
+      - 誰 も 夢 {を} 諦め ない で ください。
+      - 目標 {を} 達成 する ため に 努力 し ます。
+      - あなた の 夢 {を} 応援 し ます。
+    english_literally: Dream (object marker) give up should not.
+    competing_grammar:
+      - competing_japanese:
+          - 夢 {を} 諦める べき で は ない。
+        english: You shouldn't give up on your dreams.
+        hint: Using 「が」 with 「夢」 would imply 'dreams shouldn't give up', which is incorrect. 「を」 clarifies
+          「夢」 as the direct object of 「諦める」, meaning 'give up on dreams'.
+      - competing_japanese:
+          - 夢 {を} 諦める べき で は ない。
+        english: You shouldn't give up on your dreams.
+        hint: 「は」 sets 'dreams' as the topic of discussion. While grammatically possible, the original
+          「を」 more directly marks 'dreams' as the object of the action 'giving up,' making the instruction
+          more direct.
+      - competing_japanese:
+          - 夢 {を} 諦める べき で は ない。
+        english: You shouldn't give up on your dreams.
+        hint: The particle を is essential here to mark 「夢」 as the object of the verb 「諦める」. We're looking
+          for a sentence that explicitly identifies what shouldn't be given up on.
+    scene: An older mentor is offering life advice to a younger individual.
+    register: casual
+    setting: inspirational
+    speaker_age: older
+    etymology: The verb 「諦める (akirameru)」 comes from 「明らめる (akirameru)」 meaning 'to clarify' or 'to make
+      clear'. Over time, its meaning shifted to 'to give up' or 'to resign oneself to something' once
+      a situation became clear and there was no further option. It implies accepting a fate or outcome
+      clearly. Therefore, giving up on a dream in this context implies making peace with the reality that
+      the dream is unattainable, not simply abandoning it.
+  - english: I take a walk through the park.
+    japanese:
+      - 公園 {を} 散歩 し ます。
+      - 公園 {を} 散歩 する。
+      - 公園 {を} 散歩 しよう。
+      - 公園 {を} 散歩 し たい です。
+      - 公園 {を} 散歩 し ませ ん か。
+      - 公園 {を} 散歩 し て 気持ち いい です。
+      - 公園 {を} 散歩 し に 行く の は 好き です。
+      - 毎朝、公園 {を} 散歩 し て い ます。
+      - 自転 車 で 公園 {を} 通り 抜け ます。
+      - あの 鳥 は 空 {を} 飛ん で い ます。
+    english_literally: Park (path marker) walk (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 公園 {を} 散歩 し ます。
+        english: I take a walk through the park.
+        hint: While 'で' indicates the location *where* an action occurs, 'を' emphasizes traversing *along*
+          or *through* the park as a path. The scene implies a movement *through* the space, which is
+          why 「を」 is used.
+      - competing_japanese:
+          - 公園 {を} 散歩 し ます。
+        english: I take a walk through the park.
+        hint: 「に」 marks a destination, whereas 「を」 indicates the path or area traversed. We're looking
+          for walking *through* the park, not simply *to* it.
+      - competing_japanese:
+          - 公園 {を} 散歩 し ます。
+        english: I take a walk through the park.
+        hint: 「は」 would make 「公園」 the topic, suggesting a general statement about the park. 「を」 specifically
+          indicates traversing *through* it as a path.
+    scene: A person is describing their daily routine to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+  - english: I'm walking along this road every day.
+    japanese:
+      - 毎日、この 道 {を} 歩い て いる。
+      - 毎日、この 道 {を} 歩い て い ます。
+      - 毎日、この 道 {を} 歩く ん だ。
+      - 毎日、この 道 {を} 歩い て い ます。
+      - 毎日、この 道 {を} 歩い て いる ん だ。
+      - 毎日、この 道 {を} ジョギング し て い ます。
+      - 毎日、この 道 {を} 通っ て い ます。
+      - 彼女 は いつ も この 道 {を} 走っ て いる。
+      - 車 が 交差 点 {を} 曲がり まし た。
+      - 毎日、この 道 {を} 往復 し て い ます。
+    english_literally: Every day, this road (path marker) walking (progressive).
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、この 道 {を} 歩い て いる。
+        english: I'm walking along this road every day.
+        hint: While 'で' indicates the location *where* an action occurs, 'を' highlights the road as the
+          path being traversed, which is more appropriate when describing movement *along* the space.
+      - competing_japanese:
+          - 毎日、この 道 {を} 歩い て いる。
+        english: I'm walking along this road every day.
+        hint: 「に」 marks a destination, but this sentence describes walking *along* the road. 「を」 is used
+          for traversing a path.
+      - competing_japanese:
+          - 毎日、この 道 {を} 歩い て いる。
+        english: I'm walking along this road every day.
+        hint: 「は」 would make 「この道」 the topic, suggesting a general statement about the road. 「を」 specifically
+          indicates that you are walking *along* or *through* that specific road as a path.
+    scene: A runner is talking about their consistent training route.
+    register: casual
+    setting: informative
+    speaker_gender: female
+  - english: He just left the office.
+    japanese:
+      - 彼 は ちょうど 会社 {を} 出 まし た。
+      - 彼 は ちょうど 会社 {を} 出 た。
+      - 彼 は 今 会社 {を} 出 た ところ です。
+      - 彼 は 会社 {を} 出 た ばかり です。
+      - 彼 は さっき 会社 {を} 出 まし た。
+      - 彼 が 会社 {を} 出る の を 見 まし た。
+      - 彼 は 会社 {を} 出る 時間 です。
+      - 彼 は 急い で 会社 {を} 出 まし た。
+      - 彼 は 会社 {を} 出る 直前 です。
+      - 田中 さん が 会社 {を} 出 た と 聞き まし た。
+    english_literally: He just office (path/departure marker) exited (polite past).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ちょうど 会社 {を} 出 まし た。
+        english: He just left the office.
+        hint: 「で」 indicates the location *where* an action happens. 「を」 indicates moving *out of* or *through*
+          a place. The scene implies moving away *from* the office, thus 「を」 is used to mark the point
+          of departure.
+      - competing_japanese:
+          - 彼 は ちょうど 会社 {を} 出 まし た。
+        english: He just left the office.
+        hint: 「に」 marks a destination. Here, the action is moving *away* from the office, not *to* it.
+          「を」 is used to indicate departing from a location.
+      - competing_japanese:
+          - 彼 は ちょうど 会社 {を} 出 まし た。
+        english: He just left the office.
+        hint: 「は」 can mark the topic, sometimes implying contrast. 「を」 more directly indicates that the
+          office is the place being exited, emphasizing the action of leaving that specific location.
+    scene: Two colleagues are talking about a third colleague who has just departed.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    nuance: The use of 「彼」 and the polite form 「出ました」 is a standard way for a male speaker to discuss
+      a male colleague in a professional setting. The particle 「を」 with 「出る」 (deru - to exit/leave) indicates
+      the place from which one departs, emphasizing the action of passing out of that location.
+  - english: Be careful when crossing the street.
+    japanese:
+      - 道 {を} 渡る 時 は 気 を つけ て ください。
+      - 道 {を} 渡る 時 は 気 を つけよ。
+      - 交差 点 {を} 渡る 際 は ご 注意 ください。
+      - ここ で 道 {を} 渡る な。
+      - あそこ で 道 {を} 渡ら ない で ください。
+      - 必ず 横断 歩道 {を} 渡り なさい。
+      - 信号 {を} よく 見 て 道 {を} 渡り なさい。
+      - 急い で 道 {を} 渡っ て は いけ ませ ん。
+      - 前 を 見 て 道 {を} 渡り なさい。
+      - 夜間 は 特に 道 {を} 渡る の に 気 を つけ て ください。
+    english_literally: Street (path marker) when crossing, please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 道 {を} 渡る 時 は 気 を つけ て ください。
+        english: Be careful when crossing the street.
+        hint: 「で」 indicates the location *where* an action happens. 「を」 is used to indicate movement *across*
+          or *through* a place. The scene implies moving from one side of the street to the other, making
+          「を」 the correct choice.
+      - competing_japanese:
+          - 道 {を} 渡る 時 は 気 を つけ て ください。
+        english: Be careful when crossing the street.
+        hint: 「に」 marks a destination, but this sentence describes crossing *along* or *over* the street
+          itself, not simply arriving at it. 「を」 is used for movement across a path.
+      - competing_japanese:
+          - 道 {を} 渡る 時 は 気 を つけ て ください。
+        english: Be careful when crossing the street.
+        hint: 「は」 can mark the topic, but it sounds less natural for a direct instruction about traversing
+          a specific path. 「を」 clearly marks the street as the path being crossed.
+    scene: A parent is reminding their child about pedestrian safety.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「気をつけください」 (ki o tsukete kudasai) is a common polite request for caution. When
+      an older female speaker uses this, especially with children or a younger audience (indicated by
+      'group' for listener), it conveys a nurturing yet firm warning. The particle 「を」 with 「渡る」 (wataru
+      - to cross) specifically marks the street as the object being traversed or crossed over.
+post_example_writeup: These examples demonstrate both the direct object marking function of を and its
+  use in indicating movement through a space. Understanding these core applications is key to mastering
+  this fundamental particle.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%92

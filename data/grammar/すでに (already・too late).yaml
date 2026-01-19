@@ -1,0 +1,304 @@
+grammar_point: すでに (already・too late)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - にする (to decide or make)
+  - ん (slang)
+  - 上、下 (vertical position)
+  - 側 (side or flank)
+  - 済む (to be sufficient・to get by)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Already, Too late
+pronunciation:
+  katakana: スデニ
+  romaji: sudeni
+formation:
+  すでに + Verb/Adjective: Indicates that something has already happened or is already in a certain state.
+jlpt: N3
+etymology: The word 「すでに (sudeni)」 originally comes from the verb 「過ぐ (sugu)」, meaning "to pass" or "to
+  exceed". Over time, it evolved to mean "already" or "previously", implying that a certain point in time
+  has already passed, highlighting the finality of the state or action.
+writeup: 'The adverb 「すでに」 serves as a formal alternative to 「もう」, both conveying the meaning of "already".
+  However, 「すでに」 carries deeper nuances beyond simple completion, often implying that a situation is un
+  changeable or that it is, indeed, too late to alter it. It conveys a strong sense of finality and absolute
+  completion. Consider the multifaceted meaning of 「すでに」 through these underlying nuances: *   **のこらず
+  (nokorazu)**: Implies "nothing remaining" or "completely". The state is fully established with nothing
+  left to be done or changed. *   **あまねく (amaneku)**: Suggests "all around" or "universally". The condition
+  is widespread or applies to everything. *   **ことごとく (kotogotoku)**: Means "altogether" or "entirely".
+  Everything related to the matter is encompassed. *   **もはや (mohaya)**: Reinforces "already" with a sense
+  of "by now" or "no longer". It often emphasizes a point of no return. *   **まぎれもなく (magiremonaku)**:
+  Signifies "beyond doubt" or "unmistakably". The situation is unequivocally confirmed. These seemingly
+  disparate nuances collectively reveal the core meaning of 「すでに」: a state of complete and immutable establishment.
+  It is precisely this implication of unchangeability that leads to its frequent use in contexts where
+  something is "too late", signifying that no further action can be taken or that the outcome is irreversible.'
+false_friends:
+  - term: もう (already・anymore)
+    meaning: Already, Anymore
+    kind: synonym
+    nuance: 'Unlike 「すでに」, 「もう」 can also mean "anymore" in negative sentences (e.g., 「もうない」: there isn''t
+      any more). 「もう」 is generally less formal and more common in everyday conversation than 「すでに」.'
+    grammar_point: もう (already・anymore)
+  - term: 今更 (too late・belated)
+    meaning: Too late; after all this time; now (belated)
+    kind: similar expression
+    nuance: While 「すでに」 simply states that something has already happened, 「今更」 specifically implies that
+      it's too late to do something now, often with a sense of futility or regret. 「すでに」 is a neutral
+      statement of completion, but 「今更」 carries a strong negative connotation of belatedness.
+    grammar_point: 今更 (too late・belated)
+  - term: とっくに (a long time ago)
+    meaning: Already; A long time ago; Long ago
+    kind: similar expression
+    nuance: Both convey something has already happened. 「すでに」 focuses on the state of being completed
+      or established. 「とっくに」 emphasizes the passage of time, meaning something happened a long time ago
+      and often carries a sense of "way past due" or "it should have happened by now". It can also imply
+      a slight exasperation. 「すでに」 can be used for things that happened very recently, as long as they
+      are fully established, whereas 「とっくに」 implies a more significant duration.
+    grammar_point: とっくに (a long time ago)
+post_false_friends_writeup: When distinguishing between 「すでに」, 「もう」, 「とっくに」, and 「今更」, it is crucial to
+  consider the nuances of formality, emphasis on completion, the passage of time, and emotional connotation.
+  「すでに」 denotes that an action or state is already established, often with a sense of formality, finality,
+  or unchangeability. 「もう」 is the most versatile and common, simply indicating "already" or "anymore"
+  in a neutral or casual context. 「とっくに」 emphasizes that something happened a long time ago, often implying
+  that it's past due or that the speaker is slightly exasperated that the listener didn't realize it sooner.
+  Finally, 「今更」 conveys that something is too late to be meaningful or effective, carrying a strong connotation
+  of regret or futility. While 「すでに」 focuses on the accomplished state, 「とっくに」 on the elapsed time, and
+  「今更」 on the missed opportunity, all three convey a sense of being "too late" in different ways.
+examples:
+  - english: The key is already on the table.
+    japanese:
+      - 鍵 は {すでに} テーブル の 上 に ある。
+      - 鍵 は {すでに} テーブル の 上 に あり ます。
+      - 鍵 は {もう すでに} テーブル の 上 に ある。
+    english_literally: Key, already, on the table, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 は {もう} テーブル の 上 に ある。
+        english: The key is already on the table.
+        hint: 「もう」 is a common, everyday word for 'already', while 'すでに' implies a more definitive or
+          completed state.
+    scene: You are looking for your keys and someone points out they are in plain sight.
+    register: casual
+    setting: informative
+  - english: He probably has already arrived at the station.
+    japanese:
+      - 彼 は {すでに} 駅 に 着い た だろう。
+      - 彼 は {すでに} 駅 に 着い た でしょう。
+      - 彼 は {もう すでに} 駅 に 着い た だろう。
+    english_literally: He, already, to the station, arrived, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {もう} 駅 に 着い た だろう。
+        english: He probably has already arrived at the station.
+        hint: While both convey 'already', 'すでに' emphasizes a strong certainty or establishment of the
+          state, compared to the more general 'もう'.
+    scene: You are waiting for a friend and estimate their arrival time.
+    register: casual
+    setting: informative
+  - english: I have already finished lunch.
+    japanese:
+      - 昼食 は {すでに} 済ま せ まし た。
+      - 昼食 は {すでに} 済み まし た。
+      - 昼食 は {もう すでに} 済ま せ た。
+    english_literally: Lunch, already, finished.
+    competing_grammar:
+      - competing_japanese:
+          - 昼食 は {もう} 済ま せ まし た。
+        english: I have already finished lunch.
+        hint: 「もう」 is a common, polite way to say 'already finished'. 'すでに' is used for a more formal
+          or definitive statement of completion.
+    scene: A busy professional is asked if they've eaten and confirms they have, ready to continue work.
+    register: formal
+    setting: professional
+  - english: It's already too late.
+    japanese:
+      - 時 {すでに} 遅 し。
+      - '{すでに} 遅い です。'
+      - '{すでに} 遅い。'
+      - '{もう すでに} 遅い です。'
+      - '{もう すでに} 遅い。'
+    english_literally: Already, it is late.
+    competing_grammar:
+      - competing_japanese:
+          - '{もう} 遅い。'
+        english: It's already late.
+        hint: While 「もう遅い」 is a common and casual way to express 'it's already late,' 「すでに遅い」 (using {すでに})
+          is more formal, emphasizing the finality or irrevocability of the situation. The expression
+          「時すでに遅し」 is a specific classical idiom with a strong sense of inevitability and a point of no
+          return. We're looking for different ways to convey 'it's already too late' with varying degrees
+          of formality and nuance.
+    scene: This is a well-known idiomatic expression used to convey that a situation has reached a point
+      of no return, or a more direct statement of lateness.
+    register: bungo (literary)
+    setting: serious
+  - english: The shop had already closed.
+    japanese:
+      - 店 は {すでに} 閉まっ て い た。
+      - 店 は {すでに} 閉まっ て い まし た。
+      - 店 は {もう すでに} 閉まっ て い た。
+    english_literally: Shop, already, closed was.
+    competing_grammar:
+      - competing_japanese:
+          - 店 は {もう} 閉まっ て い た。
+        english: The shop had already closed.
+        hint: Both indicate the shop was closed. 'すでに' emphasizes the definitive and un changeable nature
+          of the closure at that point, suggesting a sense of finality.
+    scene: You arrive at a store just a few minutes after closing time, only to find it dark.
+    register: casual
+    setting: melancholic
+  - english: We have already accepted your payment.
+    japanese:
+      - お 支払い は {すでに} 受け付け て おり ます。
+      - お 支払い は {すでに} 受け付け まし た。
+      - お 支払い は {もう すでに} 受け付け て おり ます。
+    english_literally: Payment, already, accepted are.
+    competing_grammar:
+      - competing_japanese:
+          - お 支払い は {もう} 受け付け て おり ます。
+        english: We have already accepted your payment.
+        hint: In this formal context, 'すでに' provides a more official and definitive confirmation of the
+          completed action, fitting the business register better than the common 'もう'.
+    scene: A hotel clerk informs a guest that their reservation is confirmed and paid for.
+    register: teineigo (polite)
+    setting: professional
+  - english: The rumor had already reached everyone's ears.
+    japanese:
+      - 噂 は {すでに} 全員 の 耳 に 入っ て い た。
+      - 噂 は {すでに} 全員 の 耳 に 入っ て い まし た。
+      - 噂 は {もう すでに} 全員 の 耳 に 入っ て い た。
+    english_literally: Rumor, already, everyone's ears, into, had entered.
+    competing_grammar:
+      - competing_japanese:
+          - 噂 は {もう} 全員 の 耳 に 入っ て い た。
+        english: The rumor had already reached everyone's ears.
+        hint: While 'もう' conveys that the rumor has spread, 'すでに' emphasizes the completeness and ubiquity
+          of its spread, implying it's universally known.
+    scene: Someone learns a piece of gossip, only to find that it's already widely known.
+    register: casual
+    setting: storytelling
+  - english: I have already gotten used to the new school.
+    japanese:
+      - 新 しい 学校 に は {すでに} 慣れ まし た。
+      - 新 しい 学校 に は {すでに} 慣れ た。
+      - 新 しい 学校 に は {もう すでに} 慣れ まし た。
+    english_literally: New school, to, already, got used to.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 学校 に は {もう} 慣れ まし た。
+        english: I have already gotten used to the new school.
+        hint: Both mean 'already used to'. 'すでに' suggests a more complete and established state of being
+          accustomed, emphasizing a deeper level of adaptation.
+    scene: A student reflects on their adaptation to a new environment, noting how quickly they became
+      comfortable.
+    register: casual
+    setting: informative
+  - english: This decision is already final.
+    japanese:
+      - この 決定 は {すでに} 最終 です。
+      - この 決定 は {すでに} 最終 だ。
+      - この 決定 は {もう すでに} 最終 です。
+    english_literally: This decision, already, final is.
+    competing_grammar:
+      - competing_japanese:
+          - この 決定 は {もう} 最終 です。
+        english: This decision is already final.
+        hint: 「すでに」 emphasizes the definitive and un changeable nature of the decision, highlighting that
+          it's irrevocably established, whereas 'もう' is more general.
+    scene: A project manager states a conclusion, making it clear that no further discussion is needed.
+    register: formal
+    setting: informative
+  - english: Even though I just ate dinner, I'm already starting to feel hungry.
+    japanese:
+      - 夕食 を 食べ た ばかり な の に、{すでに} お腹 が 空い て き た。
+      - 夕食 を 食べ た ばかり な の に、{すでに} お腹 が 空い て き まし た。
+      - 夕食 を 食べ た ばかり な の に、{もう すでに} お腹 が 空い て き た。
+    english_literally: Dinner, ate just, although, already, stomach, became hungry.
+    competing_grammar:
+      - competing_japanese:
+          - 夕食 を 食べ た ばかり な の に、{もう} お腹 が 空い て き た。
+        english: Even though I just ate dinner, I'm already starting to feel hungry.
+        hint: Both convey 'already feeling hungry'. 'すでに' highlights the surprising immediacy and established
+          nature of the hunger, making the feeling more pronounced.
+    scene: Someone expresses surprise or slight frustration at feeling hungry again so soon after eating.
+    register: casual
+    setting: humorous
+  - english: The department head had already finished preparations for next month's meeting.
+    japanese:
+      - 部 長 は {すでに} 来月 の 会議 の 準備 を 終え て い た。
+      - 部 長 は {すでに} 来月 の 会議 の 準備 を 終え て い まし た。
+      - 部 長 は {もう すでに} 来月 の 会議 の 準備 を 終え て い た。
+    english_literally: Department head, already, next month's meeting's preparations, had finished.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は {もう} 来月 の 会議 の 準備 を 終え て い た。
+        english: The department head had already finished preparations for next month's meeting.
+        hint: 「すでに」 here emphasizes the complete and foresightful nature of the preparations, fitting
+          the professional context better than the more general 'もう'.
+    scene: Two male colleagues are discussing their department head's efficiency and foresight in managing
+      tasks.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: This sentence, used in a professional setting, demonstrates a male speaker conveying information
+      about a superior. The phrasing suggests an established fact about a completed and important task,
+      typical for male speakers in professional discourse, emphasizing the completion with 「終えていた」.
+  - english: The relationship with him had already ended.
+    japanese:
+      - 彼 と の 関係 は {すでに} 終わっ て い まし た。
+      - 彼 と の 関係 は {すでに} 終わっ て い た。
+      - 彼 と の 関係 は {もう すでに} 終わっ て い まし た。
+    english_literally: He, with, relationship, already, ended was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と の 関係 は {もう} 終わっ て い まし た。
+        english: The relationship with him had already ended.
+        hint: Both mean the relationship ended. 'すでに' emphasizes the definitive and final nature of the
+          ending, conveying a stronger sense of closure and emotional establishment.
+    scene: A young woman is confiding in her close female friend about a past relationship.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: A female speaker might use 「関係は終わっていました」 (the relationship had ended) when speaking to a close
+      female friend about past romantic experiences, implying a delicate emotional context that has been
+      decisively concluded. The directness with 「すでに」 emphasizes the finality from an emotional perspective.
+  - english: By the time you arrive, the game might already have started.
+    japanese:
+      - 君 が 来る 頃 に は {すでに} 試合 が 始まっ て いる か も しれ ない。
+      - 君 が 来る 頃 に は {すでに} 試合 が 始まっ て いる か も しれ ませ ん。
+      - 君 が 来る 頃 に は {もう すでに} 試合 が 始まっ て いる か も しれ ない。
+    english_literally: You, come, time by, already, game, started, might be.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が 来る 頃 に は {もう} 試合 が 始まっ て いる か も しれ ない。
+        english: By the time you arrive, the game might already have started.
+        hint: Both convey 'already started'. 'すでに' adds a nuance of certainty to the possibility, implying
+          that the game would be definitively underway.
+    scene: A sports fan is giving a friend a heads-up about the start time of a game, advising them to
+      hurry.
+    register: casual
+    setting: cautious
+  - english: When I tried to contact her, she had already moved out.
+    japanese:
+      - 連絡 を 取ろう と し た 時 に は、{すでに} 彼女 は 引っ越し て い まし た。
+      - 連絡 を 取ろう と し た 時 に は、{すでに} 彼女 は 引っ越し て い た。
+      - 連絡 を 取ろう と し た 時 に は、{もう すでに} 彼女 は 引っ越し て い まし た。
+    english_literally: Contact, try to take, did, time by, already, she, moved out, was.
+    competing_grammar:
+      - competing_japanese:
+          - 連絡 を 取ろう と し た 時 に は、{もう} 彼女 は 引っ越し て い まし た。
+        english: When I tried to contact her, she had already moved out.
+        hint: Both mean 'already moved out'. 'すでに' emphasizes the definitive and irreversible nature of
+          her having moved, highlighting the 'too late' aspect of the situation.
+    scene: Someone recounts their unsuccessful attempt to reach an old acquaintance, discovering they've
+      moved away.
+    register: casual
+    setting: melancholic

@@ -1,0 +1,299 @@
+grammar_point: '[Verb-dictionary]だけだ (all one has to do)'
+learn_before:
+  - あとで (after・later)
+  - だけ (only・just)
+  - だけは (do to the fullest extent)
+  - には (in order to)
+  - 何〜ない (not at all)
+meaning: All one has to do is; The only thing one needs to do is
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Vる だけだ
+    rarity: common
+    meaning: all one has to do is V; the only thing one needs to do is V
+  - conjugation-type: non-past polite (～ます)
+    form: Vる だけです
+    rarity: common
+    meaning: all one has to do is V (polite)
+  - conjugation-type: progressive (～ている)
+    form: Vている だけだ
+    rarity: common
+    meaning: all one is doing is V-ing; is just V-ing
+  - conjugation-type: past plain (～た)
+    form: Vた だけだ
+    rarity: common
+    meaning: all one did was V; the only thing one needed to do was V
+  - conjugation-type: negative plain (～ない)
+    form: Vない だけだ
+    rarity: common
+    meaning: all one has to do is not V; the only thing one needs to do is not V
+pronunciation:
+  katakana: ダケダ
+  romaji: dakeda
+formation:
+  Verb (dictionary form) + だけだ: Indicates that the action of the verb is the only thing necessary or available
+    to do.
+  Verb (て-form) + いる + だけだ: Indicates that one is simply doing the specified action, and nothing else.
+jlpt: N3
+etymology: The structure Verb (dictionary form) + だけだ combines the plain form of a verb with the particle
+  だけ, which signifies "only" or "just," and the copula だ (or です in polite form) meaning "to be." Historically,
+  だけ evolved from たけ, referring to a "measure" or "quantity," thus emphasizing a limitation or exclusivity.
+  The combination creates a concise way to state that *only* the preceding action is involved or necessary
+  to achieve a particular state or outcome. It highlights the simplicity or singularity of the required
+  action.
+writeup: '`[Verb-dictionary]だけだ` is a grammatical construction used to express that **only a specific
+  action is required or is the sole option** in a given situation. It emphasizes simplicity, sufficiency,
+  or a limited scope. While literally translating to "it is just (the action)," its nuance is closer to
+  "all one has to do is..." or "the only thing that needs to be done is..." This expression can be used
+  in several contexts: To state a simple instruction or solution: When a task is straightforward, or there''s
+  an easy way to achieve something, `だけだ` can convey this ease. To express resignation or limited options:
+  It can also be used to indicate that there are no other choices, and one must simply perform the stated
+  action. This can sometimes carry a slightly resigned or passive tone. To simplify a complex situation:
+  By reducing a situation to a single required action, it can make things seem less daunting. It''s important
+  to note that `だけだ` typically implies that the action itself is the *entirety* of what''s needed or possible,
+  making it distinct from other expressions that convey "only" or "just."'
+false_friends:
+  - term: しか ない
+    meaning: There is no other option; no choice but to do X; nothing but.
+    kind: often confused with
+    nuance: While both だけだ and しかない can imply a lack of alternatives, しかない carries a stronger sense of
+      **compulsion or necessity due to the absence of other choices**. It often suggests a resigned or
+      forced situation where one must reluctantly perform an action. For example, 「これしか食べるものがない」 (There's
+      nothing else to eat but this) implies a lack of preferred options. だけだ simply states the action
+      is the sole requirement, without necessarily implying compulsion or regret.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜までだ
+    meaning: Just, merely, simply; indicates a limit or a statement of fact with a sense of resignation.
+    kind: similar expression
+    nuance: 〜までだ implies that one's action or involvement goes no further than a certain point, often
+      with a sense of finality or resignation. It can be used to set a boundary or to express that one
+      is simply doing what is expected, nothing more. For example, 「私は聞かれたことに答えたまでだ」 (I merely answered
+      what I was asked) implies that one did only that and no more. While だけだ focuses on the *sufficiency*
+      of the action, 〜までだ focuses on the *limit* of the action.
+    grammar_point: 〜までだ (just・merely)
+post_false_friends_writeup: When differentiating between `だけだ`, `しかない`, and `〜までだ`, consider the underlying
+  sentiment. `だけだ` highlights the simplicity or singular requirement of an action, making it sound straightforward
+  or sufficient. `しかない` often conveys a sense of resignation or obligation because no other preferable
+  options exist. On the other hand, `〜までだ` emphasizes that an action is limited to a certain extent or
+  is simply a statement of fact, nothing more, often used to downplay one's involvement or effort.
+examples:
+  - english: All you have to do is push this button.
+    japanese:
+      - この ボタン を {押す だけ だ}。
+      - この ボタン を {押す だけ です}。
+    english_literally: This button push only is.
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押さ なけれ ば なら ない。
+        english: You must push this button.
+        hint: 「〜なければならない」 expresses a strong obligation or necessity. We're looking for an expression
+          that simply states what is sufficient.
+    scene: Explaining how to operate a simple device.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: This example provides a simple, direct instruction, emphasizing the straightforwardness of
+      the action required. 「押す だけだ」 conveys that nothing more than pushing the button is necessary. 「押す
+      だけです」 offers a more polite register.
+  - english: To solve this problem, all we have to do is change the settings.
+    japanese:
+      - この 問題 を 解決 する に は、設定 を {変える だけ だ}。
+      - この 問題 を 解決 する に は、設定 を {変える だけ です}。
+    english_literally: This problem solve to, settings change only is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 を 解決 する に は、設定 を 変える しか ない。
+        english: To solve this problem, we have no choice but to change the settings.
+        hint: 「〜しかない」 implies there are no other options, and it might be a reluctant choice. Here, we
+          want to convey it's a simple solution.
+    scene: A team meeting discussing a technical issue.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「変える だけだ」 suggests an easy and straightforward solution to a problem, implying
+      that the task is simpler than it might appear. Adding 「変える だけです」 provides a polite alternative.
+  - english: If you want to pass the exam, all you have to do is study hard.
+    japanese:
+      - 試験 に 合格 する に は、一生 懸命 {勉強 する だけ だ}。
+      - 試験 に 合格 する に は、一生 懸命 {勉強 する だけ です}。
+    english_literally: Exam to pass to, hard study do only is.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 する に は、一生 懸命 勉強 し なけれ ば なら ない。
+        english: To pass the exam, you must study hard.
+        hint: 「〜なければならない」 expresses a strong obligation. This grammar point implies it's the *only* thing
+          needed, not necessarily a heavy obligation.
+    scene: A student giving advice to a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: This example states a straightforward reality of what is required to achieve a goal, implying
+      no shortcuts. 「勉強 する だけだ」 emphasizes the single, necessary action. 「勉強 する だけです」 offers a slightly
+      more formal tone.
+  - english: There's nothing more you can do now; all you can do is wait.
+    japanese:
+      - もう 何 も でき ない、{待つ だけ だ}。
+      - もう 何 も でき ない、{待つ だけ です}。
+    english_literally: Already nothing can do, wait only is.
+    competing_grammar:
+      - competing_japanese:
+          - もう 何 も でき ない、待つ しか ない。
+        english: There's nothing more you can do now; you have no choice but to wait.
+        hint: 「〜しかない」 strongly emphasizes the lack of choice. This grammar point simply states the action
+          is the sole remaining one.
+    scene: A person comforting someone anxious about a situation outside their control.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「待つ だけだ」 conveys a sense of resignation, indicating that waiting is the only remaining
+      option after all other efforts have been exhausted. 「待つ だけです」 provides a polite version for slightly
+      more formal or respectful contexts.
+  - english: For this job, all you need to do is enter the data.
+    japanese:
+      - この 仕事 は データ を {入力 する だけ です}。
+      - この 仕事 は データ を {入力 する だけ だ}。
+    english_literally: This job as for data input do only is.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は データ を 入力 する だけ で いい。
+        english: For this job, just inputting the data is fine.
+        hint: 「だけでいい」 implies that something is sufficient, but this grammar point asserts it as the *only*
+          thing needed.
+    scene: A supervisor explaining a new task to an employee.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「入力 する だけです」 clarifies that the task is straightforward and limited to a single
+      action, making it seem less daunting for the employee. Including 「入力 する だけだ」 allows for a casual
+      but grammatically correct alternative.
+  - english: If you want to improve, you just have to keep practicing.
+    japanese:
+      - 上達 する に は、練習 を {続ける だけ だ}。
+      - 上達 する に は、練習 を {続ける だけ です}。
+    english_literally: Improve to, practice continue only is.
+    competing_grammar:
+      - competing_japanese:
+          - 上達 する に は、練習 を 続ける べき だ。
+        english: If you want to improve, you should continue practicing.
+        hint: 「〜べきだ」 implies a moral or strong advisability. This grammar point states it's the simple,
+          sole path.
+    scene: A coach advising an athlete.
+    register: semi-formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    nuance: 「続ける だけだ」 serves as direct advice, emphasizing consistency as the single, fundamental key
+      to improvement. It simplifies the path to success. 「続ける だけです」 offers a polite alternative suitable
+      for coaching.
+  - english: To register, all you need to do is fill out this form.
+    japanese:
+      - 登録 する に は、この 用紙 に {記入 する だけ です}。
+      - 登録 する に は、この 用紙 に {記入 する だけ だ}。
+    english_literally: Register to, this form in fill in only is.
+    competing_grammar:
+      - competing_japanese:
+          - 登録 する に は、この 用紙 に 記入 し なさい。
+        english: To register, fill out this form.
+        hint: 「〜しなさい」 is a polite imperative, a direct command. This grammar point explains the necessary
+          action rather than commanding it.
+    scene: Staff explaining a registration process to an applicant.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: Using 「記入 する だけです」 makes the registration process sound simple and manageable, reassuring
+      the applicant that it won't be complicated. The casual 「記入 する だけだ」 provides a less formal option.
+  - english: I've done everything I can; all I can do now is pray.
+    japanese:
+      - できる こと は 全て し た。あと は {祈る だけ だ}。
+      - できる こと は 全て し た。あと は {祈る だけ です}。
+    english_literally: Can do things all did. Remaining pray only is.
+    competing_grammar:
+      - competing_japanese:
+          - できる こと は 全て し た。あと は 祈る しか ない。
+        english: I've done everything I can; now I have no choice but to pray.
+        hint: 「〜しかない」 emphasizes the forced nature of the remaining option. Here, the focus is on the
+          simplicity of the single action left.
+    scene: Someone reflecting on a difficult situation.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The casual tone and directness with 「あとは 祈る だけだ」 sounds very natural for a male speaker conveying
+      a sense of finality and slight resignation, having exhausted all other options. 「祈る だけです」 provides
+      a more polite, contemplative tone.
+  - english: To succeed, all you have to do is not give up.
+    japanese:
+      - 成功 する に は、{諦め ない だけ だ}。
+      - 成功 する に は、{諦め ない だけ です}。
+    english_literally: Succeed to, not give up only is.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 する に は、諦め て は なら ない。
+        english: To succeed, you must not give up.
+        hint: 「〜てはならない」 is a strong prohibition. This grammar point simply states the necessary condition
+          for success.
+    scene: A motivational speaker.
+    register: semi-formal
+    setting: inspirational
+    conjugation: negative plain (～ない)
+    nuance: 「諦めない だけだ」 succinctly highlights perseverance as the single, sufficient condition for success,
+      framing it as a simple, yet powerful, requirement. 「諦めない だけです」 offers a polite and encouraging tone.
+  - english: For me, all I need to be happy is delicious food.
+    japanese:
+      - 私 に とっ て 幸せ は、美味しい もの を {食べる だけ だ}。
+      - 私 に とっ て 幸せ は、美味しい もの を {食べる だけ です}。
+    english_literally: For me happiness is, delicious things eat only is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に とっ て 幸せ は、美味しい もの を 食べる こと だ。
+        english: For me, happiness is eating delicious food.
+        hint: 「〜ことだ」 nominalizes the action. This grammar point specifically states that eating is the
+          *only* thing needed for happiness.
+    scene: Two friends chatting about what makes them happy.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The slight softening effect of 「私 にとって 幸せ は」 followed by the simple and direct 「食べる だけだ」 sounds
+      endearing and natural for a female speaker expressing a personal preference in a lighthearted way.
+      「食べる だけです」 provides a slightly more formal or polite expression.
+  - english: Don't worry, all I need to do is confirm the time.
+    japanese:
+      - 心配 し ない で、時間 を {確認 する だけ だ}。
+      - 心配 し ない で、時間 を {確認 する だけ です}。
+    english_literally: Worry not, time confirm do only is.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し ない で、時間 を 確認 する 必要 が ある。
+        english: Don't worry, I need to confirm the time.
+        hint: 「〜必要 が ある」 states a necessity. This grammar point emphasizes that confirming the time is
+          the *only* necessary action, making it sound simpler.
+    scene: Someone reassuring another person who is overthinking something.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「確認 する だけだ」 reassures the listener by downplaying the complexity of the task, implying it's
+      a minor step and nothing to be anxious about. The straightforward delivery is typical of a male
+      speaker giving reassurance. 「確認 する だけです」 offers a polite variant suitable for various interactions.
+  - english: The children are quiet; they're just watching TV.
+    japanese:
+      - 子供 たち は 静か だ。テレビ を {見 て いる だけ だ}。
+      - 子供 たち は 静か だ。テレビ を {見 て いる だけ です}。
+    english_literally: Children are quiet. TV watch-ing only is.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 静か だ。テレビ を 見 て いる。
+        english: The children are quiet; they're watching TV.
+        hint: Simply stating they are watching TV doesn't convey the nuance of 'just' or 'only'. This
+          grammar point emphasizes that watching TV is the *sole* activity.
+    scene: A parent or guardian observing children.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: 「見ている だけだ」 implies that the children are solely engaged in watching TV, suggesting they are
+      not causing trouble or doing anything else, thus emphasizing their quiet state. 「見ている だけです」 provides
+      a polite alternative, common for describing a neutral observation.
+post_example_writeup: As seen in the examples, `[Verb-dictionary]だけだ` is versatile, appearing in various
+  scenarios from giving simple instructions to expressing resignation or simplifying a situation. Its
+  core meaning consistently points to the idea that the stated action is the sole or sufficient requirement.
+  Pay attention to the surrounding context and the speaker's intention to fully grasp its nuanced use.

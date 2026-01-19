@@ -1,0 +1,252 @@
+grammar_point: で (cause・reason)
+learn_before:
+  - Verb[まい] (negative volitional)
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - '[Number]は (at least)'
+  - と (with)
+  - といった (such as)
+  - は〜が (topic's attribute)
+  - へ (directional particle)
+  - ん (slang)
+  - 並み (on par with・standard)
+meaning: Because of; due to; from (indicating cause)
+pronunciation:
+  katakana: デ
+  romaji: de
+formation:
+  '[Noun] + で': Indicates the cause or reason for an action, state, or event originating from the noun.
+  '[Na-adjective stem] + な + で': Indicates the cause or reason stemming from the na-adjective's state
+    or quality. (Used when the na-adjective acts as a predicate before 'de' to explain a reason.)
+jlpt: N5
+etymology: The particle 「で」 originates from the conjunctive form (連用形 - ren'yōkei) of the verb 「ある」 (aru),
+  meaning “to be” or “to exist.” Over time, this conjunctive form evolved into a particle that indicates
+  location, means, and cause. In its causal sense, 「で」 implies that the preceding noun or state serves
+  as the “location” or “condition” from which the subsequent action or state arises, thus acting as the
+  cause for the subsequent event or state.
+writeup: |-
+  The particle 「で」 (de) serves multiple functions in Japanese, and one of its fundamental roles is to indicate the **cause or reason** for an action, event, or state. It is attached directly to nouns or noun phrases, signifying "because of," "due to," or "from" the preceding element. This usage is quite versatile and can apply to a wide range of situations, from simple daily occurrences to more significant events.
+
+  Unlike other causal expressions that might carry specific nuances (e.g., strong personal feeling or formal tone), 「で」 for cause is generally neutral and objective. It presents the reason as a direct factor leading to the outcome, without necessarily implying blame, surprise, or personal emotion. It's often used when the cause is readily apparent or a straightforward explanation.
+
+  For example, if you say 「病気で学校を休みました」 (Byōki de gakkō o yasumimashita), it clearly states "I was absent from school **because of** illness." The illness is the direct and objective cause. Similarly, 「雨で中止になった」 (Ame de chūshi ni natta) means "It was canceled **due to** rain."
+
+  It's important to distinguish this causal 「で」 from other uses of 「で」, such as indicating a location where an action takes place (e.g., 「公園で遊ぶ」 - play in the park) or the means by which an action is performed (e.g., 「電車で会社に行く」 - go to work by train). While they share the same phonetic form, their grammatical functions and meanings differ significantly. The context usually makes the meaning clear.
+false_friends:
+  - term: から (reason・cause)
+    meaning: because, so, since, the reason being
+    kind: similar expression
+    nuance: 「で」 often indicates a more direct, objective, and factual cause, frequently used with nouns
+      that *are* the cause (e.g., illness, accident, rain). 「から」 is more versatile and can connect clauses,
+      providing a reason that might be more subjective, a speaker's inference, or a wider context for
+      the following statement. 「から」 can also attach to verbs and adjectives, which 「で」 cannot directly
+      do in this causal sense.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので (reason)
+    meaning: Because, so, since, the reason being
+    kind: similar expression
+    nuance: While 「で」 is often used for a simple, direct cause (e.g., noun + で). 「ので」, while also indicating
+      cause/reason, is generally perceived as softer and more polite than 「から」, and is commonly used when
+      providing explanations or excuses where the speaker wants to avoid sounding abrupt. It often implies
+      a natural or logical consequence.
+    grammar_point: '[Clause]から (because・so)'
+  - term: によって・による・により (means・cause・dependency)
+    meaning: By means of, according to, depending on, because of, due to
+    kind: similar expression
+    nuance: While 「によって」 can also express cause ("due to"), it often implies a more formal or impersonal
+      cause, an agent, or a method. 「で」 is more common for common, everyday causes.
+    grammar_point: '[Noun]によって (means・method)'
+post_false_friends_writeup: When choosing between 「で」, 「から」, and 「ので」 to express cause, consider the nature
+  of the cause and the desired tone. Use 「で」 for clear, factual causes, especially when the cause is a
+  noun. Use 「から」 when the reason is more subjective, an inference, or to provide a broader context, and
+  it can attach to full clauses. Opt for 「ので」 when you want a softer, more polite explanation that implies
+  a natural consequence. 「によって」 is generally more formal and suggests an agent or a method, often used
+  in written or official contexts when indicating cause.
+examples:
+  - english: I was late for school because of the traffic jam.
+    japanese:
+      - 渋滞 {で} 学校 に 遅れ まし た。
+      - 渋滞 {で} 学校 に 遅れ た。
+    english_literally: Traffic jam because, school to, was late.
+    competing_grammar:
+      - competing_japanese:
+          - 渋滞 が あっ た の で 学校 に 遅れ まし た。
+        english: Because there was a traffic jam, I was late for school.
+        hint: 「ので」 connects a reason expressed by a full clause, offering a slightly softer tone. We're
+          looking for a direct noun cause without a preceding clause.
+    scene: A student explaining their tardiness to their teacher.
+    register: teineigo (polite)
+    setting: academic
+  - english: The flight was canceled due to heavy snow.
+    japanese:
+      - 大雪 {で} 飛行 機 が 欠航 に なっ た。
+      - 大雪 {で} 飛行 機 が 欠航 に なり まし た。
+      - 大雪 {で} 飛行 機 欠航 に なっ た。
+    english_literally: Heavy snow because, flight became canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 大雪 だ から 飛行 機 が 欠航 に なっ た。
+        english: Because it was heavy snow, the flight was canceled.
+        hint: 「から」 can also state a reason but often implies a speaker's judgment or a more direct, immediate
+          conclusion. We're looking for a simple, factual cause using the particle for cause.
+    scene: A news report describing a travel disruption.
+    register: formal
+    setting: informative
+  - english: Because she was healthy, she managed to recover quickly.
+    japanese:
+      - 彼女 は 健康 {で}、すぐ に 回復 でき た。
+      - 彼女 は 健康 {で}、すぐ に 回復 でき まし た。
+    english_literally: She, healthy, because, quickly recovered could.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 健康 だっ た の で、すぐ に 回復 でき た。
+        english: Because she was healthy, she managed to recover quickly.
+        hint: 「ので」 emphasizes the logical consequence of being healthy. We're focusing on the direct connection
+          of the state to the outcome using 'de'.
+    scene: Discussing a patient's recovery with a doctor.
+    register: semi-formal
+    setting: professional
+    nuance: The na-adjective 「健康」 (healthy) used with 「で」 indicates the state itself as the direct reason
+      for the recovery. This construction is common for describing qualities or conditions that act as
+      a cause.
+  - english: Due to a minor error, the entire project had to be redone.
+    japanese:
+      - ちょっと し た ミス {で} プロジェクト 全体 が やり直し に なっ た。
+      - ちょっと し た ミス {で} プロジェクト 全体 が やり直し に なり まし た。
+      - 些細 な ミス {で} プロジェクト 全体 が やり直し と なっ た。
+    english_literally: Slight mistake because, project entire, became redo.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと し た ミス が 原因 で プロジェクト 全体 が やり直し に なっ た。
+        english: Due to a slight mistake, the entire project had to be redone.
+        hint: 「が原因で」 explicitly states 'is the cause,' which is a slightly more emphatic and formal way
+          to indicate cause. We're looking for the simpler particle use.
+    scene: A team meeting discussing a setback.
+    register: formal
+    setting: professional
+  - english: My stomach hurts because of eating too much.
+    japanese:
+      - 食べ すぎ {で} お腹 が 痛い。
+      - 食べ すぎ {で} お腹 が 痛い です。
+      - 食べ すぎ {で} お腹 痛い。
+    english_literally: Overeating because, stomach hurts.
+    competing_grammar:
+      - competing_japanese:
+          - 食べ すぎ だ から お腹 が 痛い。
+        english: My stomach hurts because I overate.
+        hint: 「だから」 often implies a more immediate or personal conclusion, often following a complete
+          thought. We're looking for the particle that directly links the noun cause.
+    scene: Someone complaining about indigestion after a meal.
+    register: casual
+    setting: casual slang
+  - english: My throat is sore from singing so much.
+    japanese:
+      - 歌い すぎ {で} 喉 が 痛い。
+      - 歌い すぎ {で} 喉 が 痛い です。
+      - 歌い すぎ {で} 喉 痛い。
+    english_literally: Oversinging because, throat hurts.
+    competing_grammar:
+      - competing_japanese:
+          - 歌い すぎ た から 喉 が 痛い。
+        english: Because I over-sang, my throat hurts.
+        hint: 「から」 often connects verb forms to the reason. We're looking for the particle that attaches
+          directly to the noun form of the cause.
+    scene: A friend explaining why their voice is hoarse after karaoke.
+    register: casual
+    setting: friendly
+  - english: The road was closed due to the earthquake.
+    japanese:
+      - 地震 {で} 道 が 閉鎖 さ れ た。
+      - 地震 {で} 道 が 閉鎖 さ れ まし た。
+      - 地震 {で} 道路 が 閉鎖 さ れ た。
+    english_literally: Earthquake because, road was closed.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 の ため 道 が 閉鎖 さ れ た。
+        english: For the sake of the earthquake, the road was closed.
+        hint: 「のため」 is a more formal and slightly more distant way to state a cause, often implying a
+          reason or purpose. We're looking for the simpler particle for cause.
+    scene: A public announcement about road conditions after a natural disaster.
+    register: formal
+    setting: emergency/alarm
+  - english: I'm filled with joy because of your kindness.
+    japanese:
+      - あなた の 優し さ {で}、心 が 温かく なっ た。
+      - あなた の 優し さ {で}、心 が 温かく なり まし た。
+      - 君 の 優し さ {で}、心 が 温かく なっ た。
+    english_literally: Your kindness because, heart became warm.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 優し さ から、心 が 温かく なっ た。
+        english: From your kindness, my heart became warm.
+        hint: While 「から」 can also indicate a source, 「で」 here specifically highlights kindness as the
+          direct cause of the warmth. We're looking for the particle that connects the noun to the resulting
+          state.
+    scene: Someone expressing gratitude and emotion to a friend.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+  - english: Because of the rain, the picnic became impossible.
+    japanese:
+      - 雨 {で} ピクニック は 不 可能 に なっ た。
+      - 雨 {で} ピクニック は 不 可能 に なり まし た。
+      - 降雨 {で} ピクニック は 不 可能 と なっ た。
+    english_literally: Rain because, picnic became impossible.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ た の で、ピクニック は 不 可能 に なっ た。
+        english: Because it rained, the picnic became impossible.
+        hint: 「ので」 emphasizes the logical consequence of the rain. We're looking for the direct causal
+          link with the particle 'de'.
+    scene: Friends discussing changes to outdoor plans due to weather.
+    register: casual
+    setting: friendly
+  - english: Due to overwork, he collapsed in the office.
+    japanese:
+      - 働き すぎ {で}、彼 は オフィス で 倒れ た。
+      - 働き すぎ {で}、彼 は オフィス で 倒れ まし た。
+      - 過労 {で}、彼 は オフィス にて 倒れ た。
+    english_literally: Overwork because, he, office at, collapsed.
+    competing_grammar:
+      - competing_japanese:
+          - 働き すぎ た ため に、彼 は オフィス で 倒れ た。
+        english: Because he overworked, he collapsed in the office.
+        hint: 「ために」 is more formal and emphasizes the reason or cause, often with a stronger sense of
+          consequence or purpose. We're looking for the particle that directly links the noun cause.
+    scene: A colleague explaining why someone was absent from work.
+    register: formal
+    setting: professional
+  - english: I couldn't sleep because of the noise.
+    japanese:
+      - 騒音 {で} 眠れ なかっ た。
+      - 騒音 {で} 眠れ ませ ん でし た。
+      - うるさい 音 {で} 眠れ なかっ た。
+    english_literally: Noise because, couldn't sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 騒音 が うるさかっ た から 眠れ なかっ た。
+        english: Because the noise was loud, I couldn't sleep.
+        hint: 「から」 often connects a descriptive clause. We're looking for the particle that directly links
+          the noun, 'noise', as the cause.
+    scene: Someone recounting a restless night to a family member.
+    register: casual
+    setting: intimate
+  - english: Thanks to your support, the event was a great success.
+    japanese:
+      - 皆 さん の 応援 {で}、イベント は 大 成功 でし た。
+      - 皆 さん の 応援 {で}、イベント は 大 成功 だっ た。
+      - 皆 様 の 応援 {で}、イベント は 大 成功 でし た。
+    english_literally: Everyone's support because, event was great success.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 さん の 応援 の おかげ で、イベント は 大 成功 でし た。
+        english: Thanks to everyone's support, the event was a great success.
+        hint: 「のおかげで」 specifically means 'thanks to' and usually implies a positive cause. While the nuance
+          is similar, we're looking for the more general causal particle.
+    scene: An organizer giving a speech at the end of a successful event.
+    register: teineigo (polite)
+    setting: professional
+post_example_writeup: The examples illustrate how 「で」 for cause connects a preceding noun or noun phrase
+  directly to the result. It's particularly useful when the cause is a concrete thing or situation, allowing
+  for concise and direct expressions. Pay attention to the distinction between this causal 「で」 and 「で」
+  indicating location or means, as context is key to understanding its function.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/で

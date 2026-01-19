@@ -1,0 +1,302 @@
+grammar_point: 委ねる (to entrust or commit)
+learn_before:
+  - 全て (all・every)
+meaning: To entrust or commit
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 委ねる
+    rarity: common
+    meaning: to entrust or commit
+  - conjugation-type: non-past polite (～ます)
+    form: 委ねます
+    rarity: common
+    meaning: will entrust or commit (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 委ねない
+    rarity: common
+    meaning: do not entrust or commit
+  - conjugation-type: past plain (～た)
+    form: 委ねた
+    rarity: common
+    meaning: entrusted or committed
+  - conjugation-type: te-form (～て)
+    form: 委ねて
+    rarity: common
+    meaning: entrusting, committing (for sequential actions or linking)
+  - conjugation-type: passive (～られる/～かれる)
+    form: 委ねられる
+    rarity: common
+    meaning: to be entrusted or committed
+  - conjugation-type: potential (～られる/～える)
+    form: 委ねられる
+    rarity: common
+    meaning: can entrust or commit
+  - conjugation-type: volitional (～よう)
+    form: 委ねよう
+    rarity: common
+    meaning: let's entrust or commit
+  - conjugation-type: conditional (～たら)
+    form: 委ねたら
+    rarity: common
+    meaning: if entrusted or committed
+pronunciation:
+  katakana: ユダネル
+  romaji: yudaneru
+formation:
+  Noun に + Verb[委ねる]: To entrust something to someone or something, or to leave something up to someone
+    or something.
+  Verb[委ねる] + Noun: To entrust a noun (e.g., responsibility, fate, body, decision).
+jlpt: N2
+etymology: The verb 「委ねる」 (yudaneru) is thought to derive from earlier forms like 「預ねる」 (azukeneru) or
+  「託ねる」 (takuneru), both related to entrusting or depositing. The kanji 「委」 (i) means "committee," "entrust,"
+  or "delegate," reinforcing its core meaning. The shift to 「委ねる」 emphasizes the act of "giving over"
+  or "leaving to" another's discretion, implying a transfer of authority, responsibility, or destiny.
+writeup: 「委ねる」 is a verb meaning "to entrust," "to commit," or "to leave something to someone or something."
+  It is primarily used when one gives up control or responsibility over a matter, placing it in the hands
+  of another person, an organization, or even fate. The nuance of 「委ねる」 often includes a sense of resignation,
+  deep trust, or surrender. It implies a complete reliance or delegation of power and decision-making,
+  going beyond a simple act of "giving" (あげる) or "leaving" (残す). This verb is commonly encountered in
+  more formal or serious contexts, such as entrusting one's life to fate, delegating a crucial task, or
+  committing a decision to a higher authority. It is generally not used for simple, everyday transfers
+  of objects.
+false_friends:
+  - term: 任せる
+    meaning: to entrust or leave to
+    kind: similar expression
+    nuance: 「任せる」 focuses on allowing someone else to handle a task or situation, often implying that
+      the task will be carried out and is within the person's ability. It can be used in more casual situations
+      and focuses on delegating a task. In contrast, 「委ねる」 implies a more complete relinquishment of control
+      or reliance, often in situations where the outcome is uncertain or largely out of one's hands.
+    grammar_point: 任せる (to entrust or leave to)
+  - term: 預ける
+    meaning: to deposit or leave in someone's care
+    kind: often confused with
+    nuance: 「預ける」 implies temporarily placing something (or someone) under another's care for safekeeping,
+      with an expectation of retrieval or management. It does not carry the same weight of relinquishing
+      ultimate control or decision-making as 「委ねる」. Think of it as leaving a bag at a cloakroom.
+    grammar_point: <suggest>:預ける (to deposit or leave in care)
+  - term: 頼む
+    meaning: to request or ask
+    kind: often confused with
+    nuance: 「頼む」 is a direct request for action or help. While it involves relying on someone, it does
+      not imply giving up control or responsibility over the task itself, but rather seeking assistance
+      in its execution. The initiator still maintains oversight.
+    grammar_point: <suggest>:頼む (to request)
+post_false_friends_writeup: When distinguishing between 「委ねる」, 「任せる」, 「預ける」, and 「頼む」, consider the degree
+  of relinquishment of control and the nature of the task. 「委ねる」 is about surrendering something completely,
+  often an outcome or one's fate. 「任せる」 is about delegating a task to someone capable. 「預ける」 is about
+  temporary safekeeping. 「頼む」 is simply asking for help or a favor.
+examples:
+  - english: She entrusted her entire fate to God.
+    japanese:
+      - 彼女 は 全て の 運命 を {神 に 委ね た}。
+      - 彼女 は 全て の 運命 を {神 に 委ね まし た}。
+    english_literally: As for her, all fate, to God, entrusted.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 全て の 運命 を 神 に 任せ た。
+          - 彼女 は 全て の 運命 を 神 に 任せ まし た。
+        english: She left all her fate to God.
+        hint: While 「任せる」 often implies delegating a task or letting someone handle something, 「委ねる」 carries
+          a stronger nuance of surrendering control or committing something completely, especially in
+          matters of destiny or responsibility. We're looking for the sense of complete surrender to fate.
+    scene: A devout woman is facing an uncertain future and decides to place all her worries in the hands
+      of her faith.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The use of 「神 に 委ねた」 emphasizes a complete surrender of control and deep faith, which is characteristic
+      of the verb 「委ねる」 in a solemn context.
+  - english: We must entrust the details to the local staff.
+    japanese:
+      - 細部 は 現地 スタッフ に {委ねる} べき だ。
+      - 細部 は 現地 スタッフ に {委ねる} べき です。
+      - 細部 は 現地 スタッフ に {委ねる} べき でしょう。
+    english_literally: Details, as for, local staff to entrust should.
+    competing_grammar:
+      - competing_japanese:
+          - 細部 は 現地 スタッフ に 任せる べき だ。
+          - 細部 は 現地 スタッフ に 任せる べき です。
+        english: We should leave the details to the local staff.
+        hint: 「任せる」 is more about delegating a task or responsibility, allowing someone else to handle
+          it. 「委ねる」 implies a more complete handover of authority or decision-making. We're looking for
+          the sense of handing over all authority.
+    scene: In a business meeting, a manager decides how to proceed with project implementation in a foreign
+      country.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: He was forced to entrust his body to the waves.
+    japanese:
+      - 彼 は 体 を 波 に {委ね ざる を 得 なかっ た}。
+      - 彼 は 体 を 波 に {委ね ざる を 得 ませ ん でし た}。
+    english_literally: He, as for, body, to waves, had no choice but to entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 体 を 波 に {任せる} しか なかっ た。
+        english: He had no choice but to let his body be handled by the waves.
+        hint: While 「任せる」 can imply resignation, 「委ねる」 in this context more strongly emphasizes relinquishing
+          control to an external force, almost giving up. We're looking for a situation where he had no
+          choice but to completely surrender to the waves.
+    scene: A man adrift in the ocean has exhausted all his strength and can no longer fight the currents.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: The phrase 「委ねざるを得なかった」 uses a compound negative construction expressing inevitability, highlighting
+      the lack of choice and complete surrender of the body to an uncontrollable natural force, which
+      is a key nuance of 「委ねる」.
+  - english: Having entrusted the decision to my subordinates, I will wait for the outcome.
+    japanese:
+      - 部下 に 判断 を {委ね て}、結果 を 待つ。
+      - 部下 に 判断 を {委ね て}、結果 を 待ち ます。
+    english_literally: Subordinates to decision entrusted, outcome wait.
+    competing_grammar:
+      - competing_japanese:
+          - 部下 に 判断 を 任せ て、結果 を 待つ。
+          - 部下 に 判断 を 任せ て、結果 を 待ち ます。
+        english: Having left the decision to my subordinates, I will wait for the outcome.
+        hint: 「任せる」 here means delegating the decision-making process. While similar, 「委ねる」 carries a
+          nuance of a more complete transfer of responsibility, implying the speaker is stepping back
+          from the decision entirely. We're looking for that sense of full entrustment.
+    scene: A department head, confident in his team, allows them to make an important choice.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: The resolution of this issue is entrusted to the negotiation process.
+    japanese:
+      - この 問題 の 解決 は 交渉 の 過程 に {委ね られ て いる}。
+      - この 問題 の 解決 は 交渉 の 過程 に {委ね られ て い ます}。
+    english_literally: This problem's resolution, as for, negotiation's process to, is being entrusted.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 の 解決 は 交渉 の 過程 に 任さ れ て いる。
+          - この 問題 の 解決 は 交渉 の 過程 に 任さ れ て い ます。
+        english: The resolution of this issue is left to the negotiation process.
+        hint: 「任されている」 suggests that the negotiation process has been assigned or given the task to resolve
+          the issue. 「委ねられている」 implies that the ultimate decision or outcome is being surrendered to the
+          negotiation process, highlighting a deeper level of reliance on its findings. We're looking
+          for the phrase that emphasizes reliance on the outcome.
+    scene: A complex international dispute is ongoing, and its future rests on diplomacy.
+    register: formal
+    setting: academic
+    conjugation: passive (～られる/～かれる)
+  - english: You can entrust your child's education to this reputable school.
+    japanese:
+      - この 評判 の 良い 学校 に お 子 さん の 教育 を {委ね て も いい} です よ。
+      - この 評判 の 良い 学校 に お 子 さん の 教育 を {委ね て も いい} よ。
+    english_literally: This reputable school to, child's education, entrust, it's good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 評判 の 良い 学校 に お 子 さん の 教育 を 任せ て も いい です よ。
+          - この 評判 の 良い 学校 に お 子 さん の 教育 を 任せ て も いい よ。
+        english: You can leave your child's education to this reputable school.
+        hint: While 「任せる」 can be used for entrusting, 「委ねる」 carries a nuance of completely handing over,
+          implying a deep trust in the school's ability to shape the child's future. We're looking for
+          the sense of complete faith and handover.
+    scene: A school counselor reassures anxious parents about the quality of their institution.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: concessive (～ても)
+  - english: Let's entrust everything to the flow of time.
+    japanese:
+      - 全て を 時 の 流れ に {委ねよう}。
+      - 全て を 時 の 流れ に {委ね ましょう}。
+    english_literally: Everything, as for, time's flow to, let's entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 全て を 時 の 流れ に 任せよう。
+          - 全て を 時 の 流れ に 任せ ましょう。
+        english: Let's leave everything to the flow of time.
+        hint: 「任せる」 would imply simply letting things take their course. 「委ねる」 suggests a more active,
+          though perhaps resigned, act of surrendering control to an abstract concept like the flow of
+          time. We're looking for the sense of active surrender.
+    scene: Two old friends are discussing life's uncertainties over tea, deciding to let things unfold
+      naturally.
+    register: casual
+    setting: reflective
+    conjugation: volitional (～よう)
+    nuance: 「〜よう」 combined with 「委ねる」 in this context implies a mutual, slightly resigned, but accepting
+      decision to yield to natural processes, characteristic of an intimate conversation.
+  - english: If you entrust the work to him, it will surely be completed successfully.
+    japanese:
+      - 彼 に その 仕事 を {委ねれ ば}、きっと 成功 する でしょう。
+      - 彼 に その 仕事 を {委ねる なら}、きっと 成功 する でしょう。
+      - 彼 に その 仕事 を {委ね たら}、きっと 成功 する でしょう。
+    english_literally: He to that work, if you entrust, surely succeed, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に その 仕事 を 任せれ ば、きっと 成功 する でしょう。
+          - 彼 に その 仕事 を 任せる なら、きっと 成功 する でしょう。
+          - 彼 に その 仕事 を 任せ たら、きっと 成功 する でしょう。
+        english: If you leave the work to him, it will surely be completed successfully.
+        hint: 「任せる」 focuses on delegating a task to someone's competence. 「委ねる」 implies a more significant
+          act of committing the work and its outcome entirely to that person, relying fully on their judgment.
+          We're looking for a strong sense of reliance.
+    scene: A team leader is discussing delegating a difficult project and is confident in a specific team
+      member's ability.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+  - english: He decided to entrust his life savings to his daughter.
+    japanese:
+      - 彼 は 全 財産 を 娘 に {委ねる} こと に し た。
+      - 彼 は 全 財産 を 娘 に {委ねる} こと に し まし た。
+    english_literally: He, as for, all assets, to daughter, to entrust, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 全 財産 を 娘 に 渡す こと に し た。
+          - 彼 は 全 財産 を 娘 に 渡す こと に し まし た。
+        english: He decided to hand over his life savings to his daughter.
+        hint: 「渡す」 means to simply hand over or pass something. It lacks the nuance of placing trust and
+          responsibility for something, which is central to 「委ねる」. We're looking for the act of entrusting,
+          not just transferring.
+      - competing_japanese:
+          - 彼 は 全 財産 を 娘 に 任せる こと に し た。
+          - 彼 は 全 財産 を 娘 に 任せる こと に し まし た。
+        english: He decided to leave his life savings to his daughter's management.
+        hint: 「任せる」 implies giving someone the responsibility to manage something. 「委ねる」 goes further,
+          suggesting a more complete surrender of control, often with a sense of destiny or major life
+          decision. We're looking for the sense of complete entrustment of future responsibility.
+      - competing_japanese:
+          - 彼 は 全 財産 を 娘 に 預ける こと に し た。
+          - 彼 は 全 財産 を 娘 に 預ける こと に し まし た。
+        english: He decided to deposit his life savings with his daughter.
+        hint: 「預ける」 means to deposit or leave something in someone's care, often temporarily, like a bank.
+          It doesn't imply the same level of transfer of ownership or deep trust for the future as 「委ねる」.
+          We're looking for the phrase that means to fully entrust, not just temporarily deposit.
+    scene: An elderly man prepares his will, making arrangements for his inheritance.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The use of 「委ねる」 for transferring "全財産" (all assets) to a daughter implies not just giving
+      money but entrusting her with the responsibility and future management of it. This highlights the
+      verb's nuance of significant delegation and trust.
+  - english: He can no longer entrust his future to others.
+    japanese:
+      - 彼 は もう 自分 の 未来 を 他人 に {委ね られ ない}。
+      - 彼 は もう 自分 の 未来 を 他人 に {委ね られ ませ ん}。
+    english_literally: He, as for, no longer, his own future, to others, cannot entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は もう 自分 の 未来 を 他人 に 任せ られ ない。
+          - 彼 は もう 自分 の 未来 を 他人 に 任せ られ ませ ん。
+        english: He can no longer leave his future to others' discretion.
+        hint: 「任せる」 emphasizes the delegation of decision-making. 「委ねる」 carries a stronger meaning of
+          surrendering one's future or destiny completely. We're looking for the sense of inability to
+          surrender control over one's own future.
+    scene: A young man, having faced past disappointments, resolves to take full control of his own life.
+    register: casual
+    setting: serious
+    conjugation: potential (～られる/～える)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The negative potential form 「委ねられない」 signifies an inability or unwillingness to surrender
+      control, reflecting a personal decision to take agency over one's life. The direct object 「自分の未来」
+      (one's own future) and indirect object 「他人」 (others) clearly show the core usage of 「委ねる」.
+post_example_writeup: As seen in the examples, 「委ねる」 is typically used when a significant degree of control,
+  responsibility, or destiny is handed over to another party or an abstract concept like 'fate' or 'the
+  flow of time'. It's important to recognize that this is a more profound act than simply delegating a
+  task or temporarily lending an item.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/委ねる

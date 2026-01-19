@@ -1,0 +1,268 @@
+grammar_point: ちょっと (adverb)
+matcher: |-
+  ⌈ˢちょっとᵖadvᵇちょっとᵈ一寸ʳチョット⌉
+learn_before:
+  - Verb[よう] (volitional)
+meaning: a little; a bit; a moment; somewhat; a little difficult/inconvenient (used for indirect refusals)
+pronunciation:
+  katakana: チョット
+  romaji: Chotto
+formation:
+  ちょっと + Verb: do something a little/for a moment
+  ちょっと + Adjective/Adverb: a little bit [adjective/adverb]
+  ちょっと (standalone): Excuse me, Wait a minute, That's a bit...
+jlpt: N5
+etymology: 「ちょっと」is believed to be derived from 「直 (choku)」meaning "straight" or "direct," and 「一 (ichi)」meaning
+  "one." Over time, 「直一 (chokuichi)」transformed phonetically to 「ちょいと (choito)」and then 「ちょっと (chotto)」,
+  evolving from meaning "immediately" or "just once" to its current sense of "a little" or "a short while."
+  This evolution reflects how a brief, direct action or quantity came to signify a small degree or duration.
+writeup: |-
+  「ちょっと」is a versatile Japanese adverb meaning "a little," "a bit," or "a moment." It's incredibly common in daily conversation and can modify verbs, adjectives, and other adverbs to express small quantity, short duration, or slight degree. Its usage extends beyond mere quantification; 「ちょっと」is frequently employed to soften statements, make indirect requests, or express a subtle sense of inconvenience or hesitation. This makes it a crucial element for natural and polite communication in Japanese, especially when you want to avoid directness.
+
+  When used to describe quantity or degree, 「ちょっと」indicates a small amount or a slight extent. For example, 「ちょっと寒い」means "a little cold." When referring to time, it means "a moment" or "briefly," as in 「ちょっと待ってください」("Please wait a moment").
+
+  One of the most important functions of 「ちょっと」is its role in indirect communication. Japanese culture often favors indirectness, and 「ちょっと」is a prime tool for this. When someone says 「それはちょっと...」("That's a little..."), they are likely politely declining a request or expressing difficulty without explicitly saying "no." This is because a direct "no" can be perceived as abrupt or impolite. By saying 「ちょっと」, they imply "it's a little difficult/inconvenient" to fulfill the request. Understanding this nuance is key to navigating Japanese social interactions smoothly.
+false_friends:
+  - term: 少し (sukoshi)
+    meaning: a little, a few
+    kind: synonym
+    nuance: 「少し」and 「ちょっと」are often interchangeable for meaning "a little," but 「ちょっと」carries additional
+      nuances of casualness, brevity, or indirectness. 「少し」is generally more formal and direct.
+    grammar_point: 少し (a little)
+  - term: すこしも〜ない (sukoshi mo ~ nai)
+    meaning: not at all, not in the least
+    kind: antonym
+    nuance: While 「ちょっと」means "a little," adding 「も〜ない」after 「少し」creates a strong negative meaning, indicating
+      "not even a little." This highlights the quantifying nature of 「ちょっと」by contrasting with its complete
+      absence.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: ちょっとだけ (chotto dake)
+    meaning: just a little, only a little
+    kind: similar expression
+    nuance: 「ちょっとだけ」emphasizes the smallness or brevity more strongly than 「ちょっと」alone, making it sound
+      more childlike or insistent on the smallness.
+    grammar_point: だけ (only・just)
+  - term: すぐ (sugu)
+    meaning: immediately, right away
+    kind: antonym
+    nuance: 「ちょっと」implies a brief, indeterminate duration or a small quantity, while 「すぐ」denotes immediacy
+      and lack of delay, serving as a temporal opposite.
+    grammar_point: すぐ (immediately・easily)
+post_false_friends_writeup: While 「ちょっと」and 「少し」can often be used interchangeably to mean "a little,"
+  「ちょっと」is generally more casual and carries the added implications of brevity or subtle inconvenience.
+  For example, 「少しお待ちください」is a polite, direct request to wait a little, whereas 「ちょっと待ってください」is more casual
+  and might imply "wait just a moment, please." Conversely, 「すぐ」is the opposite of 「ちょっと」in terms of time,
+  emphasizing immediacy rather than a brief wait. Understanding these subtle differences allows for more
+  precise and contextually appropriate communication.
+examples:
+  - english: This coffee is a little hot.
+    japanese:
+      - この コーヒー は {ちょっと} 熱い。
+      - この コーヒー は {ちょっと} 熱い です。
+      - この コーヒー は {ちょっと} 熱め です。
+    english_literally: This coffee, as for, a little hot.
+    competing_grammar:
+      - competing_japanese:
+          - この コーヒー は 少し 熱い。
+        english: This coffee is a little hot.
+        hint: 「少し」is also correct for 'a little', but it carries a more formal or objective nuance compared
+          to 「ちょっと」.
+      - competing_japanese:
+          - この コーヒー は 熱 すぎる。
+        english: This coffee is too hot.
+        hint: 「～すぎる」means "too much" or "excessive," implying a stronger degree than just "a little."
+          We're looking for a softer indication of degree.
+    scene: A person sips their coffee and finds it too warm.
+    register: casual
+    setting: friendly
+  - english: Please wait a moment.
+    japanese:
+      - '{ちょっと} 待っ て ください。'
+      - '{ちょっと} 待っ て て。'
+      - '{ちょっと} お 待ち ください。'
+    english_literally: A moment, wait, please.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 待っ て ください。
+        english: Please wait a little.
+        hint: 「少し」is a valid synonym for 'a little', but 「ちょっと」is more common for brief, informal requests
+          for a moment's wait.
+      - competing_japanese:
+          - すぐ 来 て ください。
+        english: Please come immediately.
+        hint: 「すぐ」means "immediately," indicating no delay. We're looking for a word that means "just
+          a moment" or "for a short time."
+    scene: A busy person asks someone to hold on for a short time.
+    register: teineigo (polite)
+    setting: professional
+  - english: That's a little difficult for me right now.
+    japanese:
+      - それ は {ちょっと} 今 は 難しい です。
+      - それ は {ちょっと} 今 難しい。
+      - それ は {ちょっと} 無理 です。
+    english_literally: That, as for, a little now difficult is.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 今 は 難しい です。
+        english: That is difficult for me right now.
+        hint: Omitting 「ちょっと」makes the refusal sound more direct and less softened. We're looking for
+          a way to politely imply difficulty.
+      - competing_japanese:
+          - それ は 今 は でき ませ ん。
+        english: I cannot do that right now.
+        hint: 「できません」is a direct statement of inability. 「ちょっと」is used to express polite reluctance or
+          indirect refusal.
+    scene: A colleague asks for help with an urgent task, but you are swamped.
+    register: semi-formal
+    setting: professional
+  - english: Going out tonight is a bit...
+    japanese:
+      - 今夜 出かける の は {ちょっと}…。
+      - 今夜 出かける の は {ちょっと} 厳しい です。
+      - 今夜 出かける の は {ちょっと} 無理 か な。
+    english_literally: Tonight going out, as for, a little... (trailing off)
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 出かける の は やめ て おき ます。
+        english: I'll refrain from going out tonight.
+        hint: 「やめておきます」is a direct statement of refusal. We're looking for a way to subtly express reluctance
+          without saying "no" directly.
+      - competing_japanese:
+          - 今夜 は 行き ませ ん。
+        english: I'm not going tonight.
+        hint: This is a straightforward negative statement. 「ちょっと」is used to soften the negative implication.
+    scene: A friend invites you to go out late, but you're tired.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The speaker trails off after 「ちょっと」, leaving the refusal implied, which is a common way for
+      female speakers to decline gently in Japanese. This is very informal and emphasizes subtle communication.
+  - english: You're a little too quiet today, aren't you?
+    japanese:
+      - 今日 は {ちょっと} 静か すぎる ね。
+      - 今日 は {ちょっと} 静か すぎ ます ね。
+      - 今日 は {ちょっと} 静か じゃ ない です か。
+    english_literally: Today, a little too quiet, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は あまり 静か だ ね。
+        english: You're quite quiet today.
+        hint: 「あまり」means "not very" or "quite," but it doesn't carry the nuance of "a little bit *too*
+          much" like 「ちょっと～すぎる」does.
+      - competing_japanese:
+          - 今日 は 静か 過ぎる ね。
+        english: You're too quiet today.
+        hint: Omitting 「ちょっと」makes the statement more direct and less softened. We're looking for a subtle,
+          questioning tone.
+    scene: A friend notices their usually lively companion is unusually quiet.
+    register: casual
+    setting: friendly
+    nuance: 「ちょっと」here emphasizes the slight excess or deviation from the norm, combined with 「すぎる」. The
+      「ね」seeks agreement, making the observation feel gentle rather than accusatory.
+  - english: Can you open the window a little?
+    japanese:
+      - 窓 を {ちょっと} 開け て もらえ ます か。
+      - 窓 を {ちょっと} 開け て くれる？
+      - 窓 を {ちょっと} 開け て いただけ ます か。
+    english_literally: Window, a little, open, can you get for me?
+    competing_grammar:
+      - competing_japanese:
+          - 窓 を 少し 開け て もらえ ます か。
+        english: Can you open the window a little?
+        hint: While 「少し」is grammatically correct, 「ちょっと」is more commonly used for small, casual requests
+          like opening a window a tiny bit.
+      - competing_japanese:
+          - 窓 を 開け て もらえ ます か。
+        english: Can you open the window?
+        hint: This phrase doesn't specify *how much* to open the window. 「ちょっと」indicates a small degree
+          of opening.
+    scene: In a slightly stuffy room, a person asks another to let in some fresh air.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「ちょっと」softens the request, indicating a small action or degree of opening. The 「てもらえますか」is
+      a common polite request form, making the sentence very polite but natural.
+  - english: The taste is a little different than usual.
+    japanese:
+      - いつ も より 味 は {ちょっと} 違う。
+      - いつ も より 味 は {ちょっと} 違い ます。
+      - いつ も と {ちょっと} 味 が 異なる。
+    english_literally: Than usual, taste, as for, a little different.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も より 味 は 少し 違う。
+        english: The taste is a little different than usual.
+        hint: 「少し」is grammatically correct but tends to be more formal and less conversational than 「ちょっと」when
+          describing subtle differences.
+      - competing_japanese:
+          - いつ も と 味 は 違う。
+        english: The taste is different than usual.
+        hint: This phrase lacks the nuance of a *slight* difference. 「ちょっと」emphasizes the small degree
+          of change.
+    scene: A regular customer tastes their favorite dish and notices a subtle change.
+    register: casual
+    setting: reflective
+  - english: Let's stop by the convenience store for a moment.
+    japanese:
+      - コンビニ に {ちょっと} 寄ろう か。
+      - コンビニ に {ちょっと} 寄り ましょう か。
+      - コンビニ に {ちょっと} 寄っ て 行こう か。
+    english_literally: Convenience store to, a moment, let's stop by?
+    competing_grammar:
+      - competing_japanese:
+          - コンビニ に 寄ろう か。
+        english: Shall we stop by the convenience store?
+        hint: This phrase doesn't specify the duration of the stop. 「ちょっと」adds the meaning of a brief,
+          quick stop.
+      - competing_japanese:
+          - コンビニ に すぐ 寄ろう か。
+        english: Shall we stop by the convenience store immediately?
+        hint: 「すぐ」implies immediate action, not a brief, casual stop. We're looking for an indication
+          of short duration.
+    scene: Two friends walking suggest a quick stop at a convenience store.
+    register: casual
+    setting: friendly
+  - english: That's a bit much for just one person.
+    japanese:
+      - 一人 で それ は {ちょっと} 量 が 多い。
+      - 一人 で それ は {ちょっと} 量 が 多い です。
+      - 一人 で それ は {ちょっと} 多 すぎ ます。
+    english_literally: By oneself, that, as for, a little, quantity is much.
+    competing_grammar:
+      - competing_japanese:
+          - 一人 で それ は 量 が 多い。
+        english: That's a lot for one person.
+        hint: Omitting 「ちょっと」makes the statement more direct and less softened, losing the nuance of a
+          polite observation.
+      - competing_japanese:
+          - 一人 で それ は 多 すぎ ます。
+        english: That is too much for one person.
+        hint: 「多すぎます」means "too much," implying an excessive amount, whereas 「ちょっと」 softens this to "a
+          bit much" or "a little too much."
+    scene: Looking at a very large meal intended for one person.
+    register: casual
+    setting: humorous
+  - english: This box is a little heavy.
+    japanese:
+      - この 箱 は {ちょっと} 重い。
+      - この 箱 は {ちょっと} 重い です。
+      - この 箱 は {ちょっと} 持ち にくい。
+    english_literally: This box, as for, a little heavy.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 は 少し 重い。
+        english: This box is a little heavy.
+        hint: 「少し」is grammatically correct but 「ちょっと」is more common in casual conversation to express
+          a slight perceived difficulty.
+      - competing_japanese:
+          - この 箱 は 重い。
+        english: This box is heavy.
+        hint: This statement is direct and doesn't convey the nuance of it being only *a little* heavy.
+          「ちょっと」softens the observation.
+    scene: Trying to lift a box and finding it surprisingly heavy.
+    register: casual
+    setting: serious
+post_example_writeup: As these examples demonstrate, 「ちょっと」is not just about small quantities; it's also
+  a powerful tool for conveying politeness, hesitation, or subtle disagreement without being overtly direct.
+  Its versatility makes it indispensable for natural conversation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ちょっと

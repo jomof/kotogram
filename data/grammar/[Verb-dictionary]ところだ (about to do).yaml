@@ -1,0 +1,515 @@
+grammar_point: '[Verb-dictionary]ところだ (about to do)'
+learn_before:
+  - '[Verb-dictionary]ところだった (was just about to)'
+  - ところで (by the way)
+meaning: About to, On the verge of
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: るところだ
+    rarity: common
+    meaning: about to do
+  - conjugation-type: non-past polite (～ます)
+    form: るところです
+    rarity: common
+    meaning: about to do
+  - conjugation-type: negative plain (～ない)
+    form: るところではない
+    rarity: common
+    meaning: not about to do
+  - conjugation-type: negative non-past polite (～ません)
+    form: るところではありません
+    rarity: common
+    meaning: not about to do
+  - conjugation-type: past plain (～た)
+    form: るところだった
+    rarity: common
+    meaning: was about to do (but didn't or was interrupted)
+  - conjugation-type: past polite (～ました)
+    form: るところでした
+    rarity: common
+    meaning: was about to do (but didn't or was interrupted)
+  - conjugation-type: negative plain (～ない)
+    form: るところではなかった
+    rarity: less common
+    meaning: was not about to do
+  - conjugation-type: negative non-past polite (～ません)
+    form: るところではありませんでした
+    rarity: less common
+    meaning: was not about to do
+pronunciation:
+  katakana: ルトコロダ
+  romaji: ru tokoro da
+formation:
+  Verb (dictionary form) + ところだ: Indicates an action is about to happen or is on the verge of happening.
+jlpt: N4
+etymology: 「ところ」 comes from the verb 「とまる」 (to stop), and originally referred to a place where one stops
+  or resides. Over time, its meaning expanded to include situations, stages, and moments in time. In this
+  grammar point, 「ところ」 refers to a specific point in the progression of an action, specifically, the point
+  immediately before it begins.
+writeup: The noun 「ところ」 (sometimes shortened to 「とこ」) is often used to describe the "place" or "situation"
+  in which something happens. The primary determining factor for the nuance of 「ところ」 is the tense of the
+  verb it follows. When used with a verb in its dictionary (non-past) form, as in 「Vる + ところだ」, it expresses
+  that an action is "about to" or "on the verge of" happening. While 「ところ」 itself can refer to a physical
+  location, in this grammatical construction, it denotes a specific **moment**, **state**, **stage**,
+  or **level** in the progression of an action. For instance, 「今から出かけるところだ」 means "I am about to go out
+  now," indicating the precise moment just before leaving. When the kanji form of 「所」 is used, it often
+  refers to an actual physical location rather than a situation or standpoint. However, even with the
+  kanji, in contexts like this grammar point, it can still convey the sense of a "point in time" or "situation."
+  Both the kanji form and the hiragana form (「ところ」) are relatively common in this usage.
+false_friends:
+  - term: Vるところだった
+    meaning: Almost did, nearly did, was about to (but didn't)
+    kind: similar expression
+    nuance: While 「Vるところだ」 means an action is about to happen, 「Vるところだった」 indicates that an action *almost*
+      happened but ultimately did not, or it was on the verge of happening but was interrupted. It implies
+      a near-miss or a thwarted event.
+    grammar_point: '[Verb-dictionary]ところだった (was just about to)'
+  - term: Verb[volitional-よう]+とする
+    meaning: Try to, attempt to, to be about to
+    kind: similar expression
+    nuance: 「Verb[volitional-よう]とする」 implies an *intention* or *effort* to do something, often with the
+      nuance of attempting. In contrast, 「Vるところだ」 simply states that something is on the verge of happening,
+      without necessarily emphasizing the actor's intent or effort.
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - term: Vかけ
+    meaning: Half-finished, in the middle of, not yet complete
+    kind: similar expression
+    nuance: 「Vかけ」 indicates that an action has begun but is not yet finished. 「Vるところだ」, however, focuses
+      on the moment *before* the action even starts, emphasizing its imminent beginning.
+    grammar_point: かける・かけ (in process・incomplete・on the verge)
+  - term: Vたところだ
+    meaning: Just finished doing, just did
+    kind: often confused with
+    nuance: 「Vたところだ」 means that an action has just been completed very recently. This is distinct from
+      「Vるところだ」, which means the action is about to begin. The verb tense preceding 「ところだ」 is crucial for
+      differentiating these meanings.
+    grammar_point: '[Verb-た]ところだ (just finished doing)'
+  - term: Vているところだ
+    meaning: In the middle of doing, currently doing
+    kind: often confused with
+    nuance: 「Vているところだ」 means that an action is currently in progress. This contrasts with 「Vるところだ」, which
+      signifies an action that is about to start. The progressive aspect 「ている」 is the key differentiator.
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+post_false_friends_writeup: To avoid mixing up 「Vるところだ」 with similar expressions, pay close attention
+  to the verb form preceding 「ところだ」. The dictionary form (Vる) signifies 'about to', the -ta form (Vた)
+  signifies 'just finished', and the -te iru form (Vている) signifies 'in the middle of'. Additionally, other
+  expressions like 「Vるところだった」 (almost did) or 「V[volitional]とする」 (intend to do) have different nuances
+  of completion, intention, or near-miss, which are important to grasp for precise communication.
+examples:
+  - english: I am about to eat a meal right now.
+    japanese:
+      - 私 は 今 から ご飯 を {食べる ところ だ}。
+      - 私 は 今 から ご飯 を {食べる ところ です}。
+      - 今 から ご飯 {食べる とこ だ}。
+      - 今 から ご飯 {食べる ところ}。
+      - 今 から 飯 {食う とこ だ}。
+      - 私、今 から ご飯 {食べる とこ}。
+    english_literally: I, from now, meal is about to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 今 から ご飯 を {食べ ます}。
+        english: I will eat a meal from now.
+        hint: While '食べます' indicates a future action, '食べるところだ' specifically highlights that it's on the
+          very verge of happening, emphasizing the immediate proximity of the event.
+      - competing_japanese:
+          - 私 は 今 から ご飯 を {食べよう と 思い ます}。
+        english: I think I will eat a meal now (I intend to eat).
+        hint: 「～よう と思います」 expresses one's intention or decision to do something. We're looking for a phrase
+          that indicates an action is immediately imminent.
+      - competing_japanese:
+          - 私 は 今 から ご飯 を {食べ に 行く}。
+        english: I am going to eat a meal now.
+        hint: 「～に行く」 means 'to go to do something'. While it implies an upcoming action, it focuses on
+          the movement towards doing it, not the absolute imminence of the action itself.
+      - competing_japanese:
+          - 私 は 今 ご飯 を {食べ た ところ だ}。
+        english: I just finished eating a meal right now.
+        hint: 「Vたところだ」 means that an action has just been completed. We're looking for a phrase that indicates
+          an action is about to begin.
+      - competing_japanese:
+          - 私 は 今 ご飯 を {食べ て いる ところ だ}。
+        english: I am in the middle of eating a meal right now.
+        hint: 「Vているところだ」 means that an action is currently in progress. We're looking for a phrase that
+          indicates an action is about to begin.
+      - competing_japanese:
+          - 私 は 今 から {もう すぐ} ご飯 を 食べ ます。
+        english: I will eat a meal very soon from now.
+        hint: 「もうすぐ」 means "very soon," indicating an will happen in the near future. 「Vるところだ」 specifically
+          emphasizes the immediate imminence, that you are right at the point of doing it.
+    scene: A person responding to a question about their immediate plans for eating.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「今から」 emphasizes the immediacy of the action, and the casual 「だ」 is typical for
+      informal conversations. The speaker's use of 「私」 combined with the casual ending suggests a direct
+      and personal response to a close male acquaintance.
+  - english: The meeting is about to start in 10 minutes.
+    japanese:
+      - 会議 は １０ 分 後 に {始まる ところ です}。
+      - 会議 は １０ 分 後 に {始まる ところ だ}。
+      - 会議 は １０ 分 後、{始まる とこ です}。
+      - 会議 は １０ 分 後、{始まる ところ} で ござい ます。
+      - 会議、１０ 分 後 に {始まる ところ です}。
+      - 会議 は １０ 分 後 に {開催 さ れる ところ です}。
+    english_literally: The meeting, 10 minutes later, is about to start.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は １０ 分 後 に {始まり ます}。
+        english: The meeting will start in 10 minutes.
+        hint: While '始まります' means 'will start', '始まるところです' specifically highlights that it's on the very
+          verge of starting, emphasizing the immediate proximity of the event, which is useful information
+          for a client.
+      - competing_japanese:
+          - 会議 は １０ 分 後 に {始まる 予定 です}。
+        english: The meeting is scheduled to start in 10 minutes.
+        hint: 「予定です」 indicates that something is planned or scheduled. This focuses on the fixed schedule
+          rather than the action being on the absolute verge of beginning.
+      - competing_japanese:
+          - 会議 は １０ 分 後 に {始まり そう です}。
+        english: It looks like the meeting will start in 10 minutes.
+        hint: 「～そうです」 indicates that something appears to be happening or likely to happen based on observation.
+          This conveys a prediction, not a statement of immediate imminence.
+      - competing_japanese:
+          - 会議 は 今 {始まっ た ところ です}。
+        english: The meeting just started right now.
+        hint: 「Vたところだ」 means that an action has just been completed. We're looking for a phrase that indicates
+          an action is about to begin.
+      - competing_japanese:
+          - 会議 は 今 {始まっ て いる ところ です}。
+        english: The meeting is currently in progress.
+        hint: 「Vているところだ」 means that an action is currently in progress. We're looking for a phrase that
+          indicates an action is about to begin.
+    scene: A receptionist informs a visiting client about the upcoming meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The polite 「です」 and the formal setting make this appropriate for a professional interaction.
+      The speaker, a younger female, uses formal polite Japanese 「始まるところです」 to convey professionalism
+      to an older male client.
+  - english: It's not the time to be playing now.
+    japanese:
+      - 今 は {遊ぶ ところ で は ない} よ。
+      - 今 は {遊ぶ ところ じゃ ない} よ。
+      - 今 は {遊ぶ ところ で は あり ませ ん} よ。
+      - 今 は {遊ぶ とこ じゃ ねえ} よ。
+      - 今 は {遊ぶ ところ で は ない の です} よ。
+    english_literally: Now is not the point to play.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は {遊ん で は いけ ない} よ。
+        english: You must not play now.
+        hint: While '遊んでは いけない' means 'must not play' and indicates a prohibition, '遊ぶところではない' emphasizes
+          that the current *situation* or *moment* is inappropriate for playing, rather than a strict
+          prohibition. This often conveys a softer, yet firm, message of unsuitability.
+      - competing_japanese:
+          - 今 は {遊ぶ べき で は ない} よ。
+        english: You shouldn't play now.
+        hint: 「～べきではない」 expresses moral obligation or strong advisability. This suggests that playing
+          is morally wrong or highly inappropriate, whereas '遊ぶところではない' simply states it's the wrong moment.
+      - competing_japanese:
+          - 今 は {遊ぶ 場合 じゃ ない} よ。
+        english: It's not the situation for playing now.
+        hint: 「場合じゃない」 is very similar to 'ところではない' but 'ところではない' specifically emphasizes that the *point*
+          or *moment* is unsuitable, whereas '場合じゃない' focuses on the general *circumstance*.
+    scene: A father scolding his son who is trying to play during study time.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「よ」 at the end softens the command slightly while emphasizing the speaker's advice.
+      The negative form 「ではない」 indicates the unsuitability of the action at this specific 'point' or 'situation'.
+      An older male speaking to a younger male (his son) will typically use casual forms like 「ところではない」
+      and the sentence-ending particle 「よ」.
+  - english: He almost fell, but managed to avoid collapsing at the last second.
+    japanese:
+      - 彼 は 転び そう に なっ た が、ギリギリ で {倒れる ところ だっ た}。
+      - 彼 は 転び そう に なっ た が、ギリギリ で {倒れる ところ でし た}。
+      - 彼、転び そう に なっ た けど、ギリギリ で {倒れる とこ だっ た}。
+      - 彼 は 転び そう に なっ た の です が、ギリギリ で {倒れる ところ でし た}。
+    english_literally: He became about to fall, but barely was about to collapse.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 転び そう に なっ た が、ギリギリ で {倒れ そう に なっ た}。
+        english: He almost fell, but managed to avoid looking like he would collapse at the last second.
+        hint: While '倒れそうになった' means 'looked like he would collapse' or 'became likely to collapse', '倒れるところだった'
+          specifically conveys that he was *on the verge* of collapsing and narrowly avoided it, emphasizing
+          the extremely close call and the actual imminence of the event, which did not occur.
+      - competing_japanese:
+          - 彼 は 転び そう に なっ た が、ギリギリ で {倒れ かけ た}。
+        english: He began to collapse (and stopped).
+        hint: 「～かける」 means to begin an action, or to be on the verge of doing something, often with the
+          implication of it being incomplete or interrupted. '倒れかけた' suggests the action of falling started,
+          while '倒れるところだった' means the fall was about to start but didn't.
+      - competing_japanese:
+          - 彼 は 転び そう に なっ た が、ギリギリ で {倒れ そう だっ た}。
+        english: He almost fell, but barely seemed like he would collapse.
+        hint: 「～そうだった」 expresses that it appeared to be the case. While it conveys a similar sense of
+          near-occurrence, '倒れるところだった' is more definitive about the action being at the very brink, rather
+          than just an appearance.
+    scene: Two friends discussing an incident where someone nearly had an accident.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The past tense 「だった」 here implies that the action (falling) was on the verge of happening
+      but ultimately did not, highlighting a near-miss. 「ギリギリ」 emphasizes the narrowness of the escape.
+      The casual male speech combined with the shared experience of the conversation makes this suitable
+      between younger friends.
+  - english: She was just about to arrive at her hotel room when she realized she had forgotten her key.
+    japanese:
+      - 彼女 が ホテル の 部屋 に {着く ところ だっ た} の に、鍵 を 忘れ た こと に 気づい た。
+      - 彼女 が ホテル の 部屋 に {着く ところ でし た} の に、鍵 を 忘れ た こと に 気づい た。
+      - 彼女、ホテル の 部屋 に {着く とこ だっ た} の に、鍵 忘れ た こと に 気づい た ん だ。
+      - ホテル の 部屋 に {着く ところ だっ た} の に、彼女、鍵 を 忘れ た こと に 気づい ちゃっ た ん だ。
+    english_literally: She was about to arrive at the hotel room, but realized she had forgotten the key.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が ホテル の 部屋 に {着こう と し た 時 に}、鍵 を 忘れ た こと に 気づい た。
+        english: She was trying to arrive at her hotel room when she realized she had forgotten her key.
+        hint: While '着こう とした 時 に' (when she tried to arrive) also implies an imminent action, '着くところだった'
+          precisely captures the moment of being *right at the point* of arrival, which was then immediately
+          interrupted by the realization, emphasizing the immediate state of being on the verge. The former
+          focuses on intention, the latter on imminence.
+      - competing_japanese:
+          - 彼女 が ホテル の 部屋 に {着き かけ た 時 に}、鍵 を 忘れ た こと に 気づい た。
+        english: She began to arrive at her hotel room when she realized she had forgotten her key.
+        hint: 「着きかけた」 implies that the action of arriving has already begun, even if it was incomplete.
+          '着くところだった' specifically refers to the moment *before* the action begins, emphasizing the threshold.
+      - competing_japanese:
+          - 彼女 が ホテル の 部屋 に {着く 直前 に}、鍵 を 忘れ た こと に 気づい た。
+        english: Just before arriving at her hotel room, she realized she had forgotten her key.
+        hint: 「直前」 (just before) also indicates immediate timing, but 'ところだった' adds the nuance of being
+          in that specific 'stage' or 'situation' of imminence, often implying a thwarted action or near
+          miss, which '直前' does not inherently carry.
+    scene: A friend recounting a travel mishap to another friend.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The construction 「Vるところだったのに」 expresses a sense of being on the verge of doing something,
+      followed by an unexpected turn of events (indicated by 「のに」). This implies a thwarted intention
+      or a near-miss. An older female speaker might choose slightly more formal language like 「着くところだった」
+      when recounting a story to a group, conveying a sense of shared experience with a narrative flair.
+  - english: The pasta is about to be perfectly al dente.
+    japanese:
+      - パスタ は ちょうど よく アルデンテ に {なる ところ です}。
+      - パスタ は ちょうど よく アルデンテ に {なる ところ だ}。
+      - パスタ、ちょうど よく アルデンテ に {なる とこ です}。
+      - パスタ、ちょうど よく アルデンテ に {なる とこ だ}。
+      - パスタ は ちょうど アルデンテ に {なる ところ です}。
+    english_literally: Pasta, precisely well al dente, is about to become.
+    competing_grammar:
+      - competing_japanese:
+          - パスタ は ちょうど よく アルデンテ に {なり ます}。
+        english: The pasta will become perfectly al dente.
+        hint: 「なります」 simply states a future change. 「なる ところ です」 specifically highlights that it's on the
+          very verge of reaching that state, emphasizing the immediate imminence.
+      - competing_japanese:
+          - パスタ は {もう すぐ} アルデンテ です。
+        english: The pasta is al dente soon.
+        hint: 「もうすぐ」 indicates 'soon' or 'shortly'. While similar, 「なる ところ です」 provides a more precise
+          sense of being at the exact threshold of achieving the al dente state, indicating readiness.
+    scene: A chef explains the cooking progress to a restaurant guest.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The professional setting and the older male chef's usage of 「なる ところ です」 imply precision and
+      expertise, assuring the customers that the dish is reaching its optimal state. The politeness of
+      「です」 is appropriate for addressing patrons.
+  - english: The train is about to arrive at platform 5.
+    japanese:
+      - 電車 が ５ 番線 に {着く ところ だ} よ。
+      - 電車 が ５ 番線 に {着く ところ だ}。
+      - 電車 が ５ 番線 に {着く ところ です}。
+      - 電車、５ 番線 に {着く とこ だ} よ。
+      - ５ 番線 に {着く ところ} だ よ。
+    english_literally: Train, to platform 5, is about to arrive, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が ５ 番線 に {着き ます}。
+        english: The train will arrive at platform 5.
+        hint: 「着きます」 states a future arrival. 「着く ところ だ」 specifically emphasizes the immediate imminence
+          of the train's arrival, conveying that it is right at the point of coming into the station.
+      - competing_japanese:
+          - 電車 が {もう すぐ} ５ 番線 に 来 ます。
+        english: The train will come to platform 5 soon.
+        hint: 「もうすぐ」 indicates 'soon'. 「着く ところ だ」 conveys a stronger sense of being on the very verge
+          of pulling in, implying a more precise and immediate moment than just 'soon'.
+    scene: A friend at the station points out the arriving train to another friend.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual 「だ よ」 at the end makes this a friendly, informal heads-up between close friends.
+      The phrase 「着くところだ」 emphasizes the immediate imminence, urging the listener to be ready.
+  - english: This is not the time to be talking about that!
+    japanese:
+      - 今、その こと を {話す ところ で は あり ませ ん}。
+      - 今、その こと を {話す ところ で は ない}。
+      - 今、その こと を {話す ところ じゃ ない}。
+      - 今、その こと {話す とこ じゃ ない} よ。
+      - 今、その こと {話す とこ じゃ ねえ}。
+    english_literally: Now, that thing, is not the point to talk about.
+    competing_grammar:
+      - competing_japanese:
+          - 今、その こと を {話し て は いけ ませ ん}。
+        english: You must not talk about that now.
+        hint: 「～て は いけ ませ ん」 expresses a strict prohibition. 「話す ところ で は あり ませ ん」 is softer, indicating
+          that the current *situation* or *moment* is simply inappropriate for the action, rather than
+          forbidding it outright.
+      - competing_japanese:
+          - 今、その こと を {話す べき で は あり ませ ん}。
+        english: You should not talk about that now.
+        hint: 「～べき で は あり ませ ん」 implies a moral or strong advisability against an action. 「話す ところ で は
+          あり ませ ん」 focuses on the impropriety of the action *at this specific time or context*, without
+          necessarily implying a moral judgment.
+    scene: A serious business meeting where one participant brings up an irrelevant topic.
+    register: formal
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal negative 「で は あり ませ ん」 clearly conveys an emphatic denial of the suitability of
+      the action at this specific moment or context. An older male in a business setting would use this
+      strong but polite phrasing to redirect the conversation.
+  - english: I was about to leave the house when I remembered I forgot my wallet.
+    japanese:
+      - 家 を {出る ところ だっ た} の に、財布 を 忘れ た こと を 思い出し た。
+      - 家 を {出る ところ でし た} の に、財布 を 忘れ た こと を 思い出し まし た。
+      - 家 {出る とこ だっ た} の に、財布 忘れ た こと 思い出し た。
+      - 家 を {出る ところ だっ た} の に、財布 を 忘れ た こと に 気づい た。
+      - 家 {出る とこ だっ た} ん だ けど、財布 忘れ た こと 思い出し た。
+    english_literally: House, was about to leave, but remembered forgot wallet.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を {出よう と し た 時 に}、財布 を 忘れ た こと を 思い出し た。
+        english: When I tried to leave the house, I remembered I forgot my wallet.
+        hint: 「～よう と し た 時 に」 implies an intention or attempt to do something. 「出る ところ だっ た」 precisely
+          captures the moment of being *right at the point* of leaving, which was then immediately interrupted,
+          emphasizing the imminence rather than the intention.
+      - competing_japanese:
+          - 家 を {出る 直前 に}、財布 を 忘れ た こと を 思い出し た。
+        english: Just before leaving the house, I remembered I forgot my wallet.
+        hint: 「直前」 (just before) indicates immediate timing. However, 「出る ところ だっ た」 adds the nuance of
+          being in that specific 'stage' or 'situation' of imminence, often implying a thwarted action
+          or near miss, which 「直前」 does not inherently carry.
+    scene: Someone recounts a minor daily mishap to a family member.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual 「だった」 with 「のに」 expresses a mild frustration or a "missed opportunity" because
+      of the forgotten wallet. This common occurrence makes the casual register suitable for a family
+      conversation.
+  - english: Oh, be careful! You were about to step on a banana peel.
+    japanese:
+      - あ、危ない！バナナ の 皮 を {踏む ところ でし た} よ。
+      - あ、危ない！バナナ の 皮 を {踏む ところ だっ た} よ。
+      - あ、危ない！バナナ の 皮 を {踏む ところ でし た}。
+      - あ、危ない！バナナ の 皮 {踏む とこ だっ た} よ。
+      - あ、危ない！バナナ の 皮 {踏む とこ でし た} よ。
+    english_literally: Oh, dangerous! Banana's peel, was about to step on, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あ、危ない！バナナ の 皮 を {踏む ところ だっ た} よ。
+        english: Oh, be careful! You were about to step on a banana peel.
+        hint: Both convey the same meaning. This version uses the polite past tense 「でした」, which can add
+          a touch more concern or formality compared to the plain past tense 「だった」.
+      - competing_japanese:
+          - あ、危ない！バナナ の 皮 を {踏み そう に なっ た} よ。
+        english: Oh, be careful! It looked like you would step on a banana peel.
+        hint: 「～そう に なっ た」 means 'it looked like it would happen' or 'came to seem like it would happen'.
+          While similar, 「踏む ところ でし た」 is more direct about the action being at the very brink of occurring,
+          emphasizing the near miss more strongly.
+    scene: A person warns their friend who almost steps on something.
+    register: semi-formal
+    setting: cautious
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「でした」 adds a touch of polite concern, fitting for someone giving a warning. The
+      「よ」 softens the warning, making it sound more like a friendly heads-up. The male speaker uses a
+      slightly more polite form than completely casual, showing consideration.
+  - english: The cherry blossoms are about to bloom.
+    japanese:
+      - 桜 が {咲く ところ だ}。
+      - 桜 が {咲く ところ です}。
+      - 桜 が {咲く ところ だ} よ。
+      - 桜 が {咲く ところ だ} ね。
+      - 桜 {咲く とこ だ}。
+    english_literally: Cherry blossoms, are about to bloom.
+    competing_grammar:
+      - competing_japanese:
+          - 桜 が {咲き ます}。
+        english: The cherry blossoms will bloom.
+        hint: 「咲きます」 is a general statement about a future event. 「咲く ところ だ」 highlights the immediate
+          imminence, suggesting the blooming is right at hand and one can almost see it happening.
+      - competing_japanese:
+          - 桜 が {もう すぐ} 咲き ます。
+        english: The cherry blossoms will bloom soon.
+        hint: 「もうすぐ」 indicates 'soon'. 「咲く ところ だ」 conveys a stronger sense of being on the very verge
+          of blooming, implying a more precise and immediate moment than just 'soon'.
+    scene: Two friends enjoying a walk in a park during early spring.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: This sentence simply states an imminent natural event, indicating observation rather than
+      an action. The simple 「だ」 is natural in casual conversation between friends. An older female might
+      use this simple observation when admiring nature with a friend.
+  - english: It looks like it's about to rain.
+    japanese:
+      - 雨 が {降る ところ だ}。
+      - 雨 が {降る ところ です}。
+      - 雨 が {降る とこ だ}。
+      - 今 に も 雨 が {降る ところ だ}。
+    english_literally: Rain is about to fall.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が {降り そう だ}。
+        english: It looks like it will rain.
+        hint: 「～そうだ」 conveys an appearance or prediction based on observation. 「降るところだ」 emphasizes the
+          extreme imminence of the rain, indicating it is right at the point of starting.
+      - competing_japanese:
+          - 雨 が {降る だろう}。
+        english: It will probably rain.
+        hint: 「～だろう」 indicates conjecture or probability. 「降るところだ」 states that the action is on the verge
+          of happening, rather than simply being probable.
+    scene: Looking out the window at dark clouds gathering.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「雨が降るところだ」 emphasizes the immediate onset of rain, suggesting one should quickly
+      prepare, like grabbing an umbrella. This is a common, casual observation.
+post_example_writeup: The grammar point 「Vたところだ」 means "just finished doing," and 「Vているところだ」 means "in
+  the middle of doing." It is crucial to distinguish these forms from 「Vるところだ」, which specifically denotes
+  an action that is "about to" happen. The form of the preceding verb (dictionary, -te iru, or -ta) is
+  key to the meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ところ

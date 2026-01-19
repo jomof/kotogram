@@ -1,0 +1,378 @@
+grammar_point: を余儀なくさせる (compel or force)
+learn_before:
+  - 〜代 (decade or generation)
+  - 側 (side or flank)
+meaning: To force, to compel, to make unavoidable
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: を余儀なくさせる
+    rarity: common
+    meaning: To force, to compel, to make unavoidable
+  - conjugation-type: past plain (～た)
+    form: を余儀なくさせた
+    rarity: common
+    meaning: Forced, compelled, made unavoidable
+  - conjugation-type: non-past polite (～ます)
+    form: を余儀なくさせます
+    rarity: common
+    meaning: Force, compel, make unavoidable (polite)
+  - conjugation-type: negative plain (～ない)
+    form: を余儀なくさせない
+    rarity: common
+    meaning: Do not force, do not compel, do not make unavoidable
+  - conjugation-type: negative past polite (～ませんでした)
+    form: を余儀なくさせませんでした
+    rarity: common
+    meaning: Did not force, did not compel, did not make unavoidable (polite)
+pronunciation:
+  katakana: ヲ ヨギナクサセル
+  romaji: o yoginaku saseru
+formation:
+  '[Subject (cause) が] + [Object (unavoidable action/state) を] + 余儀なくさせる': Indicates that a subject (cause
+    or agent) forces or compels an object (action or state) to become unavoidable or to happen.
+jlpt: N1
+etymology: This grammar point is derived from を (particle), 余儀 (another method), なく (conjunctive form
+  of the い-adjective ない), and させる (causative form of する). It literally means "to not give another way
+  than to (A)". 余儀なく is often considered a single word meaning 'unavoidably' or 'inevitably'.
+writeup: |-
+  This formal grammar pattern, similar to 「を余儀なくされる」, generally translates to "to compel (something to happen)" or "to force (an action/outcome)". It comprises the adverbial particle 「を」, the noun 「余儀」 (another method), the conjunctive form 「なく」 of the い-adjective 「ない」, and the causative form 「させる」 of 「する」. It conveys the sense of “not giving another way than to (A)."
+
+  Typically, 「を余儀なくさせる」 follows a noun phrase (A), where (A) is the unavoidable action or situation. Unlike 「を余儀なくされる」, the subject of sentences using 「を余儀なくさせる」 is often a non-human cause or entity that exerts the compelling force.
+
+  **Important Considerations:**
+  *   「余儀なく」, though composed of separate words, is often perceived as a single unit meaning "unavoidably" or "inevitably."
+false_friends:
+  - term: を余儀なくされる
+    meaning: To be forced to, to be compelled to.
+    kind: similar expression
+    nuance: While both express being forced, 「を余儀なくさせる」 focuses on the *cause* that necessitates an action
+      or outcome for another entity, whereas 「を余儀なくされる」 focuses on the *recipient* being forced or compelled
+      by an external factor.
+    grammar_point: を余儀なくされる (to be forced or compelled)
+  - term: ～ざるを得ない
+    meaning: Cannot help but do; forced to do (due to circumstance/lack of choice).
+    kind: similar expression
+    nuance: This emphasizes an actor's internal or external compulsion, focusing on their unavoidable
+      action due to a lack of alternatives. 「を余儀なくさせる」, in contrast, highlights the external force that
+      creates an unavoidable situation for another entity or outcome.
+    grammar_point: ざるを得ない (have no choice but to)
+  - term: ～ことになった
+    meaning: It was decided that; it turned out that; it has come to pass that.
+    kind: similar expression
+    nuance: Indicates an outcome or decision that has been reached, often implying a natural progression,
+      a collective agreement, or a pre-determined course of events. It lacks the strong sense of forceful
+      compulsion or external pressure found in 「を余儀なくさせる」.
+    grammar_point: '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - term: ～しかない
+    meaning: Have no choice but, Only, Just
+    kind: similar expression
+    nuance: This emphasizes the actor's limited options, implying that performing the action is the sole
+      available course. While it conveys a lack of choice, it generally focuses on the actor's perspective
+      rather than the external agent *forcing* the situation, which is the core of 「を余儀なくさせる」.
+    grammar_point: しか〜ない (only, nothing but)
+post_false_friends_writeup: |-
+  The key difference between 「を余儀なくさせる」 and 「を余儀なくされる」 is the perspective. 「を余儀なくさせる」 emphasizes the *cause* that necessitates a certain outcome, while 「を余儀なくされる」 highlights the *recipient* who is compelled to act. Therefore, pay attention to who or what is doing the forcing, and who or what is being forced.
+
+  Other expressions like 「～ざるを得ない」 and 「～しかない」 convey a sense of inevitability or lack of choice from the perspective of the one acting. However, 「を余儀なくさせる」 specifically points to an external factor that makes an action or outcome unavoidable for *someone or something else*. Meanwhile, 「～ことになった」 simply states that an outcome occurred, without the strong nuance of external compulsion.
+examples:
+  - english: The request to refrain from going out forced restaurants to close.
+    japanese:
+      - 外出 自粛 要請 が、飲食 店 の 閉店 を {余儀 なく さ せ た}。
+      - 外出 自粛 要請 は、飲食 店 の 閉店 を {余儀 なく さ せ た}。
+      - 外出 自粛 要請 が、飲食 店 の 閉鎖 を {余儀 なく さ せ た}。
+    english_literally: The request for self-restraint from going out made the closing of eating and drinking
+      establishments unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 外出 自粛 要請 {で}、飲食 店 が 閉店 し た。
+        english: Due to the request to refrain from going out, restaurants closed.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 飲食 店 が、外出 自粛 要請 に より 閉店 を {余儀 なく さ れ た}。
+        english: Restaurants were forced to close by the request to refrain from going out.
+        hint: This focuses on the restaurants being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 飲食 店 は 外出 自粛 要請 に より 閉店 {せ ざる を 得 なかっ た}。
+        english: Restaurants had no choice but to close due to the request to refrain from going out.
+        hint: This emphasizes the restaurants' lack of choice. We're looking for the external force that
+          compelled the action.
+      - competing_japanese:
+          - 外出 自粛 要請 に より、飲食 店 は 閉店 {する こと に なっ た}。
+        english: It turned out that restaurants closed due to the request to refrain from going out.
+        hint: This describes an outcome. We're looking for a strong external force that made the outcome
+          unavoidable.
+      - competing_japanese:
+          - 飲食 店 は 外出 自粛 要請 に より 閉店 {する しか なかっ た}。
+        english: Restaurants could only close due to the request to refrain from going out.
+        hint: This emphasizes the restaurants' limited options. We're looking for the external force that
+          removed alternatives.
+    scene: The government issuing a public health request during a crisis.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: Opposition from local residents forced the cancellation of the shopping mall construction.
+    japanese:
+      - 地元 住民 から の 反対 の 声 が、ショッピング モール の 建設 の 中止 を {余儀 なく さ せ た}。
+      - 地元 住民 の 反対 が、ショッピング モール 建設 の 中止 を {余儀 なく さ せ た}。
+    english_literally: The voices of opposition from local residents made the cancellation of the shopping
+      mall construction unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 地元 住民 から の 反対 {で}、ショッピング モール の 建設 を 中止 し た。
+        english: Due to opposition from local residents, the shopping mall construction was cancelled.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - ショッピング モール の 建設 中止 は、地元 住民 から の 反対 の 声 に より {余儀 なく さ れ た}。
+        english: The cancellation of the shopping mall construction was forced by opposition from local
+          residents.
+        hint: This focuses on the cancellation being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 地元 住民 から の 反対 の 声 に より、ショッピング モール の 建設 を 中止 {せ ざる を 得 なかっ た}。
+        english: They had no choice but to cancel the shopping mall construction due to opposition from
+          local residents.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+      - competing_japanese:
+          - 地元 住民 から の 反対 の 声 に より、ショッピング モール の 建設 が 中止 {する こと に なっ た}。
+        english: It turned out that the shopping mall construction was cancelled due to opposition from
+          local residents.
+        hint: This describes an outcome. We're looking for a strong external force that made the outcome
+          unavoidable.
+    scene: A community meeting discussing a controversial development project.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: The driver's carelessness forced them to be hospitalized.
+    japanese:
+      - 運転 手 の 不 注意 が、入院 を {余儀 なく さ せ た}。
+      - 運転 手 の 不 注意 が、彼 ら の 入院 を {余儀 なく さ せ た}。
+    english_literally: The driver's carelessness made hospitalization unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 運転 手 の 不 注意 で、入院 {する こと に なっ た}。
+        english: Due to the driver's carelessness, it was decided that they would be hospitalized.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 入院 は 運転 手 の 不 注意 に より {余儀 なく さ れ た}。
+        english: Hospitalization was forced by the driver's carelessness.
+        hint: This focuses on hospitalization being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 運転 手 の 不 注意 に より、入院 {せ ざる を 得 なかっ た}。
+        english: They had no choice but to be hospitalized due to the driver's carelessness.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: Reporting on the aftermath of a traffic accident.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+  - english: Global warming forced Santa Claus to relocate from the North Pole.
+    japanese:
+      - 地球 温暖 化 が、サンタ クロース に 北極 点 から 移転 する こと を {余儀 なく さ せ た}。
+      - 地球 温暖 化 が、サンタ を 北極 点 から 移転 {余儀 なく さ せ た} ん だ。
+      - 地球 温暖 化 が、サンタ クロース の 北極 点 から の 移転 を {余儀 なく さ せ た}。
+    english_literally: Global warming made Santa Claus's relocation from the North Pole unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 温暖 化 の {ため}、サンタクロース は 北極 点 から 移転 し た。
+        english: Because of global warming, Santa Claus relocated from the North Pole.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - サンタクロース は 地球 温暖 化 に より 北極 点 から の 移転 を {余儀 なく さ れ た}。
+        english: Santa Claus was forced to relocate from the North Pole by global warming.
+        hint: This focuses on Santa Claus being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 地球 温暖 化 に より、サンタクロース は 北極 点 から 移転 {せ ざる を 得 なかっ た}。
+        english: Santa Claus had no choice but to relocate from the North Pole due to the global warming.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: A lighthearted conversation about the unexpected consequences of climate change.
+    register: casual
+    setting: humorous
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+  - english: The pandemic forced the closure of stores and schools.
+    japanese:
+      - パンデミック は 店 や 学校 の 閉鎖 を {余儀 なく さ せ た}。
+      - パンデミック が、店舗 や 学校 の 閉鎖 を {余儀 なく さ せ た}。
+    english_literally: The pandemic made the closure of stores and schools unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - パンデミック {で} 店 や 学校 を 閉鎖 し た。
+        english: Due to the pandemic, stores and schools closed.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 店 や 学校 の 閉鎖 は パンデミック に より {余儀 なく さ れ た}。
+        english: The closure of stores and schools was forced by the pandemic.
+        hint: This focuses on the closure being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - パンデミック に より、店 や 学校 は 閉鎖 {せ ざる を 得 なかっ た}。
+        english: Stores and schools had no choice but to close due to the pandemic.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: A news report discussing the widespread impact of a global health crisis.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: The major flood forced people to withdraw from the city.
+    japanese:
+      - 大 洪水 は 都市 から の 撤退 を {余儀 なく さ せ た}。
+      - 大 洪水 が、住民 の 都市 から の 撤退 を {余儀 なく さ せ た}。
+    english_literally: The major flood made withdrawal from the city unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 大 洪水 の {せい で} 都市 から 撤退 し た。
+        english: Because of the major flood, they withdrew from the city.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 都市 から の 撤退 は 大 洪水 に より {余儀 なく さ れ た}。
+        english: Withdrawal from the city was forced by the major flood.
+        hint: This focuses on withdrawal being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 大 洪水 に より、人々 は 都市 から 撤退 {せ ざる を 得 なかっ た}。
+        english: People had no choice but to withdraw from the city due to the major flood.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: An emergency broadcast during a natural disaster.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+  - english: The energy crisis of the 1970s forced the government to look for alternative energy sources
+      other than gasoline.
+    japanese:
+      - 70 年 代 の エネルギー 危機 は 政府 に ガソリン 以外 の 代替 エネルギー を 探す こと を {余儀 なく さ せ た}。
+      - 1970 年 代 の エネルギー 危機 が、政府 に ガソリン 以外 の 代替 エネルギー の 探索 を {余儀 なく さ せ た}。
+    english_literally: The energy crisis of the 70s made it unavoidable for the government to look for
+      alternative energy sources other than gasoline.
+    competing_grammar:
+      - competing_japanese:
+          - 70 年 代 の エネルギー 危機 {で} 政府 は ガソリン 以外 の 代替 エネルギー を 探し 始め た。
+        english: Due to the energy crisis of the 70s, the government started looking for alternative energy
+          sources other than gasoline.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 政府 は 70 年 代 の エネルギー 危機 に より ガソリン 以外 の 代替 エネルギー を 探す こと を {余儀 なく さ れ た}。
+        english: The government was forced to look for alternative energy sources other than gasoline
+          by the energy crisis of the 1970s.
+        hint: This focuses on the government being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 70 年 代 の エネルギー 危機 に より、政府 は ガソリン 以外 の 代替 エネルギー を 探す こと を {せ ざる を 得 なかっ た}。
+        english: The government had no choice but to look for alternative energy sources other than gasoline
+          due to the energy crisis of the 1970s.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: A lecture on historical economic events.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: The collapse of the economic bubble forced him to sell his company shares.
+    japanese:
+      - バブル 崩壊 が 彼 に 会社 の 株式 の 売却 を {余儀 なく さ せ た}。
+      - バブル 崩壊 が、彼 の 会社 の 株式 売却 を {余儀 なく さ せ た}。
+    english_literally: The collapse of the economic bubble made the sale of his company shares unavoidable
+      for him.
+    competing_grammar:
+      - competing_japanese:
+          - バブル 崩壊 {で} 彼 は 会社 の 株式 を 売却 し た。
+        english: Due to the collapse of the economic bubble, he sold his company shares.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 彼 は バブル 崩壊 に より 会社 の 株式 の 売却 を {余儀 なく さ れ た}。
+        english: He was forced to sell his company shares by the collapse of the economic bubble.
+        hint: This focuses on him being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - バブル 崩壊 に より、彼 は 会社 の 株式 の 売却 を {せ ざる を 得 なかっ た}。
+        english: He had no choice but to sell his company shares due to the collapse of the economic bubble.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+    scene: Recounting a personal struggle during an economic downturn.
+    register: formal
+    setting: melancholic
+    conjugation: past plain (～た)
+  - english: Severe financial difficulties forced the company to implement large-scale layoffs.
+    japanese:
+      - 深刻 な 財政 難 が、会社 に 大 規模 な リストラ を {余儀 なく さ せ た}。
+      - 深刻 な 財政 難 が、会社 に 大幅 な 人員 削減 を {余儀 なく さ せ た}。
+      - 深刻 な 財政 難 が、会社 に 大 規模 な リストラ の 断行 を {余儀 なく さ せ た}。
+    english_literally: Severe financial difficulties made large-scale layoffs unavoidable for the company.
+    competing_grammar:
+      - competing_japanese:
+          - 深刻 な 財政 難 {で}、会社 は 大 規模 な リストラ を し た。
+        english: Due to severe financial difficulties, the company implemented large-scale layoffs.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - 会社 は 深刻 な 財政 難 に より、大 規模 な リストラ を {余儀 なく さ れ た}。
+        english: The company was forced to implement large-scale layoffs due to severe financial difficulties.
+        hint: This focuses on the company being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 深刻 な 財政 難 に より、会社 は 大 規模 な リストラ を {せ ざる を 得 なかっ た}。
+        english: Due to severe financial difficulties, the company had no choice but to implement large-scale
+          layoffs.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+      - competing_japanese:
+          - 深刻 な 財政 難 に より、会社 は 大 規模 な リストラ を {する こと に なっ た}。
+        english: Due to severe financial difficulties, it was decided that the company would implement
+          large-scale layoffs.
+        hint: This describes an outcome. We're looking for a strong external force that made the outcome
+          unavoidable.
+      - competing_japanese:
+          - 深刻 な 財政 難 に より、会社 は 大 規模 な リストラ を {する しか なかっ た}。
+        english: Due to severe financial difficulties, the company could only implement large-scale layoffs.
+        hint: This emphasizes the company's limited options. We're looking for the external force that
+          removed alternatives.
+    scene: A corporate executive explaining difficult decisions to shareholders.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+  - english: A sudden illness forced the athlete to retire from competition.
+    japanese:
+      - 突然 の 病 が、その 選手 の 引退 を {余儀 なく さ せ た}。
+      - 突然 の 病 が、その 選手 に 競技 から の 引退 を {余儀 なく さ せ た}。
+      - 突然 の 病 が、その 選手 の 競技 生活 から の 引退 を {余儀 なく さ せ た}。
+    english_literally: A sudden illness made the athlete's retirement unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 突然 の 病 {で}、その 選手 は 引退 し た。
+        english: Due to a sudden illness, the athlete retired.
+        hint: This sentence indicates a result or cause simply, but 「を余儀なくさせる」 emphasizes a strong, unavoidable
+          compulsion. We're looking for strong compulsion.
+      - competing_japanese:
+          - その 選手 は 突然 の 病 に より、引退 を {余儀 なく さ れ た}。
+        english: The athlete was forced to retire due to a sudden illness.
+        hint: This focuses on the athlete being forced. We're looking for what *caused* the forcing.
+      - competing_japanese:
+          - 突然 の 病 に より、その 選手 は 引退 {せ ざる を 得 なかっ た}。
+        english: Due to a sudden illness, the athlete had no choice but to retire.
+        hint: This emphasizes the actor's lack of choice. We're looking for the external force that compelled
+          the action.
+      - competing_japanese:
+          - 突然 の 病 に より、その 選手 は 引退 {する こと に なっ た}。
+        english: Due to a sudden illness, it was decided that the athlete would retire.
+        hint: This describes an outcome. We're looking for a strong external force that made the outcome
+          unavoidable.
+      - competing_japanese:
+          - 突然 の 病 に より、その 選手 は 引退 {する しか なかっ た}。
+        english: Due to a sudden illness, the athlete could only retire.
+        hint: This emphasizes the athlete's limited options. We're looking for the external force that
+          removed alternatives.
+    scene: A sports announcer reporting on a significant career change.
+    register: formal
+    setting: melancholic
+    conjugation: past plain (～た)
+post_example_writeup: The examples provided demonstrate how various external factors can act as the subject
+  of 「を余儀なくさせる」, causing an unavoidable outcome or action for the object. This pattern is particularly
+  useful in formal contexts, news reports, and academic discussions where attributing an outcome to a
+  compelling force is necessary. Notice how the subjects are often non-human circumstances or events that
+  exert pressure, leading to an inevitable result.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を余儀なくさせる

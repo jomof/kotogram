@@ -1,0 +1,217 @@
+grammar_point: 〜てもかまわない (it doesn't matter if)
+learn_before:
+  - '[Verb-て]もいい (it''s okay to)'
+meaning: it doesn't matter if; it's fine even if; one doesn't mind if
+pronunciation:
+  katakana: テモ カマワナイ
+  romaji: temo kamawanai
+formation:
+  Verb て-form + もかまわない: Expresses that an action is permissible or that one does not mind if it occurs.
+  い-Adjective stem + くても + かまわない: Indicates that a certain state or quality is acceptable, or one doesn't
+    mind it being that way.
+  な-Adjective stem + でも + かまわない: Conveys that a state or quality represented by the な-adjective is permissible
+    or causes no concern.
+  Noun + でも + かまわない: States that a noun, or an action related to it, is acceptable, or that one has no
+    objection.
+jlpt: N4
+etymology: The phrase combines the concessive particle 「ても」 (even if) with the negative plain form of
+  the verb 「構う (かまう)」. 「構う」 means 'to mind', 'to care', or 'to be concerned about'. Therefore, 「構わない (かまわない)」
+  literally translates to 'I don't mind' or 'I don't care'. When combined as 「〜てもかまわない」, it forms a construction
+  that means 'even if (something happens), I don't mind/care', signifying permissibility or indifference.
+writeup: |-
+  The grammar pattern 「〜てもかまわない」 is used to indicate that a certain action or state is permissible, or that the speaker has no objection to it. It literally translates to "even if (something occurs), I don't mind/care." This phrase is often used when a speaker wants to express their indifference or to give reluctant permission.
+
+  While similar to 「〜てもいい」, which explicitly grants permission, 「〜てもかまわない」 carries a slightly different nuance. 「〜てもいい」 is a more direct way to say "it's okay to do X" or "you may do X." In contrast, 「〜てもかまわない」 implies that the speaker does not have a problem with X happening, rather than actively encouraging or approving it. It suggests a lack of negative consequence or concern on the part of the speaker.
+
+  This pattern can be applied to verbs in the te-form, い-adjectives (in their くても form), な-adjectives (in their でも form), and nouns (in their でも form). It is a versatile expression for conveying acceptance or tolerance in various situations.
+false_friends:
+  - term: 〜てもいい
+    meaning: it's okay to; you may
+    kind: similar expression
+    nuance: 「〜てもいい」 is used to grant explicit permission or state that something is permissible. It carries
+      a more positive and direct connotation of approval, whereas 「〜てもかまわない」 implies mere indifference
+      or absence of objection.
+    grammar_point: <suggest>:〜てもいい (it's okay to)
+  - term: 〜ても大丈夫だ
+    meaning: it's alright even if; it's safe even if
+    kind: similar expression
+    nuance: 「〜ても大丈夫だ」 focuses on safety, well-being, or the absence of problems. It suggests that 'even
+      if X happens, there will be no harm or issue.' While similar to 「〜てもかまわない」 in conveying acceptability,
+      it emphasizes the lack of negative consequences or risks, rather than the speaker's indifference.
+    grammar_point: <suggest>:〜ても大丈夫だ (it's alright even if)
+  - term: 〜てはいけない
+    meaning: must not; must not do
+    kind: antonym
+    nuance: 「〜てはいけない」 expresses a strong prohibition or obligation not to do something. It is the direct
+      opposite of 「〜てもかまわない」, which indicates permissibility or lack of objection.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: While 「〜てもかまわない」, 「〜てもいい」, and 「〜ても大丈夫だ」 can all express permissibility, their
+  nuances differ. Use 「〜てもいい」 when you want to grant explicit permission or state clear approval. Opt
+  for 「〜ても大丈夫だ」 when the focus is on the safety, security, or overall well-being related to an action.
+  Choose 「〜てもかまわない」 when you want to convey that you simply do not object or do not mind, often with a
+  hint of indifference or resignation. For prohibitions, the clear choice is 「〜てはいけない」.
+examples:
+  - english: It's fine even if you leave the door open.
+    japanese:
+      - ドア を {開け て も かまわ ない} です よ。
+      - ドア を {開け て も かまい ませ ん} よ。
+      - ドア を {開け て も かまわ ない} よ。
+    english_literally: As for the door, even if you open it, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を {開け て も いい} です よ。
+        english: You may leave the door open.
+        hint: This phrase explicitly grants permission. We're looking for an expression that suggests
+          indifference or lack of objection, not necessarily encouragement.
+      - competing_japanese:
+          - ドア を {開け て は なら ない} です よ。
+        english: You must not leave the door open.
+        hint: This expresses a prohibition. We're looking for a phrase that allows the action, not forbids
+          it.
+    scene: A roommate asks if it's okay to leave the door open.
+    register: casual
+    setting: friendly
+  - english: It doesn't matter if you're a little late.
+    japanese:
+      - 少し 遅れ て も {かまわ ない} です よ。
+      - 少し 遅れ て も {かまい ませ ん} よ。
+      - 少し 遅れ て も {かまわ ない} よ。
+    english_literally: A little, even if you are late, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 遅れ て も {いい} です よ。
+        english: It's okay if you are a little late.
+        hint: This is a direct statement of 'okayness'. We're looking for a phrase that expresses a lack
+          of concern or objection.
+    scene: A friend is worried about being slightly late for a casual meeting.
+    register: casual
+    setting: friendly
+  - english: If it's cheap, even if it's a little old, I don't mind.
+    japanese:
+      - 安けれ ば 少し 古く て も {かまわ ない} です。
+      - 安けれ ば 少し 古く て も {かまい ませ ん}。
+      - 安けれ ば 少し 古く て も {かまわ ない}。
+    english_literally: If it's cheap, even if it's a little old, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - 安けれ ば 少し 古く て も {大丈夫} です。
+        english: If it's cheap, even if it's a little old, it's alright.
+        hint: This emphasizes that there's no problem or issue with it. We're looking for an expression
+          of indifference or acceptance.
+    scene: Someone is looking for a used car and prioritizes price over age.
+    register: casual
+    setting: informative
+  - english: Even if it's just coffee, I don't mind.
+    japanese:
+      - コーヒー {だけ で も かまわ ない} です よ。
+      - コーヒー {だけ で も かまい ませ ん} よ。
+      - コーヒー {だけ で も かまわ ない} よ。
+    english_literally: Even if it's only coffee, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー {だけ で も いい} です よ。
+        english: Just coffee is fine.
+        hint: This indicates that coffee is an acceptable option. We're looking for a phrase that shows
+          a lack of preference for anything more.
+    scene: A guest is offered various drinks but states a simple preference.
+    register: casual
+    setting: friendly
+  - english: Even if the presentation is simple, it doesn't matter for the content.
+    japanese:
+      - 発表 は シンプル {で も かまわ ない} です、内容 が 大切 です から。
+      - 発表 は シンプル {で も かまい ませ ん}、内容 が 大切 です から。
+      - 発表 は シンプル {で も かまわ ない}、内容 が 大切 です から。
+    english_literally: As for the presentation, even if it's simple, I don't mind; because the content
+      is important.
+    competing_grammar:
+      - competing_japanese:
+          - 発表 は シンプル {で も いい} です、内容 が 大切 です から。
+        english: It's okay if the presentation is simple, because the content is important.
+        hint: This explicitly states that a simple presentation is acceptable. We're looking for a phrase
+          that implies it's not a concern, given the importance of the content.
+    scene: A professor is advising students on a project presentation.
+    register: formal
+    setting: academic
+  - english: If you don't eat meat, it's perfectly fine.
+    japanese:
+      - 肉 を 食べ なく て も {かまわ ない} です よ。
+      - 肉 を 食べ なく て も {かまい ませ ん} よ。
+      - 肉 を 食べ なく て も {かまわ ない} よ。
+    english_literally: Even if you don't eat meat, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - 肉 を 食べ なく て も {いい} です よ。
+        english: It's okay if you don't eat meat.
+        hint: This grants permission not to eat meat. We're looking for a phrase that expresses indifference
+          to the choice.
+    scene: A host is accommodating a guest's dietary preferences.
+    register: casual
+    setting: friendly
+  - english: Even if it's a little expensive, I don't mind, as long as it's good quality.
+    japanese:
+      - 少し 高く て も {かまわ ない}、質 が 良けれ ば。
+      - 少し 高く て も {かまい ませ ん}、質 が 良けれ ば。
+    english_literally: A little, even if it's expensive, I don't mind, if the quality is good.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 高く て も {大丈夫}、質 が 良けれ ば。
+        english: Even if it's a little expensive, it's alright, if the quality is good.
+        hint: This suggests that the cost isn't an issue if the quality is there. We're looking for a
+          phrase that expresses a lack of objection to the price.
+    scene: A customer is shopping and discussing priorities.
+    register: casual
+    setting: informative
+  - english: You can say whatever you want; I don't care.
+    japanese:
+      - 何 を 言っ て も {かまわ ない} よ。
+      - 何 を 言っ て も {かまい ませ ん} よ。
+    english_literally: Whatever you say, I don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - 何 を 言っ て も {いい} よ。
+        english: You can say whatever you want.
+        hint: This explicitly allows freedom of speech. We're looking for a phrase that conveys the speaker's
+          indifference to what is said.
+    scene: Someone is being dismissive of another's opinions.
+    register: casual
+    setting: serious
+    nuance: The use of 「何 を 言ってもかまわない」 implies a strong sense of indifference or even defiance from the
+      speaker. The casual 「よ」 at the end further emphasizes this personal lack of concern, suggesting
+      that the speaker will not be affected by what is said.
+  - english: Even if it's a little troublesome, I don't mind doing it for you.
+    japanese:
+      - 少し 面倒 {で も かまわ ない} の で、手伝い ます よ。
+      - 少し 面倒 {で も かまい ませ ん} の で、手伝い ます よ。
+      - 少し 面倒 {で も かまわ ない} の で、手伝う よ。
+    english_literally: A little, even if it's troublesome, I don't mind, so I will help you.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 面倒 {で も いい} の で、手伝い ます よ。
+        english: It's okay if it's a little troublesome, so I will help you.
+        hint: This implies acceptance of the trouble. We're looking for a phrase that expresses that the
+          speaker doesn't mind the inconvenience for the sake of helping.
+    scene: A person offers help, acknowledging potential difficulty.
+    register: semi-formal
+    setting: supportive
+  - english: Even if it's just a rough sketch, it doesn't matter for now.
+    japanese:
+      - ラフ スケッチ {だけ で も かまわ ない} から、一 度 見せ て ください。
+      - ラフ スケッチ {だけ で も かまい ませ ん} から、一 度 見せ て ください。
+      - ラフ スケッチ {だけ で も かまわ ない} から、一 度 見せ て。
+    english_literally: Because even a rough sketch is fine, please show me once.
+    competing_grammar:
+      - competing_japanese:
+          - ラフ スケッチ {だけ で も いい} から、一 度 見せ て ください。
+        english: Just a rough sketch is fine, so please show me once.
+        hint: This indicates that a rough sketch is an acceptable submission. We're looking for a phrase
+          that suggests a lack of strict requirement or concern about completeness at this stage.
+    scene: A supervisor requests to see preliminary work from a subordinate.
+    register: formal
+    setting: professional
+post_example_writeup: When using 「〜てもかまわない」, pay close attention to the context to convey the intended
+  nuance of indifference or reluctant acceptance. While grammatically similar to 「〜てもいい」, its subtle difference
+  in meaning can significantly impact how your message is received. It is particularly useful when you
+  want to signal that something is acceptable, but perhaps not ideal, or simply that you have no strong
+  feelings against it.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てもかまわない

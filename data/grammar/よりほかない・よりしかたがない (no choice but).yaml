@@ -1,0 +1,230 @@
+grammar_point: よりほかない・よりしかたがない (no choice but)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - ほかに ほかには (other besides)
+  - より (comparative)
+meaning: Have no choice but to do; must do; there is no other option than to do.
+pronunciation:
+  katakana: ヨリホカナイ
+  romaji: yori hoka nai
+  pronunciation_warning: This grammar point also commonly appears as「よりしかたがない (yori shikata ga nai)」.
+formation:
+  Verb (plain form) + よりほかない / よりしかたがない: Used when the only available action is the specified verb.
+  Noun + である + よりほかない / よりしかたがない: Used when the only available state or condition is the specified noun.
+  い-Adjective (plain form) + よりほかない / よりしかたがない: Used when the only available state or quality is the specified
+    i-adjective.
+  な-Adjective (plain form) + である + よりほかない / よりしかたがない: Used when the only available state or quality is
+    the specified na-adjective.
+jlpt: N2
+etymology: The phrase combines 「より」 (yori - a particle indicating a starting point, comparison, or 'than'),
+  「ほか」 (hoka - meaning 'other' or 'else'), and 「ない」 (nai - meaning 'there isn't' or 'not'). Thus, it literally
+  means 'there is nothing other than (doing X)'. The variation 「よりしかたがない」uses 「しかた」 (shikata - 'way, method')
+  which also means 'there is no other way/method'. Both emphasize the absence of alternatives.
+writeup: |-
+  The grammar pattern 「よりほかない」 (yori hoka nai) or 「よりしかたがない」 (yori shikata ga nai) is used to express that there is **no other option or course of action available** except for what is stated. It often carries a nuance of **resignation**, **inevitability**, or a **lack of alternatives**. This makes it a stronger expression than 「しかない」 (shika nai), which simply states a limitation or 'only'.
+
+  When using 「よりほかない」 or 「よりしかたがない」, you are conveying that the given action is the **only feasible or permissible path**, even if it's not the ideal one. It implies that circumstances have forced this particular choice upon the speaker or subject.
+
+  **Common Usage:**
+
+  *   **Unavoidable Action:** When an action simply must be taken because all other avenues are closed.
+  *   **Resignation:** When accepting a difficult or less-than-ideal situation because there's no way to avoid it.
+  *   **Implied Necessity:** While not a direct command, it often suggests that something is necessary due to the absence of other choices.
+
+  It attaches to the plain form of verbs, nouns (with である), and adjectives (with である for な-adjectives, or directly for い-adjectives). The nuance often leans towards a slightly formal or serious tone, making it suitable for explaining difficult decisions or unavoidable situations.
+false_friends:
+  - term: しかない
+    meaning: only; no other option; nothing but
+    kind: similar expression
+    nuance: 「しかない」is a milder expression meaning 'only' or 'nothing but'. It implies a limitation but
+      doesn't necessarily carry the strong sense of resignation or inevitability that 「よりほかない」does. It
+      can be used in more neutral or positive contexts, simply stating that something is the only option
+      without implying it's a difficult or forced one.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: なければならない
+    meaning: must do; have to do; is necessary to do
+    kind: similar expression
+    nuance: 「なければならない」 expresses a direct obligation or necessity to perform an action. While it also
+      implies 'must', it focuses on the requirement itself, whereas 「よりほかない」 focuses on the lack of alternatives
+      leading to that 'must'. 「よりほかない」 suggests the absence of other paths, while 「なければならない」 emphasizes
+      a rule or duty.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: ざるを得ない
+    meaning: cannot help but do; have no choice but to
+    kind: similar expression
+    nuance: 「ざるを得ない」 is very close in meaning and nuance to 「よりほかない」, also indicating an unavoidable action
+      or situation. However, 「ざるを得ない」 often carries a stronger sense of being *forced* to do something,
+      especially something undesirable or against one's will. 「よりほかない」 can be a bit more neutral, simply
+      stating the lack of other options without as strong an emphasis on the 'unwillingness' of the subject.
+    grammar_point: ざるを得ない (have no choice but to)
+post_false_friends_writeup: While all these expressions convey a sense of necessity or lack of choice,
+  the subtle differences lie in the degree of inevitability, the presence of resignation, and the directness
+  of the obligation. 「よりほかない」 emphasizes that literally 'there is no other way' given the circumstances,
+  often with a feeling of accepting that one must endure the situation.
+examples:
+  - english: Due to the storm, we have no choice but to cancel the event.
+    japanese:
+      - 嵐 の ため、イベント を {中止 する より ほか ない}。
+      - 嵐 の ため、イベント を {中止 する より しかた が ない}。
+    english_literally: Due to storm, event to cancel there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 嵐 の ため、イベント を 中止 する しか ない。
+        english: Due to the storm, we can only cancel the event.
+        hint: While 'しかない' also means 'no other option', 'よりほかない' emphasizes the strong inevitability
+          and lack of any alternative, often with a slightly more formal or resigned tone. We're looking
+          for a strong sense of inevitability here.
+      - competing_japanese:
+          - 嵐 の ため、イベント を 中止 し なけれ ば なら ない。
+        english: Due to the storm, we must cancel the event.
+        hint: 「なければならない」expresses a direct obligation or necessity. While cancelling is necessary, this
+          grammar point emphasizes that there literally is no other alternative because of the storm,
+          rather than just a rule or duty. We're looking for an expression that highlights the absence
+          of alternatives.
+    scene: A severe storm hits, making it impossible to proceed with an outdoor event.
+    register: formal
+    setting: serious
+  - english: If the business goes bankrupt, he will have no choice but to declare personal bankruptcy.
+    japanese:
+      - 会社 が 倒産 すれ ば、彼 は 自己 破産 {する より ほか ない}。
+      - 会社 が 倒産 すれ ば、彼 は 自己 破産 {する より しかた が ない}。
+    english_literally: Company if bankrupt, he personal bankruptcy do there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 が 倒産 すれ ば、彼 は 自己 破産 する しか ない。
+        english: If the business goes bankrupt, he can only declare personal bankruptcy.
+        hint: 「よりほかない」conveys a stronger sense of being forced into a situation because all other avenues
+          are closed, often with a feeling of resignation. 'しかない' is less intense. We're looking for a
+          strong sense of inevitability in a serious situation.
+    scene: A financial advisor discusses the grim prospects for a failing company and its owner.
+    register: formal
+    setting: professional
+  - english: If you want to achieve your dream, you have no choice but to work hard every day.
+    japanese:
+      - 夢 を 叶える に は、毎日 努力 {する より ほか ない}。
+      - 夢 を 叶える に は、毎日 努力 {する より しかた が ない}。
+    english_literally: Dream to fulfill, every day effort do there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 夢 を 叶える に は、毎日 努力 し なけれ ば なら ない。
+        english: If you want to achieve your dream, you must work hard every day.
+        hint: While working hard is a 'must', this grammar point emphasizes that there is simply no other
+          method or alternative path to achieve the dream, highlighting the exclusivity of this effort
+          as the means. We're looking for the idea that hard work is the *only* way.
+    scene: A seasoned mentor offers advice to a young, aspiring artist.
+    register: semi-formal
+    setting: inspirational
+  - english: Since the train has stopped, we have no choice but to wait for the next announcement.
+    japanese:
+      - 電車 が 止まっ て しまっ た の で、次 の アナウンス を {待つ より ほか ない}。
+      - 電車 が 止まっ て しまっ た の で、次 の アナウンス を {待つ より しかた が ない}。
+    english_literally: Train has stopped since, next announcement to wait there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 止まっ て しまっ た の で、次 の アナウンス を 待つ しか ない。
+        english: Since the train has stopped, we can only wait for the next announcement.
+        hint: In this context, this grammar point implies that waiting is the *sole* action possible,
+          emphasizing the complete lack of alternatives due to the unforeseen circumstance. 'しかない' is
+          a bit softer. We're looking for an expression that highlights the complete absence of alternatives.
+    scene: Passengers are stranded on a stopped train due to a signal problem.
+    register: formal
+    setting: serious
+  - english: Given the current situation, we have no choice but to accept the conditions.
+    japanese:
+      - 現状 を 考える と、その 条件 を {受け入れる より ほか ない}。
+      - 現状 を 考える と、その 条件 を {受け入れる より しかた が ない}。
+    english_literally: Current situation considering, that conditions to accept there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 現状 を 考える と、その 条件 を 受け入れ ざる を 得 ない。
+        english: Given the current situation, we cannot help but accept those conditions.
+        hint: Both are very similar. 「ざるを得ない」 often implies a stronger sense of being *forced* into an
+          undesirable action. This grammar point can be slightly more neutral, simply stating the absence
+          of alternatives without as much emphasis on unwilling acceptance. We're looking for an expression
+          that highlights the sheer lack of alternatives.
+    scene: Negotiators facing unfavorable terms realize they have no leverage.
+    register: formal
+    setting: negotiating
+  - english: With no money left, I have no choice but to walk home.
+    japanese:
+      - お 金 が なくなっ て しまっ た の で、家 まで {歩く より ほか ない}。
+      - お 金 が なくなっ て しまっ た の で、家 まで {歩く より しかた が ない}。
+    english_literally: Money having run out, home until walk there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が なくなっ て しまっ た の で、家 まで 歩く しか ない。
+        english: With no money left, I can only walk home.
+        hint: This grammar point emphasizes that walking is the *only* remaining option, highlighting
+          the complete absence of other means of transportation. 'しかない' is acceptable but less emphatic
+          on the absolute lack of choice. We're looking for the sense of absolute inevitability.
+    scene: A student finds herself without money after an unexpected expense.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+  - english: If you don't understand, you have no choice but to ask the teacher again.
+    japanese:
+      - 分から なけれ ば、先生 に {聞く より ほか ない}。
+      - 分から なけれ ば、先生 に {聞く より しかた が ない}。
+    english_literally: If not understand, teacher to ask there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なけれ ば、先生 に 聞か なけれ ば なら ない。
+        english: If you don't understand, you must ask the teacher.
+        hint: While asking the teacher is necessary, this grammar point highlights that it is the *only*
+          way to resolve the lack of understanding, emphasizing the absence of other self-help options.
+          We're looking for the idea that there is no other path to understanding.
+    scene: A friend advises another who is struggling with homework.
+    register: casual
+    setting: informative
+  - english: The deadline is tomorrow, so we have no choice but to pull an all-nighter.
+    japanese:
+      - 締め切り は 明日 な の で、徹夜 {する より ほか ない}。
+      - 締め切り は 明日 な の で、徹夜 {する より しかた が ない}。
+    english_literally: Deadline is tomorrow since, all-nighter do there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り は 明日 な の で、徹夜 する しか ない。
+        english: The deadline is tomorrow, so we can only pull an all-nighter.
+        hint: This grammar point conveys a stronger sense of being forced into this action due to the
+          strict deadline, implying that there isn't any other method to complete the task on time. We're
+          looking for an expression that conveys the absolute necessity due to lack of other options.
+    scene: Two colleagues face an urgent project deadline.
+    register: casual
+    setting: serious
+  - english: As the situation deteriorated, he had no choice but to abandon the plan.
+    japanese:
+      - 状況 が 悪化 し た ため、計画 を {諦める より ほか なかっ た}。
+      - 状況 が 悪化 し た ため、計画 を {諦める より しかた が なかっ た}。
+    english_literally: Situation deteriorated because, plan to abandon there was no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 が 悪化 し た ため、計画 を 諦める しか なかっ た。
+        english: As the situation deteriorated, he could only abandon the plan.
+        hint: The past tense of this grammar point ('よりほかなかった') strongly conveys that abandoning the plan
+          was the *sole* remaining option due to the worsening situation, emphasizing the unfortunate
+          inevitability. We're looking for a strong sense of a forced, sole choice in the past.
+    scene: A commander making a difficult decision in a losing battle.
+    register: formal
+    setting: serious
+    speaker_gender: male
+  - english: If we want to finish this within the budget, we have no choice but to cut costs drastically.
+    japanese:
+      - 予算 内 で 終わら せる に は、コスト を 大幅 に 削減 {する より ほか ない}。
+      - 予算 内 で 終わら せる に は、コスト を 大幅 に 削減 {する より しかた が ない}。
+    english_literally: Budget within to finish, cost to greatly reduce there is no other way.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 内 で 終わら せる に は、コスト を 大幅 に 削減 し なけれ ば なら ない。
+        english: If we want to finish this within the budget, we must cut costs drastically.
+        hint: This phrase conveys that drastic cost-cutting is the *only* viable strategy to stay within
+          budget, implying that no other methods would suffice. 「しなければならない」is a general obligation, but
+          this grammar point emphasizes the lack of alternatives. We're looking for the idea that there
+          is no other choice to meet the budget.
+    scene: A project manager explains the financial constraints to their team.
+    register: formal
+    setting: informative
+post_example_writeup: As illustrated by the examples, 「よりほかない・よりしかたがない」 is a powerful way to express the
+  complete absence of alternatives, often implying a sense of resignation or unfortunate necessity. It
+  highlights that the stated action is the only one left given the circumstances.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/よりほかない・よりしかたがない

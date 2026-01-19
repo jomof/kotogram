@@ -1,0 +1,221 @@
+grammar_point: な-Adjective[み] (abstract quality)
+matcher: |-
+  ⌈~⌉⌈ˢみᵖsuff:noun_likeᵇみᵈ味ʳミ⌉
+learn_before:
+  - Verb[て] (and then)
+  - つつある (gradual process)
+  - 何[Counter]も (many of something)
+meaning: inherent abstract quality or intrinsic feel
+pronunciation:
+  katakana: ミ
+  romaji: mi
+formation:
+  な-Adjective Stem + み: Forms a noun indicating the abstract quality, inherent characteristic, or perceived
+    state described by the adjective.
+jlpt: N2
+etymology: The nominalizing suffix 「み」 has roots in classical Japanese, where it was used to derive nouns
+  from adjectives. It is conceptually linked to the notion of 'fruit' or 'content' (実・み), suggesting the
+  'substance' or 'essence' of the adjective. This connection gives it a nuance of inherent quality or
+  a tangible, often perceivable, aspect of a state, distinguishing it from 「さ」 which focuses more on a
+  subjective degree or a general abstract concept.
+writeup: |-
+  The suffix 「み」 is attached to the stem of certain な-adjectives to transform them into nouns. This nominalization allows you to refer to the abstract quality or inherent state described by the adjective. While 「み」 is very commonly used with many い-adjectives to denote sensory qualities or inherent characteristics (e.g., 甘み 'sweetness', 悲しみ 'sadness', 温かみ 'warmth'), its application to な-adjectives is considerably more limited and often restricted to specific words.
+
+  When 「み」 is used with な-adjectives, it typically emphasizes a perceived or inherent 'feel' or 'quality' of something, often with a nuance of depth, substance, or subtle presence. For instance, 「和やかな」(nagoyaka na, peaceful/gentle) forms 「和やかみ」(nagoyakami, peacefulness/gentleness), suggesting an intrinsic quality of peace rather than just a state of being peaceful. Another example is 「新鮮な」(shinsen na, fresh/novel) forming 「新鮮み」(shinsenmi), which implies a sense of inherent freshness or originality, especially when referring to ideas or approaches.
+
+  It is crucial to understand that not all な-adjectives can take 「み」. Its usage is somewhat idiomatic and restricted to certain words. In most cases, 「さ」 is the more general and widely applicable nominalizer for な-adjectives (e.g., 静かさ 'quietness', 丁寧さ 'politeness'). The choice between 「み」 and 「さ」 depends on whether you want to emphasize a measurable degree or a more inherent, often sensory or subtle, quality.
+false_friends:
+  - term: さ
+    meaning: nominalizer (degree or abstract quality)
+    kind: similar expression
+    nuance: 「さ」 is a highly versatile nominalizer for both い-adjectives and な-adjectives, generally indicating
+      a measurable degree or a general abstract concept. In contrast, 「み」, particularly with な-adjectives,
+      implies an inherent, often more tangible or perceivable, quality. For example, while you can say
+      「静かさ」 (shizukasa, quietness) for the degree of quietness, 「静かみ」 (shizukami, inherent stillness)
+      would refer to a deeper, intrinsic quality of tranquility, though it is far less common.
+    grammar_point: さ (nominalizer)
+post_false_friends_writeup: While both 「み」 and 「さ」 are nominalizing suffixes, their nuances and commonality
+  differ significantly, especially with な-adjectives. 「さ」 is broadly applicable to indicate a degree or
+  a general abstract noun (e.g., 「大切さ」 'importance', 「複雑さ」 'complexity'). 「み」, however, is much more restricted
+  and tends to be used to form nouns that represent an inherent, often sensory or subtly perceived, quality
+  or 'essence' of the adjective. For example, 「確かさ」 refers to the measurable certainty, while 「確かみ」 implies
+  the inherent reliability or authenticity. When in doubt, 「さ」 is generally the safer and more common
+  choice for nominalizing な-adjectives, as 「み」 is reserved for specific, often nuanced, applications.
+examples:
+  - english: Her new proposal had a unique freshness to it, unlike anything we'd seen before.
+    japanese:
+      - 彼女 の 新しい 提案 に は、これ まで 見 た こと の ない {新鮮 み} が あっ た。
+      - 彼女 の 新しい 提案 に は、これ まで 見 た こと の ない {新鮮 み} が あり まし た。
+    english_literally: Her new proposal to, until now seen thing not (existing) freshness had.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 新しい 提案 に は、これ まで 見 た こと の ない 新鮮 さ が あっ た。
+        english: Her new proposal had a unique freshness to it, unlike anything we'd seen before.
+        hint: While 「新鮮さ」 indicates the general state of being fresh, the target grammar point focuses
+          on the inherent quality of novelty or originality, often used for ideas or approaches.
+    scene: A team meeting where a new, innovative idea is presented.
+    register: semi-formal
+    setting: informative
+    nuance: 「新鮮み」 is used here to describe the quality of being fresh and new, particularly implying originality
+      or novelty in a conceptual sense. It highlights the intrinsic newness of the idea.
+  - english: I checked the data multiple times to ensure its reliability.
+    japanese:
+      - その データ の {確か み} を 確保 する ため、何 度 も 確認 し た。
+      - その データ の {確か み} を 確保 する ため、何 度 も 確認 し まし た。
+    english_literally: That data's certainty to ensure for, many times checked.
+    competing_grammar:
+      - competing_japanese:
+          - その データ の 確か さ を 確保 する ため、何 度 も 確認 し た。
+        english: I checked the data multiple times to ensure its certainty.
+        hint: 「確かさ」 refers to the measurable certainty or accuracy. The target grammar point, 「確かみ」, emphasizes
+          the inherent reliability and trustworthiness of the data.
+    scene: A researcher meticulously verifying the integrity of their findings.
+    register: formal
+    setting: serious
+    nuance: 「確かみ」 implies the inherent certainty or verifiable reliability of information or data. It
+      conveys a sense of something being solid and dependable, as opposed to merely being 'certain' in
+      a general sense.
+  - english: His detailed consideration for others showed a true warmth of spirit.
+    japanese:
+      - 彼 の 細やか な 気遣い に は、本当 の 心 の {細やか み} が 感じ られ た。
+      - 彼 の 細やか な 気遣い に は、本当 の 心 の {細やか み} が 感じ られ まし た。
+    english_literally: His detailed consideration in, true heart's thoughtfulness was felt.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 細やか な 気遣い に は、本当 の 心 の 細やか さ が 感じ られ た。
+        english: His detailed consideration for others showed a true thoughtfulness of spirit.
+        hint: While 「細やかさ」 denotes the general quality of thoughtfulness, the target grammar point 「細やかみ」
+          emphasizes the inherent, subtle warmth and delicate care.
+    scene: Observing someone's kind and considerate actions in a casual setting.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: 「細やかみ」 refers to the inherent quality of being thoughtful and warm, often felt in subtle gestures
+      or attentive care. It suggests an intrinsic kindness rather than just the degree of thoughtfulness.
+      The use of 「彼」 (kare) for 'his' confirms a male speaker or observation.
+  - english: After the war, there was a palpable sense of peace returning to the town.
+    japanese:
+      - 戦争 の 後、町 に {平和 み} が 戻り つつ ある の を 感じ た。
+      - 戦争 の 後、町 に {平和 み} が 戻り つつ ある の を 感じ まし た。
+    english_literally: War's after, town to peacefulness returning little by little was felt.
+    competing_grammar:
+      - competing_japanese:
+          - 戦争 の 後、町 に 平和 さ が 戻り つつ ある の を 感じ た。
+        english: After the war, there was a sense of peacefulness returning to the town.
+        hint: 「平和さ」 indicates the state or degree of peace. The target grammar point 「平和み」 (less common)
+          emphasizes a deeper, inherent quality or feeling of peacefulness.
+    scene: A quiet reflection on post-conflict recovery and the slow return of normalcy.
+    register: formal
+    setting: reflective
+    nuance: 「平和み」 (less common than 「平和さ」) suggests the inherent quality or feeling of peacefulness returning
+      to a place, conveying a deeper, almost tangible sense of tranquility beyond merely being 'peaceful'.
+  - english: The painter captured the vibrant colors of the landscape with a unique vividness.
+    japanese:
+      - 画家 は 風景 の 鮮やか な 色 を、独特 の {鮮やか み} で 捉え た。
+      - 画家 は 風景 の 鮮やか な 色 を、独特 の {鮮やか み} で 捉え まし た。
+    english_literally: Painter the landscape's vivid colors, unique vividness with captured.
+    competing_grammar:
+      - competing_japanese:
+          - 画家 は 風景 の 鮮やか な 色 を、独特 の 鮮やか さ で 捉え た。
+        english: The painter captured the vibrant colors of the landscape with a unique vividness.
+        hint: 「鮮やかさ」 refers to the general brightness or vividness. The target grammar point 「鮮やかみ」 highlights
+          the inherent brilliance and depth of the colors.
+    scene: An art critic admiring a painting, focusing on the artist's use of color.
+    register: casual
+    setting: creative
+    nuance: 「鮮やかみ」 (less common than 「鮮やかさ」) highlights the inherent brilliance and vibrancy of colors,
+      suggesting a depth or richness that goes beyond mere brightness. It emphasizes the felt quality
+      of vividness in the artwork.
+  - english: The elderly couple's smiles exuded a profound calmness and peacefulness.
+    japanese:
+      - その 老 夫婦 の 笑顔 に は、深い {穏やか み} が 宿っ て い た。
+      - その 老 夫婦 の 笑顔 に は、深い {穏やか み} が 宿っ て い まし た。
+    english_literally: That elderly couple's smiles in, deep peacefulness resided.
+    competing_grammar:
+      - competing_japanese:
+          - その 老 夫婦 の 笑顔 に は、深い 穏やか さ が 宿っ て い た。
+        english: The elderly couple's smiles exuded a profound calmness and peacefulness.
+        hint: 「穏やかさ」 describes the degree or state of calmness. The target grammar point 「穏やかみ」 conveys
+          a deeper, inherent quality of serenity.
+    scene: Observing an elderly couple with gentle demeanor.
+    register: semi-formal
+    setting: sympathetic
+    nuance: 「穏やかみ」 (less common than 「穏やかさ」) conveys the inherent, deeply felt quality of calmness and
+      serenity, often associated with a person's demeanor or spirit. It suggests an intrinsic, profound
+      tranquility.
+  - english: The evidence clearly showed the truth, leaving no doubt as to its undeniable obviousness.
+    japanese:
+      - その 証拠 は 真実 を 明らか に 示し、{明らか み} を 否定 する 余地 は なかっ た。
+      - その 証拠 は 真実 を 明らか に 示し、{明らか み} を 否定 する 余地 は あり ませ ん でし た。
+    english_literally: That evidence the truth clearly showed, obviousness to deny room no existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 証拠 は 真実 を 明らか に 示し、明らか さ を 否定 する 余地 は なかっ た。
+        english: The evidence clearly showed the truth, leaving no doubt as to its obviousness.
+        hint: 「明らかさ」 describes the general state of being clear or obvious. The target grammar point 「明らかみ」
+          refers to the inherent, undeniable clarity or self-evident nature of the truth.
+    scene: A legal expert presenting irrefutable evidence in court.
+    register: bijinesu nihongo (business)
+    setting: serious
+    nuance: 「明らかみ」 (less common than 「明らかさ」) refers to the inherent clarity or undeniable obviousness
+      of a fact or truth, emphasizing its self-evident and self-contained nature. It suggests a truth
+      that is inherently clear, rather than simply 'clear' in a descriptive sense.
+  - english: The intricate design of the clockwork had a subtle complexity that was hard to grasp at first
+      glance.
+    japanese:
+      - 時計 の 複雑 な 設計 に は、一見 掴み にくい {複雑 み} が あっ た。
+      - 時計 の 複雑 な 設計 に は、一見 掴み にくい {複雑 み} が あり まし た。
+    english_literally: Clock's complex design in, at first glance difficult to grasp complexity existed.
+    competing_grammar:
+      - competing_japanese:
+          - 時計 の 複雑 な 設計 に は、一見 掴み にくい 複雑 さ が あっ た。
+        english: The intricate design of the clockwork had a subtle complexity that was hard to grasp
+          at first glance.
+        hint: 「複雑さ」 indicates the general degree of complexity. The target grammar point 「複雑み」 (less common)
+          implies a subtle, inherent quality of intricacy or depth that makes something complex.
+    scene: An engineer examining a sophisticated mechanical device.
+    register: formal
+    setting: technical
+    nuance: While 「複雑さ」 (fukuzatsusa) refers to the degree of complexity, 「複雑み」 (fukuzatsumi), though
+      less common, implies an inherent, perhaps subtle, quality of intricacy or depth that makes something
+      complex, suggesting a deeper aspect beyond mere complication.
+  - english: The atmosphere of the teahouse had a profound gentleness that calmed everyone.
+    japanese:
+      - その 喫茶 店 の 雰囲気 に は、皆 を 落ち着か せる 深い {和やか み} が あっ た。
+      - その 喫茶 店 の 雰囲気 に は、皆 を 落ち着か せる 深い {和やか み} が あり まし た。
+    english_literally: That teahouse's atmosphere to, everyone to calm deep gentleness existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 喫茶 店 の 雰囲気 に は、皆 を 落ち着か せる 深い 和やか さ が あっ た。
+        english: The atmosphere of the teahouse had a profound peacefulness that calmed everyone.
+        hint: While 「和やかさ」 describes the general state of peacefulness, the target grammar point emphasizes
+          the inherent, pervasive feeling of gentleness in the atmosphere.
+    scene: A quiet reflection on the calming ambiance of a traditional teahouse.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    nuance: 「和やかみ」 (nagoyakami) suggests a deep, inherent sense of gentleness and peacefulness, often
+      associated with an environment's calming effect. The female speaker uses a more reflective tone.
+  - english: Her singing had a pure quality that touched everyone's heart.
+    japanese:
+      - 彼女 の 歌声 に は、皆 の 心 を 打つ {清らか み} が あっ た。
+      - 彼女 の 歌声 に は、皆 の 心 を 打つ {清らか み} が あり まし た。
+    english_literally: Her singing voice to, everyone's heart to strike pureness existed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 歌声 に は、皆 の 心 を 打つ 清らか さ が あっ た。
+        english: Her singing had a pureness that touched everyone's heart.
+        hint: 「清らかさ」 refers to the general state of purity. The target grammar point, 「清らかみ」, emphasizes
+          an inherent, spiritual or intrinsic purity in her singing.
+    scene: A male music critic commenting on a singer's performance.
+    register: casual
+    setting: creative
+    speaker_gender: male
+    nuance: 「清らかみ」 (kiyorakami) implies an inherent, almost spiritual purity in the singing, suggesting
+      a quality that transcends mere cleanness. The male speaker expresses a subjective appreciation.
+post_example_writeup: As illustrated by these examples, the use of 「み」 with な-adjectives is quite specific
+  and often conveys a nuance of inherent quality or a tangible 'feel' that is distinct from the more general
+  nominalizer 「さ」. While some of these constructions might be less common in everyday conversation, they
+  highlight the subtle expressiveness available in Japanese to articulate abstract qualities.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-Adjective[み]-(abstract-quality)

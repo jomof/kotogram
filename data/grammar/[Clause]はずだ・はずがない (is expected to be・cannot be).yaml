@@ -1,0 +1,964 @@
+grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Noun]をください (please give me)'
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - 〜如し・〜ごとし (like・as if)
+  - あそこ (over there)
+  - い (friendly particle)
+  - い-Adjective[み] (abstract quality)
+  - ですから (therefore)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - もうすぐ (very soon・almost there)
+  - もので・ものだから (because・as an excuse)
+  - わ (feminine sentence-ending particle)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: is expected to be・cannot be logically
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: はずだ
+    rarity: common
+    meaning: Is expected to be
+  - conjugation-type: non-past polite (～ます)
+    form: はずです
+    rarity: common
+    meaning: Is expected to be (polite)
+  - conjugation-type: negative plain (～ない)
+    form: はずではない
+    rarity: common
+    meaning: Is not expected to be
+  - conjugation-type: negative plain (～ない)
+    form: はずじゃない
+    rarity: common
+    meaning: Is not expected to be (casual)
+  - conjugation-type: negative non-past polite (～ません)
+    form: はずではありません
+    rarity: common
+    meaning: Is not expected to be (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: はずじゃありません
+    rarity: common
+    meaning: Is not expected to be (polite, casual)
+  - conjugation-type: past plain (～た)
+    form: はずだった
+    rarity: common
+    meaning: Was expected to be
+  - conjugation-type: past polite (～ました)
+    form: はずでした
+    rarity: common
+    meaning: Was expected to be (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: はずではなかった
+    rarity: common
+    meaning: Was not expected to be
+  - conjugation-type: negative past plain (～なかった)
+    form: はずじゃなかった
+    rarity: common
+    meaning: Was not expected to be (casual)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: はずではありませんでした
+    rarity: common
+    meaning: Was not expected to be (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: はずじゃありませんでした
+    rarity: common
+    meaning: Was not expected to be (polite, casual)
+  - conjugation-type: dictionary (plain non-past)
+    form: はず
+    rarity: common
+    meaning: Is expected to be (softened/casual)
+  - conjugation-type: dictionary (plain non-past)
+    form: はずがない
+    rarity: common
+    meaning: Cannot be logically
+  - conjugation-type: non-past polite (～ます)
+    form: はずがありません
+    rarity: common
+    meaning: Cannot be logically (polite)
+  - conjugation-type: past plain (～た)
+    form: はずがなかった
+    rarity: common
+    meaning: Could not have been logically
+  - conjugation-type: past polite (～ました)
+    form: はずがありませんでした
+    rarity: common
+    meaning: Could not have been logically (polite)
+pronunciation:
+  katakana: ハズダ・ハズガナイ
+  romaji: hazu da・hazu ga nai
+formation:
+  Verb (plain form) + {はずだ}: Indicates a strong expectation or belief that something is true or will occur.
+  い-Adjective (plain form) + {はずだ}: Indicates a strong expectation or belief about the nature of something.
+  な-Adjective + な + {はずだ}: Indicates a strong expectation or belief about the nature of something.
+  Noun + の + {はずだ}: Indicates a strong expectation or belief that something is true about a noun.
+  Verb (plain form) + {はずがない}: Indicates a logical impossibility or strong improbability of an action.
+  い-Adjective (plain form) + {はずがない}: Indicates a logical impossibility or strong improbability regarding
+    a state.
+  な-Adjective + な + {はずがない}: Indicates a logical impossibility or strong improbability regarding a state.
+  Noun + の / である + {はずがない}: Indicates a logical impossibility or strong improbability regarding a noun.
+jlpt: N4
+etymology: The word 「はず」 comes from the kanji 「筈」, which originally referred to the notched end of an
+  arrow that fits onto the bowstring. From this literal meaning, it evolved to imply something that is
+  supposed to fit or be in a certain way, hence its current usage to express expectation or certainty.
+  Conversely, 「はずがない」 essentially means something is 'not supposed to be' or 'cannot be' in a certain
+  state due to a logical impossibility, meaning it doesn't 'fit' the logical framework.
+writeup: |-
+  「はずだ」 expresses a strong expectation or conviction that something is true or will happen, based on reason or evidence. When the speaker uses 「はずだ」, they are not merely guessing, but stating a proposition based on reliable information or knowledge. It conveys a higher degree of certainty than a mere guess but doesn't imply absolute proof. Think of it as "it's supposed to be" or "it's expected that". It functions as a dependent noun, so it's often followed by 「だ」 or 「です」. You can use 「はずだ」 after verbs, adjectives, and nouns in their plain forms to express this expectation. Despite 「はずだ」 sometimes being translated as 'should', this is only when you think that something 'should be true', and cannot be used when making suggestions or giving advice. Due to this, 'bound' is often the more accurate translation in most situations. The 「だ」 (or 「です」) in 「はずだ」 may be omitted, especially in casual speech. This usually makes 「はず」 sound a little less certain, similar to adding 「多分」 to the end of a sentence, indicating the speaker is not 100% certain about the accuracy of what they just said.
+
+  In contrast, 「はずがない」 conveys that a certain outcome or situation is logically impossible or highly improbable given known facts or common sense. While often translated as 'hardly possible' or 'unlikely,' its nuance is stronger than those English terms might suggest for logical impossibility. It indicates that a particular state or outcome simply **cannot** be the reality. It is frequently used to express a firm logical conclusion based on given circumstances. It is important to distinguish 「はずがない」 from 「ないはずだ」. While both involve a negative expectation, 「はずがない」 asserts a **logical impossibility** or extreme improbability. For example, if you know someone is a vegetarian, you would say 「彼が肉を食べるはずがない」(He can't possibly eat meat). On the other hand, 「ないはずだ」 expresses a **strong expectation or belief that something is not true**, but it doesn't necessarily imply a logical impossibility. For example, 「財布を忘れたはずはない」(I shouldn't have forgotten my wallet) indicates the speaker believes they didn't forget it, but it's not logically impossible that they did.
+false_friends:
+  - term: べきではない
+    meaning: Should not, Must not, Ought not to
+    kind: similar expression
+    nuance: While 「はずだ」 expresses a likely expectation based on reason, 「べきではない」 advises against a certain
+      action, focusing on obligation or propriety.
+    grammar_point: <suggest>:べきではない (should not)
+  - term: べき
+    meaning: Should, Ought to
+    kind: similar expression
+    nuance: Unlike 「はずだ」, 「べき」 expresses a moral obligation or recommendation.
+    grammar_point: <suggest>:べき (should)
+  - term: だろう
+    meaning: Probably, I think, It seems
+    kind: similar expression
+    nuance: Unlike 「はずだ」, 「だろう」 indicates a weaker degree of certainty.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: そうだ
+    meaning: I heard that; It is said that
+    kind: similar expression
+    nuance: Unlike 「はずだ」, 「そうだ」 indicates that the information is coming from someone else, hearsay, or
+      visual appearance.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: かもしれない
+    meaning: Might, maybe, perhaps
+    kind: similar expression
+    nuance: Unlike 「はずだ」, 「かもしれない」 indicates a possibility but with much less certainty.
+    grammar_point: かもしれない (might・maybe)
+  - term: わけだ
+    meaning: For that reason, no wonder, as you'd expect, naturally, thus, this is why
+    kind: similar expression
+    nuance: While 「はずだ」 conveys an expectation based on reasoning, 「わけだ」 explains a natural consequence
+      or conclusion, often meaning 'no wonder' or 'that's why'. Unlike 「はずがない」, which expresses logical
+      improbability, 「わけだ」 explains a reason or clarifies a situation, often leading to a natural conclusion.
+    grammar_point: わけだ (logical conclusion)
+  - term: つもりだ
+    meaning: To plan to, to intend to
+    kind: often confused with
+    nuance: 「はずだ」 indicates an objective expectation about a state or event, whereas 「つもりだ」 expresses
+      the speaker's subjective intention or plan to do something.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: ことになっている
+    meaning: To be expected to, to be scheduled to
+    kind: similar expression
+    nuance: 「はずだ」 indicates a strong expectation based on logic or evidence, while 「ことになっている」 implies
+      a rule, custom, or fixed schedule that has been decided upon.
+    grammar_point: ことになっている (expected to; scheduled to)
+  - term: ばいい
+    meaning: If... then it's good
+    kind: often confused with
+    nuance: 「はずだ」 expresses an expectation about a fact, while 「ばいい」 offers advice or suggests a course
+      of action.
+    grammar_point: ばいい (if... then it's good)
+  - term: たらいい・といい
+    meaning: It would be nice if, It would be good if, Should, I hope
+    kind: often confused with
+    nuance: 「はずだ」 denotes a probable outcome based on reason, whereas 「たらいい・といい」 expresses a wish or hope.
+    grammar_point: たらいい・といい (hope・suggestion)
+  - term: ものだ
+    meaning: Indicates something is natural, expected, or supposed to be a certain way.
+    kind: similar expression
+    nuance: While 「はずだ」 indicates a specific expectation based on current reasoning, 「ものだ」 describes general
+      truths, common tendencies, or what is commonly expected or customary from experience.
+    grammar_point: ものだ (general truth expectation)
+  - term: ないことはない
+    meaning: Is not impossible, it doesn't mean that it isn't
+    kind: antonym
+    nuance: Unlike 「はずがない」, which states something is logically improbable, 「ないことはない」 suggests that something
+      is potentially possible, though perhaps unlikely, expressing a double negative.
+    grammar_point: ないことはない (not impossible)
+  - term: ことはない
+    meaning: There is no need to, never happens
+    kind: often confused with
+    nuance: While 「はずがない」 asserts something is logically impossible, 「ことはない」 means there is no need to
+      do something or that something is not likely to happen, sharing a sense of improbability in certain
+      contexts.
+    grammar_point: '[Verb-dictionary]ことはない (no need to・not necessary to)'
+  - term: わけではない
+    meaning: It doesn't mean that, it is not the case, it's not like
+    kind: often confused with
+    nuance: While 「はずがない」 conveys something is logically improbable, 「わけではない」 is used to deny an absolute
+      truth or to clarify that something is not always the case, sharing a function of negation.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: わけがない
+    meaning: There is no way, there is no reason, it is impossible, cannot be
+    kind: synonym
+    nuance: 「わけがない」 is a close synonym for 「はずがない」, both expressing a strong sense of impossibility or
+      logical improbability. 「わけがない」 can sometimes feel slightly more emphatic or emotional in its denial.
+    grammar_point: わけがない (no way)
+  - term: ようがない・ようもない
+    meaning: There's no way to, it's impossible to
+    kind: synonym
+    nuance: While 「はずがない」 implies a logical impossibility of a state, 「ようがない」 means there is no possible
+      way or means to perform an action, both conveying a sense of impossibility regarding a situation.
+    grammar_point: ようがない・ようもない (no way to)
+  - term: ものか
+    meaning: Definitely not, absolutely not, impossible, do you really think~?
+    kind: synonym
+    nuance: Both 「はずがない」 and 「ものか」 express strong negation. However, 「ものか」 often carries a more emotional,
+      emphatic, or rhetorical tone, expressing a firm refusal or disbelief, whereas 「はずがない」 is more about
+      logical deduction.
+    grammar_point: ものか・もんか (strong negation・absolutely not)
+  - term: そうもない
+    meaning: Very unlikely to, does not seem that, does not appear that
+    kind: synonym
+    nuance: While 「はずがない」 states something is logically impossible, 「そうもない」 suggests something is unlikely
+      based on appearance or general impression, both indicating a low probability.
+    grammar_point: そうにない・そうもない (unlikely to)
+post_false_friends_writeup: |-
+  Many expressions convey ideas related to expectation or necessity. It is crucial to distinguish 「はずだ」, which expresses a logical expectation based on evidence, from those that express intention (つもりだ), obligation (べきだ), desire (たらいい), or general tendencies (ものだ).
+
+  To avoid confusion, remember that 「はずがない」 asserts that something is logically not possible or not the expected outcome based on reasoning. If you want to express a high probability or expectation, use 「はずだ」. If you want to explain a reason or natural consequence, use 「わけだ」. If you want to indicate there is no need or that something rarely happens, use 「ことはない」. If you want to clarify that something is not always the case, use 「わけではない」. If you want to indicate there is no possible way to do something, use 「ようがない」. If you want to convey a strong, emotional denial, use 「ものか」. If you want to say something is unlikely based on appearance or impression, use 「そうもない」. 「わけがない」 is often interchangeable with 「はずがない」 but can sometimes imply a more direct or common sense denial. Always consider the nuance of certainty and the source of the information or reasoning.
+examples:
+  - english: It is supposed to rain today.
+    japanese:
+      - 今日 は 雨 が 降る {はず だ}
+      - 今日 は 雨 が 降る {はず です}
+      - 今日 は 雨 が 降る {はず}
+    english_literally: Today rain falls expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 雨 が 降る {だろう}
+        english: It will probably rain today.
+        hint: 「だろう」 indicates a weaker, more speculative prediction. We're looking for a strong expectation
+          based on evidence.
+    scene: Someone stating a weather forecast with confidence.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「はずだ」 indicates a strong expectation based on some form of reliable information or evidence,
+      like a weather forecast.
+    etymology: The concept of 'はず' implying logical expectation likely stems from its origin as the 'nock'
+      of an arrow. Just as an arrow 'should' fly true from the nock, events 'should' unfold as expected
+      based on logical conditions. This sentence uses 'はずだ' to express a prediction based on reliable
+      information, much like an archer expects a well-nocked arrow to hit its target.
+  - english: It should be faster to go by Shinkansen.
+    japanese:
+      - 新 幹線 で 行っ た 方 が 速い {はず だ}
+      - 新 幹線 で 行っ た 方 が 速い {はず です}
+      - 新 幹線 で 行っ た 方 が 速い {はず}
+    english_literally: By Shinkansen went if faster expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 新 幹線 で 行っ た 方 が 速い {と 思う}
+        english: I think it's faster to go by Shinkansen.
+        hint: 「と思う」 expresses a personal opinion or thought. We're looking for a statement based on a
+          logical expectation or common knowledge.
+    scene: Two friends discussing the best way to travel to a destination, based on their understanding
+      of transportation options.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「はずだ」 here implies the speaker's belief based on general knowledge about Shinkansen, indicating
+      a reasoned expectation.
+    etymology: The phrase 「はずだ」 conveys an expectation rooted in reason or evidence. In this context,
+      the expectation of Shinkansen being faster is based on common knowledge about its speed and efficiency,
+      making it a logical inference. This aligns with the etymological sense of 'はず' as something that
+      'fits' or is 'as it should be' based on logical reasoning.
+  - english: He hates fish, so he should hate sushi.
+    japanese:
+      - 彼 は 魚 が 嫌い だ から 寿司 は 嫌い な {はず だ}
+      - 彼 は 魚 が 嫌い だ から 寿司 は 嫌い な {はず です}
+      - 彼 は 魚 が 嫌い だ から 寿司 は 嫌い な {はず}
+    english_literally: He fish dislikes because sushi dislikes expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 魚 が 嫌い だ から 寿司 は 嫌い {か も しれ ない}
+        english: He dislikes fish, so he might dislike sushi.
+        hint: 「かもしれない」 expresses possibility but with less certainty. We're looking for a strong deduction
+          based on clear information.
+    scene: Two people making a logical deduction about a third person's preferences based on known information.
+    register: casual
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    nuance: The speaker uses 「はずだ」 to infer someone's preference based on their known dislike of fish,
+      presenting a logical conclusion rather rather than a mere guess.
+    etymology: Here, 「はずだ」 is used to express a logical deduction, where 'A leads to B.' The etymology
+      of 'はず' as the 'nock' of an arrow, ensuring it points correctly, can be seen in the idea of a conclusion
+      that logically 'points' to the truth, given the premises. Knowing his dislike for fish, the conclusion
+      that he dislikes sushi is a logical 'fit'.
+  - english: This dress should suit me, you know.
+    japanese:
+      - この ドレス、私 に 似合う {はず よ}
+      - この ドレス、私 に 似合う {はず です よ}
+      - この ドレス、私 に 似合う {はず です わ}
+    english_literally: This dress, to me suits expected to be, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この ドレス、私 に 似合う {と 思う} わ
+        english: I think this dress suits me.
+        hint: 「と思う」 expresses a personal opinion. We're looking for an expectation based on a reasonable
+          belief.
+    scene: A woman trying on a dress, seeking reassurance from a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of the final particle 「よ」 in this context, conveying a sense of gentle assurance or
+      expectation, is a common feature in female speech patterns. It makes the statement sound softer
+      and more feminine.
+    etymology: The use of 「はず」 implies a reasonable expectation, perhaps based on the speaker's body shape,
+      style preferences, or past experiences with similar dresses. The final particle 「よ」 (yo) softens
+      the assertion, making it less direct, a common linguistic strategy for female speakers in Japanese
+      to convey warmth and seek engagement. The combination implies 'I expect this to suit me, and I'm
+      sharing this with you for confirmation'.
+  - english: If I do it, it should finish quickly.
+    japanese:
+      - 俺 が やれ ば、すぐ に 終わる {はず だ}
+      - 私 が やれ ば、すぐ に 終わる {はず です}
+      - 俺 が やれ ば、すぐ に 終わる {はず}
+    english_literally: If I do, immediately finishes expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 が やれ ば、すぐ に 終わる {だろう}
+        english: If I do it, it will probably finish quickly.
+        hint: 「だろう」 suggests a general probability. We're looking for a confident expectation based on
+          one's own capability.
+    scene: A man confidently taking on a task, assuring others of his capability.
+    register: casual
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The use of the casual and assertive male pronoun 「俺」 (ore) clearly indicates a male speaker,
+      conveying confidence and personal conviction.
+    etymology: The use of 「はずだ」 here reflects a strong personal conviction based on one's own ability
+      and experience. The etymological link to the 'nock' of an arrow, which ensures it points correctly,
+      can be seen in the speaker's belief that his intervention will ensure the task's swift completion,
+      as it 'should' happen given his competence.
+  - english: I'm pretty sure I ordered coffee, but tea came.
+    japanese:
+      - 頼ん だ の は コーヒー の {はず だっ た} けど、お 茶 が 来 た
+      - 頼ん だ の は コーヒー の {はず でし た} けど、お 茶 が 来 まし た
+      - 頼ん だ の は コーヒー の {はず だっ た} ん だ けど、お 茶 が 来 た
+    english_literally: What I ordered was coffee expected to be, but tea came.
+    competing_grammar:
+      - competing_japanese:
+          - 頼ん だ の は コーヒー だっ た {だろう} けど、お 茶 が 来 た
+        english: I suppose what I ordered was coffee, but tea came.
+        hint: 「だろう」 indicates a weaker past assumption or inference. We're looking for a strong past expectation
+          that was then contradicted.
+    scene: A customer expresses surprise and mild confusion after receiving the wrong order at a cafe.
+    register: casual
+    setting: humorous
+    conjugation: past plain (～た)
+    nuance: 「はずだった」 indicates the speaker's past expectation, which was not met, conveying a sense of
+      surprise or mild frustration at the unfulfilled expectation.
+    etymology: The past form 「はずだった」 conveys a past expectation that was not realized, creating a sense
+      of discrepancy or surprise. This is a common function of 'はず' when something that 'should have been'
+      turns out to be otherwise. The situation highlights the gap between what was reasonably expected
+      and what actually occurred, leading to the mild humor.
+  - english: Harry is going to the party today... I think.
+    japanese:
+      - ハリー も 今日 の パーティー に 行く…{はず}
+      - ハリー も 今日 の パーティー に 行く {はず だ}
+      - ハリー も 今日 の パーティー に 行く {はず です}
+    english_literally: Harry too today's party to go... expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - ハリー も 今日 の パーティー に 行く {らしい}
+        english: Harry seems to be going to today's party.
+        hint: 「らしい」 expresses information based on what you've heard or observed, implying some uncertainty.
+          We're looking for a statement of logical expectation, even if softened.
+    scene: Friends casually discussing plans, one person expresses slight uncertainty about Harry's attendance.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: Omitting the copula 「だ」 after 「はず」 softens the certainty, making it more like a casual guess
+      or a tentative expectation, often used when reflecting out loud or expressing slight doubt.
+    etymology: The omission of 「だ」 after 「はず」 makes the statement more tentative and reflective, signaling
+      a slight reduction in certainty or a more casual, internalized thought. This aligns with a nuanced
+      understanding of 'はず' where its core meaning of 'expected' can be modulated to express varying degrees
+      of conviction, from strong belief to gentle supposition.
+  - english: I turned off all the lights in my house before I left... I'm pretty sure.
+    japanese:
+      - 出かける 前 に 家 の 中 の 電気 は 全部 消し た…{はず}
+      - 出かける 前 に 家 の 中 の 電気 は 全部 消し た {はず だ}
+      - 出かける 前 に 家 の 中 の 電気 は 全部 消し た {はず です}
+    english_literally: Before going out house inside's lights all turned off... expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 出かける 前 に 家 の 中 の 電気 は 全部 消し た {と 思う}
+        english: I think I turned off all the lights in my house before I left.
+        hint: 「と思う」 expresses a personal thought or belief. We're looking for a statement of strong expectation,
+          even if momentarily doubted.
+    scene: Someone standing at the door, having a moment of self-doubt about whether they left the lights
+      on.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    nuance: The trailing 「はず」 without 「だ」 expresses a slight doubt about a past action, characteristic
+      of a momentary reflection or a check of one's memory, implying a weakened sense of certainty.
+    etymology: Similar to the previous example, the omission of 「だ」 after 「はず」 softens the assertion,
+      transforming a strong expectation into a tentative reflection or a self-check. This usage allows
+      for the expression of a logical expectation that is momentarily being questioned or re-verified,
+      fitting the cautious scenario.
+  - english: It should be sunny tomorrow, so let's go on a picnic.
+    japanese:
+      - 明日、晴れる {はず だ} から、ピクニック に 行き ましょう
+      - 明日、晴れる {はず です} から、ピクニック に 行き ましょう
+      - 明日、晴れる {はず} だ から、ピクニック に 行こう
+    english_literally: Tomorrow sunny expected to be, so let's go for a picnic.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、晴れる {だろう} から、ピクニック に 行き ましょう
+        english: It will probably be sunny tomorrow, so let's go for a picnic.
+        hint: 「だろう」 expresses a general probability. We're looking for a strong expectation based on clear
+          information, like a forecast.
+    scene: Friends planning an outdoor activity, checking the weather forecast to confirm.
+    register: casual
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+    nuance: 「はずだ」 expresses an expectation based on a logical deduction or evidence (e.g., weather forecast),
+      leading to a confident suggestion for an activity.
+    etymology: The use of 「はずだ」 here signifies an expectation based on a reliable source, such as a weather
+      forecast, leading to an optimistic plan. The 'はず' conveys that the sunny weather is a logical and
+      anticipated outcome, aligning with its core meaning of something that 'fits' or 'should be' in a
+      predictable way.
+  - english: Mr. Tanaka should be here soon. Let's wait a little.
+    japanese:
+      - 田中 さん は もう すぐ 来る {はず だ} よ。少し 待ち ましょう
+      - 田中 さん は もう すぐ 来る {はず です} よ。少し 待ち ましょう
+      - 田中 さん は もう すぐ 来る {はず で ござい ます}。少し お 待ち ください
+    english_literally: Mr. Tanaka soon comes expected to be, you know. Let's wait a little.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は もう すぐ 来る {だろう} よ。少し 待ち ましょう
+        english: Mr. Tanaka will probably come soon, you know.
+        hint: 「だろう」 indicates a polite but slightly less certain prediction. We're looking for a confident
+          expectation based on knowledge.
+    scene: A colleague reassuring another that a third person is expected to arrive shortly.
+    register: semi-formal
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The speaker expresses a strong expectation of Tanaka-san's arrival, likely based on schedule
+      or previous communication, followed by a suggestion to wait, conveying a reassuring tone with 「〜よ」.
+    etymology: Here, 「はずだ」 conveys an expectation based on prior knowledge or arrangement (e.g., a meeting
+      time, a promise). The addition of 「よ」 makes it a reassuring statement, confirming the logical expectation
+      to the listener. This usage demonstrates how 'はず' can be used to assert a reasonable and anticipated
+      outcome.
+  - english: This problem should be easy, so you'll probably solve it quickly.
+    japanese:
+      - この 問題 は 簡単 な {はず だ} から、すぐ に 解ける でしょう
+      - この 問題 は 簡単 な {はず です} から、すぐ に 解ける でしょう
+      - この 問題 は 簡単 な {はず} だ から、すぐ に 解ける だろう
+    english_literally: This problem easy expected to be, so immediately can solve probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 簡単 だ {と 思う} から、すぐ に 解ける でしょう
+        english: I think this problem is easy, so you'll probably solve it quickly.
+        hint: 「と思う」 expresses a personal opinion. We're looking for a statement of logical expectation
+          about the problem's nature.
+    scene: A teacher encouraging a student, expressing confidence in the problem's simplicity.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    nuance: 「はずだ」 follows the な-adjective 「簡単」, indicating a logical expectation of simplicity. The concluding
+      「でしょう」 further emphasizes confidence in the listener's ability to solve it.
+    etymology: In this context, 「はずだ」 expresses an expectation about the nature of the problem, indicating
+      that it 'should be' easy based on certain criteria or the student's presumed abilities. This aligns
+      with the idea of 'はず' as something that 'fits' or 'makes sense' within a given framework. The encouragement
+      stems from this logical assessment.
+  - english: The meeting was supposed to end at 3 o'clock today, but it hasn't ended yet.
+    japanese:
+      - 今日 の 会議 は ３ 時 に 終わる {はず だっ た} の に、まだ 終わら ない
+      - 今日 の 会議 は ３ 時 に 終わる {はず でし た} の に、まだ 終わっ て い ませ ん
+      - 今日 の 会議 は ３ 時 に 終わる {はず だっ た} ん だ けど、まだ 終わら ない
+    english_literally: Today's meeting 3 o'clock at finish expected to be, even though, still not finished.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は ３ 時 に 終わる {こと に なっ て い た} の に、まだ 終わら ない
+        english: Today's meeting was scheduled to end at 3 o'clock, but it hasn't ended yet.
+        hint: 「ことになっている」 expresses a fixed schedule or rule. We're looking for a strong expectation based
+          on logic or evidence that was not fulfilled.
+    scene: An employee expressing frustration to a colleague about a prolonged meeting.
+    register: semi-formal
+    setting: melancholic
+    conjugation: past plain (～た)
+    nuance: 「はずだった」 expresses a strong past expectation that was not fulfilled, conveying a sense of disappointment
+      or frustration at the unexpected continuation.
+    etymology: The combination of 「はずだった」 with 「のに」 effectively conveys a sense of frustration due to
+      an an unfulfilled past expectation. The meeting 'should have ended' at 3, but it didn't. This showcases
+      'はず's' ability to express a logical or scheduled outcome that ultimately did not come to pass, highlighting
+      a disparity between expectation and reality.
+  - english: The train should arrive on time.
+    japanese:
+      - 電車 は 時間 通り に 来る {はず だ}
+      - 電車 は 時間 通り に 来る {はず です}
+      - 電車 は 時間 通り に 来る {はず}
+    english_literally: Train on time comes expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は 時間 通り に 来る {だろう}
+        english: The train will probably arrive on time.
+        hint: 「だろう」 expresses a general probability. We're looking for a confident expectation based on
+          reliability.
+    scene: A passenger waiting at the station, confirming the train's expected arrival time.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「時間通りに来るはずだ」 indicates a logical expectation based on the train's known punctuality.
+    etymology: This sentence uses 「はずだ」 to express a reasonable expectation based on general knowledge
+      or experience (e.g., Japanese trains are usually punctual). The 'はず' conveys that the train's on-time
+      arrival is the 'normal' or 'expected' state of affairs, fitting the meaning of something being 'as
+      it should be'.
+  - english: The key should be in this drawer. I put it here yesterday.
+    japanese:
+      - 鍵 は この 引き出し に ある {はず だ}。昨日 ここ に 入れ た から
+      - 鍵 は この 引き出し に ある {はず です}。昨日 ここ に 入れ まし た から
+      - 鍵 は この 引き出し に ある {はず}。昨日 ここ に 入れ た から
+    english_literally: Key this drawer in is expected to be. Yesterday here put because.
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 は この 引き出し に ある {だろう}
+        english: The key is probably in this drawer.
+        hint: 「だろう」 indicates a weaker guess or inference. We're looking for a confident expectation based
+          on a personal memory.
+    scene: Someone is searching for a lost item, expressing certainty about its location.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「鍵はこの引き出しにあるはずだ」 expresses a confident expectation about the key's location, based on the
+      speaker's memory of putting it there.
+    etymology: 「はずだ」 is used here to convey a strong expectation based on a personal memory or logical
+      deduction (i.e., 'I put it there yesterday, so it should still be there'). This demonstrates how
+      'はず' can express a logical and highly probable outcome based on prior knowledge or action, reflecting
+      its core meaning of something being 'as it should be' or 'fitting'.
+  - english: The report should be ready by tomorrow morning.
+    japanese:
+      - 報告 書 は 明日 朝 まで に、完成 する {はず で ござい ます}
+      - 報告 書 は 明日 朝 まで に、完成 する {はず です}
+    english_literally: Report tomorrow morning by finish expected to be (humble).
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 は 明日 朝 まで に、完成 する {こと に なっ て い ます}
+        english: The report is scheduled to be completed by tomorrow morning.
+        hint: 「ことになっている」 expresses a fixed schedule or obligation. We're looking for a humble but confident
+          expectation based on reason.
+    scene: An office manager reassuring a superior about a deadline for a report.
+    register: kenjōgo (humble)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「はずでございます」 conveys a humble yet confident expectation, common in business Japanese
+      when speaking to a superior, assuring them that the report will be completed.
+    etymology: The phrase 「はずでございます」 combines the core meaning of 'はず' (expectation based on reason/evidence)
+      with the highly humble 「ございます」, creating a polite yet firm assurance. This reflects the nuance of
+      the grammar point being used in a formal, respectful business context, where one expresses a strong
+      expectation while maintaining humility toward a superior.
+  - english: He never studied, so there's no way he'll pass the exam.
+    japanese:
+      - 彼 は 決して 勉強 し なかっ た から、試験 に 合格 する {はず が ない}。
+      - 彼 は 決して 勉強 し なかっ た から、試験 に 合格 できる {はず が ない}。
+    english_literally: He absolutely did not study, so as for the exam, there is no way he will pass.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 勉強 し た から、試験 に 合格 する {はず だ}。
+        english: He studied, so he should pass the exam.
+        hint: 「はずだ (expected to be)」 expresses an expectation or high probability, not a logical impossibility.
+      - competing_japanese:
+          - 彼 は 勉強 し なかっ た から、試験 に 合格 し ない {わけ だ}。
+        english: He didn't study, so naturally he won't pass the exam.
+        hint: 「わけだ (logical conclusion)」 explains a reason or clarifies a situation, often leading to
+          a natural conclusion, not necessarily a logical impossibility.
+      - competing_japanese:
+          - 彼 は 勉強 し なかっ た から、試験 に 合格 し ない {こと も ない}。
+        english: He didn't study, so it's not impossible for him not to pass the exam (meaning it is possible
+          he won't pass).
+        hint: 「ないことはない (not impossible)」 suggests that something is potentially possible, though perhaps
+          unlikely, expressing a double negative. We're looking for a logical impossibility.
+      - competing_japanese:
+          - 彼 は 勉強 し なかっ た から、試験 に 合格 する {もの か}。
+        english: He never studied, so he definitely won't pass the exam!
+        hint: 「ものか (definitely not)」 expresses strong emotional conviction or rhetorical denial, not just
+          logical deduction.
+      - competing_japanese:
+          - 彼 は 勉強 し なかっ た から、試験 に 合格 でき {そう も ない}。
+        english: He didn't study, so it doesn't seem like he'll be able to pass the exam.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance or general impression,
+          not a logical impossibility.
+    scene: A student discussing a classmate's academic performance, convinced they won't pass.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker's use of 「決して勉強しなかった」 (never studied) provides a strong logical basis for the
+      conviction that passing is impossible. This implies a straightforward, objective assessment.
+  - english: My train arrived on time, so there's no way I'd be late for the meeting.
+    japanese:
+      - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れる {はず が あり ませ ん}。
+      - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れる {はず は あり ませ ん}。
+      - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れる {はず は ござい ませ ん}。
+    english_literally: My train arrived on time, so as for the meeting, there is no way I will be late.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 会議 に 遅れ {ませ ん}。
+        english: I will not be late for the meeting.
+        hint: This is a simple statement of fact. We're looking for a phrase that conveys lateness is
+          logically impossible given the circumstances.
+      - competing_japanese:
+          - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れ ない {はず です}。
+        english: My train arrived on time, so I should not be late for the meeting.
+        hint: 「はずだ (expected to be)」 expresses an expectation or high probability, not a logical impossibility.
+      - competing_japanese:
+          - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れ ない {わけ です}。
+        english: My train arrived on time, so naturally I won't be late for the meeting.
+        hint: 「わけだ (logical conclusion)」 states a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - 私 の 電車 は 定刻 に 着き まし た の で、会議 に 遅れ {そう も あり ませ ん}。
+        english: My train arrived on time, so it doesn't seem like I'll be late for the meeting.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on observation or impression, not
+          a logical impossibility.
+    scene: A professional explaining why they will be punctual to a colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of the polite form 「はずがありません」 and the formal 「～ましたので」 highlights professionalism.
+      The statement conveys a confident, logical conclusion based on a prior event, suitable for a business
+      context.
+  - english: He was clearly lying; there's no way he could have known that.
+    japanese:
+      - 彼 は 明らか に 嘘 を つい て い た。それ を 知っ て い た {はず が なかっ た}。
+      - 彼 は 明らか に 嘘 を つい て い た。それ を 知っ て いる {はず が なかっ た}。
+    english_literally: He was clearly lying. As for that, there was no way he could have known it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は それ を 知ら なか {った}。
+        english: He didn't know that.
+        hint: This is a simple statement that he didn't know. We're looking for an expression that indicates
+          it was logically impossible for him to know.
+      - competing_japanese:
+          - 彼 は 明らか に それ を 知っ て い た {はず だ}。
+        english: He clearly should have known that.
+        hint: 「はずだ (expected to be)」 expresses a high probability or expectation, not a logical impossibility.
+      - competing_japanese:
+          - 彼 は 明らか に 嘘 を つい て い た から、それ を 知っ て い なかっ た {わけ だ}。
+        english: He was clearly lying, so naturally he didn't know that.
+        hint: 「わけだ (logical conclusion)」 provides an explanation or natural consequence, not a statement
+          of logical impossibility.
+      - competing_japanese:
+          - 彼 は 明らか に 嘘 を つい て い た。それ を 知っ て い た {もの か}。
+        english: He was clearly lying. He definitely didn't know that!
+        hint: 「ものか (definitely not)」 conveys strong emotional denial or rhetorical challenge, not purely
+          logical impossibility.
+    scene: Two detectives discussing a suspect's alibi, finding it logically impossible.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The word 「明らかに」 (clearly) strengthens the logical deduction that it was impossible for the
+      subject to know, making the assertion with 「はずがなかった」 more definitive. This phrasing is common in
+      analytical or investigative discussions.
+  - english: She doesn't drink at all, so there's no way she could have been drunk last night.
+    japanese:
+      - 彼女 は 全く お 酒 を 飲ま ない の で、昨日 酔っ て いる {はず が あり ませ ん でし た}。
+      - 彼女 は 全く お 酒 を 飲ま ない の で、昨日 酔っ た {はず が あり ませ ん でし た}。
+    english_literally: She does not drink alcohol at all, so as for yesterday, there was no way she was
+      drunk.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 昨日 酔っ て い ませ ん でし {た}。
+        english: She was not drunk yesterday.
+        hint: This is a simple observation. We're looking for an expression that indicates it was logically
+          impossible for her to be drunk given her habits.
+      - competing_japanese:
+          - 彼女 は 全く お 酒 を 飲ま ない の で、昨日 酔っ て い ない {はず です}。
+        english: She doesn't drink at all, so she should not have been drunk last night.
+        hint: 「はずだ (expected to be)」 indicates an expectation or strong belief, not a logical impossibility.
+      - competing_japanese:
+          - 彼女 は 全く お 酒 を 飲ま ない の で、昨日 酔っ て い ない {わけ です}。
+        english: She doesn't drink at all, so naturally she wasn't drunk last night.
+        hint: 「わけだ (logical conclusion)」 states a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - 彼女 は 全く お 酒 を 飲ま ない の で、昨日 酔っ て い {そう も あり ませ ん でし た}。
+        english: She doesn't drink at all, so it didn't seem like she was drunk last night.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance or impression, not
+          a logical impossibility.
+    scene: Friends discussing a mutual acquaintance's behavior at a party, ruling out intoxication.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「全くお酒を飲まないので」 establishes a clear premise for the speaker's firm conclusion. The
+      polite 「はずがありませんでした」 softens the assertion, making it suitable for friendly conversation despite
+      the strong logical negation.
+  - english: This cake can't be that sweet. It barely has any sugar.
+    japanese:
+      - この ケーキ は あんな に 甘い {はず が ない}。砂糖 を ほとんど 使っ て ない から。
+      - この ケーキ は あんな に 甘い {はず は ない}。砂糖 を ほとんど 使っ て ない から。
+    english_literally: This cake, it is not possible that it is that sweet. Because it barely uses sugar.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は あんな に 甘く ない {だろう}。
+        english: This cake is probably not that sweet.
+        hint: 「～だろう (conjecture)」 expresses a guess or conjecture. We're looking for a firm, knowledge-based
+          conclusion rooted in the baking process.
+      - competing_japanese:
+          - この ケーキ は 砂糖 を たくさん 使っ て いる から、あんな に 甘い {はず だ}。
+        english: This cake uses a lot of sugar, so it should be that sweet.
+        hint: 「はずだ (expected to be)」 indicates an expectation, not a statement of logical impossibility.
+      - competing_japanese:
+          - この ケーキ は 砂糖 を ほとんど 使っ て ない から、甘く ない {わけ だ}。
+        english: This cake barely has any sugar, so naturally it's not sweet.
+        hint: 「わけだ (logical conclusion)」 explains a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - この ケーキ は 砂糖 を ほとんど 使っ て ない から、あんな に 甘 {そう も ない}。
+        english: This cake barely has any sugar, so it doesn't seem that sweet.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance or general impression,
+          not a logical impossibility.
+    scene: A baker tasting a cake they made with reduced sugar, asserting its low sweetness.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+  - english: He can't be that unkind. He's always a kind person.
+    japanese:
+      - 彼 が そんな に 不 親切 な {はず が ない}。いつ も 優しい 人 だ。
+      - 彼 が そんな に 不 親切 な {はず は ない}。いつ も 優しい 人 だ。
+    english_literally: As for him, there is no way he is that unkind. He is always a kind person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は そんな に 不 親切 じゃ {ない}。
+        english: He is not that unkind.
+        hint: This is a direct denial. We're looking for an expression that indicates unkindness is logically
+          inconsistent with his known character.
+      - competing_japanese:
+          - 彼 が そんな に 親切 な {はず だ}。いつ も 優しい 人 だ。
+        english: He should be that kind. He's always a kind person.
+        hint: 「はずだ (expected to be)」 expresses an expectation or high probability, not a logical impossibility.
+      - competing_japanese:
+          - 彼 は いつ も 優しい 人 だ から、そんな に 不 親切 で ない {わけ だ}。
+        english: He's always a kind person, so naturally he's not that unkind.
+        hint: 「わけだ (logical conclusion)」 explains a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - 彼 が そんな に 不 親切 な {もの か}。いつ も 優しい 人 だ。
+        english: He's not that unkind! He's always a kind person.
+        hint: 「ものか (definitely not)」 conveys strong emotional denial, not just logical impossibility.
+    scene: Someone defending a friend's character against an accusation.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: 'A: Oh, he''s that famous chef? B: No, no, he can''t possibly be a famous chef dressed like
+      that!'
+    japanese:
+      - 『え、彼 が あの 有名 な シェフ？』いやいや、あの 格好 で 有名 シェフ で ある {はず が ない} よ。
+      - 『え、彼 が あの 有名 な シェフ？』いやいや、あの 格好 で 有名 シェフ な {はず が ない} よ。
+    english_literally: 'A: Oh, he is that famous chef? B: No, no, with that appearance, there is no way
+      he is a famous chef.'
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 有名 シェフ じゃ {ない}。
+        english: He is not a famous chef.
+        hint: This is a simple negative statement. We're looking for a phrase that implies it's logically
+          absurd for someone dressed like that to be a famous chef.
+      - competing_japanese:
+          - 『え、彼 が あの 有名 な シェフ？』そう だ よ、あの 格好 で 有名 シェフ な {はず だ} よ。
+        english: Oh, he's that famous chef? Yes, that appearance, he must be a famous chef.
+        hint: 「はずだ (expected to be)」 indicates certainty or expectation, not impossibility.
+      - competing_japanese:
+          - 『え、彼 が あの 有名 な シェフ？』いやいや、あの 格好 だ から 有名 シェフ で ない {わけ だ} よ。
+        english: Oh, he's that famous chef? No, no, because of that appearance, naturally he's not a famous
+          chef.
+        hint: 「わけだ (logical conclusion)」 explains a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - 『え、彼 が あの 有名 な シェフ？』いやいや、あの 格好 で 有名 シェフ で ある {もの か}。
+        english: Oh, he's that famous chef? No, no, he definitely isn't a famous chef dressed like that!
+        hint: 「ものか (definitely not)」 expresses strong emotional denial, not just logical impossibility.
+      - competing_japanese:
+          - 『え、彼 が あの 有名 な シェフ？』いやいや、あの 格好 じゃ 有名 シェフ に 見え {そう も ない} よ。
+        english: Oh, he's that famous chef? No, no, with that appearance, he doesn't seem like a famous
+          chef.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance, not a logical impossibility.
+    scene: A woman expresses humorous disbelief about a scruffily dressed man being a famous chef to her
+      companion.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The 「いやいや」 and sentence-final particle 「よ」 are common colloquial expressions often used by
+      female speakers to express strong disagreement or emphasize their point in a casual and emphatic,
+      often humorous, setting. The phrase 「あの格好で」 (dressed like that) provides the basis for the speaker's
+      logical conclusion.
+  - english: This plan has been thoroughly considered, so there's no way it will fail.
+    japanese:
+      - この 計画 は 熟考 さ れ た もの です から、失敗 する {はず が あり ませ ん}。
+      - この 計画 は 熟考 さ れ た もの です から、失敗 する {はず は あり ませ ん}。
+      - この 計画 は 熟考 さ れ た もの です から、失敗 する {はず は ござい ませ ん}。
+    english_literally: This plan, because it is something that has been thoroughly considered, there is
+      no way it will fail.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 失敗 し {ませ ん}。
+        english: This plan will not fail.
+        hint: This is a mere statement of fact. We're looking for an expression that indicates failure
+          is logically impossible given the careful consideration of the plan.
+      - competing_japanese:
+          - この 計画 は 熟考 さ れ た もの です から、成功 する {はず です}。
+        english: This plan has been thoroughly considered, so it should succeed.
+        hint: 「はずだ (expected to be)」 expresses an expectation, not a logical impossibility.
+      - competing_japanese:
+          - この 計画 は 熟考 さ れ た もの です から、失敗 し ない {わけ だ}。
+        english: This plan has been thoroughly considered, so naturally it won't fail.
+        hint: 「わけだ (logical conclusion)」 explains a natural consequence, not a logical impossibility.
+      - competing_japanese:
+          - この 計画 は 熟考 さ れ た もの です から、失敗 し {そう も あり ませ ん}。
+        english: This plan has been thoroughly considered, so it doesn't seem like it will fail.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance or impression, not
+          a logical impossibility.
+    scene: A manager presenting a new project to their team, expressing high confidence in its success.
+    register: formal
+    setting: persuasive
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The manager's use of 「～ですから」 (because/therefore) and the formal 「はずがありません」 emphasizes the
+      logical soundness of the plan. This confident and persuasive tone is suitable for leading a team
+      and instilling belief in a project.
+  - english: Even if you run at full speed, there's no way you can catch up with that bullet train.
+    japanese:
+      - 全 速力 で 走っ て も、あの 新 幹線 に は 追いつける {はず が ない}。
+      - 全 速力 で 走っ て も、あの 新 幹線 に は 追いつける {はず は ない}。
+    english_literally: Even if you run at full speed, as for that bullet train, there is no way you can
+      catch up.
+    competing_grammar:
+      - competing_japanese:
+          - 全 速力 で 走っ て も、あの 新 幹線 に は 追いつけ {ない}。
+        english: Even if you run at full speed, you can't catch up with that bullet train.
+        hint: This is a simple statement of inability. We're looking for an expression that implies it's
+          logically impossible given the circumstances.
+      - competing_japanese:
+          - 全 速力 で 走っ たら、あの 新 幹線 に は 追いつける {はず だ}。
+        english: If you run at full speed, you should be able to catch up with that bullet train.
+        hint: 「はずだ (expected to be)」 expresses an expectation, not a logical impossibility.
+      - competing_japanese:
+          - あの 新 幹線 は 速い から、追いつけ ない {わけ だ}。
+        english: That bullet train is fast, so naturally you can't catch up.
+        hint: 「わけだ (logical conclusion)」 explains a natural consequence, not a logical impossibility.
+    scene: Two friends are on a train platform, one jokingly suggests racing the bullet train.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「全速力で走っても」 sets up the premise that even under extreme effort, the logical outcome
+      is impossibility. The casual tone and slight humor are common among friends.
+  - english: It was completely dark, so there's no way he could have seen the culprit's face.
+    japanese:
+      - 真っ暗 だっ た から、犯人 の 顔 が 見え た {はず が なかっ た}。
+      - 真っ暗 だっ た から、犯人 の 顔 が 見え た {はず は なかっ た}。
+    english_literally: Because it was completely dark, there is no way the culprit's face could have been
+      seen.
+    competing_grammar:
+      - competing_japanese:
+          - 真っ暗 だっ た から、犯人 の 顔 が 見え なか {った}。
+        english: It was completely dark, so he didn't see the culprit's face.
+        hint: This is a simple statement of fact. We're looking for an expression that indicates it was
+          logically impossible to see the face.
+      - competing_japanese:
+          - 真っ暗 だっ た けど、犯人 の 顔 が 見え た {はず だ}。
+        english: It was dark, but he should have seen the culprit's face.
+        hint: 「はずだ (expected to be)」 implies expectation or high probability, not logical impossibility.
+      - competing_japanese:
+          - 真っ暗 だっ た から、犯人 の 顔 が 見え なかっ た {わけ だ}。
+        english: It was completely dark, so naturally he didn't see the culprit's face.
+        hint: 「わけだ (logical conclusion)」 states a natural consequence, not a logical impossibility.
+    scene: Investigators reviewing a crime scene, discussing a witness's statement.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The strong logical basis is provided by 「真っ暗だったから」 (because it was completely dark). The use
+      of 「はずがなかった」 here reinforces the speaker's firm conviction based on the circumstances, common in
+      investigative or analytical discussions.
+  - english: Humans cannot possibly breathe underwater without special equipment.
+    japanese:
+      - 人間 が 特別 な 道具 なし で 水中 で 呼吸 できる {はず が ない}。
+      - 人間 が 特別 な 道具 なし で 水中 で 呼吸 できる {はず は ない}。
+    english_literally: Humans, without special equipment, underwater can breathe, there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 水中 で 呼吸 でき {ない}。
+        english: Humans cannot breathe underwater.
+        hint: This is a simple statement of inability. We're looking for a phrase that implies it's logically
+          impossible due to biological limitations.
+      - competing_japanese:
+          - 人間 は 水中 で 呼吸 できる {か も しれ ない}。
+        english: Humans might be able to breathe underwater.
+        hint: 「かもしれない (might)」 expresses possibility, not logical impossibility.
+      - competing_japanese:
+          - 人間 は 水中 で 呼吸 でき ない {わけ だ}。
+        english: Humans cannot breathe underwater, which makes sense.
+        hint: 「わけだ (logical conclusion)」 states a natural consequence, not a logical impossibility.
+    scene: A science teacher explaining human limitations to students.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The statement emphasizes a logical impossibility based on fundamental biological limitations,
+      which the teacher presents as an undeniable fact to illustrate human physiological constraints.
+      The use of 「できるはずがない」 highlights that this is not just an inability, but a complete contradiction
+      of natural laws for humans.
+  - english: Someone who has never studied Japanese cannot possibly understand this advanced newspaper
+      article.
+    japanese:
+      - 日本 語 を 全く 勉強 し た こと が ない 人 に、この 高度 な 新聞 記事 が 理解 できる {はず が ない}。
+      - 日本 語 を 全く 勉強 し た こと が ない 人 に、この 高度 な 新聞 記事 が 理解 できる {はず は ない}。
+    english_literally: As for a person who has never studied Japanese at all, this advanced newspaper
+      article can be understood, there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 全く 勉強 し た こと が ない 人 に、この 新聞 記事 は 理解 でき {ない}。
+        english: A person who has never studied Japanese at all cannot understand this newspaper article.
+        hint: This is a simple statement of inability. We're looking for a phrase that implies it's logically
+          impossible due to lack of prerequisite knowledge.
+      - competing_japanese:
+          - 日本 語 を 全く 勉強 し た こと が ない 人 に、この 新聞 記事 が 理解 でき {そう も ない}。
+        english: It doesn't seem like a person who has never studied Japanese at all can understand this
+          newspaper article.
+        hint: 「そうもない (very unlikely to)」 indicates unlikelihood based on appearance or general impression,
+          not a logical impossibility.
+      - competing_japanese:
+          - 日本 語 を 全く 勉強 し た こと が ない 人 に、この 新聞 記事 は 理解 でき ない {わけ だ}。
+        english: A person who has never studied Japanese at all cannot understand this newspaper article,
+          which is logical.
+        hint: 「わけだ (logical conclusion)」 states a natural consequence, not a logical impossibility.
+    scene: A tutor explaining to a beginner student why a certain text is too difficult for them.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: Highlights the logical impossibility due to a lack of prerequisite knowledge or skill. The
+      use of 「全く～ない」 emphasizes the complete absence of prior study, making the inability to comprehend
+      the advanced text a logical certainty. This phrasing is firm but supportive in a teaching context.
+post_example_writeup: Understanding the nuances of 「はずだ」 is key to expressing a justified expectation
+  rather than a mere guess. Pay attention to the context and the speaker's certainty level. Conversely,
+  「はずがない」 expresses a logical conclusion that a certain outcome is not the case, or that it is highly
+  improbable. It's not a mere guess, but a firm conviction based on known facts or reasoning. The logical
+  basis is key to its usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/はずだ

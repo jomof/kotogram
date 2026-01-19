@@ -1,0 +1,233 @@
+grammar_point: すぐ (immediately・easily)
+learn_before:
+  - お〜ください (polite request)
+  - そば (near・nearby・close by)
+  - また (again; also; or)
+  - よ (emphasis・information sharing)
+  - を (point of departure)
+  - 何 (what)
+  - 横 (side・horizontal)
+  - 近く,遠く (proximity・distance spatial)
+meaning: Immediately, right away, soon, easily
+pronunciation:
+  katakana: スグ
+  romaji: sugu
+formation:
+  Verb (plain form/たら form) + すぐ + Verb: Indicates that the second verb's action happens immediately after
+    the first verb's action.
+  Noun + の + すぐ + [Location Noun/Direction]: 'Indicates immediate spatial proximity, meaning '
+jlpt: N3
+etymology: The origin of 「すぐ」 is not definitively known, but it is believed to have evolved from older
+  Japanese words implying closeness or directness. Its meaning has remained relatively consistent over
+  time, referring to the lack of interval, either in time or space.
+writeup: 「すぐ」 is a versatile adverb in Japanese that primarily conveys the sense of immediacy or proximity.
+  It can be translated as
+false_friends:
+  - term: もうすぐ
+    meaning: soon, very soon
+    kind: similar expression
+    nuance: 「もうすぐ」 indicates an event will happen in the near future, emphasizing an approaching point
+      in time. 「すぐ」, conversely, denotes an action happening instantly or with minimal delay from a reference
+      point, or immediately implies proximity.
+    grammar_point: <suggest>:もうすぐ (soon・very soon)
+  - term: たちまち
+    meaning: suddenly, immediately
+    kind: similar expression
+    nuance: While both express immediacy, 「たちまち」 carries a stronger nuance of suddenness, quick change,
+      or an unexpected turn of events. 「すぐ」 is more neutral, simply indicating lack of delay or close
+      proximity.
+    grammar_point: たちまち (suddenly・immediately)
+  - term: 直ちに
+    meaning: immediately, instantly
+    kind: similar expression
+    nuance: 「直ちに」 is a more formal and forceful term for 'immediately,' often used in official announcements,
+      commands, or urgent situations. 「すぐ」 is common in everyday conversation and is less formal.
+    grammar_point: 直ちに (immediately)
+  - term: 近く
+    meaning: near, close by
+    kind: similar expression
+    nuance: 「近く」 denotes general proximity. When 「すぐ」 is used in a spatial context (e.g., 「すぐそば」), it
+      implies immediate, right-next-to proximity, emphasizing a very short or negligible distance, rather
+      than just being 'in the vicinity'.
+    grammar_point: 近く,遠く (proximity・distance spatial)
+  - term: そば
+    meaning: near, beside
+    kind: similar expression
+    nuance: 「そば」 means 'near' or 'beside'. When combined with 「すぐ」 (e.g., 「すぐそば」), it forms an emphatic
+      expression meaning 'right next to'. Without 「すぐ」, 「そば」 does not carry the same degree of instantaneous
+      closeness.
+    grammar_point: <suggest>:そば (near・beside)
+  - term: 簡単
+    meaning: easy, simple
+    kind: similar expression
+    nuance: 「簡単」 describes general ease or simplicity of a task or problem. When 「すぐ」 expresses 'easily'
+      (e.g., 「すぐ怒る」), it implies 'readily' or 'quickly triggered' rather than the inherent simplicity
+      of the action itself. It points to a low threshold or quick transition to a state.
+    grammar_point: <suggest>:簡単に (easily)
+  - term: 近い うち に
+    meaning: in the near future
+    kind: similar expression
+    nuance: 「近い うち に」 suggests a general timeframe in the near future, whereas 「すぐ」 implies an immediate
+      or almost immediate action or event.
+    grammar_point: <suggest>:近い うち に (in the near future)
+post_false_friends_writeup: It is important to differentiate 「すぐ」 from similar expressions like 「もうすぐ」.
+  While both relate to time, 「すぐ」 denotes an immediate action or proximity, whereas 「もうすぐ」 implies that
+  something will happen soon. Choosing the correct expression is key for accurately conveying your intended
+  meaning.
+examples:
+  - english: Please contact me as soon as you arrive at the airport.
+    japanese:
+      - 空港 に 着い たら {すぐ} に、連絡 し て ください。
+      - 空港 に 着い たら {すぐ} 連絡 し て ください。
+      - 空港 に 着い たら {すぐ} ご 連絡 ください。
+    english_literally: As for arriving at the airport, please contact immediately.
+    competing_grammar:
+      - competing_japanese:
+          - 空港 に 着い {て から} 連絡 し て ください。
+        english: Please contact me after you arrive at the airport.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for an action that happens without delay.
+    scene: A person asking a friend to call upon arrival.
+    register: teineigo (polite)
+    setting: friendly
+  - english: That person gets emotional easily, so it's troubling.
+    japanese:
+      - あの 人 は {すぐ} 感情 的 に なる から、困る。
+      - あの 人 は {すぐ} 感情 的 に なり ます から、困り ます。
+      - 彼 は {すぐ} 感情 的 に なる から、困る ん だ よ ね。
+    english_literally: That person immediately becomes emotional, so I am troubled.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は {簡単 に} 感情 的 に なる から、困る。
+        english: That person easily becomes emotional, so it's troubling.
+        hint: 「簡単に」 implies ease of action, but 「すぐ」 emphasizes the frequency or quickness with which
+          someone becomes emotional. We're looking for something that means 'easily' in the sense of 'prone
+          to' or 'quickly'.
+    scene: Two friends are discussing a difficult colleague.
+    register: casual
+    setting: serious
+  - english: The art museum is right near the post office.
+    japanese:
+      - 美術 館 は 郵便 局 の {すぐ} そば に あり ます。
+      - 美術 館 は 郵便 局 の {すぐ} 近く に あり ます。
+      - 美術 館 は 郵便 局 の {すぐ} 横 です よ。
+    english_literally: Art museum right near post office exists.
+    competing_grammar:
+      - competing_japanese:
+          - 美術 館 は 郵便 局 の {近く} に あり ます。
+        english: The art museum is near the post office.
+        hint: 「近く」 means 'near' in a general sense, but 「すぐそば」 or just 「すぐ」 with a location emphasizes
+          'right next to' or 'very close'. We're looking for a precise, immediate proximity.
+    scene: A local resident is giving directions to a tourist.
+    register: teineigo (polite)
+    setting: informative
+  - english: As soon as work finishes, I'm going shopping.
+    japanese:
+      - 仕事 が 終わっ たら {すぐ} に、買い出し に 行き ます。
+      - 仕事 が 終わっ たら {すぐ} 買い出し に 行き ます。
+      - 仕事 終わっ たら {すぐ} 買い物 に 行く よ。
+    english_literally: As for work finishes, immediately going out to buy.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が 終わっ {て から}、買い出し に 行き ます。
+        english: After work finishes, I'm going shopping.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for a direct, no-delay transition.
+    scene: A busy student is planning their evening.
+    register: casual
+    setting: reflective
+  - english: I solved that puzzle easily.
+    japanese:
+      - その パズル は {すぐ} に 解け まし た。
+      - その パズル は {すぐ} 解け まし た。
+      - その パズル、{すぐ} 解け た よ。
+    english_literally: That puzzle immediately could solve.
+    competing_grammar:
+      - competing_japanese:
+          - その パズル は {簡単 に} 解け まし た。
+        english: I easily solved that puzzle.
+        hint: 「簡単に」 means 'easily', but 「すぐ」 in this context also implies 'quickly' or 'without effort'.
+          We're looking for a sense of both ease and promptness.
+    scene: A puzzle enthusiast proudly recounting their recent accomplishment.
+    register: casual
+    setting: informative
+  - english: I'll call you right when I get home.
+    japanese:
+      - 家 に 着い たら {すぐ} 電話 する よ。
+      - 家 に 着い たら {すぐ} に 電話 する ね。
+      - 家 に 着い たら {すぐ} に お 電話 いたし ます。
+    english_literally: As soon as I arrive home, I'll call.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 着い {て から} 電話 する よ。
+        english: I'll call you after I get home.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for calling immediately upon arrival.
+    scene: A student on the phone with their parent, letting them know their arrival plans.
+    register: casual
+    setting: friendly
+  - english: I'm tired today, so I'll go to sleep right after I get home.
+    japanese:
+      - 今日 は 疲れ た から、帰っ たら {すぐ} 寝る ね。
+      - 今日 は 疲れ た から、帰っ たら {すぐ} に 寝る わ。
+      - 今日 は 疲れ まし た の で、帰り まし たら {すぐ} に 寝 ます。
+    english_literally: As for today, I'm tired, so as soon as I get home, I'll sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 疲れ た から、帰っ {て から} 寝る ね。
+        english: Today I'm tired, so I'll go to sleep after I get home.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for the desire for immediate rest.
+    scene: A person telling their live-in partner about their plans for the evening after a long day.
+    register: casual
+    setting: intimate
+  - english: I want to see you again soon.
+    japanese:
+      - もっと 君 と {すぐ} 会い たい な。
+      - 君 と また {すぐ} 会い たい な。
+      - あなた と {すぐ} に また お 会い し たい です ね。
+    english_literally: More with you immediately I want to meet.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 君 と {近い うち に} 会い たい な。
+        english: I want to see you again in the near future.
+        hint: 「近い うち に」 means 'in the near future', which is more general. 「すぐ」 emphasizes an immediate
+          desire for the next meeting. We're looking for quick follow-up.
+    scene: A person sending a text message after a first date, expressing eagerness for another meeting.
+    register: casual
+    setting: flirty
+  - english: As soon as I saw the new gashapon machine, I bought something.
+    japanese:
+      - 新しい ガチャガチャ を 見 たら、{すぐ} に 買い まし た。
+      - 新しい ガチャガチャ を 見 たら、{すぐ} 買い まし た。
+      - 新しい ガチャガチャ を 見 て {すぐ} 買っ た よ。
+    english_literally: As soon as I saw the new gashapon, immediately bought.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ガチャガチャ を 見 {て から} 買い まし た。
+        english: After I saw the new gashapon machine, I bought something.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for an impulsive, immediate action.
+    scene: A person admitting to an impulsive purchase of a toy from a capsule machine.
+    register: casual
+    setting: humorous
+  - english: I will contact you immediately after the meeting concludes.
+    japanese:
+      - 会議 が 終わっ たら {すぐ} に ご 連絡 いたし ます。
+      - 会議 が 終わり まし たら {すぐ} に ご 連絡 差し上げ ます。
+      - 会議 が 終わっ たら {すぐ} に 連絡 し ます。
+    english_literally: As soon as meeting finishes, immediately will contact you.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 終わっ {て から} ご 連絡 いたし ます。
+        english: I will contact you after the meeting concludes.
+        hint: 「～てから」 indicates that an action happens after another, not necessarily immediately. We're
+          looking for an assurance of promptness, emphasizing no delay.
+    scene: A business professional assuring a client or colleague of prompt communication.
+    register: bijinesu nihongo (business)
+    setting: professional
+post_example_writeup: The adverb 「すぐ」 offers a concise way to express immediacy or proximity in Japanese.
+  Its versatility allows it to be used in various contexts, making it an essential word for expressing
+  actions and locations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/すぐ

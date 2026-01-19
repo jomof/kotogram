@@ -1,0 +1,493 @@
+grammar_point: 要る・いる (need)
+learn_before:
+  - '[Noun]が欲しい (to want something)'
+meaning: to need, to require
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 要る
+    rarity: common
+    meaning: to need
+  - conjugation-type: non-past polite (～ます)
+    form: 要ります
+    rarity: common
+    meaning: to need (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 要らない
+    rarity: common
+    meaning: to not need
+  - conjugation-type: negative non-past polite (～ません)
+    form: 要りません
+    rarity: common
+    meaning: to not need (polite)
+  - conjugation-type: past plain (～た)
+    form: 要った
+    rarity: common
+    meaning: needed
+  - conjugation-type: past polite (～ました)
+    form: 要りました
+    rarity: common
+    meaning: needed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 要らなかった
+    rarity: common
+    meaning: didn't need
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 要りませんでした
+    rarity: common
+    meaning: didn't need (polite)
+  - conjugation-type: te-form (～て)
+    form: 要って
+    rarity: common
+    meaning: needing, and...
+  - conjugation-type: conditional (～ば)
+    form: 要れば
+    rarity: uncommon
+    meaning: if (one) needs
+  - conjugation-type: conditional (～たら)
+    form: 要ったら
+    rarity: uncommon
+    meaning: if/when (one) needed/needs
+  - conjugation-type: concessive (～ても)
+    form: 要っても
+    rarity: less common
+    meaning: even if (one) needs
+  - conjugation-type: concessive (～ても)
+    form: 要らなくても
+    rarity: less common
+    meaning: even if (one) doesn't need
+  - conjugation-type: volitional (～よう)
+    form: 要ろう
+    rarity: rare
+    meaning: let's need, probably needs
+  - conjugation-type: volitional polite (～ましょう)
+    form: 要りましょう
+    rarity: rare
+    meaning: shall we need, let's need (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 要れ
+    rarity: very rare
+    meaning: need! (command)
+  - conjugation-type: imperative polite (～なさい)
+    form: 要りなさい
+    rarity: very rare
+    meaning: please need (polite command)
+  - conjugation-type: potential (～られる/～える)
+    form: 要れる
+    rarity: rare
+    meaning: can need
+  - conjugation-type: passive (～られる/～かれる)
+    form: 要られる
+    rarity: rare
+    meaning: to be needed
+  - conjugation-type: causative (～させる)
+    form: 要らせる
+    rarity: very rare
+    meaning: to make (someone) need
+pronunciation:
+  katakana: イル
+  romaji: iru
+formation:
+  '[Subject は] + [Object が] + 要る/要ります': Indicates that the subject needs the object.
+jlpt: N5
+etymology: The verb 「要る」 originally meant "to take" or "to require." Over time, its meaning evolved to
+  specifically indicate the necessity of something. It shares a root with the noun 「要 (かなめ)」, meaning
+  "essential point" or "key," further highlighting the concept of necessity.
+writeup: |-
+  The verb 「要る・いる」 means "to need" or "to require" something. It is a **Godan verb** (Group 1), crucial for expressing what is necessary or required. The particle が is used to mark the object that is needed, while は often marks the subject or the person needing something.
+
+  Remember to conjugate 「要る」 according to the politeness level and tense required by the context. For example, the polite form 「要ります」 is commonly used in formal situations, while 「要る」 is used in casual settings.
+
+  While grammatically possible, some conjugations such as the imperative (e.g., 「要れ」, 「要りなさい」), potential (「要れる」), passive (「要られる」), and causative (「要らせる」) forms are **very rare** or **unnatural** in everyday usage for the meaning of "to need." This is because "to need" is typically a state or a passive requirement, not an action that can be commanded, made possible, or caused in the same way as other verbs.
+false_friends:
+  - term: 必要 (ひつよう)
+    meaning: necessary
+    kind: similar expression
+    nuance: While 「要る」 is a verb meaning "to need," 「必要」 is a na-adjective meaning "necessary." 「必要」 often
+      describes a state or condition, while 「要る」 describes a verb of requiring. For example, you'd say
+      「ビタミンが必要です」 (vitamins are necessary) or 「ビタミンが要ります」 (I need vitamins).
+    grammar_point: な-Adjectives (adjectival nouns)
+  - term: 居る (いる)
+    meaning: to exist, to be (living things)
+    kind: often confused with
+    nuance: 「居る」 (いる) shares the same pronunciation as 「要る」, but refers specifically to the existence
+      of animate objects (living beings). 「要る」, in contrast, means 'to need' and applies to both animate
+      and inanimate things. Their similar sound but different meanings and kanji are a common source of
+      confusion.
+    grammar_point: いる (to exist, animate)
+  - term: 在る (ある)
+    meaning: to exist, to be (non-living things)
+    kind: often confused with
+    nuance: 「在る」 (ある) denotes the existence of inanimate objects. While 「要る」 means 'to need,' 「在る」 simply
+      indicates presence. Although their kanji and pronunciation are distinct from 「要る」, understanding
+      the fundamental difference between 'to need' and 'to exist' is crucial.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: 必要とする
+    meaning: to consider necessary, to require (as a verb)
+    kind: similar expression
+    nuance: 「必要とする」 implies a more deliberate act of determining or recognizing a need, or a more objective/formal
+      requirement, whereas 「要る」 is a simpler, more direct statement of need. 「要る」 is more common for personal
+      or immediate needs.
+    grammar_point: <strongly-suggest>:必要とする (to consider necessary, to require)
+  - term: 求める
+    meaning: to seek, to ask for, to demand, to wish for
+    kind: similar expression
+    nuance: 「求める」 implies an active effort to acquire something, or to request or demand it. In contrast,
+      「要る」 simply states that something is needed or required, without necessarily implying an an active
+      search or request. 「要る」 is a state of needing, while 「求める」 is an action of pursuing.
+    grammar_point: <strongly-suggest>:求める (to seek, to ask for, to demand, to wish for)
+post_false_friends_writeup: The distinction between 「要る」 and 「必要」 lies primarily in their grammatical
+  function. 「要る」 is a verb, focusing on the act of needing, while 「必要」 functions as a na-adjective, describing
+  the state of being necessary. Choose 「要る」 when expressing that something is required or needed, and
+  「必要」 when describing something as being in a necessary state. The structure used with them is also different;
+  「要る」 is used with がを mark what is needed, while 「必要」 often uses がと 「ある」 or 「です」. The verb 「必要とする」 is
+  a more formal and objective way to express need, often implying a recognition of a requirement, distinct
+  from the direct personal need expressed by 「要る」. 「求める」, on the other hand, implies an active pursuit
+  or request for something, unlike 「要る」 which describes a state of necessity.
+examples:
+  - english: I need new shoes.
+    japanese:
+      - 私 に は 新しい 靴 が {要る}。
+      - 新しい 靴 が {要る}。
+      - 私、新しい 靴 が {要る} の。
+      - 新しい 靴、{要る} なぁ。
+    english_literally: To me, new shoes are needed.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に は 新しい 靴 が {必要 です}。
+        english: New shoes are necessary for me.
+        hint: 「必要です」 describes something as being necessary in a more objective or general sense. We're
+          looking for the speaker's personal, direct feeling of needing something.
+      - competing_japanese:
+          - 新しい 靴 が {ある}。
+        english: There are new shoes.
+        hint: 「ある」 indicates existence or presence. We're looking for the sense of needing something,
+          not just its existence.
+      - competing_japanese:
+          - 私 は 新しい 靴 を {必要 と する}。
+        english: I deem new shoes necessary.
+        hint: 「必要とする」 implies a more formal or deliberate recognition of a need. We're looking for a simple,
+          direct statement of personal need.
+    scene: A young woman looking at her worn-out shoes and deciding to buy new ones.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「私には」 emphasizes the personal nature of the need. The casual register and reflective
+      setting make 「要る」 a natural choice for expressing a personal, immediate requirement. Using 「要るの」
+      or 「要るなぁ」 adds a more personal and reflective nuance suitable for thinking aloud.
+  - english: This room needs a new desk.
+    japanese:
+      - この 部屋 に は 新しい 机 が {要り ます}。
+      - この 部屋 に は 新しい 机 が {要り ます} ね。
+      - 新しい 机 が {要り ます}、この 部屋 に は。
+    english_literally: For this room, a new desk is needed.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に は 新しい 机 が {必要 です}。
+        english: A new desk is necessary for this room.
+        hint: 「必要です」 states a general necessity. 「要ります」 conveys a more direct, practical need for the
+          room's function.
+      - competing_japanese:
+          - この 部屋 に は 新しい 机 が {あり ます}。
+        english: There is a new desk in this room.
+        hint: 「あります」 indicates presence or existence. We're focusing on the requirement for the desk,
+          not its current presence.
+      - competing_japanese:
+          - この 部屋 は 新しい 机 を {必要 と し ます}。
+        english: This room requires a new desk.
+        hint: 「必要とします」 is a more formal or objective way to express a requirement, often used for rules
+          or systems. Here, we're expressing a practical need for the room itself.
+    scene: A manager discussing office supplies.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal register and setting make 「要ります」 appropriate. The speaker's use of this verb implies
+      a direct, functional requirement for the room, rather than a general or objective necessity that
+      「必要です」 might suggest. The use of 「ね」 (optional addition) would soften the statement, seeking agreement.
+  - english: We don't need an umbrella today, do we?
+    japanese:
+      - 今日 は 傘 が {要ら ない} ね。
+      - 今日 は 傘 {要ら ない} よ ね。
+      - 傘、{要ら ない} よ な、今日。
+    english_literally: Today, an umbrella is not needed, right?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 傘 が {必要 で は ない} ね。
+        english: Today, an umbrella is not necessary, right?
+        hint: 「必要ではない」 is more formal and objective. 「要らない」 is a more natural, conversational expression
+          for the absence of a personal need.
+      - competing_japanese:
+          - 今日 は 傘 が {ない} ね。
+        english: Today, there is no umbrella, right?
+        hint: 「ない」 indicates the absence of something. 「要らない」 expresses that something is not required
+          or needed.
+      - competing_japanese:
+          - 今日 は 傘 を {必要 と し ない} ね。
+        english: Today, we do not require an umbrella, right?
+        hint: 「必要としない」 is a more formal or objective expression. We're looking for a casual statement
+          about not needing something personally.
+    scene: Two male friends checking the weather before going out.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual register and the sentence-final particle 「ね」 suggest a light, conversational tone,
+      seeking agreement. The male speaker might use 「よな」 for a slightly more emphatic, self-confirming
+      nuance. 「要らない」 directly expresses a lack of personal requirement for the umbrella.
+  - english: At that time, no one needed my help.
+    japanese:
+      - あの 時 は 誰 も 私 の 助け が {要ら なかっ た}。
+      - あの 時 は 誰 も 私 の 助け なんか {要ら なかっ た} の よ ね。
+    english_literally: At that time, no one my help was not needed.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 は 誰 も 私 の 助け が {必要 で は なかっ た}。
+        english: At that time, no one's help was necessary.
+        hint: 「必要ではなかった」 is a neutral statement of past non-necessity. 「要らなかった」 often carries a nuance
+          of the help not being desired or utilized, fitting a reflective or slightly melancholic tone.
+      - competing_japanese:
+          - あの 時 は 誰 も 私 の 助け が {なかっ た}。
+        english: At that time, no one had my help.
+        hint: 「なかった」 simply states absence. 「要らなかった」 specifically means that the help was not required
+          or wanted by anyone.
+      - competing_japanese:
+          - あの 時 は 誰 も 私 の 助け を {必要 と し なかっ た}。
+        english: At that time, no one deemed my help necessary.
+        hint: 「必要としなかった」 implies a more objective or formal decision. 「要らなかった」 conveys a more personal
+          sense of the help not being desired or utilized by individuals.
+      - competing_japanese:
+          - あの 時 は 誰 も 私 の 助け を {求め なかっ た}。
+        english: At that time, no one sought my help.
+        hint: 「求めなかった」 means no one *asked for* or *sought* the help. 「要らなかった」 means the help was simply
+          not needed or wanted.
+    scene: A woman reflecting on a past event where her offer of help was not accepted.
+    register: casual
+    setting: melancholic
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「要らなかった」 in a melancholic setting emphasizes the speaker's feeling that her help
+      was not utilized or desired. The optional 「なんか」 (roughly 'something like') can add a slight dismissive
+      or self-deprecating tone, and 「のよね」 (if added) makes it feel more like a personal reflection or
+      gentle lament, common for female speakers.
+  - english: If you need help, please tell me.
+    japanese:
+      - もし 助け が {要っ たら}、言っ て ください ね。
+      - 助け が {要っ たら}、遠慮 なく 言っ て ください ね。
+      - 助け が {要る} 時 は いつ で も 声 かけ て ね。
+    english_literally: If help is needed, please tell me.
+    competing_grammar:
+      - competing_japanese:
+          - もし 助け が {必要 だっ た ら}、言っ て ください ね。
+        english: If help was necessary, please tell me.
+        hint: 「必要だったら」 implies a general condition of necessity. 「要ったら」 directly addresses the recipient's
+          personal requirement for assistance, making the offer more empathetic and direct.
+      - competing_japanese:
+          - もし 助け を {必要 と し たら}、言っ て ください ね。
+        english: If you require help, please tell me.
+        hint: 「必要としたら」 is more formal and implies a more objective recognition of a need. 「要ったら」 is a
+          simpler, more direct expression of a personal need in this context.
+      - competing_japanese:
+          - もし 助け を {求め たら}、言っ て ください ね。
+        english: If you seek help, please tell me.
+        hint: 「求めたら」 suggests actively *seeking* or *asking for* help. 「要ったら」 simply means if help becomes
+          needed, without implying an active search or request.
+    scene: An older colleague offering support to a younger one who is working on a difficult task.
+    register: formal
+    setting: supportive
+    conjugation: conditional (～たら)
+    speaker_age: older
+    nuance: The polite request 「～てくださいね」 softens the tone, making the conditional phrase a genuine offer
+      of help. The older speaker's advice to a younger colleague makes the supportive setting natural.
+      The use of 「もし」 at the beginning reinforces the conditional nature.
+    etymology: The use of 「もし」 (if) at the beginning of the sentence is a common way to introduce a conditional
+      clause in Japanese, stemming from classical Japanese where it functioned similarly to an adverbial
+      particle indicating supposition.
+  - english: This dish needs salt to be tastier.
+    japanese:
+      - この 料理 は 塩 が {要っ て}、もっと 美味しい。
+      - この 料理、もう 少し 塩 が {要っ て}、もっと 美味しく なる よ。
+    english_literally: This dish, salt being needed, becomes tastier.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は 塩 が {必要 で}、もっと 美味しい。
+        english: This dish is necessary for salt, and is tastier.
+        hint: 「必要で」 emphasizes salt as a general requirement for the dish. 「要って」 focuses on the direct
+          inclusion of salt to make it more delicious, highlighting its role in the process.
+      - competing_japanese:
+          - この 料理 は 塩 を {必要 と し て}、もっと 美味しい。
+        english: This dish requires salt to be tastier.
+        hint: 「必要として」 is a more formal or objective way of stating a requirement. 「要って」 is a more casual
+          and direct expression of needing salt for the dish to improve.
+    scene: Someone advising a friend on how to improve a dish.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual register and friendly setting make the direct use of 「要って」 natural when offering
+      advice on cooking. The te-form connects the need for salt to the outcome of becoming tastier. The
+      male speaker might use 「～なるよ」 for a more assertive but still friendly tone.
+  - english: Yesterday's party needed a lot of wine.
+    japanese:
+      - 昨日 の パーティー に は ワイン が たくさん {要り まし た}。
+      - 昨日 の パーティー、ワイン が たくさん {要り まし た} よ。
+    english_literally: For yesterday's party, a lot of wine was needed.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の パーティー に は ワイン が たくさん {必要 でし た}。
+        english: For yesterday's party, a lot of wine was necessary.
+        hint: 「必要でした」 describes a general past necessity. 「要りました」 emphasizes the specific quantity of
+          wine that was *required* or *consumed* for the event.
+      - competing_japanese:
+          - 昨日 の パーティー に は ワイン が たくさん {あり まし た}。
+        english: Yesterday's party had a lot of wine.
+        hint: 「ありました」 means something was present or existed. 「要りました」 means something was required or
+          used up.
+      - competing_japanese:
+          - 昨日 の パーティー は ワイン を たくさん {必要 と し まし た}。
+        english: Yesterday's party required a lot of wine.
+        hint: 「必要としました」 is a more formal expression of a past requirement. 「要りました」 is more direct and
+          conversational, suitable for storytelling about what was practically used.
+    scene: Someone recounting the preparations for a large gathering.
+    register: casual
+    setting: storytelling
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The polite past tense 「要りました」 is used in a casual storytelling context, suitable for recounting
+      events to a group. The female speaker might add 「よ」 at the end for emphasis, making the statement
+      more assertive while remaining polite. This choice implies a direct, practical need for the wine,
+      rather than a mere objective necessity.
+  - english: Do you need anything else?
+    japanese:
+      - 他 に 何 か {要り ます か}？
+      - 他 に {要り ます}？
+      - 何 か 他 に {要り ます か}？
+    english_literally: Other, something needed is it?
+    competing_grammar:
+      - competing_japanese:
+          - 他 に 何 か {必要 です か}？
+        english: Is anything else necessary?
+        hint: 「必要ですか」 is a more objective inquiry about necessity. 「要りますか」 is a more direct, service-oriented
+          question about what the person individually requires or wants.
+      - competing_japanese:
+          - 他 に 何 か {あり ます か}？
+        english: Is there anything else?
+        hint: 「ありますか」 asks about the existence or presence of something. 「要りますか」 specifically asks if
+          something is needed or desired.
+    scene: A hotel concierge asking a guest if they require further assistance or items.
+    register: formal
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    nuance: In a professional setting like a hotel, the polite 「要りますか」 is a standard and direct way to
+      inquire about a guest's needs. The male speaker's use conveys attentiveness and service.
+  - english: You won't need to bring anything.
+    japanese:
+      - 何 も 持っ て 来る 必要 は {要り ませ ん} よ。
+      - 何 も {要り ませ ん} から 大丈夫 です よ。
+    english_literally: Anything bringing necessity is not needed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も 持っ て 来る {必要 は ない} です よ。
+        english: There is no necessity to bring anything.
+        hint: 「必要はないです」 states a general absence of necessity. 「要りません」 is a more direct and reassuring
+          statement that *you* won't need to bring anything, often implying it's already provided or unnecessary.
+      - competing_japanese:
+          - 何 も {持っ て 来 なく て も いい} です よ。
+        english: You don't have to bring anything.
+        hint: 「～なくてもいい」 expresses that it's okay not to do something. 「要りません」 specifically states that
+          bringing something is not needed at all.
+    scene: A hostess reassuring a guest about attending a party, emphasizing that all essentials will
+      be provided.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「要りません」 with the particle 「よ」 adds a gentle, reassuring tone, characteristic of
+      a hostess making a guest feel comfortable. This directly communicates that the guest does not personally
+      need to exert effort in bringing items.
+  - english: Even if you don't need it now, it might be useful later.
+    japanese:
+      - 今 は {要ら なく て も}、後 で 役 に 立つ か も しれ ない よ。
+      - 今 {要ら なく て も}、取っ て おい たら いい か も ね。
+    english_literally: Now not needed even if, later useful might be.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は {必要 で なく て も}、後 で 役 に 立つ か も しれ ない よ。
+        english: Even if it's not necessary now, it might be useful later.
+        hint: 「必要でなくても」 focuses on the general state of being unnecessary. 「要らなくても」 is a more direct expression
+          of not personally needing something at the moment.
+      - competing_japanese:
+          - 今 は {なく て も}、後 で 役 に 立つ か も しれ ない よ。
+        english: Even if you don't have it now, it might be useful later. Sensitive to Japanese nuances,
+          「なくても」 means 'even if there isn't' or 'even if you don't have.' 「要らなくても」 specifically means
+          'even if you don't *need* it'.
+        hint: 「なくても」 means 'even if there isn't' or 'even if you don't have.' 「要らなくても」 specifically means
+          'even if you don't *need* it'.
+    scene: A parent advising a child not to throw away an old, seemingly useless item, suggesting it could
+      have future value.
+    register: casual
+    setting: instructional
+    conjugation: concessive (～ても)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The use of the negative concessive 「要らなくても」 highlights the parent's understanding that the
+      child doesn't see an immediate need, but still offers a pragmatic perspective. The male, older speaker's
+      advice uses 「だよ」 or 「かもね」 for a gentle but firm tone, common in parental guidance.
+  - english: For this plan, professional advice is needed.
+    japanese:
+      - この 計画 に は 専門 家 の 助言 が {要り ます}。
+      - この 計画 に は 専門 家 の 助言 が どう し て も {要り ます}。
+    english_literally: For this plan, expert advice is needed.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 に は 専門 家 の 助言 が {必要 です}。
+        english: For this plan, expert advice is necessary.
+        hint: 「必要です」 states a general necessity. 「要ります」 emphasizes the direct and practical requirement
+          for the advice to move forward with the plan.
+    scene: A team leader explaining resource requirements during a project meeting.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    nuance: In a professional setting, 「要ります」 conveys a direct, tangible need for resources or input.
+      The use here implies that the advice is a critical component without which the plan cannot proceed
+      effectively. It's a statement of practical necessity.
+  - english: I heard that for a trip to Hokkaido, warm clothes are needed even in summer.
+    japanese:
+      - 北海道 旅行 に は 夏 で も 暖かい 服 が {要る} そう です。
+      - 北海道 旅行 に は 夏 で も 暖かい 服 が {要る} と の こと です。
+    english_literally: For Hokkaido travel, even in summer, warm clothes are needed, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 北海道 旅行 に は 夏 で も 暖かい 服 が {必要 だ そう です}。
+        english: For Hokkaido travel, even in summer, warm clothes are necessary, I heard.
+        hint: 「必要だそうです」 conveys a general necessity based on information. 「要るそうです」 expresses a practical
+          need or requirement for the traveler based on what was heard.
+    scene: Friends discussing their travel plans.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The combination with 「そうです」 (hearsay) or 「とのことです」 (report) indicates that the speaker is relaying
+      information they've gathered about the practical requirements for the trip. 「要る」 here refers to
+      the tangible items one would practically need to bring.
+post_example_writeup: As a verb expressing a state of needing, some conjugations of 「要る」 are grammatically
+  possible but pragmatically rare or sound unnatural. These include direct commands like the imperative
+  forms (e.g., 「要れ」, 「要りなさい」), the potential form (「要れる」, meaning 'can need'), the passive form (「要られる」,
+  meaning 'to be needed by'), and the causative form (「要らせる」, meaning 'to make someone need'). In most
+  cases where these forms might seem applicable, alternative expressions, often involving 「必要 (ひつよう)」
+  or other verbs, are far more natural and commonly used. For example, instead of 「要られる」, one would typically
+  say 「必要とされる」 (to be deemed necessary).
+sources:
+  bunpro: https://bunpro.jp/grammar_points/要る・いる

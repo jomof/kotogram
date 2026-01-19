@@ -1,0 +1,294 @@
+grammar_point: まで (even to the extent)
+learn_before:
+  - Verb[させる] (causative)
+  - いかなる (no matter what kind of)
+  - まくる (excessive action)
+  - ように言う (tell・request・order)
+meaning: Even, to the extent of...
+pronunciation:
+  katakana: マデ
+  romaji: made
+formation:
+  Noun + まで: Indicates that an action or state extends to an unexpected or extreme noun, quantity, or
+    concept, often implying surprise.
+  Verb (て-form) + まで: Indicates that an action or state is performed to an extreme or undesirable extent,
+    often implying sacrifice or going too far.
+  Adverb/Degree Expression + まで: Used with adverbs or expressions of degree to emphasize an unexpected
+    or surprising extent, like 'even this much' or 'even so deeply'.
+jlpt: N4
+etymology: The etymology of 「まで」 is not definitively known, but it is believed to be related to the verb
+  「待つ」 (matsu, to wait), suggesting the idea of waiting until a certain point or reaching a certain limit.
+writeup: The particle 「まで」 inherently signifies a **limit** or **extent**. While commonly associated with
+  the meaning "until," it is also employed to convey the nuance of **"even"** or **"to the extent of"**.
+  This application highlights that an action or state reaches an unexpected, surprising, or extreme boundary.
+  It is attached to nouns, the te-form of verbs, or expressions of degree. This core concept of delineating
+  a limit underlies both its temporal ("until") and its emphatic ("even") uses. For instance, 「夜中 まで 勉強
+  する」 (to study until midnight) and 「大嫌い な バナナ {まで} 食べた」 (I even ate a banana I hate) both express reaching
+  a boundary—a temporal one in the former, and an unexpected, surprising one in the latter. When combined
+  with other particles, such as 「も」 (e.g., 「までも」), the emphasis on the surprising or extreme nature can
+  be further intensified.
+false_friends:
+  - term: さえ
+    meaning: Even
+    kind: similar expression
+    nuance: While both mean 'even,' 「さえ」 typically implies 'even this trivial thing' or 'even this obvious
+      thing,' often suggesting a minimum threshold. In contrast, 「まで」 emphasizes an **extreme** or **unexpected**
+      limit or boundary that has been reached, often implying a surprising degree or extent.
+    grammar_point: さえ (even・if only)
+  - term: ほど
+    meaning: To the extent that; So much… that
+    kind: similar expression
+    nuance: 「ほど」 primarily denotes **degree** or **comparison**, indicating 'to the extent that...' or
+      'about as much as...'. It focuses on proportionality. 「まで」, however, signifies reaching a specific
+      **limit** or **boundary**, often emphasizing the surprising fact that such a point has been attained.
+    grammar_point: ほど (extent・approximation)
+  - term: くらい
+    meaning: To the extent that
+    kind: similar expression
+    nuance: 「くらい」 (or 「ぐらい」) expresses an **approximate amount, degree, or extent**, similar to 'about'
+      or 'approximately'. It suggests a reasonable estimation. 「まで」, on the other hand, highlights the
+      **ultimate limit** or **unforeseen extent** of something, carrying a stronger emphasis of surprise
+      or extremity.
+    grammar_point: くらい (to the extent)
+  - term: こんなに・そんなに
+    meaning: In such a way, to such an extent
+    kind: similar expression
+    nuance: 「～に」 focuses on the *manner* or *degree* of an action or state. 「まで」 emphasizes the *extreme
+      boundary* or *unexpected limit* that has been reached, often implying surprise or exceeding a typical
+      expectation.
+    grammar_point: こんなに (this much)
+  - term: ～ても
+    meaning: Even if, even though
+    kind: often confused with
+    nuance: 「～ても」 expresses concession ("even if X, Y happens"). 「まで」 in the 「～まで(も)」 form expresses an
+      extreme or surprising extent ("even to the extent that X happens, Y happens"). While both can convey
+      a surprising element, 「まで」 specifically highlights the boundary crossed.
+    grammar_point: ても (even if・even though)
+post_false_friends_writeup: When choosing between these expressions, consider the specific nuance you
+  wish to convey. If the focus is on a surprising extreme or an unexpected boundary, 「まで」 is often the
+  most suitable choice. If you are indicating a minimal threshold, 「さえ」 may be appropriate. For simple
+  degrees or comparisons, 「ほど」 or 「くらい」 are used. For the manner or degree of an action, 「～に」 can be used.
+  And while 「～ても」 expresses concession, 「まで」 highlights crossing a specific, often extreme, boundary.
+examples:
+  - english: Even after trying so hard, it didn't go well right until the very end.
+    japanese:
+      - あんな に 頑張っ た の に、最後 の 最後 {まで} うまく いか なかっ た。
+      - あんな に 頑張っ た の に、最後 の 最後 {まで も} うまく いか なかっ た。
+    english_literally: Even though I tried so hard, to the very end, it did not go well.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 頑張っ た の に、結局 うまく いか なかっ た。
+        english: Even after trying so hard, in the end, it didn't go well.
+        hint: The original sentence highlights that the negative outcome persisted *until the very extreme
+          end*. We're looking for a phrase that expresses reaching that final boundary.
+    scene: A young man expressing frustration after a failed endeavor.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The phrase 「最後 の 最後 {まで}」 emphasizes the extent of the failure, reaching the absolute limit
+      of the effort, which is noteworthy given the strong effort. The use of 「あんな に 頑張った のに」 sets up the
+      disappointment. As a young man, he might use this casual phrasing with friends or family.
+  - english: I'm on a diet, but I ended up eating even three cakes!
+    japanese:
+      - ダイエット 中 な の に、ケーキ 三 個 {まで} 食べ ちゃっ た よ。
+      - ダイエット 中 な の に、ケーキ 三 個 {まで も} 食べ ちゃっ た よ。
+      - ダイエット 中 な の に、ケーキ 三 個 {まで} 食べ て しまっ た よ。
+      - ダイエット 中 な の に、ケーキ 三 個 {まで も} 食べ て しまっ た よ。
+    english_literally: Even though I am dieting, I ended up eating even three cakes.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット 中 な の に、ケーキ を 三 個 食べ ちゃっ た よ。
+        english: I'm on a diet, but I ended up eating three cakes!
+        hint: The original sentence expresses surprise at the *excessive number* of cakes eaten, implying
+          "even as many as three." We're looking for an expression that conveys this unexpected extent.
+    scene: A young woman lamenting her lack of self-control.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The number 「三 個」 with 「まで」 highlights the surprising, perhaps excessive, quantity eaten, conveying
+      a sense of humorous self-reproach. The 「～ちゃった」 ending adds a touch of regrettable completion, characteristic
+      of casual speech among younger females.
+  - english: Regarding this matter, the information has even reached the customers.
+    japanese:
+      - この 件 は、お 客 様 {まで} 情報 が 伝わっ て おり ます。
+      - この 件 は、お 客 様 {まで も} 情報 が 伝わっ て おり ます。
+      - この 件 は、お 客 様 {まで} 情報 が 届い て おり ます。
+      - この 件 は、お 客 様 {まで も} 情報 が 届い て おり ます。
+    english_literally: Regarding this matter, the information has been conveyed even to the customers.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 は、お 客 様 に 情報 が 伝わっ て おり ます。
+        english: Regarding this matter, the information has spread to the customers.
+        hint: The original sentence expresses surprise or concern that the information reached *even*
+          the customers, implying it spread further than expected. We're looking for a particle that conveys
+          this unexpected reach.
+    scene: A business professional explaining the widespread impact of a problem.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    nuance: 「お客様 {まで} 情報 が 伝わって おります」 emphasizes the significant and perhaps undesirable extent to which
+      sensitive information has spread, reaching even external parties like customers. The use of 「～て
+      おります」 is a polite and humble way to describe a state or action.
+  - english: When I hear your gentle voice, even my fatigue blows away.
+    japanese:
+      - あなた の 優しい 声 を 聞く と、疲れ {まで} 吹き飛ぶ わ。
+      - あなた の 優しい 声 を 聞く と、疲れ {まで も} 吹き飛ぶ わ。
+      - あなた の 優しい 声 を 聞く と、疲れ {まで} 吹っ飛ぶ わ。
+      - あなた の 優しい 声 を 聞く と、疲れ {まで も} 吹っ飛ぶ わ。
+    english_literally: When I hear your gentle voice, even my fatigue blows away.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 優しい 声 を 聞く と、疲れ も 吹き飛ぶ わ。
+        english: When I hear your gentle voice, my fatigue also blows away.
+        hint: The original sentence expresses that *even* something as fundamental as fatigue is completely
+          gone, highlighting the extreme positive effect. We're looking for an expression that emphasizes
+          this surprising and profound impact.
+    scene: A woman expressing appreciation to a man.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「疲れ {まで} 吹き飛ぶ」 emphasizes the surprising and complete extent to which the listener's voice
+      alleviates the speaker's fatigue, indicating a deep positive impact. The casual 「～わ」 is typically
+      used by female speakers in intimate contexts, adding to the flirty tone.
+  - english: Even though we just met, it's surprising that we can talk this deeply.
+    japanese:
+      - 初めて お 会い し た の に、こんな {まで} 深く 話せる なんて、驚き です ね。
+      - 初めて お 会い し た の に、こんな {まで も} 深く 話せる なんて、驚き です ね。
+      - 初めて お 会い し た の に、これ ほど {まで} 深く 話せる なんて、驚き です ね。
+      - 初めて お 会い し た の に、これ ほど {まで も} 深く 話せる なんて、驚き です ね。
+    english_literally: Even though we just met, that we can talk even this deeply, is surprising, isn't
+      it.
+    competing_grammar:
+      - competing_japanese:
+          - 初めて お 会い し た の に、こんな に 深く 話せる なんて、驚き です ね。
+        english: Even though we just met, it's surprising that we can talk so deeply.
+        hint: The original sentence uses 「こんな {まで}」 to highlight the *unexpected, surprising extent* of
+          the deep conversation, implying "even to this degree." We're looking for an expression that
+          emphasizes this surprising boundary rather than just "this much."
+    scene: A man on a first meeting, expressing connection without being too specific about topic.
+    register: teineigo (polite)
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「こんな {まで} 深く 話せる」 highlights the unexpected depth or breadth of their conversation for a first
+      meeting, emphasizing the surprising extent of their rapid connection. The polite 「です ね」 maintains
+      a respectful yet engaging tone. The use of 「こんな {まで}」 expresses the 'even this much' nuance.
+  - english: Apparently, this medicine might even be able to cure very severe illnesses.
+    japanese:
+      - この 薬 は、すごく ひどい 病気 {まで} 治せる か も しれ ない らしい よ。
+      - この 薬 は、すごく ひどい 病気 {まで も} 治せる か も しれ ない らしい よ。
+      - この 薬 は、すごく ひどい 病気 {まで} 治せ る 可能 性 が ある らしい よ。
+      - この 薬 は、すごく ひどい 病気 {まで も} 治せる 可能 性 が ある らしい よ。
+    english_literally: Apparently, this medicine might be able to cure even very severe illnesses.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は、すごく ひどい 病気 を 治せる か も しれ ない らしい よ。
+        english: Apparently, this medicine might be able to cure very severe illnesses.
+        hint: The original sentence uses 「病気 {まで}」 to emphasize the *astonishing capability* of the medicine,
+          extending to "even very severe illnesses." We're looking for an expression that conveys this
+          surprising scope.
+    scene: An older man sharing exciting news with a friend.
+    register: casual
+    setting: optimistic
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「すごく ひどい 病気 {まで} 治せる」 emphasizes the astonishing capability of the medicine, extending its
+      healing power to even serious, difficult-to-cure diseases. The casual 「らしい よ」 is used to convey
+      reported information.
+  - english: I'm so busy that I sometimes even forget to eat my own meals.
+    japanese:
+      - とても 忙しく て、自分 の ご飯 {まで} 食べ 忘れる こと が ある。
+      - とても 忙しく て、自分 の ご飯 {まで も} 食べ 忘れる こと が ある。
+      - とても 忙しく て、自分 の 食事 {まで} 食べ 忘れる こと が ある。
+      - とても 忙しく て、自分 の 食事 {まで も} 食べ 忘れる こと が ある。
+    english_literally: I am so busy, there are times when I even forget to eat my own meals.
+    competing_grammar:
+      - competing_japanese:
+          - とても 忙しく て、自分 の ご飯 を 食べる の を 忘れる こと が ある。
+        english: I'm so busy that I sometimes forget to eat my own meals.
+        hint: The original sentence highlights an *extreme level of busyness*, so much so that it affects
+          even a basic need like eating one's own meals. We're looking for an expression that emphasizes
+          this surprising extent of neglect.
+    scene: A man reflecting on his demanding schedule.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: 「自分 の ご飯 {まで} 食べ 忘れる」 highlights the extreme level of busyness, indicating that it extends
+      to neglecting even basic self-care, which is a noteworthy and surprising extent. This is a common
+      expression used by busy individuals.
+  - english: Be sure to report even the smallest mistakes.
+    japanese:
+      - どんな 小さな ミス {まで}、必ず 報告 する よう に。
+      - どんな 小さな ミス {まで も}、必ず 報告 する よう に。
+      - いかなる 小さな ミス {まで} も、必ず 報告 する よう に。
+      - いかなる 小さな ミス {まで も}、必ず 報告 する よう に。
+      - どんな 小さな ミス {まで} も、必ず 報告 し なさい。
+      - どんな 小さな ミス {まで も}、必ず 報告 し なさい。
+    english_literally: Even the smallest mistakes, be sure to report.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 小さな ミス も、必ず 報告 する よう に。
+        english: Be sure to report even the smallest mistakes.
+        hint: The original sentence uses 「まで」 to emphasize that the reporting requirement extends to the
+          *extreme case* of "even the smallest mistakes." We're looking for an expression that highlights
+          this comprehensive, boundary-reaching scope.
+    scene: A male supervisor giving instructions to a subordinate.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    nuance: 「どんな 小さな ミス {まで}」 emphasizes the requirement for thoroughness, indicating that the scope of
+      reporting extends to even seemingly insignificant errors, stressing an unexpected level of detail
+      expected.
+  - english: He continued playing games, even to the extent of making his family use their money.
+    japanese:
+      - 彼 は、家族 の お 金 を 使わ せ て {まで も}、ゲーム を 続け た。
+      - 彼 は、家族 の お 金 を 使わ せ て {まで} ゲーム を 続け た。
+      - 彼 は、家族 の お 金 を 使わ せ て {まで も} ゲーム を 続行 し た。
+    english_literally: He continued playing games, even to the extent of making his family use their money.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、家族 の お 金 を 使わ せ て も、ゲーム を 続け た。
+        english: He continued playing games, even if he made his family use their money.
+        hint: The original sentence uses 「までも」 to emphasize that his actions went to the *extreme and
+          regrettable extent* of making his family use their money. We're looking for a phrase that expresses
+          reaching this unexpected, severe boundary, rather than just a concession.
+    scene: A man is discussing someone's extreme behavior with a friend, expressing disapproval.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The construction 「させて {までも}」 emphasizes the extreme and undesirable extent to which the subject
+      went to continue playing games, highlighting the surprising and negative boundary crossed. This
+      highlights the strong negative impact.
+  - english: The teacher was so angry, he even threw the textbook.
+    japanese:
+      - 先生 は あまり に 怒っ て、教科 書 {まで} 投げ た。
+      - 先生 は あまり に 怒っ て、教科 書 {まで も} 投げ た。
+      - 先生 は あまり に 怒っ て、教科 書 {まで} 投げつけ た。
+      - 先生 は あまり に 怒っ て、教科 書 {まで も} 投げつけ た。
+    english_literally: The teacher was too angry, and even threw the textbook.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は あまり に 怒っ て、教科 書 を 投げ た。
+        english: The teacher was so angry, he threw the textbook.
+        hint: The original sentence emphasizes that the teacher's anger reached an extreme point, causing
+          them to do something surprising like 'even throwing the textbook.' We're looking for an expression
+          that conveys this unexpected, extreme action.
+    scene: A female student is recounting a surprising incident in class to her friend.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「教科書 {まで} 投げた」 highlights the teacher's anger reaching an unexpected and extreme level, as
+      throwing a textbook is highly unusual and unprofessional behavior for a teacher. The phrase conveys
+      surprise and implies that the teacher crossed a boundary.
+post_example_writeup: The construction 「までも」, observed in some examples, further emphasizes the unexpected
+  or extreme nature of the situation. The particle 「も」, which itself can mean 'also' or 'even', is added
+  to 「まで」 to intensify the notion of 'even to the extent of,' suggesting a heightened sense of surprise
+  or extremity.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/まで

@@ -1,0 +1,260 @@
+grammar_point: としても (even if assumed)
+learn_before:
+  - たとえ〜ても (even if)
+meaning: Even if (we assume), Assuming, Also as
+meaning_warning: Sometimes older speakers add だ for emphasis, creating としてもだ.
+pronunciation:
+  katakana: トシテモ
+  romaji: toshitemo
+formation:
+  Verb (plain form) + としても: Expresses "even if" or "assuming that" something is the case.
+  い-Adjective + としても: Expresses "even if" or "assuming that" something is the case.
+  な-Adjective + だ + としても: Expresses "even if" or "assuming that" something is the case (な-Adjective).
+  Noun + だ + としても: Expresses "even if" or "assuming that" something is the case (Noun).
+  Noun + としても: Extends the meaning of として "as", indicating "even as" (A) and highlighting people or organizations
+    in the position of (A).
+jlpt: N2
+etymology: The grammar point 「としても」 combines 「として」 (as, in the capacity of) with 「も」 (even). Therefore,
+  it literally means "even as" or "even in the capacity of." The 「として」 part indicates a role, position,
+  or viewpoint, while 「も」 adds the nuance of "even if we consider it from that perspective."
+writeup: |-
+  「としても」 is a structure used in Japanese to express thoughts about a hypothetical situation (A), assuming it were true. This can be translated as "even if we assume that it's (A)" or "assuming that (A)." It implies that despite (A) potentially not being factual, the speaker is willing to consider it for the sake of argument before presenting their perspective on that hypothetical scenario. Furthermore, 「としても」 can carry a stronger sense of concession or reservation compared to similar expressions like 「ても」.
+
+  「としても」 typically follows verbs and い-adjectives in their plain forms. For nouns and な-adjectives, it generally follows the plain form with 「だ」.
+
+  In some contexts, 「としても」 functions as an extension of 「として」, meaning "even as (A)." This nuance primarily highlights individuals or organizations in a specific position (A) and indicates that "even for (A), it will still be (B)." This usage of 「としても」 is restricted to nouns.
+false_friends:
+  - term: ても
+    meaning: Even if, Even though
+    kind: similar expression
+    nuance: While 「ても」 also expresses "even if", 「としても」 often introduces a stronger hypothetical or concessive
+      nuance. 「としても」 can suggest a willingness to accept a premise for the sake of argument, while 「ても」
+      more directly states a condition and its consequence.
+    grammar_point: ても (even if・even though)
+  - term: としたら・とすれば・とすると
+    meaning: If it were the case that, Assuming that...
+    kind: similar expression
+    nuance: 「としたら」、「とすれば」、「とすると」 are conditional expressions implying a potential scenario. 「としても」 focuses
+      more on accepting a given, possibly unreal, situation and considering its implications.
+    grammar_point: としたら (if assuming)
+  - term: にしても
+    meaning: Even though, Even if, Even when, Also
+    kind: similar expression
+    nuance: 「にしても」 expresses a surprising or unexpected result. 「としても」 focuses on the assumption itself
+      and its consequences.
+    grammar_point: にしても (even if)
+  - term: たとえ〜ても
+    meaning: Even if…is the case, Supposing that
+    kind: similar expression
+    nuance: 「たとえ〜ても」 emphasizes the hypothetical nature of the condition, similar to 「としても」 but more focused
+      on the extreme or unlikely nature of the condition.
+    grammar_point: たとえ〜ても (even if)
+  - term: として
+    meaning: as, in the capacity of
+    kind: similar expression
+    nuance: 「として」 simply indicates a role or capacity. 「としても」 adds the nuance of "even" to that role,
+      implying that something holds true despite or in addition to that role.
+    grammar_point: として (as)
+post_false_friends_writeup: To differentiate 「としても」 from other similar expressions, consider the specific
+  nuance you want to convey. If you want to emphasize a surprising result, use 「にしても」. If you want to
+  express a condition and its consequence, use 「ても」. If you want to emphasize the hypothetical nature
+  of a condition, use 「たとえ〜ても」. If you want to accept a premise for the sake of argument and consider
+  its implications, 「としても」 is most appropriate. When expressing a role, 「として」 is sufficient, but 「としても」
+  adds an emphasizing "even as" nuance.
+examples:
+  - english: Even if he is lying, I have a reason to believe him.
+    japanese:
+      - 彼 が 嘘 を つい て いる {と し て も}、私 は 彼 を 信じる 理由 が ある。
+      - 彼 が 嘘 を つい た {と し て も}、私 に は 彼 を 信じる 理由 が ある。
+      - もし 彼 が 嘘 を つい て いる {と し て も}、私 は 彼 の こと を 信じ ます。
+    english_literally: Even if he is telling a lie, a reason to believe him exists.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 嘘 を つい て {も}、私 は 彼 を 信じる 理由 が ある。
+        english: Even if he lies, I have a reason to believe him.
+        hint: While 'ても' also expresses 'even if', 'としても' conveys a stronger sense of accepting a hypothetical
+          premise for the sake of argument. We're looking for an expression that considers a strong hypothetical
+          before asserting a counterpoint.
+    scene: A friend defending someone despite suspicions about their honesty.
+    register: casual
+    setting: serious
+    nuance: The use of 「としても」 here emphasizes that the speaker is willing to consider the possibility
+      of a lie, but their trust in the person overrides even that strong hypothetical.
+  - english: No matter how busy you are, you should prioritize your health.
+    japanese:
+      - どんな に 忙しい {と し て も}、健康 を 優先 す べき だ。
+      - どんな に 忙しかっ た {と し て も}、健康 は 最 優先 に す べき です。
+      - どんな に 忙しい {と し て も}、ご 自身 の 健康 が 一 番 です。
+    english_literally: No matter how busy you are, health should be prioritized.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 忙しく {て も}、健康 を 優先 す べき だ。
+        english: No matter how busy you are, you should prioritize your health.
+        hint: While 'どんなに～ても' indicates 'no matter how', 'としても' adds a more emphatic concession, highlighting
+          the importance of health regardless of any level of busyness. We're looking for a phrase that
+          stresses the concession despite the strong hypothetical.
+    scene: A doctor advising a patient during a check-up.
+    register: formal
+    setting: instructional
+    nuance: The phrase 「べきだ」 indicates a strong recommendation or obligation, fitting for professional
+      advice given in a formal setting.
+  - english: Even if it's impossible, it's worth trying.
+    japanese:
+      - た と え 不 可能 だ {と し て も}、試し て みる 価値 は ある。
+      - た と え 不 可能 だ {と し て も}、挑戦 する 価値 は あり ます。
+      - もし 不 可能 だ {と し て も}、やっ て みる 価値 は ある だろう。
+    english_literally: Even if it is impossible, trying has value.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 不 可能 {で も}、試し て みる 価値 は ある。
+        english: Even if it's impossible, it's worth trying.
+        hint: Although 'たとえ～ても' emphasizes a hypothetical condition, 'としても' makes the impossibility a
+          more significant consideration, reinforcing the value of effort. We're looking for an expression
+          that acknowledges a strong hypothetical before asserting a value.
+    scene: An inspiring leader encouraging their team to pursue a challenging goal.
+    register: semi-formal
+    setting: inspirational
+    nuance: The word 「たとえ」 emphasizes the hypothetical and potentially extreme nature of the condition,
+      while 「価値はある」 highlights the inherent worth of the endeavor, even if success is uncertain.
+  - english: Even if it's child's play, you should tackle it seriously.
+    japanese:
+      - 子供 の 遊び だ {と し て も}、真剣 に 取り組む べき だ。
+      - た と え 子供 の 遊び {と し て も}、真剣 に 取り組む べき です。
+      - た と え 子供 の 遊び だ {と し て も}、おろそか に し て は いけ ませ ん。
+    english_literally: Even if it is child's play, you should engage seriously.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 遊び {で も}、真剣 に 取り組む べき だ。
+        english: Even if it's child's play, you should tackle it seriously.
+        hint: While '～でも' can mean 'even if', 'としても' accentuates the perception of something trivial and
+          contrasts it sharply with the desired serious attitude. We're looking for a phrase that emphasizes
+          the contrast between a seemingly minor activity and the seriousness it deserves.
+    scene: A coach teaching young athletes about the importance of effort, even in simple tasks.
+    register: casual
+    setting: instructional
+    nuance: The combination of 「としても」 with 「べきだ」 implies that even seemingly simple tasks deserve full
+      dedication, a common principle emphasized in training or skill development.
+  - english: Even as an expert, solving this problem is not easy.
+    japanese:
+      - 専門 家 {と し て も}、この 問題 の 解決 は 容易 で は ない。
+      - 専門 家 で ある {と し て も}、この 問題 を 解決 する の は 簡単 で は ない。
+      - 専門 家 {と し て も}、この 問題 を 解く の は 難しい こと だ。
+    english_literally: Even as an expert, this problem's resolution is not easy.
+    competing_grammar:
+      - competing_japanese:
+          - 専門 家 {は}、この 問題 の 解決 は 容易 で は ない。
+        english: Experts find solving this problem not easy.
+        hint: Using 'は' simply states a fact about experts. 'としても' emphasizes that *even someone in that
+          position* finds it difficult, adding more weight to the statement. We're looking for a phrase
+          that expresses difficulty *even* for someone in a particular role.
+    scene: A panel of experts discussing a complex global issue, admitting its difficulty.
+    register: formal
+    setting: academic
+    nuance: 「専門家としても」 underscores the speaker's authority and knowledge, making their statement about
+      the difficulty of the problem more impactful. The phrase 「容易ではない」 (not easy) is a formal way to
+      express difficulty.
+  - english: Even if there's something I can do, all I can do now is wait.
+    japanese:
+      - 何 か できる {と し て も}、今 は 待つ しか ない。
+      - 何 か できる こと が ある {と し て も}、今 は 待つ しか あり ませ ん。
+      - 何 か できる こと が あっ た {と し て も}、もう 待つ より 他 に ない。
+    english_literally: Even if something is doable, now only waiting exists.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か でき {て も}、今 は 待つ しか ない。
+        english: Even if I can do something, now I have no choice but to wait.
+        hint: While 'ても' can mean 'even if', 'としても' reinforces the hypothetical possibility against the
+          stark reality of inaction, emphasizing powerlessness. We're looking for an expression that accepts
+          a hypothetical 'can do' but highlights the current limitation.
+    scene: A frustrated person in a helpless situation, recognizing their limitations.
+    register: casual
+    setting: melancholic
+    nuance: The phrase 「～しかない」 (have no choice but to) emphasizes a lack of options, expressing resignation
+      or frustration with the current situation.
+  - english: Even as an environmentally friendly company, it's difficult to completely eliminate environmental
+      impact.
+    japanese:
+      - 地球 に 優しい 企業 {と し て も}、全て の 環境 負荷 を ゼロ に する の は 困難 だ。
+      - 環境 に 優しい 企業 で ある {と し て も}、完全 に 環境 負荷 を 排除 する の は 難しい です。
+      - エコ 企業 {と し て も}、環境 へ の 負荷 を 全く なくす の は 困難 です。
+    english_literally: Even as an environmentally friendly company, to make all environmental burden zero
+      is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 に 優しい 企業 {は}、全て の 環境 負荷 を ゼロ に する の は 困難 だ。
+        english: Environmentally friendly companies find it difficult to completely eliminate environmental
+          impact.
+        hint: Using 'は' states a general fact about such companies. 'としても' emphasizes that *even given
+          their identity and commitment*, achieving zero impact is difficult, highlighting an inherent
+          challenge. We're looking for a phrase that points out a difficulty despite a company's nature
+          or goal.
+    scene: A CSR report meeting where a company discusses its challenges and limitations in achieving
+      its goals.
+    register: bijinesu nihongo (business)
+    setting: serious
+    nuance: The phrase 「環境負荷をゼロにする」 (to make environmental impact zero) refers to a challenging goal for
+      such organizations. The use of 「としても」 here acknowledges their identity while still expressing a
+      practical limitation.
+  - english: Even if that movie was interesting, I don't have time to watch it again.
+    japanese:
+      - その 映画 が 面白かっ た {と し て も}、もう 一 度 見る 時間 は ない。
+      - あの 映画 が 面白かっ た {と し て も}、また 見る 時間 は あり ませ ん。
+      - いくら その 映画 が 面白かっ た {と し て も}、もう 観る 時間 が ない よ。
+    english_literally: Even if that movie was interesting, time to watch again does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - その 映画 が 面白く {て も}、もう 一 度 見る 時間 は ない。
+        english: Even if that movie was interesting, I don't have time to watch it again.
+        hint: While 'ても' expresses 'even if', 'としても' implies a stronger acceptance of the premise (it
+          *was* interesting) before stating the overriding constraint (no time). We're looking for a phrase
+          that emphasizes a practical limitation despite a positive quality.
+    scene: A busy student explaining to a friend why they can't rewatch a movie they enjoyed.
+    register: casual
+    setting: informative
+    nuance: The combination of 「面白かった」 (was interesting) and 「時間はない」 (no time) clearly conveys the speaker's
+      current time constraint, making them unable to re-engage with something they enjoyed.
+  - english: Even if you're a brilliant student, success is difficult without effort.
+    japanese:
+      - どんな に 賢い 学生 だ {と し て も}、努力 し なけれ ば 成功 は 難しい。
+      - いかに 賢い 学生 で ある {と し て も}、努力 なし に 成功 する の は 困難 です。
+      - た と え どんな に 賢い 学生 だ {と し て も}、努力 し ない と 成功 は し ない よ。
+    english_literally: Even if you are a smart student, success is difficult if you don't make an effort.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 賢い 学生 {で も}、努力 し なけれ ば 成功 は 難しい。
+        english: Even if you are a smart student, success is difficult if you don't make an effort.
+        hint: While 'どんなに～でも' can express 'no matter how', 'としても' emphasizes the *status* of being brilliant
+          and then presents the universal truth that effort is still required. We're looking for an expression
+          that underlines the need for effort even for someone with a high status.
+    scene: A professor giving advice to a student who relies too much on natural talent.
+    register: formal
+    setting: academic
+    nuance: The phrase 「努力 しなければ」 (if you don't make an effort) is a strong conditional, highlighting
+      the necessity of hard work, a common theme in academic and professional guidance. 「成功は難しい」 (success
+      is difficult) is a formal statement of consequence.
+  - english: Even as a new employee, he grasped the work quickly.
+    japanese:
+      - 新入 社員 {と し て も}、彼 は 仕事 を 早く 覚え た。
+      - 新入 社員 で あっ た {と し て も}、彼 は 仕事 の 飲み込み が 早かっ た です。
+      - 新入 社員 {と し て も}、彼 は すぐ に 仕事 に 慣れ た。
+    english_literally: Even as a new employee, he quickly learned the work.
+    competing_grammar:
+      - competing_japanese:
+          - 新入 社員 {で も}、彼 は 仕事 を 早く 覚え た。
+        english: Even a new employee like him learned the work quickly.
+        hint: While '～でも' can imply 'even a person like X', 'としても' specifically emphasizes his *role*
+          as a new employee and the surprising ability *despite* that role. We're looking for an expression
+          that highlights competence *despite* a given status.
+    scene: A senior colleague commenting on a new hire's rapid progress.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「新入社員としても」 emphasizes that despite his status as a newcomer, his quick learning
+      is notable, highlighting an unexpected level of competence for someone in that role. This is often
+      said by an older, more experienced colleague about a younger, newer employee.
+post_example_writeup: The usage of 「としても」 often conveys a sense of accepting a premise for argument's
+  sake, or emphasizing a role even when facing a challenge. Pay attention to how it sets up a hypothetical
+  or acknowledges a status before presenting a contrasting reality or an important consequence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/としても

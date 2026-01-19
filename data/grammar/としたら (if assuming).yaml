@@ -1,0 +1,463 @@
+grammar_point: としたら (if assuming)
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+  - Verb[えば] (conditional)
+  - もしかしたら (perhaps)
+meaning: If it were the case that, assuming that...
+meaning_warning: Hypothetical
+conjugations:
+  - conjugation-type: conditional (～たら)
+    form: としたら
+    rarity: common
+    meaning: if it were the case that
+  - conjugation-type: conditional (～ば)
+    form: とすれば
+    rarity: common
+    meaning: assuming that
+  - conjugation-type: dictionary (plain non-past)
+    form: とすると
+    rarity: common
+    meaning: if it turns out that
+pronunciation:
+  katakana: トシタラ・トスレバ・トスルト
+  romaji: to shitara / to sureba / to suru to
+formation:
+  Verb (plain form) + としたら: Used for a hypothetical scenario involving an action or state.
+  Verb (plain form) + とすれば: Used for a hypothetical scenario involving an action or state, often implying
+    a logical consideration.
+  Verb (plain form) + とすると: Used for a hypothetical scenario involving an Preb (plain form) + とするとverb
+    or state, often leading to a logical consequence.
+  い-Adjective (plain form) + としたら: Used for a hypothetical scenario involving an i-adjective quality.
+  な-Adjective (stem) + だとしたら: Used for a hypothetical scenario involving a na-adjective quality.
+  Noun + だとしたら: Used for a hypothetical scenario involving a noun.
+  Noun + だとすると: Used for a hypothetical scenario involving a noun.
+jlpt: N3
+etymology: This grammar point is formed by combining the particle 「と」 with different conjugations of the
+  verb 「する」 (to do). 「したら」 is the past conditional form, 「すれば」 is the conditional form (ba-form), and
+  「すると」 is the plain form followed by 「と」. The 「と」 particle marks the preceding clause as a condition
+  or assumption, much like how it can indicate quotation or result. The various forms of 「する」 add slightly
+  different shades of conditionality, from a simple hypothetical (としたら) to a logical premise (とすれば/とすると).
+writeup: |-
+  The grammar points 「としたら」, 「とすれば」, and 「とすると」 are used to express a hypothetical situation and its potential result. While there are subtle nuances, they are generally used interchangeably to mean "if it were the case that (A), then (B)" or "assuming that (A), then (B)".
+
+  To use these expressions, simply attach 「と」 and your chosen variation of 「する」 to the end of a verb in its plain form, an い-adjective in its plain form, or a noun/な-adjective followed by 「だ」. They are similar to 「もし」, but can often sound a bit more formal or analytical, particularly 「とすれば」 and 「とすると」.
+false_friends:
+  - term: 場合 は
+    meaning: In the event of, In the case of
+    kind: similar expression
+    nuance: Unlike 「としたら・とすれば・とすると」 which introduce general hypothetical scenarios, 「場合 は」 specifies a
+      concrete case or situation.
+    grammar_point: ばあいは (in the event of)
+  - term: なら
+    meaning: Were it, If, If it's the case, As for (Conditional)
+    kind: similar expression
+    nuance: While 「なら」 also expresses a conditional, it often implies a response or suggestion based on
+      a perceived or stated condition, and is generally more colloquial than 「としたら・とすれば・とすると」.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: としても
+    meaning: Even if (we assume), Assuming, Also as
+    kind: similar expression
+    nuance: 「としても」 indicates a concessive hypothetical, meaning 'even if' something is the case, the outcome
+      remains unchanged or is unexpected. It presents a stronger concession than the simple hypothetical
+      of 「としたら・とすれば・とすると」.
+    grammar_point: としても (even if assumed)
+  - term: と
+    meaning: If, when, whenever; expresses a natural consequence or a general truth.
+    kind: similar expression
+    nuance: Unlike 「としたら・とすれば・とすると」 which introduce a hypothetical or assumed situation that may or may
+      not be true, 「と」 typically describes an inevitable or general outcome that always occurs under a
+      given condition.
+    grammar_point: と (conditional, inevitable result)
+  - term: もしも
+    meaning: If, Supposing
+    kind: similar expression
+    nuance: While both introduce hypothetical situations, 「もしも」 often emphasizes a strong, often unlikely
+      or extreme, hypothetical condition. 「としたら・とすれば・とすると」 are more neutral in setting up a premise for
+      logical consideration.
+    grammar_point: もし・もしも (if, emphasis)
+post_false_friends_writeup: While 「としたら・とすれば・とすると」, 「場合 は」, 「なら」, 「としても」, 「と」, and 「もしも」 all deal with
+  conditional expressions, their specific applications vary. 「としたら・とすれば・とすると」 are used to introduce a
+  general hypothetical situation or assumption for consideration. 「場合 は」 focuses on a concrete 'case'
+  or 'event'. 「なら」 often implies a reaction or suggestion based on existing information. 「としても」 sets up
+  a 'concessive' condition, meaning 'even if' something is true. 「と」 describes a general or inevitable
+  consequence. 「もしも」 emphasizes a strong or unlikely hypothetical. Understanding these distinctions is
+  key to using them correctly.
+examples:
+  - english: If it were to snow tomorrow, traffic would probably be chaotic.
+    japanese:
+      - もし 明日 雪 が 降る {と し たら}、交通 は 混乱 する でしょう。
+      - もし 明日 雪 が 降る {と すれ ば}、交通 は 混乱 する でしょう。
+      - もし 明日 雪 が 降る {と する と}、交通 は 混乱 する でしょう。
+    english_literally: If tomorrow snow falls, traffic probably chaotic will become.
+    competing_grammar:
+      - competing_japanese:
+          - もし 明日 雪 が {降れ ば}、交通 は 混乱 する でしょう。
+        english: If it were to snow tomorrow, traffic would probably be chaotic.
+        hint: The ば form expresses a general condition with a natural outcome. While grammatically correct,
+          としたら emphasizes a hypothetical scenario or assumption. We're looking for an expression that
+          clearly sets up a hypothetical case for consideration.
+      - competing_japanese:
+          - 明日 雪 が 降る {場合 は}、交通 は 混乱 する でしょう。
+        english: In the case that it snows tomorrow, traffic would probably be chaotic.
+        hint: 場合 は (baai wa) is used for specific, concrete situations or cases, whereas としたら is for general
+          hypothetical scenarios. We're looking for a general hypothetical scenario here.
+    scene: A man is checking the weather forecast and musing about the potential impact of snow.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「降る {としたら}」 indicates a hypothetical condition. The speaker is reflecting on a
+      potential future event, and the casual 「でしょう」 makes it sound like a personal thought rather than
+      a direct statement.
+  - english: Assuming he's that busy, he probably won't have time to go eat.
+    japanese:
+      - 彼 が そんな に 忙しい {と すれ ば}、食事 に 行く 時間 は ない でしょう。
+      - 彼 が そんな に 忙しい {と し たら}、食事 に 行く 時間 は ない でしょう。
+      - 彼 が そんな に 忙しい {と する と}、食事 に 行く 時間 は ない でしょう。
+    english_literally: He that busy assuming, meal to go time is not probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が そんな に 忙しい {なら}、食事 に 行く 時間 は ない でしょう。
+        english: If he's that busy, he probably won't have time to go eat.
+        hint: なら (nara) often introduces a condition based on a previous statement or a specific piece
+          of information, leading to a suggestion or response. とすれば is used for making a logical assumption
+          or deduction. We're looking for a logical deduction based on an assumption.
+      - competing_japanese:
+          - 彼 が そんな に 忙しい {時 は}、食事 に 行く 時間 は ない でしょう。
+        english: When he's that busy, he probably won't have time to go eat.
+        hint: 時 は (toki wa) is used for recurring situations or specific times. とすれば is for a general
+          hypothetical assumption. We're looking for a general hypothetical assumption about his current
+          state.
+    scene: Two friends are discussing their mutual friend's packed schedule and wondering if he can join
+      them for dinner.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「{とすれば}」 implies a logical assumption. The speaker is logically inferring that 「忙しい」 (busy)
+      implies no time for dinner. The casual 「でしょう」 softens the assertion.
+  - english: If this plan succeeds, significant profits will be gained.
+    japanese:
+      - この 計画 が 成功 する {と する と}、大きな 利益 が 得 られ ます。
+      - この 計画 が 成功 する {と し たら}、大きな 利益 が 得 られ ます。
+      - この 計画 が 成功 する {と すれ ば}、大きな 利益 が 得 られ ます。
+      - この 計画 が 成功 する {と する と}、大きな 利益 が 得 られる。
+    english_literally: This plan succeeds if, large profits will be gained.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が 成功 {し たら}、大きな 利益 が 得 られ ます。
+        english: If this plan succeeds, significant profits will be gained.
+        hint: したら (shitara) expresses a simple consequence following a condition. とすると emphasizes a logical
+          conclusion or result based on the assumption. We're looking for a logical conclusion from a
+          plan.
+      - competing_japanese:
+          - この 計画 が 成功 する {なら}、大きな 利益 が 得 られ ます。
+        english: If this plan succeeds, significant profits will be gained.
+        hint: なら (nara) can imply a suggestion or a reaction to a condition. とすると indicates a logical
+          outcome based on a premise. We're looking for a logical outcome from a plan.
+    scene: A manager is presenting a new business proposal to a team, outlining the potential benefits.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「成功 する {とすると}」 sets up a clear premise for a logical outcome. The formal 「得られます」 (passive
+      polite form) is typical for a professional presentation.
+  - english: If this product is that cheap, there might be a problem with its quality.
+    japanese:
+      - もし この 商品 が そんな に 安い {と し たら}、品質 に 問題 が ある か も しれ ませ ん。
+      - もし この 商品 が そんな に 安い {と すれ ば}、品質 に 問題 が ある か も しれ ませ ん。
+      - もし この 商品 が そんな に 安い {と する と}、品質 に 問題 が ある か も しれ ませ ん。
+      - もし この 商品 が そんな に 安い {と し たら}、品質 に 問題 が ある か も しれ ない.
+    english_literally: If this product that cheap is, quality with problem there is might be.
+    competing_grammar:
+      - competing_japanese:
+          - もし この 商品 が そんな に {安けれ ば}、品質 に 問題 が ある か も しれ ませ ん。
+        english: If this product is that cheap, there might be a problem with its quality.
+        hint: ば (ba) form expresses a general condition and its natural consequence. としたら emphasizes a
+          hypothetical consideration or assumption. We're looking for a hypothetical consideration leading
+          to a speculation.
+      - competing_japanese:
+          - もし この 商品 が そんな に 安い {場合 は}、品質 に 問題 が ある か も しれ ませ ん。
+        english: In the case that this product is that cheap, there might be a problem with its quality.
+        hint: 場合 は (baai wa) refers to a specific case or situation. としたら introduces a general hypothetical.
+          We're looking for a general hypothetical observation.
+    scene: A customer is browsing in a store and notices an unusually low price on an item, leading them
+      to suspect an issue.
+    register: casual
+    setting: cautious
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: Using 「安い {としたら}」 with an い-adjective introduces a hypothetical condition. The speaker's doubt
+      is conveyed by 「かもしれません」 (might be) and the cautious tone is reinforced by the personal reflection,
+      typical of a shopping scenario.
+  - english: Assuming he is honest, that story must be true.
+    japanese:
+      - 彼 が 正直 だ {と すれ ば}、その 話 は 本当 でしょう。
+      - 彼 が 正直 だ {と し たら}、その 話 は 本当 でしょう。
+      - 彼 が 正直 だ {と する と}、その 話 は 本当 でしょう。
+      - 彼 が 正直 だ {と すれ ば}、その 話 は 本当 だろう。
+    english_literally: He honest is assuming, that story true probably is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 正直 {なら}、その 話 は 本当 でしょう。
+        english: If he is honest, that story must be true.
+        hint: なら (nara) can imply a suggestion or reaction based on a condition. とすれば is used for a logical
+          assumption or deduction. We're looking for a logical deduction based on an assumption about
+          his character.
+      - competing_japanese:
+          - 彼 が 正直 な {場合 は}、その 話 は 本当 でしょう。
+        english: In the case that he is honest, that story must be true.
+        hint: 場合 は (baai wa) refers to specific instances or concrete cases. とすれば introduces a general
+          hypothetical assumption. We're looking for a general hypothetical assumption about his character.
+    scene: A detective is evaluating a witness's testimony, considering the witness's character.
+    register: formal
+    setting: serious
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: Using 「正直 だ {とすれば}」 with a な-adjective (followed by だ) establishes a premise for a logical
+      deduction. The slightly formal 「でしょう」 indicates a strong inference.
+  - english: If he were the real culprit, it would contradict the evidence so far.
+    japanese:
+      - もし 彼 が 真 犯人 だ {と する と}、これ まで の 証拠 と 矛盾 する。
+      - もし 彼 が 真 犯人 だ {と し たら}、これ まで の 証拠 と 矛盾 する。
+      - もし 彼 が 真 犯人 だ {と すれ ば}、これ まで の 証拠 と 矛盾 する。
+    english_literally: If he real culprit is if, so far evidence and contradict.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 が 真 犯人 {なら}、これ まで の 証拠 と 矛盾 する。
+        english: If he were the real culprit, it would contradict the evidence so far.
+        hint: なら (nara) can imply a suggestion or reaction to a condition. とすると indicates a logical consequence
+          based on a premise. We're looking for a logical analysis of a premise and its conflict.
+      - competing_japanese:
+          - もし 彼 が 真 犯人 {で あれ ば}、これ まで の 証拠 と 矛盾 する。
+        english: If he were the real culprit, it would contradict the evidence so far.
+        hint: であれば (de areba) is a more formal conditional often used for established facts or general
+          conditions. とすると introduces a hypothetical scenario for logical examination. We're looking for
+          a hypothetical scenario for analysis.
+    scene: Investigators are reviewing a case, considering a new suspect but finding inconsistencies with
+      existing information.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「真犯人 だ{とすると}」 introduces a hypothesis for a logical examination. The phrase 「矛盾 する」 (contradicts)
+      indicates a logical inconsistency, fitting the analytical setting.
+  - english: If I were to quit this company, what would I do next?
+    japanese:
+      - この 会社 を 辞める {と し たら}、次 に 何 を する だろう か。
+      - この 会社 を 辞める {と すれ ば}、次 に 何 を する だろう か。
+      - この 会社 を 辞める {と する と}、次 に 何 を する だろう か。
+    english_literally: This company quit if, next what do wonder?
+    competing_grammar:
+      - competing_japanese:
+          - もし この 会社 を 辞める {なら}、次 に 何 を する だろう か。
+        english: If I were to quit this company, what would I do next?
+        hint: なら (nara) often implies a condition based on existing information or a suggested response.
+          としたら sets up a deeper, more introspective hypothetical scenario. We're looking for a personal
+          contemplation about a hypothetical choice.
+      - competing_japanese:
+          - この 会社 を 辞め た {場合 は}、次 に 何 を する だろう か。
+        english: In the case of quitting this company, what would I do next?
+        hint: 場合 は (baai wa) is used for specific, concrete cases or events. としたら is for a more general
+          hypothetical consideration. We're looking for a broad hypothetical reflection, not a specific
+          event.
+    scene: Someone is contemplating their career path late at night, thinking aloud to themselves.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The usage of 「辞める {としたら}」 (if one were to quit) sets up a deep personal hypothetical. The
+      「だろうか」 ending reinforces the contemplative and introspective nature of the question, common when
+      speaking to oneself.
+  - english: Assuming we use this new method, the efficiency should significantly improve.
+    japanese:
+      - この 新しい 方法 を 採用 する {と すれ ば}、効率 は 大幅 に 改善 さ れる はず だ。
+      - この 新しい 方法 を 採用 する {と し たら}、効率 は 大幅 に 改善 さ れる はず だ。
+      - この 新しい 方法 を 採用 する {と する と}、効率 は 大幅 に 改善 さ れる はず だ。
+      - この 新しい 方法 を 採用 する {と すれ ば}、効率 は 大幅 に 改善 さ れる はず です。
+    english_literally: This new method adopt if, efficiency significantly improved will beはずだ.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい 方法 を 採用 する {なら}、効率 は 大幅 に 改善 さ れる はず だ。
+        english: If we use this new method, the efficiency should significantly improve.
+        hint: なら (nara) can imply a more direct consequence or suggestion from an existing condition.
+          とすれば conveys a stronger logical deduction or premise for analysis. We're looking for a logical
+          assumption leading to a predicted outcome.
+      - competing_japanese:
+          - この 新しい 方法 を 採用 {し たら}、効率 は 大幅 に 改善 さ れる はず だ。
+        english: If we adopt this new method, the efficiency should significantly improve.
+        hint: したら (shitara) often implies a simpler, direct cause-effect relationship. とすれば emphasizes
+          the logical consideration of a hypothetical. We're looking for a logical deduction from an assumption.
+    scene: A team leader is presenting a proposal to their colleagues, outlining the benefits of a new
+      approach.
+    register: semi-formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「採用 する {とすれば}」 (assuming we adopt) emphasizes a logical premise leading to a predicted outcome.
+      The use of 「はずだ」 (it should be) adds a degree of certainty to the logical deduction, suitable for
+      a professional presentation.
+  - english: If we decide to buy that expensive car, then we won't be able to go on vacation this year.
+    japanese:
+      - その 高い 車 を 買う {と する と}、今年 は 旅行 に 行け ない。
+      - その 高い 車 を 買う {と し たら}、今年 は 旅行 に 行け ない。
+      - その 高い 車 を 買う {と すれ ば}、今年 は 旅行 に 行け ない。
+    english_literally: That expensive car to buy if, this year vacation to go cannot.
+    competing_grammar:
+      - competing_japanese:
+          - その 高い 車 を 買う {なら}、今年 は 旅行 に 行け ない。
+        english: If we buy that expensive car, then we won't be able to go on vacation this year.
+        hint: 「なら」 often implies a condition based on a current situation or a stated desire, leading
+          to a suggestion or a reaction. 「とすると」 focuses more on a logical deduction or a direct consequence
+          of the hypothetical action. We're looking for a clear logical consequence of a decision.
+      - competing_japanese:
+          - その 高い 車 を 買う {場合 は}、今年 は 旅行 に 行け ない。
+        english: In the case of buying that expensive car, we won't be able to go on vacation this year.
+        hint: 「場合 は」 is used for specific, concrete cases or events. 「とすると」 introduces a general hypothetical
+          scenario. We're looking for a general hypothetical reflection, not a specific event.
+    scene: A couple is discussing their budget and priorities for the year.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「買う {とすると}」 emphasizes a direct logical consequence of a hypothetical decision,
+      highlighting the trade-off. The plain form 「行けない」 is natural in a casual conversation between a
+      couple.
+  - english: If you were a doctor, how would you view these symptoms of mine?
+    japanese:
+      - もし 君 が 医者 だ {と し たら}、僕 の この 症状 を どう 見 ます か?
+      - もし 君 が 医者 だ {と すれ ば}、僕 の この 症状 を どう 見 ます か?
+      - もし 君 が 医者 だ {と する と}、僕 の この 症状 を どう 見 ます か?
+      - もし 君 が 医者 だ {と し たら}、僕 の この 症状 を どう 見る?
+    english_literally: If you doctor are if, my this symptom how view?
+    competing_grammar:
+      - competing_japanese:
+          - もし 君 が 医者 {なら}、僕 の この 症状 を どう 見 ます か?
+        english: If you were a doctor, how would you view these symptoms of mine?
+        hint: なら (nara) can suggest a conditional based on current information, often leading to a suggestion.
+          だとしたら sets up a stronger hypothetical scenario or assumption. We're looking for a hypothetical
+          role-play scenario.
+      - competing_japanese:
+          - もし 君 が 医者 {で ある 場合 は}、僕 の この 症状 を どう 見 ます か?
+        english: In the case that you are a doctor, how would you view these symptoms of mine?
+        hint: 場合 は (baai wa) refers to a specific case or situation. だとしたら introduces a general hypothetical
+          scenario. We're looking for a speculative question about a hypothetical identity.
+    scene: A person is asking a friend, who has some medical knowledge, for a hypothetical opinion on
+      their health issue.
+    register: casual
+    setting: interrogative
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「医者 だ{としたら}」 with a noun creates a strong hypothetical identity. The phrase 「どう
+      見ますか」 is a polite but direct way to ask for an opinion, suitable for a casual but serious inquiry.
+  - english: If that rumor were true, it would greatly affect the entire project.
+    japanese:
+      - あの 噂 が 本当 だ {と し たら}、プロジェクト 全体 に 大きく 影響 する だろう。
+      - あの 噂 が 本当 だ {と すれ ば}、プロジェクト 全体 に 大きく 影響 する だろう。
+      - あの 噂 が 本当 だ {と する と}、プロジェクト 全体 に 大きく 影響 する だろう。
+    english_literally: That rumor true if, project entire to greatly affect will probably.
+    competing_grammar:
+      - competing_japanese:
+          - あの 噂 が 本当 {なら}、プロジェクト 全体 に 大きく 影響 する だろう。
+        english: If that rumor were true, it would greatly affect the entire project.
+        hint: なら (nara) can imply a condition based on a current situation or a stated desire. だとしたら sets
+          up a deeper, more analytical hypothetical scenario. We're looking for an analytical hypothetical
+          that affects a larger situation.
+      - competing_japanese:
+          - あの 噂 が 本当 の {場合 は}、プロジェクト 全体 に 大きく 影響 する だろう。
+        english: In the case that that rumor is true, it would greatly affect the entire project.
+        hint: 場合 は (baai wa) is used for specific, concrete cases or events. だとしたら is for a more general
+          hypothetical consideration. We're looking for a broad hypothetical reflection, not a specific
+          event.
+    scene: A team is discussing a potentially damaging rumor that could impact their work.
+    register: formal
+    setting: serious
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「本当 だ {と し たら}」 establishes a serious hypothetical premise. The use of 「影響 する だろう」
+      indicates a strong, logical prediction of the impact, fitting a professional discussion.
+  - english: Assuming the new regulations are implemented, businesses will need to make significant changes.
+    japanese:
+      - 新しい 規制 が 実施 さ れる {と すれ ば}、企業 は 大きな 変更 を する 必要 が ある。
+      - 新しい 規制 が 実施 さ れる {と し たら}、企業 は 大きな 変更 を する 必要 が ある。
+      - 新しい 規制 が 実施 さ れる {と する と}、企業 は 大きな 変更 を する 必要 が ある。
+    english_literally: New regulations implemented if, companies big changes to do necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 規制 が 実施 さ れる {なら}、企業 は 大きな 変更 を する 必要 が ある。
+        english: If the new regulations are implemented, businesses will need to make significant changes.
+        hint: なら (nara) often implies a condition leading to a suggestion or reaction. とすれば conveys a
+          stronger logical deduction or premise for analysis. We're looking for a logical assumption that
+          necessitates changes.
+      - competing_japanese:
+          - 新しい 規制 が 実施 さ れる {場合 は}、企業 は 大きな 変更 を する 必要 が ある。
+        english: In the case that new regulations are implemented, businesses will need to make significant
+          changes.
+        hint: 場合 は (baai wa) is used for specific, concrete cases or events. とすれば introduces a general
+          hypothetical scenario. We're looking for a general hypothetical consideration leading to necessary
+          actions.
+    scene: A legal expert is advising clients on upcoming regulatory changes.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「実施 さ れる {と すれ ば}」 introduces a formal hypothetical. 「必要 が ある」 clearly states the
+      necessity of the changes, appropriate for expert advice.
+  - english: If the project fails, what will happen to our team?
+    japanese:
+      - プロジェクト が 失敗 する {と する と}、私 たち の チーム は どう なる の だろう。
+      - プロジェクト が 失敗 する {と し たら}、私 たち の チーム は どう なる の だろう。
+      - プロジェクト が 失敗 する {と すれ ば}、私 たち の チーム は どう なる の だろう。
+    english_literally: Project fails if, our team how becomes wonder.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト が 失敗 する {なら}、私 たち の チーム は どう なる の だろう。
+        english: If the project fails, what will happen to our team?
+        hint: なら (nara) can imply a condition based on a current situation. とすると focuses on a logical
+          consequence of a hypothetical action. We're looking for a logical analysis of a hypothetical
+          failure.
+      - competing_japanese:
+          - プロジェクト が 失敗 する {場合 は}、私 たち の チーム は どう なる の だろう。
+        english: In the case that the project fails, what will happen to our team?
+        hint: 場合 は (baai wa) is used for specific, concrete cases or events. とすると introduces a general
+          hypothetical scenario. We're looking for a general hypothetical reflection on a potential negative
+          outcome.
+    scene: Team members are expressing their anxieties about the potential failure of a major project.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「失敗 する {と する と}」 sets up a hypothetical negative outcome. The use of 「どう なる の だろう」
+      expresses a shared sense of uncertainty and concern within the team.
+post_example_writeup: Understanding the subtle differences between 「としたら」, 「とすれば」, and 「とすると」 often comes
+  with practice. While 「としたら」 is generally more conversational and focuses on a simple hypothetical, 「とすれば」
+  and 「とすると」 carry a stronger implication of logical deduction or a premise leading to a conclusion. The
+  context of the conversation and the desired emphasis on causality or assumption will guide your choice.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/としたら-とすれば-とすると

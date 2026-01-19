@@ -1,0 +1,256 @@
+grammar_point: ないし(は) (or; range)
+learn_before:
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - お〜ください (polite request)
+  - ものとして (on the assumption that)
+  - 以外 (except)
+meaning: Or; either...or; from...to; between...and
+pronunciation:
+  katakana: ナイシ
+  romaji: naishi (wa)
+formation:
+  Noun/Number A + ないし(は) + Noun/Number B: Indicates a range or choice between A and B.
+  Sentence A + (か) + ないし(は) + Sentence B: Indicates a choice between action A and action B.
+jlpt: N2
+etymology: The term 「ないし」 is derived from the Sino-Japanese word 乃至 (ないし), which originates from Chinese
+  and historically meant 'reaching to' or 'up to.' This concept evolved to signify 'from... to...' or
+  'and/or' when connecting elements. The optional particle 「は」 can be added for emphasis, highlighting
+  the specified alternatives or range. This formal usage has roots in classical texts, where it was employed
+  to denote an inclusive boundary or set of options.
+writeup: |-
+  The grammar point 「ないし(は)」 indicates a range or a choice between two possibilities. It's similar to saying "A or B" or "from A to B". It's more formal than 「か」 or 「または」 and carries a more rigid and structured tone, making it suitable for professional contexts, written materials, or when you want to sound more precise. It can connect nouns, numbers, or complete clauses.
+
+  *   **Range or Limit:** 「ないし(は)」 can indicate a numerical range, like "3 to 5 days" or a selection between two options. For example, 「３０マイルないし(は)４０マイル」 means "from 30 to 40 miles." It provides a clear and structured way to present alternatives or ranges.
+  *   **Choice:** When connecting clauses with 「(か)ないし(は)」, it presents a choice between actions. For example, 「日本語集中講座を受ける(か)、ないしは日本へ短期留学をする」 translates to "Someone will take an intensive Japanese course, or go to Japan for short-term study."
+
+  **Important Considerations**
+
+  *   「ないし(は)」 is generally used in more formal speech or writing, or in official documents and presentations where precision is key.
+  *   The presence or absence of 「は」 does not significantly change the meaning, but 「ないしは」 (with 「は」) can sometimes imply a slightly stronger emphasis on the alternatives or range.
+false_friends:
+  - term: または
+    meaning: or; otherwise
+    kind: similar expression
+    nuance: 「または」 is more common in everyday conversation compared to the somewhat formal 「ないし(は)」.
+    grammar_point: または (or; either... or...)
+  - term: もしくは
+    meaning: or; possibly; perhaps
+    kind: similar expression
+    nuance: 「もしくは」 has a nuance of suggesting a weaker possibility than 「ないし(は)」, often used when one
+      option is less preferred or less certain.
+    grammar_point: もしくは (or・formal alternative)
+  - term: か
+    meaning: or
+    kind: similar expression
+    nuance: 「か」 is the most common and versatile way to say 'or,' used across all registers, while 「ないし(は)」
+      is significantly more formal and often used in written language or official announcements.
+    grammar_point: か (or)
+  - term: から・まで
+    meaning: from ~ to ~
+    kind: similar expression
+    nuance: 「から・まで」 is a more general way to express a range (e.g., time, distance, price), while 「ないし(は)」
+      for ranges is often used in official contexts to specify limits or options with a more definitive
+      tone.
+    grammar_point: <suggest>:から・まで (range)
+  - term: あるいは
+    meaning: or; alternatively
+    kind: similar expression
+    nuance: 「あるいは」 can also mean 'or' but tends to suggest a less decisive alternative or an 'option among
+      several,' whereas 「ないし(は)」 implies a more direct or official choice between two specific options.
+    grammar_point: あるいは (or・alternatively)
+post_false_friends_writeup: When deciding whether to use 「ないし(は)」, 「または」, 「もしくは」, 「か」, 「から・まで」, or 「あるいは」,
+  consider the level of formality and precision you want to convey. 「か」 is your go-to for casual conversation,
+  while 「ないし(は)」 shines in formal documents or presentations where clarity and accuracy are essential.
+  「または」 and 「もしくは」 fall somewhere in between, offering flexibility depending on the specific context.
+  「から・まで」 is a general range indicator, while 「ないし(は)」 is used for formal or specific ranges and choices,
+  often implying a definitive set of options. 「あるいは」 can sometimes be interchangeable with 「ないし(は)」, but
+  「ないし(は)」 implies a more structured or official set of choices.
+examples:
+  - english: The target age for this book is eight to twelve years old.
+    japanese:
+      - この 本 の 対象 年齢 は ８ 歳 {ないし は} １２ 歳 です。
+      - この 本 の 対象 年齢 は ８ 歳 {ないし} １２ 歳 です
+    english_literally: This book's target age is 8 to 12 years.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 の 対象 年齢 は ８ 歳 {から} １２ 歳 {まで} です。
+        english: The target age for this book is from 8 to 12 years old.
+        hint: 「から・まで」 is a more general way to express a range. We are looking for a more formal or specific
+          way to state this range, often used in official contexts.
+    scene: A librarian describes a children's book to a parent browsing in the youth section.
+    register: formal
+    setting: informative
+    nuance: 「ないしは」 clearly specifies the age range of 「８歳」から「１２歳」, typical for informational contexts
+      such as book classifications. The presence or absence of 「は」 in 「ないし(は)」 does not alter the core
+      meaning of indicating a range.
+  - english: Please check in between 3 PM and 5 PM.
+    japanese:
+      - チェック イン は 午後 ３ 時 {ないし は} ５ 時 の 間 に お 願い し ます。
+      - チェック イン は 午後 ３ 時 {ないし} ５ 時 の 間 に お 願い し ます。
+    english_literally: Check-in, please, between 3 PM and 5 PM.
+    competing_grammar:
+      - competing_japanese:
+          - チェック イン は 午後 ３ 時 {から} ５ 時 {まで} の 間 に お 願い し ます。
+        english: Please check in between 3 PM and 5 PM.
+        hint: 「から・まで」 is a more general way to express a time range. We are looking for a phrasing common
+          in formal instructions.
+    scene: A hotel receptionist explains the check-in window to a new guest.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「ないしは」 precisely defines the acceptable time window for check-in 「午後３時ないしは５時」, common in formal
+      instructions or official notifications. Both 「ないし」 and 「ないしは」 are acceptable here, conveying the
+      same formal tone.
+  - english: Registration for participation is possible in Japanese or English.
+    japanese:
+      - 参加 登録 は 日本 語 {ないし は} 英語 で 可能 です。
+      - 参加 登録 は 日本 語 で、{ないし は} 英語 で 可能 です。
+      - 参加 登録 は 日本 語 {ないし} 英語 で 可能 です。
+      - 参加 登録 は 日本 語 で、{ないし} 英語 で 可能 です。
+    english_literally: Participation registration is possible in Japanese or English.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 登録 は 日本 語 {また は} 英語 で 可能 です。
+        english: Registration for participation is possible in Japanese or English.
+        hint: 「または」 is a common and versatile way to say 'or'. We are looking for a more formal and official
+          choice.
+    scene: An event organizer provides instructions for international attendees on how to register for
+      a conference.
+    register: formal
+    setting: informative
+    nuance: The use of 「ないしは」 implies a clear, official choice between 「日本語」と「英語」 for the registration
+      process, indicating a formal policy. The slight pause before 「ないしは」 in the second Japanese example
+      emphasizes the two distinct options.
+  - english: We have no choice but to either cut costs or launch a new business.
+    japanese:
+      - コスト を 削減 する {か}、{ないし は} 新規 事業 を 立ち上げる しか ない。
+      - コスト を 削減 する {か}、{ないし は} 新規 事業 を 立ち上げる 以外 に 方法 は ない。
+      - コスト を 削減 する {か}、{ないし} 新規 事業 を 立ち上げる しか ない。
+      - コスト を 削減 する {か}、{ないし} 新規 事業 を 立ち上げる 以外 に 方法 は ない。
+    english_literally: Costs to reduce, or new business to launch, only that option.
+    competing_grammar:
+      - competing_japanese:
+          - コスト を 削減 する {か}、{あるいは} 新規 事業 を 立ち上げる しか ない。
+        english: We have no choice but to either cut costs or launch a new business.
+        hint: 「あるいは」 can mean 'or', but it may suggest a less decisive alternative. We are looking for
+          a more direct and structured choice.
+    scene: A CEO presents two critical strategic options to the board of directors during a difficult
+      financial period.
+    register: formal
+    setting: serious
+    nuance: The phrase 「〜か、ないしは〜」 in 「コストを削減するか、ないしは新規事業を立ち上げる」 emphasizes that these are the only two
+      significant strategic options available, conveying a sense of limited, critical choice. The use
+      of 「ないしは」 here stresses the gravity and formality of the decision.
+  - english: Please contact us by phone or email for inquiries.
+    japanese:
+      - お 問い合わせ は 電話 {ないし は} メール で ご 連絡 ください。
+      - お 問い合わせ は 電話 {ないし は} メール にて ご 連絡 ください。
+      - お 問い合わせ は 電話 {ないし} メール で ご 連絡 ください。
+      - お 問い合わせ は 電話 {ないし} メール にて ご 連絡 ください。
+    english_literally: Inquiries, please contact us by phone or email.
+    competing_grammar:
+      - competing_japanese:
+          - お 問い合わせ は 電話 {か} メール で ご 連絡 ください。
+        english: Please contact us by phone or email for inquiries.
+        hint: 「か」 is the most common way to say 'or' in casual contexts. We are looking for a more formal
+          phrasing appropriate for instructions.
+    scene: A company's customer service representative gives instructions on official contact methods.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: Using 「ないしは」 to present the contact methods 「電話」と「メール」 makes the instruction sound clear and
+      official, as expected in customer service or public information. The use of 「にて」 in some variations
+      further elevates the politeness and formality.
+  - english: This project is expected to be completed in half a year to one year.
+    japanese:
+      - この プロジェクト は 半年 {ないし は} 一 年 で 完了 する 予定 です。
+      - この プロジェクト は 半年 {ないし は} 一 年 かかる 予定 です。
+      - この プロジェクト は 半年 {ないし} 一 年 で 完了 する 予定 です。
+      - この プロジェクト は 半年 {ないし} 一 年 かかる 予定 です。
+    english_literally: This project, half a year to one year, in that time, complete planned.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 半年 {から} 一 年 {まで} で 完了 する 予定 です。
+        english: This project is expected to be completed in half a year to one year.
+        hint: 「から・まで」 expresses a general range. We are looking for a more precise and official way to
+          state the expected duration.
+    scene: A project manager briefs stakeholders on the estimated timeline for a new development project.
+    register: formal
+    setting: informative
+    nuance: 「半年ないしは一年」 indicates a formal projection of the project duration, giving a range of expectations
+      in a precise, business-oriented manner. This usage is common in official reports or proposals.
+  - english: Users shall comply with these terms, or cease using the service.
+    japanese:
+      - 利用 者 は 本 規約 を 遵守 する {か}、{ないし は} サービス の 利用 を 停止 する もの と し ます。
+      - 利用 者 は 本 規約 を 遵守 する {か}、{ないし は} サービス の 利用 を 停止 する こと と する。
+      - 利用 者 は 本 規約 を 遵守 する {か}、{ないし} サービス の 利用 を 停止 する もの と し ます。
+      - 利用 者 は 本 規約 を 遵守 する {か}、{ないし} サービス の 利用 を 停止 する こと と する。
+    english_literally: Users, these terms to comply, or service's use to stop, that shall be.
+    competing_grammar:
+      - competing_japanese:
+          - 利用 者 は 本 規約 を 遵守 する {か}、{また は} サービス の 利用 を 停止 する もの と し ます。
+        english: Users shall comply with these terms, or cease using the service.
+        hint: 「または」 is often used for choices in a general sense. We are looking for the definitive and
+          unambiguous phrasing typically found in legal documents.
+    scene: A lawyer explains a clause in a company's terms of service to a client, emphasizing the mandatory
+      choices.
+    register: formal
+    setting: legal
+    nuance: In legal or formal documents, 「ないしは」 is used to state definitive conditions or alternatives
+      「遵守する」か「利用を停止する」 with no ambiguity, laying out the consequences of choice. This construction leaves
+      no room for misunderstanding.
+  - english: The estimated cost will be 5,000 to 7,000 yen.
+    japanese:
+      - 見積もり 費用 は ５ ， ０００ 円 {ないし は} ７ ， ０００ 円 と なり ます。
+      - 見積もり 費用 は ５ ， ０００ 円 {ないし} ７ ， ０００ 円 と なり ます。
+    english_literally: Estimated cost, 5,000 yen or 7,000 yen, will be.
+    competing_grammar:
+      - competing_japanese:
+          - 見積もり 費用 は ５ ， ０００ 円 {から} ７ ， ０００ 円 {まで} と なり ます。
+        english: The estimated cost will be from 5,000 to 7,000 yen.
+        hint: 「から・まで」 is a general way to express a numerical range. We are looking for a more formal
+          and precise way to state this range, often used in business contexts.
+    scene: A contractor provides a quote to a client for construction work.
+    register: formal
+    setting: professional
+    nuance: Using 「ないしは」 for a numerical range like 「５，０００円ないしは７，０００円」 conveys a formal and precise estimation,
+      common in professional and business communications. It implies a structured set of possibilities.
+  - english: The event will either be postponed or canceled.
+    japanese:
+      - イベント は 延期 する {か}、{ないし は} 中止 する こと に なり ます。
+      - イベント は 延期 する {か}、{ないし} 中止 する こと に なり ます。
+    english_literally: The event, postpone, or cancel, will become.
+    competing_grammar:
+      - competing_japanese:
+          - イベント は 延期 する {か}、{また は} 中止 する こと に なり ます。
+        english: The event will either be postponed or canceled.
+        hint: 「または」 is a common alternative for 'or'. We are looking for a more formal and definitive
+          way to present these options in an official announcement.
+    scene: An organizer makes an official announcement regarding the status of a public event due to unforeseen
+      circumstances.
+    register: formal
+    setting: informative
+    nuance: The structure 「〜か、ないしは〜」 in 「延期するか、ないしは中止する」 provides a clear and formal statement of the
+      two possible outcomes for the event. This is typical for official notices where clarity and precision
+      are paramount.
+  - english: The survey was conducted on men and women aged 20 to 30.
+    japanese:
+      - 調査 は ２０ 歳 {ないし は} ３０ 歳 の 男女 を 対象 に 行わ れ まし た。
+      - 調査 は ２０ 歳 {ないし} ３０ 歳 の 男女 を 対象 に 行わ れ まし た。
+    english_literally: The survey, 20 years old or 30 years old, men and women, as target, was conducted.
+    competing_grammar:
+      - competing_japanese:
+          - 調査 は ２０ 歳 {から} ３０ 歳 {まで} の 男女 を 対象 に 行わ れ まし た。
+        english: The survey was conducted on men and women from 20 to 30 years old.
+        hint: 「から・まで」 is a common way to express an age range. We are looking for a more formal and precise
+          expression often found in academic or research contexts.
+    scene: A researcher presents the methodology and demographics of their study at an academic conference.
+    register: formal
+    setting: academic
+    nuance: Using 「ないしは」 for age ranges like 「２０歳ないしは３０歳」 lends a formal and precise tone, suitable for
+      academic reports or formal presentations where data accuracy is emphasized. It specifies the inclusive
+      range of the target demographic.
+post_example_writeup: The key to using 「ないし(は)」 is to remember its slightly formal tone, making it suitable
+  for professional contexts, written materials, or when you want to sound more precise. It provides a
+  clear and structured way to present alternatives or ranges, offering a definitive feel that other 'or'
+  constructions might lack.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ないしは

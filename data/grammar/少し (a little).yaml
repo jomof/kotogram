@@ -1,0 +1,258 @@
+grammar_point: 少し (a little)
+learn_before:
+  - Verb[えば] (conditional)
+  - Verb[ません] (polite negative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-ましょう]+か (polite offer or suggestion)'
+  - い (friendly particle)
+  - お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+  - が (subject marker)
+  - ちょっと (adverb)
+  - てください (polite request)
+  - な-Adjective[だ] (plain present)
+  - ね (seeking agreement)
+  - ましょう (polite volitional or suggestion)
+  - 心配する (to worry)
+  - 数量・しか・ない (limited quantity)
+  - 真上 (directly above)
+  - 行く (to go)
+meaning: A small amount, a little, a few
+pronunciation:
+  katakana: スコシ
+  romaji: sukoshi
+formation:
+  少し + Verb: Modifies the verb to indicate performing the action to a small extent or for a short duration.
+  少し + い-Adjective: Modifies the adjective to indicate a slight degree of the quality.
+  少し + な-Adjective: Modifies the adjective to indicate a slight degree of the quality.
+  少し + の + Noun: Functions as a determiner, indicating a small quantity of the noun.
+jlpt: N5
+etymology: The word 少し (すこし) historically derives from 少なし (すくなし), an older form of the adjective 少ない
+  (すくない), meaning "few" or "little." The し ending shifted its function over time to become an adverbial
+  suffix, similar to how other adjectives ending in し could form adverbs. This etymological connection
+  highlights its core meaning of "a small quantity" or "a slight degree."
+writeup: |-
+  少し (すこし) is a versatile Japanese word primarily used as an adverb to indicate a small amount, degree, or duration. It can modify verbs, adjectives, and occasionally nouns (usually with the particle の).
+
+  One of the key distinctions of 少し lies in its nuance compared to similar expressions like ちょっと. While both can be translated as "a little," 少し generally carries a more formal, objective, or polite tone. It suggests a measurable, albeit small, quantity or a slight, noticeable difference. For instance, when asking for a small quantity of something, 少し is often preferred for politeness.
+
+  少し can also be used to mitigate the strength of a statement, making it sound softer or less direct. For example, saying 少し難しい (sukoshi muzukashii) "a little difficult" is a common way to express that something is not overwhelmingly difficult but still presents some challenge. When used with nouns, 少し often takes the particle の (e.g., 少しの時間 - sukoshi no jikan - "a little time"). This usage turns 少し into an adjectival phrase, describing the noun that follows. Understanding 少し is fundamental as it appears frequently in daily conversations and written Japanese, covering a wide range of situations from polite requests to subtle descriptions.
+false_friends:
+  - term: ちょっと
+    meaning: a little, a bit, a moment, a short while
+    kind: similar expression
+    nuance: ちょっと is more casual and versatile. Besides indicating a small quantity, it can also mean "a
+      moment" (e.g., ちょっと待って - "wait a moment") or express a slight inconvenience or hesitation. ちょっと
+      can also be used to soften a refusal or a request, e.g., ちょっと無理です ("that's a bit difficult/impossible").
+      少し is more objective and focuses solely on quantity or degree.
+    grammar_point: ちょっと (adverb)
+  - term: 少ない
+    meaning: few, little (adjective)
+    kind: often confused with
+    nuance: 少ない is an い-adjective meaning "few" or "scarce," describing a state of having a small number
+      or amount. 少し is an adverb modifying the degree of something or an action. For example, お金が少ない (okane
+      ga sukunai) means "there is little money," while 少しお金がある (sukoshi okane ga aru) means "I have a
+      little money." 少ない is predicative or attributive; 少し modifies verbs or adjectives.
+    grammar_point: 少ない (few・little)
+  - term: 少しも〜ない
+    meaning: not even a little, not at all
+    kind: similar expression
+    nuance: 少しも〜ない is a fixed negative expression meaning "not at all" or "not even a little." It is used
+      with negative verbs or adjectives to emphasize a complete lack of something. 少し alone, in a positive
+      context, means "a little." For example, 少しも分からない (sukoshi mo wakaranai) means "I don't understand
+      at all," while 少し分かる (sukoshi wakaru) means "I understand a little."
+    grammar_point: すこしも〜ない (not even a little)
+post_false_friends_writeup: While 少し and ちょっと both convey the idea of "a little," 少し leans towards a more
+  formal or objective tone, focusing purely on quantity or degree. ちょっと, on the other hand, is more casual
+  and has broader uses, including indicating a short duration or softening a statement. 少ない is an adjective
+  describing scarcity, not an adverb modifying actions or qualities like 少し. Finally, 少しも〜ない is a specific
+  phrase used for emphatic negation, meaning "not at all," which contrasts with the positive meaning of
+  少し by itself. Keep these distinctions in mind to use them accurately.
+examples:
+  - english: I can speak a little Japanese.
+    japanese:
+      - 私 は {少し} 日本 語 が 話せ ます。
+      - 私 は {少し} 日本 語 が 話せる。
+    english_literally: As for me, I a little Japanese can speak.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は ちょっと 日本 語 が 話せ ます。
+          - 私 は ちょっと 日本 語 が 話せる。
+        english: I can speak a little Japanese (casually/for a short while).
+        hint: While both mean 'a little,' ちょっと often implies a more casual tone or a brief amount. We're
+          looking for a slightly more formal or objective 'a little'.
+    scene: A student talking to their new Japanese friend.
+    register: casual
+    setting: friendly
+  - english: This coffee is a little hot.
+    japanese:
+      - この コーヒー は {少し} 熱い です。
+      - この コーヒー は {少し} 熱い。
+    english_literally: This coffee is a little hot.
+    competing_grammar:
+      - competing_japanese:
+          - この コーヒー は ちょっと 熱い です。
+          - この コーヒー は ちょっと 熱い。
+        english: This coffee is a bit hot (casually).
+        hint: ちょっと is more casual. We're looking for a slightly more objective 'a little'.
+    scene: Someone takes a sip of coffee and comments.
+    register: casual
+    setting: casual slang
+  - english: Could you give me a little water?
+    japanese:
+      - '{少し} の 水 を ください。'
+      - '{少し} の 水 を いただけ ます か。'
+    english_literally: A little of water, please give me.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 水 を ください。
+          - ちょっと 水 を いただけ ます か。
+        english: Could you give me a bit of water (casually)?
+        hint: ちょっと is more casual. We're looking for a more polite 'a little'.
+    scene: A customer ordering at a cafe.
+    register: formal
+    setting: professional
+  - english: Could you wait a little, please?
+    japanese:
+      - '{少し} 待っ て ください。'
+      - '{少し} お 待ち いただけ ます か。'
+    english_literally: A little wait, please.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 待っ て ください。
+        english: Please wait a moment.
+        hint: While both mean "a little," ちょっと is more casual and often implies "a moment" or "a short
+          while." We're looking for a slightly more formal "a little."
+    scene: A receptionist asking a visitor to wait.
+    register: formal
+    setting: professional
+    nuance: Using 「少し」 with a verb like 「待つ」 makes the request polite and moderate.
+  - english: Let's rest for a little while.
+    japanese:
+      - '{少し} 休憩 し ましょう。'
+      - '{少し} 休憩 しよう。'
+    english_literally: A little rest let's do.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 休憩 し ましょう。
+          - ちょっと 休憩 しよう。
+        english: Let's rest for a bit (casually).
+        hint: ちょっと is more casual and often implies a very brief duration. We're looking for 'a little
+          while'.
+    scene: Friends hiking and deciding to take a break.
+    register: casual
+    setting: friendly
+  - english: He is a little taller than me.
+    japanese:
+      - 彼 は 私 より {少し} 背 が 高い です。
+      - 彼 は 私 より {少し} 背 が 高い。
+    english_literally: As for him, than me a little height is tall.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 より ちょっと 背 が 高い です。
+          - 彼 は 私 より ちょっと 背 が 高い。
+        english: He is a bit taller than me (casually).
+        hint: ちょっと is more casual. We're looking for a more neutral or slightly formal 'a little'.
+    scene: Two colleagues discussing a third person's height.
+    register: formal
+    setting: professional
+  - english: I feel a little better today.
+    japanese:
+      - 今日 は {少し} 気分 が 良く なり まし た。
+      - 今日 は {少し} 気分 が 良く なっ た。
+    english_literally: Today, a little feeling became good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は ちょっと 気分 が 良く なり まし た。
+          - 今日 は ちょっと 気分 が 良く なっ た。
+        english: Today, I feel a bit better (casually).
+        hint: ちょっと is more casual. We're looking for a slightly more considered 'a little'.
+    scene: Someone recovering from an illness talking to a family member.
+    register: casual
+    setting: intimate
+  - english: I have a little concern.
+    japanese:
+      - '{少し} 心配 が あり ます。'
+      - '{少し} 心配 が ある。'
+    english_literally: A little worry exists.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 心配 が あり ます。
+          - ちょっと 心配 が ある。
+        english: I have a bit of concern (casually).
+        hint: ちょっと is more casual. We're looking for a slightly more formal 'a little'.
+    scene: A friend confiding in another.
+    register: casual
+    setting: friendly
+  - english: The remaining documents are only a few.
+    japanese:
+      - 残り の 書類 は {少し} です。
+      - 残り の 書類 は {少し} だ。
+    english_literally: Remaining documents are a little.
+    competing_grammar:
+      - competing_japanese:
+          - 残り の 書類 は 少ない です。
+          - 残り の 書類 は 少ない。
+        english: The remaining documents are few.
+        hint: 少ない is an adjective describing scarcity. We're looking for an adverb that indicates "a little"
+          quantity.
+    scene: An office worker reporting on task progress.
+    register: formal
+    setting: professional
+    nuance: This usage directly states that the quantity is small, often in a reportive manner.
+  - english: I don't understand it very well.
+    japanese:
+      - '{少し} しか 分かり ませ ん。'
+      - '{少し} しか 分から ない。'
+    english_literally: A little only, I don't understand.
+    competing_grammar:
+      - competing_japanese:
+          - 全然 分かり ませ ん。
+          - 全然 分から ない。
+        english: I don't understand at all.
+        hint: 全然 means "not at all" or "completely not." We're looking for "understand only a little."
+      - competing_japanese:
+          - あまり 分かり ませ ん。
+          - あまり 分から ない。
+        english: I don't understand much.
+        hint: あまり means "not much" or "not very." The current phrase specifically implies 'only a little'
+          rather than 'not much'.
+    scene: A student admitting confusion to a teacher.
+    register: formal
+    setting: academic
+    nuance: Used with 「しか〜ない」 to mean "only a little" or "not much."
+  - english: It's a little cold tonight.
+    japanese:
+      - 今夜 は {少し} 寒い です。
+      - 今夜 は {少し} 寒い。
+    english_literally: Tonight is a little cold.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は ちょっと 寒い です。
+          - 今夜 は ちょっと 寒い。
+        english: Tonight, it's a bit cold (casually).
+        hint: ちょっと is more casual. We're looking for a slightly more objective 'a little'.
+    scene: A person talking to themselves while looking out the window.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: He is a little unkind.
+    japanese:
+      - 彼 は {少し} 不 親切 です。
+      - 彼 は {少し} 不 親切 だ。
+    english_literally: As for him, a little unkind is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ちょっと 不 親切 です。
+          - 彼 は ちょっと 不 親切 だ。
+        english: He is a bit unkind (casually).
+        hint: ちょっと is more casual. We're looking for a slightly more objective 'a little'.
+    scene: Talking about a new colleague's demeanor.
+    register: formal
+    setting: professional
+    nuance: 「少し」 modifies the な-adjective 「不親切」 (unfriendly/unkind) to soften the assessment.
+post_example_writeup: As you can see from the examples, 少し is broadly applicable to express a small degree
+  or quantity, whether modifying verbs, adjectives, or nouns. Pay attention to the context and desired
+  level of formality when choosing between 少し and its close counterparts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/少し

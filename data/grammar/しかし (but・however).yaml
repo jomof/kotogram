@@ -1,0 +1,212 @@
+grammar_point: しかし (but・however)
+learn_before:
+  - といった (such as)
+  - 点 (aspect・point)
+meaning: but, however, nevertheless
+pronunciation:
+  katakana: シカシ
+  romaji: shikashi
+formation:
+  '[Sentence A]. しかし, [Sentence B].': Used to connect two independent sentences, where B introduces a
+    contrasting idea to A.
+  '[Clause A], しかし, [Clause B].': Can also connect two clauses within a single sentence, though less common
+    than sentence-initial use.
+jlpt: N4
+etymology: The conjunction しかし (shikashi) originated from the classical Japanese expression 然りしかり (shikari),
+  an adverb meaning 'thus' or 'in that way,' combined with a particle implying doubt or condition. Over
+  time, its meaning shifted from 'even if it is so' or 'though it is thus' to introducing a contrasting
+  or opposing statement, consolidating its role as a strong adversative conjunction. Its evolution reflects
+  how language adapts to convey increasingly nuanced logical relationships.
+writeup: しかし (shikashi) is a versatile conjunction in Japanese that primarily means **'but,' 'however,'**
+  or **'nevertheless.'** It is used to introduce a statement that contrasts with or qualifies the preceding
+  statement. While しかし can sometimes connect clauses within a single sentence, its most common and natural
+  usage is at the beginning of a new sentence, following a period (.) or a comma (,). This gives the contrast
+  a more distinct and formal feel compared to conjunctions like でも (demo) or けど (kedo). Think of しかし as
+  a formal and logical connector. It signals to the listener or reader that the subsequent information
+  will present a counterpoint, a limitation, a different perspective, or an exception to what was just
+  stated. It is frequently encountered in formal writing, speeches, and polite conversations, making it
+  a staple for expressing nuanced arguments or discussions. Unlike some other contrasting conjunctions,
+  しかし generally maintains a neutral tone and does not carry strong emotional implications like disappointment
+  or surprise (which なのに or ところが might). It simply presents a logical opposition or qualification.
+false_friends:
+  - term: でも
+    meaning: but, however
+    kind: often confused with
+    nuance: でも is more casual and can introduce a stronger, sometimes abrupt, contradiction or objection.
+      It can also appear mid-sentence. しかし is more formal and typically introduces a logical contrast
+      at the beginning of a sentence.
+    grammar_point: でも (but・however)
+  - term: ところが
+    meaning: however, even so (unexpectedly)
+    kind: similar expression
+    nuance: ところが introduces an unexpected or surprising turn of events, often with a sense of 'contrary
+      to expectations.' しかし simply introduces a contrasting point without the element of surprise.
+    grammar_point: ところが (unexpected contrast)
+  - term: けれど
+    meaning: but, though, although
+    kind: similar expression
+    nuance: けれど and けれども are softer and less formal than しかし. They can connect clauses within a sentence
+      more naturally and imply a gentler concession or contrast. しかし presents a more direct and formal
+      opposition.
+    grammar_point: <suggest>:けれど (but・though)
+  - term: しかしながら
+    meaning: however, nevertheless
+    kind: similar expression
+    nuance: しかしながら is a more formal and emphatic version of しかし, often used to highlight a significant
+      contrast or to soften a strong statement.
+    grammar_point: <suggest>:しかしながら (however・nevertheless)
+post_false_friends_writeup: While しかし, でも, ところが, けれど, and しかしながら all convey a sense of contrast or opposition,
+  their usage differs in formality, nuance, and placement within a sentence. しかし is formal and generally
+  starts a new sentence to introduce a logical counterpoint. でも is more casual and can introduce a stronger,
+  sometimes abrupt, objection or appear mid-sentence. ところが implies an unexpected or surprising turn of
+  events. けれど and けれども are softer, less formal alternatives that often connect clauses within a sentence,
+  carrying a gentler concessive nuance. しかしながら is a more formal and emphatic version of しかし, often used
+  to highlight a significant contrast or to soften a strong statement. Choosing the right conjunction
+  depends heavily on the desired level of formality, the specific nuance of the contrast, and the context
+  of the conversation or writing.
+examples:
+  - english: The weather was bad. However, we still went out.
+    japanese:
+      - 天気 は 悪かっ た です。{しかし} , 私 達 は 出かけ まし た。
+      - 天気 は 悪かっ た。{しかし} , 私 達 は 出かけ た。
+    english_literally: Weather was bad. However, we went out.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 は 悪かっ た です。で も , 私 達 は 出かけ まし た。
+        english: The weather was bad. But, we still went out.
+        hint: 「でも」はよりカジュアルで、フォーマルな文と文を繋ぐ際には少し唐突に聞こえることがあります。ここではフォーマルな接続詞を探しています。 We're looking for a
+          formal conjunction.
+      - competing_japanese:
+          - 天気 は 悪かっ た です。ところ が , 私 達 は 出かけ まし た。
+        english: The weather was bad. Unexpectedly, we still went out.
+        hint: 「ところが」は予期せぬ展開や驚きを伴う対比を示します。ここでは、悪天候にもかかわらず出かけたという行動は、驚くほどではない単なる論理的な対比です。 We're looking
+          for a simple, logical contrast.
+    scene: Two colleagues discussing a past event.
+    register: formal
+    setting: informative
+  - english: I studied hard. However, I didn't pass the exam.
+    japanese:
+      - 一生 懸命 勉強 し まし た。{しかし} , 試験 に は 合格 し ませ ん でし た。
+      - 一生 懸命 勉強 し た。{しかし} , 試験 に は 合格 し なかっ た。
+    english_literally: Hard studied. However, exam to didn't pass.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 勉強 し まし た。けれど , 試験 に は 合格 し ませ ん でし た。
+        english: I studied hard, but I didn't pass the exam.
+        hint: 「けれど」はより柔らかく、カジュアルな接続詞です。ここでは、この残念な結果を表現するために、より直接的でフォーマルな「しかし」が必要です。 We need a more direct
+          and formal "however" to express this unfortunate outcome.
+    scene: A student tells their friend about a recent exam result.
+    register: semi-formal
+    setting: melancholic
+  - english: Everyone said it was impossible. However, he succeeded.
+    japanese:
+      - 誰 も が 不 可能 だ と 言い まし た。{しかし} , 彼 は 成功 し まし た。
+      - 誰 も が 不 可能 だ と 言っ た。{しかし} , 彼 は 成功 し た。
+    english_literally: Everyone impossible was said. However, he succeeded.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 も が 不 可能 だ と 言い まし た。な の に , 彼 は 成功 し まし た。
+        english: Everyone said it was impossible. Despite that, he succeeded.
+        hint: 「なのに」は、話者の最初の内容に対する予期せぬ、あるいは軽い失望のニュアンスを含みます。ここでは、単に相反する事実を述べています。 We're simply stating a
+          contrasting fact.
+    scene: A narrator describing a character's achievement.
+    register: formal
+    setting: storytelling
+  - english: The plan is good. However, there are some issues.
+    japanese:
+      - その 計画 は 素晴らしい です。{しかし} , いく つ か 問題 が あり ます。
+      - その 計画 は 素晴らしい。{しかし} , いく つ か 問題 が ある。
+    english_literally: That plan is wonderful. However, several problems there are.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 素晴らしい です が , いく つ か 問題 が あり ます。
+        english: The plan is wonderful, but there are some problems.
+        hint: 「～ですが」は同じ文の中で節を繋ぎ、対比を少し弱めて統合された印象を与えます。ここでは、明確に文頭に置く「しかし」を探しています。 We're looking for a clear,
+          sentence-initial "however."
+    scene: A business meeting discussing a project proposal.
+    register: semi-formal
+    setting: informative
+  - english: I like apples. However, I don't like bananas.
+    japanese:
+      - 私 は りんご が 好き です。{しかし} , バナナ は 好き で は あり ませ ん。
+      - 私 は りんご が 好き だ。{しかし} , バナナ は 好き で は ない。
+    english_literally: I apples like. However, bananas don't like.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は りんご が 好き です。けど , バナナ は 好き で は あり ませ ん。
+        english: I like apples. But, I don't like bananas.
+        hint: 「けど」は話し言葉でよく使われるカジュアルな接続詞です。ここでは、一般的な会話に適した標準的な丁寧語の「しかし」を探しています。 We're looking for a standard,
+          polite form of "however" suitable for general conversation.
+    scene: Someone stating their preferences.
+    register: teineigo (polite)
+    setting: friendly
+  - english: We need to reduce costs. However, we cannot sacrifice quality.
+    japanese:
+      - コスト を 削減 する 必要 が あり ます。{しかし} , 品質 を 犠牲 に する こと は でき ませ ん。
+      - コスト を 削減 する 必要 が ある。{しかし} , 品質 を 犠牲 に する こと は でき ない。
+    english_literally: Cost reduce need there is. However, quality sacrifice do can't.
+    competing_grammar:
+      - competing_japanese:
+          - コスト を 削減 する 必要 が あり ます。だ が , 品質 を 犠牲 に する こと は でき ませ ん。
+        english: We need to reduce costs. But, we cannot sacrifice quality.
+        hint: 「だが」は強く、時に男性的またはぶっきらぼうな印象を与える接続詞です。対比を表しますが、この文脈では「しかし」の方が中立的でプロフェッショナルです。 While it expresses
+          contrast, 「しかし」is more neutral and professional for this context.
+    scene: A manager outlining a strategy to their team.
+    register: bijinesu nihongo (business)
+    setting: serious
+  - english: The knight was brave. However, he had a fatal flaw.
+    japanese:
+      - 騎士 は 勇敢 でし た。{しかし} , 彼 に は 致命 的 な 欠点 が あり まし た。
+      - 騎士 は 勇敢 だっ た。{しかし} , 彼 に は 致命 的 な 欠点 が あっ た。
+    english_literally: Knight was brave. However, he fatal flaw had.
+    competing_grammar:
+      - competing_japanese:
+          - 騎士 は 勇敢 でし た。それ に も かかわら ず , 彼 に は 致命 的 な 欠点 が あり まし た。
+        english: The knight was brave. Nevertheless, he had a fatal flaw.
+        hint: 「それにもかかわらず」は「～にも関わらず」という強調された意味合いを持ちます。「しかし」はより直接的で一般的な文学的接続詞です。 We're looking for a direct
+          and common literary conjunction for simple contrast.
+    scene: Reading a fantasy novel aloud.
+    register: bungo (literary)
+    setting: storytelling
+  - english: I thought it would be easy. However, it was more difficult than I expected.
+    japanese:
+      - 簡単 だ と 思い まし た。{しかし} , 予想 より 難しかっ た です。
+      - 簡単 だ と 思っ た。{しかし} , 予想 より 難しかっ た。
+    english_literally: Easy thought. However, expectation than difficult was.
+    competing_grammar:
+      - competing_japanese:
+          - 簡単 だ と 思い まし た。だ けど , 予想 より 難しかっ た です。
+        english: I thought it would be easy. But, it was more difficult than I expected.
+        hint: 「だけど」は「けれど」の非常にカジュアルな変形です。カジュアルな思考の振り返りには許容されますが、「しかし」を使うことで、よりフォーマルで熟慮された印象を与えます。 「しかし」gives
+          it a slightly more formal or considered tone.
+    scene: Someone reflecting on a personal challenge they overcame.
+    register: semi-formal
+    setting: reflective
+  - english: The theory is widely accepted. However, recent studies suggest otherwise.
+    japanese:
+      - その 理論 は 広く 受け入れ られ て い ます。{しかし} , 最近 の 研究 は 別 の こと を 示唆 し て い ます。
+      - その 理論 は 広く 受け入れ られ て いる。{しかし} , 最近 の 研究 は 別 の こと を 示唆 し て いる。
+    english_literally: That theory widely accepted is. However, recent research different thing suggests.
+    competing_grammar:
+      - competing_japanese:
+          - その 理論 は 広く 受け入れ られ て い ます。ただし , 最近 の 研究 は 別 の こと を 示唆 し て い ます。
+        english: The theory is widely accepted. Provided that, recent studies suggest otherwise.
+        hint: 「ただし」は、ただし書きや付帯条件、あるいは軽い訂正を示すために使われることが多いです。似ていますが、「しかし」は情報の直接的な対比を示す、より一般的な「しかし」です。 「しかし」is
+          a more general "however" for a direct contrast of information.
+    scene: A professor lecturing to students.
+    register: formal
+    setting: academic
+  - english: The agreement was reached. However, some details still need to be finalized.
+    japanese:
+      - 合意 は 達成 さ れ まし た。{しかし} , いく つ か の 詳細 は まだ 最終 決定 さ れ て い ませ ん。
+      - 合意 は 達成 さ れ た。{しかし} , いく つ か の 詳細 は まだ 最終 決定 さ れ て い ない。
+    english_literally: Agreement reached was. However, some details still not finalized.
+    competing_grammar:
+      - competing_japanese:
+          - 合意 は 達成 さ れ まし た。しかし ながら , いく つ か の 詳細 は まだ 最終 決定 さ れ て い ませ ん。
+        english: The agreement was reached. Nevertheless, some details still need to be finalized.
+        hint: 「しかしながら」は「しかし」よりもフォーマルで、重要な対比を強調したり、強い発言を和らげたりするために使われることが多いです。ここでは、単純な「しかし」で十分です。 Here,
+          a simple "however" is sufficient.
+    scene: A diplomat giving a press briefing.
+    register: formal
+    setting: professional

@@ -1,0 +1,238 @@
+grammar_point: 一つは (one of them is)
+learn_before:
+  - '[X]は[Y]の一つだ (X is one of Y)'
+meaning: one of the reasons is; for one thing; one of them is
+pronunciation:
+  katakana: ヒトツハ
+  romaji: hitotsu wa
+formation:
+  一つは + [Reason/Example]: Used to introduce one specific item, reason, or example in a list of contributing
+    factors or conditions.
+jlpt: N2
+etymology: The phrase 「一つは」 (hitotsu wa) is a combination of the numeral 「一つ」 (hitotsu, 'one') and the
+  topic particle 「は」 (wa). This combination highlights 'one' specific item or reason among potentially
+  many, setting it as the topic for discussion. Historically, the particle 「は」 evolved from 「葉」 (ha),
+  meaning 'leaf,' symbolizing a division or separation, which aligns with its function of singling out
+  a topic. Thus, 「一つは」 literally means 'as for one (thing),' emphasizing its role in introducing one particular
+  element from a group.
+writeup: 「一つは」 (hitotsu wa) is a useful phrase for introducing one specific item, reason, or example when
+  discussing multiple points. It is commonly used to list contributing factors, elements, or conditions,
+  implying that there are other aspects to consider, even if they are not explicitly stated immediately.
+  This expression signals to the listener that the current point is part of a larger set of information,
+  whether it be a list of reasons, characteristics, or examples. While grammatically neutral, its usage
+  often lends a slightly formal or analytical tone to the discourse, making it suitable for explanations,
+  presentations, or structured discussions. It is important to remember that 「一つは」 inherently suggests
+  the existence of 'other' points, even if they are not subsequently elaborated upon.
+false_friends:
+  - term: 一つには
+    meaning: for one thing
+    kind: similar expression
+    nuance: 「一つには」 is often used specifically to introduce one of several reasons, carrying a slightly
+      stronger emphasis on causality. 「一つは」 can introduce any single item from a list, not exclusively
+      reasons.
+    grammar_point: 一つには (for one thing)
+  - term: まず
+    meaning: first, to begin with
+    kind: often confused with
+    nuance: 「まず」 introduces the initial point or action, but doesn't necessarily imply it's one of several
+      *reasons* or items in a structured list, unlike 「一つは」 which sets up an enumeration.
+    grammar_point: まず (priority・initial action)
+  - term: そして
+    meaning: and then
+    kind: often confused with
+    nuance: 「そして」 connects sentences or clauses in a sequential or additive manner without inherently
+      suggesting that the following point is one of multiple distinct items in a list, as 「一つは」 does.
+    grammar_point: そして (and・and then)
+post_false_friends_writeup: While 「一つは」, 「一つには」, 「まず」, and 「そして」 can all introduce new information, 「一つは」
+  and 「一つには」 are specifically used to highlight one item or reason among several, setting up an implied
+  list. 「まず」 focuses on the initial point, regardless of whether it's part of a series of similar items.
+  「そして」 simply connects information additively or sequentially.
+examples:
+  - english: One reason is that the price is high.
+    japanese:
+      - '{一 つ は} 値段 が 高い こと です。'
+      - '{一 つ は} 値段 が 高い こと だ。'
+    english_literally: One thing is price is high fact it is.
+    competing_grammar:
+      - competing_japanese:
+          - 一 つ に は、値段 が 高い こと です。
+        english: For one thing, the price is high.
+        hint: 「一つには」 specifically emphasizes 'one of the reasons,' while 「一つは」 can be 'one of the items'
+          or 'one of the reasons.' We're looking for a general statement of one point.
+      - competing_japanese:
+          - 値段 が 高い こと です。
+        english: The price is high.
+        hint: This sentence directly states the fact without indicating it's part of a list. We're looking
+          for a phrase that introduces one item from several.
+    scene: A person explaining why they didn't buy something.
+    register: formal
+    setting: informative
+  - english: There are various reasons why I chose this company; one is its corporate culture.
+    japanese:
+      - この 会社 を 選ん だ 理由 は 様々 です が、{一 つ は} その 社風 です。
+      - この 会社 を 選ん だ 理由 は 様々 だ が、{一 つ は} その 社風 だ。
+    english_literally: This company chose reason various but, one is that corporate culture is.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 を 選ん だ 理由 は 様々 です が、まず その 社風 です。
+        english: There are various reasons why I chose this company; first, its corporate culture.
+        hint: 「まず」 emphasizes it's the *first* point, not necessarily *one of* several points as 「一つは」
+          implies. We're looking for a phrase that indicates one of multiple reasons.
+      - competing_japanese:
+          - この 会社 を 選ん だ 理由 は 様々 です が、一 つ に は その 社風 です。
+        english: There are various reasons why I chose this company; for one thing, its corporate culture.
+        hint: 「一つには」 is more strongly tied to giving 'reasons' specifically. 「一つは」 is broader, introducing
+          one item from a list of various types (reasons, features, etc.).
+    scene: During a job interview.
+    register: semi-formal
+    setting: professional
+  - english: There were several problems with the project. One was the lack of communication.
+    japanese:
+      - プロジェクト に は いく つ か 問題 が あり まし た。{一 つ は} コミュニケーション 不足 でし た。
+      - プロジェクト に は いく つ か 問題 が あっ た。{一 つ は} コミュニケーション 不足 だっ た。
+    english_literally: Project to several problems existed. One is communication lack was.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト に は いく つ か 問題 が あり まし た。一 つ に は コミュニケーション 不足 でし た。
+        english: There were several problems with the project. For one thing, there was a lack of communication.
+        hint: 「一つには」 emphasizes it as a primary reason among others. 「一つは」 can simply list one issue among
+          many, without as strong a causal emphasis.
+      - competing_japanese:
+          - プロジェクト に は いく つ か 問題 が あり まし た。まず は コミュニケーション 不足 でし た。
+        english: There were several problems with the project. First of all, there was a lack of communication.
+        hint: 「まずは」 highlights the initial point or the most significant one. We're looking for a phrase
+          that simply introduces one of several problems.
+    scene: A team leader reporting on a project's difficulties.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: Used in a formal reporting context. The speaker, a male team leader, uses 「でした」 (deshita),
+      which is polite and appropriate when addressing a group.
+  - english: Regarding the new proposal, one point to consider is the budget constraints.
+    japanese:
+      - 新しい 提案 に つい て、考慮 す べき 点 は {一 つ は} 予算 の 制限 です。
+      - 新しい 提案 に つい て、考慮 す べき 点 は {一 つ は} 予算 の 制限 だ。
+    english_literally: New proposal about, consider-should point is one is budget's limitation is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 提案 に つい て、考慮 す べき 点 は まず 予算 の 制限 です。
+        english: Regarding the new proposal, the first point to consider is the budget constraints.
+        hint: 「まず」 indicates the first or primary point to be discussed. We're looking for a phrase that
+          introduces one point among potentially many, not necessarily the first.
+    scene: During a business meeting.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「考慮すべき点」 (kōryo subeki ten, 'points to consider') sets up the expectation of multiple
+      points, making 「一つは」 (hitotsu wa) a natural fit. The female speaker maintains a formal register
+      suitable for a business meeting.
+  - english: There are a few things I don't like about summer. One is the humidity.
+    japanese:
+      - 夏 が 嫌い な 理由 は いく つ か ある ん です よ。{一 つ は} 湿気 です ね。
+      - 夏 が 嫌い な 理由 は いく つ か ある ん だ よ。{一 つ は} 湿気 だ ね。
+    english_literally: Summer is disliked reason several exist actually. One is humidity is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 夏 が 嫌い な 理由 は いく つ か ある ん です よ。一 つ に は 湿気 です ね。
+        english: There are a few reasons I don't like about summer. For one thing, it's the humidity.
+        hint: 「一つには」 emphasizes it as a reason. 「一つは」 simply introduces one item from a list of dislikes.
+      - competing_japanese:
+          - 夏 が 嫌い な 理由 は いく つ か ある ん です よ。まず 湿気 です ね。
+        english: There are a few things I don't like about summer. First, it's the humidity.
+        hint: 「まず」 implies it's the primary or most immediate point. We're looking for a general way to
+          introduce one item from a list.
+    scene: Two friends casually chatting.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of sentence-ending particles 「ん です よ」 (n desu yo) and 「です ね」 (desu ne) softens the
+      overall tone, making the slightly formal 「一つは」 (hitotsu wa) sound more natural in a casual conversation
+      between female friends.
+  - english: This car has many great features. One is its excellent fuel efficiency.
+    japanese:
+      - この 車 に は 良い 点 が たくさん あり ます。{一 つ は} 燃費 が 非常 に 良い こと です。
+      - この 車 に は 良い 点 が たくさん ある。{一 つ は} 燃費 が 非常 に 良い こと だ。
+    english_literally: This car has good points many exist. One is fuel economy is extremely good fact
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - この 車 に は 良い 点 が たくさん あり ます。一 つ に は 燃費 が 非常 に 良い こと です。
+        english: This car has many great features. For one thing, its excellent fuel efficiency.
+        hint: 「一つには」 focuses on it being a reason or cause. 「一つは」 can introduce any type of item from
+          a list, like a feature.
+    scene: A car salesperson presenting a new model.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    nuance: A salesperson would use polite language to inform a customer. 「非常に良い」 (hijō ni yoi, 'extremely
+      good') emphasizes the positive aspect of the car's features to a potential buyer.
+  - english: Many traditional crafts are struggling. For instance, one is the art of dyeing kimonos.
+    japanese:
+      - 多く の 伝統 工芸 が 苦境 に あり ます。{一 つ は} 着物 の 染色 技術 です。
+      - 多く の 伝統 工芸 が 苦境 に ある。{一 つ は} 着物 の 染色 技術 だ。
+    english_literally: Many traditional crafts are in difficulty. One is kimono's dyeing technique is.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 伝統 工芸 が 苦境 に あり ます。例えば、着物 の 染色 技術 です。
+        english: Many traditional crafts are struggling. For example, the art of dyeing kimonos.
+        hint: 「例えば」 is a direct way to give an example. While similar in function here, 「一つは」 sets up
+          an implied list of items.
+    scene: A documentary narrator.
+    register: formal
+    setting: informative
+    listener_gender: no one
+    nuance: A narrator's tone is typically formal and informative, addressing a general audience. The
+      use of 「一つは」 (hitotsu wa) helps to structure the information as one example among several potential
+      ones.
+  - english: There are many things I need to fix. For one, my time management.
+    japanese:
+      - 改善 す べき 点 は たくさん ある なあ。{一 つ は} 時間 管理 だろう か。
+      - 改善 す べき 点 は たくさん ある なあ。{一 つ は} 時間 管理 だろう な。
+    english_literally: Improve should points many exist, huh. One is time management perhaps?
+    competing_grammar:
+      - competing_japanese:
+          - 改善 す べき 点 は たくさん ある なあ。一 つ に は 時間 管理 だろう か。
+        english: There are many things I need to fix. For one thing, my time management.
+        hint: Similar to 「一つは」, but often implies a reason or cause. Here, we're just listing a point
+          to fix.
+    scene: A person thinking aloud about self-improvement.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The male speaker uses the sentence-ending particle 「なあ」 (nā) for reflection and 「だろう か」 (darō
+      ka) to express self-doubt or a question to himself, making the internal monologue sound natural.
+  - english: The issue is complex. One problem is the lack of public awareness.
+    japanese:
+      - この 問題 は 複雑 だ。{一 つ は} 一般 の 認識 不足 だ。
+      - この 問題 は 複雑 です。{一 つ は} 一般 の 認識 不足 です。
+    english_literally: This problem is complex. One is general public's awareness lack is.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 複雑 だ。一 つ に は 一般 の 認識 不足 だ。
+        english: The issue is complex. For one thing, there's a lack of public awareness.
+        hint: 「一つには」 emphasizes it as a reason. 「一つは」 can simply list one problem among many.
+    scene: A political analyst discussing social issues.
+    register: formal
+    setting: academic
+    nuance: A concise, analytical statement typical in academic or journalistic discourse. The plain form
+      「だ」 (da) is appropriate for a direct, authoritative tone when presenting a complex issue.
+  - english: There are arguments for and against this plan. One argument is the economic impact.
+    japanese:
+      - この 計画 に は 賛否 両論 あり ます。{一 つ は} 経済 的 影響 です。
+      - この 計画 に は 賛否 両論 ある。{一 つ は} 経済 的 影響 だ。
+    english_literally: This plan to pros and cons both exist. One is economic impact is.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 に は 賛否 両論 あり ます。まず、経済 的 影響 です。
+        english: There are arguments for and against this plan. First, the economic impact.
+        hint: 「まず」 highlights the first or most immediate point. We're looking for a general way to introduce
+          one item from a list of arguments.
+    scene: A journalist reporting on a controversial topic.
+    register: formal
+    setting: informative
+    nuance: Used to objectively present one side of an argument, implying that other sides or considerations
+      exist. The formal register is suitable for a journalistic report.

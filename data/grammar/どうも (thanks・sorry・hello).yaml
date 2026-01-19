@@ -1,0 +1,233 @@
+grammar_point: どうも (thanks・sorry・hello)
+learn_before:
+  - どうも (somehow・for some reason)
+meaning: A versatile, condensed expression for gratitude, apology, or greeting, with the specific meaning
+  determined by context.
+pronunciation:
+  katakana: ドウモ
+  romaji: doumo
+formation:
+  どうも: Used alone or as an intensifier for greetings, expressions of gratitude, or apologies.
+jlpt: N5
+etymology: The term 「どうも」 originates from older Japanese, where 「どう」 meant 'how' or 'in what way,' and
+  「も」 added emphasis. Over time, its versatility extended beyond questioning the manner of something to
+  become a highly condensed, context-dependent expression for acknowledging a situation or interaction,
+  evolving into its current use as a versatile substitute for full greetings, thanks, or apologies.
+writeup: |-
+  「どうも」 is an incredibly versatile and frequently used Japanese expression that acts as a condensed form of gratitude, apology, or greeting. Its exact meaning is almost entirely dependent on the **context, tone of voice, and accompanying non-verbal cues**. When used alone, 「どうも」 can efficiently convey:
+  *   **Gratitude**: In many situations, a simple 「どうも」 can mean 'Thanks' or 'Much obliged.' It's common in casual settings, like receiving a package or a small favor. For more formality or emphasis, it's often combined with 「ありがとう」 (e.g., 「どうもありがとう」) or 「ありがとうございます」 (e.g., 「どうもありがとうございます」).
+  *   **Apology**: It can also serve as a quick 'Sorry' or 'Excuse me.' This is typical for minor inconveniences, like bumping into someone or asking for attention in a shop. For more serious apologies, it precedes 「すみません」 (e.g., 「どうもすみません」) or 「申し訳ありません」.
+  *   **Greeting**: 「どうも」 can function as a casual 'Hello' or 'Hi,' especially when encountering someone familiar or in brief encounters. It can also be used as a polite way to initiate conversation, similar to 'Excuse me' or 'Pardon me,' particularly when seeking attention or inquiring about something.
+  This grammatical point focuses specifically on these condensed, context-dependent uses of 「どうも」. It's a testament to the Japanese language's efficiency and reliance on shared understanding and situational awareness. While highly convenient, its ambiguity means a beginner might initially struggle to discern its exact meaning without sufficient context.
+false_friends:
+  - term: どうもありがとう
+    meaning: Thank you very much
+    kind: similar expression
+    nuance: 「どうもありがとう」 is a more direct and common expression of gratitude. 「どうも」 by itself is more versatile
+      and can express other nuances like apology or acknowledgement.
+    grammar_point: <suggest>:どうもありがとう (thank you very much)
+  - term: どうもすみません
+    meaning: I'm very sorry
+    kind: similar expression
+    nuance: 「どうもすみません」 is a more direct and common expression of apology. 「どうも」 by itself is more versatile
+      and can express other nuances like greeting or acknowledgement.
+    grammar_point: <suggest>:どうもすみません (very sorry)
+post_false_friends_writeup: When 「どうも」 is used by itself, it is a highly versatile expression. Its precise
+  meaning depends entirely on the context. However, when combined with words like 「ありがとう」 or 「すみません」,
+  its meaning becomes specific to gratitude or apology, respectively. Understanding this contextual reliance
+  is key to naturally using and interpreting 「どうも」.
+examples:
+  - english: Oh, thanks!
+    japanese:
+      - '{どう も}！'
+      - '{どう も}！これ ありがとう！'
+    english_literally: Thanks! / Thanks! This, thank you!
+    competing_grammar:
+      - competing_japanese:
+          - ありがとう！
+        english: Thanks!
+        hint: The original sentence uses a very concise expression of gratitude suitable for receiving
+          something. We're looking for a sentence that conveys this quick, informal appreciation.
+    scene: A person receives a small item or change from a shopkeeper.
+    register: casual
+    setting: friendly
+    nuance: A very common and brief way to say "thanks" when receiving something, often accompanied by
+      a slight bow or nod. It implies a quick acknowledgment of a small favor or transaction.
+  - english: Thank you. That helped a lot.
+    japanese:
+      - '{どう も} 助かり まし た。ありがとう ござい ます。'
+      - '{どう も}。本当 に 助かり まし た。'
+      - '{どう も} 助かっ た よ。サンキュー。'
+    english_literally: Somehow / Thank you, it helped a lot. Thank you very much.
+    competing_grammar:
+      - competing_japanese:
+          - 助かり まし た。ありがとう ござい ます。
+        english: That helped a lot. Thank you very much.
+        hint: The original sentence uses 「どうも」 for an emphasized expression of gratitude. We're looking
+          for a sentence that includes this initial, concise acknowledgment.
+    scene: A colleague thanks another for timely assistance, feeling genuinely relieved.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: In this context, 「どうも」 acts as a succinct, general expression of gratitude, often replacing
+      a longer phrase like 「どうもありがとうございます」 or simply adding emphasis. The continuation 「助かり まし た。ありがとう
+      ござい ます。」 clarifies the specific meaning of thanks, indicating a genuine sense of relief and appreciation
+      for assistance received.
+  - english: I'm very sorry. I'm late.
+    japanese:
+      - '{どう も} すみ ませ ん。遅れ て しまい まし た。'
+      - '{どう も} 申し訳 ござい ませ ん。遅参 いたし まし た。'
+      - '{どう も} ごめん。遅れ ちゃっ た。'
+    english_literally: Somehow / Very, I am sorry. I have ended up being late.
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん。遅れ て しまい まし た。
+        english: I'm sorry. I'm late.
+        hint: The original sentence begins with an emphasized apology, conveying a deeper sense of regret.
+          We're looking for a sentence that expresses that heightened apology.
+    scene: A person arrives late for a meeting, feeling genuinely apologetic and slightly embarrassed.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: Here, 「どうも」 intensifies the apology, conveying a deeper sense of regret or embarrassment.
+      It implies that the lateness is not just a minor inconvenience but something the speaker feels genuinely
+      bad about, possibly with an unstated reason. The phrase 「遅れ て しまい まし た」 adds to the sense of an
+      unintentional or regrettable action.
+  - english: Oops, sorry! My bad.
+    japanese:
+      - '{どう も}、ごめん！'
+      - '{どう も}。'
+      - '{どう も}、悪かっ た。'
+    english_literally: Sorry! My apologies!
+    competing_grammar:
+      - competing_japanese:
+          - ごめん！
+        english: Sorry!
+        hint: The original sentence uses a concise and slightly emphatic expression of apology for a minor
+          mistake. We're looking for a sentence that conveys this quick, informal regret.
+    scene: Someone accidentally bumps into another person in a crowded train station.
+    register: casual
+    setting: apologetic
+    nuance: In this casual context, 「どうも」 serves as a quick, unspecific apology for a minor, accidental
+      inconvenience. It's often used with a slight head nod or a gesture of apology.
+  - english: Hi! Long time no see!
+    japanese:
+      - '{どう も}！久し ぶり！'
+      - '{どう も}！元気？'
+    english_literally: Hello! Long time no see!
+    competing_grammar:
+      - competing_japanese:
+          - 久し ぶり！
+        english: Long time no see!
+        hint: The original sentence starts with a very common, casual greeting used when meeting someone.
+          We're looking for a sentence that includes this initial, informal salutation.
+    scene: Two friends run into each other on the street.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: This 「どうも」 is a typical casual greeting among friends or acquaintances, especially when a
+      more formal 「こんにちは」 feels too stiff. It's a warm, brief acknowledgment of presence.
+  - english: Good morning, everyone!
+    japanese:
+      - '{どう も}、皆 さん！'
+      - '{どう も}、おはよう ござい ます！'
+    english_literally: Hello, everyone! / Hello, good morning!
+    competing_grammar:
+      - competing_japanese:
+          - おはよう ござい ます！
+        english: Good morning!
+        hint: The original sentence uses 「どうも」 as a versatile opening for a polite group greeting. We're
+          looking for a sentence that includes this initial, general acknowledgment.
+    scene: A teacher enters the classroom and greets the students.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: Used here, 「どうも」 serves as a general, polite greeting to a group, often followed by a more
+      specific time-based greeting like 「おはようございます」. It functions as a simple acknowledgment of arrival
+      or presence. The formal 「皆さん」 (minasan) combined with 「どうも」 makes it polite and inclusive.
+  - english: Hi, you look great in that outfit today.
+    japanese:
+      - '{どう も}、今日 は 素敵 な 服 です ね。'
+      - '{どう も}、今日 は お洒落 な 服 です ね。'
+      - '{どう も}。素敵 です ね、その 服。'
+    english_literally: Somehow / Hello, today, your clothes are wonderful, aren't they?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 素敵 な 服 です ね。
+        english: You look great in that outfit today.
+        hint: The original sentence starts with a casual, versatile greeting. We're looking for a sentence
+          that includes this initial, non-specific acknowledgment.
+    scene: A man casually compliments a woman on her attire.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The standalone 「どうも」 here functions as a casual, slightly flirtatious greeting. The concluding
+      「ね」 adds a seeking of agreement, further enhancing the casual and inviting tone, as if to say, 'You
+      agree, right?'
+  - english: Excuse me, is this your umbrella?
+    japanese:
+      - '{どう も}、この 傘 は あなた の です か？'
+      - '{どう も}、この 傘、君 の？'
+      - '{どう も}、こちら の 傘 は どなた か の です か？'
+    english_literally: Somehow / Excuse me, this umbrella, is it yours?
+    competing_grammar:
+      - competing_japanese:
+          - この 傘 は あなた の です か？
+        english: Is this your umbrella?
+        hint: The original sentence begins with a polite, attention-getting phrase similar to 'excuse
+          me.' We're looking for a sentence that includes this initial, non-specific acknowledgment.
+    scene: A person finds an item and politely tries to locate its owner in a public space.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: In this context, 「どうも」 serves as a polite, non-specific opener to get someone's attention,
+      similar to "Excuse me." It's a versatile way to initiate a conversation without committing to a
+      specific greeting or apology initially, appropriate in a public setting.
+  - english: Excuse me, can I try this on?
+    japanese:
+      - '{どう も}、これ 試着 し て も いい です か？'
+      - '{どう も}、試着 お 願い し ます。'
+    english_literally: Excuse me, this, can I try it on?
+    competing_grammar:
+      - competing_japanese:
+          - これ 試着 し て も いい です か？
+        english: Can I try this on?
+        hint: The original sentence uses 「どうも」 as a polite way to get a shop assistant's attention before
+          making a request. We're looking for a sentence that includes this initial attention-getter.
+    scene: A customer in a clothing store wants to try on a jacket and addresses a shop assistant.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Here, 「どうも」 is used to politely initiate a conversation with a service person, similar to
+      "Excuse me" in English. It's concise and common in retail or service settings.
+  - english: Thank you for your service.
+    japanese:
+      - '{どう も}！'
+      - '{どう も}、ありがとう ござい ます。'
+    english_literally: Thank you! / Thank you, thank you very much.
+    competing_grammar:
+      - competing_japanese:
+          - ありがとう ござい ます！
+        english: Thank you very much!
+        hint: The original sentence uses a concise expression of thanks for a service, common after a
+          transaction. We're looking for a sentence that conveys this quick, polite acknowledgment.
+    scene: A customer completes a purchase at a convenience store and thanks the cashier.
+    register: semi-formal
+    setting: professional
+    nuance: A quick 「どうも」 is very common in transactional settings (e.g., shops, taxis) as a polite "thank
+      you" when leaving or completing an interaction. It's a short but complete expression of gratitude.
+post_example_writeup: As these examples illustrate, 「どうも」 is a testament to Japanese linguistic efficiency,
+  conveying gratitude, apology, or greeting through a single, context-rich word. Mastering its nuances
+  relies heavily on recognizing the situation and the speaker's tone, allowing for concise yet clear communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どうも

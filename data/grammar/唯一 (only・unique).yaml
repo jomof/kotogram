@@ -1,0 +1,234 @@
+grammar_point: 唯一 (only・unique)
+learn_before:
+  - 〜ら (plural suffix)
+  - かろう (probably・right?)
+  - な-Adjective[であった] (formal past)
+meaning: only; unique; sole
+pronunciation:
+  katakana: ユイイツ
+  romaji: yuiitsu
+formation:
+  唯一 の [Noun]: Used to describe a noun as being the sole or unique instance of something.
+  '[Noun] は 唯一 だ': Used predicatively, stating that a noun is the only one or unique.
+  唯一 [Verb]: Used adverbially to mean 'only' in the sense of being the sole way or instance of an action.
+jlpt: N1
+etymology: The term 唯一 (yuiitsu) is formed from the kanji 唯 (yui), meaning 'only,' 'simply,' or 'just,'
+  and 一 (itsu), meaning 'one.' Together, these characters strongly convey the concept of 'the only one,'
+  reinforcing the idea of singularity and exclusivity. This etymology clearly illustrates its core meaning
+  of being singular or unique among others.
+writeup: |-
+  唯一 (yuiitsu) is a grammar point used to express that something is **the one and only** or **unique**. It functions both as a な-adjective, directly modifying nouns, and as an adverb, modifying verbs or clauses to indicate that an action or state is singular in nature. Unlike other words that convey 'only,' 唯一 emphasizes a deeper sense of exclusivity, often implying significance or specialness.
+
+  When used as a な-adjective, it typically appears in the form 「唯一のNoun」, as in 「唯一のチャンス」 (the only chance). In this usage, it highlights the unparalleled nature of the noun it modifies. When functioning as an adverb, it often indicates that a certain action or condition is the sole way something occurs or exists, although this usage is less common than its adjectival form and sometimes overlaps with more general adverbs of limitation.
+
+  唯一 is generally considered to be a formal or semi-formal expression. While it can be heard in spoken Japanese, especially when a speaker wants to convey a strong sense of uniqueness or singularity, it is more prevalent in written contexts such as news articles, academic papers, or formal presentations. Its strong emphasis on being 'the sole' entity makes it a powerful word for stressing individuality and unparalleled existence.
+false_friends:
+  - term: だけ
+    meaning: only; just; as much as
+    kind: similar expression
+    nuance: だけ (dake) is a more general limiter, simply stating that something is limited to a certain
+      extent or amount, without necessarily implying uniqueness. 唯一 (yuiitsu) specifically emphasizes
+      being the sole or unique instance, highlighting exclusivity.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない
+    meaning: only; nothing but (with negative verb)
+    kind: similar expression
+    nuance: しか〜ない (shika~nai) always pairs with a negative verb and conveys 'only' with a nuance of insufficiency,
+      limitation, or regret. 唯一 (yuiitsu) does not require a negative verb and focuses on uniqueness rather
+      than an emotional assessment of scarcity.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: たった
+    meaning: only; just; merely (emphasizing smallness/scarcity)
+    kind: similar expression
+    nuance: たった (tatta) emphasizes the smallness or scarcity of a quantity, often with a sense of surprise
+      or understatement. 唯一 (yuiitsu) highlights uniqueness or singularity, not necessarily a small quantity.
+    grammar_point: たった (only・just)
+  - term: のみ
+    meaning: only; merely (formal/literary)
+    kind: similar expression
+    nuance: のみ (nomi) is a formal or literary equivalent of だけ, indicating restriction without special
+      emphasis on uniqueness. 唯一 (yuiitsu) explicitly stresses the 'one and only' aspect, making it stronger
+      in conveying singularity.
+    grammar_point: のみ (only・just)
+post_false_friends_writeup: While all these terms translate to 'only' in English, their nuances differ
+  significantly. 唯一 (yuiitsu) should be used when you want to strongly convey that something is the 'sole'
+  or 'unique' entity, with no others of its kind. だけ (dake) is a broader limiter, simply indicating restriction.
+  しか〜ない (shika~nai) implies limitation or insufficiency and must be used with a negative. たった (tatta)
+  focuses on the smallness of a quantity. Lastly, のみ (nomi) is a more formal version of だけ, but still
+  lacks the strong 'uniqueness' emphasis of 唯一.
+examples:
+  - english: This is the only existing photograph from that time.
+    japanese:
+      - これ は その 時 の {唯一} の 写真 だ。
+      - これ は その 時 の {唯一} の 写真 です。
+      - これ が その 時 の {唯一} の 写真 で ある。
+    english_literally: This is that time's only photograph.
+    competing_grammar:
+      - competing_japanese:
+          - これ は その 時 の 写真 だけ だ。
+        english: This is just a photograph from that time.
+        hint: だけ is just a simple limiter, indicating 'only this one', but not emphasizing uniqueness
+          or rarity to the same degree as 唯一.
+    scene: A historian presenting a rare artifact.
+    register: formal
+    setting: informative
+    nuance: 「唯一の」 emphasizes the extreme rarity and singularity of the photograph, highlighting that no
+      other such photo exists.
+  - english: He is the sole successor to the family business.
+    japanese:
+      - 彼 は 家業 の {唯一} の 後継 者 だ。
+      - 彼 は 家業 の {唯一} の 後継 者 です。
+      - 彼 は 家業 の {唯一} の 後継 者 で ある。
+    english_literally: He is the family business's only successor.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 家業 の 後継 者 だけ だ。
+        english: He is just a successor to the family business.
+        hint: だけ can imply a lack of other qualities or a simple count, not necessarily that he is the
+          only possible or unique successor in a significant sense.
+    scene: Discussing family lineage and inheritance.
+    register: formal
+    setting: serious
+    nuance: 「唯一の後継者」 underscores his singular position and the responsibility that comes with being the
+      only one.
+  - english: For me, her smile is the only source of comfort.
+    japanese:
+      - 私 に とっ て、彼女 の 笑顔 が {唯一} の 慰め だ。
+      - 私 に とっ て、彼女 の 笑顔 が {唯一} の 慰め です。
+      - 私 に とっ て、彼女 の 笑顔 が {唯一} の 慰め と なる。
+    english_literally: For me, her smile is the only comfort.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に とっ て、彼女 の 笑顔 しか 慰め が ない。
+        english: For me, there is no comfort other than her smile.
+        hint: しか〜ない also means 'only', but it carries a nuance of 'nothing but' and implies a lack or
+          limitation, often with a slight negative or resigned feeling, which is not present in 唯一.
+    scene: Someone expressing deep personal feelings.
+    register: casual
+    setting: intimate
+    nuance: 「唯一の慰め」 here conveys a strong personal attachment and that this specific thing is the only
+      thing that brings comfort.
+  - english: This solution is the only way to resolve the problem.
+    japanese:
+      - この 解決 策 が 問題 を 解決 する {唯一} の 方法 だ。
+      - この 解決 策 が 問題 を 解決 する {唯一} の 方法 です。
+      - この 解決 策 が 問題 を 解決 する {唯一} の 方法 で ある。
+    english_literally: This solution is the problem to resolve's only method.
+    competing_grammar:
+      - competing_japanese:
+          - この 解決 策 が 問題 を 解決 する 方法 だけ だ。
+        english: This solution is just a way to resolve the problem.
+        hint: だけ simply limits the options, whereas 唯一 emphasizes that this is the single, unparalleled
+          method, implying its absolute necessity or effectiveness among all possible ways.
+    scene: A team discussing a difficult challenge.
+    register: semi-formal
+    setting: professional
+    nuance: 「唯一の方法」 implies that all other avenues have been explored or are deemed ineffective, making
+      this the single viable path.
+  - english: The internet was their only connection to the outside world.
+    japanese:
+      - インターネット は 彼 ら の 外 の 世界 へ の {唯一} の 繋がり だっ た。
+      - インターネット は 彼 ら の 外 の 世界 へ の {唯一} の 繋がり でし た。
+      - インターネット は 彼 ら の 外 の 世界 へ の {唯一} の 繋がり で あっ た。
+    english_literally: Internet was their outside world to's only connection.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット は 彼 ら の 外 の 世界 へ の 繋がり しか なかっ た。
+        english: There was no connection to the outside world for them other than the internet.
+        hint: しか〜なかった suggests that having only the internet was a limitation or perhaps regrettable.
+          唯一 simply states it was the only link, without that negative implication.
+    scene: Describing a remote or isolated situation.
+    register: formal
+    setting: informative
+    nuance: 「唯一の繋がり」 highlights the critical and exclusive role the internet played as their sole link.
+  - english: Our company's only mission is customer satisfaction.
+    japanese:
+      - 我々 の 会社 の {唯一} の 使命 は 顧客 満足 だ。
+      - 我々 の 会社 の {唯一} の 使命 は 顧客 満足 です。
+      - 我々 の 会社 の {唯一} の 使命 は 顧客 満足 で ある。
+    english_literally: Our company's only mission is customer satisfaction.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 の 会社 の 使命 は 顧客 満足 だけ だ。
+        english: Our company's mission is just customer satisfaction.
+        hint: だけだ might imply that the mission is merely customer satisfaction, potentially downplaying
+          its importance, whereas 唯一 elevates it as the sole and most important mission.
+    scene: A company statement or mission briefing.
+    register: formal
+    setting: professional
+    nuance: 「唯一の使命」 asserts that customer satisfaction is the singular, overarching goal, to the exclusion
+      of all others.
+  - english: That old book is the only clue to solving the mystery.
+    japanese:
+      - その 古い 本 が 謎 を 解く {唯一} の 手がかり だ。
+      - その 古い 本 が 謎 を 解く {唯一} の 手がかり です。
+      - その 古い 本 が 謎 を 解く {唯一} の 手がかり で ある。
+    english_literally: That old book is the mystery to solve's only clue.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 本 が 謎 を 解く 手がかり しか ない。
+        english: There is no clue to solving the mystery other than that old book.
+        hint: しか〜ない can imply a sense of difficulty or scarcity of clues, while 唯一 simply states the book's
+          singular role as the sole clue.
+    scene: Detectives discussing a case.
+    register: formal
+    setting: serious
+    nuance: 「唯一の手がかり」 emphasizes the singular importance of the book; without it, the mystery cannot be
+      solved.
+  - english: For a baby, crying is the only way to communicate.
+    japanese:
+      - 赤ちゃん に とっ て、泣く こと が {唯一} の コミュニケーション 手段 だ。
+      - 赤ちゃん に とっ て、泣く こと が {唯一} の コミュニケーション 手段 です。
+      - 赤ちゃん に とっ て、泣く こと が {唯一} の コミュニケーション 手段 で ある。
+    english_literally: For a baby, crying is the only communication method.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん に とっ て、泣く こと が コミュニケーション 手段 だけ だ。
+        english: For a baby, crying is just a communication method.
+        hint: Using だけだ here would sound less natural and might imply that crying is merely a communication
+          method among others, rather than the sole method.
+    scene: An explanation about infant behavior.
+    register: semi-formal
+    setting: informative
+    nuance: 「唯一のコミュニケーション手段」 highlights that a baby has no other means to express themselves.
+  - english: His existence is the only hope for humanity.
+    japanese:
+      - 彼 の 存在 が 人類 の {唯一} の 希望 だ。
+      - 彼 の 存在 が 人類 の {唯一} の 希望 です。
+      - 彼 の 存在 が 人類 の {唯一} の 希望 で ある。
+    english_literally: His existence is humanity's only hope.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 存在 が 人類 の 希望 しか ない。
+        english: There is no hope for humanity other than his existence.
+        hint: しか〜ない emphasizes the lack of other options or a desperate situation, whereas 唯一 highlights
+          the singular, unparalleled nature of his hope.
+    scene: A dramatic declaration in a fictional story.
+    register: formal
+    setting: creative
+    nuance: 「唯一の希望」 conveys a sense of ultimate reliance on this single source of hope, often used in
+      dramatic or dire situations.
+  - english: This factory is the only one in the world that produces this special material.
+    japanese:
+      - この 工場 が この 特殊 な 材料 を 生産 する 世界 で {唯一} の 場所 だ。
+      - この 工場 が この 特殊 な 材料 を 生産 する 世界 で {唯一} の 場所 です。
+      - この 工場 が この 特殊 な 材料 を 生産 する 世界 で {唯一} の 場所 で ある。
+    english_literally: This factory is this special material to produce's world's only place.
+    competing_grammar:
+      - competing_japanese:
+          - この 工場 が この 特殊 な 材料 を 生産 する 世界 で 一番 の 場所 だ。
+        english: This factory is the best place in the world to produce this special material.
+        hint: 一番 emphasizes being the best, but not necessarily the only one that can do it. 唯一 conveys
+          exclusivity, not necessarily superiority.
+    scene: A business presentation or industrial report.
+    register: formal
+    setting: technical
+    nuance: 「世界で唯一の場所」 stresses the unparalleled capability of this specific factory on a global scale.
+post_example_writeup: As seen in the examples, 唯一 (yuiitsu) is typically used to highlight the unparalleled
+  nature of a noun, emphasizing its singularity and exclusivity. It functions as a powerful descriptor
+  when conveying that something is genuinely 'the one and only' or 'unique of its kind.' Its usage often
+  implies a degree of significance or importance because of its singular status. The examples showcase
+  its flexibility in modifying various types of nouns, from abstract concepts like 'hope' and 'comfort'
+  to concrete objects like 'photographs' and 'factories,' always maintaining its core meaning of uniqueness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/唯一

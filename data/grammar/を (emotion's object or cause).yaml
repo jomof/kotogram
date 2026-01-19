@@ -1,0 +1,324 @@
+grammar_point: を (emotion's object or cause)
+learn_before:
+  - 〜ら (plural suffix)
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - な (prohibitive particle)
+  - を通じて・を通して (medium・means)
+  - 何 (what)
+  - 心配する (to worry)
+  - 無視する (to ignore)
+meaning: Indicates the object or cause of an emotion or feeling.
+pronunciation:
+  katakana: ヲ
+  romaji: o
+formation:
+  Noun + を + Emotion Verb: Indicates that the noun is the object or cause of the emotion expressed by
+    the verb.
+jlpt: N3
+etymology: The particle 「を」 originally had a broader range of functions in classical Japanese, including
+  marking location and time. Over time, its usage narrowed, but it retained the ability to mark the object
+  of certain intransitive verbs, especially those related to emotions. This historical breadth showcases
+  its flexibility in expressing the target or focus, extending from physical movement to abstract emotional
+  states. The original nuance of 'passing through' or 'regarding' an entity is subtly preserved.
+writeup: 'The particle 「を」 typically functions as a direct object marker for transitive verbs. However,
+  with verbs describing emotions, feelings, or psychological states, 「を」 takes on a nuanced role: it marks
+  the **cause** or **object** of that emotion. This means the noun preceding 「を」 is what triggers, elicits,
+  or is the direct focus of the feeling. Think of this structure as "feeling X about Y" or "experiencing
+  X in relation to Y." For instance, while you might say 「本 を 読む」 (read a book), where 「本」 is the direct
+  object of reading, with emotion verbs, the noun is the **source** or **target** of the internal emotional
+  state. Common verbs used in this pattern include: 喜ぶ (yorokobu - to be pleased/rejoice), 悲しむ (kanashimu
+  - to be sad/grieve), 恐れる (osoreru - to fear), 懐かしむ (natsukashimu - to miss/feel nostalgic for), 心配 する
+  (shinpai suru - to worry), 後悔 する (koukai suru - to regret), 希望 する (kibou suru - to hope), 妬む (netamu
+  - to be jealous/envy). This construction emphasizes that the noun is the precise stimulus or focus of
+  the emotional response, rather than merely being associated with it. This usage adds clarity and depth
+  when expressing specific emotional connections.'
+false_friends:
+  - term: に
+    meaning: to, at, in (target or location particle)
+    kind: similar expression
+    nuance: While 「を」 indicates the cause or object of an emotion (e.g., 「優し さ を 感謝 する」 - to thank the
+      kindness itself), 「に」 indicates the target or recipient of an action or state. For instance, 「人
+      に 感謝 する」 (to thank a person) uses 「に」 for the recipient of the action, focusing on *who* is being
+      thanked, not *what* specifically causes the gratitude. So, while both can be used with gratitude,
+      their focus differs.
+    grammar_point: に (static location・time)
+  - term: が
+    meaning: subject marker
+    kind: similar expression
+    nuance: Using 「が」 would mark the subject of the sentence or describe something happening naturally,
+      such as 「悲しみ が 湧く」 (sadness wells up), implying that the sadness itself is the subject performing
+      the action of 'welling up.' In contrast, 「を」 specifically points to the external factor prompting
+      the internal feeling (e.g., 「出来事 を 悲しむ」 - to be sad about an event), where the event is the object
+      of sadness.
+    grammar_point: が (subject marker)
+  - term: に対して
+    meaning: towards; against; in contrast to
+    kind: similar expression
+    nuance: 「に対して」 indicates a target, direction, or a contrasting relationship. While an emotion might
+      be felt 'towards' something or someone (e.g., 「彼 に 対し て 怒り を 感じる」 - to feel anger towards him),
+      「を」 marks the *object* or *cause* of the emotion itself. It highlights the thing that directly triggers
+      the feeling, rather than the direction of an action or attitude.
+    grammar_point: に対して (towards; in contrast)
+  - term: について
+    meaning: about; concerning
+    kind: similar expression
+    nuance: 「について」 indicates the topic or subject matter of discussion, thought, or inquiry. It frames
+      what something is *about* (e.g., 「平和 に つい て 話す」 - to talk about peace). However, 「を」 directly marks
+      the stimulus or thing that *causes* the emotion (e.g., 「平和 を 希望 する」 - to hope for peace), focusing
+      on the direct object of the hope, rather than just the topic of discussion.
+    grammar_point: 〜について・〜に関して (about・regarding)
+post_false_friends_writeup: It's crucial to differentiate between 「を」 marking the specific object or cause
+  of an emotion and other particles like 「に」 or 「が」, which serve different grammatical functions. While
+  these particles can be used with emotion-related expressions, they convey a different relationship between
+  the emotion and its referent. Using the wrong particle can significantly alter the meaning of the sentence,
+  changing whether you're expressing the object of an emotion, the recipient, or the subject experiencing
+  it. For example, 「彼 が 悲しい」 (He is sad - 「が」 marks the subject of the emotion) is different from 「彼 を
+  悲しむ」 (to grieve for him - 「を」 marks the object of grief).
+examples:
+  - english: I am grateful for her kindness.
+    japanese:
+      - 私 は 彼女 の 優し さ を {感謝} し て いる。
+      - 彼女 の 優し さ を {感謝} し て いる。
+      - 彼女 の 優し さ を {感謝} し てる よ。
+      - 彼女 の 優し さ を {感謝} し てる わ。
+    english_literally: As for me, her kindness I am thanking.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼女 の 優し さ {に} 感謝 し て いる。
+          - 彼女 の 優し さ {に} 感謝 し て いる。
+        english: I am grateful for her kindness (focus on the recipient/source).
+        hint: While 「に 感謝 する」 is also common, 「を 感謝 する」 specifically identifies the kindness as the direct
+          object that elicits the gratitude, rather than just the target or reason. We're looking for
+          the direct object of the emotion.
+    scene: You are expressing gratitude to a close friend about a third person's kindness. The context
+      implies a heartfelt appreciation for the act itself.
+    register: formal
+    setting: serious
+    conjugation: progressive (～ている)
+    nuance: The phrase 「感謝 し て いる」 is used to express gratitude, indicating a formal tone suitable for
+      expressing appreciation. The continuous form implies an ongoing feeling of gratitude. The usage
+      of 「を」 in 「優し さ を 感謝 し て いる」 emphasizes the kindness itself as the object of gratitude, rather than
+      the person who shows it. In the 「感謝 し てる わ」 variation, 「わ」 adds a soft, feminine touch, making it
+      slightly less formal yet still appreciative.
+  - english: He is worried about the exam results.
+    japanese:
+      - 彼 は 試験 の 結果 を {心配} し て いる。
+      - 試験 の 結果 を 彼 は {心配} し て いる。
+      - 彼 は 試験 の 結果 を {心配} し てる よ。
+      - 試験 の 結果 を {心配} し て いる ん だ。
+    english_literally: As for him, exam's results he is worrying.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 結果 {が} 心配 だ。
+          - 試験 の 結果 {が} 心配 です。
+        english: The exam results are worrying/a worry (to him).
+        hint: 「が 心配 だ」 describes the state of the exam results *being* a worry, while 「を 心配 する」 means
+          to actively *worry about* the exam results. We're looking for the active act of worrying.
+    scene: A teacher is discussing a student's anxiety about upcoming exam results with a colleague.
+    register: semi-formal
+    setting: pessimistic
+    conjugation: progressive (～ている)
+    nuance: The sentence conveys a semi-formal tone, appropriate for discussing concerns about an exam.
+      「心配 し て いる」 implies an ongoing state of worry regarding the exam results. The particle 「を」 in 「結果
+      を 心配 し て いる」 marks the exam results as the direct object of his worry. The casual 「心配 し てる よ」 uses
+      「よ」 to convey a sense of informing or reassuring the listener, while 「心配 し て いる ん だ」 for explanation
+      or emphasis.
+  - english: The children are looking forward to the Christmas presents.
+    japanese:
+      - 子供 たち は クリスマス プレゼント を {楽しみ} に し て いる。
+      - クリスマス プレゼント を 子供 たち は {楽しみ} に し て いる。
+      - 子供 たち は クリスマス プレゼント を {楽しみ} に し てる よ。
+      - クリスマス プレゼント を {楽しみ} に し てる ね。
+    english_literally: As for children, Christmas presents enjoyment they are doing.
+    competing_grammar:
+      - competing_japanese:
+          - クリスマス プレゼント {が} 楽しみ だ。
+          - クリスマス プレゼント {が} 楽しみ です。
+        english: The Christmas presents are something to look forward to.
+        hint: 「が 楽しみ だ」 states that something *is* enjoyable or anticipated, while 「を 楽しみ に する」 means
+          to actively *make* something the object of one's anticipation or enjoyment. We want to show
+          they are actively looking forward to it.
+    scene: Parents are observing their excited children just before Christmas.
+    register: casual
+    setting: excited
+    conjugation: progressive (～ている)
+    nuance: The casual tone with 「楽しみ に し て いる」 indicates a relaxed and excited anticipation, highlighting
+      the emotional attachment to the event rather than just waiting. The 「を」 in 「クリスマス プレゼント を 楽しみ に
+      し て いる」 specifies the presents as the direct object of their eagerness and anticipation. The variants
+      with 「よ」 and 「ね」 add emphasis or seek agreement in a friendly manner.
+  - english: She is reminiscing about her childhood memories.
+    japanese:
+      - 彼女 は 子供 の 頃 の 思い出 を {懐かし} ん で いる。
+      - 子供 の 頃 の 思い出 を 彼女 は {懐かし} ん で いる。
+      - 彼女 は 子供 の 頃 の 思い出 を {懐かし} ん でる よ。
+      - 子供 の 頃 の 思い出 を {懐かし} ん でる わ。
+    english_literally: As for her, childhood memories she is nostalgically recalling.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 子供 の 頃 の 思い出 を {思い出し} て いる。
+          - 子供 の 頃 の 思い出 を 彼女 は {思い出し} て いる。
+        english: She is recalling her childhood memories.
+        hint: While 「思い出す」 means to simply recall, 「懐かしむ」 carries the specific emotional nuance of feeling
+          nostalgic or yearning for the past. We're looking for the specific feeling of nostalgia.
+    scene: An adult is looking through old photo albums, lost in thought.
+    register: semi-formal
+    setting: reflective
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    nuance: The sentence reflects a semi-formal register, suitable for a woman sharing fond memories.
+      「懐かし ん で いる」 captures the specific emotional state of nostalgia, indicating that the memories are
+      the direct object of her longing. The use of 「を」 highlights the memories as the cause of her nostalgic
+      feelings. The casual 「懐かし ん でる わ」 adds a distinctly feminine and reflective tone, common when expressing
+      personal feelings.
+  - english: He regrets his past mistakes.
+    japanese:
+      - 彼 は 過去 の 過ち を {後悔} し て いる。
+      - 過去 の 過ち を 彼 は {後悔} し て いる。
+      - 彼 は 過去 の 過ち を {後悔} し てる よ。
+      - 過去 の 過ち を {後悔} し て いる の か な。
+    english_literally: As for him, past mistakes he is regretting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 過去 の 過ち {に} 後悔 し て いる。
+          - 過去 の 過ち {に} 彼 は 後悔 し て いる。
+        english: He is regretting because of his past mistakes.
+        hint: 「を 後悔 する」 directly states what is being regretted, while 「に 後悔 する」 can imply regretting
+          *due to* or *towards* something. We want to show the mistakes are the direct object of his regret.
+    scene: A man is speaking to a mentor, discussing a significant error he made and how he feels about
+      it.
+    register: formal
+    setting: apologetic
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The formal 「後悔 し て いる」 conveys a deep sense of remorse and regret, indicating an ongoing state
+      of self-reproach. The continuous form emphasizes the duration of this feeling. The particle 「を」
+      clearly specifies his past mistakes as the object of his regret. The phrase 「後悔 し て いる の か な」 adds
+      a touch of self-reflection and uncertainty, common when one is deeply pondering a situation.
+  - english: People are hoping for a peaceful future.
+    japanese:
+      - 人々 は 平和 な 未来 を {希望} し て いる。
+      - 平和 な 未来 を 人々 は {希望} し て いる。
+      - 人々 は 平和 な 未来 を {希望} し 続け て いる。
+      - 平和 な 未来 を {希望} し てる よ。
+    english_literally: As for people, peaceful future they are hoping.
+    competing_grammar:
+      - competing_japanese:
+          - 人々 は 平和 な 未来 を {望ん} で いる。
+          - 平和 な 未来 を 人々 は {望ん} で いる。
+        english: People are wishing for a peaceful future.
+        hint: While both 「希望 する」 and 「望む」 express hoping/wishing, 「希望 する」 often implies a stronger, more
+          active, and often collective aspiration. We're looking for a strong sense of hope.
+    scene: A news reporter is describing the general sentiment of a nation during a time of conflict.
+    register: formal
+    setting: optimistic
+    conjugation: progressive (～ている)
+    nuance: The use of 「希望 し て いる」 in a formal context expresses a strong and collective desire for peace,
+      reflecting a continuous state of hopeful anticipation for the future. The use of 「を」 emphasizes
+      the peaceful future as the direct object of their hope. The phrase 「希望 し 続け て いる」 adds emphasis
+      on the continuous, unwavering nature of this hope.
+  - english: She is happy about his success.
+    japanese:
+      - 彼女 は 彼 の 成功 を {喜ん} で いる。
+      - 彼 の 成功 を 彼女 は {喜ん} で いる。
+      - 彼女 は 彼 の 成功 を 心 から {喜ん} で いる。
+      - 彼 の 成功 を {喜ん} でる わ。
+    english_literally: As for her, his success she is rejoicing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼 の 成功 {に} 喜ん で いる。
+          - 彼 の 成功 {に} 彼女 は 喜ん で いる。
+        english: She is happy because of his success.
+        hint: 「を 喜ぶ」 indicates the direct object that *causes* the joy, whereas 「に 喜ぶ」 indicates the *reason*
+          or *circumstance* for the joy. We're looking for the specific thing that caused her joy.
+    scene: A supportive friend is talking to another friend about their mutual acquaintance's recent achievement.
+    register: semi-formal
+    setting: supportive
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「喜ん で いる」 is semi-formal, suitable for a female speaker expressing happiness in a supportive
+      way. The continuous form suggests an ongoing feeling of joy for the male listener's success. The
+      particle 「を」 in 「彼 の 成功 を 喜ん で いる」 specifies his success as the object of her happiness. The casual
+      「喜ん でる わ」 adds a warm, feminine touch, implying a genuine and personal connection to the joy.
+  - english: He is jealous of her talent.
+    japanese:
+      - 彼 は 彼女 の 才能 を {妬ん} で いる。
+      - 彼女 の 才能 を 彼 は {妬ん} で いる。
+      - 彼 は 彼女 の 才能 を 密か に {妬ん} で いる。
+      - 彼女 の 才能 を {妬ん} でる の か な。
+    english_literally: As for him, her talent he is envying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 彼女 の 才能 {に} 嫉妬 し て いる。
+          - 彼女 の 才能 {に} 彼 は 嫉妬 し て いる。
+        english: He is feeling jealousy towards her talent.
+        hint: 「妬む」 is a native Japanese verb that typically takes を for the object of envy. 「嫉妬 する」 (a
+          noun + する verb) often takes に for the target of jealousy. We're focusing on the verb 「妬む」 which
+          directly takes the object of envy.
+    scene: Two colleagues are having a candid conversation about a third colleague's exceptional abilities.
+    register: semi-formal
+    setting: serious
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「妬ん で いる」 conveys envy in a semi-formal setting for a male speaker, suggesting an ongoing
+      internal struggle. The use of 「を」 highlights the talent as the direct object of his envy. The phrase
+      「密か に 妬ん で いる」 emphasizes the hidden nature of his jealousy, while 「妬ん でる の か な」 adds a reflective,
+      almost questioning tone to his inner feeling towards the female's talent.
+  - english: I am delighted with the growth of my children.
+    japanese:
+      - 私 は 子供 たち の 成長 を {嬉しく 思っ} て いる。
+      - 子供 たち の 成長 を 私 は {嬉しく 思っ} て いる。
+      - 子供 たち の 成長 を 心 から {嬉しく 思っ} て いる。
+      - 子供 たち の 成長 を {嬉しく 思っ} てる よ。
+    english_literally: As for me, children's growth I am happily thinking.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち の 成長 {が} 嬉しい。
+          - 子供 たち の 成長 {が} 嬉しい です。
+        english: The growth of my children makes me happy.
+        hint: 「が 嬉しい」 describes a state where something *is* pleasing. 「を 嬉しく 思う」 means to actively *feel*
+          or *consider* something with happiness, emphasizing the internal processing of the emotion.
+          We are looking for the active feeling.
+    scene: A parent is sharing their feelings about their children's development with a close family member.
+    register: formal
+    setting: intimate
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    nuance: The phrase 「嬉しく 思っ て いる」 conveys a deep, heartfelt joy in a formal manner for a male speaker,
+      suggesting a thoughtful processing of the emotion. The continuous form indicates a lasting feeling.
+      The presence of 「思っ て いる」 further emphasizes the speaker's internal emotional processing regarding
+      their children's growth. The 「を」 marks their children's growth as the direct object of his happiness.
+      The phrase 「心 から 嬉しく 思っ て いる」 adds sincerity and depth to the expressed joy.
+  - english: They fear losing their traditions.
+    japanese:
+      - 彼 ら は 自分 たち の 伝統 を {恐れ} て いる。
+      - 自分 たち の 伝統 を 彼 ら は {恐れ} て いる。
+      - 彼 ら は 自分 たち の 伝統 を ずっと {恐れ} て いる。
+      - 自分 たち の 伝統 を {恐れ} てる ね。
+    english_literally: As for them, their own traditions they are fearing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 自分 たち の 伝統 {に} 不安 を 感じ て いる。
+          - 自分 たち の 伝統 {に} 彼 ら は 不安 を 感じ て いる。
+        english: They are feeling uneasy about their traditions.
+        hint: While 「不安 を 感じる」 indicates a feeling of uneasiness or anxiety, 「恐れる」 specifically means
+          to fear something deeply. We are looking for the active act of fearing something specific.
+    scene: An elder in a community is addressing younger members about the challenges of preserving cultural
+      heritage in the face of rapid change.
+    register: formal
+    setting: cautious
+    conjugation: progressive (～ている)
+    nuance: The formal expression 「恐れ て いる」 indicates a deep-seated fear concerning the preservation of
+      their traditions. The continuous form emphasizes that this fear is an ongoing concern. The particle
+      「を」 clearly identifies 'their traditions' as the direct object of their apprehension, highlighting
+      what specifically causes their fear. The addition of 「ずっと」 in one variant emphasizes the continuous
+      nature of this fear over time, while 「恐れ てる ね」, though more casual, seeks confirmation of this shared
+      sentiment.
+post_example_writeup: This grammatical structure helps to convey the specific reason or focus of an emotion,
+  adding clarity and depth to the expression of feelings. It's particularly useful when you want to pinpoint
+  exactly *what* is causing or receiving the emotion, rather than just stating that an emotion exists.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を-(object-of-an-emotion)

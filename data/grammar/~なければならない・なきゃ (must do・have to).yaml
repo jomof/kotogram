@@ -1,0 +1,243 @@
+grammar_point: ~なければならない・なきゃ (must do・have to)
+learn_before:
+  - Verb[なければ・なきゃ] (conditional negative)
+  - ないといけない (must do・have to)
+meaning: must do; have to do; need to do
+meaning_warning: This grammar point expresses obligation or necessity. It is distinct from prohibiting
+  an action.
+pronunciation:
+  katakana: ナケレバナラナイ・ナキャ
+  romaji: nakereba naranai・nakya
+formation:
+  Verb[ない-form] + なければならない: Expresses a strong obligation or necessity to perform an action. This is the
+    most formal and complete form.
+  Verb[ない-form] + なければなりません: Polite form of expressing obligation, used in polite speech (teineigo).
+  Verb[ない-form] + なきゃならない: A common colloquial contraction of なければならない, slightly less formal but still
+    conveying obligation.
+  Verb[ない-form] + なきゃ: A very casual and often used contraction, typically used in familiar conversation.
+jlpt: N4
+etymology: The structure is derived from the negative conditional form of a verb (`〜なければ`, meaning 'if
+  one does not do') followed by `ならない` ('it will not become' or 'it is impermissible/improper'). Thus,
+  'if one does not do X, it will not do' implies 'one must do X'. The original meaning of `なる` (to become)
+  evolves into a sense of 'being allowed' or 'being proper', so `ならない` signifies 'not being allowed' or
+  'not being proper'.
+writeup: |-
+  The grammatical construction `〜なければならない` is used to express obligation, necessity, or compulsion, conveying the meaning of "must do" or "have to do." It indicates that a particular action is essential and that not performing it would lead to an undesirable outcome or is simply not permissible.
+
+  This structure attaches to the `ない` (negative) form of a verb. For example, `書く` (to write) becomes `書かない` (not write), then `書かなければならない` (must write). The `ならない` part literally means "it will not become" or "it is not good/permissible," so the entire phrase translates to "if one does not write, it will not become (good/permissible)," which is concisely understood as "one must write."
+
+  Several variations exist, reflecting different levels of formality and colloquial usage:
+  *   **〜なければなりません**: This is the polite form, suitable for formal conversations or when speaking to someone of higher status.
+  *   **〜なきゃならない**: A common colloquial contraction, often heard in everyday speech. While less formal than `〜なければならない`, it still clearly expresses obligation.
+  *   **〜なきゃ**: This is the most casual and frequently used contraction, primarily found in intimate or casual conversations. It retains the strong sense of obligation but in a relaxed manner.
+
+  Understanding `〜なければならない` is crucial for expressing duties, rules, and unavoidable actions in Japanese. It's a fundamental expression of necessity that will frequently appear in various contexts.
+false_friends:
+  - term: ~てはいけない・〜てはならない (must not)
+    meaning: must not do; should not do; is forbidden to do
+    kind: antonym
+    nuance: While `〜なければならない` expresses a positive obligation (what one *must* do), `〜てはいけない` expresses
+      a prohibition (what one *must not* do). They are direct opposites in terms of permissible action.
+    grammar_point: <suggest>:~てはいけない・〜てはならない (must not)
+  - term: '[Verb-dictionary]べき・べきではない (should・should not)'
+    meaning: should do; ought to do
+    kind: similar expression
+    nuance: '`〜べき` suggests a moral, social, or logical obligation or strong recommendation, implying
+      what is proper or expected. `〜なければならない`, however, conveys a more direct and often unavoidable necessity
+      or compulsion, with clearer negative implications if the action is not taken.'
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: 必要がある (it is necessary to)
+    meaning: there is a need to; it is necessary to
+    kind: similar expression
+    nuance: '`必要がある` is a more objective and often milder statement of necessity, explaining that something
+      is required. `〜なければならない` carries a stronger sense of personal or external compulsion, often implying
+      a command or an urgent requirement.'
+    grammar_point: 必要がある (it is necessary to)
+  - term: ~なくてはいけない・なくちゃ (must do・have to)
+    meaning: must do; have to do
+    kind: synonym
+    nuance: '`〜なければならない` and `〜なくてはいけない` are largely interchangeable in meaning and both express obligation.
+      `〜なくてはいけない` can feel slightly less formal in some contexts, but both have equally casual contracted
+      forms (`なきゃ` and `なくちゃ`).'
+    grammar_point: ~なくてはいけない・なくちゃ (must do・have to)
+post_false_friends_writeup: When choosing between these expressions, consider the degree of compulsion
+  and the nature of the obligation. Use `〜なければならない` for strong, unavoidable necessities. Opt for `〜べき`
+  when discussing what is morally or logically correct or recommended. `必要がある` is best for objective statements
+  of need. Remember that `〜てはいけない` is about prohibition, the opposite of `〜なければならない`.
+examples:
+  - english: I have to go to work tomorrow.
+    japanese:
+      - 明日、仕事 に {行か なけれ ば なり ませ ん}。
+      - 明日、仕事 に {行か なけれ ば なら ない}。
+      - 明日、仕事 に {行か なきゃ なり ませ ん}。
+      - 明日、仕事 に {行か なきゃ なら ない}。
+      - 明日、仕事 に {行か なきゃ}。
+    english_literally: Tomorrow, to work, I must go.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、仕事 に {行っ て は いけ ませ ん}。
+        english: Tomorrow, I must not go to work.
+        hint: This means 'must not go'. We're looking for an expression that means 'must go'.
+      - competing_japanese:
+          - 明日、仕事 に {行く べき です}。
+        english: Tomorrow, I should go to work.
+        hint: This implies 'should go' due to a recommendation or general understanding, not a strict
+          'have to'. We're looking for a direct obligation.
+      - competing_japanese:
+          - 明日、仕事 に {行く 必要 が あり ます}。
+        english: Tomorrow, there is a necessity to go to work.
+        hint: This indicates a necessity, but it's a more objective statement of need rather than a direct
+          personal obligation. We're looking for 'have to'.
+    scene: A person is talking about their schedule for the next day.
+    register: formal
+    setting: informative
+  - english: Students must follow the school rules.
+    japanese:
+      - 生徒 は 校則 に {従わ なけれ ば なら ない}。
+      - 生徒 は 校則 に {従わ なけれ ば なり ませ ん}。
+    english_literally: Students, school rules, must follow.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 は 校則 に {従っ て は いけ ない}。
+        english: Students must not follow school rules.
+        hint: This means 'must not follow'. We're looking for an expression that means 'must follow'.
+      - competing_japanese:
+          - 生徒 は 校則 に {従う べき です}。
+        english: Students should follow school rules.
+        hint: This implies 'should follow' due to a recommendation, not a strict rule or compulsion. We're
+          looking for a clear 'must'.
+    scene: A teacher is explaining school regulations to new students.
+    register: semi-formal
+    setting: instructional
+  - english: I really have to finish this report by Friday.
+    japanese:
+      - 金曜 日 まで に この レポート を {終わら せ なきゃ なら ない} なあ。
+      - 金曜 日 まで に この レポート を {終わら せ なけれ ば なら ない} なあ。
+      - 金曜 日 まで に この レポート を {終わら せ なきゃ} なあ。
+    english_literally: By Friday, this report, must finish, I suppose.
+    competing_grammar:
+      - competing_japanese:
+          - 金曜 日 まで に この レポート を {終わら せ て は いけ ない} なあ。
+        english: I really must not finish this report by Friday.
+        hint: This means 'must not finish'. We're looking for 'must finish'.
+    scene: A busy office worker is stressed about a deadline.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The informal `なきゃならない` along with the sentence-final particle `なあ` indicates the speaker's
+      personal feeling of strong obligation and perhaps a slight burden. This is a common male speech
+      pattern, adding a reflective or slightly stressed tone to the obligation.
+  - english: I have to buy groceries on the way home.
+    japanese:
+      - 帰り道 に スーパー で 買い物 {し なきゃ}。
+      - 帰り道 に スーパー で 買い物 {し なけれ ば なら ない}。
+      - 帰り道 に スーパー で 買い物 {し なきゃ なら ない}。
+    english_literally: On the way home, at the supermarket, must do shopping.
+    competing_grammar:
+      - competing_japanese:
+          - 帰り道 に スーパー で 買い物 {し て も いい}。
+        english: It's okay to do shopping on the way home.
+        hint: This indicates permission. We're looking for an expression of necessity.
+    scene: A person remembers a chore they need to do.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The use of `しなきゃ` as a standalone utterance, often without `ならない`, is very common in casual
+      speech for both genders. For female speakers, it can sound particularly natural and reflects an
+      internal realization of a necessary task without sounding overly aggressive or demanding. Here,
+      it’s a personal reminder, hence the shorter form.
+  - english: You really must try this delicious cake!
+    japanese:
+      - この 美味しい ケーキ、絶対 に {食べ なきゃ ダメ だ よ}！
+      - この 美味しい ケーキ、絶対 に {食べ なけれ ば ダメ だ よ}！
+      - この 美味しい ケーキ、絶対 に {食べ なきゃ なら ない} {ダメ だ よ}！
+    english_literally: This delicious cake, absolutely, must eat, it's no good if you don't!
+    competing_grammar:
+      - competing_japanese:
+          - この 美味しい ケーキ、絶対 に {食べ て も いい よ}！
+        english: It's absolutely okay to eat this delicious cake!
+        hint: This is permission. We're looking for a strong recommendation implying 'you absolutely have
+          to try it' for their benefit.
+    scene: A friend is enthusiastically recommending a dessert.
+    register: casual
+    setting: friendly
+    nuance: Adding `ダメだよ` (it's no good if you don't) after `なきゃ` intensifies the recommendation, making
+      it sound like a playful but firm insistence, implying that one would be missing out significantly
+      if they didn't try it. This is a common way to express strong recommendations in casual settings.
+  - english: We must learn from the lessons of history.
+    japanese:
+      - 歴史 の 教訓 から {学ば なけれ ば なら ない}。
+      - 歴史 の 教訓 から {学ば なけれ ば なり ませ ん}。
+      - 歴史 の 教訓 から {学ば なきゃ なら ない}。
+    english_literally: History's lessons, from, must learn.
+    competing_grammar:
+      - competing_japanese:
+          - 歴史 の 教訓 は {忘れ て は なら ない}。
+        english: We must not forget the lessons of history.
+        hint: This example expresses the opposite meaning ('must not forget'). We're looking for a phrase
+          meaning 'must learn'.
+    scene: A historian gives a lecture on historical significance.
+    register: formal
+    setting: academic
+  - english: To become a doctor, you have to study very hard.
+    japanese:
+      - 医者 に なる ため に は、とても 熱心 に {勉強 し なけれ ば なり ませ ん}。
+      - 医者 に なる ため に は、とても 熱心 に {勉強 なきゃ なり ませ ん}。
+    english_literally: To become a doctor, very diligently, must study.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 に なる ため に は、とても 熱心 に {勉強 し て も いい です}。
+        english: To become a doctor, it's okay to study very diligently.
+        hint: This implies permission, not a requirement. We're looking for a necessary condition.
+    scene: A high school student is asking a university student about career paths.
+    register: teineigo (polite)
+    setting: informative
+  - english: You have to fill out this form by the end of the day.
+    japanese:
+      - 今日 中 に この 用紙 を {記入 し なけれ ば なり ませ ん}。
+      - 今日 中 に この 用紙 を {記入 し なけれ ば なら ない}。
+    english_literally: By today, this form, must fill out.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 中 に この 用紙 を {記入 する 必要 は あり ませ ん}。
+        english: There is no need to fill out this form by the end of the day.
+        hint: This is a statement of no necessity. We're looking for an expression of strong necessity.
+    scene: An office manager instructs an employee about paperwork.
+    register: formal
+    setting: professional
+  - english: I absolutely have to go to the bathroom!
+    japanese:
+      - トイレ に {行か なきゃ}！
+      - トイレ に {行か なきゃ なら ない}！
+      - トイレ に {行か なけれ ば なら ない}！
+    english_literally: To the toilet, must go!
+    competing_grammar:
+      - competing_japanese:
+          - トイレ に {行っ て も いい よ}！
+        english: It's okay to go to the bathroom!
+        hint: This is permission. We're looking for an urgent necessity.
+    scene: A person suddenly realizes they need to use the restroom.
+    register: casual
+    setting: emergency/alarm
+  - english: We have to prepare for the test.
+    japanese:
+      - 試験 の ため に {準備 し なけれ ば なら ない}。
+      - 試験 の ため に {準備 し なけれ ば なり ませ ん}。
+      - 試験 の ため に {準備 なきゃ なら ない}。
+      - 試験 の ため に {準備 なきゃ}。
+    english_literally: For the test, must prepare.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の ため に {準備 す べき だ}。
+        english: We should prepare for the test.
+        hint: This suggests 'should' based on expectation, not a strict 'have to'. We're looking for a
+          strong obligation.
+    scene: Friends discussing their upcoming exams.
+    register: casual
+    setting: academic
+post_example_writeup: As seen in the examples, the specific form chosen for `〜なければならない` can significantly
+  impact the nuance of formality and urgency. From the formal `〜なければなりません` for official announcements
+  or polite requests, to the highly casual `〜なきゃ` for personal obligations or strong, friendly suggestions,
+  selecting the appropriate form is key to natural communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/125

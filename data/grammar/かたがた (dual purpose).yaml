@@ -1,0 +1,492 @@
+grammar_point: かたがた (dual purpose)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-stem]に行く (to go in order to do)'
+  - あそこ (over there)
+  - お~だ (honorific copula)
+  - ご (honorific prefix for Sino-Japanese words)
+  - だいたい (approximation)
+  - どこ (where)
+  - に (target・destination)
+  - にする (to decide or make)
+  - を込めて (with emotion)
+  - 様子 (state・situation・appearance)
+meaning: While doing X, also for the purpose of Y; To combine two purposes in one action
+pronunciation:
+  katakana: カタガタ
+  romaji: katagata
+formation:
+  Noun or Verbal Noun (without する) + かたがた: Indicates performing an action for a primary purpose while
+    simultaneously accomplishing a secondary, intended purpose.
+jlpt: N1
+etymology: The conjunction 「かたがた」 is derived from the word 「傍ら (かたわら)」, meaning "beside" or "while doing."
+  The kanji 「傍」 itself signifies 'side' or 'beside.' This etymology reflects the core meaning of doing
+  something 'alongside' or 'in addition to' another purpose. Over time, its usage evolved to formally
+  express the accomplishment of two purposes simultaneously within a single action, where the second purpose
+  is achieved incidentally or as a recognized, intended byproduct of the first.
+writeup: '「かたがた」 is a formal conjunction primarily used in written Japanese or very polite spoken contexts.
+  It is generally written in hiragana. It is used to express that an action is carried out with two purposes
+  simultaneously: a stated primary purpose and a secondary, equally important or slightly less emphasized
+  purpose that is also intended and achieved. The nuance is that the secondary purpose is not just a casual
+  byproduct but a recognized, integral part of the action. This expression can be translated as "partly
+  for the purpose of (A), and also (B)," "along with (A), (B)," or "incidentally to (A), (B)." While the
+  English translations might suggest one purpose is merely incidental, in Japanese, 「かたがた」 implies that
+  both purposes are significant and intended. 「かたがた」 attaches to nouns, especially verbal nouns (nouns
+  that can take する to form a verb, like 挨拶 (あいさつ) or 報告 (ほうこく)). When attaching to a verbal noun, the
+  する is omitted. This grammar point is highly formal and is commonly encountered in business communications,
+  formal letters, or situations requiring a respectful tone, such as expressing apologies or gratitude.
+  Using 「かたがた」 in casual conversation or when the dual purposes are not genuinely significant can sound
+  unnatural or overly stiff. Therefore, it is important to reserve its use for appropriate formal contexts
+  where such nuance is valued.'
+false_friends:
+  - term: ついでに
+    meaning: While doing X, also do Y (casually/opportunistically)
+    kind: often confused with
+    nuance: Unlike 「かたがた」, 「～ついでに」 implies that the secondary action is performed casually or opportunistically,
+      often of lesser importance than the primary action, or simply done 'on the way'. It lacks the formal,
+      intentional dual purpose of 「かたがた」.
+    grammar_point: ついでに (taking the opportunity)
+  - term: がてら
+    meaning: While doing X, also do Y (at the same time/as a sideline)
+    kind: often confused with
+    nuance: While 「～がてら」 also expresses doing two things at once, it is less formal than 「かたがた」 and often
+      implies a more general accompaniment or a secondary action performed 'as a side activity'. It doesn't
+      carry the strong sense of a formal, intentional dual purpose that 「かたがた」 does.
+    grammar_point: がてら (on the occasion of)
+post_false_friends_writeup: The grammar point 「かたがた」 expresses a formal, simultaneous purpose for an action,
+  emphasizing that both objectives are intended. It is often confused with expressions that convey secondary
+  actions or less formal concurrent activities, such as 「～ついでに」 and 「～がてら」. While 「～ついでに」 suggests doing
+  something casually on the way or taking advantage of an opportunity for a secondary, less important
+  action, 「～がてら」 indicates doing two things at the same time, often as a less formal and more general
+  accompaniment. Both of these are more casual than 「かたがた」, which specifically emphasizes a formal, dual
+  purpose, often involving a visit or formal communication, where the secondary purpose is not merely
+  an afterthought but a recognized part of the overall intention.
+examples:
+  - english: I will go see my partner’s parents, partly to let them know about our engagement.
+    japanese:
+      - 婚約 の 報告 {かたがた}、お 父 様 と お 母 様 に 会い に 行き ます。
+      - 婚約 の 報告 {かたがた}、両親 に 会い に 行き ます。
+      - 婚約 の 報告 {かたがた}、義 両親 を 訪ね ます。
+    english_literally: Engagement report {along with}, I will go to meet their father and mother.
+    competing_grammar:
+      - competing_japanese:
+          - 婚約 の 報告 の ため に、お 父 様 と お 母 様 に 会い に 行き ます。{かたがた}
+        english: I will go to meet their father and mother for the purpose of the engagement report.
+        hint: This phrase uses 「ために」 to express a single purpose. We're looking for an expression that
+          suggests two intended purposes for one action.
+      - competing_japanese:
+          - 婚約 の 報告 の ついで に、お 父 様 と お 母 様 に 会い に 行き ます。{かたがた}
+        english: Incidentally to the engagement report, I will go to meet their father and mother.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual, not an intended dual purpose.
+          We're looking for an expression that conveys a formal, planned dual purpose.
+      - competing_japanese:
+          - 婚約 の 報告 がてら、お 父 様 と お 母 様 に 会い に 行き ます。{かたがた}
+        english: While reporting the engagement, I will also go to meet their father and mother.
+        hint: 「がてら」 suggests doing two things at once, but often implies a more general accompaniment
+          and is less formal than 「かたがた」. We're looking for a formal expression for intended dual purposes.
+    scene: A young woman is preparing to visit her future in-laws, with the primary goal of announcing
+      her engagement, but also intending to build a closer relationship with them.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「お父様 (おとうさま)」 and 「お母様 (おかあさま)」 is highly respectful, indicating the speaker's
+      deference and desire to integrate into her partner's family. This formality aligns perfectly with
+      the nuance of 「かたがた」, which is often used in situations involving important social rites or familial
+      obligations. The entire phrase signifies respect and a multi-layered purpose.
+  - english: I visited my partner’s parents, partly to let them know about the pregnancy.
+    japanese:
+      - 妊娠 の 報告 {かたがた}、相手 の 両親 の 家 を 訪ね た。
+      - 妊娠 の 報告 {かたがた}、相手 の 両親 の 家 を 訪ね まし た。
+      - 妊娠 の 報告 {かたがた}、義 両親 宅 へ 伺い まし た。
+    english_literally: Pregnancy report {along with}, I visited their partner's parents' house.
+    competing_grammar:
+      - competing_japanese:
+          - 妊娠 の 報告 を する ため に、相手 の 両親 の 家 を 訪ね た。{かたがた}
+        english: I visited their partner's parents' house for the purpose of reporting the pregnancy.
+        hint: This phrase uses 「ために」 to express a single purpose. We're looking for an expression that
+          suggests two intended purposes for one action.
+      - competing_japanese:
+          - 妊娠 の 報告 の ついで に、相手 の 両親 の 家 を 訪ね た。{かたがた}
+        english: Incidentally to the pregnancy report, I visited their partner's parents' house.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual, not an intended dual purpose.
+          We're looking for an expression that conveys a formal, planned dual purpose.
+      - competing_japanese:
+          - 妊娠 の 報告 がてら、相手 の 両親 の 家 を 訪ね た。{かたがた}
+        english: While reporting the pregnancy, I also visited their partner's parents' house.
+        hint: 「がてら」 suggests doing two things at once, but often implies a more general accompaniment
+          and is less formal than 「かたがた」. We're looking for a formal expression for intended dual purposes.
+    scene: A person is explaining to a trusted friend how they broke the news of their pregnancy to their
+      partner's parents, implying the visit served both to inform and to seek their acceptance/blessing.
+    register: semi-formal
+    setting: storytelling
+    nuance: 「妊娠 (にんしん)」 is a deeply personal and significant life event. Using 「かたがた」 here emphasizes
+      the formality and seriousness of the visit, beyond just delivering information. It suggests the
+      visit was also for receiving blessings or discussing future plans, making it appropriate for a semi-formal
+      setting when speaking to an acquaintance, rather than a very close friend. The mention of 「相手の 両親
+      (あいてのりょうしん)」 refers to the partner's parents, which is a common and neutral way to phrase it.
+  - english: I would like to visit the president, partly to express my gratitude.
+    japanese:
+      - お 礼 {かたがた}、社長 に お 伺い を し たい と 思っ て い ます。
+      - お 礼 {かたがた}、社長 に お 目 に かかり たい と 存じ ます。
+      - 感謝 の ご 挨拶 {かたがた}、社長 を 訪問 し たい と 思っ て おり ます。
+    english_literally: Gratitude {along with}, I am thinking of visiting the president.
+    competing_grammar:
+      - competing_japanese:
+          - お 礼 の ため に、社長 に お 伺い を し たい と 思っ て い ます。{かたがた}
+        english: I am thinking of visiting the president for the purpose of expressing gratitude.
+        hint: This phrasing is too direct and lacks the subtle implication of multiple purposes. We're
+          looking for a nuanced expression that suggests a visit might serve both explicit gratitude and
+          implicit relationship-building.
+      - competing_japanese:
+          - お 礼 の ついで に、社長 に 伺い たい と 思っ て い ます。{かたがた}
+        english: Incidentally to my gratitude, I am thinking of visiting the president.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual. This context requires a
+          more formal expression for intended dual purposes.
+      - competing_japanese:
+          - お 礼 がてら、社長 に 伺い たい と 思っ て い ます。{かたがた}
+        english: While expressing gratitude, I am thinking of visiting the president.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: An employee is discussing with a colleague their intention to meet with the company president,
+      where expressing thanks is one reason, but there might be other professional matters to discuss
+      or simply to show respect.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: male
+    nuance: The combination of 「お礼 (おれい)」 (gratitude) and the humble expression 「お伺いをしたい (おうかがいをしたい)」
+      (I would like to ask/visit) demonstrate high politeness and respect towards the 「社長 (しゃちょう)」 (president).
+      The formal tone of 「かたがた」 is highly appropriate when addressing a male superior, conveying not just
+      the act of thanking but also the intention to maintain a respectful professional relationship.
+  - english: I visited my wife's sibling's house, partly for the purpose of announcing our marriage.
+    japanese:
+      - 結婚 の 報告 {かたがた}、妻 の 兄弟 の 家 を 訪ね まし た。
+      - 結婚 の 報告 {かたがた}、妻 の 兄弟 の 家 を 訪ね た。
+      - 結婚 の 報告 {かたがた}、義 両親 を 訪ね まし た。
+    english_literally: Marriage report {along with}, I visited my wife's sibling's house.
+    competing_grammar:
+      - competing_japanese:
+          - 結婚 の 報告 を する ため に、妻 の 兄弟 の 家 を 訪ね まし た。{かたがた}
+        english: I visited my wife's sibling's house for the purpose of reporting the marriage.
+        hint: This alternative focuses solely on the announcement. We're looking for an expression that
+          illustrates that the visit also served to strengthen family ties or fulfill a social custom,
+          which 「かたがた」 conveys without explicitly stating it.
+      - competing_japanese:
+          - 結婚 の 報告 の ついで に、妻 の 兄弟 の 家 を 訪ね まし た。{かたがた}
+        english: Incidentally to the marriage report, I visited my wife's sibling's house.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual. This context requires a
+          more formal expression for intended dual purposes.
+      - competing_japanese:
+          - 結婚 の 報告 がてら、妻 の 兄弟 の 家 を 訪ね まし た。{かたがた}
+        english: While reporting the marriage, I also visited my wife's sibling's house.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: A man casually explains to a friend about a recent visit to his wife's family, implying the
+      visit was not just for the announcement but also to formally acknowledge his new marital status
+      within the family.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The phrase 「妻の兄弟 (つまの きょうだい)」 implicitly indicates a male speaker, as a husband would refer
+      to his wife's siblings this way. This usage is common in semi-formal contexts where the speaker
+      is relaying information to an acquaintance. It strikes a balance between directness and politeness,
+      suitable for sharing personal news that affects family relationships.
+  - english: I would like to pay you a visit to say hello and also to discuss other matters. How would
+      tomorrow be for you?
+    japanese:
+      - ご 挨拶 {かたがた} 訪問 を さ せ て 頂き たい の です が、明日 の ご 都合 は いかが でしょう か。
+      - ご 挨拶 {かたがた}、お 伺い し たい の です が、明日 の ご 都合 は いかが でしょう か。
+    english_literally: Greetings {along with}, I would like to be allowed to visit, but how is your convenience
+      tomorrow?
+    competing_grammar:
+      - competing_japanese:
+          - ご 挨拶 と 訪問 を さ せ て 頂き たい の です が、明日 の ご 都合 は いかが でしょう か。{かたがた}
+        english: I would like to say hello and visit, but how is your convenience tomorrow?
+        hint: This alternative uses a simple 'and', separating the actions and losing the nuanced integration
+          of purposes that 「かたがた」 conveys. We're looking for a phrase that implies the visit serves both
+          explicitly and implicitly.
+      - competing_japanese:
+          - ご 挨拶 の ついで に、訪問 を さ せ て 頂き たい の です が、明日 の ご 都合 は いかが でしょう か。{かたがた}
+        english: Incidentally to saying hello, I would like to be allowed to visit, but how is your convenience
+          tomorrow?
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual. This context requires a
+          more formal expression for intended dual purposes.
+      - competing_japanese:
+          - ご 挨拶 がてら、訪問 を さ せ て 頂き たい の です が、明日 の ご 都合 は いかが でしょう か。{かたがた}
+        english: While saying hello, I am thinking of visiting the president.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: An employee is drafting an email to their manager to request a meeting. The primary stated
+      purpose is a polite greeting, but there are underlying professional reasons for the visit.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: The combination of 「ご挨拶 (ごあいさつ)」 (polite greeting) and the humble expression 「訪問をさせて頂きたい (ほうもんをさせていただきたい)」
+      demonstrates deference to a superior. This phrasing, paired with 「かたがた」, is ideal in business communication
+      for politely requesting a meeting while implying multiple objectives, making it subtly persuasive
+      and respectful.
+  - english: I gave my teacher a graduation greeting, and also reported on my recent work.
+    japanese:
+      - 先生 に、卒業 の 挨拶 {かたがた}、最近 の 仕事 の 報告 を し まし た。
+      - 先生 へ 卒業 の 挨拶 {かたがた}、近況 報告 を し まし た。
+      - 先生 に 卒業 の 挨拶 {かたがた}、最近 の 仕事 の 報告 を し た。
+    english_literally: To my teacher, graduation greeting {along with}, I reported on my recent work.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に、卒業 の 挨拶 を し て、最近 の 仕事 の 報告 を し まし た。{かたがた}
+        english: I greeted my teacher for graduation, and reported on my recent work.
+        hint: Using 「〜て」 implies sequential actions rather than a single action fulfilling dual purposes.
+          We're looking for a phrase that implies both elements are part of one integrated, purposeful
+          interaction.
+      - competing_japanese:
+          - 先生 に、卒業 の 挨拶 の ついで に、最近 の 仕事 の 報告 を し まし た。{かたがた}
+        english: Incidentally to the graduation greeting, I reported on my recent work to my teacher.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual. This context requires a
+          more formal expression for intended dual purposes, where both are significant.
+      - competing_japanese:
+          - 先生 に、卒業 の 挨拶 がてら、最近 の 仕事 の 報告 を し まし た。{かたがた}
+        english: While greeting my teacher for graduation, I also reported on my recent work.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes, where both are significant.
+    scene: A former student is recounting to a friend how they visited their university professor after
+      graduation, where the main purpose was to formally greet them, but they also took the opportunity
+      to update them on their career progress.
+    register: formal
+    setting: informative
+    nuance: 「卒業の挨拶 (そつぎょうの あいさつ)」 signifies a formal act of respect. The use of 「かたがた」 here further enhances
+      this formality, implying that the visit wasn't just a brief greeting but also a meaningful occasion
+      to share personal developments. The polite 「〜しました」 ending reinforces the respectful tone.
+  - english: I told my teacher how thankful I am, and incidentally, talked about my recent life.
+    japanese:
+      - 先生 に、感謝 の お 気持ち を 込め た ご 挨拶 {かたがた}、最近 の 生活 に つい て も お 話し し まし た。
+      - 先生 に、感謝 の 意 を 伝える ご 用 {かたがた}、近況 に つい て も お 話し いたし まし た。
+      - 先生 に 感謝 の 気持ち を 示す ご 挨拶 {かたがた}、最近 の 生活 に つい て も 話し た。
+    english_literally: To my teacher, greetings with feelings of gratitude {along with}, I also talked
+      about my recent life.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に、感謝 の 気持ち を 伝える ついで に、最近 の 生活 に つい て も お 話し まし た。{かたがた}
+        english: Incidentally to conveying my gratitude, I also talked about my recent life to my teacher.
+        hint: 「〜ついでに」 suggests the second action is merely incidental or secondary, almost an afterthought.
+          This context describes a more balanced conversation where both expressing thanks and sharing
+          updates are significant aspects, making 「かたがた」 more appropriate as it implies both are intended.
+      - competing_japanese:
+          - 先生 に、感謝 の 気持ち を 伝え がてら、最近 の 生活 に つい て も お 話し まし た。{かたがた}
+        english: While conveying my gratitude, I also talked about my recent life to my teacher.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes, especially when conveying emotions like gratitude.
+    scene: A student reflects on a conversation with their teacher. Their primary intention was to express
+      gratitude, but the conversation naturally expanded to include updates on their personal life.
+    register: formal
+    setting: reflective
+    nuance: 「感謝の気持ち (かんしゃの きもち)」 expresses a deep sense of gratitude. The use of 「かたがた」 emphasizes that
+      sharing one's recent life was not just a casual add-on, but an intended part of the interaction,
+      perhaps to show the teacher the positive impact of their guidance. The polite 「〜しました」 ending further
+      enhances the polite tone.
+  - english: I visited your company to express my daily gratitude, and also to discuss our future cooperation.
+    japanese:
+      - 日頃 の 感謝 {かたがた}、今後 の 協力 に つい て お 話し する ため、貴社 を 訪問 いたし まし た。
+      - 日頃 の 感謝 を 申し上げる {かたがた}、今後 の 協力 体制 に つい て 協議 する ため、貴社 を 訪問 いたし まし た。
+    english_literally: Daily gratitude {along with}, for discussing future cooperation, I visited your
+      company.
+    competing_grammar:
+      - competing_japanese:
+          - 日頃 の 感謝 を お 伝え し、今後 の 協力 に つい て お 話し する ため に、貴社 を 訪問 いたし まし た。{かたがた}
+        english: I conveyed my daily gratitude and for discussing future cooperation, I visited your company.
+        hint: This alternative uses 'and' (し) to connect two distinct reasons, whereas 「かたがた」 implies
+          the visit serves as one action with both intentions seamlessly integrated. We're looking for
+          a phrase that captures the formal, business context where such concise and purposeful phrasing
+          is valued.
+      - competing_japanese:
+          - 日頃 の 感謝 の ついで に、今後 の 協力 に つい て お 話し する ため に、貴社 を 訪問 いたし まし た。{かたがた}
+        english: Incidentally to my daily gratitude, for discussing future cooperation, I visited your
+          company.
+        hint: 「ついでに」 sounds too casual for this formal business context. We're looking for a formal expression
+          for intended dual purposes.
+      - competing_japanese:
+          - 日頃 の 感謝 がてら、今後 の 協力 に つい て お 話し する ため に、貴社 を 訪問 いたし まし た。{かたがた}
+        english: While expressing my daily gratitude, for discussing future cooperation, I visited your
+          company.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: A business representative is writing a formal email to a client, explaining the purpose of
+      their upcoming visit which includes both showing appreciation and strategic discussions.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: 'This example uses highly formal and respectful business Japanese. 「日頃の感謝 (ひごろの かんしゃ)」 (daily
+      gratitude) sets a polite tone, and 「貴社 (きしゃ)」 (your company) is a respectful term for the listener''s
+      company. The use of 「かたがた」 fits perfectly in this professional context, indicating that the visit
+      is efficiently serving two important purposes: maintaining goodwill and furthering business discussions.'
+  - english: I visited your office, partly to apologize, and also to discuss the recent issue.
+    japanese:
+      - お 詫び {かたがた}、先日 の 件 に つき まし て ご 相談 に 参り まし た。
+      - お 詫び {かたがた}、先日 の 件 に つき まし て ご 協議 さ せ て いただき たく、お 伺い し まし た。
+    english_literally: Apology {along with}, regarding the other day's matter, I came to consult.
+    competing_grammar:
+      - competing_japanese:
+          - お 詫び を する ため に、先日 の 件 に つき まし て ご 相談 に 参り まし た。{かたがた}
+        english: I came to consult regarding the other day's matter in order to apologize.
+        hint: This phrase uses 「ために」 to express a single purpose. We're looking for an expression that
+          suggests two intended purposes for one action, both being significant.
+      - competing_japanese:
+          - お 詫び の ついで に、先日 の 件 に つき まし て ご 相談 に 参り まし た。{かたがた}
+        english: Incidentally to my apology, I came to consult regarding the other day's matter.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual, not an intended dual purpose.
+          We're looking for an expression that conveys a formal, planned dual purpose.
+      - competing_japanese:
+          - お 詫び がてら、先日 の 件 に つき まし て ご 相談 に 参り まし た。{かたがた}
+        english: While apologizing, I also came to consult regarding the other day's matter.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: A business person is visiting a client or partner's office to resolve a problem, using the
+      visit to both apologize formally and address the specific issue that caused the problem.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: 'The use of 「お詫び (おわび)」 (apology) combined with the formal phrasing like 「ご相談に参りました (ごそうだんにまいりました)」
+      or 「ご協議させていただきたく、お伺いしました (ごきょうぎさせていただきたく、おうかがいしました)」 (I came to consult/discuss) highlights the
+      seriousness and formality of the visit. 「かたがた」 here emphasizes that the visit has two equally important,
+      intended objectives: delivering a formal apology and engaging in a professional discussion to resolve
+      the issue. This is typical in business etiquette where resolving conflict involves both emotional
+      and practical aspects.'
+  - english: I hope this welcome party serves to deepen our fellowship with everyone.
+    japanese:
+      - 歓迎 会 {かたがた}、皆 様 と 親睦 を 深める 機会 と なれ ば 幸い です。
+      - 歓迎 会 {かたがた}、皆 様 と 親睦 を 深める 機会 に なれ ば 幸い です。
+      - 歓迎 会 {かたがた}、交流 を 深める 場 と なれ ば 幸い です。
+    english_literally: Welcome party {along with}, if it becomes an opportunity to deepen fellowship with
+      everyone, it would be fortunate.
+    competing_grammar:
+      - competing_japanese:
+          - 歓迎 会 を 開催 し、皆 様 と 親睦 を 深める 機会 と なれ ば 幸い です。{かたがた}
+        english: I hope that holding a welcome party and creating an opportunity to deepen fellowship
+          with everyone will be fortunate.
+        hint: This alternative, while grammatically correct, treats the welcome party and deepening fellowship
+          as separate, sequential events. We're looking for a phrase that emphasizes that the party itself
+          is designed to achieve both goals simultaneously.
+      - competing_japanese:
+          - 歓迎 会 の ついで に、皆 様 と 親睦 を 深める 機会 と なれ ば 幸い です。{かたがた}
+        english: I hope that incidentally to the welcome party, it becomes an opportunity to deepen fellowship
+          with everyone.
+        hint: 「ついでに」 implies the party is just a "side trip" for deepening fellowship, which weakens the
+          intended dual purpose. We're looking for a phrase that expresses a formal, combined purpose.
+      - competing_japanese:
+          - 歓迎 会 がてら、皆 様 と 親睦 を 深める 機会 と なれ ば 幸い です。{かたがた}
+        english: While having a welcome party, I hope that it becomes an opportunity to deepen fellowship
+          with everyone.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. We're looking for a phrase
+          that expresses a formal, combined purpose for the event.
+    scene: An organizer is drafting an invitation or making an announcement for a welcome party, emphasizing
+      that its purpose is not just to welcome new members, but also to build stronger relationships among
+      all attendees.
+    register: formal
+    setting: informative
+    nuance: This phrasing is common in formal invitations or announcements, especially in professional
+      or community settings. 「歓迎会 (かんげいかい)」 (welcome party) and 「親睦を深める (しんぼくを ふかめる)」 (to deepen fellowship)
+      are formal terms. 「かたがた」 here elegantly conveys that the party serves both as a welcome event and
+      as a means to foster closer relationships, highlighting its multi-faceted, intended purpose. The
+      closing 「幸いです (さいわいです)」 (it would be fortunate/I would be pleased) maintains a polite and hopeful
+      tone.
+  - english: I visited my colleague, partly to deliver the documents and also to check on his health.
+    japanese:
+      - 書類 の お 届け {かたがた}、同僚 の お 見舞い に 参り まし た。
+      - 書類 お 渡し {かたがた}、同僚 の 容体 を 確認 し に 行き まし た。
+      - 書類 の ご 提出 {かたがた}、同僚 の 様子 を 伺い に 参り まし た。
+    english_literally: Document's delivery {along with}, to my colleague's visit, I went.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 を 届ける ため に、同僚 の お 見舞い に 参り まし た。{かたがた}
+        english: I went to visit my colleague to deliver the documents.
+        hint: This phrase uses 「ために」 to express a single purpose. We're looking for an expression that
+          suggests two intended purposes for one action.
+      - competing_japanese:
+          - 書類 を 届ける ついで に、同僚 の お 見舞い に 参り まし た。{かたがた}
+        english: Incidentally to delivering the documents, I went to visit my colleague.
+        hint: 「ついでに」 implies the secondary action is opportunistic or casual, not an intended dual purpose.
+          We're looking for an expression that conveys a formal, planned dual purpose.
+      - competing_japanese:
+          - 書類 を 届け がてら、同僚 の お 見舞い に 参り まし た。{かたがた}
+        english: While delivering the documents, I also went to visit my colleague.
+        hint: 「がてら」 is less formal and often implies a general accompaniment. This context requires a
+          more formal expression for intended dual purposes.
+    scene: A manager explains to their team about visiting a sick colleague, emphasizing that the visit
+      was not just personal but also had a work-related task.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The usage of `お届け (おとどけ)` as a humble noun form and `お見舞い (おみまい)` (visit to a sick person)
+      as another noun demonstrates the formal and polite nature of the visit, fitting the `かたがた` structure
+      perfectly. The `参りました (まいりました)` further enhances the humble register.
+  - english: I attended the academic conference, partly for my research presentation and also to meet
+      influential scholars.
+    japanese:
+      - 研究 発表 {かたがた}、著名 な 学者 の 方々 と の 交流 を 図る ため に、学会 に 参加 いたし まし た。
+      - 研究 報告 {かたがた}、人脈 構築 の ため に、学会 へ の 出席 を 決意 し まし た。
+      - 論文 発表 {かたがた}、専門 家 の 方々 と の 意見 交換 を 目的 に、会議 に 参加 し まし た。
+    english_literally: Research presentation {along with}, influential scholars with interaction to plan
+      for, academic conference attended.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 発表 を する ため に、著名 な 学者 の 方々 と 交流 する ため に、学会 に 参加 いたし まし た。{かたがた}
+        english: I attended the academic conference for the purpose of my research presentation and for
+          the purpose of meeting influential scholars.
+        hint: This alternative uses 「〜ために」 twice, presenting two separate purposes. We're looking for
+          a single action that encompasses both intended goals.
+      - competing_japanese:
+          - 研究 発表 の ついで に、著名 な 学者 の 方々 と の 交流 を 図る ため に、学会 に 参加 いたし まし た。{かたがた}
+        english: Incidentally to my research presentation, I attended the academic conference to meet
+          influential scholars.
+        hint: 「ついでに」 implies the networking aspect was merely opportunistic. We're looking for an expression
+          that implies both presenting and networking were equally intended purposes.
+      - competing_japanese:
+          - 研究 発表 がてら、著名 な 学者 の 方々 と の 交流 を 図る ため に、学会 に 参加 いたし まし た。{かたがた}
+        english: While doing my research presentation, I also attended the academic conference to meet
+          influential scholars.
+        hint: 「がてら」 implies a more casual dual activity. We're looking for a formal expression for intended,
+          professional dual purposes.
+    scene: A young researcher explains their activities to their advisor, detailing how their attendance
+      at the conference served both their explicit duty (presenting) and their implicit goal (networking).
+    register: formal
+    setting: academic
+    nuance: 「研究発表 (けんきゅうはっぴょう)」 (research presentation) and 「交流を図る (こうりゅうをはかる)」 (to plan for interaction)
+      as key elements highlight the dual, professional objectives. The use of `著名な学者の方々 (ちょめいながくしゃのかたがた)`
+      and `学会 (がっかい)` reinforces the academic and formal context, where `かたがた` effectively conveys integrated
+      purposes.
+  - english: The mayor visited the disaster area, partly to offer words of encouragement and also to grasp
+      the local situation.
+    japanese:
+      - 市長 は、被災 地 へ の 激励 {かたがた}、現地 の 状況 把握 の ため に 視察 に 訪れ まし た。
+      - 市長 は、被災 者 へ の 慰問 {かたがた}、復興 状況 の 確認 の ため に 視察 に 訪れ まし た。
+      - 市長 は、被災 地 へ の 激励 の ご 挨拶 {かたがた}、現場 の 状況 を 直接 視察 し まし た。
+    english_literally: Mayor as topic, disaster area to encouragement {along with}, local situation grasp
+      for, inspection visited.
+    competing_grammar:
+      - competing_japanese:
+          - 市長 は、被災 地 へ 激励 の 言葉 を 述べる ため に、現地 の 状況 を 把握 する ため に 視察 に 訪れ まし た。{かたがた}
+        english: The mayor visited the disaster area for the purpose of offering words of encouragement
+          and for the purpose of grasping the local situation.
+        hint: This alternative explicitly lists two purposes, making them sound separate. We're looking
+          for a phrasing that integrates both purposes into a single, purposeful action.
+      - competing_japanese:
+          - 市長 は、被災 地 へ の 激励 の ついで に、現地 の 状況 を 把握 する ため に 視察 に 訪れ まし た。{かたがた}
+        english: Incidentally to offering encouragement to the disaster area, the mayor visited to grasp
+          the local situation.
+        hint: 「ついでに」 implies that grasping the situation was a mere afterthought or secondary opportunistic
+          action. We're looking for an expression where both purposes are equally intended and significant.
+      - competing_japanese:
+          - 市長 は、被災 地 へ の 激励 がてら、現地 の 状況 を 把握 する ため に 視察 に 訪れ まし た。{かたがた}
+        english: While offering encouragement to the disaster area, the mayor also visited to grasp the
+          local situation.
+        hint: 「がてら」 implies a more casual concurrent action. We're looking for a formal expression for
+          intended, official dual purposes.
+    scene: A news report or official statement about a public figure's visit, where the visit is presented
+      as serving both a morale-boosting and an information-gathering purpose.
+    register: formal
+    setting: serious
+    nuance: 「激励 (げきれい)」 (encouragement) and 「状況把握 (じょうきょうはあく)」 (grasping the situation) are both formal
+      nouns, indicating the serious and official nature of the mayor's visit. `視察 (しさつ)` (inspection)
+      is also a formal term for an official visit to observe. The use of `かたがた` here is common in formal
+      reports to concisely describe multi-purpose actions by officials.
+post_example_writeup: As seen in the examples, 「かたがた」 is consistently employed in formal contexts to express
+  that an action encompasses multiple, intentional purposes. It is a nuanced expression that adds a layer
+  of sophistication to communication by implying more than what is explicitly stated.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かたがた

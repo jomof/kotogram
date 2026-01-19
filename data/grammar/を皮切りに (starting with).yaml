@@ -1,0 +1,550 @@
+grammar_point: を皮切りに (starting with)
+learn_before:
+  - Verb[させる] (causative)
+  - のを (direct object nominalizer)
+  - 一体 (emphasis in questions)
+  - 側面 (aspect side)
+meaning: Beginning with, starting from
+pronunciation:
+  katakana: オ カワキリニ
+  romaji: o kawakiri ni
+formation:
+  Noun + を皮切りに: Indicates a starting point, from which something expands or continues.
+  Nominalized phrase + の + を皮切りに: Indicates a starting point for something that then expands or continues,
+    typically used after a verb or i-adjective plain form + の.
+jlpt: N1
+etymology: The structure 「を皮切りに」 combines the adverbial particle 「を」, the noun 「皮切り」 (kawakiri), meaning
+  "beginning" or "outset," and the case-marking particle 「に」. The noun 「皮切り」 itself is derived from 「皮」
+  (kawa, "hide") and 「切る」 (kiru, "to cut"), literally meaning "to cut the hide." This imagery evokes the
+  act of making an initial cut to begin a larger process, such as skinning an animal, which then spreads
+  out over a larger area. This etymology helps to understand the nuance of an initial action leading to
+  a broader or expanded series of events.
+writeup: '「を皮切りに」 (o kawakiri ni) is a grammar pattern that denotes the beginning of a sequence of events
+  or a process that subsequently expands or continues. It can be translated as "starting with (A)" or
+  "beginning with (A)." This pattern is used when a specific event or action acts as a clear trigger or
+  catalyst for something else to happen on a larger scale or over a sustained period. It typically attaches
+  to nouns or nominalized phrases. For example, a verb or i-adjective in its plain form can be nominalized
+  by adding 「の」 (no) before 「を皮切りに」. **Variations:** In place of 「に」, variations such as 「にして」 and 「として」
+  can also be used, carrying largely the same meaning but sometimes implying a slightly more formal or
+  definitive nuance for the starting point: *   **を皮切りに**: The most common and general form. *   **を皮切りにして**:
+  Often implies a definitive or specific starting action, sometimes with a slightly stronger causal link.
+  *   **を皮切りとして**: Tends to be more formal and suggests that the initial point is established as a foundation
+  or precedent for what follows. **Important Considerations:** *   This pattern is primarily used for
+  events initiated by human actions or significant occurrences, rather than natural phenomena. For instance,
+  you would not typically say 「雨を皮切りに」 (starting with the rain) to describe a natural sequence of weather.
+  *   While it often introduces a positive or significant development, it can also be used for chain reactions
+  that lead to negative outcomes, as long as a clear initial action or event triggers the subsequent spread.
+  *   The subsequent events or developments that follow the initial point are typically substantial and
+  often involve expansion, increase, or proliferation.'
+false_friends:
+  - term: をはじめ
+    meaning: Starting with, including
+    kind: similar expression
+    nuance: Unlike 「を皮切りに」, 「をはじめ」 implies that the mentioned item is a prominent example of a larger
+      group, rather than the starting point of a series of events or developments. 「をはじめ」 is similar to
+      「～を含めて」 and doesn't necessarily have a sense of expanding from that point.
+    grammar_point: をはじめ (starting with)
+  - term: をきっかけに
+    meaning: taking the opportunity, with X as a trigger
+    kind: often confused with
+    nuance: Unlike 「を皮切りに」 which emphasizes a distinct first step that initiates a series of spreading
+      events, 「をきっかけに」 focuses on an event or situation serving as a trigger or opportunity that leads
+      to something, often a change or development. The subsequent events might not necessarily be a widespread
+      progression from the initial point.
+    grammar_point: きっかけ (trigger and opportunity)
+  - term: 以来
+    meaning: since, ever since
+    kind: often confused with
+    nuance: 「以来」 simply indicates a temporal starting point and duration. It doesn't carry the implication
+      of an initial event actively triggering or setting in motion a widespread, expanding series of subsequent
+      events, as 「を皮切りに」 does.
+    grammar_point: 以来 (since・ever since)
+post_false_friends_writeup: To avoid confusing 「を皮切りに」 and 「をはじめ」, remember that 「を皮切りに」 indicates a chronological
+  starting point that leads to subsequent developments, while 「をはじめ」 introduces a prominent example from
+  a group and implies inclusion of other similar items. Similarly, 「をきっかけに」 highlights an opportunity
+  or trigger, which might lead to something but lacks the emphasis on a spreading chain of events that
+  「を皮切りに」 conveys. Lastly, 「以来」 is purely temporal, indicating 'since' a point in time, without the causal
+  or expansive nuance of 「を皮切りに」.
+examples:
+  - english: Starting with their first live performance in Tokyo, the band successfully completed a nationwide
+      tour.
+    japanese:
+      - 東京 で の 初 ライブ {を 皮切り に}、その バンド は 全国 ツアー を 成功 さ せ た。
+      - 東京 で の 初 ライブ {を 皮切り と し て}、その バンド は 全国 ツアー を 成功 さ せ た。
+      - 東京 で の 初 ライブ {を 皮切り に し て}、その バンド は 全国 ツアー を 成功 さ せ た。
+    english_literally: Tokyo at of first live performance starting with, that band nation-wide tour successfully
+      completed.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 で の 初 ライブ {を はじめ}、その バンド は 全国 ツアー を 成功 さ せ た。
+        english: Beginning with their first live performance in Tokyo, the band successfully completed
+          a nationwide tour (Tokyo live performance being a prominent example).
+        hint: 「をはじめ」 highlights a prominent example among others, not the *starting point* of a subsequent,
+          expanding series of events. We're looking for a grammar that expresses an initiating event.
+      - competing_japanese:
+          - 東京 で の 初 ライブ {を きっかけ に}、その バンド は 全国 ツアー を 成功 さ せ た。
+        english: Taking their first live performance in Tokyo as an opportunity, the band successfully
+          completed a nationwide tour.
+        hint: 「をきっかけに」 emphasizes an *opportunity* or *trigger*, not the specific *first event* in a spreading
+          chain of developments. We're looking for a grammar that signifies the first step in a larger
+          process.
+      - competing_japanese:
+          - 東京 で の 初 ライブ {以来}、その バンド は 全国 ツアー を 成功 さ せ た。
+        english: Since their first live performance in Tokyo, the band successfully completed a nationwide
+          tour.
+        hint: 「以来」 only indicates a temporal starting point. It doesn't imply the initial event *triggered*
+          or *led to* a widespread expansion, unlike 「を皮切りに」.
+      - competing_japanese:
+          - 東京 で の 初 ライブ {から}、その バンド は 全国 ツアー を 成功 さ せ た。
+        english: From their first live performance in Tokyo, the band successfully completed a nationwide
+          tour.
+        hint: 「から」 indicates a simple starting point. We're looking for a grammar that expresses a pivotal,
+          initiating event leading to a broader, subsequent success.
+      - competing_japanese:
+          - 東京 で の 初 ライブ {の 後}、その バンド は 全国 ツアー を 成功 さ せ た。
+        english: After their first live performance in Tokyo, the band successfully completed a nationwide
+          tour.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that emphasizes
+          the initial event as a trigger for a series of developments.
+    scene: A music critic reviews a band's career trajectory, emphasizing a pivotal moment.
+    register: formal
+    setting: informative
+  - english: Beginning with the manager's inappropriate remark, trust within the company rapidly declined.
+    japanese:
+      - 部 長 の 不 適切 な 発言 {を 皮切り に}、社内 で の 信頼 が 急速 に 低下 し た。
+      - 部 長 の 不 適切 な 発言 {を 皮切り と し て}、社内 で の 信頼 が 急速 に 低下 し た。
+      - 部 長 の 不 適切 な 発言 {を 皮切り に し て}、社内 で の 信頼 が 急速 に 低下 し た。
+    english_literally: Manager's inappropriate remark starting with, within company trust rapidly declined.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 の 不 適切 な 発言 {を はじめ}、社内 で の 信頼 が 急速 に 低下 し た。
+        english: Beginning with the manager's inappropriate remark, trust within the company rapidly declined
+          (the remark being a prominent example of distrust).
+        hint: 「をはじめ」 introduces a prominent example, not the specific initiating event that triggered
+          a cascading negative consequence. We're looking for a grammar that denotes a clear trigger for
+          subsequent decline.
+      - competing_japanese:
+          - 部 長 の 不 適切 な 発言 {を きっかけ に}、社内 で の 信頼 が 急速 に 低下 し た。
+        english: Taking the manager's inappropriate remark as a trigger, trust within the company rapidly
+          declined.
+        hint: 「をきっかけに」 implies an opportunity or direct trigger, but doesn't necessarily convey the sense
+          of a widespread, expanding negative progression that 「を皮切りに」 does.
+      - competing_japanese:
+          - 部 長 の 不 適切 な 発言 {以来}、社内 で の 信頼 が 急速 に 低下 し た。
+        english: Since the manager's inappropriate remark, trust within the company rapidly declined.
+        hint: 「以来」 is purely temporal. It indicates a starting point in time but lacks the implication
+          of the remark actively causing a widespread decline in trust. We're looking for a grammar that
+          shows the remark as the primary cause for subsequent developments.
+      - competing_japanese:
+          - 部 長 の 不 適切 な 発言 {が 原因 で}、社内 で の 信頼 が 急速 に 低下 し た。
+        english: Due to the manager's inappropriate remark, trust within the company rapidly declined.
+        hint: 「が原因で」 expresses a direct cause. We're looking for a grammar that implies an initiating
+          event that triggered a series of negative consequences, as a distinct starting point for a developing
+          trend.
+      - competing_japanese:
+          - 部 長 の 不 適切 な 発言 {から}、社内 で の 信頼 が 急速 に 低下 し た。
+        english: From the manager's inappropriate remark, trust within the company rapidly declined.
+        hint: 「から」 indicates a simple starting point. We're looking for a grammar that implies an initial
+          action triggering a significant, spreading effect.
+    scene: An HR representative analyzes the cause of low morale in a company after an incident.
+    register: semi-formal
+    setting: serious
+  - english: Starting with my friend Kenta quitting smoking, I also began to challenge myself to quit.
+    japanese:
+      - 友達 の 健太 が 禁煙 を 始め た の {を 皮切り に}、僕 も 禁煙 に 挑戦 し 始め た。
+      - 友達 の 健太 が 禁煙 を 始め た の {を 皮切り と し て}、僕 も 禁煙 に 挑戦 し 始め た。
+      - 友達 の 健太 が 禁煙 を 始め た の {を 皮切り に し て}、僕 も 禁煙 に 挑戦 し 始め た。
+    english_literally: Friend's Kenta smoking cessation started that of starting with, I also smoking
+      cessation challenge began.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 の 健太 が 禁煙 を 始め た の {を はじめ}、僕 も 禁煙 に 挑戦 し 始め た。
+        english: Beginning with my friend Kenta quitting smoking, I also began to challenge myself to
+          quit (Kenta being a prominent example of someone quitting).
+        hint: 「をはじめ」 highlights a prominent example among others. We're looking for a grammar that expresses
+          an initial action that *triggered* a chain of similar actions.
+      - competing_japanese:
+          - 友達 の 健太 が 禁煙 を 始め た の {を きっかけ に}、僕 も 禁煙 に 挑戦 し 始め た。
+        english: Taking my friend Kenta quitting smoking as an opportunity, I also began to challenge
+          myself to quit.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger*, not necessarily the *first action* in
+          a spreading trend. We're looking for a grammar that implies a chain reaction.
+      - competing_japanese:
+          - 友達 の 健太 が 禁煙 を 始め た の {以来}、僕 も 禁煙 に 挑戦 し 始め た。
+        english: Since my friend Kenta quit smoking, I also began to challenge myself to quit.
+        hint: 「以来」 is purely temporal. It lacks the nuance that Kenta's act of quitting was the direct
+          inspiration that *triggered* a similar, ongoing effort. We're looking for a grammar that signifies
+          the trigger of a spreading habit.
+      - competing_japanese:
+          - 友達 の 健太 が 禁煙 を 始め た {から}、僕 も 禁煙 に 挑戦 し 始め た。
+        english: Because my friend Kenta quit smoking, I also began to challenge myself to quit.
+        hint: 「から」 expresses a simple reason. We're looking for a grammar that describes an influential
+          starting action that inspired a similar, continuous personal endeavor.
+      - competing_japanese:
+          - 友達 の 健太 が 禁煙 を 始め た {て から}、僕 も 禁煙 に 挑戦 し 始め た。
+        english: After my friend Kenta quit smoking, I also began to challenge myself to quit.
+        hint: 「～てから」 indicates temporal sequence. We're looking for a grammar that highlights Kenta's
+          action as the direct trigger for a subsequent, spreading behavior.
+    scene: A young man tells his friend about his efforts to quit smoking, inspired by someone else.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「友達の健太」 and 「僕も」 creates a casual, relatable context typical of younger male friends.
+      The phrasing 「禁煙に挑戦し始めた」 implies a personal, ongoing effort to follow suit. The nominalizer 「の」
+      before 「を皮切りに」 is essential here to treat the phrase '友達の健太が禁煙を始めた' (my friend Kenta began quitting
+      smoking) as the noun that serves as the starting point.
+  - english: Starting with the new product launch event, our company will fully accelerate its expansion
+      into the global market.
+    japanese:
+      - 新 製品 の 発表 会 {を 皮切り と し て}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+      - 新 製品 の 発表 会 {を 皮切り に}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+      - 新 製品 の 発表 会 {を 皮切り に し て}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+    english_literally: New product launch event starting with, our company global market to expansion
+      fully accelerate.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 発表 会 {を はじめ}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+        english: Beginning with the new product launch event, our company will fully accelerate its expansion
+          into the global market (the event being a prominent example of market entry efforts).
+        hint: 「をはじめ」 indicates a prominent example among many. We're looking for a grammar that expresses
+          a singular, strategic starting point for a broader, continuous expansion.
+      - competing_japanese:
+          - 新 製品 の 発表 会 {を きっかけ に}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+        english: Taking the new product launch event as an opportunity, our company will fully accelerate
+          its expansion into the global market.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger*, not necessarily the *formal first step*
+          in a widespread, systematic expansion. We're looking for a grammar that marks a definitive beginning
+          of a larger strategy.
+      - competing_japanese:
+          - 新 製品 の 発表 会 {以来}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+        english: Since the new product launch event, our company will fully accelerate its expansion into
+          the global market.
+        hint: 「以来」 is purely temporal. It lacks the implication that the launch event actively *initiated*
+          or *set the stage* for the broader market expansion. We're looking for a grammar that signifies
+          the formal start of a major initiative.
+      - competing_japanese:
+          - 新 製品 の 発表 会 {の 後}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+        english: After the new product launch event, our company will fully accelerate its expansion into
+          the global market.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that emphasizes
+          a strategic, initial event that sets the stage for a comprehensive and ambitious future expansion.
+      - competing_japanese:
+          - 新 製品 の 発表 会 {が 原因 で}、弊社 は グローバル 市場 へ の 展開 を 本格 化 さ せ ます。
+        english: Due to the new product launch event, our company will fully accelerate its expansion
+          into the global market.
+        hint: 「が原因で」 expresses a direct cause. We're looking for a grammar that highlights the product
+          launch as the foundational catalyst for a significant, spreading business development.
+    scene: A CEO announces a new company strategy to investors during a press conference.
+    register: formal
+    setting: informative
+  - english: Starting with the agreement at last year's international conference, various countries have
+      been strengthening their cooperative relationships.
+    japanese:
+      - 昨年 の 国際 会議 で の 合意 {を 皮切り に し て}、各国 は 協力 関係 を 強化 し て いる。
+      - 昨年 の 国際 会議 で の 合意 {を 皮切り に}、各国 は 協力 関係 を 強化 し て いる。
+      - 昨年 の 国際 会議 で の 合意 {を 皮切り と し て}、各国 は 協力 関係 を 強化 し て いる。
+    english_literally: Last year's international conference at agreement starting with, each country cooperative
+      relationship strengthening is.
+    competing_grammar:
+      - competing_japanese:
+          - 昨年 の 国際 会議 で の 合意 {を はじめ}、各国 は 協力 関係 を 強化 し て いる。
+        english: Beginning with the agreement at last year's international conference, various countries
+          have been strengthening their cooperative relationships (the agreement being a prominent example).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that denotes a landmark
+          agreement as the precise initiating event that led to an ongoing and broadening trend.
+      - competing_japanese:
+          - 昨年 の 国際 会議 で の 合意 {を きっかけ に}、各国 は 協力 関係 を 強化 し て いる。
+        english: Taking the agreement at last year's international conference as a trigger, various countries
+          have been strengthening their cooperative relationships.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger* for change, but doesn't necessarily convey
+          the definitive initial step in a widespread, continuous process of strengthening ties. We're
+          looking for a grammar that implies a formal beginning of broader cooperation.
+      - competing_japanese:
+          - 昨年 の 国際 会議 で の 合意 {以来}、各国 は 協力 関係 を 強化 し て いる。
+        english: Since the agreement at last year's international conference, various countries have been
+          strengthening their cooperative relationships.
+        hint: 「以来」 is purely temporal. It lacks the implication that the agreement actively *initiated*
+          or *triggered* the widespread trend of strengthening relationships. We're looking for a grammar
+          that shows the agreement as the primary cause for subsequent developments.
+      - competing_japanese:
+          - 昨年 の 国際 会議 で の 合意 {後}、各国 は 協力 関係 を 強化 し て いる。
+        english: After the agreement at last year's international conference, various countries have been
+          strengthening their cooperative relationships.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that emphasizes
+          a landmark agreement as the precise initiating event that led to an ongoing and broadening trend
+          of cooperation.
+      - competing_japanese:
+          - 昨年 の 国際 会議 で の 合意 {が 原因 で}、各国 は 協力 関係 を 強化 し て いる。
+        english: Due to the agreement at last year's international conference, various countries have
+          been strengthening their cooperative relationships.
+        hint: 「が原因で」 expresses a direct cause. We're looking for a grammar that describes the agreement
+          as the foundational catalyst for a significant, spreading international development.
+    scene: A news anchor reports on evolving international relations after a major summit.
+    register: formal
+    setting: informative
+  - english: Starting with my husband's retirement, traveling became our hobby.
+    japanese:
+      - 夫 が 定年 退職 し た の {を 皮切り に}、私 たち の 旅行 が 趣味 と なり まし た。
+      - 夫 が 定年 退職 し た の {を 皮切り と し て}、私 たち の 旅行 が 趣味 と なり まし た。
+      - 夫 が 定年 退職 し た の {を 皮切り に し て}、私 たち の 旅行 が 趣味 と なり まし た。
+    english_literally: Husband retired that of starting with, our traveling hobby became.
+    competing_grammar:
+      - competing_japanese:
+          - 夫 が 定年 退職 し た の {を はじめ}、私 たち の 旅行 が 趣味 と なり まし た。
+        english: Beginning with my husband's retirement, traveling became our hobby (retirement being
+          a prominent event among others).
+        hint: 「をはじめ」 highlights a prominent example among events. We're looking for a grammar that marks
+          a significant life event as the beginning of a new, expanding activity.
+      - competing_japanese:
+          - 夫 が 定年 退職 し た の {を きっかけ に}、私 たち の 旅行 が 趣味 と なり まし た。
+        english: Taking my husband's retirement as an opportunity, traveling became our hobby.
+        hint: 「をきっかけに」 emphasizes an *opportunity* or *trigger* for change, but might not imply the same
+          widespread, continuous development of a hobby. We're looking for a grammar that denotes a major
+          life shift initiating a new lifestyle.
+      - competing_japanese:
+          - 夫 が 定年 退職 し た の {以来}、私 たち の 旅行 が 趣味 と なり まし た。
+        english: Since my husband retired, traveling became our hobby.
+        hint: 「以来」 is purely temporal. It lacks the implication that the retirement actively *initiated*
+          or *triggered* the widespread development of traveling as a hobby. We're looking for a grammar
+          that shows the retirement as the primary reason for a major lifestyle change.
+      - competing_japanese:
+          - 夫 が 定年 退職 し た {て から}、旅行 が 私 たち の 趣味 と なり まし た。
+        english: After my husband retired, traveling became our hobby.
+        hint: 「～てから」 indicates temporal sequence. We're looking for a grammar that shows a significant
+          life event that marked the beginning of a new, enjoyable, and expanding activity.
+      - competing_japanese:
+          - 夫 が 定年 退職 し た {こと で}、私 たち の 旅行 が 趣味 と なり まし た。
+        english: Because my husband retired, traveling became our hobby.
+        hint: 「～ことで」 expresses a cause/reason. We're looking for a grammar that highlights retirement
+          as the distinct trigger for a lifestyle change that then spread into a hobby.
+    scene: A woman chats with a friend about her enjoyable post-retirement life with her husband.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: older
+    nuance: The gentle tone using 「私たち」 and 「趣味となりました」 is characteristic of an older female speaking about
+      shared leisure activities with her husband. The phrase 「定年退職したの」 naturally marks a new phase of
+      life. The nominalizer 「の」 before 「を皮切りに」 is essential here to treat the phrase '夫が定年退職した' (my husband
+      retired) as the noun that serves as the starting point.
+  - english: Starting with his winning goal in the final, the team gained momentum and seized the championship.
+    japanese:
+      - 彼 の 決勝 ゴール {を 皮切り に}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+      - 彼 の 決勝 ゴール {を 皮切り と し て}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+      - 彼 の 決勝 ゴール {を 皮切り に し て}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+    english_literally: His final goal starting with, team momentum increased and championship seized.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 決勝 ゴール {を はじめ}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+        english: Beginning with his winning goal in the final, the team gained momentum and seized the
+          championship (his goal being a prominent factor).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that describes a single,
+          decisive action that served as the immediate catalyst for a surge of positive momentum.
+      - competing_japanese:
+          - 彼 の 決勝 ゴール {を きっかけ に}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+        english: Taking his winning goal in the final as a trigger, the team gained momentum and seized
+          the championship.
+        hint: 「をきっかけに」 emphasizes an *opportunity* or *trigger* for change. While close, 「を皮切りに」 specifically
+          implies the first step in a spreading, accelerating progression. We're looking for a grammar
+          that signifies the first domino in a chain of events.
+      - competing_japanese:
+          - 彼 の 決勝 ゴール {以来}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+        english: Since his winning goal in the final, the team gained momentum and seized the championship.
+        hint: 「以来」 is purely temporal. It lacks the implication that the goal actively *triggered* or
+          *led to* the widespread momentum and championship win. We're looking for a grammar that shows
+          the goal as the primary cause for subsequent developments.
+      - competing_japanese:
+          - 彼 の 決勝 ゴール {の 後}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+        english: After his winning goal in the final, the team gained momentum and seized the championship.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that portrays a
+          single, decisive action that served as the immediate catalyst for a surge of positive momentum
+          and a series of subsequent successes.
+      - competing_japanese:
+          - 彼 の 決勝 ゴール {から}、チーム は 勢い を 増し て 優勝 を 掴ん だ。
+        english: From his winning goal in the final, the team gained momentum and seized the championship.
+        hint: 「から」 indicates a simple starting point. We're looking for a grammar that expresses the origin
+          of a rapidly spreading trend.
+    scene: A sports commentator excitedly describes a pivotal moment in a game that led to victory.
+    register: semi-formal
+    setting: excited
+  - english: Starting with a post on social media, that new fashion exploded in popularity among young
+      people.
+    japanese:
+      - ソーシャル メディア で の 投稿 {を 皮切り に}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+      - ソーシャル メディア で の 投稿 {を 皮切り と し て}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+      - ソーシャル メディア で の 投稿 {を 皮切り に し て}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+    english_literally: Social media at post starting with, that new fashion young people among explosively
+      spread.
+    competing_grammar:
+      - competing_japanese:
+          - ソーシャル メディア で の 投稿 {を はじめ}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+        english: Beginning with a post on social media, that new fashion exploded in popularity among
+          young people (the post being a prominent example).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that describes a singular
+          initial action that directly initiated a rapid and widespread proliferation of a phenomenon.
+      - competing_japanese:
+          - ソーシャル メディア で の 投稿 {を きっかけ に}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+        english: Taking a post on social media as a trigger, that new fashion exploded in popularity among
+          young people.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger*, but 「を皮切りに」 specifically conveys the
+          idea of the first step in a widespread, spreading trend. We're looking for a grammar that indicates
+          a clear starting point for rapid expansion.
+      - competing_japanese:
+          - ソーシャル メディア で の 投稿 {以来}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+        english: Since a post on social media, that new fashion exploded in popularity among young people.
+        hint: 「以来」 is purely temporal. It lacks the implication that the post actively *initiated* or
+          *triggered* the widespread explosion in popularity. We're looking for a grammar that shows the
+          post as the primary cause for subsequent developments.
+      - competing_japanese:
+          - ソーシャル メディア で の 投稿 {が 原因 で}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+        english: Due to a post on social media, that new fashion exploded in popularity among young people.
+        hint: 「が原因で」 expresses a direct cause. We're looking for a grammar that highlights a singular
+          initial action that directly initiated a rapid and widespread proliferation of a phenomenon.
+      - competing_japanese:
+          - ソーシャル メディア で の 投稿 {から}、その 新しい ファッション は 若者 の 間 で 爆発 的 に 広まっ た。
+        english: From a post on social media, that new fashion exploded in popularity among young people.
+        hint: 「から」 indicates a simple starting point. We're looking for a grammar that expresses the origin
+          of a rapidly spreading trend.
+    scene: A fashion blogger explains the origin and rapid spread of a popular trend.
+    register: semi-formal
+    setting: informative
+  - english: Starting with that professor's groundbreaking research presentation, research in the same
+      field became active worldwide.
+    japanese:
+      - その 教授 の 画期 的 な 研究 発表 {を 皮切り に}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+      - その 教授 の 画期 的 な 研究 発表 {を 皮切り と し て}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+      - その 教授 の 画期 的 な 研究 発表 {を 皮切り に し て}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+    english_literally: That professor's groundbreaking research presentation starting with, same field's
+      research world-wide active became.
+    competing_grammar:
+      - competing_japanese:
+          - その 教授 の 画期 的 な 研究 発表 {を はじめ}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+        english: Beginning with that professor's groundbreaking research presentation, research in the
+          same field became active worldwide (the presentation being a prominent example of research).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that describes a specific
+          academic event as the direct inspiration and initial trigger for a global surge in related research.
+      - competing_japanese:
+          - その 教授 の 画期 的 な 研究 発表 {を きっかけ に}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+        english: Taking that professor's groundbreaking research presentation as a trigger, research in
+          the same field became active worldwide.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger* for activity, but 「を皮切りに」 specifically
+          conveys the idea of the first step in a widespread, growing area of research. We're looking
+          for a grammar that indicates a clear starting point for widespread research.
+      - competing_japanese:
+          - その 教授 の 画期 的 な 研究 発表 {以来}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+        english: Since that professor's groundbreaking research presentation, research in the same field
+          became active worldwide.
+        hint: 「以来」 is purely temporal. It lacks the implication that the presentation actively *initiated*
+          or *triggered* the widespread research activity. We're looking for a grammar that shows the
+          presentation as the primary cause for subsequent developments.
+      - competing_japanese:
+          - その 教授 の 画期 的 な 研究 発表 {から}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+        english: From that professor's groundbreaking research presentation, research in the same field
+          became active worldwide.
+        hint: 「から」 indicates a simple starting point. We're looking for a grammar that formally establishes
+          an academic event as the catalyst for widespread development.
+      - competing_japanese:
+          - その 教授 の 画期 的 な 研究 発表 {の 後}、同 分野 の 研究 が 世界 中 で 活発 に なっ た。
+        english: After that professor's groundbreaking research presentation, research in the same field
+          became active worldwide.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that emphasizes
+          a specific academic event as the direct inspiration and initial trigger for a global surge in
+          related research.
+    scene: A historian of science discusses a major turning point in a field of study.
+    register: formal
+    setting: academic
+  - english: Starting with the enforcement of the new law, reforms were promoted in various aspects of
+      society.
+    japanese:
+      - 新法 の 施行 {を 皮切り に}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+      - 新法 の 施行 {を 皮切り と し て}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+      - 新法 の 施行 {を 皮切り に し て}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+    english_literally: New law's enforcement starting with, society's various aspects at reforms promoted
+      were.
+    competing_grammar:
+      - competing_japanese:
+          - 新法 の 施行 {を はじめ}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+        english: Beginning with the enforcement of the new law, reforms were promoted in various aspects
+          of society (the law enforcement being a prominent reform).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that describes a specific
+          legal act as the formal initiating event that subsequently led to a broader and ongoing process
+          of societal reforms.
+      - competing_japanese:
+          - 新法 の 施行 {を きっかけ に}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+        english: Taking the enforcement of the new law as a trigger, reforms were promoted in various
+          aspects of society.
+        hint: 「をきっかけに」 focuses on an *opportunity* or *trigger* for change, but 「を皮切りに」 specifically conveys
+          the idea of the first step in a widespread, systematic process of reform. We're looking for
+          a grammar that indicates a clear starting point for sweeping reforms.
+      - competing_japanese:
+          - 新法 の 施行 {以来}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+        english: Since the enforcement of the new law, reforms were promoted in various aspects of society.
+        hint: 「以来」 is purely temporal. It lacks the implication that the law's enforcement actively *initiated*
+          or *triggered* the widespread reforms. We're looking for a grammar that shows the law as the
+          primary cause for subsequent developments.
+      - competing_japanese:
+          - 新法 の 施行 {後}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+        english: After the enforcement of the new law, reforms were promoted in various aspects of society.
+        hint: 「～の後」 describes simple temporal succession. We're looking for a grammar that identifies
+          a specific legal act as the formal initiating event that subsequently led to a broader and ongoing
+          process of societal reforms.
+      - competing_japanese:
+          - 新法 の 施行 {に よっ て}、社会 の 様々 な 側面 で 改革 が 進め られ た。
+        english: By means of the new law's enforcement, reforms were promoted in various aspects of society.
+        hint: 「～によって」 expresses a cause or means. We're looking for a grammar that clearly denotes the
+          law's enforcement as the foundational catalyst for widespread societal change.
+    scene: A political analyst discusses the widespread impact of recently enacted legislation.
+    register: formal
+    setting: informative
+  - english: Starting with meeting you, my days have changed vividly.
+    japanese:
+      - あなた と 出会っ た の {を 皮切り に}、私 の 日々 は 色鮮やか に 変わっ た よ。
+      - あなた と 出会っ た の {を 皮切り と し て}、私 の 日々 は 色鮮やか に 変わっ た よ。
+      - あなた と 出会っ た の {を 皮切り に し て}、私 の 日々 は 色鮮やか に 変わっ た よ。
+    english_literally: You and met that of starting with, my days vividly changed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あなた と 出会っ た の {を はじめ}、私 の 日々 は 色鮮やか に 変わっ た よ。
+        english: Beginning with meeting you, my days have changed vividly (meeting you being a prominent
+          event).
+        hint: 「をはじめ」 introduces a prominent example. We're looking for a grammar that marks a specific
+          encounter as the precise starting point that triggered a profound and ongoing positive transformation.
+      - competing_japanese:
+          - あなた と 出会っ た の {を きっかけ に}、私 の 日々 は 色鮮やか に 変わっ た よ。
+        english: Taking meeting you as an opportunity, my days have changed vividly.
+        hint: 「をきっかけに」 emphasizes an *opportunity* or *trigger* for change. While close, 「を皮切りに」 implies
+          the first step in a spreading, accelerating progression. We're looking for a grammar that signifies
+          the initial point of a significant life transformation.
+      - competing_japanese:
+          - あなた と 出会っ た の {以来}、私 の 日々 は 色鮮やか に 変わっ た よ。
+        english: Since meeting you, my days have changed vividly.
+        hint: 「以来」 is purely temporal. It lacks the implication that the meeting actively *initiated*
+          or *triggered* the widespread positive changes. We're looking for a grammar that shows the meeting
+          as the primary cause for subsequent developments.
+      - competing_japanese:
+          - あなた と 出会っ {て から}、私 の 日々 は 色鮮やか に 変わっ た よ。
+        english: After meeting you, my days have changed vividly.
+        hint: 「～てから」 indicates temporal sequence. We're looking for a grammar that emphasizes a specific
+          encounter as the precise starting point that triggered a profound and ongoing positive transformation
+          in one's life.
+      - competing_japanese:
+          - あなた と 出会っ た {こと で}、私 の 日々 は 色鮮やか に 変わっ た よ。
+        english: Because I met you, my days have changed vividly.
+        hint: 「～ことで」 expresses a cause/reason. We're looking for a grammar that highlights the meeting
+          as the distinct, impactful beginning of a widespread change.
+    scene: A person sharing their heartfelt feelings with a loved one about how they transformed their
+      life.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    nuance: The phrase 「私の日々は色鮮やかに変わったよ」 expresses a deep personal change, typical of intimate conversations.
+      The sentence-final 「よ」 adds a soft, reassuring, and slightly assertive tone, common in `shitashii
+      kuchō` between close individuals. The nominalizer 「の」 before 「を皮切りに」 is essential here to treat
+      the phrase 'あなたと出会った' (I met you) as the noun that serves as the starting point.
+post_example_writeup: As you can see, 「を皮切りに」 is quite versatile and can be used in various contexts,
+  from formal business announcements to personal expressions of transformation. Its key characteristic
+  is the emphasis on an initial event that acts as a powerful catalyst for a series of subsequent, often
+  expanding, developments. The choice between 「を皮切りに」, 「を皮切りにして」, and 「を皮切りとして」 often depends on the desired
+  level of formality and the nuance of how definitively the initial event is presented as the starting
+  point for a broader trend.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を皮切りに

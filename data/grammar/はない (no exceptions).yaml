@@ -1,0 +1,294 @@
+grammar_point: はない (no exceptions)
+learn_before:
+  - Noun が Noun なら (if it were a proper x)
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - どうぞ (here you are・please・invitation)
+  - にする (to decide or make)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: There is not ~ that is not/does not
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はない
+    rarity: common
+    meaning: there is not ~ that is not/does not (plain negative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はいません
+    rarity: common
+    meaning: there is not ~ that is not/does not (polite negative, animate)
+  - conjugation-type: negative non-past polite (～ません)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はありません
+    rarity: common
+    meaning: there is not ~ that is not/does not (polite negative, inanimate)
+  - conjugation-type: negative past plain (～なかった)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はなかった
+    rarity: common
+    meaning: there was not ~ that was not/did not (plain past negative)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はいませんでした
+    rarity: less common
+    meaning: there was not ~ that was not/did not (polite past negative, animate)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Noun[negative-modifier]・Verb[ない]・Adjective[negative]+はありません
+    rarity: less common
+    meaning: there was not ~ that was not/did not (polite past negative, inanimate)
+pronunciation:
+  katakana: ワナイ
+  romaji: wanai
+  pronunciation_warning: The pronunciation refers to the final Japanese particle/verb portion of the grammar
+    point, which is the core part actually spoken. The preceding descriptive terms (Noun, Verb, Adjective,
+    negative-modifier) are English placeholders for the grammatical construction and are not typically
+    pronounced as part of the grammar point itself.
+formation:
+  Noun[negative-modifier] + はない: Indicates that every instance of the noun has the specified property.
+  Verb[ない] + はない: Indicates that there is no instance where the specified verb does not occur.
+  Adjective[negative] + はない: Indicates that there is no instance where the adjective is not true.
+jlpt: N4
+etymology: This grammar point is derived from the combination of 「ない」 (nai), the negative form of ある (aru,
+  to exist), and the topic marker 「は」 (wa), creating a double negative structure that affirms the presence
+  of something by denying its absence. It emphasizes the universality or complete absence of exceptions
+  regarding a particular state or action.
+writeup: 「Noun[negative-modifier]・Verb[ない]・Adjective[negative] + はない」 is a grammatical construction that
+  uses a double negative to emphasize a positive statement. It's similar to saying "There isn't anything
+  that doesn't..." in English, implying "everything does..." or "everyone is...". This pattern is used
+  to express that something is universally true or that there are no exceptions. Pay close attention to
+  what type of word is being negated (a noun modified by a negative clause, a verb in its negative form,
+  or an adjective in its negative form) to properly use and interpret the phrase.
+false_friends:
+  - term: ないことには〜ない
+    meaning: Unless you do something
+    kind: similar expression
+    nuance: Unlike 「Noun[negative-modifier]・Verb[ない]・Adjective[negative] + はない」, 「ないことには〜ない」 expresses
+      a condition that must be met before something can happen. It states that without A, B cannot occur.
+    grammar_point: '[Verb-て]からでないと〜ない (unless after doing)'
+  - term: ないことはない
+    meaning: Is not impossible, it doesn't mean that it isn't
+    kind: similar expression
+    nuance: Unlike 「Noun[negative-modifier]・Verb[ない]・Adjective[negative] + はない」, 「ないことはない」 implies possibility,
+      leaving room for a situation to be true, whereas the former asserts the absence of exceptions.
+    grammar_point: ないことはない (not impossible)
+post_false_friends_writeup: The pattern 「ないことには〜ない」 expresses a necessary condition, indicating that something
+  cannot happen unless a certain action is performed. Meanwhile, 「ないことはない」 suggests something is not entirely
+  impossible, leaving room for a possibility. Be careful to differentiate between these patterns and 「Noun[negative-modifier]・Verb[ない]・Adjective[negative]
+  + はない」, which conveys a universal truth or absence of exceptions. The key is to determine whether you
+  want to express a condition, possibility, or a strong affirmation.
+examples:
+  - english: There's probably no student at this university who doesn't read books.
+    japanese:
+      - この 大学 に 本 を 読ま ない 学生 は {い ない} だろう。
+      - この 大学 に 本 を 読ま ない 学生 は {い ませ ん} でしょう。
+      - この 大学 に 本 を 読ま ない 学生 は {い ない} はず だ。
+    english_literally: At this university, there is no student who does not read books.
+    competing_grammar:
+      - competing_japanese:
+          - この 大学 に 本 を 読ま ない 学生 も {いる} だろう。
+        english: There are probably also students at this university who don't read books.
+        hint: The original statement asserts that there are no students who don't read. This alternative
+          suggests there might be some who don't. We're looking for a statement that means all students
+          read.
+    scene: A university librarian discussing the reading habits of the students.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「い ない だろう」 implies that it is highly probable there are no exceptions to students
+      reading. The nuance is that all students read books, emphasizing universality. The casual register
+      is appropriate for a discussion.
+  - english: For him, there is no food that isn't delicious.
+    japanese:
+      - 彼 に とっ て、美味しく ない 食べ物 は {ない}。
+      - 彼 に とっ て、美味しく ない 食べ物 は {あり ませ ん}。
+      - 彼 に とっ て、美味しく ない 食べ物 なんて {ない}。
+    english_literally: Regarding him, food that is not delicious does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に とっ て、美味しく ない 食べ物 も {ある}。
+        english: For him, there is also food that isn't delicious.
+        hint: The original implies he finds all food delicious. This alternative suggests he finds some
+          food not delicious. We're looking for a statement that means all food is delicious to him.
+    scene: Two friends discussing a third friend's eating habits, noting how he enjoys everything.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「彼にとって」 sets the perspective. The double negative 「美味しくない食べ物はない」 emphasizes that
+      all food is delicious to him, expressing a strong, positive opinion. The sentence uses typical casual
+      speech for male friends.
+  - english: In this company, there is no employee who isn't interested in environmental issues.
+    japanese:
+      - この 会社 で、環境 問題 に 関心 が ない 社員 は {い ませ ん}。
+      - この 会社 で、環境 問題 に 関心 が ない 社員 は {い ない}。
+    english_literally: In this company, employees who have no interest in environmental problems do not
+      exist.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 で、環境 問題 に 関心 が ない 社員 も {い ます}。
+        english: In this company, there are also employees who aren't interested in environmental issues.
+        hint: The original states all employees are interested. This alternative suggests some are not.
+          We're looking for a statement that means all employees are interested.
+    scene: A company representative presenting their corporate social responsibility report.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    listener_gender: group
+    nuance: The polite form 「い ませ ん」 is used for a formal, professional setting, emphasizing the company's
+      collective commitment to environmental issues by stating there are no exceptions. This formal language
+      is typical for a public presentation.
+  - english: There's no bad ramen at that ramen shop, you know.
+    japanese:
+      - あそこ の ラーメン 屋 に、まずい ラーメン は {ない} よ。
+      - あそこ の ラーメン 屋 に、まずい ラーメン は {あり ませ ん} よ。
+      - あそこ の ラーメン 屋 に、まずい ラーメン は {ない} ぜ。
+    english_literally: At that ramen shop, bad ramen does not exist, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あそこ の ラーメン 屋 に、まずい ラーメン も {ある} よ。
+        english: At that ramen shop, there's also some bad ramen, you know.
+        hint: The original means all ramen there is good. This alternative suggests some ramen there is
+          bad. We're looking for a statement that means all ramen is good.
+    scene: A man confidently recommending his favorite ramen shop to a colleague.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「まずい」 (bad-tasting) combined with the double negative implies that every single
+      bowl of ramen is delicious. The particle 「よ」 adds a touch of assertion and familiarity, common in
+      male casual speech when making a strong recommendation.
+  - english: There is no success that doesn't experience failure.
+    japanese:
+      - 失敗 を 経験 し ない 成功 は {ない}。
+      - 失敗 を 経験 し ない 成功 は {あり ませ ん}。
+      - 失敗 を 経験 し ない 成功 など {ない} の だ。
+    english_literally: Success that does not experience failure does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 を 経験 し ない 成功 も {ある}。
+        english: There is also success that doesn't experience failure.
+        hint: The original states that all success involves failure. This alternative suggests some success
+          can be achieved without failure. We're looking for a statement that means all success involves
+          failure.
+    scene: A motivational speaker addressing a group of aspiring entrepreneurs.
+    register: formal
+    setting: inspirational
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: This is a profound statement emphasizing the universality of failure as a prerequisite for
+      success. The combination of 「経験 し ない」 (negative verb form) and 「ない」 (negative existence) strongly
+      asserts this truth in an inspirational context.
+  - english: In the past, there was no one who didn't work in this area.
+    japanese:
+      - 昔 は、この 地域 で 働か ない 人 は {い ませ ん でし た}。
+      - 昔 は、この 地域 で 働か ない 人 は {い なかっ た}。
+    english_literally: In the past, people who did not work in this area did not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は、この 地域 で 働か ない 人 も {い まし た}。
+        english: In the past, there were also people who didn't work in this area.
+        hint: The original asserts that everyone worked in the past. This alternative suggests some did
+          not. We're looking for a statement that means everyone worked.
+    scene: An elderly woman reminiscing about her hometown's strong work ethic.
+    register: formal
+    setting: reflective
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The phrase 「働かない人はいませんでした」 used by an older female speaker emphasizes a universal past truth,
+      suggesting that everyone without exception was employed or contributed. The polite past form 「いませんでした」
+      maintains a respectful and somewhat nostalgic tone.
+  - english: I don't think there's any meaningless experience in my life.
+    japanese:
+      - 私 の 人生 に、無 意味 な 経験 は {ない} と 思い ます。
+      - 私 の 人生 に、無 意味 な 経験 は {あり ませ ん} と 思い ます。
+      - 私 の 人生 に、無 意味 な 経験 は {ない} と 思う。
+    english_literally: In my life, meaningless experiences do not exist, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 人生 に、無 意味 な 経験 も {ある} と 思い ます。
+        english: I think there are also meaningless experiences in my life.
+        hint: The original states that all experiences have meaning. This alternative suggests some experiences
+          are meaningless. We're looking for a statement that means all experiences have meaning.
+    scene: A reflective individual speaking about their personal growth and perspective.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    listener_gender: no one
+    nuance: The phrase 「無 意味 な 経験 は ない」 forms a double negative using a negative noun modifier 「無 意味 な」
+      (meaningless) and 「ない」 to strongly assert that all experiences have meaning. 「と 思います」 adds a personal,
+      reflective touch.
+  - english: Today, in this match, there's no player who isn't putting in effort.
+    japanese:
+      - 今日、この 試合 で 努力 し ない 選手 は {い ない}。
+      - 今日、この 試合 で 努力 し ない 選手 は {い ませ ん}。
+      - 今日、この 試合 で 努力 し ない 選手 なんて {い ない} よ。
+    english_literally: Today, in this match, players who do not make an effort do not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 今日、この 試合 で 努力 し ない 選手 も {いる}。
+        english: Today, in this match, there are also players who aren't putting in effort.
+        hint: The original states that all players are putting in effort. This alternative suggests some
+          are not. We're looking for a statement that means all players are putting in effort.
+    scene: A sports commentator praising the performance of all the players in an intense game.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: This statement uses the double negative 「努力 し ない 選手 は い ない」 to emphasize that every single
+      player is putting in effort, highlighting their dedication. It is suitable for a semi-formal commentary
+      setting.
+  - english: There's no one who won't support your dreams!
+    japanese:
+      - あなた の 夢 を 応援 し ない 人 は {い ない} わ！
+      - あなた の 夢 を 応援 し ない 人 は {い ませ ん}！
+      - あなた の 夢 を 応援 し ない 人 は {い ない} よ！
+    english_literally: People who do not support your dreams do not exist!
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 夢 を 応援 し ない 人 も {いる} わ。
+        english: There are also people who won't support your dreams!
+        hint: The original states that everyone will support your dreams. This alternative suggests some
+          won't. We're looking for a statement that means everyone will support your dreams.
+    scene: A woman encouraging her friend who is hesitant to pursue her dreams.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「応援しない人はいない」 is a strong, positive affirmation of universal support. The use of
+      「わ」 at the end of the sentence is characteristic of female speech, adding a soft but firm emphasis,
+      making the encouragement sound warm and personal.
+  - english: I heard there was no knowledge he didn't know.
+    japanese:
+      - 彼 が 知ら なかっ た 知識 は {なかっ た} と 聞い た。
+      - 彼 が 知ら なかっ た 知識 は {あり ませ ん でし た} と 聞い た。
+      - 彼 が 知ら なかっ た 知識 は {なかっ た} と 聞き まし た。
+    english_literally: Knowledge that he did not know did not exist, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 知ら なかっ た 知識 も {あっ た} と 聞い た。
+        english: I heard there was also knowledge he didn't know.
+        hint: The original asserts he knew everything. This alternative suggests he didn't know some things.
+          We're looking for a statement that means he knew everything.
+    scene: Two academics discussing the prodigious intellect of a retired professor.
+    register: semi-formal
+    setting: academic
+    conjugation: negative past plain (～なかった)
+    listener_gender: male
+    speaker_age: older
+    nuance: The past tense double negative 「知ら なかった 知識 は なかった」 powerfully asserts that the professor possessed
+      all knowledge. The use of plain forms 「なかった」 and 「と 聞い た」 maintains a semi-formal, intellectual
+      tone, appropriate for academic discussion.
+post_example_writeup: The usage of this double negative pattern strongly asserts the universal presence
+  of a characteristic or action by denying its absence. It can convey emphasis, assurance, or a general
+  truth, depending on the context. Pay close attention to the specific negative form used before 「はない」,
+  as it will define the nuance of the universal affirmation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ない-はない

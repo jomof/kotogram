@@ -1,0 +1,257 @@
+grammar_point: でも (but・however)
+learn_before:
+  - でも〜でも (whether x or y)
+meaning: but; however; yet
+pronunciation:
+  katakana: デモ
+  romaji: demo
+formation:
+  '[Sentence A] + でも + [Sentence B]': Connects two clauses, where B expresses a contrast or opposition
+    to A.
+jlpt: N5
+etymology: The origin of でも is believed to be a combination of the conjunctive particle で (de), indicating
+  means or state, and the particle も (mo), indicating inclusion or emphasis ("even"). Over time, this
+  combination evolved to express a sense of "even if/though" something is the case, leading to its conjunctive
+  use as "but" or "however," by implying "even so."
+writeup: |-
+  でも is a versatile Japanese word used primarily as a conjunction to mean "but" or "however," introducing a contrasting or qualifying statement. It is broadly applicable across various contexts, from casual conversation to more formal writing, though it leans slightly more towards conversational use compared to しかし (shikashi).
+
+  When connecting two clauses, でも signifies that the second clause presents information that contrasts with, qualifies, or sets a condition for the first clause. It can be used to introduce an exception, a change in topic, or a mild contradiction.
+
+  Beyond its conjunctive role, でも also functions as a particle meaning "even" or "any (e.g., anything, anywhere, anyone)," especially when combined with interrogative words (e.g., 誰でも 'anyone', どこでも 'anywhere'). However, this grammar point focuses specifically on its use as a conjunction for "but/however."
+
+  でも can also be used as an interjection to indicate an interjection or to soften a refusal, such as when offering a counter-suggestion. Its flexibility makes it a foundational element in everyday Japanese conversation.
+false_friends:
+  - term: しかし
+    meaning: but; however; nevertheless
+    kind: similar expression
+    nuance: '"しかし" is generally more formal and stronger in expressing contrast than "でも". It is often
+      used to introduce a significant opposing point or a formal objection.'
+    grammar_point: しかし (but・however)
+  - term: けれど
+    meaning: but; however; although
+    kind: similar expression
+    nuance: '"けれど" is very similar to "でも" in conveying "but" or "however." It is slightly more formal
+      than "でも" but less formal than "しかし." It can also be used as a softer way to introduce a topic or
+      a question.'
+    grammar_point: しかし (but・however)
+  - term: だが
+    meaning: but; however
+    kind: similar expression
+    nuance: '"だが" is a more masculine and often more abrupt way of expressing "but" or "however." It is
+      commonly used in written language or in rather assertive speech.'
+    grammar_point: しかし (but・however)
+  - term: のに
+    meaning: even though; despite the fact that; in spite of
+    kind: similar expression
+    nuance: '"のに" implies a sense of dissatisfaction, surprise, or reproach because the actual outcome
+      contradicts the expected outcome. "でも" simply states a contrast without this emotional nuance.'
+    grammar_point: のに (unexpected result)
+  - term: も
+    meaning: too; also; even
+    kind: often confused with
+    nuance: When "でも" means "even" (e.g., "何でも" - anything), it is often confused with "も" as a particle
+      for "too" or "even." However, "でも" in this context always implies an exhaustive "any/every" choice,
+      while "も" is simply additive.
+    grammar_point: も (addition or emphasis particle)
+post_false_friends_writeup: |-
+  While "でも" serves as a straightforward "but" or "however," distinguishing it from similar expressions is key. "しかし," "けれど," and "だが" all convey contrast, with varying degrees of formality and nuance. "しかし" is the most formal, often used in writing or serious discourse. "けれど" is a gentle alternative, suitable for both speech and writing, and often implies a slight hesitation or softening. "だが" is direct and strong, frequently seen in more assertive male speech or written contexts.
+
+  "のに" carries a sense of regret, surprise, or disapproval, suggesting that an outcome is contrary to expectation. Unlike "でも," which simply states a contrast, "のに" highlights an unfulfilled expectation or a mismatch between cause and effect. For instance, 「雨が降っているのに、傘がない。」(It's raining, yet I don't have an umbrella.) expresses a problem, while 「雨が降っている。でも、出かけよう。」(It's raining. But, let's go out.) is a simple contrasting statement.
+
+  It is also important to note that "でも" can function differently when it follows an interrogative word (e.g., 誰でも - anyone, いつでも - anytime, 何でも - anything). In these cases, it means "even" or "any," implying inclusiveness or unrestricted choice, which is different from its conjunctive meaning of "but/however." The particle "も" also means "even" or "too," but typically signifies addition or emphasis on a single item, not an exhaustive set like "でも" with interrogatives.
+examples:
+  - english: I want to go to the party, but I have work tomorrow.
+    japanese:
+      - パーティー に 行き たい。{で も}、明日 仕事 が ある。
+      - パーティー に 行き たい です。{で も}、明日 仕事 が あり ます。
+      - パーティー に 行き たい ん です。{で も}、明日 仕事 が ある ん です。
+    english_literally: I want to go to the party. But, tomorrow there is work.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に 行き たい。しかし、明日 仕事 が ある。
+        english: I want to go to the party. However, I have work tomorrow.
+        hint: 「しかし」is generally more formal than 「でも」. We're looking for a casual way to express 'but'.
+      - competing_japanese:
+          - パーティー に 行き たい。な の に、明日 仕事 が ある。
+        english: I want to go to the party. Even though, I have work tomorrow.
+        hint: 「なのに」implies a sense of dissatisfaction or surprise. We're looking for a simple contrasting
+          statement.
+    scene: A student talking to a friend about weekend plans.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This use of 「でも」is a very common and natural way to express a simple contrast or reason in
+      casual conversation between friends.
+  - english: It's expensive. However, I really want it.
+    japanese:
+      - 高い。{で も}、本当 に 欲しい。
+      - 高い です。{で も}、本当 に 欲しい です。
+      - 高い ん です。{で も}、本当 に 欲しい ん です。
+    english_literally: It is expensive. However, truly want.
+    competing_grammar:
+      - competing_japanese:
+          - 高い。けれど、本当 に 欲しい。
+        english: It's expensive. But, I really want it.
+        hint: 「けれど」is slightly more formal than 「でも」 and can also introduce a contrast. We're looking
+          for the simpler, more common casual conjunction.
+    scene: Someone shopping, deliberating a purchase.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker uses 「でも」to introduce a strong personal desire that contrasts with a practical
+      consideration. It conveys a momentary internal struggle.
+  - english: I don't really like spicy food, but this is delicious.
+    japanese:
+      - 辛い 食べ物 は あまり 好き じゃ ない。{で も}、これ は 美味しい。
+      - 辛い 食べ物 は あまり 好き じゃ あり ませ ん。{で も}、これ は 美味しい です。
+    english_literally: Spicy food is not very liked. But, this is delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 辛い 食べ物 は あまり 好き じゃ ない。な の に、これ は 美味しい。
+        english: I don't really like spicy food. Even though, this is delicious.
+        hint: 「なのに」implies surprise or an unexpected outcome. Here, 「でも」simply introduces a contrasting
+          taste experience.
+    scene: A person trying a new dish at a restaurant.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「でも」is used here to qualify a general statement with a specific exception, indicating a pleasant
+      surprise. It makes the statement sound more natural and less absolute.
+  - english: He's smart, but sometimes he makes silly mistakes.
+    japanese:
+      - 彼 は 頭 が いい。{で も}、時々 ばかげ た 間違い を する。
+      - 彼 は 頭 が いい です。{で も}、時々 ばかげ た 間違い を し ます。
+    english_literally: He is smart. But, sometimes silly mistakes he makes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頭 が いい。だ が、時々 ばかげ た 間違い を する。
+        english: He is smart. But, sometimes he makes silly mistakes.
+        hint: 「だが」is more assertive and often used in written Japanese or more direct, masculine speech.
+          We're looking for a more neutral, conversational tone.
+    scene: Colleagues discussing a team member.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: In this semi-formal context, 「でも」offers a balanced critique, acknowledging a positive trait
+      while introducing a contrasting negative one without sounding overly harsh.
+  - english: It's hard to quit smoking. However, I'll try my best.
+    japanese:
+      - タ バコ を 辞める の は 難しい。{で も}、頑張る。
+      - タ バコ を 辞める の は 難しい です。{で も}、頑張り ます。
+    english_literally: Quitting smoking is difficult. But, I will do my best.
+    competing_grammar:
+      - competing_japanese:
+          - タ バコ を 辞める の は 難しい。けれど、頑張る。
+        english: It's hard to quit smoking. But, I'll try my best.
+        hint: 「けれど」could work, but 「でも」feels a bit more immediate and determined in this personal resolve.
+          We're looking for a direct declaration of intent.
+    scene: A person making a New Year's resolution.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This use of 「でも」shows resolve despite difficulty. The speaker acknowledges the challenge but
+      immediately follows with a determined commitment, emphasizing their inner strength.
+  - english: That's a good idea. But, how should we proceed from here?
+    japanese:
+      - いい アイデア だ ね。{で も}、これ から どう する？
+      - いい アイデア です ね。{で も}、これ から どう し ます か？
+    english_literally: That's a good idea, isn't it? But, from now what do we do?
+    competing_grammar:
+      - competing_japanese:
+          - いい アイデア だ ね。しかし、これ から どう する？
+        english: That's a good idea, isn't it? However, how should we proceed from here?
+        hint: 「しかし」is too formal for this casual, collaborative setting. We're looking for a smoother
+          transition to a follow-up question.
+    scene: A group brainstorming for a project.
+    register: casual
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「でも」is used here as a transitional word, acknowledging the previous statement while pivoting
+      to a new question or concern. The 「ね」softens the preceding statement.
+  - english: I understand your point. However, we need to consider other factors.
+    japanese:
+      - あなた の 意見 は 分かり ます。{で も}、他 の 要素 も 考慮 する 必要 が あり ます。
+      - あなた の 意見 は 分かり ます が、{で も}、他 の 要素 も 考慮 する 必要 が あり ます。
+    english_literally: Your opinion I understand. But, other elements also considering need there is.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 意見 は 分かり ます。しかし、他 の 要素 も 考慮 する 必要 が あり ます。
+        english: I understand your point. However, we need to consider other factors.
+        hint: While 「しかし」is formal, 「でも」is also acceptable in formal settings but maintains a slightly
+          less rigid tone. The choice depends on desired politeness level.
+    scene: A business meeting.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: In a formal business setting, 「でも」can be used to introduce a counterpoint politely, indicating
+      that while one understands, there's another perspective or consideration. It’s slightly less abrupt
+      than 「しかし」.
+  - english: I wanted to ask him, but I was too shy.
+    japanese:
+      - 彼 に 聞き たかっ た。{で も}、恥ずかしく て 言え なかっ た。
+      - 彼 に 聞き たかっ た です。{で も}、恥ずかしく て 言え ませ ん でし た。
+    english_literally: To him, I wanted to ask. But, shy so I could not say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 聞き たかっ た。な の に、恥ずかしく て 言え なかっ た。
+        english: I wanted to ask him. Even though, I was too shy to say it.
+        hint: 「なのに」would imply frustration or an unexpected outcome. Here, 「でも」just expresses a simple
+          contrast between desire and action.
+    scene: A person confiding in a friend.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: This sentence uses 「でも」to express a personal regret or an unfulfilled intention due to an
+      internal feeling. It conveys a sense of vulnerability shared with a close friend.
+  - english: The trip was expensive, but we made unforgettable memories.
+    japanese:
+      - 旅行 は 高かっ た。{で も}、忘れ られ ない 思い出 が でき た。
+      - 旅行 は 高かっ た です。{で も}、忘れ られ ない 思い出 が でき まし た。
+    english_literally: The trip was expensive. But, unforgettable memories were made.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 は 高かっ た。けれど、忘れ られ ない 思い出 が でき た。
+        english: The trip was expensive. But, we made unforgettable memories.
+        hint: 「けれど」is a valid alternative here, slightly more literary. 「でも」is the more direct and commonly
+          used conjunction in conversation.
+    scene: Friends reminiscing about a past trip.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is an example where 「でも」introduces a positive outcome that contrasts with an initial
+      negative aspect, emphasizing that the positive outweighed the negative. It reflects a grateful perspective.
+  - english: It's a small mistake, but it could lead to a big problem.
+    japanese:
+      - 小さな ミス だ。{で も}、大きな 問題 に つながる 可能 性 が ある。
+      - 小さな ミス です。{で も}、大きな 問題 に つながる 可能 性 が あり ます。
+    english_literally: It's a small mistake. But, to a big problem leading possibility there is.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな ミス だ。しかし、大きな 問題 に つながる 可能 性 が ある。
+        english: It's a small mistake. However, it could lead to a big problem.
+        hint: 「しかし」would be more emphatic and formal, suggesting a more serious warning. We're looking
+          for a slightly milder tone appropriate for explanation.
+    scene: A manager reviewing a report with an employee.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「でも」here highlights a cautious warning. It acknowledges the seemingly minor nature
+      of the mistake while emphasizing its potential serious consequences, striking a balanced tone.
+post_example_writeup: The examples illustrate how "でも" functions as a flexible conjunctive particle in
+  Japanese. It allows for a smooth transition between contrasting ideas or statements without necessarily
+  implying strong opposition or unexpected outcomes, unlike more formal or emotionally charged conjunctions.
+  Its adaptability across various registers, from very casual to relatively formal, makes it a valuable
+  word for expressing qualifications, mild objections, or shifts in thought.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でも

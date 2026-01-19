@@ -1,0 +1,248 @@
+grammar_point: Verb[たい] (desiderative)
+learn_before:
+  - '[Noun]が下手 (unskillful at)'
+  - '[Verb-て]すみません (apologizing for action)'
+  - お~だ (honorific copula)
+  - が (subject marker)
+  - さ (interjection)
+  - たい (want to do)
+  - なら〜で (if ~ then ~)
+  - ばかり (only・just, often with nuance of excess)
+  - 迷惑をかける (to cause trouble)
+meaning: want to do
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: たい
+    rarity: common
+    meaning: want to do
+  - conjugation-type: negative plain (～ない)
+    form: たくない
+    rarity: common
+    meaning: don't want to do
+  - conjugation-type: past plain (～た)
+    form: たかった
+    rarity: common
+    meaning: wanted to do
+  - conjugation-type: negative past plain (～なかった)
+    form: たくなかった
+    rarity: common
+    meaning: didn't want to do
+  - conjugation-type: te-form (～て)
+    form: たくて
+    rarity: common
+    meaning: wanting to do (connective)
+  - conjugation-type: conditional (～ば)
+    form: たければ
+    rarity: less common
+    meaning: if one wants to do
+  - conjugation-type: conditional (～たら)
+    form: たかったら
+    rarity: common
+    meaning: if one wanted to do
+  - conjugation-type: concessive (～ても)
+    form: たくても
+    rarity: common
+    meaning: even if one wants to do
+pronunciation:
+  katakana: タイ
+  romaji: tai
+formation:
+  Verb (ます-stem) + たい: Expresses the speaker's desire to perform an action.
+  Verb (ます-stem) + たがる: Expresses a third person's desire to perform an action (inferred from observation).
+jlpt: N5
+etymology: The origin of the suffix 「たい」 is believed to come from the older auxiliary verb 「たし」, which
+  expressed desire. Over time, 「たし」 evolved phonetically and grammatically, eventually becoming the modern
+  「たい」 that attaches to the ます-stem of verbs. Its core meaning of expressing a strong personal desire
+  has remained consistent throughout its development.
+writeup: |-
+  The grammar point 「〜たい」 expresses the speaker's desire to perform an action. It attaches to the ます-stem of a verb. For example, 食べる (taberu, to eat) becomes 食べたい (tabetai, want to eat). It is crucial to understand that 「〜たい」 is primarily used for the first person (I/we) or when asking about the second person's (you) desire. For example, 「私は寿司を食べたいです」 (I want to eat sushi) or 「あなたは寿司が食べたいですか？」 (Do you want to eat sushi?).
+
+  「〜たい」 conjugates just like an い-adjective. This means its negative form is 「たくない」 (e.g., 食べたくない - don't want to eat), its past form is 「たかった」 (e.g., 食べたかった - wanted to eat), and its past negative form is 「たくなかった」 (e.g., 食べたくなかった - didn't want to eat). It can also form the て-form: 「たくなって」, or conditional forms like 「たければ」 or 「たかったら」.
+
+  When expressing the desire of a third person (he/she/they), you generally use 「〜たがる」 (e.g., 彼は寿司を食べたがっています - He wants to eat sushi). Using 「〜たい」 for a third person's desire is typically considered grammatically incorrect, unless it's a rhetorical question or a very specific context where you are empathizing or assuming their feelings.
+
+  This form is versatile and fundamental for expressing personal wishes in Japanese. It's used across various registers, from casual to polite, depending on the politeness level of the auxiliary verb (e.g., たいです, たい).
+false_friends:
+  - term: Nounが欲しい
+    meaning: want (an object)
+    kind: often confused with
+    nuance: 「〜たい」 expresses a desire to do an action, while 「〜欲しい」 expresses a desire for an object. We're
+      looking for an action.
+    grammar_point: <suggest>:Nounが欲しい (to want something)
+  - term: Verb[dictionary]つもりだ
+    meaning: intend to do
+    kind: similar expression
+    nuance: While both express a future action, 「〜たい」 expresses a desire, whereas 「〜つもりだ」 expresses a
+      definite intention or plan.
+    grammar_point: <suggest>:Verb[dictionary]つもりだ (to intend to)
+  - term: Verb[て]ほしい
+    meaning: want someone to do (for you)
+    kind: similar expression
+    nuance: 「〜たい」 expresses your own desire to do something. 「〜てほしい」 expresses your desire for someone
+      else to do something for you.
+    grammar_point: <suggest>:Verb[て]ほしい (to want someone to do)
+  - term: Verb[ます-stem]たがる
+    meaning: (someone) wants to do
+    kind: similar expression
+    nuance: 「〜たい」 is used for the speaker's (first person) desire, or to ask about the listener's (second
+      person) desire. 「〜たがる」 is used for a third person's desire.
+    grammar_point: <suggest>:Verb[ます-stem]たがる (someone wants to do)
+post_false_friends_writeup: 'It''s important to distinguish between wanting to do something yourself (〜たい),
+  wanting someone else to do something (〜てほしい), and wanting an object (〜欲しい). Also, remember the key difference
+  in perspective: 〜たい is for your own desires, while 〜たがる is used when describing someone else''s desires.'
+examples:
+  - english: I want to eat sushi.
+    japanese:
+      - 私 は 寿司 を {食べ たい} です。
+      - 寿司 が {食べ たい}。
+      - 寿司 を {食べ たい}。
+    english_literally: As for me, sushi I want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 寿司 が 欲しい です。
+        english: I want sushi (the object).
+        hint: We're looking for a verb indicating the desire to perform an action, not the desire for
+          an object.
+    scene: You are at a Japanese restaurant, looking at the menu.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: I want to go home early today.
+    japanese:
+      - 今日 は 早く {帰り たい} です。
+      - 今日 は 早く {帰り たい}。
+    english_literally: Today, early want to go home.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 早く 帰る つもり です。
+        english: Today, I intend to go home early.
+        hint: We're expressing a desire, not a definite intention or plan.
+    scene: A student talking to a friend after class.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: I don't want to study anymore.
+    japanese:
+      - もう {勉強 し たく ない} です。
+      - もう {勉強 し たく ない}。
+    english_literally: Anymore, want not to study.
+    competing_grammar:
+      - competing_japanese:
+          - もう 勉強 する の を やめ たい。
+        english: I want to stop studying anymore.
+        hint: We're looking for a direct negative expression of desire, not a desire to stop an action.
+    scene: A tired student complaining to themselves or a friend.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: I wanted to buy that bag.
+    japanese:
+      - あの カバン を {買い たかっ た} ん です。
+      - あの カバン、{買い たかっ た}。
+    english_literally: That bag, wanted to buy.
+    competing_grammar:
+      - competing_japanese:
+          - あの カバン を 買う つもり だっ た。
+        english: I had intended to buy that bag.
+        hint: We're expressing a past desire, not a past intention.
+    scene: You are regretting not buying something you saw.
+    register: semi-formal
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: What do you want to do this weekend?
+    japanese:
+      - 今週 末、何 を {し たい} です か。
+      - 今週 末、何 を {し たい}？
+    english_literally: This weekend, what want to do.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 末、何 を する つもり です か。
+        english: What do you intend to do this weekend?
+        hint: We are asking about a desire or wish, not a plan.
+    scene: Two friends planning their weekend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: My little brother wants to play games.
+    japanese:
+      - 弟 は ゲーム を {したがっ て い ます}。
+      - 弟 は ゲーム を {したがっ て いる}。
+    english_literally: My younger brother, games wants to play.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は ゲーム を し たい です。
+        english: My little brother wants to play games. (Sounds like speaker knows his desire directly)
+        hint: When talking about a third person's desire, the '〜たがる' form is generally used, as we infer
+          their desire from observation.
+    scene: Talking about a younger sibling's current activity.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「したがっています」 uses the `〜たがる` form, which indicates a third person's desire based on observable
+      behavior or statements. This form is necessary when talking about someone else's desire, as directly
+      using 「〜たい」 for a third person would sound odd, implying you can read their mind.
+  - english: If I want to travel abroad, I need to save money.
+    japanese:
+      - 海外 旅行 に {行き たけれ ば}、お 金 を 貯める 必要 が あり ます。
+      - 海外 旅行 に {行き たい なら}、お 金 を 貯める 必要 が あり ます。
+    english_literally: To abroad travel if I want to go, money save need there is.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 旅行 に 行き たい なら、お 金 を 貯める 必要 が あり ます。
+        english: If I want to travel abroad, I need to save money.
+        hint: Both are correct, but this example uses the ば-form conditional. We're looking for that specific
+          conditional form.
+    scene: You are discussing future plans and financial necessities.
+    register: formal
+    setting: serious
+    conjugation: conditional (～ば)
+  - english: My cat doesn't want to eat that food.
+    japanese:
+      - うち の 猫 は その 餌 を {食べ たがり ませ ん}。
+      - うち の 猫 は その 餌 を {食べ たがら ない}。
+    english_literally: Our cat, that food, doesn't want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 は その 餌 を 食べ たく ない です。
+        english: Our cat doesn't want to eat that food. (Sounds like speaker is the cat)
+        hint: When describing a third person's (or animal's) lack of desire, '〜たがる' (in its negative form)
+          is used to convey that the desire is inferred from observation, not directly known.
+    scene: A pet owner talking about their cat's eating habits.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: I didn't want to trouble you, but I had no choice.
+    japanese:
+      - ご 迷惑 を {お かけ し たく なかっ た} の です が、仕方 あり ませ ん でし た。
+      - ご 迷惑 を {お かけ し たく なかっ た} けれど、仕方 なかっ た。
+    english_literally: Trouble cause wanted not, but no choice there was.
+    competing_grammar:
+      - competing_japanese:
+          - ご 迷惑 を お かけ し たく あり ませ ん でし た。
+        english: I politely did not want to trouble you.
+        hint: This example focuses on the plain negative past form of '〜たい', which implies a direct and
+          sometimes more empathetic statement of past desire.
+    scene: You are apologizing for causing trouble despite your intentions.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: negative past plain (～なかった)
+  - english: I want to become a doctor, so I'm studying hard every day.
+    japanese:
+      - 医者 に {なり たく て}、毎日 一生 懸命 勉強 し て い ます。
+      - 医者 に {なり たく て}、毎日 一生 懸命 勉強 し て る。
+    english_literally: Doctor wanting to become, everyday hard studying am.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 に なり たい から、毎日 一生 懸命 勉強 し て い ます。
+        english: Because I want to become a doctor, I'm studying hard every day.
+        hint: Both are correct, but this example uses the て-form of '〜たい' to connect the clauses and show
+          reason/cause, which is a common usage.
+    scene: A student explaining their motivation for studying.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+post_example_writeup: As demonstrated in the examples, the versatility of 「〜たい」 allows it to express a
+  wide range of personal desires and wishes. Pay close attention to the distinction between first/second-person
+  usage of 「〜たい」 and third-person usage of 「〜たがる」 to ensure natural and accurate communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/Verb%5B%E3%81%9F%E3%81%84%5D%20(desiderative)

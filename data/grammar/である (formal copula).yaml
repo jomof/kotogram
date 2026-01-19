@@ -1,0 +1,321 @@
+grammar_point: である (formal copula)
+learn_before:
+  - '[Noun]限り (limited to)'
+  - '[Verb-て]からでないと〜ない (unless after doing)'
+  - な-Adjective[であった] (formal past)
+  - にもとづいて (based on)
+  - 直ちに (immediately)
+meaning: to be (formal/literary)
+meaning_warning: Primarily used in literary work
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: である
+    rarity: common
+    meaning: to be (formal/literary)
+  - conjugation-type: non-past polite (～ます)
+    form: であります
+    rarity: less common
+    meaning: to be (very formal/humble)
+  - conjugation-type: negative plain (～ない)
+    form: でない
+    rarity: common
+    meaning: not to be (formal/literary)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ではありません
+    rarity: common
+    meaning: not to be (polite)
+  - conjugation-type: past plain (～た)
+    form: であった
+    rarity: common
+    meaning: was (formal/literary)
+  - conjugation-type: past polite (～ました)
+    form: でありますた
+    rarity: less common
+    meaning: was (very formal/humble)
+  - conjugation-type: negative past plain (～なかった)
+    form: でなかった
+    rarity: common
+    meaning: was not (formal/literary)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ではありませんでした
+    rarity: common
+    meaning: was not (polite)
+  - conjugation-type: te-form (～て)
+    form: であって
+    rarity: uncommon
+    meaning: being / and, because (formal/literary)
+  - conjugation-type: conditional (～ば)
+    form: であれば
+    rarity: common
+    meaning: if it is (formal/literary)
+  - conjugation-type: conditional (～たら)
+    form: であったら
+    rarity: common
+    meaning: if it was (formal/literary)
+pronunciation:
+  katakana: デアル
+  romaji: dearu
+formation:
+  Noun + である: Connects a noun with a description or state in formal speech or writing.
+  な-Adjective stem + である: Connects a な-adjective with a description or state in formal speech or writing.
+  Sentence + の + である: Used to explain the reason for something in a formal or emphatic way.
+jlpt: N3
+etymology: 「である」 is formed from the conjunctive form (連用形) of 「だ」 (the copula) plus the verb 「ある」 (to
+  be). Over time, it has grammaticalized into a formal equivalent of 「だ」.
+writeup: |-
+  「である」 serves as a formal or literary equivalent of 「だ」. It is fundamentally a combination of the conjunctive form of 「だ」 and the verb 「ある」. While it can theoretically substitute 「だ」 in most contexts, its primary domain is formal written and spoken Japanese, including academic papers, official reports, and news broadcasts. Its core function is to express a state, attribute, or identity in an objective and definitive manner, lending an authoritative tone to statements.
+
+  **Formality and Usage Nuances:**
+  *   **Objective Tone:** 「である」 is ideal for presenting facts, definitions, and conclusions, as it conveys an objective, declarative tone.
+  *   **Extreme Formality (であります):** The variant 「であります」 represents a significantly higher level of formality. Its use is largely confined to highly hierarchical environments such as the military, law enforcement, or certain governmental and corporate settings where such extreme politeness or humility is strictly observed. In everyday conversation, 「であります」 would sound overly stiff or even deliberately humorous, often used to mock seriousness in trivial situations.
+  *   **Attributive Use:** 「である」 can also be used attributively, particularly with nouns and な-adjectives, to modify another noun. For instance, 「重要である項目」 (important items) carries a more formal and definitive nuance than the more common 「重要な項目」. However, this usage can sound excessively rigid in standard conversation and is typically reserved for formal writing.
+false_friends:
+  - term: がある
+    meaning: To exist, there is/are, to have
+    kind: often confused with
+    nuance: 「がある」 signifies existence or possession and is an intransitive verb. In contrast, 「である」 functions
+      as a copula, equating two elements or attributing a state. They serve entirely distinct grammatical
+      roles.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: だ
+    meaning: To be (informal)
+    kind: similar expression
+    nuance: 「だ」 is the informal and common copula for casual speech and writing. 「である」 is its formal,
+      objective, and literary counterpart, primarily used in academic, journalistic, or official contexts.
+    grammar_point: だ (casual copula)
+  - term: です
+    meaning: To be (polite)
+    kind: similar expression
+    nuance: 「です」 is the polite copula used in everyday polite conversation. While both 「です」 and 「である」
+      make definitive statements, 「である」 carries a more authoritative and impersonal tone, lacking the
+      direct listener-oriented politeness inherent in 「です」.
+    grammar_point: です (polite copula)
+  - term: たる
+    meaning: To be (in a position of), as a
+    kind: similar expression
+    nuance: 「たる」 is an archaic or highly formal copula primarily used to describe someone's essential
+      nature, specific role, or qualification (e.g., 'as a leader' or 'what one must be'). Its scope is
+      much narrower and its usage far less frequent than 「である」, which functions as a general formal copula.
+    grammar_point: たる (to be in a position of)
+  - term: ということ
+    meaning: the fact that..., that means...
+    kind: similar expression
+    nuance: While both 「である」 and 「ということ」 can introduce facts or explanations, 「である」 acts as a formal copula
+      for direct statements of identity or state, whereas 「ということ」 is a nominalizer that frames a preceding
+      clause as a 'matter' or 'fact,' often used to explain or confirm something implied or stated previously.
+      「である」 is the formal predicate, while 「ということ」 frames a concept.
+    grammar_point: ということ(は) (that means)
+post_false_friends_writeup: While 「だ」, 「です」, and 「である」 all operate as copulas, they exist on different
+  levels of formality. Use 「だ」 for casual interactions, 「です」 for general polite discourse, and 「である」 for
+  formal, objective, or literary contexts. It is critical not to confuse 「である」 with 「がある」, as 「がある」 expresses
+  existence or possession, a function fundamentally distinct from 「である」's role as a copula.
+examples:
+  - english: This paper is his area of expertise.
+    japanese:
+      - この 論文 は 彼 の 専門 分野 {で ある}。
+      - この 論文 が 彼 の 専門 分野 {で ある}。
+    english_literally: This paper as for his area of expertise is.
+    competing_grammar:
+      - competing_japanese:
+          - この 論文 は 彼 の 専門 分野 {だ}。
+        english: This paper is his area of expertise (casual).
+        hint: The academic setting of a seminar favors the objective and formal tone of 「である」 over the
+          casual 「だ」, suitable for scholarly discourse. We're looking for a formal statement.
+      - competing_japanese:
+          - この 論文 は 彼 の 専門 分野 {です}。
+        english: This paper is his area of expertise (polite).
+        hint: For a statement of fact from a public official, 「である」 conveys a definitive and objective
+          quality that goes beyond the standard politeness of 「です」. We're looking for an objective, definitive
+          statement.
+      - competing_japanese:
+          - この 論文 に 彼 の 専門 分野 が {ある}。
+        english: His area of expertise exists within this paper.
+        hint: 「がある」 indicates existence or possession within a place. We're looking for a copula that
+          defines what the paper *is*.
+    scene: An academic discusses a colleague's recently published work in a seminar.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: This plan is recognized as being extremely important.
+    japanese:
+      - その 計画 は 極めて 重要 {で ある} と 認識 さ れ て いる。
+      - その 計画 が 極めて 重要 {で ある} と 認識 さ れ て いる。
+    english_literally: That plan extremely important is as recognized is.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 極めて 重要 {だ} と 認識 さ れ て いる。
+        english: That plan is recognized as being extremely important (casual).
+        hint: An official public statement requires a formal and authoritative tone, making 「である」 more
+          suitable than the plain 「だ」. We're looking for a formal statement.
+      - competing_japanese:
+          - その 計画 は 極めて 重要 {です} と 認識 さ れ て いる。
+        english: That plan is recognized as being extremely important (polite).
+        hint: For a statement of fact from a public official, 「である」 conveys a definitive and objective
+          quality that goes beyond the standard politeness of 「です」. We're looking for an objective, definitive
+          statement.
+    scene: A government spokesperson addresses the press regarding a new policy initiative.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: The reason he is here is because of everyone's support.
+    japanese:
+      - 彼 が ここ に いる の は、皆 の 支援 が あっ た から な の {で ある}。
+      - 彼 が ここ に いる の が、皆 の 支援 が あっ た から な の {で ある}。
+      - 彼 が ここ に いる の は、皆 の 支援 が あっ た から {で ある}。
+    english_literally: He here is, everyone's support existed because of that is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が ここ に いる の は、皆 の 支援 が あっ た から な ん {だ}。
+        english: The reason he is here is because of everyone's support (casual).
+        hint: The formal setting of a company event requires a more objective and explanatory tone, making
+          「のである」 appropriate over the casual 「んだ」. We're looking for a formal explanation.
+      - competing_japanese:
+          - 彼 が ここ に いる の は、皆 の 支援 が あっ た から {です}。
+        english: The reason he is here is because of everyone's support (polite).
+        hint: While 「のです」 is polite, 「のである」 adds a slightly more authoritative and conclusive tone to
+          the explanation, suitable for a formal address. We're looking for a conclusive explanation.
+    scene: A CEO delivers a formal speech acknowledging the contributions of his team at a company anniversary
+      event.
+    register: formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+  - english: I am the person in charge of this mission!
+    japanese:
+      - 私 は この 任務 の 責任 者 {で あり ます}！
+      - 私 が この 任務 の 責任 者 {で あり ます}！
+    english_literally: I this mission's person in charge am!
+    competing_grammar:
+      - competing_japanese:
+          - 私 は この 任務 の 責任 者 {です}！
+        english: I am the person in charge of this mission! (polite).
+        hint: The military context mandates an extreme level of formality and assertion of authority,
+          which 「であります」 uniquely conveys over the standard polite 「です」. We're looking for a very formal
+          and assertive statement.
+    scene: A senior military officer reports to a general during a critical briefing.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: An older male military officer uses 「であります」 to assert his absolute authority and responsibility
+      for a mission to a superior. This highly formal expression highlights the strict hierarchical structure
+      and the seriousness of military communication, using 「であります」 for maximum impact.
+  - english: That ancient city was once a symbol of prosperity.
+    japanese:
+      - その 古代 都市 は かつて 栄華 の 象徴 {で あっ た}。
+      - その 古代 都市 が かつて 栄華 の 象徴 {で あっ た}。
+    english_literally: That ancient city once prosperity's symbol was.
+    competing_grammar:
+      - competing_japanese:
+          - その 古代 都市 は かつて 栄華 の 象徴 {だっ た}。
+        english: That ancient city was once a symbol of prosperity (casual).
+        hint: The formal, objective tone required for historical narration makes 「であった」 more fitting than
+          the casual 「だった」. We're looking for a formal, factual statement.
+      - competing_japanese:
+          - その 古代 都市 は かつて 栄華 の 象徴 {でし た}。
+        english: That ancient city was once a symbol of prosperity (polite).
+        hint: For a definitive statement about historical fact, 「であった」 conveys a more academic and authoritative
+          tone than the polite 「でした」. We're looking for an academic and definitive tone.
+      - competing_japanese:
+          - その 古代 都市 に かつて 栄華 の 象徴 が {あっ た}。
+        english: A symbol of prosperity existed within that ancient city.
+        hint: 「がある」 indicates existence or possession within a place. We're looking for a statement about
+          what the city *was*, not what existed *in* it.
+    scene: A historian narrates a documentary about ancient civilizations.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+  - english: His claim was found not to be true in subsequent investigations.
+    japanese:
+      - 彼 の 主張 は 事実 {で ない} こと が、その 後 の 調査 で 判明 し た。
+      - 彼 の 主張 が 事実 {で ない} こと が、その 後 の 調査 で 判明 し た。
+    english_literally: His claim truth not-is thing, its later investigation by became clear.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 主張 は 事実 {で は ない} こと が、その 後 の 調査 で 判明 し た。
+        english: His claim was found not to be true (plain negative).
+        hint: In the context of formal investigative reporting, 「でない」 provides a more concise and definitive
+          negative statement than 「ではない」. We're looking for a direct and formal negation.
+    scene: A lead investigator presents the findings of a case to their superior.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: If the plan is appropriate, it will be approved immediately.
+    japanese:
+      - その 計画 が 適切 {で あれ ば}、直ちに 承認 さ れる だろう。
+      - その 計画 は 適切 {で あれ ば}、直ちに 承認 さ れる だろう。
+    english_literally: That plan appropriate if it is, immediately approval will be given.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 が 適切 {だっ たら}、直ちに 承認 さ れる だろう。
+        english: If that plan was appropriate, it will be approved immediately (casual conditional).
+        hint: The discussion about formal approval processes benefits from the precise and conditional
+          nature of 「であれば」, unlike the more casual 「だったら」. We're looking for a formal conditional.
+      - competing_japanese:
+          - その 計画 が 適切 {なら}、直ちに 承認 さ れる だろう。
+        english: If that plan is appropriate, it will be approved immediately (common conditional).
+        hint: While 「なら」 is a common conditional, 「であれば」 is used to emphasize a formal premise and its
+          logical consequence in a professional setting. We're looking for a more emphasized conditional.
+    scene: Executives discuss the conditions for approving a new business strategy.
+    register: formal
+    setting: negotiating
+    conjugation: conditional (～ば)
+  - english: Since the problem was within his area of expertise, it was resolved quickly.
+    japanese:
+      - その 問題 は 彼 の 専門 領域 {で あっ た} ため、迅速 に 解決 さ れ た。
+      - その 問題 が 彼 の 専門 領域 {で あっ た} ため、迅速 に 解決 さ れ た。
+    english_literally: That problem his area of expertise was because, quickly resolved was.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 彼 の 専門 領域 {だっ た} ため、迅速 に 解決 さ れ た。
+        english: Since the problem was within his area of expertise (casual past), it was resolved quickly.
+        hint: The formal written report requires the objective and conclusive past tense of 「であった」 rather
+          than the more conversational 「だった」. We're looking for an objective and conclusive past statement.
+    scene: A manager writes a formal report detailing the resolution of a technical issue.
+    register: formal
+    setting: technical
+    conjugation: past plain (～た)
+  - english: This plan is complex, and specialized knowledge is necessary.
+    japanese:
+      - この 計画 は 複雑 {で あっ て}、専門 知識 が 必要 で ある。
+      - この 計画 が 複雑 {で あっ て}、専門 知識 が 必要 で ある。
+    english_literally: This plan complex being, specialized knowledge is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 複雑 {だ から}、専門 知識 が 必要 で ある。
+        english: This plan is complex, therefore specialized knowledge is necessary.
+        hint: Using 「であって」 provides a formal and objective way to state a characteristic and its consequence
+          or related condition, connecting clauses similarly to a te-form. We're looking for a formal
+          conjunctive use.
+    scene: Engineers discuss the technical challenges of a new project.
+    register: formal
+    setting: technical
+    conjugation: te-form (～て)
+  - english: Customer, for today only, it is discounted!
+    japanese:
+      - お 客 様、本日 限り 割引 {で あり ます}！
+      - お 客 様、これ は 本日 限り の 割引 {で あり ます}！
+    english_literally: Customer, today limit discount is!
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様、本日 限り 割引 {です}！
+        english: Customer, for today only, it is discounted! (polite).
+        hint: The humor in the scene comes from the intentionally over-the-top formality of 「であります」 applied
+          to a simple sales announcement, which would be lost with the standard polite 「です」. We're looking
+          for a humorous, overly formal statement.
+    scene: A shop employee uses exaggerated polite speech to amuse a customer.
+    register: casual
+    setting: humorous
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: A younger female shop employee playfully uses the extremely formal 「であります」 to announce a discount,
+      creating a lighthearted and amusing atmosphere, playing on the word's serious connotations in a
+      sales context. The usage of 「であります」 by a young female shop employee is intentionally mismatched
+      with the casual setting, producing humor.
+post_example_writeup: The examples illustrate that 「である」 maintains its objective and authoritative tone
+  across various formations and conjugations. Pay close attention to its use in formal declarations, objective
+  statements, and explanations. While 「であります」 implies extreme formality, it can also be used for humorous
+  effect when applied to trivial situations, creating a deliberate contrast between the tone and content.

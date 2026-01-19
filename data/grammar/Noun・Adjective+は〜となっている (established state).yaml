@@ -1,0 +1,401 @@
+grammar_point: Noun・Adjective+は〜となっている (established state)
+learn_before:
+  - '[Noun]向き (facing)'
+  - ようになる (to come to be)
+  - 傾向がある (neutral tendency)
+meaning: It is (has been), Have/has become, Happen to be, Has been established
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: となっている
+    rarity: common
+    meaning: It is; It has become
+  - conjugation-type: negative plain (～ない)
+    form: となっていない
+    rarity: common
+    meaning: It is not; It has not become
+  - conjugation-type: past plain (～た)
+    form: となっていた
+    rarity: common
+    meaning: It was; It had become
+  - conjugation-type: negative past plain (～なかった)
+    form: となっていなかった
+    rarity: common
+    meaning: It was not; It had not become
+  - conjugation-type: non-past polite (～ます)
+    form: となっています
+    rarity: common
+    meaning: It is (polite); It has become (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: となっていません
+    rarity: common
+    meaning: It is not (polite); It has not become (polite)
+  - conjugation-type: past polite (～ました)
+    form: となっていました
+    rarity: common
+    meaning: It was (polite); It had become (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: となっていませんでした
+    rarity: common
+    meaning: It was not (polite); It had not become (polite)
+  - conjugation-type: te-form (～て)
+    form: となっており
+    rarity: common
+    meaning: Being in the state of; Having become, and...
+  - conjugation-type: conditional (～たら)
+    form: となっていたら
+    rarity: common
+    meaning: If it has become; If it is established
+  - conjugation-type: concessive (～ても)
+    form: となっていても
+    rarity: common
+    meaning: Even if it has become; Even if it is established
+pronunciation:
+  katakana: ト ナッテイル
+  romaji: to natte iru
+formation:
+  Noun + と + なっている: Expresses that a noun has become or is established as a certain state or entity.
+  な-Adjective (stem form) + と + なっている: Expresses that something has become or is established in a certain
+    adjectival state.
+  Adverbial phrase + と + なっている: Expresses that something has become or is established in a certain manner
+    or condition.
+jlpt: N3
+etymology: This grammar point combines 「は」 (the topic marker, though often omitted or used with a different
+  particle like 「が」 depending on context), and 「となっている」, which is the 「て-form」 of 「なる」 (to become) + 「いる」
+  (to exist), indicating a state that has come into being and continues to exist. The 「と」 particle here
+  marks the result or state that something has become, similar to saying 'as' or 'into'. This construction
+  inherently carries a sense of an established or formalized state due to the progressive aspect of 「〜ている」
+  on 「なる」.
+writeup: |-
+  「X + となっている」 is a formal expression, where X can be a noun, a な-adjective stem, or an adverbial phrase. It indicates that something has become a certain way, has been established as something, or simply happens to be in a particular state. It emphasizes the current, established condition of the subject.
+
+  The literal sense is close to "it is now the case that (A) is (B)". This structure often appears in formal contexts such as news reports, official announcements, and academic writing.
+
+  The optional 「は」 highlights the topic, while 「となっている」 indicates that the subject is in a certain state **as a result** of a process or decision. Unlike 「になっている」, 「となっている」 strongly implies a sense of finality or established status.
+
+  This expression is widely used in written Japanese and formal speech. It conveys objectivity and often implies that the state is a result of a rule, decision, or natural progression. For instance, in news articles, you might see it describing facts, policies, or current situations. While not strictly gender-specific, its formality means it's generally used in contexts where precise and official language is preferred, rather than casual conversation.
+false_friends:
+  - term: 〜になっている
+    meaning: to become, to be in the process of becoming
+    kind: similar expression
+    nuance: Unlike 「〜となっている」, which implies a finished state or an established fact, 「〜になっている」 suggests
+      that something is in the process of becoming something else, or has recently undergone a change.
+      It lacks the sense of official establishment present in 「〜となっている」.
+    grammar_point: になる・くなる (to become)
+  - term: 〜である
+    meaning: to be (formal/literary)
+    kind: similar expression
+    nuance: While 「〜である」 is a formal copula used to state facts, 「〜となっている」 specifically indicates that
+      a state has been **established** or **resulted from a process** and continues to exist. 「〜である」 simply
+      states a current fact without emphasizing its origin or establishment.
+    grammar_point: である (formal copula)
+  - term: 〜ことになっている
+    meaning: expected to; scheduled to; it has been decided that
+    kind: similar expression
+    nuance: 「〜ことになっている」 indicates that something has been decided or arranged by someone, often implying
+      a rule, custom, or schedule. In contrast, 「〜となっている」 describes an objective state or condition that
+      has been established, sometimes without a clear agent, and implies a formal or official status.
+    grammar_point: ことになっている (expected to; scheduled to)
+post_false_friends_writeup: 「〜となっている」 focuses on the *current state* that has resulted from a change or
+  establishment. In contrast, 「〜になっている」 describes the *process* of becoming, 「〜である」 states a simple fact,
+  and 「〜ことになっている」 implies a decision made by an agent. Be mindful of whether you want to emphasize the
+  result, the simple state, or the agent's decision when choosing between these expressions.
+examples:
+  - english: Starting this month, the new working hours have been established.
+    japanese:
+      - 今月 から 新しい 勤務 時間 と {なっ て いる}。
+      - 今月 より 新しい 勤務 時間 と {なっ て いる}。
+    english_literally: From this month, new working hours are established.
+    competing_grammar:
+      - competing_japanese:
+          - 今月 から 新しい 勤務 時間 {だ}。
+        english: From this month, new working hours are in effect (casual).
+        hint: 「〜だ」 is too casual for an official company announcement. 「となっている」 emphasizes that the working
+          hours are an established, formal rule. We're looking for an established official policy.
+      - competing_japanese:
+          - 今月 から 新しい 勤務 時間 に {なっ た}。
+        english: From this month, new working hours became effective.
+        hint: 「〜になった」 emphasizes the immediate change, while 「となっている」 stresses the established, finalized
+          state as a rule. We're looking for an established official policy.
+    scene: An HR manager is sending out an official notice about changes to company policy.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 男性のHRマネージャーが従業員全体に会社の変更を伝える場合、「〜と{なっている}」のような客観的で公式な表現は、性別に関係なく非常に適切です。これは個人の意見ではなく、会社の方針として決定された事実を伝えていることを示します。
+  - english: At this school, the use of mobile phones is prohibited.
+    japanese:
+      - この 学校 で は 電話 の 使用 は 禁止 と {なっ て いる}。
+      - この 学校 で は 携帯 電話 の 使用 は 禁止 と {なっ て いる}。
+      - この 学校 で は 電話 の 利用 は 禁止 と {なっ て いる}。
+      - この 学校 で は 携帯 電話 の 利用 は 禁止 と {なっ て いる}。
+    english_literally: At this school, phone use is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - この 学校 で は 電話 の 使用 は 禁止 {だ}。
+        english: At this school, the use of mobile phones is prohibited (casual).
+        hint: 「〜だ」 is too informal for a teacher explaining official school rules. 「となっている」 conveys that
+          this is an established, formal regulation. We're looking for an established rule.
+      - competing_japanese:
+          - この 学校 で は 電話 の 使用 は 禁止 に {なっ て いる}。
+        english: At this school, the use of mobile phones has become prohibited (and is currently).
+        hint: 「〜になっている」 implies that the rule has simply come into existence. 「となっている」, however, emphasizes
+          that it is a *formally established* rule. We're looking for a rule that is formally established.
+      - competing_japanese:
+          - この 学校 で は 電話 の 使用 は 禁止 {で ある}。
+        english: At this school, the use of mobile phones is prohibited (formal statement).
+        hint: 「である」 is a formal way of saying 'is'. While similar, 「となっている」 emphasizes that it's an established
+          rule resulting from a decision, which is more specific for school regulations. We're looking
+          for an established rule.
+    scene: A female teacher is explaining a school rule to new students on their first day.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 女性の教師が新入生に学校の規則を伝える際に「〜と{なっている}」を使うのは非常に自然です。この表現は、個人的な指示ではなく、確立された規則であることを明確に示します。教師の性別に関わらず、このフォーマルな語尾は教育現場で一般的です。
+  - english: Admission is until 5 PM.
+    japanese:
+      - 入場 は 午後 ５ 時 まで と {なっ て い ます}。
+      - 入場 時間 は 午後 ５ 時 まで と {なっ て い ます}。
+    english_literally: Entrance is until 5 PM.
+    competing_grammar:
+      - competing_japanese:
+          - 入場 は 午後 ５ 時 まで {です}。
+        english: Admission is until 5 PM (polite).
+        hint: While 「〜です」 is polite, 「〜となっています」 is more formal and emphasizes that the time limit is an
+          established rule or schedule, not just a casual statement. We're looking for an established
+          time limit.
+      - competing_japanese:
+          - 入場 は 午後 ５ 時 まで に {なっ て い ます}。
+        english: Admission has become until 5 PM.
+        hint: 「〜になっています」 implies a change has taken place. 「となっています」 highlights that it is a fixed, established
+          time on the schedule. We're looking for an established time limit.
+    scene: A staff member at an event venue is informing a visitor about the closing time.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female staff member informing a visitor using 「〜と{なっています}」 is a standard polite and formal
+      way to convey an established rule or schedule. This expression is gender-neutral and appropriate
+      for conveying objective information in a professional settingです。
+  - english: The economy has been strong since last year, and this trend is expected to continue.
+    japanese:
+      - 昨年 から 景気 は 好調 と {なっ て おり}、この 傾向 は 続く 見込み です。
+      - 昨年 より 景気 は 好調 と {なっ て おり}、この 傾向 は 続く 見込み です。
+    english_literally: From last year, the economy has become good, and this trend is expected to continue.
+    competing_grammar:
+      - competing_japanese:
+          - 昨年 から 景気 は 好調 {で}、この 傾向 は 続く 見込み です。
+        english: From last year, the economy is good, and this trend is expected to continue.
+        hint: 「〜で」 indicates a simple state, but 「となっており」 is used in formal writing and news to present
+          an established fact as background for further information, giving a more authoritative tone.
+          We're looking for an established economic condition.
+      - competing_japanese:
+          - 昨年 から 景気 は 好調 に {なっ て おり}、この 傾向 は 続く 見込み です。
+        english: From last year, the economy has become good and is continuing, and this trend is expected
+          to continue.
+        hint: 「〜になっており」 emphasizes the process of becoming good. 「となっており」 focuses on the economy being
+          in an *established state* of being good, suitable for a factual report. We're looking for an
+          established economic condition.
+    scene: A male news anchor is delivering a segment on economic trends to a broad audience.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 男性のニュースアンカーが「〜と{なっており}」を使用するのは非常に典型的です。この表現は、個人的な見解ではなく、客観的な事実や公式なデータを伝えていることを示し、ニュース報道の信頼性を高めます。聞き手が不特定多数の「グループ」である場合に特に適しています。
+  - english: That plan has not yet become a formal decision.
+    japanese:
+      - その 計画 は まだ 正式 な 決定 と {なっ て い ない}。
+      - その 計画 は まだ 正式 な 決議 と {なっ て い ない}。
+      - その 案 は まだ 正式 な 決定 と {なっ て い ない}。
+      - その 案 は まだ 正式 に 決定 と {なっ て い ない}。
+    english_literally: That plan has not yet become a formal decision.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は まだ 正式 な 決定 {じゃ ない}。
+        english: That plan is not yet a formal decision (casual).
+        hint: 「〜じゃない」 is too casual for a formal update on a project status. 「となっていない」 conveys that it
+          hasn't reached the established status of a decision. We're looking for a state of not having
+          reached an official, established status.
+      - competing_japanese:
+          - その 計画 は まだ 正式 な 決定 に {なっ て い ない}。
+        english: That plan has not yet become a formal decision.
+        hint: 「〜になっていない」 means it hasn't changed into that state. 「となっていない」 implies it hasn't reached
+          the *established status* of a formal decision. We're looking for a state of not having reached
+          an official, established status.
+    scene: A senior manager is briefing a younger team member on the status of a project.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 年上の男性上司が年下の女性部下に対し、プロジェクトの状況を伝える際、「〜と{となっていない}」は、決定がまだ下されていないという客観的な事実を、落ち着いたトーンで伝えます。この表現は、個人の意見ではなく、組織的な状況を説明するのに適しています。
+  - english: That rule is no longer appropriate.
+    japanese:
+      - その 規則 は もはや 適切 と {なっ て い ませ ん}。
+      - その 規定 は もはや 適切 と {なっ て い ませ ん}。
+      - その 条項 は もはや 適切 と {なっ て い ませ ん}。
+    english_literally: That rule is no longer appropriate.
+    competing_grammar:
+      - competing_japanese:
+          - その 規則 は もはや 適切 {で は あり ませ ん}。
+        english: That rule is no longer appropriate (polite).
+        hint: While polite, 「〜ではありません」 is a simple negative statement. 「となっていません」 adds nuance by indicating
+          that the rule has not *reached* or is no longer in the *established state* of being appropriate,
+          implying a change in circumstances or policy. We're looking for a rule that is no longer formally
+          appropriate.
+      - competing_japanese:
+          - その 規則 は もはや 適切 に {なっ て い ませ ん}。
+        english: That rule is no longer becoming appropriate.
+        hint: 「〜になっていません」 means it hasn't changed to be appropriate. 「となっていません」 implies it's no longer
+          *established* or recognized as appropriate. We're looking for a rule that is no longer formally
+          appropriate.
+    scene: A committee member is presenting an outdated regulation to a group for review.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female committee member using 「〜と{なっていません}」 to present an outdated regulation to a group
+      for review is a clear and formal way to state that the rule is no longer considered appropriate.
+      This formal phrasing indicates an objective assessment rather than a personal opinion.
+  - english: Previously, this place was designated as non-smoking.
+    japanese:
+      - 以前 は この 場所 は タバコ は 禁止 と {なっ て い た}。
+      - 以前 は この 場所 は 禁煙 と {なっ て い た}。
+      - 昔 は この 場所 で は タバコ は 禁止 と {なっ て い た}。
+      - かつて は この 場所 で は 禁煙 と {なっ て い た}。
+    english_literally: Previously, in this place, tobacco was prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 は この 場所 は タバコ は 禁止 {だっ た}。
+        english: Previously, this place was non-smoking (simple past).
+        hint: 「〜だった」 simply states a past condition. 「となっていた」 implies that the prohibition was an established
+          rule or policy at that time, emphasizing its official status. We're looking for a past established
+          rule.
+      - competing_japanese:
+          - 以前 は この 場所 は タバコ は 禁止 に {なっ て い た}。
+        english: Previously, this place had become non-smoking.
+        hint: 「〜になっていた」 focuses on the past change. 「となっていた」 emphasizes that it *was an established* rule
+          at that time. We're looking for a past established rule.
+    scene: An older man is explaining the past rules of a public park to a younger woman.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 年上の男性が年下の女性に昔の状況を話す際、「〜と{なっていた}」を使うことで、過去の時点での確立されたルールや状態を客観的に伝えることができます。性別や年齢に関わらず使われますが、この文脈では年長者として情報提供しているニュアンスがあります。
+  - english: If it is decided as such, then we will proceed with the plan.
+    japanese:
+      - その よう に と {なっ て い たら}、計画 を 進め ます。
+      - その よう に と {なっ て い たら}、案 を 進め ます。
+      - その よう に と {なっ て い たら}、プラン を 進め ます。
+    english_literally: If it has become that way, we will proceed with the plan.
+    competing_grammar:
+      - competing_japanese:
+          - その よう に {なっ たら}、計画 を 進め ます。
+        english: If it becomes that way, we will proceed with the plan.
+        hint: 「〜になったら」 focuses on the simple act of becoming. 「となっていたら」 implies a condition where something
+          has reached an established state or decision. We're looking for a conditional based on an established
+          state.
+      - competing_japanese:
+          - その よう に {決まっ たら}、計画 を 進め ます。
+        english: If it is decided that way, we will proceed with the plan.
+        hint: 「決まったら」 means 'if it is decided'. While similar, 「となっていたら」 emphasizes the *resultant state*
+          of something having been established, not just the act of deciding. We're looking for a conditional
+          based on an established state.
+    scene: Colleagues discussing a contingency plan in a meeting.
+    register: semi-formal
+    setting: negotiating
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female colleague using 「〜と{なっていたら}」 in a semi-formal discussion with a male colleague suggests
+      a scenario where a state becomes established. This expression is naturally used by either gender
+      to discuss a conditional established state, showing a structured approach to planning。
+  - english: Even if it is established as difficult, we must not give up.
+    japanese:
+      - た と え 困難 と {なっ て い て も}、諦め て は なり ませ ん。
+      - た と え 難しい と {なっ て い て も}、諦め て は なり ませ ん。
+      - た と え 困難 と {なっ て い て も}、諦め て は いけ ませ ん。
+    english_literally: Even if it has become difficult, must not give up.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 困難 {で あっ て も}、諦め て は なり ませ ん。
+        english: Even if it is difficult, we must not give up.
+        hint: 「であっても」 simply states 'even if it is'. 「となっていても」 specifically implies 'even if it has *become
+          an established* difficulty'. We're looking for a concession to an established reality.
+      - competing_japanese:
+          - た と え 困難 に {なっ て い て も}、諦め て は なり ませ ん。
+        english: Even if it has become difficult, we must not give up.
+        hint: 「〜になっていても」 highlights the process of difficulty arising. 「となっていても」 emphasizes the *current
+          established state* of difficulty. We're looking for a concession to an established reality.
+    scene: A team leader addressing their members during a challenging project phase.
+    register: formal
+    setting: inspirational
+    conjugation: concessive (～ても)
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female team leader using 「〜と{なっていても}」 conveys a message of resilience. It acknowledges an
+      established difficult reality while asserting the necessity of perseverance. This formal phrasing
+      is effective for motivating a group, regardless of the speaker's gender。
+  - english: It is stipulated that all users must agree to the terms of service.
+    japanese:
+      - 全 利用 者 は 利用 規約 に 同意 する こと と {なっ て い ます}。
+      - 全て の 利用 者 は 利用 規約 に 同意 する こと と {なっ て い ます}。
+      - 全 利用 者 は 利用 規約 を 承諾 する こと と {なっ て い ます}。
+    english_literally: All users, as for them, agreement to terms of use is stipulated.
+    competing_grammar:
+      - competing_japanese:
+          - 全 利用 者 は 利用 規約 に 同意 する {必要 が ある}。
+        english: All users need to agree to the terms of service.
+        hint: 「必要がある」 means 'there is a need to'. 「となっている」 emphasizes it's a *stipulated rule* or an established
+          condition, often formal or official. We're looking for an established, formal requirement.
+      - competing_japanese:
+          - 全 利用 者 は 利用 規約 に 同意 し {なけれ ば なり ませ ん}。
+        english: All users must agree to the terms of service.
+        hint: 「しなければならない」 implies a strong obligation or necessity. 「となっている」 states it as an *established
+          condition or rule*, which users must comply with. We're looking for an established, formal requirement.
+    scene: A lawyer explains a clause from a legal document to a client.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 男性の弁護士がクライアントに法的な条項を説明する際に「〜と{なっています}」を使用するのは、非常に適切です。この表現は、個人的な意見ではなく、規約によって確立された客観的な事実を示し、法的な文脈での厳密さを強調します。
+  - english: The system is configured to automatically back up data every night.
+    japanese:
+      - システム は 毎晩 データ を 自動 的 に バックアップ する よう に と {なっ て い ます}。
+      - システム は 毎晩 データ を 自動 で バックアップ する よう に と {なっ て い ます}。
+      - システム は 毎晩 の 自動 バックアップ が {設定 と なっ て い ます}。
+    english_literally: As for the system, every night data automatically back up to be so, it has become.
+    competing_grammar:
+      - competing_japanese:
+          - システム は 毎晩 データ を 自動 的 に バックアップ {し ます}。
+        english: The system automatically backs up data every night.
+        hint: This simply states the action. 「となっている」 emphasizes that the system is *configured* or *set
+          up* to perform this action as an established state. We're looking for a description of the system's
+          established configuration.
+      - competing_japanese:
+          - システム は 毎晩 データ を 自動 的 に バックアップ する よう に {なっ て い ます}。
+        english: The system has become to automatically back up data every night.
+        hint: 「〜になっています」 suggests that the system *changed* to this state. 「となっている」 describes its current,
+          *established configuration* from the outset or as a fixed design. We're looking for a description
+          of the system's established configuration.
+    scene: A technical support person is explaining the setup of a server to a new IT intern.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 男性がIT分野の同僚にシステムの仕組みを説明する際、「〜と{なっています}」を使うことで、システムがそのような「状態」に設定されていることを客観的かつ専門的に伝えます。これは技術的な仕様や設定について話す際によく用いられる表現です。
+post_example_writeup: While 「〜となっている」 implies a state or established fact, it can sometimes sound overly
+  formal or stiff in casual conversations. In everyday speech, simpler expressions such as 「〜だ」 or 「〜です」
+  might be more appropriate, depending on the context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/は-となっている

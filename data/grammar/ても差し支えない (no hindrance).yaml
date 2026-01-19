@@ -1,0 +1,325 @@
+grammar_point: ても差し支えない (no hindrance)
+learn_before:
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - い-Adjective[くありません] (polite negative form)
+meaning: May I; Is it a bother if; Do you mind if; Is it a problem if
+meaning_warning: ても差し支えないです is also used but lacks politeness compared to other phrases, so it is less
+  common and it is better to avoid it.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ても差し支えない
+    rarity: common
+    meaning: may; it is not a hindrance if
+  - conjugation-type: non-past polite (～ます)
+    form: ても差し支えありません
+    rarity: common
+    meaning: may I; is it not a hindrance if (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ても差し支えございません
+    rarity: less common
+    meaning: may I; is it not a hindrance if (more polite)
+  - conjugation-type: past plain (～た)
+    form: ても差し支えなかった
+    rarity: uncommon
+    meaning: was not a hindrance if
+  - conjugation-type: past polite (～ました)
+    form: ても差し支えありませんでした
+    rarity: uncommon
+    meaning: was not a hindrance if (polite)
+pronunciation:
+  katakana: テモサシツカエナイ
+  romaji: te mo sashitsukaenai
+formation:
+  Verb-て form + も + 差し支えない: Expresses permission or indicates that something is acceptable or causes no
+    inconvenience.
+  い-Adjective (stem) + くても + 差し支えない: Indicates that even if a certain state or quality is present, it
+    causes no problem.
+  な-Adjective (stem) + でも + 差し支えない: Indicates that even if a certain state or quality is present, it causes
+    no problem.
+  Noun + でも + 差し支えない: Indicates that even if something is a certain noun, it causes no problem.
+jlpt: N1
+etymology: This grammar point originates from the combination of the conditional 'te-form' of a verb with
+  the particle も (meaning 'even if'), followed by the negative form of the verb 差し支える (さしつかえる), which
+  means 'to interfere' or 'to hinder'. Thus, 差し支えない literally means 'does not interfere' or 'is not a
+  hindrance'. The phrase together forms a polite way to convey 'even if (X happens), it is not a hindrance',
+  or 'you may (do X)'.
+writeup: |-
+  ても差し支えない is a highly polite expression used in a manner similar to てもいい (may I) or "do you mind?" It is formed by combining the te-form of a verb (or でも for nouns and な-adjectives, and くても for い-adjectives) with the particle も (meaning 'even if'), followed by the negative form of the verb 差し支える (さしつかえる). The literal meaning of 差し支える is 'to interfere' or 'to hinder', so 差し支えない means 'does not interfere' or 'is not a hindrance'.
+
+  This phrase can be used both for asking for and granting permission. Its literal translation is "it is not a hindrance if (A)." Due to its inherent politeness, the polite negative form ありません or the even more formal ございません is almost always used in place of ない by itself. When asking for permission, the interrogative particle か or でしょうか is often added to the end of ありません (e.g., 〜ても差し支えありませんか？).
+
+  While ても差し支えない is consistently used in polite sentences, it is important to understand that the verb 差し支える itself is not exclusively reserved for polite language. It can appear in various contexts to imply that one thing has or will have a negative impact on another, as seen in expressions like 健康に差し支える (to hinder health). This dual usage highlights the nuanced meaning of the base verb and how it contributes to the overall polite expression.
+false_friends:
+  - term: 〜ても構わない
+    meaning: don't mind; it's fine if
+    kind: similar expression
+    nuance: While both express permissibility, 〜ても構わない is generally less formal and less polite than 〜ても差し支えない.
+      構わない can sometimes imply 'I don't care', whereas 差し支えない distinctly means 'it won't cause inconvenience'.
+    grammar_point: てもかまわない (no objection)
+  - term: 〜てもいい
+    meaning: may; is allowed to; it's okay if
+    kind: similar expression
+    nuance: 〜てもいい is the most common and least formal way to express permission. 〜ても差し支えない offers a significantly
+      higher level of politeness and formality, often used in business or official settings.
+    grammar_point: <suggest>:Verb[て]+もいい (permission)
+  - term: 〜てよろしい
+    meaning: May I; Is it alright to
+    kind: similar expression
+    nuance: 〜てよろしい is a polite way to ask or grant permission, similar to てもいい, but it typically lacks
+      the nuance of 'no inconvenience' or 'no hindrance' that is central to ても差し支えない. It focuses more
+      on the 'appropriateness' or 'correctness' of an action.
+    grammar_point: <suggest>:てよろしい (is it alright to)
+post_false_friends_writeup: When choosing between 〜ても構わない, 〜てもいい, and 〜ても差し支えない, consider the level of
+  politeness and formality required by the situation. Use 〜ても差し支えない when you want to express a higher
+  degree of respect or ensure there is absolutely no inconvenience. 〜ても構わない is suitable for general polite
+  situations, while 〜てもいい is common in casual contexts.
+examples:
+  - english: You may take these materials home with you.
+    japanese:
+      - この 資料 は お 持ち帰り いただい て {も 差し支え あり ませ ん}。
+      - この 資料 は お 持ち帰り いただい て {も 差し支え ござい ませ ん}。
+    english_literally: As for these materials, even if you take them home, there is no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - この 資料 は お 持ち帰り いただい て {も いい} です。
+        english: It's fine for you to take these materials home.
+        hint: 「〜てもいい」 is a general expression for permission, but 「〜ても差し支えない」 carries a nuance of formal
+          acceptance and no inconvenience, often used in professional settings. We're looking for a formal
+          way to grant permission.
+    scene: A presenter at a business seminar concludes their talk and informs the audience about the distributed
+      handouts.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The use of the honorific expression お持ち帰り いただいて (humbly requesting to receive) combined with
+      も差し支えありません elevates the politeness and formality of granting permission. This is characteristic
+      of a speaker in a position to respectfully inform an audience in a business or public setting.
+    etymology: The use of the honorific prefix おと 持ち帰り (to take home) and the humble auxiliary verb いただく
+      (to receive, as a favor) adds a layer of respect to the action of taking materials, emphasizing
+      the speaker's deference to the listener.
+  - english: If it's alright, would it be okay if I took a little of your time regarding this matter?
+    japanese:
+      - もし よろしけれ ば、この 件 に つい て 少し お 時間 頂戴 し て {も 差し支え あり ませ ん か}。
+      - もし よろしけれ ば、この 件 に つい て 少し お 時間 戴 し て {も 差し支え ござい ませ ん でしょう か}。
+    english_literally: If it is good, regarding this matter, even if I receive a little time, is there
+      not a hindrance?
+    competing_grammar:
+      - competing_japanese:
+          - もし よろしけれ ば、この 件 に つい て 少し お 時間 頂戴 し て {も よろしい} でしょう か。
+        english: If it's alright, would it be fine if I took a little of your time regarding this matter?
+        hint: 「〜てよろしいでしょうか」 asks if an action is appropriate or proper, while 「〜ても差し支えありませんか」 specifically
+          asks if it causes any inconvenience. We're looking for a phrase that checks for lack of hindrance.
+    scene: A junior employee asks for a moment of their busy manager's time, showing concern for their
+      manager's schedule.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The combination of the humble expression 頂戴 して and the softening phrase もし よろしければ with 差し支えありませんか
+      creates an exceptionally polite and deferential request. This level of politeness is often used
+      by female speakers in professional settings to show utmost respect and consideration for a superior's
+      time.
+    etymology: The phrase お時間 頂戴 する means 'to receive your time (humbly)'. 頂戴 comes from the verb 頂く (いただく),
+      which is a humble form of もらう (to receive) and also means 'to eat' or 'to drink' (humbly). Its origin
+      relates to receiving something by lifting it to one's head, indicating great respect.
+  - english: It's acceptable for this report to have a little less detail.
+    japanese:
+      - この 報告 書 は 詳細 が 少々 少なく {て も 差し支え ない}。
+      - この 報告 書 は 詳細 が 少々 少なく {て も 差し支え あり ませ ん}。
+    english_literally: As for this report, even if the details are a little few, there is no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - この 報告 書 は 詳細 が 少々 少なく て {も いい} です。
+        english: It's okay for this report to have a little less detail.
+        hint: 「〜てもいい」 simply states something is permissible, but 「〜ても差し支えない」 emphasizes that even with
+          less detail, it will not cause a problem or hindrance. We're looking for an expression that
+          signifies 'no problem'.
+    scene: A project leader tells their team that a preliminary report does not need to be exhaustively
+      detailed at this stage.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: Using 少なくても with 差し支えない here states that even a minimal level of detail is explicitly permitted,
+      implying a practical decision or guideline. This direct, plain form is common when conveying a clear,
+      authoritative statement about acceptable conditions in a professional or technical setting.
+    etymology: 少々 is a more formal and slightly archaic way of saying 少し (a little), often used in written
+      language or very polite speech. シンプル is a loanword from English 'simple', written in Katakana.
+  - english: It's not urgent work, so it's okay if it's a bit incomplete.
+    japanese:
+      - 急ぎ の 仕事 で は ない の で、少々 不 完全 {で も 差し支え ない}。
+      - 急ぎ の 仕事 で は ない の で、少々 不 完全 {で も 差し支え あり ませ ん}。
+    english_literally: Because it is not urgent work, even if it is a little incomplete, there is no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - 急ぎ の 仕事 で は ない の で、少々 不 完全 {で も 大丈夫} です。
+        english: It's not urgent work, so it's fine even if it's a bit incomplete.
+        hint: 「〜ても大丈夫」 is a common casual expression for 'it's okay', but 「〜でも差し支えない」 implies there will
+          be no actual hindrance or problem, often used in more formal or considered statements. We're
+          looking for a phrase that conveys a lack of inconvenience.
+    scene: A team member reassures a colleague about a task that doesn't need to be perfect immediately,
+      emphasizing flexibility.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The plain form 差し支えない in this context sounds like a straightforward, practical assessment
+      from a male speaker, reassuring a colleague that a slightly unfinished state is acceptable due to
+      lack of urgency. This demonstrates a relaxed but clear communication style common among male colleagues.
+    etymology: 急ぎ is the noun form of the verb 急ぐ (いそぐ), meaning 'to hurry' or 'to rush'. It literally
+      means 'a hurry' or 'urgency', and here it functions to describe the type of work.
+  - english: You can leave early today.
+    japanese:
+      - 今日 は 早く 帰っ て {も 差し支え ない}。
+      - 今日 は 早く 帰っ て {も 差し支え あり ませ ん}。
+    english_literally: As for today, even if you go home early, there is no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 早く 帰っ て {も いい} よ。
+        english: You can go home early today.
+        hint: 「〜てもいい」 is a general permission. 「〜ても差し支えない」 specifically means 'it won't cause any inconvenience
+          or problem', which is a slightly more formal reassurance, even in plain form. We're looking
+          for a statement emphasizing no inconvenience.
+    scene: A manager speaking to an employee who has completed their tasks for the day and is looking
+      tired.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male manager uses the plain form 差し支えない to give casual permission, implying a comfortable
+      and trusting relationship with the female subordinate. This directness can be seen as supportive
+      rather than brusque.
+    etymology: 早く (はやく) is an adverb meaning 'early' or 'fast'. It is derived from the い-adjective 早い
+      (はやい) meaning 'early' or 'fast'.
+  - english: In emergencies, there are cases where individual judgment is acceptable.
+    japanese:
+      - 緊急 時 に は 個人 の 判断 {で も 差し支え ない} 場合 が あり ます。
+      - 緊急 時 に は 個人 の 判断 {で も 差し支え あり ませ ん} 場合 が あり ます。
+      - 緊急 時 に は 個人 の 判断 {で も 差し支え ござい ませ ん} 場合 が あり ます。
+    english_literally: In emergency times, even individual judgment, there are cases where there is no
+      hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 時 に は 個人 の 判断 {で も 問題 ない} 場合 が あり ます。
+        english: In emergencies, there are cases where individual judgment is not a problem.
+        hint: 「〜ても問題ない」 is a more direct way to say 'no problem', but 「〜でも差し支えない」 implies there will be
+          no actual hindrance or problem, often used in more formal or considered statements. We're looking
+          for a formal indication of acceptance in exceptional circumstances.
+    scene: A trainer explains protocols for unusual situations to a new group of employees during an orientation.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses 〜でも差し支えない to convey a formal rule or guideline, where normally stricter
+      conditions might apply. 個人 の 判断でも highlights that even a more restrictive action (individual judgment
+      versus strict adherence to rules) is acceptable under specific, critical circumstances (emergencies).
+      This is typical in training or policy explanations.
+    etymology: 緊急時 is a compound noun formed from 緊急 (きんきゅう), meaning 'emergency', and 時 (とき), meaning
+      'time' or 'occasion'. This compound clearly indicates a situation of urgent importance.
+  - english: It's acceptable even if the design is a bit plain.
+    japanese:
+      - デザイン は 少々 シンプル {で も 差し支え あり ませ ん}。
+      - デザイン は 少々 シンプル {で も 差し支え ござい ませ ん}。
+    english_literally: As for the design, even if it is a little simple, there is no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - デザイン は 少々 シンプル {で も 大丈夫} です。
+        english: The design is fine even if it's a bit simple.
+        hint: 「〜ても大丈夫です」 implies general acceptability. 「〜ても差し支えありません」 specifically states that a particular
+          condition (being simple) will not cause any problem or hindrance to the overall goal. We're
+          looking for a formal assurance of no impediment.
+    scene: A client discussing design options with a designer, indicating flexibility on complexity.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses the polite forms 差し支えありません or 差し支えございません to formally convey that a simpler
+      design is acceptable. This polite phrasing, common for female speakers in professional settings,
+      ensures the message is received as flexible and accommodating, not dismissive, with ございません providing
+      an even higher level of deference.
+    etymology: 少々 is a formal expression for 'a little' or 'a few', often used in polite or business contexts.
+      シンプル is a loanword from English 'simple', written in Katakana.
+  - english: It wouldn't have been a problem if I had told him directly then.
+    japanese:
+      - あの 時、彼 に 直接 伝え て {も 差し支え なかっ た}。
+      - あの 時、彼 に 直接 伝え て {も 差し支え あり ませ ん でし た}。
+    english_literally: At that time, even if I told him directly, there was no hindrance.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、彼 に 直接 伝え て {も 良かっ た}。
+        english: It would have been good if I had told him directly then.
+        hint: 「〜ても良かった」 means something would have been a good idea or permissible, but 「〜ても差し支えなかった」
+          specifically conveys that it wouldn't have caused any trouble or inconvenience. We're looking
+          for a phrase indicating absence of hindrance.
+    scene: A woman is reflecting on a past decision, realizing she could have been more direct in a conversation.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The plain past form 差し支えなかった is used for personal reflection, indicating a realization about
+      a past situation where an action, if taken, would not have caused any negative consequences. The
+      speaker is talking to herself, hence 'no one' as the listener. This casual, introspective tone is
+      common for personal thoughts.
+    etymology: あの時 literally means 'that time' and is a common temporal expression used to refer to a
+      specific point in the past, often when reminiscing or reflecting on past events.
+  - english: At yesterday's meeting, would it have been acceptable if I had stated that opinion?
+    japanese:
+      - 昨日 の 会議 で あの 意見 を 述べ て {も 差し支え あり ませ ん でし た} か？
+      - 昨日 の 会議 で あの 意見 を 述べ て {も 差し支え ござい ませ ん でし た でしょう か}？
+    english_literally: At yesterday's meeting, even if I stated that opinion, was there not a hindrance?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 会議 で あの 意見 を 述べ て {も 大丈夫} でし た か？
+        english: At yesterday's meeting, would it have been okay if I had stated that opinion?
+        hint: 「〜ても大丈夫でしたか」 is a more general inquiry about whether something was acceptable, whereas 「〜ても差し支えありませんでしたか」
+          is a very polite and formal way to ask if an action would have caused any inconvenience. We're
+          looking for a polite inquiry about lack of hindrance in the past.
+    scene: A subordinate is discreetly asking their superior if their contribution would have been appropriate
+      at a past, formal meeting.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The past polite form 差し支えありませんでした is used to inquire about the appropriateness of a past action,
+      maintaining a high level of politeness and respect toward a superior. This is a common way for a
+      male subordinate to subtly seek feedback or reassurance from a male superior in a formal work environment.
+    etymology: 述べる (のべる) means 'to state' or 'to express'. It is often used in formal contexts, particularly
+      when referring to expressing opinions, facts, or observations in a structured setting like a meeting
+      or presentation.
+  - english: Would it be permissible to reschedule the meeting to next week?
+    japanese:
+      - 来週 に 会議 を 変更 し て {も 差し支え ござい ませ ん でしょう か}。
+      - 来週 に 会議 を 変更 し て {も 差し支え あり ませ ん か}。
+    english_literally: Even if the meeting is changed to next week, would there not be a hindrance?
+    competing_grammar:
+      - competing_japanese:
+          - 来週 に 会議 を 変更 し て {も いい} です か。
+        english: Is it okay to change the meeting to next week?
+        hint: 「〜てもいいですか」 is a common polite question for permission. 「〜ても差し支えございません でしょう か」 is much more
+          formal and specifically asks if the action would cause any *inconvenience or problem*. We're
+          looking for a very polite inquiry about causing no hindrance.
+    scene: An assistant politely inquiring about moving a meeting to a different time, prioritizing the
+      other party's convenience.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of the highly polite ございません でしょう か (even more polite than ありませんか) emphasizes extreme
+      deference and concern for the listener's potential inconvenience. This is typical when making a
+      request that might cause trouble, especially from a female speaker in a formal, respectful business
+      context.
+    etymology: 来週 (らいしゅう) means 'next week', combining 来 (らい) meaning 'next' or 'coming' and 週 (しゅう) meaning
+      'week'. 変更 (へんこう) means 'change' or 'alteration', often used in formal contexts for scheduling or
+      plans.
+post_example_writeup: The usage of ても差し支えない can vary slightly depending on the grammatical element it
+  attaches to (verb, い-adjective, な-adjective, or noun), but its core meaning of indicating permissibility
+  or absence of hindrance remains consistent. The choice between plain and polite forms (差し支えない vs. 差し支えありません)
+  primarily reflects the formality of the interaction and the relationship between speakers, rather than
+  a change in the fundamental meaning of permissibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ても差し支えない

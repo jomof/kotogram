@@ -1,0 +1,218 @@
+grammar_point: を除いて (excluding・except for)
+learn_before:
+  - '[Verb-stem]つづける (to continue doing)'
+  - できない (cannot do・unable to do)
+  - ほかに ほかには (other besides)
+  - 何でも (anything・everything)
+  - 何でも (hearsay)
+meaning: Except for, with the exception of, excluding
+pronunciation:
+  katakana: ヲノゾイテ
+  romaji: o nozoite
+formation:
+  Noun + を除いて: Indicates an exception, excluding the mentioned noun from a general statement.
+jlpt: N2
+etymology: This grammar point is derived from the verb 「除く (のぞく)」, meaning "to remove, exclude." The 「を」
+  particle indicates the object being excluded, and the 「て」-form of the verb connects it to the main clause,
+  indicating a state or condition resulting from the exclusion.
+writeup: 「を除いて」 is a formal grammar structure used to indicate an exception. It combines 「を」 and the te-form
+  of the verb 「除く (のぞく)」, meaning "to exclude." It is similar to 「以外」 but more formal and often found
+  in writing, signs, and formal speech. The pattern means "except for (A), (B)," "with the exception of
+  (A), (B)," or "excluding (A), (B)." The standard form (dictionary form) can be used to directly modify
+  a noun.
+false_friends:
+  - term: はともかく (setting aside・leaving aside)
+    meaning: Setting aside, apart from
+    kind: similar expression
+    nuance: 「はともかく」 is used to set aside one topic to focus on another, whereas 「を除いて」 explicitly excludes
+      something.
+    grammar_point: はともかく (setting aside・leaving aside)
+  - term: 以外 (except)
+    meaning: except, besides, other than
+    kind: synonym
+    nuance: 「以外」 is less formal than 「を除いて」 and can be used in a wider range of situations.
+    grammar_point: 以外 (except)
+  - term: に限って (ironic exception or disbelief)
+    meaning: Only when; especially when; particularly when; those who; the only ones who
+    kind: similar expression
+    nuance: 「に限って」 implies an ironic or unexpected exception, often with a sense of misfortune or disbelief.
+      「を除いて」 is a straightforward and neutral exclusion.
+    grammar_point: に限って (ironic exception or disbelief)
+post_false_friends_writeup: While 「はともかく」, 「以外」, and 「に限って」 can all express forms of exclusion or setting
+  something aside, their nuances differ significantly. 「はともかく」 is used to set aside one topic to focus
+  on another. 「以外」 is a general expression for "except" in less formal contexts. In contrast, 「に限って」 implies
+  an ironic or unexpected exception, often suggesting misfortune or disbelief, as in 'It only happens
+  when X.' 「を除いて」 remains a straightforward and neutral expression of explicit exclusion, often used in
+  formal or precise contexts.
+examples:
+  - english: Except for tomorrow, I practice every day.
+    japanese:
+      - 明日 を {除い て}、毎日 練習 し ます。
+      - 明日 を {除い て}、毎日 練習 する。
+    english_literally: Excluding tomorrow, I practice every day.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 {以外}、毎日 練習 し ます。
+        english: Except for tomorrow, I practice every day.
+        hint: In this formal context of explaining a schedule, 「を除いて」 offers a more precise and definitive
+          exclusion compared to the more general 「以外」. It emphasizes the strictness of the exception.
+    scene: A student explaining their practice schedule.
+    register: teineigo (polite)
+    setting: informative
+  - english: Except for Sundays, the restaurant is always open.
+    japanese:
+      - 日曜 日 を {除い て}、レストラン は いつ も 開い て い ます。
+      - 日曜 日 を {除い て}、レストラン は いつ も 開い て いる。
+    english_literally: Excluding Sundays, the restaurant is always open.
+    competing_grammar:
+      - competing_japanese:
+          - 日曜 日 {以外}、レストラン は いつ も 開い て い ます。
+        english: Except for Sundays, the restaurant is always open.
+        hint: For official announcements or signs like business hours, 「を除いて」 provides a clearer and more
+          formal tone of exclusion, indicating a precise rule rather than just a general exception.
+    scene: Explaining the opening hours of a restaurant.
+    register: teineigo (polite)
+    setting: informative
+  - english: Except for my family, nobody knows about it.
+    japanese:
+      - 私 の 家族 を {除い て}、誰 も その こと を 知り ませ ん。
+      - 私 の 家族 を {除い て}、誰 も その こと を 知ら ない。
+    english_literally: Excluding my family, nobody knows that thing.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家族 {以外}、誰 も その こと を 知り ませ ん。
+        english: Except for my family, nobody knows about it.
+        hint: When discussing sensitive information like a secret, 「を除いて」 highlights the absolute and
+          strict nature of the exclusion, emphasizing that truly *no one else* knows.
+    scene: Talking about a secret.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    nuance: The phrase 「誰 も～ない」 (no one/nobody) emphasizes the absolute nature of the exclusion, reinforcing
+      the formality of 「を除いて」.
+  - english: Except for winter, I want to go camping anytime.
+    japanese:
+      - 冬 を {除い て}、いつ で も キャンプ に 行き たい です。
+      - 冬 を {除い て}、いつ で も キャンプ に 行き たい。
+    english_literally: Excluding winter, I want to go camping anytime.
+    competing_grammar:
+      - competing_japanese:
+          - 冬 {以外}、いつ で も キャンプ に 行き たい です。
+        english: Except for winter, I want to go camping anytime.
+        hint: While both are possible, 「を除いて」 lends a slightly more definitive tone to the exclusion of
+          winter, clearly stating that winter is absolutely off-limits for camping.
+    scene: A person expressing their love for camping.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+  - english: Except for Tokyo, I'd like to visit other places in Japan too.
+    japanese:
+      - 東京 を {除い て}、日本 の 他 の 場所 に も 行っ て み たい な。
+      - 東京 を {除い て}、日本 の 他 の 場所 に も 行っ て み たい です。
+      - 東京 を {除い て}、日本 の 別 の 場所 に も 行っ て み たい です。
+    english_literally: Excluding Tokyo, I want to try going to other places in Japan too.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 {以外}、日本 の 他 の 場所 に も 行っ て み たい な。
+        english: Except for Tokyo, I'd like to visit other places in Japan too.
+        hint: Even in casual conversation, 「を除いて」 can be used to clearly delineate a specific exception,
+          emphasizing that Tokyo is intentionally being left out of the travel plans.
+    scene: A person expressing their desire to travel in Japan.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence ends with 「～て みたい な」, a casual way to express a desire or hope, often with a
+      slightly wistful or reflective tone. It combines the auxiliary verb 「～て みる」 (to try doing something)
+      with the desiderative 「～たい」 (want to do) and the sentence-final particle 「な」 to soften the expression.
+  - english: Let's talk about anything except work.
+    japanese:
+      - 仕事 の 話 を {除い て}、何 で も 話し ましょう。
+      - 仕事 の 話 を {除い て}、何 で も 話そ う。
+    english_literally: Excluding talk of work, let's talk about anything.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 の 話 {以外}、何 で も 話し ましょう。
+        english: Let's talk about anything except work.
+        hint: On a first date, using 「を除いて」 to set a clear boundary for conversation precisely excludes
+          work topics, making the intention more definitive than a general "other than".
+    scene: Suggesting topics to discuss on a first date.
+    register: semi-formal
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+  - english: I can't love anyone except you.
+    japanese:
+      - 君 を {除い て}、他 の 誰 も 愛せ ない。
+      - 君 を {除い て}、誰 も 愛せ ない。
+      - 君 を {除い て}、誰 も 愛する こと は でき ない。
+    english_literally: Excluding you, I cannot love anyone else.
+    competing_grammar:
+      - competing_japanese:
+          - 君 {以外}、他 の 誰 も 愛せ ない。
+        english: I can't love anyone except you.
+        hint: In this emotionally charged statement, 「を除いて」 emphasizes the absolute and singular nature
+          of the exception, conveying a deeper sense of gravity to the declaration of love.
+    scene: A person expressing their feelings to someone they love.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「誰 も ～ ない」 (no one/nobody) is a strong negation, emphasizing the exclusivity of
+      the speaker's feelings. While the overall sentence is casual due to the direct address 「君」, the
+      use of 「を除いて」 combined with this strong negation creates a somewhat dramatic and absolute declaration
+      of affection, which can be perceived as intense or even overly dramatic by some, especially older
+      speakers.
+  - english: Except for this store, there isn't such delicious cake anywhere, right?
+    japanese:
+      - この 店 を {除い て}、どこ に も こんな 美味しい ケーキ は ない よ ね。
+      - この 店 を {除い て}、どこ に も こんな 美味しい ケーキ は ない です よ ね。
+      - この 店 を {除い て}、こんな に 美味しい ケーキ は どこ に も ない です よ ね。
+    english_literally: Excluding this shop, nowhere is there such delicious cake, right?
+    competing_grammar:
+      - competing_japanese:
+          - この 店 {以外}、どこ に も こんな 美味しい ケーキ は ない よ ね。
+        english: Except for this store, there isn't such delicious cake anywhere, right?
+        hint: When asserting the unique quality of a place, 「を除いて」 more strongly emphasizes the singularity
+          of the exception, making a more definitive statement about the cake's deliciousness.
+    scene: Complimenting a cake on a first date.
+    register: casual
+    setting: first-date
+    speaker_gender: female
+    nuance: The sentence uses 「～ない よ ね」 at the end to express a strong opinion while seeking agreement
+      from the listener. The 「よ」 particle asserts the speaker's conviction, and 「ね」 invites confirmation
+      or agreement. This creates a casual yet engaging tone, common in shared observations or opinions.
+  - english: Except for these clothes, everything is a gift.
+    japanese:
+      - この 服 を {除い て}、全部 プレゼント です。
+      - この 服 を {除い て}、全部 プレゼント だ。
+      - この 服 を {除い て}、全部 プレゼント な ん です。
+    english_literally: Excluding these clothes, everything is a present.
+    competing_grammar:
+      - competing_japanese:
+          - この 服 {以外}、全部 プレゼント です。
+        english: Except for these clothes, everything is a gift.
+        hint: In a polite informational context, 「を除いて」 precisely delineates the excluded item, clearly
+          stating what falls outside the main category of gifts.
+    scene: Showing off gifts you received.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+  - english: Except for emergency situations, please do not use this door.
+    japanese:
+      - 緊急 時 を {除い て}、この ドア を 使用 し ない で ください。
+      - 緊急 時 を {除い て}、この ドア は 使用 し ない で ください。
+    english_literally: Excluding emergency situations, this door, please do not use.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 時 {以外}、この ドア を 使用 し ない で ください。
+        english: Except for emergency situations, please do not use this door.
+        hint: For formal instructions or announcements, 「を除いて」 provides an unambiguous and authoritative
+          tone, making it clear that the door is restricted except for a specific condition.
+    scene: A sign posted on a restricted door in a public building.
+    register: formal
+    setting: instructional
+post_example_writeup: The examples illustrate how 「を除いて」 is frequently employed in formal settings, but
+  also appears in casual conversation when a speaker wishes to emphasize a clear and distinct exclusion.
+  Its usage lends a sense of definitiveness that might be less pronounced with other expressions of exception.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を除いて

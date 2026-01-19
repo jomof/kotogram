@@ -1,0 +1,254 @@
+grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+learn_before:
+  - ではない (formal negative copula)
+meaning: is not (for な-adjectives and nouns)
+pronunciation:
+  katakana: デワナイ・ジャナイ
+  romaji: dewanai・janai
+  pronunciation_warning: じゃない is a common contraction of ではない.
+formation:
+  な-Adjective stem + ではない: Formal plain negative for な-adjectives.
+  Noun + ではない: Formal plain negative for nouns.
+  な-Adjective stem + じゃない: Casual plain negative for な-adjectives.
+  Noun + じゃない: Casual plain negative for nouns.
+jlpt: N5
+etymology: The ではない form combines the particle で (which originates from にて, meaning "by means of" or "in
+  the state of") and はない. The は particle acts as a topic marker, emphasizing the negation. ない is the negative
+  form of the verb ある (to exist/be). So, literally, it's like "in the state of not existing/being". じゃない
+  is a phonetic contraction of ではない, reflecting natural speech patterns where wa often becomes ja when
+  preceded by de.
+writeup: The grammar point な-Adjective[ではない・じゃない] is used to express the plain negative form of な-adjectives
+  and nouns. It directly negates the quality described by a な-adjective or the identity represented by
+  a noun. ではない is the more formal and standard plain negative form. It is commonly used in writing, formal
+  speeches, or when you want to sound more polite and articulate in a plain style. It maintains a clear
+  distinction, making it suitable for situations where precision is valued. じゃない is a very common colloquial
+  contraction of ではない. It is widely used in everyday conversation and informal writing. While grammatically
+  equivalent to ではない in its negating function, じゃない carries a more casual and conversational tone. It's
+  frequently heard in spoken Japanese among friends, family, and in less formal settings. It is crucial
+  to understand that じゃない is not just a shorter version; its frequent use as a sentence-ending particle
+  to seek agreement or express mild assertion ("Isn't it? / Right?") also adds to its informal and often
+  emotive character. For instance, 「美味しいじゃない！」 (It's delicious, isn't it!) uses じゃない to invite agreement
+  or express a strong personal feeling. While ではない serves a purely declarative negative function, じゃない
+  can sometimes imply a certain expectation from the listener or reflect the speaker's surprise or confirmation.
+  This grammatical structure is fundamental for building negative sentences with な-adjectives and nouns,
+  forming the basis for more complex negative expressions.
+false_friends:
+  - term: じゃなかった
+    meaning: was not (past plain negative)
+    kind: similar expression
+    nuance: This is the past tense of じゃない. It negates a state or identity in the past.
+    grammar_point: じゃなかった (was not)
+  - term: ではない
+    meaning: is not (formal plain negative)
+    kind: synonym
+    nuance: This is the more formal, non-contracted form. Use ではない for formal or written contexts.
+    grammar_point: ではない (formal negative copula)
+  - term: じゃない (question)
+    meaning: Isn't it? / Right?
+    kind: similar expression
+    nuance: When じゃない is used with rising intonation at the end of a sentence, it functions as a question
+      tag seeking agreement or expressing mild assertion, rather than just a simple negation.
+    grammar_point: じゃないか (isn't it?)
+post_false_friends_writeup: When encountering ではない と じゃない, remember that ではない is the standard and more
+  formal expression, suitable for most written and many formal spoken contexts. じゃない, while having the
+  same core meaning of negation, is a highly common conversational contraction that can also convey a
+  sense of seeking agreement or mild assertion when used with rising intonation. Distinguish じゃない (negation)
+  from じゃない (question tag) by context and intonation. Additionally, じゃなかった is the past tense version of
+  じゃない, so pay attention to the tense you need to convey.
+examples:
+  - english: That is not simple.
+    japanese:
+      - それ は 簡単 {じゃ ない}。
+      - それ は 簡単 {で は ない}。
+    english_literally: That, as for, simple not.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 簡単 {で は あり ませ ん}。
+        english: That is not simple (polite).
+        hint: We are looking for a plain negative form.
+    scene: A friend is trying to explain a complex task, and you respond.
+    register: casual
+    setting: friendly
+    nuance: Both 「簡単じゃない」and 「簡単ではない」express plain negation. 「簡単じゃない」is common in everyday speech, making
+      it suitable for a casual response to a friend. 「簡単ではない」is more formal, often used in written contexts
+      or when a more detached or objective tone is desired.
+  - english: I am not a student.
+    japanese:
+      - 私 は 学生 {じゃ ない}。
+      - 私 は 学生 {で は ない}。
+    english_literally: I, as for, student not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学生 {で は あり ませ ん}。
+        english: I am not a student (polite).
+        hint: We are looking for a plain negative form.
+    scene: Someone mistakes you for a student at a workshop.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: Both 「学生じゃない」and 「学生ではない」negate the identity. 「学生じゃない」is a straightforward, casual denial.
+      「学生ではない」is more formal, suitable for professional or official settings where precision and politeness
+      in plain form are valued.
+  - english: This explanation is not complicated.
+    japanese:
+      - この 説明 は 複雑 {で は ない}。
+      - この 説明 は 複雑 {じゃ ない}。
+    english_literally: This explanation, as for, complicated not.
+    competing_grammar:
+      - competing_japanese:
+          - この 説明 は 複雑 {で は あり ませ ん}。
+        english: This explanation is not complicated (polite).
+        hint: We are looking for a plain negative form.
+    scene: A teacher clarifies a point in a lecture.
+    register: formal
+    setting: academic
+    nuance: 「複雑ではない」is a formal and objective way to state that an explanation is not complicated, often
+      used in academic or instructional settings. 「複雑じゃない」is its casual equivalent, typically used in
+      informal conversation.
+  - english: That is not the truth.
+    japanese:
+      - それ は 真実 {で は ない}。
+      - それ は 真実 {じゃ ない}。
+    english_literally: That, as for, truth not.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 真実 {で は あり ませ ん}。
+        english: That is not the truth (polite).
+        hint: We are looking for a plain negative form.
+    scene: A lawyer making a statement in court.
+    register: formal
+    setting: serious
+    nuance: 「真実ではない」is a strong, formal denial suitable for serious contexts like legal statements. 「真実じゃない」is
+      its casual counterpart, used in everyday conversation.
+  - english: That is not convenient.
+    japanese:
+      - それ は 都合 {じゃ ない}。
+      - それ は 都合 {で は ない}。
+    english_literally: That, as for, convenience not.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 都合 {で は あり ませ ん}。
+        english: That is not convenient (polite).
+        hint: We are looking for a plain negative form.
+    scene: You are talking about a time or situation that doesn't work out well.
+    register: semi-formal
+    setting: informative
+    nuance: 「都合じゃない」is a casual way to say something isn't convenient, often used among friends. 「都合ではない」is
+      grammatically correct and more formal, suitable for professional or more reserved conversations.
+  - english: That's a mistake!
+    japanese:
+      - それ は 間違い {じゃ ない}！
+      - それ は 間違い {で は ない}！
+    english_literally: That, as for, mistake not!
+    competing_grammar:
+      - competing_japanese:
+          - それ は 間違い {だ}！
+        english: That is a mistake!
+        hint: While 「間違いだ」is a direct assertion, 「間違いじゃない！」here implies surprise or emphasis on the incorrectness,
+          often with a slight intonation that suggests 'Isn't it obviously a mistake?'
+    scene: Someone points out an obvious error.
+    register: casual
+    setting: excited
+    nuance: When pronounced with an exclamation, 「間違いじゃない！」can express strong assertion or surprise in
+      a casual context, meaning 'Isn't that obvious?' or 'That's definitely a mistake!'. 「間違いではない！」conveys
+      a similarly strong assertion but in a more formal and objective tone.
+  - english: His behavior was not appropriate for the situation.
+    japanese:
+      - 彼 の 行動 は 状況 に 適切 {で は ない}。
+      - 彼 の 行動 は 状況 に 適切 {じゃ ない}。
+    english_literally: His behavior, as for, situation for appropriate not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 は 状況 に 適切 {じゃ なかっ た}。
+        english: His behavior was not appropriate for the situation (past tense).
+        hint: We are looking for the present plain negative, not past tense.
+    scene: A written report describing an incident.
+    register: formal
+    setting: professional
+    nuance: 「適切ではない」is preferred in written communication and formal discussions for its clarity and objectivity.
+      While 「適切じゃない」is grammatically correct, it would sound less formal and more conversational when
+      discussing someone's behavior in a professional setting.
+  - english: Money is not everything.
+    japanese:
+      - お 金 は 全て {で は ない}。
+      - お 金 は 全て {じゃ ない}。
+    english_literally: Money, as for, all not.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 は 全て {で は あり ませ ん}。
+        english: Money isn't everything (polite).
+        hint: We are looking for a plain negative form.
+    scene: A philosopher sharing a general life wisdom.
+    register: formal
+    setting: reflective
+    nuance: 「全てではない」is used to state a universal truth or strong opinion in a formal or objective manner.
+      「全てじゃない」is its casual equivalent, used when conveying the same sentiment in informal conversation.
+  - english: She is not serious.
+    japanese:
+      - 彼女 は 真面目 {じゃ ない}。
+      - 彼女 は 真面目 {で は ない}。
+    english_literally: She, as for, serious not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 真面目 {で は あり ませ ん}。
+        english: She is not serious (polite).
+        hint: We are looking for a plain negative form.
+    scene: Someone is describing a person's personality.
+    register: casual
+    setting: informative
+    nuance: 「真面目じゃない」is a common, casual way to describe someone as 'not serious'. 「真面目ではない」is grammatically
+      correct and presents the same information in a more formal or detached manner, suitable for more
+      objective discussions.
+  - english: You're not busy today, right?
+    japanese:
+      - 今日 は 暇 {じゃ ない} の か？
+      - 今日 は 暇 {で は ない} の か？
+    english_literally: Today, as for, free not, is it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 暇 {です か}？
+        english: Are you free today? (polite question).
+        hint: We are looking for a casual way to confirm something, typically used by male speakers to
+          close friends.
+    scene: Someone is inquiring about another person's availability for a task or meeting.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: male
+    nuance: For male speakers inquiring casually to a close friend, 「暇じゃないのか」is the natural choice. While
+      「暇ではないのか」is grammatically correct for the same meaning, it sounds more formal or like a direct question
+      posed in a more objective, less personal setting, such as a superior to a subordinate or a teacher
+      to a student, even among male speakers.
+  - english: It's not impossible.
+    japanese:
+      - それ は 不 可能 {じゃ ない}。
+      - それ は 不 可能 {で は ない}。
+    english_literally: That, as for, impossible not.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 可能 {だ}。
+        english: That is possible.
+        hint: We are looking for a softened negative statement, rather than a direct affirmative.
+    scene: A team discussing challenges for a project.
+    register: semi-formal
+    setting: persuasive
+    nuance: 「不可能じゃない」can soften a direct statement, making it sound less confrontational while still asserting
+      possibility. 「不可能ではない」offers a more neutral and formal negation, often used when expressing a logical
+      conclusion.
+  - english: It's not a dream.
+    japanese:
+      - これ は 夢 {じゃ ない}。
+      - これ は 夢 {で は ない}。
+    english_literally: This, as for, dream not.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 夢 {で は あり ませ ん}。
+        english: This is not a dream (polite).
+        hint: We are looking for a plain negative form.
+    scene: Someone pinching themselves to make sure they're awake.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: 「夢じゃない」is common in self-talk, expressing an internal confirmation or realization that a situation
+      is real. 「夢ではない」could be used for a more objective, declarative self-statement or a statement to
+      others in a formal context.

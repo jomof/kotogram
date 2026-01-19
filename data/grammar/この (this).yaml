@@ -1,0 +1,217 @@
+grammar_point: この (this)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-stem]やすい (easy to do)'
+  - ちょっと (adverb)
+  - で (for)
+  - やや (slightly)
+  - 入り (containing)
+meaning: this (near speaker)
+pronunciation:
+  katakana: コノ
+  romaji: kono
+formation:
+  この + Noun: Used to describe a noun that is physically or conceptually close to the speaker.
+jlpt: N5
+etymology: The demonstrative `この` combines the proximal root `こ` (indicating proximity to the speaker)
+  with the particle `の`. This `の` acts as a genitive particle, similar to 'of' or 's' in English, but
+  here it functions to connect the demonstrative root directly to the noun it modifies, forming a pre-nominal
+  modifier. This is distinct from demonstrative pronouns like `これ` which can stand alone.
+writeup: '`この` is a demonstrative determiner, meaning "this" or "these." It is used to refer to a noun
+  that is close to the speaker, both physically and in terms of mental or emotional proximity. Unlike
+  `これ`, which is a demonstrative pronoun and can stand alone (e.g., これはペンです - This is a pen), `この` must
+  always be followed by a noun (e.g., このペンは私のです - This pen is mine). It functions similarly to an adjective,
+  directly modifying the noun.'
+false_friends:
+  - term: これ (this)
+    meaning: this (pronoun)
+    kind: similar expression
+    nuance: '`これ` is a pronoun and stands alone, referring to "this thing." `この` is a determiner and must
+      precede a noun, meaning "this [noun]."'
+    grammar_point: これ (this)
+  - term: その (that)
+    meaning: that (near listener)
+    kind: similar expression
+    nuance: '`この` refers to something near the speaker. `その` refers to something near the listener, or
+      something previously mentioned.'
+    grammar_point: その (that)
+  - term: あの (that over there)
+    meaning: that (far from both)
+    kind: similar expression
+    nuance: '`この` refers to something near the speaker. `あの` refers to something far from both the speaker
+      and the listener, or something mutually known.'
+    grammar_point: あの (interjection)
+  - term: どの (which)
+    meaning: which (determiner)
+    kind: similar expression
+    nuance: '`この` is a demonstrative. `どの` is an interrogative, used to ask "which [noun]?" among a group.'
+    grammar_point: <suggest>:どの (which of 3 or more)
+post_false_friends_writeup: Understanding the difference between `この`, `その`, `あの`, and `どの` is crucial
+  for correctly identifying location and reference. `この`, `その`, and `あの` form a set of demonstrative determiners
+  (often called 'ko-so-a-do' words) indicating proximity, while `どの` is their interrogative counterpart.
+examples:
+  - english: This book is interesting.
+    japanese:
+      - '{この} 本 は 面白い です。'
+      - '{この} 本 は 面白い。'
+    english_literally: As for this book, it is interesting.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 は 面白い です。
+        english: That book (near you) is interesting.
+        hint: '`この` indicates the book is near the speaker. `その` indicates it''s near the listener, or
+          already talked about. We''re looking for ''this book'' near the speaker.'
+      - competing_japanese:
+          - これ は 面白い です。
+        english: This (thing) is interesting.
+        hint: '`これ` is a pronoun that stands alone, meaning ''this thing.'' We''re looking for a determiner,
+          `この`, to modify the noun ''book''.'
+    scene: A student points to a book they are reading.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please pass me this pen.
+    japanese:
+      - '{この} ペン を 渡し て ください。'
+      - '{この} ペン ちょうだい。'
+    english_literally: This pen, please pass.
+    competing_grammar:
+      - competing_japanese:
+          - それ を 渡し て ください。
+        english: Please pass me that (near you) pen.
+        hint: The object is explicitly identified as 'this pen' (near the speaker), not just 'that' (near
+          the listener). We're looking for a specific demonstrative determiner.
+    scene: You are sitting at a desk with a colleague and need a pen that is on your side.
+    register: teineigo (polite)
+    setting: instructional
+  - english: This car is expensive.
+    japanese:
+      - '{この} 車 は 高い です。'
+      - '{この} 車 高い よ。'
+    english_literally: As for this car, it is expensive.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 高い です。
+        english: This (thing) is expensive.
+        hint: We are specifically talking about 'this car', not just 'this' as a standalone item. We're
+          looking for a determiner that modifies a noun.
+      - competing_japanese:
+          - その 車 は 高い です。
+        english: That car (near listener) is expensive.
+        hint: '`この` indicates the car is near the speaker. `その` implies it''s near the listener. We''re
+          looking for ''this car'' near the speaker.'
+    scene: You are at a car dealership, pointing to a specific car.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+  - english: This restaurant has delicious food.
+    japanese:
+      - '{この} レストラン は おいしい です。'
+      - '{この} レストラン、美味しい よ。'
+    english_literally: As for this restaurant, it is delicious.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は おいしい です。
+        english: That restaurant (over there) has delicious food.
+        hint: '`この` indicates the restaurant is near the speaker. `あの` refers to something farther away.
+          We''re looking for ''this restaurant'' near the speaker.'
+    scene: Two friends are walking past a restaurant the speaker wants to recommend.
+    register: casual
+    setting: friendly
+  - english: This week has been very busy.
+    japanese:
+      - '{この} 一 週間 は とても 忙しかっ た です。'
+      - '{この} 一 週間 すごく 忙しかっ た わ。'
+    english_literally: As for this one week, it was very busy.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 は とても 忙しかっ た です。
+        english: This week has been very busy.
+        hint: '`この一週間` emphasizes the *entire duration* of the week. `今週` is simply ''this week''. We''re
+          looking for a way to express the whole span of ''this week''.'
+    scene: A person talks to their spouse after a long work week.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+  - english: I don't understand this problem.
+    japanese:
+      - '{この} 問題 が わかり ませ ん。'
+      - '{この} 問題 わから ない。'
+    english_literally: This problem, I don't understand.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 が わかり ませ ん。
+        english: I don't understand that problem (near you or referred to).
+        hint: '`この` indicates the problem is near the speaker. `その` implies it''s near the listener or
+          a shared reference. We''re looking for ''this problem'' near the speaker.'
+      - competing_japanese:
+          - これ が わかり ませ ん。
+        english: I don't understand this (thing).
+        hint: '`これ` is a pronoun that stands alone, meaning ''this thing.'' We''re looking for a determiner,
+          `この`, to modify the noun ''problem''.'
+    scene: A student is struggling with a math problem and asks a teacher for help.
+    register: teineigo (polite)
+    setting: academic
+  - english: This idea sounds great.
+    japanese:
+      - '{この} アイデア は 素晴らしい です ね。'
+      - '{この} アイデア、いい ね！'
+    english_literally: As for this idea, it is wonderful, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - その アイデア は 素晴らしい です ね。
+        english: That idea sounds great (just mentioned or listener's).
+        hint: '`この` emphasizes the speaker''s acceptance or ownership of the idea. `その` would be used
+          if the idea was just presented by someone else. We''re looking for ''this idea'' that the speaker
+          is now embracing.'
+    scene: Colleagues are brainstorming in a meeting, and someone just proposed a new idea.
+    register: formal
+    setting: professional
+  - english: Who is this person?
+    japanese:
+      - '{この} 人 は 誰 です か。'
+      - '{この} 人 誰？'
+    english_literally: This person, who is it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は 誰 です か。
+        english: Who is that person (over there)?
+        hint: '`この` indicates the person is near the speaker. `あの` refers to someone farther away from
+          both speaker and listener. We''re looking for ''this person'' near the speaker.'
+      - competing_japanese:
+          - その 人 は 誰 です か。
+        english: Who is that person (already identified/near listener)?
+        hint: '`この` indicates the person is near the speaker. `その` would be used if the person was previously
+          mentioned or is closer to the listener. We''re looking for ''this person'' near the speaker.'
+    scene: Someone new has just joined the group, and a speaker whispers to a friend.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: This type of behavior is unacceptable.
+    japanese:
+      - '{この} よう な 行動 は 許さ れ ませ ん。'
+      - '{この} 手 の 行動 は 許さ れ ない な。'
+    english_literally: This kind of behavior is not permitted.
+    competing_grammar:
+      - competing_japanese:
+          - そう いう 行動 は 許さ れ ませ ん。
+        english: Such behavior (that just occurred or was described) is unacceptable.
+        hint: '`このような` refers to a specific type of behavior that is currently evident or being discussed
+          directly. `そういう` is more general, referring to behavior of that kind. We''re looking for ''this
+          type'' which is more immediate.'
+    scene: A manager is reprimanding an employee for inappropriate conduct.
+    register: formal
+    setting: serious
+    speaker_age: older
+  - english: Can you bring me this document?
+    japanese:
+      - '{この} 書類 を 持っ て き て いただけ ます か。'
+      - '{この} 書類 持っ て き て もらえる？'
+    english_literally: This document, can you bring it?
+    competing_grammar:
+      - competing_japanese:
+          - その 書類 を 持っ て き て いただけ ます か。
+        english: Can you bring me that document (near you or known)?
+        hint: '`この` indicates the document is near the speaker. `その` implies it''s near the listener or
+          a shared reference. We''re looking for ''this document'' near the speaker.'
+    scene: A boss asks an assistant to retrieve a document from their desk.
+    register: semi-formal
+    setting: professional

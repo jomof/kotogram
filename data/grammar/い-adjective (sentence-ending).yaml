@@ -1,0 +1,548 @@
+grammar_point: い-adjective (sentence-ending)
+learn_before:
+  - い-Adjective[くありません] (polite negative form)
+  - い-Adjective[くない] (negative)
+meaning: An い-adjective used as the sentence-ending descriptor for a state or property.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: '[い-adjective stem] + い'
+    rarity: common
+    meaning: plain non-past い-adjective
+  - conjugation-type: non-past polite (～ます)
+    form: '[い-adjective stem] + い + です'
+    rarity: common
+    meaning: polite non-past い-adjective
+  - conjugation-type: past plain (～た)
+    form: '[い-adjective stem] + かった'
+    rarity: common
+    meaning: plain past い-adjective
+  - conjugation-type: past polite (～ました)
+    form: '[い-adjective stem] + かった + です'
+    rarity: common
+    meaning: polite past い-adjective
+  - conjugation-type: negative plain (～ない)
+    form: '[い-adjective stem] + くない'
+    rarity: common
+    meaning: plain negative non-past い-adjective
+  - conjugation-type: negative non-past polite (～ません)
+    form: '[い-adjective stem] + くない + です'
+    rarity: common
+    meaning: polite negative non-past い-adjective
+  - conjugation-type: negative past plain (～なかった)
+    form: '[い-adjective stem] + くなかった'
+    rarity: common
+    meaning: plain negative past い-adjective
+  - conjugation-type: negative past polite (～ませんでした)
+    form: '[い-adjective stem] + くなかった + です'
+    rarity: common
+    meaning: polite negative past い-adjective
+pronunciation:
+  katakana: イ ケイヨウシ
+  romaji: i keiyoushi
+  pronunciation_warning: The term 'predicate' in English is used here for grammatical context, not as
+    a direct translation of the Japanese term. For example, the term for 'adjective' in Japanese is 形容詞
+    (けいようし).
+formation:
+  い-adjective (plain form): Used to directly predicate a noun or serve as a complete sentence.
+  い-adjective (plain form) + です: Used to politely predicate a noun or serve as a complete polite sentence.
+  い-adjective stem + く ない: Used for negative plain forms.
+  い-adjective stem + かった: Used for plain past forms.
+  い-adjective stem + くなかった: Used for negative plain past forms.
+  い-adjective stem + く あり ませ ん: Polite negative non-past form (alternative).
+  い-adjective stem + く あり ませ ん でし た: Polite negative past form (alternative).
+jlpt: N5
+etymology: The い in い-adjective originates from the inflectional ending that characterizes this type of
+  adjective. The term 'predicate' comes from the grammatical role the adjective plays in the sentence,
+  describing the subject. This is a fundamental concept in Japanese grammar, signifying that the adjective
+  is completing the sentence by describing the subject's state or quality.
+writeup: |-
+  A predicate is a word that describes the topic or subject of a sentence. In Japanese, this is called a 述語 (じゅつご), which literally means 'statement word.' As predicates, い-adjectives can appear by themselves (when the word they are describing does not need to be stated), or they may be used at the end of a sentence. When an い-adjective stands alone, it implies 'It is [adjective],' and the 'it' is understood from context. All い-adjectives are words of Japanese origin.
+
+  In many sentences, either は or が can mark the word(s) the predicate describes. However, the choice depends on context. Generally, が is used to specifically point out something as being different from other items in the same category. For instance, when emphasizing a specific attribute, such as the unusual hotness of a bath, が would be used, whereas は would be less natural if that level of hotness is not its typical state. This grammatical nuance allows for precise expression regarding the subject's characteristics.
+false_friends:
+  - term: な-形容詞 + だ or です
+    meaning: Na-adjective used as predicate (e.g., 静かだ/静かです)
+    kind: similar expression
+    nuance: Unlike い-adjectives which directly conjugate to end a sentence, な-adjectives require だ or
+      です (or their conjugated forms) to serve as a predicate. For example, 「静か です」 vs 「美味しい です」.
+    grammar_point: な-Adjective (predicate form)
+  - term: 欲しい
+    meaning: to want (an object/thing)
+    kind: similar expression
+    nuance: While grammatically similar to an い-adjective, 欲しい specifically expresses a desire for a tangible
+      object or an abstract concept that can be desired (e.g., 自由が欲しい - 'I want freedom'). It does not
+      describe an inherent property of a noun like other い-adjectives do.
+    grammar_point: '[Noun]が欲しい (to want something)'
+  - term: ～がる
+    meaning: (someone) shows signs of wanting/feeling/being; (someone) appears to be
+    kind: similar expression
+    nuance: Used to describe *someone else's* apparent desire or feeling (e.g., 怖がる - 'to show signs of
+      being scared'), unlike い-adjectives which directly state a property or feeling of the subject. It
+      cannot be used for the speaker's own direct feelings.
+    grammar_point: '[い-Adjective-stem]がる・[な-Adjective]がる (to show signs of feeling)'
+post_false_friends_writeup: While い-adjectives and な-adjectives both function as predicates, it is crucial
+  to remember their structural differences. い-adjectives can stand alone at the end of a sentence in their
+  plain form, while な-adjectives always require a copula like だ or です. This distinction is fundamental
+  for correct sentence construction and politeness levels. Additionally, be careful not to confuse い-adjectives,
+  which describe inherent qualities, with expressions like 欲しい (to want a thing) or ～がる (to show signs
+  of feeling), which convey desire or externally observed states rather than direct properties.
+examples:
+  - english: It's hot today, isn't it?
+    japanese:
+      - 今日 は {暑い} です ね。
+      - 今日 は {暑い} ね。
+      - 今日 は {暑い} な。
+      - 今日 は {暑い} わ ね。
+      - 今日 は {暑い} です よ。
+      - 今日 は {暑い} わ。
+      - 今日 は {暑い} ぜ。
+    english_literally: Today is hot, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {暑い} ね。
+        english: It's hot today, isn't it?
+        hint: The 'です' makes the statement polite and suitable for general conversation, avoiding the
+          casualness of plain form which might be too informal for this setting. We're looking for the
+          polite form ending in です。
+      - competing_japanese:
+          - 今日 は {暑い}。
+        english: It's hot today.
+        hint: The addition of 'です ね' softens the statement, inviting agreement and making it more engaging
+          for small talk, rather than a mere factual declaration. We're looking for the polite form ending
+          in です。
+      - competing_japanese:
+          - 今日 は 暑 {そう} です ね。
+        english: It seems hot today, doesn't it?
+        hint: 「そう です」 indicates that something seems or appears to be a certain way, or that you heard
+          it from someone else. We're looking for a direct statement about the current weather using an
+          い-adjective. For example, the sentence is about the weather, not about what you heard about
+          the weather, so 'そう' isn't correct here. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - 今日 は {暖かい} です ね。
+        english: It's warm today, isn't it?
+        hint: 「暖かい」 means 'warm', suggesting a pleasant temperature, whereas '暑い' means 'hot', usually
+          referring to an uncomfortable heat. We're looking for 'hot' in the polite form ending in です。
+      - competing_japanese:
+          - 今日 は {賑やか} です ね。
+        english: It's lively today, isn't it?
+        hint: 「賑やか」 is a な-adjective which conjugates differently from い-adjectives like 「暑い」. We're looking
+          for 'hot' as an い-adjective in the polite form ending in です。
+    scene: Two people making small talk about the weather.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: This cake is sweet.
+    japanese:
+      - この ケーキ は {甘い} です。
+      - この ケーキ は {甘い}。
+      - この ケーキ は {甘い} よ。
+      - この ケーキ は {甘い} わ ね。
+      - この ケーキ は {甘い} ぞ。
+      - この ケーキ は {甘い} ん です よ。
+    english_literally: This cake is sweet.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は {甘い}。
+        english: This cake is sweet.
+        hint: The 'です' maintains a polite and informative tone, appropriate for generally describing something
+          without being overly casual or personal. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ケーキ は {甘み が あり ます}。
+        english: This cake has sweetness.
+        hint: 「甘み が あります」 describes the presence of a characteristic. We're looking for a direct adjective
+          predicate statement about the cake using an い-adjective. We're looking for the polite form ending
+          in です。
+      - competing_japanese:
+          - この ケーキ は 甘い {みたい} です。
+        english: This cake seems sweet.
+        hint: 「みたい」 implies a resemblance or a conjecture, indicating that something appears to be a certain
+          way. We're looking for a direct statement. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ケーキ は {デザート} です。
+        english: This cake is a dessert.
+        hint: 「デザート です」 describes what the cake *is* (a noun), while 「甘い です」 describes a *property* of
+          the cake (an adjective). We're looking for an adjective predicate using an い-adjective. We're
+          looking for the polite form ending in です。
+      - competing_japanese:
+          - この ケーキ は {有名} です。
+        english: This cake is famous.
+        hint: '「有名」 is a な-adjective describing a reputation. We''re looking for an い-adjective describing
+          a taste: ''sweet'' in the polite form ending in です。'
+    scene: Someone describing the taste of a cake.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: It was cold yesterday.
+    japanese:
+      - 昨日 は {寒かっ た} です。
+      - 昨日 は {寒かっ た}。
+      - 昨日 は {寒かっ た} ぞ。
+      - 昨日 は {寒かっ た} わ ね。
+      - 昨日 は {寒かっ た} ん です。
+      - 昨日 は {寒かっ た} の です。
+      - 昨日 は {寒かっ た} です よ。
+    english_literally: Yesterday was cold.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は {寒かっ た}。
+        english: It was cold yesterday.
+        hint: The 'です' maintains a polite and respectful tone when reflecting on the past, suitable for
+          a general conversation rather than a very casual one. We're looking for the polite form ending
+          in です。
+      - competing_japanese:
+          - 昨日 は 寒かっ た {でしょう}。
+        english: It was probably cold yesterday.
+        hint: 「でしょう」 adds an element of conjecture or seeking confirmation. We're looking for a direct
+          statement about the past using an い-adjective. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - 昨日 は 寒かっ た {らしい} です。
+        english: I heard it was cold yesterday.
+        hint: 「らしい」 conveys information that was heard or inferred from external sources. We're looking
+          for a direct statement of personal experience using an い-adjective. We're looking for the polite
+          form ending in です。
+      - competing_japanese:
+          - 昨日 は {寒く なり まし た}。
+        english: It became cold yesterday.
+        hint: '「寒く なりました」 implies a change in state from not cold to cold. We''re looking for a statement
+          about the state itself: ''It *was* cold'' using an い-adjective. We''re looking for the polite
+          form ending in です。'
+      - competing_japanese:
+          - 昨日 は {静か だっ た} です。
+        english: Yesterday was quiet.
+        hint: 「静か」 is a な-adjective which needs 'だった' in the past plain form. We're looking for an い-adjective's
+          past form for 'cold' in the polite form ending in です。
+    scene: A person recalling the weather from the previous day.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+  - english: This cake isn't that sweet.
+    japanese:
+      - この ケーキ は そんな に {甘く ない} です。
+      - この ケーキ は そんな に {甘く ない}。
+      - この ケーキ は {甘く} あり ませ ん。
+      - この ケーキ は そんな に {甘く ない} よ。
+      - この ケーキ は そんな に {甘く ない} の です。
+      - この ケーキ は そんな に {甘く ない} ぜ。
+    english_literally: This cake is not expensive to that extent.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は そんな に {甘く ない}。
+        english: This cake isn't that sweet.
+        hint: The 'です' ensures the statement remains polite and appropriate for a general social setting,
+          avoiding a purely plain assertion. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ケーキ は {甘く あり ませ ん}。
+        english: This cake is not sweet.
+        hint: 「～くありません」 is another way to express polite negation for い-adjectives, often sounding a bit
+          more formal or definitive than 「～くない です」. We're looking for the more common negative polite
+          form ending in です。
+      - competing_japanese:
+          - この ケーキ は そんな に {甘く なり ませ ん でし た}。
+        english: This cake didn't become that sweet.
+        hint: 「甘く なりませんでした」 indicates a change of state that *didn't happen*. We're looking for a statement
+          that it *is not* sweet now. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ケーキ は そんな に {静か で は ない} です。
+        english: This cake is not that quiet.
+        hint: 「静か」 is a な-adjective that takes 'で は ない' for negation. We're looking for the い-adjective
+          '甘い' in its negative form ending in です。
+    scene: Someone commenting on the taste of a cake.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+  - english: Was the test good?
+    japanese:
+      - テスト は {良かっ た}？
+      - テスト は {良かっ た} か？
+      - テスト {良かっ た} か い？
+      - テスト は {良かっ た} の？
+      - テスト は {良かっ た} の か？
+      - テスト は {良かっ た} ん か？
+    english_literally: Test was good?
+    competing_grammar:
+      - competing_japanese:
+          - テスト は {良かっ た} です か？
+        english: Was the test good?
+        hint: The plain past form '良かった？' is typical among peers in a casual setting, conveying a sense
+          of familiarity, unlike the more formal '良かったです か？' which would sound unnatural here. We're looking
+          for the plain form. You can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - テスト は {どう だっ た}？
+        english: How was the test?
+        hint: 「どうだった」 is a general inquiry about something's state or outcome. We're looking for a specific
+          question about whether the test was 'good'. We're looking for the plain form. You can omit です
+          to make the question more casual among friends.
+      - competing_japanese:
+          - テスト 良かっ た {っけ}？
+        english: Was the test good? (seeking confirmation/recall)
+        hint: 「～っけ」 is used when the speaker is trying to recall something or seeking confirmation from
+          the listener about something they might have forgotten. We're looking for a straightforward
+          question. We're looking for the plain form. You can omit です to make the question more casual
+          among friends.
+      - competing_japanese:
+          - テスト は {簡単 だっ た}？
+        english: Was the test easy?
+        hint: 「簡単 だった」 uses a な-adjective to describe the test's difficulty. We're looking for a question
+          about whether the test was 'good' using an い-adjective. We're looking for the plain form. You
+          can omit です to make the question more casual among friends.
+    scene: Two younger students chatting after taking a test.
+    register: casual
+    setting: casual slang
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The plain past form 「良かった？」 used by a younger female speaker to a male peer is typical for
+      casual conversation between friends, expressing a straightforward inquiry about the test outcome.
+  - english: Are you okay? Are you sleepy?
+    japanese:
+      - 大丈夫？{眠い} の？
+      - 大丈夫？{眠い}？
+      - 大丈夫？{眠い} かしら？
+      - 大丈夫 か？{眠い} の か？
+      - 大丈夫？{眠い} わ よ？
+      - 大丈夫？{眠い} ん だ？
+      - 大丈夫？{眠い} ん でしょ？
+    english_literally: Are you okay? Sleepy?
+    competing_grammar:
+      - competing_japanese:
+          - 大丈夫 です か？{眠い} です か？
+        english: Are you okay? Are you sleepy?
+        hint: The casual plain form '眠い の？' is more appropriate for a close friend, conveying intimacy
+          and concern more directly than the polite '眠い です か？' in this sympathetic context. We're looking
+          for the plain form. You can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - '{眠 そう} に 見える けど？'
+        english: You look sleepy, though?
+        hint: 「～そう に 見える」 indicates that someone appears to be in a certain state based on observation.
+          We're looking for a direct question about being sleepy. We're looking for the plain form. You
+          can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - 眠い {か も しれ ない} ね。
+        english: You might be sleepy.
+        hint: 「～かもしれない」 expresses possibility or likelihood. We're looking for a direct question. We're
+          looking for the plain form. You can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - 眠い から 枕 が {欲しい} です。
+        english: Do you want a pillow because you're sleepy?
+        hint: 「枕 が 欲しい」 expresses a desire for an *object*. We are asking about the *state* of being sleepy,
+          not a desire for something. We're looking for the plain form. You can omit です to make the question
+          more casual among friends.
+      - competing_japanese:
+          - 彼 は {眠 がる} の？
+        english: Does he appear sleepy?
+        hint: 「眠がる」 describes someone else's apparent enjoyment. We are stating *our own* direct opinion
+          of the movie. We're looking for the plain form. You can omit です to make the question more casual
+          among friends.
+      - competing_japanese:
+          - 大丈夫？{暇 な の}？
+        english: Are you okay? Are you free?
+        hint: '「暇」 is a な-adjective that uses ''な の'' to form an informal question. We''re looking for
+          an い-adjective: ''sleepy''. We''re looking for the plain form. You can omit です to make the question
+          more casual among friends.'
+    scene: A woman asks her male friend if he's sleepy.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual plain form 「眠い の？」 is a direct way for a female speaker to express concern to a
+      close male friend. The 「の？」 adds a gentle, inquisitive tone, indicating the speaker is asking for
+      confirmation or expressing a slight observation.
+  - english: This wine is delicious. I'm starting to want to drink more.
+    japanese:
+      - この ワイン は {美味しい} です ね。もっと 飲み たく なっ ちゃう な。
+      - この ワイン は {美味しい} ね。もっと 飲み たく なっ ちゃう な。
+      - この ワイン は {美味しい} です。もっと いただき たい です ね。
+      - この ワイン は {美味しい} ぞ。もっと 飲み たい な。
+      - この ワイン は {美味しい} です。
+      - この ワイン は {美味しい} です ね。もっと 飲み たく なり ます。
+    english_literally: This wine is delicious. Starting to want to drink more.
+    competing_grammar:
+      - competing_japanese:
+          - この ワイン は {美味しい} ね。
+        english: This wine is delicious, isn't it?
+        hint: While '美味しい ね' is also friendly, the inclusion of 'です' maintains a slightly more refined
+          and considerate tone, which can be desirable on a first date, blending politeness with warmth.
+          We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ワイン は {美味しい} です。もっと 飲み たい です
+        english: This wine is delicious. I want to drink more.
+        hint: The use of 'なっちゃう な' adds a more expressive and spontaneous nuance, reflecting a feeling
+          of wanting more wine that is more engaging than a purely formal statement on a date. We're looking
+          for the polite form ending in です。
+      - competing_japanese:
+          - この ワイン は 美味しい {らしい} です ね。
+        english: I hear this wine is delicious, isn't it?
+        hint: 「～らしい」 indicates that the information was heard or inferred from external sources. We're
+          looking for a direct statement based on personal experience. We're looking for the polite form
+          ending in です。
+      - competing_japanese:
+          - この ワイン は {良い} です ね。
+        english: This wine is good, isn't it?
+        hint: 「良い」 is a more general adjective for 'good'. We're looking for the specific adjective meaning
+          'delicious' for food and drink. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ワイン は {美味しい} の で、新しい グラス が {欲しい} です。
+        english: This wine is delicious, so I want a new glass.
+        hint: 「新しい グラス が 欲しい」 expresses a desire for a *thing*. We are stating the wine's quality and
+          a desire to *do* something (drink more), not want an object. We're looking for the polite form
+          ending in です。
+      - competing_japanese:
+          - 彼 は この ワイン を {美味し がる} でしょう。
+        english: He will likely show signs of enjoying this wine.
+        hint: 「美味しがる」 describes a third person's apparent enjoyment. We are stating *our own* direct experience
+          with the wine. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - この ワイン は {立派} です ね。
+        english: This wine is splendid, isn't it?
+        hint: '「立派」 is a な-adjective suggesting excellence or grandeur. We''re looking for an い-adjective
+          describing taste: ''delicious'' in the polite form ending in です。'
+    scene: A man on a date, speaking to his date.
+    register: semi-formal
+    setting: flirty
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「なっちゃう な」 conveys the speaker's enjoyment in a slightly flirtatious way, indicating a
+      spontaneous feeling. It implies a sense of shared enjoyment or a personal indulgence.
+  - english: That movie wasn't that interesting.
+    japanese:
+      - その 映画 は そんな に {面白く なかっ た}。
+      - その 映画 は そんな に {面白く なかっ た} です。
+      - その 映画 は {面白く} あり ませ ん でし た。
+      - その 映画 は そんな に {面白く なかっ た} な。
+      - その 映画 は そんな に {面白く なかっ た} よ。
+      - その 映画 は そんな に {面白く なかっ た} わ。
+      - その 映画 は そんな に {面白く なかっ た} ん だ。
+    english_literally: That movie was not interesting to that extent.
+    competing_grammar:
+      - competing_japanese:
+          - その 映画 は そんな に {面白く なかっ た} です。
+        english: That movie wasn't that interesting.
+        hint: The plain form indicates a casual conversation between close friends, where directness is
+          accepted without requiring extra politeness markers. We're looking for the plain form. You can
+          omit です to make the question more casual among friends.
+      - competing_japanese:
+          - その 映画 は {面白く あり ませ ん でし た}。
+        english: That movie is not interesting.
+        hint: 「～くありませんでした」 is the polite negative past form. We're looking for the plain negative past
+          form. We're looking for the plain form. You can omit です to make the question more casual among
+          friends.
+      - competing_japanese:
+          - その 映画 は {つまら なかっ た}。
+        english: That movie was boring.
+        hint: 「つまらない」 means 'boring' or 'dull', which is similar but not exactly 'not interesting' in
+          nuance. We're looking for the negation of 'interesting'. We're looking for the plain form. You
+          can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - 彼 は その 映画 を {面白 がっ て い なかっ た}。
+        english: He wasn't showing signs of finding that movie interesting.
+        hint: 「面白がって いなかった」 describes a third person's apparent reaction. We are stating *our own* direct
+          opinion of the movie. We're looking for the plain form. You can omit です to make the question
+          more casual among friends.
+      - competing_japanese:
+          - その 映画 は そんな に {有名 で は なかっ た}。
+        english: That movie was not that famous.
+        hint: 「有名」 is a な-adjective that takes 'で は なかった' for past negation. We're looking for the い-adjective
+          '面白い' in its negative past form. We're looking for the plain form. You can omit です to make the
+          question more casual among friends.
+    scene: Two friends discussing a movie they watched, expressing their honest opinion.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+  - english: Yesterday's party was not fun.
+    japanese:
+      - 昨日 の パーティー は {楽しく なかっ た} です。
+      - 昨日 の パーティー は {楽しく なかっ た}。
+      - 昨日 の パーティー は {楽しく} あり ませ ん でし た。
+      - 昨日 の パーティー は {楽しく なかっ た} の です。
+      - 昨日 の パーティー は {楽しく} あり ませ ん でし た ね。
+    english_literally: Yesterday's party was not fun.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の パーティー は {楽しく なかっ た}。
+        english: Yesterday's party was not fun.
+        hint: The 'です' maintains a polite and appropriate distance, suitable for conversations in a work
+          or semi-formal setting, even when expressing a negative opinion. We're looking for the polite
+          form ending in です。
+      - competing_japanese:
+          - 昨日 の パーティー は {楽しく あり ませ ん でし た}。
+        english: Yesterday's party was not fun.
+        hint: 「～くありませんでした」 is a more common and natural polite negative past form. We're looking for the
+          「～くなかった です」 form, which is also polite but slightly less formal than 「～くありませんでした」. We're looking
+          for the polite form ending in です。
+      - competing_japanese:
+          - 昨日 の パーティー は {残念 でし た}。
+        english: Yesterday's party was a pity.
+        hint: 「残念」 expresses a feeling of regret or disappointment about an outcome. We're looking for
+          a direct statement about whether the party itself was enjoyable or not. We're looking for the
+          polite form ending in です。
+      - competing_japanese:
+          - 皆 は その パーティー を {楽し がっ て い なかっ た}。
+        english: Everyone wasn't showing signs of enjoying that party.
+        hint: 「楽しがって いなかった」 describes the apparent enjoyment of a *group* of people. We are stating *our
+          own* direct opinion about the party. We're looking for the polite form ending in です。
+      - competing_japanese:
+          - 昨日 の パーティー は {賑やか で は なかっ た} です。
+        english: Yesterday's party was not lively.
+        hint: 「賑やか」 is a な-adjective that uses 'で は なかった' for polite past negation. We're looking for
+          the い-adjective '楽しい' in its negative past polite form ending in です。
+    scene: A woman politely sharing her candid experience about a party with a colleague who didn't attend.
+    register: formal
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「楽しくなかった です」 allows the speaker to express a negative sentiment politely, maintaining
+      professional decorum while conveying their personal experience.
+  - english: This laptop isn't expensive, is it?
+    japanese:
+      - この パソコン は {高く ない}？
+      - この パソコン は {高く ない} の？
+      - この パソコン は {高く ない} か？
+      - この パソコン は {高く ない} よ ね？
+      - この パソコン は {高く ない} ん です か？
+    english_literally: This laptop is not expensive?
+    competing_grammar:
+      - competing_japanese:
+          - この パソコン は {高く ない} です か？
+        english: This laptop isn't expensive?
+        hint: The plain form 「高くない？」 is suitable for a casual conversation between friends, directly asking
+          for confirmation without formality. We're looking for the plain form. You can omit です to make
+          the question more casual among friends.
+      - competing_japanese:
+          - この パソコン は {安い} です か？
+        english: Is this laptop cheap?
+        hint: While '安い' (cheap) is the opposite of '高い' (expensive), the original question is framed
+          as a negative question using '高くない' (not expensive), implying an expectation that it's not expensive.
+          We're looking for the plain form. You can omit です to make the question more casual among friends.
+      - competing_japanese:
+          - この パソコン は {高価 で は ない} です か？
+        english: Isn't this laptop high-priced?
+        hint: 「高価」 is a な-adjective that takes 「では ない」 for negation. We're looking for the い-adjective
+          「高い」 in its negative form. We're looking for the plain form. You can omit です to make the question
+          more casual among friends.
+      - competing_japanese:
+          - この パソコン は {値段 が 高く ない} です か？
+        english: Isn't the price of this laptop expensive?
+        hint: This phrasing is more wordy by specifying 「値段 が」 (the price). We're looking for a more direct,
+          simpler query about the laptop's price itself. We're looking for the plain form. You can omit
+          です to make the question more casual among friends.
+    scene: A student asks a friend about the price of a laptop they are considering buying, hoping it's
+      not too much.
+    register: casual
+    setting: interrogative
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The plain negative question 「高くない？」 is a common and natural way for younger male friends to
+      confirm an assumption about something, in this case, the affordability of a laptop. The rising intonation
+      makes it a question.
+post_example_writeup: Understanding the predicate forms of い-adjectives, especially their plain and polite
+  conjugations, is crucial for natural communication in Japanese. Pay attention to the context and desired
+  politeness level when choosing between forms like です or the plain form. The choice often conveys subtle
+  social cues about your relationship with the listener and the formality of the situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/い-adjective-predicate

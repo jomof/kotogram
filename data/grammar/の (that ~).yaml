@@ -1,0 +1,263 @@
+grammar_point: の (that ~)
+learn_before:
+  - '[Verb-て]すみません (apologizing for action)'
+  - のを (direct object nominalizer)
+  - 一人で (physically alone)
+  - 割と (comparatively・rather・unexpectedly)
+  - 苦手 (not good at)
+meaning: That ~; to do something; doing something
+pronunciation:
+  katakana: ノ
+  romaji: 'no'
+formation:
+  Verb (plain form) + の: Used to nominalize a verb clause, transforming the action or state into a noun.
+  い-adjective (plain form) + の: Used to nominalize an i-adjective clause, referring to the quality or
+    state as a noun.
+  な-adjective (plain form) + な + の: Used to nominalize a na-adjective clause, referring to the characteristic
+    or state as a noun.
+  Noun + な + の: Used to nominalize a noun clause, referring to the identity or status as a noun.
+jlpt: N5
+etymology: The particle の originally derives from the possessive particle の, indicating a connection or
+  belonging. In its function as a nominalizer, it retains a sense of specifying or highlighting a particular
+  aspect or action within the context, making the preceding clause function as a 'thing' or 'event'.
+writeup: "The particle の functions as a **nominalizer**, transforming a clause (a phrase that contains\
+  \ a verb, adjective, or noun) into a noun phrase. It's used when the content of the clause is something\
+  \ directly perceived, or a fact already understood by both the speaker and listener. Unlike こと, which\
+  \ is generally used for abstract ideas, の is typically more concrete, relating to sensory information\
+  \ or shared knowledge. \n\nWhen nominalizing verbs and い-adjectives, the plain form is directly followed\
+  \ by の. For な-adjectives and nouns, な is inserted between the word and の. The resulting noun phrase\
+  \ can then function as the subject, object, or other noun-like element in a sentence.\n\nの can also\
+  \ soften a statement or question, often implying a shared understanding or a personal observation. This\
+  \ often occurs when の is used sentence-finally, sometimes followed by other particles like だ or です,\
+  \ creating forms like のです or のだ, which can convey explanation or assertion with a softer tone."
+false_friends:
+  - term: こと
+    meaning: Thing, matter, fact, abstract concept
+    kind: similar expression
+    nuance: Unlike の, こと is generally used for abstract concepts, general truths, and habitual actions.
+      It cannot be used for directly perceived events.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: もの
+    meaning: Thing, object (tangible)
+    kind: similar expression
+    nuance: もの refers to a concrete, tangible object, whereas の nominalizes a clause or idea into a conceptual
+      'thing' or 'event'.
+    grammar_point: <suggest>:もの (tangible object)
+post_false_friends_writeup: To differentiate between の and こと, remember that の typically relates to direct
+  experiences, sensory perceptions, or facts already known or obvious to both parties. If you can directly
+  see, hear, or feel the action or state being nominalized, の is often the more appropriate choice. こと,
+  on the other hand, refers to more abstract ideas, general truths, or habitual actions. もの is distinct
+  as it exclusively refers to a concrete, physical object.
+examples:
+  - english: Studying kanji every day is fun.
+    japanese:
+      - 毎日 漢字 を 勉強 する {の} は 楽しい。
+      - 毎日 漢字 を 勉強 する {の} は 楽しい です。
+    english_literally: The daily kanji studying thing is fun.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 漢字 を 勉強 する {こと} は 楽しい。
+        english: It is fun to study kanji every day.
+        hint: While こと can also nominalize, の here emphasizes the speaker's direct experience and personal
+          feeling about the action, making it more immediate. We're looking for an emphasis on the personal
+          experience.
+    scene: A student expressing their enjoyment of a task to a classmate.
+    register: casual
+    setting: informative
+    speaker_age: younger
+    nuance: The use of の here emphasizes the speaker's direct experience and feeling about the act of
+      studying kanji, making the statement more personal and immediate than if こと were used. This aligns
+      with a casual conversation among peers.
+  - english: I heard him singing.
+    japanese:
+      - 彼 が 歌っ て いる {の} を 聞い た。
+      - 彼 が 歌っ て いる {の} を 聞き まし た。
+    english_literally: I heard the him singing thing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 歌っ て いる {こと} を 聞い た。
+        english: I heard about him singing.
+        hint: こと cannot be used for directly perceived events like hearing or seeing; it implies hearing
+          about something abstractly. We're looking for direct sensory perception.
+    scene: Two friends chatting about a recent concert they attended.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: の is used here because the action of singing is a directly perceived event through hearing.
+      It implies a sensory experience, which is why it's distinct from こと, which would be ungrammatical
+      for direct perception. The casual register fits the conversation between friends.
+  - english: I'm not good with cold weather.
+    japanese:
+      - 寒い {の} は 苦手 だ。
+      - 寒い {の} は 苦手 です。
+    english_literally: The cold thing is my weakness.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い {こと} は 苦手 だ。
+        english: Being cold is something I'm not good at.
+        hint: こと would make the statement more about the abstract concept of 'being cold', whereas の focuses
+          on the concrete, personal feeling of discomfort. We're looking for a personal, experienced reality.
+    scene: A person muttering to themselves as they shiver in a chilly room.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Here, の nominalizes the state of 'being cold,' conveying a concrete, personal feeling of discomfort.
+      This usage highlights the immediate, experienced reality, which is why it's more appropriate than
+      こと when talking about a physically felt condition. The informal 苦手 だ fits a self-reflection.
+  - english: Seeing her well, I felt relieved.
+    japanese:
+      - 彼女 が 元気 な {の} を 見 て 安心 し た。
+      - 彼女 が 元気 な {の} を 見 て 安心 し まし た。
+    english_literally: Seeing her being well, I felt relieved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 元気 な {こと} を 見 て 安心 し た。
+        english: I felt relieved upon learning she was well.
+        hint: Using こと here would imply 'learning that she was well' rather than 'seeing' it directly,
+          as こと cannot be used for direct sensory observation. We're looking for direct observation.
+    scene: A worried mother observing her daughter after a long illness.
+    register: semi-formal
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: This sentence employs の to nominalize the directly observed state of 'being well'. It implies
+      a direct visual perception, making it distinct from the more abstract こと. The phrase 安心 し た (felt
+      relieved) emphasizes the personal reaction to this observation. The semi-formal register is suitable
+      for discussing such a topic.
+  - english: I had forgotten that tomorrow was a holiday.
+    japanese:
+      - 明日 が 休み な {の} を 忘れ て い た。
+      - 明日 が 休み な {の} を 忘れ て い まし た。
+    english_literally: I had forgotten the thing that tomorrow is a holiday.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 が 休み だ と いう {こと} を 忘れ て い た。
+        english: I had forgotten the fact that tomorrow is a holiday.
+        hint: While both can express forgotten facts, の emphasizes the specific event as a concrete 'thing'
+          that was forgotten. こと focuses more on the general concept or fact.
+    scene: A student suddenly remembering a holiday while planning their week.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: の here nominalizes a known fact, which was temporarily forgotten. This use focuses on the
+      specific event of 'tomorrow being a holiday' rather than the general concept of holidays. The casual
+      nature of forgetting something everyday is reflected in the informal language.
+  - english: It's okay because I can go alone.
+    japanese:
+      - 一人 で 行ける {の} で 大丈夫 だ よ。
+      - 一人 で 行ける {の} で 大丈夫 です よ。
+      - 一人 で 行ける {の} で 大丈夫 だ。
+    english_literally: Because it's the thing that I can go alone, it's okay.
+    competing_grammar:
+      - competing_japanese:
+          - 一人 で 行ける {から} 大丈夫 だ よ。
+        english: It's okay because I can go alone.
+        hint: While から states a reason, の で provides a softer, more explanatory reason, often implying
+          a shared understanding or a more direct connection to the consequence. We're looking for a softer,
+          more explanatory tone.
+    scene: A young woman reassuring her concerned father that she doesn't need an escort.
+    register: casual
+    setting: persuasive
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The combination of の as a nominalizer and the sentence-final だ よ creates a soft, explanatory,
+      and slightly persuasive tone, often used by younger female speakers when giving reasons or reassurance.
+      一人 で 行ける の で focuses on the immediate, concrete possibility of going alone, making the argument
+      feel more personal.
+  - english: Sorry I'm late, the road was congested.
+    japanese:
+      - 遅れ て ごめん ね、道 が 混ん で い た {の}。
+      - 遅れ て すみ ませ ん、道 が 混ん で い た {の} です。
+    english_literally: Sorry for being late, it's that the road was congested.
+    competing_grammar:
+      - competing_japanese:
+          - 遅れ て ごめん ね、道 が 混ん で い た {から}。
+        english: Sorry I'm late, because the road was congested.
+        hint: The sentence-final の provides a softer, more explanatory tone than から, often implying shared
+          context or empathy, making the apology feel less like an excuse. We're looking for a softer,
+          more personal explanation.
+    scene: A woman apologizing to her friend for being late to a casual meetup.
+    register: casual
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The sentence-final の in this context adds a soft, explanatory nuance, particularly common
+      in female speech. It suggests the speaker is providing a reason and expects the listener to understand
+      or empathize, making the apology feel less like an excuse and more like a shared observation of
+      circumstances.
+  - english: The reason I'm here is to pick up a package.
+    japanese:
+      - 荷物 を 受け取り に 来 た {の} です。
+      - 荷物 を 受け取り に 来 た {ん} です。
+      - 荷物 を 受け取り に 参り まし た {の} です。
+    english_literally: It is that I came to receive a package.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 を 受け取り に {来 まし た}。
+        english: I came to receive a package.
+        hint: の です is used to provide an explanation or reason, softening the statement and implying a
+          background context. We're looking for an explanation for why you're there.
+    scene: At a post office, explaining the purpose of your visit to the staff.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of の です (often contracted to ん です in speech) explicitly states a reason or explanation
+      for the current situation. It implies that the speaker is providing context or background information
+      that the listener is expected to understand, softening the statement compared to a direct declaration.
+      This is suitable for polite interactions.
+  - english: Have you seen my car keys? I can't find them anywhere.
+    japanese:
+      - 私 の 車 の 鍵 を 見 た {の}？どこ に も 見つから ない ん だ けど。
+      - 私 の 車 の 鍵 を 見 まし た {の}？どこ に も 見つから ない ん です けど。
+      - 私 の 車 の 鍵 を 見 た {ん}？どこ に も 見つから ない ん だ けど。
+    english_literally: Did you see my car's keys? It is that I can't find them anywhere.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 車 の 鍵 を {見 まし た か}？どこ に も {見つかり ませ ん}。
+        english: Did you see my car keys? I can't find them anywhere.
+        hint: The sentence-final の？ is used for softer, more casual questions, often implying shared context
+          or seeking confirmation with a gentle tone. We're looking for a casual inquiry in a familiar
+          setting.
+    scene: A person frantically searching for their car keys, asking a family member.
+    register: casual
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The sentence-final の？ is a very common way to form casual questions, particularly among female
+      speakers, adding a softer, often inquisitive or explanatory tone, expecting a shared understanding.
+      The following ん だ けど further softens the request, making it sound less demanding and more like a
+      shared problem.
+  - english: What he said was a complete lie!
+    japanese:
+      - 彼 が 言っ た {の} は 嘘 だ！
+      - 彼 が 言っ た {の} は 嘘 です！
+    english_literally: That which he said is a lie!
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 言っ た {こと} は 嘘 だ！
+        english: The fact that he said is a lie!
+        hint: While こと can also nominalize facts, の can be used when the focus is on the specific action
+          or event itself as a concrete 'thing' being discussed, often in a more direct or emphatic manner.
+          We're looking to emphasize the statement itself as a falsehood.
+    scene: Someone angrily refuting a statement made by another person.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: Here, の nominalizes the entire clause 彼 が 言っ た (what he said), making it the subject of the
+      sentence. This direct nominalization allows the speaker to emphasize the falsity of that specific
+      statement. The combination with the declarative だ！ makes the assertion strong and direct, common
+      in casual, emotional speech.
+post_example_writeup: As demonstrated, の as a nominalizer is remarkably versatile, allowing for the transformation
+  of various clauses into noun phrases. Its strength lies in its ability to refer to events, states, or
+  facts in a concrete, perceived manner, often conveying a sense of shared understanding or providing
+  explanation. Pay close attention to context and the speaker's intent, as these often dictate the choice
+  between の and other nominalizers like こと.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/の

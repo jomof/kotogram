@@ -1,0 +1,358 @@
+grammar_point: 預ける (to leave in care)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: to leave in care of; to deposit; to entrust
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 預ける
+    rarity: common
+    meaning: to leave in care of
+  - conjugation-type: non-past polite (～ます)
+    form: 預けます
+    rarity: common
+    meaning: to leave in care of (polite)
+  - conjugation-type: past plain (～た)
+    form: 預けた
+    rarity: common
+    meaning: left in care of
+  - conjugation-type: past polite (～ました)
+    form: 預けました
+    rarity: common
+    meaning: left in care of (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 預けない
+    rarity: common
+    meaning: do not leave in care of
+  - conjugation-type: negative non-past polite (～ません)
+    form: 預けません
+    rarity: common
+    meaning: do not leave in care of (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 預けなかった
+    rarity: common
+    meaning: did not leave in care of
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 預けませんでした
+    rarity: common
+    meaning: did not leave in care of (polite)
+  - conjugation-type: te-form (～て)
+    form: 預けて
+    rarity: common
+    meaning: leaving in care of (te-form)
+  - conjugation-type: potential (～られる/～える)
+    form: 預けられる
+    rarity: common
+    meaning: can leave in care of
+  - conjugation-type: causative (～させる)
+    form: 預けさせる
+    rarity: less common
+    meaning: make/let someone leave in care of
+  - conjugation-type: causative-passive (～させられる)
+    form: 預けさせられる
+    rarity: less common
+    meaning: be made/forced to leave in care of
+  - conjugation-type: volitional (～よう)
+    form: 預けよう
+    rarity: common
+    meaning: let's leave in care of
+  - conjugation-type: volitional polite (～ましょう)
+    form: 預けましょう
+    rarity: common
+    meaning: shall we leave in care of
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 預けろ
+    rarity: less common
+    meaning: leave in care of! (plain command)
+  - conjugation-type: imperative polite (～なさい)
+    form: 預けなさい
+    rarity: common
+    meaning: please leave in care of
+pronunciation:
+  katakana: アズケル
+  romaji: azukeru
+formation:
+  '[Noun] を 預ける': To deposit or leave a noun for safekeeping.
+  '[Place] に [Noun] を 預ける': To deposit or entrust something to a place.
+  '[Person] に [Noun] を 預ける': To entrust something to a person.
+  '[Person/Place] に 身 を 預ける': To entrust oneself to a person, place, or situation (idiomatic).
+jlpt: N3
+etymology: 預ける (azukeru) is derived from 預かる (azukaru), which means 'to be entrusted with' or 'to take
+  charge of'. Both verbs share the kanji 預, which originally combined elements for 'person' and 'to save/store',
+  conveying the idea of 'leaving something with a person' for safekeeping. 預ける is the transitive form,
+  denoting the action of *giving* something into someone else's care, while 預かる is the reciprocal, *receiving*
+  action.
+writeup: |-
+  The verb 「預ける」 means “to entrust,” “to deposit,” or “to leave something in someone’s care.” It signifies a temporary transfer of an object, money, a person, or even a responsibility to another party for safekeeping or management.
+
+  This verb is transitive, meaning it takes a direct object (marked by 「を」). It is frequently used when depositing money in a bank (銀行にお金を預ける), leaving luggage in a cloakroom (荷物をクロークに預ける), or entrusting a child to a daycare center or another person (子供を幼稚園に預ける、親に子供を預ける).
+
+  The core nuance of 「預ける」 is that the recipient (the one who receives the entrusted item) is expected to hold or care for it temporarily, without necessarily using it themselves (as would be the case with 「貸す」, to lend). The focus is on the act of placing something under someone’s responsibility for a period. It implies a degree of trust in the recipient to handle the item or person properly.
+
+  While typically used for physical items or people, 「預ける」 can also be used in more abstract contexts, such as entrusting one’s fate or a task to someone, although for tasks, 「任せる」 is often more common.
+false_friends:
+  - term: 貸す
+    meaning: to lend; to rent out
+    kind: similar expression
+    nuance: Whereas 預ける implies temporary safekeeping or care without expectation of direct use by the
+      recipient, 貸す is specifically about **lending an item for someone else's use**, often with an expectation
+      of return.
+    grammar_point: <suggest>:貸す (to lend)
+  - term: 借りる
+    meaning: to borrow; to rent
+    kind: similar expression
+    nuance: Unlike 預ける, which describes the action of giving something into someone else's care, 借りる is
+      about **receiving an item for one's own use** from someone else, with an obligation to return it.
+    grammar_point: <suggest>:借りる (to borrow)
+  - term: 任せる
+    meaning: to entrust; to leave to (someone's judgment)
+    kind: similar expression
+    nuance: While 預ける focuses on entrusting physical objects or people for safekeeping, 任せる is broader
+      and more commonly used for **entrusting tasks, decisions, or responsibilities** to someone's judgment
+      or capability. It emphasizes giving discretion or authority.
+    grammar_point: <suggest>:任せる (to entrust)
+post_false_friends_writeup: The key distinction among these verbs lies in the nature of the transfer.
+  While 預ける is about **temporary safekeeping** where the recipient acts as a custodian, 貸す and 借りる are
+  about **temporary transfer for use** by the recipient (貸す) or receiver (借りる). 任せる, on the other hand,
+  is primarily about **transferring responsibility or discretion**, often for non-physical matters.
+examples:
+  - english: I deposited money at the bank.
+    japanese:
+      - 銀行 に お 金 を {預け た}。
+      - 銀行 に お 金 を {預け まし た}。
+      - 銀行 に お 金 を {預け て き た}。
+      - 銀行 に お 金 を {預け入れ た}。
+    english_literally: To bank, money I deposited.
+    competing_grammar:
+      - competing_japanese:
+          - 銀行 に お 金 を 貸し た。
+        english: I lent money to the bank.
+        hint: 「貸す」 means to lend, implying the bank will use the money and return it. We're looking for
+          the act of placing money for safekeeping.
+      - competing_japanese:
+          - 銀行 に お 金 を 置い た。
+        english: I placed money at the bank.
+        hint: 「置く」 means to place, but doesn't convey the nuance of entrusting for safekeeping or official
+          deposit. We're looking for a verb that means to officially deposit money.
+    scene: A person is at the bank to handle their finances.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: This is a standard use of 「預ける」 for financial transactions, highlighting the temporary placement
+      of funds for safekeeping. 「預けた」 is the plain past form, suitable for various informal contexts.
+      「預け入れた」 is a more formal and specific term for depositing money.
+  - english: I left my luggage at the cloakroom in the museum.
+    japanese:
+      - 美術 館 で 荷物 を クローク に {預け まし た}。
+      - 美術 館 で 荷物 を クローク に {預け た}。
+      - 美術 館 で 荷物 を クローク に {預け させ て もらい まし た}。
+    english_literally: At museum, luggage, to cloakroom, I left.
+    competing_grammar:
+      - competing_japanese:
+          - 美術 館 で 荷物 を クローク に 置き まし た。
+        english: I placed my luggage at the cloakroom in the museum.
+        hint: 「置く」 means to place, but it doesn't imply the formal process of entrusting care as a cloakroom
+          provides. We're looking for a verb that conveys entrusting for safekeeping.
+      - competing_japanese:
+          - 美術 館 で 荷物 を クローク に 預かっ て もらい まし た。
+        english: I had my luggage looked after at the cloakroom in the museum.
+        hint: 「預かってもらう」 means to have something looked after, focusing on receiving the favor. We're looking
+          for the action of giving something into care.
+    scene: Someone visiting a museum wants to be unburdened by their belongings.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The use of 「預けました」 is polite and suitable for describing an action in a public setting like
+      a museum, implying a service rendered. 「預けさせてもらいました」 adds a nuance of receiving a favor for being
+      allowed to leave the luggage.
+  - english: I am leaving my child at kindergarten.
+    japanese:
+      - 子供 を 幼稚 園 に {預け て いる}。
+      - 子供 を 幼稚 園 に {預け て おり ます}。
+      - 子供 を 幼稚 園 に {預け とる}。
+    english_literally: Child, to kindergarten, am leaving in care.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 を 幼稚 園 に 置い て いる。
+        english: I am putting my child at kindergarten.
+        hint: 「置く」 can sound like abandoning or simply placing something, rather than entrusting their
+          care. We're looking for the act of leaving someone in a place where they will be looked after.
+      - competing_japanese:
+          - 子供 を 幼稚 園 に 入れ て いる。
+        english: I am putting my child into kindergarten.
+        hint: 「入れる」 means to put into, but doesn't specifically convey the ongoing care aspect implied
+          by entrusting. We're looking for the act of leaving someone in a place where they will be cared
+          for.
+    scene: A parent talks about their child's daily routine or arrangements for childcare.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    nuance: This shows an ongoing state of entrusting a child's care, which is a common daily activity
+      for parents. The casual register is appropriate for informal conversation. 「預けております」 is the humble
+      form, indicating respect towards the listener or the institution.
+  - english: I plan to leave my dog at a pet hotel during my trip.
+    japanese:
+      - 旅行 中 ペット ホテル に 愛犬 を {預ける} 予定 です。
+      - 旅行 中 ペット ホテル に 愛犬 を {預ける} つもり です。
+      - 旅行 中 ペット ホテル に 愛犬 を {預ける} 予定 だ。
+    english_literally: During trip, to pet hotel, beloved dog, to entrust, plan is.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 中 ペット ホテル に 愛犬 を 置い て おく 予定 です。
+        english: I plan to leave my dog at the pet hotel during my trip.
+        hint: 「置いておく」 means to leave something somewhere for later, which lacks the nuance of professional
+          care and custody that 「預ける」 conveys for a pet hotel. We're looking for the specific act of entrusting
+          care.
+    scene: Someone is discussing their upcoming travel plans with a friend or colleague.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「預ける 予定です」 indicates a future plan to place the pet in temporary care, using the dictionary
+      form of the verb. It is a polite way to state an intention. 「つもりです」 is a strong expression of intention.
+  - english: Can I leave the key with my neighbor?
+    japanese:
+      - 鍵 を 隣 の 家 の 人 に {預け て} も いい です か。
+      - 鍵 を 隣 の 家 の 人 に {預け て} も よろしい です か。
+      - 鍵 を 隣 の 人 に {預け て も} いい？
+    english_literally: Key, to next door's person, leaving, is it good?
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 を 隣 の 家 の 人 に 渡し て も いい です か。
+        english: Can I hand the key over to my neighbor?
+        hint: 「渡す」 means to hand over, but doesn't specifically imply temporary safekeeping for return.
+          We're looking for a verb that conveys entrusting a key for care.
+      - competing_japanese:
+          - 鍵 を 隣 の 家 の 人 に 置い て も いい です か。
+        english: Can I put the key with my neighbor?
+        hint: 「置く」 implies simply placing, not necessarily entrusting it for safekeeping. We're looking
+          for the act of leaving something in someone's trust.
+    scene: Someone is asking a friend for advice on where to leave a spare key.
+    register: casual
+    setting: interrogative
+    conjugation: te-form (～て)
+    nuance: The te-form followed by 「もいいですか」 is a common way to ask for permission. Here, 「預けて」 specifically
+      refers to the act of giving the key to someone for safekeeping. 「もよろしいですか」 is a more formal and
+      polite way to ask permission.
+  - english: I had no choice but to entrust the important work to him.
+    japanese:
+      - 大事 な 仕事 を 彼 に {預ける} しか なかっ た。
+      - 大事 な 仕事 を 彼 に {預ける} より 仕方 が なかっ た。
+    english_literally: Important work, to him, to entrust, only, was not.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 な 仕事 を 彼 に 任せる しか なかっ た。
+        english: I had no choice but to leave the important work to him (give him discretion).
+        hint: 「任せる」 means to entrust a task or responsibility, giving discretion. While similar, 「預ける」
+          here emphasizes placing the work *in his safekeeping* or care. We're looking for a verb that
+          highlights placing a burden or item in someone's temporary custody.
+    scene: Discussing a difficult decision made at work due to limited options.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: This usage extends 「預ける」 to abstract concepts like 'work', implying that the work was given
+      into someone's care, like a burden. 「預けるしか なかった」 emphasizes the necessity of the action. 「より仕方がなかった」
+      is a slightly more formal alternative for expressing 'having no choice'.
+  - english: Let's surrender ourselves to fate and go with the flow.
+    japanese:
+      - 運命 に 身 を {預け}、流れ に 任せよう。
+      - 運命 に 身 を {預け て}、流れ に 任せよう。
+    english_literally: To fate, body, entrust, to flow, let's leave.
+    competing_grammar:
+      - competing_japanese:
+          - 運命 に 身 を 委ね、流れ に 任せよう。
+        english: Let's commit ourselves to fate and go with the flow.
+        hint: 「委ねる」 (yudaneru) is a close synonym for entrusting oneself to something abstract like fate
+          or authority, but 「身を預ける」 specifically uses 'body/self' with 預ける to create a common idiom. We're
+          looking for this specific idiomatic expression.
+    scene: Two friends are reflecting on life and discussing how to approach an uncertain future.
+    register: bungo (literary)
+    setting: reflective
+    nuance: 「身を預ける」 is an idiomatic expression, often found in literary or philosophical contexts, meaning
+      'to entrust oneself' or 'to surrender oneself' to a situation, person, or fate. It uses the stem
+      form of the verb, or the te-form for linking clauses.
+  - english: Please do not leave valuables at the hotel front desk.
+    japanese:
+      - 貴重 品 は ホテル の フロント に {預け ない で} ください。
+      - 貴重 品 は ホテル の フロント に {預け ない よう} お 願い し ます。
+      - 貴重 品 は ホテル の フロント に {預ける な}。
+    english_literally: Valuables (topic), hotel's front desk, to, do not leave.
+    competing_grammar:
+      - competing_japanese:
+          - 貴重 品 は ホテル の フロント に 置か ない で ください。
+        english: Please do not place valuables at the hotel front desk.
+        hint: 「置く」 means to simply place, which doesn't carry the connotation of official deposit or transfer
+          of responsibility for safekeeping. We're looking for a verb that specifically refers to entrusting
+          for care.
+    scene: A sign or instruction given in a hotel lobby or room regarding the handling of valuables.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: The negative imperative 「預けないで ください」 is a direct and polite instruction, typically seen in
+      public notices or service communications to advise against certain actions for safety or policy
+      reasons. 「預けないよう お願いします」 is a more indirect and softer request. 「預けるな」 is a blunt and informal prohibition,
+      used only in very specific contexts.
+  - english: Where can I leave this luggage?
+    japanese:
+      - この 荷物 は どこ に {預け られ ます か}？
+      - この 荷物 は どこ に {預け られ ます でしょう か}？
+      - この 荷物、どこ に {預け られる}？
+    english_literally: This luggage (topic), where, can be left?
+    competing_grammar:
+      - competing_japanese:
+          - この 荷物 は どこ に 置い て おけ ます か？
+        english: Where can I leave this luggage (temporarily)?
+        hint: 「置いておける」 implies leaving something somewhere for a temporary period without necessarily
+          entrusting it to someone's care. We're looking for a verb that conveys the ability to place
+          something into official safekeeping.
+    scene: At a train station or airport, a traveler is looking for a place to store their baggage.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: potential (～られる/～える)
+    nuance: The potential form 「預けられますか」 asks about the possibility or availability of leaving luggage
+      in someone's care. It's a very practical question in a travel context. 「預けられますでしょうか」 adds an extra
+      layer of politeness.
+  - english: I left my child with her.
+    japanese:
+      - 私 は 彼女 に 子供 を {預け た}。
+      - 私 は 彼女 に 子供 を {預け まし た}。
+      - 彼女 に 子供 を {預け た}。
+    english_literally: I (topic), to her, child, left in care.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼女 に 子供 を 任せ た。
+        english: I entrusted my child's responsibility to her.
+        hint: 「任せる」 implies giving over responsibility and discretion, which is a stronger form of entrustment
+          than simply temporary care. We're looking for a verb that focuses on placing someone in temporary
+          care.
+      - competing_japanese:
+          - 私 は 彼女 に 子供 を 置い て いっ た。
+        english: I left my child with her (and went away).
+        hint: 「置いていく」 simply means to leave and go, potentially without arranging for care or responsibility,
+          which can sound less responsible. We're looking for a verb that implies entrusting care.
+    scene: A parent is recounting how their child was cared for while they were away.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: This is a direct and simple statement of the speaker's action of entrusting their child to
+      someone else. It's a common usage in daily conversation among friends or family. Omitting 「私 は」
+      is natural in casual Japanese when the subject is clear from context. 「預けました」 is the polite equivalent.
+post_example_writeup: As seen in the examples, 「預ける」 is versatile and can be used for various items and
+  situations where temporary custody or safekeeping is involved. Pay attention to the recipient of the
+  entrusted item, as this often defines the nuance of the sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/預ける

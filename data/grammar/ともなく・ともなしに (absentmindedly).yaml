@@ -1,0 +1,413 @@
+grammar_point: ともなく・ともなしに (absentmindedly)
+learn_before:
+  - ともなく (unintended action or unknown source)
+meaning: Absentmindedly, mindlessly, unconsciously, without paying attention
+meaning_warning: This expression can also be used in conjunction with terms like うちに, ところに, and other
+  similar temporal or situational phrases.
+pronunciation:
+  katakana: トモナク・トモナシニ
+  romaji: tomonaku / tomonashi ni
+formation:
+  Verb in dictionary form + ともなく: Indicates doing something absentmindedly while another action occurs.
+  Verb in dictionary form + となしに: Same meaning as ともなく, indicating an absentminded action
+jlpt: N1
+etymology: The pattern combines the particle 「と」, the adverbial particle 「も」, and the conjunctive form
+  of the い-adjective 「ない」. 「ともなしに」 pairs the noun 「なし」 'without' with 「に」. It suggests doing something
+  without a specific intention or purpose.
+writeup: |-
+  The expressions 「ともなく」 and 「ともなしに」 indicate that action (A) was performed absentmindedly while action (B) occurred. It translates to "unconsciously (A) when (B)" or "without paying attention to (A), (B)." The structure for 「ともなく」 is a combination of the case-marking particle 「と」, the adverbial particle 「も」, and the conjunctive form of the い-Adjective 「ない」. 「ともなしに」 is similar, but pairs the noun 「なし」 ('without') with 「に」 instead of using the conjugative form of 「ない」.
+
+  This pattern often appears with 「たら」, emphasizing the specific timing of an event happening during another absentminded action. This pattern highlights that while the preceding action might be initiated intentionally, the subsequent result or discovery is often unforeseen, making the nuance closer to 'even if one wasn't actively intending to (B), while (A) was occurring, (B) happened.'
+false_friends:
+  - term: なんとなく
+    meaning: somehow, for some reason, vaguely
+    kind: similar expression
+    nuance: なんとなく implies a vague or unclear reason or intention behind an action. In contrast, ともなく・ともなしに
+      emphasizes the lack of conscious attention or specific purpose *while* performing an action, often
+      leading to an unintended outcome or discovery.
+    grammar_point: <suggest>:なんとなく (somehow・for some reason・vaguely)
+  - term: ぼーっと
+    meaning: absentmindedly, blankly, dazedly
+    kind: similar expression
+    nuance: ぼーっと primarily describes a state of being unfocused, spaced out, or mentally blank. While
+      it can precede an action, ともなく・ともなしに focuses more on the *action itself* being performed without
+      conscious attention or specific purpose, and the *consequence* of that lack of attention. The act
+      itself might be intentional, but the manner in which it's done or what results from it is not the
+      main focus.
+    grammar_point: <suggest>:ぼーっと (absentmindedly・blankly・dazedly)
+  - term: 無意識に
+    meaning: unconsciously, involuntarily
+    kind: similar expression
+    nuance: 無意識に strictly means without conscious thought or control, often referring to an automatic
+      bodily reaction or a subconscious action. ともなく・ともなしに implies a lack of *specific intent or focus*
+      rather than complete unconsciousness; it is often used when an action is performed passively or
+      as a background activity, leading to an unplanned result.
+    grammar_point: <suggest>:無意識に (unconsciously・involuntarily)
+post_false_friends_writeup: When differentiating between these similar expressions, consider the level
+  of consciousness and the relationship between the action and its outcome. ともなく・ともなしに highlights an action
+  done without active attention, often leading to an unexpected result. なんとなく suggests a vague reason
+  or feeling. ぼーっと describes a state of being mentally disengaged. 無意識に indicates a complete lack of conscious
+  control over an action.
+examples:
+  - english: When I was absentmindedly continuing to read a book I had started, I was surprised when a
+      friend suddenly contacted me.
+    japanese:
+      - 読み かける {と も なく} 読み 続け て い たら、突然 友人 から 連絡 が 来 て 驚い た。
+      - 読み かける {と も なし に} 読み 続け て い たら、突然 友人 から 連絡 が 来 て 驚い た。
+      - 読み かける {と も なく} 読み 続け て い たら、突然 友人 から 連絡 が 来 て 驚い た よ。
+    english_literally: If I was continuing to read as if not reading, suddenly contact came from a friend
+      and I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - '{ぼーっと} 読ん で い たら'
+        english: When I was blankly reading...
+        hint: 「ぼーっと」describes a state of unfocused mental idleness. Here, the action itself (reading)
+          is still happening, but without *active engagement* in the content, leading to an unexpected
+          external event. We're looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 読ん で い たら'
+        english: When I was unconsciously reading...
+        hint: 「無意識に」implies a lack of conscious awareness or control over the action. `ともなく` describes
+          an action performed with a *lack of focused intent* rather than total unconsciousness, where
+          the action is still deliberate but its outcome is unintended. We're looking for an for an action
+          done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 読ん で い たら'
+        english: When I was vaguely reading...
+        hint: 「なんとなく」implies a vague or undefined reason for doing something. `ともなく` focuses on the *manner*
+          of the action—it's done without active attention or purpose, leading to an unforeseen outcome,
+          not a vague motive. We're looking for an action done without specific intent or full conscious
+          attention.
+    scene: A student is reading a book but not fully engaged in its content, when an unexpected event
+      occurs.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    nuance: The use of the casual plain past form `驚いた` combined with the sentence-final particle `よ`
+      is common in casual male speech to express a mild assertion or emphasis on the feeling of surprise.
+      This example highlights how the act of reading was not done with full engagement, hence `読み かける
+      と も なく`, leading to an unexpected outcome in `連絡 が 来 て 驚い た` (was surprised when contact came).
+  - english: When I was absentmindedly doodling during the meeting, my name was called and I panicked.
+    japanese:
+      - 会議 中 に 落書き する {と も なく} し て い たら、自分 の 名前 が 呼ば れ て 慌て た。
+      - 会議 中 に 落書き する {と も なし に} し て い たら、自分 の 名前 が 呼ば れ て 慌て た。
+      - 会議 中 に 落書き する {と も なく} し て い たら、自分 の 名前 が 呼ば れ て 慌て ちゃっ た。
+    english_literally: If I was doodling as if not doodling during the meeting, my own name was called
+      and I panicked.
+    competing_grammar:
+      - competing_japanese:
+          - '{ぼーっと} 落書き し て い たら'
+        english: When I was blankly doodling...
+        hint: 「ぼーっと」means being spaced out or mentally blank. `ともなく` describes the *action* of doodling
+          as being done without focused attention to it, rather than just being in a blank state. We're
+          looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無心 に} 落書き し て い たら'
+        english: When I was purely absorbed in doodling...
+        hint: 「無心に」implies being completely absorbed, often with a positive or neutral connotation. `ともなく`
+          implies a *lack of active engagement* in the doodling itself, making the calling of the name
+          a sudden, unintended interruption. We're looking for an action done without specific intent
+          or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 落書き し て い たら'
+        english: When I was vaguely doodling...
+        hint: 「なんとなく」suggests doodling without a clear reason. `ともなく` emphasizes that the doodling was
+          happening without *focused attention* or purpose, leading to the unexpected panic. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 落書き し て い たら'
+        english: When I was unconsciously doodling...
+        hint: 「無意識に」implies doodling without any conscious awareness. `ともなく` suggests the action was somewhat
+          deliberate (you chose to doodle) but lacked focused attention, leading to an unintended consequence.
+          We're looking for an action done without specific intent or full conscious attention.
+    scene: An employee is not fully paying attention during a work meeting and is caught off guard.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    nuance: The use of `慌てちゃった` (a contracted form of `慌ててしまった`) is a common informal expression, often
+      used by female speakers to convey a slight sense of regret or mild embarrassment over an action
+      that happened. Here, the doodling was not with purpose, hence `落書き する と も なく`, leading to the panic
+      of `慌てた` when caught off guard by their name being called `自分 の 名前 が 呼ば れ て` .
+  - english: When I was absentmindedly checking social media on the train, I ended up missing my destination
+      station.
+    japanese:
+      - 電車 の 中 で SNS を 見る {と も なし に} 見 て い たら、目的 の 駅 を 乗り過ごし て しまっ た。
+      - 電車 の 中 で SNS を 見る {と も なく} 見 て い たら、目的 の 駅 を 乗り過ごし て しまっ た。
+      - 電車 の 中 で SNS を 見る {と も なし に} 見 て い たら、目的 の 駅 を 乗り過ごし て しまい まし た。
+    english_literally: If I was looking at SNS as if not looking at it inside the train, I ended up passing
+      my destination station.
+    competing_grammar:
+      - competing_japanese:
+          - '{なん と なく} SNS を 見 て い たら'
+        english: When I was vaguely checking SNS...
+        hint: 「なんとなく」implies checking SNS without a specific reason. `ともなく` highlights checking SNS without
+          *focused attention*, leading to missing the station. We're looking for an action done without
+          specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} SNS を 見 て い たら'
+        english: When I was unconsciously checking SNS...
+        hint: 「無意識に」implies completely unconscious checking. `ともなく` implies you were intentionally looking
+          at your phone but not paying *focused attention* to the environment, resulting in missing the
+          station. We're looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} SNS を 見 て い たら'
+        english: When I was blankly checking SNS...
+        hint: 「ぼーっと」describes a blank, unfocused mental state. `ともなく` emphasizes the *action* of checking
+          SNS being done without focused attention, causing the missed stop. We're looking for an action
+          done without specific intent or full conscious attention.
+    scene: A commuter is scrolling through their phone on the train, not paying full attention to their
+      journey.
+    register: casual
+    setting: cautious
+  - english: When I was absentmindedly humming a tune, it seemed like the people around me could hear
+      it, and I felt a little embarrassed.
+    japanese:
+      - 歌 を 歌う {と も なし に} 口ずさん で い たら、周り の 人 に 聞こえ て い た らしく 少し 恥ずかしく なっ た。
+      - 歌 を 歌う {と も なく} 口ずさん で い たら、周り の 人 に 聞こえ て い た らしく 少し 恥ずかしく なっ た。
+      - 歌 を 歌う {と も なし に} 口ずさん で おり まし たら、周り の 方 に 聞こえ て い た らしく 少し 恥ずかしく なり まし た。
+    english_literally: If I was humming a tune as if not singing a song, it seemed to be heard by people
+      around me and I became a little embarrassed.
+    competing_grammar:
+      - competing_japanese:
+          - '{無 意識 に} 口ずさん で い たら'
+        english: When I was unconsciously humming...
+        hint: 「無意識に」means without conscious thought or control. `ともなく` means humming without *actively
+          intending* to make it a performance or paying attention to the act, which led to someone else
+          noticing. We're looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{うっかり} 口ずさん で い たら'
+        english: When I carelessly hummed...
+        hint: 「うっかり」implies an accidental mistake. `ともなく` describes humming passively and without focus,
+          not necessarily by mistake, which led to an unintended social consequence. We're looking for
+          an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} 口ずさん で い たら'
+        english: When I was blankly humming...
+        hint: 「ぼーっと」describes a spaced-out state. `ともなく` emphasizes the *action* of humming being done
+          without conscious attention to it, leading to the embarrassment. We're looking for an action
+          done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 口ずさん で い たら'
+        english: When I was vaguely humming...
+        hint: 「なんとなく」implies humming for a vague reason. `ともなく` focuses on humming without *active attention*
+          or purpose, which then causes unintended social interaction. We're looking for an action done
+          without specific intent or full conscious attention.
+    scene: Someone is humming to themselves in public, unaware of their volume.
+    register: casual
+    setting: reflective
+  - english: While I was walking aimlessly, I ended up picking up a discarded flyer.
+    japanese:
+      - 道 を 歩く {と も なく} 歩い て いる うち に、落ち て い た チラシ を 拾っ て しまっ た。
+      - 道 を 歩く {と も なし に} 歩い て いる うち に、落ち て い た チラシ を 拾っ て しまっ た。
+      - 道 を 歩く {と も なく} 歩い て いる うち に、落ち て い まし た チラシ を 拾っ て しまい まし た。
+    english_literally: While I was walking as if not walking on the street, I ended up picking up a fallen
+      flyer.
+    competing_grammar:
+      - competing_japanese:
+          - '{目的 も なく} 歩い て いる うち に'
+        english: While I was walking without a purpose...
+        hint: 「目的もなく」directly states lack of purpose. `ともなく` describes the *manner* of walking as unfocused,
+          leading to an accidental discovery. We're looking for an action done without specific intent
+          or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} 歩い て いる うち に'
+        english: While I was blankly walking...
+        hint: 「ぼーっと」implies a blank mental state during walking. `ともなく` focuses on the *action* of walking
+          itself being unfocused, leading to the unexpected discovery of the flyer. We're looking for
+          an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 歩い て いる うち に'
+        english: While I was vaguely walking...
+        hint: 「なんとなく」implies walking without a clear reason. `ともなく` highlights walking without *focused
+          attention* or specific destination, resulting in the accidental finding. We're looking for an
+          action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 歩い て いる うち に'
+        english: While I was unconsciously walking...
+        hint: 「無意識に」implies walking without any conscious awareness. `ともなく` means walking deliberately
+          but without *focused attention* to the surroundings, leading to an unintended discovery. We're
+          looking for an action done without specific intent or full conscious attention.
+    scene: Someone is taking a stroll without a particular destination, and something unexpected happens.
+    register: casual
+    setting: storytelling
+  - english: When I was absentmindedly stirring my coffee, a good idea suddenly came to me.
+    japanese:
+      - コーヒー を 混ぜる {と も なく} 混ぜ て い たら、突然、良い アイデア が 浮かん だ。
+      - コーヒー を 混ぜる {と も なし に} 混ぜ て い たら、突然、良い アイデア が 浮かん だ。
+      - コーヒー を 混ぜる {と も なく} 混ぜ て い たら、突然、良い アイデア が 浮かび まし た。
+    english_literally: If I was stirring coffee as if not stirring it, suddenly a good idea came to mind.
+    competing_grammar:
+      - competing_japanese:
+          - '{無心 に} 混ぜ て い たら'
+        english: When I was purely absorbed in stirring...
+        hint: 「無心に」implies complete absorption. `ともなく` means stirring without *active engagement* or specific
+          purpose, which then surprisingly leads to a new idea. We're looking for an action done without
+          specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} 混ぜ て い たら'
+        english: When I was blankly stirring...
+        hint: 「ぼーっと」describes a spaced-out state. `ともなく` focuses on the *action* of stirring as being
+          done without active attention, allowing for a new idea to surface unexpectedly. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 混ぜ て い たら'
+        english: When I was vaguely stirring...
+        hint: 「なんとなく」implies stirring without a clear reason. `ともなく` emphasizes the *action* of stirring
+          as being done without *focused attention* to it, enabling an unexpected thought. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 混ぜ て い たら'
+        english: When I was unconsciously stirring...
+        hint: 「無意識に」implies completely unconscious stirring. `ともなく` implies stirring deliberately but
+          without *focused attention*, allowing a new idea to emerge. We're looking for an action done
+          without specific intent or full conscious attention.
+    scene: Someone is thinking while idly stirring a drink, and a new thought emerges.
+    register: casual
+    setting: reflective
+  - english: While I was absentmindedly flipping through a magazine, I coincidentally found an article
+      about an old friend.
+    japanese:
+      - 雑誌 を めくる {と も なし に} めくっ て いる うち に、偶然、昔 の 友達 の 記事 を 見つけ た。
+      - 雑誌 を めくる {と も なく} めくっ て いる うち に、偶然、昔 の 友達 の 記事 を 見つけ た。
+      - 雑誌 を めくる {と も なし に} めくっ て いる うち に、偶然、昔 の 友達 の 記事 を 見つけ まし た。
+    english_literally: While I was flipping a magazine as if not flipping it, coincidentally I found an
+      article about an old friend.
+    competing_grammar:
+      - competing_japanese:
+          - '{なん と なく} 雑誌 を 見 て い たら'
+        english: When I was vaguely looking through a magazine...
+        hint: 「なんとなく」implies vaguely looking through a magazine. `ともなく` focuses on the *action* of flipping
+          through pages without focused attention, leading to an accidental discovery. We're looking for
+          an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{うっかり} 雑誌 を 見 て い たら'
+        english: When I carelessly looked through a magazine...
+        hint: 「うっかり」implies a careless mistake. `ともなく` describes passively flipping through the magazine,
+          not necessarily due to carelessness, which resulted in the unexpected finding. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} 雑誌 を めくっ て い たら'
+        english: When I was blankly flipping through a magazine...
+        hint: 「ぼーっと」describes a blank, unfocused mental state. `ともなく` emphasizes the *action* of flipping
+          through the magazine being done without focused attention, leading to an accidental discovery.
+          We're looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 雑誌 を めくっ て い たら'
+        english: When I was unconsciously flipping through a magazine...
+        hint: 「無意識に」implies completely unconscious flipping. `ともなく` suggests intentionally flipping pages
+          but without *focused attention* on the content, resulting in an unexpected find. We're looking
+          for an action done without specific intent or full conscious attention.
+    scene: Someone is bored and casually looking through a magazine, not actively searching for anything
+      specific.
+    register: casual
+    setting: storytelling
+  - english: While I was absentmindedly humming a tune during work, a colleague commented that I seemed
+      to be having fun, and that made me realize what I was doing.
+    japanese:
+      - 作業 中 に 鼻歌 を 歌う {と も なく} 歌っ て い たら、同僚 から 楽し そう だ と 指摘 さ れ て はっと し た。
+      - 作業 中 に 鼻歌 を 歌う {と も なし に} 歌っ て い たら、同僚 から 楽し そう だ と 指摘 さ れ て はっと し た。
+      - 作業 中 に 鼻歌 を 歌う {と も なく} 歌っ て おり まし たら、同僚 から 楽し そう です ね と 指摘 さ れ て はっと いたし まし た。
+    english_literally: If I was humming a tune as if not singing a song during work, a colleague pointed
+      out "You seem to be having fun" and I was startled.
+    competing_grammar:
+      - competing_japanese:
+          - '{無 意識 に} 鼻歌 を 歌っ て い たら'
+        english: When I was unconsciously humming...
+        hint: 「無意識に」implies completely unconscious humming. `ともなく` describes humming deliberately but
+          without *focused attention* to it, leading to a colleague's comment. We're looking for an action
+          done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} 鼻歌 を 歌っ て い たら'
+        english: When I was blankly humming...
+        hint: 「ぼーっと」describes a blank, unfocused mental state. `ともなく` focuses on the *action* of humming
+          being done without focused attention, leading to a surprising external observation. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 鼻歌 を 歌っ て い たら'
+        english: When I was vaguely humming...
+        hint: 「なんとなく」implies humming for a vague reason. `ともなく` emphasizes humming without *active attention*
+          to the act itself, resulting in a colleague's comment. We're looking for an action done without
+          specific intent or full conscious attention.
+    scene: Someone is working and unconsciously making sounds, which a colleague notices.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: The use of `はっとした` followed by the casual sentence-final particle `よ` is a common way for
+      male speakers to express a sudden realization or startled feeling. This highlights that the humming
+      was an unconscious background action, `鼻歌 を 歌う と も なく`, rather than an intentional performance,
+      leading to the coworker's surprising comment `楽し そう だ と 指摘 さ れ て` (pointed out that I seemed to
+      be having fun).
+  - english: It seems he overlooked the necessary information while absentmindedly reading the important
+      email.
+    japanese:
+      - 彼 は 大事 な メール を 読む {と も なく} 読ん で いる うち に、必要 な 情報 を 見落とし て しまっ た よう だ。
+      - 彼 は 大事 な メール を 読む {と も なし に} 読ん で いる うち に、必要 な 情報 を 見落とし て しまっ た よう だ。
+      - 彼 は 大事 な メール を 読む {と も なく} 読ん で いる うち に、必要 な 情報 を 見落とし て しまっ た よう です。
+    english_literally: It seems he overlooked the necessary information while reading the important email
+      as if not reading it.
+    competing_grammar:
+      - competing_japanese:
+          - '{無心 に} メール を 読ん で い たら'
+        english: When he was purely absorbed in reading the email...
+        hint: 「無心に」implies complete absorption. `ともなく` means reading without *active engagement* with
+          the content, resulting in overlooking important information. We're looking for an action done
+          without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{ぼーっと} メール を 読ん で い たら'
+        english: When he was blankly reading the email...
+        hint: 「ぼーっと」describes a blank, unfocused mental state. `ともなく` emphasizes the *action* of reading
+          as being done without focused attention on the content, leading to the oversight. We're looking
+          for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} メール を 読ん で い たら'
+        english: When he was vaguely reading the email...
+        hint: 「なんとなく」implies vaguely reading the email. `ともなく` highlights reading without *focused attention*
+          to the details, resulting in important information being overlooked. We're looking for an action
+          done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} メール を 読ん で い たら'
+        english: When he was unconsciously reading the email...
+        hint: 「無意識に」implies completely unconscious reading. `ともなく` suggests reading deliberately but without
+          *focused attention* on the content, leading to the oversight. We're looking for an action done
+          without specific intent or full conscious attention.
+    scene: A third-person narrative about someone skimming an email without full attention, leading to
+      an error.
+    register: semi-formal
+    setting: informative
+  - english: When I was absentmindedly gazing out the window, I suddenly noticed a familiar face in the
+      crowd.
+    japanese:
+      - 窓 の 外 を 眺める {と も なく} 眺め て い たら、急 に 見 慣れ た 顔 を 群衆 の 中 に 見つけ た。
+      - 窓 の 外 を 眺める {と も なし に} 眺め て い たら、急 に 見 慣れ た 顔 を 群衆 の 中 に 見つけ た。
+      - 窓 の 外 を 眺める {と も なし に} 眺め て い まし たら、急 に 見 慣れ た 顔 を 群衆 の 中 に 見つけ まし た。
+    english_literally: If I was gazing outside the window as if not gazing, suddenly I found a familiar
+      face in the crowd.
+    competing_grammar:
+      - competing_japanese:
+          - '{ぼーっと} 窓 の 外 を 眺め て い たら'
+        english: When I was blankly gazing out the window...
+        hint: 「ぼーっと」describes a blank, unfocused mental state. `ともなく` emphasizes the *action* of gazing
+          being done without focused attention, leading to an unexpected discovery. We're looking for
+          an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{無 意識 に} 窓 の 外 を 眺め て い たら'
+        english: When I was unconsciously gazing out the window...
+        hint: 「無意識に」implies completely unconscious gazing. `ともなく` suggests gazing deliberately but without
+          *focused attention* on anything in particular, leading to the sudden spotting of a familiar
+          face. We're looking for an action done without specific intent or full conscious attention.
+      - competing_japanese:
+          - '{なん と なく} 窓 の 外 を 眺め て い たら'
+        english: When I was vaguely gazing out the window...
+        hint: 「なんとなく」implies vaguely gazing out the window. `ともなく` highlights gazing without *focused
+          attention* or specific purpose, resulting in an unexpected sighting. We're looking for an action
+          done without specific intent or full conscious attention.
+    scene: Someone is looking out a window without any particular focus, and then something catches their
+      attention.
+    register: casual
+    setting: reflective
+post_example_writeup: These examples illustrate how 「ともなく・ともなしに」 is used to describe actions performed
+  with a certain degree of mental disengagement, leading to unexpected outcomes or realizations. This
+  nuance is key to understanding its proper use compared to other expressions of absentmindedness or unconscious
+  action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ともなく-ともなしに

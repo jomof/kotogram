@@ -1,0 +1,417 @@
+grammar_point: のだろうか (I wonder)
+learn_before:
+  - の? (question)
+meaning: I wonder...
+meaning_warning: Versions without ん/の are also acceptable but sound old-fashioned.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: のだろうか
+    rarity: common
+    meaning: I wonder if (plain form, with nominalizer)
+  - conjugation-type: dictionary (plain non-past)
+    form: だろうか
+    rarity: less common
+    meaning: I wonder if (plain form, without nominalizer, often old-fashioned)
+  - conjugation-type: non-past polite (～ます)
+    form: のでしょうか
+    rarity: common
+    meaning: I wonder if (polite form, with nominalizer)
+  - conjugation-type: non-past polite (～ます)
+    form: でしょうか
+    rarity: common
+    meaning: I wonder if (polite form, without nominalizer)
+pronunciation:
+  katakana: ノダロウカ
+  romaji: no darou ka
+formation:
+  Verb[dictionary form] + のだろうか / だろうか: Expresses uncertainty or a question about a verb's action or state,
+    with or without the nominalizer.
+  い-Adjective[dictionary form] + のだろうか / だろうか: Expresses uncertainty or a question about an い-adjective's
+    state, with or without the nominalizer.
+  な-Adjective + な + のだろうか / だろうか: Expresses uncertainty or a question about a な-adjective's state, with
+    or without the nominalizer.
+  Noun + な + のだろうか / だろうか: Expresses uncertainty or a question about a noun's identity or state, with
+    or without the nominalizer.
+jlpt: N4
+etymology: The grammar point 「のだろうか」 is derived from 「の」 (a nominalizer), 「だろう」 (a conjecture or speculation),
+  and 「か」 (a question particle). The combination creates a sense of pondering or wondering about something.
+writeup: |-
+  「のだろうか」 is a nuanced grammatical construction used to express the speaker's internal uncertainty, doubt, or a rhetorical question about a situation or a fact. It directly translates to 'I wonder if...' or 'Could it be that...?' in English, indicating a deep personal reflection rather than a direct inquiry expecting an answer from others.
+
+  This pattern is formed by attaching 「のだろうか」 to the plain form of verbs and い-adjectives, or by using 「なのだろうか」 for nouns and な-adjectives. The 「の」 component serves to nominalize the preceding clause, transforming it into a noun-like phrase, which is then followed by 「だろう」 (conjecture) and 「か」 (question particle).
+
+  While the full form with 「の」 or 「な」 is standard, forms where this nominalizer is omitted (e.g., Verb[plain] + だろうか) are also grammatically acceptable but convey a slightly older or more formal tone.
+
+  The 「のだろうか」 form can sometimes carry a slightly masculine nuance, particularly in casual speech. For a more polite or gender-neutral expression, especially in formal contexts, 「でしょうか」 is preferred. It is important to note that while 「でしょうか」 is more polite, it is not exclusively feminine and can be used confidently by both men and women.
+
+  A key aspect of 「のだろうか」 is its primary use for self-reflection. Even when phrased as a question, the speaker is typically expressing their own musings or uncertainty, rather than genuinely seeking an answer from a listener. This differentiates it from direct interrogatives.
+false_friends:
+  - term: かな
+    meaning: I wonder
+    kind: synonym
+    nuance: 「かな」 is generally a softer, more casual way of expressing "I wonder" compared to 「のだろうか」.
+      It can also imply seeking mild confirmation.
+    grammar_point: かな (I wonder)
+  - term: かしら
+    meaning: I wonder
+    kind: synonym
+    nuance: 「かしら」 is typically used by women and adds a touch of femininity and often a softer, more thoughtful
+      nuance to the expression of "I wonder".
+    grammar_point: かしら (soft uncertainty・female)
+  - term: はたして
+    meaning: Wonder if ~ (really)?, Wonder how ~ (actually)?, Sure enough, As expected
+    kind: synonym
+    nuance: 「はたして」 often precedes 「だろうか」 or similar expressions, intensifying the sense of doubt or genuine
+      questioning, implying a stronger uncertainty about whether something is truly the case.
+    grammar_point: はたして (really; as expected)
+  - term: じゃないか
+    meaning: Isn't it?, Is it not?
+    kind: similar expression
+    nuance: 「じゃないか」 is used to assert something or seek confirmation, implying that the speaker believes
+      something to be true and expects agreement, rather than expressing pure wonder or doubt like 「のだろうか」.
+    grammar_point: じゃないか (isn't it?)
+  - term: だろう
+    meaning: Probably, isn't it?, I think
+    kind: similar expression
+    nuance: 「だろう」 is a direct expression of conjecture or seeking agreement, lacking the nominalizer 「の」
+      that makes 「のだろうか」 a deeper, more internal pondering or rhetorical question. It's a component but
+      simpler.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: かもしれない
+    meaning: Might, maybe, probably
+    kind: similar expression
+    nuance: 「かもしれない」 indicates possibility or probability, but it expresses a more straightforward uncertainty
+      about an outcome rather than the personal reflection or rhetorical questioning implied by 「のだろうか」.
+    grammar_point: かもしれない (might・maybe)
+post_false_friends_writeup: While 「かな」, 「かしら」, 「はたして」, 「じゃないか」, 「だろう」, and 「かもしれない」 can all express a
+  sense of wondering, possibility, or questioning, they each carry different nuances. 「かな」 and 「かしら」 are
+  more casual, with 「かしら」 being distinctly feminine. 「はたして」 emphasizes a stronger, more profound doubt,
+  often used to introduce a significant question. In contrast, 「じゃないか」 implies seeking agreement or expressing
+  a strong belief, rather than simply pondering. 「だろう」 offers a direct conjecture, while 「かもしれない」 suggests
+  a straightforward possibility. Use 「のだろうか」 when you want to express a contemplative "I wonder" or rhetorical
+  question, emphasizing your internal uncertainty without necessarily seeking a direct answer or affirmation.
+examples:
+  - english: I wonder if there really is an exam tomorrow.
+    japanese:
+      - 明日、本当 に 試験 が ある {の だろう か}。
+      - 明日、本当 に 試験 が ある {だろう か}。
+      - 明日、試験 が ある {の だろう か}。
+      - 明日、試験 が ある {だろう か}。
+    english_literally: Tomorrow, really exam exists (is) I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、本当 に 試験 が ある {か}。
+        english: Tomorrow, is there really an exam?
+        hint: This is a direct question asking for information. We're looking for an internal musing,
+          not a direct inquiry.
+      - competing_japanese:
+          - 明日、本当 に 試験 が ある {か な}。
+        english: I wonder if there really is an exam tomorrow?
+        hint: While 'かな' expresses wonder, 'のだろうか' conveys a deeper, more pronounced uncertainty or rhetorical
+          question, especially in self-reflection. We're looking for a more contemplative wondering.
+    scene: A student who forgot to check the schedule is mentally reviewing their tasks for the next day.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: I wonder if this cake is really delicious.
+    japanese:
+      - この ケーキ は 本当 に 美味しい {の だろう か}。
+      - この ケーキ は 本当 に 美味しい {だろう か}。
+      - この ケーキ は 美味しい {の だろう か}。
+      - この ケーキ は 美味しい {だろう か}。
+    english_literally: This cake really delicious is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は 本当 に 美味しい {か}。
+        english: Is this cake really delicious?
+        hint: This is a direct question. We're looking for an internal contemplation about the cake's
+          quality.
+      - competing_japanese:
+          - この ケーキ は 本当 に 美味しい {か な}。
+        english: I wonder if this cake is really delicious?
+        hint: While 'かな' also means 'I wonder', 'のだろうか' implies a more thoughtful or philosophical pondering,
+          fitting the scene of contemplating an expensive cake.
+    scene: Someone is looking at a beautifully decorated but expensive cake in a display window, contemplating
+      its taste.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: I wonder if he is truly kind.
+    japanese:
+      - 彼 は 本当 に 親切 な {の だろう か}。
+      - 彼 は 本当 に 親切 な {だろう か}。
+      - 彼 は 親切 な {の だろう か}。
+      - 彼 は 親切 な {だろう か}。
+    english_literally: He truly kind is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 本当 に 親切 {か}。
+        english: Is he really kind?
+        hint: This is a direct question. We're looking for an internal questioning and cautious observation,
+          not a direct inquiry.
+      - competing_japanese:
+          - 彼 は 本当 に 親切 {か な}。
+        english: I wonder if he is really kind?
+        hint: While 'かな' can express wondering, 'のだろうか' suggests a deeper, more lingering doubt about
+          someone's character, aligning with contemplative questioning.
+    scene: A person is observing a new acquaintance who seems almost too good to be true, harboring a
+      slight doubt about their genuine intentions.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+  - english: I wonder if she is really a student.
+    japanese:
+      - 彼女 は 本当 に 学生 な {の だろう か}。
+      - 彼女 は 本当 に 学生 な {だろう か}。
+      - 彼女 は 学生 な {の だろう か}。
+      - 彼女 は 学生 な {だろう か}.
+    english_literally: She truly student is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 本当 に 学生 {か}。
+        english: Is she really a student?
+        hint: This is a direct question. We're looking for an internal, almost disbelieving thought rather
+          than a direct inquiry.
+      - competing_japanese:
+          - 彼女 は 本当 に 学生 {か な}。
+        english: I wonder if she is really a student?
+        hint: The professor's internal questioning in this professional context feels more formal and
+          less casual than what 'かな' would convey. We're looking for a more formal internal question.
+    scene: A professor encounters a student who appears much older or more experienced than typical students,
+      prompting an internal question about her official status.
+    register: casual
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+  - english: I wonder if this plan will succeed.
+    japanese:
+      - この 計画 は 成功 する {の でしょう か}。
+      - この 計画 は 成功 する {でしょう か}。
+      - この 計画 は 成功 できる {の でしょう か}。
+      - この 計画 は 成功 できる {でしょう か}。
+    english_literally: This plan succeed will I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 成功 し ます {か}。
+        english: Will this plan succeed?
+        hint: This is a direct, polite question. We're looking for an internal reflection or musing, not
+          an outward inquiry.
+      - competing_japanese:
+          - この 計画 は 成功 する {か な}。
+        english: I wonder if this plan will succeed?
+        hint: The professional setting and the gravity of the 'plan' require a more formal and measured
+          expression of wonder than the casual 'かな'.
+    scene: A manager is presenting a new business proposal to executives and, while confident outwardly,
+      internally ponders its actual chances of success.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+  - english: I wonder if this idea is truly good.
+    japanese:
+      - この アイデア は 本当 に 良い {の でしょう か}。
+      - この アイデア は 本当 に 良い {でしょう か}。
+      - この アイデア は 良い {の でしょう か}。
+      - この アイデア は 良い {でしょう か}。
+    english_literally: This idea truly good is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この アイデア は 本当 に 良い です {か}。
+        english: Is this idea truly good?
+        hint: This is a direct, polite question. We're looking for a softer, more reflective questioning
+          suitable for internal deliberation.
+      - competing_japanese:
+          - この アイデア は 本当 に 良い {か な}。
+        english: I wonder if this idea is truly good?
+        hint: The formality of a business meeting makes the casual 'かな' inappropriate; 'でしょうか' better
+          conveys polite internal deliberation.
+    scene: A team member has proposed a new idea during a meeting, and another member, considering all
+      aspects, internally questions its genuine value.
+    register: formal
+    setting: reflective
+    conjugation: non-past polite (～ます)
+  - english: I wonder if his physical condition is okay.
+    japanese:
+      - 彼 の 体調 は 大丈夫 な {の でしょう か}。
+      - 彼 の 体調 は 大丈夫 {でしょう か}。
+    english_literally: His physical condition okay is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 体調 は 大丈夫 です {か}。
+        english: Is his physical condition okay?
+        hint: This is a direct, polite question. We're looking for a polite, indirect expression of concern
+          rather than a direct interrogation.
+      - competing_japanese:
+          - 彼 の 体調 は 大丈夫 {か な}。
+        english: I wonder if his physical condition is okay?
+        hint: While 'かな' can express concern, 'でしょうか' conveys a more respectful and measured worry suitable
+          for a professional environment.
+    scene: A colleague notices a coworker looking unwell and internally expresses concern about their
+      health, without directly asking them.
+    register: semi-formal
+    setting: sympathetic
+    conjugation: non-past polite (～ます)
+  - english: I wonder if this information is accurate.
+    japanese:
+      - この 情報 は 正確 な {の でしょう か}。
+      - この 情報 は 正確 {でしょう か}。
+    english_literally: This information accurate is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 情報 は 正確 です {か}。
+        english: Is this information accurate?
+        hint: This is a direct, polite question. We're looking for a professional's careful, internal
+          assessment, not a hasty direct inquiry.
+      - competing_japanese:
+          - この 情報 は 正確 {か な}。
+        english: I wonder if this information is accurate?
+        hint: The critical nature of research and data review calls for a more formal and serious tone
+          than 'かな' provides.
+    scene: A researcher is reviewing complex data and, noticing some discrepancies, internally questions
+      the overall reliability and precision of the information.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+  - english: I wonder if she'll notice my feelings.
+    japanese:
+      - 彼女 は 俺 の 気持ち に 気付く {の だろう か}。
+      - 彼女 は 俺 の 気持ち に 気付く {だろう か}。
+      - 彼女 は 私 の 気持ち に 気付く {の だろう か}。
+      - 彼女 は 私 の 気持ち に 気付く {だろう か}。
+    english_literally: She me's feelings notice will I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 俺 の 気持ち に 気付く {か}。
+        english: Will she notice my feelings?
+        hint: This is a direct question. We're looking for a deep, personal internal reflection, distinct
+          from a direct query.
+      - competing_japanese:
+          - 彼女 は 俺 の 気持ち に 気付く {か な}。
+        english: I wonder if she'll notice my feelings?
+        hint: While 'かな' is an option, the man's profound internal struggle and emotional weight are better
+          captured by the more contemplative 'のだろうか'.
+      - competing_japanese:
+          - 彼女 は 私 の 気持ち に 気付く {かしら}。
+        english: I wonder if she'll notice my feelings.
+        hint: '''かしら'' is typically used by female speakers. This example is from a male speaker. We''re
+          looking for a masculine expression of internal struggle.'
+    scene: A young man secretly in love, is internally pondering whether the woman he likes will ever
+      realize his affection.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The speaker's use of the masculine pronoun 「俺」 (ore) clearly indicates a male speaker, and
+      the deeply personal nature of the thought emphasizes the internal pondering of 「のだろうか」.
+  - english: I wonder if he will invite me again.
+    japanese:
+      - 彼 は 私 を また 誘っ て くれる {の だろう か}。
+      - 彼 は 私 を また 誘っ て くれる {だろう か}。
+      - 彼 は 私 を 誘っ て くれる {の だろう か}。
+      - 彼 は 私 を 誘っ て くれる {だろう か}。
+    english_literally: He me again invite give will I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 を また 誘っ て くれる {か}。
+        english: Will he invite me again?
+        hint: This highlights a private, hopeful musing, not a direct question to anyone.
+      - competing_japanese:
+          - 彼 は 私 を また 誘っ て くれる {か な}。
+        english: I wonder if he will invite me again?
+        hint: The feeling of anticipation and slight anxiety after a first date gives the 'wonder' a more
+          significant weight than the simple casualness of 'かな'.
+      - competing_japanese:
+          - 彼 は 私 を また 誘っ て くれる {かしら}。
+        english: I wonder if he will invite me again?
+        hint: While 'かしら' is common for female speakers, this scene aims for a general reflective tone,
+          not specifically feminine musing.
+    scene: A young woman, after a promising first date, is at home wondering if she will receive a second
+      invitation.
+    register: casual
+    setting: first-date
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: This sentence reflects a young woman's personal hopes and uncertainties after a first romantic
+      encounter, highlighting the internal, self-addressed nature of 「のだろうか」.
+  - english: I wonder if I could have made a different choice back then.
+    japanese:
+      - あの 時、もっと 違う 選択 が でき た {の だろう か}。
+      - あの 時、もっと 違う 選択 が でき た {だろう か}。
+      - あの 時、違う 選択 が でき た {の だろう か}。
+      - あの 時、違う 選択 が でき た {だろう か}。
+    english_literally: That time, more different choice able to make was I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、もっと 違う 選択 が でき た {か}。
+        english: Could I have made a different choice back then?
+        hint: This is a direct question. We're looking for a deep, introspective moment of life reflection,
+          far from a simple factual inquiry.
+      - competing_japanese:
+          - あの 時、もっと 違う 選択 が でき た {か な}。
+        english: I wonder if I could have made a different choice back then?
+        hint: The gravity and maturity of the reflection imply a more profound question than the casual
+          'かな', fitting the deeper contemplation of 'のだろうか'.
+    scene: An older person is looking back at a pivotal moment in their life, pondering if they made the
+      best decision.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: The phrase 「あの時、もっと違う選択ができた」 (That time, able to make a different choice) typically signifies
+      a profound life review, common for older individuals reflecting on their past.
+  - english: I wonder if this is really a magic potion.
+    japanese:
+      - これ は 本当 に 魔法 の 薬 な {の だろう か}。
+      - これ は 本当 に 魔法 の 薬 な {だろう か}。
+      - これ は 魔法 の 薬 な {の だろう か}。
+      - これ は 魔法 の 薬 な {だろう か}。
+    english_literally: This really magic potion is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 本当 に 魔法 の 薬 {か}。
+        english: Is this really a magic potion?
+        hint: This is a direct question. We're looking for a child's imaginative, self-directed wonder
+          rather than a direct, factual inquiry.
+      - competing_japanese:
+          - これ は 本当 に 魔法 の 薬 {か な}。
+        english: I wonder if this is really a magic potion?
+        hint: While 'かな' might seem suitable for a child, 'のだろうか' here conveys a more significant, almost
+          enchanted level of pondering appropriate for a magical context.
+    scene: A child is looking at a strange, colorful liquid in a bottle, eyes wide with curiosity and
+      a playful sense of wonder about its mysterious properties.
+    register: casual
+    setting: creative
+    conjugation: dictionary (plain non-past)
+    speaker_age: younger
+    nuance: The playful context of a 'magic potion' and the childlike wonder naturally suggest a younger
+      speaker. The use of 「のだろうか」 here captures a deeper, imaginative questioning than a simpler direct
+      inquiry.
+  - english: I wonder if this work is progressing smoothly.
+    japanese:
+      - この 仕事 は 順調 に 進ん で いる {の でしょう か}。
+      - この 仕事 は 順調 に 進ん で いる {でしょう か}。
+      - 仕事 は 順調 に 進ん で いる {の でしょう か}。
+      - 仕事 は 順調 に 進ん で いる {でしょう か}。
+    english_literally: This work smoothly progressing is I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 順調 に 進ん で い ます {か}。
+        english: Is this work progressing smoothly?
+        hint: This is a direct, polite question. We're looking for a manager's internal observation and
+          concern, not a direct question that would be too abrupt.
+      - competing_japanese:
+          - この 仕事 は 順調 に 進ん で いる {か な}。
+        english: I wonder if this work is progressing smoothly?
+        hint: The professional setting and the manager's role require a more formal and measured expression
+          of wonder than the casual 'かな'.
+    scene: A project manager is observing their team at work, internally questioning if everything is
+      proceeding as planned without directly asking anyone.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+    nuance: The use of 「でしょうか」 signals politeness suitable for a professional environment. The manager's
+      internal question implies a shared concern among the team, even if not explicitly stated to them.
+post_example_writeup: As shown in the examples, remember that 「のだろうか」 and 「のでしょうか」 are often used for
+  self-reflection rather than directly seeking an answer from someone else. The choice between the two
+  depends on the level of politeness required by the situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のだろうか

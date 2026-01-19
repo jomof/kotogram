@@ -1,0 +1,484 @@
+grammar_point: わ〜わ (cumulative factors)
+learn_before:
+  - Verb[たい] (desiderative)
+  - こんな (this kind of)
+  - で (cause・reason)
+  - 二度と (never again)
+  - 全く〜ない (not at all)
+  - 全く違う (completely different)
+  - 嫌 (unpleasant・disagreeable)
+meaning: Cumulative factors leading to an outcome, often negative or overwhelming
+pronunciation:
+  katakana: ワ〜ワ(デ)
+  romaji: wa ~ wa (de)
+formation:
+  Clause 1 + わ + Clause 2 + わ (で): Connects two clauses, where each clause represents a distinct factor.
+    Clause 1 and Clause 2 can be verbs (dictionary or plain negative form), い-adjectives, な-adjectives
+    (with だ), or nouns (with だ). These factors accumulate to result in a specific, often overwhelming
+    or frustrating, outcome.
+jlpt: N1
+etymology: The particle 「わ」 is an emphatic version of the adverbial particle 「は」, originating from 「は」
+  changing to 「わ」. Its literal meaning can be thought of as a stronger version of the standard 'as for
+  (A)' meaning of 「は」, emphasizing the preceding element as a contributing factor or origin.
+writeup: |-
+  As an emphatic particle, 「わ」 is commonly used to add stress or emphasis in Japanese. When used in the structure 「わ〜わ(で)」 after verbs, い-adjectives, な-adjectives, or nouns in their standard forms, it generally implies that factor A and factor B are negative elements that have accumulated to lead to outcome C, where C is typically a negative outcome or opinion. It can often be translated as "with A and B, C" or "because of A and B, C."
+
+  To construct this pattern, simply place 「わ」 after the first word, and then repeat it after a second (different) word. For な-adjectives or nouns, 「だわ」 is used instead. The case-marking particle 「で」 then follows the second 「わ」, functioning to indicate "with" or "as a consequence of." The final 「で」 can occasionally be omitted.
+
+  While similar to the basic emphatic particle 「わ」, 「わ〜わ(で)」 uniquely emphasizes the speaker's irritation or frustration due to an accumulation of multiple factors. Unlike instances where a single verb is repeated with 「わ」 to indicate excessive extent, 「わ〜わ(で)」 focuses on the combined impact of distinct, often undesirable, circumstances. This structure is predominantly used by men, but it may sometimes be used by women, particularly in more formal or assertive contexts.
+
+  In essence, 「わ〜わ(で)」 functions much like 「し〜し」 (listing reasons), but with a heightened sense of emotional impact, particularly frustration or exasperation from the accumulated factors. While almost exclusively used with a negative nuance, it can, in rare cases, express overwhelming positive surprise or delight at an accumulation of good events, though this usage is less common.
+false_friends:
+  - term: し〜し
+    meaning: and; both...and; furthermore (listing reasons/facts)
+    kind: similar expression
+    nuance: Unlike 「わ〜わ(で)」, 「〜し〜し」 can list reasons or facts without necessarily implying a strong sense
+      of frustration, exasperation, or surprise at the accumulation of events. It is more neutral and
+      versatile in its emotional tone, simply enumerating points.
+    grammar_point: し〜し (and; listing reasons)
+  - term: わ
+    meaning: I tell you; you know (emphatic sentence-final particle)
+    kind: similar expression
+    nuance: The standalone 「わ」 is a sentence-final particle primarily used by women to express emphasis
+      or agreement, sometimes conveying a gentle or soft tone. It does not list multiple reasons or causes,
+      unlike 「わ〜わ(で)」.
+    grammar_point: わ (feminine sentence-ending particle)
+  - term: わ〜わ (overwhelming or cumulative listing)
+    meaning: And... and..., Keeps ...ing, So much/many, One after another, Listing various reasons/events
+    kind: similar expression
+    nuance: While both 「わ〜わ (cumulative factors)」 and 「わ〜わ (overwhelming or cumulative listing)」 list
+      multiple factors, the former (gp0973) primarily emphasizes the strong, often negative, emotional
+      impact or outcome resulting from the combination of these distinct factors. The latter (gp1052)
+      more broadly focuses on the sheer number or extent of things happening, whether positive, negative,
+      or neutral, suggesting a continuous or repetitive action/state, or a rapid succession of events,
+      without necessarily emphasizing the final cumulative result as much as the process or quantity.
+    grammar_point: わ〜わ (overwhelming or cumulative listing)
+  - term: たり〜たりする
+    meaning: To do things like X and Y; sometimes X and sometimes Y
+    kind: similar expression
+    nuance: Unlike 「わ〜わ(で)」 which lists multiple factors contributing to a single outcome, 「たり〜たりする」 describes
+      multiple actions that occur, often intermittently or as examples within a broader activity, without
+      necessarily implying a cumulative effect leading to a specific result.
+    grammar_point: Verb[たり] (representative listing)
+  - term: も~も
+    meaning: Both ~ and ~; neither ~ nor ~; also; (not) either
+    kind: similar expression
+    nuance: While 「も~も」 lists multiple items or aspects, it is primarily used for inclusive listing ('both
+      X and Y') or exhaustive negation ('neither X nor Y'), lacking the strong implication of accumulated
+      causes leading to a specific outcome, especially a negative one, that is characteristic of 「わ〜わ(で)」.
+    grammar_point: も~も (both neither ~ nor)
+post_false_friends_writeup: While 「わ〜わ(で)」 is used to emphatically list multiple contributing factors,
+  often with a nuance of frustration or surprise, 「〜し〜し」 serves a more general purpose of enumerating
+  reasons or facts without the same emotional intensity. The single sentence-final particle 「わ」, on the
+  other hand, adds emphasis or a gentle tone to a statement, but does not connect multiple clauses to
+  explain a cumulative outcome. 「わ〜わ (overwhelming or cumulative listing)」 focuses more on the quantity
+  or ongoing nature of listed items rather than the emotional culmination to a single result, while 「たり〜たりする」
+  describes alternating actions rather than cumulative causes. Lastly, 「も~も」 is used for simple inclusive
+  or exhaustive listing, lacking the strong causal and emotional implications of 「わ〜わ(で)」.
+examples:
+  - english: Today has been exhausting; my client scolded me, and the deadline is looming.
+    japanese:
+      - 今日 は {顧客 に 叱ら れる わ、納期 は 迫る わ で}、疲弊 し て いる。
+      - 今日 は {顧客 に 怒鳴ら れる わ、締め切り は 迫る わ}、もう クタクタ だ。
+    english_literally: Today, being scolded by the client and the deadline approaching, I am exhausted.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 に 叱ら れ {て}、納期 も 迫っ て いる {の で}、疲弊 し て いる。
+        english: Today, my client scolded me, and the deadline is looming, so I am exhausted.
+        hint: The scene implies a sense of accumulated stress and overwhelm, which 『わ〜わで』 expresses more
+          strongly than simple conjunctions or causal connectives. We're looking for an expression that
+          highlights the compounding stress.
+      - competing_japanese:
+          - 今日 は 顧客 に 叱ら れる {し}、納期 は 迫る {し}、疲弊 し て いる。
+        english: Today, my client scolded me, and the deadline is looming, so I am exhausted.
+        hint: While 「〜し〜し」 lists reasons, 『わ〜わで』 here captures the combined, overwhelming impression of
+          the house's undesirability that the speaker wishes to convey. We're looking for an expression
+          that highlights the accumulated reasons for disliking something.
+      - competing_japanese:
+          - 今日 は 顧客 に 叱ら れる {わ}。納期 も 迫る {わ}。疲弊 し て いる。
+        english: Today, my client scolded me, you know. And the deadline is looming, you know. I am exhausted.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, often with a gentle or feminine
+          nuance, and does not connect multiple clauses as reasons for a single outcome. We're looking
+          for a structure that links multiple causes to one effect.
+    scene: A corporate employee confides in a close colleague about their incredibly stressful day.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: An older male speaker uses 「叱られるわ、納期は迫るわで」 to convey his deep exasperation and the cumulative
+      stress of his day to a female colleague. This construction emphasizes the compounding nature of
+      the negative events.
+  - english: This house is terrible; it's old, and it's freezing, so I really don't feel like living here.
+    japanese:
+      - この 家 は {古い わ 寒い わ で}、とても 住む 気 に なら ない。
+      - この 家 は {古い わ 寒い わ}、とても 住む 気 に なら ない。
+    english_literally: This house is old and cold, so I don't feel like living in it at all.
+    competing_grammar:
+      - competing_japanese:
+          - この 家 は 古く {て} 寒く {て}、とても 住む 気 に なら ない。
+        english: This house is old and cold, so I don't feel like living in it at all.
+        hint: The scene conveys a strong, almost visceral dislike arising from multiple negative aspects,
+          which 『わ〜わで』 emphasizes over a simple 『〜て』 form. We're looking for an expression that highlights
+          the accumulated reasons for disliking something.
+      - competing_japanese:
+          - この 家 は 古い {し} 寒い {し}、とても 住む 気 に なら ない。
+        english: This house is old and cold, so I don't feel like living in it at all.
+        hint: While 『〜し〜し』 lists reasons, 『わ〜わで』 here captures the combined, overwhelming impression of
+          the house's undesirability that the speaker wishes to convey. We're looking for an expression
+          that highlights the accumulated reasons for disliking something.
+      - competing_japanese:
+          - この 家 は 古い {わ}。寒い {わ}。とても 住む 気 に なら ない。
+        english: This house is old, you know. It's cold, you know. I really don't feel like living here.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: Someone is touring a potential rental property with an agent and is clearly unimpressed by
+      its poor condition.
+    register: casual
+    setting: pessimistic
+    nuance: The speaker uses 「古い わ 寒い わ で」 to express their strong disinclination to live in a house due
+      to its combined negative attributes, conveying a sense of being overwhelmed by its flaws.
+  - english: That new employee breaks promises and is always late, so they can't be trusted.
+    japanese:
+      - あの 新人 は {約束 を 破る わ、遅刻 ばかり する わ で}、信用 でき ない。
+      - あの 新人 は {約束 を 破る わ、遅刻 ばかり する わ}、まったく 信用 でき ない。
+    english_literally: That new employee breaks promises and only does tardiness, so they cannot be trusted.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新人 は 約束 を 破っ {て}、遅刻 ばかり する {の で}、信用 でき ない。
+        english: That new employee breaks promises and is always late, so they cannot be trusted.
+        hint: The scene implies a deep sense of exasperation and distrust stemming from repeated, accumulated
+          negative behaviors, a nuance 『わ〜わで』 emphasizes over simple causation. We're looking for an expression
+          that highlights the cumulative reasons for distrust.
+      - competing_japanese:
+          - あの 新人 は 約束 を 破る {し}、遅刻 ばかり する {し}、信用 でき ない。
+        english: That new employee breaks promises and is always late, so they can't be trusted.
+        hint: The situation emphasizes the cumulative nature of the untrustworthy actions, where 『わ〜わで』
+          suggests a greater degree of frustration due to the combination of flaws. We're looking for
+          an expression that highlights the cumulative reasons for distrust.
+      - competing_japanese:
+          - あの 新人 は 約束 を 破る {わ}。遅刻 ばかり する {わ}。信用 でき ない。
+        english: That new employee breaks promises, you know. They're always late, you know. They can't
+          be trusted.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: A team leader expresses their frustration about a new team member's unreliable behavior to
+      another senior colleague.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: A younger female team leader expresses her growing distrust for a new employee to a male colleague,
+      using 「約束を破るわ、遅刻ばかりするわで」 to highlight the accumulated reasons for her lack of confidence.
+  - english: The watch my grandfather gave me doesn't work, and the glass is cracked, so I hesitate even
+      to repair it.
+    japanese:
+      - 祖父 が くれ た 時計 は {動か ない わ、ガラス が 割れ て いる わ で}、修理 する の も 躊躇 する ほど だ。
+      - 祖父 が くれ た 時計 は {動か ない わ、ガラス が 割れ て いる わ}、とても 修理 する 気 に なれ ない。
+    english_literally: The watch my grandfather gave me, it doesn't work and the glass is cracked, so
+      I even hesitate to repair it.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 が くれ た 時計 は 動か なく {て}、ガラス も 割れ て いる {の で}、修理 する の も 躊躇 する。
+        english: The watch my grandfather gave me doesn't work, and the glass is cracked, so I hesitate
+          to repair it.
+        hint: The scene implies a sense of exasperation and the cumulative nature of the defects that
+          make the gift a burden, which 『わ〜わで』 conveys more forcefully than a simple listing of problems.
+          We're looking for an expression emphasizing multiple reasons for hesitation.
+      - competing_japanese:
+          - 祖父 が くれ た 時計 は 動か ない {し}、ガラス が 割れ て いる {し}、修理 する の も 躊躇 する。
+        english: The watch my grandfather gave me doesn't work, and the glass is cracked, so I hesitate
+          to repair it.
+        hint: While 『〜し〜し』 lists reasons, 『わ〜わで』 better emphasizes the depth of the disappointment and
+          the combined extent of the damage, making repair a difficult decision. We're looking for an
+          expression emphasizing multiple reasons for hesitation.
+      - competing_japanese:
+          - 祖父 が くれ た 時計 は 動か ない {わ}。ガラス が 割れ て いる {わ}。修理 する の も 躊躇 する ほど だ。
+        english: The watch my grandfather gave me doesn't work, you know. The glass is cracked, you know.
+          I hesitate even to repair it.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: Someone is showing a well-meaning but ultimately disappointing gift to a friend, explaining
+      why they haven't used it.
+    register: casual
+    setting: serious
+    nuance: The speaker uses 「動かないわ、ガラスが割れているわで」 to convey the overwhelming nature of the watch's defects,
+      making the thought of repair seem daunting.
+  - english: This year I got a promotion and got married, so my life has changed dramatically.
+    japanese:
+      - 今年 は {昇進 する わ、結婚 する わ で}、人生 が 大きく 変わっ た。
+      - 今年 は {昇進 する わ、結婚 する わ}、もう 本当 に 人生 が 一変 し た よ。
+    english_literally: This year, getting a promotion and getting married, my life changed greatly.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 は 昇進 し {て}、結婚 し {て}、人生 が 大きく 変わっ た。
+        english: This year I got a promotion, and I got married, so my life has changed dramatically.
+        hint: The scene focuses on the delightful accumulation of significant life events, where 『わ〜わで』
+          can express the overwhelming joy and surprise more intensely than a simple 『〜て』 form. We're
+          looking for an expression of delightful accumulation.
+      - competing_japanese:
+          - 今年 は 昇進 する {し}、結婚 する {し}、人生 が 大きく 変わっ た。
+        english: This year I got a promotion, and I got married, so I have changed dramatically.
+        hint: While 『〜し〜し』 lists events, 『わ〜わで』 in this rare positive context emphasizes the profound
+          impact and cumulative nature of the good fortune, conveying a sense of delightful shock. We're
+          looking for an expression of delightful accumulation.
+      - competing_japanese:
+          - 今年 は 昇進 し た {わ}。結婚 し た {わ}。人生 が 大きく 変わっ た。
+        english: This year I got a promotion, you know. I got married, you know. My life has changed dramatically.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          events as a combined cause for a single outcome. We're looking for a structure that expresses
+          the cumulative effect of multiple positive events.
+    scene: A person shares their exciting year with a close friend, highlighting two major life-changing
+      events that happened in quick succession.
+    register: casual
+    setting: optimistic
+    speaker_gender: female
+    nuance: A female speaker uses 「昇進するわ、結婚するわで」 to convey the overwhelming positive changes in her life,
+      emphasizing the joyful accumulation of significant events.
+  - english: When I'm with you, every day is fun, and there are new discoveries, so time just flies by.
+    japanese:
+      - あなた と いる と、{毎日 が 楽しい わ、新しい 発見 が ある わ で}、時間 が あっ と いう 間 だ。
+      - あなた と いる と、{毎日 が 楽しい わ、新しい 発見 が ある わ}、あっ と いう 間 に 時間 が 過ぎる よ。
+    english_literally: When I am with you, every day is fun, and there are new discoveries, so time is
+      in an instant.
+    competing_grammar:
+      - competing_japanese:
+          - あなた と いる と、毎日 が 楽しく {て}、新しい 発見 も ある {の で}、時間 が あっ と いう 間 だ。
+        english: When I'm with you, every day is fun, and there are new discoveries, so time just flies
+          by.
+        hint: The scene suggests a strong sense of being captivated by the combination of qualities, which
+          『わ〜わで』 can express more emphatically and romantically than simple conjunctions. We're looking
+          for an expression that conveys being delightfully overwhelmed by positive experiences.
+      - competing_japanese:
+          - あなた と いる と、毎日 が 楽しい {し}、新しい 発見 が ある {し}、時間 が あっ と いう 間 だ。
+        english: When I'm with you, every day is fun, and there are new discoveries, so time just flies
+          by.
+        hint: 『わ〜わで』 in this context adds a layer of emphatic charm and a feeling of being delightfully
+          overwhelmed by the combined positive experiences, fitting the flirty setting. We're looking
+          for an expression that conveys being delightfully overwhelmed by positive experiences.
+      - competing_japanese:
+          - あなた と いる と、毎日 が 楽しい {わ}。新しい 発見 が ある {わ}。時間 が あっ と いう 間 だ。
+        english: When I'm with you, every day is fun, you know. There are new discoveries, you know. Time
+          just flies by.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          factors as a combined cause for a single outcome. We're looking for a structure that expresses
+          the cumulative positive effect.
+    scene: A man on a first date tells his date how captivating he finds their company, highlighting the
+      cumulative joy and interest he experiences.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male speaker uses 「毎日が楽しいわ、新しい発見があるわで」 to express how delightful and engaging his time with
+      a female listener is, emphasizing the combined positive experiences in a romantic context.
+  - english: At night, the next-door room is noisy, and in summer I get bitten by mosquitoes, so I can
+      barely get a good night's sleep.
+    japanese:
+      - 夜 は {隣 の 部屋 が うるさい わ、夏 は 蚊 に 刺さ れる わ で}、なかなか 熟睡 でき ない。
+      - 夜 は {隣 の 部屋 が うるさい わ、夏 は 蚊 に 刺さ れる わ}、もう 全然 眠れ ない よ。
+    english_literally: At night, the next-door room is noisy, and in summer I am bitten by mosquitoes,
+      so I can hardly sleep soundly.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 部屋 が うるさく {て}、夏 は 蚊 に 刺さ れる {の で}、なかなか 熟睡 でき ない。
+        english: At night, the next-door room is noisy, and in summer I get bitten by mosquitoes, so I
+          can barely get a good night's sleep.
+        hint: The scene conveys the speaker's frustration with persistent, combined disturbances, which
+          『わ〜わで』 expresses more emphatically than simple causal statements. We're looking for an expression
+          highlighting cumulative nuisances.
+      - competing_japanese:
+          - 隣 の 部屋 が うるさい {し}、夏 は 蚊 に 刺さ れる {し}、なかなか 熟睡 でき ない。
+        english: At night, the next-door room is noisy, and in summer I get bitten by mosquitoes, so I
+          can barely get a good night's sleep.
+        hint: While 『〜し〜し』 lists issues, 『わ〜わで』 highlights the cumulative nature of the sleep disruptions,
+          conveying a stronger sense of chronic annoyance. We're looking for an expression highlighting
+          cumulative nuisances.
+      - competing_japanese:
+          - 夜 は 隣 の 部屋 が うるさい {わ}。夏 は 蚊 に 刺さ れる {わ}。なかなか 熟睡 でき ない。
+        english: At night, the next-door room is noisy, you know. In summer I get bitten by mosquitoes,
+          you know. I can barely get a good night's sleep.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: Someone complains about the combination of factors preventing them from getting restful sleep
+      in their home.
+    register: casual
+    setting: serious
+    nuance: The speaker uses 「隣の部屋がうるさいわ、夏は蚊に刺されるわで」 to lament the multiple concurrent issues that hinder
+      their ability to get a good night's sleep.
+  - english: This morning, the train was delayed, and the roads were congested, so it took me two hours
+      to get to work.
+    japanese:
+      - 今朝 は {電車 が 遅れる わ、道 が 渋滞 する わ で}、会社 に 着く の に 2 時間 も かかっ た。
+      - 今朝 は {電車 が 遅れる わ、道 が 渋滞 する わ}、結局 会社 に 着く まで 2 時間 も かかっ た よ。
+    english_literally: This morning, the train was delayed and the road was congested, so it took two
+      hours to arrive at the company.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ {て}、道 も 渋滞 し て い た {の で}、会社 に 着く の に 2 時間 も かかっ た。
+        english: This morning, the train was delayed, and the roads were congested, so it took me two
+          hours to get to work.
+        hint: The scene implies a strong sense of exasperation due to multiple, compounding delays, which
+          『わ〜わで』 emphasizes over a simple enumeration of problems. We're looking for an expression that
+          highlights frustrating cumulative delays.
+      - competing_japanese:
+          - 電車 が 遅れる {し}、道 が 渋滞 する {し}、会社 に 着く の に 2 時間 も かかっ た。
+        english: This morning, the train was delayed, and the roads were congested, so it took me two
+          hours to get to work.
+        hint: 『わ〜わで』 better conveys the overwhelming and frustrating nature of the combined commute issues,
+          indicating a higher level of annoyance than 『〜し〜し』. We're looking for an expression that highlights
+          frustrating cumulative delays.
+      - competing_japanese:
+          - 今朝 は 電車 が 遅れる {わ}。道 が 渋滞 する {わ}。会社 に 着く の に 2 時間 も かかっ た。
+        english: This morning, the train was delayed, you know. The roads were congested, you know. It
+          took me two hours to get to work.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: A commuter recounts their nightmare journey to work, detailing the compounding issues that
+      caused significant delays.
+    register: casual
+    setting: melancholic
+    nuance: The speaker uses 「電車が遅れるわ、道が渋滞するわで」 to convey the utter frustration and extent of the delay
+      experienced during their commute due to multiple problems.
+  - english: Today I lost my wallet and misplaced important documents; it's the worst day ever.
+    japanese:
+      - 今日 は {財布 を 落とす わ、大事 な 書類 を 無くす わ で}、最悪 の 一日 だ。
+      - 今日 は {財布 を 落とす わ、大事 な 書類 を 無くす わ}、もう 本当 に 最悪 の 一日 だっ た。
+    english_literally: Today, losing my wallet and losing important documents, it's the worst day.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 財布 を 落とし {て}、大事 な 書類 も 無くし {て}、最悪 の 一日 だ。
+        english: Today, I lost my wallet, and I misplaced important documents, so it's the worst day.
+        hint: The scene emphasizes the cumulative effect of major misfortunes, leading to a profound sense
+          of ill luck, which 『わ〜わで』 expresses more powerfully than a simple list. We're looking for an
+          expression that conveys an accumulation of misfortunes.
+      - competing_japanese:
+          - 今日 は 財布 を 落とす {し}、大事 な 書類 を 無くす {し}、最悪 の 一日 だ。
+        english: Today, I lost my wallet, and I misplaced important documents, so I'm the worst day.
+        hint: While 『〜し〜し』 lists bad events, 『わ〜わで』 highlights the intense, combined impact of these major
+          setbacks, conveying a stronger feeling of a truly "worst day." We're looking for an expression
+          that conveys an accumulation of misfortunes.
+      - competing_japanese:
+          - 今日 は 財布 を 落とす {わ}。大事 な 書類 を 無くす {わ}。最悪 の 一日 だ。
+        english: Today I lost my wallet, you know. I misplaced important documents, you know. It's the
+          worst day ever.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: A person vents to a friend about a series of unfortunate events that have plagued their day,
+      leading to utter despair.
+    register: casual
+    setting: pessimistic
+    nuance: The speaker uses 「財布を落とすわ、大事な書類を無くすわで」 to underscore the accumulation of significant misfortunes
+      that define their "worst day."
+  - english: From this morning, my cat threw up on me, and my shoes got muddy—I feel truly awful.
+    japanese:
+      - 朝 から {猫 に 吐か れる わ、靴 に 泥 を つけ られる わ で}、本当 に 気分 が 悪い。
+      - 朝 から {猫 に 吐か れる わ、靴 に 泥 を つけ られる わ}、もう 散々 だ よ。
+    english_literally: From morning, being thrown up on by the cat and having mud put on my shoes, I feel
+      truly bad.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 から 猫 に 吐か れ {て}、靴 に 泥 を つけ られ {て}、本当 に 気分 が 悪い。
+        english: From this morning, my cat threw up on me, and my shoes got muddy, so I feel truly awful.
+        hint: The scene emphasizes the strong negative emotional response to multiple unpleasant occurrences,
+          which 『わ〜わで』 conveys more emphatically than a simple sequential account. We're looking for an
+          expression highlighting cumulative unpleasant incidents.
+      - competing_japanese:
+          - 朝 から 猫 に 吐か れる {し}、靴 に 泥 を つけ られる {し}、本当 に 気分 が 悪い。
+        english: From this morning, my cat threw up on me, and my shoes got muddy, so I feel truly awful.
+        hint: 『わ〜わで』 in this context effectively conveys the extreme level of discomfort and cumulative
+          impact of these unhygienic incidents, aligning with the scene's tone of deep displeasure. We're
+          looking for an expression highlighting cumulative unpleasant incidents.
+      - competing_japanese:
+          - 朝 から 猫 に 吐か れる {わ}。靴 に 泥 を つけ られる {わ}。本当 に 気分 が 悪い。
+        english: From this morning, my cat threw up on me, you know. My shoes got muddy, you know. I feel
+          truly awful.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: Someone complains to a friend about a series of disgusting incidents that ruined their morning,
+      making them feel utterly miserable.
+    register: casual
+    setting: melancholic
+    nuance: The speaker expresses their strong negative feelings due to a combination of unpleasant events,
+      using 「猫に吐かれるわ、靴に泥をつけられるわで」 to emphasize the accumulated discomfort.
+  - english: That hotel is terrible; the room is dirty, and the service is atrocious, so I never want
+      to stay there again.
+    japanese:
+      - あの ホテル は {部屋 が 汚い わ、サービス が 最悪 だ わ で}、二 度 と 泊まり たく ない。
+      - あの ホテル は {部屋 が 汚い わ、サービス が 最悪 だ わ}、全く 泊まり たく ない ね。
+    english_literally: That hotel, the room is dirty and the service is the worst, so I don't want to
+      stay again.
+    competing_grammar:
+      - competing_japanese:
+          - あの ホテル は 部屋 が 汚く {て}、サービス も 最悪 だっ た {の で}、二 度 と 泊まり たく ない。
+        english: That hotel's room is dirty, and the service was the worst, so I don't want to stay there
+          again.
+        hint: The scene highlights a strong emotional reaction to accumulated negative experiences, which
+          『わ〜わで』 expresses more powerfully than simple conjunctions or causal connectives. We're looking
+          for an expression that conveys cumulative dissatisfaction.
+      - competing_japanese:
+          - あの ホテル は 部屋 が 汚い {し}、サービス が 最悪 だ {し}、二 度 と 泊まり たく ない。
+        english: That hotel's room is dirty, and the service is atrocious, so I never want to stay there
+          again.
+        hint: 『わ〜わで』 in this context emphasizes the overwhelming poor quality of the hotel due to combined
+          issues, indicating a higher level of frustration and a definitive decision not to return. We're
+          looking for an expression that conveys cumulative dissatisfaction.
+      - competing_japanese:
+          - あの ホテル は 部屋 が 汚い {わ}。サービス が 最悪 だ {わ}。二 度 と 泊まり たく ない。
+        english: That hotel's room is dirty, you know. The service is atrocious, you know. I never want
+          to stay there again.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: A woman expresses her extreme dissatisfaction with a hotel stay to a male friend, citing multiple
+      reasons for her terrible experience.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker expresses her firm decision to avoid a hotel to a male listener, using 「部屋が汚いわ、サービスが最悪だわで」
+      to highlight the combined unbearable conditions that led to her dissatisfaction.
+  - english: My boss is incompetent and lazy, so I'm really tired of them.
+    japanese:
+      - 上司 は {無能 だ わ、怠惰 だ わ で}、本当 に 嫌 に なる。
+      - 上司 は {無能 だ わ、怠惰 だ わ}、本当 に 嫌 に なる。
+      - 上司 は {無能 だ わ、怠惰 だ わ で}、もう うんざり だ よ。
+    english_literally: My boss, being incompetent and lazy, I truly dislike them.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 は 無能 {で} 怠惰 な {の で}、本当 に 嫌 に なる。
+        english: My boss is incompetent and lazy, so I'm really tired of them.
+        hint: The scene emphasizes strong cumulative frustration, which 『わ〜わで』 captures more emphatically
+          than a simple causal connection. We're looking for an expression highlighting combined negative
+          qualities causing frustration.
+      - competing_japanese:
+          - 上司 は 無能 だ {し}、怠惰 だ {し}、本当 に 嫌 に なる。
+        english: My boss is incompetent and lazy, so I'm really tired of them.
+        hint: While 『〜し〜し』 lists reasons, 『わ〜わで』 conveys a stronger sense of being overwhelmed and exasperated
+          by the combined negative attributes. We're looking for an expression highlighting combined negative
+          qualities causing frustration.
+      - competing_japanese:
+          - 上司 は 無能 だ {わ}。怠惰 だ {わ}。本当 に 嫌 に なる。
+        english: My boss is incompetent, you know. Lazy, you know. I'm really tired of them.
+        hint: The single 「わ」 is a sentence-final particle for emphasis, and does not connect multiple
+          reasons to a single outcome. We're looking for a structure that links multiple causes to one
+          effect.
+    scene: An employee is complaining to a close friend about their boss's combined negative qualities.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker uses 「無能だわ、怠惰だわで」 to express their deep frustration with their boss, highlighting
+      the combined negative traits that make the situation unbearable.
+post_example_writeup: This grammar pattern is predominantly used to express a series of negative or frustrating
+  events leading to an undesirable outcome. However, as demonstrated in examples 5 and 6, it can, in rare
+  cases, be used to highlight a series of positive or surprising events leading to a desirable outcome.
+  This positive usage is less common and adds a sense of delightful accumulation, but the core meaning
+  of listing contributing factors remains.

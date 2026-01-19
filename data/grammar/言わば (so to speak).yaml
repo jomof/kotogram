@@ -1,0 +1,274 @@
+grammar_point: 言わば (so to speak)
+learn_before:
+  - Verb[えば] (conditional)
+  - かのようだ・かのように (as if)
+  - た末・の末・末に (culmination)
+  - でもある (to also be)
+  - を機に (leverage opportunity)
+meaning: So to speak; as it were; like; sort of
+pronunciation:
+  katakana: イワバ
+  romaji: iwaba
+formation:
+  言わば: Used to introduce a metaphorical or analogous explanation.
+  Sentence + 言わば + Explanation: Indicates that the explanation is a way of putting things or a comparison,
+    not a literal statement.
+jlpt: N2
+etymology: The term 言わば comes from the verb 言う (iu, to say). 言わば is a hypothetical or conditional form
+  of saying something, implying "if I were to say it." Thus, it suggests that the speaker is offering
+  a way of expressing something that is not necessarily exact but helps convey the idea.
+writeup: '**言わば (iwaba)** is an adverb that translates to "so to speak," "as it were," "like," or "sort
+  of." It''s used to introduce a metaphorical or analogous explanation of something, indicating that the
+  comparison isn''t literal but helps to illustrate the point. Think of it as a way to say, "If I had
+  to put it another way..." or "It''s kind of like...". This expression is often used to clarify or add
+  emphasis to a description by presenting it through an analogy or a figurative statement. It acknowledges
+  that the statement is not literally true but is a useful comparison to convey a deeper understanding.'
+false_friends:
+  - term: 例えば
+    meaning: for example, for instance
+    kind: similar expression
+    nuance: Unlike 言わば which introduces a metaphorical or analogous explanation, 例えば introduces a specific
+      example to illustrate a point.
+    grammar_point: たとえば (for example)
+  - term: つまり
+    meaning: in other words, that is to say
+    kind: similar expression
+    nuance: While 言わば provides an analogous explanation, つまり rephrases the same information in simpler
+      terms.
+    grammar_point: つまり・要するに (in short・to sum up)
+  - term: みたい
+    meaning: like, similar to
+    kind: often confused with
+    nuance: みたい is a casual way to express similarity, often used for simple observations. 言わば implies
+      a more deliberate and reflective framing of an analogy or comparison by the speaker.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: まるで
+    meaning: as if, as though, completely like
+    kind: often confused with
+    nuance: まるで emphasizes the strong degree of resemblance or the feeling of something being entirely
+      like something else. 言わば highlights the speaker's conscious choice to use a particular analogy to
+      explain a concept, regardless of the literal truth.
+    grammar_point: まるで…ようだ (just like)
+post_false_friends_writeup: To avoid confusion, remember that 言わば is used to offer a comparable, though
+  not literal, explanation. 例えば gives an example, and つまり offers a rephrased definition. While みたい and
+  まるで also express comparisons, 言わば specifically highlights that the speaker is framing something in a
+  particular way to aid understanding, rather than merely stating a resemblance.
+examples:
+  - english: This project is, so to speak, a marathon.
+    japanese:
+      - この プロジェクト は、{言わば} マラソン だ。
+      - この プロジェクト は、{言わば} マラソン です。
+    english_literally: This project is, if I were to say it, a marathon.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は マラソン みたい だ。
+        english: This project is like a marathon.
+        hint: While `みたい` expresses similarity, `言わば` emphasizes the speaker's deliberate framing of the
+          analogy. We're looking for an expression that highlights the chosen comparison.
+      - competing_japanese:
+          - この プロジェクト は まるで マラソン だ。
+        english: This project is completely like a marathon.
+        hint: While `まるで` emphasizes the strong degree of resemblance, `言わば` highlights the speaker's
+          conscious choice to use a particular analogy to explain a concept. We're looking for a chosen
+          comparison, not just a strong resemblance.
+    scene: Two colleagues discussing a long-term, arduous project.
+    register: semi-formal
+    setting: professional
+  - english: He always uses difficult words, but, so to speak, that's his defense mechanism.
+    japanese:
+      - 彼 は いつ も 難しい 言葉 を 使う が、{言わば} それ は 彼 の 防御 機 制 な の だ。
+      - 彼 は いつ も 難しい 言葉 を 使い ます が、{言わば} それ は 彼 の 防御 機 制 な の です。
+    english_literally: He always uses difficult words, but, if I were to say it, that is his defense mechanism.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 難しい 言葉 を 使う。つまり、それ は 彼 の 防御 機 制 な の だ。
+        english: He always uses difficult words. In other words, that's his defense mechanism.
+        hint: While `つまり` rephrases or summarizes, `言わば` introduces an interpretation or a way of seeing
+          the situation as an analogy. We're looking for an expression that signals a chosen explanation.
+    scene: A manager providing feedback to a subordinate about a colleague's communication style.
+    register: formal
+    setting: informative
+  - english: Our founder is, as it were, a living legend in this industry.
+    japanese:
+      - 弊社 の 創業 者 は、{言わば} この 業界 の 生きる 伝説 です。
+      - 弊社 の 創業 者 は、{言わば} この 業界 の 生きる 伝説 だ。
+    english_literally: Our founder is, if I were to say it, a living legend in this industry.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 の 創業 者 は この 業界 の 生きる 伝説 の よう です。
+        english: Our founder is like a living legend in this industry.
+        hint: While `～のようです` expresses similarity, `言わば` is used for a more deliberate, considered comparison
+          or rhetorical device, especially in formal settings. We're looking for an expression that introduces
+          a formal, chosen analogy.
+      - competing_japanese:
+          - 弊社 の 創業 者 は まるで この 業界 の 生きる 伝説 の よう です。
+        english: Our company's founder is completely like a living legend of this industry.
+        hint: While `まるで` emphasizes the strong degree of resemblance or the feeling of something being
+          entirely like something else, `言わば` highlights the speaker's conscious choice to use a particular
+          analogy to explain a concept. We're looking for a deliberate framing of an analogy.
+    scene: A company executive introducing their founder to new employees at a formal orientation.
+    register: formal
+    setting: professional
+  - english: Her singing voice is, so to speak, like an angel's.
+    japanese:
+      - 彼女 の 歌声 は、{言わば} 天使 の よう だ ね。
+      - 彼女 の 歌声 は、{言わば} 天使 の よう だ よ。
+      - 彼女 の 歌声 は、{言わば} 天使 の よう です ね。
+    english_literally: Her singing voice is, if I were to say it, like an angel.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 歌声 は 天使 の よう だ ね。
+        english: Her singing voice is like an angel's.
+        hint: While `～のよう` expresses similarity, `言わば` adds a slightly more emphatic framing of the compliment,
+          implying the speaker is deliberately choosing a strong analogy. We're looking for an expression
+          that introduces a deliberate and emphatic comparison.
+      - competing_japanese:
+          - 彼女 の 歌声 は まるで 天使 の よう だ ね。
+        english: Her singing voice is completely like an angel's.
+        hint: While `まるで` emphasizes a strong, often surprising, resemblance, `言わば` introduces a deliberate
+          analogy chosen by the speaker to explain something. We're looking for an expression that introduces
+          a chosen way of putting things.
+    scene: A young man casually praising a singer to his female friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「言わば」 here with 「の よう だ ね」 combines a deliberate metaphorical expression with a
+      casual, agreement-seeking tone. For a male speaker, 「ね」 can often convey a soft, conversational
+      nuance when seeking affirmation from a female listener.
+  - english: I've been so busy lately, every day is, so to speak, like a battlefield.
+    japanese:
+      - 最近 忙し すぎ て、毎日 が {言わば} 戦場 みたい だ。
+      - 最近 忙し すぎ て、毎日 が {言わば} 戦場 みたい です。
+    english_literally: I've been so busy lately, every day is, if I were to say it, like a battlefield.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 忙し すぎ て、毎日 が まるで 戦場 みたい だ。
+        english: I've been so busy lately, every day is completely like a battlefield.
+        hint: While `まるで` emphasizes the strong degree of resemblance, `言わば` focuses on the speaker's
+          choice of comparison to best describe a situation. We're looking for an expression that indicates
+          a chosen, descriptive analogy.
+      - competing_japanese:
+          - 毎日 が 戦場 みたい だ。
+        english: Every day is like a battlefield.
+        hint: While `みたい` expresses similarity, `言わば` emphasizes the speaker's deliberate framing of the
+          analogy. We're looking for an expression that highlights the chosen comparison.
+    scene: A woman complaining to a colleague about her demanding work schedule.
+    register: casual
+    setting: serious
+    speaker_gender: female
+  - english: That old car, so to speak, is like a family member to us.
+    japanese:
+      - あの 古い 車 は、{言わば} 我が家 の 一員 の よう な もの だ。
+      - あの 古い 車 は、{言わば} 我が家 の 一員 の よう な もの です。
+    english_literally: That old car is, if I were to say it, like a family member.
+    competing_grammar:
+      - competing_japanese:
+          - あの 古い 車 は 我が家 の 一員 みたい だ。
+        english: That old car is like a family member to our family.
+        hint: While `みたい` expresses a simple similarity, `言わば` emphasizes the speaker's deliberate and
+          affectionate framing of the comparison. We're looking for an expression that highlights a chosen,
+          significant analogy.
+      - competing_japanese:
+          - あの 古い 車 は まるで 我が家 の 一員 の よう だ。
+        english: That old car is completely like a family member to our family.
+        hint: While `まるで` highlights a strong resemblance, `言わば` suggests the speaker is making a conscious,
+          often sentimental, metaphorical statement. We're looking for a chosen comparison, not just a
+          strong likeness.
+    scene: A mother explaining to her children how much their old car means to the family.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「言わば」 here emphasizes the depth of the family's emotional bond with the car, framing
+      it as a valued member, a deliberate comparison chosen by the speaker to convey affection. 「我が家 の
+      一員」 を reinforces this sense of belonging.
+  - english: This city's downtown area is, as it were, its heart.
+    japanese:
+      - この 街 の 中心 部 は、{言わば} その 心臓 部 だ。
+      - この 街 の 中心 部 は、{言わば} その 心臓 部 です。
+    english_literally: This city's central part is, if I were to say it, its heart part.
+    competing_grammar:
+      - competing_japanese:
+          - この 街 の 中心 部 は その 心臓 部 の よう です。
+        english: This city's downtown area is like its heart.
+        hint: While `～のよう` expresses a general similarity, `言わば` lends more authority or a sense of profound
+          truth to the comparison, often used in formal or informative contexts. We're looking for a term
+          that frames the comparison as a definitive explanation.
+    scene: A city planner giving a presentation about urban development.
+    register: formal
+    setting: informative
+    speaker_gender: male
+  - english: His stubbornness is, so to speak, his greatest strength and his greatest weakness.
+    japanese:
+      - 彼 の 頑固 さ は、{言わば} 彼 の 最大 の 長所 で も あり、最大 の 欠点 で も ある。
+      - 彼 の 頑固 さ は、{言わば} 彼 の 最大 の 長所 で も あり、最大 の 欠点 で も あり ます。
+    english_literally: His stubbornness is, if I were to say it, his greatest strong point and also his
+      greatest weak point.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 頑固 さ は 最大 の 長所 で も あり、最大 の 欠点 で も ある。
+        english: His stubbornness is his greatest strength and his greatest weakness.
+        hint: Removing `言わば` makes the statement a direct assertion. `言わば` frames it as a way of understanding
+          or a particular perspective on the situation, often used to highlight a nuanced or paradoxical
+          truth. We're looking for an expression that adds a reflective, interpretive layer.
+    scene: Two friends discussing a mutual acquaintance's complex personality.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    nuance: Here, 「言わば」 is used to present a seemingly contradictory idea—that a single trait can be both
+      a strength and a weakness. It signals that the speaker is offering a thoughtful, nuanced interpretation
+      rather than a simple fact, inviting the listener to consider this perspective. The casual tone makes
+      this reflection feel natural between friends.
+  - english: After years of practice, his hands move, as it were, like they have a mind of their own.
+    japanese:
+      - 長年 の 練習 の 末、彼 の 手 は {言わば} 独自 の 意思 を 持つ か の よう に 動く。
+      - 長年 の 練習 の 末、彼 の 手 は {言わば} 独自 の 意思 を 持つ か の よう に 動き ます。
+    english_literally: After years of practice, his hands move, if I were to say it, as if they possess
+      their own will.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 練習 の 末、彼 の 手 は 独自 の 意思 を 持つ か の よう に 動く。
+        english: After years of practice, his hands move as if they have a mind of their own.
+        hint: While `かのように` describes how something appears, `言わば` emphasizes the speaker's chosen, perhaps
+          poetic, way of expressing the profound skill or mastery, signaling that this is a figurative
+          explanation. We're looking for an expression that frames a profound comparison.
+    scene: A master craftsman explaining the exceptional skill gained through long training to a young
+      apprentice.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The older male speaker uses 「言わば」 to convey a sense of awe and deep understanding of the mastery
+      achieved through years of dedication. It elevates the description of the apprentice's hands to a
+      metaphorical level, suggesting almost an independent life, a common trope in describing peak craftsmanship.
+      The phrase 「独自 の 意思 を 持つ か の よう に」 reinforces this almost magical quality.
+  - english: To learn a foreign language is, so to speak, to build a new self.
+    japanese:
+      - 外国 語 を 学ぶ こと は、{言わば} 新しい 自分 を 築く こと だ。
+      - 外国 語 を 学ぶ こと は、{言わば} 新しい 自分 を 築く こと です。
+    english_literally: Learning a foreign language is, if I were to say it, building a new self.
+    competing_grammar:
+      - competing_japanese:
+          - 外国 語 を 学ぶ こと は 新しい 自分 を 築く こと の よう だ。
+        english: Learning a foreign language is like building a new self.
+        hint: While `～のよう` offers a simple comparison, `言わば` conveys a deeper, more profound truth or
+          a philosophical statement about the transformative nature of language learning. We're looking
+          for an expression that frames a grand, inspiring metaphor.
+    scene: A language teacher giving an inspiring speech to a group of students on the first day of class.
+    register: formal
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: group
+    nuance: In this inspiring context, 「言わば」 is used by the female teacher to elevate the act of learning
+      a language beyond mere acquisition of skills to a profound personal transformation. It suggests
+      that the speaker is offering a grand, insightful truth or a way to understand the deeper impact
+      of their studies. The formal tone suits a motivational speech.
+post_example_writeup: The examples illustrate how 言わば can be used across different registers and in various
+  contexts to introduce an analogy or a figurative explanation. Pay attention to how it often precedes
+  the metaphorical statement, framing it as the speaker's chosen way of expressing something, and adding
+  a nuance of deliberate phrasing.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/言わば

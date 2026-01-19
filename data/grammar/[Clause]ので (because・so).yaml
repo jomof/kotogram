@@ -1,0 +1,641 @@
+grammar_point: '[Clause]ので (because・so)'
+learn_before:
+  - '[Clause]から (because・so)'
+meaning: Because; since (conveying an objective, often polite, reason).
+pronunciation:
+  katakana: ノデ
+  romaji: node
+formation:
+  Verb (plain form) + の で: Indicates an objective or polite reason/cause (e.g., 食べるので, 食べたので).
+  い-adjective (plain form) + の で: Indicates an objective or polite reason/cause (e.g., 高いので, 寒かったので).
+  な-adjective + な + の で: Indicates an objective or polite reason/cause (e.g., 静かなので).
+  Noun + な + の で: Indicates an objective or polite reason/cause (e.g., 学生なので).
+jlpt: N5
+etymology: 「ので」 is derived from the te-form (て) of the explanatory のだ (noda). Over time, it evolved into
+  a conjunctive particle used to indicate reason or cause, connecting clauses with a sense of objectivity.
+writeup: The grammar point 「ので」 is used to express an objective or polite reason or cause, translating
+  to "because" or "since." It emphasizes the overall situation and its consequences, presenting the reason
+  as a natural outcome or an established fact. This often makes 「ので」 sound milder, softer, and more polite.
+  It is preferred in formal settings, when making polite requests, or when you want to avoid sounding
+  too assertive. A unique feature of 「ので」 is that it can also follow the polite ます form of verbs (e.g.,
+  食べますので), which is common in formal or polite contexts. The clause expressing the reason **always** precedes
+  the main clause that states the result, providing clarity in the causal relationship.
+false_friends:
+  - term: ため(に)
+    meaning: for the sake of, due to
+    kind: similar expression
+    nuance: Often implies a more formal or serious tone and is frequently used to describe negative consequences
+      or formal reasons. It can also indicate purpose ('for the sake of'). It's generally less conversational
+      than ので.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: ものだから
+    meaning: Because, the reason is
+    kind: similar expression
+    nuance: A more emphatic and often explanatory or justificatory form of 'because.' It suggests that
+      the reason is self-evident or unavoidable, sometimes implying an excuse or a strong personal sentiment,
+      or used to offer a polite explanation/justification (e.g., in an apology).
+    grammar_point: もので・ものだから (because・as an excuse)
+  - term: からこそ
+    meaning: precisely because, for the very reason that
+    kind: similar expression
+    nuance: Adds strong emphasis to the reason, highlighting that the preceding clause is *the* definitive
+      or critical reason for the subsequent action or state. It intensifies the causal link, making the
+      reason undeniable or exceptional.
+    grammar_point: からこそ (emphasized reason)
+  - term: し〜し
+    meaning: And, giving reasons
+    kind: similar expression
+    nuance: Lists reasons, implying there might be other reasons not stated, or that the reason given
+      is just one among several. Unlike ので, which state a direct cause-and-effect, し provides reasons
+      that support a conclusion or action, but in a softer, less assertive way.
+    grammar_point: し〜し (and; listing reasons)
+  - term: Verb[て] (uncontrollable consequence)
+    meaning: because of, due to, since; expresses a cause-and-effect relationship where the cause is often
+      beyond the speaker's control.
+    kind: similar expression
+    nuance: The te-form can express a cause or reason, indicating a natural sequence or consequence rather
+      than a strong, explicit cause-and-effect relationship. It's often used when the cause is obvious
+      or when simply linking events. ので is more explicit in stating a polite or objective reason.
+    grammar_point: Verbて (uncontrollable consequence)
+  - term: なぜなら〜から
+    meaning: Because, the reason is, that is because
+    kind: similar expression
+    nuance: Used to introduce a more formal and emphatic explanation, often clarifying a preceding statement.
+      It typically appears after the main statement, providing the reason.
+    grammar_point: なぜなら〜から (emphasized reason)
+  - term: もの・もん
+    meaning: Because, cause
+    kind: similar expression
+    nuance: Very casual and often used by children or in intimate conversation to state a reason or complaint,
+      sometimes with a nuance of asserting one's opinion. Much less formal than ので.
+    grammar_point: もの・もん (because・since)
+post_false_friends_writeup: While 「ので」 indicates an objective or polite reason, other expressions like
+  「ため」, 「ものだから」, 「からこそ」, 「し」, the te-form, 「なぜなら〜から」, and 「もの・もん」 also convey causality but with distinct
+  nuances. Selecting the appropriate expression depends on the desired level of formality, objectivity,
+  and emphasis. For instance, 「ので」 is generally objective and polite. In contrast, 「ため」 is formal and
+  objective, 「ものだから」 emphasizes justification, 「からこそ」 strongly asserts the critical reason, 「し」 lists
+  multiple reasons, the te-form describes natural consequences, 「なぜなら〜から」 formally clarifies a reason,
+  and 「もの・もん」 offers casual, often emotional, justifications. Understanding these subtle differences is
+  key to natural Japanese expression.
+examples:
+  - english: Because I read books every day, I have more things to talk about.
+    japanese:
+      - 毎日 本 を 読む の で、話す こと が 増え ます。
+      - 毎日 本 を 読む の で、話す こと が 増える。
+    english_literally: Every day books reading because, talking things increase.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 本 を 読む もの だ から、話す こと が 増え ます。
+        english: The reason I have more things to talk about is because I read books every day.
+        hint: 「ものだから」 often implies an excuse or justification. We are looking for a simple, objective
+          reason.
+      - competing_japanese:
+          - 毎日 本 を 読む から こそ、話す こと が 増え ます。
+        english: Precisely because I read books every day, I have more things to talk about.
+        hint: 「からこそ」 adds strong emphasis, meaning "precisely because." We are looking for a general causal
+          statement without strong emphasis.
+      - competing_japanese:
+          - 毎日 本 を 読む ため、話す こと が 増え ます。
+        english: Due to reading books every day, I have more things to talk about.
+        hint: 「ため」 is often more formal and can imply a consequence. We are looking for a direct causal
+          statement.
+      - competing_japanese:
+          - 毎日 本 も 読む し、話す こと も 増え ます。
+        english: I read books every day, so I have more things to talk about.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct and
+          singular cause.
+    scene: A student explaining how reading helps them converse more effectively.
+    register: formal
+    setting: informative
+  - english: Because I ate a lot, I'm full.
+    japanese:
+      - たくさん 食べ た の で、お腹 が いっぱい だ。
+      - たくさん 食べ まし た の で、お腹 が いっぱい です。
+    english_literally: A lot ate because, stomach is full.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 食べ た ため、お腹 が いっぱい だ。
+        english: Due to having eaten a lot, I'm full.
+        hint: 「ため」 is often used for more formal or serious reasons and can imply a consequence. We are
+          looking for a direct, objective reason.
+      - competing_japanese:
+          - たくさん 食べ た もの だ から、お腹 が いっぱい だ。
+        english: The reason I'm full is because I ate a lot.
+        hint: 「ものだから」 emphasizes the reason, often implying a justification or excuse. We are looking
+          for a simple, objective reason.
+      - competing_japanese:
+          - たくさん 食べ た から こそ、お腹 が いっぱい だ。
+        english: Precisely because I ate a lot, I'm full.
+        hint: 「からこそ」 emphasizes that the reason is the critical factor. We are looking for a general causal
+          statement without strong emphasis.
+      - competing_japanese:
+          - たくさん 食べ て、お腹 が いっぱい だ。
+        english: Having eaten a lot, I'm full.
+        hint: 「〜て」 form can express a cause, but it's more about a direct, natural consequence, less about
+          an explicit objective reason. We are looking for a clear objective reason for being full.
+      - competing_japanese:
+          - たくさん 食べ た し、お腹 が いっぱい だ。
+        english: I ate a lot, so I'm full.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct, singular
+          cause-and-effect.
+    scene: Someone stating their reason for not wanting more food after a large meal.
+    register: casual
+    setting: reflective
+  - english: Because it's hot today, I will drink a lot of water.
+    japanese:
+      - 今日 は 暑い の で、水 を たくさん 飲み ます。
+      - 今日 は 暑い の で、水 を たくさん 飲む。
+    english_literally: Today is hot because, water a lot drink.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 暑い ため、水 を たくさん 飲み ます。
+        english: Due to it being hot today, I will drink a lot of water.
+        hint: 「ため」 is generally more formal and objective, and can imply a more direct consequence. We
+          are looking for an objective reason.
+      - competing_japanese:
+          - 今日 は 暑い もの だ から、水 を たくさん 飲み ます。
+        english: The reason I will drink a lot of water is because it's hot today.
+        hint: 「ものだから」 often implies an excuse or strong justification. We are looking for a straightforward,
+          objective reason for an action.
+      - competing_japanese:
+          - 今日 は 暑い から こそ、水 を たくさん 飲み ます。
+        english: Precisely because it's hot today, I will drink a lot of water.
+        hint: 「からこそ」 strongly emphasizes that the reason is the definitive factor. We are looking for
+          a general causal statement without strong emphasis.
+      - competing_japanese:
+          - 今日 は 暑い し、水 を たくさん 飲み ます。
+        english: It's hot today, so I will drink a lot of water.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct, singular
+          cause-and-effect.
+      - competing_japanese:
+          - 今日 は 暑く て、水 を たくさん 飲み ます。
+        english: It's hot today, so I will drink a lot of water.
+        hint: The te-form connects events in a sequence or as a mild cause. We are looking for a clear
+          objective reason for an action.
+    scene: Someone giving a practical reason for their action due to the weather.
+    register: formal
+    setting: instructional
+  - english: Because it was cold yesterday, I wore a sweater.
+    japanese:
+      - 昨日 は 寒かっ た の で、セーター を 着 まし た。
+      - 昨日 は 寒かっ た の で、セーター を 着 た。
+    english_literally: Yesterday was cold because, sweater wore.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 寒かっ た ため、セーター を 着 まし た。
+        english: Due to it having been cold yesterday, I wore a sweater.
+        hint: 「ため」 is typically used for more formal or objective reasons, or when describing a consequence.
+          We are looking for a direct causal relationship based on objective fact.
+      - competing_japanese:
+          - 昨日 は 寒かっ た もの だ から、セーター を 着 まし た。
+        english: The reason I wore a sweater is because it was cold yesterday.
+        hint: 「ものだから」 emphasizes the reason, often implying a justification or self-evident truth. We
+          are looking for a straightforward objective causal statement.
+      - competing_japanese:
+          - 昨日 は 寒かっ た から こそ、セーター を 着 まし た。
+        english: Precisely because it was cold yesterday, I wore a sweater.
+        hint: 「からこそ」 strongly emphasizes that the reason is the critical factor. We are looking for a
+          general causal statement without strong emphasis.
+      - competing_japanese:
+          - 昨日 は 寒く て、セーター を 着 まし た。
+          - 昨日 は 寒かっ た し、セーター を 着 まし た。
+        english: Yesterday, it was cold, so I wore a sweater.
+        hint: The te-form indicates a natural sequence or cause. We are looking for a direct explanation
+          of the objective reason.
+    scene: Someone explaining their clothing choice based on the previous day's weather.
+    register: formal
+    setting: informative
+  - english: Because that child is very lively, everyone likes them.
+    japanese:
+      - あの 子 は とても 元気 な の で、みんな が 好き です。
+      - あの 子 は とても 元気 な の で、みんな が 好き だ。
+    english_literally: That child is very lively because, everyone likes them.
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 は とても 元気 な ため、みんな が 好き です。
+        english: Due to that child being very lively, everyone likes them.
+        hint: 「ため」 is often used for more formal or objective reasons. We are looking for a direct, objective
+          observation and its consequence.
+      - competing_japanese:
+          - あの 子 は とても 元気 な もの だ から、みんな が 好き です。
+        english: The reason everyone likes that child is because they are very lively.
+        hint: 「ものだから」 emphasizes the reason, often implying a justification or self-evident truth. We
+          are looking for a direct causal link based on objective characteristics.
+      - competing_japanese:
+          - あの 子 は とても 元気 だ から こそ、みんな が 好き です。
+        english: Precisely because that child is very lively, everyone likes them.
+        hint: 「からこそ」 strongly emphasizes that the reason is the critical factor. We are looking for a
+          general causal statement without strong emphasis.
+      - competing_japanese:
+          - あの 子 は とても 元気 な し、みんな が 好き です。
+        english: That child is very lively, and everyone likes them.
+        hint: 「し」 lists reasons or attributes, but doesn't necessarily imply a direct cause. We are looking
+          for a clear objective reason for the child's popularity.
+    scene: An adult describing a child's popularity based on their energetic personality.
+    register: formal
+    setting: friendly
+  - english: Because I'm a student, I have time.
+    japanese:
+      - 私 は 学生 な の で、時間 が あり ます。
+      - 私 は 学生 な の で、時間 が ある。
+      - 学生 な の で、時間 が ある よ。
+    english_literally: I am student because, time exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学生 で ある ため、時間 が あり ます。
+        english: Due to me being a student, I have time.
+        hint: 「ため」 is generally more formal and objective. We are looking for an objective and common
+          personal explanation.
+      - competing_japanese:
+          - 私 は 学生 な もの だ から、時間 が あり ます。
+        english: The reason I have time is because I'm a student.
+        hint: 「ものだから」 emphasizes the reason, often implying a justification or self-evident cause. We
+          are looking for a straightforward explanation of objective personal circumstances.
+      - competing_japanese:
+          - 私 は 学生 だ から こそ、時間 が あり ます。
+        english: Precisely because I'm a student, I have time.
+        hint: 「からこそ」 strongly emphasizes that the reason is the critical factor. We are looking for a
+          general causal statement without strong emphasis.
+      - competing_japanese:
+          - 私 は 学生 な し、時間 が あり ます。
+        english: I am a student, so I have time.
+        hint: 「し」 lists reasons, often implying there are others. We are looking for a singular, direct,
+          and objective reason for having time.
+    scene: A male student explaining to a female friend why he has free time.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「学生 な の で」 presents the speaker's status as an objective fact, leading to the logical
+      consequence of having time. This use of 「ので」 provides a clear and polite explanation, suitable for
+      various settings, highlighting the objective nature of the reason.
+  - english: Because he is an adult, he can decide for himself.
+    japanese:
+      - 彼 は 大人 な の で、自分 で 決め られる。
+      - 彼 は 大人 です の で、自分 で 決め られ ます。
+    english_literally: He is adult because, by himself can decide.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大人 で ある ため、自分 で 決め られる。
+        english: Due to him being an adult, he can decide for himself.
+        hint: 「ため」 is generally more formal and objective, and can imply a consequence. We are looking
+          for a firm objective statement of fact about an adult's autonomy.
+      - competing_japanese:
+          - 彼 は 大人 な もの だ から、自分 で 決め られる。
+        english: The reason he can decide for himself is because he is an adult.
+        hint: 「ものだから」 emphasizes the reason, often implying a justification or self-evident truth. We
+          are looking for a direct objective statement of fact.
+      - competing_japanese:
+          - 彼 は 大人 だ から こそ、自分 で 決め られる。
+        english: Precisely because he is an adult, he can decide for himself.
+        hint: 「からこそ」 strongly emphasizes that the reason is the critical factor. We are looking for a
+          general causal statement without strong emphasis.
+    scene: An older woman explaining the autonomy of an adult male to a group.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「大人 な の で」 presents the fact of being an adult as an objective and undisputed reason.
+      This makes the consequence 「自分 で 決め られる」 (can decide for himself) sound like a natural and expected
+      outcome, highlighting the objective nature of the cause in a neutral tone suitable for explaining
+      to a group.
+  - english: Because I have a headache, I can't concentrate on my studies.
+    japanese:
+      - 頭 が 痛い の で、勉強 に 集中 でき ませ ん。
+      - 頭 が 痛い の で、勉強 集中 でき ない。
+    english_literally: Head is painful because, study can't concentrate.
+    competing_grammar:
+      - competing_japanese:
+          - 頭 が 痛い ため、勉強 に 集中 でき ませ ん。
+        english: Due to a headache, I can't concentrate on my studies.
+        hint: 「ため」 is formal, implies cause/consequence. We need a direct, objective personal reason.
+      - competing_japanese:
+          - 頭 が 痛い もの だ から、勉強 に 集中 でき ませ ん。
+        english: The reason I can't concentrate on my studies is because I have a headache.
+        hint: 「ものだから」 implies an excuse/justification. We need a direct, objective reason.
+    scene: A student explaining to their teacher why they are struggling in class.
+    register: formal
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「頭 が 痛い の で」 to state the objective personal reason for her lack of concentration.
+      The use of 「でき ませ ん」 maintains formality when speaking to a teacher, and 「の で」 softens the directness,
+      making the explanation sound more polite and matter-of-fact.
+  - english: Because it's a secret, please don't tell anyone.
+    japanese:
+      - 秘密 です の で、誰 に も 言わ ない で ください。
+      - 秘密 な の で、誰 に も 言わ ない で ください。
+    english_literally: Secret is because, to anyone don't say please.
+    competing_grammar:
+      - competing_japanese:
+          - 秘密 の ため、誰 に も 言わ ない で ください。
+        english: Due to it being a secret, please don't tell anyone.
+        hint: 「ため」 is formal and often for objective reasons or consequences. We need a direct causal
+          statement for a polite request.
+    scene: A friend entrusting a secret to another.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「秘密 です の で」 with the polite copula 「です」, making the reason clear and polite
+      for the request 「言わ ない で ください」. This emphasizes that the secret itself is the **sole** objective
+      reason for the injunction, conveying a strong sense of trust and seriousness between friends, delivered
+      in a softened, polite manner.
+  - english: Because it's getting late, let's go home.
+    japanese:
+      - もう 時間 が 遅い の で、帰り ましょう。
+      - もう 時間 が 遅い の で、帰ろう か。
+    english_literally: Already time is late because, let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - もう 時間 が 遅い から こそ、帰り ましょう。
+        english: Precisely because it's getting late, let's go home.
+        hint: 「からこそ」 strongly emphasizes the reason as the definitive factor. We are looking for a general
+          causal statement without strong emphasis.
+    scene: Colleagues at a relaxed gathering after work deciding to wrap things up.
+    register: semi-formal
+    setting: persuasive
+    speaker_gender: female
+    nuance: The speaker uses 「もう 時間 が 遅い の で」 to present an objective, undeniable reason for leaving.
+      The use of 「帰り ましょう」 (polite volitional) makes the suggestion inclusive and polite, suitable for
+      a group setting. 「の で」 softens the request, making it sound like a natural and reasonable conclusion
+      based on an objective circumstance.
+  - english: Because the train was delayed, I was late for the meeting.
+    japanese:
+      - 電車 が 遅れ た の で、会議 に 遅れ まし た。
+      - 電車 が 遅れ まし た の で、会議 に 遅れ まし た。
+      - 電車 が 遅れ た の で、会議 に 遅れ た ん だ。
+    english_literally: Train was delayed because, meeting to was late.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ た ため、会議 に 遅れ まし た。
+        english: Due to the train having been delayed, I was late for the meeting.
+        hint: 「ため」 is typically used for more formal or objective reasons, or when describing a consequence.
+          We are looking for a direct causal relationship.
+    scene: Someone explaining their tardiness to a colleague.
+    register: formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「電車 が 遅れ た の で」 to state a direct and objective cause for being late. This
+      straightforward use of 「の で」 is common when providing a clear and polite reason or justification
+      for an action or outcome in a professional setting, as it avoids sounding too assertive.
+  - english: Because I like Japanese culture, I started studying Japanese.
+    japanese:
+      - 日本 文化 が 好き な の で、日本 語 を 勉強 し 始め まし た。
+      - 日本 文化 が 好き な の で、日本 語 勉強 し てる ん だ。
+    english_literally: Japanese culture is liked because, Japanese language study began.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 文化 が 好き な ため、日本 語 を 勉強 し 始め まし た。
+        english: Due to liking Japanese culture, I started studying Japanese.
+        hint: 「ため」 is often used for more formal or objective reasons. We're looking for a direct and
+          objective motivation.
+    scene: A student telling their Japanese teacher about their motivation to learn the language.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「日本 文化 が 好き な の で」 to directly state the objective and polite reason for
+      starting Japanese studies. The use of 「な の で」 (for nouns/な-adjectives) before the reason and polite
+      forms makes the explanation clear and respectful, even when discussing personal motivations.
+  - english: This book is interesting, so please try reading it.
+    japanese:
+      - この 本 は おもしろい の で、読ん で み て ください。
+      - この 本 は おもしろい の で、読ん で み ない？
+    english_literally: Because this book is interesting, please try reading it.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 面白い もの だ から、読ん で み て ください。
+        english: It's because this book is interesting, so please try reading it.
+        hint: 「ものだから」 tends to imply a justification or a reason given with a slight emotional nuance,
+          which isn't always fitting for a simple recommendation. We're looking for an objective reason.
+      - competing_japanese:
+          - この 本 は 面白い もの です から、読ん で み て ください。
+        english: As this book is interesting, please try reading it.
+        hint: 「ものですから」 offers a polite explanation or justification. While polite, 「の で」 is more direct
+          in presenting the objective reason for the recommendation.
+      - competing_japanese:
+          - この 本 は 面白い し 〜 し、読み やすい し、読ん で み て ください。
+        english: This book is interesting, and it's easy to read, so please try reading it.
+        hint: 「し〜し」 is used to list multiple reasons, implying there could be other factors. We're looking
+          for a simple, singular objective reason.
+    scene: A friend enthusiastically recommending a book they enjoyed to another friend.
+    register: casual
+    setting: friendly
+    nuance: The speaker uses 「おもしろい の で」 to state an objective quality of the book, which logically leads
+      to the gentle suggestion to try reading it. The request 「〜て ください」 is softened by 「の で」, making it
+      sound more like a natural, polite recommendation stemming from an objective fact.
+  - english: Because it's raining today, I won't go outside.
+    japanese:
+      - 今日 は 雨 な の で、外 へ 行き ませ ん。
+      - 今日 は 雨 な の で、外 へ 行か ない。
+    english_literally: Because today is rain, outside will not go.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 雨 な もの だ から、外 へ 行き ませ ん。
+        english: It's because it's raining today, so I won't go outside.
+        hint: 「ものだから」 can sound like a justification or excuse, sometimes with an emotional tone. We're
+          looking for a straightforward objective reason.
+      - competing_japanese:
+          - 今日 は 雨 な もの です から、外 へ 行き ませ ん。
+        english: As it's raining today, I won't go outside.
+        hint: 「ものですから」 offers a polite way to offer an explanation or justification. While polite, 「の
+          で」 is more simply objective here.
+      - competing_japanese:
+          - 今日 雨 な もん、外 行か ない。
+        english: It's because it's raining today, I'm not going outside.
+        hint: 「もん」 is a very casual, often assertive expression for giving a reason, typical in intimate
+          contexts. We're looking for a more neutral, objective explanation.
+    scene: A person looking out the window and deciding to stay indoors due to the weather.
+    register: casual
+    setting: reflective
+    nuance: The reason, 「雨」 (rain), is an objective fact that directly influences the decision not to
+      go outside. This simple cause-and-effect relationship is clearly established by 「の で」 without implying
+      strong emotion or personal preference, presenting a polite and objective explanation.
+  - english: Since today is Sunday, I'll rest leisurely.
+    japanese:
+      - 今日 は 日曜 日 な の で、ゆっくり 休み ます。
+      - 今日 は 日曜 日 な の で、ゆっくり 休む。
+    english_literally: Because today is Sunday, I will rest leisurely.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 日曜 日 な もの だ から、ゆっくり 休み ます。
+        english: It's because today is Sunday, so I'll rest leisurely.
+        hint: 「ものだから」 often carries a nuance of justification or a mild excuse, which is not the primary
+          focus here. We're looking for a simple, objective reason.
+      - competing_japanese:
+          - 今日 は 日曜 日 だ し 〜 し、天気 も いい し、ゆっくり 休み ます。
+        english: Today is Sunday, and the weather is good, so I'll rest leisurely.
+        hint: 「し〜し」 is used to list multiple reasons, implying a combination of factors. We're looking
+          for a direct causal connection based on a single clear, objective reason.
+    scene: A person looking forward to a relaxing day off from work or school.
+    register: casual
+    setting: optimistic
+    nuance: The fact that 「日曜日」 (Sunday) is an objective, universally known reason for resting makes 「の
+      で」 a fitting choice, presenting the rest as a natural consequence of the day. This usage emphasizes
+      the objective nature of the reason for relaxing.
+  - english: Since the company president will speak, please be quiet.
+    japanese:
+      - 社長 が お 話し に なり ます の で、しずか に し て ください。
+      - 社長 が お 話し に なり ます の で、静粛 に。
+      - 社長 が お 話し に なる の で、しずか に し て ください。
+      - 社長 が お 話し に なる の で、静粛 に。
+    english_literally: Because the company president will speak, please make it quiet.
+    competing_grammar:
+      - competing_japanese:
+          - しずか に し て ください。なぜ なら 〜 から です。
+        english: Please be quiet. The reason is because the company president will speak.
+        hint: 「なぜなら〜から」 introduces a reason *after* the statement it explains, emphasizing the clarification.
+          We're looking for a construction where the reason precedes the consequence.
+      - competing_japanese:
+          - 社長 が お 話し に なり ます もの です から、しずか に し て ください。
+        english: As the company president will speak, please be quiet.
+        hint: 「ものですから」 offers a polite, formal explanation or justification. While similar, 「の で」 is a
+          slightly more direct and objective connector in this formal announcement.
+    scene: An assistant addressing a group of employees before a meeting with the president.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「お話し に なります」 (honorific form of 話す) and 「しずかに して ください」 (polite request) establishes
+      a formal, respectful tone. 「の で」 emphasizes the objective fact of the president speaking as the
+      reason for the polite request, which is suitable for a male speaker in a formal leadership role,
+      presenting the cause as undeniable.
+  - english: The road is crowded, so let's leave a little early.
+    japanese:
+      - 道 が こん で い ます の で、少し 早く 出発 し ましょう。
+      - 道 が こん で いる の で、少し 早く 出発 しよう。
+      - 道 が 混雑 し て いる の で、少し 早く 出発 し ましょう。
+      - 道 が 混ん でる の で、早く 出よう か。
+    english_literally: Because the road is crowded, let's depart a little early.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が こん で いる もの だ から、少し 早く 出発 しよう。
+        english: It's because the road is crowded, so I'll leave a little early.
+        hint: 「ものだから」 suggests a justification or an excuse, sometimes with an emotional undertone. We're
+          looking for a factual reason for a logical suggestion.
+      - competing_japanese:
+          - 道 が こん で いる し 〜 し、時間 も ない し、少し 早く 出発 し ましょう。
+        english: The road is crowded, and we don't have much time, so I'll leave a little early.
+        hint: 「し〜し」 is used to list multiple contributing reasons. We're looking for a direct causal connection
+          based on the single reason given.
+    scene: A family preparing for a road trip, checking traffic conditions on a navigation app.
+    register: casual
+    setting: cautious
+    nuance: The objective observation of 「道 が こん で います」 (the road is crowded) serves as the basis for
+      the suggestion 「早く 出発 しましょう」 (let's leave early). The use of 「の で」 makes the suggestion sound like
+      a logical and unavoidable consequence, rather than a strong personal desire, emphasizing the objective
+      reality of the situation.
+  - english: Since you're busy, I apologize for disturbing you.
+    japanese:
+      - お 忙しい の で、お 邪魔 し て 申し訳 あり ませ ん。
+      - お 忙しい の で、失礼 し ます。
+      - お 忙しい です の で、お 邪魔 し て 申し訳 あり ませ ん。
+      - お 忙しい の で、すみ ませ ん。
+    english_literally: Because you are busy, I apologize for disturbing.
+    competing_grammar:
+      - competing_japanese:
+          - お 忙しい もの です から、お 邪魔 し て 申し訳 あり ませ ん。
+        english: As you are busy, I apologize for disturbing you.
+        hint: 「ものですから」 functions as a polite explanation or justification, sometimes implying an excuse.
+          「の で」 presents the reason more directly as an objective fact. We're looking for a clear, objective
+          reason without extra nuance of justification.
+      - competing_japanese:
+          - お 忙しい もの だ から、お 邪魔 し て 申し訳 あり ませ ん。
+        english: It's because you're busy, so I apologize for disturbing you.
+        hint: 「ものだから」 implies a justification, potentially with a softer or emotional appeal. We're looking
+          for a more neutral, objective reason for the apology.
+    scene: A younger male subordinate entering a busy female superior's office to ask a quick question.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The honorific 「お忙しい」 and the polite apology 「申し訳 ありません」 combined with 「の で」 create a highly
+      respectful and formal tone. 「お邪魔 して」 (to disturb) is a humble expression. The usage of 「の で」 highlights
+      the objective circumstance of the superior's busyness as the reason for the apology, which is appropriate
+      for a younger male subordinate addressing an older female superior in a semi-formal context, emphasizing
+      the factual basis of the apology.
+  - english: A new system will begin, so we will hold an information session beforehand.
+    japanese:
+      - 新しい 制度 が 始まる の で、事前 に 説明 会 を 行い ます。
+      - 新しい 制度 が 始まり ます の で、事前 に 説明 会 を 行い ます。
+      - 新しい 制度 が 始まる の で、事前 に 説明 会 を 行う。
+      - 新しい 制度 が 始まり ます の で、事前 に 説明 会 を 行う。
+      - 新 制度 が 始まる の で、事前 説明 会 を 開催 し ます。
+      - 新 制度 が 始まる の で、事前 に 説明 会 を 開き ます。
+    english_literally: Because a new system will begin, an information session will be held beforehand.
+    competing_grammar:
+      - competing_japanese:
+          - 事前 に 説明 会 を 行い ます。なぜ なら 〜 から です。
+        english: We will hold an information session beforehand. The reason is because the new system
+          will begin.
+        hint: 「なぜなら〜から」 is used to provide an emphatic reason *after* the statement, often clarifying
+          it. We're looking for a construction where the reason precedes the consequence.
+      - competing_japanese:
+          - 新しい 制度 が 始まり ます もの です から、事前 に 説明 会 を 行い ます。
+        english: As a new system will begin, we will hold an information session beforehand.
+        hint: 「ものですから」 conveys a polite explanation or justification, sometimes implying a softer or more
+          explanatory tone than the direct objective connection of 「の で」.
+    scene: An official announcement being made at a company or school about upcoming operational changes.
+    register: formal
+    setting: informative
+    nuance: This statement is highly formal and informative, typical of official announcements. The use
+      of 「の で」 here presents the new system's start as an established objective fact, from which the information
+      session naturally follows. This objective connection makes the announcement clear and authoritative,
+      suitable for a formal setting, underscoring the natural consequence of the new system.
+  - english: Because I have a prior engagement, I cannot attend the party.
+    japanese:
+      - 先約 が ある の で、パーティー に 参加 でき ませ ん。
+      - 先約 が あり ます の で、パーティー に 参加 でき ませ ん。
+    english_literally: Because there is a prior engagement, cannot attend the party.
+    competing_grammar:
+      - competing_japanese:
+          - 先約 が ある もの です から、パーティー に 参加 でき ませ ん。
+        english: As I have a prior engagement, I cannot attend the party.
+        hint: 「ものですから」 is often used for polite justification or explanation, sometimes implying an excuse.
+          「の で」 presents the reason more directly as an objective fact. We're looking for a clear, objective
+          reason without extra nuance of justification.
+    scene: A colleague politely declining an invitation to an office party due to a previous commitment.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: group
+    nuance: Using 「先約 が あります の で」 presents the prior engagement as an objective, unavoidable circumstance.
+      This makes the refusal 「参加 できません」 (cannot attend) sound like a regrettable consequence of the fact,
+      rather than a personal choice, thus maintaining politeness in a semi-formal context and clearly
+      stating the objective reason for declining.
+  - english: Because the train was delayed, I was late for work.
+    japanese:
+      - 電車 が 遅れ た の で、会社 に 遅刻 し まし た。
+      - 電車 が 遅れ まし た の で、会社 に 遅刻 し まし た。
+      - 電車 が 遅れ た の で、会社 に 遅刻 し た。
+      - 電車 が 遅れ た ん で、会社 に 遅刻 し まし た。
+      - 電車 が 遅れ た ん で、会社 に 遅刻 し ちゃっ た。
+      - 電車 が 遅れ た の で、仕事 に 遅れ まし た。
+      - 電車 が 遅れ た の で、遅刻 し て しまい まし た。
+    english_literally: Because the train was delayed, arrived late to company.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ た もの だ から、会社 に 遅刻 し まし た。
+        english: It's because the train was delayed that I was late for work.
+        hint: 「ものだから」 often carries a nuance of justification or an appeal for understanding, implying
+          'it wasn't my fault.' We're looking for a simpler, objective explanation of the situation.
+      - competing_japanese:
+          - 会社 に 遅刻 し まし た。なぜ なら 〜 から です。
+        english: I was late for work. The reason is because the train was delayed.
+        hint: 「なぜなら〜から」 is used to provide an emphatic reason *after* the statement, often clarifying
+          it. We're looking for a structure where the reason directly precedes the consequence.
+    scene: An employee explaining their tardiness to a superior upon arriving at the office.
+    register: formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「電車 が 遅れ まし た の で」 presents the train delay as an objective, verifiable fact, which
+      serves as a neutral and acceptable reason for being late 「会社 に 遅刻 し まし た」. This usage is common
+      in formal situations where one needs to provide a factual and polite explanation, emphasizing the
+      objective nature of the cause.
+post_example_writeup: When using ので, present an objective reason or explanation, particularly focusing
+  on the resulting situation. It allows for a milder, softer, and more polite way to state causality.

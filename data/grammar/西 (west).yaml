@@ -1,0 +1,211 @@
+grammar_point: 西 (west)
+learn_before:
+  - 背面 (back surface spatial)
+meaning: west
+pronunciation:
+  katakana: ニシ
+  romaji: nishi
+formation:
+  '[Noun] の 西': Indicates something is to the west of the noun.
+  '[Noun] から 西': Indicates a direction heading west from a specified noun.
+  西 に [Verb]: Indicates an action occurring or directed towards the west.
+  西 へ [Verb]: Indicates movement towards the west.
+  西 口: Refers to the west exit.
+jlpt: N5
+etymology: The kanji 西 (nishi) is said to originally represent a bird returning to its nest at sunset,
+  symbolizing the western direction where the sun descends. Its ancient form depicted a bird perched on
+  a nest or a tree at dusk, solidifying its association with the 'west' where the day concludes.
+writeup: 西 (nishi) refers to the cardinal direction 'west'. It is a fundamental geographical term and
+  is used to specify location, direction of movement, or the orientation of objects. Like other cardinal
+  directions (東, 南, 北), 西 is typically used in conjunction with particles such as に (ni) for static location
+  or direction, へ (e) for movement towards a direction, and から (kara) to indicate a starting point or
+  'from the west'. When modifying a noun, it often uses the particle の (no), as in 西の窓 (nishi no mado
+  - west window) or 西の空 (nishi no sora - western sky). It can also be combined with other kanji to form
+  compound words, like 西口 (nishiguchi - west exit) or 西洋 (seiyou - the West, i.e., Western countries).
+false_friends:
+  - term: 東 (higashi)
+    meaning: east
+    kind: antonym
+    nuance: While both are cardinal directions, 東は西の反対です。東は太陽が昇る方向を指し、西は太陽が沈む方向を指します。私たちは「西」を探しているので、「東」ではありません。
+    grammar_point: 東 (east)
+  - term: 南 (minami)
+    meaning: south
+    kind: similar expression
+    nuance: 南は「南」を意味する別の主要な方位です。「西」と混同しないようにすることが重要です。
+    grammar_point: 南 (south)
+  - term: 北 (kita)
+    meaning: north
+    kind: similar expression
+    nuance: 北は「北」を意味し、四方位を完成させます。南と同様に、「西」と区別されるべきです。
+    grammar_point: 北 (north)
+  - term: 左 (hidari)
+    meaning: left
+    kind: often confused with
+    nuance: 左は人や物に対する相対的な方向である「左」を指すのに対し、西は絶対的な方位（「西」）です。これら相対的な方向と絶対的な方向を混同してはいけません。私たちは「西」を探しています。
+    grammar_point: <suggest>:左 (left)
+  - term: 右 (migi)
+    meaning: right
+    kind: often confused with
+    nuance: 同様に、右は 'right' を意味する相対的な方向であり、絶対的な '西' とは異なります。私たちは '西' を探しています。
+    grammar_point: <suggest>:右 (right)
+post_false_friends_writeup: When using Japanese directional terms, it's crucial to distinguish between
+  cardinal directions (東, 西, 南, 北) and relative directions (右, 左, 前, 後ろ). Cardinal directions are fixed
+  points, whereas relative directions depend on the observer's orientation. Always consider the context
+  to choose the appropriate directional word.
+examples:
+  - english: The sun sets in the west.
+    japanese:
+      - 太陽 は {西} に 沈む。
+      - 太陽 は {西} に 沈み ます。
+      - 太陽 は {西} の 方角 に 沈み ます。
+    english_literally: Sun as for west in sinks.
+    competing_grammar:
+      - competing_japanese:
+          - 太陽 は 東 に 沈む。
+        english: The sun sets in the east.
+        hint: The sun rises in the east, but it doesn't set there. We're looking for where it sets.
+    scene: Observing a sunset.
+    register: casual
+    setting: informative
+  - english: My house is to the west of the station.
+    japanese:
+      - 私 の 家 は 駅 の {西} に ある。
+      - 私 の 家 は 駅 の {西} に あり ます。
+      - うち は 駅 の {西} に ある。
+      - 私 の 家 は 駅 の {西} 側 に あり ます。
+    english_literally: My house as for station's west in exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 は 駅 の 右 に ある。
+        english: My house is to the right of the station.
+        hint: While 'right' might describe a direction from a certain viewpoint, we're talking about a
+          fixed geographical cardinal direction here. We're looking for 'west'.
+    scene: Giving directions to a friend.
+    register: casual
+    setting: informative
+  - english: Let's go west from here.
+    japanese:
+      - ここ から {西} へ 行こう。
+      - ここ から {西} へ 行き ましょう。
+      - ここ から {西} の 方 へ 行こう。
+      - ここ から {西} の 方 へ 行き ましょう。
+    english_literally: Here from west to let's go.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から {南} へ 行こう。
+        english: Let's go south from here.
+        hint: We are heading towards the west, not the south. The goal is the 'west'.
+    scene: Two friends deciding which way to walk on a map.
+    register: casual
+    setting: instructional
+    conjugation: volitional (～よう)
+  - english: The west wind blew strongly.
+    japanese:
+      - '{西} 風 が 強く 吹い た。'
+      - '{西} 風 が 強く 吹き まし た。'
+      - '{西} から の 風 が 強く 吹い た。'
+      - '{西} から の 風 が 強く 吹き まし た。'
+    english_literally: West wind strongly blew.
+    competing_grammar:
+      - competing_japanese:
+          - 強い 風 が 吹い た。
+        english: A strong wind blew.
+        hint: While a strong wind did blow, we want to specify *which* direction the wind came from. We're
+          looking for 'west'.
+    scene: A meteorologist reporting on weather conditions.
+    register: formal
+    setting: informative
+  - english: Many people gather at the west exit of the station.
+    japanese:
+      - 駅 の {西} 口 に 大勢 の 人 が 集まる。
+      - 駅 の {西} 口 に 大勢 の 人 が 集まり ます。
+      - 駅 の {西} 口 に 多く の 人 が 集まる。
+      - 駅 の {西} 口 に 多く の 人 が 集まり ます。
+    english_literally: Station's west exit at many people gather.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の {東} 口 に 大勢 の 人 が 集まる。
+        english: Many people gather at the east exit of the station.
+        hint: There are different exits, and we're looking for the one on the 'west' side. This is not
+          the east exit.
+    scene: A train station announcement or observation.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please proceed to the west side of the building.
+    japanese:
+      - 建物 の {西} 側 へ お 進み ください。
+      - 建物 の {西} 側 へ お 進み いただけ ます か。
+      - 建物 の {西} 側 へ 進ん で ください。
+    english_literally: Building's west side to please proceed.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 の 中 へ お 進み ください。
+        english: Please proceed inside the building.
+        hint: We're not just going inside, but to a specific side of the building. We're looking for 'west'.
+    scene: Instructions given at a large event venue.
+    register: formal
+    setting: instructional
+  - english: The company decided to expand its business into Western Japan.
+    japanese:
+      - 会社 は {西} 日本 へ の 事業 拡大 を 決め た。
+      - 会社 は {西} 日本 へ の 事業 拡大 を 決め まし た。
+      - 会社 は {西} 日本 へ の 事業 拡大 を 決定 し た。
+      - 会社 は {西} 日本 へ の 事業 拡大 を 決定 し まし た。
+    english_literally: Company as for west Japan to's business expansion decided.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は 全 日本 へ の 事業 拡大 を 決め た。
+        english: The company decided to expand its business into all of Japan.
+        hint: The expansion isn't nationwide, but specifically targeted at a certain region. We're looking
+          for 'Western Japan'.
+    scene: A business meeting discussing market strategy.
+    register: semi-formal
+    setting: professional
+  - english: From the west window, you can see the ocean.
+    japanese:
+      - '{西} の 窓 から 海 が 見える。'
+      - '{西} の 窓 から 海 が 見え ます。'
+      - '{西} 側 の 窓 から 海 が 見える。'
+      - '{西} 側 の 窓 から 海 が 見え ます。'
+    english_literally: West's window from ocean is visible.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 から 海 が 見える。
+        english: From the window, you can see the ocean.
+        hint: While it's true you can see the ocean from the window, we want to specify *which* window.
+          We're looking for the 'west' window.
+    scene: A real estate agent showing a house with a view.
+    register: teineigo (polite)
+    setting: informative
+  - english: They headed west in search of a new land.
+    japanese:
+      - 彼 ら は 新しい 土地 を 求め て {西} へ と 進ん だ。
+      - 彼 ら は 新しい 土地 を 探し に {西} の 方 へ 進ん だ。
+      - 彼 ら は 新しい 土地 を 求め て {西} に 向かっ た。
+    english_literally: They as for new land seeking west to advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 新しい 土地 を 求め て {奥} へ と 進ん だ。
+        english: They advanced deeper in search of a new land.
+        hint: They moved in a specific cardinal direction, not just generally deeper into an area. We're
+          looking for 'west'.
+    scene: Narrating a historical expedition.
+    register: bungo (literary)
+    setting: storytelling
+  - english: The train departs from the west platform.
+    japanese:
+      - 電車 は {西} ホーム から 発車 し ます。
+      - 電車 は {西} ホーム から 発車 する。
+      - 電車 は {西} のりば から 発車 し ます。
+      - 電車 は {西} のりば から 発車 する。
+    english_literally: Train as for west platform from departs.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は 2 番 ホーム から 発車 し ます。
+        english: The train departs from platform 2.
+        hint: While a platform number might be correct, the emphasis here is on the geographical orientation
+          of the platform. We're looking for the 'west' platform.
+    scene: A station attendant making an announcement.
+    register: teineigo (polite)
+    setting: instructional
+    listener_gender: group

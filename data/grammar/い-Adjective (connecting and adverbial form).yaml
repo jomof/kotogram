@@ -1,0 +1,286 @@
+grammar_point: い-Adjective (connecting and adverbial form)
+learn_before:
+  - い-Adjective[くて] (te-form)
+  - い-Adjective[くなかった] (past negative)
+  - が (subject marker)
+  - てよかった (glad or relieved that)
+  - もう (already・anymore)
+  - を (direct object marker)
+  - 入り (containing)
+  - 命令形 (imperative form)
+  - 堪らない (unbearable・irresistible)
+meaning: And; so; used to connect い-adjectives or to connect an い-adjective to a verb.
+pronunciation:
+  katakana: ク
+  romaji: ku
+formation:
+  い-adjective stem + く: Connects two or more い-adjectives, or an い-adjective and a verb, indicating a
+    sequential, causal, or adverbial relationship.
+  い-adjective stem + く + なる: Indicates a change in state, meaning 'to become (adjective)'.
+  い-adjective stem + く + 動詞: Modifies a verb adverbially, meaning 'to (verb) in an (adjective) way'.
+jlpt: N3
+etymology: The 「く」 form is the 連用形 (ren'yōkei), or continuative form, of い-adjectives. Historically, it
+  developed from the classical Japanese ending 「し」, which itself originated from the verb 「す」 (to do).
+  This form represents a foundational grammatical link within the Japanese adjectival system, allowing
+  for the smooth concatenation of descriptive elements or their transformation into adverbial modifiers.
+writeup: The 「く」 form is a crucial component of い-adjective conjugation, serving as both a conjunctive
+  and an adverbial particle. It connects two or more い-adjectives, or an い-adjective to a verb, establishing
+  a sequential, causal, or descriptive relationship between the elements. While similar in function to
+  the more common 「て」 form, 「く」 generally imparts a more formal, literary, or written tone to the expression.When
+  connecting two い-adjectives, the 「く」 form implies that the preceding adjective describes a quality or
+  state that leads to, or is concurrent with, the following adjective. For example, 「空は青く、美しい」 (Sora wa
+  aoku, utsukushii - The sky is blue and beautiful) concisely links two characteristics of the sky.In
+  its adverbial role, 「く」 modifies a following verb, describing the manner or extent of the action. For
+  instance, 「部屋を暖かくして待っています」 (Heya o atatakaku shite matteimasu - I'm warming up the room and waiting)
+  uses 「暖かく」 to specify how the room is being made warm.It is important to note that 「く」 is exclusively
+  used with い-adjectives. It does not apply to な-adjectives (e.g., 静か, 元気) or nouns, which utilize different
+  connective forms like 「で」 or 「て」. The 「く」 form facilitates a concise and elegant flow, making it a staple
+  in more formal or academic Japanese discourse.
+false_friends:
+  - term: ～て
+    meaning: and; and then (used for verbs, な-adjectives, and nouns)
+    kind: similar expression
+    nuance: While 「く」 is specifically used for connecting い-adjectives or connecting an い-adjective to
+      a verb, 「て」 is a versatile conjunctive form used for verbs, な-adjectives, and nouns. It often implies
+      a sequential or causal relationship and is more conversational than 「く」.
+    grammar_point: Verb[て] (non-sequential events)
+  - term: ～と
+    meaning: and; if; when
+    kind: similar expression
+    nuance: 「と」 is typically used for listing items, conditions, or automatic outcomes. It does not imply
+      the same kind of direct adjectival connection or adverbial modification that 「く」 does, nor does
+      it share its formal register for connecting adjectives.
+    grammar_point: <suggest>:と (various uses)
+  - term: ～に (adverbial particle)
+    meaning: to (adverbial particle for な-adjectives and nouns)
+    kind: often confused with
+    nuance: While 「く」 functions as an adverbial form for い-adjectives (e.g., 早く走る - to run quickly), the
+      particle 「に」 is used to turn な-adjectives and some nouns into adverbs (e.g., 静かに話す - to speak quietly).
+      They serve similar adverbial roles but are specific to different word types.
+    grammar_point: に (adverbializer)
+post_false_friends_writeup: To effectively distinguish 「く」 from similar expressions, remember its exclusive
+  application to い-adjectives. Unlike the broader connective 「て」, which is common across verbs, な-adjectives,
+  and nouns, 「く」 maintains a more formal and cohesive link for い-adjectives, or transforms them into adverbs.
+  Similarly, while 「に」 also forms adverbs, it does so for な-adjectives and nouns, not い-adjectives. Understanding
+  these categorical differences is key to proper usage.
+examples:
+  - english: This building is tall and historic.
+    japanese:
+      - この 建物 は {高く}、歴史 が ある。
+      - この 建物 は {高く}、歴史 が あり ます。
+      - この 建物 は {高く} て、長い 歴史 が ある。
+      - この 建物 は {高く}、長い 歴史 が ある。
+    english_literally: This building is tall, has history.
+    competing_grammar:
+      - competing_japanese:
+          - この 建物 は {高く} て、歴史 が ある。
+        english: This building is tall and historic (conversational).
+        hint: The 「て」 form is more conversational and less formal than 「く」 for connecting adjectives in
+          this way. We're looking for a formal, informative tone.
+      - competing_japanese:
+          - この 建物 は 高い です。そして 歴史 が あり ます。
+        english: This building is tall. And it has history.
+        hint: This splits the idea into two separate sentences, losing the smooth, connected flow. We're
+          looking for a cohesive description.
+    scene: A tour guide describing an important landmark to a group of visitors.
+    register: formal
+    setting: informative
+  - english: They spent their time happily.
+    japanese:
+      - 彼 ら は {楽しく} 過ごし た。
+      - 彼 ら は {楽しく} 過ごし まし た。
+      - みんな {楽しく} 過ごし た。
+      - 彼 ら は {楽しく} 時 を 過ごし た。
+    english_literally: They happily spent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 楽しい 時間 を 過ごし た。
+        english: They spent a fun time.
+        hint: This emphasizes *what kind* of time they spent, not *how* they spent it. We're looking for
+          an adverbial description of the action.
+    scene: A friend recounting how a group enjoyed their vacation, focusing on the quality of their experience.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「楽しく過ごした」 employs the 「く」 form as an adverbial modifier to describe the manner
+      of spending time. In this casual setting, the past tense plain form 「過ごした」 is appropriate for a
+      female speaker to another female.
+  - english: That problem was difficult, so it took a long time to solve.
+    japanese:
+      - その 問題 は {難しく}、解く の に 時間 が かかっ た。
+      - その 問題 は {難しく}、解く の に 時間 が かかり まし た。
+      - その 問題 は ひどく {難しく}、解く の に 時間 が かかっ た。
+      - '{難しく} て、その 問題 を 解く の に 時間 が かかっ た。'
+    english_literally: That problem was difficult, took time to solve.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は {難しく} て、解く の に 時間 が かかっ た。
+        english: That problem was difficult, and it took a long time to solve (conversational).
+        hint: The 「て」 form is generally less formal for causal connections than 「く」, especially in academic
+          or serious contexts. We're looking for a formal tone.
+      - competing_japanese:
+          - その 問題 が 難しかっ た の で、解く の に 時間 が かかっ た。
+        english: Because that problem is difficult, it took a long time to solve.
+        hint: 「ので」 explicitly states the reason, but 「く」 provides a more direct and often more objective
+          link between the adjectival state and its consequence in formal writing.
+    scene: A student explaining to their professor why they couldn't complete a complex assignment on
+      time.
+    register: formal
+    setting: serious
+    speaker_age: younger
+    nuance: The use of 「難しく」 to connect the adjective to the following clause creates a more formal and
+      objective tone, suitable for a younger student speaking to a professor. It concisely states the
+      difficulty as the cause of the time taken.
+  - english: That dog grew surprisingly large.
+    japanese:
+      - その 犬 は 驚く ほど {大きく} 育っ た。
+      - その 犬 は 驚く ほど {大きく} 育ち まし た。
+      - その 犬 は 驚く ほど {大きく} なっ た。
+      - その 犬 は 驚く ほど {大きく} 成長 し た。
+    english_literally: That dog surprisingly largely grew.
+    competing_grammar:
+      - competing_japanese:
+          - その 犬 は 大きな 犬 に 育っ た。
+        english: That dog grew into a large dog.
+        hint: This emphasizes the *result* as a type of dog, rather than the *manner* in which it grew
+          to be large. We're looking for an adverbial description of the action.
+    scene: Two neighbors admiring a puppy that has grown significantly since they last saw it.
+    register: casual
+    setting: friendly
+  - english: Her shirt is white, and his is blue.
+    japanese:
+      - 彼女 の シャツ は {白く}、彼 の は 青 い。
+      - 彼女 の シャツ は {白く}、彼 の は 青 い です。
+      - 彼女 の シャツ は {白く} て、彼 の は 青 い。
+      - 彼 の シャツ は 青 く、彼女 の は {白く} い。
+    english_literally: Her shirt is white, his is blue.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の シャツ は {白く} て、彼 の は 青い。
+        english: Her shirt is white and his is blue (using 'te' form).
+        hint: While 「て」 is also possible, 「く」 here creates a smoother, more concise parallel structure
+          for comparison, especially when connecting descriptive clauses.
+    scene: Someone pointing out the colors of two people's shirts to a friend, making a direct comparison.
+    register: casual
+    setting: informative
+  - english: This box is heavy and cannot be moved by one person.
+    japanese:
+      - この 箱 は {重く}、一人 で は 動か せ ない。
+      - この 箱 は {重く}、一人 で は 動か せ ませ ん。
+      - この 箱 は たいへん {重く}、一人 で は 動か せ ない。
+      - '{重く} て、この 箱 は 一人 で は 動か せ ない。'
+    english_literally: This box is heavy, cannot be moved by one person.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 は {重く} て、一人 で は 動か せ ない。
+        english: This box is heavy, and cannot be moved by one person (conversational).
+        hint: In this professional, serious context, 「く」 provides a more concise and direct statement
+          of fact and consequence than the slightly more conversational 「て」.
+    scene: A moving crew member assessing the difficulty of an item, speaking to their colleague.
+    register: formal
+    setting: serious
+  - english: Hearing that news, my heart became sad.
+    japanese:
+      - その 知らせ を 聞い て、心 が {悲しく} なっ た。
+      - その 知らせ を 聞い て、心 が {悲しく} なり まし た。
+      - その 知らせ を 聞い て、{悲しく} なっ た。
+      - その 知らせ を 聞い て、急 に 心 が {悲しく} なっ た。
+    english_literally: That news heard, heart sadly became.
+    competing_grammar:
+      - competing_japanese:
+          - その 知らせ を 聞い て、心 が 悲しい。
+        english: Hearing that news, my heart is sad.
+        hint: This states the current condition, but 「悲しくなった」 specifically emphasizes the *change* to
+          a sad state, which is what the example implies. We're looking for the sense of becoming sad.
+    scene: A person reflecting on unfortunate news they just received, expressing their emotional reaction.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「悲しくなった」 instead of 「悲しくなりました」 makes the statement more intimate and reflective,
+      suitable for someone speaking to themselves or expressing deep emotion casually. The 「く」 here is
+      the adverbial form modifying 「なる」 (to become).
+  - english: The wind is blowing strongly.
+    japanese:
+      - 風 が {強く} 吹い て いる。
+      - 風 が {強く} 吹い て い ます。
+      - 風 が {強く} 吹き荒れ て いる。
+      - 風 が {強く} 吹き荒れ て い ます。
+    english_literally: Wind strongly blowing.
+    competing_grammar:
+      - competing_japanese:
+          - 風 が 強い。
+        english: The wind is strong.
+        hint: This simply states the wind's characteristic. The example uses 「強く吹いている」 to describe *how*
+          the wind is blowing (strongly), acting as an adverbial modifier to the verb.
+    scene: A meteorologist reporting on current weather conditions during a broadcast.
+    register: formal
+    setting: technical
+  - english: His house is old and small, but it's comfortable.
+    japanese:
+      - 彼 の 家 は {古く}、{小さく} い が、居心地 が 良い。
+      - 彼 の 家 は {古く}、{小さく} い です が、居心地 が 良い です。
+      - 彼 の 家 は {古く} て、{小さく} て、居心地 が 良い。
+      - その 家 は {古く} {小さく} い が、とても 居心地 が 良い。
+    english_literally: His house is old, small, but comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 家 は {古く} て {小さく} て、居心地 が 良い。
+        english: His house is old and small, and comfortable (using 'te' form).
+        hint: Using 「て」 repeatedly can sometimes sound repetitive when connecting multiple adjectives.
+          「く」 offers a smoother, more sophisticated conjunction for い-adjectives, especially when followed
+          by 「が」.
+    scene: A friend describing their acquaintance's charming but modest home.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「古く、小さくい」 elegantly connects two descriptive adjectives using the 「く」 form, creating
+      a concise and slightly literary feel. This phrasing is natural for a male speaker reflecting on
+      a friend's home to another male friend.
+  - english: The water was cold and refreshing after the long hike.
+    japanese:
+      - 長 い ハイキング の 後、水 は {冷たく}、心地 よかっ た。
+      - 長 い ハイキング の 後、水 は {冷たく}、心地 よかっ た です。
+      - 長 い ハイキング の 後、水 は {冷たく} て、心地 よかっ た。
+      - 長 い ハイキング の 後、水 は {冷たく}、とても 心地 よかっ た。
+    english_literally: Long hike after, water was cold, was pleasant.
+    competing_grammar:
+      - competing_japanese:
+          - 長 い ハイキング の 後、水 は {冷たく} て、心地 よかっ た。
+        english: After a long hike, the water was cold and refreshing (using 'te' form).
+        hint: While 「て」 is grammatically correct here, 「く」 provides a more concise and literary connection
+          between the two descriptive adjectives, often preferred in descriptive writing.
+    scene: A hiker describing the relief of drinking cool water after a strenuous journey.
+    register: casual
+    setting: reflective
+  - english: He looked sadly at the setting sun.
+    japanese:
+      - 彼 は 沈む 夕日 を {悲しく} 見 た。
+      - 彼 は 沈む 夕日 を {悲しく} 見 まし た。
+    english_literally: He setting sun sadly looked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 悲しい 顔 で 夕日 を 見 た。
+        english: He looked at the setting sun with a sad face.
+        hint: The original sentence describes *how* he looked (sadly) using the adverbial 「く」 form, not
+          the facial expression itself. We're looking for the manner of the action.
+      - competing_japanese:
+          - 彼 は 悲しい 気分 で 夕日 を 見 た。
+        english: He looked at the setting sun with a sad feeling.
+        hint: This describes the *feeling* accompanying the action. The example uses the adverbial 「く」
+          form to describe the *manner* of looking itself.
+    scene: Someone observing a pensive moment as a character gazes at a sunset.
+    register: semi-formal
+    setting: reflective
+    listener_gender: no one
+    nuance: The adverbial 「悲しく」 directly modifies the verb 「見た」 (looked), indicating the manner in which
+      the action was performed. This construction lends a slightly more literary or descriptive quality
+      compared to simply stating his mood.
+post_example_writeup: As you can see from these examples, the 「く」 form is quite versatile. It allows you
+  to concisely describe characteristics and their consequences, or to modify verbs with adverbial nuances,
+  all while maintaining a more formal or cohesive tone than simply using the 「て」 form or splitting sentences.
+  Pay attention to the context and the desired nuance when choosing between 「く」 and other connecting forms.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/く

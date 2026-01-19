@@ -1,0 +1,272 @@
+grammar_point: 全く〜ない (not at all)
+learn_before:
+  - Number+も (emphatic quantity)
+  - Verb[なかった] (past negative)
+  - 〜ようだ・〜みたいだ (seems・like)
+  - い-Adjective[くない] (negative)
+  - すこしも〜ない (not even a little)
+  - ではない (formal negative copula)
+  - 一[Counter]として〜ない (not even one)
+meaning: Not ~ at all
+pronunciation:
+  katakana: マッタクナイ
+  romaji: mattaku nai
+formation:
+  全く + [Verb/Adjective]ない: Indicates a complete lack of something; not at all.
+jlpt: N3
+etymology: The word 「全く (mattaku)」 comes from the kanji 「全 (zen)」, meaning "whole" or "complete". Thus,
+  「全く〜ない」 literally means "completely not" or "entirely not" something.
+writeup: |-
+  全く〜ない is an expression that combines the adverb 全く with a word in its negative ない form. It is often translated as "not at all (A)". Literally, it is closer to "completely not (A)" or "entirely not (A)", coming from the kanji 全's meaning of "whole". Like many other adverbs, 全く may be used at the beginning of a sentence or directly before the word it describes as being "not at all (A)". It is common to see this expression in both kanji and hiragana forms, so learn both early.
+
+  全く is similar to 全然, another grammar point highlighting a complete lack of something. However, 全く tends to sound more serious, making it more suitable for formal writing/situations. 全然, on the other hand, is more common in casual speech.
+false_friends:
+  - term: 全然
+    meaning: (Not) at all
+    kind: synonym
+    nuance: 「全然」 is similar, but more common in casual speech.
+    grammar_point: 全然 (not at all; totally)
+  - term: 少しも〜ない
+    meaning: Not even a little, Not at all, Not in the least, Never
+    kind: synonym
+    nuance: 「少しも〜ない」 emphasizes that even a small amount is lacking, often implying 'not even a bit'.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: あまり〜ない
+    meaning: Not very, Not much, Not really, Hardly
+    kind: synonym
+    nuance: 「あまり〜ない」 indicates a low degree or infrequency, rather than a complete absence or impossibility.
+    grammar_point: あまり ない (not very or much)
+  - term: とても〜ない
+    meaning: Not ~ at all, Cannot ~ at all
+    kind: synonym
+    nuance: 「とても〜ない」 often expresses impossibility or extreme difficulty, implying something cannot be
+      done at all.
+    grammar_point: とても〜ない (cannot possibly ~)
+  - term: なかなか〜ない
+    meaning: Not easily, Hardly, Not at all
+    kind: synonym
+    nuance: 「なかなか〜ない」 suggests that something is not easily achieved or realized, often implying a struggle
+      or prolonged difficulty.
+    grammar_point: なかなか〜ない (not easily)
+  - term: 決して〜ない
+    meaning: Never, By no means
+    kind: synonym
+    nuance: 「決して〜ない」 indicates a firm and resolute negation, meaning "under no circumstances" or "absolutely
+      never".
+    grammar_point: 決して〜ない (emphatic never)
+post_false_friends_writeup: While 「全く」 and the other expressions share the common meaning of negation,
+  their nuances and contexts differ significantly. 「全く」 uniquely emphasizes the completeness of the negation,
+  implying a total absence or an absolute impossibility. Choose the expression that best fits the specific
+  shade of meaning you want to convey, paying close attention to the degree and context of the negation.
+examples:
+  - english: His explanation was completely incomprehensible.
+    japanese:
+      - 彼 の 説明 は {全く} 分かり ませ ん でし た。
+      - 彼 の 説明 は {全く} 分から なかっ た。
+    english_literally: His explanation was not understandable at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 説明 は {全然} 分かり ませ ん でし た。
+        english: His explanation was not understandable at all.
+        hint: While 「全然」 also means 'not at all', 「全く」 is more suitable for formal academic contexts.
+          We're looking for a more formal way to express complete incomprehension.
+    scene: You just attended a university lecture, and the professor's explanation was very confusing.
+    register: teineigo (polite)
+    setting: academic
+    nuance: Using 「全く」 emphasizes the complete lack of understanding of the explanation given the formal
+      context of a university lecture. 「分かりません」 is a polite negation.
+  - english: She seemed to have absolutely no interest in my story.
+    japanese:
+      - 彼女 は 私 の 話 に {全く} 興味 が ない よう でし た。
+      - 彼女 は 私 の 話 に {全く} 興味 が ない よう だっ た。
+    english_literally: She seemed to not have interest at all in my story.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 私 の 話 に {全然} 興味 が ない よう でし た。
+        english: She seemed to have no interest at all in my story.
+        hint: 「全然」 is commonly used for 'not at all' in casual speech, but 「全く」 emphasizes a deeper, more
+          absolute lack of interest. We're looking for a stronger emphasis on complete disinterest.
+    scene: You are telling a friend about a date you went on, and your date seemed thoroughly disinterested.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    nuance: Using 「全く」 strongly conveys the complete lack of interest from the other person, emphasizing
+      the speaker's disappointment. 「〜ようでした」 indicates it's the speaker's observation.
+  - english: Even though he practices every day, he doesn't get any better at all.
+    japanese:
+      - 彼 は 毎日 練習 し て いる の に、{全く} 上手 に なり ませ ん。
+      - 彼 は 毎日 練習 し て いる の に、{全く} 上手 に なら ない。
+    english_literally: Despite practicing every day, he does not become skillful at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日 練習 し て いる の に、{少し も} 上手 に なり ませ ん。
+        english: Even though he practices every day, he doesn't get even a little better.
+        hint: While 「少しも〜ない」 indicates 'not even a little', 「全く〜ない」 emphasizes an absolute absence of
+          improvement. We're looking for a complete lack of progress.
+    scene: You are discussing a mutual friend's progress in a hobby or skill, noting their lack of improvement.
+    register: casual
+    setting: melancholic
+    nuance: 「〜のに」 expresses a sense of frustration or disappointment about the lack of improvement despite
+      consistent effort, and 「全く」 highlights the utter absence of progress.
+  - english: This job is difficult if you have no experience at all.
+    japanese:
+      - この 仕事 は {全く} 経験 が ない と 難しい です。
+      - この 仕事 は {全く} 経験 が ない と 難しい。
+    english_literally: This job is difficult if there is no experience at all.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は {あまり} 経験 が ない と 難しい です。
+        english: This job is difficult if you don't have much experience.
+        hint: 「あまり〜ない」 means 'not very much', suggesting a partial lack. We're looking for 'no experience
+          at all', implying a complete absence.
+    scene: A senior colleague giving advice to a junior colleague about a challenging task that requires
+      prior knowledge.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「全く」 emphasizes the critical absence of experience, suggesting that without any prior knowledge,
+      the task becomes significantly harder. The polite 「です」 maintains a professional tone.
+  - english: She is a person who never laughs at all.
+    japanese:
+      - 彼女 は {全く} 笑わ ない 人 です。
+      - 彼女 は {全く} 笑わ ない 人 だ。
+    english_literally: She is a person who does not laugh at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {決して} 笑わ ない 人 です。
+        english: She is a person who will never laugh.
+        hint: 「決して〜ない」 expresses a strong resolve or a definitive 'never'. 「全く〜ない」 describes a complete
+          absence or characteristic. We're describing someone who inherently doesn't laugh, not someone
+          who refuses to laugh.
+    scene: You are describing a very serious friend to another mutual friend, emphasizing their solemn
+      nature.
+    register: casual
+    setting: friendly
+    nuance: 「全く」 here highlights a character trait, emphasizing that laughing is completely outside her
+      usual behavior, indicating a deeply serious personality.
+  - english: He did not do his homework at all.
+    japanese:
+      - 彼 は {全く} 宿題 を し ませ ん でし た。
+      - 彼 は {全く} 宿題 を し なかっ た。
+    english_literally: He did not do homework at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {全然} 宿題 を し ませ ん でし た。
+        english: He didn't do his homework at all.
+        hint: While 「全然」 is common for 'not at all', 「全く」 often carries a slightly more emphatic or formal
+          tone, especially when expressing a complete and utter lack of something. We're emphasizing the
+          complete non-completion.
+    scene: A parent or teacher discussing a student's lack of effort, expressing frustration over unfinished
+      tasks.
+    register: casual
+    setting: serious
+    nuance: This sentence uses the past tense to convey a completed action of complete non-compliance
+      regarding homework. 「全く」 conveys the absolute absence of effort.
+  - english: There is no improvement whatsoever in this situation.
+    japanese:
+      - この 状況 に {全く} 改善 が 見 られ ませ ん。
+      - この 状況 に {全く} 改善 が 見 られ ない。
+    english_literally: No improvement is seen at all in this situation.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 に {少し も} 改善 が 見 られ ませ ん。
+        english: Not even a little improvement can be seen in this situation.
+        hint: 「少しも〜ない」 emphasizes the smallest degree of something being absent. 「全く〜ない」 stresses the
+          absolute, complete absence. We're stating there's a total lack of improvement, not just a minimal
+          one.
+    scene: Reporting on the stagnation of a project or condition to a superior, expressing concern about
+      the lack of progress.
+    register: formal
+    setting: professional
+    nuance: Using 「全く」 with the formal 「見られません」 emphasizes the complete absence of positive change, common
+      in professional reports where precision and seriousness are valued.
+  - english: There is absolutely no prospect of this problem being solved.
+    japanese:
+      - この 問題 は {全く} 解決 する 見込み が ない。
+      - この 問題 は {全く} 解決 する 見込み が あり ませ ん。
+    english_literally: There is no prospect at all of this problem being solved.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は {とても} 解決 する 見込み が ない。
+        english: This problem cannot be solved at all.
+        hint: 「とても〜ない」 implies something is too difficult or impossible to achieve. 「全く〜ない」 refers to
+          a complete lack or absence, in this case, of any prospect. We're emphasizing the absence of
+          hope for a solution.
+    scene: Discussing a seemingly insurmountable problem with a friend, expressing a pessimistic outlook.
+    register: casual
+    setting: pessimistic
+    nuance: 「全く〜見込みがない」 is a strong phrase used to express a complete lack of hope or potential for a
+      solution, emphasizing the speaker's resignation.
+  - english: His story is completely untrue.
+    japanese:
+      - 彼 の 話 は {全く} 真実 で は ない。
+      - 彼 の 話 は {全く} 真実 で は あり ませ ん。
+    english_literally: His story is not at all true.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 は {全然} 真実 で は ない。
+        english: His story is not true at all.
+        hint: While 「全然」 expresses complete negation, 「全く」 provides a stronger, more emphatic assertion
+          of absolute falsehood, suitable for a serious accusation. We're asserting an absolute untruth.
+    scene: Accusing someone of fabricating a story to a third party, stressing the absolute falsehood
+      of their account.
+    register: formal
+    setting: serious
+    nuance: 「全く〜ではない」 is a strong assertion of complete falsehood, making it suitable for a serious context
+      where an accusation of untruth is being made. 「真実」 is a formal word for 'truth'.
+  - english: She doesn't seem to feel any fear at all.
+    japanese:
+      - 彼女 は {全く} 恐怖 を 感じ て い ない よう だ。
+      - 彼女 は {全く} 恐怖 を 感じ て い ない よう です。
+    english_literally: She seems to not be feeling fear at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {少し も} 恐怖 を 感じ て い ない よう だ。
+        english: She doesn't seem to feel even a little fear.
+        hint: 「少しも〜ない」 highlights the absence of even a minor degree of something. 「全く〜ない」 emphasizes
+          the total absence. We're observing a complete lack of fear.
+    scene: Observing someone who is unusually calm and unafraid in a dangerous or frightening situation.
+    register: casual
+    setting: cautious
+    nuance: 「全く」 emphasizes the absolute absence of fear, suggesting remarkable courage or perhaps a surprising
+      lack of awareness in a potentially dangerous situation.
+  - english: There's absolutely no chance this plan will succeed.
+    japanese:
+      - この 計画 は {全く} 成功 する 可能 性 が ない。
+      - この 計画 は {全く} 成功 する 可能 性 が あり ませ ん。
+    english_literally: This plan has no possibility of succeeding at all.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は {とても} 成功 する 可能 性 が ない。
+        english: This plan cannot possibly succeed.
+        hint: 「とても〜ない」 suggests something is too difficult or impossible to achieve. 「全く〜ない」 indicates
+          a complete absence of possibility. We're emphasizing that there's absolutely no potential for
+          success.
+    scene: A manager expressing strong skepticism about a proposed project during a team meeting, indicating
+      it's doomed to fail.
+    register: formal
+    setting: serious
+    nuance: 「全く〜がない」 combined with 「可能性」 creates a very decisive statement about the hopelessness of the
+      plan, often heard in business contexts where clear judgments are required.
+  - english: His attitude was absolutely unforgivable.
+    japanese:
+      - 彼 の 態度 は {全く} 許せ ない もの でし た。
+      - 彼 の 態度 は {全く} 許せ ない もの だっ た。
+    english_literally: His attitude was not at all forgivable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 態度 は {決して} 許せ ない もの でし た。
+        english: His attitude was by no means forgivable.
+        hint: 「決して〜ない」 conveys a resolute 'never' or 'under no circumstances'. 「全く〜ない」 expresses a complete
+          absence of something, here, the quality of being forgivable. We're describing an attitude that
+          is entirely lacking in anything forgivable.
+    scene: Someone recounting a very offensive behavior they witnessed, expressing extreme indignation.
+    register: casual
+    setting: serious
+    nuance: 「全く許せない」 expresses strong indignation and a complete refusal to tolerate the behavior, indicating
+      a deep negative emotional response towards someone's attitude.
+post_example_writeup: As you can see from these examples, 「全く〜ない」 can be used with various verbs and adjectives
+  to convey a complete lack or absolute negation. Remember its slightly more formal and serious nuance
+  compared to 「全然〜ない」, which makes it suitable for emphasizing the gravity of a situation or the totality
+  of an absence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/全く-ない

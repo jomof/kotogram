@@ -1,0 +1,286 @@
+grammar_point: ところを見ると (judging from observation)
+learn_before:
+  - に違いない (no doubt)
+meaning: Judging from, seeing that...
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ところを見ると
+    rarity: common
+    meaning: judging from / seeing that
+  - conjugation-type: non-past polite (～ます)
+    form: ところを見ますと
+    rarity: less common
+    meaning: judging from / seeing that (polite)
+  - conjugation-type: conditional (～ば)
+    form: ところを見れば
+    rarity: less common
+    meaning: if you judge from / if you see that
+  - conjugation-type: conditional (～たら)
+    form: ところを見たら
+    rarity: less common
+    meaning: if you judge from / if you see that (after observation)
+pronunciation:
+  katakana: トコロヲミルト
+  romaji: tokoro o miru to
+formation:
+  '[Verb plain form] + ところを見ると': Indicates a judgment or conclusion based on observation of an action
+    or situation.
+jlpt: N2
+etymology: This grammar point comes from the literal meaning of 「ところ」 (place, aspect) + 「を」 (direct object
+  particle) + 「見ると」 (if one looks at). So, literally, it means "if one looks at the aspect of...". This
+  construction then evolved to mean "judging from the situation/aspect of..." as a way to introduce an
+  inference based on observation. The 「を」 particle highlights the specific observation as the object of
+  consideration, and 「と」 marks the conditional/conclusive relationship.
+writeup: |-
+  「ところを見ると」 is a set phrase used to express a judgment or conclusion based on observed evidence. It's similar to saying "judging from" or "seeing that" in English. It suggests that the speaker is making an inference based on a particular situation or action. The nuance is that the speaker isn't stating a definite fact, but rather offering an opinion or assessment based on what they've observed.
+
+  This grammar pattern will appear directly following verbs in any of their plain forms (dictionary, negative, past, or past negative). Because it expresses a primarily subjective opinion based on observable actions, the second part of the sentence will often include things like 「だろう」, 「かも」, 「でしょう」, 「ね」, etc., to show that the speaker is not actually claiming anything factually. It highlights the specific observable 'aspect' or 'situation' (ところ) as the basis for the speaker's inference.
+false_friends:
+  - term: からすると・からすれば
+    meaning: Judging from, considering
+    kind: synonym
+    nuance: While 「ところを見ると」 focuses on a specific observed situation, 「からすると」 and 「からすれば」 often consider
+      broader contexts or established information, sometimes from an expert's perspective.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+  - term: からして
+    meaning: Even..., Judging from, Based on
+    kind: synonym
+    nuance: 「からして」 can emphasize a single example as representative of a larger trend, often with a negative
+      connotation, whereas 「ところを見ると」 is more about drawing conclusions from a specific, neutral observation.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+  - term: から
+    meaning: Because, since
+    kind: similar expression
+    nuance: 「から」 states a direct reason or cause, making the conclusion sound more factual. 「ところを見ると」
+      introduces a subjective inference based on observation, highlighting the speaker's interpretation
+      rather than a simple cause-and-effect.
+    grammar_point: '[Clause]から (because・so)'
+post_false_friends_writeup: To avoid mixing up 「ところを見ると」 with similar expressions, remember that 「ところを見ると」
+  is best used when you are making a judgment based on something you are currently observing. 「からすると」
+  and 「からして」 can be used in broader contexts or to emphasize a single example.
+examples:
+  - english: Seeing that he's talking so happily, something good must have happened to him.
+    japanese:
+      - 彼 が そんな に 楽し そう に 話し て いる {ところ を 見る と}、きっと 良い こと が あっ た ん だろう。
+      - 彼 が そんな に 楽し そう に 話し て いる {ところ を 見る と}、きっと 良い こと が あっ た の でしょう。
+    english_literally: If I look at the place where he is talking so happily, something good probably
+      happened.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が そんな に 楽し そう に 話し て いる {から}、きっと 良い こと が あっ た ん だろう。
+        english: Because he's talking so happily, something good must have happened to him.
+        hint: 「から」 simply states a reason, while 「ところを見ると」 emphasizes that your conclusion is based on
+          observing a specific situation. We're looking for an inference based on observation.
+    scene: You see your colleague enthusiastically sharing a story with others, his face beaming with
+      joy.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual tone and use of 「んだろう」 reflect an informal observation between friends or close
+      colleagues, where the speaker is inferring something positive based on the visible behavior. A female
+      speaker might use this phrasing when sharing an observation with another female, emphasizing shared
+      understanding through the observed action.
+  - english: Judging from the fact that Mr. Tanaka has been working overtime recently, a new project might
+      have started.
+    japanese:
+      - 最近、田中 さん が 残業 する {ところ を 見る と}、新しい プロジェクト が 始まっ た の か も しれ ませ ん。
+      - 最近、田中 さん が 残業 する {ところ を 見る と}、新しい プロジェクト が 始まっ た の か も しれ ない。
+      - 最近、田中 さん が 残業 する {ところ を 見る と}、新しい プロジェクト が 始まっ た に 違い ない。
+    english_literally: If I look at the place where Mr. Tanaka works overtime recently, a new project
+      might have started.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、田中 さん が 残業 する {から}、新しい プロジェクト が 始まっ た の か も しれ ませ ん。
+        english: Because Mr. Tanaka has been working overtime recently, a new project might have started.
+        hint: 「から」 provides a reason, but 「ところを見ると」 highlights that the conclusion is an inference drawn
+          from a specific, ongoing observation. We're looking for a judgment based on an observed situation.
+    scene: You've noticed a colleague, Mr. Tanaka, has been staying late at the office every day this
+      week.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Judging from the fact that his clothes are covered in mud, he might have fallen outside,
+      don't you think?
+    japanese:
+      - 彼 の 服 が 泥 だらけ に なっ て いる {ところ を 見 ます と}、外 で 転ん だ の か も しれ ませ ん ね。
+      - 彼 の 服 が 泥 だらけ に なっ て いる {ところ を 見る と}、外 で 転ん だ の か も しれ ない ね。
+    english_literally: If I politely look at the place where his clothes are covered in mud, he might
+      have fallen outside, right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 服 が 泥 だらけ に なっ て いる {から}、外 で 転ん だ の か も しれ ませ ん ね。
+        english: Because his clothes are covered in mud, he might have fallen outside, don't you think?
+        hint: 「から」 gives a direct cause. 「ところを見ますと」 emphasizes that your conclusion is a polite inference
+          based on a specific visual observation. We're looking for a conclusion drawn from direct observation,
+          with a polite tone.
+    scene: You see a man enter the building with mud all over his clothes.
+    register: formal
+    setting: cautious
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+    nuance: The use of the polite form 「見ますと」 and the sentence-ending particle 「ね」 softens the statement,
+      making it a polite observation shared with a group. This implies a careful, less direct conclusion
+      typical in more formal or considerate discourse.
+  - english: If you look at the fact that she's not eating at all, maybe she's not feeling well, or perhaps
+      she's on a diet.
+    japanese:
+      - 彼女 が 少し も 食べ ない {ところ を 見れ ば}、体調 が 悪い の か、それ と も ダイエット 中 な の か。
+      - 彼女 が 少し も 食べ ない {ところ を 見れ ば}、体調 が 悪い の か、それ と も ダイエット 中 な の か も しれ ませ ん。
+    english_literally: If one looks at the place where she is not eating at all, is she not feeling well,
+      or is she in the middle of a diet?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 少し も 食べ ない {から}、体調 が 悪い の か、それ と も ダイエット 中 な の か。
+        english: Because she's not eating at all, maybe she's not feeling well, or perhaps she's on a
+          diet.
+        hint: 「から」 offers a simple reason. 「ところを見れば」 suggests a speculative conclusion that arises directly
+          from the act of observing. We're looking for an inference based on the observation of her not
+          eating.
+    scene: You are at a dinner party and notice a woman who usually eats a lot is barely touching her
+      food.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～ば)
+  - english: If you saw him that excited, he might have won the lottery, you know.
+    japanese:
+      - 彼 が あんな に 興奮 し て いる {ところ を 見 たら}、宝くじ に 当たっ た の か も しれ ない よ。
+      - 彼 が あんな に 興奮 し て いる {ところ を 見 たら}、宝くじ に 当たっ た の か も しれ ませ ん よ。
+    english_literally: If one sees the place where he is that excited, he might have won the lottery,
+      you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が あんな に 興奮 し て いる {から}、宝くじ に 当たっ た の か も しれ ない よ。
+        english: Because he's that excited, he might have won the lottery, you know.
+        hint: 「から」 states a reason. 「ところを見たら」 implies that the conclusion is a direct result of observing
+          that particular excited state. We're looking for a judgment made right after seeing his excitement.
+    scene: Your friend suddenly jumps up and shouts excitedly after checking his phone.
+    register: casual
+    setting: excited
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of the conditional 「見たら」 suggests a direct observation triggering the inference. The
+      casual 「よ」 at the end, coupled with male speakers, adds a sense of shared, immediate reaction and
+      slight emphasis, common in male-to-male casual conversation.
+  - english: Judging from how he always stays calm, he must be a person who doesn't panic easily.
+    japanese:
+      - 彼 が いつ も 落ち着い て いる {ところ を 見る と}、慌て ない 人 な の だろう。
+      - 彼 が いつ も 落ち着い て いる {ところ を 見る と}、慌て ない 人 な の でしょう。
+      - 彼 が いつ も 落ち着い て いる {ところ を 見る と}、慌て ない 人 に 違い ない。
+    english_literally: If one looks at the place where he is always calm, he is probably a person who
+      does not panic.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が いつ も 落ち着い て いる {から}、慌て ない 人 な の だろう。
+        english: Because he is always calm, he must be a person who doesn't panic easily.
+        hint: 「から」 states a straightforward reason. 「ところを見ると」 highlights that the conclusion is an inference
+          drawn specifically from observing his calm demeanor. We're looking for a judgment based on sustained
+          observation.
+    scene: You are observing a new colleague during a busy period and notice his unwavering composure.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This sentence reflects an internal observation leading to a character judgment. The use of
+      「なのだ」 and 「だろう」 shows the speaker's internal inference about the colleague's personality. The female
+      speaker might be making a general observation about a male colleague's professional demeanor.
+  - english: Seeing that the restaurant is always full, the food must be delicious.
+    japanese:
+      - あの レストラン が いつ も 満席 の {ところ を 見 ます と}、料理 は きっと 美味しい の でしょう。
+      - あの レストラン が いつ も 満席 の {ところ を 見る と}、料理 は きっと 美味しい の だろう。
+    english_literally: If I politely look at the place where that restaurant is always full, the food
+      is surely delicious, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン が いつ も 満席 です {から}、料理 は きっと 美味しい の でしょう。
+        english: Because that restaurant is always full, the food must be delicious.
+        hint: 「から」 indicates a direct reason. 「ところを見ますと」 emphasizes that the conclusion is a polite inference
+          based on the observable situation of the restaurant being full. We're looking for a polite judgment
+          drawn from observation.
+    scene: You are walking past a popular restaurant during peak hours and notice it's completely packed
+      as usual.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+    nuance: The polite form 「見ますと」 and the tentative 「のでしょう」 suggest a formal yet confident inference.
+      This reflects a shared observation in a polite context, perhaps among acquaintances or in a professional
+      setting where one is sharing an observation.
+  - english: If you look at her tired face, she probably worked too much.
+    japanese:
+      - 彼女 の 疲れ た 顔 を し て いる {ところ を 見れ ば}、働き すぎ た の だろう。
+      - 彼女 の 疲れ た 顔 を し て いる {ところ を 見れ ば}、働き すぎ た の でしょう。
+      - 彼女 の 疲れ た 顔 を し て いる {ところ を 見れ ば}、働き すぎ た に 違い ない。
+    english_literally: If one looks at the place where she is making a tired face, she probably worked
+      too much.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 疲れ た 顔 を し て いる {から}、働き すぎ た の だろう。
+        english: Because she is making a tired face, she probably worked too much.
+        hint: 「から」 offers a simple reason. 「ところを見れば」 suggests a speculative conclusion that arises directly
+          from the act of observing her tired face. We're looking for an inference based on the immediate
+          observation.
+    scene: You see your friend after a long day, and she looks exhausted.
+    register: casual
+    setting: sympathetic
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The conditional 「見れば」 implies that the observation directly leads to the conclusion. The casual
+      「だろう」 fits a sympathetic, informal context, reflecting a male speaker making a gentle inference
+      about a female friend's well-being.
+  - english: If you saw how quickly he solved that difficult problem, you'd know he's a genius.
+    japanese:
+      - 彼 が あの 難しい 問題 を あんな に 早く 解い た {ところ を 見 たら}、彼 は 天才 だ と わかる だろう。
+      - 彼 が あの 難しい 問題 を あんな に 早く 解い た {ところ を 見 たら}、彼 は 天才 だ と わかる でしょう。
+      - 彼 が あの 難しい 問題 を あんな に 早く 解い た {ところ を 見 たら}、彼 は 天才 に 違い ない。
+    english_literally: If one saw the place where he solved that difficult problem so quickly, one would
+      know he is a genius.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が あの 難しい 問題 を あんな に 早く 解い た {から}、彼 は 天才 だ と わかる だろう。
+        english: Because he solved that difficult problem so quickly, you'd know he's a genius.
+        hint: 「から」 states a reason. 「ところを見たら」 implies a strong, direct causal link between the observation
+          of his quick problem-solving and the conclusion of him being a genius. We're looking for a judgment
+          made right after witnessing his ability.
+    scene: You're talking about a genius programmer in your team.
+    register: casual
+    setting: inspirational
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The conditional 「見たら」 implies a strong, direct causal link between the observation and the
+      conclusion, almost like saying "if you had seen it, you would know." The enthusiastic and confident
+      tone, often with 「だろう」 or direct statements, is common in casual male conversation when expressing
+      admiration.
+  - english: Seeing how vigorously the cat is purring, it must be very happy right now.
+    japanese:
+      - 猫 が あんな に ゴロゴロ と 喉 を 鳴らし て いる {ところ を 見る と}、今 とても 幸せ な の だろう。
+      - 猫 が あんな に ゴロゴロ と 喉 を 鳴らし て いる {ところ を 見る と}、今 とても 幸せ な の でしょう。
+    english_literally: If one looks at the place where the cat is purring so vigorously, it is probably
+      very happy now.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が あんな に ゴロゴロ と 喉 を 鳴らし て いる {から}、今 とても 幸せ な の だろう。
+        english: Because the cat is purring so vigorously, it must be very happy right now.
+        hint: 「から」 offers a simple reason. 「ところを見ると」 emphasizes that the conclusion about the cat's happiness
+          is an inference derived from the specific observation of its purring. We're looking for an inference
+          based on an observable action.
+    scene: Your cat is purring loudly while sitting on your lap.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This example shows the versatility of 「ところを見ると」 for observations of non-human subjects. The
+      empathetic tone, often found in conversations about pets, naturally fits a female speaker, expressing
+      an emotional inference about the cat's state. The 「なのだろう」 adds a gentle, conclusive feel.
+post_example_writeup: As you can see from these examples, 「ところを見ると」 is quite versatile, allowing you to
+  make inferences based on various observations, from human behavior to the state of objects or animals.
+  Remember to pay attention to the plain verb form preceding it and the speculative nature of the conclusion
+  that follows.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ところを見ると

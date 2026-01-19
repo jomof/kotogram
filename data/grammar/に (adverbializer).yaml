@@ -1,0 +1,234 @@
+grammar_point: に (adverbializer)
+learn_before:
+  - '[Noun]次第だ・[Noun]次第で(は) (depending on・as a result of)'
+  - '[Verb-stem]に行く (to go in order to do)'
+  - '[な-Adjective]に (adverbial form)'
+  - げ (seeming・appearance)
+  - な-Adjectives (adjectival nouns)
+  - に (target・destination)
+  - 代わりに (instead of choosing)
+  - 変わる (to change)
+  - 徐々に (gradually・slowly)
+  - 次第 (as soon as)
+meaning: Indicates manner, purpose, or result, transforming nouns or adjectives into adverbs.
+pronunciation:
+  katakana: ニ
+  romaji: ni
+formation:
+  Noun + に: Forms an adverb indicating manner or state.
+  Verb[ます-stem] + に: Forms an adverb indicating purpose.
+  Adjective-stem + に: Forms an adverb indicating a state or result.
+jlpt: N4
+etymology: The particle 「に」 has ancient roots, evolving from a directional marker indicating 'towards'
+  or 'at.' Over time, its function broadened to include various relationships, such as location, time,
+  purpose, and manner. Its role as an adverbializer stems from this foundational meaning of establishing
+  a relationship between a preceding word and the following verb, effectively transforming the preceding
+  word into a descriptor of the verb's action or state. This evolution highlights how spatial or temporal
+  relationships can abstract into logical and descriptive connections.
+writeup: |-
+  The particle 「に」 serves as a versatile adverbializer in Japanese, allowing nouns, verb stems, and adjective stems to function as adverbs. This transformation describes the manner, purpose, or result of an action, providing precise detail to verbs. It's crucial for expressing how something is done or what the aim of an action is.
+
+  When attached to a noun, 「に」 often indicates a specific state or condition, such as 「特別に」 (tokubetsu ni - specially) or 「次第に」 (shidai ni - gradually). This usage emphasizes a particular aspect or a differentiated manner of action.
+
+  For verb stems (ます-stem), 「に」 signifies purpose, indicating the reason for an action. For example, 「買い物に行く」 (kaimono ni iku - to go for shopping) directly states the objective of going. This construction is highly common for expressing movement towards an activity.
+
+  While less common for direct adverbialization of adjectives compared to the 「く」 form for い-adjectives or direct usage for な-adjectives, 「に」 can appear in specific constructions to denote a resultant state or condition, often implying a change into that state. Understanding these various applications of 「に」 is key to forming more nuanced and descriptive Japanese sentences.
+false_friends:
+  - term: に (target・destination)
+    meaning: Indicates direction, destination, or recipient.
+    kind: similar expression
+    nuance: While both use 「に」, the 'target・destination' usage specifies where or to whom an action is
+      directed (e.g., 「学校 に 行く」 - to go to school), whereas the 'adverbializer' usage describes how or
+      why an action is performed (e.g., 「静か に する」 - to make quiet).
+    grammar_point: に (target・destination)
+  - term: に (static location・time)
+    meaning: Indicates a static location or specific point in time.
+    kind: similar expression
+    nuance: This 「に」 marks a fixed position (e.g., 「家 に いる」 - to be at home) or a precise time (e.g.,
+      「七時 に 始まる」 - to start at 7 o'clock). It describes *where* or *when*, not *how* or *for what purpose*.
+    grammar_point: に (static location・time)
+  - term: に (frequency)
+    meaning: Indicates frequency, such as 'per day' or 'per week'.
+    kind: similar expression
+    nuance: The frequency 「に」 specifies how often something occurs (e.g., 「一週間 に 三回」 - three times a week),
+      distinct from adverbialization which describes the manner or purpose of an action.
+    grammar_point: に (frequency)
+  - term: な-Adjective[に] (adverbial form)
+    meaning: Forms an adverb from a な-adjective.
+    kind: similar expression
+    nuance: This is a specific application of 「に」 to な-adjectives (e.g., 「きれい に なる」 - to become clean).
+      Our grammar point covers this and other categories of words that 「に」 can adverbialize, making this
+      a subset.
+    grammar_point: '[な-Adjective]に (adverbial form)'
+  - term: い-Adjective[く] (adverbial form)
+    meaning: Forms an adverb from an い-adjective.
+    kind: similar expression
+    nuance: The 「く」 form is the primary way to make an い-adjective an adverb (e.g., 「早く 起きる」 - to wake
+      up early). This differs from 「に」, which is typically used for nouns or verb stems for adverbial
+      purposes, or in specific adjective constructions that imply change.
+    grammar_point: い-Adjective[く] (adverbial form)
+post_false_friends_writeup: The particle 「に」 is remarkably versatile, leading to potential confusion with
+  its other functions beyond adverbialization. It's important to remember that as an adverbializer, 「に」
+  specifically enables a word to modify a verb by describing *how* or *for what purpose* an action is
+  performed, rather than indicating a location, time, recipient, or frequency. When you see 「に」, consider
+  the type of word it's attached to and the context of the sentence to determine its precise role. Pay
+  close attention to whether it's describing the manner of an action, the intention behind it, or a resulting
+  state, as opposed to marking a simple target or location.
+examples:
+  - english: The situation changed gradually.
+    japanese:
+      - 状況 は 次第 に 変わっ た。
+      - 状況 は 次第 に 変わり まし た。
+      - 状況 は 徐々 に 変わっ た。
+      - 状況 は 徐々 に 変わり まし た。
+    english_literally: Situation gradually changed.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 は だんだん 変わっ た。
+        english: The situation changed gradually (general).
+        hint: 「だんだん」 is a general adverb for 'gradually' and doesn't use the particle 「に」 in this way.
+          We're looking for an example of a noun adverbialized by 「に」.
+    scene: A meteorologist observes a slow shift in weather patterns.
+    register: formal
+    setting: technical
+  - english: I go to study at the library.
+    japanese:
+      - 図書 館 へ 勉強 に 行き ます。
+      - 図書 館 へ 勉強 に 行く。
+      - 図書 館 へ 勉強 し に 行き ます。
+      - 図書 館 へ 勉強 し に 行く。
+    english_literally: Library to study purpose go.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 へ 勉強 し に 行き ます。
+        english: I go to study at the library.
+        hint: 「勉強しに」 uses the ます-stem + に construction, which is a common way to express purpose. While
+          grammatically correct, this example specifically demonstrates the noun + に usage for purpose.
+          We're looking for an example of a noun adverbialized by 「に」.
+      - competing_japanese:
+          - 図書 館 へ 勉強 する ため に 行き ます。
+        english: I go to the library in order to study.
+        hint: 「〜ために」 emphasizes the 'in order to' aspect. We're looking for a more direct, adverbial use
+          of 「に」 with a noun.
+    scene: A student is explaining their daily routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: He tries his best earnestly.
+    japanese:
+      - 彼 は 真剣 に 頑張り ます。
+      - 彼 は 真剣 に 頑張る。
+    english_literally: He earnestly tries his best.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 真剣 だ。
+        english: He is earnest.
+        hint: 「真剣だ」 is a plain form of な-adjective, describing a state of being, not how an action is
+          performed. We're looking for 「に」 functioning as an adverbializer.
+    scene: A colleague is praising another's work ethic.
+    register: formal
+    setting: professional
+  - english: The child woke up quietly.
+    japanese:
+      - 子供 は 静か に 起き まし た。
+      - 子供 は 静か に 起き た。
+    english_literally: Child quietly woke up.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 静か だっ た。
+        english: The child was quiet.
+        hint: 「静かだった」 describes the child's state, not the manner of waking up. We're looking for 「に」
+          functioning as an adverbializer.
+    scene: A parent is describing their child's morning.
+    register: teineigo (polite)
+    setting: friendly
+  - english: She came to pick up the book.
+    japanese:
+      - 彼女 は 本 を 取り に 来 まし た。
+      - 彼女 は 本 を 取り に 来 た。
+    english_literally: She book to pick up purpose came.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 本 を 取る ため に 来 まし た。
+        english: She came in order to pick up the book.
+        hint: Using 「〜ために」 emphasizes the 'in order to' aspect. We're looking for the common 'verb stem
+          + に' for purpose.
+    scene: Someone explaining why a person arrived.
+    register: teineigo (polite)
+    setting: informative
+  - english: He cut the paper nicely.
+    japanese:
+      - 彼 は 紙 を 綺麗 に 切り まし た。
+      - 彼 は 紙 を 綺麗 に 切っ た。
+    english_literally: He paper nicely cut.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 紙 を 綺麗 だ。
+        english: The paper is pretty.
+        hint: 「綺麗だ」 describes the paper itself, not the action of cutting. We're looking for 「に」 functioning
+          as an adverbializer.
+    scene: A teacher commenting on a student's craft work.
+    register: teineigo (polite)
+    setting: instructional
+  - english: He acts suspiciously.
+    japanese:
+      - 彼 は 怪し げ に 振る舞う。
+      - 彼 は 怪し げ に 振る舞い ます。
+    english_literally: He suspiciously behaves.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 怪しい。
+        english: He is suspicious.
+        hint: 「怪しい」 is an い-adjective describing a state. We're looking for how he acts, using an adjective-stem
+          adverbialized by 「に」.
+    scene: Detectives discussing a person of interest.
+    register: formal
+    setting: serious
+  - english: The room became clean.
+    japanese:
+      - 部屋 が 綺麗 に なり まし た。
+      - 部屋 が 綺麗 に なっ た。
+    english_literally: Room clean became.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が 綺麗 でし た。
+        english: The room was clean.
+        hint: 「綺麗でした」 describes a state. We're looking for a sentence that indicates a change into that
+          state, using 「〜になる」 with 「に」 as an adverbializer for the result.
+    scene: Someone commenting on the result of cleaning.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The problem must be solved quickly.
+    japanese:
+      - 問題 は 早急 に 解決 する べき だ。
+      - 問題 は 早急 に 解決 する べき です。
+    english_literally: Problem quickly solve should.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 早く 解決 する べき だ。
+        english: The problem should be solved quickly (general adverb).
+        hint: 「早く」 is the adverbial form of the い-adjective 「早い」. We're looking for a noun adverbialized
+          by 「に」.
+    scene: A manager discussing an urgent task.
+    register: formal
+    setting: professional
+  - english: He works diligently.
+    japanese:
+      - 彼 は 真面目 に 働き ます。
+      - 彼 は 真面目 に 働く。
+    english_literally: He diligently works.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 真面目 だ。
+        english: He is diligent.
+        hint: 「真面目だ」 is a plain form of な-adjective, describing a state of being, not how an action is
+          performed. We're looking for 「に」 functioning as an adverbializer.
+    scene: A coworker describing another's work ethic.
+    register: teineigo (polite)
+    setting: professional
+post_example_writeup: The examples illustrate how 「に」 transforms various word types into adverbs. Observe
+  how nouns like 「勉強」 (study) and 「早急」 (urgency) combine with 「に」 to express purpose or manner, while
+  な-adjectives like 「静か」 (quiet) and 「綺麗」 (clean), and adjective stems like 「怪しげ」 (suspicious-looking),
+  use 「に」 to describe the manner or resulting state of an action. This flexibility is what makes 「に」 such
+  a fundamental particle in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に (adverbializer)

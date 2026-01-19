@@ -1,0 +1,537 @@
+grammar_point: '[Verb-て]もらう (to have someone do, receive an action)'
+learn_before:
+  - もらう (to receive)
+meaning: To have someone do something (for your benefit), to get someone to do something
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: もらう
+    rarity: common
+    meaning: to have someone do (for your benefit)
+  - conjugation-type: non-past polite (～ます)
+    form: もらいます
+    rarity: common
+    meaning: to have someone do (for your benefit, polite)
+  - conjugation-type: negative plain (～ない)
+    form: もらわない
+    rarity: common
+    meaning: not to have someone do (for your benefit)
+  - conjugation-type: negative non-past polite (～ません)
+    form: もらいません
+    rarity: common
+    meaning: not to have someone do (for your benefit, polite)
+  - conjugation-type: past plain (～た)
+    form: もらった
+    rarity: common
+    meaning: had someone do (for your benefit)
+  - conjugation-type: past polite (～ました)
+    form: もらいました
+    rarity: common
+    meaning: had someone do (for your benefit, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: もらわなかった
+    rarity: common
+    meaning: did not have someone do (for your benefit)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: もらいませんでした
+    rarity: common
+    meaning: did not have someone do (for your benefit, polite)
+  - conjugation-type: te-form (～て)
+    form: もらって
+    rarity: common
+    meaning: having someone do (for your benefit, te-form)
+  - conjugation-type: conditional (～ば)
+    form: もらえば
+    rarity: uncommon
+    meaning: if someone does (for your benefit)
+  - conjugation-type: conditional (～たら)
+    form: もらったら
+    rarity: common
+    meaning: if someone does (for your benefit)
+  - conjugation-type: volitional (～よう)
+    form: もらおう
+    rarity: uncommon
+    meaning: let's have someone do (for our benefit)
+  - conjugation-type: volitional polite (～ましょう)
+    form: もらいましょう
+    rarity: uncommon
+    meaning: shall we have someone do (for our benefit)?
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: もらえ
+    rarity: very rare
+    meaning: have someone do (command, very demanding/unnatural)
+  - conjugation-type: imperative polite (～なさい)
+    form: もらいなさい
+    rarity: very rare
+    meaning: please have someone do (polite command, very demanding/unnatural)
+  - conjugation-type: potential (～られる/～える)
+    form: もらえる
+    rarity: common
+    meaning: can have someone do (for your benefit)
+  - conjugation-type: causative (～させる)
+    form: もらわせる
+    rarity: very rare
+    meaning: make someone receive a benefit (from another's action)
+pronunciation:
+  katakana: テ・モラウ
+  romaji: te morau
+formation:
+  Verb (て-form) + もらう: Expresses receiving a benefit from someone's action, or having someone do something
+    for you.
+  話して もらう: Have someone talk for my sake
+  食べさせて もらう: Have someone eat for my sake (causative)
+jlpt: N4
+etymology: The grammar point 『Verb-て もらう』 is derived from the verb 『もらう』 (morau), meaning "to receive".
+  When combined with the te-form of another verb, it retains this sense of receiving, but in the specific
+  context of receiving the *action* of the preceding verb. Historically, the verb 『もらう』 comes from 古典日本語
+  (Classical Japanese) 『まらう』 (marau), which had a similar meaning of receiving. This specific construction
+  solidified over time to express the nuance of a received favor or service.
+writeup: The grammar point **Verb-て もらう (te morau)** is used to express that someone does something for
+  the speaker's benefit. It is attached to the te-form of a verb (V-て + もらう). This construction implies
+  that the speaker is receiving a favor or a beneficial action from someone else. It can often be translated
+  as "to have someone do something for you" or "to get someone to do something."**Key considerations:**
+  * **Beneficiary:** The primary beneficiary of the action is the speaker or someone within their inner
+  circle (e.g., family, close friends). * **Perspective:** The focus is on the recipient's perspective
+  – the speaker acknowledges that they *received* a service or benefit. * **Context:** It is widely used
+  in daily conversation and business settings where a favor is exchanged or a service is rendered for
+  one's benefit.Understanding the distinction between 『もらう』, 『くれる』, and 『あげる』 is fundamental. While 『もらう』
+  focuses on the speaker *receiving* a benefit, 『くれる』 emphasizes the giver's action of *giving* a benefit
+  to the speaker, and 『あげる』 focuses on the speaker *giving* a benefit to someone else.
+false_friends:
+  - term: くれる
+    meaning: To do something for the speaker or someone close to the speaker.
+    kind: similar expression
+    nuance: While both 『てもらう』 and 『てくれる』 indicate the speaker receives a benefit, 『てくれる』 emphasizes the
+      *giver's* action, focusing on their act of giving to the speaker or the speaker's in-group. 『てもらう』
+      emphasizes the *recipient's* gain or perspective of receiving the benefit.
+    grammar_point: くれる (to give, inward to me・in-group)
+  - term: あげる
+    meaning: To do something for someone else (out-group).
+    kind: similar expression
+    nuance: 『てあげる』 implies that the speaker is doing something for someone else, and that person is of
+      equal or lower status. The focus is on the *giver's* action for another. This contrasts with 『てもらう』,
+      which focuses on the act of *receiving* for one's own benefit.
+    grammar_point: あげる・やる (to give, outward)
+  - term: いただく
+    meaning: To humbly receive (an action or favor from a superior).
+    kind: similar expression
+    nuance: This is the humble form of 『もらう』, used to show respect to the person performing the action.
+      It's about humbly receiving a favor. While 『てもらう』 is more general, 『ていただく』 specifically emphasizes
+      the speaker's humility when receiving an action from a higher-status individual.
+    grammar_point: いただく (humbly receive)
+  - term: 差し上げる
+    meaning: To humbly do something for a superior.
+    kind: similar expression
+    nuance: This is the humble form of 『あげる』, used when the speaker performs an action for someone of
+      higher status. It's about humbly *giving* a favor, which is distinct from 『てもらう』 which is about
+      *receiving* a favor.
+    grammar_point: 差し上げる (humbly give)
+  - term: もらう
+    meaning: To receive a thing.
+    kind: often confused with
+    nuance: While the standalone verb 『もらう』 means to receive a thing, 『てもらう』 specifically refers to receiving
+      an *action* or a service. The presence of the て-form verb is key to this distinction.
+    grammar_point: もらう (to receive)
+  - term: てほしい
+    meaning: To want someone to do something.
+    kind: similar expression
+    nuance: 『てほしい』 expresses a general desire for someone to do something. 『てもらう』 specifically means 'to
+      receive the benefit of someone doing something,' focusing on the actual or intended receipt of the
+      action.
+    grammar_point: '[Verb-て]ほしい (to want someone to do)'
+  - term: ていただけませんか
+    meaning: Could you please (humbly request)?
+    kind: similar expression
+    nuance: This is a direct, humble *request* for someone to perform an action. 『てもらう』 describes the
+      state of *receiving* an action, either as a past event or a planned one, not making a direct request.
+    grammar_point: '[Verb-て]いただけませんか (humble request)'
+post_false_friends_writeup: To avoid confusion, remember that 『てもらう』 focuses on receiving a benefit, 『てくれる』
+  emphasizes someone giving a benefit to the speaker or their in-group, and 『てあげる』 describes the speaker
+  giving a benefit to someone else. The perspective of who is doing the action and who is benefiting is
+  key to choosing the appropriate expression. When dealing with hierarchical relationships, 『ていただく』 and
+  『て差し上げる』 are the humble equivalents for receiving and giving actions, respectively.
+examples:
+  - english: My friend helped me with my homework.
+    japanese:
+      - 友達 に 宿題 を 手伝っ て {もらっ た}。
+      - 友達 に 宿題 を 手伝っ て {もらい まし た}。
+    english_literally: From friend, homework receiving help was done.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 宿題 を 手伝っ て {くれ た}。
+        english: My friend helped me with my homework (emphasizing the friend's action).
+        hint: 「くれた」 highlights the friend's act of giving help. We're focusing on the speaker *receiving*
+          the help here.
+    scene: A high school student talking to another friend about finishing a difficult assignment, emphasizing
+      their relief and benefit.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: I'm going to the hair salon to get my hair cut.
+    japanese:
+      - 髪 を 切っ て {もらう} ため に、美容 院 へ 行き ます。
+      - 髪 を 切っ て {もらう} ため に 美容 院 へ 行く。
+      - 美容 院 で 髪 を 切っ て {もらう} つもり だ。
+    english_literally: Hair cutting (action) receive in order to, to hair salon go.
+    competing_grammar:
+      - competing_japanese:
+          - 髪 を {切る} ため に 美容 院 へ 行き ます。
+        english: I'm going to the hair salon to cut my hair.
+        hint: This implies you will cut your own hair. We're looking for an Hexpression that implies receiving
+          a service from someone else.
+    scene: Explaining your plans for the weekend to a colleague.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Since I probably can't get anyone to help me, I have no choice but to do it myself.
+    japanese:
+      - 誰 に も 助け て {もらえ ない} だろう から、自分 で やる しか ない。
+      - 誰 に も 助け て {もらえ ない} と 思う から、自分 で やる しか ない。
+      - 誰 に も 助け て {もらえ そう に ない} から、自分 で やる しか ない。
+    english_literally: From anyone help receive cannot probably, so, by myself do only option.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 に も 助け て {くれ ない} だろう。
+        english: No one will help me.
+        hint: This focuses on others' unwillingness to help. We're looking for an expression that conveys
+          the speaker's inability to receive help.
+    scene: A busy student realizing they're facing a challenging project without external support.
+    register: casual
+    setting: reflective
+    conjugation: potential (～られる/～える)
+  - english: Could I have you check these documents?
+    japanese:
+      - この 資料、確認 し て {もらえ ます か}？
+      - この 資料 を 確認 し て {もらえ ます か}？
+      - この 資料、確認 し て {もらえ ませ ん か}？
+    english_literally: These documents, (action of) checking, can I receive (from you)?
+    competing_grammar:
+      - competing_japanese:
+          - この 資料、確認 し て {くれ ませ ん か}？
+        english: Could you check these documents for me?
+        hint: This is a direct request but less polite in a professional setting. We're looking for a
+          polite way to ask someone to do something for you, emphasizing receiving the benefit.
+      - competing_japanese:
+          - この 資料、確認 し て {いただけ ませ ん か}？
+        english: Would you please check these documents for me?
+        hint: This is a very humble request, usually for a superior. We're looking for a polite request
+          between colleagues, focusing on receiving the action.
+    scene: A junior employee politely asking a senior colleague to review some important papers.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: potential (～られる/～える)
+  - english: For my birthday, I had my father buy me a new game.
+    japanese:
+      - 僕 の 誕生 日 に は、父 に 新しい ゲーム を 買っ て {もらい まし た}。
+      - 私 の 誕生 日 に は、父 に 新しい ゲーム を 買っ て {もらい まし た}。
+      - 誕生 日 に、父 に 新しい ゲーム を 買っ て {もらい まし た}。
+      - 父 から 新しい ゲーム を 買っ て {もらい まし た}。
+    english_literally: My birthday for, father by new game buying (action) received.
+    competing_grammar:
+      - competing_japanese:
+          - 父 が 新しい ゲーム を 買っ て {くれ た}。
+        english: My father bought me a new game.
+        hint: This emphasizes the father's action. We're looking for an expression that emphasizes the
+          speaker receiving the benefit of the action.
+    scene: A young boy excitedly telling his friend about the gift he received for his birthday.
+    register: casual
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「僕」 clearly indicates a male speaker, and the casual tone is appropriate for a
+      younger boy. 『～てもらいました』 highlights that the speaker received the benefit of the action, fitting
+      a child's excitement about a gift.
+  - english: If there's something you don't understand, let's have the teacher teach it to you.
+    japanese:
+      - 分から ない こと は、先生 に 教え て {もらい ましょう}。
+      - 分から ない こと が あれ ば、先生 に 教え て {もらい ましょう}。
+      - 分から ない こと が あっ たら、先生 に 教え て {もらい ましょう}。
+    english_literally: Understand not things, teacher by teaching (action) let's receive.
+    competing_grammar:
+      - competing_japanese:
+          - 分から ない こと は、先生 に {聞き ましょう}。
+        english: If there's something you don't understand, let's ask the teacher.
+        hint: This means 'let's ask the teacher'. We're looking for an expression that implies receiving
+          the teacher's explanation, not just asking a question.
+    scene: An older student offering advice to a younger classmate who is struggling with a concept.
+    register: semi-formal
+    setting: instructional
+    conjugation: volitional polite (～ましょう)
+    speaker_age: older
+    nuance: The volitional polite form 『～もらいましょう』 suggests a collective action or recommendation to *receive*
+      help, suitable for an older student advising a younger one. The nuance is that the listener should
+      arrange to have the teacher's explanation bestowed upon them.
+  - english: I didn't get my car fixed, so I'll have to use the train.
+    japanese:
+      - 車 を 直し て {もらい ませ ん でし た} から、電車 で 行く しか ない です。
+      - 車 を 直し て {もらい ませ ん でし た} の で、電車 で 行く しか ない です。
+      - 車 の 修理 を し て {もらい ませ ん でし た} から、電車 で 行く しか ない です。
+    english_literally: Car repairing (action) did not receive, therefore, train by go only option is.
+    competing_grammar:
+      - competing_japanese:
+          - 車 が {直せ ませ ん でし た} から、電車 で 行く しか ない です。
+        english: My car couldn't be fixed, so I'll have to use the train.
+        hint: This focuses on the car's inability to be fixed. We're looking for an expression that indicates
+          the speaker failed to *receive* the service of having their car fixed.
+      - competing_japanese:
+          - 車 を 直し て {くれ ませ ん でし た} から、電車 で 行く しか ない です。
+        english: They didn't fix my car for me, so I'll have to use the train.
+        hint: This emphasizes the other party's failure to do a favor for the speaker. We're looking for
+          an expression that focuses on the speaker's failure to receive the service.
+    scene: A person explaining their commute troubles to a friend or colleague.
+    register: teineigo (polite)
+    setting: pessimistic
+    conjugation: negative past polite (～ませんでした)
+  - english: I asked a colleague to assist me with the presentation.
+    japanese:
+      - 同僚 に プレゼン の 手伝い を し て {もらい まし た}。
+      - 同僚 から プレゼン の 手伝い を し て {もらい まし た}。
+      - 同僚 に プレゼン の お 手伝い を し て {もらい まし た}。
+      - プレゼン の 手伝い を 同僚 に し て {もらい まし た}。
+    english_literally: Colleague by presentation's help doing (action) received.
+    competing_grammar:
+      - competing_japanese:
+          - 同僚 が プレゼン の 手伝い を し て {くれ まし た}。
+        english: A colleague helped me with the presentation.
+        hint: This emphasizes the colleague's action of helping. We're looking for an expression that
+          emphasizes the speaker *receiving* the help.
+    scene: Reporting on project progress in a team meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Yesterday, I had my broken smartphone repaired at the shop.
+    japanese:
+      - 昨日、壊れ た スマート フォン を 店 で 直し て {もらい まし た}。
+      - 昨日、壊れ た スマート フォン を 店 に 直し て {もらい まし た}。
+      - 壊れ た スマート フォン を 昨日、店 で 直し て {もらい まし た}。
+      - 昨日、スマホ が 壊れ た から、店 で 直し て {もらい まし た}。
+    english_literally: Yesterday, broken smartphone at shop fixing (action) received.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、壊れ た スマート フォン を 店 に 直し て {もらっ た}。
+        english: Yesterday, I got my broken smartphone fixed by the shop.
+        hint: While similar, this uses the plain form of もらう, making it less formal. We're looking for
+          the polite form often used when talking about services received.
+      - competing_japanese:
+          - 昨日、壊れ た スマート フォン を 店 に 直し て {もらえ た}。
+        english: Yesterday, I was able to get my broken smartphone fixed at the shop.
+        hint: This uses the potential form of もらう, emphasizing the ability to receive the service. We're
+          simply stating that the service was received.
+    scene: Discussing recent errands with a family member or friend.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: If I don't get someone to help me with this, I'll be in trouble, but it's probably impossible.
+    japanese:
+      - 誰 か に これ を 手伝っ て {もらわ ない} と 困る ん だ けど、無理 だろう な。
+      - 誰 か に この 仕事 を 手伝っ て {もらわ ない} と 困る ん だ けど、無理 だろう な。
+      - 誰 か に 手伝っ て {もらわ ない} と 困る けど、無理 だろう な。
+    english_literally: Someone by this helping (action) not receive if troubled, but impossible likely.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か が これ を 手伝っ て {くれ ない} と 困る ん だ けど、無理 だろう な。
+        english: If someone doesn't help me with this, I'll be in trouble, but it's probably impossible.
+        hint: This emphasizes the other person's failure to act. We're looking for an expression that
+          focuses on the speaker's inability to *receive* help.
+    scene: A student struggling with a difficult assignment late at night.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The phrase 『～もらわないと困るんだけど、無理だろうな』 expresses a strong desire to receive help but a resignation
+      that it won't happen. The use of 『～んだけど、無理だろうな』 is characteristic of a male speaker expressing a
+      somewhat resigned and casual sentiment.
+  - english: When you're in trouble, it's best to have the teacher help you.
+    japanese:
+      - 困っ た 時 は、先生 に 助け て {もらう} の が 一番 だ。
+      - 困っ た 時 は、先生 に 助け て {もらう} の が 一番 です。
+    english_literally: When troubled, as for time, from teacher receiving help is the best.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ た 時 は、先生 が 助け て {くれ る} の が 一番 だ。
+        english: When you're in trouble, it's best if the teacher helps you.
+        hint: 「くれる」 emphasizes the giver's action of helping, while this sentence focuses on *receiving*
+          the benefit of help. We're looking for receiving help.
+    scene: A female student advises her friend during exam season.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female student uses the plain form 『もらう』 to give direct, casual advice to her friend.
+      The phrasing 『～の が 一番 だ』 emphasizes that actively seeking and *receiving* help from the teacher
+      is the best approach, highlighting the beneficial outcome from the student's perspective.
+  - english: My younger brother gave me a ride to the station the other day.
+    japanese:
+      - 先日、駅 まで 弟 に 送っ て {もらい まし た}。
+      - 先日、駅 まで 弟 に 送っ て {もらっ た}。
+    english_literally: The other day, to the station, from younger brother, sending received.
+    competing_grammar:
+      - competing_japanese:
+          - 先日、駅 まで 弟 が 送っ て {くれ まし た}。
+        english: My younger brother gave me a ride to the station the other day (emphasizing the brother's
+          action).
+        hint: 「くれ まし た」 focuses on the brother's act of giving a ride. This sentence emphasizes the speaker
+          *receiving* the ride.
+    scene: An office worker explaining how they got to a meeting after public transport delays, highlighting
+      their convenient receipt of assistance.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: I want the teacher to teach me how to read this difficult kanji.
+    japanese:
+      - この 難しい 漢字 の 読み 方 を 先生 に 教え て {もらい たい} です。
+      - この 難しい 漢字 の 読み 方 を 先生 に 教え て {もらい たい}。
+    english_literally: This difficult kanji's reading method, from teacher, I want to receive teaching.
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい 漢字 の 読み 方 を 先生 に 教え て {ほしい} です。
+        english: I want the teacher to teach me how to read this difficult kanji (emphasizing my desire
+          for the action).
+        hint: 「て ほしい」 expresses a desire for someone to do something. This sentence emphasizes the speaker's
+          desire to *receive* the benefit of the teacher's explanation. We're looking for receiving a
+          benefit.
+    scene: A student struggling with their Japanese studies, confiding in a classmate about their desire
+      to receive specific guidance.
+    register: formal
+    setting: academic
+    conjugation: desiderative (～たい)
+  - english: I didn't get anyone to help me with the presentation materials, so I stayed up all night.
+    japanese:
+      - プレゼン 資料 を 誰 に も 手伝っ て {もらわ なかっ た} から、徹夜 し た。
+      - プレゼン 資料 を 誰 に も 手伝っ て {もらい ませ ん でし た} から、徹夜 し まし た。
+    english_literally: Presentation materials, from no one, receiving help did not happen, so I pulled
+      an all-nighter.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン 資料 を 誰 に も 手伝っ て {くれ なかっ た} から、徹夜 し た。
+        english: No one helped me with the presentation materials, so I stayed up all night (emphasizing
+          the lack of anyone giving help).
+        hint: 「くれ なかっ た」 focuses on the absence of someone *giving* help. This sentence emphasizes the
+          speaker's failure to *receive* help.
+    scene: A tired employee complaining to a colleague about having to work alone on a presentation.
+    register: casual
+    setting: serious
+    conjugation: negative past plain (～なかった)
+  - english: When you're in trouble, he can always help you.
+    japanese:
+      - 困っ た 時 は、いつ で も 彼 に 助け て {もらえる} よ。
+      - 困っ た 時 は、いつ で も 彼 に 助け て {もらえ ます} よ。
+    english_literally: When troubled, always from him, receiving help is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ た 時 は、いつ で も 彼 が 助け て {くれ る} よ。
+        english: When you're in trouble, he will always help you.
+        hint: 「くれる」 focuses on the person *giving* help. This sentence emphasizes the ability to *receive*
+          help.
+    scene: A kind senior advises a new, struggling junior at work that there's always someone available
+      to assist them.
+    register: formal
+    setting: supportive
+    conjugation: potential (～られる/～える)
+    speaker_age: older
+    nuance: The older speaker uses 『もらえる』 to assure the younger listener that they have the option to
+      *receive* help, emphasizing the benefit of having someone available to assist them. The casual tone
+      of 『よ』 reinforces the friendly advice.
+  - english: I'm grateful because my wife makes lunch for me every day.
+    japanese:
+      - 毎日、妻 に お 弁当 を 作っ て {もらっ て いる} の で 感謝 し て い ます。
+      - 毎日、妻 に お 弁当 を 作っ て {もらっ て いる} の で 感謝 し て る。
+      - 毎日、妻 に お 弁当 を 作っ て {もらっ てる} から、感謝 し てる。
+    english_literally: Every day, from my wife, bento making is received, so I am grateful.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、妻 が お 弁当 を 作っ て {くれ て いる} の で 感謝 し て い ます。
+        english: I'm grateful because my wife makes lunch for me every day (emphasizing her action).
+        hint: 「くれ て いる」 highlights the wife's ongoing action of giving lunch. This sentence emphasizes
+          the speaker's continuous *receipt* of the lunch.
+    scene: A husband talking to his friend about his daily routine, expressing gratitude for his wife's
+      consistent efforts.
+    register: casual
+    setting: intimate
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 『もらっ て いる』 to express his gratitude for the ongoing benefit he receives
+      from his wife's action of making lunch. This highlights his perspective as the beneficiary, emphasizing
+      the personal convenience and care he is receiving.
+  - english: Let's get the president to approve the new project.
+    japanese:
+      - 社長 に 新しい 企画 を 承認 し て {もらい ましょう}。
+      - 社長 に 新しい 企画 を 承認 し て {もらおう}。
+    english_literally: From the president, new plan, approval let's receive.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 が 新しい 企画 を 承認 し て {くれ る} でしょ う。
+        english: The president will probably approve the new project for us.
+        hint: This phrase describes an expectation of the president's action. This sentence expresses
+          a proposal to *receive* approval from the president.
+    scene: A team leader addressing their team about the next steps for a new business proposal, focusing
+      on the shared goal of obtaining necessary approval.
+    register: bijinesu nihongo (business)
+    setting: persuasive
+    conjugation: volitional polite (～ましょう)
+  - english: You, be more proactive and get the professor to help you!
+    japanese:
+      - 君、もっと 積極 的 に 教授 に 助け て {もらい なさい}！
+      - 君、もっと 積極 的 に 教授 に 助け て {もらい なさい} よ！
+    english_literally: You, more actively, from professor, receiving help do!
+    competing_grammar:
+      - competing_japanese:
+          - 君、もっと 積極 的 に 教授 に 助け て {ほしい}！
+        english: You, more actively, I want the professor to help you!
+        hint: 「て ほしい」 expresses a general desire for someone to do something. This sentence uses a strong
+          command to *receive* help, emphasizing the imperative to act.
+    scene: A frustrated academic advisor strongly instructing a hesitant student who isn't seeking enough
+      help.
+    register: formal
+    setting: academic
+    conjugation: imperative polite (～なさい)
+    speaker_age: older
+    nuance: The use of 『もらい なさい』 is a very direct and commanding form, often sounding scolding. It implies
+      the older advisor's strong expectation that the younger student *must* take action to *receive*
+      the benefit of the professor's assistance, emphasizing the advisor's frustration with the student's
+      passivity. The addition of 『よ』 can reinforce the insistence or add a tone of exasperation.
+  - english: If I could have you check the report, that would be helpful.
+    japanese:
+      - レポート を 確認 し て {もらえ ば} 助かり ます。
+      - レポート を 確認 し て {もらえ ば} 助かる。
+    english_literally: Report checking receive if, will be helped.
+    competing_grammar:
+      - competing_japanese:
+          - レポート を 確認 し て {くれ れ ば} 助かり ます。
+        english: If you could check the report, that would be helpful (emphasizing the giver's action).
+        hint: 「くれれ ば」 emphasizes the other person's action of giving help. We're looking for the speaker
+          *receiving* the benefit of the checking.
+    scene: A junior colleague cautiously asking a senior for help, emphasizing the potential benefit to
+      themselves.
+    register: semi-formal
+    setting: professional
+    conjugation: conditional (～ば)
+    nuance: The use of 『もらえ ば』 in a professional setting, especially by a junior to a senior, subtly emphasizes
+      the junior's perspective of *receiving* a favor or assistance. This phrasing is polite and seeks
+      the senior's action for the junior's benefit. The casual 『助かる』 version would be used with peers
+      or in a less formal situation.
+  - english: My parents want me to do what I want and study abroad.
+    japanese:
+      - 両親 に は、私 の 好き な よう に、留学 さ せ て {もらい たい} です。
+      - 両親 に は、私 の 好き な よう に、留学 さ せ て {もらい たい}。
+    english_literally: From parents, as I like, I want to receive being allowed to study abroad.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 に は、私 の 好き な よう に、留学 さ せ て {ほしい} です。
+        english: I want my parents to let me study abroad as I like.
+        hint: 「て ほしい」 expresses a general desire for someone to do something. 「て もらい たい」 specifically
+          means 'I want to receive the favor of being allowed to...'
+    scene: A young adult discussing their future plans with a counselor, expressing their hope to receive
+      permission and support from their parents for their desired path.
+    register: formal
+    setting: informative
+    conjugation: desiderative (～たい)
+post_example_writeup: 'The versatility of 『てもらう』 allows for expressing the receipt of actions in various
+  contexts, from casual favors among friends to professional services. Pay close attention to the particles
+  used: the giver of the action is marked with 『に』, and the recipient (the speaker or implied recipient)
+  is often the subject. Understanding the nuance between this and related constructions like 『てくれる』 is
+  key to conveying the intended perspective.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/もらう

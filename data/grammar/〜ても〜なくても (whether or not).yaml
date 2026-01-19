@@ -1,0 +1,267 @@
+grammar_point: 〜ても〜なくても (whether or not)
+learn_before:
+  - ～ても～なくても (whether or not)
+meaning: Whether or not X, Y (happens/is true/doesn't change)
+pronunciation:
+  katakana: テモ ナクテモ
+  romaji: temo nakutemo
+formation:
+  Verb て-form + も + Verb ない-form + くても: To say 'whether or not a verb is performed'.
+  い-Adjective く-form + ても + い-Adjective ない-form + くても: To say 'whether or not an い-adjective quality exists'.
+  な-Adjective であって + も + な-Adjective でなく + ても: To say 'whether or not a な-adjective quality exists' (formal).
+  な-Adjective でも + な-Adjective じゃなくても: To say 'whether or not a な-adjective quality exists' (casual).
+  Noun であって + も + Noun でなく + ても: To say 'whether or not something is a noun' (formal).
+  Noun でも + Noun じゃなくても: To say 'whether or not something is a noun' (casual).
+jlpt: N2
+etymology: This grammar point combines the concessive particle 「〜ても」 (even if/though) with its negative
+  counterpart 「〜なくても」 (even if not/even without). 「〜ても」 is formed from the te-form of a verb or adjective
+  plus 「も」 (even). The te-form 「て」 historically derives from a conjunctive particle indicating sequence
+  or cause. 「も」 adds the sense of "even" or "also," extending the condition to include that specific case.
+  By explicitly pairing the positive and negative conditions (「〜ても」 and 「〜なくても」), the construction 「〜ても〜なくても」
+  creates a strong sense of *irrespective of* or *no matter whether*, highlighting that the main clause's
+  truth or action remains constant regardless of the stated condition.
+writeup: |-
+  The grammar pattern **〜ても〜なくても** is used to express that an outcome or situation remains constant, regardless of whether a particular condition is met or not. It conveys a strong sense of indifference or unchangeability regarding the preceding clause. Essentially, it means "whether or not X, Y happens/is true."
+
+  This pattern is highly versatile and can be used with verbs, い-adjectives, な-adjectives, and nouns. For verbs and い-adjectives, you attach **〜ても** to the te-form and **〜なくても** to the negative te-form. For な-adjectives and nouns, the structure typically becomes **[な-adjective/Noun] であっても [な-adjective/Noun] でなくても** in more formal contexts, or **[な-adjective/Noun] でも [な-adjective/Noun] じゃなくても** in casual speech.
+
+  The core idea behind **〜ても〜なくても** is that the action or state described in the main clause proceeds unaffected by the preceding condition. It often implies a sense of inevitability or determination on the part of the speaker, or simply states a universal truth.
+
+  **Important Considerations**:
+  *   The phrase explicitly states both the positive and negative conditions, emphasizing the comprehensive nature of the irrelevance.
+  *   It is often used when the speaker wants to convey that something is true under *all* circumstances related to the stated condition.
+false_friends:
+  - term: 〜ても
+    meaning: Even if; even though
+    kind: similar expression
+    nuance: While 「〜ても」 expresses "even if X," it only presents one side of the condition. 「〜ても〜なくても」
+      explicitly covers both "X" and "not X", emphasizing the irrelevance of *either* possibility.
+    grammar_point: ても (even if・even though)
+  - term: 〜にしても〜にしても
+    meaning: Regardless of whether... or...; whether... or...
+    kind: similar expression
+    nuance: This phrase is very close in meaning and can often be used interchangeably. However, 「〜にしても〜にしても」
+      tends to be slightly more formal or used when listing two distinct options or cases, whereas 「〜ても〜なくても」
+      focuses specifically on the presence or absence of a single condition.
+    grammar_point: にしても〜にしても (regardless of whether a or b)
+  - term: 〜にせよ・にしろ
+    meaning: Even if, Even though, No matter, Whether… or
+    kind: similar expression
+    nuance: Similar to 「〜にしても〜にしても」, 「〜にせよ・にしろ」 also conveys "whether X or Y." It can sound more formal
+      or slightly more definitive than 「〜ても〜なくても」, often used when concluding that an outcome is unavoidable
+      regardless of the stated circumstances.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: 〜ようが〜まいが
+    meaning: Even if; no matter what/who/how/etc.; whether X or Y
+    kind: similar expression
+    nuance: This pattern specifically focuses on volitional actions ("whether one does X or doesn't do
+      X"). 「〜ても〜なくても」 is broader and can apply to states or non-volitional events, not just actions one
+      chooses to take or not take.
+    grammar_point: ようが〜まいが (regardless of whether)
+post_false_friends_writeup: While **〜ても〜なくても** emphasizes that an outcome is unaffected by the presence
+  or absence of a condition, other similar expressions convey slightly different nuances. **〜ても** merely
+  states the "even if" condition without explicitly addressing the "even if not" side. **〜にしても〜にしても**
+  and **〜にせよ・にしろ** are often interchangeable with **〜ても〜なくても**, but they can imply a slightly more formal
+  tone or be used when presenting two distinct alternative scenarios. Finally, **〜ようが〜まいが** specifically
+  applies to volitional actions, asserting that the result is the same whether the action is taken or
+  not, which is a narrower scope than **〜ても〜なくても**. Choose the expression that best fits the specific
+  nuance of indifference or comprehensive coverage you wish to convey.
+examples:
+  - english: Whether you study or not, the exam will happen tomorrow.
+    japanese:
+      - 勉強 し {て も} 勉強 し {なく て も}、明日 試験 が ある。
+      - 勉強 し {て も} 勉強 し {なく て も}、明日 試験 が あり ます。
+    english_literally: Even if study, even if not study, tomorrow exam exists.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 し {て も}、明日 試験 が ある。
+        english: Even if you study, the exam will happen tomorrow.
+        hint: 「〜ても」only states the positive condition. We're looking for an expression that covers both
+          "doing" and "not doing" the action.
+    scene: A student talking to a friend who is procrastinating.
+    register: casual
+    setting: friendly
+    nuance: The usage of 「勉強しても 勉強しなくても」emphasizes the inevitability of the exam, regardless of the study
+      effort. The casual tone is appropriate for friends.
+  - english: Whether it's expensive or not, I'll buy it if I really want it.
+    japanese:
+      - 高く {て も} 高く {なく て も}、本当 に 欲しい なら 買う。
+      - 高く {て も} 高く {なく て も}、本当 に 欲しい なら 買い ます。
+    english_literally: Even if expensive, even if not expensive, really want if buy.
+    competing_grammar:
+      - competing_japanese:
+          - 高い か どう か に {かかわら ず}、本当 に 欲しい なら 買う。
+        english: Regardless of whether it's expensive or not, I'll buy it if I really want it.
+        hint: 「〜かどうかにかかわらず」also means "regardless of whether," but we're looking for the direct 「〜ても〜なくても」
+          construction.
+    scene: Someone discussing a desired item with a shopping companion.
+    register: casual
+    setting: friendly
+    nuance: 「高くても 高くなくても」shows a strong personal desire that overrides financial considerations.
+  - english: Whether it's convenient or not, we must finish this task by the deadline.
+    japanese:
+      - 便利 で あっ {て も} 便利 で なく {て も}、この 仕事 は 期限 まで に 終え なけれ ば なり ませ ん。
+      - 便利 {で も} 便利 じゃ {なく て も}、この 仕事 は 期限 まで に 終え ない と いけ ませ ん。
+    english_literally: Even if convenient, even if not convenient, this work deadline by must finish.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 さ に {かかわら ず}、この 仕事 は 期限 まで に 終え なけれ ば なり ませ ん。
+        english: Regardless of convenience, we must finish this task by the deadline.
+        hint: 「〜にかかわらず」is another way to say "regardless of," but here we need the 「〜ても〜なくても」 structure.
+    scene: A project manager addressing a team during a critical phase.
+    register: formal
+    setting: professional
+    nuance: The formal 「便利であっても 便利でなくても」 with 「〜なければなりません」 emphasizes strict obligation, regardless of
+      personal comfort.
+  - english: Whether it's a student or not, everyone must follow the rules.
+    japanese:
+      - 学生 で あっ {て も} 学生 で なく {て も}、皆 規則 に 従わ なけれ ば なら ない。
+      - 学生 {で も} 学生 じゃ {なく て も}、皆 規則 に 従わ ない と いけ ない。
+    english_literally: Even if student, even if not student, everyone rules must follow.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 で {あろう と} 学生 で {なかろう と}、皆 規則 に 従わ なけれ ば なら ない。
+        english: Whether they are a student or not, everyone must follow the rules.
+        hint: 「〜であろうと なかろうと」is a similar, more literary way to express "whether X or not X." We're looking
+          for 「〜ても〜なくても」.
+    scene: A school principal giving an announcement to a mixed group of students and visitors.
+    register: formal
+    setting: instructional
+    nuance: 「学生であっても 学生でなくても」reinforces the universality of the rule, applying equally to all present.
+  - english: Whether it rains or not, the game will be held.
+    japanese:
+      - 雨 が 降っ {て も} 雨 が 降ら {なく て も}、試合 は 行わ れる。
+      - 雨 が 降っ {て も} 雨 が 降ら {なく て も}、試合 は 行わ れ ます。
+    english_literally: Even if rain falls, even if rain not fall, game will be held.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が {降ろう が} {降る まい が}、試合 は 行わ れる。
+        english: Whether it rains or not, the game will be held.
+        hint: 「〜ようが〜まいが」is often used for volitional actions, while this sentence describes a natural
+          phenomenon.
+    scene: A sports announcer giving an update before a match.
+    register: semi-formal
+    setting: informative
+    nuance: 「雨が降っても 雨が降らなくても」stresses the unchanging schedule of the game despite weather conditions.
+  - english: Whether you like it or not, you have to do it.
+    japanese:
+      - 好き {で も} 好き じゃ {なく て も}、やら ない と いけ ない よ。
+      - 好き {で も} 好き じゃ {なく て も}、やら ない と いけ ませ ん よ。
+    english_literally: Even if like, even if not like, must do.
+    competing_grammar:
+      - competing_japanese:
+          - 好き で {あろう と} {なかろう と}、やら ない と いけ ない よ。
+        english: Whether you like it or not, you have to do it.
+        hint: 「〜であろうと なかろうと」is a more formal alternative often used in written Japanese. We're looking
+          for the more common 「〜ても〜なくても」.
+    scene: A parent telling their child to do chores.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The casual 「好きでも 好きじゃなくても」 with 「やらないと いけないよ」 conveys a firm, non-negotiable command from
+      a parent.
+  - english: Whether you can speak English or not, it doesn't matter for this job.
+    japanese:
+      - 英語 が 話せ {て も} 英語 が 話せ {なく て も}、この 仕事 に は 関係 ない。
+      - 英語 が 話せ {て も} 英語 が 話せ {なく て も}、この 仕事 に は 関係 あり ませ ん。
+    english_literally: Even if English can speak, even if English cannot speak, this work to not related.
+    competing_grammar:
+      - competing_japanese:
+          - 英語 の {可否} は この 仕事 に は 関係 ない。
+        english: Whether English is possible or not is unrelated to this job.
+        hint: 「可否 (kahi)」is a more formal noun for "yes or no" or "possibility/impossibility." We're looking
+          for the concessive verb structure.
+    scene: An HR representative explaining job requirements.
+    register: formal
+    setting: professional
+    nuance: The formal tone emphasizes the official irrelevance of English ability for the role.
+  - english: Whether he's rich or not, his personality doesn't change.
+    japanese:
+      - 彼 が お 金持ち {で も} お 金持ち で {なく て も}、性格 は 変わら ない。
+      - 彼 が お 金持ち {で も} お 金持ち で {なく て も}、性格 は 変わり ませ ん。
+    english_literally: He even if rich, even if not rich, personality not change.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が お 金持ち {だろう と} {なかろう と}、性格 は 変わら ない。
+        english: Whether he is rich or not, his personality doesn't change.
+        hint: 「〜だろうと なかろうと」is a slightly more formal and often more assertive way of stating "whether
+          X or not X." We're looking for 「〜ても〜なくても」.
+    scene: Two friends discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「お金持ちでも お金持ちでなくても」highlights the friend's stable character, uninfluenced by wealth.
+  - english: Whether it's common sense or not, some people just don't understand.
+    japanese:
+      - 常識 で あっ {て も} 常識 で なく {て も}、理解 でき ない 人 も いる。
+      - 常識 {で も} 常識 じゃ {なく て も}、理解 でき ない 人 も い ます。
+    english_literally: Even if common sense, even if not common sense, cannot understand people also exist.
+    competing_grammar:
+      - competing_japanese:
+          - 常識 {だろう が} 常識 {じゃ なかろう が}、理解 でき ない 人 も いる。
+        english: Whether it's common sense or not, some people just don't understand.
+        hint: 「〜だろうが〜じゃなかろうが」is a more assertive and sometimes confrontational way to say "whether or
+          not X." We're looking for the slightly softer 「〜ても〜なくても」.
+    scene: Colleagues commiserating about a difficult client or situation.
+    register: semi-formal
+    setting: reflective
+    nuance: 「常識であっても 常識でなくても」expresses frustration or resignation that some individuals are simply incapable
+      of understanding, regardless of how clear something should be.
+  - english: Whether anyone opposes or not, I will carry out my plan.
+    japanese:
+      - 誰 が 反対 し {て も} 反対 し {なく て も}、私 は 自分 の 計画 を 実行 する。
+      - 誰 が 反対 し {て も} 反対 し {なく て も}、私 は 自分 の 計画 を 実行 し ます。
+    english_literally: Who even if opposes, even if not opposes, I own plan execute.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が 反対 {しよう が} 反対 {する まい が}、私 は 自分 の 計画 を 実行 する。
+        english: Whether anyone opposes or not, I will carry out my plan.
+        hint: 「〜ようが〜まいが」is specifically used for volitional actions, but implies a more forceful, sometimes
+          confrontational, tone than 「〜ても〜なくても」.
+    scene: A leader making a resolute statement to their team or a public announcement.
+    register: formal
+    setting: serious
+    nuance: The phrase 「誰が 反対しても 反対しなくても」combined with 「実行する」 (will execute) demonstrates strong determination
+      and independence from external opinions.
+  - english: Whether she cries or not, I will remain calm.
+    japanese:
+      - 彼女 が 泣い {て も} 泣 か {なく て も}、私 は 落ち着い て いる。
+      - 彼女 が 泣い {て も} 泣 か {なく て も}、私 は 落ち着い て い ます。
+    english_literally: She even if cries, even if not cries, I calm am.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 泣く {に し て も} 泣か ない {に し て も}、私 は 落ち着い て いる。
+        english: Whether she cries or doesn't cry, I will remain calm.
+        hint: 「〜にしても〜にしても」is often used when listing distinct options or cases, rather than the simple
+          positive/negative of a single action. We're looking for 「〜ても〜なくても」.
+    scene: A friend offering emotional support to another, preparing for a difficult conversation.
+    register: casual
+    setting: supportive
+    nuance: 「泣いても 泣かなくても」expresses a resolve to maintain composure, irrespective of the other person's
+      emotional state, indicating unwavering support.
+  - english: Whether you had time or not, you should have contacted me.
+    japanese:
+      - 時間 が あっ {て も} 時間 が {なく て も}、私 に 連絡 す べき だっ た。
+      - 時間 が あっ {て も} 時間 が {なく て も}、私 に 連絡 す べき でし た。
+    english_literally: Even if time exists, even if time not exists, me to contact should have.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が {ある なし} に {かかわら ず}、私 に 連絡 す べき だっ た。
+        english: Regardless of whether you had time or not, you should have contacted me.
+        hint: 「〜に関わらず」is a more general phrase meaning "regardless of," which might be too broad when
+          emphasizing the two specific conditions of "having time" and "not having time."
+    scene: A boss reprimanding an employee for lack of communication.
+    register: formal
+    setting: serious
+    nuance: 「時間が あっても 時間が なくても」emphasizes that contacting was a non-negotiable responsibility, regardless
+      of time constraints.
+post_example_writeup: The examples illustrate how **〜ても〜なくても** can be applied across different parts of
+  speech—verbs, い-adjectives, な-adjectives, and nouns—and in various registers, from casual to formal.
+  The consistent thread is the emphasis on the unchangeable nature of the main clause, regardless of the
+  condition expressed. The nuances highlight how the speaker's attitude, be it determination, resignation,
+  or empathy, is conveyed through this pattern.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%80%9C%E3%81%A6%E3%82%82%E3%80%9C%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82

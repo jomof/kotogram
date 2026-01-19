@@ -1,0 +1,244 @@
+grammar_point: 多くても (at most)
+learn_before:
+  - '[Verb-dictionary]こと (nominalization)'
+  - '[Verb-stem]おわる (to finish doing)'
+  - 〜ても〜ても (repeated effort or state)
+  - 〜までだ (just・merely)
+  - い-Adjective[くても] (concessive)
+  - なし (without・no)
+  - 気に入らない (not to one's liking)
+  - 程度に (to the extent)
+meaning: at most
+pronunciation:
+  katakana: オオクテモ
+  romaji: ōkutemo
+formation:
+  '[Quantity] + 多くても': Indicates the maximum possible quantity or number.
+  '[Verb/i-Adjective/na-Adjective/Noun + Te-form] + も': General pattern for 'even if' concession, applied
+    to '多い'.
+jlpt: N3
+etymology: The phrase 「多くても」 is formed from the i-adjective 「多い」 (ōi), meaning 'many' or 'much,' combined
+  with the concessive particle 「ても」 (temo), which means 'even if' or 'even though.' Historically, the
+  'く' is the adverbial form of the i-adjective, and 'ても' is attached to this form. Therefore, 「多くても」 literally
+  translates to 'even if it is many/much,' naturally leading to its meaning of 'at most' or 'at the maximum.'
+  It signifies that the given quantity is the upper limit, even considering a potentially 'large' amount.
+writeup: The grammar point 「多くても」 is used to express an upper limit or maximum quantity for something.
+  It literally means 'even if it is much/many' and carries a nuance of concession, suggesting that the
+  stated quantity is the absolute ceiling, and often implying that the actual amount is likely to be less,
+  or that even this maximum isn't as much as one might expect or desire. It is commonly used with numerical
+  quantities or timeframes to set an expected or guaranteed maximum. For instance, if you say 「多くても３日かかる」
+  (It will take at most 3 days), you are stating that the longest possible duration is three days, and
+  it might even take less time.
+false_friends:
+  - term: せいぜい (seizei)
+    meaning: at best, at most, barely
+    kind: similar expression
+    nuance: While 「せいぜい」 also indicates an upper limit, it often carries a nuance of disappointment, insufficiency,
+      or a lower-than-expected maximum. For example, 「せいぜい100円しかあげられない」 (I can only give you 100 yen at
+      most, implying it's not much). 「多くても」 is a more neutral statement of a maximum limit without necessarily
+      implying disappointment or bare sufficiency.
+    grammar_point: <suggest>:せいぜい (at best)
+  - term: 少なくとも (sukunakutomo)
+    meaning: at least
+    kind: antonym
+    nuance: 「少なくとも」 expresses a minimum amount or condition that is guaranteed, meaning 'at least' or
+      'at the minimum'. It is the opposite of 「多くても」 which expresses a maximum limit.
+    grammar_point: <suggest>:少なくとも (at least)
+  - term: まで (made)
+    meaning: up to, until
+    kind: similar expression
+    nuance: 「まで」 simply indicates a boundary or limit that is reached, but it doesn't carry the concessive
+      'even if' nuance inherent in 「多くても」. While both set a limit, 「多くても」 often implies a slight emphasis
+      on the maximum being a fixed, perhaps modest, ceiling.
+    grammar_point: まで (limit extent)
+post_false_friends_writeup: 'To differentiate between 「多くても」 and similar expressions: remember that 「多くても」
+  is a straightforward statement of a maximum, derived from ''even if many''. 「せいぜい」, while also indicating
+  a maximum, often implies that this maximum is not very impressive or is barely sufficient. 「少なくとも」 is
+  the direct opposite, expressing a minimum. 「まで」 sets a boundary, but lacks the concessive nuance of
+  「多くても」, making it a simpler boundary marker without the ''even if'' implication.'
+examples:
+  - english: It will take at most two hours.
+    japanese:
+      - '{多く て も} 2 時間 かかる でしょう。'
+      - '{多く て も} 2 時間 かかる だろう。'
+      - '{多く て も} 2 時間 かかり ます。'
+      - '{多く て も} 2 時間 だ。'
+      - '{多く て も} 2 時間 しか かから ない。'
+    english_literally: At most, two hours will probably be taken.
+    competing_grammar:
+      - competing_japanese:
+          - 2 時間 まで かかる でしょう。
+        english: It will probably take up to 2 hours.
+        hint: 「まで」 sets a limit but doesn't emphasize the 'even if' aspect or the notion of a 'maximum'
+          in the same concessive way as 「多くても」. We're looking for an expression that sets an upper limit.
+    scene: You're planning a trip and estimating travel time.
+    register: casual
+    setting: informative
+  - english: We can accommodate at most 5 people in this room.
+    japanese:
+      - この 部屋 に は、{多く て も} 5 人 しか 入れ ませ ん。
+      - この 部屋 に は、{多く て も} 5 人 しか 入ら ない。
+      - この 部屋 に は、{多く て も} 5 人 まで しか 入り ませ ん。
+      - この 部屋 は、{多く て も} 5 人 まで です。
+    english_literally: In this room, at most, only 5 people can enter.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に は、せいぜい 5 人 しか 入れ ませ ん。
+        english: In this room, at best, only 5 people can enter (implying it's a small number).
+        hint: 「せいぜい」 would imply that 5 people is a small or disappointing number for the room. 「多くても」
+          is more neutral about the capacity. We're looking for a straightforward maximum.
+    scene: You are explaining the capacity of a meeting room.
+    register: formal
+    setting: professional
+  - english: I can only pay at most 10,000 yen for this.
+    japanese:
+      - これ に は {多く て も} 1 万 円 しか 払え ませ ん。
+      - これ に は {多く て も} 1 万 円 しか 払え ない。
+      - これ に は {多く て も} 1 万 円 まで しか 払え ませ ん。
+      - これ に は {多く て も} 1 万 円 です。
+    english_literally: For this, at most, only 10,000 yen can be paid.
+    competing_grammar:
+      - competing_japanese:
+          - これ に は 1 万 円 まで しか 払え ませ ん。
+        english: For this, I can pay up to 10,000 yen.
+        hint: While similar, 「までしか」 highlights the limit of what *can* be done. 「多くても」 specifically states
+          the *maximum* amount. We're looking for the upper bound of what can be paid.
+    scene: You are negotiating a price for an item.
+    register: semi-formal
+    setting: negotiating
+  - english: She studies at most one hour a day, but she's smart.
+    japanese:
+      - 彼女 は 1 日 {多く て も} 1 時間 しか 勉強 し ない けど、賢い です。
+      - 彼女 は 1 日 {多く て も} 1 時間 しか 勉強 し ない けど、賢い。
+      - 彼女 は {多く て も} 1 日 1 時間 しか 勉強 し ない です が、頭 が いい です。
+    english_literally: She, in one day, at most, only studies one hour, but is smart.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 1 日 せいぜい 1 時間 しか 勉強 し ない けど、賢い です。
+        english: She studies at best one hour a day (implying a small amount of study), but she's smart.
+        hint: 「せいぜい」 emphasizes the smallness of the amount, suggesting it's not much. 「多くても」 simply states
+          the upper limit of her study time. We're looking for a simple maximum, not a judgment on the
+          quantity.
+    scene: You are discussing a friend's study habits.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「多くても」 here suggests that even this small maximum (one hour) is enough for her,
+      or it's simply the most she'll study. It doesn't criticize her for studying so little, unlike 「せいぜい」
+      might. The phrase implies a concession, 'even if she studies a lot (which is only one hour), she
+      is still smart,' thus setting an upper bound for her study time without implying it's too little.
+    etymology: The use of 「多くても」 highlights a specific characteristic of her study habits, not a critique
+      of their duration, emphasizing its upper limit without negative judgment. This differentiates it
+      from expressions like 「せいぜい」 which imply inadequacy or bare sufficiency in the quantity of study
+      time. The nuance specifically comes from the literal meaning of 'even if many' (referring to the
+      quantity) becoming 'at most'.
+  - english: It's a small event; at most 20 people will gather.
+    japanese:
+      - 小さい イベント な の で、{多く て も} 20 人 くらい しか 集まら ない でしょう。
+      - 小さい イベント な の で、{多く て も} 20 人 くらい しか 集まら ない だろう。
+      - 小さな イベント な の で、{多く て も} 20 人 程度 しか 集まり ませ ん。
+      - 小さな イベント だ から、{多く て も} 20 人 程度 だ。
+    english_literally: Because it's a small event, at most, about 20 people will probably gather.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい イベント な の で、20 人 まで しか 集まら ない でしょう。
+        english: Because it's a small event, up to 20 people will probably gather.
+        hint: 「まで」 states a limit. 「多くても」 explicitly frames it as the maximum expected amount, reinforcing
+          the idea that it's a small event. We're looking for an expression that indicates a precise maximum.
+    scene: You are organizing a small community event.
+    register: semi-formal
+    setting: informative
+  - english: I've only visited that cafe at most three times.
+    japanese:
+      - あの カフェ に は {多く て も} 3 回 しか 行っ た こと が あり ませ ん。
+      - あの カフェ に は {多く て も} 3 回 しか 行っ た こと が ない。
+      - あの カフェ に は {多く て も} 3 回 程度 です。
+    english_literally: To that cafe, at most, I've only gone three times.
+    competing_grammar:
+      - competing_japanese:
+          - あの カフェ に は せいぜい 3 回 しか 行っ た こと が あり ませ ん。
+        english: I've only visited that cafe at best three times (implying it's not a lot).
+        hint: 「せいぜい」 might imply that three times is a surprisingly low number for a cafe visit. 「多くても」
+          is a more neutral way to state the maximum frequency. We're looking for the absolute highest
+          count of visits.
+    scene: You are discussing places you frequent.
+    register: casual
+    setting: friendly
+  - english: At most, I can finish this report by tomorrow.
+    japanese:
+      - この レポート は {多く て も} 明日 まで に 終え られ ます。
+      - この レポート は {多く て も} 明日 まで に 終え られる。
+      - この レポート は {多く て も} 明日 まで に 終わり ます。
+      - この レポート は {多く て も} 明日 まで です。
+    english_literally: This report, at most, by tomorrow can be finished.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は 明日 まで に 終え られ ます。
+        english: This report can be finished by tomorrow.
+        hint: While 'by tomorrow' sets a deadline, adding 「多くても」 emphasizes that tomorrow is the absolute
+          latest it would take, implying it might be done sooner. We're looking for an expression that
+          sets an ultimate deadline.
+    scene: You are giving an update on your work progress to your superior.
+    register: formal
+    setting: professional
+  - english: Even with inflation, prices will rise at most 5%.
+    japanese:
+      - インフレ が あっ て も、価格 は {多く て も} 5 % しか 上がら ない でしょう。
+      - インフレ が あっ て も、価格 は {多く て も} 5 % しか 上がら ない だろう。
+      - インフレ が あっ て も、価格 は {多く て も} 5 % まで の 上昇 です。
+    english_literally: Even if there is inflation, prices will probably rise at most 5% only.
+    competing_grammar:
+      - competing_japanese:
+          - インフレ が あっ て も、価格 は 5 % まで しか 上がら ない でしょう。
+        english: Even if there is inflation, prices will probably rise up to 5%.
+        hint: 「まで」 is a simple upper limit. 「多くても」 emphasizes that 5% is the maximum increase *even considering*
+          inflation, providing reassurance of a controlled rise. We're looking for a maximum increase
+          despite conditions.
+    scene: An economist is presenting a forecast.
+    register: formal
+    setting: informative
+  - english: The small car can carry at most four adults.
+    japanese:
+      - その 小さい 車 は {多く て も} 大人 4 人 しか 乗せ られ ませ ん。
+      - その 小さい 車 は {多く て も} 大人 4 人 しか 乗せ られ ない。
+      - その 小さい 車 は {多く て も} 大人 4 人 乗り です。
+      - その 小さい 車 は {多く て も} 大人 4 人 が 限度 です。
+    english_literally: That small car, at most, only 4 adults can be put into it.
+    competing_grammar:
+      - competing_japanese:
+          - その 小さい 車 は せいぜい 大人 4 人 しか 乗せ られ ませ ん。
+        english: That small car can only carry at best four adults (implying it's cramped).
+        hint: 「せいぜい」 suggests the capacity is barely four and perhaps uncomfortably so. 「多くても」 just states
+          the firm maximum without judgment on comfort. We're looking for the absolute maximum capacity.
+    scene: You are explaining the seating capacity of a car.
+    register: casual
+    setting: informative
+  - english: He visits his parents at most twice a year.
+    japanese:
+      - 彼 は 1 年 に {多く て も} 2 回 しか 両親 の ところ へ 行き ませ ん。
+      - 彼 は 1 年 に {多く て も} 2 回 しか 両親 の ところ へ 行か ない。
+      - 彼 は {多く て も} 年 に 2 回 しか 親 に 会い ませ ん。
+    english_literally: He, in one year, at most, only goes to his parents' place 2 times.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 1 年 に 少なく とも 2 回 両親 の ところ へ 行き ませ ん。
+        english: He does not go to his parents' place at least twice a year.
+        hint: 「少なくとも」 indicates a minimum. We are expressing a maximum frequency of visits. We're looking
+          for an upper limit on the number of visits.
+    scene: You are discussing someone's family visits.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「多くても2回」 highlights that even if he visits, it's never more than twice, perhaps
+      implying a busy schedule or distance rather than a lack of desire. The male speaker shares this
+      factual information with a female listener.
+    etymology: The use of 「多くても」 in this context implies a fixed upper limit on the frequency of visits,
+      stemming from the concessive 'even if many/much'. It sets a definitive ceiling for the action, often
+      without implying any judgment on the quantity itself. This specific nuance arises from the inherent
+      'even though it's this much, it's still the maximum' meaning of the phrase.
+post_example_writeup: Understanding the core 'even if much' meaning of 「多くても」 will help you grasp its
+  function as an 'at most' expression. It sets a clear boundary without necessarily implying disappointment,
+  which distinguishes it from similar phrases.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/多くても

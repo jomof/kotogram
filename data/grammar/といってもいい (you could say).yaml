@@ -1,0 +1,290 @@
+grammar_point: といってもいい (you could say)
+learn_before:
+  - ほとんど (almost all or hardly any)
+meaning: You could say, You might say
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: といってもいい
+    rarity: common
+    meaning: You could say
+  - conjugation-type: non-past polite (～ます)
+    form: といってもいいです
+    rarity: common
+    meaning: You might say (polite)
+  - conjugation-type: volitional polite (～ましょう)
+    form: といってもいいでしょう
+    rarity: common
+    meaning: It is safe to say (polite)
+  - conjugation-type: volitional (～よう)
+    form: といってもいいだろう
+    rarity: common
+    meaning: You might say (casual, speculative)
+pronunciation:
+  katakana: トイッテモイイ
+  romaji: to itte mo ii
+formation:
+  '[Statement] + といってもいい': Indicates that a statement is a reasonable or valid way to describe something.
+jlpt: N4
+etymology: The expression 「といってもいい」 comes from 「と言う」 (to say) + 「ても」 (even if) + 「いい」 (good). Thus, literally,
+  it means "even if you say (A), it is good/ok."
+writeup: 「といってもいい」 is a common expression in Japanese that literally means "even if you say (A), it is
+  good/ok". This is translated more naturally as "you could say (A)" or "you might say (A)". As the 「と」
+  at the beginning of the phrase is the 'quotation' use of the 「と」 particle, 「といってもいい」 may be used after
+  almost any statement that the speaker wants to quote. **Important Note:** Most grammatical structures
+  in Japanese that use 「言う」 will often appear without kanji. This is simply to make them easier to recognize
+  as a grammar pattern, rather than a standard word in a sentence. This is also true for patterns that
+  include 「行く」 or 「来る」.
+false_friends:
+  - term: と (quotation)
+    meaning: Quotation
+    kind: similar expression
+    nuance: Unlike `といってもいい` which suggests a valid interpretation or summary, 「と」 is used to mark a direct
+      or indirect quote, simply stating what was said or thought.
+    grammar_point: と (quotation marker)
+  - term: って (quotation marker・casual)
+    meaning: Casual quotation
+    kind: similar expression
+    nuance: Similar to 「と」, 「って」 is a casual marker for direct or indirect quotation. `といってもいい` implies
+      an interpretative judgment, not just a statement of fact.
+    grammar_point: って (quotation marker, casual)
+  - term: Verb[て]+もいい (permission)
+    meaning: It's okay to, It's alright to, Can/may
+    kind: often confused with
+    nuance: 「Verb+てもいい」 expresses permission or allowance, while `といってもいい` expresses an opinion or interpretation.
+      They are often confused due to the similar `てもいい` component, but their meanings are distinct.
+    grammar_point: <suggest>:Verb[て]+もいい (permission)
+  - term: と言える (it can be said)
+    meaning: Would or could say that..., Can probably say that..., Fair to say that...
+    kind: similar expression
+    nuance: 「と言える」 is a more direct and confident assertion, while `といってもいい` suggests a softer or more
+      tentative opinion, framing the statement as a reasonable way to describe something.
+    grammar_point: と言える (it can be said)
+  - term: ないでもない (not impossible)
+    meaning: Kind of, Might, Slightly, It’s not (impossible) that, Somewhat, In some respects
+    kind: similar expression
+    nuance: 「ないでもない」 expresses a hesitant or qualified agreement or a double negative that indicates a
+      weak possibility, whereas `といってもいい` offers a specific interpretation or viewpoint that is considered
+      appropriate or justifiable.
+    grammar_point: ないでもない (not impossible)
+post_false_friends_writeup: When choosing between `といってもいい` and similar expressions, consider the nuance
+  you want to convey. If you want to express a softer, more tentative opinion, use `といってもいい`. If you want
+  to express a more direct and confident assertion, use 「と言える」. If you want to express permission, use
+  「Verb+てもいい」.
+examples:
+  - english: This app is so convenient, you could say.
+    japanese:
+      - この アプリ は とても 便利 だ {と いっ て も いい}。
+      - この アプリ は とても 便利 だ {と いっ て も いい} です。
+      - この アプリ は とても 便利 だ {と いっ て も いい} だろう。
+      - この アプリ は とても 便利 だ {と いっ て も いい} でしょう。
+    english_literally: This app is very convenient, even if you say it is good.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ は とても 便利 {です}。
+        english: This app is very convenient.
+        hint: This is a direct statement. We're looking for a softer, more interpretive way to say that
+          the app is convenient, suggesting it's a reasonable thing to say.
+    scene: A friend showing a new app.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He's already a professional athlete, you might say.
+    japanese:
+      - 彼 は もう プロ の 選手 だ {と いっ て も いい}。
+      - 彼 は もう プロ の 選手 だ {と いっ て も いい} です。
+      - 彼 は もう プロ の 選手 だ {と いっ て も いい} だろう。
+      - 彼 は もう プロ の 選手 だ {と いっ て も いい} でしょう。
+    english_literally: He is already a professional athlete, even if you say it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は もう プロ の 選手 {です}。
+        english: He is already a professional athlete.
+        hint: This is a factual statement. We're looking for an expression that frames the statement as
+          a valid, though perhaps slightly interpretive, assessment of his status.
+    scene: Two people discussing a promising young athlete.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: You could say this problem is almost resolved.
+    japanese:
+      - この 問題 は ほとんど 終わっ た {と いっ て も いい}。
+      - この 問題 は ほとんど 終わっ た {と いっ て も いい} です。
+      - この 問題 は ほとんど 終わっ た {と いっ て も いい} だろう。
+      - この 問題 は ほとんど 終わっ た {と いっ て も いい} でしょう。
+    english_literally: This problem is almost resolved, even if you say it is good.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は ほとんど 解決 し {まし た}。
+        english: This problem is almost resolved.
+        hint: This is a definitive statement. We're looking for a phrase that presents the resolution
+          as a reasonable conclusion, not a fully accomplished fact.
+    scene: A team meeting discussing project progress.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: It's safe to say she's a true genius.
+    japanese:
+      - 彼女 は まさに 天才 だ {と いっ て も いい} でしょう。
+      - 彼女 は まさに 天才 だ {と いっ て も いい} だろう。
+      - 彼女 は まさに 天才 だ {と いっ て も いい} です。
+      - 彼女 は まさに 天才 だ {と いっ て も いい}。
+    english_literally: She is truly a genius, even if you say it is good, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は まさに 天才 {です}。
+        english: She is truly a genius.
+        hint: This is a direct, polite assertion. We're looking for a slightly softer, more shared observation
+          about her genius, suitable for a professional discussion.
+    scene: Colleagues discussing a brilliant new hire.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: volitional polite (～ましょう)
+    nuance: The use of 「でしょう」 makes the statement less direct and more a shared, polite observation among
+      colleagues, suitable for a professional setting when speaking about someone's exceptional talent.
+  - english: One might say this movie is a very good movie.
+    japanese:
+      - この 映画 は とても いい 映画 だ {と いっ て も いい} です。
+      - この 映画 は とても いい 映画 だ {と いっ て も いい}。
+      - この 映画 は とても いい 映画 だ {と いっ て も いい} だろう。
+      - この 映画 は とても いい 映画 だ {と いっ て も いい} でしょう。
+    english_literally: This movie is a very good movie, even if you say it is good, it is.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は とても いい 映画 {です}。
+        english: This movie is a very good movie.
+        hint: This is a straightforward polite opinion. We're looking for a way to express that this is
+          a valid and reasonable assessment, rather than a simple statement of fact.
+    scene: Friends discussing a highly acclaimed film at a cafe.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: Using 「です」 makes the statement polite and suitable for general conversation among friends,
+      allowing the speaker to express a strong opinion without sounding overly assertive, fitting for
+      a casual discussion.
+  - english: You could say he's been chasing his dream ever since he was a student.
+    japanese:
+      - 彼 は 学生 の 時 から、ずっと 夢 を 追いかけ て いる {と いっ て も いい} です。
+      - 彼 は 学生 の 時 から、ずっと 夢 を 追いかけ て いる {と いっ て も いい}。
+      - 彼 は 学生 の 時 から、ずっと 夢 を 追いかけ て いる {と いっ て も いい} だろう。
+      - 彼 は 学生 の 時 から、ずっと 夢 を 追いかけ て いる {と いっ て も いい} でしょう。
+    english_literally: He is chasing his dream since his student days, even if you say it is good, it
+      is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 学生 の 頃 から ずっと 夢 を 追いかけ {て い ます}。
+        english: He has been chasing his dream since he was a student.
+        hint: This is a plain statement of fact. We're looking for a phrase that frames this description
+          as an apt summary of his long-term dedication.
+    scene: A mentor discussing a former student's career path.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The `です` form maintains politeness while `といってもいい` adds a layer of interpretive summary, suggesting
+      that "chasing his dream" is an apt description of his consistent efforts since his student days.
+      This is appropriate for a mentor discussing a student's long-term dedication.
+  - english: This restaurant is no longer popular, you could say.
+    japanese:
+      - この レストラン は、もう 人気 が ない {と いっ て も いい}。
+      - この レストラン は、もう 人気 が ない {と いっ て も いい} です。
+      - この レストラン は、もう 人気 が ない {と いっ て も いい} だろう。
+      - この レストラン は、もう 人気 が ない {と いっ て も いい} でしょう。
+    english_literally: This restaurant's popularity is gone, even if you say it is good.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は もう 人気 が {ない です}。
+        english: This restaurant is no longer popular.
+        hint: This is a direct observation. We're looking for a softer, possibly more gentle way to express
+          this decline, suggesting it's a fitting description.
+    scene: Two friends walking past a formerly popular restaurant.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: It's probably fair to say this project didn't go well.
+    japanese:
+      - この プロジェクト は うまく いか なかっ た {と いっ て も いい} だろう。
+      - この プロジェクト は うまく いか なかっ た {と いっ て も いい} でしょう。
+      - この プロジェクト は うまく いか なかっ た {と いっ て も いい} です。
+      - この プロジェクト は うまく いか なかっ た {と いっ て も いい}。
+    english_literally: This project did not go well, even if you say it is good, probably.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は うまく いか なかっ た と {思い ます}。
+        english: I think this project did not go well.
+        hint: This expresses a personal thought. We're looking for a phrase that indicates it's a reasonable
+          and probable conclusion, suitable for a confiding tone between colleagues.
+    scene: Two coworkers confiding about a struggling project.
+    register: casual
+    setting: serious
+    conjugation: volitional (～よう)
+    nuance: The casual 「だろう」 adds a speculative and informal tone, making it suitable for a private conversation
+      between coworkers about a potentially sensitive topic like a project's outcome, where a direct statement
+      might be too harsh or conclusive.
+  - english: Since he exercises every day, you could say he's a health fanatic.
+    japanese:
+      - 毎日 運動 し て いる から、彼 は 健康 オタク だ {と いっ て も いい}。
+      - 毎日 運動 し て いる から、彼 は 健康 オタク だ {と いっ て も いい} です。
+      - 毎日 運動 し て いる から、彼 は 健康 オタク だ {と いっ て も いい} だろう。
+      - 毎日 運動 し て いる から、彼 は 健康 オタク だ {と いっ て も いい} でしょう。
+    english_literally: Since he exercises every day, he is a health fanatic, even if you say it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 運動 し て いる から、彼 は 健康 オタク {です}。
+        english: Since he exercises every day, he is a health fanatic.
+        hint: This is a direct descriptive statement. We're looking for a phrase that implies this description
+          is a valid and appropriate label for his dedication.
+    scene: Someone describing a friend's intense dedication to fitness.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: When I'm with you, you could say I forget the passage of time, couldn't I?
+    japanese:
+      - あなた と いる 時 は、時間 を 忘れる {と いっ て も いい} ね。
+      - あなた と いる 時 は、時間 を 忘れる {と いっ て も いい}。
+      - あなた と いる 時 は、時間 を 忘れる {と いっ て も いい} です ね。
+      - あなた と いる 時 は、時間 を 忘れる {と いっ て も いい} です。
+    english_literally: When I am with you, I forget time, even if you say it is good, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あなた と いる と 時間 を {忘れる よ}。
+        english: When I'm with you, I forget the passage of time.
+        hint: This is a direct, casual statement of feeling. We're looking for a softer, more intimate
+          phrasing that invites agreement and emphasizes the reasonableness of the sentiment.
+    scene: A man on a date with a woman.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The inclusion of 「ね」 at the end makes this a softer, more intimate statement, inviting the
+      listener's agreement and creating a sense of shared sentiment, which is very common in flirty or
+      affectionate exchanges. The comparison to 「時間 を 忘れる」 (forgetting time) expresses deep enjoyment
+      of their company.
+  - english: You might say the atmosphere of this restaurant is very good.
+    japanese:
+      - この レストラン は とても いい 感じ だ {と いっ て も いい} です。
+      - この レストラン は とても いい 感じ だ {と いっ て も いい}。
+      - この レストラン は とても いい 感じ だ {と いっ て も いい} だろう。
+      - この レストラン は とても いい 感じ だ {と いっ て も いい} でしょう。
+    english_literally: This restaurant's feeling is very good, even if you say it is good, it is.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン の 雰囲気 は とても いい {です}。
+        english: The atmosphere of this restaurant is very good.
+        hint: This is a direct, polite compliment. We're looking for a phrase that allows for a more interpretive
+          and refined compliment, suitable for a first impression.
+    scene: A woman on a first date, commenting on the restaurant choice.
+    register: teineigo (polite)
+    setting: first-date
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The polite 「です」 combined with `といってもいい` allows the speaker to express a strong positive opinion
+      about the restaurant's atmosphere in a refined and less imposing way, suitable for a first date
+      where making a favorable and polite impression is important.
+post_example_writeup: This grammar point is versatile and can be used in various contexts to soften a
+  statement, offer an opinion, or suggest a reasonable interpretation. It's often used when you want to
+  express something that might not be absolutely true, but is certainly a valid way of putting it. The
+  choice of casual (だろう) or polite (でしょう/です) forms depends on the context and your relationship with the
+  listener. Remember, it implies a certain degree of subjective judgment rather than an objective fact.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/といってもいい

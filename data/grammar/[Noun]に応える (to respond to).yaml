@@ -1,0 +1,309 @@
+grammar_point: '[Noun]に応える (to respond to)'
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - と (quotation marker)
+  - といい〜といい (comprehensive evaluation)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - やめる (to stop)
+  - 側 (side or flank)
+  - 形 (physical shape)
+  - 決める (to decide)
+  - 用心する (to be cautious・to take precautions・to be on guard)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: To respond to; to answer (a call, a request); to meet (expectations, demands); to live up to
+  (hopes).
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 応える
+    rarity: common
+    meaning: to respond to
+  - conjugation-type: non-past polite (～ます)
+    form: 応えます
+    rarity: common
+    meaning: to respond to (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 応えない
+    rarity: common
+    meaning: not respond to
+  - conjugation-type: negative non-past polite (～ません)
+    form: 応えません
+    rarity: common
+    meaning: not respond to (polite)
+  - conjugation-type: past plain (～た)
+    form: 応えた
+    rarity: common
+    meaning: responded to
+  - conjugation-type: past polite (～ました)
+    form: 応えました
+    rarity: common
+    meaning: responded to (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 応えなかった
+    rarity: common
+    meaning: did not respond to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 応えませんでした
+    rarity: common
+    meaning: did not respond to (polite)
+  - conjugation-type: te-form (～て)
+    form: 応えて
+    rarity: common
+    meaning: responding to (te-form)
+  - conjugation-type: potential (～られる/～える)
+    form: 応えられる
+    rarity: common
+    meaning: can respond to
+  - conjugation-type: desiderative (～たい)
+    form: 応えたい
+    rarity: common
+    meaning: want to respond to
+  - conjugation-type: volitional (～よう)
+    form: 応えよう
+    rarity: common
+    meaning: let's respond to
+  - conjugation-type: volitional polite (～ましょう)
+    form: 応えましょう
+    rarity: common
+    meaning: let's respond to (polite)
+pronunciation:
+  katakana: にこたえる
+  romaji: ni kotaeru
+formation:
+  Noun + に応える: To respond to, to meet, to live up to (expectations, hopes, requests, demands, feelings).
+jlpt: N2
+etymology: The verb 応える (こたえる) originally meant to "echo" or "resound." This core meaning of "giving back"
+  or "returning" something has evolved to encompass "responding to" or "meeting" things like expectations,
+  requests, or feelings. It implies a reciprocal action where one's effort or response aligns with or
+  fulfills something presented by another. This contrasts with 答える (こたえる), which stems from "setting down
+  an answer" (答 is often associated with solutions/replies), specifically to questions. The shared pronunciation
+  but different kanji highlight their distinct historical paths, one emphasizing an echo or fulfillment,
+  the other a direct answer.
+writeup: |-
+  The grammar point 「Noun に応える」 is used to express that one responds to, meets, or lives up to something. This "something" is typically an expectation, a request, a feeling, a demand, or a call. It implies that the response is adequate, satisfactory, or fulfills what was presented.
+
+  This phrase is frequently used in contexts where there is an implied duty, obligation, or a strong desire to fulfill a certain need or expectation. For example, if someone has high expectations of you, you would use 「期待に応える」 (to meet expectations). If people are cheering for you, you might 「声援に応える」 (to respond to cheering) by performing well.
+
+  It is important to distinguish 「応える」 from its homophone 「答える」. While both are pronounced "kotaeru", 「答える」 specifically means "to answer a question" or "to reply to an inquiry". 「応える」, on the other hand, carries the nuance of actively fulfilling or satisfying something.
+false_friends:
+  - term: に答える
+    meaning: to answer (a question), to reply
+    kind: similar expression
+    nuance: 「答える」 is typically used for providing a direct answer to a question or inquiry. 「に応える」 implies
+      a response that satisfies or lives up to a request, expectation, or feeling.
+    grammar_point: <suggest>:答える (to answer and know)
+  - term: に沿って
+    meaning: in accordance with; along
+    kind: similar expression
+    nuance: 「に沿って」 means to follow a rule, guideline, or path. While it involves conforming to something,
+      it doesn't carry the nuance of "responding to" or "living up to" an expectation in the same way
+      「に応える」 does.
+    grammar_point: ～に沿って (in line with・in accordance with・following)
+  - term: に応じる
+    meaning: to respond to; to comply with; to accept
+    kind: similar expression
+    nuance: While similar, 「に応じる」 often suggests complying with a request or an offer, or adapting to
+      a situation. 「に応える」 more specifically conveys meeting expectations, demands, or feelings.
+    grammar_point: <suggest>:に応じる (to comply with)
+post_false_friends_writeup: While 「に応える」 and 「に答える」 share the same pronunciation, their meanings are distinct.
+  「に答える」 refers to providing a direct answer to a question, whereas 「に応える」 signifies fulfilling an expectation
+  or responding to a feeling. Similarly, 「に応じる」 implies complying with a request or adapting to a situation,
+  which is a broader scope than the specific fulfillment implied by 「に応える」. When choosing between these,
+  consider whether the action is a direct answer to a query, a compliance with a demand, or a fulfillment
+  of an expectation or feeling.
+examples:
+  - english: I will meet your expectations.
+    japanese:
+      - あなた の 期待 に 応え ます。
+      - 君 の 期待 に 応える よ。
+      - 皆 さん の 期待 に 応え ます。
+      - 期待 に 応える ね。
+    english_literally: As for your expectations, I will respond to them.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 期待 に 答え ます。
+        english: I will answer your expectations.
+        hint: 「答える」 is for answering direct questions. 「応える」 is for meeting expectations or feelings.
+    scene: A student confidently tells their teacher about their upcoming exam performance.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+  - english: He responded to our request immediately.
+    japanese:
+      - 彼 は 私 たち の 要望 に すぐ に 応え まし た。
+      - 彼 は 俺 たち の 要望 に すぐ に 応え た。
+      - 彼 は 当方 の 要望 に 素早く 応え まし た。
+    english_literally: As for him, to our request, immediately, he responded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 たち の 要望 に すぐ に 答え まし た。
+        english: He answered our request immediately.
+        hint: 「答える」 implies a direct answer, possibly a verbal one. 「応える」 suggests fulfilling or acting
+          upon the request.
+    scene: A team leader reporting on a colleague's swift action.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: I want to live up to everyone's trust.
+    japanese:
+      - 皆 の 信頼 に 応え たい です。
+      - みんな の 信頼 に 応え たい。
+      - 皆 様 の 信頼 に 応え たい と 思い ます。
+    english_literally: Everyone's trust, I want to respond to.
+    competing_grammar:
+      - competing_japanese:
+          - みんな の 信頼 を 得 たい です。
+        english: I want to gain everyone's trust.
+        hint: 「信頼を得る」 means to acquire trust. 「信頼に応える」 means to act in a way that proves worthy of trust
+          already given.
+    scene: A young athlete speaking to the press after being selected for a major competition.
+    register: semi-formal
+    setting: serious
+    conjugation: desiderative (～たい)
+  - english: I want to respond to her feelings.
+    japanese:
+      - 彼女 の 気持ち に 応え たい。
+      - 彼女 の 気持ち に 応え たい です。
+      - 彼女 の お 気持ち に 応え たい と 存じ ます。
+    english_literally: Her feelings, I want to respond to.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 気持ち を 理解 し たい。
+        english: I want to understand her feelings.
+        hint: 「理解する」 means to comprehend. 「応える」 here means to reciprocate or act in accordance with feelings,
+          not just understand them.
+    scene: A friend confiding in another about a romantic dilemma.
+    register: casual
+    setting: intimate
+    conjugation: desiderative (～たい)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker, a male, uses 「気持ちに応えたい」 to express his desire to reciprocate the feelings of
+      the female in question, implying a romantic or deeply supportive response.
+  - english: I'm sorry, I couldn't meet your request.
+    japanese:
+      - 申し訳 あり ませ ん、ご 要望 に は 応え られ ませ ん でし た。
+      - すみ ませ ん、ご 要望 に は 応え られ なかっ た です。
+      - ごめん、君 の 要望 に は 応え られ なかっ た。
+    english_literally: I am sorry, to your request, I could not respond.
+    competing_grammar:
+      - competing_japanese:
+          - 申し訳 あり ませ ん、ご 要望 を 断り まし た。
+        english: I'm sorry, I refused your request.
+        hint: 「断る」 means to refuse directly. 「応えられませんでした」 implies an inability to fulfill, not necessarily
+          a refusal.
+    scene: A customer service representative apologizing to a client.
+    register: formal
+    setting: professional
+    conjugation: potential (～られる/～える)
+  - english: The singer responded to the enthusiastic cheers of the audience.
+    japanese:
+      - 歌手 は 観客 の 盛ん な 声援 に 応え た。
+      - 歌手 は 観客 の 盛ん な 声援 に 応え まし た。
+      - 歌手 は 客席 から の 熱い 声援 に 応え まし た。
+    english_literally: As for the singer, to the audience's enthusiastic cheering, responded.
+    competing_grammar:
+      - competing_japanese:
+          - 歌手 は 観客 の 盛ん な 声援 に 感謝 し た。
+        english: The singer thanked the enthusiastic cheers of the audience.
+        hint: 「感謝する」 means to express gratitude. 「応える」 indicates a performance or action in response to
+          the cheers.
+    scene: A concert review describing a performer's interaction with the crowd.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: As a leader, I must fulfill my responsibilities.
+    japanese:
+      - リーダー と し て、自分 の 責任 に 応え なけれ ば なら ない。
+      - リーダー と し て、自分 の 責任 に 応え なけれ ば なり ませ ん。
+      - リーダー と し て、自分 の 責任 に 応える べき だ。
+    english_literally: As a leader, my own responsibility, must respond to.
+    competing_grammar:
+      - competing_japanese:
+          - リーダー と し て、自分 の 責任 を 果たさ なけれ ば なら ない。
+        english: As a leader, I must carry out my responsibilities.
+        hint: 「責任を果たす」 means to fulfill or execute responsibilities. 「責任に応える」 emphasizes meeting the expectations
+          associated with that responsibility.
+    scene: A politician giving a speech about their duties.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: I'm afraid I couldn't live up to my parents' hopes.
+    japanese:
+      - 親 の 期待 に 応え られ なかっ た の が 残念 だ。
+      - 両親 の 期待 に 応え られ ず、申し訳 ない。
+      - 両親 の 期待 に 応える こと が でき ませ ん でし た。
+    english_literally: Parents' expectations, that I could not respond to, is regrettable.
+    competing_grammar:
+      - competing_japanese:
+          - 親 の 期待 を 裏切っ て しまっ た の が 残念 だ。
+        english: It's regrettable that I betrayed my parents' expectations.
+        hint: 「裏切る」 means to betray. 「応えられなかった」 simply means failing to meet expectations, without the
+          strong negative connotation of betrayal.
+    scene: A university student confiding in a close friend about academic struggles.
+    register: casual
+    setting: reflective
+    conjugation: potential (～られる/～える)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female speaker uses 「応えられなかった」 to express her regret and disappointment at not fulfilling
+      her parents' expectations, a common sentiment in Japanese culture where family expectations can
+      be significant.
+  - english: I want to return the kindness I received from him.
+    japanese:
+      - 彼 から 受け た 親切 に 応え たい。
+      - 彼 から いただい た 親切 に 応え たい です。
+      - 彼 の 親切 に 応え たい と 強く 思い ます。
+    english_literally: From him, received kindness, I want to respond to.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 から 受け た 親切 に 感謝 し たい。
+        english: I want to thank him for the kindness I received.
+        hint: 「感謝する」 means to express thanks. 「応える」 implies taking action to reciprocate or repay the
+          kindness.
+    scene: A person discussing how they feel indebted to someone who helped them.
+    register: casual
+    setting: friendly
+    conjugation: desiderative (～たい)
+  - english: The company responded to public opinion by changing its policy.
+    japanese:
+      - 会社 は 世論 に 応え て、方針 を 変更 し た。
+      - 会社 は 世論 に 応え て、方針 を 変更 し まし た。
+      - 会社 は 世論 に 応える 形 で、方針 を 変更 いたし まし た。
+    english_literally: As for the company, to public opinion, responding, policy changed.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は 世論 に 従い、方針 を 変更 し た。
+        english: The company followed public opinion and changed its policy.
+        hint: 「従う」 means to obey or follow. 「応える」 implies a more active, responsive effort to meet the
+          demands or expectations of public opinion.
+    scene: A news report on a corporate decision.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: I decided to take on the challenge.
+    japanese:
+      - その 挑戦 に 応える こと に し た。
+      - その 挑戦 に 応える こと と し まし た。
+      - その 挑戦 に 応えよう と 決め まし た。
+    english_literally: That challenge, to respond to, decided to.
+    competing_grammar:
+      - competing_japanese:
+          - その 挑戦 を 受け入れる こと に し た。
+        english: I decided to accept that challenge.
+        hint: 「受け入れる」 means to accept. 「応える」 carries the nuance of meeting the challenge with adequate
+          effort or skill, not just accepting it.
+    scene: An individual making a personal decision to accept a difficult task.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)

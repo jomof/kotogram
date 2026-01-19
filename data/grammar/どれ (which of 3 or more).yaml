@@ -1,0 +1,232 @@
+grammar_point: どれ (which of 3 or more)
+matcher: |-
+  ⌈ˢどれᵖpronᵇどれᵈ何れʳドレ⌉|
+  ⌈ˢどれᵖint:generalᵇどれʳドレ⌉
+matcher_enforce_examples: true
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: which one (of three or more)
+pronunciation:
+  katakana: ドレ
+  romaji: dore
+formation:
+  どれ + Verb/Copula: Indicates an interrogative pronoun used independently.
+  どれ + の + Noun: While grammatically possible, it is less common as 「どの Noun」 is generally preferred for
+    directly modifying a noun.
+jlpt: N5
+etymology: The interrogative series こ・そ・あ・ど (kosoado) pronouns derive from old Japanese demonstratives.
+  「ど」 stems from an older interrogative form that asked "where" or "which". 「どれ」 combines this interrogative
+  stem with the general referential particle 「れ」, indicating a "thing" or "item". Thus, it evolved to
+  mean "which thing" or "which one."
+writeup: 「どれ」 is an interrogative pronoun used to ask "which one?" when there are three or more options
+  or when the number of options is unknown but implied to be more than two. It functions similarly to
+  English "which one" or "which of them." Unlike 「どちら」 which specifically refers to a choice between two
+  distinct items or directions, 「どれ」 is used for selection from a larger group. It can stand alone or
+  be followed by a copula like 「です」 or 「だ」. While 「どの」 is an interrogative determiner that directly modifies
+  a noun (e.g., 「どの本」 - which book), 「どれ」 acts as a pronoun, substituting for the noun itself. It is a
+  fundamental interrogative word and is widely used across all registers, though the politeness level
+  will depend on the accompanying particles or verb conjugations.
+false_friends:
+  - term: どちら
+    meaning: Which one (of two options); which way (polite)
+    kind: often confused with
+    nuance: 「どちら」 is specifically used when choosing between two clearly defined options or asking for
+      a direction in a polite manner. 「どれ」 is for three or more, or an unspecified large group.
+    grammar_point: どちら (which way, formal)
+  - term: この・その・あの・どの
+    meaning: Which (modifies a noun)
+    kind: similar expression
+    nuance: 「どの」 is an adjectival determiner that must be followed by a noun (e.g., 「どの本」). 「どれ」 is a
+      pronoun and stands alone or is followed by a particle/copula.
+    grammar_point: この (this)
+  - term: 何
+    meaning: What
+    kind: often confused with
+    nuance: While 「何」 asks "what" generally, 「どれ」 specifically asks "which one" from a given set. For
+      example, if you see a row of cakes, you'd ask 「どれですか？」 (Which one is it?) not necessarily 「何ですか？」
+      (What is it?), unless you don't know what kind of things they are at all.
+    grammar_point: 何 (what)
+post_false_friends_writeup: Understanding the distinction between 「どれ」, 「どちら」, and 「どの」 is crucial for
+  precise communication. Remember, 「どちら」 is exclusively for a choice between two, and it carries a polite
+  nuance. 「どれ」 is for a selection from three or more items. 「どの」 always precedes a noun to specify "which
+  Noun." 「何」 is a broader interrogative for "what," whereas 「どれ」 implies a selection from visible or implied
+  options.
+examples:
+  - english: Which one is your bag?
+    japanese:
+      - あなた の 鞄 は {どれ} です か。
+      - あなた の 鞄、{どれ} だ？
+    english_literally: Your bag, which one is it?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 鞄 は {どちら} です か。
+        english: Which one (of two) is your bag?
+        hint: 「どちら」 is used when there are only two options, or to ask "which way" politely. We're looking
+          for a general choice from multiple bags.
+    scene: A teacher asking a student to identify their bag among several in a classroom.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Among these, which one would you like?
+    japanese:
+      - この 中 で、{どれ} が いい です か。
+      - この 中 で、{どれ} が いい？
+    english_literally: Inside these, which one is good?
+    competing_grammar:
+      - competing_japanese:
+          - この 中 で、{何} が いい です か。
+        english: Among these, what is good?
+        hint: 「何」 asks 'what' generally, not 'which specific one' from a visible set of choices. We're
+          looking for a selection from given options.
+    scene: A shop assistant presenting various products to a customer.
+    register: teineigo (polite)
+    setting: professional
+  - english: I wonder which one is correct.
+    japanese:
+      - '{どれ} が 正しい の か な。'
+      - '{どれ} が 正しい の でしょう か。'
+    english_literally: Which one is correct, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - '{何} が 正しい の か な。'
+        english: I wonder what is correct.
+        hint: 「何」 is used when inquiring about the content or nature of something, not selecting from
+          specific options. We're looking for a selection from a set of choices.
+    scene: A student thinking aloud while doing homework, unsure of the answer.
+    register: casual
+    setting: academic
+    nuance: The casual sentence-final particle 「かな」 expresses uncertainty or a rhetorical question, often
+      used when speaking to oneself.
+  - english: Which is faster, the train or the bus?
+    japanese:
+      - 電車 と バス と、{どれ} が 速い です か。
+      - 電車 と バス と、{どれ} が 速い の？
+    english_literally: Train and bus, which one is fast?
+    competing_grammar:
+      - competing_japanese:
+          - 電車 と バス、{どちら} が 速い です か。
+        english: Between the train and the bus, which is faster?
+        hint: 「どちら」 is more natural for a direct comparison between two specific items. We're looking
+          for the general interrogative pronoun.
+    scene: Two friends discussing transportation options.
+    register: teineigo (polite)
+    setting: friendly
+  - english: A, B, or C, which one are you choosing?
+    japanese:
+      - A と B と C、{どれ} を 選び ます か。
+      - A と B と C、{どれ} を 選ぶ？
+    english_literally: A and B and C, which one will you choose?
+    competing_grammar:
+      - competing_japanese:
+          - A と B と C、{何} を 選び ます か。
+        english: A, B, or C, what will you choose?
+        hint: 「何」 is too general when the options are already presented. We're looking for a selection
+          from clearly defined options.
+    scene: A group of friends making a decision.
+    register: teineigo (polite)
+    setting: friendly
+  - english: There are so many kinds of sweets. Which should I eat?
+    japanese:
+      - 色々 な お 菓子 が ある。{どれ} を 食べよう か。
+      - 色々 な お 菓子 が あり ます。{どれ} を 食べ ましょう か。
+    english_literally: Various sweets exist. Which one should I eat?
+    competing_grammar:
+      - competing_japanese:
+          - 色々 な お 菓子 が ある。{何} を 食べよう か。
+        english: There are so many kinds of sweets. What should I eat?
+        hint: 「何」 asks 'what' generally, not 'which one' from the presented variety. We're looking for
+          a selection from existing items.
+    scene: Someone in front of a wide selection of sweets at a convenience store.
+    register: casual
+    setting: casual slang
+    conjugation: volitional (～よう)
+  - english: Which one of these tasks should I start first?
+    japanese:
+      - これ ら の 仕事 の うち、{どれ} から 始め ましょう か。
+      - これ ら の 仕事 の うち、{どれ} から 始める？
+    english_literally: Among these tasks, from which one shall I start?
+    competing_grammar:
+      - competing_japanese:
+          - これ ら の 仕事 の うち、{どの} 仕事 から 始め ましょう か。
+        english: Which of these tasks should I start first?
+        hint: 「どの」 modifies a noun directly. We're looking for a pronoun that stands alone, referring
+          to 'which one' of the tasks.
+    scene: A new employee asking their supervisor for guidance.
+    register: formal
+    setting: professional
+    conjugation: volitional polite (～ましょう)
+  - english: Which path is the right one for me?
+    japanese:
+      - 私 に とっ て、正しい 道 は {どれ} だろう。
+      - 私 に とっ て、正しい 道 は {どれ} でしょう。
+    english_literally: For me, the right path, which one is it, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に とっ て、正しい 道 は {どの} 道 だろう。
+        english: For me, which path is the right one?
+        hint: 「どの」 directly modifies the noun '道'. We're looking for a pronoun that functions as 'which
+          one' of the implied paths.
+    scene: A person reflecting on their life choices.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「だろう」 adds a speculative or wondering tone, often used when speaking to oneself
+      or in a slightly more formal reflection. 「私 にとって」 emphasizes the personal relevance.
+  - english: Which toy do you want?
+    japanese:
+      - '{どれ} が 欲しい の？'
+      - '{どれ} が 欲しい です か。'
+    english_literally: Which one is wanted?
+    competing_grammar:
+      - competing_japanese:
+          - '{何} が 欲しい の？'
+        english: What do you want?
+        hint: 「何」 is a general 'what' question, not implying a choice from visible toys. We're looking
+          for a selection from existing items.
+    scene: A mother asking her child to pick a toy from a basket.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The sentence-final particle 「の？」 is commonly used by parents when speaking to young children
+      to form a gentle question.
+  - english: So, which plan should we go with?
+    japanese:
+      - じゃあ、計画 は {どれ} に する？
+      - じゃあ、計画 は {どれ} に し ます か。
+    english_literally: Well then, plan, which one will we do?
+    competing_grammar:
+      - competing_japanese:
+          - じゃあ、{どの} 計画 に する？
+        english: So, which plan will we go with?
+        hint: 「どの」 requires a noun immediately following it to specify 'which Noun'. We're looking for
+          a pronoun that refers to 'which one' of the plans.
+    scene: A team meeting discussing project plans.
+    register: casual
+    setting: professional
+    nuance: While the setting is professional, the use of 「じゃあ」 (a casual transition) and 「にする？」 (a casual
+      way to ask about a decision) indicates a more relaxed and collaborative tone among colleagues or
+      peers.
+  - english: You said you found a good restaurant. Which one is it?
+    japanese:
+      - いい レストラン を 見つけ た って 言っ て た けど、{どれ}？
+      - いい レストラン を 見つけ た って 言っ て い まし た けど、{どれ} です か？
+    english_literally: Said you found a good restaurant, but which one?
+    competing_grammar:
+      - competing_japanese:
+          - いい レストラン を 見つけ た って 言っ て た けど、{どんな} レストラン？
+        english: You said you found a good restaurant. What kind of restaurant is it?
+        hint: 「どんな」 asks for a description or type, not a selection from multiple options. We're looking
+          to identify one specific restaurant.
+    scene: Two friends talking about places to eat.
+    register: casual
+    setting: friendly
+    nuance: 「って 言ってた けど」 is a very casual way to refer to something someone said previously, and 「どれ？」
+      used as a direct, simple question is common among friends.

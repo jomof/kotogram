@@ -1,0 +1,327 @@
+grammar_point: いわゆる (so-called)
+learn_before:
+  - いつも (always・usually)
+  - ただの (just・only)
+  - 唯一 (only・unique)
+  - 多い (many・a lot・much)
+  - 若い頃 (younger days)
+meaning: What is called, So-called, Generally known
+pronunciation:
+  katakana: イワユル
+  romaji: iwayuru
+formation:
+  いわゆる + Noun: Indicates something is 'what is called (A)', 'the so-called (A)', or 'generally known as
+    (A)'.
+  所謂 + Noun: Kanji form of いわゆる. Less common, but carries the same meaning.
+jlpt: N2
+etymology: いわゆる is a combination of いわ, a modern variant of いは, the indeterminate form of 言う (iu) 'to
+  say', and ゆる, which is the classical literary equivalent of the auxiliary verb れる (reru), the displacement
+  verb indicator in its attributive form. The kanji for 謂 means 'oral tradition,' highlighting how something
+  is referred to over time or in different places.
+writeup: |-
+  いわゆる, occasionally written as 所謂 in kanji, is used before nouns to indicate that something is 'what is called (A),' 'the so-called (A),' or 'generally known as (A).' It literally means 'what is said to be (A)'. This phrase is crucial for introducing a common term or concept, suggesting that the speaker is referring to a widely recognized label or a conventional understanding. While its primary function is descriptive, it can sometimes carry a subtle nuance of skepticism or a detached perspective towards the term it introduces, much like the English 'so-called'.
+
+  **Usage Notes:**
+  *   **Scope**: いわゆる always precedes the noun or noun phrase it modifies.
+  *   **Form**: The kanji form 所謂 is more formal and less common in everyday writing, often appearing in academic papers, legal documents, or very formal speeches. The hiragana form いわゆる is far more prevalent in general conversation and writing.
+  *   **Nuance of Irony/Skepticism**: While often neutral, いわゆる can be used to imply that the speaker might not entirely agree with the term, or finds it somewhat misleading or superficial. For instance, referring to a 'so-called expert' can imply doubt about their expertise.
+false_friends:
+  - term: というのは
+    meaning: Known as, Called, Means, Because
+    kind: synonym
+    nuance: Unlike いわゆる, というのは is used to define or explain a term, rather than simply referencing a generally
+      known term. It introduces an explanation or a reason.
+    grammar_point: というのは (definition or reason)
+  - term: という
+    meaning: Called, Named, Known as, As much as
+    kind: similar expression
+    nuance: While both can translate to 'called,' という is more versatile and used for quoting, specifying
+      details, or generally linking a noun to a description. いわゆる is specifically for indicating a widely
+      accepted or conventional term, often implying that the speaker is merely stating a common understanding.
+    grammar_point: という (naming and definition)
+  - term: 言うなれば
+    meaning: So to speak, as it were
+    kind: similar expression
+    nuance: While いわゆる introduces a commonly recognized term, 言うなれば introduces a descriptive or metaphorical
+      expression, often used when there isn't a perfect existing term or to provide an analogy.
+    grammar_point: 言ってみれば (figuratively speaking)
+post_false_friends_writeup: The distinction lies in the nuance. Use いわゆる when referencing a generally
+  accepted term or concept. Use というのは when you are defining or explaining something. Use という when you
+  are quoting or specifying details or as a general nominalizer. 言うなれば is used to introduce an analogy
+  or a figurative way of speaking, suggesting a comparison rather than a commonly established name.
+examples:
+  - english: Japan is often referred to as an academic background society.
+    japanese:
+      - 日本 は {いわゆる} 学歴 社会 だ と よく 言わ れる。
+      - 日本 は {いわゆる} 学歴 社会 だ と 言わ れる こと が 多い です。
+    english_literally: As for Japan, what is called academic background society it is, often said.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 が 学歴 社会 だ と {いう の は}、学歴 が 重視 さ れる 社会 だ と いう こと です。
+        english: That Japan is an academic background society means that it is a society where academic
+          background is emphasized.
+        hint: というのは provides an explanation or a reason for a term. We're looking for a way to say something
+          is commonly known as a certain term, not an explanation of it.
+      - competing_japanese:
+          - 日本 は 学歴 社会 だ と {いう} 社会 だ と よく 言わ れる。
+        english: It is often said that Japan is a society called academic background society.
+        hint: という simply states something is 'called' by a certain name. いわゆる adds the nuance that this
+          is a widely accepted or 'so-called' concept. We're looking for a term that introduces a commonly
+          recognized label.
+      - competing_japanese:
+          - 日本 は 学歴 社会 {だ と よく 言わ れる}。
+        english: Japan is often said to be an academic background society.
+        hint: This sentence states it as a fact, but doesn't convey the nuance of it being a commonly
+          known or 'so-called' concept. We're looking for a term that emphasizes its conventional status.
+    scene: A university lecturer is explaining a sociological concept to their students.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「学歴 社会」 (gakureki shakai) is a commonly recognized sociological term in Japan.
+      「いわゆる」 here introduces it as such. The overall sentence structure and the use of 「〜と よく 言われる」 (to
+      yoku iwareru - it is often said that~) make it suitable for an academic setting.
+  - english: She is what you'd call a city kid, and has no experience growing up in nature.
+    japanese:
+      - 彼女 は {いわゆる} 都会 っ子 で、自然 の 中 で 育っ た 経験 が ない。
+      - 彼女 は {いわゆる} 都会 っ子 で、自然 の 中 で 育っ た 経験 が あり ませ ん。
+      - 彼女 って、{いわゆる} 都会 っ子 な ん だ。自然 の 中 で 育っ た 経験 が ない から ね。
+    english_literally: As for her, what is called a city kid, and experience of growing up in nature,
+      does not have.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 都会 っ子 {と いう の は}、自然 の 中 で 育っ た 経験 が ない から です。
+        english: The reason she is called a city kid is because she has no experience growing up in nature.
+        hint: というのは provides an explanation or reason for a term. We're looking for a way to introduce
+          a commonly used descriptive term, not explain why it applies.
+      - competing_japanese:
+          - 彼女 は 都会 っ子 {です}。
+        english: She is a city kid.
+        hint: This sentence simply states a fact. We're looking for a phrase that implies she is commonly
+          referred to as a city kid, indicating a recognized type.
+    scene: Two friends are discussing their personalities and upbringings.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「都会っ子」 (tokai-kko) is a common colloquial term for a city child. Using 「いわゆる」 emphasizes that
+      this is a recognized type of person. The casual nature of the conversation is reflected in the plain
+      forms used throughout the sentence.
+  - english: The internet is overflowing with so-called fake news.
+    japanese:
+      - インターネット 上 に は {いわゆる} フェイク ニュース が 溢れ て いる。
+      - インターネット 上 に は {いわゆる} フェイク ニュース が 溢れ て い ます。
+      - インターネット 上 に は {いわゆる} フェイク ニュース が 溢れ て いる の だ。
+    english_literally: On the internet, what is called fake news is overflowing.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット 上 に は フェイク ニュース {と いう の は}、偽り の 情報 だ と いう こと です。
+        english: Fake news on the internet means it is false information.
+        hint: というのは defines or explains a concept. We're looking for a phrase that introduces a widely
+          recognized term, often with a hint of skepticism, not a definition.
+      - competing_japanese:
+          - インターネット 上 に は フェイク ニュース {と いう} 情報 が 溢れ て いる。
+        english: On the internet, information called fake news is overflowing.
+        hint: という simply states something is called that. いわゆる adds a nuance of it being a commonly recognized
+          or 'so-called' term, potentially implying skepticism. We're looking for that specific nuance.
+      - competing_japanese:
+          - インターネット 上 に は 嘘 の ニュース {が 溢れ て いる}。
+        english: On the internet, false news is overflowing.
+        hint: This sentence uses a direct term for 'lie' instead of the commonly accepted term. We're
+          looking for a phrase that introduces a widely recognized label for misinformation.
+    scene: A news anchor reporting on current events and misinformation.
+    register: formal
+    setting: serious
+    nuance: This example uses 「いわゆる」 to introduce a modern, widely discussed term 「フェイクニュース」 (feiku nyūsu
+      - fake news). The formal phrasing 「溢れて いる」 (afurete iru - overflowing) and the overall context suit
+      a serious, informative setting like a news report.
+  - english: When I was young, I was what you'd call a playboy, but now I've settled down.
+    japanese:
+      - 若い 頃 は {所謂} 遊び人 だっ た けど、今 は 落ち着い た もの よ。
+      - 若い 頃 は {いわゆる} 遊び人 だっ た けど、今 は 落ち着き まし た。
+      - 若い 頃 は {いわゆる} 遊び人 だっ た けど、今 は 落ち着い て いる の。
+    english_literally: When young, what is called a playboy I was, but now I have settled down, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 頃 は 遊び人 {と いう の は}、いろんな 女性 と 遊ん で い た こと です。
+        english: Being a playboy when I was young means I was dating many women.
+        hint: というのは is used to explain or define a term. We're looking for a phrase that introduces a
+          commonly recognized descriptive term, not to explain its meaning.
+      - competing_japanese:
+          - 若い 頃 は 遊び人 {だっ た}。
+        english: When I was young, I was a playboy.
+        hint: This sentence simply states a fact. We're looking for a phrase that introduces a commonly
+          recognized or 'so-called' type of person.
+    scene: An older woman reminiscing with a younger relative over tea.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of the more formal kanji 「所謂」 (shoi) with a casual term like 「遊び人」 (asobinin - playboy/player)
+      creates a slightly self-deprecating or detached tone, as if acknowledging a common stereotype from
+      her past. The feminine sentence-final particle 「もの よ」 (mono yo) reinforces the speaker's gender
+      and the casual, reflective mood.
+  - english: In some cases, liability may be exempted due to the so-called force majeure clause stated
+      in the contract.
+    japanese:
+      - 契約 書 に 記載 さ れ た {所謂} 不可抗 力 条項 に よっ て、責任 が 免除 さ れる 場合 が ある。
+      - 契約 書 に 記載 さ れ た {いわゆる} 不可抗 力 条項 に よっ て、責任 が 免除 さ れる 場合 が あり ます。
+    english_literally: By the what is called force majeure clause stated in the contract, responsibility
+      may be exempted in some cases.
+    competing_grammar:
+      - competing_japanese:
+          - 不可抗 力 条項 {と いう の は}、予測 でき ない 出来事 に よっ て 履行 が 不 可能 に なる こと です。
+        english: A force majeure clause means that performance becomes impossible due to unforeseen events.
+        hint: というのは defines or explains a legal term. We're looking for a phrase that introduces a specific,
+          recognized legal term without defining it, implying it's a common concept.
+      - competing_japanese:
+          - 契約 書 に 記載 さ れ た 不可抗 力 条項 {と いう 文言} に よっ て、責任 が 免除 さ れる 場合 が ある。
+        english: In some cases, liability may be exempted due to the wording called 'force majeure clause'
+          stated in the contract.
+        hint: という can identify something as 'called,' but いわゆる specifically refers to a widely recognized
+          or 'so-called' legal concept. We're looking for that specific nuance in a legal context, highlighting
+          its conventional usage.
+    scene: A lawyer explaining a complex legal document to a client.
+    register: formal
+    setting: legal
+    nuance: In a legal context, 「所謂」 (shoi) is often used to refer to specific, established legal terms
+      like 「不可抗力 条項」 (fukakōryoku jōkō - force majeure clause). Its formal usage indicates that the term
+      is a conventionally designated concept within the legal framework.
+  - english: He is what you'd call a perfectionist; he never compromises on any task.
+    japanese:
+      - 彼 は {いわゆる} 完璧 主義 者 で、どんな 作業 も 妥協 し ない。
+      - 彼 は {いわゆる} 完璧 主義 者 で、どんな 作業 も 妥協 し ませ ん。
+      - 彼 って、{いわゆる} 完璧 主義 者 な ん だ よ ね。どんな 作業 も 妥協 し ない ん だ。
+    english_literally: As for him, what is called a perfectionist, and on any task, he does not compromise.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 完璧 主義 者 {と いう の は}、どんな 作業 も 妥協 し ない から です。
+        english: The reason he is a perfectionist is because he never compromises on any task.
+        hint: というのは explains or gives a reason for a term. We're looking for a way to introduce a commonly
+          recognized personality type, not to explain why he is that way.
+      - competing_japanese:
+          - 彼 は 完璧 主義 者 {と いう 人} です。
+        english: He is a person called a perfectionist.
+        hint: という simply states a label. いわゆる implies it's a commonly recognized or typical designation,
+          suggesting it's a well-known category. We're looking for that specific nuance.
+    scene: A colleague is describing a meticulous team member to a new employee.
+    register: semi-formal
+    setting: professional
+    nuance: 「完璧主義者」 (kanpeki shugisha) is a commonly recognized personality type. 「いわゆる」 introduces it
+      as a familiar label, implying the speaker is using a widely understood classification. The polite
+      「です」 at the end maintains a semi-formal, professional tone suitable for colleagues.
+  - english: You're what I call my only true friend, so I want to cherish you.
+    japanese:
+      - お前 は {いわゆる} 俺 の 唯一 の 親友 だ から、大切 に し たい。
+      - お前 は {いわゆる} 俺 の 唯一 の 親友 だ。だ から、大切 に し たい。
+    english_literally: As for you, what is called my only true friend, because of that, I want to cherish
+      you.
+    competing_grammar:
+      - competing_japanese:
+          - お前 が 唯一 の 親友 {と いう の は}、何 で も 話せる 相手 だ から です。
+        english: The reason you are my only true friend is because you are someone I can talk to about
+          anything.
+        hint: というのは provides an explanation or reason for a term. We're looking for a way to affectionately
+          label someone with a recognized term, emphasizing their significant status.
+      - competing_japanese:
+          - お前 は 俺 の 唯一 の 親友 {だ}。
+        english: You are my only true friend.
+        hint: という simply states a fact. いわゆる here conveys the specific, often emotional, recognition of
+          someone as a certain type of person, giving the label a deeper, almost designated, meaning within
+          the relationship. We're looking for that special nuance.
+    scene: A young man earnestly speaking to his best friend.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of the informal male pronouns 「お前」 (omae) for the listener and 「俺」 (ore) for the speaker,
+      combined with the phrase 「唯一 の 親友」 (yuiitsu no shin'yū - only true friend), expresses a deep, exclusive
+      bond. 「いわゆる」 here elevates this friendship to a designated, significant status. The casual ending
+      「したい」 (shitai) indicates strong personal sentiment often found in intimate male friendships.
+  - english: This is what we call our company's main product.
+    japanese:
+      - こちら が {いわゆる} 弊社 の 主要 製品 で ござい ます。
+      - こちら が {いわゆる} 当社 の 主要 製品 で ござい ます。
+      - こちら が {いわゆる} 弊社 の 主要 製品 です。
+      - こちら が {いわゆる} 当社 の 主要 製品 です。
+    english_literally: This is what is called our company's main product.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 の 主要 製品 {と いう の は}、最も 売り上げ の ある 商品 です。
+        english: Our company's main product means it is the product with the highest sales.
+        hint: というのは defines or explains a term. We're looking for a way to formally introduce something
+          by its designated company term, implying it's a known label.
+      - competing_japanese:
+          - こちら が 弊社 の 主要 製品 {と いう もの} です。
+        english: This is the thing called our company's main product.
+        hint: という simply identifies something. いわゆる is used to introduce a term that is officially designated
+          or commonly referred to within a specific context. We're looking for that specific nuance in
+          a business setting, highlighting its official or common designation.
+    scene: A sales representative introducing their product to a client at a business expo.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The highly formal business language, including 「弊社」 (heisha - our company, humble) and the
+      honorific 「で ございます」 (de gozaimasu), sets a professional tone. 「いわゆる」 here introduces the product
+      by its designated or recognized title within the company's framework, typical in business presentations
+      where terms are formally introduced.
+  - english: That so-called art exhibition was nothing but a collection of random objects.
+    japanese:
+      - あの {いわゆる} 美術 展 は、ただ の ガラクタ の 集まり だっ た よ。
+      - あの {いわゆる} 美術 展 は、ただ の ガラクタ の 集まり でし た よ。
+    english_literally: That what is called art exhibition was just a collection of junk, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 美術 展 {と いう の は}、ガラクタ を 集め た だけ の もの でし た。
+        english: That art exhibition was something that just collected junk.
+        hint: というのは explains or defines something. We're looking for a phrase that expresses skepticism
+          or irony about something being called 'art exhibition', not an explanation of its content.
+      - competing_japanese:
+          - あの 美術 展 は、ガラクタ の 集まり {だっ た} よ。
+        english: That art exhibition was a collection of junk.
+        hint: This simply states a fact. We're looking for a phrase that implies the speaker doesn't truly
+          consider it an 'art exhibition', suggesting a discrepancy between name and reality.
+    scene: Two friends casually discussing a recent visit to an art gallery.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「いわゆる」 combined with the dismissive 「ただ の ガラクタ」 (tada no garakuta - just junk)
+      conveys skepticism and disappointment, implying that the 'art exhibition' did not live up to its
+      name. The casual 「だった よ」 (datta yo) reinforces the informal, conversational tone appropriate between
+      friends.
+  - english: She's what they call a 'morning person,' always energetic from the get-go.
+    japanese:
+      - 彼女 は {いわゆる} 朝型 人間 で、いつ も 朝 から 元気 な の よ。
+      - 彼女 は {いわゆる} 朝型 人間 で、いつ も 朝 から 元気 です よ。
+    english_literally: As for her, what is called a morning person, always energetic from morning, you
+      know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 朝型 人間 {と いう の は}、朝 から 活動 的 だ から です。
+        english: The reason she is a morning person is because she is active from the morning.
+        hint: というのは provides a reason or explanation for a term. We're looking for a phrase that labels
+          someone with a commonly recognized type, not explains why they fit it.
+      - competing_japanese:
+          - 彼女 は 朝型 人間 {です}。
+        english: She is a morning person.
+        hint: This sentence simply states a fact. We're looking for a phrase that emphasizes this is a
+          common, recognized type of person, suggesting a shared understanding of the label.
+    scene: Two colleagues chatting about a mutual friend's habits.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「朝型 人間」 (asagata ningen - morning person) is a widely understood term describing a person's
+      daily rhythm. 「いわゆる」 here introduces this as a common, descriptive label. The sentence-final particle
+      「の よ」 (no yo) adds a feminine, explanatory nuance often used when sharing observations with a friend
+      or colleague.
+post_example_writeup: These examples demonstrate the versatility of いわゆる across different registers and
+  contexts. Whether describing abstract social concepts, personal traits, or professional designations,
+  いわゆる consistently functions to frame the subsequent noun as a recognized or conventional term. The kanji
+  form 所謂 is generally reserved for more formal or academic prose, as shown in the legal context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いわゆる

@@ -1,0 +1,303 @@
+grammar_point: それぞれ (each・respectively)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+meaning: Each, respectively
+pronunciation:
+  katakana: ソレゾレ
+  romaji: sorezore
+formation:
+  それぞれ: Each, respectively; indicates individual items or people within a group.
+  それぞれ + の + Noun: Each (respective) Noun; emphasizes individuality or distinction among multiple items
+    or persons.
+  Verb (dictionary form) + それぞれ: Each person/thing does (Verb) individually; describes separate actions.
+jlpt: N3
+etymology: 「それぞれ」 stems from the repetition of the demonstrative pronoun 「其 (そ) 」 (so), meaning 'that.'
+  Conceptually, its etymology can be understood as 'that and that,' which evolved to signify individual
+  elements within a collective, thus leading to the meaning of 'each' or 'everyone.' This illustrates
+  a linguistic process where a simple pointing gesture expands to encompass a distributive sense.
+writeup: "「それぞれ」 is a versatile Japanese term, primarily functioning as a noun but frequently used adverbially,\
+  \ akin to 'each' or 'respectively' in English. It serves to emphasize the individuality or distinctness\
+  \ of items, people, or actions within a group. This grammatical behavior is analogous to other nouns\
+  \ such as 「ほとんど」 (hotondo・mostly), 「沢山」 (takusan・a lot), and 「かなり」 (kanari・quite), which can similarly\
+  \ modify entire sentences or noun phrases. When 「それぞれ」 is followed by 「の」 (no), it explicitly modifies\
+  \ a subsequent noun, highlighting that noun's individual association (e.g., 「それぞれの意見」, \"each opinion\"\
+  ). When used adverbially without 「の」, it typically precedes a verb or a clause, indicating that multiple\
+  \ subjects perform actions individually or possess distinct characteristics. \n\n**Important Considerations:**\
+  \ \n* 「それぞれ」 is standard in register and widely applicable across various contexts, from casual conversation\
+  \ to formal discourse. \n* It is not gender-specific and can be used by speakers of all ages. \n* Its\
+  \ use clarifies that actions or attributes apply to members of a group individually rather than collectively\
+  \ or uniformly."
+false_friends:
+  - term: 当たり
+    meaning: Per~, A~, Apiece, Each
+    kind: similar expression
+    nuance: Unlike 「それぞれ」, which emphasizes individuality or distinction within a set, 「当たり」 is primarily
+      used to express a rate or proportion, such as 'per person' (一人当たり - hitori atari) or 'per item'
+      (品物当たり - shinamono atari). It focuses on quantity or allocation rather than unique characteristics.
+    grammar_point: 当たり (per unit)
+  - term: 各自
+    meaning: Each person, each, individual
+    kind: similar expression
+    nuance: While both 「それぞれ」 and 「各自」 (kakuji) can mean 'each,' 「各自」 specifically refers to individual
+      *people* and often implies a responsibility or action to be taken by each person independently.
+      「それぞれ」 is broader, applying to things as well, and emphasizes the distinctness or individuality
+      of items or actions within a group, rather than a duty.
+    grammar_point: <suggest>:各自 (each person)
+  - term: 皆
+    meaning: All, everyone, everything
+    kind: similar expression
+    nuance: 「皆」 refers to everyone or everything in a group as a collective whole, implying uniformity
+      or a shared action. 「それぞれ」 emphasizes the individuality and distinctness of each member or item
+      within that group.
+    grammar_point: <suggest>:皆 (all・everyone)
+  - term: 各
+    meaning: Each, every, respective
+    kind: similar expression
+    nuance: 「各」 is more formal and typically used in written contexts or for official announcements, denoting
+      a categorical or administrative 'each.' 「それぞれ」 is more flexible, used in both spoken and written
+      contexts to highlight distinctiveness or individual action. 「各」 often implies a set, fixed number
+      of items or people.
+    grammar_point: 各 (each or every)
+  - term: 個々
+    meaning: Each, individual, one by one
+    kind: similar expression
+    nuance: Unlike 「それぞれ」, which emphasizes the distinct actions or attributes of members within a group,
+      「個々」 highlights the individual unit itself, often implying a focus on items taken one by one or
+      actions performed separately, sometimes in a more formal or analytical context.
+    grammar_point: <suggest>:個々 (individual)
+post_false_friends_writeup: "While both 「それぞれ」 and 「当たり」 can be translated as \"each\" in English, their\
+  \ applications differ significantly. 「それぞれ」 highlights the notion of distinctness or individuality among\
+  \ multiple entities, focusing on qualitative differences or separate actions. In contrast, 「当たり」 quantifies\
+  \ a distribution or rate, indicating how much or how many apply to each unit. Understanding this distinction\
+  \ is crucial for precise expression in Japanese. Similarly, while 「各自」 can also mean 'each,' it primarily\
+  \ refers to individuals and their independent actions or responsibilities, whereas 「それぞれ」 is more general\
+  \ and focuses on distinctness among various items or people. \n\nWhen contrasting with 「皆」, remember\
+  \ that 「皆」 points to the group's collective action, while 「それぞれ」 underscores the distinct actions or\
+  \ attributes of individuals within that group. For example, 「皆で食べる」 (minna de taberu - everyone eats\
+  \ together) suggests a shared meal, whereas 「それぞれ食べる」 (sorezore taberu - each eats individually) implies\
+  \ separate meals or preferences. \n\nLastly, 「各」 is more formal and often implies a categorized or administrative\
+  \ 'each,' suitable for official or structured contexts. 「それぞれ」 is more versatile and commonly used in\
+  \ everyday language to emphasize individual aspects."
+examples:
+  - english: The children each chose their favorite game.
+    japanese:
+      - 子供 たち は {それぞれ} 好き な 遊び を 選ん だ。
+      - 子供 たち は {それぞれ} 好き な 遊び を 選び まし た。
+      - 子供 たち が {それぞれ} 好き な 遊び を 選ん だ。
+    english_literally: Children, each, favorite play chose.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は {皆}、好き な 遊び を 選ん だ。
+        english: The children all chose their favorite game.
+        hint: 「皆 (みんな)」 implies a collective action where everyone did the same thing, or the group as
+          a whole. 「それぞれ」 emphasizes that each child made an individual choice.
+      - competing_japanese:
+          - 子供 たち は {各自}、好き な 遊び を 選ん だ。
+        english: The children individually chose their favorite game.
+        hint: 「各自」 implies that each individual child was instructed or expected to make their own choice.
+          「それぞれ」 simply states that their choices were distinct.
+    scene: A group of children in a park, deciding what to do.
+    register: casual
+    setting: friendly
+  - english: My older sister and I each went on to different universities.
+    japanese:
+      - 姉 と 私 は {それぞれ} 異なる 大学 に 進ん だ。
+      - 姉 と 私 は {それぞれ} 異なる 大学 に 進み まし た。
+      - 姉 と 私 は {それぞれ} 別々 の 大学 へ 行っ た。
+    english_literally: Older sister and I, each, different universities advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 姉 と 私 は 二 つ の 異なる 大学 に 進ん だ。
+        english: My older sister and I went on to two different universities.
+        hint: This sentence merely states the outcome without emphasizing individual paths. 「それぞれ」 highlights
+          that each person followed their own distinct path.
+      - competing_japanese:
+          - 姉 と 私 は {各自}、異なる 大学 に 進ん だ。
+        english: My older sister and I, individually, went on to different universities.
+        hint: 「各自」 implies that each person was responsible for selecting their own university independently.
+          「それぞれ」 simply notes that their chosen universities were distinct.
+    scene: Two sisters reflecting on their life paths after high school.
+    register: casual
+    setting: reflective
+    speaker_age: younger
+  - english: Each team member fulfills their own role.
+    japanese:
+      - チーム の メンバー は {それぞれ} 自分 の 役割 を 果たす。
+      - チーム の メンバー は {それぞれ} 自分 の 役割 を 果たし ます。
+      - チーム の メンバー は {それぞれ} が 自身 の 役割 を 果たす。
+    english_literally: Team's members, each, own role fulfill.
+    competing_grammar:
+      - competing_japanese:
+          - チーム の メンバー は {皆}、自分 の 役割 を 果たす。
+        english: All team members fulfill their role.
+        hint: 「皆 (みんな)」 suggests collective fulfillment of a shared role. 「それぞれ」 specifies that each member
+          has a unique and distinct role.
+      - competing_japanese:
+          - チーム の メンバー は {各自}、自分 の 役割 を 果たす。
+        english: Each team member individually fulfills their own role.
+        hint: 「各自」 strongly emphasizes the individual responsibility and independent action of each team
+          member in fulfilling their role. 「それぞれ」 focuses more on the distinctness of the roles themselves.
+    scene: A project manager explaining team responsibilities.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This sentence uses formal language and a direct tone appropriate for an older male project
+      manager addressing a group. The use of 「果たす」 (hatasu・to fulfill) is professional and emphasizes
+      the seriousness of responsibilities.
+  - english: The new products each have different functions.
+    japanese:
+      - 新しい 製品 は {それぞれ} 異なる 機能 を 持っ て い ます。
+      - 新しい 製品 は {それぞれ} 異なる 機能 を 持っ て いる。
+      - 新 製品 は {それぞれ} 機能 が 異なり ます。
+      - 新 製品 は {それぞれ} 機能 が 違う。
+    english_literally: New products, each, different functions have.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 製品 は 色々 な 機能 を 持っ て い ます。
+        english: The new products have various functions.
+        hint: 「色々な (いろいろな)」 indicates a general variety of functions among the products. 「それぞれ」 emphasizes
+          that each individual product has distinct functions, implying uniqueness rather than just variety.
+    scene: A salesperson introducing a line of new electronics.
+    register: teineigo (polite)
+    setting: informative
+  - english: You and I each have different talents. That's why it's fun to be together.
+    japanese:
+      - 君 と 僕 に は {それぞれ} 異なる 才能 が ある。だ から こそ、一緒 に いる の が 楽しい ん だ。
+      - 君 と 私 に は {それぞれ} 異なる 才能 が あり ます。だ から こそ、一緒 に いる の が 楽しい の です。
+      - 君 と 僕 に は {それぞれ} 違っ た 才能 が ある。だ から、一緒 に いる と 楽しい ん だ。
+    english_literally: You and I, each, different talents exist. That's why, together being, fun.
+    competing_grammar:
+      - competing_japanese:
+          - 君 と 僕 に は 色々 な 才能 が ある。
+        english: You and I have various talents.
+        hint: 「色々な (いろいろな)」 describes a general range of talents. 「それぞれ」 points out that you and I *each*
+          possess distinct talents, highlighting individual differences.
+    scene: A couple reflecting on their complementary personalities.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「君 (きみ)」 by a male speaker towards a female listener and 「僕 (ぼく)」 for self-reference
+      are typical casual male speech. The phrase 「～なんだ」 (nanda) at the end adds a softer, more intimate,
+      explanatory tone suitable for a younger couple.
+  - english: The children will grow up and each find their own path.
+    japanese:
+      - 子供 たち は 成長 し、{それぞれ} 自分 の 道 を 見つける だろう。
+      - 子供 たち は 成長 し、{それぞれ} 自分 の 道 を 見つける でしょう。
+      - 子供 たち は 成長 し、{それぞれ} が 自分 の 道 を 見つける だろう。
+    english_literally: Children, grow up, each, own path find, will.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は {皆}、自分 の 道 を 見つける だろう。
+        english: The children will grow up and all find their own path.
+        hint: 「皆 (みんな)」 implies a collective or shared path for all children. 「それぞれ」 conveys that each
+          child will discover their unique and individual life path.
+      - competing_japanese:
+          - 子供 たち は {各自}、自分 の 道 を 見つける だろう。
+        english: The children will grow up and individually find their own path.
+        hint: 「各自」 suggests that each child is responsible for autonomously finding their own path. 「それぞれ」
+          merely states that their paths will be distinct from one another.
+    scene: A parent contemplating their children's future independence.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    speaker_age: older
+    nuance: This reflective statement by an older female parent uses the plain form 「だろう」 (darou) to express
+      a soft conjecture about the future, which is common in contemplative, informal speech, and fits
+      a parent's musings.
+  - english: Each participant in the meeting submitted their opinion.
+    japanese:
+      - 会議 の 参加 者 は {それぞれ} 意見 を 提出 し た。
+      - 会議 の 参加 者 は {それぞれ} 意見 を 提出 し まし た。
+      - 会議 参加 者 は {それぞれ} 自身 の 意見 を 提出 し た。
+    english_literally: Meeting's participants, each, opinion submitted.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 参加 者 は {皆}、意見 を 提出 し た。
+        english: All participants in the meeting submitted their opinion.
+        hint: 「皆 (みんな)」 indicates that everyone submitted an opinion, possibly the same one or collectively.
+          「それぞれ」 emphasizes that each participant submitted their own distinct opinion.
+      - competing_japanese:
+          - 会議 の 参加 者 は {各自}、意見 を 提出 し た。
+        english: Each participant in the meeting individually submitted their opinion.
+        hint: 「各自」 highlights the independent action and responsibility of each participant in submitting
+          their opinion. 「それぞれ」 emphasizes that the opinions themselves were distinct.
+    scene: A secretary reporting on contributions received for a conference.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal tone and verb choice 「提出した」 (teishutsu shita・submitted) are suitable for a professional
+      setting. An older female secretary reporting to a group would typically use such objective and formal
+      language.
+  - english: The children are each working towards their own goals.
+    japanese:
+      - 子供 たち は {それぞれ} の 目標 に 向かっ て 努力 し て いる。
+      - 子供 たち は {それぞれ} の 目標 に 向かっ て 努力 し て い ます。
+      - 子供 たち は {それぞれ} 目標 に 向かっ て 努力 し て いる。
+    english_literally: Children, each's goals towards, making effort.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は {皆} の 目標 に 向かっ て 努力 し て いる。
+        english: The children are all working towards the shared goal.
+        hint: 「皆 (みんな) の目標」 implies a single, collective goal for the group. 「それぞれ」 specifies that each
+          child is striving towards their own unique and individual goal.
+      - competing_japanese:
+          - 子供 たち は {各自} の 目標 に 向かっ て 努力 し て いる。
+        english: The children are each working towards their individual goals.
+        hint: 「各自」 implies that each child is independently pursuing their own distinct goals. 「それぞれ」
+          simply states that their goals are unique to each.
+    scene: A teacher observing students in a classroom.
+    register: formal
+    setting: informative
+  - english: Each participant rested in their preferred place during the break.
+    japanese:
+      - 参加 者 は {それぞれ} 休憩 時間 に 好き な 場所 で 休ん だ。
+      - 参加 者 は {それぞれ} 休憩 時間 に 好き な 場所 で 休み まし た。
+      - 参加 者 は {それぞれ} 休憩 中 に 好き な 場所 で 休ん だ。
+    english_literally: Participants, each, break time in favorite place rested.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は {皆}、好き な 場所 で 休ん だ。
+        english: All participants rested in their favorite place.
+        hint: 「皆 (みんな)」 suggests that everyone rested in a collectively favored spot. 「それぞれ」 highlights
+          that each participant chose their own distinct favorite place to rest.
+      - competing_japanese:
+          - 参加 者 は {各自}、休憩 時間 に 好き な 場所 で 休ん だ。
+        english: Each participant individually rested in their preferred place during the break.
+        hint: 「各自」 emphasizes the independent choice and action of each participant in selecting their
+          resting place. 「それぞれ」 focuses on the distinctness of the places chosen.
+    scene: A group of people taking a break during a long seminar.
+    register: semi-formal
+    setting: informative
+  - english: Everyone has their own hobbies.
+    japanese:
+      - 皆 は {それぞれ} 違う 趣味 を 持っ て いる。
+      - 皆 は {それぞれ} 異なる 趣味 を 持っ て い ます。
+    english_literally: Everyone, each, different hobbies has.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 は 同じ 趣味 を 持っ て いる。
+        english: Everyone has the same hobbies.
+        hint: 「同じ」 implies uniformity in hobbies across the group. 「それぞれ」 is used when emphasizing that
+          each person's hobbies are distinct.
+      - competing_japanese:
+          - 皆 は 様々 な 趣味 を 持っ て いる。
+        english: Everyone has various hobbies.
+        hint: 「様々 な (さまざまな)」 indicates a general variety of hobbies within the group, but doesn't necessarily
+          mean that each individual has a unique hobby different from others. 「それぞれ」 emphasizes the individuality
+          of each person's hobbies.
+    scene: A group of friends discussing their leisure activities.
+    register: casual
+    setting: friendly
+post_example_writeup: 「それぞれ」 is indispensable for articulating situations where individual elements within
+  a group possess unique characteristics or undertake distinct actions. It ensures clarity, preventing
+  the misinterpretation of a collective action as a uniform one.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それぞれ

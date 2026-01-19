@@ -1,0 +1,231 @@
+grammar_point: '[Verb-dictionary]一方だ (more and more・continuous change)'
+learn_before:
+  - 一方で (on the other hand・while)
+meaning: Indicates that a state or action is continuously progressing in one direction, often implying
+  an increase or decrease, or a worsening/improving trend.
+pronunciation:
+  katakana: イッポウだ
+  romaji: ippō da
+formation:
+  Verb (dictionary form) + 一方だ: Indicates a continuous, unidirectional change or trend.
+jlpt: N3
+etymology: The phrase combines 一方 (いっぽう), meaning "one side" or "one direction," with the copula だ, meaning
+  "to be." Literally, it means "it is one direction," which has evolved to describe a situation where
+  something is moving or changing continuously in a single, unchanging direction, without deviation or
+  reversal. This emphasizes the singular trajectory of the observed trend.
+writeup: |-
+  「V-る 一方だ」 is a grammar pattern used to describe a continuous and uninterrupted trend where something is consistently increasing, decreasing, or changing in a single direction. It emphasizes the **unidirectional** nature of the progression, suggesting that there is no reversal or significant deviation from the observed trend.
+
+  This pattern is frequently encountered in formal contexts such as news reports, academic papers, and official discussions, but it can also appear in more casual conversation when discussing noticeable trends. While it can describe both positive and negative developments, it often carries a nuance of concern or a sense of inevitability, particularly when used with negative trends. For example, describing pollution as 「増える一方だ」 (it's increasing continuously) implies a worrying situation.
+
+  The verb preceding 「一方だ」 must be in its plain, non-past (dictionary) form. This construction highlights the ongoing nature of the change, rather than a completed action.
+false_friends:
+  - term: ますます (more and more)
+    meaning: More and more; increasingly; to keep -ing (implying intensification)
+    kind: similar expression
+    nuance: 「ますます」 describes a progressive increase in degree or frequency. It's a general intensifying
+      adverb and can apply to various situations. While similar to 「一方だ」 in indicating increase, 「一方だ」
+      specifically points to a unidirectional, uninterrupted trend over time, often implying a less reversible
+      process. 「ますます」 can be used with adjectives or verbs expressing various types of increase or decrease,
+      while 「一方だ」 is typically used with verbs indicating change.
+    grammar_point: ますます (more and more)
+  - term: ばかりだ (only continues to)
+    meaning: Only continue to, Keep on -ing, More and more
+    kind: similar expression
+    nuance: 「ばかりだ」 shares a very similar meaning with 「一方だ」, both indicating a continuous, unidirectional
+      trend. However, 「ばかりだ」 often has a stronger connotation of a negative or undesirable trend that
+      is ongoing and often seen as problematic or out of control. While 「一方だ」 can be neutral or positive,
+      「ばかりだ」 is almost exclusively used for negative developments.
+    grammar_point: ばかりだ (only continues to)
+  - term: ～ていく (to continue doing)
+    meaning: To continue (doing something); to go on; to keep doing; to become (gradually)
+    kind: similar expression
+    nuance: 「〜ていく」 indicates an action or state that continues into the future or moves away from the
+      speaker/present point. It implies a progression. While it can describe a continuous trend, it lacks
+      the strong "unidirectional, no-reversal" emphasis of 「一方だ」. 「一方だ」 implies an almost deterministic
+      path, whereas 「〜ていく」 is more about forward movement.
+    grammar_point: 〜ていく (change toward future・movement away from speaker)
+  - term: なる・くなる (to become)
+    meaning: To become (a noun or adjective)
+    kind: similar expression
+    nuance: 「なる・くなる」 simply states that something has undergone a change and become something new or different.
+      It describes the result of a change rather than the continuous process of an uninterrupted trend.
+      While the result might be part of a larger trend, 「なる・くなる」 focuses on the transformation itself,
+      not the relentless progression.
+    grammar_point: になる・くなる (to become)
+post_false_friends_writeup: While 「ますます」「ばかりだ」「〜ていく」, and 「なる・くなる」 all relate to change or progression,
+  「一方だ」 specifically highlights that a situation is moving in one continuous direction without turning
+  back. 「ますます」 is a general intensifier for increases or decreases. 「ばかりだ」 is very close to 「一方だ」 but
+  is almost exclusively used for negative trends. 「〜ていく」 describes continuation into the future or movement
+  away. 「なる・くなる」 simply describes the act of becoming. Use 「一方だ」 when you want to strongly emphasize a
+  persistent, single-direction trend.
+examples:
+  - english: Japan's population continues to decrease.
+    japanese:
+      - 日本 の 人口 は {減る 一方 だ}。
+      - 日本 の 人口 は {減る 一方 です}。
+      - 我が 国 の 人口 は {減る 一方 だ}。
+    english_literally: As for Japan's population, it continues to decrease in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 人口 は 減っ て いる。
+        english: Japan's population is decreasing.
+        hint: 「減って いる」 indicates a current state of decrease. We're looking for an expression that emphasizes
+          a continuous, unidirectional trend.
+    scene: A demographic lecture.
+    register: formal
+    setting: informative
+  - english: His health is just getting worse and worse.
+    japanese:
+      - 彼 の 健康 は {悪く なる 一方 だ}。
+      - 彼 の 健康 は {悪く なる 一方 です}。
+    english_literally: As for his health, it continues to become bad in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 健康 は ますます 悪く なっ て いる。
+        english: His health is increasingly getting worse.
+        hint: 「ますます 悪く なって いる」 also describes worsening health, but 「悪くなる 一方だ」 has a stronger nuance of
+          an uninterrupted, downhill slide, implying an inevitable negative trajectory.
+    scene: Two friends discussing a mutual acquaintance's declining health.
+    register: casual
+    setting: friendly
+    nuance: The casual tone implies a personal concern for the friend. 「悪くなる一方だ」 emphasizes the continuous
+      decline with a sense of helplessness.
+  - english: Her Japanese skills are constantly improving.
+    japanese:
+      - 彼女 の 日本 語 の 能力 は {上がる 一方 だ}。
+      - 彼女 の 日本 語 の 能力 は {上がる 一方 です}。
+    english_literally: As for her Japanese ability, it continues to go up in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 日本 語 の 能力 は 伸び て いる。
+        english: Her Japanese skills are improving.
+        hint: 「伸びて いる」 describes improvement. 「上がる 一方だ」 emphasizes that the improvement is constant and
+          without regression.
+    scene: A language exchange meeting.
+    register: semi-formal
+    setting: supportive
+    nuance: This highlights a positive, steady progression, often used to praise someone's continuous
+      effort and improvement.
+  - english: Prices are just going up and up.
+    japanese:
+      - 物価 は {上がる 一方 だ}。
+      - 物価 は {上がる 一方 です}。
+      - 物価 は {高騰 する 一方 だ}。
+    english_literally: As for prices, they continue to go up in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 物価 は 上がっ て ばかり だ。
+        english: Prices are just going up (and it's bad).
+        hint: 「上がって ばかりだ」 strongly conveys a negative, ongoing trend. While very similar, 「上がる 一方だ」 can
+          be slightly more neutral or just observational, though still indicating a continuous path.
+    scene: Two colleagues discussing the cost of living.
+    register: formal
+    setting: serious
+    nuance: The usage here in a formal context (implied by "物価") lends a sense of a worrying, uncontrolled
+      economic trend.
+  - english: Energy consumption has been steadily increasing.
+    japanese:
+      - エネルギー 消費 量 は {増える 一方 だ}。
+      - エネルギー 消費 量 は {増える 一方 です}。
+      - エネルギー 消費 量 は {増加 する 一方 だ}。
+    english_literally: As for energy consumption, it continues to increase in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - エネルギー 消費 量 は 増え て いる。
+        english: Energy consumption is increasing.
+        hint: 「増えて いる」 indicates a current state of increase. 「増える 一方だ」 emphasizes that the increase is
+          continuous and without significant fluctuations or reversals.
+    scene: A scientist presenting data at a conference.
+    register: formal
+    setting: informative
+    nuance: In this professional setting, 「増える一方だ」 serves as an objective statement about a persistent
+      trend without necessarily implying a positive or negative judgment, though the implications might
+      be negative.
+  - english: Traffic jams are getting worse and worse every year.
+    japanese:
+      - 毎年 交通 渋滞 は {ひどく なる 一方 だ}。
+      - 毎年 交通 渋滞 は {ひどく なる 一方 です}。
+    english_literally: Every year, as for traffic jams, they continue to become bad in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 毎年 交通 渋滞 は 悪く なっ て いる。
+        english: Every year, traffic jams are getting worse.
+        hint: 「悪く なって いる」 is a general statement of worsening. 「ひどくなる 一方だ」 expresses a continuous, uninterrupted
+          worsening.
+    scene: A commuter complaining to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This emphasizes the continuous, negative spiral of traffic, implying no relief in sight. The
+      casual tone is appropriate for a complaint among friends.
+  - english: That artist's popularity is constantly rising.
+    japanese:
+      - その 歌手 の 人気 は {上がる 一方 だ}。
+      - その 歌手 の 人気 は {上がる 一方 です}。
+    english_literally: As for that singer's popularity, it continues to go up in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - その 歌手 の 人気 は ますます 上がっ て いる。
+        english: That artist's popularity is increasingly rising.
+        hint: 「ますます 上がって いる」 also shows increasing popularity. 「上がる 一方だ」 specifically focuses on the consistent,
+          uninterrupted upward trajectory.
+    scene: A fan talking to another fan about their favorite artist.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    listener_gender: female
+    nuance: This is a clear example of a positive and continuous trend, indicating steady growth in popularity,
+      expressed with enthusiasm fitting a fan conversation.
+  - english: His debt is only increasing.
+    japanese:
+      - 彼 の 借金 は {増える 一方 だ}。
+      - 彼 の 借金 は {増える 一方 です}。
+    english_literally: As for his debt, it continues to increase in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 借金 は 増える ばかり だ。
+        english: His debt is only increasing (and it's a problem).
+        hint: 「増えるばかりだ」 has a stronger negative connotation, implying that the increase in debt is problematic
+          and uncontrolled. 「増える一方だ」 is similar but can be slightly more neutral or observational, although
+          in the context of debt it still implies a negative, ongoing trend.
+    scene: A financial advisor discussing a client's situation.
+    register: semi-formal
+    setting: serious
+    nuance: The professional context implies a critical and ongoing negative financial trend with no signs
+      of improvement, conveyed through the continuous, unidirectional aspect of 「増える一方だ」.
+  - english: Her grades are just getting worse and worse.
+    japanese:
+      - 彼女 の 成績 は {下がる 一方 だ}。
+      - 彼女 の 成績 は {下がる 一方 です}。
+      - 彼女 の 成績 は {悪く なる 一方 だ}。
+    english_literally: As for her grades, they continue to decrease in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 成績 は 悪く なる ばかり だ。
+        english: Her grades are just getting worse (and it's bad).
+        hint: 「悪くなる ばかりだ」 emphasizes the negative and continuous worsening of grades, often with a stronger
+          sense of dismay. 「下がる一方だ」 also conveys a continuous decline but can be used more broadly for
+          any continuous unidirectional decrease.
+    scene: A teacher discussing a student's performance with a colleague.
+    register: formal
+    setting: serious
+    nuance: This expresses a continuous, undesirable downward trend in academic performance, using 「下がる一方だ」
+      to highlight the lack of improvement or reversal.
+  - english: The problems are becoming more and more complicated.
+    japanese:
+      - 問題 は {複雑 に なる 一方 だ}。
+      - 問題 は {複雑 に なる 一方 です}。
+    english_literally: As for the problems, they continue to become complicated in one direction.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 複雑 に なっ て いく。
+        english: The problems are becoming complicated.
+        hint: 「複雑に なって いく」 describes a progression towards complexity. 「複雑になる 一方だ」 adds the nuance that
+          this increase in complexity is continuous and without any signs of simplification.
+    scene: Colleagues discussing a project issue.
+    register: semi-formal
+    setting: professional
+    nuance: This conveys a sense of growing difficulty and an ongoing, uninterrupted increase in complexity,
+      suggesting the situation is steadily becoming harder to manage.

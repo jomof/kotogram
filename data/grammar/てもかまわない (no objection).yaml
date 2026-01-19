@@ -1,0 +1,270 @@
+grammar_point: てもかまわない (no objection)
+learn_before:
+  - 〜てもかまわない (it doesn't matter if)
+  - ものの (although・but)
+  - 気に入らない (not to one's liking)
+meaning: It doesn't matter if, I don't mind, No objection
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てもかまわない
+    rarity: common
+    meaning: It doesn't matter if, I don't mind
+  - conjugation-type: non-past polite (～ます)
+    form: てもかまいません
+    rarity: common
+    meaning: It doesn't matter if, I don't mind
+  - conjugation-type: past plain (～た)
+    form: てもかまわなかった
+    rarity: common
+    meaning: It didn't matter if, I didn't mind
+  - conjugation-type: past polite (～ました)
+    form: てもかまいませんでした
+    rarity: common
+    meaning: It didn't matter if, I didn't mind
+  - conjugation-type: conditional (～ば)
+    form: てもかまわなければ
+    rarity: uncommon
+    meaning: If it doesn't matter, if I don't mind
+  - conjugation-type: conditional (～たら)
+    form: てもかまわなかったら
+    rarity: uncommon
+    meaning: If it didn't matter, if I didn't mind
+pronunciation:
+  katakana: テモカマワナイ
+  romaji: te mo kamawanai
+formation:
+  Verb in て-form + も + 構わない: Used with verbs to express that the speaker doesn't mind or doesn't care
+    if an action happens.
+  い-Adjective in く-form + ても + 構わない: Used with い-adjectives to express that the speaker doesn't mind or
+    doesn't care if a state is true.
+  な-Adjective + でも + 構わない: Used with な-adjectives to express that the speaker doesn't mind or doesn't
+    care if a state is true.
+  Noun + でも + 構わない: Used with nouns to express that the speaker doesn't mind or doesn't care about a noun
+    or a state related to it.
+jlpt: N3
+etymology: The grammar point 「てもかまわない」 is composed of 「～て」 form (connecting form of verbs), the particle
+  「も」 (even), and 「構わない」 (kamawanai), which is the negative form of the verb 「構う」 (kamau, to mind, to
+  care about). Thus, it literally translates to "even if [something happens], I don't mind."
+writeup: |-
+  「ても構わない」 is frequently employed to convey that something "doesn't matter" or that the speaker "doesn't mind." This construction combines the 「～て」 form for verbs and い-adjectives, or 「でも」 for nouns and な-adjectives, with the negative conjugation of the う-verb 「構う」. The verb 「構う」 means "to mind" or "to care about."
+
+  Literally, this expression can be understood as "to not be bothered" or "to not be uptight." However, its practical usage almost always signifies that there is no issue or objection concerning a particular matter. The phrase 「ても構わない」 is versatile and can be applied to various word types once they are in their appropriate 「～て」 or 「でも」 form.
+
+  Historically, the kanji 構 (構う) often carries the nuance of "to posture" or "to pose" into a resistant or rigid stance. In the context of 「ても構わない」, this etymological root translates to the idea that a given situation will not cause the speaker to "posture," "position," or "pose" themselves in a resistant manner, thus indicating their acceptance or lack of concern.
+false_friends:
+  - term: てもいい
+    meaning: It's okay to, It's alright to, Can/may
+    kind: often confused with
+    nuance: While both 「てもいい」 and 「ても構わない」 express permission or acceptance, 「てもいい」 is generally used
+      to grant permission or indicate something is acceptable, whereas ても構わない indicates that the speaker
+      doesn't mind or doesn't care, focusing on their personal indifference.
+    grammar_point: <suggest>:てもいい (it's okay to)
+  - term: でよければ
+    meaning: If it's alright, If you don't mind, If you would like, If possible
+    kind: similar expression
+    nuance: 「でよければ」 is used to offer something while humbly suggesting it might not be the best option,
+      often implying a favor. In contrast, 「ても構わない」 simply states a lack of objection or personal indifference
+      without necessarily offering anything or implying humility.
+    grammar_point: でよければ (if it's alright)
+  - term: にかかわらず
+    meaning: Regardless of, whether or not, no matter
+    kind: similar expression
+    nuance: While both 「ても構わない」 and 「にかかわらず」 express a lack of concern about a condition, 「にかかわらず」 is
+      more formal and implies that a situation holds true irrespective of a given factor, often used in
+      rules or objective statements. 「ても構わない」 focuses on the speaker's personal indifference or acceptance.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: 「ても構わない」 conveys a strong personal stance from the speaker, indicating they
+  have no objection to a specific matter, do not mind it, or do not consider it a problem. It emphasizes
+  the speaker's personal lack of concern. In contrast, 「てもいい」 is primarily used to grant permission or
+  to state that something is within an acceptable range, often from a more objective viewpoint. 「でよければ」
+  is used when humbly offering something, carrying the nuance of providing an option to the listener while
+  suggesting it might be a compromise. 「にかかわらず」 expresses that something holds true irrespective of a
+  given factor, often in objective rules or principles. It is crucial to differentiate between these expressions
+  based on the speaker's intention and the specific context.
+examples:
+  - english: It doesn't matter if you're late, so please come carefully.
+    japanese:
+      - 遅れ て も {構い ませ ん} から、気 を 付け て 来 て ください。
+      - 遅れ て も {構い ませ ん} の で、気 を 付け て いら し て ください。
+    english_literally: Even if you are late, I don't mind, so please come carefully.
+    competing_grammar:
+      - competing_japanese:
+          - 遅れ て も {いい} から
+        english: It's okay if you're late, so please come carefully.
+        hint: 「てもいい」 grants permission, while 「ても構いません」 expresses personal indifference or lack of objection.
+          We're looking for an expression of personal indifference here.
+    scene: A friend sending a message to another friend who is on their way to a casual gathering, prioritizing
+      their safety over punctuality.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: Even if it's an old design, I don't mind, so I prioritize functionality.
+    japanese:
+      - 古い デザイン {で も 構い ませ ん} の で、機能 性 を 重視 し ます。
+      - 古い デザイン {で も 構い ませ ん}。機能 性 が 何 より 大切 です。
+    english_literally: Even if it's an old design, it doesn't matter, so I prioritize functionality.
+    competing_grammar:
+      - competing_japanese:
+          - 古い デザイン {で も いい} の で
+        english: It's okay even if it's an old design, so I prioritize functionality.
+        hint: 「てもいい」 states acceptability, while 「ても構いません」 emphasizes personal lack of concern. We're
+          looking for a statement of personal preference.
+    scene: A customer discussing their preferences for a product with a salesperson, indicating that aesthetics
+      are less important than practical use.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: No matter how clumsy you are, I don't care. If you have passion, you're welcome.
+    japanese:
+      - どんな に 不 器用 {で も 構い ませ ん}。熱意 が あれ ば 歓迎 し ます。
+      - どんな に 不 器用 {で も 構い ませ ん}。熱意 の ある 方 は 歓迎 いたし ます。
+    english_literally: No matter how clumsy you are, it doesn't matter. If there is enthusiasm, I welcome
+      you.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 不 器用 {で も いい} です
+        english: It's okay no matter how clumsy you are. If you have passion, you're welcome.
+        hint: 「てもいい」 indicates permissibility, while 「ても構いません」 expresses a personal acceptance or lack
+          of objection. We're looking for a declaration of acceptance regardless of skill level.
+    scene: An instructor addressing potential new students for a craft class, emphasizing that enthusiasm
+      is more important than initial skill.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: Even if it's tough, I don't care. I'll see it through to the end!
+    japanese:
+      - 辛く {て も 構わ ない}。最後 まで やり遂げる ぞ。
+      - 辛く {て も 構わ ない} よ。最後 まで やり遂げる さ。
+    english_literally: Even if it's tough, it doesn't matter. I will complete it until the end.
+    competing_grammar:
+      - competing_japanese:
+          - 辛く {て も いい}。最後 まで やり遂げる ぞ。
+        english: It's okay even if it's tough. I'll see it through to the end!
+        hint: 「てもいい」 suggests acceptance of a condition, while 「ても構わない」 expresses personal indifference
+          to a difficult situation. We're looking for a strong personal declaration of indifference.
+    scene: An athlete encouraging himself mentally during a gruelling training session, focusing on determination.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The ending particle 「ぞ」 (zo) adds a strong, assertive, and determined tone, often used by
+      male speakers to express personal resolve or challenge themselves.
+  - english: I didn't mind if the budget was tight. We got the best results.
+    japanese:
+      - 予算 は 厳しかっ た {て も かまい ませ ん でし た}。最高 の 結果 が 出 まし た。
+      - 予算 は 厳しかっ た {て も 構い ませ ん でし た が}、最高 の 結果 が 出 まし た。
+    english_literally: Even if the budget was tight, it didn't matter. The best results came out.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 は 厳しく {て も よかっ た} でし た。最高 の 結果 が 出 まし た。
+        english: It was fine even if the budget was tight. We got the best results.
+        hint: 「よかった」 suggests it was acceptable or good in retrospect, while 「かまいませんでした」 indicates a lack
+          of personal concern or objection about the situation. We're looking for an expression of personal
+          lack of concern.
+    scene: A project manager reviewing a successful project that was completed with limited financial
+      resources.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: If it doesn't matter to you that he isn't coming, let's start with just us.
+    japanese:
+      - 彼 が 来 なく {て も 構わ なけれ ば}、私 達 だけ で 始めよう。
+      - 彼 が 来 なく {て も 構わ なけりゃ}、私 達 だけ で 始めよう。
+    english_literally: If him not coming doesn't matter, let's start with only us.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来 なく {て も よかっ たら}、私 達 だけ で 始め ましょう。
+        english: If it's okay if he doesn't come, let's start with just us.
+        hint: 「よかったら」 asks for permission or if something is acceptable, while 「かまわなければ」 inquires about
+          personal indifference or lack of concern. We're looking for an inquiry about personal feelings.
+    scene: Friends waiting for a late person to join them for an activity, considering whether to start
+      without them.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～ば)
+  - english: No matter how late it is, I don't mind, so call me, okay?
+    japanese:
+      - どんな に 遅い 時間 {で も 構わ ない} から、電話 し て ね。
+      - どんな に 遅い 時間 {で も 構わ ない} よ、電話 し て ね。
+    english_literally: No matter how late the time, it doesn't matter, so call, okay?
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 遅い 時間 {で も いい} から、電話 し て ね。
+        english: It's okay no matter how late it is, so call me, okay?
+        hint: 「てもいい」 suggests something is permissible, while 「ても構わない」 conveys a personal lack of objection
+          or willingness. We're looking for an expression of willingness.
+    scene: A young woman telling her best friend to call her anytime they need to talk, regardless of
+      the hour.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The ending particle 「ね」 (ne) softens the request and seeks agreement or confirmation from
+      the listener, often used by female speakers to express intimacy and connection.
+  - english: Even if you don't like it, I don't mind, so please try a sample first.
+    japanese:
+      - もし 気 に 入ら なく {て も 構い ませ ん} の で、まず は 試食 し て ください。
+      - もし 気 に 入ら なく {て も 構い ませ ん} から、まず は 試食 なさっ て ください。
+    english_literally: Even if you don't like it, it doesn't matter, so please try a sample first.
+    competing_grammar:
+      - competing_japanese:
+          - もし 気 に 入ら なく {て も いい} の で、まず は 試食 し て ください。
+        english: It's okay if you don't like it, so please try a sample first.
+        hint: 「てもいい」 grants permission to dislike, while 「ても構いません」 conveys personal indifference to the
+          customer's preference. We're looking for reassurance of no pressure.
+    scene: A vendor at a food fair inviting customers to taste their product, reassuring them there's
+      no pressure to like it or buy.
+    register: teineigo (polite)
+    setting: persuasive
+    conjugation: non-past polite (～ます)
+  - english: We don't mind whether you have experience or not. We are looking for new talent.
+    japanese:
+      - 経験 の 有無 {で も 構い ませ ん}。我々 は 新しい 才能 を 探し て い ます。
+      - 経験 の 有無 {で も 構い ませ ん}。弊社 は 新しい 才能 を 探し て おり ます。
+    english_literally: Even the presence or absence of experience, it doesn't matter. If there is enthusiasm,
+      I welcome you.
+    competing_grammar:
+      - competing_japanese:
+          - 経験 の 有無 {で も いい} です。我々 は 新しい 才能 を 探し て い ます。
+        english: It's okay whether you have experience or not. We are looking for new talent.
+        hint: 「てもいい」 indicates acceptance of a condition, while 「ても構いません」 stresses a lack of objection
+          regarding that condition. We're looking for a statement that experience is not a concern.
+      - competing_japanese:
+          - 経験 の 有無 {に かかわら ず}、我々 は 新しい 才能 を 探し て い ます。
+        english: Regardless of experience, we are looking for new talent.
+        hint: 「にかかわらず」 expresses that something is true regardless of a factor, often in objective or
+          rule-like statements. 「ても構いません」 expresses a personal lack of objection or indifference. We are
+          stating a personal lack of concern, not a general rule.
+    scene: A company representative at a university career fair encouraging a wide range of students to
+      apply, regardless of their prior work experience.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: If I'm with you, I don't mind going anywhere.
+    japanese:
+      - あなた と 一緒 なら、どこ へ 行っ {て も 構わ ない} よ。
+      - 君 と 一緒 なら、どこ へ 行っ {て も 構わ ない} さ。
+    english_literally: If it's with you, even if I go anywhere, it doesn't matter.
+    competing_grammar:
+      - competing_japanese:
+          - あなた と 一緒 なら、どこ へ 行っ {て も いい} よ。
+        english: If I'm with you, it's okay to go anywhere.
+        hint: 「てもいい」 suggests the destination is acceptable, while 「ても構わない」 emphasizes personal indifference
+          to the destination because of the companion. We're looking for an expression of personal feeling
+          about the companion's importance.
+    scene: A man expressing his deep affection and commitment to his partner, implying that their shared
+      presence is more important than the destination.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The usage of 「あなた」 (anata) here, combined with the casual 「よ」 (yo) at the end, conveys a strong,
+      intimate, and affectionate declaration, typical of a male speaker expressing deep personal feelings
+      to a loved one.
+post_example_writeup: The examples illustrate how 「ても構わない」 emphasizes the speaker's personal indifference
+  or lack of objection, distinguishing it from expressions like 「てもいい」 which grant general permission
+  or acceptability. The choice between these nuances depends on whether the speaker wants to convey their
+  subjective feeling or a more objective statement of permission or possibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てもかまわない

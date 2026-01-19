@@ -1,0 +1,208 @@
+grammar_point: 的 (adjectivizer)
+learn_before:
+  - から見ると (from the viewpoint of・looking from)
+  - ではない (formal negative copula)
+  - な-Adjective[ではない・じゃない] (plain negative)
+  - の (possession)
+  - 側面 (aspect side)
+  - 絶対に〜ない (absolutely not)
+  - 風 (style・manner)
+meaning: suffix for forming adjectives from nouns; -al, -ic, -ive, -ly, -ous
+pronunciation:
+  katakana: テキ
+  romaji: teki
+formation:
+  Noun + 的: Forms a な-adjective expressing a characteristic related to the noun.
+jlpt: N3
+etymology: The character 的 (teki) originally referred to a 'target' or 'mark'. Over time, its usage evolved
+  in Chinese and then Japanese to denote 'pertaining to' or 'having the nature of', similar to suffixes
+  like '-ic' or '-al' in English. This semantic shift from a concrete target to an abstract characteristic
+  reflects how linguistic elements can extend their meaning.
+writeup: The suffix 的 (teki) is a common and highly productive suffix in Japanese used to create な-adjectives
+  from nouns. It attaches directly to a noun to form a new adjective that describes something as 'related
+  to', 'characteristic of', or 'in the nature of' that noun. For instance, 文化 (culture) becomes 文化的 (cultural),
+  and 科学 (science) becomes 科学的 (scientific). Using 的 often lends a more formal, academic, or objective
+  tone to the expression compared to other ways of describing nouns. While the base form is Noun+的, when
+  used to modify a noun, it typically appears as Noun+的な. When used as an adverb, it becomes Noun+的に.
+  It is crucial to understand these variations to use 的 correctly.
+false_friends:
+  - term: 的な
+    meaning: adjectival form of words ending in 的
+    kind: similar expression
+    nuance: While 的 alone forms the base, 적인 is the actual な-adjective form used when directly modifying
+      a noun. For example, 歴史的 (historical) is the stem, but you would say 歴史的な出来事 (a historical event).
+    grammar_point: な-Adjective (modifying nouns)
+  - term: 的に
+    meaning: adverbial form of words ending in 的
+    kind: similar expression
+    nuance: 的に functions as an adverb, modifying verbs or adjectives. For example, 歴史的 (historical) when
+      used as an adverb becomes 歴史的に見て (historically speaking) or 歴史的に正しい (historically correct).
+    grammar_point: '[な-Adjective]に (adverbial form)'
+  - term: 〜風
+    meaning: style・manner
+    kind: similar expression
+    nuance: 〜風 (fū) also forms adjectives but specifically denotes 'style,' 'manner,' or 'like a particular
+      thing,' often with a slightly more casual or evocative nuance than 的. For example, 日本風 (Japanese
+      style) vs. 日本的 (characteristic of Japan).
+    grammar_point: 風 (style・manner)
+  - term: 〜っぽい
+    meaning: ish; characteristic of
+    kind: similar expression
+    nuance: 〜っぽい (ppoi) indicates that something 'looks like' or 'tends to be' something, often with a
+      slight negative or informal connotation, unlike the more neutral and formal 的. For example, 子供っぽい
+      (childish) vs. 子供的 (child-like, in a more descriptive sense).
+    grammar_point: っぽい (ish; characteristic of)
+post_false_friends_writeup: The key distinction between 的, 적인, and 的に lies in their grammatical function.
+  的 is the core suffix. 적인 is the proper な-adjective form used before a noun. 的に is the adverbial form
+  used to modify verbs or other adjectives. While other suffixes like 〜風 or 〜っぽい can also form adjectives,
+  they carry different nuances regarding formality, tone, and the specific nature of the characteristic
+  being described.
+examples:
+  - english: This is a historical building.
+    japanese:
+      - これ は {歴史 的} な 建物 です。
+      - これ は {歴史 的} 建物 だ。
+    english_literally: This is a historical building.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 歴史 の 建物 です。
+        english: This is a building of history.
+        hint: Using の here would imply the building belongs to or is associated with history, rather than
+          describing its inherent historical nature. We're looking for an adjective.
+    scene: A tour guide points to an old structure.
+    register: teineigo (polite)
+    setting: informative
+  - english: Her way of thinking is always very logical.
+    japanese:
+      - 彼女 の 考え 方 は いつ も とても {論理 的} です。
+      - 彼女 の 考え 方 は いつ も とても {論理 的} だ。
+    english_literally: Her way of thinking is always very logical.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 論理 が あり ます。
+        english: She always has logic.
+        hint: This sounds like she possesses logic, not that her thinking process itself is logical. We're
+          describing the quality of her thinking.
+    scene: Two colleagues discuss a third person.
+    register: casual
+    setting: professional
+    nuance: The use of 「論理的」highlights the analytical and reasoned nature of her thought process, a common
+      characteristic in professional or academic contexts.
+  - english: This problem has an economic aspect.
+    japanese:
+      - この 問題 は {経済 的} な 側面 が あり ます。
+      - この 問題 に は {経済 的} な 側面 が ある。
+    english_literally: This problem has an economic aspect.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は お 金 の 側面 が あり ます。
+        english: This problem has a money aspect.
+        hint: お金 (okane) refers to money itself, while 経済的 (keizaiteki) refers to the broader concept
+          of economics. We're looking for an economic dimension.
+    scene: A professor explains a complex issue in a lecture.
+    register: formal
+    setting: academic
+  - english: His decision was very emotional.
+    japanese:
+      - 彼 の 決断 は とても {感情 的} でし た。
+      - 彼 の 決断 は とても {感情 的} だっ た。
+    english_literally: His decision was very emotional.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 決断 は 気持ち が 多かっ た です。
+        english: His decision had many feelings.
+        hint: While technically understandable, this sounds unnatural. 「感情的」is the standard way to describe
+          something as 'emotional' in Japanese.
+    scene: Friends discussing a difficult situation someone faced.
+    register: casual
+    setting: friendly
+  - english: From a scientific point of view, it is impossible.
+    japanese:
+      - '{科学 的} な 観点 から 見 て、それ は 不 可能 です。'
+      - '{科学 的} な 観点 から 見る と、それ は 不 可能 だ。'
+    english_literally: From a scientific point of view, that is impossible.
+    competing_grammar:
+      - competing_japanese:
+          - 科学 の 観点 から 見 て、それ は 不 可能 です。
+        english: From the point of view of science, it is impossible.
+        hint: Adding の here is less natural than 的な when describing a 'scientific' perspective. 「科学的」emphasizes
+          it aligns with scientific principles.
+    scene: A debate on a technical subject.
+    register: formal
+    setting: academic
+  - english: They have a positive attitude towards work.
+    japanese:
+      - 彼 ら は 仕事 に {積極 的} な 態度 を 持っ て い ます。
+      - 彼 ら は 仕事 に {積極 的} 態度 だ。
+    english_literally: They have a positive attitude towards work.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 仕事 に 前向き な 態度 を 持っ て い ます。
+        english: They have a forward-looking attitude towards work.
+        hint: 前向き (maemuki) can mean 'positive' or 'forward-looking', but 積極的 (sekkyokuteki) specifically
+          means 'positive' or 'proactive' in the context of attitude, often implying initiative. We're
+          looking for active engagement.
+    scene: A manager giving a performance review.
+    register: formal
+    setting: professional
+  - english: This is a very characteristic Japanese garden.
+    japanese:
+      - これ は とても {日本 的} な 庭園 です。
+      - これ は とても {日本 的} 庭園 だ。
+    english_literally: This is a very Japanese-like garden.
+    competing_grammar:
+      - competing_japanese:
+          - これ は とても 日本 の 庭園 です。
+        english: This is a very Japan's garden.
+        hint: Using の would simply indicate possession or origin. 「日本的」describes the garden as embodying
+          the qualities or style associated with Japan.
+    scene: Tourists admiring a garden.
+    register: teineigo (polite)
+    setting: friendly
+  - english: He has a very unique sense of style.
+    japanese:
+      - 彼 は とても {個性 的} な センス を 持っ て い ます。
+      - 彼 は とても {個性 的} センス だ。
+    english_literally: He has a very individualistic sense.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 変わっ た センス を 持っ て い ます。
+        english: He has a very strange sense.
+        hint: 変わった (kawatta) can mean 'strange' or 'unusual' which might have a negative connotation.
+          「個性的」specifically means 'unique' in a positive or neutral way, emphasizing individuality.
+    scene: Fashion enthusiasts discussing a friend's attire.
+    register: casual
+    setting: friendly
+  - english: This is a temporary measure.
+    japanese:
+      - これ は {一時 的} な 措置 です。
+      - これ は {一時 的} 措置 だ。
+    english_literally: This is a temporary measure.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 少し の 間 だけ の 措置 です。
+        english: This is a measure for only a short period.
+        hint: While conveying a similar idea, 「一時的」is a concise and formal adjective, whereas the competing
+          phrase is a longer, more descriptive expression. We're looking for a single adjective.
+    scene: A government official announces new policies.
+    register: formal
+    setting: professional
+  - english: It is not an absolute truth.
+    japanese:
+      - それ は {絶対 的} な 真実 で は あり ませ ん。
+      - それ は {絶対 的} 真実 で は ない。
+    english_literally: That is not an absolute truth.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 完全 に 真実 で は あり ませ ん。
+        english: That is not completely true.
+        hint: 完全に (kanzen ni) means 'completely' and modifies the truth. 「絶対的」describes the *nature* of
+          the truth itself as absolute, emphasizing its inherent quality. We're looking for an adjective
+          describing truth.
+    scene: Philosophers debating a concept.
+    register: formal
+    setting: academic
+post_example_writeup: As you can see from these examples, 的 is broadly applicable across various contexts,
+  from describing physical objects to abstract concepts and personal traits. It consistently adds the
+  nuance of 'related to' or 'characteristic of' the preceding noun, helping to form precise and often
+  formal descriptions.

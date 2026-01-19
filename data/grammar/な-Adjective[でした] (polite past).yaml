@@ -1,0 +1,190 @@
+grammar_point: な-Adjective[でした] (polite past)
+learn_before:
+  - な-Adjective[だった] (plain past)
+  - な-Adjectives (adjectival nouns)
+meaning: was/were (polite past for na-adjectives)
+pronunciation:
+  katakana: デシタ
+  romaji: deshita
+formation:
+  な-Adjective + でした: Indicates the polite past tense of a na-adjective, expressing a past state or quality.
+jlpt: N5
+etymology: でした is the polite past form of the copula です. The で component comes from the conjunctive form
+  of だ, and した is the past form of する (to do), which historically came to be used as a polite past ending
+  for the copula. When attached to a な-adjective, the な-adjective essentially behaves like a noun in this
+  construction, hence the で connecting it to した. For example, 静か is a na-adjective. 静かだ (plain present),
+  静かです (polite present), 静かだった (plain past), 静かでした (polite past). The で acts like the で in 学生でした (was
+  a student).
+writeup: The grammar point **な-Adjective[でした]** is used to express a polite past tense for な-adjectives,
+  describing a past state or quality. It directly attaches to the stem of a な-adjective. For instance,
+  if you want to say "it was quiet" in a polite manner, you would use 静か (shizuka) + でした, forming 静かでした
+  (shizuka deshita). This structure is essential for constructing polite past sentences involving qualities
+  or states in Japanese. It's the polite counterpart to the plain past な-Adjective[だった]. Mastering this
+  form is crucial for polite everyday conversations.
+false_friends:
+  - term: な-Adjective[だった]
+    meaning: was/were (plain past for na-adjectives)
+    kind: synonym
+    nuance: This is the plain, casual form. な-Adjective[でした] is its polite equivalent.
+    grammar_point: な-Adjective[だった] (plain past)
+  - term: い-Adjective[かったです]
+    meaning: was/were (polite past for i-adjectives)
+    kind: similar expression
+    nuance: While both are polite past forms of adjectives, い-Adjective[かったです] is used for い-adjectives,
+      which conjugate differently, replacing the final い with かった and then adding です. な-adjectives use
+      でした.
+    grammar_point: <suggest>:い-Adjective[かったです] (polite past)
+  - term: Verb[ました]
+    meaning: did (polite past for verbs)
+    kind: similar expression
+    nuance: This is the polite past form for verbs. な-Adjective[でした] describes a past state or quality,
+      not an action.
+    grammar_point: Verb[ました] (polite past)
+post_false_friends_writeup: Understanding the differences between な-Adjective[でした], な-Adjective[だった],
+  い-Adjective[かったです], and Verb[ました] is key to correct and natural Japanese. Remember that な-adjectives
+  use でした for polite past, similar to nouns. い-adjectives, on the other hand, change their ending to かった
+  before adding です. Verbs use the ます form's past tense, ました, for actions. Pay close attention to the word
+  type to ensure you use the appropriate past tense conjugation.
+examples:
+  - english: Yesterday's weather was fine.
+    japanese:
+      - 昨日 の 天気 は {晴れ でし た}。
+      - 昨日 の 天気 は {晴れ で ござい まし た}。
+    english_literally: Yesterday's weather, as for, fine was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は 晴れ だっ た。
+        english: Yesterday's weather was fine (casual).
+        hint: This uses the plain past form だった. We are looking for the polite past form.
+    scene: Talking about the weather history.
+    register: teineigo (polite)
+    setting: informative
+  - english: That restaurant was very famous.
+    japanese:
+      - あの レストラン は とても {有名 でし た}。
+      - あの レストラン は とても {有名 で ござい まし た}。
+    english_literally: That restaurant, as for, very famous was.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は とても 有名 だっ た。
+        english: That restaurant was very famous (casual).
+        hint: The casual past form だった is used here. We need the polite version.
+    scene: Recommending a place you visited in the past.
+    register: teineigo (polite)
+    setting: friendly
+  - english: My room was quiet when I was a student.
+    japanese:
+      - 学生 の 時、私 の 部屋 は {静か でし た}。
+      - 学生 の 時、私 の 部屋 は {静か で ござい まし た}。
+    english_literally: Student's time, my room, as for, quiet was.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 の 時、私 の 部屋 は 静か だっ た。
+        english: My room was quiet when I was a student (casual).
+        hint: This example uses the plain past. We're looking for a polite recollection.
+    scene: Recalling memories from student life.
+    register: teineigo (polite)
+    setting: reflective
+  - english: My grandfather was a very kind person.
+    japanese:
+      - 私 の 祖父 は とても {親切 でし た}。
+      - 私 の 祖父 は とても {親切 で ござい まし た}。
+    english_literally: My grandfather, as for, very kind was.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 祖父 は とても 親切 だっ た。
+        english: My grandfather was a very kind person (casual).
+        hint: This is the plain past form. The target sentence uses the polite past.
+    scene: Sharing a memory of a beloved family member.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    nuance: The polite past describes a characteristic of a person. The nuance here is one of respectful
+      recollection of her grandfather.
+  - english: That bag was very fashionable, wasn't it?
+    japanese:
+      - あの カバン は とても {おしゃれ でし た} ね。
+      - あの カバン は とても {おしゃれ で ござい まし た} ね。
+    english_literally: That bag, as for, very fashionable was, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの カバン は とても おしゃれ だっ た ね。
+        english: That bag was very fashionable, wasn't it? (casual)
+        hint: This uses the casual past だった. We need the polite version.
+    scene: Discussing past fashion trends with a friend.
+    register: teineigo (polite)
+    setting: casual slang
+    nuance: The use of 「ね」 softens the statement and seeks agreement. The polite past form is often used
+      even in casual settings to express respect for the listener or the topic.
+  - english: The atmosphere at the festival was lively.
+    japanese:
+      - お 祭り の 雰囲気 は {賑やか でし た}。
+      - お 祭り の 雰囲気 は {賑やか で ござい まし た}。
+    english_literally: Festival's atmosphere, as for, lively was.
+    competing_grammar:
+      - competing_japanese:
+          - お 祭り の 雰囲気 は 賑やか だっ た。
+        english: The atmosphere at the festival was lively (casual).
+        hint: This sentence is in the plain past. We are looking for a polite expression.
+    scene: Describing a past event.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: The garden was exceptionally beautiful last spring.
+    japanese:
+      - 去年 の 春、その 庭 は とても {きれい でし た}。
+      - 去年 の 春、その 庭 は とても {きれい で ござい まし た}。
+    english_literally: Last year's spring, that garden, as for, very beautiful was.
+    competing_grammar:
+      - competing_japanese:
+          - 去年 の 春、その 庭 は とても きれい だっ た。
+        english: Last spring, that garden was exceptionally beautiful (casual).
+        hint: This uses the plain past form. We want the polite past form.
+    scene: Talking about the beauty of a garden in the past.
+    register: teineigo (polite)
+    setting: informative
+  - english: This neighborhood was much safer before, but now there are more incidents.
+    japanese:
+      - この 近所 は 以前 より ずっと {安全 でし た} が、今 は 事件 が 増え まし た。
+      - この 近所 は 以前 より ずっと {安全 で ござい まし た} が、今 は 事件 が 増え まし た。
+    english_literally: This neighborhood, as for, before than much safer was, but now incidents increased.
+    competing_grammar:
+      - competing_japanese:
+          - この 近所 は 以前 より ずっと 安全 だっ た が、今 は 事件 が 増え た。
+        english: This neighborhood was much safer before (casual), but now there are more incidents.
+        hint: This uses the plain past tense. The example needs the polite past tense.
+    scene: Expressing concern about changes in the neighborhood.
+    register: teineigo (polite)
+    setting: serious
+    nuance: Contrasting a past state with the present, often conveying a sense of nostalgia or concern.
+      The 「が」 particle connects the two contrasting clauses.
+  - english: The exam last week was really difficult.
+    japanese:
+      - 先週 の 試験 は 本当 に {大変 でし た}。
+      - 先週 の 試験 は 本当 に {大変 で ござい まし た}。
+    english_literally: Last week's exam, as for, really difficult was.
+    competing_grammar:
+      - competing_japanese:
+          - 先週 の 試験 は 本当 に 大変 だっ た。
+        english: The exam last week was really difficult (casual).
+        hint: This uses the plain past. We are looking for the polite past expression.
+    scene: Complaining about a past challenge.
+    register: teineigo (polite)
+    setting: academic
+    nuance: 「大変」 here means 'tough' or 'difficult'. The polite past expresses a common sentiment among
+      students, maintaining a polite register even when complaining.
+  - english: Back in my younger days, I was quite healthy.
+    japanese:
+      - 若い 頃 は、かなり {健康 でし た}。
+      - 若い 頃 は、かなり {健康 で ござい まし た}。
+    english_literally: Young time, as for, quite healthy was.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 頃 は、かなり 健康 だっ た。
+        english: Back in my younger days, I was quite healthy (casual).
+        hint: This uses the casual past だった. We need the polite form.
+    scene: An older person reminiscing about their youth.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_age: older
+    nuance: The phrase 「若い頃は」 sets the stage for a reflective statement about one's past condition. The
+      polite form 「健康でした」 implies a respectful or gentle tone when reflecting on the past.

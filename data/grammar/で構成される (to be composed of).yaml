@@ -1,0 +1,313 @@
+grammar_point: で構成される (to be composed of)
+learn_before:
+  - おきに (at intervals of)
+meaning: to be composed of; to consist of; to be made up of
+pronunciation:
+  katakana: デ コウセイ サレル
+  romaji: de kōsei sareru
+formation:
+  Noun で {構成される}: To be composed of Noun. Used for explaining what something consists of.
+jlpt: N2
+etymology: 「構成 (kōsei)」 combines 「構 (kō)」, meaning "structure" or "frame," and 「成 (sei)」, meaning "to
+  form" or "to become." The 「で」 particle indicates the means or material, and 「される」 is the passive form
+  of 「する」 (to do). Thus, it literally means "to be formed/structured by means of." This grammatical structure
+  highlights the idea of a whole entity being actively built or made up from its constituent parts.
+writeup: This grammar point, 「{で構成される}」, is used to describe what something is **composed of** or **consists
+  of**. It is a formal and often technical expression, commonly found in academic papers, technical specifications,
+  official reports, and other contexts where precise and objective descriptions of composition are required.
+  The structure `Noun + で構成される` indicates that the subject is made up of or formed by the specified noun(s).
+  It often implies that the components are essential elements that collectively build the whole, suggesting
+  a structural or designed relationship rather than just a simple collection. When you want to explain
+  the internal makeup of a system, a team, a chemical compound, or any complex entity, 「{で構成される}」 is a
+  suitable choice. It emphasizes the constituent parts that contribute to the overall structure or function
+  of the entity. For instance, you might use it to explain the components of a machine, the members of
+  an organization, the elements of a musical piece, or the chapters of a book. This expression conveys
+  a sense of thoroughness and formality, distinguishing it from more casual ways of stating composition.
+false_friends:
+  - term: からなる
+    meaning: to consist of, to be made up of (naturally or inherently)
+    kind: similar expression
+    nuance: 「からなる」 often implies a natural or inherent composition, focusing on what something is fundamentally
+      composed of. It can also refer to the complete formation of something from its elements. In contrast,
+      「{で構成される}」 tends to emphasize a structural or designed assembly, often in formal or technical contexts.
+    grammar_point: からなる (to consist of)
+  - term: でできる
+    meaning: to be made of (material)
+    kind: similar expression
+    nuance: 「でできる」 specifically refers to the material something is made *from*. For example, 「木でできる家」
+      (a house made of wood). While it describes composition, its focus is on the raw material, whereas
+      「{で構成される}」 focuses on the constituent *parts* or *elements*, which can be abstract or functional,
+      not just materials.
+    grammar_point: でできる (made of)
+  - term: 成る
+    meaning: to consist of, to be formed, to become
+    kind: similar expression
+    nuance: 「成る」 is a more general verb for "to become" or "to form/consist of". While it shares a kanji
+      with 「構成される」, it lacks the specific nuance of "being *structured* by" or "being *assembled* from"
+      components. It's often used in simpler, less formal contexts or to describe a natural process of
+      formation.
+    grammar_point: <suggest>:成る (to consist of・to become)
+post_false_friends_writeup: When distinguishing between 「{で構成される}」, 「からなる」, and 「でできる」, consider the emphasis.
+  「{で構成される}」 typically refers to a system or entity *being built up* from specific components, suggesting
+  a structural or designed arrangement. 「からなる」, on the other hand, often describes the inherent or natural
+  composition of something, or its fundamental elements. Lastly, 「でできる」 specifically points to the *material*
+  from which something is made. Choose the expression that best captures the nature of the relationship
+  between the whole and its parts.
+examples:
+  - english: This system is composed of three main parts.
+    japanese:
+      - この システム は 3 つ の 主要 な 部分 {で 構成 さ れ ます}。
+      - この システム は 3 つ の 主要 な 部分 {で 構成 さ れる}。
+      - この システム は 3 つ の 主要 な 部分 {で 構成 さ れ て いる}。
+      - この システム は 3 つ の 主要 な 部分 {で 構成 さ れ て い ます}。
+    english_literally: This system, as for it, is composed of three main parts.
+    competing_grammar:
+      - competing_japanese:
+          - この システム は 3 つ の 主要 な 部分 から なる。
+        english: This system consists of three main parts (emphasizing inherent components).
+        hint: 「からなる」 focuses on the inherent or fundamental composition. We're looking for a structure
+          that emphasizes a system being built up from its parts.
+      - competing_japanese:
+          - この システム は 3 つ の 主要 な 部分 から でき て いる。
+        english: This system is made from three main parts (emphasizing the source material/components).
+        hint: 「からできている」 emphasizes what something is physically made from. We're looking for a description
+          of overall composition rather than raw material.
+    scene: A presenter explains a new system to an audience.
+    register: formal
+    setting: informative
+  - english: Human society is composed of various cultures and values.
+    japanese:
+      - 人間 社会 は 様々 な 文化 と 価値 観 {で 構成 さ れ て いる}。
+      - 人間 社会 は 様々 な 文化 と 価値 観 {で 構成 さ れる}。
+      - 人間 社会 は 様々 な 文化 と 価値 観 {で 構成 さ れ て い ます}。
+    english_literally: Human society, as for it, is composed of various cultures and values.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 社会 は 様々 な 文化 と 価値 観 から なる。
+        english: Human society consists of various cultures and values (inherently).
+        hint: 「からなる」 describes what something inherently consists of. We're looking for a more structural
+          description of how society is built up.
+      - competing_japanese:
+          - 人間 社会 は 様々 な 文化 と 価値 観 で 成り立っ て いる。
+        english: Human society is formed by/based on various cultures and values.
+        hint: 「成り立っている」 focuses on the foundational structure of something. We're looking for an expression
+          that describes components forming a whole.
+    scene: A sociologist discusses the complexities of societal structures.
+    register: casual
+    setting: academic
+    nuance: This example uses the plain form 「構成されている」, which is common in academic writing or lectures
+      when stating general truths or descriptions.
+  - english: The new engine is composed of lightweight alloys and advanced ceramics.
+    japanese:
+      - 新しい エンジン は 軽量 合金 と 先進 セラミックス {で 構成 さ れ て い ます}。
+      - 新しい エンジン は 軽量 合金 と 先進 セラミックス {で 構成 さ れる}。
+      - 新しい エンジン は 軽量 合金 と 先進 セラミックス {で 構成 さ れ て いる}。
+    english_literally: New engine, as for it, is composed of lightweight alloys and advanced ceramics.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい エンジン は 軽量 合金 と 先進 セラミックス から でき て いる。
+        english: The new engine is made from lightweight alloys and advanced ceramics.
+        hint: 「からできている」 emphasizes the raw materials used. We're looking for a general description of
+          the engine's components.
+      - competing_japanese:
+          - 新しい エンジン は 軽量 合金 と 先進 セラミックス で 成り立っ て いる。
+        english: The new engine is formed/constituted by lightweight alloys and advanced ceramics.
+        hint: 「成り立っている」 focuses on the foundational elements. We're looking for how the engine is structurally
+          composed.
+    scene: Engineers are presenting a prototype to potential investors.
+    register: formal
+    setting: technical
+  - english: Our team is composed of members from diverse backgrounds.
+    japanese:
+      - 私 達 の チーム は 多様 な バックグラウンド を 持つ メンバー {で 構成 さ れ て いる}。
+      - 私 達 の チーム は 多様 な バックグラウンド を 持つ メンバー {で 構成 さ れ て い ます}。
+    english_literally: Our team, as for it, is composed of members possessing diverse backgrounds.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 の チーム は 多様 な バックグラウンド を 持つ メンバー から なる。
+        english: Our team consists inherently of members from diverse backgrounds.
+        hint: 「からなる」 describes what something inherently consists of. We're looking for how the team is
+          formally structured.
+      - competing_japanese:
+          - 私 達 の チーム は 多様 な バックグラウンド を 持つ メンバー で 成り立っ て いる。
+        english: Our team is formed/constituted by members from diverse backgrounds.
+        hint: 「成り立っている」 focuses on the fundamental make-up. We're looking for a formal description of
+          the team's composition.
+    scene: A team leader is introducing their project team to a new client.
+    register: semi-formal
+    setting: professional
+  - english: Water molecules are composed of two hydrogen atoms and one oxygen atom.
+    japanese:
+      - 水分 子 は 2 つ の 水素 原子 と 1 つ の 酸素 原子 {で 構成 さ れる}。
+      - 水分 子 は 2 つ の 水素 原子 と 1 つ の 酸素 原子 {で 構成 さ れ て いる}。
+      - 水分 子 は 2 つ の 水素 原子 と 1 つ の 酸素 原子 {で 構成 さ れ て い ます}。
+    english_literally: Water molecules, as for them, are composed of two hydrogen atoms and one oxygen
+      atom.
+    competing_grammar:
+      - competing_japanese:
+          - 水分 子 は 2 つ の 水素 原子 と 1 つ の 酸素 原子 から なる。
+        english: Water molecules inherently consist of two hydrogen atoms and one oxygen atom.
+        hint: 「からなる」 is used for inherent or fundamental composition. We're looking for an expression
+          that describes the structural makeup.
+      - competing_japanese:
+          - 水分 子 は 2 つ の 水素 原子 と 1 つ の 酸素 原子 で でき て いる。
+        english: Water molecules are made from two hydrogen atoms and one oxygen atom.
+        hint: 「でできている」 focuses on what something is made *from*. We're looking for how the molecule is
+          structured by these components.
+    scene: A science textbook explains the basic chemical structure of water.
+    register: formal
+    setting: academic
+    nuance: The dictionary form 「構成される」 is frequently used in written academic and scientific contexts
+      to state general facts or principles.
+  - english: The internet is composed of countless interconnected networks.
+    japanese:
+      - インターネット は 無数 の 相互 接続 さ れ た ネットワーク {で 構成 さ れ て いる}。
+      - インターネット は 無数 の 相互 接続 さ れ た ネットワーク {で 構成 さ れる}。
+      - インターネット は 無数 の 相互 接続 さ れ た ネットワーク {で 構成 さ れ て い ます}。
+    english_literally: Internet, as for it, is composed of countless interconnected networks.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット は 無数 の 相互 接続 さ れ た ネットワーク から なる。
+        english: The internet inherently consists of countless interconnected networks.
+        hint: 「からなる」 describes the inherent composition. We're looking for how the internet is structurally
+          formed.
+      - competing_japanese:
+          - インターネット は 無数 の 相互 接続 さ れ た ネットワーク で 成り立っ て いる。
+        english: The internet is formed/constituted by countless interconnected networks.
+        hint: 「成り立っている」 focuses on what forms the basis or structure of something. We're looking for how
+          the internet's structure is made up.
+    scene: A university professor explains the architecture of the internet in a computer science lecture.
+    register: formal
+    setting: informative
+  - english: The ancient legal system was composed of intricate codes and precedents.
+    japanese:
+      - 古代 の 法 制度 は 複雑 な 法典 と 判例 {で 構成 さ れ て い た}。
+      - 古代 の 法 制度 は 複雑 な 法典 と 判例 {で 構成 さ れ た}。
+      - 古代 の 法 制度 は 複雑 な 法典 と 判例 {で 構成 さ れ まし た}。
+    english_literally: Ancient legal system, as for it, was composed of intricate codes and precedents.
+    competing_grammar:
+      - competing_japanese:
+          - 古代 の 法 制度 は 複雑 な 法典 と 判例 から なっ て い た。
+        english: The ancient legal system inherently consisted of intricate codes and precedents.
+        hint: 「からなっていた」 describes what something fundamentally consisted of in the past. We're looking
+          for how the system was formally structured.
+      - competing_japanese:
+          - 古代 の 法 制度 は 複雑 な 法典 と 判例 で 成り立っ て い た。
+        english: The ancient legal system was formed/constituted by intricate codes and precedents.
+        hint: 「成り立っていた」 focuses on the historical foundational structure. We're looking for a description
+          of its composition.
+    scene: A historian lectures on the legal framework of an ancient civilization.
+    register: formal
+    setting: academic
+    conjugation: progressive (～ている)
+    nuance: The past progressive form 「構成されていた」 describes a state of being composed that existed in the
+      past, suitable for historical descriptions. It implies the system *was* made up of these elements
+      over a period.
+  - english: This novel is composed of fragmented memories and vivid dreams.
+    japanese:
+      - この 小説 は 断片 的 な 記憶 と 鮮やか な 夢 {で 構成 さ れ て いる}。
+      - この 小説 は 断片 的 な 記憶 と 鮮やか な 夢 {で 構成 さ れる}。
+      - この 小説 は 断片 的 な 記憶 と 鮮やか な 夢 {で 構成 さ れ て い ます}。
+    english_literally: This novel, as for it, is composed of fragmented memories and vivid dreams.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は 断片 的 な 記憶 と 鮮やか な 夢 から なる。
+        english: This novel inherently consists of fragmented memories and vivid dreams.
+        hint: 「からなる」 describes the inherent or fundamental elements. We're looking for how the novel is
+          structured from these components.
+      - competing_japanese:
+          - この 小説 は 断片 的 な 記憶 と 鮮やか な 夢 で 成り立っ て いる。
+        english: This novel is formed/constituted by fragmented memories and vivid dreams.
+        hint: 「成り立っている」 focuses on what forms the basis of the novel. We're looking for how it is put
+          together.
+    scene: A literary critic analyzes the structure and content of a contemporary novel.
+    register: formal
+    setting: creative
+  - english: The future city might be composed of self-sustaining ecological modules.
+    japanese:
+      - 未来 の 都市 は 自給 自足 の 生態 系 モジュール {で 構成 さ れる だろう}。
+      - 未来 の 都市 は 自給 自足 の 生態 系 モジュール {で 構成 さ れる でしょう}。
+      - 未来 の 都市 は 自給 自足 の 生態 系 モジュール {で 構成 さ れ て いる だろう}。
+    english_literally: Future city, as for it, might be composed of self-sustaining ecological modules.
+    competing_grammar:
+      - competing_japanese:
+          - 未来 の 都市 は 自給 自足 の 生態 系 モジュール から なる だろう。
+        english: The future city would inherently consist of self-sustaining ecological modules.
+        hint: 「からなるだろう」 suggests what the city will inherently consist of. We're looking for a speculative
+          description of its structural composition.
+      - competing_japanese:
+          - 未来 の 都市 は 自給 自足 の 生態 系 モジュール で 成り立つ だろう。
+        english: The future city would be formed/constituted by self-sustaining ecological modules.
+        hint: 「成り立つだろう」 implies what the city will be fundamentally built upon. We're looking for how
+          it will be composed.
+    scene: A futurist speculates about urban planning in the distant future.
+    register: formal
+    setting: academic
+  - english: This dish is not composed of any artificial additives.
+    japanese:
+      - この 料理 は 人工 添加 物 {で 構成 さ れ て い ない}。
+      - この 料理 は 人工 添加 物 {で 構成 さ れ て い ませ ん}。
+      - この 料理 は 人工 添加 物 {で 構成 さ れ ない}。
+    english_literally: This dish, as for it, is not composed of artificial additives.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は 人工 添加 物 を 含ん で い ない。
+        english: This dish does not contain artificial additives.
+        hint: 「含んでいない」 focuses on whether something is included. We're looking for a statement about what
+          the dish is *not* made of structurally.
+      - competing_japanese:
+          - この 料理 は 人工 添加 物 から でき て い ない。
+        english: This dish is not made from artificial additives.
+        hint: 「からできていない」 emphasizes what something is *not* made from as a material. We're looking for
+          a statement about its overall composition.
+    scene: A chef explains the natural ingredients used in a specialty dish to a customer.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: The negative plain form 「構成されていない」 is used to state what something does *not* consist of,
+      often to assure or inform about the absence of certain components.
+  - english: The human body is composed of trillions of cells.
+    japanese:
+      - 人体 は 数 兆 個 の 細胞 {で 構成 さ れ て い ます}。
+      - 人体 は 数 兆 個 の 細胞 {で 構成 さ れる}。
+      - 人体 は 数 兆 個 の 細胞 {で 構成 さ れ て いる}。
+    english_literally: Human body, as for it, is composed of trillions of cells.
+    competing_grammar:
+      - competing_japanese:
+          - 人体 は 数 兆 個 の 細胞 から なる。
+        english: The human body inherently consists of trillions of cells.
+        hint: 「からなる」 describes the inherent biological composition. We're looking for how the body is
+          structured from these cells.
+      - competing_japanese:
+          - 人体 は 数 兆 個 の 細胞 で 成り立っ て いる。
+        english: The human body is formed/constituted by trillions of cells.
+        hint: 「成り立っている」 emphasizes the fundamental components that form the body. We're looking for how
+          its structure is made up.
+    scene: A biology teacher explains basic human anatomy to their students.
+    register: formal
+    setting: academic
+  - english: A computer program is essentially composed of algorithms and data structures.
+    japanese:
+      - コンピューター プログラム は 本質 的 に アルゴリズム と データ 構造 {で 構成 さ れ て いる}。
+      - コンピューター プログラム は 本質 的 に アルゴリズム と データ 構造 {で 構成 さ れる}。
+      - コンピューター プログラム は 本質 的 に アルゴリズム と データ 構造 {で 構成 さ れ て い ます}。
+    english_literally: Computer program, as for it, essentially is composed of algorithms and data structures.
+    competing_grammar:
+      - competing_japanese:
+          - コンピューター プログラム は 本質 的 に アルゴリズム と データ 構造 から なる。
+        english: A computer program inherently consists of algorithms and data structures.
+        hint: 「からなる」 describes the fundamental elements of a program. We're looking for how its structure
+          is built from these components.
+      - competing_japanese:
+          - コンピューター プログラム は 本質 的 に アルゴリズム と データ 構造 で 成り立っ て いる。
+        english: A computer program is formed/constituted by algorithms and data structures.
+        hint: 「成り立っている」 emphasizes what forms the basis of a program. We're looking for how its overall
+          structure is made up.
+    scene: A software engineer explains the fundamental building blocks of programming to a junior colleague.
+    register: casual
+    setting: technical
+post_example_writeup: As seen in the examples, 「{で構成される}」 can be used in various tenses and formality
+  levels, though its primary use remains in formal and technical contexts. Its versatility allows for
+  precise descriptions of composition across different domains.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/で構成される

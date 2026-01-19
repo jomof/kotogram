@@ -1,0 +1,618 @@
+grammar_point: ようがない・ようもない (no way to)
+learn_before:
+  - よう (method or way)
+meaning: There's no way to, It's impossible to
+meaning_warning: This is not Verb[volitional]
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: ようがない / ようもない
+    rarity: common
+    meaning: There is no way to / It's impossible to
+  - conjugation-type: negative non-past polite (～ません)
+    form: ようがありません / ようもありません
+    rarity: common
+    meaning: There is no way to / It's impossible to (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: ようがなかった / ようもなかった
+    rarity: common
+    meaning: There was no way to / It was impossible to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ようがありませんでした / ようもありませんでした
+    rarity: common
+    meaning: There was no way to / It was impossible to (polite)
+pronunciation:
+  katakana: ヨウガナイ・ヨウモナイ
+  romaji: you ga nai / you mo nai
+formation:
+  Verb Masu-stem + ようがない: Expresses that there is no way to perform the action of the verb.
+  Verb Masu-stem + ようもない: Expresses that there is no way to perform the action of the verb.
+jlpt: N2
+etymology: The grammar point 「ようがない」 and 「ようもない」 derives from the noun 「様 (よう)」, which means "way," "method,"
+  or "manner," combined with the negative auxiliary verb 「ない」 or 「ない」's more emphatic form 「もない」. It literally
+  translates to "there is no way" or "there is no method."
+writeup: |-
+  「ようがない」 or 「ようもない」 is an expression used to highlight that there is no 'method' or 'manner' in which to do something. It can be interpreted as 'there is no way to (A)', or 'it's impossible to (A)'. This phrase will appear attached to the masu-stem form of verbs. 「ようがない」 often focuses on that the action of (A) is not possible, despite that the speaker may actually want to do it.
+
+  **Important Considerations**
+  *   Because 「様」 will often appear in hiragana, it is important not to get it mixed up with 「よう」, the auxiliary verb used to create the volitional form of verbs such as 「する」. So, this grammar point is not related to volitional form.
+false_friends:
+  - term: がたい
+    meaning: Hard to, Difficult to
+    kind: synonym
+    nuance: Unlike 「ようがない」, 「がたい」 emphasizes the difficulty in performing the action, often due to emotional
+      or psychological reasons.
+    grammar_point: がたい (hard to do)
+  - term: っこない
+    meaning: There is no chance of, There is no way of, Impossible
+    kind: synonym
+    nuance: Unlike 「ようがない」, 「っこない」 is more emphatic and often used in casual speech to express strong
+      disbelief or certainty that something will not happen.
+    grammar_point: っこない (no chance of)
+  - term: はずがない
+    meaning: Hardly possible, Cannot be, Highly unlikely, Improbable
+    kind: synonym
+    nuance: Unlike 「ようがない」, 「はずがない」 is used to express that something is highly unlikely based on reason
+      or expectation, rather than an absolute impossibility.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: わけがない
+    meaning: There is no way, There is no reason, It is impossible, Cannot be
+    kind: synonym
+    nuance: Unlike 「ようがない」, 「わけがない」 often implies that there is no logical reason or justification for
+      something to be possible.
+    grammar_point: わけがない (no way)
+  - term: そうもない
+    meaning: Very unlikely to, Does not seem that, Does not appear that
+    kind: synonym
+    nuance: Unlike 「ようがない」, 「そうもない」 expresses a weaker level of impossibility, indicating that something
+      is unlikely to happen based on appearance or feeling, rather than an absolute inability.
+    grammar_point: そうにない・そうもない (unlikely to)
+post_false_friends_writeup: To avoid mixing up 「ようがない」 with these similar expressions, focus on the specific
+  nuance you want to convey. If you want to express difficulty due to emotional reasons, use 「がたい」. For
+  strong disbelief, use 「っこない」. To indicate improbability based on reason, use 「はずがない」. If there's no
+  logical reason, choose 「わけがない」. For a weaker sense of unlikelihood, 「そうもない」 is more appropriate. 「ようがない」
+  is best when there's simply no way to accomplish something.
+examples:
+  - english: My TV is broken, and no matter how hard I try, there's no way to repair it.
+    japanese:
+      - テレビ が 壊れ て い て、どう 頑張っ て も 修理 の {しよう が ない}。
+      - テレビ が 壊れ て い て、どう 頑張っ て も 修理 の {しよう が あり ませ ん}。
+      - テレビ が 壊れ て い て、どう 頑張っ て も 修理 の {しよう も ない}。
+      - テレビ が 壊れ て い て、どう 頑張っ て も 修理 の {しよう も あり ませ ん}。
+    english_literally: TV is broken, no matter how much I try, repair there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ が 壊れ て い て、修理 {でき っこ ない}。
+        english: My TV is broken, and there's no way to repair it.
+        hint: 「～っこない」 expresses strong certainty that something will not happen, often used casually.
+          「～ようがない」 focuses on the absence of a method or means to accomplish the action. We're looking
+          for a grammar point that expresses a fundamental lack of method or solution to repair the TV,
+          despite effort, rather than just strong impossibility in general. Therefore, "できっこない" (there's
+          no way it can be done, implies strong certainty of impossibility) is not quite the same nuance
+          as "しようがない" (there's no method/means to do it).
+      - competing_japanese:
+          - テレビ が 壊れ て い て、修理 {できる はず が ない}。
+        english: My TV is broken, so it shouldn't be possible to repair it.
+        hint: 「～はずがない」 expresses something is highly unlikely based on logical reasoning. 「～ようがない」 means
+          there is no method or means to accomplish the repair, regardless of logical expectation. We're
+          looking for a grammar point that expresses a fundamental lack of method or solution to repair
+          the TV, despite effort, rather than just logical impossibility. Therefore, "できるはずがない" (it shouldn't
+          be possible to repair it, implies logical impossibility) is not quite the same nuance as "しようがない"
+          (there's no method/means to do it).
+      - competing_japanese:
+          - テレビ が 壊れ て い て、修理 {できる わけ が ない}。
+        english: My TV is broken, so there's no way it can be repaired.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようがない」 means there is no method or means to accomplish the repair, regardless of logical justification.
+          We're looking for a grammar point that expresses a fundamental lack of method or solution to
+          repair the TV, despite effort, rather than just no logical reason for it to be possible. Therefore,
+          "できるわけがない" (no way it can be repaired, implies logical justification for impossibility) is not
+          quite the same nuance as "しようがない" (there's no method/means to do it).
+      - competing_japanese:
+          - テレビ が 壊れ て い て、修理 {でき そう も ない}。
+        english: My TV is broken, and it doesn't seem repairable.
+        hint: 「～そうもない」 expresses unlikelihood based on appearance. 「～ようがない」 means there is no method or
+          means to accomplish the repair, regardless of how it seems. We're looking for a grammar point
+          that expresses a fundamental lack of method or solution to repair the TV, despite effort, rather
+          than just that it doesn't seem likely based on appearance. Therefore, "できそうもない" (doesn't seem
+          repairable) is not quite the same nuance as "しようがない" (no way to repair, implies lack of method).
+      - competing_japanese:
+          - テレビ が 壊れ て い て、修理 が {でき ない}。
+        english: My TV is broken, and it cannot be repaired.
+        hint: The scene emphasizes the effort "no matter how hard I try" to highlight the futility and
+          lack of a viable approach. 「修理が できない」 implies a simple inability, while 「修理のしようがない」 emphasizes
+          the absence of a method or solution despite effort. We're looking for a phrase that specifically
+          highlights the absence of a *method* or *approach* to fix the TV, even with effort, rather than
+          just a general inability. Therefore, "修理ができない" (can't repair) is not quite the same nuance as
+          "修理のしようがない" (no way to repair, implies lack of method).
+    scene: A person is frustrated with a broken appliance.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: It's a precious memento, so I feel like there's no way I can throw it away.
+    japanese:
+      - 大切 な 思い出 の 品 な の で、捨てる に {捨てよう も ない} 気持ち だ。
+      - 大切 な 思い出 の 品 な の で、捨てる に {捨てよう も あり ませ ん} 気持ち です。
+      - 大切 な 思い出 の 品 な の で、捨てる に {捨て よう が ない} 気持ち だ。
+      - 大切 な 思い出 の 品 な の で、捨てる に {捨て よう が あり ませ ん} 気持ち です。
+    english_literally: Important memory item, so throw away there is no way feelings.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 な 思い出 の 品 な の で、捨てる に {捨て がたい} 気持ち だ。
+        english: It's a precious memento, so it's hard to throw away.
+        hint: 「～がたい」 emphasizes the difficulty due to emotional or psychological reasons, while 「～ようもない」
+          means there is no way or method to perform the action. We're looking for the sense of having
+          no option or method to discard it, despite the internal feeling. Therefore, "捨てがたい" (hard to
+          throw away, implies emotional/psychological difficulty) is not quite the same nuance as "捨てようもない"
+          (no way to throw away, implies lack of method).
+      - competing_japanese:
+          - 大切 な 思い出 の 品 な の で、捨て られ {っこ ない}。
+        english: It's a precious memento, so there's no way I can throw it away.
+        hint: 「～っこない」 implies strong impossibility or disbelief. 「～ようもない」 highlights the absence of a
+          method or option to discard it, emphasizing an internal struggle beyond simple impossibility.
+          We're looking for a phrase that specifically indicates a lack of *method* or *means* to discard
+          the item, rather than just a strong certainty of impossibility. Therefore, "捨てられっこない" (no way
+          it can be thrown away, implies strong certainty of impossibility) is not quite the same nuance
+          as "捨てようもない" (no way to throw away, implies lack of method).
+      - competing_japanese:
+          - 大切 な 思い出 の 品 な の で、捨て られ {そう も ない}。
+        english: It's a precious memento, so it doesn't seem like I can throw it away.
+        hint: 「～そうもない」 suggests unlikelihood based on appearance or feeling. 「～ようもない」 emphasizes the absence
+          of a method or option to discard it, suggesting a deeper, internal impossibility. We're looking
+          for a phrase that specifically conveys a lack of *method* or *means* to discard the item, rather
+          than just unlikelihood based on appearance. Therefore, "捨てられそうもない" (doesn't seem like it can
+          be thrown away) is not quite the same nuance as "捨てようもない" (no way to throw away, implies lack
+          of method).
+      - competing_japanese:
+          - 大切 な 思い出 の 品 な の で、捨て られ {ない}。
+        english: It's a precious memento, so I can't throw it away.
+        hint: The scene conveys the internal struggle and the emotional impossibility of the act, which
+          「捨てようもない」 better captures than a simple potential form. 「捨てられない」 implies a physical inability
+          or external constraint, while 「捨てようもない」 suggests an internal, emotional barrier to finding a
+          way to discard it. We're looking for a phrase that highlights the lack of a *method* or *way*
+          to discard the item, despite the desire to do so, rather than just a general inability. Therefore,
+          "捨てられない" (cannot throw away) is not quite the same nuance as "捨てようもない" (no way to throw away,
+          implies lack of method).
+    scene: A person is contemplating discarding an emotionally significant item.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: Everyone couldn't hide their surprise at his sudden retirement.
+    japanese:
+      - 彼 の 突然 の 引退 に は、誰 も が 驚き を 隠し {よう が なかっ た}。
+      - 彼 の 突然 の 引退 に は、誰 も が 驚き を 隠し {よう が あり ませ ん でし た}。
+      - 彼 の 突然 の 引退 に は、誰 も が 驚き を 隠し {よう も なかっ た}。
+      - 彼 の 突然 の 引退 に は、誰 も が 驚き を 隠し {よう も あり ませ ん でし た}。
+    english_literally: His sudden retirement, everyone surprise hide there was no way.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠し がたかっ た}。
+        english: It was hard to hide their surprise at his sudden retirement.
+        hint: 「～がたい」 means something is difficult to do. 「～ようがなかった」 implies there was no method or possibility
+          to hide it, emphasizing the absolute impossibility rather than just difficulty. We're looking
+          for a phrase that highlights the complete absence of a *method* or *way* to conceal the surprise,
+          rather than just difficulty. Therefore, "隠しがたかった" (it was hard to hide) is not quite the same
+          nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠せ っこ なかっ た}。
+        english: Everyone couldn't hide their surprise at his sudden retirement; there was no way.
+        hint: 「～っこない」 expresses strong certainty of impossibility. 「～ようがなかった」 emphasizes that there was
+          no method or means by which to conceal the surprise. We're looking for a phrase that highlights
+          the complete absence of a *method* or *way* to conceal the surprise, rather than just a strong
+          certainty of impossibility. Therefore, "隠せっこなかった" (couldn't possibly hide) is not quite the
+          same nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠せる はず が ない}。
+        english: Everyone shouldn't have been able to hide their surprise at his sudden retirement.
+        hint: 「～はずがない」 indicates something is logically improbable or impossible. 「～ようがなかった」 emphasizes
+          that there was no method or means to conceal the surprise. We're looking for a phrase that highlights
+          the complete absence of a *method* or *way* to conceal the surprise, rather than just logical
+          improbability. Therefore, "隠せるはずがない" (shouldn't have been able to hide) is not quite the same
+          nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠せる わけ が ない}。
+        english: There was no way they could hide their surprise at his sudden retirement.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようがなかった」 emphasizes that there was no method or means to conceal the surprise. We're looking
+          for a phrase that highlights the complete absence of a *method* or *way* to conceal the surprise,
+          rather than just no logical justification. Therefore, "隠せるわけがない" (there's no way they could
+          hide) is not quite the same nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠せ そう も ない}。
+        english: It didn't seem like everyone could hide their surprise at his sudden retirement.
+        hint: 「～そうもない」 expresses unlikelihood based on appearance. 「～ようがなかった」 emphasizes that there was
+          no method or means to conceal the surprise. We're looking for a phrase that highlights the complete
+          absence of a *method* or *way* to conceal the surprise, rather than just unlikelihood based
+          on appearance. Therefore, "隠せそうもない" (didn't seem like they could hide) is not quite the same
+          nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+      - competing_japanese:
+          - 彼 の 突然 の 引退 に は、誰 も が 驚き を {隠せ なかっ た}。
+        english: Everyone could not hide their surprise at his sudden retirement.
+        hint: The scene emphasizes the overwhelming nature of the surprise, making it an impossibility
+          to hide, rather than a simple inability. 「隠せなかった」 could simply mean they failed to hide it,
+          whereas 「隠しようがなかった」 implies that it was fundamentally impossible to conceal such a strong reaction.
+          We're looking for a phrase that highlights the fundamental impossibility due to a lack of *method*
+          or *means* to hide the surprise, rather than just a general inability. Therefore, "隠せなかった" (could
+          not hide) is not quite the same nuance as "隠しようがなかった" (no way to hide, implies lack of method).
+    scene: Colleagues reacting to an unexpected announcement.
+    register: formal
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: Now that the plan has failed, there's no way to make excuses.
+    japanese:
+      - 計画 が 失敗 し た 今、どう に も 弁解 の {しよう が ない}。
+      - 計画 が 失敗 し た 今、どう に も 弁解 の {しよう が あり ませ ん}。
+      - 計画 が 失敗 し た 今、どう に も 弁解 の {しよう も ない}。
+      - 計画 が 失敗 し た 今、どう に も 弁解 の {しよう も あり ませ ん}。
+    english_literally: Plan failed now, no matter what, excuses there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 が 失敗 し た 今、弁解 {でき っこ ない}。
+        english: Now that the plan has failed, there's no way to make excuses.
+        hint: 「～っこない」 implies strong impossibility. 「～ようがない」 focuses on the lack of any valid method or
+          grounds for making excuses. We're looking for a phrase that emphasizes the complete absence
+          of a *method* or *means* for making excuses, rather than just strong impossibility. Therefore,
+          "弁解できっこない" (no way to make excuses, implies strong certainty of impossibility) is not quite
+          the same nuance as "弁解のしようがない" (no way to make excuses, implies lack of method).
+      - competing_japanese:
+          - 計画 が 失敗 し た 今、弁解 {できる はず が ない}。
+        english: Now that the plan has failed, there should be no way to make excuses.
+        hint: 「～はずがない」 indicates something is logically unlikely or impossible. 「～ようがない」 focuses on the
+          complete absence of any valid method or grounds for making excuses. We're looking for a phrase
+          that emphasizes the complete absence of a *method* or *means* for making excuses, rather than
+          just logical improbability. Therefore, "弁解できるはずがない" (should be no way to make excuses) is not
+          quite the same nuance as "弁解のしようがない" (no way to make excuses, implies lack of method).
+      - competing_japanese:
+          - 計画 が 失敗 し た 今、弁解 {できる わけ が ない}。
+        english: Now that the plan has failed, there's no way to make excuses.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようがない」 focuses on the complete absence of any valid method or grounds for making excuses.
+          We're looking for a phrase that emphasizes the complete absence of a *method* or *means* for
+          making excuses, rather than just no logical justification. Therefore, "弁解できるわけがない" (no way to
+          make excuses) is not quite the same nuance as "弁解のしようがない" (no way to make excuses, implies lack
+          of method).
+      - competing_japanese:
+          - 計画 が 失敗 し た 今、弁解 {でき そう も ない}。
+        english: Now that the plan has failed, it doesn't seem like excuses can be made.
+        hint: 「～そうもない」 implies unlikelihood based on appearance. 「～ようがない」 focuses on the complete absence
+          of any valid method or grounds for making excuses. We're looking for a phrase that emphasizes
+          the complete absence of a *method* or *means* for making excuses, rather than just unlikelihood
+          based on appearance. Therefore, "弁解できそうもない" (doesn't seem like excuses can be made) is not quite
+          the same nuance as "弁解のしようがない" (no way to make excuses, implies lack of method).
+      - competing_japanese:
+          - 計画 が 失敗 し た 今、弁解 {でき ない}。
+        english: Now that the plan has failed, excuses cannot be made.
+        hint: The scene highlights the complete lack of a valid defense or explanation, which 「どうにもしようがない」
+          conveys more strongly than just 「できない」. 「弁解できない」 could mean a temporary inability, while 「弁解のしようがない」
+          emphasizes a total absence of grounds or methods for explanation. We're looking for a phrase
+          that specifically highlights the absolute absence of any *method* or *grounds* for making excuses,
+          rather than just a general inability. Therefore, "弁解できない" (cannot make excuses) is not quite
+          the same nuance as "弁解のしようがない" (no way to make excuses, implies lack of method).
+    scene: A project manager facing the consequences of a failed project.
+    register: semi-formal
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: There's no way to change the past, so all we can do is move forward positively.
+    japanese:
+      - 過去 の 事 は もう 変え {よう が ない} から、前向き に 進む しか ない。
+      - 過去 の 事 は もう 変え {よう が あり ませ ん} から、前向き に 進む しか あり ませ ん。
+      - 過去 の 事 は もう 変え {よう も ない} から、前向き に 進む しか ない。
+      - 過去 の 事 は もう 変え {よう も あり ませ ん} から、前向き に 進む しか あり ませ ん。
+    english_literally: Past things already change there is no way, so positive move forward only.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 事 は もう 変え {がたい} から、前向き に 進む しか ない。
+        english: Because the past is hard to change, all we can do is move forward positively.
+        hint: 「～がたい」 conveys difficulty. 「～ようがない」 means there is no method or means to change the past,
+          emphasizing the fundamental impossibility. We're looking for a phrase that highlights the fundamental
+          impossibility due to a lack of *method* or *means* to change the past, rather than just general
+          difficulty. Therefore, "変えがたい" (hard to change) is not quite the same nuance as "変えようがない" (no
+          way to change, implies lack of method).
+      - competing_japanese:
+          - 過去 の 事 は もう 変え られ {っこ ない} から、前向き に 進む しか ない。
+        english: Because there's no way to change the past, all we can do is move forward positively.
+        hint: 「～っこない」 expresses strong impossibility. 「～ようがない」 emphasizes that there is no method or approach
+          to changing the past. We're looking for a phrase that highlights the fundamental impossibility
+          due to a lack of *method* or *means* to change the past, rather than just a strong certainty
+          of impossibility. Therefore, "変えられっこない" (no way it can be changed) is not quite the same nuance
+          as "変えようがない" (no way to change, implies lack of method).
+      - competing_japanese:
+          - 過去 の 事 は もう 変え {られる はず が ない} から、前向き に 進む しか ない。
+        english: Because it shouldn't be possible to change the past, all we can do is move forward positively.
+        hint: 「～はずがない」 expresses logical improbability or impossibility. 「～ようがない」 emphasizes that there
+          is no method or approach to changing the past. We're looking for a phrase that highlights the
+          fundamental impossibility due to a lack of *method* or *means* to change the past, rather than
+          just logical improbability. Therefore, "変えられるはずがない" (shouldn't be possible to change) is not
+          quite the same nuance as "変えようがない" (no way to change, implies lack of method).
+      - competing_japanese:
+          - 過去 の 事 は もう 変え {られる わけ が ない} から、前向き に 進む しか ない。
+        english: Because there's no way it can be changed, all we can do is move forward positively.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようがない」 emphasizes that there is no method or approach to changing the past. We're looking
+          for a phrase that highlights the fundamental impossibility due to a lack of *method* or *means*
+          to change the past, rather than just no logical justification. Therefore, "変えられるわけがない" (no way
+          it can be changed) is not quite the same nuance as "変えようがない" (no way to change, implies lack
+          of method).
+      - competing_japanese:
+          - 過去 の 事 は もう 変え {られ そう も ない} から、前向き に 進む しか ない。
+        english: Because it doesn't seem like it can be changed, all we can do is move forward positively.
+        hint: 「～そうもない」 expresses unlikelihood based on appearance. 「～ようがない」 emphasizes that there is no
+          method or approach to changing the past. We're looking for a phrase that highlights the fundamental
+          impossibility due to a lack of *method* or *means* to change the past, rather than just unlikelihood
+          based on appearance. Therefore, "変えられそうもない" (doesn't seem like it can be changed) is not quite
+          the same nuance as "変えようがない" (no way to change, implies lack of method).
+      - competing_japanese:
+          - 過去 の 事 は もう 変え られ {ない} から、前向き に 進む しか ない。
+        english: Because the past can no longer be changed, all we can do is move forward positively.
+        hint: The scene focuses on the fundamental impossibility of altering past events, making 「変えようがない」
+          more apt than a simple potential form. 「変えられない」 implies that it's physically impossible to change,
+          but 「変えようがない」 conveys that there is simply no *method* or *approach* to changing what has already
+          occurred. We're looking for a phrase that emphasizes the fundamental impossibility due to a
+          lack of *method* or *approach* to changing the past, rather than just a general inability. Therefore,
+          "変えられない" (cannot change) is not quite the same nuance as "変えようがない" (no way to change, implies
+          lack of method).
+    scene: Someone giving advice after a past mistake.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+  - english: If it's such a steep slope, there's no way she can climb it, no matter how hard she tries.
+    japanese:
+      - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登り {よう が ない} よ。
+      - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登り {よう が あり ませ ん} よ。
+      - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登り {よう も ない} よ。
+      - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登り {よう も あり ませ ん} よ。
+    english_literally: Such steep slope, she no matter how much tries climb there is no way, you know.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登り {がたい} よ。
+        english: If it's such a steep slope, it's hard for her to climb it, no matter how hard she tries.
+        hint: 「～がたい」 indicates something is difficult to do. 「～ようがない」 means there's no way or approach
+          for her to climb it, despite her efforts, implying an absolute physical impossibility. We're
+          looking for a phrase that emphasizes the absolute impossibility due to a lack of *method* or
+          *approach* to climb, rather than just difficulty. Therefore, "登りがたい" (hard to climb) is not
+          quite the same nuance as "登りようがない" (no way to climb, implies lack of method).
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登れ {っこ ない} よ。
+        english: If it's such a steep slope, there's no way she can climb it, no matter how hard she tries.
+        hint: 「～っこない」 conveys strong certainty of impossibility. 「～ようがない」 implies the fundamental lack
+          of a method or means to climb, despite effort. We're looking for a phrase that emphasizes the
+          fundamental lack of a *method* or *means* to climb, rather than just a strong certainty of impossibility.
+          Therefore, "登れっこない" (no way she can climb) is not quite the same nuance as "登りようがない" (no way
+          to climb, implies lack of method).
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登れ {る はず が ない} よ。
+        english: If it's such a steep slope, she shouldn't be able to climb it, no matter how hard she
+          tries.
+        hint: 「～はずがない」 indicates something is logically impossible or improbable. 「～ようがない」 implies the
+          fundamental lack of a method or means to climb, despite effort. We're looking for a phrase that
+          emphasizes the fundamental lack of a *method* or *means* to climb, rather than just logical
+          impossibility. Therefore, "登れるはずがない" (shouldn't be able to climb) is not quite the same nuance
+          as "登りようがない" (no way to climb, implies lack of method).
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登れ {る わけ が ない} よ。
+        english: If it's such a steep slope, there's no way she can climb it, no matter how hard she tries.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようがない」 implies the fundamental lack of a method or means to climb, despite effort. We're looking
+          for a phrase that emphasizes the fundamental lack of a *method* or *means* to climb, rather
+          than just no logical justification. Therefore, "登れるわけがない" (no way she can climb) is not quite
+          the same nuance as "登りようがない" (no way to climb, implies lack of method).
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登れ {そう も ない} よ。
+        english: If it's such a steep slope, it doesn't seem like she can climb it, no matter how hard
+          she tries.
+        hint: 「～そうもない」 expresses unlikelihood based on appearance. 「～ようがない」 implies the fundamental lack
+          of a method or means to climb, despite effort. We're looking for a phrase that emphasizes the
+          fundamental lack of a *method* or *means* to climb, rather than just unlikelihood based on appearance.
+          Therefore, "登れそうもない" (doesn't seem like she can climb) is not quite the same nuance as "登りようがない"
+          (no way to climb, implies lack of method).
+      - competing_japanese:
+          - そんな に 急 な 坂道 だ と、彼女 は どんな に 頑張っ て も 登れ {ない} よ。
+        english: If it's such a steep slope, she can't climb it, no matter how hard she tries.
+        hint: The scene implies the speaker's assessment of the situation's inherent difficulty, making
+          it an impossibility for *her* to climb, rather than just an inability. 「登れない」 is a simple statement
+          of inability, whereas 「登りようがない」 emphasizes that no strategy or effort would make it possible.
+          We're looking for a phrase that highlights the inherent impossibility due to a lack of *method*
+          or *strategy* to climb the slope, rather than just a general inability. Therefore, "登れない" (cannot
+          climb) is not quite the same nuance as "登りようがない" (no way to climb, implies lack of method).
+    scene: A man observing his friend struggling with a difficult physical task.
+    register: casual
+    setting: sympathetic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses the sentence-final particle 「よ」 to convey a sense of gentle assertion
+      or to inform the listener, suggesting a sympathetic observation about the woman's struggle. This
+      informal particle often implies shared understanding or a slight emphasis on the statement.
+    etymology: The use of 「よ」 at the end of the sentence is a common informal particle. 「どんなに 頑張っても」 means
+      "no matter how hard she tries," highlighting the futility of effort.
+  - english: I was so deeply moved by her kindness that I couldn't even express my gratitude.
+    japanese:
+      - 彼女 の 優し さ に は、感謝 し {よう も ない} ほど 感動 し まし た。
+      - 彼女 の 優し さ に は、感謝 し {よう も ない} ほど 感動 し た。
+      - 彼女 の 優し さ に は、感謝 し {よう が ない} ほど 感動 し まし た。
+      - 彼女 の 優し さ に は、感謝 し {よう が ない} ほど 感動 し た。
+    english_literally: Her kindness, gratitude express there is no way extent, was moved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 優し さ に は、感謝 し {がたい} ほど 感動 し まし た。
+        english: I was so deeply moved by her kindness that it was hard to express my gratitude.
+        hint: 「～がたい」 conveys difficulty. 「～ようもない」 means there's no method or way of expressing gratitude
+          could truly capture the depth of feeling. We're looking for a phrase that highlights the lack
+          of a *method* or *way* to express gratitude that adequately conveys the deep emotion, rather
+          than just difficulty in expressing it. Therefore, "感謝しがたい" (hard to express gratitude) is not
+          quite the same nuance as "感謝しようもない" (no way to express gratitude, implies lack of method/adequate
+          expression).
+      - competing_japanese:
+          - 彼女 の 優し さ に は、感謝 {でき っこ ない} ほど 感動 し まし た。
+        english: I was so deeply moved by her kindness that there's no way I could express my gratitude.
+        hint: 「～っこない」 expresses strong impossibility. 「～ようもない」 implies that no method or way of expressing
+          gratitude could truly capture the depth of feeling. We're looking for a phrase that highlights
+          the lack of a *method* or *way* to express gratitude that adequately conveys the deep emotion,
+          rather than just strong impossibility. Therefore, "感謝できっこない" (no way to express gratitude) is
+          not quite the same nuance as "感謝しようもない" (no way to express gratitude, implies lack of method/adequate
+          expression).
+      - competing_japanese:
+          - 彼女 の 優し さ に は、感謝 {でき そう も ない} ほど 感動 し まし た。
+        english: I was so deeply moved by her kindness that it doesn't seem like I can express my gratitude.
+        hint: 「～そうもない」 suggests unlikelihood based on appearance. 「～ようもない」 implies that no method or way
+          of expressing gratitude could truly capture the depth of feeling. We're looking for a phrase
+          that highlights the lack of a *method* or *way* to express gratitude that adequately conveys
+          the deep emotion, rather than just unlikelihood based on appearance. Therefore, "感謝できそうもない"
+          (doesn't seem like I can express gratitude) is not quite the same nuance as "感謝しようもない" (no way
+          to express gratitude, implies lack of method/adequate expression).
+      - competing_japanese:
+          - 彼女 の 優し さ に は、感謝 {でき ない} ほど 感動 し まし た。
+        english: I was so deeply moved by her kindness that I could not express my gratitude.
+        hint: The scene emphasizes the *depth* of the emotion making expressing gratitude feel insufficient
+          or impossible, which 「ようもない」 conveys better than a simple inability. 「感謝 できない」 could mean a
+          simple inability to find words, but 「感謝しようもない」 implies that no method of expressing gratitude
+          could truly capture the feeling. We're looking for a phrase that conveys the impossibility of
+          finding an *adequate method* to express the overwhelming gratitude, rather than just a simple
+          inability. Therefore, "感謝できない" (cannot express gratitude) is not quite the same nuance as "感謝しようもない"
+          (no way to express gratitude, implies lack of method/adequate expression).
+    scene: Someone overwhelmed by another's kindness.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative non-past polite (～ません)
+  - english: The truth is, this complex problem currently has no way of being solved.
+    japanese:
+      - この 複雑 な 問題 は、現状 で は 解決 の {しよう も ない} の が 事実 です。
+      - この 複雑 な 問題 は、現状 で は 解決 の {しよう も ない} の が 事実 だ。
+      - この 複雑 な 問題 は、現状 で は 解決 の {しよう が ない} の が 事実 です。
+      - この 複雑 な 問題 は、現状 で は 解決 の {しよう が ない} の が 事実 だ。
+    english_literally: This complex problem, current situation, solution there is no way, is fact.
+    competing_grammar:
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 し {がたい} の が 事実 です。
+        english: The truth is, this complex problem is currently hard to solve.
+        hint: 「～がたい」 emphasizes difficulty. 「～ようもない」 means there's no method or solution available, emphasizing
+          the fundamental lack of a path forward. We're looking for a phrase that highlights the fundamental
+          lack of a *method* or *solution* to the problem, rather than just difficulty. Therefore, "解決しがたい"
+          (hard to solve) is not quite the same nuance as "解決のしようもない" (no way to solve, implies lack of
+          method/solution).
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 {でき っこ ない} の が 事実 です。
+        english: The truth is, this complex problem currently cannot be solved.
+        hint: 「～っこない」 conveys strong impossibility. 「～ようもない」 emphasizes the fundamental lack of a method
+          or solution to the problem. We're looking for a phrase that highlights the fundamental lack
+          of a *method* or *solution* to the problem, rather than just strong impossibility. Therefore,
+          "解決できっこない" (cannot possibly be solved) is not quite the same nuance as "解決のしようもない" (no way to
+          solve, implies lack of method/solution).
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 {できる はず が ない} の が 事実 です。
+        english: The truth is, this complex problem currently shouldn't be solvable.
+        hint: 「～はずがない」 expresses logical impossibility or improbability. 「～ようもない」 emphasizes the fundamental
+          lack of a method or solution to the problem. We're looking for a phrase that highlights the
+          fundamental lack of a *method* or *solution* to the problem, rather than just logical impossibility.
+          Therefore, "解決できるはずがない" (shouldn't be solvable) is not quite the same nuance as "解決のしようもない"
+          (no way to solve, implies lack of method/solution).
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 {できる わけ が ない} の が 事実 です。
+        english: The truth is, this complex problem currently cannot be solved.
+        hint: 「～わけがない」 implies there's no logical reason or justification for something to be possible.
+          「～ようもない」 emphasizes the fundamental lack of a method or solution to the problem. We're looking
+          for a phrase that highlights the fundamental lack of a *method* or *solution* to the problem,
+          rather than just no logical justification. Therefore, "解決できるわけがない" (cannot be solved) is not
+          quite the same nuance as "解決のしようもない" (no way to solve, implies lack of method/solution).
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 {でき そう も ない} の が 事実 です。
+        english: The truth is, this complex problem currently doesn't seem solvable.
+        hint: 「～そうもない」 expresses unlikelihood based on appearance. 「～ようもない」 emphasizes the fundamental
+          lack of a method or solution to the problem. We're looking for a phrase that highlights the
+          fundamental lack of a *method* or *solution* to the problem, rather than just unlikelihood based
+          on appearance. Therefore, "解決できそうもない" (doesn't seem solvable) is not quite the same nuance as
+          "解決のしようもない" (no way to solve, implies lack of method/solution).
+      - competing_japanese:
+          - この 複雑 な 問題 は、現状 で は 解決 {でき ない} の が 事実 です。
+        english: The truth is, this complex problem currently cannot be solved.
+        hint: The scene emphasizes the inherent lack of a *method* or *approach* to solve the problem,
+          rather than just a temporary inability. 「解決 できない」 might suggest a temporary barrier, while 「解決のしようもない」
+          implies a fundamental lack of a path towards resolution. We're looking for a phrase that emphasizes
+          the fundamental lack of a *method* or *approach* to solving the problem, rather than just a
+          general inability. Therefore, "解決できない" (cannot be solved) is not quite the same nuance as "解決のしようもない"
+          (no way to solve, implies lack of method/solution).
+    scene: A team leader reporting on a difficult task.
+    register: formal
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+  - english: I can't understand why that child is crying; there's no way to comprehend it.
+    japanese:
+      - あの 子 が どう し て 泣い て いる の か、理解 の {しよう が ない}。
+      - あの 子 が どう し て 泣い て いる の か、理解 の {しよう も ない}。
+      - あの 子 が どう し て 泣い て いる の か、理解 の {しよう が あり ませ ん}。
+      - あの 子 が どう し て 泣い て いる の か、理解 の {しよう も あり ませ ん}。
+    english_literally: That child why crying, understanding there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 が どう し て 泣い て いる の か、理解 {でき ない}。
+        english: I can't understand why that child is crying.
+        hint: 「理解できない」 means a simple inability to understand. 「理解のしようがない」 emphasizes a lack of method
+          or means to comprehend, suggesting a deeper level of incomprehensibility beyond simple inability.
+          We're looking for a phrase that conveys a complete absence of a *method* or *means* to understand
+          the crying, rather than just a general inability to understand. Therefore, "理解できない" (cannot
+          understand) is not quite the same nuance as "理解のしようがない" (no way to understand, implies lack
+          of method).
+      - competing_japanese:
+          - あの 子 が どう し て 泣い て いる の か、理解 し {づらい}。
+        english: It's hard to understand why that child is crying.
+        hint: 「～しづらい」 means something is difficult to do. 「理解のしようがない」 implies there's no method or way
+          to understand at all, rather than just being difficult. We're looking for a phrase that conveys
+          a complete absence of a *method* or *way* to understand, rather than just difficulty. Therefore,
+          "理解しづらい" (hard to understand) is not quite the same nuance as "理解のしようがない" (no way to understand,
+          implies lack of method).
+      - competing_japanese:
+          - あの 子 が どう し て 泣い て いる の か、分かる {はず が ない}。
+        english: There's no way I should be able to understand why that child is crying.
+        hint: 「～はずがない」 indicates something is logically unlikely or impossible. 「理解のしようがない」 implies a
+          fundamental lack of a method or approach to understanding, irrespective of logical expectation.
+          We're looking for a phrase that conveys a complete absence of a *method* or *approach* to understanding,
+          rather than just logical improbability. Therefore, "分かるはずがない" (shouldn't be able to understand)
+          is not quite the same nuance as "理解のしようがない" (no way to understand, implies lack of method).
+    scene: A parent or guardian observing a child's prolonged crying without an obvious reason, feeling
+      at a loss.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: Once the secret is out, there's no way to take it back.
+    japanese:
+      - 一 度 漏れ て しまっ た 秘密 は、もう 取り返し の {つけ よう も ない}。
+      - 一 度 漏れ て しまっ た 秘密 は、もう 取り返し の {つけ よう も あり ませ ん}。
+      - 一 度 漏れ て しまっ た 秘密 は、もう 取り返し の {つけ よう が ない}。
+      - 一 度 漏れ て しまっ た 秘密 は、もう 取り返し の {つけ よう が あり ませ ん}。
+    english_literally: Once leaked secret, already retrieve there is no way.
+    competing_grammar:
+      - competing_japanese:
+          - 一 度 漏れ て しまっ た 秘密 は、もう 取り返せ {ない}。
+        english: Once the secret is out, it can no longer be taken back.
+        hint: 「取り返せない」 indicates a simple inability to retrieve. 「取り返しのつけようもない」 emphasizes that there's
+          no method or way to undo the action, highlighting the irreversible nature. We're looking for
+          a phrase that specifically highlights the absence of a *method* or *means* to undo the action,
+          rather than just a general inability. Therefore, "取り返せない" (cannot take back) is not quite the
+          same nuance as "取り返しのつけようもない" (no way to take back, implies lack of method).
+      - competing_japanese:
+          - 一 度 漏れ て しまっ た 秘密 は、もう {後戻り でき ない}。
+        english: Once the secret is out, there's no going back.
+        hint: 「後戻りできない」 implies an inability to return to a previous state. 「取り返しのつけようもない」 specifically
+          refers to the inability to rectify or undo a specific action or consequence due to a lack of
+          available methods. We're looking for a phrase that highlights the absence of a *method* or *means*
+          to undo or rectify the specific action, rather than just a general inability to go back. Therefore,
+          "後戻りできない" (cannot go back) is not quite the same nuance as "取り返しのつけようもない" (no way to take back,
+          implies lack of method).
+      - competing_japanese:
+          - 一 度 漏れ て しまっ た 秘密 は、もう 取り返し {がたい}。
+        english: Once the secret is out, it's hard to take it back.
+        hint: 「～がたい」 means something is difficult to do. 「取り返しのつけようもない」 implies a complete lack of method
+          to undo it, not just difficulty. We're looking for a phrase that highlights the complete absence
+          of a *method* or *means* to undo the action, rather than just difficulty. Therefore, "取り返しがたい"
+          (hard to take back) is not quite the same nuance as "取り返しのつけようもない" (no way to take back, implies
+          lack of method).
+    scene: Someone lamenting a regrettable disclosure that has irreversible consequences.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+post_example_writeup: As demonstrated by the examples, 「ようがない」 and 「ようもない」 are versatile phrases used
+  to express that there is simply no way or method to perform an action. While 「ようもない」 adds a slightly
+  stronger sense of emphasis or regret, both forms are often interchangeable. The choice between plain
+  and polite forms, like 「～しようがない」 and 「～しようがありません」, depends on the social context and desired level of
+  formality with the listener.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ようがない・ようもない

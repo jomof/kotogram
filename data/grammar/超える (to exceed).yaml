@@ -1,0 +1,314 @@
+grammar_point: 超える (to exceed)
+learn_before:
+  - Number+も (emphatic quantity)
+  - Verb[imperative] (imperative)
+  - Verb[しました] (polite past)
+  - Verb[なくて] (negative te-form)
+  - Verb[ました] (polite past)
+  - '[Noun]をください (please give me)'
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - い-Adjective[かった] (past tense)
+  - い-adjective (sentence-ending)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - で (means・method)
+  - と (with)
+  - やっと (finally・barely)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 任せる (to entrust or leave to)
+  - 側 (side or flank)
+  - 切る (do completely or thoroughly)
+  - 地面・天井 (ground・floor・ceiling)
+meaning: to exceed; to go over; to pass (a limit/boundary)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 超える
+    rarity: common
+    meaning: to exceed
+  - conjugation-type: non-past polite (～ます)
+    form: 超えます
+    rarity: common
+    meaning: exceed (polite)
+  - conjugation-type: past plain (～た)
+    form: 超えた
+    rarity: common
+    meaning: exceeded
+  - conjugation-type: past polite (～ました)
+    form: 超えました
+    rarity: common
+    meaning: exceeded (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 超えない
+    rarity: common
+    meaning: not exceed
+  - conjugation-type: negative non-past polite (～ません)
+    form: 超えません
+    rarity: common
+    meaning: not exceed (polite)
+  - conjugation-type: te-form (～て)
+    form: 超えて
+    rarity: common
+    meaning: exceeding, and then
+  - conjugation-type: potential (～られる/～える)
+    form: 超えられる
+    rarity: common
+    meaning: can exceed
+  - conjugation-type: volitional (～よう)
+    form: 超えよう
+    rarity: common
+    meaning: let's exceed
+pronunciation:
+  katakana: コエル
+  romaji: koeru
+formation:
+  '[Noun] を 超える': To exceed [noun] (transitive use).
+  '[数値] を 超える': To exceed a [numerical value].
+  '[期限] を 超える': To exceed a [deadline].
+  '[期待] を 超える': To exceed [expectations].
+jlpt: N3
+etymology: The kanji 超 (chō) itself signifies 'to surpass,' 'to exceed,' or 'ultra-.' The verb 超える (koeru)
+  inherits this fundamental meaning, referring to the act of 'going beyond,' 'crossing over,' or 'exceeding'
+  a certain point, limit, or threshold. Its usage has historically encompassed both physical passage and
+  more abstract notions of surpassing a standard or expectation, deriving from this core concept of moving
+  past a boundary.
+writeup: |-
+  「超える」 is a versatile verb used to express the action of **exceeding**, **going over**, or **passing a limit or boundary**. This can apply to a wide range of situations, from physical objects crossing a line to abstract concepts like expectations or deadlines being surpassed.
+
+  It is commonly used with the particle 「を」 to indicate the object or boundary that is being exceeded. For example, you might "exceed the speed limit" (速度制限を{超える}), "cross a mountain" (山を{超える}), or "exceed expectations" (期待を{超える}).
+
+  While often transitive, it can sometimes be used in a more intransitive sense where the subject itself is the one surpassing a benchmark, though the boundary is still often marked with 「を」. For instance, 「応募者数が1000人を超えた」 (The number of applicants exceeded 1,000) where the subject (応募者数) is doing the exceeding.
+
+  Nuance often depends on context: exceeding a speed limit is negative, while exceeding expectations is positive. It generally refers to a specific act of passing a mark rather than a continuous state of being beyond it.
+false_friends:
+  - term: 上回る
+    meaning: to exceed, to surpass (in quantity or performance)
+    kind: similar expression
+    nuance: 「上回る」 is often used in formal or business contexts, particularly for numerical data, performance,
+      or results. It emphasizes being *quantitatively* higher. While 「超える」 can also be used for numbers,
+      it has a broader application, including abstract concepts or physical boundaries.
+    grammar_point: <suggest>:上回る (to exceed, to surpass)
+  - term: 超す
+    meaning: to cross over, to pass, to exceed
+    kind: similar expression
+    nuance: 「超す」 often implies a more direct or physical "crossing" of a boundary or a simple passing
+      of a point (e.g., "時を{超す}" - to pass time). While it can overlap with 「超える」, 「超える」 has a slightly
+      broader and often more abstract connotation, applicable to limits, expectations, or emotional thresholds.
+      「超える」 can also imply overcoming.
+    grammar_point: <suggest>:超す (to cross over, to exceed)
+  - term: 下回る
+    meaning: to fall below, to be less than
+    kind: antonym
+    nuance: 「下回る」 is the direct antonym of 「上回る」 and is primarily used for quantitative comparison, indicating
+      that something is less than a certain value or expectation.
+    grammar_point: 下回る (to fall below)
+post_false_friends_writeup: While 「超える」, 「上回る」, and 「超す」 all convey the idea of exceeding, their nuances
+  differ. 「超える」 is the most versatile, applicable to various contexts from physical barriers to abstract
+  limits and expectations. 「上回る」 focuses specifically on surpassing in quantity or performance, often
+  in formal or statistical contexts. 「超す」 often implies a direct act of physically crossing or simply
+  passing a point in time or age. The choice depends on the specific context and the type of 'limit' being
+  surpassed. 「下回る」 is the direct opposite of 「上回る」, meaning to fall below a certain level.
+examples:
+  - english: The number of applicants exceeded 1,000.
+    japanese:
+      - 応募 者 数 は 1000 人 を {超え まし た}。
+      - 応募 者 数 は 1000 人 を {超え た}。
+    english_literally: The number of applicants exceeded 1000 people.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 者 数 は 1000 人 を 上回り まし た。
+        english: The number of applicants surpassed 1000 people.
+        hint: 「上回る」 emphasizes numerical superiority or surpassing a previous record, while 「超える」 is a
+          broader term for simply going past a point. We're looking for the sense of going past the 1000
+          mark.
+    scene: A report is being presented at a company meeting.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Wow, the sales this month finally went over 5 million yen!
+    japanese:
+      - やっ た、今月 の 売上 が やっと 500 万 円 を {超え た}！
+      - やっ た、今月 の 売上 が やっと 500 万 円 を {超え まし た}！
+    english_literally: Yay, this month's sales finally exceeded 5 million yen!
+    competing_grammar:
+      - competing_japanese:
+          - やっ た、今月 の 売上 が やっと 500 万 円 を 上回っ た！
+        english: Yay, this month's sales finally surpassed 5 million yen!
+        hint: 「上回る」 suggests a comparison where the sales are numerically greater than 5 million. 「超える」
+          focuses on *passing* the 5 million mark. We're looking for the idea of 'going over' that amount.
+    scene: Two colleagues are excitedly discussing sales figures.
+    register: casual
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The use of 「やった」and the plain form 「超えた」indicates a casual, celebratory tone typically used
+      among close colleagues or friends. The male speaker might often use such direct expressions.
+  - english: Her performance exceeded everyone's expectations.
+    japanese:
+      - 彼女 の パフォーマンス は 皆 の 期待 を {超え て} い まし た。
+      - 彼女 の パフォーマンス は 皆 の 期待 を {超え て} い た。
+    english_literally: Her performance was exceeding everyone's expectations.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の パフォーマンス は 予想 以上 でし た。
+        english: Her performance was more than expected.
+        hint: 「予想以上」 emphasizes the outcome being *greater than* the expectation. 「超える」 implies *passing*
+          or *going beyond* the expectation itself. We're looking for the sense of 'exceeding' expectations.
+    scene: A critic is reviewing an artist's performance.
+    register: formal
+    setting: academic
+    conjugation: te-form (～て)
+  - english: You're exceeding the speed limit.
+    japanese:
+      - スピード 制限 を {超え て} い ます。
+      - スピード 制限 を {超え てる} よ。
+    english_literally: You are exceeding the speed limit.
+    competing_grammar:
+      - competing_japanese:
+          - スピード 制限 を 違反 し て い ます。
+        english: You are violating the speed limit.
+        hint: 「違反する」 specifically means to violate a rule. While exceeding the limit is a violation, 「超える」
+          focuses on the act of passing the limit, not the legal consequence. We're looking for the act
+          of 'exceeding' the limit.
+    scene: A car navigation system giving a warning.
+    register: semi-formal
+    setting: instructional
+    conjugation: te-form (～て)
+  - english: We're going to cross that big bridge.
+    japanese:
+      - あの 大きな 橋 を {超え て} 行く よ。
+      - あの 大きな 橋 を {超え て} 行き ましょう。
+    english_literally: We are going to go over that big bridge.
+    competing_grammar:
+      - competing_japanese:
+          - あの 大きな 橋 を 渡っ て 行く よ。
+        english: We are going to cross that big bridge.
+        hint: 「渡る」 is typically used for crossing bridges, roads, or rivers. 「超える」 in this context implies
+          going *over* something, which might be applicable if the bridge is particularly high or seen
+          as a physical barrier to be surmounted. We're looking for the sense of literally 'going over'
+          it.
+    scene: A parent telling their child about the route.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The casual plain form 「行く」 and the sentence-final particle 「よ」 make this sentence sound friendly
+      and informative, typical of a female speaker addressing a child or a group in an informal setting.
+  - english: The ball went over the fence.
+    japanese:
+      - ボール は フェンス を {超え た}。
+      - ボール が フェンス を {超え まし た}。
+    english_literally: The ball exceeded the fence.
+    competing_grammar:
+      - competing_japanese:
+          - ボール は フェンス を 通り過ぎ た。
+        english: The ball passed by/through the fence.
+        hint: 「通り過ぎる」 means to simply pass by or through something, not necessarily to go over a barrier.
+          We're looking for an action that indicates going *above* the fence.
+    scene: Friends playing baseball in a park.
+    register: casual
+    setting: casual slang
+    conjugation: past plain (～た)
+  - english: The deadline for submissions has passed.
+    japanese:
+      - 提出 期限 を {超え まし た}。
+      - 提出 期限 を {超え た}。
+    english_literally: The submission deadline was exceeded.
+    competing_grammar:
+      - competing_japanese:
+          - 提出 期限 が 過ぎ まし た。
+        english: The submission deadline passed.
+        hint: 「過ぎる」 simply means time has elapsed or passed. 「超える」 emphasizes going *beyond* the specified
+          deadline, often with a nuance of having missed it. We're looking for the sense of having 'exceeded'
+          the deadline.
+    scene: A professor announcing in class.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+  - english: We must overcome this challenge.
+    japanese:
+      - 我々 は この 試練 を {超え なけれ ば} なり ませ ん。
+      - 我々 は この 試練 を {超え なく て は} なり ませ ん。
+    english_literally: We must exceed this ordeal.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 は この 試練 を 乗り越え なけれ ば なり ませ ん。
+        english: We must overcome this challenge (by surmounting it).
+        hint: 「乗り越える」 specifically implies surmounting or getting over a difficulty, often with effort.
+          「超える」 is a more general term for "to pass beyond" or "exceed". We're looking for a general "overcome"
+          or "pass beyond".
+    scene: A leader addressing their team during a difficult period.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+  - english: That problem is beyond my comprehension.
+    japanese:
+      - その 問題 は 私 の 理解 を {超え て} い ます。
+      - その 問題 は 私 の 理解 を {超え て いる}。
+    english_literally: That problem is exceeding my understanding.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 私 に は 理解 でき ませ ん。
+        english: That problem is incomprehensible to me.
+        hint: 「理解できない」 directly states an inability to understand. 「理解を超える」 conveys that the problem is
+          *so complex* that it goes beyond the limits of one's understanding. We're looking for the sense
+          of being 'beyond' comprehension.
+    scene: A student struggling with a complex problem.
+    register: semi-formal
+    setting: academic
+    conjugation: te-form (～て)
+  - english: My grandmother is already over 80 years old.
+    japanese:
+      - 私 の 祖母 は もう 80 歳 を {超え て} いる よ。
+      - 私 の 祖母 は もう 80 歳 を {超え て い ます}。
+    english_literally: My grandmother already exceeds 80 years old.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 祖母 は もう 80 歳 以上 です。
+        english: My grandmother is already 80 years old or more.
+        hint: 「以上」 simply states a quantity is equal to or more than a certain value. 「超える」 emphasizes
+          the act of having *passed* that age mark. We're looking for the idea of 'going over' 80 years
+          old.
+    scene: A grandchild talking about their grandmother to a friend.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    nuance: The use of 「よ」 at the end of the sentence adds a soft, informative, and friendly tone, common
+      in casual conversations, especially for female speakers.
+  - english: Hey, you're going way over the speed limit, aren't you?
+    japanese:
+      - おい、制限 速度 {超え て} ん じゃ ねえ か。
+      - おい、制限 速度 {超え てる} じゃ ない か。
+    english_literally: Hey, aren't you exceeding the speed limit?
+    competing_grammar:
+      - competing_japanese:
+          - おい、制限 速度 違反 し て いる じゃ ない か。
+        english: Hey, aren't you violating the speed limit?
+        hint: 「違反している」 emphasizes the legal aspect of breaking a rule. 「超えてる」 focuses on the physical
+          act of passing the limit. We're looking for the immediate observation of 'going over' the limit.
+    scene: A male passenger to a male driver, noticing he's speeding.
+    register: casual
+    setting: casual slang
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「おい」 is a very casual, often masculine way to call someone's attention. 「んじゃねえか」 is a highly
+      casual, slightly rough, masculine contraction of 「のではないか」, expressing a strong, slightly accusatory
+      or surprised assertion.
+  - english: The results greatly exceeded our expectations.
+    japanese:
+      - その 結果 は 私 たち の 予想 を 大きく {超え まし た}。
+      - その 結果 は 私 たち の 予想 を 大きく {超え た}。
+    english_literally: Those results greatly exceeded our expectations.
+    competing_grammar:
+      - competing_japanese:
+          - その 結果 は 私 たち の 予想 を 大きく 上回り まし た。
+        english: The results greatly surpassed our expectations (in quantity).
+        hint: While 「上回る」 also means to exceed, it often implies a quantitative surpassing. 「超える」 is more
+          general and can apply to abstract concepts like expectations. We're looking for a general "exceeded".
+    scene: A business report presentation.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)

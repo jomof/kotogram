@@ -1,0 +1,330 @@
+grammar_point: なくはない (softened possibility)
+learn_before:
+  - (という)わけではない (it's not that...)
+meaning: It's not that..., Kind of, might, Slightly, Somewhat, In some respects
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: なくはない
+    rarity: common
+    meaning: It's not that (verb/i-adjective) is not
+  - conjugation-type: non-past polite (～ます)
+    form: なくはありません
+    rarity: common
+    meaning: It's not that (verb/i-adjective) is not (polite)
+  - conjugation-type: past plain (～た)
+    form: なくはなかった
+    rarity: common
+    meaning: It's not that (verb/i-adjective) was not
+  - conjugation-type: past polite (～ました)
+    form: なくはありませんでした
+    rarity: common
+    meaning: It's not that (verb/i-adjective) was not (polite)
+  - conjugation-type: te-form (～て)
+    form: なくはなくて
+    rarity: uncommon
+    meaning: It's not that (verb/i-adjective) is not, and...
+  - conjugation-type: conditional (～ば)
+    form: なくはなければ
+    rarity: uncommon
+    meaning: If it's not that (verb/i-adjective) is not...
+  - conjugation-type: conditional (～たら)
+    form: なくはなかったら
+    rarity: uncommon
+    meaning: If it wasn't that (verb/i-adjective) was not...
+pronunciation:
+  katakana: ナクハナイ
+  romaji: naku wa nai
+formation:
+  Verb negative form, conjunctive (e.g., 食べなく) + は + ない: Used when negating a verb. The verb's negative
+    form becomes なく before はない.
+  い-Adjective negative form, conjunctive (e.g., 楽しくなく) + は + ない: Used when negating an い-adjective. The
+    adjective's negative form becomes なく before はない.
+  な-Adjective/Noun + でなく + は + ない: Used when negating a な-adjective or a noun. The negative form becomes
+    でなく before はない.
+  Noun + が + なく + は + ない: Used when a noun indicates a lack of something (e.g., お金がない) and is then softly
+    negated.
+jlpt: N2
+etymology: This grammar point is a double negative construction. 「ない」 means "not", and the conjunctive
+  form 「なく」 connects it to another 「は」 and 「ない」 to create a nuanced expression. The 「は」 particle here
+  emphasizes the preceding word 「なく」, further softening the negation. This structure has evolved to provide
+  a subtle, indirect way of expressing possibility or partial agreement, rather than a strong, absolute
+  negation.
+writeup: |-
+  The grammar point 「なくはない」 is used to express that something is 'slightly (A)', 'somewhat (A)', or 'in some respects (A)'. It is a double negative, essentially meaning "it's not that it isn't (A)." This phrasing serves to soften a direct negative statement, implying a reluctant admission or a subtle possibility.
+
+  It is formed by taking the negative form of a verb or い-adjective, changing its final 「ない」 to 「なく」, and then adding 「はない」. For example, the negative form of 「食べる」 (to eat) is 「食べない」; this becomes 「食べなくはない」. Similarly, for the い-adjective 「寒い」 (cold), its negative form 「寒くない」 becomes 「寒くなくはない」. For な-adjectives and nouns, the structure typically connects via 「でなくはない」, as in 「静かではない」 (not quiet) becoming 「静かでなくはない」 or 「嘘ではない」 (not a lie) becoming 「嘘でなくはない」. It can also appear with nouns where 「ない」 functions as an い-adjective, such as 「お金がない」 (there is no money) becoming 「お金がなくはない」.
+
+  The 「は」 particle in 「なくはない」 can be replaced with 「も」 (i.e., 「なくもない」) for a slightly stronger nuance, indicating a more emphatic acknowledgment of the possibility. This structure often appears with the potential form of verbs, in order to show that something is not impossible, despite appearances or what one may think.
+false_friends:
+  - term: ないわけにはいかない
+    meaning: Can't not, No way to avoid
+    kind: similar expression
+    nuance: Unlike 「なくはない」, 「ないわけにはいかない」 indicates something is necessary or unavoidable, conveying a
+      sense of obligation or compulsion.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: かねない
+    meaning: Might, Could be, Capable of, Possible
+    kind: often confused with
+    nuance: While 「かねない」 suggests a possibility, it often carries a negative connotation, indicating a
+      potential negative outcome. In contrast, 「なくはない」 is generally more neutral, suggesting a possibility
+      without inherently negative implications.
+    grammar_point: '[Verb-stem]かねない (might・could)'
+post_false_friends_writeup: When considering similar expressions, remember that 「ないわけにはいかない」 implies obligation,
+  suggesting that an action cannot be avoided. On the other hand, 「なくはない」 expresses possibility with reservations,
+  indicating that something is not entirely impossible, but perhaps not ideal or easy. Lastly, 「かねない」
+  also expresses possibility, but it often carries a warning of a potentially negative outcome. Distinguishing
+  between these subtle nuances is key to accurate expression.
+examples:
+  - english: It's not that I can't finish this report by tomorrow, but it will be very difficult.
+    japanese:
+      - この レポート、明日 まで に 終わら せ られ {なく は ない} けど、かなり 厳しい です ね。
+      - この レポート、明日 まで に 終わら せ られ {なく も ない} けど、かなり 厳しい です ね。
+      - この レポート、明日 まで に 終わら せ られ {ない こと も ない} ん です が、かなり 厳しい です ね。
+    english_literally: This report, by tomorrow, to finish, it's not that I cannot, but it is quite difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート、明日 まで に 終わら せ {ない わけ に は いき ませ ん}。
+        english: I can't avoid finishing this report by tomorrow.
+        hint: 「ないわけにはいかない」 expresses a strong obligation or an unavoidable action. We're looking for a
+          softer nuance of possibility with reservations.
+      - competing_japanese:
+          - この レポート は 明日 まで に 終わら ない {か ね ない}。
+        english: This report might not be finished by tomorrow.
+        hint: 「かねない」 implies a potential negative outcome or risk. 「なくはない」 indicates a possibility despite
+          difficulty, without necessarily implying a negative consequence.
+    scene: A project manager discusses a tight deadline with a team member.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of the potential form 「終わらせられなくはない」 indicates capability but with a strong reservation,
+      conveyed by 「かなり厳しいです」. The speaker's use of 「ね」 at the end softens the potentially negative statement
+      about difficulty, inviting understanding from the listener.
+  - english: It's not that I don't have the money to buy a new smartphone, but I want to save a little
+      more first.
+    japanese:
+      - 新しい スマート フォン を 買う お 金 が {なく は ない} ん です が、もう 少し 貯め て から に し たい です。
+      - 新しい スマート フォン を 買う お 金 が {なく も ない} ん です が、もう 少し 貯め て から に し たい です。
+      - 新しい スマート フォン を 買う お 金 が {ない わけ で は ない} ん です が、もう 少し 貯め て から に し たい です。
+    english_literally: Money to buy a new smartphone, it's not that I don't have, but I want to make it
+      after saving a bit more.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマート フォン を 買う ため に、お 金 を 貯め {ない わけ に は いき ませ ん}。
+        english: I can't avoid saving money to buy a new smartphone.
+        hint: 「ないわけにはいかない」 implies a necessity or obligation to perform an action. The original sentence
+          expresses a nuanced possession of funds, not an obligation.
+      - competing_japanese:
+          - 新しい スマート フォン を 買う と、お 金 が 足り なく なり {か ね ない}。
+        english: If I buy a new smartphone, I might run out of money.
+        hint: 「かねない」 suggests a potential negative consequence. 「なくはない」 merely states the existence of
+          something with a soft negation.
+    scene: A young woman explains her financial planning to a friend.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The phrase 「お金がなくはないんですが」 uses the double negative to subtly admit to having funds, while
+      the 「んですが」 softens the statement, implying a personal preference rather than a strict lack of means.
+      This makes her financial decision sound less like an excuse and more like a thoughtful choice.
+  - english: That dress isn't not flashy, but I prefer a more subdued color scheme.
+    japanese:
+      - その ドレス、派手 {で なく は ない} けど、もう 少し 落ち着い た 色合い の 方 が 好き だ な。
+      - その ドレス、派手 {で なく も ない} けど、もう 少し 落ち着い た 色合い の 方 が 好き だ な。
+      - その ドレス、派手 {じゃ ない わけ じゃ ない} けど、もう 少し 落ち着い た 色合い の 方 が 好き だ な。
+    english_literally: That dress, it's not that it's not flashy, but I like a slightly more subdued color
+      scheme.
+    competing_grammar:
+      - competing_japanese:
+          - その ドレス は 派手 で {ない}。
+        english: That dress is not flashy.
+        hint: This is a direct negation, implying the dress is definitively not flashy. 「なくはない」 offers
+          a more subtle and nuanced admission, indicating it *is* somewhat flashy.
+      - competing_japanese:
+          - その ドレス は 派手 すぎる {か ね ない}。
+        english: That dress might be too flashy.
+        hint: 「かねない」 warns of a potential negative consequence. 「なくはない」 offers a nuanced, partial admission
+          about the dress's flashiness.
+    scene: A fashion consultant advises a client on outfit choices for a formal event.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「派手でなくはない」 (literally 'it's not that it's not flashy') indicates that the dress
+      indeed has some flashiness, but the speaker frames it as a nuanced observation rather than a direct
+      judgment. The contrast with 「好きだな」 then reveals a personal preference, common in advisory roles.
+  - english: That teacher's lessons aren't not interesting, but I think a little more humor would be good.
+    japanese:
+      - あの 先生 の 授業 は 面白 {なく は ない} けど、もう 少し ユーモア が あっ て も いい と 思う。
+      - あの 先生 の 授業 は 面白 {なく も ない} けど、もう 少し ユーモア が あっ て も いい と 思う。
+      - あの 先生 の 授業 は 面白 {ない わけ で は ない} けど、もう 少し ユーモア が あっ て も いい と 思う。
+    english_literally: That teacher's lessons, it's not that they are not interesting, but I think a little
+      more humor would be good.
+    competing_grammar:
+      - competing_japanese:
+          - あの 先生 の 授業 は 面白く {ない}。
+        english: That teacher's lessons are not interesting.
+        hint: This is a direct negative statement, implying the lessons lack interest. 「なくはない」 suggests
+          there is some interest, just not overwhelmingly so.
+      - competing_japanese:
+          - あの 先生 の 授業 は 退屈 に なり {か ね ない}。
+        english: That teacher's lessons might become boring.
+        hint: 「かねない」 expresses a possibility of a negative outcome. 「なくはない」 offers a nuanced, partially
+          positive assessment with a suggestion for improvement.
+    scene: Students discuss their opinions on a new professor's teaching style.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: By saying 「面白なくはない」, the student acknowledges some positive quality in the lessons while subtly
+      implying they are not overwhelmingly interesting. This nuanced opinion is typical in casual student
+      discussions where direct criticism might be avoided.
+  - english: My grandfather is already 80 years old, but it's not that he's not energetic.
+    japanese:
+      - 祖父 は もう ８０ 歳 です が、まだまだ 元気 {で なく は あり ませ ん}。
+      - 祖父 は もう ８０ 歳 です が、まだまだ 元気 {で なく も あり ませ ん}。
+      - 祖父 は もう ８０ 歳 です が、まだまだ 元気 {で ない わけ で は あり ませ ん}。
+    english_literally: My grandfather is already 80 years old, but still, it's not that he is not energetic.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 無理 を する と、病気 に なり {か ね ない}。
+        english: If my grandfather pushes himself, he might get sick.
+        hint: 「かねない」 implies a potential negative outcome. 「なくはない」 here emphasizes an existing positive
+          quality (being energetic) despite age.
+    scene: A grandchild proudly describes their active grandfather to a distant relative.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The polite form 「元気でなくはありません」 emphasizes a respectful observation about the grandfather's
+      vitality. The double negative, in this polite context, serves to affirm his energy gently, rather
+      than stating it directly, showing consideration for the listener.
+  - english: Even cooking, which I used to be bad at, it's not that I couldn't make it now.
+    japanese:
+      - 昔 は 苦手 だっ た 料理 も、今 で は 作れ {なく は なかっ た} です ね。
+      - 昔 は 苦手 だっ た 料理 も、今 で は 作れ {なく も なかっ た} です ね。
+      - 昔 は 苦手 だっ た 料理 も、今 で は 作れ {ない わけ で は なかっ た} です ね。
+    english_literally: Even cooking, which I used to be bad at, now it's not that I couldn't make it.
+    competing_grammar:
+      - competing_japanese:
+          - 料理 を する と、失敗 し {か ね ない}。
+        english: When cooking, I might make a mistake.
+        hint: 「かねない」 warns of a potential negative result. 「なくはなかった」 describes a past state of capability,
+          a subtle affirmation.
+    scene: An older man reflects on his past struggles and current skills with his grown son.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The past plain form 「作れなくはなかった」 allows the older male speaker to convey a sense of accomplishment
+      in a understated way, reflecting on a past difficulty that is no longer an issue. The 「ね」 invites
+      the listener to share in this realization, creating a conversational and reflective tone.
+  - english: Since I'm not in a huge hurry, how about we make a slight detour?
+    japanese:
+      - そんな に 急い で いる わけ で は ない の で、少し 寄り道 し {なく は なかっ たら} どう です か？
+      - そんな に 急い で いる わけ で は ない の で、少し 寄り道 し {なく も なかっ たら} どう です か？
+      - そんな に 急い で いる わけ で は ない の で、少し 寄り道 し {ない わけ で は なかっ たら} どう です か？
+    english_literally: Since it's not that I'm in such a hurry, if it's not that we didn't make a slight
+      detour, how about it?
+    competing_grammar:
+      - competing_japanese:
+          - 寄り道 を する と、道 に 迷い {か ね ない}。
+        english: If we make a detour, we might get lost.
+        hint: 「かねない」 suggests a potential negative consequence. 「なくはなかったら」 proposes an action by softening
+          a potential negative, implying feasibility.
+    scene: Friends deciding on an impromptu change of plans during a casual outing.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+    nuance: The conditional 「しなくはなかったら」 proposes a possibility (making a detour) in a very soft and indirect
+      way, implying that if there's no strong objection to 'not not doing it,' then it's an option. This
+      polite suggestion is suitable for a casual, friendly setting.
+  - english: It's not that I don't like natto, but because of its smell, I can't eat it every day.
+    japanese:
+      - 納豆 は 嫌い で {なく は なく て} も、あの 匂い が ある から 毎日 は 食べ られ ない な。
+      - 納豆 は 嫌い で {なく も なく て} も、あの 匂い が ある から 毎日 は 食べ られ ない な。
+    english_literally: Natto, even if it's not that I don't like it, because there is that smell, I can't
+      eat it every day.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 は 嫌い {じゃ ない} けど、匂い が 苦手 だ から 毎日 は 食べ られ ない。
+        english: I don't dislike natto, but I'm not good with the smell so I can't eat it every day.
+        hint: This is a direct statement of preference and reason. 「なくはなくて」 adds a subtle, softer nuance
+          to the admission of liking, implying that despite liking it, the smell presents a barrier.
+      - competing_japanese:
+          - 毎日 納豆 を 食べる と、飽き て しまい {か ね ない}。
+        english: If I eat natto every day, I might get tired of it.
+        hint: 「かねない」 warns of a potential negative outcome. 「なくはなくて」 describes a reason for not performing
+          an action, softening the statement of disinclination.
+    scene: Two friends are discussing food preferences during lunch.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker uses 「嫌いでなくはなくて」 to acknowledge a slight liking for natto, softening a potential
+      impression of strong dislike. The use of 「な」 at the end makes the statement sound conversational
+      and reflective, inviting shared understanding from the listener.
+  - english: If there's not a complete lack of budget, we should be able to implement this new system.
+    japanese:
+      - 予算 が 全く {なく は なけれ ば}、この 新しい システム を 導入 できる はず です。
+      - 予算 が 全く {なく も なけれ ば}、この 新しい システム を 導入 できる はず です。
+    english_literally: If budget is not completely absent, then this new system should be able to be introduced.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が {あれ ば}、この 新しい システム を 導入 できる はず です。
+        english: If there is a budget, we should be able to implement this new system.
+        hint: This is a direct conditional statement. 「なくはなければ」 is a more cautious and indirect way of
+          saying 'if the budget is not zero,' allowing for a more nuanced assessment of feasibility.
+      - competing_japanese:
+          - 予算 が なけれ ば、この 新しい システム を 導入 でき ない {か ね ない}。
+        english: If there is no budget, we might not be able to implement this new system.
+        hint: 「かねない」 implies a potential negative outcome. 「なくはなければ」 sets a condition for possibility,
+          rather than warning of a negative consequence.
+    scene: A team meeting where a manager is discussing the feasibility of a new project with their team.
+    register: semi-formal
+    setting: informative
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「予算が全くなくはなければ」 is a careful and indirect way to state that if there is *some* budget,
+      the project is feasible. The use of 「はずです」 further softens the assertion, making it sound like a
+      well-considered professional opinion to the team.
+  - english: It's not that a little more effort wouldn't improve the situation, but I'm just so tired.
+    japanese:
+      - もう 少し 頑張れ ば 状況 が 良く なる こと も {なく は ない} が、もう 疲れ て しまっ た。
+      - もう 少し 頑張れ ば 状況 が 良く なる こと も {なく も ない} が、もう 疲れ て しまっ た。
+    english_literally: If I try a little more, the situation becoming better is not not possible, but
+      I have already become tired.
+    competing_grammar:
+      - competing_japanese:
+          - もう 少し 頑張れ ば 状況 は 良く なる {だろう} が、もう 疲れ て しまっ た。
+        english: If I try a little more, the situation will probably get better, but I'm just so tired.
+        hint: This is a more direct prediction. 「なくはない」 here emphasizes the subtle possibility of improvement,
+          indicating it's not impossible, even if the speaker is unwilling to act.
+      - competing_japanese:
+          - もう 少し 頑張ら ない と、状況 が 悪化 し {か ね ない}。
+        english: If I don't try a little more, the situation might worsen.
+        hint: 「かねない」 warns of a potential negative consequence. 「なくはない」 acknowledges a positive possibility,
+          even if it's currently disregarded due to fatigue.
+    scene: Someone is talking to themselves after a long day of work, reflecting on their current state.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「なくはないが」 subtly acknowledges the potential for improvement 「状況が良くなることも」 while emphasizing
+      personal exhaustion 「もう疲れてしまった」. This internal monologue highlights a reluctant admission of capability
+      overridden by fatigue, which is common in reflective, candid speech.
+post_example_writeup: As the examples demonstrate, 「なくはない」 often appears in conjunction with verbs in
+  the potential form (e.g., 「終わらせられなくはない」, 「作れなくはなかった」). This emphasizes the possibility of something
+  happening, albeit with some level of difficulty, reluctance, or reservation. The use of 「なくもない」 provides
+  an even stronger, more emphatic acknowledgment of the possibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なくはない

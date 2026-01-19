@@ -1,0 +1,342 @@
+grammar_point: からできる (made from)
+learn_before:
+  - Verb[させられる] (causative-passive)
+  - '[Clause]から (because・so)'
+  - から (from)
+  - ことから (from the fact that)
+  - てから (after and since)
+  - でできる (made of)
+  - に気をつける (to be careful of)
+  - の? (question)
+  - ばこそ (precisely because)
+  - 又〜も (additionally)
+meaning: Made from, produced from, come from (emphasizing transformation from raw material)
+meaning_warning: できている → more specific, できる → more general
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: できる
+    rarity: common
+    meaning: to be made/to be formed (general)
+  - conjugation-type: non-past polite (～ます)
+    form: できます
+    rarity: common
+    meaning: to be made/to be formed (polite)
+  - conjugation-type: negative plain (～ない)
+    form: できない
+    rarity: common
+    meaning: not to be made/not to be formed
+  - conjugation-type: negative non-past polite (～ません)
+    form: できません
+    rarity: common
+    meaning: not to be made/not to be formed (polite)
+  - conjugation-type: past plain (～た)
+    form: できた
+    rarity: common
+    meaning: was made/was formed
+  - conjugation-type: past polite (～ました)
+    form: できました
+    rarity: common
+    meaning: was made/was formed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: できなかった
+    rarity: common
+    meaning: was not made/was not formed
+  - conjugation-type: negative past polite (～ませんでした)
+    form: できませんでした
+    rarity: common
+    meaning: was not made/was not formed (polite)
+  - conjugation-type: te-form (～て)
+    form: できて
+    rarity: common
+    meaning: being made/being formed (te-form)
+  - conjugation-type: conditional (～ば)
+    form: できれば
+    rarity: uncommon
+    meaning: if made/if formed (conditional)
+  - conjugation-type: conditional (～たら)
+    form: できたら
+    rarity: uncommon
+    meaning: if made/if formed (conditional)
+  - conjugation-type: progressive (～ている)
+    form: できている
+    rarity: common
+    meaning: is made (of)/is formed (of) (state)
+pronunciation:
+  katakana: カラデキル
+  romaji: kara dekiru
+formation:
+  '[Material] + から + できる': Indicates the origin or source material of something, often implying a transformation
+    in the process of making it.
+jlpt: N4
+etymology: 「できる」 means "to be made" or "to be possible." 「から」 indicates the origin or source material,
+  often implying a transformation from the raw ingredient. The combination describes the origin or derivation
+  of an object.
+writeup: 'The grammatical construction 「からできる」 is used to specify the raw material or source from which
+  something is made, particularly when the original material undergoes a significant transformation during
+  the manufacturing or formation process. The emphasis is on the origin and the change the material experiences
+  to become the final product. For instance, sake is made from rice, but the rice is no longer in its
+  original form; hence, 「米からできる」 is appropriate. While this construction is quite common, it''s essential
+  to understand its nuance, especially in contrast to similar expressions and the verb 「できる」 itself. **「できる」
+  vs. 「できている」** Another nuance lies in the difference between 「できる」 and 「できている」. While both are used in
+  this construction: *   **「できる」**: Refers to a general fact or a broad statement about what something
+  is typically made of. It describes a general property or the potential for something to be made from
+  a material. *   **「できている」**: Refers to a specific item and its current state of being made from a particular
+  material. It describes the existing composition of a single object.'
+false_friends:
+  - term: できる
+    meaning: to be able to do
+    kind: similar expression
+    nuance: The verb 「できる」 has multiple meanings. When used alone, it often means "to be able to do" or
+      "to be completed." In 「からできる」, it specifically means "to be formed" or "to be made," implying creation
+      from a source. This is a crucial distinction to avoid mistranslating.
+    grammar_point: することができる (can・be able to)
+  - term: 作られる (tsukurareru)
+    meaning: to be made, to be produced
+    kind: similar expression
+    nuance: While 「作られる」 also means 'to be made,' it generally refers to the *process of manufacturing
+      or production*. 「からできる」 specifically emphasizes the *origin or raw material* and the *transformation*
+      that material undergoes. Think of it as 'comes into being from X' rather than 'is manufactured by
+      Y'.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: からなる (to consist of)
+    meaning: to consist of, to be composed of
+    kind: similar expression
+    nuance: 「からなる」 describes what something is *currently composed of* or *constituted by*. It implies
+      a collection of parts. 「からできる」 focuses on the *process by which something was formed* or *derived*
+      from an original material, especially where the material's original form is lost.
+    grammar_point: からなる (to consist of)
+  - term: でできる (made of)
+    meaning: made of (material is obvious)
+    kind: similar expression
+    nuance: 「でできる」 is used when the material something is made *of* is still *visible and identifiable*
+      in the final product (e.g., a table made of wood, you can still see the wood grain). In contrast,
+      「からできる」 is used when the original material undergoes a *significant transformation* and is no longer
+      recognizable in its original form (e.g., sake from rice, plastic from oil).
+    grammar_point: でできる (made of)
+post_false_friends_writeup: It is crucial to differentiate 「からできる」 from other similar expressions. While
+  the verb 「できる」 alone can mean 'to be able to do' or 'to be completed,' in 「からできる」 it specifically refers
+  to being 'formed from' or 'derived from' a source material. This usage emphasizes a transformative process
+  where the original material is no longer discernible in its initial form, such as plastic from oil.
+  In contrast, 「作られる」 (to be produced) describes the act of manufacturing, focusing on the production
+  process rather than the material's origin or transformation. 「からなる」 (to consist of) is used when something
+  is composed of distinct, recognizable parts. Perhaps the most important distinction is with 「でできる」 (made
+  of), which is used when the raw material remains clearly identifiable in the final product (e.g., a
+  wooden table). Understanding these subtle but significant differences will help you choose the most
+  appropriate expression.
+examples:
+  - english: Sake is made from rice.
+    japanese:
+      - 日本 酒 は 米 {から できる}。
+      - 日本 酒 は 米 {から でき ます}。
+      - 日本 酒 は 米 {から でき て いる}。
+      - 日本 酒 は 米 {から でき て い ます}.
+    english_literally: Japanese sake is rice from formed.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 酒 は 米 {から 作ら れる}。
+        english: Sake is produced from rice.
+        hint: 「作られる」 describes the process of creation, while 「からできる」 emphasizes the origin or source
+          material after transformation. We're looking for the origin of sake.
+    scene: A tour guide is explaining the brewing process of sake at a brewery to a group of visitors.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「からできる」 emphasizes the transformative process from rice to sake, highlighting the origin.
+      The polite register suits a formal explanation from a tour guide. The particle 「から」 here denotes
+      the origin or source, emphasizing that sake is derived 「から」 rice through a process of transformation.
+      「できる」 signifies the act of being formed or produced.
+  - english: That cake is made from wheat flour, so people with allergies should be careful.
+    japanese:
+      - この ケーキ は 小麦 粉 {から でき て いる} から、アレルギー の 人 は 気 を つけ て。
+      - この ケーキ は 小麦 粉 {から でき てる} から、アレルギー の 人 は 気 を つけ て。
+      - この ケーキ は 小麦 粉 {から でき て い ます} から、アレルギー の 人 は 気 を つけ て ください。
+    english_literally: This cake is wheat flour from made, so allergy person should be careful.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は 小麦 粉 {が 原 材料 だ} から、アレルギー の 人 は 気 を つけ て。
+        english: This cake has wheat flour as an ingredient, so people with allergies should be careful.
+        hint: 「原材料」 refers to raw ingredients. We're looking for a phrase that implies the cake is *derived
+          from* wheat flour.
+    scene: A cafe staff member informing a customer about ingredients due to a dietary concern.
+    register: semi-formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「からできている」 highlights that wheat flour is the source material, important for allergy information
+      where the original form is transformed. The use of 「から」 for causation (so) links the composition
+      to the warning. The particle 「から」 denotes the origin. The first 「から」 indicates the source material
+      (wheat flour), while the second 「から」 functions as a causal conjunction, meaning "because" or "so,"
+      linking the composition to the warning. This dual usage of 「から」 highlights its flexibility in expressing
+      origin and reason.
+  - english: I think happiness is made from small joys.
+    japanese:
+      - 幸せ は 小さな 喜び {から できる} と 思い ます。
+      - 幸せ は 小さな 喜び {から でき ます} と 思い ます。
+      - 幸せ は 小さな 喜び {から でき て いる} と 思い ます。
+      - 幸せ は 小さな 喜び {から でき て い ます} と 思い ます。
+    english_literally: Happiness is small joys from made, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 幸せ は 小さな 喜び {から 成る} と 思い ます。
+        english: I think happiness consists of small joys.
+        hint: 「から成る」 means 'to consist of' or 'to be made up of'. We're looking for how happiness *originates*
+          or is *formed* from small joys.
+    scene: A life coach sharing a philosophical thought with a client.
+    register: semi-formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    nuance: 「からできる」 expresses a figurative origin, indicating that joy is the fundamental component from
+      which happiness is derived. The polite 「と思います」 softens the statement, suitable for a coach. The
+      particle 「から」 signifies the source or origin. The philosophical use of 「からできる」 extends its meaning
+      beyond physical materials to abstract concepts, signifying that happiness 「から」 originates or is
+      derived from small joys. 「できる」 in this context implies formation or constitution.
+  - english: This drink is not made from fruit. It tastes artificial.
+    japanese:
+      - この 飲み物 は 果物 {から でき て い ない} よ。人工 的 な 味 だ。
+      - この 飲み物 は 果物 {から でき て い ませ ん}。人工 的 な 味 です。
+      - この 飲み物 は 果物 {から でき て ない} よ。人工 的 な 味 だ。
+    english_literally: This drink is fruit from not made, you know. Artificial taste is.
+    competing_grammar:
+      - competing_japanese:
+          - この 飲み物 は 果物 {を 使っ て い ない} よ。人工 的 な 味 だ。
+        english: This drink does not use fruit. It tastes artificial.
+        hint: 「を 使っていない」 means 'not using'. We're looking for a phrase that implies the drink is *not
+          derived from* fruit.
+    scene: A teenager complaining to a friend about a processed drink.
+    register: casual
+    setting: humorous
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The negative form 「からできていない」 expresses disappointment. The casual 「よ」 and the direct statement
+      about artificial taste are common in youthful, informal speech, particularly among female friends.
+      The particle 「から」 marks the original source. 「からできていない」 employs the negative form of 「できる」 to state
+      the absence of fruit as the origin of the drink, emphasizing that it doesn't derive its essence
+      from real fruit. The sentence-final particle 「よ」 adds a casual, assertive tone, often used by younger
+      speakers.
+  - english: Plastic is made from oil.
+    japanese:
+      - プラスチック は 石油 {から できる}。
+      - プラスチック は 石油 {から でき ます}。
+      - プラスチック は 石油 {から でき て いる}。
+      - プラスチック は 石油 {から でき て い ます}。
+    english_literally: Plastic is oil from formed.
+    competing_grammar:
+      - competing_japanese:
+          - プラスチック は 石油 {が 原料 だ}。
+        english: Plastic's raw material is oil.
+        hint: While 「原料」 means 'raw material', 「からできる」 specifically emphasizes the transformative process
+          from oil to plastic. We're looking for what plastic is *derived from*.
+    scene: A science teacher explaining industrial processes to students.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「からできる」 emphasizes the transformation from raw material (oil) to finished product (plastic),
+      where the original form is completely changed. The plain form `できる` is used for a general scientific
+      fact, suitable for an instructional setting. The particle 「から」 denotes the origin. The particle
+      「から」 marks the source or origin, indicating the material from which something is derived through
+      a transformative process, as is the case when crude oil is refined and transformed into plastic.
+  - english: True strength comes from overcoming difficulties.
+    japanese:
+      - 本当 の 強 さ は 困難 を 乗り越える こと {から できる}。
+      - 本当 の 強 さ は 困難 を 乗り越える こと {から でき ます}。
+      - 本当 の 強 さ は 困難 を 乗り越える こと {から でき て いる}。
+      - 本当 の 強 さ は 困難 を 乗り越える こと {から でき て い ます}。
+    english_literally: True strength is difficulties overcoming from formed.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 の 強 さ は 困難 を 乗り越える こと {に ある}。
+        english: True strength lies in overcoming difficulties.
+        hint: While 「に ある」 indicates where something exists or is found, 「からできる」 emphasizes the origin
+          or source from which strength is built or derived. We're looking for the origin of strength.
+    scene: A motivational speaker sharing wisdom.
+    register: formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    nuance: 「からできる」 expresses the abstract origin of strength, implying it is forged through the process
+      of overcoming. This usage extends the concept of 'making' to abstract qualities, highlighting the
+      source of their formation. 「から」 clearly points to the origin of the strength, which is the experience
+      of overcoming difficulties.
+  - english: Ice cream is made from milk and sugar.
+    japanese:
+      - アイス クリーム は 牛乳 と 砂糖 {から できる}。
+      - アイス クリーム は 牛乳 と 砂糖 {から でき ます}。
+      - アイス クリーム は 牛乳 と 砂糖 {から でき て いる}。
+      - アイス クリーム は 牛乳 と 砂糖 {から でき て い ます}。
+    english_literally: Ice cream is milk and sugar from formed.
+    competing_grammar:
+      - competing_japanese:
+          - アイス クリーム は 牛乳 と 砂糖 {を 使っ て 作る}。
+        english: You make ice cream using milk and sugar.
+        hint: 「を 使って作る」 describes the method of making. We're looking for a simple statement about what
+          ice cream is *derived from*.
+    scene: A parent explaining simple facts to a child.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses plain form 「できる」 and a casual register suitable for explaining a basic fact
+      to a child. The use of 「から」 indicates the raw ingredients that are transformed into ice cream. It's
+      a simple, direct statement of composition after transformation.
+  - english: This misunderstanding stems from a lack of communication.
+    japanese:
+      - この 誤解 は コミュニケーション の 不足 {から でき て いる}。
+      - この 誤解 は コミュニケーション の 不足 {から でき て い ます}。
+    english_literally: This misunderstanding is communication of lack from formed.
+    competing_grammar:
+      - competing_japanese:
+          - この 誤解 は コミュニケーション の 不足 {に 起因 する}。
+        english: This misunderstanding is caused by a lack of communication.
+        hint: While 「に起因する」 means 'to be caused by', 「からできている」 emphasizes the specific source from which
+          the misunderstanding developed or formed. We're looking for what the misunderstanding is *derived
+          from*.
+    scene: A manager discussing a team issue.
+    register: formal
+    setting: serious
+    conjugation: progressive (～ている)
+    nuance: 「からできている」 indicates the current state of the misunderstanding, implying its root cause or
+      origin. The use of the progressive form 「できている」 highlights the ongoing nature of this derivation.
+      The formal register is appropriate for a professional setting when discussing the root cause of
+      an issue. 「から」 denotes the source of the misunderstanding's formation.
+  - english: Many Japanese traditions originated from ancient customs.
+    japanese:
+      - 多く の 日本 の 伝統 は 古代 の 習慣 {から でき て いる}。
+      - 多く の 日本 の 伝統 は 古代 の 習慣 {から でき て い ます}。
+    english_literally: Many of Japan's traditions are ancient customs from formed.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 日本 の 伝統 は 古代 の 習慣 {に 由来 する}。
+        english: Many Japanese traditions originate from ancient customs.
+        hint: While 「に由来する」 means 'to originate from'. We're looking for what the traditions are *derived
+          from* or *formed by*.
+    scene: A historian lecturing on Japanese culture.
+    register: formal
+    setting: academic
+    conjugation: progressive (～ている)
+    nuance: This example shows 「からできている」 used for historical or cultural origins, implying that traditions
+      were 'formed' or 'developed' from ancient customs. The progressive form indicates an ongoing state
+      of derivation. The formal register fits an academic lecture.
+  - english: This lovely scent comes from the blooming flowers.
+    japanese:
+      - この 良い 香り は 咲い て いる 花 {から でき て いる}。
+      - この 良い 香り は 咲い て いる 花 {から でき て い ます}。
+    english_literally: This good scent is blooming flowers from formed.
+    competing_grammar:
+      - competing_japanese:
+          - この 良い 香り は 咲い て いる 花 {に 由来 する}。
+        english: This lovely scent originates from the blooming flowers.
+        hint: 「に由来する」 means 'to originate from'. We're looking for what the scent is *derived from* or
+          *formed by*.
+    scene: Someone enjoying a walk in a garden.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: Here, 「からできている」 is used to describe the origin of a sensory experience (a scent), implying
+      it is 'formed' or 'produced' by the flowers. The casual register is fitting for a personal reflection.
+      The particle 「から」 points to the flowers as the source of the scent's formation.
+post_example_writeup: As the examples demonstrate, 「からできる」 is used to describe how something is formed
+  or derived from a raw material or source, especially when that source undergoes a significant transformation.
+  This pattern is versatile, appearing in discussions from chemical processes to abstract concepts. While
+  there is sometimes overlap with 「でできる」 in casual modern Japanese, the core nuance of 「から」 emphasizing
+  transformation and origin remains.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でできる-からできる

@@ -1,0 +1,1335 @@
+grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+learn_before:
+  - Verb[ても] (concessive)
+  - いくら〜でも (no matter how much)
+  - 先 (ahead・first)
+  - 若い頃 (younger days)
+meaning: Expresses obligation, recommendation, or prohibition; should, ought to, must (not)
+meaning_warning: With する, both 「するべき」 and 「すべき」 are correct for positive forms. Similarly, 「するべきではない」
+  and 「すべきではない」 are correct for negative forms.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: べきだ
+    rarity: common
+    meaning: Should, ought to, must
+  - conjugation-type: non-past polite (～ます)
+    form: べきです
+    rarity: common
+    meaning: Should, ought to, must (polite)
+  - conjugation-type: negative plain (～ない)
+    form: べきではない
+    rarity: common
+    meaning: Should not, ought not to, must not
+  - conjugation-type: negative plain (～ない)
+    form: べきじゃない
+    rarity: common
+    meaning: Should not, ought not to, must not (casual)
+  - conjugation-type: negative non-past polite (～ません)
+    form: べきではありません
+    rarity: common
+    meaning: Should not, ought not to, must not (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: べきじゃありません
+    rarity: common
+    meaning: Should not, ought not to, must not (casual polite)
+  - conjugation-type: past plain (～た)
+    form: べきだった
+    rarity: common
+    meaning: Should have, ought to have
+  - conjugation-type: past polite (～ました)
+    form: べきでした
+    rarity: common
+    meaning: Should have, ought to have (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: べきではなかった
+    rarity: common
+    meaning: Should not have, ought not to have
+  - conjugation-type: negative past plain (～なかった)
+    form: べきじゃなかった
+    rarity: common
+    meaning: Should not have, ought not to have (casual)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: べきではありませんでした
+    rarity: common
+    meaning: Should not have, ought not to have (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: べきじゃありませんでした
+    rarity: common
+    meaning: Should not have, ought not to have (casual polite)
+pronunciation:
+  katakana: ベキ
+  romaji: beki
+formation:
+  Verb (dictionary form) + べきだ: Expresses obligation, advice, or recommendation that something should
+    be done.
+  Verb (dictionary form) + べきではない: Expresses strong advice or prohibition against doing something, implying
+    that doing the action would be incorrect or inappropriate.
+  'Exception: する + べきだ / すべきだ (or negative forms)': Both forms are acceptable when used with the verb
+    'する'.
+  Noun + であるべきだ: Indicates that something ought to be or should be a noun (e.g., 学生であるべきだ - should be
+    a student).
+  な-Adjective stem + であるべきだ: Indicates that someone or something ought to be or should be in that adjectival
+    state (e.g., 正直であるべきだ - should be honest).
+jlpt: N3
+etymology: 「べき」 comes from the classical auxiliary verb 「べし」, which indicates necessity or obligation.
+  「べし」 itself is derived from the kanji 「可」, meaning 'permissible' or 'possible', implying that the action
+  is the most reasonable or only acceptable choice. Thus, 「べき」 carries a strong nuance of obligation.
+  When combined with 「ではない」, it signifies an action that is not permissible or should not be done.
+writeup: |-
+  The auxiliary verb 「べき」 expresses a strong sense of obligation, recommendation, or what **should** be done. When combined with 「ではない」, it conveys what **should not** be done. It is attached to the dictionary form of a verb, and followed by 「だ」 or 「です」 for positive statements, and 「ではない」 (or its variations like 「じゃない」, 「ではありません」, or 「じゃありません」) for negative statements. It conveys that something 'ought to be done' or 'must be done' because it's the right or reasonable thing to do, or conversely, that something 'ought not to be done' because it is improper or fundamentally wrong.
+
+  「べき」 implies a moral or logical imperative, suggesting that other courses of action are less desirable or unacceptable. It is a highly versatile expression used across all registers and age groups, without specific gendered usage.
+
+  **Special Case: The verb する**
+  For the verb 「する」 (to do), there are two acceptable forms for both positive and negative uses:
+  *   **するべき** (more common)
+  *   **すべき** (also acceptable, though slightly less common)
+
+  **Past Tense**
+  To express something that **should have** been done, use 「べきだった」 or 「べきでした」.
+  To express something that **should not have** been done, use 「べきではなかった」, 「べきではありませんでした」, or their casual variants.
+
+  **Important Considerations**
+  *   The nuance of 「べき」 is stronger than 「ほうがいい」 (it would be better to) but weaker than 「なければならない」 (must do) in terms of direct command or strict necessity. It emphasizes what is morally, logically, or socially correct.
+  *   「べきではない」 is much stronger than simply saying 「～ないほうがいい」 (it would be better not to), carrying a nuance of moral, social, or logical imperative. It implies that performing the action would be a mistake or fundamentally wrong.
+false_friends:
+  - term: ないほうがいい
+    meaning: It'd be better not to, shouldn't do
+    kind: antonym
+    nuance: 「ないほうがいい」 suggests that it is preferable not to do something, while 「べき」 advises what should
+      be done. 「べきではない」 is a stronger prohibition, implying an action is improper or incorrect, while
+      「ないほうがいい」 offers milder advice.
+    grammar_point: '[Verb-ない]ほうがいい (it is better not to do)'
+  - term: たほうがいい
+    meaning: It'd be better to, should do
+    kind: synonym
+    nuance: 「たほうがいい」 is a milder suggestion than 「べき」, lacking the strong sense of obligation. It expresses
+      preference, not a strong moral or logical imperative.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: はずだ
+    meaning: Bound to (be), expected to (be), should be (able)
+    kind: similar expression
+    nuance: 「はずだ」 expresses expectation or probability based on certain facts. In contrast, 「べき」 expresses
+      obligation or recommendation, while 「べきではない」 expresses prohibition, both focusing on what is right
+      or wrong, not prediction.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: なくちゃ・なきゃ
+    meaning: Must do, have to do
+    kind: similar expression
+    nuance: 「なくちゃ」 expresses a personal necessity or obligation to perform an action. 「べき」 emphasizes
+      what is inherently correct or advisable, and 「べきではない」 expresses a strong advice or prohibition against
+      performing an action based on moral or logical correctness.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: ことだ
+    meaning: Should, ought to
+    kind: synonym
+    nuance: 「ことだ」 provides straightforward advice or a general recommendation for a desired state. 「べき」
+      carries a slightly stronger sense of what *should* be done, implying an imperative. For prohibitions,
+      「ことではない」 is general advice, whereas 「べきではない」 is a more direct and strong admonition against a specific
+      action.
+    grammar_point: ことだ (should・ought to)
+  - term: ものだ
+    meaning: Supposed to, should, that's the way it is
+    kind: synonym
+    nuance: 「ものだ」 describes general norms or expectations, common sense, or what is typically expected.
+      「べき」 focuses on a specific action that should be taken based on moral or logical imperative. 「べきではない」
+      specifies a strong prohibition against a particular action, often implying a deviation from what
+      is proper, which is stronger than a general norm.
+    grammar_point: ものだ (general truth expectation)
+  - term: てはいけない
+    meaning: Must not, may not
+    kind: synonym
+    nuance: 「てはいけない」 means "must not" or "may not," expressing a strong prohibition. It is very close
+      in meaning and strength to 「べきではない」, often interchangeable in contexts of rules or strong advice
+      against an action.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: てはならない
+    meaning: Must not, cannot, should not
+    kind: synonym
+    nuance: This is a very strong and often formal prohibition, similar to 「てはいけない」 and 「べきではない」, frequently
+      used in rules and laws.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: まじき
+    meaning: Unbecoming of, unworthy of, should not, must not
+    kind: similar expression
+    nuance: 「まじき」 carries a stronger nuance of moral or social unsuitability, implying that an action
+      is disgraceful or improper for someone in a certain role or position. It is more formal and literary
+      than 「べきではない」.
+    grammar_point: まじき (unbecoming of)
+  - term: べからず
+    meaning: Must not, should not, cannot, do not
+    kind: synonym
+    nuance: 「べからず」 is a very strong, often classical or formal prohibition, commonly found in written
+      rules, signs, or proclamations. It is more absolute and less advisory than 「べきではない」.
+    grammar_point: べからず (must not)
+post_false_friends_writeup: While several expressions share the idea of giving advice or expressing necessity,
+  「べき」 and 「べきではない」 are distinct in their strong, prescriptive nuance. 「べき」 implies that an action is
+  fundamentally correct or proper, while 「べきではない」 implies it is fundamentally incorrect or improper. Expressions
+  like 「ないほうがいい」 offer a milder suggestion, while 「たほうがいい」 suggests a preferable positive action. 「てはいけない」
+  and 「てはならない」 are direct synonyms for 「べきではない」, carrying similar strong prohibitions against an action.
+  「まじき」 and 「べからず」 are even stronger or more formal/literary ways to express prohibition, often implying
+  unsuitability or a strict rule. The choice depends on the specific context and the desired level of
+  emphasis on obligation or correctness.
+examples:
+  - english: Important things should be discussed directly.
+    japanese:
+      - 大事 な こと は 直接 {話す べき} です。
+      - 大事 な 事 は 直接 {話す べき} だ。
+    english_literally: Important things, directly discuss ought.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 な こと は 直接 話し {た 方 が いい} です。
+        english: Important things, it'd be better to discuss directly.
+        hint: 「～た方がいい」 is a softer recommendation. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 大事 な こと は 直接 話さ {ない と いけ ませ ん}。
+        english: Important things, must discuss directly.
+        hint: 「～ないといけません」 implies a strict requirement, possibly with negative consequences if not met.
+          We are looking for what is appropriate or the right thing to do.
+      - competing_japanese:
+          - 大事 な こと は 直接 話す {はず} です。
+        english: Important things should be expected to be discussed directly.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 大事 な こと は 直接 話さ {ない と}。
+        english: Important things, must discuss directly (casual).
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 大事 な こと は 直接 話す {こと だ}。
+        english: The thing to do is discuss directly.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 大事 な こと は 直接 話す {もの だ}。
+        english: Important things are something that should be discussed directly.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A senior colleague advising a junior one about handling sensitive information.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: You should listen carefully to customer voices.
+    japanese:
+      - 顧客 の 声 に は 耳 を 傾ける {べき} です。
+      - 顧客 の 声 に は 耳 を 傾ける {べき} だ。
+    english_literally: Customer's voices, should listen carefully to.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾け {た 方 が いい} です。
+        english: It'd be better to listen carefully to customer voices.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾け {なけれ ば なり ませ ん}。
+        english: Must listen carefully to customer voices.
+        hint: 「～なければなりません」 indicates a strict obligation. We are looking for what is appropriate or the
+          right thing to do.
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾ける {はず} です。
+        english: Should be expected to listen carefully to customer voices.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾け {ない と}。
+        english: Must listen carefully to customer voices (casual).
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾ける {こと だ}。
+        english: The thing to do is listen carefully to customer voices.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 顧客 の 声 に は 耳 を 傾ける {もの だ}。
+        english: Customer voices are something one should listen carefully to.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A team leader instructing their sales team during a morning meeting.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+  - english: He is a person one ought to respect.
+    japanese:
+      - 彼 は 尊敬 する {べき} 人間 です。
+      - 彼 は 尊敬 する {べき} 人間 だ。
+    english_literally: He, respect do ought person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 尊敬 {に 値 する} 人間 です。
+        english: He is a person worthy of respect.
+        hint: 「～に値する」 describes inherent worthiness. We are looking for a person whose qualities demand
+          respect.
+      - competing_japanese:
+          - 彼 は 尊敬 する {よう な} 人間 です。
+        english: He is a person like one you would respect.
+        hint: 「～ような人間です」 is descriptive. We are looking for a person who inspires an obligation to respect
+          them.
+      - competing_japanese:
+          - 彼 は 尊敬 する {はず} の 人間 です。
+        english: He is a person one should expect to respect.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 彼 は 尊敬 し {ない と いけ ない} 人間 です。
+        english: He is a person one must respect.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+    scene: Two colleagues discussing a highly admired mentor.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: All content to be conveyed to students is complete with this.
+    japanese:
+      - 生徒 に 伝える {べき} 内容 は これ で 全て です。
+      - 生徒 に 伝える {べき} 内容 は これ で 全て だ。
+      - 学生 に 伝える {べき} 内容 は これ で 全て です。
+    english_literally: To students convey ought content, this is all of it.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 に 伝える {必要 が ある} 内容 は これ で 全て です。
+        english: All content that needs to be conveyed to students is complete with this.
+        hint: 「～必要がある」 emphasizes a general necessity. We are looking for the critical or fundamental
+          concepts that must be imparted.
+      - competing_japanese:
+          - 生徒 に 伝える {こと に なっ て いる} 内容 は これ で 全て です。
+        english: All content that is scheduled to be conveyed to students is complete with this.
+        hint: 「～ことになっている」 implies a predetermined plan or rule. We are looking for topics crucial for
+          the teacher to deliver based on pedagogical importance.
+      - competing_japanese:
+          - 生徒 に 伝え {た 方 が いい} 内容 は これ で 全て です。
+        english: All content that it'd be better to convey to students is complete with this.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 生徒 に 伝える {はず} の 内容 は これ で 全て です。
+        english: All content that should be expected to be conveyed to students is complete with this.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+    scene: A professor concluding their final lecture of the semester.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: I should have estimated the time, but I ended up being late.
+    japanese:
+      - 時間 を 見積もる {べき だっ た} の に、遅刻 し て しまっ た。
+      - 時間 を 見積もる {べき だっ た} けど、遅刻 し て しまっ た。
+    english_literally: Time estimate ought to have, but ended up being late.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 を 見積もれ {ば よかっ た} の に、遅刻 し て しまっ た。
+        english: I wish I had estimated the time, but I ended up being late.
+        hint: 「～ばよかった」 expresses general regret but doesn't convey the strong sense of what should have
+          been done as the proper or responsible course of action.
+      - competing_japanese:
+          - 時間 を 見積もら {なけれ ば なら なかっ た} の に、遅刻 し て しまっ た。
+        english: I had to estimate the time, but I ended up being late.
+        hint: 「～なければならなかった」 indicates a strict past necessity. We are looking for a personal oversight
+          and regret rather than a failure to follow an absolute rule.
+      - competing_japanese:
+          - 時間 を 見積もら {ない 方 が よかっ た} の に、遅刻 し て しまっ た。
+        english: It would have been better not to estimate the time, but I ended up being late.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 時間 を 見積もっ {た 方 が よかっ た} の に、遅刻 し て しまっ た。
+        english: It would have been better to estimate the time, but I ended up being late.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 時間 を 見積もる {はず だっ た} の に、遅刻 し て しまっ た。
+        english: I was supposed to estimate the time, but I ended up being late.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 時間 を 見積もら {ない と いけ なかっ た} の に、遅刻 し て しまっ た。
+        english: I had to estimate the time, but I ended up being late.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+    scene: A person rushing to a meeting, realizing their miscalculation.
+    register: casual
+    setting: cautious
+    conjugation: past plain (～た)
+  - english: As a team leader, I should have noticed it sooner.
+    japanese:
+      - チーム リーダー と し て、私 が 先 に 気付く {べき でし た}。
+      - チーム リーダー と し て、私 が 先 に 気付く {べき} でし た。
+    english_literally: Team leader as, I sooner notice ought to have (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 先 に 気付け {ば よかっ た} です。
+        english: It would have been good if I had noticed it sooner.
+        hint: 「～ばよかったです」 is a softer, more personal expression of regret. We are looking for a direct
+          acknowledgment of professional obligation and responsibility.
+      - competing_japanese:
+          - 私 が 先 に 気付か {なけれ ば なり ませ ん でし た}。
+        english: I had to notice it sooner.
+        hint: 「～なければなりませんでした」 indicates a strict past necessity. We are looking for an admission of responsibility
+          for a failed duty in an apologetic business context.
+      - competing_japanese:
+          - 私 が 先 に 気付か {ない 方 が よかっ た} です。
+        english: It would have been better if I hadn't noticed it sooner.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 私 が 先 に 気付い {た 方 が よかっ た} です。
+        english: It would have been better if I had noticed it sooner.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 私 が 先 に 気付く {はず でし た}。
+        english: I was supposed to notice it sooner.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 私 が 先 に 気付か {ない と いけ ませ ん でし た}。
+        english: I had to notice it sooner.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+    scene: A team leader apologizing to a superior for an overlooked issue.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    conjugation: past polite (～ました)
+  - english: Before marriage, one should confirm each other's values.
+    japanese:
+      - 結婚 前 に は 互い の 価値 観 を 確認 する {べき} だ。
+      - 結婚 前 に は 互い の 価値 観 を 確認 す {べき} だ。
+      - 結婚 前 に は 互い の 価値 観 を 確認 す {べき} です。
+    english_literally: Marriage before, each other's values confirm ought.
+    competing_grammar:
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 し {た 方 が いい}。
+        english: Before marriage, it'd be better to confirm each other's values.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a strong, essential piece of advice
+          for such a significant life decision.
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 する {こと だ}。
+        english: Before marriage, the thing to do is confirm each other's values.
+        hint: 「～ことだ」 provides general advice. We are looking for a specific, crucial action that ought
+          to be taken for a successful marriage.
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 し {ない 方 が いい}。
+        english: Before marriage, it'd be better not to confirm each other's values.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 する {はず} だ。
+        english: Before marriage, one should be expected to confirm each other's values.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 し {ない と}。
+        english: Before marriage, one must confirm each other's values.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 結婚 前 に は 互い の 価値 観 を 確認 する {もの だ}。
+        english: Before marriage, confirming each other's values is something that should be done.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: An older woman giving earnest advice to her niece about relationships.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「べきだ」 conveys a strong, caring suggestion from an older female figure, emphasizing
+      the importance of open communication and understanding before marriage. The casual tone fits a family
+      conversation.
+  - english: No matter what difficulties arise, one should protect their family.
+    japanese:
+      - どんな 困難 が あっ て も 家族 は 守る {べき} だ。
+      - どんな 困難 が あっ て も 家族 は 守る {べき} です。
+    english_literally: No matter what difficulties exist, family protect ought.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守る {もの だ}。
+        english: No matter what difficulties arise, protecting one's family is something that should be
+          done.
+        hint: 「～ものだ」 expresses a general truth or norm. We are looking for direct moral instruction, emphasizing
+          a moral imperative.
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守っ {た 方 が いい}。
+        english: No matter what difficulties arise, it'd be better to protect one's family.
+        hint: 「～た方がいい」 offers a milder suggestion. We are looking for a universal moral obligation to
+          protect family.
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守ら {ない 方 が いい}。
+        english: No matter what difficulties arise, it'd be better not to protect one's family.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守る {はず} だ。
+        english: No matter what difficulties arise, family should be expected to be protected.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守ら {ない と}。
+        english: No matter what difficulties arise, family must be protected.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - どんな 困難 が あっ て も 家族 は 守る {こと だ}。
+        english: The thing to do is to protect one's family.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+    scene: A parent instilling strong family values in their children.
+    register: casual
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+  - english: You should take responsibility for this project.
+    japanese:
+      - 君 が この プロジェクト の 責任 を 取る {べき} だ。
+      - 君 が この プロジェクト の 責任 を 取る {べき} です。
+    english_literally: You, this project's responsibility take ought.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取っ {た 方 が いい}。
+        english: It'd be better if you took responsibility for this project.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a clear expectation of responsibility
+          due to the employee's role.
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取ら {なけれ ば なら ない}。
+        english: You must take responsibility for this project.
+        hint: 「～しなければならない」 is a stronger, more commanding expression of necessity. We are looking for
+          an inherent obligation rather than a strict command.
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取ら {ない 方 が いい}。
+        english: It'd be better if you didn't take responsibility for this project.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取る {はず} だ。
+        english: You are supposed to take responsibility for this project.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取ら {ない と}。
+        english: You must take responsibility for this project.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 君 が この プロジェクト の 責任 を 取る {こと だ}。
+        english: The thing to do is for you to take responsibility for this project.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+    scene: A senior male manager assigning a crucial task to a younger male employee.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: This statement uses 「べきだ」 to convey a direct assignment of responsibility, typical when an
+      older male superior assigns duties to a younger male subordinate. The use of 「君」 (kimi) reinforces
+      the directness and the senior-junior relationship without being overly formal.
+  - english: Everyone should attend an important meeting.
+    japanese:
+      - 重要 な 会議 に は 全員 が 出席 する {べき} だ。
+      - 重要 な 会議 に は 全員 が 出席 す {べき} だ。
+      - 重要 な 会議 に は 全員 が 出席 する {べき} です。
+      - 重要 な 会議 に は 全員 が 出席 す {べき} です。
+    english_literally: Important meeting, everyone attend ought.
+    competing_grammar:
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 し {た 方 が いい}。
+        english: It'd be better if everyone attended an important meeting.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for attendance as an essential duty or expectation
+          due to the meeting's importance.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 する {必要 が ある}。
+        english: Everyone needs to attend an important meeting.
+        hint: 「～必要がある」 states a practical necessity. We are looking for a strong recommendation due to
+          the meeting's importance, rather than just a factual necessity.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 し {ない 方 が いい}。
+        english: It'd be better if everyone didn't attend an important meeting.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 する {はず} だ。
+        english: Everyone is supposed to attend an important meeting.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 し {ない と}。
+        english: Everyone must attend an important meeting.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 する {こと だ}。
+        english: The thing to do is for everyone to attend an important meeting.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 重要 な 会議 に は 全員 が 出席 する {もの だ}。
+        english: Attending an important meeting is something everyone should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A company director emphasizing attendance for a critical strategy meeting.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: You should buy this painting now. So you don't regret it.
+    japanese:
+      - この 絵 は 今 買う {べき} だ。後悔 し ない ため に。
+      - この 絵 は 今 買う {べき} です。後悔 し ない ため に。
+    english_literally: This painting, now buy ought. So that don't regret.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵 は 今 買っ {た 方 が いい}。後悔 し ない ため に。
+        english: It'd be better if you bought this painting now. So you don't regret it.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a strong, almost urgent recommendation
+          due to the unique opportunity.
+      - competing_japanese:
+          - この 絵 は 今 買う {と いい}。後悔 し ない ため に。
+        english: It would be good if you bought this painting now. So you don't regret it.
+        hint: 「～といい」 is a softer recommendation. We are looking for a more direct and emphatic endorsement
+          to seize a rare find.
+      - competing_japanese:
+          - この 絵 は 今 買わ {ない 方 が いい}。後悔 し ない ため に。
+        english: It'd be better if you didn't buy this painting now. So you don't regret it.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - この 絵 は 今 買う {はず} だ。後悔 し ない ため に。
+        english: You are supposed to buy this painting now. So you don't regret it.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - この 絵 は 今 買わ {ない と}。後悔 し ない ため に。
+        english: You must buy this painting now. So you don't regret it.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - この 絵 は 今 買う {こと だ}。後悔 し ない ため に。
+        english: The thing to do is to buy this painting now. So you don't regret it.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - この 絵 は 今 買う {もの だ}。後悔 し ない ため に。
+        english: Buying this painting now is something one should do. So you don't regret it.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: An art dealer persuasively recommending a unique piece to a client.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+  - english: I should have apologized to him sooner, but I missed the chance.
+    japanese:
+      - 彼 に もっと 早く 謝る {べき だっ た} の に、機会 を 逃し た わ。
+      - 彼 に もっと 早く 謝る {べき} だっ た の に、機会 を 逃し た わ。
+    english_literally: To him more quickly apologize ought to have, but opportunity missed (female particle).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に もっと 早く 謝れ {ば よかっ た} の に、機会 を 逃し た わ。
+        english: I wish I had apologized to him sooner, but I missed the chance.
+        hint: 「～ばよかった」 expresses simple regret, but 「べきだった」 conveys a stronger sense of what should have
+          been done as it was morally or socially improper, implying a deeper self-reproach.
+      - competing_japanese:
+          - 彼 に もっと 早く 謝ら {なけれ ば なら なかっ た} の に、機会 を 逃し た わ。
+        english: I had to apologize to him sooner, but I missed the chance.
+        hint: 「～なければならなかった」 indicates a strict past necessity. We are looking for personal regret for
+          an oversight rather than a consequence of a failed rule.
+      - competing_japanese:
+          - 彼 に もっと 早く 謝ら {ない 方 が よかっ た} の に、機会 を 逃し た わ。
+        english: It would have been better not to apologize to him sooner, but I missed the chance.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 彼 に もっと 早く 謝っ {た 方 が よかっ た} の に、機会 を 逃し た わ。
+        english: It would have been better if I had apologized to him sooner, but I missed the chance.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 彼 に もっと 早く 謝る {はず だっ た} の に、機会 を 逃し た わ。
+        english: I was supposed to apologize to him sooner, but I missed the chance.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 彼 に もっと 早く 謝ら {ない と いけ なかっ た} の に、機会 を 逃し た わ。
+        english: I had to apologize to him sooner, but I missed the chance.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+    scene: A woman confiding in a close friend about a missed opportunity to apologize.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The phrase 「機会を逃したわ」 and the final particle 「わ」 are commonly used by women, adding a sense
+      of personal conviction and regret to the statement. Using 「べきだった」 reinforces the speaker's strong
+      remorse about something that was the right thing to do but was not done.
+  - english: For my own health, I should exercise more.
+    japanese:
+      - 自分 の 健康 の ため に、もっと 運動 する {べき} だ わ。
+      - 自分 の 健康 の ため に、もっと 運動 す {べき} だ わ。
+      - 自分 の 健康 の ため に、もっと 運動 する {べき} です わ。
+      - 自分 の 健康 の ため に、もっと 運動 す {べき} です わ。
+    english_literally: Own health for, more exercise do ought (female particle).
+    competing_grammar:
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 し {たい} わ。
+        english: For my own health, I want to exercise more.
+        hint: 「～たい」 expresses a desire, not an obligation. We are looking for a strong personal commitment
+          to improvement, framed as a duty to oneself.
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 する {こと だ} わ。
+        english: For my own health, the thing to do is exercise more.
+        hint: 「～ことだ」 provides general advice. We are looking for a personal resolution with a strong sense
+          of internal imperative.
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 し {ない 方 が いい} わ。
+        english: For my own health, it'd be better not to exercise more.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 し {た 方 が いい} わ。
+        english: For my own health, it'd be better to exercise more.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of obligation.
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 する {はず} だ わ。
+        english: For my own health, I'm supposed to exercise more.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 自分 の 健康 の ため に もっと 運動 し {ない と} だ わ。
+        english: For my own health, I must exercise more.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+    scene: A woman making a personal resolution about her well-being.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The final particle 「わ」 is commonly used by women, adding a sense of personal conviction or
+      emphasis to the statement. Here, 「べき」 reinforces her strong resolution to improve her health, characteristic
+      of feminine self-reflection.
+  - english: If you have as much talent as you do, you should have more confidence.
+    japanese:
+      - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {べき} だ よ。
+      - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {べき} です よ。
+    english_literally: You as much talent if have, more confidence have ought (male particle).
+    competing_grammar:
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持っ {た 方 が いい} よ。
+        english: If you have as much talent as you do, it'd be better to have more confidence.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for strong encouragement based on recognized
+          talent, where 「べき」 conveys a firm belief in her deserving of confidence.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {と いい} よ。
+        english: If you have as much talent as you do, it'd be good to have more confidence.
+        hint: 「～といい」 is a softer recommendation. We are looking for a more direct and persuasive statement
+          to encourage confidence.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持た {ない 方 が いい} よ。
+        english: If you have as much talent as you do, it'd be better not to have more confidence.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {はず} だ よ。
+        english: If you have as much talent as you do, you are supposed to have more confidence.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持た {ない と} だ よ。
+        english: If you have as much talent as you do, you must have more confidence.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {こと だ} よ。
+        english: If you have as much talent as you do, the thing to do is to have more confidence.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - あなた ほど の 才能 が ある の なら、もっと 自信 を 持つ {もの だ} よ。
+        english: If you have as much talent as you do, having more confidence is something you should
+          do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A male friend encouraging a talented but shy female friend at a gathering.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「あなたほどの才能があるのなら」 sets up the context of the speaker's high regard for the listener's
+      ability. The use of 「べきだよ」 implies a strong, encouraging belief that the listener's talent warrants
+      greater self-assurance, typical of supportive male advice in a casual setting. The casual 「だよ」 enhances
+      the personal tone.
+  - english: Even if it's our first meeting, I think we should frankly exchange opinions.
+    japanese:
+      - 初 対面 で も、互い に 率直 に 意見 を 交わす {べき} だ と 思う ん だ。
+      - 初 対面 で も、互い に 率直 に 意見 を 交わす {べき} だ と 思い ます。
+    english_literally: First meeting even if, mutually frankly opinions exchange ought to, I think (male
+      casual particle).
+    competing_grammar:
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わし {た 方 が いい} と 思う ん だ。
+        english: Even if it's our first meeting, I think it'd be better if we frankly exchanged opinions.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger conviction about the importance
+          of directness for a deeper connection.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わす {必要 が ある} と 思う ん だ。
+        english: Even if it's our first meeting, I think it's necessary to frankly exchange opinions.
+        hint: 「～必要がある」 states a more objective need. We are looking for a personal belief about what ought
+          to be done to foster intimacy and understanding.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わさ {ない 方 が いい} と 思う ん だ。
+        english: Even if it's our first meeting, I think it'd be better if we didn't frankly exchange
+          opinions.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わす {はず} だ と 思う ん だ。
+        english: Even if it's our first meeting, I think we are supposed to frankly exchange opinions.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わさ {ない と} だ と 思う ん だ。
+        english: Even if it's our first meeting, I think we must frankly exchange opinions.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わす {こと だ} と 思う ん だ。
+        english: Even if it's our first meeting, the thing to do is to frankly exchange opinions.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 初 対面 で も、互い に 率直 に 意見 を 交わす {もの だ} と 思う ん だ。
+        english: Even if it's our first meeting, frankly exchanging opinions is something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: Two individuals on a first date trying to establish a deeper connection.
+    register: casual
+    setting: first-date
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「思うんだ」 softens the statement, making it a personal reflection rather than a demand,
+      which is appropriate for an early romantic encounter. The use of 「互いに」 emphasizes mutual openness,
+      showing an attempt at deeper connection often seen in first-date settings.
+  - english: If you think about your health, you should exercise regularly.
+    japanese:
+      - 健康 を 考える なら、定期 的 に 運動 する {べき} だ と 思う。
+      - 健康 を 考える なら、定期 的 に 運動 す {べき} だ と 思う。
+      - 健康 を 考える なら、定期 的 に 運動 する {べき} だ と 思い ます。
+    english_literally: Health consider if, regularly exercise do ought, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 し {た 方 が いい} と 思う。
+        english: If you think about your health, I think it'd be better to exercise regularly.
+        hint: 「～た方がいい」 is a milder recommendation. We are looking for a strong belief in the necessity
+          of exercise for health.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 し {なけれ ば なら ない} と 思う。
+        english: If you think about your health, I think you must exercise regularly.
+        hint: 「～しなければならない」 is a stronger, more absolute necessity. We are looking for general health advice
+          rather than a strict command.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 し {ない 方 が いい} と 思う。
+        english: If you think about your health, I think it'd be better not to exercise regularly.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 する {はず} だ と 思う。
+        english: If you think about your health, I think you are supposed to exercise regularly.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 し {ない と} だ と 思う。
+        english: If you think about your health, I think you must exercise regularly.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 する {こと だ} と 思う。
+        english: If you think about your health, the thing to do is to exercise regularly.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 健康 を 考える なら、定期 的 に 運動 する {もの だ} と 思う。
+        english: If you think about your health, exercising regularly is something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A doctor giving general health advice to a patient.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: For children, parents should keep their promises.
+    japanese:
+      - 子供 たち に とっ て、親 は 約束 を 守る {べき です}。
+      - 子供 たち に とっ て、親 は 約束 を 守る {べき} だ。
+    english_literally: For children, parents promises keep ought (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守っ {た 方 が いい} です。
+        english: For children, it'd be better if parents kept their promises.
+        hint: 「～た方がいいです」 is a polite but milder suggestion. We are looking for a fundamental principle
+          of child-rearing, emphasizing the essential obligation.
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守る {もの です}。
+        english: For children, parents keeping their promises is something that should be done.
+        hint: 「～ものです」 states a general truth or norm. We are looking for direct instruction about what
+          parents should do, giving more emphasis to the action itself.
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守ら {ない 方 が いい} です。
+        english: For children, it'd be better if parents didn't keep their promises.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守る {はず} です。
+        english: For children, parents are supposed to keep their promises.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守ら {ない と} です。
+        english: For children, parents must keep their promises.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 子供 たち に とっ て、親 は 約束 を 守る {こと です}。
+        english: For children, the thing to do is for parents to keep their promises.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+    scene: A teacher explaining the importance of parental consistency in a parenting class.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: Everyone should respect each other.
+    japanese:
+      - 人 は 皆、互い に 尊重 し 合う {べき} だ。
+      - 人 は 皆、互い に 尊重 し 合う {べき} です。
+    english_literally: People everyone, mutually respect each other ought.
+    competing_grammar:
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合っ {た 方 が いい}。
+        english: It'd be better if everyone respected each other.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a universal moral imperative, conveyed
+          with strength and conviction appropriate for a philosophical statement.
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合う {もの だ}。
+        english: Respecting each other is something everyone should do.
+        hint: 「～ものだ」 states a general truth or norm. We are looking for a prescriptive statement on how
+          people ought to behave, emphasizing obligation for societal harmony.
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合わ {ない 方 が いい}。
+        english: It'd be better if everyone didn't respect each other.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合う {はず} だ。
+        english: Everyone is supposed to respect each other.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合わ {ない と}。
+        english: Everyone must respect each other.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 人 は 皆、互い に 尊重 し 合う {こと だ}。
+        english: The thing to do is for everyone to respect each other.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+    scene: A philosopher explaining a universal moral principle in a lecture.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: Leaders should always make correct judgments.
+    japanese:
+      - 指導 者 は 常 に 正しい 判断 を する {べき} だ。
+      - 指導 者 は 常 に 正しい 判断 を す {べき} だ。
+      - 指導 者 は 常 に 正しい 判断 を する {べき} です。
+      - 指導 者 は 常 に 正しい 判断 を す {べき} です。
+    english_literally: Leaders always correct judgments make ought.
+    competing_grammar:
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を し {た 方 が いい}。
+        english: It'd be better if leaders always made correct judgments.
+        hint: 「～た方がいい」 offers a milder suggestion. We are looking for an inherent professional duty or
+          ideal for leaders, emphasizing this foundational expectation.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を する {必要 が ある}。
+        english: Leaders always need to make correct judgments.
+        hint: 「～必要がある」 states a practical necessity. We are looking for a moral and professional obligation
+          for leaders to make sound decisions.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を し {ない 方 が いい}。
+        english: It'd be better if leaders didn't always make correct judgments.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を する {はず} だ。
+        english: Leaders are always supposed to make correct judgments.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を し {ない と}。
+        english: Leaders must always make correct judgments.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を する {こと だ}。
+        english: The thing to do is for leaders to always make correct judgments.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 指導 者 は 常 に 正しい 判断 を する {もの だ}。
+        english: Making correct judgments is something leaders should always do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: Discussing the responsibilities of leadership in a management seminar.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: It is precisely when one is young that one should learn new things.
+    japanese:
+      - 若い 頃 に こそ、新しい こと を 学ぶ {べき} だ。
+      - 若い 頃 に こそ、新しい こと を 学ぶ {べき} です。
+    english_literally: Young age precisely when, new things learn ought.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ん {だ 方 が いい}。
+        english: It is precisely when one is young that it'd be better to learn new things.
+        hint: 「～た方がいい」 is a milder suggestion. We are looking for a stronger sense of what is crucial
+          for intellectual development during youth.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ぶ {必要 が ある}。
+        english: It is precisely when one is young that one needs to learn new things.
+        hint: 「～必要がある」 expresses a factual necessity. We are looking for things that are essential or
+          beneficial for personal growth, highlighting their importance at that specific stage of life.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ば {ない 方 が いい}。
+        english: It is precisely when one is young that it'd be better not to learn new things.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ぶ {はず} だ。
+        english: It is precisely when one is young that one is supposed to learn new things.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ば {ない と}。
+        english: It is precisely when one is young that one must learn new things.
+        hint: 「～ないと」 implies necessity due to rules or circumstances. We are looking for what is morally
+          or logically right.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ぶ {こと だ}。
+        english: It is precisely when one is young that the thing to do is to learn new things.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought to be
+          done.
+      - competing_japanese:
+          - 若い 頃 に こそ、新しい こと を 学ぶ {もの だ}。
+        english: It is precisely when one is young that learning new things is something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: An older professor advising students on lifelong learning.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: The phrase 「若い頃にこそ」 emphasizes that youth is the ideal time. The use of 「学ぶべきだ」 conveys a
+      strong recommendation rooted in wisdom, common from older speakers like professors giving advice
+      to younger students.
+  - english: I taught my child that one should not lie.
+    japanese:
+      - 嘘 を つく {べき で は ない} と 子供 に 教え た。
+      - 嘘 を つく {べき} で は ない と 子供 に 教え た。
+      - 嘘 を つく {べき} で は あり ませ ん と 子供 に 教え た。
+    english_literally: Lie tell ought not, to child taught.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 を つ か {ない 方 が いい} と 子供 に 教え た。
+        english: I taught my child that it'd be better not to lie.
+        hint: 「～ない方がいい」 suggests it's preferable not to, but 「べきではない」 emphasizes a moral imperative against
+          lying, which a parent would convey for a fundamental rule of conduct.
+      - competing_japanese:
+          - 嘘 を つい {て は いけ ない} と 子供 に 教え た。
+        english: I taught my child that one must not lie.
+        hint: 「～てはいけない」 implies a strict prohibition. While similar, 「べきではない」 often focuses on the impropriety
+          or wrongness of the action from a moral standpoint, making it suitable for teaching core values.
+      - competing_japanese:
+          - 嘘 を つく {はず} で は ない と 子供 に 教え た。
+        english: I taught my child that one is not supposed to lie.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - 嘘 を つく {もの} で は ない と 子供 に 教え た。
+        english: I taught my child that telling lies is not something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A parent explaining a fundamental moral rule to their child.
+    register: casual
+    setting: instructional
+    conjugation: negative plain (～ない)
+  - english: You should not miss this opportunity.
+    japanese:
+      - この 機会 を 逃す {べき で は あり ませ ん}。
+      - この 機会 を 逃す {べき} で は あり ませ ん。
+      - この 機会 を 逃す {べき} で は ない。
+    english_literally: This opportunity miss ought not (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 機会 を 逃さ {ない 方 が いい} です。
+        english: It'd be better not to miss this opportunity.
+        hint: 「～ない方がいいです」 is a milder, polite suggestion. We are looking for a strong, almost imperative
+          admonition that missing this opportunity would be a significant mistake.
+      - competing_japanese:
+          - この 機会 を 逃し {て は いけ ませ ん}。
+        english: You must not miss this opportunity.
+        hint: 「～てはいけません」 implies a strict prohibition or rule. We are looking for strategic advice where
+          failing to act is professionally unwise.
+      - competing_japanese:
+          - この 機会 を 逃す {はず} で は あり ませ ん。
+        english: You are not supposed to miss this opportunity.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - この 機会 を 逃す {こと} で は あり ませ ん。
+        english: Missing this opportunity is not the thing to do.
+        hint: 「～ことだ」 provides general advice. We are looking for a stronger sense of what ought not to
+          be done.
+      - competing_japanese:
+          - この 機会 を 逃す {もの} で は あり ませ ん。
+        english: Missing this opportunity is not something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: A business mentor firmly advising a junior colleague not to let a valuable chance slip away.
+    register: formal
+    setting: persuasive
+    conjugation: negative non-past polite (～ません)
+  - english: I regret saying such a thing; I should not have said it.
+    japanese:
+      - あんな こと を 言う {べき で は なかっ た} と 後悔 し て いる。
+      - あんな こと を 言う {べき じゃ なかっ た} と 後悔 し て いる。
+    english_literally: Such a thing say ought not to have, and regret am doing.
+    competing_grammar:
+      - competing_japanese:
+          - あんな こと を 言わ {なけれ ば よかっ た} と 後悔 し て いる。
+        english: I regret not having said such a thing.
+        hint: 「～ばよかった」 expresses simple regret, but 「べきではなかった」 conveys a stronger sense of what should
+          not have been done as it was morally or socially improper, implying a deeper self-reproach.
+      - competing_japanese:
+          - あんな こと を 言っ {て は いけ なかっ た} と 後悔 し て いる。
+        english: I regret that I must not have said such a thing.
+        hint: 「～てはいけなかった」 indicates a past prohibition. We are looking for the impropriety or mistake
+          of the action from a personal judgment, fitting a tone of profound regret.
+      - competing_japanese:
+          - あんな こと を 言わ {ない 方 が よかっ た} と 後悔 し て いる。
+        english: I regret that it would have been better not to say such a thing.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - あんな こと を 言う {はず} で は なかっ た と 後悔 し て いる。
+        english: I regret that I was not supposed to say such a thing.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - あんな こと を 言う {もの} で は なかっ た と 後悔 し て いる。
+        english: I regret that saying such a thing was not something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: Someone reflecting privately on a deeply regretful remark they made in the past.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+  - english: I should not have remained silent in this situation.
+    japanese:
+      - この 状況 で 黙っ て いる {べき で は あり ませ ん でし た}。
+      - この 状況 で 黙っ て いる {べき} で は あり ませ ん でし た。
+      - この 状況 で 黙っ て いる {べき} で は なかっ た。
+    english_literally: This situation in silent remain ought not to have (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で 黙っ て い れ {ば よかっ た の に}。
+        english: I wish I had remained silent in this situation.
+        hint: 「～ばよかったのに」 expresses personal regret but lacks the formal tone and implication of failed
+          duty. We are looking for an admission of professional oversight.
+      - competing_japanese:
+          - この 状況 で 黙っ て い {て は いけ ませ ん でし た}。
+        english: I regret that I must not have remained silent in this situation.
+        hint: 「～てはいけませんでした」 indicates a past prohibition. We are looking for formal regret for failing
+          a duty or obligation to speak, emphasizing the impropriety of the silence within a professional
+          context.
+      - competing_japanese:
+          - この 状況 で 黙っ て い {ない 方 が よかっ た} です。
+        english: It would have been better if I had not remained silent in this situation.
+        hint: This expresses the opposite meaning.
+      - competing_japanese:
+          - この 状況 で 黙っ て いる {はず} で は あり ませ ん でし た。
+        english: I was not supposed to have remained silent in this situation.
+        hint: 「～はずだ」 expresses expectation or probability. We are looking for something that expresses
+          obligation.
+      - competing_japanese:
+          - この 状況 で 黙っ て いる {もの} で は あり ませ ん でし た。
+        english: Remaining silent in this situation was not something one should do.
+        hint: 「～ものだ」 describes general norms or expectations. We are looking for a specific action that
+          should be taken.
+    scene: An employee expressing formal regret to a supervisor for not speaking up during a critical
+      moment.
+    register: formal
+    setting: apologetic
+    conjugation: negative past polite (～ませんでした)
+  - english: In public places, you should not speak loudly.
+    japanese:
+      - 公共 の 場 で は、大 声 で 話す {べき で は ない}。
+      - 公共 の 場 で は、大 声 で 話す {べき で ない}。
+      - 公共 の 場 で は、大 声 で 話す {べき じゃ ない}。
+    english_literally: In public places, speaking loudly is not what should be done.
+    competing_grammar:
+      - competing_japanese:
+          - 公共 の 場 で は、大 声 で 話さ {ない 方 が いい}。
+        english: In public places, it would be better not to speak loudly.
+        hint: 「～ない方がいい」 is a softer suggestion. We're looking for a stronger prohibition or rule.
+    scene: A librarian is reminding visitors about the rules.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: You shouldn't stay up all night before an exam. You might ruin your health.
+    japanese:
+      - 試験 の 前 に 徹夜 する {べき で は ない}。体調 を 崩す か も しれ ない。
+      - 試験 の 前 に 徹夜 {す べき で は ない}。体調 を 崩す か も しれ ない。
+      - 試験 の 前 に 徹夜 する {べき で ない}。体調 を 崩す か も しれ ない。
+      - 試験 の 前 に 徹夜 {す べき で ない}。体調 を 崩す か も しれ ない。
+      - 試験 の 前 に 徹夜 する {べき じゃ ない}。体調 を 崩す か も しれ ない。
+      - 試験 の 前 に 徹夜 {す べき じゃ ない}。体調 を 崩す か も しれ ない。
+    english_literally: Before the exam, staying up all night is not what should be done. You might ruin
+      your health.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 前 に 徹夜 し {ない 方 が いい}。
+        english: It would be better not to stay up all night before an exam.
+        hint: 「～ない方がいい」 is a mild suggestion. We need a stronger expression for critical advice.
+    scene: A teacher is giving advice to students preparing for a big exam.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: You shouldn't break promises. Don't you think that's bad for the other person?
+    japanese:
+      - 約束 を 破る {べき じゃ ない} よ。相手 に 悪い と 思わ ない？
+      - 約束 を 破る {べき で は ない} よ。相手 に 悪い と 思わ ない？
+      - 約束 を 破る {べき で ない} よ。相手 に 悪い と 思わ ない？
+    english_literally: Breaking promises is not what should be done. Don't you think that's bad for the
+      other person?
+    competing_grammar:
+      - competing_japanese:
+          - 約束 を 破ら {ない 方 が いい}。
+        english: It would be better not to break promises.
+        hint: 「～ない方がいい」 is a general suggestion. This context implies a stronger moral obligation or reprimand.
+    scene: A friend is gently reprimanding another friend for not keeping their word.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: You should not use rude language towards customers.
+    japanese:
+      - お 客 様 に 対し て、無礼 な 言葉 を 使う {べき で は あり ませ ん}。
+      - お 客 様 に 対し て、無礼 な 言葉 を 使う {べき じゃ あり ませ ん}。
+    english_literally: Regarding customers, it is not something that should be used, rude words.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 に 対し て、無礼 な 言葉 を 使わ {ない 方 が いい} です。
+        english: It would be better not to use rude language towards customers.
+        hint: This is a formal rule or strong expectation in a professional setting. 「～ない方がいい」 is too
+          mild.
+    scene: A supervisor is training new staff on proper customer service etiquette.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: You shouldn't tell anyone your secret.
+    japanese:
+      - あなた の 秘密 を 誰 か に 話す {べき じゃ あり ませ ん} よ。
+      - あなた の 秘密 を 誰 か に 話す {べき で は あり ませ ん} よ。
+    english_literally: Your secret, telling anyone is not what should be done.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 秘密 を 誰 か に 話さ {ない 方 が いい} です。
+        english: It would be better not to tell anyone your secret.
+        hint: The advice is given with strong concern about potential negative consequences, requiring
+          a stronger warning than a simple preference.
+    scene: A close friend is giving cautious and slightly worried advice.
+    register: semi-formal
+    setting: cautious
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    nuance: The use of 「よ」 (in 「べきじゃありませんよ」) adds a gentle warning or emphasis, often used by female speakers
+      to soften advice or express concern, making it less harsh than a bare prohibition.
+  - english: You should never do anything that would hurt others.
+    japanese:
+      - 人 を 傷つける こと は、決して する {べき で は ない}。
+      - 人 を 傷つける こと は、決して {す べき で は ない}。
+      - 人 を 傷つける こと は、決して する {べき で ない}。
+      - 人 を 傷つける こと は、決して {す べき で ない}。
+      - 人 を 傷つける こと は、決して する {べき じゃ ない}。
+      - 人 を 傷つける こと は、決して {す べき じゃ ない}。
+    english_literally: Things that hurt people, certainly not what should be done.
+    competing_grammar:
+      - competing_japanese:
+          - 人 を 傷つける こと は、決して し {ない 方 が いい}。
+        english: It would be better to never do anything that would hurt others.
+        hint: The inclusion of 「決して」 emphasizes an absolute moral principle. We need a stronger prohibition
+          than a mere suggestion.
+    scene: A wise elder is imparting a fundamental ethical principle to a young person.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: You shouldn't eat expired food. You'll get a stomachache.
+    japanese:
+      - 期限 が 過ぎ た 食べ物 は、食べる {べき じゃ ない}。お腹 を 壊す よ。
+      - 期限 が 過ぎ た 食べ物 は、食べる {べき で は ない}。お腹 を 壊す よ。
+      - 期限 が 過ぎ た 食べ物 は、食べる {べき で ない}。お腹 を 壊す よ。
+    english_literally: Expired food, should not eat. You will break your stomach.
+    competing_grammar:
+      - competing_japanese:
+          - 期限 が 過ぎ た 食べ物 は、食べ {ない 方 が いい}。
+        english: It would be better not to eat expired food.
+        hint: The example highlights a direct negative consequence, requiring a strong warning not to
+          do something.
+    scene: A mother is warning her child about spoiled food.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The combination of the direct prohibition 「食べるべきじゃない」 and the warning 「お腹を壊すよ」, coming from
+      an older female speaker to a younger male listener, creates a firm, parental tone. The 「よ」 softens
+      the directness while still conveying authority.
+  - english: You must not leak customer personal information.
+    japanese:
+      - 顧客 の 個人 情報 を 漏洩 する {べき で は あり ませ ん}。
+      - 顧客 の 個人 情報 を 漏洩 {す べき で は あり ませ ん}。
+      - 顧客 の 個人 情報 を 漏洩 する {べき じゃ あり ませ ん}。
+      - 顧客 の 個人 情報 を 漏洩 {す べき じゃ あり ませ ん}。
+    english_literally: Customer personal information, leaking it is not what should be done.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 の 個人 情報 を 漏洩 し {ない 方 が いい} です。
+        english: It would be better not to leak customer personal information.
+        hint: This context is about a strict policy and legal obligation, demanding a definitive prohibition,
+          not a mild suggestion.
+    scene: A company is conducting a mandatory seminar on data security and privacy.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: Since it's a new place, you shouldn't go without a map.
+    japanese:
+      - 初めて の 場所 な の で、地図 なし で 行く {べき で は ない}。
+      - 初めて の 場所 な の で、地図 なし で 行く {べき で ない}。
+      - 初めて の 場所 な の で、地図 なし で 行く {べき じゃ ない}。
+    english_literally: Because it's a first time place, should not go without a map.
+    competing_grammar:
+      - competing_japanese:
+          - 初めて の 場所 な の で、地図 なし で 行か {ない 方 が いい}。
+        english: Since it's a new place, it would be better not to go without a map.
+        hint: This isn't just a preference, but a strong recommendation to avoid definite negative outcomes.
+    scene: One friend is advising another who is about to explore an unfamiliar city.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+  - english: I shouldn't have said such terrible words. I truly regret it.
+    japanese:
+      - あんな ひどい 言葉 を 言う {べき で は なかっ た}。本当 に 後悔 し て いる。
+      - あんな ひどい 言葉 を 言う {べき じゃ なかっ た}。本当 に 後悔 し て いる。
+    english_literally: Such terrible words, should not have said. Truly regretting.
+    competing_grammar:
+      - competing_japanese:
+          - あんな ひどい 言葉 を 言わ {ない 方 が よかっ た}。
+        english: It would have been better not to say such terrible words.
+        hint: The speaker expresses profound regret, indicating a strong conviction that the action was
+          wrong, not just a missed preference.
+    scene: A man is alone, reflecting on a harsh comment he made to someone earlier.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    nuance: The use of the past tense 「べきではなかった」 expresses deep regret over a past action that the speaker
+      now acknowledges was improper or wrong. This often conveys a strong emotional tone, particularly
+      when reflecting on personal failings.
+post_example_writeup: Using 「べき」 and 「べきではない」 adds a layer of advice, recommendation, or requirement that
+  is stronger than saying 「ほうがいい」 but not as strong as 「なければならない」. Pay attention to how it conveys a sense
+  of what is right, proper, or essential, especially when combined with various registers and nuances.
+  For negative forms, 「べきではない」 carries a strong nuance of obligation and correctness. It is often used
+  in situations where there are clear rules or expectations, or when warning someone about the potential
+  negative consequences of their actions. You would use this when 「～ないほうがいい」 is too weak, and a more definitive
+  prohibition is needed.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/べき

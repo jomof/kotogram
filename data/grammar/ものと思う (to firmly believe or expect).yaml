@@ -1,0 +1,233 @@
+grammar_point: ものと思う (to firmly believe or expect)
+learn_before:
+  - ものと思っていた (was under the impression that)
+  - 思うに (in my opinion)
+meaning: To firmly believe or expect something; to be under the impression that.
+pronunciation:
+  katakana: モノトオモウ
+  romaji: mono to omou
+formation:
+  '[Plain form verb/い-adjective/な-adjective だ/Noun だ] + ものと思う': To firmly believe or expect that...
+jlpt: N2
+etymology: 「もの」 (物) here refers to "a thing" or "a matter," often used to nominalize clauses or add an
+  explanatory nuance. 「と思う」 means "to think/believe." Thus, the phrase means "to think of it as a thing/matter"
+  or "to believe it to be the case." The combination emphasizes the speaker's conviction or assumption
+  about the reality of a situation.
+writeup: |-
+  「ものと思う」 is a grammatical expression used to convey a firm belief, expectation, or assumption held by the speaker. It suggests that the speaker considers something to be a certain way, often based on their own judgment, observation, or prior knowledge. This expression is stronger than a simple 「と思う」 (to think) and carries a nuance of conviction or a settled understanding of a situation. It can also imply that the speaker expects others to share this belief, or that their belief might be challenged.
+
+  It is commonly used to express a strong opinion or to explain the basis of one's actions or understanding. For instance, when someone says 「彼は来るものと思った」 (I believed he would come), it signifies a strong expectation that was held, possibly leading to disappointment if he didn't. The 「もの」 component adds a sense of objective reality or established fact to the speaker's internal thought, even if that "reality" is only subjective.
+false_friends:
+  - term: と思う
+    meaning: To think; to believe (general)
+    kind: similar expression
+    nuance: 「と思う」 is a general expression for "to think" or "to believe," reflecting a personal opinion
+      or thought. 「ものと思う」 conveys a stronger, more settled conviction or assumption, often implying that
+      the speaker considers it a fact or a strong expectation. 「ものと思う」 can sometimes imply that the speaker's
+      belief is based on evidence or is a firm conclusion, whereas 「と思う」 can be a mere thought or transient
+      opinion.
+    grammar_point: <suggest>:と 思う (I think or thought)
+  - term: に違いない
+    meaning: Must be; surely is; no doubt
+    kind: similar expression
+    nuance: Both express strong conviction. 「に違いない」 expresses a logical certainty or a strong inference
+      based on objective evidence, leaving little room for doubt. 「ものと思う」 expresses a firm belief or expectation
+      from the speaker's perspective, which might be a strong assumption or conviction rather than an
+      objective certainty. 「ものと思う」 can sometimes imply a personal, perhaps even mistaken, assumption,
+      whereas 「に違いない」 points to an undeniable conclusion.
+    grammar_point: に違いない (no doubt)
+  - term: はずだ
+    meaning: Is expected to be; it should be; it's supposed to be
+    kind: similar expression
+    nuance: 「はずだ」 indicates a strong expectation or certainty based on logical grounds or general knowledge,
+      implying that something is "supposed to be" a certain way. 「ものと思う」 indicates a firm personal belief
+      or assumption. While both convey conviction, 「はずだ」 is about logical likelihood or arrangement, while
+      「ものと思う」 is more about the speaker's internal conviction or an impression they hold.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: と思わる
+    meaning: It seems; it is thought that; it appears (impersonal)
+    kind: similar expression
+    nuance: 「と思わる」 is an impersonal expression indicating that something is generally perceived or thought
+      to be true, often suggesting a degree of objectivity or common understanding. 「ものと思う」 is a subjective
+      expression of the speaker's firm belief or expectation. The former implies "it is believed by others/generally,"
+      while the latter means "I firmly believe."
+    grammar_point: 思われる (to seem・impersonal)
+post_false_friends_writeup: When choosing between 「ものと思う」 and similar expressions like 「と思う」, 「に違いない」,
+  「はずだ」, or 「と思わる」, consider the nuance of conviction and subjectivity. Use 「と思う」 for general thoughts.
+  For stronger, objective certainty, 「に違いない」 is more appropriate. 「はずだ」 implies logical expectation or
+  what is "supposed to be." If the belief is a firm, personal assumption or impression, 「ものと思う」 is the
+  best fit. If you want to express what is generally believed or appears to be true in an impersonal way,
+  「と思わる」 is used.
+examples:
+  - english: I firmly believed that he would understand.
+    japanese:
+      - 彼 は 分かっ て くれる {もの と 思っ た}。
+      - 彼 は 分かっ て くれる {もの と 思い まし た}。
+    english_literally: As for him, (I) understood (he would) thing believed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 分かっ て くれる と 思っ た。
+        english: I thought he would understand.
+        hint: 「と思う」is a general thought; 「ものと思う」implies a firmer belief or expectation. We're looking
+          for a strong, firm belief.
+    scene: Speaking to a friend about a past misunderstanding.
+    register: casual
+    setting: reflective
+  - english: I believed you had already finished it, so I didn't help.
+    japanese:
+      - あなた は もう 終わっ て いる {もの と 思い まし た} の で、手伝い ませ ん でし た。
+      - あなた は もう 終わっ て いる {もの と 思っ た} の で、手伝い ませ ん でし た。
+    english_literally: As for you, already finished thing believed, so, did not help.
+    competing_grammar:
+      - competing_japanese:
+          - あなた は もう 終わっ て いる と 思い まし た の で、手伝い ませ ん でし た。
+        english: I thought you were already finished, so I didn't help.
+        hint: 「と思う」is a general thought. 「ものと思う」implies a firmer belief or assumption that led to the
+          action. We're looking for an action taken because of a firm belief.
+    scene: Explaining a past action based on a strong but possibly incorrect assumption.
+    register: formal
+    setting: apologetic
+    conjugation: past polite (～ました)
+  - english: I expect he will surely come.
+    japanese:
+      - 彼 は きっと 来る {もの と 思う}。
+      - 彼 は きっと 来る {もの と 思い ます}。
+    english_literally: As for him, surely come thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は きっと 来る はず だ。
+        english: He should surely come.
+        hint: 「はずだ」expresses logical expectation. 「ものと思う」expresses a personal, firm belief or conviction.
+          We're looking for a strong personal conviction.
+    scene: Confidently stating an expectation about someone's arrival.
+    register: casual
+    setting: inspirational
+  - english: Many people believe that money can solve everything, but that's not true.
+    japanese:
+      - お 金 が 全て を 解決 する {もの と 思う} 人 が 多い が、そう で は ない。
+      - お 金 が 全て を 解決 する {もの と 思い ます} 人 が 多い です が、そう で は あり ませ ん。
+    english_literally: Money all solve thing believe people many, but, that is not.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が 全て を 解決 する はず だ と 思う 人 が 多い が、そう で は ない。
+        english: Many people think money should solve everything, but that's not true.
+        hint: 「はずだ」implies a logical expectation. We are describing a firmly held belief by many people,
+          not a logical expectation.
+    scene: Discussing a common misconception.
+    register: formal
+    setting: informative
+  - english: I didn't believe it was such a difficult problem.
+    japanese:
+      - そんな に 難しい 問題 で は ない {もの と 思っ て い た}。
+      - そんな に 難しい 問題 で は ない {もの と 思っ て い まし た}。
+    english_literally: Such difficult problem is not thing believed (was).
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 難しい 問題 で は ない と 思っ て い た。
+        english: I thought it wasn't such a difficult problem.
+        hint: 「と思う」is a general thought. 「ものと思う」implies a firmer, settled conviction. We're looking for
+          a strong, sustained belief that was later disproven.
+    scene: Reflecting on a past underestimation.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+  - english: Flowers are supposed to bloom in spring.
+    japanese:
+      - 春 に は 花 が 咲く {もの と 思う}。
+      - 春 に は 花 が 咲く {もの と 思い ます}。
+    english_literally: Spring in flowers bloom thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 春 に は 花 が 咲く もの だ。
+        english: Flowers are things that bloom in spring.
+        hint: 「ものだ」is for general truths. 「ものと思う」is about the speaker's firm belief or expectation regarding
+          that truth. We're looking for the speaker's belief about the natural occurrence.
+    scene: Stating a common natural fact or expectation.
+    register: formal
+    setting: informative
+  - english: I believe that she is a kind person.
+    japanese:
+      - 彼女 は 優しい 人 で ある {もの と 思う}。
+      - 彼女 は 優しい 人 で ある {もの と 思い ます}。
+    english_literally: As for her, kind person is thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 優しい 人 だ と 思わ れる。
+        english: She is thought to be a kind person.
+        hint: 「と思わる」is impersonal. We're looking for a personal, firm belief about someone's character.
+    scene: Expressing a firm conviction about someone's personality.
+    register: formal
+    setting: supportive
+  - english: I believe it is my duty to protect my family.
+    japanese:
+      - 家族 を 守る の が 私 の 義務 で ある {もの と 思う}。
+      - 家族 を 守る の が 私 の 義務 で ある {もの と 思い ます}。
+    english_literally: Family protect is my duty is thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 を 守る の が 私 の 義務 で ある と 思っ て いる。
+        english: I think it is my duty to protect my family.
+        hint: 「と思っている」is more of an ongoing thought. 「ものと思う」expresses a deep-seated conviction or principle.
+          We're looking for a strong, fundamental belief.
+    scene: Expressing a strong personal conviction about one's responsibilities.
+    register: formal
+    setting: serious
+  - english: I believe we can still achieve our goal.
+    japanese:
+      - 私 たち は まだ 目標 を 達成 できる {もの と 思う}。
+      - 私 たち は まだ 目標 を 達成 できる {もの と 思い ます}。
+    english_literally: We still goal achieve can thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は まだ 目標 を 達成 できる と 確信 し て いる。
+        english: I am convinced we can still achieve our goal.
+        hint: 「確信している」is a very strong, almost formal, declaration of certainty. 「ものと思う」expresses a firm
+          belief or expectation, but with a slightly softer, more personal nuance of conviction. We're
+          looking for a conviction that's strong but not necessarily a formal declaration.
+    scene: Expressing an optimistic and firm belief in a challenging situation.
+    register: formal
+    setting: inspirational
+  - english: I believed that was the correct answer.
+    japanese:
+      - それ が 正しい 答え で ある {もの と 思っ て い た}。
+      - それ が 正しい 答え で ある {もの と 思っ て い まし た}。
+    english_literally: That correct answer is thing believed (was).
+    competing_grammar:
+      - competing_japanese:
+          - それ が 正しい 答え だ と 確信 し て い た。
+        english: I was convinced that was the correct answer.
+        hint: 「確信していた」implies objective certainty. 「ものと思っていた」expresses a strong personal conviction or
+          assumption that might have been subjective or based on incomplete information. We're looking
+          for a past firm personal belief that might have been mistaken.
+    scene: Admitting a past mistake based on a strong, incorrect assumption.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+  - english: I believe he has the ability to succeed.
+    japanese:
+      - 彼 に は 成功 する 能力 が ある {もの と 思う}。
+      - 彼 に は 成功 する 能力 が ある {もの と 思い ます}。
+    english_literally: As for him, succeed ability exists thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に は 成功 する 能力 が ある だろう と 思う。
+        english: I think he probably has the ability to succeed.
+        hint: 「だろうと思う」is more speculative or tentative. 「ものと思う」expresses a stronger, more settled belief
+          in his capability. We're looking for a firm belief, not speculation.
+    scene: Expressing confidence in someone's potential.
+    register: formal
+    setting: supportive
+  - english: From his calm demeanor, I believe he's a very experienced person.
+    japanese:
+      - 彼 の 落ち着い た 態度 から、彼 は とても 経験 豊富 な 人 で ある {もの と 思う}。
+      - 彼 の 落ち着い た 態度 から、彼 は とても 経験 豊富 な 人 で ある {もの と 思い ます}。
+    english_literally: His calm attitude from, he very experienced person is thing believe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 落ち着い た 態度 から、彼 は とても 経験 豊富 な 人 だ と 思わ れる。
+        english: From his calm demeanor, he is thought to be a very experienced person.
+        hint: 「と思わる」is an impersonal observation. We're looking for the speaker's personal, firm impression
+          based on observation.
+    scene: Forming a strong impression based on observation.
+    register: formal
+    setting: informative

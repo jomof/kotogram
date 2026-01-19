@@ -1,0 +1,286 @@
+grammar_point: または (or; either... or...)
+learn_before:
+  - にて (formal at・by means of)
+  - 又〜も (additionally)
+meaning: Or; either... or...
+pronunciation:
+  katakana: マタハ
+  romaji: matawa
+formation:
+  Noun + または + Noun: Connects two nouns, indicating a choice or possibility between them.
+  Sentence + または + Sentence: Connects two sentences, offering an alternative or possibility.
+jlpt: N3
+etymology: 「または」 comes from 「又」 (mata), meaning "again" or "also," combined with 「は」 (wa), the topic marker.
+  It indicates an additional option or alternative, extending the possibilities beyond the first item
+  mentioned.
+writeup: 「または」 is a conjunction used to connect two nouns or two sentences, presenting them as alternatives
+  or possibilities. It is similar to 「か」, but 「または」 is generally considered more formal and is often used
+  in written language or formal speech. It is equivalent to "or" or "either... or..." in English. It's
+  important to note that 「または」 is more common in formal contexts, such as legal documents, academic papers,
+  or business correspondence. In casual conversation, 「か」 is more frequently used.
+false_friends:
+  - term: か
+    meaning: or
+    kind: similar expression
+    nuance: 「か」 is more commonly used in casual conversation, while 「または」 is more formal and often used
+      in writing.
+    grammar_point: か (or)
+  - term: それとも
+    meaning: or
+    kind: similar expression
+    nuance: 「それとも」 is typically used when presenting options in a question.
+    grammar_point: それとも (or・or else)
+  - term: 或いは
+    meaning: or; alternatively
+    kind: similar expression
+    nuance: 「或いは」 is a more formal and literary alternative to 「または」, often used for presenting choices
+      in written contexts, particularly when the options are equally valid or equally likely.
+    grammar_point: あるいは (or・alternatively)
+post_false_friends_writeup: While 「か」, 「または」, 「それとも」, and 「或いは」 can all translate to "or" in English,
+  it's essential to understand their different usages. Use 「か」 in casual conversations when offering alternatives.
+  Opt for 「または」 in formal writing or speech to present options. Reserve 「それとも」 for asking questions that
+  present options to the listener. 「或いは」 is even more formal than 「または」, often found in very refined writing
+  or official documents, implying a greater degree of choice or possibility.
+examples:
+  - english: Payment is requested by bank transfer or credit card.
+    japanese:
+      - 支払い は、銀行 振込 {また は} クレジット カード で お 願い いたし ます。
+      - お 支払い は、銀行 振込 {また は} クレジット カード で お 願い いたし ます。
+      - 支払い は、銀行 振込 {また は} クレジット カード にて お 願い 申し上げ ます。
+    english_literally: As for payment, bank transfer or credit card, we humbly request.
+    competing_grammar:
+      - competing_japanese:
+          - 支払い は、銀行 振込 {か} クレジット カード で お 願い いたし ます。
+        english: Payment is requested by bank transfer or credit card.
+        hint: 「か」 is less formal and more common in casual speech, whereas 「または」 is used for formal written
+          instructions. We're looking for a formal conjunction for alternatives.
+    scene: A company's accounting department sends an invoice to a new client.
+    register: formal
+    setting: professional
+    nuance: The phrase 「お願いいたします」 is a very polite and formal way to say "we request," fitting the professional
+      and formal register of 「または」. The use of 「お支払い」 or 「お願い申し上げます」 further elevates the formality.
+    etymology: クレジットカード (kurejitto kaado) is a loanword from English meaning 'credit card'. While many
+      foreign loanwords exist in Japanese, this one is particularly common in professional and financial
+      contexts, reinforcing the formal tone of this example sentence. The use of 「または」 further emphasizes
+      the clear, formal presentation of payment options, which aligns with the direct nature of financial
+      transactions and the need for precision often associated with loanwords in official use.
+  - english: In case of emergency, please go out through this door or the adjacent window.
+    japanese:
+      - 緊急 の 場合 は、この ドア {また は} 隣 の 窓 から 出 て いっ て ください。
+      - 緊急 の 場合 は、この ドア {また は} 隣 の 窓 から お 出 ください。
+      - 緊急 の 場合 は、この ドア {また は} 隣 の 窓 から 避難 し て ください。
+    english_literally: In case of emergency, this door or the adjacent window, please go out.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 の 場合 は、この ドア {か} 隣 の 窓 から 出 て いっ て ください。
+        english: In case of emergency, please go out through this door or the adjacent window.
+        hint: 「か」 is less formal and generally used in casual conversation. We're looking for a formal
+          and clear instruction in an emergency.
+    scene: An emergency evacuation diagram in a public building.
+    register: formal
+    setting: instructional
+    nuance: 「出ていってください」 is a direct instruction suitable for an emergency, reinforcing the use of 「または」
+      in public safety announcements. Alternatives like 「お出ください」 or 「避難してください」 maintain this formal, instructional
+      tone.
+    etymology: '「緊急 (きんきゅう)」 comes from two kanji: 「緊」 meaning ''tight'' or ''urgent'', and 「急」 meaning
+      ''sudden'' or ''urgent''. This compound word strongly conveys the immediate and critical nature
+      of an emergency situation. 「または」 is used here to present clear, unambiguous alternatives for safe
+      egress in a public advisory, emphasizing the formality and serious intent of the instruction.'
+  - english: Please submit your thesis in Japanese or English.
+    japanese:
+      - 論文 は 日本 語 {また は} 英語 で 提出 し て ください。
+      - 論文 は 日本 語 {また は} 英語 で 提出 願い ます。
+      - 論文 は 日本 語 {また は} 英語 で の 提出 を お 願い いたし ます。
+      - 論文 は 日本 語 {また は} 英語 にて 提出 する こと と なり ます。
+    english_literally: As for thesis, in Japanese or English, please submit.
+    competing_grammar:
+      - competing_japanese:
+          - 論文 は 日本 語 {か} 英語 で 提出 し て ください。
+        english: Please submit your thesis in Japanese or English.
+        hint: 「か」 is more common in casual settings. In academic instructions, we need a formal and precise
+          conjunction.
+    scene: A university faculty member giving instructions to students about thesis submission.
+    register: formal
+    setting: academic
+    nuance: 「提出してください」 is a standard formal request in an academic or professional setting, aligning well
+      with the use of 「または」. Phrases like 「提出願います」 or 「提出することとなります」 further reinforce the formal, instructional
+      context.
+    etymology: 「論文 (ろんぶん)」 combines 「論」 (ron), meaning 'argument' or 'discourse,' and 「文」 (bun), meaning
+      'sentence' or 'writing.' This clearly indicates a structured, argumentative written work, fitting
+      the academic context. The formality of 「または」 is suitable for presenting official submission guidelines
+      where precision is paramount, allowing no ambiguity about language options.
+  - english: I need to meet him today or tomorrow.
+    japanese:
+      - 今日 {また は} 明日、彼 に 会う 必要 が あり ます。
+      - 今日 {また は} 明日、彼 に 会う 必要 が ござい ます。
+      - 今日 {また は} 明日、彼 に お 会い する 必要 が ござい ます。
+      - 今日 {また は} 明日、彼 と の 面談 が 必要 と なり ます。
+    english_literally: Today or tomorrow, meeting him is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 {か} 明日、彼 に 会う 必要 が あり ます。
+        english: I need to meet him today or tomorrow.
+        hint: 「か」 is appropriate for casual speech. Here, we are in a professional setting where formality
+          is expected.
+    scene: A busy manager is discussing their schedule with an assistant.
+    register: formal
+    setting: professional
+    nuance: 「会う必要があります」 is a polite and formal way to express necessity, fitting the professional environment
+      and the use of 「または」. Variations like 「ございます」 and 「お会いする」 add further politeness and respect, while
+      「面談」 provides a more formal term for a meeting.
+    etymology: 「必要 (ひつよう)」 consists of 「必」 (hitsu), meaning 'certainly' or 'must,' and 「要」 (yō), meaning
+      'need' or 'important.' The combination expresses a strong sense of necessity. In a professional
+      context, using 「または」 to specify possible meeting days with such an expression of necessity conveys
+      clarity and efficiency in scheduling, appropriate for a busy manager. The choice of 「または」 over a
+      more casual option indicates the importance of the decision.
+  - english: Please either print the documents or send them by email.
+    japanese:
+      - 資料 を 印刷 する か {また は} メール で 送信 する か の どちら か に し て ください。
+      - 資料 を 印刷 する か {また は} メール で 送信 し て ください。
+      - 資料 を 印刷、{また は} メール で 送信 し て ください。
+    english_literally: Documents, print or send by email, please choose one or the other.
+    competing_grammar:
+      - competing_japanese:
+          - 資料 を 印刷 する {か} メール で 送信 する {か} に し て ください。
+        english: Please either print the documents or send them by email.
+        hint: While 「か」 can connect options, the specific construction 「か または か」 emphasizes a clear, formal
+          "either/or" choice, especially for official instructions. We're looking for that explicit, formal
+          "either A or B" structure.
+    scene: An office administrator is instructing a new employee on handling documents.
+    register: formal
+    setting: instructional
+    nuance: The phrase 「どちらかにしてください」 (please do one or the other) is a polite and common way to give options
+      in a formal instruction, complementing the use of 「または」. Simpler forms, while still formal, reduce
+      the explicit emphasis on 'either/or' but retain the clear instruction.
+    etymology: 「送信 (そうしん)」 combines 「送」 (sō), meaning 'send,' and 「信」 (shin), meaning 'message' or 'trust.'
+      This describes the act of transmitting a message. In an office setting, precise instructions are
+      crucial, and 「または」 clearly delineates two equally valid methods for handling documents. The formality
+      of the language supports the structured and efficient environment of an office, ensuring the new
+      employee understands the correct procedures.
+  - english: If it's raining or the wind is strong, please avoid going out.
+    japanese:
+      - 雨 が 降っ て いる {また は} 風 が 強い 場合 は、外出 を 避け て ください。
+      - 雨 が 降っ て いる {また は} 風 が 強い 場合 は、外出 を お 控え ください。
+      - 雨 が 降っ て いる {また は} 風 が 強い 場合 は、外出 を ご 遠慮 ください。
+    english_literally: If it is raining or the wind is strong, as for going out, please avoid.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ て いる {か} 風 が 強い 場合 は、外出 を 避け て ください。
+        english: If it's raining or the wind is strong, please avoid going out.
+        hint: For public advisories, 「または」 provides a more formal and unambiguous connection between conditions
+          than the more casual 「か」.
+    scene: A weather advisory is issued to the public regarding severe conditions.
+    register: formal
+    setting: informative
+    nuance: The formal request 「避けてください」 (please avoid) is appropriate for a public advisory, aligning
+      with the use of 「または」 for clear communication of conditions. 「お控えください」 and 「ご遠慮ください」 offer progressively
+      softer, yet still formal, ways to convey the same instruction, common in public announcements.
+    etymology: 「外出 (がいしゅつ)」 is formed from 「外」 (gai), meaning 'outside,' and 「出」 (shutsu), meaning 'go
+      out.' It literally means 'going outside.' In public advisories, clarity and authority are paramount.
+      「または」 is chosen to explicitly state alternative dangerous conditions, reinforcing the imperative
+      to avoid going out. This formal structure ensures that the message is understood as official and
+      important, guiding public safety.
+  - english: It is possible to complete the application online or submit it by mail.
+    japanese:
+      - 申し込み は オン ライン で 完了 する {また は} 郵送 で 提出 する こと が 可能 です。
+      - 申し込み は オン ライン で 完了 する {また は} 郵送 で 提出 いただけ ます。
+      - 申し込み は オン ライン で の 完了、{また は} 郵送 で の 提出 と なり ます。
+      - 申し込み は オン ライン にて 完了 する {また は} 郵送 にて 提出 する こと が 可能 です。
+    english_literally: As for application, online complete or by mail submit, it is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 申し込み は オン ライン で 完了 する {か} 郵送 で 提出 する こと が 可能 です。
+        english: It is possible to complete the application online or submit it by mail.
+        hint: For official instructions, 「または」 ensures a clear and formal presentation of alternatives,
+          unlike the more conversational 「か」.
+    scene: An official website provides instructions for applying for a service.
+    register: formal
+    setting: instructional
+    nuance: 「可能です」 (it is possible) is a polite and formal expression often used in official instructions
+      to indicate available options, consistent with the use of 「または」. 「提出いただけます」 provides a more user-friendly
+      tone, while 「〜となります」 and the use of 「にて」 emphasize the official nature of the process.
+    etymology: 「郵送 (ゆうそう)」 means 'mailing' or 'sending by post,' combining 「郵」 (yū), referring to mail
+      or postal service, and 「送」 (sō), meaning 'send.' This word explicitly refers to the act of sending
+      something via the postal system. On official websites, providing clear, formal options for application
+      submission ensures user compliance and reduces confusion. 「または」 is used here to present these distinct
+      submission methods clearly and formally, maintaining the professional tone expected from an official
+      source.
+  - english: This contract shall be terminated by mutual agreement or by breach of terms.
+    japanese:
+      - この 契約 は 相互 の 合意 {また は} 契約 違反 に より 解除 さ れる。
+      - この 契約 は 相互 の 合意 {また は} 契約 違反 に より 解除 さ れ ます。
+      - この 契約 は 相互 の 合意 {また は} 契約 違反 に より 解除 する もの と する。
+    english_literally: This contract, mutual agreement or contract breach by, will be terminated.
+    competing_grammar:
+      - competing_japanese:
+          - この 契約 は 相互 の 合意 {か} 契約 違反 に より 解除 さ れる。
+        english: This contract can be terminated by mutual agreement or by breach of terms.
+        hint: 「か」 is too informal for legal documents, which require precise and unambiguous language.
+          We're looking for the formal choice for alternatives in a contract.
+    scene: A clause in a formal legal document specifying the conditions for contract termination.
+    register: formal
+    setting: legal
+    conjugation: passive (～られる/～かれる)
+    nuance: The use of 「または」 reinforces the legal precision and formality required in contracts, clearly
+      delineating two distinct conditions for termination. The passive form 「解除される」 (will be terminated)
+      emphasizes the action itself rather than the actor, which is common in legal contexts. The construction
+      「解除するものとする」 is a very common and strict legal phrasing indicating obligation.
+    etymology: 「契約 (けいやく)」 combines 「契」 (kei), meaning 'pledge' or 'bond,' and 「約」 (yaku), meaning 'promise'
+      or 'agreement.' This reflects the binding nature of a contract. In legal texts, using 「または」 for
+      strict conditions like termination ensures there is no ambiguity, which is paramount in law.
+  - english: Take this medicine before meals or at bedtime.
+    japanese:
+      - この 薬 は 食前 {また は} 就寝 前 に 服用 し て ください。
+      - この 薬 は 食前 {また は} 就寝 前 に 服用 し て いただく よう お 願い いたし ます。
+      - この 薬 は 食前 {また は} 就寝 前 に 服用 する こと。
+      - この 薬 は 食前 {また は} 就寝 前 に 服用 なさい ませ。
+    english_literally: This medicine, before meals or before bedtime, please take.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は 食前 {か} 就寝 前 に 服用 し て ください。
+        english: Take this medicine before meals or at bedtime.
+        hint: While 「か」 might be used colloquially, medical instructions demand absolute clarity and formality
+          to ensure patient safety. We're looking for the more formal and authoritative option.
+    scene: A doctor giving precise instructions to a patient about medication usage.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「服用してください」 is the standard formal command for taking medicine. 「または」 is used to provide clear,
+      unambiguous options for administration times, crucial for proper medical treatment. The context
+      requires formality and precision. Variations like 「服用していただくようお願いいたします」 are more deferential requests,
+      while 「服用すること」 is a very direct instruction often found on labels, and 「服用なさいませ」 is a highly polite,
+      somewhat older imperative.
+    etymology: 「服用 (ふくよう)」 is a formal term for 'taking medicine,' combining 「服」 (fuku), meaning 'to take'
+      (as in clothing or medicine), and 「用」 (yō), meaning 'use' or 'application.' This precise term highlights
+      the medical context. 「就寝 (しゅうしん)」 combines 「就」 (shū), meaning 'to settle' or 'to take up (a position),'
+      and 「寝」 (shin), meaning 'sleep.' It refers specifically to going to bed. The formal vocabulary and
+      the use of 「または」 convey the seriousness and exactness of medical advice.
+  - english: Voting can be done in person or by mail-in ballot.
+    japanese:
+      - 投票 は 直接 {また は} 郵便 投票 で 行う こと が でき ます。
+      - 投票 は 直接 {また は} 郵便 投票 にて 行う こと が でき ます。
+      - 投票 は 直接 {また は} 郵便 投票 にて 実施 と なり ます。
+      - 投票 は 直接 {また は} 郵便 投票 で 実施 可能 です。
+    english_literally: As for voting, directly or by mail ballot, doing is possible.
+    competing_grammar:
+      - competing_japanese:
+          - 投票 は 直接 {か} 郵便 投票 で 行う こと が でき ます。
+        english: Voting can be done in person or by mail-in ballot.
+        hint: Public announcements about civic duties require a formal and official tone to be taken seriously.
+          「か」 would sound too casual and less authoritative.
+    scene: A public service announcement from an election committee.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The phrase 「行うことができます」 expresses possibility in a formal and polite manner, suitable for official
+      announcements. 「または」 ensures that the two voting methods are presented as clear, equally valid alternatives,
+      important for public information regarding democratic processes. Using 「にて」 adds a touch more formality,
+      while phrases like 「実施となります」 or 「実施可能です」 provide alternative formal ways to convey the same information.
+    etymology: 「投票 (とうひょう)」 combines 「投」 (tō), meaning 'to cast' or 'to throw,' and 「票」 (hyō), meaning
+      'ticket' or 'ballot.' This clearly describes the act of casting a vote. 「郵便投票 (ゆうびん とうひょう)」 is 'mail-in
+      ballot,' combining 「郵便」 (yūbin) 'postal mail' and 「投票」 (tōhyō) 'voting.' In official communications,
+      especially regarding elections, clarity and formality are paramount to ensure accessibility and
+      understanding for all citizens. 「または」 is therefore the appropriate choice to present the options.
+post_example_writeup: As you can see, 「または」 consistently appears in contexts where formality, clarity,
+  and precision are required. This often includes official documents, instructions, and public advisories,
+  making it a crucial conjunction to master for formal communication in Japanese.

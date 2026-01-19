@@ -1,0 +1,253 @@
+grammar_point: そこ (there)
+matcher: ⌈ˢそこᵖpronᵇそこᵈ其処ʳソコ⌉
+matcher_enforce_examples: true
+learn_before:
+  - そこで (and so・at that point・therefore)
+meaning: there (near the listener or a shared reference point); that point
+pronunciation:
+  katakana: ソコ
+  romaji: soko
+formation:
+  そこ: Used alone to refer to a place near the listener, or a conceptual point.
+  そこ + particle (e.g., に・で・から・まで): Indicates location, direction, origin, or extent related to 'there'.
+  そこ の + noun: Modifies a noun, indicating that noun is located 'there' (near the listener or shared reference).
+  そこ だ / です: Used to confirm or emphasize a point, meaning 'that's it' or 'that's the point'.
+jlpt: N5
+etymology: The Japanese demonstrative series, known as the こそあど言葉 (kosoado kotoba), originates from ancient
+  linguistic roots that categorized spatial and referential proximity. The 'そ' in そこ (soko) derives from
+  a root indicating proximity to the listener or a reference point mutually understood between the speaker
+  and listener. This contrasts with 'こ' (ko) for speaker's proximity (ここ - here) and 'あ' (a) for distance
+  from both (あそこ - over there), forming a logical system for indicating relative location.
+writeup: |-
+  そこ is a core demonstrative word within the Japanese こそあど (ko-so-a-do) series, specifically belonging to the そ-series. It is used to refer to a place, a point in a conversation, or a situation.
+
+  The primary use of そこ is to indicate a location that is physically near the listener or is perceived as being in the listener's general area. For instance, if you are talking to someone and pointing to a spot right next to them, you would use そこ。
+
+  Beyond physical locations, そこ is frequently used in abstract contexts to refer to a specific point in a discussion, an idea, or a situation that has just been mentioned or is mutually understood by the speakers. Phrases like そこ が 問題 だ (That's the problem) or そこ から 始める (Start from there/that point) are common examples of this abstract usage. It marks the focal point or the "there" of a conceptual space.
+
+  When used with particles like に (to/at), で (at/by means of), へ (to/towards), から (from), まで (until), it functions as a locative adverb. For example, そこ に 置いて ください (Please put it there).
+
+  そこ can also appear as part of a larger demonstrative phrase, like そこの 店 (that store over there, near you).
+
+  It's important to differentiate そこ from ここ and あそこ. ここ refers to "here," the speaker's immediate location. あそこ refers to "over there," a place distant from both the speaker and the listener. そこ bridges the gap, referring to "there," near the listener. This spatial relationship is key to understanding its usage.
+false_friends:
+  - term: ここ (here)
+    meaning: here, this place (near the speaker)
+    kind: similar expression
+    nuance: ここ refers to the speaker's immediate location or conceptual space. そこ refers to the listener's
+      immediate location or a mutually understood conceptual space.
+    grammar_point: <suggest>:ここ・そこ・あそこ・どこ (here・there・over there・where)
+  - term: あそこ (over there)
+    meaning: over there, that place (distant from both speaker and listener)
+    kind: similar expression
+    nuance: あそこ indicates a place far from both the speaker and the listener. そこ indicates a place near
+      the listener or a shared conceptual point.
+    grammar_point: <suggest>:ここ・そこ・あそこ・どこ (here・there・over there・where)
+  - term: その (that, near listener)
+    meaning: that (modifies a noun, near listener or previously mentioned)
+    kind: similar expression
+    nuance: その is a demonstrative determiner that modifies a noun, indicating something near the listener
+      or previously mentioned. そこ is a demonstrative noun/adverb referring to a place or point. For example,
+      その 本 (that book) vs. そこ へ 行く (go there).
+    grammar_point: この (this)
+  - term: そちら (that way, polite)
+    meaning: that way, there (polite/directional)
+    kind: similar expression
+    nuance: そちら is a more polite and directional equivalent of そこ, often used when referring to a general
+      direction, area, or politely referring to a person's side or home. そこ is more direct and specific
+      about a place or point.
+    grammar_point: <suggest>:こちら・そちら・あちら・どちら (this way・that way・which way)
+post_false_friends_writeup: The こそあど言葉 (kosoado kotoba) series, including ここ, そこ, and あそこ, are fundamental
+  for spatial and conceptual referencing in Japanese. While they all refer to locations, their distinction
+  lies in the relative distance from the speaker and listener. ここ is "here" (speaker's side), そこ は "there"
+  (listener's side or a shared reference point), and あそこ は "over there" (distant from both). Similarly,
+  その functions as a modifier for nouns, whereas そこ functions as a noun or adverb. そちら serves as a more
+  polite and slightly broader directional term compared to the directness of そこ. Mastering these distinctions
+  is crucial for natural communication.
+examples:
+  - english: Could you put that bag over there, please?
+    japanese:
+      - その カバン を {そこ} に 置い て いただけ ます か？
+      - その カバン を {そこ} に 置い て ください。
+    english_literally: That bag, to there, can you please put it?
+    competing_grammar:
+      - competing_japanese:
+          - その カバン を あそこ に 置い て いただけ ます か？
+        english: Could you put that bag over there (far away), please?
+        hint: あそこ refers to a place distant from both speaker and listener. We're looking for a place
+          near the listener.
+    scene: In a busy office, a colleague asks another to move an item from a shared walkway.
+    register: semi-formal
+    setting: professional
+  - english: I found my wallet! It was right there on the table.
+    japanese:
+      - 財布 を 見つけ た！{そこ} の テーブル の 上 に あっ た よ。
+      - 財布 を 見つけ まし た！{そこ} の テーブル の 上 に あり まし た よ。
+    english_literally: Wallet I found! There's table's on top it was, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を 見つけ た！その テーブル の 上 に あっ た よ。
+        english: I found my wallet! It was on that table.
+        hint: その modifies 'table' to specify 'that table'. Here, we want to emphasize the location 'there'
+          first, before specifying the table.
+    scene: A person excitedly tells their friend they found a lost item that was in plain sight.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+  - english: That's where you're wrong.
+    japanese:
+      - '{そこ} が 間違っ て い ます よ。'
+      - '{そこ} が 間違っ て いる よ。'
+    english_literally: There is wrong, you know.
+    competing_grammar:
+      - competing_japanese:
+          - それ が 間違っ て い ます よ。
+        english: That is wrong.
+        hint: それ refers to 'that thing' or 'that matter' in general. We're pointing to a specific 'point'
+          or 'detail' in the argument.
+    scene: During a debate or discussion, one person corrects another's point with a direct but polite
+      tone.
+    register: formal
+    setting: academic
+  - english: Don't touch that!” “Okay, I won't touch it.
+    japanese:
+      - '{そこ} に 触る な！』『うん、触ら ない よ。'
+      - '{そこ} に 触ら ない で ください！』『はい、触り ませ ん よ。'
+    english_literally: “To there, don't touch!” “Yeah, won't touch, you know.”
+    competing_grammar:
+      - competing_japanese:
+          - それ に 触る な！』『うん、触ら ない よ。
+        english: “Don't touch that thing!” “Okay, I won't touch it.”
+        hint: それ refers to 'that thing' in general. Here, そこ specifies a particular spot or part of something
+          that should not be touched.
+    scene: A parent telling a child not to touch something fragile or dangerous.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: The strong, plain imperative `触る な` is typical of a parent's instruction to a child. `そこ`
+      points to the specific item or spot the child is reaching for.
+  - english: Let's meet at that coffee shop, the one near the station.
+    japanese:
+      - 駅 の 近く の {そこ} の 喫茶 店 で 待ち合わせ しよう。
+      - 駅 の 近く の {そこ} の 喫茶 店 で 待ち合わせ し ましょう。
+    english_literally: Station's near's there's coffee shop at, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の 近く の その 喫茶 店 で 待ち合わせ しよう。
+        english: Let's meet at that coffee shop near the station.
+        hint: その is a determiner that modifies 'coffee shop' directly. ここ is used here to emphasize 'there'
+          as a specific point where the coffee shop is located relative to the listener.
+    scene: Friends making plans to meet at a familiar location.
+    register: casual
+    setting: friendly
+  - english: Could you please move from there?
+    japanese:
+      - '{そこ} から どい て いただけ ます か。'
+      - '{そこ} から どい て ください。'
+    english_literally: From there, can you please move out of the way?
+    competing_grammar:
+      - competing_japanese:
+          - ここ から どい て いただけ ます か。
+        english: Could you please move from here?
+        hint: ここ asks someone to move from the speaker's location. We're asking them to move from *their*
+          location or a specific spot they are in.
+    scene: A store employee politely asks a customer to move from an obstructed area, such as blocking
+      an aisle.
+    register: semi-formal
+    setting: professional
+  - english: He paused at that point in the story.
+    japanese:
+      - 彼 は 物語 の {そこ} で 立ち止まっ た。
+      - 彼 は 物語 の {そこ} で 立ち止まり まし た。
+    english_literally: He, story's there, at, stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 物語 の その 点 で 立ち止まっ た。
+        english: He paused at that point in the story.
+        hint: その 点 (sono ten) refers specifically to a 'point'. そこ (soko) provides a more general spatial
+          or conceptual 'there' within the narrative.
+    scene: A narrator describing a character's action in a story, focusing on a specific narrative moment.
+    register: formal
+    setting: storytelling
+  - english: This is the part that is interesting.
+    japanese:
+      - '{そこ} が 面白い ん です よ。'
+      - '{そこ} が 面白い ん だ よ。'
+    english_literally: There is interesting, you know.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 面白い ん です よ。
+        english: This is the thing that is interesting.
+        hint: これ refers to 'this thing' in general. ここ emphasizes a specific 'point' or 'aspect' that
+          makes it interesting, often an abstract one.
+    scene: Two friends discussing a movie or book, highlighting a specific scene or plot twist.
+    register: casual
+    setting: friendly
+  - english: Where do you think the problem lies? “It's right there, in your attitude.”
+    japanese:
+      - 問題 は どこ に ある と 思い ます か？『{そこ} だ よ、あなた の 態度 に。』
+      - 問題 は どこ に ある と 思い ます か？『{そこ} です よ、あなた の 態度 に。』
+    english_literally: Problem, where is it, do you think? “There it is, your attitude, in.”
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は どこ に ある と 思い ます か？『あなた の 態度 に ある よ。』
+        english: Where do you think the problem lies? “It's in your attitude.”
+        hint: This version omits the direct pointing of そこ, making it less emphatic about the exact 'spot'
+          of the problem. We're looking for that direct pointing with そこ.
+    scene: A mentor giving critical feedback to a mentee, directly addressing a core issue.
+    register: semi-formal
+    setting: serious
+    speaker_age: older
+    nuance: The mentor directly points to the `態度 に` (in your attitude) using `そこ だ よ`, indicating a key,
+      immediately identifiable problem. The `だ よ` conveys directness and a slight emphasis, typical when
+      an older person or mentor speaks to a younger person or mentee.
+  - english: We will continue from that point next time.
+    japanese:
+      - 次回 は {そこ} から 続け ます。
+      - 次回 は {そこ} から 続ける。
+    english_literally: Next time, from there, we will continue.
+    competing_grammar:
+      - competing_japanese:
+          - 次回 は その 点 から 続け ます。
+        english: Next time, we will continue from that point.
+        hint: その 点 (sono ten) is more formal and refers specifically to a 'point'. そこ (soko) can be used
+          more broadly for a general conceptual 'there' in the flow of a lesson.
+    scene: A teacher concluding a lesson, indicating where they will resume in the next class.
+    register: formal
+    setting: academic
+  - english: Don't hesitate right there. You have to be decisive.
+    japanese:
+      - '{そこ} で ためらっ て は いけ ない。決断 し なく て は。'
+      - '{そこ} で ためらっ て は いけ ませ ん。決断 し なく て は なり ませ ん。'
+    english_literally: There, hesitate, must not. Decide, must do.
+    competing_grammar:
+      - competing_japanese:
+          - その 瞬間 で ためらっ て は いけ ない。決断 し なく て は。
+        english: Don't hesitate at that moment. You have to be decisive.
+        hint: その 瞬間 (sono shunkan) specifies 'that moment'. ここ uses the more general 'there' to refer
+          to the critical juncture where hesitation is occurring.
+    scene: A coach advising an athlete during a critical moment in a game, emphasizing the need for quick
+      action.
+    register: casual
+    setting: instructional
+  - english: Actually, that's where it gets tricky.
+    japanese:
+      - 実 は、{そこ} から が 難しい の です。
+      - 実 は、{そこ} から が 難しい ん だ。
+    english_literally: Actually, from there is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 実 は、この 部分 から が 難しい の です。
+        english: Actually, from this part is difficult.
+        hint: この 部分 (kono bubun) specifies 'this part'. ここ refers to a more abstract 'point' or 'stage'
+          that becomes difficult.
+    scene: An engineer explaining a complex process to a colleague, pointing out the most challenging
+      stage.
+    register: formal
+    setting: technical
+post_example_writeup: As demonstrated in the examples, そこ is highly versatile, extending its meaning from
+  physical locations to abstract points in discourse. Its precise nuance often depends on the particle
+  it accompanies and the context of the conversation. Pay attention to the relationship between the speaker,
+  listener, and the 'there' being referred to, whether it's a physical space or a conceptual one.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%9D%E3%81%93

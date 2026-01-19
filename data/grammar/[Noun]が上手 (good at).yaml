@@ -1,0 +1,238 @@
+grammar_point: '[Noun]が上手 (good at)'
+better_grammar_point_name:
+  - <suggest>:上手 (skillful・good at)
+learn_before:
+  - Verb[ば] (conditional)
+  - '[Verb-dictionary]のが上手だ・下手だ (to be good at・bad at doing)'
+meaning: good at something; skillful in something
+pronunciation:
+  katakana: ジョウズ
+  romaji: jōzu
+formation:
+  '[Noun] が 上手 だ': Expresses proficiency in a noun-marked activity or skill.
+  '[Verb-dictionary] の が 上手 だ': Expresses proficiency in the act of performing a verb.
+jlpt: N5
+etymology: The term 『上手 (じょうず)』 literally combines 『上 (じょう)』 meaning 'upper' or 'superior,' and 『手 (て)』
+  meaning 'hand.' Historically, having the 'upper hand' signified skill, superiority, or being skilled
+  at a task, often literally involving manual dexterity. This concept evolved to denote general proficiency
+  or being 'good at' something. The 'hand' component is common in Japanese vocabulary related to ability,
+  such as 『得意 (とくい)』 and 『苦手 (にがて)』, reflecting a connection to practical skill.
+writeup: |-
+  『上手 (じょうず)』 is a な-adjective used to describe someone's skill or proficiency in a particular area. It is commonly used with the particle 『が』 to mark the noun or nominalized verb representing the skill or activity one is good at. For example, 『料理が上手です』 means "They are good at cooking." If you want to say "They are good at singing," you would say 『歌を歌うのが上手です』, using 『歌うの』 to nominalize the verb "to sing."
+
+  A key cultural nuance to remember is that 『上手』 is almost exclusively used when praising **someone else's** abilities. It is generally considered inappropriate or boastful to use 『上手』 to describe your own skills. Instead, if you want to say you are good at something, you would typically use 『得意 (とくい)』 or simply state that you can do it well without directly assessing your own skill (e.g., 『絵が描けます』 - "I can draw pictures").
+
+  While 『上手』 describes skill, it can also sometimes be used to comment on the **appearance** of something (e.g., 『字が上手ですね』 - "Your handwriting is good"). However, its primary function is related to performance and ability. Pay attention to the distinction between 『上手』 and similar words like 『得意 (とくい)』 and 『下手 (へた)』, as their appropriate usage depends heavily on who is being described and the speaker's relationship to them.
+false_friends:
+  - term: 得意 (とくい)
+    meaning: good at, strong point, favorite
+    kind: similar expression
+    nuance: Unlike 『上手』, 『得意』 is typically used when talking about **one's own** strengths or preferred
+      activities. It implies a personal aptitude or something one enjoys and is good at. It can also be
+      used for others, but often carries a nuance of something being a person's 'strong suit' rather than
+      just a general skill. For example, 『私は料理が得意です』 means "I am good at cooking (it's my strong point)."
+    grammar_point: <suggest>:得意 (strong point)
+  - term: 下手 (へた)
+    meaning: poor at, unskillful
+    kind: antonym
+    nuance: 『下手』 is the direct antonym of 『上手』, meaning 'unskillful' or 'poor at.' Like 『上手』, it generally
+      carries an objective assessment of skill and is commonly used for others. While less rude than using
+      『上手』 for oneself, using 『下手』 for oneself is still common and often expresses humility, e.g., 『私は歌が下手です』
+      (I am poor at singing).
+    grammar_point: <suggest>:下手 (unskillful)
+  - term: 苦手 (にがて)
+    meaning: weak at, not good with, dislike
+    kind: similar expression
+    nuance: 『苦手』 implies a personal aversion, dislike, or a struggle with something, rather than an objective
+      lack of skill. You might say you are 『苦手』 at something if you find it difficult, unpleasant, or
+      simply don't enjoy it. It can be used for oneself or others, e.g., 『私は数学が苦手です』 (I am bad at math
+      / I struggle with math). It often implies a subjective feeling.
+    grammar_point: <suggest>:苦手 (not good with)
+post_false_friends_writeup: 'To summarize the distinctions: Use 『上手』 for praising others'' skills. Use
+  『得意』 for your own skills or when speaking about someone''s particular strong suit. Use 『下手』 as the direct
+  opposite of 『上手』 for describing objective lack of skill, often used humbly for oneself or objectively
+  for others. Use 『苦手』 when you want to express a personal difficulty with or dislike of something, for
+  yourself or others.'
+examples:
+  - english: My teacher is really good at playing the piano.
+    japanese:
+      - 先生 は ピアノ が {上手} です。
+      - 先生 は ピアノ が {上手} だ。
+    english_literally: Teacher, as for piano, is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は ピアノ が {得意} です。
+        english: My teacher is good at piano (it's their strong point).
+        hint: While 『得意』 can also mean 'good at,' it often implies a personal strength or something one
+          excels at. 『上手』 is more about general skill or objective performance. We're looking for a general
+          assessment of skill.
+      - competing_japanese:
+          - 先生 は ピアノ を {上手 に} 弾き ます。
+        english: My teacher plays the piano skillfully.
+        hint: This uses the adverbial form 『上手に』 to describe *how* the action is performed. The original
+          grammar point describes the *person* as skillful. We're looking for the adjectival usage of
+          'good at'.
+    scene: A student is talking about their music teacher with a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: My mother is very good at cooking.
+    japanese:
+      - 母 は 料理 が {上手} です。
+      - 母 は 料理 が {上手} だ。
+    english_literally: Mother, as for cooking, is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は 料理 を する の が {得意} です。
+        english: My mother is good at doing cooking (it's her strong point).
+        hint: 『得意』 is more about a personal strength. 『上手』 is a general expression of being good at something.
+          We're looking for a general expression of skill.
+    scene: A child proudly tells their friend about their mother.
+    register: casual
+    setting: friendly
+  - english: You're really good at drawing, aren't you!
+    japanese:
+      - 絵 が {上手} です ね！
+      - 絵 が {上手} だ ね！
+    english_literally: Picture, as for, is skillful, isn't it!
+    competing_grammar:
+      - competing_japanese:
+          - 絵 を 描く の が {上手} です ね！
+        english: You're really good at drawing pictures, aren't you!
+        hint: This explicitly states the action 'drawing pictures'. The original is more concise, simply
+          stating 'good at drawing'. We're looking for the concise noun form.
+    scene: You see your friend's beautiful sketch and are impressed.
+    register: casual
+    setting: friendly
+    listener_gender: female
+    nuance: The 『ね』 at the end seeks agreement and softens the compliment. The use of 『上手』 here is natural
+      as the speaker is praising the listener's ability directly.
+  - english: I'm not good at speaking English.
+    japanese:
+      - 私 は 英語 を 話す の が {上手} で は あり ませ ん。
+      - 私 は 英語 を 話す の が {上手} で は ない です。
+      - 私 は 英語 を 話す の が {上手} じゃ ない です。
+      - 私 は 英語 を 話す の が {上手} で は ない。
+      - 私 は 英語 を 話す の が {上手} じゃ ない。
+    english_literally: As for me, English to speak's act, as for, is not skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 英語 を 話す の が {苦手} です。
+        english: I am not good at speaking English (I struggle with it).
+        hint: 『苦手』 suggests a personal difficulty or aversion. 『上手ではない』 simply states a lack of skill.
+          We're looking for a direct negation of skill.
+      - competing_japanese:
+          - 私 は 英語 を 話す の が {下手} です。
+        english: I am unskillful at speaking English.
+        hint: 『下手』 is the direct opposite of 『上手』 and is perfectly fine when describing one's own lack
+          of skill in a humble way. However, 『上手ではない』 is also a common way to express this gently. We're
+          looking for a common humble expression.
+    scene: Someone is making an apology for their limited English speaking ability.
+    register: teineigo (polite)
+    setting: apologetic
+    speaker_gender: female
+    nuance: While 『上手』 is typically used for others, 『上手ではない』 or 『上手ではありません』 is an acceptable and common
+      way to humbly state one's own lack of skill, avoiding the strong self-deprecating nuance of 『下手です』
+      which might sound too harsh. The combination with 『私 は』 emphasizes the speaker's own situation.
+      The use of 『話す の』 nominalizes the verb 'to speak'.
+  - english: How can I become good at Japanese?
+    japanese:
+      - どう し たら 日本 語 が {上手} に なり ます か？
+      - どう し たら 日本 語 が {上手} に なる？
+    english_literally: How to do if, Japanese as for, skillfully become?
+    competing_grammar:
+      - competing_japanese:
+          - どう し たら 日本 語 が {得意} に なり ます か？
+        english: How can I become good at Japanese (making it my strong point)?
+        hint: 『得意』 focuses on personal strength. 『上手』 refers to general proficiency. We're looking for
+          how to achieve general proficiency.
+    scene: A diligent student asks their teacher for advice.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: He is surprisingly good at cooking.
+    japanese:
+      - 彼 は 意外 と 料理 が {上手} だ。
+      - 彼 は 意外 と 料理 が {上手} です。
+    english_literally: He, surprisingly, as for cooking, is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 料理 の 腕 が {ある}。
+        english: He has skill in cooking.
+        hint: This phrase literally means 'he has cooking arms/skill' and implies capability. 『上手だ』 is
+          a direct assessment of skill. We're looking for the direct adjectival description.
+    scene: Two friends gossiping about another friend's hidden talent.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 『意外 と』 (unexpectedly) emphasizes the surprise. The use of 『上手だ』 is natural here
+      because it's a casual observation about someone else's skill. The male speaker uses plain form 『だ』.
+  - english: Despite her young age, she's very good at dancing.
+    japanese:
+      - 幼い ながら も、彼女 は ダンス が とても {上手} だ。
+      - 幼い ながら も、彼女 は ダンス が とても {上手} です。
+    english_literally: While young, she, as for dance, is very skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 幼い ながら も、彼女 は ダンス を する の が {とても} {上手} だ。
+        english: Despite her young age, she is very good at doing dance.
+        hint: The nominalization 『するの』 clarifies the act of dancing. The original is more concise, simply
+          stating 'good at dance'. We're looking for the concise form.
+    scene: Watching a talented child performer.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: 『幼い ながら も』 (while young) sets up a contrast. 『とても上手だ』 emphasizes a high degree of skill. This
+      is a common way to express a child's exceptional talent. The plain form 『だ』 is appropriate for this
+      casual, observational context.
+  - english: Do you think I'm good at drawing?
+    japanese:
+      - 僕 は 絵 が {上手} だ と 思い ます か？
+      - 僕 は 絵 が {上手} だ と 思う？
+    english_literally: As for me, picture as for, skillful, do you think?
+    competing_grammar:
+      - competing_japanese:
+          - 僕 は 絵 が {得意} だ と 思い ます か？
+        english: Do you think I'm good at drawing (it's my strong point)?
+        hint: 『得意』 is for one's own strengths. 『上手』 is usually for others' skills. The speaker is asking
+          for an objective assessment, making 『得意』 less natural here.
+    scene: A young man (artist) hesitantly asks for feedback from a friend.
+    register: casual
+    setting: interrogative
+    speaker_gender: male
+    nuance: The use of 『僕』 for 'I' is typical for young males. While using 『上手』 for oneself can be boastful,
+      asking 'Am I good?' with 『上手だと思いますか？』 is acceptable as it's a humble inquiry seeking an objective
+      opinion rather than a self-assertion. The particle 『と』 is used for quoting what one thinks.
+  - english: He's good at everything, isn't he?
+    japanese:
+      - 彼 は 何 で も {上手} です ね。
+      - 彼 は 何 で も {上手} だ ね。
+    english_literally: He, as for everything, is skillful, isn't he.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 で も {できる} ね。
+        english: He can do anything, right?
+        hint: 『できる』 simply states ability to perform a task. 『上手』 implies a higher level of skill or proficiency.
+          We're looking for the sense of being 'good at' something, not just 'able to do' it.
+    scene: Two people admiring a mutual acquaintance who seems to excel at everything.
+    register: casual
+    setting: friendly
+    nuance: 『何でも』 (anything/everything) generalizes the skill. The 『ね』 seeks agreement. This sentence
+      expresses admiration for someone's versatile talent.
+  - english: You've become very good at speaking Japanese!
+    japanese:
+      - 日本 語 が とても {上手} に なり まし た ね！
+      - 日本 語 が とても {上手} に なっ た ね！
+    english_literally: Japanese, as for, very skillfully became, didn't it!
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が ずいぶん {話せる} よう に なり まし た ね！
+        english: You've become quite able to speak Japanese!
+        hint: 『話せるように なりました』 focuses on the acquisition of the ability to speak. 『上手になりました』 emphasizes
+          the improvement in skill level. We're looking for the improvement in quality of speech.
+    scene: A Japanese friend greets a foreign friend whom they haven't seen in a while.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    nuance: The 『に なりました』 construction shows a change from a previous state to being 『上手』. This is a very
+      common and polite compliment to a Japanese learner. The 『ね』 softens the compliment and invites agreement.

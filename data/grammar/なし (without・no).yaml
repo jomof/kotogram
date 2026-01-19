@@ -1,0 +1,264 @@
+grammar_point: なし (without・no)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: Without, no
+pronunciation:
+  katakana: ナシ
+  romaji: nashi
+formation:
+  Noun + なし: Indicates the absence of the noun.
+  Noun + なしで: Without the noun.
+  Noun + なしの + Noun: A noun that is without the first noun.
+  Noun + なしにする: To decide to go without the noun; to skip the noun.
+jlpt: N3
+etymology: 「なし」 comes from the classical Japanese adjective 「なし」 (無し), meaning 'not existing' or 'non-existent'.
+  This form is the attributive form of the classical adjective 「なし」, which derived from 「なう」 (to be lacking)
+  + 「し」 (a suffix indicating state). It is semantically related to the modern 「ない」 (nai), which is the
+  negative form of 「ある」 (aru, to exist). Its evolution into a particle-like usage for indicating absence
+  reflects a grammaticalization process where a word describing non-existence became a marker for 'without'.
+writeup: |-
+  The grammar point 「なし」, written as 無し in kanji, functions primarily as a suffix, though it originates from a classical adjective meaning 'non-existent.' It's used to indicate the absence of something. 「なし」 is often used with the auxiliary verb 「だ」 or its conjunctive form 「で」. For example, 「なしで」 means "without (something)". When connecting directly to another noun, 「の」 is required, forming a phrase like 「なしの」, meaning "(A) that is without (B)". It can also refer to skipping or avoiding something, often paired with 「に」 to show determination, as in 「〜なしにする」 (to decide to go without ~).
+
+  「なし」 tends to appear in more formal, official, literary, or fixed expressions, imparting a definitive and somewhat strong nuance of absence. It is less common in very casual, everyday conversation compared to 「ない」.
+
+  **Important Considerations:**
+
+  *   While 「なし」 indicates absence, it's distinct from 「抜き」, which also means "without (A)". 「抜き」 implies the intentional removal or omission of something, derived from the verb 「抜く」 "to remove." While sometimes interchangeable, 「抜き」 carries a nuance of active removal, while 「なし」 simply indicates absence or non-existence.
+false_friends:
+  - term: 抜きで
+    meaning: Without (by omitting)
+    kind: often confused with
+    nuance: Unlike 「なし」, which simply indicates absence, 「抜きで」 implies the active removal or omission
+      of something. Use 「抜きで」 when you want to emphasize that something was intentionally left out.
+    grammar_point: '[Noun]なくして(は)・なしに(は)・抜きに(して) (without・if not for)'
+  - term: 抜き
+    meaning: Omitting; excluding
+    kind: similar expression
+    nuance: Unlike 「なし」, which simply indicates absence, 「抜き」 implies the intentional omission or removal
+      of something. It often carries the nuance of 'leaving something out' or 'excluding something actively'.
+    grammar_point: <suggest>:抜き (omitting・excluding)
+  - term: ない
+    meaning: Not exist; is not
+    kind: similar expression
+    nuance: While 「なし」 indicates absence, it often carries a more formal, literary, or definitive nuance
+      compared to the everyday negative adjective 「ない」, which simply states non-existence. 「なし」 is frequently
+      used in set phrases or to describe a characteristic lack.
+    grammar_point: Verb[ない] (plain negative)
+post_false_friends_writeup: While both 「なし」 and 「抜きで」 can translate to "without," remember that 「抜きで」
+  and 「抜き」 have a connotation of intentional removal or omission. If you're simply stating the absence
+  of something without implying an active removal, 「なし」 is often more appropriate. For example, a "room
+  with no TV" (テレビなしの部屋) vs. "coffee with sugar removed" (砂糖抜きコーヒー). As for 「ない」, it is the general, everyday
+  negative form of existence. 「なし」 conveys a more formal, definitive, or sometimes characteristic absence,
+  often found in fixed phrases or more technical/concise descriptions.
+examples:
+  - english: There is no TV in this room.
+    japanese:
+      - この 部屋 に は テレビ {なし} だ。
+      - この 部屋 に は テレビ {なし} です。
+      - この 部屋 に は テレビ {なし} だ ぜ。
+    english_literally: In this room, television is not present.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に は テレビ が ない。
+        english: There is no TV in this room (general negation).
+        hint: 「ない」 is the general negative form of 'to exist.' 「なし」 often implies a more definitive or
+          characteristic absence, or is used in more formal/fixed expressions.
+    scene: A minimalist telling a friend about their new apartment, stating a definitive characteristic.
+    register: casual
+    setting: informative
+    nuance: Using 「なしだ」 here conveys a definitive, almost characteristic absence of a TV in the room,
+      aligning with a minimalist's statement about their dwelling. It's a direct and conclusive way to
+      describe the state.
+    etymology: 「テレビなし」 refers to the state of being 'television-less', emphasizing the absence as a feature
+      of the room.
+  - english: I took the exam without preparation.
+    japanese:
+      - 準備 {なし} で 試験 を 受け た。
+      - 準備 {なし} で 試験 を 受け まし た。
+      - 準備 {なし} で 試験 受け た ぜ。
+    english_literally: I received the exam without preparation.
+    competing_grammar:
+      - competing_japanese:
+          - 準備 せ ず に 試験 を 受け た。
+        english: I took the exam without preparing.
+        hint: 「ずに」 or 「ないで」 are used when you mean 'without doing something.' 「なしで」 indicates the absence
+          of a noun or state.
+    scene: A student confessing to their friend about a rushed exam, emphasizing the direct lack of preparation.
+    register: casual
+    setting: reflective
+    nuance: 「準備なしで」 highlights the specific absence of 'preparation' as a state or item. It emphasizes
+      the direct lack rather than the act of not preparing, fitting the context of a confession about
+      a rushed situation.
+    etymology: 「準備なし」 indicates a state where 'preparation' (準備) is absent, implying a lack of prior study
+      or readiness.
+  - english: I ordered a coffee without sugar.
+    japanese:
+      - 砂糖 {なし} の コーヒー を 注文 し た。
+      - 砂糖 {なし} の コーヒー を 注文 し まし た。
+      - 砂糖 {なし} の コーヒー 頼ん だ。
+    english_literally: I ordered coffee without sugar.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 抜き の コーヒー を 注文 し た。
+        english: I ordered coffee with the sugar removed.
+        hint: While both can mean 'without,' 「抜き」 often implies intentional removal or omission, especially
+          for ingredients. 「なし」 just states the absence.
+    scene: A person ordering coffee at a cafe, specifying a characteristic absence.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「砂糖なしの」 is a concise and common way to specify a characteristic absence of sugar in a drink,
+      functioning almost like an adjective describing the coffee. This is very natural for ordering in
+      a formal or professional setting.
+    etymology: 「砂糖なしの」 directly describes the coffee as 'sugar-less', where 「なし」 functions attributively
+      to modify the noun.
+  - english: I think I'll skip dinner tonight.
+    japanese:
+      - 今日 は 夕食 {なし} に しよう と 思う。
+      - 今日 は 夕食 {なし} に しよう と 思い ます。
+      - 今日 は 夕食 {なし} に しよう ぜ。
+    english_literally: Today, I think I will make it without dinner.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 夕食 を やめよう と 思う。
+        english: I think I'll give up dinner tonight.
+        hint: 「やめる」 means to stop or quit something. 「なしにする」 specifically means to decide to go without
+          something, emphasizing the absence.
+    scene: Someone feeling full from lunch and deciding about dinner, expressing a choice to forgo.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「なしにする」 expresses a decision to actively forgo something, resulting in its absence.
+      It fits the nuance of 'skipping' a meal due to a personal choice, rather than just passively not
+      eating. The casual 「と思う」 makes it a personal thought.
+    etymology: 「なしにする」 combines 「なし」 with the verb 「する」 (to do/make), creating the meaning 'to make (it)
+      without' or 'to cause (something) to be absent'.
+  - english: From ancient times, they say there is no medicine for illness.
+    japanese:
+      - 昔 から『病気 に 薬 {なし}』と 言う。
+      - 昔 から『病気 に 薬 {なし}』と 言わ れ ます。
+    english_literally: From long ago, they say "for illness, medicine is not present."
+    competing_grammar:
+      - competing_japanese:
+          - 昔 から『病気 に 薬 が ない』と 言う。
+        english: From ancient times, they say 'there is no medicine for illness.'
+        hint: In proverbs, 「なし」 provides a more classical and definitive tone, like 'medicine is non-existent
+          for illness.' 「ない」 is the general, everyday negation.
+    scene: An elderly person sharing traditional wisdom, using a formal and definitive proverb.
+    register: formal
+    setting: informative
+    speaker_age: older
+    nuance: In proverbs or traditional sayings, 「なし」 lends a classical and definitive tone, conveying
+      an absolute truth. It sounds more formal and timeless than simply stating 「薬がない」.
+    etymology: This is a fixed idiom. 「病気 に 薬 なし」 means 'for illness, there is no medicine', emphasizing
+      the absolute absence of a cure, reflective of traditional beliefs.
+  - english: This plan is flawless.
+    japanese:
+      - この 作戦 は 欠点 {なし} だ。
+      - この 作戦 は 欠点 {なし} です。
+      - この 作戦 は 欠点 {なし} だ ぞ。
+    english_literally: This plan is without flaws.
+    competing_grammar:
+      - competing_japanese:
+          - この 作戦 は {完璧 だ}。
+        english: This plan is perfect.
+        hint: 「完璧だ」 explicitly means 'perfect.' 「欠点なしだ」 states 'without flaws,' implying perfection through
+          absence of negatives.
+    scene: A military strategist presenting a perfected battle plan, making a strong assertion.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    nuance: 「欠点なしだ」 makes a strong, assertive declaration of being flawless, characteristic of confident
+      statements. It implies an absolute state of absence of flaws, fitting for a strategist presenting
+      a perfected plan. The masculine 「だ ぞ」 further emphasizes this confident assertion.
+    etymology: 「欠点なし」 describes a plan as being 'flaw-less', stating the complete absence of any imperfections
+      or drawbacks.
+  - english: I can no longer live without you.
+    japanese:
+      - あなた {なし} で は、もう 生き て いけ ませ ん。
+      - あなた {なし} に は、もう 生き られ ませ ん。
+    english_literally: Without you, I can no longer live.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が い なかっ た ら、もう 生き て いけ ませ ん。
+        english: If you weren't here, I couldn't live anymore.
+        hint: 「いなかったら」 implies a hypothetical condition 'if you were not here.' 「なしでは」 states 'without
+          you' as a direct condition for existence.
+    scene: A young woman expressing profound dependence to her partner, using intimate and emotional language.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: This sentence employs a deeply emotional and intimate tone common in romantic contexts. The
+      direct address 「あなた」 combined with the absolute statement of inability to live without the listener
+      emphasizes profound attachment and dependence. The use of 「なしで」 or 「なしに」 in such a context conveys
+      a sense of utter impossibility or emptiness without the other person.
+    etymology: 「あなたなしでは」 implies 'without you' as a condition, highlighting the complete absence of the
+      person as a prerequisite for the speaker's continued existence. The emotional weight is carried
+      by the established context of the phrase.
+  - english: A drone without an engine won't fly.
+    japanese:
+      - エンジン {なし} の ドローン は 飛ば ない。
+      - エンジン {なし} の ドローン は 飛び ませ ん。
+      - エンジン {なし} の ドローン 飛ば ない よ。
+    english_literally: A drone without an engine will not fly.
+    competing_grammar:
+      - competing_japanese:
+          - エンジン が ない ドローン は 飛ば ない。
+        english: A drone that doesn't have an engine won't fly.
+        hint: 「エンジンがない」 describes the drone as 'not having an engine.' 「エンジンなしの」 concisely describes it
+          as 'engine-less,' often used for concise descriptions or specifications.
+    scene: An engineer explaining basic principles to a novice, using precise technical language.
+    register: formal
+    setting: technical
+    nuance: In technical explanations, 「エンジンなしの」 concisely describes a characteristic absence of a component,
+      similar to how specifications might be listed. It makes a clear and direct descriptive phrase for
+      an 'engine-less' drone.
+    etymology: 「エンジンなしの」 literally describes the drone as 'engine-less', emphasizing the lack of an engine
+      as a defining characteristic for its functionality.
+  - english: No parking in this area.
+    japanese:
+      - この エリア は 駐車 {なし} です。
+      - この エリア は 駐車 {なし}。
+      - 駐車 {なし}。
+    english_literally: This area is parking-less.
+    competing_grammar:
+      - competing_japanese:
+          - この エリア は 駐車 {禁止 です}。
+        english: This area is parking prohibited.
+        hint: 「禁止」 explicitly states a prohibition. 「なし」 states the absolute absence of something, making
+          it common in concise rules or signs where 'no' means 'not available' or 'not permitted'.
+    scene: A sign or announcement in a restricted area, stating a rule or condition.
+    register: formal
+    setting: instructional
+    nuance: When used in public notices or rules, 「なし」 conveys a direct and absolute absence, similar
+      to 'no entry' or 'no smoking'. It's very concise and authoritative. While 「禁止」 (kinshi) means 'prohibited',
+      「駐車なし」 implies the simple condition of 'no parking being available/allowed' here.
+    etymology: 「駐車なし」 directly means 'no parking' by stating the absence of parking. This simple structure
+      is effective for clear, unambiguous messaging in formal contexts like signage.
+  - english: There's no turning back now.
+    japanese:
+      - もう 後戻り {なし} だ。
+      - もう 後戻り {なし} です。
+      - もう 後戻り {なし} だ ぞ。
+    english_literally: Already, no turning back.
+    competing_grammar:
+      - competing_japanese:
+          - もう 後戻り でき ない。
+        english: I can no longer turn back.
+        hint: 「できない」 (dekinai) means 'cannot do'. 「なしだ」 emphasizes the absolute non-existence of the option
+          itself, conveying a stronger sense of finality or inevitability.
+    scene: Someone realizing they have committed to a difficult path and there are no alternative options.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: 「後戻りなし」 strongly expresses that the option of 'turning back' absolutely does not exist. It
+      implies a point of no return, often used when someone has made a decisive commitment and must proceed.
+      The casual 「だ ぞ」 reflects a personal, internal realization, and the added 「ぞ」 reinforces a strong,
+      typically masculine, assertion.
+    etymology: 「後戻りなし」 combines 「後戻り」 (atomodori, turning back) with 「なし」, emphasizing the complete absence
+      of the possibility to retreat. This phrasing highlights a definitive state.
+post_example_writeup: The expressions using 「なし」 are versatile and can be adapted to suit various scenarios,
+  from formal reports to casual conversations. Pay attention to the auxiliary verbs and particles used
+  with 「なし」 to match the desired politeness level and nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なし

@@ -1,0 +1,214 @@
+grammar_point: どなた (polite who)
+learn_before:
+  - だろう・でしょう (probably・right?)
+meaning: who (polite)
+pronunciation:
+  katakana: ドナタ
+  romaji: donata
+formation:
+  どなた: Used as a polite interrogative pronoun for "who". It replaces 誰 (dare) in polite contexts.
+  '[どなた] + particle': It typically functions as a noun, so particles like が・は・に・と・から・で・を can follow it,
+    depending on its grammatical role in the sentence.
+jlpt: N5
+etymology: どなた is a more polite and respectful form of 誰 (だれ). It originates from 何方 (いずかた), which meant
+  "which direction" or "which person" in classical Japanese, and then evolved to signify a polite way
+  to refer to a person. The "ど" part is common in interrogative words (どこ・どう・どれ). The "なた" part is an
+  honorific suffix, derived from 方 (かた), meaning "person" or "direction", conveying respect. This evolution
+  highlights how the concept of 'direction' or 'side' became a respectful way to refer to an individual.
+writeup: どなた is a polite interrogative pronoun used to ask "who". It is the polite equivalent of 誰 (だれ),
+  which is more casual. While 誰 is appropriate in most informal settings, どなた should be used when addressing
+  strangers, superiors, or in formal situations where politeness is required. It conveys respect towards
+  the person being asked about, or the listener. Like 誰, どなた can take various particles depending on its
+  grammatical function in the sentence. For example, どなたが (who is the subject), どなたに (to whom), どなたと (with
+  whom), どなたを (whom as object), and どなたから (from whom). It is commonly used when answering a phone call
+  (e.g., どなたですか？ - "Who is this?"), asking about someone's identity in a respectful manner, or when inquiring
+  about a third party in a formal context. While どちら様 (どちらさま) is even more polite and formal, どなた strikes
+  a good balance for general polite use.
+false_friends:
+  - term: 誰
+    meaning: who (casual)
+    kind: similar expression
+    nuance: 誰 is the casual form of "who". It lacks the politeness and respect conveyed by どなた and should
+      be reserved for friends, family, or informal contexts. Using 誰 in formal situations can sound rude.
+    grammar_point: 誰 (who)
+  - term: どちら様
+    meaning: who (very polite・honorific)
+    kind: similar expression
+    nuance: どちら様 is a more formal and honorific way to ask "who", often used in customer service or when
+      you need to be extremely respectful, especially regarding someone's identity. どなた is generally polite
+      but どちら様 adds an extra layer of deference, implying "which esteemed person."
+    grammar_point: <suggest>:どちら様 (who・polite honorific)
+  - term: どちら
+    meaning: which (of two)・which way・polite who (among options)
+    kind: often confused with
+    nuance: どちら primarily means "which (of two)" or "which way." While it can sometimes be used to ask
+      "who" when choosing from a limited set of options (e.g., "どちらが担当者ですか？" - "Which one is the person
+      in charge?"), it's not a direct, general equivalent for "who" like どなた. どなた is for identity, どちら
+      is for choice or direction.
+    grammar_point: <suggest>:どちら (which of two)
+post_false_friends_writeup: When choosing between どなた、誰、どちら様、and どちら, consider the level of politeness
+  and the specific context. どなた is suitable for most polite everyday interactions. 誰 is for casual settings.
+  どちら様 should be reserved for highly formal or honorific situations, often used when inquiring about a
+  customer or guest. どちら is generally used when asking "which one" from a limited selection, or "which
+  way," and its usage for "who" is more specific and less general than どなた.
+examples:
+  - english: Who is it?
+    japanese:
+      - '{どなた} です か。'
+      - '{どなた} でしょう か。'
+      - '{どなた} で いらっしゃい ます か。'
+      - '{どなた} で ござい ます か。'
+    english_literally: Who is?
+    competing_grammar:
+      - competing_japanese:
+          - 誰 です か。
+        english: Who is it? (casual)
+        hint: Using 誰 is more casual and can sound less polite depending on the situation. We're looking
+          for a polite inquiry.
+    scene: Someone knocks on the door of your apartment.
+    register: formal
+    setting: interrogative
+  - english: Who is the person next to Mr. Tanaka?
+    japanese:
+      - 田中 さん の 隣 の 人 は {どなた} です か。
+      - 田中 さん の 隣 の 人 は {どなた} でしょう か。
+      - 田中 さん の 隣 の 方 は {どなた} で いらっしゃい ます か。
+    english_literally: Tanaka's side's person as for, who is?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん の 隣 の 人 は 誰 です か。
+        english: Who is the person next to Mr. Tanaka? (casual)
+        hint: Using 誰 is more casual. We're looking for a polite way to ask about a third person in a
+          formal setting.
+    scene: You are at a company party and see Tanaka-san with someone you don't recognize.
+    register: formal
+    setting: informative
+  - english: Who made this delicious cake?
+    japanese:
+      - この おいしい ケーキ を 作っ た の は {どなた} です か。
+      - この おいしい ケーキ を お 作り に なっ た の は {どなた} でしょう か。
+    english_literally: This delicious cake object marker made one as for, who is?
+    competing_grammar:
+      - competing_japanese:
+          - この おいしい ケーキ を 作っ た の は 誰 です か。
+        english: Who made this delicious cake? (casual)
+        hint: The speaker is expressing admiration for the cake, so a polite form is appropriate. We're
+          looking for a polite inquiry about the creator.
+    scene: At a potluck, you taste an amazing cake.
+    register: formal
+    setting: apologetic
+  - english: To whom should I give this document?
+    japanese:
+      - この 書類 は {どなた} に 渡せ ば いい です か。
+      - この 書類 は {どなた} に お 渡し すれ ば いい でしょう か。
+    english_literally: This document as for, to whom if I hand over, is good?
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 は 誰 に 渡せ ば いい です か。
+        english: To whom should I give this document? (casual)
+        hint: In a professional setting, politeness is key. We're looking for a polite form for the indirect
+          object.
+    scene: You have a document that needs to be delivered to the correct person in an office.
+    register: formal
+    setting: instructional
+  - english: From whom did you receive this present?
+    japanese:
+      - この プレゼント は {どなた} から いただき まし た か。
+      - この プレゼント は {どなた} から お 受け取り に なり まし た か。
+      - この プレゼント は {どなた} から 頂戴 いたし まし た か。
+    english_literally: This present as for, from whom did I receive?
+    competing_grammar:
+      - competing_japanese:
+          - この プレゼント は 誰 から いただき まし た か。
+        english: From whom did you receive this present? (casual)
+        hint: While the act of receiving is polite, the inquiry about the giver should also match the
+          polite tone. We're looking for a polite form for the source.
+    scene: Your friend has a beautiful gift and you're curious about the giver, showing polite interest.
+    register: teineigo (polite)
+    setting: friendly
+  - english: With whom will you attend the conference?
+    japanese:
+      - カンファレンス に は {どなた} と ご 出席 に なり ます か。
+      - カンファレンス に は {どなた} と ご 出席 さ れ ます か。
+      - カンファレンス に は {どなた} と ご 一緒 さ れ ます か。
+    english_literally: To conference as for, with whom will you attend?
+    competing_grammar:
+      - competing_japanese:
+          - カンファレンス に は 誰 と 出席 し ます か。
+        english: With whom will you attend the conference? (casual)
+        hint: This is a professional conversation, requiring a polite expression. We're looking for a
+          polite form for the companion.
+    scene: You're asking a colleague about their attendance at an upcoming professional conference.
+    register: semi-formal
+    setting: professional
+  - english: Hello, who is this?
+    japanese:
+      - もしもし、{どなた} で いらっしゃい ます か。
+      - もしもし、{どなた} でしょう か。
+      - もしもし、{どなた} 様 で いらっしゃい ます か。
+    english_literally: Hello, who honorifically are?
+    competing_grammar:
+      - competing_japanese:
+          - もしもし、誰 です か。
+        english: Hello, who is this? (casual phone)
+        hint: On a business call, or when receiving an unknown call, a very polite phrase is essential.
+          We're looking for a highly polite form for identity confirmation.
+    scene: You answer a phone call from an unknown number, possibly a business call.
+    register: formal
+    setting: professional
+    nuance: The use of もしもし、{どなた} でいらっしゃいますか is a very polite and formal way to ask "who is this?" on
+      the phone, often used in business or respectful contexts. 「いらっしゃいますか」 is the honorific form of 「います」,
+      showing high respect to the caller.
+    etymology: The phrase "いらっしゃいますか" is the honorific (sonkeigo) form of "います" (to be), used to elevate
+      the status of the person you are speaking to or about. Its use here indicates the highest level
+      of politeness when answering the phone.
+  - english: Whose umbrella is this?
+    japanese:
+      - この 傘 は {どなた} の です か。
+      - この 傘 は {どなた} の 物 でしょう か。
+      - この 傘 は {どなた} 様 の 物 でしょう か。
+    english_literally: This umbrella as for, whose is?
+    competing_grammar:
+      - competing_japanese:
+          - この 傘 は 誰 の です か。
+        english: Whose umbrella is this? (casual)
+        hint: When finding a lost item, it's polite to inquire about the owner respectfully. We're looking
+          for a polite possessive form.
+    scene: You found an umbrella left behind in a public place.
+    register: formal
+    setting: informative
+  - english: Do you know who is responsible for this project?
+    japanese:
+      - この プロジェクト の 責任 者 が {どなた} か ご 存知 です か。
+      - この プロジェクト の 責任 者 が {どなた} で いらっしゃい ます か ご 存知 です か。
+      - この プロジェクト の ご 担当 者 が {どなた} か ご 存知 です か。
+    english_literally: This project's person in charge subject marker who interrogative, do you know?
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト の 責任 者 が 誰 か 知っ て い ます か。
+        english: Do you know who is responsible for this project? (casual)
+        hint: In a professional setting, inquiring politely about responsibilities is important. We're
+          looking for a polite embedded question about a person.
+    scene: You're trying to find the right contact person for a new project within a company.
+    register: formal
+    setting: professional
+  - english: Excuse me, who are you looking for?
+    japanese:
+      - すみ ませ ん、{どなた} を お 探し です か。
+      - すみ ませ ん、{どなた} 様 を お 探し でしょう か。
+    english_literally: Excuse me, whom object marker honorifically searching for are?
+    competing_grammar:
+      - competing_japanese:
+          - すみ ませ ん、誰 を 探し て い ます か。
+        english: Excuse me, who are you looking for? (casual)
+        hint: As a staff member assisting a visitor, politeness is crucial. We're looking for a polite
+          objective form with an honorific verb.
+    scene: You work at a reception desk and a visitor looks lost.
+    register: formal
+    setting: professional
+post_example_writeup: The examples demonstrate how どなた integrates with various particles to form polite
+  questions about identity. Notice the consistent formal register, often paired with polite copulas like
+  です or honorific verbs like いらっしゃいます and お探し ですか。 The added variations showcase slight shifts in formality
+  or nuance while maintaining politeness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/125

@@ -1,0 +1,348 @@
+grammar_point: 〜の上で (on the basis of)
+learn_before:
+  - 上で (after doing)
+meaning: On the basis of; after carefully considering or completing X, then doing Y
+pronunciation:
+  katakana: ウエデ
+  romaji: ue de
+formation:
+  Verb[た形] + 上で: Indicates that the action in the main clause is performed after and based on the completion
+    of the preceding verb's action.
+  Noun + の + 上で: Indicates that the action in the main clause is performed after and based on the preceding
+    noun (e.g., discussions, examination, consent).
+jlpt: N2
+etymology: The phrase combines 「上 (ue)」, meaning 'above' or 'on top,' with the particle 「で (de)」, indicating
+  location or means. Conceptually, it conveys that the subsequent action is built 'on top of' or 'upon
+  the foundation' of the preceding action or deliberation. This extends the concrete spatial sense of
+  'above' to an abstract meaning of 'based on' or 'following upon careful consideration.'
+writeup: |-
+  「〜の上で (〜のうえで)」 is a formal expression used to indicate that an action or decision is made after a preceding action has been completed or after a certain condition or information has been taken into careful consideration. It implies a logical progression where the first step is essential and serves as the basis for the second.
+
+  This grammar point is distinct from simple temporal sequences like 「〜た後で」 or 「〜てから」. While those simply state that one action happens after another, 「〜の上で」 emphasizes that the second action is a direct consequence or is dependent on the thorough completion or consideration of the first. It often appears in contexts where thoroughness, deliberation, or official procedure is important, such as business, legal, or academic settings.
+
+  It is commonly used with verbs in their past tense (た形) or with nouns followed by 「の」. For example, 「よく考えた上で決定する」 (to decide after thinking carefully) or 「話し合いの上で結論を出す」 (to reach a conclusion after discussions). The nuance is that the thinking or discussion is not just a preceding event, but the foundation upon which the decision or conclusion is built.
+
+  **Important Considerations:**
+  *   It is generally used when the subject of the first and second clauses is the same, or when the first clause describes an impersonal process (like a discussion).
+  *   It is more formal than 「〜てから」 or 「〜た後で」 and is often found in written Japanese or formal speeches.
+false_friends:
+  - term: 〜上で (じょうで)
+    meaning: In terms of; from the perspective of; for the sake of
+    kind: similar expression
+    nuance: 'While sharing the same kanji, this expression is pronounced 「じょうで」 and has a completely different
+      meaning. It refers to a specific aspect or perspective (e.g., 法律上: legally, 仕事上: for work). It does
+      not imply a temporal or foundational relationship.'
+    grammar_point: <suggest>:〜上で (in terms of)
+  - term: 〜た後で
+    meaning: After doing
+    kind: similar expression
+    nuance: 「〜た後で」 simply indicates temporal sequence; one action happens after another. It does not carry
+      the nuance of the first action being a necessary basis or careful consideration for the second,
+      as 「〜の上で」 does. For instance, 「食べた後で寝る」 (I sleep after eating) is a simple sequence.
+    grammar_point: <suggest>:〜た後で (after doing)
+  - term: 〜てから
+    meaning: After; since
+    kind: similar expression
+    nuance: 'Similar to 「〜た後で」, 「〜てから」 primarily denotes a temporal sequence, often implying that the
+      second action begins immediately or shortly after the first is completed. It lacks the strong ''basis''
+      or ''consideration'' nuance found in 「〜の上で」. Example: 「宿題をしてから遊びに行った」 (I went to play after doing
+      my homework).'
+    grammar_point: てから (after and since)
+  - term: 〜に基づいて
+    meaning: Based on; in accordance with
+    kind: similar expression
+    nuance: 「〜に基づいて」 is very close in meaning and can sometimes be interchangeable, but it strongly emphasizes
+      that the action is founded upon specific rules, principles, data, or facts. 「〜の上で」 can be based
+      on more general consideration or discussion, not necessarily strict rules or data.
+    grammar_point: <suggest>:〜に基づいて (based on)
+  - term: 〜てからでないと〜ない
+    meaning: Unless one does X, one cannot do Y
+    kind: similar expression
+    nuance: This expression denotes a strict prerequisite. It's similar in that the first action is necessary
+      for the second, but it carries a negative conditional meaning ('if not A, then not B'), often with
+      an implication of impossibility or strong restriction, which 「〜の上で」 does not inherently have.
+    grammar_point: <suggest>:〜てからでないと〜ない (unless after doing)
+post_false_friends_writeup: While 「〜の上で」 implies a deliberate action taken *after* a preparatory step
+  or consideration, expressions like 「〜た後で」 or 「〜てから」 simply state temporal succession. 「〜に基づいて」 often
+  refers to basing an action on explicit rules or data, while 「〜の上で」 can be based on more general deliberation.
+  Pay close attention to the nuance of 'basis' or 'foundation' inherent in 「〜の上で」 to distinguish it.
+examples:
+  - english: We will start construction after finalizing the detailed plans.
+    japanese:
+      - 詳しい 計画 を {決定 し た 上 で}、工事 を 開始 し ます。
+      - 詳しい 計画 を {決定 し た 上 で}、工事 を 開始 する。
+      - 詳しい 計画 を {決定 し た 上 で}、工事 を 開始 いたし ます。
+    english_literally: Detailed plans having been decided upon, construction will start.
+    competing_grammar:
+      - competing_japanese:
+          - 詳しい 計画 を 決定 し た 後 で、工事 を 開始 し ます。
+        english: We will start construction after the detailed plans are decided.
+        hint: 「〜た後で」 simply indicates a temporal sequence, not necessarily that the construction relies
+          on the decision as its foundation. We're looking for an expression that emphasizes the prior
+          action as a basis.
+      - competing_japanese:
+          - 詳しい 計画 を 決定 し て から、工事 を 開始 し ます。
+        english: We will start construction after deciding the detailed plans.
+        hint: 「〜てから」 also indicates a temporal sequence. It doesn't convey the sense of building upon
+          the decision as a necessary condition for proceeding with construction. We need something that
+          highlights the decision as a foundation.
+    scene: A project manager addressing the team.
+    register: formal
+    setting: professional
+    nuance: The use of 「決定した上で」 emphasizes that the construction will only proceed after the detailed
+      plans have been thoroughly reviewed and formally decided, signifying a proper, sequential process
+      typical in professional settings.
+  - english: Please submit your application after carefully reading the instructions.
+    japanese:
+      - 注意 事項 を {よく 読ん だ 上 で}、お 申し込み ください。
+      - 注意 事項 を {よく 読ん だ 上 で}、申し込ん で ください。
+    english_literally: Instructions having been well read, please apply.
+    competing_grammar:
+      - competing_japanese:
+          - 注意 事項 を よく 読ん だ 後 で、お 申し込み ください。
+        english: Please submit your application after reading the instructions.
+        hint: 「〜た後で」 suggests only a chronological order. This sentence implies that understanding the
+          instructions is a prerequisite for a correct application, not just a preceding action. We're
+          looking for emphasis on using the reading as a basis.
+      - competing_japanese:
+          - 注意 事項 を よく 読ん で から、お 申し込み ください。
+        english: After reading the instructions, please submit your application.
+        hint: 「〜てから」 implies a simple sequence. The nuance here is that the application should be based
+          on a careful understanding of the instructions, not just that reading happens before applying.
+          We're looking for a foundational relationship.
+    scene: A notice at a government office or website.
+    register: formal
+    setting: instructional
+    nuance: 「よく読んだ上で」 highlights that simply reading is not enough; the applicant must understand and
+      process the information from the instructions as the basis for their application. This is a common
+      phrase in formal instructions.
+  - english: I will make a decision after consulting with my family.
+    japanese:
+      - 家族 と {相談 し た 上 で}、決め ます。
+      - 家族 と {相談 し た 上 で}、決める。
+    english_literally: With family having been consulted, I will decide.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 と 相談 し た 後 で、決め ます。
+        english: I will make a decision after consulting with my family.
+        hint: Using 「〜た後で」 implies that the consultation is just something that happened before the decision,
+          not necessarily the foundation for it. We're looking for the decision to be based on the consultation.
+      - competing_japanese:
+          - 家族 と 相談 し て から、決め ます。
+        english: I will make a decision after consulting with my family.
+        hint: 「〜てから」 also indicates a simple temporal sequence. This sentence emphasizes that the family's
+          input will be integral to the decision-making process. We need an expression for basing the
+          decision on the consultation.
+    scene: A person explaining their decision-making process.
+    register: semi-formal
+    setting: serious
+    nuance: 「相談した上で」 implies that the family's input is a crucial factor in the decision, not just something
+      that happens before the decision. It conveys a thoughtful and responsible approach.
+  - english: We proceeded with the experiment after confirming the safety measures.
+    japanese:
+      - 安全 対策 を {確認 し た 上 で}、実験 を 進め まし た。
+      - 安全 対策 を {確認 し た 上 で}、実験 を 進め た。
+    english_literally: Safety measures having been confirmed, we proceeded with the experiment.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 対策 を 確認 し た 後 で、実験 を 進め まし た。
+        english: We proceeded with the experiment after confirming the safety measures.
+        hint: 「〜た後で」 describes a mere sequence. The original sentence implies that confirming safety measures
+          was a necessary prerequisite and foundation for proceeding with the experiment. We're looking
+          for the idea of 'based on'.
+      - competing_japanese:
+          - 安全 対策 を 確認 し て から、実験 を 進め まし た。
+        english: We proceeded with the experiment after confirming the safety measures.
+        hint: 「〜てから」 also just indicates a temporal order. The sentence emphasizes that the experiment
+          could only proceed because the safety measures were confirmed and acted as a basis. We need
+          a stronger connection.
+    scene: A scientist reporting on their work.
+    register: formal
+    setting: academic
+    nuance: The phrase 「確認した上で」 shows that the safety measures were not just glanced over but thoroughly
+      checked and established as a prerequisite for commencing the experiment, which is crucial in scientific
+      or technical contexts.
+  - english: After considering all possibilities, we chose this method.
+    japanese:
+      - あらゆる 可能 性 を {検討 し た 上 で}、この 方法 を 選び まし た。
+      - あらゆる 可能 性 を {検討 し た 上 で}、この 方法 を 選ん だ。
+    english_literally: All possibilities having been examined, we chose this method.
+    competing_grammar:
+      - competing_japanese:
+          - あらゆる 可能 性 を 検討 し た 後 で、この 方法 を 選び まし た。
+        english: After considering all possibilities, we chose this method.
+        hint: 「〜た後で」 implies simple succession. The sentence conveys that the choice was a result of and
+          based on the thorough consideration of possibilities. We need to express this foundational relationship.
+      - competing_japanese:
+          - あらゆる 可能 性 を 検討 し て から、この 方法 を 選び まし た。
+        english: After considering all possibilities, we chose this method.
+        hint: 「〜てから」 also suggests mere sequence. The original sentence emphasizes that the deliberation
+          provided the basis for the decision, indicating a more careful and reasoned approach. We're
+          looking for the nuance of 'based on'.
+    scene: A team leader explaining a strategic choice.
+    register: formal
+    setting: professional
+    nuance: 「検討した上で」 emphasizes the comprehensive and deliberate process of evaluating options before
+      making a choice, suggesting a well-thought-out decision rather than a quick one.
+  - english: The contract will be signed after mutual agreement.
+    japanese:
+      - 両者 の {合意 の 上 で}、契約 を 締結 し ます。
+      - 両者 の {合意 の 上 で}、契約 を 締結 する。
+    english_literally: On the basis of both parties' agreement, the contract will be concluded.
+    competing_grammar:
+      - competing_japanese:
+          - 両者 の 合意 の 後 で、契約 を 締結 し ます。
+        english: The contract will be signed after mutual agreement.
+        hint: 「〜た後で」 for nouns doesn't quite fit the meaning of 'on the basis of'. This sentence means
+          the agreement is the necessary condition and foundation for the contract. We're looking for
+          a foundational relationship.
+      - competing_japanese:
+          - 両者 の 合意 に 基づい て、契約 を 締結 し ます。
+        english: The contract will be signed based on mutual agreement.
+        hint: While 「〜に基づいて」 is very similar, 「〜の上で」 can imply a broader sense of deliberation or mutual
+          understanding rather than strictly adherence to a rule or principle, which 「〜に基づいて」 often suggests.
+          Here, it's about the agreement being the foundation.
+    scene: A legal professional discussing a contract.
+    register: formal
+    setting: legal
+    nuance: Using 「合意の上で」 with a noun (合意 'agreement') signifies that the agreement is the absolute foundational
+      condition for signing the contract, typical language in legal or contractual contexts.
+  - english: He finally accepted the offer after thinking it over for a few days.
+    japanese:
+      - 数 日 {考え た 上 で}、彼 は ついに その 提案 を 受け入れ まし た。
+      - 数 日 {考え た 上 で}、彼 は ついに その 提案 を 受け入れ た。
+    english_literally: A few days having been thought over, he finally accepted that offer.
+    competing_grammar:
+      - competing_japanese:
+          - 数 日 考え た 後 で、彼 は ついに その 提案 を 受け入れ まし た。
+        english: After thinking for a few days, he finally accepted the offer.
+        hint: 「〜た後で」 implies a simple passage of time followed by an action. The original sentence highlights
+          that the acceptance was a *result* of and *based on* the careful consideration. We're looking
+          for a deeper connection than mere sequence.
+      - competing_japanese:
+          - 数 日 考え て から、彼 は ついに その 提案 を 受け入れ まし た。
+        english: After thinking for a few days, he finally accepted the offer.
+        hint: 「〜てから」 suggests temporal order. This sentence emphasizes that the thinking process served
+          as the foundation for his decision, implying a reasoned outcome. We need a phrase that conveys
+          'based on'.
+    scene: Narrating someone's decision process.
+    register: semi-formal
+    setting: informative
+    nuance: 「考えた上で」 implies that the acceptance wasn't impulsive but came after a period of careful deliberation,
+      making the decision more considered.
+  - english: A report will be written after investigating the cause of the problem.
+    japanese:
+      - 問題 の 原因 を {調査 し た 上 で}、報告 書 を 作成 し ます。
+      - 問題 の 原因 を {調査 し た 上 で}、報告 書 を 作成 する。
+    english_literally: The problem's cause having been investigated, a report will be created.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 の 原因 を 調査 し た 後 で、報告 書 を 作成 し ます。
+        english: A report will be written after investigating the cause of the problem.
+        hint: 「〜た後で」 implies a simple chronological order. This sentence stresses that the report will
+          be written *based on* the findings of the investigation. We're looking for that 'basis' relationship.
+      - competing_japanese:
+          - 問題 の 原因 を 調査 し て から、報告 書 を 作成 し ます。
+        english: A report will be written after investigating the cause of the problem.
+        hint: 「〜てから」 suggests sequence. The original sentence emphasizes that the investigation provides
+          the necessary foundation and information for the report, not just that it happens beforehand.
+          We need an expression for 'based on'.
+    scene: A company executive outlining steps for problem resolution.
+    register: formal
+    setting: professional
+    nuance: 「調査した上で」 clearly states that the investigation serves as the necessary preliminary step and
+      basis for writing the report, indicating a methodical approach.
+  - english: We will make a purchase after comparing prices from various stores.
+    japanese:
+      - 様々 な 店 の 価格 を {比較 し た 上 で}、購入 を 決め ます。
+      - 様々 な 店 の 価格 を {比較 し た 上 で}、購入 を 決める。
+    english_literally: Prices of various stores having been compared, we will decide on purchase.
+    competing_grammar:
+      - competing_japanese:
+          - 様々 な 店 の 価格 を 比較 し た 後 で、購入 を 決め ます。
+        english: We will make a purchase after comparing prices from various stores.
+        hint: 「〜た後で」 indicates a simple time sequence. This sentence implies the purchase decision is
+          made *based on* the price comparison, indicating a careful, informed choice. We're looking for
+          the foundational nuance.
+      - competing_japanese:
+          - 様々 な 店 の 価格 を 比較 し て から、購入 を 決め ます。
+        english: After comparing prices from various stores, we will make a purchase.
+        hint: 「〜てから」 suggests sequence. The original sentence emphasizes that the comparison is the basis
+          for the decision, meaning the decision is an informed one derived from the comparison. We need
+          a phrase that means 'based on'.
+    scene: A consumer talking about making a smart purchase.
+    register: casual
+    setting: casual slang
+    nuance: While often formal, 「〜の上で」 can appear in casual conversation to emphasize that a decision
+      is well-researched or thought out. 「比較した上で」 here shows diligence in shopping.
+  - english: Please proceed with the registration after confirming your personal information.
+    japanese:
+      - 個人 情報 を {確認 し た 上 で}、登録 を 進め て ください。
+      - 個人 情報 を {確認 し た 上 で}、登録 を 進める よう に し て ください。
+    english_literally: Personal information having been confirmed, please proceed with registration.
+    competing_grammar:
+      - competing_japanese:
+          - 個人 情報 を 確認 し た 後 で、登録 を 進め て ください。
+        english: Please proceed with the registration after confirming your personal information.
+        hint: 「〜た後で」 implies a simple temporal order. This sentence means the registration should proceed
+          *based on* the confirmation of accurate personal information. We need the nuance of a necessary
+          foundation.
+      - competing_japanese:
+          - 個人 情報 を 確認 し て から、登録 を 進め て ください。
+        english: Please proceed with the registration after confirming your personal information.
+        hint: 「〜てから」 suggests a sequence. The original sentence implies that the confirmation is a crucial,
+          foundational step for the subsequent registration to be correct. We're looking for 'based on'.
+    scene: Instructions on an online registration form.
+    register: formal
+    setting: instructional
+    nuance: 「確認した上で」 is a standard formal instruction, making sure users take responsibility for the accuracy
+      of their input before proceeding, often seen in online forms.
+  - english: After reviewing the data, we revised our strategy.
+    japanese:
+      - データ を {見直し た 上 で}、戦略 を 修正 し まし た。
+      - データ を {見直し た 上 で}、戦略 を 修正 し た。
+    english_literally: Data having been reviewed, we revised the strategy.
+    competing_grammar:
+      - competing_japanese:
+          - データ を 見直し た 後 で、戦略 を 修正 し まし た。
+        english: After reviewing the data, we revised our strategy.
+        hint: 「〜た後で」 suggests a simple chronological order. This sentence implies the strategy revision
+          was a direct outcome *based on* the data review. We need to convey that the data review was
+          the foundation for the revision.
+      - competing_japanese:
+          - データ を 見直し て から、戦略 を 修正 し まし た。
+        english: After reviewing the data, we revised our strategy.
+        hint: 「〜てから」 indicates sequence. The original sentence emphasizes that the data review served
+          as the essential basis for the strategic changes, meaning the changes were informed by the review.
+          We're looking for 'based on'.
+    scene: A business meeting discussing a strategic shift.
+    register: formal
+    setting: professional
+    nuance: The phrase 「見直した上で」 indicates that the strategy revision was directly informed by the preceding
+      data review, implying a data-driven and deliberate adjustment.
+  - english: You should act after understanding the full situation.
+    japanese:
+      - 状況 を {すべて 理解 し た 上 で}、行動 す べき です。
+      - 状況 を {すべて 理解 し た 上 で}、行動 する べき です。
+      - 状況 を {すべて 理解 し た 上 で}、行動 しろ。
+    english_literally: The situation having been fully understood, you should act.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 を すべて 理解 し た 後 で、行動 す べき です。
+        english: You should act after understanding the full situation.
+        hint: 「〜た後で」 implies a simple chronological order. This sentence emphasizes that the action should
+          be *based on* a complete understanding, signifying a thoughtful and informed approach. We need
+          the nuance of the action being a consequence of thorough understanding.
+      - competing_japanese:
+          - 状況 を すべて 理解 し て から、行動 す べき です。
+        english: You should act after understanding the full situation.
+        hint: 「〜てから」 suggests sequence. The original sentence implies that a full understanding is the
+          necessary foundation for proper action, rather than just a preceding event. We're looking for
+          'based on'.
+    scene: Giving advice to someone about a complex matter.
+    register: semi-formal
+    setting: serious
+    nuance: 「すべて理解した上で」 stresses the importance of gaining a complete grasp of the situation as the necessary
+      foundation for any subsequent action, suggesting prudence and wisdom.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/280-の上で

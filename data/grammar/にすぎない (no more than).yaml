@@ -1,0 +1,298 @@
+grammar_point: にすぎない (no more than)
+learn_before:
+  - な-Adjective[すぎる] (excessive)
+meaning: No more than, just, merely
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にすぎない
+    rarity: common
+    meaning: no more than
+  - conjugation-type: non-past polite (～ます)
+    form: にすぎません
+    rarity: common
+    meaning: no more than
+  - conjugation-type: negative past plain (～なかった)
+    form: にすぎなかった
+    rarity: less common
+    meaning: was no more than
+  - conjugation-type: negative past polite (～ませんでした)
+    form: にすぎませんでした
+    rarity: less common
+    meaning: was no more than
+pronunciation:
+  katakana: ニスギナイ
+  romaji: ni suginai
+formation:
+  '[Noun] + にすぎない': Indicates something is 'no more than' or 'merely' the noun.
+  '[Verb (any form)] + にすぎない': Indicates an action is 'no more than' or 'merely' the verb.
+  '[い-Adjective] + にすぎない': Indicates something is 'no more than' or 'merely' the adjective.
+  '[な-Adjective] + にすぎない': Indicates something is 'no more than' or 'merely' the adjective.
+  '[Number+Counter] + にすぎない': Indicates an amount is 'no more than' or 'merely' the stated quantity.
+jlpt: N2
+etymology: The grammar point 「にすぎない」 is formed from 「に」 (a particle) and 「過ぎる」 (sugiru), a verb meaning
+  "to exceed" or "to be more than". The 「ない」 (nai) ending negates the verb, creating the meaning "not
+  more than". Therefore, the phrase literally means "does not exceed", conveying the sense of something
+  being limited or 'no more than' a certain extent.
+writeup: |-
+  「にすぎない」 is a common structure in Japanese used to indicate that something is "no more than (A)" or "merely (A)". It is constructed from 「に」 and the negated form of the verb 「過ぎる」, meaning "to exceed" or "to be more than". The literal translation, "to not be more than (A)", closely reflects the English interpretations.
+
+  「にすぎない」 is slightly formal but is heard fairly often in day-to-day speech. It can be used after verbs in any of their standard forms, い-adjectives, な-adjectives, or nouns. It is often paired with structures that emphasize the phrase even further, such as 「ただ」 ("merely") or 「だけ」 ("just"). In the case of 「だけ」, it will come between the target word and 「にすぎない」. Remember standard conjugation rules, such as adding 「な」 after a な-adjective before 「だけ」.
+
+  It may occasionally appear in set phrases, such as 「氷山の一角にすぎない」, which means "to merely be the tip of the iceberg".
+false_friends:
+  - term: でしかない
+    meaning: Merely, nothing but, no more than
+    kind: synonym
+    nuance: 「でしかない」 has a slightly stronger emphasis on the limitation than 「にすぎない」.
+    grammar_point: でしかない (merely・nothing but)
+  - term: にほかならない
+    meaning: Nothing but, none other than, simply
+    kind: synonym
+    nuance: 「にほかならない」 emphasizes the true nature of something, while 「にすぎない」 focuses on limiting its significance.
+    grammar_point: にほかならない (nothing but)
+post_false_friends_writeup: 「にすぎない」, 「でしかない」, and 「にほかならない」 all express limitations, but with subtle differences.
+  「にすぎない」 downplays significance. 「でしかない」 emphasizes the limitation more strongly. 「にほかならない」 identifies
+  the true nature of something.
+examples:
+  - english: His contribution was nothing more than a small piece of advice.
+    japanese:
+      - 彼 の 貢献 は、わずか な 助言 {に すぎ ない}。
+      - 彼 の 貢献 は、わずか な 助言 {に すぎ ませ ん}。
+    english_literally: His contribution is merely small advice.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 貢献 は、わずか な 助言 だっ た。
+        english: His contribution was small advice.
+        hint: The scene implies that the speaker wants to emphasize the limited nature of the contribution,
+          not just state a simple fact. 「にすぎない」 highlights that there was no other significant contribution.
+    scene: Discussing the impact of someone's minor involvement in a project.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: His success was merely a matter of good luck.
+    japanese:
+      - 彼 が 成功 し た の は、単 なる 運 が 良 かっ た {に すぎ ない}。
+      - 彼 が 成功 し た の は、単 なる 運 が 良 かっ た {に すぎ ませ ん}。
+    english_literally: He succeeded was simply good luck.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 成功 し た の は、単 なる 運 が 良 かっ た。
+        english: He succeeded because he had good luck.
+        hint: The scene clarifies that the speaker is dismissing any notion of skill or effort, implying
+          the success was *nothing more* than luck. 「にすぎない」 reinforces this dismissal.
+    scene: A cynical observation about someone's career path.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+  - english: This problem is only complex on the surface.
+    japanese:
+      - この 問題 は、外見 上 複雑 {に すぎ ない}。
+      - この 問題 は、外見 上 複雑 {に すぎ ませ ん}。
+    english_literally: This problem is outwardly complex.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は、外見 上 複雑 だ。
+        english: This problem is outwardly complex.
+        hint: The scene suggests that the problem's complexity is superficial, and 「にすぎない」 reassures the
+          students that it's *merely* perceived as complex, implying it's manageable beneath the surface.
+    scene: A teacher explaining a seemingly difficult task to students, suggesting it's not as hard as
+      it looks.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+  - english: Her smile is nothing more than superficial.
+    japanese:
+      - 彼女 の 微笑 は、上辺 {な だけ に すぎ ない}。
+      - 彼女 の 微笑 は、上辺 {な だけ に すぎ ませ ん}。
+    english_literally: Her smile is merely superficial.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 微笑 は、上辺 だ。
+        english: Her smile is superficial.
+        hint: The scene implies a critical observation, where the speaker uses 「なだけにすぎない」 to emphasize
+          that the smile lacks genuine feeling and is *only* on the surface.
+    scene: Someone observing a person's insincere behavior at a social gathering.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: The participants were no more than ten people.
+    japanese:
+      - 参加 者 は 十 名 {に すぎ なかっ た}。
+      - 参加 者 は 十 名 {に すぎ ませ ん でし た}。
+    english_literally: The participants were only ten people.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は 十 名 だっ た。
+        english: The participants were ten people.
+        hint: The scene suggests that the number of participants was surprisingly low, and 「にすぎなかった」 highlights
+          that the count was *merely* ten, implying a sense of limitation or insufficiency.
+    scene: Reporting a low turnout at an event, implying disappointment or that expectations were unmet.
+    register: formal
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: His words and actions are nothing but childish.
+    japanese:
+      - 彼 の 言動 は、子供 {だけ に すぎ ない}。
+      - 彼 の 言動 は、子供 {だけ に すぎ ませ ん}。
+    english_literally: His words and actions are merely childish.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言動 は、子供 だ。
+        english: His words and actions are childish.
+        hint: The scene conveys a strong sense of exasperation, where 「だけにすぎない」 emphasizes that his behavior
+          is *only* childish, lacking any maturity or reason.
+    scene: Expressing frustration with an immature person's behavior in a professional setting.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: If you only talk about dreams, nothing will change.
+    japanese:
+      - 夢 を 語 る {に すぎ ない} なら、何 も 変 わ ら ない。
+      - 夢 を 語 る {に すぎ ませ ん} なら、何 も 変 わ り ませ ん。
+    english_literally: If you merely talk about dreams, nothing changes.
+    competing_grammar:
+      - competing_japanese:
+          - 夢 を 語 るな ら、何 も 変 わ ら ない。
+        english: If you talk about dreams, nothing will change.
+        hint: The scene points out the futility of mere talk. 「にすぎない」 emphasizes that if there's *only*
+          talking without action, the dreams remain unrealized.
+    scene: Someone encouraging a friend to take action rather than just fantasize.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+  - english: That plan was merely idealistic.
+    japanese:
+      - その 計画 は、理想 的 {だっ た だけ に すぎ ない}。
+      - その 計画 は、理想 的 {だっ た だけ に すぎ ませ ん}。
+    english_literally: That plan was just idealistic.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は、理想 的 だっ た。
+        english: That plan was idealistic.
+        hint: The scene implies a critique of the plan's lack of practicality. 「だっただけにすぎない」 stresses that
+          its only characteristic was idealism, which ultimately led to its downfall.
+    scene: Reflecting on a past plan that failed due to being impractical or unrealistic.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: My opinion is merely one reference.
+    japanese:
+      - 私 の 意見 は、一 つ の 参考 {に すぎ ませ ん}。
+      - 私 の 意見 は、一 つ の 参考 {に すぎ ない}。
+    english_literally: My opinion is only one reference.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 意見 は、一 つ の 参考 です。
+        english: My opinion is one reference.
+        hint: The scene emphasizes the speaker's humility and politeness. 「にすぎません」 politely downplays
+          the significance of their opinion, suggesting it's *just* a reference and not a definitive statement.
+    scene: A junior staff member humbly offering a suggestion to a superior in a meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: This argument is nothing more than emotional.
+    japanese:
+      - この 議論 は、感情 的 {な だけ に すぎ ない}。
+      - この 議論 は、感情 的 {な だけ に すぎ ませ ん}。
+    english_literally: This argument is merely emotional.
+    competing_grammar:
+      - competing_japanese:
+          - この 議論 は、感情 的 だ。
+        english: This argument is emotional.
+        hint: The scene sets up a criticism of the discussion's substance. 「なだけにすぎない」 emphasizes that
+          the argument is *only* based on emotions, lacking any logical foundation.
+    scene: Someone trying to bring objectivity to a heated discussion by pointing out its lack of logic.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: That incident was merely a small misunderstanding.
+    japanese:
+      - あの 出来事 は、小 さ さ な 誤解 {に すぎ ませ ん でし た}。
+      - あの 出来事 は、小 さ さ な 誤解 {に すぎ なかっ た}。
+    english_literally: That incident was just a small misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - あの 出来事 は、小 さ さ な 誤解 でし た。
+        english: That incident was a small misunderstanding.
+        hint: The scene implies a need to reduce anxiety about a past event. 「にすぎませんでした」 gently confirms
+          that the incident was *only* a misunderstanding, ensuring the listener doesn't overthink it.
+    scene: Reassuring a worried friend about a past minor conflict, downplaying its severity.
+    register: teineigo (polite)
+    setting: sympathetic
+    conjugation: negative past polite (～ませんでした)
+  - english: What we know is merely the tip of the iceberg of the problem.
+    japanese:
+      - 我々 が 知 る の は、問題 の 氷山 の 一角 {に すぎ ない}。
+      - 我々 が 知 る の は、問題 の 氷山 の 一角 {に すぎ ませ ん}。
+    english_literally: What we know is merely the tip of the iceberg of the problem.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 が 知 る の は、問題 の 氷山 の 一角 だ。
+        english: What we know is the tip of the iceberg of the problem.
+        hint: The scene conveys a sense of revelation about a deeper issue. 「にすぎない」 emphasizes that their
+          current knowledge is *just* a small visible part, implying much more remains hidden.
+    scene: A team realizing that their initial findings are only a small part of a much larger underlying
+      issue.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: His stories are always just superficial.
+    japanese:
+      - 彼 の 話 は、いつ も 表面 的 {に すぎ ない}。
+      - 彼 の 話 は、いつ も 表面 的 {に すぎ ませ ん}。
+    english_literally: His stories are always merely superficial.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 は、いつ も 表面 的 だ。
+        english: His stories are always superficial.
+        hint: The scene implies dissatisfaction with the quality of interaction. 「にすぎない」 stresses that
+          his stories are *only* superficial, highlighting a persistent lack of depth.
+    scene: Someone complaining about a friend's lack of depth in conversations.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: That's just my wild imagination, you know.
+    japanese:
+      - それ は 私 の 勝手 な 想像 {に すぎ ない} の よ。
+      - それ は 私 の 勝手 な 想像 {に すぎ ませ ん} の よ。
+    english_literally: That is merely my selfish imagination, you know.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 私 の 勝手 な 想像 な の よ。
+        english: That is my wild imagination, you know.
+        hint: The scene implies a desire to soften the impact of her statement. 「にすぎないのよ」 uses a feminine
+          particle to gently assert that her idea is *only* a product of her imagination, not something
+          to be taken too seriously.
+    scene: A woman playfully dismissing her own fanciful idea after sharing it with a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The sentence ending `～のよ` is often used by female speakers to soften a statement or add a
+      gentle assertion. When combined with `{にすぎない}` (no more than), it conveys a lighthearted tone, implying
+      that the statement is merely her imagination and not to be taken as fact.
+  - english: Well, this is just based on my own experience, you know.
+    japanese:
+      - まあ、これ は 俺 の 経験 上 の 話 {に すぎ ない} ぜ。
+      - まあ、これ は 俺 の 経験 上 の 話 {に すぎ ませ ん} ぜ。
+    english_literally: Well, this is merely a story based on my experience, you know.
+    competing_grammar:
+      - competing_japanese:
+          - まあ、これ は 俺 の 経験 上 の 話 だ ぜ。
+        english: Well, this is a story based on my experience, you know.
+        hint: The scene indicates a desire to qualify the advice being given. 「にすぎないぜ」 uses a masculine
+          particle to emphasize that his perspective is *only* from his experience, suggesting it's not
+          a universal truth but a limited viewpoint, while maintaining a casual demeanor.
+    scene: A man offering advice, but acknowledging its limited scope based on his personal experience.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of `俺 (おれ)` is a casual, masculine pronoun. The sentence-ending particle `～ぜ` adds
+      a strong, assertive, and often masculine emphasis. Here, with `{にすぎない}` (no more than), the speaker
+      emphasizes the limited scope of his advice while maintaining a casual, confident demeanor.
+post_example_writeup: As you can see from the examples, 「にすぎない」 can attach to various parts of speech
+  including nouns, verbs, and adjectives. Its meaning of 'no more than' or 'merely' remains consistent
+  across these forms, emphasizing the limited nature or insignificance of what is being described.

@@ -1,0 +1,720 @@
+grammar_point: '[Verb-ない form]ずにはいられない・ないではいられない (cannot help but do)'
+learn_before:
+  - てはいられない (cannot afford to)
+meaning: Cannot help doing something; cannot resist doing something
+meaning_warning: する → せず
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ずにはいられない
+    rarity: common
+    meaning: cannot help doing something, cannot resist doing something
+  - conjugation-type: dictionary (plain non-past)
+    form: ないではいられない
+    rarity: common
+    meaning: cannot help doing something, cannot resist doing something
+  - conjugation-type: non-past polite (～ます)
+    form: ずにはいられません
+    rarity: common
+    meaning: cannot help doing something (polite), cannot resist doing something (polite)
+  - conjugation-type: non-past polite (～ます)
+    form: ないではいられません
+    rarity: common
+    meaning: cannot help doing something (polite), cannot resist doing something (polite)
+  - conjugation-type: past plain (～た)
+    form: ずにはいられなかった
+    rarity: common
+    meaning: could not help doing something, could not resist doing something
+  - conjugation-type: past plain (～た)
+    form: ないではいられなかった
+    rarity: common
+    meaning: could not help doing something, could not resist doing something
+  - conjugation-type: past polite (～ました)
+    form: ずにはいられませんでした
+    rarity: common
+    meaning: could not help doing something (polite), could not resist doing something (polite)
+  - conjugation-type: past polite (～ました)
+    form: ないではいられませんでした
+    rarity: common
+    meaning: could not help doing something (polite), could not resist doing something (polite)
+  - conjugation-type: conditional (～ば)
+    form: ずにはいられなければ
+    rarity: less common
+    meaning: if one cannot help doing something
+  - conjugation-type: conditional (～たら)
+    form: ずにはいられなかったら
+    rarity: less common
+    meaning: if one could not help doing something
+pronunciation:
+  katakana: ズニハイラレナイ
+  romaji: zu ni wa irarenai
+formation:
+  Verb (ない form stem) + ずにはいられない: For most verbs, attach to the ない form stem (e.g., 食べる → 食べずにはいられない).
+  する Verb (せ form) + ずにはいられない: For する verbs, attach to the irregular せ form (e.g., 勉強する → 勉強せずにはいられない).
+  Verb -ない form + ではいられない: Expresses an uncontrollable urge or feeling to do something (e.g., 焦らない → 焦らないではいられない).
+jlpt: N2
+etymology: The expression 「ずにはいられない」 is rooted in classical Japanese grammar. 「ず」 is an archaic negative
+  auxiliary verb, serving a similar function to the modern 「ない」. It attaches to the Mizenkei (indeterminate
+  form) of verbs. The particle 「に」 indicates a result or state, while 「は」 adds emphasis or contrast, similar
+  to its modern function as a topic marker. 「いられない」 is the negative potential form of the verb 「いる」 (to
+  be/exist), literally meaning 'cannot exist'. Thus, the combination literally translates to "cannot exist
+  without doing [something]", or "cannot be without doing [something]". Over time, this evolved into the
+  contemporary meaning of expressing an irresistible urge or an action that one simply cannot refrain
+  from performing. Similarly, 「ないではいられない」 is derived from 「～ないでいる」 (to not do) + 「はいられない」 (cannot stay).
+  Literally, it means "cannot remain without doing". Both forms express the idea that one cannot remain
+  in a state of not doing something, indicating an irresistible urge or feeling.
+writeup: |-
+  The grammar points 「ずにはいられない」 and 「ないではいられない」 both convey a strong, internal compulsion to do something or to feel a certain way, suggesting that the action or emotion is unavoidable for the speaker. They are typically used for involuntary actions or overwhelming feelings that are difficult to control.
+
+  **Formation:**
+  *   For 「ずにはいられない」: It attaches to the negative stem of verbs (the same stem used for the ない form). For most verbs, this is straightforward (e.g., 食べる → 食べずにはいられない). However, for the irregular verb する, it conjugates to せずにはいられない, not しずにはいられない.
+  *   For 「ないではいられない」: It attaches to the negative form (ない-form) of a verb (e.g., 焦る → 焦らないではいられない).
+
+  **Nuance:** While often translated as "cannot help but do" or "cannot resist doing," the literal meaning is "cannot be without doing." This highlights that the speaker's state or existence is intertwined with the action or feeling, making it impossible to omit. It emphasizes an internal, personal experience, rather than an an external obligation or logical necessity.
+
+  **Usage:** 「ずにはいられない」 tends to be more formal or literary compared to other similar phrases, and you will often encounter it in written Japanese or more deliberate speech. 「ないではいられない」 is very similar in meaning and usage, and is generally considered slightly more common and conversational in modern usage. Both describe a psychological state where one is powerless to prevent a certain action or emotion from occurring.
+false_friends:
+  - term: ないわけにはいかない
+    meaning: Can't not; no way to avoid; must do
+    kind: similar expression
+    nuance: 「ないわけにはいかない」 implies an external necessity or social obligation, meaning one 'must' do something.
+      In contrast, 「ずにはいられない / ないではいられない」 describes a deep internal, irresistible urge or compulsion.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: てたまらない・てならない・て仕方がない・てしょうがない
+    meaning: Extremely; very; can't help but feel/be
+    kind: similar expression
+    nuance: This group of expressions emphasizes the overwhelming intensity of a feeling or state (e.g.,
+      'so tired I can't stand it,' 'I feel so sorry'). While they can express an uncontrollable feeling,
+      they focus purely on the *feeling* itself rather than an irresistible *action* that one cannot resist
+      performing, which is the core of 「ずにはいられない / ないではいられない」.
+    grammar_point: てならない (cannot help but feel)
+  - term: ずに
+    meaning: Without doing
+    kind: often confused with
+    nuance: 「ずに」 is simply a negative conjunction meaning 'without doing X'. It is a component of 「ずにはいられない」
+      but does not carry the meaning of internal compulsion on its own. Confusing the two would omit the
+      'cannot help' nuance.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ざるを得ない
+    meaning: Can't help doing; have no choice but
+    kind: similar expression
+    nuance: 「ざるを得ない」 signifies that one has no choice but to do something due to external circumstances
+      or logical necessity. This contrasts with 「ずにはいられない / ないではいられない」, which emphasizes an internal,
+      personal compulsion or irresistible urge.
+    grammar_point: ざるを得ない (have no choice but to)
+  - term: わけにはいかない
+    meaning: Cannot afford to; no way; impossible to do
+    kind: similar expression
+    nuance: 「わけにはいかない」 indicates that something cannot be done due to social rules, common sense, or a
+      moral imperative. It's about what is permissible or possible, not about an internal, uncontrollable
+      urge to perform an action, differentiating it from 「ずにはいられない / ないではいられない」.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: てはいられない
+    meaning: Cannot afford to; unable to (due to lack of time or other constraints)
+    kind: similar expression
+    nuance: 「てはいられない」 expresses a situation where one cannot continue doing something because of external
+      circumstances, such as a lack of time or an urgent need to move on. It implies practicality rather
+      than an internal, emotional drive, unlike 「ずにはいられない / ないではいられない」.
+    grammar_point: てはいられない (cannot afford to)
+  - term: てしまう・ちゃう
+    meaning: To do something completely; to do something by accident; to do something regrettably/unfortunately
+    kind: often confused with
+    nuance: While 「ずにはいられない / ないではいられない」 emphasizes an uncontrollable urge or an internal compulsion that
+      leads to an action, 「てしまう」 often indicates an action that happens unintentionally, automatically,
+      or brings about a sense of regret or completion.
+    grammar_point: <suggest>:てしまう・ちゃう (completion・regret・accident)
+post_false_friends_writeup: When choosing between 「ずにはいられない / ないではいられない」 and similar expressions, consider
+  the nature of the compulsion. Use 「ずにはいられない / ないではいられない」 when the driving force is an internal, often
+  emotional, irresistible urge or an overwhelming emotion that makes an action or feeling unavoidable.
+  For external obligations or logical necessities, consider expressions like 「ないわけにはいかない (inevitable necessity)」
+  or 「ざるを得ない (have no choice but to)」. If you are simply emphasizing the extreme degree of a feeling,
+  「てしょうがない」, 「てたまらない」, or 「てならない」 might be more appropriate. In contrast, 「てはいられない」 indicates that one
+  cannot continue doing something, often due to time constraints or other external limitations, focusing
+  on practical impossibility rather than an internal compulsion. Finally, 「てしまう」 implies an action that
+  occurs unintentionally, automatically, or leads to a sense of regret or completion. This differs from
+  「ずにはいられない / ないではいられない」, which emphasizes a strong, often positive, irresistible urge to take action.
+examples:
+  - english: Whenever I hear his funny stories, I can't help but laugh.
+    japanese:
+      - 彼 の 面白い 話 を 聞く と、いつ も 笑わ {ず に は い られ ない}。
+      - 彼 の 面白い 話 を 聞く と、いつ も 笑わ {ず に は い られ ませ ん}。
+      - 彼 の 面白い 話 を 聞く と、いつ も 笑わ {ない で は い られ ない}。
+      - 彼 の 面白い 話 を 聞く と、いつ も 笑わ {ない で は い られ ませ ん}。
+    english_literally: Whenever I hear his funny stories, I cannot exist without laughing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 面白い 話 を 聞く と、いつ も 笑っ {て しまう}。
+        english: Whenever I hear his funny stories, I end up laughing.
+        hint: While 「てしまう」 suggests an uncontrollable action, it can also imply an accidental or unintended
+          result. We're looking for a strong, unavoidable internal compulsion.
+      - competing_japanese:
+          - 彼 の 面白い 話 を 聞く と、いつ も 笑う {しか ない}。
+        english: Whenever I hear his funny stories, I have no choice but to laugh.
+        hint: 「しかない」 implies that laughing is the only option due to external circumstances or lack of
+          alternatives. We're looking for an internal, irresistible urge, not a lack of choice.
+    scene: You're at a casual gathering, and a friend, known for their humor, starts telling a story that
+      makes everyone burst into laughter. You're explaining how their jokes always have that effect on
+      you, regardless of how much you try to control your laughter.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「笑わずにはいられない / 笑わないではいられない」 implies an irresistible, almost involuntary reaction
+      to something genuinely funny, emphasizing the internal nature of the compulsion. The casual setting
+      and friendly conversation underscore the naturalness of this uncontrollable laughter.
+  - english: After watching that moving movie, I couldn't help but shed tears.
+    japanese:
+      - 感動 的 な 映画 を 見 た 後、涙 を 流さ {ず に は い られ なかっ た}。
+      - 感動 的 な 映画 を 見 た 後、涙 を 流さ {ず に は い られ ませ ん} でし た。
+      - 感動 的 な 映画 を 見 た 後、涙 を 流さ {ない で は い られ なかっ た}。
+      - 感動 的 な 映画 を 見 た 後、涙 を 流さ {ない で は い られ ませ ん} でし た。
+    english_literally: After watching that moving movie, I could not exist without shedding tears.
+    competing_grammar:
+      - competing_japanese:
+          - 感動 的 な 映画 を 見 た 後、涙 が {止まら なかっ た}。
+        english: After watching that moving movie, my tears wouldn't stop.
+        hint: 「涙が止まらなかった」 describes tears flowing uncontrollably as a physical phenomenon, without necessarily
+          implying the internal emotional compulsion to cry. We're looking for an unavoidable emotional
+          response.
+      - competing_japanese:
+          - 感動 的 な 映画 を 見 た 後、泣い {て しまっ た}。
+        english: After watching that moving movie, I ended up crying.
+        hint: 「泣いてしまった」 often implies an accidental or unintended crying, sometimes with a nuance of regret.
+          We're looking for a profound, inevitable emotional release.
+    scene: A woman is telling her friend about a profoundly emotional movie she watched recently. She
+      wants to express how deeply it affected her, making her cry uncontrollably, despite perhaps trying
+      to hold back.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「涙を流さずにはいられなかった / 涙を流さないではいられなかった」 emphasizes that the emotional impact was so
+      profound that crying was an unavoidable internal response, not merely an occurrence. The past tense
+      indicates a completed, powerful emotional experience.
+  - english: Upon hearing about the client's difficult situation, I couldn't help but feel concerned.
+    japanese:
+      - 顧客 の 厳しい 状況 を 聞い て、心配 せ {ず に は い られ ませ ん} でし た。
+      - 顧客 の 厳しい 状況 を 聞い て、心配 せ {ず に は い られ なかっ た}。
+      - 顧客 の 厳しい 状況 を 聞い て、心配 し {ない で は い られ ませ ん} でし た。
+      - 顧客 の 厳しい 状況 を 聞い て、心配 し {ない で は い られ なかっ た}。
+    english_literally: Upon hearing about the client's difficult situation, I could not exist without
+      worrying.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 の 厳しい 状況 を 聞い て、心配 {し まし た}。
+        english: Upon hearing about the client's difficult situation, I worried.
+        hint: 「心配しました」 is a neutral statement of fact about having worried, lacking the nuance of an irresistible,
+          deep-seated concern. We're looking for an unavoidable internal feeling.
+      - competing_japanese:
+          - 顧客 の 厳しい 状況 を 聞い て、心配 {す べき だ と 思い まし た}。
+        english: Upon hearing about the client's difficult situation, I thought I should worry.
+        hint: 「すべきだと思いました」 implies a cognitive judgment about the necessity of worrying, rather than a
+          spontaneous, internal emotional reaction. We're looking for an involuntary feeling.
+    scene: A business professional is debriefing their manager about a meeting with a client. The client's
+      circumstances are severe, and the professional feels a genuine, unavoidable sense of concern.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Using 「心配せずにはいられませんでした / 心配しないではいられませんでした」 in a professional setting emphasizes a genuine,
+      uncontrollable empathy or concern, rather than a mere perfunctory worry. The polite past tense further
+      elevates the formality and sincerity of the expression.
+  - english: When I concentrate for a long time, I get so sleepy that I can't help but yawn.
+    japanese:
+      - 長 時間、集中 し て いる と、眠く て あくび を せ {ず に は い られ ない}。
+      - 長 時間、集中 し て いる と、眠く て あくび を せ {ず に は い られ ませ ん}。
+      - 長 時間、集中 し て いる と、眠く て あくび を し {ない で は い られ ない}。
+      - 長 時間、集中 し て いる と、眠く て あくび を し {ない で は い られ ませ ん}。
+    english_literally: When I concentrate for a long time, being sleepy, I cannot exist without yawning.
+    competing_grammar:
+      - competing_japanese:
+          - 長 時間、集中 し て いる と、眠く て あくび が {出 ます}。
+        english: When I concentrate for a long time, I get sleepy and yawns come out.
+        hint: 「あくびが出ます」 describes the physical phenomenon of yawning without emphasizing the speaker's
+          internal struggle or inability to suppress it. We're looking for a strong, unavoidable physiological
+          response.
+      - competing_japanese:
+          - 長 時間、集中 し て いる と、眠く て あくび を {し て しまい ます}。
+        english: When I concentrate for a long time, I get sleepy and end up yawning.
+        hint: 「あくびをしてしまいます」 could suggest accidentally yawning or yawning against one's will, but might
+          not convey the same strong sense of inevitability due to a physical state. We're looking for
+          a biological compulsion.
+    scene: A student is explaining to a study partner why they keep yawning during a long study session.
+      They are genuinely exhausted and find it impossible to suppress the yawns.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「あくびをせずにはいられない / あくびをしないではいられない」 highlights a physiological, uncontrollable response
+      to an internal state (sleepiness). The casual register fits the context of a student speaking to
+      a peer, making the admission of an involuntary action natural and relatable.
+  - english: If I saw unfair treatment, I probably couldn't help but say something.
+    japanese:
+      - 不 公平 な 扱い を 見 たら、何 も 言わ {ず に は い られ ない} だろう。
+      - 不 公平 な 扱い を 見 たら、何 も 言わ {ず に は い られ ませ ん} でしょう。
+      - 不 公平 な 扱い を 見 たら、何 も 言わ {ない で は い られ ない} だろう。
+      - 不 公平 な 扱い を 見 たら、何 も 言わ {ない で は い られ ませ ん} でしょう。
+    english_literally: If I saw unfair treatment, I probably could not exist without saying anything.
+    competing_grammar:
+      - competing_japanese:
+          - 不 公平 な 扱い を 見 たら、何 か 言う {べき だ と 思う だろう}。
+        english: If I saw unfair treatment, I would probably think I should say something.
+        hint: 「すべきだ」 implies a moral obligation or a cognitive assessment of what one ought to do, not
+          an irresistible internal drive to speak out. We're looking for an internal, moral compulsion.
+      - competing_japanese:
+          - 不 公平 な 扱い を 見 たら、何 か 言っ {て しまう だろう}。
+        english: If I saw unfair treatment, I would probably end up saying something.
+        hint: 「してしまうだろう」 can imply saying something inadvertently or perhaps regrettably. We're looking
+          for a powerful, inevitable reaction driven by conviction, not just an accidental utterance.
+    scene: A person is discussing a hypothetical situation with a friend, asserting their strong moral
+      stance. They believe that witnessing injustice would compel them to speak up, regardless of potential
+      consequences.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The inclusion of 「だろう」 softens the assertion while maintaining the strong internal compulsion.
+      「何も言わずにはいられない / 何も言わないではいられない」 conveys a sense of moral imperative so strong that silence is simply
+      not an option for the speaker.
+  - english: Seeing the poverty in the world, one cannot help but think about what they can do.
+    japanese:
+      - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考え {ず に は い られ ない}。
+      - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考え {ず に は い られ ませ ん}。
+      - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考え {ない で は い られ ない}。
+      - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考え {ない で は い られ ませ ん}。
+    english_literally: When seeing the world's poverty, cannot exist without thinking what one can do.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考える {べき だ と 思う}。
+        english: When seeing the world's poverty, one should think about what they can do.
+        hint: 「考えるべきだ」 implies a moral obligation, not an irresistible internal urge. We're looking for
+          an inherent, unavoidable thought process.
+      - competing_japanese:
+          - 世界 の 貧困 を 見る と、自分 に 何 が できる か を 考える {しか ない}。
+        english: When seeing the world's poverty, one has no choice but to think about what they can do.
+        hint: 「しかない」 implies external constraints or lack of alternatives, not an internal driving force.
+          We're looking for an internal, unavoidable impulse to contemplate.
+    scene: An activist or socially conscious person is reflecting on global issues and their personal
+      responsibility.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「考えずにはいられない / 考えないではいられない」 emphasizes a deep, internal moral or ethical compulsion to contemplate
+      one's role in addressing a serious global issue like poverty. The formal tone suits a serious, reflective
+      context.
+  - english: As a journalist, I cannot help but seek the truth.
+    japanese:
+      - ジャーナリスト と し て、真実 を 追求 せ {ず に は い られ ない}。
+      - ジャーナリスト と し て、真実 を 追求 せ {ず に は い られ ませ ん}。
+      - ジャーナリスト と し て、真実 を 追求 し {ない で は い られ ない}。
+      - ジャーナリスト と し て、真実 を 追求 し {ない で は い られ ませ ん}。
+    english_literally: As a journalist, cannot exist without pursuing the truth.
+    competing_grammar:
+      - competing_japanese:
+          - ジャーナリスト と し て、真実 を 追求 {する べき だ}。
+        english: As a journalist, I should pursue the truth.
+        hint: 「すべきだ」 implies a duty or obligation, not an inherent internal compulsion. We're looking
+          for a fundamental, unavoidable drive.
+      - competing_japanese:
+          - ジャーナリスト と し て、真実 を 追求 {し なけれ ば なら ない}。
+        english: As a journalist, I must pursue the truth.
+        hint: 「なければならない」 indicates an external necessity or rule, not an internal, irresistible urge.
+          We're looking for a deeply ingrained professional conviction.
+    scene: A seasoned journalist is explaining their core principle and dedication to their profession
+      to a young intern.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「追求せずにはいられない / 追求しないではいられない」 expresses an inherent, professional commitment so strong that
+      seeking truth becomes an inescapable internal drive. The professional context and speaker's role
+      reinforce this conviction.
+  - english: When the baby smiles at me, I can't help but smile back.
+    japanese:
+      - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑ま {ず に は い られ ない}。
+      - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑ま {ず に は い られ ませ ん}。
+      - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑ま {ない で は い られ ない}。
+      - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑ま {ない で は い られ ませ ん}。
+    english_literally: When the baby smiles at me, I cannot exist without smiling back.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑ん {で しまう}。
+        english: When the baby smiles at me, I end up smiling back.
+        hint: 「してしまう」 can imply an accidental or unintended action. We're looking for an automatic, pure,
+          and unavoidable response.
+      - competing_japanese:
+          - 赤ちゃん が 私 に 微笑み かける と、私 も 微笑み {たく なる}。
+        english: When the baby smiles at me, I want to smile back.
+        hint: 「たくなる」 expresses a desire, not an action that one cannot resist performing. We're looking
+          for an irresistible, spontaneous reaction.
+    scene: A new parent is describing the pure joy and irresistible reaction they have when their baby
+      interacts with them.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「微笑まずにはいられない / 微笑まないではいられない」 conveys an automatic, joyful, and utterly irresistible response
+      to a heartwarming stimulus. The intimate setting highlights the natural, involuntary nature of the
+      reaction.
+  - english: After hearing that sad news, I couldn't help but cry all night.
+    japanese:
+      - その 悲しい 知らせ を 聞い て、一 晩 中 泣か {ず に は い られ なかっ た}。
+      - その 悲しい 知らせ を 聞い て、一 晩 中 泣か {ず に は い られ ませ ん} でし た。
+      - その 悲しい 知らせ を 聞い て、一 晩 中 泣か {ない で は い られ なかっ た}。
+      - その 悲しい 知らせ を 聞い て、一 晩 中 泣か {ない で は い られ ませ ん} でし た。
+    english_literally: After hearing that sad news, I could not exist without crying all night.
+    competing_grammar:
+      - competing_japanese:
+          - その 悲しい 知らせ を 聞い て、一 晩 中 泣い {て しまっ た}。
+        english: After hearing that sad news, I ended up crying all night.
+        hint: 「泣いてしまった」 can imply an accidental or unintended crying, sometimes with a nuance of regret.
+          We're looking for a profound, inevitable emotional release.
+      - competing_japanese:
+          - その 悲しい 知らせ を 聞い て、一 晩 中 泣か {ざる を 得 なかっ た}。
+        english: After hearing that sad news, I had no choice but to cry all night.
+        hint: 「ざるを得なかった」 suggests an external compulsion or obligation, not an internal emotional force.
+          We're looking for an overwhelming and unavoidable emotional reaction.
+    scene: Someone is confiding in a close friend about a recent tragedy and how deeply it affected them
+      emotionally.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「泣かずにはいられなかった / 泣かないではいられなかった」 emphasizes the overwhelming nature of grief, making crying
+      an unavoidable, prolonged emotional release. The past tense shows a completed, deep reaction.
+  - english: When I hear that song, I can't help but remember my youth.
+    japanese:
+      - あの 曲 を 聞く と、青春 時代 を 思い出さ {ず に は い られ ない}。
+      - あの 曲 を 聞く と、青春 時代 を 思い出さ {ず に は い られ ませ ん}。
+      - あの 曲 を 聞く と、青春 時代 を 思い出さ {ない で は い られ ない}。
+      - あの 曲 を 聞く と、青春 時代 を 思い出さ {ない で は い られ ませ ん}。
+    english_literally: When hearing that song, cannot exist without remembering youth.
+    competing_grammar:
+      - competing_japanese:
+          - あの 曲 を 聞く と、青春 時代 を {思い出す}。
+        english: When I hear that song, I remember my youth.
+        hint: 「思い出す」 is a neutral statement of fact, lacking the nuance of an irresistible, involuntary
+          recall. We're looking for a powerful and unavoidable memory trigger.
+      - competing_japanese:
+          - あの 曲 を 聞く と、青春 時代 が {蘇る}。
+        english: When I hear that song, my youth revives.
+        hint: 「蘇る」 describes the memory coming back vividly, but not the speaker's inability to resist
+          or control that memory. We're looking for a sense of unavoidable recollection.
+    scene: Someone is listening to an old song that brings back strong memories, expressing how the music
+      involuntarily triggers nostalgia.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「思い出さずにはいられない / 思い出さないではいられない」 describes an involuntary, powerful rush of memory and nostalgia
+      triggered by an external stimulus (the song). It highlights the inescapable nature of past recollections.
+  - english: When I'm about to miss my stop on the train, I can't help but panic.
+    japanese:
+      - 電車 で 寝過ごし そう に なる と、{焦ら ない で は い られ ない}。
+      - 電車 で 寝過ごし そう に なる と、{焦ら ない で は い られ ませ ん}。
+      - 電車 で 寝過ごし そう に なる と、焦ら {ず に は い られ ない}。
+      - 電車 で 寝過ごし そう に なる と、焦ら {ず に は い られ ませ ん}。
+    english_literally: When it becomes like I'm about to sleep past my stop on the train, I cannot be
+      without panicking.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で 寝過ごし そう に なる と、焦っ {て しまう}。
+        english: When I'm about to miss my stop on the train, I end up panicking.
+        hint: 「～てしまう」 often implies an action happening unintentionally or regrettably. We're looking
+          for an unavoidable emotional compulsion.
+    scene: A student on a crowded train is tired and feels themselves drifting off, but their stop is
+      coming up soon.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: His story was so funny, I couldn't help but laugh.
+    japanese:
+      - 彼 の 話 が 面白 すぎ て、{笑わ ない で は い られ ない}。
+      - 彼 の 話 が 面白 すぎ て、{笑わ ない で は い られ ませ ん}。
+      - 彼 の 話 が 面白 すぎ て、{笑わ ない で は い られ なかっ た}。
+      - 彼 の 話 が 面白 すぎ て、{笑わ ない で は い られ ませ ん} でし た。
+      - 彼 の 話 が 面白 すぎ て、笑わ {ず に は い られ ない}。
+      - 彼 の 話 が 面白 すぎ て、笑わ {ず に は い られ ませ ん}。
+      - 彼 の 話 が 面白 すぎ て、笑わ {ず に は い られ なかっ た}。
+      - 彼 の 話 が 面白 すぎ て、笑わ {ず に は い られ ませ ん} でし た。
+    english_literally: His story was too funny, I could not be without laughing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 が 面白 すぎ て、笑っ {て しまう}。
+        english: His story was too funny, so I ended up laughing.
+        hint: 「～てしまう」 often implies an action happening unintentionally or to completion. We're looking
+          for an irresistible urge to act.
+    scene: A friend is recalling a particularly hilarious anecdote shared by a mutual acquaintance.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+  - english: When I read letters from my family far away, I can't help but cry.
+    japanese:
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、{泣か ない で は い られ ない}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、{泣か ない で は い られ ませ ん}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、{泣か ない で は い られ なかっ た}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、{泣か ない で は い られ ませ ん} でし た。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、泣か {ず に は い られ ない}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、泣か {ず に は い られ ませ ん}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、泣か {ず に は い られ なかっ た}。
+      - 遠く 離れ た 家族 から の 手紙 を 読む と、泣か {ず に は い られ ませ ん} でし た。
+    english_literally: When I read letters from family far away, I cannot be without crying.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く 離れ た 家族 から の 手紙 を 読む と、泣い {て しまう}。
+        english: When I read letters from my family far away, I end up crying.
+        hint: 「～てしまう」 often implies an unintended or regrettable outcome. We're looking for an unavoidable
+          emotional reaction.
+    scene: A person living abroad receives a heartfelt letter from their parents back home.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+  - english: When I heard that sad news, I couldn't help but believe it.
+    japanese:
+      - あの 悲しい ニュース を 聞い た 時 は、{信じ ない で は い られ なかっ た}。
+      - あの 悲しい ニュース を 聞い た 時 は、{信じ ない で は い られ ませ ん} でし た。
+      - あの 悲しい ニュース を 聞い た 時 は、{信じ ない で は い られ ない}。
+      - あの 悲しい ニュース を 聞い た 時 は、{信じ ない で は い られ ませ ん}。
+      - あの 悲しい ニュース を 聞い た 時 は、信じ {ず に は い られ なかっ た}。
+      - あの 悲しい ニュース を 聞い た 時 は、信じ {ず に は い られ ませ ん} でし た。
+      - あの 悲しい ニュース を 聞い た 時 は、信じ {ず に は い られ ない}。
+      - あの 悲しい ニュース を 聞い た 時 は、信じ {ず に は い られ ませ ん}。
+    english_literally: When I heard that sad news, I could not be without believing it.
+    competing_grammar:
+      - competing_japanese:
+          - あの 悲しい ニュース を 聞い た 時 は、信じ {て しまっ た}。
+        english: When I heard that sad news, I ended up believing it.
+        hint: 「～てしまう」 implies an unintended or regrettable action. We're looking for an unavoidable, strong
+          internal compulsion to believe.
+    scene: A journalist reflects on a shocking and tragic report that, despite its grim nature, felt undeniably
+      true.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+  - english: When I see someone in trouble on the street, I can't help but offer help.
+    japanese:
+      - 道 で 困っ て いる 人 を 見る と、{助け ない で は い られ ない}。
+      - 道 で 困っ て いる 人 を 見る と、{助け ない で は い られ ませ ん}。
+      - 道 で 困っ て いる 人 を 見る と、{助け ない で は い られ なかっ た}。
+      - 道 で 困っ て いる 人 を 見る と、{助け ない で は い られ ませ ん} でし た。
+      - 道 で 困っ て いる 人 を 見る と、助け {ず に は い られ ない}。
+      - 道 で 困っ て いる 人 を 見る と、助け {ず に は い られ ませ ん}。
+      - 道 で 困っ て いる 人 を 見る と、助け {ず に は い られ なかっ た}。
+      - 道 で 困っ て いる 人 を 見る と、助け {ず に は い られ ませ ん} でし た。
+    english_literally: When I see a person in trouble on the street, I cannot be without helping.
+    competing_grammar:
+      - competing_japanese:
+          - 道 で 困っ て いる 人 を 見る と、助け {て しまう}。
+        english: When I see someone in trouble on the street, I end up helping them.
+        hint: 「～てしまう」 implies an unintended or completed action. We're looking for an irresistible moral
+          compulsion to act.
+    scene: A passerby with a strong sense of civic duty encounters an elderly person struggling with heavy
+      bags.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+  - english: When I received unreasonable instructions, I couldn't help but argue back.
+    japanese:
+      - 理 不尽 な 指示 を 受け た 時、{反論 し ない で は い られ なかっ た}。
+      - 理 不尽 な 指示 を 受け た 時、{反論 し ない で は い られ ませ ん} でし た。
+      - 理 不尽 な 指示 を 受け た 時、{反論 し ない で は い られ ない}。
+      - 理 不尽 な 指示 を 受け た 時、{反論 し ない で は い られ ませ ん}。
+      - 理 不尽 な 指示 を 受け た 時、反論 せ {ず に は い られ なかっ た}。
+      - 理 不尽 な 指示 を 受け た 時、反論 せ {ず に は い られ ませ ん} でし た。
+      - 理 不尽 な 指示 を 受け た 時、反論 せ {ず に は い られ ない}。
+      - 理 不尽 な 指示 を 受け た 時、反論 せ {ず に は い られ ませ ん}。
+    english_literally: When I received unreasonable instructions, I could not be without arguing back.
+    competing_grammar:
+      - competing_japanese:
+          - 理 不尽 な 指示 を 受け た 時、反論 し {て しまっ た}。
+        english: When I received unreasonable instructions, I ended up arguing back.
+        hint: 「～てしまう」 implies an unintended or regrettable action. We're looking for a strong, unavoidable
+          internal compulsion or principled response.
+    scene: An employee, known for their strong principles, is given an ethically questionable directive
+      by their superior.
+    register: semi-formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+  - english: Seeing this historic moment, I can't help but be deeply moved.
+    japanese:
+      - この 歴史 的 な 瞬間 を 見 て、{感動 し ない で は い られ ませ ん}。
+      - この 歴史 的 な 瞬間 を 見 て、{感動 し ない で は い られ ない}。
+      - この 歴史 的 な 瞬間 を 見 て、{感動 し ない で は い られ なかっ た}。
+      - この 歴史 的 な 瞬間 を 見 て、{感動 し ない で は い られ ませ ん} でし た。
+      - この 歴史 的 な 瞬間 を 見 て、感動 せ {ず に は い られ ませ ん}。
+      - この 歴史 的 な 瞬間 を 見 て、感動 せ {ず に は い られ ない}。
+      - この 歴史 的 な 瞬間 を 見 て、感動 せ {ず に は い られ なかっ た}。
+      - この 歴史 的 な 瞬間 を 見 て、感動 せ {ず に は い られ ませ ん} でし た。
+    english_literally: Seeing this historic moment, I cannot be without being deeply moved.
+    competing_grammar:
+      - competing_japanese:
+          - この 歴史 的 な 瞬間 を 見 て、感動 し {て しまい ます}。
+        english: Seeing this historic moment, I end up being deeply moved.
+        hint: 「～てしまう」 often implies an action happening unintentionally. We're looking for an unavoidable,
+          profound emotional response in a formal context.
+    scene: A commentator broadcasting a significant national event expresses their emotions live on air.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: When I see my sleeping cat in a funny pose, I can't help but take a picture.
+    japanese:
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、{写真 を 撮ら ない で は い られ ない}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、{写真 を 撮ら ない で は い られ ませ ん}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、{写真 を 撮ら ない で は い られ なかっ た}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、{写真 を 撮ら ない で は い られ ませ ん} でし た。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、写真 を 撮ら {ず に は い られ ない}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、写真 を 撮ら {ず に は い られ ませ ん}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、写真 を 撮ら {ず に は い られ なかっ た}。
+      - 寝 て いる 猫 の 面白い 格好 を 見る と、写真 を 撮ら {ず に は い られ ませ ん} でし た。
+    english_literally: When I see the funny posture of my sleeping cat, I cannot be without taking a picture.
+    competing_grammar:
+      - competing_japanese:
+          - 寝 て いる 猫 の 面白い 格好 を 見る と、写真 を 撮っ {て しまう}。
+        english: When I see my sleeping cat in a funny pose, I end up taking a picture.
+        hint: 「～てしまう」 often implies an unintended or completed action. We're looking for an irresistible
+          impulse due to overwhelming charm.
+    scene: A young woman is browsing social media and sees a friend's post of an incredibly cute cat.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The casual phrasing and the content (cute cat) are typical for a female speaker sharing personal
+      anecdotes with friends. While there's no specific Japanese element solely tied to female speech
+      here, the overall context aligns with typical casual conversation among women.
+    etymology: The Japanese word for 'cat', 猫 (neko), is an ancient word with roots dating back to the
+      Old Japanese period. Its origin is said to come from '寝子' (ne-ko), meaning 'sleeping child', referring
+      to their tendency to sleep often. Another theory links it to '鳴く' (naku, to cry) combined with '子'
+      (ko, child), though this is less commonly accepted.
+  - english: After watching that sad movie, I couldn't help but think about it.
+    japanese:
+      - その 悲しい 映画 を 見 終わっ た 後、{考え ない で は い られ なかっ た}。
+      - その 悲しい 映画 を 見 終わっ た 後、{考え ない で は い られ ませ ん} でし た。
+      - その 悲しい 映画 を 見 終わっ た 後、{考え ない で は い られ ない}。
+      - その 悲しい 映画 を 見 終わっ た 後、{考え ない で は い られ ませ ん}。
+      - その 悲しい 映画 を 見 終わっ た 後、考え {ず に は い られ なかっ た}。
+      - その 悲しい 映画 を 見 終わっ た 後、考え {ず に は い られ ませ ん} でし た。
+      - その 悲しい 映画 を 見 終わっ た 後、考え {ず に は い られ ない}。
+      - その 悲しい 映画 を 見 終わっ た 後、考え {ず に は い られ ませ ん}。
+    english_literally: After finishing watching that sad movie, I could not be without thinking.
+    competing_grammar:
+      - competing_japanese:
+          - その 悲しい 映画 を 見 終わっ た 後、考え {て しまっ た}。
+        english: After watching that sad movie, I ended up thinking about it.
+        hint: 「～てしまう」 suggests an unintended or completed thought. We're looking for a persistent, involuntary
+          mental engagement.
+    scene: A thoughtful individual has just finished a deeply moving film and finds their mind still processing
+      its themes hours later.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+  - english: If I see a limited edition sweet, I just can't help but buy it.
+    japanese:
+      - 限定 品 の スイーツ を 見 たら、{買わ ない で は い られ ない}。
+      - 限定 品 の スイーツ を 見 たら、{買わ ない で は い られ ませ ん}。
+      - 限定 品 の スイーツ を 見 たら、{買わ ない で は い られ なかっ た}。
+      - 限定 品 の スイーツ を 見 たら、{買わ ない で は い られ ませ ん} でし た。
+      - 限定 品 の スイーツ を 見 たら、買わ {ず に は い られ ない}。
+      - 限定 品 の スイーツ を 見 たら、買わ {ず に は い られ ませ ん}。
+      - 限定 品 の スイーツ を 見 たら、買わ {ず に は い られ なかっ た}。
+      - 限定 品 の スイーツ を 見 たら、買わ {ず に は い られ ませ ん} でし た。
+    english_literally: If I see a limited edition sweet, I cannot be without buying it.
+    competing_grammar:
+      - competing_japanese:
+          - 限定 品 の スイーツ を 見 たら、買っ {て しまう}。
+        english: If I see a limited edition sweet, I end up buying it.
+        hint: 「～てしまう」 implies an unintended action or completion. We're looking for an irresistible compulsion
+          to buy.
+    scene: A self-proclaimed sweet tooth is walking through a department store's food section and spots
+      a new, exclusive dessert.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+  - english: When I see my child working so hard, I can't help but cheer them on.
+    japanese:
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、{応援 し ない で は い られ ない}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、{応援 し ない で は い られ ませ ん}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、{応援 し ない で は い られ なかっ た}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、{応援 し ない で は い られ ませ ん} でし た。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、応援 せ {ず に は い られ ない}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、応援 せ {ず に は い られ ませ ん}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、応援 せ {ず に は い られ なかっ た}。
+      - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、応援 せ {ず に は い られ ませ ん} でし た。
+    english_literally: When I see my child working hard, I cannot be without cheering them on.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 一生 懸命 頑張っ て いる 姿 を 見る と、応援 し {て しまう}。
+        english: When I see my child working so hard, I end up cheering them on.
+        hint: 「～てしまう」 implies an unintended action. We're looking for an unavoidable, deeply felt compulsion
+          stemming from love and pride.
+    scene: A parent is watching their son practice for a school sports event, noticing his intense dedication.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The nuance conveyed here is the natural, almost automatic, response of a parent (implied older
+      male) witnessing their child's earnest efforts. While the Japanese itself is gender-neutral, the
+      scenario of a father expressing deep support for his child is common and highlights a deeply felt,
+      uncontrollable urge to encourage.
+    etymology: The word 「一生懸命」 (isshoukenmei) literally means 'with all one's might' or 'as hard as one
+      can'. Its origin is said to come from the feudal era, when samurai were granted land (一所, issho)
+      to live on, and they would defend it desperately (懸命, kenmei) against enemies. So, literally 'to
+      risk one's life over one's granted place'.
+  - english: When someone greets you politely every day, you can't help but feel favorably towards them,
+      can't you?
+    japanese:
+      - 毎日 丁寧 に 挨拶 さ れる と、{好感 を 抱か ない で は い られ ない} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、{好感 を 抱か ない で は い られ ませ ん} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、{好感 を 抱か ない で は い られ なかっ た} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、{好感 を 抱か ない で は い られ ませ ん} でし た です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、好感 を 抱か {ず に は い られ ない} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、好感 を 抱か {ず に は い られ ませ ん} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、好感 を 抱か {ず に は い られ なかっ た} です よ ね。
+      - 毎日 丁寧 に 挨拶 さ れる と、好感 を 抱か {ず に は い られ ませ ん} でし た です よ ね。
+    english_literally: When I am greeted politely every day, I cannot be without holding favorable feelings,
+      can't I?
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 丁寧 に 挨拶 さ れる と、好感 を 抱い {て しまい ます} です よ ね。
+        english: When someone greets you politely every day, you end up feeling favorably towards them,
+          don't you?
+        hint: 「～てしまう」 can imply an unintended or regrettable outcome. We're looking for an unavoidable
+          and strong positive emotional response.
+    scene: Two colleagues are discussing a new team member who always greets everyone cheerfully and respectfully.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: After listening to that wonderful performance, I couldn't help but be deeply moved.
+    japanese:
+      - あの 素晴らしい 演奏 を 聴い て、{感動 し ない で は い られ なかっ た}。
+      - あの 素晴らしい 演奏 を 聴い て、{感動 し ない で は い られ ませ ん} でし た。
+      - あの 素晴らしい 演奏 を 聴い て、{感動 し ない で は い られ ない}。
+      - あの 素晴らしい 演奏 を 聴い て、{感動 し ない で は い られ ませ ん}。
+      - あの 素晴らしい 演奏 を 聴い て、感動 せ {ず に は い られ なかっ た}。
+      - あの 素晴らしい 演奏 を 聴い て、感動 せ {ず に は い られ ませ ん} でし た。
+      - あの 素晴らしい 演奏 を 聴い て、感動 せ {ず に は い られ ない}。
+      - あの 素晴らしい 演奏 を 聴い て、感動 せ {ず に は い られ ませ ん} でし た。
+    english_literally: After listening to that wonderful performance, I could not be without being deeply
+      moved.
+    competing_grammar:
+      - competing_japanese:
+          - あの 素晴らしい 演奏 を 聴い て、感動 し {て しまっ た}。
+        english: After listening to that wonderful performance, I ended up being deeply moved.
+        hint: 「～てしまう」 can imply an unintended or regrettable outcome. We're looking for an overwhelming
+          and involuntary emotional response.
+    scene: A music critic, usually reserved, finds themselves profoundly affected by a concert that exceeded
+      all expectations.
+    register: formal
+    setting: academic
+    conjugation: negative past plain (～なかった)
+post_example_writeup: As you can see from these examples, 「ずにはいられない / ないではいられない」 are used to describe
+  an internal, often emotional, compulsion that makes it impossible to refrain from an action or feeling.
+  They highlight that the speaker is powerless to prevent a certain action or emotion from occurring due
+  to their internal state.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ずにはいられない

@@ -1,0 +1,423 @@
+grammar_point: かな (I wonder)
+learn_before:
+  - なあ (emotional emphasis)
+meaning: I wonder...
+pronunciation:
+  katakana: カナ
+  romaji: kana
+formation:
+  Statement + かな: Expresses a question or doubt to oneself; wondering about something.
+jlpt: N4
+etymology: 「かな」 is derived from a combination of the sentence-ending particles 「か」 (used to pose questions)
+  and 「な」 (used to express personal thoughts or opinions). Over time, these particles merged to form 「かな」,
+  a single particle indicating the speaker is questioning their own thoughts or expressing a sense of
+  wonder.
+writeup: The particle 「かな」 is used at the end of a sentence to express a question or doubt to oneself,
+  similar to "I wonder..." in English. It is used when the speaker is pondering something and seeking
+  confirmation or expressing uncertainty. While it was once considered more feminine, 「かな」 is now used
+  by both men and women equally in modern Japanese.
+false_friends:
+  - term: かしら
+    meaning: I wonder
+    kind: synonym
+    nuance: 「かしら」 is similar to 「かな」 but often used by women. It can also sound more uncertain or delicate
+      than 「かな」.
+    grammar_point: かしら (soft uncertainty・female)
+  - term: 〜のだろうか
+    meaning: I wonder...
+    kind: synonym
+    nuance: 「〜のだろうか」 is a more formal and often more emphatic way of expressing "I wonder." It often implies
+      a deeper level of contemplation than 「かな」.
+    grammar_point: のだろうか (I wonder)
+  - term: はたして
+    meaning: Wonder if ~ (really)?, Wonder how ~ (actually)?, Sure enough, As expected
+    kind: synonym
+    nuance: 「はたして」 is used to express doubt or uncertainty and is often used when questioning the truth
+      or validity of something. It can also mean "as expected".
+    grammar_point: はたして (really; as expected)
+  - term: だろう
+    meaning: Probably, isn't it?, I think
+    kind: similar expression
+    nuance: While 「かな」 expresses a personal, often softer, internal wonder, 「だろう」 (or 「でしょう」 for polite
+      form) states a conjecture or probability directly. 「かな」 questions the speaker's own thought, whereas
+      「だろう」 expresses a thought about an external reality or another person's state.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: かと思ったら
+    meaning: Just when I thought..., No sooner than..., Then again
+    kind: often confused with
+    nuance: While 「かな」 expresses personal wonder, 「かと思ったら」 indicates an unexpected or sudden change of
+      event, implying 'just when I thought X, Y happened'. The 'かと思う' part might cause confusion, but
+      the overall function is different.
+    grammar_point: かと思ったら・かと思うと (unexpected succession)
+  - term: そう
+    meaning: Looks like, Appears, Seems, Have a feeling that
+    kind: similar expression
+    nuance: 「かな」 expresses internal wondering or doubt. 「〜そう」 is used to describe something that appears
+      or seems to be a certain way based on external observation, or to report hearsay. While both involve
+      conjecture, the source and nuance differ.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: While 「かしら」, 「〜のだろうか」, and 「はたして」 share a similar meaning to 「かな」, they have
+  different nuances and contexts. 「かしら」 is often feminine and more delicate. 「〜のだろうか」 is more formal and
+  emphatic, implying a deeper contemplation. 「はたして」 emphasizes strong doubt or confirmation of expectations.
+  「だろう」 directly states a conjecture, unlike 「かな」 which questions one's own thoughts. 「かと思ったら」 indicates
+  an an unexpected turn of events, not personal wondering. 「〜そう」 describes appearances or hearsay, distinct
+  from internal pondering.
+examples:
+  - english: That dog is shaking in the park, I wonder if it's cold.
+    japanese:
+      - 公園 で あの 犬 が 震え て いる けど、寒い の {か な}。
+      - 公園 で あの 犬 が 震え て いる けど、寒い の {か なあ}。
+    english_literally: In the park that dog is shaking, but is it cold, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 で あの 犬 が 震え て いる けど、寒い の {かしら}。
+        english: That dog is shaking in the park, I wonder if it's cold.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - 公園 で あの 犬 が 震え て いる けど、寒い の {だろう か}。
+        english: That dog is shaking in the park, I wonder if it's cold.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - 公園 で あの 犬 が 震え て いる けど、{はたして} 寒い の だろう か。
+        english: That dog is shaking in the park, I wonder if it's really cold (with strong doubt).
+        hint: 「はたして」 emphasizes a strong sense of doubt or an uncertain outcome, often used when questioning
+          the reality or certainty of a situation. We're looking for a simple internal wonder.
+      - competing_japanese:
+          - 公園 で あの 犬 が 震え て いる から、寒い {だろう}。
+        english: That dog is shaking in the park, so it's probably cold.
+        hint: 「だろう」 states a probability based on observation, rather than expressing a personal wonder
+          or question. We're looking for internal wondering.
+      - competing_japanese:
+          - 公園 で あの 犬 が 震え て いる、寒い {そう だ}。
+        english: That dog is shaking in the park; it looks cold.
+        hint: 「〜そうだ」 expresses that something appears or seems to be a certain way based on observation.
+          「かな」 expresses personal wonder. We're looking for internal wondering.
+    scene: A person observes a shivering dog in a park.
+    register: casual
+    setting: sympathetic
+  - english: I wonder if all the books will fit in this box.
+    japanese:
+      - この 箱 に 全部 の 本 が 入る {か な}。
+      - この 箱 に 全部 の 本 が 入る {か なあ}。
+    english_literally: Into this box all of the books will fit, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 に 全部 の 本 が 入る {かしら}。
+        english: I wonder if all the books will fit in this box.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - この 箱 に 全部 の 本 が 入る の {だろう か}。
+        english: I wonder if all the books will fit in this box.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} この 箱 に 全部 の 本 が 入る の だろう か。'
+        english: I wonder if all the books will really fit in this box (with strong doubt).
+        hint: 「はたして」 adds a strong sense of doubt regarding whether a predicted outcome will actually
+          occur. We're looking for a simple internal question.
+      - competing_japanese:
+          - この 箱 に 全部 の 本 が 入る {だろう}。
+        english: All the books will probably fit in this box.
+        hint: 「だろう」 expresses a direct conjecture or expectation. 「かな」 expresses internal wonder or slight
+          uncertainty. We're looking for an internal question.
+      - competing_japanese:
+          - この 箱 に 全部 の 本 が 入り {ます か}。
+        english: Will all the books fit in this box?
+        hint: 「〜ますか」 is a direct question posed to someone else. 「かな」 is used for self-reflection. We're
+          looking for an internal deliberation.
+    scene: Someone is packing books into a box, unsure if everything will fit.
+    register: casual
+    setting: technical
+  - english: I wonder if he really likes me.
+    japanese:
+      - 彼 は 本当 に 私 を 好き な の {か な}。
+      - 彼 は 本当 に 私 を 好き な の {か なあ}。
+    english_literally: He really me likes, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 本当 に 私 を 好き な の {かしら}。
+        english: I wonder if he really likes me.
+        hint: 「かしら」 is a common choice for female speakers to express wonder, often conveying a slightly
+          softer or more introspective feeling than 「かな」. We're looking for a generally gender-neutral
+          internal wonder.
+      - competing_japanese:
+          - 彼 は 本当 に 私 を 好き な の {だろう か}。
+        english: I wonder if he really likes me.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 彼 は 本当 に 私 を 好き な の だろう か。'
+        english: I wonder if he really likes me (with strong doubt about the truth).
+        hint: 「はたして」 adds a strong sense of doubt, often questioning the veracity or reality of a statement.
+          We're looking for a simple internal wonder.
+      - competing_japanese:
+          - 彼 は 本当 に 私 を 好き {です か}。
+        english: Does he really likes me?
+        hint: 「〜ですか」 forms a direct question to another person. 「かな」 expresses an internal question or
+          wonder. We're looking for a self-reflection.
+      - competing_japanese:
+          - 彼 は 本当 に 私 を 好き {だろう}。
+        english: He probably really likes me.
+        hint: 「だろう」 expresses a direct conjecture about someone else's feelings. 「かな」 expresses personal
+          wonder about their feelings. We're looking for a self-reflection.
+    scene: A young woman is contemplating her new boyfriend's feelings.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of 「かな」 softens the internal questioning, making it sound more like a hopeful or slightly
+      anxious personal rumination common in romantic contexts. This is a common way for female speakers
+      to express such introspective thoughts.
+  - english: I wonder if she really believes that story.
+    japanese:
+      - 彼女 は 本当 に その 話 を 信じ て いる の {か な}。
+      - 彼女 は 本当 に その 話 を 信じ て いる の {か なあ}。
+    english_literally: She really that story believes, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 本当 に その 話 を 信じ て いる の {かしら}。
+        english: I wonder if she really believes that story.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - 彼女 は 本当 に その 話 を 信じ て いる の {だろう か}。
+        english: I wonder if she really believes that story.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 彼女 は 本当 に その 話 を 信じ て いる の だろう か。'
+        english: I wonder if she really believes that story (with strong doubt about the truth).
+        hint: 「はたして」 adds a strong sense of doubt, often questioning the veracity or reality of a statement.
+          We're looking for a casual internal skepticism.
+      - competing_japanese:
+          - 彼女 は 本当 に その 話 を 信じ て いる の {です か}。
+        english: Does she really believe that story?
+        hint: 「〜のですか」 is a direct question asking for confirmation or explanation from another person.
+          「かな」 indicates an internal doubt or wonder. We're looking for a self-question.
+      - competing_japanese:
+          - 彼女 は 本当 に その 話 を 信じ て いる {だろう}。
+        english: She probably really believes that story.
+        hint: 「だろう」 expresses a direct conjecture about someone else's belief. 「かな」 expresses internal
+          wonder or skepticism. We're looking for an internal self-question.
+    scene: A friend is discussing a dubious rumor and one person expresses internal doubt about another
+      friend's gullibility.
+    register: casual
+    setting: serious
+  - english: I wonder if the rain will stop soon.
+    japanese:
+      - 雨、もう すぐ 止む {か な}。
+      - 雨、もう すぐ 止む {か なあ}。
+    english_literally: Rain, soon stop, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 雨、もう すぐ 止む {かしら}。
+        english: I wonder if the rain will stop soon.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - 雨、もう すぐ 止む の {だろう か}。
+        english: I wonder if the rain will stop soon.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 雨 は もう すぐ 止む の だろう か。'
+        english: I wonder if the rain will really stop soon (with strong doubt about the outcome).
+        hint: 「はたして」 adds a strong sense of doubt about a predicted outcome actually happening. We're
+          looking for an internal wish or speculation.
+      - competing_japanese:
+          - 雨、もう すぐ 止み {ます か}。
+        english: Will the rain stop soon?
+        hint: 「〜ますか」 is a direct question to someone else. 「かな」 conveys an internal wish or speculation.
+          We're looking for self-addressed wondering.
+      - competing_japanese:
+          - 雨、もう すぐ 止む {だろう}。
+        english: The rain will probably stop soon.
+        hint: 「だろう」 expresses a direct conjecture or prediction. 「かな」 expresses a personal wonder or hope.
+          We're looking for a soft, internal speculation.
+    scene: Standing by a window, watching the rain and hoping it clears up.
+    register: casual
+    setting: optimistic
+  - english: I wonder if I should go on a trip next week.
+    japanese:
+      - 来週、旅行 に 行こう {か な}。
+      - 来週、旅行 に 行こう {か なあ}。
+    english_literally: Next week, trip to go, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 来週、旅行 に 行こう {かしら}。
+        english: I wonder if I should go on a trip next week.
+        hint: 「かしら」 with the volitional form is often used by female speakers to suggest something to
+          oneself, carrying a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - 来週、旅行 に 行く の {だろう か}。
+        english: I wonder if I will go on a trip next week.
+        hint: 「〜のだろうか」 expresses a deeper or more objective inquiry about a future event, whereas 「かな」
+          with the volitional form is a softer, more personal pondering about one's own intention.
+      - competing_japanese:
+          - '{はたして} 来週、旅行 に 行ける の だろう か。'
+        english: I wonder if I will really be able to go on a trip next week (with strong doubt about
+          ability).
+        hint: 「はたして」 expresses a strong sense of doubt about the possibility or outcome of an action.
+          The original 「かな」 is a simple, casual pondering about a plan.
+      - competing_japanese:
+          - 来週、旅行 に 行き {ます か}。
+        english: Will you go on a trip next week?
+        hint: 「〜ますか」 is a direct question to another person. 「かな」 (with volitional) expresses pondering
+          one's own intention. We're looking for a personal consideration.
+      - competing_japanese:
+          - 来週、旅行 に 行く {べき です か}。
+        english: Should I go on a trip next week?
+        hint: 「〜べきですか」 asks for advice on what one ought to do. 「かな」 is a personal consideration of options.
+          We're looking for a personal deliberation, not seeking explicit advice.
+    scene: A person is planning their free time and considering options for a trip.
+    register: casual
+    setting: reflective
+  - english: I wonder if the test will finish without incident.
+    japanese:
+      - テスト、無事 に 終わる {か な}。
+      - テスト、無事 に 終わる {か なあ}。
+    english_literally: Test, safely finish, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - テスト、無事 に 終わる {かしら}。
+        english: I wonder if the test will finish without incident.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - テスト、無事 に 終わる の {だろう か}。
+        english: I wonder if the test will finish without incident.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} テスト は 無事 に 終わる の だろう か。'
+        english: I wonder if the test will really finish without incident (with strong doubt about the
+          outcome).
+        hint: 「はたして」 adds a strong sense of doubt about a predicted outcome actually happening. We're
+          looking for a soft, internal anxiety.
+      - competing_japanese:
+          - テスト、無事 に 終わる {の か}。
+        english: Will the test finish without incident?
+        hint: 「〜のか」 is a more direct or assertive internal question, sometimes implying a search for understanding
+          or confirmation. 「かな」 expresses a softer, more anxious internal hope. We're looking for a soft,
+          internal anxiety.
+      - competing_japanese:
+          - テスト が 無事 に 終わる {だろう}。
+        english: The test will probably finish without incident.
+        hint: 「だろう」 expresses a direct conjecture or prediction. 「かな」 expresses internal anxiety or hope.
+          We're looking for a soft, internal anxiety.
+    scene: A student is about to take a difficult exam and feels anxious.
+    register: casual
+    setting: cautious
+  - english: I wonder if there's still money in my wallet.
+    japanese:
+      - 財布 の 中 に お 金、まだ ある {か な}。
+      - 財布 の 中 に お 金、まだ ある {か なあ}。
+    english_literally: Wallet's inside money, still exists, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 の 中 に お 金、まだ ある {かしら}。
+        english: I wonder if there's still money in my wallet.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」.
+      - competing_japanese:
+          - 財布 の 中 に お 金、まだ ある の {だろう か}。
+        english: I wonder if there's still money in my wallet.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 財布 の 中 に まだ お 金 が ある の だろう か。'
+        english: I wonder if there's really still money in my wallet (with strong doubt about its presence).
+        hint: 「はたして」 adds a strong sense of doubt about the truth or existence of something. We're looking
+          for an internal check.
+      - competing_japanese:
+          - 財布 の 中 に お 金、まだ あり {ます か}。
+        english: Is there still money in my wallet?
+        hint: 「〜ますか」 is a direct question to someone else. 「かな」 is for internal self-checking. We're looking
+          for an internal check.
+      - competing_japanese:
+          - 財布 の 中 に お 金 が ある {だろう}。
+        english: There's probably money in my wallet.
+        hint: 「だろう」 expresses a direct conjecture about the presence of money. 「かな」 expresses a personal
+          wondering or checking. We're looking for an internal check.
+    scene: Before going shopping, someone checks their wallet, unsure about their funds.
+    register: casual
+    setting: cautious
+  - english: I wonder what kind of present I'll get for my birthday.
+    japanese:
+      - 誕生 日 に 何 の プレゼント を もらえる {か な}。
+      - 誕生 日 に 何 の プレゼント を もらえる {か なあ}。
+    english_literally: On birthday, what kind of present I will receive, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 誕生 日 に 何 の プレゼント を もらえる {かしら}。
+        english: I wonder what kind of present I'll get for my birthday.
+        hint: 「かしら」 often carries a more feminine or delicate nuance compared to 「かな」, and is common for
+          children or young women expressing wonder.
+      - competing_japanese:
+          - 誕生 日 に 何 の プレゼント を もらえる の {だろう か}。
+        english: I wonder what kind of present I'll get for my birthday.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 誕生 日 に 良い プレゼント を もらえる の だろう か。'
+        english: I wonder if I will really get a good present for my birthday (with strong doubt).
+        hint: 「はたして」 emphasizes a strong sense of doubt about the quality or outcome of receiving something.
+          We're looking for excited internal anticipation.
+      - competing_japanese:
+          - 誕生 日 に 何 の プレゼント を もらい {ます か}。
+        english: What kind of present will I get for my birthday?
+        hint: 「〜ますか」 is a direct question to someone else. 「かな」 conveys excited internal anticipation.
+          We're looking for an internal wonder.
+      - competing_japanese:
+          - 誕生 日 に 何 の プレゼント を もらえる {だろう}。
+        english: I will probably get some kind of present for my birthday.
+        hint: 「だろう」 expresses a direct conjecture about receiving a present. 「かな」 expresses excited personal
+          wonder. We're looking for excited internal anticipation.
+    scene: A child excitedly thinks about their upcoming birthday.
+    register: casual
+    setting: excited
+  - english: I wonder where we should go on our next date.
+    japanese:
+      - 今度 の デート、どこ に 行こう {か な}。
+      - 今度 の デート、どこ に 行こう {か なあ}。
+    english_literally: Next date, where to go, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 今度 の デート、どこ に 行こう {かしら}。
+        english: I wonder where we should go on our next date.
+        hint: 「かしら」 with the volitional form is typically used by female speakers to express a softer,
+          often more introspective thought about a suggestion or intention. We're looking for a male speaker's
+          casual self-question.
+      - competing_japanese:
+          - 今度 の デート、どこ に 行く の {だろう か}。
+        english: I wonder where we will go on our next date.
+        hint: 「〜のだろうか」 implies a deeper, more formal contemplation or search for an explanation, while
+          「かな」 is a simpler, more casual self-question.
+      - competing_japanese:
+          - '{はたして} 今度 の デート は 成功 する の だろう か。'
+        english: I wonder if the next date will actually succeed.
+        hint: 「はたして」 expresses a strong doubt about the outcome or reality of a situation. The original
+          「かな」 is a simple, casual pondering about a plan.
+      - competing_japanese:
+          - 今度 の デート、どこ に 行き {ます か}。
+        english: Where will we go on our next date?
+        hint: 「〜ますか」 is a direct question seeking an answer from another person. 「かな」 (with volitional)
+          is an indirect, softer suggestion or internal pondering. We're looking for a subtle, indirect
+          suggestion.
+      - competing_japanese:
+          - 今度 の デート、どこ に 行こう {と 思い ます か}。
+        english: Where do you think we should go on our next date?
+        hint: 「〜と思いますか」 directly asks for another person's opinion or thought. 「かな」 is a self-addressed
+          wonder that can subtly invite a response without explicitly asking. We're looking for a casual,
+          playful tone that indirectly invites a response.
+    scene: A man speaking to a woman he is interested in, subtly suggesting another date.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses 「かな」 with the volitional form (行こう) to soften the suggestion of a next
+      date, making it less of a direct proposal and more of an open-ended, pondering thought. This indirectness
+      allows the listener to respond more easily, a common tactic in Japanese courtship. 「今度」 refers to
+      the next time.
+post_example_writeup: 「かな」 is a versatile particle that allows speakers to express internal questioning
+  or soft conjecture. Its casual nature makes it suitable for everyday conversations, self-talk, or even
+  gentle suggestions, avoiding the directness or formality of other interrogative expressions. The lengthier
+  「かなあ」 often conveys a stronger, more drawn-out sense of wondering or desire.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/572

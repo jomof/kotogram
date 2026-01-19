@@ -1,0 +1,521 @@
+grammar_point: ざるを得ない (have no choice but to)
+learn_before:
+  - ざる (classical attributive negation)
+  - ろくに〜ない (not properly)
+  - 連用形 (formal conjunctive)
+meaning: Can't help doing, have no choice but to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ざるを得ない
+    rarity: common
+    meaning: cannot help doing, have no choice but to do
+  - conjugation-type: non-past polite (～ます)
+    form: ざるを得ません
+    rarity: common
+    meaning: cannot help doing (polite), have no choice but to do (polite)
+  - conjugation-type: past plain (～た)
+    form: ざるを得なかった
+    rarity: common
+    meaning: could not help doing, had no choice but to do
+  - conjugation-type: past polite (～ました)
+    form: ざるを得ませんでした
+    rarity: common
+    meaning: could not help doing (polite), had no choice but to do (polite)
+  - conjugation-type: te-form (～て)
+    form: ざるを得なくて
+    rarity: less common
+    meaning: not being able to help doing, having no choice but to do (te-form)
+  - conjugation-type: conditional (～ば)
+    form: ざるを得なければ
+    rarity: less common
+    meaning: if one cannot help doing, if one has no choice but to do
+  - conjugation-type: conditional (～たら)
+    form: ざるを得なかったら
+    rarity: less common
+    meaning: if one could not help doing, if one had no choice but to do
+pronunciation:
+  katakana: ザルヲエナイ
+  romaji: zaru o enai
+formation:
+  V[ない-form without ない] + ざるを得ない: Indicates that one has no choice but to do something.
+  する → せざるを得ない: Exception for 'suru' verb. 'せざるを得ない' is used instead of 'しざるを得ない'.
+  くる → こざるを得ない: Exception for 'くる' verb. 'こざるを得ない' is used instead of 'きざるを得ない'.
+jlpt: N2
+etymology: 「ざるを得ない」 comes from combining 「ざる」, which is an old-fashioned 連体形 (attributive form) of the
+  auxiliary verb 「ず」 (similar to 「ない」, indicating negation), with 「得る (える)」 (to get, to obtain) and 「ない」
+  (not). The literal meaning is close to "can't help but do," expressing a lack of alternatives.
+writeup: |-
+  The grammar point 「ざるを得ない」 expresses that one has no choice but to do something. It conveys a sense of obligation or inevitability. The construction is formal and is often used in writing or in serious conversations.
+
+  **Key Points:**
+  *   「ざる」 is an old-fashioned equivalent to 「ない」.
+  *   This construction uses the `ない` form of a verb, dropping the final `ない`.
+  *   For `する` verbs, 「せざるを得ない」 is used instead of 「しざるを得ない」.
+  *   For `来る` (くる), 「こざるを得ない」 is used instead of 「きざるを得ない」.
+false_friends:
+  - term: てならない
+    meaning: Very, extremely, can't help but do
+    kind: similar expression
+    nuance: Unlike 「ざるを得ない」, 「てならない」 often expresses a strong emotional feeling or desire.
+    grammar_point: てならない (cannot help but feel)
+  - term: ないわけにはいかない
+    meaning: Can't not, no way to avoid
+    kind: similar expression
+    nuance: 「ないわけにはいかない」 is similar in meaning but can sometimes imply a stronger sense of personal obligation
+      compared to the more detached tone of 「ざるを得ない」.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: てたまらない
+    meaning: Very, Extremely, Can't help but want to
+    kind: similar expression
+    nuance: Unlike 「ざるを得ない」, 「てたまらない」 primarily expresses an intense, often uncontrollable, emotional
+      state or desire, not a situational obligation.
+    grammar_point: てならない (cannot help but feel)
+  - term: てしょうがない
+    meaning: Extremely, very, really; it can't be helped
+    kind: similar expression
+    nuance: While 「てしょうがない」 can express that something 'can't be helped', it typically refers to an intense,
+      often uncontrollable, emotional state or desire, not a lack of external options as in 「ざるを得ない」.
+    grammar_point: てならない (cannot help but feel)
+  - term: しかない
+    meaning: Have no choice but, only, just
+    kind: similar expression
+    nuance: 「しかない」 emphasizes the lack of alternatives, whereas 「ざるを得ない」 focuses more on the obligation
+      or inevitability of the action.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: ずにはいられない
+    meaning: Cannot help doing something, cannot resist doing something
+    kind: similar expression
+    nuance: 「ずにはいられない」 conveys a sense of irresistibility or compulsion, while 「ざるを得ない」 highlights the
+      absence of choice.
+    grammar_point: '[Verb-ない form]ずにはいられない・ないではいられない (cannot help but do)'
+post_false_friends_writeup: While expressions like 「てならない」, 「てたまらない」, and 「てしょうがない」 indicate strong, often
+  uncontrollable, internal feelings or states, and 「ずにはいられない」 expresses an irresistible urge, 「ざるを得ない」
+  specifically emphasizes an action that is unavoidable due to external circumstances or a lack of alternatives.
+  Similarly, 「ないわけにはいかない」 and 「しかない」 convey a sense of obligation or limited alternatives, but 「ざるを得ない」
+  often carries a more formal or resigned nuance, implying that one is compelled to act in a certain way,
+  despite any personal inclination.
+examples:
+  - english: Because the typhoon is approaching, I have no choice but to cancel the trip.
+    japanese:
+      - 台風 が 近づい て いる の で、旅行 を キャンセル {せ ざる を 得 ない}。
+      - 台風 が 近づい て おり ます の で、旅行 を キャンセル {せ ざる を 得 ませ ん}。
+      - 台風 接近 の ため、旅行 を キャンセル {せ ざる を 得 ない} 状況 です。
+    english_literally: Because typhoon is approaching, trip to cancel cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - キャンセル {し なけれ ば なら ない}
+        english: Must cancel
+        hint: While 「キャンセルしなければならない」 (must cancel) implies an obligation, the scene highlights a situation
+          where external circumstances make the cancellation an unavoidable conclusion, emphasizing the
+          lack of options inherent in 「ざるを得ない」. We're looking for a statement about a lack of choice given
+          the situation.
+      - competing_japanese:
+          - キャンセル {し ない と いけ ない}
+        english: Have to cancel
+        hint: Similarly, 「キャンセルしないといけない」 focuses on the personal requirement. The scene reinforces that
+          the speaker is bound by the superior's command, making the action unavoidable rather than just
+          a duty, as conveyed by 「ざるを得ない」. We're looking for a statement about a lack of choice given
+          the situation.
+      - competing_japanese:
+          - 旅行 を キャンセル {し ない わけ に は いか ない}。
+        english: Cannot not cancel the trip.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) expresses a strong obligation, 「ざるを得ない」 emphasizes
+          the unavoidable nature due to external circumstances. We're looking for a statement about a
+          lack of choice given the situation.
+      - competing_japanese:
+          - 旅行 を キャンセル {する しか ない}。
+        english: Have no choice but to cancel the trip.
+        hint: While 「～しかない」 (have no choice but) focuses on the lack of alternatives, 「ざるを得ない」 highlights
+          the external compulsion. We're looking for an expression of inevitability due to external factors.
+    scene: A person explaining why they need to cancel a planned trip.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: 「せざるを得ない」 is a more formal way to say 「しないといけない」 or 「しなければならない」. Using the kanji 「台風」 also
+      hints at a slightly higher register.
+  - english: I have no choice but to obey my boss's orders.
+    japanese:
+      - 上司 の 命令 に は、従わ {ざる を 得 ない}。
+      - 上司 の 命令 に は、従わ {ざる を 得 ませ ん}。
+      - 上司 の 命令 に は、従わ {ざる を え ませ ん}。
+    english_literally: Boss's order to, obey cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - '{従わ なけれ ば なら ない}'
+        english: Must obey
+        hint: While 「従わなければならない」 (must obey) simply states an obligation, the scene emphasizes the employee's
+          unwilling compliance due to a lack of power or alternative, which is precisely the nuance of
+          「ざるを得ない」. We're looking for a statement about an obligation imposed from outside.
+      - competing_japanese:
+          - '{従わ ない と いけ ない}'
+        english: Have to obey
+        hint: Similar to 「しなければならない」, 「従わないといけない」 focuses on the personal requirement. The scene reinforces
+          that the speaker is bound by the superior's command, making the action unavoidable rather than
+          just a duty, as conveyed by 「ざるを得ない」. We're looking for a statement about an obligation imposed
+          from outside.
+      - competing_japanese:
+          - 上司 の 命令 に は、{従わ ない わけ に は いか ない}。
+        english: Cannot not obey boss's orders.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) implies an an obligation one cannot avoid, 「ざるを得ない」
+          emphasizes being compelled by an external authority. We're looking for an statement of forced
+          compliance.
+      - competing_japanese:
+          - 上司 の 命令 に は、{従う しか ない}。
+        english: Have no choice but to obey boss's orders.
+        hint: While 「～しかない」 (have no choice but) focuses on the lack of other options, 「ざるを得ない」 conveys
+          a sense of resignation to an unavoidable command. We're looking for a statement about an obligation
+          imposed from outside.
+    scene: An employee explaining why they have to do something they don't want to.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: The sentence structure is fairly straightforward, conveying the sense of obligation in a formal
+      setting. 「上司の命令」 indicates the speaker's subordinate position.
+  - english: I had no choice but to work part-time to earn living expenses.
+    japanese:
+      - 生活 費 を 稼ぐ ため に、アルバイト を {せ ざる を 得 なかっ た}。
+      - 生活 費 を 稼ぐ ため に、アルバイト を {せ ざる を 得 ませ ん でし た}.
+    english_literally: Living expenses to earn for, part-time work to do cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - アルバイト を {し なけれ ば なら なかっ た}
+        english: Had to work part-time
+        hint: While 「アルバイトをしなければならなかった」 (had to work part-time) indicates past obligation, the scene of
+          reflecting on necessity underscores that there was no other feasible option to earn a living,
+          thereby emphasizing the inevitability captured by 「ざるを得なかった」. We're looking for a formal expression
+          of unavoidable past action.
+      - competing_japanese:
+          - アルバイト を {する しか なかっ た}
+        english: Had no choice but to work part-time
+        hint: While 「アルバイトをするしかなかった」 (have no choice but) indicates a lack of other options, 「ざるを得なかった」
+          carries a more formal tone and emphasizes the external compulsion. We're looking for a formal
+          expression of unavoidable past action.
+      - competing_japanese:
+          - アルバイト を {し ない わけ に は いか なかっ た}。
+        english: Cannot not work part-time.
+        hint: While 「～ないわけにはいかなかった」 (inevitable necessity) implies an unavoidable obligation, 「ざるを得なかった」
+          emphasizes the past situation where necessity left no alternative. We're looking for an expression
+          of past inevitability.
+    scene: Someone reflecting on a past necessity.
+    register: semi-formal
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: Using the past tense 「せざるを得なかった」 indicates a reflection on a past situation where there was
+      no other option. 「生活費」 adds context, explaining the reason behind the necessity.
+  - english: In this situation, everyone will have no choice but to attend the meeting.
+    japanese:
+      - この 状況 で は、誰 も が 会議 に 出席 {こ ざる を 得 ない} だろう。
+      - この 状況 下 で は、誰 も が 会議 に 出席 {こ ざる を 得 ない} でしょう。
+      - この 状況 で は、皆 が 会議 に 出席 {こ ざる を 得 ない}。
+    english_literally: In this situation, everyone is unable not to come to the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 に 出席 {し なけれ ば なら ない} だろう
+        english: Will probably have to attend the meeting
+        hint: While 「会議に出席しなければならないだろう」 expresses obligation, 「ざるを得ない」 highlights the overwhelming external
+          pressure and inevitability, making it a more fitting choice when the meeting is universally
+          unavoidable. We're looking for a formal expression of unavoidable attendance for all.
+      - competing_japanese:
+          - 会議 に 出席 {する しか ない} だろう
+        english: Probably have no choice but to attend the meeting
+        hint: While 「会議に出席するしかないだろう」 (have no choice but) also indicates no other choice, 「ざるを得ない」 carries
+          a slightly more formal and emphatic tone, stressing the absolute lack of alternative for *everyone*
+          present in this specific situation. We're looking for a formal expression of unavoidable attendance
+          for all.
+      - competing_japanese:
+          - 誰 も が 会議 に 出席 {し ない わけ に は いか ない} だろう。
+        english: Everyone cannot not attend the meeting.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) implies an unavoidable obligation, 「ざるを得ない」 highlights
+          the comprehensive inevitability for everyone. We're looking for an expression of universal compulsion.
+    scene: A manager discussing an important and mandatory meeting with a team.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「こざるを得ない」 highlights the special conjugation for verbs like `来る`. The phrase 「誰もが」
+      emphasizes the universal and unavoidable nature of attending the meeting for everyone involved.
+  - english: I can't help but fall in love with someone as wonderful as you.
+    japanese:
+      - こんな に 素晴らしい 君 を、好き に なら {ざる を 得 ない}。
+      - こんな に 素晴らしい 君 を、愛 さ {ざる を 得 ない}。
+      - こんな に 素敵 な あなた を、好き に なら {ざる を 得 ない} です。
+    english_literally: So wonderful you, to like cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - 好き に {なる しか ない}
+        english: Have no choice but to fall in love
+        hint: While 「好きになるしかない」 (have no choice but) suggests a lack of alternatives, the scene of a confession
+          implies an overwhelming, irresistible feeling. 「ざるを得ない」 beautifully captures this sense of being
+          compelled by emotion, rather than merely having no other option. We're looking for a statement
+          about being compelled to fall in love due to someone's qualities.
+      - competing_japanese:
+          - 好き で {たまら ない}
+        english: Can't help but like/love (extremely)
+        hint: 「好きでたまらない」 (unbearably extremely) expresses strong feelings, but 「ざるを得ない」 adds a layer of
+          inevitability and fatedness to the affection, fitting the dramatic nature of a confession where
+          one is truly powerless against their emotions. We're looking for a statement about being compelled
+          to fall in love due to someone's qualities.
+      - competing_japanese:
+          - 好き で {て なら ない}。
+        english: Can't help but like/love (very, extremely).
+        hint: While 「～てならない」 (uncontrollably feels) expresses a strong, uncontrollable internal feeling,
+          「ざるを得ない」 implies a logical or emotional compulsion that leaves no choice. We're looking for
+          a statement about being compelled to fall in love due to someone's qualities.
+      - competing_japanese:
+          - 好き に {なら ない わけ に は いか ない}。
+        english: Cannot not fall in love.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) implies an an obligation one cannot avoid, 「ざるを得ない」
+          here conveys a sense of being irresistibly drawn, as if by destiny. We're looking for an expression
+          of fated love.
+      - competing_japanese:
+          - 好き で {しょう が ない}。
+        english: Can't help but like/love (extremely).
+        hint: Similar to 「てたまらない」, 「～てしょうがない」 (uncontrollable feeling) expresses an uncontrollable feeling.
+          「ざるを得ない」 implies a lack of choice driven by the beloved's wonderful qualities. We're looking
+          for an expression of inescapable love.
+      - competing_japanese:
+          - 好き に {なら ず に は い られ ない}。
+        english: Cannot help but forgive her (irresistibly).
+        hint: While 「～ずにはいられない」 (cannot help but do) emphasizes an irresistible urge to forgive, 「ざるを得ない」
+          implies that falling in love is an unavoidable consequence of the other person's nature. We're
+          looking for an expression of love that is compelled by logic or inevitability.
+    scene: A man confessing his feelings to a woman.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「君」, used when a male is talking to a woman, and 「ざるを得ない」 adds a strong feeling of inevitability
+      and destiny.
+  - english: In this situation, we probably have no choice but to ask him for help.
+    japanese:
+      - この 状況 で は、彼 に 助け を 求め {ざる を 得 ない} でしょう。
+      - この 状況 で は、彼 に 助け を 求め {ざる を 得 ませ ん} でしょう。
+      - 現状 で は、彼 に 助け を 求め {ざる を 得 ない} です ね。
+    english_literally: This situation in, him to help to ask cannot avoid, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 助け を 求め {なけれ ば なら ない} でしょう
+        english: Probably have to ask for help
+        hint: While 「助けを求めなければならないでしょう」 (probably have to ask for help) indicates a necessary action,
+          the scene emphasizes the reluctance combined with the undeniable reality that there are no other
+          options, a key nuance of 「ざるを得ない」. We're looking for an expression of unavoidable action despite
+          hesitation.
+      - competing_japanese:
+          - 助け を 求める {しか ない} でしょう
+        english: Probably have no choice but to ask for help
+        hint: While 「助けを求めるしかないでしょう」 (have no choice but) points to a lack of alternatives, 「ざるを得ない」 implies
+          a resigned acceptance of an unavoidable course of action. We're looking for a nuanced expression
+          of having no practical option but to ask for help.
+      - competing_japanese:
+          - 彼 に 助け を 求め {ない わけ に は いか ない} でしょう。
+        english: Cannot not ask him for help, probably.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) implies an unavoidable obligation, 「ざるを得ない」 emphasizes
+          the reluctant acceptance due to the situation. We're looking for an expression of unavoidable
+          action despite hesitation.
+    scene: A person reluctantly considering asking someone for assistance.
+    register: formal
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    nuance: 「でしょう」 softens the statement, indicating consideration and politeness while acknowledging
+      the lack of alternatives. The kanji usage suggests a formal setting.
+  - english: Because it's a request from an important client, we have no choice but to accept it, even
+      if it's difficult.
+    japanese:
+      - 大切 な 顧客 から の 依頼 な の で、無理 を し て で も 引き受け {ざる を 得 ませ ん}。
+      - 重要 な 顧客 から の 依頼 です の で、無理 を し て で も 引き受け {せ ざる を 得 ませ ん}。
+      - 大事 な お 客 様 から の 依頼 な の で、無理 を し て で も 引き受け {せ ざる を 得 ない} です。
+    english_literally: Important client from request is, so, strain doing even, accept cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - '{引き受け なけれ ば なり ませ ん}'
+        english: Must accept
+        hint: While 「引き受けなければなりません」 (must accept) expresses obligation, the scene of a business person
+          facing a challenging client request highlights the external pressure and inevitability of acceptance,
+          even if difficult, aligning perfectly with the nuance of 「ざるを得ません」. We're looking for a polite
+          expression of unavoidable acceptance in a business context.
+      - competing_japanese:
+          - '{引き受ける しか あり ませ ん}'
+        english: Have no choice but to accept
+        hint: While 「引き受けるしかありません」 (have no choice but) is close, the scene focuses on the external imperative
+          from an important client, rather than a mere lack of alternatives, thus foregrounding the unavoidable
+          nature conveyed by 「ざるを得ません」. We're looking for a polite expression of unavoidable acceptance
+          in a business context.
+      - competing_japanese:
+          - '{引き受け ない わけ に は いき ませ ん}。'
+        english: Cannot not accept.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) indicates an obligation one cannot avoid, 「ざるを得ない」
+          emphasizes that compliance is strictly due to an external company rule. We're looking for a
+          statement about being compelled to accept due to client importance.
+    scene: A business person explaining why they have to take on a challenging task.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: Using 「～ざるを得ません」 makes it sound like a business professional talking to their coworkers or
+      boss. In particular, it is formal and polite so you would use it to talk with people above you.
+  - english: If she asks so much, I guess I have no choice but to forgive her.
+    japanese:
+      - 彼女 が そんな に 頼む の なら、許し て やら {ざる を 得 ない} な。
+      - 彼女 が そこ まで 頼む の なら、許し て やら {ざる を 得 ない} な。
+      - 彼女 が そんな に 頼む なら、許さ {ざる を 得 ない} よ。
+    english_literally: She so much asks if, forgive give cannot avoid, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 許し て やる {しか ない} な
+        english: Have no choice but to forgive her, you know
+        hint: While 「許してやるしかないな」 (have no choice but) emphasizes the lack of other options, the scene
+          of a man reflecting on a persistent request highlights a sense of resignation and being compelled
+          by the woman's plea, making 「ざるを得ない」 more apt for conveying this unavoidable concession. We're
+          looking for an expression of unwilling yet unavoidable forgiveness.
+      - competing_japanese:
+          - 許し て やら {ない と いけ ない} な
+        english: Have to forgive her, you know
+        hint: While 「許してやらないといけないな」 (have to forgive) suggests a duty, the scene implies a situation where
+          the woman's insistence leaves no room for refusal, making 「ざるを得ない」 better suited for expressing
+          the unwilling yet unavoidable action. We're looking for an expression of unwilling yet unavoidable
+          forgiveness.
+      - competing_japanese:
+          - 彼女 が そんな に 頼む の なら、許し て やら {ない わけ に は いか ない} な。
+        english: If she asks so much, cannot not forgive her.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) suggests an an obligation one cannot avoid, 「ざるを得ない」
+          here conveys a sense of resigned concession given her persistent request. We're looking for
+          an expression of unwilling yet unavoidable forgiveness.
+      - competing_japanese:
+          - 彼女 が そんな に 頼む の なら、許し て やら {ず に は い られ ない} な。
+        english: If she asks so much, cannot help but forgive her (irresistibly).
+        hint: While 「～ずにはいられない」 (cannot help but do) emphasizes an irresistible urge to forgive, 「ざるを得ない」
+          implies that her repeated requests have made forgiveness the only possible outcome. We're looking
+          for an expression of being compelled to forgive due to her persistence.
+    scene: A man reflecting on a woman who has asked a big favor.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「～な」 at the end is a masculine sentence ending particle used to express emotion or conviction.
+      This, combined with 「彼女がそんなに頼むのなら」 makes it a male speaker.
+  - english: It's a company rule, so I have no choice but to submit this document, you know.
+    japanese:
+      - 会社 の 規則 な の で、この 書類 を 提出 {せ ざる を 得 ない} わ ね。
+      - 会社 の 規定 な の で、この 書類 を 提出 {せ ざる を 得 ない} です ね。
+      - 社内 規定 な の で、この 書類 を 提出 {せ ざる を 得 ない} の よ。
+    english_literally: Company's rule is, so, this document to submit cannot avoid, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 提出 {し なけれ ば なら ない} わ ね
+        english: Must submit, you know
+        hint: While 「提出しなければならないわね」 (must submit) implies an obligation, the scene emphasizes that the
+          action is compelled by an external, formal rule, making 「ざるを得ない」 a more suitable expression
+          for the unavoidable nature of the situation. We're looking for a statement about complying with
+          a rule despite it being burdensome.
+      - competing_japanese:
+          - 提出 {する しか ない} わ ね
+        english: Have no choice but to submit, you know
+        hint: Similar to 「提出するしかないわね」 (have no choice but) but 「ざるを得ない」 highlights the external rule as
+          the compelling factor, rather than merely the absence of alternatives, conveying a slightly
+          more formal and resigned tone in a professional context. We're looking for a statement about
+          complying with a rule despite it being burdensome.
+      - competing_japanese:
+          - 提出 {し ない わけ に は いか ない} わ ね。
+        english: Cannot not submit, you know.
+        hint: While 「～ないわけにはいかない」 (inevitable necessity) indicates an obligation one cannot avoid, 「ざるを得ない」
+          emphasizes that compliance is strictly due to an external company rule. We're looking for an
+          expression of unavoidable action imposed by regulation.
+    scene: A female employee explaining to a male colleague why she has to follow a certain procedure.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「～わね」 is characteristic of female speech, adding a softer, confirmatory tone. The
+      phrase 「会社の規則なので」 clearly states the external, unavoidable reason for the action.
+  - english: Given the evidence, we had no choice but to admit our mistake.
+    japanese:
+      - 証拠 が あっ た の で、自分 たち の 間違い を 認め {ざる を 得 なかっ た}。
+      - 証拠 が あっ た の で、我々 の 過ち を 認め {ざる を 得 ませ ん でし た}。
+    english_literally: Evidence existed so, ourselves' mistake to admit cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 たち の 間違い を 認め {なけれ ば なら なかっ た}
+        english: Had to admit our mistake
+        hint: While 「認めなければならなかった」 indicates a duty or necessity, 「ざるを得なかった」 conveys a stronger sense
+          of being compelled to act due to overwhelming external factors, such as irrefutable evidence.
+          We're looking for an expression of unavoidable action due to compelling circumstances.
+      - competing_japanese:
+          - 自分 たち の 間違い を 認め {る しか なかっ た}
+        english: Had no choice but to admit our mistake
+        hint: While 「認めるしかなかった」 (have no choice but) highlights the lack of alternatives, 「ざるを得なかった」 adds
+          a more formal and resigned tone, emphasizing that the admission was unavoidable, not just the
+          only option. We're looking for an expression of unavoidable action due to compelling circumstances.
+      - competing_japanese:
+          - 自分 たち の 間違い を 認め {ない わけ に は いか なかっ た}。
+        english: Cannot not admit our mistake.
+        hint: While 「～ないわけにはいかなかった」 (inevitable necessity) implies an unavoidable obligation, 「ざるを得なかった」
+          here stresses the inevitability of the action when faced with clear evidence. We're looking
+          for an expression of forced acceptance of a truth.
+    scene: A team reflecting on a past project where a mistake was made, now forced to acknowledge it
+      due to concrete evidence.
+    register: formal
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The phrase 「証拠があったので」 sets a clear external condition that forces the action, emphasizing
+      the 'no choice' aspect of 「ざるを得なかった」. The usage is appropriate for a formal, objective reflection
+      on a past situation.
+  - english: I had no choice but to postpone the event due to the unexpected circumstances.
+    japanese:
+      - 予期 せ ぬ 事情 で、イベント を 延期 {せ ざる を 得 なかっ た} です。
+      - 不測 の 事態 の ため、イベント を 延期 {せ ざる を 得 ませ ん でし た}。
+    english_literally: Unexpected circumstances by, event to postpone cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - イベント を 延期 {する しか なかっ た}
+        english: Had no choice but to postpone the event
+        hint: While 「延期するしかなかった」 suggests a simple lack of alternatives, 「ざるを得なかった」 emphasizes the external
+          circumstances that directly compelled the postponement, conveying a stronger sense of being
+          forced to act against one's will.
+    scene: An event organizer explaining the reason for a last-minute change.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: 「予期せぬ事情」 (unexpected circumstances) or 「不測の事態」 (unforeseen situation) highlights the external,
+      unavoidable nature of the reason for postponement, aligning with the nuance of 「ざるを得ない」.
+  - english: Since the deadline is approaching, I have no choice but to work overtime.
+    japanese:
+      - 締め切り が 迫っ て いる の で、残業 {せ ざる を 得 ない}。
+      - 納期 が 迫っ て いる ため、残業 {せ ざる を 得 ませ ん}。
+    english_literally: Deadline is approaching so, overtime to do cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - 残業 {し なけれ ば なら ない}
+        english: Must work overtime
+        hint: While 「残業しなければならない」 indicates a general obligation, 「ざるを得ない」 emphasizes the direct compulsion
+          stemming from an impending deadline, making the overtime an unavoidable consequence rather than
+          just a duty.
+    scene: An employee discussing their work schedule with a colleague.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: 「締め切りが迫っている」 (deadline is approaching) clearly explains the external pressure leading to the
+      unavoidable action. This usage is common in professional contexts where external factors dictate
+      one's actions.
+  - english: He was injured, so he had no choice but to withdraw from the competition.
+    japanese:
+      - 彼 は 怪我 を し た の で、試合 を 棄権 {せ ざる を 得 なかっ た}。
+      - 彼 は 負傷 し た ため、試合 を 棄権 {せ ざる を 得 ませ ん でし た}。
+    english_literally: He injured did so, game to withdraw cannot avoid.
+    competing_grammar:
+      - competing_japanese:
+          - 試合 を 棄権 {する しか なかっ た}
+        english: Had no choice but to withdraw from the game
+        hint: While 「棄権するしかなかった」 highlights the lack of options, 「ざるを得なかった」 places more emphasis on the
+          injury as the direct, unavoidable cause that compelled the withdrawal, conveying a sense of
+          regrettable necessity.
+    scene: A sports commentator reporting on an athlete's condition.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: 「怪我をした」 (got injured) or 「負傷した」 (sustained injury) presents a clear external factor that forced
+      the athlete's decision, illustrating the 'no choice' aspect of 「ざるを得ない」 in a factual context.
+post_example_writeup: The examples illustrate how 「ざるを得ない」 is used in various contexts, from professional
+  and formal situations to more personal and even intimate ones. Notice the consistent nuance of unavoidable
+  obligation, regardless of the register. Pay attention to how the speaker's context and the specific
+  particles used can subtly shift the nuance from a strict obligation to a resigned acceptance or even
+  an irresistible emotional compulsion.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ざるを得ない

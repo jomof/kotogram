@@ -1,0 +1,208 @@
+grammar_point: '[Verb-dictionary]まで (until an action or state)'
+learn_before:
+  - まで (limit extent)
+meaning: until (an action or state continues)
+pronunciation:
+  katakana: マデ
+  romaji: made
+formation:
+  Verb[dictionary form] + まで: Indicates that an action or state continues up to the point where the specified
+    verb's action or state begins.
+jlpt: N3
+etymology: The particle まで fundamentally signifies a limit or an endpoint, either spatially ("up to,"
+  "as far as") or temporally ("until," "by"). When combined with a verb in its dictionary form, it specifies
+  that the action or state described by the main clause continues until the action of the dictionary-form
+  verb takes place. This usage evolved from its core meaning of indicating a boundary, applying it to
+  the completion or commencement of an event.
+writeup: The grammatical pattern `Verb[dictionary form]まで` is used to express that an action or state
+  continues **until** another action occurs or a certain state is reached. It explicitly marks the point
+  at which the first action/state ceases. This contrasts with other temporal expressions by focusing on
+  the *continuation up to* a boundary event rather than the duration itself or an action *after* a point.
+  For instance, if you say 「駅に着く{まで}歩きました」 (I walked until I reached the station), it means the action
+  of "walking" continued without interruption until the moment "reaching the station" happened, at which
+  point the walking stopped. It implies a direct cessation of the first action *due to* the occurrence
+  of the second.
+false_friends:
+  - term: までに
+    meaning: by the time (a deadline)
+    kind: similar expression
+    nuance: '`までに` indicates a deadline or a point *by which* an action must be completed. The action
+      usually occurs *before* or *at* that point, but doesn''t necessarily continue *until* it. `[Verb-dictionary]まで`
+      means the action continues *up until* that point.'
+    grammar_point: までに (by the time)
+  - term: Verb[て]から
+    meaning: after doing
+    kind: similar expression
+    nuance: '`Verb[て]から` describes an action that happens *after* another action is completed. `[Verb-dictionary]まで`
+      indicates an action that continues *until* another action starts.'
+    grammar_point: てから (after and since)
+  - term: Verb[ない]うちに
+    meaning: before (something changes or happens)
+    kind: similar expression
+    nuance: '`Verb[ない]うちに` expresses doing something *before* a certain state changes or an opportunity
+      is lost. It emphasizes acting proactively before a negative outcome or a missed chance. `[Verb-dictionary]まで`
+      emphasizes the continuation *up to* the point where something happens.'
+    grammar_point: '[Verb-ない]うちに (before something changes)'
+  - term: Noun まで
+    meaning: until (a noun)
+    kind: similar expression
+    nuance: This is the particle まで used with a noun, indicating a limit for a noun. `[Verb-dictionary]まで`
+      specifies the limit using a verb, meaning "until the *action* described by the verb." Conceptually
+      similar, but grammatically different.
+    grammar_point: まで (limit extent)
+post_false_friends_writeup: While `[Verb-dictionary]まで` focuses on the continuation of an action *up to*
+  a specified point, `までに` denotes a deadline, `Verb[て]から` describes sequential actions, and `Verb[ない]うちに`
+  emphasizes acting before a state changes. Understanding these subtle distinctions is key to using them
+  correctly.
+examples:
+  - english: I will study until it gets dark.
+    japanese:
+      - 暗く なる {まで} 勉強 し ます。
+      - 暗く なる {まで} 勉強 する。
+    english_literally: Dark become until study.
+    competing_grammar:
+      - competing_japanese:
+          - 暗く なっ て から 勉強 し ます。
+        english: I will study after it gets dark.
+        hint: 「〜てから」 indicates an action performed *after* another action is completed. We're looking
+          for an action that continues *up until* a certain point.
+    scene: A student tells their friend their plans for the evening.
+    register: teineigo (polite)
+    setting: academic
+  - english: I watched TV until my mother came home.
+    japanese:
+      - 母 が 帰っ て くる {まで} テレビ を 見 て い まし た。
+      - 母 が 帰っ て くる {まで} テレビ 見 て た。
+      - 母 が 帰っ て くる {まで} テレビ を 見 て い た。
+    english_literally: Mother comes home until TV was watching.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 帰っ て くる 時 に テレビ を 見 て い まし た。
+        english: I was watching TV at the time my mother came home.
+        hint: 「〜時に」 indicates an action that occurs *at the same time* as another event. We're looking
+          for an action that continues *until* another action starts.
+    scene: A child talking about their evening.
+    register: casual
+    setting: friendly
+  - english: The baby cried until he fell asleep.
+    japanese:
+      - 赤ちゃん は 眠る {まで} 泣い て い まし た。
+      - 赤ちゃん は 眠る {まで} 泣い て た。
+      - 赤ちゃん は 眠る {まで} 泣い て い た。
+    english_literally: Baby sleep until was crying.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は 眠る 時 に 泣い て い まし た。
+        english: The baby cried when he fell asleep.
+        hint: 「〜時に」 marks the timing of an action, not the duration leading up to it. We need a phrase
+          that shows continuation until an event.
+    scene: A parent describing their baby's behavior.
+    register: casual
+    setting: intimate
+  - english: Please wait until the meeting begins.
+    japanese:
+      - 会議 が 始まる {まで} お 待ち ください。
+      - 会議 が 始まる {まで} お 待ち いただけ ます でしょう か。
+    english_literally: Meeting begins until please wait.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 始まる 時間 まで に お 待ち ください。
+        english: Please wait by the time the meeting begins.
+        hint: 「〜までに」 sets a deadline by which something should be completed. We're looking for an action
+          that continues *up until* the beginning of the meeting.
+    scene: An assistant instructing attendees in a waiting room.
+    register: formal
+    setting: professional
+  - english: He kept running until he couldn't breathe.
+    japanese:
+      - 彼 は 息 が でき ない {まで} 走り 続け た。
+      - 彼 は 息 が でき ない {まで} 走り 続け まし た。
+    english_literally: He breath cannot until kept running.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 息 が でき なく なっ て から 走り 続け た。
+        english: He kept running after he couldn't breathe.
+        hint: 「〜てから」 indicates an action that follows another. Here, we need to show the action of running
+          *continuing* until he could no longer breathe.
+    scene: Describing an athlete's intense training.
+    register: casual
+    setting: serious
+  - english: We talked until late at night, forgetting about the time.
+    japanese:
+      - 時間 を 忘れ て、夜 遅く なる {まで} 話し まし た。
+      - 時間 を 忘れ て、夜 遅く なる {まで} 話し た。
+    english_literally: Time forgetting, late night become until talked.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 遅く なる 時点 で 話し まし た。
+        english: We talked at the point when it got late at night.
+        hint: 「〜時点で」 refers to a specific point in time, not a duration leading up to it. We need to express
+          that the talking continued *until* it became late at night.
+    scene: Friends reminiscing about a long conversation.
+    register: casual
+    setting: friendly
+  - english: I won't give up until I succeed.
+    japanese:
+      - 成功 する {まで} 諦め ませ ん。
+      - 成功 する {まで} 諦め ない。
+    english_literally: Success do until not give up.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 できる よう に 諦め ませ ん。
+        english: I won't give up so that I can succeed.
+        hint: 「〜ように」 indicates purpose or a desired state. We are looking for the point *until which*
+          the action of not giving up continues.
+    scene: Someone expressing determination.
+    register: teineigo (polite)
+    setting: inspirational
+  - english: I waited for him until he came back.
+    japanese:
+      - 彼 が 戻っ て くる {まで} 待ち まし た。
+      - 彼 が 戻っ て くる {まで} 待っ て た。
+      - 彼 が 戻っ て くる {まで} 待っ て い た。
+    english_literally: He return until waited.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 戻っ て くる こと を 待ち まし た。
+        english: I waited for his return.
+        hint: While this is grammatically correct, it focuses on waiting *for* the return rather than
+          the action of waiting *continuing until* the return. We need to show the duration of the waiting.
+    scene: A person waited for someone.
+    register: teineigo (polite)
+    setting: serious
+  - english: He fought until he couldn't move.
+    japanese:
+      - 彼 は 動け なく なる {まで} 戦っ た。
+      - 彼 は 動け なく なる {まで} 戦い まし た。
+    english_literally: He unable to move become until fought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 動け なく なっ た 後 戦っ た。
+        english: He fought after he became unable to move.
+        hint: 「〜後」 means *after*. We want to convey that the fighting continued *up to* the point of being
+          unable to move.
+    scene: Describing a warrior's last stand.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The plain past form 「戦った」 combined with the context of a warrior fighting until unable to
+      move, portrays a strong, determined character often associated with male speech in dramatic contexts.
+  - english: I'll practice until I can play perfectly.
+    japanese:
+      - 上手 に 弾ける {まで} 練習 する わ。
+      - 上手 に 弾ける {まで} 練習 する よ。
+      - 上手 に 弾ける {まで} 練習 し ます。
+    english_literally: Skillfully play until practice will.
+    competing_grammar:
+      - competing_japanese:
+          - 上手 に 弾ける よう に 練習 する わ。
+        english: I'll practice so that I can play skillfully.
+        hint: 「〜ように」 indicates a purpose or goal. We are focusing on the duration of practice *until*
+          the goal is achieved, not just the purpose itself.
+    scene: A girl determined to master a musical instrument.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The sentence ends with 「〜するわ」, which is a feminine sentence-ending particle that adds a soft,
+      yet determined, nuance often used by female speakers. 「〜するよ」 provides a gender-neutral casual alternative,
+      and 「〜します」 is the polite form.

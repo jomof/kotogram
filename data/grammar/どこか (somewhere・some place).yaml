@@ -1,0 +1,232 @@
+grammar_point: どこか (somewhere・some place)
+learn_before:
+  - どこ (where)
+meaning: somewhere・some place・anywhere (indefinite location)
+pronunciation:
+  katakana: ドコカ
+  romaji: dokoka
+formation:
+  疑問詞か: 'The particle か attached to an interrogative word (like どこ) creates an indefinite meaning, signifying '
+jlpt: N5
+etymology: The word 「どこか」 is formed by combining the interrogative pronoun 「どこ」 (where) and the particle
+  「か」. The particle 「か」, when appended to interrogative words, serves to make them indefinite or uncertain.
+  For example, 「誰か」 (someone) from 「誰」 (who), and 「何か」 (something) from 「何」 (what). This linguistic mechanism
+  transforms a direct question about a specific location into an expression denoting an unspecified, unknown,
+  or vague location.
+writeup: '「どこか」 is an indefinite pronoun used to refer to an unspecified or unknown location. It can be
+  translated as "somewhere," "some place," or "anywhere," depending on the context. The nuance of 「どこか」
+  often implies that the speaker is either:"   Searching for an unspecified place: "I want to go somewhere
+  quiet.""   Referring to a vague, unidentifiable place: "He looks like he''s from somewhere distant.""   Indicating
+  an uncertain or problematic spot: "There''s something wrong somewhere.""The particle 「か」, when attached
+  to interrogatives such as 「どこ」 (where), 「誰」 (who), 「何」 (what), and 「いつ」 (when), transforms them from
+  specific questions into indefinite expressions. This makes them suitable for contexts where the exact
+  identity or location is not known or not relevant.「どこか」 can be used with various particles like 「に」
+  (for destination or existence), 「へ」 (for direction), 「で」 (for action location), or even stand alone
+  when the particle is understood from context. Its usage is very common in everyday Japanese conversations,
+  expressing a natural uncertainty about location.'
+false_friends:
+  - term: 何か
+    meaning: something
+    kind: similar expression
+    nuance: While 「どこか」 refers to an unspecified *place*, 「何か」 refers to an unspecified *thing* or *object*.
+      Both use the particle 「か」 to denote indefiniteness, but their referents are different.
+    grammar_point: <suggest>:何か (something・anything)
+  - term: 誰か
+    meaning: someone
+    kind: similar expression
+    nuance: Similar to 「何か」, 「誰か」 uses the indefinite particle 「か」 but refers to an unspecified *person*,
+      whereas 「どこか」 refers to an unspecified *place*.
+    grammar_point: <suggest>:誰か・どこか・誰も・どこも (indefinite person or place)
+  - term: どこも
+    meaning: everywhere / nowhere
+    kind: similar expression
+    nuance: 「どこも」, formed with the particle 「も」, implies exhaustiveness. In positive sentences, it means
+      "everywhere." In negative sentences, it means "nowhere" (e.g., 「どこも 行かない」 - I'm not going anywhere).
+      In contrast, 「どこか」 refers to *a single, unspecified* place.
+    grammar_point: どこもかしこも (everywhere・all over)
+  - term: どこでも
+    meaning: anywhere (is fine)
+    kind: similar expression
+    nuance: 「どこでも」 implies that *any* place is acceptable or possible. 「どこか」, on the other hand, usually
+      suggests a search for *a particular, yet unknown*, place, or refers to a vague, unspecified location.
+      「どこでも」 offers a broader, less selective acceptance of location.
+    grammar_point: でも (even・any・no matter)
+post_false_friends_writeup: The key to distinguishing between 「どこか」, 「どこも」, and 「どこでも」 lies in the particle
+  attached to 「どこ」. 「か」 indicates indefiniteness or uncertainty about a *single* location. 「も」 indicates
+  inclusiveness (all places) or exhaustiveness (no places) depending on context. 「でも」 implies universal
+  acceptance, meaning "anywhere" is suitable or possible. Understanding these particles helps to grasp
+  the subtle differences in meaning.
+examples:
+  - english: I want to go somewhere quiet.
+    japanese:
+      - 静か な {どこ か} に 行き たい です。
+      - 静か な {どこ か} に 行き たい。
+      - 静か な {どこ か} 行き たい な。
+    english_literally: Quiet somewhere to go want.
+    competing_grammar:
+      - competing_japanese:
+          - 静か な 場所 に 行き たい です。
+        english: I want to go to a quiet place.
+        hint: 「場所」 is a general noun for 'place', implying a known or specific type of location, not the
+          indefinite nuance of 'somewhere'. We're looking for an indefinite sense of location.
+      - competing_japanese:
+          - 静か な どこ で も に 行き たい です。
+        english: I want to go to anywhere quiet.
+        hint: 「どこでも」 implies that any quiet place is acceptable, rather than a desire to find a specific,
+          yet currently unknown, quiet place. We're looking for a desire to find a specific, though currently
+          unknown, place.
+    scene: A person feeling stressed and wanting to relax and get away from their current noisy environment.
+    register: casual
+    setting: reflective
+  - english: Is there somewhere to eat nearby?
+    japanese:
+      - この 近く に {どこ か} 食べる 所 が あり ます か。
+      - この 近く に {どこ か} 食べる 所 は ござい ます か。
+      - この 近く に {どこ か} 食べる 所 ある？
+    english_literally: This near to somewhere eating place exists?
+    competing_grammar:
+      - competing_japanese:
+          - この 近く に 何 か 食べる 物 が あり ます か。
+        english: Is there something to eat nearby?
+        hint: 「何か」 refers to an unspecified 'thing' or 'object' (something), not an unspecified 'place'.
+          We're asking about a location.
+      - competing_japanese:
+          - この 近く に どこ で も 食べる 所 が あり ます か。
+        english: Is there anywhere at all to eat nearby?
+        hint: 「どこでも」 asks if any place is fine, rather than if a specific (though currently unknown) place
+          to eat exists. We're looking for a question about the existence of an indefinite place.
+    scene: A tourist exploring a new neighborhood, feeling hungry.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: I think I left my key somewhere.
+    japanese:
+      - 鍵 を {どこ か} に 置い て き た と 思う。
+      - 鍵、{どこ か} に 置い て き た と 思う ん だ。
+      - 鍵 {どこ か} に 置い て き た か な。
+    english_literally: Key object particle somewhere at put came that I think.
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 を どこ も に 置い て き た と 思う。
+        english: 'Incorrect: I think I left my key at every place.'
+        hint: 「どこも」 is typically used in negative sentences to mean 'nowhere' or in positive sentences
+          to mean 'everywhere', not to indicate a single, unspecified location where something was left.
+          We're looking for an unspecified single location.
+    scene: A person checking their pockets and realizing their key is missing from where it should be.
+    register: casual
+    setting: serious
+  - english: He looked like he was from somewhere distant.
+    japanese:
+      - 彼 は {どこ か} 遠い 所 から 来 た よう に 見え た。
+      - 彼 は {どこ か} 遠い 所 から 来 た みたい に 見え た。
+      - あいつ、{どこ か} 遠い 所 から 来 た みたい だっ た。
+    english_literally: He topic particle somewhere distant place from came as if looked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 遠い 所 から 来 た よう に 見え た。
+        english: He looked like he was from a distant place.
+        hint: Omitting 「どこか」 makes the statement more definitive about the origin, losing the nuance of
+          vagueness or mystery about the exact distant place. We're looking for a vague, unspecified origin.
+    scene: Describing a mysterious stranger encountered briefly, noting their unusual demeanor.
+    register: formal
+    setting: storytelling
+  - english: We need to find help somewhere.
+    japanese:
+      - '{どこ か} で 助け を 見つけ なけれ ば なら ない。'
+      - '{どこ か} で 助け を 見つけ なけれ ば なり ませ ん。'
+      - '{どこ か} で 助け を 見つけ なきゃ。'
+      - '{どこ か} で 助け を 見つけよう。'
+    english_literally: Somewhere at help object particle find must.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 助け を 見つけ なけれ ば なら ない。
+        english: We need to find some help/something to help.
+        hint: 「何か」 refers to 'something' in general, not 'a place' where help can be found. We're looking
+          for an unspecified location to get assistance.
+    scene: Two friends lost in the wilderness, debating their next steps.
+    register: casual
+    setting: serious
+  - english: There's something wrong somewhere.
+    japanese:
+      - '{どこ か} おかしい 所 が ある。'
+      - '{どこ か} おかしい ところ が ある ん だ。'
+      - '{どこ か} おかしい。'
+    english_literally: Somewhere strange place exists.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か おかしい 所 が ある。
+        english: There's something wrong.
+        hint: 「何か」 emphasizes *what* is wrong, while 「どこか」 emphasizes *where* the problem exists, implying
+          a specific but unknown location of the issue. We're focusing on the location of the wrongness.
+    scene: A mechanic inspecting a car engine, hearing an unusual sound.
+    register: casual
+    setting: informative
+  - english: Let's go somewhere fun.
+    japanese:
+      - '{どこ か} 楽しい 所 に 行こう。'
+      - '{どこ か} 楽しい 所 行こう よ。'
+      - '{どこ か} 楽しい 場所 に 行こう。'
+    english_literally: Somewhere fun place to go let's.
+    competing_grammar:
+      - competing_japanese:
+          - どこ で も 楽しい 所 に 行こう。
+        english: Let's go to anywhere fun.
+        hint: 「どこでも」 expresses acceptance of *any* fun place. 「どこか」 suggests a desire to find *a* fun
+          place, implying a search for it. We're looking for the nuance of 'let's find an unspecified
+          fun place'.
+    scene: Friends on a Friday night, trying to decide on a plan for entertainment.
+    register: casual
+    setting: friendly
+  - english: I feel a strange discomfort somewhere.
+    japanese:
+      - '{どこ か} 妙 な 違和 感 が ある。'
+      - '{どこ か} 妙 な 違和 感 が ある ん だ。'
+      - '{どこ か} 妙 な 感じ が する。'
+    english_literally: Somewhere strange discomfort exists.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 妙 な 違和 感 が ある。
+        english: I feel some strange discomfort.
+        hint: 「何か」 describes the nature of the discomfort itself. 「どこか」 suggests that the source or location
+          of this discomfort is vague or unknown. We're looking for a vague origin of the feeling.
+    scene: A person waking up feeling slightly unwell but unable to pinpoint the cause.
+    register: casual
+    setting: reflective
+  - english: Is the remote control somewhere around here?
+    japanese:
+      - リモコン は この 辺 に {どこ か} あり ます か。
+      - リモコン、この 辺 に {どこ か} ある？
+      - リモコン、この 辺 の {どこ か} に ある か な？
+    english_literally: Remote control topic particle this area in somewhere exists?
+    competing_grammar:
+      - competing_japanese:
+          - リモコン は この 辺 に あり ます か。
+        english: Is the remote control around here?
+        hint: Without 「どこか」, the question is simply asking if the remote exists in the area. With 「どこか」,
+          it emphasizes the search for an unspecified location for the remote within that area. We're
+          looking for that indefinite search nuance.
+    scene: A family member looking for the misplaced TV remote control in the living room.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: There is something gentle about him somewhere.
+    japanese:
+      - 彼 に は {どこ か} 優しい 所 が ある。
+      - 彼、{どこ か} 優しい ところ ある よ ね。
+      - 彼 に は {どこ か} 優しい 面 が ある。
+    english_literally: He to topic particle somewhere gentle point exists.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に は 優しい 所 が ある。
+        english: He has a kind side.
+        hint: Omitting 「どこか」 makes the statement more direct and less nuanced. 「どこか」 adds a subtle sense
+          that this gentleness is perhaps not immediately obvious or universally acknowledged, but exists
+          nonetheless. We're looking for that subtle, perhaps hidden, quality.
+    scene: Discussing a stoic person who occasionally shows moments of unexpected kindness.
+    register: casual
+    setting: reflective
+post_example_writeup: As these examples demonstrate, 「どこか」 effectively conveys a sense of indefiniteness
+  or uncertainty about a location. It's used when the precise place is unknown, unspecified, or when a
+  general, vague area is being referred to. Pay attention to the particle it is paired with (e.g., に,
+  で, へ) to understand its role in the sentence, whether as a destination, location of action, or source
+  of a quality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A9%E3%81%93%E3%81%8B

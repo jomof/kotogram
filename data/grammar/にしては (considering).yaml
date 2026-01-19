@@ -1,0 +1,348 @@
+grammar_point: にしては (considering)
+learn_before:
+  - としては (as a standard or viewpoint)
+meaning: (Even) considering, (Even) for
+pronunciation:
+  katakana: ニシテハ
+  romaji: ni shite wa
+formation:
+  Noun + にしては: Expresses a surprising deviation from an expected standard.
+  Verb (plain form) + にしては: Expresses a surprising deviation from an expected standard based on the action.
+jlpt: N3
+etymology: The grammar point 「にしては」 is derived from 「にする」 (to decide on/consider as) + the topic particle
+  「は」. Literally, it means something like "if one makes it [A]...", implying a comparison against a certain
+  standard or expectation.
+writeup: 「にしては」 is used to express a surprising deviation from an expected standard or norm. It's similar
+  to saying "considering..." or "even for..." in English, but it carries a nuance of unexpectedness. The
+  (A) part of the sentence sets up a standard or expectation, and the (B) part presents something that
+  doesn't quite align with that expectation. It can be used with both nouns and verbs in their plain form.
+  It does not indicate that (B) is a result of (A).
+false_friends:
+  - term: 割に
+    meaning: Although, Despite, Rather...for, Unexpectedly, Comparatively, Considering
+    kind: synonym
+    nuance: While both 「にしては」 and 「割に」 express unexpectedness, 「割に」 often emphasizes a greater degree
+      of surprise or contrast, and can be used in a broader range of comparisons.
+    grammar_point: 割に (unexpectedly)
+  - term: としては
+    meaning: As a, For a, As for
+    kind: synonym
+    nuance: 「としては」 sets a perspective or role, while 「にしては」 implies a deviation from expectations. 「としては」
+      focuses more on definition rather than unexpectedness.
+    grammar_point: としては (as a standard or viewpoint)
+  - term: に比べて
+    meaning: Compared to, When compared to
+    kind: synonym
+    nuance: 「に比べて」 is a direct comparison between two things, whereas 「にしては」 highlights a contrast against
+      a general standard or expectation.
+    grammar_point: に比べて (compared to)
+  - term: にとって
+    meaning: To, For, Concerning
+    kind: synonym
+    nuance: 「にとって」 expresses a point of view or benefit for someone, whereas 「にしては」 expresses surprise
+      relative to a standard.
+    grammar_point: にとって (from the standpoint of)
+  - term: からすると・からすれば
+    meaning: Judging from, Considering
+    kind: synonym
+    nuance: 「からすると」 and 「にしては」 both indicate consideration, but 「からすると」 emphasizes the basis of the judgment,
+      while 「にしては」 focuses on the unexpected outcome.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+  - term: から見ると
+    meaning: From the point of view of, By the look of
+    kind: synonym
+    nuance: 「から見ると」 is used to describe something from a specific viewpoint, whereas 「にしては」 expresses
+      surprise or contrast against a general expectation.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+  - term: からして
+    meaning: Even..., Judging from, Based on
+    kind: synonym
+    nuance: 「からして」 is used to introduce a basis for judgment, emphasizing that even just one aspect is
+      enough to make a conclusion. 「にしては」 focuses on the contrast between expectation and reality.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+post_false_friends_writeup: While all these expressions involve comparison or perspective, にしては specifically
+  highlights a discrepancy where the outcome is *unexpected* given the initial premise. Unlike にしては, 割に
+  often implies a slightly higher degree of surprise or contrast. としては primarily defines a role or standpoint
+  without necessarily implying unexpectedness. に比べて offers a direct, neutral comparison. にとって specifies
+  relevance to someone's point of view. からすると, から見ると, and からして all offer a basis for judgment, with からして
+  emphasizing a minimal basis, but none carry the inherent nuance of unexpected deviation from a standard
+  as strongly as にしては.
+examples:
+  - english: Considering he just joined the company, he's already adapted to the team.
+    japanese:
+      - 入社 し た ばかり {に し て は}、彼 は もう チーム に 馴染ん で い ます ね。
+      - 入社 し た ばかり {に し て は}、彼 は もう チーム に 馴染ん でる ね。
+      - 入社 し た ばかり {に し て は}、彼 は もう チーム に 馴染ん でる よう です ね。
+    english_literally: Joined company just for, he already team to adapted is, isn't he?
+    competing_grammar:
+      - competing_japanese:
+          - 入社 し た ばかり な {の に}、彼 は もう チーム に 馴染ん で い ます ね。
+        english: Even though he just joined the company, he's already adapted to the team.
+        hint: 「なのに」 expresses a simple contradiction, but 「にしては」 highlights a surprising positive outcome
+          given the expected standard for someone who just joined. We're looking for an expression of
+          surprising adaptation for a new hire.
+      - competing_japanese:
+          - 入社 し た ばかり で ある {に も かかわら ず}、彼 は もう チーム に 馴染ん で い ます ね。
+        english: Despite just having joined the company, he has already adapted to the team.
+        hint: 「にもかかわらず」 conveys a strong sense of 'despite' or 'in spite of', often implying a difficult
+          or unyielding condition. 「にしては」 emphasizes an unexpected quality or outcome relative to a standard.
+          We're looking for an expression of surprising adaptation for a new hire.
+    scene: A seasoned manager discusses a new employee's integration with a colleague.
+    register: semi-formal
+    setting: professional
+  - english: This cat, considering it's only six months old, is quite large, isn't it?
+    japanese:
+      - この 猫、生後 六 か月 {に し て は}、随分 と 大きい です ね。
+      - この 猫、生後 六 か月 {に し て は}、かなり 大きい です ね。
+      - この 猫、生後 六 か月 {に し て は}、結構 大きい です ね。
+    english_literally: This cat, after birth six months for, quite large is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 猫、生後 六 か月 {だ が}、随分 と 大きい です ね。
+        english: This cat is six months old, but it's quite large, isn't it?
+        hint: 「だが」 simply states a contrasting fact. We're looking for an expression that highlights the
+          cat's size as unexpectedly large for its age.
+      - competing_japanese:
+          - この 猫 は 生後 六 か月 で ある {もの の}、随分 と 大きい です ね。
+        english: Although this cat is six months old, it is quite large.
+        hint: 「ものの」 presents a contrast or concession, but it doesn't carry the strong sense of 'unexpected
+          given the norm' that 「にしては」 does. We're looking for an expression that highlights the cat's
+          size as unexpectedly large for its age.
+    scene: A vet remarks on a cat's size to its owner during a check-up.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「随分 と」 (ずいぶん と) emphasizes the considerable degree of its size, expressing surprise. 「ですね」
+      softens the observation, making it a polite shared thought.
+  - english: Considering he watches Japanese news every day, he still doesn't seem to know many words.
+    japanese:
+      - 毎日 日本 語 の ニュース を 見 て いる {に し て は}、彼 は まだ あまり 言葉 を 知ら ない よう です。
+      - 毎日 日本 語 の ニュース を 見 て いる {に し て は}、彼 は まだ あまり 言葉 を 習得 し て い ない よう です。
+    english_literally: Every day Japanese news watching for, he still not much words knows seems.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 日本 語 の ニュース を 見 て いる {の に}、彼 は まだ あまり 言葉 を 知ら ない よう だ。
+        english: Even though he watches Japanese news every day, he still doesn't seem to know many words.
+        hint: 「なのに」 expresses a simple contradiction or disappointment. We're looking for an expression
+          that emphasizes the surprising lack of vocabulary despite the consistent effort, which should
+          lead to more progress.
+      - competing_japanese:
+          - 毎日 日本 語 の ニュース を 見 て いる {割 に}、彼 は まだ あまり 言葉 を 知ら ない よう です。
+        english: Compared to how much he watches Japanese news, he still doesn't seem to know many words.
+        hint: While 「割に」 also expresses unexpectedness, 「にしては」 more strongly implies a deviation from
+          a *standard* or *expectation*. 「割に」 focuses more on the ratio between effort/condition and outcome.
+          We're looking for an expression that emphasizes the surprising lack of vocabulary despite the
+          consistent effort, which should lead to more progress.
+    scene: A language tutor discusses a student's progress with a parent.
+    register: formal
+    setting: academic
+    nuance: 「あまり～ない」 combined with 「ようです」 (ようです) indicates a subtle observation of a surprising deficiency.
+      The use of 「習得 し て い ない」 is a slightly more formal way to express 'hasn't acquired'.
+  - english: This area, considering it's a rural region, has many new cafes, isn't it?
+    japanese:
+      - この 辺り は 地方 {に し て は}、新しい カフェ が 多い ね。
+      - この 辺り は 地方 {に し て は}、新しい カフェ が 多い な。
+      - この 辺り は 地方 {に し て は}、新しい カフェ が 多い よ ね。
+    english_literally: This area, rural region for, new cafes many are, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 辺り は 地方 {だ が}、新しい カフェ が 多い ね。
+        english: This area is a rural region, but it has many new cafes, isn't it?
+        hint: 「だが」 simply connects two contrasting facts. We're looking for an expression that highlights
+          the surprising number of cafes for a rural area.
+      - competing_japanese:
+          - この 辺り は 地方 だ。{一方 で}、新しい カフェ が 多い ね。
+        english: This area is rural. On the other hand, it has many new cafes.
+        hint: 「一方で」 presents a contrasting aspect or fact without implying surprise against a norm. 「にしては」
+          specifically highlights that the existence of many cafes is unexpected given it's a rural area.
+          We're looking for an expression that highlights the surprising number of cafes for a rural area.
+    scene: Two friends exploring a quiet town notice a surprising number of modern establishments.
+    register: casual
+    setting: friendly
+    nuance: 「ね」 invites agreement and emphasizes the shared observation of something unexpected in a rural
+      setting. 「な」 suggests a more reflective or slightly masculine casual tone, while 「よ ね」 seeks stronger
+      confirmation.
+  - english: Considering she's a famous singer, her fashion is surprisingly plain.
+    japanese:
+      - 有名 な 歌手 {に し て は}、彼女 の ファッション は 意外 と 地味 だ。
+      - 有名 な 歌手 {に し て は}、彼女 の ファッション は 意外 と 地味 です。
+      - 有名 な 歌手 {に し て は}、彼女 の ファッション は 意外 と 地味 です ね。
+    english_literally: Famous singer for, her fashion surprisingly plain is.
+    competing_grammar:
+      - competing_japanese:
+          - 有名 な 歌手 な {の に}、彼女 の ファッション は 意外 と 地味 だ。
+        english: Even though she's a famous singer, her fashion is surprisingly plain.
+        hint: 「なのに」 expresses a simple contrast. We're looking for an expression that emphasizes how surprisingly
+          plain her fashion is for a famous singer, considering the expectation of glamour.
+      - competing_japanese:
+          - 有名 な 歌手 {と し て は}、彼女 の ファッション は 意外 と 地味 だ。
+        english: As a famous singer, her fashion is surprisingly plain.
+        hint: 「としては」 sets a role or position, implying that something is true *from that perspective*,
+          but doesn't inherently convey a *deviation* from expectation like 「にしては」 does. We're looking
+          for an R expression that emphasizes how surprisingly plain her fashion is for a famous singer,
+          considering the expectation of glamour.
+    scene: Fashion critics are discussing a celebrity's recent appearance.
+    register: semi-formal
+    setting: professional
+    nuance: 「意外 と」 (いがい と) highlights the unexpected nature of her plain fashion, contrasting with the
+      usual expectations for famous singers. Using 「です」 or 「です ね」 makes the statement more clearly polite,
+      fitting for a semi-formal professional context.
+  - english: Considering he's a professional baseball player, he's quite short.
+    japanese:
+      - プロ 野球 選手 {に し て は}、彼 は かなり 背 が 低い 方 です。
+      - プロ 野球 選手 {に し て は}、彼 は 随分 と 背 が 低い 方 です。
+      - プロ 野球 選手 {に し て は}、彼 は ちょっと 背 が 低い 方 です ね。
+    english_literally: Professional baseball player for, he quite height low side is.
+    competing_grammar:
+      - competing_japanese:
+          - プロ 野球 選手 {だ が}、彼 は かなり 背 が 低い 方 だ。
+        english: He's a professional baseball player, but he's quite short.
+        hint: 「だが」 simply states a contrasting fact. We're looking for an expression that highlights his
+          surprising shortness for a professional baseball player, given the general expectation for height
+          in that profession.
+      - competing_japanese:
+          - プロ 野球 選手 で ある {に も かかわら ず}、彼 は かなり 背 が 低い 方 です。
+        english: Despite being a professional baseball player, he is quite short.
+        hint: 「にもかかわらず」 emphasizes a strong counter-expectation, often implying a difficult or unyielding
+          condition. 「にしては」 more generally points out a surprising deviation from a norm. We're looking
+          for an expression that highlights his surprising shortness for a professional baseball player,
+          given the general expectation for height in that profession.
+    scene: Sports commentators analyze a player's physical attributes.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「かなり」 emphasizes the degree of shortness, and the context of a professional athlete implies
+      an expectation of a certain physique. Changing the ending to 「です」 makes the statement polite. 「随分
+      と」 offers an alternative to 「かなり」, and adding 「ちょっと」 with 「ね」 softens the observation.
+  - english: Considering he has studied abroad in Japan, his Japanese is still lacking.
+    japanese:
+      - 日本 に 留学 経験 が ある {に し て は}、彼 の 日本 語 は まだまだ です。
+      - 日本 に 留学 経験 が ある {に し て は}、彼 の 日本 語 は まだまだ の よう です。
+    english_literally: Japan to study abroad experience has for, his Japanese still still is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 留学 経験 が ある {の に}、彼 の 日本 語 は まだまだ だ。
+        english: Even though he has studied abroad in Japan, his Japanese is still lacking.
+        hint: 「なのに」 expresses a simple contradiction or a sense of disappointment. We're looking for an
+          expression that highlights his Japanese is surprisingly lacking for someone who has studied
+          abroad.
+      - competing_japanese:
+          - 日本 に 留学 経験 が ある こと {から する と}、彼 の 日本 語 は もっと うまい はず だ。
+        english: Judging from the fact that he has studied abroad in Japan, his Japanese should be better.
+        hint: 「からすると」 is used to make a deduction or judgment based on evidence. While it can imply an
+          expectation, it doesn't carry the same nuance of surprising *deviation* from a standard as 「にしては」.
+          We're looking for an expression that highlights his Japanese is surprisingly lacking for someone
+          who has studied abroad.
+    scene: A university language coordinator discusses a student's Japanese proficiency.
+    register: formal
+    setting: academic
+    nuance: 「まだまだです」 (まだまだです) is a common polite expression indicating that something is far from perfect
+      or has a long way to go, subtly emphasizing the disappointment. 「の よう です」 softens the statement,
+      implying it 'seems' to be lacking, which can be more diplomatic in a formal setting.
+  - english: This apartment building, considering it's far from the station, has high rent, doesn't it?
+    japanese:
+      - この マンション は 駅 から 遠い {に し て は}、家賃 が 高い な。
+      - この マンション は 駅 から 遠い {に し て は}、家賃 が 高い ね。
+      - この マンション は 駅 から 遠い {に し て は}、家賃 が 高い よ ね。
+    english_literally: This apartment building station from far for, rent high is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この マンション は 駅 から 遠い {けれど}、家賃 が 高い な。
+        english: This apartment building is far from the station, but it has high rent, isn_t it?
+        hint: 「けれど」 simply connects two contrasting ideas. We're looking for an expression that conveys
+          the rent is surprisingly high for an apartment that's far from the station.
+      - competing_japanese:
+          - この マンション は 駅 から 遠い {に も かかわら ず}、家賃 が 高い な。
+        english: Despite this apartment building being far from the station, the rent is high.
+        hint: 「にもかかわらず」 emphasizes that the high rent exists *despite* the apartment being far from the
+          station, focusing on the counter-expectation. 「にしては」 highlights the high rent as *unexpected*
+          for something that is far from the station, judging by a common standard. We're looking for
+          an expression that conveys the rent is surprisingly high for an apartment that's far from the
+          station.
+    scene: A person looking for apartments comments on an unexpected rental price.
+    register: casual
+    setting: reflective
+    nuance: 「な」 here is a casual sentence-ending particle that expresses personal reflection or mild exasperation
+      at the high rent. 「ね」 seeks light agreement, while 「よ ね」 seeks stronger confirmation or shared understanding
+      of the unexpected high rent.
+  - english: Considering he's a young CEO, he has a very calm demeanor.
+    japanese:
+      - 彼 は 若い 社長 {に し て は}、とても 落ち着い た 雰囲気 を 持っ て い ます。
+      - 彼 は 若い 社長 {に し て は}、とても 落ち着い た 雰囲気 を 持っ て い ます ね。
+      - 彼 は 若い 社長 {に し て は}、非常 に 落ち着い た 雰囲気 を お 持ち です。
+    english_literally: He young CEO for, very calm atmosphere has.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 若い 社長 な {の に}、とても 落ち着い た 雰囲気 を 持っ て いる。
+        english: Even though he's a young CEO, he has a very calm demeanor.
+        hint: 「なのに」 expresses a simple contrast. We're looking for an expression that emphasizes his surprisingly
+          calm demeanor for a young CEO, where a less experienced or more impulsive attitude might be
+          expected.
+      - competing_japanese:
+          - 彼 は 若い 社長 で ある {に も かかわら ず}、とても 落ち着い た 雰囲気 を 持っ て い ます。
+        english: Despite being a young CEO, he has a very calm demeanor.
+        hint: 「にもかかわらず」 stresses a direct contradiction, that the calm demeanor exists *in spite of* being
+          a young CEO. 「にしては」 points out the calm demeanor is *unexpected* or *atypical* given the standard
+          expectation for a young CEO. We're looking for an expression that emphasizes his surprisingly
+          calm demeanor for a young CEO, where a less experienced or more impulsive attitude might be
+          expected.
+    scene: Business associates discuss a new, unusually composed young leader.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「とても 落ち着いた」 (とても おちついた) highlights the striking calmness that contrasts with the expectation
+      of a young CEO. Using 「持っ て い ます」 is the standard polite form. 「お持ち です」 uses humble language for
+      the verb 'to have', appropriate for a professional setting when speaking about a respected individual,
+      indicating a subtle increase in formality and respect.
+  - english: This sushi, considering the low price, is very delicious.
+    japanese:
+      - この 寿司、値段 が 安い {に し て は}、とても 美味しい。
+      - この 寿司、値段 が 安い {に し て は}、とても 美味しい ね。
+      - この 寿司、値段 が 安い {に し て は}、めちゃくちゃ 美味しい。
+    english_literally: This sushi, price cheap for, very delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この 寿司、値段 が 安い {けれど}、とても 美味しい。
+        english: This sushi is cheap, but it's very delicious.
+        hint: 「けれど」 simply connects two contrasting ideas. We're looking for an expression that conveys
+          the sushi is surprisingly delicious for its low price.
+      - competing_japanese:
+          - この 寿司、値段 が 安い {割 に}、とても 美味しい。
+        english: Compared to its low price, this sushi is very delicious.
+        hint: While 「割に」 also expresses unexpectedness relative to a condition, 「にしては」 implies a deviation
+          from a general standard (e.g., cheap sushi is usually not *this* good). 「割に」 is more about proportionality.
+          We're looking for an expression that conveys the sushi is surprisingly delicious for its low
+          price.
+    scene: Diners express surprise at the quality of food at an inexpensive restaurant.
+    register: casual
+    setting: friendly
+    nuance: 「とても」 (とても) intensifies the deliciousness, highlighting the pleasant surprise. Adding 「ね」
+      softens the statement, seeking shared agreement. 「めちゃくちゃ」 is a very casual intensifier for 'very',
+      indicating an even stronger degree of deliciousness and surprise.
+  - english: Considering she's a child, she reads complex books often.
+    japanese:
+      - 彼女 は 子供 {に し て は}、難しい 本 を よく 読む。
+      - 彼女 は 子供 {に し て は}、難しい 本 を よく 読み ます。
+      - 彼女 は 子供 {に し て は}、難しい 本 を よく 読ん で い ます。
+    english_literally: She child for, difficult books often reads.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 子供 な {の に}、難しい 本 を よく 読む。
+        english: Even though she's a child, she reads complex books often.
+        hint: 「なのに」 expresses a simple contradiction. We're looking for an expression that emphasizes
+          her surprising habit of reading complex books for a child.
+      - competing_japanese:
+          - 彼女 は 子供 で ある {に も かかわら ず}、難しい 本 を よく 読む。
+        english: Despite being a child, she reads complex books often.
+        hint: 「にもかかわらず」 emphasizes the direct contrast and unexpectedness of a child reading complex books.
+          「にしては」 highlights this as surprising *for her age* according to a general expectation. We're
+          looking for an expression that emphasizes her surprising habit of reading complex books for
+          a child.
+    scene: A librarian is impressed by a young patron's choice of books.
+    register: semi-formal
+    setting: academic
+    nuance: 「難しい 本 を よく 読む」 (むずかしい ほん を よく よむ) points to an advanced level of reading that is surprising
+      for a child, underscoring her intellectual maturity. Using 「読み ます」 or 「読ん で い ます」 provides a more
+      polite, semi-formal tone suitable for discussion in an academic setting.
+post_example_writeup: The examples illustrate how 「にしては」 is used to highlight a surprising outcome that
+  deviates from an expectation set by the preceding information. It's crucial to grasp that it’s not just
+  a contrast but an expression of unexpectedness given a certain standard or category.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にしては

@@ -1,0 +1,269 @@
+grammar_point: '[Clause]と言っても過言ではない (it is no exaggeration to say)'
+matcher: |-
+  (
+    ⌈ˢとᵖprt:case_particleᵇとʳト⌉|
+    ˢってᵖprt:adverbial_particleᵇってʳッテ⌉
+  )
+  ⌈ˢ言っᵖv:general:godan-waa:conjunctive-geminateᵇ言うᵈ言うʳイッ⌉
+  ⌈ˢてᵖprt:conjunctive_particleᵇてʳテ⌉
+  ⌈ˢもᵖprt:binding_particleᵇもʳモ⌉
+  ⌈ˢ過言ᵖn:common_nounᵇ過言ʳカゴン⌉
+  (
+    ⌈ˢでᵖprt:case_particleᵇでʳデ⌉
+      ⌈ˢはᵖprt:binding_particleᵇはʳワ⌉
+      ⌈ˢないᵖadj:non_self_reliant:adjective:terminalᵇないᵈ無いʳナイ⌉|
+    ⌈ˢじゃᵖauxv:auxv-da:conjunctive-fusedᵇだᵈだʳジャ⌉
+      ⌈ˢないᵖadj:non_self_reliant:adjective:terminalᵇないᵈ無いʳナイ⌉|
+    ⌈ˢでᵖprt:case_particleᵇでʳデ⌉
+      ⌈ˢはᵖprt:binding_particleᵇはʳワ⌉
+      ⌈ˢありᵖv:non_self_reliant:godan-ra:conjunctiveᵇあるᵈ有るʳアリ⌉
+      ⌈ˢませᵖauxv:auxv-masu:imperfectiveᵇますᵈますʳマセ⌉
+      ⌈ˢんᵖauxv:auxv-nu:terminal-nasalᵇぬᵈずʳン⌉
+  )
+learn_before:
+  - 膨大 (enormous・vast)
+meaning: It is no exaggeration to say that [Clause].
+pronunciation:
+  katakana: トイッテモカゴンデハナイ
+  romaji: toittemo kagon de wa nai
+formation:
+  '[Clause (plain form)] + と言っても過言ではない': Used to assert that a statement is not an exaggeration, but rather
+    an accurate or even understated truth.
+jlpt: N1
+etymology: The phrase 「と言っても」 literally means "even if one says that..." or "even if it is said that...".
+  This comes from 「と言う」 (to say) + 「ても」 (even if). 「過言」 (かごん) means "exaggeration" or "overstatement."
+  「ではない」 (de wa nai) is the negative copula, meaning "is not." Therefore, 「過言ではない」 literally means "is
+  not an exaggeration." Combining these, 「[Clause]と言っても過言ではない」 means "Even if one says [Clause], it is
+  not an exaggeration," thereby affirming the absolute truth or accuracy of the clause.
+writeup: |-
+  「[Clause]と言っても過言ではない」 is a powerful expression used to assert that a preceding statement, though it might sound like an exaggeration, is in fact a perfectly accurate, or even understated, description of reality. It conveys the speaker's strong conviction that the statement is true and aims to preempt any doubt from the listener.
+
+  This phrase is frequently used when describing something exceptional, extreme, or impactful. For instance, if someone is incredibly talented, you might say their talent is so great that it would be no exaggeration to call them a genius. The nuance is that the speaker is not just stating a fact, but also adding a layer of emphasis and assurance that they are being precise and objective, not merely hyperbolic.
+
+  It typically follows a clause in its plain form (dictionary, 「た」-form, 「ない」-form, 「である」 for nouns/な-adjectives). It is a semi-formal to formal expression, suitable for serious discussions, presentations, written articles, or any context where strong, unambiguous assertions are required. While it can be used in general conversation, it adds a certain weight and formality.
+false_friends:
+  - term: と言える
+    meaning: It can be said that...
+    kind: similar expression
+    nuance: While 「と言っても過言ではない」 strongly asserts a truth, 「と言える」 simply states that something can be said
+      or is possible to say, implying a softer, more objective, or slightly more cautious conclusion.
+      It doesn't carry the same emphatic 'no exaggeration' nuance.
+    grammar_point: と言える (it can be said)
+  - term: に違いない
+    meaning: must be, no doubt
+    kind: similar expression
+    nuance: 「に違いない」 expresses strong conviction or certainty based on evidence or logical deduction. It's
+      about a high degree of probability. 「と言っても過言ではない」 is more about validating a potentially strong
+      statement as not an exaggeration, emphasizing its truth, rather than deducting its certainty.
+    grammar_point: に違いない (no doubt)
+  - term: のは当然だ
+    meaning: it is natural that...
+    kind: similar expression
+    nuance: 「のは当然だ」 indicates that something is expected, reasonable, or natural. It lacks the emphasis
+      on potentially exaggerated statements that 「と言っても過言ではない」 has. It's about normalcy, not about affirming
+      an intense truth.
+    grammar_point: のも当然だ (it is only natural)
+  - term: はずだ
+    meaning: is expected to be
+    kind: similar expression
+    nuance: 「はずだ」 indicates expectation or logical certainty based on a plan, common sense, or information.
+      Similar to 「に違いない」, it's about what should be the case. 「と言っても過言ではない」 is about confirming the truth
+      of a strong statement, not its expectedness.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+post_false_friends_writeup: While all these expressions convey a sense of certainty or affirmation, 「[Clause]と言っても過言ではない」
+  specifically focuses on assuring the listener that a strong or seemingly extreme statement is not an
+  overstatement, but rather a precise truth. 「と言える」 offers a more neutral, objective conclusion. 「に違いない」
+  and 「はずだ」 express logical certainty or expectation. 「のは当然だ」 emphasizes naturalness or reasonableness.
+  Choose 「[Clause]と言っても過言ではない」 when you want to strongly validate a statement that might otherwise be
+  perceived as hyperbolic.
+examples:
+  - english: It is no exaggeration to say that he is a genius.
+    japanese:
+      - 彼 は 天才 {と 言っ て も 過言 で は ない}。
+      - 彼 は 天才 {で ある と 言っ て も 過言 で は ない}。
+    english_literally: As for him, even if one says "genius", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 天才 だ と 言える。
+        english: It can be said that he is a genius.
+        hint: 「と言える」 is a neutral statement of possibility, not the strong affirmation that a statement
+          is not an exaggeration.
+    scene: A teacher is discussing a particularly bright student with a colleague.
+    register: formal
+    setting: academic
+  - english: It is no exaggeration to say that this project was a huge success.
+    japanese:
+      - この プロジェクト は 大 成功 だっ た {と 言っ て も 過言 で は ない}。
+      - この プロジェクト は 大 成功 {で あっ た と 言っ て も 過言 で は ない}。
+    english_literally: As for this project, even if one says it "was a huge success", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 大 成功 に 違い ない。
+        english: This project must have been a huge success.
+        hint: 「に違いない」 expresses strong certainty based on evidence, but doesn't specifically address whether
+          the claim itself is an exaggeration.
+    scene: A team leader presenting results to management.
+    register: formal
+    setting: professional
+  - english: It is no exaggeration to say that the situation was desperate.
+    japanese:
+      - その 状況 は 絶望 的 だっ た {と 言っ て も 過言 で は ない}。
+      - その 状況 は 絶望 的 {で あっ た と 言っ て も 過言 で は ない}。
+    english_literally: As for that situation, even if one says it "was desperate", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - その 状況 は 絶望 的 だっ た と 言える。
+        english: It can be said that the situation was desperate.
+        hint: The original implies a stronger, undeniable truth about the desperation, while 「と言える」 is
+          a more neutral observation.
+    scene: A veteran recalling a past challenge.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: The male speaker uses this formal expression to convey the gravity of the situation without
+      sounding overly dramatic, emphasizing the objective truth of his statement.
+  - english: It is no exaggeration to say that he owns a vast amount of land.
+    japanese:
+      - 彼 は 膨大 な 土地 を 所有 し て いる {と 言っ て も 過言 で は ない}。
+      - 彼 は 膨大 な 土地 を 所有 し て いる {って 言っ て も 過言 で は ない}。
+      - 彼 は 膨大 な 土地 を 所有 し て いる {と 言っ て も 過言 じゃ ない}。
+      - 彼 は 膨大 な 土地 を 所有 し て いる {って 言っ て も 過言 じゃ ない}。
+    english_literally: As for him, even if one says "owns a vast amount of land", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 膨大 な 土地 を 所有 し て いる と 言える。
+        english: It can be said that he owns a vast amount of land.
+        hint: We are emphasizing that the statement about his land ownership is not an exaggeration, not
+          just stating it's possible to say so.
+    scene: Two people discussing a wealthy individual.
+    register: casual
+    setting: informative
+  - english: It is no exaggeration to say that she was filled with immense joy.
+    japanese:
+      - 彼女 は 大いなる 喜び に 満たさ れ て い た {と 言っ て も 過言 で は ない}。
+      - 彼女 は 大いなる 喜び に 満たさ れ て い た {と 言っ て も 過言 で は あり ませ ん}。
+    english_literally: As for her, even if one says "was filled with immense joy", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 大いなる 喜び に 満たさ れ て い た に 違い ない。
+        english: She must have been filled with immense joy.
+        hint: While 「に違いない」 suggests strong certainty, the original phrase specifically validates the
+          description of her joy as accurate, not just probable.
+    scene: A narrator describing a character's feelings in a story.
+    register: formal
+    setting: storytelling
+    speaker_gender: female
+    nuance: This literary usage allows the speaker to describe a powerful emotional state while maintaining
+      a sense of objective truth, reinforcing that the description is not embellished.
+  - english: It is no exaggeration to say that my life changed completely after that incident.
+    japanese:
+      - その 出来事 の 後、私 の 人生 は 一変 し た {と 言っ て も 過言 で は ない}。
+      - その 出来事 の 後、私 の 人生 は 一変 し た {と 言っ て も 過言 で は あり ませ ん}。
+      - その 出来事 の 後、私 の 人生 は 一変 し た {と 言っ て も 過言 じゃ ない}。
+    english_literally: After that incident, as for my life, even if one says it "changed completely",
+      it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - その 出来事 の 後、私 の 人生 は 一変 し た だろう。
+        english: After that incident, my life probably changed completely.
+        hint: 「だろう」 expresses probability, while the original sentence asserts a strong, undeniable truth.
+    scene: Someone reflecting on a pivotal moment in their life.
+    register: semi-formal
+    setting: reflective
+  - english: It is no exaggeration to say that his kindness knows no bounds.
+    japanese:
+      - 彼 の 優し さ は 計り知れ ない {と 言っ て も 過言 で は ない}。
+      - 彼 の 優し さ は 計り知れ ない {って 言っ て も 過言 で は ない}。
+      - 彼 の 優し さ は 計り知れ ない {と 言っ て も 過言 じゃ ない}。
+      - 彼 の 優し さ は 計り知れ ない {って 言っ て も 過言 じゃ ない}。
+    english_literally: As for his kindness, even if one says "is immeasurable", it is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 優し さ は 計り知れ ない と 言える。
+        english: It can be said that his kindness is immeasurable.
+        hint: The original implies that saying his kindness is immeasurable is not an exaggeration, rather
+          than just stating it's a possible thing to say.
+    scene: Friends discussing a mutual acquaintance's character.
+    register: casual
+    setting: supportive
+    listener_gender: group
+    nuance: Even in a friendly setting, this phrase adds weight, confirming that the high praise for his
+      kindness is not an exaggeration.
+  - english: It is no exaggeration to say that this discovery will revolutionize medicine.
+    japanese:
+      - この 発見 は 医学 を 革命 する だろう {と 言っ て も 過言 で は ない}。
+      - この 発見 は 医学 を 革命 する だろう {と 言っ て も 過言 で は あり ませ ん}。
+      - この 発見 は 医学 を 革命 する で あろう {と 言っ て も 過言 で は ない}。
+    english_literally: As for this discovery, even if one says it "will revolutionize medicine", it is
+      not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - この 発見 は 医学 を 革命 する はず だ。
+        english: This discovery is expected to revolutionize medicine.
+        hint: 「はずだ」 expresses expectation based on logic, whereas the original phrase is a strong assertion
+          that the claim itself isn't hyperbole.
+    scene: A scientist presenting groundbreaking research.
+    register: formal
+    setting: informative
+  - english: It is no exaggeration to say that this event marked a turning point in history.
+    japanese:
+      - この 出来事 は 歴史 の 転換 点 と なっ た {と 言っ て も 過言 で は ない}。
+      - この 出来事 は 歴史 の 転換 点 と なっ た {と 言っ て も 過言 で は あり ませ ん}。
+      - この 出来事 は 歴史 の 転換 点 と なっ た {と 言っ て も 過言 で は ない でしょう}。
+    english_literally: As for this event, even if one says it "became a turning point in history", it
+      is not an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - この 出来事 は 歴史 の 転換 点 と なっ た の は 当然 だ。
+        english: It is natural that this event marked a turning point in history.
+        hint: 「のは当然だ」 implies naturalness or common sense, not the strong affirmation against potential
+          exaggeration that the original conveys.
+    scene: A historian giving a lecture.
+    register: formal
+    setting: informative
+    speaker_age: older
+  - english: It is no exaggeration to say that her performance today was perfect.
+    japanese:
+      - 彼女 の 今日 の パフォーマンス は 完璧 だっ た {と 言っ て も 過言 で は ない}。
+      - 彼女 の 今日 の パフォーマンス は 完璧 {で あっ た と 言っ て も 過言 で は ない}。
+      - 彼女 の 今日 の パフォーマンス は 完璧 だっ た {と 言っ て も 過言 で は あり ませ ん}。
+      - 彼女 の 今日 の パフォーマンス は 完璧 {で あっ た と 言っ て も 過言 で は あり ませ ん}。
+    english_literally: As for her today's performance, even if one says it "was perfect", it is not an
+      overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 今日 の パフォーマンス は 完璧 に 違い ない。
+        english: Her performance today must have been perfect.
+        hint: 「に違いない」 expresses strong certainty, but the original explicitly states that the description
+          of perfection is not an exaggeration.
+    scene: A coach giving feedback to an athlete.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male coach uses this strong, yet objective, phrase to commend the female athlete's flawless
+      performance, ensuring the praise is taken as accurate and not just encouragement.
+  - english: It is no exaggeration to say that he is the laziest person I know.
+    japanese:
+      - 彼 は 私 が 知る 限り 最も 怠け者 だ {と 言っ て も 過言 で は ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 {で ある と 言っ て も 過言 で は ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 だ {って 言っ て も 過言 で は ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 だ {と 言っ て も 過言 じゃ ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 {で ある と 言っ て も 過言 じゃ ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 {で ある って 言っ て も 過言 で は ない}。
+      - 彼 は 私 が 知る 限り 最も 怠け者 {で ある って 言っ て も 過言 じゃ ない}。
+    english_literally: As for him, as far as I know, even if one says "is the laziest person", it is not
+      an overstatement.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 が 知る 限り 最も 怠け者 に 違い ない。
+        english: He must be the laziest person I know.
+        hint: While both express strong certainty, the original emphasizes that the strong statement about
+          his laziness isn't an overstatement.
+    scene: Colleagues complaining about a coworker.
+    register: casual
+    setting: humorous
+post_example_writeup: This expression serves to reinforce the truth of a statement, especially one that
+  might seem extreme or hyperbolic. It acts as a verbal guarantee that the speaker is not exaggerating,
+  but rather providing an accurate, sometimes even understated, description. Pay attention to the context,
+  as its formality and emphasis mean it's not always suitable for lighthearted casual conversations.

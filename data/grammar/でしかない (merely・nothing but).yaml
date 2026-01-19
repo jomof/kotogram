@@ -1,0 +1,282 @@
+grammar_point: でしかない (merely・nothing but)
+learn_before:
+  - に取って (to・for・from the perspective of)
+meaning: Merely, nothing but, no more than
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: でしかない
+    rarity: common
+    meaning: is merely / is nothing but
+  - conjugation-type: past plain (～た)
+    form: でしかなかった
+    rarity: common
+    meaning: was merely / was nothing but
+  - conjugation-type: non-past polite (～ます)
+    form: でしかありません
+    rarity: common
+    meaning: is merely (polite) / is nothing but (polite)
+  - conjugation-type: conditional (～ば)
+    form: でしかなければ
+    rarity: less common
+    meaning: if it is merely / if it is nothing but
+  - conjugation-type: conditional (～たら)
+    form: でしかなかったら
+    rarity: less common
+    meaning: if it was merely / if it was nothing but
+  - conjugation-type: concessive (～ても)
+    form: でしかなくても
+    rarity: less common
+    meaning: even if it is merely / even if it is nothing but
+pronunciation:
+  katakana: デシカナイ
+  romaji: de shika nai
+formation:
+  '[Noun] + でしかない': Indicates something is "merely" or "nothing but" the stated noun.
+jlpt: N2
+etymology: The grammar point 「でしかない」 is formed from 「で」 (the conjunctive form of the copula 「だ」), 「しか」
+  (meaning "only" or "nothing but"), and 「ない」 (the negative form of 「ある」, indicating absence or lack).
+  The combination creates the nuance of something being 'nothing more than' or 'merely' the stated noun.
+writeup: |-
+  「でしかない」 indicates that something is "merely," "nothing but," or "no more than" what is stated. It emphasizes the limited value or significance of something. This pattern is used directly after nouns. Like other constructions involving しか, it focuses on exclusivity, but here it applies specifically to nouns and often carries a judgmental or dismissive tone.
+
+  While 「でしかない」 can be used with either a positive or neutral connotation, it tends to imply a slightly negative nuance in relation to the noun, suggesting that something lacks value or significant meaning beyond its basic definition. For instance, 「それはお金でしかない」 (That's nothing but money) implies that money alone has limited intrinsic value. It is similar to 「にすぎない」 or 「しか〜ない」, but the key difference is its direct attachment to nouns using 「で」 and its often dismissive nuance.
+false_friends:
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: synonym
+    nuance: 「にすぎない」 emphasizes the limited extent or degree of something objectively, whereas 「でしかない」
+      carries a stronger, often slightly negative connotation, implying a judgment or dismissal of its
+      value or significance beyond what is stated.
+    grammar_point: にすぎない (no more than)
+  - term: しか〜ない
+    meaning: There's only, nothing but
+    kind: synonym
+    nuance: 「しか〜ない」 is primarily used to express that there is only one option, quantity, or possibility.
+      While it also implies limitation, 「でしかない」 specifically describes that something *is* nothing more
+      than the stated noun, often with a qualitative judgment rather than a quantitative one.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜までだ
+    meaning: Just, merely, simply, only
+    kind: similar expression
+    nuance: 「までだ」 suggests that something is simply the ultimate extent or endpoint, without implying
+      a judgment of value, unlike 「でしかない」 which often dismisses the value beyond a basic definition.
+    grammar_point: 〜までだ (just・merely)
+  - term: ただの
+    meaning: Just, only, merely, common, ordinary, plain
+    kind: similar expression
+    nuance: 「ただの」 emphasizes that something is merely ordinary or simple, without the strong critical
+      or dismissive judgment often found in 「でしかない」. 「でしかない」 reduces something to its bare essence, often
+      with a negative undertone, implying it lacks further significance.
+    grammar_point: ただの (just・only)
+post_false_friends_writeup: While 「にすぎない」 and 「しか〜ない」 are similar to 「でしかない」, it's crucial to recognize
+  the subtle differences in nuance. Use 「にすぎない」 when emphasizing the limited extent of something in a
+  more objective way. Use 「しか〜ない」 when indicating the only option or quantity available. For 「ただの」, it
+  often implies something is ordinary or simple without the critical tone of 「でしかない」. Choose 「でしかない」 when
+  implying that something lacks value or is simply 'nothing more' than what it is, often with a dismissive
+  or critical nuance.
+examples:
+  - english: That's just child's play.
+    japanese:
+      - それ は 子供 の 遊び {で しか ない}。
+      - それ は 子供 の 遊び {でし か あり ませ ん}。
+    english_literally: That is child's play no more than.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 子供 の 遊び {に すぎ ない}。
+        english: That's no more than child's play.
+        hint: The scene sets up a formal context where the manager is evaluating something with a judgmental
+          tone, implying a dismissal of its value, which 「でしかない」 conveys more strongly than the more objective
+          「にすぎない」. We're looking for a phrase that implies dismissiveness.
+    scene: A manager dismisses a proposal as lacking seriousness.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: His promises are nothing but empty words.
+    japanese:
+      - 彼 の 約束 は 口先 だけ {で しか ない}。
+      - 彼 の 約束 は 口先 だけ {でし か あり ませ ん}。
+    english_literally: His promises are mouth-tip only no more than.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 約束 は 口先 だけ {に すぎ ない}。
+        english: His promises are no more than empty words.
+        hint: The scene highlights a personal emotional reaction of disappointment and judgment, which
+          aligns with the stronger, more critical nuance of 「でしかない」 compared to the more neutral 「にすぎない」.
+          We're looking for an expression that carries a critical tone.
+    scene: A woman expresses disappointment about an unreliable man.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    nuance: The expression 「口先 だけ」 (mere lip service) combined with 「でしかない」 emphasizes her strong disappointment
+      and judgment. The use of 「でしかない」 rather than 「にすぎない」 indicates her subjective dismissal of his words
+      as completely valueless.
+    etymology: 「口先 (kuchisaki)」 literally means 'tip of the mouth', and in this context, it refers to
+      empty words or lip service, emphasizing that the promises only exist at the superficial level of
+      speech without true intent or action.
+  - english: Was all our effort nothing but a waste?
+    japanese:
+      - 私 たち の 努力 は 無駄 {で しか なかっ た} の か。
+      - 私 たち の 努力 は 無駄 {でし か あり ませ ん でし た} の か。
+    english_literally: Our effort was waste no more than, was it.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 努力 は 無駄 {に すぎ なかっ た} の か。
+        english: Was all our effort no more than a waste?
+        hint: While 「にすぎない」 objectively states a limited extent, 「でしかない」 conveys a stronger, more judgmental
+          or dismissive nuance. We're looking for an expression that questions the futility of the effort
+          with a sense of disappointment or criticism.
+    scene: A team leader reflects on a failed project, questioning if their hard work was futile.
+    register: semi-formal
+    setting: melancholic
+    conjugation: past plain (～た)
+  - english: For him, it's just a job, but for me, it's a dream.
+    japanese:
+      - 彼 に とっ て は ただ の 仕事 {で しか ない} が、私 に とっ て は 夢 です。
+      - 彼 に とっ て は ただ の 仕事 {でし か あり ませ ん} が、私 に とっ て は 夢 です。
+      - 彼 に とっ て は ただ の 仕事 {でし か な い} けど、私 に とっ て は 夢 だ。
+    english_literally: For him is merely a job no more than, but for me is a dream.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に とっ て は ただ の 仕事 {に すぎ ない} が、私 に とっ て は 夢 です。
+        english: For him, it's no more than just a job, but for me, it's a dream.
+        hint: 「にすぎない」 simply states a limited scope. 「でしかない」 implies a subjective dismissal or devaluation
+          of the 'job' in comparison to the 'dream'. We're looking for an expression that highlights the
+          contrast in perceived value.
+    scene: Two colleagues discuss their motivations for work, contrasting their perspectives.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: No matter how expensive, a watch is just a tool to tell time.
+    japanese:
+      - どんな に 高価 な 時計 も、時 を 告げる 道具 {で しか ない}。
+      - どんな に 高価 な 時計 も、時 を 告げる 道具 {でし か あり ませ ん}。
+    english_literally: No matter how expensive watch too, time to tell tool no more than.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 高価 な 時計 も、時 を 告げる 道具 {に すぎ ない}。
+        english: No matter how expensive, a watch is no more than a tool to tell time.
+        hint: 「にすぎない」 objectively limits the function. 「でしかない」 carries a dismissive tone, suggesting that
+          despite its cost, its fundamental value is limited to mere functionality. We're looking for
+          a phrase that dismisses the perceived value beyond its basic purpose.
+    scene: A philosopher contemplates materialism, emphasizing the fundamental function of objects.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: For students, it's just a test score, but for the teacher, it's a way to gauge student comprehension.
+    japanese:
+      - 学生 に とっ て は テスト の 点数 {で しか ない} けれど、先生 に とっ て は 学生 の 理解 度 を 測る もの だ。
+      - 学生 に とっ て は テスト の 点数 {でし か あり ませ ん} けれど、先生 に とっ て は 学生 の 理解 度 を 測る もの です。
+    english_literally: For students is test's score no more than, but for teacher is student's comprehension
+      degree to measure thing.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 に とっ て は テスト の 点数 {に すぎ ない} けれど、先生 に とっ て は 学生 の 理解 度 を 測る もの だ。
+        english: For students, it's no more than a test score, but for the teacher, it's a way to gauge
+          student comprehension.
+        hint: 「にすぎない」 points out a simple limitation. 「でしかない」 expresses a judgment or simplified view
+          from the students' perspective, implying a lack of deeper appreciation for the test's true purpose.
+          We're looking for an expression that captures this dismissive perspective from the students'
+          side.
+    scene: A teacher explains the broader purpose of an exam to their colleagues, beyond just the score.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: This example highlights the contrast in perception. From the students' viewpoint, the test
+      is 「テスト の 点数 でしかない」 (nothing but a test score), emphasizing their limited understanding or dismissive
+      attitude towards its educational value. This implies a subjective judgment, as opposed to an objective
+      statement of fact.
+    etymology: The phrase 「に とっ て は (ni totte wa)」 means 'for (person), from the perspective of'. It frames
+      the differing viewpoints of the students and the teacher regarding the test.
+  - english: I think that person's talent is merely the result of their effort.
+    japanese:
+      - あの 人 の 才能 は、努力 の 結果 {で しか ない} と 思う。
+      - あの 人 の 才能 は、努力 の 結果 {でし か あり ませ ん} と 思い ます。
+      - あの 人 の 才能 は、努力 の 結果 {でし か な い} と 思う よ。
+    english_literally: That person's talent is effort's result no more than, I think.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 才能 は、努力 の 結果 {に すぎ ない} と 思う。
+        english: I think that person's talent is no more than the result of their effort.
+        hint: The speaker's skeptical and dismissive tone regarding 'talent' suggests a stronger judgment
+          conveyed by 「でしかない」 rather than the neutral limitation of 「にすぎない」. We're looking for an expression
+          that implies a critical assessment of talent.
+    scene: A man discusses a successful individual with a skeptical friend, attributing their success
+      to hard work rather than innate ability.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: The speaker, a man, uses 「でしかない」 to dismiss the idea of innate 'talent' as primary, asserting
+      that it is merely the result of effort. This conveys a slightly cynical or realistic perspective,
+      minimizing the concept of 'talent' itself. This dismissive tone is characteristic of 「でしかない」.
+    etymology: 「才能 (sainou)」 refers to talent or ability. The speaker's statement challenges the common
+      perception of talent as something inherent, instead attributing it entirely to 「努力 (doryoku)」 (effort).
+  - english: Even if it's only a temporary solution, it's better than nothing.
+    japanese:
+      - 一時 的 な 解決 策 {でし か なく て も}、何 も ない より は まし だ。
+      - 一時 的 な 解決 策 {でし か なく て も}、何 も ない より は まし です。
+    english_literally: Temporary solution even if it's only, nothing existing compared better.
+    competing_grammar:
+      - competing_japanese:
+          - 一時 的 な 解決 策 {に すぎ なく て も}、何 も ない より は まし だ。
+        english: Even if it's no more than a temporary solution, it's better than nothing.
+        hint: While 「にすぎない」 objectively states a limited extent, 「でしかない」 conveys a stronger, often slightly
+          negative connotation, implying a judgment or dismissal of its value. We're looking for an expression
+          that suggests a reluctant acceptance due to lack of better options.
+    scene: A team discusses a stopgap measure for a problem.
+    register: semi-formal
+    setting: professional
+    conjugation: concessive (～ても)
+  - english: That plan is merely a theory and cannot be implemented.
+    japanese:
+      - その 計画 は 理論 {でし か あり ませ ん} から、実行 不 可能 です。
+      - その 計画 は 理論 {でし か な い} から、実行 不 可能 だ。
+    english_literally: That plan is theory no more than, therefore, implementation impossible is.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 理論 {に すぎ ませ ん} から、実行 不 可能 です。
+        english: That plan is no more than a theory, so it cannot be implemented.
+        hint: The phrase 「でしかない」 carries a dismissive tone, indicating that the theory lacks practical
+          value. 「にすぎない」 simply states a limitation. We're looking for an expression that emphasizes the
+          impracticality with a critical nuance.
+    scene: A senior manager evaluates a junior colleague's proposal.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: If it's just money, I don't need it.
+    japanese:
+      - お 金 {でし か なけれ ば}、いり ませ ん。
+      - お 金 {でし か なけれ ば}、いら ない。
+    english_literally: Money if it's only, don't need.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 {に すぎ なけれ ば}、いり ませ ん。
+        english: If it's no more than money, I don't need it.
+        hint: 「でしかない」 expresses a subjective dismissal, implying a lack of deeper meaning or value beyond
+          the superficial. 「にすぎない」 is more objective. We're looking for an expression that conveys a stronger
+          sense of rejection due to perceived insincerity.
+    scene: A person refusing a gift that they perceive as merely monetary and lacking sincerity.
+    register: semi-formal
+    setting: serious
+    conjugation: conditional (～ば)
+  - english: If it had only been a dream, things would have been better.
+    japanese:
+      - それ が 夢 {でし か なかっ たら}、もっと よかっ た の に。
+      - それ が 夢 {でし か なかっ たら}、もっと よかっ た ん です けど。
+    english_literally: That if it had been merely a dream, much better would have been but.
+    competing_grammar:
+      - competing_japanese:
+          - それ が 夢 {に すぎ なかっ たら}、もっと よかっ た の に。
+        english: If that had been no more than a dream, things would have been better.
+        hint: 「でしかなかったら」 expresses a strong, subjective wish that something had been insignificant or
+          illusory. 「にすぎなかったら」 is more objective. We're looking for an expression that conveys a deep
+          sense of regret, almost a dismissal of a harsh reality.
+    scene: A person expresses regret over a painful reality, wishing it was just an illusion.
+    register: casual
+    setting: melancholic
+    conjugation: conditional (～たら)
+post_example_writeup: As these examples demonstrate, 「でしかない」 is often used to express a strong, subjective
+  judgment or dismissal, limiting something to its most basic or undesirable aspect. It goes beyond simply
+  stating a fact, conveying a sense of disappointment, skepticism, or even contempt regarding the perceived
+  value or meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でしかない

@@ -1,0 +1,295 @@
+grammar_point: は (emphatic)
+learn_before:
+  - 気づかい (consideration・concern)
+meaning: Emphasizes or affirms a statement, often with a contrasting or unexpected nuance.
+pronunciation:
+  katakana: ハ
+  romaji: wa
+  pronunciation_warning: When used as a particle, は is pronounced 'wa'.
+formation:
+  Verb stem + は + する/しない: This form highlights the action or non-action of the verb, often setting up
+    a contrast or concession. For example, 「飲みはする」 (I do drink) implies that while the action is performed,
+    there might be a counter-condition or a lack of enthusiasm.
+  Verb -te form + は + いる/いない: Used to emphasize the continuity or state of being (or not being) of an
+    action, usually implying a contrast with an unstated expectation or condition. For instance, 「横になってはいる」
+    (He is indeed lying down) concedes that despite this state, something else is true or expected.
+  い-adjective stem + く + は + ある/ない: This structure emphasizes the presence or absence of an i-adjective's
+    quality, often followed by a contrasting statement. For example, 「高くはある」 (It is indeed expensive)
+    acknowledges the expense before introducing a mitigating factor.
+  な-adjective stem/Noun + で + は + ある/ない: Similarly, this emphasizes the state of being a certain quality
+    (na-adjective) or a noun, typically to present a contrasting or qualifying idea. 「優秀ではあった」 (He was
+    indeed excellent) concedes a positive trait before revealing a negative outcome.
+jlpt: N2
+etymology: The particle 「は」 originally indicated a topic, but in this usage, it has evolved to add emphasis
+  or contrast to the preceding word or phrase. It shares its origins with the topic marker 「は」, but its
+  function is distinct, emphasizing the state or action itself, often implying a 'but' or 'though' in
+  the background. This particular emphatic use developed from the topic-marking function by narrowing
+  its scope to highlight a specific predicate or element, setting it apart.
+writeup: The 「は」 particle, when used for emphasis, highlights a statement, often with a sense of contrast
+  or unexpectedness. It's not just stating a fact; it's drawing attention to it, often implying, "Yes,
+  this is true, **but**...". It can be attached to various parts of speech, including verb stems, adjectives,
+  and nouns. Think of it as adding a bit of dramatic flair or highlighting a nuance in your sentence.
+  It is a great way to add emphasis to your speech, especially when you are contradicting or trying to
+  persuade someone. It is often used by both men and women across various registers, from casual conversation
+  to more formal speech.
+false_friends:
+  - term: ことは
+    meaning: The fact that; as for...
+    kind: similar expression
+    nuance: While both 「は」 and 「ことは」 can indicate a topic, 「ことは」 is more explicit in identifying the topic
+      itself, often nominalizing the preceding clause. Emphatic 「は」 focuses on emphasizing an aspect of
+      the predicate, often with a concessive or contrasting implication, without necessarily nominalizing
+      the verb.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: こそ
+    meaning: indeed; precisely; for that very reason
+    kind: similar expression
+    nuance: While both 「は」 and 「こそ」 add emphasis, 「こそ」 strongly highlights the cause, reason, or agent,
+      implying 'it is precisely this/that and nothing else'. Emphatic 「は」, in contrast, emphasizes the
+      action, state, or quality itself, often setting up a contrast or concession ('it is true that X,
+      but...').
+    grammar_point: こそ (emphasis)
+  - term: も
+    meaning: also; too; even
+    kind: similar expression
+    nuance: While both 「は」 and 「も」 can convey emphasis, 「も」 typically implies "even" by including an extreme
+      or unexpected case, or "also" by adding to a list. Emphatic 「は」 highlights the truth of a statement
+      or action, often to set up a contrasting or concessive point, emphasizing "it is true that X, but...".
+    grammar_point: も (addition or emphasis particle)
+post_false_friends_writeup: To avoid confusion, remember that 「は」 adds emphasis or contrast to a specific
+  part of the sentence, often with a concessive feel. 「ことは」 introduces a topic or nominalized clause,
+  focusing on the fact of something. 「こそ」 strongly highlights the reason or agent, implying 'precisely
+  this'. 「も」 emphasizes inclusion, often meaning 'even' or 'also'. Each particle has its own specific
+  nuance and function despite sharing a common role of adding emphasis.
+examples:
+  - english: I do drink alcohol, but I don't really like it that much.
+    japanese:
+      - お 酒 は 飲み {は} する が、それ ほど 好き で は ない。
+      - お 酒 は 飲ん で {は} いる が、別 に 好き で は ない。
+      - 酒 は 飲み {は} する けど、そこ まで 好き じゃ ない な。
+    english_literally: As for alcohol, I do drink it, but I don't like it that much.
+    competing_grammar:
+      - competing_japanese:
+          - お 酒 を 飲む こと は する が、それ ほど 好き で は ない。
+        english: As for drinking alcohol, I do it, but I don't like it that much.
+        hint: 「〜こと は する」 is used to nominalize the verb, focusing on the act of drinking as a noun. We're
+          looking for emphasis on the verb itself, suggesting a concession before a contrasting statement.
+      - competing_japanese:
+          - お 酒 は 飲む が、それ ほど 好き で は ない。
+        english: As for alcohol, I drink it, but I don't like it that much.
+        hint: This uses a simple conjunction. We're looking for stronger emphasis on the action of drinking
+          before the contrast is introduced.
+    scene: Someone admitting to a habit they don't particularly enjoy.
+    register: casual
+    setting: reflective
+    nuance: The 「は」 after 「飲み」 emphasizes the act of drinking, setting up the contrast with the lack of
+      enjoyment. The speaker is reflecting on their habits.
+  - english: He can read Japanese, but he can't speak it.
+    japanese:
+      - 彼 は 日本 語 を 読め {は} する が、話せ {は} し ない。
+      - あいつ は 何 言っ て も 聞き {は} し ない から な。
+    english_literally: As for him, Japanese, he can read (it), but he cannot speak (it).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 を 読む こと は できる が、話す こと は でき ない。
+        english: He is capable of reading Japanese, but he cannot speak it.
+        hint: 「〜こと は できる」 focuses on the ability to perform the action as a noun. We're emphasizing the
+          action itself with a nuance of concession or contrast.
+      - competing_japanese:
+          - 彼 は 日本 語 を 読める が、話せ ない。
+        english: This is a simple conjunction. We're looking for emphasis on the specific action before
+          the contrast.
+        hint: This is a simple conjunction. We're looking for emphasis on the specific action before the
+          contrast.
+    scene: Describing someone's limited language skills.
+    register: casual
+    setting: informative
+    nuance: The 「は」 emphasizes the contrast between reading and speaking abilities. 「読めはする」 specifically
+      highlights the action of reading as something that is done, despite the implied limitation. The
+      casual tone might use 「あいつ」 for 'he'.
+  - english: She is lying in bed, but her eyes are open.
+    japanese:
+      - 彼女 は ベッド に 横 に なっ て {は} いる が、目 は 開い て いる。
+      - 彼女 は ベッド に 横 に なっ て {は} いる けれど、目 は 開い て いる。
+      - 彼女 は ベッド に 横 に なっ て いる の {は} いる が、目 は 開い て いる。
+    english_literally: As for her, in bed lying down she is, but her eyes are open.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が ベッド に 横 に なっ て いる こと は 確か だ が、目 は 開い て いる。
+        english: It's certain that she is lying in bed, but her eyes are open.
+        hint: 「〜こと は 確か だ」 confirms the fact of her lying down. We're emphasizing the state of being lying
+          down, indicating a situation that contrasts with expectation.
+    scene: Observing someone who is trying to rest but not fully asleep.
+    register: semi-formal
+    setting: reflective
+    nuance: 「横になってはいる」 emphasizes the state of lying down, contrasted with the fact that she's still awake.
+      This usage highlights a factual state while subtly hinting at an unexpected detail.
+  - english: I will take the exam, but I have absolutely no confidence that I'll pass.
+    japanese:
+      - 試験 を 受け て {は} みる が、通る 自信 は 全然 ない。
+      - 試験 は 受け て {は} みる もの の、合格 する 自信 は 全く ない。
+      - テスト は 受け て {は} みる けど、受かる 気 が 全く し ない。
+    english_literally: Exam, take (it) I will, but pass confidence none is.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 を 受ける こと は 可能 だ が、通る 自信 は 全然 ない。
+        english: Taking the exam is possible, but I have absolutely no confidence I'll pass.
+        hint: 「〜こと は 可能 だ」 states the possibility of the action. We're emphasizing the act of trying,
+          with an implicit concession of low confidence.
+      - competing_japanese:
+          - 試験 を 受ける が、通る 自信 は 全然 ない。
+        english: This is a simple conjunction. We're looking for stronger emphasis on the act of taking
+          the exam before the contrasting lack of confidence.
+        hint: This is a simple conjunction. We're looking for stronger emphasis on the act of taking the
+          exam before the contrasting lack of confidence.
+    scene: Expressing doubt about passing an exam despite the intention to try.
+    register: casual
+    setting: pessimistic
+    nuance: The 「は」 highlights the act of taking the exam, setting up the contrast with the lack of confidence.
+      「受けはしてみる」 implies 'I'll try, but don't expect much'.
+  - english: He doesn't listen, no matter what you tell him.
+    japanese:
+      - 彼 は 何 を 言っ て も 聞き {は} し ない。
+      - あいつ は 何 言っ て も 聞き {は} し ない から な。
+    english_literally: As for him, what say you, even if, listen he does not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 聞く こと は ない。
+        english: There is no instance of him listening.
+        hint: 「〜こと は ない」 states the general non-existence of an action. We're emphasizing his unwillingness
+          to listen in contrast to being told something, rather than just the absence of listening.
+      - competing_japanese:
+          - 彼 は 何 を 言っ て も 聞か ない。
+        english: He doesn't listen, no matter what you tell him.
+        hint: This is a direct negative. We're looking for stronger emphasis on his refusal to listen,
+          implying stubbornness or an unchangeable nature.
+    scene: Describing someone who is stubborn and unwilling to listen.
+    register: casual
+    setting: informative
+    nuance: 「聞きはしない」 emphasizes the unwillingness to listen, regardless of what is said. The use of 「は」
+      here highlights the complete and stubborn refusal, often conveying exasperation.
+  - english: This vase is expensive, but it's worth it.
+    japanese:
+      - この 花瓶 は 高く {は} ある が、それ だけ の 値打ち は ある。
+      - この 花瓶 は 高く {は} ある けれど、それ 相応 の 値打ち は ある。
+      - この 花瓶、高く {は} ある けど、それ だけ の 価値 は ある よ。
+    english_literally: This vase, expensive it is, but that much worth it has.
+    competing_grammar:
+      - competing_japanese:
+          - この 花瓶 が 高い こと は 事実 だ が、それ だけ の 値打ち は ある。
+        english: The fact that this vase is expensive is true, but it's worth it.
+        hint: 「〜こと は 事実 だ」 emphasizes the factual truth of the expense. We're emphasizing the quality
+          itself with a concession, rather than just stating a fact.
+      - competing_japanese:
+          - この 花瓶 は 高い が、それ だけ の 値打ち は ある。
+        english: This is a simple conjunction. We're looking for stronger emphasis on the characteristic
+          of being expensive, conceding that point before justifying it.
+        hint: This is a simple conjunction. We're looking for stronger emphasis on the characteristic
+          of being expensive, conceding that point before justifying it.
+    scene: Justifying the price of an item despite its high cost.
+    register: semi-formal
+    setting: persuasive
+    nuance: The 「高くはある」 acknowledges the high price, then justifies it. The 「は」 here highlights the adjective
+      「高い」 (expensive), conceding that point before adding the contrasting justification.
+  - english: If you think about it carefully, this problem shouldn't be difficult.
+    japanese:
+      - この 問題 は よく 考えれ ば 難しく {は} ない はず だ。
+      - この 問題 は よく 考えれ ば 難しく {は} ない と 思わ れる。
+      - この 問題 は よく 考え たら 難しく {は} ない はず だ よ。
+    english_literally: This problem, well if you think, difficult it is not it should be.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 が 難しく ない こと は 明らか だ はず だ。
+        english: It should be clear that this problem is not difficult.
+        hint: 「〜こと は 明らか だ」 states that something is obviously true. We're emphasizing the quality of
+          'not difficult' as a conclusion based on careful thought, indicating a subtle contrast with
+          initial perception.
+      - competing_japanese:
+          - この 問題 は よく 考えれ ば 難しく ない はず だ。
+        english: This is a direct negative. We're looking for stronger emphasis on the 'not difficult'
+          aspect, perhaps implying a counter-expectation.
+        hint: This is a direct negative. We're looking for stronger emphasis on the 'not difficult' aspect,
+          perhaps implying a counter-expectation.
+    scene: Offering encouragement and a solution to a problem.
+    register: casual
+    setting: supportive
+    nuance: 「難しくはない」 emphasizes the lack of difficulty, assuming careful consideration. The 「は」 here highlights
+      the negative state, implying that while it might seem difficult at first glance, it isn't.
+  - english: He was smart, but he was fired for doing something illegal.
+    japanese:
+      - あの 男 は 優秀 で {は} あっ た が、不正 な こと を し た の で 首 に なっ た。
+      - あの 男 は 優秀 で {は} あっ た けれど も、不正 な こと を し て 首 に なっ た。
+    english_literally: That man, excellent he was, but illegal thing he did, so fired he became.
+    competing_grammar:
+      - competing_japanese:
+          - あの 男 が 優秀 だっ た こと は 認め ざる を 得 ない が、不正 な こと を し た の で 首 に なっ た。
+        english: We have to admit that he was excellent, but he was fired for doing something illegal.
+        hint: 「〜こと は 認め ざる を 得 ない」 is a formal way to concede a fact. We're emphasizing the quality of
+          'excellent' as a concession before a contrasting statement, rather than just stating a fact.
+      - competing_japanese:
+          - あの 男 は 優秀 だっ た が、不正 な こと を し た の で 首 に なっ た。
+        english: This is a simple conjunction. We're looking for stronger emphasis on the positive quality,
+          acknowledging it before presenting the negative outcome.
+        hint: This is a simple conjunction. We're looking for stronger emphasis on the positive quality,
+          acknowledging it before presenting the negative outcome.
+    scene: Explaining why someone lost their job despite being talented.
+    register: semi-formal
+    setting: informative
+    nuance: 「優秀ではあった」 concedes the person's intelligence before revealing the reason for their dismissal.
+      The 「は」 highlights the 'excellent' quality, setting it up as a counterpoint to the negative consequence
+      that follows.
+  - english: He is Japanese, but he can't speak Japanese very well.
+    japanese:
+      - 彼 は 日本 人 で {は} ある が、あまり 日本 語 を 話せ ない。
+      - 彼 は 日本 人 で {は} ある もの の、あまり 日本 語 を 話せ ない。
+      - 彼 は 日本 人 で {は} ある ん だ けど、あまり 日本 語 が 話せ ない ん だ よ。
+    english_literally: As for him, Japanese person he is, but very Japanese language he cannot speak.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 日本 人 で ある こと は 事実 だ が、あまり 日本 語 を 話せ ない。
+        english: The fact that he is Japanese is true, but he can't speak Japanese very well.
+        hint: 「〜こと は 事実 だ」 confirms the factual truth of his nationality. We're emphasizing his nationality
+          as a concession before a contrasting statement, rather than just stating a fact.
+      - competing_japanese:
+          - 彼 は 日本 人 だ が、あまり 日本 語 を 話せ ない。
+        english: This is a simple conjunction. We're looking for stronger emphasis on his nationality,
+          acknowledging it before presenting the contrasting fact about his language ability.
+        hint: This is a simple conjunction. We're looking for stronger emphasis on his nationality, acknowledging
+          it before presenting the contrasting fact about his language ability.
+    scene: Describing someone who doesn't fit the typical expectations.
+    register: casual
+    setting: informative
+    nuance: 「日本人ではある」 emphasizes the person's nationality, creating a contrast with their inability to
+      speak the language fluently. The 「は」 highlights the fact of his nationality, often implying a subtle
+      sense of irony or unexpectedness.
+  - english: It's true that I want to stay with you longer, but I really have to go.
+    japanese:
+      - もっと 一緒 に 居 たく {は} ある ん です が、本当 に 行か なきゃ。
+      - もっと 一緒 に 居 たく {は} ある ん だ けど、本当 に 行か なきゃ いけ ない の。
+      - 本当 は もっと 一緒 に い たい と {は} 思う ん です が、もう 行か ない と。
+    english_literally: More together want to be, indeed I am, but truly must go.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 一緒 に 居 たい こと は 事実 な ん です が、本当 に 行か なきゃ。
+        english: The fact that I want to stay with you longer is true, but I really have to go.
+        hint: 「〜こと は 事実 だ」 states a factual truth. We're emphasizing the feeling of wanting to stay, implying
+          a concession to an unavoidable departure.
+      - competing_japanese:
+          - もっと 一緒 に 居 たい ん です が、本当 に 行か なきゃ。
+        english: This is a simple conjunction. We're looking for stronger emphasis on the desire to stay,
+          conceding that desire before stating the necessity to leave.
+        hint: This is a simple conjunction. We're looking for stronger emphasis on the desire to stay,
+          conceding that desire before stating the necessity to leave.
+    scene: On a first date, the speaker expresses a strong desire to stay but must leave for another engagement.
+    register: teineigo (polite)
+    setting: first-date
+    speaker_gender: female
+    nuance: 「居たくはある」 emphasizes the strong desire to stay, using the adjectival form of the verb plus
+      「は」 and 「ある」. The nuance is that while the desire exists, circumstances prevent it. 「行かなきゃいけないの」
+      is a softened, slightly more feminine way of stating a necessity. The combination expresses a genuine,
+      slightly melancholic desire.
+post_example_writeup: The emphatic 「は」 creates a subtle but powerful effect, adding layers of meaning
+  to your sentences. It is often used in combination with 「が」 or 「けれど」 to introduce a contrasting statement,
+  or simply to highlight a particular aspect of a situation or characteristic.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/は-(emphatic)

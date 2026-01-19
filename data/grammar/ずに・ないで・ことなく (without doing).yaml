@@ -1,0 +1,199 @@
+grammar_point: ずに・ないで・ことなく (without doing)
+learn_before:
+  - Verb[ないで] (negative without doing)
+meaning: without doing
+pronunciation:
+  katakana: ズニ・ナイデ・コトナク
+  romaji: zuni・naide・kotonaku
+formation:
+  Verb[ない形] + ずに: Indicates an action is performed without doing the preceding verb; often more formal
+    than ないで。
+  Verb[ない形] + ないで: Indicates an action is performed without doing the preceding verb; also functions as
+    a negative command。
+  Verb[dictionary] + ことなく: A highly formal or literary way to express 'without doing the preceding verb',
+    emphasizing complete absence。
+jlpt: N3
+etymology: The forms derive from classical Japanese. 「ずに」comes from the classical negative auxiliary 「ず」
+  (negative) plus the particle 「に」 (means/state). 「ないで」is a more modern form, combining the modern negative
+  auxiliary 「ない」 with the te-form of the copula 「で」, which implies a state or means. 「ことなく」combines 「こと」
+  (nominalizer, often referring to an act or state) with the negative adverbial particle 「なく」 (without,
+  from negative adjective ない).
+writeup: |-
+  The grammar points 「ずに」, 「ないで」, and 「ことなく」 all express the idea of 'without doing' a certain action. While they share a core meaning, their usage, formality, and nuance differ significantly. 「ないで」is the most common and versatile of the three. It is formed by connecting the negative form of a verb (ない形) to 「で」. It is broadly used in everyday conversation and writing. It can mean 'without doing (something)' or, when used at the end of a sentence or followed by 「ください」, it can serve as a negative command meaning 'do not do (something)'.
+
+  「ずに」is formed by attaching 「ずに」to the negative stem of a verb (dropping the final 「ない」and adding 「ず」then 「に」). Historically, 「ず」is an older negative auxiliary, and 「ずに」is considered more formal or literary than 「ないで」. It often implies that the action was consciously avoided or simply did not occur, leading to the subsequent action or state. While it can often be interchanged with 「ないで」in the 'without doing' sense, it does not function as a negative command.
+
+  「ことなく」is the most formal and literary expression among the three. It is formed by attaching 「ことなく」to the dictionary form of a verb. This form strongly emphasizes the complete absence or omission of the action, often conveying a sense of unwavering resolve, continuity, or a notable lack of an expected event. It is frequently found in written texts, formal speeches, or situations where a strong, definitive statement about the absence of an action is required. It cannot be used as a command.
+false_friends:
+  - term: 〜ないまま (without change)
+    meaning: as is; without changing
+    kind: similar expression
+    nuance: While both imply the absence of an action, 「ないまま」focuses on a state remaining unchanged, often
+      implying a passive lack of action or a condition that persists. 「ずに・ないで・ことなく」describe an action
+      being performed *while* another action is absent or avoided。
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: 〜なければならない (must do)
+    meaning: must do; have to do
+    kind: antonym
+    nuance: This expresses necessity or obligation, meaning "cannot *not* do" something, which is the
+      opposite of "without doing" something. It highlights what *must* be done, whereas 「ずに・ないで・ことなく」focus
+      on what is *not* done。
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+post_false_friends_writeup: When choosing between these phrases, consider not just the negation but also
+  the state of continuity or obligation. 「ないまま」describes a state that remains unchanged, often passively,
+  while 「ずに・ないで・ことなく」describe an action taken in the absence of another. 「〜しなければならない」is the conceptual
+  opposite, conveying a strong necessity rather than an absence of action。
+examples:
+  - english: I drank coffee without adding sugar.
+    japanese:
+      - 砂糖 を 入れ ない で コーヒー を 飲ん だ。
+      - 砂糖 を 入れ ず に コーヒー を 飲ん だ。
+    english_literally: Sugar [object marker] not add [te-form] coffee [object marker] drank.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 を 入れ ず に コーヒー を 飲ん だ。
+        english: I drank coffee without adding sugar.
+        hint: 「ずに」is a more formal alternative to 「ないで」. We're looking for the most common casual expression.
+    scene: A person describing their coffee preference to a friend.
+    register: casual
+    setting: friendly
+  - english: She left the office without saying anything.
+    japanese:
+      - 彼女 は 何 も 言わ {ず に} オフィス を 出 た。
+      - 彼女 は 何 も 言わ ない で オフィス を 出 た。
+      - 彼女 は 何 も 言う こと なく オフィス を 出 た。
+    english_literally: She [topic] anything [object marker] not say [zuni] office [object marker] left.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 何 も 言わ ない で オフィス を 出 た。
+        english: She left the office without saying anything.
+        hint: While both are natural, 「ずに」can imply a more conscious or deliberate non-action.
+    scene: A colleague observing another's departure at the end of the workday.
+    register: semi-formal
+    setting: professional
+  - english: He achieved his goal without giving up.
+    japanese:
+      - 彼 は 諦める {こと なく} 目標 を 達成 し た。
+      - 彼 は 諦め ない で 目標 を 達成 し た。
+      - 彼 は 諦め ず に 目標 を 達成 し た。
+    english_literally: He [topic] give up [kotonaku] goal [object marker] achieved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 諦め ない で 目標 を 達成 し た。
+        english: He achieved his goal without giving up.
+        hint: While 「ないで」can be used, 「ことなく」emphatically states the complete absence of giving up, suitable
+          for formal narratives.
+    scene: Narrating someone's success story during a presentation.
+    register: formal
+    setting: informative
+  - english: He kept performing without worrying.
+    japanese:
+      - 彼 は 心配 し {ない で} 演奏 を 続け た。
+      - 彼 は 心配 せ {ず に} 演奏 を 続け た。
+      - 彼 は 心配 する {こと なく} 演奏 を 続け た。
+    english_literally: He [topic] worry [do] not [te-form] performance [object marker] continued.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 心配 し ない まま 演奏 を 続け た。
+        english: He continued playing as is, without worrying.
+        hint: While similar, 「まま」emphasizes the state of not worrying, not the action of performing without
+          doing something else. We are looking for an action performed without another action.
+    scene: A musician continues to play calmly despite a challenging situation.
+    register: semi-formal
+    setting: serious
+  - english: The flower bloomed beautifully without anyone noticing.
+    japanese:
+      - その 花 は 誰 に も 気付か {れ ず に} 美しく 咲い た。
+      - その 花 は 誰 に も 気付か れ ない で 美しく 咲い た。
+      - その 花 は 誰 に も 気付か れる こと なく 美しく 咲い た。
+    english_literally: That flower [topic] by anyone [passive] not notice [zuni] beautifully bloomed.
+    competing_grammar:
+      - competing_japanese:
+          - その 花 は 誰 に も 気付か れ ない で 美しく 咲い た。
+        english: That flower bloomed beautifully without anyone noticing.
+        hint: Both are natural. 「れずに」is slightly more elegant for describing an unobserved event in a
+          narrative.
+    scene: Describing a hidden beauty discovered on a quiet walk.
+    register: semi-formal
+    setting: reflective
+  - english: He continued to study all night long without sleeping.
+    japanese:
+      - 彼 は 一睡 も する {こと なく} 一 晩 中 勉強 し 続け た。
+      - 彼 は 一睡 も し ない で 一 晩 中 勉強 し 続け た。
+      - 彼 は 一睡 も せ ず に 一 晩 中 勉強 し 続け た。
+    english_literally: He [topic] one sleep even [object marker] do [kotonaku] all night long continued
+      to study.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一睡 も し ない で 一 晩 中 勉強 し 続け た。
+        english: He continued to study all night long without sleeping.
+        hint: 「ことなく」highlights the complete lack of sleep, emphasizing unwavering commitment or intensity
+          suitable for formal or academic contexts.
+    scene: A professor commending a diligent student's efforts.
+    register: formal
+    setting: academic
+  - english: I went to school without eating breakfast.
+    japanese:
+      - 朝ごはん を 食べ {ない で} 学校 へ 行っ た。
+      - 朝ごはん を 食べ ず に 学校 へ 行っ た。
+    english_literally: Breakfast [object marker] eat [not te-form] school [direction] went.
+    competing_grammar:
+      - competing_japanese:
+          - 朝ごはん を 食べ ず に 学校 へ 行っ た。
+        english: I went to school without eating breakfast.
+        hint: Both are acceptable, but 「ないで」is the common casual choice for everyday situations.
+    scene: A student explaining to their teacher why they feel tired.
+    register: casual
+    setting: friendly
+  - english: We must proceed with the plan without wasting any time.
+    japanese:
+      - 時間 を 無駄 に せ {ず に} 計画 を 進める べき だ。
+      - 時間 を 無駄 に し ない で 計画 を 進める べき だ。
+      - 時間 を 無駄 に する こと なく 計画 を 進める べき だ。
+    english_literally: Time [object marker] waste [not zuni] plan [object marker] proceed [should].
+    competing_grammar:
+      - competing_japanese:
+          - 時間 を 無駄 に し ない で 計画 を 進める べき だ。
+        english: We must proceed with the plan without wasting any time.
+        hint: 「ずに」provides a slightly more formal and emphatic tone suitable for instructions or directives.
+    scene: A team leader giving instructions during a critical project meeting.
+    register: semi-formal
+    setting: professional
+  - english: The ancient civilization flourished for centuries without invasion.
+    japanese:
+      - その 古代 文明 は 侵略 さ {れる こと なく} 何 世紀 も 栄え た。
+      - その 古代 文明 は 侵略 さ れ ない で 何 世紀 も 栄え た。
+      - その 古代 文明 は 侵略 さ れ ず に 何 世紀 も 栄え た。
+    english_literally: That ancient civilization [topic] invade [passive kotonaku] many centuries [particle]
+      flourished.
+    competing_grammar:
+      - competing_japanese:
+          - その 古代 文明 は 侵略 さ れ ない で 何 世紀 も 栄え た。
+        english: That ancient civilization flourished for centuries without being invaded.
+        hint: 「ことなく」is ideal for conveying the complete and continuous absence of invasion over a long
+          historical period in a formal context.
+    scene: A historian presenting findings at an academic conference.
+    register: formal
+    setting: academic
+  - english: My cat, without eating anything all day, finally ate its food.
+    japanese:
+      - 猫 は 一 日 中 何 も 食べ {ない で}、やっと ご飯 を 食べ た。
+      - 猫 は 一 日 中 何 も 食べ ず に、やっと ご飯 を 食べ た。
+    english_literally: Cat [topic] all day long anything [object marker] not eat [te-form], finally food
+      [object marker] ate.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は 一 日 中 何 も 食べ ず に、やっと ご飯 を 食べ た。
+        english: My cat, without eating anything all day, finally ate its food.
+        hint: Both are acceptable, but 「ないで」feels more natural in a casual, narrative context about a
+          pet's behavior.
+    scene: Someone describing their pet's picky eating habits to a family member.
+    register: casual
+    setting: friendly
+post_example_writeup: These examples illustrate the subtle differences in nuance and formality between
+  「ずに」, 「ないで」, and 「ことなく」. While 「ないで」is widely applicable in daily conversation, 「ずに」adds a touch more
+  formality or literary flair, often implying a deliberate non-action. 「ことなく」is reserved for more formal
+  or emphatic statements, highlighting the absolute absence of an action, especially when it's unexpected
+  or significant. Pay close attention to context to choose the most appropriate form.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ずに・ないで・ことなく

@@ -1,0 +1,354 @@
+grammar_point: ずっと (continuous state or action)
+learn_before:
+  - ずっと (by far)
+  - 以来 (since・ever since)
+meaning: Continuously, All throughout, The whole time, Ever since
+pronunciation:
+  katakana: ズット
+  romaji: zutto
+formation:
+  ずっと + Verb (て-form) + いる/いた: Indicates an action or state that continues without interruption.
+  '[Time/Event] から ずっと + Verb/State': Indicates something has been continuous since a specific point in
+    time or event.
+jlpt: N4
+etymology: The word 「ずっと」 originally meant "straight" or "in a straight line." Over time, it evolved to
+  describe something that continues without deviation or interruption, hence its meaning of "continuously"
+  or "all the time."
+writeup: The adverb 「ずっと」 primarily indicates that something keeps going in a constant state, without
+  stopping or resting. This grammar point focuses on this meaning.To use 「ずっと」, place it before the verb
+  or adjective you wish to emphasize as being ongoing. For instance, 「ずっと勉強しています」 (I have been studying
+  continuously) highlights uninterrupted study.Alternatively, 「ずっと」 can be combined with 「から」 (from/since)
+  to specify a starting point for the continuous action or state. For example, 「子供 の 頃 から ずっと」 (ever since
+  childhood) emphasizes continuity from a past event. This construction explicitly shows that something
+  has been ongoing from a specific point in time up to the present.
+false_friends:
+  - term: ずっと (by far)
+    meaning: By far, Way, Far...er, Far...more
+    kind: often confused with
+    nuance: While 「ずっと」 can mean 'continuously,' it also has a separate meaning of 'by far' or 'much more'
+      when comparing things (e.g., 「ずっと 良い」 - 'much better'). This second meaning emphasizes degree, not
+      duration or continuity, and is distinct from the usage of 「ずっと」 in this grammar point.
+    grammar_point: ずっと (by far)
+post_false_friends_writeup: To avoid confusing these two meanings, consider the context. If 「ずっと」 is used
+  to describe a continuous state or action, it refers to duration. If it's used with an adjective or adverb
+  in a comparative sense, it likely indicates a significant difference in degree.
+examples:
+  - english: My cat has been sleeping continuously on the sofa.
+    japanese:
+      - 私 の 猫 は ソファ で {ずっと} 寝 て いる。
+      - 私 の 猫 は ソファ で {ずっと} 寝 て い ます。
+      - うち の 猫 は ソファ で {ずっと} 寝 てる よ。
+    english_literally: My cat on sofa continuously sleeping is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 猫 は ソファ で {いつ も} 寝 て いる。
+        english: My cat always sleeps on the sofa.
+        hint: 「いつも」 implies habitual action, not continuous action without interruption. We're looking
+          for a state that is ongoing at a specific moment.
+      - competing_japanese:
+          - 私 の 猫 は ソファ で {長 時間} 寝 て いる。
+        english: My cat has been sleeping for a long time on the horrific sofa.
+        hint: 「長時間」 indicates a long duration, but not necessarily continuous, uninterrupted action. We're
+          looking for an action that has been continuous without breaks.
+    scene: You are talking to a friend about your lazy cat.
+    register: casual
+    setting: friendly
+  - english: Even after moving, she's been continuously happy.
+    japanese:
+      - 彼女 は 引っ越し て も {ずっと} 幸せ だ。
+      - 彼女 は 引っ越し て も {ずっと} 幸せ です。
+      - 彼女 は 引っ越し て も {ずっと} 幸せ な まま だ。
+    english_literally: She moving even if continuously happy is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 引っ越し て も {いつ も} 幸せ だ。
+        english: Even after moving, she is always happy.
+        hint: 「いつも」 means 'always' or 'habitually', not that her state of happiness has been continuous
+          and uninterrupted since moving. We're looking for a sustained state of happiness despite a change.
+      - competing_japanese:
+          - 彼女 は 引っ越し て も {まだ} 幸せ だ。
+        english: Even after moving, she is still happy.
+        hint: 「まだ」 means 'still', but it doesn't emphasize the unwavering and continuous nature of her
+          happiness. We're looking for consistent happiness over time.
+    scene: You are discussing a mutual friend who recently moved homes, expressing relief about her well-being.
+    register: casual
+    setting: reflective
+  - english: Ever since childhood, I've continuously loved drawing.
+    japanese:
+      - 子供 の 頃 から {ずっと} 絵 を 描く の が 好き だ。
+      - 子供 の 頃 から {ずっと} 絵 を 描く の が 好き です。
+      - 子供 の 頃 から {ずっと} 絵 を 描く こと が 好き だ。
+    english_literally: Child's time from continuously picture drawing is like.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃 から {今 まで} 絵 を 描く の が 好き だ。
+        english: From childhood until now, I have liked drawing pictures.
+        hint: This phrase indicates a time period, but not the unwavering and uninterrupted nature of
+          the affection itself. We're looking for a deep-rooted and constant passion.
+      - competing_japanese:
+          - 子供 の 頃 から 絵 を {描い て いる}。
+        english: Since childhood, I have been drawing pictures.
+        hint: This focuses on the action of drawing, not the continuous state of 'loving' drawing. We're
+          looking for a sustained feeling, not just the activity.
+    scene: A young woman is talking to a new acquaintance about her hobbies, sharing how long she has
+      enjoyed art.
+    register: casual
+    setting: informative
+    speaker_gender: female
+  - english: That old temple has continuously stood on that hill since ancient times.
+    japanese:
+      - その 古い 寺 は 大昔 から {ずっと} あの 丘 に 立っ て いる。
+      - その 古い 寺 は 大昔 から {ずっと} あの 丘 に 立っ て い ます。
+      - その 古い 寺 は 大昔 から {ずっと} あの 丘 に 佇ん で いる。
+      - その 古い 寺 は 大昔 から {ずっと} あの 丘 に 立っ て い た。
+    english_literally: That old temple ancient times from continuously that hill on standing is.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 寺 は 大昔 から {常 に} あの 丘 に 立っ て いる。
+        english: That old temple has constantly stood on that hill since ancient times.
+        hint: 「常に」 implies 'always' or 'constantly', but it emphasizes regularity rather than unbroken,
+          unwavering continuity over time, which 「ずっと」 conveys. We're looking to highlight the enduring
+          nature of the landmark.
+      - competing_japanese:
+          - その 古い 寺 は 大昔 から {絶え間 なく} あの 丘 に 立っ て いる。
+        english: That old temple has incessantly stood on that hill since ancient times.
+        hint: 「絶え間なく」 means 'incessantly' or 'without pause', which is very close to 「ずっと」. However, 「ずっと」
+          can also imply a continuous state from a point in time, while 「絶え間なく」 focuses on the ceaseless
+          nature of an action. We're looking to emphasize the continuous presence of the landmark from
+          a historical perspective.
+    scene: A knowledgeable tour guide is explaining the long history of a local landmark to a group of
+      tourists.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+  - english: I've been continuously waiting for you at the station.
+    japanese:
+      - 駅 で {ずっと} 待っ て いる よ。
+      - 駅 で {ずっと} 待っ て い ます よ。
+      - 駅 で {ずっと} 待っ てる ん だ けど。
+      - 駅 で {ずっと} 待っ て た ん だ よ。
+    english_literally: At station continuously waiting am.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 で {長い 時間} 待っ て いる よ。
+        english: I've been waiting for a long time at the station.
+        hint: 「長い 時間」 indicates a long duration, but doesn't necessarily imply continuous, unbroken waiting.
+          We're emphasizing an uninterrupted waiting period.
+      - competing_japanese:
+          - 駅 で 私 は {待っ て いる} よ。
+        english: I am waiting at the station.
+        hint: This simply states that you are waiting, without emphasizing the continuous nature of the
+          action. We're looking for an uninterrupted action.
+    scene: A woman calls her partner who is late for their meeting at the train station.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「よ」 at the end emphasizes the speaker's assertion or informs the listener, suggesting
+      a slight exasperation or emphasis on the fact that she has been waiting without a break. This tone
+      is common in intimate conversations.
+  - english: This cat has been continuously popular since that meme.
+    japanese:
+      - その ミーム から {ずっと} この 猫 は 人気 だ。
+      - その ミーム から {ずっと} この 猫 は 人気 です。
+      - あの ミーム 以来、この 猫 {ずっと} 人気 ある よ ね。
+      - その ミーム から {ずっと} この 猫 は 人気 が 続い て いる。
+    english_literally: That meme from continuously this cat is popular.
+    competing_grammar:
+      - competing_japanese:
+          - その ミーム から この 猫 は {今 も} 人気 だ。
+        english: Since that meme, this cat is still popular even now.
+        hint: 「今 も」 emphasizes 'still now' but less on the unbroken continuity of its popularity. We're
+          looking for popularity that has remained constant since a point in time.
+      - competing_japanese:
+          - その ミーム から この 猫 は {人気 に なっ た}。
+        english: This cat became popular since that meme.
+        hint: This phrase talks about the cat becoming popular, not about its sustained popularity afterward.
+          We're looking to emphasize its continuous popularity.
+    scene: Two friends are discussing an internet-famous cat.
+    register: casual
+    setting: friendly
+  - english: The company has maintained a continuously stable performance for many years.
+    japanese:
+      - その 会社 は 長年 に わたり {ずっと} 安定 し た 業績 を 維持 し て いる。
+      - その 会社 は 長年 に わたり {ずっと} 安定 し た 業績 を 維持 し て い ます。
+      - 当該 企業 は 長年 に わたり、{ずっと} 安定 し た 業績 を 堅持 し て おり ます。
+      - その 会社 は 長年 に わたり {ずっと} 安定 し た 業績 を 維持 し て 来 た。
+    english_literally: That company over many years continuously stable performance maintaining is.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 は 長年 に わたり 安定 し た 業績 を {維持 し 続け て いる}。
+        english: The company has continued to maintain a stable performance for many years.
+        hint: 「維持し続けている」 emphasizes continuous effort in maintaining, but 「ずっと維持している」 highlights the unbroken,
+          unwavering state of maintenance. We're emphasizing consistency.
+      - competing_japanese:
+          - その 会社 は 長年 に わたり 安定 し た 業績 を {示し て いる}。
+        english: The company has shown stable performance for many years.
+        hint: 「示している」 means 'showing' or 'indicating', which is similar but doesn't carry the same nuance
+          of 'maintaining' a state continuously. We're looking for sustained stability.
+    scene: A business analyst is presenting a report on a company's financial health.
+    register: formal
+    setting: professional
+  - english: Since graduation, he's continuously been working for the same company.
+    japanese:
+      - 卒業 以来、彼 は {ずっと} 同じ 会社 で 働い て いる。
+      - 卒業 以来、彼 は {ずっと} 同じ 会社 で 働い て い ます。
+      - 卒業 以来、彼 は {ずっと} 同じ 会社 に 勤務 し て いる。
+      - 卒業 以来、彼 は {ずっと} 同じ 会社 で 働い て 来 た。
+    english_literally: Graduation since, he continuously same company at working is.
+    competing_grammar:
+      - competing_japanese:
+          - 卒業 以来、彼 は 同じ 会社 で {働き 続け て いる}。
+        english: Since graduation, he has continued working for the same company.
+        hint: 「働き続けている」 implies continuous action, but 「ずっと働いている」 emphasizes the unbroken duration of
+          employment at the same place. We're looking for uninterrupted employment.
+      - competing_japanese:
+          - 卒業 以来、彼 は 同じ 会社 に {勤め て いる}。
+        english: Since graduation, he has been employed at the same company.
+        hint: 「勤めている」 also means 'is employed', but 「働いている」 with 「ずっと」 more strongly emphasizes the continuous
+          action of working, day in and day out. We're emphasizing consistent effort.
+    scene: Two former classmates are catching up and discussing their careers.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+  - english: I've been continuously worried about my grandmother's health.
+    japanese:
+      - お ばあ ちゃん の 体調 が {ずっと} 心配 だ。
+      - お ばあ ちゃん の 体調 が {ずっと} 心配 です。
+      - お ばあ ちゃん の 体調 が {ずっと} 気掛かり です。
+      - お ばあ ちゃん の 体調、{ずっと} 心配 な ん だ よ ね。
+    english_literally: Grandmother's condition continuously worried is.
+    competing_grammar:
+      - competing_japanese:
+          - お ばあ ちゃん の 体調 が {とても} 心配 だ。
+        english: I'm very worried about my grandmother's health.
+        hint: 「とても」 emphasizes the degree of worry, not its continuous nature over time. We're looking
+          for an ongoing state of worry.
+      - competing_japanese:
+          - お ばあ ちゃん の 体調 が {気 に なっ て いる}。
+        english: I'm concerned about my grandmother's health.
+        hint: 「気になっている」 means 'to be concerned' or 'on one's mind', but doesn't convey the uninterrupted,
+          constant state of worry as strongly as 「ずっと心配だ」. We're looking for deep-seated, continuous worry.
+    scene: A grandson confides in his friend about his family's concerns.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「ずっと」 here expresses a prolonged, unbroken state of worry. While not gender-specific,
+      a male speaker using this casual register and emotional nuance would be appropriate in a close,
+      sympathetic setting.
+  - english: The sound of the river has continuously flowed since ancient times.
+    japanese:
+      - その 川 の 音 は 太古 の 昔 から {ずっと} 流れ 続け て いる。
+      - その 川 の 音 は 太古 の 昔 から {ずっと} 流れ 続け て い ます。
+      - その 川 の 音 は 太古 の 昔 から {ずっと} 絶え間 なく 流れ て いる。
+      - その 川 の 音 は 太古 の 昔 から {ずっと} 滔々 と 流れ て いる。
+    english_literally: That river's sound ancient times from continuously flowing continues.
+    competing_grammar:
+      - competing_japanese:
+          - その 川 の 音 は 太古 の 昔 から {絶え ず} 流れ て いる。
+        english: The sound of the river has flowed unceasingly since ancient times.
+        hint: 「絶えず」 means 'unceasingly' or 'constantly', which is close, but 「ずっと」 more specifically conveys
+          continuous, uninterrupted flow over a vast period. We're looking for a timeless, constant flow.
+      - competing_japanese:
+          - その 川 の 音 は 太古 の 昔 から {変わら ず に} 流れ て いる。
+        english: The sound of the river has flowed unchanged since ancient times.
+        hint: 「変わらずに」 means 'unchanged', which is similar but focuses on the state of 'not changing' rather
+          than the continuous action of 'flowing'. We're emphasizing the ongoing action itself.
+    scene: A poet is reflecting on the timelessness of nature while sitting by a river.
+    register: bungo (literary)
+    setting: reflective
+  - english: I've been continuously thinking about what you said yesterday.
+    japanese:
+      - 昨日 言っ た こと が {ずっと} 頭 に 残っ て いる。
+      - 昨日 言っ た こと が {ずっと} 頭 に 残っ て い ます。
+      - 昨日 言っ た こと が {ずっと} 心 に 響い て いる。
+      - 昨日 の あなた の 言葉 が {ずっと} 頭 から 離れ ない。
+    english_literally: Yesterday said thing continuously in head remaining is.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 言っ た こと が {気 に なっ て いる}。
+        english: What you said yesterday is on my mind.
+        hint: 「気になっている」 suggests something is a concern or occupying one's thoughts, but 「ずっと頭に残っている」
+          with 「ずっと」 emphasizes the constant, uninterrupted presence of the thought. We're looking for
+          persistent thought.
+      - competing_japanese:
+          - 昨日 言っ た こと を {よく 覚え て いる}。
+        english: I remember well what you said yesterday.
+        hint: 「よく覚えている」 means 'remembering well', which focuses on memory rather than the continuous dwelling
+          on a thought. We're looking for continuous contemplation.
+    scene: Someone is confiding in a friend about a conversation that has had a lasting impact.
+    register: casual
+    setting: intimate
+  - english: Ever since I bought this phone, it's been continuously acting strangely.
+    japanese:
+      - この スマホ を 買っ て から {ずっと} 調子 が おかしい ん だ。
+      - この スマホ を 買っ て から {ずっと} 調子 が おかしい ん です。
+      - この スマホ 買っ て から {ずっと} 変 な の。
+      - この スマホ 買っ て 以来、{ずっと} 挙動 が 不審 な ん だ。
+    english_literally: This smartphone buying since continuously condition is strange.
+    competing_grammar:
+      - competing_japanese:
+          - この スマホ を 買っ て から {常 に} 調子 が おかしい ん だ。
+        english: Ever since I bought this phone, it's constantly acting strangely.
+        hint: 「常に」 implies 'always' or 'constantly' in a regular sense, but 「ずっと」 emphasizes an unbroken,
+          uninterrupted state of malfunction since the beginning. We're looking for consistent malfunction.
+      - competing_japanese:
+          - この スマホ を 買っ て から {何 か おかしい} ん だ。
+        english: Something is strange with this smartphone since I bought it.
+        hint: 「何かおかしい」 is vaguer than 「調子がおかしい」 and lacks the emphasis on continuous malfunction. We're
+          looking for a specific and persistent problem.
+    scene: A person is complaining to a customer service representative or a friend about a faulty device.
+    register: casual
+    setting: apologetic
+  - english: He has been continuously studying abroad for five years.
+    japanese:
+      - 彼 は 5 年間 {ずっと} 留学 し て いる。
+      - 彼 は 5 年間 {ずっと} 留学 し て い ます。
+      - 彼 は 5 年間 {ずっと} 留学 中 で ある。
+      - 彼 は 5 年間 {ずっと} 留学 し 続け て いる。
+    english_literally: He 5 years continuously studying abroad is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 5 年間 {留学 を 続け て いる}。
+        english: He has continued studying abroad for five years.
+        hint: 「留学を続けている」 emphasizes the continuation of studying abroad, but 「ずっと留学している」 specifically
+          highlights the unbroken nature of his stay without returning home. We're looking for continuous
+          study.
+      - competing_japanese:
+          - 彼 は 5 年間 {留学 中 だ}。
+        english: He is currently studying abroad for 5 years.
+        hint: 「留学中だ」 means 'is studying abroad', emphasizing his current status rather than the continuous
+          nature of the activity over a period. We're looking for sustained action.
+    scene: Two colleagues are discussing a mutual friend who is currently overseas.
+    register: semi-formal
+    setting: informative
+  - english: The weather has been continuously bad since last week.
+    japanese:
+      - 先週 から {ずっと} 天気 が 悪い ね。
+      - 先週 から {ずっと} 天気 が 悪い です ね。
+      - 先週 から {ずっと} 天気 悪い よ ね。
+      - 先週 から {ずっと} 天気 が 良く ない ね。
+    english_literally: Last week from continuously weather is bad, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 先週 から {悪 天候 が 続い て いる} ね。
+        english: Bad weather has continued since last week, hasn't it?
+        hint: 「悪天候が続いている」 means 'bad weather has continued', which describes a continuous state, but 「ずっと天気
+          が 悪い」 emphasizes the unbroken and persistent bad weather without any breaks. We're looking for
+          consistent bad weather.
+      - competing_japanese:
+          - 先週 から 天気 が {良く ない} ね。
+        english: The weather hasn't been good since last week, has it?
+        hint: 「良くない」 is a milder negative than 「悪い」. 「ずっと悪い」 specifically emphasizes consistently poor
+          weather conditions. We're looking for continuously poor weather.
+    scene: Two neighbors are chatting about the recent weather.
+    register: casual
+    setting: friendly
+post_example_writeup: As these examples demonstrate, 「ずっと」 effectively conveys an uninterrupted continuation,
+  whether it's an action, a state, or a feeling. The specific nuance can range from personal emotion to
+  objective observation, depending on the context and surrounding vocabulary. Pay attention to whether
+  it describes an ongoing action with a て-form verb and 「いる/いた」, or a continuous state/adjective.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ずっと1

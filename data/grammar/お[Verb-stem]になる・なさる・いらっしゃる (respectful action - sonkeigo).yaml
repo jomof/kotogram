@@ -1,0 +1,481 @@
+grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+learn_before:
+  - 少し (a little)
+  - 連用形 (formal conjunctive)
+meaning: Respectful verb forms for actions, existence, or movement of someone of higher status.
+meaning_warning: Remember not to use honorific language when speaking about yourself and your actions!
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: お〜になる / ご〜になる
+    rarity: common
+    meaning: To respectfully do (an action)
+  - conjugation-type: non-past polite (～ます)
+    form: お〜になります / ご〜になります
+    rarity: common
+    meaning: To respectfully do (an action, polite)
+  - conjugation-type: negative plain (～ない)
+    form: お〜にならない / ご〜にならない
+    rarity: common
+    meaning: Not to respectfully do (an action)
+  - conjugation-type: negative non-past polite (～ません)
+    form: お〜になりません / ご〜になりません
+    rarity: common
+    meaning: Not to respectfully do (an action, polite)
+  - conjugation-type: past plain (～た)
+    form: お〜になった / ご〜になった
+    rarity: common
+    meaning: Respectfully did (an action)
+  - conjugation-type: past polite (～ました)
+    form: お〜になりました / ご〜になりました
+    rarity: common
+    meaning: Respectfully did (an action, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: お〜にならなかった / ご〜にならなかった
+    rarity: common
+    meaning: Respectfully did not do (an action)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: お〜になりませんでした / ご〜になりませんでした
+    rarity: common
+    meaning: Respectfully did not do (an action, polite)
+  - conjugation-type: te-form (～て)
+    form: お〜になって / ご〜になって
+    rarity: common
+    meaning: Respectfully doing (an action); and
+  - conjugation-type: conditional (～ば)
+    form: お〜になれば / ご〜になれば
+    rarity: uncommon
+    meaning: If respectfully doing (an action)
+  - conjugation-type: conditional (～たら)
+    form: お〜になったら / ご〜になったら
+    rarity: uncommon
+    meaning: If/When respectfully did/do (an action)
+  - conjugation-type: volitional (～よう)
+    form: お〜になろう / ご〜になろう
+    rarity: very rare
+    meaning: Shall/will respectfully do (an action)
+  - conjugation-type: volitional polite (～ましょう)
+    form: お〜になりましょう / ご〜になりましょう
+    rarity: very rare
+    meaning: Shall/will respectfully do (an action, polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: お〜になれ / ご〜になれ
+    rarity: very rare
+    meaning: Respectfully do (an action)!
+  - conjugation-type: imperative polite (～なさい)
+    form: お〜になってください / ご〜になってください
+    rarity: common
+    meaning: Please respectfully do (an action)
+  - conjugation-type: dictionary (plain non-past)
+    form: なさる
+    rarity: common
+    meaning: To do (honorific)
+  - conjugation-type: non-past polite (～ます)
+    form: なさいます
+    rarity: common
+    meaning: To do (honorific, polite)
+  - conjugation-type: negative plain (～ない)
+    form: なさらない
+    rarity: common
+    meaning: Not to do (honorific)
+  - conjugation-type: negative non-past polite (～ません)
+    form: なさいません
+    rarity: common
+    meaning: Not to do (honorific, polite)
+  - conjugation-type: past plain (～た)
+    form: なさった
+    rarity: common
+    meaning: Did (honorific)
+  - conjugation-type: past polite (～ました)
+    form: なさいますた
+    rarity: common
+    meaning: Did (honorific, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: なさらなかった
+    rarity: common
+    meaning: Didn't do (honorific)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: なさいますませんでした
+    rarity: common
+    meaning: Didn't do (honorific, polite)
+  - conjugation-type: te-form (～て)
+    form: なさって
+    rarity: common
+    meaning: Doing, and (honorific, te-form)
+  - conjugation-type: conditional (～ば)
+    form: なされば
+    rarity: uncommon
+    meaning: If (you) do (honorific, conditional)
+  - conjugation-type: conditional (～たら)
+    form: なさったら
+    rarity: uncommon
+    meaning: If/When (you) did/do (honorific, conditional)
+  - conjugation-type: volitional (～よう)
+    form: なさろう
+    rarity: rare
+    meaning: Shall/will do (honorific, volitional)
+  - conjugation-type: volitional polite (～ましょう)
+    form: なさいますしょう
+    rarity: uncommon
+    meaning: Shall/will do (honorific, polite volitional)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: なされ
+    rarity: rare
+    meaning: Do! (honorific, plain imperative)
+  - conjugation-type: imperative polite (～なさい)
+    form: なさってください
+    rarity: common
+    meaning: Please do (honorific, polite imperative)
+  - conjugation-type: potential (～られる/～える)
+    form: なされる
+    rarity: uncommon
+    meaning: Can do (honorific, potential)
+  - conjugation-type: passive (～られる/～かれる)
+    form: なされる
+    rarity: uncommon
+    meaning: Be done (honorific, passive)
+  - conjugation-type: causative-passive (～させられる)
+    form: なさせられる
+    rarity: very rare
+    meaning: Be made to do (honorific, causative-passive)
+  - conjugation-type: dictionary (plain non-past)
+    form: いらっしゃる
+    rarity: common
+    meaning: To be/come/go (honorific)
+  - conjugation-type: non-past polite (～ます)
+    form: いらっしゃいます
+    rarity: common
+    meaning: To be/come/go (honorific, polite)
+  - conjugation-type: negative plain (～ない)
+    form: いらっしゃらない
+    rarity: common
+    meaning: Not to be/come/go (honorific)
+  - conjugation-type: negative non-past polite (～ません)
+    form: いらっしゃいません
+    rarity: common
+    meaning: Not to be/come/go (honorific, polite)
+  - conjugation-type: past plain (～た)
+    form: いらっしゃった
+    rarity: common
+    meaning: Was/Came/Went (honorific)
+  - conjugation-type: past polite (～ました)
+    form: いらっしゃいました
+    rarity: common
+    meaning: Was/Came/Went (honorific, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: いらっしゃらなかった
+    rarity: common
+    meaning: Was not/Did not come/go (honorific)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: いらっしゃいませんでした
+    rarity: common
+    meaning: Was not/Did not come/go (honorific, polite)
+  - conjugation-type: te-form (～て)
+    form: いらっしゃって
+    rarity: common
+    meaning: Being/Coming/Going (honorific, te-form)
+  - conjugation-type: conditional (～ば)
+    form: いらっしゃれば
+    rarity: uncommon
+    meaning: If (a respected person) is/comes/goes
+  - conjugation-type: conditional (～たら)
+    form: いらっしゃったら
+    rarity: uncommon
+    meaning: If (a respected person) was/came/went
+  - conjugation-type: volitional (～よう)
+    form: いらっしゃろう
+    rarity: rare
+    meaning: Shall we be/come/go (honorific)
+  - conjugation-type: volitional polite (～ましょう)
+    form: いらっしゃいましょう
+    rarity: rare
+    meaning: Shall we be/come/go (honorific, polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: いらっしゃい
+    rarity: common
+    meaning: Please come (honorific, greeting)
+  - conjugation-type: imperative polite (～なさい)
+    form: いらっしゃってください
+    rarity: common
+    meaning: Please be/come/go (honorific, polite request)
+  - conjugation-type: potential (～られる/～える)
+    form: いらっしゃれる
+    rarity: rare
+    meaning: Can be/come/go (honorific)
+  - conjugation-type: passive (～られる/～かれる)
+    form: いらっしゃられる
+    rarity: rare
+    meaning: To be caused to be/come/go (honorific)
+  - conjugation-type: causative (～させる)
+    form: いらっしゃらせる
+    rarity: very rare
+    meaning: To make (a respected person) be/come/go
+pronunciation:
+  katakana: オ〜ニナル・ナサル・イラッシャル
+  romaji: o~ ni naru・nasaru・irassharu
+formation:
+  お + Japanese origin verb stem + になる: Expresses respect for someone's actions or states when the verb
+    is of Japanese origin (訓読み).
+  ご + Chinese origin verb stem + になる: Expresses respect for someone's actions or states when the verb
+    is of Chinese origin (音読み).
+  なさる: Honorific form of する, indicating the action of someone you respect.
+  いらっしゃる: Honorific form of いる, 行く, and 来る, indicating the existence, arrival, or departure of a respected
+    person.
+  いらっしゃい: A common greeting for customers entering a store, derived from the imperative form, often shortened
+    from いらっしゃいませ, to welcome and address them politely.
+jlpt: N4
+etymology: The formation お〜になる combines a polite prefix (お or ご) with the verb なる (to become), indirectly
+  elevating the action to a respectful level. なさる is derived from 為す(なす), meaning 'to do' or 'to perform,'
+  with the honorific suffix 〜なさ. いらっしゃる is an honorific form of いる (to be), 行く (to go), and 来る (to come),
+  believed to originate from a combination of 入る (to enter) and 在る (to be). Together, these forms represent
+  various strategies for conveying respect through language, often by making the expression less direct
+  or by using specialized verbs.
+writeup: |-
+  お〜になる, なさる, and いらっしゃる are essential components of 尊敬語 (sonkeigo), the respectful language in Japanese, used to honor the actions, existence, or movement of people superior to you, such as your boss, teachers, customers, or elders. It is crucial to remember that you should **never** use these forms to describe your own actions or those of your in-group when speaking to an out-group member; doing so would be considered arrogant or inappropriate.
+
+  **お〜になる / ご〜になる** is a general honorific construction. You attach お (for Japanese-origin verbs, 訓読み) or ご (for Chinese-origin verbs, 音読み) to the verb's stem, then add になる. This indirect approach of saying 'to become' an action subtly elevates the action itself. For instance, 読む (to read) becomes お読みになる (to respectfully read), and 連絡する (to contact) becomes ご連絡になる (to respectfully contact).
+
+  **なさる** is a specific, irregular honorific verb for する (to do). While お〜になる can also be used for する (e.g., お勉強になる for 'to study respectfully'), なさる is its dedicated honorific counterpart and is very common. For example, 先生がご説明なさる (The teacher explains respectfully) is often used instead of 先生がご説明になる.
+
+  **いらっしゃる** is another irregular honorific verb that covers three common verbs: いる (to be/exist), 行く (to go), and 来る (to come). Its versatility makes it a frequently used honorific in various situations, from greeting customers (いらっしゃいませ) to asking about a superior's whereabouts. For example, 社長はいらっしゃいますか？ (Is the president there?) or 先生はどちらにいらっしゃいましたか？ (Where did the teacher go?).
+
+  The choice between these forms depends on the base verb and sometimes on nuance or common usage. While お〜になる is broadly applicable, なさる and いらっしゃる are often preferred for する, いる, 行く, and 来る due to their established usage and slightly higher level of politeness or naturalness in certain contexts. Mastering these forms is key to navigating formal and polite Japanese interactions successfully.
+false_friends:
+  - term: いたす (to do, humble)
+    meaning: To do (Humble)
+    kind: antonym
+    nuance: Unlike these honorific forms which elevate the subject of the sentence, いたす is a humble verb
+      used to lower the speaker in relation to the listener.
+    grammar_point: お[Verb-stem]する・いたす (humble action - kenjougo)
+  - term: なさい (polite imperative)
+    meaning: Do (something)! (polite imperative)
+    kind: often confused with
+    nuance: While related etymologically, なさい is a direct polite command. In contrast, なさる is an honorific
+      verb form that respectfully describes someone else's action, not a direct command.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: する (to do・make)
+    meaning: To do, to make, to play
+    kind: similar expression
+    nuance: する is the basic, neutral verb for 'to do'. なさる is its honorific counterpart, used to show
+      respect, while お〜になる can also make other verbs respectful. Using する instead of an honorific form
+      indicates a lack of respect in a formal setting.
+    grammar_point: する (to do・make)
+  - term: いる (to exist, animate)
+    meaning: To be, there is, to remain (in a state)
+    kind: similar expression
+    nuance: いる is the basic, neutral verb for 'to be' or 'to exist' for animate objects. いらっしゃる is its
+      honorific equivalent, exclusively used when referring to a respected person. Using いる instead of
+      いらっしゃる for a superior would be impolite.
+    grammar_point: いる (to exist, animate)
+  - term: 来る (to come)
+    meaning: To come
+    kind: similar expression
+    nuance: 来る is the basic, neutral verb for 'to come'. いらっしゃる is its honorific equivalent, used to show
+      respect to the person arriving. Using 来る for a respected person's arrival is generally impolite.
+    grammar_point: くる (come)
+  - term: 行く (to go)
+    meaning: To go; to move away from the speaker.
+    kind: similar expression
+    nuance: 行く is the basic, neutral verb for 'to go'. いらっしゃる is its honorific equivalent, used to show
+      respect to the person departing. Using 行く for a respected person's departure is typically impolite.
+    grammar_point: 行く (to go)
+post_false_friends_writeup: 'When choosing among these expressions, remember the fundamental principle:
+  honorific forms (お〜になる, なさる, いらっしゃる) are always used to show respect for the actions of others, never
+  your own. Conversely, いたす is a humble form used to lower yourself. Basic verbs like する, いる, 行く, and
+  来る are neutral and do not convey respect, making them inappropriate for superiors in formal contexts.
+  なさる and いらっしゃる are irregular but commonly used, while お〜になる is a more general pattern applicable to
+  a wider range of verbs.'
+examples:
+  - english: I heard that the teacher reads every day.
+    japanese:
+      - 先生 は 毎日 読書 を {なさる} そう です よ。
+      - 先生 は 毎日 読書 を {なさい ます} そう です よ。
+    english_literally: Teacher, every day, reading, does (honorific), so I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 毎日 読書 を {する} そう です よ。
+        english: I heard that the teacher reads every day.
+        hint: This uses the plain form of 'do'. We are looking for a phrase that shows respect for the
+          teacher's action.
+    scene: Talking to a fellow student about your well-respected teacher's daily habits.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The use of なさる in this sentence directly reflects the speaker's respect for the teacher. While
+      する would be grammatically correct, なさる elevates the action, fitting the polite tone when discussing
+      a superior.
+  - english: The teacher has just arrived.
+    japanese:
+      - 先生 が ちょうど お 着き に {なり まし た}。
+      - 先生 が ちょうど お 着き に {なっ た} そう です。
+    english_literally: The teacher has just become arriving.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が ちょうど 着き まし た。
+        english: The teacher has just arrived.
+        hint: This is a polite form, but not honorific. We are looking for an expression that shows respect
+          for the teacher's actions.
+    scene: A student tells another student that their professor has just entered the room.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: I heard the department manager is already at the office.
+    japanese:
+      - 部 長 は もう 会社 に {いらっしゃる} そう です。
+      - 部 長 は もう 会社 に {いらっしゃる} と の こと です。
+    english_literally: Department manager already company in be (honorific) it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は もう 会社 に {いる} そう です。
+        english: I heard the department manager is already at the office.
+        hint: いる is the plain form for 'to be' and doesn't convey respect for a superior. We're looking
+          for an honorific expression.
+    scene: A new employee asking a senior colleague about the department manager's arrival.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 部長 (department manager) and the honorific verb いらっしゃる shows respect for a superior.
+      The expression 〜そうです (I heard that...) indicates reported speech, often used to politely convey
+      information, making the statement more indirect and respectful in a workplace setting.
+  - english: President, could you please wait a moment?
+    japanese:
+      - 社長、少し お 待ち に {なっ て} いただけ ます か。
+      - 社長、少し お 待ち に {なっ て} ください。
+      - 社長、少し お 待ち に {なり ませ ん} か。
+    english_literally: President, could you please become waiting a little?
+    competing_grammar:
+      - competing_japanese:
+          - 社長、少し 待っ て ください。
+        english: President, please wait a moment.
+        hint: While 〜てください is a polite request, it does not convey the same level of respect as the honorific
+          form for someone of the president's status. We're seeking a more respectful request.
+    scene: An employee asks their company president to briefly pause.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: te-form (～て)
+  - english: Please come to our house tomorrow.
+    japanese:
+      - 明日、私 たち の 家 に {いらっしゃっ て} ください ね。
+      - 明日、私 ども の 家 に {いらっしゃっ て} ください ね。
+    english_literally: Tomorrow, our house to come (honorific te-form) please, right?
+    competing_grammar:
+      - competing_japanese:
+          - 明日、私 たち の 家 に {来 て} ください ね。
+        english: Please come to our house tomorrow.
+        hint: Using 来て is a polite request, but いらっしゃって is an honorific form that shows higher respect
+          to the person invited, suitable for an older person inviting a younger one.
+    scene: An elderly woman inviting her younger neighbor for tea.
+    register: semi-formal
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase いらっしゃってください makes the invitation respectful and warm, suitable for an older woman
+      inviting a younger neighbor. The final particle ね adds a friendly, softening nuance to the request,
+      implying a shared understanding or seeking gentle agreement.
+  - english: Boss, will you be using this new computer?
+    japanese:
+      - 部 長 は、この 新しい コンピューター を お 使い に {なり ます} か。
+      - 部 長 は、この 新しい コンピューター を お 使い に {なる} の です か。
+    english_literally: Boss, will you be becoming using this new computer?
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は、この 新しい コンピューター を 使い ます か。
+        english: Boss, will you use this new computer?
+        hint: This is a polite question, but does not show special respect for the boss's action. We need
+          a way to elevate the action of 'using'.
+    scene: A team member asks their manager if they intend to use a recently purchased office computer.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: Welcome! Are you looking for something?
+    japanese:
+      - '{いらっしゃい}！何 か お 探し です か？'
+      - '{いらっしゃい ませ}！何 か お 探し です か？'
+    english_literally: Welcome! Something searching are you?
+    competing_grammar:
+      - competing_japanese:
+          - '{よう こそ}！何 か お 探し です か？'
+        english: Welcome! Are you looking for something?
+        hint: ようこそ is a general welcome, but いらっしゃい (or いらっしゃいませ) is the specific and customary greeting
+          used by shop staff to customers.
+    scene: A shopkeeper greeting a customer entering their store.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    listener_gender: group
+    nuance: いらっしゃい is a common, slightly informal yet polite, greeting used by shop staff to welcome customers.
+      It is a shortened form of いらっしゃいませ, widely used in service industries. The tone is welcoming and
+      immediately shifts to service-oriented inquiry.
+  - english: Hearing that the president became angry, we were all surprised.
+    japanese:
+      - 社長 が お 怒り に {なら れ た} と 聞い て、私 たち は 皆 驚き まし た。
+      - 社長 が お 怒り に {なっ た} と 聞い て、私 たち は 皆 驚き まし た。
+    english_literally: Hearing that the president became in an angry state, we were all surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 が 怒っ た と 聞い て、私 たち は 皆 驚き まし た。
+        english: Hearing that the president became angry, we were all surprised.
+        hint: Using the plain form 怒った (got angry) is too direct and lacks the respect required for someone
+          of the president's high status, even when describing a negative emotion. We need to use an honorific
+          form to show proper deference.
+    scene: Employees discuss the president's unexpected anger.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The use of お怒りになられた (a double honorific form for 怒る, combining お〜になる with the honorific passive
+      〜られる) emphasizes extreme respect, even when describing a negative emotion like anger. This is particularly
+      fitting for a formal setting when speaking about someone of very high status like a company president.
+      While お怒りになった is also correct, お怒りになられた adds an extra layer of formality and distance, often used
+      when the speaker feels a great deal of deference or awe towards the person.
+  - english: What do you suppose the Prime Minister intends to do tomorrow?
+    japanese:
+      - 明日、首相 は 何 を {なさろう} と し て いる の でしょう か。
+      - 明日、首相 は 何 を {なさろう} と お 考え な の でしょ う か。
+    english_literally: Tomorrow, Prime Minister, what, intend to do (honorific, volitional), is, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、首相 は 何 を {しよう} と し て いる の でしょう か。
+        english: What do you suppose the Prime Minister intends to do tomorrow?
+        hint: This uses the plain volitional form. We are looking for a more respectful way to speculate
+          about the Prime Minister's intentions.
+    scene: Political analysts discussing the Prime Minister's next move.
+    register: formal
+    setting: academic
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: なさろう is the volitional form of なさる, conveying a sense of conjecture about a respected person's
+      intentions. It implies respectful speculation, fitting for 'political analysts' discussing the 'Prime
+      Minister'. The formal tone is reinforced by the male speaker's use in this context.
+  - english: If the professor isn't in his office, please leave a message.
+    japanese:
+      - 教授 が 研究 室 に {いらっしゃら ない} なら、メッセージ を 残し て ください。
+      - 教授 が 研究 室 に {いらっしゃい ませ ん} なら、メッセージ を 残し て ください。
+    english_literally: Professor if research room in not present (honorific plain negative) if, message
+      please leave.
+    competing_grammar:
+      - competing_japanese:
+          - 教授 が 研究 室 に {い ない} なら、メッセージ を 残し て ください。
+        english: If the professor isn't in his office, please leave a message.
+        hint: い ない is the plain negative form, but using the honorific いらっしゃらない is more respectful when
+          referring to a professor, even in a casual-sounding conditional clause.
+    scene: A teaching assistant instructing a student about contacting the professor.
+    register: semi-formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 教授がいらっしゃらないなら uses the plain negative honorific form, which, when combined with
+      なら (if), still maintains respect for the professor. This is a practical and polite instruction in
+      an academic setting, balancing directness with appropriate deference.
+post_example_writeup: Remember to always use these honorific forms when you want to show respect towards
+  someone, but never towards yourself. Consider the formality of the situation and the level of respect
+  you wish to convey when choosing whether to use お〜になる, なさる, or いらっしゃる. The honorific form elevates the
+  action of the subject, showing respect.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/お-になる

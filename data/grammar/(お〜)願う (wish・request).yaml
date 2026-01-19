@@ -1,0 +1,375 @@
+grammar_point: (お〜)願う (wish・request)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+meaning: to wish or request
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 願う
+    rarity: common
+    meaning: to wish or request
+  - conjugation-type: non-past polite (～ます)
+    form: 願います
+    rarity: common
+    meaning: to wish or request (polite)
+  - conjugation-type: past plain (～た)
+    form: 願った
+    rarity: common
+    meaning: wished or requested
+  - conjugation-type: past polite (～ました)
+    form: 願いました
+    rarity: common
+    meaning: wished or requested (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 願わない
+    rarity: common
+    meaning: not wish or request
+  - conjugation-type: negative non-past polite (～ません)
+    form: 願いません
+    rarity: common
+    meaning: not wish or request (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 願わなかった
+    rarity: common
+    meaning: did not wish or request
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 願わませんでした
+    rarity: common
+    meaning: did not wish or request (polite)
+  - conjugation-type: te-form (～て)
+    form: 願って
+    rarity: common
+    meaning: wishing or requesting
+  - conjugation-type: potential (～られる/～える)
+    form: 願える
+    rarity: common
+    meaning: can wish or request
+  - conjugation-type: passive (～られる/～かれる)
+    form: 願われる
+    rarity: less common
+    meaning: to be wished or requested
+  - conjugation-type: causative (～させる)
+    form: 願わせる
+    rarity: less common
+    meaning: to make someone wish or request
+  - conjugation-type: causative-passive (～させられる)
+    form: 願わせられる
+    rarity: uncommon
+    meaning: to be made to wish or request
+  - conjugation-type: volitional (～よう)
+    form: 願おう
+    rarity: common
+    meaning: let's wish or request
+  - conjugation-type: volitional polite (～ましょう)
+    form: 願いましょう
+    rarity: common
+    meaning: let's wish or request (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 願え
+    rarity: less common
+    meaning: Wish! or Request!
+  - conjugation-type: imperative polite (～なさい)
+    form: 願いなさい
+    rarity: less common
+    meaning: Please wish or request (polite)
+pronunciation:
+  katakana: オネガウ
+  romaji: onegau
+formation:
+  Noun を 願う: Used to express a wish or hope for a noun.
+  Verb-dictionary ことを 願う: Used to express a wish or hope for an action.
+  お + Verb-stem + 願う: Used to make a polite, deferential request to someone.
+  お + Noun + 願う: Used to make a polite, deferential request related to a noun, often implying an action
+    on the part of the listener (e.g., お願いします).
+jlpt: N4
+etymology: The verb 願う (negau) originates from a blend of ancient Japanese terms related to pleading and
+  inquiry. Historically, it evolved from expressing humble requests or inquiries to encompassing the broader
+  meanings of 'to wish' or 'to request.' The use of the honorific prefix 'お' further enhances the politeness
+  and deference inherent in the verb, reflecting a deep-seated cultural value of humility when making
+  requests.
+writeup: |-
+  The verb 願う (ねがう) broadly translates to "to wish" or "to request." Its usage ranges from expressing personal hopes and desires to making polite, formal requests of others.
+
+  When used to express a personal wish or hope, it often takes the form of "[Noun] を 願う" (e.g., 成功を願う - seikō o negau, "to wish for success") or "[Verb-dictionary] ことを 願う." This form conveys the speaker's earnest desire for something to happen or for a certain state to exist.
+
+  When making a request, especially in formal or polite contexts, it can be combined with the honorific prefix お (o) and a verb stem, forming the structure "お + [Verb-stem] + 願う." This construction is a highly respectful and deferential way to ask someone to do something. For instance, お待ち願います (omachi negaimasu) means "Please wait," used in a very polite manner, typically by someone of higher status to an equal or subordinate, or by someone in a service role to a client. The common phrase お願いします (onegai shimasu) is a widely used polite request, literally meaning "I humbly request," and is derived from this very structure.
+
+  It's important to distinguish 願う from simple requests like 〜てください (te kudasai). While both express requests, 〜てください is a more direct and common polite request for an action, whereas 願う implies a more earnest plea or a deferential hope that an action will be taken, often on one's behalf. The formality of 願う makes it less common in everyday casual conversation when simply asking for a small favor.
+false_friends:
+  - term: Verb[たい] (desiderative)
+    meaning: to want to do
+    kind: similar expression
+    nuance: This expresses the speaker's personal desire for an action, not a request to others or a general
+      wish. For example, 食べたい means "I want to eat."
+    grammar_point: Verb[たい] (desiderative)
+  - term: Nounが欲しい (to want something)
+    meaning: to want something
+    kind: similar expression
+    nuance: This expresses the speaker's personal desire for a noun, not a wish for an action or a formal
+      request. For example, 車が欲しい means "I want a car."
+    grammar_point: <suggest>:Nounが欲しい (to want something)
+  - term: Verb-てほしい (to want someone to do)
+    meaning: to want someone to do
+    kind: similar expression
+    nuance: This expresses the speaker's desire for someone else to perform an action. While it involves
+      another person, it is a personal wish or expectation, less formal and deferential than 願う. For instance,
+      手伝ってほしい means "I want you to help."
+    grammar_point: <suggest>:Verb-てほしい (to want someone to do)
+  - term: お〜ください (polite request)
+    meaning: please do (polite request)
+    kind: similar expression
+    nuance: This is a direct, polite command or instruction. While polite, it lacks the deferential and
+      earnest plea nuance often associated with 「お〜願う」. 「ご覧ください」means "Please look." 「お〜願う」is more about
+      asking for a favor or hoping an action is taken.
+    grammar_point: お〜ください (polite request)
+  - term: てください (polite request)
+    meaning: please do
+    kind: similar expression
+    nuance: This is the most common and direct polite request. 「願う」is significantly more formal and often
+      used in written communication or highly specific formal spoken contexts to convey a deep wish or
+      earnest request, rather than a straightforward instruction. For example, 待ってください means "Please wait."
+    grammar_point: てください (polite request)
+  - term: 望む (to hope)
+    meaning: to hope for, to desire
+    kind: similar expression
+    nuance: While 望む (nozomu) also means "to hope" or "to desire," it often implies a more active, outward-looking
+      hope or expectation for an outcome. 願う, especially when used for personal wishes, can be more passive
+      and prayer-like, or when used as a request, carries a stronger sense of deference or earnestness
+      than 望む.
+    grammar_point: <suggest>:望む (to hope)
+post_false_friends_writeup: While all these expressions relate to desires or requests, 願う carries a specific
+  nuance of a deeply felt wish or a formal, deferential request. Unlike the more direct expressions of
+  desire (〜たい, 〜ほしい, 欲しい) or common polite requests (〜てください, お〜ください), 願う suggests a higher degree of formality
+  or earnestness. It often implies a hope that an action will be taken, rather than a direct command.
+  It's crucial to understand this distinction to avoid sounding overly formal or even presumptuous in
+  casual settings, or conversely, sounding too informal in situations requiring high respect.
+examples:
+  - english: I wish for your happiness.
+    japanese:
+      - あなた の 幸せ を {願い ます}。
+      - あなた の 幸せ を {願う} よ。
+    english_literally: Your happiness object wish (polite).
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 幸せ が 欲しい です。
+        english: I want your happiness (as a possession).
+        hint: 「欲しい」expresses a desire for a noun as a possession, not a wish for someone's state or well-being.
+          We're looking for expressing a heartfelt wish for another's state.
+      - competing_japanese:
+          - あなた の 幸せ を 望み ます。
+        english: I hope for your happiness.
+        hint: 「望む」implies hope or expectation. While similar, 「願う」can convey a deeper, more heartfelt
+          wish or prayer. We're looking for a heartfelt wish.
+    scene: A friend saying goodbye, expressing well wishes for the other's future.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I wish that peace will come.
+    japanese:
+      - 平和 が 来る こと を {願っ て い ます}。
+      - 平和 が 来る こと を {願っ て いる}。
+      - 平和 が 来る こと を {願っ て おり ます}。
+    english_literally: Peace subject come fact object wishing (progressive, polite).
+    competing_grammar:
+      - competing_japanese:
+          - 平和 が 来る の を 期待 し て い ます。
+        english: I am expecting peace to come.
+        hint: 「期待 しています」means "I am expecting." We're looking for a general wish or hope for something
+          to happen, not an expectation.
+      - competing_japanese:
+          - 平和 が 来る こと を 望ん で い ます。
+        english: I am hoping for peace to come.
+        hint: 「望む」often implies a hope or desire, but 「願う」in this context emphasizes a more earnest, almost
+          prayer-like wish for something grand like peace. We're looking for an earnest wish.
+    scene: A journalist reporting on international affairs, expressing a sentiment shared by many.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+  - english: Please respond as soon as possible.
+    japanese:
+      - 早急 な ご 返答 を {お 願い} {いたし ます}。
+      - 早急 な ご 返答 を {お 願い し ます}。
+    english_literally: Prompt respectful reply object humbly request do (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 早急 に ご 返答 {ください}。
+        english: Please reply promptly.
+        hint: 「ください」is a direct, polite request. 「お願い いたします」is a more formal and humble request, often
+          used in business contexts, implying you are asking for a favor.
+      - competing_japanese:
+          - 早急 に 返信 し て ほしい です。
+        english: I want you to reply promptly.
+        hint: 「〜てほしい」expresses a personal desire for someone to do something, which is less formal and
+          deferential than 「お願い いたします」. We're looking for a humble, formal request.
+    scene: A business professional sending an important email to a client or colleague.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: The combination of 「お願い」 (the noun form of 願う, meaning 'request' or 'favor') with the humble
+      verb 「いたします」 (humble form of する 'to do') creates an extremely polite and deferential request common
+      in business Japanese.
+    etymology: The phrase 「お願い いたします」comes from 「お願い」 (the nominalized form of 願う) and 「いたします」 (the humble
+      form of する 'to do'). This construction emphasizes the speaker's humility and the earnestness of
+      the request, reflecting traditional Japanese etiquette where indirect and humble language is often
+      preferred in formal settings to show respect and avoid imposition.
+  - english: I sincerely wish for your health.
+    japanese:
+      - 心 から あなた の 健康 を {願っ て い ます}。
+      - 心 から あなた の 健康 を {願っ て いる}。
+    english_literally: From heart your health object wishing (progressive, polite).
+    competing_grammar:
+      - competing_japanese:
+          - 心 から あなた の 健康 を 祈っ て い ます。
+        english: I am praying for your health.
+        hint: 「祈る」specifically means 'to pray.' While similar in sentiment, 「願う」can be used more broadly
+          for a wish or hope, not necessarily religious. We're looking for a general sincere wish.
+    scene: A doctor speaking to a patient who has just recovered from an illness.
+    register: formal
+    setting: supportive
+    conjugation: progressive (～ている)
+  - english: Please confirm the details.
+    japanese:
+      - 詳細 の ご 確認 を {お 願い} {でき ます でしょう か}。
+      - 詳細 の ご 確認 を {お 願い} {し たい の です が}。
+    english_literally: Details's respectful confirmation object can I request (polite, humble)?
+    competing_grammar:
+      - competing_japanese:
+          - 詳細 を 確認 し て {ください}。
+        english: Please confirm the details (direct).
+        hint: This is a direct, polite request. The example uses a much more deferential and indirect
+          phrasing suitable for a formal service interaction. We're looking for a very soft, deferential
+          request.
+      - competing_japanese:
+          - 詳細 の 確認 を お 願い {し ます}。
+        english: Please confirm the details (polite).
+        hint: 「お願いします」is common but less formal than 「お願いできますでしょうか」, which adds extra layers of politeness
+          and tentativeness. We're looking for a softer, more deferential nuance.
+    scene: A customer service representative speaking to a customer over the phone.
+    register: semi-formal
+    setting: professional
+    nuance: This sentence employs a highly polite and indirect request, using the potential form of 願う
+      with the formal 「できますでしょうか」. This is typical in service industries to avoid sounding demanding and
+      to show utmost respect to the customer.
+  - english: I hope that we can meet again.
+    japanese:
+      - また 会える こと を {願っ て い ます}。
+      - また 会える こと を {願っ て いる}。
+    english_literally: Again can meet fact object wishing (progressive, polite).
+    competing_grammar:
+      - competing_japanese:
+          - また 会え たら いい な と 思い ます。
+        english: I think it would be good if we could meet again.
+        hint: This uses a conditional form to express a softer, more casual hope. The example uses 「願っています」to
+          express a more direct and earnest wish. We're looking for a direct earnest wish.
+    scene: Two friends saying goodbye at the airport after a long period of separation.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+  - english: I wish for the success of your project.
+    japanese:
+      - プロジェクト の 成功 を {願い ます}。
+      - プロジェクト の 成功 を {願う}。
+    english_literally: Project's success object wish (polite).
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト が うまく いく こと を 期待 し て い ます。
+        english: I am expecting the project to go well.
+        hint: 「期待 しています」focuses on expectation, whereas 「願います」expresses a wish. We're looking for a direct
+          wish for success.
+    scene: A colleague encouraging another before a big presentation or project launch.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: I earnestly ask for your understanding.
+    japanese:
+      - 何卒 ご 理解 {ください} ます よう {お 願い} {申し上げ ます}。
+      - 何卒 ご 理解 頂け ます よう {お 願い} {申し上げ ます}。
+    english_literally: Earnestly respectful understanding please give as respectfully request (humble).
+    competing_grammar:
+      - competing_japanese:
+          - ご 理解 を {いただけ ます か}。
+        english: Could you please understand?
+        hint: This is a polite inquiry about understanding, typically less formal than the extremely humble
+          「お願い 申し上げます」, which is used for earnest appeals. We're looking for an extremely humble and formal
+          request.
+      - competing_japanese:
+          - ご 理解 {ください}。
+        english: Please understand.
+        hint: This is a direct, polite request. The example uses a much higher level of humility and formality,
+          typical for apologies or very serious requests. We're looking for an extremely humble and formal
+          request.
+    scene: A company representative making a public apology for a serious error.
+    register: formal
+    setting: apologetic
+    nuance: This sentence employs an extremely humble and formal construction. 「何卒 (なにとぞ)」intensifies
+      the request, meaning "please; kindly." 「ご 理解 ください ます よう」is a polite way to ask for understanding.
+      「お願い 申し上げます」is the highest humble form for making a request, used in situations demanding utmost
+      deference.
+    etymology: 「何卒 (なにとぞ)」is an old adverb meaning 'by all means; kindly; please.' 「申し上げます」is the humble
+      form of 「言う」('to say') or 「する」('to do'), and when combined with 「お願い」 (a request), it elevates the
+      request to the highest level of humility. This complex construction reflects historical politeness
+      norms where deference and indirectness were paramount in formal communication.
+  - english: I wish this issue will be resolved soon.
+    japanese:
+      - この 問題 が 早く 解決 する こと を {願っ て い ます}。
+      - この 問題 が 早く 解決 する こと を {願っ て いる}。
+    english_literally: This problem subject quickly resolve fact object wishing (progressive, polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 が 早く 解決 する こと を 期待 し て い ます。
+        english: I am expecting this problem to be resolved soon.
+        hint: 「期待 しています」focuses on expectation, while 「願っています」expresses a sincere wish or hope. We're
+          looking for expressing a sincere wish for resolution.
+    scene: A team leader in a project meeting discussing a persistent technical problem.
+    register: formal
+    setting: professional
+    conjugation: progressive (～ている)
+  - english: I wish for peace in the world.
+    japanese:
+      - 世界 の 平和 を {願う}。
+      - 世界 の 平和 を {願い ます}。
+    english_literally: World's peace object wish.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 に 平和 を 望む。
+        english: I hope for peace in the world.
+        hint: 「望む」is closer to 'hope,' while 「願う」here implies a deeper, more personal wish or prayer for
+          peace. We're looking for a strong wish for peace.
+    scene: A person reflecting quietly on global events, perhaps writing in a diary.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: I ask for your continued support.
+    japanese:
+      - 今後 と も ご 支援 の ほど {お 願い} {申し上げ ます}。
+      - 引き続き の ご 支援 を {お 願い} {申し上げ ます}。
+    english_literally: From now on too respectful support of degree humbly request (humble).
+    competing_grammar:
+      - competing_japanese:
+          - 今後 と も ご 支援 {ください}。
+        english: Please give your continued support.
+        hint: 「ください」is a polite but direct request. 「お願い 申し上げます」is a much more formal and humble way to
+          solicit ongoing support, often used in public or highly respectful settings. We're looking for
+          a humble request for continued support.
+    scene: A politician delivering a speech to their constituents, seeking their votes.
+    register: formal
+    setting: persuasive
+    nuance: 「今後 とも」means "from now on as well." 「ご 支援 の ほど」is a highly polite phrasing to ask for support,
+      softening the directness. The combination with 「お願い 申し上げます」 (the most humble way to make a request)
+      is typical in persuasive or formal address.
+    etymology: This phrase combines 「今後 とも」 ('from now on and as always'), the respectful noun 「ご 支援」
+      ('support'), and the highly humble 「お願い 申し上げます」. The phrase 「の ほど」, literally 'to the degree of,'
+      softens the request, making it sound more indirect and polite, a common feature in formal Japanese
+      to avoid direct imposition.
+post_example_writeup: The examples illustrate the versatility of 願う. Notice how the core verb 願う (negau)
+  shifts in nuance from a personal wish to a formal request, depending on its conjugation, accompanying
+  particles (like を or こと), and especially the addition of the honorific お and humble verbs like いたします
+  (itashimasu) or 申し上げます (mōshiagemasu). Mastering these distinctions is key to using 願う appropriately
+  in various contexts, from casual reflection to high-level business communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/お〜願う

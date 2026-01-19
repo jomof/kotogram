@@ -1,0 +1,216 @@
+grammar_point: たいへん (very・awfully・terribly)
+learn_before:
+  - ね (seeking agreement)
+meaning: very; awfully; terribly; extremely
+pronunciation:
+  katakana: タイヘン
+  romaji: taihen
+formation:
+  たいへん + Adjective/Adverb/Verb: Emphasizes the high degree of the modified word.
+  大変な + Noun: Describes a noun as difficult, serious, or tremendous.
+  大変！ (as interjection): Expresses surprise, alarm, or a serious situation.
+jlpt: N5
+etymology: The word 大変 (たいへん) literally combines 大 (dai, 'big, great') and 変 (hen, 'change, unusual').
+  Originally, it meant 'a great change' or 'an emergency/calamity.' Over time, its usage evolved to express
+  the intensity or severity of a situation, leading to its modern adverbial meaning of 'very' or 'extremely,'
+  and its adjectival meaning of 'difficult' or 'serious.' The exclamatory '大変！' directly reflects its
+  original sense of 'It's serious!' or 'An emergency!'
+writeup: The word 大変 (たいへん) is versatile in Japanese, primarily functioning as an **adverb** meaning 'very'
+  or 'extremely,' but it can also act as a **な-adjective** meaning 'difficult,' 'serious,' or 'tremendous,'
+  and even as an **interjection** to express alarm or urgency. As an **adverb**, 大変 intensifies the meaning
+  of the word it modifies, similar to English 'very' or 'extremely.' For example, 大変きれい (たいへんきれい) means
+  'very beautiful,' and 大変よくできました (たいへんよくできました) means 'You did extremely well.' It is generally neutral
+  in tone, though perhaps slightly more formal or emphatic than すごく (sugoku) in adverbial use. When used
+  as a **な-adjective**, 大変な (たいへんな) describes a noun as being difficult, serious, or extraordinary. For
+  instance, 大変な仕事 (たいへんなしごと) refers to 'a difficult job' or 'a tremendous amount of work,' and 大変なこと (たいへんなこと)
+  can mean 'a serious matter.' Finally, as an **interjection**, 大変！ (たいへん！) is used as an exclamation
+  to signal a sudden emergency, a serious problem, or something urgent. It conveys a sense of alarm or
+  immediate need for attention. For example, if something unexpected and negative happens, one might exclaim
+  '大変！' Understanding the historical progression from 'great change/emergency' to 'serious/difficult'
+  and then to 'very' helps grasp its various modern applications. The nuance often depends on context
+  and the word it modifies.
+false_friends:
+  - term: とても
+    meaning: very
+    kind: similar expression
+    nuance: とても primarily means "very" or "extremely" and generally implies a positive or neutral intensity.
+      It does not carry the connotation of "difficulty" or "seriousness" that たいへん can.
+    grammar_point: <suggest>:とても (very)
+  - term: すごく
+    meaning: very; greatly
+    kind: similar expression
+    nuance: すごく is a more casual and conversational way to express "very" or "greatly." While たいへん can
+      be used casually, すごく is typically favored in informal settings. すごく does not carry the nuance of
+      "difficulty" or "serious situation."
+    grammar_point: <suggest>:すごく (very)
+  - term: かなり
+    meaning: quite; considerably
+    kind: similar expression
+    nuance: かなり indicates a degree that is "quite" high or "considerable" but is generally less intense
+      than たいへん, とても, or すごく. It often implies a subjective judgment that something is "fairly" good or
+      "fairly" difficult, rather than "extremely."
+    grammar_point: かなり (quite・considerably)
+  - term: 大変だ
+    meaning: It's serious!; It's tough!; Oh no!
+    kind: often confused with
+    nuance: This is the adjectival/interjectional use of the same word, 大変. While the adverb たいへん intensifies
+      an adjective or verb, 大変だ describes a situation as difficult, serious, or expresses alarm as an
+      exclamation.
+    grammar_point: <suggest>:大変だ (it's serious)
+post_false_friends_writeup: When choosing between たいへん, とても, すごく, and かなり, consider the nuance of intensity
+  and formality. たいへん offers flexibility, allowing it to function as a polite intensifier, a descriptor
+  for difficult situations, or an urgent exclamation. とても is a reliable, generally neutral intensifier
+  for 'very.' すごく leans more casual, suitable for everyday conversation. かなり softens the intensity, implying
+  'quite' rather than 'extremely.' Furthermore, remember that 大変だ (たいへんだ) is grammatically different from
+  the adverbial たいへん; it functions as a な-adjective or an interjection to convey seriousness or difficulty
+  about a situation itself, rather than merely intensifying an attribute.
+examples:
+  - english: This book is very interesting.
+    japanese:
+      - この 本 は {大変} 面白い です。
+      - この 本 は {大変} 面白い。
+    english_literally: As for this book, it is very interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は とても 面白い です。
+        english: This book is very interesting.
+        hint: Both are correct, but とても is a more common and slightly less formal intensifier. We're looking
+          for たいへん.
+    scene: A student recommending a book to a friend.
+    register: formal
+    setting: friendly
+  - english: My mother is extremely busy every day.
+    japanese:
+      - 母 は 毎日 {大変} 忙しい です。
+      - 母 は 毎日 {大変} 忙しい。
+    english_literally: As for my mother, every day she is extremely busy.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は 毎日 すごく 忙しい です。
+        english: My mother is really busy every day.
+        hint: While すごく is also a common intensifier, たいへん can convey a slightly more formal or emphatic
+          tone. We're looking for たいへん.
+    scene: A child talking about their mother's schedule to a teacher.
+    register: teineigo (polite)
+    setting: informative
+  - english: Moving is a tremendous task.
+    japanese:
+      - 引っ越し は {大変 な} 作業 です。
+      - 引っ越し は {大変 な} 作業 だ。
+    english_literally: As for moving, it is a tremendous task.
+    competing_grammar:
+      - competing_japanese:
+          - 引っ越し は 難しい 作業 です。
+        english: Moving is a difficult task.
+        hint: 難しい means 'difficult,' but 大変な emphasizes the overall difficulty and arduousness of the
+          task. We're looking for the sense of 'tremendous'.
+    scene: Two friends discussing the difficulties of moving to a new apartment.
+    register: casual
+    setting: serious
+  - english: Oh no! The train is leaving!
+    japanese:
+      - '{大変}！電車 が 出発 し ます！'
+      - '{大変}！電車 が 出発 する！'
+    english_literally: Emergency! The train departs!
+    competing_grammar:
+      - competing_japanese:
+          - や ばい！電車 が 出発 し ます！
+        english: Oh shoot! The train is leaving!
+        hint: やばい is a slang term for 'bad' or 'dangerous' and is more informal and youth-oriented for
+          expressing alarm. We're looking for a more standard exclamation.
+    scene: Someone rushing to catch a train and realizing it's about to depart.
+    register: casual
+    setting: emergency/alarm
+  - english: Thank you very much for your hard work.
+    japanese:
+      - '{大変} お 疲れ 様 でし た。'
+      - '{大変} お 疲れ 様 です。'
+    english_literally: Extremely, it was your fatigue.
+    competing_grammar:
+      - competing_japanese:
+          - お 疲れ 様 でし た。
+        english: Thank you for your hard work.
+        hint: Adding たいへん intensifies the gratitude for someone's effort, making it 'very much' or 'extremely'
+          hard work. We're looking for an intensified expression.
+    scene: A boss thanking employees after a long, difficult day at the office.
+    register: formal
+    setting: professional
+  - english: That was a tough negotiation.
+    japanese:
+      - あれ は {大変 な} 交渉 でし た。
+      - あれ は {大変 な} 交渉 だっ た。
+    english_literally: That was a tremendous negotiation.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 厳しい 交渉 でし た。
+        english: That was a strict negotiation.
+        hint: 厳しい can mean 'strict' or 'severe,' but 大変な emphasizes the overall difficulty and arduousness
+          of the negotiation. We're looking for 'tough' in the sense of 'tremendous effort'.
+    scene: Business colleagues debriefing after a particularly challenging meeting.
+    register: semi-formal
+    setting: professional
+  - english: That game was really fun!
+    japanese:
+      - あの ゲーム は {大変} 面白かっ た ね！
+      - あの ゲーム は {大変} 面白かっ た！
+    english_literally: That game was extremely interesting, right!
+    competing_grammar:
+      - competing_japanese:
+          - あの ゲーム は マジ 面白かっ た ね！
+        english: That game was seriously fun!
+        hint: マジ is slang for 'really' or 'seriously' and is more common among younger speakers. We're
+          looking for a more universally applicable intensifier.
+    scene: Two teenagers chatting after playing a video game online.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The phrase 「あのゲームは大変面白かったね」uses 「大変」to emphasize how fun the game was. While this can be used
+      by anyone, the casual tone combined with 「ね」is typical of friendly male conversation among peers.
+  - english: It's very cold today, isn't it?
+    japanese:
+      - 今日 は {大変} 寒い わ ね。
+      - 今日 は {大変} 寒い です ね。
+      - 今日 は {大変} 寒い ね。
+      - 今日 は {大変} 寒い わ。
+    english_literally: Today is extremely cold, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は とても 寒い です ね。
+        english: It's very cold today, isn
+        hint: The use of とても is a direct synonym, but the sentence-ending particles わね are distinctly
+          feminine. We're looking for an example that includes the nuance of feminine speech with たいへん.
+    scene: Two elderly women commenting on the weather while walking.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence 「今日は大変寒いですね」 uses 「大変」 to intensify the coldness. The addition of 「わね」 at the
+      end of the sentence is a common sentence-final particle used by female speakers to soften the statement
+      and seek agreement.
+  - english: This country has faced numerous difficulties.
+    japanese:
+      - この 国 は 数々 の {大変 な} 困難 に 直面 し て き た。
+      - この 国 は 数々 の {大変 な} 困難 に 直面 し まし た。
+    english_literally: This country has faced countless tremendous difficulties.
+    competing_grammar:
+      - competing_japanese:
+          - この 国 は 数々 の 多く の 困難 に 直面 し て き た。
+        english: This country has faced countless many difficulties.
+        hint: 多くの (many) simply indicates quantity, whereas 大変な emphasizes the severe or arduous nature
+          of the difficulties. We're looking for emphasis on the *nature* of the difficulty.
+    scene: A historian giving a lecture about the history of a nation.
+    register: formal
+    setting: academic
+  - english: This mission will be extremely difficult.
+    japanese:
+      - この ミッション は {大変} 難しい でしょう。
+      - この ミッション は {大変} 難しい だろう。
+    english_literally: This mission will be extremely difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この ミッション は かなり 難しい でしょう。
+        english: This mission will be quite difficult.
+        hint: かなり (quite) implies a lesser degree of difficulty compared to たいへん (extremely difficult).
+          We're looking for a strong emphasis on difficulty.
+    scene: Military strategists discussing an upcoming operation's challenges.
+    register: formal
+    setting: serious

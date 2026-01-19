@@ -1,0 +1,277 @@
+grammar_point: 必要とする (to consider necessary・to require)
+learn_before:
+  - で (means・method)
+  - を (direct object marker)
+  - 多い (many・a lot・much)
+meaning: To consider something necessary, to require, or to need (in a formal or objective sense).
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 必要とする
+    rarity: common
+    meaning: to consider necessary; to require
+  - conjugation-type: non-past polite (～ます)
+    form: 必要とします
+    rarity: common
+    meaning: to consider necessary; to require (polite)
+  - conjugation-type: past plain (～た)
+    form: 必要とした
+    rarity: common
+    meaning: considered necessary; required
+  - conjugation-type: past polite (～ました)
+    form: 必要としました
+    rarity: common
+    meaning: considered necessary; required (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 必要としない
+    rarity: common
+    meaning: do not consider necessary; do not require
+  - conjugation-type: negative non-past polite (～ません)
+    form: 必要としません
+    rarity: common
+    meaning: do not consider necessary; do not require (polite)
+  - conjugation-type: te-form (～て)
+    form: 必要として
+    rarity: common
+    meaning: considering necessary; requiring
+  - conjugation-type: passive (～られる/～かれる)
+    form: 必要とされる
+    rarity: common
+    meaning: is considered necessary; is required
+  - conjugation-type: volitional (～よう)
+    form: 必要としよう
+    rarity: less common
+    meaning: let's consider necessary; let's require
+  - conjugation-type: volitional polite (～ましょう)
+    form: 必要としましょう
+    rarity: less common
+    meaning: let's consider necessary; let's require (polite)
+pronunciation:
+  katakana: ヒツヨウ ト スル
+  romaji: hitsuyou to suru
+formation:
+  Noun + を + 必要とする: To consider a noun necessary; to require a noun.
+  Verb[dictionary/ない] + こと を + 必要とする: To consider the act of verbing necessary; to require verbing.
+  Sentence + と + 必要とする: To consider that a sentence is necessary.
+jlpt: N2
+etymology: The phrase combines 「必要」(hitsuyou), meaning 'necessity' or 'need', and 「とする」(to suru). The
+  verb 「する」(suru) in this construction often functions as 'to make something into', 'to treat as', or
+  'to consider as'. Therefore, 「必要とする」 literally translates to 'to make/treat something as necessary'
+  or 'to consider something as necessary'. This active 'considering' or 'treating' component gives it
+  a more formal and objective tone compared to simple statements of necessity.
+writeup: |-
+  The grammatical expression 「必要とする」(hitsuyou to suru) is used to convey that something is **considered necessary**, **required**, or **demanded** in a formal, objective, or systematic context. Unlike the more common 「必要だ」(hitsuyou da), which states a general necessity, or 「要る」(iru), which expresses a personal need, 「必要とする」 implies a more active and deliberate judgment or a set standard. It is frequently encountered in official documents, academic papers, technical specifications, and professional discussions.
+
+  This expression often takes a direct object marked by 「を」, indicating what is being deemed necessary. For example, 「資源を必要とする」(shigen o hitsuyou to suru) means 'to require resources'. It can also be used with a nominalized verb or a clause, such as 「彼が参加することを必要とする」(kare ga sanka suru koto o hitsuyou to suru), meaning 'it is required that he participate'.
+
+  「必要とする」 suggests that the necessity arises from a rule, a condition, a process, or an objective evaluation, rather than a personal feeling. It emphasizes the **active act of requiring or recognizing the need** for something.
+false_friends:
+  - term: 必要だ (hitsuyou da)
+    meaning: necessary (simple statement)
+    kind: similar expression
+    nuance: 「必要だ」 is a simple declarative statement of necessity, often for a general or personal need.
+      「必要とする」 is more formal and implies an active act of considering or deeming something necessary,
+      often in an objective or institutional context.
+    grammar_point: <suggest>:必要だ (necessary)
+  - term: 要る (iru)
+    meaning: to need (personal)
+    kind: similar expression
+    nuance: 「要る」 typically refers to a personal or immediate need for something. 「必要とする」 is more formal,
+      objective, and often refers to a requirement set by circumstances, systems, or organizations.
+    grammar_point: 要る・いる (need)
+  - term: 〜なければならない (nakereba naranai)
+    meaning: must do, have to (obligation)
+    kind: similar expression
+    nuance: 「〜なければならない」 expresses a strong obligation or compulsion to do something. While related to
+      necessity, 「必要とする」 focuses on the *recognition* or *demand* for something, which might then lead
+      to an obligation. It's about what *is needed*, not just what *must be done*.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: 〜べきだ (beki da)
+    meaning: should do, ought to do (recommendation/duty)
+    kind: similar expression
+    nuance: 「〜べきだ」 conveys a sense of what is proper, advisable, or a duty. 「必要とする」 indicates a factual
+      requirement or a condition that *demands* something, rather than a recommendation.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+post_false_friends_writeup: While these expressions all relate to the concept of 'necessity' or 'what
+  is required', 「必要とする」 stands out due to its formality and its implication of an active judgment or a
+  structured demand. Think of 「必要だ」 as a simple observation, 「要る」 as a personal feeling, 「〜なければならない」 as
+  a direct command, and 「〜べきだ」 as advice or duty. 「必要とする」 is a more analytical or official statement of
+  what is deemed indispensable for a particular purpose or system.
+examples:
+  - english: This project requires significant financial resources.
+    japanese:
+      - この プロジェクト は 多額 の 資金 を {必要 と する}。
+      - この プロジェクト は 多額 の 資金 を {必要 と し ます}。
+    english_literally: This project, as for, large amount of funds, considers necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 多額 の 資金 が 必要 だ。
+        english: This project needs a large amount of funds.
+        hint: This sentence simply states that the project needs funds. We're looking for an expression
+          that implies an active requirement or consideration of necessity.
+    scene: A project manager is presenting to stakeholders about the budget.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「必要とする」 here highlights that the financial resources are a formal, objective requirement
+      for the project's success, decided upon or inherent in the project's scope, rather than a mere desire.
+  - english: Companies often require employees with specialized skills.
+    japanese:
+      - 企業 は 専門 的 な スキル を 持つ 人材 を {必要 と する} こと が 多い です。
+      - 企業 は 専門 的 な スキル を 持つ 人材 を {必要 と し ます} こと が 多い です。
+    english_literally: Companies, as for, specialized skills possessing human resources, consider necessary,
+      is common.
+    competing_grammar:
+      - competing_japanese:
+          - 企業 は 専門 的 な スキル を 持つ 人材 が 要る こと が 多い です。
+        english: Companies often need employees with specialized skills.
+        hint: 「要る」 often implies a personal or simpler need. We're looking for an expression that conveys
+          a more objective or systematic requirement by an organization.
+    scene: A human resources professional is discussing hiring trends.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence illustrates how companies, as entities, actively 'require' certain types of
+      personnel, emphasizing a structured demand for specific qualifications rather than a casual 'need'.
+  - english: For this experiment, precision measurements are absolutely necessary.
+    japanese:
+      - この 実験 で は、精密 な 測定 を 絶対 に {必要 と する}。
+      - この 実験 で は、精密 な 測定 を 絶対 に {必要 と し ます}。
+    english_literally: This experiment, in, precise measurements, absolutely, considers necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 実験 で は、精密 な 測定 が 絶対 に 必要 だ。
+        english: For this experiment, precise measurements are absolutely necessary.
+        hint: This is a simple statement of necessity. We're looking for a phrase that expresses the experiment
+          itself 'demanding' or 'requiring' precise measurements.
+    scene: A scientist is explaining the methodology of their research.
+    register: casual
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「絶対にする必要とする」 strongly conveys that the experiment's nature inherently demands precise
+      measurements, emphasizing the critical requirement for accuracy in a scientific context.
+  - english: A good leader is required to have excellent communication skills.
+    japanese:
+      - 良い リーダー は、優れ た コミュニケーション 能力 を 持つ こと を {必要 と さ れる}。
+      - 良い リーダー は、優れ た コミュニケーション 能力 を 持つ こと を {必要 と さ れ ます}。
+    english_literally: Good leader, as for, excellent communication ability, possessing the fact, is considered
+      necessary (passive).
+    competing_grammar:
+      - competing_japanese:
+          - 良い リーダー は、優れ た コミュニケーション 能力 を 持つ べき だ。
+        english: A good leader should have excellent communication skills.
+        hint: 「〜べきだ」 implies a recommendation or duty. We're looking for an expression that indicates
+          this quality is a formal requirement for the role.
+    scene: During a seminar on leadership qualities.
+    register: formal
+    setting: academic
+    conjugation: passive (～られる/～かれる)
+    nuance: Here, the passive form 「必要とされる」 (is required/is considered necessary) is used to show that
+      the requirement comes from an external standard or expectation placed upon the leader. This is a
+      common and important usage of this grammar point.
+  - english: To achieve our goals, we will require the cooperation of all members.
+    japanese:
+      - 目標 を 達成 する ため に は、全員 の 協力 を {必要 と する} でしょう。
+      - 目標 を 達成 する ため に は、全員 の 協力 を {必要 と し ます} でしょう。
+    english_literally: Goals to achieve for, as for, all members' cooperation, will consider necessary,
+      probably.
+    competing_grammar:
+      - competing_japanese:
+          - 目標 を 達成 する ため に は、全員 の 協力 が ない と いけ ない でしょう。
+        english: To achieve our goals, everyone's cooperation must exist.
+        hint: 「ないといけない」 states a necessity but can sound less formal. We're looking for a phrase emphasizing
+          a formal or strategic requirement.
+    scene: A team leader addresses their team about upcoming challenges.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The volitional-like ending 「でしょう」 softens the statement, making it a strong prediction or
+      assumption about what will be required to meet the goals, rather than a direct command.
+  - english: These specific conditions are required for the chemical reaction to occur.
+    japanese:
+      - この 化学 反応 が 起こる ため に は、特定 の 条件 を {必要 と する}。
+      - この 化学 反応 が 起こる ため に は、特定 の 条件 を {必要 と し ます}。
+    english_literally: This chemical reaction to occur for, specific conditions, considers necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 化学 反応 が 起こる ため に は、特定 の 条件 が 要る。
+        english: These specific conditions are needed for the chemical reaction to occur.
+        hint: 「要る」 often implies a personal need or a simple statement of existence. We are looking for
+          a more formal expression of an objective requirement.
+    scene: A chemistry lecturer explains reaction parameters.
+    register: casual
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    nuance: This demonstrates its use in scientific contexts, where a phenomenon (chemical reaction) 'requires'
+      certain objective conditions for its occurrence.
+  - english: The research team considers a deep understanding of physics necessary.
+    japanese:
+      - その 研究 チーム は、物理 学 の 深い 理解 を {必要 と し ます}。
+      - その 研究 チーム は、物理 学 の 深い 理解 を {必要 と する}。
+    english_literally: That research team, as for, physics' deep understanding, considers necessary (polite).
+    competing_grammar:
+      - competing_japanese:
+          - その 研究 チーム は、物理 学 の 深い 理解 が 必要 です。
+        english: The research team needs a deep understanding of physics.
+        hint: This is a polite statement of need. We're looking for an expression that explicitly conveys
+          the team's active 'consideration' or 'requirement' of the skill.
+    scene: A university professor discusses the qualifications for joining a research lab.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: The polite form 「必要とします」 maintains the formal tone, showing the team's professional standard
+      or criteria for what is considered essential for their work.
+  - english: The development of new technology often requires immense investment.
+    japanese:
+      - 新しい 技術 の 開発 は、莫大 な 投資 を {必要 と する} こと が しばしば です。
+      - 新しい 技術 の 開発 は、莫大 な 投資 を {必要 と し ます} こと が しばしば です。
+    english_literally: New technology's development, as for, immense investment, considers necessary,
+      is often.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 の 開発 は、莫大 な 投資 が 必要 だ。
+        english: The development of new technology needs immense investment.
+        hint: This simply states that investment is necessary. We want to convey that the development
+          *itself* actively requires or demands the investment.
+    scene: An economist is giving a presentation on market trends.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example highlights the inherent demands of a process (technology development), where
+      'immense investment' is a fundamental requirement rather than an optional addition.
+  - english: The role requires extensive travel, so please be aware of that.
+    japanese:
+      - この 役割 は 広範 な 出張 を {必要 と する} の で、ご 留意 ください。
+      - この 役割 は 広範 な 出張 を {必要 と し ます} の で、ご 留意 ください。
+    english_literally: This role, as for, extensive business trips, considers necessary, so, please be
+      aware.
+    competing_grammar:
+      - competing_japanese:
+          - この 役割 は 広範 な 出張 が ない と 務まら ない。
+        english: This role cannot be performed without extensive business trips.
+        hint: This phrase describes what's impossible without something. We're looking for an expression
+          that states the role itself 'requires' extensive travel.
+    scene: A hiring manager explains job responsibilities to a candidate.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: Using 「必要とする」 here explicitly states the job's requirement, emphasizing that it's a fixed
+      condition for the role, not a negotiable aspect.
+  - english: Even a small mistake can require a complete re-evaluation of the entire plan.
+    japanese:
+      - 些細 な ミス で さえ、計画 全体 の 徹底 的 な 見直し を {必要 と する} こと が あり ます。
+      - 些細 な ミス で さえ、計画 全体 の 徹底 的 な 見直し を {必要 と し ます} こと が あり ます。
+    english_literally: Even a trivial mistake, plan entire's thorough review, considers necessary, there
+      are times.
+    competing_grammar:
+      - competing_japanese:
+          - 些細 な ミス で さえ、計画 全体 の 徹底 的 な 見直し が 要る こと が あり ます。
+        english: Even a small mistake can need a complete re-evaluation of the entire plan.
+        hint: 「要る」 often implies a personal or simpler need. We're looking for an expression that conveys
+          an objective or systematic demand for re-evaluation in a formal context.
+    scene: A project review meeting, discussing risk management.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence demonstrates how even minor issues can trigger major, objective requirements
+      (a complete re-evaluation) within a structured process, highlighting the phrase's use in emphasizing
+      critical conditions.

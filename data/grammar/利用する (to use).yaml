@@ -1,0 +1,352 @@
+grammar_point: 利用する (to use)
+learn_before:
+  - '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - 〜任せ (leaving to or relying on)
+  - で (means・method)
+  - とする (to assume・to decide)
+  - な-Adjective[さ] (nominalizer)
+  - な-Adjective[で] (te-form)
+  - に (target・destination)
+  - にする (to decide or make)
+  - 僅かに (only・slightly)
+  - 南 (south)
+meaning: to use; to utilize; to make use of
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 利用する
+    rarity: common
+    meaning: to utilize
+  - conjugation-type: non-past polite (～ます)
+    form: 利用します
+    rarity: common
+    meaning: to utilize (polite)
+  - conjugation-type: past plain (～た)
+    form: 利用した
+    rarity: common
+    meaning: utilized
+  - conjugation-type: past polite (～ました)
+    form: 利用しました
+    rarity: common
+    meaning: utilized (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 利用しない
+    rarity: common
+    meaning: do not utilize
+  - conjugation-type: negative non-past polite (～ません)
+    form: 利用しません
+    rarity: common
+    meaning: do not utilize (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 利用しなかった
+    rarity: common
+    meaning: did not utilize
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 利用しませんでした
+    rarity: common
+    meaning: did not utilize (polite)
+  - conjugation-type: te-form (～て)
+    form: 利用して
+    rarity: common
+    meaning: utilizing (te-form)
+  - conjugation-type: volitional (～よう)
+    form: 利用しよう
+    rarity: common
+    meaning: let's utilize; intend to utilize
+  - conjugation-type: volitional polite (～ましょう)
+    form: 利用しましょう
+    rarity: common
+    meaning: let's utilize (polite)
+  - conjugation-type: potential (～られる/～える)
+    form: 利用できる
+    rarity: common
+    meaning: can utilize
+  - conjugation-type: passive (～られる/～かれる)
+    form: 利用される
+    rarity: common
+    meaning: to be utilized
+  - conjugation-type: causative (～させる)
+    form: 利用させる
+    rarity: less common
+    meaning: to make someone utilize
+  - conjugation-type: causative-passive (～させられる)
+    form: 利用させられる
+    rarity: less common
+    meaning: to be made to utilize
+  - conjugation-type: conditional (～たら)
+    form: 利用したら
+    rarity: common
+    meaning: if utilized
+  - conjugation-type: conditional (～ば)
+    form: 利用すれば
+    rarity: common
+    meaning: if utilized
+  - conjugation-type: concessive (～ても)
+    form: 利用しても
+    rarity: common
+    meaning: even if utilized
+  - conjugation-type: progressive (～ている)
+    form: 利用している
+    rarity: common
+    meaning: is utilizing
+  - conjugation-type: imperative polite (～なさい)
+    form: 利用しなさい
+    rarity: less common
+    meaning: utilize (polite command)
+pronunciation:
+  katakana: リヨウスル
+  romaji: riyō suru
+formation:
+  Noun + を + 利用する: To make use of a noun (resource, facility, opportunity, system).
+jlpt: N2
+etymology: 'The word 「利用」(riyō) is a compound of two kanji: 「利」(ri), meaning ''benefit'' or ''advantage,''
+  and 「用」(yō), meaning ''use'' or ''application.'' Thus, the core meaning of 利用する is to ''use for benefit''
+  or ''utilize to one''s advantage.'' This inherent meaning differentiates it from more general terms
+  for ''to use,'' highlighting a purposeful or effective application of something, often resources or
+  opportunities, to gain a positive outcome. The addition of する (suru) transforms it into a verb, ''to
+  do the beneficial use of.'''
+writeup: |-
+  The verb 「利用する」(riyō suru) means 'to use' or 'to utilize,' but carries a nuance of making effective, practical, or beneficial use of something. It is generally more formal than the common verb 「使う」(tsukau) and often appears in contexts involving resources, facilities, systems, services, or opportunities.
+
+  When you use 「利用する」, you are often emphasizing that you are not just *using* something, but *utilizing* it in a way that yields a specific advantage or purpose. For instance, you might 「公共施設を{利用する}」(use public facilities) or 「インターネットを{利用する}」(use the internet) for specific purposes, implying a more structured or strategic engagement than a simple action of 'using.'
+
+  It is frequently encountered in business, academic, or public service contexts where a higher degree of formality and precision is required. While 「使う」can be applied to almost anything, from a pen to a car, 「利用する」is more selectively applied to things that are treated as resources or services from which a benefit is derived.
+false_friends:
+  - term: 使う
+    meaning: to use (general)
+    kind: similar expression
+    nuance: 「使う」is the most common and general verb for 'to use.' It can be used for virtually any object,
+      tool, or abstract concept without implying a specific benefit or formal context. Unlike 「利用する」,
+      it does not necessarily carry a connotation of efficiency or strategic utilization. For example,
+      you would typically say 「ペンを{使う}」(to use a pen) rather than 「ペンを{利用する}」.
+    grammar_point: 使う (to use)
+  - term: 使用する
+    meaning: to use (equipment, facilities, regulated use)
+    kind: similar expression
+    nuance: 「使用する」often implies a more regulated, technical, or official use, especially for equipment,
+      facilities, or specific methods. It frequently appears in instruction manuals, official documents,
+      or when emphasizing adherence to a prescribed way of usage. While similar to 「利用する」in formality,
+      「使用する」focuses more on the act of application or consumption in a functional sense, whereas 「利用する」emphasizes
+      deriving benefit from that use.
+    grammar_point: <suggest>:使用する (to use)
+post_false_friends_writeup: 'To summarize the differences: 「使う」is a general term for ''to use'' that applies
+  broadly. 「利用する」focuses on ''utilizing'' something effectively to gain a benefit or achieve a purpose,
+  often in more formal contexts for resources and services. 「使用する」tends to be used for regulated or technical
+  application of equipment and facilities.'
+examples:
+  - english: We utilize public transportation.
+    japanese:
+      - 私 達 は 公共 交通 機関 を {利用 し ます}。
+      - 私 達 は 公共 交通 機関 を {利用 する}。
+    english_literally: As for us, public transportation, we utilize.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 は 公共 交通 機関 を {使い ます}。
+          - 私 達 は 公共 交通 機関 を {使う}。
+        english: We use public transportation.
+        hint: While 「使う」is generally acceptable, 「利用する」specifically emphasizes the *utilization* of a
+          public service or resource, highlighting its purpose or benefit. We're looking for the verb
+          that implies effective or strategic usage.
+    scene: A city planning committee discusses efficient urban living.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: Please make good use of this opportunity.
+    japanese:
+      - この 機会 を よく {利用 し て ください}。
+      - この 機会 を よく {利用 し て} くれ。
+    english_literally: This opportunity, well, please utilize.
+    competing_grammar:
+      - competing_japanese:
+          - この 機会 を よく {使っ て ください}。
+          - この 機会 を よく {使っ て} くれ。
+        english: Please use this opportunity well.
+        hint: Both 「利用する」and 「使う」can be used for opportunities, but 「利用する」puts more emphasis on seizing
+          and benefiting from the chance. We're looking for the verb that implies gaining advantage.
+    scene: A mentor advises a younger colleague at work.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: Many tourists use this free Wi-Fi.
+    japanese:
+      - 多く の 観光 客 が この 無料 Wi-Fi を {利用 し て い ます}。
+      - 多く の 観光 客 が この 無料 Wi-Fi を {利用 し て いる}。
+    english_literally: Many tourists, this free Wi-Fi, are utilizing.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 観光 客 が この 無料 Wi-Fi を {使っ て い ます}。
+          - 多く の 観光 客 が この 無料 Wi-Fi を {使っ て いる}。
+        english: Many tourists are using this free Wi-Fi.
+        hint: 「利用する」is more common for services and facilities like Wi-Fi, emphasizing accessing and benefiting
+          from them, whereas 「使う」is more general for any object. We're looking for the verb that fits
+          a service.
+    scene: A guide explains popular amenities at a tourist spot.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+  - english: He seems to skillfully utilize his free time.
+    japanese:
+      - 彼 は 暇 な 時間 を 上手 に {利用 し て いる} よう だ。
+      - 彼 は 暇 な 時間 を 上手 に {利用 し て いる} よう です。
+    english_literally: He, free time, skillfully is utilizing, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 暇 な 時間 を 上手 に {使っ て いる} よう だ。
+          - 彼 は 暇 な 時間 を 上手 に {使っ て いる} よう です。
+        english: He seems to skillfully use his free time.
+        hint: While 「使う」is also correct here, 「利用する」emphasizes the beneficial and effective application
+          of the time. We're looking for the verb that highlights purposeful utilization.
+    scene: Two colleagues observe a productive coworker.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The casual 「利用しているようだ」is suitable between colleagues. The use of 「利用する」for 'free time' implies
+      that he is making good, productive use of it, not just passing it. This nuance is stronger than
+      with 「使う」.
+  - english: For our research, we decided to utilize open source software.
+    japanese:
+      - 私 達 の 研究 に は、オープン ソース ソフトウェア を {利用 する} こと に し た。
+      - 私 達 の 研究 に は、オープン ソース ソフトウェア を {利用 し まし た}。
+    english_literally: For our research, open source software, to utilize, decided to do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 の 研究 に は、オープン ソース ソフトウェア を {使う} こと に し た。
+          - 私 達 の 研究 に は、オープン ソース ソフトウェア を {使い まし た}。
+        english: For our research, we decided to use open source software.
+        hint: In an academic or technical context, 「利用する」is often preferred for tools, systems, or resources
+          when emphasizing their application for a specific purpose. We're looking for the more formal
+          and precise term for scientific use.
+    scene: University students discuss their project plan.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: Will you be using the company's shared car tomorrow?
+    japanese:
+      - 明日、会社 の シェア カー を {利用 さ れ ます} か？
+      - 明日、会社 の シェア カー を {利用 なさい ます} か？
+    english_literally: Tomorrow, company's shared car, will you utilize?
+    competing_grammar:
+      - competing_japanese:
+          - 明日、会社 の シェア カー を {使わ れ ます} か？
+          - 明日、会社 の シェア カー を {お 使い に なり ます} か？
+        english: Tomorrow, will you be using the company's shared car?
+        hint: While 「使う」can be used, 「利用する」is more appropriate for shared resources or services, and the
+          respectful form 「利用されます」makes it suitable for formal settings. We're looking for a respectful
+          term for utilizing a shared resource.
+    scene: A junior employee asks a senior about car usage.
+    register: sonkeigo (respectful)
+    setting: professional
+    conjugation: passive (～られる/～かれる)
+    nuance: The passive form 「利用されます」is used here as a respectful way to ask about someone's actions (尊敬語
+      - sonkeigo), indicating respect towards the listener. This is common in formal business settings.
+      「利用なさいますか」is an even more formal honorific expression, using the verb 「なさる」.
+  - english: I heard they're going to utilize the old factory site for a new park.
+    japanese:
+      - 古い 工場 の 跡地 を 新しい 公園 に {利用 する} らしい です よ。
+      - 古い 工場 の 跡地 を 新しい 公園 に {利用 する} らしい よ。
+    english_literally: Old factory's site, new park to, utilize, it seems, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 工場 の 跡地 を 新しい 公園 に {使う} らしい です よ。
+          - 古い 工場 の 跡地 を 新しい 公園 に {使う} らしい よ。
+        english: I heard they're going to use the old factory site for a new park.
+        hint: For a large-scale project involving a site or resource, 「利用する」is preferred as it conveys
+          the sense of purposeful and beneficial development. We're looking for the verb that implies
+          strategic use of a place.
+    scene: Two neighbors chat about local development news.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: Can I use the conference room?
+    japanese:
+      - 会議 室 を {利用 でき ます} か？
+      - 会議 室 を {利用 できる} か？
+    english_literally: Conference room, can I utilize?
+    competing_grammar:
+      - competing_japanese:
+          - 会議 室 を {使え ます} か？
+          - 会議 室 を {使える} か？
+        english: Can I use the conference room?
+        hint: Both are possible, but 「利用できる」is often used for common facilities or services in an office
+          setting, highlighting the availability for a specific purpose. We're looking for the verb that
+          emphasizes access to a shared resource.
+    scene: An office worker asks if a room is available.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: potential (～られる/～える)
+  - english: Even though it was a small chance, I tried to make the most of it.
+    japanese:
+      - 僅か な チャンス で も {利用 しよう と し まし た}。
+      - 僅か な チャンス で も {利用 しよう と し た}。
+    english_literally: Slight chance, even if, tried to utilize.
+    competing_grammar:
+      - competing_japanese:
+          - 僅か な チャンス で も {使おう と し まし た}。
+          - 僅か な チャンス で も {使おう と し た}。
+        english: Even though it was a small chance, I tried to use it.
+        hint: 「利用する」specifically implies making effective or beneficial use, which aligns well with the
+          idea of 'making the most of' an opportunity. We're looking for the verb that conveys intentional
+          and beneficial application.
+    scene: Someone reflects on a past challenge they faced.
+    register: formal
+    setting: reflective
+    conjugation: volitional (～よう)
+    nuance: The volitional form 「利用しようとしました」expresses the speaker's attempt or intention to make use of
+      the opportunity, even if it was slim. The choice of 「利用する」over 「使う」highlights the purposeful and
+      strategic nature of this attempt to gain an advantage from the chance.
+  - english: We must utilize these precious natural resources effectively.
+    japanese:
+      - 私 達 は これ ら の 貴重 な 自然 資源 を 効果 的 に {利用 し} なけれ ば なり ませ ん。
+      - 私 達 は これ ら の 貴重 な 自然 資源 を 効果 的 に {利用 し} なけれ ば なら ない。
+    english_literally: We, these precious natural resources, effectively must utilize.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 は これ ら の 貴重 な 自然 資源 を 効果 的 に {使わ} なけれ ば なり ませ ん。
+          - 私 達 は これ ら の 貴重 な 自然 資源 を 効果 的 に {使わ} なけれ ば なら ない。
+        english: We must use these precious natural resources effectively.
+        hint: When discussing resources, especially in a formal or policy context, 「利用する」is strongly preferred
+          over 「使う」as it conveys the idea of thoughtful and responsible management for benefit. We're
+          looking for the verb that implies strategic resource management.
+    scene: An environmentalist gives a lecture on sustainability.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+  - english: Students are allowed to use the library until 9 PM.
+    japanese:
+      - 学生 は 午後 9 時 まで 図書 館 を {利用 でき ます}。
+      - 学生 は 午後 9 時 まで 図書 館 を {利用 できる}。
+    english_literally: Students, 9 PM until, library, can utilize.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 午後 9 時 まで 図書 館 を {使え ます}。
+          - 学生 は 午後 9 時 まで 図書 館 を {使える}。
+        english: Students can use the library until 9 PM.
+        hint: For facilities and services like libraries, 「利用する」is the standard choice as it implies making
+          use of the service or amenity provided. We're looking for the verb that describes accessing
+          and benefiting from a service.
+    scene: A librarian explains library hours and rules.
+    register: formal
+    setting: informative
+    conjugation: potential (～られる/～える)
+  - english: He was scolded for improperly utilizing confidential company data.
+    japanese:
+      - 彼 は 会社 の 機密 データ を 不正 に {利用 し た} こと で 叱ら れ まし た。
+      - 彼 は 会社 の 機密 データ を 不正 に {利用 し まし た} こと で 叱ら れ まし た。
+    english_literally: He, company's confidential data, improperly utilized, by, was scolded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 会社 の 機密 データ を 不正 に {使用 し た} こと で 叱ら れ まし た。
+          - 彼 は 会社 の 機密 データ を 不正 に {使用 し まし た} こと で 叱ら れ まし た。
+        english: He was scolded for improperly using confidential company data.
+        hint: While both are possible, 「使用する」might be slightly more common for data or regulated materials,
+          emphasizing the functional or prescribed manner of use. However, 「利用する」still works well as it
+          implies taking advantage of the data. We're looking for a verb that fits using sensitive data.
+    scene: Two managers discuss a recent disciplinary action.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+post_example_writeup: As seen in the examples, 「利用する」is particularly suitable when emphasizing the purposeful
+  or strategic application of something, such as resources, services, or information. It is less common
+  for simple, everyday actions like 'using a spoon,' where 「使う」would be more natural. Consider the context
+  and the type of 'use' to choose the most appropriate verb.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/利用する

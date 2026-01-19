@@ -1,0 +1,315 @@
+grammar_point: はたして (really; as expected)
+learn_before:
+  - '[Verb-た・Nounの]結果 (as a result of)'
+  - だろう・でしょう (probably・right?)
+  - のだろうか (I wonder)
+  - 無視する (to ignore)
+meaning: Indeed, really?, As expected, Sure enough, I wonder if... (really), I wonder how... (actually)
+meaning_warning: 「果たして + Phrase」 is mostly found in literature.
+pronunciation:
+  katakana: ハタシテ
+  romaji: hatashite
+formation:
+  はたして + Verb/い-Adjective (past plain): Used when meaning "sure enough" or "as expected" for outcomes
+    involving past actions or states (e.g., はたして失敗した - 'Someone failed as expected', はたして安かった - 'Something
+    was indeed inexpensive').
+  はたして + な-Adjective stem/Noun + だった: Used when meaning "sure enough" or "as expected" for past states
+    (e.g., はたして立派だった - 'Someone/something really was magnificent', はたして雨だった - 'It rained, as expected').
+  はたして + Verb/い-Adjective (plain) + (の)だろうか: Used to express strong doubt or inquiry about a present or
+    future action or state (e.g., はたして彼は来る/来た (の)だろうか - 'I wonder if he really is coming/came', はたして彼は頭がいい/よかった
+    (の)だろうか - 'I wonder if he really is/was smart').
+  はたして + な-Adjective stem/Noun + (だ/な/だった) + (の)だろうか: Used to express strong doubt or inquiry about a
+    present or future state with na-adjectives or nouns (e.g., はたして彼は元気(だ/な/だった) (の)だろうか - 'I wonder if
+    he really is/was healthy', はたして彼は学生(だ/な/だった) (の)だろうか - 'I wonder if he really is/was a student').
+  はたして + Verb/い-Adjective/な-Adjective/Noun + Copula (plain) + としても: Used in a concession clause to express
+    strong doubt or skepticism, often translated as "even if... really" (e.g., はたして彼が大統領になる/なったとしても -
+    'Even if he really becomes/became president', はたして彼が若い/若かったとしても - 'Even if he were/had been really
+    young', はたして彼が元気だ/元気だったとしても - 'Even if he were/had been really healthy', はたして彼が独身だ/独身だったとしても - 'Even
+    if he really were/had been a single').
+jlpt: N2
+etymology: 「果たして」 comes from the verb 「果たす (hatasu)」, meaning "to accomplish" or "to fulfill". The adverbial
+  form retains a sense of something coming to fruition, often implying that an expected outcome has materialized.
+  It expresses the speaker's thought process about 'what will' or 'what has' happened 'in the end', often
+  with a nuance of expectation or assumption.
+writeup: |-
+  「はたして」 is an adverb used to emphasize speculation or confirm expectations. It can express a sense of "I wonder if... (really)?" or confirm something "as expected". It's often paired with question markers like 「だろうか」 or 「でしょうか」 to intensify the sense of doubt or inquiry. In declarative sentences, it often translates to "sure enough" or "as expected," implying that the outcome matched a prior assumption.
+
+  *   When used with speculative grammar, 「はたして」 adds emphasis.
+  *   When used in declarative sentences, it means "as expected" or "sure enough".
+false_friends:
+  - term: さすが
+    meaning: as one would expect, only natural, that is just like..., even
+    kind: similar expression
+    nuance: Unlike 「はたして」, 「さすが」 expresses admiration or praise for something that meets expectations,
+      whereas 「はたして」 is more neutral or doubtful, focusing on the outcome's certainty or predictability.
+    grammar_point: さすが (as expected even)
+  - term: かな
+    meaning: I wonder...
+    kind: similar expression
+    nuance: 「かな」 expresses a simple sense of wonder. 「はたして」 adds more emphasis or doubt to that wonder,
+      implying a deeper level of questioning or skepticism.
+    grammar_point: かな (I wonder)
+  - term: 〜のだろうか
+    meaning: I wonder...
+    kind: similar expression
+    nuance: 「〜のだろうか」 expresses a wondering tone in a question, but adding 「はたして」 emphasizes the doubt
+      the speaker has, intensifying the inquiry or uncertainty.
+    grammar_point: のだろうか (I wonder)
+  - term: まさしく
+    meaning: precisely, exactly, surely
+    kind: similar expression
+    nuance: 「まさしく」 conveys a strong sense of certainty and exactness, affirming that something is precisely
+      as stated or expected. While 「はたして」 can confirm expectations, it also carries a nuance of initial
+      doubt or a deeper, probing inquiry that 「まさしく」 does not.
+    grammar_point: <suggest>:まさしく (precisely・exactly)
+post_false_friends_writeup: While 「さすが」, 「かな」, and 「〜のだろうか」 share some overlap with 「はたして」, they carry
+  distinct nuances. Use 「さすが」 when you want to express admiration, 「かな」 for simple wonder, and 「〜のだろうか」
+  for expressing an actual question. 「まさしく」, on the other hand, is a strong affirmation. Choose 「はたして」
+  when you want to emphasize doubt or confirm an expectation, often with a sense of relief or resignation
+  that something turned out to be true.
+examples:
+  - english: I wonder if the world is truly warming.
+    japanese:
+      - 世界 は {はたして} 本当 に 温暖 化 し て いる の だろう か。
+      - 世界 は {はたして} 本当 に 温暖 化 し て いる の でしょう か。
+      - 世界 は {はたして} 本当 に 温暖 化 し て いる の か。
+    english_literally: World, indeed, really warming, is it, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 世界 は 本当 に 温暖 化 し て いる {の だろう か}。
+        english: I wonder if the world is warming.
+        hint: The original sentence with 「はたして」 expresses a stronger, more profound doubt or inquiry about
+          the truth. We're looking for a sentence that conveys that deeper level of questioning.
+    scene: A scientist expresses deep uncertainty about climate change data during a panel discussion,
+      raising questions about the extent and veracity of the claims.
+    register: formal
+    setting: academic
+    nuance: The combination of 「はたして」 and 「～なのだろうか」 highlights a profound skepticism or a serious, probing
+      inquiry into the truth of global warming, characteristic of a critical academic perspective. It
+      suggests a strong, perhaps internal, debate about the facts.
+    etymology: The term 「温暖化 (ondan-ka)」 refers to 'warming' or 'global warming'. It is a compound of
+      「温暖 (ondan)」 meaning 'warm' and 「化 (ka)」 which is a suffix meaning 'to change into' or 'to become'.
+      This word clearly expresses the concept of becoming warm, which is central to the example's context
+      of climate change.
+  - english: I wonder if this plan will truly succeed.
+    japanese:
+      - この 計画 は {はたして} 成功 する の でしょう か。
+      - この 計画 は {はたして} 成功 する の だろう か。
+      - この 計画 は {はたして} 成功 する の か。
+    english_literally: This plan, indeed, succeed, will it, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 成功 する {の でしょう か}。
+        english: I wonder if this plan will succeed.
+        hint: The original sentence with 「はたして」 adds a stronger emphasis on the speaker's serious doubt
+          or skepticism about the plan's success. We're looking for that heightened sense of uncertainty.
+    scene: A new project manager expresses deep concern to their mentor about the feasibility of an ambitious
+      new company project, questioning its ultimate success.
+    register: semi-formal
+    setting: professional
+    nuance: 「はたして」 emphasizes the speaker's serious doubt about the success of the plan, while 「～のでしょうか」
+      maintains politeness suitable for a professional setting. The new project manager's concern implies
+      a lack of confidence in the outcome.
+    etymology: The word 「計画 (keikaku)」 means 'plan' or 'project'. It combines 「計 (kei)」, referring to
+      'to measure' or 'to plan', and 「画 (kaku)」, referring to 'a drawing' or 'a plan'. This compound word
+      embodies the idea of laying out a careful scheme or design, which is relevant to the manager's contemplation
+      in the scene.
+  - english: As a result of many years of effort, her dream indeed came true.
+    japanese:
+      - 長年 の 努力 の 結果、{はたして} 彼女 の 夢 が 叶っ た。
+      - 長年 の 努力 の 結果、{はたして} 彼女 の 夢 が 叶い まし た。
+    english_literally: Many years' effort's result, indeed, her dream came true.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 努力 の 結果、彼女 の 夢 が {叶っ た}。
+        english: As a result of many years of effort, her dream came true.
+        hint: The original sentence with 「はたして」 specifically highlights that the outcome was 'as expected'
+          or 'sure enough,' fulfilling a prior anticipation. We're looking for that sense of confirmed
+          predictability.
+    scene: A narrator describes a protagonist in a story who, after persistent dedication, finally achieves
+      a long-held ambition.
+    register: formal
+    setting: storytelling
+    nuance: 「はたして」 here confirms that the outcome (dream coming true) was the natural and expected consequence
+      of the efforts, fulfilling a prior anticipation. It adds a sense of poetic justice or inevitability
+      to the successful realization of a long-term goal.
+    etymology: 「叶う (kanau)」 means 'to come true' or 'to be realized', often used for wishes, dreams, or
+      hopes. Its kanji 「叶」 is formed from 「口 (kuchi, mouth)」 and 「十 (jū, ten/complete)」, suggesting that
+      when words are spoken completely, they come true. In the context of long-term effort, this verb
+      emphasizes the fulfillment of aspirations.
+  - english: Ignoring repeated warnings, the business was, as expected, a huge failure.
+    japanese:
+      - 度重なる 警告 を 無視 し た 結果、{はたして} その 事業 は 大 失敗 だっ た。
+      - 度重なる 警告 を 無視 し た 結果、{はたして} その 事業 は 大 失敗 でし た。
+    english_literally: Repeated warnings ignored, result, indeed, that business huge failure was.
+    competing_grammar:
+      - competing_japanese:
+          - 度重なる 警告 を 無視 し た 結果、その 事業 は {大 失敗 だっ た}。
+        english: Ignoring repeated warnings, the business was a huge failure.
+        hint: The original sentence with 「はたして」 emphasizes that the failure was not just a fact, but a
+          predictable consequence of the ignored warnings. We're looking for that explicit confirmation
+          of expectation.
+    scene: A consultant reviews a past case where a company's stubbornness led to a predictable collapse,
+      highlighting the consequences of poor judgment.
+    register: semi-formal
+    setting: serious
+    nuance: 「はたして」 reinforces the predictability of the negative outcome, emphasizing that the failure
+      was a direct and expected consequence of ignoring the warnings. It conveys a sense of unfortunate
+      but unsurprising fulfillment of an anticipated negative event.
+    etymology: The phrase 「大失敗 (dai-shippai)」 literally means 'big failure' or 'grand failure', combining
+      「大 (dai)」 meaning 'big' and 「失敗 (shippai)」 meaning 'failure'. It is a common compound word in Japanese
+      to express significant setbacks. The scene highlights this as an inevitable consequence. The use
+      of 「度重なる (tabikasunaru)」 implies that the warnings were given multiple times, intensifying the feeling
+      that the failure was self-inflicted and completely foreseeable, hence 「はたして」 is particularly fitting
+      here. This use of kanji, especially 「度重なる」 (N3), is appropriate for the N2 level.
+  - english: I wonder if he'll really come on time.
+    japanese:
+      - 彼 は {はたして} 時間 通り に 来る の か な。
+      - 彼 は {はたして} 時間 通り に 来る だろう か。
+      - 彼 は {はたして} 時間 通り に 来る ん だろう か。
+    english_literally: He, indeed, time-on-time, come, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 時間 通り に 来る {の か な}。
+        english: I wonder if he'll come on time.
+        hint: The original sentence uses 「はたして」 to add a stronger, more genuine doubt or skepticism to
+          the casual question, reflecting a deeper level of questioning. We're looking for that emphasized
+          doubt.
+    scene: A female friend is waiting for a male friend who is notoriously late, expressing mild skepticism
+      to herself while checking her watch.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「はたして」 here adds a sense of genuine uncertainty or mild doubt to the casual 「～かな」, reflecting
+      the speaker's internal questioning about the friend's punctuality. The use of 「かな」 is commonly heard
+      from female speakers for expressing soft speculation.
+    etymology: 「時間 通り (jikan-doori)」 means 'on time' or 'according to schedule'. 「時間 (jikan)」 means 'time',
+      and 「通り (doori)」 comes from 「通る (tooru)」 meaning 'to pass through' or 'to go along', and when used
+      as a suffix, it means 'according to' or 'as per'. This phrase precisely indicates adherence to a
+      set time, which is the crux of the speaker's doubt.
+  - english: Her intuition was sharp, and indeed, her prediction came true.
+    japanese:
+      - 彼女 の 直感 は 鋭く、{はたして} その 予測 は 的中 し た。
+      - 彼女 の 直感 は 鋭く、{はたして} その 予測 は 的中 し まし た。
+    english_literally: Her intuition sharp, indeed, that prediction hit the mark.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 直感 は 鋭く、その 予測 は {的中 し た}。
+        english: Her intuition was sharp, and her prediction came true.
+        hint: The original sentence uses 「はたして」 to emphasize that the prediction was 'indeed' or 'sure
+          enough' accurate, reinforcing the uncanny fulfillment of expectation. We're looking for that
+          strong confirmation.
+    scene: A documentary narrator highlights a historical figure known for consistently accurate premonitions
+      and foresight in critical situations.
+    register: formal
+    setting: informative
+    nuance: This formal usage of 「はたして」 emphasizes the unerring accuracy of her intuition, serving as
+      a strong confirmation that the prediction was fulfilled exactly as anticipated. It lends weight
+      and credibility to the statement about her exceptional ability.
+    etymology: 「直感 (chokkan)」 means 'intuition' or 'instinct'. It is composed of 「直 (choku)」 meaning 'direct'
+      and 「感 (kan)」 meaning 'feeling' or 'sense'. This term clearly conveys a direct, unmediated understanding
+      or feeling, which is precisely what is described as being sharp in the example.
+  - english: In this situation, I wonder how we should truly act.
+    japanese:
+      - この 状況 で、{はたして} 私 たち は どう 行動 する べき な の だろう か。
+      - この 状況 で、{はたして} 私 たち は どう 行動 する べき な の でしょう か。
+      - この 状況 で、{はたして} 私 たち は どう 行動 する べき な の か。
+    english_literally: This situation, indeed, we how act should, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で、私 たち は どう 行動 する べき {な の だろう か}。
+        english: In this situation, I wonder how we should act.
+        hint: The original sentence uses 「はたして」 to convey a strong sense of internal questioning and profound
+          uncertainty, suggesting a highly complex problem. We're looking for that intensified deliberation.
+    scene: A team leader addresses their colleagues during a crisis, expressing profound uncertainty and
+      seeking guidance on the best course of action.
+    register: formal
+    setting: serious
+    nuance: 「はたして」 combined with 「どう～べきなのだろうか」 conveys a strong sense of internal questioning about the
+      correct course of action in a difficult situation. It implies the speaker sees it as a highly complex
+      or uncertain problem requiring careful deliberation.
+    etymology: The phrase 「行動 する べき (koudou suru beki)」 means 'should act'. 「べき」 comes from a classical
+      Japanese auxiliary verb emphasizing obligation or advisability. 「行動 (koudou)」 (N3) refers to 'action'
+      or 'conduct', commonly seen in professional or formal contexts like the scene describes. This is
+      a common and natural way to express what one 'should' do in a serious discussion.
+  - english: I wonder if he's really a teacher.
+    japanese:
+      - 彼 は {はたして} 先生 な の だろう か。
+      - 彼 は {はたして} 先生 な の でしょう か。
+    english_literally: He, indeed, teacher, is he, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 先生 {な の だろう か}。
+        english: I wonder if he's a teacher.
+        hint: The original sentence with 「はたして」 adds a stronger emphasis to the doubt about his profession,
+          implying that his actions don't quite fit the expected behavior of a teacher. We're looking
+          for that amplified sense of questioning.
+    scene: Two students are whispering about a new, rather unconventional teacher who sometimes seems
+      more like a peer than an instructor.
+    register: semi-formal
+    setting: interrogative
+    nuance: Using 「はたして」 with a noun and 「～なのだろうか」 expresses a genuine and deeper doubt about someone's
+      identity or role. It implies that the speaker has observed something that makes them question the
+      stated truth, going beyond simple curiosity.
+    etymology: 「先生 (sensei)」 literally means 'one born before', traditionally referring to a teacher,
+      master, or doctor. It implies someone who has gained knowledge or experience ahead of others. The
+      nuanced doubt about whether someone 'really' is a sensei often comes from their behavior not aligning
+      with the respect or expertise implied by the title.
+  - english: I wonder if this food is truly delicious.
+    japanese:
+      - この 料理 は {はたして} 本当 に 美味しい の だろう か。
+      - この 料理 は {はたして} 本当 に 美味しい の でしょう か。
+    english_literally: This food, indeed, really delicious, is it, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は 本当 に 美味しい {の だろう か}。
+        english: I wonder if this food is delicious.
+        hint: The original sentence with 「はたして」 conveys a stronger, more profound skepticism about the
+          taste, perhaps despite its appearance or reputation. We're looking for that intensified doubt.
+    scene: A food critic is trying a new, highly-praised but strange-looking dish that has received mixed
+      reviews, causing them to question its actual quality.
+    register: formal
+    setting: reflective
+    nuance: 「はたして」 combined with 「本当 に 美味しい の だろう か」 signifies a deep, almost existential, doubt about
+      the subjective experience of taste. It suggests that the speaker is trying to objectively assess
+      something that is inherently personal, expressing skepticism about its true quality despite external
+      claims or expectations.
+    etymology: 「美味しい (oishii)」 is a common Japanese adjective meaning 'delicious' or 'tasty'. Its origin
+      is thought to be from 「旨し (umashi)」, an older form meaning 'good-tasting'. When paired with 「はたして」,
+      the question of its deliciousness becomes more profound, often implying that initial impressions
+      or prior information are being challenged.
+  - english: Even if he really is a genius, he still needs to put in effort.
+    japanese:
+      - 彼 が {はたして} 天才 だ と し て も、やはり 努力 は 必要 だ。
+      - 彼 が {はたして} 天才 だ と し て も、やはり 努力 は 必要 です。
+      - 彼 が {はたして} 天才 で あろう と、やはり 努力 は 必要 だ。
+      - 彼 が {はたして} 天才 で あろう と、やはり 努力 は 必要 です。
+      - 彼 が {はたして} 天才 だろう と、やはり 努力 は 必要 だ。
+      - 彼 が {はたして} 天才 だろう と、やはり 努力 は 必要 です.
+    english_literally: He, indeed, genius, even if, still effort necessary is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 天才 だ {と し て も}、やはり 努力 は 必要 だ。
+        english: Even if he is a genius, he still needs to put in effort.
+        hint: The original sentence uses 「はたして」 to emphasize that the premise (being a genius) is something
+          that is strongly questioned or doubted by the speaker, adding a layer of skepticism to the concession.
+          We're looking for that strong reservation about the 'genius' claim.
+    scene: A mentor advises a talented but somewhat lazy protégé, emphasizing that natural ability alone
+      is not enough for success.
+    register: formal
+    setting: instructional
+    nuance: Here, 「はたして」 within the 「～だとしても」 clause serves to highlight the speaker's skepticism about
+      whether the person *truly* is a genius. It implies that while granting the possibility for the sake
+      of argument, the speaker fundamentally questions the premise, making the subsequent insistence on
+      effort even stronger.
+    etymology: The word 「天才 (tensai)」 means 'genius' or 'prodigy'. It is a compound of 「天 (ten)」 meaning
+      'heaven' or 'nature', and 「才 (sai)」 meaning 'talent' or 'ability'. This implies a natural, heaven-bestowed
+      talent. The phrase 「努力 は 必要 だ (doryoku wa hitsuyou da)」 means 'effort is necessary', a fundamental
+      concept in Japanese culture that even natural talent requires cultivation. The use of 「はたして」 in
+      this context highlights a pragmatic, results-oriented perspective that values demonstrable effort
+      over unverified innate ability.
+post_example_writeup: 「はたして」 can be used in various contexts to express wonder or confirm expectations.
+  It often adds a layer of emphasis or skepticism to the statement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/はたして

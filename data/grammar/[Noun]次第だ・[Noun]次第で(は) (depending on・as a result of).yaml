@@ -1,0 +1,341 @@
+grammar_point: '[Noun]次第だ・[Noun]次第で(は) (depending on・as a result of)'
+learn_before:
+  - 次第 (as soon as)
+meaning: To depend on; to be determined by; to be entirely contingent upon (a preceding noun or factor)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 次第だ
+    rarity: common
+    meaning: depends on
+  - conjugation-type: non-past polite (～ます)
+    form: 次第です
+    rarity: common
+    meaning: depends on (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 次第ではない
+    rarity: common
+    meaning: does not depend on
+  - conjugation-type: negative non-past polite (～ません)
+    form: 次第ではありません
+    rarity: common
+    meaning: does not depend on (polite)
+  - conjugation-type: past plain (～た)
+    form: 次第だった
+    rarity: common
+    meaning: depended on
+  - conjugation-type: past polite (～ました)
+    form: 次第でした
+    rarity: common
+    meaning: depended on (polite)
+  - conjugation-type: te-form (～て)
+    form: 次第で
+    rarity: common
+    meaning: depending on (and as a result)
+  - conjugation-type: conditional (～ば)
+    form: 次第であれば
+    rarity: uncommon
+    meaning: if it depends on
+  - conjugation-type: conditional (～たら)
+    form: 次第だったら
+    rarity: uncommon
+    meaning: if it depended on
+pronunciation:
+  katakana: シダイダ・シダイデ
+  romaji: shidai da・shidai de
+formation:
+  Noun + 次第だ: Indicates that the outcome or state is entirely determined by the preceding noun, often
+    concluding a sentence.
+  Noun + 次第で: Indicates that something varies or is decided based on the preceding noun, acting as a determinant
+    for a subsequent action or state within a sentence.
+  Noun + 次第では: Indicates a hypothetical variation or potential outcome depending on the preceding noun,
+    implying 'if it depends on this (then...)'.
+jlpt: N2
+etymology: The word 「次第」(shidai) originally meant 'order,' 'sequence,' or 'circumstances.' This etymology
+  helps explain its evolution to signify that an outcome or subsequent action is determined by a preceding
+  factor or condition, as if that factor sets the 'order' or 'process' for what follows. It indicates
+  a direct relationship where the former dictates the latter.
+writeup: |-
+  The grammar patterns 「次第だ」 and 「次第で」 are used to express that an outcome, a state, or the success of something is entirely contingent upon, or determined by, a preceding noun. This highlights the noun as the crucial deciding factor, often conveying a sense of 'it's all up to...' or 'it hinges on...'.
+
+  When used as 「次第だ」, it typically concludes a sentence, stating a direct and often definitive dependency. For example, 「結果は努力次第だ」 (The result depends on effort). This form is generally formal or semi-formal.
+
+  When used as 「次第で」, it usually precedes a verb or another clause, indicating that something will vary, change, or be decided based on the preceding noun. For example, 「値段は品質次第で変わる」 (The price changes depending on the quality). This form functions adverbially, modifying the subsequent action or state.
+
+  A slight variation is 「次第では」, which adds a hypothetical nuance, implying 'if it depends on this (then...)' or 'depending on the circumstances.' This suggests considering a possible outcome based on certain conditions.
+
+  This grammar point emphasizes the decisive role of the noun in shaping the situation or outcome. It's not merely a cause or a method, but the very essence of what determines the result. While the word 「次第」 appears in other grammar patterns (e.g., meaning 'as soon as' or explaining 'circumstances leading to'), these are distinct grammatical usages, focusing on different aspects of sequence or consequence.
+false_friends:
+  - term: によって・による・により
+    meaning: By means of, according to, depending on, because of, due to
+    kind: similar expression
+    nuance: While both can mean 'depending on,' 「によって」 is broader, indicating *means*, *cause*, or *variation
+      according to* a rule. 「次第だ・次第で」 emphasizes the *direct determination* of an outcome by the preceding
+      noun, as the decisive factor.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: にかかっている
+    meaning: To depend on (responsibility, decision)
+    kind: similar expression
+    nuance: 「にかかっている」 implies that the *responsibility*, *decision*, or *fate* of something rests with
+      the noun, often with a sense of reliance or burden. 「次第だ・次第で」 is more general about the outcome
+      being *determined* by the noun, without necessarily emphasizing responsibility.
+    grammar_point: にかかっている (to depend on)
+  - term: に応じて
+    meaning: Depending on, based on, according to, in response to
+    kind: similar expression
+    nuance: 「に応じて」 means 'in accordance with' or 'in response to,' implying adjustment or conformity to
+      the noun, often with flexibility. 「次第だ・次第で」 signifies that the outcome is *determined* by the noun
+      itself, not merely adapted to it.
+    grammar_point: に応じて (depending on)
+  - term: 如何・いかん
+    meaning: How; what; (depending on) how/what; (according to) how/what; depend on
+    kind: similar expression
+    nuance: 「如何 (ikaga)」 is more formal/literary, often implying 'how' something is handled or 'regardless
+      of' (in compounds like `如何によらず`). 「次第だ・次第で」 is more direct about dependency.
+    grammar_point: いかん (depending on)
+  - term: 〜かは〜によって違う
+    meaning: Depends on, Changes depending on, Differs depending on
+    kind: similar expression
+    nuance: This is a more explicit and descriptive phrase stating that something differs based on a condition.
+      「次第だ・次第で」 concisely conveys that the preceding noun is the sole determinant.
+    grammar_point: 〜かは〜によって違う (depends on)
+  - term: 次第です
+    meaning: This is why; The circumstances are such that; Therefore (a situation arises)
+    kind: similar expression
+    nuance: 「次第です」 (often following a verb or clause) is a formal and humble expression used to explain
+      the *reason* or *circumstances* that led to a situation. In contrast, 「次第だ・次第で」 states that an outcome
+      is *determined by* a preceding noun, not that the noun explains the circumstances leading to it.
+    grammar_point: <strongly-suggest>:次第です (circumstances leading to)
+  - term: 次第 (as soon as)
+    meaning: As soon as; immediately after
+    kind: similar expression
+    nuance: This usage of 「次第」 (typically Verb-masu stem + 次第) expresses immediacy. While sharing the
+      same root, its grammatical function and meaning are distinct from 「次第だ・次第で」, which expresses dependency.
+    grammar_point: <strongly-suggest>:次第 (as soon as)
+post_false_friends_writeup: While these expressions share the idea of dependency, 「次第だ」 and 「次第で」 emphasize
+  a direct relationship between a factor and its outcome, often implying it's the primary or sole determinant,
+  without necessarily implying adaptation, responsibility, or being a general causal link. Choosing the
+  right expression depends on the specific nuance you want to convey. For a more general cause or means,
+  「によって」 is often used. If you want to express adapting to a certain situation, 「に応じて」 will be more appropriate.
+  If you want to place the responsibility on something, then 「にかかっている」 will be more appropriate. If you
+  are explaining the background or reason for a situation, the formal 「次第です」 might be used. But if you
+  just want to simply express that something depends directly on something else, then 「次第だ」 and 「次第で」
+  will be the most appropriate.
+examples:
+  - english: Everything depends on your effort.
+    japanese:
+      - 全て は あなた の 努力 【 次第 だ 】。
+      - 全て は あなた の 努力 【 次第 です 】。
+    english_literally: Everything your effort depends.
+    competing_grammar:
+      - competing_japanese:
+          - 全て は あなた の 努力 に よっ て 決まる。
+        english: Everything is decided by your effort.
+        hint: While 「によって」 can also express dependency, 「次第だ」 emphasizes that the outcome is *all up to*
+          the effort, not just determined *by means of* it. We're looking for an inherent and decisive
+          dependency.
+    scene: A teacher encouraging a student who is struggling but has potential.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「全ては」 emphasizes that *everything* hinges on the effort, leaving no room for other
+      factors, reinforcing the direct dependency expressed by 「次第だ」. This is a general truth conveyed
+      in a formal setting.
+  - english: The price varies depending on the quality.
+    japanese:
+      - 値段 は 品質 【 次第 で 】 変わり ます。
+      - 値段 は 品質 【 次第 で 】 変わる。
+    english_literally: Price quality depending changes.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 は 品質 に よっ て 変わり ます。
+        english: The price changes according to the quality.
+        hint: 「によって」 here means 'according to' a rule or characteristic. 「次第で」 specifically implies the
+          price is *determined by* the quality, not just in accordance with it. We're looking for the
+          price being decided directly by the quality.
+    scene: A shop owner explaining pricing to a client interested in a custom order.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: The use of 「変わります」 directly after 「品質次第で」 clearly links the variability of the price to the
+      quality, making the dependency explicit and immediate. This is a common phrase in business settings
+      to state a direct causal relationship.
+  - english: Next month's plans depend on the weather.
+    japanese:
+      - 来月 の 計画 は、天気 【 次第 です 】。
+      - 来月 の 計画 は、天気 【 次第 だ 】。
+    english_literally: Next month's plans are weather depending on (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 来月 の 計画 は、天気 に 【 かかっ て い ます 】。
+        english: Next month's plans hinge on the weather.
+        hint: 「にかかっている」 suggests that the plans are entirely reliant or 'hinge' on the weather, often
+          with a nuance of concern or responsibility. We're looking for a simple, direct statement of
+          dependency.
+    scene: Two colleagues discussing an upcoming outdoor event.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: In a casual professional discussion, 「次第です」 states a direct contingency in a polite manner,
+      making it clear that the weather is the direct determinant of their plans.
+  - english: His success doesn't depend on talent.
+    japanese:
+      - 彼 の 成功 は、才能 【 次第 で は ない 】。
+      - 彼 の 成功 は、才能 【 次第 で は あり ませ ん 】。
+    english_literally: His success is talent depending not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 成功 は、才能 【 に よっ て 決まる わけ で は ない 】。
+        english: It's not that his success is decided by talent.
+        hint: 「～によって決まるわけではない」 states that something is not decided by a certain factor in a more indirect
+          way. We're looking for a direct negation of dependency on talent.
+    scene: A coach explaining the true source of a player's achievement.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: A 'male coach' directly negating the dependency of success on talent, using 「次第ではない」, makes
+      a strong statement, implying that other factors, like effort, are more critical for achievement.
+  - english: The project's budget ultimately depended on his approval.
+    japanese:
+      - プロジェクト の 予算 は、最終 的 に 彼 の 承認 【 次第 だっ た 】。
+      - プロジェクト の 予算 は、最終 的 に 彼 の 承認 【 次第 でし た 】。
+    english_literally: Project's budget ultimately his approval depending on (past).
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 予算 は、最終 的 に 彼 の 承認 に 【 かかっ て い た 】。
+        english: The project's budget ultimately hinged on his approval.
+        hint: 「にかかっていた」 means it was 'up to' or 'hinged on' something, often implying responsibility.
+          We're looking for a statement about a direct, decisive dependency in the past.
+    scene: A team manager retrospectively explaining a past financial decision.
+    register: formal
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: When discussing a past decision, 「次第だった」 emphasizes that the budget was *contingent* on his
+      approval, conveying the inherent dependency more than a simple factual statement of it being 'decided
+      by' him.
+  - english: Tonight's dinner is all up to your appetite, man!
+    japanese:
+      - 今日 の 夜 飯 は、君 の 食欲 【 次第 だ 】 ぜ！
+      - 今日 の 夜 飯 は、君 の 食欲 【 次第 だ 】。
+      - 今夜 の 夕食 は、あなた の 食欲 【 次第 です 】。
+      - 今日 の 晩 御飯 は、お前 の 食欲 【 次第 だ 】！
+    english_literally: Today's dinner is your appetite depending on, dude!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 夜 飯 は、君 の 食欲 【 で 決まる 】 ぜ！
+        english: Tonight's dinner is decided by your appetite, man!
+        hint: 「～で決まる」 states something is decided by a factor. We're looking for a direct and intrinsic
+          dependency.
+    scene: A man enthusiastically telling his male friend he can choose dinner.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「ぜ」 (ze) is a colloquial male sentence-final particle expressing emphasis or assertion.
+      「夜飯」 (yorumeshi) is a casual term for dinner. This combination creates a very casual, masculine
+      tone, emphasizing that the decision rests entirely with the 'listener's male' appetite.
+  - english: Our future depends on our feelings for each other, dear.
+    japanese:
+      - 私 たち の 未来 は、二人 の 気持ち 【 次第 だ 】 わ。
+      - 私 たち の 未来 は、二人 の 気持ち 【 次第 です 】。
+      - 私 たち の 未来 は、お 互い の 気持ち 【 次第 よ 】。
+    english_literally: Our future is two people's feelings depending on (female ending).
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 未来 は、二人 の 気持ち に 【 かかっ て いる 】 わ。
+        english: Our future hinges on our feelings for each other, dear.
+        hint: 「にかかっている」 implies that the outcome hinges on feelings. We're looking for a direct and decisive
+          dependency.
+    scene: A woman speaking intimately to her romantic partner.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The sentence-final particle 「わ」 (wa) is typically used by 'female' speakers to express a soft
+      assertion or personal sentiment, fitting an intimate conversation with a 'male' partner. 「二人の気持ち」
+      (futari no kimochi) highlights the mutual aspect of their feelings influencing the future.
+  - english: The product's evaluation changes greatly depending on how it's used.
+    japanese:
+      - 商品 の 評価 は、使い 方 【 次第 で 】 大きく 変わり ます。
+      - 商品 の 評価 は、使い 方 【 次第 で 】 大きく 変わる。
+    english_literally: Product's evaluation, usage method depending on, greatly changes (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 商品 の 評価 は、使い 方 に 【 よっ て 】 大きく 変わり ます。
+        english: The product's evaluation changes greatly due to its usage.
+        hint: 「によって変わる」 expresses a change caused by something. We're looking for a direct and decisive
+          dependency.
+    scene: A product manager explaining user feedback in a business meeting.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: In a professional context, 「次第で」 emphasizes the direct causal link between usage and evaluation.
+      It more clearly denotes that the usage is the *determining factor* for the evaluation.
+  - english: Whether we can win the game or not depends on our teamwork.
+    japanese:
+      - 試合 に 勝てる か どう か は、チーム ワーク 【 次第 だ 】。
+      - 試合 に 勝てる か どう か は、チーム ワーク 【 次第 です 】。
+      - 試合 に 勝てる か どう か は、チーム ワーク 【 次第 だ 】 ぞ！
+    english_literally: Game win can or not, teamwork depends on.
+    competing_grammar:
+      - competing_japanese:
+          - 試合 に 勝てる か どう か は、チーム ワーク に 【 かかっ て いる 】。
+        english: Whether we can win the game or not hinges on our teamwork.
+        hint: 「にかかっている」 implies that the outcome is reliant on or 'hinges' on their teamwork, often with
+          a sense of responsibility resting on it. We're looking for a simple, direct statement that teamwork
+          is the decisive factor.
+    scene: A sports coach is giving a motivational speech to their team before a big match.
+    register: semi-formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A 'male coach' asserting to a 'group' that the outcome of the game is directly and entirely
+      determined by teamwork. The use of 「次第だ」 underscores that teamwork is the **decisive factor**, leaving
+      no room for excuses, rallying the team around this critical element for success.
+  - english: Whether this problem is resolved or not depends on his attitude.
+    japanese:
+      - この 問題 が 解決 する か どう か は 彼 の 態度 【 次第 だ 】。
+      - この 問題 が 解決 する か どう か は 彼 の 態度 【 次第 です 】。
+    english_literally: This problem resolved or not his attitude depends.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 が 解決 する か どう か は 彼 の 態度 に よる。
+        english: Whether this problem is resolved or not is due to his attitude.
+        hint: 「による」 implies 'because of' or 'dependent on' in a more general sense. 「次第だ」 directly asserts
+          that the resolution is *up to* his attitude, implying his attitude is the sole determinant.
+    scene: Colleagues discussing a difficult interpersonal issue at work.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This usage emphasizes the direct link between the person's attitude and the resolution of
+      the problem, often implying that the solution is entirely within their control if they change their
+      attitude.
+  - english: Our departure time will be confirmed, depending on the captain's decision.
+    japanese:
+      - 出発 時間 は、船長 の 判断 【 次第 で 】 確定 し ます。
+      - 出発 時間 は、船長 の 判断 【 次第 で 】 確定 する。
+    english_literally: Departure time, captain's decision depending on, confirmed becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 出発 時間 は、船長 の 判断 に 【 よっ て 】 確定 し ます。
+        english: The departure time will be confirmed by the captain's decision.
+        hint: 「によって」 indicates a cause. We're looking for a direct and determining influence, where the
+          captain's decision is the sole factor.
+    scene: A ship's officer informing passengers about a delay.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A 'male ship's officer' uses 「次第で」 to formally communicate to a 'group' of 'passengers' that
+      the departure time is directly contingent upon the captain's decision, highlighting a clear chain
+      of command and reliance on that specific factor.
+post_example_writeup: As seen in the examples, 「次第だ・次第で(は)」 can be used in various contexts, from personal
+  decisions to professional and national issues. It is a versatile expression for emphasizing that a particular
+  factor is the deciding element in a situation. The nuance of 「次第では」, with its hypothetical implication,
+  is also key for considering potential outcomes based on conditions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/280-Noun%E6%AC%A1%E7%AC%AC%E3%81%A0%E3%83%BBNoun%E6%AC%A1%E7%AC%AC%E3%81%A7

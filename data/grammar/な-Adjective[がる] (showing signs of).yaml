@@ -1,0 +1,300 @@
+grammar_point: な-Adjective[がる] (showing signs of)
+learn_before:
+  - 嫌がる (to show signs of dislike・to be unwilling)
+meaning: to act like; to show signs of feeling (used for third person's emotions/states)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: な-adjective stem + がる
+    rarity: common
+    meaning: to show signs of feeling
+  - conjugation-type: non-past polite (～ます)
+    form: な-adjective stem + がります
+    rarity: common
+    meaning: shows signs of feeling
+  - conjugation-type: negative plain (～ない)
+    form: な-adjective stem + がらない
+    rarity: common
+    meaning: does not show signs of feeling
+  - conjugation-type: negative non-past polite (～ません)
+    form: な-adjective stem + がりません
+    rarity: common
+    meaning: does not show signs of feeling
+  - conjugation-type: past plain (～た)
+    form: な-adjective stem + がった
+    rarity: common
+    meaning: showed signs of feeling
+  - conjugation-type: past polite (～ました)
+    form: な-adjective stem + がりました
+    rarity: common
+    meaning: showed signs of feeling
+  - conjugation-type: progressive (～ている)
+    form: な-adjective stem + がっている
+    rarity: common
+    meaning: is showing signs of feeling
+  - conjugation-type: te-form (～て)
+    form: な-adjective stem + がって
+    rarity: common
+    meaning: showing signs of feeling, and...
+pronunciation:
+  katakana: ナアジェクティブガる
+  romaji: na-adjective garu
+formation:
+  な-adjective stem + がる: Indicates that someone shows outward signs of possessing the quality or feeling
+    described by the な-adjective. The resulting form acts as a Godan verb.
+jlpt: N3
+etymology: The suffix 「がる」 originates from the classical verb 「がる」, which meant 'to act in a certain way'
+  or 'to show signs of (an emotion).' It evolved to be attached to adjective stems and some nouns to indicate
+  that someone is exhibiting a quality or emotion outwardly, based on observable behavior, rather than
+  experiencing it directly. This linguistic development highlights the Japanese focus on external appearance
+  and inferred states, especially when discussing others' internal worlds.
+writeup: The grammar point 「な-Adjective[がる]」 is used to describe when someone (or something) exhibits
+  outward signs of a feeling or state typically expressed by a な-adjective. For example, from the な-adjective
+  「嫌い (きらい)」meaning 'dislike,' we can form 「嫌がる (いやがる)」, which means 'to act like one dislikes' or 'to
+  show signs of disliking.' This construction is crucial because, in Japanese, one generally does not
+  directly state another person's internal feelings or desires as facts. Instead, when talking about someone
+  else's emotions or physical states, we rely on observable behavior. While you would say 「私は悲しいです (わたしはかなしいです)」
+  (I am sad) for yourself, you would say 「彼は悲しがっています (かれはかなしがっています)」 (He is acting sad / He seems sad)
+  for someone else. This applies similarly to な-adjectives. Once the 「がる」 suffix is added to the stem
+  of a な-adjective, the resulting form functions as a regular Godan (Group 1) verb. This means it can
+  be conjugated into various forms, such as 「〜がらない (negative plain)」、「〜がった (past plain)」、「〜がります (polite
+  non-past)」, and most commonly, the progressive form 「〜がっている (is showing signs of)」. The transformation
+  into a verb also means it can take direct objects with 「を」, such as 「野菜を嫌がる (やさいをいやがる)」 (to act like
+  one dislikes vegetables). **Important Considerations:** *   **Third-Person Use Only:** 「〜がる」 is almost
+  exclusively used for observing third-person subjects. Using it for oneself 「私は嫌がります」 is unnatural because
+  you know your own feelings directly. *   **Focus on Outward Behavior:** The emphasis is on the observable
+  behavior that suggests an internal state, not on the internal state itself. *   **Common Forms:** The
+  「〜がっている」 form is particularly common, indicating an ongoing display of the feeling or state.
+false_friends:
+  - term: い-Adjective[がる] (showing signs of)
+    meaning: to act like; to show signs of feeling (used for third person's emotions/states with i-adjectives)
+    kind: similar expression
+    nuance: While both な-Adjective[がる] and い-Adjective[がる] express showing signs of feeling, they differ
+      only in the type of adjective they attach to. The core meaning and usage are identical. This grammar
+      point focuses on the な-adjective application.
+    grammar_point: い-Adjective[がる] (showing signs of)
+  - term: ~そうだ (it seems・looks like)
+    meaning: to seem, to look like (based on appearance)
+    kind: often confused with
+    nuance: 「〜がる」 is used specifically for expressing someone else's observable emotional or physical
+      state (e.g., 'acting cold', 'acting sad'). 「〜そうだ」 is more broadly used for general appearance or
+      likelihood (e.g., 'looks delicious', 'seems likely to rain'). While both involve inference, 「〜がる」
+      implies an internal feeling manifesting outwardly, whereas 「〜そうだ」 describes a general impression.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: ~らしい (it seems, based on evidence・I hear)
+    meaning: it seems, I hear (based on external information or common knowledge)
+    kind: often confused with
+    nuance: 「〜がる」 is based on direct observation of behavior. 「〜らしい」 is based on external evidence, hearsay,
+      or something being typical of a person or situation. For example, 「彼は部長らしい (かれはぶちょうらしい)」 (He seems
+      like the manager / He acts like a manager) based on his demeanor, not necessarily a direct emotional
+      state.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: ~ようだ・~みたいだ (seems・like)
+    meaning: seems like, looks like, similar to
+    kind: often confused with
+    nuance: 「〜がる」 focuses on an observable display of an internal state. 「〜ようだ」 and 「〜みたいだ」 are broader
+      expressions for resemblance, comparison, or inference about a situation or fact, not necessarily
+      an individual's emotional display. For instance, 「まるで夢のようだ (まるでゆめのようだ)」 (It's like a dream).
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: While 「な-Adjective[がる]」, 「〜そうだ」, 「〜らしい」, and 「〜ようだ・〜みたいだ」 all involve expressing
+  something that 'seems' or 'appears' to be the case, they have distinct applications. 「〜がる」 is specifically
+  for describing how another person *acts* as if they have a certain emotion or physical state. It transforms
+  the adjective into a verb denoting this outward behavior. In contrast, 「〜そうだ」 describes general appearances
+  (e.g., 'looks tasty'), 「〜らしい」 conveys an impression based on information or typical characteristics,
+  and 「〜ようだ・〜みたいだ」 are used for broader comparisons or inferences about situations. The key is that 「〜がる」
+  describes a *person's* behavior reflecting an internal state.
+examples:
+  - english: He acts like he dislikes vegetables and won't try to eat them at all.
+    japanese:
+      - 彼 は 野菜 を {嫌 がっ て}、全く 食べよう と し ない。
+      - 彼 は 野菜 を {嫌 がっ て}、全く 食べよう と し ませ ん。
+    english_literally: As for him, vegetables disliking, entirely will not try to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 野菜 が 嫌い だ、全く 食べよう と し ない。
+        english: He dislikes vegetables, and won't try to eat them at all.
+        hint: The original sentence describes someone's *behavior* (acting like he dislikes), not a direct
+          statement of his feeling. We're looking for a grammar point that shows outward signs of an emotion.
+    scene: A mother is describing her picky child's eating habits to a friend.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「嫌がって (いやがって)」 emphasizes the child's observable reluctance and averseness towards
+      vegetables, which is inferred by the mother, rather than directly stating his internal dislike.
+      This is typical when describing a child's actions.
+  - english: She accepts any task without acting like it's a bother.
+    japanese:
+      - 彼女 は どんな こと で も {面倒 がら ず に} 引き受ける。
+      - 彼女 は どんな こと で も {面倒 がら ず に} 引き受け ます。
+    english_literally: As for her, any matter even troublesome-not, takes on.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は どんな こと で も 面倒 くさく なく 引き受ける。
+        english: She accepts any task without being troublesome.
+        hint: The original sentence implies her attitude or behavior, not just the state of the task itself.
+          We're looking for a grammar point that describes how someone *acts* regarding something troublesome.
+    scene: A colleague is praising a hard-working teammate.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    nuance: 「面倒がらずに (めんどうがらずに)」 is a negative form of 「面倒がる」 used adverbially. It highlights her proactive
+      and cooperative attitude, indicating that she never shows signs of annoyance or bother, even when
+      faced with difficult tasks. This is a common way to express admiration for someone's work ethic.
+  - english: The children are acting surprised/curious about the new toy.
+    japanese:
+      - 子供 たち は 新しい おもちゃ に {不思議 がっ て いる}。
+      - 子供 たち は 新しい おもちゃ に {不思議 がっ て い ます}。
+    english_literally: As for the children, new toy at, are acting surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 新しい おもちゃ が 不思議 だ。
+        english: The children are strange about the new toy.
+        hint: The original sentence expresses the children's *reaction* or *behavior* of finding something
+          strange, not that the toy itself is strange. We're looking for a grammar point that shows outward
+          signs of feeling.
+    scene: A parent watches their children react to a Christmas gift.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: Using 「不思議がっている (ふしぎがっている)」 captures the children's visible expressions of wonder and curiosity
+      as they interact with the new toy. It describes their active emotional response through behavior
+      rather than a simple statement of their feeling 「不思議だ」.
+  - english: He always acts like he dislikes being praised in front of people.
+    japanese:
+      - 彼 は いつ も 人前 で 褒め られる の を {嫌 がる}。
+      - 彼 は いつ も 人前 で 褒め られる の を {嫌 がり ます}。
+    english_literally: As for him, always in front of people praised being, acts like he dislikes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 人前 で 褒め られる の が 嫌い だ。
+        english: He always dislikes being praised in front of people.
+        hint: The original sentence focuses on the observable behavior of disliking, rather than a direct
+          statement of preference. We're looking for a grammar point that describes how someone *acts*
+          based on their feelings.
+    scene: Coworkers are discussing a colleague who is shy about receiving compliments.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「嫌がる (いやがる)」 here describes a habitual behavior or reaction. It implies that the person shows
+      visible signs of discomfort or aversion when praised publicly, indicating an outward manifestation
+      of an internal feeling of dislike, which is a common characteristic observed in some individuals.
+  - english: Parents are always concerned that their children dislike studying.
+    japanese:
+      - 親 は 子供 が 勉強 を {嫌 がる} の を いつ も 気 に かけ て いる。
+      - 親 は 子供 が 勉強 を {嫌 がる} の を いつ も 気 に し て い ます。
+    english_literally: As for parents, children studying disliking acts, always are concerned about.
+    competing_grammar:
+      - competing_japanese:
+          - 親 は 子供 が 勉強 が 嫌い な の を いつ も 気 に かけ て いる。
+        english: Parents are always concerned that their children dislike studying.
+        hint: The original sentence implies the children's *observable actions* or attitude towards studying.
+          We're looking for a grammar point that emphasizes the outward display of an internal feeling.
+    scene: A discussion among parents about common worries regarding their children's education.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「嫌がる (いやがる)」 emphasizes the parents' observation of their children's *behavior*
+      – their visible reluctance, procrastination, or complaints about studying. It's not just that the
+      children 'dislike' it, but that they *act* like they dislike it, which is what the parents are worried
+      about.
+  - english: That person acts like they dislike being suddenly spoken to.
+    japanese:
+      - あの 人 は 急 に 話しかけ られる の を {嫌 がり ます}。
+      - あの 人 は 急 に 話しかけ られる の を {嫌 がる}。
+    english_literally: As for that person, suddenly spoken to being, acts like they dislike (polite).
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は 急 に 話しかけ られる の が 嫌い です。
+        english: That person dislikes being suddenly spoken to.
+        hint: The original sentence describes an observable reaction or behavior. We need a grammar point
+          that focuses on the outward expression of a feeling, not just the feeling itself.
+    scene: Two colleagues are discussing a shy coworker's social tendencies.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「嫌がります (いやがります)」 describes a polite, but still observable, manifestation of discomfort or
+      aversion when that person is approached unexpectedly. It subtly conveys the speaker's inference
+      of the other person's internal feeling based on their reaction.
+  - english: He is a lazy person who is slow to do anything.
+    japanese:
+      - 彼 は {面倒 くさ がり 屋} で、何 を する の も 遅い。
+      - 彼 は {面倒 くさ がり 屋} で、何 を する の も 遅い です。
+    english_literally: As for him, troublesome-acting-person, anything doing is slow.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 面倒 くさく て、何 を する の も 遅い。
+        english: He is lazy, and slow to do anything.
+        hint: The original sentence uses a specific noun form derived from 'acting lazy'. We're looking
+          for a word that denotes a *type* of person based on their tendency to act a certain way.
+    scene: A friend describes a mutual acquaintance's personality.
+    register: casual
+    setting: friendly
+    nuance: 「面倒くさがり屋 (めんどうくさがりや)」 is a common noun derived from 「面倒くさがる」, meaning 'a person who acts lazy'
+      or 'a lazybones'. This construction emphasizes a habitual tendency to show signs of finding things
+      troublesome, effectively characterizing the person by their behavior.
+  - english: Foreigners all find Japanese crowded trains strange/are surprised by them.
+    japanese:
+      - 外国 人 は 日本 の 満員 電車 に 皆 {不思議 がる}。
+      - 外国 人 は 日本 の 満員 電車 に 皆 {不思議 がり ます}。
+    english_literally: As for foreigners, Japanese crowded trains to, everyone acts surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 外国 人 は 日本 の 満員 電車 を 皆 不思議 に 思う。
+        english: Foreigners all find Japanese crowded trains strange.
+        hint: The original sentence conveys a collective observable reaction. We're looking for a grammar
+          point that describes how a group *acts* when faced with something strange.
+    scene: A local discussing cultural observations with a foreign resident.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「不思議がる (ふしぎががる)」 here describes a common, observable reaction among foreigners – their expressions
+      of surprise, confusion, or curiosity regarding the unfamiliar sight of crowded Japanese trains.
+      It highlights the outward manifestation of their internal feeling of finding it 'strange'.
+  - english: Cats dislike water.
+    japanese:
+      - 猫 は 水 を {嫌 がり ます}。
+      - 猫 は 水 を {嫌 がる}。
+    english_literally: As for cats, water acts like they dislike (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は 水 が 嫌い です。
+        english: Cats dislike water.
+        hint: The original sentence is describing a general, observable behavior of cats. We need a grammar
+          point that expresses an outward manifestation of an aversion.
+    scene: Someone explaining a common animal behavior.
+    register: casual
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: This sentence uses 「嫌がります (いやがります)」 to describe a characteristic behavior of cats. It emphasizes
+      their observable actions – like resisting baths or avoiding puddles – which indicate their aversion
+      to water, rather than simply stating that they 'dislike' it.
+  - english: The boss doesn't like it when subordinates act like their work is a bother.
+    japanese:
+      - 上司 は 部下 が 仕事 を {面倒 がる} の を よく 思わ ない。
+      - 上司 は 部下 が 仕事 を {面倒 がる} の を よく 思い ませ ん。
+    english_literally: As for boss, subordinates work acts troublesome, not think well.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 は 部下 が 仕事 が 面倒 だ と 言う の を よく 思わ ない。
+        english: The boss doesn't like it when subordinates say work is troublesome.
+        hint: The original sentence refers to the subordinates' *behavior* of showing bother, not necessarily
+          their verbal complaints. We're looking for a grammar point that describes an outward display
+          of a feeling.
+    scene: A manager discussing workplace dynamics with a senior team member.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: 「面倒がる (めんどうがる)」 refers to the visible signs of reluctance, procrastination, or sighs that
+      subordinates might display, indicating their feeling that the work is troublesome. This emphasizes
+      the observable behavior that the boss disapproves of, rather than their internal feeling of boredom
+      or disinterest.
+post_example_writeup: The examples illustrate how 「な-Adjective[がる]」 is used to convey a third person's
+  emotional or physical state through their observable actions. Notice the common use of the 「〜がっている」
+  form to describe ongoing expressions of feeling, and how it often takes an object marked by 「を」, functioning
+  like a transitive verb. This allows for nuanced descriptions of behavior, which is essential for polite
+  and accurate communication in Japanese when discussing others.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-Adjective[がる]

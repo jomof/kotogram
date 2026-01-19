@@ -1,0 +1,545 @@
+grammar_point: を余儀なくされる (to be forced or compelled)
+learn_before:
+  - しかし (but・however)
+meaning: To be forced to do something
+meaning_warning: Similar to 「〜する他仕方がない」and「〜するしかない」
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: を余儀なくされる
+    rarity: common
+    meaning: to be forced to do
+  - conjugation-type: past plain (～た)
+    form: を余儀なくされた
+    rarity: common
+    meaning: was forced to do
+  - conjugation-type: negative plain (～ない)
+    form: を余儀なくされない
+    rarity: common
+    meaning: not forced to do
+  - conjugation-type: non-past polite (～ます)
+    form: を余儀なくされます
+    rarity: common
+    meaning: will be forced to do (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: を余儀なくされなかった
+    rarity: common
+    meaning: was not forced to do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: を余儀なくされませんでした
+    rarity: common
+    meaning: was not forced to do (polite)
+  - conjugation-type: te-form (～て)
+    form: を余儀なくされて
+    rarity: less common
+    meaning: being forced to do, and...
+  - conjugation-type: conditional (～ば)
+    form: を余儀なくされれば
+    rarity: less common
+    meaning: if forced to do
+  - conjugation-type: conditional (～たら)
+    form: を余儀なくされたら
+    rarity: less common
+    meaning: if forced to do
+  - conjugation-type: concessive (～ても)
+    form: を余儀なくされても
+    rarity: less common
+    meaning: even if forced to do
+pronunciation:
+  katakana: ヲヨギナクサレル
+  romaji: o yoginaku sareru
+formation:
+  Noun + を余儀なくされる: Indicates being forced or compelled to do something, leaving no other choice.
+jlpt: N1
+etymology: 'The grammar point 「を余儀なくされる」 is composed of: 「を」 (object marker), 「余儀」 (another method, alternative),
+  「なく」 (conjunctive form of the adjective 「ない」, meaning ''without''), and 「される」 (passive form of 「する」,
+  to do). Thus, it literally translates to ''to be made to do something without any other alternative''.
+  「余儀ない」 itself is often considered a single word meaning ''unavoidable'' or ''inevitable''.'
+writeup: |-
+  「を余儀なくされる」 is a formal grammar pattern typically translated as "to be forced to do (A)". It signifies that there is no other option or choice available. The structure involves the adverbial particle 「を」, the noun 「余儀」 ('another method'), the conjunctive form 「なく」 of the adjective 「ない」, and the passive form 「される」 of the verb 「する」. Literally, it means "to not be given another way than to (A)". It is generally used after a noun, indicating what action is unavoidable. The subject is often a person or an entity representing people, such as a company.
+
+  Caution: Both 「を余儀なくされる」 ('to be forced to do') and 「を余儀なくさせる」 ('to force to do') are variations of the same grammar structure. 「を余儀なくさせる」 will be taught in a different lesson.
+
+  Fun Fact: Despite 「余儀」 and 「ない」 being separate words, 「余儀なく」 is often thought of simply as a single word that means 'unavoidably' or 'inevitably'.
+false_friends:
+  - term: しか〜ない
+    meaning: There's only, Nothing but
+    kind: synonym
+    nuance: Unlike 「を余儀なくされる」, 「しか〜ない」 is less formal and simply expresses that there is no other option,
+      without necessarily implying force or external pressure. For example, 「食べるしかない」 means "I have no
+      choice but to eat".
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜する他仕方がない
+    meaning: have no other choice but to do
+    kind: similar expression
+    nuance: Similar to 「を余儀なくされる」, but emphasizes a lack of alternatives rather than external compulsion,
+      often used when explaining a decision with limited options. It is less formal than 「を余儀なくされる」.
+    grammar_point: よりほかない・よりしかたがない (no choice but)
+  - term: 〜せざるを得ない
+    meaning: cannot avoid doing; compelled to do
+    kind: similar expression
+    nuance: While conveying compulsion like 「を余儀なくされる」, 「〜せざるを得ない」 often implies an internal necessity
+      or an unavoidable outcome that the speaker has no choice but to accept or perform, rather than a
+      direct external force. It suggests a personal struggle or concession to necessity.
+    grammar_point: ざるを得ない (have no choice but to)
+  - term: を余儀なくさせる
+    meaning: To force someone to do something
+    kind: similar expression
+    nuance: This is the causative form of 「を余儀なくされる」. While 「を余儀なくされる」 indicates the subject is *forced*
+      by external circumstances, 「を余儀なくさせる」 indicates the subject *forces* someone else to do something,
+      highlighting the active party causing the compulsion.
+    grammar_point: を余儀なくさせる (compel or force)
+  - term: どうにも〜ない
+    meaning: Cannot ~ by any means; no way to ~
+    kind: similar expression
+    nuance: 「どうにも〜ない」 describes a situation where an action is impossible or unmanageable despite efforts,
+      indicating a complete lack of control over the outcome. While it conveys an unavoidable state like
+      「を余儀なくされる」, it emphasizes the *impossibility* of performing an action or changing a situation from
+      the subject's perspective, rather than an external force actively *compelling* a specific action.
+    grammar_point: どうにも〜ない (no way to ~)
+  - term: わけにはいかない
+    meaning: Cannot afford to; no way; impossible to do
+    kind: similar expression
+    nuance: 「わけにはいかない」 implies that one *cannot* do something, or *must* do something, due to social norms,
+      obligations, or circumstances that make it unacceptable or impractical not to. Unlike 「を余儀なくされる」
+      which points to an external force dictating an action, 「わけにはいかない」 highlights a more nuanced internal
+      or societal compulsion or prohibition, rather than an explicit external force.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: ねばならない
+    meaning: Must; have to; should
+    kind: similar expression
+    nuance: 「ねばならない」 expresses a strong obligation or necessity. The compulsion often originates from
+      internal responsibility, moral duty, or logical necessity, rather than the external, often undesirable,
+      circumstances implied by 「を余儀なくされる」.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+post_false_friends_writeup: |-
+  While 「を余儀なくされる」 and the expressions listed above all relate to actions or situations that are unavoidable, they each carry distinct nuances. 「を余儀なくされる」 specifically conveys that an action or state is **compelled by external, often undesirable, circumstances beyond one's control.** It implies that there was no other alternative forced upon the subject due to these outside factors. This is why it is frequently seen in formal contexts like news reports, official statements, and academic writing.
+
+  In contrast, 「しか〜ない」 and 「よりしかたがない」 (often seen as 「〜する他仕方がない」) express that there is **simply no other option available**. 「しか〜ない」 is the most casual and often reflects a personal lack of choice. 「よりしかたがない」 is slightly more formal but still focuses on the absence of alternative *methods*. Neither implies the same degree of external, forceful compulsion as 「を余儀なくされる」.
+
+  「〜せざるを得ない」, while also indicating compulsion, often suggests an **internal necessity or a reluctant acceptance** of an unavoidable outcome. The subject might feel morally or practically compelled, but it doesn't always imply the direct external force that 「を余儀なくされる」 does.
+
+  The causative form, 「を余儀なくさせる」, is used when **someone or something *forces* another party** into an unavoidable situation. It shifts the focus to the entity causing the compulsion, rather than the one being compelled.
+
+  「どうにも〜ない」 emphasizes that **something is impossible or unmanageable, often despite one's efforts.** It highlights a state of being utterly unable to do something or control a situation, and while it leads to an unavoidable outcome, it describes an inherent impossibility rather than a direct external compulsion.
+
+  「わけにはいかない」 indicates that **one cannot (or must) do something due to social norms, rules, or practical constraints.** The compulsion here is often internal or societal, reflecting that it would be unacceptable or impractical to act otherwise. It's less about being actively forced and more about a strong sense of obligation or prohibition.
+
+  Finally, 「ねばならない」 expresses a **strong obligation or duty.** The necessity often comes from an internal sense of responsibility, a moral imperative, or a logical requirement, rather than external circumstances that strip away one's choice.
+examples:
+  - english: Due to the worsening nuisance caused by guests in the park, they were forced to close off
+      the popular photo spot.
+    japanese:
+      - パーク 内 で の 迷惑 行為 が 悪化 し 始め た ため、人気 撮影 スポット の 封鎖 を {余儀 なく さ れ た}。
+      - パーク 内 で の 迷惑 行為 が 悪化 し 始め た ため、人気 撮影 スポット の 封鎖 を {余儀 なく さ れ まし た}。
+    english_literally: Due to the worsening nuisance behaviors in the park, they were forced to close
+      off the popular photo spot.
+    competing_grammar:
+      - competing_japanese:
+          - パーク 内 で の 迷惑 行為 が 悪化 し 始め た ため、人気 撮影 スポット は 封鎖 する {しか なかっ た}。
+        english: Due to the worsening nuisance caused by guests in the park, the popular photo spot had
+          no choice but to be closed off.
+        hint: This suggests a general 'no choice' but lacks the formality and emphasis on external, unavoidable
+          circumstances that forced the closure, which a park official would convey. We're looking for
+          a formal expression of external compulsion.
+      - competing_japanese:
+          - パーク 内 で の 迷惑 行為 が 悪化 し 始め た ため、人気 撮影 スポット は 封鎖 する {他 仕方 が なかっ た}。
+        english: While formal, this phrase still centers on the lack of alternative methods rather than
+          the strong sense of being compelled or forced by external pressures, which 「を余儀なくされる」 precisely
+          captures in an official announcement. We're looking for a formal expression of external compulsion.
+        hint: While formal, this phrase still centers on the lack of alternative methods rather than the
+          strong sense of being compelled or forced by external pressures, which 「を余儀なくされる」 precisely
+          captures in an official announcement. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - パーク 内 で の 迷惑 行為 が 悪化 し 始め た ため、人気 撮影 スポット は 封鎖 を {せ ざる を 得 なかっ た}。
+        english: Due to the worsening nuisance caused by guests in the park, they could not avoid closing
+          off the popular photo spot.
+        hint: This implies compulsion, but 「を余儀なくされる」 more clearly articulates that the action was forced
+          upon them by external, worsening behavior, making it a stronger, more objective statement for
+          an official. We're looking for a formal expression of external compulsion.
+    scene: A park official explains the unavoidable closure of a popular photo spot.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The park official uses 「余儀なくされた」 to formally explain the unavoidable closure due to 「迷惑行為」.
+      The official language implies the decision was externally imposed.
+  - english: Restaurants were forced to refrain from continuing business due to Covid.
+    japanese:
+      - 飲食 店 は コロナ の 影響 で、営業 の 自粛 を {余儀 なく さ れ た}。
+      - 飲食 店 は コロナ の 影響 で、営業 の 自粛 を {余儀 なく さ れ まし た}。
+    english_literally: Restaurants, due to the influence of corona, were forced to refrain from business
+      operations.
+    competing_grammar:
+      - competing_japanese:
+          - 飲食 店 は コロナ の 影響 で、営業 の 自粛 を する {しか なかっ た}。
+        english: Restaurants, due to the influence of corona, had no choice but to refrain from business
+          operations.
+        hint: This is too casual for a news report and doesn't convey the strong sense of external compulsion
+          experienced by businesses. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 飲食 店 は コロナ の 影響 で、営業 の 自粛 を する {他 仕方 が なかっ た}。
+        english: While formal, this emphasizes a lack of alternatives rather than being directly 'forced'
+          by external circumstances, which is the nuance of 「を余儀なくされる」 often used in objective reporting.
+          We're looking for a formal expression of external compulsion.
+        hint: While formal, this emphasizes a lack of alternatives rather than being directly 'forced'
+          by external circumstances, which is the nuance of 「を余儀なくされる」 often used in objective reporting.
+          We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 飲食 店 は コロナ の 影響 で、営業 の 自粛 を {せ ざる を 得 なかっ た}。
+        english: Restaurants, due to the influence of corona, could not avoid refraining from business
+          operations.
+        hint: This implies compulsion, but 「を余儀なくされる」 more directly attributes the action to external,
+          unavoidable factors like the pandemic's influence, fitting a news report's objective tone. We're
+          looking for a formal expression of external compulsion.
+    scene: A news report discusses the impact of the pandemic on businesses.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: This sentence describes a business situation affected by the pandemic, using the formal 「余儀なくされた」
+      to convey the unavoidable nature of the 「営業の自粛」. A female news reporter often uses objective and
+      formal language in such contexts, emphasizing external pressures on businesses.
+  - english: Due to a recent major earthquake, people in the area were forced to live in shelters.
+    japanese:
+      - 最近 大きな 地震 が あっ た ため、この 地域 の 人 たち は 避難 所 で の 生活 を {余儀 なく さ れ た}。
+      - 最近 大きな 地震 が あっ た ため、この 地域 の 人 たち は 避難 所 で の 生活 を {余儀 なく さ れ まし た}。
+    english_literally: Because there was a big earthquake recently, people in this area were forced to
+      live in shelters.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 大きな 地震 が あっ た ため、この 地域 の 人 たち は 避難 所 で の 生活 を する {しか なかっ た}。
+        english: Due to a recent major earthquake, people in the area had no choice but to live in shelters.
+        hint: This is too casual and suggests a personal 'no choice' rather than a collective necessity
+          imposed by a disaster, which 「を余儀なくされる」 conveys for a serious news report. We're looking for
+          a formal expression of external compulsion.
+      - competing_japanese:
+          - 最近 大きな 地震 が あっ た ため、この 地域 の 人 たち は 避難 所 で の 生活 を する {他 仕方 が なかっ た}。
+        english: While formal, this phrase highlights the absence of other options, whereas 「を余儀なくされる」
+          clearly states that the move to shelters was a direct, unavoidable consequence of the earthquake.
+          We're looking for a formal expression of external compulsion.
+        hint: While formal, this phrase highlights the absence of other options, whereas 「を余儀なくされる」 clearly
+          states that the move to shelters was a direct, unavoidable consequence of the earthquake. We're
+          looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 最近 大きな 地震 が あっ た ため、この 地域 の 人 たち は 避難 所 で の 生活 を {せ ざる を 得 なかっ た}。
+        english: Due to a recent major earthquake, people in the area could not avoid living in shelters.
+        hint: This indicates compulsion. However, 「を余儀なくされる」 directly attributes the necessity of living
+          in shelters to the external event of the earthquake, making it suitable for an objective disaster
+          report. We're looking for a formal expression of external compulsion.
+    scene: A news report details the aftermath of a natural disaster.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: 「余儀なくされた」 emphasizes that due to 「大きな地震」, people were compelled to live in shelters, reflecting
+      the objective, serious tone of a male news reporter conveying critical information.
+  - english: Due to the economic downturn, the company has been forced to close down.
+    japanese:
+      - 景気 悪化 の ため、会社 は 閉鎖 を {余儀 なく さ れ た}。
+      - 景気 悪化 の ため、会社 は 閉鎖 を {余儀 なく さ れ まし た}。
+    english_literally: Due to economic downturn, the company was forced to close down.
+    competing_grammar:
+      - competing_japanese:
+          - 景気 悪化 の ため、会社 は 閉鎖 する {しか なかっ た}。
+        english: Due to the economic downturn, the company had no choice but to close down.
+        hint: This is too casual for a business announcement and doesn't capture the external economic
+          pressure that forced the company's hand. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 景気 悪化 の ため、会社 は 閉鎖 する {他 仕方 が なかっ た}。
+        english: While formal, this implies a lack of alternatives. However, 「を余儀なくされる」 more directly
+          attributes the impending closures to the external and powerful trend of declining birth rates,
+          fitting a predictive policy statement. We're looking for a formal expression of external compulsion.
+        hint: While formal, this implies a lack of alternatives. However, 「を余儀なくされる」 more directly attributes
+          the impending closures to the external and powerful trend of declining birth rates, fitting
+          a predictive policy statement. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 景気 悪化 の ため、会社 は 閉鎖 を {せ ざる を 得 なかっ た}。
+        english: Due to the economic downturn, the company could not avoid closing down.
+        hint: This implies a compulsion, but 「を余儀なくされる」 more clearly articulates that the closure was
+          a direct, unavoidable consequence of the economic downturn, fitting an objective business report.
+          We're looking for a formal expression of external compulsion.
+    scene: A business analyst presents a report on market conditions.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The use of 「余儀なくされた」 here conveys that the company had no other option but to close because
+      of 「景気悪化」. A female financial analyst would present this fact in a formal and objective manner,
+      highlighting external market forces.
+  - english: Because of the approaching tsunami, outdoor concerts were forced to be canceled.
+    japanese:
+      - 津波 が 接近 し た ため、野外 コンサート は 中止 を {余儀 なく さ れ た}。
+      - 津波 が 接近 し た ため、野外 コンサート は 中止 を {余儀 なく さ れ まし た}。
+    english_literally: Because a tsunami approached, the outdoor concert was forced to be canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 津波 が 接近 し た ため、野外 コンサート は 中止 する {しか なかっ た}。
+        english: Because a tsunami approached, the outdoor concert had no choice but to be canceled.
+        hint: This would be too casual for an official announcement by an event organizer and doesn't
+          convey the severity of the external, unavoidable threat. We're looking for a formal expression
+          of external compulsion.
+      - competing_japanese:
+          - 津波 が 接近 し た ため、野外 コンサート は 中止 する {他 仕方 が なかっ た}。
+        english: While formal, this implies a lack of other options, but 「を余儀なくされる」 more forcefully conveys
+          that the cancellation was a direct, unavoidable command necessitated by the approaching tsunami.
+          We're looking for a formal expression of external compulsion.
+        hint: While formal, this implies a lack of other options, but 「を余儀なくされる」 more forcefully conveys
+          that the cancellation was a direct, unavoidable command necessitated by the approaching tsunami.
+          We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 津波 が 接近 し た ため、野外 コンサート は 中止 を {せ ざる を 得 なかっ た}。
+        english: Because a tsunami approached, the outdoor concert could not avoid being canceled.
+        hint: This expresses compulsion, but 「を余儀なくされる」 more clearly indicates that the cancellation was
+          externally imposed by the tsunami's approach, making it a stronger, more direct statement for
+          an organizer. We're looking for a formal expression of external compulsion.
+    scene: An event organizer announces a cancellation due to unforeseen circumstances.
+    register: formal
+    setting: cautious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「余儀なくされた」 indicates that canceling the outdoor concert was an unavoidable decision due to
+      the 「津波が接近したため」. A male event organizer would make such a serious announcement using this formal
+      phrasing to a large audience.
+  - english: If the number of students decreases due to declining birth rates, many schools will be forced
+      to close down.
+    japanese:
+      - 少子 化 に より 学生 が 減れ ば、多く の 学校 は 閉校 を {余儀 なく さ れ る} だろう。
+      - 少子 化 に より 学生 が 減れ ば、多く の 学校 は 閉校 を {余儀 なく さ れ る} でしょ う。
+    english_literally: If students decrease due to the declining birthrate, many schools will probably
+      be forced to close.
+    competing_grammar:
+      - competing_japanese:
+          - 少子 化 に より 学生 が 減れ ば、多く の 学校 は 閉校 する {しか ない} だろう。
+        english: If students decrease due to the declining birthrate, many schools will probably have
+          no choice but to close.
+        hint: This is too casual for a government official discussing policy and doesn't convey the gravity
+          of an unavoidable future outcome due to systemic issues. We're looking for a formal expression
+          of external compulsion.
+      - competing_japanese:
+          - 少子 化 に より 学生 が 減れ ば、多く の 学校 は 閉校 する {他 仕方 が ない} だろう。
+        english: While formal, this implies a lack of alternatives. However, 「を余儀なくされる」 more directly
+          attributes the impending closures to the external and powerful trend of declining birth rates,
+          fitting a predictive policy statement. We're looking for a formal expression of external compulsion.
+        hint: While formal, this implies a lack of alternatives. However, 「を余儀なくされる」 more directly attributes
+          the impending closures to the external and powerful trend of declining birth rates, fitting
+          a predictive policy statement. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 少子 化 に より 学生 が 減れ ば、多く の 学校 は 閉校 を {せ ざる を 得 ない} だろう。
+        english: If students decrease due to the declining birthrate, many schools will probably not be
+          able to avoid closing.
+        hint: This suggests compulsion. However, 「を余儀なくされる」 emphasizes that the closures are a direct
+          consequence of an external demographic shift, making it a more impactful and analytical statement
+          for a government official. We're looking for a formal expression of external compulsion.
+    scene: A government official discusses future policy implications.
+    register: formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「余儀なくされる」 expresses a future situation where 「少子化により学生が減れば」, school closures are
+      inevitable. A female government official might use this to persuade an audience about the urgent
+      need for policy changes.
+  - english: In May 20XX, the plane that was forced to make an emergency landing due to a failure of the
+      landing gear returned to flying operations.
+    japanese:
+      - 20〇〇 年 5 月 に は 降着 装置 の 故障 に より 緊急 着陸 を {余儀 なく さ れ た} 飛行 機 が 飛行 活動 に 復帰 し た。
+      - 20〇〇 年 5 月 に は 降着 装置 の 故障 に より 緊急 着陸 を {余儀 なく さ れ まし た}。
+    english_literally: In May 20XX, the plane that was forced to make an emergency landing due to a landing
+      gear malfunction returned to flight operations.
+    competing_grammar:
+      - competing_japanese:
+          - 20〇〇 年 5 月 に は 降着 装置 の 故障 に より 緊急 着陸 を する {しか なかっ た} 飛行 機 が 飛行 活動 に 復帰 し た。
+        english: In May 20XX, the plane that had no choice but to make an emergency landing due to a landing
+          gear malfunction returned to flight operations.
+        hint: This phrase is too casual for an aviation report detailing a technical incident and doesn't
+          emphasize the external mechanical failure as the compelling force. We're looking for a formal
+          expression of external compulsion.
+      - competing_japanese:
+          - 20〇〇 年 5 月 に は 降着 装置 の 故障 に より 緊急 着陸 を する {他 仕方 が なかっ た} 飛行 機 が 飛行 活動 に 復帰 し た。
+        english: While formal, this implies a lack of other options. 「を余儀なくされる」 more precisely attributes
+          the emergency landing to the external and critical 「降着装置の故障」, making it a more accurate description
+          for a technical report. We're looking for a formal expression of external compulsion.
+        hint: While formal, this implies a lack of other options. 「を余儀なくされる」 more precisely attributes
+          the emergency landing to the external and critical 「降着装置の故障」, making it a more accurate description
+          for a technical report. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 20〇〇 年 5 月 に は 降着 装置 の 故障 に より 緊急 着陸 を {せ ざる を 得 なかっ た} 飛行 機 が 飛行 活動 に 復帰 し た。
+        english: In May 20XX, the plane that could not avoid making an emergency landing due to a landing
+          gear malfunction returned to flight operations.
+        hint: This expresses compulsion. However, 「を余儀なくされる」 directly states that the emergency landing
+          was a forced action due to the equipment malfunction, suitable for an objective report on aircraft
+          operations. We're looking for an expression of external compulsion.
+    scene: An aviation news report covers a plane's return to service.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: 「余儀なくされた」 implies that the emergency landing was not a choice but a necessity due to the 「降着装置の故障」.
+      The technical vocabulary and formal tone are typical of a male announcer in an aviation news report.
+  - english: Prime Minister Negishi resisted in the beginning, but in the end, he was forced to resign
+      by mass protests anyway a few days later.
+    japanese:
+      - 根岸 総理 大臣 は 初め 拒否 し て い た。しかし 結局、数 日 後 に、大衆 の 抗議 に より 辞任 を {余儀 なく さ れ た}。
+      - 根岸 総理 大臣 は 初め 拒否 し て い た。しかし 結局、数 日 後 に、大衆 の 抗議 に より 辞任 を {余儀 なく さ れ まし た}。
+    english_literally: Prime Minister Negishi resisted at first. However, in the end, a few days later,
+      he was forced to resign due to mass protests.
+    competing_grammar:
+      - competing_japanese:
+          - 根岸 総理 大臣 は 初め 拒否 し て い た。しかし 結局、数 日 後 に、大衆 の 抗議 に より 辞任 する {しか なかっ た}。
+        english: Prime Minister Negishi resisted in the beginning, but in the end, he had no choice but
+          to resign by mass protests anyway a few days later.
+        hint: This is too casual for political commentary and doesn't convey the strong external pressure
+          from public protests that forced the resignation. We're looking for a formal expression of external
+          compulsion.
+      - competing_japanese:
+          - 根岸 総理 大臣 は 初め 拒否 し て い た。しかし 結局、数 日 後 に、大衆 の 抗議 に より 辞任 する {他 仕方 が なかっ た}。
+        english: While formal, this focuses on a lack of alternative methods. 「を余儀なくされる」 more powerfully
+          conveys that the resignation was directly compelled by the 「大衆の抗議」, fitting an analysis of political
+          forces. We're looking for a formal expression of external compulsion.
+        hint: While formal, this focuses on a lack of alternative methods. 「を余儀なくされる」 more powerfully
+          conveys that the resignation was directly compelled by the 「大衆の抗議」, fitting an analysis of political
+          forces. We're looking for a formal expression of external compulsion.
+      - competing_japanese:
+          - 根岸 総理 大臣 は 初め 拒否 し て い た。しかし 結局、数 日 後 に、大衆 の 抗議 に より 辞任 を {せ ざる を 得 なかっ た}。
+        english: Prime Minister Negishi resisted in the beginning, but in the end, he could not avoid
+          resigning by mass protests anyway a few days later.
+        hint: This indicates compulsion. However, 「を余儀なくされる」 directly attributes the resignation to the
+          overwhelming external force of the protests, making it a precise term for political analysis.
+          We're looking for a formal expression of external compulsion.
+    scene: A political commentator analyzes a past government event.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The use of 「余儀なくされた」 suggests that despite his initial resistance, Prime Minister Negishi
+      had no other option but to resign due to the overwhelming 「大衆の抗議」. A female political commentator
+      would use such formal and analytical language to describe the external forces at play.
+  - english: To avoid being forced to reduce the event's scale due to budget shortfalls, additional fundraising
+      is necessary.
+    japanese:
+      - 予算 不足 の ため、イベント の 規模 縮小 を {余儀 なく さ れ ない} よう、追加 の 資金 調達 が 必要 だ。
+      - 予算 不足 の ため、イベント の 規模 縮小 を {余儀 なく さ れ ない} よう、追加 の 資金 調達 が 必要 です。
+    english_literally: In order not to be forced to reduce the event's scale due to budget shortage, additional
+      fundraising is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 不足 の ため、イベント の 規模 縮小 を {し なく て 済む} よう、追加 の 資金 調達 が 必要 だ。
+        english: To avoid having to reduce the event's scale due to budget shortfalls, additional fundraising
+          is necessary.
+        hint: This is a more general 'so as not to have to' expression. 「を余儀なくされない」 specifically refers
+          to avoiding being forced by external circumstances, aligning with the manager's concern about
+          budget constraints forcing an undesirable action. We're looking for an expression that explicitly
+          avoids external compulsion.
+      - competing_japanese:
+          - 予算 不足 の ため、イベント の 規模 縮小 を {し ない} よう、追加 の 資金 調達 が 必要 だ。
+        english: So that the event's scale is not reduced due to budget shortfalls, additional fundraising
+          is necessary.
+        hint: This simply states the intention not to reduce scale, without the strong implication of
+          avoiding an external compulsion that 「を余儀なくされない」 carries when discussing risks. We're looking
+          for an expression that explicitly avoids external compulsion.
+    scene: A project manager explains risk mitigation strategies to their team.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「余儀なくされない」 emphasizes the desire to prevent external factors like 「予算不足」 from compelling
+      an undesirable action like 「規模縮小」. A male project manager uses this formal negation to communicate
+      the critical nature of fundraising.
+  - english: At this rate, the player will be forced to transfer overseas.
+    japanese:
+      - この まま で は、選手 の 海外 移籍 を {余儀 なく さ れ ます}。
+      - この まま で は、選手 の 海外 移籍 を {余儀 なく さ れ る}。
+    english_literally: At this rate, the player will be forced into an overseas transfer.
+    competing_grammar:
+      - competing_japanese:
+          - この まま で は、選手 は 海外 移籍 を する {しか あり ませ ん}。
+        english: At this rate, the player will have no choice but to transfer overseas.
+        hint: While polite, this implies a lack of other options from the player's perspective. 「を余儀なくされます」
+          conveys that external circumstances (e.g., contract issues, financial pressure on the team)
+          are forcing the transfer, which an agent would emphasize to an owner. We're looking for a formal
+          expression of external compulsion.
+      - competing_japanese:
+          - この まま で は、選手 は 海外 移籍 を {せ ざる を 得 ませ ん}。
+        english: At this rate, the player will not be able to avoid transferring overseas.
+        hint: This expresses compulsion, but 「を余儀なくされます」 more directly attributes the impending transfer
+          to an external, unavoidable situation 「このままでは」, making it a more impactful statement from an
+          agent to an owner. We're looking for a formal expression of external compulsion.
+    scene: A sports agent informs a team owner about a critical player situation.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「余儀なくされます」, the female sports agent formally warns the male team owner that the player's
+      overseas transfer will be an unavoidable outcome if the current situation 「このままでは」 persists, highlighting
+      external pressures.
+  - english: Due to an unexpected power outage, the surgery was forced to be interrupted, and the patient's
+      condition suddenly changed for the worse.
+    japanese:
+      - 予期 せ ぬ 停電 で、手術 の 中断 を {余儀 なく さ れ て}、患者 の 容態 が 急変 し た。
+      - 予期 せ ぬ 停電 で、手術 の 中断 を {余儀 なく さ れ て}、患者 の 容態 が 急変 し まし た。
+    english_literally: Due to an unexpected power outage, surgery was forced to be interrupted, and the
+      patient's condition suddenly worsened.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 せ ぬ 停電 で、手術 の 中断 を する {しか なく}、患者 の 容態 が 急変 し た。
+        english: Due to an unexpected power outage, there was no choice but to interrupt the surgery,
+          and the patient's condition suddenly changed for the worse.
+        hint: This implies a lack of other options. 「を余儀なくされて」 more directly attributes the interruption
+          to the external, unavoidable 「予期せぬ停電」, emphasizing the forced nature of the action in a medical
+          context. We're looking for an expression of external compulsion.
+      - competing_japanese:
+          - 予期 せ ぬ 停電 で、手術 の 中断 を {せ ざる を 得 なく}、患者 の 容態 が 急変 し た。
+        english: Due to an unexpected power outage, they could not avoid interrupting the surgery, and
+          the patient's condition suddenly changed for the worse.
+        hint: This expresses compulsion. However, 「を余儀なくされて」 conveys that the interruption was an externally
+          imposed event due to the power outage, which is more precise when describing an unexpected,
+          critical event. We're looking for an expression of external compulsion.
+    scene: A doctor recounts a challenging medical incident to a colleague.
+    register: formal
+    setting: serious
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The te-form 「余儀なくされて」 connects the external cause 「予期せぬ停電」 directly to the forced interruption
+      of surgery and its serious consequence. A male doctor, using this formal language, conveys the unavoidable
+      chain of events to a female colleague.
+  - english: If technical issues arise, and we are forced to change the plan, there is a possibility that
+      the delivery date will be delayed.
+    japanese:
+      - 技術 的 な 問題 が 発生 すれ ば、計画 の 変更 を {余儀 なく さ れれ ば}、納期 が 遅れる 可能 性 が ある。
+      - 技術 的 な 問題 が 発生 すれ ば、計画 の 変更 を {余儀 なく さ れれ ば}、納期 が 遅れる 可能 性 が あり ます。
+      - 技術 的 な 問題 が 発生 し たら、計画 の 変更 を {余儀 なく さ れ たら}、納期 が 遅れる 可能 性 が ある。
+      - 技術 的 な 問題 が 発生 し たら、計画 の 変更 を {余儀 なく さ れ たら}、納期 が 遅れる 可能 性 が あり ます。
+    english_literally: If technical problems occur, and we are forced to change the plan, there is a possibility
+      that the delivery date will be delayed.
+    competing_grammar:
+      - competing_japanese:
+          - 技術 的 な 問題 が 発生 すれ ば、計画 の 変更 を する {しか なけれ ば}、納期 が 遅れる 可能 性 が あり ます。
+        english: If technical issues arise, and there is no choice but to change the plan, there is a
+          possibility that the delivery date will be delayed.
+        hint: This conditional form implies a personal lack of choice. 「を余儀なくされれば」 specifically refers
+          to the situation where external technical issues force the plan modification, which is a more
+          objective way to present a risk to management. We're looking for an expression of external compulsion.
+      - competing_japanese:
+          - 技術 的 な 問題 が 発生 すれ ば、計画 の 変更 を {せ ざる を 得 なけれ ば}、納期 が 遅れる 可能 性 が あり ます。
+        english: If technical issues arise, and we cannot avoid changing the plan, there is a possibility
+          that the delivery date will be delayed.
+        hint: This means 'if we have no choice but to change'. 「を余儀なくされれば」 more clearly states that the
+          necessity of change is due to external, compelling technical problems, allowing the speaker
+          to present this as an objective risk. We're looking for an expression of external compulsion.
+    scene: A project lead outlines potential risks and their impact to management.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The conditional 「余儀なくされれば」 highlights a potential future scenario where external factors 「技術的な問題」
+      would compel a plan change. A female project lead uses this formal construction to precisely articulate
+      the causal link between a potential problem and its forced consequence to male management.
+post_example_writeup: 「を余儀なくされる」は、多くの場合、個人的な選択肢の欠如ではなく、外部からの不可避な状況や圧力によって何らかの行動を強いられる際に用いられます。特に、社会的な出来事、経済状況、災害、または組織的な決定など、主体の意思とは無関係に発生する事柄に起因する強制を表現するのに適しています。そのため、ニュース記事、公式発表、学術論文など、客観的で改まった文脈で頻繁に見られます。
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を余儀なくされる

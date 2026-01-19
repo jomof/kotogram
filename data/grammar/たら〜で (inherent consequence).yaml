@@ -1,0 +1,383 @@
+grammar_point: たら〜で (inherent consequence)
+learn_before:
+  - かえって (on the contrary)
+meaning: Even if, If (despite a condition, a specific outcome occurs)
+pronunciation:
+  katakana: タラーデ
+  romaji: tara-de
+formation:
+  Verb (たら form) + Verb (plain form) + で: Indicates that even if a verb's action or state is realized,
+    a specific consequence, often paradoxical, arises directly from that realization.
+  Verb (ば form) + Verb (plain form) + で: Indicates that even if a verb's action or state is realized,
+    a specific consequence, often paradoxical, arises directly from that realization.
+  い-Adjective (たら form) + い-Adjective (plain form) + で: Conveys that even if an い-adjective's characteristic
+    is present, a specific consequence, often paradoxical, arises directly from that characteristic.
+  い-Adjective (ば form) + い-Adjective (plain form) + で: Conveys that even if an い-adjective's characteristic
+    is present, a specific consequence, often paradoxical, arises directly from that characteristic.
+  い-Adjective (plain form) + なら + い-Adjective (plain form) + で: Conveys that even if an い-adjective's
+    characteristic is present, a specific consequence, often paradoxical, arises directly from that characteristic.
+    This usage can be more colloquial or specific to certain contexts.
+  な-Adjective (なら form) + な-Adjective (plain form) + で: Expresses that even if a な-adjective's characteristic
+    is present, a specific consequence, often paradoxical, arises directly from that characteristic.
+  Noun + なら + Noun + で: States that even if a noun's state or condition is true, a specific consequence,
+    often paradoxical, arises directly from that condition.
+jlpt: N1
+etymology: The grammar point 「たら〜で」 is formed by taking a conditional form (たら, ば, or なら), repeating the
+  main word (or its plain form if the conditional was formed by adding たら/ば/なら to a stem), and then adding
+  the particle 「で」. The core of its meaning lies in this unique structure. The repetition of the word
+  strongly emphasizes that the very state or condition expressed is the source or cause of the subsequent
+  outcome. The particle 「で」, which often marks a location, means, or cause, here functions to indicate
+  'by means of this state' or 'in this condition'. Therefore, 「たら〜で」 is not merely a simple 'if-then'
+  conditional, but rather it conveys that 'even if (A), then precisely *because of* (A), consequence (B)
+  arises.' It highlights an inherent, often paradoxical, link between the condition and its direct consequence,
+  stemming from the condition itself as the 'place' or 'means' through which the consequence manifests.
+writeup: 'The 「たら〜で」 construction expresses that even if a certain condition (A) is met, a particular
+  consequence or outcome (B) will still occur. This outcome (B) often carries a nuance of being contradictory
+  or unexpected given the condition (A). It can be concisely translated as "even if (A), then (B)" or
+  "if (A), then (B), precisely because of A". This pattern employs conditional forms: `たら` or `ば` for
+  verbs and い-adjectives, and `なら` for な-adjectives and nouns. A less common but accepted usage also exists
+  for い-adjectives with `なら` as seen in some contexts. The word or phrase forming the condition is repeated:
+  [Conditional Form] + [Plain Form] + で. The specific nuance can vary. Firstly, in a seemingly positive
+  situation (A), a problem (B) might arise. For example, gaining wealth might bring new anxieties. Secondly,
+  in a problematic situation (A), a way to cope or a positive aspect (B) can still be found. For instance,
+  being busy might necessitate better time management. In both interpretations, the key is that outcome
+  (B) is inherently linked to and often contradictory to condition (A). This construction is primarily
+  used in standard, general contexts, appearing in both casual and formal speech and writing. It is crucial
+  to differentiate this from a simple conditional. The repetition emphasizes that the very existence of
+  condition (A) is what causes consequence (B). Furthermore, when `なら〜で` follows other word types (e.g.,
+  verbs, nouns) in a different grammatical context, it typically conveys a distinct meaning, such as expressing
+  dissatisfaction or giving strong advice, which is separate from this specific pattern.'
+false_friends:
+  - term: 〜ても
+    meaning: Even if; even though
+    kind: often confused with
+    nuance: 「〜ても」 emphasizes a result occurring despite an opposing condition. 「たら〜で」 highlights that
+      the condition itself, whether good or bad, inherently brings a specific, often contradictory, consequence.
+    grammar_point: ても (even if・even though)
+  - term: 〜ば・〜たら (simple conditional)
+    meaning: If; when
+    kind: similar expression
+    nuance: 「〜ば/〜たら」 simply states a conditional relationship (if A, then B). 「たら〜で」 goes further by emphasizing
+      that B is a direct, inherent consequence of the very existence of A, often implying a paradoxical
+      or inescapable outcome.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: にいたっては
+    meaning: When it comes to, as for, in particular; used to introduce an extreme, often negative or
+      surprising, example.
+    kind: similar expression
+    nuance: 「たら〜で」 indicates an inherent outcome directly from a condition. 「にいたっては」 highlights an extreme
+      or surprising case, often serving as a culmination of a negative trend.
+    grammar_point: <suggest>:にいたっては (when it comes to a surprising extreme)
+post_false_friends_writeup: While expressions like 「〜ても」 and simple conditionals using 「〜ば/〜たら」 also convey
+  notions of conditions and outcomes, 「たら〜で」 uniquely focuses on the inherent nature of the condition
+  itself leading to a specific, often paradoxical, result. It’s not just a concession but an assertion
+  that the state of affairs brings about its own consequences, making it distinct from mere conditional
+  statements.
+examples:
+  - english: Even if you pass the exam, new challenges will surely be waiting.
+    japanese:
+      - もし 試験 に {合格 し たら 合格 し た で}、次 の 課題 が 待っ て いる だろう。
+      - 試験 に {合格 し たら 合格 し た で}、次 の 課題 が 待っ て いる こと でしょう。
+    english_literally: If you pass the exam, if you pass, next challenges will be waiting.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 し {て も}、次 の 課題 が 待っ て いる だろう。
+        english: Even if you pass the exam, new challenges will still be waiting (conceding the condition).
+        hint: 「〜ても」 is a concessive conditional, meaning 'even if' or 'even though'. While it also expresses
+          a condition and outcome, it lacks the nuance of the condition *itself* being the source of the
+          consequence. We're looking for an expression that implies the passing of the exam directly leads
+          to new challenges.
+      - competing_japanese:
+          - 試験 に 合格 すれ {ば}、次 の 課題 が 待っ て いる だろう。
+        english: If you pass the exam, new challenges will be waiting (a simple conditional).
+        hint: This is a simple conditional 'if... then...'. It states a factual or general conditional
+          relationship but doesn't emphasize that the act of passing *itself* is the cause of the new
+          challenges. We need to convey that the condition itself brings about the outcome.
+    scene: A mentor advises a young student about academic life beyond a current hurdle.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The speaker, an older male, uses `〜だろう` to express a reasonable assumption or prediction,
+      common in advisory contexts. The repetition `「合格 し たら 合格 したで」` emphasizes that the very act of passing
+      brings its own new set of challenges, portraying a realistic perspective on continuous growth.
+    etymology: The use of `だろう` stems from `だ` (copula) + `う` (volitional/conjectural ending), indicating
+      a strong likelihood or reasonable expectation.
+  - english: Even if that restaurant is cheap, I heard the portion sizes are small.
+    japanese:
+      - あの レストラン は {安けれ ば 安い で}、料理 の 量 も 少ない と 聞い た。
+      - あの レストラン は {安けれ ば 安い で}、料理 の 量 も 少ない そう です よ。
+      - あの レストラン は {安けれ ば 安い で}、どう も 料理 の 量 が 少ない らしい です ね。
+      - あの レストラン は {安けれ ば 安い で}、どうせ 量 は 少ない だろう な。
+    english_literally: If that restaurant is cheap, if it is cheap, the amount of food is small, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 安い {けれど}、料理 の 量 も 少ない と 聞い た。
+        english: That restaurant is cheap, but I heard the portion sizes are small.
+        hint: 「〜けれど」 indicates a simple conjunction of contrasting ideas. It states that the restaurant
+          is cheap *and* the portions are small, but it doesn't imply that the cheapness *causes* the
+          small portions. We're looking for a structure that links the condition directly to its consequence.
+      - competing_japanese:
+          - あの レストラン は 安く {て も}、料理 の 量 は 少ない と 聞い た。
+        english: Even if that restaurant is cheap, the portion sizes are small, I heard.
+        hint: 「〜ても」 implies a concession ('even if'). While it acknowledges the cheapness, it focuses
+          on the portions being small *despite* that. Our grammar emphasizes that the small portions are
+          a direct, inherent result *of* the cheapness.
+    scene: Friends discussing a newly opened, budget-friendly restaurant.
+    register: casual
+    setting: friendly
+    nuance: 'The phrase `「安ければ 安いで」` emphasizes the inherent trade-off: the cheapness *itself* is the
+      reason for the small portions, implying an expected consequence rather than a surprising one.'
+    etymology: The phrase `〜と 聞い た` means 'I heard that...', indicating reported information. This is
+      a common way to convey hearsay in Japanese without committing to the statement as personal knowledge.
+  - english: Even if you're busy, it's a good opportunity to devise ways to use your time effectively.
+    japanese:
+      - '{忙しい なら 忙しい で}、時間 の 使い 方 を 工夫 する 良い 機会 だ と 思い ます。'
+      - '{忙しい なら 忙しい で}、かえって 時間 の 使い 方 を 工夫 する 良い 機会 だ と 思い ます。'
+    english_literally: If you are busy, if you are busy, it's a good opportunity to devise ways to use
+      your time.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しく {て も}、時間 の 使い 方 を 工夫 する 良い 機会 だ と 思い ます。
+        english: Even if you are busy, it's a good opportunity to devise ways to use your time effectively.
+        hint: 「〜ても」 highlights the condition of being busy as something to overcome ('even if you are
+          busy, *still* this is a good opportunity'). The target grammar emphasizes that the busyness
+          *itself* creates the opportunity.
+      - competing_japanese:
+          - 忙しい {なら ば}、時間 の 使い 方 を 工夫 する 良い 機会 だ と 思い ます。
+        english: If you are busy, then it's a good opportunity to devise ways to use your time effectively.
+        hint: 「〜ならば」 is a conditional meaning 'if it is the case that...'. While grammatically correct,
+          it is a straightforward conditional and doesn't carry the nuance that the very state of being
+          busy is the source of the opportunity, as expressed by the repetition in 「たら〜で」.
+    scene: A manager offers constructive advice to an overwhelmed team member.
+    register: formal
+    setting: supportive
+    nuance: The formal `〜と思います` (I think) aligns with a manager offering professional guidance. The repetition
+      `「忙しい なら 忙しい で」` suggests that the condition of being busy *itself* presents the opportunity for
+      skill development, making it a direct consequence.
+    etymology: The phrase `工夫 する` (くふう する) means 'to devise; to come up with a good plan'. It combines
+      `工` (craft, skill) and `夫` (husband, man, but here means 'worker' or 'effort'), conveying the idea
+      of applying skill and effort to improve something.
+  - english: Even if this project is tough, the experience gained from it will be commensurately great.
+    japanese:
+      - この プロジェクト は {大変 だっ たら 大変 で}、それ だけ 得 られる 経験 も 大きい です。
+      - この プロジェクト は {大変 なら 大変 な ら で}、それ だけ 得 られる 経験 も 大きい です。
+      - この プロジェクト は {大変 だっ たら 大変 で}、得 られる 経験 も その 分 大きい です よ。
+      - この プロジェクト は {大変 なら 大変 な ら で}、その 分 得 られる 経験 も 大きい もの です。
+    english_literally: If this project is tough, if it is tough, only that much the experience gained
+      is also great.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 大変 だ {けれど}、それ だけ 得 られる 経験 も 大きい です。
+        english: This project is tough, but the experience gained from it will be commensurately great.
+        hint: 「〜けれど」 simply connects two clauses with a 'but' or 'although' meaning. It doesn't imply
+          that the 'toughness' is the direct reason for the 'great experience'. Our grammar highlights
+          the inherent link between the condition and its outcome.
+      - competing_japanese:
+          - この プロジェクト は 大変 {で も}、それ だけ 得 られる 経験 も 大きい です。
+        english: Even if this project is tough, the experience gained from it will still be commensurately
+          great.
+        hint: 「〜ても」 expresses a concession, meaning 'even if' or 'even though', implying that the great
+          experience happens *despite* the toughness. The target grammar emphasizes that the toughness
+          *itself* is the reason the experience is great.
+    scene: An experienced professional discusses a challenging new project with a junior colleague.
+    register: formal
+    setting: inspirational
+    nuance: This sentence aligns with an inspirational setting, suggesting growth comes from challenges,
+      where the difficulty directly correlates with the value of the experience through `それ だけ 得られる 経験
+      も 大きい`.
+    etymology: The expression `それ だけ` implies 'only that much' or 'correspondingly', emphasizing that
+      the reward is proportional to the effort or challenge. `得られる` is the potential form of `得る` (える,
+      to obtain), meaning 'can be obtained'.
+  - english: If you have money, worries increase, but if you don't have it, that's also troublesome.
+    japanese:
+      - お 金 が {あれ ば ある で} 心配 事 も 増える し、{なけれ ば ない で} それ は それ で 困る もの だ。
+      - お 金 が {あれ ば ある で} 心配 事 も 増え ます し、{なけれ ば ない で} それ は それ で 困る もの です よ ね。
+      - お 金 が {あれ ば ある で} 心配 事 が 増える し、{なけれ ば ない で} それ は それ で 困る ん だ よ。
+      - お 金 が {あれ ば ある で} 心配 事 も 増える けど、{なけれ ば ない で} それ は それ で 困る よ ね。
+    english_literally: If money exists, if it exists, worries also increase, and if it doesn't exist,
+      if it doesn't exist, that is that, it is troublesome.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が あっ {て も} 心配 事 も 増える し、なく {て も} それ は それ で 困る もの だ。
+        english: Even if you have money, worries increase, and even if you don't have it, that's also
+          troublesome.
+        hint: Using 「〜ても」 twice implies that worries increase *despite* having money and trouble happens
+          *despite* not having money. This focuses on the outcome regardless of the condition, rather
+          than the condition *itself* causing the specific outcome, which is the nuance of 「たら〜で」.
+      - competing_japanese:
+          - お 金 が あれ {ば} 心配 事 も 増える し、なけれ {ば} それ は それ で 困る もの だ。
+        english: If you have money, worries increase, and if you don't have it, that's also troublesome.
+        hint: This uses simple `〜ば` conditionals. It states a factual or general conditional relationship
+          but lacks the emphasis that the very existence of money (or lack thereof) *inherently* brings
+          these specific consequences, which is the core of the `たら〜で` pattern.
+    scene: A group of friends engage in a philosophical discussion about the complexities of wealth.
+    register: casual
+    setting: reflective
+    nuance: The use of `〜ものだ` expresses a general truth or tendency, fitting the reflective setting of
+      friends discussing life. The parallel structure with `「あれば あるで」` and `「なければ ないで」` highlights the
+      inescapable nature of worries, regardless of one's financial state.
+    etymology: The repeated structure `あれば あるで` and `なければ ないで` emphasizes the inherent consequences stemming
+      directly from the state of having or not having something. `困る ものだ` implies that it's a common or
+      general truth that one will be troubled.
+  - english: He always complains even if he wins, and he grumbles even if he loses.
+    japanese:
+      - 彼 は いつ も {勝っ たら 勝っ た で} 文句 を 言う し、{負け たら 負け た で} 不満 を 漏らす。
+      - 彼 は いつ も {勝て ば 勝て ば で} 文句 を 言う し、{負け れ ば 負け れ ば で} 不満 を 漏らす。
+      - 彼 は いつ も {勝っ たら 勝っ た で} 文句 ばかり 言う し、{負け たら 負け た で} 不満 を 言う ん だ よ。
+      - 彼 は いつ も {勝っ たら 勝っ た で} 文句 を 言う よ な、{負け たら 負け た で} 愚痴 を こぼす し。
+    english_literally: He always, if he wins, if he wins, says complaints, and if he loses, if he loses,
+      leaks dissatisfaction.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 勝っ {て も} 文句 を 言う し、負け {て も} 不満 を 漏らす。
+        english: He always complains even if he wins, and he grumbles even if he loses.
+        hint: Using `〜ても` means 'even if' or 'even though', implying his complaining happens *despite*
+          winning or losing. The target grammar emphasizes that his winning *itself* is the cause for
+          his specific type of complaint, and his losing *itself* is the cause for another type of complaint.
+      - competing_japanese:
+          - 彼 は いつ も 勝て {ば} 文句 を 言う し、負け れ {ば} 不満 を 漏らす。
+        english: He always complains if he wins, and he grumbles if he loses.
+        hint: These are simple `〜ば` conditionals, stating a straightforward 'if-then' relationship. They
+          don't convey the nuance that the very act of winning or losing is the inherent reason for his
+          specific reactions, which is implied by the repetition in `たら〜で`.
+    scene: A sports fan describes a perpetually negative friend.
+    register: casual
+    setting: humorous
+    nuance: The use of `いつも` (always) combined with the repeating conditional form emphasizes the subject's
+      ingrained habit of finding fault, regardless of outcome. The phrasing `「勝ったら 勝ったで」` and `「負けたら 負けたで」`
+      highlights how both winning and losing *inherently* lead to his complaints.
+    etymology: The verb `漏らす` (もらす) literally means 'to leak' but is often used in the context of 'to
+      let out' or 'to grumble' a complaint or dissatisfaction, implying a reluctant or involuntary expression.
+  - english: Even if it's a Sunday, it's not like I can just take it easy; there's still laundry and cleaning
+      to do.
+    japanese:
+      - 日曜 日 {なら 日曜 日 で}、洗濯 や 掃除 など する こと は たくさん ある ん だ よ。
+      - 日曜 日 {なら 日曜 日 で}、洗濯 や 掃除 など する こと が たくさん ある から、結局 休み に なら ない ん だ よ ね。
+    english_literally: If it's Sunday, if it's Sunday, there are many things to do like laundry and cleaning.
+    competing_grammar:
+      - competing_japanese:
+          - 日曜 日 {な の に}、洗濯 や 掃除 など する こと が たくさん ある ん だ よ。
+        english: Even though it's Sunday, there are many things to do like laundry and cleaning.
+        hint: 「〜なのに」 means 'even though' or 'despite'. It highlights a contrast between the expectation
+          (relaxing on Sunday) and the reality (still having chores). Our grammar emphasizes that the
+          very nature of Sunday *itself* leads to these specific tasks being done.
+      - competing_japanese:
+          - 日曜 日 {だ から}、洗濯 や 掃除 など する こと が たくさん ある ん だ よ。
+        english: Because it's Sunday, there are many things to do like laundry and cleaning.
+        hint: 「〜だから」 simply states a reason. While grammatically correct, it implies Sunday is just the
+          reason for chores, not that the state of being Sunday *inherently* carries these responsibilities
+          in a way that creates a specific, sometimes paradoxical, outcome.
+    scene: A person explains to a friend why their weekend isn't as relaxing as it sounds.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase `〜ん だ よ` adds emphasis and explains the situation from the speaker's perspective,
+      typical in casual conversation. The repetition `「日曜日 なら 日曜日 で」` stresses that the condition of it
+      being Sunday *itself* brings about the consequence of having many chores, implying that Sunday is
+      not always a day of rest.
+    etymology: The particle `など` means 'and so on' or 'etc.', indicating that the list of chores is not
+      exhaustive but merely illustrative. It helps to generalize the examples given.
+  - english: If you don't have money, you figure out how to manage, and if you do, you probably use it
+      all up.
+    japanese:
+      - お 金 が {なけれ ば ない で} なん と か する し、{あれ ば ある で} 全部 使っ ちゃう もの だ よ ね。
+      - お 金 が {なけれ ば ない で} なん と か し ます し、{あれ ば ある で} 全部 使っ て しまう もの です よ ね。
+      - お 金 が {なかっ たら なかっ た で} なん と か する し、{あっ たら あっ た で} 全部 使っ ちゃう もの だ よ ね。
+      - お 金 が {なかっ たら なかっ た で} なん と か し ます し、{あっ たら あっ た で} 全部 使っ て しまう もの です よ ね。
+    english_literally: If money doesn't exist, if it doesn't exist, you manage somehow, and if it exists,
+      if it exists, you use it all up, it's just how it is, right?
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が なく {て も} なん と か する し、あっ {て も} 全部 使っ ちゃう もの だ よ ね。
+        english: Even if you don't have money, you manage, and even if you do, you use it all up, right?
+        hint: While `〜ても` means 'even if', using it here implies managing *despite* not having money,
+          or spending *despite* having it. This doesn't capture the essence that the very presence or
+          absence of money *inherently* leads to these specific behaviors, which is the point of `たら〜で`.
+      - competing_japanese:
+          - お 金 が ない {なら} なん と か する し、ある {なら} 全部 使っ ちゃう もの だ よ ね。
+        english: If you don't have money, you manage, and if you have it, you use it all up, right?
+        hint: Using simple `〜なら` conditionals states a straightforward 'if-then' relationship. It lacks
+          the emphasis that the financial state *itself* is the reason for these specific reactions or
+          outcomes, as conveyed by the repetition in `たら〜で`.
+    scene: Two friends casually reflecting on their spending habits and financial situations.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: 'The casual sentence-final particles `〜もの だ よ ね` express a shared, common truth or observation,
+      making the statement relatable. The parallel `「なければ ない で」` and `「あれば ある で」` highlights a common
+      human tendency: resourceful adaptation to scarcity and unchecked spending with abundance, both directly
+      tied to the financial condition.'
+    etymology: The colloquial `使っちゃう` is a contraction of `使ってしまう` (つかってしまう), which means 'to use up completely'
+      or 'to end up using'. The `〜てしまう` suffix often indicates completion, regret, or an unintended outcome.
+  - english: Even if it's convenient, that very convenience can sometimes make people lazy.
+    japanese:
+      - '{便利 なら 便利 で}、かえって 人 を 怠惰 に する こと も ある。'
+      - '{便利 なら 便利 で}、かえって 人 を 怠惰 に する こと も あり ます。'
+      - '{便利 なら 便利 で}、それ が 逆 に 人 を 怠け させる こと も ある ん です よ。'
+      - '{便利 なら 便利 で}、逆 に 人 を 怠け させる こと だ って ある よ ね。'
+    english_literally: If it's convenient, if it's convenient, on the contrary, it can sometimes make
+      people lazy.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 {で も}、人 を 怠惰 に する こと も ある。
+        english: Even if it's convenient, it can also make people lazy.
+        hint: 「〜ても」 means 'even if' or 'even though', suggesting laziness happens *despite* convenience.
+          Our grammar implies that the convenience *itself* is the direct cause or pathway to laziness,
+          making it an inherent outcome.
+      - competing_japanese:
+          - 便利 だ {けれど}、人 を 怠惰 に する こと も ある。
+        english: It's convenient, but it can also make people lazy.
+        hint: 「〜けれど」 is a simple conjunction meaning 'but' or 'although'. It presents a contrast but does
+          not convey the strong sense that the convenience *is the reason* for people becoming lazy, which
+          is the nuanced connection in `たら〜で`.
+    scene: A lecturer discusses the double-edged sword of technological advancements.
+    register: formal
+    setting: academic
+    nuance: The use of `かえって` (on the contrary; rather; all the more) reinforces the paradoxical nature
+      of the statement. The repetition `「便利 なら 便利 で」` highlights that the very quality of convenience
+      is what can lead to the negative consequence of laziness, a direct cause-and-effect relationship.
+    etymology: The word `怠惰` (たいだ) means 'laziness' or 'indolence'. It combines `怠` (だるい - lazy, sluggish)
+      and `惰` (だらく - idleness, decay), forming a clear lexical connection to the concept of inactivity
+      and negligence.
+  - english: Even if life is difficult, there is still a joy in overcoming those difficulties.
+    japanese:
+      - 人生 は {辛けれ ば 辛い で}、その 分 乗り越える 喜び も ある。
+      - 人生 は {辛けれ ば 辛い で}、その 分 乗り越える 喜び も あり ます よ ね。
+      - 人生 は {辛かっ たら 辛かっ た で}、その 分 乗り越える 喜び も 大きい ん だ よ。
+      - 人生 は {辛かっ たら 辛かっ た で}、乗り越え た 時 の 喜び も それ だけ 大きい ん です。
+    english_literally: If life is tough, if it's tough, correspondingly there is also joy in overcoming
+      it.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は 辛く {て も}、乗り越える 喜び も ある。
+        english: Even if life is tough, there is still a joy in overcoming it.
+        hint: 「〜ても」 means 'even if' or 'even though'. It implies joy exists *despite* the toughness, a
+          concession. Our grammar emphasizes that the toughness *itself* is the reason for the specific
+          joy, creating an inherent link where the greater the difficulty, the greater the satisfaction.
+      - competing_japanese:
+          - 人生 は 辛い {なら} 乗り越える 喜び も ある。
+        english: If life is tough, then there is joy in overcoming it.
+        hint: Using simple `〜なら` conditional states a general 'if-then' relationship. It lacks the emphasis
+          that the very experience of toughness *inherently* leads to the specific joy of overcoming it,
+          which is implied by the repetition in `たら〜で`.
+    scene: An older person shares life wisdom with a younger relative.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase `その 分` (sono bun) means 'to that extent' or 'proportionately', emphasizing that
+      the joy is directly proportional to the difficulty. The repetition `「辛ければ 辛い で」` conveys a resilient
+      mindset, suggesting that hardship is not merely an obstacle but a necessary component for deeper
+      satisfaction.
+    etymology: The verb `乗り越える` (のりこえる) combines `乗り` (nori, from `乗る` - to ride, to get over) and `越える`
+      (koeru - to cross over, to overcome), vividly illustrating the act of overcoming a hurdle or difficulty.
+post_example_writeup: This grammar point clearly illustrates the speaker's acceptance of a situation and
+  its inherent, often contradictory, consequences. It emphasizes that a specific outcome is a direct result
+  of the stated condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たら-で

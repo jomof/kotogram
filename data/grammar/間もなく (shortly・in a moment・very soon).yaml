@@ -1,0 +1,216 @@
+grammar_point: 間もなく (shortly・in a moment・very soon)
+learn_before:
+  - さて (transitional word)
+  - なくて (negative te-form)
+  - 聞こえる (to be audible)
+meaning: shortly; in a moment; very soon
+pronunciation:
+  katakana: マモナク
+  romaji: mamonaku
+formation:
+  間もなく + Verb: Indicates an action or state will occur very soon.
+  間もなく + Sentence: Used at the beginning of a sentence to state that something will happen shortly.
+jlpt: N3
+etymology: The term 「間もなく」 is a combination of 「間 (ma)」, meaning 'interval' or 'space between', and the
+  adverbial form of the negative adjective 「無い (nai)」, which is 「無く (naku)」, meaning 'without'. Thus,
+  the literal meaning is 'without interval' or 'with no time between'. This perfectly conveys the sense
+  of immediacy and the impending nature of the event, as there is 'no time' left before it happens.
+writeup: |-
+  「間もなく」 is an adverb used to indicate that something will happen very soon or in a short while. It conveys a sense of immediacy and often implies that the event is definite or scheduled. While it can translate to 'soon' or 'shortly' in English, it generally carries a more formal or neutral tone compared to other expressions of immediacy.
+
+  It is frequently used in announcements (e.g., at train stations, airports, or public events) or in written contexts where precision and a slightly elevated tone are desired. It can also describe personal events that are certain to occur in the near future, such as a birth or a major life change.
+
+  One key characteristic of 「間もなく」 is its implication of a *lack of delay*. The event is not just 'soon', but rather 'without delay' from the current moment. This makes it suitable for conveying certainty about an approaching circumstance or action. Although often used in formal settings, it can appear in less formal sentences when the speaker wishes to emphasize the certainty or definiteness of a coming event.
+false_friends:
+  - term: すぐ (sugu)
+    meaning: immediately, right away
+    kind: similar expression
+    nuance: 「すぐ」 is more immediate than 「間もなく」, often implying 'in the next second' or 'without any perceptible
+      delay'. It is also much more common in casual conversation and can refer to actions happening *right
+      now*. In contrast, 「間もなく」 often implies a brief, yet distinct, interval before the event, and is
+      more formal.
+    grammar_point: <suggest>:すぐ (immediately)
+  - term: もうすぐ (mou sugu)
+    meaning: soon, in a moment
+    kind: similar expression
+    nuance: 「もうすぐ」 is a very common, slightly more casual, and often softer way to say 'soon'. It carries
+      a sense of anticipation but doesn't necessarily imply the same level of formality or scheduled certainty
+      as 「間もなく」. It is broadly applicable to both planned and unplanned imminent events.
+    grammar_point: もう (already・anymore)
+  - term: そのうち (sono uchi)
+    meaning: eventually, before long
+    kind: similar expression
+    nuance: 「そのうち」 suggests something will happen in the near future, but it is less immediate and less
+      definite than 「間もなく」. It implies a vaguer, possibly longer timeframe, and is more about a natural
+      progression rather than a scheduled or highly certain event.
+    grammar_point: そのうち (eventually・before long)
+post_false_friends_writeup: While all these adverbs relate to future time, their nuances differ significantly.
+  「すぐ」 emphasizes extreme immediacy, like 'right now' or 'in the blink of an eye'. 「もうすぐ」 is a more general
+  and softer 'soon', common in everyday speech. 「間もなく」, however, conveys a sense of an imminent, often
+  scheduled or certain, event with a slightly more formal tone, implying 'without further delay'. Lastly,
+  「そのうち」 is the least immediate, suggesting 'eventually' or 'at some point in the near future' without
+  specific certainty.
+examples:
+  - english: The train will depart shortly.
+    japanese:
+      - 電車 は {間 も なく} 発車 いたし ます。
+      - 電車 は {間 も なく} 発車 し ます。
+      - 電車 は {間 も なく} 発車 だ。
+    english_literally: As for the train, shortly it will depart.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は もう すぐ 発車 し ます。
+        english: The train will depart soon.
+        hint: While 'もうすぐ' also means 'soon', it's generally more casual. We're looking for a more formal
+          and definitive expression often used in public announcements.
+      - competing_japanese:
+          - 電車 は すぐ 発車 し ます。
+        english: The train will depart immediately.
+        hint: 「すぐ」 means 'immediately', implying zero delay. While the train is departing soon, it's not
+          literally instantaneous. We're looking for 'shortly' or 'very soon'.
+    scene: An announcement system at a train station informs passengers about an upcoming departure.
+    register: formal
+    setting: informative
+  - english: The concert will begin very soon.
+    japanese:
+      - コンサート は {間 も なく} 始まり ます。
+      - コンサート は {間 も なく} 始まる。
+      - コンサート は {間 も なく} 開演 いたし ます。
+    english_literally: As for the concert, very soon it will begin.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート は もう すぐ 始まり ます。
+        english: The concert will begin soon.
+        hint: Both are correct, but 「もうすぐ」 is slightly more casual. We're looking for a common, slightly
+          more formal way to announce an event's start.
+    scene: Attendees are waiting in their seats for a concert to commence.
+    register: teineigo (polite)
+    setting: excited
+  - english: The new product will be released shortly.
+    japanese:
+      - 新しい 製品 は {間 も なく} 発売 さ れ ます。
+      - 新しい 製品 は {間 も なく} 発売 さ れる。
+      - 新しい 製品 は {間 も なく} 発売 と なり ます。
+    english_literally: As for the new product, shortly it will be released.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 製品 は その うち 発売 さ れ ます。
+        english: The new product will eventually be released.
+        hint: 「そのうち」 implies a vaguer, less immediate future. We're looking for a definite and imminent
+          release.
+    scene: A company spokesperson gives an update on an anticipated product launch.
+    register: formal
+    setting: professional
+  - english: The bus will arrive shortly, so please wait a little longer.
+    japanese:
+      - バス が {間 も なく} 到着 し ます の で、もう 少々 お 待ち ください。
+      - バス が {間 も なく} 到着 です の で、もう 少々 お 待ち ください。
+      - バス が {間 も なく} 着く から、もう ちょっと 待っ て て。
+    english_literally: As for the bus, shortly it will arrive, so please wait a little more.
+    competing_grammar:
+      - competing_japanese:
+          - バス が すぐ 到着 し ます の で、もう 少々 お 待ち ください。
+        english: The bus will arrive immediately, so please wait a little longer.
+        hint: 「すぐ」 suggests instantaneous arrival, which is usually not the case for a bus. We're looking
+          for 'shortly' or 'very soon'.
+    scene: A staff member at a bus terminal reassures waiting passengers.
+    register: formal
+    setting: cautious
+  - english: The show will start soon.
+    japanese:
+      - ショー が {間 も なく} 始まり ます よ。
+      - ショー が {間 も なく} 始まる よ。
+      - ショー が {間 も なく} 始まり ます。
+    english_literally: As for the show, shortly it will begin, you know.
+    competing_grammar:
+      - competing_japanese:
+          - ショー が すぐ 始まる よ。
+        english: The show will start right away.
+        hint: 「すぐ」 is too immediate. The show starts soon, but not necessarily 'right this second'.
+    scene: An usher guiding people to their seats at a performance hall.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The use of 「よ」 at the end adds a softer, more reassuring tone, common in polite interactions.
+      Even with 「よ」, 「間もなく」 maintains its formal implication of a definite, impending event.
+  - english: The broadcast will resume shortly.
+    japanese:
+      - 放送 は {間 も なく} 再開 さ れ ます。
+      - 放送 は {間 も なく} 再開 さ れる。
+      - 放送 は {間 も なく} 再開 と なり ます。
+    english_literally: As for the broadcast, shortly it will be resumed.
+    competing_grammar:
+      - competing_japanese:
+          - 放送 は もう すぐ 再開 さ れ ます。
+        english: The broadcast will resume soon.
+        hint: While similar in meaning, 「もうすぐ」 is a bit more conversational. We need the formal language
+          typical of broadcast announcements.
+    scene: A message displayed on a television screen during a temporary interruption in programming.
+    register: formal
+    setting: informative
+  - english: She will soon be a mother.
+    japanese:
+      - 彼女 は {間 も なく} 母親 に なり ます。
+      - 彼女 は {間 も なく} 母親 に なる。
+      - 彼女 は {間 も なく} 母親 と なら れる でしょう。
+    english_literally: As for her, shortly she will become a mother.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は もう すぐ 母親 に なり ます。
+        english: She will soon be a mother.
+        hint: 「もうすぐ」 is perfectly natural here. 「間もなく」 adds a slightly more emphatic or formal nuance
+          to the certainty of the upcoming event, fitting for a significant life change.
+    scene: Friends discussing a pregnant friend and her upcoming life change.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Victory will be ours shortly.
+    japanese:
+      - 勝利 は {間 も なく} 我々 の もの と なる でしょう。
+      - 勝利 は {間 も なく} 我々 の もの と なる だろう。
+      - 勝利 は {間 も なく} 我々 の もの と なる！
+    english_literally: As for victory, shortly it will become ours.
+    competing_grammar:
+      - competing_japanese:
+          - 勝利 は すぐ 我々 の もの と なる でしょう。
+        english: Victory will immediately become ours.
+        hint: 「すぐ」 implies an instant change. While victory is close, it's not necessarily 'immediate'
+          but 'shortly'.
+    scene: A general rallies their troops, sensing an imminent win.
+    register: formal
+    setting: inspirational
+  - english: The rain will stop shortly.
+    japanese:
+      - 雨 は {間 も なく} 止む でしょう。
+      - 雨 は {間 も なく} 止む だろう。
+      - 雨 は {間 も なく} 止み ます。
+    english_literally: As for the rain, shortly it will stop.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 は その うち 止む でしょう。
+        english: The rain will eventually stop.
+        hint: 「そのうち」 suggests a vaguer, less certain timeframe. We're looking for a prediction that the
+          rain will stop 'shortly'.
+    scene: Someone observes the weather and makes a prediction about when the rain will cease.
+    register: casual
+    setting: informative
+  - english: The exhibition will close shortly.
+    japanese:
+      - 展覧 会 は {間 も なく} 終了 いたし ます。
+      - 展覧 会 は {間 も なく} 終了 し ます。
+      - 展覧 会 は {間 も なく} 終了 する。
+    english_literally: As for the exhibition, shortly it will conclude.
+    competing_grammar:
+      - competing_japanese:
+          - 展覧 会 は もう すぐ 終わり ます。
+        english: The exhibition will end soon.
+        hint: 「もうすぐ」 is appropriate, but 「間もなく」 with 「終了いたします」 provides a more formal and polite announcement,
+          typical for such public events.
+    scene: An announcement made at a museum or art gallery as closing time approaches.
+    register: formal
+    setting: informative
+post_example_writeup: As seen in the examples, 「間もなく」 is versatile and can be used in various contexts,
+  from public announcements to personal situations. Its strength lies in conveying a sense of definite,
+  near-future occurrence without the extreme immediacy of 「すぐ」 or the casualness of 「もうすぐ」. It's particularly
+  effective when describing scheduled events or significant, certain changes that are just around the
+  corner.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/間もなく

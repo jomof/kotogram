@@ -1,0 +1,219 @@
+grammar_point: しかも (moreover・what's more)
+learn_before:
+  - '[Verb-dictionary]ことにする (to decide to do)'
+  - あまりに (excessively・too much)
+  - が (subject marker)
+  - たら〜で (inherent consequence)
+  - 信じられない (cannot be believed, unbelievable)
+meaning: Moreover・what's more
+pronunciation:
+  katakana: シカモ
+  romaji: shikamo
+formation:
+  '[Sentence A]. しかも [Sentence B].': Used to add information that reinforces or further elaborates on
+    the preceding statement, often with an element of surprise or emphasis.
+jlpt: N3
+etymology: The term 「しかも」 (shikamo) is thought to originate from a combination of 「しかる」 (shikaru), an
+  old verb meaning "to be so" or "to be thus," and the conjunctive particle 「も」 (mo), meaning "also" or
+  "even." Over time, this evolved to emphasize the additional nature of what is being stated. The "shikaru"
+  component suggests a confirmation of the preceding statement, to which "mo" then adds further, often
+  surprising or significant, information. This historical root clarifies why it carries a nuance of "not
+  only that, but also" or "what's more," signifying an additive statement that is often unexpected or
+  more profound than what was previously mentioned.
+writeup: |-
+  「しかも」 is a conjunctive adverb that connects two clauses or sentences. It is used to add further information, often a point that strengthens, deepens, or even adds an element of surprise or unexpectedness to the preceding statement. It can be translated as "moreover," "furthermore," "what's more," "and yet," or "besides."
+
+  Unlike simple connectors like 「そして」 (soshite - and then) or 「また」 (mata - also), 「しかも」 implies a logical connection where the second clause adds significant weight or a surprising detail to the first. It often introduces a point that makes the previous statement even more remarkable, difficult, or impressive. For instance, if you say someone is smart, adding 「しかも優しい」 (shikamo yasashii - and what's more, kind) highlights that kindness is an additional, perhaps unexpected, positive trait.
+
+  It can be used in both formal and casual contexts, though it tends to appear more frequently in written language or somewhat formal spoken Japanese. It is typically followed by a new sentence or clause.
+false_friends:
+  - term: その上 (on top of that・furthermore)
+    meaning: on top of that・furthermore
+    kind: similar expression
+    nuance: 「その上」 is very similar to 「しかも」 and often interchangeable. However, 「その上」 generally indicates
+      simple addition, while 「しかも」 can carry a stronger nuance of unexpectedness, emphasis, or an aggravating/exacerbating
+      factor. 「その上」 is more straightforwardly "in addition."
+    grammar_point: その上 (on top of that・furthermore)
+  - term: おまけに (in addition・on top of that)
+    meaning: in addition・on top of that
+    kind: similar expression
+    nuance: 「おまけに」 is also additive, but it often implies a negative additional element or a slightly
+      more casual tone. It can be used for positive additions too, but it often has a sense of "to make
+      matters worse" or "as an extra bonus/detriment." 「しかも」 is more neutral but often points to a significant
+      addition.
+    grammar_point: おまけに (in addition・on top of that)
+  - term: 更に (furthermore・still more)
+    meaning: furthermore・still more
+    kind: similar expression
+    nuance: 「更に」 (さらに) means "furthermore," "still more," or "again." It emphasizes an increase in degree,
+      quantity, or continuance. While also additive, it's more about "more of the same" or "increasingly"
+      rather than a surprisingly significant additional point like 「しかも」.
+    grammar_point: <suggest>:更に (furthermore・still more)
+post_false_friends_writeup: While 「しかも」, 「その上」, 「おまけに」, and 「更に」 all express the idea of adding information,
+  their nuances differ subtly. 「しかも」 is generally used to introduce a significant or often surprising
+  additional point that reinforces or elevates the previous statement. 「その上」 is a straightforward "in
+  addition," while 「おまけに」 often carries a connotation of a bonus or a detrimental extra. 「更に」 focuses
+  on continuation, increase, or intensification. Choosing the right one depends on the specific nuance
+  you wish to convey about the relationship between the two pieces of information.
+examples:
+  - english: That restaurant is delicious, and what's more, it's cheap.
+    japanese:
+      - あの レストラン は 美味しい。{しかも} 安い。
+      - あの レストラン は 美味しい です。{しかも} 安い です。
+    english_literally: That restaurant is delicious. Moreover, it is cheap.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 美味しい。そして 安い。
+        english: That restaurant is delicious, and it's cheap.
+        hint: 「そして」 is a simple "and then" connector. 「しかも」 emphasizes that the cheapness is an additional,
+          noteworthy point given its deliciousness. We're looking for an emphasized additional quality.
+    scene: Two friends discussing a restaurant.
+    register: casual
+    setting: friendly
+  - english: The task was difficult, and what's more, we didn't have much time.
+    japanese:
+      - その 仕事 は 難しかっ た。{しかも} 時間 が あまり なかっ た。
+      - その 仕事 は 難しかっ た です。{しかも} 時間 が あまり あり ませ ん でし た。
+    english_literally: That work was difficult. Moreover, time not much was.
+    competing_grammar:
+      - competing_japanese:
+          - その 仕事 は 難しかっ た。おまけ に 時間 が あまり なかっ た。
+        english: That task was difficult. To make matters worse, we didn't have much time.
+        hint: 「おまけに」 often implies "to make matters worse." While fitting here, 「しかも」 is more neutral
+          and simply adds a significant aggravating factor. We're looking for a general strong additional
+          point.
+    scene: Colleagues discussing a past project.
+    register: semi-formal
+    setting: professional
+  - english: He's smart, and what's more, he's kind.
+    japanese:
+      - 彼 は 頭 が いい。{しかも} 優しい。
+      - 彼 は 頭 が いい です。{しかも} 優しい です。
+    english_literally: He is head good. Moreover, kind.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頭 が いい。そして 優しい。
+        english: He is smart, and he is kind.
+        hint: 「そして」 is a simple conjunctive particle that connects two clauses. 「しかも」 emphasizes that
+          kindness is an additional, noteworthy trait beyond being smart. We're looking for an emphasized
+          additional quality.
+      - competing_japanese:
+          - 彼 は 頭 が いい し、優しい。
+        english: He is smart, and kind (among other qualities/reasons).
+        hint: 「し」 lists reasons or qualities, often implying there might be more. 「しかも」 specifically highlights
+          the second quality as an important addition, often with an element of pleasant surprise. We're
+          looking for an emphasized additional quality.
+    scene: Two people talking about a mutual acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「しかも」 here emphasizes that his kindness is an additional, perhaps unexpected, positive
+      trait on top of his intelligence, making him even more appealing. The phrase 「頭 が いい」 followed by
+      「優しい」 with 「しかも」 implies a pleasant surprise.
+  - english: It was incredibly cold, and what's more, a strong wind was blowing.
+    japanese:
+      - 信じ られ ない くらい 寒かっ た。{しかも} 強い 風 が 吹い て い た。
+      - 信じ られ ない くらい 寒かっ た です。{しかも} 強い 風 が 吹い て い まし た。
+    english_literally: Unbelievable amount cold was. Moreover, strong wind was blowing.
+    competing_grammar:
+      - competing_japanese:
+          - 信じ られ ない くらい 寒かっ た。その 上 強い 風 が 吹い て い た。
+        english: It was incredibly cold, and on top of that, a strong wind was blowing.
+        hint: 「その上」 is a general additive. 「しかも」 highlights the combined effect of extreme cold and strong
+          wind, implying a more impactful or challenging situation. We're looking for an emphasis on the
+          severity of the combined factors.
+    scene: Describing extreme weather conditions.
+    register: casual
+    setting: storytelling
+  - english: She finished the project on time. What's more, she did it all by herself.
+    japanese:
+      - 彼女 は プロジェクト を 期限 内 に 終え た。{しかも} 全て 一人 で やっ た の だ。
+      - 彼女 は プロジェクト を 期限 内 に 終え まし た。{しかも} 全て 一人 で やっ た の です。
+    english_literally: She project deadline within finished. Moreover, all alone did.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は プロジェクト を 期限 内 に 終え た。更に 全て 一人 で やっ た の だ。
+        english: She finished the project on time. Furthermore, she did it all by herself.
+        hint: 「更に」 suggests a continuation or intensification of effort. 「しかも」 points to the solo effort
+          as a surprising or impressive additional achievement given the on-time completion. We're looking
+          for an additional, notable detail.
+    scene: A manager praising an employee's work.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+  - english: My train was delayed by an hour, and what's more, I missed my connecting bus.
+    japanese:
+      - 電車 が 一 時間 遅れ た。{しかも} 乗り換え の バス も 間に合わ なかっ た。
+      - 電車 が 一 時間 遅れ まし た。{しかも} 乗り換え の バス も 間に合い ませ ん でし た。
+    english_literally: Train one hour delayed. Moreover, transfer bus also did not make in time.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 一 時間 遅れ た。おまけ に 乗り換え の バス も 間に合わ なかっ た。
+        english: My train was delayed by an hour, and to make matters worse, I missed my connecting bus.
+        hint: While "おまけに" conveys a 'to make matters worse' feeling, 「しかも」 is a more general additive
+          that just points out the continuation of the rain as an additional fact, emphasizing the persistent
+          bad weather. We're looking for a simple, strong additional fact.
+    scene: Someone complaining about their commute.
+    register: casual
+    setting: pessimistic
+  - english: He can speak three languages fluently, and what's more, he's an excellent chef.
+    japanese:
+      - 彼 は 3 つ の 言語 を 流暢 に 話せる。{しかも} 料理 も とても 上手 だ。
+      - 彼 は 3 つ の 言語 を 流暢 に 話せ ます。{しかも} 料理 も とても 上手 です。
+    english_literally: He three languages fluently can speak. Moreover, cooking also very good is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 3 つ の 言語 を 流暢 に 話せる。そして 料理 も とても 上手 だ。
+        english: He can speak three languages fluently, and he's an excellent chef.
+        hint: 「そして」 merely lists two qualities. 「しかも」 emphasizes that being an excellent chef is an additional,
+          perhaps surprising, talent alongside his linguistic abilities. We're looking for an additional
+          impressive trait.
+    scene: Discussing someone's impressive skills.
+    register: semi-formal
+    setting: informative
+  - english: This smartphone is lightweight, and what's more, its battery lasts a long time.
+    japanese:
+      - この スマホ は 軽い。{しかも} バッテリー も 長持ち する。
+      - この スマホ は 軽い です。{しかも} バッテリー も 長持ち し ます。
+    english_literally: This smartphone is light. Moreover, battery also long-lasting does.
+    competing_grammar:
+      - competing_japanese:
+          - この スマホ は 軽い。その 上 バッテリー も 長持ち する。
+        english: This smartphone is lightweight, and on top of that, its battery lasts a long time.
+        hint: 「その上」 is fine for simple addition. 「しかも」 adds a nuance that the long battery life is a particularly
+          significant or desirable feature in addition to its lightness. We're looking for an important
+          additional benefit.
+    scene: A salesperson describing a product.
+    register: semi-formal
+    setting: persuasive
+  - english: The exam was surprisingly easy, and what's more, I finished it in half the time.
+    japanese:
+      - 試験 は 意外 に 簡単 だっ た。{しかも} 半分 の 時間 で 終わっ た。
+      - 試験 は 意外 に 簡単 でし た。{しかも} 半分 の 時間 で 終わり まし た。
+    english_literally: Exam unexpectedly easy was. Moreover, half time in finished.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 意外 に 簡単 だっ た。更に 半分 の 時間 で 終わっ た。
+        english: The exam was surprisingly easy. Furthermore, I finished it in half the time.
+        hint: 「更に」 indicates a further degree or extent of ease. 「しかも」 implies that completing it in half
+          the time is an additional, remarkable detail given its unexpected ease. We're looking for an
+          additional impressive detail.
+    scene: A student recounting an exam experience.
+    register: casual
+    setting: excited
+  - english: It rained all day yesterday, and what's more, it's supposed to rain again today.
+    japanese:
+      - 昨日 は 一 日 中 雨 だっ た。{しかも} 今日 も 雨 の 予報 だ。
+      - 昨日 は 一 日中 雨 でし た。{しかも} 今日 も 雨 の 予報 です。
+    english_literally: Yesterday all day rain was. Moreover, today also rain prediction is.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 一 日 中 雨 だっ た。おまけ に 今日 も 雨 の 予報 だ。
+        english: It rained all day yesterday, and to make matters worse, it's supposed to rain again today.
+        hint: While "おまけに" conveys a 'to make matters worse' feeling, 「しかも」 is a more general additive
+          that just points out the continuation of the rain as an additional fact, emphasizing the persistent
+          bad weather. We're looking for a simple, strong additional fact.
+    scene: Discussing the weather forecast.
+    register: casual
+    setting: melancholic

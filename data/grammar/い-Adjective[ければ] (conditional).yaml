@@ -1,0 +1,257 @@
+grammar_point: い-Adjective[ければ] (conditional)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - にする (to decide or make)
+meaning: if (い-adjective); if it is (い-adjective)
+pronunciation:
+  katakana: ケレバ
+  romaji: kereba
+formation:
+  い-Adjective (minus い) + ければ: Forms the conditional 'if it is [い-Adjective]' or 'if [い-Adjective]'.
+jlpt: N4
+etymology: The conditional form 「ければ」 for い-adjectives originates from classical Japanese. The '已然形' (izenkei),
+  or realis form, of an い-adjective like 「白い」 (shiroi) is 「白けれ」 (shirokere). When the classical conditional
+  particle 「ば」, which indicated a general or natural consequence, was affixed to this '已然形', it formed
+  「白ければ」. This structure has persisted in modern Japanese to express 'if it is white' or 'if it were white',
+  linking a state described by an い-adjective to a subsequent outcome.
+writeup: |-
+  The 「ければ」 form is used to create conditional clauses with い-adjectives. It means 'if it is [adjective]' or 'if [adjective]'. This conditional form is typically used when the condition naturally leads to the stated result, expressing a general truth, a logical consequence, or providing advice based on an adjectival state.
+
+  For example, if something is 'expensive', then it might lead to a natural consequence like 'you can't buy it'. Or, if a task is 'easy', it might mean 'anyone can do it'. This form emphasizes the inherent quality described by the い-adjective as the necessary condition for the following clause.
+
+  It is formed by dropping the final 「い」 from the い-adjective and adding 「ければ」. For instance, 「高い」 (takai - expensive) becomes 「高ければ」 (takakereba - if it's expensive), and 「難しい」 (muzukashii - difficult) becomes 「難しければ」 (muzukukereba - if it's difficult).
+
+  While versatile, 「ければ」 is often seen in more general statements or when giving advice. Its natural consequence aspect makes it suitable for describing inherent relationships between a quality and an outcome.
+false_friends:
+  - term: たら (conditional・when if A then B)
+    meaning: if/when A, then B
+    kind: similar expression
+    nuance: 「たら」 is a highly versatile conditional that can express a one-time condition, a general condition,
+      or even an unexpected outcome following an event ('when A happened, then B'). For い-adjectives,
+      it forms as 『い-Adjective stem + かったら』. Unlike 「ければ」, which focuses on the adjectival state as a
+      prerequisite for a natural consequence, 「たら」 is more flexible and can describe a wider range of
+      conditional relationships, including hypothetical or completed actions.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: と (conditional・inevitable result)
+    meaning: if/when A, B (always happens)
+    kind: similar expression
+    nuance: 「と」 is used for universal truths or automatic, inevitable results, implying a direct, unavoidable
+      cause-and-effect relationship. For い-adjectives, it forms as 『い-Adjective stem + いと』. While 「ければ」
+      also expresses natural consequences, 「と」 implies an absolute and unchanging certainty, often used
+      for scientific facts or habitual actions, whereas 「ければ」 is more commonly applied to personal judgments,
+      advice, or less rigidly inevitable outcomes.
+    grammar_point: と (conditional, inevitable result)
+  - term: なら (conditional・if it's the case that A)
+    meaning: if (it's the case that) A, then B
+    kind: similar expression
+    nuance: 「なら」 presents a condition based on a stated premise or proposition (which can be an い-adjective
+      followed by 「なら」, e.g., 『い-Adjective + なら』). It often implies advice, a suggestion, or a response
+      to a specific situation that has been brought up. 「ければ」 focuses on the inherent quality of the い-adjective
+      as the condition, directly leading to a consequence. 「なら」, however, often implies 'if that's the
+      case, then...' offering a counter-statement or a logical next step based on the listener's premise,
+      rather than a universal truth.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: ても (concessive・even if)
+    meaning: even if/though A, B
+    kind: antonym
+    nuance: 「〜ても」 expresses a concession or an unexpected outcome. It means 'even if the condition A is
+      met, B still happens (or doesn't happen), contrary to expectation'. For い-adjectives, it forms as
+      『い-Adjective stem + くても』. This grammatical pattern functions oppositely to a conditional like 「ければ」,
+      which suggests that the adjectival state A *leads* to result B. Instead, 「〜ても」 implies that A does
+      *not* prevent B.
+    grammar_point: <suggest>:ても (concessive・even if)
+post_false_friends_writeup: When choosing between these conditional forms, consider the nuance. 「ければ」
+  is ideal for expressing that an い-adjective's quality is a necessary and logical condition for a subsequent
+  outcome, often in general statements or advice. If you're talking about a one-time hypothetical, a sequential
+  event, or an unexpected result, 「たら」 might be more appropriate. For universal, unavoidable truths, use
+  「と」. When responding to a specific situation with advice or a counter-statement, 「なら」 is your choice.
+  Lastly, if you want to express 'even if' a condition is met, use 「〜ても」.
+examples:
+  - english: If the weather is good, let's go for a walk.
+    japanese:
+      - 天気 が {よけれ ば}、散歩 に 行こう。
+      - 天気 が {よけれ ば}、散歩 に 行き ましょう。
+    english_literally: If the weather is good, let's go for a walk.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 が いい なら、散歩 に 行こう。
+        english: If the weather is good (in that case), let's go for a walk.
+        hint: While 「なら」 can also express a condition, it often focuses on a premise or an assumption.
+          「ければ」 here emphasizes the inherent quality of 'good weather' as the condition for going for
+          a walk. We're looking for a natural consequence.
+    scene: Two friends are deciding on an outdoor activity.
+    register: casual
+    setting: friendly
+  - english: If the bag is light, I can carry it.
+    japanese:
+      - カバン が {軽けれ ば}、私 が 持て ます。
+      - カバン が {軽けれ ば}、私 が 持てる。
+    english_literally: If the bag is light, I can carry it.
+    competing_grammar:
+      - competing_japanese:
+          - カバン が 軽い と、私 が 持て ます。
+        english: When the bag is light, I can always carry it.
+        hint: 「と」 suggests an automatic or universal result. Here, it's more about a personal capability
+          based on a condition rather than an absolute rule. We're looking for a general condition for
+          a personal action.
+    scene: Someone is struggling with a heavy bag, and another person offers help.
+    register: teineigo (polite)
+    setting: supportive
+  - english: If the room is bright, it's easy to read.
+    japanese:
+      - 部屋 が {明るけれ ば}、本 を 読み やすい です。
+      - 部屋 が {明るけれ ば}、本 を 読み やすい。
+    english_literally: If the room is bright, it is easy to read books.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が 明るかっ たら、本 を 読み やすい です。
+        english: If the room becomes bright, it's easy to read.
+        hint: 「たら」 can suggest a sequential event (when it *becomes* bright). 「ければ」 emphasizes the inherent
+          state of 'brightness' as the constant condition making reading easy. We're looking for a general
+          truth.
+    scene: A student is explaining ideal study conditions.
+    register: teineigo (polite)
+    setting: informative
+  - english: If the train is fast, we'll arrive quickly.
+    japanese:
+      - 電車 が {速けれ ば}、早く 着き ます。
+      - 電車 が {速けれ ば}、早く 着く。
+    english_literally: If the train is fast, will arrive quickly.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 速く て も、早く 着き ませ ん。
+        english: Even if the train is fast, we won't arrive quickly.
+        hint: 「ても」 expresses a concession, meaning the first clause does not lead to the expected outcome.
+          We're looking for a direct conditional relationship where the speed *does* affect arrival time.
+    scene: Two colleagues are discussing travel plans.
+    register: semi-formal
+    setting: professional
+  - english: If the temperature is high, please stay hydrated.
+    japanese:
+      - 気温 が {高けれ ば}、水分 を とっ て ください。
+      - 気温 が {高けれ ば}、水分 を とり ましょう。
+    english_literally: If the temperature is high, please take water.
+    competing_grammar:
+      - competing_japanese:
+          - 気温 が 高い と、水分 を とっ て ください。
+        english: When the temperature is high, you must always stay hydrated.
+        hint: 「と」 implies an absolute and inevitable consequence, like a scientific law. Here, it's more
+          of a strong recommendation based on a condition, not a strict 'always' rule. We're looking for
+          advice based on a specific state.
+    scene: A doctor giving advice to a patient during summer.
+    register: formal
+    setting: informative
+  - english: If it's dark, please turn on the lights.
+    japanese:
+      - 暗 {けれ ば}、電気 を つけ て ください。
+      - 暗 {けれ ば}、電気 を つけ て くれる？
+    english_literally: If it is dark, please turn on the lights.
+    competing_grammar:
+      - competing_japanese:
+          - 暗い なら、電気 を つけ て ください。
+        english: If it's dark (then in that case), please turn on the lights.
+        hint: 「なら」 often gives advice or a suggestion based on an existing premise. 「ければ」 here states
+          the condition 'being dark' directly leading to the action of turning on the lights. We're looking
+          for a direct instruction based on a state.
+    scene: A parent instructing a child.
+    register: casual
+    setting: instructional
+  - english: If it's dangerous, don't go alone.
+    japanese:
+      - '{危なけれ ば}、一人 で 行か ない で ください。'
+      - '{危なけれ ば}、一人 で 行く な。'
+    english_literally: If it is dangerous, please do not go alone.
+    competing_grammar:
+      - competing_japanese:
+          - 危ない と、一人 で 行き ませ ん。
+        english: When it's dangerous, one doesn't go alone (automatic consequence).
+        hint: 「と」 indicates an inevitable or habitual outcome. Here, it's a strong piece of advice or
+          warning, not an automatic consequence. We're looking for a conditional leading to a recommendation
+          not to do something.
+    scene: An older sister warning her younger brother.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「危なければ」 (if it's dangerous) establishes the condition for the cautionary advice. The imperative
+      「行かないでください」 (please don't go) is direct and common in warnings. The female speaker and male listener
+      is not directly marked by language here, but the direct advice tone fits this relationship.
+  - english: If it's delicious, I'll eat a lot.
+    japanese:
+      - '{美味しけれ ば}、たくさん 食べ ます。'
+      - '{美味しけれ ば}、たくさん 食べる。'
+    english_literally: If it is delicious, will eat a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しかっ たら、たくさん 食べ ます。
+        english: If it turned out to be delicious, I will eat a lot.
+        hint: 「たら」 often implies a single, realized condition (e.g., *after* tasting and finding it delicious).
+          「ければ」 focuses on the inherent quality of being delicious as the general condition for eating
+          a lot. We're looking for a general intention based on a quality.
+    scene: A person anticipating a meal.
+    register: teineigo (polite)
+    setting: optimistic
+  - english: If it's cold, please close the window.
+    japanese:
+      - 寒 {けれ ば}、窓 を 閉め て ください。
+      - 寒 {けれ ば}、窓 を 閉め て ね。
+    english_literally: If it is cold, please close the window.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い の に、窓 が 開い て い ます。
+        english: Even though it's cold, the window is open.
+        hint: 「のに」 expresses an unexpected or contrary situation. We're looking for a direct condition
+          (cold) leading to an action (closing the window).
+    scene: In an office, one colleague asks another to adjust the environment.
+    register: semi-formal
+    setting: professional
+  - english: If it's cheap, I want to buy it.
+    japanese:
+      - '{安けれ ば}、買い たい です。'
+      - '{安けれ ば}、買い たい。'
+    english_literally: If it is cheap, want to buy it.
+    competing_grammar:
+      - competing_japanese:
+          - 安い なら、買い たい です。
+        english: If it's cheap (in that case), I want to buy it.
+        hint: 「なら」 often implies a decision based on an assumed fact. 「ければ」 directly links the quality
+          of 'cheapness' to the desire to buy. We're looking for a desire based on an inherent characteristic.
+    scene: A shopper looking at an item in a store.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: If it's small, it's easy to carry.
+    japanese:
+      - '{小さけれ ば}、持ち運び やすい です。'
+      - '{小さけれ ば}、持ち運び やすい。'
+    english_literally: If it is small, easy to carry.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい と、持ち運び やすい です。
+        english: When it's small, it is always easy to carry.
+        hint: While 「と」 can work for general truths, 「ければ」 feels more natural for expressing a quality-based
+          advantage in general. 「と」 is often more rigid for inherent laws. We're looking for a general
+          statement of convenience based on size.
+    scene: Someone describing the benefits of a compact device.
+    register: teineigo (polite)
+    setting: informative
+  - english: If the story is interesting, I'll read it.
+    japanese:
+      - 話 が {面白けれ ば}、読み ます。
+      - 話 が {面白けれ ば}、読む。
+    english_literally: If the story is interesting, will read.
+    competing_grammar:
+      - competing_japanese:
+          - 話 が 面白く て も、読み ませ ん。
+        english: Even if the story is interesting, I won't read it.
+        hint: 「ても」 expresses a contradiction or an unexpected outcome. Here, we want to express that 'interesting'
+          is the condition *for* reading. We're looking for a positive causal relationship.
+    scene: A person is choosing a book to read.
+    register: teineigo (polite)
+    setting: reflective
+post_example_writeup: The examples illustrate how 「ければ」 is used when the quality described by the い-adjective
+  directly and naturally influences the outcome. It's often for general statements, advice, or expressing
+  personal intentions contingent on a specific attribute. While other conditional forms exist, 「ければ」 highlights
+  the inherent nature of the い-adjective as the core of the condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/い-Adjective[ければ]-(conditional)

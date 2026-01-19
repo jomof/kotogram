@@ -1,0 +1,262 @@
+grammar_point: な-Adjective[さ] (nominalizer)
+learn_before:
+  - さ (nominalizer)
+meaning: Converts a な-adjective into a noun, expressing the degree or extent of that quality.
+pronunciation:
+  katakana: サ
+  romaji: sa
+  pronunciation_warning: Although written as 「さ」, this is not a standalone word but a suffix. Its pronunciation
+    is always attached to the stem of a な-adjective.
+formation:
+  な-Adjective (stem) + さ: Forms a noun representing the degree or extent of the quality described by the
+    な-adjective.
+jlpt: N3
+etymology: The suffix 「さ」 (sa) historically derives from the classical Japanese nominalizing suffix 「さま」
+  (sama), which was attached to the *ren'yōkei* (conjunctive form) of adjectives and verbs to form nouns.
+  Over time, 「さま」 shortened to 「さ」. While 「さま」 retained broader nominalizing functions, 「さ」 specialized
+  in forming nouns that denote the *degree*, *extent*, or *state* of a quality, hence its common use with
+  adjectives. It essentially transforms a qualitative description into a quantifiable or referable entity.
+writeup: |-
+  The suffix 「さ」 is a powerful tool in Japanese grammar that transforms adjectives into nouns, specifically emphasizing the **degree or extent** of the quality they describe. When appended to the stem of a な-adjective, it creates a noun that refers to the quality itself as a measurable entity. For instance, 「静か (shizuka - quiet)」 becomes 「静かさ (shizukasa - quietness/the degree of quietness)」, allowing you to discuss the abstract concept of quietness or its measurable level.
+
+  This usage of 「さ」 is particularly common when discussing objective, quantifiable attributes like size, height, length, or warmth that can be measured or observed. While adjectives like 「高い (takai - high)」 directly describe something as "high," 「高さ (takasa - height)」 refers to the "height" itself as a noun. Similarly, 「便利な (benri na - convenient)」 describes something as "convenient," whereas 「便利さ (benrisa - convenience)」 is the noun form denoting the state or degree of being convenient.
+
+  It's important to note that 「さ」 is one of several nominalizers in Japanese. Unlike 「こと」 or 「の」, which nominalize entire clauses or actions, 「さ」 specifically targets adjectives to create nouns of quality or degree. While 「さ」 can be used with both い-adjectives and な-adjectives, it's particularly useful for な-adjectives as they don't have an inherent noun form corresponding to their quality as directly as some い-adjectives might.
+false_friends:
+  - term: み (suffix inherent quality)
+    meaning: suffix indicating an inherent quality or feeling, often subjective.
+    kind: similar expression
+    nuance: While both 「さ」 and 「み」 are nominalizing suffixes, they convey different nuances. 「さ」, when
+      attached to a な-adjective stem (e.g., 「静かさ」), typically refers to the *measurable degree* or *objective
+      extent* of a quality. It allows for quantification or comparison of the quality. In contrast, 「み」
+      (e.g., 「暖かみ」 warmth/feel of warmth, 「悲しみ」 sadness) tends to emphasize a more *inherent, qualitative,
+      or subjective feeling* or *essence* of a quality. 「み」 is much more commonly used with い-adjectives,
+      and its usage with な-adjectives is quite rare or limited to specific established words.
+    grammar_point: な-Adjective[み] (abstract quality)
+  - term: な-Adjective + なこと / な-Adjective + であること
+    meaning: the fact that something is [な-adjective].
+    kind: similar expression
+    nuance: 「な-Adjective + さ」 forms a noun that represents the *degree* or *state* of the adjective's
+      quality (e.g., 「静かさ」 'quietness'). On the other hand, 「な-Adjective + なこと」 or 「な-Adjective + であること」
+      nominalizes an entire *clause* stating that something *is* that quality, focusing on the factual
+      statement or circumstance rather than the quality's degree itself. For example, 「彼が静かなこと (kare ga
+      shizuka na koto)」 means "the fact that he is quiet," while 「彼の静かさ (kare no shizukasa)」 means "his
+      quietness."
+    grammar_point: <suggest>:こと (the act of・the fact that)
+post_false_friends_writeup: Understanding the distinction between 「さ」 and other nominalizers like 「み」
+  or 「こと」 is crucial for precise expression. Remember that 「さ」 is about the **degree or extent** of an
+  adjective's quality, allowing it to function as a measurable noun. 「み」 is less about measurement and
+  more about the **inherent, subjective feel** of a quality, primarily with い-adjectives. 「こと」 (or 「の」)
+  acts as a general nominalizer for clauses, turning statements or actions into noun phrases. Choosing
+  the correct nominalizer depends on whether you want to refer to the abstract quality, its measurable
+  degree, or the fact of its existence.
+examples:
+  - english: The quietness of this library is very comfortable.
+    japanese:
+      - この 図書 館 の {静か さ} は とても 快適 です。
+      - この 図書 館 の {静か さ} は とても 快適 だ。
+      - この 図書 館 の {静か さ} が 非常 に 快適 です。
+    english_literally: This library's quietness is very comfortable.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 が 静か な こと は とても 快適 です。
+        english: The fact that this library is quiet is very comfortable.
+        hint: 「なこと」 nominalizes the entire clause 'this library is quiet,' focusing on the fact, not the
+          inherent quality of quietness. We're looking for the quality itself.
+    scene: A student is studying in a quiet library.
+    register: formal
+    setting: academic
+    nuance: This sentence uses 「静かさ」 to refer to the specific quality of "quietness" that makes the library
+      comfortable, treating it as an objective attribute. The formal register (です) is appropriate for
+      a general observation.
+  - english: The convenience of public transportation in Tokyo is amazing.
+    japanese:
+      - 東京 の 公共 交通 機関 の {便利 さ} は 素晴らしい です。
+      - 東京 の 公共 交通 機関 の {便利 さ} は 素晴らしい よ。
+      - 東京 の 公共 交通 機関 の {便利 さ} と いっ たら、素晴らしい です ね。
+    english_literally: Tokyo's public transportation's convenience is amazing.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 の 公共 交通 機関 は 便利 な こと です。
+        english: The fact that Tokyo's public transportation is convenient is amazing.
+        hint: 「なこと」 focuses on the factual statement. We need to express the quality of convenience as
+          a noun.
+    scene: A tourist is talking about their experience in Tokyo.
+    register: formal
+    setting: informative
+    nuance: 「便利さ」 highlights the high degree of convenience as a notable feature of Tokyo's public transport,
+      treating it as a quantifiable attribute. The use of 「素晴らしいです」 expresses a positive, somewhat objective
+      assessment.
+  - english: I envy the freedom of cats.
+    japanese:
+      - 私 は 猫 の {自由 さ} が 羨ましい です。
+      - 猫 の {自由 さ} が 羨ましい な。
+      - 猫 の {自由 さ}、羨ましい。
+    english_literally: I am envious of cats' freedom.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 猫 が 自由 な こと が 羨ましい です。
+        english: I envy the fact that cats are free.
+        hint: This phrase refers to the fact that cats are free, not the quality of freedom itself. We're
+          looking for the nominalized quality.
+    scene: Someone is watching a cat leisurely stroll by.
+    register: casual
+    setting: reflective
+    nuance: 「自由さ」 refers to the abstract quality of "freedom" that cats possess, which the speaker admires.
+      The phrase 「羨ましいです」 expresses a personal, somewhat informal feeling.
+  - english: Her straightforwardness is her best charm.
+    japanese:
+      - 彼女 の {素直 さ} が 彼女 の 一 番 の 魅力 です。
+      - 彼女 の {素直 さ} が 一番 の 魅力 だ ね。
+      - 彼女 の 一 番 の 魅力 は、その {素直 さ} です。
+    english_literally: Her straightforwardness is her number one charm.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 素直 な こと が 彼女 の 一 番 の 魅力 です。
+        english: The fact that she is straightforward is her best charm.
+        hint: 「なこと」 makes it a fact. We need the noun form of the quality.
+    scene: Two friends are discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    nuance: 「素直さ」 here describes a personal quality, treating "straightforwardness" as a characteristic
+      that can be assessed and admired. The casual register (indicated by the lack of overly polite forms)
+      is typical for friendly conversation.
+  - english: The accuracy of the information has been confirmed.
+    japanese:
+      - その 情報 の {確か さ} が 確認 さ れ まし た。
+      - その 情報 の {確か さ} が 確認 さ れ た。
+      - その 情報 の {確か さ} が 確かめ られ まし た。
+    english_literally: That information's accuracy was confirmed.
+    competing_grammar:
+      - competing_japanese:
+          - その 情報 が 確か な こと が 確認 さ れ まし た。
+        english: The fact that the information is accurate has been confirmed.
+        hint: This phrase confirms the fact, not the degree of accuracy as a quality. We want the quality
+          itself.
+    scene: A reporter is giving an update to the public.
+    register: formal
+    setting: informative
+    nuance: 「確かさ」 refers to the verifiable correctness or certainty of the information. The use of 「確認されました」
+      (passive voice, formal past) implies an objective, official confirmation.
+  - english: We prioritize the safety of our customers.
+    japanese:
+      - 私 たち は お 客 様 の {安全 さ} を 最 優先 し ます。
+      - 弊社 は お 客 様 の {安全 さ} を 最 優先 いたし ます。
+      - お 客 様 の {安全 さ} は、私 たち の 最 優先 事項 です。
+    english_literally: We prioritize the safety of customers the most.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は お 客 様 が 安全 な こと を 最 優先 し ます。
+        english: We prioritize the fact that our customers are safe.
+        hint: This focuses on the state of customers being safe. We need the noun form of 'safety' as
+          a concept or attribute.
+    scene: A company representative is speaking during a press conference.
+    register: formal
+    setting: professional
+    nuance: 「安全さ」 is used as a noun representing the state of being safe, which is a top priority for
+      the company. The formal and professional register is conveyed through 「お客様」 (honoric customer) and
+      「最優先します」 (prioritize).
+  - english: The liveliness of the festival surprised me.
+    japanese:
+      - 祭り の {賑やか さ} に 驚き まし た。
+      - 祭り の {賑やか さ} に びっくり し た。
+      - 祭り の {賑やか さ} に は 本当 に 驚き まし た。
+    english_literally: The festival's liveliness surprised me.
+    competing_grammar:
+      - competing_japanese:
+          - 祭り が 賑やか な こと に 驚き まし た。
+        english: I was surprised by the fact that the festival was lively.
+        hint: This nominalizes the entire statement. We want to highlight the specific quality of liveliness.
+    scene: Someone is recalling a memorable festival experience.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: 「賑やかさ」 captures the vibrant and bustling quality of the festival as a distinct impression
+      that caused surprise. The polite ending 「ました」 is suitable for recounting an experience.
+  - english: I was moved by his kindness.
+    japanese:
+      - 彼 の {親切 さ} に 感動 し まし た。
+      - 彼 の {親切 さ} に 感動 し た よ。
+      - 彼 の {親切 さ} に 心 を 打た れ まし た。
+    english_literally: I was moved by his kindness.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 親切 な こと に 感動 し まし た。
+        english: I was moved by the fact that he was kind.
+        hint: This emphasizes the factual statement. We need the noun form of 'kindness' as a quality.
+    scene: Someone is recounting an experience where someone helped them.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 「親切さ」 highlights the specific quality of "kindness" that elicited an emotional response. The
+      use of 「感動しました」 (was moved/impressed) expresses a personal and heartfelt reaction.
+  - english: I aimed for perfection in my work.
+    japanese:
+      - 私 は 仕事 で {完璧 さ} を 目指し まし た。
+      - 仕事 で {完璧 さ} を 目指し た。
+      - 仕事 に おい て {完璧 さ} を 追求 し まし た。
+    english_literally: I aimed for perfection in my work.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 仕事 が 完璧 な こと を 目指し まし た。
+        english: I aimed for the fact that my work would be perfect.
+        hint: This is about the work being perfect. We want the noun 'perfection' as a goal.
+    scene: A person is reflecting on their work ethic during an interview.
+    register: teineigo (polite)
+    setting: serious
+    nuance: 「完璧さ」 is treated as an abstract goal, the state or quality of being perfect, which the speaker
+      strove for. The polite 「目指しました」 (aimed for) is appropriate for a formal reflection.
+  - english: The child's innocence touched everyone's hearts.
+    japanese:
+      - その 子供 の {純粋 さ} が みんな の 心 を 打ち まし た。
+      - あの 子 の {純粋 さ} が みんな の 心 に 響い た ね。
+      - みんな が その 子供 の {純粋 さ} に 感動 し まし た。
+    english_literally: That child's innocence struck everyone's hearts.
+    competing_grammar:
+      - competing_japanese:
+          - その 子供 が 純粋 な こと が みんな の 心 を 打ち まし た。
+        english: The fact that the child was innocent touched everyone's hearts.
+        hint: This nominalizes the fact. We need the noun form of the quality 'innocence' itself.
+    scene: Describing a child's character to a group of people.
+    register: formal
+    setting: informative
+    nuance: 「純粋さ」 represents the inherent quality of purity in the child that had an impact on everyone,
+      treating it as an observable attribute. The formal language (「心 を 打ちました」 - touched hearts) emphasizes
+      the depth of the effect.
+  - english: I admire his seriousness in facing problems.
+    japanese:
+      - 問題 に 向き合う 彼 の {真剣 さ} を 尊敬 し ます。
+      - 問題 に 向き合う 彼 の {真剣 さ} は 尊敬 できる。
+      - 問題 へ の 彼 の {真剣 さ} に は 頭 が 下がり ます。
+    english_literally: I respect his seriousness in facing problems.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 に 向き合う 彼 が 真剣 な こと を 尊敬 し ます。
+        english: I respect the fact that he is serious in facing problems.
+        hint: This focuses on the fact of his seriousness. We need the noun form of 'seriousness' as a
+          quality.
+    scene: Discussing a colleague or friend's work ethic.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「真剣さ」 refers to the quality of being earnest or serious in an objective way. The verb 「尊敬します」
+      (respect) is polite and appropriate for expressing admiration in a professional context.
+  - english: The diversity of opinions is important for discussion.
+    japanese:
+      - 議論 に とっ て 意見 の {多様 さ} は 重要 です。
+      - 議論 に は 意見 の {多様 さ} が 肝要 です。
+      - 意見 の {多様 さ} は、議論 を 進める 上 で 極めて 重要 です。
+    english_literally: For discussion, opinions' diversity is important.
+    competing_grammar:
+      - competing_japanese:
+          - 議論 に とっ て 意見 が 多様 な こと は 重要 です。
+        english: For discussion, the fact that opinions are diverse is important.
+        hint: This focuses on the factual state of opinions being diverse. We need the noun 'diversity'
+          as a quality.
+    scene: A moderator explaining rules for a debate or academic discussion.
+    register: formal
+    setting: academic
+    nuance: 「多様さ」 functions as a noun representing the state of being diverse, emphasizing its importance
+      as an attribute for healthy discussion. The formal structure with 「にとっって」 and 「重要です」 is suitable
+      for an academic setting.
+post_example_writeup: As these examples demonstrate, using 「さ」 with な-adjectives allows you to talk about
+  the quality itself as a noun, often in a way that suggests measurement, evaluation, or objective observation.
+  This makes it distinct from other nominalizers and useful for expressing nuances related to the degree
+  or extent of a characteristic.

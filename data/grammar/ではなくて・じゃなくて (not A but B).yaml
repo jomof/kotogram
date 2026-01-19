@@ -1,0 +1,276 @@
+grammar_point: ではなくて・じゃなくて (not A but B)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - '[Verb-て]からでないと〜ない (unless after doing)'
+  - ではない・じゃなくて (not A but B)
+  - なく (not and or but)
+  - にする (to decide or make)
+  - の (one)
+  - は (topic and contrast)
+  - はない (no exceptions)
+  - も又 (too・also・again emphatic)
+  - んがため (for the purpose of)
+meaning: It's not A, but B; rather than A, it's B
+pronunciation:
+  katakana: デワナクテ・ジャナクテ
+  romaji: dewa nakute・ja nakute
+formation:
+  '[Noun] + ではなくて': Used to state that something is not a particular noun, but rather another noun or
+    state.
+  '[な-Adjective stem] + ではなくて': Used to state that something is not a particular な-adjective, but rather
+    another adjective or state.
+  '[Noun] + じゃなくて': A more casual equivalent of [Noun] + ではなくて.
+  '[な-Adjective stem] + じゃなくて': A more casual equivalent of [な-Adjective stem] + ではなくて.
+jlpt: N4
+etymology: The structure 「ではなくて・じゃなくて」 is derived from the negative copulas 「ではない」 (formal) and 「じゃない」
+  (casual), both meaning 'is not'. The 「て」 ending is the te-form (conjunctive form) of the auxiliary verb
+  「ない」, allowing the negated clause to connect to a subsequent clause that presents a correction or alternative.
+  Thus, it literally means 'being not A, and B'.
+writeup: |-
+  The grammatical pattern 「ではなくて・じゃなくて」 is used to make corrections or provide clarification by negating a preceding noun or な-adjective and then introducing the correct information. It essentially conveys 'it's not X, but Y' or 'rather than X, it's Y'.
+
+  「ではなくて」 is the more formal or neutral form, suitable for polite conversation, business settings, or written communication. 「じゃなくて」 is its casual counterpart, frequently used in everyday speech among friends, family, or close acquaintances.
+
+  This pattern is highly effective for clarifying misunderstandings or specifying precise details. It's often used when someone has made an assumption or stated something incorrectly, and you wish to politely (or casually) set the record straight. It always implies a direct contrast between the negated element and the affirmed one.
+
+  While the primary use is for nouns and な-adjectives, it can sometimes implicitly connect to a verb phrase, where the negation of a state or action is followed by a different state or action. However, its most direct application is for noun and な-adjective corrections.
+false_friends:
+  - term: じゃない (negation noun and na-adj)
+    meaning: is not
+    kind: similar expression
+    nuance: 「じゃない」 simply negates a noun or な-adjective as a predicate. It ends a sentence or clause and
+      does not inherently connect to another contrasting element. 「じゃなくて」 negates the preceding element
+      and connects it to a contrasting element, making it 'not A, but B'.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: ではない (formal negative copula)
+    meaning: is not (formal)
+    kind: similar expression
+    nuance: 「ではない」 is a formal negation of a noun or な-adjective. Like 「じゃない」, it acts as a predicate
+      and does not directly introduce a contrasting element within the same sentence. 「ではなくて」 explicitly
+      connects the negated part to the correction.
+    grammar_point: ではない (formal negative copula)
+  - term: なくてはいけない・なくちゃ (must do・have to)
+    meaning: must do, have to do
+    kind: often confused with
+    nuance: 「なくてはいけない」 uses 「なくて」 as part of a fixed phrase indicating obligation, meaning 'must not be
+      without' or 'must do'. It does not express 'not A, but B'. The meaning is completely different,
+      conveying necessity rather than correction.
+    grammar_point: <suggest>:〜なくてはいけない・なくちゃ (must do・have to)
+  - term: Verb[なくて] (negative te-form)
+    meaning: not doing; without doing
+    kind: similar expression
+    nuance: While 「なくて」 is the te-form of the negative auxiliary 「ない」 and can be used for various connections,
+      its use in 「ではないくて・じゃなくて」 is specific to negating nouns or な-adjectives and linking to a correction.
+      On its own, 「なくて」 usually means 'without doing [verb]' or 'because [verb] was not done'.
+    grammar_point: Verb[なくて] (negative te-form)
+  - term: ではなく (not A, but B, formal, non-te)
+    meaning: not A, but B (formal, connecting)
+    kind: similar expression
+    nuance: 「ではなく」 serves a similar corrective function but is a slightly more formal or literary connective
+      than 「ではなくて」. It tends to be used when listing or contrasting two items or ideas concisely, often
+      within a single phrase, whereas 「ではなくて」 can connect fuller clauses.
+    grammar_point: <suggest>:ではなく (not A, but B, formal, non-te)
+  - term: じゃなく (not A, but B, casual, non-te)
+    meaning: not A, but B (casual, connecting)
+    kind: similar expression
+    nuance: Similar to 「ではなく」, 「じゃなく」 is a casual form that provides a concise 'not A, but B' connection.
+      It's often used when the second element directly replaces or clarifies the first, rather than connecting
+      two distinct clauses.
+    grammar_point: <suggest>:じゃなく (not A, but B, casual, non-te)
+post_false_friends_writeup: When distinguishing 「ではなくて・じゃなくて」 from simpler negations like 「じゃない」 or 「ではない」,
+  remember that the latter merely state a negation without necessarily implying a follow-up correction
+  or alternative. The 「〜くて」 form in our grammar point explicitly signals that the negated information
+  is being replaced or clarified by what follows. Furthermore, don't confuse it with the fixed phrase
+  「〜なくてはいけない」, which indicates obligation or necessity, having no relation to expressing 'not A, but B'.
+  The non-te forms 「ではなく・じゃなく」 are often more concise and used for listing or direct replacement within
+  a single phrase, whereas the 「〜くて」 forms can connect more elaborate contrasting clauses.
+examples:
+  - english: It's not red, it's blue.
+    japanese:
+      - それ は 赤 {じゃ なく て}、青 だ。
+      - それ は 赤 {で は なく て}、青 です。
+    english_literally: As for that, it's not red, it's blue.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 赤 じゃ ない。青 だ。
+        english: That is not red. It is blue.
+        hint: Using two separate sentences. We're looking for a single connected statement expressing
+          'not A, but B'.
+    scene: A child points to a crayon, mistaking its color.
+    register: casual
+    setting: friendly
+  - english: He's not a doctor, he's a teacher.
+    japanese:
+      - 彼 は 医者 {で は なく て}、教師 です。
+      - 彼 は 医者 {じゃ なく て}、教師 だ。
+    english_literally: As for him, he is not a doctor, he is a teacher.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 医者 で は ない。教師 です。
+        english: He is not a doctor. He is a teacher.
+        hint: This uses two separate sentences. We're looking for a single, connected phrase indicating
+          correction.
+    scene: You are correcting someone's assumption about a colleague's profession.
+    register: formal
+    setting: professional
+  - english: It's not delicious, it's terrible.
+    japanese:
+      - 美味しい {じゃ なく て}、まずい です。
+      - 美味しい {で は なく て}、まずい です。
+    english_literally: It is not delicious, it is terrible.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しく ない。まずい です。
+        english: It is not delicious. It is terrible.
+        hint: 'This simply states that it''s not delicious. We''re looking for a direct correction: ''not
+          A, but B''.'
+    scene: Someone asks your opinion about food you dislike.
+    register: casual
+    setting: humorous
+  - english: I like fish, not meat.
+    japanese:
+      - 私 は 肉 が 好き {じゃ なく て}、魚 が 好き です。
+      - 私 は 肉 が 好き {で は なく て}、魚 が 好き です。
+    english_literally: As for me, meat not liking, fish liking.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 肉 が 好き で は ない。魚 が 好き です。
+        english: I do not like meat. I like fish.
+        hint: This uses two independent clauses. We need a single connected statement to contrast preferences
+          directly.
+    scene: You're at a restaurant, explaining your dietary preference to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「じゃなくて」 is common in casual speech among friends, regardless of gender. The speaker
+      expresses a personal preference, negating one option and affirming another.
+  - english: The problem isn't with him, it's with me.
+    japanese:
+      - 問題 は 彼 {で は なく て}、私 に ある。
+      - 問題 は 彼 {じゃ なく て}、私 に ある。
+    english_literally: As for the problem, it is not him, it is in me.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 彼 で は ない。私 に ある。
+        english: The problem is not him. It is with me.
+        hint: This uses two separate sentences. We're looking for a single, connected statement that shifts
+          blame or responsibility.
+    scene: You are taking responsibility for a mistake in a team meeting.
+    register: formal
+    setting: professional
+  - english: This isn't for me, it's for everyone.
+    japanese:
+      - これ は 私 の ため {じゃ なく て}、みんな の ため です。
+      - これ は 私 の ため {で は なく て}、みんな の ため です。
+    english_literally: As for this, it is not for me, it is for everyone.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 私 の ため で は ない。みんな の ため です。
+        english: This is not for me. It is for everyone.
+        hint: This separates the two contrasting ideas into different sentences. We're looking for a cohesive
+          'not A, but B' connection.
+    scene: You are presenting a project to a group, emphasizing its collective benefit.
+    register: semi-formal
+    setting: informative
+  - english: Japanese isn't difficult, it's interesting.
+    japanese:
+      - 日本 語 は 難しい {じゃ なく て}、面白い です よ。
+      - 日本 語 は 難しい {で は なく て}、面白い です。
+    english_literally: As for Japanese, it's not difficult, it's interesting, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 は 難しく ない。面白い です よ。
+        english: Japanese is not difficult. It is interesting, you know.
+        hint: This simply states that Japanese is not difficult. We're looking for a direct corrective
+          statement, 'not A, but B'.
+    scene: You are encouraging a struggling Japanese learner.
+    register: casual
+    setting: supportive
+    nuance: The particle 「よ」 at the end adds emphasis and a sense of conviction, making the encouraging
+      statement stronger. This usage of 「じゃなくて」 is common in casual, supportive conversations.
+    etymology: The particle 「よ」 derives from a contraction of 「いよいよ」 or 「いやはや」, used for emphasis or to
+      convey new information. In this context, it reinforces the positive counterpoint.
+  - english: She isn't always angry, she's just sometimes strict.
+    japanese:
+      - 彼女 は いつ も 怒っ て いる の {で は なく て}、時々 厳しい だけ です。
+      - 彼女 は いつ も 怒っ て いる の {じゃ なく て}、時々 厳しい だけ です。
+    english_literally: As for her, it's not that she is always angry, it's just that she is sometimes
+      strict.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 怒っ て いる の で は ない。時々 厳しい だけ です。
+        english: She is not always angry. She is just sometimes strict.
+        hint: This presents two separate observations. We want to explicitly state 'it's not A, but B'.
+    scene: You are defending a colleague's reputation to a new team member.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「〜のではなく」 or 「〜のではなく」 (when used with の) is a common way to negate an entire clause, indicating
+      'it's not that...' The formal 「ではなくて」 maintains a professional tone in correcting a misconception.
+      The speaker is clarifying a perception about a female colleague.
+  - english: Today's meeting is not from the afternoon, but from the morning.
+    japanese:
+      - 今日 の 会議 は 午後 から {で は なく て}、午前 から です。
+      - 今日 の 会議 は 午後 から {じゃ なく て}、午前 から だ。
+    english_literally: As for today's meeting, it is not from the afternoon, it is from the morning.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は 午後 から で は ない。午前 から です。
+        english: Today's meeting is not from the afternoon. It is from the morning.
+        hint: This separates the information. We're looking for a single statement that corrects the time
+          directly.
+    scene: You are correcting a scheduling misunderstanding in a work email.
+    register: formal
+    setting: professional
+  - english: This isn't a painting, it's a photo.
+    japanese:
+      - これ は 絵 {じゃ なく て}、写真 です。
+      - これ は 絵 {で は なく て}、写真 です。
+    english_literally: As for this, it is not a painting, it is a photo.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 絵 じゃ ない。写真 です。
+        english: This is not a painting. It is a photo.
+        hint: This uses two separate sentences. We're looking for a single connected statement to clarify
+          the item's nature.
+    scene: You are clarifying the medium of an artwork to a friend at an exhibition.
+    register: casual
+    setting: friendly
+  - english: The reason I'm here isn't to play, but to study.
+    japanese:
+      - ここ に いる 理由 は 遊ぶ こと {じゃ なく て}、勉強 する こと です。
+      - ここ に いる 理由 は 遊ぶ こと {で は なく て}、勉強 する こと です。
+    english_literally: The reason I am here is not to play, but to study.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に いる 理由 は 遊ぶ こと で は ない。勉強 する こと です。
+        english: The reason I am here is not to play. It is to study.
+        hint: This separates the two clauses. We're seeking a single, continuous statement that clarifies
+          the purpose.
+    scene: A student explains their purpose for being at the library to a friend who suggests going out.
+    register: casual
+    setting: academic
+  - english: His strength isn't speed, but power.
+    japanese:
+      - 彼 の 強み は 速 さ {で は なく て}、力 です。
+      - 彼 の 強み は 速 さ {じゃ なく て}、力 だ。
+    english_literally: His strength is not speed, but power.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 強み は 速 さ で は ない。力 です。
+        english: His strength is not speed. It is power.
+        hint: This uses two distinct sentences. We need a single connective phrase to directly contrast
+          the attributes.
+    scene: A sports commentator analyzes an athlete's performance.
+    register: formal
+    setting: informative
+post_example_writeup: The examples illustrate how 「ではなくて・じゃなくて」 is effectively used across various situations
+  to provide a clear and direct correction or clarification. Notice the natural flow it creates, seamlessly
+  connecting the negated incorrect information with the accurate details. This construction is a fundamental
+  tool for precise communication in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ではなくて・じゃなくて

@@ -1,0 +1,308 @@
+grammar_point: とおり (exactly as)
+learn_before:
+  - Verb[stem] (conjunction)
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - てください (polite request)
+  - でございます (polite copula, formal)
+  - です (polite copula)
+  - にする (to decide or make)
+  - の (possessive)
+  - 入り (containing)
+  - 全て (all・every)
+  - 奥,手前 (depth・foreground spatial)
+  - 正面 (front face spatial)
+  - 真上 (directly above)
+meaning: In that way, exactly, precisely, just as
+pronunciation:
+  katakana: トオリ
+  romaji: toori
+formation:
+  Noun + の + とおり: Indicates something happens exactly as specified by the noun.
+  Noun + どおり: Indicates something happens exactly as specified by the noun (more common in speech).
+  Verb (dictionary form) + とおり: Indicates something happens exactly as described by the verb.
+  Verb (plain past form) + とおり: Indicates something happened exactly as described by the verb.
+jlpt: N3
+etymology: The word 「とおり」 originates from the verb 「通る(とおる)」 (to pass through, to go along). As a noun,
+  「通り(とおり)」 means "street" or "way." The grammatical usage extends this sense to mean "in the way/manner
+  of" something, implying that something follows a particular path or manner exactly.
+writeup: 'The Japanese word 「とおり」 (or 「どおり」) functions as a suffix indicating that something occurs **exactly**
+  as, **precisely** as, or **just like** something else. While its kanji form, 「通り」, literally means ''street''
+  or ''way'', its grammatical usage extends this concept to denote a high degree of congruence or sameness.
+  This grammar point can follow both verbs and nouns. When attached to **verbs**, it typically appears
+  after either the **dictionary (plain non-past) form** or the **plain past form**. For instance, 「言うとおり」
+  (as one says) or 「言ったとおり」 (as one said). When following **nouns**, two patterns are possible: 「[Noun]
+  の とおり」 or 「[Noun] どおり」. Both are grammatically correct and convey the same meaning of "according to
+  the noun" or "just like the noun". However, 「[Noun] どおり」 is generally more common, especially in spoken
+  Japanese. Note that 「とおり」 without 「の」 directly after a noun is incorrect; it must be 「[Noun] の とおり」
+  or 「[Noun] どおり」. This construction is frequently used in everyday conversation to express agreement.
+  Phrases like 「言った通り」 or 「その通り」 are very common and serve as polite ways to affirm what another person
+  has stated, translating to expressions such as "That''s exactly right!" or "Precisely!"'
+false_friends:
+  - term: ように・ような
+    meaning: as, like, just like
+    kind: synonym
+    nuance: Unlike 「とおり」, 「ように」 often expresses a desire or goal, or a comparison, not necessarily an
+      exact match.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: れる・られる+ままに
+    meaning: do as (one is told or ordered…), in accordance with, in compliance with, just like
+    kind: synonym
+    nuance: 「ままに」 implies following instructions or orders, often with a sense of being powerless to resist,
+      while 「とおり」 can refer to a general expectation or plan being met.
+    grammar_point: '[Verb-(ら)れる]ままに (as one is told)'
+  - term: ままに (as desired)
+    meaning: as (one likes, feels or pleases), spur of the moment, wherever one fancies, spontaneously,
+      on a whim
+    kind: synonym
+    nuance: 「ままに」 emphasizes acting freely or spontaneously according to one's desires, which contrasts
+      with the structured or expected nature implied by 「とおり」.
+    grammar_point: ままに (as desired)
+post_false_friends_writeup: While 「ように」, 「ままに」, and 「とおり」 can all convey similarity or accordance, their
+  nuances differ. 「ように」 is often used for goals or comparisons, implying resemblance. 「ままに」 suggests acting
+  on impulse or according to instruction, sometimes with a sense of being carried along. In contrast,
+  「とおり」 highlights that something happened or should happen exactly as planned, expected, or described,
+  emphasizing precise conformity.
+examples:
+  - english: Please proceed exactly as this instruction manual indicates.
+    japanese:
+      - この 説明 書 の {通り} に 進め て ください。
+      - この 説明 書 {どおり} に 進め て ください。
+      - この 説明 書 の {通り} に 進め て。
+      - この 説明 書 {どおり} に 進め て。
+      - この 説明 書 の {通り} に お 進め ください ませ。
+    english_literally: Please proceed in the way of this instruction manual.
+    competing_grammar:
+      - competing_japanese:
+          - この 説明 書 の {よう に} 進め て ください。
+        english: Please proceed like this instruction manual indicates.
+        hint: 「ように」 emphasizes similarity or approximation, not exact adherence to instructions. We're
+          looking for precise adherence here.
+      - competing_japanese:
+          - この 説明 書 に 従う {まま に} 進め て ください。
+        english: Please proceed just as you are told by this instruction manual.
+        hint: 「ままに」 often implies following instructions or being passively led. While it denotes compliance,
+          「とおり」 emphasizes that something is done exactly as planned or expected, without external compulsion.
+          We're looking for exact adherence.
+    scene: A supervisor instructing a new employee.
+    register: formal
+    setting: instructional
+    nuance: The use of 「～てください」 makes this an instruction, and 「説明書」 specifies a document to be followed
+      precisely. 「この」 points to a specific manual.
+    etymology: The phrase 「通り に」 literally means 'in the way/manner of', reflecting the etymological root
+      of とおり as 'street' or 'path'.
+  - english: Please listen carefully, just as I am about to say.
+    japanese:
+      - 私 が これ から 言う {通り} に、よく 聞い て ください。
+      - 俺 が これ から 言う {通り} に、よく 聞い て くれ。
+      - 私 が これ から 申し上げ ます {通り} に、よく お 聞き ください。
+    english_literally: Please listen well, in the way I will say from now.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が これ から 言う {よう に}、よく 聞い て ください。
+        english: Please listen carefully, like I am about to say.
+        hint: 「ように」 implies a manner or similarity, but 「とおり」 emphasizes the exact content or process.
+          We're looking for precise listening to what will be said.
+      - competing_japanese:
+          - 私 が これ から 言う {まま に}、よく 聞い て ください。
+        english: Please listen carefully, just as you are told by what I will say.
+        hint: 「ままに」 suggests being guided or compelled by something. While it conveys accordance, 「とおり」
+          focuses on the exact replication or fulfillment of the statement. We're looking for exact adherence
+          to the spoken words.
+    scene: A conductor giving instructions to an orchestra.
+    register: formal
+    setting: instructional
+    nuance: 「これから 言う」 indicates an action that is about to happen, and 「通りに」 specifies that the listener
+      should follow the instructions precisely as they are given.
+    etymology: 「通り に」 directly applies the meaning of 'following a path' to following spoken words, emphasizing
+      the exactness of the instruction.
+  - english: Just as she thought, the exam was more difficult than expected.
+    japanese:
+      - 彼女 が 思っ た {通り}、試験 は 予想 以上 に 難しかっ た。
+      - あいつ が 思っ た {通り}、試験 は 予想 以上 に 難しかっ た ぜ。
+    english_literally: In the way she thought, the exam was more difficult than expected.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 思っ た {よう に}、試験 は 予想 以上 に 難しかっ た。
+        english: Like she thought, the exam was more difficult than expected.
+        hint: 「ように」 often indicates a comparison or similarity. 「とおり」 emphasizes the exact confirmation
+          of an expectation or prediction. We're looking for a confirmation of her exact thought.
+    scene: A student reflecting on a challenging exam she just took.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The use of 「思った」 (past form of 思う) indicates that her prior expectation was confirmed by the
+      reality of the exam. The subject 「彼女」 is explicitly stated. The addition of 「ぜ」 in the second Japanese
+      option makes it sound more masculine and assertive, often used by younger males, but the context
+      of the female speaker implies it would not be used by her.
+    etymology: 「思った通り」 is a common collocation, literally meaning 'in the way one thought', highlighting
+      the precise alignment between an internal thought or prediction and an external reality.
+  - english: According to the plan, all preparations are complete.
+    japanese:
+      - 計画 {どおり}、全て の 準備 が 整い まし た。
+      - 計画 の {通り}、全て の 準備 が 整い まし た。
+      - 計画 {どおり}、準備 でき た よ。
+      - 計画 {どおり}、全て の 準備 が 滞り なく 整い まし た。
+    english_literally: In the way of the plan, all preparations are complete.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 の {よう に}、全て の 準備 が 整い まし た。
+        english: Like the plan, all preparations are complete.
+        hint: 「ように」 suggests similarity to the plan, but 「どおり」 indicates precise adherence to the plan's
+          specifications. We're looking for exact execution according to the plan.
+      - competing_japanese:
+          - 計画 に 従う {まま に}、全て の 準備 が 整い まし た。
+        english: Just as instructed by the plan, all preparations are complete.
+        hint: 「ままに」 implies following directions or being passively guided. 「どおり」 expresses that something
+          has been executed precisely as predetermined or expected. We're looking for precise completion
+          according to the plan.
+      - competing_japanese:
+          - 計画 に {従っ て}、全て の 準備 が 整い まし た。
+        english: In accordance with the plan, all preparations are complete.
+        hint: 「～に 従って」 means 'following' or 'in accordance with,' focusing on the process of adherence.
+          「どおり」 emphasizes that the outcome will perfectly match the custom's exact specifications. We're
+          looking for a successful execution matching the original blueprint.
+    scene: A team leader reporting to their manager.
+    register: semi-formal
+    setting: professional
+    nuance: 「計画どおり」 is a common phrase in business to express that things are proceeding as planned, highlighting
+      efficiency and success. The use of 「滞りなく」 (without delay/smoothly) further emphasizes the successful
+      and precise execution.
+    etymology: The suffix 「どおり」, a phonetic change from 「とおり」, is often used when attaching to nouns,
+      especially compound nouns or those forming common phrases, maintaining the sense of exact adherence
+      to a standard or design.
+  - english: The core of this problem is resource distribution. Precisely.
+    japanese:
+      - この 問題 の 核心 は、資源 の 分配 です。』『まさに その {通り} です。
+      - この 問題 の 核心 は、資源 の 分配 です。』『まさに その {通り} だ。
+      - この 問題 の 核心 は、資源 の 分配 です。』『その {通り} だ。
+      - この 問題 の 核心 は、資源 の 分配 です。』『その {通り}。
+      - この 問題 の 核心 は、資源 の 分配 です。』『まさに その {通り} で ござい ます。
+    english_literally: The core of this problem is the distribution of resources." "Precisely that way
+      it is.
+    competing_grammar:
+      - competing_japanese:
+          - まさに その {よう} です。
+        english: Precisely like that.
+        hint: 「よう」 generally describes appearance or similarity. 「とおり」, especially with 「その」, confirms
+          exact truth or agreement with a preceding statement. We're looking for exact agreement.
+    scene: Two colleagues discussing a complex issue in a meeting.
+    register: formal
+    setting: professional
+    nuance: 「まさに その通り です」 is a strong expression of agreement, indicating that the speaker completely
+      concurs with what was just said, adding emphasis with 「まさに」. The very formal 「で ござい ます」 is used
+      for extreme politeness, suitable for a highly formal business setting.
+    etymology: 「その通り」 directly translates to 'that way' or 'that path', signifying that what was said
+      is exactly on the right 'track' or matches the truth precisely. This is a fixed idiom.
+  - english: As you can see, he is already asleep.
+    japanese:
+      - ご覧 の {通り}、彼 は もう 眠っ て い ます。
+      - ご覧 の {通り}、あいつ は もう 寝 てる よ。
+    english_literally: In the way you see, he is already asleep.
+    competing_grammar:
+      - competing_japanese:
+          - ご覧 の {よう に}、彼 は もう 眠っ て い ます。
+        english: As you can see, he is already asleep.
+        hint: While 「ご覧 の ように」 is also common, 「ご覧 の 通り」 adds a nuance of 'as is clearly evident' or 'as
+          is the undeniable fact.' We're looking for a strong confirmation of what is seen.
+    scene: A parent pointing out their child sleeping to a visitor.
+    register: casual
+    setting: friendly
+    nuance: 「ご覧の通り」 is a common set phrase used to point out something that is immediately obvious to
+      the listener, often when explaining a situation. The casual 「寝 てる よ」 (sleeping) and 「あいつ」 (that
+      guy/fellow, informal) are typical of friendly conversation.
+    etymology: 「ご覧の通り」 literally means 'as you observe/see', emphasizing that the visible reality exactly
+      matches the statement, stemming from the 'path/way' meaning of とおり.
+  - english: As you may have guessed, we've decided to start a new project.
+    japanese:
+      - お 察し の {通り}、私 たち は 新しい プロジェクト を 始める こと に なり まし た。
+      - お 察し の {通り}、新しい プロジェクト 始める こと に なっ た よ。
+      - お 察し の {通り}、新規 プロジェクト を 開始 する 運び と なり まし た。
+    english_literally: In the way you surmised, we've decided to start a new project.
+    competing_grammar:
+      - competing_japanese:
+          - お 察し の {よう に}、私 たち は 新しい プロジェクト を 始める こと に なり まし た。
+        english: As you may have guessed, we've decided to start a new project.
+        hint: 「お察し の ように」 is similar but 「お察し の 通り」 has a slightly stronger implication of 'your guess
+          was precisely correct' or 'it is exactly as you inferred.' We're looking for confirmation that
+          their inference was accurate.
+    scene: A manager discreetly informing a team member about a new initiative.
+    register: semi-formal
+    setting: informative
+    nuance: 「お察しの通り」 is a polite way to confirm something the listener has likely already figured out,
+      often when sharing sensitive or anticipated news. The honorific prefix 「お」 is used to show respect
+      to the listener. The last example with 「開始 する 運び と なり まし た」 uses formal business Japanese, indicating
+      a more official announcement.
+    etymology: 「お察しの通り」 combines the honorific form of 'to guess/surmise' with とおり, conveying 'exactly
+      as you have correctly inferred' or 'it is precisely as you suspected.'
+  - english: Please make the cake exactly as written in the recipe.
+    japanese:
+      - レシピ に 書い て ある {通り} に、ケーキ を 作っ て ください。
+      - レシピ {どおり} に、ケーキ を 作っ て ください。
+    english_literally: Please make the cake in the way written in the recipe.
+    competing_grammar:
+      - competing_japanese:
+          - レシピ に 書い て ある {よう に}、ケーキ を 作っ て ください。
+        english: Please make the cake like it is written in the recipe.
+        hint: 「ように」 emphasizes similarity or manner, which might allow for slight deviations. 「とおり」 implies
+          making it precisely as described, following every detail. We're looking for exact adherence
+          to the recipe.
+    scene: A friend giving instructions to another friend in the kitchen.
+    register: casual
+    setting: instructional
+    nuance: This example uses 「レシピ」 (recipe) and 「書いてある」 (what is written), highlighting that the instructions
+      must be followed with high precision. The casual 「～て ください」 makes it a friendly instruction.
+    etymology: Applying 「通りに」 to a recipe means to follow the 'path' or 'method' prescribed by the instructions
+      precisely, ensuring the outcome is exactly as intended by the recipe writer.
+  - english: Just as I feared, the project failed.
+    japanese:
+      - 私 が 恐れ て い た {通り}、プロジェクト は 失敗 し て しまっ た。
+      - 俺 が 恐れ て た {通り}、プロジェクト は 失敗 し ちまっ た よ。
+    english_literally: In the way I feared, the project failed.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 恐れ て い た {よう に}、プロジェクト は 失敗 し て しまっ た。
+        english: Like I feared, the project failed.
+        hint: 「ように」 might mean 'in a way similar to what I feared.' 「とおり」 emphasizes that the outcome
+          was the exact realization of the speaker's fear or prediction. We're looking for the precise
+          fulfillment of a negative prediction.
+    scene: A disheartened team member talking to a colleague after a project's failure.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    nuance: The phrase 「恐れていた通り」 (just as I feared) explicitly connects a past apprehension to a present
+      unfortunate reality, confirming the speaker's premonition. The casual speech ending 「～しちまった」 reinforces
+      the personal disappointment, typical of male casual speech.
+    etymology: This emphasizes the literal 'path' of fear leading to its exact manifestation, implying
+      an unfortunate but precise fulfillment of a prediction.
+  - english: We will proceed according to local custom.
+    japanese:
+      - 土地 の 習慣 {どおり} に 進め ます。
+      - 地域 の 慣習 {どおり} に 進め させ て いただき ます。
+    english_literally: We will proceed in the way of local custom.
+    competing_grammar:
+      - competing_japanese:
+          - 土地 の 習慣 の {よう に} 進め ます。
+        english: We will proceed like local custom.
+        hint: 「ように」 suggests acting in a way that resembles the custom, but perhaps not precisely. 「どおり」
+          implies strict adherence to every detail of the custom. We're looking for exact observance of
+          tradition.
+      - competing_japanese:
+          - 土地 の 習慣 に {従っ て} 進め ます。
+        english: We will proceed in accordance with local custom.
+        hint: 「～に 従って」 means 'following' or 'in accordance with,' focusing on the process of adherence.
+          「どおり」 emphasizes that the outcome will perfectly match the custom's exact specifications. We're
+          looking for precise conformity to the custom.
+    scene: A business representative explaining event plans to local community leaders.
+    register: formal
+    setting: professional
+    nuance: 「習慣どおり」 is a common phrase to indicate respect for established norms and practices, ensuring
+      smooth proceedings. The formal verb ending 「進め ます」 or humble 「進め させ て いただき ます」 suits the professional
+      setting.
+    etymology: Using 「どおり」 with 「習慣」 (custom) highlights the act of precisely following established traditions,
+      literally 'walking the path' of custom.
+post_example_writeup: The examples illustrate how 「とおり」 and 「どおり」 are used to convey exact correspondence
+  in various contexts, from following instructions to confirming expectations or adhering to customs.
+  The choice between 「～の とおり」 and 「～どおり」 often depends on the type of noun and register, with 「～どおり」 being
+  more common for common nouns and in more concise expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とおり

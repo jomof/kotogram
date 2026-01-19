@@ -1,0 +1,357 @@
+grammar_point: それだけ (to that extent)
+learn_before:
+  - Verb[ば] (conditional)
+  - だけ (only・just)
+  - だけは (do to the fullest extent)
+  - ば〜ほど (the more...the more)
+  - 愛する (to love)
+meaning: That much; to the same extent; to that degree; correspondingly
+pronunciation:
+  katakana: ソレダケ
+  romaji: sore dake
+formation:
+  '[Statement 1] + それだけ + [Statement 2]': Indicates that the degree of something in Statement 2 is proportionate
+    to the degree of something in Statement 1.
+  Adjective・Verb Plain Form + それだけ: Used after a plain form verb or adjective to indicate 'that much'
+    or 'to that extent,' often implying a consequence or direct correlation related to the preceding statement
+    or action. For example, '忙しい それだけ 責任も大きい' (Because it's busy, the responsibility is that much greater).
+jlpt: N2
+etymology: 「それ」 refers to something previously mentioned or understood, and 「だけ」 means "only" or "just."
+  Therefore, 「それだけ」 literally means "only that much" or "just that," implying a limitation or correspondence
+  to a specific degree or extent, often emphasizing a direct correlation or consequence.
+writeup: |-
+  「それだけ」 indicates that the degree or extent of something is proportionate to something else. It often highlights a direct relationship where an increase or change in one factor results in a corresponding increase or change in another. Think of it as saying "to that degree" or "correspondingly."
+
+  This expression is versatile and can be used in various contexts to express both positive and negative correlations. It is frequently found in patterns like 「～ば～ほど、それだけ～」 (the more..., the more...). It emphasizes that the degree of the second clause is directly tied to the degree of the first clause. While it can simply indicate correlation, it often subtly implies a sense of natural consequence or a deserved outcome. It can also directly follow a statement, such as an adjective or verb in plain form, to show that the subsequent event's intensity is proportional to the preceding condition.
+false_friends:
+  - term: それほど
+    meaning: Not that much; not to that extent
+    kind: similar expression
+    nuance: Unlike 「それだけ」, 「それほど」 is often used in negative sentences to indicate that something is not
+      as significant or intense as expected. For example, 「それほど難しくない」 means "it's not that difficult."
+    grammar_point: <suggest>:それほど (not that much)
+  - term: その分
+    meaning: correspondingly, proportionately, to that extent
+    kind: synonym
+    nuance: While 「それだけ」 emphasizes the direct correspondence to a previously stated degree or condition,
+      「その分」 often implies a 'trade-off' or a result that naturally follows as a consequence or share.
+      It can sometimes carry a nuance of compensation or natural consequence.
+    grammar_point: <suggest>:その分 (correspondingly・proportionately)
+  - term: ばかり
+    meaning: only・excessive
+    kind: similar expression
+    nuance: While 「それだけ」 emphasizes a proportional relationship or correspondence to a specific degree,
+      「ばかり」 primarily means "only," "just," or indicates an excessive amount of something. It can sometimes
+      imply "nothing but," focusing on singularity or excess rather than direct scaling.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+post_false_friends_writeup: 「それほど」 is generally used to downplay the intensity or degree of something,
+  often in negative contexts, while 「それだけ」 emphasizes a direct and proportionate relationship. 「その分」 is
+  a very close synonym to 「それだけ」, also meaning 'correspondingly' or 'to that extent,' but it often carries
+  a nuance of a natural consequence or a proportionate share/trade-off derived from a situation. 「ばかり」,
+  on the other hand, focuses on indicating exclusivity ('only') or an excessive amount, rather than the
+  direct proportionality of 「それだけ」.
+examples:
+  - english: The more you practice, the better you become to that extent.
+    japanese:
+      - 練習 すれ ば する ほど、{それ だけ} 上手 に なり ます。
+      - 練習 すれ ば する ほど、{それ だけ} 上手 に なる ね。
+      - 練習 すれ ば する ほど、{それ だけ} 上達 いたし ます。
+    english_literally: If you practice, as much as you practice, to that extent, you will become skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 練習 すれ ば する ほど、上手 に なり ます。
+        english: The more you practice, the better you become.
+        hint: The grammar point emphasizes that the improvement directly corresponds to the amount of
+          practice. We're looking for that direct, proportional relationship.
+      - competing_japanese:
+          - 練習 すれ ば する ほど、その 分 上手 に なり ます。
+        english: The more you practice, you'll improve correspondingly.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - いくら 練習 し て も、それ ほど 上手 に は なり ませ ん。
+        english: No matter how much you practice, you won't get that good.
+        hint: This phrase is typically used in negative sentences to indicate a lack of significance or
+          intensity. We're looking for an affirmative statement about the extent of improvement.
+    scene: A coach encouraging a student.
+    register: semi-formal
+    setting: instructional
+  - english: The greater the expectations, the greater the disappointment will be correspondingly.
+    japanese:
+      - 期待 が 大きけれ ば 大きい ほど、{それ だけ} 悲しい 気持ち も 大きく なる。
+      - 期待 が 大きけれ ば 大きい ほど、{それ だけ} 悲しい 気持ち に なっ ちゃう よ。
+    english_literally: If expectations are big, as much as they are, to that extent, sad feelings also
+      become big.
+    competing_grammar:
+      - competing_japanese:
+          - 期待 が 大きけれ ば 大きい ほど、悲しい 気持ち も 大きく なる。
+        english: The greater the expectations, the sadder you'll feel.
+        hint: The grammar point explicitly links the magnitude of disappointment directly to the magnitude
+          of expectations. We're looking for a clear proportional emphasis.
+      - competing_japanese:
+          - 期待 が 大きけれ ば 大きい ほど、その 分 悲しい 気持ち も 大きく なる。
+        english: The greater the expectations, the sadder you'll feel proportionately.
+        hint: This also expresses proportionality, but might imply a natural consequence or a share. We're
+          looking for a direct correspondence to the degree of the expectation.
+      - competing_japanese:
+          - 期待 し て い なかっ た から、それ ほど 悲しい 気持ち に なら なかっ た。
+        english: Because I wasn't expecting much, I wasn't that sad.
+        hint: This phrase is often used with negation to express a lesser degree than expected. We're
+          looking for a statement about a direct, proportional increase.
+    scene: Someone reflecting on the nature of expectations.
+    register: semi-formal
+    setting: reflective
+  - english: The project was difficult. That much, the sense of accomplishment when it was completed was
+      immense.
+    japanese:
+      - プロジェクト は 困難 だっ た。{それ だけ} 完了 し た 時 の 達成 感 は 計り 知れ ない ほど 大きかっ た。
+      - プロジェクト は 困難 だっ た。{それ だけ} 完了 時 の 達成 感 も ひとしお だっ た。
+    english_literally: The project was difficult. To that extent, the sense of accomplishment when it
+      was completed was immeasurably large.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト は 困難 だっ た。その 分 完了 し た 時 の 達成 感 は 計り 知れ ない ほど 大きかっ た。
+        english: The project was difficult. Proportionately, the sense of accomplishment when it was completed
+          was immeasurably large.
+        hint: While 'その分' also expresses proportionality, 'それだけ' more directly links the difficulty to
+          the extent of the achievement. We're focusing on the direct correspondence of degree.
+      - competing_japanese:
+          - プロジェクト は 困難 だっ た が、それ ほど 達成 感 を 感じ なかっ た。
+        english: The project was difficult, but I didn't feel that much sense of accomplishment.
+        hint: This phrase implies a limited degree or negation of the expected intensity. We're looking
+          for a statement of proportional increase based on the initial condition.
+    scene: A colleague reflecting on a recently finished challenging project.
+    register: semi-formal
+    setting: professional
+    nuance: 「困難だった」 (it was difficult) is followed directly by 「それだけ」, emphasizing that the difficulty
+      level directly determined the scale of the subsequent feeling of accomplishment. This construction
+      directly shows the "Adjective + それだけ" usage, highlighting the inherent proportionality. The nuance
+      is one of earned reward corresponding to the effort/difficulty.
+  - english: The more I love you, the more jealous I might end up becoming to that degree.
+    japanese:
+      - 愛し て いれ ば 愛し て いる ほど、{それ だけ} 焼きもち を 焼い て しまう。
+      - 愛し て いれ ば 愛し て いる ほど、{それ だけ} 焼きもち を 焼い て しまう ん だ。
+    english_literally: If I love you, as much as I love you, to that extent, I end up getting jealous.
+    competing_grammar:
+      - competing_japanese:
+          - 愛し て いれ ば 愛し て いる ほど、焼きもち を 焼い て しまう。
+        english: The more I love you, the more jealous I become.
+        hint: The grammar point specifically states that the jealousy increases directly in proportion
+          to the depth of love. We're looking for that direct link.
+      - competing_japanese:
+          - 愛し て いれ ば 愛し て いる ほど、その 分 焼きもち を 焼い て しまう。
+        english: The more I love you, I become jealous correspondingly.
+        hint: This also expresses proportionality, but might imply a natural consequence or trade-off.
+          We're looking for a direct correspondence to the degree of love.
+      - competing_japanese:
+          - 愛し て いる けれど、それ ほど 焼きもち は 焼か ない。
+        english: I love you, but I don't get that jealous.
+        hint: This phrase implies a limited degree or negation of the expected intensity. We're looking
+          for a statement of proportional increase.
+    scene: Expressing complicated feelings in a relationship.
+    register: semi-formal
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker is a male expressing intense and complicated feelings to his lover. The direct
+      and somewhat blunt statement of 「焼きもちを焼いてしまう」 (which expresses becoming jealous), coupled with the
+      deep emotional context, can be a characteristic way some men express their vulnerability or possessiveness
+      in intimate conversation. The addition of 「んだ」 in the second Japanese example adds a sense of explanation
+      or personal conviction, common in male speech for emphasizing a point or providing a reason for
+      something felt or done. This sentence uses the 'ば～ほど' structure to highlight the direct proportionality
+      between love and jealousy, which is then reinforced by 「それだけ」. The use of 「～てしまう」 adds a sense of
+      inevitability or even a slight regret about the jealousy, indicating it's an outcome beyond full
+      control, which aligns with expressing deep, complex emotions in a melancholic setting. The nuance
+      of a 'male' speaker comes from the directness and the form of the confession, which is often less
+      overtly emotional than a female speaker might be in Japanese, especially with the use of 「んだ」 at
+      the end of the sentence to convey a more internal realization or explanation to the listener, typical
+      of a male's communication style in such an intimate context. He is acknowledging the feeling as
+      a direct, inevitable result of his love, rather than an emotion he actively chooses or enjoys having,
+      which can resonate with common male expressions of emotional vulnerability in Japan.
+    etymology: The phrase 「焼きもちを焼く」 literally means "to burn grilled rice cakes," which colloquially evolved
+      to mean "to be jealous." This is because of the imagery of something burning intensely and unevenly,
+      much like a jealousy that consumes a person. The expression vividly describes an intense, often
+      irrational, emotion, linking physical sensation to an abstract feeling, a common linguistic device
+      in Japanese to make emotions more tangible.
+  - english: The healthier your diet, the better your physical condition will be to that extent.
+    japanese:
+      - 食事 が 健康 的 で あれ ば ある ほど、{それ だけ} 体調 も 良く なり ます。
+      - 食事 が 健康 的 で あれ ば ある ほど、{それ だけ} 体調 も 改善 さ れ ます。
+    english_literally: If diet is healthy, as much as it is healthy, to that extent, physical condition
+      also becomes good.
+    competing_grammar:
+      - competing_japanese:
+          - 食事 が 健康 的 で あれ ば ある ほど、体調 も 良く なり ます。
+        english: The healthier your diet, the better your physical condition will be.
+        hint: The grammar point emphasizes that improved physical condition directly corresponds to the
+          healthiness of the diet. We're looking for that clear proportional relationship.
+      - competing_japanese:
+          - 食事 が 健康 的 で あれ ば ある ほど、その 分 体調 も 良く なり ます。
+        english: The healthier your diet, your physical condition will improve proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - どれ だけ 健康 的 な 食事 を し て も、それ ほど 効果 は ない と 思う。
+        english: No matter how healthy your diet is, I don't think it will have that much effect.
+        hint: This phrase implies a limited degree or negation of the expected outcome. We're looking
+          for a statement of proportional increase.
+    scene: A doctor advising a patient on lifestyle changes.
+    register: formal
+    setting: informative
+    nuance: 'This sentence conveys a common health principle. 「それだけ」 reinforces the direct correlation:
+      the extent of dietary health directly impacts the extent of physical well-being. The use of polite
+      ます-form makes it suitable for a formal, advisory context.'
+  - english: The higher the risk, the higher the return will be to that extent.
+    japanese:
+      - リスク が 高けれ ば 高い ほど、{それ だけ} リターン も 大きく なり ます。
+      - リスク が 高い。{それ だけ} リターン も 大きい。
+    english_literally: If risk is high, as much as it is high, to that extent, return also becomes large.
+    competing_grammar:
+      - competing_japanese:
+          - リスク が 高けれ ば 高い ほど、リターン も 大きく なり ます。
+        english: The higher the risk, the higher the return will be.
+        hint: The grammar point explicitly links the magnitude of return directly to the magnitude of
+          risk. We're looking for a clear proportional emphasis.
+      - competing_japanese:
+          - リスク が 高けれ ば 高い ほど、その 分 リターン も 大きく なり ます。
+        english: The higher the risk, the higher the return will be proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for a direct correspondence to the degree of risk.
+      - competing_japanese:
+          - どんな に リスク を 取っ て も、それ ほど リターン は 得 られ ない か も しれ ない。
+        english: No matter how much risk you take, you might not get that much return.
+        hint: This phrase implies a limited degree or possibility of a result. We're looking for a statement
+          about a direct, proportional increase.
+    scene: A financial advisor explaining investment principles to a client.
+    register: formal
+    setting: informative
+    nuance: This example demonstrates a fundamental principle in finance. 「それだけ」 here highlights that
+      the magnitude of the potential reward is directly and proportionally tied to the magnitude of the
+      risk taken. The formal register and informative setting are appropriate for discussing scientific
+      or societal issues.
+  - english: The higher your concentration, the more efficient your studying will be to that extent.
+    japanese:
+      - 集中 力 が 高けれ ば 高い ほど、{それ だけ} 勉強 の 効率 も 上がり ます。
+      - 集中 力 が 高けれ ば 高い ほど、{それ だけ} 勉強 の 効率 も 上がる よ。
+    english_literally: If concentration is high, as much as it is high, to that extent, studying efficiency
+      also rises.
+    competing_grammar:
+      - competing_japanese:
+          - 集中 力 が 高けれ ば 高い ほど、勉強 の 効率 も 上がり ます。
+        english: The higher your concentration, the more efficient your studying will be.
+        hint: The grammar point emphasizes that study efficiency directly corresponds to the level of
+          concentration. We're looking for that direct, proportional relationship.
+      - competing_japanese:
+          - 集中 力 が 高けれ ば 高い ほど、その 分 勉強 の 効率 も 上がり ます。
+        english: The higher your concentration, your study efficiency will improve proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - いくら 集中 し て も、それ ほど 効率 が 上がる と は 限ら ない。
+        english: No matter how much you concentrate, it doesn't necessarily mean efficiency will improve
+          that much.
+        hint: This phrase implies a limited degree or possibility of an outcome. We're looking for a statement
+          of proportional increase.
+    scene: Two students discussing their study habits during an exam period.
+    register: casual
+    setting: academic
+    nuance: The use of 「それだけ」 here links the degree of concentration directly to the degree of study efficiency.
+      The casual register (indicated by 「上がるよ」 in the second Japanese option) makes it sound like a friendly
+      tip or observation between students.
+  - english: The more you communicate, the more your understanding of each other will deepen to that extent.
+    japanese:
+      - コミュニケーション を 取れ ば 取る ほど、{それ だけ} お 互い の 理解 も 深まり ます。
+      - コミュニケーション を 取れ ば 取る ほど、{それ だけ} お 互い の 理解 も 深まる よ。
+    english_literally: If you take communication, as much as you take, to that extent, mutual understanding
+      also deepens.
+    competing_grammar:
+      - competing_japanese:
+          - コミュニケーション を 取れ ば 取る ほど、お 互い の 理解 も 深まり ます。
+        english: The more you communicate, the more your understanding of each other will deepen.
+        hint: The grammar point emphasizes that mutual understanding directly corresponds to the amount
+          of communication. We're looking for that direct, proportional relationship.
+      - competing_japanese:
+          - コミュニケーション を 取れ ば 取る ほど、その 分 お 互い の 理解 も 深まり ます。
+        english: The more you communicate, your mutual understanding will deepen proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - どんな に コミュニケーション を 取っ て も、それ ほど 理解 は 深まら ない 場合 も ある。
+        english: No matter how much you communicate, there are cases where understanding doesn't deepen
+          that much.
+        hint: This phrase implies a limited degree or possibility of an outcome. We're looking for a statement
+          of proportional increase.
+    scene: A counselor giving advice to a couple in therapy.
+    register: semi-formal
+    setting: serious
+    nuance: This sentence applies 「それだけ」 to interpersonal relationships, highlighting how the extent of
+      communication directly influences the extent of mutual understanding. The slightly formal ます-form
+      is appropriate for a counseling setting, suggesting a thoughtful, objective observation about human
+      interaction.
+  - english: The more thoroughly you plan your trip, the more enjoyable it will be to that extent.
+    japanese:
+      - 旅行 の 計画 を 綿密 に 立てれ ば 立てる ほど、{それ だけ} 旅 は 楽しく なり ます。
+      - 旅行 の 計画 を 綿密 に 立てれ ば 立てる ほど、{それ だけ} 旅 は 楽しく なる ね。
+      - 旅行 の 計画 を 綿密 に 立てれ ば 立てる ほど、{それ だけ} 旅 の 充実 度 は 増し ます。
+    english_literally: If you make trip plans meticulously, as much as you make them, to that extent,
+      the journey also becomes enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 の 計画 を 綿密 に 立てれ ば 立てる ほど、旅 は 楽しく なり ます。
+        english: The more thoroughly you plan your trip, the more enjoyable it will be.
+        hint: The grammar point emphasizes that the enjoyment directly corresponds to the meticulousness
+          of the planning. We're looking for that direct, proportional relationship.
+      - competing_japanese:
+          - 旅行 の 計画 を 綿密 に 立てれ ば 立てる ほど、その 分 旅 は 楽しく なり ます。
+        english: The more thoroughly you plan your trip, your journey will become enjoyable proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - 綿密 に 計画 を 立て て も、それ ほど 楽しい 旅 に なら ない こと も ある。
+        english: Even if you plan meticulously, sometimes the trip doesn't become that enjoyable.
+        hint: This phrase implies a limited degree or negation of the expected outcome. We're looking
+          for a statement of proportional increase.
+    scene: Friends excitedly discussing their upcoming travel plans, emphasizing preparation.
+    register: formal
+    setting: excited
+    nuance: This example uses 「それだけ」 in a positive, aspirational context. It suggests that the extent
+      of preparation directly translates to the extent of enjoyment, framing meticulous planning as a
+      worthwhile investment for a pleasurable experience. The formal register (using 「なります」) suits a setting
+      where someone might be earnestly advising or expressing a strong conviction about planning.
+  - english: The more pollution increases, the greater the environmental impact will be to that extent.
+    japanese:
+      - 汚染 が 増えれ ば 増える ほど、{それ だけ} 環境 へ の 影響 も 大きく なり ます。
+      - 汚染 が 増加 すれ ば する ほど、{それ だけ} 環境 へ の 悪 影響 も 拡大 し ます。
+    english_literally: If pollution increases, as much as it increases, to that extent, the impact on
+      the environment also becomes large.
+    competing_grammar:
+      - competing_japanese:
+          - 汚染 が 増えれ ば 増える ほど、環境 へ の 影響 も 大きく なり ます。
+        english: The more pollution increases, the greater the environmental impact will be.
+        hint: The grammar point explicitly links the magnitude of environmental impact directly to the
+          magnitude of pollution. We're looking for a clear proportional emphasis.
+      - competing_japanese:
+          - 汚染 が 増えれ ば 増える ほど、その 分 環境 へ の 影響 も 大きく なり ます。
+        english: The more pollution increases, the environmental impact will increase proportionately.
+        hint: While this also expresses proportionality, it often implies a natural consequence or a share.
+          We're looking for emphasis on the direct, proportional relationship to a stated degree.
+      - competing_japanese:
+          - 汚染 が これ 以上 増え て も、それ ほど 環境 影響 は ない だろう。
+        english: Even if pollution increases further, the environmental impact probably won't be that
+          much.
+        hint: This phrase implies a limited degree or negation of the expected outcome. We're looking
+          for a statement of proportional increase.
+    scene: An environmental scientist presenting data on global warming at a conference.
+    register: formal
+    setting: serious
+    nuance: This example conveys a serious, negative proportional relationship. 「それだけ」 underscores the
+      direct and often grim consequence of increased pollution, emphasizing that the degree of environmental
+      damage scales directly with the degree of contamination. The formal register and serious setting
+      are appropriate for discussing scientific or societal issues.
+post_example_writeup: The key to understanding 「それだけ」 is recognizing the proportional relationship it
+  establishes between two ideas or actions. It is versatile and can be used in various contexts to express
+  the consequences, benefits, or trade-offs associated with a particular action or state. This proportionality
+  can be expressed with conditional forms like 「～ば～ほど」 or simply by following a descriptive statement
+  to indicate that the subsequent result corresponds directly to the preceding condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それだけ

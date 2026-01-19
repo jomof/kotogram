@@ -1,0 +1,229 @@
+grammar_point: な-Adjective[なら] (conditional)
+learn_before:
+  - Verb[ます] (polite present)
+  - '[Verb-stem]おわる (to finish doing)'
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - 〜ら (plural suffix)
+meaning: if (it is a na-adjective), then; as for (a na-adjective), then
+pronunciation:
+  katakana: ナラ
+  romaji: nara
+formation:
+  な-Adjective (stem) + なら: Used when the condition is based on a na-adjective, often implying 'if that's
+    the case'.
+jlpt: N4
+etymology: The conditional particle 「なら」 is derived from the classical Japanese auxiliary verb 「なり」, which
+  functioned as a copula and could also indicate a conjecture or a condition. The form なら itself comes
+  from the conjunctive form of 「なり」. When attached to a な-adjective, it functions similarly to how it
+  does with nouns or noun phrases, implying "if it is [na-adjective]" or "if [na-adjective] is the case."
+  This connection to the copula 「なり」 highlights its role in stating a condition or an assumed fact before
+  proceeding with a statement, advice, or observation.
+writeup: |-
+  The grammar point な-Adjective + なら is used to form a conditional statement where the condition is based on a な-adjective. It essentially means "if it is [na-adjective]" or "if [na-adjective] is the case." This conditional form is frequently used to provide advice, suggestions, or to express a reaction to a situation that is presumed or has just been mentioned.
+
+  Unlike other conditional forms like 「ば」 or 「たら」 that can indicate a general cause-and-effect or a hypothetical situation, 「なら」 often operates by taking the preceding statement or situation as a given. It implies "if what you said is true," or "if that's the situation." For example, if someone states, 「静かです」(It's quiet), you might respond, 「静かなら、ゆっくり本が読めますね」(If it's quiet, you can read a book slowly, can't you?). Here, the quietness is taken as an established fact.
+
+  The structure is simple: just attach なら to the stem of a な-adjective. For example, 「きれい」 (clean/beautiful) becomes 「きれいなら」 (if it's clean/beautiful). This form is quite versatile and can be used in both casual and polite contexts, depending on the politeness level of the subsequent clause.
+
+  Key characteristics of な-Adjective + なら:
+  *   **Implied Assumption**: It often implies that the condition is already known or has just been stated by the other party.
+  *   **Contextual**: It's highly dependent on the preceding context or conversation.
+  *   **Recommendations/Reactions**: Frequently used to give advice, suggest alternatives, or express a logical consequence based on the established condition.
+false_friends:
+  - term: Verb[えば] (conditional)
+    meaning: if (verb)
+    kind: similar expression
+    nuance: Verb[えば] (conditional) indicates a general, often natural, condition-consequence relationship.
+      It doesn't carry the "if that's the case" nuance of な-Adjective[なら], which often responds to an
+      assumed or stated condition.
+    grammar_point: Verb[えば] (conditional)
+  - term: たら (conditional, when・if A then B)
+    meaning: if, when
+    kind: similar expression
+    nuance: たら is a general conditional that can imply sequence ("when A, then B") or a hypothetical situation.
+      While flexible, it lacks the specific "if that's the case/as for X" responsive nuance often found
+      with な-Adjective[なら]. It can also connect to a wider range of predicates.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: と (conditional, inevitable result)
+    meaning: if, when (inevitable result)
+    kind: similar expression
+    nuance: と implies an inevitable or natural consequence. If A happens, B *always* happens. This is
+      much stronger and less flexible than な-Adjective[なら], which simply states a condition for a particular
+      situation or advice.
+    grammar_point: と (conditional, inevitable result)
+  - term: なら (conditional, if it's the case that A)
+    meaning: if (it is the case that A)
+    kind: similar expression
+    nuance: This is the general なら conditional particle, which can attach to nouns, plain verbs, and verb-phrases.
+      Our current grammar point specifically focuses on its usage with な-adjectives. While functionally
+      similar, this broader なら can set a topic or context beyond simply stating "if it is X adjective."
+    grammar_point: なら (conditional, if it's the case that A)
+post_false_friends_writeup: While Japanese has several ways to express conditional statements, な-Adjective[なら]
+  specifically focuses on conditions derived from な-adjectives. It's crucial to understand that な-Adjective[なら]
+  often implies a response to a situation already known or stated. For instance, if someone says the room
+  is 「静か」(shizuka - quiet), you might use 「静かなら」(shizuka nara - if it's quiet...) to suggest an action
+  or comment. Other conditional forms like 「〜ば」, 「〜たら」, and 「〜と」 have their own distinct nuances regarding
+  the relationship between the condition and the result, or the timing of events. The general 「なら」 particle
+  (without specifying な-adjectives) can be used more broadly with nouns and verbs to imply "as for X"
+  or "if it's X," setting a topic or context, which is a related but distinct function from its role directly
+  with な-adjective stems.
+examples:
+  - english: If it's convenient, let's meet at the station.
+    japanese:
+      - 便利 {なな ら}、駅 で 会い ましょう。
+      - 便利 {なな ら}、駅 で 会おう。
+    english_literally: If convenient, at station, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 {だっ たら}、駅 で 会い ましょう。
+        english: If it's convenient, let's meet at the station.
+        hint: 「〜たら」is a common conditional for stating a hypothetical or sequential condition. While similar,
+          「〜なら」often implies a response to an existing situation or context. We're looking for a conditional
+          that sets a context.
+      - competing_japanese:
+          - 便利 {で あれ ば}、駅 で 会い ましょう。
+        english: If it is convenient, let's meet at the station.
+        hint: 「であれば」is a more formal conditional and sounds a bit stiff in casual conversation. We're
+          looking for a common conditional in friendly conversation.
+    scene: Two friends are making plans.
+    register: casual
+    setting: friendly
+  - english: If it's safe, I want to go to that park.
+    japanese:
+      - 安全 {なな ら}、あの 公園 に 行き たい です。
+      - 安全 {なな ら}、あの 公園 に 行き たい。
+    english_literally: If safe, that park to go want.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 {だっ たら}、あの 公園 に 行き たい です。
+        english: If it were safe, I would want to go to that park.
+        hint: 「〜たら」can imply a hypothetical or a more general "if." 「〜なら」often takes the condition as
+          a given or a topic for discussion. We're looking for a conditional that sets a context or responds
+          to a situation.
+    scene: A tourist asking about a local spot.
+    register: teineigo (polite)
+    setting: informative
+  - english: If it's tough, you don't have to push yourself.
+    japanese:
+      - 大変 {なな ら}、無理 し なく て いい です よ。
+      - 大変 {なな ら}、無理 し なく て いい よ。
+    english_literally: If tough, don't have to push yourself.
+    competing_grammar:
+      - competing_japanese:
+          - 大変 {だ と}、無理 し なく て いい です よ。
+        english: If it's tough, you don't have to push yourself.
+        hint: 「〜と」often implies an inevitable or natural consequence. While sometimes interchangeable,
+          「〜なら」is more suited for giving advice or suggestions based on an observation. We're looking
+          for a conditional expressing advice based on a current state.
+    scene: A colleague noticing a friend struggling at work.
+    register: semi-formal
+    setting: supportive
+  - english: If it's simple, I think I can do it alone.
+    japanese:
+      - 簡単 {なな ら}、一人 で できる と 思う。
+      - 簡単 {なな ら}、一人 で でき ます と 思い ます。
+    english_literally: If simple, alone can do I think.
+    competing_grammar:
+      - competing_japanese:
+          - 簡単 {だっ たら}、一人 で できる と 思う。
+        english: If it were simple, I think I could do it alone.
+        hint: 「〜たら」is a versatile conditional, but 「〜なら」often directly follows a stated or assumed condition,
+          providing a more direct response. We're looking for a conditional that reacts to a perceived
+          situation.
+    scene: A student deciding on a project.
+    register: casual
+    setting: reflective
+  - english: If it's dangerous, you shouldn't go near it.
+    japanese:
+      - 危険 {なな ら}、近寄ら ない ほう が いい です。
+      - 危険 {なな ら}、近寄ら ない ほう が いい よ。
+    english_literally: If dangerous, not get close side good is.
+    competing_grammar:
+      - competing_japanese:
+          - 危険 {で あれ ば}、近寄ら ない ほう が いい です。
+        english: If it is dangerous, you shouldn't go near it.
+        hint: 「〜であれば」is a more formal and stiff way to state a condition. While correct, 「〜ななら」is more
+          natural in general conversation, even when giving a warning. We're looking for a common conditional
+          for advice.
+    scene: A parent warning a child about something.
+    register: teineigo (polite)
+    setting: instructional
+  - english: If it's necessary, I'll help.
+    japanese:
+      - 必要 {なな ら}、手伝い ます よ。
+      - 必要 {なな ら}、手伝う よ。
+      - 必要 {なな ら}、お 手伝い いたし ます。
+    english_literally: If necessary, I will help.
+    competing_grammar:
+      - competing_japanese:
+          - 必要 {で あれ ば}、手伝い ます よ。
+        english: If it's necessary, I'll help.
+        hint: 「〜であれば」is more formal, often used in written or highly formal speech. 「〜ななら」is common in
+          professional but spoken contexts. We're looking for a common conditional in professional speech.
+    scene: A team member offering assistance.
+    register: teineigo (polite)
+    setting: professional
+  - english: If it's free, I'd like to try it.
+    japanese:
+      - 無料 {なな ら}、試し て み たい な。
+      - 無料 {なな ら}、試し て み たい です ね。
+    english_literally: If free, try want.
+    competing_grammar:
+      - competing_japanese:
+          - 無料 {だっ たら}、試し て み たい な。
+        english: If it were free, I'd like to try it.
+        hint: 「〜だったら」can imply a hypothetical. 「〜ななら」here takes the "free" status as an existing condition
+          that sparks the desire to try. We're looking for a conditional that responds to a given state.
+    scene: Someone looking at a free sample.
+    register: casual
+    setting: excited
+  - english: If it's possible, could you prepare the documents by tomorrow?
+    japanese:
+      - 可能 {なな ら}、明日 まで に 書類 を 準備 し て いただけ ませ ん か？
+      - 可能 {なな ら}、明日 まで に 書類 を 準備 し て もらえ ませ ん か？
+    english_literally: If possible, by tomorrow documents prepare could you?
+    competing_grammar:
+      - competing_japanese:
+          - 可能 {で あれ ば}、明日 まで に 書類 を 準備 し て いただけ ませ ん か？
+        english: If it is possible, could you prepare the documents by tomorrow?
+        hint: While 「〜であれば」is also used in formal requests, 「〜ななら」is a very common and slightly less stiff
+          way to propose something based on a condition. We're looking for a frequently used polite conditional
+          for requests.
+    scene: A manager asking an employee.
+    register: semi-formal
+    setting: professional
+  - english: If it's serious, we should tell the teacher.
+    japanese:
+      - 大事 {なな ら}、先生 に 話す べき だ よ。
+      - 大事 {なな ら}、先生 に 話す べき です よ。
+    english_literally: If serious, teacher to talk should.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 {だっ たら}、先生 に 話す べき だ よ。
+        english: If it were serious, we should tell the teacher.
+        hint: 「〜だったら」can imply a hypothetical scenario. 「〜ななら」is used here to react to the current assessment
+          of the situation as being serious. We're looking for a conditional that reacts to a current
+          assessment.
+    scene: Two students discussing a problem.
+    register: casual
+    setting: serious
+  - english: If it's quiet, it's a good place for studying.
+    japanese:
+      - 静か {なな ら}、勉強 に いい 場所 です ね。
+      - 静か {なな ら}、勉強 に いい 場所 だ ね。
+    english_literally: If quiet, study for good place is, right.
+    competing_grammar:
+      - competing_japanese:
+          - 静か {で あれ ば}、勉強 に いい 場所 です ね。
+        english: If it is quiet, it's a good place for studying.
+        hint: 「〜であれば」is often found in formal written language. 「〜ななら」is more typical for casual or conversational
+          agreement. We're looking for a common conditional in conversation.
+    scene: Two friends looking for a study spot.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: Understanding な-Adjective + なら requires attention to the existing context. It is
+  often a direct response to a stated or implied situation involving a な-adjective, allowing for practical
+  advice, suggestions, or logical conclusions to follow. Pay attention to how the speaker uses it to build
+  upon shared understanding.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-Adjective[なら]-(conditional)

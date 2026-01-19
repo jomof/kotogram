@@ -1,0 +1,336 @@
+grammar_point: というのは (definition or reason)
+learn_before:
+  - ことなの (it is that)
+meaning: Known as ~; Called ~ is ~; Means ~; Because
+pronunciation:
+  katakana: トイウノハ
+  romaji: to iu no wa
+formation:
+  '[Phrase] + というのは': Used to introduce an explanation, definition, or reason for the preceding phrase.
+jlpt: N3
+etymology: 'The phrase 「というのは」 is derived from 「と」 (a particle indicating content or definition), 「言う」
+  (iu, to say), 「の」 (a nominalizer turning the preceding phrase into a noun), and 「は」 (wa, the topic marker).
+  Literally, it means "as for the thing that is said...". This structure highlights its core function:
+  taking a statement or concept and marking it as the topic about which further explanation or definition
+  will be provided. The historical development shows a progression from simply quoting or stating to defining
+  and explaining, using the nominalizing particle 「の」 to treat the preceding phrase as a conceptual entity.'
+writeup: '「というのは」 is a versatile phrase used to introduce an explanation, definition, or reason for something
+  that has just been mentioned. It functions similarly to saying "what I mean is..." or "the reason is...".
+  Essentially, it takes a phrase and turns it into a conceptual noun phrase, which is then marked as the
+  topic for further clarification.Key Usages: Providing Definitions: Used to define a term or concept,
+  similar to "is known as" or "means that". Giving Reasons: Used to explain the reason or rationale behind
+  a previous statement, often translating to "because" or "that''s why". When used to give a reason, it
+  often appears as 「というのも」. Clarifying or Elaborating: Used to elaborate on a previous statement or to
+  clarify what one means, much like "what I mean to say is...".Important Considerations: When providing
+  a reason, it frequently appears as 「というのも」. This form explicitly signals that an explanation or justification
+  will follow. While 「というのは」 presents facts or highlights points for discussion, replacing 「は」 with 「も」
+  (as in 「というのも」) can either emphasize the point as ''also'' a reason or to give a strong, singular reason.
+  「というのは」 can appear at the beginning of a sentence to add extra information about something previously
+  said. In this case, it translates to "what I mean to say is..." or "because of that..." or "the thing
+  is...". In casual speech, 「というのは」 can be abbreviated to 「とは」 or even 「って」, though the nuance might shift
+  slightly depending on the context.'
+false_friends:
+  - term: ことなの
+    meaning: (A) is (Description of A), (A) means that (Description of A)
+    kind: similar expression
+    nuance: While similar, 「ことなの」 is often used to provide a more descriptive explanation, often with
+      a slightly softer or more inquisitive tone. 「というのは」 is more direct in defining or giving a reason.
+    grammar_point: ことなの (it is that)
+  - term: ということは
+    meaning: That means, That is to say
+    kind: similar expression
+    nuance: 「ということは」 implies a conclusion or inference based on the previous statement. It is about drawing
+      a logical consequence, unlike 「というのは」, which introduces a direct explanation or definition.
+    grammar_point: ということ(は) (that means)
+  - term: ということ
+    meaning: ~ing, The ~ that ~ (Nominalization)
+    kind: similar expression
+    nuance: 「ということ」 is primarily used for nominalization, turning a verb or clause into a noun or to report
+      information. While it shares the 「と」 and 「こと」 elements, 「というのは」 specifically introduces a clarification
+      or explanation of a topic.
+    grammar_point: <suggest>:ということ (nominalizer・conclusion)
+  - term: という
+    meaning: Called, Named, Known as, As much as
+    kind: similar expression
+    nuance: 「という」 is used to indicate a name, type, or content of something. It is simpler and more direct
+      for naming, whereas 「というのは」 provides a further definition or elaborates on the meaning of a concept.
+    grammar_point: という (naming and definition)
+  - term: いわゆる
+    meaning: What is called, So-called, Generally known
+    kind: similar expression
+    nuance: 「いわゆる」 refers to something that is commonly known or accepted by a certain name. It suggests
+      a widely understood term, whereas 「というのは」 introduces a specific definition or explanation.
+    grammar_point: いわゆる (so-called)
+  - term: なぜなら
+    meaning: Because, The reason is
+    kind: synonym
+    nuance: 「なぜなら」 explicitly introduces a reason or cause, often at the beginning of a sentence. While
+      similar in function, 「というのも」 allows for a more integrated explanation, particularly when linking
+      back to a preceding statement. 「なぜなら」 is a more direct and formal way to state 'because'.
+    grammar_point: なぜなら〜から (emphasized reason)
+post_false_friends_writeup: The similar expressions share the common ground of providing information related
+  to a previously stated phrase. However, the subtle difference lies in the angle of approach. 「ことなの」
+  is often descriptive, 「ということは」 infers a conclusion, 「ということ」 nominalizes or reports, 「という」 names or indicates
+  content, and 「いわゆる」 generalizes. In contrast, 「というのは」 defines, explains, or clarifies a topic, often
+  introducing a reason or further detail about it. While 「なぜなら」 also introduces a reason, 「というのは」 can
+  also be used for definitions, offering a broader explanatory scope.
+examples:
+  - english: Stress is a burden placed on the mind and body.
+    japanese:
+      - ストレス {と いう の は}、心身 に かかる 負担 の こと です。
+      - ストレス {と いう の は}、心身 に かかる 負担 な の です。
+    english_literally: As for what is called stress, it is a burden placed on the mind and body.
+    competing_grammar:
+      - competing_japanese:
+          - ストレス {は} 心身 に かかる 負担 の こと です。
+        english: Stress is a burden placed on the mind and body.
+        hint: While 「は」 states a fact, 「というのは」 emphasizes that you are about to define or explain the
+          preceding term. We're looking for a clear definition.
+      - competing_japanese:
+          - ストレス は 心身 に かかる 負担 の {こと な の}。
+        english: Stress is about the burden placed on the mind and body.
+        hint: 「ことなの」 often describes or explains something in a slightly softer or more informal tone,
+          while 「というのは」 introduces a clear definition or a reason. We're seeking a clear definition.
+      - competing_japanese:
+          - '{いわゆる} ストレス は 心身 に かかる 負担 だ。'
+        english: So-called stress is a burden placed on the mind and body.
+        hint: 「いわゆる」 refers to something commonly known or called by a certain term, while 「というのは」 introduces
+          a direct definition or explanation of that term. We are defining 'stress'.
+      - competing_japanese:
+          - ストレス {と いう} 負担。
+        english: A burden called stress.
+        hint: 「という」 links a noun to a preceding descriptive phrase, while 「というのは」 introduces a definition
+          or explanation of the preceding term. We're defining 'stress', not just naming a burden.
+    scene: A health professional explains a concept during a lecture.
+    register: formal
+    setting: informative
+  - english: He was able to pass because he studied hard every day.
+    japanese:
+      - 彼 が 合格 でき た {と いう の も}、毎日 一生 懸命 勉強 し た から です。
+      - 彼 が 合格 でき た {と いう の も}、毎日 一生 懸命 勉強 し た から な ん だ。
+    english_literally: The fact that he was able to pass, that is because he studied hard every day.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 合格 でき た {の は} 毎日 一生 懸命 勉強 し た から です。
+        english: The reason he passed was because he studied hard every day.
+        hint: The scene sets up a situation where a reason is being given for a previous statement. 「というのも」
+          explicitly signals that an explanation is forthcoming, making it more natural for providing
+          a detailed reason compared to a more direct but less explanatory 「のは」.
+      - competing_japanese:
+          - 彼 が 合格 でき た。{と いう こと は}、毎日 一生 懸命 勉強 し た から だ。
+        english: He was able to pass. That means he studied hard every day.
+        hint: 「ということは」 implies a conclusion or inference drawn from a previous statement, while 「というのも」
+          directly introduces the reason or explanation for that statement. We are stating the reason
+          for his success.
+      - competing_japanese:
+          - '{なぜ なら} 彼 が 毎日 一生 懸命 勉強 し た から だ。'
+        english: That is because he studied hard every day.
+        hint: 「なぜなら」 is a direct way to state a reason, often used at the beginning of a sentence. While
+          similar in function, 「というのも」 allows for a more integrated explanation, particularly when linking
+          back to a preceding statement. We're looking for a reason linked to the preceding action.
+    scene: A teacher explaining a student's success to their parents.
+    register: formal
+    setting: informative
+  - english: You shouldn't lie, because it breaks trust.
+    japanese:
+      - 嘘 を つい て は いけ ませ ん。{と いう の も}、信頼 関係 を 壊し て しまう から です。
+      - 嘘 を つい て は いけ ない よ。{と いう の も}、信頼 関係 を 壊し て しまう から だ よ。
+    english_literally: You must not tell lies. That is because it will break trust.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 を つい て は いけ ませ ん。信頼 関係 を 壊し て しまう {から} です。
+        english: You shouldn't lie, because it breaks trust.
+        hint: The scene implies a moral instruction where 「というのも」 connects the prohibition with its fundamental
+          reason, adding emphasis to the justification rather than merely stating a consequence.
+      - competing_japanese:
+          - 嘘 を つい て は いけ ませ ん。{と いう こと は}、信頼 関係 を 壊し て しまう から だ。
+        english: You shouldn't lie. That means it breaks trust.
+        hint: 「ということは」 implies a conclusion or inference, while 「というのも」 directly introduces the reason
+          for a preceding statement. We are explaining the reason for the rule.
+    scene: A parent teaching their child about honesty.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: The phrase 「嘘を ついては いけません」 (you shouldn't lie) is a direct instruction from an older speaker.
+      「というのも」 then provides the fundamental reason, 「信頼 関係を 壊してしまうからです」 (because it breaks trust), emphasizing
+      the underlying principle.
+  - english: I can't work overtime today. That's because I have a dentist's appointment.
+    japanese:
+      - 今日 は 残業 でき ない ん だ。{と いう の も}、歯 医者 の 予約 が ある ん だ。
+      - 今日 は 残業 でき ませ ん。{と いう の も}、歯 医者 の 予約 が あり ます から。
+    english_literally: Today, I cannot work overtime. That is because I have a dentist's appointment.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 残業 でき ない ん だ。{だ って} 歯 医者 の 予約 が ある ん だ。
+        english: I can't work overtime today, because I have a dentist's appointment.
+        hint: The scene implies a polite explanation for a personal situation. 「というのも」 offers a more elaborated
+          and somewhat apologetic reason for the inability to stay, differentiating it from a simple causal
+          statement. We're looking for a common casual alternative for giving a reason.
+      - competing_japanese:
+          - 今日 は 残業 でき ない。{と いう こと は}、歯 医者 の 予約 が ある ん だ。
+        english: I can't work overtime today. That means I have a dentist's appointment.
+        hint: 「ということは」 implies a conclusion or inference, while 「というのも」 directly introduces the reason
+          for a preceding statement. We are giving a reason for not being able to work overtime.
+    scene: A colleague explaining why they have to leave early.
+    register: casual
+    setting: apologetic
+    nuance: The casual ending 「できないんだ」 sets a friendly tone. 「というのも」 provides a clear, personal reason,
+      「歯医者の 予約が あるんだ」 (I have a dentist's appointment), for the inability to work overtime.
+  - english: A smartphone means a shortened form of smart phone.
+    japanese:
+      - スマホ {と いう の は}、スマート フォン の 略 です。
+      - スマホ {と いう の は}、スマート フォン の 略 だ よ。
+    english_literally: As for what is called 'smartphone', it is an abbreviation of 'smart phone'.
+    competing_grammar:
+      - competing_japanese:
+          - スマホ {は} スマート フォン の 略 です。
+        english: A smartphone is an abbreviation of smart phone.
+        hint: The scene of explaining an abbreviation highlights 「というのは」 as a specific way to define a
+          term or explain its origin, making it more suitable for clarifying a linguistic point than a
+          simple subject-comment statement.
+      - competing_japanese:
+          - スマホ は スマート フォン の 略 {な の}。
+        english: A smartphone is an abbreviation of smart phone.
+        hint: 「ことなの」 often describes or explains something in a slightly softer or more informal tone,
+          while 「というのは」 introduces a clear definition or a reason. We're seeking a clear definition.
+      - competing_japanese:
+          - '{いわゆる} スマホ は スマート フォン の 略 だ。'
+        english: So-called smartphone is a burden placed on the mind and body.
+        hint: 「いわゆる」 refers to something commonly known or called by a certain term, while 「というのは」 introduces
+          a direct definition or explanation of that term. We are defining 'smartphone'.
+      - competing_japanese:
+          - スマホ {と いう} 略。
+        english: An abbreviation called smartphone.
+        hint: 「という」 links a noun to a preceding descriptive phrase, while 「というのは」 introduces a definition
+          or explanation of the preceding term. We're defining 'smartphone', not just naming an abbreviation.
+    scene: A tech enthusiast explains an abbreviation to a friend.
+    register: casual
+    setting: informative
+  - english: I think happiness is not something you grasp, but something you feel.
+    japanese:
+      - 幸福 {と いう の は}、掴む もの で は なく、感じる もの だ と 私 は 思う わ。
+      - 幸福 {と いう の は}、掴む もの で は なく、感じる もの だ と 思う わ。
+    english_literally: As for what is called happiness, I think that it is not something to grasp, but
+      something to feel.
+    competing_grammar:
+      - competing_japanese:
+          - 幸福 {は} 掴む もの で は なく、感じる もの だ と 私 は 思う わ。
+        english: I think love is being able to feel at ease just by being near someone.
+        hint: The intimate scene between close friends, featuring a female speaker, uses 「というのは」 to introduce
+          a personal, heartfelt definition of 'love.' This framing makes the statement sound more deeply
+          felt and reflective, rather than a mere factual declaration.
+      - competing_japanese:
+          - 幸福 は 掴む もの で は なく、感じる もの だ {と いう こと な の}。
+        english: Happiness is the fact that it's something you feel, not something you grasp.
+        hint: 「ことなの」 tends to explain something as a fact or condition, whereas 「というのは」 introduces a personal
+          definition or insight. We're looking for a personal insight into happiness.
+    scene: A philosopher sharing their thoughts on the nature of happiness.
+    register: formal
+    setting: reflective
+    nuance: In a reflective setting, 「幸福というのは」 introduces a personal philosophical definition of 「幸福」
+      (happiness). The speaker uses 「掴む ものではなく、感じる ものだと」 to express their deep insight, with 「私は 思う」 indicating
+      it as their personal perspective.
+  - english: So, what you really want to say is that you want me to do this job?
+    japanese:
+      - 結局、君 の 言い たい こと {と いう の は}、私 に この 仕事 を やっ て ほしい と いう こと な の？
+      - 結局、君 の 言い たい こと {と いう の は}、私 に この 仕事 を やっ て いただき たい と いう こと な の です か？
+    english_literally: In the end, as for what you want to say, is it that you want me to do this job?
+    competing_grammar:
+      - competing_japanese:
+          - 結局、君 の 言い たい こと {は} 私 に この 仕事 を やっ て ほしい と いう こと な の？
+        english: In the end, is what you want to say that you want me to do this job?
+        hint: The scene portrays a clarifying dialogue. 「というのは」 emphasizes the manager's attempt to distill
+          the essence of the employee's vague statement, seeking confirmation of the underlying meaning
+          or intent.
+      - competing_japanese:
+          - 結局、君 の 言い たい こと。{と いう こと は}、私 に この 仕事 を やっ て ほしい と いう こと か？
+        english: In the end, what you want to say. Does that mean you want to do this job?
+        hint: 「ということは」 implies a conclusion or inference, while 「というのは」 is used to clarify or rephrase
+          a preceding statement. We are rephrasing for clarification.
+    scene: A manager clarifying a vague request from an employee.
+    register: semi-formal
+    setting: interrogative
+    nuance: 「君の 言いたい ことというのは」 is used by the manager to rephrase and clarify the employee's possibly unclear
+      request. The casual yet assertive 「なの？」 ending seeks confirmation of the underlying meaning.
+  - english: What exactly does success mean to you?
+    japanese:
+      - あなた に とっ て の『成功』{と いう の は}、具体 的 に どんな こと な の？
+      - あなた に とっ て の『成功』{と いう の は}、具体 的 に どの よう な こと な の です か？
+    english_literally: As for 'success' for you, what kind of thing is it, concretely?
+    competing_grammar:
+      - competing_japanese:
+          - あなた に とっ て の『成功』{は} 具体 的 に どんな こと な の？
+        english: What exactly does success mean to you?
+        hint: The scene implies a personal exploration of a concept. 「というのは」 is used to prompt the listener
+          to define a term from their own perspective, rather than just asking for a general characteristic.
+      - competing_japanese:
+          - あなた に とっ て の『成功』{に つい て}、具体 的 に どんな こと を 指し ます か？
+        english: Regarding 'success' for you, what specifically does it refer to?
+        hint: This alternative asks what 'success' refers to, but 「というのは」 specifically seeks a definition
+          or explanation of the concept itself, encouraging a broader philosophical response rather than
+          just a specific reference.
+    scene: A life coach asking a client for their personal definition of success.
+    register: formal
+    setting: interrogative
+    nuance: 「あなたにとっての「成功」というのは」 is a thoughtful question, common in a coaching setting, prompting the
+      listener to define 「成功」 (success) in their own terms. The use of 「なの？」 makes the question inquisitive
+      yet approachable.
+  - english: I think love is being able to feel at ease just by being near someone.
+    japanese:
+      - 愛 {と いう の は}、そば に いる だけ で 安心 できる こと だ と、私 は 思う わ。
+      - 愛 {と いう の は}、そば に いる だけ で 安心 できる って こと だ と 思う わ。
+    english_literally: As for what is called love, I think it is being able to feel at ease just by being
+      near someone.
+    competing_grammar:
+      - competing_japanese:
+          - 愛 {は} そば に いる だけ で 安心 できる こと だ と、私 は 思う わ。
+        english: I think love is being able to feel at ease just by being near someone.
+        hint: The intimate scene between close friends, featuring a female speaker, uses 「というのは」 to introduce
+          a personal, heartfelt definition of 'love.' This framing makes the statement sound more deeply
+          felt and reflective, rather than a mere factual declaration.
+      - competing_japanese:
+          - 愛 は そば に いる だけ で 安心 できる {こと な の}。
+        english: Love is being able to feel at ease just by being near someone.
+        hint: 「ことなの」 tends to explain something as a fact or condition, whereas 「というのは」 introduces a personal
+          definition or insight. We're looking for a personal insight into love.
+    scene: A woman confiding in her close friend about her feelings.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    nuance: The female speaker uses 「愛というのは」 to express her personal definition of 「愛」 (love). The ending
+      「と思うわ」 (I think) is a common feminine speech pattern, adding a soft, reflective nuance to her heartfelt
+      statement. This intimate phrasing is typical in close, personal conversations.
+  - english: What I mean by 'sustainability' is not just protecting the environment, but also considering
+      economic and social aspects.
+    japanese:
+      - 持続 可能 性 {と いう の は}、環境 保護 だけ で なく、経済 的、社会 的 側面 も 考慮 する こと です。
+      - 持続 可能 性 {と いう の は}、環境 保護 に 加え、経済 的 および 社会 的 な 側面 を も 含 ん だ 概念 です。
+    english_literally: As for what is called 'sustainability', it is not just environmental protection,
+      but also considering economic and social aspects.
+    competing_grammar:
+      - competing_japanese:
+          - 持続 可能 性 {は} 環境 保護 だけ で なく、経済 的、社会 的 側面 も 考慮 する こと です。
+        english: Sustainability is not just protecting the environment, but also considering economic
+          and social aspects.
+        hint: While 「は」 states a fact, 「というのは」 is used to explicitly introduce a definition or clarification,
+          especially when expanding on a concept. We're looking for a comprehensive definition.
+      - competing_japanese:
+          - 持続 可能 性。{つまり} 環境 保護 だけ で なく、経済 的、社会 的 側面 も 考慮 する こと です。
+        english: Sustainability. That is to say, it's not just protecting the environment, but also considering
+          economic and social aspects.
+        hint: 「つまり」 typically introduces a rephrased or summarized version of what was just said, implying
+          an equivalence. 「というのは」 is used to define or explain the term itself, often elaborating on its
+          full meaning. We're providing a complete definition.
+    scene: An environmental consultant explains a complex term to a diverse audience during a public seminar.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    nuance: The speaker uses 「というのは」 to provide a comprehensive definition of 「持続可能性」 (sustainability),
+      clarifying that it extends beyond common understanding to include economic and social dimensions.
+      This formal explanation is typical in an academic or professional setting.
+post_example_writeup: The examples demonstrate 「というのは」 being used to provide definitions, explanations,
+  and reasons in various contexts. Pay attention to how it connects the initial statement with further
+  clarification. Notice the natural variations in politeness and gendered speech that can be applied while
+  maintaining the core meaning of the grammar point.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/というのは

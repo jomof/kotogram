@@ -1,0 +1,234 @@
+grammar_point: 単なる (mere・simple)
+learn_before:
+  - な-Adjective[すぎる] (excessive)
+meaning: mere; simple; nothing more than; just a
+pronunciation:
+  katakana: タンナル
+  romaji: tannaru
+formation:
+  単なる + Noun: Used to describe a noun as being merely something, emphasizing its simplicity, insignificance,
+    or lack of deeper meaning.
+jlpt: N3
+etymology: The term 単なる (tannaru) is a compound formed from 単 (tan), meaning 'single,' 'simple,' or 'one,'
+  and the classical attributive form なる (naru), which functions similarly to the modern copula である (de
+  aru) or だ (da). Therefore, 単なる literally translates to 'is simple' or 'is single.' This etymological
+  root highlights its primary function of emphasizing something's singular, unadorned, or uncomplex nature,
+  leading to its contemporary meaning of 'mere' or 'just.' It reduces the modified noun to its most basic
+  essence, implying an absence of additional layers or significance.
+writeup: |-
+  単なる (tannaru) is an adjectival phrase used to describe a noun as being **nothing more than** what it appears, highlighting its **simplicity**, **insignificance**, or **lack of deeper meaning**. It directly precedes the noun it modifies, functioning grammatically like a な-adjective.
+
+  This expression is often employed to downplay the significance of a person, object, or situation, or to dismiss it as trivial. For instance, stating someone is `単なる友達` (tannaru tomodachi) emphasizes that they are **just a friend** and nothing more, implying no romantic or profound connection.
+
+  While `単なる` frequently carries a reductive or dismissive tone, it can also neutrally convey simplicity, as in `単なる間違い` (tannaru machigai, a simple mistake). However, its most common use emphasizes the 'mere' or 'nothing but' aspect, often with a subtle nuance of understatement or mild criticism. It is generally versatile and can be used across various registers, from casual conversation to more formal statements, depending on the overall context and desired effect.
+false_friends:
+  - term: ただの (tada no)
+    meaning: just; only; ordinary
+    kind: similar expression
+    nuance: While both mean 'just' or 'only,' 単なる often implies a stronger sense of insignificance or
+      lack of depth, sometimes with a dismissive undertone. ただの can be more neutral, simply stating something
+      is common or ordinary without necessarily implying triviality. For example, `ただの風邪` (tada no kaze,
+      just a cold) implies it's not a serious illness, while `単なる偶然` (tannaru guuzen, mere coincidence)
+      emphasizes the sheer lack of intentionality or deeper meaning.
+    grammar_point: ただの (just・only)
+  - term: 単に (tanni)
+    meaning: simply; just
+    kind: similar expression
+    nuance: 単に is an adverb that modifies verbs or adjectives, meaning 'simply' or 'merely' in an action
+      or state. It does not modify nouns directly like 単なる. For example, `単に忘れただけだ` (tanni wasureta dake
+      da) means 'I simply forgot it,' emphasizing the straightforwardness of the action.
+    grammar_point: <suggest>:単に (simply・just)
+  - term: 普通の (futsuu no)
+    meaning: normal; ordinary; regular
+    kind: similar expression
+    nuance: 普通の is a neutral descriptor for something common, standard, or average. While 単なる can also
+      imply commonality, it adds the nuance of 'nothing special' or 'mere.' 普通の lacks the potential dismissive
+      or reductive tone of 単なる. For example, `普通の学生` (futsuu no gakusei, a normal student) describes typicality,
+      whereas `単なる学生` (tannaru gakusei, mere student) might imply they are just a student and nothing
+      else noteworthy.
+    grammar_point: な-Adjective (modifying nouns)
+post_false_friends_writeup: When distinguishing between 単なる, ただの, and 普通の, consider the speaker's intent.
+  単なる often implies a deliberate minimization or dismissiveness, reducing something to its most basic
+  form. ただの can be a more neutral way of stating 'only' or 'just,' sometimes implying it's not as significant
+  as one might think, but without the strong dismissive nuance of 単なる. 普通の simply describes something
+  as typical or average without any implied judgment of significance. Remember that 単に is an adverb and
+  modifies actions or states, not nouns, making it distinct from the adjectival 単なる.
+examples:
+  - english: It was just a simple mistake.
+    japanese:
+      - それ は {単なる} 間違い でし た。
+      - それ は {単なる} 間違い だっ た。
+      - それ は {単なる} 間違い で あっ た。
+    english_literally: That was a mere mistake.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 普通 の 間違い でし た。
+        english: That was a normal mistake.
+        hint: 普通の describes something as common or typical, whereas 単なる emphasizes it was nothing more
+          than a mistake, implying no complex reasons.
+    scene: After a minor error at work.
+    register: formal
+    setting: professional
+  - english: Don't worry, it's nothing but a rumor.
+    japanese:
+      - 心配 し ない で、{単なる} 噂 だ よ。
+      - 心配 し ない で、{単なる} 噂 だ。
+      - 心配 し ない で ください、{単なる} 噂 です。
+      - 心配 する な、{単なる} 噂 だ。
+    english_literally: Don't worry, it's a mere rumor.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し ない で、ただ の 噂 だ よ。
+        english: Don't worry, it's just a rumor.
+        hint: ただの can imply 'only a rumor,' but 単なる stresses its insignificance and lack of truth more
+          emphatically. We're looking for emphasis on the insignificance.
+    scene: A friend is distressed by gossip.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of `単なる` here, combined with `だよ` (dayo), indicates a reassuring but firm dismissal
+      of the rumor, suggesting it's utterly baseless.
+  - english: This isn't just a simple problem.
+    japanese:
+      - これ は {単なる} 問題 で は ない。
+      - これ は {単なる} 問題 じゃ ない。
+      - これ は {単なる} 問題 で は あり ませ ん。
+    english_literally: This is not a mere problem.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 簡単 な 問題 で は ない。
+        english: This is not an easy problem.
+        hint: 簡単な refers to ease or difficulty. 単なる negates the idea that it's *merely* a problem, suggesting
+          it's more serious or complex.
+    scene: A team discussing a complex issue.
+    register: semi-formal
+    setting: professional
+  - english: His success was nothing but a lucky break.
+    japanese:
+      - 彼 の 成功 は {単なる} 幸運 に すぎ ない。
+      - 彼 の 成功 は {単なる} 幸運 に すぎ ませ ん。
+      - 彼 の 成功 は {単なる} 幸運 だっ た に すぎ ない。
+    english_literally: His success is no more than mere good luck.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 成功 は まぐれ に すぎ ない。
+        english: His success is nothing but a fluke.
+        hint: まぐれ is a fluke or stroke of luck, often implying randomness. 単なる幸運にすぎない emphasizes that
+          it was *only* good luck, downplaying any skill or effort.
+    scene: Two colleagues discussing a third's unexpected achievement.
+    register: casual
+    setting: sarcastic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase `単なる 幸運にすぎない` (tannaru kouun ni suginai) combines `単なる` with `〜にすぎない` to strongly
+      assert that his success was purely due to luck, dismissing any notion of talent or hard work. This
+      assertive tone is typical of 'male' casual conversation about rivals.
+  - english: I thought it was just a dream.
+    japanese:
+      - '{単なる} 夢 だ と 思っ た。'
+      - '{単なる} 夢 だ と 思い まし た。'
+      - '{単なる} 夢 だ と 思っ て た。'
+    english_literally: I thought it was a mere dream.
+    competing_grammar:
+      - competing_japanese:
+          - 普通 の 夢 だ と 思っ た。
+        english: I thought it was a normal dream.
+        hint: 普通の夢 (futsuu no yume) would mean a typical dream. 単なる夢 (tannaru yume) emphasizes that it
+          was *only* a dream, implying it wasn't real or significant.
+    scene: Waking up from a vivid dream.
+    register: casual
+    setting: reflective
+  - english: For him, money is just a means to an end.
+    japanese:
+      - 彼 に とっ て、お 金 は {単なる} 手段 だ。
+      - 彼 に とっ て、お 金 は {単なる} 手段 です。
+      - 彼 に とっ て、お 金 は {単なる} 手段 で しか ない。
+    english_literally: For him, money is a mere means.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に とっ て、お 金 は ただ の 手段 だ。
+        english: For him, money is just a means.
+        hint: ただの手段 (tada no shudan) could work, but 単なる手段 (tannaru shudan) more strongly conveys that
+          money holds no intrinsic value for him beyond its utility, emphasizing its lack of importance
+          as an end in itself.
+    scene: Discussing someone's motivations.
+    register: formal
+    setting: informative
+  - english: It's nothing more than a misunderstanding.
+    japanese:
+      - '{単なる} 誤解 に すぎ ませ ん。'
+      - '{単なる} 誤解 に すぎ ない。'
+      - '{単なる} 誤解 で しか なかっ た。'
+    english_literally: It is no more than a mere misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - ただ の 誤解 です。
+        english: It's just a misunderstanding.
+        hint: ただの誤解 (tada no gokai) is softer. 単なる誤解にすぎません (tannaru gokai ni suginai) is a more assertive
+          statement that explicitly minimizes the issue, portraying it as purely a misunderstanding and
+          nothing more serious.
+    scene: Clarifying a tense situation to a superior.
+    register: formal
+    setting: professional
+  - english: This is a mere formality, so don't worry too much.
+    japanese:
+      - これ は {単なる} 形式 的 な もの です から、あまり 心配 し ない で ください。
+      - これ は {単なる} 形式 的 な もの だ から、あまり 心配 し なく て いい よ。
+      - これ は {単なる} 形式 的 な もの な の で、あまり 心配 なさら ない で ください。
+    english_literally: This is a mere formality, so please don't worry too much.
+    competing_grammar:
+      - competing_japanese:
+          - これ は ただ の 形式 的 な もの です から、あまり 心配 し ない で ください。
+        english: This is just a formality, so please don't worry too much.
+        hint: ただの (tada no) is a gentler way to say 'just a formality.' `単なる` (tannaru) emphasizes the
+          insignificance of the formality, suggesting it requires little attention or concern. We're looking
+          for emphasis on the insignificance.
+    scene: A senior colleague explaining a bureaucratic process to a new hire.
+    register: formal
+    setting: professional
+    speaker_age: older
+    nuance: The phrase `単なる 形式的なもの` (tannaru keishikiteki na mono) highlights that the item is *purely*
+      ceremonial or routine, downplaying its importance. An 'older' speaker might use this to reassure
+      a 'younger' listener, emphasizing their experience and knowledge of such procedures.
+  - english: He's just a regular member, not a leader.
+    japanese:
+      - 彼 は {単なる} 一 会員 で、リーダー で は ない。
+      - 彼 は {単なる} 一 会員 で、リーダー じゃ ない。
+      - 彼 は {単なる} 一 会員 で、リーダー で は あり ませ ん。
+    english_literally: He is a mere member, not a leader.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 普通 の 会員 で、リーダー で は ない。
+        english: He is a normal member, not a leader.
+        hint: 普通の会員 (futsuu no kaiin) means a typical member. `単なる` 一会員 (tannaru ikkaiin) implies he is
+          *only* a member, emphasizing his lack of special status compared to a leader.
+    scene: Explaining the hierarchy of a club or organization.
+    register: semi-formal
+    setting: informative
+  - english: This isn't a mere game; it's serious business.
+    japanese:
+      - これ は {単なる} 遊び で は ない、真剣 な ビジネス だ。
+      - これ は {単なる} 遊び じゃ ない、真剣 な ビジネス だ。
+      - これ は {単なる} 遊び で は あり ませ ん、真剣 な ビジネス です。
+    english_literally: This is not mere play, it's serious business.
+    competing_grammar:
+      - competing_japanese:
+          - これ は ただ の 遊び で は ない、真剣 な ビジネス だ。
+        english: This is not just play, it's serious business.
+        hint: ただの (tada no) implies 'only a game' but `単なる` (tannaru) strongly asserts that it is *far
+          from being* a trivial game, underscoring the seriousness of the situation. We're looking for
+          strong assertion of seriousness.
+    scene: A CEO addressing employees about a new project.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The direct, formal negation using `単なる 遊びではない` (tannaru asobi dewa nai) conveys a strong message
+      that the matter is profoundly serious, not trivial. This assertive tone is typical of a 'male' leader
+      addressing a 'group' in a 'serious' professional setting.
+post_example_writeup: As seen in the examples, `単なる` is highly effective when you want to explicitly state
+  that something is simply what it is, often to correct a misconception or to downplay its significance.
+  It clearly distinguishes the core essence of a noun from any perceived complexities or deeper implications.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/単なる

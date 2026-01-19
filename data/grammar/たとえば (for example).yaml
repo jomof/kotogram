@@ -1,0 +1,266 @@
+grammar_point: たとえば (for example)
+learn_before:
+  - '[Noun]向き (suitable for)'
+  - が (subject marker)
+  - と (and, connects nouns)
+  - とか〜とか (listing examples)
+  - に伴って・に伴い (along with・as a result of)
+  - ね (seeking agreement)
+  - もし・もしも (if, emphasis)
+  - 例の (the familiar one)
+meaning: For example
+pronunciation:
+  katakana: タトエバ
+  romaji: tatoeba
+formation:
+  たとえば + [Example]: Introduces an example to illustrate a point
+jlpt: N4
+etymology: 「たとえば」 is written as 「例えば」. 「例」 (rei) means "example" and 「えば」 is derived from the verb 「言えば」
+  (ieba), which is the conditional form of 「言う」 (iu), meaning "to say." Thus, 「例えば」 literally means "if
+  one were to say an example."
+writeup: |-
+  「たとえば」 (or its kanji form 「例えば」) is an adverb used to introduce a concrete example. It can be directly translated as "for example" or "for instance."
+
+  「たとえば」 is primarily used when the example presented is as simple and easy to understand as possible. It can be placed at the beginning of a sentence to provide an example for the entire statement, or within a sentence to provide an example for a specific item. It is used to clarify a particular point without causing confusion for the listener.
+
+  Important Considerations:
+  *   「たとえば」 indicates that the subsequent content is a specific instance of a general matter or concept that was previously stated.
+  *   When explaining complex details or enumerating multiple elements non-exhaustively, expressions other than 「たとえば」 may be more appropriate. For example, when explaining deeper details, one might consider using 「詳しく言うと」 (kuwashiku iu to, "to explain in detail").
+false_friends:
+  - term: とか〜とか
+    meaning: Among other things, For example, Such as
+    kind: synonym
+    nuance: While 「たとえば」 introduces a single example, 「とか〜とか」 lists several examples, often non-exhaustively.
+      「たとえば」 is more often used to start an example, whereas 「とか〜とか」 is often used in the middle of a
+      sentence.
+    grammar_point: とか〜とか (listing examples)
+post_false_friends_writeup: To avoid confusing 「たとえば」 with 「とか〜とか」, it's good to remember that 「たとえば」
+  introduces a single, concrete example, whereas 「とか〜とか」 enumerates multiple examples and implies that
+  there are others not mentioned.
+examples:
+  - english: What do you like to do on your days off? For example, how about watching movies?
+    japanese:
+      - 休み の 日 に 何 を する の が 好き です か？{たとえば}、映画 を 見る の は どう です か。
+      - 休み の 日 に 何 する の 好き？{たとえば}、映画 見る の と か どう？
+      - お 休み の 日 に は、何 を なさる の が お 好き です か？{たとえば}、映画 を ご覧 に なる の は いかが です か。
+      - 休み の 日 に 何 する の 好き です か？{たとえば}、映画 見る の は どう です か ね。
+    english_literally: On day off, what do you like to do? For example, watching movies, how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 休み の 日 に 何 を する の が 好き です か？映画 を 見る {と か}。
+        english: What do you like to do on your days off? How about watching movies, among other things?
+        hint: 「〜とか」 suggests listing multiple items non-exhaustively. We're looking for a single, direct
+          suggestion as an example.
+    scene: A young woman is casually chatting with her male friend, trying to get to know his hobbies.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「〜の が 好き です か」 is a common polite way to ask about preferences. 「〜の は どう です か」
+      is a casual suggestion. The sentence structure is friendly and open-ended, typical of casual conversation.
+  - english: This document needs some revisions. For example, please change the date format.
+    japanese:
+      - この 書類 に は いく つ か 修正 が 必要 です。{たとえば}、日付 の フォーマット を 変え て ください。
+      - この 書類 に いく つ か 修正 が 必要 だ。{たとえば}、日付 の フォーマット を 変え て くれ。
+      - この 書類 に は いく つ か 修正 が 必要 で ござい ます。{たとえば}、日付 の フォーマット を 変更 し て いただけ ませ ん でしょう か。
+    english_literally: This document, for it, some revisions are necessary. For example, date's format
+      please change.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 に は いく つ か 修正 が 必要 です。{具体 的 に 言う と}、日付 の フォーマット を 変え て ください。
+        english: This document needs some revisions. Specifically, please change the date format.
+        hint: 「具体的に言うと」 means 'specifically speaking'. We're looking for an expression that introduces
+          an example, not a specific detail.
+    scene: A department manager is giving feedback to a junior staff member on a report.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「〜に は」 specifies the target of revision. 「いくつか 修正 が 必要 です」 is a polite, indirect way to state
+      a need for changes. 「〜て ください」 is a polite request/instruction, appropriate in a professional setting.
+  - english: If I won the lottery, for example, I'd want to go on a trip around the world.
+    japanese:
+      - もし 宝くじ が 当たっ たら、{たとえば} 世界 一 周 旅行 に 行き たい です ね。
+      - もし 宝くじ 当たっ たら、{たとえば} 世界 一 周 旅行 行き たい な。
+      - もし 宝くじ 当たっ たら ね、{たとえば} 世界 一 周 旅行 なんか に 行き たい なあ。
+    english_literally: If lottery hits, for example, world-around trip want to go, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - もし 宝くじ が 当たっ たら、{世界 一 周 旅行} に 行き たい です ね。
+        english: If I won the lottery, I'd want to go on a trip around the world.
+        hint: Omitting 「たとえば」 makes it sound like the only option. We're looking for an expression that
+          signals this is just one possibility among many.
+    scene: A young woman is fantasizing aloud to herself about her dreams if she were to become wealthy.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「もし 〜 たら」 sets up a hypothetical. 「〜たい です ね」 expresses a personal desire with a softening,
+      seeking-agreement nuance. 「たとえば」 here introduces one possible dream among many, fitting for self-reflection.
+  - english: To lead a healthy life, for example, you could exercise every day or eat a balanced diet.
+    japanese:
+      - 健康 的 な 生活 を 送る に は、{たとえば} 毎日 運動 する と か、バランス の 取れ た 食事 を する と か です ね。
+      - 健康 的 な 生活 を お 送り に なる に は、{たとえば} 毎日 運動 なさる こと や、バランス の 取れ た お 食事 を 召し上がる こと など が 挙げ られ ます。
+      - 健康 的 な 生活 を 送る に は、{たとえば} 毎日 運動 する と か、バランス の 取れ た 食事 を する の だ。
+    english_literally: Healthy life to lead, for example, every day exercise or, balanced meal to do or,
+      it is, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 的 な 生活 を 送る に は、毎日 {運動 する こと} や、{バランス の 取れ た 食事 を する こと} が 重要 です ね。
+        english: To lead a healthy life, exercising every day and eating a balanced diet are important,
+          aren't they?
+        hint: This phrasing implies a statement of importance, not a list of examples. We're looking for
+          something that introduces suggestions as examples.
+    scene: A medical doctor is advising a patient on lifestyle changes.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「健康的 な 生活 を 送る に は」 sets the condition. The combination of 「たとえば」 with 「〜とか、〜とか」 allows for
+      introducing multiple examples after the initial general statement, indicating that these are just
+      a few suggestions from a larger set. 「です ね」 softens the advice.
+  - english: I like fruits in general. For example, apples, oranges, and bananas.
+    japanese:
+      - 私 は 果物 全般 が 好き です。{たとえば}、りんご や みかん や バナナ など。
+      - 私、果物 全般 好き な ん だ。{たとえば}、りんご と か みかん と か バナナ と か。
+      - 私 は 果物 全般 を 好み ます。{たとえば}、りんご や みかん や バナナ など で ござい ます。
+    english_literally: I, fruits general, like. For example, apples, oranges, bananas, etc.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 果物 全般 が 好き です。りんご {と か} みかん {と か} バナナ {と か}。
+        english: I like fruits in general. Like apples, oranges, bananas, etc.
+        hint: 「〜とか」 is more informal and often implies a non-exhaustive list. We're looking for an expression
+          that clearly states the following items are examples of the general statement.
+    scene: A child is excitedly listing her favorite foods.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「〜全般 が 好き です」 means "I like ~ in general." 「〜や〜や〜など」 is a common way to list examples, implying
+      more exist. The 「たとえば」 reinforces that these are just *some* of the general category, making the
+      statement friendly and approachable.
+  - english: To succeed, for example, not fearing failure is important.
+    japanese:
+      - 成功 する ため に は、{たとえば} 失敗 を 恐れ ない こと が 重要 です。
+      - 成功 する ため に は、{たとえば} 失敗 を 恐れ ない 精神 が 重要 で ある。
+      - 成功 する ため に は ね、{たとえば} 失敗 を 恐れ ない こと が とても 重要 です よ。
+    english_literally: Succeed to do for, for example, failure not to fear thing is important.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 する ため に は、{失敗 を 恐れ ない こと} が 重要 です。
+        english: To succeed, not fearing failure is important.
+        hint: Omitting 「たとえば」 makes this sound like the only important thing. We're looking for an expression
+          that introduces this as one important example among others.
+    scene: A business mentor is giving a motivational speech to aspiring entrepreneurs.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「成功 する ため に は」 states the purpose. 「〜こと が 重要 です」 emphasizes importance. 「たとえば」 here introduces
+      a crucial, specific mindset as an example of what leads to success, rather than a broad strategy,
+      fitting for an inspirational speech.
+  - english: This app has many useful features. For example, the dictionary function that can be used
+      offline.
+    japanese:
+      - この アプリ に は 便利 な 機能 が たくさん あり ます。{たとえば}、オフ ライン で 使える 辞書 機能 です。
+      - この アプリ に は 便利 な 機能 が たくさん ある。{たとえば}、オフ ライン で 使える 辞書 機能 だ。
+      - この アプリ に は 多数 の 便利 な 機能 が 搭載 さ れ て おり ます。{たとえば}、オフ ライン で ご 利用 いただける 辞書 機能 など で ござい ます。
+    english_literally: This app, for it, convenient features many exist. For example, offline able to
+      use dictionary function it is.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ に は 便利 な 機能 が たくさん あり ます。{中 で も}、オフ ライン で 使える 辞書 機能 です。
+        english: This app has many useful features. Among them, the dictionary function that can be used
+          offline.
+        hint: 「中でも」 highlights the *most outstanding* feature. We're looking for something that introduces
+          *an* example, not necessarily the best one.
+    scene: A tech company representative is showcasing a new application to potential investors.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「便利 な 機能 が たくさん あります」 states the general benefit. 「オフライン で 使える」 specifies a key aspect of
+      the dictionary feature. 「たとえば」 highlights one specific, appealing feature among many, suitable for
+      a professional demonstration.
+  - english: In Japanese companies, hierarchy is extremely important. For example, the use of keigo between
+      seniors and juniors.
+    japanese:
+      - 日本 の 会社 で は、上下 関係 が 非常 に 重要 です。{たとえば}、先輩 と 後輩 の 間 の 敬語 の 使い 方 など。
+      - 日本 の 企業 に おい て は、上下 関係 が 極めて 重要 と なる。{たとえば}、先輩 と 後輩 間 の 敬語 の 運用 方法 が その 一 例 で ある。
+      - 日本 の 会社 って さ、上下 関係 めっちゃ 大事 な ん だ よ ね。{たとえば}、先輩 と 後輩 の 敬語 の 使い 方 と か。
+    english_literally: Japan's companies in, hierarchy very important is. For example, senior and junior's
+      between polite language's usage etc.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 会社 で は、上下 関係 が 非常 に 重要 です。{具体 的 な 例 と し て}、先輩 と 後輩 の 間 の 敬語 の 使い 方 など が 挙げ られ ます。
+        english: In Japanese companies, hierarchy is extremely important. As a concrete example, the use
+          of keigo between seniors and juniors can be cited.
+        hint: 「具体例として」 is a more formal and wordy way to introduce a concrete example. We're looking for
+          a concise way to introduce an example.
+    scene: A university lecturer is explaining aspects of Japanese business culture to international students.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「〜では」 specifies the context. 「非常 に 重要 です」 emphasizes its significance. The use of 「など」 at
+      the end of the example implies that there are other such examples of hierarchy beyond just `keigo`.
+      「たとえば」 introduces a concrete illustration of an abstract concept, typical of academic explanations.
+  - english: Learning Japanese can be difficult. For example, remembering all the kanji is a huge task.
+    japanese:
+      - 日本 の 勉強 は 難しい です。{たとえば}、漢字 を 全部 覚える の は 大変 です。
+      - 日本 語 の 勉強 って 難しい よ ね。{たとえば}、漢字 全部 覚える の めっちゃ 大変 だ し。
+      - 日本 語 の 学習 は 困難 を 伴い ます。{たとえば}、全て の 漢字 を 暗記 する こと は 多大 な 労力 を 要し ます。
+    english_literally: Japanese's study is difficult. For example, kanji entirely to remember is a hard
+      task.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 勉強 は 難しい です。{漢字 を 全部 覚える こと} は 大変 です。
+        english: Learning Japanese is difficult. Remembering all the kanji is a huge task.
+        hint: This phrasing states a fact without explicitly introducing it as an example. We're looking
+          for a word that signals the following point is just one instance of a broader statement.
+    scene: A male Japanese language student is complaining to a female friend about the challenges of
+      studying.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「大変 です」 expresses difficulty or hardship. The structure is typical of casual conversation
+      between friends sharing frustrations. 「たとえば」 highlights one specific challenge among many faced
+      in Japanese study.
+  - english: We should implement some new ways to conserve energy. For example, turning off lights when
+      leaving a room.
+    japanese:
+      - 新しい 省エネ 方法 を 導入 する べき です。{たとえば}、部屋 を 出る とき に 電気 を 消す こと です。
+      - 新た な 省エネ 方法 を 導入 す べき だ。{たとえば}、部屋 を 出る 際 に 電気 を 消す など が 挙げ られよう。
+      - 新た な 省エネ 方法 を 導入 し て いき たい と 思い ます。{たとえば}、離 席 時 に は 照明 を 消す こと など が 考え られ ます。
+    english_literally: New energy saving methods to introduce should. For example, room to leave when
+      electricity to turn off thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 省エネ 方法 を 導入 する べき です。{つまり}、部屋 を 出る とき に 電気 を 消す こと です。
+        english: We should implement new energy-saving methods. In other words, turning off lights when
+          leaving a room.
+        hint: 「つまり」 means 'in other words' or 'that is to say', clarifying a statement. We're looking
+          for a phrase that introduces a specific example to illustrate a general concept.
+    scene: A manager is presenting ideas for environmental initiatives to their team during a meeting.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「〜べき です」 indicates a strong recommendation or obligation. The use of 「ことです」 at the end of
+      the example provides a noun-like explanation. 「たとえば」 serves to provide a clear, actionable instance
+      of the broader concept of energy conservation.
+post_example_writeup: Please note that while 「たとえば」 can introduce a single, clear example, in some contexts,
+  especially when followed by 「〜とか」 or 「〜など」, it can precede a non-exhaustive list of examples.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たとえば

@@ -1,0 +1,436 @@
+grammar_point: ～直す (re-do・fix)
+learn_before:
+  - Verb[てある] (result of purposeful action)
+  - と思う (I think or thought)
+  - べく (for the purpose of)
+  - を (direct object marker)
+  - 十分 (enough・sufficient・ample)
+meaning: To redo, to do over
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: なおす
+    rarity: common
+    meaning: to redo or fix
+  - conjugation-type: non-past polite (～ます)
+    form: なおします
+    rarity: common
+    meaning: to redo or fix (polite)
+  - conjugation-type: negative plain (～ない)
+    form: なおさない
+    rarity: common
+    meaning: not to redo or fix
+  - conjugation-type: negative non-past polite (～ません)
+    form: なおしません
+    rarity: common
+    meaning: not to redo or fix (polite)
+  - conjugation-type: past plain (～た)
+    form: なおした
+    rarity: common
+    meaning: did redo or fix
+  - conjugation-type: past polite (～ました)
+    form: なおしました
+    rarity: common
+    meaning: did redo or fix (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: なおさなかった
+    rarity: common
+    meaning: did not redo or fix
+  - conjugation-type: negative past polite (～ませんでした)
+    form: なおしませんでした
+    rarity: common
+    meaning: did not redo or fix (polite)
+  - conjugation-type: te-form (～て)
+    form: なおして
+    rarity: common
+    meaning: redoing or fixing (te-form)
+  - conjugation-type: conditional (～ば)
+    form: なおせば
+    rarity: uncommon
+    meaning: if one redoes or fixes
+  - conjugation-type: conditional (～たら)
+    form: なおしたら
+    rarity: uncommon
+    meaning: if one redoes or fixes
+  - conjugation-type: volitional (～よう)
+    form: なおそう
+    rarity: uncommon
+    meaning: let's redo or fix
+  - conjugation-type: volitional polite (～ましょう)
+    form: なおしましょう
+    rarity: uncommon
+    meaning: let's redo or fix (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: なおせ
+    rarity: very rare
+    meaning: redo or fix (command)
+  - conjugation-type: imperative polite (～なさい)
+    form: なおしなさい
+    rarity: uncommon
+    meaning: redo or fix (polite command)
+  - conjugation-type: potential (～られる/～える)
+    form: なおせる
+    rarity: rare
+    meaning: can redo or fix
+  - conjugation-type: passive (～られる/～かれる)
+    form: なおされる
+    rarity: rare
+    meaning: to be redone or fixed
+  - conjugation-type: causative (～させる)
+    form: なおさせる
+    rarity: very rare
+    meaning: to make or let someone redo or fix
+pronunciation:
+  katakana: ナオス
+  romaji: naosu
+formation:
+  Verb masu-stem + なおす: Indicates doing something again, often to improve it or correct an error.
+  suru-verb stem + なおす: Used when the main verb is a suru-verb. 'suru' changes to 'shi' before 'naosu'.
+jlpt: N4
+etymology: The verb 「直す」 (naosu) itself means "to fix" or "to correct." When used as a suffix attached
+  to the masu-stem of another verb, it extends this meaning to indicate redoing an action with the purpose
+  of correction, improvement, or restarting. The kanji 「直」 inherently carries the meaning of "straight"
+  or "direct," visually reinforcing the idea of setting something right or aligning it properly after
+  an initial misalignment or error.
+writeup: The grammar point 「〜直す」 (naosu) serves to express the idea of "re-doing" or "doing over" an action.
+  It is affixed to the **masu-stem** of a verb, effectively forming a compound verb. This structure implies
+  that the initial execution of the action was flawed, incomplete, or unsatisfactory, and thus requires
+  a second attempt to rectify or improve it. It emphasizes the corrective or repetitive nature of the
+  subsequent action. For most verbs, simply take their ます-form, remove ます, and append 「直す」. For example,
+  「書きます」 (kakimasu) becomes 「書き直す」 (kakinaosu, to rewrite). For irregular verbs, the same rule applies,
+  such as 「します」 (shimasu) becoming 「し直す」 (shinaosu, to redo). **Important Considerations:** *   **Nuance
+  of Correction:** While 「〜直す」 indicates repetition, its core nuance is often about correction or improvement.
+  It's not merely doing something again, but doing it again *better* or *correctly*. *   **Casual Usage
+  with やる:** In more casual contexts, especially when the main verb is a する-verb, 「する」 might be replaced
+  with 「やる」 (yaru), a more informal equivalent of "to do." In such cases, 「やる」 conjugates to 「やり直す」 (yarinaosu),
+  maintaining the meaning of "to redo" in a casual manner. *   **Distinction from 治す:** It is crucial
+  to distinguish 「直す」 (naosu) from 「治す」 (naosu), which means "to cure" or "to heal." Although they share
+  the same pronunciation, their kanji and meanings are entirely different. 「直す」 (to redo/fix) refers to
+  inanimate objects or actions, while 「治す」 (to cure) refers to living beings or conditions that heal naturally.
+  Pay close attention to the kanji to avoid confusion. This grammar point is widely used in everyday conversation
+  and professional settings when discussing revisions, corrections, or second attempts at tasks.
+false_friends:
+  - term: 治す
+    meaning: to cure, to heal
+    kind: often confused with
+    nuance: Unlike 「直す」 (to redo or fix things), 「治す」 (naosu) refers specifically to healing an illness,
+      injury, or curing a condition. It is used in contexts related to health and recovery.
+    grammar_point: <suggest>:治す (cure)
+  - term: 戻す
+    meaning: to return, to put back
+    kind: often confused with
+    nuance: While both can imply returning to a previous state, 「戻す」 emphasizes physical return or restoration
+      to an original position. 「直す」 implies a corrective action or re-doing something for improvement,
+      not just putting it back as it was.
+    grammar_point: <suggest>:戻す (return)
+  - term: もう一度
+    meaning: again
+    kind: similar expression
+    nuance: 「もう一度」 simply means "again" without implying a correction or improvement, whereas 「〜直す」 specifically
+      means "to redo for correction/improvement." It signifies a second attempt to fix something that
+      was insufficient.
+    grammar_point: <suggest>:もう一度 (again)
+  - term: 再～
+    meaning: re-, again (prefix)
+    kind: similar expression
+    nuance: 「再～」 is a formal prefix meaning "re-" or "again," and can be used with various verbs (e.g.,
+      再確認する, 再検討する). While it implies repetition, it doesn't always carry the same strong nuance of *correction*
+      or *improvement* that 「〜直す」 does. 「〜直す」 implies fixing an error or bettering something, whereas
+      「再～」 can simply mean repeating an action.
+    grammar_point: <suggest>:再～ (re-)
+post_false_friends_writeup: 'It is vital to distinguish between 「直す」 (to redo/fix) and its homophone 「治す」
+  (to cure/heal). Though pronounced identically, their meanings and kanji are distinct: 「直す」 focuses on
+  rectifying actions or objects, while 「治す」 is for medical or healing contexts. Furthermore, do not confuse
+  「直す」 with 「戻す」 (modosu), which means "to return" or "to put back." While both can involve a return to
+  a previous state, 「戻す」 is about physical placement, whereas 「直す」 is about improving or correcting a
+  prior action or state. Lastly, while phrases like 「もう一度」 or the prefix 「再～」 indicate repetition, they
+  lack the specific nuance of correction or improvement inherent in 「〜直す」. 「〜直す」 implies that the initial
+  attempt was flawed and a re-do is necessary to make it right.'
+examples:
+  - english: This report is insufficient in content, so please rewrite it one more time.
+    japanese:
+      - この レポート は 内容 が 不 十分 な の で、もう 一 度 書き {直} し て ください。
+      - この レポート は 内容 が 不 十分 な の で、もう 一 度 書き {直} し て いただけ ます か。
+      - この レポート は 内容 が 不 十分 な の で、もう 一 度 書き {直} す よう に お 願い し ます。
+      - この レポート は 内容 が 不 十分 な の で、もう 一 度 書き {直} さ なけれ ば なり ませ ん。
+    english_literally: This report, content insufficient, so, one more time, please rewrite.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は 内容 が 不 十分 な の で、{もう 一 度 書い て} ください。
+        english: This report is insufficient in content, so please write it one more time.
+        hint: 「書き直す」 implies fixing an error or improving something, while 「もう一度 書く」 just means writing
+          again. We're looking for an action that specifically fixes an insufficient report.
+    scene: A manager asks an employee to revise a report that lacks detail.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「書き直して ください」 implies that the report needs to be corrected or improved due to its
+      insufficient content, not just written again. This reflects a professional instruction from an older
+      manager to a subordinate.
+  - english: Today's practice was full of failures, so let's redo it tomorrow.
+    japanese:
+      - 今日 の 練習 は 失敗 ばかり だっ た から、明日 やり {直} そう。
+      - 今日 の 練習 は 失敗 ばかり だっ た から、明日 やり {直} し ましょう。
+      - 今日 の 練習 は 失敗 ばかり だっ た から、明日 やり {直} す 必要 が ある。
+      - 今日 の 練習 は 失敗 ばかり だっ た から、明日 やり {直} す べき だ。
+    english_literally: Today's practice was only failures, so tomorrow let's redo.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 練習 は 失敗 ばかり だっ た から、明日 {また やろう}。
+        english: Today's practice was full of failures, so let's do it again tomorrow.
+        hint: 「やり直す」 specifically means to redo something with the purpose of correcting past mistakes
+          or improving the outcome. 「またやる」 simply means doing something again. We're looking for a verb
+          that emphasizes rectifying failures.
+    scene: A coach discusses a poor training session with his team.
+    register: casual
+    setting: serious
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The volitional form 「やり直そう」 is a direct and somewhat assertive way for an older male coach
+      to suggest repeating the practice, emphasizing taking control and rectifying past performance. The
+      use of 「やり直す」 rather than simply 「もう一度やる」 underscores the need to correct the previous failures.
+  - english: This machine breaks down often, so we need to fundamentally re-evaluate it.
+    japanese:
+      - この 機械 は よく 故障 する の で、根本 から 見 {直} す 必要 が ある。
+      - この 機械 は よく 故障 する の で、根本 から 見 {直} す 必要 が あり ます。
+      - この 機械 は よく 故障 する の で、根本 から 見 {直} す べき だ。
+      - この 機械 は よく 故障 する の で、根本 から 見 {直} し ましょう。
+    english_literally: This machine often breaks down, so from fundamental, to re-evaluate, there is need.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 の 問題 点 を {もう 一 度 見る} 必要 が ある。
+        english: We need to look at the machine's problems one more time.
+        hint: 「見直す」 implies a critical re-assessment or fundamental reconsideration to find a solution
+          or improve. 「見る」 just means to look. We're looking for a thorough re-evaluation from its foundation.
+    scene: Engineers are discussing persistent issues with a piece of equipment.
+    register: teineigo (polite)
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In a technical and professional setting, the use of 「見直す」 by an older engineer suggests a
+      thorough re-evaluation aimed at identifying and resolving systemic issues, rather than just a casual
+      re-inspection. It implies a critical assessment necessary for complex problems.
+  - english: We need to reconfirm the detailed points in that contract.
+    japanese:
+      - あの 契約 書 は 細かい 点 を 確認 し {直} す 必要 が あり ます。
+      - あの 契約 書 は 細かい 点 を 確認 し {直} す 必要 が ある。
+      - あの 契約 書 は 細かい 点 を 確認 し {直} す べき です。
+      - あの 契約 書 は 細かい 点 を 確認 し {直} し ましょう。
+    english_literally: That contract document, detailed points, to reconfirm, there is need.
+    competing_grammar:
+      - competing_japanese:
+          - あの 契約 書 は 細かい 点 を {もう 一 度 確認 する} 必要 が あり ます。
+        english: We need to confirm the detailed points in that contract one more time.
+        hint: 「確認し直す」 emphasizes re-verification to ensure accuracy due to a previous insufficiency or
+          potential error. 「もう一度 確認する」 just means confirming again. We're looking for a reconfirmation
+          that ensures correctness.
+    scene: Lawyers or business partners discussing a legal document.
+    register: bijinesu nihongo (business)
+    setting: legal
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「確認し直す」 emphasizes the need for a thorough re-verification to ensure accuracy,
+      which is crucial in legal and business contexts. A professional woman would use this to ensure precision
+      and avoid errors in a contract, reflecting attention to detail.
+  - english: I couldn't understand it the first time I read it, but when I reread it, I understood the
+      meaning.
+    japanese:
+      - 初めて 読ん だ 時 は 理解 でき なかっ た が、読み {直} し たら 意味 が 分かっ た。
+      - 初めて 読ん だ 時 は 理解 でき なかっ た が、読み {直} せ ば 意味 が 分かっ た。
+      - 初めて 読ん だ 時 は 理解 でき なかっ た が、読み {直} し て 意味 が 分かっ た。
+      - 初めて 読ん だ 時 は 理解 でき なかっ た が、読み {直} し た こと で 意味 が 分かっ た。
+    english_literally: First time read when couldn't understand, but rereading, meaning understood.
+    competing_grammar:
+      - competing_japanese:
+          - 初めて 読ん だ 時 は 理解 でき なかっ た が、{もう 一 度 読ん だら} 意味 が 分かっ た。
+        english: I couldn't understand it the first time I read it, but when I read it one more time,
+          I understood the meaning.
+        hint: 「読み直す」 implies rereading specifically to correct a misunderstanding or gain better comprehension
+          from a previous insufficient reading. 「もう一度 読む」 just means reading again. We're looking for
+          rereading that leads to understanding.
+    scene: A student explaining how they finally grasped a difficult text.
+    register: casual
+    setting: academic
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「読み直したら」 highlights that the re-reading was done specifically to achieve better
+      comprehension because the initial attempt was unsuccessful. This reflects a typical student's experience
+      with difficult material and their proactive approach to learning.
+  - english: I wrote the report once, but I need to rewrite it to improve the content.
+    japanese:
+      - レポート を 一 度 書い た けど、内容 を 良く する ため に 書き {直} す 必要 が ある。
+      - レポート を 一 度 書い た けど、内容 を 良く する ため に 書き {直} す 必要 が あり ます。
+      - レポート を 一 度 書い た けど、内容 を 良く する ため に 書き {直} す べき だ。
+      - レポート を 一 度 書い た けど、内容 を 良く する ため に 書き {直} そう と 思う。
+    english_literally: Report once wrote, but content to make better for, to rewrite, need there is.
+    competing_grammar:
+      - competing_japanese:
+          - レポート を 一 度 書い た けど、内容 を 良く する ため に {書き 足す} 必要 が ある。
+        english: I wrote the report once, but I need to add more to it to improve the content.
+        hint: 「書き直す」 means to rewrite or revise the entire content for improvement, implying the initial
+          version is insufficient. 「書き足す」 means to add more writing. We're looking for a verb that means
+          revising the whole thing.
+    scene: A student feels their report isn't good enough and decides to revise it.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker's self-reflection, using 「必要 が ある」 (there is a need), shows a proactive stance
+      towards improving their work. 「書き直す」 clearly indicates that the writing itself needs to be redone
+      for quality, not just edited.
+  - english: We should re-investigate the problems with this plan in detail.
+    japanese:
+      - この 計画 の 問題 点 を 詳しく 調べ {直} す べき だ。
+      - この 計画 の 問題 点 を 詳しく 調べ {直} す べき です。
+      - この 計画 の 問題 点 を 詳しく 調べ {直} し ましょう。
+      - この 計画 の 問題 点 を 詳しく 調べ {直} す 必要 が ある。
+    english_literally: This plan's problems, in detail, should re-investigate.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 問題 点 を 詳しく {もう 一 度 調べる} べき だ。
+        english: We should investigate the problems with this plan in detail one more time.
+        hint: 「調べ直す」 implies a thorough re-investigation aimed at correcting errors or gaining a deeper
+          understanding because the initial investigation was insufficient. 「もう一度 調べる」 just means investigating
+          again. We're looking for a re-investigation that seeks to resolve issues.
+    scene: A project team leader addresses their team about a critical issue in their project plan.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「調べ直す」 here conveys a sense of responsibility and thoroughness expected from a
+      team leader. It implies that the previous investigation was insufficient and a more detailed, corrective
+      re-examination is necessary for the plan's success.
+  - english: In this situation, there's no choice but to re-examine everything from the beginning.
+    japanese:
+      - こんな 状況 で は、最初 から 全て を 見 {直} す しか ない。
+      - こんな 状況 で は、最初 から 全て を 見 {直} す しか あり ませ ん。
+      - こんな 状況 で は、最初 から 全て を 見 {直} さ なけれ ば なり ませ ん。
+      - こんな 状況 で は、最初 から 全て を 見 {直} す ほか ない。
+    english_literally: Such situation, from beginning, all, no choice but to re-examine.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 状況 で は、最初 から 全て を {もう 一 度 見る} しか ない。
+        english: In this situation, there's no choice but to look at everything from the beginning again.
+        hint: 「見直す」 in this context implies a fundamental re-evaluation to rectify a critical situation,
+          suggesting the initial approach was flawed. 「見る」 simply means to look. We're looking for a re-examination
+          that starts from scratch to fix deep issues.
+    scene: A distraught entrepreneur realizes their startup plan has fundamental flaws.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「見直す しか ない」 (have no choice but to re-examine) emphasizes the gravity of the situation
+      and the critical need for a fundamental re-evaluation, reflecting a sense of resignation but also
+      resolve in the face of significant challenges.
+  - english: She decided to repaint the wall after seeing it was uneven.
+    japanese:
+      - 壁 が 均等 で ない の を 見 て、彼女 は 塗り {直} す こと に し た。
+      - 壁 が 均等 で ない の を 見 て、彼女 は 塗り {直} し た。
+      - 壁 が 均等 で ない の を 見 て、彼女 は 塗り {直} そう と 思っ た。
+      - 壁 が 均等 で ない の を 見 て、彼女 は 塗り {直} さ なけれ ば と 思っ た。
+    english_literally: Wall uneven not was seeing, she to repaint, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 壁 が 均等 で ない の を 見 て、彼女 は {もう 一 度 塗る} こと に し た。
+        english: She decided to paint the wall one more time after seeing it was uneven.
+        hint: 「塗り直す」 means to repaint specifically to correct a flaw or improve the previous application.
+          「もう一度 塗る」 just means painting again. We're looking for repainting that aims to fix an imperfection.
+    scene: A painter notices their work isn't perfect and resolves to fix it.
+    register: casual
+    setting: creative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「塗り直す」 (nuri naosu) indicates that the previous painting was flawed and requires
+      a complete re-application for a perfect finish. This exemplifies the precise and detail-oriented
+      nature often found in artistic or craft work.
+  - english: She went on a journey to re-evaluate her life.
+    japanese:
+      - 彼女 は 自分 の 人生 を 見 {直} す ため に、旅 に 出 た。
+      - 彼女 は 自分 の 人生 を 見 {直} す ため に、旅 に 出 まし た。
+      - 彼女 は 自分 の 人生 を 見 {直} そう と 思い、旅 に 出 た。
+      - 彼女 は 自分 の 人生 を 見 {直} す べく、旅 に 出 た。
+    english_literally: She her own life, to re-evaluate, for, journey went out.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 自分 の 人生 を {もう 一 度 見る} ため に、旅 に 出 た。
+        english: She went on a journey to look at her life one more time.
+        hint: 「見直す」 in this context implies a profound re-assessment and reconsideration of one's life
+          with the intent of personal growth or change. 「見る」 just means to look. We're looking for a deep
+          re-evaluation, not just a casual look.
+    scene: A woman embarking on a solo journey to find herself.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrasing 「見直す」 in this context signifies a deep, internal reflection aimed at changing
+      perspective or direction, which is common in personal journeys or self-discovery narratives. It's
+      a nuanced choice that conveys profound self-assessment.
+  - english: The code has some bugs, so you'll have to rewrite it.
+    japanese:
+      - コード に バグ が ある の で、書き {直} す 必要 が あり ます。
+      - コード に バグ が ある の で、書き {直} さ なけれ ば なり ませ ん。
+      - コード に バグ が ある の で、書き {直} す べき です。
+      - コード に バグ が ある の で、書き {直} し て ください。
+    english_literally: Code, in bugs exist, so, to rewrite, necessity there is.
+    competing_grammar:
+      - competing_japanese:
+          - コード に バグ が ある の で、{もう 一 度 コード を 書い て} ください。
+        english: The code has bugs, so please write the code one more time.
+        hint: 「書き直す」 implies that the existing code needs significant revision and correction to fix flaws.
+          「もう一度 書く」 just means writing it again. We're looking for a re-writing that addresses and fixes
+          bugs.
+    scene: A senior developer telling a junior developer about fixing code.
+    register: teineigo (polite)
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「書き直す」 implies that the existing code requires significant revision to correct
+      flaws rather than minor adjustments. The senior developer's instruction to the junior developer
+      uses respectful language appropriate for a professional setting, underscoring the importance of
+      fixing the bugs properly. This is not just a request to "write it again" (もう一度 書く) but to "re-write
+      it with correction in mind."
+  - english: The shelf I built is wobbly, so I need to rebuild it.
+    japanese:
+      - 作っ た 棚 が ガタガタ する の で、作り {直} す 必要 が あり ます。
+      - 作っ た 棚 が ガタガタ する の で、作り {直} さ なけれ ば なり ませ ん。
+      - 作っ た 棚 が ガタガタ する の で、作り {直} す べき です。
+      - 作っ た 棚 が ガタガタ する の で、作り {直} そう と 思い ます。
+    english_literally: Made shelf wobbly, so to rebuild, necessity there is.
+    competing_grammar:
+      - competing_japanese:
+          - 作っ た 棚 が ガタガタ する の で、{もう 一 度 棚 を 作り ます}。
+        english: The shelf I built is wobbly, so I will make the shelf one more time.
+        hint: 「作り直す」 implies that the initial construction was flawed and requires a complete re-assembly
+          to correct the instability. 「もう一度 作る」 just means making it again. We're looking for a re-building
+          that aims to fix the wobbliness.
+    scene: Someone has just finished assembling flat-pack furniture and it's not stable.
+    register: casual
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「作り直す」 indicates that the initial construction (作る) was flawed and requires a complete
+      re-assembly to correct the instability (ガタガタする). This implies a recognition of a mistake and the
+      need for a thorough re-do, not just minor adjustments.
+post_example_writeup: The examples illustrate how 「〜直す」 can be used in various contexts, from professional
+  revisions to personal introspection. It always carries the underlying meaning of correction, improvement,
+  or a fresh start based on a perceived insufficiency of a previous action. Pay attention to the verb
+  it attaches to, as this will specify what exactly is being 'redone' or 'corrected'.

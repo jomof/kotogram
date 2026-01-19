@@ -1,0 +1,467 @@
+grammar_point: は (topic and contrast)
+learn_before:
+  - ちょっと (adverb)
+meaning: As for... (Highlights sentence topic)
+meaning_warning: 「は」 can also be used to contrast multiple items.
+pronunciation:
+  katakana: ワ
+  romaji: wa
+  pronunciation_warning: When 「は」 is used as a particle, it is pronounced 'wa'.
+formation:
+  Noun + は: Indicates a noun as the topic of the sentence.
+  Pronoun + は: Indicates a pronoun as the topic of the sentence.
+  Phrase + は: Emphasizes a phrase as the topic or indicates contrast.
+jlpt: N5
+etymology: The particle 「は」 is thought to have originated from the conditional particle 「ば」. Historically,
+  「は」 (as part of verb conjugations and later as a particle) gradually evolved from indicating conditions
+  to introducing general statements and topics. Furthermore, its pronunciation when used as a particle
+  shifted from 'ha' to 'wa', reflecting natural sound changes in Japanese.
+writeup: |-
+  「は」 is one of the most fundamental particles in Japanese, primarily functioning as a topic marker. It sets the stage for the information that follows by indicating what the sentence as a whole is about. It is crucial to understand that the topic marked by 「は」 is not always the grammatical subject of the sentence. For example, in the sentence 「東京 は 人 が 多い です」 (As for Tokyo, people are many / Tokyo has many people), Tokyo is the topic, but 人 (people) is the grammatical subject.
+
+  Beyond simply introducing the topic, 「は」 also possesses a subtle function of contrast. When 「は」 is used to mark an element that is already implicitly understood or expected, it can imply a comparison or contrast with something else. For instance, in a sentence like 「私 は ビール は 飲み ます が 、ワイン は 飲み ませ ん」 (As for me, I drink beer, but I don't drink wine), 「は」 is used to draw a clear distinction between beer and wine. This contrastive nuance often emerges when 「は」 appears later in a sentence or is used multiple times within the same sentence to highlight different elements.
+
+  **Key Differences with 「が」:**
+  While 「は」 and 「が」 are often confused, their core functions differ significantly. 「は」 marks existing information or general statements, implying the topic is already known or introduced as a general theme. In contrast, 「が」 identifies the specific grammatical subject of an action or state, often emphasizing new information or directly highlighting the subject. For example, in 「雨 が 降って います」 (It's raining), 「が」 is used because the rain is new information being introduced. However, in 「今日 は 雨 です」 (Today is rainy), 「は」 is used because 'today' is the general topic about which a statement is being made.
+false_friends:
+  - term: が (subject marker)
+    meaning: Subject marking particle; identifies the subject.
+    kind: often confused with
+    nuance: Unlike 「は」, which marks the topic (what the sentence is about), 「が」identifies the grammatical
+      subject. 「が」is used when introducing new information, clarifying who or what performs an action,
+      or when asking/answering 'who?' or 'what?' questions.
+    grammar_point: が (subject marker)
+  - term: の (possession)
+    meaning: Possessive particle; links nouns or nominalizes phrases.
+    kind: often confused with
+    nuance: 「の」primarily indicates possession (e.g., 「私 の 本」 - my book) or describes a noun (e.g., 「日本
+      の 首都」 - Japan's capital). It has a completely different grammatical function than the topic-marking
+      particle 「は」, though both are particles.
+    grammar_point: の (possession)
+  - term: Number + は
+    meaning: At least, or so
+    kind: similar expression
+    nuance: This usage of 「は」with numbers or amounts emphasizes the quantity, often implying a minimum
+      or a general estimation. While it shares the particle 「は」, its function is distinct from broadly
+      marking a sentence topic.
+    grammar_point: '[Number]は (at least)'
+  - term: って (casual topic marker)
+    meaning: As for, Speaking of; Casual は (sentence topic marker)
+    kind: similar expression
+    nuance: 「って」serves a similar function to 「は」in marking the topic, but it is much more casual and primarily
+      used in spoken Japanese. 「は」is appropriate in a wider range of formal and informal contexts.
+    grammar_point: って (casual topic marker)
+  - term: と言えば
+    meaning: Speaking of...
+    kind: similar expression
+    nuance: 「といえば」is a conjunctive phrase used to shift or introduce a related topic, often building on
+      a previous statement. While it introduces a topic, its structure and nuance are distinct from the
+      simple topic-marking function of 「は」.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+  - term: を (object marker)
+    meaning: Direct object marking particle.
+    kind: often confused with
+    nuance: 「を」marks the direct object of a transitive verb. It has a fundamentally different grammatical
+      function from 「は」, which marks the topic or contrast.
+    grammar_point: を (direct object marker)
+post_false_friends_writeup: To differentiate between 「は」 and seemingly similar expressions, consider their
+  core purpose. 「は」 establishes the subject of discourse or highlights a contrast. 「が」 identifies the
+  specific agent or item of new information. 「の」 shows relation or possession. 「って」 is a casual substitute
+  for 「は」. 「といえば」 is for transitioning to a related topic. Focus on the information structure and emphasis
+  each particle/phrase provides.
+examples:
+  - english: I am a student.
+    japanese:
+      - 私 {は} 学生 です。
+      - 私 {は} 学生 だ。
+      - 私 {は} 学生 で ござい ます。
+      - 私 {は} 学生 な ん です。
+      - 私 {は} 学生 です わ。
+      - 僕 {は} 学生 だ よ。
+      - 俺 {は} 学生。
+      - あたし {は} 学生 よ。
+      - 私 {は} 学生 です けど。
+      - 私 {は} 学生 です よ ね。
+      - 私 {は} 学生 です わ よ。
+      - 私 {は} 学生 じゃ。
+      - 私 {は} 学生 でし て。
+    english_literally: As for me, I am a student.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {が} 学生 です。
+        english: It is I who is the student.
+        hint: This sentence emphasizes 'who' is the student, possibly to correct a misunderstanding. Here,
+          we are looking for a sentence that simply introduces yourself as a fact, making 'I' the topic.
+      - competing_japanese:
+          - 私 {の} 学生 です。
+        english: It is my student.
+        hint: 「の」 indicates possession, so 「私 の 学生」 would mean 'a student belonging to me.' Here, you
+          want to state the fact that you are a student.
+      - competing_japanese:
+          - 私 {って} 学生。
+        english: Speaking of me, I'm a student (casual).
+        hint: 「って」 is a more casual form of 「は」, but in this context, 「は」 is more natural for simply stating
+          a fact about yourself.
+    scene: A new student is introducing themselves to the teacher on the first day of class.
+    register: teineigo (polite)
+    setting: informative
+    nuance: Using 「私 {は}」 establishes 'I' as the topic of the sentence, indicating that the entire statement
+      is about the speaker. This is a common and polite way to introduce oneself. Variations like 「僕 {は}
+      学生 だ よ」 and 「俺 {は} 学生」 are casual male speech, while 「あたし {は} 学生 よ」 and 「私 {は} 学生 です わ」 are typically
+      female speech, with 「わ」 being a common female sentence-ending particle indicating a soft assertion.
+  - english: Today is good weather.
+    japanese:
+      - 今日 {は} 良い 天気 です。
+      - 今日 {は} 良い 天気 だ。
+      - 今日 {は} いい 天気 です。
+      - 今日 {は} いい 天気 だ。
+      - 今日 {は} 良い 天気 です ね。
+      - 今日 {は} 良い 天気 だ ね。
+      - 今日 {は} 天気 が いい です ね。
+      - 今日 {は} 素晴らしい 天気 です.
+      - 今日 {は} 絶好 の 天気 だ。
+      - 今日 {は} 快晴 です よ。
+      - 今日 {は} 気持ち の いい 天気 です ね。
+      - 今日 {は} ポカポカ 陽気 です。
+      - 今日 {は} 天気 が 良い です ね.
+    english_literally: As for today, it is good weather.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 {が} 良い 天気 です。
+        english: Today is good weather (as opposed to yesterday).
+        hint: This sentence emphasizes 'today' as the specific day that has good weather, possibly in
+          contrast to other days. Here, we are looking for a general observation about today.
+      - competing_japanese:
+          - 今日 {って} いい 天気。
+        english: Today, you know, good weather (casual).
+        hint: 「って」 is used to mark the topic in casual conversation, but 「は」 is more appropriate for general
+          statements or polite expressions.
+    scene: Neighbors casually greet each other and comment on today's weather.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「今日 {は}」 establishes 'today' as the topic, making a general reference about the weather. This
+      casual observation is common in friendly conversation.
+  - english: This book is interesting.
+    japanese:
+      - この 本 {は} 面白い です。
+      - この 本 {は} 面白い。
+      - この 本 {は} 面白い よ。
+      - この 本 {は} 面白い です よ。
+      - この 本 {は} 面白い ね。
+      - この 本 {は} 面白い よ ね。
+      - この 本 {は} 面白く ない です か。
+      - この 本 {は} 本当 に 面白い です よ。
+      - この 本 {は} かなり 面白い です ね。
+      - この 本 {は} めちゃ 面白い！
+      - この 本 {は} 興味 深い です。
+      - この 本 {は} とても 読み やすい です よ。
+      - この 本 {は} なかなか 面白い です よ。
+      - この 本 {は} ちょっと 面白い です よ。
+    english_literally: As for this book, it is interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 {が} 面白い です。
+        english: This book is interesting (out of other options).
+        hint: This sentence emphasizes 'this book' as the specific book that is interesting, perhaps in
+          comparison to other books. Here, we are looking for a straightforward recommendation that introduces
+          the book as the topic.
+      - competing_japanese:
+          - この 本 {って} 面白い。
+        english: This book, you know, it's interesting (casual).
+        hint: 「って」 is used for casually introducing a topic, but 「は」 is more widely used for general introductions
+          or expressing impressions.
+      - competing_japanese:
+          - この 本 {と いえ ば} 面白い です ね。
+        english: Speaking of this book, it's interesting, isn't it?
+        hint: 「といえば」 is an expression used to bring up a topic in conversation. Here, you simply want
+          to state that 'this book' is the topic.
+      - competing_japanese:
+          - この 本 {の} 面白い です。
+        english: The interesting part of this book (is...).
+        hint: 「の」 is a particle that modifies nouns or indicates possession. To express that 'this book'
+          is interesting as the topic, you should use 「は」.
+    scene: A friend recommends a book they just finished.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: By attaching 「は」 to 「この 本」, the speaker introduces the book as the topic and describes its
+      quality. This is a simple and direct statement.
+  - english: That person can speak Japanese.
+    japanese:
+      - あの 人 {は} 日本 語 が 話せ ます。
+      - あの 人 {は} 日本 語 が 話せる。
+      - あの 人 {は} 日本 語 が 話せ ます よ。
+      - あの 人 {は} 日本 語 が 話せる よ。
+      - あの 人 {は} 日本 語 が 話せ ます か。
+      - あの 人 {は} 日本 語 を 話せ ます。
+      - あの 人 {は} 日本 語 が 上手 です よ。
+      - あの 人 {は} 日本 語 が ペラペラ です ね。
+      - あの 人 {は} 日本 語 喋れ ます。
+      - あの 人 {は} 日本 語 が 非常 に 流暢 です よ。
+      - あの 方 {は} 日本 語 が お 上手 です よ。
+      - あの 人 {は} 日本 語 が かなり 堪能 です よ。
+    english_literally: As for that person, Japanese can be spoken.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 {が} 日本 語 が 話せ ます。
+        english: That person can speak Japanese (implying others cannot).
+        hint: This sentence emphasizes 'that person' as the specific individual who can speak Japanese,
+          possibly in contrast to others. Here, you are talking about that person's general ability.
+      - competing_japanese:
+          - あの 人 {って} 日本 語 話せる。
+        english: That person, you know, can speak Japanese (casual).
+        hint: 「って」 is a colloquial and casual expression. 「は」 is more appropriate and polite for stating
+          a general fact or ability.
+      - competing_japanese:
+          - あの 人 {の} 日本 語 が 話せ ます。
+        english: That person's Japanese can be spoken (referring to the language itself).
+        hint: 「の」 indicates possession or modification. If you want to state that 'that person' has the
+          ability to speak Japanese, use 「は」.
+      - competing_japanese:
+          - あの 人 {を} 日本 語 が 話せ ます。
+        english: Someone speaks that person's Japanese (as an object).
+        hint: 「を」 marks the direct object. In this context, 'that person' is the one performing the action,
+          so you would use 「は」 or 「が」.
+    scene: Two colleagues are discussing the skills of a new team member.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「あの 人 {は}」 introduces 'that person' as the topic. This is a polite and informative way to
+      state a fact about someone. The sentences provided use gender-neutral polite forms appropriate for
+      professional male-to-male conversation.
+  - english: I eat fish, but I do not eat meat.
+    japanese:
+      - 魚 {は} 食べ ます が、肉 {は} 食べ ませ ん。
+      - 魚 {は} 食べる けど、肉 {は} 食べ ない。
+      - 魚 {は} 頂き ます が、肉 {は} 頂き ませ ん。
+      - 魚 {は} 食べる が、肉 {は} 食べ ない。
+      - 魚 {は} 食べる けれど、肉 {は} 食べ ない。
+      - 魚 {は} 食べる けれど も、肉 {は} 食べ ない。
+      - 魚 {は} 食べる ん だ けど、肉 {は} 食べ ない ん だ。
+      - 魚 {は} 好き です が、肉 {は} ちょっと です。
+      - 魚 {は} 食える が、肉 {は} 食わ ん。
+      - 魚 {は} 食べる ん です が、肉 {は} 苦手 で。
+      - 魚 {は} いける ん です が、肉 {は} ちょっと 難しい です ね。
+      - 魚 {は} 大丈夫 です が、肉 {は} ちょっと 遠慮 し て おき ます。
+      - 魚 {は} よく 食べ ます が、肉 {は} あまり 食べ ませ ん。
+    english_literally: As for fish, I eat, but as for meat, I do not eat.
+    competing_grammar:
+      - competing_japanese:
+          - 魚 {を} 食べ ます が、肉 {を} 食べ ませ ん。
+        english: I eat fish, but I do not eat meat. (less emphasis on contrast).
+        hint: Using 「を」 for both simply lists the actions. Here, you want to emphasize the distinction
+          between the two types of food.
+      - competing_japanese:
+          - 魚 {が} 好き です が、肉 {が} あまり 好き じゃ あり ませ ん。
+        english: I like fish, but I don't like meat very much.
+        hint: 「が」 identifies the subject, and here it indicates the object of the state of 'liking.' However,
+          to express a clear contrast, 「は」 is more natural.
+      - competing_japanese:
+          - 魚 {と いえ ば} 食べ ます が、肉 {と いえ ば} 食べ ませ ん。
+        english: Speaking of fish, I eat them, but speaking of meat, I don't eat it.
+        hint: 「といえば」 is used to introduce a topic in conversation, but here you want to compare 'fish'
+          and 'meat'.
+    scene: A man explains his dietary preferences at a party buffet.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    nuance: The repeated use of 「は」 with 「魚」 and 「肉」 emphasizes a clear contrast in preferences. This
+      is a common way to express 'A, but not B'.
+  - english: Breakfast is important.
+    japanese:
+      - 朝ご飯 {は} 大切 です。
+      - 朝ご飯 {は} 大切 だ。
+      - 朝ご飯 {は} 大切 です ね。
+      - 朝ご飯 {は} 大切 です よ。
+      - 朝ご飯 {は} 大切 だ よ。
+      - 朝ご飯 {は} 大切 な ん だ よ。
+      - 朝ご飯 {は} とても 大切 です よ。
+      - 朝ご飯 {は} 重要 です。
+      - 朝ご飯 {は} 大事 です。
+      - 朝ご飯 {は} 欠かせ ませ ん。
+      - 朝ご飯 {は} 毎日 食べる べき です ね。
+      - 朝ご飯 {は} 何 より も 大切 です。
+      - 朝ご飯 {は} 一 日 の 始まり です から ね。
+    english_literally: As for breakfast, it is important.
+    competing_grammar:
+      - competing_japanese:
+          - 朝ご飯 {が} 大切 です。
+        english: Breakfast is important (emphasizing its importance over something else).
+        hint: This sentence emphasizes that breakfast is 'the' important meal, possibly correcting a misunderstanding.
+          Here, we are looking for a general reminder about a widely accepted fact.
+      - competing_japanese:
+          - 朝ご飯 {って} 大切。
+        english: Breakfast, you know, is important (casual).
+        hint: 「って」 is suitable for casual information sharing, but 「は」 is more appropriate for general
+          statements or polite expressions.
+      - competing_japanese:
+          - 朝ご飯 {の} 大切 です。
+        english: The importance of breakfast (is...).
+        hint: 「の」 indicates possession or connection. If you want to state that 'breakfast' is important
+          as the topic, use 「は」.
+    scene: A parent reminds their child about the importance of breakfast.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_age: older
+    nuance: 「朝ご飯 {は}」 indicates 'breakfast' as a general topic, stating a generally accepted fact about
+      its importance. The polite form 「大切 です」 is used for a gentle reminder, and the older speaker's tone
+      adds a sense of wisdom or experience.
+  - english: This cell phone is small, but very convenient.
+    japanese:
+      - この 携帯 {は} 小さい です が、とても 便利 です。
+      - この 携帯 {は} 小さい です けれど、とても 便利 です。
+      - この 携帯 {は} 小さい けど、とても 便利 だ。
+      - この 携帯 {は} 小さい が、とても 便利 です。
+      - この 携帯 {は} 小さい が、とても 便利 だ。
+      - この 携帯 {は} 小さい けれど、とても 便利 だ。
+      - この 携帯 {は} 小さい けど、すごく 便利。
+      - この 携帯 {は} 小さい けれど も、すごく 便利 です よ。
+      - この 携帯 {は} コンパクト です が、大変 便利 です。
+      - この 携帯 {は} 小さい わり に、とても 便利 です。
+      - この 携帯 {は} 小さめ です が、使い やすい です よ。
+      - この 携帯 {は} デザイン も よく て、機能 も 充実 し て い ます よ。
+      - この 携帯 {は} サイズ は 小さい の です が、機能 性 は 抜群 です。
+      - この 携帯 {は} 外見 は 小さい です が、性能 は 素晴らしい です。
+    english_literally: As for this cell phone, it is small, but very convenient.
+    competing_grammar:
+      - competing_japanese:
+          - この 携帯 {が} 小さい です が、とても 便利 です。
+        english: This cell phone is small, but very convenient. (emphasizing its smallness).
+        hint: This sentence emphasizes the smallness of the cell phone as a specific characteristic. Here,
+          you are using 「は」 to introduce the topic and then show a contrast between two qualities of the
+          same product.
+      - competing_japanese:
+          - この 携帯 {って} 小さい けど 便利。
+        english: This cell phone, you know, is small but convenient (casual).
+        hint: 「って」 is suitable for casual settings like with friends. For conveying general information,
+          such as describing a product, 「は」 is more appropriate.
+      - competing_japanese:
+          - この 携帯 {を} 小さい です が、とても 便利 です。
+        english: I consider this phone small, but very convenient (implying 'this phone' as an object
+          of thought).
+        hint: 「を」 is a particle indicating the direct object, and it is not used to indicate the topic
+          of a sentence. Here, 'this cell phone' is the topic.
+    scene: A salesperson is explaining the features of a new, compact cell phone to a customer.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「この 携帯 {は}」 introduces the cell phone as the topic, and then 「は」 is implicitly used to contrast
+      its small size with its convenience. This structure effectively presents a balanced view of the
+      product's attributes.
+  - english: Tokyo has many people.
+    japanese:
+      - 東京 {は} 人 が 多い です。
+      - 東京 {は} 人 が 多い。
+      - 東京 {は} 人 が 多い です ね。
+      - 東京 {は} 人 が 多い です よ。
+      - 東京 {は} 人 が 多い よ ね。
+      - 東京 {は} 人 が 多い ん だ よ。
+      - 東京 {は} 人口 が 多い です。
+      - 東京 {は} すごく 人 が 多い です ね。
+      - 東京 {は} 人 が たくさん い ます。
+      - 東京 {は} いつ も 賑やか です ね。
+      - 東京 {は} いつ で も 活気 が あり ます ね。
+      - 東京 {は} どこ へ 行っ て も 人 が い ます よ。
+    english_literally: As for Tokyo, people are many.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 {が} 人 が 多い です。
+        english: Tokyo has many people (as opposed to other places).
+        hint: This sentence emphasizes that 'Tokyo' is the specific place with many people, perhaps contrasting
+          it with other cities. Here, you are looking for a general description of Tokyo.
+      - competing_japanese:
+          - 東京 {って} 人 多い。
+        english: Tokyo, you know, has many people (casual).
+        hint: 「って」 is a casual expression. 「は」 is more standard and natural when conveying general information
+          about a city.
+      - competing_japanese:
+          - 東京 {の} 人 が 多い です。
+        english: The people of Tokyo are many.
+        hint: 「の」 indicates possession or belonging. If you want to describe a characteristic of 'Tokyo'
+          as a whole, use 「は」.
+    scene: Someone who used to live in Tokyo is explaining Tokyo to a friend from a rural area.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「東京 {は}」 establishes 'Tokyo' as the topic, explaining a general characteristic of the city
+      with 「人 が 多い です」. This is a common way to describe a place.
+  - english: I like games, but I do not really exercise.
+    japanese:
+      - ゲーム {は} 好き です が、運動 {は} あまり し ませ ん。
+      - ゲーム {は} 好き です けれど、運動 {は} あまり し ませ ん。
+      - ゲーム {は} 好き だ けど、運動 {は} あまり し ない。
+      - ゲーム {は} 好き だ が、運動 {は} あまり し ない。
+      - ゲーム {は} 好き だ けど、運動 {は} 全然 し ない な。
+      - ゲーム {は} 好き な ん だ けど、運動 {は} あまり し ない ん だ。
+      - ゲーム {は} 結構 やる ん です が、運動 {は} ほとんど し ませ ん。
+      - ゲーム {は} 得意 です が、運動 {は} 苦手 です。
+      - ゲーム {は} 好き です が、運動 {は} ほとんど し ませ ん。
+      - ゲーム {は} 毎日 やる ん です が、運動 {は} 全然 です ね。
+      - ゲーム {は} 時間 を 費やし ます が、運動 {は} する 気 に なれ ませ ん。
+      - ゲーム {は} 楽しい ん です が、運動 {は} どう も 苦手 で。
+    english_literally: As for games, like, but as for exercise, not much do not.
+    competing_grammar:
+      - competing_japanese:
+          - ゲーム {が} 好き です が、運動 {が} あまり し ませ ん。
+        english: I like games, but I do not really exercise. (emphasizing what is liked).
+        hint: While grammatically possible, using 「が」 for both simply states two different facts. Here,
+          you want to contrast two aspects of the speaker's lifestyle.
+      - competing_japanese:
+          - ゲーム {を} 好き です が、運動 {を} あまり し ませ ん。
+        english: I like games (as an object), but I don't really do exercise (as an object).
+        hint: For verbs like 「好きです」 (to like), you typically use 「が」 or 「は」 before the object of liking,
+          not 「を」.
+      - competing_japanese:
+          - ゲーム {と いえ ば} 好き です が、運動 {と いえ ば} あまり し ませ ん。
+        english: Speaking of games, I like them, but speaking of exercise, I don't really do it.
+        hint: 「といえば」 is used to introduce a topic, but here you want to compare 'games' and 'exercise'.
+    scene: A teenage boy is explaining his hobbies and habits to a new friend.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The double use of 「は」 with 「ゲーム」 and 「運動」 clearly contrasts the speaker's preference for gaming
+      with his lack of enthusiasm for exercise. 「あまり し ませ ん」 is a polite negative form expressing that
+      something is not done much. The combination of 「男の子」 (male) and 「若い」 (younger) is typical for this
+      type of casual, contrastive statement.
+  - english: Children like to play.
+    japanese:
+      - 子供 {は} 遊ぶ の が 好き です。
+      - 子供 {は} 遊ぶ の が 好き だ。
+      - 子供 {は} 遊ぶ の が 好き です よ ね。
+      - 子供 {は} 遊ぶ の が 好き です よ。
+      - 子供 {は} 遊ぶ の が 好き だ から ね。
+      - 子供 {は} 遊ぶ の が 好き な ん だ よ。
+      - 子供 {は} 遊ぶ こと が 好き です。
+      - 子供 {は} 遊び が 大好き です。
+      - 子供 {は} 遊ぶ の が 大事 です。
+      - 子供 {は} 遊び たい と 思っ て い ます。
+      - 子供 {は} 元気 に 遊ぶ の が 一 番 です ね。
+      - 子供 {は} 遊び を 通じ て 学び ます。
+      - 子供 {は} 自由 に 遊ぶ こと が 必要 です。
+    english_literally: As for children, playing is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 {が} 遊ぶ の が 好き です。
+        english: Children like to play (as opposed to adults).
+        hint: This sentence emphasizes 'children' as the specific group who likes to play, possibly contrasting
+          them with adults. Here, you are looking for a general observation about children.
+      - competing_japanese:
+          - 子供 {って} 遊ぶ の 好き だ よ ね。
+        english: Kids, you know, like to play (casual).
+        hint: 「って」 is suitable for casual information sharing, but 「は」 is more appropriate for stating
+          a universal truth.
+      - competing_japanese:
+          - 子供 {の} 遊ぶ の が 好き です。
+        english: The children's playing is liked.
+        hint: 「の」 indicates possession or association. If you want to state a general fact about children
+          that they like to play, use 「は」 as the topic marker.
+    scene: A teacher is discussing the natural tendencies of young students.
+    register: teineigo (polite)
+    setting: academic
+    nuance: 「子供 {は}」 establishes 'children' as the topic, stating a general observation about their preferences.
+      This is a common way to express a general truth or characteristic of a group.
+post_example_writeup: Understanding the core function of 「は」 as a topic marker is essential, but equally
+  important is recognizing its subtle role in drawing comparisons or emphasizing contrasts. Pay close
+  attention to the context to discern whether 「は」 is simply introducing the subject or highlighting a
+  distinction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/は

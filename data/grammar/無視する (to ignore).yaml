@@ -1,0 +1,285 @@
+grammar_point: 無視する (to ignore)
+learn_before:
+  - '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - することができる (can・be able to)
+  - たとえ〜ても (even if)
+  - と同じで・と違って (similarity and contrast)
+  - のを (direct object nominalizer)
+  - ふりをする (to pretend)
+  - 憎む (to hate・to detest)
+meaning: to ignore
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 無視する
+    rarity: common
+    meaning: to ignore
+  - conjugation-type: non-past polite (～ます)
+    form: 無視します
+    rarity: common
+    meaning: to ignore (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 無視しない
+    rarity: common
+    meaning: not to ignore
+  - conjugation-type: negative non-past polite (～ません)
+    form: 無視しません
+    rarity: common
+    meaning: not to ignore (polite)
+  - conjugation-type: past plain (～た)
+    form: 無視した
+    rarity: common
+    meaning: ignored
+  - conjugation-type: past polite (～ました)
+    form: 無視しました
+    rarity: common
+    meaning: ignored (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 無視しなかった
+    rarity: common
+    meaning: did not ignore
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 無視しませんでした
+    rarity: common
+    meaning: did not ignore (polite)
+  - conjugation-type: te-form (～て)
+    form: 無視して
+    rarity: common
+    meaning: ignoring and
+  - conjugation-type: volitional (～よう)
+    form: 無視しよう
+    rarity: common
+    meaning: let's ignore / intend to ignore
+pronunciation:
+  katakana: ムシスル
+  romaji: mushi suru
+formation:
+  Noun + する: Forms a verb meaning 'to do the noun' or 'to make oneself the noun'.
+jlpt: N3
+etymology: 'The verb 「無視する」is composed of two kanji: 無 (mu), meaning ''nothing'' or ''not'', and 視 (shi),
+  meaning ''to see'' or ''to look''. Thus, its literal meaning is ''to not see'' or ''to not look at''.
+  Over time, this evolved to mean ''to intentionally disregard'' or ''to ignore'', emphasizing a deliberate
+  act of not acknowledging something''s presence or importance, similar to how one might purposefully
+  avert their gaze.'
+writeup: |-
+  「無視する」 expresses the act of **intentionally** not paying attention to something or someone. This can range from deliberately not responding to a call or message, to consciously disregarding a rule, advice, or even another person's presence. The key element is the *conscious choice* to disregard. It often carries a connotation of **deliberate oversight, disrespect, or evasion**. It is not typically used for unintentional oversight or simply being unaware.
+
+  For example, if someone calls your name and you pretend not to hear them, you are 「無視している」. If you deliberately break a rule, you are 「ルールを無視している」. This grammar point can be applied to people, objects, rules, facts, or situations where one chooses to act as if they do not exist or are not important. It is a versatile verb and can be used in both formal and casual contexts depending on the conjugation. While it can be used neutrally to describe the act of ignoring, it often implies a negative judgment from the speaker, especially when it concerns ignoring people or important warnings.
+false_friends:
+  - term: 見過ごす (to overlook)
+    meaning: to overlook, to miss, to let pass without noticing
+    kind: similar expression
+    nuance: 「見過ごす」 implies an unintentional oversight or a deliberate decision to let something pass without
+      intervention, often because it's deemed minor or not worth addressing. Unlike 「無視する」, it doesn't
+      necessarily involve a deliberate act of *disregarding* what is seen or heard, but rather a failure
+      to properly *perceive* or *act upon* it.
+    grammar_point: <suggest>:見過ごす (to overlook)
+  - term: 気づかない (not to notice)
+    meaning: not to notice, to be unaware of
+    kind: similar expression
+    nuance: 「気づかない」 refers to a complete lack of awareness or perception. It's about genuinely not realizing
+      something, rather than intentionally ignoring it. The action is passive and unintentional, whereas
+      「無視する」 is active and intentional.
+    grammar_point: に気がつく (to notice・realize)
+  - term: 聞き流す (to pay no attention to)
+    meaning: to let something go in one ear and out the other, to pay no attention to (what one hears)
+    kind: similar expression
+    nuance: While 「聞き流す」 involves deliberately disregarding something, it specifically applies to **spoken
+      words or sounds**. The nuance is often about consciously choosing *not* to take something seriously
+      or to let it pass without internalizing it, perhaps because it's trivial, annoying, or untrue. 「無視する」
+      has a broader scope, applying to people, rules, situations, and not just auditory input.
+    grammar_point: <suggest>:聞き流す (to pay no attention to)
+  - term: 気にしない (to not mind)
+    meaning: to not mind, to not worry about, to not care
+    kind: similar expression
+    nuance: 「気にしない」 means to dismiss something as unimportant or not bothersome, often implying that one
+      is emotionally unaffected by it. While it shares the idea of not letting something affect you, it's
+      about one's internal emotional state or attitude, not necessarily an overt action of disregard.
+      「無視する」 is about the *action* of ignoring, which can stem from not caring, but the focus is on the
+      behavior.
+    grammar_point: <suggest>:気にしない (to not mind)
+post_false_friends_writeup: To differentiate, consider the intention and the type of input. 「無視する」 always
+  implies a conscious, active choice to disregard. 「見過ごす」 suggests unintentional oversight or letting
+  something pass. 「気づかない」 means a genuine lack of awareness. 「聞き流す」 is specifically about ignoring auditory
+  information, often by letting it pass through one's mind without taking it seriously. Lastly, 「気にしない」
+  describes an emotional state of not being bothered or concerned by something.
+examples:
+  - english: She completely ignored his message.
+    japanese:
+      - 彼女 は 彼 の メッセージ を {無視 し た}。
+      - 彼女 は 彼 の メッセージ を {無視 し まし た}。
+    english_literally: As for her, his message, she ignored.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼 の メッセージ に {気づか なかっ た}。
+        english: She didn't notice his message.
+        hint: 「気づかない」 means to not notice something, implying a lack of awareness rather than intentional
+          disregard. We're looking for a deliberate act of ignoring.
+    scene: A person sent a text message, and the recipient saw it but chose not to reply.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: Please don't ignore the teacher's instructions.
+    japanese:
+      - 先生 の 指示 を {無視 し ない で} ください。
+      - 先生 の 指示 を {無視 し て は} いけ ませ ん。
+    english_literally: Teacher's instructions, please don't ignore.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 指示 を {見過ごさ ない で} ください。
+        english: Please don't overlook the teacher's instructions.
+        hint: 「見過ごす」 means to overlook or let something pass, often implying an unintentional omission
+          or a decision not to intervene. We're looking for a direct instruction not to *intentionally
+          disregard*.
+    scene: A student is about to disregard their teacher's advice.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: negative plain (～ない)
+  - english: He was so engrossed in his game that he ignored his mother calling him.
+    japanese:
+      - 彼 は ゲーム に 夢中 で、母 が 呼ぶ の を {無視 し た}。
+      - 彼 は ゲーム に 夢中 で、母 が 呼ぶ の を {無視 し まし た}。
+    english_literally: He was engrossed in game, mother calling him, he ignored.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ゲーム に 夢中 で、母 が 呼ぶ の に {気づか なかっ た}。
+        english: He was so engrossed in his game that he didn't notice his mother calling him.
+        hint: 「気づかない」 implies a lack of awareness, meaning he genuinely didn't perceive his mother's call.
+          We're looking for an intentional act of ignoring, even if due to preoccupation.
+    scene: A boy playing a video game completely tunes out his mother.
+    register: casual
+    setting: casual slang
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「夢中 で」 (engrossed in) highlights the reason for the intentional ignoring, though
+      it might appear unintentional from an outside perspective. This sentence shows how 「無視する」 can describe
+      a deliberate act even if the person is preoccupied.
+  - english: It's impossible to ignore the environmental problems we face.
+    japanese:
+      - 私 達 が 直面 する 環境 問題 を {無視 する} こと は でき ない。
+      - 私 達 が 直面 する 環境 問題 を {無視 する} こと は でき ませ ん。
+    english_literally: We face environmental problems, ignoring them is not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 が 直面 する 環境 問題 を {見過ごす} こと は でき ない。
+        english: It's impossible to overlook the environmental problems we face.
+        hint: 「見過ごす」 suggests failing to notice or intentionally letting something pass. While similar,
+          「無視する」 more strongly implies a deliberate act of rejection or disregard. We're looking for the
+          stronger sense of intentional dismissal.
+    scene: Discussing serious global issues.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: They decided to ignore the minor details and focus on the main point.
+    japanese:
+      - 彼 ら は 細かい こと は {無視 し て}、要点 に 集中 する こと に し た。
+      - 彼 ら は 細かい こと は {無視 し て}、要点 に 集中 する こと に し まし た。
+    english_literally: They, minor things ignored, main point to focus, decided to do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 細かい こと は {気 に せ ず}、要点 に 集中 する こと に し た。
+        english: They decided not to mind the minor details and focus on the main point.
+        hint: 「気にしない」 refers to one's internal attitude of not being bothered or concerned. 「無視する」 describes
+          the active behavior of disregarding. We're looking for the active decision to bypass details.
+    scene: A team discussing a project, making a strategic decision.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: Don't ignore others' opinions, even if you disagree.
+    japanese:
+      - た と え 意見 が 違っ て も、他人 の 意見 を {無視 し て は} いけ ませ ん。
+      - た と え 意見 が 違っ て も、他人 の 意見 を {無視 し ない よう に} し ましょう。
+    english_literally: Even if opinions differ, other people's opinions, if ignoring, is not good.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 意見 が 違っ て も、他人 の 意見 を {聞き流し て は} いけ ませ ん。
+        english: Even if opinions differ, you must not just let others' opinions go in one ear and out
+          the other.
+        hint: 「聞き流す」 specifically means to disregard *auditory* information or words. 「無視する」 has a broader
+          meaning of intentionally disregarding anything, including opinions, whether spoken or written.
+          We're looking for a general disregard.
+    scene: Giving advice on respectful communication.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+    listener_gender: group
+    nuance: The phrase 「無視しては いけません」 (must not ignore) emphasizes a strong prohibition. This form is common
+      in instructions or warnings given to a group, indicating that ignoring others' opinions is an unacceptable
+      behavior.
+    etymology: The structure 「〜ては いけません」 comes from 「〜てはならない」, meaning 'must not do'. The prohibition
+      here applies to the act of disregarding opinions.
+  - english: He pretended to ignore me when he saw me.
+    japanese:
+      - 彼 は 私 を 見 た 時、{無視 する} ふり を し た。
+      - 彼 は 私 を 見 た 時、{無視 する} ふり を し まし た。
+    english_literally: He, me saw when, ignoring pretense did.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 を 見 た 時、私 に {気づか ない} ふり を し た。
+        english: He pretended not to notice me when he saw me.
+        hint: 「気づかない」 implies a genuine lack of awareness. Here, the person is *pretending* to be unaware,
+          but the underlying action is still one of intentional disregard, which is 「無視する」. We're looking
+          for the act of pretending to intentionally ignore.
+    scene: Someone intentionally avoids eye contact or acknowledgment.
+    register: casual
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The use of 「ふり を した」 (pretended) indicates that the act of ignoring was deliberate, even if
+      it was feigned. This example clearly shows the intentional aspect of 「無視する」, as opposed to simply
+      not noticing.
+    etymology: 「ふり を する」 (to pretend) is a common pattern indicating a feigned action or state.
+  - english: A good leader never ignores the voices of their subordinates.
+    japanese:
+      - 良い リーダー は 部下 の 声 を 決し て {無視 し ませ ん}。
+      - 良い リーダー は 部下 の 声 を 決し て {無視 し ない} もの だ。
+    english_literally: Good leader, subordinates' voices, definitely does not ignore.
+    competing_grammar:
+      - competing_japanese:
+          - 良い リーダー は 部下 の 声 を 決し て {聞き流し ませ ん}。
+        english: A good leader never lets the voices of their subordinates go in one ear and out the other.
+        hint: 「聞き流す」 specifically applies to spoken words, implying they are heard but not taken seriously.
+          「無視する」 is a broader term for intentionally disregarding any input, not just auditory. We're
+          looking for the general concept of not disregarding voices.
+    scene: Discussing qualities of leadership.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+  - english: Despite the warning signs, they ignored the danger and proceeded.
+    japanese:
+      - 警告 の サイン が あっ た に も かかわら ず、彼 ら は 危険 を {無視 し て} 進ん だ。
+      - 警告 の サイン が あっ た に も かかわら ず、彼 ら は 危険 を {無視 し て} 進み まし た。
+    english_literally: Warning signs existed despite, they, danger ignored, proceeded.
+    competing_grammar:
+      - competing_japanese:
+          - 警告 の サイン が あっ た に も かかわら ず、彼 ら は 危険 を {見過ごし て} 進ん だ。
+        english: Despite the warning signs, they overlooked the danger and proceeded.
+        hint: 「見過ごす」 implies overlooking something, which can be unintentional or a passive decision.
+          「無視する」 carries a stronger sense of active, conscious disregard or defiance of the danger. We're
+          looking for the intentional act of proceeding despite the warnings.
+    scene: A group making a risky decision.
+    register: semi-formal
+    setting: serious
+    conjugation: te-form (～て)
+  - english: Even if you ignore it, the problem won't disappear.
+    japanese:
+      - たとえ {無視 し て も}、問題 は なくなら ない。
+      - たとえ {無視 し た と し て も}、問題 は なくなら ない でしょう。
+    english_literally: Even if you ignore, the problem will not disappear.
+    competing_grammar:
+      - competing_japanese:
+          - たとえ {気 に し なく て も}、問題 は なくなら ない。
+        english: Even if you don't mind it, the problem won't disappear.
+        hint: 「気にしない」 means to not care or worry about something. 「無視する」 is the action of actively disregarding
+          it. The sentence is about the action of ignoring, not just the attitude of not caring. We're
+          looking for the act of trying to make a problem go away by disregarding it.
+    scene: Someone trying to avoid facing a difficult situation.
+    register: casual
+    setting: reflective
+    conjugation: concessive (～ても)
+post_example_writeup: As seen in the examples, 「無視する」 emphasizes a conscious act of disregarding something.
+  Whether it's a message, an instruction, or a problem, the core meaning revolves around making a deliberate
+  choice not to acknowledge or address it. This intentionality is what primarily distinguishes it from
+  similar-sounding expressions that might imply unintentional oversight or a lack of awareness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/無視する

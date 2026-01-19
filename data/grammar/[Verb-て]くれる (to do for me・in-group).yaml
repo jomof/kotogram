@@ -1,0 +1,306 @@
+grammar_point: '[Verb-て]くれる (to do for me・in-group)'
+learn_before:
+  - '[な-Adjective]に (adverbial form)'
+  - あげる・やる (to give, outward)
+  - いただく (humbly receive)
+  - くれる (to give, inward to me・in-group)
+  - に (target・destination)
+  - へ (directional particle)
+  - 代わりに (in return)
+  - 使う (to use)
+meaning: to do something for the speaker or someone in their in-group, implying gratitude
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[て]くれる
+    rarity: common
+    meaning: someone does [Verb] for the speaker/in-group
+  - conjugation-type: non-past polite (～ます)
+    form: Verb[て]くれます
+    rarity: common
+    meaning: someone does [Verb] for the speaker/in-group (polite)
+  - conjugation-type: past plain (～た)
+    form: Verb[て]くれた
+    rarity: common
+    meaning: someone did [Verb] for the speaker/in-group
+  - conjugation-type: past polite (～ました)
+    form: Verb[て]くれました
+    rarity: common
+    meaning: someone did [Verb] for the speaker/in-group (polite)
+  - conjugation-type: negative plain (～ない)
+    form: Verb[て]くれない
+    rarity: common
+    meaning: someone doesn't do [Verb] for the speaker/in-group
+  - conjugation-type: negative non-past polite (～ません)
+    form: Verb[て]くれません
+    rarity: common
+    meaning: someone doesn't do [Verb] for the speaker/in-group (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[て]くれなかった
+    rarity: common
+    meaning: someone didn't do [Verb] for the speaker/in-group
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Verb[て]くれませんでした
+    rarity: common
+    meaning: someone didn't do [Verb] for the speaker/in-group (polite)
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[て]くださる
+    rarity: common
+    meaning: someone respectfully does [Verb] for the speaker/in-group
+  - conjugation-type: non-past polite (～ます)
+    form: Verb[て]くださいます
+    rarity: common
+    meaning: someone respectfully does [Verb] for the speaker/in-group (polite)
+  - conjugation-type: past plain (～た)
+    form: Verb[て]くださった
+    rarity: common
+    meaning: someone respectfully did [Verb] for the speaker/in-group
+  - conjugation-type: past polite (～ました)
+    form: Verb[て]くださいました
+    rarity: common
+    meaning: someone respectfully did [Verb] for the speaker/in-group (polite)
+  - conjugation-type: negative plain (～ない)
+    form: Verb[て]くださらない
+    rarity: common
+    meaning: someone respectfully doesn't do [Verb] for the speaker/in-group
+  - conjugation-type: negative non-past polite (～ません)
+    form: Verb[て]くださいません
+    rarity: common
+    meaning: someone respectfully doesn't do [Verb] for the speaker/in-group (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[て]くださなかった
+    rarity: less common
+    meaning: someone respectfully didn't do [Verb] for the speaker/in-group
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Verb[て]くださいませんでした
+    rarity: less common
+    meaning: someone respectfully didn't do [Verb] for the speaker/in-group (polite)
+pronunciation:
+  katakana: テ クレル
+  romaji: te kureru
+formation:
+  Verb[て] + くれる: Indicates that someone performs an action for the speaker or someone in their in-group,
+    implying gratitude.
+jlpt: N5
+etymology: The verb 「くれる」 originates from the verb 「呉れる」, which means 'to give.' When combined with the
+  Te-form of another verb, it extends this meaning of 'giving' to 'giving an action' or 'doing a favor
+  for.' The core concept remains that of an action being directed towards the speaker or their immediate
+  in-group, always carrying the nuance of a benefit received, hence the inherent gratitude. This contrasts
+  with other giving/receiving verbs that convey different directions or social implications.
+writeup: |-
+  The grammar point 「〜てくれる」 is used to express that someone performs an action for the benefit of the speaker or someone within the speaker's personal circle, such as family members or close friends. This construction inherently carries a nuance of gratitude or appreciation for the favor received. The person performing the action is the grammatical subject of 「くれる」, while the recipient of the favor (the speaker or in-group member) is typically the indirect object, often omitted if it is clear from context.
+
+  For example, if a friend helps you, you would say 「友達が手伝って{くれた}」 (My friend helped me). The focus is on the beneficial action received. When expressing actions done by a superior or someone deserving of higher respect, the honorific form 「〜てくださる」 is used instead of 「〜てくれる」.
+
+  It is essential to understand that the action always flows *towards* the speaker or their in-group. This directionality is key to distinguishing 「〜てくれる」 from other verbs of giving and receiving, such as 「〜てあげる」 and 「〜てもらう」.
+false_friends:
+  - term: '[Verb-て]あげる (to do for someone, outward)'
+    meaning: to do something for someone (outside speaker's in-group)
+    kind: similar expression
+    nuance: 「〜てあげる」 expresses an action done by the speaker (or their in-group) for someone *outside*
+      their in-group, implying a benefit given to the receiver. There is no implied gratitude from the
+      speaker; rather, the speaker is the one bestowing the favor.
+    grammar_point: '[Verb-て]あげる (to do for someone, outward)'
+  - term: '[Verb-て]もらう (to have someone do, receive an action)'
+    meaning: to have someone do something for oneself; to receive an action
+    kind: similar expression
+    nuance: 「〜てもらう」 expresses that the speaker *receives* the favor or action from someone else. The focus
+      is on the *receiver's* perspective. The subject is the receiver, and the person who performed the
+      action is marked with に.
+    grammar_point: '[Verb-て]もらう (to have someone do, receive an action)'
+post_false_friends_writeup: These three expressions form a fundamental trio for understanding the dynamics
+  of giving and receiving actions in Japanese. While 「〜てくれる」 focuses on an action being done *for* the
+  speaker or their in-group (from an outsider), 「〜てあげる」 describes an action done *by* the speaker or their
+  in-group *for* an outsider. Conversely, 「〜てもらう」 describes an action *received* by the speaker or their
+  in-group (from an outsider). Mastering the correct usage depends entirely on the perspective of the
+  speaker and the direction of the benefit.
+examples:
+  - english: My friend helped me carry the luggage.
+    japanese:
+      - 友達 が 荷物 を 運ん で {くれ た}。
+      - 友達 が 荷物 を 運ん で {くれ まし た}。
+    english_literally: Friend, luggage, carrying, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 荷物 を 運ん で あげ た。
+        english: I helped my friend carry the luggage.
+        hint: 「〜てあげる」 indicates you are doing the favor for someone else, not receiving it. We're looking
+          for an expression where the friend did something for you.
+    scene: You are talking about how you managed to move your heavy luggage.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: The phrase 「運んで{くれた}」 explicitly shows that the friend's action of carrying the luggage was
+      a favor done for the speaker, hence the use of 「くれる」. It conveys the speaker's gratitude.
+  - english: My teacher kindly explained the difficult grammar to me.
+    japanese:
+      - 先生 が 難しい 文法 を 説明 し て {ください まし た}。
+      - 先生 が 難しい 文法 を 説明 し て {くださっ た}。
+    english_literally: Teacher, difficult grammar, explaining, respectfully gave.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 難しい 文法 を 説明 し て あげ た。
+        english: My teacher explained the difficult grammar for someone else (not me).
+        hint: 「〜てあげる」 indicates the teacher did the favor for someone else, not for you. We need the polite
+          form that shows the teacher did it for you.
+    scene: You are grateful to your teacher for clarifying a complex topic.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: Using 「説明して{くださいました}」 indicates the high respect the speaker has for the teacher, making the
+      action a gracious favor. The use of 「くださる」 (the respectful form of 「くれる」) emphasizes this hierarchy
+      and gratitude.
+  - english: My elder sister bought me a birthday present.
+    japanese:
+      - 姉 が 誕生 日 プレゼント を 買っ て {くれ た}。
+      - 姉 が 誕生 日 プレゼント を 買っ て {くれ まし た}。
+    english_literally: Elder sister, birthday present, buying, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 姉 が 誕生 日 プレゼント を 買っ て あげ た。
+        english: My elder sister bought a birthday present for someone else (not me).
+        hint: 「〜てあげる」 suggests your sister bought it for someone else. We need the phrase that shows she
+          bought it for you.
+    scene: You are excitedly telling someone about your birthday.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The use of 「買って{くれた}」 highlights that the older sister's action was a personal favor benefiting
+      the speaker, indicating warmth and gratitude within a family context. The casual tone suits a brother
+      talking about his older sister.
+  - english: My colleague covered for me when I was sick.
+    japanese:
+      - 病気 の 時、同僚 が 仕事 の 代わり を し て {くれ まし た}。
+      - 病気 の 時、同僚 が 仕事 の 代わり を し て {くれ た}。
+    english_literally: Sick time, colleague, work's substitute, doing, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 病気 の 時、同僚 が 仕事 の 代わり を し て あげ た。
+        english: When my colleague was sick, I covered for them.
+        hint: 「〜てあげる」 would mean your colleague did something for someone else, not you. We're looking
+          for an expression that shows your colleague did a favor for you.
+    scene: You are explaining a situation at work where you received help.
+    register: semi-formal
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: Using 「代わりをして{くれました}」 conveys that the colleague's action was a helpful favor. The polite
+      form 「くれました」 is suitable for discussing professional interactions, even if the direct relationship
+      is friendly, maintaining a level of respect.
+  - english: A kind passerby taught me the way.
+    japanese:
+      - 親切 な 通行 人 が 道 を 教え て {くれ まし た}。
+      - 親切 な 通行 人 が 道 を 教え て {くれ た}。
+    english_literally: Kind passerby, way, teaching, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 親切 な 通行 人 が 道 を 教え て あげ た。
+        english: A kind passerby taught someone else the way.
+        hint: 「〜てあげる」 would mean the passerby taught someone else, not you. We're looking for an expression
+          that indicates you received the help.
+    scene: You are recounting how you found your destination.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: 「教えて{くれました}」 expresses gratitude towards a stranger who provided a helpful service. The polite
+      form is appropriate for describing a casual but beneficial interaction with someone you do not know
+      well.
+  - english: My younger sister made a delicious meal for me.
+    japanese:
+      - 妹 が 美味しい ご飯 を 作っ て {くれ た}。
+      - 妹 が 美味しい ご飯 を 作っ て {くれ まし た}。
+    english_literally: Younger sister, delicious meal, making, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 が 美味しい ご飯 を 作っ て あげ た。
+        english: My younger sister made a delicious meal for someone else (not me).
+        hint: 「〜てあげる」 indicates your sister made it for someone else. We need the phrase that shows she
+          made it for you.
+    scene: You are praising your sibling's cooking.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The phrase 「作って{くれた}」 conveys the speaker's appreciation for her younger sister's effort in
+      preparing the meal, highlighting the personal benefit received within the family.
+    etymology: The verb 「作って」 (tsukutte) is the Te-form of 「作る」 (tsukuru, to make/create). When combined
+      with 「くれた」, it explicitly states that the 'making' action was done as a favor for the speaker.
+  - english: My boss gave me good advice.
+    japanese:
+      - 上司 が 良い アドバイス を {ください まし た}。
+      - 上司 が 良い アドバイス を {くださっ た}。
+    english_literally: Boss, good advice, respectfully gave.
+    competing_grammar:
+      - competing_japanese:
+          - 上司 が 良い アドバイス を あげ た。
+        english: My boss gave good advice to someone else.
+        hint: 「〜てあげる」 suggests the boss gave advice to someone else. We need the polite form that shows
+          the advice was given to you.
+    scene: You are recounting a helpful interaction with your superior.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: 「{くださいました}」 is used to show high respect for the superior's action of giving advice. This
+      indicates that the advice was a beneficial favor from a higher-status individual.
+    etymology: 「アドバイスを{くださる}」 combines the English loanword 'advice' with the respectful giving verb,
+      emphasizing the positive reception of guidance.
+  - english: My dog always comes to greet me when I get home.
+    japanese:
+      - 家 に 帰る と、いつ も 犬 が 迎え に {来 て くれる}。
+      - 家 に 帰る と、いつ も 犬 が 迎え に {来 て くれ ます}。
+    english_literally: Home to return, always, dog, greeting, coming, gives.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 帰る と、いつ も 犬 が 迎え に 来る。
+        english: When I get home, the dog always comes to greet me.
+        hint: While 「来る」 (kuru) is correct, adding 「くれる」 adds a nuance of the action being a favor or
+          benefit from the dog, highlighting the warmth of the interaction.
+    scene: You are talking about your pet's routine.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    nuance: Even for animals, 「迎えに{来てくれる}」 is used to express that the dog's action of greeting is a loving
+      gesture or a 'favor' that benefits the speaker, creating a sense of warmth and appreciation.
+  - english: My friend lent me money when I was in trouble.
+    japanese:
+      - 困っ て い た 時、友達 が お 金 を 貸し て {くれ た}。
+      - 困っ て い た 時、友達 が お 金 を 貸し て {くれ まし た}。
+    english_literally: Troubled was when, friend, money, lending, gave.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ て い た 時、友達 が お 金 を 貸し て あげ た。
+        english: When my friend was in trouble, I lent them money.
+        hint: 「〜てあげる」 means you lent money to your friend. We're looking for the phrase that indicates
+          your friend lent money to you.
+    scene: You are sharing a past experience of receiving help.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: The use of 「貸して{くれた}」 emphasizes the beneficial nature of the friend's action during a difficult
+      time, conveying a strong sense of gratitude for the received help.
+    etymology: The verb 「貸して」 (kashite) is the Te-form of 「貸す」 (kasu), meaning 'to lend'. The combination
+      directly means 'lent for me'.
+  - english: My senior taught me how to use this machine.
+    japanese:
+      - 先輩 が この 機械 の 使い 方 を 教え て {ください まし た}。
+      - 先輩 が この 機械 の 使い 方 を 教え て {くださっ た}。
+    english_literally: Senior, this machine's way of using, teaching, respectfully gave.
+    competing_grammar:
+      - competing_japanese:
+          - 先輩 が この 機械 の 使い 方 を 教え て あげ た。
+        english: My senior taught someone else how to use this machine.
+        hint: 「〜てあげる」 implies your senior taught someone else. We need the polite form that shows your
+          senior taught you.
+    scene: You are describing how you learned a new skill at work.
+    register: semi-formal
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: 「教えて{くださいました}」 conveys respect for the senior's guidance and emphasizes that their teaching
+      was a valuable favor benefiting the speaker. The use of 「くださる」 is appropriate given the senpai-kohai
+      (senior-junior) relationship.
+post_example_writeup: The usage of 「〜てくれる」 and 「〜てくださる」 always highlights the positive impact of someone's
+  action on the speaker or their in-group. It is a fundamental expression of gratitude in Japanese, indicating
+  that the action was a favor received. Paying attention to the context and the relationship between the
+  speaker and the doer of the action will guide you in choosing between the plain 「くれる」 and the respectful
+  「くださる」 forms.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/くれる

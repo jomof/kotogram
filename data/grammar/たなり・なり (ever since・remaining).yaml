@@ -1,0 +1,239 @@
+grammar_point: たなり・なり (ever since・remaining)
+learn_before:
+  - 〜まま(に) (as is・unchanged)
+  - 〜如し・〜ごとし (like・as if)
+  - ぬ (classical negative auxiliary)
+  - 二度と (never again)
+  - 再び (again・second time)
+  - 地面・天井 (ground・floor・ceiling)
+meaning: a state has continued unchanged ever since an action, or remaining in a certain posture/state
+pronunciation:
+  katakana: タナリ・ナリ
+  romaji: tanari・nari
+formation:
+  Verb[た形] + なり: Indicates that the subject remained in a state or posture immediately after performing
+    the verb's action, or that a situation has remained unchanged since then. Often carries a nuance of
+    unexpectedness or being left unattended.
+jlpt: N2
+etymology: The particle 「なり」 in this context is thought to have evolved from 「にあり」 (ni ari), meaning 'to
+  be in' or 'to exist in a state'. This origin highlights its core meaning of maintaining a state or position
+  after an action, emphasizing the immediate and continuous nature of the resulting condition. It signifies
+  'just as it is' or 'remaining in that state'.
+writeup: |-
+  The grammar point **たなり** (V-た形 + なり) is used to express that an action was performed, and the subject (or something related to the action) has remained in that specific state or posture ever since. It conveys a strong sense of continuity, often implying that the state was maintained immediately after the preceding action, or that something was left unattended.
+
+  While similar to **V-たまま**, **たなり** often carries a nuance of abruptness, a fixed position, or sometimes a slight negative connotation of being left as is, or an unexpected persistence. It's typically used with verbs that describe a short, instantaneous action or a change in posture, such as standing, sitting, closing, or leaving.
+
+  For example, if someone sat down (座った) and **座ったなり** implies they remained seated, perhaps unexpectedly or without moving, contrasting with just being seated (座ったまま) which is more neutral. It's a slightly more formal or literary expression than **まま**.
+false_friends:
+  - term: Verb[た形] + まま
+    meaning: as is; remaining in a state
+    kind: similar expression
+    nuance: 「まま」is a neutral expression for remaining in a state or keeping something as it is. 「たなり」
+      often implies a more abrupt continuation or something being left unattended.
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: Verb[た形] + きり
+    meaning: since; only
+    kind: similar expression
+    nuance: 「きり」 emphasizes that nothing else has happened since the action, or that only that action
+      occurred. 「たなり」 focuses on the continuation of the state that resulted from the action.
+    grammar_point: '[Verb-た]きり (since・no change)'
+  - term: Verb[る形] + なり Verb[る形]
+    meaning: as soon as... then...
+    kind: similar expression
+    nuance: This 「なり」 expresses immediate succession between two actions, meaning 'as soon as X happens,
+      Y happens.' It is a different grammatical usage from 「たなり」, which describes a continuous state after
+      an action.
+    grammar_point: <suggest>:[Verb-た] とたん(に)・が早いか・や否や・なり (as soon as)
+post_false_friends_writeup: While 「たなり」, 「まま」, and 「きり」 all describe continuous states or actions, their
+  nuances differ significantly. 「まま」 is the most neutral, simply stating a state. 「きり」 emphasizes the
+  exclusivity or finality of an action or state. 「たなり」 often highlights an unexpected or static continuation,
+  sometimes with an implication of being left in that state.
+examples:
+  - english: He sat down and remained motionless.
+    japanese:
+      - 彼 は 座っ {た なり}、動か なく なっ た。
+      - 彼 は 座っ {た なり}、動か なく なり まし た。
+      - 彼 は 座っ {た なり}、動か ぬ まま だっ た。
+    english_literally: As for him, he sat down remaining in that state, became not moving.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 座っ た まま、動か なく なっ た。
+        english: He sat down and remained motionless (neutral).
+        hint: 「まま」 is a more neutral way to say 'remaining in a state'. We're looking for a slightly stronger
+          implication of abruptness or fixedness.
+    scene: A man sits down and then freezes, perhaps from shock or deep thought.
+    register: casual
+    setting: serious
+    nuance: 「座ったなり」 conveys that he sat down and immediately, and continuously, remained in that state,
+      emphasizing the abrupt cessation of further movement.
+  - english: She opened the door and just stood there.
+    japanese:
+      - 彼女 は ドア を 開け {た なり}、立ち尽くし て い た。
+      - 彼女 は ドア を 開け {た なり}、立ち尽くし て い まし た。
+      - 彼女 は ドア を 開け {た なり}、立っ た まま だっ た。
+    english_literally: As for her, she opened the door remaining in that state, stood still.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ドア を 開け た まま、立ち尽くし て い た。
+        english: She opened the door and just stood there (neutral).
+        hint: While similar, this version is more neutral. We want to express a more abrupt or fixed state
+          after the action.
+      - competing_japanese:
+          - 彼女 は ドア を 開ける なり、立ち尽くし た。
+        english: As soon as she opened the door, she stood still.
+        hint: This uses a different meaning of 'なり' to indicate immediate succession of actions, not remaining
+          in a state. We're looking for a continuous state after the initial action.
+    scene: A person opens a door, perhaps finding something shocking, and doesn't move further.
+    register: casual
+    setting: storytelling
+    nuance: 「開けたなり」 indicates that after opening the door, she immediately and continuously remained in
+      a standing state, unable to move.
+  - english: He closed his eyes and didn't open them again.
+    japanese:
+      - 彼 は 目 を 閉じ {た なり}、二 度 と 開け なかっ た。
+      - 彼 は 目 を 閉じ {た なり}、二 度 と 開け ませ ん でし た。
+      - 彼 は 目 を 閉じ {た なり}、再び 開ける こと は なかっ た。
+    english_literally: As for him, he closed his eyes remaining in that state, never opened again.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 目 を 閉じ た きり、二 度 と 開け なかっ た。
+        english: He closed his eyes and since then, never opened them again.
+        hint: 「きり」 emphasizes 'since then nothing else happened'. We are focusing more on the continuous
+          state of the eyes being closed.
+    scene: A dramatic scene where someone closes their eyes and passes away or falls into a deep sleep.
+    register: formal
+    setting: melancholic
+    nuance: 「閉じたなり」 suggests that after closing his eyes, he remained in that specific state, emphasizing
+      the permanence of the action and its consequence.
+  - english: My grandfather left home just as he was, without taking anything.
+    japanese:
+      - 祖父 は 着 の 身 着 の まま 出かけ {た なり}、帰っ て こ なかっ た。
+      - 祖父 は 着 の 身 着 の まま 出かけ {た なり}、帰っ て き ませ ん でし た。
+      - 祖父 は 着 の 身 着 の まま 出かけ {た なり}、戻る こと は あり ませ ん でし た。
+    english_literally: As for grandfather, dressed in his everyday clothes, he left remaining in that
+      state, did not come back.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 着 の 身 着 の まま 出かけ た まま、帰っ て こ なかっ た。
+        english: My grandfather left home just as he was, and remained in that state, not returning.
+        hint: 「まま」 is neutral. 「たなり」 emphasizes the immediate and continuous nature of his departure and
+          remaining in that state, implying a more abrupt or final absence.
+    scene: A family member recounts a story of their grandfather who suddenly left home and never returned.
+    register: casual
+    setting: storytelling
+    nuance: 「出かけたなり」 implies that he left in a casual manner and remained in that 'state of departure,'
+      never returning. 「着の身着のまま」 (kino mimama) is an idiom meaning 'just as one is dressed,' highlighting
+      the lack of preparation.
+  - english: The boy just clung to his mother's hand.
+    japanese:
+      - 男の子 は 母親 の 手 を 握っ {た なり}、離さ なかっ た。
+      - 男の子 は 母親 の 手 を 握っ {た なり}、離し ませ ん でし た。
+      - 男の子 は 母親 の 手 を 握っ {た なり}、決して 放さ なかっ た。
+    english_literally: As for the boy, he gripped mother's hand remaining in that state, did not let go.
+    competing_grammar:
+      - competing_japanese:
+          - 男の子 は 母親 の 手 を 握っ た まま、離さ なかっ た。
+        english: The boy gripped his mother's hand and remained holding it (neutral).
+        hint: This is a neutral description. 「たなり」 highlights the fixed and continuous nature of the grip
+          after he took hold.
+    scene: A scared child holding onto their parent's hand.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「握ったなり」 expresses that after grasping his mother's hand, he continuously maintained that grip,
+      indicating a strong hold or reluctance to let go.
+  - english: The flower remained withered in the vase.
+    japanese:
+      - 花 は 枯れ {た なり}、花瓶 に 残っ て い た。
+      - 花 は 枯れ {た なり}、花瓶 に 残っ て い まし た。
+      - 花 は 枯れ {た なり}、花瓶 に 残さ れ た。
+    english_literally: As for the flower, it withered remaining in that state, remained in the vase.
+    competing_grammar:
+      - competing_japanese:
+          - 花 は 枯れ た まま、花瓶 に 残っ て い た。
+        english: The flower withered and remained in the vase (neutral).
+        hint: 「まま」 is a neutral way to describe the state. 「たなり」 suggests a state of being left as is,
+          perhaps neglected.
+    scene: A flower that was once beautiful is now withered and neglected.
+    register: casual
+    setting: melancholic
+    nuance: 「枯れたなり」 signifies that once the flower withered, it stayed in that withered state, implying
+      a lack of care or attention.
+  - english: He stood there with his arms crossed.
+    japanese:
+      - 彼 は 腕 を 組ん {だ なり}、じっと 立っ て い た。
+      - 彼 は 腕 を 組ん {だ なり}、じっと 立っ て い まし た。
+      - 彼 は 腕 を 組ん {だ なり}、静か に 立ち 続け た。
+    english_literally: As for him, he crossed his arms remaining in that state, stood still.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 腕 を 組ん だ まま、じっと 立っ て い た。
+        english: He crossed his arms and stood there (neutral).
+        hint: This is a neutral description. 「たなり」 highlights the fixed posture he maintained after crossing
+          his arms.
+    scene: A person standing observing something, perhaps with a critical or thoughtful expression.
+    register: casual
+    setting: informative
+    nuance: 「組んだなり」 indicates that he crossed his arms and remained in that specific posture, implying
+      stillness or observation.
+  - english: The old car remained parked in the garage for years.
+    japanese:
+      - その 古い 車 は ガレージ に 置い {た なり}、何 年 も 動かさ れ なかっ た。
+      - その 古い 車 は ガレージ に 置い {た なり}、何 年 も 動かさ れ ませ ん でし た。
+      - その 古い 車 は ガレージ に 置い {た なり}、長年、眠っ て い た。
+    english_literally: That old car was placed in the garage remaining in that state, for many years was
+      not moved.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 車 は ガレージ に 置い た まま、何 年 も 動かさ れ なかっ た。
+        english: The old car was left in the garage and remained there for years (neutral).
+        hint: 「まま」 is a neutral description. 「たなり」 emphasizes the state of being left untouched and unused
+          for a long period.
+    scene: Describing an old, unused car.
+    register: casual
+    setting: informative
+    nuance: 「置いたなり」 implies that the car was placed in the garage and left there, untouched and unused,
+      for a prolonged period.
+  - english: After picking it up, he just held it in his hand.
+    japanese:
+      - それ を 拾っ {た なり}、彼 は ずっと 手 に 持っ て い た。
+      - それ を 拾っ {た なり}、彼 は ずっと 手 に 持っ て い まし た。
+      - それ を 拾っ {た なり}、彼 は 手放さ なかっ た。
+    english_literally: That, he picked up remaining in that state, he always held in his hand.
+    competing_grammar:
+      - competing_japanese:
+          - それ を 拾っ た まま、彼 は ずっと 手 に 持っ て い た。
+        english: He picked it up and kept holding it in his hand (neutral).
+        hint: 「まま」 is neutral. 「たなり」 suggests a continuous, perhaps unwavering, act of holding after the
+          initial action.
+    scene: Someone finds an object and continues to hold it, perhaps deep in thought.
+    register: casual
+    setting: storytelling
+    nuance: 「拾ったなり」 conveys that after picking up the object, he continuously held it, suggesting a fixed
+      action or contemplation.
+  - english: The child woke up and just stared blankly at the ceiling.
+    japanese:
+      - 子供 は 目 を 覚まし {た なり}、天井 を ぼんやり と 見つめ て い た。
+      - 子供 は 目 を 覚まし {た なり}、天井 を ぼんやり と 見つめ て い まし た。
+      - 子供 は 目 を 覚まし {た なり}、ただ 茫然 と 天井 を 見上げ て い た。
+    english_literally: As for the child, he woke up remaining in that state, vaguely stared at the ceiling.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 目 を 覚まし た まま、天井 を ぼんやり と 見つめ て い た。
+        english: The child woke up and remained staring blankly at the ceiling (neutral).
+        hint: 「まま」 is neutral. 「たなり」 emphasizes the immediate and continuous transition to the fixed state
+          of staring after waking.
+    scene: A child waking up slowly and perhaps confused.
+    register: casual
+    setting: reflective
+    nuance: 「覚ましたなり」 means that after waking up, the child immediately and continuously remained in that
+      state of staring, implying a passive or dazed state.
+post_example_writeup: As you can see from the examples, **たなり** often describes a situation where an action
+  initiates a state, and that state then persists, sometimes with a sense of being fixed, unmoving, or
+  unattended. It's a useful expression for conveying nuances of continuity and the consequence of an initial
+  action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%AA%E3%82%8A%E3%83%BB%E3%81%AA%E3%82%8A

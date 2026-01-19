@@ -1,0 +1,242 @@
+grammar_point: うち (within or while)
+learn_before:
+  - '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+meaning: within a period; while; during
+pronunciation:
+  katakana: ウチ
+  romaji: uchi
+formation:
+  Verb[dictionary/ない/て-いる] + うちに: Indicates an action performed during a certain time frame or state.
+  い-Adjective[dictionary] + うちに: Indicates an action performed while a certain state or quality holds
+    true.
+  な-Adjective + な + うちに: Indicates an action performed while a certain state or quality holds true.
+  Noun + の + うちに: Indicates an action performed during a specific period or event.
+jlpt: N3
+etymology: The word 「うち」(uchi) originally referred to the "inside" or "interior" of something, literally
+  denoting a physical enclosed space (e.g., 家 - "house," where the inside is 'uchi'). Over time, its meaning
+  expanded metaphorically to include the "inside" of a time period or a particular state. This evolution
+  allows 「うち」 to function as a temporal marker, indicating an action occurring "within" a duration or
+  "while" a condition prevails. The underlying concept is that of being contained or enveloped, which
+  applies equally to physical space and spans of time or states of being.
+writeup: '「うち」(uchi) is a versatile expression in Japanese that primarily indicates an action occurring
+  "within" a certain time frame or "while" a particular state exists. It can be attached to various word
+  types: verbs (dictionary form, negative form, te-iru form), adjectives (i-adjectives, na-adjectives),
+  and nouns, often followed by the particle 「に」(ni). The particle 「に」 is frequently appended, especially
+  when emphasizing the timing or the necessity of an action before a state changes. When used with a verb
+  in the plain non-past form (dictionary form) or い-adjective in its dictionary form, or な-adjective followed
+  by な, or a noun followed by の, 「うち」 indicates that an action occurs *during* the time when a certain
+  state or condition is true. For example, 「若いうちに」(wakai uchi ni) means "while one is young," suggesting
+  an action taken during that period. A particularly common and important usage is with the negative form
+  of a verb (〜ないうちに). This construction implies that an action should be taken *before* a certain undesirable
+  state occurs or *before* a current state ceases. It carries a sense of urgency or a lost opportunity
+  if the action is not performed. For instance, 「忘れないうちにメモする」(wasurenai uchi ni memo suru) means "to make
+  a note before forgetting." When used with the 〜ている form of a verb, 「うち」 typically emphasizes that something
+  happens *during* an ongoing action or continuous state. For example, 「寝ているうちに夢を見た」(neteiru uchi ni yume
+  o mita) means "I had a dream while sleeping." It''s important to distinguish the temporal use of 「うち」
+  from its literal meaning of "inside" (e.g., 「家の中」- ie no naka, inside the house) or "among/between"
+  (e.g., 「私たちの中で」- watashitachi no naka de, among us). While related through the core concept of "interiority,"
+  the temporal usage specifically focuses on duration or state.'
+false_friends:
+  - term: あいだ (between・among・while・during)
+    meaning: while; during; between
+    kind: similar expression
+    nuance: 「あいだ」(aida) often implies a continuous action or state throughout a period, or an action that
+      occurs at some point within a period, similar to 「うち」. However, 「うち」 often carries a nuance of taking
+      advantage of an opportunity *before* a change, or doing something *while* a condition still exists.
+      「あいだ」 is more neutral regarding the opportunity aspect.
+    grammar_point: あいだ (between・among・while・during)
+  - term: とき (when)
+    meaning: when; at the time of
+    kind: similar expression
+    nuance: 「とき」(toki) is a general word for "when" or "at the time of." It specifies a point or period
+      when something happens. 「うち」 is more specific, always implying an action *within* a duration or
+      *before* a state ends. 「とき」 does not carry the "take advantage of the opportunity" nuance.
+    grammar_point: とき (when)
+  - term: 〜ながら・つつ (while doing)
+    meaning: while doing (simultaneously)
+    kind: similar expression
+    nuance: 「ながら」(nagara) and 「つつ」(tsutsu) are used for simultaneous actions by the *same subject*. For
+      example, 「音楽を聞きながら勉強する」(ongaku o kikinagara benkyou suru) means "to study while listening to music."
+      「うち」, on the other hand, describes an action occurring *during* a state or period, and the two actions
+      or states don't necessarily need to be by the same subject or strictly simultaneous in the same
+      way.
+    grammar_point: <suggest>:'[Verb-stem]ながら・つつ (while doing)'
+post_false_friends_writeup: While 「うち」, 「あいだ」, 「とき」, and 「ながら」 all relate to time, they convey different
+  nuances. 「うち」 emphasizes an action taking place within a time frame or before a condition changes, often
+  implying an opportunity. 「あいだ」 simply states that something happens during a period. 「とき」 indicates
+  a point or general period in time. 「ながら」 specifically refers to two simultaneous actions performed by
+  the same subject. Understanding these subtle differences is key to using them correctly.
+examples:
+  - english: Please finish your homework while the teacher is not looking.
+    japanese:
+      - 先生 が {見 て い ない うち に} 宿題 を 済ま せ て ください。
+      - 先生 が {見 て ない うち に} 宿題 済ま せ ちゃっ て。
+    english_literally: As for teacher, while not looking, please finish homework.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 見 て い ない とき に 宿題 を 済ま せ て ください。
+        english: Please finish your homework when the teacher is not looking.
+        hint: While 「とき」 can denote the general time, 「うち」 emphasizes doing it *before* the situation
+          changes or taking advantage of the fleeting opportunity. We're looking for that 'within' or
+          'before it's too late' nuance.
+    scene: A student whispering to another student in class.
+    register: casual
+    setting: instructional
+    nuance: The use of 「見ていないうちに」 implies taking advantage of the teacher's current state of "not looking"
+      to get something done. This highlights the "before it's too late" or "while the opportunity lasts"
+      nuance of うち.
+  - english: I want to travel while I am young.
+    japanese:
+      - '{若い うち に} 旅行 し たい です。'
+      - '{若い うち に} 旅行 し たい。'
+      - '{若い うち に} 旅行 に 行き たい と 思っ て い ます。'
+    english_literally: While young, want to travel.
+    competing_grammar:
+      - competing_japanese:
+          - 若い とき に 旅行 し たい です。
+        english: I want to travel when I am young.
+        hint: Both are correct, but 「うち」 subtly suggests doing it *before* youth passes, emphasizing the
+          limited window of opportunity. We're looking for that 'while the opportunity lasts' feeling.
+    scene: A young person discussing their future plans.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 「若いうちに」 emphasizes doing something during the period of youth, implying that this opportunity
+      will not last forever. It conveys the idea of seizing the chance while the favorable condition (being
+      young) is present.
+  - english: I fell asleep while reading a book.
+    japanese:
+      - 本 を {読ん で いる うち に} 寝 て しまい まし た。
+      - 本 {読ん でる うち に} 寝 ちゃっ た。
+      - 本 を {読ん で いる うち に} 眠り に 落ち まし た。
+    english_literally: While reading a book, ended up falling asleep.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を 読ん で いる とき に 寝 て しまい まし た。
+        english: I fell asleep when I was reading a book.
+        hint: 「読んでいるうちに」 suggests that the sleeping occurred as a process *during* the reading, often
+          implicitly or unexpectedly, whereas 「読んでいるときに」 simply states it happened at that time.
+    scene: Someone recounting an evening.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: 「読んでいるうちに」 indicates that the action of falling asleep happened during the continuous action
+      of reading. It suggests an unintentional occurrence within the ongoing process.
+  - english: While it is still light outside, let's take a walk.
+    japanese:
+      - 外 が {明るい うち に} 散歩 し ましょう。
+      - 外 が {明るい うち に} 散歩 しよう。
+      - まだ 外 が {明るい うち に} 散歩 に 行こう か。
+    english_literally: As for outside, while bright, let's take a walk.
+    competing_grammar:
+      - competing_japanese:
+          - 外 が 明るい とき に 散歩 し ましょう。
+        english: When it's light outside, let's take a walk.
+        hint: 「明るいうちに」 implies doing it *before* it gets dark, emphasizing the limited time. We're looking
+          for the sense of urgency or taking advantage of the present condition.
+    scene: Friends deciding to go for a walk before sunset.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「明るいうちに」 suggests doing the action (walking) before the condition (lightness) changes, implying
+      a limited window of opportunity.
+  - english: During the cherry blossom season, many people visit the park.
+    japanese:
+      - 桜 の {季節 の うち に} 多く の 人 が 公園 を 訪れ ます。
+      - 桜 の {季節 の うち に} たくさん の 人 が 公園 に 来 ます。
+      - 桜 の {季節 の うち に} 多数 の 人々 が 公園 を 訪れ ます。
+    english_literally: As for cherry blossom season, within it, many people visit park.
+    competing_grammar:
+      - competing_japanese:
+          - 桜 の 季節 に 多く の 人 が 公園 を 訪れ ます。
+        english: In the cherry blossom season, many people visit the park.
+        hint: While 「に」 simply denotes the time, 「のうちに」 emphasizes that the activity happens throughout
+          the duration *within* that season, rather than just at a point in time.
+    scene: Describing a popular seasonal activity in Japan.
+    register: formal
+    setting: informative
+    nuance: 「季節のうちに」 indicates that the visiting activity occurs throughout the duration of the cherry
+      blossom season. It points to an event that happens within a specific, well-defined temporal boundary.
+  - english: I need to take out the trash before my mom gets angry.
+    japanese:
+      - 母 が {怒る ない うち に} ゴミ を 出さ なきゃ。
+      - 母 が {怒ん ない うち に} ゴミ 出さ なきゃ。
+      - お 母 さん が {怒ら ない うち に} ゴミ を 出し とく ね。
+    english_literally: Before mother gets angry, must take out trash.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 怒る 前 に ゴミ を 出さ なきゃ。
+        english: I need to take out the trash before my mom gets angry.
+        hint: While 「前に」 simply states 'before', 「うちに」 adds the nuance of doing it *while* the current
+          state (mom not angry) still holds, often with a sense of urgency.
+    scene: A teenager realizing they need to do a chore.
+    register: casual
+    setting: casual slang
+    nuance: 「怒らないうちに」 expresses a preventative action taken to avoid an undesirable future state (mother
+      getting angry). The 「うちに」 here strongly implies a time limit and a sense of urgency.
+  - english: While he was talking, everyone gradually started to feel sleepy.
+    japanese:
+      - 彼 が {話し て いる うち に} 皆 が だんだん 眠く なり まし た。
+      - 彼 が {話し てる うち に} みんな だんだん 眠く なっ た。
+      - 彼 が {話し て いる うち に} 皆 が 眠く なっ て いき まし た。
+    english_literally: While he was talking, everyone gradually became sleepy.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 話し て いる あいだ に 皆 が だんだん 眠く なり まし た。
+        english: While he was talking, everyone gradually started to feel sleepy.
+        hint: 「あいだに」 is also possible, but 「うちに」 better conveys that the change (becoming sleepy) was
+          a process happening *during* the continuous action of talking, perhaps subconsciously or unintentionally.
+    scene: A group of people at a boring lecture.
+    register: teineigo (polite)
+    setting: melancholic
+    nuance: 「話しているうちに」 describes a gradual change (becoming sleepy) that occurred during the continuous
+      action of someone talking. It highlights a process unfolding over time.
+  - english: You should confirm the details while you remember them.
+    japanese:
+      - '{覚え て いる うち に} 詳細 を 確認 する べき だ。'
+      - '{覚え て いる うち に} 詳細 を 確認 する べき です。'
+      - '{覚え てる うち に} 詳細 確認 し とい た 方 が いい よ。'
+    english_literally: While remembering, should confirm details.
+    competing_grammar:
+      - competing_japanese:
+          - 覚え て いる とき に 詳細 を 確認 する べき だ。
+        english: You should confirm the details when you remember them.
+        hint: 「覚えているうちに」 carries the nuance of doing it *before* you forget, emphasizing the limited duration
+          of remembering. 「ときに」 is simply 'when'.
+    scene: A manager giving advice to an employee.
+    register: formal
+    setting: instructional
+    nuance: 「覚えているうちに」 conveys the importance of acting while the knowledge is fresh, implying that waiting
+      might lead to forgetting. It emphasizes taking advantage of the current mental state.
+  - english: We need to settle this matter while it's still simple.
+    japanese:
+      - 事態 が {複雑 に なる ない うち に} この 件 を 解決 する 必要 が ある。
+      - 事態 が {複雑 に なら ない うち に} この 件 は 解決 す べき だ。
+      - 事態 が {複雑 に なら ない うち に} 本件 を 解決 する 必要 が あり ます。
+    english_literally: Before the situation becomes complex, this matter, need to solve.
+    competing_grammar:
+      - competing_japanese:
+          - 事態 が 複雑 に なる 前 に この 件 を 解決 する 必要 が ある。
+        english: We need to settle this matter before it becomes complex.
+        hint: While 「前に」 is 'before', 「うちに」 adds the nuance of acting *while* the current simple state
+          prevails, implicitly to prevent the situation from worsening.
+    scene: Business colleagues discussing a problem.
+    register: formal
+    setting: serious
+    nuance: 「複雑にならないうちに」 signifies addressing an issue before it escalates. The use of 「うちに」 here implies
+      a preventative measure taken to avoid a negative development, stressing the importance of timely
+      action.
+  - english: Take care of yourself while you are healthy.
+    japanese:
+      - '{元気 な うち に} 体 を 大切 に し なさい。'
+      - '{元気 な うち に} 体 を 大切 に し て ください。'
+      - '{元気 な うち に} 健康 に 気 を つけ ましょう。'
+    english_literally: While healthy, please take care of your body.
+    competing_grammar:
+      - competing_japanese:
+          - 元気 な とき に 体 を 大切 に し なさい。
+        english: Take care of your body when you are healthy.
+        hint: 「うちに」 in this context implies cherishing the current healthy state and acting to maintain
+          it *before* it changes. 「ときに」 is a more neutral 'when'.
+    scene: An older relative giving advice to a younger one.
+    register: semi-formal
+    setting: supportive
+    nuance: 「元気なうちに」 emphasizes performing an action (taking care of oneself) during a favorable condition
+      (being healthy), implying that this state might not last forever and should be utilized wisely.
