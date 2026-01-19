@@ -1473,6 +1473,54 @@ class KCTrainer:
                                         pred_labels=pred_labels,
                                     )
 
+                                # Track worst FALSE POSITIVE sample (unlabeled predicted as positive)
+                                # Find cases where labeled_pos == 0 but prediction > 0.5
+                                unlabeled_mask = (labeled_pos == 0).float()
+                                pred_positive_mask = (probs_full > 0.5).float()
+                                fp_mask = unlabeled_mask * pred_positive_mask
+                                # Compute per-sample FP loss (BCE where unlabeled but predicted positive)
+                                per_sample_fp_loss = (bce_full * fp_mask).sum(dim=1)
+                                
+                                if per_sample_fp_loss.max().item() > 0:
+                                    max_fp_idx = int(per_sample_fp_loss.argmax().item())
+                                    max_fp_val = per_sample_fp_loss[max_fp_idx].item()
+                                    
+                                    fp_key = f"{name}_fp"
+                                    current_worst_fp = worst_samples.get(fp_key)
+                                    if (
+                                        current_worst_fp is None
+                                        or max_fp_val > current_worst_fp.loss
+                                    ):
+                                        # For FP: target should be 0, pred is count of false positives
+                                        fp_target_count = 0.0  # Unlabeled/negative
+                                        fp_pred_gp_ids = (fp_mask[max_fp_idx] > 0.5).nonzero(as_tuple=True)[0].tolist()
+                                        
+                                        fp_target_labels = "none"
+                                        if fp_pred_gp_ids:
+                                            fp_pred_labels = ",".join(
+                                                f"gp{gid:04d}" for gid in fp_pred_gp_ids[:5]
+                                            )
+                                            if len(fp_pred_gp_ids) > 5:
+                                                fp_pred_labels += f"...+{len(fp_pred_gp_ids) - 5}"
+                                        else:
+                                            fp_pred_labels = "none"
+                                        
+                                        fp_sample_idx = int(batch.indices[max_fp_idx].item())
+                                        worst_samples[fp_key] = WorstSampleInfo(
+                                            sentence=_get_display_sentence(
+                                                self.dataset.get_sentence_by_idx(
+                                                    fp_sample_idx
+                                                ),
+                                                batch.kotogram[max_fp_idx],
+                                            ),
+                                            loss=max_fp_val,
+                                            target=fp_target_count,
+                                            prediction=float(len(fp_pred_gp_ids)),
+                                            sample_idx=fp_sample_idx,
+                                            target_labels=fp_target_labels,
+                                            pred_labels=fp_pred_labels,
+                                        )
+
                     elif isinstance(family_def, KcDbClassFamily):
                         # Multi-class classification for gender_class/formality_class
                         # Targets are class indices [B] (e.g., 0, 1, 2 for gender)
