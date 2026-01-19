@@ -282,7 +282,7 @@ def curate_drink(db_path: str):
     # Grammaticality labels no longer populated
 
     # Populate Register Labels
-    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.constants import REGISTER_ID_TO_LABEL
     r_data = [(k, v.name) for k, v in REGISTER_ID_TO_LABEL.items()]
     c.executemany("INSERT INTO register VALUES (?,?)", r_data)
 
@@ -317,7 +317,7 @@ def print_record(sent: str, f_val: Any, g_val: Any, gram: int, r_ids_str: str, s
     # Decode register IDs back to labels
     if r_ids_str:
         r_ids = [int(x) for x in r_ids_str.split(",") if x]
-        from kotogram.model import REGISTER_ID_TO_LABEL
+        from kotogram.constants import REGISTER_ID_TO_LABEL
         r_labels = [REGISTER_ID_TO_LABEL[rid].name for rid in r_ids]
         console.print(f"[bold]Registers:[/bold] {', '.join(r_labels)}")
     else:
@@ -503,7 +503,7 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
 
     from rich.table import Table
 
-    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.constants import REGISTER_ID_TO_LABEL
     
     counts = Counter()
     

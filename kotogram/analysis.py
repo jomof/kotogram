@@ -177,7 +177,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     # Use the trained neural model for prediction
     import torch
 
-    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.constants import REGISTER_ID_TO_LABEL
     from kotogram.tokenizer import FEATURE_FIELDS
 
     model, tokenizer = _ANALYZER.load()

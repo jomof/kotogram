@@ -1,25 +1,28 @@
 #!/bin/bash
 set -euo pipefail
 
-# Skip redirection check in GitHub Actions - CI needs to capture output
-if [[ -z "${GITHUB_ACTIONS:-}" ]] && { [[ ! -t 1 ]] || [[ ! -t 2 ]]; }; then
-  echo "Don't redirect stdout/stderr, the user can't see the output if you do. You can use --hygiene, --no-hygiene, or --pytests * to limit what gets run."
-  exit 1
+# Cursor often runs commands like: your_script | tail -40
+# That truncates stdout. But stderr is typically shown in full.
+# If stdout is not a TTY (piped/redirected), clone stdout to stderr too.
+if [[ ! -t 1 ]]; then
+  exec > >(tee /dev/fd/2)
 fi
 
 # --- Configuration ---
 VENV_DIR=".venv"
 
 # --- Setup Python Environment ---
-# --- Setup Python Environment ---
 if [ -d "$VENV_DIR" ]; then
-    source "$VENV_DIR/bin/activate"
+  # shellcheck disable=SC1090
+  source "$VENV_DIR/bin/activate"
 fi
 
-# Determine python command
-PYTHON_CMD="python3"
+# --- Verify venv is active ---
+if [[ -z "${VIRTUAL_ENV:-}" ]]; then
+  echo "Error: Not running in a Python virtual environment."
+  echo "Please run: source requirements.sh"
+  exit 1
+fi
 
-# Delegate to the Python test runner
-# We pass --confinement-config here as a default for the full suite context
-# The runner handles argument parsing including --specific-python-test
-exec $PYTHON_CMD scripts/test_runner.py "$@"
+PYTHON_CMD="python3"
+exec "$PYTHON_CMD" scripts/test_runner.py "$@"

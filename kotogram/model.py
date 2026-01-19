@@ -15,7 +15,6 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from kotogram.constants import RegisterLevel
 from kotogram.tokenizer import (
     ENCODER_FEATURE_FIELDS,
     Tokenizer,
@@ -29,22 +28,7 @@ NUM_GENDER_PRAGMATIC_CLASSES = 2  # pragmatic (1) vs unpragmatic (0)
 # Label mappings
 # Register classes
 NUM_REGISTER_CLASSES = 14
-REGISTER_ID_TO_LABEL = {
-    0: RegisterLevel.NEUTRAL,
-    1: RegisterLevel.SONKEIGO,
-    2: RegisterLevel.KENJOGO,
-    3: RegisterLevel.KANSAIBEN,
-    4: RegisterLevel.HAKATABEN,
-    5: RegisterLevel.KYOSHIGO,
-    6: RegisterLevel.NETSLANG,
-    7: RegisterLevel.OJOUSAMA,
-    8: RegisterLevel.GUNTAI,
-    9: RegisterLevel.JOSEIGO,
-    10: RegisterLevel.DANSEIGO,
-    11: RegisterLevel.BURIKKO,
-    12: RegisterLevel.TOHOKU,
-    13: RegisterLevel.BUSHI,
-}
+# REGISTER_ID_TO_LABEL is imported from constants.py (source of truth)
 
 
 class StylePrediction(NamedTuple):

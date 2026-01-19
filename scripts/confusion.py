@@ -16,9 +16,9 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from kotogram import locations
+from kotogram.constants import REGISTER_ID_TO_LABEL
 from kotogram.model import (
     NUM_REGISTER_CLASSES,
-    REGISTER_ID_TO_LABEL,
     InferenceClassifier,
     load_model,
 )
