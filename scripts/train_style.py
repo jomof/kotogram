@@ -614,7 +614,7 @@ if __name__ == "__main__":
         _view.on_style_training_complete(style_trainer.history.train_loss[-1])
 
     # Test evaluation and model saving
-    res = style_trainer.evaluate()
+    res, _worst_samples = style_trainer.evaluate()
     _view.on_final_results(
         FinalResults(
             formality_accuracy=res.formality_accuracy,

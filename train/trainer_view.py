@@ -57,6 +57,18 @@ class GradientNorms:
 
 
 @dataclass(frozen=True)
+class StyleWorstSample:
+    """Worst sample info for a style classification task."""
+
+    task: str  # e.g., "formality", "gender", "grammaticality"
+    loss: float
+    target: int  # class label
+    prediction: int  # predicted class
+    sentence: str
+    sample_idx: int  # global index in validation set
+
+
+@dataclass(frozen=True)
 class StyleEpochStats:
     """Semantic epoch statistics for style training.
 
@@ -134,6 +146,10 @@ class TrainerView(Protocol):
     def on_line_flush(self) -> None: ...
 
     def on_style_epoch_eval_stats(self, epoch: int, stats: StyleEpochStats) -> None: ...
+
+    def on_style_worst_samples(
+        self, worst_samples: Dict[str, StyleWorstSample]
+    ) -> None: ...
 
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
 
@@ -398,12 +414,52 @@ class TrainerDiagnosticsView(TrainerView):
                 return "[red]↓[/red]"
         return " "
 
+    def on_style_worst_samples(
+        self, worst_samples: Dict[str, StyleWorstSample]
+    ) -> None:
+        """Display worst samples for each style classification task."""
+        from train.display import console
+
+        if not worst_samples:
+            return
+
+        console.print("[bold]Worst Samples (highest loss per task):[/bold]")
+        for task_name, sample in sorted(worst_samples.items()):
+            # Truncate long sentences for display
+            sentence = sample.sentence
+            if len(sentence) > 60:
+                sentence = sentence[:57] + "..."
+            # Color-code based on loss magnitude
+            loss_color = (
+                "red"
+                if sample.loss > 1.0
+                else ("yellow" if sample.loss > 0.25 else "dim")
+            )
+
+            # Map integer class IDs to descriptive labels
+            tgt_str = str(sample.target)
+            pred_str = str(sample.prediction)
+            if task_name in ("formality", "gender"):
+                tgt_str = "Pragmatic" if sample.target == 1 else "Unpragmatic"
+                pred_str = "Pragmatic" if sample.prediction == 1 else "Unpragmatic"
+            elif task_name == "grammaticality":
+                tgt_str = "Grammatical" if sample.target == 1 else "Agrammatical"
+                pred_str = "Grammatical" if sample.prediction == 1 else "Agrammatical"
+
+            console.print(
+                f"  [cyan]{task_name}[/cyan]: "
+                f"[{loss_color}]loss={sample.loss:.4f}[/{loss_color}] "
+                f"tgt={tgt_str} pred={pred_str} "
+                f'[dim]idx={sample.sample_idx} "{sentence}"[/dim]'
+            )
+
 
 # Explicitly reference unused methods for static analysis tools
 # pylint: disable=pointless-statement
 TrainerView.on_progress_log
 TrainerView.on_lr_adjusted
 TrainerView.on_warning
+TrainerView.on_style_worst_samples
 TrainerDiagnosticsView.on_progress_log
 TrainerDiagnosticsView.on_lr_adjusted
 TrainerDiagnosticsView.on_warning

@@ -188,6 +188,9 @@ class RecordingTrainerView(TrainerView):
     ) -> None:
         self._record("on_style_epoch_eval_stats", epoch=epoch, stats=stats)
 
+    def on_style_worst_samples(self, worst_samples: Dict[str, Any]) -> None:
+        self._record("on_style_worst_samples", worst_samples=worst_samples)
+
 
 class TestTrainerView(TestCase):
     def setUp(self):
@@ -221,7 +224,9 @@ class TestTrainerView(TestCase):
         from unittest.mock import patch
 
         with patch("train.style_trainer.save_model"):
-            self.trainer.evaluate = MagicMock(return_value=EvaluationMetrics(loss=0.5))
+            self.trainer.evaluate = MagicMock(
+                return_value=(EvaluationMetrics(loss=0.5), {})
+            )
 
             self.trainer.train(
                 epochs=1,

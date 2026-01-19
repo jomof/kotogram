@@ -4,6 +4,7 @@ from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
+import torch.nn.functional as F
 from torch import nn
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -35,6 +36,7 @@ from train.trainer_view import (
     GradientNorms,
     GrammaticalityMetric,
     StyleEpochStats,
+    StyleWorstSample,
     TrainerDiagnosticsView,
     TrainerView,
 )
@@ -507,7 +509,7 @@ class Trainer:
         )
 
     @torch.no_grad()
-    def evaluate(self) -> EvaluationMetrics:
+    def evaluate(self) -> Tuple[EvaluationMetrics, Dict[str, StyleWorstSample]]:
         self.model.eval()
         n = 0
         metrics_sum: Dict[str, float] = {}
@@ -529,6 +531,9 @@ class Trainer:
                 "is_valid",
                 "sentences",
                 "kotograms",
+                "f_loss_per_sample",
+                "g_loss_per_sample",
+                "gram_loss_per_sample",
             ]
         }
 
@@ -542,7 +547,7 @@ class Trainer:
             n += 1
 
         if n == 0:
-            return EvaluationMetrics()
+            return EvaluationMetrics(), {}
 
         avg_metrics = {k: v / n for k, v in metrics_sum.items()}
         valid_idxs = [i for i, v in enumerate(all_preds["is_valid"]) if v]
@@ -562,7 +567,52 @@ class Trainer:
 
         register_count = len(valid_idxs)
 
-        return EvaluationMetrics(
+        # Find worst samples for each task
+        worst_samples: Dict[str, StyleWorstSample] = {}
+
+        # Helper to find worst sample for a task
+        def _find_worst(
+            task_name: str,
+            losses: List[float],
+            preds: List[int],
+            labels: List[int],
+            sentences: List[str],
+        ) -> None:
+            if not losses:
+                return
+            worst_idx = max(range(len(losses)), key=lambda i: losses[i])
+            worst_samples[task_name] = StyleWorstSample(
+                task=task_name,
+                loss=losses[worst_idx],
+                target=labels[worst_idx],
+                prediction=preds[worst_idx],
+                sentence=sentences[worst_idx],
+                sample_idx=worst_idx,
+            )
+
+        _find_worst(
+            "formality",
+            all_preds["f_loss_per_sample"],
+            all_preds["f_prag_p"],
+            all_preds["f_prag_l"],
+            all_preds["sentences"],
+        )
+        _find_worst(
+            "gender",
+            all_preds["g_loss_per_sample"],
+            all_preds["g_prag_p"],
+            all_preds["g_prag_l"],
+            all_preds["sentences"],
+        )
+        _find_worst(
+            "grammaticality",
+            all_preds["gram_loss_per_sample"],
+            all_preds["gram_p"],
+            all_preds["gram_l"],
+            all_preds["sentences"],
+        )
+
+        metrics = EvaluationMetrics(
             loss=avg_metrics.get("loss", 0.0) * self.config.grad_accum_steps,
             formality_loss=avg_metrics.get("f_loss", 0.0),
             gender_loss=avg_metrics.get("g_loss", 0.0),
@@ -602,6 +652,7 @@ class Trainer:
             ),
             register_count=register_count,
         )
+        return metrics, worst_samples
 
     def _accumulate_eval_batch(
         self,
@@ -627,6 +678,22 @@ class Trainer:
             val = v.item() if isinstance(v, torch.Tensor) else v
             metrics_sum[k] = metrics_sum.get(k, 0.0) + val
 
+        # Compute per-sample losses for worst sample tracking
+        (f_prag_l, g_prag_l, gram_l) = outputs
+        f_per_sample = (
+            F.cross_entropy(f_prag_l, targets["f_prag"], reduction="none")
+            .cpu()
+            .tolist()
+        )
+        g_per_sample = (
+            F.cross_entropy(g_prag_l, targets["g_prag"], reduction="none")
+            .cpu()
+            .tolist()
+        )
+        gram_per_sample = (
+            F.cross_entropy(gram_l, targets["gram"], reduction="none").cpu().tolist()
+        )
+
         all_preds["f_prag_p"].extend(preds.f_prag_p)
         all_preds["f_prag_l"].extend(preds.f_prag_l)
         all_preds["f_val_p"].extend(preds.f_val_p)
@@ -640,8 +707,19 @@ class Trainer:
         all_preds["reg_p"].extend(preds.reg_p)
         all_preds["reg_l"].extend(preds.reg_l)
         all_preds["is_valid"].extend(preds.is_valid)
-        all_preds["sentences"].extend(batch.original_sentence)
+        sentences = batch.original_sentence
+        # If sentences are missing (empty strings) and dataset allows retrieval, fetch them
+        if (not sentences or not sentences[0]) and hasattr(self.val_dataset, "get_sentence_by_idx"):
+            sentences = [
+                self.val_dataset.get_sentence_by_idx(int(idx.item()))
+                for idx in batch.indices
+            ]
+        all_preds["sentences"].extend(sentences)
         all_preds["kotograms"].extend(batch.kotogram)
+        # Per-sample losses for worst sample tracking
+        all_preds["f_loss_per_sample"].extend(f_per_sample)
+        all_preds["g_loss_per_sample"].extend(g_per_sample)
+        all_preds["gram_loss_per_sample"].extend(gram_per_sample)
 
     def train(
         self,
@@ -675,8 +753,11 @@ class Trainer:
             is_nth = (epoch - session_start) % eval_interval == 0
             should_eval = is_first or is_last or is_nth
 
+            # Track worst samples from last evaluation (for display)
+            worst_samples: Dict[str, StyleWorstSample] = {}
+
             if should_eval:
-                eval_res = self.evaluate()
+                eval_res, worst_samples = self.evaluate()
                 last_eval_res = eval_res
                 self.scheduler.step(eval_res.loss)
             else:
@@ -776,6 +857,7 @@ class Trainer:
                 )
 
                 self.view.on_style_epoch_eval_stats(epoch + 1, epoch_stats)
+                self.view.on_style_worst_samples(worst_samples)
 
                 is_best = eval_res.loss < self.best_val_loss
                 if is_best:
