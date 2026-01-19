@@ -442,12 +442,14 @@ def parse_arguments() -> argparse.Namespace:
     # Training options
     parser.add_argument("--epochs", type=str, default=None, help="Training epochs (e.g., '10' or '+5')")
     parser.add_argument("--batch-size", type=int, default=None, help="Batch size per device")
-    parser.add_argument("--embed-dim", type=int, default=256, help="Model dimension (default: 256)")
-    parser.add_argument("--hidden-dim", type=int, default=512, help="Hidden layer dimension (default: 512)")
-    parser.add_argument("--num-layers", type=int, default=3, help="Number of encoder layers (default: 3)")
-    parser.add_argument("--num-heads", type=int, default=8, help="Number of attention heads (default: 8)")
-
     # Pretraining options
+    # Use ModelConfig defaults as source of truth
+    _model_defaults = ModelConfig(vocab_sizes={})
+    parser.add_argument("--embed-dim", type=int, default=_model_defaults.d_model, help=f"Model dimension (default: {_model_defaults.d_model})")
+    parser.add_argument("--hidden-dim", type=int, default=_model_defaults.hidden_dim, help=f"Hidden layer dimension (default: {_model_defaults.hidden_dim})")
+    parser.add_argument("--num-layers", type=int, default=_model_defaults.num_layers, help=f"Number of encoder layers (default: {_model_defaults.num_layers})")
+    parser.add_argument("--num-heads", type=int, default=_model_defaults.num_heads, help=f"Number of attention heads (default: {_model_defaults.num_heads})")
+
     parser.add_argument("--learning-rate", type=float, default=1e-4, help="Base learning rate (default: 1e-4)")
 
     # Loss weights
