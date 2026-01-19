@@ -242,6 +242,21 @@ class StyleDataset(Dataset[Sample]):
     def __len__(self) -> int:
         return self._len
 
+    def get_sentence_by_idx(self, real_idx: int) -> str:
+        """Get original sentence text for a sample by its real dataset index.
+
+        Uses linecache for efficient random access to sentences.txt which is
+        written during the --label phase.
+        """
+        import linecache
+
+        sentences_path = os.path.join(self.data_dir, "sentences.txt")
+        if not os.path.exists(sentences_path):
+            return ""
+        # linecache is 1-indexed
+        line = linecache.getline(sentences_path, real_idx + 1)
+        return line.strip()
+
     def __getitem__(self, idx: int) -> Sample:
         # Resolve real index
         real_idx = int(self.indices[idx].item())

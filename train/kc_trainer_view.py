@@ -856,6 +856,36 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
         # BLOCK 4: Label Heads - now integrated into family table as LLoss column
 
+        # BLOCK 4.5: Worst Samples (most problematic samples per family)
+        if summary.worst_samples:
+            console.print("[bold]Worst Samples (highest loss per family):[/bold]")
+            for fam_name, sample in sorted(summary.worst_samples.items()):
+                # Truncate long sentences for display
+                sentence = sample.sentence
+                if len(sentence) > 60:
+                    sentence = sentence[:57] + "..."
+                # Color-code based on loss magnitude
+                loss_color = (
+                    "red"
+                    if sample.loss > 1.0
+                    else ("yellow" if sample.loss > 0.25 else "dim")
+                )
+                # Build label display - show labels if either is non-empty
+                label_info = ""
+                if sample.target_labels and sample.pred_labels:
+                    label_info = f" \\[{sample.target_labels}→{sample.pred_labels}]"
+                elif sample.target_labels:
+                    label_info = f" \\[{sample.target_labels}]"
+                elif sample.pred_labels:
+                    label_info = f" \\[?→{sample.pred_labels}]"
+                console.print(
+                    f"  [cyan]{fam_name}[/cyan]: "
+                    f"[{loss_color}]loss={sample.loss:.4f}[/{loss_color}] "
+                    f"tgt={sample.target:.2f} pred={sample.prediction:.2f}"
+                    f"{label_info} "
+                    f'[dim]idx={sample.sample_idx} "{sentence}"[/dim]'
+                )
+
         # BLOCK 5: Diagnosis Flags
         flags = []
 
