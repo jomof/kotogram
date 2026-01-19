@@ -225,7 +225,6 @@ class RunningLossComponents:
     """Running loss components for an epoch."""
 
     struct: float = 0.0
-    gap: float = 0.0
     div: float = 0.0
     lb: float = 0.0
     collapse: float = 0.0
@@ -247,7 +246,6 @@ class RunningLossComponents:
         """Add another RunningLossComponents instance."""
         return RunningLossComponents(
             struct=self.struct + other.struct,
-            gap=self.gap + other.gap,
             div=self.div + other.div,
             lb=self.lb + other.lb,
             collapse=self.collapse + other.collapse,
@@ -446,11 +444,10 @@ class KcLossWeights:
 
     INVARIANTS (enforced by checksums):
     1. struct = sum(all family losses) - each family contributes its task_loss directly
-    2. total_loss = struct + gap + div + lb + collapse + sparsity + saturation + coverage
+    2. total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
     """
 
     struct: float = 1.0  # Sum of all family task_losses
-    gap: float = 1.0  # Sum of all family gaps
     # These are stored ALREADY WEIGHTED, so display weight is 1.0:
     div: float = 1.0  # Already weighted in RunningLossComponents
     lb: float = 1.0  # Already weighted in RunningLossComponents
