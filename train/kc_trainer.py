@@ -1465,7 +1465,7 @@ class KCTrainer:
                                     pred_count = (
                                         (probs_full[max_loss_idx] > 0.5).sum().item()
                                     )
-                                    # Get positive GP IDs for this sample
+                                    # Get positive GP IDs for this sample (targets)
                                     pos_gp_ids = pos_ids[max_loss_idx][
                                         pos_mask[max_loss_idx]
                                     ].tolist()
@@ -1474,6 +1474,20 @@ class KCTrainer:
                                     )
                                     if len(pos_gp_ids) > 5:
                                         target_labels += f"...+{len(pos_gp_ids) - 5}"
+                                    # Get predicted GP IDs (above 0.5 threshold)
+                                    pred_gp_ids = (
+                                        (probs_full[max_loss_idx] > 0.5)
+                                        .nonzero(as_tuple=True)[0]
+                                        .tolist()
+                                    )
+                                    if pred_gp_ids:
+                                        pred_labels = ",".join(
+                                            f"gp{gid:04d}" for gid in pred_gp_ids[:5]
+                                        )
+                                        if len(pred_gp_ids) > 5:
+                                            pred_labels += f"...+{len(pred_gp_ids) - 5}"
+                                    else:
+                                        pred_labels = "none"
                                     sample_idx = int(batch.indices[max_loss_idx].item())
                                     worst_samples[name] = WorstSampleInfo(
                                         sentence=_get_display_sentence(
@@ -1487,6 +1501,7 @@ class KCTrainer:
                                         prediction=float(pred_count),
                                         sample_idx=sample_idx,
                                         target_labels=target_labels,
+                                        pred_labels=pred_labels,
                                     )
 
                     elif isinstance(family_def, KcDbClassFamily):
