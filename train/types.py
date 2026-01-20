@@ -127,13 +127,10 @@ class FamilyAccumulator:
     cnt_logit_pos: int = 0
     sum_logit_neg: float = 0.0
     cnt_logit_neg: int = 0
+    cnt_pred_pos_on_pos: int = 0  # Predicted positive labels on positive examples
     saw_dense: bool = False
     saw_sparse: bool = False
     saw_valid_mask: bool = False
-
-    # Unlabeled tracking (for PNU families like grammar_point)
-    cnt_unlabeled: int = 0  # Total unlabeled positions
-    cnt_unlabeled_pred_pos: int = 0  # Unlabeled predicted positive (potential FPs)
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
@@ -174,6 +171,13 @@ class FamilyAccumulator:
             # Positive example detection: examples with ≥1 true positive
             has_pos = pos_mask.any(dim=1)
 
+            # Predictions (logit > 0 equivalent to sigmoid > 0.5)
+            # Use no_grad for stats
+            pred_pos = logits > 0
+            # Count predictions only on positive examples
+            if has_pos.any():
+                self.cnt_pred_pos_on_pos += int(pred_pos[has_pos].sum().item())
+
             # Compute neg_mask respecting valid_mask
             if valid_mask is not None:
                 has_valid = valid_mask.any(dim=1)
@@ -208,16 +212,6 @@ class FamilyAccumulator:
             if n_neg > 0:
                 self.sum_logit_neg += (logits * neg_mask_float).sum().item()
                 self.cnt_logit_neg += n_neg
-
-            # Track unlabeled predictions (for PNU families)
-            # Unlabeled = not positive and not explicitly negative (when valid_mask exists)
-            if valid_mask is not None:
-                unlabeled_mask = ~valid_mask  # Positions with no label
-                self.cnt_unlabeled += int(unlabeled_mask.sum().item())
-                # Count how many unlabeled positions are predicted positive (prob > 0.5)
-                probs = torch.sigmoid(logits)
-                unlabeled_pred_pos = unlabeled_mask & (probs > 0.5)
-                self.cnt_unlabeled_pred_pos += int(unlabeled_pred_pos.sum().item())
 
 
 @dataclass(frozen=True)
@@ -469,14 +463,12 @@ class KcEpochSummary:
     weights: KcLossWeights = field(default_factory=KcLossWeights)
     n_batches: int = 1  # Number of batches (for averaging loss components)
     total_loss: float = 0.0  # Epoch total loss for validation
-    accumulators: Dict[str, "FamilyAccumulator"] = field(
-        default_factory=dict
-    )  # Per-family accumulators
     kc_logits_used_count: int = 0  # Number of unique KC logits that fired
     kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
     worst_samples: Dict[str, "WorstSampleInfo"] = field(
         default_factory=dict
     )  # Per-family worst sample
+    accumulators: Dict[str, "FamilyAccumulator"] = field(default_factory=dict)
 
 
 @dataclass

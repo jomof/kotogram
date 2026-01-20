@@ -2786,10 +2786,10 @@ class KCTrainer:
             n_batches=n_batches,
             total_loss=total_loss
             / max(1, n_batches),  # Per-batch average (guard div-by-zero)
-            accumulators=family_accumulators,
             kc_logits_used_count=kc_logits_used_count,
             kc_logits_used_percent=kc_logits_used_percent,
             worst_samples=worst_samples,
+            accumulators=family_accumulators,
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
