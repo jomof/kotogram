@@ -353,7 +353,7 @@ class KcPnuFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS  # Uses full KC probability distribution (diffuse signal)
+        return KcLogitMode.HOT_LOGITS  # Uses full KC probability distribution (diffuse signal)
 
 
 @dataclass(frozen=True)

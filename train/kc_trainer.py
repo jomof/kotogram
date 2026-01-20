@@ -317,65 +317,7 @@ class KCTrainer:
         preds = logits.squeeze(-1)
         return torch.nn.functional.mse_loss(preds, targets)
 
-    def _estimate_class_prior(
-        self,
-        logits: torch.Tensor,
-        labeled_pos: torch.Tensor,
-        labeled_neg: torch.Tensor,
-        unlabeled_mask: torch.Tensor,
-        smoothing: float = 0.1,
-    ) -> float:
-        """Estimate class prior using Elkan & Noto (2008) method.
-
-        The class prior π is estimated as:
-            π = E[P(y=1|x, s=1)] / E[P(y=1|x)]
-        
-        Where:
-            - E[P(y=1|x, s=1)] = mean prediction on labeled positives
-            - E[P(y=1|x)] can be approximated by mean prediction on all data
-        
-        We use a simplified version that's more stable for multi-label:
-            π ≈ (avg_pred_unlabeled / avg_pred_positive).clamp(0.01, 0.5)
-
-        Args:
-            logits: (B, vocab_size) model predictions
-            labeled_pos: (B, vocab_size) positive label mask
-            labeled_neg: (B, vocab_size) negative label mask  
-            unlabeled_mask: (B, vocab_size) unlabeled mask
-            smoothing: Laplace smoothing factor (default: 0.1)
-
-        Returns:
-            Estimated class prior (clamped to [0.01, 0.5])
-        """
-        with torch.no_grad():
-            probs = torch.sigmoid(logits)
-            
-            # Average prediction on positives
-            pos_count = labeled_pos.sum()
-            if pos_count > 0:
-                avg_pred_pos = (probs * labeled_pos).sum() / pos_count
-            else:
-                return 0.1  # Default fallback
-
-            # Average prediction on unlabeled
-            unl_count = unlabeled_mask.sum()
-            if unl_count > 0:
-                avg_pred_unl = (probs * unlabeled_mask).sum() / unl_count
-            else:
-                return 0.1  # Default fallback
-
-            # Estimate prior with smoothing
-            # π ≈ avg_pred_unl / (avg_pred_pos + ε)
-            prior = (avg_pred_unl + smoothing) / (avg_pred_pos + smoothing)
-            
-            # Clamp to reasonable range
-            # Lower bound: at least 1% of unlabeled are positive
-            # Upper bound: at most 50% (if higher, labeling strategy may be biased)
-            prior = prior.clamp(0.01, 0.5)
-            
-            return float(prior.item())
-
-    def _nnpu_loss(
+    def _multilabel_pnu_loss(
         self,
         logits: torch.Tensor,
         pos_ids: torch.Tensor,
@@ -383,54 +325,58 @@ class KCTrainer:
         neg_ids: torch.Tensor,
         neg_mask: torch.Tensor,
         vocab_size: int,
-        prior: float = 0.1,
-        beta: float = 0.0,
-        gamma: float = 1.0,
-        estimate_prior: bool = True,
+        unlabeled_weight: float = 0.001,
+        pos_weight: float = 1.0,
+        neg_weight: float = 1.0,
     ) -> torch.Tensor:
-        """Compute nnPU (non-negative Positive-Unlabeled) loss for grammar points.
-
-        Based on:
-        - Du Plessis et al. (2015): "Convex formulation for learning from positive
-          and unlabeled data" (nnPU)
-        - Du Plessis et al. (2014): "Analysis of learning from positive and unlabeled
-          data" (unbiased PU)
-        - Kiryo et al. (2017): "Positive-Unlabeled Learning with Non-Negative Risk
-          Estimator"
-
-        The unbiased PU risk estimator:
-            R_PU(f) = π * R_P+(f) + R_N(f) - π * R_U-(f)
+        """Multi-label PNU (Positive-Negative-Unlabeled) loss for grammar points.
         
-        Where:
-            - π is the class prior (proportion of positives in unlabeled set)
-            - R_P+(f) = E_P[ℓ(f(x), +1)] (risk on positive labels)
-            - R_N(f) = E_N[ℓ(f(x), -1)] (risk on known negatives)
-            - R_U-(f) = E_U[ℓ(f(x), -1)] (risk on unlabeled as negatives)
-
-        The nnPU variant ensures non-negativity to prevent overfitting:
-            R_nnPU(f) = π * R_P+(f) + max(0, R_N(f) - π * R_U-(f))
-            
-        If the negative risk term becomes negative (indicating overfitting), we
-        fall back to: R_nnPU(f) = π * R_P+(f) + β * R_U-(f) where β is small.
+        This is adapted for multi-label classification with explicit negatives,
+        following semi-supervised multi-label learning principles.
+        
+        Key differences from single-label PNU:
+        1. We have 1,374 independent binary problems (one per grammar point)
+        2. Each problem has its own class distribution
+        3. Explicit negatives provide direct supervision
+        4. Unlabeled positions treated as weak negatives (sparsity assumption)
+        
+        Loss components:
+        1. Positive loss: Standard BCE on labeled positives (target=1)
+        2. Negative loss: Standard BCE on labeled negatives (target=0)
+        3. Unlabeled loss: Weak negative (small weight, encourages sparsity)
+        
+        The sparsity assumption: For any given sentence, most grammar points
+        don't apply (true negatives). Unlabeled positions are likely negative,
+        but we use low weight since they might contain hidden positives.
+        
+        This avoids the pitfalls of applying single-label nnPU to multi-label:
+        - No single class prior (each GP has different base rate)
+        - No need for correction term (we have explicit negatives)
+        - Simple, stable, and aligned with multi-label SSL literature
+        
+        References:
+        - Bucak et al. (2011): Multi-label learning with incomplete class assignments
+        - Cabral et al. (2011): Matrix completion for multi-label classification
+        - Durand et al. (2019): Learning with partial labels in multi-label classification
 
         Args:
-            logits: (B, vocab_size) logits from the KC decoder
+            logits: (B, vocab_size) logits from KC decoder
             pos_ids: (B, max_pos) positive grammar point IDs
-            pos_mask: (B, max_pos) mask for valid positive IDs
+            pos_mask: (B, max_pos) mask for valid positive IDs  
             neg_ids: (B, max_neg) negative grammar point IDs
             neg_mask: (B, max_neg) mask for valid negative IDs
-            vocab_size: number of grammar points
-            prior: estimated class prior π (proportion of positives in unlabeled)
-            beta: weight for unlabeled risk when negative risk term < 0 (default: 0.0)
-            gamma: gradient scale factor for negative term to stabilize (default: 1.0)
-
+            vocab_size: number of grammar points (1374)
+            unlabeled_weight: weight for unlabeled risk (default: 0.001)
+            pos_weight: weight for positive loss (default: 1.0)
+            neg_weight: weight for negative loss (default: 1.0)
+            
         Returns:
             Scalar loss tensor
         """
         batch_size = logits.size(0)
         device = logits.device
 
-        # Build masks: (B, vocab_size) tensors
+        # Build label masks: (B, vocab_size)
         labeled_pos = torch.zeros(batch_size, vocab_size, device=device)
         labeled_neg = torch.zeros(batch_size, vocab_size, device=device)
 
@@ -442,72 +388,42 @@ class KCTrainer:
         valid_neg = neg_ids.clamp(0, vocab_size - 1)
         labeled_neg.scatter_(1, valid_neg, neg_mask.float())
 
-        # Unlabeled mask (neither positive nor negative)
+        # Unlabeled mask
         unlabeled_mask = 1.0 - labeled_pos - labeled_neg
         unlabeled_mask = unlabeled_mask.clamp(0, 1)
 
-        # Estimate class prior if requested
-        if estimate_prior:
-            prior = self._estimate_class_prior(
-                logits, labeled_pos, labeled_neg, unlabeled_mask
-            )
-
-        # Sigmoid loss: ℓ(z, y) = -log(sigmoid(y * z))
-        # For y=+1: -log(sigmoid(z))
-        # For y=-1: -log(sigmoid(-z)) = -log(1 - sigmoid(z))
-        # Equivalent to BCE but follows PU literature convention
-        
-        # R_P+: Risk on positive labels (y=+1)
+        # Component 1: Positive loss (BCE with target=1)
         pos_count = labeled_pos.sum()
         if pos_count > 0:
-            # Positive loss: ℓ(f(x), +1) = -log(sigmoid(f(x)))
             pos_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.ones_like(logits), reduction="none"
             )
-            risk_pos = (pos_loss * labeled_pos).sum() / pos_count
+            risk_pos = pos_weight * (pos_loss * labeled_pos).sum() / pos_count
         else:
             risk_pos = torch.tensor(0.0, device=device)
 
-        # R_N: Risk on known negatives (y=-1)
+        # Component 2: Negative loss (BCE with target=0)
         neg_count = labeled_neg.sum()
         if neg_count > 0:
-            # Negative loss: ℓ(f(x), -1) = -log(sigmoid(-f(x)))
             neg_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
-            risk_neg = (neg_loss * labeled_neg).sum() / neg_count
+            risk_neg = neg_weight * (neg_loss * labeled_neg).sum() / neg_count
         else:
             risk_neg = torch.tensor(0.0, device=device)
 
-        # R_U-: Risk on unlabeled as negatives (y=-1)
+        # Component 3: Unlabeled loss (weak negative, low weight)
+        # Encourages sparsity: most GPs don't apply to most sentences
         unl_count = unlabeled_mask.sum()
-        if unl_count > 0:
+        if unl_count > 0 and unlabeled_weight > 0:
             unl_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
-            risk_unl_neg = (unl_loss * unlabeled_mask).sum() / unl_count
+            risk_unl = unlabeled_weight * (unl_loss * unlabeled_mask).sum() / unl_count
         else:
-            risk_unl_neg = torch.tensor(0.0, device=device)
+            risk_unl = torch.tensor(0.0, device=device)
 
-        # nnPU risk estimator
-        # Positive term (always included)
-        positive_term = prior * risk_pos
-
-        # Negative term: R_N - π * R_U-
-        # This corrects for positive contamination in unlabeled set
-        negative_term = risk_neg - prior * risk_unl_neg
-
-        # Non-negative constraint: If negative_term < 0, we're overfitting
-        # In this case, fall back to standard PU with small β weight on unlabeled
-        if negative_term.item() < 0:
-            # Overfitting detected - use beta-weighted unlabeled risk instead
-            # Detach the gradient to prevent gradient flow through negative term
-            negative_term_detached = negative_term.detach()
-            total_loss = positive_term - negative_term_detached + beta * risk_unl_neg
-        else:
-            # Normal case: use full nnPU estimator with gradient scaling
-            total_loss = positive_term + gamma * negative_term
-
+        total_loss = risk_pos + risk_neg + risk_unl
         return total_loss
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
@@ -1406,17 +1322,16 @@ class KCTrainer:
                             neg_ids = kc_targets[gp_neg_key].to(self.device)
                             neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
 
-                            task_loss = self._nnpu_loss(
+                            task_loss = self._multilabel_pnu_loss(
                                 logits.float(),
                                 pos_ids,
                                 pos_mask,
                                 neg_ids,
                                 neg_mask,
                                 vocab_size=vocab_size,
-                                prior=self.kc_config.gp_prior,
-                                beta=self.kc_config.gp_beta,
-                                gamma=self.kc_config.gp_gamma,
-                                estimate_prior=self.kc_config.gp_estimate_prior,
+                                unlabeled_weight=self.kc_config.gp_unlabeled_weight,
+                                pos_weight=self.kc_config.gp_pos_weight,
+                                neg_weight=self.kc_config.gp_neg_weight,
                             )
 
                             # Apply per-family loss weight for balanced training

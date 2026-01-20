@@ -130,11 +130,10 @@ class KCConfig:
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
-    # Grammar Point (nnPU) Loss - Research-based PNU learning
-    gp_prior: float = 0.1  # Initial class prior estimate (auto-estimated if gp_estimate_prior=True)
-    gp_beta: float = 0.0  # Fallback weight for unlabeled when overfitting detected
-    gp_gamma: float = 1.0  # Gradient scale for negative risk term (for stability)
-    gp_estimate_prior: bool = True  # Dynamically estimate class prior (Elkan & Noto 2008)
+    # Grammar Point (Multi-Label PNU) Loss
+    gp_unlabeled_weight: float = 0.001  # Weight for unlabeled positions (weak negative assumption)
+    gp_pos_weight: float = 1.0  # Weight for labeled positives
+    gp_neg_weight: float = 1.0  # Weight for labeled negatives
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
