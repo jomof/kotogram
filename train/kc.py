@@ -560,15 +560,15 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # DB-sourced families
     KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
-        _loss_weight=0.088,  # epoch1_loss=6.00
+        _loss_weight=1.0,  # epoch1_loss=6.00
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,
-        _loss_weight=2.0,  # Original weight (not 100x)
+        _loss_weight=0.5,  # Original weight (not 100x)
     ),
     KcFamilyId.FORMALITY: KcMseFamily(
         family_id=KcFamilyId.FORMALITY,
-        _loss_weight=1.74,  # Original weight (not 100x)
+        _loss_weight=0.5,  # Original weight (not 100x)
     ),
     # Classification versions
     KcFamilyId.GENDER_CLASS: KcDbClassFamily(
