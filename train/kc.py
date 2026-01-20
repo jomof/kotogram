@@ -15,13 +15,9 @@ KC_NGRAM_ORDER = 3
 KC_POS_BIASED_WINDOW = 5
 
 # Special token IDs to exclude from KC targets
-# CLS is non-discriminative as it appears in every sequence
-# PAD and UNK are kept for analysis purposes
 SPECIAL_TOKEN_IDS = {CLS_ID}
 
-# compound_1 tokens to exclude from all tail families.
-# These tokens are high-frequency but low-information for style discrimination.
-# Format: composite token strings matching compound_1 vocabulary (e.g., "noun:common-noun")
+# High-frequency low-information tokens to exclude from tail families.
 TAIL_DISALLOW = frozenset(
     {
         "noun:common-noun",
@@ -311,22 +307,10 @@ class KcTailNgramFamily(KcFamily):
 
 @dataclass(frozen=True)
 class KcPnuFamily(KcFamily):
-    """DB-sourced PNU (Positive-Negative-Unlabeled) loss families like GRAMMAR_POINT.
-    
-    Uses principled nnPU (non-negative Positive-Unlabeled) learning approach based on:
-    - Du Plessis et al. (2014): "Analysis of learning from positive and unlabeled data"
-    - Du Plessis et al. (2015): "Convex formulation for learning from positive and 
-      unlabeled data"
-    - Kiryo et al. (2017): "Positive-Unlabeled Learning with Non-Negative Risk Estimator"
-    - Elkan & Noto (2008): "Learning classifiers from only positive and unlabeled data"
-    
-    The unbiased PU risk estimator:
-        R_PU(f) = π * R_P+(f) + R_N(f) - π * R_U-(f)
-    
-    Where π is the class prior (estimated dynamically), R_P+ is risk on labeled positives,
-    R_N is risk on labeled negatives, and R_U- is risk on unlabeled treated as negatives.
-    
-    The nnPU variant adds non-negativity constraint to prevent overfitting to unlabeled data.
+    """DB-sourced PNU (Positive-Negative-Unlabeled) families like GRAMMAR_POINT.
+
+    Multi-label semi-supervised learning with explicit positives, negatives, and
+    unlabeled data. Uses sparsity assumption: unlabeled treated as weak negatives.
     """
 
     _loss_weight: float = 1.0
@@ -353,7 +337,7 @@ class KcPnuFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS  # Uses full KC probability distribution (diffuse signal)
+        return KcLogitMode.ALL_LOGITS  # Uses full KC probability distribution
 
 
 @dataclass(frozen=True)
@@ -463,11 +447,9 @@ class KcDbMultilabelFamily(KcFamily):
 # Family Registry
 # =============================================================================
 
-# All KC family instances, keyed by their ID
-# Loss weights calibrated so all families contribute ~0.526 (10/19) on epoch 1.
-# weight = 0.526 / epoch1_loss
+# All KC family instances. Loss weights calibrated so families contribute equally.
 KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
-    # Bag families (dense, full sequence) - Reduced to 20% for style family balance
+    # Bag families (dense, full sequence)
     KcFamilyId.BAG_READING_GRAM: KcBagFamily(
         family_id=KcFamilyId.BAG_READING_GRAM,
         _feature_field="reading_gram",
@@ -490,7 +472,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _filter_unk=True,
         _loss_weight=0.062,  # Reduced from 0.308 (20%)
     ),
-    # Tail families (dense, tail window) - Reduced to 20%
+    # Tail families (dense, tail window)
     KcFamilyId.TAIL_READING_GRAM: KcTailFamily(
         family_id=KcFamilyId.TAIL_READING_GRAM,
         _feature_field="reading_gram",
@@ -513,7 +495,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _filter_unk=True,
         _loss_weight=0.057,  # Reduced from 0.284 (20%)
     ),
-    # Ngram families (sparse, full sequence) - Reduced to 20%
+    # Ngram families (sparse, full sequence)
     KcFamilyId.NGRAM_POS: KcNgramFamily(
         family_id=KcFamilyId.NGRAM_POS,
         _feature_field="pos",
@@ -544,7 +526,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _salt=105,
         _loss_weight=0.004,  # Reduced from 0.022 (20%)
     ),
-    # Tail ngram families (sparse, tail window) - Reduced to 20%
+    # Tail ngram families (sparse, tail window)
     KcFamilyId.TAIL_NGRAM_POS: KcTailNgramFamily(
         family_id=KcFamilyId.TAIL_NGRAM_POS,
         _feature_field="pos",
@@ -588,7 +570,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         family_id=KcFamilyId.FORMALITY,
         _loss_weight=1.74,  # Original weight (not 100x)
     ),
-    # Classification versions (for comparison with MSE)
+    # Classification versions
     KcFamilyId.GENDER_CLASS: KcDbClassFamily(
         family_id=KcFamilyId.GENDER_CLASS,
         _num_classes=3,  # Masculine (-1), Neutral (0), Feminine (+1)

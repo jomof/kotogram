@@ -131,7 +131,9 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (Multi-Label PNU) Loss
-    gp_unlabeled_weight: float = 0.001  # Weight for unlabeled positions (weak negative assumption)
+    gp_unlabeled_weight: float = (
+        0.001  # Weight for unlabeled positions (weak negative assumption)
+    )
     gp_pos_weight: float = 1.0  # Weight for labeled positives
     gp_neg_weight: float = 1.0  # Weight for labeled negatives
 

@@ -330,30 +330,30 @@ class KCTrainer:
         neg_weight: float = 1.0,
     ) -> torch.Tensor:
         """Multi-label PNU (Positive-Negative-Unlabeled) loss for grammar points.
-        
+
         This is adapted for multi-label classification with explicit negatives,
         following semi-supervised multi-label learning principles.
-        
+
         Key differences from single-label PNU:
         1. We have 1,374 independent binary problems (one per grammar point)
         2. Each problem has its own class distribution
         3. Explicit negatives provide direct supervision
         4. Unlabeled positions treated as weak negatives (sparsity assumption)
-        
+
         Loss components:
         1. Positive loss: Standard BCE on labeled positives (target=1)
         2. Negative loss: Standard BCE on labeled negatives (target=0)
         3. Unlabeled loss: Weak negative (small weight, encourages sparsity)
-        
+
         The sparsity assumption: For any given sentence, most grammar points
         don't apply (true negatives). Unlabeled positions are likely negative,
         but we use low weight since they might contain hidden positives.
-        
+
         This avoids the pitfalls of applying single-label nnPU to multi-label:
         - No single class prior (each GP has different base rate)
         - No need for correction term (we have explicit negatives)
         - Simple, stable, and aligned with multi-label SSL literature
-        
+
         References:
         - Bucak et al. (2011): Multi-label learning with incomplete class assignments
         - Cabral et al. (2011): Matrix completion for multi-label classification
@@ -362,14 +362,14 @@ class KCTrainer:
         Args:
             logits: (B, vocab_size) logits from KC decoder
             pos_ids: (B, max_pos) positive grammar point IDs
-            pos_mask: (B, max_pos) mask for valid positive IDs  
+            pos_mask: (B, max_pos) mask for valid positive IDs
             neg_ids: (B, max_neg) negative grammar point IDs
             neg_mask: (B, max_neg) mask for valid negative IDs
             vocab_size: number of grammar points (1374)
             unlabeled_weight: weight for unlabeled risk (default: 0.001)
             pos_weight: weight for positive loss (default: 1.0)
             neg_weight: weight for negative loss (default: 1.0)
-            
+
         Returns:
             Scalar loss tensor
         """
@@ -423,7 +423,7 @@ class KCTrainer:
         else:
             risk_unl = torch.tensor(0.0, device=device)
 
-        total_loss = risk_pos + risk_neg + risk_unl
+        total_loss: torch.Tensor = risk_pos + risk_neg + risk_unl
         return total_loss
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
