@@ -20,9 +20,7 @@ import os
 import subprocess
 import sys
 import time
-from typing import List, Optional, Any, Dict, cast
-
-
+from typing import Any, Dict, List, Optional, cast
 
 from kotogram import locations
 from kotogram.model import (
@@ -32,14 +30,14 @@ from kotogram.model import (
     ModelConfig,
 )
 from kotogram.tokenizer import Tokenizer
+from train import io as train_io
+from train import paths as train_paths
 from train.config import (
     DataLoaderSettings,
     HardwareConfig,
     KCConfig,
     TrainerConfig,
 )
-from train import io as train_io
-from train import paths as train_paths
 from train.train_style_view import (
     PreprocessingResult,
     TrainStyleDiagnosticsView,
@@ -54,10 +52,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Import epoch specification parser (supports absolute "10" and relative "+5" syntax)
 from train.epoch_spec import parse_epoch_spec  # pylint: disable=wrong-import-position
-
-
-
-
 
 
 def get_device_info() -> tuple[int, str]:
@@ -225,6 +219,9 @@ def build_trainer_config(
             **({
                 "sparsity_weight": args.kc_sparsity_weight
             } if args.kc_sparsity_weight is not None else {}),
+            **({
+                "target_spill_rate": args.kc_target_spill_rate
+            } if hasattr(args, 'kc_target_spill_rate') and args.kc_target_spill_rate is not None else {}),
             **({
                 "freeze_encoder_epochs": args.kc_freeze_encoder_epochs
             } if args.kc_freeze_encoder_epochs is not None else {}),
@@ -495,6 +492,7 @@ def parse_arguments() -> argparse.Namespace:
         "--kc-freeze-encoder-epochs", type=int, default=None, help="Epochs to freeze encoder (default: from config)"
     )
     parser.add_argument("--kc-sparsity-weight", type=float, default=None, help=f"Sparsity regularization weight (default: {_kc_defaults.sparsity_weight})")
+    parser.add_argument("--kc-target-spill-rate", type=float, default=None, help=f"Target spill rate (k+1 KC probability, 0=disabled) (default: {_kc_defaults.target_spill_rate})")
     parser.add_argument(
         "--kc-batch-size",
         type=int,
@@ -549,6 +547,7 @@ def print_training_banner(
 
     freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
     sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
+    target_spill_str = str(args.kc_target_spill_rate) if hasattr(args, 'kc_target_spill_rate') and args.kc_target_spill_rate is not None else f"(default: {KCConfig().target_spill_rate})"
 
     _view.on_config_banner(
         corpus_db=corpus_db,
@@ -567,6 +566,7 @@ def print_training_banner(
         kc_topk=args.kc_topk,
         kc_freeze_str=freeze_str,
         kc_sparsity_str=sparsity_str,
+        kc_target_spill_str=target_spill_str,
         retrain=args.retrain,
         confusion_only=args.confusion,
         label_only=args.label,
