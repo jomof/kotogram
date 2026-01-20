@@ -130,19 +130,11 @@ class KCConfig:
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
-    # Grammar Point (PNU) Loss
-    gp_unlab_weight: float = 0.001  # Soft negative weight for unlabeled GPs (increased to reduce false positives)
-    gp_hard_neg_threshold: float = 0.7  # Probability threshold for hard negative mining
-    gp_hard_neg_multiplier: float = (
-        2.0  # Weight multiplier for high-confidence false positives
-    )
-    # Progressive penalty for multiple unlabeled positive predictions
-    # Cost grows superlinearly: (count - 3)^1.5 * weight
-    # First 3 unlabeled positives are free, subsequent ones become progressively expensive
-    gp_progressive_fp_weight: float = (
-        0.01  # Weight for progressive false positive penalty
-    )
-    gp_labeled_weight: float = 10.0  # Weight for labeled (positive/negative) PNU loss
+    # Grammar Point (nnPU) Loss - Research-based PNU learning
+    gp_prior: float = 0.1  # Initial class prior estimate (auto-estimated if gp_estimate_prior=True)
+    gp_beta: float = 0.0  # Fallback weight for unlabeled when overfitting detected
+    gp_gamma: float = 1.0  # Gradient scale for negative risk term (for stability)
+    gp_estimate_prior: bool = True  # Dynamically estimate class prior (Elkan & Noto 2008)
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
@@ -211,6 +203,9 @@ class TrainerConfig:
     # Knowledge Component Targets (Training only)
     kc_target_specs: Dict[KcFamilyId, int] = field(default_factory=dict)
 
+    # KC Configuration
+    kc_config: KCConfig = field(default_factory=KCConfig)
+
     # Runtime flags (from wrapper, not persisted to model)
     retrain: bool = False  # Start from scratch, ignore checkpoints
     sample_ratio: float = 1.0  # Data sampling ratio (1.0 = 100%)
@@ -239,6 +234,7 @@ class TrainerConfig:
             "gender_mse_scaling_factor": self.gender_mse_scaling_factor,
             "hardware": self.hardware.to_dict(),
             "dataloader": self.dataloader.to_dict(),
+            "kc_config": self.kc_config.to_dict(),
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
             "kc_target_specs": {k.value: v for k, v in self.kc_target_specs.items()},
@@ -285,6 +281,9 @@ class TrainerConfig:
                     fid = KcFamilyId(int(k))
                     new_specs[fid] = v
             d["kc_target_specs"] = new_specs
+
+        if "kc_config" in d:
+            d["kc_config"] = KCConfig.from_dict(d["kc_config"])
 
         valid_fields = {f.name for f in fields(cls)}
         return cls(**{k: v for k, v in d.items() if k in valid_fields})

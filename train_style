@@ -216,6 +216,19 @@ def build_trainer_config(
         "dataloader": DataLoaderSettings(
             num_workers=args.dataloader_num_workers,
         ),
+        # KC Config
+        "kc_config": KCConfig(
+            # Pass args that were explicitly set, otherwise rely on default
+            # Note: 0 is a valid value for skip_first_metrics, so we use args.kc_skip_first_metrics directly
+            skip_first_metrics=args.kc_skip_first_metrics,
+            # For optional floats/ints, standard pattern:
+            **({
+                "sparsity_weight": args.kc_sparsity_weight
+            } if args.kc_sparsity_weight is not None else {}),
+            **({
+                "freeze_encoder_epochs": args.kc_freeze_encoder_epochs
+            } if args.kc_freeze_encoder_epochs is not None else {}),
+        ),
         # Runtime flags
         "retrain": args.retrain,
         "sample_ratio": args.percent / 100.0 if args.percent else 1.0,
@@ -305,7 +318,9 @@ def generate_and_save_config(
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
-            # KC is always enabled
+            # KC Config
+            kc_vocab_size=args.kc_k,
+            kc_topk=args.kc_topk,
         )
 
     # Read history to get current epoch counts (for +N syntax support)
@@ -429,6 +444,11 @@ def parse_arguments() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
+    # Load defaults from config classes as source of truth
+    _trainer_defaults = TrainerConfig()
+    _kc_defaults = KCConfig()
+    _model_defaults = ModelConfig(vocab_sizes={})
+
     # Data options
     parser.add_argument(
         "--agrammatic-pattern",
@@ -443,14 +463,12 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--epochs", type=str, default=None, help="Training epochs (e.g., '10' or '+5')")
     parser.add_argument("--batch-size", type=int, default=None, help="Batch size per device")
     # Pretraining options
-    # Use ModelConfig defaults as source of truth
-    _model_defaults = ModelConfig(vocab_sizes={})
     parser.add_argument("--embed-dim", type=int, default=_model_defaults.d_model, help=f"Model dimension (default: {_model_defaults.d_model})")
     parser.add_argument("--hidden-dim", type=int, default=_model_defaults.hidden_dim, help=f"Hidden layer dimension (default: {_model_defaults.hidden_dim})")
     parser.add_argument("--num-layers", type=int, default=_model_defaults.num_layers, help=f"Number of encoder layers (default: {_model_defaults.num_layers})")
     parser.add_argument("--num-heads", type=int, default=_model_defaults.num_heads, help=f"Number of attention heads (default: {_model_defaults.num_heads})")
 
-    parser.add_argument("--learning-rate", type=float, default=1e-4, help="Base learning rate (default: 1e-4)")
+    parser.add_argument("--learning-rate", type=float, default=_trainer_defaults.learning_rate, help=f"Base learning rate (default: {_trainer_defaults.learning_rate})")
 
     # Loss weights
     parser.add_argument("--formality-weight", type=float, default=None, help="Weight for formality loss")
@@ -465,14 +483,18 @@ def parse_arguments() -> argparse.Namespace:
 
     # KC Pretraining options (KC is always enabled)
     # Use TrainerConfig default for help text to ensure Single Source of Truth
-    default_kc_epochs = TrainerConfig().kc_epochs
+    default_kc_epochs = _trainer_defaults.kc_epochs
     parser.add_argument("--kc-epochs", type=str, default=None, help=f"KC epochs (e.g., '6' or '+2', default: {default_kc_epochs})")
-    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size None (default: 1024)")
-    parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
+
+    # ModelConfig defaults (kc_vocab_size, kc_topk)
+    parser.add_argument("--kc-k", type=int, default=_model_defaults.kc_vocab_size, help=f"KC vocabulary size (default: {_model_defaults.kc_vocab_size})")
+    parser.add_argument("--kc-topk", type=int, default=_model_defaults.kc_topk, help=f"Number of active KCs per sample (default: {_model_defaults.kc_topk})")
+
+    # KCConfig defaults (freeze, sparsity, skip_metrics)
     parser.add_argument(
         "--kc-freeze-encoder-epochs", type=int, default=None, help="Epochs to freeze encoder (default: from config)"
     )
-    parser.add_argument("--kc-sparsity-weight", type=float, default=None, help="Sparsity regularization weight")
+    parser.add_argument("--kc-sparsity-weight", type=float, default=None, help=f"Sparsity regularization weight (default: {_kc_defaults.sparsity_weight})")
     parser.add_argument(
         "--kc-batch-size",
         type=int,
@@ -482,8 +504,8 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--kc-skip-first-metrics",
         type=int,
-        default=0,
-        help="Skip diagnostic metrics gathering until epoch N (0=disabled)",
+        default=_kc_defaults.skip_first_metrics,
+        help=f"Skip diagnostic metrics gathering until epoch N (0=disabled, default: {_kc_defaults.skip_first_metrics})",
     )
 
 
