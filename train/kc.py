@@ -337,7 +337,7 @@ class KcPnuFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS  # Uses full KC probability distribution
+        return KcLogitMode.SPARSE_LOGITS
 
 
 @dataclass(frozen=True)

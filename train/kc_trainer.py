@@ -131,6 +131,7 @@ class KCTrainer:
 
         self.kc_config = kc_config
         self.kc_sparsity_weight = self.kc_config.sparsity_weight
+        self.kc_target_spill_rate = self.kc_config.target_spill_rate
         self.kc_sat_weight = self.kc_config.sat_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
@@ -2333,19 +2334,46 @@ class KCTrainer:
                 avg_prob = outputs["kc_probs"].mean()
                 act_dens = (outputs["sparse_activations"] > 0).float().mean()
 
-                # Adaptive Sparsity: sum(topk_vals) / k_i
-                # Weighted by sqrt(content_len / mean_len)
-                topk_vals = outputs["topk_vals"]  # (B, K)
-                sum_vals_per_row = topk_vals.sum(dim=1)  # (B,)
+                # Target Spill Mode: Penalize deviation from target spill rate
+                if self.kc_target_spill_rate > 0.0:
+                    # Compute actual spill: probability of (k+1)th KC
+                    kc_probs = outputs["kc_probs"]  # (B, vocab_size)
+                    probs_sorted, _ = torch.sort(kc_probs, dim=1, descending=True)
 
-                # We reuse k_budget_t from earlier (B,)
-                sparsity_per_row = sum_vals_per_row / k_budget_t.float().clamp_min(1.0)
+                    batch_size = kc_probs.size(0)
+                    vocab_size = kc_probs.size(1)
+                    spill_probs = []
+                    for i in range(batch_size):
+                        k_val = int(k_budget_t[i].item())
+                        if k_val < vocab_size:
+                            spill_probs.append(
+                                probs_sorted[i, k_val]
+                            )  # (k+1)th is index k_val
+                        else:
+                            spill_probs.append(torch.tensor(0.0, device=self.device))
 
-                mean_len = content_len.mean().clamp_min(1.0)
-                len_scaling = (content_len / mean_len).sqrt()
+                    spill_tensor = torch.stack(spill_probs)  # (B,)
 
-                weighted_sparsity = sparsity_per_row * len_scaling
-                sparsity_term = weighted_sparsity.mean()
+                    # Penalize deviation from target (bidirectional)
+                    sparsity_term = torch.abs(
+                        spill_tensor - self.kc_target_spill_rate
+                    ).mean()
+                else:
+                    # Original behavior: Adaptive Sparsity (always penalizes high activations)
+                    # sum(topk_vals) / k_i, weighted by sqrt(content_len / mean_len)
+                    topk_vals = outputs["topk_vals"]  # (B, K)
+                    sum_vals_per_row = topk_vals.sum(dim=1)  # (B,)
+
+                    # We reuse k_budget_t from earlier (B,)
+                    sparsity_per_row = sum_vals_per_row / k_budget_t.float().clamp_min(
+                        1.0
+                    )
+
+                    mean_len = content_len.mean().clamp_min(1.0)
+                    len_scaling = (content_len / mean_len).sqrt()
+
+                    weighted_sparsity = sparsity_per_row * len_scaling
+                    sparsity_term = weighted_sparsity.mean()
 
                 if not torch.isfinite(sparsity_term):
                     raise RuntimeError("Non-finite sparsity_term")

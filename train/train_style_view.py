@@ -61,6 +61,7 @@ class TrainStyleView(Protocol):
         kc_topk: int,
         kc_freeze_str: str,
         kc_sparsity_str: str,
+        kc_target_spill_str: str,
         retrain: bool,
         confusion_only: bool,
         label_only: bool,
@@ -242,6 +243,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         kc_topk: int,
         kc_freeze_str: str,
         kc_sparsity_str: str,
+        kc_target_spill_str: str,
         retrain: bool,
         confusion_only: bool,
         label_only: bool,
@@ -277,6 +279,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
             console.print(f"KC Top-k:       {kc_topk}")
             console.print(f"KC Freeze:      {kc_freeze_str}")
             console.print(f"KC Sparsity:    {kc_sparsity_str}")
+            console.print(f"KC Target Spill: {kc_target_spill_str}")
         else:
             console.print("KC pretrain:    (default/saved)")
 

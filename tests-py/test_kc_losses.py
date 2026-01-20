@@ -23,9 +23,10 @@ class TestKCLosses(KCTrainerTestBase):
 
     @patch("train.kc_trainer.create_kc_batch")
     def test_sparsity_term_uses_topk(self, mock_create_batch):
-        """Test that sparsity term uses topk_vals instead of avg_prob."""
+        """Test that sparsity term uses target spill mode (production behavior)."""
         self.trainer.kc_sparsity_weight = 1.0
         self.trainer.kc_sparsity_mode = "target_density"
+        self.trainer.kc_target_spill_rate = 0.5  # Production default
         self.trainer.freeze_encoder_epochs = 0
 
         batch = MagicMock()
@@ -63,8 +64,10 @@ class TestKCLosses(KCTrainerTestBase):
         self.model.config.kc_topk = 8
 
         res = self.trainer.train_epoch(epoch=0)
-        # k_i = ceil(0.4 * 5) + 6 (k_bonus for short) = 8. spar = 8.0 / 8 = 1.0.
-        self.assertAlmostEqual(res.avg_sparsity, 1.0, places=4)
+        # k_i = ceil(0.4 * 5) + 6 (k_bonus for short) = 8.
+        # With target spill mode: all probs are 0.5, so spill (k+1 KC) = 0.5
+        # sparsity_term = abs(0.5 - 0.5).mean() = 0.0 (at target)
+        self.assertAlmostEqual(res.avg_sparsity, 0.0, places=4)
 
 
 if __name__ == "__main__":
