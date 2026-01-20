@@ -131,6 +131,7 @@ class FamilyAccumulator:
     saw_dense: bool = False
     saw_sparse: bool = False
     saw_valid_mask: bool = False
+    loss_by_label: Optional[torch.Tensor] = None  # Running sum of loss per label
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
@@ -140,6 +141,7 @@ class FamilyAccumulator:
         pos_mask: Optional[torch.Tensor] = None,
         valid_mask: Optional[torch.Tensor] = None,
         source: str = "dense",
+        loss_by_label: Optional[torch.Tensor] = None,
     ) -> None:
         """Update stats from a batch.
 
@@ -149,6 +151,7 @@ class FamilyAccumulator:
             pos_mask: boolean mask for true positives; if None, derived from targets > 0.5
             valid_mask: boolean mask for supervised/eligible entries; if None, all valid
             source: "dense" or "sparse" to track provenance
+            loss_by_label: [K] tensor of summed loss per label for this batch
         """
         with torch.no_grad():
             batch_size = logits.size(0)
@@ -212,6 +215,13 @@ class FamilyAccumulator:
             if n_neg > 0:
                 self.sum_logit_neg += (logits * neg_mask_float).sum().item()
                 self.cnt_logit_neg += n_neg
+
+            # Accumulate per-label loss if provided
+            if loss_by_label is not None:
+                if self.loss_by_label is None:
+                    self.loss_by_label = loss_by_label.detach().clone()
+                else:
+                    self.loss_by_label += loss_by_label.detach()
 
 
 @dataclass(frozen=True)
