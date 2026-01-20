@@ -911,6 +911,35 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     f'[dim]idx={sample.sample_idx} "{sentence}"[/dim]'
                 )
 
+        # BLOCK 4.6: Top Loss Contributors (for PNU families like grammar_point)
+        # Check accumulators for loss_by_label
+        for name, acc in summary.accumulators.items():
+            if acc.loss_by_label is not None and name.startswith("grammar_point"):
+                # Sort by loss descending (values are sums, so higher = more contribution)
+                # But wait, loss_by_label accumulates weighted means sum(mean_batch_loss) if I did it right?
+                # No, in kc_trainer I did: loss_by_label += ... (sum(dim=0) / count)
+                # So it's sum of per-batch average losses.
+                # Just like total loss is sum of per-batch average losses.
+
+                # Get indices of top 5
+                vals, inds = torch.topk(
+                    acc.loss_by_label, min(5, len(acc.loss_by_label))
+                )
+                vals_list = vals.cpu().tolist()
+                inds_list = inds.cpu().tolist()
+
+                parts = []
+                for i, (val, idx) in enumerate(zip(vals_list, inds_list)):
+                    if val < 1e-6:
+                        continue
+                    # Format as gpXXXX (assuming index matches grammar point ID)
+                    parts.append(f"gp{idx:04d}: {val:.4f}")
+
+                if parts:
+                    console.print(
+                        f"  [cyan]{name}[/cyan] Top Loss: [yellow]{', '.join(parts)}[/yellow]"
+                    )
+
         # BLOCK 5: Diagnosis Flags
         flags = []
 

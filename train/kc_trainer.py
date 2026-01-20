@@ -329,7 +329,7 @@ class KCTrainer:
         unlabeled_weight: float = 0.001,
         pos_weight: float = 1.0,
         neg_weight: float = 1.0,
-    ) -> torch.Tensor:
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         """Multi-label PNU (Positive-Negative-Unlabeled) loss for grammar points.
 
         This is adapted for multi-label classification with explicit negatives,
@@ -372,7 +372,7 @@ class KCTrainer:
             neg_weight: weight for negative loss (default: 1.0)
 
         Returns:
-            Scalar loss tensor
+            Tuple[torch.Tensor, torch.Tensor]: (total_loss, loss_by_label)
         """
         batch_size = logits.size(0)
         device = logits.device
@@ -393,13 +393,21 @@ class KCTrainer:
         unlabeled_mask = 1.0 - labeled_pos - labeled_neg
         unlabeled_mask = unlabeled_mask.clamp(0, 1)
 
+        # Per-label loss accumulator (will sum to total_loss)
+        loss_by_label = torch.zeros(vocab_size, device=device)
+
         # Component 1: Positive loss (BCE with target=1)
         pos_count = labeled_pos.sum()
         if pos_count > 0:
             pos_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.ones_like(logits), reduction="none"
             )
+            # Scalar risk
             risk_pos = pos_weight * (pos_loss * labeled_pos).sum() / pos_count
+            # Per-label contribution
+            loss_by_label += (
+                pos_weight * (pos_loss * labeled_pos).sum(dim=0) / pos_count
+            )
         else:
             risk_pos = torch.tensor(0.0, device=device)
 
@@ -409,7 +417,12 @@ class KCTrainer:
             neg_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
+            # Scalar risk
             risk_neg = neg_weight * (neg_loss * labeled_neg).sum() / neg_count
+            # Per-label contribution
+            loss_by_label += (
+                neg_weight * (neg_loss * labeled_neg).sum(dim=0) / neg_count
+            )
         else:
             risk_neg = torch.tensor(0.0, device=device)
 
@@ -420,12 +433,17 @@ class KCTrainer:
             unl_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
+            # Scalar risk
             risk_unl = unlabeled_weight * (unl_loss * unlabeled_mask).sum() / unl_count
+            # Per-label contribution
+            loss_by_label += (
+                unlabeled_weight * (unl_loss * unlabeled_mask).sum(dim=0) / unl_count
+            )
         else:
             risk_unl = torch.tensor(0.0, device=device)
 
         total_loss: torch.Tensor = risk_pos + risk_neg + risk_unl
-        return total_loss
+        return total_loss, loss_by_label
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -1323,7 +1341,7 @@ class KCTrainer:
                             neg_ids = kc_targets[gp_neg_key].to(self.device)
                             neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
 
-                            task_loss = self._multilabel_pnu_loss(
+                            task_loss, loss_by_label = self._multilabel_pnu_loss(
                                 logits.float(),
                                 pos_ids,
                                 pos_mask,
@@ -1337,6 +1355,8 @@ class KCTrainer:
 
                             # Apply per-family loss weight for balanced training
                             task_loss = task_loss * family_def.loss_weight
+                            loss_by_label = loss_by_label * family_def.loss_weight
+
                             batch_kc_losses[f"{name}"] = task_loss.item()
                             structural_loss = structural_loss + task_loss
                             num_struct += 1
@@ -1366,6 +1386,7 @@ class KCTrainer:
                                 pos_mask=None,  # Let update derive from targets
                                 valid_mask=valid_mask_gp.bool(),
                                 source="dense",
+                                loss_by_label=loss_by_label,
                             )
 
                             # Update kc_diag so DB-sourced families appear in diagnostics
