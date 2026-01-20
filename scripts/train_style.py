@@ -24,7 +24,6 @@ from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train import history, paths
 from train import io as train_io
 from train.config import (
-    KCConfig,
     TrainerConfig,
 )
 from train.dataset import DatasetConfig, StyleDataset
@@ -547,17 +546,18 @@ if __name__ == "__main__":
     # Filter to grammatical sentences only for KC training
     kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
 
-    # Create both trainers upfront
+    # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
+    # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
+    kc_config = trainer_config.kc_config
+    if trainer_config.retrain or loaded_from_checkpoint:
+        kc_config = dataclasses.replace(kc_config, freeze_encoder_epochs=0)
+
     kc_trainer = KCTrainer(
         cast(TrainingClassifier, model),
         kc_dataset,
         trainer_config,
         dl_config=trainer_config.resolve_dataloader_config(device),
-        kc_config=KCConfig(
-            freeze_encoder_epochs=0
-            if (trainer_config.retrain or loaded_from_checkpoint)
-            else 3,
-        ),
+        kc_config=kc_config,
     )
 
     style_trainer = Trainer(

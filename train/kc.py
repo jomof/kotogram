@@ -311,7 +311,23 @@ class KcTailNgramFamily(KcFamily):
 
 @dataclass(frozen=True)
 class KcPnuFamily(KcFamily):
-    """DB-sourced PNU (Positive-Negative-Unlabeled) loss families like GRAMMAR_POINT."""
+    """DB-sourced PNU (Positive-Negative-Unlabeled) loss families like GRAMMAR_POINT.
+    
+    Uses principled nnPU (non-negative Positive-Unlabeled) learning approach based on:
+    - Du Plessis et al. (2014): "Analysis of learning from positive and unlabeled data"
+    - Du Plessis et al. (2015): "Convex formulation for learning from positive and 
+      unlabeled data"
+    - Kiryo et al. (2017): "Positive-Unlabeled Learning with Non-Negative Risk Estimator"
+    - Elkan & Noto (2008): "Learning classifiers from only positive and unlabeled data"
+    
+    The unbiased PU risk estimator:
+        R_PU(f) = π * R_P+(f) + R_N(f) - π * R_U-(f)
+    
+    Where π is the class prior (estimated dynamically), R_P+ is risk on labeled positives,
+    R_N is risk on labeled negatives, and R_U- is risk on unlabeled treated as negatives.
+    
+    The nnPU variant adds non-negativity constraint to prevent overfitting to unlabeled data.
+    """
 
     _loss_weight: float = 1.0
 
@@ -337,7 +353,7 @@ class KcPnuFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS
+        return KcLogitMode.ALL_LOGITS  # Uses full KC probability distribution (diffuse signal)
 
 
 @dataclass(frozen=True)
