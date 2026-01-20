@@ -661,7 +661,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("PosDen")
         table_fam.add_column("PosP")  # avg probability for positives
         table_fam.add_column("Acc")  # overall accuracy at threshold 0.5
-        table_fam.add_column("UnlabFP")  # unlabeled predicted positive rate
+        table_fam.add_column("AvgPos")  # avg positive labels per positive example
         table_fam.add_column("Logit(+/-)")
         table_fam.add_column("Gap")
         table_fam.add_column("Msk%")
@@ -780,21 +780,19 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 else ("yellow" if fam.accuracy > 0.7 else "red")
             )
 
-            # Compute unlabeled FP rate from accumulator stats
-            unlab_fp_rate_str = "-"
+            # Compute average predicted positive labels per positive example
+            avg_pos_str = "-"
             if hasattr(summary, "accumulators") and name in summary.accumulators:
                 acc = summary.accumulators[name]
-                if acc.cnt_unlabeled > 0:
-                    unlab_fp_rate = acc.cnt_unlabeled_pred_pos / acc.cnt_unlabeled
-                    # Color: green if low (<10%), yellow if medium, red if high (>30%)
-                    c_unlab = (
-                        "green"
-                        if unlab_fp_rate < 0.1
-                        else ("yellow" if unlab_fp_rate < 0.3 else "red")
-                    )
-                    unlab_fp_rate_str = (
-                        f"[{c_unlab}]{unlab_fp_rate * 100:.1f}%[/{c_unlab}]"
-                    )
+                if acc.n_pos_ex > 0:
+                    avg_pos = acc.cnt_pred_pos_on_pos / acc.n_pos_ex
+                    # Color based on deviation from target density if helpful,
+                    # but for now just display raw predicted density on positive examples.
+                    avg_pos_str = f"{avg_pos:.2f}"
+            elif fam.pos_ex_frac > 1e-6:
+                # Fallback to ground truth density if accumulator missing (legacy)
+                avg_pos = fam.pos_label_density / fam.pos_ex_frac
+                avg_pos_str = f"({avg_pos:.2f})"
 
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
@@ -804,7 +802,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"{fam.pos_label_density:.3f}",
                 f"[{c_posp}]{fam.prob_pos_mean * 100:.0f}%[/{c_posp}]{posp_arrow}",
                 f"[{c_acc}]{fam.accuracy * 100:.0f}%[/{c_acc}]{acc_arrow}",
-                unlab_fp_rate_str,
+                avg_pos_str,
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
                 f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
                 f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",
