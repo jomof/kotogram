@@ -8,6 +8,7 @@ import torch
 from rich.table import Table
 
 from train.display import console, print_phase_header
+from train.kc import KcFamilyId, KcLogitMode, get_family
 from train.types import (
     KcDynSizingBinStats,
     KcEpochSummary,
@@ -15,6 +16,21 @@ from train.types import (
     RunningLossComponents,
     TrainEpochResult,
 )
+
+
+def _get_logit_mode_emoji(name: str) -> str:
+    """Return prefix based on family's logit_mode."""
+    name_upper = name.upper()
+    if name_upper not in KcFamilyId.__members__:
+        return ""
+    logit_mode = get_family(KcFamilyId[name_upper]).logit_mode
+    if logit_mode == KcLogitMode.HOT_LOGITS:
+        return "[dim]h[/dim] "
+    if logit_mode == KcLogitMode.ALL_LOGITS:
+        return "[dim]a[/dim] "
+    if logit_mode == KcLogitMode.SPARSE_LOGITS:
+        return "[dim]s[/dim] "
+    return ""
 
 
 class KCTrainerView(Protocol):
@@ -633,7 +649,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 c_bdelta = "green" if mse.bias_delta > 0.01 else "dim"
 
                 table_mse.add_row(
-                    name,
+                    f"{_get_logit_mode_emoji(name)}{name}",
                     f"{mse.loss_mean:.4f}{loss_arrow}",
                     f"[{c_acc}]{mse.accuracy_01 * 100:.1f}%[/{c_acc}]{acc_arrow}",
                     f"[{c_corr}]{mse.correlation:.3f}[/{c_corr}]{corr_arrow}",
@@ -796,7 +812,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
-                name,
+                f"{_get_logit_mode_emoji(name)}{name}",
                 f"{fam.loss_mean:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
@@ -981,7 +997,3 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
         if flags:
             console.print(f"[bold red]Flags: {' '.join(flags)}[/bold red]")
-
-
-# Explicitly reference unused methods for static analysis tools
-# pylint: disable=pointless-statement
