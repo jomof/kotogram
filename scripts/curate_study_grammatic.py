@@ -54,19 +54,21 @@ class GrammaticDataset(Dataset[GrammaticSample]):
     ):
         self.data_dir = data_dir
 
-        # Load offsets
+        # Load offsets - clone to regular tensor for worker pickling
         offsets_path = os.path.join(data_dir, "offsets.bin")
         size_bytes = os.path.getsize(offsets_path)
-        self.offsets = torch.from_file(
+        mmap_offsets = torch.from_file(
             offsets_path, shared=True, size=size_bytes // 4, dtype=torch.int32
         )
+        self.offsets = mmap_offsets.clone()
 
-        # Load grammatic flags
+        # Load grammatic flags - clone to regular tensor for worker pickling
         grammatic_path = os.path.join(data_dir, "labels.bin_gram")
         grammatic_size = os.path.getsize(grammatic_path)
-        self.grammatic = torch.from_file(
+        mmap_gram = torch.from_file(
             grammatic_path, shared=True, size=grammatic_size, dtype=torch.uint8
         )
+        self.grammatic = mmap_gram.clone()
 
         # Load sentences
         sentences_path = os.path.join(data_dir, "sentences.txt")
@@ -97,9 +99,9 @@ class GrammaticDataset(Dataset[GrammaticSample]):
             if os.path.exists(path):
                 size = os.path.getsize(path) // 4
                 key = fname.replace("feat_", "").replace(".bin", "")
-                self.features[key] = torch.from_file(
-                    path, shared=True, size=size, dtype=torch.int32
-                )
+                # Clone to regular tensor (memory-mapped can't be pickled for workers)
+                mmap = torch.from_file(path, shared=True, size=size, dtype=torch.int32)
+                self.features[key] = mmap.clone()
 
     def __len__(self) -> int:
         return len(self.indices)
@@ -306,9 +308,10 @@ def _train_classifier(
     ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, List[str], List[int]]:
         return _collate_fn(batch, dataset)
 
-    # Use multiple workers on CUDA, pin memory for faster GPU transfer
-    # Note: num_workers=0 required because memory-mapped tensors can't be pickled
+    # Use multiple workers on CUDA for faster data loading
+    # Tensors are cloned (not memory-mapped), so they can be pickled for workers
     use_cuda = device.type == "cuda"
+    num_workers = 4 if use_cuda else 0
     pin_memory = use_cuda
 
     train_loader = DataLoader(
@@ -316,16 +319,18 @@ def _train_classifier(
         batch_size=batch_size,
         shuffle=True,
         collate_fn=collate,
-        num_workers=0,
+        num_workers=num_workers,
         pin_memory=pin_memory,
+        persistent_workers=num_workers > 0,
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=batch_size,
         shuffle=False,
         collate_fn=collate,
-        num_workers=0,
+        num_workers=num_workers,
         pin_memory=pin_memory,
+        persistent_workers=num_workers > 0,
     )
 
     # Compute class weights for imbalanced data
