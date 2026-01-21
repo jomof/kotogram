@@ -14,6 +14,7 @@ from kotogram.model import (
     InferenceClassifier,
 )
 from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
+from train.amp_utils import ConditionalGradScaler, device_autocast
 from train.config import (
     DataLoaderConfig,
     TrainerConfig,
@@ -128,6 +129,12 @@ class Trainer:
 
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
+
+        # Mixed precision training setup
+        self.use_amp = self.config.use_amp and (self.device.type in ("cuda", "mps"))
+        self.scaler = ConditionalGradScaler(self.device, self.use_amp)
+        if self.use_amp:
+            self.view.on_amp_enabled(self.device.type, self.config.amp_dtype)
 
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
@@ -333,21 +340,30 @@ class Trainer:
         if batch_idx % self.config.grad_accum_steps == 0:
             self.optimizer.zero_grad(set_to_none=True)
 
-        outputs = self.model(field_inputs, attention_mask)
-        losses = self._compute_training_loss(outputs, targets)
-        loss = losses.loss
+        # Forward pass and loss computation in mixed precision
+        with device_autocast(self.device, self.use_amp):
+            outputs = self.model(field_inputs, attention_mask)
+            losses = self._compute_training_loss(outputs, targets)
+            loss = losses.loss
 
-        loss.backward()
+        # Backward pass with gradient scaling
+        self.scaler.scale(loss).backward()
 
         # Compute gradient norms per head (before clipping/stepping)
         grad_norms = _compute_head_grad_norms(self.model)
 
         if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+            # Unscale gradients before clipping (CUDA only, MPS ignores)
+            if self.scaler.scaler:
+                self.scaler.scaler.unscale_(self.optimizer)
+
             if self.config.gradient_clip > 0:
                 nn.utils.clip_grad_norm_(
                     self.model.parameters(), self.config.gradient_clip
                 )
-            self.optimizer.step()
+
+            self.scaler.step(self.optimizer)
+            self.scaler.update()
             self.optimizer.zero_grad(set_to_none=True)
 
         gad = self.config.grad_accum_steps
@@ -540,7 +556,9 @@ class Trainer:
         for batch in self.val_loader:
             field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
-            outputs = self.model(field_inputs, attention_mask)
+            # Use autocast for evaluation forward pass (optional speedup)
+            with device_autocast(self.device, self.use_amp):
+                outputs = self.model(field_inputs, attention_mask)
 
             self._accumulate_eval_batch(outputs, targets, batch, metrics_sum, all_preds)
 

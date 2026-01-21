@@ -298,6 +298,49 @@ Benefits:
 - **Lightweight**: 7MB model fits easily in web apps, mobile apps, serverless functions
 - **Interpretable**: Feature-based representations make it easier to debug and understand predictions
 
+## Training
+
+### Mixed Precision Training
+
+Both KC and style trainers support fp16 mixed precision training for faster training on GPUs:
+
+- **CUDA**: Full support with automatic gradient scaling (~2x speedup)
+- **MPS** (Apple Silicon): Autocast support without gradient scaling (~1.3x speedup)
+- **CPU**: Automatically disabled (no benefit)
+
+Mixed precision training is **enabled by default**. The trainer automatically detects your device and configures the appropriate settings.
+
+#### Disabling Mixed Precision
+
+If you encounter numerical stability issues or want to train in full fp32:
+
+```bash
+# For KC pretraining
+./train_kc --use-amp false
+
+# For style fine-tuning
+./train_style --use-amp false
+```
+
+#### Requirements
+
+- **PyTorch 2.5.0+** for MPS autocast support
+- **CUDA**: Any recent version with autocast support
+- **MPS**: macOS 12.3+ with Apple Silicon
+
+#### Technical Details
+
+The implementation uses device-aware autocast contexts that wrap forward passes and loss computation:
+
+- **Forward pass**: All model operations (embedding, attention, decoders) run in fp16 where beneficial
+- **Loss computation**: All loss calculations (structural, diversity, load balancing, etc.) use fp16
+- **Gradient accumulation**: Handled automatically with proper scaling
+- **Optimizer states**: Always maintained in fp32 for numerical stability
+
+The extensive metrics gathering and validation checks in `kc_trainer.py` remain in fp32 to preserve accuracy of diagnostic information.
+
+For more details, see `train/amp_utils.py`.
+
 ## Citation
 
 If you use Kotogram in your research or project, feel free to cite:

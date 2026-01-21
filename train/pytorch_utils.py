@@ -2,7 +2,7 @@
 
 import importlib.util
 import math
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import torch
 
@@ -13,6 +13,20 @@ if TYPE_CHECKING:
 
 # 50KB tolerance for header overhead
 SIZE_VERIFICATION_TOLERANCE = 50 * 1024
+
+
+def initialize_dataset_indices(
+    offsets_len: int, indices: Optional[torch.Tensor] = None
+) -> torch.Tensor:
+    """Initialize dataset indices.
+
+    If indices is None, returns a tensor of all indices [0, offsets_len - 1].
+    Otherwise, returns the provided indices.
+    """
+    total_samples = offsets_len - 1
+    if indices is not None:
+        return indices
+    return torch.arange(total_samples, dtype=torch.long)
 
 
 def _is_layer_saved_in_slim(layer_name: str) -> bool:

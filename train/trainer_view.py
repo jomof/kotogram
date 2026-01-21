@@ -153,6 +153,8 @@ class TrainerView(Protocol):
 
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
 
+    def on_amp_enabled(self, device_type: str, dtype: str) -> None: ...
+
 
 class TrainerDiagnosticsView(TrainerView):
     """Default implementation of TrainerView that does nothing (for now)."""
@@ -244,6 +246,9 @@ class TrainerDiagnosticsView(TrainerView):
         print(
             f"Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}"
         )
+
+    def on_amp_enabled(self, device_type: str, dtype: str) -> None:
+        print(f"Mixed precision training enabled: {dtype} on {device_type}")
 
     # pylint: disable=too-many-locals
     def on_style_epoch_eval_stats(self, epoch: int, stats: StyleEpochStats) -> None:

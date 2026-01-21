@@ -12,6 +12,7 @@ from torch.utils.data import DataLoader
 
 from kotogram.constants import REGISTER_ID_TO_LABEL
 from kotogram.model import compute_k_budget
+from train.amp_utils import ConditionalGradScaler, device_autocast
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -137,6 +138,12 @@ class KCTrainer:
 
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
+
+        # Mixed precision training setup
+        self.use_amp = self.config.use_amp and (self.device.type in ("cuda", "mps"))
+        self.scaler = ConditionalGradScaler(self.device, self.use_amp)
+        if self.use_amp:
+            self.view.on_amp_enabled(self.device.type, self.config.amp_dtype)
 
         self.val_sampler = None
         self.sampler = None
@@ -765,6 +772,10 @@ class KCTrainer:
         if found_nonfinite:
             raise RuntimeError("found_nonfinite")
 
+        # Unscale gradients before clipping (CUDA only, MPS ignores)
+        if self.scaler.scaler:
+            self.scaler.scaler.unscale_(self.optimizer)
+
         # B1: Split Clipping (Encoder vs Heads)
         if self.config.gradient_clip and self.config.gradient_clip > 0:
             # We must identify which params belong to encoder vs heads
@@ -788,7 +799,8 @@ class KCTrainer:
             # Per user instruction: "preferred: do NOT clip at all"
         # else: do not clip at all (0 means disabled)
 
-        self.optimizer.step()
+        self.scaler.step(self.optimizer)
+        self.scaler.update()
         self.optimizer.zero_grad(set_to_none=True)
         skipped = False
 
@@ -1077,16 +1089,18 @@ class KCTrainer:
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
-            outputs = self.model(
-                field_inputs,
-                attention_mask=attention_mask,
-                mode="kc",
-                temperature=t_val,
-                gumbel_scale=gumbel_scale,
-                grad_cap=self.kc_grad_cap,
-                k_budget=k_budget_t,
-                long_sentence_mask=long_sentence_mask,
-            )
+            # Forward pass in mixed precision
+            with device_autocast(self.device, self.use_amp):
+                outputs = self.model(
+                    field_inputs,
+                    attention_mask=attention_mask,
+                    mode="kc",
+                    temperature=t_val,
+                    gumbel_scale=gumbel_scale,
+                    grad_cap=self.kc_grad_cap,
+                    k_budget=k_budget_t,
+                    long_sentence_mask=long_sentence_mask,
+                )
 
             # --- INVARIANT CHECK A-E: Post-Forward Validation ---
             # Fail-fast validations for adaptive budget plumbing.
@@ -1291,14 +1305,17 @@ class KCTrainer:
             if batch_idx == 0:
                 self._check_kc_coverage(outputs, kc_targets)
 
-            # Loss accumulation for this batch:
-            # - structural_loss = sum of task_loss for each family (the "struct" component)
-            # - Each family contributes its task_loss.item() directly
-            # - INVARIANT: sum(family loss_means) = struct (validated by checksum)
-            loss = torch.tensor(0.0, device=self.device)
-            batch_kc_losses: Dict[str, float] = {}
-            structural_loss = torch.tensor(0.0, device=self.device)
-            num_struct = 0
+            # Loss computation in mixed precision
+            # Note: All loss calculations must be inside autocast for numerical stability
+            with device_autocast(self.device, self.use_amp):
+                # Loss accumulation for this batch:
+                # - structural_loss = sum of task_loss for each family (the "struct" component)
+                # - Each family contributes its task_loss.item() directly
+                # - INVARIANT: sum(family loss_means) = struct (validated by checksum)
+                loss = torch.tensor(0.0, device=self.device)
+                batch_kc_losses: Dict[str, float] = {}
+                structural_loss = torch.tensor(0.0, device=self.device)
+                num_struct = 0
 
             for fid, vocab_size in self.config.kc_target_specs.items():
                 name = fid.name.lower()
@@ -2526,6 +2543,9 @@ class KCTrainer:
                 combined_loss + spar_w * sparsity_term
             ) / self.config.grad_accum_steps
 
+            # End of autocast context - all loss computation complete
+            # Metrics gathering below happens outside autocast
+
             # --- PRIOR KC LOSSES: REMOVED ---
             # Formality (KC0-3), Gender (KC4-5), and Register (KC6-18) supervision
             # is now handled by the style classifier to prevent interference
@@ -2581,7 +2601,8 @@ class KCTrainer:
                 pass
 
             if torch.isfinite(loss):
-                loss.backward()
+                # Backward pass with gradient scaling
+                self.scaler.scale(loss).backward()
                 did_any_backward = True
                 pending_accum += 1
 

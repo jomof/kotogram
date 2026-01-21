@@ -22,6 +22,7 @@ from train.binary_io import (
     EXT_OFFSETS,
 )
 from train.kc import KcFamilyId, compute_kc_targets, initialize_disallow_filter
+from train.pytorch_utils import initialize_dataset_indices
 from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
@@ -77,15 +78,8 @@ class StyleDataset(Dataset[Sample]):
             offsets_path, shared=True, size=size_bytes // 4, dtype=torch.int32
         )
 
-        # Determine total samples
-        total_samples = len(self.offsets) - 1
-
         # Handle Indices (Subsetting / Splitting)
-        if indices is not None:
-            self.indices = indices
-        else:
-            # Default: use all
-            self.indices = torch.arange(total_samples, dtype=torch.long)
+        self.indices = initialize_dataset_indices(len(self.offsets), indices)
 
         # Handle Sampling (Downsampling)
         if sample_ratio < 1.0:

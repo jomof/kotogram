@@ -191,6 +191,10 @@ class TrainerConfig:
     grad_accum_steps: int = 1  # Gradient accumulation steps
     # Encoder LR is hardcoded to 0.0 (frozen) during style training
 
+    # Mixed Precision Training
+    use_amp: bool = True  # Enable automatic mixed precision (fp16)
+    amp_dtype: str = "float16"  # "float16" or "bfloat16" (CUDA only)
+
     # Orthogonal components
     hardware: HardwareConfig = field(default_factory=HardwareConfig)
     dataloader: DataLoaderSettings = field(default_factory=DataLoaderSettings)
@@ -229,6 +233,8 @@ class TrainerConfig:
             "lr_scheduler_factor": self.lr_scheduler_factor,
             "gradient_clip": self.gradient_clip,
             "grad_accum_steps": self.grad_accum_steps,
+            "use_amp": self.use_amp,
+            "amp_dtype": self.amp_dtype,
             "formality_loss_weight": self.formality_loss_weight,
             "gender_loss_weight": self.gender_loss_weight,
             "grammaticality_loss_weight": self.grammaticality_loss_weight,

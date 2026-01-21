@@ -1,4 +1,4 @@
-# pylint: disable=duplicate-code
+# pylint: disable=duplicate-code,too-many-lines
 import math
 import random
 from collections import defaultdict
@@ -85,6 +85,8 @@ class KCTrainerView(Protocol):
     def on_line_flush(self) -> None: ...
 
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
+
+    def on_amp_enabled(self, device_type: str, dtype: str) -> None: ...
 
     def on_style_oversampling_enabled(
         self, formality_boost: float, gender_boost: float
@@ -211,6 +213,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None:
         console.print(
             f"[bold cyan]Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}[/bold cyan]"
+        )
+
+    def on_amp_enabled(self, device_type: str, dtype: str) -> None:
+        console.print(
+            f"[bold cyan]Mixed precision training enabled: {dtype} on {device_type}[/bold cyan]"
         )
 
     def on_style_oversampling_enabled(
