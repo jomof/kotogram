@@ -3046,6 +3046,8 @@ def main():
         help="Which batch of 100 to write (1=items 0-99, 2=items 100-199, etc.)")
     grammatic_parser.add_argument("--percent", type=int, default=100,
         help="Percentage of data to use (for local testing, e.g. --percent 10)")
+    grammatic_parser.add_argument("--batch-size", type=int, default=128,
+        help="Training batch size (use larger for GPU, e.g. --batch-size 512)")
     grammatic_parser.add_argument("--db-path", default="data/corpus.db",
         help="Path to corpus.db")
 
@@ -3117,7 +3119,12 @@ def main():
             if args.apply:
                 apply_grammatic_changes(args.db_path)
             else:
-                run_grammatic_study(args.db_path, batch=args.batch, percent=args.percent)
+                run_grammatic_study(
+                    args.db_path,
+                    batch=args.batch,
+                    percent=args.percent,
+                    batch_size=args.batch_size,
+                )
 
 
 if __name__ == "__main__":

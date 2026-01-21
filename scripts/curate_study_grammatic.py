@@ -536,13 +536,16 @@ def _generate_suggestion_files(
     return counts
 
 
-def run_grammatic_study(db_path: str, batch: int = 1, percent: int = 100) -> None:
+def run_grammatic_study(
+    db_path: str, batch: int = 1, percent: int = 100, batch_size: int = 128
+) -> None:
     """Run the grammatic learnability study.
 
     Args:
         db_path: Path to corpus.db
         batch: Which batch of 100 candidates to write
         percent: Percentage of data to use (for local testing)
+        batch_size: Training batch size (larger for GPU)
     """
     from train import paths
 
@@ -611,7 +614,7 @@ def run_grammatic_study(db_path: str, batch: int = 1, percent: int = 100) -> Non
             model.load_state_dict(torch.load(model_path, map_location=device))
             console.print(f"  Device: {device}")
         else:
-            model = _train_classifier(dataset, vocab_sizes)
+            model = _train_classifier(dataset, vocab_sizes, batch_size=batch_size)
             torch.save(model.state_dict(), model_path)
             console.print(f"[green]Saved model to {model_path}[/green]")
 
