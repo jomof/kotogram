@@ -14,9 +14,9 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 import torch
-import torch.nn as nn
 from rich.console import Console
 from rich.table import Table
+from torch import nn
 from torch.utils.data import DataLoader, Dataset
 
 from scripts.progress_utils import create_progress
@@ -82,6 +82,9 @@ class GenderPragmaticDataset(Dataset[GenderPragmaticSample]):
         # Load KC features for the model
         self._load_features()
 
+        # Iterator state (initialized in __init__ for pylint compliance)
+        self._iter_idx = 0
+
     def _load_features(self) -> None:
         """Load KC bag features for input."""
         self.features: Dict[str, torch.Tensor] = {}
@@ -102,6 +105,19 @@ class GenderPragmaticDataset(Dataset[GenderPragmaticSample]):
 
     def __len__(self) -> int:
         return len(self.indices)
+
+    def __iter__(self) -> "GenderPragmaticDataset":
+        """Iterate over samples."""
+        self._iter_idx = 0
+        return self
+
+    def __next__(self) -> "GenderPragmaticSample":
+        """Get next sample."""
+        if self._iter_idx >= len(self):
+            raise StopIteration
+        sample = self[self._iter_idx]
+        self._iter_idx += 1
+        return sample
 
     def __getitem__(self, idx: int) -> GenderPragmaticSample:
         real_idx = int(self.indices[idx].item())
@@ -214,6 +230,7 @@ def _get_vocab_sizes(data_dir: str) -> Dict[str, int]:
     return sizes
 
 
+# pylint: disable=too-many-locals
 def _train_classifier(
     dataset: GenderPragmaticDataset,
     vocab_sizes: Dict[str, int],
@@ -241,13 +258,13 @@ def _train_classifier(
     train_ds = GenderPragmaticDataset(dataset.data_dir, indices=train_indices)
     val_ds = GenderPragmaticDataset(dataset.data_dir, indices=val_indices)
 
-    # Share loaded features
+    # Share loaded features  # pylint: disable=attribute-defined-outside-init
     train_ds.features = dataset.features
     train_ds.offsets = dataset.offsets
     train_ds.gender_pragmatic = dataset.gender_pragmatic
     train_ds.sentences = dataset.sentences
 
-    val_ds.features = dataset.features
+    val_ds.features = dataset.features  # pylint: disable=attribute-defined-outside-init
     val_ds.offsets = dataset.offsets
     val_ds.gender_pragmatic = dataset.gender_pragmatic
     val_ds.sentences = dataset.sentences
@@ -266,8 +283,7 @@ def _train_classifier(
 
     # Compute class weights for imbalanced data
     class_counts = torch.zeros(2, dtype=torch.float32)
-    for i in range(len(train_ds)):
-        sample = train_ds[i]
+    for sample in train_ds:
         class_counts[sample.gender_pragmatic] += 1
 
     total_samples = class_counts.sum()
@@ -345,6 +361,7 @@ def _train_classifier(
     return model
 
 
+# pylint: disable=too-many-locals
 def _compute_confusion_matrix(
     model: GenderPragmaticClassifier,
     dataset: GenderPragmaticDataset,
@@ -429,8 +446,8 @@ def _generate_suggestion_files(
     for sent, true_cls, pred_cls, conf in candidates:
         by_pred_class[pred_cls].append((sent, true_cls, conf))
 
-    for pred_cls in by_pred_class:
-        by_pred_class[pred_cls].sort(key=lambda x: -x[2])
+    for pred_cls, items in by_pred_class.items():
+        items.sort(key=lambda x: -x[2])
 
     counts = {}
     max_suggestions = 100
@@ -454,7 +471,8 @@ def _generate_suggestion_files(
     return counts
 
 
-def run_gender_pragmatic_study(db_path: str) -> None:
+# pylint: disable=too-many-locals
+def run_gender_pragmatic_study(db_path: str) -> None:  # pylint: disable=unused-argument
     """Run the gender pragmatic learnability study."""
     from train import paths
 
@@ -474,8 +492,7 @@ def run_gender_pragmatic_study(db_path: str) -> None:
 
     # Count class distribution
     class_counts = [0, 0]
-    for i in range(len(dataset)):
-        sample = dataset[i]
+    for sample in dataset:
         class_counts[sample.gender_pragmatic] += 1
     console.print(
         f"  Class distribution: unpragmatic={class_counts[0]:,}, "

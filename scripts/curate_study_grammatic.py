@@ -15,9 +15,9 @@ from functools import partial
 from typing import Dict, List, Optional, Tuple
 
 import torch
-import torch.nn as nn
 from rich.console import Console
 from rich.table import Table
+from torch import nn
 from torch.utils.data import DataLoader, Dataset
 
 from scripts.progress_utils import create_progress
@@ -86,6 +86,9 @@ class GrammaticDataset(Dataset[GrammaticSample]):
         # Load KC features for the model
         self._load_features()
 
+        # Iterator state
+        self._iter_idx = 0
+
     def _load_features(self) -> None:
         """Load KC bag features for input."""
         self.features: Dict[str, torch.Tensor] = {}
@@ -106,6 +109,19 @@ class GrammaticDataset(Dataset[GrammaticSample]):
 
     def __len__(self) -> int:
         return len(self.indices)
+
+    def __iter__(self) -> "GrammaticDataset":
+        """Iterate over samples."""
+        self._iter_idx = 0
+        return self
+
+    def __next__(self) -> "GrammaticSample":
+        """Get next sample."""
+        if self._iter_idx >= len(self):
+            raise StopIteration
+        sample = self[self._iter_idx]
+        self._iter_idx += 1
+        return sample
 
     def __getitem__(self, idx: int) -> GrammaticSample:
         real_idx = int(self.indices[idx].item())
@@ -135,6 +151,7 @@ class GrammaticClassifier(nn.Module):
     important for grammaticality detection.
     """
 
+    # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
         vocab_sizes: Dict[str, int],
@@ -265,6 +282,7 @@ def _get_vocab_sizes(data_dir: str) -> Dict[str, int]:
     return sizes
 
 
+# pylint: disable=too-many-locals,too-many-positional-arguments
 def _train_classifier(
     dataset: GrammaticDataset,
     vocab_sizes: Dict[str, int],
@@ -293,13 +311,13 @@ def _train_classifier(
     train_ds = GrammaticDataset(dataset.data_dir, indices=train_indices)
     val_ds = GrammaticDataset(dataset.data_dir, indices=val_indices)
 
-    # Share loaded features
+    # Share loaded features  # pylint: disable=attribute-defined-outside-init
     train_ds.features = dataset.features
     train_ds.offsets = dataset.offsets
     train_ds.grammatic = dataset.grammatic
     train_ds.sentences = dataset.sentences
 
-    val_ds.features = dataset.features
+    val_ds.features = dataset.features  # pylint: disable=attribute-defined-outside-init
     val_ds.offsets = dataset.offsets
     val_ds.grammatic = dataset.grammatic
     val_ds.sentences = dataset.sentences
@@ -334,8 +352,7 @@ def _train_classifier(
 
     # Compute class weights for imbalanced data
     class_counts = torch.zeros(2, dtype=torch.float32)
-    for i in range(len(train_ds)):
-        sample = train_ds[i]
+    for sample in train_ds:
         class_counts[sample.grammatic] += 1
 
     total_samples = class_counts.sum()
@@ -354,6 +371,12 @@ def _train_classifier(
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss(weight=class_weights)
+
+    # Mixed precision training for CUDA (FP16) - ~2x speedup on modern GPUs
+    use_amp = device.type == "cuda"
+    scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
+    if use_amp:
+        console.print("  [cyan]Using FP16 mixed precision[/cyan]")
 
     best_val_loss = float("inf")
     best_val_acc = 0.0
@@ -374,10 +397,17 @@ def _train_classifier(
                 labels = labels.to(device)
 
                 optimizer.zero_grad()
-                logits = model(features)
-                loss = criterion(logits, labels)
-                loss.backward()
-                optimizer.step()
+
+                # Mixed precision forward pass
+                with torch.amp.autocast("cuda", enabled=use_amp):
+                    logits = model(features)
+                    loss = criterion(logits, labels)
+
+                # Scaled backward pass
+                scaler.scale(loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
+
                 train_loss += loss.item()
                 samples_processed += len(labels)
                 elapsed = time.perf_counter() - start_time
@@ -396,8 +426,9 @@ def _train_classifier(
             for features, labels, _, _ in val_loader:
                 features = {k: v.to(device) for k, v in features.items()}
                 labels = labels.to(device)
-                logits = model(features)
-                loss = criterion(logits, labels)
+                with torch.amp.autocast("cuda", enabled=use_amp):
+                    logits = model(features)
+                    loss = criterion(logits, labels)
                 val_loss += loss.item()
                 preds = logits.argmax(dim=-1)
                 correct += (preds == labels).sum().item()
@@ -477,6 +508,7 @@ def _compute_confusion_matrix(
     return matrix, candidates
 
 
+# pylint: disable=too-many-locals
 def _print_confusion_matrix(matrix: List[List[int]]) -> None:
     """Print confusion matrix using Rich."""
     table = Table(title="Grammatic Confusion Matrix")
@@ -506,6 +538,7 @@ def _print_confusion_matrix(matrix: List[List[int]]) -> None:
     console.print(table)
 
 
+# pylint: disable=too-many-locals
 def _generate_suggestion_files(
     candidates: List[Tuple[str, int, int, float]],
     output_dir: str,
@@ -526,8 +559,8 @@ def _generate_suggestion_files(
     for sent, true_cls, pred_cls, conf in candidates:
         by_pred_class[pred_cls].append((sent, true_cls, conf))
 
-    for pred_cls in by_pred_class:
-        by_pred_class[pred_cls].sort(key=lambda x: -x[2])
+    for pred_cls, items in by_pred_class.items():
+        items.sort(key=lambda x: -x[2])
 
     counts = {}
     batch_size = 100
@@ -555,8 +588,12 @@ def _generate_suggestion_files(
     return counts
 
 
+# pylint: disable=too-many-locals
 def run_grammatic_study(
-    db_path: str, batch: int = 1, percent: int = 100, batch_size: int = 128
+    db_path: str,  # pylint: disable=unused-argument
+    batch: int = 1,
+    percent: int = 100,
+    batch_size: int = 128,
 ) -> None:
     """Run the grammatic learnability study.
 
@@ -608,8 +645,7 @@ def run_grammatic_study(
     else:
         # Count class distribution
         class_counts = [0, 0]
-        for i in range(len(dataset)):
-            sample = dataset[i]
+        for sample in dataset:
             class_counts[sample.grammatic] += 1
         console.print(
             f"  Class distribution: ungrammatic={class_counts[0]:,}, "
@@ -676,6 +712,7 @@ def run_grammatic_study(
     console.print(f"  Output directory: {STUDY_DIR}")
 
 
+# pylint: disable=too-many-locals
 def apply_grammatic_changes(db_path: str) -> None:
     """Apply grammatic changes from suggestion files."""
     console.print("[bold blue]Applying grammatic changes...[/bold blue]")
