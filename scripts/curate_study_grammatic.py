@@ -138,7 +138,7 @@ class GrammaticClassifier(nn.Module):
         embed_dim: int = 128,
         num_heads: int = 8,
         num_layers: int = 4,
-        max_seq_len: int = 128,
+        max_seq_len: int = 256,
     ):
         super().__init__()
         self.vocab_sizes = vocab_sizes
