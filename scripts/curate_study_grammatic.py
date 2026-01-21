@@ -267,7 +267,7 @@ def _train_classifier(
     vocab_sizes: Dict[str, int],
     max_epochs: int = 100,
     patience: int = 5,
-    batch_size: int = 4096,
+    batch_size: int = 2048,
     lr: float = 1e-3,
 ) -> GrammaticClassifier:
     """Train a grammatic classifier with early stopping on validation loss."""
