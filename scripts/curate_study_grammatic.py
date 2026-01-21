@@ -307,8 +307,8 @@ def _train_classifier(
         return _collate_fn(batch, dataset)
 
     # Use multiple workers on CUDA, pin memory for faster GPU transfer
+    # Note: num_workers=0 required because memory-mapped tensors can't be pickled
     use_cuda = device.type == "cuda"
-    num_workers = 4 if use_cuda else 0
     pin_memory = use_cuda
 
     train_loader = DataLoader(
@@ -316,18 +316,16 @@ def _train_classifier(
         batch_size=batch_size,
         shuffle=True,
         collate_fn=collate,
-        num_workers=num_workers,
+        num_workers=0,
         pin_memory=pin_memory,
-        persistent_workers=num_workers > 0,
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=batch_size,
         shuffle=False,
         collate_fn=collate,
-        num_workers=num_workers,
+        num_workers=0,
         pin_memory=pin_memory,
-        persistent_workers=num_workers > 0,
     )
 
     # Compute class weights for imbalanced data
