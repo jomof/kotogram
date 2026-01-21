@@ -3021,6 +3021,34 @@ def main():
         help="Apply relabel suggestions from relabel-candidates.txt to corpus.db"
     )
 
+    # Study command (nested subparsers)
+    study_parser = subparsers.add_parser("study", help="Run learnability studies")
+    study_subparsers = study_parser.add_subparsers(dest="study_command", required=True)
+    # gender study subcommand
+    gender_study_parser = study_subparsers.add_parser("gender", help="Study gender learnability")
+    gender_study_parser.add_argument("--apply", action="store_true",
+        help="Apply changes from suggestion files")
+    gender_study_parser.add_argument("--db-path", default="data/corpus.db",
+        help="Path to corpus.db")
+    # gender-pragmatic study subcommand
+    gender_prag_parser = study_subparsers.add_parser("gender-pragmatic",
+        help="Study gender pragmatic learnability")
+    gender_prag_parser.add_argument("--apply", action="store_true",
+        help="Apply changes from suggestion files")
+    gender_prag_parser.add_argument("--db-path", default="data/corpus.db",
+        help="Path to corpus.db")
+    # grammatic study subcommand
+    grammatic_parser = study_subparsers.add_parser("grammatic",
+        help="Study grammatic learnability")
+    grammatic_parser.add_argument("--apply", action="store_true",
+        help="Apply changes from suggestion files")
+    grammatic_parser.add_argument("--batch", type=int, default=1,
+        help="Which batch of 100 to write (1=items 0-99, 2=items 100-199, etc.)")
+    grammatic_parser.add_argument("--percent", type=int, default=100,
+        help="Percentage of data to use (for local testing, e.g. --percent 10)")
+    grammatic_parser.add_argument("--db-path", default="data/corpus.db",
+        help="Path to corpus.db")
+
     args = parser.parse_args()
     
     if args.command == "drink":
@@ -3065,6 +3093,31 @@ def main():
             apply_relabel_candidates(args.db_path, candidates_file)
         else:
             find_relabel_candidates(args.db_path, args.top_n)
+    elif args.command == "study":
+        if args.study_command == "gender":
+            from scripts.curate_study_gender import run_gender_study, apply_gender_changes
+            if args.apply:
+                apply_gender_changes(args.db_path)
+            else:
+                run_gender_study(args.db_path)
+        elif args.study_command == "gender-pragmatic":
+            from scripts.curate_study_gender_pragmatic import (
+                run_gender_pragmatic_study,
+                apply_gender_pragmatic_changes,
+            )
+            if args.apply:
+                apply_gender_pragmatic_changes(args.db_path)
+            else:
+                run_gender_pragmatic_study(args.db_path)
+        elif args.study_command == "grammatic":
+            from scripts.curate_study_grammatic import (
+                run_grammatic_study,
+                apply_grammatic_changes,
+            )
+            if args.apply:
+                apply_grammatic_changes(args.db_path)
+            else:
+                run_grammatic_study(args.db_path, batch=args.batch, percent=args.percent)
 
 
 if __name__ == "__main__":
