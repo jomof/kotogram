@@ -11,6 +11,7 @@ import os
 import sqlite3
 import time
 from dataclasses import dataclass
+from functools import partial
 from typing import Dict, List, Optional, Tuple
 
 import torch
@@ -303,10 +304,8 @@ def _train_classifier(
     val_ds.grammatic = dataset.grammatic
     val_ds.sentences = dataset.sentences
 
-    def collate(
-        batch: List[GrammaticSample],
-    ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, List[str], List[int]]:
-        return _collate_fn(batch, dataset)
+    # Use partial instead of closure - closures can't be pickled for workers
+    collate = partial(_collate_fn, dataset=dataset)
 
     # Use multiple workers on CUDA for faster data loading
     # Tensors are cloned (not memory-mapped), so they can be pickled for workers
