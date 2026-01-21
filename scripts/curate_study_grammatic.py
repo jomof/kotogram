@@ -306,11 +306,28 @@ def _train_classifier(
     ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, List[str], List[int]]:
         return _collate_fn(batch, dataset)
 
+    # Use multiple workers on CUDA, pin memory for faster GPU transfer
+    use_cuda = device.type == "cuda"
+    num_workers = 4 if use_cuda else 0
+    pin_memory = use_cuda
+
     train_loader = DataLoader(
-        train_ds, batch_size=batch_size, shuffle=True, collate_fn=collate
+        train_ds,
+        batch_size=batch_size,
+        shuffle=True,
+        collate_fn=collate,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+        persistent_workers=num_workers > 0,
     )
     val_loader = DataLoader(
-        val_ds, batch_size=batch_size, shuffle=False, collate_fn=collate
+        val_ds,
+        batch_size=batch_size,
+        shuffle=False,
+        collate_fn=collate,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+        persistent_workers=num_workers > 0,
     )
 
     # Compute class weights for imbalanced data
