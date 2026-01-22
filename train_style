@@ -5,7 +5,6 @@ This script orchestrates the full training pipeline:
 1. Environment detection (GPU, batch sizes, gradient accumulation)
 2. Preprocessing/labeling phase (via scripts.label)
 3. Training phase (via scripts.train_style)
-4. Confusion matrix evaluation (via scripts.confusion)
 
 Usage:
     ./train_style                    # Default training
@@ -414,22 +413,6 @@ def run_training_phase(
     return 0
 
 
-def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -> int:
-    """Run confusion matrix evaluation."""
-    _view.on_confusion_start()
-    t_confusion_start = time.perf_counter()
-    confusion_cmd = [
-        sys.executable,
-        "-m",
-        "scripts.confusion",
-        "--config",
-        config_path,
-    ]
-    if args.percent:
-        confusion_cmd.extend(["--percent", str(args.percent)])
-    ret = run_command(confusion_cmd, env)
-    _view.on_confusion_complete(time.perf_counter() - t_confusion_start)
-    return ret
 
 
 
@@ -508,8 +491,6 @@ def parse_arguments() -> argparse.Namespace:
 
 
     # Action flags
-    parser.add_argument("--confusion", action="store_true", help="Print confusion matrices and exit")
-    parser.add_argument("--no-confusion", action="store_true", help="Skip confusion report after training")
     parser.add_argument("--label", action="store_true", help="Run ONLY the labeling/preprocessing phase")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-running labeling phase")
     parser.add_argument("--show-config", action="store_true", help="Print configuration as JSON and exit")
@@ -568,7 +549,6 @@ def print_training_banner(
         kc_sparsity_str=sparsity_str,
         kc_target_spill_str=target_spill_str,
         retrain=args.retrain,
-        confusion_only=args.confusion,
         label_only=args.label,
         percent=args.percent,
     )
@@ -701,8 +681,6 @@ def main() -> int:
         _view.on_label_only_exit()
         return 0
 
-    if args.confusion:
-        return run_confusion_phase(args, env, config_path)
 
     # Phase 3: Training
     ret = run_training_phase(
@@ -713,12 +691,6 @@ def main() -> int:
 
     # Printing handled by run_training_phase
 
-    # Phase 4: Confusion evaluation (after training)
-    if not args.no_confusion:
-        _view.on_confusion_generate()
-        run_confusion_phase(args, env, config_path)
-    else:
-        _view.on_confusion_skip()
 
     return 0
 

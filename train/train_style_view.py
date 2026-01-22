@@ -63,7 +63,6 @@ class TrainStyleView(Protocol):
         kc_sparsity_str: str,
         kc_target_spill_str: str,
         retrain: bool,
-        confusion_only: bool,
         label_only: bool,
         percent: Optional[float],
     ) -> None:
@@ -137,17 +136,6 @@ class TrainStyleView(Protocol):
         """Display training duration."""
 
     # --- Confusion Phase ---
-    def on_confusion_start(self) -> None:
-        """Display confusion evaluation header."""
-
-    def on_confusion_complete(self, duration_s: float) -> None:
-        """Display confusion evaluation completion."""
-
-    def on_confusion_skip(self) -> None:
-        """Notify confusion evaluation is being skipped."""
-
-    def on_confusion_generate(self) -> None:
-        """Notify confusion report is being generated after training."""
 
     # --- Profiling ---
     def on_profiling_enabled(self, profile_dir: str) -> None:
@@ -245,7 +233,6 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         kc_sparsity_str: str,
         kc_target_spill_str: str,
         retrain: bool,
-        confusion_only: bool,
         label_only: bool,
         percent: Optional[float],
     ) -> None:
@@ -285,8 +272,6 @@ class TrainStyleDiagnosticsView(TrainStyleView):
 
         if retrain:
             console.print("Retrain:        from scratch")
-        if confusion_only:
-            console.print("Action:         Print confusion matrices (no training)")
         if label_only:
             console.print("Action:         Preprocessing/Labeling only")
         if percent:
@@ -402,19 +387,6 @@ class TrainStyleDiagnosticsView(TrainStyleView):
 
     def on_training_duration(self, duration_s: float) -> None:
         console.print(f"[dim]Training run took {duration_s:.1f}s[/dim]")
-
-    # --- Confusion Phase ---
-    def on_confusion_start(self) -> None:
-        self._phase_header("Running Confusion Matrix Evaluation...")
-
-    def on_confusion_complete(self, duration_s: float) -> None:
-        console.print(f"[dim]Confusion evaluation took {duration_s:.1f}s[/dim]")
-
-    def on_confusion_skip(self) -> None:
-        console.print("[dim]Skipping confusion report (--no-confusion)[/dim]")
-
-    def on_confusion_generate(self) -> None:
-        console.print("[dim]Generating confusion report...[/dim]")
 
     # --- Profiling ---
     def on_profiling_enabled(self, profile_dir: str) -> None:
@@ -659,10 +631,6 @@ TrainStyleView.on_training_start
 TrainStyleView.on_training_complete
 TrainStyleView.on_training_error
 TrainStyleView.on_training_duration
-TrainStyleView.on_confusion_start
-TrainStyleView.on_confusion_complete
-TrainStyleView.on_confusion_skip
-TrainStyleView.on_confusion_generate
 TrainStyleView.on_profiling_enabled
 TrainStyleView.on_label_only_exit
 TrainStyleView.on_architecture_report
