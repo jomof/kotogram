@@ -2725,7 +2725,15 @@ def main():
     parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
     parser_token_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
-
+    # Study command - PNU hard negative mining
+    parser_study = subparsers.add_parser("study", help="PNU-based hard negative/positive mining for grammar points")
+    parser_study.add_argument("grammar_label", help="Grammar point label (e.g., gp0888)")
+    parser_study.add_argument("--apply", action="store_true", help="Apply curated labels to database (run after manual review)")
+    parser_study.add_argument("--batch-size", type=int, default=32, help="Batch size for training")
+    parser_study.add_argument("--top-k", type=int, default=500, help="Number of candidates to generate")
+    parser_study.add_argument("--device", type=str, default=None, help="Device to train on (default: auto-detect)")
+    parser_study.add_argument("--quick", action="store_true", help="Quick mode: fewer epochs for testing")
+    parser_study.add_argument("--seed", type=int, default=None, help="Random seed for reproducible evaluation sampling (default: random)")
 
     args = parser.parse_args()
     
@@ -2758,6 +2766,26 @@ def main():
         curate_kc_tail_stats(args.db_path, args.sentence, args.filter_str)
     elif args.command == "token-stats":
         curate_token_stats(args.db_path)
+    elif args.command == "study":
+        # Call the curate_study_grammar_label.py script
+        import subprocess
+        script_path = os.path.join(os.path.dirname(__file__), "curate_study_grammar_label.py")
+        cmd = [sys.executable, script_path, args.grammar_label]
+        if args.apply:
+            cmd.append("--apply")
+        if args.batch_size != 32:
+            cmd.extend(["--batch-size", str(args.batch_size)])
+        if args.top_k != 500:
+            cmd.extend(["--top-k", str(args.top_k)])
+        if args.device:
+            cmd.extend(["--device", args.device])
+        if args.quick:
+            cmd.append("--quick")
+        if args.seed is not None:
+            cmd.extend(["--seed", str(args.seed)])
+        
+        # Run without capturing output so user can see progress
+        subprocess.run(cmd, check=True)
 
 
 if __name__ == "__main__":

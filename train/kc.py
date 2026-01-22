@@ -337,7 +337,7 @@ class KcPnuFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.SPARSE_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
