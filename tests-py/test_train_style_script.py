@@ -93,7 +93,6 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[models]/style/model_type.txt ADDED",
                 "[models]/style/continuation.json ADDED",
                 "[.cache]/checkpoint.pt ADDED",
-                "[.cache]/checkpoint.pt ADDED",
             ]
 
             bottle.assert_dir_diff("after_label", expected_train_differences)
@@ -122,7 +121,6 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.profile]/training-profile.txt MODIFIED",
                 "[history]/config.json MODIFIED",
                 "[models]/style/model.pt MAYBE-MODIFIED",
-                "[models]/style/continuation.json MODIFIED",
                 "[models]/style/continuation.json MODIFIED",
             ]
 
