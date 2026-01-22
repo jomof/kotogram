@@ -393,56 +393,63 @@ class KCTrainer:
         unlabeled_mask = 1.0 - labeled_pos - labeled_neg
         unlabeled_mask = unlabeled_mask.clamp(0, 1)
 
-        # Per-label loss accumulator (will sum to total_loss)
-        loss_by_label = torch.zeros(vocab_size, device=device)
+        # Per-label sample counts: (vocab_size,) - number of labeled samples per GP
+        pos_count_per_gp = labeled_pos.sum(dim=0)  # (vocab_size,)
+        neg_count_per_gp = labeled_neg.sum(dim=0)  # (vocab_size,)
+        sample_count_per_gp = pos_count_per_gp + neg_count_per_gp  # (vocab_size,)
 
-        # Component 1: Positive loss (BCE with target=1)
-        pos_count = labeled_pos.sum()
-        if pos_count > 0:
-            pos_loss = F.binary_cross_entropy_with_logits(
-                logits, torch.ones_like(logits), reduction="none"
-            )
-            # Scalar risk
-            risk_pos = pos_weight * (pos_loss * labeled_pos).sum() / pos_count
-            # Per-label contribution
-            loss_by_label += (
-                pos_weight * (pos_loss * labeled_pos).sum(dim=0) / pos_count
-            )
-        else:
-            risk_pos = torch.tensor(0.0, device=device)
+        # Compute BCE losses (reduction="none" gives (B, vocab_size))
+        pos_loss = F.binary_cross_entropy_with_logits(
+            logits, torch.ones_like(logits), reduction="none"
+        )
+        neg_loss = F.binary_cross_entropy_with_logits(
+            logits, torch.zeros_like(logits), reduction="none"
+        )
 
-        # Component 2: Negative loss (BCE with target=0)
-        neg_count = labeled_neg.sum()
-        if neg_count > 0:
-            neg_loss = F.binary_cross_entropy_with_logits(
-                logits, torch.zeros_like(logits), reduction="none"
-            )
-            # Scalar risk
-            risk_neg = neg_weight * (neg_loss * labeled_neg).sum() / neg_count
-            # Per-label contribution
-            loss_by_label += (
-                neg_weight * (neg_loss * labeled_neg).sum(dim=0) / neg_count
-            )
+        # Per-GP loss: sum across batch, then normalize by that GP's sample count
+        # Only include GPs that have at least one labeled sample
+        pos_loss_per_gp = (pos_loss * labeled_pos).sum(dim=0)  # (vocab_size,)
+        neg_loss_per_gp = (neg_loss * labeled_neg).sum(dim=0)  # (vocab_size,)
+
+        # Mask for GPs with samples (to avoid div by zero and exclude from averaging)
+        has_samples = sample_count_per_gp > 0
+
+        # Normalized loss per GP (only where we have samples)
+        # Each GP's loss is: (pos_weight * pos_loss + neg_weight * neg_loss) / sample_count
+        weighted_loss_per_gp = (
+            pos_weight * pos_loss_per_gp + neg_weight * neg_loss_per_gp
+        )
+        # Safe division: only divide where we have samples
+        normalized_loss_per_gp = torch.zeros(vocab_size, device=device)
+        normalized_loss_per_gp[has_samples] = (
+            weighted_loss_per_gp[has_samples] / sample_count_per_gp[has_samples]
+        )
+
+        # loss_by_label: normalized loss per GP (for diagnostics/reporting)
+        loss_by_label = normalized_loss_per_gp.clone()
+
+        # Total loss: average across all GPs that have samples
+        num_gps_with_samples = has_samples.sum()
+        if num_gps_with_samples > 0:
+            risk_labeled = normalized_loss_per_gp.sum() / num_gps_with_samples
         else:
-            risk_neg = torch.tensor(0.0, device=device)
+            risk_labeled = torch.tensor(0.0, device=device)
 
         # Component 3: Unlabeled loss (weak negative, low weight)
         # Encourages sparsity: most GPs don't apply to most sentences
+        # This is still normalized globally (not per-GP) since all GPs have unlabeled
         unl_count = unlabeled_mask.sum()
         if unl_count > 0 and unlabeled_weight > 0:
-            unl_loss = F.binary_cross_entropy_with_logits(
-                logits, torch.zeros_like(logits), reduction="none"
-            )
-            # Scalar risk
+            unl_loss = neg_loss  # Reuse: same BCE with target=0
             risk_unl = unlabeled_weight * (unl_loss * unlabeled_mask).sum() / unl_count
-            # Per-label contribution
+            # Add unlabeled contribution to loss_by_label (normalized globally)
             loss_by_label += (
                 unlabeled_weight * (unl_loss * unlabeled_mask).sum(dim=0) / unl_count
             )
         else:
             risk_unl = torch.tensor(0.0, device=device)
 
-        total_loss: torch.Tensor = risk_pos + risk_neg + risk_unl
+        total_loss: torch.Tensor = risk_labeled + risk_unl
         return total_loss, loss_by_label
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
