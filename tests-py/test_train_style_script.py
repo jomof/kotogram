@@ -93,8 +93,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[models]/style/model_type.txt ADDED",
                 "[models]/style/continuation.json ADDED",
                 "[.cache]/checkpoint.pt ADDED",
-                "[history]/*confusion.csv ADDED",
-                "[history]/confusion_matrices/*.tsv ADDED",
+                "[.cache]/checkpoint.pt ADDED",
             ]
 
             bottle.assert_dir_diff("after_label", expected_train_differences)
@@ -124,8 +123,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[history]/config.json MODIFIED",
                 "[models]/style/model.pt MAYBE-MODIFIED",
                 "[models]/style/continuation.json MODIFIED",
-                "[history]/*confusion.csv MAYBE-MODIFIED",
-                "[history]/confusion_matrices/*.tsv MAYBE-MODIFIED",
+                "[models]/style/continuation.json MODIFIED",
             ]
 
             bottle.assert_dir_diff("after_epoch_1", expected_resume_differences)
