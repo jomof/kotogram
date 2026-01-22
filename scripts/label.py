@@ -42,6 +42,7 @@ Output:
 
 import argparse
 import glob
+import math
 import multiprocessing as mp
 import os
 import queue
@@ -522,6 +523,17 @@ def analyze_batch_from_db(
 
         # Grammaticality flag from DB.
         final_gram = int(grammatic)  # Typically 0 or 1.
+
+        # Validation: Grammatical sentences must have valid gender AND formality values
+        if final_gram == 1:
+            if math.isnan(f_val) or math.isnan(g_val):
+                raise ValueError(
+                    f"Sentence marked as grammatic=1 but has null gender or formality:\n"
+                    f"  Sentence: {sentence}\n"
+                    f"  Gender: {gender} (g_val={g_val})\n"
+                    f"  Formality: {formality} (f_val={f_val})\n"
+                    f"Grammatical sentences must have valid gender AND formality values."
+                )
 
         # Register IDs handling (stored as comma-separated string in DB).
         register_ids = []
