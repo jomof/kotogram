@@ -30,7 +30,6 @@ from train.kc_diagnostics import (
 from train.kc_trainer_view import KCTrainerDiagnosticsView, KCTrainerView
 from train.models import TrainingClassifier
 from train.profile import Timer, get_profile_dir
-from train.pytorch_utils import estimate_optimal_batch_size
 from train.types import (
     FamilyAccumulator,
     KcEpochActivationStats,
@@ -154,17 +153,9 @@ class KCTrainer:
         if dl_config is None:
             dl_config = self.config.resolve_dataloader_config(self.device, mode="train")
 
-        batch_size = self.config.batch_size
-        if batch_size == -1:
-            batch_size = estimate_optimal_batch_size(
-                self.device, self.model.config, is_kc=True
-            )
-            # Log this via view if possible, or print
-            self.view.on_auto_batch_size(batch_size, self.device)
-
         self.data_loader = DataLoader(
             dataset,
-            batch_size=batch_size,
+            batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
             collate_fn=partial(
