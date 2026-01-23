@@ -29,7 +29,6 @@ from train.io import (
     save_model,
 )
 from train.profile import Timer, get_profile_dir
-from train.pytorch_utils import estimate_optimal_batch_size
 from train.trainer_view import (
     BinaryMetric,
     ClassPopulation,
@@ -140,18 +139,9 @@ class Trainer:
                 self.device, mode="train"
             )
 
-        batch_size = self.config.batch_size
-        if batch_size == -1:
-            # Auto-tuning
-            optimal_bs = estimate_optimal_batch_size(
-                self.device, self.model.config, is_kc=False
-            )
-            self.view.on_auto_batch_size(optimal_bs, self.device)
-            batch_size = optimal_bs
-
         self.train_loader = DataLoader(
             train_dataset,
-            batch_size=batch_size,
+            batch_size=self.config.batch_size,
             shuffle=t_shuffle,
             sampler=self.train_sampler,
             collate_fn=partial(collate_fn),
@@ -169,7 +159,7 @@ class Trainer:
 
         self.val_loader = DataLoader(
             val_dataset,
-            batch_size=batch_size,
+            batch_size=self.config.batch_size,
             shuffle=v_shuffle,
             sampler=self.val_sampler,
             collate_fn=partial(collate_fn),

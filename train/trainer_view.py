@@ -151,8 +151,6 @@ class TrainerView(Protocol):
         self, worst_samples: Dict[str, StyleWorstSample]
     ) -> None: ...
 
-    def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
-
 
 class TrainerDiagnosticsView(TrainerView):
     """Default implementation of TrainerView that does nothing (for now)."""
@@ -239,11 +237,6 @@ class TrainerDiagnosticsView(TrainerView):
         sys.stdout.write("\n")
         sys.stdout.write("\n")
         sys.stdout.flush()
-
-    def on_auto_batch_size(self, batch_size: int, device: Any) -> None:
-        print(
-            f"Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}"
-        )
 
     # pylint: disable=too-many-locals
     def on_style_epoch_eval_stats(self, epoch: int, stats: StyleEpochStats) -> None:

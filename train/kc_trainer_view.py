@@ -84,8 +84,6 @@ class KCTrainerView(Protocol):
 
     def on_line_flush(self) -> None: ...
 
-    def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
-
     def on_style_oversampling_enabled(
         self, formality_boost: float, gender_boost: float
     ) -> None:
@@ -207,11 +205,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
     def on_line_flush(self) -> None:
         pass
-
-    def on_auto_batch_size(self, batch_size: int, device: Any) -> None:
-        console.print(
-            f"[bold cyan]Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}[/bold cyan]"
-        )
 
     def on_style_oversampling_enabled(
         self, formality_boost: float, gender_boost: float
