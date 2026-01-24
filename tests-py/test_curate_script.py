@@ -125,7 +125,7 @@ class TestCurateScript(unittest.TestCase):
         # Verify "これはペンです" (Formal -> F=0.5, G=0.0)
         if "これはペンです" in row_map:
             row_1 = row_map["これはペンです"]
-            self.assertEqual(len(row_1), 5)
+            self.assertEqual(len(row_1), 7)
             self.assertIsInstance(row_1[1], float)  # f_val (0.5 for Formal)
             self.assertEqual(row_1[1], 0.5)
             self.assertIsInstance(row_1[2], float)  # g_val (0.0 for Neutral)

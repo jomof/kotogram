@@ -38,6 +38,7 @@ from scripts.rule_based_analysis import (
     load_register_overrides,
 )
 from train.tsv import parse_tsv
+from scripts.curate_upsert_sentence import curate_upsert, curate_upsert_batch
 
 console = Console()
 
@@ -266,10 +267,14 @@ def curate_drink(db_path: str):
     c.execute("""
         CREATE TABLE corpus (
             sentence TEXT PRIMARY KEY,
-            formality REAL CHECK (formality IS NULL OR (formality >= -1.0 AND formality <= 1.0)),
-            gender REAL CHECK (gender IS NULL OR (gender >= -1.0 AND gender <= 1.0)),
+            formality REAL CHECK (formality IS NULL OR formality IN (-1.0, -0.5, 0.0, 0.5, 1.0)),
+            gender REAL CHECK (gender IS NULL OR gender IN (-1.0, 0.0, 1.0)),
             grammatic INTEGER NOT NULL CHECK (grammatic IN (0, 1)),
-            register_ids TEXT NOT NULL
+            register_ids TEXT NOT NULL,
+            grammar TEXT NOT NULL DEFAULT '',
+            grammar_negative TEXT NOT NULL DEFAULT '',
+            CHECK (grammatic = 1 OR (grammar = '' AND grammar_negative = '')),
+            CHECK (grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL))
         ) WITHOUT ROWID
     """)
 
@@ -289,7 +294,7 @@ def curate_drink(db_path: str):
     # 3: gram (grammaticality_id)
     # 4: r_ids_str
     
-    c.executemany("INSERT INTO corpus VALUES (?,?,?,?,?)", data_to_insert)
+    c.executemany("INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids) VALUES (?,?,?,?,?)", data_to_insert)
     conn.commit()
     
     console.print("[bold blue]Vacuuming database...[/bold blue]")
@@ -2653,6 +2658,57 @@ def main():
     drink_parser = subparsers.add_parser("drink", help="Curate the corpus")
     drink_parser.add_argument("--db-path", default="data/corpus.db", help="Path to output database")
 
+    # Upsert command
+    upsert_doc = """
+    Update or insert a manual sentence entry in the corpus.
+    
+    Grammar Operations:
+      --grammar accept a comma-separated list of operations.
+      '+gpID' adds the grammar point to the positive set (and removes from negative).
+      '-gpID' adds the grammar point to the negative set (and removes from positive).
+      
+    Invariants:
+      - Positive and Negative grammar sets are always disjoint.
+      - IDs must exist in the 'grammar' table.
+      
+    Examples:
+      curate upsert "こんにちは" --grammar "+gp0001"
+      curate upsert "こんにちは" --grammar "+gp0001,-gp0002"
+      curate upsert "こんにちは" --formality formal --gender feminine
+      curate upsert "新しい文" --allow-insert --formality neutral
+    """
+    upsert_parser = subparsers.add_parser(
+        "upsert", 
+        help="Update or insert manual sentence",
+        description=upsert_doc,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    upsert_parser.add_argument("sentence", nargs="?", help="Japanese sentence to upsert (optional if --sentences is used)")
+    upsert_parser.add_argument("--sentences", help="Path to file containing sentences (one per line)")
+    upsert_parser.add_argument(
+        "--formality",
+        choices=["very_casual", "casual", "neutral", "formal", "very_formal", "unpragmatic"],
+        help="Formality override"
+    )
+    upsert_parser.add_argument(
+        "--gender",
+        choices=["masculine", "feminine", "neutral", "unpragmatic"],
+        help="Gender override"
+    )
+    upsert_parser.add_argument(
+        "--grammar",
+        type=str,
+        help="Update positive/negative grammar labels (e.g. '+gp0001,-gp0002'). Invariants: Positive and negative sets are disjoint.",
+    )
+    upsert_parser.add_argument(
+        "--grammatic",
+        type=int,
+        choices=[0, 1],
+        help="Force grammatical status (1=grammatic, 0=agrammatic)",
+    )
+    upsert_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+    upsert_parser.add_argument("--allow-insert", action="store_true", help="Allow inserting new sentences")
+
     # Drink-GP command
     drink_gp_parser = subparsers.add_parser("drink-gp", help="Extract grammar point examples from YAMLs")
     drink_gp_parser.add_argument(
@@ -2739,6 +2795,45 @@ def main():
     
     if args.command == "drink":
         curate_drink(args.db_path)
+    elif args.command == "upsert":
+        if args.sentences:
+            if args.sentence:
+                console.print("[red]Error: Cannot specify both 'sentence' and '--sentences'.[/red]")
+                sys.exit(1)
+
+            if not os.path.exists(args.sentences):
+                console.print(f"[red]Error: File not found: {args.sentences}[/red]")
+                sys.exit(1)
+                
+            with open(args.sentences, "r", encoding="utf-8") as f:
+                batch_sentences = []
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#"):
+                        batch_sentences.append(line)
+                        
+            curate_upsert_batch(
+                batch_sentences, 
+                args.formality, 
+                args.gender, 
+                args.grammar, 
+                args.db_path, 
+                args.allow_insert,
+                grammatic=args.grammatic
+            )
+        elif args.sentence:
+            curate_upsert(
+                args.sentence, 
+                args.formality, 
+                args.gender, 
+                args.grammar, 
+                args.db_path, 
+                args.allow_insert,
+                grammatic=args.grammatic
+            )
+        else:
+            console.print("[red]Error: Must specify 'sentence' or '--sentences'.[/red]")
+            sys.exit(1)
     elif args.command == "drink-gp":
         curate_drink_gp(args.yaml_dir, args.db_path)
     elif args.command == "show":

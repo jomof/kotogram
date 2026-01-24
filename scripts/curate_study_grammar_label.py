@@ -12,13 +12,16 @@ Usage:
 """
 
 import argparse
+import copy
 import json
 import math
 import os
+import random
+import shutil
 import sqlite3
 import sys
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, cast
 
 import torch
 import torch.nn.functional as F
@@ -115,6 +118,37 @@ class GrammarPointDataset(Dataset):
             # else: unlabeled, not in dict
 
         conn.close()
+
+        # Synthetic Negative Sampling for sparse datasets
+        # If we have very few negatives (e.g., < 20), the classifier won't train well.
+        # We assume that random sentences from the corpus are overwhelmingly likely
+        # NOT to contain this specific grammar point, so we can treat them as pseudo-negatives.
+        min_negatives = 20
+        if negative_count < min_negatives:
+            num_needed = min_negatives - negative_count
+            if self.verbose:
+                console.print(
+                    f"[yellow]Warning: Low negative labels ({negative_count}). Synthetically sampling {num_needed} sentences as negatives.[/yellow]"
+                )
+
+            # Find candidates for synthetic negatives (sentences not already labeled)
+            # We sample indices from base_dataset and check if they are already in sentence_to_label
+            added_count = 0
+            attempts = 0
+            max_attempts = num_needed * 50  # Prevent infinite loops
+
+            while added_count < num_needed and attempts < max_attempts:
+                idx = random.randint(0, len(self.base_dataset) - 1)
+                sentence = self.base_dataset.get_sentence_by_idx(
+                    self.base_dataset[idx].idx
+                )
+
+                if sentence not in self.sentence_to_label:
+                    self.sentence_to_label[sentence] = 0  # Label as negative
+                    negative_count += 1
+                    added_count += 1
+
+                attempts += 1
 
         self.positive_count = positive_count
         self.negative_count = negative_count
@@ -261,7 +295,49 @@ class GrammarClassifier(nn.Module):
 
         # Classify
         logits = self.classifier(pooled)
-        return torch.Tensor(logits)  # type: ignore[return-value]
+
+        return cast(torch.Tensor, logits)
+
+
+class EarlyStopper:
+    """Early stopping with learning rate decay."""
+
+    def __init__(
+        self,
+        patience: int = 3,
+        min_delta: float = 0.0001,
+        decay_factor: float = 0.7,
+    ):
+        self.patience = patience
+        self.min_delta = min_delta
+        self.decay_factor = decay_factor
+        self.counter = 0
+        self.best_loss = float("inf")
+
+    def check(self, current_loss: float, optimizer: torch.optim.Optimizer) -> bool:
+        """Check if training should stop.
+
+        Returns:
+            True if training should stop, False otherwise.
+        """
+        if current_loss < self.best_loss - self.min_delta:
+            self.best_loss = current_loss
+            self.counter = 0
+            return False
+
+        self.counter += 1
+        if self.counter >= self.patience:
+            return True
+
+        # Decay learning rate
+        for param_group in optimizer.param_groups:
+            new_lr = param_group["lr"] * self.decay_factor
+            param_group["lr"] = new_lr
+
+        console.print(
+            f"    [yellow]Loss plateaued ({self.counter}/{self.patience}). Decaying LR to {optimizer.param_groups[0]['lr']:.2e}[/yellow]"
+        )
+        return False
 
 
 def collate_grammar_batch(batch: List[Dict]) -> Dict:
@@ -327,7 +403,7 @@ def focal_loss(
     alpha_t = torch.where(targets == 1, alpha, 1 - alpha)
 
     loss = alpha_t * focal_weight * ce_loss
-    return torch.Tensor(loss.mean())  # type: ignore[return-value]
+    return cast(torch.Tensor, loss.mean())
 
 
 def train_pnu_model(  # pylint: disable=unused-argument
@@ -452,13 +528,16 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
                 # Backward
                 optimizer.zero_grad()
-                if use_amp:
-                    scaler.scale(loss).backward()
-                    scaler.step(optimizer)
-                    scaler.update()
+                if loss.requires_grad:
+                    if use_amp:
+                        scaler.scale(loss).backward()
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        optimizer.step()
                 else:
-                    loss.backward()
-                    optimizer.step()
+                    pass
 
                 scheduler.step()
 
@@ -498,6 +577,13 @@ def train_pnu_model(  # pylint: disable=unused-argument
         f"  Training on {len(combined_indices):,} samples ({len(labeled_indices):,} labeled + {len(sampled_unlabeled_indices):,} unlabeled)"
     )
 
+    # Initialize early stopper for Phase 2
+    stopper = EarlyStopper(patience=8, min_delta=0.0001, decay_factor=0.7)
+
+    # Track best model
+    best_phase2_loss = float("inf")
+    best_model_state = None
+
     model.train()
     with create_progress(console) as progress:
         task = progress.add_task(
@@ -506,6 +592,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
         for epoch in range(num_epochs_pnu):
             epoch_loss = 0.0
+            epoch_hard_pos_learned = 0
+            epoch_hard_neg_learned = 0
+            epoch_hard_pos_total = 0
+            epoch_hard_neg_total = 0
+
             for batch in combined_loader:
                 field_inputs = {
                     k: v.to(device) for k, v in batch["field_inputs"].items()
@@ -528,6 +619,30 @@ def train_pnu_model(  # pylint: disable=unused-argument
                     if labeled_mask.any():
                         labeled_logits = logits[labeled_mask]
                         labeled_targets = labels[labeled_mask]
+
+                        # Calculate learned counts (True Positives / True Negatives)
+                        with torch.no_grad():
+                            labeled_probs = F.softmax(labeled_logits, dim=-1)
+                            labeled_preds = labeled_probs.argmax(dim=-1)
+
+                            num_pos_learned = (
+                                ((labeled_preds == 1) & (labeled_targets == 1))
+                                .sum()
+                                .item()
+                            )
+                            num_neg_learned = (
+                                ((labeled_preds == 0) & (labeled_targets == 0))
+                                .sum()
+                                .item()
+                            )
+                            num_pos_total = (labeled_targets == 1).sum().item()
+                            num_neg_total = (labeled_targets == 0).sum().item()
+
+                            epoch_hard_pos_learned += num_pos_learned
+                            epoch_hard_neg_learned += num_neg_learned
+                            epoch_hard_pos_total += num_pos_total
+                            epoch_hard_neg_total += num_neg_total
+
                         labeled_loss = focal_loss(
                             labeled_logits,
                             labeled_targets,
@@ -548,6 +663,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                         if high_conf_mask.any():
                             conf_logits = unlabeled_logits[high_conf_mask]
                             conf_labels = pseudo_labels[high_conf_mask]
+
                             pseudo_loss = F.cross_entropy(
                                 conf_logits, conf_labels, reduction="mean"
                             )
@@ -559,15 +675,20 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
                 # Backward
                 optimizer.zero_grad()
-                if use_amp:
-                    scaler.scale(loss).backward()
-                    scaler.step(optimizer)
-                    scaler.update()
+                if loss.requires_grad:
+                    if use_amp:
+                        scaler.scale(loss).backward()
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        optimizer.step()
                 else:
-                    loss.backward()
-                    optimizer.step()
+                    pass
 
-                scheduler.step()
+                # Note: We do NOT step the scheduler here for Phase 2
+                # We let EarlyStopper manage LR decay based on plateau
+                # scheduler.step()
 
                 epoch_loss += loss.item()
                 progress.update(
@@ -577,7 +698,91 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 )
 
             avg_loss = epoch_loss / len(combined_loader)
-            console.print(f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.4f}")
+            console.print(
+                f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.4f} | "
+                f"Hard Pos Learned: {epoch_hard_pos_learned:,} of {epoch_hard_pos_total:,} | "
+                f"Hard Neg Learned: {epoch_hard_neg_learned:,} of {epoch_hard_neg_total:,}"
+            )
+
+            # Save best model
+            if avg_loss < best_phase2_loss:
+                best_phase2_loss = avg_loss
+                best_model_state = copy.deepcopy(model.state_dict())
+
+            # Check for perfect learning
+            # If all hard labels are correct and loss is very low, stop early
+            if (
+                epoch_hard_pos_learned == epoch_hard_pos_total
+                and epoch_hard_neg_learned == epoch_hard_neg_total
+                and avg_loss < 0.005
+            ):
+                console.print(
+                    f"  [green]Perfect learning achieved (Loss < 0.005)! Stopping Phase 2 early.[/green]"
+                )
+                break
+
+            # Check early stopping
+            if stopper.check(avg_loss, optimizer):
+                console.print(
+                    f"  [yellow]Early stopping triggered at epoch {epoch + 1}[/yellow]"
+                )
+                break
+
+    # Restore best model
+    if best_model_state is not None:
+        console.print(
+            f"\n[green]Restoring best model from Phase 2 (Loss: {best_phase2_loss:.4f})[/green]"
+        )
+        model.load_state_dict(best_model_state)
+
+    # Analyze unlearned samples (Misclassified Labeled Data)
+    console.print("\n[bold cyan]Analyzing Unlearned Samples...[/bold cyan]")
+    model.eval()
+    unlearned_samples = []
+
+    with torch.no_grad():
+        for batch in labeled_loader:
+            field_inputs = {k: v.to(device) for k, v in batch["field_inputs"].items()}
+            attention_mask = batch["attention_mask"].to(device)
+            labels = batch["labels"].to(device)
+            sentences = batch["sentences"]
+
+            # Forward
+            logits = model(field_inputs, attention_mask)
+            preds = torch.argmax(logits, dim=-1)
+
+            # Identify mismatches
+            mismatches = labels != preds
+
+            if mismatches.any():
+                mismatch_indices = torch.nonzero(mismatches).squeeze(1)
+                for idx in mismatch_indices:
+                    sentence = sentences[idx]
+                    true_label = labels[idx].item()
+                    pred_label = preds[idx].item()
+                    # 0=Neg, 1=Pos
+
+                    unlearned_samples.append((sentence, true_label, pred_label))
+
+    # Write unlearned samples
+    unlearned_file = os.path.join(output_dir, "unlearned.txt")
+    with open(unlearned_file, "w", encoding="utf-8") as f:
+        f.write("# Unlearned Samples (Misclassified Labeled Data)\n")
+        f.write("# Format: True_Label -> Pred_Label | Sentence\n")
+        f.write("# " + "-" * 70 + "\n")
+
+        # Sort by label (Pos->Neg mismatches first, then Neg->Pos)
+        unlearned_samples.sort(key=lambda x: (x[1], x[0]), reverse=True)
+
+        for sentence, true_label, pred_label in unlearned_samples:
+            true_str = "POS" if true_label == 1 else "NEG"
+            pred_str = "POS" if pred_label == 1 else "NEG"
+            f.write(f"{true_str} -> {pred_str} | {sentence}\n")
+
+    console.print(
+        f"[green]✓[/green] Written {len(unlearned_samples):,} unlearned samples to:"
+    )
+    console.print(f"  {unlearned_file}")
 
     # ========== Phase 3: Evaluation and Loss Accumulation ==========
     console.print(
@@ -587,14 +792,13 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # For efficiency, sample a subset for evaluation (we don't need ALL samples for mining)
     # Sample labeled + reasonable subset of unlabeled
     # Scale with top_k: need at least top_k * 50 samples to mine from for good diversity
-    min_sample_size = max(50000, top_k * 50)  # At least 50K or 50x top_k
+    min_sample_size = max(10000, top_k * 50)  # At least 50K or 50x top_k
     eval_sample_size = min(len(dataset), min_sample_size)
     console.print(
         f"  Sampling {eval_sample_size:,} samples for evaluation (faster than full {len(dataset):,})"
     )
 
     # Create sampled indices: all labeled + random unlabeled
-    import random
     import time
 
     # Use truly random seed by default so each run evaluates different sentences
@@ -633,7 +837,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
     console.print("  Starting evaluation (this may take a moment)...", end="")
     console.file.flush()  # Force output
 
-    model.eval()
+    # Use train mode to enable dropout for Monte Carlo uncertainty estimation
+    model.train()
     with create_progress(console) as progress:
         task = progress.add_task(
             "[cyan]Starting evaluation...", total=num_epochs_eval * len(eval_loader)
@@ -731,7 +936,8 @@ def generate_candidates(
     grammar_label: str,
     sample_stats: Dict[int, SampleLossStats],
     output_dir: str,
-    top_k: int = 500,
+    dataset: GrammarPointDataset,
+    top_k: int = 100,
 ) -> None:
     """Generate hard negative and positive candidates based on loss statistics."""
     console.print("\n[bold cyan]Generating Candidates[/bold cyan]")
@@ -743,6 +949,12 @@ def generate_candidates(
     for idx, stats in sample_stats.items():
         # Skip labeled samples (we want to find new labels)
         if stats.is_labeled_positive or stats.is_labeled_negative:
+            continue
+
+        # Double check against dataset labels (in case stats are stale or incomplete)
+        # 0=negative, 1=positive, -1=unlabeled
+        existing_label = dataset.sentence_to_label.get(stats.sentence, -1)
+        if existing_label >= 0:
             continue
 
         # Compute composite score
@@ -822,6 +1034,27 @@ def generate_candidates(
 
     console.print(f"[green]✓[/green] Saved metrics to {stats_file}")
 
+    # Write all related sentences (existing labels + candidates)
+    all_sentences_file = os.path.join(output_dir, "all-sentences.txt")
+
+    # Collect existing labels
+    all_sentences = set(dataset.sentence_to_label.keys())
+
+    # Add candidates (top_k)
+    for _, sentence, _, _ in hard_negative_candidates[:top_k]:
+        all_sentences.add(sentence)
+    for _, sentence, _, _ in hard_positive_candidates[:top_k]:
+        all_sentences.add(sentence)
+
+    with open(all_sentences_file, "w", encoding="utf-8") as f:
+        for sentence in sorted(all_sentences):
+            f.write(f"{sentence}\n")
+
+    console.print(
+        f"[green]✓[/green] Written {len(all_sentences):,} unique sentences (labels + candidates) to:"
+    )
+    console.print(f"  {all_sentences_file}")
+
 
 def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     """Apply curated labels to corpus.db after manual review."""
@@ -899,11 +1132,14 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     pos_already_present = 0
     pos_moved = 0  # Moved from grammar_negative to grammar
 
+    sentences_moved_to_neg = []
+    sentences_moved_to_pos = []
+
     # Update hard negatives
     for sentence in new_negatives:
-        # Get current labels
+        # Get current labels and grammatical status
         cursor.execute(
-            "SELECT grammar, grammar_negative FROM corpus WHERE sentence = ?",
+            "SELECT grammar, grammar_negative, grammatic FROM corpus WHERE sentence = ?",
             (sentence,),
         )
         row = cursor.fetchone()
@@ -913,7 +1149,14 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             )
             continue
 
-        grammar, grammar_negative = row
+        grammar, grammar_negative, grammatic = row
+
+        # Check grammaticality
+        if grammatic != 1:
+            console.print(
+                f"[yellow]Warning: Skipping ungrammatic sentence: {sentence[:50]}...[/yellow]"
+            )
+            continue
 
         # Check if already present
         if grammar_label in grammar_negative:
@@ -926,6 +1169,7 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             grammar_list = [g for g in grammar.split(",") if g and g != grammar_label]
             grammar = ",".join(grammar_list)
             neg_moved += 1
+            sentences_moved_to_neg.append(sentence)
 
         # Add to grammar_negative
         grammar_neg_list = [g for g in grammar_negative.split(",") if g]
@@ -944,7 +1188,7 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     # Update hard positives
     for sentence in new_positives:
         cursor.execute(
-            "SELECT grammar, grammar_negative FROM corpus WHERE sentence = ?",
+            "SELECT grammar, grammar_negative, grammatic FROM corpus WHERE sentence = ?",
             (sentence,),
         )
         row = cursor.fetchone()
@@ -954,7 +1198,14 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             )
             continue
 
-        grammar, grammar_negative = row
+        grammar, grammar_negative, grammatic = row
+
+        # Check grammaticality
+        if grammatic != 1:
+            console.print(
+                f"[yellow]Warning: Skipping ungrammatic sentence: {sentence[:50]}...[/yellow]"
+            )
+            continue
 
         # Check if already present
         if grammar_label in grammar:
@@ -969,6 +1220,7 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             ]
             grammar_negative = ",".join(grammar_neg_list)
             pos_moved += 1
+            sentences_moved_to_pos.append(sentence)
 
         # Add to grammar
         grammar_list = [g for g in grammar.split(",") if g]
@@ -1001,6 +1253,99 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     console.print(f"    • Already present: {pos_already_present}")
     console.print(f"    • Moved from negative: {pos_moved}")
 
+    # List moved sentences
+    if sentences_moved_to_neg:
+        console.print(
+            "\n[bold yellow]Sentences moved from POSITIVE to NEGATIVE:[/bold yellow]"
+        )
+        for s in sentences_moved_to_neg:
+            console.print(f"  • {s}")
+
+    if sentences_moved_to_pos:
+        console.print(
+            "\n[bold yellow]Sentences moved from NEGATIVE to POSITIVE:[/bold yellow]"
+        )
+        for s in sentences_moved_to_pos:
+            console.print(f"  • {s}")
+
+
+def export_existing_labels(dataset: GrammarPointDataset, output_dir: str) -> None:
+    """Export existing hard positive and negative labels to separate files."""
+    pos_file = os.path.join(output_dir, "existing-hard-positive.txt")
+    neg_file = os.path.join(output_dir, "existing-hard-negative.txt")
+    console.print("\n[bold cyan]Exporting Existing Labels[/bold cyan]")
+
+    pos_count = 0
+    neg_count = 0
+
+    with (
+        open(pos_file, "w", encoding="utf-8") as f_pos,
+        open(neg_file, "w", encoding="utf-8") as f_neg,
+    ):
+        for sentence, label in dataset.sentence_to_label.items():
+            if label == 1:  # Positive
+                f_pos.write(f"{sentence}\n")
+                pos_count += 1
+            elif label == 0:  # Negative
+                f_neg.write(f"{sentence}\n")
+                neg_count += 1
+
+    console.print(
+        f"[green]✓[/green] Exported {pos_count:,} existing positive sentences to:"
+    )
+    console.print(f"  {pos_file}")
+    console.print(
+        f"[green]✓[/green] Exported {neg_count:,} existing negative sentences to:"
+    )
+    console.print(f"  {neg_file}")
+
+
+def export_grammar_yaml(grammar_label: str, output_dir: str) -> None:
+    """Export the grammar point's YAML definition file to the output directory."""
+    # Connect to database to get grammar name
+    db_path = os.path.join(
+        os.path.dirname(output_dir), "..", "..", "..", "data", "corpus.db"
+    )
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("SELECT name FROM grammar WHERE id = ?", (grammar_label,))
+        row = cursor.fetchone()
+        if not row:
+            console.print(
+                f"[yellow]Warning: Grammar ID {grammar_label} not found in grammar table.[/yellow]"
+            )
+            return
+
+        grammar_name = row[0]
+        yaml_filename = f"{grammar_name}.yaml"
+
+        # Look for the file in data/grammar
+        source_path = os.path.join(
+            os.path.dirname(output_dir),
+            "..",
+            "..",
+            "..",
+            "data",
+            "grammar",
+            yaml_filename,
+        )
+
+        if not os.path.exists(source_path):
+            console.print(
+                f"[yellow]Warning: Grammar YAML file not found at {source_path}[/yellow]"
+            )
+            return
+
+        # Copy to output directory
+        dest_path = os.path.join(output_dir, yaml_filename)
+        shutil.copy2(source_path, dest_path)
+        console.print(f"[green]✓[/green] Exported grammar definition to {dest_path}")
+
+    finally:
+        conn.close()
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(
@@ -1013,10 +1358,10 @@ def main() -> None:
         help="Apply curated labels to database (run after manual review)",
     )
     parser.add_argument(
-        "--batch-size", type=int, default=32, help="Batch size for training"
+        "--batch-size", type=int, default=16, help="Batch size for training"
     )
     parser.add_argument(
-        "--top-k", type=int, default=500, help="Number of candidates to generate"
+        "--top-k", type=int, default=100, help="Number of candidates to generate"
     )
     parser.add_argument(
         "--device",
@@ -1051,6 +1396,9 @@ def main() -> None:
         console.print(f"Grammar Label: {args.grammar_label}")
         console.print(f"Output Directory: {output_dir}")
 
+        # Export grammar YAML
+        export_grammar_yaml(args.grammar_label, output_dir)
+
         # Load dataset
         dataset_dir = get_style_dataset_cache_dir()
         console.print(f"\nLoading dataset from {dataset_dir}...")
@@ -1084,6 +1432,9 @@ def main() -> None:
             )
             return
 
+        # Export existing labels
+        export_existing_labels(dataset, output_dir)
+
         # Train model
         device = torch.device(args.device)
 
@@ -1116,7 +1467,11 @@ def main() -> None:
 
         # Generate candidates
         generate_candidates(
-            args.grammar_label, sample_stats, output_dir, top_k=args.top_k
+            args.grammar_label,
+            sample_stats,
+            output_dir,
+            dataset=dataset,
+            top_k=args.top_k,
         )
 
         console.print("\n[bold green]✓ Complete![/bold green]")
