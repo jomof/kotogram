@@ -406,6 +406,84 @@ def focal_loss(
     return cast(torch.Tensor, loss.mean())
 
 
+def write_unlearned_samples(
+    model: GrammarClassifier,
+    loader: DataLoader,
+    device: torch.device,
+    output_dir: str,
+    verbose: bool = True,
+) -> Tuple[int, int, int, int]:
+    """Identify and write misclassified labeled samples (unlearned).
+
+    Returns:
+        tuple: (hard_pos_learned, hard_pos_total, hard_neg_learned, hard_neg_total)
+    """
+    model.eval()
+    unlearned_samples = []
+
+    total_pos = 0
+    total_neg = 0
+    learned_pos = 0
+    learned_neg = 0
+
+    with torch.no_grad():
+        for batch in loader:
+            field_inputs = {k: v.to(device) for k, v in batch["field_inputs"].items()}
+            attention_mask = batch["attention_mask"].to(device)
+            labels = batch["labels"].to(device)
+            sentences = batch["sentences"]
+
+            # Forward
+            logits = model(field_inputs, attention_mask)
+            preds = torch.argmax(logits, dim=-1)
+
+            # Identify mismatches
+            mismatches = labels != preds
+
+            if mismatches.any():
+                mismatch_indices = torch.nonzero(mismatches).squeeze(1)
+                for idx in mismatch_indices:
+                    sentence = sentences[idx]
+                    true_label = labels[idx].item()
+                    pred_label = preds[idx].item()
+                    # 0=Neg, 1=Pos
+
+                    unlearned_samples.append((sentence, true_label, pred_label))
+
+            # Calculate stats
+            true_pos_mask = labels == 1
+            true_neg_mask = labels == 0
+
+            total_pos += true_pos_mask.sum().item()
+            total_neg += true_neg_mask.sum().item()
+
+            learned_pos += int((preds[true_pos_mask] == 1).sum().item())
+            learned_neg += int((preds[true_neg_mask] == 0).sum().item())
+
+    # Write unlearned samples
+    unlearned_file = os.path.join(output_dir, "unlearned.txt")
+    with open(unlearned_file, "w", encoding="utf-8") as f:
+        f.write("# Unlearned Samples (Misclassified Labeled Data)\n")
+        f.write("# Format: True_Label -> Pred_Label | Sentence\n")
+        f.write("# " + "-" * 70 + "\n")
+
+        # Sort by label (Pos->Neg mismatches first, then Neg->Pos)
+        unlearned_samples.sort(key=lambda x: (x[1], x[0]), reverse=True)
+
+        for sentence, true_label, pred_label in unlearned_samples:
+            true_str = "POS" if true_label == 1 else "NEG"
+            pred_str = "POS" if pred_label == 1 else "NEG"
+            f.write(f"{true_str} -> {pred_str} | {sentence}\n")
+
+    if verbose:
+        console.print(
+            f"[green]✓[/green] Written {len(unlearned_samples):,} unlearned samples to:"
+        )
+        console.print(f"  {unlearned_file}")
+
+    return learned_pos, total_pos, learned_neg, total_neg
+
+
 def train_pnu_model(  # pylint: disable=unused-argument
     grammar_label: str,
     dataset: GrammarPointDataset,
@@ -418,6 +496,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     batch_size: int = 32,
     top_k: int = 500,
     eval_seed: Optional[int] = None,
+    do_full_pos_scan: bool = False,
 ) -> Tuple[GrammarClassifier, Dict[int, SampleLossStats]]:
     """Train PNU model and collect loss statistics.
 
@@ -545,11 +624,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 progress.update(
                     task,
                     advance=1,
-                    description=f"[cyan]Epoch {epoch + 1}/{num_epochs_warmup} Loss: {loss.item():.4f}",
+                    description=f"[cyan]Epoch {epoch + 1}/{num_epochs_warmup} Loss: {loss.item():.6f}",
                 )
 
             avg_loss = epoch_loss / len(labeled_loader)
-            console.print(f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.4f}")
+            console.print(f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.6f}")
 
     # ========== Phase 2: PNU Training ==========
     console.print(
@@ -567,7 +646,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     combined_dataset = Subset(dataset, combined_indices)
     combined_loader = DataLoader(
         combined_dataset,
-        batch_size=batch_size,
+        batch_size=512,
         shuffle=True,
         collate_fn=collate_grammar_batch,
         num_workers=0,
@@ -578,7 +657,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     # Initialize early stopper for Phase 2
-    stopper = EarlyStopper(patience=8, min_delta=0.0001, decay_factor=0.7)
+    stopper = EarlyStopper(patience=8, min_delta=0.000001, decay_factor=0.85)
 
     # Track best model
     best_phase2_loss = float("inf")
@@ -592,10 +671,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
         for epoch in range(num_epochs_pnu):
             epoch_loss = 0.0
-            epoch_hard_pos_learned = 0
-            epoch_hard_neg_learned = 0
-            epoch_hard_pos_total = 0
-            epoch_hard_neg_total = 0
 
             for batch in combined_loader:
                 field_inputs = {
@@ -621,27 +696,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
                         labeled_targets = labels[labeled_mask]
 
                         # Calculate learned counts (True Positives / True Negatives)
-                        with torch.no_grad():
-                            labeled_probs = F.softmax(labeled_logits, dim=-1)
-                            labeled_preds = labeled_probs.argmax(dim=-1)
-
-                            num_pos_learned = (
-                                ((labeled_preds == 1) & (labeled_targets == 1))
-                                .sum()
-                                .item()
-                            )
-                            num_neg_learned = (
-                                ((labeled_preds == 0) & (labeled_targets == 0))
-                                .sum()
-                                .item()
-                            )
-                            num_pos_total = (labeled_targets == 1).sum().item()
-                            num_neg_total = (labeled_targets == 0).sum().item()
-
-                            epoch_hard_pos_learned += num_pos_learned
-                            epoch_hard_neg_learned += num_neg_learned
-                            epoch_hard_pos_total += num_pos_total
-                            epoch_hard_neg_total += num_neg_total
 
                         labeled_loss = focal_loss(
                             labeled_logits,
@@ -694,30 +748,44 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 progress.update(
                     task,
                     advance=1,
-                    description=f"[cyan]Epoch {epoch + 1}/{num_epochs_pnu} Loss: {loss.item():.4f}",
+                    description=f"[cyan]Epoch {epoch + 1}/{num_epochs_pnu} Loss: {loss.item():.6f}",
                 )
 
             avg_loss = epoch_loss / len(combined_loader)
-            console.print(
-                f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.4f} | "
-                f"Hard Pos Learned: {epoch_hard_pos_learned:,} of {epoch_hard_pos_total:,} | "
-                f"Hard Neg Learned: {epoch_hard_neg_learned:,} of {epoch_hard_neg_total:,}"
+            # Write unlearned samples every epoch & get eval stats
+            eval_pos_learned, eval_pos_total, eval_neg_learned, eval_neg_total = (
+                write_unlearned_samples(
+                    model,
+                    labeled_loader,
+                    device,
+                    output_dir,
+                    verbose=False,  # Don't spam console every epoch
+                )
             )
+
+            console.print(
+                f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.6f} | "
+                f"Hard Pos Learned: {eval_pos_learned:,} of {eval_pos_total:,} | "
+                f"Hard Neg Learned: {eval_neg_learned:,} of {eval_neg_total:,}"
+            )
+
+            # Switch back to train mode
+            model.train()
 
             # Save best model
             if avg_loss < best_phase2_loss:
                 best_phase2_loss = avg_loss
                 best_model_state = copy.deepcopy(model.state_dict())
 
-            # Check for perfect learning
+            # Check for perfect learning (using Eval stats)
             # If all hard labels are correct and loss is very low, stop early
             if (
-                epoch_hard_pos_learned == epoch_hard_pos_total
-                and epoch_hard_neg_learned == epoch_hard_neg_total
+                eval_pos_learned == eval_pos_total
+                and eval_neg_learned == eval_neg_total
                 and avg_loss < 0.005
             ):
                 console.print(
-                    f"  [green]Perfect learning achieved (Loss < 0.005)! Stopping Phase 2 early.[/green]"
+                    "  [green]Perfect learning achieved (Loss < 0.005)! Stopping Phase 2 early.[/green]"
                 )
                 break
 
@@ -731,58 +799,25 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # Restore best model
     if best_model_state is not None:
         console.print(
-            f"\n[green]Restoring best model from Phase 2 (Loss: {best_phase2_loss:.4f})[/green]"
+            f"\n[green]Restoring best model from Phase 2 (Loss: {best_phase2_loss:.6f})[/green]"
         )
         model.load_state_dict(best_model_state)
 
     # Analyze unlearned samples (Misclassified Labeled Data)
+    # Analyze unlearned samples (Misclassified Labeled Data)
     console.print("\n[bold cyan]Analyzing Unlearned Samples...[/bold cyan]")
-    model.eval()
-    unlearned_samples = []
+    write_unlearned_samples(model, labeled_loader, device, output_dir, verbose=True)
 
-    with torch.no_grad():
-        for batch in labeled_loader:
-            field_inputs = {k: v.to(device) for k, v in batch["field_inputs"].items()}
-            attention_mask = batch["attention_mask"].to(device)
-            labels = batch["labels"].to(device)
-            sentences = batch["sentences"]
-
-            # Forward
-            logits = model(field_inputs, attention_mask)
-            preds = torch.argmax(logits, dim=-1)
-
-            # Identify mismatches
-            mismatches = labels != preds
-
-            if mismatches.any():
-                mismatch_indices = torch.nonzero(mismatches).squeeze(1)
-                for idx in mismatch_indices:
-                    sentence = sentences[idx]
-                    true_label = labels[idx].item()
-                    pred_label = preds[idx].item()
-                    # 0=Neg, 1=Pos
-
-                    unlearned_samples.append((sentence, true_label, pred_label))
-
-    # Write unlearned samples
-    unlearned_file = os.path.join(output_dir, "unlearned.txt")
-    with open(unlearned_file, "w", encoding="utf-8") as f:
-        f.write("# Unlearned Samples (Misclassified Labeled Data)\n")
-        f.write("# Format: True_Label -> Pred_Label | Sentence\n")
-        f.write("# " + "-" * 70 + "\n")
-
-        # Sort by label (Pos->Neg mismatches first, then Neg->Pos)
-        unlearned_samples.sort(key=lambda x: (x[1], x[0]), reverse=True)
-
-        for sentence, true_label, pred_label in unlearned_samples:
-            true_str = "POS" if true_label == 1 else "NEG"
-            pred_str = "POS" if pred_label == 1 else "NEG"
-            f.write(f"{true_str} -> {pred_str} | {sentence}\n")
-
-    console.print(
-        f"[green]✓[/green] Written {len(unlearned_samples):,} unlearned samples to:"
-    )
-    console.print(f"  {unlearned_file}")
+    # Full Pos Scan (Requested to run after Phase 2)
+    # Full Pos Scan (Requested to run after Phase 2)
+    if do_full_pos_scan:
+        # Use large batch size for inference speedup
+        find_high_certainty_positives(model, dataset, device, 512, output_dir)
+        # Switch model back to eval in case find_high_certainty_positives didn't (though it does)
+        # But wait, Phase 3 needs eval/train?
+        # Phase 3 loop sets/resets mode? No, Phase 3 is inference on subset.
+        # But actually Phase 3 below computes stats using model(field_inputs) inside no_grad.
+        # It's an evaluation loop essentially.
 
     # ========== Phase 3: Evaluation and Loss Accumulation ==========
     console.print(
@@ -792,7 +827,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # For efficiency, sample a subset for evaluation (we don't need ALL samples for mining)
     # Sample labeled + reasonable subset of unlabeled
     # Scale with top_k: need at least top_k * 50 samples to mine from for good diversity
-    min_sample_size = max(10000, top_k * 50)  # At least 50K or 50x top_k
+    min_sample_size = max(20000, top_k * 50)  # At least 50K or 50x top_k
     eval_sample_size = min(len(dataset), min_sample_size)
     console.print(
         f"  Sampling {eval_sample_size:,} samples for evaluation (faster than full {len(dataset):,})"
@@ -825,7 +860,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     eval_subset = Subset(dataset, eval_indices)
     eval_loader = DataLoader(
         eval_subset,
-        batch_size=batch_size,
+        batch_size=512,  # Use large batch size for evaluation
         shuffle=False,
         collate_fn=collate_grammar_batch,
         num_workers=0,
@@ -1054,6 +1089,133 @@ def generate_candidates(
         f"[green]✓[/green] Written {len(all_sentences):,} unique sentences (labels + candidates) to:"
     )
     console.print(f"  {all_sentences_file}")
+
+
+def find_high_certainty_positives(
+    model: GrammarClassifier,
+    dataset: GrammarPointDataset,
+    device: torch.device,
+    batch_size: int,
+    output_dir: str,
+) -> None:
+    """Find high-certainty positive candidates from the full unlabeled corpus."""
+    console.print(
+        "\n[bold cyan]Scanning full corpus for high-certainty positives...[/bold cyan]"
+    )
+
+    # Identify unlabeled indices
+    unlabeled_indices = []
+
+    # Iterate to find unlabeled items.
+    # dataset[idx] returns dict with 'label' key.
+    # In GrammarPointDataset.__getitem__, label is fetched from self.sentence_to_label
+    # If not present, it returns -1.
+
+    # Accessing underlying data structures is faster than calling __getitem__ 2 million times label lookup
+
+    # Optimization: iterate over base_dataset indices.
+    # We can rebuild the Unlabeled set by checking sentences.
+    # actually, dataset.sentence_to_label contains ALL labeled sentences (pos and neg).
+    # Any sentence in base_dataset NOT in that dict is unlabeled.
+
+    # Let's verify we can iterate efficiently.
+    console.print("  Identifying unlabeled sentences...")
+
+    # Using a list comprehension might be slightly faster or just loop
+    for idx in range(len(dataset)):
+        sample = dataset.base_dataset[idx]
+        sentence = dataset.base_dataset.get_sentence_by_idx(sample.idx)
+        if sentence not in dataset.sentence_to_label:
+            unlabeled_indices.append(idx)
+
+    console.print(f"  Evaluating {len(unlabeled_indices):,} unlabeled sentences...")
+
+    if not unlabeled_indices:
+        return
+
+    # Create loader
+    subset = Subset(dataset, unlabeled_indices)
+    loader = DataLoader(
+        subset,
+        batch_size=batch_size,
+        shuffle=False,
+        collate_fn=collate_grammar_batch,
+        num_workers=0,
+    )
+
+    model.eval()
+    high_certainty_candidates = []
+    all_pos_probs = []
+
+    with torch.no_grad():
+        with create_progress(console) as progress:
+            task = progress.add_task("[cyan]Evaluating...", total=len(loader))
+
+            for batch in loader:
+                field_inputs = {
+                    k: v.to(device) for k, v in batch["field_inputs"].items()
+                }
+                attention_mask = batch["attention_mask"].to(device)
+                sentences = batch["sentences"]
+
+                logits = model(field_inputs, attention_mask)
+                probs = F.softmax(logits, dim=-1)
+
+                # Check for > 50% positive class (index 1)
+                pos_probs = probs[:, 1]
+                high_conf_mask = pos_probs > 0.50
+
+                if high_conf_mask.any():
+                    idxs = torch.nonzero(high_conf_mask).squeeze(1)
+                    conf_scores = pos_probs[high_conf_mask]
+
+                    for i, idx in enumerate(idxs):
+                        sentence = sentences[idx]
+                        score = conf_scores[i].item()
+                        high_certainty_candidates.append((score, sentence))
+
+                # DEBUG: Accumulate stats
+                all_pos_probs.extend(pos_probs.tolist())
+
+                progress.update(task, advance=1)
+
+    # DEBUG: Print stats
+    if all_pos_probs:
+        all_pos_probs_t = torch.tensor(all_pos_probs)
+        console.print(
+            f"\n[bold green]Debug Stats for {len(all_pos_probs)} unlabeled sentences:[/bold green]"
+        )
+        console.print(f"  Min: {all_pos_probs_t.min():.4f}")
+        console.print(f"  Max: {all_pos_probs_t.max():.4f}")
+        console.print(f"  Mean: {all_pos_probs_t.mean():.4f}")
+        console.print(f"  Median: {all_pos_probs_t.median():.4f}")
+        console.print(f"  > 0.50: {(all_pos_probs_t > 0.5).sum().item():,}")
+        console.print(f"  > 0.90: {(all_pos_probs_t > 0.9).sum().item():,}")
+        console.print(f"  > 0.99: {(all_pos_probs_t > 0.99).sum().item():,}")
+
+    # Write to file
+    output_path = os.path.join(output_dir, "high-certainty-positives.txt")
+
+    # Sort by confidence (descending)
+    high_certainty_candidates.sort(key=lambda x: x[0], reverse=True)
+
+    # Keep top 100
+    top_candidates = high_certainty_candidates[:100]
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("# High Certainty Positives (Top 100 > 50%)\n")
+        f.write(
+            f"# Total found: {len(high_certainty_candidates):,} (showing top {len(top_candidates)})\n"
+        )
+        f.write("# " + "-" * 70 + "\n")
+
+        for score, sentence in top_candidates:
+            # One sentence per line
+            f.write(f"{sentence}\n")
+
+    console.print(
+        f"[green]✓[/green] Saved {len(high_certainty_candidates):,} high-certainty positives to {output_path}"
+    )
 
 
 def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
@@ -1380,6 +1542,11 @@ def main() -> None:
         default=None,
         help="Random seed for sampling evaluation set (default: random, different each run)",
     )
+    parser.add_argument(
+        "--full-pos",
+        action="store_true",
+        help="Evaluate all unlabeled sentences and find high-certainty positives (>99%%)",
+    )
 
     args = parser.parse_args()
 
@@ -1448,7 +1615,7 @@ def main() -> None:
             num_eval = 2
         else:
             num_warmup = 5
-            num_pnu = 15
+            num_pnu = 50
             num_eval = 5
 
         _model, sample_stats = train_pnu_model(
@@ -1463,6 +1630,7 @@ def main() -> None:
             batch_size=args.batch_size,
             top_k=args.top_k,
             eval_seed=args.seed,
+            do_full_pos_scan=args.full_pos,
         )
 
         # Generate candidates

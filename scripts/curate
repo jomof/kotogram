@@ -2790,6 +2790,7 @@ def main():
     parser_study.add_argument("--device", type=str, default=None, help="Device to train on (default: auto-detect)")
     parser_study.add_argument("--quick", action="store_true", help="Quick mode: fewer epochs for testing")
     parser_study.add_argument("--seed", type=int, default=None, help="Random seed for reproducible evaluation sampling (default: random)")
+    parser_study.add_argument("--full-pos", action="store_true", help="Evaluate all unlabeled sentences and find high-certainty positives (>99%%)")
 
     args = parser.parse_args()
     
@@ -2878,6 +2879,8 @@ def main():
             cmd.append("--quick")
         if args.seed is not None:
             cmd.extend(["--seed", str(args.seed)])
+        if args.full_pos:
+            cmd.append("--full-pos")
         
         # Run without capturing output so user can see progress
         subprocess.run(cmd, check=True)
