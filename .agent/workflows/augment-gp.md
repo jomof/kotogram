@@ -11,6 +11,7 @@ I'll give you a grammar point in the form gpXXXX.
    - **Goal**: Understand the nuance, strict formation rules, and existing false friends.
    - **Check**: Are there existing "competing grammar" or "false friend" sections? Use them as inspiration for adversarial negatives.
 
+
 ### 2. Generate Sentences (Draft)
 - **Positive Sentences (30)**:
   - Create 30 diverse examples (varied contexts, casual/formal, specific/generic nouns).
@@ -74,4 +75,3 @@ Sample 30 random grammatic sentences that are not already labeled for this gramm
 
 ### 7. Final Report
 Confirm the operation and final counts. Write to an artifact file and 'notify_user'.
-

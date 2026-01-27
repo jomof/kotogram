@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Curate the training corpus.
-Command: curate drink
+Command: curate upsert
 """
 import argparse
 import multiprocessing as mp
@@ -39,6 +39,7 @@ from scripts.rule_based_analysis import (
 )
 from train.tsv import parse_tsv
 from scripts.curate_upsert_sentence import curate_upsert, curate_upsert_batch
+from scripts.curate_clone_empty import curate_clone_empty
 
 console = Console()
 
@@ -119,192 +120,10 @@ def analyze_chunk(chunk: List[Tuple[str, int]]) -> List[Tuple]:
     return results
 
 
-def worker_wrapper(_chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dict[str, Any], result_queue: Any):
-    """Wrapper to run analysis in a separate process."""
-    init_worker(overrides)
-    results = analyze_chunk(chunk)
-    result_queue.put(results)
 
 
-def tokenize_chunk(chunk: List[str]) -> List[Tuple[str, str]]:
-    """Convert a chunk of sentences to kotograms."""
-    parser = SudachiJapaneseParser()
-    results = []
-    from kotogram.japanese_parser import KotogramFormat
-    for sent in chunk:
-        # Use TRAINING_MASK format to match inference expectations
-        kotogram = parser.japanese_to_kotogram(sent, fmt=KotogramFormat.TRAINING_MASK)
-        results.append((sent, kotogram))
-    return results
 
 
-def worker_tokenize_wrapper(_chunk_idx: int, chunk: List[str], result_queue: Any):
-    """Wrapper for parallel tokenization."""
-    results = tokenize_chunk(chunk)
-    result_queue.put(results)
-
-
-def get_all_sentences() -> List[Tuple[str, int]]:
-    """Read all sentences from data/corpus.tar.gz."""
-    sentences = {}
-    tar_path = "data/corpus.tar.gz"
-    
-    if not os.path.exists(tar_path):
-        console.print(f"[red]Error: {tar_path} not found. Please run 'tar -czf {tar_path} data/jpn*.tsv'[/red]")
-        sys.exit(1)
-        
-    console.print(f"[blue]Reading from {tar_path}...[/blue]")
-    
-    with tarfile.open(tar_path, "r:gz") as tar:
-        for member in tar.getmembers():
-            if not member.isfile():
-                continue
-                
-            base = os.path.basename(member.name)
-            if not base.startswith("jpn"):
-                continue
-
-            # Determine grammatical status based on filename
-            is_gram = 0 if "agrammatic" in base else 1
-            
-            f = tar.extractfile(member)
-            if f is None:
-                continue
-                
-            # Read and decode
-            content = f.read().decode("utf-8")
-            for line in content.splitlines():
-                line = line.strip()
-                if not line:
-                    continue
-                s = parse_tsv(line)
-                if s and s not in sentences:
-                    sentences[s] = is_gram
-
-    return list(sentences.items())
-
-
-def curate_drink(db_path: str):
-    # Setup DB
-    if os.path.exists(db_path):
-        os.remove(db_path)
-    
-    os.makedirs(os.path.dirname(os.path.abspath(db_path)), exist_ok=True)
-    
-    console.print("[bold blue]Loading overrides...[/bold blue]")
-    overrides = load_register_overrides()
-    
-    console.print("[bold blue]Scanning sentences...[/bold blue]")
-    sentences = get_all_sentences()
-    total_sentences = len(sentences)
-    
-    console.print(f"[bold green]Found {total_sentences:,} unique sentences. Processing...[/bold green]")
-    
-    data_to_insert = []
-    
-    # Calculate workers
-    num_workers = mp.cpu_count()
-    if total_sentences > 0:
-        chunk_size = max(1, total_sentences // num_workers)
-        chunks = [sentences[i : i + chunk_size] for i in range(0, total_sentences, chunk_size)]
-    else:
-        chunks = []
-    
-    ctx = mp.get_context("spawn")
-    result_queue = ctx.Queue()
-    procs = []
-    
-    try:
-        with create_progress(console) as progress:
-            task = progress.add_task("[green]Analyzing...", total=total_sentences)
-            
-            for i, chunk in enumerate(chunks):
-                p = ctx.Process(
-                    target=worker_wrapper,
-                    args=(i, chunk, overrides, result_queue)
-                )
-                procs.append(p)
-                p.start()
-            
-            finished_count = 0
-            while finished_count < len(procs):
-                try:
-                    results = result_queue.get(timeout=0.1)
-                    data_to_insert.extend(results)
-                    progress.update(task, advance=len(results))
-                    finished_count += 1
-                except queue.Empty:
-                    failed = False
-                    for p in procs:
-                        if not p.is_alive() and p.exitcode != 0:
-                            console.print(f"[red]Worker {p.pid} failed (exit code: {p.exitcode})[/red]")
-                            failed = True
-                    if failed:
-                        for p in procs:
-                            p.terminate()
-                        sys.exit(1)
-    finally:
-        for p in procs:
-            if p.is_alive():
-                p.terminate()
-            p.join()
-
-    # DB Insertion
-    console.print("[bold blue]Inserting into database...[/bold blue]")
-    
-    conn = sqlite3.connect(db_path)
-    c = conn.cursor()
-    
-    # Enable FKs
-    c.execute("PRAGMA foreign_keys = ON")
-    
-    # Create Label Lookup Tables first (referenced by FKs)
-    # Formality table removed
-    # Gender table removed
-    # Grammaticality table removed (using boolean 'grammatic' in corpus)
-    c.execute("CREATE TABLE register (id INTEGER PRIMARY KEY, label TEXT)")
-
-    c.execute("""
-        CREATE TABLE corpus (
-            sentence TEXT PRIMARY KEY,
-            formality REAL CHECK (formality IS NULL OR formality IN (-1.0, -0.5, 0.0, 0.5, 1.0)),
-            gender REAL CHECK (gender IS NULL OR gender IN (-1.0, 0.0, 1.0)),
-            grammatic INTEGER NOT NULL CHECK (grammatic IN (0, 1)),
-            register_ids TEXT NOT NULL,
-            grammar TEXT NOT NULL DEFAULT '',
-            grammar_negative TEXT NOT NULL DEFAULT '',
-            CHECK (grammatic = 1 OR (grammar = '' AND grammar_negative = '')),
-            CHECK (grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL))
-        ) WITHOUT ROWID
-    """)
-
-    # Formality labels no longer populated
-    # Gender labels no longer populated
-    # Grammaticality labels no longer populated
-
-    # Populate Register Labels
-    from kotogram.constants import REGISTER_ID_TO_LABEL
-    r_data = [(k, v.name) for k, v in REGISTER_ID_TO_LABEL.items()]
-    c.executemany("INSERT INTO register VALUES (?,?)", r_data)
-
-    # data_to_insert structure update:
-    # 0: sent
-    # 1: f_id (formality_id)
-    # 2: g_val (gender)
-    # 3: gram (grammaticality_id)
-    # 4: r_ids_str
-    
-    c.executemany("INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids) VALUES (?,?,?,?,?)", data_to_insert)
-    conn.commit()
-    
-    console.print("[bold blue]Vacuuming database...[/bold blue]")
-    c.execute("VACUUM")
-    conn.commit()
-    conn.close()
-    
-    console.print("[bold green]Done![/bold green]")
-
-    console.print("[bold green]Done![/bold green]")
 
 
 def print_record(sent: str, f_val: Any, g_val: Any, gram: int, r_ids_str: str, source: str):
@@ -2223,428 +2042,12 @@ def curate_compare(db_path: str):
 
 
 
-def curate_drink_gp(yaml_dir: str, db_path: str):
-    """Extract grammar point examples from YAML files into corpus-gp.db.
 
-    Schema:
-    - grammar(id TEXT PRIMARY KEY, name TEXT)
-    - corpus(sentence TEXT PRIMARY KEY, grammar TEXT, grammar_negative TEXT)
-      where grammar and grammar_negative are comma-separated grammar point IDs
-    """
-    import glob
-    import re
 
-    import yaml
 
-    console.print(f"[bold blue]Reading grammar point YAMLs from: {yaml_dir}[/bold blue]")
 
-    yaml_files = sorted(glob.glob(os.path.join(yaml_dir, "*.yaml")))
-    if not yaml_files:
-        console.print(f"[bold red]No YAML files found in {yaml_dir}[/bold red]")
-        return
 
-    console.print(f"Found {len(yaml_files)} YAML files")
 
-    # Data structures
-    # name -> (yaml_id, yaml_path) for tracking
-    gp_name_to_info: Dict[str, Tuple[str, str]] = {}
-    # (japanese, gp_name, is_positive)
-    raw_sentences: List[Tuple[str, str, int]] = []
-
-    def clean_sentence(s: str) -> str:
-        """Remove spaces and {brackets} from sentence."""
-        # Remove {brackets} but keep content
-        s = re.sub(r"\{([^}]*)\}", r"\1", s)
-        # Remove spaces
-        s = s.replace(" ", "")
-        return s.strip()
-
-    # Initialize Sudachi tokenizer for reading extraction
-    from sudachipy import dictionary
-    sudachi_dict = dictionary.Dictionary(dict="full")
-    sudachi_tokenizer = sudachi_dict.create()
-
-    def get_reading(sentence: str) -> str:
-        """Extract reading (kana) sequence from a sentence using Sudachi."""
-        tokens = sudachi_tokenizer.tokenize(sentence)
-        return "".join(t.reading_form() for t in tokens)
-
-    errors: List[str] = []
-
-    with create_progress(console) as progress:
-        task = progress.add_task("Processing YAMLs", total=len(yaml_files))
-
-        for yaml_path in yaml_files:
-            progress.advance(task)
-            with open(yaml_path, encoding="utf-8") as f:
-                data = yaml.safe_load(f)
-
-            if not data:
-                errors.append(f"Empty YAML: {yaml_path}")
-                continue
-
-            gp_name = data.get("grammar_point")
-            yaml_id = data.get("id", "")
-
-            if not gp_name:
-                errors.append(f"Missing 'grammar_point' field in {yaml_path}")
-                continue
-
-            # Check for duplicate grammar point names
-            if gp_name in gp_name_to_info:
-                prev_id, prev_path = gp_name_to_info[gp_name]
-                errors.append(
-                    f"Duplicate grammar_point '{gp_name}': "
-                    f"first in {prev_path} (id={prev_id}), "
-                    f"duplicate in {yaml_path} (id={yaml_id})"
-                )
-                continue
-
-            gp_name_to_info[gp_name] = (yaml_id, yaml_path)
-
-            # Extract examples
-            examples = data.get("examples", [])
-
-            # First pass: collect all positive examples for this grammar point
-            positive_in_this_file: set[str] = set()
-            positive_readings_in_this_file: set[str] = set()
-            for example in examples:
-                japanese_list = example.get("japanese", [])
-                for jp_raw in japanese_list:
-                    jp_clean = clean_sentence(jp_raw)
-                    if jp_clean:
-                        positive_in_this_file.add(jp_clean)
-                        # Compute reading for this sentence
-                        jp_reading = get_reading(jp_clean)
-                        positive_readings_in_this_file.add(jp_reading)
-                        raw_sentences.append((jp_clean, gp_name, 1))
-
-            # Second pass: collect competing examples, excluding those that match positives
-            # by surface form OR by reading (to catch よい vs 良い cases)
-            for example in examples:
-                competing_grammar = example.get("competing_grammar", [])
-                for competing in competing_grammar:
-                    competing_japanese = competing.get("competing_japanese", [])
-                    for comp_raw in competing_japanese:
-                        comp_clean = clean_sentence(comp_raw)
-                        if not comp_clean:
-                            continue
-                        # Skip if surface form matches a positive
-                        if comp_clean in positive_in_this_file:
-                            continue
-                        # Skip if reading matches a positive (catches よい vs 良い)
-                        comp_reading = get_reading(comp_clean)
-                        if comp_reading in positive_readings_in_this_file:
-                            continue
-                        raw_sentences.append((comp_clean, gp_name, 0))
-
-    # Report errors
-    if errors:
-        console.print("[bold red]Errors found:[/bold red]")
-        for err in errors:
-            console.print(f"  [red]• {err}[/red]")
-        console.print()
-
-    # === Create sequential gapless IDs ===
-    # Strategy: Sort grammar points by their yaml_id (for those that have valid ones),
-    # then assign sequential IDs gp0001-gp{N}
-
-    # Separate into those with valid yaml IDs and those without
-    with_yaml_id: List[Tuple[int, str, str]] = []  # (yaml_id_num, yaml_id, gp_name)
-    without_yaml_id: List[str] = []  # gp_names
-
-    for gp_name, (yaml_id, _) in gp_name_to_info.items():
-        # Check if this is a usable ID (not gp9999, matches gpXXXX format)
-        if yaml_id and yaml_id.startswith("gp") and yaml_id != "gp9999":
-            num_part = yaml_id[2:]
-            if num_part.isdigit():
-                with_yaml_id.append((int(num_part), yaml_id, gp_name))
-            else:
-                without_yaml_id.append(gp_name)
-        else:
-            without_yaml_id.append(gp_name)
-
-    # Sort by yaml_id number (preserves ordering from original files)
-    with_yaml_id.sort(key=lambda x: x[0])
-
-    # Resolve duplicate yaml_id numbers: keep first, move others to without_yaml_id
-    seen_yaml_nums: Dict[int, str] = {}
-    resolved_with_yaml_id: List[Tuple[int, str, str]] = []
-    duplicates_resolved = 0
-    for num, yaml_id, gp_name in with_yaml_id:
-        if num in seen_yaml_nums:
-            # Conflict: move to without_yaml_id list (will get new ID)
-            without_yaml_id.append(gp_name)
-            duplicates_resolved += 1
-        else:
-            seen_yaml_nums[num] = gp_name
-            resolved_with_yaml_id.append((num, yaml_id, gp_name))
-
-    # Sort names without IDs alphabetically for determinism
-    without_yaml_id.sort()
-
-    # Create ordered list: first those with yaml IDs (by number), then those without
-    ordered_names = [gp_name for _, _, gp_name in resolved_with_yaml_id] + without_yaml_id
-
-    # Assign sequential IDs gp0001, gp0002, ..., gp{N}
-    name_to_id: Dict[str, str] = {}
-    for i, gp_name in enumerate(ordered_names, start=1):
-        name_to_id[gp_name] = f"gp{i:04d}"
-
-    # Verify we have sequential gapless IDs
-    all_ids = sorted(name_to_id.values())
-    expected_count = len(gp_name_to_info)
-    actual_count = len(all_ids)
-
-    if actual_count != expected_count:
-        errors.append(f"ID count mismatch: expected {expected_count}, got {actual_count}")
-
-    # Check for gaps
-    for i, gp_id in enumerate(all_ids):
-        expected_id = f"gp{i+1:04d}"
-        if gp_id != expected_id:
-            errors.append(f"Gap in IDs: expected {expected_id}, got {gp_id}")
-            break
-
-    expected_last_id = f"gp{expected_count:04d}"
-    actual_last_id = all_ids[-1] if all_ids else "none"
-    if actual_last_id != expected_last_id:
-        errors.append(f"Last ID should be {expected_last_id}, got {actual_last_id}")
-
-    console.print(f"[green]Grammar points: {len(name_to_id)}[/green]")
-    console.print(f"[green]ID range: {all_ids[0]} - {all_ids[-1]}[/green]")
-
-    # === Merge sentences by japanese text ===
-    # sentence -> (set of positive gp_ids, set of negative gp_ids)
-    merged: Dict[str, Tuple[set, set]] = {}
-    for jp, gp_name, is_positive in raw_sentences:
-        if jp not in merged:
-            merged[jp] = (set(), set())
-        gp_id = name_to_id[gp_name]
-        if is_positive:
-            merged[jp][0].add(gp_id)
-        else:
-            merged[jp][1].add(gp_id)
-
-    # Count statistics
-    total_raw = len(raw_sentences)
-    total_merged = len(merged)
-    total_pos_raw = sum(1 for _, _, p in raw_sentences if p == 1)
-    total_neg_raw = total_raw - total_pos_raw
-
-    multi_positive = sum(1 for pos, _ in merged.values() if len(pos) > 1)
-    multi_negative = sum(1 for _, neg in merged.values() if len(neg) > 1)
-    multi_either = sum(1 for pos, neg in merged.values() if len(pos) + len(neg) > 1)
-    no_grammar_points = sum(1 for pos, neg in merged.values() if len(pos) == 0 and len(neg) == 0)
-    overlap_pos_neg = sum(1 for pos, neg in merged.values() if pos & neg)  # set intersection
-
-    # Check for duplicate raw records (same sentence + same gp + same is_positive)
-    # This detects if the same grammar point appears multiple times in raw data for one sentence
-    raw_record_counts: Dict[Tuple[str, str, int], int] = {}
-    for jp, gp_name, is_pos in raw_sentences:
-        key = (jp, gp_name, is_pos)
-        raw_record_counts[key] = raw_record_counts.get(key, 0) + 1
-    duplicate_in_positive = sum(1 for (_, _, is_pos), cnt in raw_record_counts.items() if is_pos == 1 and cnt > 1)
-    duplicate_in_negative = sum(1 for (_, _, is_pos), cnt in raw_record_counts.items() if is_pos == 0 and cnt > 1)
-
-    console.print(f"[green]Total raw sentence records: {total_raw}[/green]")
-    console.print(f"  [dim]Positives: {total_pos_raw}, Hard negatives: {total_neg_raw}[/dim]")
-    console.print(f"[green]Unique sentences (merged): {total_merged}[/green]")
-
-    # Create database
-    console.print(f"\n[bold blue]Creating database: {db_path}[/bold blue]")
-
-    if os.path.exists(db_path):
-        os.remove(db_path)
-
-    conn = sqlite3.connect(db_path)
-    c = conn.cursor()
-
-    # Create tables
-    c.execute("""
-        CREATE TABLE grammar (
-            id TEXT PRIMARY KEY,
-            name TEXT NOT NULL
-        ) WITHOUT ROWID
-    """)
-
-    c.execute("""
-        CREATE TABLE corpus (
-            sentence TEXT PRIMARY KEY,
-            grammar TEXT NOT NULL,
-            grammar_negative TEXT NOT NULL
-        ) WITHOUT ROWID
-    """)
-
-    # Create indexes
-    c.execute("CREATE INDEX idx_corpus_grammar ON corpus(grammar)")
-    c.execute("CREATE INDEX idx_corpus_negative ON corpus(grammar_negative)")
-
-    # Insert grammar points (id -> name)
-    gp_data = [(gp_id, gp_name) for gp_name, gp_id in sorted(name_to_id.items(), key=lambda x: x[1])]
-    c.executemany("INSERT INTO grammar VALUES (?, ?)", gp_data)
-
-    # Insert merged sentences
-    corpus_data = []
-    for jp, (pos_ids, neg_ids) in merged.items():
-        pos_str = ",".join(sorted(pos_ids)) if pos_ids else ""
-        neg_str = ",".join(sorted(neg_ids)) if neg_ids else ""
-        corpus_data.append((jp, pos_str, neg_str))
-
-    c.executemany("INSERT INTO corpus VALUES (?, ?, ?)", corpus_data)
-
-    conn.commit()
-
-    # Vacuum for smaller file size
-    console.print("[bold blue]Vacuuming database...[/bold blue]")
-    c.execute("VACUUM")
-    conn.commit()
-
-    # Post-write sanity check: read data back and check for duplicate GPs in columns
-    console.print("[bold blue]Verifying database integrity...[/bold blue]")
-    c.execute("SELECT sentence, grammar, grammar_negative FROM corpus")
-    db_dup_positive = 0
-    db_dup_negative = 0
-    for jp, pos_str, neg_str in c.fetchall():
-        if pos_str:
-            pos_list = pos_str.split(",")
-            if len(pos_list) != len(set(pos_list)):
-                db_dup_positive += 1
-        if neg_str:
-            neg_list = neg_str.split(",")
-            if len(neg_list) != len(set(neg_list)):
-                db_dup_negative += 1
-
-    conn.close()
-
-    console.print("[bold green]Done![/bold green]")
-
-    # Summary stats
-    console.print("\n[bold]Summary:[/bold]")
-    console.print(f"  Database: {db_path}")
-    console.print(f"  Grammar points written: {len(name_to_id)}")
-    if duplicates_resolved > 0:
-        console.print(f"  ID conflicts resolved: {duplicates_resolved}")
-    console.print(f"  ID range: {all_ids[0]} - {all_ids[-1]}")
-    console.print(f"  Unique sentences: {total_merged}")
-    console.print(f"\n[bold]Multi-grammar-point sentences:[/bold]")
-    console.print(f"  Sentences with multiple positive GPs: {multi_positive}")
-    console.print(f"  Sentences with multiple negative GPs: {multi_negative}")
-    console.print(f"  Sentences with multiple GPs (either): {multi_either}")
-    console.print(f"\n[bold]Sanity checks:[/bold]")
-    console.print(f"  Sentences with no grammar points: {no_grammar_points}")
-    console.print(f"  Sentences with same GP in positive & negative: {overlap_pos_neg}")
-    console.print(f"  Duplicate GP mentions in positive (raw): {duplicate_in_positive}")
-    console.print(f"  Duplicate GP mentions in negative (raw): {duplicate_in_negative}")
-    console.print(f"  Duplicate GPs in DB positive column: {db_dup_positive}")
-    console.print(f"  Duplicate GPs in DB negative column: {db_dup_negative}")
-
-    # Count grammar points with no positive or no negative sentences
-    gps_with_positives: set[str] = set()
-    gps_with_negatives: set[str] = set()
-    for _, (pos_ids, neg_ids) in merged.items():
-        gps_with_positives.update(pos_ids)
-        gps_with_negatives.update(neg_ids)
-
-    all_gp_ids = set(name_to_id.values())
-    gps_no_positives = len(all_gp_ids - gps_with_positives)
-    gps_no_negatives = len(all_gp_ids - gps_with_negatives)
-    console.print(f"  Grammar points with no positive sentences: {gps_no_positives}")
-    console.print(f"  Grammar points with no negative sentences: {gps_no_negatives}")
-
-    # Check overlap with main corpus.db for merge compatibility
-    main_corpus_path = "data/corpus.db"
-    if os.path.exists(main_corpus_path):
-        main_conn = sqlite3.connect(main_corpus_path)
-        main_c = main_conn.cursor()
-        main_c.execute("SELECT sentence FROM corpus")
-        main_sentences = {row[0] for row in main_c.fetchall()}
-
-        gp_sentences = set(merged.keys())
-        to_be_merged = len(gp_sentences & main_sentences)
-        to_be_added = len(gp_sentences - main_sentences)
-        console.print(f"\n[bold]Corpus merge compatibility:[/bold]")
-        console.print(f"  Sentences to be merged (exist in corpus.db): {to_be_merged}")
-        console.print(f"  Sentences to be added (new to corpus.db): {to_be_added}")
-
-        # Merge: Add grammar point columns if they don't exist
-        console.print(f"\n[bold blue]Merging grammar points into corpus.db...[/bold blue]")
-
-        # Check if columns exist
-        main_c.execute("PRAGMA table_info(corpus)")
-        existing_cols = {row[1] for row in main_c.fetchall()}
-
-        if "grammar" not in existing_cols:
-            main_c.execute("ALTER TABLE corpus ADD COLUMN grammar TEXT NOT NULL DEFAULT ''")
-            console.print("  Added 'grammar' column")
-        if "grammar_negative" not in existing_cols:
-            main_c.execute("ALTER TABLE corpus ADD COLUMN grammar_negative TEXT NOT NULL DEFAULT ''")
-            console.print("  Added 'grammar_negative' column")
-
-        # Update existing sentences with grammar point data (skip sentences not in corpus.db)
-        updated_count = 0
-        skipped_count = 0
-        for jp, (pos_ids, neg_ids) in merged.items():
-            if jp not in main_sentences:
-                skipped_count += 1
-                continue
-
-            pos_str = ",".join(sorted(pos_ids)) if pos_ids else ""
-            neg_str = ",".join(sorted(neg_ids)) if neg_ids else ""
-
-            main_c.execute(
-                "UPDATE corpus SET grammar = ?, grammar_negative = ? WHERE sentence = ?",
-                (pos_str, neg_str, jp)
-            )
-            updated_count += 1
-
-        main_conn.commit()
-        console.print(f"  Updated: {updated_count} sentences")
-        console.print(f"  Skipped (not in corpus.db): {skipped_count} sentences")
-
-        # Insert grammar table if not exists
-        main_c.execute("""
-            CREATE TABLE IF NOT EXISTS grammar (
-                id TEXT PRIMARY KEY,
-                name TEXT NOT NULL
-            ) WITHOUT ROWID
-        """)
-        main_c.execute("DELETE FROM grammar")
-        gp_data = [(gp_id, gp_name) for gp_name, gp_id in sorted(name_to_id.items(), key=lambda x: x[1])]
-        main_c.executemany("INSERT INTO grammar VALUES (?, ?)", gp_data)
-        main_conn.commit()
-        console.print(f"  Grammar points table: {len(gp_data)} entries")
-
-        # Run sanity checks on merged corpus.db
-        console.print(f"\n[bold]Sanity checks on merged corpus.db:[/bold]")
-
-        main_c.execute("SELECT COUNT(*) FROM corpus")
-        total_corpus_sentences = main_c.fetchone()[0]
-        console.print(f"  Total sentences in corpus.db: {total_corpus_sentences}")
-
-        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar != ''")
-        with_positives = main_c.fetchone()[0]
-        console.print(f"  Sentences with positive GPs: {with_positives}")
-
-        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar_negative != ''")
-        with_negatives = main_c.fetchone()[0]
-        console.print(f"  Sentences with negative GPs: {with_negatives}")
-
-        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar = '' AND grammar_negative = ''")
-        no_gp = main_c.fetchone()[0]
-        console.print(f"  Sentences with no GP data: {no_gp}")
-
-        main_c.execute("SELECT COUNT(*) FROM grammar")
-        gp_count = main_c.fetchone()[0]
-        console.print(f"  Grammar points in DB: {gp_count}")
-
-        main_conn.close()
-    else:
-        console.print(f"\n[yellow]corpus.db not found at {main_corpus_path} - skipping merge[/yellow]")
-    if errors:
-        console.print(f"\n[bold red]Errors ({len(errors)}):[/bold red]")
-        for err in errors:
-            console.print(f"  [red]•[/red] {err}")
 
 
 
@@ -2654,11 +2057,7 @@ def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
     
-    # Drink command
-    drink_parser = subparsers.add_parser("drink", help="Curate the corpus")
-    drink_parser.add_argument("--db-path", default="data/corpus.db", help="Path to output database")
 
-    # Upsert command
     upsert_doc = """
     Update or insert a manual sentence entry in the corpus.
     
@@ -2709,18 +2108,7 @@ def main():
     upsert_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
     upsert_parser.add_argument("--allow-insert", action="store_true", help="Allow inserting new sentences")
 
-    # Drink-GP command
-    drink_gp_parser = subparsers.add_parser("drink-gp", help="Extract grammar point examples from YAMLs")
-    drink_gp_parser.add_argument(
-        "--yaml-dir",
-        default=".tmp-inspiration/cloze-data/resources/processed/ai-cleaned-merge-grammars",
-        help="Path to directory containing grammar point YAML files"
-    )
-    drink_gp_parser.add_argument(
-        "--db-path",
-        default="data/corpus-gp.db",
-        help="Path to output database"
-    )
+
 
     # Show command
     show_parser = subparsers.add_parser("show", help="Show labels for a sentence (Calculated)")
@@ -2781,6 +2169,12 @@ def main():
     parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
     parser_token_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # Clone Empty command
+    parser_clone = subparsers.add_parser("clone-empty", help="Clone schema to a new empty database")
+    parser_clone.add_argument("--empty-db", required=True, help="Path to the new empty database (output)")
+    parser_clone.add_argument("--db-path", default="data/corpus.db", help="Path to source database (input)")
+    parser_clone.add_argument("--overwrite", action="store_true", help="Overwrite output database if it exists")
+
     # Study command - PNU hard negative mining
     parser_study = subparsers.add_parser("study", help="PNU-based hard negative/positive mining for grammar points")
     parser_study.add_argument("grammar_label", help="Grammar point label (e.g., gp0888)")
@@ -2793,10 +2187,7 @@ def main():
     parser_study.add_argument("--full-pos", action="store_true", help="Evaluate all unlabeled sentences and find high-certainty positives (>99%%)")
 
     args = parser.parse_args()
-    
-    if args.command == "drink":
-        curate_drink(args.db_path)
-    elif args.command == "upsert":
+    if args.command == "upsert":
         if args.sentences:
             if args.sentence:
                 console.print("[red]Error: Cannot specify both 'sentence' and '--sentences'.[/red]")
@@ -2835,8 +2226,7 @@ def main():
         else:
             console.print("[red]Error: Must specify 'sentence' or '--sentences'.[/red]")
             sys.exit(1)
-    elif args.command == "drink-gp":
-        curate_drink_gp(args.yaml_dir, args.db_path)
+
     elif args.command == "show":
         curate_show(args.sentence)
     elif args.command == "read":
@@ -2862,6 +2252,8 @@ def main():
         curate_kc_tail_stats(args.db_path, args.sentence, args.filter_str)
     elif args.command == "token-stats":
         curate_token_stats(args.db_path)
+    elif args.command == "clone-empty":
+        curate_clone_empty(args.db_path, args.empty_db, args.overwrite)
     elif args.command == "study":
         # Call the curate_study_grammar_label.py script
         import subprocess

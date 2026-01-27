@@ -15,122 +15,125 @@ class TestCurateScript(unittest.TestCase):
 
         # Create data directory
         os.makedirs("data", exist_ok=True)
-
-        # Create dummy data in bottle root
         self.data_dir = os.path.join(self.test_dir, "data")
-        os.makedirs(self.data_dir, exist_ok=True)
-
-        # 1. Standard Input
-        self.input_file = os.path.join(self.data_dir, "jpn_sentences.tsv")
-        with open(self.input_file, "w", encoding="utf-8") as f:
-            f.write("これはペンです\n")  # Formal
-            f.write("猫が好き\n")  # Neutral
-            f.write(
-                "俺はあたしだ\n"
-            )  # Conflicting: Danseigo + Joseigo -> Unpragmatic Gender -> Gram=0
-
-        # 2. Agrammatic Input
-        agrammatic_name = "jpn_agrammatic_sentences.tsv"
-        self.agrammatic_file = os.path.join(self.data_dir, agrammatic_name)
-        with open(self.agrammatic_file, "w", encoding="utf-8") as f:
-            f.write("ペンはこれ\n")
-
-        # 3. Register Overrides (to force conflict logic)
-        # Danseigo: 俺 (Ore)
-        danseigo_name = "jpn_sentences_danseigo.tsv"
-        self.danseigo_file = os.path.join(self.data_dir, danseigo_name)
-        with open(self.danseigo_file, "w", encoding="utf-8") as f:
-            f.write("俺はあたしだ\n")
-
-        # Joseigo: あたし (Atashi)
-        joseigo_name = "jpn_sentences_joseigo.tsv"
-        self.joseigo_file = os.path.join(self.data_dir, joseigo_name)
-        with open(self.joseigo_file, "w", encoding="utf-8") as f:
-            f.write("俺はあたしだ\n")
-
-        # Create corpus.tar.gz
-        import tarfile
-
-        tar_path = os.path.join(self.data_dir, "corpus.tar.gz")
-        with tarfile.open(tar_path, "w:gz") as tar:
-            tar.add(self.input_file, arcname="jpn_sentences.tsv")
-            tar.add(self.agrammatic_file, arcname=agrammatic_name)
-            tar.add(self.danseigo_file, arcname=danseigo_name)
-            tar.add(self.joseigo_file, arcname=joseigo_name)
-
-        # Clean up raw files to ensure strict archival usage
-        os.remove(self.input_file)
-        os.remove(self.agrammatic_file)
-        os.remove(self.danseigo_file)
-        os.remove(self.joseigo_file)
-
-        # Determine script path (absolute)
-        # Determine script path (absolute)
-        self.script_path = os.path.join(self.old_cwd, "scripts/curate")
         self.db_path = os.path.join(self.data_dir, "corpus.db")
+        self.script_path = os.path.join(self.old_cwd, "scripts/curate")
 
     def tearDown(self):
         os.chdir(self.old_cwd)
-        # Handle potential permission errors if DB is locked or something
         shutil.rmtree(self.test_dir, ignore_errors=True)
 
-    def test_curate_drink(self):
-        # Run curate drink
-        # We need to make sure kotogram is in python path.
+    def init_test_db(self):
+        """Initialize test DB by cloning schema from repo source of truth."""
+        repo_db_path = os.path.join(self.old_cwd, "data/corpus.db")
+        if not os.path.exists(repo_db_path):
+            self.skipTest(f"Source DB not found at {repo_db_path}")
+
         env = os.environ.copy()
-        # Ensure PYTHONPATH includes the project root
         env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
 
-        cmd = [sys.executable, self.script_path, "drink"]
-
-        cmd = [sys.executable, self.script_path, "drink"]
-        result = subprocess.run(
-            cmd, env=env, capture_output=True, text=True, check=False
+        # Clone schema
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "clone-empty",
+                "--db-path",
+                repo_db_path,
+                "--empty-db",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
         )
 
-        if result.returncode != 0:
-            print("STDOUT:", result.stdout)
-            print("STDERR:", result.stderr)
+    def test_upsert_workflow(self):
+        # Setup env
+        env = os.environ.copy()
+        env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
 
-        self.assertEqual(result.returncode, 0)
+        # 1. Create Schema DB (instead of drink)
+        self.init_test_db()
+
+        # 2. Upsert "これはペンです" (Formal)
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "これはペンです",
+                "--formality",
+                "formal",
+                "--gender",
+                "neutral",
+                "--grammatic",
+                "1",
+                "--allow-insert",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+
+        # 3. Upsert "猫が好き" (Neutral)
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "猫が好き",
+                "--formality",
+                "neutral",
+                "--gender",
+                "neutral",  # explicit
+                "--grammatic",
+                "1",
+                "--allow-insert",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+
+        # 4. Upsert Agrammatic
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "ペンはこれ",
+                "--grammatic",
+                "0",
+                "--allow-insert",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
 
         # Check DB
-        db_path = "data/corpus.db"
-        self.assertTrue(os.path.exists(db_path))
-
-        conn = sqlite3.connect(db_path)
+        conn = sqlite3.connect(self.db_path)
         c = conn.cursor()
 
-        # Verify labels exist (Tables removed)
-        c.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' AND name='formality'"
-        )
-        self.assertIsNone(c.fetchone())
-        c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='gender'")
-        self.assertIsNone(c.fetchone())
-        c.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' AND name='grammaticality'"
-        )
-        self.assertIsNone(c.fetchone())
-
         # Check data
-        # Corpus schema: sentence, f_val (Real), female_val (Real), grammatic (Integr), r_ids
         c.execute("SELECT * FROM corpus")
         rows = c.fetchall()
-
-        # We expect at least one row, and verify its structure
         self.assertGreater(len(rows), 0)
         row_map = {r[0]: r for r in rows}
 
         # Verify "これはペンです" (Formal -> F=0.5, G=0.0)
         if "これはペンです" in row_map:
             row_1 = row_map["これはペンです"]
-            self.assertEqual(len(row_1), 7)
-            self.assertIsInstance(row_1[1], float)  # f_val (0.5 for Formal)
             self.assertEqual(row_1[1], 0.5)
-            self.assertIsInstance(row_1[2], float)  # g_val (0.0 for Neutral)
             self.assertEqual(row_1[2], 0.0)
-            self.assertEqual(row_1[3], 1)  # Grammatic (Boolean 1)
+            self.assertEqual(row_1[3], 1)
 
         # Verify "猫が好き" (Neutral -> 0.0)
         if "猫が好き" in row_map:
@@ -140,17 +143,9 @@ class TestCurateScript(unittest.TestCase):
         # Verify "ペンはこれ" (Agrammatic)
         if "ペンはこれ" in row_map:
             row_3 = row_map["ペンはこれ"]
-            self.assertEqual(row_3[3], 0)  # Agrammatic (Boolean 0)
+            self.assertEqual(row_3[3], 0)
 
-        # Verify "俺はあたしだ" (Conflicting Registers -> Unpragmatic -> Strict Gram=0)
-        if "俺はあたしだ" in row_map:
-            row_4 = row_map["俺はあたしだ"]
-            # Strict Logic Check: Even though source file is normal,
-            # conflict makes gender unpragmatic (g_prag=0).
-            # Therefore final_gram = 1 AND 1 AND 0 = 0.
-            self.assertEqual(row_4[3], 0, "Conflicting styles should result in gram=0")
-            # Also verify gender is NULL
-            self.assertIsNone(row_4[2])
+        conn.close()
 
     def test_cli_commands(self):
         """Test 'show' and 'read' CLI commands."""
@@ -158,18 +153,50 @@ class TestCurateScript(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
 
-        # 1. Run 'drink' to populate DB
-        cmd_drink = [
-            sys.executable,
-            self.script_path,
-            "drink",
-            "--db-path",
-            self.db_path,
-        ]
-        res_drink = subprocess.run(
-            cmd_drink, env=env, capture_output=True, text=True, check=False
+        # 1. Populate DB (Schema + Data)
+        self.init_test_db()
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "猫が好き",
+                "--formality",
+                "neutral",
+                "--gender",
+                "neutral",
+                "--grammatic",
+                "1",
+                "--allow-insert",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
         )
-        self.assertEqual(res_drink.returncode, 0, f"Drink failed: {res_drink.stderr}")
+
+        # Upsert an ungrammatic sentence for 'distinct' test
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "俺はあたしだ",
+                "--formality",
+                "neutral",
+                "--gender",
+                "neutral",
+                "--grammatic",
+                "0",
+                "--allow-insert",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
 
         # 2. Test 'read' command (Should find in DB)
         # We know "猫が好き" is in there from setUp logic
@@ -329,33 +356,54 @@ class TestCurateScript(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
 
-        # Vary DB path and verify effect
-        # Create a separate environment with a minimal corpus.tar.gz
+        repo_db_path = os.path.join(self.old_cwd, "data/corpus.db")
+        if not os.path.exists(repo_db_path):
+            self.skipTest(f"Source DB not found at {repo_db_path}")
+
+        # Create a separate environment
         var_dir = os.path.join(self.test_dir, "var_env")
-        var_data_dir = os.path.join(var_dir, "data")
-        os.makedirs(var_data_dir, exist_ok=True)
-
-        # Create single TSV
-        var_tsv = os.path.join(var_data_dir, "jpn_small.tsv")
-        with open(var_tsv, "w", encoding="utf-8") as f:
-            f.write("これはテストです\n")  # 1 sentence
-
-        # Create tar.gz
-        import tarfile
-
-        with tarfile.open(os.path.join(var_data_dir, "corpus.tar.gz"), "w:gz") as tar:
-            tar.add(var_tsv, arcname="jpn_small.tsv")
-
-        # Output DB path (inside var_dir for convenience)
+        os.makedirs(var_dir, exist_ok=True)
         db_path_fresh = os.path.join(var_dir, "fresh.db")
 
-        # Drink in new cwd
+        # Clone schema
         subprocess.run(
-            [sys.executable, self.script_path, "drink", "--db-path", db_path_fresh],
+            [
+                sys.executable,
+                self.script_path,
+                "clone-empty",
+                "--db-path",
+                repo_db_path,
+                "--empty-db",
+                db_path_fresh,
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+
+        # Upsert in new cwd (isolated)
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "upsert",
+                "これはテストです",
+                "--formality",
+                "formal",
+                "--gender",
+                "neutral",
+                "--grammatic",
+                "1",
+                "--allow-insert",
+                "--db-path",
+                db_path_fresh,
+            ],
             cwd=var_dir,
             env=env,
             check=True,
             capture_output=True,
+            text=True,
+            input="y\n",  # Confirm if prompted (though arguments should suppress most)
         )
 
         # Run summary on new DB
@@ -402,6 +450,54 @@ class TestCurateScript(unittest.TestCase):
         )
         # Since we haven't run label.py, cache shouldn't exist
         self.assertIn("Cache not found", res_compare.stdout)
+
+    def test_curate_clone_empty(self):
+        """Test 'clone-empty' command."""
+        env = os.environ.copy()
+        env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
+
+        repo_db_path = os.path.join(self.old_cwd, "data/corpus.db")
+        if not os.path.exists(repo_db_path):
+            self.skipTest("Repo DB not found")
+
+        # 2. Run clone-empty (Repo -> Empty)
+        empty_db_path = os.path.join(self.data_dir, "corpus_empty.db")
+        cmd = [
+            sys.executable,
+            self.script_path,
+            "clone-empty",
+            "--db-path",
+            repo_db_path,
+            "--empty-db",
+            empty_db_path,
+        ]
+
+        result = subprocess.run(
+            cmd, env=env, capture_output=True, text=True, check=False
+        )
+        self.assertEqual(result.returncode, 0, f"Clone failed: {result.stderr}")
+
+        # 3. Verify
+        self.assertTrue(os.path.exists(empty_db_path))
+
+        conn = sqlite3.connect(empty_db_path)
+        c = conn.cursor()
+
+        # Check tables exist
+        c.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = {row[0] for row in c.fetchall()}
+        self.assertIn("corpus", tables)
+        self.assertIn("register", tables)
+
+        # Check empty
+        c.execute("SELECT count(*) FROM corpus")
+        self.assertEqual(c.fetchone()[0], 0)
+
+        # Check register table is empty (schema copy only)
+        c.execute("SELECT count(*) FROM register")
+        self.assertEqual(c.fetchone()[0], 0)
+
+        conn.close()
 
 
 class TestCurateKcFamiliesImports(unittest.TestCase):
