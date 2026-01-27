@@ -2177,7 +2177,7 @@ def main():
 
     # Study command - PNU hard negative mining
     parser_study = subparsers.add_parser("study", help="PNU-based hard negative/positive mining for grammar points")
-    parser_study.add_argument("grammar_label", help="Grammar point label (e.g., gp0888)")
+    parser_study.add_argument("grammar_labels", nargs="+", help="Grammar point labels (e.g., gp0888 gp0889)")
     parser_study.add_argument("--apply", action="store_true", help="Apply curated labels to database (run after manual review)")
     parser_study.add_argument("--batch-size", type=int, default=32, help="Batch size for training")
     parser_study.add_argument("--top-k", type=int, default=500, help="Number of candidates to generate")
@@ -2258,7 +2258,7 @@ def main():
         # Call the curate_study_grammar_label.py script
         import subprocess
         script_path = os.path.join(os.path.dirname(__file__), "curate_study_grammar_label.py")
-        cmd = [sys.executable, script_path, args.grammar_label]
+        cmd = [sys.executable, script_path] + args.grammar_labels
         if args.apply:
             cmd.append("--apply")
         if args.batch_size != 32:

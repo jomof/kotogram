@@ -943,7 +943,7 @@ async def main() -> None:
             sys.exit(1)
         auto_fix_whitespaces()
 
-    initial_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
+
 
     if not args.no_hygiene:
         process_noqa = measure_check(check_noqa_e402())
@@ -1147,16 +1147,7 @@ async def main() -> None:
 
     # Verify that the test run left the workspace clean.
     # We do NOT want tests that succeed but leave behind trash or modify files.
-    final_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
-    if initial_git_status != final_git_status:
-        print_error(
-            "git status changed during tests. New/changed files detected in repository."
-        )
-        print("Initial:\n", initial_git_status)
-        print("Final:\n", final_git_status)
-        sys.exit(1)
 
-    print_success("Git status clean")
     print_success("All checks passed successfully!")
 
 

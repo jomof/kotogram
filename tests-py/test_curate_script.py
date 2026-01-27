@@ -483,8 +483,8 @@ class TestCurateScript(unittest.TestCase):
         conn = sqlite3.connect(empty_db_path)
         c = conn.cursor()
 
-        # Check tables exist
-        c.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        # Check tables exist (and views)
+        c.execute("SELECT name FROM sqlite_master WHERE type IN ('table', 'view')")
         tables = {row[0] for row in c.fetchall()}
         self.assertIn("corpus", tables)
         self.assertIn("register", tables)

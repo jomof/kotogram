@@ -29,7 +29,8 @@ GENDER_MAP = {
 
 
 def get_current_row(cursor: sqlite3.Cursor, sentence: str) -> Optional[Tuple]:
-    """Fetch current row for sentence."""
+    """Fetch current row for sentence (from VIEW)."""
+    # The view 'corpus' provides the exact interface we need for reading.
     cursor.execute(
         "SELECT formality, gender, grammatic, register_ids, grammar, grammar_negative FROM corpus WHERE sentence = ?",
         (sentence,),
@@ -144,6 +145,26 @@ def get_current_values(row: Optional[Tuple]) -> Tuple:
     )
 
 
+def normalize_register_ids(ids_str: str) -> str:
+    """Normalize register IDs to a sorted CSV of distinct integers."""
+    if not ids_str:
+        return "0"
+
+    parts = [int(x.strip()) for x in ids_str.split(",") if x.strip()]
+
+    if not parts:
+        return "0"
+
+    # Enforce rules: if 0 is present, it must be the only one.
+    unique_ids = sorted(list(set(parts)))
+    if 0 in unique_ids and len(unique_ids) > 1:
+        raise ValueError(
+            f"Register 0 cannot be combined with other registers: {unique_ids}"
+        )
+
+    return ",".join(str(p) for p in unique_ids)
+
+
 def perform_db_write(
     cursor: sqlite3.Cursor,
     sentence: str,
@@ -155,36 +176,59 @@ def perform_db_write(
     register_ids: str,
     is_update: bool,
 ) -> str:
-    """Execute the INSERT or UPDATE query."""
+    """Execute the INSERT or UPDATE query (normalized tables)."""
     # pylint: disable=too-many-positional-arguments
+
+    # Normalize register_ids
+    clean_regs = normalize_register_ids(register_ids)
+
+    # 1. Update/Insert main sentences table
     if is_update:
+        # Check if exists
+        cursor.execute("SELECT 1 FROM sentences WHERE sentence=?", (sentence,))
+        if not cursor.fetchone():
+            # Fallback to insert if not found? But is_update implies we thought it existed.
+            # Or maybe it was partial? Let's assume strict update.
+            pass
+
         query = """
-            UPDATE corpus
-            SET formality = ?, gender = ?, grammatic = ?, grammar = ?, grammar_negative = ?
+            UPDATE sentences
+            SET formality = ?, gender = ?, grammatic = ?, register_ids = ?
             WHERE sentence = ?
         """
-        cursor.execute(
-            query, (formality, gender, grammatic, grammar, grammar_negative, sentence)
-        )
-        return "Updated"
+        cursor.execute(query, (formality, gender, grammatic, clean_regs, sentence))
 
-    query = """
-        INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """
-    cursor.execute(
-        query,
-        (
-            sentence,
-            formality,
-            gender,
-            grammatic,
-            register_ids,
-            grammar,
-            grammar_negative,
-        ),
-    )
-    return "Inserted"
+        # Clear existing relations to replace them
+        cursor.execute("DELETE FROM corpus_gp_pos WHERE sentence=?", (sentence,))
+        cursor.execute("DELETE FROM corpus_gp_neg WHERE sentence=?", (sentence,))
+
+    else:
+        query = """
+            INSERT INTO sentences (sentence, formality, gender, grammatic, register_ids)
+            VALUES (?, ?, ?, ?, ?)
+        """
+        cursor.execute(query, (sentence, formality, gender, grammatic, clean_regs))
+
+    # 2. Insert new relations (if grammatical)
+    # If ungrammatic, we ensure labels are empty (already done by triggers usually,
+    # but application logic ensures we don't try to insert them).
+
+    if grammatic == 1:
+        if grammar:
+            gp_list = [gp.strip() for gp in grammar.split(",") if gp.strip()]
+            cursor.executemany(
+                "INSERT INTO corpus_gp_pos(sentence, gp_id) VALUES (?, ?)",
+                [(sentence, gp) for gp in gp_list],
+            )
+
+        if grammar_negative:
+            gn_list = [gn.strip() for gn in grammar_negative.split(",") if gn.strip()]
+            cursor.executemany(
+                "INSERT INTO corpus_gp_neg(sentence, gp_id) VALUES (?, ?)",
+                [(sentence, gn) for gn in gn_list],
+            )
+
+    return "Updated" if is_update else "Inserted"
 
 
 def calculate_upsert_values(
@@ -231,8 +275,10 @@ def calculate_upsert_values(
     new_gram_str = curr_gram
     new_nav_str = curr_nav
 
-    if target_grammatic == 0:
-        # If explicitly setting to agrammatic, must clear grammar tags to satisfy CHECK constraint
+    # Enforce constraints: Grammatic=0 requires Formality/Gender IS NULL and no grammar tags
+    if new_is_gram == 0:
+        new_f = None
+        new_g = None
         new_gram_str = ""
         new_nav_str = ""
     elif grammar_diff_str:
@@ -320,6 +366,8 @@ def curate_upsert(
         return
 
     conn = sqlite3.connect(db_path)
+    # Important: Enable FK constraints
+    conn.execute("PRAGMA foreign_keys=ON")
     c = conn.cursor()
 
     try:
@@ -370,6 +418,7 @@ def curate_upsert_batch(
         return
 
     conn = sqlite3.connect(db_path)
+    conn.execute("PRAGMA foreign_keys=ON")
     c = conn.cursor()
 
     try:

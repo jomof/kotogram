@@ -20,23 +20,20 @@ I'll give you a grammar point in the form gpXXXX.
 
 - **Adversarial Negative Sentences (30)**:
   - **False Friends**: Use grammar that looks/sounds similar but isn't it (e.g., for `それどころか`, use `どころか` without `それ`).
-  - **Phonetic/Visual Traps**: Characters present but unconnected grammar (e.g. `それ、どこから` vs `それどころか`).
+  - **Phonetic/Visual Traps**: Characters present but unconnected grammar (e.g. `それ、どこから` vs `それどころか`). 
   - **Semantic Traps**: Similar meaning, different grammar.
 
 - (MANDATORY) ALL SENTENCES ADDED MUST BE GRAMMATIC AND NATURAL JAPANESE.
 - (MANDATORY) ALL SENTENCES MUST BE NEW. VERIFY THEY DON'T ALREADY EXIST IN THE DATABASE.
 
 ### 3. Review Plan (MANDATORY)
-**STOP and write a plan to an artifact file and `notify_user` before making any database changes.**
+Write a plan to an artifact file and `notify_user` before making any database changes.
 Present the full list of 60 sentences (30 positive, 30 negative) in the implementation plan or message.
 - Double check: ALL SENTENCES ADDED MUST BE GRAMMATIC AND NATURAL JAPANESE.
 - Explain the logic behind the adversarial traps.
 - Format a checklist of the steps you will take, including the final report below.
-- Wait for user approval.
 
 ### 4. Batch Upsert
-**Only proceed after user approval.**
-
 1. Write positive sentences to `positive_list-gpXXXX.txt`.
 2. Write negative sentences to `negative_list-gpXXXX.txt`.
 3. Run the upsert commands.
@@ -72,6 +69,7 @@ Sample 30 random grammatic sentences that are not already labeled for this gramm
    sqlite3 data/corpus.db "SELECT count(*) FROM corpus WHERE grammar LIKE '%gpXXXX%'; SELECT count(*) FROM corpus WHERE grammar_negative LIKE '%gpXXXX%';"
    ```
 2. Cleanup: `rm positive_list.txt negative_list.txt`
+3. Cleanup: remove the Step 3 plan artifact after completion (e.g. `rm compare/augment-gpXXXX-plan.md`)
 
 ### 7. Final Report
 Confirm the operation and final counts. Write to an artifact file and 'notify_user'.

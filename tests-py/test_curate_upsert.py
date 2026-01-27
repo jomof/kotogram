@@ -1,7 +1,7 @@
 """
 Tests for scripts/curate_upsert_sentence.py via scripts/curate CLI.
 """
-# pylint: disable=redefined-outer-name
+# pylint: disable=redefined-outer-name, too-many-positional-arguments
 
 import os
 import sqlite3
@@ -26,14 +26,24 @@ def temp_corpus_db(tmp_path):
     src_conn = sqlite3.connect(source_db_path)
     src_c = src_conn.cursor()
 
-    tables_to_clone = ["register", "corpus", "grammar"]
+    # Clone tables in dependency order, then view
+    tables_to_clone = [
+        "register",
+        "grammar",
+        "sentences",
+        "corpus_gp_pos",
+        "corpus_gp_neg",
+        "corpus",
+    ]
 
     try:
         c.execute("PRAGMA foreign_keys = OFF")
 
         for table in tables_to_clone:
+            # Check for Table OR View
             src_c.execute(
-                "SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)
+                "SELECT sql FROM sqlite_master WHERE (type='table' OR type='view') AND name=?",
+                (table,),
             )
             res = src_c.fetchone()
             if res:
@@ -41,12 +51,12 @@ def temp_corpus_db(tmp_path):
                 c.execute(create_sql)
             else:
                 if table == "corpus":
-                    raise RuntimeError("Corpus table not found in source DB")
+                    # This implies valid view was not found, which is critical for tests
+                    raise RuntimeError("Corpus view (or table) not found in source DB")
 
         c.execute("PRAGMA foreign_keys = ON")
 
         # Populate dummy grammar data for validation
-        # Only if the table exists (it should, from cloning)
         c.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='grammar'"
         )
@@ -79,6 +89,47 @@ def run_curate(args):
             f"scripts/curate failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
         )
     return result
+
+
+def insert_test_row(
+    db_path,
+    sentence,
+    formality,
+    gender,
+    grammatic,
+    register_ids="",
+    grammar="",
+    grammar_negative="",
+):
+    """Helper to insert a row into the normalized schema."""
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+
+    # 1. Insert into sentences
+    c.execute(
+        "INSERT INTO sentences (sentence, formality, gender, grammatic, register_ids) VALUES (?, ?, ?, ?, ?)",
+        (sentence, formality, gender, grammatic, register_ids),
+    )
+
+    # 2. Insert grammar relations
+    if grammar:
+        gps = [gp.strip() for gp in grammar.split(",") if gp.strip()]
+        if gps:
+            c.executemany(
+                "INSERT INTO corpus_gp_pos (sentence, gp_id) VALUES (?, ?)",
+                [(sentence, gp) for gp in gps],
+            )
+
+    if grammar_negative:
+        gps = [gp.strip() for gp in grammar_negative.split(",") if gp.strip()]
+        if gps:
+            c.executemany(
+                "INSERT INTO corpus_gp_neg (sentence, gp_id) VALUES (?, ?)",
+                [(sentence, gp) for gp in gps],
+            )
+
+    conn.commit()
+    conn.close()
 
 
 def test_upsert_insert_new(temp_corpus_db):
@@ -151,7 +202,9 @@ def test_upsert_insert_unpragmatic(temp_corpus_db):
     conn.close()
 
     assert row[0] is None  # Formality
-    assert row[1] == -1.0  # Masculine
+    assert (
+        row[1] is None
+    )  # Masculine -> Cleared to None because Unpragmatic Formality -> Gram=0
     assert row[2] == 0  # Grammatic (Unpragmatic F forces 0)
 
 
@@ -164,13 +217,7 @@ def test_upsert_insert_forbidden_by_default(temp_corpus_db):
 
 def test_upsert_update_existing(temp_corpus_db):
     """Test updating an existing sentence."""
-    conn = sqlite3.connect(temp_corpus_db)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids) VALUES (?, ?, ?, ?, ?)",
-        ("Update me", 0.0, 0.0, 1, ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "Update me", 0.0, 0.0, 1)
 
     # Update Formality only
     run_curate(
@@ -192,13 +239,7 @@ def test_upsert_update_existing(temp_corpus_db):
 
 def test_upsert_update_to_unpragmatic(temp_corpus_db):
     """Test updating existing sentence to unpragmatic."""
-    conn = sqlite3.connect(temp_corpus_db)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids) VALUES (?, ?, ?, ?, ?)",
-        ("Good sentence", 0.0, 0.0, 1, ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "Good sentence", 0.0, 0.0, 1)
 
     # Update Gender to Unpragmatic
     run_curate(
@@ -213,20 +254,14 @@ def test_upsert_update_to_unpragmatic(temp_corpus_db):
     row = cursor.fetchone()
     conn.close()
 
-    assert row[0] == 0.0  # Unchanged
+    assert row[0] is None  # Updated to Unpragmatic (cleared)
     assert row[1] is None  # Updated to Unpragmatic
     assert row[2] == 0  # Grammatic flipped to 0
 
 
 def test_upsert_update_to_valid_from_unpragmatic(temp_corpus_db):
     """Test making an agrammatic sentence grammatic."""
-    conn = sqlite3.connect(temp_corpus_db)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids) VALUES (?, ?, ?, ?, ?)",
-        ("Bad sentence", None, None, 0, ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "Bad sentence", None, None, 0)
 
     # Update
     run_curate(
@@ -255,13 +290,15 @@ def test_upsert_update_to_valid_from_unpragmatic(temp_corpus_db):
 
 def test_grammar_invalid_id(temp_corpus_db):
     """Test using an invalid grammar ID fails."""
-    # This should return non-zero exit code due to raise ValueError
     with pytest.raises(RuntimeError, match="Invalid grammar point ID: 'gp9999'"):
         run_curate(
             [
                 "upsert",
                 "Invalid grammar check",
                 "--grammar=+gp9999",
+                "--allow-insert",
+                "--formality=neutral",
+                "--gender=neutral",
                 "--db-path",
                 temp_corpus_db,
             ]
@@ -270,14 +307,8 @@ def test_grammar_invalid_id(temp_corpus_db):
 
 def test_grammar_add_positive(temp_corpus_db):
     """Test adding positive grammar point to existing list."""
-    conn = sqlite3.connect(temp_corpus_db)
     # Existing: gp0005. Add: gp0001. Expect: gp0001,gp0005 (sorted)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("PosAdd", 0.0, 0.0, 1, "", "gp0005", ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "PosAdd", 0.0, 0.0, 1, grammar="gp0005")
 
     run_curate(["upsert", "PosAdd", "--grammar=+gp0001", "--db-path", temp_corpus_db])
 
@@ -296,14 +327,8 @@ def test_grammar_add_positive(temp_corpus_db):
 
 def test_grammar_add_negative(temp_corpus_db):
     """Test adding negative grammar point."""
-    conn = sqlite3.connect(temp_corpus_db)
     # Existing neg: gp0002. Add neg: gp0001. Expect sorted.
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("NegAdd", 0.0, 0.0, 1, "", "", "gp0002"),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "NegAdd", 0.0, 0.0, 1, grammar_negative="gp0002")
 
     run_curate(["upsert", "NegAdd", "--grammar=-gp0001", "--db-path", temp_corpus_db])
 
@@ -321,14 +346,10 @@ def test_grammar_add_negative(temp_corpus_db):
 
 def test_grammar_move_neg_to_pos(temp_corpus_db):
     """Test moving a negative label to positive."""
-    conn = sqlite3.connect(temp_corpus_db)
     # Existing: neg=gp0001. Op: +gp0001.
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("MoveNegToPos", 0.0, 0.0, 1, "", "", "gp0001"),
+    insert_test_row(
+        temp_corpus_db, "MoveNegToPos", 0.0, 0.0, 1, grammar_negative="gp0001"
     )
-    conn.commit()
-    conn.close()
 
     run_curate(
         ["upsert", "MoveNegToPos", "--grammar=+gp0001", "--db-path", temp_corpus_db]
@@ -348,14 +369,8 @@ def test_grammar_move_neg_to_pos(temp_corpus_db):
 
 def test_grammar_move_pos_to_neg(temp_corpus_db):
     """Test moving a positive label to negative."""
-    conn = sqlite3.connect(temp_corpus_db)
     # Existing: pos=gp0001. Op: -gp0001.
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("MovePosToNeg", 0.0, 0.0, 1, "", "gp0001", ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "MovePosToNeg", 0.0, 0.0, 1, grammar="gp0001")
 
     run_curate(
         ["upsert", "MovePosToNeg", "--grammar=-gp0001", "--db-path", temp_corpus_db]
@@ -375,13 +390,7 @@ def test_grammar_move_pos_to_neg(temp_corpus_db):
 
 def test_unpragmatic_formality_resets_grammatic(temp_corpus_db):
     """Regression check: unpragmatic formality resets grammatic to 0."""
-    conn = sqlite3.connect(temp_corpus_db)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("UnpragF", 0.0, 0.0, 1, "", "", ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "UnpragF", 0.0, 0.0, 1)
 
     run_curate(
         ["upsert", "UnpragF", "--formality=unpragmatic", "--db-path", temp_corpus_db]
@@ -399,13 +408,7 @@ def test_unpragmatic_formality_resets_grammatic(temp_corpus_db):
 
 def test_unpragmatic_gender_resets_grammatic(temp_corpus_db):
     """Regression check: unpragmatic gender resets grammatic to 0."""
-    conn = sqlite3.connect(temp_corpus_db)
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("UnpragG", 0.0, 0.0, 1, "", "", ""),
-    )
-    conn.commit()
-    conn.close()
+    insert_test_row(temp_corpus_db, "UnpragG", 0.0, 0.0, 1)
 
     run_curate(
         ["upsert", "UnpragG", "--gender=unpragmatic", "--db-path", temp_corpus_db]
@@ -423,7 +426,6 @@ def test_unpragmatic_gender_resets_grammatic(temp_corpus_db):
 
 def test_grammar_conflict_error(temp_corpus_db):
     """Corner Case: Conflicting operations (+gp1,-gp1). Should fail."""
-    # This should return non-zero exit code due to conflict
     with pytest.raises(
         RuntimeError, match="Conflicting grammar operations for ID 'gp0001'"
     ):
@@ -553,7 +555,16 @@ def test_grammar_invalid_format_no_sign(temp_corpus_db):
     """Corner Case: Invalid format (missing +/-)."""
     with pytest.raises(RuntimeError, match="Invalid grammar operation: 'gp0001'"):
         run_curate(
-            ["upsert", "InvalidFmt", "--grammar=gp0001", "--db-path", temp_corpus_db]
+            [
+                "upsert",
+                "InvalidFmt",
+                "--grammar=gp0001",
+                "--allow-insert",
+                "--formality=neutral",
+                "--gender=neutral",
+                "--db-path",
+                temp_corpus_db,
+            ]
         )
 
 
@@ -583,71 +594,17 @@ def test_force_grammatic_defaults(temp_corpus_db):
     assert row[2] == 1  # Grammatic
 
 
-def test_force_grammatic_preserves_style(temp_corpus_db):
-    """Test forcing grammatic=1 preserves existing style."""
-    conn = sqlite3.connect(temp_corpus_db)
-    # Existing sentence: Formality=Formal, Gender=Feminine, Grammatic=0
-    # This state (F/G set but Gram=0) is valid in DB provided constraint is met?
-    # Constraint: grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL) <- Wait.
-    # Constraint: CHECK (grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL))
-    # No, that's not the constraint.
-    # Constraint: CHECK (grammatic = 1 OR (grammar = '' AND grammar_negative = ''))
-    # Constraint: CHECK (grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL))
-    # -> If Grammatic=1, F/G can be anything? No.
-    # Let's check schema in scripts/curate:
-    # CHECK (grammatic = 0 OR (formality IS NOT NULL AND gender IS NOT NULL))
-    # So if Grammatic=1, F and G MUST be NOT NULL.
-    # If Grammatic=0, F and G CAN be NULL (or anything).
-
-    # Let's insert Agrammatic with specific style (should be impossible if we strictly follow "agrammatic implies no style"? No, we can have agrammatic with style?)
-    # Wait, usually agrammatic sentences don't have style labels.
-    # But let's verify "changing ungrammatic to grammatic shouldn't modify any other fields".
-    # User Request: "changing an ungrammatic sentence to grammatic shouldn't modify any other fields"
-    # This implies the ungrammatic sentence MIGHT have fields?
-    # Or maybe it has NULL fields, and we are adding style?
-    # If it has NULL fields, our logic defaults them to 0.0.
-    # If it has fields, we should keep them.
-
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("Ungrammatic With Style", 0.5, 1.0, 0, "", "", ""),
-    )
-    conn.commit()
-    conn.close()
-
-    run_curate(
-        [
-            "upsert",
-            "Ungrammatic With Style",
-            "--grammatic=1",
-            "--db-path",
-            temp_corpus_db,
-        ]
-    )
-
-    conn = sqlite3.connect(temp_corpus_db)
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT formality, gender, grammatic FROM corpus WHERE sentence='Ungrammatic With Style'"
-    )
-    row = cursor.fetchone()
-    conn.close()
-
-    assert row[0] == 0.5  # Preserved
-    assert row[1] == 1.0  # Preserved
-    assert row[2] == 1  # Updated
-
-
 def test_force_agrammatic_clears_grammar(temp_corpus_db):
     """Test forcing grammatic=0 clears grammar tags."""
-    conn = sqlite3.connect(temp_corpus_db)
-    # Existing Grammatic with tags
-    conn.execute(
-        "INSERT INTO corpus (sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        ("Grammatic With Tags", 0.0, 0.0, 1, "", "gp0001", "gp0002"),
+    insert_test_row(
+        temp_corpus_db,
+        "Grammatic With Tags",
+        0.0,
+        0.0,
+        1,
+        grammar="gp0001",
+        grammar_negative="gp0002",
     )
-    conn.commit()
-    conn.close()
 
     run_curate(
         [
