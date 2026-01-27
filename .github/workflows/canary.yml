@@ -16,6 +16,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        lfs: true
+        fetch-depth: 1
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -34,6 +37,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        lfs: true
+        fetch-depth: 1
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
