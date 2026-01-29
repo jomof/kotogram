@@ -39,6 +39,7 @@ if os.path.exists("kotogram"):
 
 from kotogram.model import ModelConfig, PositionalEncoding
 from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
+from scripts.curate_upsert_sentence import curate_upsert_batch
 from scripts.progress_utils import create_progress
 from train.dataset import StyleDataset
 from train.paths import get_style_dataset_cache_dir
@@ -355,9 +356,10 @@ class EarlyStopper:
         self.decay_factor = decay_factor
         self.counter = 0
         self.best_loss = float("inf")
+        self.prev_loss = float("inf")
 
     def check(
-        self, current_loss: float, current_batch_size: int
+        self, current_loss: float, current_batch_size: int, is_best: bool = True
     ) -> Tuple[bool, Optional[int]]:
         """Check if training should stop or batch size should change.
 
@@ -367,11 +369,27 @@ class EarlyStopper:
         if current_loss < self.best_loss - self.min_delta:
             self.best_loss = current_loss
             self.counter = 0
+            self.prev_loss = current_loss
             return False, None
 
         self.counter += 1
         if self.counter >= self.patience:
             return True, None
+
+        # Check for local improvement (even if not global best)
+        # If we are improving locally, don't switch batch size yet
+        if current_loss < self.prev_loss:
+            self.prev_loss = current_loss
+
+            msg = f"      Loss plateaued ({self.counter}/{self.patience})."
+            if not is_best:
+                console.print(f"[dim]{msg}[/dim]")
+            else:
+                console.print(f"[dim]{msg}[/dim]")  # Always dim this minor warning
+            return False, None
+
+        # Loss regressed or stagnated locally AND globally -> Switch batch size
+        self.prev_loss = current_loss
 
         # Random power of 2 between 16 and 1024
         # Ensure we actually pick a different batch size
@@ -381,9 +399,11 @@ class EarlyStopper:
             if new_batch_size != current_batch_size:
                 break
 
-        console.print(
-            f"      [yellow]Loss plateaued ({self.counter}/{self.patience}). Changing batch size from {current_batch_size} to {new_batch_size}[/yellow]"
-        )
+        msg = f"      Loss plateaued ({self.counter}/{self.patience}). Changing batch size from {current_batch_size} to {new_batch_size}"
+        if not is_best:
+            console.print(f"[dim]{msg}[/dim]")
+        else:
+            console.print(f"[yellow]{msg}[/yellow]")
         return False, new_batch_size
 
 
@@ -452,6 +472,56 @@ def focal_loss(
 
     loss = alpha_t * focal_weight * ce_loss
     return cast(torch.Tensor, loss.mean())
+
+
+def compute_accuracy_stats(
+    model: GrammarClassifier,
+    loader: DataLoader,
+    device: torch.device,
+    grammar_labels: List[str],
+) -> List[Tuple[int, int, int, int]]:
+    """Compute accuracy statistics for each GP.
+
+    Returns:
+        List of tuples: (learned_pos, total_pos, learned_neg, total_neg) for each GP
+    """
+    model.eval()
+    num_gps = len(grammar_labels)
+
+    stats = []  # List of [learned_pos, total_pos, learned_neg, total_neg]
+    for _ in range(num_gps):
+        stats.append([0, 0, 0, 0])
+
+    with torch.no_grad():
+        for batch in loader:
+            field_inputs = {k: v.to(device) for k, v in batch["field_inputs"].items()}
+            attention_mask = batch["attention_mask"].to(device)
+            labels = batch["labels"].to(device)  # [B, Num_GPs]
+
+            # Forward
+            logits = model(field_inputs, attention_mask)  # [B, Num_GPs, 2]
+            preds = torch.argmax(logits, dim=-1)  # [B, Num_GPs]
+
+            # Loop over GPs
+            for i in range(num_gps):
+                gp_labels = labels[:, i]
+                gp_preds = preds[:, i]
+
+                # Stats
+                true_pos_mask = gp_labels == 1
+                true_neg_mask = gp_labels == 0
+
+                stats[i][1] += true_pos_mask.sum().item()  # total_pos
+                stats[i][3] += true_neg_mask.sum().item()  # total_neg
+
+                stats[i][0] += int(
+                    (gp_preds[true_pos_mask] == 1).sum().item()
+                )  # learned_pos
+                stats[i][2] += int(
+                    (gp_preds[true_neg_mask] == 0).sum().item()
+                )  # learned_neg
+
+    return [cast(Tuple[int, int, int, int], tuple(s)) for s in stats]
 
 
 def write_unlearned_samples(
@@ -584,6 +654,33 @@ def train_pnu_model(  # pylint: disable=unused-argument
     num_gps = len(grammar_labels)
     model = GrammarClassifier(config, num_classes=num_gps)
     model = model.to(device)
+
+    # Check for existing model to resume/fine-tune
+    model_path = os.path.join(base_output_dir, "model.pt")
+    if os.path.exists(model_path):
+        console.print(
+            f"[green]Resuming/Fine-tuning from existing model: {model_path}[/green]"
+        )
+        checkpoint_state = torch.load(model_path, map_location=device)
+
+        # Check for vocabulary mismatches
+        vocab_mismatch = False
+        for key, param in model.named_parameters():
+            if key in checkpoint_state:
+                if checkpoint_state[key].shape != param.shape:
+                    console.print(
+                        f"[yellow]Shape mismatch for {key}: "
+                        f"Checkpoint {checkpoint_state[key].shape} != Model {param.shape}[/yellow]"
+                    )
+                    vocab_mismatch = True
+                    break
+
+        if vocab_mismatch:
+            console.print(
+                "[yellow]Vocabulary size mismatch detected. Starting with a fresh model.[/yellow]"
+            )
+        else:
+            model.load_state_dict(checkpoint_state)
 
     # Enable automatic mixed precision for fp16 (not on MPS due to float64 limitation)
     use_amp = device.type == "cuda"
@@ -776,41 +873,115 @@ def train_pnu_model(  # pylint: disable=unused-argument
         console.print(f"  Total Unlabeled samples: {len(unlabeled_indices):,}")
 
     # Create DataLoader for labeled data
-    labeled_dataset = Subset(dataset, labeled_indices)
-    labeled_loader = DataLoader(
-        labeled_dataset,
+    # Create DataLoader for labeled data
+    # Split Labeled Data into Train (75%) and Validation (25%)
+    random.shuffle(labeled_indices)
+    split_idx = int(len(labeled_indices) * 0.75)
+    train_labeled_indices = labeled_indices[:split_idx]
+    val_labeled_indices = labeled_indices[split_idx:]
+
+    # Ensure at least some validation data if possible
+    if len(val_labeled_indices) == 0 and len(labeled_indices) > 1:
+        val_labeled_indices = [labeled_indices[-1]]
+        train_labeled_indices = labeled_indices[:-1]
+
+    console.print(
+        f"  Labeled Split: {len(train_labeled_indices)} Train, {len(val_labeled_indices)} Validation"
+    )
+
+    train_labeled_dataset = Subset(dataset, train_labeled_indices)
+    train_labeled_loader = DataLoader(
+        train_labeled_dataset,
         batch_size=512,  # Use large batch size for Phase 1 warmup
         shuffle=True,
         collate_fn=collate_grammar_batch,
         num_workers=0,  # Avoid multiprocessing issues with MPS
     )
 
+    val_labeled_dataset = Subset(dataset, val_labeled_indices)
+    val_labeled_loader = DataLoader(
+        val_labeled_dataset,
+        batch_size=512,
+        shuffle=False,
+        collate_fn=collate_grammar_batch,
+        num_workers=0,
+    )
+
+    # For reporting unlearned samples, we still want to check the FULL labeled set
+    # to show overall progress on satisfying constraints.
+    full_labeled_dataset = Subset(dataset, labeled_indices)
+    full_labeled_loader = DataLoader(
+        full_labeled_dataset,
+        batch_size=512,
+        shuffle=False,
+        collate_fn=collate_grammar_batch,
+        num_workers=0,
+    )
+
     # Optimizer
     optimizer = AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
 
     # Learning rate scheduler
-    total_steps = num_epochs_warmup * len(labeled_loader) + num_epochs_pnu * len(
-        labeled_loader
+    total_steps = num_epochs_warmup * len(train_labeled_loader) + num_epochs_pnu * len(
+        train_labeled_loader
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, total_steps)
 
     # Statistics tracking
     sample_stats: Dict[int, SampleLossStats] = {}
 
+    # Helper to compute validation loss
+    def compute_val_loss(loader: DataLoader) -> float:
+        model.eval()
+        val_loss_sum = 0.0
+        val_batches = 0
+        with torch.no_grad():
+            for batch in loader:
+                field_inputs = {
+                    k: v.to(device) for k, v in batch["field_inputs"].items()
+                }
+                attention_mask = batch["attention_mask"].to(device)
+                labels = batch["labels"].to(device)
+
+                logits = model(field_inputs, attention_mask)
+                loss = torch.tensor(0.0, device=device)
+
+                for i in range(num_gps):
+                    gp_logits = logits[:, i, :]
+                    gp_targets = labels[:, i]
+                    valid_mask = gp_targets >= 0
+                    if valid_mask.any():
+                        # Use simple CrossEntropy for validation metric?
+                        # Or consistent Focal Loss? Let's use Focal Loss for consistency.
+                        valid_logits = gp_logits[valid_mask]
+                        valid_targets = gp_targets[valid_mask]
+                        gp_loss = focal_loss(
+                            valid_logits,
+                            valid_targets,
+                            alpha=pos_weights[i] / (1 + pos_weights[i]),
+                            gamma=2.0,
+                        )
+                        loss = loss + gp_loss
+
+                val_loss_sum += loss.item()
+                val_batches += 1
+        model.train()
+        return val_loss_sum / max(val_batches, 1)
+
     # ========== Phase 1: Warmup on Labeled Data ==========
     console.print(
-        f"\n[bold cyan]Warmup Training on Labeled Data (in {len(labeled_loader)} batches of {labeled_loader.batch_size})[/bold cyan]"
+        f"\n[bold cyan]Warmup Training on Labeled Data (in {len(train_labeled_loader)} batches of {train_labeled_loader.batch_size})[/bold cyan]"
     )
 
     model.train()
     with create_progress(console) as progress:
         task = progress.add_task(
-            "[cyan]Training...", total=num_epochs_warmup * len(labeled_loader)
+            "[cyan]Training...", total=num_epochs_warmup * len(train_labeled_loader)
         )
 
         for epoch in range(num_epochs_warmup):
             epoch_loss = 0.0
-            for batch in labeled_loader:
+            for batch in train_labeled_loader:
                 # Move to device
                 field_inputs = {
                     k: v.to(device) for k, v in batch["field_inputs"].items()
@@ -866,8 +1037,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
                     description=f"[cyan]Epoch {epoch + 1}/{num_epochs_warmup} Loss: {loss.item():.6f}",
                 )
 
-            avg_loss = epoch_loss / len(labeled_loader)
-            console.print(f"  Epoch {epoch + 1}: Avg Loss = {avg_loss:.6f}")
+            avg_loss = epoch_loss / len(train_labeled_loader)
+            val_loss = compute_val_loss(val_labeled_loader)
+            console.print(
+                f"  Epoch {epoch + 1}: Train Loss = {avg_loss:.6f} | Val Loss = {val_loss:.6f}"
+            )
 
     # ========== Phase 2: PNU Training ==========
     console.print(
@@ -875,13 +1049,18 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     # Sample unlabeled data
-    unlabeled_sample_size = min(len(unlabeled_indices), len(labeled_indices) * 10)
+    unlabeled_sample_size = min(len(unlabeled_indices), len(train_labeled_indices) * 10)
+    if unlabeled_sample_size == 0 and len(unlabeled_indices) > 0:
+        unlabeled_sample_size = min(
+            len(unlabeled_indices), 100
+        )  # minimal random sample if labeled is huge? No, if train labeled is tiny.
+
     sampled_unlabeled = torch.randperm(len(unlabeled_indices))[
         :unlabeled_sample_size
     ].tolist()
     sampled_unlabeled_indices = [unlabeled_indices[i] for i in sampled_unlabeled]
 
-    combined_indices = labeled_indices + sampled_unlabeled_indices
+    combined_indices = train_labeled_indices + sampled_unlabeled_indices
     combined_dataset = Subset(dataset, combined_indices)
     combined_loader = DataLoader(
         combined_dataset,
@@ -892,14 +1071,14 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     console.print(
-        f"  Training on {len(combined_indices):,} samples ({len(labeled_indices):,} labeled + {len(sampled_unlabeled_indices):,} unlabeled)"
+        f"  Training on {len(combined_indices):,} samples ({len(train_labeled_indices):,} labeled + {len(sampled_unlabeled_indices):,} unlabeled)"
     )
 
     # Initialize early stopper for Phase 2
     stopper = EarlyStopper(patience=8, min_delta=0.000001, decay_factor=0.85)
 
     # Track best model
-    best_phase2_loss = float("inf")
+    best_phase2_loss = float("inf")  # This will now track VAL loss
     best_phase2_epoch = -1
     best_model_state = None
 
@@ -995,30 +1174,43 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 )
 
             avg_loss = epoch_loss / len(combined_loader)
-            # Write unlearned samples every epoch & get eval stats
-            eval_stats_per_gp = write_unlearned_samples(
-                model,
-                labeled_loader,
-                device,
-                base_output_dir,
-                grammar_labels,
-                verbose=False,  # Don't spam console every epoch
+            val_loss = compute_val_loss(val_labeled_loader)
+
+            # Write unlearned samples logic moved to end of loop (conditional on is_best_epoch)
+
+            # Compute stats for reporting
+            all_stats_per_gp = compute_accuracy_stats(
+                model, full_labeled_loader, device, grammar_labels
             )
-            console.print(
-                f"  Epoch {epoch + 1} (in {len(combined_loader)} batches of {combined_loader.batch_size}): Avg Loss = {avg_loss:.6f}"
+            val_stats_per_gp = compute_accuracy_stats(
+                model, val_labeled_loader, device, grammar_labels
             )
 
+            # Determine if this is the best epoch so far
+            is_best_epoch = val_loss < best_phase2_loss
+
+            # Print Epoch Header (Always Bright)
+            header_text = f"  Epoch {epoch + 1} (in {len(combined_loader)} batches of {combined_loader.batch_size}): Train Loss = {avg_loss:.6f} | Val Loss = {val_loss:.6f}"
+            console.print(header_text)
+
+            def _d(text: str, is_best: bool = is_best_epoch) -> str:
+                return f"[dim]{text}[/dim]" if not is_best else text
+
             # Create table for epoch stats
+            # Use dim style for table headers if not best epoch
+            header_style = "purple" if is_best_epoch else "dim"
+
             table = Table(box=None, show_header=True, pad_edge=False, padding=(0, 0))
-            table.add_column("", style="cyan", header_style="purple")
+            table.add_column("", style="cyan", header_style=header_style)
+            table.add_column("", style="dim", header_style=header_style)
             table.add_column("", width=2)
-            table.add_column("positive", justify="right", header_style="purple")
+            table.add_column("positive", justify="right", header_style=header_style)
             table.add_column("", justify="left")
             table.add_column("", width=2)
-            table.add_column("negative", justify="right", header_style="purple")
+            table.add_column("negative", justify="right", header_style=header_style)
             table.add_column("", justify="left")
             table.add_column("", width=2)
-            table.add_column("total", justify="right", header_style="purple")
+            table.add_column("total", justify="right", header_style=header_style)
             table.add_column("", justify="left")
 
             def _fmt(num: int, denom: int) -> Tuple[str, str]:
@@ -1031,11 +1223,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 # Add leading space to percentage for separation when padding=0
                 return (f"{num} of {denom}", f" ([{color}]{pct:.0f}%[/{color}])")
 
-            # Collect stats for sorting
+            # Collect stats for sorting (using ALL stats for sorting order)
             stats_rows = []
-            for i, eval_stat in enumerate(eval_stats_per_gp):
-                learned_pos, total_pos, learned_neg, total_neg = eval_stat
-
+            for i in range(num_gps):
+                # Process ALL stats
+                learned_pos, total_pos, learned_neg, total_neg = all_stats_per_gp[i]
                 learned_total = learned_pos + learned_neg
                 denom_total = total_pos + total_neg
                 accuracy = learned_total / denom_total if denom_total > 0 else 0.0
@@ -1044,19 +1236,49 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 n_cnt, n_pct = _fmt(learned_neg, total_neg)
                 t_cnt, t_pct = _fmt(learned_total, denom_total)
 
-                row = [
-                    grammar_labels[i],
+                # Apply dimming to ALL row content
+                row_all = [
+                    "",  # Indented/Empty GP name for second row
+                    " [dim]all[/dim]",
                     "",
-                    p_cnt,
-                    p_pct,
+                    f"[dim]{p_cnt}[/dim]",
+                    f"[dim]{p_pct}[/dim]",
                     "",
-                    n_cnt,
-                    n_pct,
+                    f"[dim]{n_cnt}[/dim]",
+                    f"[dim]{n_pct}[/dim]",
                     "",
-                    t_cnt,
-                    t_pct,
+                    f"[dim]{t_cnt}[/dim]",
+                    f"[dim]{t_pct}[/dim]",
                 ]
-                stats_rows.append((accuracy, row, total_pos, total_neg))
+
+                # Process VAL stats
+                v_learned_pos, v_total_pos, v_learned_neg, v_total_neg = (
+                    val_stats_per_gp[i]
+                )
+                v_learned_total = v_learned_pos + v_learned_neg
+                v_denom_total = v_total_pos + v_total_neg
+
+                vp_cnt, vp_pct = _fmt(v_learned_pos, v_total_pos)
+                vn_cnt, vn_pct = _fmt(v_learned_neg, v_total_neg)
+                vt_cnt, vt_pct = _fmt(v_learned_total, v_denom_total)
+
+                # Apply conditional dimming to VAL row content
+                row_val = [
+                    _d(grammar_labels[i]),
+                    _d(" val"),
+                    "",
+                    _d(vp_cnt),
+                    _d(vp_pct),
+                    "",
+                    _d(vn_cnt),
+                    _d(vn_pct),
+                    "",
+                    _d(vt_cnt),
+                    _d(vt_pct),
+                ]
+
+                # Store as tuple: (accuracy_all, row_all, row_val, total_pos_all, total_neg_all)
+                stats_rows.append((accuracy, row_all, row_val, total_pos, total_neg))
 
             # Sort by accuracy (descending)
             stats_rows.sort(key=lambda x: x[0], reverse=True)
@@ -1064,13 +1286,12 @@ def train_pnu_model(  # pylint: disable=unused-argument
             n_head = 2
             n_tail = 2
 
-            # Filter out 100% satisfied
-            # Use raw stats from tuple: (acc, row, tp, tn)
+            # Filter out 100% satisfied (based on ALL stats)
             satisfied_rows = [
-                x for x in stats_rows if x[0] >= 0.9999 and x[2] > 0 and x[3] > 0
+                x for x in stats_rows if x[0] >= 0.9999 and x[3] > 0 and x[4] > 0
             ]
             active_rows = [
-                x for x in stats_rows if not (x[0] >= 0.9999 and x[2] > 0 and x[3] > 0)
+                x for x in stats_rows if not (x[0] >= 0.9999 and x[3] > 0 and x[4] > 0)
             ]
 
             # Sort active by accuracy (descending)
@@ -1082,18 +1303,21 @@ def train_pnu_model(  # pylint: disable=unused-argument
             # Re-construct display iteration to handle middle insertion
             if len(active_rows) <= (n_head + n_tail):
                 for item in active_rows:
-                    table.add_row(*item[1])
+                    table.add_row(*item[2])  # Add Val row FIRST
+                    table.add_row(*item[1])  # Add All row SECOND
             else:
                 # Head
                 for i in range(n_head):
+                    table.add_row(*active_rows[i][2])
                     table.add_row(*active_rows[i][1])
 
                 # Middle
                 remaining = len(active_rows) - n_head - n_tail
-                table.add_row(f"[dim][{remaining} omitted][/dim]", *[""] * 9)
+                table.add_row(f"[dim][{remaining} omitted][/dim]", *[""] * 10)
 
                 # Tail
                 for i in range(len(active_rows) - n_tail, len(active_rows)):
+                    table.add_row(*active_rows[i][2])
                     table.add_row(*active_rows[i][1])
 
             console.print(Padding(table, (0, 0, 0, 6)))
@@ -1109,30 +1333,34 @@ def train_pnu_model(  # pylint: disable=unused-argument
             # Switch back to train mode
             model.train()
 
-            # Save best model
-            if avg_loss < best_phase2_loss:
-                best_phase2_loss = avg_loss
+            # Save best model based on VAL loss
+            if val_loss < best_phase2_loss:  # <--- Changed from avg_loss
+                best_phase2_loss = val_loss
                 best_phase2_epoch = epoch + 1
                 best_model_state = copy.deepcopy(model.state_dict())
 
-            # Check for perfect learning (using Eval stats)
+                # Checkpoint immediately
+                torch.save(model.state_dict(), model_path)
+                console.print(f"      Checkpoint saved to {model_path}")
+
+            # Check for perfect learning (using Eval stats on FULL set)
             # If all hard labels are correct and loss is very low, stop early
             all_perfect = True
-            for eval_stat in eval_stats_per_gp:
+            for eval_stat in all_stats_per_gp:
                 lp, tp, ln, tn = eval_stat
                 if lp != tp or ln != tn:
                     all_perfect = False
                     break
 
-            if all_perfect and avg_loss < 0.0001:
+            if all_perfect and val_loss < 0.0001:  # <--- Changed from avg_loss
                 console.print(
-                    "  [green]Perfect learning achieved (Loss < 0.0001)! Stopping Phase 2 early.[/green]"
+                    "  [green]Perfect learning achieved (Val Loss < 0.0001)! Stopping Phase 2 early.[/green]"
                 )
                 break
 
-            # Check early stopping
+            # Check early stopping based on VAL loss
             should_stop, new_batch_size = stopper.check(
-                avg_loss, cast(int, combined_loader.batch_size)
+                val_loss, cast(int, combined_loader.batch_size), is_best=is_best_epoch
             )
             if should_stop:
                 console.print(
@@ -1150,8 +1378,16 @@ def train_pnu_model(  # pylint: disable=unused-argument
                     num_workers=0,
                 )
 
-            if not all_perfect:
-                console.print("      [dim]Writing Unlearned Samples...[/dim]")
+            if not all_perfect and is_best_epoch:
+                console.print("      Writing Unlearned Samples...")
+                write_unlearned_samples(
+                    model,
+                    full_labeled_loader,
+                    device,
+                    base_output_dir,
+                    grammar_labels,
+                    verbose=False,
+                )
 
     # Restore best model
     if best_model_state is not None:
@@ -1163,7 +1399,12 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # Analyze unlearned samples (Misclassified Labeled Data)
     # Header printed inside function if needed
     write_unlearned_samples(
-        model, labeled_loader, device, base_output_dir, grammar_labels, verbose=False
+        model,
+        full_labeled_loader,
+        device,
+        base_output_dir,
+        grammar_labels,
+        verbose=False,
     )
 
     # Full Pos Scan (Requested to run after Phase 2)
@@ -1542,6 +1783,7 @@ def find_high_certainty_positives(
     candidate_indices: Optional[List[int]] = None,
     quick_mode: bool = False,
 ) -> None:
+    # pylint: disable=unused-argument
     """Find high-certainty positive candidates and report stats for each GP."""
     num_gps = len(grammar_labels)
     # If candidate indices provided (e.g. from filtered scan), use them
@@ -1576,8 +1818,15 @@ def find_high_certainty_positives(
     probs_all: List[List[float]] = [[] for _ in range(num_gps)]
     probs_unlabeled: List[List[float]] = [[] for _ in range(num_gps)]
 
+    # Loss accumulation
+    gp_losses: List[float] = [0.0] * num_gps
+    gp_counts: List[int] = [0] * num_gps
+
     # Store candidates as (score, sentence) tuples
     high_certainty_candidates_unlabeled: List[List[Tuple[float, str]]] = [
+        [] for _ in range(num_gps)
+    ]
+    high_certainty_candidates_negatives_unlabeled: List[List[Tuple[float, str]]] = [
         [] for _ in range(num_gps)
     ]
 
@@ -1608,6 +1857,22 @@ def find_high_certainty_positives(
                         unlabeled_probs = pos_probs[is_unlabeled]
                         probs_unlabeled[i].extend(unlabeled_probs.cpu().tolist())
 
+                    # Calculate Loss (Treat Unlabeled as Negative)
+                    # Target is 1 if Label=1, else 0 (for Label=0 and Label=-1)
+                    targets = torch.zeros_like(pos_probs)
+                    targets[gp_labels == 1] = 1.0
+
+                    # Binary Cross Entropy
+                    # We can use F.binary_cross_entropy on probs
+                    # clamp to avoid log(0)
+                    clamped_probs = torch.clamp(pos_probs, 1e-7, 1.0 - 1e-7)
+                    batch_loss = F.binary_cross_entropy(
+                        clamped_probs, targets.to(device), reduction="sum"
+                    )
+
+                    gp_losses[i] += batch_loss.item()
+                    gp_counts[i] += len(pos_probs)
+
                     pred_pos_mask = pos_probs > 0.5
                     candidate_mask = is_unlabeled & pred_pos_mask.cpu()
 
@@ -1617,6 +1882,18 @@ def find_high_certainty_positives(
                             sentence = sentences[idx]
                             score = pos_probs[idx].item()
                             high_certainty_candidates_unlabeled[i].append(
+                                (score, sentence)
+                            )
+
+                    pred_neg_mask = pos_probs < 0.5
+                    candidate_neg_mask = is_unlabeled & pred_neg_mask.cpu()
+
+                    if candidate_neg_mask.any():
+                        idxs = torch.nonzero(candidate_neg_mask).squeeze(1)
+                        for idx in idxs:
+                            sentence = sentences[idx]
+                            score = pos_probs[idx].item()
+                            high_certainty_candidates_negatives_unlabeled[i].append(
                                 (score, sentence)
                             )
 
@@ -1699,6 +1976,8 @@ def find_high_certainty_positives(
         pad_edge=False,
     )
     table.add_column("", style="cyan", header_style="purple")
+    # New Column: Loss
+    table.add_column("loss", justify="right", header_style="purple")
     table.add_column("subset", header_style="purple")
     table.add_column("n", justify="right", header_style="purple")
     table.add_column("prior", justify="right", header_style="purple")
@@ -1710,62 +1989,48 @@ def find_high_certainty_positives(
     table.add_column("p99", justify="left", header_style="purple")
 
     # Process each GP
-    gp_stats_list = []  # (gp, conf, row_all, row_unl)
-    prior_updates = []
+    gp_stats_list = []  # (gp, avg_loss, conf, row_all, row_unl)
 
     for i, gp in enumerate(grammar_labels):
         output_dir = os.path.join(base_output_dir, gp)
         os.makedirs(output_dir, exist_ok=True)
 
+        # Calculate avg loss
+        avg_loss = gp_losses[i] / max(gp_counts[i], 1)
+
         # Add stats rows to table
         row_all, conf_all = compute_stats("all", probs_all[i])
         row_unl, _ = compute_stats("unlabeled", probs_unlabeled[i])
 
-        gp_stats_list.append((gp, conf_all, row_all, row_unl))
+        gp_stats_list.append((gp, avg_loss, conf_all, row_all, row_unl))
 
-        # Write top 400
+        # Write top 100 positives
         candidates = high_certainty_candidates_unlabeled[i]
         candidates.sort(key=lambda x: x[0], reverse=True)
 
         hc_file = os.path.join(output_dir, "high-certainty-positives.txt")
         with open(hc_file, "w", encoding="utf-8") as f:
             f.write(f"# High Certainty Positives for {gp} (Unlabeled Only)\n")
+            f.write("# Format: Prob | Sentence\n")
             f.write("-" * 70 + "\n")
-            for score, sentence in candidates[:400]:
+            for score, sentence in candidates[:100]:
                 f.write(f"{score:.4f} | {sentence}\n")
 
-        # Update Database Prior (Only in full production mode)
-        if not test_mode and not quick_mode:
-            t_all = torch.tensor(probs_all[i])
-            est_pos_all = (t_all > 0.5).sum().item()
-            # Compute prior_all here...
-            if len(t_all) > 0:
-                prior_all = est_pos_all / len(t_all)
-            else:
-                prior_all = 0.0
+        # Write top 100 negatives
+        candidates_neg = high_certainty_candidates_negatives_unlabeled[i]
+        # Sort ascending by probability (lowest first)
+        candidates_neg.sort(key=lambda x: x[0])
 
-            db_path = os.path.join(
-                os.path.dirname(base_output_dir), "..", "..", "data", "corpus.db"
-            )
-            conn = sqlite3.connect(db_path)
-            cursor = conn.cursor()
-            cursor.execute(
-                "UPDATE grammar SET prior = ? WHERE id = ?",
-                (prior_all, gp),
-            )
-            conn.commit()
-            if cursor.rowcount > 0:
-                prior_updates.append(
-                    f"  [green]✓[/green] [dim]Updated prior for {gp} to {prior_all:.6f}[/dim]"
-                )
-            else:
-                prior_updates.append(
-                    f"  [red]Error: Grammar ID {gp} not found in database.[/red]"
-                )
-            conn.close()
+        hc_neg_file = os.path.join(output_dir, "high-certainty-negatives.txt")
+        with open(hc_neg_file, "w", encoding="utf-8") as f:
+            f.write(f"# High Certainty Negatives for {gp} (Unlabeled Only)\n")
+            f.write("# Format: Prob | Sentence\n")
+            f.write("-" * 70 + "\n")
+            for score, sentence in candidates_neg[:100]:
+                f.write(f"{score:.4f} | {sentence}\n")
 
-    # Sort by confidence (descending)
-    gp_stats_list.sort(key=lambda x: x[1], reverse=True)
+    # Sort by Loss (Ascending) as requested
+    gp_stats_list.sort(key=lambda x: x[1])
 
     n_head = 2
     n_tail = 2
@@ -1778,20 +2043,28 @@ def find_high_certainty_positives(
         display_items = gp_stats_list[:n_head] + gp_stats_list[-n_tail:]
         show_ellipsis = True
 
-    for i, (gp, _, row_all, row_unl) in enumerate(display_items):
+    for i, (gp, avg_loss, _, row_all, row_unl) in enumerate(display_items):
         if show_ellipsis and i == n_head:
             remaining = len(gp_stats_list) - n_head - n_tail
             table.add_row(
-                f"[dim][{remaining} omitted][/dim]", *[""] * (len(row_all) - 1)
+                f"[dim][{remaining} omitted][/dim]", *[""] * (len(row_all) + 1 - 1)
             )
 
-        table.add_row(gp, *row_all)
-        table.add_row("", *row_unl, style="dim")
+        # row_all is [name, count, prior...]
+        # We need to inject avg_loss
+        # Table columns: GP, Loss, Subset, N, Prior...
+
+        # Row 1: GP Name, Loss, "all", N...
+        # row_all[0] is name (e.g. "all"). Wait, compute_stats returns [name, count...]
+        # row_all[0] is "all"
+
+        loss_str = f"{avg_loss:.4f}"
+
+        table.add_row(gp, loss_str, *row_all)
+        # Row 2: "", "", "unlabeled", N...
+        table.add_row("", "", *row_unl, style="dim")
 
     console.print(Padding(table, (0, 0, 0, 6)))
-
-    for msg in prior_updates:
-        console.print(msg)
 
     console.print()
 
@@ -1857,7 +2130,7 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     console.print(f"  Hard negatives to add: {len(new_negatives):,}")
     console.print(f"  Hard positives to add: {len(new_positives):,}")
 
-    # Connect to database
+    # Connect to database (for checking only)
     db_path = os.path.join(
         os.path.dirname(output_dir), "..", "..", "..", "data", "corpus.db"
     )
@@ -1872,10 +2145,13 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
     pos_already_present = 0
     pos_moved = 0  # Moved from grammar_negative to grammar
 
+    valid_negatives = []
+    valid_positives = []
+
     sentences_moved_to_neg = []
     sentences_moved_to_pos = []
 
-    # Update hard negatives
+    # Check hard negatives
     for sentence in new_negatives:
         # Get current labels and grammatical status
         cursor.execute(
@@ -1899,33 +2175,20 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             continue
 
         # Check if already present
-        if grammar_label in grammar_negative:
+        if grammar_label in (grammar_negative or ""):
             neg_already_present += 1
             continue  # Skip, already labeled as negative
 
-        # Remove from grammar (if was hard positive)
-        was_positive = grammar_label in grammar
-        if was_positive:
-            grammar_list = [g for g in grammar.split(",") if g and g != grammar_label]
-            grammar = ",".join(grammar_list)
+        # Check moved
+        if grammar_label in (grammar or ""):
             neg_moved += 1
             sentences_moved_to_neg.append(sentence)
-
-        # Add to grammar_negative
-        grammar_neg_list = [g for g in grammar_negative.split(",") if g]
-        grammar_neg_list.append(grammar_label)
-        grammar_negative = ",".join(grammar_neg_list)
-
-        if not was_positive:
+        else:
             neg_added += 1
 
-        # Update
-        cursor.execute(
-            "UPDATE corpus SET grammar = ?, grammar_negative = ? WHERE sentence = ?",
-            (grammar, grammar_negative, sentence),
-        )
+        valid_negatives.append(sentence)
 
-    # Update hard positives
+    # Check hard positives
     for sentence in new_positives:
         cursor.execute(
             "SELECT grammar, grammar_negative, grammatic FROM corpus WHERE sentence = ?",
@@ -1948,37 +2211,45 @@ def apply_curated_labels(grammar_label: str, output_dir: str) -> None:
             continue
 
         # Check if already present
-        if grammar_label in grammar:
+        if grammar_label in (grammar or ""):
             pos_already_present += 1
             continue  # Skip, already labeled as positive
 
-        # Remove from grammar_negative (if was hard negative)
-        was_negative = grammar_label in grammar_negative
-        if was_negative:
-            grammar_neg_list = [
-                g for g in grammar_negative.split(",") if g and g != grammar_label
-            ]
-            grammar_negative = ",".join(grammar_neg_list)
+        # Check moved
+        if grammar_label in (grammar_negative or ""):
             pos_moved += 1
             sentences_moved_to_pos.append(sentence)
-
-        # Add to grammar
-        grammar_list = [g for g in grammar.split(",") if g]
-        grammar_list.append(grammar_label)
-        grammar = ",".join(grammar_list)
-
-        if not was_negative:
+        else:
             pos_added += 1
 
-        # Update
-        cursor.execute(
-            "UPDATE corpus SET grammar = ?, grammar_negative = ? WHERE sentence = ?",
-            (grammar, grammar_negative, sentence),
+        valid_positives.append(sentence)
+
+    conn.close()
+
+    # Apply updates using batch upsert (safe for normalized schema)
+    if valid_negatives:
+        console.print(
+            f"\n[bold]Applying {len(valid_negatives)} negative labels...[/bold]"
+        )
+        curate_upsert_batch(
+            valid_negatives,
+            None,
+            None,
+            grammar_diff_str=f"-{grammar_label}",
+            db_path=db_path,
         )
 
-    # Commit
-    conn.commit()
-    conn.close()
+    if valid_positives:
+        console.print(
+            f"\n[bold]Applying {len(valid_positives)} positive labels...[/bold]"
+        )
+        curate_upsert_batch(
+            valid_positives,
+            None,
+            None,
+            grammar_diff_str=f"+{grammar_label}",
+            db_path=db_path,
+        )
 
     console.print("\n[green]✓ Successfully applied curated labels to database[/green]")
 

@@ -5,7 +5,8 @@ Upsert functionality for manual corpus curation.
 
 import os
 import sqlite3
-from typing import Dict, Optional, Tuple, cast
+from collections import Counter
+from typing import Any, Dict, Optional, Tuple, cast
 
 from rich.console import Console
 
@@ -64,9 +65,9 @@ def apply_grammar_diff(
     # Check for conflicts
     seen_ops: Dict[str, str] = {}  # gp_id -> '+' or '-'
     for op in ops:
-        if not (op.startswith("+") or op.startswith("-")):
+        if not (op.startswith("+") or op.startswith("-") or op.startswith("!")):
             raise ValueError(
-                f"Invalid grammar operation: '{op}'. Must start with + or -"
+                f"Invalid grammar operation: '{op}'. Must start with +, -, or !"
             )
 
         sign = op[0]
@@ -92,10 +93,14 @@ def apply_grammar_diff(
             # Add to grammar, remove from negative
             grammar_set.add(gp_id)
             negative_set.discard(gp_id)
-        else:
+        elif op.startswith("-"):
             # Add to negative, remove from grammar
             negative_set.add(gp_id)
             grammar_set.discard(gp_id)
+        else:
+            # Remove from both ('!' case)
+            grammar_set.discard(gp_id)
+            negative_set.discard(gp_id)
 
     # Sort and join
     new_grammar = ",".join(sorted(grammar_set))
@@ -231,6 +236,9 @@ def perform_db_write(
     return "Updated" if is_update else "Inserted"
 
 
+_FETCH_SENTINEL = object()
+
+
 def calculate_upsert_values(
     cursor: sqlite3.Cursor,
     sentence: str,
@@ -238,17 +246,54 @@ def calculate_upsert_values(
     gender_str: Optional[str],
     grammar_diff_str: Optional[str],
     target_grammatic: Optional[int] = None,
-) -> Tuple[Optional[float], Optional[float], int, str, str, str, bool]:
+    current_row_state: object = _FETCH_SENTINEL,
+) -> Tuple[
+    Optional[float],
+    Optional[float],
+    int,
+    str,
+    str,
+    str,
+    bool,
+    Optional[float],
+    Optional[float],
+    str,
+    str,
+]:
     """Calculate all values needed for upsert."""
-    # pylint: disable=too-many-positional-arguments
+    # pylint: disable=too-many-positional-arguments, too-many-locals
     # 0. Validate grammar IDs if diff provided
     valid_grammar_ids = set()
     if grammar_diff_str:
         valid_grammar_ids = get_valid_grammar_ids(cursor)
 
     # 1. Fetch and Prepare State
-    row = get_current_row(cursor, sentence)
+    if current_row_state is not _FETCH_SENTINEL:
+        row = cast(Optional[Tuple], current_row_state)
+    else:
+        row = get_current_row(cursor, sentence)
     curr_f, curr_g, curr_r, curr_gram, curr_nav = get_current_values(row)
+
+    # 1a. Handle defaults for NEW sentences (if row is None)
+    is_new = row is None
+    if is_new:
+        # Default behavior: If styles are provided, respect them.
+        # If styles are NOT provided, default to NEUTRAL (0.0).
+        # Implicitly Grammatic=1 unless overridden or impossible.
+        if formality_str is None:
+            # Only default if not explicit
+            # Wait, do we default to 0.0 only?
+            # User requirement: "--grammatic=1 --formality=neutral --gender=neutral should be implied if not specified"
+            # So if not specified, pretend they passed "neutral".
+            formality_str = "neutral"
+
+        if gender_str is None:
+            gender_str = "neutral"
+
+        # We DO NOT force target_grammatic to 1.
+        # By defaulting styles to Neutral (0.0), the natural calculation
+        # (new_f is not None and new_g is not None) will result in Grammatic=1.
+        # This allows --formality=unpragmatic (None) to correctly result in Grammatic=0.
 
     # 2. Resolve new values
     new_f = resolve_value(formality_str, curr_f, FORMALITY_MAP, "formality")
@@ -294,6 +339,10 @@ def calculate_upsert_values(
         new_nav_str,
         curr_r,
         bool(row),
+        curr_f,
+        curr_g,
+        curr_gram,
+        curr_nav,
     )
 
 
@@ -305,7 +354,7 @@ def _upsert_sentence_logic(
     grammar_diff_str: Optional[str],
     allow_insert: bool,
     target_grammatic: Optional[int] = None,
-) -> Tuple[str, Optional[float], Optional[float], int, str, str]:
+) -> Tuple[str, Optional[float], Optional[float], int, str, str, Dict[str, Tuple]]:
     """Internal logic for upserting a single sentence."""
     # pylint: disable=too-many-positional-arguments
     (
@@ -316,6 +365,10 @@ def _upsert_sentence_logic(
         new_nav_str,
         curr_r,
         is_update,
+        old_f,
+        old_g,
+        old_gram,
+        old_nav,
     ) = calculate_upsert_values(
         cursor, sentence, formality_str, gender_str, grammar_diff_str, target_grammatic
     )
@@ -336,7 +389,30 @@ def _upsert_sentence_logic(
         curr_r,
         is_update,
     )
-    return action, new_f, new_g, new_is_gram, new_gram_str, new_nav_str
+
+    # Calculate Diff
+    diffs: Dict[str, Any] = {}
+    if old_f != new_f:
+        diffs["formality"] = (old_f, new_f)
+    if old_g != new_g:
+        diffs["gender"] = (old_g, new_g)
+    # Grammatic change?
+    # Old grammatic is implicitly 1 if old_f/old_g is set, else 0?
+    # Actually row exists check handles 'New'
+    old_is_gram = 1 if (old_f is not None and old_g is not None) else 0
+    if not is_update:
+        # New sentence: everything changed effectively, but diffs vs None is fine
+        pass
+    else:
+        if old_is_gram != new_is_gram:
+            diffs["grammatic"] = (old_is_gram, new_is_gram)
+
+    if old_gram != new_gram_str:
+        diffs["grammar"] = (old_gram, new_gram_str)
+    if old_nav != new_nav_str:
+        diffs["grammar_negative"] = (old_nav, new_nav_str)
+
+    return action, new_f, new_g, new_is_gram, new_gram_str, new_nav_str, diffs
 
 
 # pylint: disable=too-many-locals
@@ -371,21 +447,16 @@ def curate_upsert(
     c = conn.cursor()
 
     try:
-        (
-            action,
-            new_f,
-            new_g,
-            new_is_gram,
-            new_gram_str,
-            new_nav_str,
-        ) = _upsert_sentence_logic(
-            c,
-            sentence,
-            formality_str,
-            gender_str,
-            grammar_diff_str,
-            allow_insert,
-            target_grammatic=grammatic,
+        (action, new_f, new_g, new_is_gram, new_gram_str, new_nav_str, diffs) = (
+            _upsert_sentence_logic(
+                c,
+                sentence,
+                formality_str,
+                gender_str,
+                grammar_diff_str,
+                allow_insert,
+                target_grammatic=grammatic,
+            )
         )
         conn.commit()
 
@@ -397,6 +468,12 @@ def curate_upsert(
         if grammar_diff_str:
             console.print(f"  Grammar +: {new_gram_str}")
             console.print(f"  Grammar -: {new_nav_str}")
+
+        # Diff report (Single)
+        if diffs:
+            console.print("[dim]Changes:[/dim]")
+            for k, (o, n) in diffs.items():
+                console.print(f"  {k}: {o} -> {n}")
 
     finally:
         conn.close()
@@ -411,8 +488,8 @@ def curate_upsert_batch(
     allow_insert: bool = False,
     grammatic: Optional[int] = None,
 ) -> None:
-    """Batch upsert sentences in a single transaction."""
-    # pylint: disable=too-many-positional-arguments
+    """Batch upsert sentences in a single transaction with pre-validation."""
+    # pylint: disable=too-many-positional-arguments, too-many-locals
     if not os.path.exists(db_path):
         console.print(f"[red]Database not found at {db_path}[/red]")
         return
@@ -421,36 +498,116 @@ def curate_upsert_batch(
     conn.execute("PRAGMA foreign_keys=ON")
     c = conn.cursor()
 
+    change_stats: Counter[str] = Counter()
+
     try:
-        updated_count = 0
-        inserted_count = 0
+        # Pass 1: Calculation and Validation (Dry Run)
+
+        upsert_plans = []  # List of (sentence, write_args, diffs, action_label)
+        batch_state_map: Dict[
+            str, Any
+        ] = {}  # sentence -> row_tuple (mocked or fetched)
 
         for sentence in sentences:
+            # 1. Determine current state (from local context or DB)
+            current_row_state = batch_state_map.get(sentence, _FETCH_SENTINEL)
+
+            # 2. Calculate new state
             (
-                action,
-                _,
-                _,
-                _,
-                _,
-                _,
-            ) = _upsert_sentence_logic(
+                new_f,
+                new_g,
+                new_is_gram,
+                new_gram_str,
+                new_nav_str,
+                curr_r,
+                is_existing_row,  # Boolean indicating if row existed (in DB or mock)
+                old_f,
+                old_g,
+                old_gram,
+                old_nav,
+            ) = calculate_upsert_values(
                 c,
                 sentence,
                 formality_str,
                 gender_str,
                 grammar_diff_str,
-                allow_insert,
                 target_grammatic=grammatic,
+                current_row_state=current_row_state,
             )
-            if action == "Updated":
-                updated_count += 1
-            else:
-                inserted_count += 1
 
-        conn.commit()
+            # 3. Logic Validation
+            # calculate_upsert_values returns bool(row) for is_existing_row
+            is_update_context = is_existing_row
+
+            if not is_update_context and not allow_insert:
+                raise ValueError(
+                    f"Sentence '{sentence}' not found. Use --allow-insert to create it."
+                )
+
+            write_args = (
+                sentence,
+                new_f,
+                new_g,
+                new_is_gram,
+                new_gram_str,
+                new_nav_str,
+                curr_r,
+                is_update_context,
+            )
+
+            # Calculate diffs for reporting
+            diffs: Dict[str, Any] = {}
+            if old_f != new_f:
+                diffs["formality"] = (old_f, new_f)
+            if old_g != new_g:
+                diffs["gender"] = (old_g, new_g)
+
+            old_is_gram = 1 if (old_f is not None and old_g is not None) else 0
+            if is_update_context:
+                # If updating, check if grammatic changed
+                if old_is_gram != new_is_gram:
+                    diffs["grammatic"] = (old_is_gram, new_is_gram)
+
+            if old_gram != new_gram_str:
+                diffs["grammar"] = (old_gram, new_gram_str)
+            if old_nav != new_nav_str:
+                diffs["grammar_negative"] = (old_nav, new_nav_str)
+
+            action_label = "Updated" if is_update_context else "Inserted"
+
+            upsert_plans.append((sentence, write_args, diffs, action_label))
+
+            # 5. Update local state map for next iteration
+            mock_row = (new_f, new_g, new_is_gram, curr_r, new_gram_str, new_nav_str)
+            batch_state_map[sentence] = mock_row
+
+        # Pass 2: Execution
+
+        updated_count = 0
+        inserted_count = 0
+
+        with conn:
+            for sentence, args, diffs, action in upsert_plans:
+                perform_db_write(c, *args)
+
+                if action == "Updated":
+                    updated_count += 1
+                else:
+                    inserted_count += 1
+                    change_stats["Inserted"] += 1
+
+                for k, (o, n) in diffs.items():
+                    change_desc = f"{k}: {o} -> {n}"
+                    change_stats[change_desc] += 1
+
         console.print("[green]Batch upsert complete.[/green]")
         console.print(f"  Inserted: {inserted_count}")
         console.print(f"  Updated:  {updated_count}")
+
+        if change_stats:
+            console.print("\n[bold]Change Report:[/bold]")
+            for desc, count in change_stats.most_common():
+                console.print(f"  {count} sentences changed {desc}")
 
     finally:
         conn.close()

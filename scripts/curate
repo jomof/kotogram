@@ -2065,16 +2065,19 @@ def main():
       --grammar accept a comma-separated list of operations.
       '+gpID' adds the grammar point to the positive set (and removes from negative).
       '-gpID' adds the grammar point to the negative set (and removes from positive).
+      '!gpID' removes the grammar point from both sets.
       
     Invariants:
       - Positive and Negative grammar sets are always disjoint.
       - IDs must exist in the 'grammar' table.
       
     Examples:
-      curate upsert "こんにちは" --grammar "+gp0001"
-      curate upsert "こんにちは" --grammar "+gp0001,-gp0002"
+      curate upsert "こんにちは" --grammar='+gp0001'
+      curate upsert "こんにちは" --grammar='!gp0001'
+      curate upsert "こんにちは" --grammar='+gp0001,-gp0002'
       curate upsert "こんにちは" --formality formal --gender feminine
       curate upsert "新しい文" --allow-insert --formality neutral
+      curate upsert --sentences batch_list.txt --allow-insert --formality neutral
     """
     upsert_parser = subparsers.add_parser(
         "upsert", 
@@ -2097,7 +2100,7 @@ def main():
     upsert_parser.add_argument(
         "--grammar",
         type=str,
-        help="Update positive/negative grammar labels (e.g. '+gp0001,-gp0002'). Invariants: Positive and negative sets are disjoint.",
+        help="Update positive/negative grammar labels (e.g. '+gp0001,-gp0002,!gp0003'). Invariants: Positive and negative sets are disjoint.",
     )
     upsert_parser.add_argument(
         "--grammatic",

@@ -147,9 +147,10 @@ def test_upsert_insert_new(temp_corpus_db):
     conn.close()
 
     assert row is not None
-    assert row[0] is None  # Formality
-    assert row[1] is None  # Gender
-    assert row[2] == 0  # Grammatic (None/None -> 0)
+    assert row is not None
+    assert row[0] == 0.0  # Formality (Default Neutral)
+    assert row[1] == 0.0  # Gender (Default Neutral)
+    assert row[2] == 1  # Grammatic (Default 1)
 
 
 def test_upsert_insert_explicit_valid(temp_corpus_db):
@@ -627,3 +628,73 @@ def test_force_agrammatic_clears_grammar(temp_corpus_db):
     assert row[0] == 0
     assert row[1] == ""
     assert row[2] == ""
+
+
+def test_grammar_remove_positive(temp_corpus_db):
+    """Test removing positive grammar label with !."""
+    insert_test_row(temp_corpus_db, "RemovePos", 0.0, 0.0, 1, grammar="gp0001,gp0005")
+
+    run_curate(
+        ["upsert", "RemovePos", "--grammar=!gp0001", "--db-path", temp_corpus_db]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    row = conn.execute(
+        "SELECT grammar FROM corpus WHERE sentence='RemovePos'"
+    ).fetchone()
+    conn.close()
+
+    assert row[0] == "gp0005"
+
+
+def test_grammar_remove_negative(temp_corpus_db):
+    """Test removing negative grammar label with !."""
+    insert_test_row(
+        temp_corpus_db, "RemoveNeg", 0.0, 0.0, 1, grammar_negative="gp0002,gp0005"
+    )
+
+    run_curate(
+        ["upsert", "RemoveNeg", "--grammar=!gp0002", "--db-path", temp_corpus_db]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    row = conn.execute(
+        "SELECT grammar_negative FROM corpus WHERE sentence='RemoveNeg'"
+    ).fetchone()
+    conn.close()
+
+    assert row[0] == "gp0005"
+
+
+def test_grammar_remove_mixed_ops(temp_corpus_db):
+    """Test mixing +, -, and ! in one command."""
+    # Start: Pos=gp0001, Neg=gp0002.
+    # Op: !gp0001, !gp0002, +gp0005
+    insert_test_row(
+        temp_corpus_db,
+        "MixedOps",
+        0.0,
+        0.0,
+        1,
+        grammar="gp0001",
+        grammar_negative="gp0002",
+    )
+
+    run_curate(
+        [
+            "upsert",
+            "MixedOps",
+            "--grammar=!gp0001,!gp0002,+gp0005",
+            "--db-path",
+            temp_corpus_db,
+        ]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    row = conn.execute(
+        "SELECT grammar, grammar_negative FROM corpus WHERE sentence='MixedOps'"
+    ).fetchone()
+    conn.close()
+
+    assert row[0] == "gp0005"
+    assert row[1] == ""
