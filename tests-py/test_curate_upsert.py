@@ -552,6 +552,158 @@ def test_upsert_batch_from_file(temp_corpus_db):
             os.remove(batch_file)
 
 
+def test_select_existing_positive(temp_corpus_db):
+    """--select-existing=+gpXXXX selects only positive-labeled sentences."""
+    insert_test_row(temp_corpus_db, "SelPos-1", 0.0, 0.0, 1, grammar="gp0001")
+    insert_test_row(temp_corpus_db, "SelPos-2", 0.0, 0.0, 1, grammar="gp0001,gp0002")
+    insert_test_row(temp_corpus_db, "SelPos-3", 0.0, 0.0, 1, grammar_negative="gp0001")
+    insert_test_row(temp_corpus_db, "SelPos-4", 0.0, 0.0, 1)
+
+    run_curate(
+        [
+            "upsert",
+            "--select-existing=+gp0001",
+            "--formality=very_formal",
+            "--db-path",
+            temp_corpus_db,
+        ]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    try:
+        rows = dict(
+            conn.execute(
+                "SELECT sentence, formality FROM corpus WHERE sentence LIKE 'SelPos-%'"
+            ).fetchall()
+        )
+    finally:
+        conn.close()
+
+    assert rows["SelPos-1"] == 1.0
+    assert rows["SelPos-2"] == 1.0
+    assert rows["SelPos-3"] == 0.0
+    assert rows["SelPos-4"] == 0.0
+
+
+def test_select_existing_negative(temp_corpus_db):
+    """--select-existing=-gpXXXX selects only negative-labeled sentences."""
+    insert_test_row(temp_corpus_db, "SelNeg-1", 0.0, 0.0, 1, grammar="gp0001")
+    insert_test_row(temp_corpus_db, "SelNeg-2", 0.0, 0.0, 1, grammar_negative="gp0001")
+    insert_test_row(temp_corpus_db, "SelNeg-3", 0.0, 0.0, 1, grammar_negative="gp0001,gp0002")
+    insert_test_row(temp_corpus_db, "SelNeg-4", 0.0, 0.0, 1)
+
+    run_curate(
+        [
+            "upsert",
+            "--select-existing=-gp0001",
+            "--gender=feminine",
+            "--db-path",
+            temp_corpus_db,
+        ]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    try:
+        rows = dict(
+            conn.execute(
+                "SELECT sentence, gender FROM corpus WHERE sentence LIKE 'SelNeg-%'"
+            ).fetchall()
+        )
+    finally:
+        conn.close()
+
+    # Feminine maps to 1.0
+    assert rows["SelNeg-1"] == 0.0
+    assert rows["SelNeg-2"] == 1.0
+    assert rows["SelNeg-3"] == 1.0
+    assert rows["SelNeg-4"] == 0.0
+
+
+def test_select_existing_either(temp_corpus_db):
+    """--select-existing=!gpXXXX selects sentences with positive OR negative label."""
+    insert_test_row(temp_corpus_db, "SelEither-1", 0.0, 0.0, 1, grammar="gp0001")
+    insert_test_row(temp_corpus_db, "SelEither-2", 0.0, 0.0, 1, grammar_negative="gp0001")
+    insert_test_row(temp_corpus_db, "SelEither-3", 0.0, 0.0, 1, grammar="gp0002")
+
+    run_curate(
+        [
+            "upsert",
+            "--select-existing=!gp0001",
+            "--formality=casual",
+            "--db-path",
+            temp_corpus_db,
+        ]
+    )
+
+    conn = sqlite3.connect(temp_corpus_db)
+    try:
+        rows = dict(
+            conn.execute(
+                "SELECT sentence, formality FROM corpus WHERE sentence LIKE 'SelEither-%'"
+            ).fetchall()
+        )
+    finally:
+        conn.close()
+
+    # Casual maps to -0.5
+    assert rows["SelEither-1"] == -0.5
+    assert rows["SelEither-2"] == -0.5
+    assert rows["SelEither-3"] == 0.0
+
+
+def test_select_existing_conflicts_with_sentence(temp_corpus_db):
+    """--select-existing cannot be combined with a positional sentence."""
+    insert_test_row(temp_corpus_db, "ConflictSelExisting", 0.0, 0.0, 1, grammar="gp0001")
+    with pytest.raises(
+        RuntimeError, match="Cannot specify both '--select-existing' and 'sentence/--sentences'"
+    ):
+        run_curate(
+            [
+                "upsert",
+                "Some sentence",
+                "--select-existing=+gp0001",
+                "--db-path",
+                temp_corpus_db,
+            ]
+        )
+
+
+def test_select_existing_conflicts_with_sentences_file(temp_corpus_db):
+    """--select-existing cannot be combined with --sentences."""
+    batch_file = "batch_sentences_for_select_existing_conflict.txt"
+    with open(batch_file, "w", encoding="utf-8") as f:
+        f.write("Any sentence\n")
+    try:
+        with pytest.raises(
+            RuntimeError, match="Cannot specify both '--select-existing' and 'sentence/--sentences'"
+        ):
+            run_curate(
+                [
+                    "upsert",
+                    "--sentences",
+                    batch_file,
+                    "--select-existing=+gp0001",
+                    "--db-path",
+                    temp_corpus_db,
+                ]
+            )
+    finally:
+        if os.path.exists(batch_file):
+            os.remove(batch_file)
+
+
+def test_select_existing_invalid_format_missing_sign(temp_corpus_db):
+    """--select-existing must start with +, -, or !."""
+    with pytest.raises(RuntimeError, match="Invalid '--select-existing' value"):
+        run_curate(["upsert", "--select-existing=gp0001", "--db-path", temp_corpus_db])
+
+
+def test_select_existing_invalid_format_missing_id(temp_corpus_db):
+    """--select-existing must include a grammar id after the sign."""
+    with pytest.raises(RuntimeError, match="Missing grammar point id"):
+        run_curate(["upsert", "--select-existing=+", "--db-path", temp_corpus_db])
+
+
 def test_grammar_invalid_format_no_sign(temp_corpus_db):
     """Corner Case: Invalid format (missing +/-)."""
     with pytest.raises(RuntimeError, match="Invalid grammar operation: 'gp0001'"):

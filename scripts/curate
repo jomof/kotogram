@@ -2088,6 +2088,15 @@ def main():
     upsert_parser.add_argument("sentence", nargs="?", help="Japanese sentence to upsert (optional if --sentences is used)")
     upsert_parser.add_argument("--sentences", help="Path to file containing sentences (one per line)")
     upsert_parser.add_argument(
+        "--select-existing",
+        dest="select_existing",
+        help=(
+            "Select sentences already labeled with a grammar point. "
+            "Format: '+gpXXXX' (positive), '-gpXXXX' (negative), '!gpXXXX' (either). "
+            "Alternative to passing a sentence or --sentences."
+        ),
+    )
+    upsert_parser.add_argument(
         "--formality",
         choices=["very_casual", "casual", "neutral", "formal", "very_formal", "unpragmatic"],
         help="Formality override"
@@ -2191,7 +2200,71 @@ def main():
 
     args = parser.parse_args()
     if args.command == "upsert":
-        if args.sentences:
+        if getattr(args, "select_existing", None):
+            if args.sentence or args.sentences:
+                console.print(
+                    "[red]Error: Cannot specify both '--select-existing' and 'sentence/--sentences'.[/red]"
+                )
+                sys.exit(1)
+
+            selector = args.select_existing.strip()
+            if not selector or selector[0] not in ["+", "-", "!"]:
+                console.print(
+                    "[red]Error: Invalid '--select-existing' value. Use '+gpXXXX', '-gpXXXX', or '!gpXXXX'.[/red]"
+                )
+                sys.exit(1)
+
+            sign = selector[0]
+            gp_id = selector[1:].strip()
+            if not gp_id:
+                console.print(
+                    "[red]Error: Invalid '--select-existing' value. Missing grammar point id (e.g. gp0001).[/red]"
+                )
+                sys.exit(1)
+
+            if not os.path.exists(args.db_path):
+                console.print(f"[red]Error: Database not found at {args.db_path}[/red]")
+                sys.exit(1)
+
+            conn = sqlite3.connect(args.db_path)
+            c = conn.cursor()
+            try:
+                if sign == "+":
+                    c.execute(
+                        "SELECT sentence FROM corpus_gp_pos WHERE gp_id = ? ORDER BY sentence",
+                        (gp_id,),
+                    )
+                elif sign == "-":
+                    c.execute(
+                        "SELECT sentence FROM corpus_gp_neg WHERE gp_id = ? ORDER BY sentence",
+                        (gp_id,),
+                    )
+                else:
+                    c.execute(
+                        """
+                        SELECT sentence FROM corpus_gp_pos WHERE gp_id = ?
+                        UNION
+                        SELECT sentence FROM corpus_gp_neg WHERE gp_id = ?
+                        ORDER BY sentence
+                        """,
+                        (gp_id, gp_id),
+                    )
+
+                rows = c.fetchall()
+                batch_sentences = [r[0] for r in rows]
+            finally:
+                conn.close()
+
+            curate_upsert_batch(
+                batch_sentences,
+                args.formality,
+                args.gender,
+                args.grammar,
+                args.db_path,
+                args.allow_insert,
+                grammatic=args.grammatic,
+            )
+        elif args.sentences:
             if args.sentence:
                 console.print("[red]Error: Cannot specify both 'sentence' and '--sentences'.[/red]")
                 sys.exit(1)
