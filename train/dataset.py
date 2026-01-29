@@ -103,6 +103,10 @@ class StyleDataset(Dataset[Sample]):
         self.features = self._init_features(data_dir)
         self.labels = self._init_labels(data_dir)
 
+        # Per-grammar-point priors (float32 vector; index == gp numeric id).
+        # NaN means "unset, use defaults". Required when GP targets are present.
+        self.gp_priors: torch.Tensor
+
         # Register Ragged Labels
         reg_ids_path = os.path.join(data_dir, f"{EXT_LABELS}_reg_ids.bin")
         if self._check_exists(reg_ids_path):
@@ -236,6 +240,25 @@ class StyleDataset(Dataset[Sample]):
                     dtype=torch.int32,
                 ),
             }
+
+        # Optional per-GP priors vector
+        gp_priors_path = os.path.join(data_dir, "gp_priors.bin")
+        if (
+            "grammar_point_pos" in kc_maps or "grammar_point_neg" in kc_maps
+        ) and not self._check_exists(gp_priors_path):
+            raise FileNotFoundError(
+                f"Missing gp_priors.bin at {gp_priors_path} while grammar point targets are present. "
+                "Run scripts/label.py against a corpus.db with grammar.prior column so the cache "
+                "includes per-GP priors (NaN for unset priors)."
+            )
+        if self._check_exists(gp_priors_path):
+            sz = self._get_size(gp_priors_path) // 4
+            self.gp_priors = self._load_tensor(
+                gp_priors_path, shared=True, size=sz, dtype=torch.float32
+            )
+        else:
+            # No GP targets; keep an empty tensor.
+            self.gp_priors = torch.empty((0,), dtype=torch.float32)
 
         return kc_maps
 

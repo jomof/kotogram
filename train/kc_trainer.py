@@ -2,7 +2,7 @@
 import math
 import os
 from functools import partial
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 import torch
 import torch.nn.functional as F
@@ -23,7 +23,7 @@ from train.dataset import StyleDataset, collate_fn, create_kc_batch
 from train.display import (
     RichTrainerProgressBar,
 )
-from train.kc import get_family, is_family_db_sourced, is_family_sparse
+from train.kc import KcFamilyId, get_family, is_family_db_sourced, is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
 )
@@ -133,6 +133,13 @@ class KCTrainer:
         self.kc_target_spill_rate = self.kc_config.target_spill_rate
         self.kc_sat_weight = self.kc_config.sat_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
+
+        # Optional per-grammar-point priors -> per-label loss weights
+        # (Used to reduce false positives on unlabeled by strengthening the
+        # unlabeled-as-negative pressure for rare grammar points.)
+        self._gp_unlabeled_weight_per_gp: Optional[torch.Tensor] = None
+        self._gp_neg_weight_per_gp: Optional[torch.Tensor] = None
+        self._init_gp_prior_weights()
 
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
@@ -317,9 +324,9 @@ class KCTrainer:
         neg_ids: torch.Tensor,
         neg_mask: torch.Tensor,
         vocab_size: int,
-        unlabeled_weight: float = 0.001,
-        pos_weight: float = 1.0,
-        neg_weight: float = 1.0,
+        unlabeled_weight: Union[float, torch.Tensor] = 0.001,
+        pos_weight: Union[float, torch.Tensor] = 1.0,
+        neg_weight: Union[float, torch.Tensor] = 1.0,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """Multi-label PNU (Positive-Negative-Unlabeled) loss for grammar points.
 
@@ -405,11 +412,34 @@ class KCTrainer:
         # Mask for GPs with samples (to avoid div by zero and exclude from averaging)
         has_samples = sample_count_per_gp > 0
 
+        # Resolve scalar vs per-label weights
+        if isinstance(pos_weight, torch.Tensor):
+            pos_w = pos_weight.to(device=device, dtype=logits.dtype).view(-1)
+        else:
+            pos_w = torch.full(
+                (vocab_size,), float(pos_weight), device=device, dtype=logits.dtype
+            )
+
+        if isinstance(neg_weight, torch.Tensor):
+            neg_w = neg_weight.to(device=device, dtype=logits.dtype).view(-1)
+        else:
+            neg_w = torch.full(
+                (vocab_size,), float(neg_weight), device=device, dtype=logits.dtype
+            )
+
+        if isinstance(unlabeled_weight, torch.Tensor):
+            unl_w = unlabeled_weight.to(device=device, dtype=logits.dtype).view(-1)
+        else:
+            unl_w = torch.full(
+                (vocab_size,),
+                float(unlabeled_weight),
+                device=device,
+                dtype=logits.dtype,
+            )
+
         # Normalized loss per GP (only where we have samples)
         # Each GP's loss is: (pos_weight * pos_loss + neg_weight * neg_loss) / sample_count
-        weighted_loss_per_gp = (
-            pos_weight * pos_loss_per_gp + neg_weight * neg_loss_per_gp
-        )
+        weighted_loss_per_gp = pos_w * pos_loss_per_gp + neg_w * neg_loss_per_gp
         # Safe division: only divide where we have samples
         normalized_loss_per_gp = torch.zeros(vocab_size, device=device)
         normalized_loss_per_gp[has_samples] = (
@@ -428,20 +458,67 @@ class KCTrainer:
 
         # Component 3: Unlabeled loss (weak negative, low weight)
         # Encourages sparsity: most GPs don't apply to most sentences
-        # This is still normalized globally (not per-GP) since all GPs have unlabeled
-        unl_count = unlabeled_mask.sum()
-        if unl_count > 0 and unlabeled_weight > 0:
-            unl_loss = neg_loss  # Reuse: same BCE with target=0
-            risk_unl = unlabeled_weight * (unl_loss * unlabeled_mask).sum() / unl_count
-            # Add unlabeled contribution to loss_by_label (normalized globally)
-            loss_by_label += (
-                unlabeled_weight * (unl_loss * unlabeled_mask).sum(dim=0) / unl_count
-            )
+        # We normalize PER LABEL so we can apply per-label priors/weights.
+        unl_counts_per_gp = unlabeled_mask.sum(dim=0).clamp_min(1.0)  # (vocab_size,)
+        if unlabeled_mask.sum().item() > 0 and float(unl_w.max().item()) > 0.0:
+            unl_loss = neg_loss  # BCE with target=0
+            unl_loss_per_gp = (unl_loss * unlabeled_mask).sum(dim=0) / unl_counts_per_gp
+            # Average across labels (same normalization as labeled risk)
+            risk_unl = (unl_w * unl_loss_per_gp).mean()
+            loss_by_label += unl_w * unl_loss_per_gp
         else:
             risk_unl = torch.tensor(0.0, device=device)
 
         total_loss: torch.Tensor = risk_labeled + risk_unl
         return total_loss, loss_by_label
+
+    def _init_gp_prior_weights(self) -> None:
+        """Initialize per-GP unlabeled/negative weights from dataset priors if available."""
+        gp_vocab_size = int(
+            self.config.kc_target_specs.get(KcFamilyId.GRAMMAR_POINT, 0)
+        )
+        if gp_vocab_size <= 0:
+            return
+
+        gp_priors = self.dataset.gp_priors
+        if gp_priors.numel() < gp_vocab_size:
+            raise ValueError(
+                f"gp_priors vector too small: {gp_priors.numel()} < {gp_vocab_size}. "
+                "Re-run scripts/label.py so gp_priors.bin covers the grammar_point vocab."
+            )
+
+        # Convert to float32 CPU for robust ops; we'll move to device per-batch.
+        pri = gp_priors.detach().float().cpu()[:gp_vocab_size]
+
+        # Mask finite priors
+        finite = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
+        if not finite.any():
+            return
+
+        # Reference prior (median of provided priors)
+        pri_ref = float(pri[finite].median().item())
+        pri_ref = max(pri_ref, 1e-6)
+
+        base_unl = float(self.kc_config.gp_unlabeled_weight)
+        base_neg = float(self.kc_config.gp_neg_weight)
+
+        eps = 1e-6
+        alpha = 0.5
+        scale = torch.full((gp_vocab_size,), 1.0)
+        scale[finite] = (pri_ref / pri[finite].clamp_min(eps)).pow(alpha)
+
+        # Keep multipliers bounded for stability
+        unl_mult = scale.clamp(0.5, 20.0)
+        neg_mult = scale.clamp(0.5, 2.0)
+
+        unl_w = torch.full((gp_vocab_size,), base_unl)
+        neg_w = torch.full((gp_vocab_size,), base_neg)
+
+        unl_w[finite] = base_unl * unl_mult[finite]
+        neg_w[finite] = base_neg * neg_mult[finite]
+
+        self._gp_unlabeled_weight_per_gp = unl_w
+        self._gp_neg_weight_per_gp = neg_w
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -643,9 +720,17 @@ class KCTrainer:
                         pos_mask_t = kc_targets[gp_mask_key]
                         batch_size = pos_mask_t.size(0)
                         num_pos = pos_mask_t.sum().item()
-                        # For DB-sourced families, use the actual positive rate
-                        # (not divided by vocab_size like sparse families)
-                        p = num_pos / max(1, batch_size * pos_mask_t.size(1))
+                        # IMPORTANT:
+                        # For multi-label families like grammar_point, bias init should
+                        # reflect the *per-label* base rate, not the fraction of filled
+                        # slots in the fixed-width ragged buffer (pos_mask_t.size(1) is
+                        # max_pos, typically 64).
+                        #
+                        # We want: p ≈ E[#pos labels per example] / vocab_size.
+                        # This keeps initial logits appropriately negative and prevents
+                        # the decoder from starting (and staying) overly "positive",
+                        # which otherwise yields hundreds of predicted GPs per sentence.
+                        p = num_pos / max(1, batch_size * vocab_size)
                         biases.sums[name] = biases.sums.get(name, 0.0) + p
                         biases.counts[name] = biases.counts.get(name, 0) + 1
                         pos_density_sums[name] = (
@@ -1346,9 +1431,17 @@ class KCTrainer:
                                 neg_ids,
                                 neg_mask,
                                 vocab_size=vocab_size,
-                                unlabeled_weight=self.kc_config.gp_unlabeled_weight,
+                                unlabeled_weight=(
+                                    self._gp_unlabeled_weight_per_gp
+                                    if self._gp_unlabeled_weight_per_gp is not None
+                                    else self.kc_config.gp_unlabeled_weight
+                                ),
                                 pos_weight=self.kc_config.gp_pos_weight,
-                                neg_weight=self.kc_config.gp_neg_weight,
+                                neg_weight=(
+                                    self._gp_neg_weight_per_gp
+                                    if self._gp_neg_weight_per_gp is not None
+                                    else self.kc_config.gp_neg_weight
+                                ),
                             )
 
                             # Apply per-family loss weight for balanced training

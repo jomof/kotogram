@@ -35,10 +35,15 @@ class TestInternalVariations(unittest.TestCase):
         dataset.tokenizer = MagicMock()
         dataset.filter_by_grammaticality.return_value = dataset
         dataset.__len__.return_value = 10
+        # KCTrainer now assumes gp_priors exists on the dataset (strict mode).
+        dataset.gp_priors = MagicMock()
+        dataset.gp_priors.numel.return_value = 0
 
         config = MagicMock()
         config.device = "cpu"
         config.batch_size = 2
+        # KCTrainer reads kc_target_specs from trainer config.
+        config.kc_target_specs = {}
         config.hardware = MagicMock()
         config.hardware.cpu_threads = 1
         config.hardware.interop_threads = 1

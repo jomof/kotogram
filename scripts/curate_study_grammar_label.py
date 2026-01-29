@@ -2029,6 +2029,30 @@ def find_high_certainty_positives(
             for score, sentence in candidates_neg[:100]:
                 f.write(f"{score:.4f} | {sentence}\n")
 
+    # Optionally write estimated priors back to corpus.db (grammar table).
+    # Back-compat is an anti-goal: if the DB/schema isn't present, fail loudly.
+    if not test_mode and not quick_mode:
+        db_path = os.path.join(os.getcwd(), "data", "corpus.db")
+        if not os.path.exists(db_path):
+            raise FileNotFoundError(f"Missing corpus.db at {db_path}")
+
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
+            for i, gp in enumerate(grammar_labels):
+                probs_list = probs_all[i]
+                if probs_list:
+                    # Estimated corpus prior: fraction of sentences with prob > 0.5
+                    t = torch.tensor(probs_list)
+                    prior_est = float((t > 0.5).float().mean().item())
+                    cursor.execute(
+                        "UPDATE grammar SET prior = ? WHERE id = ?",
+                        (prior_est, gp),
+                    )
+            conn.commit()
+            console.print(
+                "[dim]Wrote estimated grammar priors to data/corpus.db (grammar.prior)[/dim]"
+            )
+
     # Sort by Loss (Ascending) as requested
     gp_stats_list.sort(key=lambda x: x[1])
 

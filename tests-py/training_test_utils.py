@@ -157,6 +157,17 @@ def populate_test_data(root_dir: str, project_root: str):
     ]
     target_c.executemany("INSERT INTO register VALUES (?, ?)", register_data)
 
+    # Create grammar dictionary table (strict schema expected by scripts/label.py)
+    # NOTE: back-compat is an anti-goal; tests must provision this table.
+    target_c.execute(
+        "CREATE TABLE grammar (id TEXT PRIMARY KEY, name TEXT NOT NULL, prior REAL)"
+    )
+    source_c.execute("SELECT id, name FROM grammar")
+    grammar_rows = source_c.fetchall()
+    target_c.executemany(
+        "INSERT INTO grammar(id, name, prior) VALUES (?, ?, NULL)", grammar_rows
+    )
+
     all_sentences = grammatic_samples.union(agrammatic_samples)
     for s in register_samples.values():
         all_sentences.update(s)

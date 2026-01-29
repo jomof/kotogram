@@ -121,6 +121,53 @@ _TOKENIZER: Optional[Tokenizer] = None
 console = Console()
 
 
+def _load_gp_priors_from_db(db_path: str) -> List[float]:
+    """Load per-grammar-point priors vector from corpus.db.
+
+    Expected schema (user-managed source of truth):
+      grammar(id TEXT PRIMARY KEY, name TEXT NOT NULL, prior REAL NULL)
+
+    Returns:
+        A dense float vector where index == gp numeric id (e.g. gp0123 -> 123),
+        value is the prior in [0,1], and missing/unset priors are NaN.
+    """
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(f"Database not found at {db_path}")
+
+    conn = sqlite3.connect(db_path)
+    try:
+        c = conn.cursor()
+        # Determine max numeric gp id from the grammar dictionary itself.
+        c.execute("SELECT id FROM grammar")
+        ids = [row[0] for row in c.fetchall()]
+        max_id = 0
+        for gid_str in ids:
+            if isinstance(gid_str, str) and gid_str.startswith("gp"):
+                num = gid_str[2:]
+                if num.isdigit():
+                    max_id = max(max_id, int(num))
+
+        # Always return a vector if column exists: NaN means "unset, use defaults".
+        priors: List[float] = [float("nan")] * (max_id + 1)
+
+        # Fill entries for any explicitly-set priors.
+        # NOTE: We intentionally do NOT check whether grammar.prior exists.
+        # If the DB schema is missing it, SQLite will raise and we want that to fail loudly.
+        c.execute("SELECT id, prior FROM grammar WHERE prior IS NOT NULL")
+        for gid_str, prior_val in c.fetchall():
+            if not isinstance(gid_str, str) or not gid_str.startswith("gp"):
+                continue
+            num = gid_str[2:]
+            if not num.isdigit():
+                continue
+            idx = int(num)
+            priors[idx] = float(prior_val)
+
+        return priors
+    finally:
+        conn.close()
+
+
 def _validate_register_mapping_against_db(db_path: str) -> None:
     """Validate that corpus.db register table matches kotogram.constants mapping.
 
@@ -1072,6 +1119,7 @@ def main() -> None:
         num_workers = max(1, mp.cpu_count() - 1)
 
     all_rows: List[Any] = []
+    gp_priors_vec: Optional[List[float]] = None
 
     if args.source_db:
         # DB PATH: fast loading of golden labels.
@@ -1079,6 +1127,12 @@ def main() -> None:
 
         # Validate that DB register table matches our code constants (source of truth)
         _validate_register_mapping_against_db(args.source_db)
+
+        # Grammar-point priors (user-managed in corpus.db grammar table)
+        gp_priors_vec = _load_gp_priors_from_db(args.source_db)
+        console.print(
+            f"[green]✓[/green] Loaded grammar point priors for indices 0..{len(gp_priors_vec) - 1}"
+        )
 
         conn = sqlite3.connect(args.source_db)
         c = conn.cursor()
@@ -1367,6 +1421,17 @@ def main() -> None:
             os.path.join(dataset_cache_dir, f"gp_neg_{EXT_OFFSETS}"),
             len(chunks),
             "shard_{}.gp_neg_" + EXT_OFFSETS,
+        )
+
+        # Optional: write gp_priors.bin alongside gp_pos/gp_neg
+        console.print("  Writing grammar point priors...")
+        if gp_priors_vec is None:
+            raise RuntimeError(
+                "gp_priors_vec is missing unexpectedly. When using --source-db, priors must be loaded."
+            )
+        write_float_array(
+            os.path.join(dataset_cache_dir, "gp_priors.bin"),
+            gp_priors_vec,
         )
 
     # 5. Merge KC Targets.
