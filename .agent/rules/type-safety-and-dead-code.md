@@ -2,6 +2,8 @@
 trigger: always_on
 ---
 
+[Vulture]
+
 - Don't circumvent Vulture dead code analysis. Remove unused code.
 - Don't circumvent or suppress MyPy analysis. Make code typesafe.
 - Don't use Dict[str, <something>] when a data class would be more type safe.

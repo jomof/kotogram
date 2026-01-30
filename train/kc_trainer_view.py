@@ -1,4 +1,7 @@
-# pylint: disable=duplicate-code
+"""Training diagnostics view for KC trainer."""
+
+# pylint: disable=too-many-lines
+
 import math
 import random
 from collections import defaultdict
@@ -308,7 +311,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"[dim]KC EP{epoch + 1} (metrics skipped): loss={total_loss:.4f}[/dim]"
         )
 
-    # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals,too-many-nested-blocks
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
         # BLOCK 0: Loss breakdown
         lc = summary.loss_components
@@ -948,6 +951,19 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     console.print(
                         f"  [cyan]{name}[/cyan] Top Loss: [yellow]{', '.join(parts)}[/yellow]"
                     )
+                    if name == "grammar_point" and summary.gp_priors is not None:
+                        # Hint: build curate command using GPs whose priors are unset (NaN).
+                        no_default = []
+                        for idx in inds_list:
+                            if 0 <= idx < int(summary.gp_priors.numel()):
+                                p = float(summary.gp_priors[idx].item())
+                                if not math.isfinite(p):
+                                    no_default.append(f"gp{idx:04d}")
+                        if no_default:
+                            console.print(
+                                "    [white dim]add priors with "
+                                f"'scripts/curate study {' '.join(no_default)} --full-pos'[/white dim]"
+                            )
 
         # BLOCK 5: Diagnosis Flags
         flags = []

@@ -2,11 +2,9 @@
 trigger: always_on
 ---
 
-## Setup
+[Set up python venv]
 
-In order to set up an environment to run ./train_style, bin/kotogram, scripts/curate, and
-one-off scripts that use this codebase, run `source ./requirements.sh` _once_ at the start of a
-new shell session.
+In order to set up an environment to run ./train_style, bin/kotogram, scripts/curate, and one-off scripts that use this codebase, run `source ./requirements.sh` _once_ at the start of a new shell session.
 
 That script will install all dependencies, and nothing needs to be conditionally imported.
 

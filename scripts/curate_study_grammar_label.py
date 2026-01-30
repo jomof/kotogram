@@ -20,12 +20,10 @@ import random
 import shutil
 import sqlite3
 import sys
-from dataclasses import dataclass
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
 import torch.nn.functional as F
-import yaml
 from rich.console import Console
 from rich.padding import Padding
 from rich.table import Table
@@ -45,25 +43,6 @@ from train.dataset import StyleDataset
 from train.paths import get_style_dataset_cache_dir
 
 console = Console(force_terminal=True)
-
-
-@dataclass
-class SampleLossStats:
-    """Statistics for a single sample during training."""
-
-    sentence: str
-    total_loss: float = 0.0
-    num_updates: int = 0
-    # For multi-task, we track per-task stats
-    # Maps grammar_index -> score
-    avg_pred_positive: Optional[Dict[int, float]] = None
-    avg_uncertainty: Optional[Dict[int, float]] = None
-
-    def __post_init__(self) -> None:
-        if self.avg_pred_positive is None:
-            self.avg_pred_positive = {}
-        if self.avg_uncertainty is None:
-            self.avg_uncertainty = {}
 
 
 class GrammarPointDataset(Dataset):
@@ -263,7 +242,7 @@ class GrammarClassifier(nn.Module):
             d_model=self.d_model,
             nhead=self.num_heads,
             dim_feedforward=self.hidden_dim,
-            dropout=0.1,
+            dropout=config.dropout,
             batch_first=True,
             activation="gelu",
         )
@@ -391,13 +370,15 @@ class EarlyStopper:
         # Loss regressed or stagnated locally AND globally -> Switch batch size
         self.prev_loss = current_loss
 
-        # Random power of 2 between 16 and 1024
+        # Rotate between fixed large batch sizes
         # Ensure we actually pick a different batch size
-        while True:
-            exponent = random.randint(4, 10)  # 2^4=16, 2^10=1024
-            new_batch_size = 2**exponent
-            if new_batch_size != current_batch_size:
-                break
+        choices = [1024, 2048]
+        if current_batch_size in choices:
+            new_batch_size = (
+                choices[1] if current_batch_size == choices[0] else choices[0]
+            )
+        else:
+            new_batch_size = random.choice(choices)
 
         msg = f"      Loss plateaued ({self.counter}/{self.patience}). Changing batch size from {current_batch_size} to {new_batch_size}"
         if not is_best:
@@ -629,14 +610,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
     base_output_dir: str,
     num_epochs_warmup: int = 5,
     num_epochs_pnu: int = 15,
-    num_epochs_eval: int = 5,
     batch_size: int = 32,
-    top_k: int = 500,
-    eval_seed: Optional[int] = None,
     test_mode: bool = False,
     quick_mode: bool = False,
     full_pos_scan_fn: Optional[Callable] = None,
-) -> Tuple[GrammarClassifier, Dict[int, SampleLossStats], List[int]]:
+) -> Tuple[GrammarClassifier, List[int]]:
     """Train PNU model and collect loss statistics.
 
     Args:
@@ -644,7 +622,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     Returns:
         model: Trained model
-        sample_stats: Dict mapping sample idx to loss statistics
         unlabeled_indices: List of indices used as unlabeled pool (important if filtered in test_mode)
     """
     # Create config
@@ -657,10 +634,9 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     # Check for existing model to resume/fine-tune
     model_path = os.path.join(base_output_dir, "model.pt")
+    model_reused = False
+    model_reuse_reason: Optional[str] = None
     if os.path.exists(model_path):
-        console.print(
-            f"[green]Resuming/Fine-tuning from existing model: {model_path}[/green]"
-        )
         checkpoint_state = torch.load(model_path, map_location=device)
 
         # Check for vocabulary mismatches
@@ -679,8 +655,13 @@ def train_pnu_model(  # pylint: disable=unused-argument
             console.print(
                 "[yellow]Vocabulary size mismatch detected. Starting with a fresh model.[/yellow]"
             )
+            model_reuse_reason = "shape mismatch"
         else:
             model.load_state_dict(checkpoint_state)
+            model_reused = True
+            console.print(
+                f"[green]Resuming/Fine-tuning from existing model: {model_path}[/green]"
+            )
 
     # Enable automatic mixed precision for fp16 (not on MPS due to float64 limitation)
     use_amp = device.type == "cuda"
@@ -739,59 +720,113 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # Split into labeled and unlabeled - optimize by reading sentences file once
     console.print("\n  Splitting into labeled/unlabeled sets...")
 
+    split_cache_path = os.path.join(base_output_dir, "split.json")
+
     # We consider "Labeled" if ANY GP has a label >= 0
-    labeled_indices = []
-    unlabeled_indices = []
+    labeled_indices: List[int] = []
+    unlabeled_indices: List[int] = []
 
-    # Simpler approach: just iterate through the dataset indices
-    # The base_dataset is already filtered to grammatic-only
-    with create_progress(console) as progress:
-        task = progress.add_task("[cyan]Scanning dataset...", total=len(dataset))
-
-        found_pos_counts = [0] * num_gps
-        found_neg_counts = [0] * num_gps
-        found_unl_counts = [0] * num_gps
-
-        for idx, sample_data in enumerate(dataset):  # type: ignore[arg-type,var-annotated]
-            labels = sample_data["labels"]  # List[int]
-
-            is_labeled_any = False
-            for i, label in enumerate(labels):
-                if label == 1:
-                    found_pos_counts[i] += 1
-                    is_labeled_any = True
-                elif label == 0:
-                    found_neg_counts[i] += 1
-                    is_labeled_any = True
-                else:
-                    found_unl_counts[i] += 1
-
-            if is_labeled_any:
-                labeled_indices.append(idx)
+    use_cached_split = False
+    split_skip_reason: Optional[str] = None
+    if model_reused:
+        if not os.path.exists(split_cache_path):
+            split_skip_reason = "split cache missing"
+        else:
+            with open(split_cache_path, "r", encoding="utf-8") as f:
+                cached = json.load(f)
+            reasons = []
+            if cached.get("grammar_labels") != grammar_labels:
+                reasons.append("grammar_labels mismatch")
+            if cached.get("dataset_size") != len(dataset):
+                reasons.append("dataset_size mismatch")
+            if not isinstance(cached.get("labeled_indices"), list) or not isinstance(
+                cached.get("unlabeled_indices"), list
+            ):
+                reasons.append("invalid index lists")
+            if not reasons:
+                labeled_indices = cached["labeled_indices"]
+                unlabeled_indices = cached["unlabeled_indices"]
+                use_cached_split = True
+                console.print(
+                    f"[dim]  Loaded cached split from {split_cache_path}[/dim]"
+                )
             else:
-                unlabeled_indices.append(idx)
+                split_skip_reason = ", ".join(reasons)
 
-            # Early stopping for test mode
-            # Check if ALL GPs have enough samples
-            if test_mode:
-                all_ready = True
-                for i in range(num_gps):
-                    if found_pos_counts[i] < 5 or found_neg_counts[i] < 5:
-                        all_ready = False
+    if not use_cached_split:
+        if model_reused:
+            console.print(
+                f"[yellow]  Model reuse detected, but split cache was not used "
+                f"({split_cache_path}): {split_skip_reason}. "
+                f"Rescanning dataset...[/yellow]"
+            )
+        elif os.path.exists(model_path):
+            reason_text = model_reuse_reason or "checkpoint not reused"
+            console.print(
+                f"[yellow]  Model checkpoint found but not reused ({reason_text}). "
+                f"Split cache will be ignored and dataset will be rescanned.[/yellow]"
+            )
+        # Simpler approach: just iterate through the dataset indices
+        # The base_dataset is already filtered to grammatic-only
+        with create_progress(console) as progress:
+            task = progress.add_task("[cyan]Scanning dataset...", total=len(dataset))
+
+            found_pos_counts = [0] * num_gps
+            found_neg_counts = [0] * num_gps
+            found_unl_counts = [0] * num_gps
+
+            for idx, sample_data in enumerate(dataset):  # type: ignore[arg-type,var-annotated]
+                labels = sample_data["labels"]  # List[int]
+
+                is_labeled_any = False
+                for i, label in enumerate(labels):
+                    if label == 1:
+                        found_pos_counts[i] += 1
+                        is_labeled_any = True
+                    elif label == 0:
+                        found_neg_counts[i] += 1
+                        is_labeled_any = True
+                    else:
+                        found_unl_counts[i] += 1
+
+                if is_labeled_any:
+                    labeled_indices.append(idx)
+                else:
+                    unlabeled_indices.append(idx)
+
+                # Early stopping for test mode
+                # Check if ALL GPs have enough samples
+                if test_mode:
+                    all_ready = True
+                    for i in range(num_gps):
+                        if found_pos_counts[i] < 5 or found_neg_counts[i] < 5:
+                            all_ready = False
+                            break
+
+                    if all_ready and len(unlabeled_indices) >= 5:
+                        progress.update(task, completed=len(dataset))  # Finish bar
+                        console.print(
+                            "[yellow]Test mode early stop: Found enough samples for all GPs[/yellow]"
+                        )
                         break
 
-                if all_ready and len(unlabeled_indices) >= 5:
-                    progress.update(task, completed=len(dataset))  # Finish bar
-                    console.print(
-                        "[yellow]Test mode early stop: Found enough samples for all GPs[/yellow]"
-                    )
-                    break
+                # Update every 10000 samples for better performance
+                if idx % 10000 == 0 and idx > 0:
+                    progress.update(task, completed=idx)
 
-            # Update every 10000 samples for better performance
-            if idx % 10000 == 0 and idx > 0:
-                progress.update(task, completed=idx)
+            progress.update(task, completed=len(dataset))
 
-        progress.update(task, completed=len(dataset))
+        os.makedirs(base_output_dir, exist_ok=True)
+        with open(split_cache_path, "w", encoding="utf-8") as f:
+            json.dump(
+                {
+                    "grammar_labels": grammar_labels,
+                    "dataset_size": len(dataset),
+                    "labeled_indices": labeled_indices,
+                    "unlabeled_indices": unlabeled_indices,
+                },
+                f,
+            )
 
     # Balance labeled samples in Test Mode (to avoid extreme imbalance like 56 vs 5)
     if test_mode:
@@ -856,10 +891,10 @@ def train_pnu_model(  # pylint: disable=unused-argument
     console.print(f"  Union Labeled samples: {len(labeled_indices):,}")
 
     # Downsample unlabeled if needed (Test Mode optimization to match user request)
-    # User request: downsample to 10x size of labeled samples.
+    # User request: downsample to 20x size of labeled samples.
     if test_mode:
         original_count = len(unlabeled_indices)
-        target_count = len(labeled_indices) * 10
+        target_count = len(labeled_indices) * 20
         if original_count > target_count:
             # Use random.sample to keep it random
             # Note: random is already imported
@@ -926,9 +961,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
         train_labeled_loader
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, total_steps)
-
-    # Statistics tracking
-    sample_stats: Dict[int, SampleLossStats] = {}
 
     # Helper to compute validation loss
     def compute_val_loss(loader: DataLoader) -> float:
@@ -1049,7 +1081,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     # Sample unlabeled data
-    unlabeled_sample_size = min(len(unlabeled_indices), len(train_labeled_indices) * 10)
+    unlabeled_sample_size = min(len(unlabeled_indices), len(train_labeled_indices) * 20)
     if unlabeled_sample_size == 0 and len(unlabeled_indices) > 0:
         unlabeled_sample_size = min(
             len(unlabeled_indices), 100
@@ -1075,7 +1107,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     # Initialize early stopper for Phase 2
-    stopper = EarlyStopper(patience=8, min_delta=0.000001, decay_factor=0.85)
+    stopper = EarlyStopper(patience=24, min_delta=0.000001, decay_factor=0.85)
 
     # Track best model
     best_phase2_loss = float("inf")  # This will now track VAL loss
@@ -1097,8 +1129,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 }
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
-                indices = batch["indices"]
-
                 # Forward
                 with torch.amp.autocast(device_type=device.type, enabled=use_amp):
                     logits = model(field_inputs, attention_mask)  # [B, num_gps, 2]
@@ -1323,9 +1353,12 @@ def train_pnu_model(  # pylint: disable=unused-argument
             console.print(Padding(table, (0, 0, 0, 6)))
 
             if len(satisfied_rows) > 0:
+                satisfied_gps = [item[2][0].strip() for item in satisfied_rows]
+                satisfied_gps.sort()
                 console.print(
                     Padding(
-                        f"[dim]... and {len(satisfied_rows)} that are 100% satisfied[/dim]",
+                        f"[dim]... and {len(satisfied_rows)} that are 100% satisfied: "
+                        f"{', '.join(satisfied_gps)}[/dim]",
                         (0, 0, 0, 6),
                     )
                 )
@@ -1428,183 +1461,6 @@ def train_pnu_model(  # pylint: disable=unused-argument
     # But actually Phase 3 below computes stats using model(field_inputs) inside no_grad.
     # It's an evaluation loop essentially.
 
-    # ========== Phase 3: Evaluation and Loss Accumulation ==========
-    # For efficiency, sample a subset for evaluation (we don't need ALL samples for mining)
-    # Sample labeled + reasonable subset of unlabeled
-    # Scale with top_k: need at least top_k * 50 samples to mine from for good diversity
-    if test_mode:
-        target_total = len(labeled_indices) + 50  # Ensure we sample some unlabeled
-    else:
-        target_total = max(20000, top_k * 50)  # At least 20K or 50x top_k
-
-    # Optimization: Use the filtered unlabeled_indices directly instead of re-scanning full dataset
-    # This respects the early stopping from the scan phase
-    available_unlabeled = unlabeled_indices
-
-    # Cap sample size to available data
-    eval_sample_size = min(
-        len(labeled_indices) + len(available_unlabeled), target_total
-    )
-
-    num_batches = math.ceil(eval_sample_size / 1024)
-    console.print(
-        f"\n[bold cyan]Hard mining for {num_epochs_eval} epochs (in {num_batches} batches of 1024)[/bold cyan]"
-    )
-    console.print(
-        f"  Sampling {eval_sample_size:,} samples for evaluation (from {len(available_unlabeled) + len(labeled_indices):,} available)"
-    )
-
-    # Create sampled indices: all labeled + random unlabeled
-    import time
-
-    # Use truly random seed by default so each run evaluates different sentences
-    # Or use user-provided seed for reproducibility
-    if eval_seed is None:
-        # Use current time for randomness - different subset each run
-        seed = int(time.time() * 1000000) % (2**32)
-        console.print(f"  Using random seed {seed} (different subset each run)")
-        console.print(f"  To reproduce this exact subset, use: --seed {seed}")
-    else:
-        seed = eval_seed
-        console.print(f"  Using custom seed {seed} (reproducible subset)")
-
-    random.seed(seed)
-
-    eval_indices = labeled_indices.copy()
-
-    # available_unlabeled is already set above
-    # available_unlabeled = [i for i in range(len(dataset)) if i not in labeled_indices]
-
-    unlabeled_sample = random.sample(
-        available_unlabeled,
-        min(eval_sample_size - len(labeled_indices), len(available_unlabeled)),
-    )
-    eval_indices.extend(unlabeled_sample)
-
-    eval_subset = Subset(dataset, eval_indices)
-    eval_loader = DataLoader(
-        eval_subset,
-        batch_size=1024,  # Use large batch size for evaluation
-        shuffle=False,
-        collate_fn=collate_grammar_batch,
-        num_workers=0,
-    )
-
-    console.print(
-        f"  Processing {len(eval_loader):,} batches per epoch (~{len(eval_subset):,} samples)"
-    )
-    console.print("  Starting evaluation (this may take a moment)...", end="")
-    console.file.flush()  # Force output
-
-    # Use train mode to enable dropout for Monte Carlo uncertainty estimation
-    model.train()
-    with create_progress(console) as progress:
-        task = progress.add_task(
-            "[cyan]Starting evaluation...", total=num_epochs_eval * len(eval_loader)
-        )
-
-        for epoch in range(num_epochs_eval):
-            console.print(f"\n  Epoch {epoch + 1}/{num_epochs_eval} starting...")
-            with torch.no_grad():
-                for batch_idx, batch in enumerate(eval_loader):
-                    # Update progress more frequently - every 10 batches for responsive feedback
-                    if batch_idx % 10 == 0:
-                        progress.update(
-                            task,
-                            advance=10,
-                            description=f"[cyan]Epoch {epoch + 1}/{num_epochs_eval} - Batch {batch_idx:,}/{len(eval_loader):,}",
-                        )
-
-                    field_inputs = {
-                        k: v.to(device) for k, v in batch["field_inputs"].items()
-                    }
-                    attention_mask = batch["attention_mask"].to(device)
-                    labels = batch["labels"].to(device)
-                    indices = batch["indices"]
-                    sentences = batch["sentences"]
-
-                    # Forward
-                    logits = model(field_inputs, attention_mask)
-                    probs = F.softmax(logits, dim=-1)
-
-                    # Compute per-sample statistics
-                    # Compute per-sample statistics
-                    for i, idx_tensor in enumerate(indices):
-                        idx = int(idx_tensor)
-                        if idx not in sample_stats:
-                            sample_stats[idx] = SampleLossStats(
-                                sentence=sentences[i],
-                            )
-                        sample_stat = sample_stats[idx]
-
-                        # Update for each GP
-                        for gp_idx in range(num_gps):
-                            label = labels[i, gp_idx].item()
-                            gp_logits = logits[i, gp_idx, :]
-                            gp_probs = probs[i, gp_idx, :]
-
-                            prob_pos = gp_probs[1].item()
-                            prob_neg = gp_probs[0].item()
-
-                            # Compute loss
-                            if label >= 0:  # Labeled
-                                sample_loss = F.cross_entropy(
-                                    gp_logits.unsqueeze(0),
-                                    labels[i : i + 1, gp_idx],
-                                    reduction="mean",
-                                ).item()
-                            else:  # Unlabeled
-                                entropy = -(
-                                    prob_pos * math.log(prob_pos + 1e-9)
-                                    + prob_neg * math.log(prob_neg + 1e-9)
-                                )
-                                # Entropy minimization
-                                sample_loss = entropy
-
-                            uncertainty = -(
-                                prob_pos * math.log(prob_pos + 1e-9)
-                                + prob_neg * math.log(prob_neg + 1e-9)
-                            )
-
-                            sample_stat.total_loss += (
-                                sample_loss  # Aggregate loss across all GPs?
-                            )
-                            # Actually, we need per-GP scores for candidates.
-                            # stats should track per-GP metrics.
-
-                            if sample_stat.avg_pred_positive is None:
-                                sample_stat.avg_pred_positive = {}
-                            if sample_stat.avg_uncertainty is None:
-                                sample_stat.avg_uncertainty = {}
-
-                            # Running average
-                            prev_pred = sample_stat.avg_pred_positive.get(gp_idx, 0.0)
-                            prev_unc = sample_stat.avg_uncertainty.get(gp_idx, 0.0)
-
-                            # num_updates is shared, so we update dicts using it
-                            # Wait, num_updates increments once per batch.
-                            # So denominator is same for all GPs.
-                            sample_stat.avg_pred_positive[gp_idx] = (
-                                prev_pred * sample_stat.num_updates + prob_pos
-                            ) / (sample_stat.num_updates + 1)
-                            sample_stat.avg_uncertainty[gp_idx] = (
-                                prev_unc * sample_stat.num_updates + uncertainty
-                            ) / (sample_stat.num_updates + 1)
-
-                        sample_stat.num_updates += 1
-
-            # Complete remaining progress at end of epoch
-            final_batch = len(eval_loader) - 1
-            final_progress = (final_batch // 10) * 10
-            remaining = len(eval_loader) - final_progress
-            if remaining > 0:
-                progress.update(task, advance=remaining)
-
-            # Print epoch summary
-            console.print(
-                f"  Epoch {epoch + 1}: Processed {len(sample_stats):,} unique samples"
-            )
-
     # Save model
     os.makedirs(
         base_output_dir, exist_ok=True
@@ -1640,136 +1496,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     torch.save(model.state_dict(), model_path)
     console.print(f"\n[green]Model saved to {model_path}[/green]")
 
-    return model, sample_stats, unlabeled_indices
-
-
-def generate_candidates(
-    grammar_labels: List[str],
-    sample_stats: Dict[int, SampleLossStats],
-    base_output_dir: str,
-    dataset: GrammarPointDataset,
-    top_k: int = 100,
-) -> None:
-    """Generate hard negative and positive candidates based on loss statistics for each GP."""
-
-    for gp_idx, grammar_label in enumerate(grammar_labels):
-        output_dir = os.path.join(base_output_dir, grammar_label)
-        os.makedirs(output_dir, exist_ok=True)
-
-        # Write operation checkpoints (User request)
-        op_dir = os.path.join(output_dir, "operation")
-        os.makedirs(op_dir, exist_ok=True)
-
-        # Write dataset stats
-        with open(
-            os.path.join(op_dir, "dataset_stats.yaml"), "w", encoding="utf-8"
-        ) as f:
-            # Find stats for this GP
-            for s in dataset.gp_stats:
-                if s["label"] == grammar_label:
-                    yaml.dump(s, f)
-                    break
-
-        # Score and rank samples
-        hard_negative_candidates = []
-        hard_positive_candidates = []
-
-        for idx, stats in sample_stats.items():
-            # Check labels for THIS GP
-            # stats.is_labeled_* was removed. We use dataset lookup.
-            # stats.sentence is available.
-
-            # Get label from dataset lookup
-            sentence = stats.sentence
-            sent_labels = dataset.sentence_labels.get(sentence, {})
-            label = sent_labels.get(gp_idx, -1)
-
-            # Skip labeled samples
-            if label >= 0:
-                continue
-
-            # Get per-GP metrics
-            if idx not in sample_stats:
-                continue
-            sample_stat = sample_stats[idx]
-
-            assert sample_stat.avg_pred_positive is not None
-            assert sample_stat.avg_uncertainty is not None
-            pred_positive = sample_stat.avg_pred_positive.get(gp_idx, 0.0)
-            uncertainty = sample_stat.avg_uncertainty.get(gp_idx, 0.0)
-            # Use total loss as proxy or need per-gp average loss?
-            # We don't store per-GP average loss in stats yet.
-            # Let's approximate score using uncertainty + prediction.
-            # Or assume total_loss is dominated by this task? No.
-            # Let's score purely on prediction confidence and uncertainty.
-
-            boundary_proximity = 1.0 - abs(pred_positive - 0.5) * 2
-
-            # Heuristic score
-            score = (uncertainty * 0.5) + (boundary_proximity * 0.5)
-
-            # Hard negative: model predicts positive (but likely wrong/needs review)
-            if pred_positive > 0.5:
-                hard_negative_candidates.append((score, sentence, idx, pred_positive))
-
-            # Hard positive: model predicts negative
-            else:
-                hard_positive_candidates.append((score, sentence, idx, pred_positive))
-
-        # Sort by score (descending)
-        hard_negative_candidates.sort(reverse=True, key=lambda x: x[0])
-        hard_positive_candidates.sort(reverse=True, key=lambda x: x[0])
-
-        # Write Candidates Stats (User request)
-        with open(
-            os.path.join(op_dir, "candidates_stats.yaml"), "w", encoding="utf-8"
-        ) as f:
-            yaml.dump(
-                {
-                    "hard_negative_candidates": len(hard_negative_candidates),
-                    "hard_positive_candidates": len(hard_positive_candidates),
-                    "top_k": top_k,
-                },
-                f,
-            )
-
-        # Write hard negatives
-        neg_file = os.path.join(output_dir, "best-hard-negative-candidates.txt")
-        with open(neg_file, "w", encoding="utf-8") as f:
-            f.write(f"# Hard Negative Candidates for {grammar_label}\n")
-            f.write(
-                "# These sentences were predicted as POSITIVE but are likely FALSE POSITIVES\n"
-            )
-            f.write("# Format: Score | Pred_Prob | Sentence\n")
-            f.write("# " + "-" * 70 + "\n")
-
-            for score, sentence, idx, pred_prob in hard_negative_candidates[:top_k]:
-                f.write(f"{score:.4f} | {pred_prob:.4f} | {sentence}\n")
-
-        # Write hard positives
-        pos_file = os.path.join(output_dir, "best-hard-positive-candidates.txt")
-        with open(pos_file, "w", encoding="utf-8") as f:
-            f.write(f"# Hard Positive Candidates for {grammar_label}\n")
-            f.write(
-                "# These sentences were predicted as NEGATIVE but are likely FALSE NEGATIVES\n"
-            )
-            f.write("# Format: Score | Pred_Prob | Sentence\n")
-            f.write("# " + "-" * 70 + "\n")
-
-            for score, sentence, idx, pred_prob in hard_positive_candidates[:top_k]:
-                f.write(f"{score:.4f} | {pred_prob:.4f} | {sentence}\n")
-
-        # Metrics JSON
-        stats_file = os.path.join(output_dir, "metrics.json")
-        metrics = {
-            "grammar_label": grammar_label,
-            "total_samples_evaluated": len(sample_stats),
-            "hard_negative_candidates": len(hard_negative_candidates),
-            "hard_positive_candidates": len(hard_positive_candidates),
-            "top_k": top_k,
-        }
-        with open(stats_file, "w", encoding="utf-8") as f:
-            json.dump(metrics, f, indent=2)
+    return model, unlabeled_indices
 
 
 def find_high_certainty_positives(
@@ -1789,9 +1516,12 @@ def find_high_certainty_positives(
     # If candidate indices provided (e.g. from filtered scan), use them
     # Otherwise scan everything
     if candidate_indices is not None:
-        all_indices = candidate_indices
+        all_indices = list(candidate_indices)
     else:
         all_indices = list(range(len(dataset)))
+
+    # Shuffle so early stopping samples are representative
+    random.shuffle(all_indices)
 
     # Hardcode large batch size for fast scanning
     scan_batch_size = 2048
@@ -1829,6 +1559,14 @@ def find_high_certainty_positives(
     high_certainty_candidates_negatives_unlabeled: List[List[Tuple[float, str]]] = [
         [] for _ in range(num_gps)
     ]
+
+    # Early stop when prior reaches target precision
+    prior_precision_decimals = 4.5
+    prior_precision_target = int(math.ceil(10**prior_precision_decimals))
+    # Require a minimum number of positive hits to stabilize very low priors
+    min_pos_target = 25
+    prior_total_counts = [0] * num_gps
+    prior_pos_counts = [0] * num_gps
 
     with torch.no_grad():
         with create_progress(console) as progress:
@@ -1897,7 +1635,27 @@ def find_high_certainty_positives(
                                 (score, sentence)
                             )
 
+                    # Track prior precision counts (based on all samples)
+                    prior_total_counts[i] += len(pos_probs)
+                    if is_unlabeled.any():
+                        unlabeled_pos = pos_probs[is_unlabeled] > 0.5
+                        prior_pos_counts[i] += int(unlabeled_pos.sum().item())
+
                 progress.update(task, advance=1)
+
+                if (
+                    len(all_indices) >= prior_precision_target
+                    and all(
+                        count >= prior_precision_target for count in prior_total_counts
+                    )
+                    and all(count >= min_pos_target for count in prior_pos_counts)
+                ):
+                    progress.update(task, completed=len(loader))
+                    console.print(
+                        f"[yellow]Early stop: prior has {prior_precision_decimals} decimals "
+                        f"and at least {min_pos_target} positives for all GPs[/yellow]"
+                    )
+                    break
 
     # Helper to compute stats
     def compute_stats(name: str, probabilities: List[float]) -> Tuple[List[str], float]:
@@ -1954,7 +1712,7 @@ def find_high_certainty_positives(
         return [
             name,
             f"{count:,}",
-            f"{prior * 100:.1f}%",
+            f"{prior * 100:.5f}%",
             f"{conf * 100:.1f}%",
             f"{p50:.4f} ({gt_50:,})",
             f"{p75:.4f} ({gt_75:,})",
@@ -2435,9 +2193,6 @@ def main() -> None:
         "--batch-size", type=int, default=16, help="Batch size for training"
     )
     parser.add_argument(
-        "--top-k", type=int, default=100, help="Number of candidates to generate"
-    )
-    parser.add_argument(
         "--device",
         type=str,
         default="mps" if torch.backends.mps.is_available() else "cpu",
@@ -2453,7 +2208,7 @@ def main() -> None:
         "--seed",
         type=int,
         default=None,
-        help="Random seed for sampling evaluation set (default: random, different each run)",
+        help="Random seed for dataset split/shuffle and sampling",
     )
     parser.add_argument(
         "--full-pos",
@@ -2496,6 +2251,13 @@ def main() -> None:
         console.print(f"Base Output Directory: {base_output_dir}")
         if len(args.grammar_labels) > 1:
             console.print("[bold green]Shared Model Training enabled.[/bold green]")
+
+        # Seed RNGs for reproducible splits/sampling
+        if args.seed is not None:
+            random.seed(args.seed)
+            torch.manual_seed(args.seed)
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed_all(args.seed)
 
         # Export grammar YAMLs
         export_grammar_yaml(args.grammar_labels, base_output_dir)
@@ -2552,23 +2314,20 @@ def main() -> None:
             )
             num_warmup = 2
             num_pnu = 2
-            num_eval = 2
         elif args.quick:
             console.print(
                 "[yellow]Quick mode enabled: Using reduced epochs and sample subset[/yellow]"
             )
             num_warmup = 2
             num_pnu = 5
-            num_eval = 2
         else:
             num_warmup = 5
             # Increase epochs if multiple GPs?
             # User wants multiple GPs to transfer/share execution.
             # 50 epochs should be enough for convergence of multiple heads.
             num_pnu = 50
-            num_eval = 5
 
-        _model, sample_stats, _ = train_pnu_model(
+        _model, _ = train_pnu_model(
             args.grammar_labels,
             dataset,
             tokenizer,
@@ -2576,23 +2335,13 @@ def main() -> None:
             base_output_dir,
             num_epochs_warmup=num_warmup,
             num_epochs_pnu=num_pnu,
-            num_epochs_eval=num_eval,
             batch_size=args.batch_size,
-            top_k=args.top_k,
-            eval_seed=args.seed,
             test_mode=test_mode,
             quick_mode=args.quick,
             full_pos_scan_fn=find_high_certainty_positives if args.full_pos else None,
         )
 
-        # Generate candidates
-        generate_candidates(
-            args.grammar_labels,
-            sample_stats,
-            base_output_dir,
-            dataset=dataset,
-            top_k=args.top_k,
-        )
+        # Candidate generation removed by request.
 
         console.print("\n[bold green]✓ Complete![/bold green]")
         console.print("\nNext steps:")

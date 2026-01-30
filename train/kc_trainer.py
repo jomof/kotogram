@@ -1529,8 +1529,30 @@ class KCTrainer:
                                     pos_gp_ids = pos_ids[max_loss_idx][
                                         pos_mask[max_loss_idx]
                                     ].tolist()
+
+                                    def _fmt_gp_with_prior(gid: int) -> str:
+                                        """Format a grammar point id with its prior percent.
+
+                                        gp_priors.bin stores per-GP priors in [0,1], with NaN meaning
+                                        "unset, use defaults". For unset/invalid priors we print '(none)'.
+                                        """
+
+                                        prior_suffix = "(none)"
+                                        if (
+                                            0
+                                            <= gid
+                                            < int(self.dataset.gp_priors.numel())
+                                        ):
+                                            p = float(
+                                                self.dataset.gp_priors[gid].item()
+                                            )
+                                            if math.isfinite(p) and 0.0 <= p <= 1.0:
+                                                prior_suffix = f"({p * 100.0:.2f}%)"
+                                        return f"gp{gid:04d}{prior_suffix}"
+
                                     target_labels = ",".join(
-                                        f"gp{gid:04d}" for gid in pos_gp_ids[:5]
+                                        _fmt_gp_with_prior(gid)
+                                        for gid in pos_gp_ids[:5]
                                     )
                                     if len(pos_gp_ids) > 5:
                                         target_labels += f"...+{len(pos_gp_ids) - 5}"
@@ -1542,7 +1564,8 @@ class KCTrainer:
                                     )
                                     if pred_gp_ids:
                                         pred_labels = ",".join(
-                                            f"gp{gid:04d}" for gid in pred_gp_ids[:5]
+                                            _fmt_gp_with_prior(gid)
+                                            for gid in pred_gp_ids[:5]
                                         )
                                         if len(pred_gp_ids) > 5:
                                             pred_labels += f"...+{len(pred_gp_ids) - 5}"
@@ -2930,6 +2953,9 @@ class KCTrainer:
             kc_logits_used_percent=kc_logits_used_percent,
             worst_samples=worst_samples,
             accumulators=family_accumulators,
+            gp_priors=self.dataset.gp_priors.detach().float().cpu()
+            if self.dataset.gp_priors.numel() > 0
+            else None,
         )
 
         # Skip full diagnostics for early epochs (performance optimization)

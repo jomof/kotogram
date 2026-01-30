@@ -479,6 +479,8 @@ class KcEpochSummary:
         default_factory=dict
     )  # Per-family worst sample
     accumulators: Dict[str, "FamilyAccumulator"] = field(default_factory=dict)
+    # Optional per-GP priors vector used for printing curate hints (NaN => unset/default).
+    gp_priors: Optional[torch.Tensor] = None
 
 
 @dataclass

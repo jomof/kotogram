@@ -589,7 +589,9 @@ def test_select_existing_negative(temp_corpus_db):
     """--select-existing=-gpXXXX selects only negative-labeled sentences."""
     insert_test_row(temp_corpus_db, "SelNeg-1", 0.0, 0.0, 1, grammar="gp0001")
     insert_test_row(temp_corpus_db, "SelNeg-2", 0.0, 0.0, 1, grammar_negative="gp0001")
-    insert_test_row(temp_corpus_db, "SelNeg-3", 0.0, 0.0, 1, grammar_negative="gp0001,gp0002")
+    insert_test_row(
+        temp_corpus_db, "SelNeg-3", 0.0, 0.0, 1, grammar_negative="gp0001,gp0002"
+    )
     insert_test_row(temp_corpus_db, "SelNeg-4", 0.0, 0.0, 1)
 
     run_curate(
@@ -622,7 +624,9 @@ def test_select_existing_negative(temp_corpus_db):
 def test_select_existing_either(temp_corpus_db):
     """--select-existing=!gpXXXX selects sentences with positive OR negative label."""
     insert_test_row(temp_corpus_db, "SelEither-1", 0.0, 0.0, 1, grammar="gp0001")
-    insert_test_row(temp_corpus_db, "SelEither-2", 0.0, 0.0, 1, grammar_negative="gp0001")
+    insert_test_row(
+        temp_corpus_db, "SelEither-2", 0.0, 0.0, 1, grammar_negative="gp0001"
+    )
     insert_test_row(temp_corpus_db, "SelEither-3", 0.0, 0.0, 1, grammar="gp0002")
 
     run_curate(
@@ -653,9 +657,12 @@ def test_select_existing_either(temp_corpus_db):
 
 def test_select_existing_conflicts_with_sentence(temp_corpus_db):
     """--select-existing cannot be combined with a positional sentence."""
-    insert_test_row(temp_corpus_db, "ConflictSelExisting", 0.0, 0.0, 1, grammar="gp0001")
+    insert_test_row(
+        temp_corpus_db, "ConflictSelExisting", 0.0, 0.0, 1, grammar="gp0001"
+    )
     with pytest.raises(
-        RuntimeError, match="Cannot specify both '--select-existing' and 'sentence/--sentences'"
+        RuntimeError,
+        match="Cannot specify both '--select-existing' and 'sentence/--sentences'",
     ):
         run_curate(
             [
@@ -675,7 +682,8 @@ def test_select_existing_conflicts_with_sentences_file(temp_corpus_db):
         f.write("Any sentence\n")
     try:
         with pytest.raises(
-            RuntimeError, match="Cannot specify both '--select-existing' and 'sentence/--sentences'"
+            RuntimeError,
+            match="Cannot specify both '--select-existing' and 'sentence/--sentences'",
         ):
             run_curate(
                 [
