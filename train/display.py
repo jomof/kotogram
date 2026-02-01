@@ -1,7 +1,7 @@
 """Display logic for training progress reporting."""
 
 import os
-from typing import Any, Dict, Optional, cast
+from typing import Any, Dict, Optional, Tuple, cast
 
 from rich.console import Console
 from rich.progress import (
@@ -17,6 +17,16 @@ from rich.progress import (
 # Allow disabling force_terminal for tests/logging
 _force_term = os.getenv("KOTOGRAM_FORCE_TERMINAL", "True").lower() == "true"
 console = Console(force_terminal=_force_term)
+
+
+def format_worst_sample_display(
+    sentence: str, loss: float, max_len: int = 60
+) -> Tuple[str, str]:
+    """Return truncated sentence and loss color for worst-sample display."""
+    if len(sentence) > max_len:
+        sentence = sentence[: max_len - 3] + "..."
+    loss_color = "red" if loss > 1.0 else ("yellow" if loss > 0.25 else "dim")
+    return sentence, loss_color
 
 
 class RichTrainerProgressBar:

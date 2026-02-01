@@ -2,7 +2,11 @@ import sys
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Protocol, Tuple
 
-from train.display import print_best_model_saved, print_phase_header
+from train.display import (
+    format_worst_sample_display,
+    print_best_model_saved,
+    print_phase_header,
+)
 from train.types import EvaluationMetrics, TrainingHistory
 
 # ============================================================================
@@ -418,15 +422,8 @@ class TrainerDiagnosticsView(TrainerView):
 
         console.print("[bold]Worst Samples (highest loss per task):[/bold]")
         for task_name, sample in sorted(worst_samples.items()):
-            # Truncate long sentences for display
-            sentence = sample.sentence
-            if len(sentence) > 60:
-                sentence = sentence[:57] + "..."
-            # Color-code based on loss magnitude
-            loss_color = (
-                "red"
-                if sample.loss > 1.0
-                else ("yellow" if sample.loss > 0.25 else "dim")
+            sentence, loss_color = format_worst_sample_display(
+                sample.sentence, sample.loss
             )
 
             # Map integer class IDs to descriptive labels

@@ -128,6 +128,9 @@ class FamilyAccumulator:
     sum_logit_neg: float = 0.0
     cnt_logit_neg: int = 0
     cnt_pred_pos_on_pos: int = 0  # Predicted positive labels on positive examples
+    pos_pred_hist: Dict[int, int] = field(
+        default_factory=dict
+    )  # Histogram of predicted positives per positive example
     saw_dense: bool = False
     saw_sparse: bool = False
     saw_valid_mask: bool = False
@@ -180,6 +183,10 @@ class FamilyAccumulator:
             # Count predictions only on positive examples
             if has_pos.any():
                 self.cnt_pred_pos_on_pos += int(pred_pos[has_pos].sum().item())
+                pos_counts = pred_pos[has_pos].sum(dim=1).to(torch.int64)
+                uniq, cnts = torch.unique(pos_counts, return_counts=True)
+                for val, cnt in zip(uniq.tolist(), cnts.tolist()):
+                    self.pos_pred_hist[val] = self.pos_pred_hist.get(val, 0) + int(cnt)
 
             # Compute neg_mask respecting valid_mask
             if valid_mask is not None:
@@ -223,6 +230,18 @@ class FamilyAccumulator:
                 else:
                     self.loss_by_label += loss_by_label.detach()
 
+    def median_pred_pos_on_pos(self) -> Optional[float]:
+        """Median predicted positives per positive example (epoch-level)."""
+        if self.n_pos_ex <= 0 or not self.pos_pred_hist:
+            return None
+        target = (self.n_pos_ex + 1) // 2
+        running = 0
+        for val in sorted(self.pos_pred_hist.keys()):
+            running += self.pos_pred_hist[val]
+            if running >= target:
+                return float(val)
+        return None
+
 
 @dataclass(frozen=True)
 class RunningLossComponents:
@@ -234,7 +253,7 @@ class RunningLossComponents:
     collapse: float = 0.0
     sparsity: float = 0.0
     saturation: float = 0.0  # Anti-saturation penalty
-    coverage: float = 0.0  # Coverage loss (encourage all KC logits to fire)
+    coverage: float = 0.0  # Coverage loss (threshold or Zipf usage fit)
     formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
     gender: float = 0.0  # Prior KC cross-entropy loss (KC4-5)
     register: float = 0.0  # Prior KC BCE multi-label loss (KC6-18)
@@ -475,6 +494,7 @@ class KcEpochSummary:
     total_loss: float = 0.0  # Epoch total loss for validation
     kc_logits_used_count: int = 0  # Number of unique KC logits that fired
     kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
+    zipf_kl: float = 0.0  # Epoch usage vs Zipf KL (lower is closer)
     worst_samples: Dict[str, "WorstSampleInfo"] = field(
         default_factory=dict
     )  # Per-family worst sample

@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional, Protocol, Tuple
 import torch
 from rich.table import Table
 
-from train.display import console, print_phase_header
+from train.display import console, format_worst_sample_display, print_phase_header
 from train.kc import KcFamilyId, KcLogitMode, get_family
 from train.types import (
     KcDynSizingBinStats,
@@ -123,6 +123,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_mse_stats: Dict[str, Dict[str, float]] = {}  # MSE family tracking
         # Store previous epoch loss components for delta arrows
         self.prev_loss_components: Optional[RunningLossComponents] = None
+        # Store previous epoch Zipf KL for trajectory arrow
+        self.prev_zipf_kl: Optional[float] = None
         # Store previous epoch spill stats for bin trajectory arrows
         self.prev_bin_spill: Dict[str, float] = {}
 
@@ -346,7 +348,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_loss.add_column("Loss", style="dim", min_width=10)
         table_loss.add_column("Value", justify="right", min_width=10)
         table_loss.add_column("Δ", justify="left", min_width=8)
-        table_loss.add_column("Acc", justify="right", min_width=14)
         table_loss.add_column("Detail", style="dim")
 
         # Helper for accuracy display with delta arrow
@@ -377,7 +378,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             _f(lc.struct * w.struct / nb),
             _delta_arrow(lc.struct, prev_lc.struct if prev_lc else None),
             "",
-            "",
         )
         # Prior KC losses (formality KC0-3, gender KC4-5, register KC6-18) removed
         # - now handled by style classifier
@@ -385,43 +385,49 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             "diversity",
             _f(lc.div * w.div / nb),
             _delta_arrow(lc.div, prev_lc.div if prev_lc else None),
-            "",
             f"Ent={act.ent_norm:.3f} AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
             "load_bal",
             _f(lc.lb * w.lb / nb),
             _delta_arrow(lc.lb, prev_lc.lb if prev_lc else None),
-            "",
             f"KL={act.kl_u_norm:.3f}",
         )
         table_loss.add_row(
             "collapse",
             _f(lc.collapse * w.collapse / nb),
             _delta_arrow(lc.collapse, prev_lc.collapse if prev_lc else None),
-            "",
             f"Sat95={act.sat_contrib_mean:.2f} PMax={act.pmax_global_max:.3f}",
         )
         table_loss.add_row(
             "sparsity",
             _f(lc.sparsity * w.sparsity / nb),
             _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
-            "",
             f"Dens={act.act_dens_mean:.3f} K={act.topk_sum_p50:.0f}/{act.topk_sum_p90:.0f}/{act.topk_sum_p99:.0f}",
         )
         table_loss.add_row(
             "saturation",
             _f(lc.saturation / nb),
             _delta_arrow(lc.saturation, prev_lc.saturation if prev_lc else None),
-            "",
             f"sc={act.sat_scale_mean:.0f} c={act.sat_contrib_ratio:.0%} pen={act.sat_pen_global:.2f}/{act.sat_pen_pos:.2f} LM={act.pmax_logit_mean_global:.1f}/{act.pmax_logit_mean_pos:.1f} P={act.frac_has_pos:.0%}>{act.frac_over_thr_pos:.0%}",
         )
+        zipf_arrow = ""
+        if self.prev_zipf_kl is not None:
+            zipf_delta = summary.zipf_kl - self.prev_zipf_kl
+            if zipf_delta < -1e-6:
+                zipf_arrow = "[green]↓[/green]"
+            elif zipf_delta > 1e-6:
+                zipf_arrow = "[red]↑[/red]"
+        zipf_detail = (
+            f"Used={summary.kc_logits_used_count} "
+            f"({summary.kc_logits_used_percent:.1f}%) "
+            f"ZipfKL={_f(summary.zipf_kl)}{zipf_arrow}"
+        )
         table_loss.add_row(
-            "coverage",
+            "zipf",
             _f(lc.coverage * w.coverage / nb),
             _delta_arrow(lc.coverage, prev_lc.coverage if prev_lc else None),
-            "",
-            f"Used={summary.kc_logits_used_count} ({summary.kc_logits_used_percent:.1f}%)",
+            zipf_detail,
         )
         console.print(table_loss)
 
@@ -447,6 +453,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
         # Store for next epoch comparison
         self.prev_loss_components = lc
+        self.prev_zipf_kl = summary.zipf_kl
 
         # BLOCK 1: Dynamic Sizing
         # Compute aggregates from stored bins
@@ -674,6 +681,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("PosP")  # avg probability for positives
         table_fam.add_column("Acc")  # overall accuracy at threshold 0.5
         table_fam.add_column("AvgPos")  # avg positive labels per positive example
+        table_fam.add_column("MedPos")  # median positive labels per positive example
         table_fam.add_column("Logit(+/-)")
         table_fam.add_column("Gap")
         table_fam.add_column("Msk%")
@@ -794,6 +802,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             # Compute average predicted positive labels per positive example
             avg_pos_str = "-"
+            med_pos_str = "-"
             if hasattr(summary, "accumulators") and name in summary.accumulators:
                 acc = summary.accumulators[name]
                 if acc.n_pos_ex > 0:
@@ -801,10 +810,14 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     # Color based on deviation from target density if helpful,
                     # but for now just display raw predicted density on positive examples.
                     avg_pos_str = f"{avg_pos:.2f}"
+                    med_pos = acc.median_pred_pos_on_pos()
+                    if med_pos is not None:
+                        med_pos_str = f"{med_pos:.0f}"
             elif fam.pos_ex_frac > 1e-6:
                 # Fallback to ground truth density if accumulator missing (legacy)
                 avg_pos = fam.pos_label_density / fam.pos_ex_frac
                 avg_pos_str = f"({avg_pos:.2f})"
+                med_pos_str = "-"
 
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
@@ -815,6 +828,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"[{c_posp}]{fam.prob_pos_mean * 100:.0f}%[/{c_posp}]{posp_arrow}",
                 f"[{c_acc}]{fam.accuracy * 100:.0f}%[/{c_acc}]{acc_arrow}",
                 avg_pos_str,
+                med_pos_str,
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
                 f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
                 f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",
@@ -897,15 +911,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     sorted_items.insert(insert_pos, (fam_name, sample))
 
             for fam_name, sample in sorted_items:
-                # Truncate long sentences for display
-                sentence = sample.sentence
-                if len(sentence) > 60:
-                    sentence = sentence[:57] + "..."
-                # Color-code based on loss magnitude
-                loss_color = (
-                    "red"
-                    if sample.loss > 1.0
-                    else ("yellow" if sample.loss > 0.25 else "dim")
+                sentence, loss_color = format_worst_sample_display(
+                    sample.sentence, sample.loss
                 )
                 # Build label display - show labels if either is non-empty
                 label_info = ""

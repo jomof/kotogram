@@ -97,17 +97,22 @@ class KCConfig:
     lb_weight: float = 0.0
     lb_weight_thawed: float = 0.1
 
-    # Coverage Loss (encourage all KC logits to be used)
+    # Coverage Loss (encourage all KC logits to be used / follow Zipf)
     coverage_weight: float = 0.0  # Start at 0, can enable after diversity is working
     coverage_weight_thawed: float = (
         0.1  # Weight when encoder is thawed (comparable to load_bal)
     )
+    coverage_mode: str = "zipf"  # "threshold" (legacy) or "zipf"
     # Minimum probability threshold for a KC logit to be considered "used".
     # For each KC logit, we compute its maximum probability across all samples in the batch.
     # If that max probability is below this threshold, the logit is penalized.
     # A value of 0.05 means each KC should reach at least 5% probability for at least one sample.
     # Lower values (e.g., 0.01) are more lenient; higher values (e.g., 0.1) require stronger activations.
     coverage_min_prob: float = 0.5  # Minimum max probability per KC logit
+    # Zipf Coverage Loss parameters (used when coverage_mode == "zipf")
+    coverage_zipf_s: float = 1.0  # Zipf exponent (1.0 is classic Zipf)
+    coverage_zipf_tau: float = 0.05  # Soft threshold temperature for usage
+    coverage_zipf_eps: float = 1e-6  # Numerical stability for KL
 
     # Collapse Prevention
     collapse_weight_thawed: float = 10.0
@@ -133,10 +138,11 @@ class KCConfig:
 
     # Grammar Point (Multi-Label PNU) Loss
     gp_unlabeled_weight: float = (
-        0.1  # Weight for unlabeled positions (weak negative assumption)
+        1  # Weight for unlabeled positions (weak negative assumption)
     )
     gp_pos_weight: float = 1.0  # Weight for labeled positives
     gp_neg_weight: float = 250.0  # Weight for labeled negatives
+    gp_default_prior: float = 1e-6  # Default prior for NULL grammar.prior (0.0-1.0)
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples

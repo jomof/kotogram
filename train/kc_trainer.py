@@ -490,8 +490,15 @@ class KCTrainer:
         # Convert to float32 CPU for robust ops; we'll move to device per-batch.
         pri = gp_priors.detach().float().cpu()[:gp_vocab_size]
 
-        # Mask finite priors
+        # Mask finite priors, filling NULLs with a default prior.
         finite = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
+        gp_default_prior = self.kc_config.gp_default_prior
+        if not 0.0 <= gp_default_prior <= 1.0:
+            raise ValueError("gp_default_prior must be within [0.0, 1.0].")
+        if (~finite).any():
+            pri = pri.clone()
+            pri[~finite] = float(gp_default_prior)
+            finite = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
         if not finite.any():
             return
 
@@ -1530,6 +1537,9 @@ class KCTrainer:
                                         pos_mask[max_loss_idx]
                                     ].tolist()
 
+                                    def _fmt_gp_plain(gid: int) -> str:
+                                        return f"gp{gid:04d}"
+
                                     def _fmt_gp_with_prior(gid: int) -> str:
                                         """Format a grammar point id with its prior percent.
 
@@ -1551,8 +1561,7 @@ class KCTrainer:
                                         return f"gp{gid:04d}{prior_suffix}"
 
                                     target_labels = ",".join(
-                                        _fmt_gp_with_prior(gid)
-                                        for gid in pos_gp_ids[:5]
+                                        _fmt_gp_plain(gid) for gid in pos_gp_ids[:5]
                                     )
                                     if len(pos_gp_ids) > 5:
                                         target_labels += f"...+{len(pos_gp_ids) - 5}"
@@ -1564,7 +1573,7 @@ class KCTrainer:
                                     )
                                     if pred_gp_ids:
                                         pred_labels = ",".join(
-                                            _fmt_gp_with_prior(gid)
+                                            _fmt_gp_plain(gid)
                                             for gid in pred_gp_ids[:5]
                                         )
                                         if len(pred_gp_ids) > 5:
@@ -1616,7 +1625,7 @@ class KCTrainer:
                                         fp_target_labels = "none"
                                         if fp_pred_gp_ids:
                                             fp_pred_labels = ",".join(
-                                                f"gp{gid:04d}"
+                                                _fmt_gp_with_prior(gid)
                                                 for gid in fp_pred_gp_ids[:5]
                                             )
                                             if len(fp_pred_gp_ids) > 5:
@@ -2412,9 +2421,10 @@ class KCTrainer:
                 combined_loss += div_accum
                 loss_div_val = div_accum.item()
 
-            # Coverage Loss: Encourage all KC logits to be used
-            # For each KC logit, find its max probability across the batch
-            # Penalize if many logits have low max probability
+            # Coverage Loss: Encourage all KC logits to be used / follow Zipf
+            # Modes:
+            # - threshold: penalize logits whose max prob stays below threshold
+            # - zipf: fit per-batch usage distribution to Zipf's law
             coverage_weight = (
                 self.kc_config.coverage_weight
                 if relative_epoch < self.freeze_encoder_epochs
@@ -2424,16 +2434,42 @@ class KCTrainer:
             kc_probs = torch.sigmoid(outputs["kc_logits_effective"])
 
             if coverage_weight > 0:
-                # Max probability each KC achieves across the batch
-                # Shape: kc_probs is [batch_size, vocab_size]
-                max_probs_per_kc = kc_probs.max(dim=0)[0]  # [vocab_size]
-
-                # Penalize KCs that don't reach minimum threshold
                 min_threshold = self.kc_config.coverage_min_prob
-                coverage_violations = torch.nn.functional.relu(
-                    min_threshold - max_probs_per_kc
-                )
-                coverage_loss = coverage_violations.mean()
+                if self.kc_config.coverage_mode == "zipf":
+                    # Soft indicator for "usage" to keep gradients smooth
+                    tau = max(self.kc_config.coverage_zipf_tau, 1e-6)
+                    eps = self.kc_config.coverage_zipf_eps
+                    zipf_s = self.kc_config.coverage_zipf_s
+
+                    usage_soft = torch.sigmoid((kc_probs - min_threshold) / tau)
+                    usage = usage_soft.mean(dim=0)  # [vocab_size], fraction per logit
+                    usage_sorted, _ = usage.sort(descending=True)
+
+                    # Observed distribution
+                    obs = usage_sorted + eps
+                    obs = obs / obs.sum()
+
+                    # Zipf target distribution
+                    ranks = torch.arange(
+                        1, obs.numel() + 1, device=obs.device, dtype=obs.dtype
+                    )
+                    target = torch.pow(ranks, -zipf_s)
+                    target = target / target.sum()
+                    target = target + eps
+                    target = target / target.sum()
+
+                    # KL divergence: obs || target
+                    coverage_loss = torch.sum(obs * (obs.log() - target.log()))
+                else:
+                    # Max probability each KC achieves across the batch
+                    # Shape: kc_probs is [batch_size, vocab_size]
+                    max_probs_per_kc = kc_probs.max(dim=0)[0]  # [vocab_size]
+
+                    # Penalize KCs that don't reach minimum threshold
+                    coverage_violations = torch.nn.functional.relu(
+                        min_threshold - max_probs_per_kc
+                    )
+                    coverage_loss = coverage_violations.mean()
 
                 weighted_coverage_loss = coverage_weight * coverage_loss
                 combined_loss += weighted_coverage_loss
@@ -2489,8 +2525,8 @@ class KCTrainer:
 
                     spill_tensor = torch.stack(spill_probs)  # (B,)
 
-                    # Penalize deviation from target (bidirectional)
-                    sparsity_term = torch.abs(
+                    # Hinge: penalize only when spill exceeds target
+                    sparsity_term = torch.nn.functional.relu(
                         spill_tensor - self.kc_target_spill_rate
                     ).mean()
                 else:
@@ -2786,6 +2822,7 @@ class KCTrainer:
         self.view.on_kc_progress_stop()
 
         # --- Epoch Summary Usage Stats ---
+        zipf_kl_final: float = 0.0
         # Normalize usage distribution
         if total_samples_seen > 0:
             p_mean = running_usage_probs_sum / total_samples_seen
@@ -2802,6 +2839,19 @@ class KCTrainer:
             # Or explicit:
             kl_val_final = float((p_mean * (p_mean * kc_vocab_size).log()).sum().item())
             kl_u_norm_final = kl_val_final / math.log(max(1, kc_vocab_size))
+
+            # Zipf KL (lower is closer to Zipf)
+            zipf_s = self.kc_config.coverage_zipf_s
+            zipf_eps = self.kc_config.coverage_zipf_eps
+            p_sorted, _ = p_mean.sort(descending=True)
+            obs = p_sorted + zipf_eps
+            obs = obs / obs.sum()
+            ranks = torch.arange(1, obs.numel() + 1, device=obs.device, dtype=obs.dtype)
+            target = torch.pow(ranks, -zipf_s)
+            target = target / target.sum()
+            target = target + zipf_eps
+            target = target / target.sum()
+            zipf_kl_final = float((obs * (obs.log() - target.log())).sum().item())
         else:
             ent_norm_final = 0.0
             kl_u_norm_final = 0.0
@@ -2938,6 +2988,12 @@ class KCTrainer:
             (100.0 * kc_logits_used_count / kc_vocab_size) if kc_vocab_size > 0 else 0.0
         )
 
+        gp_priors = getattr(self.dataset, "gp_priors", None)
+        if torch.is_tensor(gp_priors) and gp_priors.numel() > 0:
+            gp_priors_summary = gp_priors.detach().float().cpu()
+        else:
+            gp_priors_summary = None
+
         summary = KcEpochSummary(
             epoch_idx=epoch,
             frozen=should_freeze,
@@ -2951,11 +3007,10 @@ class KCTrainer:
             / max(1, n_batches),  # Per-batch average (guard div-by-zero)
             kc_logits_used_count=kc_logits_used_count,
             kc_logits_used_percent=kc_logits_used_percent,
+            zipf_kl=zipf_kl_final,
             worst_samples=worst_samples,
             accumulators=family_accumulators,
-            gp_priors=self.dataset.gp_priors.detach().float().cpu()
-            if self.dataset.gp_priors.numel() > 0
-            else None,
+            gp_priors=gp_priors_summary,
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
