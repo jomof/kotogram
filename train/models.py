@@ -192,10 +192,12 @@ class TrainingClassifier(InferenceClassifier):
         grad_cap: Optional[float] = None,
         k_budget: Optional[torch.Tensor] = None,
         long_sentence_mask: Optional[torch.Tensor] = None,
+        pooled: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
         # Use unified pooler for KC (shared with style classifier)
-        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
-        pooled = self.pooler(encoder_output, attention_mask)
+        if pooled is None:
+            encoder_output = self.get_encoder_output(field_inputs, attention_mask)
+            pooled = self.pooler(encoder_output, attention_mask)
 
         # Get raw and normalized logits
         if hasattr(self.kc_head, "forward_with_raw"):

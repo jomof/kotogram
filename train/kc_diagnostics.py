@@ -362,6 +362,7 @@ class KCEpochDiag:
                 empty_pct=empty_pct,
                 dnll=dnll,
                 mask_pct=mask_pct,
+                batch_count=s.batch_count,
                 loss_mean=loss_per_batch,
                 prob_pos_mean=prob_pos_mean,
                 prob_neg_mean=prob_neg_mean,
@@ -414,6 +415,7 @@ class KCEpochDiag:
                 correlation=correlation,
                 mean_bias=mean_bias,
                 pred_std=pred_std,
+                batch_count=mse_s.batch_count,
             )
 
         return KCDiagnosticReport(families=data, mse_families=mse_data)

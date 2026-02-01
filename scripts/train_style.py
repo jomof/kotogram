@@ -195,6 +195,7 @@ if __name__ == "__main__":
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
+    trainer_config = dataclasses.replace(trainer_config, batch_size=128)
 
     # Handle report_only mode
     if trainer_config.report_only:
@@ -543,8 +544,8 @@ if __name__ == "__main__":
     kc_epochs_target = trainer_config.kc_epochs
     style_epochs_target = trainer_config.epochs
 
-    # Filter to grammatical sentences only for KC training
-    kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
+    # Use full dataset for KC training (grammatic + ungrammatic)
+    kc_dataset = labeled_dataset
 
     # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
     # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
@@ -560,11 +561,13 @@ if __name__ == "__main__":
         kc_config=kc_config,
     )
 
+    style_config = dataclasses.replace(trainer_config, grammaticality_loss_weight=0.0)
+
     style_trainer = Trainer(
         model,
         train_data,
         val_data,
-        trainer_config,
+        style_config,
         dl_config_train=trainer_config.resolve_dataloader_config(device, mode="train"),
         dl_config_val=trainer_config.resolve_dataloader_config(device, mode="val"),
         output_path=output_path,
@@ -587,6 +590,7 @@ if __name__ == "__main__":
             kc_epochs_done += 1
             # Save model.pt after every KC epoch as requested
             _export_model(model)
+            train_io.save_checkpoint(model)
 
         # Style epoch (if remaining)
         if style_epochs_done < style_epochs_target:

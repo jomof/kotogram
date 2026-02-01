@@ -129,7 +129,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
         )
         self.model = TrainingClassifier(self.model_config)
 
-    def test_kc_trainer_filtering(self):
+    def test_kc_trainer_retains_agrammatic(self):
         dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])
         kc_config = KCConfig(sparsity_weight=0.01, freeze_encoder_epochs=1)
         dl_config = self.config.resolve_dataloader_config(torch.device("cpu"))
@@ -154,14 +154,14 @@ class TestPretrainDataFiltering(unittest.TestCase):
         def has_agrammatic(dataset):
             return any(s.grammaticality_label == 0 for s in dataset.samples)
 
-        self.assertFalse(
+        self.assertTrue(
             has_agrammatic(trainer.dataset),
-            "KCTrainer's dataset should NOT contain agrammatic samples",
+            "KCTrainer's dataset should contain agrammatic samples",
         )
         self.assertEqual(
             len(trainer.dataset.samples),
-            1,
-            "KCTrainer should have filtered out the one agrammatic sample",
+            2,
+            "KCTrainer should retain both grammatic and agrammatic samples",
         )
 
 

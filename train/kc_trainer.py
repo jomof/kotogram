@@ -1,6 +1,8 @@
 # pylint: disable=too-many-lines,not-callable,too-many-nested-blocks,duplicate-code
 import math
 import os
+import random
+from collections.abc import Iterable, Sized
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
@@ -42,6 +44,7 @@ from train.types import (
     TensorStats,
     TrainEpochResult,
     TrainEpochStats,
+    TrainingBatch,
     WorstSampleInfo,
 )
 from train.worker import _worker_init_fn
@@ -115,8 +118,6 @@ class KCTrainer:
         kc_config: KCConfig,
         view: Optional[KCTrainerView] = None,
     ):
-        dataset = dataset.filter_by_grammaticality(1)
-
         self.model = model
         self.dataset = dataset
         self.config = config
@@ -145,36 +146,71 @@ class KCTrainer:
         self.model.to(self.device)
 
         self.val_sampler = None
-        self.sampler = None
+        self.gram_sampler = None
+        self.data_loader: Optional[Iterable[Any]] = None
+        self.ungram_loader: Iterable[Any] = []
+        self.gram_loader: Iterable[Any] = []
 
-        # Create style-aware sampler if enabled (oversamples non-neutral examples)
-        if kc_config.style_oversample and hasattr(dataset, "create_style_oversampler"):
-            self.sampler = dataset.create_style_oversampler(
-                formality_boost=kc_config.formality_boost,
-                gender_boost=kc_config.gender_boost,
-            )
-            self.view.on_style_oversampling_enabled(
-                kc_config.formality_boost, kc_config.gender_boost
-            )
-
-        if dl_config is None:
-            dl_config = self.config.resolve_dataloader_config(self.device, mode="train")
-
-        self.data_loader = DataLoader(
-            dataset,
-            batch_size=self.config.batch_size,
-            shuffle=(self.sampler is None),
-            sampler=self.sampler,
-            collate_fn=partial(
-                collate_fn,
-                # max_seq_len=max_seq_len, # Removed constant param
-            ),
-            num_workers=dl_config.num_workers,
-            pin_memory=dl_config.pin_memory,
-            persistent_workers=dl_config.persistent_workers,
-            prefetch_factor=dl_config.prefetch_factor,
-            worker_init_fn=_worker_init_fn,
+        use_dataset_loaders = isinstance(dataset, StyleDataset) or (
+            isinstance(getattr(dataset, "indices", None), torch.Tensor)
+            and isinstance(getattr(dataset, "labels", None), dict)
         )
+        if use_dataset_loaders:
+            self.ungram_dataset = dataset.filter_by_grammaticality(0)
+            self.gram_dataset = dataset.filter_by_grammaticality(1)
+
+            # Create style-aware sampler if enabled (oversamples non-neutral examples)
+            if kc_config.style_oversample and hasattr(
+                self.gram_dataset, "create_style_oversampler"
+            ):
+                self.gram_sampler = self.gram_dataset.create_style_oversampler(
+                    formality_boost=kc_config.formality_boost,
+                    gender_boost=kc_config.gender_boost,
+                )
+                self.view.on_style_oversampling_enabled(
+                    kc_config.formality_boost, kc_config.gender_boost
+                )
+
+            if dl_config is None:
+                dl_config = self.config.resolve_dataloader_config(
+                    self.device, mode="train"
+                )
+
+            self.ungram_loader = DataLoader(
+                self.ungram_dataset,
+                batch_size=self.config.batch_size,
+                shuffle=True,
+                sampler=None,
+                collate_fn=partial(
+                    collate_fn,
+                    # max_seq_len=max_seq_len, # Removed constant param
+                ),
+                num_workers=dl_config.num_workers,
+                pin_memory=dl_config.pin_memory,
+                persistent_workers=dl_config.persistent_workers,
+                prefetch_factor=dl_config.prefetch_factor,
+                worker_init_fn=_worker_init_fn,
+            )
+            self.gram_loader = DataLoader(
+                self.gram_dataset,
+                batch_size=self.config.batch_size,
+                shuffle=(self.gram_sampler is None),
+                sampler=self.gram_sampler,
+                collate_fn=partial(
+                    collate_fn,
+                    # max_seq_len=max_seq_len, # Removed constant param
+                ),
+                num_workers=dl_config.num_workers,
+                pin_memory=dl_config.pin_memory,
+                persistent_workers=dl_config.persistent_workers,
+                prefetch_factor=dl_config.prefetch_factor,
+                worker_init_fn=_worker_init_fn,
+            )
+        else:
+            self.ungram_dataset = dataset
+            self.gram_dataset = dataset
+            self.ungram_loader = []
+            self.gram_loader = []
         self._create_optimizer(freeze_encoder=self.freeze_encoder_epochs > 0)
 
         self.mse_loss = nn.MSELoss()
@@ -292,6 +328,35 @@ class KCTrainer:
 
         bce = adaptive_pos_weight * loss_pos + adaptive_neg_weight * loss_neg
         return bce
+
+    @staticmethod
+    def _filter_batch_by_mask(
+        batch: TrainingBatch, mask: torch.Tensor
+    ) -> TrainingBatch:
+        """Return a new batch containing only samples where mask is True."""
+        if mask.dim() != 1:
+            raise ValueError("Mask must be 1D for batch filtering")
+        mask = mask.bool()
+        mask_list = mask.tolist()
+
+        def _filter_list(values: List[Any]) -> List[Any]:
+            return [v for v, keep in zip(values, mask_list) if keep]
+
+        feature_inputs = {k: v[mask] for k, v in batch.feature_inputs.items()}
+        return TrainingBatch(
+            feature_inputs=feature_inputs,
+            attention_mask=batch.attention_mask[mask],
+            formality_value=batch.formality_value[mask],
+            formality_pragmatic=batch.formality_pragmatic[mask],
+            gender_value=batch.gender_value[mask],
+            gender_pragmatic=batch.gender_pragmatic[mask],
+            grammaticality_labels=batch.grammaticality_labels[mask],
+            register_labels=batch.register_labels[mask],
+            indices=batch.indices[mask],
+            original_sentence=_filter_list(batch.original_sentence),
+            kotogram=_filter_list(batch.kotogram),
+            kc_targets=_filter_list(batch.kc_targets),
+        )
 
     def _continuous_mse_loss(
         self,
@@ -667,6 +732,8 @@ class KCTrainer:
         m = self.model
         if not hasattr(m, "kc_decoders"):
             return
+        if not self.config.kc_target_specs:
+            return
 
         sums: Dict[str, float] = {}
         counts: Dict[str, int] = {}
@@ -675,7 +742,9 @@ class KCTrainer:
         pos_density_sums: Dict[str, float] = {}
         pos_density_counts: Dict[str, int] = {}
 
-        for i, batch in enumerate(self.data_loader):
+        if self._loader_len(self.gram_loader) == 0:
+            return
+        for i, batch in enumerate(self.gram_loader):
             if i >= num_batches:
                 break
 
@@ -915,6 +984,18 @@ class KCTrainer:
 
         self.optimizer = Adam([pg_heads, pg_encoder])
 
+    def _estimate_total_batches(self) -> int:
+        total = self._loader_len(self.ungram_loader) + self._loader_len(
+            self.gram_loader
+        )
+        if total == 0 and isinstance(self.data_loader, Sized):
+            return len(self.data_loader)
+        return total
+
+    @staticmethod
+    def _loader_len(loader: Iterable[Any]) -> int:
+        return len(loader) if isinstance(loader, Sized) else 0
+
     def _check_kc_coverage(
         self, outputs: Dict[str, Any], kc_targets: Dict[str, Any]
     ) -> None:
@@ -986,7 +1067,7 @@ class KCTrainer:
 
         total_sparsity = 0.0
 
-        total_batches = len(self.data_loader)
+        total_batches = self._estimate_total_batches()
 
         running_struct_loss = 0.0
         running_num_struct_total = 0
@@ -1071,10 +1152,17 @@ class KCTrainer:
         if should_freeze:
             pbar_desc += " (Encoder Frozen)"
 
+        pbar_batch_size = getattr(self.ungram_loader, "batch_size", None)
+        if pbar_batch_size is None:
+            pbar_batch_size = getattr(self.gram_loader, "batch_size", None)
+        if pbar_batch_size is None:
+            pbar_batch_size = self.config.batch_size
+        total_elements_target = total_batches * (pbar_batch_size or 1)
         pbar = RichTrainerProgressBar(
             desc=pbar_desc,
             total_steps=total_batches,
-            batch_size=self.data_loader.batch_size or 1,
+            batch_size=pbar_batch_size or 1,
+            total_elements_target=total_elements_target,
         )
         self.view.on_kc_progress_init(
             pbar_desc,
@@ -1082,7 +1170,64 @@ class KCTrainer:
         )
 
         self.train_timer_data.start()
-        for batch_idx, batch in enumerate(self.data_loader):
+
+        def _iter_interleaved_batches() -> Any:
+            ungram_batches = self._loader_len(self.ungram_loader)
+            gram_batches = self._loader_len(self.gram_loader)
+            if (
+                ungram_batches == 0
+                and gram_batches == 0
+                and isinstance(self.data_loader, Iterable)
+            ):
+                yield from self.data_loader  # pylint: disable=not-an-iterable
+                return
+            if ungram_batches == 0:
+                yield from self.gram_loader
+                return
+            if gram_batches == 0:
+                yield from self.ungram_loader
+                return
+
+            gram_iter = iter(self.gram_loader)
+            ungram_iter = iter(self.ungram_loader)
+            remaining_gram = gram_batches
+            remaining_ungram = ungram_batches
+
+            while remaining_gram > 0 or remaining_ungram > 0:
+                total_remaining = remaining_gram + remaining_ungram
+                pick_gram = (
+                    random.random() < (remaining_gram / total_remaining)
+                    if total_remaining > 0
+                    else False
+                )
+
+                if pick_gram and remaining_gram > 0:
+                    gram_batch = next(gram_iter, None)
+                    if gram_batch is None:
+                        remaining_gram = 0
+                        continue
+                    yield gram_batch
+                    remaining_gram -= 1
+                    continue
+
+                if remaining_ungram > 0:
+                    ungram_batch = next(ungram_iter, None)
+                    if ungram_batch is None:
+                        remaining_ungram = 0
+                        continue
+                    yield ungram_batch
+                    remaining_ungram -= 1
+                    continue
+
+                if remaining_gram > 0:
+                    gram_batch = next(gram_iter, None)
+                    if gram_batch is None:
+                        remaining_gram = 0
+                        continue
+                    yield gram_batch
+                    remaining_gram -= 1
+
+        for batch_idx, batch in enumerate(_iter_interleaved_batches()):
             self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_compute.start()
 
@@ -1112,6 +1257,109 @@ class KCTrainer:
                 self.train_timer_data.start()
                 continue
 
+            full_batch = batch
+            full_field_inputs = {
+                k: v.to(self.device) for k, v in full_batch.feature_inputs.items()
+            }
+            full_attention_mask = full_batch.attention_mask.to(self.device)
+            gram_labels = full_batch.grammaticality_labels
+            if not torch.is_tensor(gram_labels):
+                gram_labels = torch.as_tensor(gram_labels)
+            if gram_labels.numel() != full_attention_mask.size(0):
+                gram_labels = torch.ones(full_attention_mask.size(0), dtype=torch.long)
+            gram_mask_cpu = gram_labels == 1
+            has_grammatic = bool(gram_mask_cpu.any().item())
+            if not isinstance(self.model, TrainingClassifier):
+                gram_mask_cpu = torch.ones_like(gram_mask_cpu, dtype=torch.bool)
+                has_grammatic = True
+            if has_grammatic and gram_mask_cpu.all():
+                batch_label = "gram"
+            elif not has_grammatic:
+                batch_label = "ungram"
+            else:
+                batch_label = "mixed"
+
+            # Grammaticality MSE uses pooled classifier (all sentences)
+            pooled = None
+            gram_probs = None
+            gram_targets = None
+            gram_loss = torch.tensor(0.0, device=self.device)
+            if isinstance(self.model, TrainingClassifier):
+                encoder_output = self.model.get_encoder_output(
+                    full_field_inputs, full_attention_mask
+                )
+                pooled = self.model.pooler(encoder_output, full_attention_mask)
+                gram_logits = self.model.grammaticality_classifier(pooled)
+                gram_probs = F.softmax(gram_logits, dim=-1)[:, 1]
+                gram_targets = full_batch.grammaticality_labels.to(self.device).float()
+                gram_loss = F.mse_loss(gram_probs, gram_targets)
+                gram_loss = gram_loss * self.config.grammaticality_loss_weight
+
+                if not skip_metrics and kc_diag is not None:
+                    kc_diag.update_mse_family(
+                        "grammatic", gram_probs, gram_targets, gram_loss.item()
+                    )
+
+            if not skip_metrics and gram_probs is not None and gram_targets is not None:
+                with torch.no_grad():
+                    per_sample_loss = (gram_probs - gram_targets).pow(2)
+                    max_loss_idx = int(per_sample_loss.argmax().item())
+                    max_loss_val = per_sample_loss[max_loss_idx].item()
+                    current_worst = worst_samples.get("grammatic")
+                    if current_worst is None or max_loss_val > current_worst.loss:
+                        sample_idx = int(full_batch.indices[max_loss_idx].item())
+                        worst_samples["grammatic"] = WorstSampleInfo(
+                            sentence=_get_display_sentence(
+                                self.dataset.get_sentence_by_idx(sample_idx),
+                                full_batch.kotogram[max_loss_idx],
+                            ),
+                            loss=max_loss_val,
+                            target=gram_targets[max_loss_idx].item(),
+                            prediction=gram_probs[max_loss_idx].item(),
+                            sample_idx=sample_idx,
+                        )
+
+            if not has_grammatic:
+                loss = gram_loss / self.config.grad_accum_steps
+                running_struct_loss += gram_loss.item()
+                running_num_struct_total += 1
+                running_loss_components = running_loss_components.add(
+                    RunningLossComponents(struct=gram_loss.item())
+                )
+                if torch.isfinite(loss):
+                    loss.backward()
+                    did_any_backward = True
+                    pending_accum += 1
+
+                    if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                        self._perform_optimizer_step(self.model)
+                        pending_accum = 0
+
+                    total_loss += loss.item() * self.config.grad_accum_steps
+                    epoch_kc_losses["grammatic"] = (
+                        epoch_kc_losses.get("grammatic", 0.0) + gram_loss.item()
+                    )
+                    n_batches += 1
+                else:
+                    raise RuntimeError("Non-finite loss detected")
+
+                if pbar:
+                    current_display_loss = total_loss / max(1, n_batches)
+                    if batch_label == "gram":
+                        desc = f"[white]{pbar_desc}[/white]"
+                    elif batch_label == "ungram":
+                        desc = f"[dim]{pbar_desc}[/dim]"
+                    else:
+                        desc = pbar_desc
+                    pbar.update(batch_idx, current_display_loss, desc=desc)
+
+                self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
+                self.train_timer_data.start()
+                continue
+
+            if not gram_mask_cpu.all():
+                batch = self._filter_batch_by_mask(full_batch, gram_mask_cpu)
+
             m = self.model
 
             kc_targets = create_kc_batch(
@@ -1138,10 +1386,9 @@ class KCTrainer:
                     f"Batch 0 produced no KC targets. Specs: {list(self.config.kc_target_specs.keys())}"
                 )
 
-            field_inputs = {
-                k: v.to(self.device) for k, v in batch.feature_inputs.items()
-            }
-            attention_mask = batch.attention_mask.to(self.device)
+            gram_mask = gram_mask_cpu.to(self.device)
+            attention_mask = full_attention_mask[gram_mask]
+            field_inputs = {k: v[gram_mask] for k, v in full_field_inputs.items()}
 
             # Compute content_len (approximate: non-pad count)
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
@@ -1167,6 +1414,7 @@ class KCTrainer:
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
+            pooled_kc = pooled[gram_mask] if pooled is not None else None
             outputs = self.model(
                 field_inputs,
                 attention_mask=attention_mask,
@@ -1176,6 +1424,7 @@ class KCTrainer:
                 grad_cap=self.kc_grad_cap,
                 k_budget=k_budget_t,
                 long_sentence_mask=long_sentence_mask,
+                pooled=pooled_kc,
             )
 
             # --- INVARIANT CHECK A-E: Post-Forward Validation ---
@@ -2307,6 +2556,11 @@ class KCTrainer:
                     num_struct += 1
                     batch_kc_losses[name] = task_bce.item()
 
+            # Add grammaticality MSE (pooler-based) to structural loss
+            structural_loss = structural_loss + gram_loss
+            num_struct += 1
+            batch_kc_losses["grammatic"] = gram_loss.item()
+
             if num_struct > 0:
                 running_struct_loss += structural_loss.item()
                 running_num_struct_total += 1
@@ -2750,7 +3004,13 @@ class KCTrainer:
 
             if pbar:
                 current_display_loss = total_loss / max(1, n_batches)
-                pbar.update(batch_idx, current_display_loss)
+                if batch_label == "gram":
+                    desc = f"[white]{pbar_desc}[/white]"
+                elif batch_label == "ungram":
+                    desc = f"[dim]{pbar_desc}[/dim]"
+                else:
+                    desc = pbar_desc
+                pbar.update(batch_idx, current_display_loss, desc=desc)
 
             # Update running usage for Entropy calc (skip for early epochs)
             # We use logits_usage if available (for consistency with diversity), else raw
@@ -3024,7 +3284,7 @@ class KCTrainer:
             epoch_result=TrainEpochResult(
                 total_loss=total_loss,
                 kc_losses=KCLosses(_losses=epoch_kc_losses),
-                avg_sparsity=total_sparsity / max(1, len(self.data_loader)),
+                avg_sparsity=total_sparsity / max(1, total_batches),
                 epoch_stats=epoch_stats,
             ),
         )
@@ -3032,7 +3292,7 @@ class KCTrainer:
         return TrainEpochResult(
             total_loss=total_loss,
             kc_losses=KCLosses(_losses=epoch_kc_losses),
-            avg_sparsity=total_sparsity / max(1, len(self.data_loader)),
+            avg_sparsity=total_sparsity / max(1, total_batches),
             epoch_stats=epoch_stats,
         )
 
@@ -3074,7 +3334,8 @@ class KCTrainer:
 
             self._log_training_progress()
 
-            self.history.total_loss.append(total_loss / max(1, len(self.data_loader)))
+            total_batches = max(1, self._estimate_total_batches())
+            self.history.total_loss.append(total_loss / total_batches)
             self.history.kc_sparsity.append(avg_sparsity)
             self.history.avg_struct_loss.append(epoch_stats.avg_struct_loss)
             self.history.num_struct_heads_processed.append(
@@ -3094,7 +3355,12 @@ class KCTrainer:
                     self.history.kc_losses[k] = []
                 self.history.kc_losses[k].append(v)
 
-            self.history.sentence_count.append(len(self.dataset))
+            sentence_count = (
+                len(self.gram_dataset)
+                if hasattr(self, "gram_dataset") and self.gram_dataset is not None
+                else len(self.dataset)
+            )
+            self.history.sentence_count.append(sentence_count)
 
             on_epoch_end(self.history)
 

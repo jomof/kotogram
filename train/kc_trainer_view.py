@@ -23,6 +23,8 @@ from train.types import (
 
 def _get_logit_mode_emoji(name: str) -> str:
     """Return prefix based on family's logit_mode."""
+    if name.lower() == "grammatic":
+        return "∞ "
     name_upper = name.upper()
     if name_upper not in KcFamilyId.__members__:
         return ""
@@ -855,17 +857,25 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         all_label_families = list(summary.diagnostics.families.values())
         all_mse_families = list(summary.diagnostics.mse_families.values())
         if all_label_families or all_mse_families:
-            label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
-            mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
-            family_loss_sum = label_loss_sum + mse_loss_sum
-            # struct is BCE only (gap regularizer removed)
-            struct_loss = lc.struct * w.struct / nb
-            tolerance = 1e-3
-            if abs(family_loss_sum - struct_loss) > tolerance:
-                raise RuntimeError(
-                    f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
-                    f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
-                )
+            all_batch_counts = [
+                fam.batch_count for fam in all_label_families + all_mse_families
+            ]
+            do_checksum = not (
+                all_batch_counts
+                and any(bc != summary.n_batches for bc in all_batch_counts)
+            )
+            if do_checksum:
+                label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
+                mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
+                family_loss_sum = label_loss_sum + mse_loss_sum
+                # struct is BCE only (gap regularizer removed)
+                struct_loss = lc.struct * w.struct / nb
+                tolerance = 1e-3
+                if abs(family_loss_sum - struct_loss) > tolerance:
+                    raise RuntimeError(
+                        f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
+                        f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                    )
 
         # Print Warns if shape mismatch detected?
         # (Not implemented in accumulator yet, relying on table visual for now)

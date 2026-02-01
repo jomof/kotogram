@@ -87,19 +87,6 @@ class StyleDataset(Dataset[Sample]):
             # Default: use all
             self.indices = torch.arange(total_samples, dtype=torch.long)
 
-        # Handle Sampling (Downsampling)
-        if sample_ratio < 1.0:
-            if self.verbose:
-                print(f"Sampling {sample_ratio:.1%} of dataset...")
-            # Shuffle and slice indices
-            perm = torch.randperm(len(self.indices))
-            keep = int(len(self.indices) * sample_ratio)
-            self.indices = self.indices[perm[:keep]]
-            # Sort indices for better sequential access? Maybe.
-            self.indices, _ = torch.sort(self.indices)
-
-        self._len = len(self.indices)
-
         self.features = self._init_features(data_dir)
         self.labels = self._init_labels(data_dir)
 
@@ -122,9 +109,52 @@ class StyleDataset(Dataset[Sample]):
                 reg_off_path, shared=True, size=sz, dtype=torch.int32
             )
 
+        self._apply_balanced_sampling(sample_ratio)
+
+        self._len = len(self.indices)
+
         self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = self._init_kc_targets(
-            data_dir
+            self.data_dir
         )
+
+    def _apply_balanced_sampling(self, sample_ratio: float) -> None:
+        if sample_ratio == 1.0 or "gram" not in self.labels:
+            return
+        if self.verbose:
+            print(
+                f"Sampling {sample_ratio:.1%} of grammatic and matching ungrammatic..."
+            )
+        current_labels = self.labels["gram"][self.indices]
+        gram_indices = self.indices[current_labels == 1]
+        ungram_indices = self.indices[current_labels == 0]
+
+        gram_total = int(gram_indices.numel())
+        ungram_total = int(ungram_indices.numel())
+
+        if sample_ratio <= 1.0:
+            target_gram = int(gram_total * sample_ratio)
+            target_ungram = target_gram
+        else:
+            target_gram = gram_total
+            target_ungram = int(gram_total * sample_ratio)
+
+        target_gram = min(target_gram, gram_total)
+        target_ungram = min(target_ungram, ungram_total)
+
+        gram_sel = (
+            gram_indices[torch.randperm(gram_total)[:target_gram]]
+            if gram_total > 0 and target_gram > 0
+            else torch.tensor([], dtype=torch.long)
+        )
+        ungram_sel = (
+            ungram_indices[torch.randperm(ungram_total)[:target_ungram]]
+            if ungram_total > 0 and target_ungram > 0
+            else torch.tensor([], dtype=torch.long)
+        )
+
+        if gram_sel.numel() or ungram_sel.numel():
+            self.indices = torch.cat([gram_sel, ungram_sel])
+            self.indices, _ = torch.sort(self.indices)
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)
@@ -409,6 +439,7 @@ class StyleDataset(Dataset[Sample]):
         self, train_ratio: float = 0.8, seed: int = 42
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation."""
+        # pylint: disable=attribute-defined-outside-init
         # Subset indices
         torch.manual_seed(seed)
         total = len(self)
@@ -437,6 +468,7 @@ class StyleDataset(Dataset[Sample]):
 
     def filter_by_grammaticality(self, label: int = 1) -> "StyleDataset":
         """Return a new dataset subset with only samples confirming to the grammaticality label."""
+        # pylint: disable=attribute-defined-outside-init
         if "gram" not in self.labels:
             if self.verbose:
                 print("Warning: No grammaticality labels found, returning self.")

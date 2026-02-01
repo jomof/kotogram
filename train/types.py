@@ -350,6 +350,7 @@ class KCDiagnosticFamilyStats:
     empty_pct: float
     dnll: float
     mask_pct: float
+    batch_count: int = 0
     # New fields with defaults to preserve compatibility
     loss_mean: float = 0.0
     prob_pos_mean: float = 0.0
@@ -431,6 +432,7 @@ class KCMseFamilyStats:
     correlation: float  # Pearson correlation
     mean_bias: float  # Mean(pred) - Mean(target)
     pred_std: float  # Std dev of predictions
+    batch_count: int = 0
     bias_delta: float = 0.0  # Decoder bias change during epoch
 
 

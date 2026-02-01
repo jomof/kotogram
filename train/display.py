@@ -37,10 +37,12 @@ class RichTrainerProgressBar:
         desc: str,
         total_steps: int,
         batch_size: int,
+        total_elements_target: Optional[int] = None,
     ):
         # Use provided console or fall back to global forced-terminal console
         self.console = console
         self.batch_size = batch_size
+        self.total_elements_target = total_elements_target
         # Display format: elapsed/remaining time (e.g., "1:30/2:00")
         self.progress = Progress(
             SpinnerColumn(),
@@ -70,12 +72,15 @@ class RichTrainerProgressBar:
         self,
         step: int,
         loss: float,
+        desc: Optional[str] = None,
     ) -> None:
         """Update progress bar state."""
         # Build extra fields
         fields = {}
         if loss is not None:
             fields["status"] = f"loss={loss:.4f}"
+        if desc is not None:
+            fields["description"] = desc
 
         # Accumulate elements (cast to int for test compatibility with mocks)
         self.total_elements += int(self.batch_size)
@@ -86,13 +91,20 @@ class RichTrainerProgressBar:
             samples_per_sec = task.speed * self.batch_size
             fields["throughput"] = f"{samples_per_sec:.1f} el/s"
 
-        # Format total elements with K/M suffix
-        if self.total_elements >= 1_000_000:
-            fields["total_els"] = f"[{self.total_elements / 1_000_000:.1f}M els]"
-        elif self.total_elements >= 1_000:
-            fields["total_els"] = f"[{self.total_elements / 1_000:.0f}K els]"
+        def _fmt_count(val: int) -> str:
+            if val >= 1_000_000:
+                return f"{val / 1_000_000:.1f}M"
+            if val >= 1_000:
+                return f"{val / 1_000:.0f}K"
+            return str(val)
+
+        if self.total_elements_target is not None:
+            fields["total_els"] = (
+                f"[{_fmt_count(self.total_elements)} of "
+                f"{_fmt_count(self.total_elements_target)}]"
+            )
         else:
-            fields["total_els"] = f"[{self.total_elements} els]"
+            fields["total_els"] = f"[{_fmt_count(self.total_elements)}]"
 
         # Cast fields to Any for Mypy safety with typed kwargs in Progress.update
         fields_any = cast(Dict[str, Any], fields)

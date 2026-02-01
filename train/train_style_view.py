@@ -429,7 +429,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
 
     def on_kc_training_info(self, sentence_count: int) -> None:
         console.print(
-            f"[dim]KC training using {sentence_count} grammatical sentences (full dataset)[/dim]"
+            f"[dim]KC training using {sentence_count} sentences (grammatic + ungrammatic)[/dim]"
         )
 
     def on_kc_training_complete(self, final_loss: float) -> None:
