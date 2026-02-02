@@ -1346,11 +1346,13 @@ class KCTrainer:
                 if pbar:
                     current_display_loss = total_loss / max(1, n_batches)
                     if batch_label == "gram":
-                        desc = f"[white]{pbar_desc}[/white]"
+                        desc_base = f"♥ {pbar_desc}"
+                        desc = f"[white]{desc_base}[/white]"
                     elif batch_label == "ungram":
-                        desc = f"[dim]{pbar_desc}[/dim]"
+                        desc_base = f"♡ {pbar_desc}"
+                        desc = f"[white]{desc_base}[/white]"
                     else:
-                        desc = pbar_desc
+                        desc = f"  {pbar_desc}"
                     pbar.update(batch_idx, current_display_loss, desc=desc)
 
                 self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
@@ -3005,11 +3007,13 @@ class KCTrainer:
             if pbar:
                 current_display_loss = total_loss / max(1, n_batches)
                 if batch_label == "gram":
-                    desc = f"[white]{pbar_desc}[/white]"
+                    desc_base = f"♥ {pbar_desc}"
+                    desc = f"[white]{desc_base}[/white]"
                 elif batch_label == "ungram":
-                    desc = f"[dim]{pbar_desc}[/dim]"
+                    desc_base = f"♡ {pbar_desc}"
+                    desc = f"[white]{desc_base}[/white]"
                 else:
-                    desc = pbar_desc
+                    desc = f"  {pbar_desc}"
                 pbar.update(batch_idx, current_display_loss, desc=desc)
 
             # Update running usage for Entropy calc (skip for early epochs)
