@@ -13,6 +13,7 @@ Usage:
 
 import argparse
 import copy
+import heapq
 import json
 import math
 import os
@@ -1559,6 +1560,9 @@ def find_high_certainty_positives(
     high_certainty_candidates_negatives_unlabeled: List[List[Tuple[float, str]]] = [
         [] for _ in range(num_gps)
     ]
+    # Track most-uncertain samples per GP (closest to 0.5), include labeled + unlabeled
+    # Stored as max-heap by distance using negative distance
+    most_uncertain: List[List[Tuple[float, float, str]]] = [[] for _ in range(num_gps)]
 
     # Early stop when prior reaches target precision
     prior_precision_decimals = 4.5
@@ -1634,6 +1638,18 @@ def find_high_certainty_positives(
                             high_certainty_candidates_negatives_unlabeled[i].append(
                                 (score, sentence)
                             )
+
+                    # Track most-uncertain samples (all samples, labeled + unlabeled)
+                    heap = most_uncertain[i]
+                    for idx, sentence in enumerate(sentences):
+                        prob = pos_probs[idx].item()
+                        distance = abs(prob - 0.5)
+                        item = (-distance, prob, sentence)
+                        if len(heap) < 100:
+                            heapq.heappush(heap, item)
+                        else:
+                            if item[0] > heap[0][0]:
+                                heapq.heapreplace(heap, item)
 
                     # Track prior precision counts (based on all samples)
                     prior_total_counts[i] += len(pos_probs)
@@ -1786,6 +1802,18 @@ def find_high_certainty_positives(
             f.write("-" * 70 + "\n")
             for score, sentence in candidates_neg[:100]:
                 f.write(f"{score:.4f} | {sentence}\n")
+
+        # Write most uncertain (closest to 0.5) from ALL samples
+        uncertain_heap = most_uncertain[i]
+        uncertain_sorted = sorted(uncertain_heap, key=lambda x: (-x[0], x[1]))
+        uncertain_file = os.path.join(output_dir, "most-uncertain.txt")
+        with open(uncertain_file, "w", encoding="utf-8") as f:
+            f.write(f"# Most Uncertain Samples for {gp} (All)\n")
+            f.write("# Format: Dist | Prob | Sentence\n")
+            f.write("-" * 70 + "\n")
+            for neg_dist, prob, sentence in uncertain_sorted:
+                dist = -neg_dist
+                f.write(f"{dist:.4f} | {prob:.4f} | {sentence}\n")
 
     # Optionally write estimated priors back to corpus.db (grammar table).
     # Back-compat is an anti-goal: if the DB/schema isn't present, fail loudly.

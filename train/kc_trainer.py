@@ -265,6 +265,14 @@ class KCTrainer:
         # Per-family positive densities for adaptive loss weighting
         self.family_pos_densities: Dict[str, float] = {}
 
+    @staticmethod
+    def _format_kc_pbar_desc(pbar_desc: str, batch_label: str) -> str:
+        if batch_label == "gram":
+            return f"[white]🩷 {pbar_desc}[/white]"
+        if batch_label == "ungram":
+            return f"[white]💓 {pbar_desc}[/white]"
+        return f"  {pbar_desc}"
+
     def _balanced_bce_loss(
         self,
         gathered_logits: torch.Tensor,
@@ -1345,14 +1353,7 @@ class KCTrainer:
 
                 if pbar:
                     current_display_loss = total_loss / max(1, n_batches)
-                    if batch_label == "gram":
-                        desc_base = f"♥ {pbar_desc}"
-                        desc = f"[white]{desc_base}[/white]"
-                    elif batch_label == "ungram":
-                        desc_base = f"♡ {pbar_desc}"
-                        desc = f"[white]{desc_base}[/white]"
-                    else:
-                        desc = f"  {pbar_desc}"
+                    desc = self._format_kc_pbar_desc(pbar_desc, batch_label)
                     pbar.update(batch_idx, current_display_loss, desc=desc)
 
                 self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
@@ -3006,14 +3007,7 @@ class KCTrainer:
 
             if pbar:
                 current_display_loss = total_loss / max(1, n_batches)
-                if batch_label == "gram":
-                    desc_base = f"♥ {pbar_desc}"
-                    desc = f"[white]{desc_base}[/white]"
-                elif batch_label == "ungram":
-                    desc_base = f"♡ {pbar_desc}"
-                    desc = f"[white]{desc_base}[/white]"
-                else:
-                    desc = f"  {pbar_desc}"
+                desc = self._format_kc_pbar_desc(pbar_desc, batch_label)
                 pbar.update(batch_idx, current_display_loss, desc=desc)
 
             # Update running usage for Entropy calc (skip for early epochs)

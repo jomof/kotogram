@@ -84,7 +84,7 @@ class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
     sparsity_weight: float = 0.1
-    target_spill_rate: float = 0.5  # Target probability for (k+1)th KC (0.0 = disabled)
+    target_spill_rate: float = 0.25  # Target probability for (k+1)th KC (0.0 = disabled)
     freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage

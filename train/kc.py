@@ -1,5 +1,7 @@
 """KC target computation logic with ABC-based family hierarchy."""
 
+# pylint: disable=too-many-lines
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
@@ -469,7 +471,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.BAG_POS: KcBagFamily(
         family_id=KcFamilyId.BAG_POS,
         _feature_field="pos",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS, 
+        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.137,  # Reduced from 0.683 (20%)
     ),
     KcFamilyId.BAG_COMPOUND_1: KcBagFamily(
