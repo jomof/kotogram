@@ -10,6 +10,7 @@ from collections import Counter
 from typing import Any, Dict, List
 
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
+from kotogram.masking import get_surface_mask_for_features
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
@@ -25,7 +26,7 @@ CLS_ID = 2
 # Feature fields used for token embedding (full set for KC targets)
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
 ALL_FEATURE_FIELDS = [
-    # "surface",
+    "surface",
     "pos",
     "pos_detail_1",
     "pos_detail_2",
@@ -119,7 +120,14 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     Returns:
         Dict mapping field name to vocab-ready string for that field.
     """
+    surface_mask = get_surface_mask_for_features(features)
+    surface_value = (
+        surface_mask
+        if surface_mask and features.reading_gram == surface_mask
+        else features.surface
+    )
     return {
+        "surface": surface_value,
         "pos": features.pos,
         "pos_detail_1": features.pos_detail_1,
         "pos_detail_2": features.pos_detail_2,

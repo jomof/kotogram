@@ -14,9 +14,10 @@ class TestModelRegisterIntegration(unittest.TestCase):
         self.mock_tokenizer = MagicMock()
 
         # Setup tokenizer mock - must include ALL FEATURE_FIELDS for analysis.py
-        # FEATURE_FIELDS = pos, pos_detail_1/2/3, conjugated_form, conjugated_type,
-        #                  compound_1, compound_2, reading_gram, reading
+        # FEATURE_FIELDS = surface, pos, pos_detail_1/2/3, conjugated_form,
+        #                  conjugated_type, compound_1, compound_2, reading_gram, reading
         self.mock_tokenizer.encode.return_value = {
+            "surface": [1, 2, 3],
             "pos": [4, 5, 6],
             "pos_detail_1": [7, 8, 9],
             "pos_detail_2": [10, 11, 12],

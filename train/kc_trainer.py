@@ -2024,12 +2024,13 @@ class KCTrainer:
                                     )
                                     # Map class indices to readable names
                                     if name == "formality_class":
+                                        # DB: -1.0=v_casual → class 0, 1.0=v_formal → class 4
                                         class_names = [
-                                            "v_formal",
-                                            "formal",
-                                            "neutral",
-                                            "casual",
                                             "v_casual",
+                                            "casual",
+                                            "neutral",
+                                            "formal",
+                                            "v_formal",
                                         ]
                                     elif name == "gender_class":
                                         class_names = ["masc", "neutral", "fem"]

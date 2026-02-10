@@ -35,7 +35,7 @@ def save_tokenizer(tokenizer: Tokenizer, path: str) -> None:
             "w", dir=dir_name, delete=False, encoding="utf-8"
         ) as tmp_file:
             tmp_path = tmp_file.name
-            json.dump(data, tmp_file, ensure_ascii=False, indent=2)
+            json.dump(data, tmp_file, ensure_ascii=False, indent=2, sort_keys=True)
             tmp_file.flush()
             os.fsync(tmp_file.fileno())
 

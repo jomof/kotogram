@@ -823,7 +823,8 @@ def create_kc_batch(
                     gender_class = gender_class.clamp(0, 2)
                     result[f"kc_class_{name}"] = gender_class.to(device)
                 elif name == "formality_class":
-                    # Map: -1.0 → 0, -0.5 → 1, 0.0 → 2, 0.5 → 3, 1.0 → 4
+                    # DB values: -1.0=v_casual, -0.5=casual, 0.0=neutral, 0.5=formal, 1.0=v_formal
+                    # Class indices: 0=v_casual, 1=casual, 2=neutral, 3=formal, 4=v_formal
                     formality_class = ((batch.formality_value + 1.0) / 0.5).long()
                     formality_class = formality_class.clamp(0, 4)
                     result[f"kc_class_{name}"] = formality_class.to(device)

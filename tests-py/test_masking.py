@@ -7,6 +7,7 @@ from kotogram.kotogram import (
     split_kotogram,
 )
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+from kotogram.tokenizer import get_vocab_strings
 
 
 class TestMasking(unittest.TestCase):
@@ -98,6 +99,24 @@ class TestMasking(unittest.TestCase):
 
         reconstructed = kotogram_to_japanese(kotogram)
         self.assertEqual(reconstructed, "猫が走る")
+
+    def test_surface_vocab_uses_masked_surface(self):
+        """Surface vocab should collapse to masked token when reading_gram is masked."""
+        text = "花子が走る"
+        kotogram = self.parser.japanese_to_kotogram(
+            text, fmt=KotogramFormat.TRAINING_MASK
+        )
+        tokens = split_kotogram(kotogram)
+        features = extract_token_features(tokens[0])
+
+        vocab_strings = get_vocab_strings(features)
+        self.assertEqual(vocab_strings["surface"], "<given-name>")
+
+        unmasked_kotogram = self.parser.japanese_to_kotogram(text)
+        unmasked_tokens = split_kotogram(unmasked_kotogram)
+        unmasked_features = extract_token_features(unmasked_tokens[0])
+        unmasked_vocab_strings = get_vocab_strings(unmasked_features)
+        self.assertEqual(unmasked_vocab_strings["surface"], "花子")
 
     def test_multiple_names(self):
         """Test masking multiple given names in one sentence."""

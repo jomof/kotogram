@@ -10,7 +10,7 @@ import queue
 import sqlite3
 import sys
 import tarfile
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from rich.console import Console
 from rich.progress import Progress
@@ -2106,9 +2106,22 @@ def main():
         choices=["masculine", "feminine", "neutral", "unpragmatic"],
         help="Gender override"
     )
+    class _GrammarAction(argparse.Action):
+        """Detect duplicate --grammar flags and give a helpful error."""
+        def __call__(self, parser: argparse.ArgumentParser, namespace: argparse.Namespace,
+                     values: str, _option_string: Optional[str] = None) -> None:
+            if getattr(namespace, self.dest, None) is not None:
+                parser.error(
+                    "--grammar was specified multiple times. "
+                    "Use comma-separated operations in a single flag instead: "
+                    "--grammar='+gp0001,-gp0002'"
+                )
+            setattr(namespace, self.dest, values)
+
     upsert_parser.add_argument(
         "--grammar",
         type=str,
+        action=_GrammarAction,
         help="Update positive/negative grammar labels (e.g. '+gp0001,-gp0002,!gp0003'). Invariants: Positive and negative sets are disjoint.",
     )
     upsert_parser.add_argument(

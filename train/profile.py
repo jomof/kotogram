@@ -452,24 +452,24 @@ def save_combined_stats(
 
         f.write("\n")
 
-        # cProfile Section - CPU hotspots (user code only)
+        # cProfile Section - CPU hotspots
         if profiler is not None:
             import io
             import pstats
 
             f.write("=" * 80 + "\n")
-            f.write("CPU HOTSPOTS (user code, by cumulative time)\n")
+            f.write("CPU HOTSPOTS (by cumulative time)\n")
             f.write("-" * 80 + "\n\n")
 
-            # Capture pstats output - filter to kotogram project files only
+            # Capture pstats output - filter to project files only unless overridden
             step_start = time.perf_counter()
             with _console.status("[bold blue]Generating cProfile stats..."):
                 stats_stream = io.StringIO()
                 stats = pstats.Stats(profiler, stream=stats_stream)
                 # Sort by cumulative time (total time including callees)
                 stats.sort_stats("cumulative")
-                # Filter to show only functions in our project (not .venv or stdlib)
-                stats.print_stats("kotogram", 30)  # Top 30 kotogram functions
+                f.write("Filter: None (show all)\n\n")
+                stats.print_stats(30)
             step_time = time.perf_counter() - step_start
             _console.print(f"[green]✓[/green] cProfile stats ({step_time:.1f}s)")
 

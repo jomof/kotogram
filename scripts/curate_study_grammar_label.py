@@ -37,13 +37,16 @@ if os.path.exists("kotogram"):
     sys.path.insert(0, os.getcwd())
 
 from kotogram.model import ModelConfig, PositionalEncoding
-from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import Tokenizer
 from scripts.curate_upsert_sentence import curate_upsert_batch
 from scripts.progress_utils import create_progress
 from train.dataset import StyleDataset
 from train.paths import get_style_dataset_cache_dir
 
 console = Console(force_terminal=True)
+
+# Study model should use surface-only tokens (BERT-like surface input).
+GRAMMAR_ENCODER_FIELDS = ["surface"]
 
 
 class GrammarPointDataset(Dataset):
@@ -208,10 +211,16 @@ class GrammarPointDataset(Dataset):
 class GrammarClassifier(nn.Module):
     """Lightweight binary classifier for grammar point detection."""
 
-    def __init__(self, config: ModelConfig, num_classes: int = 1):
+    def __init__(
+        self,
+        config: ModelConfig,
+        num_classes: int = 1,
+        encoder_fields: Optional[List[str]] = None,
+    ):
         super().__init__()
         self.config = config
         self.num_classes = num_classes
+        self.encoder_fields = encoder_fields or GRAMMAR_ENCODER_FIELDS
 
         # Reduce model size for faster training
         self.d_model = 256
@@ -223,7 +232,7 @@ class GrammarClassifier(nn.Module):
         self.embeddings = nn.ModuleDict()
         total_embed_dim = 0
 
-        for field_name in ENCODER_FEATURE_FIELDS:
+        for field_name in self.encoder_fields:
             vocab_size = config.vocab_sizes.get(field_name, 100)
             embed_dim = config.field_embed_dims.get(field_name, 32)
             self.embeddings[field_name] = nn.Embedding(
@@ -285,7 +294,7 @@ class GrammarClassifier(nn.Module):
         """
         # Embed
         field_embeds = []
-        for field_name in ENCODER_FEATURE_FIELDS:
+        for field_name in self.encoder_fields:
             input_ids = field_inputs[f"input_ids_{field_name}"]
             embed = self.embeddings[field_name](input_ids)
             field_embeds.append(embed)
@@ -371,13 +380,12 @@ class EarlyStopper:
         # Loss regressed or stagnated locally AND globally -> Switch batch size
         self.prev_loss = current_loss
 
-        # Rotate between fixed large batch sizes
+        # Rotate between fixed large batch sizes (PNU phase)
         # Ensure we actually pick a different batch size
-        choices = [1024, 2048]
+        choices = [512, 1024, 2048]
         if current_batch_size in choices:
-            new_batch_size = (
-                choices[1] if current_batch_size == choices[0] else choices[0]
-            )
+            eligible = [size for size in choices if size != current_batch_size]
+            new_batch_size = random.choice(eligible)
         else:
             new_batch_size = random.choice(choices)
 
@@ -398,13 +406,16 @@ def collate_grammar_batch(batch: List[Dict]) -> Dict:
     indices = [item["idx"] for item in batch]
 
     # Get max sequence length from feature_ids
-    max_len = max(len(s.feature_ids["pos"]) for s in samples)
+    if not GRAMMAR_ENCODER_FIELDS:
+        raise ValueError("GRAMMAR_ENCODER_FIELDS is empty.")
+    base_field = GRAMMAR_ENCODER_FIELDS[0]
+    max_len = max(len(s.feature_ids[base_field]) for s in samples)
 
     # Prepare field inputs
     batch_size = len(samples)
     field_inputs = {}
 
-    for field_name in ENCODER_FEATURE_FIELDS:
+    for field_name in GRAMMAR_ENCODER_FIELDS:
         field_tensor = torch.zeros(batch_size, max_len, dtype=torch.long)
         for i, sample in enumerate(samples):
             feature_data = sample.feature_ids[field_name]
@@ -419,7 +430,7 @@ def collate_grammar_batch(batch: List[Dict]) -> Dict:
     # Attention mask
     attention_mask = torch.zeros(batch_size, max_len, dtype=torch.long)
     for i, sample in enumerate(samples):
-        seq_len = len(sample.feature_ids["pos"])
+        seq_len = len(sample.feature_ids[base_field])
         attention_mask[i, :seq_len] = 1
 
     return {
@@ -996,7 +1007,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     # Helper to compute validation loss
     def compute_val_loss(
-        labeled_loader: DataLoader, unlabeled_loader: DataLoader
+        labeled_loader: DataLoader, unlabeled_loader: Optional[DataLoader]
     ) -> float:
         model.eval()
         val_loss_sum = 0.0
@@ -1244,7 +1255,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
                             unlabeled_probs = F.softmax(unlabeled_logits, dim=-1)
                             unlabeled_pos_prob = unlabeled_probs[:, 1]
                             unlabeled_pos_penalty = (
-                                unlabeled_pos_prob.mean() * unlabeled_positive_penalty_weight
+                                unlabeled_pos_prob.mean()
+                                * unlabeled_positive_penalty_weight
                             )
                             total_loss = total_loss + unlabeled_pos_penalty
                             with torch.no_grad():
@@ -2394,10 +2406,20 @@ def main() -> None:
         console.print(
             f"[green]✓[/green] Loaded tokenizer with {len(tokenizer.field_vocabs)} fields"
         )
+        if "surface" not in tokenizer.field_vocabs:
+            console.print(
+                "[red]Tokenizer missing 'surface' field. Run 'bin/train_style --label' after updating the label pipeline.[/red]"
+            )
+            return
 
         # Load base dataset
         base_dataset = StyleDataset(dataset_dir, tokenizer, sample_ratio=1.0)
         console.print(f"[green]✓[/green] Loaded {len(base_dataset):,} samples")
+        if "surface" not in base_dataset.features:
+            console.print(
+                "[red]Dataset missing 'surface' features. Run 'bin/train_style --label' to rebuild the cache.[/red]"
+            )
+            return
 
         # Filter to grammatic sentences only
         console.print("\nFiltering to grammatic sentences...")
