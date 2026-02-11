@@ -166,6 +166,15 @@ def get_checkpoint_path() -> str:
     return os.path.join(get_cache_dir(), "checkpoint.pt")
 
 
+_CHECKPOINT_SENTINEL_KEYS = frozenset(
+    {
+        "embedding.embeddings.pos.weight",
+        "encoder.layers.0.self_attn.in_proj_weight",
+        "pooler.query",
+    }
+)
+
+
 def save_checkpoint(model: InferenceClassifier) -> None:
     """Save full model state as checkpoint for training resumption.
 
@@ -182,4 +191,16 @@ def save_checkpoint(model: InferenceClassifier) -> None:
 
     # Save full state dict in FP32 (no stripping, no fp8 conversion)
     state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
+
+    # Guard: verify the model has production-level structure before writing.
+    # This prevents test stubs or dummy models from silently corrupting
+    # the real checkpoint (which would break training resumption).
+    missing = _CHECKPOINT_SENTINEL_KEYS - state_dict.keys()
+    if missing:
+        raise RuntimeError(
+            f"Refusing to save checkpoint: model state_dict is missing "
+            f"production keys {sorted(missing)}. "
+            f"This looks like a test stub, not a real model."
+        )
+
     torch.save(state_dict, checkpoint_path)

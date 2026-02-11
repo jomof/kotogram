@@ -46,6 +46,7 @@ from train.types import (
     TrainEpochStats,
     TrainingBatch,
     WorstSampleInfo,
+    WorstSamplesTracker,
 )
 from train.worker import _worker_init_fn
 
@@ -1117,8 +1118,8 @@ class KCTrainer:
         epoch_kc_losses: Dict[str, float] = {}
         family_accumulators: Dict[str, FamilyAccumulator] = {}
         worst_samples: Dict[
-            str, WorstSampleInfo
-        ] = {}  # Track highest-loss sample per family
+            str, WorstSamplesTracker
+        ] = {}  # Track highest-loss samples per family
 
         pending_accum = 0
         did_any_backward = False
@@ -1265,6 +1266,8 @@ class KCTrainer:
                 self.train_timer_data.start()
                 continue
 
+            track_worst = batch_idx >= total_batches - 12
+
             full_batch = batch
             full_field_inputs = {
                 k: v.to(self.device) for k, v in full_batch.feature_inputs.items()
@@ -1308,23 +1311,29 @@ class KCTrainer:
                         "grammatic", gram_probs, gram_targets, gram_loss.item()
                     )
 
-            if not skip_metrics and gram_probs is not None and gram_targets is not None:
+            if track_worst and gram_probs is not None and gram_targets is not None:
                 with torch.no_grad():
                     per_sample_loss = (gram_probs - gram_targets).pow(2)
-                    max_loss_idx = int(per_sample_loss.argmax().item())
-                    max_loss_val = per_sample_loss[max_loss_idx].item()
-                    current_worst = worst_samples.get("grammatic")
-                    if current_worst is None or max_loss_val > current_worst.loss:
-                        sample_idx = int(full_batch.indices[max_loss_idx].item())
-                        worst_samples["grammatic"] = WorstSampleInfo(
-                            sentence=_get_display_sentence(
-                                self.dataset.get_sentence_by_idx(sample_idx),
-                                full_batch.kotogram[max_loss_idx],
-                            ),
-                            loss=max_loss_val,
-                            target=gram_targets[max_loss_idx].item(),
-                            prediction=gram_probs[max_loss_idx].item(),
-                            sample_idx=sample_idx,
+                    tracker = worst_samples.setdefault(
+                        "grammatic", WorstSamplesTracker()
+                    )
+                    k = min(50, per_sample_loss.size(0))
+                    top_vals, top_idxs = torch.topk(per_sample_loss, k)
+                    for ti in range(k):
+                        idx_in_batch = int(top_idxs[ti].item())
+                        loss_val = top_vals[ti].item()
+                        sample_idx = int(full_batch.indices[idx_in_batch].item())
+                        tracker.push(
+                            WorstSampleInfo(
+                                sentence=_get_display_sentence(
+                                    self.dataset.get_sentence_by_idx(sample_idx),
+                                    full_batch.kotogram[idx_in_batch],
+                                ),
+                                loss=loss_val,
+                                target=gram_targets[idx_in_batch].item(),
+                                prediction=gram_probs[idx_in_batch].item(),
+                                sample_idx=sample_idx,
+                            )
                         )
 
             if not has_grammatic:
@@ -1757,6 +1766,7 @@ class KCTrainer:
                                     logits=gathered_logits_gp.cpu(),
                                 )
 
+                            if track_worst:
                                 # Track worst sample for PNU (grammar_point) families
                                 # Loss = BCE on labeled positions per sample
                                 probs_full = torch.sigmoid(logits.float())
@@ -1768,141 +1778,112 @@ class KCTrainer:
                                 per_sample_loss = (
                                     bce_full * valid_mask_gp.float()
                                 ).sum(dim=1)
-                                max_loss_idx = int(per_sample_loss.argmax().item())
-                                max_loss_val = per_sample_loss[max_loss_idx].item()
 
-                                # Update if this is the worst so far
-                                current_worst = worst_samples.get(name)
-                                if (
-                                    current_worst is None
-                                    or max_loss_val > current_worst.loss
-                                ):
-                                    # For target/pred: count of positive labels
-                                    target_count = (
-                                        labeled_pos[max_loss_idx].sum().item()
-                                    )
-                                    pred_count = (
-                                        (probs_full[max_loss_idx] > 0.5).sum().item()
-                                    )
-                                    # Get positive GP IDs for this sample (targets)
-                                    pos_gp_ids = pos_ids[max_loss_idx][
-                                        pos_mask[max_loss_idx]
+                                def _fmt_gp_plain(gid: int) -> str:
+                                    return f"gp{gid:04d}"
+
+                                # Track top-K worst samples for grammar_point
+                                tracker = worst_samples.setdefault(
+                                    name, WorstSamplesTracker()
+                                )
+                                k = min(50, per_sample_loss.size(0))
+                                top_vals, top_idxs = torch.topk(per_sample_loss, k)
+                                for ti in range(k):
+                                    idx_b = int(top_idxs[ti].item())
+                                    loss_val = top_vals[ti].item()
+                                    if loss_val <= 0:
+                                        break
+                                    target_count = labeled_pos[idx_b].sum().item()
+                                    pred_count = (probs_full[idx_b] > 0.5).sum().item()
+                                    pos_gp_ids = pos_ids[idx_b][
+                                        pos_mask[idx_b]
                                     ].tolist()
-
-                                    def _fmt_gp_plain(gid: int) -> str:
-                                        return f"gp{gid:04d}"
-
-                                    def _fmt_gp_with_prior(gid: int) -> str:
-                                        """Format a grammar point id with its prior percent.
-
-                                        gp_priors.bin stores per-GP priors in [0,1], with NaN meaning
-                                        "unset, use defaults". For unset/invalid priors we print '(none)'.
-                                        """
-
-                                        prior_suffix = "(none)"
-                                        if (
-                                            0
-                                            <= gid
-                                            < int(self.dataset.gp_priors.numel())
-                                        ):
-                                            p = float(
-                                                self.dataset.gp_priors[gid].item()
+                                    if pos_gp_ids:
+                                        target_labels = ",".join(
+                                            _fmt_gp_plain(gid) for gid in pos_gp_ids[:5]
+                                        )
+                                        if len(pos_gp_ids) > 5:
+                                            target_labels += (
+                                                f"...+{len(pos_gp_ids) - 5}"
                                             )
-                                            if math.isfinite(p) and 0.0 <= p <= 1.0:
-                                                prior_suffix = f"({p * 100.0:.2f}%)"
-                                        return f"gp{gid:04d}{prior_suffix}"
-
-                                    target_labels = ",".join(
-                                        _fmt_gp_plain(gid) for gid in pos_gp_ids[:5]
-                                    )
-                                    if len(pos_gp_ids) > 5:
-                                        target_labels += f"...+{len(pos_gp_ids) - 5}"
-                                    # Get predicted GP IDs (above 0.5 threshold)
+                                    else:
+                                        target_labels = "none"
                                     pred_gp_ids = (
-                                        (probs_full[max_loss_idx] > 0.5)
+                                        (probs_full[idx_b] > 0.5)
                                         .nonzero(as_tuple=True)[0]
                                         .tolist()
                                     )
                                     if pred_gp_ids:
                                         pred_labels = ",".join(
-                                            _fmt_gp_plain(gid)
-                                            for gid in pred_gp_ids[:5]
+                                            _fmt_gp_plain(gid) for gid in pred_gp_ids
                                         )
-                                        if len(pred_gp_ids) > 5:
-                                            pred_labels += f"...+{len(pred_gp_ids) - 5}"
                                     else:
                                         pred_labels = "none"
-                                    sample_idx = int(batch.indices[max_loss_idx].item())
-                                    worst_samples[name] = WorstSampleInfo(
-                                        sentence=_get_display_sentence(
-                                            self.dataset.get_sentence_by_idx(
-                                                sample_idx
+                                    sample_idx = int(batch.indices[idx_b].item())
+                                    tracker.push(
+                                        WorstSampleInfo(
+                                            sentence=_get_display_sentence(
+                                                self.dataset.get_sentence_by_idx(
+                                                    sample_idx
+                                                ),
+                                                batch.kotogram[idx_b],
                                             ),
-                                            batch.kotogram[max_loss_idx],
-                                        ),
-                                        loss=max_loss_val,
-                                        target=float(target_count),
-                                        prediction=float(pred_count),
-                                        sample_idx=sample_idx,
-                                        target_labels=target_labels,
-                                        pred_labels=pred_labels,
+                                            loss=loss_val,
+                                            target=float(target_count),
+                                            prediction=float(pred_count),
+                                            sample_idx=sample_idx,
+                                            target_labels=target_labels,
+                                            pred_labels=pred_labels,
+                                        )
                                     )
 
-                                # Track worst FALSE POSITIVE sample (unlabeled predicted as positive)
-                                # Find cases where labeled_pos == 0 but prediction > 0.5
+                                # Also push FALSE POSITIVE samples into same tracker
                                 unlabeled_mask = (labeled_pos == 0).float()
                                 pred_positive_mask = (probs_full > 0.5).float()
                                 fp_mask = unlabeled_mask * pred_positive_mask
-                                # Compute per-sample FP loss (BCE where unlabeled but predicted positive)
                                 per_sample_fp_loss = (bce_full * fp_mask).sum(dim=1)
 
                                 if per_sample_fp_loss.max().item() > 0:
-                                    max_fp_idx = int(per_sample_fp_loss.argmax().item())
-                                    max_fp_val = per_sample_fp_loss[max_fp_idx].item()
-
-                                    fp_key = f"{name}_fp"
-                                    current_worst_fp = worst_samples.get(fp_key)
-                                    if (
-                                        current_worst_fp is None
-                                        or max_fp_val > current_worst_fp.loss
-                                    ):
-                                        # For FP: target should be 0, pred is count of false positives
-                                        fp_target_count = 0.0  # Unlabeled/negative
+                                    k_fp = min(50, per_sample_fp_loss.size(0))
+                                    fp_vals, fp_idxs = torch.topk(
+                                        per_sample_fp_loss, k_fp
+                                    )
+                                    for ti in range(k_fp):
+                                        fp_idx_b = int(fp_idxs[ti].item())
+                                        fp_loss_val = fp_vals[ti].item()
+                                        if fp_loss_val <= 0:
+                                            break
                                         fp_pred_gp_ids = (
-                                            (fp_mask[max_fp_idx] > 0.5)
+                                            (fp_mask[fp_idx_b] > 0.5)
                                             .nonzero(as_tuple=True)[0]
                                             .tolist()
                                         )
-
                                         fp_target_labels = "none"
                                         if fp_pred_gp_ids:
                                             fp_pred_labels = ",".join(
-                                                _fmt_gp_with_prior(gid)
-                                                for gid in fp_pred_gp_ids[:5]
+                                                _fmt_gp_plain(gid)
+                                                for gid in fp_pred_gp_ids
                                             )
-                                            if len(fp_pred_gp_ids) > 5:
-                                                fp_pred_labels += (
-                                                    f"...+{len(fp_pred_gp_ids) - 5}"
-                                                )
                                         else:
                                             fp_pred_labels = "none"
-
                                         fp_sample_idx = int(
-                                            batch.indices[max_fp_idx].item()
+                                            batch.indices[fp_idx_b].item()
                                         )
-                                        worst_samples[fp_key] = WorstSampleInfo(
-                                            sentence=_get_display_sentence(
-                                                self.dataset.get_sentence_by_idx(
-                                                    fp_sample_idx
+                                        tracker.push(
+                                            WorstSampleInfo(
+                                                sentence=_get_display_sentence(
+                                                    self.dataset.get_sentence_by_idx(
+                                                        fp_sample_idx
+                                                    ),
+                                                    batch.kotogram[fp_idx_b],
                                                 ),
-                                                batch.kotogram[max_fp_idx],
-                                            ),
-                                            loss=max_fp_val,
-                                            target=fp_target_count,
-                                            prediction=float(len(fp_pred_gp_ids)),
-                                            sample_idx=fp_sample_idx,
-                                            target_labels=fp_target_labels,
-                                            pred_labels=fp_pred_labels,
+                                                loss=fp_loss_val,
+                                                target=0.0,
+                                                prediction=float(len(fp_pred_gp_ids)),
+                                                sample_idx=fp_sample_idx,
+                                                target_labels=fp_target_labels,
+                                                pred_labels=fp_pred_labels,
+                                            )
                                         )
 
                     elif isinstance(family_def, KcDbClassFamily):
@@ -2000,46 +1981,41 @@ class KCTrainer:
                             )
 
                         # Track worst sample for classification families
-                        if not skip_metrics:
+                        if track_worst:
                             with torch.no_grad():
                                 # Compute per-sample CE loss
                                 per_sample_ce = F.cross_entropy(
                                     logits.float(), class_targets, reduction="none"
                                 )
-                                max_loss_idx = int(per_sample_ce.argmax().item())
-                                max_loss_val = per_sample_ce[max_loss_idx].item()
-
-                                # Update if this is the worst so far
-                                current_worst = worst_samples.get(name)
-                                if (
-                                    current_worst is None
-                                    or max_loss_val > current_worst.loss
-                                ):
-                                    pred_probs = torch.softmax(logits.float(), dim=-1)
-                                    pred_class = int(
-                                        pred_probs[max_loss_idx].argmax().item()
-                                    )
-                                    target_class = int(
-                                        class_targets[max_loss_idx].item()
-                                    )
-                                    # Map class indices to readable names
-                                    if name == "formality_class":
-                                        # DB: -1.0=v_casual → class 0, 1.0=v_formal → class 4
-                                        class_names = [
-                                            "v_casual",
-                                            "casual",
-                                            "neutral",
-                                            "formal",
-                                            "v_formal",
-                                        ]
-                                    elif name == "gender_class":
-                                        class_names = ["masc", "neutral", "fem"]
-                                    else:
-                                        class_names = []
-                                    # ASSERT: class_names should be set for known families
-                                    assert class_names, (
-                                        f"Unknown classification family: {name!r}"
-                                    )
+                                # Map class indices to readable names
+                                if name == "formality_class":
+                                    # DB: -1.0=v_casual → class 0, 1.0=v_formal → class 4
+                                    class_names = [
+                                        "v_casual",
+                                        "casual",
+                                        "neutral",
+                                        "formal",
+                                        "v_formal",
+                                    ]
+                                elif name == "gender_class":
+                                    class_names = ["masc", "neutral", "fem"]
+                                else:
+                                    class_names = []
+                                # ASSERT: class_names should be set for known families
+                                assert class_names, (
+                                    f"Unknown classification family: {name!r}"
+                                )
+                                pred_probs = torch.softmax(logits.float(), dim=-1)
+                                tracker = worst_samples.setdefault(
+                                    name, WorstSamplesTracker()
+                                )
+                                k = min(50, per_sample_ce.size(0))
+                                top_vals, top_idxs = torch.topk(per_sample_ce, k)
+                                for ti in range(k):
+                                    idx_b = int(top_idxs[ti].item())
+                                    loss_val = top_vals[ti].item()
+                                    pred_class = int(pred_probs[idx_b].argmax().item())
+                                    target_class = int(class_targets[idx_b].item())
                                     target_label = (
                                         class_names[target_class]
                                         if target_class < len(class_names)
@@ -2055,20 +2031,22 @@ class KCTrainer:
                                         f"Empty target_label for {name}"
                                     )
                                     assert pred_label, f"Empty pred_label for {name}"
-                                    sample_idx = int(batch.indices[max_loss_idx].item())
-                                    worst_samples[name] = WorstSampleInfo(
-                                        sentence=_get_display_sentence(
-                                            self.dataset.get_sentence_by_idx(
-                                                sample_idx
+                                    sample_idx = int(batch.indices[idx_b].item())
+                                    tracker.push(
+                                        WorstSampleInfo(
+                                            sentence=_get_display_sentence(
+                                                self.dataset.get_sentence_by_idx(
+                                                    sample_idx
+                                                ),
+                                                batch.kotogram[idx_b],
                                             ),
-                                            batch.kotogram[max_loss_idx],
-                                        ),
-                                        loss=max_loss_val,
-                                        target=float(target_class),
-                                        prediction=float(pred_class),
-                                        sample_idx=sample_idx,
-                                        target_labels=target_label,
-                                        pred_labels=pred_label,
+                                            loss=loss_val,
+                                            target=float(target_class),
+                                            prediction=float(pred_class),
+                                            sample_idx=sample_idx,
+                                            target_labels=target_label,
+                                            pred_labels=pred_label,
+                                        )
                                     )
                     elif isinstance(family_def, KcDbMultilabelFamily):
                         # Multi-label classification for register
@@ -2180,7 +2158,7 @@ class KCTrainer:
                                 )
 
                             # Track worst sample for multi-label families
-                            if not skip_metrics:
+                            if track_worst:
                                 with torch.no_grad():
                                     # Compute per-sample BCE loss (sum across labels)
                                     per_sample_bce = F.binary_cross_entropy_with_logits(
@@ -2188,30 +2166,25 @@ class KCTrainer:
                                         targets_multilabel,
                                         reduction="none",
                                     ).sum(dim=1)  # Sum BCE across labels
-                                    max_loss_idx = int(per_sample_bce.argmax().item())
-                                    max_loss_val = per_sample_bce[max_loss_idx].item()
-
-                                    # Update if this is the worst so far
-                                    current_worst = worst_samples.get(name)
-                                    if (
-                                        current_worst is None
-                                        or max_loss_val > current_worst.loss
-                                    ):
+                                    pred_probs = torch.sigmoid(logits.float())
+                                    tracker = worst_samples.setdefault(
+                                        name, WorstSamplesTracker()
+                                    )
+                                    k = min(50, per_sample_bce.size(0))
+                                    top_vals, top_idxs = torch.topk(per_sample_bce, k)
+                                    for ti in range(k):
+                                        idx_b = int(top_idxs[ti].item())
+                                        loss_val = top_vals[ti].item()
                                         # For target/pred: count of active labels
                                         target_count = (
-                                            targets_multilabel[max_loss_idx]
-                                            .sum()
-                                            .item()
+                                            targets_multilabel[idx_b].sum().item()
                                         )
-                                        pred_probs = torch.sigmoid(logits.float())
                                         pred_count = (
-                                            (pred_probs[max_loss_idx] > 0.5)
-                                            .sum()
-                                            .item()
+                                            (pred_probs[idx_b] > 0.5).sum().item()
                                         )
                                         # Get register names for target and prediction
                                         target_ids = (
-                                            targets_multilabel[max_loss_idx]
+                                            targets_multilabel[idx_b]
                                             .nonzero(as_tuple=True)[0]
                                             .tolist()
                                         )
@@ -2223,7 +2196,7 @@ class KCTrainer:
                                             else:
                                                 target_names.append(f"r{i}")
                                         pred_ids = (
-                                            (pred_probs[max_loss_idx] > 0.5)
+                                            (pred_probs[idx_b] > 0.5)
                                             .nonzero(as_tuple=True)[0]
                                             .tolist()
                                         )
@@ -2234,23 +2207,24 @@ class KCTrainer:
                                                 pred_names.append(reg.value)
                                             else:
                                                 pred_names.append(f"r{i}")
-                                        sample_idx = int(
-                                            batch.indices[max_loss_idx].item()
-                                        )
-                                        worst_samples[name] = WorstSampleInfo(
-                                            sentence=_get_display_sentence(
-                                                self.dataset.get_sentence_by_idx(
-                                                    sample_idx
+                                        sample_idx = int(batch.indices[idx_b].item())
+                                        tracker.push(
+                                            WorstSampleInfo(
+                                                sentence=_get_display_sentence(
+                                                    self.dataset.get_sentence_by_idx(
+                                                        sample_idx
+                                                    ),
+                                                    batch.kotogram[idx_b],
                                                 ),
-                                                batch.kotogram[max_loss_idx],
-                                            ),
-                                            loss=max_loss_val,
-                                            target=float(target_count),
-                                            prediction=float(pred_count),
-                                            sample_idx=sample_idx,
-                                            target_labels=",".join(target_names)
-                                            or "none",
-                                            pred_labels=",".join(pred_names) or "none",
+                                                loss=loss_val,
+                                                target=float(target_count),
+                                                prediction=float(pred_count),
+                                                sample_idx=sample_idx,
+                                                target_labels=",".join(target_names)
+                                                or "none",
+                                                pred_labels=",".join(pred_names)
+                                                or "none",
+                                            )
                                         )
                     else:
                         # MSE loss for continuous families (gender/formality)
@@ -2289,33 +2263,32 @@ class KCTrainer:
                                 )
 
                             # Track worst sample for this MSE family
-                            if not skip_metrics:
+                            if track_worst:
                                 with torch.no_grad():
                                     preds = logits.float().squeeze(-1)
                                     per_sample_loss = (preds - targets_cont).pow(2)
-                                    max_loss_idx = int(per_sample_loss.argmax().item())
-                                    max_loss_val = per_sample_loss[max_loss_idx].item()
-
-                                    # Update if this is the worst so far
-                                    current_worst = worst_samples.get(name)
-                                    if (
-                                        current_worst is None
-                                        or max_loss_val > current_worst.loss
-                                    ):
-                                        sample_idx = int(
-                                            batch.indices[max_loss_idx].item()
-                                        )
-                                        worst_samples[name] = WorstSampleInfo(
-                                            sentence=_get_display_sentence(
-                                                self.dataset.get_sentence_by_idx(
-                                                    sample_idx
+                                    tracker = worst_samples.setdefault(
+                                        name, WorstSamplesTracker()
+                                    )
+                                    k = min(50, per_sample_loss.size(0))
+                                    top_vals, top_idxs = torch.topk(per_sample_loss, k)
+                                    for ti in range(k):
+                                        idx_b = int(top_idxs[ti].item())
+                                        loss_val = top_vals[ti].item()
+                                        sample_idx = int(batch.indices[idx_b].item())
+                                        tracker.push(
+                                            WorstSampleInfo(
+                                                sentence=_get_display_sentence(
+                                                    self.dataset.get_sentence_by_idx(
+                                                        sample_idx
+                                                    ),
+                                                    batch.kotogram[idx_b],
                                                 ),
-                                                batch.kotogram[max_loss_idx],
-                                            ),
-                                            loss=max_loss_val,
-                                            target=targets_cont[max_loss_idx].item(),
-                                            prediction=preds[max_loss_idx].item(),
-                                            sample_idx=sample_idx,
+                                                loss=loss_val,
+                                                target=targets_cont[idx_b].item(),
+                                                prediction=preds[idx_b].item(),
+                                                sample_idx=sample_idx,
+                                            )
                                         )
 
                     continue  # Skip standard dense/sparse path

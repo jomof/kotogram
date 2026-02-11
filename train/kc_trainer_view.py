@@ -3,6 +3,7 @@
 # pylint: disable=too-many-lines
 
 import math
+import os
 import random
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Protocol, Tuple
@@ -18,6 +19,7 @@ from train.types import (
     KCTrainingHistory,
     RunningLossComponents,
     TrainEpochResult,
+    WorstSampleInfo,
 )
 
 
@@ -885,40 +887,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # BLOCK 4.5: Worst Samples (most problematic samples per family)
         if summary.worst_samples:
             console.print("[bold]Worst Samples (highest loss per family):[/bold]")
-            # Sort entries, ensuring grammar_point and grammar_point_fp appear together
-            sorted_items = []
-            grammar_point_items = []
-            for fam_name, sample in sorted(summary.worst_samples.items()):
-                if fam_name.startswith("grammar_point"):
-                    grammar_point_items.append((fam_name, sample))
-                else:
-                    sorted_items.append((fam_name, sample))
-            # Insert grammar_point items together
-            for fam_name, sample in grammar_point_items:
-                # Find insertion position (after other grammar_point entries or at appropriate alphabetical position)
-                if fam_name == "grammar_point":
-                    # Find position to insert before grammar_point_fp
-                    insert_pos = len(sorted_items)
-                    for i, (name, _) in enumerate(sorted_items):
-                        if name > "grammar_point" and not name.startswith(
-                            "grammar_point"
-                        ):
-                            insert_pos = i
-                            break
-                    sorted_items.insert(insert_pos, (fam_name, sample))
-                elif fam_name == "grammar_point_fp":
-                    # Insert right after grammar_point
-                    insert_pos = len(sorted_items)
-                    for i, (name, _) in enumerate(sorted_items):
-                        if name == "grammar_point":
-                            insert_pos = i + 1
-                            break
-                        if name > "grammar_point_fp" and not name.startswith(
-                            "grammar_point"
-                        ):
-                            insert_pos = i
-                            break
-                    sorted_items.insert(insert_pos, (fam_name, sample))
+            sorted_items: List[Tuple[str, "WorstSampleInfo"]] = []
+            for fam_name, tracker in sorted(summary.worst_samples.items()):
+                sample = tracker.worst()
+                if sample is None:
+                    continue
+                sorted_items.append((fam_name, sample))
 
             for fam_name, sample in sorted_items:
                 sentence, loss_color = format_worst_sample_display(
@@ -926,12 +900,20 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 )
                 # Build label display - show labels if either is non-empty
                 label_info = ""
-                if sample.target_labels and sample.pred_labels:
-                    label_info = f" \\[{sample.target_labels}→{sample.pred_labels}]"
+                # Truncate pred_labels for console display
+                display_pred = sample.pred_labels
+                if display_pred and display_pred != "none":
+                    parts = display_pred.split(",")
+                    if len(parts) > 5:
+                        display_pred = (
+                            ",".join(parts[:5]) + f"...+{len(parts) - 5} more"
+                        )
+                if sample.target_labels and display_pred:
+                    label_info = f" \\[{sample.target_labels}→{display_pred}]"
                 elif sample.target_labels:
                     label_info = f" \\[{sample.target_labels}]"
-                elif sample.pred_labels:
-                    label_info = f" \\[?→{sample.pred_labels}]"
+                elif display_pred:
+                    label_info = f" \\[?→{display_pred}]"
                 console.print(
                     f"  [cyan]{fam_name}[/cyan]: "
                     f"[{loss_color}]loss={sample.loss:.4f}[/{loss_color}] "
@@ -939,6 +921,208 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     f"{label_info} "
                     f'[dim]idx={sample.sample_idx} "{sentence}"[/dim]'
                 )
+
+            # Export top-50 worst samples per family to TSV files
+            tsv_dir = os.path.join(".cache", "training")
+            os.makedirs(tsv_dir, exist_ok=True)
+            # Remove stale worst-*.tsv files from previous epochs
+            import glob
+
+            for old_tsv in glob.glob(os.path.join(tsv_dir, "worst-*.tsv")):
+                os.remove(old_tsv)
+            family_label_keys = {
+                "gender": "# Values: masc=-1.0, neutral=0.0, fem=1.0",
+                "formality": (
+                    "# Values: v_casual=-1.0, casual=-0.5,"
+                    " neutral=0.0, formal=0.5, v_formal=1.0"
+                ),
+                "grammatic": "# Values: ungrammatical=0.0, grammatical=1.0",
+                "gender_class": "# Labels: masc, neutral, fem",
+                "formality_class": "# Labels: v_casual, casual, neutral, formal, v_formal",
+                "register": (
+                    "# Labels: comma-separated register tags"
+                    " (e.g. sonkeigo, kenjogo, joseigo, etc.)"
+                ),
+                "grammar_point": None,
+            }
+            for fam_name, tracker in summary.worst_samples.items():
+                tsv_path = os.path.join(tsv_dir, f"worst-{fam_name}.tsv")
+                top_samples = tracker.top_n()
+                with open(tsv_path, "w", encoding="utf-8") as f:
+                    f.write(f"# Epoch: {summary.epoch_idx + 1}\n")
+                    label_key = family_label_keys.get(fam_name)
+                    if label_key:
+                        f.write(f"{label_key}\n")
+                    if fam_name == "grammar_point":
+                        # Count GP frequency across top-50 samples
+                        label_freq: dict[int, int] = {}
+                        pred_freq: dict[int, int] = {}
+                        for ws in top_samples:
+                            if ws.target_labels and ws.target_labels != "none":
+                                for gp_str in ws.target_labels.split(","):
+                                    gp_str = gp_str.strip()
+                                    if gp_str.startswith("gp"):
+                                        gid = int(gp_str[2:])
+                                        label_freq[gid] = label_freq.get(gid, 0) + 1
+                            if ws.pred_labels and ws.pred_labels != "none":
+                                for gp_str in ws.pred_labels.split(","):
+                                    gp_str = gp_str.strip()
+                                    if gp_str.startswith("gp"):
+                                        gid = int(gp_str[2:])
+                                        pred_freq[gid] = pred_freq.get(gid, 0) + 1
+                        all_gids = set(label_freq) | set(pred_freq)
+                        # Write GP listing
+                        if all_gids:
+                            # Look up GP names and pos/neg counts from corpus.db
+                            gp_names: dict[int, str] = {}
+                            gp_pos: dict[int, int] = {}
+                            gp_neg: dict[int, int] = {}
+                            db_path = os.path.join("data", "corpus.db")
+                            if os.path.exists(db_path):
+                                import sqlite3
+
+                                conn = sqlite3.connect(db_path)
+                                for gid in all_gids:
+                                    gp_id_str = f"gp{gid:04d}"
+                                    row = conn.execute(
+                                        "SELECT name, pos_count, neg_count"
+                                        " FROM grammar_stats WHERE gp_id = ?",
+                                        (gp_id_str,),
+                                    ).fetchone()
+                                    if row:
+                                        gp_names[gid] = f"data/grammar/{row[0]}.yaml"
+                                        gp_pos[gid] = row[1]
+                                        gp_neg[gid] = row[2]
+                                conn.close()
+                            # Build entries
+                            # (gid, lf, pf, prior_val, prior_str, pos, neg, name)
+                            entries: list[
+                                tuple[int, int, int, float, str, int, int, str]
+                            ] = []
+                            for gid in all_gids:
+                                lf = label_freq.get(gid, 0)
+                                pf = pred_freq.get(gid, 0)
+                                prior_val = -1.0
+                                prior_str = ""
+                                if (
+                                    summary.gp_priors is not None
+                                    and 0 <= gid < summary.gp_priors.numel()
+                                ):
+                                    p = float(summary.gp_priors[gid].item())
+                                    if math.isfinite(p) and 0.0 <= p <= 1.0:
+                                        prior_val = p
+                                        prior_str = f"{p * 100.0:.2f}%"
+                                entries.append(
+                                    (
+                                        gid,
+                                        lf,
+                                        pf,
+                                        prior_val,
+                                        prior_str,
+                                        gp_pos.get(gid, 0),
+                                        gp_neg.get(gid, 0),
+                                        gp_names.get(gid, ""),
+                                    )
+                                )
+                            # Sort by (lf + pf) desc, then prior desc
+                            entries.sort(key=lambda e: (-(e[1] + e[2]), -e[3]))
+                            entries = entries[:25]
+                            # Column widths
+                            lf_w = max(2, max(len(str(e[1])) for e in entries))
+                            pf_w = max(2, max(len(str(e[2])) for e in entries))
+                            prior_w = max(5, max(len(e[4]) for e in entries))
+                            pos_w = max(3, max(len(str(e[5])) for e in entries))
+                            neg_w = max(3, max(len(str(e[6])) for e in entries))
+                            # Key
+                            f.write(
+                                "# lf:    label freq (appearances in target labels)\n"
+                            )
+                            f.write("# pf:    pred freq (appearances in predictions)\n")
+                            f.write("# prior: prior probability from gp_priors.bin\n")
+                            f.write("# pos:   positive sentence count in corpus\n")
+                            f.write("# neg:   negative sentence count in corpus\n")
+                            # Header row
+                            f.write(
+                                f"#   {'ID':<6s}  {'lf':>{lf_w}s}"
+                                f"  {'pf':>{pf_w}s}"
+                                f"  {'prior':>{prior_w}s}"
+                                f"  {'pos':>{pos_w}s}"
+                                f"  {'neg':>{neg_w}s}  name\n"
+                            )
+                            for (
+                                gid,
+                                lf,
+                                pf,
+                                _pv,
+                                prior_str,
+                                pos,
+                                neg,
+                                name_str,
+                            ) in entries:
+                                f.write(
+                                    f"#   gp{gid:04d}  {lf:>{lf_w}d}"
+                                    f"  {pf:>{pf_w}d}"
+                                    f"  {prior_str:>{prior_w}s}"
+                                    f"  {pos:>{pos_w}d}"
+                                    f"  {neg:>{neg_w}d}  {name_str}\n"
+                                )
+                        # predicted_sample description after table
+                        f.write(
+                            "# predicted_sample: 5 randomly sampled"
+                            " predicted gpXXXX IDs"
+                            " (no-prior GPs sampled first)\n"
+                        )
+                        f.write(
+                            "loss\ttarget\tpredicted_count"
+                            "\tpredicted_sample\tsentence\n"
+                        )
+                        for ws in top_samples:
+                            target_str = ws.target_labels or f"{ws.target:.4f}"
+                            # Sample 5 GPs, prioritizing no-prior
+                            sampled_str = "none"
+                            if ws.pred_labels and ws.pred_labels != "none":
+                                gp_ids = [
+                                    int(g.strip()[2:])
+                                    for g in ws.pred_labels.split(",")
+                                    if g.strip().startswith("gp")
+                                ]
+                                no_prior = []
+                                has_prior = []
+                                for gid in gp_ids:
+                                    has_p = False
+                                    if (
+                                        summary.gp_priors is not None
+                                        and 0 <= gid < summary.gp_priors.numel()
+                                    ):
+                                        p = float(summary.gp_priors[gid].item())
+                                        if math.isfinite(p) and 0.0 <= p <= 1.0:
+                                            has_p = True
+                                    if has_p:
+                                        has_prior.append(gid)
+                                    else:
+                                        no_prior.append(gid)
+                                random.shuffle(no_prior)
+                                random.shuffle(has_prior)
+                                picked = no_prior[:5]
+                                if len(picked) < 5:
+                                    picked += has_prior[: 5 - len(picked)]
+                                picked.sort()
+                                sampled_str = ",".join(f"gp{g:04d}" for g in picked)
+                            f.write(
+                                f"{ws.loss:.6f}\t{target_str}"
+                                f"\t{int(ws.prediction)}"
+                                f"\t{sampled_str}\t{ws.sentence}\n"
+                            )
+                    else:
+                        f.write("loss\ttarget\tpredicted\tsentence\n")
+                        for ws in top_samples:
+                            target_str = ws.target_labels or f"{ws.target:.4f}"
+                            pred_str = ws.pred_labels or f"{ws.prediction:.4f}"
+                            f.write(
+                                f"{ws.loss:.6f}\t{target_str}"
+                                f"\t{pred_str}\t{ws.sentence}\n"
+                            )
+            console.print(f"  [dim]TSV files written to {tsv_dir}/worst-*.tsv[/dim]")
 
         # BLOCK 4.6: Top Loss Contributors (for PNU families like grammar_point)
         # Check accumulators for loss_by_label
@@ -958,7 +1142,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 inds_list = inds.cpu().tolist()
 
                 parts = []
-                for i, (val, idx) in enumerate(zip(vals_list, inds_list)):
+                for val, idx in zip(vals_list, inds_list):
                     if val < 1e-6:
                         continue
                     # Format as gpXXXX (assuming index matches grammar point ID)

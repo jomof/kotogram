@@ -1,5 +1,6 @@
 """Data types for Kotogram training."""
 
+import heapq
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -460,6 +461,70 @@ class WorstSampleInfo:
     pred_labels: str = ""  # Predicted labels for classification families
 
 
+class WorstSamplesTracker:
+    """Tracks the top-N worst (highest loss) samples using a min-heap.
+
+    Deduplicates by sentence: only the highest-loss entry per unique
+    sentence is kept.
+    """
+
+    def __init__(self, max_size: int = 50) -> None:
+        self.max_size = max_size
+        self._heap: List[Tuple[float, int, WorstSampleInfo]] = []
+        self._counter = 0  # Tiebreaker for heap stability
+        # Maps sentence -> (loss, counter) for dedup tracking
+        self._seen: Dict[str, Tuple[float, int]] = {}
+        self._dirty = False  # Set when entries are logically removed
+
+    def push(self, sample: WorstSampleInfo) -> None:
+        """Add a sample; deduplicates by sentence, keeping highest loss."""
+        prev = self._seen.get(sample.sentence)
+        if prev is not None:
+            prev_loss, _ = prev
+            if sample.loss <= prev_loss:
+                return  # Already have a higher-loss entry for this sentence
+            # Mark old entry as stale (will be filtered on read)
+            self._dirty = True
+
+        entry = (sample.loss, self._counter, sample)
+        self._counter += 1
+        self._seen[sample.sentence] = (sample.loss, entry[1])
+
+        if len(self._heap) < self.max_size + len(self._seen):
+            heapq.heappush(self._heap, entry)
+        elif sample.loss > self._heap[0][0]:
+            heapq.heapreplace(self._heap, entry)
+
+    def _rebuild_if_dirty(self) -> None:
+        """Remove stale entries and trim to max_size."""
+        if not self._dirty:
+            return
+        # Keep only entries whose counter matches the current best for that sentence
+        live = []
+        for loss, counter, info in self._heap:
+            best = self._seen.get(info.sentence)
+            if best is not None and best[1] == counter:
+                live.append((loss, counter, info))
+        heapq.heapify(live)
+        # Trim to max_size (keep highest-loss entries)
+        while len(live) > self.max_size:
+            heapq.heappop(live)
+        self._heap = live
+        self._dirty = False
+
+    def top_n(self) -> List[WorstSampleInfo]:
+        """Return all tracked samples sorted by loss descending."""
+        self._rebuild_if_dirty()
+        return [s for _, _, s in sorted(self._heap, reverse=True)]
+
+    def worst(self) -> Optional[WorstSampleInfo]:
+        """Return the single worst (highest loss) sample, or None."""
+        self._rebuild_if_dirty()
+        if not self._heap:
+            return None
+        return max(self._heap)[2]
+
+
 @dataclass(frozen=True)
 class KcLossWeights:
     """Weights used for each loss component (for display scaling).
@@ -497,9 +562,9 @@ class KcEpochSummary:
     kc_logits_used_count: int = 0  # Number of unique KC logits that fired
     kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
     zipf_kl: float = 0.0  # Epoch usage vs Zipf KL (lower is closer)
-    worst_samples: Dict[str, "WorstSampleInfo"] = field(
+    worst_samples: Dict[str, "WorstSamplesTracker"] = field(
         default_factory=dict
-    )  # Per-family worst sample
+    )  # Per-family top-N worst samples
     accumulators: Dict[str, "FamilyAccumulator"] = field(default_factory=dict)
     # Optional per-GP priors vector used for printing curate hints (NaN => unset/default).
     gp_priors: Optional[torch.Tensor] = None
