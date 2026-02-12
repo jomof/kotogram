@@ -7,11 +7,57 @@ from typing import Dict, List, Optional, Set
 
 import torch
 
+from kotogram.constants import (
+    FormalityThresholds,
+    GenderThresholds,
+    GrammaticalityThresholds,
+)
 from train.types import (
     KCDiagnosticFamilyStats,
     KCDiagnosticReport,
     KCMseFamilyStats,
 )
+
+
+def discretize_mse(values: torch.Tensor, family_name: str) -> torch.Tensor:
+    """Map continuous values to discrete bucket IDs matching inference thresholds.
+
+    Uses the same thresholds as kotogram.constants so that epoch-report accuracy
+    reflects what ``bin/kotogram`` would actually print.
+    """
+    if family_name == "formality":
+        # 5 levels: very_casual < casual < neutral < formal < very_formal
+        thresholds = torch.tensor(
+            [
+                FormalityThresholds.CASUAL_MIN,  # -0.75
+                FormalityThresholds.NEUTRAL_MIN,  # -0.25
+                FormalityThresholds.FORMAL_MIN,  # 0.25
+                FormalityThresholds.VERY_FORMAL_MIN,  # 0.75
+            ],
+            device=values.device,
+        )
+    elif family_name == "gender":
+        # 3 levels: masculine < neutral < feminine
+        thresholds = torch.tensor(
+            [
+                GenderThresholds.MASCULINE_MAX,  # -0.5
+                GenderThresholds.FEMININE_MIN,  # 0.5
+            ],
+            device=values.device,
+        )
+    elif family_name == "grammatic":
+        # 2 levels: ungrammatical vs grammatical
+        thresholds = torch.tensor(
+            [GrammaticalityThresholds.GRAMMATIC_MIN],  # 0.5
+            device=values.device,
+        )
+    else:
+        # Unknown family: fall back to single bucket (always "correct")
+        return torch.zeros_like(values, dtype=torch.long)
+
+    # bucketize: value < t[0] → 0, t[0] <= value < t[1] → 1, etc.
+    return torch.bucketize(values.contiguous(), thresholds)
+
 
 # Pylint suppressions for diagnostic complexity
 # pylint: disable=too-many-positional-arguments,too-many-locals,unused-argument,too-many-return-statements
@@ -108,7 +154,7 @@ class MseFamilyStats:
     sum_pred_sq: float = 0.0  # For variance
     sum_target_sq: float = 0.0
     sum_cross: float = 0.0  # For correlation (sum of pred * target)
-    correct_01: int = 0  # Count within ±0.1
+    correct_discrete: int = 0  # Count matching discrete label bucket
 
 
 class KCEpochDiag:
@@ -293,9 +339,11 @@ class KCEpochDiag:
         stats.sum_target_sq += (t**2).sum().item()
         stats.sum_cross += (p * t).sum().item()
 
-        # Accuracy within ±0.1
-        correct = ((p - t).abs() < 0.1).sum().item()
-        stats.correct_01 += int(correct)
+        # Discrete bucket accuracy (matches inference thresholds)
+        pred_buckets = discretize_mse(p, family_name)
+        target_buckets = discretize_mse(t, family_name)
+        correct = (pred_buckets == target_buckets).sum().item()
+        stats.correct_discrete += int(correct)
 
     def get_stats(self) -> KCDiagnosticReport:
         """Return structured statistics."""
@@ -389,7 +437,7 @@ class KCEpochDiag:
 
             # Loss per batch (true contribution)
             loss_per_batch = mse_s.sum_loss / n_batches
-            accuracy_01 = mse_s.correct_01 / n_samples
+            discrete_accuracy = mse_s.correct_discrete / n_samples
 
             # Mean values (per sample)
             mean_pred = mse_s.sum_pred / n_samples
@@ -411,7 +459,7 @@ class KCEpochDiag:
 
             mse_data[mse_name] = KCMseFamilyStats(
                 loss_mean=loss_per_batch,
-                accuracy_01=accuracy_01,
+                discrete_accuracy=discrete_accuracy,
                 correlation=correlation,
                 mean_bias=mean_bias,
                 pred_std=pred_std,

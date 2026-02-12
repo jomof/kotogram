@@ -82,18 +82,12 @@ class ModelConfig:
     num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(
         default_factory=lambda: {
-            "pos": 32,
-            "pos_detail_1": 32,
-            "pos_detail_2": 16,
-            "pos_detail_3": 16,
-            "conjugated_form": 16,
-            "conjugated_type": 16,
-            "reading": 64,  # Raw reading for encoder
+            "surface": 256,  # Single surface embedding (BERT-like)
         }
     )
     d_model: int = 384
     hidden_dim: int = 1536  # Increased from 768 for more capacity
-    num_layers: int = 4
+    num_layers: int = 6
     num_heads: int = 12
     dropout: float = 0.1
     max_seq_len: int = 512

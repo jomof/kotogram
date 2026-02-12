@@ -178,7 +178,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     import torch
 
     from kotogram.constants import REGISTER_ID_TO_LABEL
-    from kotogram.tokenizer import FEATURE_FIELDS
+    from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, FEATURE_FIELDS
 
     model, tokenizer = _ANALYZER.load()
 
@@ -189,8 +189,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)
     batch_size = len(kotograms)
 
+    # Only build tensors for fields the encoder actually uses
     field_inputs = {}
-    for field in FEATURE_FIELDS:
+    for field in ENCODER_FEATURE_FIELDS:
         # 0 is the PAD_TOKEN id
         batch_ids = torch.zeros((batch_size, max_len), dtype=torch.long)
         for i, encoded in enumerate(encoded_list):

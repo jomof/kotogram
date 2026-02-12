@@ -320,7 +320,7 @@ class KcPnuFamily(KcFamily):
     """
 
     _logit_mode: KcLogitMode
-    _loss_weight: float = 1.0
+    _loss_weight: float = 5.0
 
     @property
     def is_sparse(self) -> bool:

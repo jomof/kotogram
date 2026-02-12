@@ -429,7 +429,7 @@ class KCMseFamilyStats:
     """KC diagnostic statistics for a single MSE (regression) family."""
 
     loss_mean: float  # MSE loss
-    accuracy_01: float  # Fraction within ±0.1 of target
+    discrete_accuracy: float  # Fraction matching discrete label bucket
     correlation: float  # Pearson correlation
     mean_bias: float  # Mean(pred) - Mean(target)
     pred_std: float  # Std dev of predictions

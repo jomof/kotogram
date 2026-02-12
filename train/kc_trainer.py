@@ -28,6 +28,7 @@ from train.display import (
 from train.kc import KcFamilyId, get_family, is_family_db_sourced, is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
+    discretize_mse,
 )
 from train.kc_trainer_view import KCTrainerDiagnosticsView, KCTrainerView
 from train.models import TrainingClassifier
@@ -1314,27 +1315,34 @@ class KCTrainer:
             if track_worst and gram_probs is not None and gram_targets is not None:
                 with torch.no_grad():
                     per_sample_loss = (gram_probs - gram_targets).pow(2)
-                    tracker = worst_samples.setdefault(
-                        "grammatic", WorstSamplesTracker()
-                    )
-                    k = min(50, per_sample_loss.size(0))
-                    top_vals, top_idxs = torch.topk(per_sample_loss, k)
-                    for ti in range(k):
-                        idx_in_batch = int(top_idxs[ti].item())
-                        loss_val = top_vals[ti].item()
-                        sample_idx = int(full_batch.indices[idx_in_batch].item())
-                        tracker.push(
-                            WorstSampleInfo(
-                                sentence=_get_display_sentence(
-                                    self.dataset.get_sentence_by_idx(sample_idx),
-                                    full_batch.kotogram[idx_in_batch],
-                                ),
-                                loss=loss_val,
-                                target=gram_targets[idx_in_batch].item(),
-                                prediction=gram_probs[idx_in_batch].item(),
-                                sample_idx=sample_idx,
-                            )
+                    # Skip samples that already match the correct discrete label
+                    pred_buckets = discretize_mse(gram_probs, "grammatic")
+                    tgt_buckets = discretize_mse(gram_targets, "grammatic")
+                    mismatch = pred_buckets != tgt_buckets
+                    if mismatch.any():
+                        mis_loss = per_sample_loss[mismatch]
+                        mis_idxs = mismatch.nonzero(as_tuple=True)[0]
+                        tracker = worst_samples.setdefault(
+                            "grammatic", WorstSamplesTracker()
                         )
+                        k = min(50, mis_loss.size(0))
+                        top_vals, top_idxs = torch.topk(mis_loss, k)
+                        for ti in range(k):
+                            idx_in_batch = int(mis_idxs[top_idxs[ti]].item())
+                            loss_val = top_vals[ti].item()
+                            sample_idx = int(full_batch.indices[idx_in_batch].item())
+                            tracker.push(
+                                WorstSampleInfo(
+                                    sentence=_get_display_sentence(
+                                        self.dataset.get_sentence_by_idx(sample_idx),
+                                        full_batch.kotogram[idx_in_batch],
+                                    ),
+                                    loss=loss_val,
+                                    target=gram_targets[idx_in_batch].item(),
+                                    prediction=gram_probs[idx_in_batch].item(),
+                                    sample_idx=sample_idx,
+                                )
+                            )
 
             if not has_grammatic:
                 loss = gram_loss / self.config.grad_accum_steps
@@ -2016,6 +2024,9 @@ class KCTrainer:
                                     loss_val = top_vals[ti].item()
                                     pred_class = int(pred_probs[idx_b].argmax().item())
                                     target_class = int(class_targets[idx_b].item())
+                                    # Skip samples where predicted label matches target
+                                    if pred_class == target_class:
+                                        continue
                                     target_label = (
                                         class_names[target_class]
                                         if target_class < len(class_names)
@@ -2267,29 +2278,38 @@ class KCTrainer:
                                 with torch.no_grad():
                                     preds = logits.float().squeeze(-1)
                                     per_sample_loss = (preds - targets_cont).pow(2)
-                                    tracker = worst_samples.setdefault(
-                                        name, WorstSamplesTracker()
-                                    )
-                                    k = min(50, per_sample_loss.size(0))
-                                    top_vals, top_idxs = torch.topk(per_sample_loss, k)
-                                    for ti in range(k):
-                                        idx_b = int(top_idxs[ti].item())
-                                        loss_val = top_vals[ti].item()
-                                        sample_idx = int(batch.indices[idx_b].item())
-                                        tracker.push(
-                                            WorstSampleInfo(
-                                                sentence=_get_display_sentence(
-                                                    self.dataset.get_sentence_by_idx(
-                                                        sample_idx
-                                                    ),
-                                                    batch.kotogram[idx_b],
-                                                ),
-                                                loss=loss_val,
-                                                target=targets_cont[idx_b].item(),
-                                                prediction=preds[idx_b].item(),
-                                                sample_idx=sample_idx,
-                                            )
+                                    # Skip samples that already match the correct discrete label
+                                    pred_buckets = discretize_mse(preds, name)
+                                    tgt_buckets = discretize_mse(targets_cont, name)
+                                    mismatch = pred_buckets != tgt_buckets
+                                    if mismatch.any():
+                                        mis_loss = per_sample_loss[mismatch]
+                                        mis_idxs = mismatch.nonzero(as_tuple=True)[0]
+                                        tracker = worst_samples.setdefault(
+                                            name, WorstSamplesTracker()
                                         )
+                                        k = min(50, mis_loss.size(0))
+                                        top_vals, top_idxs = torch.topk(mis_loss, k)
+                                        for ti in range(k):
+                                            idx_b = int(mis_idxs[top_idxs[ti]].item())
+                                            loss_val = top_vals[ti].item()
+                                            sample_idx = int(
+                                                batch.indices[idx_b].item()
+                                            )
+                                            tracker.push(
+                                                WorstSampleInfo(
+                                                    sentence=_get_display_sentence(
+                                                        self.dataset.get_sentence_by_idx(
+                                                            sample_idx
+                                                        ),
+                                                        batch.kotogram[idx_b],
+                                                    ),
+                                                    loss=loss_val,
+                                                    target=targets_cont[idx_b].item(),
+                                                    prediction=preds[idx_b].item(),
+                                                    sample_idx=sample_idx,
+                                                )
+                                            )
 
                     continue  # Skip standard dense/sparse path
 

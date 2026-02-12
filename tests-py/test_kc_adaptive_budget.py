@@ -67,7 +67,7 @@ class MockModel(nn.Module):
             self.last_long_mask = kwargs.get("long_sentence_mask")
 
             # Return dummy outputs required by trainer
-            batch_size = args[0]["input_ids_pos"].size(0)
+            batch_size = args[0]["input_ids_surface"].size(0)
             top_k = self.config.kc_topk
             vocab_size = self.config.kc_vocab_size
 
@@ -131,7 +131,7 @@ class TestKCAdaptiveBudget(unittest.TestCase):
     def test_adaptive_k_calculation(self):
         # ModelConfig needs vocab_sizes
         model_config = ModelConfig(
-            vocab_sizes={"pos": 100},
+            vocab_sizes={"surface": 100},
             kc_topk=8,
             kc_vocab_size=100,
         )
@@ -178,7 +178,7 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         mask[2, :30] = 1
 
         batch = MockBatch(
-            feature_inputs={"input_ids_pos": input_ids},
+            feature_inputs={"input_ids_surface": input_ids},
             attention_mask=mask,
         )
 
@@ -226,38 +226,35 @@ class TestKCAdaptiveBudget(unittest.TestCase):
     def test_model_forward_kc_masking(self):
         # Test real logic logic for variable k
         config = ModelConfig(
-            vocab_sizes={"pos": 100},
+            vocab_sizes={"surface": 100},
             kc_topk=8,
             kc_vocab_size=100,
-            field_embed_dims={"pos": 16},
+            field_embed_dims={"surface": 16},
         )
 
-        # Patch ENCODER_FEATURE_FIELDS to only allow 'pos' to suffice for get_embeddings
-        # (ENCODER_FEATURE_FIELDS is imported into model from tokenizer)
-        with patch("kotogram.model.ENCODER_FEATURE_FIELDS", ["pos"]):
-            model = TrainingClassifier(config)
-            model.to("cpu")
+        model = TrainingClassifier(config)
+        model.to("cpu")
 
-            batch_size = 2
-            inputs = {"input_ids_pos": torch.ones(batch_size, 10, dtype=torch.long)}
-            mask = torch.ones(batch_size, 10)
-            k_budget = torch.tensor([2, 5], dtype=torch.long)  # Two different budgets
+        batch_size = 2
+        inputs = {"input_ids_surface": torch.ones(batch_size, 10, dtype=torch.long)}
+        mask = torch.ones(batch_size, 10)
+        k_budget = torch.tensor([2, 5], dtype=torch.long)  # Two different budgets
 
-            outputs = model.forward_kc(
-                inputs, attention_mask=mask, k_budget=k_budget, temperature=1.0
-            )
+        outputs = model.forward_kc(
+            inputs, attention_mask=mask, k_budget=k_budget, temperature=1.0
+        )
 
-            topk_vals = outputs["topk_vals"]  # (B, 8)
+        topk_vals = outputs["topk_vals"]  # (B, 8)
 
-            # Check sample 0 (budget 2)
-            # Indices 2..7 should be zero
-            self.assertTrue((topk_vals[0, 2:] == 0).all())
-            self.assertTrue((topk_vals[0, :2] > 0).all())  # Assuming >0 prob, likely
+        # Check sample 0 (budget 2)
+        # Indices 2..7 should be zero
+        self.assertTrue((topk_vals[0, 2:] == 0).all())
+        self.assertTrue((topk_vals[0, :2] > 0).all())  # Assuming >0 prob, likely
 
-            # Check sample 1 (budget 5)
-            # Indices 5..7 should be zero
-            self.assertTrue((topk_vals[1, 5:] == 0).all())
-            self.assertTrue((topk_vals[1, :5] > 0).all())
+        # Check sample 1 (budget 5)
+        # Indices 5..7 should be zero
+        self.assertTrue((topk_vals[1, 5:] == 0).all())
+        self.assertTrue((topk_vals[1, :5] > 0).all())
 
 
 if __name__ == "__main__":

@@ -66,7 +66,10 @@ class TestCliModelDir(unittest.TestCase):
         }  # Assuming field name
 
         # We need to mock tokenizer.encode more realistically or mock FEATURE_FIELDS
-        with patch("kotogram.tokenizer.FEATURE_FIELDS", ["input_ids"]):
+        with (
+            patch("kotogram.tokenizer.FEATURE_FIELDS", ["input_ids"]),
+            patch("kotogram.tokenizer.ENCODER_FEATURE_FIELDS", ["input_ids"]),
+        ):
             mock_tokenizer.encode.return_value = {"input_ids": [1, 2, 3]}
 
             # Run CLI

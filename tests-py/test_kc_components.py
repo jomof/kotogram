@@ -530,7 +530,7 @@ def test_create_kc_batch_sparse_for_small_heads():
 
     batch = unittest.mock.Mock()
     batch.feature_inputs = {
-        "input_ids_pos": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "input_ids_surface": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
     batch.kc_targets = [{KcFamilyId.BAG_POS: [4, 5, 6]}, {KcFamilyId.BAG_POS: [10, 11]}]
@@ -559,7 +559,7 @@ def test_create_kc_batch_sparse_for_large_heads():
 
     batch = unittest.mock.Mock()
     batch.feature_inputs = {
-        "input_ids_pos": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "input_ids_surface": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
     # Use NGRAM_POS which is a sparse family

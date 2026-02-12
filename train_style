@@ -103,12 +103,7 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
         else:
             # Fall back to default vocab sizes for architecture visualization
             vocab_sizes = {
-                "pos": 100,
-                "pos_detail_1": 100,
-                "pos_detail_2": 100,
-                "pos_detail_3": 100,
-                "conjugated_type": 100,
-                "reading_gram": 16384,
+                "surface": 16384,
             }
 
         config = ModelConfig(vocab_sizes=vocab_sizes)
@@ -280,9 +275,9 @@ def generate_and_save_config(
     # Ensure tokenizer is in the final output location (models/style/tokenizer.json)
     # This is the single source of truth for training and inference.
     if os.path.exists(tokenizer_path_cache):
-        # Always overwrite from cache (latest labels) to ensure consistency
-        import shutil
-        shutil.copy2(tokenizer_path_cache, tokenizer_path_final)
+        # Save inference-only tokenizer (encoder fields only) to model output dir
+        cached_tok = Tokenizer.load(tokenizer_path_cache)
+        train_io.save_tokenizer(cached_tok, tokenizer_path_final, inference_only=True)
         _view.on_tokenizer_staged(tokenizer_path_final)
     if not os.path.exists(tokenizer_path_final):
         # If no cache and no existing final tokenizer, create a fresh one (e.g. first run)

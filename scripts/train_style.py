@@ -371,9 +371,9 @@ if __name__ == "__main__":
         grammaticality_labels.append(0)
 
     # --- Model and Data Initialization ---
-    # Load tokenizer to get vocab sizes
-    # STRICT: Load only from final output location. Wrapper guarantees its existence.
-    tokenizer_path = os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+    # Load full tokenizer from cache (has all field vocabs for KC specs).
+    # models/style/tokenizer.json is inference-only (surface vocab only).
+    tokenizer_path = os.path.join(cache_dir_data, "vocab.json")
 
     if not os.path.exists(tokenizer_path):
         raise FileNotFoundError(
@@ -509,10 +509,16 @@ if __name__ == "__main__":
     if vocab_grew:
         model.resize_embeddings(new_vocab_sizes)
         model_config.vocab_sizes = new_vocab_sizes
-        # Save updated tokenizer to output_dir so resumption finds it
+        # Save full tokenizer back to cache for resumption
+        train_io.save_tokenizer(
+            tokenizer,
+            os.path.join(cache_dir_data, "vocab.json"),
+        )
+        # Save inference-only tokenizer to output dir for deployment
         train_io.save_tokenizer(
             tokenizer,
             os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
+            inference_only=True,
         )
 
     if trainer_config.label_only:

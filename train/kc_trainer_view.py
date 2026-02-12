@@ -599,7 +599,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             )
             table_mse.add_column("MSE Family")
             table_mse.add_column("Loss")
-            table_mse.add_column("Acc±")  # Within ±0.1
+            table_mse.add_column("Acc")  # Discrete label bucket match
             table_mse.add_column("Corr")  # Pearson correlation
             table_mse.add_column("Bias")  # Mean prediction bias
             table_mse.add_column("σ(Pred)")  # Prediction std
@@ -624,7 +624,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 prev_acc = prev_mse.get("acc", None)
                 acc_arrow = ""
                 if prev_acc is not None:
-                    delta = mse.accuracy_01 - prev_acc
+                    delta = mse.discrete_accuracy - prev_acc
                     if delta > 0.01:
                         acc_arrow = "[green]↑[/green]"
                     elif delta < -0.01:
@@ -643,8 +643,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 # Colors
                 c_acc = (
                     "green"
-                    if mse.accuracy_01 > 0.7
-                    else ("red" if mse.accuracy_01 < 0.3 else "dim")
+                    if mse.discrete_accuracy > 0.7
+                    else ("red" if mse.discrete_accuracy < 0.3 else "dim")
                 )
                 c_corr = (
                     "green"
@@ -658,7 +658,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 table_mse.add_row(
                     f"{_get_logit_mode_emoji(name)}{name}",
                     f"{mse.loss_mean:.4f}{loss_arrow}",
-                    f"[{c_acc}]{mse.accuracy_01 * 100:.1f}%[/{c_acc}]{acc_arrow}",
+                    f"[{c_acc}]{mse.discrete_accuracy * 100:.1f}%[/{c_acc}]{acc_arrow}",
                     f"[{c_corr}]{mse.correlation:.3f}[/{c_corr}]{corr_arrow}",
                     f"[{c_bias}]{mse.mean_bias:.3f}[/{c_bias}]",
                     f"[{c_std}]{mse.pred_std:.3f}[/{c_std}]",
@@ -668,7 +668,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 # Store for next epoch
                 self.prev_mse_stats[name] = {
                     "loss": mse.loss_mean,
-                    "acc": mse.accuracy_01,
+                    "acc": mse.discrete_accuracy,
                     "corr": mse.correlation,
                 }
 

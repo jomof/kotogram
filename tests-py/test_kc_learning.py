@@ -136,12 +136,7 @@ def test_create_kc_batch():
     tokenizer = MockTokenizer()
     batch = unittest.mock.Mock()
     batch.feature_inputs = {
-        "input_ids_pos": torch.tensor(
-            [[1, 10, 11, 2], [1, 12, 0, 0]]
-        ),  # Example with padding
-        "input_ids_surface": torch.tensor(
-            [[1, 100, 101, 2], [1, 102, 0, 0]]
-        ),  # Surface needed for batch size
+        "input_ids_surface": torch.tensor([[1, 100, 101, 2], [1, 102, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 1], [1, 1, 0, 0]])
     target_specs = {KcFamilyId.BAG_POS: 50}

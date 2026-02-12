@@ -17,8 +17,8 @@ class TestPhase2EncodingConsistency:
 
     @pytest.fixture(scope="class")
     def tokenizer(self) -> Tokenizer:
-        """Load the production tokenizer."""
-        return Tokenizer.load("models/style/tokenizer.json")
+        """Load the full training tokenizer (has all field vocabs)."""
+        return Tokenizer.load(".cache/style_dataset/vocab.json")
 
     def test_compound_1_uses_composite_tokens(
         self, parser: SudachiJapaneseParser, tokenizer: Tokenizer

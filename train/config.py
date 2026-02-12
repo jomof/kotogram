@@ -139,12 +139,10 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (Multi-Label PNU) Loss
-    gp_unlabeled_weight: float = (
-        1  # Weight for unlabeled positions (weak negative assumption)
-    )
+    gp_unlabeled_weight: float = 1  # Weight for unlabeled positions
     gp_pos_weight: float = 1.0  # Weight for labeled positives
-    gp_neg_weight: float = 250.0  # Weight for labeled negatives
-    gp_default_prior: float = 1e-6  # Default prior for NULL grammar.prior (0.0-1.0)
+    gp_neg_weight: float = 1000.0  # Weight for labeled negatives
+    gp_default_prior: float = 1e-8  # Default prior for NULL grammar.prior (0.0-1.0)
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples

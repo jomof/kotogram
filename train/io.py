@@ -13,14 +13,26 @@ from kotogram.model import (
     InferenceClassifier,
     ModelConfig,
 )
-from kotogram.tokenizer import Tokenizer
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
 from train.kc import KC_FAMILIES, KcMseFamily
 
 
-def save_tokenizer(tokenizer: Tokenizer, path: str) -> None:
+def save_tokenizer(
+    tokenizer: Tokenizer, path: str, inference_only: bool = False
+) -> None:
     """Save tokenizer vocabularies to JSON file atomically."""
     # pylint: disable=import-outside-toplevel
-    data = tokenizer.to_dict()
+    if inference_only:
+        data = {
+            "field_vocabs": {
+                f: tokenizer.field_vocabs[f]
+                for f in ENCODER_FEATURE_FIELDS
+                if f in tokenizer.field_vocabs
+            },
+            "frozen": True,
+        }
+    else:
+        data = tokenizer.to_dict()
 
     dir_name = os.path.dirname(path)
     if dir_name:
@@ -168,7 +180,7 @@ def get_checkpoint_path() -> str:
 
 _CHECKPOINT_SENTINEL_KEYS = frozenset(
     {
-        "embedding.embeddings.pos.weight",
+        "embedding.embeddings.surface.weight",
         "encoder.layers.0.self_attn.in_proj_weight",
         "pooler.query",
     }

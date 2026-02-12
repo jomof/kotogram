@@ -42,16 +42,11 @@ ALL_FEATURE_FIELDS = [
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features for labeling/KC
 
 # Feature fields used for transformer encoder embedding (BERT-like layer)
-# Uses atomic morphological fields instead of compound composites
-# Uses 'reading' (raw) instead of 'reading_gram' (masked)
+# Surface-only input: the transformer learns from raw surface tokens (like BERT).
+# Morphological features are still computed for KC target labeling (FEATURE_FIELDS)
+# but are not fed to the encoder.
 ENCODER_FEATURE_FIELDS = [
-    "pos",
-    "pos_detail_1",
-    "pos_detail_2",
-    "pos_detail_3",
-    "conjugated_form",
-    "conjugated_type",
-    "reading",
+    "surface",
 ]
 
 
