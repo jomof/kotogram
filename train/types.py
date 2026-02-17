@@ -139,9 +139,6 @@ class FamilyAccumulator:
     freq_by_label: Optional[torch.Tensor] = (
         None  # Running sum of positive count per label
     )
-    freq_total_by_label: Optional[torch.Tensor] = (
-        None  # Running sum of supervised count per label
-    )
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
@@ -237,17 +234,13 @@ class FamilyAccumulator:
                 else:
                     self.loss_by_label += loss_by_label.detach()
 
-            # Accumulate per-label positive frequency
-            if valid_mask is not None and pos_mask is not None:
-                pos_per_label = (pos_mask & valid_mask).float().sum(dim=0)
-                total_per_label = valid_mask.float().sum(dim=0)
+            # Accumulate per-label positive count for frequency calculation
+            if pos_mask is not None:
+                pos_per_label = pos_mask.float().sum(dim=0)
                 if self.freq_by_label is None:
                     self.freq_by_label = pos_per_label.detach().clone()
-                    self.freq_total_by_label = total_per_label.detach().clone()
                 else:
                     self.freq_by_label += pos_per_label.detach()
-                    assert self.freq_total_by_label is not None
-                    self.freq_total_by_label += total_per_label.detach()
 
     def median_pred_pos_on_pos(self) -> Optional[float]:
         """Median predicted positives per positive example (epoch-level)."""

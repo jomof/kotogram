@@ -1247,21 +1247,20 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             if (
                 name == "grammar_point"
                 and acc.freq_by_label is not None
-                and acc.freq_total_by_label is not None
+                and acc.n_ex > 0
                 and summary.gp_priors is not None
             ):
-                # Observed frequency per GP = positives / supervised observations
-                total = acc.freq_total_by_label.clamp_min(1.0)
-                obs_freq = (acc.freq_by_label / total).cpu()  # (vocab_size,)
+                # Observed frequency = positives / total examples (not supervised)
+                obs_freq = (acc.freq_by_label / acc.n_ex).cpu()  # (vocab_size,)
 
                 # Build prior vector, filling NaN/unset with gp_default_prior
                 priors = summary.gp_priors.detach().float().cpu()
                 n_gp = min(obs_freq.numel(), priors.numel())
                 obs_freq = obs_freq[:n_gp]
                 priors = priors[:n_gp]
-                finite = torch.isfinite(priors) & (priors >= 0.0) & (priors <= 1.0)
+                prior_set = torch.isfinite(priors) & (priors >= 0.0) & (priors <= 1.0)
                 priors_filled = priors.clone()
-                priors_filled[~finite] = summary.gp_default_prior
+                priors_filled[~prior_set] = summary.gp_default_prior
 
                 # Deviation = |observed - prior|
                 deviation = (obs_freq - priors_filled).abs()
@@ -1269,17 +1268,19 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 # Top 5
                 k = min(5, n_gp)
                 vals, inds = torch.topk(deviation, k)
-                drift_parts = []
-                drift_gp_ids = []
+                drift_parts: list[str] = []
+                drift_gp_ids: list[str] = []
                 for dev_val, idx in zip(vals.tolist(), inds.tolist()):
                     if dev_val < 1e-8:
                         continue
                     obs_pct = obs_freq[idx].item() * 100.0
-                    pri_pct = priors_filled[idx].item() * 100.0
-                    drift_parts.append(
-                        f"gp{idx:04d}: obs={obs_pct:.2f}% prior={pri_pct:.2f}%"
-                    )
-                    drift_gp_ids.append(f"gp{idx:04d}")
+                    gp_id = f"gp{idx:04d}"
+                    if prior_set[idx]:
+                        pri_pct = priors[idx].item() * 100.0
+                        drift_parts.append(f"{gp_id}: {obs_pct:.2g}%/{pri_pct:.2g}%")
+                    else:
+                        drift_parts.append(f"{gp_id}: {obs_pct:.2g}%")
+                    drift_gp_ids.append(gp_id)
 
                 if drift_parts:
                     console.print(
@@ -1294,14 +1295,15 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                         )
 
                 # Best-fit default prior: mean observed freq of GPs using default
-                default_mask = ~finite  # GPs with NaN/unset priors
+                default_mask = ~prior_set  # GPs with NaN/unset priors
                 if default_mask.any():
                     best_fit = obs_freq[default_mask].mean().item()
                     n_default = int(default_mask.sum().item())
+                    cur_default = summary.gp_default_prior
                     console.print(
                         f"  [cyan]{name}[/cyan] Best-fit default prior: "
                         f"[yellow]{best_fit:.6f}[/yellow] "
-                        f"[dim]({n_default} GPs using default)[/dim]"
+                        f"[dim](current: {cur_default:.2g}, {n_default} GPs)[/dim]"
                     )
 
         # BLOCK 5: Diagnosis Flags
