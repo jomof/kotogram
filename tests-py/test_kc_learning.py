@@ -58,7 +58,7 @@ class MockDataset:
 
 
 def test_kc_head_shapes():
-    config = ModelConfig(vocab_sizes={"surface": 100}, kc_vocab_size=64, kc_topk=4)
+    config = ModelConfig(vocab_sizes={"surface": 100}, kc_vocab_size=64)
     kc_head = KCHead(config)
 
     batch_size = 2
@@ -87,10 +87,9 @@ def test_kc_decoder_shapes():
     decoder = KCDecoder(kc_vocab_size, target_specs)
 
     batch_size = 2
-    kc_activations = torch.randn(batch_size, kc_vocab_size)
     kc_probs = torch.sigmoid(torch.randn(batch_size, kc_vocab_size))
 
-    logits_dict = decoder(kc_activations, kc_probs)
+    logits_dict = decoder(kc_probs)
     assert KcFamilyId.BAG_POS.name.lower() in logits_dict
     # assert KcFamilyId.BAG_CONJUGATED_FORM.name.lower() in logits_dict
     assert logits_dict[KcFamilyId.BAG_POS.name.lower()].shape == (batch_size, 50)
@@ -206,7 +205,6 @@ def test_predict_kcs_top():
     config = ModelConfig(
         vocab_sizes=vocab_sizes,
         kc_vocab_size=10,
-        kc_topk=3,
         kc_temperature=1.0,  # Default
     )
     model = InferenceClassifier(config)
@@ -222,7 +220,7 @@ def test_predict_kcs_top():
     results = model.predict_kcs_top(field_inputs, attention_mask, min_prob=0.0)
 
     assert len(results) == batch_size
-    assert len(results[0]) <= 3  # kc_topk
+    assert len(results[0]) <= 10  # kc_vocab_size (no top-k masking, all KCs returned)
     for item in results[0]:
         assert isinstance(item, tuple)
         assert len(item) == 2

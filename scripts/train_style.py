@@ -556,6 +556,9 @@ if __name__ == "__main__":
     # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
     # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
     kc_config = trainer_config.kc_config
+
+    # Propagate training temperature to model config so inference uses the same value
+    object.__setattr__(model_config, "kc_temperature", kc_config.temperature_thawed)
     if trainer_config.retrain or loaded_from_checkpoint:
         kc_config = dataclasses.replace(kc_config, freeze_encoder_epochs=0)
 

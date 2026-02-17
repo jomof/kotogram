@@ -56,7 +56,7 @@ class TestInternalVariations(unittest.TestCase):
         dl_config.persistent_workers = False
 
         kc_config = MagicMock()
-        kc_config.sparsity_weight = 0.0
+        kc_config.kl_sparse_weight = 0.0
         kc_config.freeze_encoder_epochs = 1
         kc_config.style_oversample = False  # Disable oversampling for mock dataset
         kc_config.formality_boost = 5.0

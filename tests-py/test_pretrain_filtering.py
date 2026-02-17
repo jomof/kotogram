@@ -131,7 +131,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
 
     def test_kc_trainer_retains_agrammatic(self):
         dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])
-        kc_config = KCConfig(sparsity_weight=0.01, freeze_encoder_epochs=1)
+        kc_config = KCConfig(kl_sparse_weight=0.01, freeze_encoder_epochs=1)
         dl_config = self.config.resolve_dataloader_config(torch.device("cpu"))
 
         agrammatic_count = sum(

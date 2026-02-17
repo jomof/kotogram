@@ -73,14 +73,6 @@ class KcFamilyId(str, Enum):
     )
 
 
-class KcLogitMode(str, Enum):
-    """Defines which KC logits a family is trained against."""
-
-    SPARSE_LOGITS = "sparse_logits"  # k-budget sparse activations (localized)
-    ALL_LOGITS = "all_logits"  # Full KC probabilities (diffuse style)
-    HOT_LOGITS = "hot_logits"  # Only logits with prob >= 0.5 (thresholded)
-
-
 # =============================================================================
 # KC Family ABC and Subclasses
 # =============================================================================
@@ -141,18 +133,13 @@ class KcFamily(ABC):
         """Per-family loss multiplier (calibrated so families contribute equally)."""
         return 1.0
 
-    @property
-    @abstractmethod
-    def logit_mode(self) -> KcLogitMode:
-        """Which KC logits this family trains against (SPARSE_LOGITS or ALL_LOGITS)."""
-
 
 @dataclass(frozen=True)
 class KcBagFamily(KcFamily):
     """Bag-of-words dense families using full sequence."""
 
     _feature_field: str
-    _logit_mode: KcLogitMode
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -176,17 +163,13 @@ class KcBagFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
 
 @dataclass(frozen=True)
 class KcTailFamily(KcFamily):
     """Tail-window dense families."""
 
     _feature_field: str
-    _logit_mode: KcLogitMode
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -213,10 +196,6 @@ class KcTailFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
-
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
 
 
 @dataclass(frozen=True)
@@ -226,7 +205,7 @@ class KcNgramFamily(KcFamily):
     _feature_field: str
     _bucket_size: int
     _salt: int
-    _logit_mode: KcLogitMode
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -258,10 +237,6 @@ class KcNgramFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
 
 @dataclass(frozen=True)
 class KcTailNgramFamily(KcFamily):
@@ -270,7 +245,7 @@ class KcTailNgramFamily(KcFamily):
     _feature_field: str
     _bucket_size: int
     _salt: int
-    _logit_mode: KcLogitMode
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -305,10 +280,6 @@ class KcTailNgramFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
-
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
 
 
 @dataclass(frozen=True)
@@ -319,7 +290,6 @@ class KcPnuFamily(KcFamily):
     unlabeled data. Uses sparsity assumption: unlabeled treated as weak negatives.
     """
 
-    _logit_mode: KcLogitMode
     _loss_weight: float = 5.0
 
     @property
@@ -342,16 +312,11 @@ class KcPnuFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
 
 @dataclass(frozen=True)
 class KcMseFamily(KcFamily):
     """DB-sourced MSE loss families for continuous targets (GENDER, FORMALITY)."""
 
-    _logit_mode: KcLogitMode
     _loss_weight: float = 1.0
 
     @property
@@ -374,16 +339,11 @@ class KcMseFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
 
 @dataclass(frozen=True)
 class KcDbClassFamily(KcFamily):
     """DB-sourced multi-class classification families (GENDER_CLASS, FORMALITY_CLASS)."""
 
-    _logit_mode: KcLogitMode
     _num_classes: int
     _loss_weight: float = 1.0
 
@@ -408,10 +368,6 @@ class KcDbClassFamily(KcFamily):
         return self._loss_weight
 
     @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
-    @property
     def num_classes(self) -> int:
         return self._num_classes
 
@@ -420,7 +376,6 @@ class KcDbClassFamily(KcFamily):
 class KcDbMultilabelFamily(KcFamily):
     """DB-sourced multi-label classification for REGISTER (multiple labels per sample)."""
 
-    _logit_mode: KcLogitMode
     _num_classes: int
     _loss_weight: float = 1.0
 
@@ -445,10 +400,6 @@ class KcDbMultilabelFamily(KcFamily):
         return self._loss_weight
 
     @property
-    def logit_mode(self) -> KcLogitMode:
-        return self._logit_mode
-
-    @property
     def num_classes(self) -> int:
         return self._num_classes
 
@@ -456,8 +407,6 @@ class KcDbMultilabelFamily(KcFamily):
 # =============================================================================
 # Family Registry
 # =============================================================================
-_DEFAULT_STRUCTURE_LOGITS = KcLogitMode.ALL_LOGITS
-_DEFAULT_SEMANTIC_LOGITS = KcLogitMode.ALL_LOGITS
 
 
 KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
@@ -465,26 +414,22 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.BAG_READING_GRAM: KcBagFamily(
         family_id=KcFamilyId.BAG_READING_GRAM,
         _feature_field="reading_gram",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.030,  # Reduced from 0.149 (20%)
     ),
     KcFamilyId.BAG_POS: KcBagFamily(
         family_id=KcFamilyId.BAG_POS,
         _feature_field="pos",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.137,  # Reduced from 0.683 (20%)
     ),
     KcFamilyId.BAG_COMPOUND_1: KcBagFamily(
         family_id=KcFamilyId.BAG_COMPOUND_1,
         _feature_field="compound_1",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.057,  # Reduced from 0.283 (20%)
     ),
     KcFamilyId.BAG_CONJUGATED_TYPE: KcBagFamily(
         family_id=KcFamilyId.BAG_CONJUGATED_TYPE,
         _feature_field="conjugated_type",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.062,  # Reduced from 0.308 (20%)
     ),
@@ -492,26 +437,22 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.TAIL_READING_GRAM: KcTailFamily(
         family_id=KcFamilyId.TAIL_READING_GRAM,
         _feature_field="reading_gram",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.028,  # Reduced from 0.139 (20%)
     ),
     KcFamilyId.TAIL_POS: KcTailFamily(
         family_id=KcFamilyId.TAIL_POS,
         _feature_field="pos",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.107,  # Reduced from 0.537 (20%)
     ),
     KcFamilyId.TAIL_COMPOUND_1: KcTailFamily(
         family_id=KcFamilyId.TAIL_COMPOUND_1,
         _feature_field="compound_1",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.048,  # Reduced from 0.240 (20%)
     ),
     KcFamilyId.TAIL_CONJUGATED_TYPE: KcTailFamily(
         family_id=KcFamilyId.TAIL_CONJUGATED_TYPE,
         _feature_field="conjugated_type",
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.057,  # Reduced from 0.284 (20%)
     ),
@@ -521,7 +462,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="pos",
         _bucket_size=2048,
         _salt=101,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.004,  # Reduced from 0.022 (20%)
     ),
     KcFamilyId.NGRAM_COMPOUND_1: KcNgramFamily(
@@ -529,7 +469,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="compound_1",
         _bucket_size=8192 * 4,
         _salt=102,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.003,  # Reduced from 0.015 (20%)
     ),
@@ -538,7 +477,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="conjugated_type",
         _bucket_size=8192,
         _salt=104,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.0005,  # Reduced from 0.0025 (20%)
     ),
@@ -547,7 +485,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="reading_gram",
         _bucket_size=262144,  # 2^18: 234K unique ngrams
         _salt=105,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.004,  # Reduced from 0.022 (20%)
     ),
     # Tail ngram families (sparse, tail window)
@@ -556,7 +493,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="pos",
         _bucket_size=1024,
         _salt=201,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.001,  # Reduced from 0.0046 (20%)
     ),
     KcFamilyId.TAIL_NGRAM_COMPOUND_1: KcTailNgramFamily(
@@ -564,7 +500,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="compound_1",
         _bucket_size=8192 * 2,
         _salt=202,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.0006,  # Reduced from 0.0032 (20%)
     ),
@@ -573,7 +508,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="conjugated_type",
         _bucket_size=8192,
         _salt=204,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _filter_unk=True,
         _loss_weight=0.0003,  # Reduced from 0.0017 (20%)
     ),
@@ -582,43 +516,36 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _feature_field="reading_gram",
         _bucket_size=131072,  # 2^17: 115K unique ngrams
         _salt=205,
-        _logit_mode=_DEFAULT_STRUCTURE_LOGITS,
         _loss_weight=0.0007,  # Reduced from 0.0034 (20%)
     ),
     # DB-sourced families
     KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
-        _loss_weight=1.0,  # epoch1_loss=6.00
+        _loss_weight=0.5,  # EXPERIMENT: reduced from 1.0 to lessen struct dominance
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
         _loss_weight=0.5,  # Original weight (not 100x)
     ),
     KcFamilyId.FORMALITY: KcMseFamily(
         family_id=KcFamilyId.FORMALITY,
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
         _loss_weight=0.5,  # Original weight (not 100x)
     ),
     # Classification versions
     KcFamilyId.GENDER_CLASS: KcDbClassFamily(
         family_id=KcFamilyId.GENDER_CLASS,
         _num_classes=3,  # Masculine (-1), Neutral (0), Feminine (+1)
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
         _loss_weight=1.0,
     ),
     KcFamilyId.FORMALITY_CLASS: KcDbClassFamily(
         family_id=KcFamilyId.FORMALITY_CLASS,
         _num_classes=5,  # Very Casual, Casual, Neutral, Formal, Very Formal
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
         _loss_weight=1.0,
     ),
     # Multi-label families
     KcFamilyId.REGISTER: KcDbMultilabelFamily(
         family_id=KcFamilyId.REGISTER,
         _num_classes=14,  # 14 register types (sonkeigo, kenjogo, etc.)
-        _logit_mode=_DEFAULT_SEMANTIC_LOGITS,
         _loss_weight=1.0,
     ),
 }

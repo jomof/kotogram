@@ -60,15 +60,7 @@ class ModelConfigDict(TypedDict):
     pooling: str
 
     kc_vocab_size: int
-    kc_topk: int
     kc_temperature: float
-
-    # K-Budget parameters (saved to ensure training/inference parity)
-    kc_alpha_short: float
-    kc_alpha_long: float
-    kc_long_threshold: int
-    kc_min_k: int
-    kc_max_k_long: int
 
 
 @dataclass
@@ -94,16 +86,8 @@ class ModelConfig:
     pooling: str = "cls"
 
     # KC Learning configuration (KC is always enabled)
-    kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
-    kc_topk: int = 16  # Number of active concepts to retrieve
+    kc_vocab_size: int = 1024  # Size of the concept vocabulary
     kc_temperature: float = 1.0  # Sparsification temperature
-
-    # K-Budget parameters (persisted to model.json for training/inference parity)
-    kc_alpha_short: float = 0.80  # Multiplier for short sentences (< 20 tokens)
-    kc_alpha_long: float = 1.10  # Multiplier for long sentences (>= 20 tokens)
-    kc_long_threshold: int = 20  # Token count threshold for long/short
-    kc_min_k: int = 2  # Minimum k_budget
-    kc_max_k_long: int = 32  # Maximum k for long sentences
 
     def to_dict(self) -> ModelConfigDict:
         return {
@@ -121,13 +105,7 @@ class ModelConfig:
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
             "kc_vocab_size": self.kc_vocab_size,
-            "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
-            "kc_alpha_short": self.kc_alpha_short,
-            "kc_alpha_long": self.kc_alpha_long,
-            "kc_long_threshold": self.kc_long_threshold,
-            "kc_min_k": self.kc_min_k,
-            "kc_max_k_long": self.kc_max_k_long,
         }
 
     @classmethod
@@ -141,62 +119,6 @@ class ModelConfig:
         valid_fields = {f.name for f in fields(cls)}
 
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
-
-
-def compute_k_budget(  # pylint: disable=too-many-locals
-    content_len: torch.Tensor,
-    config: ModelConfig,
-    device: torch.device,
-) -> torch.Tensor:
-    """Compute k_budget based on sentence length and model config.
-
-    This function centralizes the adaptive k_budget logic used in both training
-    (kc_trainer.py) and inference (model.py) to ensure parity.
-
-    Args:
-        content_len: (B,) tensor of sentence lengths (typically attention_mask.sum(dim=1))
-        config: ModelConfig containing k_budget parameters
-        device: Device to create tensors on
-
-    Returns:
-        k_budget: (B,) long tensor of per-sample k budgets
-    """
-    alpha_short = float(getattr(config, "kc_alpha_short", 0.40))
-    alpha_long = float(getattr(config, "kc_alpha_long", 0.55))
-    long_threshold = float(getattr(config, "kc_long_threshold", 20))
-    min_k = float(getattr(config, "kc_min_k", 2))
-    max_k_long_cfg = float(getattr(config, "kc_max_k_long", 16))
-    kc_topk = float(getattr(config, "kc_topk", 8))
-
-    is_long = content_len >= long_threshold
-    alpha = torch.where(
-        is_long,
-        torch.tensor(alpha_long, device=device),
-        torch.tensor(alpha_short, device=device),
-    )
-    k_raw = torch.ceil(alpha * content_len)
-
-    # Add k_bonus of 6 for short sentences (bins 1-3, 4-7, 8-15)
-    # to reserve headroom for high-K samples
-    k_bonus = torch.where(
-        content_len <= 15,
-        torch.tensor(6.0, device=device),
-        torch.tensor(0.0, device=device),
-    )
-    k_raw = k_raw + k_bonus
-
-    max_k_short = kc_topk
-    max_k_long = min(max_k_long_cfg, max(max_k_short, max_k_short * 2))
-
-    max_k_t = torch.where(
-        is_long,
-        torch.tensor(max_k_long, device=device),
-        torch.tensor(max_k_short, device=device),
-    )
-
-    k_budget = k_raw.clamp(min=torch.tensor(min_k, device=device), max=max_k_t).long()
-
-    return k_budget
 
 
 class PositionalEncoding(nn.Module):
@@ -404,10 +326,10 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         self.has_register = has_register
 
     def forward(self, kc_activations: torch.Tensor) -> torch.Tensor:
-        """Predict grammar point probabilities from KC activations.
+        """Predict grammar point probabilities from KC probabilities.
 
         Args:
-            kc_activations: Sparse KC activations [B, kc_vocab_size]
+            kc_activations: KC probability vector [B, kc_vocab_size]
 
         Returns:
             grammar_point_probs: [B, num_grammar_points] probabilities
@@ -627,27 +549,6 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         )
         return x
 
-    def _get_pooled_output(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: torch.Tensor,
-    ) -> torch.Tensor:
-        x = self.get_encoder_output(field_inputs, attention_mask)
-
-        if self.config.pooling == "cls":
-            pooled = x[:, 0, :]
-        elif self.config.pooling == "mean":
-            mask = attention_mask.unsqueeze(-1).float()
-            pooled = (x * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
-        elif self.config.pooling == "max":
-            mask = attention_mask.unsqueeze(-1).float()
-            x = x.masked_fill(mask == 0, float("-inf"))
-            pooled = x.max(dim=1)[0]
-        else:
-            raise ValueError(f"Unknown pooling: {self.config.pooling}")
-
-        return pooled
-
     def forward(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -737,11 +638,16 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             attention_mask: Attention mask
 
         Returns:
-            activations: (B, K) tensor of sparse KC activations (or logits)
+            activations: (B, kc_vocab_size) tensor of KC logits
         """
 
-        pooled = self._get_pooled_output(field_inputs, attention_mask)
-        return cast(torch.Tensor, self.kc_head(pooled))
+        pooled = self.pooler(
+            self.get_encoder_output(field_inputs, attention_mask), attention_mask
+        )
+        # Use raw (pre-LayerNorm) logits to match training's probability path.
+        # Training uses forward_with_raw() and computes sigmoid(raw / temp).
+        raw, _ = self.kc_head.forward_with_raw(pooled)
+        return cast(torch.Tensor, raw)
 
     def predict_kcs_top(
         self,
@@ -751,16 +657,15 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         min_prob: float = 0.0,
     ) -> List[List[Tuple[int, float]]]:
         # pylint: disable=too-many-locals
-        """Predict top-K Knowledge Components with probabilities.
+        """Predict top Knowledge Components with probabilities.
 
-        Uses adaptive k_budget based on sentence length, matching training behavior:
-        - For short sentences (< 20 tokens): k = ceil(0.40 * len), clamped [2, kc_topk]
-        - For long sentences (>= 20 tokens): k = ceil(0.55 * len), clamped [2, kc_topk*2]
+        Returns all KCs above min_prob threshold, sorted by probability descending.
+        If topk is specified, returns at most topk results per sample.
 
         Args:
             field_inputs: Input features
             attention_mask: Attention mask
-            topk: Override for K (if None, uses adaptive k based on sentence length)
+            topk: Optional maximum number of results per sample
             min_prob: Minimum probability threshold
 
         Returns:
@@ -775,19 +680,11 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         batch_size = probs.size(0)
         kc_vocab_size = probs.size(-1)
 
-        # Compute adaptive k_budget per sample (using config values from training)
-        if topk is not None:
-            # Fixed topk override
-            k_budgets = [min(topk, kc_vocab_size)] * batch_size
-        else:
-            content_lens = attention_mask.sum(dim=-1).float()  # (B,)
-            device = probs.device
-            k_budget_t = compute_k_budget(content_lens, self.config, device)
-            k_budgets = k_budget_t.tolist()
+        # Sort all KCs by probability
+        k = min(topk, kc_vocab_size) if topk is not None else kc_vocab_size
 
         results = []
         for i in range(batch_size):
-            k = k_budgets[i]
             sample_probs = probs[i]  # (kc_vocab_size,)
 
             topk_vals, topk_inds = torch.topk(sample_probs, k)
@@ -796,6 +693,8 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
                 p = topk_vals[j].item()
                 if p >= min_prob:
                     sample_res.append((int(topk_inds[j].item()), float(p)))
+                else:
+                    break  # Sorted descending, no more will pass
             results.append(sample_res)
 
         return results
@@ -825,22 +724,9 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         # Get KC logits and probabilities
         logits = self.predict_kcs(field_inputs, attention_mask)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
-        probs = torch.sigmoid(logits / cur_temp)
+        kc_probs = torch.sigmoid(logits / cur_temp)
 
-        # Compute k_budget for each sample (same as training)
-        batch_size = attention_mask.size(0)
-        content_lens = attention_mask.sum(dim=1)
-        device = logits.device
-        k_budgets = compute_k_budget(content_lens, self.config, device)
-
-        # Create sparse activations (keep only top-k per sample, zero the rest)
-        sparse_activations = torch.zeros_like(probs)
-        for i in range(batch_size):
-            k = int(k_budgets[i].item())
-            topk_vals, topk_inds = torch.topk(probs[i], k)
-            sparse_activations[i, topk_inds] = topk_vals
-
-        return cast(torch.Tensor, self.kc_decoders(sparse_activations))
+        return cast(torch.Tensor, self.kc_decoders(kc_probs))
 
 
 def load_model(  # pylint: disable=too-many-locals

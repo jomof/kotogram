@@ -82,7 +82,6 @@ class DummyKCModel(torch.nn.Module):
     def __init__(self, _kc_config, vocab_size):
         super().__init__()
         self.config = MagicMock()
-        self.config.kc_topk = 1
         self.config.kc_vocab_size = vocab_size
         self.config.kc_target_specs = {}  # Added to avoid attribute error if accessed
         self.kc_head = MagicMock()
@@ -109,16 +108,13 @@ class DummyKCModel(torch.nn.Module):
             "target_logits": {
                 "bag_pos": torch.randn(batch_size, 100, requires_grad=True)
             },
-            "topk_inds": torch.zeros(batch_size, 1, dtype=torch.long),
-            "sparse_activations": torch.zeros(
-                batch_size, vocab_size, requires_grad=True
-            ),
             "kc_probs": torch.zeros(batch_size, vocab_size, requires_grad=True),
+            "kc_probs_clean": torch.zeros(batch_size, vocab_size),
             "kc_logits_raw": torch.zeros(batch_size, vocab_size, requires_grad=True),
             "kc_logits_effective": torch.zeros(
                 batch_size, vocab_size, requires_grad=True
             ),
-            "topk_vals": torch.zeros(batch_size, 1, requires_grad=True),
+            "logits_usage": torch.zeros(batch_size, vocab_size, requires_grad=True),
         }
 
 
@@ -215,10 +211,7 @@ class RecordingKCTrainerView(KCTrainerView):
         epoch: int,
         batch_idx: int,
         content_len: torch.Tensor,
-        k_budget_t: torch.Tensor,
-        topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
-        topk_sum_per_ex: torch.Tensor,
         kc_probs: torch.Tensor,
     ) -> None:
         self._record(

@@ -13,7 +13,7 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader
 
 from kotogram.constants import REGISTER_ID_TO_LABEL
-from kotogram.model import compute_k_budget
+from kotogram.tokenizer import FEATURE_FIELDS
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -132,8 +132,11 @@ class KCTrainer:
         configure_runtime_thread_limits(self.config)
 
         self.kc_config = kc_config
-        self.kc_sparsity_weight = self.kc_config.sparsity_weight
-        self.kc_target_spill_rate = self.kc_config.target_spill_rate
+        self.kl_sparse_weight = self.kc_config.kl_sparse_weight
+        self.kl_target_rho = self.kc_config.kl_target_rho
+        self.rho_length_scale = self.kc_config.rho_length_scale
+        self.cov_penalty_weight = self.kc_config.cov_penalty_weight
+        self.median_content_len: float = 12.0  # EMA estimate, updated per batch
         self.kc_sat_weight = self.kc_config.sat_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
@@ -236,10 +239,8 @@ class KCTrainer:
 
         self.kc_diversity_eps = self.kc_config.diversity_eps
         self.kc_diversity_warmup_epochs = self.kc_config.diversity_warmup_epochs
-        self.kc_sparsity_mode = "target_density"
 
-        self.kc_lb_weight_frozen = self.kc_config.lb_weight
-        self.kc_lb_weight_thawed = self.kc_config.lb_weight_thawed
+        self.entropy_weight = self.kc_config.entropy_weight
 
         self.kc_collapse_weight_thawed = self.kc_config.collapse_weight_thawed
 
@@ -250,7 +251,6 @@ class KCTrainer:
         self.kc_grad_cap = self.kc_config.kc_grad_cap
 
         self.kc_entropy_floor = self.kc_config.entropy_floor
-        self.kc_kl_cap = self.kc_config.kl_cap
 
         self.history = KCTrainingHistory()
         profile_dir = get_profile_dir()
@@ -737,6 +737,68 @@ class KCTrainer:
 
         return bce
 
+    def _evaluate_canary(self) -> str:
+        """Evaluate canary sentence '食べます' and return compact summary string."""
+        tok = self.dataset.tokenizer
+        encoded = tok.encode("食べます")
+        seq_len = len(encoded[FEATURE_FIELDS[0]])
+        field_inputs = {
+            f"input_ids_{f}": torch.tensor(
+                [encoded[f]], dtype=torch.long, device=self.device
+            )
+            for f in FEATURE_FIELDS
+            if f in encoded
+        }
+        attention_mask = torch.ones(1, seq_len, dtype=torch.long, device=self.device)
+
+        was_training = self.model.training
+        self.model.eval()
+        with torch.no_grad():
+            outputs = self.model(
+                field_inputs,
+                attention_mask=attention_mask,
+                mode="kc",
+                temperature=self.kc_temperature_thawed,
+                gumbel_scale=0.0,
+            )
+            kc_probs = outputs["kc_probs_clean"]
+            kc_count = int((kc_probs > 0.5).sum().item())
+
+            target_logits = outputs["target_logits"]
+
+            # Gender: MSE output in [-1, 1], negative=masculine, positive=feminine
+            gender_str = "neutral"
+            if "gender" in target_logits:
+                g_val = float(target_logits["gender"][0].item())
+                if g_val < -0.3:
+                    gender_str = "masc"
+                elif g_val > 0.3:
+                    gender_str = "fem"
+
+            # Grammaticality
+            gram_str = "gram"
+            if "grammatic" in target_logits:
+                gram_val = float(target_logits["grammatic"][0].item())
+                if gram_val < 0.0:
+                    gram_str = "ungram"
+
+            # Grammar points: indices with sigmoid > 0.5
+            gp_list: list[str] = []
+            if "grammar_point" in target_logits:
+                gp_logits = target_logits["grammar_point"][0]
+                gp_probs = torch.sigmoid(gp_logits)
+                for idx in torch.where(gp_probs > 0.5)[0].tolist():
+                    gp_list.append(f"gp{int(idx):04d}")
+
+        if was_training:
+            self.model.train()
+
+        # Format: truncate gp list to avoid wrapping
+        gps_str = ",".join(gp_list[:8])
+        if len(gp_list) > 8:
+            gps_str += f"..+{len(gp_list) - 8}"
+        return f"食べます kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
+
     # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         m = self.model
@@ -1075,14 +1137,15 @@ class KCTrainer:
 
         total_loss, n_batches = 0.0, 0
 
-        total_sparsity = 0.0
+        total_kl_sparse = 0.0
 
         total_batches = self._estimate_total_batches()
 
         running_struct_loss = 0.0
         running_num_struct_total = 0
-        running_sparsity = 0.0
-        running_avg_prob, running_act_dens = 0.0, 0.0
+        running_kl_sparse = 0.0
+        running_avg_prob = 0.0
+        running_avg_entropy = 0.0
         running_pmax_global = -1.0
 
         # --- Saturation Penalty Config (Per Epoch) ---
@@ -1128,7 +1191,7 @@ class KCTrainer:
         kc_vocab_size = int(self.model.config.kc_vocab_size)
         running_pmax_global = 0.0
         running_avg_prob = 0.0
-        running_act_dens = 0.0
+
         running_usage_probs_sum = torch.zeros(kc_vocab_size, device=self.device)
         total_samples_seen = 0
 
@@ -1414,14 +1477,6 @@ class KCTrainer:
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
             content_len = attention_mask.sum(dim=1).float()
 
-            # Dynamic Sizing using k_budget params from model config
-            # This ensures training and inference use identical k_budget logic
-            k_budget_t = compute_k_budget(content_len, m.config, self.device)
-
-            # Long sentence mask (>= long_threshold tokens)
-            long_threshold = float(getattr(m.config, "kc_long_threshold", 20))
-            long_sentence_mask = content_len >= long_threshold
-
             gumbel_scale = 0.0
             if relative_epoch < self.freeze_encoder_epochs:
                 t_val = self.kc_temperature_frozen
@@ -1442,103 +1497,8 @@ class KCTrainer:
                 temperature=t_val,
                 gumbel_scale=gumbel_scale,
                 grad_cap=self.kc_grad_cap,
-                k_budget=k_budget_t,
-                long_sentence_mask=long_sentence_mask,
                 pooled=pooled_kc,
             )
-
-            # --- INVARIANT CHECK A-E: Post-Forward Validation ---
-            # Fail-fast validations for adaptive budget plumbing.
-            if (
-                "topk_inds" in outputs
-            ):  # Only check if keys exist (not mandatory for non-KC modes, though mode='kc' implies it)
-                inv_inds = outputs["topk_inds"]
-                inv_vals = outputs["topk_vals"]
-                inv_probs = outputs.get("kc_probs")
-
-                # A) Presence and Shape
-                if inv_inds is None or inv_vals is None:
-                    raise RuntimeError("Missing topk_inds/vals in outputs")
-                if inv_probs is None:
-                    raise RuntimeError("Missing kc_probs in outputs")
-                # inv_logits_raw is optional but good to have
-
-                batch_size_chk = attention_mask.size(0)
-                if inv_inds.size(0) != batch_size_chk:
-                    raise RuntimeError(
-                        f"topk_inds B mismatch: {inv_inds.size(0)} vs {batch_size_chk}"
-                    )
-                if inv_vals.size(0) != batch_size_chk:
-                    raise RuntimeError(
-                        f"topk_vals B mismatch: {inv_vals.size(0)} vs {batch_size_chk}"
-                    )
-                if inv_probs.size(0) != batch_size_chk:
-                    raise RuntimeError(
-                        f"kc_probs B mismatch: {inv_probs.size(0)} vs {batch_size_chk}"
-                    )
-                if inv_probs.dim() != 2:
-                    raise RuntimeError(f"kc_probs dim error: {inv_probs.dim()}")
-
-                k_size_chk = inv_inds.size(1)
-                if inv_vals.size(1) != k_size_chk:
-                    raise RuntimeError(
-                        f"topk_vals K mismatch: {inv_vals.size(1)} vs {k_size_chk}"
-                    )
-                if k_size_chk < 1:
-                    raise RuntimeError("Kmax < 1")
-
-                # B) Index Validity
-                vocab_size_chk = int(getattr(self.model.config, "kc_vocab_size", 0))
-                if vocab_size_chk > 0:
-                    if inv_inds.dtype not in (torch.int64, torch.int32):
-                        raise RuntimeError("topk_inds not int")
-                    # Check for valid range [0, V). -1 allowed if used for padding (but usually not in topk)
-                    min_idx = inv_inds.min().item()
-                    max_idx = inv_inds.max().item()
-                    if min_idx < 0:
-                        raise RuntimeError(f"Invalid negative index: {min_idx}")
-                    if max_idx >= vocab_size_chk:
-                        raise RuntimeError(
-                            f"Index out of bounds: {max_idx} >= {vocab_size_chk}"
-                        )
-
-                # C) Value Constraints
-                if not torch.isfinite(inv_vals).all():
-                    raise RuntimeError("Non-finite topk_vals")
-                if inv_vals.min().item() < -1e-5:
-                    raise RuntimeError(f"topk_vals < 0: {inv_vals.min().item()}")
-                if inv_vals.max().item() > 1.0 + 1e-5:
-                    raise RuntimeError(f"topk_vals > 1: {inv_vals.max().item()}")
-
-                # Monotonicity check (row 0)
-                if k_size_chk > 1 and batch_size_chk > 0:
-                    row0 = inv_vals[0]
-                    if not (row0[:-1] + 1e-6 >= row0[1:]).all():
-                        # Depending on variable budget masking, tail might be 0.
-                        # 0 is <= prev unless prev was 0.
-                        # So it should be non-increasing.
-                        # However, if we zero-out entries that were NOT sorted (e.g. by index), we break it.
-                        # Models usually zero-out *after* topk.
-                        pass
-
-                # D) Consistency
-                # Gathered probs should match topk_vals (approx)
-                # But topk_vals might be masked (zeroed) by budget.
-                # So gathered_vals * budget_mask should approx topk_vals
-
-                # E) Variable Budget
-                # k_budget_t is (B,)
-                if k_budget_t.shape != (batch_size_chk,):
-                    raise RuntimeError("k_budget shape mismatch")
-                if k_budget_t.min().item() < 1:
-                    raise RuntimeError("k_budget < 1")
-                # max check
-                if k_budget_t.max().item() > k_size_chk:
-                    # This might happen if max_k > k_size_chk?
-                    # k_size_chk comes from outputs, which should respect max_k.
-                    # If model uses hardcoded K, mismatch possible.
-                    # But current implementation uses topk(k=max(budget)).
-                    pass
 
             should_check_nan = batch_idx < 50 or (batch_idx % 50 == 0)
 
@@ -1552,43 +1512,6 @@ class KCTrainer:
             if forward_nonfinite:
                 raise RuntimeError("Non-finite values in forward pass")
 
-            # Check required keys for KC training
-            topk_inds = outputs.get("topk_inds", None)
-            topk_vals = outputs.get("topk_vals", None)
-
-            if topk_inds is None or topk_vals is None:
-                raise RuntimeError("KC training requires topk_inds and topk_vals")
-
-            # Decoder Consistency Fix: Unconditional Decoding
-            # Always produce target_logits from sparse activations, even in frozen epoch,
-            # so decoders learn valid weights against the sparse distribution.
-
-            # Removed clamp(max=0.98) to allow natural range per "Separate KC Presence..." constraint
-            topk_vals_used = outputs["topk_vals"]
-
-            sparse_clamped = torch.zeros_like(outputs["kc_probs"])
-            sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_used)
-
-            # --- INVARIANT CHECK F: Sparse Activations ---
-            # 1) Shape
-            if sparse_clamped.shape != outputs["kc_probs"].shape:
-                raise RuntimeError("sparse_clamped shape mismatch")
-            # 2) Support
-            # Ensuring non-zeros are subset of topk_inds
-            # This is guaranteed by scatter_, but we assert values
-            # 3) Value
-            if sparse_clamped.min().item() < 0:
-                raise RuntimeError("sparse_clamped < 0")
-            if sparse_clamped.max().item() > 1.0 + 1e-6:
-                raise RuntimeError("sparse_clamped > 1")
-
-            if hasattr(m, "kc_decoders"):
-                # Pass kc_probs so MSE families can use full probabilities
-                # for gradient flow to KC selection
-                outputs["target_logits"] = m.kc_decoders(
-                    sparse_clamped, kc_probs=outputs["kc_probs"]
-                )
-
             # INVARIANT: target_logits batch dimension must match attention_mask
             target_logits = outputs["target_logits"]
             for tl_name, tl_tensor in target_logits.items():
@@ -1599,16 +1522,14 @@ class KCTrainer:
                     )
 
             # Update Diagnostic Accumulators
-            # k_eff_t = (outputs["sparse_activations"] > 0).float().sum(dim=1).cpu()
             len_t = content_len.detach().cpu().float()
 
             all_lens_aligned.extend(len_t.tolist())
-            # all_keff_aligned.extend(k_eff_t.tolist())
 
-            # Track which KC logits fire for at least one sample
-            # topk_inds shape: [batch_size, k]
-            unique_indices = topk_inds.unique().cpu().tolist()
-            kc_logits_used_set.update(unique_indices)
+            # Track which KC logits fire (prob > 0.5) for utilization reporting
+            hot_mask = (outputs["kc_probs"] > 0.5).detach()
+            hot_indices = hot_mask.nonzero(as_tuple=False)[:, 1].unique().cpu().tolist()
+            kc_logits_used_set.update(hot_indices)
 
             # Update kc usage stats
 
@@ -2567,13 +2488,11 @@ class KCTrainer:
 
             if relative_epoch < self.freeze_encoder_epochs:
                 div_weight = self.kc_diversity_weight_frozen
-                lb_weight = self.kc_lb_weight_frozen
             else:
                 div_weight = self.kc_diversity_weight_thawed
-                lb_weight = self.kc_lb_weight_thawed
 
             loss_div_val = 0.0
-            loss_lb_val = 0.0
+            loss_entropy_val = 0.0
             loss_coll_val = 0.0
             loss_coverage_val = 0.0
 
@@ -2641,16 +2560,6 @@ class KCTrainer:
                     d_loss = s["floor"] - ent_n
                     if div_weight > 0:
                         div_accum += weight * (div_weight * d_loss)
-
-                    # KL to Uniform (Load Balance)
-                    kl_val = (p * (p.clamp_min(1e-9) * kc_vocab_size).log()).sum()
-                    lb_val = kl_val / math.log(kc_vocab_size)
-
-                    if lb_weight > 0:
-                        # Load balance (unhinge: always active, targeting kl_cap)
-                        lb_l = lb_val - self.kc_kl_cap
-                        combined_loss += weight * (lb_weight * lb_l)
-                        loss_lb_val += (weight * lb_weight * lb_l).item()
 
                     # Collapse
                     softmax_peak = p.max()
@@ -2749,69 +2658,84 @@ class KCTrainer:
 
             running_pmax_global = max(running_pmax_global, batch_pmax_global)
 
-            if (
-                self.kc_sparsity_weight > 0
-                and self.kc_sparsity_mode == "target_density"
-            ):
-                avg_prob = outputs["kc_probs"].mean()
-                act_dens = (outputs["sparse_activations"] > 0).float().mean()
-
-                # Target Spill Mode: Penalize deviation from target spill rate
-                if self.kc_target_spill_rate > 0.0:
-                    # Compute actual spill: probability of (k+1)th KC
-                    kc_probs = outputs["kc_probs"]  # (B, vocab_size)
-                    probs_sorted, _ = torch.sort(kc_probs, dim=1, descending=True)
-
-                    batch_size = kc_probs.size(0)
-                    vocab_size = kc_probs.size(1)
-                    spill_probs = []
-                    for i in range(batch_size):
-                        k_val = int(k_budget_t[i].item())
-                        if k_val < vocab_size:
-                            spill_probs.append(
-                                probs_sorted[i, k_val]
-                            )  # (k+1)th is index k_val
-                        else:
-                            spill_probs.append(torch.tensor(0.0, device=self.device))
-
-                    spill_tensor = torch.stack(spill_probs)  # (B,)
-
-                    # Hinge: penalize only when spill exceeds target
-                    sparsity_term = torch.nn.functional.relu(
-                        spill_tensor - self.kc_target_spill_rate
-                    ).mean()
-                else:
-                    # Original behavior: Adaptive Sparsity (always penalizes high activations)
-                    # sum(topk_vals) / k_i, weighted by sqrt(content_len / mean_len)
-                    topk_vals = outputs["topk_vals"]  # (B, K)
-                    sum_vals_per_row = topk_vals.sum(dim=1)  # (B,)
-
-                    # We reuse k_budget_t from earlier (B,)
-                    sparsity_per_row = sum_vals_per_row / k_budget_t.float().clamp_min(
-                        1.0
-                    )
-
-                    mean_len = content_len.mean().clamp_min(1.0)
-                    len_scaling = (content_len / mean_len).sqrt()
-
-                    weighted_sparsity = sparsity_per_row * len_scaling
-                    sparsity_term = weighted_sparsity.mean()
-
-                if not torch.isfinite(sparsity_term):
-                    raise RuntimeError("Non-finite sparsity_term")
-                st_val = sparsity_term.item()
-                if st_val < 0.0:
-                    raise RuntimeError(f"sparsity_term < 0: {st_val}")
-            else:
-                avg_prob = outputs["kc_probs"].mean()
-                act_dens = outputs["sparse_activations"].mean()
-                sparsity_term = act_dens
-
+            kc_probs = outputs["kc_probs"]
+            avg_prob = kc_probs.mean()
             running_avg_prob += avg_prob.item()
-            running_act_dens += act_dens.item()
 
-            total_sparsity += float(sparsity_term.detach().item())
-            running_sparsity += sparsity_term.item()
+            # --- KL-Sparse: per-slot Bernoulli KL with length-adaptive target ρ ---
+            if self.kl_sparse_weight > 0:
+                # Update median length EMA
+                batch_median_len = float(content_len.median().item())
+                self.median_content_len = (
+                    0.95 * self.median_content_len + 0.05 * batch_median_len
+                )
+
+                # Compute per-example target ρ(L)
+                med_len = max(1.0, self.median_content_len)
+                if self.rho_length_scale == "sqrt":
+                    rho_per_ex = self.kl_target_rho * torch.sqrt(content_len / med_len)
+                elif self.rho_length_scale == "log":
+                    rho_per_ex = self.kl_target_rho * (
+                        torch.log1p(content_len) / math.log(1.0 + med_len)
+                    )
+                else:  # "none"
+                    rho_per_ex = torch.full_like(content_len, self.kl_target_rho)
+                rho_per_ex = rho_per_ex.clamp(0.005, 0.20)
+                # Batch-average target (scalar)
+                rho = rho_per_ex.mean()
+
+                # Per-slot batch-average activation
+                rho_hat = kc_probs.mean(dim=0)  # [vocab_size]
+                # Clamp for numerical stability in log
+                rho_hat = rho_hat.clamp(1e-7, 1.0 - 1e-7)
+                rho_c = rho.clamp(1e-7, 1.0 - 1e-7)
+
+                # Bernoulli KL: sum over slots, gives scalar
+                kl_term = (
+                    rho_hat * torch.log(rho_hat / rho_c)
+                    + (1.0 - rho_hat) * torch.log((1.0 - rho_hat) / (1.0 - rho_c))
+                ).sum()
+
+                if not torch.isfinite(kl_term):
+                    raise RuntimeError("Non-finite kl_term")
+            else:
+                kl_term = torch.tensor(0.0, device=self.device)
+
+            total_kl_sparse += float(kl_term.detach().item())
+            running_kl_sparse += kl_term.item()
+
+            # --- Per-probability entropy penalty: push each p_i toward 0 or 1 ---
+            if self.entropy_weight > 0:
+                p_clamped = kc_probs.clamp(1e-7, 1.0 - 1e-7)
+                per_prob_entropy = (
+                    -p_clamped * p_clamped.log()
+                    - (1.0 - p_clamped) * (1.0 - p_clamped).log()
+                )
+                # Mean over alive KCs and batch elements
+                entropy_term = per_prob_entropy.mean()
+                combined_loss_for_entropy = self.entropy_weight * entropy_term
+                loss_entropy_val = combined_loss_for_entropy.item()
+                # Track mean per-prob entropy for diagnostic
+                running_avg_entropy += entropy_term.item()
+            else:
+                entropy_term = torch.tensor(0.0, device=self.device)
+                loss_entropy_val = 0.0
+                # Compute entropy for diagnostic even when weight is 0
+                p_clamped_diag = kc_probs.clamp(1e-7, 1.0 - 1e-7)
+                per_prob_h = (
+                    -p_clamped_diag * p_clamped_diag.log()
+                    - (1.0 - p_clamped_diag) * (1.0 - p_clamped_diag).log()
+                )
+                running_avg_entropy += per_prob_h.mean().item()
+
+            # --- Covariance Penalty: off-diagonal correlations for orthogonality ---
+            if self.cov_penalty_weight > 0:
+                centered = kc_probs - kc_probs.mean(dim=0)  # [B, V]
+                cov = (centered.T @ centered) / max(1, kc_probs.size(0))  # [V, V]
+                cov.fill_diagonal_(0.0)
+                cov_term = (cov**2).mean()
+            else:
+                cov_term = torch.tensor(0.0, device=self.device)
 
             # --- Anti-Saturation Penalty (Gated & Auto-Scaled) ---
             # Penalize logit magnitude for pmax > 0.95 (logit > 3.0)
@@ -2916,15 +2840,18 @@ class KCTrainer:
                 # Keep alpha for logging even if w=0 (metrics placeholder)
                 loss_sat_val = 0.0
 
-            spar_w = self.kc_sparsity_weight
+            kl_w = self.kl_sparse_weight
             if relative_epoch >= self.freeze_encoder_epochs:
                 epoch_idx_thawed = max(0, relative_epoch - self.freeze_encoder_epochs)
                 if epoch_idx_thawed < 3:
-                    spar_w = 0.5 * self.kc_sparsity_weight
+                    kl_w = 0.5 * self.kl_sparse_weight
 
-            # --- STRUCTURAL LOSS (compute first, then average) ---
+            cov_w = self.cov_penalty_weight
             loss = (
-                combined_loss + spar_w * sparsity_term
+                combined_loss
+                + kl_w * kl_term
+                + cov_w * cov_term
+                + self.entropy_weight * entropy_term
             ) / self.config.grad_accum_steps
 
             # --- PRIOR KC LOSSES: REMOVED ---
@@ -2940,7 +2867,8 @@ class KCTrainer:
             reg_correct = 0
             reg_total = 0
 
-            loss_spar_val = (spar_w * sparsity_term).item()
+            loss_kl_val = (kl_w * kl_term).item()
+            loss_cov_val = (cov_w * cov_term).item()
 
             # Build loss components for display (all values are raw sums per batch)
             gas = self.config.grad_accum_steps
@@ -2950,9 +2878,10 @@ class KCTrainer:
                 "gender": loss_gender_val * gas,
                 "register": loss_register_val * gas,
                 "div": loss_div_val,
-                "lb": loss_lb_val,
+                "entropy": loss_entropy_val,
                 "collapse": loss_coll_val,
-                "sparsity": loss_spar_val,
+                "kl_sparse": loss_kl_val,
+                "cov_penalty": loss_cov_val,
                 "saturation": loss_sat_val,  # Part of combined_loss, no gas scaling
                 "coverage": loss_coverage_val,  # Part of combined_loss, no gas scaling
             }
@@ -2964,9 +2893,10 @@ class KCTrainer:
                 gender=current_epoch_comp["gender"],
                 register=current_epoch_comp["register"],
                 div=current_epoch_comp["div"],
-                lb=current_epoch_comp["lb"],
+                entropy=current_epoch_comp["entropy"],
                 collapse=current_epoch_comp["collapse"],
-                sparsity=current_epoch_comp["sparsity"],
+                kl_sparse=current_epoch_comp["kl_sparse"],
+                cov_penalty=current_epoch_comp["cov_penalty"],
                 saturation=current_epoch_comp["saturation"],
                 coverage=current_epoch_comp["coverage"],
                 formality_correct=form_correct,
@@ -3021,23 +2951,13 @@ class KCTrainer:
                 total_samples_seen += usage_probs.size(0)
 
             # View Batch Stats (skip for early epochs if configured)
-            if "topk_vals" in outputs and not skip_metrics:
-                topk_v = outputs["topk_vals"].detach()
-                topk_s = topk_v.sum(dim=1)
-
-                # pmax_per_ex calculated earlier at line 1210
-                # But we need access to it. It is local variable 'pmax_per_ex'.
-                # We assume it is available here.
-
+            if not skip_metrics:
                 self.view.on_kc_batch_stats(
                     epoch=epoch,
                     batch_idx=batch_idx,
                     content_len=content_len.detach(),
-                    k_budget_t=k_budget_t.detach(),
-                    topk_vals=topk_v,
                     pmax_per_ex=pmax_per_ex.detach(),
-                    topk_sum_per_ex=topk_s,
-                    kc_probs=outputs["kc_probs"].detach(),
+                    kc_probs=outputs["kc_probs_clean"].detach(),
                 )
 
             self.view.on_kc_progress_update(
@@ -3062,9 +2982,8 @@ class KCTrainer:
         epoch_stats = TrainEpochStats(
             avg_struct_loss=running_struct_loss / max(1, running_num_struct_total),
             num_struct_heads_processed=running_num_struct_total,
-            avg_sparsity=running_sparsity / max(1, n_batches),
+            avg_kl_sparse=running_kl_sparse / max(1, n_batches),
             avg_prob=running_avg_prob / max(1, n_batches),
-            act_dens=running_act_dens / max(1, n_batches),
             # Only include diagnostics when metrics are not skipped
             kc_diagnostics=None if skip_metrics else kc_diag.get_stats(),
         )
@@ -3113,13 +3032,10 @@ class KCTrainer:
             pmax_p50=0.0,  # Filled by View
             pmax_p90=0.0,
             pmax_p99=0.0,
-            topk_sum_p50=0.0,
-            topk_sum_p90=0.0,
-            topk_sum_p99=0.0,
             ent_norm=ent_norm_final,
             kl_u_norm=kl_u_norm_final,
-            act_dens_mean=running_act_dens / max(1, n_batches),
             kc_probs_mean=running_avg_prob / max(1, n_batches),
+            avg_entropy=running_avg_entropy / max(1, n_batches),
             # Saturation Stats (Gated & Scaled)
             sat_w=sat_w,
             sat_alpha=sat_alpha if sat_w > 0 else 0.0,
@@ -3263,6 +3179,8 @@ class KCTrainer:
             worst_samples=worst_samples,
             accumulators=family_accumulators,
             gp_priors=gp_priors_summary,
+            gp_default_prior=self.kc_config.gp_default_prior,
+            canary_text=self._evaluate_canary() if not skip_metrics else "",
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
@@ -3276,7 +3194,7 @@ class KCTrainer:
             epoch_result=TrainEpochResult(
                 total_loss=total_loss,
                 kc_losses=KCLosses(_losses=epoch_kc_losses),
-                avg_sparsity=total_sparsity / max(1, total_batches),
+                avg_kl_sparse=total_kl_sparse / max(1, total_batches),
                 epoch_stats=epoch_stats,
             ),
         )
@@ -3284,7 +3202,7 @@ class KCTrainer:
         return TrainEpochResult(
             total_loss=total_loss,
             kc_losses=KCLosses(_losses=epoch_kc_losses),
-            avg_sparsity=total_sparsity / max(1, total_batches),
+            avg_kl_sparse=total_kl_sparse / max(1, total_batches),
             epoch_stats=epoch_stats,
         )
 
@@ -3321,19 +3239,19 @@ class KCTrainer:
             epoch_res = self.train_epoch(epoch=epoch)
             total_loss = epoch_res.total_loss
             kc_losses = epoch_res.kc_losses
-            avg_sparsity = epoch_res.avg_sparsity
+            avg_kl_sparse = epoch_res.avg_kl_sparse
             epoch_stats = epoch_res.epoch_stats
 
             self._log_training_progress()
 
             total_batches = max(1, self._estimate_total_batches())
             self.history.total_loss.append(total_loss / total_batches)
-            self.history.kc_sparsity.append(avg_sparsity)
+            self.history.kc_kl_sparse.append(avg_kl_sparse)
             self.history.avg_struct_loss.append(epoch_stats.avg_struct_loss)
             self.history.num_struct_heads_processed.append(
                 float(epoch_stats.num_struct_heads_processed)
             )
-            self.history.avg_sparsity.append(epoch_stats.avg_sparsity)
+            self.history.avg_kl_sparse.append(epoch_stats.avg_kl_sparse)
 
             # Always append to keep list aligned with epoch indices (None if skipped)
             self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)

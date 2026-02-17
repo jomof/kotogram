@@ -426,6 +426,22 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
     console.print(table)
 
 
+def worker_tokenize_wrapper(
+    _chunk_index: int,
+    sentences: List[str],
+    result_queue: "mp.Queue[List[Tuple[str, str]]]",
+) -> None:
+    """Tokenize a chunk of sentences in a worker process."""
+    from kotogram.japanese_parser import KotogramFormat
+
+    parser = SudachiJapaneseParser()
+    results: List[Tuple[str, str]] = []
+    for sent in sentences:
+        kotogram = parser.japanese_to_kotogram(sent, KotogramFormat.TRAINING_MASK)
+        results.append((sent, kotogram))
+    result_queue.put(results)
+
+
 def ensure_kc_index(corpus_db: str, index_db: str):
     """Ensure the KC index exists, building it if necessary."""
     if os.path.exists(index_db):

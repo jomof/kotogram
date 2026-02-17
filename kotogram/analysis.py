@@ -207,8 +207,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
-        # Get Interpretable KCs (uses adaptive k based on sentence length)
-        # No min_prob filter - k_budget determines count exactly as in training
+        # Get Interpretable KCs (all KCs above default min_prob threshold)
         kc_top_results = model.predict_kcs_top(field_inputs, attention_mask)
         # Get grammar point predictions if decoder is available
         gp_probs_tensor = model.predict_grammar_points(field_inputs, attention_mask)

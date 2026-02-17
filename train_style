@@ -211,14 +211,14 @@ def build_trainer_config(
             skip_first_metrics=args.kc_skip_first_metrics,
             # For optional floats/ints, standard pattern:
             **({
-                "sparsity_weight": args.kc_sparsity_weight
-            } if args.kc_sparsity_weight is not None else {}),
-            **({
-                "target_spill_rate": args.kc_target_spill_rate
-            } if hasattr(args, 'kc_target_spill_rate') and args.kc_target_spill_rate is not None else {}),
+                "kl_sparse_weight": args.kl_sparse_weight
+            } if args.kl_sparse_weight is not None else {}),
             **({
                 "freeze_encoder_epochs": args.kc_freeze_encoder_epochs
             } if args.kc_freeze_encoder_epochs is not None else {}),
+            **({
+                "entropy_weight": args.kc_entropy_weight
+            } if args.kc_entropy_weight is not None else {}),
         ),
         # Runtime flags
         "retrain": args.retrain,
@@ -311,7 +311,6 @@ def generate_and_save_config(
             num_heads=args.num_heads,
             # KC Config
             kc_vocab_size=args.kc_k,
-            kc_topk=args.kc_topk,
         )
 
     # Read history to get current epoch counts (for +N syntax support)
@@ -461,16 +460,16 @@ def parse_arguments() -> argparse.Namespace:
     default_kc_epochs = _trainer_defaults.kc_epochs
     parser.add_argument("--kc-epochs", type=str, default=None, help=f"KC epochs (e.g., '6' or '+2', default: {default_kc_epochs})")
 
-    # ModelConfig defaults (kc_vocab_size, kc_topk)
+    # ModelConfig defaults (kc_vocab_size)
     parser.add_argument("--kc-k", type=int, default=_model_defaults.kc_vocab_size, help=f"KC vocabulary size (default: {_model_defaults.kc_vocab_size})")
-    parser.add_argument("--kc-topk", type=int, default=_model_defaults.kc_topk, help=f"Number of active KCs per sample (default: {_model_defaults.kc_topk})")
 
-    # KCConfig defaults (freeze, sparsity, skip_metrics)
+    # KCConfig defaults (freeze, kl-sparse, skip_metrics)
     parser.add_argument(
         "--kc-freeze-encoder-epochs", type=int, default=None, help="Epochs to freeze encoder (default: from config)"
     )
-    parser.add_argument("--kc-sparsity-weight", type=float, default=None, help=f"Sparsity regularization weight (default: {_kc_defaults.sparsity_weight})")
-    parser.add_argument("--kc-target-spill-rate", type=float, default=None, help=f"Target spill rate (k+1 KC probability, 0=disabled) (default: {_kc_defaults.target_spill_rate})")
+    parser.add_argument("--kl-sparse-weight", type=float, default=None, help=f"KL-sparse regularization weight (default: {_kc_defaults.kl_sparse_weight})")
+    parser.add_argument("--kc-entropy-weight", type=float, default=None, help=f"Per-probability entropy penalty weight (default: {_kc_defaults.entropy_weight})")
+
     parser.add_argument(
         "--kc-batch-size",
         type=int,
@@ -522,8 +521,11 @@ def print_training_banner(
     corpus_db = os.path.join(data_dir, "corpus.db")
 
     freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
-    sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
-    target_spill_str = str(args.kc_target_spill_rate) if hasattr(args, 'kc_target_spill_rate') and args.kc_target_spill_rate is not None else f"(default: {KCConfig().target_spill_rate})"
+    loss_config_str = (
+        f"KLρ={KCConfig().kl_target_rho} w={args.kl_sparse_weight or KCConfig().kl_sparse_weight}"
+        f" scale={KCConfig().rho_length_scale} cov={KCConfig().cov_penalty_weight}"
+    )
+
 
     _view.on_config_banner(
         corpus_db=corpus_db,
@@ -539,10 +541,9 @@ def print_training_banner(
         grammaticality_weight=args.grammaticality_weight,
         kc_epochs=args.kc_epochs,
         kc_k=args.kc_k,
-        kc_topk=args.kc_topk,
         kc_freeze_str=freeze_str,
-        kc_sparsity_str=sparsity_str,
-        kc_target_spill_str=target_spill_str,
+        kc_loss_config_str=loss_config_str,
+
         retrain=args.retrain,
         label_only=args.label,
         percent=args.percent,
@@ -619,6 +620,11 @@ def main() -> int:
         model_pt_path = os.path.join(output_dir, "model.pt")
         if os.path.exists(continuation_path) or os.path.exists(model_pt_path):
             should_resume = True
+    else:
+        # Clear training log so the new run starts fresh
+        training_log = os.path.join(history_dir, "training.log")
+        if os.path.exists(training_log):
+            os.remove(training_log)
 
     # Determine process count and launcher
     num_devices, device_type = get_device_info()
@@ -660,7 +666,6 @@ def main() -> int:
         kc_epochs=args.kc_epochs,
         kc_freeze_str=freeze_str,
         kc_k=args.kc_k,
-        kc_topk=args.kc_topk,
     )
 
     # Phase 1: Preprocessing/Labeling

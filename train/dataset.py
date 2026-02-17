@@ -1,5 +1,6 @@
 """Dataset and processing logic for style classification (V2 Binary / Memory-Mapped)."""
 
+import math
 import os
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Set, Tuple, cast
@@ -109,52 +110,127 @@ class StyleDataset(Dataset[Sample]):
                 reg_off_path, shared=True, size=sz, dtype=torch.int32
             )
 
-        self._apply_balanced_sampling(sample_ratio)
-
-        self._len = len(self.indices)
-
+        # Load KC targets BEFORE sampling so GP labels are available for stratification
         self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = self._init_kc_targets(
             self.data_dir
         )
 
+        self._apply_balanced_sampling(sample_ratio)
+
+        self._len = len(self.indices)
+
+    def _find_gp_labeled_indices(self) -> Set[int]:
+        """Return indices of sentences that have at least one GP label."""
+        labeled: Set[int] = set()
+        for key in ("grammar_point_pos", "grammar_point_neg"):
+            if key not in self.kc_maps:
+                continue
+            offsets = self.kc_maps[key]["offsets"]
+            for real_idx_t in self.indices:
+                real_idx = int(real_idx_t.item())
+                if real_idx + 1 >= len(offsets):
+                    continue
+                if (
+                    int(offsets[real_idx + 1].item()) - int(offsets[real_idx].item())
+                    > 0
+                ):
+                    labeled.add(real_idx)
+        return labeled
+
+    def _group_by_gp(self, labeled: Set[int]) -> Dict[int, Set[int]]:
+        """Group labeled sentence indices by grammar point ID."""
+        gp_to_sentences: Dict[int, Set[int]] = {}
+        for key in ("grammar_point_pos", "grammar_point_neg"):
+            if key not in self.kc_maps:
+                continue
+            offsets = self.kc_maps[key]["offsets"]
+            ids = self.kc_maps[key]["ids"]
+            for real_idx in labeled:
+                if real_idx + 1 >= len(offsets):
+                    continue
+                start = int(offsets[real_idx].item())
+                end = int(offsets[real_idx + 1].item())
+                for gp_id in ids[start:end].tolist():
+                    if gp_id not in gp_to_sentences:
+                        gp_to_sentences[gp_id] = set()
+                    gp_to_sentences[gp_id].add(real_idx)
+        return gp_to_sentences
+
+    def _select_gp_labeled_sentences(self) -> Tuple[Set[int], int]:
+        """Select GP-labeled sentences with per-GP sqrt-capped sampling.
+
+        Returns:
+            Tuple of (selected sentence indices, number of unique GPs).
+        """
+        import random as _random
+
+        all_labeled = self._find_gp_labeled_indices()
+        if not all_labeled:
+            return set(), 0
+
+        gp_to_sentences = self._group_by_gp(all_labeled)
+
+        # Sqrt-capped selection per GP
+        _random.seed(42)
+        selected: Set[int] = set()
+        for sentence_set in gp_to_sentences.values():
+            sents = list(sentence_set)
+            cap = min(len(sents), max(20, int(math.ceil(math.sqrt(len(sents))))))
+            if cap < len(sents):
+                selected.update(_random.sample(sents, cap))
+            else:
+                selected.update(sents)
+
+        return selected, len(gp_to_sentences)
+
+    @staticmethod
+    def _sample_pool(pool: List[int], count: int) -> Set[int]:
+        """Sample up to `count` indices from a sorted pool."""
+        if count <= 0 or not pool:
+            return set()
+        perm = torch.randperm(len(pool))[:count]
+        return {pool[i] for i in perm.tolist()}
+
     def _apply_balanced_sampling(self, sample_ratio: float) -> None:
         if sample_ratio == 1.0 or "gram" not in self.labels:
             return
-        if self.verbose:
-            print(
-                f"Sampling {sample_ratio:.1%} of grammatic and matching ungrammatic..."
-            )
+
         current_labels = self.labels["gram"][self.indices]
         gram_indices = self.indices[current_labels == 1]
         ungram_indices = self.indices[current_labels == 0]
 
-        gram_total = int(gram_indices.numel())
-        ungram_total = int(ungram_indices.numel())
-
-        if sample_ratio <= 1.0:
-            target_gram = int(gram_total * sample_ratio)
-            target_ungram = target_gram
-        else:
-            target_gram = gram_total
-            target_ungram = int(gram_total * sample_ratio)
-
-        target_gram = min(target_gram, gram_total)
-        target_ungram = min(target_ungram, ungram_total)
-
-        gram_sel = (
-            gram_indices[torch.randperm(gram_total)[:target_gram]]
-            if gram_total > 0 and target_gram > 0
-            else torch.tensor([], dtype=torch.long)
+        target_gram = min(
+            int(gram_indices.numel() * sample_ratio), int(gram_indices.numel())
         )
-        ungram_sel = (
-            ungram_indices[torch.randperm(ungram_total)[:target_ungram]]
-            if ungram_total > 0 and target_ungram > 0
-            else torch.tensor([], dtype=torch.long)
+        target_ungram = min(target_gram, int(ungram_indices.numel()))
+
+        # GP-aware stratified selection
+        gp_selected, n_unique_gps = self._select_gp_labeled_sentences()
+
+        # Split GP-selected into gram/ungram
+        gp_gram = {i for i in gp_selected if int(self.labels["gram"][i].item()) == 1}
+
+        # Fill remaining quota from non-GP-labeled sentences
+        gram_fill = self._sample_pool(
+            sorted(set(gram_indices.tolist()) - gp_selected),
+            target_gram - len(gp_gram),
+        )
+        ungram_fill = self._sample_pool(
+            sorted(set(ungram_indices.tolist()) - gp_selected),
+            target_ungram - len(gp_selected - gp_gram),
         )
 
-        if gram_sel.numel() or ungram_sel.numel():
-            self.indices = torch.cat([gram_sel, ungram_sel])
-            self.indices, _ = torch.sort(self.indices)
+        final_indices = sorted(gp_selected | gram_fill | ungram_fill)
+
+        if self.verbose:
+            print(
+                f"Sampling {sample_ratio:.1%}: "
+                f"{len(gp_selected)} GP-labeled ({n_unique_gps} GPs) + "
+                f"{len(gram_fill)} gram + {len(ungram_fill)} ungram = "
+                f"{len(final_indices)} total"
+            )
+
+        self.indices = torch.tensor(final_indices, dtype=torch.long)
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)

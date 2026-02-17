@@ -136,6 +136,12 @@ class FamilyAccumulator:
     saw_sparse: bool = False
     saw_valid_mask: bool = False
     loss_by_label: Optional[torch.Tensor] = None  # Running sum of loss per label
+    freq_by_label: Optional[torch.Tensor] = (
+        None  # Running sum of positive count per label
+    )
+    freq_total_by_label: Optional[torch.Tensor] = (
+        None  # Running sum of supervised count per label
+    )
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
@@ -231,6 +237,18 @@ class FamilyAccumulator:
                 else:
                     self.loss_by_label += loss_by_label.detach()
 
+            # Accumulate per-label positive frequency
+            if valid_mask is not None and pos_mask is not None:
+                pos_per_label = (pos_mask & valid_mask).float().sum(dim=0)
+                total_per_label = valid_mask.float().sum(dim=0)
+                if self.freq_by_label is None:
+                    self.freq_by_label = pos_per_label.detach().clone()
+                    self.freq_total_by_label = total_per_label.detach().clone()
+                else:
+                    self.freq_by_label += pos_per_label.detach()
+                    assert self.freq_total_by_label is not None
+                    self.freq_total_by_label += total_per_label.detach()
+
     def median_pred_pos_on_pos(self) -> Optional[float]:
         """Median predicted positives per positive example (epoch-level)."""
         if self.n_pos_ex <= 0 or not self.pos_pred_hist:
@@ -250,9 +268,10 @@ class RunningLossComponents:
 
     struct: float = 0.0
     div: float = 0.0
-    lb: float = 0.0
+    entropy: float = 0.0  # Per-probability entropy penalty
     collapse: float = 0.0
-    sparsity: float = 0.0
+    kl_sparse: float = 0.0
+    cov_penalty: float = 0.0  # Off-diagonal covariance penalty
     saturation: float = 0.0  # Anti-saturation penalty
     coverage: float = 0.0  # Coverage loss (threshold or Zipf usage fit)
     formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
@@ -271,9 +290,10 @@ class RunningLossComponents:
         return RunningLossComponents(
             struct=self.struct + other.struct,
             div=self.div + other.div,
-            lb=self.lb + other.lb,
+            entropy=self.entropy + other.entropy,
             collapse=self.collapse + other.collapse,
-            sparsity=self.sparsity + other.sparsity,
+            kl_sparse=self.kl_sparse + other.kl_sparse,
+            cov_penalty=self.cov_penalty + other.cov_penalty,
             saturation=self.saturation + other.saturation,
             coverage=self.coverage + other.coverage,
             formality=self.formality + other.formality,
@@ -377,20 +397,27 @@ class KCDiagnosticFamilyStats:
 
 @dataclass
 class KcDynSizingBinStats:
-    """Stats for a single content-length bin."""
+    """Stats for a single content-length bin.
+
+    K = count of KCs with prob > 0.5 (natural threshold).
+    Kth = probability of the Kth KC (last above 0.5).
+    Spill = probability of the (K+1)th KC (first below 0.5).
+    Gap = Kth - Spill (decision boundary sharpness).
+    """
 
     bin_label: str
     count: int
     len_mean: float
-    k_budget_mean: float
-    k_budget_p10: float
-    k_budget_p50: float
-    k_budget_p90: float
-    budget_ratio_mean: float
-    masked_tail_rate: float
-    keff_mean: float
-    keff_minus_budget_mean: float
-    spill_prob_mean: float = 0.0  # Mean prob of (k+1)th KC (outside budget)
+    k_mean: float  # Mean count of KCs with prob > 0.5
+    k_p10: float
+    k_p50: float
+    k_p90: float
+    kth_prob_mean: float = 0.0  # Mean prob of Kth KC (last above 0.5), K≥1 only
+    spill_prob_mean: float = 0.0  # Mean prob of (K+1)th KC (first below 0.5), K≥1 only
+    gap_mean: float = (
+        0.0  # Mean of (Kth - Spill), decision boundary sharpness, K≥1 only
+    )
+    active_pct: float = 0.0  # Fraction of sentences in bin with K≥1
 
 
 @dataclass
@@ -401,12 +428,10 @@ class KcEpochActivationStats:
     pmax_p50: float
     pmax_p90: float
     pmax_p99: float
-    topk_sum_p50: float
-    topk_sum_p90: float
-    topk_sum_p99: float
+
     ent_norm: float
     kl_u_norm: float
-    act_dens_mean: float
+
     kc_probs_mean: float
     # Saturation Stats (Gated & Scaled)
     sat_w: float = 0.0
@@ -422,6 +447,7 @@ class KcEpochActivationStats:
     pmax_logit_max_pos: float = 0.0
     frac_over_thr_pos: float = 0.0
     frac_has_pos: float = 0.0
+    avg_entropy: float = 0.0  # Mean per-KC-slot Bernoulli entropy
 
 
 @dataclass
@@ -534,15 +560,16 @@ class KcLossWeights:
 
     INVARIANTS (enforced by checksums):
     1. struct = sum(all family losses) - each family contributes its task_loss directly
-    2. total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
+    2. total_loss = struct + div + entropy + collapse + kl_sparse + cov_penalty + saturation + coverage
     """
 
     struct: float = 1.0  # Sum of all family task_losses
     # These are stored ALREADY WEIGHTED, so display weight is 1.0:
     div: float = 1.0  # Already weighted in RunningLossComponents
-    lb: float = 1.0  # Already weighted in RunningLossComponents
+    entropy: float = 1.0  # Already weighted in RunningLossComponents
     collapse: float = 1.0  # Already weighted in RunningLossComponents
-    sparsity: float = 1.0  # Already weighted in RunningLossComponents
+    kl_sparse: float = 1.0  # Already weighted in RunningLossComponents
+    cov_penalty: float = 1.0  # Already weighted in RunningLossComponents
     coverage: float = 1.0  # Already weighted in RunningLossComponents
 
 
@@ -568,6 +595,9 @@ class KcEpochSummary:
     accumulators: Dict[str, "FamilyAccumulator"] = field(default_factory=dict)
     # Optional per-GP priors vector used for printing curate hints (NaN => unset/default).
     gp_priors: Optional[torch.Tensor] = None
+    gp_default_prior: float = 1e-8
+    # Canary sentence evaluation text (displayed in Bin report's 1-3 row)
+    canary_text: str = ""
 
 
 @dataclass
@@ -625,9 +655,8 @@ class TrainEpochStats:
 
     avg_struct_loss: float
     num_struct_heads_processed: int
-    avg_sparsity: float
+    avg_kl_sparse: float
     avg_prob: float
-    act_dens: float
 
     # Optional when metrics are skipped (skip_first_metrics flag)
     kc_diagnostics: Optional[KCDiagnosticReport] = None
@@ -639,7 +668,7 @@ class TrainEpochResult:
 
     total_loss: float
     kc_losses: KCLosses
-    avg_sparsity: float
+    avg_kl_sparse: float
     epoch_stats: TrainEpochStats
 
 
@@ -677,11 +706,11 @@ class KCTrainingHistory(TrainingHistory):
     """Accumulated training history for KC training."""
 
     total_loss: List[float] = field(default_factory=list)
-    kc_sparsity: List[float] = field(default_factory=list)
+    kc_kl_sparse: List[float] = field(default_factory=list)
     kc_losses: Dict[str, List[float]] = field(default_factory=dict)
     avg_struct_loss: List[float] = field(default_factory=list)
     num_struct_heads_processed: List[float] = field(default_factory=list)
-    avg_sparsity: List[float] = field(default_factory=list)
+    avg_kl_sparse: List[float] = field(default_factory=list)
 
     active_kc_targets: List[str] = field(default_factory=list)
     # List can contain None for epochs where metrics were skipped

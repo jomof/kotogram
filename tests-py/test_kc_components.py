@@ -15,7 +15,6 @@ def test_gumbel_noise_training_only():
     config = ModelConfig(
         vocab_sizes={f: 100 for f in FEATURE_FIELDS},
         kc_vocab_size=10,
-        kc_topk=1,  # Select top-1 to easily see noise impact
         kc_temperature=1.0,
     )
     model = TrainingClassifier(config)
@@ -344,7 +343,6 @@ def test_forward_kc_gumbel_stability():
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
         kc_vocab_size=16,
-        kc_topk=4,
         kc_temperature=1.0,
     )
     model = TrainingClassifier(config)
@@ -367,9 +365,6 @@ def test_forward_kc_gumbel_stability():
         assert torch.isfinite(outputs["kc_probs"]).all(), (
             f"kc_probs not finite at scale={gumbel_scale}"
         )
-        assert torch.isfinite(outputs["topk_vals"]).all(), (
-            f"topk_vals not finite at scale={gumbel_scale}"
-        )
 
 
 def test_forward_kc_nan_to_num_guard():
@@ -382,7 +377,6 @@ def test_forward_kc_nan_to_num_guard():
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
         kc_vocab_size=16,
-        kc_topk=4,
         kc_temperature=1.0,
     )
     model = TrainingClassifier(config)
@@ -679,12 +673,11 @@ def test_float_sorting_not_string():
 
 
 def test_forward_kc_parameter_variations():
-    """Vary grad_cap and long_sentence_mask in TrainingClassifier.forward_kc."""
+    """Vary grad_cap in TrainingClassifier.forward_kc."""
     # pylint: disable=protected-access, import-private-name
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
         kc_vocab_size=16,
-        kc_topk=4,
         kc_temperature=1.0,
     )
     model = TrainingClassifier(config)
@@ -695,44 +688,23 @@ def test_forward_kc_parameter_variations():
     model.kc_head.forward_with_raw = unittest.mock.MagicMock(
         return_value=(logits_raw, logits_raw)
     )
-    # Ensure pooled output is returned
-    model._get_pooled_output = unittest.mock.MagicMock(return_value=torch.randn(2, 32))
 
     field_inputs = {
         f"input_ids_{f}": torch.zeros(2, 5, dtype=torch.long) for f in FEATURE_FIELDS
     }
     attention_mask = torch.ones(2, 5)
 
-    # 1. Test with grad_cap
-    _ = model.forward_kc(field_inputs, attention_mask, grad_cap=1.0)
+    # Pass pooled directly to bypass pooler (mirrors real trainer usage)
+    pooled = torch.randn(2, 32)
+
+    # Test with grad_cap
+    _ = model.forward_kc(field_inputs, attention_mask, grad_cap=1.0, pooled=pooled)
 
     # Verify hook logic doesn't crash.
     # To verify functional correctness: simulate backward pass
     loss = logits_raw.sum()
     loss.backward()
     # If hook was registered, it ran.
-
-    # 2. Test with long_sentence_mask triggering re-normalization
-    # We need a logit that results in > 0.85 prob.
-    # Sigmoid(x) > 0.85 => x > 1.74. Let's use 5.0.
-    logits_trigger = torch.zeros(2, 16)
-    logits_trigger[0, 0] = 5.0
-    logits_trigger.requires_grad = True  # needed for hook logic if re-used? No.
-
-    model.kc_head.forward_with_raw.return_value = (logits_trigger, logits_trigger)
-
-    long_mask = torch.tensor([True, False])  # Sample 0 is long
-
-    # Should trigger the boost logic for sample 0
-    out = model.forward_kc(field_inputs, attention_mask, long_sentence_mask=long_mask)
-
-    # Check that sample 0 prob is DIFFERENT from what standard sigmoid(5.0) would be?
-    # Actually, it re-normalizes with temperature boost (1.5x)
-    # Original: sigmoid(5.0/1.0) = 0.9933
-    # Boosted: sigmoid(5.0/1.5) = sigmoid(3.33) = 0.965
-    # So prob should decrease.
-    p0 = out["kc_probs"][0, 0].item()
-    assert p0 < 0.99, f"Should have reduced confidence, got {p0}"
 
 
 def test_bce_sampled_parameter_variations():

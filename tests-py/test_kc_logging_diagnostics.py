@@ -74,37 +74,14 @@ class MockModel(nn.Module):
     def forward(self, *args, **kwargs):
         mode = kwargs.get("mode")
         if mode == "kc":
-            batch_size = args[0]["input_ids_surface"].size(0)
+            field_inputs = args[0] if args else {}
+            if field_inputs and "input_ids_surface" in field_inputs:
+                batch_size = field_inputs["input_ids_surface"].size(0)
+            elif "attention_mask" in kwargs:
+                batch_size = kwargs["attention_mask"].size(0)
+            else:
+                batch_size = 1
             vocab_size = self.config.kc_vocab_size
-
-            # Create predictable outputs for testing metrics
-            # 1. k_eff check: set sparse_activations > 0 based on sentence index
-            # Index 0: len=2 -> make 1 activation
-            # Index 1: len=10 -> make 4 activations
-            # Index 2: len=30 -> make 8 activations
-
-            sparse = torch.zeros(batch_size, vocab_size)
-            topk_vals = torch.zeros(batch_size, vocab_size)
-            topk_inds = torch.zeros(batch_size, vocab_size, dtype=torch.long)
-
-            # We can't easily know index, but we can use batch size if fixed.
-            # Let's assume the batch order matches the setup.
-            # row 0
-            sparse[0, 0] = 0.9
-            topk_vals[0, 0] = 0.9
-            topk_inds[0, 0] = 0
-
-            # row 1
-            if batch_size > 1:
-                sparse[1, 0:4] = 0.8
-                topk_vals[1, 0:4] = 0.8
-                topk_inds[1, 0:4] = torch.arange(4)
-
-            # row 2
-            if batch_size > 2:
-                sparse[2, 0:8] = 0.7
-                topk_vals[2, 0:8] = 0.7
-                topk_inds[2, 0:8] = torch.arange(8)
 
             return {
                 "kc_logits_raw": torch.zeros(
@@ -115,9 +92,7 @@ class MockModel(nn.Module):
                 ),
                 "kc_logits": torch.zeros(batch_size, vocab_size, requires_grad=True),
                 "kc_probs": torch.sigmoid(torch.zeros(batch_size, vocab_size)),
-                "topk_vals": topk_vals,
-                "topk_inds": topk_inds,
-                "sparse_activations": sparse,
+                "kc_probs_clean": torch.sigmoid(torch.zeros(batch_size, vocab_size)),
                 "target_logits": {
                     KcFamilyId.BAG_POS.name.lower(): torch.zeros(
                         batch_size, 10, requires_grad=True
@@ -149,7 +124,6 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         print("\n[Test] Running test_epoch_logging_format...")
         m_cfg = ModelConfig(
             vocab_sizes={"surface": 100},
-            kc_topk=10,
             kc_vocab_size=100,
         )
         m_cfg.kc_temperature = 1.0
@@ -224,13 +198,11 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.assertIn("struct", output)
         # Prior KC losses (formality, gender, register) removed - handled by style classifier
         self.assertIn("diversity", output)
-        self.assertIn("load_bal", output)
+        self.assertIn("entropy", output)
 
         # Verify Block 1 Sizing Table Header
         # Verify Block 1 Sizing Table Header
-        self.assertRegex(
-            output, r"Bin.*N.*Len.*K\(Avg\|P10/50/90\).*K/Len.*TailMask.*Keff.*Diff"
-        )
+        self.assertRegex(output, r"Bin.*N.*Len.*K\(Avg\|P10/50/90\).*Kth.*Spill.*Gap")
         # Verify some row content (e.g. 1-3 bin)
         # Note: bin logic depends on input length.
         # Mock batch had lengths 2, 10, 30.
@@ -243,8 +215,8 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.assertRegex(output, r"diversity.*AvgP=")
         # PMax is on collapse line
         self.assertRegex(output, r"collapse.*PMax=")
-        # sparsity shows density and K
-        self.assertRegex(output, r"sparsity.*Dens=.*K=")
+        # sparsity row shows S1/S0/Fuzzy
+        self.assertRegex(output, r"sparsity.*S1=.*S0=")
         # saturation shows sc and pen
         self.assertRegex(output, r"saturation.*sc=.*pen=")
 

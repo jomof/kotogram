@@ -58,10 +58,8 @@ class TrainStyleView(Protocol):
         grammaticality_weight: Optional[float],
         kc_epochs: Optional[str],
         kc_k: int,
-        kc_topk: int,
         kc_freeze_str: str,
-        kc_sparsity_str: str,
-        kc_target_spill_str: str,
+        kc_loss_config_str: str,
         retrain: bool,
         label_only: bool,
         percent: Optional[float],
@@ -79,7 +77,6 @@ class TrainStyleView(Protocol):
         kc_epochs: Optional[str],
         kc_freeze_str: str,
         kc_k: int,
-        kc_topk: int,
     ) -> None:
         """Display the effective training configuration."""
 
@@ -228,10 +225,8 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         grammaticality_weight: Optional[float],
         kc_epochs: Optional[str],
         kc_k: int,
-        kc_topk: int,
         kc_freeze_str: str,
-        kc_sparsity_str: str,
-        kc_target_spill_str: str,
+        kc_loss_config_str: str,
         retrain: bool,
         label_only: bool,
         percent: Optional[float],
@@ -263,10 +258,10 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         if kc_epochs is not None:
             console.print(f"KC pretrain:    {kc_epochs} epochs")
             console.print(f"KC K:           {kc_k}")
-            console.print(f"KC Top-k:       {kc_topk}")
+
             console.print(f"KC Freeze:      {kc_freeze_str}")
-            console.print(f"KC Sparsity:    {kc_sparsity_str}")
-            console.print(f"KC Target Spill: {kc_target_spill_str}")
+            console.print(f"KC Loss Config: {kc_loss_config_str}")
+
         else:
             console.print("KC pretrain:    (default/saved)")
 
@@ -291,7 +286,6 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         kc_epochs: Optional[str],
         kc_freeze_str: str,
         kc_k: int,
-        kc_topk: int,
     ) -> None:
         self._header("-", 46)
         console.print("[dim]Effective Training Configuration:[/dim]")
@@ -306,7 +300,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
                 f"[dim]  KC Epochs:        {kc_epochs} (freeze: {kc_freeze_str})[/dim]"
             )
             console.print(f"[dim]  KC Vocab (K):     {kc_k}[/dim]")
-            console.print(f"[dim]  KC Top-k:         {kc_topk}[/dim]")
+
         else:
             console.print(
                 f"[dim]  KC Epochs:        (default/saved) (freeze: {kc_freeze_str})[/dim]"

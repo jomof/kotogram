@@ -12,7 +12,6 @@ import torch
 from rich.table import Table
 
 from train.display import console, format_worst_sample_display, print_phase_header
-from train.kc import KcFamilyId, KcLogitMode, get_family
 from train.types import (
     KcDynSizingBinStats,
     KcEpochSummary,
@@ -21,23 +20,6 @@ from train.types import (
     TrainEpochResult,
     WorstSampleInfo,
 )
-
-
-def _get_logit_mode_emoji(name: str) -> str:
-    """Return prefix based on family's logit_mode."""
-    if name.lower() == "grammatic":
-        return "∞ "
-    name_upper = name.upper()
-    if name_upper not in KcFamilyId.__members__:
-        return ""
-    logit_mode = get_family(KcFamilyId[name_upper]).logit_mode
-    if logit_mode == KcLogitMode.HOT_LOGITS:
-        return "[dim]h[/dim] "
-    if logit_mode == KcLogitMode.ALL_LOGITS:
-        return "[dim]a[/dim] "
-    if logit_mode == KcLogitMode.SPARSE_LOGITS:
-        return "[dim]s[/dim] "
-    return ""
 
 
 class KCTrainerView(Protocol):
@@ -102,10 +84,7 @@ class KCTrainerView(Protocol):
         epoch: int,
         batch_idx: int,
         content_len: torch.Tensor,
-        k_budget_t: torch.Tensor,
-        topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
-        topk_sum_per_ex: torch.Tensor,
         kc_probs: torch.Tensor,
     ) -> None:
         pass
@@ -131,27 +110,41 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_zipf_kl: Optional[float] = None
         # Store previous epoch spill stats for bin trajectory arrows
         self.prev_bin_spill: Dict[str, float] = {}
+        self.prev_bin_kth: Dict[str, float] = {}
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
         # Sizing Stats
         self.bin_counts: Dict[str, int] = defaultdict(int)
         self.bin_len_sum: Dict[str, float] = defaultdict(float)
-        self.bin_k_budget_sum: Dict[str, float] = defaultdict(float)
-        self.bin_budget_ratio_sum: Dict[str, float] = defaultdict(float)
-        self.bin_masked_tail_sum: Dict[str, float] = defaultdict(float)
-        self.bin_keff_sum: Dict[str, float] = defaultdict(float)
-        self.bin_keff_minus_budget_sum: Dict[str, float] = defaultdict(float)
-        self.bin_spill_prob_sum: Dict[str, float] = defaultdict(float)  # (k+1)th prob
+        self.bin_k_sum: Dict[str, float] = defaultdict(float)  # Count of KCs > 0.5
+        self.bin_active_count: Dict[str, int] = defaultdict(int)  # Sentences with K≥1
+        self.bin_spill_prob_sum: Dict[str, float] = defaultdict(
+            float
+        )  # (K+1)th prob, K≥1 only
+        self.bin_kth_prob_sum: Dict[str, float] = defaultdict(
+            float
+        )  # Kth prob, K≥1 only
+        self.bin_gap_sum: Dict[str, float] = defaultdict(float)  # Kth - Spill, K≥1 only
 
         # Reservoirs for percentiles
         self.bin_k_reservoirs: Dict[str, List[float]] = defaultdict(list)
 
         # Activation Stats
         self.pmax_reservoir: List[float] = []
-        self.topk_sum_reservoir: List[float] = []
+
         self.sat99_count: int = 0
         self.total_ex_count: int = 0
+
+        # Dead KC tracking: per-slot boolean arrays (initialized on first batch)
+        self.ever_above_half: Optional[torch.Tensor] = None  # [vocab_size] bool
+        self.ever_below_half: Optional[torch.Tensor] = None  # [vocab_size] bool
+
+        # Sharpness tracking (alive KCs only)
+        self.sharp1_count: int = 0  # prob > 0.9 (committed "on")
+        self.sharp0_count: int = 0  # prob < 0.1 (committed "off")
+        self.fuzzy_count: int = 0  # prob in [0.2, 0.8]
+        self.alive_prob_count: int = 0  # total alive KC-prob evaluations
 
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int
@@ -240,51 +233,74 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         epoch: int,
         batch_idx: int,
         content_len: torch.Tensor,
-        k_budget_t: torch.Tensor,
-        topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
-        topk_sum_per_ex: torch.Tensor,
         kc_probs: torch.Tensor,
     ) -> None:
         # Move to CPU for stats
         lens = content_len.cpu().tolist()
-        budgets = k_budget_t.cpu().tolist()
         pmax = pmax_per_ex.cpu().tolist()
-        topk_sums = topk_sum_per_ex.cpu().tolist()
 
-        # Calculate derived metrics
-        # masked_tail_rate: fraction of topk_vals == 0
-        # keff: count(topk_vals > 0)
-        is_zero = (topk_vals == 0).float()
-        masked_rate = is_zero.mean(dim=1).cpu().tolist()
-        keff = (topk_vals > 0).float().sum(dim=1).cpu().tolist()
-
-        # Compute spill probability: prob of (k+1)th KC (first outside budget)
-        # Sort probs descending and get the (k+1)th value for each example
-        probs_sorted, _ = torch.sort(kc_probs, dim=1, descending=True)
         batch_size = kc_probs.size(0)
-        vocab_size = kc_probs.size(1)
+
+        # Dead KC tracking: update per-slot ever-above/below masks FIRST
+        # so we can exclude stuck-on KCs from K/Kth/Spill/Gap
+        batch_above = (kc_probs > 0.5).any(dim=0)  # [vocab_size] on device
+        batch_below = (kc_probs <= 0.5).any(dim=0)  # [vocab_size] on device
+        if self.ever_above_half is None:
+            self.ever_above_half = batch_above.cpu()
+            self.ever_below_half = batch_below.cpu()
+        else:
+            assert self.ever_below_half is not None  # Always set with ever_above_half
+            self.ever_above_half = self.ever_above_half | batch_above.cpu()
+            self.ever_below_half = self.ever_below_half | batch_below.cpu()
+
+        # Mask out dead KCs for K/Kth/Spill/Gap
+        # Alive = seen above 0.5 at least once AND below 0.5 at least once (discriminates)
+        # Dead-0s (stuck off) and dead-1s (stuck on) are excluded.
+        alive_mask = (self.ever_below_half & self.ever_above_half).to(kc_probs.device)
+        kc_probs_masked = kc_probs * alive_mask.unsqueeze(0)  # [B, vocab_size]
+
+        # Compute K (count of KCs > 0.5), Kth, Spill, Gap per example
+        # Using masked probs (dead-1 KCs excluded)
+        probs_sorted, _ = torch.sort(kc_probs_masked, dim=1, descending=True)
+        alive_count = int(alive_mask.sum().item())
+
+        k_counts = (kc_probs_masked > 0.5).float().sum(dim=1).cpu().tolist()
         spill_probs = []
+        kth_probs = []
+        gaps = []
         for i in range(batch_size):
-            k = int(budgets[i])
-            if k < vocab_size:
-                spill_probs.append(probs_sorted[i, k].item())  # (k+1)th is index k
+            k = int(k_counts[i])
+            # Kth: prob of last KC above 0.5 (index k-1 in sorted)
+            if k >= 1:
+                kth = probs_sorted[i, k - 1].item()
             else:
-                spill_probs.append(0.0)  # Budget exceeds vocab, no spill
+                kth = 0.0
+            # Spill: prob of first KC below 0.5 (index k in sorted)
+            if k < alive_count:
+                spill = probs_sorted[i, k].item()
+            else:
+                spill = 0.0
+            kth_probs.append(kth)
+            spill_probs.append(spill)
+            gaps.append(kth - spill)
+
+        # Sharpness tracking on alive KCs
+        alive_probs = kc_probs_masked[:, alive_mask.bool()]  # [B, alive_count]
+        self.alive_prob_count += alive_probs.numel()
+        self.sharp1_count += int((alive_probs > 0.9).sum().item())
+        self.sharp0_count += int((alive_probs < 0.1).sum().item())
+        self.fuzzy_count += int(
+            ((alive_probs >= 0.2) & (alive_probs <= 0.8)).sum().item()
+        )
 
         # Update reservoirs
-        self.pmax_reservoir.extend(pmax)  # Allow growing large? N=50k max.
+        self.pmax_reservoir.extend(pmax)
         if len(self.pmax_reservoir) > 50000:
-            # Basic trim
             self.pmax_reservoir = random.sample(self.pmax_reservoir, 50000)
-
-        self.topk_sum_reservoir.extend(topk_sums)
-        if len(self.topk_sum_reservoir) > 50000:
-            self.topk_sum_reservoir = random.sample(self.topk_sum_reservoir, 50000)
 
         # Saturation Tracking
         self.total_ex_count += len(pmax)
-        # pmax is already a list of floats
         for val in pmax:
             if val >= 0.99:
                 self.sat99_count += 1
@@ -295,19 +311,19 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             self.bin_counts[label] += 1
             self.bin_len_sum[label] += length
-            k = budgets[i]
-            self.bin_k_budget_sum[label] += k
-            self.bin_budget_ratio_sum[label] += k / max(1, length)
-            self.bin_masked_tail_sum[label] += masked_rate[i]
-            kf = keff[i]
-            self.bin_keff_sum[label] += kf
-            self.bin_keff_minus_budget_sum[label] += kf - k
-            self.bin_spill_prob_sum[label] += spill_probs[i]
+            k = k_counts[i]
+            self.bin_k_sum[label] += k
+            # Only accumulate Kth/Spill/Gap for sentences with at least one active KC
+            if k >= 1:
+                self.bin_active_count[label] += 1
+                self.bin_spill_prob_sum[label] += spill_probs[i]
+                self.bin_kth_prob_sum[label] += kth_probs[i]
+                self.bin_gap_sum[label] += gaps[i]
 
-            # K Budget Reservoir
+            # K Reservoir for percentiles
             if len(self.bin_k_reservoirs[label]) < 1000:
                 self.bin_k_reservoirs[label].append(k)
-            elif random.random() < 0.1:  # simple sub-sampling
+            elif random.random() < 0.1:
                 idx = random.randint(0, 999)
                 self.bin_k_reservoirs[label][idx] = k
 
@@ -392,10 +408,10 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"Ent={act.ent_norm:.3f} AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
-            "load_bal",
-            _f(lc.lb * w.lb / nb),
-            _delta_arrow(lc.lb, prev_lc.lb if prev_lc else None),
-            f"KL={act.kl_u_norm:.3f}",
+            "entropy",
+            _f(lc.entropy * w.entropy / nb),
+            _delta_arrow(lc.entropy, prev_lc.entropy if prev_lc else None),
+            f"AvgH={act.avg_entropy:.3f}",
         )
         table_loss.add_row(
             "collapse",
@@ -405,9 +421,17 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "sparsity",
-            _f(lc.sparsity * w.sparsity / nb),
-            _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
-            f"Dens={act.act_dens_mean:.3f} K={act.topk_sum_p50:.0f}/{act.topk_sum_p90:.0f}/{act.topk_sum_p99:.0f}",
+            _f(lc.kl_sparse * w.kl_sparse / nb),
+            _delta_arrow(lc.kl_sparse, prev_lc.kl_sparse if prev_lc else None),
+            f"S1={self.sharp1_count / max(1, self.alive_prob_count):.0%} "
+            f"S0={self.sharp0_count / max(1, self.alive_prob_count):.0%} "
+            f"Fuzzy={self.fuzzy_count / max(1, self.alive_prob_count):.0%}",
+        )
+        table_loss.add_row(
+            "orthogonality",
+            _f(lc.cov_penalty * w.cov_penalty / nb),
+            _delta_arrow(lc.cov_penalty, prev_lc.cov_penalty if prev_lc else None),
+            f"AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
             "saturation",
@@ -435,15 +459,16 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         console.print(table_loss)
 
-        # INVARIANT: total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
+        # INVARIANT: total_loss = struct + div + entropy + collapse + sparsity + mean_penalty + saturation + coverage
         # All components are on the same scale (per-batch sums), so they add to epoch loss.
         loss_sum = (
             lc.struct * w.struct / nb
             # Prior KC losses (formality, gender, register) removed - handled by style classifier
             + lc.div * w.div / nb
-            + lc.lb * w.lb / nb
+            + lc.entropy * w.entropy / nb
             + lc.collapse * w.collapse / nb
-            + lc.sparsity * w.sparsity / nb
+            + lc.kl_sparse * w.kl_sparse / nb
+            + lc.cov_penalty * w.cov_penalty / nb
             + lc.saturation / nb  # Already weighted in kc_trainer
             + lc.coverage * w.coverage / nb  # Already weighted in kc_trainer
         )
@@ -467,12 +492,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_sizing.add_column("Bin")
         table_sizing.add_column("N")
         table_sizing.add_column("Len")
-        table_sizing.add_column("K(Avg|P10/50/90)")
-        table_sizing.add_column("K/Len")
-        table_sizing.add_column("TailMask")
-        table_sizing.add_column("Keff")
-        table_sizing.add_column("Diff")
-        table_sizing.add_column("Spill")  # Prob of (k+1)th KC
+        table_sizing.add_column("K(Avg|P10/50/90)")  # Count of KCs > 0.5
+        table_sizing.add_column("Hit%")  # % of sentences with K≥1
+        table_sizing.add_column("Kth")  # Prob of Kth KC (last above 0.5), K≥1 only
+        table_sizing.add_column("Spill")  # Prob of (K+1)th KC, K≥1 only
+        table_sizing.add_column("Gap")  # Kth - Spill (boundary sharpness), K≥1 only
+        table_sizing.add_column("Canary")  # Sentinel sentence diagnostic
 
         sorted_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
 
@@ -490,38 +515,41 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             kp50 = k_res[nk // 2] if nk else 0.0
             kp90 = k_res[int(nk * 0.9)] if nk else 0.0
 
+            na = self.bin_active_count[label]  # K≥1 count
+            active_pct = na / n if n > 0 else 0.0
             stats = KcDynSizingBinStats(
                 bin_label=label,
                 count=n,
                 len_mean=self.bin_len_sum[label] / n,
-                k_budget_mean=self.bin_k_budget_sum[label] / n,
-                k_budget_p10=float(kp10),
-                k_budget_p50=float(kp50),
-                k_budget_p90=float(kp90),
-                budget_ratio_mean=self.bin_budget_ratio_sum[label] / n,
-                masked_tail_rate=self.bin_masked_tail_sum[label] / n,
-                keff_mean=self.bin_keff_sum[label] / n,
-                keff_minus_budget_mean=self.bin_keff_minus_budget_sum[label] / n,
-                spill_prob_mean=self.bin_spill_prob_sum[label] / n,
+                k_mean=self.bin_k_sum[label] / n,
+                k_p10=float(kp10),
+                k_p50=float(kp50),
+                k_p90=float(kp90),
+                spill_prob_mean=self.bin_spill_prob_sum[label] / max(1, na),
+                kth_prob_mean=self.bin_kth_prob_sum[label] / max(1, na),
+                gap_mean=self.bin_gap_sum[label] / max(1, na),
+                active_pct=active_pct,
             )
             summary.sizing_stats.append(stats)
 
         # Render
         for s in summary.sizing_stats:
-            # Colors
-            c_mask = (
-                "red"
-                if s.masked_tail_rate < 0.05 and s.k_budget_mean < 9.9
-                else "green"
-            )
-            c_diff = "red" if abs(s.keff_minus_budget_mean) > 0.2 else "dim"
-
-            # Color for spill: red if high (>0.75), green if low (<0.25), dim otherwise
+            # Color for spill: red if high (>0.40), green if low (<0.10), dim otherwise
             c_spill = (
                 "red"
-                if s.spill_prob_mean > 0.75
-                else ("green" if s.spill_prob_mean < 0.25 else "dim")
+                if s.spill_prob_mean > 0.40
+                else ("green" if s.spill_prob_mean < 0.10 else "dim")
             )
+
+            # Kth trajectory arrow (higher is better)
+            kth_arrow = ""
+            prev_kth = self.prev_bin_kth.get(s.bin_label)
+            if prev_kth is not None:
+                delta = s.kth_prob_mean - prev_kth
+                if delta > 0.001:
+                    kth_arrow = "[green]↑[/green]"
+                elif delta < -0.001:
+                    kth_arrow = "[red]↓[/red]"
 
             # Spill trajectory arrow (lower is better)
             spill_arrow = ""
@@ -533,37 +561,94 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 elif delta > 0.001:
                     spill_arrow = "[red]↑[/red]"
 
+            # Color for kth: green if high (>0.75), red if low (<0.25)
+            c_kth = (
+                "green"
+                if s.kth_prob_mean > 0.75
+                else ("red" if s.kth_prob_mean < 0.25 else "dim")
+            )
+
+            # Color for gap: green if wide (>0.3), red if narrow (<0.1)
+            c_gap = (
+                "green" if s.gap_mean > 0.3 else ("red" if s.gap_mean < 0.1 else "dim")
+            )
+
             table_sizing.add_row(
                 s.bin_label,
                 str(s.count),
                 f"{s.len_mean:.1f}",
-                f"{s.k_budget_mean:.1f}|{s.k_budget_p10:.0f}/{s.k_budget_p50:.0f}/{s.k_budget_p90:.0f}",
-                f"{s.budget_ratio_mean:.2f}",
-                f"[{c_mask}]{s.masked_tail_rate:.3f}[/{c_mask}]",
-                f"{s.keff_mean:.1f}",
-                f"[{c_diff}]{s.keff_minus_budget_mean:.2f}[/{c_diff}]",
+                f"{s.k_mean:.1f}|{s.k_p10:.0f}/{s.k_p50:.0f}/{s.k_p90:.0f}",
+                f"{s.active_pct:.0%}",
+                f"[{c_kth}]{s.kth_prob_mean:.3f}[/{c_kth}]{kth_arrow}",
                 f"[{c_spill}]{s.spill_prob_mean:.3f}[/{c_spill}]{spill_arrow}",
+                f"[{c_gap}]{s.gap_mean:.3f}[/{c_gap}]",
+                summary.canary_text if s.bin_label == "1-3" else "",
             )
 
         # Store current spill values for next epoch trajectory arrows
         self.prev_bin_spill = {
             s.bin_label: s.spill_prob_mean for s in summary.sizing_stats
         }
+        self.prev_bin_kth = {s.bin_label: s.kth_prob_mean for s in summary.sizing_stats}
+
+        # Total row (weighted averages across all bins)
+        all_stats = summary.sizing_stats
+        total_n = sum(s.count for s in all_stats)
+        total_active = sum(int(s.count * s.active_pct) for s in all_stats)
+        if total_n > 0:
+            w_len = sum(s.len_mean * s.count for s in all_stats) / total_n
+            w_k = sum(s.k_mean * s.count for s in all_stats) / total_n
+            w_kth = sum(
+                s.kth_prob_mean * s.count * s.active_pct for s in all_stats
+            ) / max(1, total_active)
+            w_spill = sum(
+                s.spill_prob_mean * s.count * s.active_pct for s in all_stats
+            ) / max(1, total_active)
+            w_gap = sum(s.gap_mean * s.count * s.active_pct for s in all_stats) / max(
+                1, total_active
+            )
+            w_active_pct = total_active / total_n if total_n > 0 else 0.0
+
+            # Merge all K reservoirs for global percentiles
+            all_k = []
+            for label in sorted_labels:
+                all_k.extend(self.bin_k_reservoirs[label])
+            all_k.sort()
+            nk = len(all_k)
+            gp10 = all_k[nk // 10] if nk else 0.0
+            gp50 = all_k[nk // 2] if nk else 0.0
+            gp90 = all_k[int(nk * 0.9)] if nk else 0.0
+
+            table_sizing.add_row(
+                "[bold]Total[/bold]",
+                f"[bold]{total_n}[/bold]",
+                f"[bold]{w_len:.1f}[/bold]",
+                f"[bold]{w_k:.1f}|{gp10:.0f}/{gp50:.0f}/{gp90:.0f}[/bold]",
+                f"[bold]{w_active_pct:.0%}[/bold]",
+                f"[bold]{w_kth:.3f}[/bold]",
+                f"[bold]{w_spill:.3f}[/bold]",
+                f"[bold]{w_gap:.3f}[/bold]",
+                "",
+            )
 
         console.print(table_sizing)
 
-        # SPARSE flag detection: high spill across most bins indicates sparsity penalty too low
-        # Per-bin ↑K? indicator: if specific bins have high spill but SPARSE isn't triggered
-        high_spill_bins = [s for s in summary.sizing_stats if s.spill_prob_mean > 0.2]
-        total_bins = len(summary.sizing_stats)
-        sparse_triggered = total_bins > 0 and len(high_spill_bins) / total_bins >= 0.7
-
-        # If SPARSE not triggered but some bins have high spill, those bins may need more K
-        if not sparse_triggered and high_spill_bins:
-            bin_labels = [s.bin_label for s in high_spill_bins]
+        # Dead KC summary (below sizing table)
+        if self.ever_above_half is not None and self.ever_below_half is not None:
+            vocab_size = self.ever_above_half.size(0)
+            dead_0 = int((~self.ever_above_half).sum().item())  # Never > 0.5
+            dead_1 = int((~self.ever_below_half).sum().item())  # Never <= 0.5
+            dead_total = dead_0 + dead_1
+            alive = vocab_size - dead_total
+            # Color: red if many dead, green if few
+            c_dead = (
+                "red"
+                if dead_total > vocab_size * 0.2
+                else ("green" if dead_total < vocab_size * 0.05 else "dim")
+            )
             console.print(
-                f"[yellow]↑K? Bins [{', '.join(bin_labels)}] may need more k_budget "
-                f"(Spill>{0.2:.1f})[/yellow]"
+                f"  [{c_dead}]Dead KCs: {dead_total}/{vocab_size} "
+                f"(0s={dead_0} 1s={dead_1} alive={alive})[/{c_dead}]"
             )
 
         # BLOCK 2: Activations
@@ -578,19 +663,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         pmax_p90 = _res_p(self.pmax_reservoir, 0.9)
         pmax_p99 = _res_p(self.pmax_reservoir, 0.99)
 
-        topk_p50 = _res_p(self.topk_sum_reservoir, 0.5)
-        topk_p90 = _res_p(self.topk_sum_reservoir, 0.9)
-        topk_p99 = _res_p(self.topk_sum_reservoir, 0.99)
-
         act_stats = summary.activation_stats
 
         # Populate act_stats with reservoirs for correctness
         act_stats.pmax_p50 = pmax_p50
         act_stats.pmax_p90 = pmax_p90
         act_stats.pmax_p99 = pmax_p99
-        act_stats.topk_sum_p50 = topk_p50
-        act_stats.topk_sum_p90 = topk_p90
-        act_stats.topk_sum_p99 = topk_p99
 
         # BLOCK 3a: MSE Families (Regression Diagnostics)
         if summary.diagnostics.mse_families:
@@ -656,7 +734,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 c_bdelta = "green" if mse.bias_delta > 0.01 else "dim"
 
                 table_mse.add_row(
-                    f"{_get_logit_mode_emoji(name)}{name}",
+                    f"{name}",
                     f"{mse.loss_mean:.4f}{loss_arrow}",
                     f"[{c_acc}]{mse.discrete_accuracy * 100:.1f}%[/{c_acc}]{acc_arrow}",
                     f"[{c_corr}]{mse.correlation:.3f}[/{c_corr}]{corr_arrow}",
@@ -695,7 +773,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Diagnosis Flag Accumulators
         flag_allneg05_count = 0
         flag_allneg01_count = 0
-        flag_mask_triggered = False
+
         num_fams = 0
 
         # Sort by "most suspicious asleep" first
@@ -725,9 +803,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 flag_allneg05_count += 1
             if fam.recall_01 < 0.05:
                 flag_allneg01_count += 1
-            # If less than half the examples have any valid supervision, flag it.
-            if fam.mask_coverage < 0.5:
-                flag_mask_triggered = True
 
             # Wakefulness Diagnostics
             gap = fam.logit_pos_mean - fam.logit_neg_mean
@@ -825,7 +900,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
-                f"{_get_logit_mode_emoji(name)}{name}",
+                f"{name}",
                 f"{fam.loss_mean:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
@@ -1166,6 +1241,69 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                                 f"'scripts/curate study {' '.join(no_default)} --full-pos'[/white dim]"
                             )
 
+        # BLOCK 4.7: Prior Drift (for grammar_point family)
+        # Show top 5 GPs by |observed_freq - prior| to highlight priors needing update.
+        for name, acc in summary.accumulators.items():
+            if (
+                name == "grammar_point"
+                and acc.freq_by_label is not None
+                and acc.freq_total_by_label is not None
+                and summary.gp_priors is not None
+            ):
+                # Observed frequency per GP = positives / supervised observations
+                total = acc.freq_total_by_label.clamp_min(1.0)
+                obs_freq = (acc.freq_by_label / total).cpu()  # (vocab_size,)
+
+                # Build prior vector, filling NaN/unset with gp_default_prior
+                priors = summary.gp_priors.detach().float().cpu()
+                n_gp = min(obs_freq.numel(), priors.numel())
+                obs_freq = obs_freq[:n_gp]
+                priors = priors[:n_gp]
+                finite = torch.isfinite(priors) & (priors >= 0.0) & (priors <= 1.0)
+                priors_filled = priors.clone()
+                priors_filled[~finite] = summary.gp_default_prior
+
+                # Deviation = |observed - prior|
+                deviation = (obs_freq - priors_filled).abs()
+
+                # Top 5
+                k = min(5, n_gp)
+                vals, inds = torch.topk(deviation, k)
+                drift_parts = []
+                drift_gp_ids = []
+                for dev_val, idx in zip(vals.tolist(), inds.tolist()):
+                    if dev_val < 1e-8:
+                        continue
+                    obs_pct = obs_freq[idx].item() * 100.0
+                    pri_pct = priors_filled[idx].item() * 100.0
+                    drift_parts.append(
+                        f"gp{idx:04d}: obs={obs_pct:.2f}% prior={pri_pct:.2f}%"
+                    )
+                    drift_gp_ids.append(f"gp{idx:04d}")
+
+                if drift_parts:
+                    console.print(
+                        f"  [cyan]{name}[/cyan] Prior Drift: "
+                        f"[yellow]{', '.join(drift_parts)}[/yellow]"
+                    )
+                    if drift_gp_ids:
+                        console.print(
+                            "    [white dim]add priors with "
+                            f"'scripts/curate study {' '.join(drift_gp_ids)} "
+                            f"--full-pos'[/white dim]"
+                        )
+
+                # Best-fit default prior: mean observed freq of GPs using default
+                default_mask = ~finite  # GPs with NaN/unset priors
+                if default_mask.any():
+                    best_fit = obs_freq[default_mask].mean().item()
+                    n_default = int(default_mask.sum().item())
+                    console.print(
+                        f"  [cyan]{name}[/cyan] Best-fit default prior: "
+                        f"[yellow]{best_fit:.6f}[/yellow] "
+                        f"[dim]({n_default} GPs using default)[/dim]"
+                    )
+
         # BLOCK 5: Diagnosis Flags
         flags = []
 
@@ -1182,28 +1320,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         if sat99_rate > 0.5 or act_stats.kc_probs_mean > 0.7:
             flags.append("SAT")
 
-        # UNDERK: Long bins (16+) have K/Len < 0.25 (or diff > 1.0)
-        # Check sizing stats
-        underk = False
-        for s in summary.sizing_stats:
-            if s.bin_label in ("16-31", "32+"):
-                # budget_ratio_mean is avg(k/len)
-                if s.budget_ratio_mean < 0.25:
-                    underk = True
-        if underk:
-            flags.append("UNDERK")
-
-        # MASK: Any family > 10% mask hit
-        if flag_mask_triggered:
-            flags.append("MASK")
-
         # COLL: EntNorm low, KL high (relaxed threshold)
         if act_stats.ent_norm < 0.5 and act_stats.kl_u_norm > 0.3:
             flags.append("COLL")
-
-        # SPARSE: High spill across most bins - sparsity penalty too low
-        if sparse_triggered:
-            flags.append("SPARSE")
 
         if flags:
             console.print(f"[bold red]Flags: {' '.join(flags)}[/bold red]")

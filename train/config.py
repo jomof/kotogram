@@ -83,26 +83,29 @@ _GENDER_MSE_SCALING_FACTOR_DEFAULT = 10.0
 class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
-    sparsity_weight: float = 0.1
-    target_spill_rate: float = (
-        0.25  # Target probability for (k+1)th KC (0.0 = disabled)
-    )
+    # KL-Sparse: per-slot Bernoulli KL against length-adaptive target ρ
+    kl_sparse_weight: float = 0.00005  # EXPERIMENT: 5x sparsity, no entropy
+    kl_target_rho: float = 0.2  # EXPERIMENT: relaxed target ~20% activation rate
+    rho_length_scale: str = "sqrt"  # "none", "sqrt", "log"
+    # Covariance penalty: penalizes off-diagonal KC correlations for orthogonality
+    cov_penalty_weight: float = 5.0  # EXPERIMENT: cov5 comparison run
     freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
-    diversity_weight_thawed: float = 0.4
+    diversity_weight_thawed: float = (
+        0.0  # EXPERIMENT: zeroed out to observe natural KC behavior (was 0.4)
+    )
     diversity_eps: float = 1e-9
     diversity_warmup_epochs: int = 0
 
-    # Load Balancing
-    lb_weight: float = 0.0
-    lb_weight_thawed: float = 0.1
+    # Per-probability entropy penalty: pushes each p_i toward 0 or 1
+    entropy_weight: float = 0.0  # EXPERIMENT: off, testing sparsity-only
 
     # Coverage Loss (encourage all KC logits to be used / follow Zipf)
     coverage_weight: float = 0.0  # Start at 0, can enable after diversity is working
     coverage_weight_thawed: float = (
-        0.1  # Weight when encoder is thawed (comparable to load_bal)
+        0.0  # EXPERIMENT: zeroed out to observe natural KC behavior (was 0.1)
     )
     coverage_mode: str = "zipf"  # "threshold" (legacy) or "zipf"
     # Minimum probability threshold for a KC logit to be considered "used".
@@ -117,7 +120,9 @@ class KCConfig:
     coverage_zipf_eps: float = 1e-6  # Numerical stability for KL
 
     # Collapse Prevention
-    collapse_weight_thawed: float = 10.0
+    collapse_weight_thawed: float = (
+        0.0  # EXPERIMENT: zeroed out to observe natural KC behavior (was 10.0)
+    )
 
     # Prior KC Exclusivity removed (prior losses now handled by style classifier)
 
@@ -129,11 +134,11 @@ class KCConfig:
 
     # Dynamic Training Constraints
     entropy_floor: float = 0.95
-    # Dynamic Training Constraints
-    kl_cap: float = 0.05
 
     # Saturation Penalty
-    sat_weight: float = 1.0
+    sat_weight: float = (
+        0.0  # EXPERIMENT: zeroed out to observe natural KC behavior (was 1.0)
+    )
 
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0

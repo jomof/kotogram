@@ -19,9 +19,9 @@ class KCTrainerTestBase(unittest.TestCase):
             learning_rate=0.001,
         )
         self.kc_config = KCConfig(
-            sparsity_weight=1.0,
+            kl_sparse_weight=1.0,
             diversity_weight=0.1,
-            lb_weight=0.1,
+            entropy_weight=0.0,
             temperature_thawed=1.0,
         )
 
@@ -35,13 +35,6 @@ class KCTrainerTestBase(unittest.TestCase):
         self.model.config.kc_temperature = 1.0
         self.model.config.kc_vocab_size = 100
         self.model.config.kc_target_specs = {"test_target": 10}
-        self.model.config.kc_topk = 8
-        # K-Budget params for adaptive k_budget computation
-        self.model.config.kc_alpha_short = 0.40
-        self.model.config.kc_alpha_long = 0.55
-        self.model.config.kc_long_threshold = 20
-        self.model.config.kc_min_k = 2
-        self.model.config.kc_max_k_long = 16
 
         # Mock head parameters
         self.model.kc_head.linear.weight = nn.Parameter(torch.randn(10, 10))
@@ -91,9 +84,6 @@ class KCTrainerTestBase(unittest.TestCase):
                 batch_size, vocab_size, requires_grad=True
             ),
             "kc_probs": torch.rand(batch_size, vocab_size, requires_grad=True),
-            "sparse_activations": torch.rand(
-                batch_size, vocab_size, requires_grad=True
-            ),
-            "topk_vals": torch.rand(batch_size, 3, requires_grad=True),
-            "topk_inds": torch.randint(0, vocab_size, (batch_size, 3)),
+            "kc_probs_clean": torch.rand(batch_size, vocab_size),
+            "logits_usage": torch.randn(batch_size, vocab_size, requires_grad=True),
         }
