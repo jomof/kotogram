@@ -94,6 +94,8 @@ class StyleDataset(Dataset[Sample]):
         # Per-grammar-point priors (float32 vector; index == gp numeric id).
         # NaN means "unset, use defaults". Required when GP targets are present.
         self.gp_priors: torch.Tensor
+        # Per-GP label counts (int32 vector; pos + neg labels per GP).
+        self.gp_label_counts: torch.Tensor
 
         # Register Ragged Labels
         reg_ids_path = os.path.join(data_dir, f"{EXT_LABELS}_reg_ids.bin")
@@ -358,6 +360,14 @@ class StyleDataset(Dataset[Sample]):
                 ),
             }
 
+        self._init_gp_metadata(data_dir, kc_maps)
+
+        return kc_maps
+
+    def _init_gp_metadata(
+        self, data_dir: str, kc_maps: Dict[str, Dict[str, torch.Tensor]]
+    ) -> None:
+        """Load GP priors and label counts from binary files."""
         # Optional per-GP priors vector
         gp_priors_path = os.path.join(data_dir, "gp_priors.bin")
         if (
@@ -377,7 +387,17 @@ class StyleDataset(Dataset[Sample]):
             # No GP targets; keep an empty tensor.
             self.gp_priors = torch.empty((0,), dtype=torch.float32)
 
-        return kc_maps
+        # Optional per-GP label counts (pos + neg) for per-GP unlabeled weights
+        gp_label_counts_path = os.path.join(data_dir, "gp_label_counts.bin")
+        if self._check_exists(gp_label_counts_path):
+            self.gp_label_counts = self._load_tensor(
+                gp_label_counts_path,
+                shared=True,
+                size=self._get_size(gp_label_counts_path) // 4,
+                dtype=torch.int32,
+            )
+        else:
+            self.gp_label_counts = torch.empty((0,), dtype=torch.int32)
 
     def __len__(self) -> int:
         return self._len

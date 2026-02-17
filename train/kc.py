@@ -290,7 +290,7 @@ class KcPnuFamily(KcFamily):
     unlabeled data. Uses sparsity assumption: unlabeled treated as weak negatives.
     """
 
-    _loss_weight: float = 5.0
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -521,7 +521,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # DB-sourced families
     KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
-        _loss_weight=0.5,  # EXPERIMENT: reduced from 1.0 to lessen struct dominance
+        _loss_weight=300.0,  # EXPERIMENT: 60x boost to compensate batch_size normalization
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,

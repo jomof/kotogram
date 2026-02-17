@@ -84,7 +84,7 @@ class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
     # KL-Sparse: per-slot Bernoulli KL against length-adaptive target ρ
-    kl_sparse_weight: float = 0.00005  # EXPERIMENT: 5x sparsity, no entropy
+    kl_sparse_weight: float = 0.0001  # EXPERIMENT: 10x sparsity, no entropy
     kl_target_rho: float = 0.10  # EXPERIMENT: aligned with natural AvgP ~10% (was 0.2)
     rho_length_scale: str = "sqrt"  # "none", "sqrt", "log"
     # Covariance penalty: penalizes off-diagonal KC correlations for orthogonality
@@ -143,11 +143,8 @@ class KCConfig:
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
-    # Grammar Point (Multi-Label PNU) Loss
-    gp_unlabeled_weight: float = 1  # Weight for unlabeled positions
-    gp_pos_weight: float = 1.0  # Weight for labeled positives
-    gp_neg_weight: float = 1000.0  # Weight for labeled negatives
-    gp_default_prior: float = 1e-8  # Default prior for NULL grammar.prior (0.0-1.0)
+    # Grammar Point (Soft-Label) Loss
+    gp_unlabeled_weight: float = 5.0  # Global multiplier for per-GP unlabeled weights
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
