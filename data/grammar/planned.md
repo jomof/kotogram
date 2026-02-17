@@ -20,3 +20,5 @@ Noun より Noun (comparative)|Basic comparative particle marking the standard o
 医者にかかる (to see a doctor)|Set expression; かかる in the sense of receiving professional services; distinct from にかかっている (depend on) and 病気にかかる (catch illness)
 鍵がかかる (to be locked)|Physical state expression; かかる in the sense of a lock being engaged; distinct from other かかる patterns
 よりによって (of all things / of all times)|Expresses dismay or irony about an unfortunate coincidence; よりによって今日 = "of all days, today"; distinct from comparative より and 何より
+遠慮なく (without hesitation / feel free)|Adverbial set phrase inviting someone to act freely; 遠慮なくどうぞ; distinct from なくても (even if not) and なくて (causal negative)
+お構いなく (don't bother / don't mind me)|Polite set phrase declining attention or hospitality; どうぞお構いなく; distinct from なくても (even if not) and なくて (causal negative)

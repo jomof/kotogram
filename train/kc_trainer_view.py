@@ -1250,8 +1250,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 and acc.n_ex > 0
                 and summary.gp_priors is not None
             ):
-                # Observed frequency = positives / total examples (not supervised)
-                obs_freq = (acc.freq_by_label / acc.n_ex).cpu()  # (vocab_size,)
+                # Observed frequency = predicted-positive rate per GP
+                # (sigmoid(logit) > 0.5 count / total examples through accumulator).
+                # Matches the prior's definition: fraction of sentences the model
+                # predicts as containing this GP.
+                obs_freq = (acc.freq_by_label / acc.n_ex).cpu()
 
                 # Build prior vector, filling NaN/unset with gp_default_prior
                 priors = summary.gp_priors.detach().float().cpu()

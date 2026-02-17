@@ -3180,6 +3180,7 @@ class KCTrainer:
             accumulators=family_accumulators,
             gp_priors=gp_priors_summary,
             gp_default_prior=self.kc_config.gp_default_prior,
+            total_samples=total_samples_seen,
             canary_text=self._evaluate_canary() if not skip_metrics else "",
         )
 

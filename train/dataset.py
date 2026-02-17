@@ -191,42 +191,53 @@ class StyleDataset(Dataset[Sample]):
         perm = torch.randperm(len(pool))[:count]
         return {pool[i] for i in perm.tolist()}
 
+    def _fill_from_gp_then_pool(
+        self, gp_pool: Set[int], backfill_pool: List[int], target: int
+    ) -> Tuple[Set[int], Set[int]]:
+        """Use GP-labeled indices first (capped at target), then backfill from pool."""
+        if len(gp_pool) <= target:
+            fill = self._sample_pool(backfill_pool, target - len(gp_pool))
+            return gp_pool, fill
+        return set(self._sample_pool(sorted(gp_pool), target)), set()
+
     def _apply_balanced_sampling(self, sample_ratio: float) -> None:
         if sample_ratio == 1.0 or "gram" not in self.labels:
             return
 
-        current_labels = self.labels["gram"][self.indices]
-        gram_indices = self.indices[current_labels == 1]
-        ungram_indices = self.indices[current_labels == 0]
+        gram_indices = self.indices[self.labels["gram"][self.indices] == 1]
+        gram_set = set(gram_indices.tolist())
+        all_set = set(self.indices.tolist())
 
         target_gram = min(
             int(gram_indices.numel() * sample_ratio), int(gram_indices.numel())
         )
-        target_ungram = min(target_gram, int(ungram_indices.numel()))
+        target_ungram = min(target_gram, len(all_set) - len(gram_set))
 
-        # GP-aware stratified selection
-        gp_selected, n_unique_gps = self._select_gp_labeled_sentences()
+        # GP-aware stratified selection (full pool, uncapped by ratio)
+        gp_all, _ = self._select_gp_labeled_sentences()
+        gp_all_gram = {i for i in gp_all if int(self.labels["gram"][i].item()) == 1}
 
-        # Split GP-selected into gram/ungram
-        gp_gram = {i for i in gp_selected if int(self.labels["gram"][i].item()) == 1}
-
-        # Fill remaining quota from non-GP-labeled sentences
-        gram_fill = self._sample_pool(
-            sorted(set(gram_indices.tolist()) - gp_selected),
-            target_gram - len(gp_gram),
-        )
-        ungram_fill = self._sample_pool(
-            sorted(set(ungram_indices.tolist()) - gp_selected),
-            target_ungram - len(gp_selected - gp_gram),
+        # Cap GP-gram to target; if GP exceeds target, subsample
+        gp_gram, gram_fill = self._fill_from_gp_then_pool(
+            gp_all_gram, sorted(gram_set - gp_all), target_gram
         )
 
-        final_indices = sorted(gp_selected | gram_fill | ungram_fill)
+        # Same for ungrammatic
+        gp_ungram, ungram_fill = self._fill_from_gp_then_pool(
+            gp_all - gp_all_gram,
+            sorted(all_set - gram_set - gp_all),
+            target_ungram,
+        )
+
+        final_indices = sorted(gp_gram | gram_fill | gp_ungram | ungram_fill)
 
         if self.verbose:
             print(
                 f"Sampling {sample_ratio:.1%}: "
-                f"{len(gp_selected)} GP-labeled ({n_unique_gps} GPs) + "
-                f"{len(gram_fill)} gram + {len(ungram_fill)} ungram = "
+                f"{len(gp_gram)} GP-gram + {len(gram_fill)} gram + "
+                f"{len(gp_ungram)} GP-ungram + {len(ungram_fill)} ungram = "
+                f"{len(gp_gram) + len(gram_fill)} gram + "
+                f"{len(gp_ungram) + len(ungram_fill)} ungram = "
                 f"{len(final_indices)} total"
             )
 

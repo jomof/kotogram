@@ -137,7 +137,7 @@ class FamilyAccumulator:
     saw_valid_mask: bool = False
     loss_by_label: Optional[torch.Tensor] = None  # Running sum of loss per label
     freq_by_label: Optional[torch.Tensor] = (
-        None  # Running sum of positive count per label
+        None  # Running sum of predicted-positive count per label (sigmoid > 0.5)
     )
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
@@ -234,13 +234,15 @@ class FamilyAccumulator:
                 else:
                     self.loss_by_label += loss_by_label.detach()
 
-            # Accumulate per-label positive count for frequency calculation
-            if pos_mask is not None:
-                pos_per_label = pos_mask.float().sum(dim=0)
-                if self.freq_by_label is None:
-                    self.freq_by_label = pos_per_label.detach().clone()
-                else:
-                    self.freq_by_label += pos_per_label.detach()
+            # Accumulate per-label predicted-positive count.
+            # freq_by_label = count of predictions with sigmoid(logit) > 0.5,
+            # matching the prior's definition: fraction of sentences the model
+            # predicts as positive.  Divide by n_ex in the view to get the rate.
+            pred_pos_per_label = (logits > 0).float().sum(dim=0)
+            if self.freq_by_label is None:
+                self.freq_by_label = pred_pos_per_label.detach().clone()
+            else:
+                self.freq_by_label += pred_pos_per_label.detach()
 
     def median_pred_pos_on_pos(self) -> Optional[float]:
         """Median predicted positives per positive example (epoch-level)."""
@@ -589,6 +591,7 @@ class KcEpochSummary:
     # Optional per-GP priors vector used for printing curate hints (NaN => unset/default).
     gp_priors: Optional[torch.Tensor] = None
     gp_default_prior: float = 1e-8
+    total_samples: int = 0  # Total examples processed in epoch (for frequency calc)
     # Canary sentence evaluation text (displayed in Bin report's 1-3 row)
     canary_text: str = ""
 

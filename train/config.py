@@ -85,7 +85,7 @@ class KCConfig:
 
     # KL-Sparse: per-slot Bernoulli KL against length-adaptive target ρ
     kl_sparse_weight: float = 0.00005  # EXPERIMENT: 5x sparsity, no entropy
-    kl_target_rho: float = 0.2  # EXPERIMENT: relaxed target ~20% activation rate
+    kl_target_rho: float = 0.10  # EXPERIMENT: aligned with natural AvgP ~10% (was 0.2)
     rho_length_scale: str = "sqrt"  # "none", "sqrt", "log"
     # Covariance penalty: penalizes off-diagonal KC correlations for orthogonality
     cov_penalty_weight: float = 5.0  # EXPERIMENT: cov5 comparison run
