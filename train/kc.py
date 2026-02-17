@@ -521,7 +521,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # DB-sourced families
     KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
-        _loss_weight=300.0,  # EXPERIMENT: 60x boost to compensate batch_size normalization
+        _loss_weight=5.0,  # EXPERIMENT: boosted to give GP learning priority over struct
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,

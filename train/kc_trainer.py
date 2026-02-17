@@ -142,7 +142,6 @@ class KCTrainer:
 
         # Optional per-grammar-point priors -> per-label loss weights
         self._gp_prior_tensor: Optional[torch.Tensor] = None
-        self._gp_unlabeled_weights: Optional[torch.Tensor] = None
         self._gp_computed_default_prior: float = 1e-8  # Overwritten by median in _init
         self._init_gp_prior_weights()
 
@@ -400,19 +399,17 @@ class KCTrainer:
         vocab_size: int,
         unlabeled_weight: float = 1.0,
         priors: Optional[torch.Tensor] = None,
-        per_gp_unlabeled_weights: Optional[torch.Tensor] = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """Multi-label soft-label loss for grammar points.
 
         Uses soft targets derived from per-GP priors for unlabeled positions:
-        - Labeled positive: target = 1.0, weight = 1.0
-        - Labeled negative: target = 0.0, weight = 1.0
-        - Unlabeled: target = prior[GP], weight = unlabeled_weight
+        - Labeled positive: target = 1.0
+        - Labeled negative: target = 0.0
+        - Unlabeled: target = prior[GP]
 
-        The prior encodes the expected population frequency of each GP.
-        The model is trained to predict the prior on unlabeled data and
-        hard labels on labeled data, learning features from the labeled
-        signal while maintaining calibrated base rates from the prior.
+        Labeled and unlabeled losses are normalized separately by their own
+        sample counts, making the loss invariant to dataset size. The
+        unlabeled_weight parameter directly controls the balance.
 
         Args:
             logits: (B, vocab_size) logits from KC decoder
@@ -421,11 +418,9 @@ class KCTrainer:
             neg_ids: (B, max_neg) negative grammar point IDs
             neg_mask: (B, max_neg) mask for valid negative IDs
             vocab_size: number of grammar points (1374)
-            unlabeled_weight: global multiplier for unlabeled positions (default: 1.0)
+            unlabeled_weight: weight for unlabeled loss relative to labeled (default: 1.0)
             priors: (vocab_size,) per-GP prior probabilities; if None, unlabeled
                     positions use target=0.0 (equivalent to prior=0 everywhere)
-            per_gp_unlabeled_weights: (vocab_size,) per-GP weights computed as
-                    n_labeled_i / n_unlabeled_i; if None, uses unlabeled_weight uniformly
 
         Returns:
             Tuple[torch.Tensor, torch.Tensor]: (total_loss, loss_by_label)
@@ -445,8 +440,9 @@ class KCTrainer:
         valid_neg = neg_ids.clamp(0, vocab_size - 1)
         labeled_neg.scatter_(1, valid_neg, neg_mask.float())
 
-        # Unlabeled mask: positions with no label
-        unlabeled_mask = (1.0 - labeled_pos - labeled_neg).clamp(0, 1)
+        # Labeled and unlabeled masks
+        labeled_mask = labeled_pos + labeled_neg
+        unlabeled_mask = (1.0 - labeled_mask).clamp(0, 1)
 
         # Build soft targets:
         #   labeled_pos → 1.0, labeled_neg → 0.0, unlabeled → prior[GP]
@@ -456,23 +452,21 @@ class KCTrainer:
         else:
             targets = labeled_pos  # unlabeled and neg both → 0.0
 
-        # Build per-position weights:
-        #   labeled (pos or neg) → 1.0, unlabeled → unlabeled_weight * per_gp_weight
-        labeled_mask = labeled_pos + labeled_neg
-        if per_gp_unlabeled_weights is not None:
-            gp_w = per_gp_unlabeled_weights.to(device=device, dtype=logits.dtype)
-            weights = (
-                labeled_mask + (unlabeled_weight * gp_w).unsqueeze(0) * unlabeled_mask
-            )
-        else:
-            weights = labeled_mask + unlabeled_weight * unlabeled_mask
-
         # Single BCE pass with soft targets
         bce = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
-        weighted_bce = bce * weights  # (B, vocab_size)
 
-        # Normalize per GP by batch size (NOT weight sum, which cancels out the weights)
-        loss_per_gp = weighted_bce.sum(dim=0) / batch_size
+        # Normalize labeled and unlabeled separately by their own counts.
+        # This makes the loss invariant to dataset size: each component is
+        # a per-sample mean, regardless of how many samples are in the dataset.
+        labeled_bce = (bce * labeled_mask).sum(dim=0)
+        labeled_count = labeled_mask.sum(dim=0).clamp_min(1.0)
+        labeled_loss = labeled_bce / labeled_count
+
+        unlabeled_bce = (bce * unlabeled_mask).sum(dim=0)
+        unlabeled_count = unlabeled_mask.sum(dim=0).clamp_min(1.0)
+        unlabeled_loss = unlabeled_bce / unlabeled_count
+
+        loss_per_gp = labeled_loss + unlabeled_weight * unlabeled_loss
 
         # loss_by_label for diagnostics/reporting
         loss_by_label = loss_per_gp.clone()
@@ -487,7 +481,7 @@ class KCTrainer:
 
         Builds a (gp_vocab_size,) prior tensor where each entry is the
         expected population frequency for that GP.  NaN/unset priors are
-        filled with the median of the finite priors.  The tensor is stored
+        filled with the configured gp_default_prior.  The tensor is stored
         on CPU and moved to device per-batch inside the loss function.
         """
         gp_vocab_size = int(
@@ -510,9 +504,8 @@ class KCTrainer:
         if not finite.any():
             return
 
-        # Median of finite priors is the default for unset GPs.
-        pri_ref = float(pri[finite].median().item())
-        pri_ref = max(pri_ref, 1e-6)
+        # Use configured default prior for unset GPs.
+        pri_ref = max(self.kc_config.gp_default_prior, 1e-6)
         self._gp_computed_default_prior = pri_ref
 
         if (~finite).any():
@@ -520,14 +513,6 @@ class KCTrainer:
             pri[~finite] = pri_ref
 
         self._gp_prior_tensor = pri
-
-        # Compute per-GP unlabeled weights: w_i = n_labeled_i / n_unlabeled_i
-        label_counts = self.dataset.gp_label_counts
-        if label_counts.numel() >= gp_vocab_size:
-            counts = label_counts[:gp_vocab_size].float().cpu()
-            n_total = float(len(self.dataset))
-            n_unlabeled = (n_total - counts).clamp_min(1.0)
-            self._gp_unlabeled_weights = counts / n_unlabeled
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -1557,7 +1542,6 @@ class KCTrainer:
                                 vocab_size=vocab_size,
                                 unlabeled_weight=self.kc_config.gp_unlabeled_weight,
                                 priors=self._gp_prior_tensor,
-                                per_gp_unlabeled_weights=self._gp_unlabeled_weights,
                             )
 
                             # Apply per-family loss weight for balanced training

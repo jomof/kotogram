@@ -144,7 +144,8 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (Soft-Label) Loss
-    gp_unlabeled_weight: float = 6.0  # Global multiplier for per-GP unlabeled weights
+    gp_unlabeled_weight: float = 1.0  # Balance between labeled and unlabeled GP signal
+    gp_default_prior: float = 0.014  # Default prior for GPs without explicit priors
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples

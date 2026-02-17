@@ -168,57 +168,6 @@ def _load_gp_priors_from_db(db_path: str) -> List[float]:
         conn.close()
 
 
-def _load_gp_label_counts_from_db(db_path: str) -> List[int]:
-    """Load per-grammar-point label counts (pos + neg) from corpus.db.
-
-    Queries the grammar_stats view for total labeled examples per GP.
-
-    Returns:
-        A dense int vector where index == gp numeric id (e.g. gp0123 -> 123),
-        value is pos_count + neg_count, and unlabeled GPs have 0.
-    """
-    if not os.path.exists(db_path):
-        raise FileNotFoundError(f"Database not found at {db_path}")
-
-    conn = sqlite3.connect(db_path)
-    try:
-        c = conn.cursor()
-        # Determine max numeric gp id from the grammar dictionary.
-        c.execute("SELECT id FROM grammar")
-        ids = [row[0] for row in c.fetchall()]
-        max_id = 0
-        for gid_str in ids:
-            if isinstance(gid_str, str) and gid_str.startswith("gp"):
-                num = gid_str[2:]
-                if num.isdigit():
-                    max_id = max(max_id, int(num))
-
-        counts: List[int] = [0] * (max_id + 1)
-
-        # Query grammar_stats view for pos_count + neg_count per GP.
-        # The view may not exist in minimal test DBs.
-        c.execute(
-            "SELECT count(*) FROM sqlite_master "
-            "WHERE type IN ('table','view') AND name='grammar_stats'"
-        )
-        if c.fetchone()[0] == 0:
-            return counts
-
-        c.execute("SELECT gp_id, pos_count, neg_count FROM grammar_stats")
-        for gid_str, pos_count, neg_count in c.fetchall():
-            if not isinstance(gid_str, str) or not gid_str.startswith("gp"):
-                continue
-            num = gid_str[2:]
-            if not num.isdigit():
-                continue
-            idx = int(num)
-            counts[idx] = int(pos_count) + int(neg_count)
-
-        return counts
-    finally:
-        conn.close()
-
-
 def _validate_register_mapping_against_db(db_path: str) -> None:
     """Validate that corpus.db register table matches kotogram.constants mapping.
 
@@ -1171,7 +1120,6 @@ def main() -> None:
 
     all_rows: List[Any] = []
     gp_priors_vec: Optional[List[float]] = None
-    gp_label_counts_vec: Optional[List[int]] = None
 
     if args.source_db:
         # DB PATH: fast loading of golden labels.
@@ -1185,11 +1133,6 @@ def main() -> None:
         console.print(
             f"[green]✓[/green] Loaded grammar point priors for indices 0..{len(gp_priors_vec) - 1}"
         )
-
-        # Per-GP label counts (pos + neg) for computing per-GP unlabeled weights
-        gp_label_counts_vec = _load_gp_label_counts_from_db(args.source_db)
-        n_labeled_gps = sum(1 for c in gp_label_counts_vec if c > 0)
-        console.print(f"[green]✓[/green] Loaded label counts for {n_labeled_gps} GPs")
 
         conn = sqlite3.connect(args.source_db)
         c = conn.cursor()
@@ -1489,16 +1432,6 @@ def main() -> None:
         write_float_array(
             os.path.join(dataset_cache_dir, "gp_priors.bin"),
             gp_priors_vec,
-        )
-
-        # Write per-GP label counts for computing per-GP unlabeled weights
-        console.print("  Writing grammar point label counts...")
-        if gp_label_counts_vec is None:
-            raise RuntimeError("gp_label_counts_vec is missing unexpectedly.")
-        write_int_array(
-            os.path.join(dataset_cache_dir, "gp_label_counts.bin"),
-            gp_label_counts_vec,
-            "i",
         )
 
     # 5. Merge KC Targets.

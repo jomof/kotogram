@@ -94,8 +94,6 @@ class StyleDataset(Dataset[Sample]):
         # Per-grammar-point priors (float32 vector; index == gp numeric id).
         # NaN means "unset, use defaults". Required when GP targets are present.
         self.gp_priors: torch.Tensor
-        # Per-GP label counts (int32 vector; pos + neg labels per GP).
-        self.gp_label_counts: torch.Tensor
 
         # Register Ragged Labels
         reg_ids_path = os.path.join(data_dir, f"{EXT_LABELS}_reg_ids.bin")
@@ -386,18 +384,6 @@ class StyleDataset(Dataset[Sample]):
         else:
             # No GP targets; keep an empty tensor.
             self.gp_priors = torch.empty((0,), dtype=torch.float32)
-
-        # Optional per-GP label counts (pos + neg) for per-GP unlabeled weights
-        gp_label_counts_path = os.path.join(data_dir, "gp_label_counts.bin")
-        if self._check_exists(gp_label_counts_path):
-            self.gp_label_counts = self._load_tensor(
-                gp_label_counts_path,
-                shared=True,
-                size=self._get_size(gp_label_counts_path) // 4,
-                dtype=torch.int32,
-            )
-        else:
-            self.gp_label_counts = torch.empty((0,), dtype=torch.int32)
 
     def __len__(self) -> int:
         return self._len
