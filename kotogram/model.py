@@ -61,6 +61,7 @@ class ModelConfigDict(TypedDict):
 
     kc_vocab_size: int
     kc_temperature: float
+    kc_threshold: float
 
 
 @dataclass
@@ -88,6 +89,7 @@ class ModelConfig:
     # KC Learning configuration (KC is always enabled)
     kc_vocab_size: int = 1024  # Size of the concept vocabulary
     kc_temperature: float = 1.0  # Sparsification temperature
+    kc_threshold: float = 0.5  # Adaptive KC activation threshold
 
     def to_dict(self) -> ModelConfigDict:
         return {
@@ -106,6 +108,7 @@ class ModelConfig:
             "pooling": self.pooling,
             "kc_vocab_size": self.kc_vocab_size,
             "kc_temperature": self.kc_temperature,
+            "kc_threshold": self.kc_threshold,
         }
 
     @classmethod

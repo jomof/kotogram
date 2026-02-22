@@ -121,6 +121,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.profile]/training-profile.txt MODIFIED",
                 "[history]/config.json MODIFIED",
                 "[models]/style/model.pt MAYBE-MODIFIED",
+                "[models]/style/model.json MAYBE-MODIFIED",
                 "[models]/style/continuation.json MODIFIED",
             ]
 

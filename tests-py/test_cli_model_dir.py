@@ -42,6 +42,7 @@ class TestCliModelDir(unittest.TestCase):
         mock_model = MagicMock()
         # KC is always enabled; mock predict_kcs_top to return list with one empty element per batch
         mock_model.predict_kcs_top.return_value = [[]]  # One batch sample, no KCs
+        mock_model.config.kc_threshold = 0.5  # Adaptive threshold default
         mock_tokenizer = MagicMock()
         mock_load_model.return_value = (mock_model, mock_tokenizer)
 

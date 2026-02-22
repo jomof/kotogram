@@ -25,6 +25,8 @@ from train.types import (
 class KCTrainerView(Protocol):
     """Interface for KC training visualization and logging."""
 
+    kc_threshold: float
+
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int
     ) -> None: ...
@@ -100,6 +102,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
     """Default implementation of KCTrainerView that prints diagnostic tables."""
 
     def __init__(self) -> None:  # pylint: disable=attribute-defined-outside-init
+        self.kc_threshold: float = 0.5  # Adaptive threshold (persists across epochs)
         self.reset_epoch_stats()
         # Store previous epoch family stats for trajectory arrows
         self.prev_family_stats: Dict[str, Dict[str, float]] = {}
@@ -111,6 +114,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Store previous epoch spill stats for bin trajectory arrows
         self.prev_bin_spill: Dict[str, float] = {}
         self.prev_bin_kth: Dict[str, float] = {}
+        self.prev_kc_threshold: Optional[float] = None  # Previous epoch's threshold
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
@@ -145,6 +149,20 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.sharp0_count: int = 0  # prob < 0.1 (committed "off")
         self.fuzzy_count: int = 0  # prob in [0.2, 0.8]
         self.alive_prob_count: int = 0  # total alive KC-prob evaluations
+
+        # Threshold sweep accumulators (for computing next epoch's threshold)
+        self.max_prob_per_kc: Optional[torch.Tensor] = None  # (vocab_size,) running max
+        self.threshold_candidates: List[float] = [
+            round(0.50 + i * 0.01, 2)
+            for i in range(50)  # 0.50..0.99
+        ]
+        self.threshold_hit_counts: Dict[float, int] = {
+            t: 0 for t in self.threshold_candidates
+        }
+        self.threshold_k_sums: Dict[float, float] = {
+            t: 0.0 for t in self.threshold_candidates
+        }
+        self.threshold_n_sentences: int = 0
 
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int
@@ -244,8 +262,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
         # Dead KC tracking: update per-slot ever-above/below masks FIRST
         # so we can exclude stuck-on KCs from K/Kth/Spill/Gap
-        batch_above = (kc_probs > 0.5).any(dim=0)  # [vocab_size] on device
-        batch_below = (kc_probs <= 0.5).any(dim=0)  # [vocab_size] on device
+        thresh = self.kc_threshold
+        batch_above = (kc_probs > thresh).any(dim=0)  # [vocab_size] on device
+        batch_below = (kc_probs <= thresh).any(dim=0)  # [vocab_size] on device
         if self.ever_above_half is None:
             self.ever_above_half = batch_above.cpu()
             self.ever_below_half = batch_below.cpu()
@@ -255,28 +274,28 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             self.ever_below_half = self.ever_below_half | batch_below.cpu()
 
         # Mask out dead KCs for K/Kth/Spill/Gap
-        # Alive = seen above 0.5 at least once AND below 0.5 at least once (discriminates)
+        # Alive = seen above threshold at least once AND below at least once
         # Dead-0s (stuck off) and dead-1s (stuck on) are excluded.
         alive_mask = (self.ever_below_half & self.ever_above_half).to(kc_probs.device)
         kc_probs_masked = kc_probs * alive_mask.unsqueeze(0)  # [B, vocab_size]
 
-        # Compute K (count of KCs > 0.5), Kth, Spill, Gap per example
+        # Compute K (count of KCs > threshold), Kth, Spill, Gap per example
         # Using masked probs (dead-1 KCs excluded)
         probs_sorted, _ = torch.sort(kc_probs_masked, dim=1, descending=True)
         alive_count = int(alive_mask.sum().item())
 
-        k_counts = (kc_probs_masked > 0.5).float().sum(dim=1).cpu().tolist()
+        k_counts = (kc_probs_masked > thresh).float().sum(dim=1).cpu().tolist()
         spill_probs = []
         kth_probs = []
         gaps = []
         for i in range(batch_size):
             k = int(k_counts[i])
-            # Kth: prob of last KC above 0.5 (index k-1 in sorted)
+            # Kth: prob of last KC above threshold (index k-1 in sorted)
             if k >= 1:
                 kth = probs_sorted[i, k - 1].item()
             else:
                 kth = 0.0
-            # Spill: prob of first KC below 0.5 (index k in sorted)
+            # Spill: prob of first KC below threshold (index k in sorted)
             if k < alive_count:
                 spill = probs_sorted[i, k].item()
             else:
@@ -326,6 +345,18 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             elif random.random() < 0.1:
                 idx = random.randint(0, 999)
                 self.bin_k_reservoirs[label][idx] = k
+
+        # Threshold sweep: accumulate stats for adaptive threshold computation
+        batch_max = kc_probs.max(dim=0).values.cpu()
+        if self.max_prob_per_kc is None:
+            self.max_prob_per_kc = batch_max
+        else:
+            self.max_prob_per_kc = torch.max(self.max_prob_per_kc, batch_max)
+        self.threshold_n_sentences += batch_size
+        for t in self.threshold_candidates:
+            k_per_ex = (kc_probs > t).float().sum(dim=1)  # (B,)
+            self.threshold_k_sums[t] += float(k_per_ex.sum().item())
+            self.threshold_hit_counts[t] += int((k_per_ex > 0).sum().item())
 
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Display abbreviated summary when metrics are skipped."""
@@ -489,15 +520,16 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_sizing = Table(
             show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
         )
+        thresh_str = f"{self.kc_threshold:.2f}"
         table_sizing.add_column("Bin")
         table_sizing.add_column("N")
         table_sizing.add_column("Len")
-        table_sizing.add_column("K(Avg|P10/50/90)")  # Count of KCs > 0.5
-        table_sizing.add_column("Hit%")  # % of sentences with K≥1
-        table_sizing.add_column("Kth")  # Prob of Kth KC (last above 0.5), K≥1 only
-        table_sizing.add_column("Spill")  # Prob of (K+1)th KC, K≥1 only
-        table_sizing.add_column("Gap")  # Kth - Spill (boundary sharpness), K≥1 only
-        table_sizing.add_column("Canary")  # Sentinel sentence diagnostic
+        table_sizing.add_column(f"K@{thresh_str}")
+        table_sizing.add_column("Hit%")
+        table_sizing.add_column("Kth")
+        table_sizing.add_column("Spill")
+        table_sizing.add_column("Gap")
+        table_sizing.add_column("Canary")
 
         sorted_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
 
@@ -582,7 +614,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"[{c_kth}]{s.kth_prob_mean:.3f}[/{c_kth}]{kth_arrow}",
                 f"[{c_spill}]{s.spill_prob_mean:.3f}[/{c_spill}]{spill_arrow}",
                 f"[{c_gap}]{s.gap_mean:.3f}[/{c_gap}]",
-                summary.canary_text if s.bin_label == "1-3" else "",
+                summary.canary_texts.get(s.bin_label, ""),
             )
 
         # Store current spill values for next epoch trajectory arrows
@@ -650,6 +682,43 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"  [{c_dead}]Dead KCs: {dead_total}/{vocab_size} "
                 f"(0s={dead_0} 1s={dead_1} alive={alive})[/{c_dead}]"
             )
+
+        # Adaptive threshold computation
+        if self.max_prob_per_kc is not None and self.threshold_n_sentences > 0:
+            n_sent = self.threshold_n_sentences
+            vocab_size_t = self.max_prob_per_kc.size(0)
+            # Find highest threshold with Hit% >= 99.9%
+            new_threshold = self.kc_threshold  # fallback to current
+            for t in sorted(self.threshold_candidates, reverse=True):
+                hit_pct = self.threshold_hit_counts[t] / n_sent
+                if hit_pct >= 0.999:
+                    new_threshold = t
+                    break
+            # Compute stats for the chosen new threshold
+            new_alive = int((self.max_prob_per_kc > new_threshold).sum().item())
+            new_k_avg = self.threshold_k_sums.get(new_threshold, 0.0) / max(1, n_sent)
+            new_hit_pct = self.threshold_hit_counts.get(new_threshold, 0) / max(
+                1, n_sent
+            )
+
+            # Print threshold line with trajectory arrow
+            old_t = self.prev_kc_threshold
+            if old_t is not None and abs(new_threshold - old_t) > 0.001:
+                arrow = "[green]↑[/green]" if new_threshold > old_t else "[red]↓[/red]"
+                t_str = f"{old_t:.2f}→{new_threshold:.2f}{arrow}"
+            else:
+                t_str = f"{new_threshold:.2f}"
+            console.print(
+                f"  Threshold: {t_str}"
+                f" (alive={new_alive}/{vocab_size_t},"
+                f" K_avg={new_k_avg:.1f},"
+                f" Hit={new_hit_pct:.1%})"
+            )
+
+            # Update for next epoch
+            self.prev_kc_threshold = self.kc_threshold
+            self.kc_threshold = new_threshold
+            summary.kc_threshold = new_threshold
 
         # BLOCK 2: Activations
         # Compute percentiles from self.pmax_reservoir

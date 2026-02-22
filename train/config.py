@@ -85,7 +85,7 @@ class KCConfig:
 
     # KL-Sparse: per-slot Bernoulli KL against length-adaptive target ρ
     kl_sparse_weight: float = 0.0001  # EXPERIMENT: 10x sparsity, no entropy
-    kl_target_rho: float = 0.05  # EXPERIMENT: aligned with natural AvgP ~5% (was 0.10)
+    kl_target_rho: float = 0.01  # EXPERIMENT: aligned with natural AvgP ~5% (was 0.10)
     rho_length_scale: str = "sqrt"  # "none", "sqrt", "log"
     # Covariance penalty: penalizes off-diagonal KC correlations for orthogonality
     cov_penalty_weight: float = 5.0  # EXPERIMENT: cov5 comparison run
@@ -144,8 +144,9 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (Soft-Label) Loss
-    gp_unlabeled_weight: float = 1.0  # Balance between labeled and unlabeled GP signal
-    gp_default_prior: float = 0.014  # Default prior for GPs without explicit priors
+    gp_unlabeled_weight: float = 0.2  # Balance between labeled and unlabeled GP signal
+    gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
+    kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples

@@ -275,7 +275,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
             # Convert list of (int, float) tuples to {int: float} dict
             # Only include KCs with probability > 50%
             kc_top_sample = {
-                int(k_id): prob for k_id, prob in kc_top_results[i] if prob > 0.5
+                int(k_id): prob
+                for k_id, prob in kc_top_results[i]
+                if prob > model.config.kc_threshold
             }
 
         # Extract grammar point probabilities as a map: "gpXXXX" -> probability

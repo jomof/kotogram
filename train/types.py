@@ -592,8 +592,9 @@ class KcEpochSummary:
     gp_priors: Optional[torch.Tensor] = None
     gp_default_prior: float = 1e-8
     total_samples: int = 0  # Total examples processed in epoch (for frequency calc)
-    # Canary sentence evaluation text (displayed in Bin report's 1-3 row)
-    canary_text: str = ""
+    # Per-bin canary sentence evaluation text (bin_label -> summary string)
+    canary_texts: Dict[str, str] = field(default_factory=dict)
+    kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
 
 
 @dataclass

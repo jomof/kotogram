@@ -649,10 +649,10 @@ class KCTrainer:
 
         return bce
 
-    def _evaluate_canary(self) -> str:
-        """Evaluate canary sentence '食べます' and return compact summary string."""
+    def _evaluate_canary(self, sentence: str) -> str:
+        """Evaluate a canary sentence and return compact summary string."""
         tok = self.dataset.tokenizer
-        encoded = tok.encode("食べます")
+        encoded = tok.encode(sentence)
         seq_len = len(encoded[FEATURE_FIELDS[0]])
         field_inputs = {
             f"input_ids_{f}": torch.tensor(
@@ -674,7 +674,8 @@ class KCTrainer:
                 gumbel_scale=0.0,
             )
             kc_probs = outputs["kc_probs_clean"]
-            kc_count = int((kc_probs > 0.5).sum().item())
+            thresh = self.view.kc_threshold
+            kc_count = int((kc_probs > thresh).sum().item())
 
             target_logits = outputs["target_logits"]
 
@@ -699,7 +700,7 @@ class KCTrainer:
             if "grammar_point" in target_logits:
                 gp_logits = target_logits["grammar_point"][0]
                 gp_probs = torch.sigmoid(gp_logits)
-                for idx in torch.where(gp_probs > 0.5)[0].tolist():
+                for idx in torch.where(gp_probs > thresh)[0].tolist():
                     gp_list.append(f"gp{int(idx):04d}")
 
         if was_training:
@@ -709,7 +710,7 @@ class KCTrainer:
         gps_str = ",".join(gp_list[:8])
         if len(gp_list) > 8:
             gps_str += f"..+{len(gp_list) - 8}"
-        return f"食べます kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
+        return f"{sentence} kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
 
     # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
@@ -3084,7 +3085,12 @@ class KCTrainer:
             gp_priors=gp_priors_summary,
             gp_default_prior=self._gp_computed_default_prior,
             total_samples=total_samples_seen,
-            canary_text=self._evaluate_canary() if not skip_metrics else "",
+            canary_texts={
+                "1-3": self._evaluate_canary("食べます"),
+                "4-7": self._evaluate_canary("ああ、もう無理だ。"),
+            }
+            if not skip_metrics
+            else {},
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
@@ -3092,6 +3098,8 @@ class KCTrainer:
             self.view.on_kc_epoch_metrics_skipped(epoch, total_loss)
         else:
             self.view.on_kc_epoch_summary(epoch, summary)
+            # Propagate adaptive threshold to model config for inference
+            self.model.config.kc_threshold = summary.kc_threshold
 
         self.view.on_kc_epoch_end(
             epoch,

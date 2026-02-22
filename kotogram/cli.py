@@ -104,12 +104,16 @@ def cmd_grammar(args: argparse.Namespace) -> int:
     # Use to_json() then load/dump for pretty printing
     data = json.loads(result.to_json())
 
-    # Filter register_probs: only include >= 50% and round to 2 decimal places
+    # Get model's adaptive threshold for filtering
+    model, _ = _ANALYZER.load()
+    kc_thresh = model.config.kc_threshold
+
+    # Filter register_probs: only include >= threshold and round to 2 decimal places
     if "register_probs" in data and data["register_probs"]:
         data["register_probs"] = {
             name: round(prob, 2)
             for name, prob in data["register_probs"].items()
-            if prob >= 0.5
+            if prob >= kc_thresh
         }
 
     # Filter grammar_point_probs: only include >= 50%, round to 2 decimal places,
@@ -118,7 +122,7 @@ def cmd_grammar(args: argparse.Namespace) -> int:
         filtered = {
             gp_id: round(prob, 2)
             for gp_id, prob in data["grammar_point_probs"].items()
-            if prob >= 0.5
+            if prob >= kc_thresh
         }
         # Sort by probability descending
         data["grammar_point_probs"] = dict(

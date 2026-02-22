@@ -202,7 +202,7 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
 
         # Verify Block 1 Sizing Table Header
         # Verify Block 1 Sizing Table Header
-        self.assertRegex(output, r"Bin.*N.*Len.*K\(Avg\|P10/50/90\).*Kth.*Spill.*Gap")
+        self.assertRegex(output, r"Bin.*N.*Len.*K@.*Kth.*Spill.*Gap")
         # Verify some row content (e.g. 1-3 bin)
         # Note: bin logic depends on input length.
         # Mock batch had lengths 2, 10, 30.
