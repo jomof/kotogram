@@ -1,6 +1,5 @@
 grammar_point: 屋 (shop or occupation suffix)
 learn_before:
-  - Question-phrase+か (embedded question)
   - Verb[imperative] (imperative)
   - Verb[えば] (conditional)
   - Verb[よう] (volitional)
@@ -8,10 +7,7 @@ learn_before:
   - い-Adjective[み] (abstract quality)
   - ただの (just・only)
   - ちょっと (adverb)
-  - と (with)
-  - というより (rather than)
   - どこ (where)
-  - へ (directional particle)
   - 側 (side or flank)
   - 真上 (directly above)
   - 背面 (back surface spatial)
