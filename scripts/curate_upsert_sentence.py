@@ -487,12 +487,13 @@ def curate_upsert_batch(
     db_path: str = "data/corpus.db",
     allow_insert: bool = False,
     grammatic: Optional[int] = None,
-) -> None:
-    """Batch upsert sentences in a single transaction with pre-validation."""
+) -> Dict[str, int]:
+    """Batch upsert sentences in a single transaction with pre-validation.
+    Returns change_desc -> count for reporting."""
     # pylint: disable=too-many-positional-arguments, too-many-locals
     if not os.path.exists(db_path):
         console.print(f"[red]Database not found at {db_path}[/red]")
-        return
+        return {}
 
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys=ON")
@@ -608,6 +609,8 @@ def curate_upsert_batch(
             console.print("\n[bold]Change Report:[/bold]")
             for desc, count in change_stats.most_common():
                 console.print(f"  {count} sentences changed {desc}")
+
+        return dict(change_stats)
 
     finally:
         conn.close()

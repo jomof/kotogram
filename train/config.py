@@ -152,6 +152,7 @@ class KCConfig:
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
     formality_boost: float = 5.0  # Multiplier for |formality| > 0.25
     gender_boost: float = 50.0  # Multiplier for |gender| > 0.25 (was 15.0, increased for 96% neutral problem)
+    length_reweight: bool = True  # Reweight samples by inverse token-length frequency
 
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)
@@ -221,6 +222,10 @@ class TrainerConfig:
     # Runtime flags (from wrapper, not persisted to model)
     retrain: bool = False  # Start from scratch, ignore checkpoints
     sample_ratio: float = 1.0  # Data sampling ratio (1.0 = 100%)
+    ramp_step: float = (
+        0.0  # Adaptive ramp step as decimal (0.0 = disabled, 0.10 = +10%)
+    )
+    ramp_posp_threshold: float = 0.75  # GP PosP threshold to trigger ramp
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
 
@@ -252,6 +257,8 @@ class TrainerConfig:
             "kc_target_specs": {k.value: v for k, v in self.kc_target_specs.items()},
             "retrain": self.retrain,
             "sample_ratio": self.sample_ratio,
+            "ramp_step": self.ramp_step,
+            "ramp_posp_threshold": self.ramp_posp_threshold,
             "label_only": self.label_only,
             "report_only": self.report_only,
         }

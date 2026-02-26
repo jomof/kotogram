@@ -66,8 +66,6 @@ class KcFamilyId(str, Enum):
     GRAMMAR_POINT = "grammar_point"
     GENDER = "gender"
     FORMALITY = "formality"
-    GENDER_CLASS = "gender_class"  # Classification version (3 classes: -1, 0, +1)
-    FORMALITY_CLASS = "formality_class"  # Classification version (5 classes)
     REGISTER = (
         "register"  # Multi-label classification (14 registers, can have multiple)
     )
@@ -341,38 +339,6 @@ class KcMseFamily(KcFamily):
 
 
 @dataclass(frozen=True)
-class KcDbClassFamily(KcFamily):
-    """DB-sourced multi-class classification families (GENDER_CLASS, FORMALITY_CLASS)."""
-
-    _num_classes: int
-    _loss_weight: float = 1.0
-
-    @property
-    def is_sparse(self) -> bool:
-        return False  # Dense multi-class output
-
-    @property
-    def is_db_sourced(self) -> bool:
-        return True
-
-    @property
-    def feature_field(self) -> str:
-        return ""  # No tokenizer feature, targets from batch
-
-    @property
-    def is_slim_decoder(self) -> bool:
-        return True  # Experimental, not needed at inference
-
-    @property
-    def loss_weight(self) -> float:
-        return self._loss_weight
-
-    @property
-    def num_classes(self) -> int:
-        return self._num_classes
-
-
-@dataclass(frozen=True)
 class KcDbMultilabelFamily(KcFamily):
     """DB-sourced multi-label classification for REGISTER (multiple labels per sample)."""
 
@@ -525,22 +491,11 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,
-        _loss_weight=0.5,  # Original weight (not 100x)
+        _loss_weight=0.15,  # Deweighted to reduce formality/gender dominance in KC space
     ),
     KcFamilyId.FORMALITY: KcMseFamily(
         family_id=KcFamilyId.FORMALITY,
-        _loss_weight=0.5,  # Original weight (not 100x)
-    ),
-    # Classification versions
-    KcFamilyId.GENDER_CLASS: KcDbClassFamily(
-        family_id=KcFamilyId.GENDER_CLASS,
-        _num_classes=3,  # Masculine (-1), Neutral (0), Feminine (+1)
-        _loss_weight=1.0,
-    ),
-    KcFamilyId.FORMALITY_CLASS: KcDbClassFamily(
-        family_id=KcFamilyId.FORMALITY_CLASS,
-        _num_classes=5,  # Very Casual, Casual, Neutral, Formal, Very Formal
-        _loss_weight=1.0,
+        _loss_weight=0.15,  # Deweighted to reduce formality/gender dominance in KC space
     ),
     # Multi-label families
     KcFamilyId.REGISTER: KcDbMultilabelFamily(

@@ -16,6 +16,7 @@ class DummyDataset(StyleDataset):
         self.tokenizer.pad_id = 0
         # Add required attributes for style oversampling
         self.indices = torch.arange(10)
+        self.offsets = torch.arange(0, 110, 10, dtype=torch.long)
         self.labels = {
             "f_val": torch.zeros(10, dtype=torch.float32),
             "g_val": torch.zeros(10, dtype=torch.float32),

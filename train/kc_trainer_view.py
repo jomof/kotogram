@@ -16,6 +16,7 @@ from train.types import (
     KcDynSizingBinStats,
     KcEpochSummary,
     KCTrainingHistory,
+    LayerHealthStats,
     RunningLossComponents,
     TrainEpochResult,
     WorstSampleInfo,
@@ -94,6 +95,11 @@ class KCTrainerView(Protocol):
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
         pass
 
+    def on_ramp(
+        self, old_ratio: float, new_ratio: float, posp: float, threshold: float
+    ) -> None:
+        pass
+
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Called when metrics are skipped for early epochs."""
 
@@ -115,6 +121,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_bin_spill: Dict[str, float] = {}
         self.prev_bin_kth: Dict[str, float] = {}
         self.prev_kc_threshold: Optional[float] = None  # Previous epoch's threshold
+        self.prev_layer_health: Optional[LayerHealthStats] = None
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
@@ -245,7 +252,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             return "16-31"
         return "32+"
 
-    # pylint: disable=too-many-positional-arguments,too-many-locals
+    # pylint: disable=too-many-positional-arguments,too-many-locals,too-many-branches
     def on_kc_batch_stats(
         self,
         epoch: int,
@@ -358,13 +365,22 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             self.threshold_k_sums[t] += float(k_per_ex.sum().item())
             self.threshold_hit_counts[t] += int((k_per_ex > 0).sum().item())
 
+    def on_ramp(
+        self, old_ratio: float, new_ratio: float, posp: float, threshold: float
+    ) -> None:
+        console.print(
+            f"  [bold green]⬆ Data ramp:[/bold green] "
+            f"{old_ratio * 100:.1f}% → {new_ratio * 100:.1f}% "
+            f"(GP PosP={posp * 100:.1f}% >= {threshold * 100:.1f}%)"
+        )
+
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Display abbreviated summary when metrics are skipped."""
         console.print(
             f"[dim]KC EP{epoch + 1} (metrics skipped): loss={total_loss:.4f}[/dim]"
         )
 
-    # pylint: disable=too-many-locals,too-many-nested-blocks
+    # pylint: disable=too-many-locals,too-many-nested-blocks,too-many-branches
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
         # BLOCK 0: Loss breakdown
         lc = summary.loss_components
@@ -739,6 +755,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         act_stats.pmax_p90 = pmax_p90
         act_stats.pmax_p99 = pmax_p99
 
+        # BLOCK 2.5: Layer Health (Encoder Depth Diagnostics)
+        if summary.layer_health is not None:
+            self._render_layer_health(summary.layer_health)
+            self.prev_layer_health = summary.layer_health
+
         # BLOCK 3a: MSE Families (Regression Diagnostics)
         if summary.diagnostics.mse_families:
             table_mse = Table(
@@ -1081,8 +1102,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     " neutral=0.0, formal=0.5, v_formal=1.0"
                 ),
                 "grammatic": "# Values: ungrammatical=0.0, grammatical=1.0",
-                "gender_class": "# Labels: masc, neutral, fem",
-                "formality_class": "# Labels: v_casual, casual, neutral, formal, v_formal",
                 "register": (
                     "# Labels: comma-separated register tags"
                     " (e.g. sonkeigo, kenjogo, joseigo, etc.)"
@@ -1210,11 +1229,10 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                                     f"  {pos:>{pos_w}d}"
                                     f"  {neg:>{neg_w}d}  {name_str}\n"
                                 )
-                        # predicted_sample description after table
                         f.write(
-                            "# predicted_sample: 5 randomly sampled"
+                            "# predicted_sample: top 5 most confident"
                             " predicted gpXXXX IDs"
-                            " (no-prior GPs sampled first)\n"
+                            " (sorted by descending probability)\n"
                         )
                         f.write(
                             "loss\ttarget\tpredicted_count"
@@ -1222,36 +1240,14 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                         )
                         for ws in top_samples:
                             target_str = ws.target_labels or f"{ws.target:.4f}"
-                            # Sample 5 GPs, prioritizing no-prior
                             sampled_str = "none"
                             if ws.pred_labels and ws.pred_labels != "none":
-                                gp_ids = [
-                                    int(g.strip()[2:])
+                                parts = [
+                                    g.strip()
                                     for g in ws.pred_labels.split(",")
                                     if g.strip().startswith("gp")
                                 ]
-                                no_prior = []
-                                has_prior = []
-                                for gid in gp_ids:
-                                    has_p = False
-                                    if (
-                                        summary.gp_priors is not None
-                                        and 0 <= gid < summary.gp_priors.numel()
-                                    ):
-                                        p = float(summary.gp_priors[gid].item())
-                                        if math.isfinite(p) and 0.0 <= p <= 1.0:
-                                            has_p = True
-                                    if has_p:
-                                        has_prior.append(gid)
-                                    else:
-                                        no_prior.append(gid)
-                                random.shuffle(no_prior)
-                                random.shuffle(has_prior)
-                                picked = no_prior[:5]
-                                if len(picked) < 5:
-                                    picked += has_prior[: 5 - len(picked)]
-                                picked.sort()
-                                sampled_str = ",".join(f"gp{g:04d}" for g in picked)
+                                sampled_str = ",".join(parts[:5]) or "none"
                             f.write(
                                 f"{ws.loss:.6f}\t{target_str}"
                                 f"\t{int(ws.prediction)}"
@@ -1400,3 +1396,105 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
         if flags:
             console.print(f"[bold red]Flags: {' '.join(flags)}[/bold red]")
+
+    def _render_layer_health(self, lh: LayerHealthStats) -> None:
+        """Render compact multi-column layer health table with warnings."""
+        n = lh.num_layers
+        if n == 0:
+            return
+
+        prev = self.prev_layer_health
+
+        def _arrow(curr: float, prev_val: Optional[float], higher_good: bool) -> str:
+            if prev_val is None or abs(curr - prev_val) < 0.005:
+                return ""
+            up = curr > prev_val
+            if higher_good:
+                return "[green]↑[/green]" if up else "[red]↓[/red]"
+            return "[red]↑[/red]" if up else "[green]↓[/green]"
+
+        cols_per_row = min(3, n)
+        table = Table(
+            show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
+        )
+        for _ in range(cols_per_row):
+            table.add_column("Layer", style="dim")
+            table.add_column("ΔNorm", justify="right")
+            table.add_column("CKA→", justify="right")
+            table.add_column("Rank", justify="right")
+
+        for row_start in range(0, n, cols_per_row):
+            row_vals: List[str] = []
+            for col in range(cols_per_row):
+                i = row_start + col
+                if i >= n:
+                    row_vals.extend(["", "", "", ""])
+                    continue
+
+                prev_dn = prev.delta_norm[i] if prev and i < prev.num_layers else None
+                prev_rk = (
+                    prev.effective_rank[i] if prev and i < prev.num_layers else None
+                )
+                dn_arrow = _arrow(lh.delta_norm[i], prev_dn, higher_good=False)
+                rk_arrow = _arrow(lh.effective_rank[i], prev_rk, higher_good=True)
+
+                c_dn = "red" if lh.delta_norm[i] > 0.50 else "dim"
+                c_rk = (
+                    "red"
+                    if lh.effective_rank[i] < 20
+                    else ("green" if lh.effective_rank[i] > 60 else "dim")
+                )
+
+                cka_str = ""
+                if i < len(lh.cka_adjacent):
+                    cka_val = lh.cka_adjacent[i]
+                    prev_cka = (
+                        prev.cka_adjacent[i]
+                        if prev and i < len(prev.cka_adjacent)
+                        else None
+                    )
+                    cka_arrow = _arrow(cka_val, prev_cka, higher_good=False)
+                    c_cka = (
+                        "red"
+                        if cka_val > 0.90
+                        else ("yellow" if cka_val > 0.80 else "dim")
+                    )
+                    cka_str = f"[{c_cka}]{cka_val:.2f}[/{c_cka}]{cka_arrow}"
+
+                row_vals.extend(
+                    [
+                        f"L{i + 1}",
+                        f"[{c_dn}]{lh.delta_norm[i]:.2f}[/{c_dn}]{dn_arrow}",
+                        cka_str,
+                        f"[{c_rk}]{lh.effective_rank[i]:.0f}[/{c_rk}]{rk_arrow}",
+                    ]
+                )
+            table.add_row(*row_vals)
+
+        console.print(table)
+
+        # Warnings
+        max_dn = max(lh.delta_norm)
+        last_dn = lh.delta_norm[-1]
+        if max_dn > 0 and last_dn > 0.8 * max_dn:
+            console.print(
+                f"  [yellow]⚠ Final layer ΔNorm={last_dn:.2f} remains high "
+                f"(≥80% of max {max_dn:.2f}) — may benefit from additional "
+                f"transformer layers[/yellow]"
+            )
+
+        if lh.cka_adjacent and lh.cka_adjacent[-1] > 0.90:
+            console.print(
+                f"  [dim]ℹ Final layer pair CKA={lh.cka_adjacent[-1]:.2f} "
+                f"(>0.90) — layers are nearly redundant, "
+                f"model likely has sufficient depth[/dim]"
+            )
+
+        max_rank = max(lh.effective_rank)
+        last_rank = lh.effective_rank[-1]
+        if max_rank > 0 and last_rank < 0.5 * max_rank:
+            console.print(
+                f"  [yellow]⚠ Final layer rank={last_rank:.0f} collapsed "
+                f"vs peak={max_rank:.0f} — may benefit from "
+                f"wider layers (larger d_model)[/yellow]"
+            )

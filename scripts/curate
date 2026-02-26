@@ -38,7 +38,10 @@ from scripts.rule_based_analysis import (
     load_register_overrides,
 )
 from train.tsv import parse_tsv
-from scripts.curate_upsert_sentence import curate_upsert, curate_upsert_batch
+from scripts.curate_upsert_sentence import (
+    curate_upsert,
+    curate_upsert_batch,
+)
 from scripts.curate_clone_empty import curate_clone_empty
 
 console = Console()
@@ -560,7 +563,7 @@ def ensure_kc_index(corpus_db: str, index_db: str):
     console.print(f"[green]Index built with {len(sent_buffer)} sentences.[/green]")
 
 
-def curate_find_kc_matches(query: str, db_path: str, index_path: str = "data/corpus-kc-index.db"):
+def curate_find_kc_matches(query: str, db_path: str, index_path: str = "data/corpus-kc-index.db", plain: bool = False):
     """Find shortest sentences matching the KC query."""
     # Parse Query
     # Format: +458,-964
@@ -803,6 +806,25 @@ def curate_find_kc_matches(query: str, db_path: str, index_path: str = "data/cor
         if s == "0.00":
             return ".00"
         return s
+
+    if plain:
+        header = "Sentence\t" + "\t".join(str(kc) for kc in grid_kcs)
+        print(header)
+        for r in final_rows:
+            sid, text, length = r
+            weights = sent_weights.get(sid, {})
+            cells = [text]
+            for kc in grid_kcs:
+                if kc in weights and weights[kc] > 0:
+                    cells.append(fmt_w(weights[kc]))
+                else:
+                    cells.append("-")
+            print("\t".join(cells))
+        if common_kcs:
+            print(f"Common: {','.join(map(str, common_kcs))}")
+        if absent_kcs:
+            print(f"Absent: {','.join(map(str, absent_kcs))}")
+        return
 
     # Create Table
     # Optimized for horizontal density: No "Len" column, compact KC headers, minimal padding
@@ -1109,25 +1131,11 @@ def curate_kc_families(sentence: str):
                     db_labels["FORMALITY"] = f"{f_val:.2f}"
                 else:
                     db_labels["FORMALITY"] = "(unpragmatic)"
-                # Formality class
-                if f_val is not None:
-                    classes = ["very_casual", "casual", "neutral", "formal", "very_formal"]
-                    idx = min(int((f_val + 1.0) / 2.0 * 5), 4)
-                    db_labels["FORMALITY_CLASS"] = f"{f_val:.2f} → class {idx} ({classes[idx]})"
-                else:
-                    db_labels["FORMALITY_CLASS"] = "(unpragmatic)"
                 # Gender (MSE)
                 if g_val is not None:
                     db_labels["GENDER"] = f"{g_val:.2f}"
                 else:
                     db_labels["GENDER"] = "(unpragmatic)"
-                # Gender class
-                if g_val is not None:
-                    g_classes = ["masculine", "neutral", "feminine"]
-                    g_idx = 0 if g_val < -0.33 else (2 if g_val > 0.33 else 1)
-                    db_labels["GENDER_CLASS"] = f"{g_val:.2f} → class {g_idx} ({g_classes[g_idx]})"
-                else:
-                    db_labels["GENDER_CLASS"] = "(unpragmatic)"
                 # Register
                 if reg_ids_str:
                     from kotogram.constants import REGISTER_ID_TO_LABEL
@@ -1804,6 +1812,53 @@ def _get_tokens_for_sentence(sentence: str) -> Tuple[List[str], str]:
 
 
 
+def curate_check_epoch(training_dir: str) -> None:
+    """
+    Check if a new training epoch is ready for mislabel curation.
+    Reads current epoch from worst-formality.tsv and compares to snapshots/.
+    Run periodically (e.g. via cron or manually) while training.
+    """
+    import re
+
+    worst_path = os.path.join(training_dir, "worst-formality.tsv")
+    snap_dir = os.path.join(training_dir, "snapshots")
+
+    current_epoch = None
+    if os.path.exists(worst_path):
+        with open(worst_path, encoding="utf-8") as f:
+            first = f.readline()
+        m = re.match(r"#\s*Epoch:\s*(\d+)", first)
+        if m:
+            current_epoch = int(m.group(1))
+
+    last_processed = None
+    if os.path.isdir(snap_dir):
+        for name in os.listdir(snap_dir):
+            m = re.match(r"ep(\d+)$", name)
+            if m:
+                n = int(m.group(1))
+                if last_processed is None or n > last_processed:
+                    last_processed = n
+
+    if current_epoch is None:
+        console.print("[yellow]No worst-formality.tsv found. Training may not have started.[/yellow]")
+        return
+
+    console.print(f"Current epoch (worst-*.tsv): [bold]{current_epoch}[/bold]")
+    console.print(f"Last processed (snapshots/):  [bold]{last_processed if last_processed is not None else 'none'}[/bold]")
+
+    if last_processed is None or current_epoch > last_processed:
+        console.print(
+            f"\n[green]New epoch {current_epoch} ready for curation.[/green] "
+            "Say 'epoch {0}' or 'Please do epoch {0}' to run mislabel analysis and fixes.".format(
+                current_epoch
+            )
+        )
+    else:
+        console.print("\n[dim]Up to date. No new epoch to process.[/dim]")
+
+
+
 def curate_token_stats(db_path: str):
     """
     Analyze kotogram token frequencies across the corpus.
@@ -1888,26 +1943,21 @@ def curate_token_stats(db_path: str):
         table_bottom.add_row(f"#{len(token_counts) - 8 + rank}", f"{count:,}", token, example)
     console.print(table_bottom)
 
-def curate_contrast_sentences(sentences: List[str]):
+def curate_contrast_sentences(sentences: List[str], plain: bool = False):
     """
     Compare KCs of multiple sentences.
     """
-    from rich.table import Table
-
     from kotogram.analysis import grammars
     from kotogram.japanese_parser import KotogramFormat
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     
-    # Analyze sentences
     parser = SudachiJapaneseParser()
     kotograms = []
     for s in sentences:
         kotograms.append(parser.japanese_to_kotogram(s, KotogramFormat.TRAINING_MASK))
     
-    # Use grammars for batch efficiency
     results = grammars(kotograms)
     
-    # Collect all KCs and max weights
     all_kcs = set()
     kc_maps = []
     
@@ -1916,28 +1966,38 @@ def curate_contrast_sentences(sentences: List[str]):
         kc_maps.append(kc_map)
         all_kcs.update(kc_map.keys())
     
-    # Sort KCs by SUM of weights across all sentences (aggregate importance)
     kc_list = []
     for kc_id in all_kcs:
         weights = [km.get(kc_id, 0.0) for km in kc_maps]
         sum_weight = sum(weights)
         kc_list.append((kc_id, sum_weight))
     
-    # Sort descending by sum weight
     kc_list.sort(key=lambda x: x[1], reverse=True)
     sorted_kc_ids = [x[0] for x in kc_list]
     
-    # Display
+    if plain:
+        header = "Sentence\t" + "\t".join(f"KC{kc_id}" for kc_id in sorted_kc_ids)
+        print(header)
+        for i, s in enumerate(sentences):
+            cells = [s]
+            for kc_id in sorted_kc_ids:
+                if kc_id in kc_maps[i]:
+                    cells.append(f"{kc_maps[i][kc_id]:.2f}")
+                else:
+                    cells.append("-")
+            print("\t".join(cells))
+        return
+
+    from rich.table import Table
+    
     table = Table(title="Contrast Sentences (Sentences x KCs)")
     table.add_column("Sentence", justify="left", style="bold blue", min_width=20)
     
-    # Add KC columns
     for kc_id, _ in kc_list:
         table.add_column(f"KC {kc_id}", justify="center", style="cyan")
         
-    # Add Rows
     for i, s in enumerate(sentences):
-        row_cells = [s] # Sentence text
+        row_cells = [s]
         for kc_id in sorted_kc_ids:
             if kc_id in kc_maps[i]:
                 weight = kc_maps[i][kc_id]
@@ -1946,7 +2006,6 @@ def curate_contrast_sentences(sentences: List[str]):
                 row_cells.append("[grey70]-[/grey70]")
         table.add_row(*row_cells)
         
-    # Use a wide console to prevent column truncation
     wide_console = Console(width=2000)
     wide_console.print(table)
 
@@ -2299,6 +2358,7 @@ def main():
 
     parser_contrast_s = subparsers.add_parser("contrast-sentences", help="Contrast multiple sentences")
     parser_contrast_s.add_argument("sentences", nargs="+", help="Sentences to compare")
+    parser_contrast_s.add_argument("--plain", action="store_true", help="Plain tab-separated output (no Rich table)")
 
     # KC Families command
     parser_kc_fam = subparsers.add_parser("kc-families", help="Show KC target families for a sentence")
@@ -2309,6 +2369,7 @@ def main():
     parser_find.add_argument("query", help="KC Query (e.g. +458,-964)")
     parser_find.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
     parser_find.add_argument("--index-path", default="data/corpus-kc-index.db", help="Path to index db")
+    parser_find.add_argument("--plain", action="store_true", help="Plain tab-separated output (no Rich table)")
 
     # Compress command
     compress_parser = subparsers.add_parser("compress", help="Vacuum the database")
@@ -2332,11 +2393,32 @@ def main():
     parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
     parser_token_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # Check epoch - report if new worst-*.tsv epoch is ready for mislabel curation
+    parser_check_epoch = subparsers.add_parser(
+        "check-epoch",
+        help="Check if a new training epoch is ready for mislabel curation (poll this periodically)",
+    )
+    parser_check_epoch.add_argument(
+        "--training-dir",
+        default=".cache/training",
+        help="Directory containing worst-*.tsv and snapshots/",
+    )
+
+
     # Clone Empty command
     parser_clone = subparsers.add_parser("clone-empty", help="Clone schema to a new empty database")
     parser_clone.add_argument("--empty-db", required=True, help="Path to the new empty database (output)")
     parser_clone.add_argument("--db-path", default="data/corpus.db", help="Path to source database (input)")
     parser_clone.add_argument("--overwrite", action="store_true", help="Overwrite output database if it exists")
+
+    # Find missing nuance divisions
+    parser_nuance = subparsers.add_parser("find-nuance-divisions", help="Find GPs whose sentences split into distinct KC sub-clusters")
+    parser_nuance.add_argument("--db-path", default="data/corpus.db", help="Path to corpus database")
+
+    # Discover novel grammar points
+    parser_discover = subparsers.add_parser("discover-novel-gps", help="Discover novel grammar points via KC clustering")
+    parser_discover.add_argument("--db-path", default="data/corpus.db", help="Path to corpus database")
+    parser_discover.add_argument("--sample-size", type=int, default=15000, help="Number of unlabeled corpus sentences to sample")
 
     # Study command - PNU hard negative mining
     parser_study = subparsers.add_parser("study", help="PNU-based hard negative/positive mining for grammar points")
@@ -2466,9 +2548,9 @@ def main():
         curate_compare(args.db_path)
 
     elif args.command == "contrast-sentences":
-        curate_contrast_sentences(args.sentences)
+        curate_contrast_sentences(args.sentences, plain=args.plain)
     elif args.command == "find-kc-matches":
-        curate_find_kc_matches(args.query, args.db_path, args.index_path)
+        curate_find_kc_matches(args.query, args.db_path, args.index_path, plain=args.plain)
     elif args.command == "kc-families":
         curate_kc_families(args.sentence)
     elif args.command == "kc-lint":
@@ -2479,8 +2561,27 @@ def main():
         curate_kc_tail_stats(args.db_path, args.sentence, args.filter_str)
     elif args.command == "token-stats":
         curate_token_stats(args.db_path)
+    elif args.command == "check-epoch":
+        curate_check_epoch(args.training_dir)
+
     elif args.command == "clone-empty":
         curate_clone_empty(args.db_path, args.empty_db, args.overwrite)
+    elif args.command == "find-nuance-divisions":
+        import subprocess
+        script_path = os.path.join(os.path.dirname(__file__), "grammar_kc_analysis.py")
+        cmd = [sys.executable, script_path, "--find-nuance-divisions"]
+        if args.db_path != "data/corpus.db":
+            cmd.extend(["--db-path", args.db_path])
+        subprocess.run(cmd, check=True)
+    elif args.command == "discover-novel-gps":
+        import subprocess
+        script_path = os.path.join(os.path.dirname(__file__), "grammar_kc_analysis.py")
+        cmd = [sys.executable, script_path, "--discover-gps"]
+        if args.db_path != "data/corpus.db":
+            cmd.extend(["--db-path", args.db_path])
+        if args.sample_size != 15000:
+            cmd.extend(["--sample-size", str(args.sample_size)])
+        subprocess.run(cmd, check=True)
     elif args.command == "study":
         # Call the curate_study_grammar_label.py script
         import subprocess

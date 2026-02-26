@@ -18,6 +18,7 @@ class MockDataset(StyleDataset):
         self.tokenizer = Tokenizer()
         # Add required attributes for style oversampling
         self.indices = torch.arange(len(samples))
+        self.offsets = torch.arange(0, (len(samples) + 1) * 10, 10, dtype=torch.long)
         self.labels = {
             "f_val": torch.tensor(
                 [s.formality_value for s in samples], dtype=torch.float32

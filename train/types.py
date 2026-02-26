@@ -595,6 +595,20 @@ class KcEpochSummary:
     # Per-bin canary sentence evaluation text (bin_label -> summary string)
     canary_texts: Dict[str, str] = field(default_factory=dict)
     kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
+    layer_health: Optional["LayerHealthStats"] = None
+
+
+@dataclass
+class LayerHealthStats:
+    """Per-layer health diagnostics for the transformer encoder.
+
+    Adapts automatically to any number of layers.
+    """
+
+    delta_norm: List[float]  # ||output - input|| / ||input|| per layer
+    cka_adjacent: List[float]  # CKA(layer_i, layer_{i+1}), length = num_layers - 1
+    effective_rank: List[float]  # Effective rank (90% variance) per layer
+    num_layers: int
 
 
 @dataclass

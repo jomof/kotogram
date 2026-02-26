@@ -223,6 +223,7 @@ def build_trainer_config(
         # Runtime flags
         "retrain": args.retrain,
         "sample_ratio": args.percent / 100.0 if args.percent else 1.0,
+        "ramp_step": args.ramp / 100.0 if args.ramp else 0.0,
         "label_only": args.label,
         "report_only": args.report,
     }
@@ -494,6 +495,14 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
 
     parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
+
+    # Adaptive data ramp
+    parser.add_argument(
+        "--ramp",
+        type=float,
+        default=0.0,
+        help="Adaptive ramp: increase data by this %% each time GP PosP >= threshold (e.g. 10 = +10%%)",
+    )
 
     # Performance options
     parser.add_argument(

@@ -22,3 +22,8 @@ Noun より Noun (comparative)|Basic comparative particle marking the standard o
 よりによって (of all things / of all times)|Expresses dismay or irony about an unfortunate coincidence; よりによって今日 = "of all days, today"; distinct from comparative より and 何より
 遠慮なく (without hesitation / feel free)|Adverbial set phrase inviting someone to act freely; 遠慮なくどうぞ; distinct from なくても (even if not) and なくて (causal negative)
 お構いなく (don't bother / don't mind me)|Polite set phrase declining attention or hospitality; どうぞお構いなく; distinct from なくても (even if not) and なくて (causal negative)
+Sentence-final の (casual explanation・question)|Casual の at end of sentences for explanation (美味しいの。) or confirmation-seeking (本当なの？); the informal face of 〜のだ/〜んだ without the copula; cross-cuts all grammar levels as a register marker [KC discovery]
+Question word + の (casual interrogative)|どうしたの？ どこにいるの？ なぜ〜の？ — Casual question pattern combining interrogatives (どう/どこ/なぜ/どうやって) with sentence-final の？; extremely frequent in spoken Japanese; distinct from formal question constructions [KC discovery]
+俺・僕 register (informal masculine speech)|Cross-cutting masculine speech pattern using first-person 俺/僕 with casual copula (だ/だよ/だぞ/だろ); marks informal male register as a pragmatic layer distinct from individual grammar points [KC discovery]
+お前 + command forms (rough masculine directives)|Rough masculine register combining お前/お前ら with imperative forms (せよ/よ/ろ) and blunt assertions; stronger than standard imperative; a register pattern rather than a single construction [KC discovery]
+わ (masculine usage)|Sentence-ending particle used by men to express sudden realization or mild exasperation

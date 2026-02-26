@@ -115,6 +115,8 @@ class StyleDataset(Dataset[Sample]):
             self.data_dir
         )
 
+        self._full_indices = self.indices.clone()
+
         self._apply_balanced_sampling(sample_ratio)
 
         self._len = len(self.indices)
@@ -242,6 +244,12 @@ class StyleDataset(Dataset[Sample]):
             )
 
         self.indices = torch.tensor(final_indices, dtype=torch.long)
+
+    def resample(self, sample_ratio: float) -> None:
+        """Re-apply balanced sampling at a new ratio, using the original full index set."""
+        self.indices = self._full_indices.clone()
+        self._apply_balanced_sampling(sample_ratio)
+        self._len = len(self.indices)
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)
@@ -589,12 +597,14 @@ class StyleDataset(Dataset[Sample]):
         self,
         formality_boost: float = 5.0,
         gender_boost: float = 15.0,
+        length_reweight: bool = False,
     ) -> "torch.utils.data.WeightedRandomSampler":
         """Create a sampler that oversamples non-neutral formality and gender examples.
 
         Args:
             formality_boost: Multiplier for non-neutral formality (|f| > 0.25)
             gender_boost: Multiplier for non-neutral gender (|g| > 0.25)
+            length_reweight: Apply sqrt-inverse-frequency weighting by token length bin
 
         Returns:
             WeightedRandomSampler for use in DataLoader
@@ -617,10 +627,44 @@ class StyleDataset(Dataset[Sample]):
             if abs(g_val) > 0.25:
                 weights[i] *= gender_boost
 
+        if length_reweight:
+            weights = self._apply_length_reweight(weights)
+
         # Use replacement=True to allow oversampling
         return WeightedRandomSampler(
             weights.tolist(), num_samples=len(self), replacement=True
         )
+
+    def _apply_length_reweight(self, weights: torch.Tensor) -> torch.Tensor:
+        """Multiply weights by sqrt-inverse-frequency of token-length bins.
+
+        Bins: 1-3, 4-7, 8-15, 16-31, 32+ tokens.
+        Uses sqrt(median_count / bin_count) so the largest bin stays ~1.0
+        and underrepresented bins get a moderate boost (not full equalization).
+        """
+        n = len(self)
+        bin_edges = [1, 4, 8, 16, 32, 999999]
+        bin_idx = torch.zeros(n, dtype=torch.long)
+
+        for i in range(n):
+            real_idx = int(self.indices[i].item())
+            tok_len = int(self.offsets[real_idx + 1].item()) - int(
+                self.offsets[real_idx].item()
+            )
+            for b in range(len(bin_edges) - 1):
+                if bin_edges[b] <= tok_len < bin_edges[b + 1]:
+                    bin_idx[i] = b
+                    break
+
+        bin_counts = torch.bincount(bin_idx, minlength=len(bin_edges) - 1).float()
+        bin_counts.clamp_min_(1.0)
+        median_count = float(bin_counts.median().item())
+        bin_weight = (median_count / bin_counts).sqrt()
+
+        for i in range(n):
+            weights[i] *= bin_weight[bin_idx[i]]
+
+        return weights
 
     def get_formality_class_weights(self) -> torch.Tensor:
         # compute from self.labels["f_prag"] (subset by self.indices)
@@ -909,18 +953,6 @@ def create_kc_batch(
                     result[f"kc_continuous_{name}"] = batch.gender_value.to(device)
                 elif name == "formality":
                     result[f"kc_continuous_{name}"] = batch.formality_value.to(device)
-                # Classification versions: map continuous to class indices
-                elif name == "gender_class":
-                    # Map: -1.0 → 0, 0.0 → 1, 1.0 → 2
-                    gender_class = ((batch.gender_value + 1.0) / 2.0 * 2).long()
-                    gender_class = gender_class.clamp(0, 2)
-                    result[f"kc_class_{name}"] = gender_class.to(device)
-                elif name == "formality_class":
-                    # DB values: -1.0=v_casual, -0.5=casual, 0.0=neutral, 0.5=formal, 1.0=v_formal
-                    # Class indices: 0=v_casual, 1=casual, 2=neutral, 3=formal, 4=v_formal
-                    formality_class = ((batch.formality_value + 1.0) / 0.5).long()
-                    formality_class = formality_class.clamp(0, 4)
-                    result[f"kc_class_{name}"] = formality_class.to(device)
                 elif isinstance(family_def, KcDbMultilabelFamily):
                     # Multi-label families (register) use multi-hot targets from batch
                     # batch.register_labels is already [B, num_classes] multi-hot tensor
