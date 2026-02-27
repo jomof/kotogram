@@ -473,16 +473,17 @@ class KCTrainer:
         unlabeled_weight: float = 1.0,
         priors: Optional[torch.Tensor] = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Multi-label soft-label loss for grammar points.
+        """Multi-label PNU loss with stochastic pseudo-labeling.
 
-        Uses soft targets derived from per-GP priors for unlabeled positions:
-        - Labeled positive: target = 1.0
-        - Labeled negative: target = 0.0
-        - Unlabeled: target = prior[GP]
+        Labeled positions get hard targets (pos=1, neg=0).  Unlabeled
+        positions get stochastic hard targets sampled from Bernoulli(prior)
+        -- a fresh draw every forward pass.
 
-        Labeled and unlabeled losses are normalized separately by their own
-        sample counts, making the loss invariant to dataset size. The
-        unlabeled_weight parameter directly controls the balance.
+        Because all targets are hard 0/1, the loss achieves exactly zero
+        when the model perfectly predicts the current random assignment.
+        Over many batches the stochastic assignments average out: ~prior
+        fraction are labeled 1, teaching the model the correct base rate
+        without an irreducible entropy floor.
 
         Args:
             logits: (B, vocab_size) logits from KC decoder
@@ -491,9 +492,10 @@ class KCTrainer:
             neg_ids: (B, max_neg) negative grammar point IDs
             neg_mask: (B, max_neg) mask for valid negative IDs
             vocab_size: number of grammar points (1374)
-            unlabeled_weight: weight for unlabeled loss relative to labeled (default: 1.0)
-            priors: (vocab_size,) per-GP prior probabilities; if None, unlabeled
-                    positions use target=0.0 (equivalent to prior=0 everywhere)
+            unlabeled_weight: weight for unlabeled loss relative to labeled
+                (default: 1.0)
+            priors: (vocab_size,) per-GP prior probabilities; if None,
+                unlabeled positions get target=0
 
         Returns:
             Tuple[torch.Tensor, torch.Tensor]: (total_loss, loss_by_label)
@@ -505,32 +507,29 @@ class KCTrainer:
         labeled_pos = torch.zeros(batch_size, vocab_size, device=device)
         labeled_neg = torch.zeros(batch_size, vocab_size, device=device)
 
-        # Scatter positive labels
         valid_pos = pos_ids.clamp(0, vocab_size - 1)
         labeled_pos.scatter_(1, valid_pos, pos_mask.float())
 
-        # Scatter negative labels
         valid_neg = neg_ids.clamp(0, vocab_size - 1)
         labeled_neg.scatter_(1, valid_neg, neg_mask.float())
 
-        # Labeled and unlabeled masks
         labeled_mask = labeled_pos + labeled_neg
         unlabeled_mask = (1.0 - labeled_mask).clamp(0, 1)
 
-        # Build soft targets:
-        #   labeled_pos → 1.0, labeled_neg → 0.0, unlabeled → prior[GP]
+        # Build targets: hard labels everywhere
+        #   labeled_pos → 1.0, labeled_neg → 0.0
+        #   unlabeled → Bernoulli(prior) fresh each forward pass
         if priors is not None:
-            prior_targets = priors.to(device=device, dtype=logits.dtype).unsqueeze(0)
-            targets = labeled_pos + unlabeled_mask * prior_targets
+            prior_probs = priors.to(device=device, dtype=logits.dtype).unsqueeze(0)
+            pseudo_labels = torch.bernoulli(prior_probs.expand(batch_size, vocab_size))
+            targets = labeled_pos + unlabeled_mask * pseudo_labels
         else:
             targets = labeled_pos  # unlabeled and neg both → 0.0
 
-        # Single BCE pass with soft targets
+        # Single BCE pass -- all targets are hard 0/1
         bce = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
 
-        # Normalize labeled and unlabeled separately by their own counts.
-        # This makes the loss invariant to dataset size: each component is
-        # a per-sample mean, regardless of how many samples are in the dataset.
+        # Normalize labeled and unlabeled separately
         labeled_bce = (bce * labeled_mask).sum(dim=0)
         labeled_count = labeled_mask.sum(dim=0).clamp_min(1.0)
         labeled_loss = labeled_bce / labeled_count
@@ -541,10 +540,7 @@ class KCTrainer:
 
         loss_per_gp = labeled_loss + unlabeled_weight * unlabeled_loss
 
-        # loss_by_label for diagnostics/reporting
         loss_by_label = loss_per_gp.clone()
-
-        # Total loss: average across all GPs
         total_loss = loss_per_gp.mean()
 
         return total_loss, loss_by_label
@@ -1231,7 +1227,12 @@ class KCTrainer:
         enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.1)
         self.optimizer.param_groups[1]["lr"] = enc_lr
 
-        self.view.on_kc_epoch_start(epoch, self.config.kc_epochs, should_freeze)
+        self.view.on_kc_epoch_start(
+            epoch,
+            self.config.kc_epochs,
+            should_freeze,
+            batch_size=self.config.batch_size,
+        )
 
         # Set training mode with special handling for frozen epochs:
         # During frozen epochs, put encoder pipeline in eval mode to disable dropout
@@ -1585,6 +1586,17 @@ class KCTrainer:
             gram_mask = gram_mask_cpu.to(self.device)
             attention_mask = full_attention_mask[gram_mask]
             field_inputs = {k: v[gram_mask] for k, v in full_field_inputs.items()}
+
+            # BERT-style input masking: randomly replace tokens with pad_id=0
+            # (zero embedding) while keeping attention_mask=1 so the model
+            # knows a token exists but can't see its identity.
+            mask_ratio = self.kc_config.input_mask_ratio
+            if self.model.training and 0.0 < mask_ratio < 1.0:
+                maskable = attention_mask.bool()
+                for key in list(field_inputs):
+                    ids = field_inputs[key]
+                    rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
+                    field_inputs[key] = ids.masked_fill(rand_mask, 0)
 
             # Compute content_len (approximate: non-pad count)
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
@@ -2327,27 +2339,16 @@ class KCTrainer:
                         if not name:
                             raise ValueError("Family name cannot be empty")
 
-                        # Balanced Dense Loss (computed WITH gradients)
-                        # Shape already validated above when logits_f was assigned
-                        pos_mask_d = targets > 0.5
-                        if pos_mask_d.any():
-                            loss_pos_d = F.binary_cross_entropy_with_logits(
-                                logits_f[pos_mask_d],
-                                torch.ones_like(logits_f[pos_mask_d]),
-                                reduction="mean",
-                            )
-                        else:
-                            loss_pos_d = torch.tensor(0.0, device=self.device)
-
-                        neg_mask_d = targets < 0.5
-                        if neg_mask_d.any():
-                            loss_neg_d = F.binary_cross_entropy_with_logits(
-                                logits_f[neg_mask_d],
-                                torch.zeros_like(logits_f[neg_mask_d]),
-                                reduction="mean",
-                            )
-                        else:
-                            loss_neg_d = torch.tensor(0.0, device=self.device)
+                        # Balanced Dense Loss on full targets.
+                        bce_all = F.binary_cross_entropy_with_logits(
+                            logits_f, targets, reduction="none"
+                        )
+                        pos_mask_d = (targets > 0.5).float()
+                        neg_mask_d = (targets < 0.5).float()
+                        n_pos_d = pos_mask_d.sum().clamp_min(1.0)
+                        n_neg_d = neg_mask_d.sum().clamp_min(1.0)
+                        loss_pos_d = (bce_all * pos_mask_d).sum() / n_pos_d
+                        loss_neg_d = (bce_all * neg_mask_d).sum() / n_neg_d
 
                         task_loss = 0.5 * loss_pos_d + 0.5 * loss_neg_d
 
@@ -2479,14 +2480,17 @@ class KCTrainer:
 
                 total_n = logit_ref.size(0)
 
+                # Precompute softmax over all rows (per-row op, safe to share)
+                q_all = torch.softmax(logit_ref / tau_usage, dim=-1)
+
                 for s in splits:
                     mask = s["mask"]
-                    sub_logits = logit_ref[mask]
-                    weight = mask.sum().float() / total_n
+                    mask_f = mask.float().unsqueeze(1)  # (B, 1)
+                    mask_count = mask.sum().clamp_min(1).float()
+                    weight = mask_count / total_n
 
-                    scale = tau_usage  # Use same tau for simplification
-                    q_sub = torch.softmax(sub_logits / scale, dim=-1)
-                    p = q_sub.mean(dim=0)
+                    # Mask-weighted mean avoids MPS boolean indexing bugs
+                    p = (q_all * mask_f).sum(dim=0) / mask_count
 
                     p_sum = p.sum().clamp_min(self.kc_diversity_eps)
                     p = p / p_sum

@@ -195,7 +195,6 @@ if __name__ == "__main__":
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
-    trainer_config = dataclasses.replace(trainer_config, batch_size=128)
 
     # Handle report_only mode
     if trainer_config.report_only:

@@ -33,7 +33,11 @@ class KCTrainerView(Protocol):
     ) -> None: ...
 
     def on_kc_epoch_start(
-        self, epoch: int, total_epochs: int, encoder_frozen: bool
+        self,
+        epoch: int,
+        total_epochs: int,
+        encoder_frozen: bool,
+        batch_size: int = 0,
     ) -> None:
         _ = encoder_frozen
 
@@ -179,12 +183,18 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         _ = start_batch
 
     def on_kc_epoch_start(
-        self, epoch: int, total_epochs: int, encoder_frozen: bool
+        self,
+        epoch: int,
+        total_epochs: int,
+        encoder_frozen: bool,
+        batch_size: int = 0,
     ) -> None:
         self.reset_epoch_stats()
+        freeze_info = "Encoder Frozen" if encoder_frozen else "Encoder Thawed"
+        info = f"{freeze_info}, bs={batch_size}" if batch_size else freeze_info
         print_phase_header(
             "KC",
-            info="Encoder Frozen" if encoder_frozen else "Encoder Thawed",
+            info=info,
             epoch=epoch + 1,
             total_epochs=total_epochs,
         )
@@ -1124,13 +1134,13 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                             if ws.target_labels and ws.target_labels != "none":
                                 for gp_str in ws.target_labels.split(","):
                                     gp_str = gp_str.strip()
-                                    if gp_str.startswith("gp"):
+                                    if gp_str.startswith("gp") and gp_str[2:].isdigit():
                                         gid = int(gp_str[2:])
                                         label_freq[gid] = label_freq.get(gid, 0) + 1
                             if ws.pred_labels and ws.pred_labels != "none":
                                 for gp_str in ws.pred_labels.split(","):
                                     gp_str = gp_str.strip()
-                                    if gp_str.startswith("gp"):
+                                    if gp_str.startswith("gp") and gp_str[2:].isdigit():
                                         gid = int(gp_str[2:])
                                         pred_freq[gid] = pred_freq.get(gid, 0) + 1
                         all_gids = set(label_freq) | set(pred_freq)

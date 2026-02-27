@@ -122,40 +122,37 @@ class StyleDataset(Dataset[Sample]):
         self._len = len(self.indices)
 
     def _find_gp_labeled_indices(self) -> Set[int]:
-        """Return indices of sentences that have at least one GP label."""
+        """Return indices of sentences that have at least one positive GP label."""
         labeled: Set[int] = set()
-        for key in ("grammar_point_pos", "grammar_point_neg"):
-            if key not in self.kc_maps:
+        key = "grammar_point_pos"
+        if key not in self.kc_maps:
+            return labeled
+        offsets = self.kc_maps[key]["offsets"]
+        for real_idx_t in self.indices:
+            real_idx = int(real_idx_t.item())
+            if real_idx + 1 >= len(offsets):
                 continue
-            offsets = self.kc_maps[key]["offsets"]
-            for real_idx_t in self.indices:
-                real_idx = int(real_idx_t.item())
-                if real_idx + 1 >= len(offsets):
-                    continue
-                if (
-                    int(offsets[real_idx + 1].item()) - int(offsets[real_idx].item())
-                    > 0
-                ):
-                    labeled.add(real_idx)
+            if int(offsets[real_idx + 1].item()) - int(offsets[real_idx].item()) > 0:
+                labeled.add(real_idx)
         return labeled
 
     def _group_by_gp(self, labeled: Set[int]) -> Dict[int, Set[int]]:
-        """Group labeled sentence indices by grammar point ID."""
+        """Group labeled sentence indices by positive grammar point ID."""
         gp_to_sentences: Dict[int, Set[int]] = {}
-        for key in ("grammar_point_pos", "grammar_point_neg"):
-            if key not in self.kc_maps:
+        key = "grammar_point_pos"
+        if key not in self.kc_maps:
+            return gp_to_sentences
+        offsets = self.kc_maps[key]["offsets"]
+        ids = self.kc_maps[key]["ids"]
+        for real_idx in labeled:
+            if real_idx + 1 >= len(offsets):
                 continue
-            offsets = self.kc_maps[key]["offsets"]
-            ids = self.kc_maps[key]["ids"]
-            for real_idx in labeled:
-                if real_idx + 1 >= len(offsets):
-                    continue
-                start = int(offsets[real_idx].item())
-                end = int(offsets[real_idx + 1].item())
-                for gp_id in ids[start:end].tolist():
-                    if gp_id not in gp_to_sentences:
-                        gp_to_sentences[gp_id] = set()
-                    gp_to_sentences[gp_id].add(real_idx)
+            start = int(offsets[real_idx].item())
+            end = int(offsets[real_idx + 1].item())
+            for gp_id in ids[start:end].tolist():
+                if gp_id not in gp_to_sentences:
+                    gp_to_sentences[gp_id] = set()
+                gp_to_sentences[gp_id].add(real_idx)
         return gp_to_sentences
 
     def _select_gp_labeled_sentences(self) -> Tuple[Set[int], int]:
@@ -177,7 +174,7 @@ class StyleDataset(Dataset[Sample]):
         selected: Set[int] = set()
         for sentence_set in gp_to_sentences.values():
             sents = list(sentence_set)
-            cap = min(len(sents), max(20, int(math.ceil(math.sqrt(len(sents))))))
+            cap = min(len(sents), max(40, int(math.ceil(math.sqrt(len(sents))))))
             if cap < len(sents):
                 selected.update(_random.sample(sents, cap))
             else:

@@ -143,7 +143,11 @@ class RecordingKCTrainerView(KCTrainerView):
         )
 
     def on_kc_epoch_start(
-        self, epoch: int, total_epochs: int, encoder_frozen: bool
+        self,
+        epoch: int,
+        total_epochs: int,
+        encoder_frozen: bool,
+        batch_size: int = 0,
     ) -> None:
         self._record(
             "on_kc_epoch_start",

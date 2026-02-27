@@ -48,6 +48,29 @@ console = Console(force_terminal=True)
 # Study model should use surface-only tokens (BERT-like surface input).
 GRAMMAR_ENCODER_FIELDS = ["surface"]
 
+# Match kc_trainer's input_mask_ratio for BERT-style token masking.
+INPUT_MASK_RATIO = 0.15
+
+
+def _apply_input_masking(
+    field_inputs: Dict[str, torch.Tensor],
+    attention_mask: torch.Tensor,
+    mask_ratio: float = INPUT_MASK_RATIO,
+) -> Dict[str, torch.Tensor]:
+    """BERT-style input masking: replace random tokens with pad_id=0.
+
+    Keeps attention_mask=1 so the model knows a token exists but cannot
+    see its identity.  Returns a new dict (leaves the original unchanged).
+    """
+    if not (0.0 < mask_ratio < 1.0):
+        return field_inputs
+    maskable = attention_mask.bool()
+    out = {}
+    for key, ids in field_inputs.items():
+        rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
+        out[key] = ids.masked_fill(rand_mask, 0)
+    return out
+
 
 class GrammarPointDataset(Dataset):
     """Wraps StyleDataset to provide grammar point labels."""
@@ -1094,6 +1117,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 }
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
+                field_inputs = _apply_input_masking(field_inputs, attention_mask)
 
                 # Forward
                 with torch.amp.autocast(device_type=device.type, enabled=use_amp):
@@ -1220,6 +1244,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 }
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
+                field_inputs = _apply_input_masking(field_inputs, attention_mask)
                 # Forward
                 with torch.amp.autocast(device_type=device.type, enabled=use_amp):
                     logits = model(field_inputs, attention_mask)  # [B, num_gps, 2]

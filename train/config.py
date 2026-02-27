@@ -144,7 +144,12 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (Soft-Label) Loss
-    gp_unlabeled_weight: float = 0.2  # Balance between labeled and unlabeled GP signal
+    input_mask_ratio: float = (
+        0.15  # Fraction of input tokens randomly masked (BERT-style)
+    )
+    gp_unlabeled_weight: float = (
+        1  # Weight for aggregate prior-matching loss vs labeled BCE
+    )
     gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
     kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
 
