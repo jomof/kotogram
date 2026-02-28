@@ -78,10 +78,10 @@ class ModelConfig:
             "surface": 256,  # Single surface embedding (BERT-like)
         }
     )
-    d_model: int = 384
-    hidden_dim: int = 1536  # Increased from 768 for more capacity
+    d_model: int = 512
+    hidden_dim: int = 2048
     num_layers: int = 6
-    num_heads: int = 12
+    num_heads: int = 16
     dropout: float = 0.1
     max_seq_len: int = 512
     pooling: str = "cls"
