@@ -178,7 +178,7 @@ class TrainerConfig:
     """Configuration for model training."""
 
     learning_rate: float = 5e-5
-    batch_size: int = 128
+    batch_size: int = 256
     epochs: int = 20  # Fine-tuning epochs
     kc_epochs: int = 11
     freeze_encoder_epochs: int = 0
