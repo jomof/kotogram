@@ -237,6 +237,9 @@ class Trainer:
 
         self.history = TrainingHistory()
 
+        self.use_amp = self.device.type == "cuda"
+        self.scaler = torch.amp.GradScaler(enabled=self.use_amp)
+
         # Gradient norm tracking per head (reset each epoch)
         self.last_epoch_grad_norms: Dict[str, float] = {}
         profile_dir = get_profile_dir()
@@ -260,18 +263,21 @@ class Trainer:
     def _unpack_training_batch(
         self, batch: TrainingBatch
     ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, Dict[str, torch.Tensor]]:
+        nb = self.use_amp
         field_inputs = {
-            f"input_ids_{f}": batch.feature_inputs[f"input_ids_{f}"].to(self.device)
+            f"input_ids_{f}": batch.feature_inputs[f"input_ids_{f}"].to(
+                self.device, non_blocking=nb
+            )
             for f in ENCODER_FEATURE_FIELDS
         }
-        attention_mask = batch.attention_mask.to(self.device)
+        attention_mask = batch.attention_mask.to(self.device, non_blocking=nb)
         targets = {
-            "f_val": batch.formality_value.to(self.device),
-            "f_prag": batch.formality_pragmatic.to(self.device),
-            "g_val": batch.gender_value.to(self.device),
-            "g_prag": batch.gender_pragmatic.to(self.device),
-            "gram": batch.grammaticality_labels.to(self.device),
-            "reg": batch.register_labels.to(self.device),
+            "f_val": batch.formality_value.to(self.device, non_blocking=nb),
+            "f_prag": batch.formality_pragmatic.to(self.device, non_blocking=nb),
+            "g_val": batch.gender_value.to(self.device, non_blocking=nb),
+            "g_prag": batch.gender_pragmatic.to(self.device, non_blocking=nb),
+            "gram": batch.grammaticality_labels.to(self.device, non_blocking=nb),
+            "reg": batch.register_labels.to(self.device, non_blocking=nb),
         }
         return field_inputs, attention_mask, targets
 
@@ -323,21 +329,24 @@ class Trainer:
         if batch_idx % self.config.grad_accum_steps == 0:
             self.optimizer.zero_grad(set_to_none=True)
 
-        outputs = self.model(field_inputs, attention_mask)
-        losses = self._compute_training_loss(outputs, targets)
+        with torch.amp.autocast(self.device.type, enabled=self.use_amp):
+            outputs = self.model(field_inputs, attention_mask)
+            losses = self._compute_training_loss(outputs, targets)
         loss = losses.loss
 
-        loss.backward()
+        self.scaler.scale(loss).backward()
 
         # Compute gradient norms per head (before clipping/stepping)
         grad_norms = _compute_head_grad_norms(self.model)
 
         if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+            self.scaler.unscale_(self.optimizer)
             if self.config.gradient_clip > 0:
                 nn.utils.clip_grad_norm_(
                     self.model.parameters(), self.config.gradient_clip
                 )
-            self.optimizer.step()
+            self.scaler.step(self.optimizer)
+            self.scaler.update()
             self.optimizer.zero_grad(set_to_none=True)
 
         gad = self.config.grad_accum_steps
@@ -530,7 +539,8 @@ class Trainer:
         for batch in self.val_loader:
             field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
-            outputs = self.model(field_inputs, attention_mask)
+            with torch.amp.autocast(self.device.type, enabled=self.use_amp):
+                outputs = self.model(field_inputs, attention_mask)
 
             self._accumulate_eval_batch(outputs, targets, batch, metrics_sum, all_preds)
 

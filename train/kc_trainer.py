@@ -174,6 +174,9 @@ class KCTrainer:
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
+        self.use_amp = self.device.type == "cuda"
+        self.scaler = torch.amp.GradScaler(enabled=self.use_amp)
+
         self._ramp_step = config.ramp_step
         self._ramp_threshold = config.ramp_posp_threshold
         self._current_ratio = config.sample_ratio
@@ -1078,40 +1081,41 @@ class KCTrainer:
         self,
         m: TrainingClassifier,
     ) -> bool:
-        name_map: Dict[int, str] = {}
-        for n, p in m.named_parameters():
-            name_map[id(p)] = n
+        self.scaler.unscale_(self.optimizer)
 
-        found_nonfinite = False
-        bad: List[Tuple[str, int, int, float]] = []
-        for group in self.optimizer.param_groups:
-            for p in group["params"]:
-                if p.grad is None:
-                    continue
-                g = p.grad
-                if not torch.isfinite(g).all():
-                    found_nonfinite = True
-                    nnan = int(torch.isnan(g).sum().item())
-                    ninf = int(torch.isinf(g).sum().item())
-                    gmax = (
-                        float(g.detach().float().abs().max().item())
-                        if torch.isfinite(g.detach().float().abs().max())
-                        else float("inf")
-                    )
-                    pname = name_map.get(id(p), "<unnamed>")
-                    bad.append((pname, nnan, ninf, gmax))
-                    if len(bad) >= 5:
-                        break
+        if not self.use_amp:
+            name_map: Dict[int, str] = {}
+            for n, p in m.named_parameters():
+                name_map[id(p)] = n
+
+            found_nonfinite = False
+            bad: List[Tuple[str, int, int, float]] = []
+            for group in self.optimizer.param_groups:
+                for p in group["params"]:
+                    if p.grad is None:
+                        continue
+                    g = p.grad
+                    if not torch.isfinite(g).all():
+                        found_nonfinite = True
+                        nnan = int(torch.isnan(g).sum().item())
+                        ninf = int(torch.isinf(g).sum().item())
+                        gmax = (
+                            float(g.detach().float().abs().max().item())
+                            if torch.isfinite(g.detach().float().abs().max())
+                            else float("inf")
+                        )
+                        pname = name_map.get(id(p), "<unnamed>")
+                        bad.append((pname, nnan, ninf, gmax))
+                        if len(bad) >= 5:
+                            break
+                if found_nonfinite:
+                    break
+
             if found_nonfinite:
-                break
-
-        if found_nonfinite:
-            raise RuntimeError("found_nonfinite")
+                raise RuntimeError("found_nonfinite")
 
         # B1: Split Clipping (Encoder vs Heads)
         if self.config.gradient_clip and self.config.gradient_clip > 0:
-            # We must identify which params belong to encoder vs heads
-            # Heads: kc_head and kc_decoders
             head_params = set(m.kc_head.parameters())
             if hasattr(m, "kc_decoders"):
                 head_params.update(m.kc_decoders.parameters())
@@ -1123,19 +1127,14 @@ class KCTrainer:
                 if p.grad is not None and p not in head_params
             ]
 
-            # Clip encoder aggressively as configured
             if enc_params:
                 nn.utils.clip_grad_norm_(enc_params, self.config.gradient_clip)
 
-            # Leave heads unclipped (or use a much higher clip if needed).
-            # Per user instruction: "preferred: do NOT clip at all"
-        # else: do not clip at all (0 means disabled)
-
-        self.optimizer.step()
+        self.scaler.step(self.optimizer)
+        self.scaler.update()
         self.optimizer.zero_grad(set_to_none=True)
-        skipped = False
 
-        if not skipped:
+        if not self.use_amp:
             param_nonfinite = False
             for p in m.kc_head.parameters():
                 if not torch.isfinite(p.data).all():
@@ -1150,7 +1149,7 @@ class KCTrainer:
             if param_nonfinite:
                 raise RuntimeError("Params became NaN after step")
 
-        return skipped
+        return False
 
     def _create_optimizer(self, freeze_encoder: bool = False) -> None:
         m = self.model
@@ -1447,10 +1446,14 @@ class KCTrainer:
             track_worst = batch_idx >= total_batches - 12
 
             full_batch = batch
+            nb = self.use_amp
             full_field_inputs = {
-                k: v.to(self.device) for k, v in full_batch.feature_inputs.items()
+                k: v.to(self.device, non_blocking=nb)
+                for k, v in full_batch.feature_inputs.items()
             }
-            full_attention_mask = full_batch.attention_mask.to(self.device)
+            full_attention_mask = full_batch.attention_mask.to(
+                self.device, non_blocking=nb
+            )
             gram_labels = full_batch.grammaticality_labels
             if not torch.is_tensor(gram_labels):
                 gram_labels = torch.as_tensor(gram_labels)
@@ -1474,13 +1477,16 @@ class KCTrainer:
             gram_targets = None
             gram_loss = torch.tensor(0.0, device=self.device)
             if isinstance(self.model, TrainingClassifier):
-                encoder_output = self.model.get_encoder_output(
-                    full_field_inputs, full_attention_mask
-                )
-                pooled = self.model.pooler(encoder_output, full_attention_mask)
-                gram_logits = self.model.grammaticality_classifier(pooled)
-                gram_probs = F.softmax(gram_logits, dim=-1)[:, 1]
-                gram_targets = full_batch.grammaticality_labels.to(self.device).float()
+                with torch.amp.autocast(self.device.type, enabled=self.use_amp):
+                    encoder_output = self.model.get_encoder_output(
+                        full_field_inputs, full_attention_mask
+                    )
+                    pooled = self.model.pooler(encoder_output, full_attention_mask)
+                    gram_logits = self.model.grammaticality_classifier(pooled)
+                gram_probs = F.softmax(gram_logits.float(), dim=-1)[:, 1]
+                gram_targets = full_batch.grammaticality_labels.to(
+                    self.device, non_blocking=nb
+                ).float()
                 gram_loss = F.mse_loss(gram_probs, gram_targets)
                 gram_loss = gram_loss * self.config.grammaticality_loss_weight
 
@@ -1529,7 +1535,7 @@ class KCTrainer:
                     RunningLossComponents(struct=gram_loss.item())
                 )
                 if torch.isfinite(loss):
-                    loss.backward()
+                    self.scaler.scale(loss).backward()
                     did_any_backward = True
                     pending_accum += 1
 
@@ -1564,9 +1570,8 @@ class KCTrainer:
                 tokenizer=self.dataset.tokenizer,
                 target_specs=self.config.kc_target_specs,
             )
-            # Ensure targets are on device (they come from CPU dataset/tokenizer)
             for k, v in kc_targets.items():
-                kc_targets[k] = v.to(self.device)
+                kc_targets[k] = v.to(self.device, non_blocking=nb)
 
             # INVARIANT: kc_targets batch dimension must match batch
             expected_batch_size = batch.attention_mask.size(0)
@@ -1583,7 +1588,7 @@ class KCTrainer:
                     f"Batch 0 produced no KC targets. Specs: {list(self.config.kc_target_specs.keys())}"
                 )
 
-            gram_mask = gram_mask_cpu.to(self.device)
+            gram_mask = gram_mask_cpu.to(self.device, non_blocking=nb)
             attention_mask = full_attention_mask[gram_mask]
             field_inputs = {k: v[gram_mask] for k, v in full_field_inputs.items()}
 
@@ -1615,15 +1620,16 @@ class KCTrainer:
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
             pooled_kc = pooled[gram_mask] if pooled is not None else None
-            outputs = self.model(
-                field_inputs,
-                attention_mask=attention_mask,
-                mode="kc",
-                temperature=t_val,
-                gumbel_scale=gumbel_scale,
-                grad_cap=self.kc_grad_cap,
-                pooled=pooled_kc,
-            )
+            with torch.amp.autocast(self.device.type, enabled=self.use_amp):
+                outputs = self.model(
+                    field_inputs,
+                    attention_mask=attention_mask,
+                    mode="kc",
+                    temperature=t_val,
+                    gumbel_scale=gumbel_scale,
+                    grad_cap=self.kc_grad_cap,
+                    pooled=pooled_kc,
+                )
 
             should_check_nan = batch_idx < 50 or (batch_idx % 50 == 0)
 
@@ -1739,10 +1745,10 @@ class KCTrainer:
                         gp_neg_mask_key = f"kc_gp_neg_mask_{name}"
 
                         if gp_pos_key in kc_targets:
-                            pos_ids = kc_targets[gp_pos_key].to(self.device)
-                            pos_mask = kc_targets[gp_pos_mask_key].to(self.device)
-                            neg_ids = kc_targets[gp_neg_key].to(self.device)
-                            neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
+                            pos_ids = kc_targets[gp_pos_key]
+                            pos_mask = kc_targets[gp_pos_mask_key]
+                            neg_ids = kc_targets[gp_neg_key]
+                            neg_mask = kc_targets[gp_neg_mask_key]
 
                             task_loss, loss_by_label = self._multilabel_pnu_loss(
                                 logits.float(),
@@ -1942,9 +1948,7 @@ class KCTrainer:
                         # Targets are multi-hot [B, num_classes] (can have multiple active)
                         multilabel_key = f"kc_multilabel_{name}"
                         if multilabel_key in kc_targets:
-                            targets_multilabel = (
-                                kc_targets[multilabel_key].to(self.device).float()
-                            )
+                            targets_multilabel = kc_targets[multilabel_key].float()
 
                             # logits shape: [B, num_classes]
                             # Use BCE with logits for multi-label classification
@@ -2120,9 +2124,7 @@ class KCTrainer:
                         # Get target values from the original batch
                         target_key = f"kc_continuous_{name}"
                         if target_key in kc_targets:
-                            targets_cont = (
-                                kc_targets[target_key].to(self.device).float()
-                            )
+                            targets_cont = kc_targets[target_key].float()
 
                             # Invariant: KC samples are all grammatic, no NaNs allowed
                             if torch.isnan(targets_cont).any():
@@ -2192,7 +2194,7 @@ class KCTrainer:
                     continue  # Skip standard dense/sparse path
 
                 if dense_key in kc_targets:
-                    targets = kc_targets[dense_key].to(self.device).float()
+                    targets = kc_targets[dense_key].float()
                     logits_f = logits.float()
 
                     # INVARIANT: targets and logits must have same shape
@@ -2396,8 +2398,8 @@ class KCTrainer:
                     batch_kc_losses[name] = task_loss.item()
 
                 elif pos_key in kc_targets and mask_key in kc_targets:
-                    pos_inds = kc_targets[pos_key].to(self.device)
-                    pos_mask_t = kc_targets[mask_key].to(self.device)
+                    pos_inds = kc_targets[pos_key]
+                    pos_mask_t = kc_targets[mask_key]
                     logits_f = logits.float()
 
                     # Get family loss weight
@@ -2861,7 +2863,7 @@ class KCTrainer:
                 pass
 
             if torch.isfinite(loss):
-                loss.backward()
+                self.scaler.scale(loss).backward()
                 did_any_backward = True
                 pending_accum += 1
 
