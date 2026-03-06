@@ -233,6 +233,7 @@ class TrainerConfig:
     ramp_posp_threshold: float = 0.75  # GP PosP threshold to trigger ramp
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
+    mlflow: bool = False  # Enable MLflow experiment tracking
 
     # Evaluation frequency: run full validation every N epochs (1 = every epoch)
     # Set higher to skip expensive accuracy computation on intermediate epochs
@@ -266,6 +267,7 @@ class TrainerConfig:
             "ramp_posp_threshold": self.ramp_posp_threshold,
             "label_only": self.label_only,
             "report_only": self.report_only,
+            "mlflow": self.mlflow,
         }
 
     @staticmethod

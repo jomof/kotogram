@@ -386,6 +386,9 @@ class KCDiagnosticFamilyStats:
     pos_label_density: float = 0.0
     mask_coverage: float = 0.0
     keys_present: str = ""
+    # Predicted positive labels per positive example
+    avg_pos: Optional[float] = None
+    med_pos: Optional[float] = None
     # Gradient flow diagnostic
     bias_delta: float = 0.0  # Mean bias change during epoch
 

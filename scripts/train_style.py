@@ -6,6 +6,9 @@ data loading, and calling the trainers from the kotogram.train package.
 
 import dataclasses
 import glob
+
+# MLflow logging (optional -- only available when mlflow is installed)
+import importlib.util
 import json
 import os
 import shutil
@@ -52,11 +55,10 @@ from train.train_style_view import (
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
 
-# MLflow logging (optional)
-try:
+if importlib.util.find_spec("mlflow") is not None:
     from train import mlflow_logging
-except ImportError:
-    mlflow_logging = None  # type: ignore[assignment]
+else:
+    mlflow_logging = None  # type: ignore[assignment]  # pylint: disable=invalid-name
 
 # Global view instance for display output
 _view: TrainStyleView = TrainStyleDiagnosticsView()
@@ -196,18 +198,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config", type=str, required=True, help="Path to unified config.json file"
     )
-    parser.add_argument(
-        "--mlflow",
-        action="store_true",
-        help="Enable MLflow experiment tracking for KC epochs",
-    )
-
     args = parser.parse_args()
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
 
-    use_mlflow = args.mlflow and mlflow_logging is not None
+    use_mlflow = trainer_config.mlflow and mlflow_logging is not None
 
     # Handle report_only mode
     if trainer_config.report_only:

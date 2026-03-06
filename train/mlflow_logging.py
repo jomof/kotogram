@@ -8,12 +8,10 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from kotogram.model import ModelConfig
-from train.config import KCConfig, TrainerConfig
+from train.config import TrainerConfig
 
 _CLOUD_SQL_PRIVATE_IP = "10.41.0.3"
-_DEFAULT_PG_URI = (
-    f"postgresql+psycopg2://postgres:mlflow-kotogram-2026@{_CLOUD_SQL_PRIVATE_IP}:5432/mlflow"
-)
+_DEFAULT_PG_URI = f"postgresql+psycopg2://postgres:mlflow-kotogram-2026@{_CLOUD_SQL_PRIVATE_IP}:5432/mlflow"
 
 
 def _default_run_name(
@@ -27,21 +25,22 @@ def _default_run_name(
     )
 
 
-def _pg_available() -> bool:
-    """Check if the Cloud SQL instance is reachable (direct or via proxy)."""
+def _can_connect(host: str, port: int, timeout: float = 1.0) -> bool:
+    """Check TCP connectivity without raising exceptions."""
     import socket
 
-    try:
-        with socket.create_connection((_CLOUD_SQL_PRIVATE_IP, 5432), timeout=1):
-            return True
-    except OSError:
-        pass
-    # Fall back to localhost (proxy running on Mac or other non-VPC machine)
-    try:
-        with socket.create_connection(("localhost", 5432), timeout=1):
-            return True
-    except OSError:
-        return False
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(timeout)
+    result = sock.connect_ex((host, port))
+    sock.close()
+    return result == 0
+
+
+def _pg_available() -> bool:
+    """Check if the Cloud SQL instance is reachable (direct or via proxy)."""
+    if _can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
+        return True
+    return _can_connect("localhost", 5432)
 
 
 def _get_machine_id() -> str:
@@ -97,7 +96,7 @@ def _params_from_config(
     return params
 
 
-def start_run(
+def start_run(  # pylint: disable=too-many-positional-arguments
     model_config: ModelConfig,
     trainer_config: TrainerConfig,
     config_path: Optional[str] = None,
@@ -113,13 +112,9 @@ def start_run(
     elif os.environ.get("MLFLOW_TRACKING_URI"):
         pass  # MLflow reads it automatically
     elif _pg_available():
-        import socket
-
-        # Use private IP directly if reachable, otherwise localhost (proxy)
-        try:
-            with socket.create_connection((_CLOUD_SQL_PRIVATE_IP, 5432), timeout=1):
-                mlflow.set_tracking_uri(_DEFAULT_PG_URI)
-        except OSError:
+        if _can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
+            mlflow.set_tracking_uri(_DEFAULT_PG_URI)
+        else:
             mlflow.set_tracking_uri(
                 "postgresql+psycopg2://postgres:mlflow-kotogram-2026@localhost:5432/mlflow"
             )
@@ -167,6 +162,20 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
         gp = families.get("grammar_point")
         if isinstance(gp, dict) and "prob_pos_mean" in gp:
             to_log["kc/grammar_point_posp"] = float(gp["prob_pos_mean"])
+
+        # MSE family accuracies (formality, gender, grammatic)
+        mse_families = diags.get("mse_families", {})
+        for name, mse in mse_families.items():
+            if isinstance(mse, dict) and "discrete_accuracy" in mse:
+                to_log[f"kc/{name}_acc"] = float(mse["discrete_accuracy"])
+
+        # Label family avg/median predicted positives (grammar_point)
+        for name, fam in families.items():
+            if isinstance(fam, dict):
+                if fam.get("avg_pos") is not None:
+                    to_log[f"kc/{name}_avg_pos"] = float(fam["avg_pos"])
+                if fam.get("med_pos") is not None:
+                    to_log[f"kc/{name}_med_pos"] = float(fam["med_pos"])
 
     # Sizing metrics
     if metrics.get("alive_kcs") is not None:

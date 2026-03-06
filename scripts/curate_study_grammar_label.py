@@ -62,7 +62,7 @@ def _apply_input_masking(
     Keeps attention_mask=1 so the model knows a token exists but cannot
     see its identity.  Returns a new dict (leaves the original unchanged).
     """
-    if not (0.0 < mask_ratio < 1.0):
+    if not 0.0 < mask_ratio < 1.0:
         return field_inputs
     maskable = attention_mask.bool()
     out = {}

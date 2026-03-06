@@ -226,6 +226,7 @@ def build_trainer_config(
         "ramp_step": args.ramp / 100.0 if args.ramp else 0.0,
         "label_only": args.label,
         "report_only": args.report,
+        "mlflow": getattr(args, "mlflow", False),
     }
 
     # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)
@@ -356,9 +357,7 @@ def generate_and_save_config(
 
     return config_path
 
-# pylint: disable=too-many-positional-arguments
 def run_training_phase(
-    args: argparse.Namespace,
     env: dict,
     config_path: str,
     launcher: List[str],
@@ -391,9 +390,6 @@ def run_training_phase(
         "--config",
         config_path,
     ]
-    if getattr(args, "mlflow", False):
-        train_args.append("--mlflow")
-
     history_dir = get_style_history_dir()
     training_log = os.path.join(history_dir, "training.log")
     t_train_start = time.perf_counter()
@@ -700,7 +696,7 @@ def main() -> int:
 
 
     # Phase 3: Training
-    ret = run_training_phase(args, env, config_path, launcher)
+    ret = run_training_phase(env, config_path, launcher)
     if ret != 0:
         return ret
 

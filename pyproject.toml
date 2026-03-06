@@ -69,6 +69,10 @@ module = "sudachipy.*"
 ignore_missing_imports = true
 disable_error_code = ["import-untyped"]
 
+[[tool.mypy.overrides]]
+module = "mlflow.*"
+follow_imports = "skip"
+
 [tool.ruff]
 exclude = ["scripts/test_runner.py"]
 [tool.ruff.lint]

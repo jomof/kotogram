@@ -3067,6 +3067,11 @@ class KCTrainer:
                 else:
                     fam_diag.logit_neg_mean = float("nan")
 
+                # AvgPos / MedPos from accumulator
+                if fam_acc.n_pos_ex > 0:
+                    fam_diag.avg_pos = fam_acc.cnt_pred_pos_on_pos / fam_acc.n_pos_ex
+                    fam_diag.med_pos = fam_acc.median_pred_pos_on_pos()
+
                 # Build keys_present to reflect actual sources used
                 keys = []
                 if fam_acc.saw_dense:
@@ -3154,10 +3159,7 @@ class KCTrainer:
             # Propagate adaptive threshold to model config for inference
             self.model.config.kc_threshold = summary.kc_threshold
             # Extract sizing metrics for history / MLflow
-            if (
-                summary.alive_kcs is not None
-                or summary.total_k_mean is not None
-            ):
+            if summary.alive_kcs is not None or summary.total_k_mean is not None:
                 sizing_metrics = {
                     k: v
                     for k, v in [
