@@ -596,6 +596,13 @@ class KcEpochSummary:
     canary_texts: Dict[str, str] = field(default_factory=dict)
     kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
     layer_health: Optional["LayerHealthStats"] = None
+    # Populated by view: Dead KCs line (alive = KCs that have been both above/below 0.5)
+    alive_kcs: Optional[int] = None
+    # Populated by view: Total row K@threshold stats (mean and percentiles of KCs fired per sample)
+    total_k_mean: Optional[float] = None
+    total_k_p10: Optional[float] = None
+    total_k_p50: Optional[float] = None
+    total_k_p90: Optional[float] = None
 
 
 @dataclass
@@ -681,6 +688,8 @@ class TrainEpochResult:
     kc_losses: KCLosses
     avg_kl_sparse: float
     epoch_stats: TrainEpochStats
+    # Sizing metrics from view (alive_kcs, total_k_mean, total_k_p10/p50/p90), None when skipped
+    sizing_metrics: Optional[Dict[str, Any]] = None
 
 
 @dataclass
@@ -726,3 +735,10 @@ class KCTrainingHistory(TrainingHistory):
     active_kc_targets: List[str] = field(default_factory=list)
     # List can contain None for epochs where metrics were skipped
     kc_diagnostics: List[Optional[KCDiagnosticReport]] = field(default_factory=list)
+    # Sizing metrics (alive KCs, Total K mean/p10/p50/p90, kc_threshold); None when metrics skipped
+    alive_kcs: List[Optional[int]] = field(default_factory=list)
+    total_k_mean: List[Optional[float]] = field(default_factory=list)
+    total_k_p10: List[Optional[float]] = field(default_factory=list)
+    total_k_p50: List[Optional[float]] = field(default_factory=list)
+    total_k_p90: List[Optional[float]] = field(default_factory=list)
+    kc_threshold: List[Optional[float]] = field(default_factory=list)

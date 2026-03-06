@@ -3146,29 +3146,40 @@ class KCTrainer:
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
+        sizing_metrics = None
         if skip_metrics:
             self.view.on_kc_epoch_metrics_skipped(epoch, total_loss)
         else:
             self.view.on_kc_epoch_summary(epoch, summary)
             # Propagate adaptive threshold to model config for inference
             self.model.config.kc_threshold = summary.kc_threshold
+            # Extract sizing metrics for history / MLflow
+            if (
+                summary.alive_kcs is not None
+                or summary.total_k_mean is not None
+            ):
+                sizing_metrics = {
+                    k: v
+                    for k, v in [
+                        ("alive_kcs", summary.alive_kcs),
+                        ("total_k_mean", summary.total_k_mean),
+                        ("total_k_p10", summary.total_k_p10),
+                        ("total_k_p50", summary.total_k_p50),
+                        ("total_k_p90", summary.total_k_p90),
+                        ("kc_threshold", summary.kc_threshold),
+                    ]
+                    if v is not None
+                }
 
-        self.view.on_kc_epoch_end(
-            epoch,
-            epoch_result=TrainEpochResult(
-                total_loss=total_loss,
-                kc_losses=KCLosses(_losses=epoch_kc_losses),
-                avg_kl_sparse=total_kl_sparse / max(1, total_batches),
-                epoch_stats=epoch_stats,
-            ),
-        )
-
-        return TrainEpochResult(
+        epoch_result = TrainEpochResult(
             total_loss=total_loss,
             kc_losses=KCLosses(_losses=epoch_kc_losses),
             avg_kl_sparse=total_kl_sparse / max(1, total_batches),
             epoch_stats=epoch_stats,
+            sizing_metrics=sizing_metrics,
         )
+        self.view.on_kc_epoch_end(epoch, epoch_result=epoch_result)
+        return epoch_result
 
     def _log_training_progress(self) -> None:
         data_avg = self.train_timer_data.avg()
@@ -3241,6 +3252,15 @@ class KCTrainer:
 
             # Always append to keep list aligned with epoch indices (None if skipped)
             self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)
+
+            # Sizing metrics (alive KCs, Total K mean/p10/p50/p90, kc_threshold)
+            sm = epoch_res.sizing_metrics
+            self.history.alive_kcs.append(sm.get("alive_kcs") if sm else None)
+            self.history.total_k_mean.append(sm.get("total_k_mean") if sm else None)
+            self.history.total_k_p10.append(sm.get("total_k_p10") if sm else None)
+            self.history.total_k_p50.append(sm.get("total_k_p50") if sm else None)
+            self.history.total_k_p90.append(sm.get("total_k_p90") if sm else None)
+            self.history.kc_threshold.append(sm.get("kc_threshold") if sm else None)
 
             # Record active KC targets
             active_targets = sorted(list(kc_losses.keys()))

@@ -358,6 +358,7 @@ def generate_and_save_config(
 
 # pylint: disable=too-many-positional-arguments
 def run_training_phase(
+    args: argparse.Namespace,
     env: dict,
     config_path: str,
     launcher: List[str],
@@ -390,6 +391,8 @@ def run_training_phase(
         "--config",
         config_path,
     ]
+    if getattr(args, "mlflow", False):
+        train_args.append("--mlflow")
 
     history_dir = get_style_history_dir()
     training_log = os.path.join(history_dir, "training.log")
@@ -495,6 +498,11 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
 
     parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
+    parser.add_argument(
+        "--mlflow",
+        action="store_true",
+        help="Enable MLflow experiment tracking for KC epochs",
+    )
 
     # Adaptive data ramp
     parser.add_argument(
@@ -692,9 +700,7 @@ def main() -> int:
 
 
     # Phase 3: Training
-    ret = run_training_phase(
-        env, config_path, launcher
-    )
+    ret = run_training_phase(args, env, config_path, launcher)
     if ret != 0:
         return ret
 

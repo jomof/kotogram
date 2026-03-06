@@ -77,6 +77,11 @@ env/
 .cache/
 test-dist/
 
+# MLflow
+mlruns/**/artifacts/
+mlruns/**/models/
+cloud-sql-proxy
+
 # Generated Indices
 data/corpus-kc-index.db
 data/corpus-inference.db

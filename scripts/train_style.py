@@ -52,6 +52,12 @@ from train.train_style_view import (
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
 
+# MLflow logging (optional)
+try:
+    from train import mlflow_logging
+except ImportError:
+    mlflow_logging = None  # type: ignore[assignment]
+
 # Global view instance for display output
 _view: TrainStyleView = TrainStyleDiagnosticsView()
 
@@ -190,11 +196,18 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config", type=str, required=True, help="Path to unified config.json file"
     )
+    parser.add_argument(
+        "--mlflow",
+        action="store_true",
+        help="Enable MLflow experiment tracking for KC epochs",
+    )
 
     args = parser.parse_args()
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
+
+    use_mlflow = args.mlflow and mlflow_logging is not None
 
     # Handle report_only mode
     if trainer_config.report_only:
@@ -287,6 +300,8 @@ if __name__ == "__main__":
                     history.append_event(history_path, diag_event)
 
             event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
+            if use_mlflow and mlflow_logging:
+                mlflow_logging.log_kc_epoch(current_epoch, metrics)
         else:
             event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
 
@@ -581,66 +596,75 @@ if __name__ == "__main__":
 
     style_start = time.perf_counter()
 
-    # Interleaving loop: KC first, then style, until both are done
-    max_rounds = max(kc_epochs_target, style_epochs_target)
-    for _ in range(max_rounds):
-        # KC epoch (if remaining)
-        if kc_epochs_done < kc_epochs_target:
-            kc_trainer.train(
-                epochs=kc_epochs_done + 1,  # Train up to next epoch
-                on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
-                start_epoch=kc_epochs_done,
-            )
-            kc_epochs_done += 1
-            # Save model.pt after every KC epoch as requested
-            _export_model(model)
-            train_io.save_checkpoint(model)
-
-        # Style epoch (if remaining)
-        if style_epochs_done < style_epochs_target:
-            style_trainer.train(
-                epochs=style_epochs_done + 1,  # Train up to next epoch
-                on_epoch_end=lambda h: _log_epoch_event(h, "style"),
-                start_epoch=style_epochs_done,
-            )
-            style_epochs_done += 1
-            # Save model and continuation.json after every style epoch
-            _export_model(model)
-
-        # Both done?
-        if (
-            kc_epochs_done >= kc_epochs_target
-            and style_epochs_done >= style_epochs_target
-        ):
-            break
-
-    style_end = time.perf_counter()
-
-    if kc_trainer.history.total_loss:
-        _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
-    if style_trainer.history.train_loss:
-        _view.on_style_training_complete(style_trainer.history.train_loss[-1])
-
-    # Test evaluation and model saving
-    res, _worst_samples = style_trainer.evaluate()
-    _view.on_final_results(
-        FinalResults(
-            formality_accuracy=res.formality_accuracy,
-            gender_accuracy=res.gender_accuracy,
-            grammaticality_accuracy=res.grammaticality_accuracy,
+    if use_mlflow and mlflow_logging:
+        mlflow_logging.start_run(
+            model_config,
+            trainer_config,
+            config_path=args.config,
+            run_name=None,
         )
-    )
 
-    # Final model export
-    if model:
-        _export_model(model)
+    # Interleaving loop: KC first, then style, until both are done
+    try:
+        max_rounds = max(kc_epochs_target, style_epochs_target)
+        for _ in range(max_rounds):
+            # KC epoch (if remaining)
+            if kc_epochs_done < kc_epochs_target:
+                kc_trainer.train(
+                    epochs=kc_epochs_done + 1,  # Train up to next epoch
+                    on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
+                    start_epoch=kc_epochs_done,
+                )
+                kc_epochs_done += 1
+                # Save model.pt after every KC epoch as requested
+                _export_model(model)
+                train_io.save_checkpoint(model)
 
-    # Final timing report
-    _view.on_timing_summary(style_end - style_start)
+            # Style epoch (if remaining)
+            if style_epochs_done < style_epochs_target:
+                style_trainer.train(
+                    epochs=style_epochs_done + 1,  # Train up to next epoch
+                    on_epoch_end=lambda h: _log_epoch_event(h, "style"),
+                    start_epoch=style_epochs_done,
+                )
+                style_epochs_done += 1
+                # Save model and continuation.json after every style epoch
+                _export_model(model)
 
-    # Auto-generate report and cleanup if profiling was enabled
-    # We check environment because arguments might not settle it alone (defaults)
-    # But usually if we ran code, we generated logs.
-    if profiling_enabled() and not trainer_config.report_only:
-        # report_only exits early, so we only need to do this for a normal run
-        generate_profile_report()
+            # Both done?
+            if (
+                kc_epochs_done >= kc_epochs_target
+                and style_epochs_done >= style_epochs_target
+            ):
+                break
+
+        style_end = time.perf_counter()
+
+        if kc_trainer.history.total_loss:
+            _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
+        if style_trainer.history.train_loss:
+            _view.on_style_training_complete(style_trainer.history.train_loss[-1])
+
+        # Test evaluation and model saving
+        res, _worst_samples = style_trainer.evaluate()
+        _view.on_final_results(
+            FinalResults(
+                formality_accuracy=res.formality_accuracy,
+                gender_accuracy=res.gender_accuracy,
+                grammaticality_accuracy=res.grammaticality_accuracy,
+            )
+        )
+
+        # Final model export
+        if model:
+            _export_model(model)
+
+        # Final timing report
+        _view.on_timing_summary(style_end - style_start)
+
+        # Auto-generate report and cleanup if profiling was enabled
+        if profiling_enabled() and not trainer_config.report_only:
+            generate_profile_report()
+    finally:
+        if use_mlflow and mlflow_logging:
+            mlflow_logging.end_run()

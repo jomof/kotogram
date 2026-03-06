@@ -677,6 +677,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             gp50 = all_k[nk // 2] if nk else 0.0
             gp90 = all_k[int(nk * 0.9)] if nk else 0.0
 
+            # Expose for MLflow / history
+            summary.total_k_mean = w_k
+            summary.total_k_p10 = gp10
+            summary.total_k_p50 = gp50
+            summary.total_k_p90 = gp90
+
             table_sizing.add_row(
                 "[bold]Total[/bold]",
                 f"[bold]{total_n}[/bold]",
@@ -698,6 +704,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             dead_1 = int((~self.ever_below_half).sum().item())  # Never <= 0.5
             dead_total = dead_0 + dead_1
             alive = vocab_size - dead_total
+            summary.alive_kcs = alive
             # Color: red if many dead, green if few
             c_dead = (
                 "red"
