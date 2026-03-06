@@ -3,7 +3,7 @@
 import math
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Set, Tuple, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 import torch
 from torch.utils.data import Dataset
@@ -15,14 +15,14 @@ from kotogram.model import (
     NUM_GRAMMATICALITY_CLASSES,
     NUM_REGISTER_CLASSES,
 )
-from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
 from train.binary_io import (
     EXT_FEAT_PREFIX,
     EXT_KC_PREFIX,
     EXT_LABELS,
     EXT_OFFSETS,
 )
-from train.kc import KcFamilyId, compute_kc_targets, initialize_disallow_filter
+from train.kc import KcFamilyId
 from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
@@ -54,15 +54,17 @@ class StyleDataset(Dataset[Sample]):
         tokenizer: Tokenizer,
         indices: Optional[torch.Tensor] = None,
         sample_ratio: float = 1.0,
+        feature_fields: Optional[Sequence[str]] = None,
     ):
         # pylint: disable=too-many-positional-arguments
         self.data_dir = data_dir
         self.tokenizer = tokenizer
         self.verbose = True
-
-        # Initialize disallow filter for KC target computation
-        compound_1_vocab = tokenizer.field_vocabs.get("compound_1", {})
-        initialize_disallow_filter(compound_1_vocab)
+        self._feature_fields = (
+            list(feature_fields)
+            if feature_fields is not None
+            else list(ENCODER_FEATURE_FIELDS)
+        )
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)
@@ -260,8 +262,14 @@ class StyleDataset(Dataset[Sample]):
         return torch.from_file(path, shared=shared, size=size, dtype=dtype)
 
     def _init_features(self, data_dir: str) -> Dict[str, torch.Tensor]:
+        """Load feature fields from binary files.
+
+        By default only ENCODER_FEATURE_FIELDS (surface) are loaded.  Pass
+        ``feature_fields`` to ``__init__`` to override (e.g. for KC-target
+        cross-validation tests that need all morphological fields).
+        """
         features = {}
-        for field in FEATURE_FIELDS:
+        for field in self._feature_fields:
             path = os.path.join(data_dir, f"{EXT_FEAT_PREFIX}{field}.bin")
             if self._check_exists(path):
                 sz = self._get_size(path) // 4
@@ -447,57 +455,52 @@ class StyleDataset(Dataset[Sample]):
             register_labels=reg_list,
             original_sentence="",  # Binary format drops raw text to save space
             kotogram="",
-            kc_targets=self._get_kc_targets(
-                int(real_idx), int(start), int(end), feature_ids
-            ),
+            kc_targets=self._get_kc_targets(int(real_idx)),
             idx=int(real_idx),
         )
 
-    def _get_kc_targets(
-        self, real_idx: int, _start: int, _end: int, feature_ids: Dict[str, List[int]]
-    ) -> Dict[KcFamilyId, Any]:
-        """Get KC targets for a sample.
+    def _get_kc_targets(self, real_idx: int) -> Dict[KcFamilyId, Any]:
+        """Get pre-computed KC targets for a sample.
 
-        Uses pre-computed targets from binary files if available,
-        otherwise falls back to computing on-the-fly.
+        Requires pre-computed targets from binary files written by the
+        labeling phase (scripts/label.py). Raises if they are missing.
 
         For GRAMMAR_POINT family, returns a dict with "pos" and "neg" lists.
         """
-        # If pre-computed KC targets are available, use them
-        if self.kc_maps:
-            result: Dict[KcFamilyId, Any] = {}
-            for family in KcFamilyId:
-                family_name = family.value
+        if not self.kc_maps:
+            raise RuntimeError(
+                "Pre-computed KC targets not found. "
+                "Please run 'bin/train_style --label' to generate them."
+            )
 
-                # Special handling for GRAMMAR_POINT (has pos/neg arrays)
-                if family == KcFamilyId.GRAMMAR_POINT:
-                    gp_pos = []
-                    gp_neg = []
-                    if "grammar_point_pos" in self.kc_maps:
-                        data = self.kc_maps["grammar_point_pos"]
-                        gp_start = int(data["offsets"][real_idx].item())
-                        gp_end = int(data["offsets"][real_idx + 1].item())
-                        gp_pos = data["ids"][gp_start:gp_end].tolist()
-                    if "grammar_point_neg" in self.kc_maps:
-                        data = self.kc_maps["grammar_point_neg"]
-                        gp_start = int(data["offsets"][real_idx].item())
-                        gp_end = int(data["offsets"][real_idx + 1].item())
-                        gp_neg = data["ids"][gp_start:gp_end].tolist()
-                    result[family] = {"pos": gp_pos, "neg": gp_neg}
-                    continue
+        result: Dict[KcFamilyId, Any] = {}
+        for family in KcFamilyId:
+            family_name = family.value
 
-                if family_name in self.kc_maps:
-                    data = self.kc_maps[family_name]
-                    # Get the jagged slice for this sample
-                    kc_start = int(data["offsets"][real_idx].item())
-                    kc_end = int(data["offsets"][real_idx + 1].item())
-                    result[family] = data["ids"][kc_start:kc_end].tolist()
-                else:
-                    result[family] = []
-            return result
+            if family == KcFamilyId.GRAMMAR_POINT:
+                gp_pos = []
+                gp_neg = []
+                if "grammar_point_pos" in self.kc_maps:
+                    data = self.kc_maps["grammar_point_pos"]
+                    gp_start = int(data["offsets"][real_idx].item())
+                    gp_end = int(data["offsets"][real_idx + 1].item())
+                    gp_pos = data["ids"][gp_start:gp_end].tolist()
+                if "grammar_point_neg" in self.kc_maps:
+                    data = self.kc_maps["grammar_point_neg"]
+                    gp_start = int(data["offsets"][real_idx].item())
+                    gp_end = int(data["offsets"][real_idx + 1].item())
+                    gp_neg = data["ids"][gp_start:gp_end].tolist()
+                result[family] = {"pos": gp_pos, "neg": gp_neg}
+                continue
 
-        # Fallback: Compute on demand (slower, for backwards compatibility)
-        return compute_kc_targets(cast(Any, feature_ids))
+            if family_name in self.kc_maps:
+                data = self.kc_maps[family_name]
+                kc_start = int(data["offsets"][real_idx].item())
+                kc_end = int(data["offsets"][real_idx + 1].item())
+                result[family] = data["ids"][kc_start:kc_end].tolist()
+            else:
+                result[family] = []
+        return result
 
     @classmethod
     def from_multiple_tsv(
@@ -696,20 +699,25 @@ class StyleDataset(Dataset[Sample]):
 def _collate_features(
     batch: List[Sample], batch_size: int, max_seq_len: int
 ) -> Dict[str, torch.Tensor]:
+    """Collate only ENCODER_FEATURE_FIELDS into padded tensors.
+
+    Non-encoder feature fields (pos, compound_1, etc.) are only needed for KC
+    target computation, which uses pre-computed Sample.kc_targets, not these
+    batch tensors.
+    """
     feature_tensors: Dict[str, torch.Tensor] = {}
     if not batch:
         return feature_tensors
 
-    # Hardcoded pad_id=0
     pad_id = 0
 
-    for f in FEATURE_FIELDS:
+    for f in ENCODER_FEATURE_FIELDS:
         feature_tensors[f"input_ids_{f}"] = torch.full(
             (batch_size, max_seq_len), pad_id, dtype=torch.long
         )
 
     for i, s in enumerate(batch):
-        for f in FEATURE_FIELDS:
+        for f in ENCODER_FEATURE_FIELDS:
             seq = s.feature_ids.get(f)
             if seq is None:
                 continue

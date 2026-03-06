@@ -150,10 +150,10 @@ class PositionalEncoding(nn.Module):
         return cast(torch.Tensor, self.dropout(x))
 
 
-class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
-    """Embedding layer that combines multiple categorical feature embeddings.
+class SurfaceEmbedding(nn.Module):  # type: ignore[misc]
+    """Embedding layer for surface token inputs.
 
-    Uses ENCODER_FEATURE_FIELDS (pos, compound_1, reading) for the transformer encoder.
+    Embeds ENCODER_FEATURE_FIELDS (currently surface-only) and projects to d_model.
     """
 
     def __init__(self, config: ModelConfig):
@@ -481,7 +481,7 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         super().__init__()
         self.config = config
 
-        self.embedding = MultiFieldEmbedding(config)
+        self.embedding = SurfaceEmbedding(config)
         self.position_encoding = PositionalEncoding(
             config.d_model,
         )

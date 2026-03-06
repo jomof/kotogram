@@ -699,7 +699,7 @@ class TrainEpochResult:
 class TrainingBatch:
     """Typed batch for training."""
 
-    feature_inputs: Dict[str, torch.Tensor]  # e.g. "kanji" -> tensor
+    feature_inputs: Dict[str, torch.Tensor]  # e.g. "input_ids_surface" -> tensor
     attention_mask: torch.Tensor
     formality_value: torch.Tensor
     formality_pragmatic: torch.Tensor

@@ -30,11 +30,11 @@ if os.environ.get("VULTURE_WHITELIST"):
     import lib_confine  # type: ignore
 
     _v1 = lib_confine.confine  # type: ignore
-    from kotogram.model import InferenceClassifier, PositionalEncoding, MultiFieldEmbedding, KCHead
+    from kotogram.model import InferenceClassifier, PositionalEncoding, SurfaceEmbedding, KCHead
 
     _v2 = InferenceClassifier.forward
     _v3 = PositionalEncoding.forward
-    _v4 = MultiFieldEmbedding.forward
+    _v4 = SurfaceEmbedding.forward
     _v5 = KCHead.forward
     _v6 = KCHead.forward_with_raw
 

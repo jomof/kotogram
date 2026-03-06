@@ -13,7 +13,7 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader
 
 from kotogram.constants import REGISTER_ID_TO_LABEL
-from kotogram.tokenizer import FEATURE_FIELDS
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -725,12 +725,12 @@ class KCTrainer:
         """Evaluate a canary sentence and return compact summary string."""
         tok = self.dataset.tokenizer
         encoded = tok.encode(sentence)
-        seq_len = len(encoded[FEATURE_FIELDS[0]])
+        seq_len = len(encoded[ENCODER_FEATURE_FIELDS[0]])
         field_inputs = {
             f"input_ids_{f}": torch.tensor(
                 [encoded[f]], dtype=torch.long, device=self.device
             )
-            for f in FEATURE_FIELDS
+            for f in ENCODER_FEATURE_FIELDS
             if f in encoded
         }
         attention_mask = torch.ones(1, seq_len, dtype=torch.long, device=self.device)
@@ -865,8 +865,11 @@ class KCTrainer:
             for batch in self._iter_layer_health_batches(num_batches):
                 if batch_count >= num_batches:
                     break
+                enc_keys = {f"input_ids_{f}" for f in ENCODER_FEATURE_FIELDS}
                 field_inputs = {
-                    k: v.to(self.device) for k, v in batch.feature_inputs.items()
+                    k: v.to(self.device)
+                    for k, v in batch.feature_inputs.items()
+                    if k in enc_keys
                 }
                 attention_mask = batch.attention_mask.to(self.device)
 
@@ -1447,9 +1450,11 @@ class KCTrainer:
 
             full_batch = batch
             nb = self.use_amp
+            encoder_keys = {f"input_ids_{f}" for f in ENCODER_FEATURE_FIELDS}
             full_field_inputs = {
                 k: v.to(self.device, non_blocking=nb)
                 for k, v in full_batch.feature_inputs.items()
+                if k in encoder_keys
             }
             full_attention_mask = full_batch.attention_mask.to(
                 self.device, non_blocking=nb

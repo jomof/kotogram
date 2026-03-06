@@ -93,10 +93,9 @@ class TestDataflowV2(unittest.TestCase):
         # self.assertIn("lemma", sample.feature_ids)
         # self.assertTrue(len(sample.feature_ids["lemma"]) > 0)
 
-        # Inspect reading_gram IDs (was surface)
-        rg_ids = sample.feature_ids["reading_gram"]
-        valid_ids = [fid for fid in rg_ids if fid > 2]
-        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {rg_ids}")
+        surface_ids = sample.feature_ids["surface"]
+        valid_ids = [fid for fid in surface_ids if fid > 2]
+        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {surface_ids}")
 
         # Check Register Labels (ragged)
         # "これはテスト文です0" has override KYOSHIGO (ID 5)
