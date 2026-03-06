@@ -426,13 +426,17 @@ if __name__ == "__main__":
         # DB-sourced families need special handling based on type
         if is_family_db_sourced(fid):
             from train.kc import (
+                KcBertFamily,
                 KcDbMultilabelFamily,
                 KcPnuFamily,
                 get_family,
             )
 
             family_def = get_family(fid)
-            if isinstance(family_def, KcPnuFamily):
+            if isinstance(family_def, KcBertFamily):
+                # BERT cloze: predict surface token, needs surface vocab size
+                kc_specs[fid] = current_vocabs["surface"]
+            elif isinstance(family_def, KcPnuFamily):
                 # PNU families (GRAMMAR_POINT) use dynamically computed GP vocab size
                 if gp_vocab_size > 0:
                     kc_specs[fid] = gp_vocab_size

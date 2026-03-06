@@ -1201,6 +1201,9 @@ class KCTrainer:
             # DB-sourced multi-label families (register) use multilabel_ prefix
             if f"kc_multilabel_{name}" in kc_targets:
                 continue
+            # BERT cloze targets are generated dynamically (not in kc_targets)
+            if name == "bert":
+                continue
             missing_keys.append(name)
 
         # If missing keys exist, verify if they are legitimately missing or aliasing issues
@@ -1597,6 +1600,36 @@ class KCTrainer:
             attention_mask = full_attention_mask[gram_mask]
             field_inputs = {k: v[gram_mask] for k, v in full_field_inputs.items()}
 
+            # Morpheme-cloze target selection: pick one surface token per sample
+            # BEFORE any masking, so we have the original token IDs.
+            cloze_targets: Optional[torch.Tensor] = None
+            cloze_valid: Optional[torch.Tensor] = None
+            original_surface: Optional[torch.Tensor] = None
+            if self.model.training:
+                surface_key = "input_ids_surface"
+                if surface_key in field_inputs:
+                    original_surface = field_inputs[surface_key].clone()
+                    bs_cloze = original_surface.size(0)
+                    cloze_targets = torch.zeros(
+                        bs_cloze, dtype=torch.long, device=self.device
+                    )
+                    cloze_valid = torch.zeros(
+                        bs_cloze, dtype=torch.bool, device=self.device
+                    )
+                    for i in range(bs_cloze):
+                        valid_positions = attention_mask[i].bool()
+                        surface_ids = original_surface[i][valid_positions]
+                        # Exclude special tokens (PAD=0, UNK=1, CLS=2)
+                        candidates = surface_ids[surface_ids > 2].unique()
+                        if candidates.numel() > 0:
+                            chosen = candidates[
+                                torch.randint(
+                                    candidates.numel(), (1,), device=self.device
+                                )
+                            ]
+                            cloze_targets[i] = chosen
+                            cloze_valid[i] = True
+
             # BERT-style input masking: randomly replace tokens with pad_id=0
             # (zero embedding) while keeping attention_mask=1 so the model
             # knows a token exists but can't see its identity.
@@ -1607,6 +1640,22 @@ class KCTrainer:
                     ids = field_inputs[key]
                     rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
                     field_inputs[key] = ids.masked_fill(rand_mask, 0)
+
+            # Morpheme-cloze masking: zero out ALL remaining occurrences
+            # of the chosen token so the model cannot copy from visible instances.
+            if (
+                original_surface is not None
+                and cloze_targets is not None
+                and cloze_valid is not None
+                and cloze_valid.any()
+            ):
+                surface_key = "input_ids_surface"
+                if surface_key in field_inputs:
+                    ids = field_inputs[surface_key]
+                    for i in range(ids.size(0)):
+                        if cloze_valid[i]:
+                            token_mask = original_surface[i] == cloze_targets[i]
+                            ids[i] = ids[i].masked_fill(token_mask, 0)
 
             # Compute content_len (approximate: non-pad count)
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
@@ -1691,6 +1740,10 @@ class KCTrainer:
                     if sparse_key in kc_targets:
                         has_match = True
                         break
+                    # BERT family uses cloze_targets, not kc_targets
+                    if name == "bert" and cloze_targets is not None:
+                        has_match = True
+                        break
 
                 if not has_match:
                     tgt_keys = list(kc_targets.keys())
@@ -1736,11 +1789,54 @@ class KCTrainer:
                 # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
                 if is_family_db_sourced(fid):
                     from train.kc import (
+                        KcBertFamily,
                         KcDbMultilabelFamily,
                         KcPnuFamily,
                     )
 
                     family_def = get_family(fid)
+
+                    if isinstance(family_def, KcBertFamily):
+                        # Morpheme-cloze loss: cross-entropy over surface vocabulary
+                        if (
+                            cloze_targets is not None
+                            and cloze_valid is not None
+                            and cloze_valid.any()
+                        ):
+                            logits_bert = logits.float()
+                            valid_logits = logits_bert[cloze_valid]
+                            valid_targets = cloze_targets[cloze_valid]
+
+                            raw_ce_loss = F.cross_entropy(
+                                valid_logits, valid_targets, reduction="mean"
+                            )
+                            task_loss = raw_ce_loss * family_def.loss_weight
+                            batch_kc_losses[name] = task_loss.item()
+                            structural_loss = structural_loss + task_loss
+                            num_struct += 1
+
+                            if not skip_metrics and kc_diag is not None:
+                                with torch.no_grad():
+                                    preds = valid_logits.argmax(dim=1)
+                                    _, top5 = valid_logits.topk(5, dim=1)
+                                    top1_correct = int(
+                                        (preds == valid_targets).sum().item()
+                                    )
+                                    top5_correct = int(
+                                        (top5 == valid_targets.unsqueeze(1))
+                                        .any(dim=1)
+                                        .sum()
+                                        .item()
+                                    )
+                                    n_valid = int(cloze_valid.sum().item())
+                                    kc_diag.update_bert_family(
+                                        name,
+                                        loss=task_loss.item(),
+                                        top1_correct=top1_correct,
+                                        top5_correct=top5_correct,
+                                        n_samples=n_valid,
+                                    )
+                        continue
 
                     if isinstance(family_def, KcPnuFamily):
                         # PNU loss for grammar points (pos/neg arrays)

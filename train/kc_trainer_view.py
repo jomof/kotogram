@@ -859,6 +859,37 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             console.print(table_mse)
 
+        # BLOCK 3a.5: BERT Cloze Families (Morpheme Prediction)
+        if summary.diagnostics.bert_families:
+            table_bert = Table(
+                show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
+            )
+            table_bert.add_column("BERT Family")
+            table_bert.add_column("Loss")
+            table_bert.add_column("Top-1")
+            table_bert.add_column("Top-5")
+
+            for b_name, bert in sorted(summary.diagnostics.bert_families.items()):
+                c_t1 = (
+                    "green"
+                    if bert.top1_accuracy > 0.3
+                    else ("yellow" if bert.top1_accuracy > 0.1 else "red")
+                )
+                c_t5 = (
+                    "green"
+                    if bert.top5_accuracy > 0.5
+                    else ("yellow" if bert.top5_accuracy > 0.2 else "red")
+                )
+
+                table_bert.add_row(
+                    f"{b_name}",
+                    f"{bert.loss_mean:.4f}",
+                    f"[{c_t1}]{bert.top1_accuracy * 100:.1f}%[/{c_t1}]",
+                    f"[{c_t5}]{bert.top5_accuracy * 100:.1f}%[/{c_t5}]",
+                )
+
+            console.print(table_bert)
+
         # BLOCK 3b: Label Families (Classification Diagnostics)
         table_fam = Table(
             show_header=True, header_style="bold blue", box=None, padding=(0, 1)
@@ -1040,9 +1071,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Skip if no families (minimal test scenarios).
         all_label_families = list(summary.diagnostics.families.values())
         all_mse_families = list(summary.diagnostics.mse_families.values())
-        if all_label_families or all_mse_families:
+        all_bert_families = list(summary.diagnostics.bert_families.values())
+        if all_label_families or all_mse_families or all_bert_families:
             all_batch_counts = [
-                fam.batch_count for fam in all_label_families + all_mse_families
+                fam.batch_count
+                for fam in all_label_families + all_mse_families + all_bert_families
             ]
             do_checksum = not (
                 all_batch_counts
@@ -1051,7 +1084,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             if do_checksum:
                 label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
                 mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
-                family_loss_sum = label_loss_sum + mse_loss_sum
+                bert_loss_sum = sum(fam.loss_mean for fam in all_bert_families)
+                family_loss_sum = label_loss_sum + mse_loss_sum + bert_loss_sum
                 # struct is BCE only (gap regularizer removed)
                 struct_loss = lc.struct * w.struct / nb
                 tolerance = 1e-3

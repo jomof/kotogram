@@ -177,6 +177,17 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
                 if fam.get("med_pos") is not None:
                     to_log[f"kc/{name}_med_pos"] = float(fam["med_pos"])
 
+        # BERT cloze family metrics (morpheme prediction)
+        bert_families = diags.get("bert_families", {})
+        for name, bert in bert_families.items():
+            if isinstance(bert, dict):
+                if "loss_mean" in bert:
+                    to_log[f"kc/{name}_loss"] = float(bert["loss_mean"])
+                if "top1_accuracy" in bert:
+                    to_log[f"kc/{name}_top1"] = float(bert["top1_accuracy"])
+                if "top5_accuracy" in bert:
+                    to_log[f"kc/{name}_top5"] = float(bert["top5_accuracy"])
+
     # Sizing metrics
     if metrics.get("alive_kcs") is not None:
         to_log["kc/alive_kcs"] = int(metrics["alive_kcs"])

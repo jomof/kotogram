@@ -70,6 +70,9 @@ class KcFamilyId(str, Enum):
         "register"  # Multi-label classification (14 registers, can have multiple)
     )
 
+    # Morpheme-Cloze Family (BERT-style: mask all instances of one token, predict it)
+    BERT = "bert"
+
 
 # =============================================================================
 # KC Family ABC and Subclasses
@@ -370,6 +373,39 @@ class KcDbMultilabelFamily(KcFamily):
         return self._num_classes
 
 
+@dataclass(frozen=True)
+class KcBertFamily(KcFamily):
+    """Morpheme-cloze family: mask all instances of one surface token, predict which.
+
+    Targets are generated dynamically at training time (not precomputed).
+    The encoder sees the sentence with all occurrences of a randomly chosen
+    surface morpheme replaced by pad; the decoder predicts the masked token ID
+    via cross-entropy over the surface vocabulary.
+    """
+
+    _loss_weight: float = 1.0
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True  # Targets not precomputed from morphology
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No fixed feature field
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return True  # Not needed at inference time
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+
 # =============================================================================
 # Family Registry
 # =============================================================================
@@ -501,6 +537,11 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.REGISTER: KcDbMultilabelFamily(
         family_id=KcFamilyId.REGISTER,
         _num_classes=14,  # 14 register types (sonkeigo, kenjogo, etc.)
+        _loss_weight=1.0,
+    ),
+    # Morpheme-cloze family
+    KcFamilyId.BERT: KcBertFamily(
+        family_id=KcFamilyId.BERT,
         _loss_weight=1.0,
     ),
 }

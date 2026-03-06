@@ -462,11 +462,22 @@ class KCMseFamilyStats:
 
 
 @dataclass
+class KCBertFamilyStats:
+    """KC diagnostic statistics for a BERT cloze (morpheme-prediction) family."""
+
+    loss_mean: float
+    top1_accuracy: float
+    top5_accuracy: float
+    batch_count: int = 0
+
+
+@dataclass
 class KCDiagnosticReport:
     """Full KC diagnostic report for an epoch."""
 
     families: Dict[str, KCDiagnosticFamilyStats]  # Label family stats
     mse_families: Dict[str, KCMseFamilyStats] = field(default_factory=dict)
+    bert_families: Dict[str, KCBertFamilyStats] = field(default_factory=dict)
 
 
 @dataclass

@@ -858,24 +858,30 @@ def create_kc_batch(
         Dict mapping 'kc_targets_{field}' to (batch_size, vocab_size) float tensor
     """
     result: Dict[str, torch.Tensor] = {}
-
-    # Get special tokens to ignore
     special_ids = {0, tokenizer.unk_id, tokenizer.cls_id}
-
-    # Helper for device
     device = batch.attention_mask.device
 
-    # Note: We rely on batch.kc_targets being populated by collate_fn from Sample objects
     if not batch.kc_targets:
-        # Fallback if empty (shouldn't happen with valid collation)
         return result
 
-    # Global effective mask initialization
     batch_size = len(batch.kc_targets)
     global_has_pos = torch.zeros(batch_size, dtype=torch.bool, device=device)
 
-    # Strict iteration over target_specs which MUST be Dict[KcFamilyId, int]
+    # Deferred import to avoid circular dependency
+    from train.kc import (  # pylint: disable=import-outside-toplevel
+        KcBertFamily,
+        KcDbMultilabelFamily,
+        KcPnuFamily,
+        get_family,
+        is_family_db_sourced,
+        is_family_sparse,
+    )
+
     for target_family, vocab_size in target_specs.items():
+        # BERT cloze targets are generated dynamically in kc_trainer, not precomputed
+        if isinstance(get_family(target_family), KcBertFamily):
+            continue
+
         # Strict data alignment: The batch MUST contain data for the requested target.
         if target_family not in batch.kc_targets[0]:
             raise KeyError(
@@ -883,15 +889,6 @@ def create_kc_batch(
             )
 
         kc_key = target_family
-
-        # Import here to avoid circular import
-        from train.kc import (
-            KcDbMultilabelFamily,
-            KcPnuFamily,
-            get_family,
-            is_family_db_sourced,
-            is_family_sparse,
-        )
 
         # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
         # These use different data structures: KcPnuFamily uses pos/neg arrays, KcMseFamily uses scalars

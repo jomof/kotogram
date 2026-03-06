@@ -43,12 +43,18 @@ class KCDecoder(nn.Module):
         self.tanh = nn.Tanh()
 
         # Derive MSE families from registry
-        from train.kc import KcMseFamily
+        from train.kc import KcBertFamily, KcMseFamily
 
         self._mse_families = frozenset(
             fid.name.lower()
             for fid, fam in KC_FAMILIES.items()
             if isinstance(fam, KcMseFamily) and fid in target_specs
+        )
+
+        self._bert_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if isinstance(fam, KcBertFamily) and fid in target_specs
         )
 
         # Separate hidden layers for MSE families (style features)
@@ -59,15 +65,23 @@ class KCDecoder(nn.Module):
         self.label_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.label_hidden2 = nn.Linear(hidden_dim, hidden_dim)
 
+        # Separate hidden layers for BERT cloze (morpheme prediction)
+        self.bert_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
+        self.bert_hidden2 = nn.Linear(hidden_dim, hidden_dim)
+
         # Per-family output heads
         self.decoders = nn.ModuleDict()
         self.mse_decoders = nn.ModuleDict()
+        self.bert_decoders = nn.ModuleDict()
 
         for fid, vocab_size in target_specs.items():
             name = fid.name.lower()
             if name in self._mse_families:
                 # MSE families: use MSE hidden pathway → output → Tanh
                 self.mse_decoders[name] = nn.Linear(hidden_dim, vocab_size)
+            elif name in self._bert_families:
+                # BERT cloze: kc_probs → hidden → surface_vocab_size
+                self.bert_decoders[name] = nn.Linear(hidden_dim, vocab_size)
             else:
                 # Label families: use label hidden pathway → output
                 self.decoders[name] = nn.Linear(hidden_dim, vocab_size)
@@ -105,6 +119,14 @@ class KCDecoder(nn.Module):
 
             for name, decoder in self.decoders.items():
                 result[name] = decoder(h_label)
+
+        # BERT cloze pathway: predict masked surface morpheme
+        if self.bert_decoders:
+            h_bert = self.activation(self.bert_hidden1(kc_probs))
+            h_bert = self.activation(self.bert_hidden2(h_bert))
+
+            for name, decoder in self.bert_decoders.items():
+                result[name] = decoder(h_bert)
 
         return result
 
