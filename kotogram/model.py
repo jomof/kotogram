@@ -80,7 +80,7 @@ class ModelConfig:
     )
     d_model: int = 512
     hidden_dim: int = 2048
-    num_layers: int = 9
+    num_layers: int = 4
     num_heads: int = 16
     dropout: float = 0.1
     max_seq_len: int = 512
