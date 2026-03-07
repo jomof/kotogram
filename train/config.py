@@ -234,6 +234,7 @@ class TrainerConfig:
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
     mlflow: bool = False  # Enable MLflow experiment tracking
+    mlflow_run_prefix: str = ""  # Optional prefix prepended to the auto-generated run name
 
     # Evaluation frequency: run full validation every N epochs (1 = every epoch)
     # Set higher to skip expensive accuracy computation on intermediate epochs
@@ -268,6 +269,7 @@ class TrainerConfig:
             "label_only": self.label_only,
             "report_only": self.report_only,
             "mlflow": self.mlflow,
+            "mlflow_run_prefix": self.mlflow_run_prefix,
         }
 
     @staticmethod

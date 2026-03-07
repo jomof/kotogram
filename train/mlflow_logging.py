@@ -19,10 +19,14 @@ def _default_run_name(
     trainer_config: TrainerConfig,
 ) -> str:
     """Generate a short descriptive run name from key config for easy comparison."""
-    return (
+    base = (
         f"L{model_config.num_layers}_bs{trainer_config.batch_size}_kc{trainer_config.kc_epochs}_"
         f"{int(time.time())}"
     )
+    prefix = getattr(trainer_config, "mlflow_run_prefix", "")
+    if prefix:
+        return f"{prefix} | {base}"
+    return base
 
 
 def _can_connect(host: str, port: int, timeout: float = 1.0) -> bool:

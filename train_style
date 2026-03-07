@@ -226,7 +226,8 @@ def build_trainer_config(
         "ramp_step": args.ramp / 100.0 if args.ramp else 0.0,
         "label_only": args.label,
         "report_only": args.report,
-        "mlflow": getattr(args, "mlflow", False),
+        "mlflow": args.mlflow is not None,
+        "mlflow_run_prefix": args.mlflow if args.mlflow else "poolbert",
     }
 
     # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)
@@ -496,8 +497,11 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
     parser.add_argument(
         "--mlflow",
-        action="store_true",
-        help="Enable MLflow experiment tracking for KC epochs",
+        nargs="?",
+        const="",
+        default=None,
+        metavar="NAME",
+        help="Enable MLflow tracking, optionally prefix the run name (e.g. --mlflow 'experiment 1')",
     )
 
     # Adaptive data ramp

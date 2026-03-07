@@ -10,3 +10,4 @@ A few points:
 
 Tools:
 - You may now use curate find-kc-matches (ex ./scripts/curate find-kc-matches "+2,-1") to interrogate individual KCs for absence or presence
+- scripts/curate contrast-sentences "食べる" "食べます" "食べない"
