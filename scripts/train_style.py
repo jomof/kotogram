@@ -198,10 +198,19 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config", type=str, required=True, help="Path to unified config.json file"
     )
+    parser.add_argument(
+        "--kc-vocab-size",
+        type=int,
+        default=None,
+        help="Override kc_vocab_size (number of KC logits). Default: from config (1024).",
+    )
     args = parser.parse_args()
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
+
+    if args.kc_vocab_size is not None:
+        model_config = dataclasses.replace(model_config, kc_vocab_size=args.kc_vocab_size)
 
     use_mlflow = trainer_config.mlflow and mlflow_logging is not None
 
