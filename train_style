@@ -227,7 +227,7 @@ def build_trainer_config(
         "label_only": args.label,
         "report_only": args.report,
         "mlflow": args.mlflow is not None,
-        "mlflow_run_prefix": args.mlflow if args.mlflow else "poolbert",
+        "mlflow_run_prefix": args.mlflow if args.mlflow else "maskbert",
     }
 
     # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)

@@ -16,12 +16,14 @@ from kotogram.masking import get_surface_mask_for_features
 PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
 CLS_TOKEN = "<CLS>"
+MASK_TOKEN = "<MASK>"
 
 # Special token IDs - single source of truth
 # These must match the order tokens are added to vocabularies in Tokenizer.__init__
 PAD_ID = 0
 UNK_ID = 1
 CLS_ID = 2
+MASK_ID = 3
 
 # Feature fields used for token embedding (full set for KC targets)
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
@@ -166,6 +168,7 @@ class Tokenizer:
                 PAD_TOKEN: PAD_ID,
                 UNK_TOKEN: UNK_ID,
                 CLS_TOKEN: CLS_ID,
+                MASK_TOKEN: MASK_ID,
             }
             self._field_counters[f] = Counter()
 

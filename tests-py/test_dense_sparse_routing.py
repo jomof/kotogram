@@ -2,7 +2,7 @@
 
 import torch
 
-from kotogram.tokenizer import CLS_ID, UNK_ID
+from kotogram.tokenizer import CLS_ID, MASK_ID, UNK_ID
 from train.dataset import create_kc_batch
 from train.kc import ALL_KC_FAMILIES, KcFamilyId, is_family_db_sourced, is_family_sparse
 from train.types import TrainingBatch
@@ -13,6 +13,7 @@ class DummyTokenizer:
 
     unk_id = UNK_ID
     cls_id = CLS_ID
+    mask_id = MASK_ID
 
 
 def _make_dummy_batch(
@@ -24,8 +25,8 @@ def _make_dummy_batch(
     for _ in range(batch_size):
         sample_targets: dict[KcFamilyId, list[int]] = {}
         for fid, _ in target_specs.items():
-            # Put some random positive IDs (avoiding special IDs 0,1,2)
-            sample_targets[fid] = [3, 4, 5]
+            # Put some random positive IDs (avoiding special IDs 0,1,2,3)
+            sample_targets[fid] = [4, 5, 6]
         kc_targets.append(sample_targets)
 
     return TrainingBatch(
@@ -135,8 +136,8 @@ class TestDenseSparseRouting:
             "Values should be 0 or 1"
         )
 
-        # Check that positive IDs (3,4,5) are set
+        # Check that positive IDs (4,5,6) are set
         for i in range(4):
-            assert dense_targets[i, 3] == 1, "ID 3 should be positive"
             assert dense_targets[i, 4] == 1, "ID 4 should be positive"
             assert dense_targets[i, 5] == 1, "ID 5 should be positive"
+            assert dense_targets[i, 6] == 1, "ID 6 should be positive"

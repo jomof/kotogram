@@ -15,7 +15,7 @@ from kotogram.model import (
     NUM_GRAMMATICALITY_CLASSES,
     NUM_REGISTER_CLASSES,
 )
-from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, MASK_ID, Tokenizer
 from train.binary_io import (
     EXT_FEAT_PREFIX,
     EXT_KC_PREFIX,
@@ -858,7 +858,7 @@ def create_kc_batch(
         Dict mapping 'kc_targets_{field}' to (batch_size, vocab_size) float tensor
     """
     result: Dict[str, torch.Tensor] = {}
-    special_ids = {0, tokenizer.unk_id, tokenizer.cls_id}
+    special_ids = {0, tokenizer.unk_id, tokenizer.cls_id, MASK_ID}
     device = batch.attention_mask.device
 
     if not batch.kc_targets:

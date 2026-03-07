@@ -61,7 +61,7 @@ class TestTrainingResumption(unittest.TestCase):
             # KC training - KC is always enabled now
             # Just run KC epochs to verify resumption scenario
             res = bottle.train_style(
-                f"--kc-epochs 1 --kc-k 256 --epochs 3 {common_args}"
+                f"--kc-epochs 1 --kc-vocab-size 256 --epochs 3 {common_args}"
             )
             bottle.assert_kc_epochs_trained([1])
             # Style shouldn't re-run if it's already at epoch 3 and we asked for 3,

@@ -13,7 +13,7 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader
 
 from kotogram.constants import REGISTER_ID_TO_LABEL
-from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, MASK_ID
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -1619,8 +1619,7 @@ class KCTrainer:
                     for i in range(bs_cloze):
                         valid_positions = attention_mask[i].bool()
                         surface_ids = original_surface[i][valid_positions]
-                        # Exclude special tokens (PAD=0, UNK=1, CLS=2)
-                        candidates = surface_ids[surface_ids > 2].unique()
+                        candidates = surface_ids[surface_ids > MASK_ID].unique()
                         if candidates.numel() > 0:
                             chosen = candidates[
                                 torch.randint(
@@ -1641,8 +1640,10 @@ class KCTrainer:
                     rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
                     field_inputs[key] = ids.masked_fill(rand_mask, 0)
 
-            # Morpheme-cloze masking: zero out ALL remaining occurrences
-            # of the chosen token so the model cannot copy from visible instances.
+            # Morpheme-cloze masking: replace ALL occurrences of the chosen
+            # surface token with [MASK] so the encoder attends to those positions
+            # but can't see the identity.  Build cloze_mask [B, S] for later use.
+            cloze_mask: Optional[torch.Tensor] = None
             if (
                 original_surface is not None
                 and cloze_targets is not None
@@ -1652,10 +1653,12 @@ class KCTrainer:
                 surface_key = "input_ids_surface"
                 if surface_key in field_inputs:
                     ids = field_inputs[surface_key]
+                    cloze_mask = torch.zeros_like(ids, dtype=torch.bool)
                     for i in range(ids.size(0)):
                         if cloze_valid[i]:
                             token_mask = original_surface[i] == cloze_targets[i]
-                            ids[i] = ids[i].masked_fill(token_mask, 0)
+                            ids[i] = ids[i].masked_fill(token_mask, MASK_ID)
+                            cloze_mask[i] = token_mask
 
             # Compute content_len (approximate: non-pad count)
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
@@ -1674,6 +1677,8 @@ class KCTrainer:
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
             pooled_kc = pooled[gram_mask] if pooled is not None else None
+            if cloze_mask is not None:
+                pooled_kc = None
             with torch.amp.autocast(self.device.type, enabled=self.use_amp):
                 outputs = self.model(
                     field_inputs,
@@ -1683,6 +1688,7 @@ class KCTrainer:
                     gumbel_scale=gumbel_scale,
                     grad_cap=self.kc_grad_cap,
                     pooled=pooled_kc,
+                    cloze_mask=cloze_mask,
                 )
 
             should_check_nan = batch_idx < 50 or (batch_idx % 50 == 0)
