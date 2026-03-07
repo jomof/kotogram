@@ -461,7 +461,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--kc-epochs", type=str, default=None, help=f"KC epochs (e.g., '6' or '+2', default: {default_kc_epochs})")
 
     # ModelConfig defaults (kc_vocab_size)
-    parser.add_argument("--kc-k", type=int, default=_model_defaults.kc_vocab_size, help=f"KC vocabulary size (default: {_model_defaults.kc_vocab_size})")
+    parser.add_argument("--kc-vocab-size", type=int, default=_model_defaults.kc_vocab_size, dest="kc_k", help=f"KC vocabulary size (default: {_model_defaults.kc_vocab_size})")
 
     # KCConfig defaults (freeze, kl-sparse, skip_metrics)
     parser.add_argument(
