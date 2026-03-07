@@ -542,7 +542,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # Morpheme-cloze family
     KcFamilyId.BERT: KcBertFamily(
         family_id=KcFamilyId.BERT,
-        _loss_weight=1.0,
+        _loss_weight=1.0 / 30.0,
     ),
 }
 
