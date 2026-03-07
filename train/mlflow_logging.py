@@ -143,6 +143,34 @@ def start_run(  # pylint: disable=too-many-positional-arguments
     mlflow.log_param("machine", _get_machine_id())
 
 
+def _collect_diagnostic_metrics(diags: dict, to_log: Dict[str, float]) -> None:
+    """Extract family-level metrics from kc_diagnostics into to_log."""
+    families = diags.get("families", {})
+    gp = families.get("grammar_point")
+    if isinstance(gp, dict) and "prob_pos_mean" in gp:
+        to_log["kc/grammar_point_posp"] = float(gp["prob_pos_mean"])
+
+    for name, mse in diags.get("mse_families", {}).items():
+        if isinstance(mse, dict) and "discrete_accuracy" in mse:
+            to_log[f"kc/{name}_acc"] = float(mse["discrete_accuracy"])
+
+    for name, fam in families.items():
+        if isinstance(fam, dict):
+            if fam.get("avg_pos") is not None:
+                to_log[f"kc/{name}_avg_pos"] = float(fam["avg_pos"])
+            if fam.get("med_pos") is not None:
+                to_log[f"kc/{name}_med_pos"] = float(fam["med_pos"])
+
+    for name, bert in diags.get("bert_families", {}).items():
+        if isinstance(bert, dict):
+            if "loss_mean" in bert:
+                to_log[f"kc/{name}_loss"] = float(bert["loss_mean"])
+            if "top1_accuracy" in bert:
+                to_log[f"kc/{name}_top1"] = float(bert["top1_accuracy"])
+            if "top5_accuracy" in bert:
+                to_log[f"kc/{name}_top5"] = float(bert["top5_accuracy"])
+
+
 def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     """Log KC epoch metrics to the active MLflow run."""
     import mlflow  # type: ignore[import-untyped]
@@ -150,7 +178,6 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if not mlflow.active_run():
         return
 
-    # Core metrics
     to_log: Dict[str, float] = {}
 
     if "total_loss" in metrics:
@@ -159,52 +186,21 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
             val = val[-1] if val else 0.0
         to_log["kc/total_loss"] = float(val)
 
-    # Grammar point PosP from kc_diagnostics
     diags = metrics.get("kc_diagnostics")
     if isinstance(diags, dict):
-        families = diags.get("families", {})
-        gp = families.get("grammar_point")
-        if isinstance(gp, dict) and "prob_pos_mean" in gp:
-            to_log["kc/grammar_point_posp"] = float(gp["prob_pos_mean"])
+        _collect_diagnostic_metrics(diags, to_log)
 
-        # MSE family accuracies (formality, gender, grammatic)
-        mse_families = diags.get("mse_families", {})
-        for name, mse in mse_families.items():
-            if isinstance(mse, dict) and "discrete_accuracy" in mse:
-                to_log[f"kc/{name}_acc"] = float(mse["discrete_accuracy"])
+    for key in (
+        "alive_kcs",
+        "total_k_mean",
+        "total_k_p10",
+        "total_k_p50",
+        "total_k_p90",
+        "kc_threshold",
+    ):
+        if metrics.get(key) is not None:
+            to_log[f"kc/{key}"] = float(metrics[key])
 
-        # Label family avg/median predicted positives (grammar_point)
-        for name, fam in families.items():
-            if isinstance(fam, dict):
-                if fam.get("avg_pos") is not None:
-                    to_log[f"kc/{name}_avg_pos"] = float(fam["avg_pos"])
-                if fam.get("med_pos") is not None:
-                    to_log[f"kc/{name}_med_pos"] = float(fam["med_pos"])
-
-        # BERT cloze family metrics (morpheme prediction)
-        bert_families = diags.get("bert_families", {})
-        for name, bert in bert_families.items():
-            if isinstance(bert, dict):
-                if "loss_mean" in bert:
-                    to_log[f"kc/{name}_loss"] = float(bert["loss_mean"])
-                if "top1_accuracy" in bert:
-                    to_log[f"kc/{name}_top1"] = float(bert["top1_accuracy"])
-                if "top5_accuracy" in bert:
-                    to_log[f"kc/{name}_top5"] = float(bert["top5_accuracy"])
-
-    # Sizing metrics
-    if metrics.get("alive_kcs") is not None:
-        to_log["kc/alive_kcs"] = int(metrics["alive_kcs"])
-    if metrics.get("total_k_mean") is not None:
-        to_log["kc/total_k_mean"] = float(metrics["total_k_mean"])
-    if metrics.get("total_k_p10") is not None:
-        to_log["kc/total_k_p10"] = float(metrics["total_k_p10"])
-    if metrics.get("total_k_p50") is not None:
-        to_log["kc/total_k_p50"] = float(metrics["total_k_p50"])
-    if metrics.get("total_k_p90") is not None:
-        to_log["kc/total_k_p90"] = float(metrics["total_k_p90"])
-    if metrics.get("kc_threshold") is not None:
-        to_log["kc/kc_threshold"] = float(metrics["kc_threshold"])
     if metrics.get("sentence_count") is not None:
         val = metrics["sentence_count"]
         if isinstance(val, list):

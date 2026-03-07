@@ -90,17 +90,17 @@ class KCDecoder(nn.Module):
     def forward(
         self,
         kc_probs: torch.Tensor,
-        pooled: Optional[torch.Tensor] = None,
+        bert_input: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
-        """Decode KC probabilities (and pooled output) to family outputs.
+        """Decode KC probabilities (and masked-position features) to family outputs.
 
-        Label/MSE families receive KC probabilities. BERT cloze receives the
-        pooler output directly, bypassing the KC bottleneck so it acts as an
-        encoder regularizer rather than a KC signal.
+        Label/MSE families receive KC probabilities. BERT cloze receives
+        mean-pooled encoder outputs from masked positions, giving it direct
+        access to local context for morpheme prediction.
 
         Args:
             kc_probs: Full KC probabilities [B, kc_vocab_size]
-            pooled: Attention pooler output [B, d_model] (required for BERT cloze)
+            bert_input: Mean encoder output at masked positions [B, d_model]
 
         Returns:
             Dict mapping family name to output tensor.
@@ -125,9 +125,9 @@ class KCDecoder(nn.Module):
             for name, decoder in self.decoders.items():
                 result[name] = decoder(h_label)
 
-        # BERT cloze pathway: reads from pooler, not KC logits
-        if self.bert_decoders and pooled is not None:
-            h_bert = self.activation(self.bert_hidden1(pooled))
+        # BERT cloze pathway: reads from masked-position encoder outputs
+        if self.bert_decoders and bert_input is not None:
+            h_bert = self.activation(self.bert_hidden1(bert_input))
             h_bert = self.activation(self.bert_hidden2(h_bert))
 
             for name, decoder in self.bert_decoders.items():
@@ -176,11 +176,21 @@ class TrainingClassifier(InferenceClassifier):
         gumbel_scale: Optional[float] = None,
         grad_cap: Optional[float] = None,
         pooled: Optional[torch.Tensor] = None,
+        cloze_mask: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
-        # Use unified pooler for KC (shared with style classifier)
         if pooled is None:
             encoder_output = self.get_encoder_output(field_inputs, attention_mask)
             pooled = self.pooler(encoder_output, attention_mask)
+        else:
+            encoder_output = None
+
+        # Mean-pool encoder outputs at masked positions for BERT cloze
+        bert_input = None
+        if cloze_mask is not None and encoder_output is not None:
+            mask_f = cloze_mask.unsqueeze(-1).float()  # [B, S, 1]
+            masked_sum = (encoder_output * mask_f).sum(dim=1)  # [B, D]
+            mask_count = mask_f.sum(dim=1).clamp(min=1)  # [B, 1]
+            bert_input = masked_sum / mask_count
 
         # Get raw and normalized logits
         if hasattr(self.kc_head, "forward_with_raw"):
@@ -237,7 +247,7 @@ class TrainingClassifier(InferenceClassifier):
             kc_probs_clean, nan=0.0, posinf=1.0, neginf=0.0
         )
 
-        target_logits = self.kc_decoders(kc_probs, pooled=pooled)
+        target_logits = self.kc_decoders(kc_probs, bert_input=bert_input)
 
         return {
             "kc_logits": kc_logits,
