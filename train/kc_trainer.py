@@ -1677,8 +1677,6 @@ class KCTrainer:
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
             pooled_kc = pooled[gram_mask] if pooled is not None else None
-            if cloze_mask is not None:
-                pooled_kc = None
             with torch.amp.autocast(self.device.type, enabled=self.use_amp):
                 outputs = self.model(
                     field_inputs,
@@ -1688,7 +1686,6 @@ class KCTrainer:
                     gumbel_scale=gumbel_scale,
                     grad_cap=self.kc_grad_cap,
                     pooled=pooled_kc,
-                    cloze_mask=cloze_mask,
                 )
 
             should_check_nan = batch_idx < 50 or (batch_idx % 50 == 0)

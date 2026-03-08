@@ -37,7 +37,6 @@ class KCDecoder(nn.Module):
         kc_vocab_size: int,
         target_specs: Dict[KcFamilyId, int],
         hidden_dim: int = 256,
-        pooled_dim: int = 512,
     ):
         super().__init__()
         self.activation = nn.ReLU()
@@ -66,8 +65,8 @@ class KCDecoder(nn.Module):
         self.label_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.label_hidden2 = nn.Linear(hidden_dim, hidden_dim)
 
-        # BERT cloze reads from pooler output (pre-KC), not KC logits
-        self.bert_hidden1 = nn.Linear(pooled_dim, hidden_dim)
+        # BERT cloze reads from KC probs (through the bottleneck)
+        self.bert_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.bert_hidden2 = nn.Linear(hidden_dim, hidden_dim)
 
         # Per-family output heads
@@ -90,17 +89,13 @@ class KCDecoder(nn.Module):
     def forward(
         self,
         kc_probs: torch.Tensor,
-        bert_input: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
-        """Decode KC probabilities (and masked-position features) to family outputs.
+        """Decode KC probabilities to family outputs.
 
-        Label/MSE families receive KC probabilities. BERT cloze receives
-        mean-pooled encoder outputs from masked positions, giving it direct
-        access to local context for morpheme prediction.
+        All pathways (label, MSE, BERT cloze) read from kc_probs.
 
         Args:
             kc_probs: Full KC probabilities [B, kc_vocab_size]
-            bert_input: Mean encoder output at masked positions [B, d_model]
 
         Returns:
             Dict mapping family name to output tensor.
@@ -125,9 +120,9 @@ class KCDecoder(nn.Module):
             for name, decoder in self.decoders.items():
                 result[name] = decoder(h_label)
 
-        # BERT cloze pathway: reads from masked-position encoder outputs
-        if self.bert_decoders and bert_input is not None:
-            h_bert = self.activation(self.bert_hidden1(bert_input))
+        # BERT cloze pathway: reads from KC probs (bottleneck)
+        if self.bert_decoders:
+            h_bert = self.activation(self.bert_hidden1(kc_probs))
             h_bert = self.activation(self.bert_hidden2(h_bert))
 
             for name, decoder in self.bert_decoders.items():
@@ -153,9 +148,7 @@ class TrainingClassifier(InferenceClassifier):
         if kc_target_specs is None:
             kc_target_specs = {}
 
-        self.kc_decoders = KCDecoder(
-            config.kc_vocab_size, kc_target_specs, pooled_dim=config.d_model
-        )
+        self.kc_decoders = KCDecoder(config.kc_vocab_size, kc_target_specs)
 
     def forward(
         self,
@@ -176,21 +169,10 @@ class TrainingClassifier(InferenceClassifier):
         gumbel_scale: Optional[float] = None,
         grad_cap: Optional[float] = None,
         pooled: Optional[torch.Tensor] = None,
-        cloze_mask: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
         if pooled is None:
             encoder_output = self.get_encoder_output(field_inputs, attention_mask)
             pooled = self.pooler(encoder_output, attention_mask)
-        else:
-            encoder_output = None
-
-        # Mean-pool encoder outputs at masked positions for BERT cloze
-        bert_input = None
-        if cloze_mask is not None and encoder_output is not None:
-            mask_f = cloze_mask.unsqueeze(-1).float()  # [B, S, 1]
-            masked_sum = (encoder_output * mask_f).sum(dim=1)  # [B, D]
-            mask_count = mask_f.sum(dim=1).clamp(min=1)  # [B, 1]
-            bert_input = masked_sum / mask_count
 
         # Get raw and normalized logits
         if hasattr(self.kc_head, "forward_with_raw"):
@@ -247,7 +229,7 @@ class TrainingClassifier(InferenceClassifier):
             kc_probs_clean, nan=0.0, posinf=1.0, neginf=0.0
         )
 
-        target_logits = self.kc_decoders(kc_probs, bert_input=bert_input)
+        target_logits = self.kc_decoders(kc_probs)
 
         return {
             "kc_logits": kc_logits,
