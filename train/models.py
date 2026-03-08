@@ -28,22 +28,29 @@ class KCDecoder(nn.Module):
       - ReLU activation
       - Per-family output heads: hidden_dim -> vocab_size
 
+    - For recon families (input reconstruction from bottleneck):
+      - Learned position embeddings: max_seq_len -> pos_embed_dim
+      - Per-position MLP: (kc_vocab_size + pos_embed_dim) -> hidden_dim -> hidden_dim -> surface_vocab_size
+
     Rationale: Style features (continuous regression) and structural features
     (multi-label classification) benefit from separate representation pathways.
     """
+
+    RECON_POS_EMBED_DIM = 64
 
     def __init__(
         self,
         kc_vocab_size: int,
         target_specs: Dict[KcFamilyId, int],
         hidden_dim: int = 256,
+        max_seq_len: int = 512,
     ):
         super().__init__()
         self.activation = nn.ReLU()
         self.tanh = nn.Tanh()
 
         # Derive MSE families from registry
-        from train.kc import KcBertFamily, KcMseFamily
+        from train.kc import KcBertFamily, KcMseFamily, KcReconFamily
 
         self._mse_families = frozenset(
             fid.name.lower()
@@ -55,6 +62,12 @@ class KCDecoder(nn.Module):
             fid.name.lower()
             for fid, fam in KC_FAMILIES.items()
             if isinstance(fam, KcBertFamily) and fid in target_specs
+        )
+
+        self._recon_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if isinstance(fam, KcReconFamily) and fid in target_specs
         )
 
         # Separate hidden layers for MSE families (style features)
@@ -69,6 +82,22 @@ class KCDecoder(nn.Module):
         self.bert_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.bert_hidden2 = nn.Linear(hidden_dim, hidden_dim)
 
+        # Reconstruction pathway: position-aware MLP from KC probs
+        self.recon_decoders = nn.ModuleDict()
+        self._recon_k = 8
+        # Position sampling state (set during forward, read by trainer for loss)
+        self._last_recon_positions: Optional[torch.Tensor] = None
+        self._last_recon_valid: Optional[torch.Tensor] = None
+        if self._recon_families:
+            pos_dim = self.RECON_POS_EMBED_DIM
+            self.recon_pos_embed = nn.Embedding(max_seq_len, pos_dim)
+            self.recon_hidden1 = nn.Linear(kc_vocab_size + pos_dim, hidden_dim)
+            self.recon_hidden2 = nn.Linear(hidden_dim, hidden_dim)
+            for fid, fam in KC_FAMILIES.items():
+                if isinstance(fam, KcReconFamily) and fid in target_specs:
+                    self._recon_k = fam.recon_k
+                    break
+
         # Per-family output heads
         self.decoders = nn.ModuleDict()
         self.mse_decoders = nn.ModuleDict()
@@ -77,28 +106,30 @@ class KCDecoder(nn.Module):
         for fid, vocab_size in target_specs.items():
             name = fid.name.lower()
             if name in self._mse_families:
-                # MSE families: use MSE hidden pathway → output → Tanh
                 self.mse_decoders[name] = nn.Linear(hidden_dim, vocab_size)
             elif name in self._bert_families:
-                # BERT cloze: kc_probs → hidden → surface_vocab_size
                 self.bert_decoders[name] = nn.Linear(hidden_dim, vocab_size)
+            elif name in self._recon_families:
+                self.recon_decoders[name] = nn.Linear(hidden_dim, vocab_size)
             else:
-                # Label families: use label hidden pathway → output
                 self.decoders[name] = nn.Linear(hidden_dim, vocab_size)
 
     def forward(
         self,
         kc_probs: torch.Tensor,
+        attention_mask: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
         """Decode KC probabilities to family outputs.
 
-        All pathways (label, MSE, BERT cloze) read from kc_probs.
+        All pathways (label, MSE, BERT cloze, recon) read from kc_probs.
 
         Args:
             kc_probs: Full KC probabilities [B, kc_vocab_size]
+            attention_mask: [B, S] needed for reconstruction pathway
 
         Returns:
             Dict mapping family name to output tensor.
+            Recon families produce [B, S, vocab_size]; others produce [B, vocab_size].
         """
         result = {}
 
@@ -128,6 +159,41 @@ class KCDecoder(nn.Module):
             for name, decoder in self.bert_decoders.items():
                 result[name] = decoder(h_bert)
 
+        # Reconstruction pathway: per-position prediction from KC probs + position
+        if self.recon_decoders and attention_mask is not None:
+            B, S = attention_mask.shape
+            K = self._recon_k
+            content_mask = attention_mask.bool()
+
+            if self.training and K < S:
+                # Sample K positions per sentence (cheap), then only project those
+                rand_weights = torch.rand(B, S, device=kc_probs.device)
+                rand_weights.masked_fill_(~content_mask, -1.0)
+                _, sorted_idx = rand_weights.sort(dim=1, descending=True)
+                positions = sorted_idx[:, :K]  # (B, K)
+                valid = torch.gather(content_mask, 1, positions)
+
+                pos_emb = self.recon_pos_embed(positions)  # (B, K, pos_dim)
+                kc_expanded = kc_probs.unsqueeze(1).expand(-1, K, -1)
+                h_recon = torch.cat([kc_expanded, pos_emb], dim=-1)
+                h_recon = self.activation(self.recon_hidden1(h_recon))
+                h_recon = self.activation(self.recon_hidden2(h_recon))
+                self._last_recon_positions = positions
+                self._last_recon_valid = valid
+            else:
+                # Eval: decode all positions (used for canary display)
+                pos_ids = torch.arange(S, device=kc_probs.device)
+                pos_emb = self.recon_pos_embed(pos_ids).unsqueeze(0).expand(B, -1, -1)
+                kc_expanded = kc_probs.unsqueeze(1).expand(-1, S, -1)
+                h_recon = torch.cat([kc_expanded, pos_emb], dim=-1)
+                h_recon = self.activation(self.recon_hidden1(h_recon))
+                h_recon = self.activation(self.recon_hidden2(h_recon))
+                self._last_recon_positions = None
+                self._last_recon_valid = None
+
+            for name, decoder in self.recon_decoders.items():
+                result[name] = decoder(h_recon)
+
         return result
 
 
@@ -148,7 +214,11 @@ class TrainingClassifier(InferenceClassifier):
         if kc_target_specs is None:
             kc_target_specs = {}
 
-        self.kc_decoders = KCDecoder(config.kc_vocab_size, kc_target_specs)
+        self.kc_decoders = KCDecoder(
+            config.kc_vocab_size,
+            kc_target_specs,
+            max_seq_len=config.max_seq_len,
+        )
 
     def forward(
         self,
@@ -229,7 +299,7 @@ class TrainingClassifier(InferenceClassifier):
             kc_probs_clean, nan=0.0, posinf=1.0, neginf=0.0
         )
 
-        target_logits = self.kc_decoders(kc_probs)
+        target_logits = self.kc_decoders(kc_probs, attention_mask=attention_mask)
 
         return {
             "kc_logits": kc_logits,

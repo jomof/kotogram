@@ -429,12 +429,15 @@ if __name__ == "__main__":
                 KcBertFamily,
                 KcDbMultilabelFamily,
                 KcPnuFamily,
+                KcReconFamily,
                 get_family,
             )
 
             family_def = get_family(fid)
             if isinstance(family_def, KcBertFamily):
                 # BERT cloze: predict surface token, needs surface vocab size
+                kc_specs[fid] = current_vocabs["surface"]
+            elif isinstance(family_def, KcReconFamily):
                 kc_specs[fid] = current_vocabs["surface"]
             elif isinstance(family_def, KcPnuFamily):
                 # PNU families (GRAMMAR_POINT) use dynamically computed GP vocab size

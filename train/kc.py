@@ -73,6 +73,9 @@ class KcFamilyId(str, Enum):
     # Morpheme-Cloze Family (BERT-style: mask all instances of one token, predict it)
     BERT = "bert"
 
+    # Reconstruction Family (predict full input sequence from KC bottleneck)
+    RECON = "recon"
+
 
 # =============================================================================
 # KC Family ABC and Subclasses
@@ -375,15 +378,16 @@ class KcDbMultilabelFamily(KcFamily):
 
 @dataclass(frozen=True)
 class KcBertFamily(KcFamily):
-    """Morpheme-cloze family: mask all instances of one surface token, predict which.
+    """Morpheme-cloze family: mask K random positions, predict each.
 
     Targets are generated dynamically at training time (not precomputed).
-    The encoder sees the sentence with all occurrences of a randomly chosen
-    surface morpheme replaced by pad; the decoder predicts the masked token ID
-    via cross-entropy over the surface vocabulary.
+    The encoder sees the sentence with K randomly chosen positions replaced
+    by [MASK]; the decoder predicts each masked token ID via cross-entropy
+    over the surface vocabulary from the KC probability bottleneck.
     """
 
     _loss_weight: float = 1.0
+    _cloze_k: int = 2
 
     @property
     def is_sparse(self) -> bool:
@@ -404,6 +408,48 @@ class KcBertFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
+
+    @property
+    def cloze_k(self) -> int:
+        return self._cloze_k
+
+
+@dataclass(frozen=True)
+class KcReconFamily(KcFamily):
+    """Reconstruction family: predict all input surface tokens from KC bottleneck.
+
+    The decoder receives kc_probs (B, kc_vocab_size) plus learned position
+    embeddings for each sequence position. Per-position cross-entropy against
+    the original (pre-masking) surface token IDs tests how much content and
+    ordering information survives the probability bottleneck.
+    """
+
+    _loss_weight: float = 0.1
+    _recon_k: int = 8
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return True
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+    @property
+    def recon_k(self) -> int:
+        return self._recon_k
 
 
 # =============================================================================
@@ -543,6 +589,11 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.BERT: KcBertFamily(
         family_id=KcFamilyId.BERT,
         _loss_weight=2.0 / 15.0,
+    ),
+    # Reconstruction family
+    KcFamilyId.RECON: KcReconFamily(
+        family_id=KcFamilyId.RECON,
+        _loss_weight=0.1,
     ),
 }
 

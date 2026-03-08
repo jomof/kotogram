@@ -166,6 +166,21 @@ class KCTrainer:
         self.kc_sat_weight = self.kc_config.sat_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
+        # Cloze K: number of random positions to mask per sentence
+        from train.kc import KcBertFamily
+
+        bert_fam = next(
+            (
+                get_family(fid)
+                for fid in (config.kc_target_specs or {})
+                if isinstance(get_family(fid), KcBertFamily)
+            ),
+            None,
+        )
+        self._cloze_k: int = (
+            bert_fam.cloze_k if isinstance(bert_fam, KcBertFamily) else 2
+        )
+
         # Optional per-grammar-point priors -> per-label loss weights
         self._gp_prior_tensor: Optional[torch.Tensor] = None
         self._gp_computed_default_prior: float = 1e-8  # Overwritten by median in _init
@@ -721,6 +736,16 @@ class KCTrainer:
 
         return bce
 
+    def _get_surface_id_to_token(self) -> Dict[int, str]:
+        """Lazily build and cache reverse surface vocab mapping."""
+        if not hasattr(self, "_surface_id_to_token"):
+            tok = self.dataset.tokenizer
+            vocab = tok.field_vocabs.get("surface", {})
+            self._surface_id_to_token: Dict[int, str] = {
+                v: k for k, v in vocab.items()
+            }
+        return self._surface_id_to_token
+
     def _evaluate_canary(self, sentence: str) -> str:
         """Evaluate a canary sentence and return compact summary string."""
         tok = self.dataset.tokenizer
@@ -775,6 +800,20 @@ class KCTrainer:
                 for idx in torch.where(gp_probs > thresh)[0].tolist():
                     gp_list.append(f"gp{int(idx):04d}")
 
+            # Reconstruction: decode predicted tokens back to text
+            recon_str = ""
+            if "recon" in target_logits:
+                recon_logits = target_logits["recon"][0]  # [S, vocab]
+                pred_ids = recon_logits.argmax(dim=-1).tolist()  # [S]
+                id_to_tok = self._get_surface_id_to_token()
+                tokens = []
+                for pid in pred_ids:
+                    t = id_to_tok.get(pid, f"#{pid}")
+                    if t.startswith("<"):
+                        continue
+                    tokens.append(t)
+                recon_str = "".join(tokens)
+
         if was_training:
             self.model.train()
 
@@ -782,7 +821,10 @@ class KCTrainer:
         gps_str = ",".join(gp_list[:8])
         if len(gp_list) > 8:
             gps_str += f"..+{len(gp_list) - 8}"
-        return f"{sentence} kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
+        base = f"{sentence} kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
+        if recon_str:
+            base += f" → {recon_str}"
+        return base
 
     def _iter_layer_health_batches(self, num_batches: int) -> Any:
         """Yield batches for layer health, interleaving gram/ungram to match training."""
@@ -1204,6 +1246,9 @@ class KCTrainer:
             # BERT cloze targets are generated dynamically (not in kc_targets)
             if name == "bert":
                 continue
+            # Recon targets are generated dynamically (snapshot of surface IDs)
+            if name == "recon":
+                continue
             missing_keys.append(name)
 
         # If missing keys exist, verify if they are legitimately missing or aliasing issues
@@ -1600,34 +1645,43 @@ class KCTrainer:
             attention_mask = full_attention_mask[gram_mask]
             field_inputs = {k: v[gram_mask] for k, v in full_field_inputs.items()}
 
-            # Morpheme-cloze target selection: pick one surface token per sample
+            # Snapshot original surface IDs for reconstruction target (before any masking)
+            recon_targets: Optional[torch.Tensor] = None
+            surface_key_recon = "input_ids_surface"
+            if self.model.training and surface_key_recon in field_inputs:
+                recon_targets = field_inputs[surface_key_recon].clone()
+
+            # Morpheme-cloze target selection: pick K random positions per sample
             # BEFORE any masking, so we have the original token IDs.
             cloze_targets: Optional[torch.Tensor] = None
             cloze_valid: Optional[torch.Tensor] = None
-            original_surface: Optional[torch.Tensor] = None
+            cloze_k = self._cloze_k
             if self.model.training:
                 surface_key = "input_ids_surface"
                 if surface_key in field_inputs:
-                    original_surface = field_inputs[surface_key].clone()
-                    bs_cloze = original_surface.size(0)
+                    surface_ids = field_inputs[surface_key]
+                    bs_cloze = surface_ids.size(0)
                     cloze_targets = torch.zeros(
-                        bs_cloze, dtype=torch.long, device=self.device
+                        bs_cloze, cloze_k, dtype=torch.long, device=self.device
                     )
                     cloze_valid = torch.zeros(
-                        bs_cloze, dtype=torch.bool, device=self.device
+                        bs_cloze, cloze_k, dtype=torch.bool, device=self.device
                     )
                     for i in range(bs_cloze):
-                        valid_positions = attention_mask[i].bool()
-                        surface_ids = original_surface[i][valid_positions]
-                        candidates = surface_ids[surface_ids > MASK_ID].unique()
-                        if candidates.numel() > 0:
-                            chosen = candidates[
-                                torch.randint(
-                                    candidates.numel(), (1,), device=self.device
-                                )
-                            ]
-                            cloze_targets[i] = chosen
-                            cloze_valid[i] = True
+                        content_mask = attention_mask[i].bool()
+                        token_ids = surface_ids[i]
+                        content_positions = (
+                            content_mask & (token_ids > MASK_ID)
+                        ).nonzero(as_tuple=True)[0]
+                        if content_positions.numel() > 0:
+                            n_pick = min(cloze_k, content_positions.numel())
+                            perm = torch.randperm(
+                                content_positions.numel(), device=self.device
+                            )[:n_pick]
+                            chosen_pos = content_positions[perm]
+                            cloze_targets[i, :n_pick] = token_ids[chosen_pos]
+                            cloze_valid[i, :n_pick] = True
+                            surface_ids[i, chosen_pos] = MASK_ID
 
             # BERT-style input masking: randomly replace tokens with pad_id=0
             # (zero embedding) while keeping attention_mask=1 so the model
@@ -1639,26 +1693,6 @@ class KCTrainer:
                     ids = field_inputs[key]
                     rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
                     field_inputs[key] = ids.masked_fill(rand_mask, 0)
-
-            # Morpheme-cloze masking: replace ALL occurrences of the chosen
-            # surface token with [MASK] so the encoder attends to those positions
-            # but can't see the identity.  Build cloze_mask [B, S] for later use.
-            cloze_mask: Optional[torch.Tensor] = None
-            if (
-                original_surface is not None
-                and cloze_targets is not None
-                and cloze_valid is not None
-                and cloze_valid.any()
-            ):
-                surface_key = "input_ids_surface"
-                if surface_key in field_inputs:
-                    ids = field_inputs[surface_key]
-                    cloze_mask = torch.zeros_like(ids, dtype=torch.bool)
-                    for i in range(ids.size(0)):
-                        if cloze_valid[i]:
-                            token_mask = original_surface[i] == cloze_targets[i]
-                            ids[i] = ids[i].masked_fill(token_mask, MASK_ID)
-                            cloze_mask[i] = token_mask
 
             # Compute content_len (approximate: non-pad count)
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
@@ -1747,6 +1781,10 @@ class KCTrainer:
                     if name == "bert" and cloze_targets is not None:
                         has_match = True
                         break
+                    # Recon family uses recon_targets, not kc_targets
+                    if name == "recon" and recon_targets is not None:
+                        has_match = True
+                        break
 
                 if not has_match:
                     tgt_keys = list(kc_targets.keys())
@@ -1795,49 +1833,121 @@ class KCTrainer:
                         KcBertFamily,
                         KcDbMultilabelFamily,
                         KcPnuFamily,
+                        KcReconFamily,
                     )
 
                     family_def = get_family(fid)
 
                     if isinstance(family_def, KcBertFamily):
-                        # Morpheme-cloze loss: cross-entropy over surface vocabulary
+                        # Morpheme-cloze loss: K cross-entropy terms per sentence
                         if (
                             cloze_targets is not None
                             and cloze_valid is not None
                             and cloze_valid.any()
                         ):
-                            logits_bert = logits.float()
-                            valid_logits = logits_bert[cloze_valid]
-                            valid_targets = cloze_targets[cloze_valid]
+                            logits_bert = logits.float()  # [B, vocab]
+                            # Expand logits to match K targets: [B, K, vocab]
+                            # cloze_targets: [B, K], cloze_valid: [B, K]
+                            any_valid = cloze_valid.any(dim=1)  # [B]
+                            flat_logits = logits_bert[any_valid]  # [B', vocab]
+                            flat_targets = cloze_targets[any_valid]  # [B', K]
+                            flat_valid = cloze_valid[any_valid]  # [B', K]
+                            k_dim = flat_targets.size(1)
 
-                            raw_ce_loss = F.cross_entropy(
-                                valid_logits, valid_targets, reduction="mean"
-                            )
-                            task_loss = raw_ce_loss * family_def.loss_weight
-                            batch_kc_losses[name] = task_loss.item()
-                            structural_loss = structural_loss + task_loss
-                            num_struct += 1
+                            total_ce = torch.tensor(0.0, device=self.device)
+                            total_t1 = 0
+                            total_t5 = 0
+                            total_n = 0
+                            for ki in range(k_dim):
+                                slot_valid = flat_valid[:, ki]
+                                if not slot_valid.any():
+                                    continue
+                                sl = flat_logits[slot_valid]
+                                st = flat_targets[slot_valid, ki]
+                                total_ce = total_ce + F.cross_entropy(
+                                    sl, st, reduction="sum"
+                                )
+                                total_n += int(slot_valid.sum().item())
+                                if not skip_metrics and kc_diag is not None:
+                                    with torch.no_grad():
+                                        total_t1 += int(
+                                            (sl.argmax(dim=1) == st).sum().item()
+                                        )
+                                        _, t5 = sl.topk(5, dim=1)
+                                        total_t5 += int(
+                                            (t5 == st.unsqueeze(1))
+                                            .any(dim=1)
+                                            .sum()
+                                            .item()
+                                        )
 
-                            if not skip_metrics and kc_diag is not None:
-                                with torch.no_grad():
-                                    preds = valid_logits.argmax(dim=1)
-                                    _, top5 = valid_logits.topk(5, dim=1)
-                                    top1_correct = int(
-                                        (preds == valid_targets).sum().item()
-                                    )
-                                    top5_correct = int(
-                                        (top5 == valid_targets.unsqueeze(1))
-                                        .any(dim=1)
-                                        .sum()
-                                        .item()
-                                    )
-                                    n_valid = int(cloze_valid.sum().item())
+                            if total_n > 0:
+                                raw_ce_loss = total_ce / total_n
+                                task_loss = raw_ce_loss * family_def.loss_weight
+                                batch_kc_losses[name] = task_loss.item()
+                                structural_loss = structural_loss + task_loss
+                                num_struct += 1
+
+                                if not skip_metrics and kc_diag is not None:
                                     kc_diag.update_bert_family(
                                         name,
                                         loss=task_loss.item(),
-                                        top1_correct=top1_correct,
-                                        top5_correct=top5_correct,
-                                        n_samples=n_valid,
+                                        top1_correct=total_t1,
+                                        top5_correct=total_t5,
+                                        n_samples=total_n,
+                                    )
+                        continue
+
+                    if isinstance(family_def, KcReconFamily):
+                        # Reconstruction loss: CE against original surface IDs
+                        if recon_targets is not None:
+                            recon_logits = logits.float()
+                            decoder = self.model.kc_decoders
+                            positions = getattr(decoder, "_last_recon_positions", None)
+                            valid = getattr(decoder, "_last_recon_valid", None)
+
+                            if positions is not None and valid is not None:
+                                # Training: sampled K positions per sentence
+                                # recon_logits: (B, K, V), positions: (B, K), valid: (B, K)
+                                tgt = torch.gather(recon_targets, 1, positions)
+                                flat_logits = recon_logits[valid]
+                                flat_targets = tgt[valid]
+                            else:
+                                # Eval: full sequence
+                                mask = attention_mask.bool()
+                                flat_logits = recon_logits[mask]
+                                flat_targets = recon_targets[mask]
+
+                            total_n_recon = int(flat_targets.numel())
+
+                            if total_n_recon > 0:
+                                raw_ce = F.cross_entropy(
+                                    flat_logits, flat_targets, reduction="mean"
+                                )
+                                task_loss = raw_ce * family_def.loss_weight
+                                batch_kc_losses[name] = task_loss.item()
+                                structural_loss = structural_loss + task_loss
+                                num_struct += 1
+
+                                if not skip_metrics and kc_diag is not None:
+                                    with torch.no_grad():
+                                        preds = flat_logits.argmax(dim=1)
+                                        t1 = int((preds == flat_targets).sum().item())
+                                        _, t5 = flat_logits.topk(
+                                            min(5, flat_logits.size(1)), dim=1
+                                        )
+                                        t5_correct = int(
+                                            (t5 == flat_targets.unsqueeze(1))
+                                            .any(dim=1)
+                                            .sum()
+                                            .item()
+                                        )
+                                    kc_diag.update_bert_family(
+                                        name,
+                                        loss=task_loss.item(),
+                                        top1_correct=t1,
+                                        top5_correct=t5_correct,
+                                        n_samples=total_n_recon,
                                     )
                         continue
 

@@ -109,6 +109,15 @@ def save_model(
         if sublayer in ("bert_hidden1", "bert_hidden2", "bert_decoders"):
             return True
 
+        # Recon pathway is training-only (always strip from exported models)
+        if sublayer in (
+            "recon_pos_embed",
+            "recon_hidden1",
+            "recon_hidden2",
+            "recon_decoders",
+        ):
+            return True
+
         # Handle per-family decoders
         if sublayer in ("decoders", "mse_decoders"):
             if len(parts) < 4:
