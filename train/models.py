@@ -114,7 +114,7 @@ class KCDecoder(nn.Module):
             else:
                 self.decoders[name] = nn.Linear(hidden_dim, vocab_size)
 
-    def forward(
+    def forward(  # pylint: disable=too-many-locals
         self,
         kc_probs: torch.Tensor,
         attention_mask: Optional[torch.Tensor] = None,
@@ -161,8 +161,8 @@ class KCDecoder(nn.Module):
 
         # Reconstruction pathway: per-position prediction from KC probs + position
         if self.recon_decoders and attention_mask is not None:
-            B, S = attention_mask.shape
-            K = self._recon_k
+            B, S = attention_mask.shape  # pylint: disable=invalid-name
+            K = self._recon_k  # pylint: disable=invalid-name
             content_mask = attention_mask.bool()
 
             if self.training and K < S:

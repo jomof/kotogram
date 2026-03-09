@@ -198,6 +198,7 @@ class KCTrainer:
 
         self.val_sampler = None
         self.gram_sampler = None
+        self._surface_id_to_token: Dict[int, str] = {}
         self.data_loader: Optional[Iterable[Any]] = None
         self.ungram_loader: Iterable[Any] = []
         self.gram_loader: Iterable[Any] = []
@@ -738,12 +739,10 @@ class KCTrainer:
 
     def _get_surface_id_to_token(self) -> Dict[int, str]:
         """Lazily build and cache reverse surface vocab mapping."""
-        if not hasattr(self, "_surface_id_to_token"):
+        if not self._surface_id_to_token:
             tok = self.dataset.tokenizer
             vocab = tok.field_vocabs.get("surface", {})
-            self._surface_id_to_token: Dict[int, str] = {
-                v: k for k, v in vocab.items()
-            }
+            self._surface_id_to_token = {v: k for k, v in vocab.items()}
         return self._surface_id_to_token
 
     def _evaluate_canary(self, sentence: str) -> str:

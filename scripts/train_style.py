@@ -57,8 +57,10 @@ from train.types import KCTrainingHistory, TrainingHistory
 
 if importlib.util.find_spec("mlflow") is not None:
     from train import mlflow_logging
+    from train.artifact_uploader import create_uploader
 else:
     mlflow_logging = None  # type: ignore[assignment]  # pylint: disable=invalid-name
+    create_uploader = None  # type: ignore[assignment]  # pylint: disable=invalid-name
 
 # Global view instance for display output
 _view: TrainStyleView = TrainStyleDiagnosticsView()
@@ -599,13 +601,16 @@ if __name__ == "__main__":
 
     style_start = time.perf_counter()
 
+    uploader = None
     if use_mlflow and mlflow_logging:
-        mlflow_logging.start_run(
+        run_id = mlflow_logging.start_run(
             model_config,
             trainer_config,
             config_path=args.config,
             run_name=None,
         )
+        if create_uploader is not None:
+            uploader = create_uploader(run_id)
 
     # Interleaving loop: KC first, then style, until both are done
     try:
@@ -622,6 +627,9 @@ if __name__ == "__main__":
                 # Save model.pt after every KC epoch as requested
                 _export_model(model)
                 train_io.save_checkpoint(model)
+                if uploader:
+                    uploader.queue_dir(output_path, "model")
+                    uploader.queue_file(get_checkpoint_path(), "checkpoint")
 
             # Style epoch (if remaining)
             if style_epochs_done < style_epochs_target:
@@ -633,6 +641,8 @@ if __name__ == "__main__":
                 style_epochs_done += 1
                 # Save model and continuation.json after every style epoch
                 _export_model(model)
+                if uploader:
+                    uploader.queue_dir(output_path, "model")
 
             # Both done?
             if (
@@ -661,6 +671,8 @@ if __name__ == "__main__":
         # Final model export
         if model:
             _export_model(model)
+            if uploader:
+                uploader.queue_dir(output_path, "model")
 
         # Final timing report
         _view.on_timing_summary(style_end - style_start)
@@ -669,5 +681,7 @@ if __name__ == "__main__":
         if profiling_enabled() and not trainer_config.report_only:
             generate_profile_report()
     finally:
+        if uploader:
+            uploader.drain()
         if use_mlflow and mlflow_logging:
             mlflow_logging.end_run()

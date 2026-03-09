@@ -1,6 +1,7 @@
 """MLflow experiment tracking for KC training."""
 
 import json
+import logging
 import os
 import platform
 import time
@@ -10,8 +11,12 @@ from typing import Any, Dict, Optional
 from kotogram.model import ModelConfig
 from train.config import TrainerConfig
 
+logger = logging.getLogger(__name__)
+
 _CLOUD_SQL_PRIVATE_IP = "10.41.0.3"
 _DEFAULT_PG_URI = f"postgresql+psycopg2://postgres:mlflow-kotogram-2026@{_CLOUD_SQL_PRIVATE_IP}:5432/mlflow"
+
+_GCS_ARTIFACT_LOCATION = "gs://jomof-public-files/mlflow-artifacts"
 
 
 def _default_run_name(
@@ -107,8 +112,13 @@ def start_run(  # pylint: disable=too-many-positional-arguments
     run_name: Optional[str] = None,
     tracking_uri: Optional[str] = None,
     experiment_name: str = "kotogram-kc",
-) -> None:
-    """Start an MLflow run and log params + machine."""
+    artifact_location: Optional[str] = _GCS_ARTIFACT_LOCATION,
+) -> Optional[str]:
+    """Start an MLflow run and log params + machine.
+
+    Returns the run_id of the started run (used by ArtifactUploader),
+    or None if the run could not be started.
+    """
     import mlflow  # type: ignore[import-untyped]
 
     if tracking_uri:
@@ -128,7 +138,7 @@ def start_run(  # pylint: disable=too-many-positional-arguments
         mlruns.mkdir(exist_ok=True)
         mlflow.set_tracking_uri(str(mlruns))
 
-    mlflow.set_experiment(experiment_name)
+    _ensure_experiment(mlflow, experiment_name, artifact_location)
     mlflow.start_run(
         run_name=run_name
         if run_name is not None
@@ -141,6 +151,71 @@ def start_run(  # pylint: disable=too-many-positional-arguments
             mlflow.log_param(k, json.dumps(v) if isinstance(v, (dict, list)) else v)
 
     mlflow.log_param("machine", _get_machine_id())
+
+    active = mlflow.active_run()
+    return active.info.run_id if active else None
+
+
+def _ensure_experiment(
+    mlflow: Any,
+    experiment_name: str,
+    artifact_location: Optional[str],
+) -> None:
+    """Create experiment with GCS artifact location, or reuse existing one.
+
+    Handles every lifecycle state MLflow can leave an experiment in:
+    active with correct location (reuse), active with wrong location
+    (rename + recreate), or soft-deleted (restore + rename + recreate).
+    """
+    from mlflow.entities import ViewType  # type: ignore[import-untyped]
+    from mlflow.tracking import MlflowClient  # type: ignore[import-untyped]
+
+    client = MlflowClient()
+    matches = client.search_experiments(
+        view_type=ViewType.ALL,
+        filter_string=f"name = '{experiment_name}'",
+    )
+    existing = next((e for e in matches if e.name == experiment_name), None)
+
+    if existing is None:
+        mlflow.create_experiment(
+            experiment_name, artifact_location=artifact_location or ""
+        )
+        mlflow.set_experiment(experiment_name)
+        return
+
+    already_correct = (
+        existing.lifecycle_stage == "active"
+        and (
+            not artifact_location
+            or existing.artifact_location == artifact_location
+        )
+    )
+    if already_correct:
+        mlflow.set_experiment(experiment_name)
+        return
+
+    archived_name = f"{experiment_name}-archived-{existing.experiment_id}"
+    was_deleted = existing.lifecycle_stage != "active"
+    logger.info(
+        "Migrating experiment '%s' (id %s, %s): "
+        "artifact_location '%s' -> '%s'. Renaming old experiment to '%s'.",
+        experiment_name,
+        existing.experiment_id,
+        existing.lifecycle_stage,
+        existing.artifact_location,
+        artifact_location,
+        archived_name,
+    )
+    if was_deleted:
+        client.restore_experiment(existing.experiment_id)
+    client.rename_experiment(existing.experiment_id, archived_name)
+    if was_deleted:
+        client.delete_experiment(existing.experiment_id)
+    mlflow.create_experiment(
+        experiment_name, artifact_location=artifact_location or ""
+    )
+    mlflow.set_experiment(experiment_name)
 
 
 def _collect_diagnostic_metrics(diags: dict, to_log: Dict[str, float]) -> None:
