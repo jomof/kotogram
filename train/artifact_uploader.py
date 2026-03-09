@@ -55,16 +55,23 @@ class ArtifactUploader:
         self._futures: List[Future[None]] = []
 
     def preflight(self) -> None:
-        """Verify the artifact backend is functional.
+        """Verify the artifact backend is functional (read AND write).
 
-        Imports the GCS module, authenticates, and confirms the MLflow
-        artifact store is reachable.  Any failure raises immediately so
-        training never starts with a broken artifact pipeline.
+        Uploads a small probe file to the artifact store, then deletes it.
+        This catches missing packages, broken auth, and insufficient
+        permissions before training starts.
         """
         from mlflow.tracking import MlflowClient  # type: ignore[import-untyped]
 
-        client = MlflowClient()
-        client.list_artifacts(self._run_id)
+        probe_dir = tempfile.mkdtemp(prefix=_SNAPSHOT_PREFIX)
+        try:
+            probe_path = os.path.join(probe_dir, ".preflight")
+            with open(probe_path, "w", encoding="utf-8") as f:
+                f.write("ok")
+            client = MlflowClient()
+            client.log_artifact(self._run_id, probe_path, ".preflight")
+        finally:
+            _cleanup(probe_dir, is_dir=True)
 
     # -- public API (called from training thread) ----------------------------
 
