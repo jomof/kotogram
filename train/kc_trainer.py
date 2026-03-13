@@ -3421,6 +3421,11 @@ class KCTrainer:
                     ]
                     if v is not None
                 }
+            apc = max(1, self.view.alive_prob_count)
+            sizing_metrics = sizing_metrics or {}
+            sizing_metrics["s1_pct"] = self.view.sharp1_count / apc
+            sizing_metrics["s0_pct"] = self.view.sharp0_count / apc
+            sizing_metrics["fuzzy_pct"] = self.view.fuzzy_count / apc
 
         epoch_result = TrainEpochResult(
             total_loss=total_loss,
@@ -3512,6 +3517,9 @@ class KCTrainer:
             self.history.total_k_p50.append(sm.get("total_k_p50") if sm else None)
             self.history.total_k_p90.append(sm.get("total_k_p90") if sm else None)
             self.history.kc_threshold.append(sm.get("kc_threshold") if sm else None)
+            self.history.s1_pct.append(sm.get("s1_pct") if sm else None)
+            self.history.s0_pct.append(sm.get("s0_pct") if sm else None)
+            self.history.fuzzy_pct.append(sm.get("fuzzy_pct") if sm else None)
 
             # Record active KC targets
             active_targets = sorted(list(kc_losses.keys()))

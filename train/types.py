@@ -757,3 +757,6 @@ class KCTrainingHistory(TrainingHistory):
     total_k_p50: List[Optional[float]] = field(default_factory=list)
     total_k_p90: List[Optional[float]] = field(default_factory=list)
     kc_threshold: List[Optional[float]] = field(default_factory=list)
+    s1_pct: List[Optional[float]] = field(default_factory=list)
+    s0_pct: List[Optional[float]] = field(default_factory=list)
+    fuzzy_pct: List[Optional[float]] = field(default_factory=list)

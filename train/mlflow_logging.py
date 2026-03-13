@@ -270,6 +270,9 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
         "total_k_p50",
         "total_k_p90",
         "kc_threshold",
+        "s1_pct",
+        "s0_pct",
+        "fuzzy_pct",
     ):
         if metrics.get(key) is not None:
             to_log[f"kc/{key}"] = float(metrics[key])
