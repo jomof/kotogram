@@ -723,6 +723,7 @@ def test_bce_sampled_parameter_variations():
     model = unittest.mock.MagicMock()
     model.config.kc_vocab_size = 100
     dataset = unittest.mock.MagicMock()
+    dataset.features = {}
 
     # Patch DataLoader to avoid instantiation issues
     with unittest.mock.patch("train.kc_trainer.DataLoader"):

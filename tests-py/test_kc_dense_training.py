@@ -42,6 +42,7 @@ class TestKCDenseTraining(unittest.TestCase):
         self.dataset = MagicMock()
         self.dataset.tokenizer.field_vocabs = {}
         self.dataset.filter_by_grammaticality.return_value = self.dataset
+        self.dataset.features = {}
 
         # Mock DataLoader
         self.dl_config = MagicMock()

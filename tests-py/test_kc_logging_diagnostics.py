@@ -133,6 +133,7 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         dataset.tokenizer = MagicMock()
         dataset.__len__.return_value = 3
         dataset.filter_by_grammaticality.return_value = dataset
+        dataset.features = {}
 
         # input_ids surface
         inputs = torch.zeros(3, 40, dtype=torch.long)

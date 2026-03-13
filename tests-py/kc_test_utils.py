@@ -48,6 +48,7 @@ class KCTrainerTestBase(unittest.TestCase):
         self.dataset = MagicMock()
         self.dataset.filter_by_grammaticality.return_value = self.dataset
         self.dataset.tokenizer.field_vocabs = {}
+        self.dataset.features = {}
 
         # Mock DataLoader config
         self.dl_config = MagicMock()

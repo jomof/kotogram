@@ -166,6 +166,7 @@ class BertFamilyStats:
     sum_loss: float = 0.0
     top1_correct: int = 0
     top5_correct: int = 0
+    top1_pos_only: int = 0
     n_samples: int = 0
 
 
@@ -365,6 +366,7 @@ class KCEpochDiag:
         top1_correct: int,
         top5_correct: int,
         n_samples: int,
+        top1_pos_only_correct: int = 0,
     ) -> None:
         """Update BERT cloze family diagnostics with a batch of predictions."""
         if family_name not in self.bert_families:
@@ -374,6 +376,7 @@ class KCEpochDiag:
         stats.sum_loss += loss
         stats.top1_correct += top1_correct
         stats.top5_correct += top5_correct
+        stats.top1_pos_only += top1_pos_only_correct
         stats.n_samples += n_samples
 
     def get_stats(self) -> KCDiagnosticReport:
@@ -506,6 +509,9 @@ class KCEpochDiag:
                 loss_mean=bert_s.sum_loss / n_batches,
                 top1_accuracy=bert_s.top1_correct / n_samples,
                 top5_accuracy=bert_s.top5_correct / n_samples,
+                top1_pos_only_accuracy=bert_s.top1_pos_only / n_samples
+                if bert_s.top1_pos_only
+                else 0.0,
                 batch_count=bert_s.batch_count,
             )
 

@@ -88,6 +88,8 @@ class KCDecoder(nn.Module):
         # Position sampling state (set during forward, read by trainer for loss)
         self._last_recon_positions: Optional[torch.Tensor] = None
         self._last_recon_valid: Optional[torch.Tensor] = None
+        # Inverse-frequency sampling weights (set by trainer at init time)
+        self.recon_freq_weights: Optional[torch.Tensor] = None
         if self._recon_families:
             pos_dim = self.RECON_POS_EMBED_DIM
             self.recon_pos_embed = nn.Embedding(max_seq_len, pos_dim)
@@ -118,6 +120,7 @@ class KCDecoder(nn.Module):
         self,
         kc_probs: torch.Tensor,
         attention_mask: Optional[torch.Tensor] = None,
+        surface_ids: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
         """Decode KC probabilities to family outputs.
 
@@ -126,6 +129,7 @@ class KCDecoder(nn.Module):
         Args:
             kc_probs: Full KC probabilities [B, kc_vocab_size]
             attention_mask: [B, S] needed for reconstruction pathway
+            surface_ids: [B, S] token IDs for inverse-frequency recon sampling
 
         Returns:
             Dict mapping family name to output tensor.
@@ -166,8 +170,11 @@ class KCDecoder(nn.Module):
             content_mask = attention_mask.bool()
 
             if self.training and K < S:
-                # Sample K positions per sentence (cheap), then only project those
+                # Sample K positions per sentence, biased toward rare tokens
                 rand_weights = torch.rand(B, S, device=kc_probs.device)
+                if self.recon_freq_weights is not None and surface_ids is not None:
+                    # pylint: disable-next=unsubscriptable-object
+                    rand_weights = rand_weights * self.recon_freq_weights[surface_ids]
                 rand_weights.masked_fill_(~content_mask, -1.0)
                 _, sorted_idx = rand_weights.sort(dim=1, descending=True)
                 positions = sorted_idx[:, :K]  # (B, K)
@@ -195,6 +202,24 @@ class KCDecoder(nn.Module):
                 result[name] = decoder(h_recon)
 
         return result
+
+    def recon_position_only(
+        self,
+        positions: torch.Tensor,
+    ) -> Dict[str, torch.Tensor]:
+        """Run the recon decoder with zeroed kc_probs (position embeddings only).
+
+        Used as a diagnostic baseline to measure how much of recon accuracy
+        comes from positional statistics vs. the KC bottleneck.
+        """
+        B, K = positions.shape  # pylint: disable=invalid-name
+        kc_dim = self.bert_hidden1.in_features
+        kc_zero = torch.zeros(B, K, kc_dim, device=positions.device)
+        pos_emb = self.recon_pos_embed(positions)
+        h = torch.cat([kc_zero, pos_emb], dim=-1)
+        h = self.activation(self.recon_hidden1(h))
+        h = self.activation(self.recon_hidden2(h))
+        return {name: dec(h) for name, dec in self.recon_decoders.items()}
 
 
 class TrainingClassifier(InferenceClassifier):
@@ -299,7 +324,12 @@ class TrainingClassifier(InferenceClassifier):
             kc_probs_clean, nan=0.0, posinf=1.0, neginf=0.0
         )
 
-        target_logits = self.kc_decoders(kc_probs, attention_mask=attention_mask)
+        surface_ids = field_inputs.get("input_ids_surface")
+        target_logits = self.kc_decoders(
+            kc_probs,
+            attention_mask=attention_mask,
+            surface_ids=surface_ids,
+        )
 
         return {
             "kc_logits": kc_logits,

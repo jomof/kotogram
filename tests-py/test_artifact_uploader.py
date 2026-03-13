@@ -265,7 +265,9 @@ class TestCreateUploader(unittest.TestCase):
 
     @patch("train.artifact_uploader.ArtifactUploader.preflight")
     def test_preflight_failure_propagates(self, mock_preflight):
-        mock_preflight.side_effect = ModuleNotFoundError("No module named 'google.cloud'")
+        mock_preflight.side_effect = ModuleNotFoundError(
+            "No module named 'google.cloud'"
+        )
         with self.assertRaises(ModuleNotFoundError):
             create_uploader("some-run-id")
 

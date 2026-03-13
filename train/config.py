@@ -153,6 +153,10 @@ class KCConfig:
     gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
     kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
 
+    # Recon inverse-frequency sampling: bias position selection toward rare tokens.
+    # 0 = uniform (no bias), 0.5 = sqrt dampening, 1.0 = full inverse frequency.
+    recon_freq_alpha: float = 0.5
+
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
     formality_boost: float = 5.0  # Multiplier for |formality| > 0.25

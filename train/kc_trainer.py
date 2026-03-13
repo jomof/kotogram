@@ -188,6 +188,7 @@ class KCTrainer:
 
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
+        self._init_recon_freq_weights()
 
         self.use_amp = self.device.type == "cuda"
         self.scaler = torch.amp.GradScaler(enabled=self.use_amp)
@@ -601,6 +602,26 @@ class KCTrainer:
             pri[~finite] = pri_ref
 
         self._gp_prior_tensor = pri
+
+    def _init_recon_freq_weights(self) -> None:
+        """Compute inverse-frequency sampling weights from dataset token counts."""
+        alpha = self.kc_config.recon_freq_alpha
+        if alpha <= 0:
+            return
+
+        surface_data = getattr(self.dataset, "features", {}).get("surface")
+        if surface_data is None:
+            return
+
+        vocab_size = self.model.config.vocab_sizes.get("surface", 0)
+        if vocab_size <= 0:
+            return
+
+        counts = torch.bincount(surface_data.long(), minlength=vocab_size).float()
+        counts.clamp_(min=1)
+        weights = (1.0 / counts) ** alpha
+        weights /= weights.mean()
+        self.model.kc_decoders.recon_freq_weights = weights.to(self.device)
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -1941,12 +1962,27 @@ class KCTrainer:
                                             .sum()
                                             .item()
                                         )
+                                        t1_pos_only = 0
+                                        if positions is not None and valid is not None:
+                                            baseline = decoder.recon_position_only(
+                                                positions
+                                            )
+                                            bl_logits = baseline[name][valid]
+                                            t1_pos_only = int(
+                                                (
+                                                    bl_logits.argmax(dim=1)
+                                                    == flat_targets
+                                                )
+                                                .sum()
+                                                .item()
+                                            )
                                     kc_diag.update_bert_family(
                                         name,
                                         loss=task_loss.item(),
                                         top1_correct=t1,
                                         top5_correct=t5_correct,
                                         n_samples=total_n_recon,
+                                        top1_pos_only_correct=t1_pos_only,
                                     )
                         continue
 

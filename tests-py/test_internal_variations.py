@@ -62,6 +62,7 @@ class TestInternalVariations(unittest.TestCase):
         kc_config.formality_boost = 5.0
         kc_config.gender_boost = 15.0
         kc_config.kc_grad_cap = 1.0
+        kc_config.recon_freq_alpha = 0.0
 
         trainer = KCTrainer(model, dataset, config, dl_config, kc_config)
 

@@ -468,6 +468,7 @@ class KCBertFamilyStats:
     loss_mean: float
     top1_accuracy: float
     top5_accuracy: float
+    top1_pos_only_accuracy: float = 0.0
     batch_count: int = 0
 
 

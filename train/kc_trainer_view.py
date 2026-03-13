@@ -867,6 +867,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             table_bert.add_column("BERT Family")
             table_bert.add_column("Loss")
             table_bert.add_column("Top-1")
+            table_bert.add_column("Pos-Only")
+            table_bert.add_column("KC Gain")
             table_bert.add_column("Top-5")
 
             for b_name, bert in sorted(summary.diagnostics.bert_families.items()):
@@ -880,11 +882,20 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     if bert.top5_accuracy > 0.5
                     else ("yellow" if bert.top5_accuracy > 0.2 else "red")
                 )
+                if bert.top1_pos_only_accuracy > 0:
+                    pos_only_str = f"{bert.top1_pos_only_accuracy * 100:.1f}%"
+                    kc_gain = bert.top1_accuracy - bert.top1_pos_only_accuracy
+                    kc_gain_str = f"+{kc_gain * 100:.1f}pp"
+                else:
+                    pos_only_str = ""
+                    kc_gain_str = ""
 
                 table_bert.add_row(
                     f"{b_name}",
                     f"{bert.loss_mean:.4f}",
                     f"[{c_t1}]{bert.top1_accuracy * 100:.1f}%[/{c_t1}]",
+                    pos_only_str,
+                    kc_gain_str,
                     f"[{c_t5}]{bert.top5_accuracy * 100:.1f}%[/{c_t5}]",
                 )
 

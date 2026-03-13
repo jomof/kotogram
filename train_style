@@ -219,6 +219,9 @@ def build_trainer_config(
             **({
                 "entropy_weight": args.kc_entropy_weight
             } if args.kc_entropy_weight is not None else {}),
+            **({
+                "recon_freq_alpha": args.recon_freq_alpha
+            } if args.recon_freq_alpha is not None else {}),
         ),
         # Runtime flags
         "retrain": args.retrain,
@@ -227,7 +230,7 @@ def build_trainer_config(
         "label_only": args.label,
         "report_only": args.report,
         "mlflow": args.mlflow is not None,
-        "mlflow_run_prefix": args.mlflow if args.mlflow else "recon",
+        "mlflow_run_prefix": args.mlflow if args.mlflow else "freq-recon",
     }
 
     # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)
@@ -470,6 +473,7 @@ def parse_arguments() -> argparse.Namespace:
     )
     parser.add_argument("--kl-sparse-weight", type=float, default=None, help=f"KL-sparse regularization weight (default: {_kc_defaults.kl_sparse_weight})")
     parser.add_argument("--kc-entropy-weight", type=float, default=None, help=f"Per-probability entropy penalty weight (default: {_kc_defaults.entropy_weight})")
+    parser.add_argument("--recon-freq-alpha", type=float, default=None, help=f"Inverse-frequency recon sampling exponent (0=uniform, default: {_kc_defaults.recon_freq_alpha})")
 
     parser.add_argument(
         "--kc-batch-size",

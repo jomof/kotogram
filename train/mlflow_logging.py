@@ -184,12 +184,8 @@ def _ensure_experiment(
         mlflow.set_experiment(experiment_name)
         return
 
-    already_correct = (
-        existing.lifecycle_stage == "active"
-        and (
-            not artifact_location
-            or existing.artifact_location == artifact_location
-        )
+    already_correct = existing.lifecycle_stage == "active" and (
+        not artifact_location or existing.artifact_location == artifact_location
     )
     if already_correct:
         mlflow.set_experiment(experiment_name)
@@ -212,9 +208,7 @@ def _ensure_experiment(
     client.rename_experiment(existing.experiment_id, archived_name)
     if was_deleted:
         client.delete_experiment(existing.experiment_id)
-    mlflow.create_experiment(
-        experiment_name, artifact_location=artifact_location or ""
-    )
+    mlflow.create_experiment(experiment_name, artifact_location=artifact_location or "")
     mlflow.set_experiment(experiment_name)
 
 
@@ -244,6 +238,10 @@ def _collect_diagnostic_metrics(diags: dict, to_log: Dict[str, float]) -> None:
                 to_log[f"kc/{name}_top1"] = float(bert["top1_accuracy"])
             if "top5_accuracy" in bert:
                 to_log[f"kc/{name}_top5"] = float(bert["top5_accuracy"])
+            if bert.get("top1_pos_only_accuracy"):
+                pos_only = float(bert["top1_pos_only_accuracy"])
+                to_log[f"kc/{name}_top1_pos_only"] = pos_only
+                to_log[f"kc/{name}_kc_gain"] = float(bert["top1_accuracy"]) - pos_only
 
 
 def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:

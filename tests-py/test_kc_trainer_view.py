@@ -75,6 +75,7 @@ def create_tiny_style_dataset():
     mock.get_gender_class_weights.return_value = torch.ones(3)
     mock.get_grammaticality_class_weights.return_value = torch.ones(2)
     mock.filter_by_grammaticality.return_value = mock
+    mock.features = {}
     return mock
 
 
