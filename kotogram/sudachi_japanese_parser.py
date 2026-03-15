@@ -32,10 +32,10 @@ class SudachiJapaneseParser(JapaneseParser):
                      Useful for debugging unmapped linguistic features.
         """
         # Lazy import to avoid requiring Sudachi for the abstract interface
-        from sudachipy import dictionary
+        from sudachipy import dictionary, SplitMode
 
         self.dict_obj = dictionary.Dictionary(dict="full")
-        self.tokenizer = self.dict_obj.create()
+        self.tokenizer = self.dict_obj.create(mode=SplitMode.C)
         self.validate = validate
 
     def japanese_to_kotogram(
