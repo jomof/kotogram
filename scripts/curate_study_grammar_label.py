@@ -13,6 +13,7 @@ Usage:
 
 import argparse
 import copy
+import heapq
 import json
 import math
 import os
@@ -36,13 +37,39 @@ if os.path.exists("kotogram"):
     sys.path.insert(0, os.getcwd())
 
 from kotogram.model import ModelConfig, PositionalEncoding
-from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import Tokenizer
 from scripts.curate_upsert_sentence import curate_upsert_batch
 from scripts.progress_utils import create_progress
 from train.dataset import StyleDataset
 from train.paths import get_style_dataset_cache_dir
 
 console = Console(force_terminal=True)
+
+# Study model should use surface-only tokens (BERT-like surface input).
+GRAMMAR_ENCODER_FIELDS = ["surface"]
+
+# Match kc_trainer's input_mask_ratio for BERT-style token masking.
+INPUT_MASK_RATIO = 0.15
+
+
+def _apply_input_masking(
+    field_inputs: Dict[str, torch.Tensor],
+    attention_mask: torch.Tensor,
+    mask_ratio: float = INPUT_MASK_RATIO,
+) -> Dict[str, torch.Tensor]:
+    """BERT-style input masking: replace random tokens with pad_id=0.
+
+    Keeps attention_mask=1 so the model knows a token exists but cannot
+    see its identity.  Returns a new dict (leaves the original unchanged).
+    """
+    if not 0.0 < mask_ratio < 1.0:
+        return field_inputs
+    maskable = attention_mask.bool()
+    out = {}
+    for key, ids in field_inputs.items():
+        rand_mask = (torch.rand_like(ids.float()) < mask_ratio) & maskable
+        out[key] = ids.masked_fill(rand_mask, 0)
+    return out
 
 
 class GrammarPointDataset(Dataset):
@@ -207,10 +234,16 @@ class GrammarPointDataset(Dataset):
 class GrammarClassifier(nn.Module):
     """Lightweight binary classifier for grammar point detection."""
 
-    def __init__(self, config: ModelConfig, num_classes: int = 1):
+    def __init__(
+        self,
+        config: ModelConfig,
+        num_classes: int = 1,
+        encoder_fields: Optional[List[str]] = None,
+    ):
         super().__init__()
         self.config = config
         self.num_classes = num_classes
+        self.encoder_fields = encoder_fields or GRAMMAR_ENCODER_FIELDS
 
         # Reduce model size for faster training
         self.d_model = 256
@@ -222,7 +255,7 @@ class GrammarClassifier(nn.Module):
         self.embeddings = nn.ModuleDict()
         total_embed_dim = 0
 
-        for field_name in ENCODER_FEATURE_FIELDS:
+        for field_name in self.encoder_fields:
             vocab_size = config.vocab_sizes.get(field_name, 100)
             embed_dim = config.field_embed_dims.get(field_name, 32)
             self.embeddings[field_name] = nn.Embedding(
@@ -284,7 +317,7 @@ class GrammarClassifier(nn.Module):
         """
         # Embed
         field_embeds = []
-        for field_name in ENCODER_FEATURE_FIELDS:
+        for field_name in self.encoder_fields:
             input_ids = field_inputs[f"input_ids_{field_name}"]
             embed = self.embeddings[field_name](input_ids)
             field_embeds.append(embed)
@@ -370,13 +403,12 @@ class EarlyStopper:
         # Loss regressed or stagnated locally AND globally -> Switch batch size
         self.prev_loss = current_loss
 
-        # Rotate between fixed large batch sizes
+        # Rotate between fixed large batch sizes (PNU phase)
         # Ensure we actually pick a different batch size
-        choices = [1024, 2048]
+        choices = [512, 1024, 2048]
         if current_batch_size in choices:
-            new_batch_size = (
-                choices[1] if current_batch_size == choices[0] else choices[0]
-            )
+            eligible = [size for size in choices if size != current_batch_size]
+            new_batch_size = random.choice(eligible)
         else:
             new_batch_size = random.choice(choices)
 
@@ -397,13 +429,16 @@ def collate_grammar_batch(batch: List[Dict]) -> Dict:
     indices = [item["idx"] for item in batch]
 
     # Get max sequence length from feature_ids
-    max_len = max(len(s.feature_ids["pos"]) for s in samples)
+    if not GRAMMAR_ENCODER_FIELDS:
+        raise ValueError("GRAMMAR_ENCODER_FIELDS is empty.")
+    base_field = GRAMMAR_ENCODER_FIELDS[0]
+    max_len = max(len(s.feature_ids[base_field]) for s in samples)
 
     # Prepare field inputs
     batch_size = len(samples)
     field_inputs = {}
 
-    for field_name in ENCODER_FEATURE_FIELDS:
+    for field_name in GRAMMAR_ENCODER_FIELDS:
         field_tensor = torch.zeros(batch_size, max_len, dtype=torch.long)
         for i, sample in enumerate(samples):
             feature_data = sample.feature_ids[field_name]
@@ -418,7 +453,7 @@ def collate_grammar_batch(batch: List[Dict]) -> Dict:
     # Attention mask
     attention_mask = torch.zeros(batch_size, max_len, dtype=torch.long)
     for i, sample in enumerate(samples):
-        seq_len = len(sample.feature_ids["pos"])
+        seq_len = len(sample.feature_ids[base_field])
         attention_mask[i, :seq_len] = 1
 
     return {
@@ -890,28 +925,11 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     console.print(f"  Union Labeled samples: {len(labeled_indices):,}")
 
-    # Downsample unlabeled if needed (Test Mode optimization to match user request)
-    # User request: downsample to 20x size of labeled samples.
-    if test_mode:
-        original_count = len(unlabeled_indices)
-        target_count = len(labeled_indices) * 20
-        if original_count > target_count:
-            # Use random.sample to keep it random
-            # Note: random is already imported
-            unlabeled_indices = random.sample(unlabeled_indices, target_count)
-            console.print(
-                f"  Total Unlabeled samples: {len(unlabeled_indices):,} (downsampled from {original_count:,})"
-            )
-        else:
-            console.print(f"  Total Unlabeled samples: {len(unlabeled_indices):,}")
-    else:
-        console.print(f"  Total Unlabeled samples: {len(unlabeled_indices):,}")
+    console.print(f"  Total Unlabeled samples: {len(unlabeled_indices):,}")
 
-    # Create DataLoader for labeled data
-    # Create DataLoader for labeled data
-    # Split Labeled Data into Train (75%) and Validation (25%)
+    # Split Labeled Data into Train (80%) and Validation (20%)
     random.shuffle(labeled_indices)
-    split_idx = int(len(labeled_indices) * 0.75)
+    split_idx = int(len(labeled_indices) * 0.8)
     train_labeled_indices = labeled_indices[:split_idx]
     val_labeled_indices = labeled_indices[split_idx:]
 
@@ -922,6 +940,34 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     console.print(
         f"  Labeled Split: {len(train_labeled_indices)} Train, {len(val_labeled_indices)} Validation"
+    )
+
+    # Downsample unlabeled to a capped pool (20x TRAIN labeled) for speed
+    original_count = len(unlabeled_indices)
+    target_count = min(len(unlabeled_indices), len(train_labeled_indices) * 20)
+    if target_count == 0 and len(unlabeled_indices) > 0:
+        target_count = min(len(unlabeled_indices), 100)
+    if original_count > target_count:
+        unlabeled_pool_indices = random.sample(unlabeled_indices, target_count)
+        console.print(
+            f"  Unlabeled Pool: {len(unlabeled_pool_indices):,} (downsampled from {original_count:,})"
+        )
+    else:
+        unlabeled_pool_indices = list(unlabeled_indices)
+        console.print(f"  Unlabeled Pool: {len(unlabeled_pool_indices):,}")
+
+    # Split Unlabeled Pool into Train (80%) and Validation (20%)
+    random.shuffle(unlabeled_pool_indices)
+    unl_split_idx = int(len(unlabeled_pool_indices) * 0.8)
+    train_unlabeled_indices = unlabeled_pool_indices[:unl_split_idx]
+    val_unlabeled_indices = unlabeled_pool_indices[unl_split_idx:]
+
+    if len(val_unlabeled_indices) == 0 and len(unlabeled_pool_indices) > 1:
+        val_unlabeled_indices = [unlabeled_pool_indices[-1]]
+        train_unlabeled_indices = unlabeled_pool_indices[:-1]
+
+    console.print(
+        f"  Unlabeled Split: {len(train_unlabeled_indices)} Train, {len(val_unlabeled_indices)} Validation"
     )
 
     train_labeled_dataset = Subset(dataset, train_labeled_indices)
@@ -942,11 +988,29 @@ def train_pnu_model(  # pylint: disable=unused-argument
         num_workers=0,
     )
 
+    val_unlabeled_dataset = Subset(dataset, val_unlabeled_indices)
+    val_unlabeled_loader = DataLoader(
+        val_unlabeled_dataset,
+        batch_size=512,
+        shuffle=False,
+        collate_fn=collate_grammar_batch,
+        num_workers=0,
+    )
+
     # For reporting unlearned samples, we still want to check the FULL labeled set
     # to show overall progress on satisfying constraints.
     full_labeled_dataset = Subset(dataset, labeled_indices)
     full_labeled_loader = DataLoader(
         full_labeled_dataset,
+        batch_size=512,
+        shuffle=False,
+        collate_fn=collate_grammar_batch,
+        num_workers=0,
+    )
+
+    full_unlabeled_dataset = Subset(dataset, unlabeled_pool_indices)
+    full_unlabeled_loader = DataLoader(
+        full_unlabeled_dataset,
         batch_size=512,
         shuffle=False,
         collate_fn=collate_grammar_batch,
@@ -962,13 +1026,17 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, total_steps)
 
+    unlabeled_positive_penalty_weight = 0.1
+
     # Helper to compute validation loss
-    def compute_val_loss(loader: DataLoader) -> float:
+    def compute_val_loss(
+        labeled_loader: DataLoader, unlabeled_loader: Optional[DataLoader]
+    ) -> float:
         model.eval()
         val_loss_sum = 0.0
         val_batches = 0
         with torch.no_grad():
-            for batch in loader:
+            for batch in labeled_loader:
                 field_inputs = {
                     k: v.to(device) for k, v in batch["field_inputs"].items()
                 }
@@ -997,6 +1065,35 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
                 val_loss_sum += loss.item()
                 val_batches += 1
+
+            # Add unlabeled positive penalty from holdback set
+            if unlabeled_loader is not None:
+                for batch in unlabeled_loader:
+                    field_inputs = {
+                        k: v.to(device) for k, v in batch["field_inputs"].items()
+                    }
+                    attention_mask = batch["attention_mask"].to(device)
+                    labels = batch["labels"].to(device)
+
+                    logits = model(field_inputs, attention_mask)
+                    loss = torch.tensor(0.0, device=device)
+
+                    for i in range(num_gps):
+                        gp_logits = logits[:, i, :]
+                        gp_targets = labels[:, i]
+                        unlabeled_mask = gp_targets < 0
+                        if unlabeled_mask.any():
+                            unlabeled_logits = gp_logits[unlabeled_mask]
+                            unlabeled_probs = F.softmax(unlabeled_logits, dim=-1)
+                            unlabeled_pos_prob = unlabeled_probs[:, 1]
+                            gp_penalty = (
+                                unlabeled_pos_prob.mean()
+                                * unlabeled_positive_penalty_weight
+                            )
+                            loss = loss + gp_penalty
+
+                    val_loss_sum += loss.item()
+                    val_batches += 1
         model.train()
         return val_loss_sum / max(val_batches, 1)
 
@@ -1020,6 +1117,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 }
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
+                field_inputs = _apply_input_masking(field_inputs, attention_mask)
 
                 # Forward
                 with torch.amp.autocast(device_type=device.type, enabled=use_amp):
@@ -1070,7 +1168,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 )
 
             avg_loss = epoch_loss / len(train_labeled_loader)
-            val_loss = compute_val_loss(val_labeled_loader)
+            val_loss = compute_val_loss(val_labeled_loader, None)
             console.print(
                 f"  Epoch {epoch + 1}: Train Loss = {avg_loss:.6f} | Val Loss = {val_loss:.6f}"
             )
@@ -1080,19 +1178,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
         f"\n[bold cyan]PNU Training with Unlabeled Data (up to {num_epochs_pnu} epochs)[/bold cyan]"
     )
 
-    # Sample unlabeled data
-    unlabeled_sample_size = min(len(unlabeled_indices), len(train_labeled_indices) * 20)
-    if unlabeled_sample_size == 0 and len(unlabeled_indices) > 0:
-        unlabeled_sample_size = min(
-            len(unlabeled_indices), 100
-        )  # minimal random sample if labeled is huge? No, if train labeled is tiny.
-
-    sampled_unlabeled = torch.randperm(len(unlabeled_indices))[
-        :unlabeled_sample_size
-    ].tolist()
-    sampled_unlabeled_indices = [unlabeled_indices[i] for i in sampled_unlabeled]
-
-    combined_indices = train_labeled_indices + sampled_unlabeled_indices
+    # Use the pre-split unlabeled pool for training
+    combined_indices = train_labeled_indices + train_unlabeled_indices
     combined_dataset = Subset(dataset, combined_indices)
     combined_loader = DataLoader(
         combined_dataset,
@@ -1103,11 +1190,39 @@ def train_pnu_model(  # pylint: disable=unused-argument
     )
 
     console.print(
-        f"  Training on {len(combined_indices):,} samples ({len(train_labeled_indices):,} labeled + {len(sampled_unlabeled_indices):,} unlabeled)"
+        f"  Training on {len(combined_indices):,} samples ({len(train_labeled_indices):,} labeled + {len(train_unlabeled_indices):,} unlabeled)"
     )
 
     # Initialize early stopper for Phase 2
     stopper = EarlyStopper(patience=24, min_delta=0.000001, decay_factor=0.85)
+
+    def compute_unlabeled_pos_costs(loader: DataLoader) -> List[float]:
+        model.eval()
+        pos_sum = [0.0 for _ in range(num_gps)]
+        pos_count = [0 for _ in range(num_gps)]
+        with torch.no_grad():
+            for batch in loader:
+                field_inputs = {
+                    k: v.to(device) for k, v in batch["field_inputs"].items()
+                }
+                attention_mask = batch["attention_mask"].to(device)
+                labels = batch["labels"].to(device)
+
+                logits = model(field_inputs, attention_mask)
+                probs = F.softmax(logits, dim=-1)
+
+                for i in range(num_gps):
+                    gp_targets = labels[:, i]
+                    unlabeled_mask = gp_targets < 0
+                    if unlabeled_mask.any():
+                        unlabeled_pos_prob = probs[unlabeled_mask, i, 1]
+                        pos_sum[i] += float(unlabeled_pos_prob.sum().item())
+                        pos_count[i] += int(unlabeled_pos_prob.numel())
+        model.train()
+        return [
+            (pos_sum[i] / pos_count[i]) if pos_count[i] > 0 else 0.0
+            for i in range(num_gps)
+        ]
 
     # Track best model
     best_phase2_loss = float("inf")  # This will now track VAL loss
@@ -1129,6 +1244,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 }
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
+                field_inputs = _apply_input_masking(field_inputs, attention_mask)
                 # Forward
                 with torch.amp.autocast(device_type=device.type, enabled=use_amp):
                     logits = model(field_inputs, attention_mask)  # [B, num_gps, 2]
@@ -1157,9 +1273,17 @@ def train_pnu_model(  # pylint: disable=unused-argument
                             )
                             total_loss = total_loss + labeled_loss
 
-                        # Pseudo-label unlabeled samples
+                        # Pseudo-label unlabeled samples + penalize unlabeled positives
                         if unlabeled_mask.any():
                             unlabeled_logits = gp_logits[unlabeled_mask]
+                            # Penalize positive probability on unlabeled (negative stays free)
+                            unlabeled_probs = F.softmax(unlabeled_logits, dim=-1)
+                            unlabeled_pos_prob = unlabeled_probs[:, 1]
+                            unlabeled_pos_penalty = (
+                                unlabeled_pos_prob.mean()
+                                * unlabeled_positive_penalty_weight
+                            )
+                            total_loss = total_loss + unlabeled_pos_penalty
                             with torch.no_grad():
                                 probs = F.softmax(unlabeled_logits, dim=-1)
                                 confidence, pseudo_labels = probs.max(dim=-1)
@@ -1204,7 +1328,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
                 )
 
             avg_loss = epoch_loss / len(combined_loader)
-            val_loss = compute_val_loss(val_labeled_loader)
+            val_loss = compute_val_loss(val_labeled_loader, val_unlabeled_loader)
 
             # Write unlearned samples logic moved to end of loop (conditional on is_best_epoch)
 
@@ -1215,6 +1339,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
             val_stats_per_gp = compute_accuracy_stats(
                 model, val_labeled_loader, device, grammar_labels
             )
+            val_unlabeled_costs = compute_unlabeled_pos_costs(val_unlabeled_loader)
+            all_unlabeled_costs = compute_unlabeled_pos_costs(full_unlabeled_loader)
 
             # Determine if this is the best epoch so far
             is_best_epoch = val_loss < best_phase2_loss
@@ -1242,6 +1368,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
             table.add_column("", width=2)
             table.add_column("total", justify="right", header_style=header_style)
             table.add_column("", justify="left")
+            table.add_column("", width=2)
+            table.add_column("unl+ cost", justify="right", header_style=header_style)
 
             def _fmt(num: int, denom: int) -> Tuple[str, str]:
                 pct = 100.0 * num / denom if denom > 0 else 0.0
@@ -1279,6 +1407,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
                     "",
                     f"[dim]{t_cnt}[/dim]",
                     f"[dim]{t_pct}[/dim]",
+                    "",
+                    f"[dim]{all_unlabeled_costs[i]:.4f}[/dim]",
                 ]
 
                 # Process VAL stats
@@ -1305,6 +1435,8 @@ def train_pnu_model(  # pylint: disable=unused-argument
                     "",
                     _d(vt_cnt),
                     _d(vt_pct),
+                    "",
+                    _d(f"{val_unlabeled_costs[i]:.4f}"),
                 ]
 
                 # Store as tuple: (accuracy_all, row_all, row_val, total_pos_all, total_neg_all)
@@ -1343,7 +1475,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
                 # Middle
                 remaining = len(active_rows) - n_head - n_tail
-                table.add_row(f"[dim][{remaining} omitted][/dim]", *[""] * 10)
+                table.add_row(f"[dim][{remaining} omitted][/dim]", *[""] * 12)
 
                 # Tail
                 for i in range(len(active_rows) - n_tail, len(active_rows)):
@@ -1442,7 +1574,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
 
     # Full Pos Scan (Requested to run after Phase 2)
     if full_pos_scan_fn:
-        # Scan both labeled and unlabeled samples collected
+        # Scan full labeled + full unlabeled sets
         scan_indices = labeled_indices + unlabeled_indices
         scan_indices.sort()  # Keep them sorted for dataset access
 
@@ -1496,7 +1628,7 @@ def train_pnu_model(  # pylint: disable=unused-argument
     torch.save(model.state_dict(), model_path)
     console.print(f"\n[green]Model saved to {model_path}[/green]")
 
-    return model, unlabeled_indices
+    return model, unlabeled_pool_indices
 
 
 def find_high_certainty_positives(
@@ -1559,6 +1691,9 @@ def find_high_certainty_positives(
     high_certainty_candidates_negatives_unlabeled: List[List[Tuple[float, str]]] = [
         [] for _ in range(num_gps)
     ]
+    # Track most-uncertain samples per GP (closest to 0.5), include labeled + unlabeled
+    # Stored as max-heap by distance using negative distance
+    most_uncertain: List[List[Tuple[float, float, str]]] = [[] for _ in range(num_gps)]
 
     # Early stop when prior reaches target precision
     prior_precision_decimals = 4.5
@@ -1634,6 +1769,18 @@ def find_high_certainty_positives(
                             high_certainty_candidates_negatives_unlabeled[i].append(
                                 (score, sentence)
                             )
+
+                    # Track most-uncertain samples (all samples, labeled + unlabeled)
+                    heap = most_uncertain[i]
+                    for idx, sentence in enumerate(sentences):
+                        prob = pos_probs[idx].item()
+                        distance = abs(prob - 0.5)
+                        item = (-distance, prob, sentence)
+                        if len(heap) < 100:
+                            heapq.heappush(heap, item)
+                        else:
+                            if item[0] > heap[0][0]:
+                                heapq.heapreplace(heap, item)
 
                     # Track prior precision counts (based on all samples)
                     prior_total_counts[i] += len(pos_probs)
@@ -1786,6 +1933,18 @@ def find_high_certainty_positives(
             f.write("-" * 70 + "\n")
             for score, sentence in candidates_neg[:100]:
                 f.write(f"{score:.4f} | {sentence}\n")
+
+        # Write most uncertain (closest to 0.5) from ALL samples
+        uncertain_heap = most_uncertain[i]
+        uncertain_sorted = sorted(uncertain_heap, key=lambda x: (-x[0], x[1]))
+        uncertain_file = os.path.join(output_dir, "most-uncertain.txt")
+        with open(uncertain_file, "w", encoding="utf-8") as f:
+            f.write(f"# Most Uncertain Samples for {gp} (All)\n")
+            f.write("# Format: Dist | Prob | Sentence\n")
+            f.write("-" * 70 + "\n")
+            for neg_dist, prob, sentence in uncertain_sorted:
+                dist = -neg_dist
+                f.write(f"{dist:.4f} | {prob:.4f} | {sentence}\n")
 
     # Optionally write estimated priors back to corpus.db (grammar table).
     # Back-compat is an anti-goal: if the DB/schema isn't present, fail loudly.
@@ -2272,10 +2431,20 @@ def main() -> None:
         console.print(
             f"[green]✓[/green] Loaded tokenizer with {len(tokenizer.field_vocabs)} fields"
         )
+        if "surface" not in tokenizer.field_vocabs:
+            console.print(
+                "[red]Tokenizer missing 'surface' field. Run 'bin/train_style --label' after updating the label pipeline.[/red]"
+            )
+            return
 
         # Load base dataset
         base_dataset = StyleDataset(dataset_dir, tokenizer, sample_ratio=1.0)
         console.print(f"[green]✓[/green] Loaded {len(base_dataset):,} samples")
+        if "surface" not in base_dataset.features:
+            console.print(
+                "[red]Dataset missing 'surface' features. Run 'bin/train_style --label' to rebuild the cache.[/red]"
+            )
+            return
 
         # Filter to grammatic sentences only
         console.print("\nFiltering to grammatic sentences...")

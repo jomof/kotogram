@@ -1,5 +1,6 @@
 """Data types for Kotogram training."""
 
+import heapq
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -135,6 +136,9 @@ class FamilyAccumulator:
     saw_sparse: bool = False
     saw_valid_mask: bool = False
     loss_by_label: Optional[torch.Tensor] = None  # Running sum of loss per label
+    freq_by_label: Optional[torch.Tensor] = (
+        None  # Running sum of predicted-positive count per label (sigmoid > 0.5)
+    )
 
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
@@ -230,6 +234,16 @@ class FamilyAccumulator:
                 else:
                     self.loss_by_label += loss_by_label.detach()
 
+            # Accumulate per-label predicted-positive count.
+            # freq_by_label = count of predictions with sigmoid(logit) > 0.5,
+            # matching the prior's definition: fraction of sentences the model
+            # predicts as positive.  Divide by n_ex in the view to get the rate.
+            pred_pos_per_label = (logits > 0).float().sum(dim=0)
+            if self.freq_by_label is None:
+                self.freq_by_label = pred_pos_per_label.detach().clone()
+            else:
+                self.freq_by_label += pred_pos_per_label.detach()
+
     def median_pred_pos_on_pos(self) -> Optional[float]:
         """Median predicted positives per positive example (epoch-level)."""
         if self.n_pos_ex <= 0 or not self.pos_pred_hist:
@@ -249,9 +263,10 @@ class RunningLossComponents:
 
     struct: float = 0.0
     div: float = 0.0
-    lb: float = 0.0
+    entropy: float = 0.0  # Per-probability entropy penalty
     collapse: float = 0.0
-    sparsity: float = 0.0
+    kl_sparse: float = 0.0
+    cov_penalty: float = 0.0  # Off-diagonal covariance penalty
     saturation: float = 0.0  # Anti-saturation penalty
     coverage: float = 0.0  # Coverage loss (threshold or Zipf usage fit)
     formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
@@ -270,9 +285,10 @@ class RunningLossComponents:
         return RunningLossComponents(
             struct=self.struct + other.struct,
             div=self.div + other.div,
-            lb=self.lb + other.lb,
+            entropy=self.entropy + other.entropy,
             collapse=self.collapse + other.collapse,
-            sparsity=self.sparsity + other.sparsity,
+            kl_sparse=self.kl_sparse + other.kl_sparse,
+            cov_penalty=self.cov_penalty + other.cov_penalty,
             saturation=self.saturation + other.saturation,
             coverage=self.coverage + other.coverage,
             formality=self.formality + other.formality,
@@ -370,26 +386,36 @@ class KCDiagnosticFamilyStats:
     pos_label_density: float = 0.0
     mask_coverage: float = 0.0
     keys_present: str = ""
+    # Predicted positive labels per positive example
+    avg_pos: Optional[float] = None
+    med_pos: Optional[float] = None
     # Gradient flow diagnostic
     bias_delta: float = 0.0  # Mean bias change during epoch
 
 
 @dataclass
 class KcDynSizingBinStats:
-    """Stats for a single content-length bin."""
+    """Stats for a single content-length bin.
+
+    K = count of KCs with prob > 0.5 (natural threshold).
+    Kth = probability of the Kth KC (last above 0.5).
+    Spill = probability of the (K+1)th KC (first below 0.5).
+    Gap = Kth - Spill (decision boundary sharpness).
+    """
 
     bin_label: str
     count: int
     len_mean: float
-    k_budget_mean: float
-    k_budget_p10: float
-    k_budget_p50: float
-    k_budget_p90: float
-    budget_ratio_mean: float
-    masked_tail_rate: float
-    keff_mean: float
-    keff_minus_budget_mean: float
-    spill_prob_mean: float = 0.0  # Mean prob of (k+1)th KC (outside budget)
+    k_mean: float  # Mean count of KCs with prob > 0.5
+    k_p10: float
+    k_p50: float
+    k_p90: float
+    kth_prob_mean: float = 0.0  # Mean prob of Kth KC (last above 0.5), K≥1 only
+    spill_prob_mean: float = 0.0  # Mean prob of (K+1)th KC (first below 0.5), K≥1 only
+    gap_mean: float = (
+        0.0  # Mean of (Kth - Spill), decision boundary sharpness, K≥1 only
+    )
+    active_pct: float = 0.0  # Fraction of sentences in bin with K≥1
 
 
 @dataclass
@@ -400,12 +426,10 @@ class KcEpochActivationStats:
     pmax_p50: float
     pmax_p90: float
     pmax_p99: float
-    topk_sum_p50: float
-    topk_sum_p90: float
-    topk_sum_p99: float
+
     ent_norm: float
     kl_u_norm: float
-    act_dens_mean: float
+
     kc_probs_mean: float
     # Saturation Stats (Gated & Scaled)
     sat_w: float = 0.0
@@ -421,6 +445,7 @@ class KcEpochActivationStats:
     pmax_logit_max_pos: float = 0.0
     frac_over_thr_pos: float = 0.0
     frac_has_pos: float = 0.0
+    avg_entropy: float = 0.0  # Mean per-KC-slot Bernoulli entropy
 
 
 @dataclass
@@ -428,7 +453,7 @@ class KCMseFamilyStats:
     """KC diagnostic statistics for a single MSE (regression) family."""
 
     loss_mean: float  # MSE loss
-    accuracy_01: float  # Fraction within ±0.1 of target
+    discrete_accuracy: float  # Fraction matching discrete label bucket
     correlation: float  # Pearson correlation
     mean_bias: float  # Mean(pred) - Mean(target)
     pred_std: float  # Std dev of predictions
@@ -437,11 +462,23 @@ class KCMseFamilyStats:
 
 
 @dataclass
+class KCBertFamilyStats:
+    """KC diagnostic statistics for a BERT cloze (morpheme-prediction) family."""
+
+    loss_mean: float
+    top1_accuracy: float
+    top5_accuracy: float
+    top1_pos_only_accuracy: float = 0.0
+    batch_count: int = 0
+
+
+@dataclass
 class KCDiagnosticReport:
     """Full KC diagnostic report for an epoch."""
 
     families: Dict[str, KCDiagnosticFamilyStats]  # Label family stats
     mse_families: Dict[str, KCMseFamilyStats] = field(default_factory=dict)
+    bert_families: Dict[str, KCBertFamilyStats] = field(default_factory=dict)
 
 
 @dataclass
@@ -460,6 +497,70 @@ class WorstSampleInfo:
     pred_labels: str = ""  # Predicted labels for classification families
 
 
+class WorstSamplesTracker:
+    """Tracks the top-N worst (highest loss) samples using a min-heap.
+
+    Deduplicates by sentence: only the highest-loss entry per unique
+    sentence is kept.
+    """
+
+    def __init__(self, max_size: int = 50) -> None:
+        self.max_size = max_size
+        self._heap: List[Tuple[float, int, WorstSampleInfo]] = []
+        self._counter = 0  # Tiebreaker for heap stability
+        # Maps sentence -> (loss, counter) for dedup tracking
+        self._seen: Dict[str, Tuple[float, int]] = {}
+        self._dirty = False  # Set when entries are logically removed
+
+    def push(self, sample: WorstSampleInfo) -> None:
+        """Add a sample; deduplicates by sentence, keeping highest loss."""
+        prev = self._seen.get(sample.sentence)
+        if prev is not None:
+            prev_loss, _ = prev
+            if sample.loss <= prev_loss:
+                return  # Already have a higher-loss entry for this sentence
+            # Mark old entry as stale (will be filtered on read)
+            self._dirty = True
+
+        entry = (sample.loss, self._counter, sample)
+        self._counter += 1
+        self._seen[sample.sentence] = (sample.loss, entry[1])
+
+        if len(self._heap) < self.max_size + len(self._seen):
+            heapq.heappush(self._heap, entry)
+        elif sample.loss > self._heap[0][0]:
+            heapq.heapreplace(self._heap, entry)
+
+    def _rebuild_if_dirty(self) -> None:
+        """Remove stale entries and trim to max_size."""
+        if not self._dirty:
+            return
+        # Keep only entries whose counter matches the current best for that sentence
+        live = []
+        for loss, counter, info in self._heap:
+            best = self._seen.get(info.sentence)
+            if best is not None and best[1] == counter:
+                live.append((loss, counter, info))
+        heapq.heapify(live)
+        # Trim to max_size (keep highest-loss entries)
+        while len(live) > self.max_size:
+            heapq.heappop(live)
+        self._heap = live
+        self._dirty = False
+
+    def top_n(self) -> List[WorstSampleInfo]:
+        """Return all tracked samples sorted by loss descending."""
+        self._rebuild_if_dirty()
+        return [s for _, _, s in sorted(self._heap, reverse=True)]
+
+    def worst(self) -> Optional[WorstSampleInfo]:
+        """Return the single worst (highest loss) sample, or None."""
+        self._rebuild_if_dirty()
+        if not self._heap:
+            return None
+        return max(self._heap)[2]
+
+
 @dataclass(frozen=True)
 class KcLossWeights:
     """Weights used for each loss component (for display scaling).
@@ -469,15 +570,16 @@ class KcLossWeights:
 
     INVARIANTS (enforced by checksums):
     1. struct = sum(all family losses) - each family contributes its task_loss directly
-    2. total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
+    2. total_loss = struct + div + entropy + collapse + kl_sparse + cov_penalty + saturation + coverage
     """
 
     struct: float = 1.0  # Sum of all family task_losses
     # These are stored ALREADY WEIGHTED, so display weight is 1.0:
     div: float = 1.0  # Already weighted in RunningLossComponents
-    lb: float = 1.0  # Already weighted in RunningLossComponents
+    entropy: float = 1.0  # Already weighted in RunningLossComponents
     collapse: float = 1.0  # Already weighted in RunningLossComponents
-    sparsity: float = 1.0  # Already weighted in RunningLossComponents
+    kl_sparse: float = 1.0  # Already weighted in RunningLossComponents
+    cov_penalty: float = 1.0  # Already weighted in RunningLossComponents
     coverage: float = 1.0  # Already weighted in RunningLossComponents
 
 
@@ -497,12 +599,38 @@ class KcEpochSummary:
     kc_logits_used_count: int = 0  # Number of unique KC logits that fired
     kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
     zipf_kl: float = 0.0  # Epoch usage vs Zipf KL (lower is closer)
-    worst_samples: Dict[str, "WorstSampleInfo"] = field(
+    worst_samples: Dict[str, "WorstSamplesTracker"] = field(
         default_factory=dict
-    )  # Per-family worst sample
+    )  # Per-family top-N worst samples
     accumulators: Dict[str, "FamilyAccumulator"] = field(default_factory=dict)
     # Optional per-GP priors vector used for printing curate hints (NaN => unset/default).
     gp_priors: Optional[torch.Tensor] = None
+    gp_default_prior: float = 1e-8
+    total_samples: int = 0  # Total examples processed in epoch (for frequency calc)
+    # Per-bin canary sentence evaluation text (bin_label -> summary string)
+    canary_texts: Dict[str, str] = field(default_factory=dict)
+    kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
+    layer_health: Optional["LayerHealthStats"] = None
+    # Populated by view: Dead KCs line (alive = KCs that have been both above/below 0.5)
+    alive_kcs: Optional[int] = None
+    # Populated by view: Total row K@threshold stats (mean and percentiles of KCs fired per sample)
+    total_k_mean: Optional[float] = None
+    total_k_p10: Optional[float] = None
+    total_k_p50: Optional[float] = None
+    total_k_p90: Optional[float] = None
+
+
+@dataclass
+class LayerHealthStats:
+    """Per-layer health diagnostics for the transformer encoder.
+
+    Adapts automatically to any number of layers.
+    """
+
+    delta_norm: List[float]  # ||output - input|| / ||input|| per layer
+    cka_adjacent: List[float]  # CKA(layer_i, layer_{i+1}), length = num_layers - 1
+    effective_rank: List[float]  # Effective rank (90% variance) per layer
+    num_layers: int
 
 
 @dataclass
@@ -560,9 +688,8 @@ class TrainEpochStats:
 
     avg_struct_loss: float
     num_struct_heads_processed: int
-    avg_sparsity: float
+    avg_kl_sparse: float
     avg_prob: float
-    act_dens: float
 
     # Optional when metrics are skipped (skip_first_metrics flag)
     kc_diagnostics: Optional[KCDiagnosticReport] = None
@@ -574,15 +701,17 @@ class TrainEpochResult:
 
     total_loss: float
     kc_losses: KCLosses
-    avg_sparsity: float
+    avg_kl_sparse: float
     epoch_stats: TrainEpochStats
+    # Sizing metrics from view (alive_kcs, total_k_mean, total_k_p10/p50/p90), None when skipped
+    sizing_metrics: Optional[Dict[str, Any]] = None
 
 
 @dataclass
 class TrainingBatch:
     """Typed batch for training."""
 
-    feature_inputs: Dict[str, torch.Tensor]  # e.g. "kanji" -> tensor
+    feature_inputs: Dict[str, torch.Tensor]  # e.g. "input_ids_surface" -> tensor
     attention_mask: torch.Tensor
     formality_value: torch.Tensor
     formality_pragmatic: torch.Tensor
@@ -612,12 +741,22 @@ class KCTrainingHistory(TrainingHistory):
     """Accumulated training history for KC training."""
 
     total_loss: List[float] = field(default_factory=list)
-    kc_sparsity: List[float] = field(default_factory=list)
+    kc_kl_sparse: List[float] = field(default_factory=list)
     kc_losses: Dict[str, List[float]] = field(default_factory=dict)
     avg_struct_loss: List[float] = field(default_factory=list)
     num_struct_heads_processed: List[float] = field(default_factory=list)
-    avg_sparsity: List[float] = field(default_factory=list)
+    avg_kl_sparse: List[float] = field(default_factory=list)
 
     active_kc_targets: List[str] = field(default_factory=list)
     # List can contain None for epochs where metrics were skipped
     kc_diagnostics: List[Optional[KCDiagnosticReport]] = field(default_factory=list)
+    # Sizing metrics (alive KCs, Total K mean/p10/p50/p90, kc_threshold); None when metrics skipped
+    alive_kcs: List[Optional[int]] = field(default_factory=list)
+    total_k_mean: List[Optional[float]] = field(default_factory=list)
+    total_k_p10: List[Optional[float]] = field(default_factory=list)
+    total_k_p50: List[Optional[float]] = field(default_factory=list)
+    total_k_p90: List[Optional[float]] = field(default_factory=list)
+    kc_threshold: List[Optional[float]] = field(default_factory=list)
+    s1_pct: List[Optional[float]] = field(default_factory=list)
+    s0_pct: List[Optional[float]] = field(default_factory=list)
+    fuzzy_pct: List[Optional[float]] = field(default_factory=list)

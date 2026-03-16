@@ -19,13 +19,7 @@ class TestModelLoadUnit(unittest.TestCase):
         # Create dummy model - use ENCODER_FEATURE_FIELDS vocab sizes
         config = ModelConfig(
             vocab_sizes={
-                "pos": 100,
-                "pos_detail_1": 100,
-                "pos_detail_2": 100,
-                "pos_detail_3": 100,
-                "conjugated_form": 100,
-                "conjugated_type": 100,
-                "reading": 100,
+                "surface": 16384,
             }
         )
         model = InferenceClassifier(config)

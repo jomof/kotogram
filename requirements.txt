@@ -1,15 +1,15 @@
 # Kotogram dependencies
 # Note: torch should be installed separately via requirements.sh for proper GPU support
 sudachipy==0.6.10
-sudachidict-core==20251022
+sudachidict-core==20240109
 sudachidict-full==20251022
 PyYaml==6.0.3
 types-PyYAML==6.0.12.20250915
 rich==14.2.0
 numpy==2.2.3
 memray==1.19.1
-wheel==0.45.1
 ruff==0.14.14
+wheel==0.46.3
 mypy==1.19.1
 pytest==9.0.2
 vulture==2.14
@@ -18,6 +18,9 @@ pylint==4.0.4
 pytest-xdist==3.6.1
 pytest-sugar==1.0.0
 psutil==5.9.8
-types-psutil==5.9.5.20240423
+types-psutil==7.2.2.20260130
 torch
 scikit-learn
+mlflow>=2.0
+psycopg2-binary
+google-cloud-storage

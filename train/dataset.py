@@ -1,8 +1,9 @@
 """Dataset and processing logic for style classification (V2 Binary / Memory-Mapped)."""
 
+import math
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Set, Tuple, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 import torch
 from torch.utils.data import Dataset
@@ -14,14 +15,14 @@ from kotogram.model import (
     NUM_GRAMMATICALITY_CLASSES,
     NUM_REGISTER_CLASSES,
 )
-from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, MASK_ID, Tokenizer
 from train.binary_io import (
     EXT_FEAT_PREFIX,
     EXT_KC_PREFIX,
     EXT_LABELS,
     EXT_OFFSETS,
 )
-from train.kc import KcFamilyId, compute_kc_targets, initialize_disallow_filter
+from train.kc import KcFamilyId
 from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
@@ -53,15 +54,17 @@ class StyleDataset(Dataset[Sample]):
         tokenizer: Tokenizer,
         indices: Optional[torch.Tensor] = None,
         sample_ratio: float = 1.0,
+        feature_fields: Optional[Sequence[str]] = None,
     ):
         # pylint: disable=too-many-positional-arguments
         self.data_dir = data_dir
         self.tokenizer = tokenizer
         self.verbose = True
-
-        # Initialize disallow filter for KC target computation
-        compound_1_vocab = tokenizer.field_vocabs.get("compound_1", {})
-        initialize_disallow_filter(compound_1_vocab)
+        self._feature_fields = (
+            list(feature_fields)
+            if feature_fields is not None
+            else list(ENCODER_FEATURE_FIELDS)
+        )
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)
@@ -109,52 +112,143 @@ class StyleDataset(Dataset[Sample]):
                 reg_off_path, shared=True, size=sz, dtype=torch.int32
             )
 
-        self._apply_balanced_sampling(sample_ratio)
-
-        self._len = len(self.indices)
-
+        # Load KC targets BEFORE sampling so GP labels are available for stratification
         self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = self._init_kc_targets(
             self.data_dir
         )
 
+        self._full_indices = self.indices.clone()
+
+        self._apply_balanced_sampling(sample_ratio)
+
+        self._len = len(self.indices)
+
+    def _find_gp_labeled_indices(self) -> Set[int]:
+        """Return indices of sentences that have at least one positive GP label."""
+        labeled: Set[int] = set()
+        key = "grammar_point_pos"
+        if key not in self.kc_maps:
+            return labeled
+        offsets = self.kc_maps[key]["offsets"]
+        for real_idx_t in self.indices:
+            real_idx = int(real_idx_t.item())
+            if real_idx + 1 >= len(offsets):
+                continue
+            if int(offsets[real_idx + 1].item()) - int(offsets[real_idx].item()) > 0:
+                labeled.add(real_idx)
+        return labeled
+
+    def _group_by_gp(self, labeled: Set[int]) -> Dict[int, Set[int]]:
+        """Group labeled sentence indices by positive grammar point ID."""
+        gp_to_sentences: Dict[int, Set[int]] = {}
+        key = "grammar_point_pos"
+        if key not in self.kc_maps:
+            return gp_to_sentences
+        offsets = self.kc_maps[key]["offsets"]
+        ids = self.kc_maps[key]["ids"]
+        for real_idx in labeled:
+            if real_idx + 1 >= len(offsets):
+                continue
+            start = int(offsets[real_idx].item())
+            end = int(offsets[real_idx + 1].item())
+            for gp_id in ids[start:end].tolist():
+                if gp_id not in gp_to_sentences:
+                    gp_to_sentences[gp_id] = set()
+                gp_to_sentences[gp_id].add(real_idx)
+        return gp_to_sentences
+
+    def _select_gp_labeled_sentences(self) -> Tuple[Set[int], int]:
+        """Select GP-labeled sentences with per-GP sqrt-capped sampling.
+
+        Returns:
+            Tuple of (selected sentence indices, number of unique GPs).
+        """
+        import random as _random
+
+        all_labeled = self._find_gp_labeled_indices()
+        if not all_labeled:
+            return set(), 0
+
+        gp_to_sentences = self._group_by_gp(all_labeled)
+
+        # Sqrt-capped selection per GP
+        _random.seed(42)
+        selected: Set[int] = set()
+        for sentence_set in gp_to_sentences.values():
+            sents = list(sentence_set)
+            cap = min(len(sents), max(40, int(math.ceil(math.sqrt(len(sents))))))
+            if cap < len(sents):
+                selected.update(_random.sample(sents, cap))
+            else:
+                selected.update(sents)
+
+        return selected, len(gp_to_sentences)
+
+    @staticmethod
+    def _sample_pool(pool: List[int], count: int) -> Set[int]:
+        """Sample up to `count` indices from a sorted pool."""
+        if count <= 0 or not pool:
+            return set()
+        perm = torch.randperm(len(pool))[:count]
+        return {pool[i] for i in perm.tolist()}
+
+    def _fill_from_gp_then_pool(
+        self, gp_pool: Set[int], backfill_pool: List[int], target: int
+    ) -> Tuple[Set[int], Set[int]]:
+        """Use GP-labeled indices first (capped at target), then backfill from pool."""
+        if len(gp_pool) <= target:
+            fill = self._sample_pool(backfill_pool, target - len(gp_pool))
+            return gp_pool, fill
+        return set(self._sample_pool(sorted(gp_pool), target)), set()
+
     def _apply_balanced_sampling(self, sample_ratio: float) -> None:
         if sample_ratio == 1.0 or "gram" not in self.labels:
             return
+
+        gram_indices = self.indices[self.labels["gram"][self.indices] == 1]
+        gram_set = set(gram_indices.tolist())
+        all_set = set(self.indices.tolist())
+
+        target_gram = min(
+            int(gram_indices.numel() * sample_ratio), int(gram_indices.numel())
+        )
+        target_ungram = min(target_gram, len(all_set) - len(gram_set))
+
+        # GP-aware stratified selection (full pool, uncapped by ratio)
+        gp_all, _ = self._select_gp_labeled_sentences()
+        gp_all_gram = {i for i in gp_all if int(self.labels["gram"][i].item()) == 1}
+
+        # Cap GP-gram to target; if GP exceeds target, subsample
+        gp_gram, gram_fill = self._fill_from_gp_then_pool(
+            gp_all_gram, sorted(gram_set - gp_all), target_gram
+        )
+
+        # Same for ungrammatic
+        gp_ungram, ungram_fill = self._fill_from_gp_then_pool(
+            gp_all - gp_all_gram,
+            sorted(all_set - gram_set - gp_all),
+            target_ungram,
+        )
+
+        final_indices = sorted(gp_gram | gram_fill | gp_ungram | ungram_fill)
+
         if self.verbose:
             print(
-                f"Sampling {sample_ratio:.1%} of grammatic and matching ungrammatic..."
+                f"Sampling {sample_ratio:.1%}: "
+                f"{len(gp_gram)} GP-gram + {len(gram_fill)} gram + "
+                f"{len(gp_ungram)} GP-ungram + {len(ungram_fill)} ungram = "
+                f"{len(gp_gram) + len(gram_fill)} gram + "
+                f"{len(gp_ungram) + len(ungram_fill)} ungram = "
+                f"{len(final_indices)} total"
             )
-        current_labels = self.labels["gram"][self.indices]
-        gram_indices = self.indices[current_labels == 1]
-        ungram_indices = self.indices[current_labels == 0]
 
-        gram_total = int(gram_indices.numel())
-        ungram_total = int(ungram_indices.numel())
+        self.indices = torch.tensor(final_indices, dtype=torch.long)
 
-        if sample_ratio <= 1.0:
-            target_gram = int(gram_total * sample_ratio)
-            target_ungram = target_gram
-        else:
-            target_gram = gram_total
-            target_ungram = int(gram_total * sample_ratio)
-
-        target_gram = min(target_gram, gram_total)
-        target_ungram = min(target_ungram, ungram_total)
-
-        gram_sel = (
-            gram_indices[torch.randperm(gram_total)[:target_gram]]
-            if gram_total > 0 and target_gram > 0
-            else torch.tensor([], dtype=torch.long)
-        )
-        ungram_sel = (
-            ungram_indices[torch.randperm(ungram_total)[:target_ungram]]
-            if ungram_total > 0 and target_ungram > 0
-            else torch.tensor([], dtype=torch.long)
-        )
-
-        if gram_sel.numel() or ungram_sel.numel():
-            self.indices = torch.cat([gram_sel, ungram_sel])
-            self.indices, _ = torch.sort(self.indices)
+    def resample(self, sample_ratio: float) -> None:
+        """Re-apply balanced sampling at a new ratio, using the original full index set."""
+        self.indices = self._full_indices.clone()
+        self._apply_balanced_sampling(sample_ratio)
+        self._len = len(self.indices)
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)
@@ -168,8 +262,14 @@ class StyleDataset(Dataset[Sample]):
         return torch.from_file(path, shared=shared, size=size, dtype=dtype)
 
     def _init_features(self, data_dir: str) -> Dict[str, torch.Tensor]:
+        """Load feature fields from binary files.
+
+        By default only ENCODER_FEATURE_FIELDS (surface) are loaded.  Pass
+        ``feature_fields`` to ``__init__`` to override (e.g. for KC-target
+        cross-validation tests that need all morphological fields).
+        """
         features = {}
-        for field in FEATURE_FIELDS:
+        for field in self._feature_fields:
             path = os.path.join(data_dir, f"{EXT_FEAT_PREFIX}{field}.bin")
             if self._check_exists(path):
                 sz = self._get_size(path) // 4
@@ -271,6 +371,14 @@ class StyleDataset(Dataset[Sample]):
                 ),
             }
 
+        self._init_gp_metadata(data_dir, kc_maps)
+
+        return kc_maps
+
+    def _init_gp_metadata(
+        self, data_dir: str, kc_maps: Dict[str, Dict[str, torch.Tensor]]
+    ) -> None:
+        """Load GP priors and label counts from binary files."""
         # Optional per-GP priors vector
         gp_priors_path = os.path.join(data_dir, "gp_priors.bin")
         if (
@@ -289,8 +397,6 @@ class StyleDataset(Dataset[Sample]):
         else:
             # No GP targets; keep an empty tensor.
             self.gp_priors = torch.empty((0,), dtype=torch.float32)
-
-        return kc_maps
 
     def __len__(self) -> int:
         return self._len
@@ -349,57 +455,52 @@ class StyleDataset(Dataset[Sample]):
             register_labels=reg_list,
             original_sentence="",  # Binary format drops raw text to save space
             kotogram="",
-            kc_targets=self._get_kc_targets(
-                int(real_idx), int(start), int(end), feature_ids
-            ),
+            kc_targets=self._get_kc_targets(int(real_idx)),
             idx=int(real_idx),
         )
 
-    def _get_kc_targets(
-        self, real_idx: int, _start: int, _end: int, feature_ids: Dict[str, List[int]]
-    ) -> Dict[KcFamilyId, Any]:
-        """Get KC targets for a sample.
+    def _get_kc_targets(self, real_idx: int) -> Dict[KcFamilyId, Any]:
+        """Get pre-computed KC targets for a sample.
 
-        Uses pre-computed targets from binary files if available,
-        otherwise falls back to computing on-the-fly.
+        Requires pre-computed targets from binary files written by the
+        labeling phase (scripts/label.py). Raises if they are missing.
 
         For GRAMMAR_POINT family, returns a dict with "pos" and "neg" lists.
         """
-        # If pre-computed KC targets are available, use them
-        if self.kc_maps:
-            result: Dict[KcFamilyId, Any] = {}
-            for family in KcFamilyId:
-                family_name = family.value
+        if not self.kc_maps:
+            raise RuntimeError(
+                "Pre-computed KC targets not found. "
+                "Please run 'bin/train_style --label' to generate them."
+            )
 
-                # Special handling for GRAMMAR_POINT (has pos/neg arrays)
-                if family == KcFamilyId.GRAMMAR_POINT:
-                    gp_pos = []
-                    gp_neg = []
-                    if "grammar_point_pos" in self.kc_maps:
-                        data = self.kc_maps["grammar_point_pos"]
-                        gp_start = int(data["offsets"][real_idx].item())
-                        gp_end = int(data["offsets"][real_idx + 1].item())
-                        gp_pos = data["ids"][gp_start:gp_end].tolist()
-                    if "grammar_point_neg" in self.kc_maps:
-                        data = self.kc_maps["grammar_point_neg"]
-                        gp_start = int(data["offsets"][real_idx].item())
-                        gp_end = int(data["offsets"][real_idx + 1].item())
-                        gp_neg = data["ids"][gp_start:gp_end].tolist()
-                    result[family] = {"pos": gp_pos, "neg": gp_neg}
-                    continue
+        result: Dict[KcFamilyId, Any] = {}
+        for family in KcFamilyId:
+            family_name = family.value
 
-                if family_name in self.kc_maps:
-                    data = self.kc_maps[family_name]
-                    # Get the jagged slice for this sample
-                    kc_start = int(data["offsets"][real_idx].item())
-                    kc_end = int(data["offsets"][real_idx + 1].item())
-                    result[family] = data["ids"][kc_start:kc_end].tolist()
-                else:
-                    result[family] = []
-            return result
+            if family == KcFamilyId.GRAMMAR_POINT:
+                gp_pos = []
+                gp_neg = []
+                if "grammar_point_pos" in self.kc_maps:
+                    data = self.kc_maps["grammar_point_pos"]
+                    gp_start = int(data["offsets"][real_idx].item())
+                    gp_end = int(data["offsets"][real_idx + 1].item())
+                    gp_pos = data["ids"][gp_start:gp_end].tolist()
+                if "grammar_point_neg" in self.kc_maps:
+                    data = self.kc_maps["grammar_point_neg"]
+                    gp_start = int(data["offsets"][real_idx].item())
+                    gp_end = int(data["offsets"][real_idx + 1].item())
+                    gp_neg = data["ids"][gp_start:gp_end].tolist()
+                result[family] = {"pos": gp_pos, "neg": gp_neg}
+                continue
 
-        # Fallback: Compute on demand (slower, for backwards compatibility)
-        return compute_kc_targets(cast(Any, feature_ids))
+            if family_name in self.kc_maps:
+                data = self.kc_maps[family_name]
+                kc_start = int(data["offsets"][real_idx].item())
+                kc_end = int(data["offsets"][real_idx + 1].item())
+                result[family] = data["ids"][kc_start:kc_end].tolist()
+            else:
+                result[family] = []
+        return result
 
     @classmethod
     def from_multiple_tsv(
@@ -496,12 +597,14 @@ class StyleDataset(Dataset[Sample]):
         self,
         formality_boost: float = 5.0,
         gender_boost: float = 15.0,
+        length_reweight: bool = False,
     ) -> "torch.utils.data.WeightedRandomSampler":
         """Create a sampler that oversamples non-neutral formality and gender examples.
 
         Args:
             formality_boost: Multiplier for non-neutral formality (|f| > 0.25)
             gender_boost: Multiplier for non-neutral gender (|g| > 0.25)
+            length_reweight: Apply sqrt-inverse-frequency weighting by token length bin
 
         Returns:
             WeightedRandomSampler for use in DataLoader
@@ -524,10 +627,44 @@ class StyleDataset(Dataset[Sample]):
             if abs(g_val) > 0.25:
                 weights[i] *= gender_boost
 
+        if length_reweight:
+            weights = self._apply_length_reweight(weights)
+
         # Use replacement=True to allow oversampling
         return WeightedRandomSampler(
             weights.tolist(), num_samples=len(self), replacement=True
         )
+
+    def _apply_length_reweight(self, weights: torch.Tensor) -> torch.Tensor:
+        """Multiply weights by sqrt-inverse-frequency of token-length bins.
+
+        Bins: 1-3, 4-7, 8-15, 16-31, 32+ tokens.
+        Uses sqrt(median_count / bin_count) so the largest bin stays ~1.0
+        and underrepresented bins get a moderate boost (not full equalization).
+        """
+        n = len(self)
+        bin_edges = [1, 4, 8, 16, 32, 999999]
+        bin_idx = torch.zeros(n, dtype=torch.long)
+
+        for i in range(n):
+            real_idx = int(self.indices[i].item())
+            tok_len = int(self.offsets[real_idx + 1].item()) - int(
+                self.offsets[real_idx].item()
+            )
+            for b in range(len(bin_edges) - 1):
+                if bin_edges[b] <= tok_len < bin_edges[b + 1]:
+                    bin_idx[i] = b
+                    break
+
+        bin_counts = torch.bincount(bin_idx, minlength=len(bin_edges) - 1).float()
+        bin_counts.clamp_min_(1.0)
+        median_count = float(bin_counts.median().item())
+        bin_weight = (median_count / bin_counts).sqrt()
+
+        for i in range(n):
+            weights[i] *= bin_weight[bin_idx[i]]
+
+        return weights
 
     def get_formality_class_weights(self) -> torch.Tensor:
         # compute from self.labels["f_prag"] (subset by self.indices)
@@ -562,20 +699,25 @@ class StyleDataset(Dataset[Sample]):
 def _collate_features(
     batch: List[Sample], batch_size: int, max_seq_len: int
 ) -> Dict[str, torch.Tensor]:
+    """Collate only ENCODER_FEATURE_FIELDS into padded tensors.
+
+    Non-encoder feature fields (pos, compound_1, etc.) are only needed for KC
+    target computation, which uses pre-computed Sample.kc_targets, not these
+    batch tensors.
+    """
     feature_tensors: Dict[str, torch.Tensor] = {}
     if not batch:
         return feature_tensors
 
-    # Hardcoded pad_id=0
     pad_id = 0
 
-    for f in FEATURE_FIELDS:
+    for f in ENCODER_FEATURE_FIELDS:
         feature_tensors[f"input_ids_{f}"] = torch.full(
             (batch_size, max_seq_len), pad_id, dtype=torch.long
         )
 
     for i, s in enumerate(batch):
-        for f in FEATURE_FIELDS:
+        for f in ENCODER_FEATURE_FIELDS:
             seq = s.feature_ids.get(f)
             if seq is None:
                 continue
@@ -716,24 +858,30 @@ def create_kc_batch(
         Dict mapping 'kc_targets_{field}' to (batch_size, vocab_size) float tensor
     """
     result: Dict[str, torch.Tensor] = {}
-
-    # Get special tokens to ignore
-    special_ids = {0, tokenizer.unk_id, tokenizer.cls_id}
-
-    # Helper for device
+    special_ids = {0, tokenizer.unk_id, tokenizer.cls_id, MASK_ID}
     device = batch.attention_mask.device
 
-    # Note: We rely on batch.kc_targets being populated by collate_fn from Sample objects
     if not batch.kc_targets:
-        # Fallback if empty (shouldn't happen with valid collation)
         return result
 
-    # Global effective mask initialization
     batch_size = len(batch.kc_targets)
     global_has_pos = torch.zeros(batch_size, dtype=torch.bool, device=device)
 
-    # Strict iteration over target_specs which MUST be Dict[KcFamilyId, int]
+    # Deferred import to avoid circular dependency
+    from train.kc import (  # pylint: disable=import-outside-toplevel
+        KcBertFamily,
+        KcDbMultilabelFamily,
+        KcPnuFamily,
+        get_family,
+        is_family_db_sourced,
+        is_family_sparse,
+    )
+
     for target_family, vocab_size in target_specs.items():
+        # BERT cloze targets are generated dynamically in kc_trainer, not precomputed
+        if isinstance(get_family(target_family), KcBertFamily):
+            continue
+
         # Strict data alignment: The batch MUST contain data for the requested target.
         if target_family not in batch.kc_targets[0]:
             raise KeyError(
@@ -741,15 +889,6 @@ def create_kc_batch(
             )
 
         kc_key = target_family
-
-        # Import here to avoid circular import
-        from train.kc import (
-            KcDbMultilabelFamily,
-            KcPnuFamily,
-            get_family,
-            is_family_db_sourced,
-            is_family_sparse,
-        )
 
         # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
         # These use different data structures: KcPnuFamily uses pos/neg arrays, KcMseFamily uses scalars
@@ -816,17 +955,6 @@ def create_kc_batch(
                     result[f"kc_continuous_{name}"] = batch.gender_value.to(device)
                 elif name == "formality":
                     result[f"kc_continuous_{name}"] = batch.formality_value.to(device)
-                # Classification versions: map continuous to class indices
-                elif name == "gender_class":
-                    # Map: -1.0 → 0, 0.0 → 1, 1.0 → 2
-                    gender_class = ((batch.gender_value + 1.0) / 2.0 * 2).long()
-                    gender_class = gender_class.clamp(0, 2)
-                    result[f"kc_class_{name}"] = gender_class.to(device)
-                elif name == "formality_class":
-                    # Map: -1.0 → 0, -0.5 → 1, 0.0 → 2, 0.5 → 3, 1.0 → 4
-                    formality_class = ((batch.formality_value + 1.0) / 0.5).long()
-                    formality_class = formality_class.clamp(0, 4)
-                    result[f"kc_class_{name}"] = formality_class.to(device)
                 elif isinstance(family_def, KcDbMultilabelFamily):
                     # Multi-label families (register) use multi-hot targets from batch
                     # batch.register_labels is already [B, num_classes] multi-hot tensor

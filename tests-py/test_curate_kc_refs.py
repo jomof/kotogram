@@ -92,9 +92,12 @@ class TestCurateKcTailStatsSync(unittest.TestCase):
             )
 
         # Load dataset
+        from kotogram.tokenizer import ALL_FEATURE_FIELDS
         from train.dataset import StyleDataset
 
-        cls.dataset = StyleDataset(cache_dir, cls.tokenizer)
+        cls.dataset = StyleDataset(
+            cache_dir, cls.tokenizer, feature_fields=ALL_FEATURE_FIELDS
+        )
 
     def test_tail_compound_1_matches_training_data(self):  # pylint: disable=too-many-locals
         """Verify curate helper produces same TAIL_COMPOUND_1 as training dataset.

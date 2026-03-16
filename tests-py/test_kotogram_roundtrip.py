@@ -18,7 +18,7 @@ import sys
 from multiprocessing import Pool, cpu_count
 from typing import Any, Dict, List, Optional, Tuple
 
-from sudachipy import dictionary
+from sudachipy import SplitMode, dictionary
 
 from kotogram.japanese_parser import (
     CONJUGATED_FORM_MAP,
@@ -113,9 +113,9 @@ def _check_sentence_worker(sentence: str) -> Optional[str]:
     # Process-local globals for performance (initialized once per worker process)
     global _worker_dict, _worker_parser, _worker_tokenizer  # pylint: disable=global-statement
     if "_worker_dict" not in globals() or _worker_dict is None:
-        _worker_dict = dictionary.Dictionary(dict="full")
+        _worker_dict = dictionary.Dictionary(dict="core")
         _worker_parser = SudachiJapaneseParser()
-        _worker_tokenizer = _worker_dict.create()
+        _worker_tokenizer = _worker_dict.create(mode=SplitMode.C)
 
     sudachi_tokens = list(_worker_tokenizer.tokenize(sentence))
     kotogram_string = _worker_parser.japanese_to_kotogram(sentence)

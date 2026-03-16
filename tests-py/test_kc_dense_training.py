@@ -42,6 +42,7 @@ class TestKCDenseTraining(unittest.TestCase):
         self.dataset = MagicMock()
         self.dataset.tokenizer.field_vocabs = {}
         self.dataset.filter_by_grammaticality.return_value = self.dataset
+        self.dataset.features = {}
 
         # Mock DataLoader
         self.dl_config = MagicMock()
@@ -106,9 +107,7 @@ class TestKCDenseTraining(unittest.TestCase):
             "kc_probs": torch.sigmoid(
                 torch.zeros((batch_size, 100), requires_grad=True)
             ),
-            "topk_vals": torch.zeros((batch_size, 5), requires_grad=True),
-            "topk_inds": torch.zeros((batch_size, 5), dtype=torch.long),
-            "sparse_activations": torch.zeros((batch_size, 100), requires_grad=True),
+            "kc_probs_clean": torch.sigmoid(torch.zeros(batch_size, 100)),
             "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
             "logits_usage": torch.zeros((batch_size, 100), requires_grad=True),
         }
@@ -159,34 +158,6 @@ class TestKCDenseTraining(unittest.TestCase):
             targets_arg.dim(), 2, f"targets should be 2D, got {targets_arg.shape}"
         )
         self.assertEqual(targets_arg.shape, probs.shape, "targets should match probs")
-
-    @patch("train.kc_trainer.create_kc_batch")
-    @patch("train.kc_trainer.KCEpochDiag")
-    def test_missing_topk_raises_error(self, _mock_kc_diag_cls, mock_create_batch):
-        # Setup batch
-        mock_create_batch.return_value = {}
-        batch = MagicMock()
-        batch.attention_mask = torch.ones(2, 5)
-        batch.feature_inputs = {}
-        batch.formality_value = torch.zeros(2)  # Neutral formality
-        batch.gender_value = torch.zeros(2)  # Neutral gender
-        batch.register_labels = torch.zeros(2, 14)  # All neutral registers
-        self.mock_loader.__len__.return_value = 1
-        self.mock_loader.__iter__.return_value = iter([batch])
-
-        # Outputs missing topk_inds
-        outputs = {
-            "kc_logits_raw": torch.zeros((2, 100)),
-            "kc_logits_effective": torch.zeros((2, 100)),
-            "kc_probs": torch.sigmoid(torch.zeros((2, 100))),
-            # "topk_inds" is purposefully missing
-            "topk_vals": torch.zeros((2, 5)),
-            "target_logits": {},
-        }
-        self.model.return_value = outputs
-
-        with self.assertRaisesRegex(RuntimeError, "KC training requires topk_inds"):
-            self.trainer.train_epoch(0)
 
 
 if __name__ == "__main__":

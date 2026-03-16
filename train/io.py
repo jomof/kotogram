@@ -13,14 +13,26 @@ from kotogram.model import (
     InferenceClassifier,
     ModelConfig,
 )
-from kotogram.tokenizer import Tokenizer
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer
 from train.kc import KC_FAMILIES, KcMseFamily
 
 
-def save_tokenizer(tokenizer: Tokenizer, path: str) -> None:
+def save_tokenizer(
+    tokenizer: Tokenizer, path: str, inference_only: bool = False
+) -> None:
     """Save tokenizer vocabularies to JSON file atomically."""
     # pylint: disable=import-outside-toplevel
-    data = tokenizer.to_dict()
+    if inference_only:
+        data = {
+            "field_vocabs": {
+                f: tokenizer.field_vocabs[f]
+                for f in ENCODER_FEATURE_FIELDS
+                if f in tokenizer.field_vocabs
+            },
+            "frozen": True,
+        }
+    else:
+        data = tokenizer.to_dict()
 
     dir_name = os.path.dirname(path)
     if dir_name:
@@ -35,7 +47,7 @@ def save_tokenizer(tokenizer: Tokenizer, path: str) -> None:
             "w", dir=dir_name, delete=False, encoding="utf-8"
         ) as tmp_file:
             tmp_path = tmp_file.name
-            json.dump(data, tmp_file, ensure_ascii=False, indent=2)
+            json.dump(data, tmp_file, ensure_ascii=False, indent=2, sort_keys=True)
             tmp_file.flush()
             os.fsync(tmp_file.fileno())
 
@@ -92,6 +104,19 @@ def save_model(
         for layer_names, check_func in pathway_checks.items():
             if sublayer in layer_names:
                 return not check_func()  # Strip if no families need this pathway
+
+        # BERT cloze pathway is training-only (always strip from exported models)
+        if sublayer in ("bert_hidden1", "bert_hidden2", "bert_decoders"):
+            return True
+
+        # Recon pathway is training-only (always strip from exported models)
+        if sublayer in (
+            "recon_pos_embed",
+            "recon_hidden1",
+            "recon_hidden2",
+            "recon_decoders",
+        ):
+            return True
 
         # Handle per-family decoders
         if sublayer in ("decoders", "mse_decoders"):
@@ -166,6 +191,15 @@ def get_checkpoint_path() -> str:
     return os.path.join(get_cache_dir(), "checkpoint.pt")
 
 
+_CHECKPOINT_SENTINEL_KEYS = frozenset(
+    {
+        "embedding.embeddings.surface.weight",
+        "encoder.layers.0.self_attn.in_proj_weight",
+        "pooler.query",
+    }
+)
+
+
 def save_checkpoint(model: InferenceClassifier) -> None:
     """Save full model state as checkpoint for training resumption.
 
@@ -182,4 +216,16 @@ def save_checkpoint(model: InferenceClassifier) -> None:
 
     # Save full state dict in FP32 (no stripping, no fp8 conversion)
     state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
+
+    # Guard: verify the model has production-level structure before writing.
+    # This prevents test stubs or dummy models from silently corrupting
+    # the real checkpoint (which would break training resumption).
+    missing = _CHECKPOINT_SENTINEL_KEYS - state_dict.keys()
+    if missing:
+        raise RuntimeError(
+            f"Refusing to save checkpoint: model state_dict is missing "
+            f"production keys {sorted(missing)}. "
+            f"This looks like a test stub, not a real model."
+        )
+
     torch.save(state_dict, checkpoint_path)

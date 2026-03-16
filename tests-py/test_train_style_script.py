@@ -48,6 +48,8 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.cache]/style_dataset/labels.bin_*",
                 "[.cache]/style_dataset/offsets.bin",
                 "[.cache]/style_dataset/gp_*.bin",  # Grammar point ids/offsets
+                "[.cache]/style_dataset/chive_surface.pt",
+                "[.cache]/chive/chive-1.3-mc5.txt",
                 "[history]/config.json",
                 "[models]/style/tokenizer.json",
             ]
@@ -121,6 +123,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.profile]/training-profile.txt MODIFIED",
                 "[history]/config.json MODIFIED",
                 "[models]/style/model.pt MAYBE-MODIFIED",
+                "[models]/style/model.json MAYBE-MODIFIED",
                 "[models]/style/continuation.json MODIFIED",
             ]
 

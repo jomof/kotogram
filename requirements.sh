@@ -58,6 +58,10 @@ echo "Installing PyTorch..."
 echo "Installing Ruff..."
 "$PYTHON_EXEC" -m pip install ruff==0.14.10
 
+# Install Rich
+echo "Installing Rich..."
+"$PYTHON_EXEC" -m pip install rich==14.2.0
+
 # Install other requirements
 echo "Installing other dependencies..."
 "$PYTHON_EXEC" -m pip install -r requirements.txt

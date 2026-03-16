@@ -1,5 +1,7 @@
 """KC target computation logic with ABC-based family hierarchy."""
 
+# pylint: disable=too-many-lines
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
@@ -64,19 +66,15 @@ class KcFamilyId(str, Enum):
     GRAMMAR_POINT = "grammar_point"
     GENDER = "gender"
     FORMALITY = "formality"
-    GENDER_CLASS = "gender_class"  # Classification version (3 classes: -1, 0, +1)
-    FORMALITY_CLASS = "formality_class"  # Classification version (5 classes)
     REGISTER = (
         "register"  # Multi-label classification (14 registers, can have multiple)
     )
 
+    # Morpheme-Cloze Family (BERT-style: mask all instances of one token, predict it)
+    BERT = "bert"
 
-class KcLogitMode(str, Enum):
-    """Defines which KC logits a family is trained against."""
-
-    SPARSE_LOGITS = "sparse_logits"  # k-budget sparse activations (localized)
-    ALL_LOGITS = "all_logits"  # Full KC probabilities (diffuse style)
-    HOT_LOGITS = "hot_logits"  # Only logits with prob >= 0.5 (thresholded)
+    # Reconstruction Family (predict full input sequence from KC bottleneck)
+    RECON = "recon"
 
 
 # =============================================================================
@@ -139,17 +137,13 @@ class KcFamily(ABC):
         """Per-family loss multiplier (calibrated so families contribute equally)."""
         return 1.0
 
-    @property
-    @abstractmethod
-    def logit_mode(self) -> KcLogitMode:
-        """Which KC logits this family trains against (SPARSE_LOGITS or ALL_LOGITS)."""
-
 
 @dataclass(frozen=True)
 class KcBagFamily(KcFamily):
     """Bag-of-words dense families using full sequence."""
 
     _feature_field: str
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -173,16 +167,13 @@ class KcBagFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
 
 @dataclass(frozen=True)
 class KcTailFamily(KcFamily):
     """Tail-window dense families."""
 
     _feature_field: str
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -209,10 +200,6 @@ class KcTailFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
-
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -222,6 +209,7 @@ class KcNgramFamily(KcFamily):
     _feature_field: str
     _bucket_size: int
     _salt: int
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -253,10 +241,6 @@ class KcNgramFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
 
 @dataclass(frozen=True)
 class KcTailNgramFamily(KcFamily):
@@ -265,6 +249,7 @@ class KcTailNgramFamily(KcFamily):
     _feature_field: str
     _bucket_size: int
     _salt: int
+
     _filter_unk: bool = False
     _loss_weight: float = 1.0
 
@@ -299,10 +284,6 @@ class KcTailNgramFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
-
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -335,10 +316,6 @@ class KcPnuFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
 
 @dataclass(frozen=True)
 class KcMseFamily(KcFamily):
@@ -366,52 +343,12 @@ class KcMseFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
-
-@dataclass(frozen=True)
-class KcDbClassFamily(KcFamily):
-    """DB-sourced multi-class classification families (GENDER_CLASS, FORMALITY_CLASS)."""
-
-    _num_classes: int = 3
-    _loss_weight: float = 1.0
-
-    @property
-    def is_sparse(self) -> bool:
-        return False  # Dense multi-class output
-
-    @property
-    def is_db_sourced(self) -> bool:
-        return True
-
-    @property
-    def feature_field(self) -> str:
-        return ""  # No tokenizer feature, targets from batch
-
-    @property
-    def is_slim_decoder(self) -> bool:
-        return True  # Experimental, not needed at inference
-
-    @property
-    def loss_weight(self) -> float:
-        return self._loss_weight
-
-    @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
-    @property
-    def num_classes(self) -> int:
-        return self._num_classes
-
 
 @dataclass(frozen=True)
 class KcDbMultilabelFamily(KcFamily):
     """DB-sourced multi-label classification for REGISTER (multiple labels per sample)."""
 
-    _num_classes: int = 14  # Default for register (14 register types)
+    _num_classes: int
     _loss_weight: float = 1.0
 
     @property
@@ -435,19 +372,91 @@ class KcDbMultilabelFamily(KcFamily):
         return self._loss_weight
 
     @property
-    def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.HOT_LOGITS
-
-    @property
     def num_classes(self) -> int:
         return self._num_classes
+
+
+@dataclass(frozen=True)
+class KcBertFamily(KcFamily):
+    """Morpheme-cloze family: mask K random positions, predict each.
+
+    Targets are generated dynamically at training time (not precomputed).
+    The encoder sees the sentence with K randomly chosen positions replaced
+    by [MASK]; the decoder predicts each masked token ID via cross-entropy
+    over the surface vocabulary from the KC probability bottleneck.
+    """
+
+    _loss_weight: float = 1.0
+    _cloze_k: int = 2
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True  # Targets not precomputed from morphology
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No fixed feature field
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return True  # Not needed at inference time
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+    @property
+    def cloze_k(self) -> int:
+        return self._cloze_k
+
+
+@dataclass(frozen=True)
+class KcReconFamily(KcFamily):
+    """Reconstruction family: predict all input surface tokens from KC bottleneck.
+
+    The decoder receives kc_probs (B, kc_vocab_size) plus learned position
+    embeddings for each sequence position. Per-position cross-entropy against
+    the original (pre-masking) surface token IDs tests how much content and
+    ordering information survives the probability bottleneck.
+    """
+
+    _loss_weight: float = 0.1
+    _recon_k: int = 8
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return True
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+    @property
+    def recon_k(self) -> int:
+        return self._recon_k
 
 
 # =============================================================================
 # Family Registry
 # =============================================================================
 
-# All KC family instances. Loss weights calibrated so families contribute equally.
+
 KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # Bag families (dense, full sequence)
     KcFamilyId.BAG_READING_GRAM: KcBagFamily(
@@ -560,32 +569,31 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     # DB-sourced families
     KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
-        _loss_weight=1.0,  # epoch1_loss=6.00
+        _loss_weight=5.0,  # EXPERIMENT: boosted to give GP learning priority over struct
     ),
     KcFamilyId.GENDER: KcMseFamily(
         family_id=KcFamilyId.GENDER,
-        _loss_weight=0.5,  # Original weight (not 100x)
+        _loss_weight=0.15,  # Deweighted to reduce formality/gender dominance in KC space
     ),
     KcFamilyId.FORMALITY: KcMseFamily(
         family_id=KcFamilyId.FORMALITY,
-        _loss_weight=0.5,  # Original weight (not 100x)
-    ),
-    # Classification versions
-    KcFamilyId.GENDER_CLASS: KcDbClassFamily(
-        family_id=KcFamilyId.GENDER_CLASS,
-        _num_classes=3,  # Masculine (-1), Neutral (0), Feminine (+1)
-        _loss_weight=1.0,
-    ),
-    KcFamilyId.FORMALITY_CLASS: KcDbClassFamily(
-        family_id=KcFamilyId.FORMALITY_CLASS,
-        _num_classes=5,  # Very Casual, Casual, Neutral, Formal, Very Formal
-        _loss_weight=1.0,
+        _loss_weight=0.15,  # Deweighted to reduce formality/gender dominance in KC space
     ),
     # Multi-label families
     KcFamilyId.REGISTER: KcDbMultilabelFamily(
         family_id=KcFamilyId.REGISTER,
         _num_classes=14,  # 14 register types (sonkeigo, kenjogo, etc.)
         _loss_weight=1.0,
+    ),
+    # Morpheme-cloze family
+    KcFamilyId.BERT: KcBertFamily(
+        family_id=KcFamilyId.BERT,
+        _loss_weight=2.0 / 15.0,
+    ),
+    # Reconstruction family
+    KcFamilyId.RECON: KcReconFamily(
+        family_id=KcFamilyId.RECON,
+        _loss_weight=0.1,
     ),
 }
 

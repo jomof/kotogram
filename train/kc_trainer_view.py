@@ -3,6 +3,7 @@
 # pylint: disable=too-many-lines
 
 import math
+import os
 import random
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Protocol, Tuple
@@ -11,42 +12,36 @@ import torch
 from rich.table import Table
 
 from train.display import console, format_worst_sample_display, print_phase_header
-from train.kc import KcFamilyId, KcLogitMode, get_family
 from train.types import (
     KcDynSizingBinStats,
     KcEpochSummary,
     KCTrainingHistory,
+    LayerHealthStats,
     RunningLossComponents,
     TrainEpochResult,
+    WorstSampleInfo,
 )
-
-
-def _get_logit_mode_emoji(name: str) -> str:
-    """Return prefix based on family's logit_mode."""
-    if name.lower() == "grammatic":
-        return "∞ "
-    name_upper = name.upper()
-    if name_upper not in KcFamilyId.__members__:
-        return ""
-    logit_mode = get_family(KcFamilyId[name_upper]).logit_mode
-    if logit_mode == KcLogitMode.HOT_LOGITS:
-        return "[dim]h[/dim] "
-    if logit_mode == KcLogitMode.ALL_LOGITS:
-        return "[dim]a[/dim] "
-    if logit_mode == KcLogitMode.SPARSE_LOGITS:
-        return "[dim]s[/dim] "
-    return ""
 
 
 class KCTrainerView(Protocol):
     """Interface for KC training visualization and logging."""
+
+    kc_threshold: float
+    alive_prob_count: int
+    sharp1_count: int
+    sharp0_count: int
+    fuzzy_count: int
 
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int
     ) -> None: ...
 
     def on_kc_epoch_start(
-        self, epoch: int, total_epochs: int, encoder_frozen: bool
+        self,
+        epoch: int,
+        total_epochs: int,
+        encoder_frozen: bool,
+        batch_size: int = 0,
     ) -> None:
         _ = encoder_frozen
 
@@ -100,15 +95,17 @@ class KCTrainerView(Protocol):
         epoch: int,
         batch_idx: int,
         content_len: torch.Tensor,
-        k_budget_t: torch.Tensor,
-        topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
-        topk_sum_per_ex: torch.Tensor,
         kc_probs: torch.Tensor,
     ) -> None:
         pass
 
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
+        pass
+
+    def on_ramp(
+        self, old_ratio: float, new_ratio: float, posp: float, threshold: float
+    ) -> None:
         pass
 
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
@@ -119,6 +116,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
     """Default implementation of KCTrainerView that prints diagnostic tables."""
 
     def __init__(self) -> None:  # pylint: disable=attribute-defined-outside-init
+        self.kc_threshold: float = 0.5  # Adaptive threshold (persists across epochs)
         self.reset_epoch_stats()
         # Store previous epoch family stats for trajectory arrows
         self.prev_family_stats: Dict[str, Dict[str, float]] = {}
@@ -129,27 +127,57 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_zipf_kl: Optional[float] = None
         # Store previous epoch spill stats for bin trajectory arrows
         self.prev_bin_spill: Dict[str, float] = {}
+        self.prev_bin_kth: Dict[str, float] = {}
+        self.prev_kc_threshold: Optional[float] = None  # Previous epoch's threshold
+        self.prev_layer_health: Optional[LayerHealthStats] = None
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
         # Sizing Stats
         self.bin_counts: Dict[str, int] = defaultdict(int)
         self.bin_len_sum: Dict[str, float] = defaultdict(float)
-        self.bin_k_budget_sum: Dict[str, float] = defaultdict(float)
-        self.bin_budget_ratio_sum: Dict[str, float] = defaultdict(float)
-        self.bin_masked_tail_sum: Dict[str, float] = defaultdict(float)
-        self.bin_keff_sum: Dict[str, float] = defaultdict(float)
-        self.bin_keff_minus_budget_sum: Dict[str, float] = defaultdict(float)
-        self.bin_spill_prob_sum: Dict[str, float] = defaultdict(float)  # (k+1)th prob
+        self.bin_k_sum: Dict[str, float] = defaultdict(float)  # Count of KCs > 0.5
+        self.bin_active_count: Dict[str, int] = defaultdict(int)  # Sentences with K≥1
+        self.bin_spill_prob_sum: Dict[str, float] = defaultdict(
+            float
+        )  # (K+1)th prob, K≥1 only
+        self.bin_kth_prob_sum: Dict[str, float] = defaultdict(
+            float
+        )  # Kth prob, K≥1 only
+        self.bin_gap_sum: Dict[str, float] = defaultdict(float)  # Kth - Spill, K≥1 only
 
         # Reservoirs for percentiles
         self.bin_k_reservoirs: Dict[str, List[float]] = defaultdict(list)
 
         # Activation Stats
         self.pmax_reservoir: List[float] = []
-        self.topk_sum_reservoir: List[float] = []
+
         self.sat99_count: int = 0
         self.total_ex_count: int = 0
+
+        # Dead KC tracking: per-slot boolean arrays (initialized on first batch)
+        self.ever_above_half: Optional[torch.Tensor] = None  # [vocab_size] bool
+        self.ever_below_half: Optional[torch.Tensor] = None  # [vocab_size] bool
+
+        # Sharpness tracking (alive KCs only)
+        self.sharp1_count: int = 0  # prob > 0.9 (committed "on")
+        self.sharp0_count: int = 0  # prob < 0.1 (committed "off")
+        self.fuzzy_count: int = 0  # prob in [0.2, 0.8]
+        self.alive_prob_count: int = 0  # total alive KC-prob evaluations
+
+        # Threshold sweep accumulators (for computing next epoch's threshold)
+        self.max_prob_per_kc: Optional[torch.Tensor] = None  # (vocab_size,) running max
+        self.threshold_candidates: List[float] = [
+            round(0.50 + i * 0.01, 2)
+            for i in range(50)  # 0.50..0.99
+        ]
+        self.threshold_hit_counts: Dict[float, int] = {
+            t: 0 for t in self.threshold_candidates
+        }
+        self.threshold_k_sums: Dict[float, float] = {
+            t: 0.0 for t in self.threshold_candidates
+        }
+        self.threshold_n_sentences: int = 0
 
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int
@@ -159,12 +187,18 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         _ = start_batch
 
     def on_kc_epoch_start(
-        self, epoch: int, total_epochs: int, encoder_frozen: bool
+        self,
+        epoch: int,
+        total_epochs: int,
+        encoder_frozen: bool,
+        batch_size: int = 0,
     ) -> None:
         self.reset_epoch_stats()
+        freeze_info = "Encoder Frozen" if encoder_frozen else "Encoder Thawed"
+        info = f"{freeze_info}, bs={batch_size}" if batch_size else freeze_info
         print_phase_header(
             "KC",
-            info="Encoder Frozen" if encoder_frozen else "Encoder Thawed",
+            info=info,
             epoch=epoch + 1,
             total_epochs=total_epochs,
         )
@@ -232,57 +266,81 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             return "16-31"
         return "32+"
 
-    # pylint: disable=too-many-positional-arguments,too-many-locals
+    # pylint: disable=too-many-positional-arguments,too-many-locals,too-many-branches
     def on_kc_batch_stats(
         self,
         epoch: int,
         batch_idx: int,
         content_len: torch.Tensor,
-        k_budget_t: torch.Tensor,
-        topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
-        topk_sum_per_ex: torch.Tensor,
         kc_probs: torch.Tensor,
     ) -> None:
         # Move to CPU for stats
         lens = content_len.cpu().tolist()
-        budgets = k_budget_t.cpu().tolist()
         pmax = pmax_per_ex.cpu().tolist()
-        topk_sums = topk_sum_per_ex.cpu().tolist()
 
-        # Calculate derived metrics
-        # masked_tail_rate: fraction of topk_vals == 0
-        # keff: count(topk_vals > 0)
-        is_zero = (topk_vals == 0).float()
-        masked_rate = is_zero.mean(dim=1).cpu().tolist()
-        keff = (topk_vals > 0).float().sum(dim=1).cpu().tolist()
-
-        # Compute spill probability: prob of (k+1)th KC (first outside budget)
-        # Sort probs descending and get the (k+1)th value for each example
-        probs_sorted, _ = torch.sort(kc_probs, dim=1, descending=True)
         batch_size = kc_probs.size(0)
-        vocab_size = kc_probs.size(1)
+
+        # Dead KC tracking: update per-slot ever-above/below masks FIRST
+        # so we can exclude stuck-on KCs from K/Kth/Spill/Gap
+        thresh = self.kc_threshold
+        batch_above = (kc_probs > thresh).any(dim=0)  # [vocab_size] on device
+        batch_below = (kc_probs <= thresh).any(dim=0)  # [vocab_size] on device
+        if self.ever_above_half is None:
+            self.ever_above_half = batch_above.cpu()
+            self.ever_below_half = batch_below.cpu()
+        else:
+            assert self.ever_below_half is not None  # Always set with ever_above_half
+            self.ever_above_half = self.ever_above_half | batch_above.cpu()
+            self.ever_below_half = self.ever_below_half | batch_below.cpu()
+
+        # Mask out dead KCs for K/Kth/Spill/Gap
+        # Alive = seen above threshold at least once AND below at least once
+        # Dead-0s (stuck off) and dead-1s (stuck on) are excluded.
+        alive_mask = (self.ever_below_half & self.ever_above_half).to(kc_probs.device)
+        kc_probs_masked = kc_probs * alive_mask.unsqueeze(0)  # [B, vocab_size]
+
+        # Compute K (count of KCs > threshold), Kth, Spill, Gap per example
+        # Using masked probs (dead-1 KCs excluded)
+        probs_sorted, _ = torch.sort(kc_probs_masked, dim=1, descending=True)
+        alive_count = int(alive_mask.sum().item())
+
+        k_counts = (kc_probs_masked > thresh).float().sum(dim=1).cpu().tolist()
         spill_probs = []
+        kth_probs = []
+        gaps = []
         for i in range(batch_size):
-            k = int(budgets[i])
-            if k < vocab_size:
-                spill_probs.append(probs_sorted[i, k].item())  # (k+1)th is index k
+            k = int(k_counts[i])
+            # Kth: prob of last KC above threshold (index k-1 in sorted)
+            if k >= 1:
+                kth = probs_sorted[i, k - 1].item()
             else:
-                spill_probs.append(0.0)  # Budget exceeds vocab, no spill
+                kth = 0.0
+            # Spill: prob of first KC below threshold (index k in sorted)
+            if k < alive_count:
+                spill = probs_sorted[i, k].item()
+            else:
+                spill = 0.0
+            kth_probs.append(kth)
+            spill_probs.append(spill)
+            gaps.append(kth - spill)
+
+        # Sharpness tracking on alive KCs
+        alive_probs = kc_probs_masked[:, alive_mask.bool()]  # [B, alive_count]
+        self.alive_prob_count += alive_probs.numel()
+        self.sharp1_count += int((alive_probs > 0.9).sum().item())
+        self.sharp0_count += int((alive_probs < 0.1).sum().item())
+        self.fuzzy_count += int(
+            ((alive_probs >= 0.2) & (alive_probs <= 0.8)).sum().item()
+        )
 
         # Update reservoirs
-        self.pmax_reservoir.extend(pmax)  # Allow growing large? N=50k max.
+        self.pmax_reservoir.extend(pmax)
         if len(self.pmax_reservoir) > 50000:
-            # Basic trim
             self.pmax_reservoir = random.sample(self.pmax_reservoir, 50000)
-
-        self.topk_sum_reservoir.extend(topk_sums)
-        if len(self.topk_sum_reservoir) > 50000:
-            self.topk_sum_reservoir = random.sample(self.topk_sum_reservoir, 50000)
 
         # Saturation Tracking
         self.total_ex_count += len(pmax)
-        # pmax is already a list of floats
         for val in pmax:
             if val >= 0.99:
                 self.sat99_count += 1
@@ -293,21 +351,42 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             self.bin_counts[label] += 1
             self.bin_len_sum[label] += length
-            k = budgets[i]
-            self.bin_k_budget_sum[label] += k
-            self.bin_budget_ratio_sum[label] += k / max(1, length)
-            self.bin_masked_tail_sum[label] += masked_rate[i]
-            kf = keff[i]
-            self.bin_keff_sum[label] += kf
-            self.bin_keff_minus_budget_sum[label] += kf - k
-            self.bin_spill_prob_sum[label] += spill_probs[i]
+            k = k_counts[i]
+            self.bin_k_sum[label] += k
+            # Only accumulate Kth/Spill/Gap for sentences with at least one active KC
+            if k >= 1:
+                self.bin_active_count[label] += 1
+                self.bin_spill_prob_sum[label] += spill_probs[i]
+                self.bin_kth_prob_sum[label] += kth_probs[i]
+                self.bin_gap_sum[label] += gaps[i]
 
-            # K Budget Reservoir
+            # K Reservoir for percentiles
             if len(self.bin_k_reservoirs[label]) < 1000:
                 self.bin_k_reservoirs[label].append(k)
-            elif random.random() < 0.1:  # simple sub-sampling
+            elif random.random() < 0.1:
                 idx = random.randint(0, 999)
                 self.bin_k_reservoirs[label][idx] = k
+
+        # Threshold sweep: accumulate stats for adaptive threshold computation
+        batch_max = kc_probs.max(dim=0).values.cpu()
+        if self.max_prob_per_kc is None:
+            self.max_prob_per_kc = batch_max
+        else:
+            self.max_prob_per_kc = torch.max(self.max_prob_per_kc, batch_max)
+        self.threshold_n_sentences += batch_size
+        for t in self.threshold_candidates:
+            k_per_ex = (kc_probs > t).float().sum(dim=1)  # (B,)
+            self.threshold_k_sums[t] += float(k_per_ex.sum().item())
+            self.threshold_hit_counts[t] += int((k_per_ex > 0).sum().item())
+
+    def on_ramp(
+        self, old_ratio: float, new_ratio: float, posp: float, threshold: float
+    ) -> None:
+        console.print(
+            f"  [bold green]⬆ Data ramp:[/bold green] "
+            f"{old_ratio * 100:.1f}% → {new_ratio * 100:.1f}% "
+            f"(GP PosP={posp * 100:.1f}% >= {threshold * 100:.1f}%)"
+        )
 
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Display abbreviated summary when metrics are skipped."""
@@ -315,7 +394,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"[dim]KC EP{epoch + 1} (metrics skipped): loss={total_loss:.4f}[/dim]"
         )
 
-    # pylint: disable=too-many-locals,too-many-nested-blocks
+    # pylint: disable=too-many-locals,too-many-nested-blocks,too-many-branches
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
         # BLOCK 0: Loss breakdown
         lc = summary.loss_components
@@ -390,10 +469,10 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"Ent={act.ent_norm:.3f} AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
-            "load_bal",
-            _f(lc.lb * w.lb / nb),
-            _delta_arrow(lc.lb, prev_lc.lb if prev_lc else None),
-            f"KL={act.kl_u_norm:.3f}",
+            "entropy",
+            _f(lc.entropy * w.entropy / nb),
+            _delta_arrow(lc.entropy, prev_lc.entropy if prev_lc else None),
+            f"AvgH={act.avg_entropy:.3f}",
         )
         table_loss.add_row(
             "collapse",
@@ -403,9 +482,17 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "sparsity",
-            _f(lc.sparsity * w.sparsity / nb),
-            _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
-            f"Dens={act.act_dens_mean:.3f} K={act.topk_sum_p50:.0f}/{act.topk_sum_p90:.0f}/{act.topk_sum_p99:.0f}",
+            _f(lc.kl_sparse * w.kl_sparse / nb),
+            _delta_arrow(lc.kl_sparse, prev_lc.kl_sparse if prev_lc else None),
+            f"S1={self.sharp1_count / max(1, self.alive_prob_count):.0%} "
+            f"S0={self.sharp0_count / max(1, self.alive_prob_count):.0%} "
+            f"Fuzzy={self.fuzzy_count / max(1, self.alive_prob_count):.0%}",
+        )
+        table_loss.add_row(
+            "orthogonality",
+            _f(lc.cov_penalty * w.cov_penalty / nb),
+            _delta_arrow(lc.cov_penalty, prev_lc.cov_penalty if prev_lc else None),
+            f"AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
             "saturation",
@@ -433,15 +520,16 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         console.print(table_loss)
 
-        # INVARIANT: total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
+        # INVARIANT: total_loss = struct + div + entropy + collapse + sparsity + mean_penalty + saturation + coverage
         # All components are on the same scale (per-batch sums), so they add to epoch loss.
         loss_sum = (
             lc.struct * w.struct / nb
             # Prior KC losses (formality, gender, register) removed - handled by style classifier
             + lc.div * w.div / nb
-            + lc.lb * w.lb / nb
+            + lc.entropy * w.entropy / nb
             + lc.collapse * w.collapse / nb
-            + lc.sparsity * w.sparsity / nb
+            + lc.kl_sparse * w.kl_sparse / nb
+            + lc.cov_penalty * w.cov_penalty / nb
             + lc.saturation / nb  # Already weighted in kc_trainer
             + lc.coverage * w.coverage / nb  # Already weighted in kc_trainer
         )
@@ -462,15 +550,16 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_sizing = Table(
             show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
         )
+        thresh_str = f"{self.kc_threshold:.2f}"
         table_sizing.add_column("Bin")
         table_sizing.add_column("N")
         table_sizing.add_column("Len")
-        table_sizing.add_column("K(Avg|P10/50/90)")
-        table_sizing.add_column("K/Len")
-        table_sizing.add_column("TailMask")
-        table_sizing.add_column("Keff")
-        table_sizing.add_column("Diff")
-        table_sizing.add_column("Spill")  # Prob of (k+1)th KC
+        table_sizing.add_column(f"K@{thresh_str}")
+        table_sizing.add_column("Hit%")
+        table_sizing.add_column("Kth")
+        table_sizing.add_column("Spill")
+        table_sizing.add_column("Gap")
+        table_sizing.add_column("Canary")
 
         sorted_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
 
@@ -488,38 +577,41 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             kp50 = k_res[nk // 2] if nk else 0.0
             kp90 = k_res[int(nk * 0.9)] if nk else 0.0
 
+            na = self.bin_active_count[label]  # K≥1 count
+            active_pct = na / n if n > 0 else 0.0
             stats = KcDynSizingBinStats(
                 bin_label=label,
                 count=n,
                 len_mean=self.bin_len_sum[label] / n,
-                k_budget_mean=self.bin_k_budget_sum[label] / n,
-                k_budget_p10=float(kp10),
-                k_budget_p50=float(kp50),
-                k_budget_p90=float(kp90),
-                budget_ratio_mean=self.bin_budget_ratio_sum[label] / n,
-                masked_tail_rate=self.bin_masked_tail_sum[label] / n,
-                keff_mean=self.bin_keff_sum[label] / n,
-                keff_minus_budget_mean=self.bin_keff_minus_budget_sum[label] / n,
-                spill_prob_mean=self.bin_spill_prob_sum[label] / n,
+                k_mean=self.bin_k_sum[label] / n,
+                k_p10=float(kp10),
+                k_p50=float(kp50),
+                k_p90=float(kp90),
+                spill_prob_mean=self.bin_spill_prob_sum[label] / max(1, na),
+                kth_prob_mean=self.bin_kth_prob_sum[label] / max(1, na),
+                gap_mean=self.bin_gap_sum[label] / max(1, na),
+                active_pct=active_pct,
             )
             summary.sizing_stats.append(stats)
 
         # Render
         for s in summary.sizing_stats:
-            # Colors
-            c_mask = (
-                "red"
-                if s.masked_tail_rate < 0.05 and s.k_budget_mean < 9.9
-                else "green"
-            )
-            c_diff = "red" if abs(s.keff_minus_budget_mean) > 0.2 else "dim"
-
-            # Color for spill: red if high (>0.75), green if low (<0.25), dim otherwise
+            # Color for spill: red if high (>0.40), green if low (<0.10), dim otherwise
             c_spill = (
                 "red"
-                if s.spill_prob_mean > 0.75
-                else ("green" if s.spill_prob_mean < 0.25 else "dim")
+                if s.spill_prob_mean > 0.40
+                else ("green" if s.spill_prob_mean < 0.10 else "dim")
             )
+
+            # Kth trajectory arrow (higher is better)
+            kth_arrow = ""
+            prev_kth = self.prev_bin_kth.get(s.bin_label)
+            if prev_kth is not None:
+                delta = s.kth_prob_mean - prev_kth
+                if delta > 0.001:
+                    kth_arrow = "[green]↑[/green]"
+                elif delta < -0.001:
+                    kth_arrow = "[red]↓[/red]"
 
             # Spill trajectory arrow (lower is better)
             spill_arrow = ""
@@ -531,38 +623,139 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 elif delta > 0.001:
                     spill_arrow = "[red]↑[/red]"
 
+            # Color for kth: green if high (>0.75), red if low (<0.25)
+            c_kth = (
+                "green"
+                if s.kth_prob_mean > 0.75
+                else ("red" if s.kth_prob_mean < 0.25 else "dim")
+            )
+
+            # Color for gap: green if wide (>0.3), red if narrow (<0.1)
+            c_gap = (
+                "green" if s.gap_mean > 0.3 else ("red" if s.gap_mean < 0.1 else "dim")
+            )
+
             table_sizing.add_row(
                 s.bin_label,
                 str(s.count),
                 f"{s.len_mean:.1f}",
-                f"{s.k_budget_mean:.1f}|{s.k_budget_p10:.0f}/{s.k_budget_p50:.0f}/{s.k_budget_p90:.0f}",
-                f"{s.budget_ratio_mean:.2f}",
-                f"[{c_mask}]{s.masked_tail_rate:.3f}[/{c_mask}]",
-                f"{s.keff_mean:.1f}",
-                f"[{c_diff}]{s.keff_minus_budget_mean:.2f}[/{c_diff}]",
+                f"{s.k_mean:.1f}|{s.k_p10:.0f}/{s.k_p50:.0f}/{s.k_p90:.0f}",
+                f"{s.active_pct:.0%}",
+                f"[{c_kth}]{s.kth_prob_mean:.3f}[/{c_kth}]{kth_arrow}",
                 f"[{c_spill}]{s.spill_prob_mean:.3f}[/{c_spill}]{spill_arrow}",
+                f"[{c_gap}]{s.gap_mean:.3f}[/{c_gap}]",
+                summary.canary_texts.get(s.bin_label, ""),
             )
 
         # Store current spill values for next epoch trajectory arrows
         self.prev_bin_spill = {
             s.bin_label: s.spill_prob_mean for s in summary.sizing_stats
         }
+        self.prev_bin_kth = {s.bin_label: s.kth_prob_mean for s in summary.sizing_stats}
+
+        # Total row (weighted averages across all bins)
+        all_stats = summary.sizing_stats
+        total_n = sum(s.count for s in all_stats)
+        total_active = sum(int(s.count * s.active_pct) for s in all_stats)
+        if total_n > 0:
+            w_len = sum(s.len_mean * s.count for s in all_stats) / total_n
+            w_k = sum(s.k_mean * s.count for s in all_stats) / total_n
+            w_kth = sum(
+                s.kth_prob_mean * s.count * s.active_pct for s in all_stats
+            ) / max(1, total_active)
+            w_spill = sum(
+                s.spill_prob_mean * s.count * s.active_pct for s in all_stats
+            ) / max(1, total_active)
+            w_gap = sum(s.gap_mean * s.count * s.active_pct for s in all_stats) / max(
+                1, total_active
+            )
+            w_active_pct = total_active / total_n if total_n > 0 else 0.0
+
+            # Merge all K reservoirs for global percentiles
+            all_k = []
+            for label in sorted_labels:
+                all_k.extend(self.bin_k_reservoirs[label])
+            all_k.sort()
+            nk = len(all_k)
+            gp10 = all_k[nk // 10] if nk else 0.0
+            gp50 = all_k[nk // 2] if nk else 0.0
+            gp90 = all_k[int(nk * 0.9)] if nk else 0.0
+
+            # Expose for MLflow / history
+            summary.total_k_mean = w_k
+            summary.total_k_p10 = gp10
+            summary.total_k_p50 = gp50
+            summary.total_k_p90 = gp90
+
+            table_sizing.add_row(
+                "[bold]Total[/bold]",
+                f"[bold]{total_n}[/bold]",
+                f"[bold]{w_len:.1f}[/bold]",
+                f"[bold]{w_k:.1f}|{gp10:.0f}/{gp50:.0f}/{gp90:.0f}[/bold]",
+                f"[bold]{w_active_pct:.0%}[/bold]",
+                f"[bold]{w_kth:.3f}[/bold]",
+                f"[bold]{w_spill:.3f}[/bold]",
+                f"[bold]{w_gap:.3f}[/bold]",
+                "",
+            )
 
         console.print(table_sizing)
 
-        # SPARSE flag detection: high spill across most bins indicates sparsity penalty too low
-        # Per-bin ↑K? indicator: if specific bins have high spill but SPARSE isn't triggered
-        high_spill_bins = [s for s in summary.sizing_stats if s.spill_prob_mean > 0.2]
-        total_bins = len(summary.sizing_stats)
-        sparse_triggered = total_bins > 0 and len(high_spill_bins) / total_bins >= 0.7
-
-        # If SPARSE not triggered but some bins have high spill, those bins may need more K
-        if not sparse_triggered and high_spill_bins:
-            bin_labels = [s.bin_label for s in high_spill_bins]
-            console.print(
-                f"[yellow]↑K? Bins [{', '.join(bin_labels)}] may need more k_budget "
-                f"(Spill>{0.2:.1f})[/yellow]"
+        # Dead KC summary (below sizing table)
+        if self.ever_above_half is not None and self.ever_below_half is not None:
+            vocab_size = self.ever_above_half.size(0)
+            dead_0 = int((~self.ever_above_half).sum().item())  # Never > 0.5
+            dead_1 = int((~self.ever_below_half).sum().item())  # Never <= 0.5
+            dead_total = dead_0 + dead_1
+            alive = vocab_size - dead_total
+            summary.alive_kcs = alive
+            # Color: red if many dead, green if few
+            c_dead = (
+                "red"
+                if dead_total > vocab_size * 0.2
+                else ("green" if dead_total < vocab_size * 0.05 else "dim")
             )
+            console.print(
+                f"  [{c_dead}]Dead KCs: {dead_total}/{vocab_size} "
+                f"(0s={dead_0} 1s={dead_1} alive={alive})[/{c_dead}]"
+            )
+
+        # Adaptive threshold computation
+        if self.max_prob_per_kc is not None and self.threshold_n_sentences > 0:
+            n_sent = self.threshold_n_sentences
+            vocab_size_t = self.max_prob_per_kc.size(0)
+            # Find highest threshold with Hit% >= 99.9%
+            new_threshold = self.kc_threshold  # fallback to current
+            for t in sorted(self.threshold_candidates, reverse=True):
+                hit_pct = self.threshold_hit_counts[t] / n_sent
+                if hit_pct >= 0.999:
+                    new_threshold = t
+                    break
+            # Compute stats for the chosen new threshold
+            new_alive = int((self.max_prob_per_kc > new_threshold).sum().item())
+            new_k_avg = self.threshold_k_sums.get(new_threshold, 0.0) / max(1, n_sent)
+            new_hit_pct = self.threshold_hit_counts.get(new_threshold, 0) / max(
+                1, n_sent
+            )
+
+            # Print threshold line with trajectory arrow
+            old_t = self.prev_kc_threshold
+            if old_t is not None and abs(new_threshold - old_t) > 0.001:
+                arrow = "[green]↑[/green]" if new_threshold > old_t else "[red]↓[/red]"
+                t_str = f"{old_t:.2f}→{new_threshold:.2f}{arrow}"
+            else:
+                t_str = f"{new_threshold:.2f}"
+            console.print(
+                f"  Threshold: {t_str}"
+                f" (alive={new_alive}/{vocab_size_t},"
+                f" K_avg={new_k_avg:.1f},"
+                f" Hit={new_hit_pct:.1%})"
+            )
+
+            # Update for next epoch
+            self.prev_kc_threshold = self.kc_threshold
+            self.kc_threshold = new_threshold
+            summary.kc_threshold = new_threshold
 
         # BLOCK 2: Activations
         # Compute percentiles from self.pmax_reservoir
@@ -576,19 +769,17 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         pmax_p90 = _res_p(self.pmax_reservoir, 0.9)
         pmax_p99 = _res_p(self.pmax_reservoir, 0.99)
 
-        topk_p50 = _res_p(self.topk_sum_reservoir, 0.5)
-        topk_p90 = _res_p(self.topk_sum_reservoir, 0.9)
-        topk_p99 = _res_p(self.topk_sum_reservoir, 0.99)
-
         act_stats = summary.activation_stats
 
         # Populate act_stats with reservoirs for correctness
         act_stats.pmax_p50 = pmax_p50
         act_stats.pmax_p90 = pmax_p90
         act_stats.pmax_p99 = pmax_p99
-        act_stats.topk_sum_p50 = topk_p50
-        act_stats.topk_sum_p90 = topk_p90
-        act_stats.topk_sum_p99 = topk_p99
+
+        # BLOCK 2.5: Layer Health (Encoder Depth Diagnostics)
+        if summary.layer_health is not None:
+            self._render_layer_health(summary.layer_health)
+            self.prev_layer_health = summary.layer_health
 
         # BLOCK 3a: MSE Families (Regression Diagnostics)
         if summary.diagnostics.mse_families:
@@ -597,7 +788,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             )
             table_mse.add_column("MSE Family")
             table_mse.add_column("Loss")
-            table_mse.add_column("Acc±")  # Within ±0.1
+            table_mse.add_column("Acc")  # Discrete label bucket match
             table_mse.add_column("Corr")  # Pearson correlation
             table_mse.add_column("Bias")  # Mean prediction bias
             table_mse.add_column("σ(Pred)")  # Prediction std
@@ -622,7 +813,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 prev_acc = prev_mse.get("acc", None)
                 acc_arrow = ""
                 if prev_acc is not None:
-                    delta = mse.accuracy_01 - prev_acc
+                    delta = mse.discrete_accuracy - prev_acc
                     if delta > 0.01:
                         acc_arrow = "[green]↑[/green]"
                     elif delta < -0.01:
@@ -641,8 +832,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 # Colors
                 c_acc = (
                     "green"
-                    if mse.accuracy_01 > 0.7
-                    else ("red" if mse.accuracy_01 < 0.3 else "dim")
+                    if mse.discrete_accuracy > 0.7
+                    else ("red" if mse.discrete_accuracy < 0.3 else "dim")
                 )
                 c_corr = (
                     "green"
@@ -654,9 +845,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 c_bdelta = "green" if mse.bias_delta > 0.01 else "dim"
 
                 table_mse.add_row(
-                    f"{_get_logit_mode_emoji(name)}{name}",
+                    f"{name}",
                     f"{mse.loss_mean:.4f}{loss_arrow}",
-                    f"[{c_acc}]{mse.accuracy_01 * 100:.1f}%[/{c_acc}]{acc_arrow}",
+                    f"[{c_acc}]{mse.discrete_accuracy * 100:.1f}%[/{c_acc}]{acc_arrow}",
                     f"[{c_corr}]{mse.correlation:.3f}[/{c_corr}]{corr_arrow}",
                     f"[{c_bias}]{mse.mean_bias:.3f}[/{c_bias}]",
                     f"[{c_std}]{mse.pred_std:.3f}[/{c_std}]",
@@ -666,11 +857,53 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 # Store for next epoch
                 self.prev_mse_stats[name] = {
                     "loss": mse.loss_mean,
-                    "acc": mse.accuracy_01,
+                    "acc": mse.discrete_accuracy,
                     "corr": mse.correlation,
                 }
 
             console.print(table_mse)
+
+        # BLOCK 3a.5: BERT Cloze Families (Morpheme Prediction)
+        if summary.diagnostics.bert_families:
+            table_bert = Table(
+                show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
+            )
+            table_bert.add_column("BERT Family")
+            table_bert.add_column("Loss")
+            table_bert.add_column("Top-1")
+            table_bert.add_column("Pos-Only")
+            table_bert.add_column("KC Gain")
+            table_bert.add_column("Top-5")
+
+            for b_name, bert in sorted(summary.diagnostics.bert_families.items()):
+                c_t1 = (
+                    "green"
+                    if bert.top1_accuracy > 0.3
+                    else ("yellow" if bert.top1_accuracy > 0.1 else "red")
+                )
+                c_t5 = (
+                    "green"
+                    if bert.top5_accuracy > 0.5
+                    else ("yellow" if bert.top5_accuracy > 0.2 else "red")
+                )
+                if bert.top1_pos_only_accuracy > 0:
+                    pos_only_str = f"{bert.top1_pos_only_accuracy * 100:.1f}%"
+                    kc_gain = bert.top1_accuracy - bert.top1_pos_only_accuracy
+                    kc_gain_str = f"+{kc_gain * 100:.1f}pp"
+                else:
+                    pos_only_str = ""
+                    kc_gain_str = ""
+
+                table_bert.add_row(
+                    f"{b_name}",
+                    f"{bert.loss_mean:.4f}",
+                    f"[{c_t1}]{bert.top1_accuracy * 100:.1f}%[/{c_t1}]",
+                    pos_only_str,
+                    kc_gain_str,
+                    f"[{c_t5}]{bert.top5_accuracy * 100:.1f}%[/{c_t5}]",
+                )
+
+            console.print(table_bert)
 
         # BLOCK 3b: Label Families (Classification Diagnostics)
         table_fam = Table(
@@ -693,7 +926,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Diagnosis Flag Accumulators
         flag_allneg05_count = 0
         flag_allneg01_count = 0
-        flag_mask_triggered = False
+
         num_fams = 0
 
         # Sort by "most suspicious asleep" first
@@ -723,9 +956,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 flag_allneg05_count += 1
             if fam.recall_01 < 0.05:
                 flag_allneg01_count += 1
-            # If less than half the examples have any valid supervision, flag it.
-            if fam.mask_coverage < 0.5:
-                flag_mask_triggered = True
 
             # Wakefulness Diagnostics
             gap = fam.logit_pos_mean - fam.logit_neg_mean
@@ -823,7 +1053,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
-                f"{_get_logit_mode_emoji(name)}{name}",
+                f"{name}",
                 f"{fam.loss_mean:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
@@ -856,9 +1086,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Skip if no families (minimal test scenarios).
         all_label_families = list(summary.diagnostics.families.values())
         all_mse_families = list(summary.diagnostics.mse_families.values())
-        if all_label_families or all_mse_families:
+        all_bert_families = list(summary.diagnostics.bert_families.values())
+        if all_label_families or all_mse_families or all_bert_families:
             all_batch_counts = [
-                fam.batch_count for fam in all_label_families + all_mse_families
+                fam.batch_count
+                for fam in all_label_families + all_mse_families + all_bert_families
             ]
             do_checksum = not (
                 all_batch_counts
@@ -867,7 +1099,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             if do_checksum:
                 label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
                 mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
-                family_loss_sum = label_loss_sum + mse_loss_sum
+                bert_loss_sum = sum(fam.loss_mean for fam in all_bert_families)
+                family_loss_sum = label_loss_sum + mse_loss_sum + bert_loss_sum
                 # struct is BCE only (gap regularizer removed)
                 struct_loss = lc.struct * w.struct / nb
                 tolerance = 1e-3
@@ -885,40 +1118,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # BLOCK 4.5: Worst Samples (most problematic samples per family)
         if summary.worst_samples:
             console.print("[bold]Worst Samples (highest loss per family):[/bold]")
-            # Sort entries, ensuring grammar_point and grammar_point_fp appear together
-            sorted_items = []
-            grammar_point_items = []
-            for fam_name, sample in sorted(summary.worst_samples.items()):
-                if fam_name.startswith("grammar_point"):
-                    grammar_point_items.append((fam_name, sample))
-                else:
-                    sorted_items.append((fam_name, sample))
-            # Insert grammar_point items together
-            for fam_name, sample in grammar_point_items:
-                # Find insertion position (after other grammar_point entries or at appropriate alphabetical position)
-                if fam_name == "grammar_point":
-                    # Find position to insert before grammar_point_fp
-                    insert_pos = len(sorted_items)
-                    for i, (name, _) in enumerate(sorted_items):
-                        if name > "grammar_point" and not name.startswith(
-                            "grammar_point"
-                        ):
-                            insert_pos = i
-                            break
-                    sorted_items.insert(insert_pos, (fam_name, sample))
-                elif fam_name == "grammar_point_fp":
-                    # Insert right after grammar_point
-                    insert_pos = len(sorted_items)
-                    for i, (name, _) in enumerate(sorted_items):
-                        if name == "grammar_point":
-                            insert_pos = i + 1
-                            break
-                        if name > "grammar_point_fp" and not name.startswith(
-                            "grammar_point"
-                        ):
-                            insert_pos = i
-                            break
-                    sorted_items.insert(insert_pos, (fam_name, sample))
+            sorted_items: List[Tuple[str, "WorstSampleInfo"]] = []
+            for fam_name, tracker in sorted(summary.worst_samples.items()):
+                sample = tracker.worst()
+                if sample is None:
+                    continue
+                sorted_items.append((fam_name, sample))
 
             for fam_name, sample in sorted_items:
                 sentence, loss_color = format_worst_sample_display(
@@ -926,12 +1131,20 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 )
                 # Build label display - show labels if either is non-empty
                 label_info = ""
-                if sample.target_labels and sample.pred_labels:
-                    label_info = f" \\[{sample.target_labels}→{sample.pred_labels}]"
+                # Truncate pred_labels for console display
+                display_pred = sample.pred_labels
+                if display_pred and display_pred != "none":
+                    parts = display_pred.split(",")
+                    if len(parts) > 5:
+                        display_pred = (
+                            ",".join(parts[:5]) + f"...+{len(parts) - 5} more"
+                        )
+                if sample.target_labels and display_pred:
+                    label_info = f" \\[{sample.target_labels}→{display_pred}]"
                 elif sample.target_labels:
                     label_info = f" \\[{sample.target_labels}]"
-                elif sample.pred_labels:
-                    label_info = f" \\[?→{sample.pred_labels}]"
+                elif display_pred:
+                    label_info = f" \\[?→{display_pred}]"
                 console.print(
                     f"  [cyan]{fam_name}[/cyan]: "
                     f"[{loss_color}]loss={sample.loss:.4f}[/{loss_color}] "
@@ -939,6 +1152,183 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     f"{label_info} "
                     f'[dim]idx={sample.sample_idx} "{sentence}"[/dim]'
                 )
+
+            # Export top-50 worst samples per family to TSV files
+            tsv_dir = os.path.join(".cache", "training")
+            os.makedirs(tsv_dir, exist_ok=True)
+            # Remove stale worst-*.tsv files from previous epochs
+            import glob
+
+            for old_tsv in glob.glob(os.path.join(tsv_dir, "worst-*.tsv")):
+                os.remove(old_tsv)
+            family_label_keys = {
+                "gender": "# Values: masc=-1.0, neutral=0.0, fem=1.0",
+                "formality": (
+                    "# Values: v_casual=-1.0, casual=-0.5,"
+                    " neutral=0.0, formal=0.5, v_formal=1.0"
+                ),
+                "grammatic": "# Values: ungrammatical=0.0, grammatical=1.0",
+                "register": (
+                    "# Labels: comma-separated register tags"
+                    " (e.g. sonkeigo, kenjogo, joseigo, etc.)"
+                ),
+                "grammar_point": None,
+            }
+            for fam_name, tracker in summary.worst_samples.items():
+                tsv_path = os.path.join(tsv_dir, f"worst-{fam_name}.tsv")
+                top_samples = tracker.top_n()
+                with open(tsv_path, "w", encoding="utf-8") as f:
+                    f.write(f"# Epoch: {summary.epoch_idx + 1}\n")
+                    label_key = family_label_keys.get(fam_name)
+                    if label_key:
+                        f.write(f"{label_key}\n")
+                    if fam_name == "grammar_point":
+                        # Count GP frequency across top-50 samples
+                        label_freq: dict[int, int] = {}
+                        pred_freq: dict[int, int] = {}
+                        for ws in top_samples:
+                            if ws.target_labels and ws.target_labels != "none":
+                                for gp_str in ws.target_labels.split(","):
+                                    gp_str = gp_str.strip()
+                                    if gp_str.startswith("gp") and gp_str[2:].isdigit():
+                                        gid = int(gp_str[2:])
+                                        label_freq[gid] = label_freq.get(gid, 0) + 1
+                            if ws.pred_labels and ws.pred_labels != "none":
+                                for gp_str in ws.pred_labels.split(","):
+                                    gp_str = gp_str.strip()
+                                    if gp_str.startswith("gp") and gp_str[2:].isdigit():
+                                        gid = int(gp_str[2:])
+                                        pred_freq[gid] = pred_freq.get(gid, 0) + 1
+                        all_gids = set(label_freq) | set(pred_freq)
+                        # Write GP listing
+                        if all_gids:
+                            # Look up GP names and pos/neg counts from corpus.db
+                            gp_names: dict[int, str] = {}
+                            gp_pos: dict[int, int] = {}
+                            gp_neg: dict[int, int] = {}
+                            db_path = os.path.join("data", "corpus.db")
+                            if os.path.exists(db_path):
+                                import sqlite3
+
+                                conn = sqlite3.connect(db_path)
+                                for gid in all_gids:
+                                    gp_id_str = f"gp{gid:04d}"
+                                    row = conn.execute(
+                                        "SELECT name, pos_count, neg_count"
+                                        " FROM grammar_stats WHERE gp_id = ?",
+                                        (gp_id_str,),
+                                    ).fetchone()
+                                    if row:
+                                        gp_names[gid] = f"data/grammar/{row[0]}.yaml"
+                                        gp_pos[gid] = row[1]
+                                        gp_neg[gid] = row[2]
+                                conn.close()
+                            # Build entries
+                            # (gid, lf, pf, prior_val, prior_str, pos, neg, name)
+                            entries: list[
+                                tuple[int, int, int, float, str, int, int, str]
+                            ] = []
+                            for gid in all_gids:
+                                lf = label_freq.get(gid, 0)
+                                pf = pred_freq.get(gid, 0)
+                                prior_val = -1.0
+                                prior_str = ""
+                                if (
+                                    summary.gp_priors is not None
+                                    and 0 <= gid < summary.gp_priors.numel()
+                                ):
+                                    p = float(summary.gp_priors[gid].item())
+                                    if math.isfinite(p) and 0.0 <= p <= 1.0:
+                                        prior_val = p
+                                        prior_str = f"{p * 100.0:.2f}%"
+                                entries.append(
+                                    (
+                                        gid,
+                                        lf,
+                                        pf,
+                                        prior_val,
+                                        prior_str,
+                                        gp_pos.get(gid, 0),
+                                        gp_neg.get(gid, 0),
+                                        gp_names.get(gid, ""),
+                                    )
+                                )
+                            # Sort by (lf + pf) desc, then prior desc
+                            entries.sort(key=lambda e: (-(e[1] + e[2]), -e[3]))
+                            entries = entries[:25]
+                            # Column widths
+                            lf_w = max(2, max(len(str(e[1])) for e in entries))
+                            pf_w = max(2, max(len(str(e[2])) for e in entries))
+                            prior_w = max(5, max(len(e[4]) for e in entries))
+                            pos_w = max(3, max(len(str(e[5])) for e in entries))
+                            neg_w = max(3, max(len(str(e[6])) for e in entries))
+                            # Key
+                            f.write(
+                                "# lf:    label freq (appearances in target labels)\n"
+                            )
+                            f.write("# pf:    pred freq (appearances in predictions)\n")
+                            f.write("# prior: prior probability from gp_priors.bin\n")
+                            f.write("# pos:   positive sentence count in corpus\n")
+                            f.write("# neg:   negative sentence count in corpus\n")
+                            # Header row
+                            f.write(
+                                f"#   {'ID':<6s}  {'lf':>{lf_w}s}"
+                                f"  {'pf':>{pf_w}s}"
+                                f"  {'prior':>{prior_w}s}"
+                                f"  {'pos':>{pos_w}s}"
+                                f"  {'neg':>{neg_w}s}  name\n"
+                            )
+                            for (
+                                gid,
+                                lf,
+                                pf,
+                                _pv,
+                                prior_str,
+                                pos,
+                                neg,
+                                name_str,
+                            ) in entries:
+                                f.write(
+                                    f"#   gp{gid:04d}  {lf:>{lf_w}d}"
+                                    f"  {pf:>{pf_w}d}"
+                                    f"  {prior_str:>{prior_w}s}"
+                                    f"  {pos:>{pos_w}d}"
+                                    f"  {neg:>{neg_w}d}  {name_str}\n"
+                                )
+                        f.write(
+                            "# predicted_sample: top 5 most confident"
+                            " predicted gpXXXX IDs"
+                            " (sorted by descending probability)\n"
+                        )
+                        f.write(
+                            "loss\ttarget\tpredicted_count"
+                            "\tpredicted_sample\tsentence\n"
+                        )
+                        for ws in top_samples:
+                            target_str = ws.target_labels or f"{ws.target:.4f}"
+                            sampled_str = "none"
+                            if ws.pred_labels and ws.pred_labels != "none":
+                                parts = [
+                                    g.strip()
+                                    for g in ws.pred_labels.split(",")
+                                    if g.strip().startswith("gp")
+                                ]
+                                sampled_str = ",".join(parts[:5]) or "none"
+                            f.write(
+                                f"{ws.loss:.6f}\t{target_str}"
+                                f"\t{int(ws.prediction)}"
+                                f"\t{sampled_str}\t{ws.sentence}\n"
+                            )
+                    else:
+                        f.write("loss\ttarget\tpredicted\tsentence\n")
+                        for ws in top_samples:
+                            target_str = ws.target_labels or f"{ws.target:.4f}"
+                            pred_str = ws.pred_labels or f"{ws.prediction:.4f}"
+                            f.write(
+                                f"{ws.loss:.6f}\t{target_str}"
+                                f"\t{pred_str}\t{ws.sentence}\n"
+                            )
+            console.print(f"  [dim]TSV files written to {tsv_dir}/worst-*.tsv[/dim]")
 
         # BLOCK 4.6: Top Loss Contributors (for PNU families like grammar_point)
         # Check accumulators for loss_by_label
@@ -958,7 +1348,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 inds_list = inds.cpu().tolist()
 
                 parts = []
-                for i, (val, idx) in enumerate(zip(vals_list, inds_list)):
+                for val, idx in zip(vals_list, inds_list):
                     if val < 1e-6:
                         continue
                     # Format as gpXXXX (assuming index matches grammar point ID)
@@ -982,6 +1372,74 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                                 f"'scripts/curate study {' '.join(no_default)} --full-pos'[/white dim]"
                             )
 
+        # BLOCK 4.7: Prior Drift (for grammar_point family)
+        # Show top 5 GPs by |observed_freq - prior| to highlight priors needing update.
+        for name, acc in summary.accumulators.items():
+            if (
+                name == "grammar_point"
+                and acc.freq_by_label is not None
+                and acc.n_ex > 0
+                and summary.gp_priors is not None
+            ):
+                # Observed frequency = predicted-positive rate per GP
+                # (sigmoid(logit) > 0.5 count / total examples through accumulator).
+                # Matches the prior's definition: fraction of sentences the model
+                # predicts as containing this GP.
+                obs_freq = (acc.freq_by_label / acc.n_ex).cpu()
+
+                # Build prior vector, filling NaN/unset with gp_default_prior
+                priors = summary.gp_priors.detach().float().cpu()
+                n_gp = min(obs_freq.numel(), priors.numel())
+                obs_freq = obs_freq[:n_gp]
+                priors = priors[:n_gp]
+                prior_set = torch.isfinite(priors) & (priors >= 0.0) & (priors <= 1.0)
+                priors_filled = priors.clone()
+                priors_filled[~prior_set] = summary.gp_default_prior
+
+                # Deviation = |observed - prior|
+                deviation = (obs_freq - priors_filled).abs()
+
+                # Top 5
+                k = min(5, n_gp)
+                vals, inds = torch.topk(deviation, k)
+                drift_parts: list[str] = []
+                drift_gp_ids: list[str] = []
+                for dev_val, idx in zip(vals.tolist(), inds.tolist()):
+                    if dev_val < 1e-8:
+                        continue
+                    obs_pct = obs_freq[idx].item() * 100.0
+                    gp_id = f"gp{idx:04d}"
+                    if prior_set[idx]:
+                        pri_pct = priors[idx].item() * 100.0
+                        drift_parts.append(f"{gp_id}: {obs_pct:.2g}%/{pri_pct:.2g}%")
+                    else:
+                        drift_parts.append(f"{gp_id}: {obs_pct:.2g}%")
+                    drift_gp_ids.append(gp_id)
+
+                if drift_parts:
+                    console.print(
+                        f"  [cyan]{name}[/cyan] Prior Drift: "
+                        f"[yellow]{', '.join(drift_parts)}[/yellow]"
+                    )
+                    if drift_gp_ids:
+                        console.print(
+                            "    [white dim]add priors with "
+                            f"'scripts/curate study {' '.join(drift_gp_ids)} "
+                            f"--full-pos'[/white dim]"
+                        )
+
+                # Best-fit default prior: mean observed freq of GPs using default
+                default_mask = ~prior_set  # GPs with NaN/unset priors
+                if default_mask.any():
+                    best_fit = obs_freq[default_mask].mean().item()
+                    n_default = int(default_mask.sum().item())
+                    cur_default = summary.gp_default_prior
+                    console.print(
+                        f"  [cyan]{name}[/cyan] Best-fit default prior: "
+                        f"[yellow]{best_fit:.6f}[/yellow] "
+                        f"[dim](current: {cur_default:.2g}, {n_default} GPs)[/dim]"
+                    )
+
         # BLOCK 5: Diagnosis Flags
         flags = []
 
@@ -998,28 +1456,111 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         if sat99_rate > 0.5 or act_stats.kc_probs_mean > 0.7:
             flags.append("SAT")
 
-        # UNDERK: Long bins (16+) have K/Len < 0.25 (or diff > 1.0)
-        # Check sizing stats
-        underk = False
-        for s in summary.sizing_stats:
-            if s.bin_label in ("16-31", "32+"):
-                # budget_ratio_mean is avg(k/len)
-                if s.budget_ratio_mean < 0.25:
-                    underk = True
-        if underk:
-            flags.append("UNDERK")
-
-        # MASK: Any family > 10% mask hit
-        if flag_mask_triggered:
-            flags.append("MASK")
-
         # COLL: EntNorm low, KL high (relaxed threshold)
         if act_stats.ent_norm < 0.5 and act_stats.kl_u_norm > 0.3:
             flags.append("COLL")
 
-        # SPARSE: High spill across most bins - sparsity penalty too low
-        if sparse_triggered:
-            flags.append("SPARSE")
-
         if flags:
             console.print(f"[bold red]Flags: {' '.join(flags)}[/bold red]")
+
+    def _render_layer_health(self, lh: LayerHealthStats) -> None:
+        """Render compact multi-column layer health table with warnings."""
+        n = lh.num_layers
+        if n == 0:
+            return
+
+        prev = self.prev_layer_health
+
+        def _arrow(curr: float, prev_val: Optional[float], higher_good: bool) -> str:
+            if prev_val is None or abs(curr - prev_val) < 0.005:
+                return ""
+            up = curr > prev_val
+            if higher_good:
+                return "[green]↑[/green]" if up else "[red]↓[/red]"
+            return "[red]↑[/red]" if up else "[green]↓[/green]"
+
+        cols_per_row = min(3, n)
+        table = Table(
+            show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
+        )
+        for _ in range(cols_per_row):
+            table.add_column("Layer", style="dim")
+            table.add_column("ΔNorm", justify="right")
+            table.add_column("CKA→", justify="right")
+            table.add_column("Rank", justify="right")
+
+        for row_start in range(0, n, cols_per_row):
+            row_vals: List[str] = []
+            for col in range(cols_per_row):
+                i = row_start + col
+                if i >= n:
+                    row_vals.extend(["", "", "", ""])
+                    continue
+
+                prev_dn = prev.delta_norm[i] if prev and i < prev.num_layers else None
+                prev_rk = (
+                    prev.effective_rank[i] if prev and i < prev.num_layers else None
+                )
+                dn_arrow = _arrow(lh.delta_norm[i], prev_dn, higher_good=False)
+                rk_arrow = _arrow(lh.effective_rank[i], prev_rk, higher_good=True)
+
+                c_dn = "red" if lh.delta_norm[i] > 0.50 else "dim"
+                c_rk = (
+                    "red"
+                    if lh.effective_rank[i] < 20
+                    else ("green" if lh.effective_rank[i] > 60 else "dim")
+                )
+
+                cka_str = ""
+                if i < len(lh.cka_adjacent):
+                    cka_val = lh.cka_adjacent[i]
+                    prev_cka = (
+                        prev.cka_adjacent[i]
+                        if prev and i < len(prev.cka_adjacent)
+                        else None
+                    )
+                    cka_arrow = _arrow(cka_val, prev_cka, higher_good=False)
+                    c_cka = (
+                        "red"
+                        if cka_val > 0.90
+                        else ("yellow" if cka_val > 0.80 else "dim")
+                    )
+                    cka_str = f"[{c_cka}]{cka_val:.2f}[/{c_cka}]{cka_arrow}"
+
+                row_vals.extend(
+                    [
+                        f"L{i + 1}",
+                        f"[{c_dn}]{lh.delta_norm[i]:.2f}[/{c_dn}]{dn_arrow}",
+                        cka_str,
+                        f"[{c_rk}]{lh.effective_rank[i]:.0f}[/{c_rk}]{rk_arrow}",
+                    ]
+                )
+            table.add_row(*row_vals)
+
+        console.print(table)
+
+        # Warnings
+        max_dn = max(lh.delta_norm)
+        last_dn = lh.delta_norm[-1]
+        if max_dn > 0 and last_dn > 0.8 * max_dn:
+            console.print(
+                f"  [yellow]⚠ Final layer ΔNorm={last_dn:.2f} remains high "
+                f"(≥80% of max {max_dn:.2f}) — may benefit from additional "
+                f"transformer layers[/yellow]"
+            )
+
+        if lh.cka_adjacent and lh.cka_adjacent[-1] > 0.90:
+            console.print(
+                f"  [dim]ℹ Final layer pair CKA={lh.cka_adjacent[-1]:.2f} "
+                f"(>0.90) — layers are nearly redundant, "
+                f"model likely has sufficient depth[/dim]"
+            )
+
+        max_rank = max(lh.effective_rank)
+        last_rank = lh.effective_rank[-1]
+        if max_rank > 0 and last_rank < 0.5 * max_rank:
+            console.print(
+                f"  [yellow]⚠ Final layer rank={last_rank:.0f} collapsed "
+                f"vs peak={max_rank:.0f} — may benefit from "
+                f"wider layers (larger d_model)[/yellow]"
+            )

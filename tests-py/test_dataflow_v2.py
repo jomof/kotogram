@@ -5,6 +5,8 @@ import sys
 import tempfile
 import unittest
 
+from training_test_utils import generate_test_chive
+
 from kotogram.tokenizer import Tokenizer
 from train import io as train_io
 from train.dataset import StyleDataset
@@ -13,11 +15,7 @@ from train.dataset import StyleDataset
 class TestDataflowV2(unittest.TestCase):
     def setUp(self):
         self.test_dir = tempfile.mkdtemp()
-
-        # We don't set TRAIN_ROOT globally in process,
-        # because StyleDataset might verify paths at import time?
-        # No, defaults are functions.
-        # But we set it for subprocess.
+        generate_test_chive(self.test_dir)
 
     def tearDown(self):
         shutil.rmtree(self.test_dir)
@@ -93,10 +91,9 @@ class TestDataflowV2(unittest.TestCase):
         # self.assertIn("lemma", sample.feature_ids)
         # self.assertTrue(len(sample.feature_ids["lemma"]) > 0)
 
-        # Inspect reading_gram IDs (was surface)
-        rg_ids = sample.feature_ids["reading_gram"]
-        valid_ids = [fid for fid in rg_ids if fid > 2]
-        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {rg_ids}")
+        surface_ids = sample.feature_ids["surface"]
+        valid_ids = [fid for fid in surface_ids if fid > 2]
+        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {surface_ids}")
 
         # Check Register Labels (ragged)
         # "これはテスト文です0" has override KYOSHIGO (ID 5)

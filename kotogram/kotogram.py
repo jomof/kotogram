@@ -67,19 +67,19 @@ TOKEN_SHORTHANDS: dict[str, str] = {
     "が": "⌈ˢがᵖparticleᵖ¹case-particleᵈ*ʳガ⌉",
     "、": "⌈ˢ、ᵖaux-symbolᵖ¹commaᵈ*ʳ*⌉",
     "です": "⌈ˢですᵖaux-verbᵗaux-desuᶜterminalᵈ*ʳデス⌉",
-    "し": "⌈ˢしᵖverbᵖ¹boundᵗsa-irregularᶜcontinuativeᵇするᵈするʳシ⌉",
+    "し": "⌈ˢしⁿ為るᵖverbᵖ¹boundᵗsa-irregularᶜcontinuativeᵇするᵈするʳシ⌉",
     "と": "⌈ˢとᵖparticleᵖ¹case-particleᵈ*ʳト⌉",
     "だ": "⌈ˢだᵖaux-verbᵗaux-daᶜterminalᵈ*ʳダ⌉",
     "わ": "⌈ˢわᵖparticleᵖ¹sentence-final-particleᵈ*ʳワ⌉",
     "で": "⌈ˢでᵖparticleᵖ¹case-particleᵈ*ʳデ⌉",
     "ぜ": "⌈ˢぜᵖparticleᵖ¹sentence-final-particleᵈ*ʳゼ⌉",
     "ます": "⌈ˢますᵖaux-verbᵗaux-masuᶜterminalᵈ*ʳマス⌉",
-    "いる": "⌈ˢいるᵖverbᵖ¹boundᵗupper-ichidan-aᶜterminalᵈ*ʳイル⌉",
+    "いる": "⌈ˢいるⁿ居るᵖverbᵖ¹boundᵗupper-ichidan-aᶜterminalᵈ*ʳイル⌉",
     "も": "⌈ˢもᵖparticleᵖ¹binding-particleᵈ*ʳモ⌉",
     "ぞ": "⌈ˢぞᵖparticleᵖ¹sentence-final-particleᵈ*ʳゾ⌉",
     "こと": "⌈ˢことᵖnounᵖ¹common-nounᵖ²generalᵈ*ʳコト⌉",
     "か": "⌈ˢかᵖparticleᵖ¹sentence-final-particleᵈ*ʳカ⌉",
-    "な": "⌈ˢなᵖaux-verbᵗaux-daᶜattributiveᵇだᵈだʳナ⌉",
+    "な": "⌈ˢなⁿだᵖaux-verbᵗaux-daᶜattributiveᵇだᵈだʳナ⌉",
 }
 
 # Build reverse map for compression (full token -> shorthand)
@@ -99,6 +99,7 @@ class TokenFeatures:
     """Linguistic features extracted from a kotogram token."""
 
     surface: str = ""
+    normalized_surface: str = ""
     pos: PosValue = ""
     pos_detail_1: PosDetail1Value = ""
     pos_detail_2: PosDetail2Value = ""
@@ -396,6 +397,7 @@ def extract_token_features(token: str) -> TokenFeatures:
         return feature
 
     # Find all markers - order matters, markers are searched from idx_s
+    idx_n = token.find("ⁿ", idx_s)  # normalized_surface
     idx_p = token.find("ᵖ", idx_s)  # POS
     idx_p1 = token.find("ᵖ¹", idx_s)  # pos_detail_1
     idx_p2 = token.find("ᵖ²", idx_s)  # pos_detail_2
@@ -410,6 +412,7 @@ def extract_token_features(token: str) -> TokenFeatures:
 
     # All possible next markers for boundary detection
     all_markers = [
+        idx_n,
         idx_p,
         idx_p1,
         idx_p2,
@@ -435,6 +438,12 @@ def extract_token_features(token: str) -> TokenFeatures:
     # 1. Surface: ˢ to next marker
     feature.surface = extract_value(idx_s, 1)
 
+    # 1b. Normalized surface: ⁿ to next marker (defaults to surface when absent)
+    if idx_n != -1:
+        feature.normalized_surface = extract_value(idx_n, 1)
+    else:
+        feature.normalized_surface = feature.surface
+
     # Input invariant: lemma and reading must use '*' compression, not duplicate surface
     # Extract raw values to validate (before any expansion)
     def get_raw_field_value(field_marker: str, marker_len: int = 1) -> str:
@@ -444,6 +453,7 @@ def extract_token_features(token: str) -> TokenFeatures:
             return ""
         start = idx + marker_len
         markers = [
+            idx_n,
             idx_p,
             idx_p1,
             idx_p2,

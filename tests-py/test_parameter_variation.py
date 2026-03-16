@@ -23,8 +23,6 @@ class DummyKCModel(nn.Module):
         self.encoder = nn.Linear(1, 1)
         self.kc_head = nn.Linear(1, 1)
         self.config = MagicMock()
-        # Mock config attributes needed by KCTrainer checks
-        self.config.kc_topk = 1
         self.config.kc_vocab_size = 10
         self.kc_decoders = nn.Linear(1, 1)
 

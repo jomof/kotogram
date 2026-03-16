@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from kotogram.model import InferenceClassifier
 
-# 50KB tolerance for header overhead
-SIZE_VERIFICATION_TOLERANCE = 50 * 1024
+# 100KB tolerance for safetensors header/metadata overhead
+SIZE_VERIFICATION_TOLERANCE = 100 * 1024
 
 
 def _is_layer_saved_in_slim(layer_name: str) -> bool:

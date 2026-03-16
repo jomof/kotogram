@@ -126,7 +126,7 @@ def _get_module_type_name(module: nn.Module) -> str:
     replacements = {
         "TransformerEncoder": "TrfEncoder",
         "TransformerEncoderLayer": "TrfEncLayer",
-        "MultiFieldEmbedding": "MFEmbed",
+        "SurfaceEmbedding": "SurfEmbed",
         "PositionalEncoding": "PosEnc",
         "LayerNorm": "LN",
         "Embedding": "Emb",

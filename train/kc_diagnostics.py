@@ -7,11 +7,58 @@ from typing import Dict, List, Optional, Set
 
 import torch
 
+from kotogram.constants import (
+    FormalityThresholds,
+    GenderThresholds,
+    GrammaticalityThresholds,
+)
 from train.types import (
+    KCBertFamilyStats,
     KCDiagnosticFamilyStats,
     KCDiagnosticReport,
     KCMseFamilyStats,
 )
+
+
+def discretize_mse(values: torch.Tensor, family_name: str) -> torch.Tensor:
+    """Map continuous values to discrete bucket IDs matching inference thresholds.
+
+    Uses the same thresholds as kotogram.constants so that epoch-report accuracy
+    reflects what ``bin/kotogram`` would actually print.
+    """
+    if family_name == "formality":
+        # 5 levels: very_casual < casual < neutral < formal < very_formal
+        thresholds = torch.tensor(
+            [
+                FormalityThresholds.CASUAL_MIN,  # -0.75
+                FormalityThresholds.NEUTRAL_MIN,  # -0.25
+                FormalityThresholds.FORMAL_MIN,  # 0.25
+                FormalityThresholds.VERY_FORMAL_MIN,  # 0.75
+            ],
+            device=values.device,
+        )
+    elif family_name == "gender":
+        # 3 levels: masculine < neutral < feminine
+        thresholds = torch.tensor(
+            [
+                GenderThresholds.MASCULINE_MAX,  # -0.5
+                GenderThresholds.FEMININE_MIN,  # 0.5
+            ],
+            device=values.device,
+        )
+    elif family_name == "grammatic":
+        # 2 levels: ungrammatical vs grammatical
+        thresholds = torch.tensor(
+            [GrammaticalityThresholds.GRAMMATIC_MIN],  # 0.5
+            device=values.device,
+        )
+    else:
+        # Unknown family: fall back to single bucket (always "correct")
+        return torch.zeros_like(values, dtype=torch.long)
+
+    # bucketize: value < t[0] → 0, t[0] <= value < t[1] → 1, etc.
+    return torch.bucketize(values.contiguous(), thresholds)
+
 
 # Pylint suppressions for diagnostic complexity
 # pylint: disable=too-many-positional-arguments,too-many-locals,unused-argument,too-many-return-statements
@@ -108,7 +155,19 @@ class MseFamilyStats:
     sum_pred_sq: float = 0.0  # For variance
     sum_target_sq: float = 0.0
     sum_cross: float = 0.0  # For correlation (sum of pred * target)
-    correct_01: int = 0  # Count within ±0.1
+    correct_discrete: int = 0  # Count matching discrete label bucket
+
+
+@dataclass
+class BertFamilyStats:
+    """Accumulator for BERT cloze (morpheme-prediction) family statistics."""
+
+    batch_count: int = 0
+    sum_loss: float = 0.0
+    top1_correct: int = 0
+    top5_correct: int = 0
+    top1_pos_only: int = 0
+    n_samples: int = 0
 
 
 class KCEpochDiag:
@@ -117,6 +176,7 @@ class KCEpochDiag:
     def __init__(self) -> None:
         self.families: Dict[str, FamilyStats] = {}
         self.mse_families: Dict[str, MseFamilyStats] = {}
+        self.bert_families: Dict[str, BertFamilyStats] = {}
         # We need a stable hash capability if we want to report collisions on hashed values,
         # but the inputs to update are typically already hashed or raw IDs.
         # We assume 'pos_ids' passed to update are the relevant IDs for collision checking.
@@ -293,9 +353,31 @@ class KCEpochDiag:
         stats.sum_target_sq += (t**2).sum().item()
         stats.sum_cross += (p * t).sum().item()
 
-        # Accuracy within ±0.1
-        correct = ((p - t).abs() < 0.1).sum().item()
-        stats.correct_01 += int(correct)
+        # Discrete bucket accuracy (matches inference thresholds)
+        pred_buckets = discretize_mse(p, family_name)
+        target_buckets = discretize_mse(t, family_name)
+        correct = (pred_buckets == target_buckets).sum().item()
+        stats.correct_discrete += int(correct)
+
+    def update_bert_family(
+        self,
+        family_name: str,
+        loss: float,
+        top1_correct: int,
+        top5_correct: int,
+        n_samples: int,
+        top1_pos_only_correct: int = 0,
+    ) -> None:
+        """Update BERT cloze family diagnostics with a batch of predictions."""
+        if family_name not in self.bert_families:
+            self.bert_families[family_name] = BertFamilyStats()
+        stats = self.bert_families[family_name]
+        stats.batch_count += 1
+        stats.sum_loss += loss
+        stats.top1_correct += top1_correct
+        stats.top5_correct += top5_correct
+        stats.top1_pos_only += top1_pos_only_correct
+        stats.n_samples += n_samples
 
     def get_stats(self) -> KCDiagnosticReport:
         """Return structured statistics."""
@@ -389,7 +471,7 @@ class KCEpochDiag:
 
             # Loss per batch (true contribution)
             loss_per_batch = mse_s.sum_loss / n_batches
-            accuracy_01 = mse_s.correct_01 / n_samples
+            discrete_accuracy = mse_s.correct_discrete / n_samples
 
             # Mean values (per sample)
             mean_pred = mse_s.sum_pred / n_samples
@@ -411,14 +493,31 @@ class KCEpochDiag:
 
             mse_data[mse_name] = KCMseFamilyStats(
                 loss_mean=loss_per_batch,
-                accuracy_01=accuracy_01,
+                discrete_accuracy=discrete_accuracy,
                 correlation=correlation,
                 mean_bias=mean_bias,
                 pred_std=pred_std,
                 batch_count=mse_s.batch_count,
             )
 
-        return KCDiagnosticReport(families=data, mse_families=mse_data)
+        # Compute BERT cloze family stats
+        bert_data: Dict[str, KCBertFamilyStats] = {}
+        for bert_name, bert_s in sorted(self.bert_families.items()):
+            n_batches = max(1, bert_s.batch_count)
+            n_samples = max(1, bert_s.n_samples)
+            bert_data[bert_name] = KCBertFamilyStats(
+                loss_mean=bert_s.sum_loss / n_batches,
+                top1_accuracy=bert_s.top1_correct / n_samples,
+                top5_accuracy=bert_s.top5_correct / n_samples,
+                top1_pos_only_accuracy=bert_s.top1_pos_only / n_samples
+                if bert_s.top1_pos_only
+                else 0.0,
+                batch_count=bert_s.batch_count,
+            )
+
+        return KCDiagnosticReport(
+            families=data, mse_families=mse_data, bert_families=bert_data
+        )
 
 
 # --- Formatting ---

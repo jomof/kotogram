@@ -178,7 +178,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     import torch
 
     from kotogram.constants import REGISTER_ID_TO_LABEL
-    from kotogram.tokenizer import FEATURE_FIELDS
+    from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, FEATURE_FIELDS
 
     model, tokenizer = _ANALYZER.load()
 
@@ -189,8 +189,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)
     batch_size = len(kotograms)
 
+    # Only build tensors for fields the encoder actually uses
     field_inputs = {}
-    for field in FEATURE_FIELDS:
+    for field in ENCODER_FEATURE_FIELDS:
         # 0 is the PAD_TOKEN id
         batch_ids = torch.zeros((batch_size, max_len), dtype=torch.long)
         for i, encoded in enumerate(encoded_list):
@@ -206,8 +207,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
-        # Get Interpretable KCs (uses adaptive k based on sentence length)
-        # No min_prob filter - k_budget determines count exactly as in training
+        # Get Interpretable KCs (all KCs above default min_prob threshold)
         kc_top_results = model.predict_kcs_top(field_inputs, attention_mask)
         # Get grammar point predictions if decoder is available
         gp_probs_tensor = model.predict_grammar_points(field_inputs, attention_mask)
@@ -275,7 +275,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
             # Convert list of (int, float) tuples to {int: float} dict
             # Only include KCs with probability > 50%
             kc_top_sample = {
-                int(k_id): prob for k_id, prob in kc_top_results[i] if prob > 0.5
+                int(k_id): prob
+                for k_id, prob in kc_top_results[i]
+                if prob > model.config.kc_threshold
             }
 
         # Extract grammar point probabilities as a map: "gpXXXX" -> probability

@@ -6,6 +6,9 @@ data loading, and calling the trainers from the kotogram.train package.
 
 import dataclasses
 import glob
+
+# MLflow logging (optional -- only available when mlflow is installed)
+import importlib.util
 import json
 import os
 import shutil
@@ -51,6 +54,13 @@ from train.train_style_view import (
 )
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
+
+if importlib.util.find_spec("mlflow") is not None:
+    from train import mlflow_logging
+    from train.artifact_uploader import create_uploader
+else:
+    mlflow_logging = None  # type: ignore[assignment]  # pylint: disable=invalid-name
+    create_uploader = None  # type: ignore[assignment]  # pylint: disable=invalid-name
 
 # Global view instance for display output
 _view: TrainStyleView = TrainStyleDiagnosticsView()
@@ -190,12 +200,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config", type=str, required=True, help="Path to unified config.json file"
     )
-
     args = parser.parse_args()
 
     # Load configuration
     model_config, trainer_config = TrainerConfig.load_config(args.config)
-    trainer_config = dataclasses.replace(trainer_config, batch_size=128)
+
+    use_mlflow = trainer_config.mlflow and mlflow_logging is not None
 
     # Handle report_only mode
     if trainer_config.report_only:
@@ -288,6 +298,8 @@ if __name__ == "__main__":
                     history.append_event(history_path, diag_event)
 
             event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
+            if use_mlflow and mlflow_logging:
+                mlflow_logging.log_kc_epoch(current_epoch, metrics)
         else:
             event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
 
@@ -371,9 +383,9 @@ if __name__ == "__main__":
         grammaticality_labels.append(0)
 
     # --- Model and Data Initialization ---
-    # Load tokenizer to get vocab sizes
-    # STRICT: Load only from final output location. Wrapper guarantees its existence.
-    tokenizer_path = os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+    # Load full tokenizer from cache (has all field vocabs for KC specs).
+    # models/style/tokenizer.json is inference-only (surface vocab only).
+    tokenizer_path = os.path.join(cache_dir_data, "vocab.json")
 
     if not os.path.exists(tokenizer_path):
         raise FileNotFoundError(
@@ -416,20 +428,23 @@ if __name__ == "__main__":
         # DB-sourced families need special handling based on type
         if is_family_db_sourced(fid):
             from train.kc import (
-                KcDbClassFamily,
+                KcBertFamily,
                 KcDbMultilabelFamily,
                 KcPnuFamily,
+                KcReconFamily,
                 get_family,
             )
 
             family_def = get_family(fid)
-            if isinstance(family_def, KcPnuFamily):
+            if isinstance(family_def, KcBertFamily):
+                # BERT cloze: predict surface token, needs surface vocab size
+                kc_specs[fid] = current_vocabs["surface"]
+            elif isinstance(family_def, KcReconFamily):
+                kc_specs[fid] = current_vocabs["surface"]
+            elif isinstance(family_def, KcPnuFamily):
                 # PNU families (GRAMMAR_POINT) use dynamically computed GP vocab size
                 if gp_vocab_size > 0:
                     kc_specs[fid] = gp_vocab_size
-            elif isinstance(family_def, KcDbClassFamily):
-                # Multi-class DB families (GENDER_CLASS/FORMALITY_CLASS)
-                kc_specs[fid] = family_def.num_classes
             elif isinstance(family_def, KcDbMultilabelFamily):
                 # Multi-label DB families (REGISTER)
                 kc_specs[fid] = family_def.num_classes
@@ -477,6 +492,26 @@ if __name__ == "__main__":
             )
         model = new_model
 
+    # Load pretrained chiVe surface vectors for fresh models (not resuming)
+    if not loaded_from_checkpoint:
+        from train.chive import (
+            get_chive_cache_path,
+            load_chive_for_vocab,
+            load_pretrained_surface,
+        )
+
+        chive_cache = get_chive_cache_path()
+        if os.path.exists(chive_cache):
+            surface_vocab = tokenizer.field_vocabs.get("surface", {})
+            chive_vectors = load_chive_for_vocab(surface_vocab)
+            freeze = not trainer_config.unfreeze_surface
+            n_loaded = load_pretrained_surface(
+                model.embedding, chive_vectors, freeze=freeze
+            )
+            _view.on_chive_loaded(n_loaded, freeze)
+        else:
+            _view.on_chive_cache_missing()
+
     # Generate and display architecture report (uses slim model to show export size)
     from train.architecture_report import generate_architecture_report
 
@@ -509,10 +544,16 @@ if __name__ == "__main__":
     if vocab_grew:
         model.resize_embeddings(new_vocab_sizes)
         model_config.vocab_sizes = new_vocab_sizes
-        # Save updated tokenizer to output_dir so resumption finds it
+        # Save full tokenizer back to cache for resumption
+        train_io.save_tokenizer(
+            tokenizer,
+            os.path.join(cache_dir_data, "vocab.json"),
+        )
+        # Save inference-only tokenizer to output dir for deployment
         train_io.save_tokenizer(
             tokenizer,
             os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
+            inference_only=True,
         )
 
     if trainer_config.label_only:
@@ -550,6 +591,9 @@ if __name__ == "__main__":
     # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
     # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
     kc_config = trainer_config.kc_config
+
+    # Propagate training temperature to model config so inference uses the same value
+    object.__setattr__(model_config, "kc_temperature", kc_config.temperature_thawed)
     if trainer_config.retrain or loaded_from_checkpoint:
         kc_config = dataclasses.replace(kc_config, freeze_encoder_epochs=0)
 
@@ -577,66 +621,87 @@ if __name__ == "__main__":
 
     style_start = time.perf_counter()
 
-    # Interleaving loop: KC first, then style, until both are done
-    max_rounds = max(kc_epochs_target, style_epochs_target)
-    for _ in range(max_rounds):
-        # KC epoch (if remaining)
-        if kc_epochs_done < kc_epochs_target:
-            kc_trainer.train(
-                epochs=kc_epochs_done + 1,  # Train up to next epoch
-                on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
-                start_epoch=kc_epochs_done,
-            )
-            kc_epochs_done += 1
-            # Save model.pt after every KC epoch as requested
-            _export_model(model)
-            train_io.save_checkpoint(model)
-
-        # Style epoch (if remaining)
-        if style_epochs_done < style_epochs_target:
-            style_trainer.train(
-                epochs=style_epochs_done + 1,  # Train up to next epoch
-                on_epoch_end=lambda h: _log_epoch_event(h, "style"),
-                start_epoch=style_epochs_done,
-            )
-            style_epochs_done += 1
-            # Save model and continuation.json after every style epoch
-            _export_model(model)
-
-        # Both done?
-        if (
-            kc_epochs_done >= kc_epochs_target
-            and style_epochs_done >= style_epochs_target
-        ):
-            break
-
-    style_end = time.perf_counter()
-
-    if kc_trainer.history.total_loss:
-        _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
-    if style_trainer.history.train_loss:
-        _view.on_style_training_complete(style_trainer.history.train_loss[-1])
-
-    # Test evaluation and model saving
-    res, _worst_samples = style_trainer.evaluate()
-    _view.on_final_results(
-        FinalResults(
-            formality_accuracy=res.formality_accuracy,
-            gender_accuracy=res.gender_accuracy,
-            grammaticality_accuracy=res.grammaticality_accuracy,
+    uploader = None
+    if use_mlflow and mlflow_logging:
+        run_id = mlflow_logging.start_run(
+            model_config,
+            trainer_config,
+            config_path=args.config,
+            run_name=None,
         )
-    )
+        if create_uploader is not None:
+            uploader = create_uploader(run_id)
 
-    # Final model export
-    if model:
-        _export_model(model)
+    # Interleaving loop: KC first, then style, until both are done
+    try:
+        max_rounds = max(kc_epochs_target, style_epochs_target)
+        for _ in range(max_rounds):
+            # KC epoch (if remaining)
+            if kc_epochs_done < kc_epochs_target:
+                kc_trainer.train(
+                    epochs=kc_epochs_done + 1,  # Train up to next epoch
+                    on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
+                    start_epoch=kc_epochs_done,
+                )
+                kc_epochs_done += 1
+                # Save model.pt after every KC epoch as requested
+                _export_model(model)
+                train_io.save_checkpoint(model)
+                if uploader:
+                    uploader.queue_dir(output_path, "model")
+                    uploader.queue_file(get_checkpoint_path(), "checkpoint")
 
-    # Final timing report
-    _view.on_timing_summary(style_end - style_start)
+            # Style epoch (if remaining)
+            if style_epochs_done < style_epochs_target:
+                style_trainer.train(
+                    epochs=style_epochs_done + 1,  # Train up to next epoch
+                    on_epoch_end=lambda h: _log_epoch_event(h, "style"),
+                    start_epoch=style_epochs_done,
+                )
+                style_epochs_done += 1
+                # Save model and continuation.json after every style epoch
+                _export_model(model)
+                if uploader:
+                    uploader.queue_dir(output_path, "model")
 
-    # Auto-generate report and cleanup if profiling was enabled
-    # We check environment because arguments might not settle it alone (defaults)
-    # But usually if we ran code, we generated logs.
-    if profiling_enabled() and not trainer_config.report_only:
-        # report_only exits early, so we only need to do this for a normal run
-        generate_profile_report()
+            # Both done?
+            if (
+                kc_epochs_done >= kc_epochs_target
+                and style_epochs_done >= style_epochs_target
+            ):
+                break
+
+        style_end = time.perf_counter()
+
+        if kc_trainer.history.total_loss:
+            _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
+        if style_trainer.history.train_loss:
+            _view.on_style_training_complete(style_trainer.history.train_loss[-1])
+
+        # Test evaluation and model saving
+        res, _worst_samples = style_trainer.evaluate()
+        _view.on_final_results(
+            FinalResults(
+                formality_accuracy=res.formality_accuracy,
+                gender_accuracy=res.gender_accuracy,
+                grammaticality_accuracy=res.grammaticality_accuracy,
+            )
+        )
+
+        # Final model export
+        if model:
+            _export_model(model)
+            if uploader:
+                uploader.queue_dir(output_path, "model")
+
+        # Final timing report
+        _view.on_timing_summary(style_end - style_start)
+
+        # Auto-generate report and cleanup if profiling was enabled
+        if profiling_enabled() and not trainer_config.report_only:
+            generate_profile_report()
+    finally:
+        if uploader:
+            uploader.drain()
+        if use_mlflow and mlflow_logging:
+            mlflow_logging.end_run()

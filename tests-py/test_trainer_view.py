@@ -223,7 +223,10 @@ class TestTrainerView(TestCase):
         # We must patch `train.trainer.save_model` to affect the Trainer.
         from unittest.mock import patch
 
-        with patch("train.style_trainer.save_model"):
+        with (
+            patch("train.style_trainer.save_model"),
+            patch("train.style_trainer.save_checkpoint"),
+        ):
             self.trainer.evaluate = MagicMock(
                 return_value=(EvaluationMetrics(loss=0.5), {})
             )

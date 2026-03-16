@@ -15,17 +15,19 @@ from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotog
 PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
 CLS_TOKEN = "<CLS>"
+MASK_TOKEN = "<MASK>"
 
 # Special token IDs - single source of truth
 # These must match the order tokens are added to vocabularies in Tokenizer.__init__
 PAD_ID = 0
 UNK_ID = 1
 CLS_ID = 2
+MASK_ID = 3
 
 # Feature fields used for token embedding (full set for KC targets)
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
 ALL_FEATURE_FIELDS = [
-    # "surface",
+    "surface",
     "pos",
     "pos_detail_1",
     "pos_detail_2",
@@ -41,16 +43,11 @@ ALL_FEATURE_FIELDS = [
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features for labeling/KC
 
 # Feature fields used for transformer encoder embedding (BERT-like layer)
-# Uses atomic morphological fields instead of compound composites
-# Uses 'reading' (raw) instead of 'reading_gram' (masked)
+# Surface-only input: the transformer learns from raw surface tokens (like BERT).
+# Morphological features are still computed for KC target labeling (FEATURE_FIELDS)
+# but are not fed to the encoder.
 ENCODER_FEATURE_FIELDS = [
-    "pos",
-    "pos_detail_1",
-    "pos_detail_2",
-    "pos_detail_3",
-    "conjugated_form",
-    "conjugated_type",
-    "reading",
+    "surface",
 ]
 
 
@@ -119,7 +116,9 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     Returns:
         Dict mapping field name to vocab-ready string for that field.
     """
+    surface_value = features.normalized_surface or features.surface
     return {
+        "surface": surface_value,
         "pos": features.pos,
         "pos_detail_1": features.pos_detail_1,
         "pos_detail_2": features.pos_detail_2,
@@ -163,6 +162,7 @@ class Tokenizer:
                 PAD_TOKEN: PAD_ID,
                 UNK_TOKEN: UNK_ID,
                 CLS_TOKEN: CLS_ID,
+                MASK_TOKEN: MASK_ID,
             }
             self._field_counters[f] = Counter()
 
