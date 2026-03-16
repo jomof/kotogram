@@ -4,7 +4,25 @@ import pytest
 
 from kotogram.kotogram import extract_token_features, split_kotogram
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-from kotogram.tokenizer import Tokenizer, get_vocab_strings
+from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer, get_vocab_strings
+
+
+def _build_tokenizer_from_sentences(
+    parser: SudachiJapaneseParser, sentences: list[str]
+) -> Tokenizer:
+    """Build a minimal Tokenizer with vocab from the given sentences."""
+    tokenizer = Tokenizer()
+    for sent in sentences:
+        kotogram = parser.japanese_to_kotogram(sent)
+        for token in split_kotogram(kotogram):
+            feat = extract_token_features(token)
+            vs = get_vocab_strings(feat)
+            for field in FEATURE_FIELDS:
+                vocab = tokenizer.field_vocabs[field]
+                val = vs[field]
+                if val and val not in vocab:
+                    vocab[val] = len(vocab)
+    return tokenizer
 
 
 class TestPhase2EncodingConsistency:
@@ -16,9 +34,11 @@ class TestPhase2EncodingConsistency:
         return SudachiJapaneseParser()
 
     @pytest.fixture(scope="class")
-    def tokenizer(self) -> Tokenizer:
-        """Load the full training tokenizer (has all field vocabs)."""
-        return Tokenizer.load(".cache/style_dataset/vocab.json")
+    def tokenizer(self, parser: SudachiJapaneseParser) -> Tokenizer:
+        """Build a tokenizer from test sentences (no external files needed)."""
+        return _build_tokenizer_from_sentences(
+            parser, ["猫は可愛い。", "彼女は学校に行った。", "猫を見た"]
+        )
 
     def test_compound_1_uses_composite_tokens(
         self, parser: SudachiJapaneseParser, tokenizer: Tokenizer
