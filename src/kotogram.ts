@@ -64,19 +64,19 @@ const TOKEN_SHORTHANDS: {[key: string]: string} = {
   が: '⌈ˢがᵖparticleᵖ¹case-particleᵈ*ʳガ⌉',
   '、': '⌈ˢ、ᵖaux-symbolᵖ¹commaᵈ*ʳ*⌉',
   です: '⌈ˢですᵖaux-verbᵗaux-desuᶜterminalᵈ*ʳデス⌉',
-  し: '⌈ˢしᵖverbᵖ¹boundᵗsa-irregularᶜcontinuativeᵇするᵈするʳシ⌉',
+  し: '⌈ˢしⁿ為るᵖverbᵖ¹boundᵗsa-irregularᶜcontinuativeᵇするᵈするʳシ⌉',
   と: '⌈ˢとᵖparticleᵖ¹case-particleᵈ*ʳト⌉',
   だ: '⌈ˢだᵖaux-verbᵗaux-daᶜterminalᵈ*ʳダ⌉',
   わ: '⌈ˢわᵖparticleᵖ¹sentence-final-particleᵈ*ʳワ⌉',
   で: '⌈ˢでᵖparticleᵖ¹case-particleᵈ*ʳデ⌉',
   ぜ: '⌈ˢぜᵖparticleᵖ¹sentence-final-particleᵈ*ʳゼ⌉',
   ます: '⌈ˢますᵖaux-verbᵗaux-masuᶜterminalᵈ*ʳマス⌉',
-  いる: '⌈ˢいるᵖverbᵖ¹boundᵗupper-ichidan-aᶜterminalᵈ*ʳイル⌉',
+  いる: '⌈ˢいるⁿ居るᵖverbᵖ¹boundᵗupper-ichidan-aᶜterminalᵈ*ʳイル⌉',
   も: '⌈ˢもᵖparticleᵖ¹binding-particleᵈ*ʳモ⌉',
   ぞ: '⌈ˢぞᵖparticleᵖ¹sentence-final-particleᵈ*ʳゾ⌉',
   こと: '⌈ˢことᵖnounᵖ¹common-nounᵖ²generalᵈ*ʳコト⌉',
   か: '⌈ˢかᵖparticleᵖ¹sentence-final-particleᵈ*ʳカ⌉',
-  な: '⌈ˢなᵖaux-verbᵗaux-daᶜattributiveᵇだᵈだʳナ⌉',
+  な: '⌈ˢなⁿだᵖaux-verbᵗaux-daᶜattributiveᵇだᵈだʳナ⌉',
 };
 
 // Part-of-speech to character mappings for punctuation
@@ -188,7 +188,7 @@ export function kotogramToJapanese(
 
   if (!furigana) {
     // Original implementation - extract surface forms only
-    const pattern = /ˢ(.*?)ᵖ/gs;
+    const pattern = /ˢ(.*?)[ⁿᵖ]/gs;
     const matches: string[] = [];
     let match: RegExpExecArray | null;
 
@@ -275,7 +275,7 @@ export function kotogramToJapanese(
       }
 
       // Extract surface form
-      const surfaceMatch = token.match(/ˢ(.*?)ᵖ/s);
+      const surfaceMatch = token.match(/ˢ(.*?)[ⁿᵖ]/s);
       if (!surfaceMatch) {
         continue;
       }
@@ -671,8 +671,8 @@ export function extractTokenFeatures(token: string): TokenFeatures {
     reading: '',
   };
 
-  // Extract surface form (ˢ...ᵖ)
-  const surfaceMatch = token.match(/ˢ(.*?)ᵖ/s);
+  // Extract surface form (ˢ...ⁿ or ˢ...ᵖ)
+  const surfaceMatch = token.match(/ˢ(.*?)[ⁿᵖ]/s);
   if (surfaceMatch) {
     feature.surface = surfaceMatch[1];
   }
