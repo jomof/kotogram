@@ -75,7 +75,7 @@ class ModelConfig:
     num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(
         default_factory=lambda: {
-            "surface": 256,  # Single surface embedding (BERT-like)
+            "surface": 300,  # Matches chiVe pretrained vector dimension
         }
     )
     d_model: int = 512

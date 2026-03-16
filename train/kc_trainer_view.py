@@ -27,6 +27,10 @@ class KCTrainerView(Protocol):
     """Interface for KC training visualization and logging."""
 
     kc_threshold: float
+    alive_prob_count: int
+    sharp1_count: int
+    sharp0_count: int
+    fuzzy_count: int
 
     def on_kc_train_start(
         self, epochs: int, start_epoch: int, start_batch: int

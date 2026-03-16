@@ -5,6 +5,8 @@ import sys
 import tempfile
 import unittest
 
+from training_test_utils import generate_test_chive
+
 from kotogram.tokenizer import Tokenizer
 from train import io as train_io
 from train.dataset import StyleDataset
@@ -13,11 +15,7 @@ from train.dataset import StyleDataset
 class TestDataflowV2(unittest.TestCase):
     def setUp(self):
         self.test_dir = tempfile.mkdtemp()
-
-        # We don't set TRAIN_ROOT globally in process,
-        # because StyleDataset might verify paths at import time?
-        # No, defaults are functions.
-        # But we set it for subprocess.
+        generate_test_chive(self.test_dir)
 
     def tearDown(self):
         shutil.rmtree(self.test_dir)

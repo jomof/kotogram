@@ -190,6 +190,13 @@ class TrainStyleView(Protocol):
     def on_label_only_exit(self) -> None:
         """Notify exiting after label-only mode."""
 
+    # --- Pretrained Embeddings ---
+    def on_chive_loaded(self, n_loaded: int, frozen: bool) -> None:
+        """Notify chiVe surface vectors were loaded."""
+
+    def on_chive_cache_missing(self) -> None:
+        """Notify chiVe cache was not found."""
+
     # --- Architecture Report ---
     def on_architecture_report(self, report: ArchitectureReport) -> None:
         """Display model architecture report."""
@@ -459,6 +466,17 @@ class TrainStyleDiagnosticsView(TrainStyleView):
     # --- Label Only Mode ---
     def on_label_only_exit(self) -> None:
         console.print("[dim]Labeling only requested. Exiting.[/dim]")
+
+    # --- Pretrained Embeddings ---
+    def on_chive_loaded(self, n_loaded: int, frozen: bool) -> None:
+        mode = "frozen" if frozen else "trainable"
+        console.print(f"Surface embedding: loaded {n_loaded:,} chiVe vectors ({mode})")
+
+    def on_chive_cache_missing(self) -> None:
+        console.print(
+            "[dim]chiVe cache not found; using random surface embeddings. "
+            "Run labeling to download and extract chiVe vectors.[/dim]"
+        )
 
     # --- Architecture Report ---
     def on_architecture_report(self, report: ArchitectureReport) -> None:

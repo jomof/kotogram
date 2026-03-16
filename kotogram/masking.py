@@ -105,6 +105,7 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
 
             new_features = TokenFeatures(
                 surface=features.surface,
+                normalized_surface=features.normalized_surface,
                 pos=features.pos,
                 pos_detail_1=features.pos_detail_1,
                 pos_detail_2=features.pos_detail_2,

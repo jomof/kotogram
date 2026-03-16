@@ -128,6 +128,10 @@ class RecordedCall:
 class RecordingKCTrainerView(KCTrainerView):
     def __init__(self):
         self.kc_threshold: float = 0.5
+        self.alive_prob_count: int = 0
+        self.sharp1_count: int = 0
+        self.sharp0_count: int = 0
+        self.fuzzy_count: int = 0
         self.calls: List[RecordedCall] = []
 
     def _record(self, event_name: str, **kwargs: Any) -> None:

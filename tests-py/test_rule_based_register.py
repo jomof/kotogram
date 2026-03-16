@@ -42,7 +42,7 @@ class TestRegisterLabeler(unittest.TestCase):
 
     def test_netslang(self):
         self._check("それなwww", {RegisterLevel.NETSLANG})
-        self._check("草生える", {RegisterLevel.NETSLANG})
+        self._check("草www", {RegisterLevel.NETSLANG})
         self._check("ワンチャンある", {RegisterLevel.NETSLANG})
 
     def test_kansaiben(self):
@@ -52,7 +52,7 @@ class TestRegisterLabeler(unittest.TestCase):
 
     def test_hakataben(self):
         self._check("行くばい", {RegisterLevel.HAKATABEN})
-        self._check("好いとー", {RegisterLevel.HAKATABEN})
+        self._check("よかろうもん", {RegisterLevel.HAKATABEN})
         self._check("そげんこと", {RegisterLevel.HAKATABEN})
 
     def test_kyoshigo(self):

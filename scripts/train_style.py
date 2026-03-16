@@ -492,6 +492,26 @@ if __name__ == "__main__":
             )
         model = new_model
 
+    # Load pretrained chiVe surface vectors for fresh models (not resuming)
+    if not loaded_from_checkpoint:
+        from train.chive import (
+            get_chive_cache_path,
+            load_chive_for_vocab,
+            load_pretrained_surface,
+        )
+
+        chive_cache = get_chive_cache_path()
+        if os.path.exists(chive_cache):
+            surface_vocab = tokenizer.field_vocabs.get("surface", {})
+            chive_vectors = load_chive_for_vocab(surface_vocab)
+            freeze = not trainer_config.unfreeze_surface
+            n_loaded = load_pretrained_surface(
+                model.embedding, chive_vectors, freeze=freeze
+            )
+            _view.on_chive_loaded(n_loaded, freeze)
+        else:
+            _view.on_chive_cache_missing()
+
     # Generate and display architecture report (uses slim model to show export size)
     from train.architecture_report import generate_architecture_report
 

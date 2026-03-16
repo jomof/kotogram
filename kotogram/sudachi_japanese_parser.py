@@ -32,9 +32,9 @@ class SudachiJapaneseParser(JapaneseParser):
                      Useful for debugging unmapped linguistic features.
         """
         # Lazy import to avoid requiring Sudachi for the abstract interface
-        from sudachipy import dictionary, SplitMode
+        from sudachipy import SplitMode, dictionary
 
-        self.dict_obj = dictionary.Dictionary(dict="full")
+        self.dict_obj = dictionary.Dictionary(dict="core")
         self.tokenizer = self.dict_obj.create(mode=SplitMode.C)
         self.validate = validate
 
@@ -95,6 +95,7 @@ class SudachiJapaneseParser(JapaneseParser):
         for token in tokens:
             # Extract token features
             surface = token.surface()
+            normalized = token.normalized_form()
             pos_tuple = token.part_of_speech()  # Tuple of 6 elements
             dictionary_form = token.dictionary_form()
             reading_form = token.reading_form()
@@ -187,6 +188,9 @@ class SudachiJapaneseParser(JapaneseParser):
             else:
                 add("reading", "*")  # Compression: means "same as surface"
 
+            if normalized != surface:
+                feature_dict["normalized_surface"] = normalized
+
             # Construct TokenFeatures dataclass from dict
             features = TokenFeatures(**feature_dict)
             k_tokens.append(Token(surface, features=features))
@@ -224,9 +228,14 @@ class SudachiJapaneseParser(JapaneseParser):
 
         pos_code = pos if pos else ""
 
+        normalized_surface = features.normalized_surface
+
         # Use distinct markers for each field to ensure lossless round-trip:
-        # ᵖ = pos, ᵖ¹ = pos_detail_1, ᵖ² = pos_detail_2, ᵖ³ = pos_detail_3, ᵗ = conjugated_type
-        inner = f"ˢ{surface}ᵖ{pos_code}"
+        # ˢ = surface, ⁿ = normalized_surface (only when different), ᵖ = pos, etc.
+        inner = f"ˢ{surface}"
+        if normalized_surface and normalized_surface != surface:
+            inner += f"ⁿ{normalized_surface}"
+        inner += f"ᵖ{pos_code}"
 
         if pos_detail_1:
             inner += f"ᵖ¹{pos_detail_1}"

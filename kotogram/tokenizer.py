@@ -10,7 +10,6 @@ from collections import Counter
 from typing import Any, Dict, List
 
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
-from kotogram.masking import get_surface_mask_for_features
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
@@ -117,12 +116,7 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     Returns:
         Dict mapping field name to vocab-ready string for that field.
     """
-    surface_mask = get_surface_mask_for_features(features)
-    surface_value = (
-        surface_mask
-        if surface_mask and features.reading_gram == surface_mask
-        else features.surface
-    )
+    surface_value = features.normalized_surface or features.surface
     return {
         "surface": surface_value,
         "pos": features.pos,

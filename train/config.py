@@ -246,6 +246,10 @@ class TrainerConfig:
     # Set higher to skip expensive accuracy computation on intermediate epochs
     eval_every_n_epochs: int = 5
 
+    # Surface embedding: load chiVe pretrained vectors and freeze by default.
+    # Set to True to allow surface embedding weights to be updated during training.
+    unfreeze_surface: bool = False
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "learning_rate": self.learning_rate,
@@ -276,6 +280,7 @@ class TrainerConfig:
             "report_only": self.report_only,
             "mlflow": self.mlflow,
             "mlflow_run_prefix": self.mlflow_run_prefix,
+            "unfreeze_surface": self.unfreeze_surface,
         }
 
     @staticmethod

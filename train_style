@@ -230,7 +230,7 @@ def build_trainer_config(
         "label_only": args.label,
         "report_only": args.report,
         "mlflow": args.mlflow is not None,
-        "mlflow_run_prefix": args.mlflow if args.mlflow else "freq-recon",
+        "mlflow_run_prefix": args.mlflow if args.mlflow else "chive",
     }
 
     # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)
@@ -253,6 +253,9 @@ def build_trainer_config(
         trainer_kwargs["kc_epochs"] = parsed_kc_epochs
     elif loaded_config:
         trainer_kwargs["kc_epochs"] = loaded_config.kc_epochs
+
+    if args.unfreeze_surface:
+        trainer_kwargs["unfreeze_surface"] = True
 
     return TrainerConfig(**trainer_kwargs)
 
@@ -455,6 +458,12 @@ def parse_arguments() -> argparse.Namespace:
 
 
 
+
+    # Surface embedding
+    parser.add_argument(
+        "--unfreeze-surface", action="store_true",
+        help="Allow surface embedding weights to update during training (default: frozen chiVe vectors)",
+    )
 
     # Retrain flag (resume is now the default when checkpoints exist)
     parser.add_argument("--retrain", action="store_true", help="Retrain from scratch, ignoring checkpoints")

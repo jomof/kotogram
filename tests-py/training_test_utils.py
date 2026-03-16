@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 import contextlib
 import fnmatch
 import glob
@@ -196,6 +197,113 @@ def populate_test_data(root_dir: str, project_root: str):
     target_conn.close()
 
 
+def generate_test_chive(root_dir: str) -> None:
+    """Write a tiny word2vec-format text file for test-only chiVe vectors."""
+    import random as _rng
+
+    from train.chive import CHIVE_DIM, get_chive_dir, get_chive_txt_path
+
+    with patch.dict(os.environ, {"TRAIN_ROOT": root_dir}):
+        chive_dir = get_chive_dir()
+        txt_path = get_chive_txt_path()
+
+    os.makedirs(chive_dir, exist_ok=True)
+
+    # Common words likely to appear in any test corpus sample.
+    words = [
+        "する",
+        "いる",
+        "なる",
+        "ある",
+        "言う",
+        "行く",
+        "来る",
+        "見る",
+        "思う",
+        "知る",
+        "取る",
+        "私",
+        "彼",
+        "彼女",
+        "人",
+        "事",
+        "物",
+        "所",
+        "時",
+        "年",
+        "日",
+        "月",
+        "今日",
+        "何",
+        "方",
+        "前",
+        "後",
+        "中",
+        "上",
+        "下",
+        "大きい",
+        "小さい",
+        "良い",
+        "悪い",
+        "新しい",
+        "多い",
+        "少ない",
+        "高い",
+        "長い",
+        "日本",
+        "世界",
+        "水",
+        "手",
+        "子供",
+        "男",
+        "女",
+        "家",
+        "学校",
+        "仕事",
+        "話",
+        "言葉",
+        "食べる",
+        "飲む",
+        "書く",
+        "読む",
+        "聞く",
+        "話す",
+        "走る",
+        "歩く",
+        "立つ",
+        "座る",
+        "猫",
+        "犬",
+        "花",
+        "木",
+        "空",
+        "こんにちは",
+        "です",
+        "ます",
+        "の",
+        "が",
+        "を",
+        "に",
+        "は",
+        "と",
+        "で",
+        "も",
+        "から",
+        "まで",
+        "よ",
+        "ね",
+        "か",
+    ]
+
+    _rng.seed(42)
+    dim = CHIVE_DIM
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write(f"{len(words)} {dim}\n")
+        for w in words:
+            vec = [_rng.gauss(0, 0.3) for _ in range(dim)]
+            f.write(f"{w} {' '.join(f'{v:.6f}' for v in vec)}\n")
+
+
 # pylint: disable=too-many-locals
 def assert_directory_matches_manifest(
     test_case, root_dir: str, expected_manifest: List[str]
@@ -372,6 +480,7 @@ class Bottle:
         self._snapshots[name] = self._get_current_state()
 
     def __enter__(self):
+        generate_test_chive(self.root_dir)
         return self
 
     def __exit__(self, _exc_type, _exc_val, _exc_tb):

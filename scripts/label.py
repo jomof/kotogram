@@ -42,6 +42,7 @@ Output:
 
 import argparse
 import glob
+import importlib.metadata
 import math
 import multiprocessing as mp
 import os
@@ -1092,6 +1093,18 @@ def main() -> None:
     if not args.source_db and not args.grammatic_pattern:
         parser.error("Must provide either --source-db or --grammatic-pattern")
 
+    # Verify SudachiDict version matches chiVe v1.3 (20240109-core).
+    # Mismatched dictionary versions produce different normalized forms,
+    # causing chiVe vector lookup misses at training time.
+    core_version = importlib.metadata.version("sudachidict-core")
+    if core_version != "20240109":
+        console.print(
+            f"[bold red]ERROR: sudachidict-core version {core_version} does not match "
+            f"chiVe v1.3 (requires 20240109)[/bold red]\n"
+            f"  Run: pip install 'sudachidict-core==20240109'"
+        )
+        sys.exit(1)
+
     # standard cache directory setup.
     # pylint: disable=import-outside-toplevel
     from train import paths as train_paths
@@ -1510,6 +1523,16 @@ def main() -> None:
     console.print("Cleaning up shards...")
     if os.path.exists(shard_dir):
         shutil.rmtree(shard_dir)
+
+    # Download pretrained chiVe word vectors and pre-extract for our vocabulary
+    from train.chive import download_chive, extract_chive_for_vocab
+
+    console.print("\nEnsuring pretrained chiVe vectors are available...")
+    download_chive()
+    extract_chive_for_vocab(
+        tokenizer.field_vocabs["surface"],
+        surface_freqs=dict(merged_counters.get("surface", {})),
+    )
 
     console.print(
         f"[bold green]Labeling Complete![/bold green] Data saved to {dataset_cache_dir}"
