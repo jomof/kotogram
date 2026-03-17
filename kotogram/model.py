@@ -62,6 +62,7 @@ class ModelConfigDict(TypedDict):
     kc_vocab_size: int
     kc_temperature: float
     kc_threshold: float
+    gp_decoder_hidden_dim: int
 
 
 @dataclass
@@ -90,6 +91,7 @@ class ModelConfig:
     kc_vocab_size: int = 1024  # Size of the concept vocabulary
     kc_temperature: float = 1.0  # Sparsification temperature
     kc_threshold: float = 0.5  # Adaptive KC activation threshold
+    gp_decoder_hidden_dim: int = 64  # Grammar point decoder hidden dimension
 
     def to_dict(self) -> ModelConfigDict:
         return {
@@ -109,6 +111,7 @@ class ModelConfig:
             "kc_vocab_size": self.kc_vocab_size,
             "kc_temperature": self.kc_temperature,
             "kc_threshold": self.kc_threshold,
+            "gp_decoder_hidden_dim": self.gp_decoder_hidden_dim,
         }
 
     @classmethod
@@ -263,6 +266,7 @@ class KCHead(nn.Module):  # type: ignore[misc]
 
 # Constants for inference-time KC decoder
 KC_DECODER_HIDDEN_DIM = 256  # Must match train/models.py KCDecoder
+GP_DECODER_HIDDEN_DIM = 64  # Default for separated grammar point pathway
 
 
 # Required for Mypy compatibility with torch.nn.Module
@@ -271,16 +275,17 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
 
     This mirrors the structure of train/models.py KCDecoder to load saved weights.
     Supports:
-    - grammar_point: Multi-label classification via label pathway
+    - grammar_point: Multi-label classification via dedicated reduced-capacity pathway
     - formality/gender: Continuous regression via MSE pathway
     - register: Multi-label classification via label pathway (style family)
 
     Architecture matches training:
+    - gp_hidden: kc_vocab_size -> gp_hidden_dim (64)
+    - gp_decoder: gp_hidden_dim -> num_grammar_points
     - label_hidden1: kc_vocab_size -> hidden_dim (256)
     - label_hidden2: hidden_dim -> hidden_dim
     - mse_hidden1: kc_vocab_size -> hidden_dim (256)
     - mse_hidden2: hidden_dim -> hidden_dim
-    - decoders.grammar_point: hidden_dim -> num_grammar_points
     - decoders.register: hidden_dim -> num_register_classes
     - mse_decoders.formality: hidden_dim -> 1
     - mse_decoders.gender: hidden_dim -> 1
@@ -297,22 +302,25 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
     ):
         super().__init__()
         kc_vocab_size = config.kc_vocab_size
+        gp_hidden_dim = getattr(config, "gp_decoder_hidden_dim", GP_DECODER_HIDDEN_DIM)
 
-        # Label pathway hidden layers (grammar_point is a label family)
+        # Grammar point pathway (reduced capacity, single hidden layer)
+        self.gp_hidden = nn.Linear(kc_vocab_size, gp_hidden_dim)
+        self.gp_decoder = nn.Linear(gp_hidden_dim, num_grammar_points)
+        self.activation = nn.ReLU()
+
+        # Label pathway hidden layers (register, etc.)
         # Must match train/models.py KCDecoder architecture for weight loading
         self.label_hidden1 = nn.Linear(kc_vocab_size, KC_DECODER_HIDDEN_DIM)
         self.label_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
-        self.activation = nn.ReLU()
 
         # MSE pathway (for formality/gender regression)
         self.mse_hidden1 = nn.Linear(kc_vocab_size, KC_DECODER_HIDDEN_DIM)
         self.mse_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
         self.tanh = nn.Tanh()
 
-        # Per-family label decoders
-        self.decoders = nn.ModuleDict(
-            {"grammar_point": nn.Linear(KC_DECODER_HIDDEN_DIM, num_grammar_points)}
-        )
+        # Per-family label decoders (register only; grammar_point uses gp_decoder)
+        self.decoders = nn.ModuleDict()
         if has_register:
             self.decoders["register"] = nn.Linear(
                 KC_DECODER_HIDDEN_DIM, config.num_register_classes
@@ -337,12 +345,8 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         Returns:
             grammar_point_probs: [B, num_grammar_points] probabilities
         """
-        # Through label pathway (grammar_point is a label family)
-        h = self.activation(self.label_hidden1(kc_activations))
-        h = self.activation(self.label_hidden2(h))
-
-        # Through grammar_point decoder
-        logits = self.decoders["grammar_point"](h)
+        h = self.activation(self.gp_hidden(kc_activations))
+        logits = self.gp_decoder(h)
         probs = torch.sigmoid(logits)
 
         return cast(torch.Tensor, probs)
@@ -408,6 +412,8 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         state_dict loading works correctly.
         """
         return [
+            self.gp_hidden,
+            self.gp_decoder,
             self.label_hidden1,
             self.label_hidden2,
             self.mse_hidden1,
@@ -650,13 +656,12 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         raw, _ = self.kc_head.forward_with_raw(pooled)
         return cast(torch.Tensor, raw)
 
-    def predict_kcs_top(
+    def predict_kcs_top(  # pylint: disable=too-many-locals
         self,
         pooled: torch.Tensor,
         topk: Optional[int] = None,
         min_prob: float = 0.0,
     ) -> List[List[Tuple[int, float]]]:
-        # pylint: disable=too-many-locals
         """Predict top Knowledge Components with probabilities.
 
         Returns all KCs above min_prob threshold, sorted by probability descending.
@@ -675,24 +680,25 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         probs = torch.sigmoid(logits / cur_temp)
 
-        batch_size = probs.size(0)
         kc_vocab_size = probs.size(-1)
-
         k = min(topk, kc_vocab_size) if topk is not None else kc_vocab_size
 
-        results = []
-        for i in range(batch_size):
-            sample_probs = probs[i]  # (kc_vocab_size,)
+        topk_vals, topk_inds = torch.topk(probs, k, dim=-1)
 
-            topk_vals, topk_inds = torch.topk(sample_probs, k)
-            sample_res = []
-            for j in range(k):
-                p = topk_vals[j].item()
-                if p >= min_prob:
-                    sample_res.append((int(topk_inds[j].item()), float(p)))
-                else:
-                    break  # Sorted descending, no more will pass
-            results.append(sample_res)
+        topk_vals_cpu = topk_vals.cpu()
+        topk_inds_cpu = topk_inds.cpu()
+
+        valid_counts = (topk_vals_cpu >= min_prob).sum(dim=-1)
+
+        results = []
+        for i in range(topk_vals_cpu.size(0)):
+            n = int(valid_counts[i].item())
+            if n > 0:
+                inds = topk_inds_cpu[i, :n].tolist()
+                vals = topk_vals_cpu[i, :n].tolist()
+                results.append(list(zip(inds, vals)))
+            else:
+                results.append([])
 
         return results
 
@@ -717,6 +723,15 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         kc_probs = torch.sigmoid(logits / cur_temp)
 
         return cast(torch.Tensor, self.kc_decoders(kc_probs))
+
+
+def get_inference_device() -> torch.device:
+    """Auto-detect the best available device for inference (CUDA > MPS > CPU)."""
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 
 def load_model(  # pylint: disable=too-many-locals
@@ -752,7 +767,7 @@ def load_model(  # pylint: disable=too-many-locals
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
 
     # Check for KC decoder weights
-    gp_weight_key = "kc_decoders.decoders.grammar_point.weight"
+    gp_weight_key = "kc_decoders.gp_decoder.weight"
     formality_weight_key = "kc_decoders.mse_decoders.formality.weight"
     gender_weight_key = "kc_decoders.mse_decoders.gender.weight"
     register_weight_key = "kc_decoders.decoders.register.weight"

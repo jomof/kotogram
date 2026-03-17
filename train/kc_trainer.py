@@ -1121,8 +1121,12 @@ class KCTrainer:
             p = max(1e-6, min(1.0 - 1e-6, p))
             b = float(-torch.log(torch.tensor(1.0 / p - 1.0)).item())
 
-            # Check if this is a label family or MSE family
-            if name in m.kc_decoders.decoders:
+            # Check if this is the GP decoder, a label family, or MSE family
+            if name == "grammar_point" and hasattr(m.kc_decoders, "gp_decoder"):
+                lin = m.kc_decoders.gp_decoder
+                if lin.bias is not None:
+                    nn.init.constant_(lin.bias, b)
+            elif name in m.kc_decoders.decoders:
                 lin = m.kc_decoders.decoders[name]
                 if lin.bias is not None:
                     nn.init.constant_(lin.bias, b)
@@ -1131,7 +1135,7 @@ class KCTrainer:
                 if lin.bias is not None:
                     nn.init.constant_(lin.bias, b)
             else:
-                continue  # Family not in either decoder dict
+                continue  # Family not in any decoder dict
 
             # Store pos_density for adaptive loss weighting
             if name in pos_density_sums and pos_density_counts.get(name, 0) > 0:
@@ -1399,6 +1403,10 @@ class KCTrainer:
 
         # Capture decoder bias at start of epoch for delta tracking
         bias_start: Dict[str, torch.Tensor] = {}
+        if hasattr(self.model.kc_decoders, "gp_decoder"):
+            gp_dec = self.model.kc_decoders.gp_decoder
+            if hasattr(gp_dec, "bias") and gp_dec.bias is not None:
+                bias_start["grammar_point"] = gp_dec.bias.detach().clone()
         for name, decoder in self.model.kc_decoders.decoders.items():
             if hasattr(decoder, "bias") and decoder.bias is not None:
                 bias_start[name] = decoder.bias.detach().clone()
@@ -3333,13 +3341,19 @@ class KCTrainer:
                 fam_diag.keys_present = ",".join(keys)
 
                 # Compute bias delta for gradient flow diagnostic
-                if name in bias_start and name in m.kc_decoders.decoders:
+                decoder_lin = None
+                if name == "grammar_point" and hasattr(m.kc_decoders, "gp_decoder"):
+                    decoder_lin = m.kc_decoders.gp_decoder
+                elif name in m.kc_decoders.decoders:
                     decoder_lin = m.kc_decoders.decoders[name]
-                    if hasattr(decoder_lin, "bias") and decoder_lin.bias is not None:
-                        # Use absolute sum of changes to detect learning
-                        # (mean would cancel out push-up vs push-down)
-                        bias_change = (decoder_lin.bias - bias_start[name]).abs().sum()
-                        fam_diag.bias_delta = float(bias_change.item())
+                if (
+                    name in bias_start
+                    and decoder_lin is not None
+                    and hasattr(decoder_lin, "bias")
+                    and decoder_lin.bias is not None
+                ):
+                    bias_change = (decoder_lin.bias - bias_start[name]).abs().sum()
+                    fam_diag.bias_delta = float(bias_change.item())
 
         # Compute bias_delta for MSE families
         for mse_name, mse_diag in diag_report.mse_families.items():

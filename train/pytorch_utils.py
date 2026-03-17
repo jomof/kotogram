@@ -37,6 +37,10 @@ def _is_layer_saved_in_slim(layer_name: str) -> bool:
             for fam in KC_FAMILIES.values()
         )
 
+    # Grammar point pathway: always saved
+    if sublayer in ("gp_hidden", "gp_decoder"):
+        return True
+
     # Per-family decoders: check is_slim_decoder
     if sublayer in ("decoders", "mse_decoders") and len(parts) >= 3:
         family_name = parts[2]

@@ -118,6 +118,10 @@ def save_model(
         ):
             return True
 
+        # Grammar point pathway (always keep for inference)
+        if sublayer in ("gp_hidden", "gp_decoder"):
+            return False
+
         # Handle per-family decoders
         if sublayer in ("decoders", "mse_decoders"):
             if len(parts) < 4:

@@ -42,6 +42,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from kotogram import locations
+from kotogram.model import get_inference_device as get_device
 from kotogram.tokenizer import (
     CLS_ID,
     MASK_ID,
@@ -597,15 +598,6 @@ def run_analogy_report(  # pylint: disable=too-many-positional-arguments,too-man
 
 
 # ─── Training ────────────────────────────────────────────────────────────────
-
-
-def get_device() -> torch.device:
-    """Detect best available device."""
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-        return torch.device("mps")
-    return torch.device("cpu")
 
 
 def parse_args() -> argparse.Namespace:

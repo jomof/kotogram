@@ -320,6 +320,7 @@ def generate_and_save_config(
             num_heads=args.num_heads,
             # KC Config
             kc_vocab_size=args.kc_k,
+            gp_decoder_hidden_dim=args.gp_hidden_dim,
         )
 
     # Read history to get current epoch counts (for +N syntax support)
@@ -473,8 +474,9 @@ def parse_arguments() -> argparse.Namespace:
     default_kc_epochs = _trainer_defaults.kc_epochs
     parser.add_argument("--kc-epochs", type=str, default=None, help=f"KC epochs (e.g., '6' or '+2', default: {default_kc_epochs})")
 
-    # ModelConfig defaults (kc_vocab_size)
+    # ModelConfig defaults (kc_vocab_size, gp_decoder_hidden_dim)
     parser.add_argument("--kc-vocab-size", type=int, default=_model_defaults.kc_vocab_size, dest="kc_k", help=f"KC vocabulary size (default: {_model_defaults.kc_vocab_size})")
+    parser.add_argument("--gp-hidden-dim", type=int, default=_model_defaults.gp_decoder_hidden_dim, dest="gp_hidden_dim", help=f"Grammar point decoder hidden dimension (default: {_model_defaults.gp_decoder_hidden_dim})")
 
     # KCConfig defaults (freeze, kl-sparse, skip_metrics)
     parser.add_argument(

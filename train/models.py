@@ -21,7 +21,12 @@ class KCDecoder(nn.Module):
       - Per-family output heads: hidden_dim -> 1
       - Tanh activation (bounded to [-1, 1])
 
-    - For label families (structural features - grammar_point, n-grams, etc.):
+    - For grammar_point (reduced-capacity pathway):
+      - Single hidden layer: kc_vocab_size -> gp_hidden_dim (default 64)
+      - ReLU activation
+      - Output head: gp_hidden_dim -> num_grammar_points
+
+    - For label families (structural features - n-grams, register, etc.):
       - Dedicated hidden layer 1: kc_vocab_size -> hidden_dim (default 256)
       - ReLU activation
       - Dedicated hidden layer 2: hidden_dim -> hidden_dim
@@ -34,15 +39,18 @@ class KCDecoder(nn.Module):
 
     Rationale: Style features (continuous regression) and structural features
     (multi-label classification) benefit from separate representation pathways.
+    The grammar_point decoder is intentionally low-capacity to force the KC
+    bottleneck to encode grammar information more directly.
     """
 
     RECON_POS_EMBED_DIM = 64
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-positional-arguments
         self,
         kc_vocab_size: int,
         target_specs: Dict[KcFamilyId, int],
         hidden_dim: int = 256,
+        gp_hidden_dim: int = 64,
         max_seq_len: int = 512,
     ):
         super().__init__()
@@ -100,6 +108,9 @@ class KCDecoder(nn.Module):
                     self._recon_k = fam.recon_k
                     break
 
+        # Grammar point pathway (reduced capacity, single hidden layer)
+        self.gp_hidden = nn.Linear(kc_vocab_size, gp_hidden_dim)
+
         # Per-family output heads
         self.decoders = nn.ModuleDict()
         self.mse_decoders = nn.ModuleDict()
@@ -107,7 +118,9 @@ class KCDecoder(nn.Module):
 
         for fid, vocab_size in target_specs.items():
             name = fid.name.lower()
-            if name in self._mse_families:
+            if name == "grammar_point":
+                self.gp_decoder = nn.Linear(gp_hidden_dim, vocab_size)
+            elif name in self._mse_families:
                 self.mse_decoders[name] = nn.Linear(hidden_dim, vocab_size)
             elif name in self._bert_families:
                 self.bert_decoders[name] = nn.Linear(hidden_dim, vocab_size)
@@ -136,6 +149,11 @@ class KCDecoder(nn.Module):
             Recon families produce [B, S, vocab_size]; others produce [B, vocab_size].
         """
         result = {}
+
+        # Grammar point pathway (reduced capacity, single hidden layer)
+        if hasattr(self, "gp_decoder"):
+            h_gp = self.activation(self.gp_hidden(kc_probs))
+            result["grammar_point"] = self.gp_decoder(h_gp)
 
         # MSE pathway: Process style features (gender, formality)
         if self.mse_decoders:
@@ -242,6 +260,7 @@ class TrainingClassifier(InferenceClassifier):
         self.kc_decoders = KCDecoder(
             config.kc_vocab_size,
             kc_target_specs,
+            gp_hidden_dim=config.gp_decoder_hidden_dim,
             max_seq_len=config.max_seq_len,
         )
 

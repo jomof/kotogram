@@ -187,8 +187,10 @@ class TestTrainStyleScript(unittest.TestCase):
             # slim_state is the state dict directly
             allowed_slim_families = {"gender", "formality", "grammar_point", "register"}
             allowed_shared_layers = {
+                "gp_hidden",
+                "gp_decoder",  # Grammar point pathway (reduced capacity)
                 "label_hidden1",
-                "label_hidden2",  # Label pathway (for grammar_point)
+                "label_hidden2",  # Label pathway (for register, etc.)
                 "mse_hidden1",
                 "mse_hidden2",  # MSE pathway (for gender/formality)
                 "activation",

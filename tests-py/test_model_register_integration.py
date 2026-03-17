@@ -11,6 +11,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
     def setUp(self):
         # Create a mock model and tokenizer
         self.mock_model = MagicMock()
+        # parameters() must yield a fresh iterator each call so analysis.py can derive device
+        self.mock_model.parameters = lambda: iter([torch.zeros(1)])
         self.mock_tokenizer = MagicMock()
 
         # Setup tokenizer mock - must include ALL FEATURE_FIELDS for analysis.py

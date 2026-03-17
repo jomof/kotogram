@@ -8,6 +8,7 @@ import torch
 
 from kotogram.analysis import _ANALYZER
 from kotogram.cli import main
+from kotogram.model import StylePrediction
 
 
 class TestCliModelDir(unittest.TestCase):
@@ -40,24 +41,23 @@ class TestCliModelDir(unittest.TestCase):
 
         # Mock return value of load_model to avoid actual loading
         mock_model = MagicMock()
+        # parameters() must yield a fresh iterator each call so analysis.py can derive device
+        mock_model.parameters = lambda: iter([torch.zeros(1)])
         # KC is always enabled; mock predict_kcs_top to return list with one empty element per batch
         mock_model.predict_kcs_top.return_value = [[]]  # One batch sample, no KCs
         mock_model.config.kc_threshold = 0.5  # Adaptive threshold default
         mock_tokenizer = MagicMock()
         mock_load_model.return_value = (mock_model, mock_tokenizer)
 
-        # Basic mocks for prediction to avoid crash
-        mock_prediction = MagicMock()
-        # Mocking return values for prediction attributes to simple float tensors
-        mock_prediction.formality_value = torch.tensor([0.0])
-        mock_prediction.formality_pragmatic_probs = torch.tensor(
-            [[0.0, 1.0]]
-        )  # Pragmatic
-        mock_prediction.gender_value = torch.tensor([0.0])
-        mock_prediction.gender_pragmatic_probs = torch.tensor([[0.0, 1.0]])
-        mock_prediction.register_probs = torch.tensor([[0.0] * 10])
-        mock_prediction.grammaticality_probs = torch.tensor([[0.0, 1.0]])
-        mock_model.predict.return_value = mock_prediction
+        # Return a real StylePrediction so analysis.py can iterate and .cpu() it
+        mock_model.predict.return_value = StylePrediction(
+            formality_value=torch.tensor([0.0]),
+            formality_pragmatic_probs=torch.tensor([[0.0, 1.0]]),
+            gender_value=torch.tensor([0.0]),
+            gender_pragmatic_probs=torch.tensor([[0.0, 1.0]]),
+            grammaticality_probs=torch.tensor([[0.0, 1.0]]),
+            register_probs=torch.tensor([[0.0] * 14]),
+        )
         # Mock predict_grammar_points to return None (no decoder available)
         mock_model.predict_grammar_points.return_value = None
 

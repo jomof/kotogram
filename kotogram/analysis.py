@@ -51,7 +51,11 @@ class StyleAnalyzer:
         # pylint: disable=import-outside-toplevel
         """Load and cache the style classifier model."""
         if self._model is None or self._tokenizer is None:
-            from kotogram.model import load_default_style_model, load_model
+            from kotogram.model import (
+                get_inference_device,
+                load_default_style_model,
+                load_model,
+            )
 
             # Priority 0: Custom model dir from CLI
             if self._custom_model_dir:
@@ -70,6 +74,9 @@ class StyleAnalyzer:
             else:
                 # Priority 2: Fall back to package-default model
                 self._model, self._tokenizer = load_default_style_model()
+
+            device = get_inference_device()
+            self._model.to(device)
 
         return self._model, self._tokenizer
 
@@ -181,6 +188,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, FEATURE_FIELDS
 
     model, tokenizer = _ANALYZER.load()
+    device = next(model.parameters()).device
 
     # Encode all kotograms
     encoded_list = [tokenizer.encode(k) for k in kotograms]
@@ -189,19 +197,19 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)
     batch_size = len(kotograms)
 
-    # Only build tensors for fields the encoder actually uses
+    # Build tensors on CPU, then transfer in bulk
     field_inputs = {}
     for field in ENCODER_FEATURE_FIELDS:
-        # 0 is the PAD_TOKEN id
         batch_ids = torch.zeros((batch_size, max_len), dtype=torch.long)
         for i, encoded in enumerate(encoded_list):
             ids = encoded[field]
             batch_ids[i, : len(ids)] = torch.tensor(ids, dtype=torch.long)
-        field_inputs[f"input_ids_{field}"] = batch_ids
+        field_inputs[f"input_ids_{field}"] = batch_ids.to(device)
 
     attention_mask = torch.zeros((batch_size, max_len), dtype=torch.long)
     for i, encoded in enumerate(encoded_list):
         attention_mask[i, : len(encoded[FEATURE_FIELDS[0]])] = 1
+    attention_mask = attention_mask.to(device)
 
     # Predict -- encode once, reuse pooled representation for all heads
     model.eval()
@@ -210,6 +218,13 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         prediction = model.predict(pooled)
         kc_top_results = model.predict_kcs_top(pooled)
         gp_probs_tensor = model.predict_grammar_points(pooled)
+
+    # Transfer predictions to CPU in bulk for post-processing
+    from kotogram.model import StylePrediction
+
+    prediction = StylePrediction(*(t.cpu() for t in prediction))
+    if gp_probs_tensor is not None:
+        gp_probs_tensor = gp_probs_tensor.cpu()
 
     results = []
     for i in range(batch_size):
@@ -251,19 +266,15 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
 
         # 3. Register
         detected_register_scores = {}
-        for reg_id, score in enumerate(prediction.register_probs[i]):
+        register_scores_list = prediction.register_probs[i].tolist()
+        for reg_id, score_val in enumerate(register_scores_list):
             label = REGISTER_ID_TO_LABEL.get(reg_id)
-            score_val = float(score.item())
             if label and score_val > 0.9:
                 detected_register_scores[label] = score_val
 
         detected_registers = set(detected_register_scores.keys())
         if not detected_registers:
             detected_registers.add(RegisterLevel.NEUTRAL)
-            # We don't have a model score for NEUTRAL usually as it's the fallback,
-            # but if we wanted to provide one we could, for now we just leave it as is
-            # or maybe add it with score 1.0 if it's the only one?
-            # The prompt says "only return register_scores for detected registers".
 
         # 4. Grammaticality
         gram_score = float(prediction.grammaticality_probs[i][1].item())
@@ -271,8 +282,6 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
 
         kc_top_sample = None
         if kc_top_results is not None:
-            # Convert list of (int, float) tuples to {int: float} dict
-            # Only include KCs with probability > 50%
             kc_top_sample = {
                 int(k_id): prob
                 for k_id, prob in kc_top_results[i]
@@ -289,10 +298,10 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
 
         # Extract register probabilities as a map: register_name -> probability
         reg_probs_sample: Dict[str, float] = {}
-        for reg_id, prob_tensor in enumerate(prediction.register_probs[i]):
+        for reg_id, score_val in enumerate(register_scores_list):
             label = REGISTER_ID_TO_LABEL.get(reg_id)
             if label:
-                reg_probs_sample[label.value] = float(prob_tensor.item())
+                reg_probs_sample[label.value] = score_val
 
         results.append(
             GrammarAnalysis(
