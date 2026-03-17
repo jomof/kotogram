@@ -73,7 +73,7 @@ class TestGenderLearning(unittest.TestCase):
 
         # Get KC probs and predict style values
         model.train()
-        kc_logits = model.predict_kcs(field_inputs, attention_mask)
+        kc_logits = model.predict_kcs(model.pool(field_inputs, attention_mask))
         cur_temp = getattr(model.config, "kc_temperature", 1.0)
         kc_probs = torch.sigmoid(kc_logits / cur_temp)
 

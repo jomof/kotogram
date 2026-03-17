@@ -73,7 +73,8 @@ class TestContinuousGender(unittest.TestCase):
 
         mask = torch.ones(bs, 10)
 
-        prediction = model.predict(inputs, mask)
+        pooled = model.pool(inputs, mask)
+        prediction = model.predict(pooled)
 
         # Check gender_value comes through
         self.assertEqual(prediction.gender_value.shape, (bs, 1))

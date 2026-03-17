@@ -196,6 +196,7 @@ class KCTrainer:
         self._ramp_step = config.ramp_step
         self._ramp_threshold = config.ramp_posp_threshold
         self._current_ratio = config.sample_ratio
+        self._surface_unfrozen_by_ramp = False
 
         self.val_sampler = None
         self.gram_sampler = None
@@ -3448,6 +3449,26 @@ class KCTrainer:
         self.train_timer_data.reset()
         self.train_timer_compute.reset()
 
+    def _maybe_unfreeze_surface(self, epoch_stats: TrainEpochStats) -> None:
+        """Unfreeze surface embedding layers when grammar_point PosP crosses threshold."""
+        if self._surface_unfrozen_by_ramp:
+            return
+        diag = epoch_stats.kc_diagnostics
+        if diag is None:
+            return
+        gp_stats = diag.families.get("grammar_point")
+        if gp_stats is None:
+            return
+        posp = gp_stats.prob_pos_mean
+        if round(posp * 100) < round(self._ramp_threshold * 100):
+            return
+        surface_emb = self.model.embedding.embeddings.get("surface")
+        if surface_emb is None or surface_emb.weight.requires_grad:
+            return
+        surface_emb.weight.requires_grad = True
+        self._surface_unfrozen_by_ramp = True
+        self.view.on_surface_unfrozen_by_ramp()
+
     def _maybe_ramp(self, epoch_stats: TrainEpochStats) -> None:
         """Bump data ratio when grammar_point PosP crosses the threshold."""
         if self._ramp_step <= 0 or self._current_ratio >= 1.0:
@@ -3539,6 +3560,7 @@ class KCTrainer:
 
             on_epoch_end(self.history)
 
+            self._maybe_unfreeze_surface(epoch_stats)
             self._maybe_ramp(epoch_stats)
 
         self.view.on_kc_train_end(self.history)

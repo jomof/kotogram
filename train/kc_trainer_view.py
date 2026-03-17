@@ -108,6 +108,10 @@ class KCTrainerView(Protocol):
     ) -> None:
         pass
 
+    def on_surface_unfrozen_by_ramp(self) -> None:
+        """Called when surface embedding is unfrozen after GP PosP crosses threshold."""
+        pass
+
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Called when metrics are skipped for early epochs."""
 
@@ -386,6 +390,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"  [bold green]⬆ Data ramp:[/bold green] "
             f"{old_ratio * 100:.1f}% → {new_ratio * 100:.1f}% "
             f"(GP PosP={posp * 100:.1f}% >= {threshold * 100:.1f}%)"
+        )
+
+    def on_surface_unfrozen_by_ramp(self) -> None:
+        console.print(
+            "  [bold green]Surface embeddings unfrozen[/bold green] "
+            "(GP PosP >= threshold); surface embedding layers will be trained."
         )
 
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:

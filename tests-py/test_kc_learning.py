@@ -217,7 +217,8 @@ def test_predict_kcs_top():
 
     attention_mask = torch.ones(batch_size, seq_len)
 
-    results = model.predict_kcs_top(field_inputs, attention_mask, min_prob=0.0)
+    pooled = model.pool(field_inputs, attention_mask)
+    results = model.predict_kcs_top(pooled, min_prob=0.0)
 
     assert len(results) == batch_size
     assert len(results[0]) <= 10  # kc_vocab_size (no top-k masking, all KCs returned)
@@ -229,11 +230,9 @@ def test_predict_kcs_top():
         assert 0.0 <= item[1] <= 1.0
 
     # Test K override
-    results_k2 = model.predict_kcs_top(field_inputs, attention_mask, topk=2)
+    results_k2 = model.predict_kcs_top(pooled, topk=2)
     assert len(results_k2[0]) <= 2
 
     # Test filtering
-    results_filtered = model.predict_kcs_top(
-        field_inputs, attention_mask, min_prob=0.99
-    )
+    results_filtered = model.predict_kcs_top(pooled, min_prob=0.99)
     assert isinstance(results_filtered, list)

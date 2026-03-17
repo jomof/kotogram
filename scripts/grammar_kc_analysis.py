@@ -194,7 +194,8 @@ def batch_infer_kc_probs(
             attention_mask[i, : len(encoded[FEATURE_FIELDS[0]])] = 1
 
         with torch.no_grad():
-            logits = model.predict_kcs(field_inputs, attention_mask)
+            pooled = model.pool(field_inputs, attention_mask)
+            logits = model.predict_kcs(pooled)
             temp = getattr(model.config, "kc_temperature", 1.0)
             probs = torch.sigmoid(logits / temp)
 
@@ -254,7 +255,8 @@ def batch_infer_kc_with_probs(
             attention_mask[i, : len(encoded[FEATURE_FIELDS[0]])] = 1
 
         with torch.no_grad():
-            logits = model.predict_kcs(field_inputs, attention_mask)
+            pooled = model.pool(field_inputs, attention_mask)
+            logits = model.predict_kcs(pooled)
             temp = getattr(model.config, "kc_temperature", 1.0)
             probs = torch.sigmoid(logits / temp)
 

@@ -34,7 +34,7 @@ def _default_run_name(
     return base
 
 
-def _can_connect(host: str, port: int, timeout: float = 1.0) -> bool:
+def can_connect(host: str, port: int, timeout: float = 1.0) -> bool:
     """Check TCP connectivity without raising exceptions."""
     import socket
 
@@ -45,11 +45,11 @@ def _can_connect(host: str, port: int, timeout: float = 1.0) -> bool:
     return result == 0
 
 
-def _pg_available() -> bool:
+def pg_available() -> bool:
     """Check if the Cloud SQL instance is reachable (direct or via proxy)."""
-    if _can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
+    if can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
         return True
-    return _can_connect("localhost", 5432)
+    return can_connect("localhost", 5432)
 
 
 def _get_machine_id() -> str:
@@ -125,8 +125,8 @@ def start_run(  # pylint: disable=too-many-positional-arguments
         mlflow.set_tracking_uri(tracking_uri)
     elif os.environ.get("MLFLOW_TRACKING_URI"):
         pass  # MLflow reads it automatically
-    elif _pg_available():
-        if _can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
+    elif pg_available():
+        if can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
             mlflow.set_tracking_uri(_DEFAULT_PG_URI)
         else:
             mlflow.set_tracking_uri(

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV_DIR="$(dirname "$SCRIPT_DIR")/.venv"
+
+if [ -d "$VENV_DIR" ]; then
+  # shellcheck disable=SC1090
+  source "$VENV_DIR/bin/activate"
+fi
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: scripts/cc <command> [args...]"
+  echo ""
+  echo "Commands:"
+  echo "  latest             Show info about Japanese content in the latest Common Crawl"
+  echo "  fetch-jp-wet       Download WET files and extract Japanese text"
+  echo "  extract-sentences  Extract and select sentences from fetched WET pages"
+  exit 1
+fi
+
+COMMAND="$1"
+shift
+
+# Convert hyphens to underscores for Python module names
+MODULE="scripts.cc_${COMMAND//-/_}"
+exec python -m "$MODULE" "$@"

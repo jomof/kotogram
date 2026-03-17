@@ -203,14 +203,13 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     for i, encoded in enumerate(encoded_list):
         attention_mask[i, : len(encoded[FEATURE_FIELDS[0]])] = 1
 
-    # Predict
+    # Predict -- encode once, reuse pooled representation for all heads
     model.eval()
     with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-        # Get Interpretable KCs (all KCs above default min_prob threshold)
-        kc_top_results = model.predict_kcs_top(field_inputs, attention_mask)
-        # Get grammar point predictions if decoder is available
-        gp_probs_tensor = model.predict_grammar_points(field_inputs, attention_mask)
+        pooled = model.pool(field_inputs, attention_mask)
+        prediction = model.predict(pooled)
+        kc_top_results = model.predict_kcs_top(pooled)
+        gp_probs_tensor = model.predict_grammar_points(pooled)
 
     results = []
     for i in range(batch_size):

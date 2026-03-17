@@ -650,6 +650,7 @@ if __name__ == "__main__":
                 if uploader:
                     uploader.queue_dir(output_path, "model")
                     uploader.queue_file(get_checkpoint_path(), "checkpoint")
+                    uploader.queue_file(tokenizer_path, "vocab")
 
             # Style epoch (if remaining)
             if style_epochs_done < style_epochs_target:
@@ -663,6 +664,7 @@ if __name__ == "__main__":
                 _export_model(model)
                 if uploader:
                     uploader.queue_dir(output_path, "model")
+                    uploader.queue_file(tokenizer_path, "vocab")
 
             # Both done?
             if (
@@ -693,6 +695,7 @@ if __name__ == "__main__":
             _export_model(model)
             if uploader:
                 uploader.queue_dir(output_path, "model")
+                uploader.queue_file(tokenizer_path, "vocab")
 
         # Final timing report
         _view.on_timing_summary(style_end - style_start)

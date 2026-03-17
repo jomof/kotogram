@@ -552,6 +552,18 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         )
         return x
 
+    def pool(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: torch.Tensor,
+    ) -> torch.Tensor:
+        """Encode inputs and return the pooled representation.
+
+        Call once, then pass the result to predict / predict_kcs / etc.
+        """
+        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
+        return cast(torch.Tensor, self.pooler(encoder_output, attention_mask))
+
     def forward(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -567,30 +579,27 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             Tuple of (formality_prag, gender_prag, grammaticality) logits.
             Style values (formality_value, gender_value) and register come from KC decoder.
         """
-        # Get encoder hidden states
-        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
-
-        # Use unified attention pooler for style classification
-        classifier_input = self.pooler(encoder_output, attention_mask)
+        pooled = self.pool(field_inputs, attention_mask)
 
         return (
-            self.formality_pragmatic_head(classifier_input),
-            self.gender_pragmatic_head(classifier_input),
-            self.grammaticality_classifier(classifier_input),
+            self.formality_pragmatic_head(pooled),
+            self.gender_pragmatic_head(pooled),
+            self.grammaticality_classifier(pooled),
         )
 
-    def predict(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: torch.Tensor,
-    ) -> StylePrediction:
-        """Full prediction including style values from KC decoder."""
-        formality_prag, gender_prag, gram = self(field_inputs, attention_mask)
+    def predict(self, pooled: torch.Tensor) -> StylePrediction:
+        """Full prediction including style values from KC decoder.
 
-        # Get KC probabilities for style value prediction
-        kc_logits = self.predict_kcs(field_inputs, attention_mask)
+        All heads share the single pooled representation from pool().
+        """
+        formality_prag = self.formality_pragmatic_head(pooled)
+        gender_prag = self.gender_pragmatic_head(pooled)
+        gram = self.grammaticality_classifier(pooled)
+
+        # KC probabilities from the shared pooled representation
+        raw_kc, _ = self.kc_head.forward_with_raw(pooled)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
-        kc_probs = torch.sigmoid(kc_logits / cur_temp)
+        kc_probs = torch.sigmoid(raw_kc / cur_temp)
 
         # Get style values and register from KC decoder
         formality_val = None
@@ -629,33 +638,21 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
         return self.embedding.resize_embeddings(new_vocab_sizes)
 
-    def predict_kcs(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: torch.Tensor,
-    ) -> torch.Tensor:
-        """Predict Knowledge Component activations for input sentences.
+    def predict_kcs(self, pooled: torch.Tensor) -> torch.Tensor:
+        """Predict Knowledge Component activations.
 
         Args:
-            field_inputs: Input features
-            attention_mask: Attention mask
+            pooled: Pooled encoder representation from pool().
 
         Returns:
             activations: (B, kc_vocab_size) tensor of KC logits
         """
-
-        pooled = self.pooler(
-            self.get_encoder_output(field_inputs, attention_mask), attention_mask
-        )
-        # Use raw (pre-LayerNorm) logits to match training's probability path.
-        # Training uses forward_with_raw() and computes sigmoid(raw / temp).
         raw, _ = self.kc_head.forward_with_raw(pooled)
         return cast(torch.Tensor, raw)
 
     def predict_kcs_top(
         self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: torch.Tensor,
+        pooled: torch.Tensor,
         topk: Optional[int] = None,
         min_prob: float = 0.0,
     ) -> List[List[Tuple[int, float]]]:
@@ -666,8 +663,7 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         If topk is specified, returns at most topk results per sample.
 
         Args:
-            field_inputs: Input features
-            attention_mask: Attention mask
+            pooled: Pooled encoder representation from pool().
             topk: Optional maximum number of results per sample
             min_prob: Minimum probability threshold
 
@@ -675,15 +671,13 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             List of lists, where each inner list contains (kc_id, probability) tuples
             for a sample in the batch.
         """
-        # Get dense logits
-        logits = self.predict_kcs(field_inputs, attention_mask)
+        logits = self.predict_kcs(pooled)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         probs = torch.sigmoid(logits / cur_temp)
 
         batch_size = probs.size(0)
         kc_vocab_size = probs.size(-1)
 
-        # Sort all KCs by probability
         k = min(topk, kc_vocab_size) if topk is not None else kc_vocab_size
 
         results = []
@@ -702,16 +696,11 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
 
         return results
 
-    def predict_grammar_points(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: torch.Tensor,
-    ) -> Optional[torch.Tensor]:
-        """Predict grammar point probabilities for input sentences.
+    def predict_grammar_points(self, pooled: torch.Tensor) -> Optional[torch.Tensor]:
+        """Predict grammar point probabilities.
 
         Args:
-            field_inputs: Input features
-            attention_mask: Attention mask
+            pooled: Pooled encoder representation from pool().
 
         Returns:
             grammar_point_probs: [B, num_grammar_points] tensor of probabilities,
@@ -720,12 +709,10 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         if self.kc_decoders is None:
             return None
 
-        # Only KCDecoderInference is supported for inference-time grammar_point
         if not isinstance(self.kc_decoders, KCDecoderInference):
             return None
 
-        # Get KC logits and probabilities
-        logits = self.predict_kcs(field_inputs, attention_mask)
+        logits = self.predict_kcs(pooled)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         kc_probs = torch.sigmoid(logits / cur_temp)
 
