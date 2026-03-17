@@ -110,7 +110,6 @@ class KCTrainerView(Protocol):
 
     def on_surface_unfrozen_by_ramp(self) -> None:
         """Called when surface embedding is unfrozen after GP PosP crosses threshold."""
-        pass
 
     def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
         """Called when metrics are skipped for early epochs."""

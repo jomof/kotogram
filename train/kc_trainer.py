@@ -3462,8 +3462,14 @@ class KCTrainer:
         posp = gp_stats.prob_pos_mean
         if round(posp * 100) < round(self._ramp_threshold * 100):
             return
-        surface_emb = self.model.embedding.embeddings.get("surface")
-        if surface_emb is None or surface_emb.weight.requires_grad:
+        emb_dict = self.model.embedding.embeddings
+        if "surface" not in emb_dict:
+            return
+        surface_emb = emb_dict["surface"]
+        if (
+            not isinstance(surface_emb, nn.Embedding)
+            or surface_emb.weight.requires_grad
+        ):
             return
         surface_emb.weight.requires_grad = True
         self._surface_unfrozen_by_ramp = True
