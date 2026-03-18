@@ -767,8 +767,19 @@ class KCTrainer:
             self._surface_id_to_token = {v: k for k, v in vocab.items()}
         return self._surface_id_to_token
 
-    def _evaluate_canary(self, sentence: str) -> str:
-        """Evaluate a canary sentence and return compact summary string."""
+    def _evaluate_canary(
+        self, sentence: str, expected_gp: Optional[int] = None
+    ) -> Tuple[str, Optional[float]]:
+        """Evaluate a canary sentence and return (summary_string, expected_gp_prob).
+
+        Args:
+            sentence: Japanese sentence to evaluate.
+            expected_gp: If set, extract sigmoid(logit) for this GP index.
+
+        Returns:
+            (display_text, gp_prob) where gp_prob is the sigmoid probability
+            for expected_gp, or None if not requested / unavailable.
+        """
         tok = self.dataset.tokenizer
         encoded = tok.encode(sentence)
         seq_len = len(encoded[ENCODER_FEATURE_FIELDS[0]])
@@ -783,6 +794,7 @@ class KCTrainer:
 
         was_training = self.model.training
         self.model.eval()
+        expected_gp_prob: Optional[float] = None
         with torch.no_grad():
             outputs = self.model(
                 field_inputs,
@@ -818,8 +830,10 @@ class KCTrainer:
             if "grammar_point" in target_logits:
                 gp_logits = target_logits["grammar_point"][0]
                 gp_probs = torch.sigmoid(gp_logits)
-                for idx in torch.where(gp_probs > thresh)[0].tolist():
+                for idx in torch.where(gp_probs > 0.5)[0].tolist():
                     gp_list.append(f"gp{int(idx):04d}")
+                if expected_gp is not None and expected_gp < len(gp_probs):
+                    expected_gp_prob = float(gp_probs[expected_gp].item())
 
             # Reconstruction: decode predicted tokens back to text
             recon_str = ""
@@ -845,7 +859,31 @@ class KCTrainer:
         base = f"{sentence} kcs={kc_count} {gender_str} {gram_str} gps={gps_str}"
         if recon_str:
             base += f" → {recon_str}"
-        return base
+        return base, expected_gp_prob
+
+    # (bin_label, sentence, expected_gp_index)
+    _CANARIES: List[Tuple[str, str, int]] = [
+        ("1-3", "食べます", 1007),  # gp1007 = Verb[ます]
+        ("4-7", "ああ、もう無理だ。", 1),  # gp0001 = だ (copula)
+        (
+            "8-15",
+            "昨日の夜に降った雪はとても綺麗だったわ",
+            466,
+        ),  # gp0466 = わ (feminine)
+    ]
+
+    def _build_canary_fields(self, skip: bool) -> Dict[str, Any]:
+        """Evaluate all canary sentences and return fields for KcEpochSummary."""
+        if skip:
+            return {"canary_texts": {}, "canary_gp_probs": {}}
+        texts: Dict[str, str] = {}
+        gp_probs: Dict[str, float] = {}
+        for bin_label, sentence, expected_gp in self._CANARIES:
+            text, prob = self._evaluate_canary(sentence, expected_gp=expected_gp)
+            texts[bin_label] = text
+            if prob is not None:
+                gp_probs[bin_label] = prob
+        return {"canary_texts": texts, "canary_gp_probs": gp_probs}
 
     def _iter_layer_health_batches(self, num_batches: int) -> Any:
         """Yield batches for layer health, interleaving gram/ungram to match training."""
@@ -3405,12 +3443,7 @@ class KCTrainer:
             gp_priors=gp_priors_summary,
             gp_default_prior=self._gp_computed_default_prior,
             total_samples=total_samples_seen,
-            canary_texts={
-                "1-3": self._evaluate_canary("食べます"),
-                "4-7": self._evaluate_canary("ああ、もう無理だ。"),
-            }
-            if not skip_metrics
-            else {},
+            **self._build_canary_fields(skip_metrics),
             layer_health=layer_health,
         )
 
@@ -3441,6 +3474,8 @@ class KCTrainer:
             sizing_metrics["s1_pct"] = self.view.sharp1_count / apc
             sizing_metrics["s0_pct"] = self.view.sharp0_count / apc
             sizing_metrics["fuzzy_pct"] = self.view.fuzzy_count / apc
+            for bin_label, prob in summary.canary_gp_probs.items():
+                sizing_metrics[f"canary_gp_{bin_label}"] = prob
 
         epoch_result = TrainEpochResult(
             total_loss=total_loss,
@@ -3561,6 +3596,9 @@ class KCTrainer:
             self.history.s1_pct.append(sm.get("s1_pct") if sm else None)
             self.history.s0_pct.append(sm.get("s0_pct") if sm else None)
             self.history.fuzzy_pct.append(sm.get("fuzzy_pct") if sm else None)
+            self.history.canary_gp_1_3.append(sm.get("canary_gp_1-3") if sm else None)
+            self.history.canary_gp_4_7.append(sm.get("canary_gp_4-7") if sm else None)
+            self.history.canary_gp_8_15.append(sm.get("canary_gp_8-15") if sm else None)
 
             # Record active KC targets
             active_targets = sorted(list(kc_losses.keys()))

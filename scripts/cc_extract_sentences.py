@@ -385,17 +385,23 @@ def _get_diversity(
     cache_dir = _cache_path(crawl_id, "inference")
     cache_dir.mkdir(parents=True, exist_ok=True)
     div_path = cache_dir / "diversity.npy"
+    emb_path = cache_dir / "cc-embeddings.npy"
     corpus_cache = corpus_embed_path()
 
     cached_n = 0
     parts: list[np.ndarray] = []
 
-    if (
-        div_path.exists()
-        and is_cache_valid(cache_dir, model_md5)
-        and corpus_cache.exists()
-        and div_path.stat().st_mtime > corpus_cache.stat().st_mtime
-    ):
+    deps_fresh = (
+        (
+            corpus_cache.exists()
+            and emb_path.exists()
+            and div_path.stat().st_mtime
+            > max(corpus_cache.stat().st_mtime, emb_path.stat().st_mtime)
+        )
+        if div_path.exists()
+        else False
+    )
+    if deps_fresh and is_cache_valid(cache_dir, model_md5):
         cached: np.ndarray = np.load(str(div_path))
         cached_n = cached.shape[0]
         if cached_n == cc_emb.shape[0]:

@@ -1,16 +1,15 @@
-"""Tests for curate script KC family references.
+"""Tests for curate script KC family references and KC target computation.
 
 This test ensures the curate script's KC family references stay in sync
 with the KcFamilyId enum, catching rename mismatches.
 
-Also verifies that kc-tail-stats diagnostic tool computes the same KC
-targets as the actual training pipeline.
+Also verifies that compute_kc_targets is deterministic and correct using
+synthetic inputs — no dependency on production labeling artifacts.
 """
 
 import ast
-import os
 import unittest
-from typing import List
+from typing import Any, Dict, List, Set
 
 from train.kc import KcFamilyId
 
@@ -57,160 +56,251 @@ class TestCurateKcFamilyReferences:
         assert not missing, f"KC families missing from FAMILY_FEATURES: {missing}"
 
 
-class TestCurateKcTailStatsSync(unittest.TestCase):
-    """Verify curate kc-tail-stats computes the same targets as training.
+# ---------------------------------------------------------------------------
+# Synthetic fixtures for compute_kc_targets tests
+# ---------------------------------------------------------------------------
 
-    This test ensures the diagnostic tool stays in sync with training data.
-    If these drift apart, the diagnostic output would be misleading.
+_DISALLOW_VOCAB: Dict[str, int] = {
+    "noun:common-noun": 4,
+    "verb:general": 5,
+    "particle:case-particle": 6,
+    "aux-verb": 7,
+    "aux-symbol:period": 8,
+    "adj-i:general": 9,
+    "adverb:general": 10,
+    "suffix:nominal": 11,
+    "noun:proper-noun": 12,
+}
+
+# 10-token sentence; positions 2, 5, 9 are disallowed (compound_1 ∈ {4, 8}).
+_FIXTURE_10: Dict[str, List[int]] = {
+    "surface": [100, 101, 102, 103, 104, 105, 106, 107, 108, 109],
+    "pos": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+    "compound_1": [5, 6, 4, 7, 9, 4, 10, 5, 6, 8],
+    "conjugated_type": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+    "reading_gram": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+}
+
+# 3-token sentence with CLS (id=2) at position 0, no disallowed tokens.
+_FIXTURE_CLS: Dict[str, List[int]] = {
+    "surface": [2, 50, 51],
+    "pos": [2, 15, 16],
+    "compound_1": [2, 5, 6],
+    "conjugated_type": [2, 33, 34],
+    "reading_gram": [2, 60, 61],
+}
+
+# Expected outputs for _FIXTURE_10 (with disallow filter active).
+# If compute_kc_targets logic changes, update these to match and re-label.
+_EXPECTED_10: Dict[KcFamilyId, List[int]] = {
+    KcFamilyId.BAG_READING_GRAM: [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    KcFamilyId.BAG_POS: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+    KcFamilyId.BAG_COMPOUND_1: [4, 5, 6, 7, 8, 9, 10],
+    KcFamilyId.BAG_CONJUGATED_TYPE: [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+    KcFamilyId.TAIL_READING_GRAM: [46, 47, 48],
+    KcFamilyId.TAIL_POS: [26, 27, 28],
+    KcFamilyId.TAIL_COMPOUND_1: [5, 6, 10],
+    KcFamilyId.TAIL_CONJUGATED_TYPE: [36, 37, 38],
+    KcFamilyId.NGRAM_POS: [48, 125, 439, 570, 725, 1174, 1186, 1202, 1215, 1364, 1999],
+    KcFamilyId.NGRAM_COMPOUND_1: [
+        464,
+        4441,
+        6983,
+        15714,
+        23032,
+        23088,
+        26745,
+        28418,
+        30602,
+        31502,
+    ],
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: [
+        2355,
+        2738,
+        3571,
+        3762,
+        3801,
+        4478,
+        4769,
+        5959,
+        6055,
+        6644,
+        7492,
+    ],
+    KcFamilyId.NGRAM_READING_GRAM: [
+        45379,
+        50373,
+        60292,
+        62627,
+        74431,
+        97858,
+        141901,
+        167240,
+        168458,
+        226569,
+        231823,
+    ],
+    KcFamilyId.TAIL_NGRAM_POS: [265, 270, 574],
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: [4, 3183, 3699],
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: [3655, 6539, 7034],
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: [15107, 90496, 114337],
+}
+
+# Expected outputs for _FIXTURE_CLS (CLS excluded, no disallowed tokens).
+_EXPECTED_CLS: Dict[KcFamilyId, List[int]] = {
+    KcFamilyId.BAG_READING_GRAM: [60, 61],
+    KcFamilyId.BAG_POS: [15, 16],
+    KcFamilyId.BAG_COMPOUND_1: [5, 6],
+    KcFamilyId.BAG_CONJUGATED_TYPE: [33, 34],
+    KcFamilyId.TAIL_READING_GRAM: [60, 61],
+    KcFamilyId.TAIL_POS: [15, 16],
+    KcFamilyId.TAIL_COMPOUND_1: [5, 6],
+    KcFamilyId.TAIL_CONJUGATED_TYPE: [33, 34],
+    KcFamilyId.NGRAM_POS: [1854],
+    KcFamilyId.NGRAM_COMPOUND_1: [26745],
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: [6055],
+    KcFamilyId.NGRAM_READING_GRAM: [92882],
+    KcFamilyId.TAIL_NGRAM_POS: [256],
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: [3183],
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: [2658],
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: [85680],
+}
+
+
+def _computed_families(
+    feature_ids: Dict[str, List[int]],
+) -> Dict[KcFamilyId, Any]:
+    """Thin wrapper: compute non-DB-sourced KC families."""
+    from train.kc import compute_kc_targets, is_family_db_sourced
+
+    raw = compute_kc_targets(feature_ids)
+    return {k: v for k, v in raw.items() if not is_family_db_sourced(k)}
+
+
+class TestComputeKcTargets(unittest.TestCase):
+    """Verify compute_kc_targets correctness using synthetic fixtures.
+
+    These tests are fully self-contained — no production labeling artifacts
+    required.  If the expected values need updating (because compute_kc_targets
+    was intentionally changed), update the _EXPECTED_* dicts above and re-run
+    the labeling pipeline.
     """
 
     @classmethod
-    def setUpClass(cls):
-        """Load tokenizer and dataset once for all tests."""
-        from kotogram.tokenizer import Tokenizer
-        from train import paths
+    def setUpClass(cls) -> None:
         from train.kc import initialize_disallow_filter
 
-        vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
-        if not os.path.exists(vocab_path):
-            raise unittest.SkipTest(
-                "Vocab not found. Run 'bin/train_style --label' first."
+        initialize_disallow_filter(_DISALLOW_VOCAB)
+
+    def test_determinism(self) -> None:
+        """Repeated calls produce identical output."""
+        a = _computed_families(_FIXTURE_10)
+        b = _computed_families(_FIXTURE_10)
+        for fam_id, vals_a in a.items():
+            self.assertEqual(vals_a, b[fam_id], f"{fam_id.name} not deterministic")
+
+    def test_fixture_10_all_families(self) -> None:
+        """Verify all non-DB families against known expected values."""
+        actual = _computed_families(_FIXTURE_10)
+        for fam_id, expected in _EXPECTED_10.items():
+            self.assertEqual(
+                actual.get(fam_id, []),
+                expected,
+                f"{fam_id.name} mismatch",
             )
 
-        cls.tokenizer = Tokenizer.load(vocab_path)
-
-        # Initialize disallow filter (same as training and curate do)
-        compound_1_vocab = cls.tokenizer.field_vocabs.get("compound_1", {})
-        initialize_disallow_filter(compound_1_vocab)
-
-        # Check if dataset exists
-        cache_dir = paths.get_style_dataset_cache_dir()
-        offsets_path = os.path.join(cache_dir, "offsets.bin")
-        if not os.path.exists(offsets_path):
-            raise unittest.SkipTest(
-                "Dataset not found. Run 'bin/train_style --label' first."
+    def test_fixture_cls_all_families(self) -> None:
+        """Verify CLS token is excluded from all families."""
+        actual = _computed_families(_FIXTURE_CLS)
+        for fam_id, expected in _EXPECTED_CLS.items():
+            self.assertEqual(
+                actual.get(fam_id, []),
+                expected,
+                f"{fam_id.name} mismatch",
             )
 
-        # Load dataset
-        from kotogram.tokenizer import ALL_FEATURE_FIELDS
-        from train.dataset import StyleDataset
+    def test_cls_excluded_from_bags(self) -> None:
+        """CLS_ID must never appear in bag family targets."""
+        from kotogram.tokenizer import CLS_ID
 
-        cls.dataset = StyleDataset(
-            cache_dir, cls.tokenizer, feature_fields=ALL_FEATURE_FIELDS
+        actual = _computed_families(_FIXTURE_CLS)
+        for fam_id in [
+            KcFamilyId.BAG_READING_GRAM,
+            KcFamilyId.BAG_POS,
+            KcFamilyId.BAG_COMPOUND_1,
+            KcFamilyId.BAG_CONJUGATED_TYPE,
+        ]:
+            self.assertNotIn(CLS_ID, actual.get(fam_id, []), fam_id.name)
+
+    def test_disallow_positions(self) -> None:
+        """Positions with disallowed compound_1 IDs are identified."""
+        from train.kc import get_disallowed_positions
+
+        positions = get_disallowed_positions(_FIXTURE_10)
+        self.assertEqual(positions, {2, 5, 9})
+
+    def test_disallow_reduces_tail_but_not_bag(self) -> None:
+        """Disallow filter removes tokens from tail/ngram families but not bag."""
+        from train.kc import initialize_disallow_filter
+
+        # Compute WITH disallow filter (already active from setUpClass)
+        with_filter = _computed_families(_FIXTURE_10)
+
+        # Compute WITHOUT disallow filter (empty vocab → no IDs to disallow)
+        initialize_disallow_filter({})
+        try:
+            without_filter = _computed_families(_FIXTURE_10)
+        finally:
+            initialize_disallow_filter(_DISALLOW_VOCAB)
+
+        bag_families: Set[KcFamilyId] = {
+            KcFamilyId.BAG_READING_GRAM,
+            KcFamilyId.BAG_POS,
+            KcFamilyId.BAG_COMPOUND_1,
+            KcFamilyId.BAG_CONJUGATED_TYPE,
+        }
+
+        for fam_id in with_filter:
+            with_set = set(with_filter[fam_id])
+            without_set = set(without_filter[fam_id])
+            if fam_id in bag_families:
+                self.assertEqual(
+                    with_set, without_set, f"{fam_id.name} bags should be unaffected"
+                )
+            else:
+                self.assertTrue(
+                    len(with_set) < len(without_set),
+                    f"{fam_id.name}: disallow filter should reduce targets "
+                    f"(with={len(with_set)}, without={len(without_set)})",
+                )
+
+    def test_tail_window_respected(self) -> None:
+        """Tail families only include tokens from the last KC_POS_BIASED_WINDOW positions."""
+        from train.kc import (
+            KC_POS_BIASED_WINDOW,
+            get_disallowed_positions,
+            get_tail_ids,
         )
 
-    def test_tail_compound_1_matches_training_data(self):  # pylint: disable=too-many-locals
-        """Verify curate helper produces same TAIL_COMPOUND_1 as training dataset.
+        disallowed = get_disallowed_positions(_FIXTURE_10)
+        tail = get_tail_ids(
+            _FIXTURE_10, "compound_1", filter_unk=True, disallowed_positions=disallowed
+        )
+        self.assertEqual(tail, [5, 6, 10])
 
-        Compares training TAIL_COMPOUND_1 targets from StyleDataset with what
-        the curate helper functions compute (same as kc-tail-stats). They must
-        be identical to ensure the diagnostic tool is accurate.
-        """
-        import torch
+        seq_len = len(_FIXTURE_10["compound_1"])
+        tail_start = max(0, seq_len - KC_POS_BIASED_WINDOW)
+        self.assertEqual(tail_start, 5)
 
-        from train.kc import get_disallowed_positions, get_tail_ids
-
-        mismatches: List[str] = []
-
-        for idx in range(min(100, len(self.dataset))):
-            sample = self.dataset[idx]
-
-            # Get TAIL_COMPOUND_1 from training data
-            training_set = set(sample.kc_targets.get(KcFamilyId.TAIL_COMPOUND_1, []))
-
-            # Must convert tensors to lists (same as compute_kc_targets does)
-            feature_ids_list = {
-                k: v.tolist() if isinstance(v, torch.Tensor) else list(v)
-                for k, v in sample.feature_ids.items()
-            }
-            disallowed = get_disallowed_positions(feature_ids_list)
-            curate_set = set(
-                get_tail_ids(
-                    feature_ids_list,
-                    "compound_1",
-                    filter_unk=True,
-                    disallowed_positions=disallowed,
-                )
-            )
-
-            if training_set != curate_set:
-                mismatches.append(
-                    f"Sample {idx}: training={sorted(training_set)}, curate={sorted(curate_set)}"
-                )
-
-        if mismatches:
-            self.fail(
-                "TAIL_COMPOUND_1 mismatch between training and curate!\n"
-                "kc-tail-stats is out of sync with training data.\n"
-                f"First 5 mismatches:\n{chr(10).join(mismatches[:5])}"
-            )
-
-    def test_disallow_filter_active(self):
-        """Verify disallow filter is applied when disallowed tokens are present."""
-        from train.kc import TAIL_DISALLOW, get_disallowed_positions
-
-        # Find a sample that contains a disallowed token
-        for idx in range(min(500, len(self.dataset))):
-            sample = self.dataset[idx]
-            positions = get_disallowed_positions(sample.feature_ids)
-            if positions:
-                # Found one - verify disallow filter is working
-                self.assertGreater(len(positions), 0)
-                # Verify TAIL_DISALLOW contains expected tokens
-                self.assertIn("noun:common-noun", TAIL_DISALLOW)
-                return
-
-        # No samples with disallowed tokens found - still pass but note it
-        # This is unexpected but not a test failure
-
-    def test_kc_families_matches_training_data(self):
-        """Verify kc-families (compute_kc_targets) matches training dataset.
-
-        This ensures scripts/curate kc-families shows the same KC targets
-        as what training actually uses. Tests ALL KC families, not just
-        TAIL_COMPOUND_1.
-        """
-        from train.kc import ALL_KC_FAMILIES, compute_kc_targets, is_family_db_sourced
-
-        # Sample a few indices to test
-        sample_size = min(50, len(self.dataset))
-        test_indices = list(range(0, sample_size))
-
-        mismatches: List[str] = []
-
-        for idx in test_indices:
-            sample = self.dataset[idx]
-
-            # Get KC targets from training data (pre-computed in dataset)
-            training_targets = sample.kc_targets
-
-            # Compute KC targets using kc-families logic (compute_kc_targets)
-            computed_targets = compute_kc_targets(sample.feature_ids)
-
-            # Compare all families except DB-sourced ones (GRAMMAR_POINT)
-            # DB-sourced families have different data structures (dict with pos/neg)
-            # and are not included in compute_kc_targets output
-            for family in ALL_KC_FAMILIES:
-                if is_family_db_sourced(family):
-                    continue  # Skip DB-sourced families
-
-                training_set = set(training_targets.get(family, []))
-                computed_set = set(computed_targets.get(family, []))
-
-                if training_set != computed_set:
-                    mismatches.append(
-                        f"Sample {idx}, {family.name}: "
-                        f"training={sorted(training_set)}, "
-                        f"computed={sorted(computed_set)}"
-                    )
-
-        if mismatches:
-            msg = (
-                "KC targets mismatch between training and kc-families!\n"
-                "scripts/curate kc-families is out of sync with training.\n"
-                "First 10 mismatches:\n" + "\n".join(mismatches[:10])
-            )
-            self.fail(msg)
+    def test_all_computed_families_have_expectations(self) -> None:
+        """Every non-DB family returned by compute_kc_targets is covered by fixtures."""
+        actual = _computed_families(_FIXTURE_10)
+        untested = set(actual.keys()) - set(_EXPECTED_10.keys())
+        self.assertFalse(
+            untested,
+            f"New KC families without test expectations: {[f.name for f in untested]}. "
+            "Add entries to _EXPECTED_10 and _EXPECTED_CLS.",
+        )
 
 
 if __name__ == "__main__":

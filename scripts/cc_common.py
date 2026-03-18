@@ -400,8 +400,16 @@ def diversity_scores(
     """L2 distance from each CC embedding to its nearest corpus.db neighbour."""
     from rich.progress import Progress as RichProgress
 
-    corpus_f32: np.ndarray = corpus_embeddings.astype(np.float32)
-    cc_f32: np.ndarray = cc_embeddings.astype(np.float32)
+    corpus_f32 = (
+        corpus_embeddings
+        if corpus_embeddings.dtype == np.float32
+        else corpus_embeddings.astype(np.float32)
+    )
+    cc_f32 = (
+        cc_embeddings
+        if cc_embeddings.dtype == np.float32
+        else cc_embeddings.astype(np.float32)
+    )
 
     num_workers = max(1, mp.cpu_count() or 1)
     chunks = [
@@ -453,12 +461,32 @@ def is_cache_valid(cache_dir: Path, model_md5: str) -> bool:
     return meta.get("model_hash") == model_md5
 
 
-def write_cache_meta(cache_dir: Path, model_md5: str) -> None:
+def write_cache_meta(
+    cache_dir: Path, model_md5: str, *, sentences_fp: str = ""
+) -> None:
     """Write/overwrite model hash metadata for an inference cache directory."""
-    (cache_dir / _CACHE_META_NAME).write_text(
-        json.dumps({"model_hash": model_md5}),
-        encoding="utf-8",
-    )
+    meta: dict[str, str] = {"model_hash": model_md5}
+    if sentences_fp:
+        meta["sentences_fp"] = sentences_fp
+    (cache_dir / _CACHE_META_NAME).write_text(json.dumps(meta), encoding="utf-8")
+
+
+def _read_sentences_fp(cache_dir: Path) -> str:
+    """Read the stored sentence-list fingerprint, or '' if absent."""
+    meta_path = cache_dir / _CACHE_META_NAME
+    if not meta_path.exists():
+        return ""
+    meta: dict[str, str] = json.loads(meta_path.read_text(encoding="utf-8"))
+    return meta.get("sentences_fp", "")
+
+
+def sentences_fingerprint(sentences: list[str]) -> str:
+    """Fast SHA-256 fingerprint of a sentence list (O(1) memory)."""
+    h = hashlib.sha256()
+    for s in sentences:
+        h.update(s.encode("utf-8"))
+        h.update(b"\n")
+    return h.hexdigest()[:16]
 
 
 # ---------------------------------------------------------------------------
@@ -595,51 +623,111 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
 # ---------------------------------------------------------------------------
 
 
-def get_cc_scores(
+_INFERENCE_CHUNK = 200_000
+
+
+def _cc_score_paths(cache_dir: Path) -> tuple[Path, Path, Path]:
+    return (
+        cache_dir / "cc-embeddings.npy",
+        cache_dir / "cc-uncertainty.npy",
+        cache_dir / "cc-gram-probs.npy",
+    )
+
+
+def get_cc_scores(  # pylint: disable=too-many-locals
     crawl_id: str,
     cc_sentences: list[str],
     model: Any,
     device: Any,
     model_md5: str,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Load or compute CC inference results (embeddings, uncertainty, gram_probs)."""
+    """Load or compute CC inference results, streamed in chunks.
+
+    Embeddings are returned as a memory-mapped array to avoid loading the
+    full (N, d_model) matrix into RAM.
+    """
     cache_dir = _cache_path(crawl_id, "inference")
     cache_dir.mkdir(parents=True, exist_ok=True)
-    npz_path = cache_dir / "cc-scores.npz"
+    emb_path, unc_path, gp_path = _cc_score_paths(cache_dir)
 
+    n = len(cc_sentences)
     cached_n = 0
-    parts: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
 
-    if npz_path.exists() and is_cache_valid(cache_dir, model_md5):
-        data = np.load(str(npz_path))
-        cached_n = data["embeddings"].shape[0]
-        if cached_n == len(cc_sentences):
-            console.print(f"  CC inference loaded from cache (model {model_md5})")
-            return data["embeddings"], data["uncertainty"], data["gram_probs"]
-        if cached_n < len(cc_sentences):
-            console.print(
-                f"  CC inference: {cached_n:,} cached, "
-                f"{len(cc_sentences) - cached_n:,} new to score"
-            )
-            parts.append((data["embeddings"], data["uncertainty"], data["gram_probs"]))
-        else:
+    if emb_path.exists() and is_cache_valid(cache_dir, model_md5):
+        existing: np.ndarray = np.load(str(emb_path), mmap_mode="r")
+        cached_n = existing.shape[0]
+        del existing
+        if cached_n > n:
             console.print("  Cache stale (sentence count shrank), recomputing...")
             cached_n = 0
+        elif cached_n > 0:
+            stored_fp = _read_sentences_fp(cache_dir)
+            current_fp = sentences_fingerprint(cc_sentences[:cached_n])
+            if stored_fp != current_fp:
+                console.print("  Cache stale (sentence list changed), recomputing...")
+                cached_n = 0
+            elif cached_n == n:
+                console.print(f"  CC inference loaded from cache (model {model_md5})")
+                return (
+                    np.load(str(emb_path), mmap_mode="r"),
+                    np.load(str(unc_path)),
+                    np.load(str(gp_path)),
+                )
+            else:
+                console.print(
+                    f"  CC inference: {cached_n:,} cached,"
+                    f" {n - cached_n:,} new to score"
+                )
 
     if not cached_n:
         console.print("  Running inference (no valid cache)...")
-    parts.append(
-        embed_and_score(
-            parallel_parse_and_encode(cc_sentences[cached_n:]),
-            model,
-            device,
-        )
-    )
 
-    emb = np.concatenate([p[0] for p in parts])
-    unc = np.concatenate([p[1] for p in parts])
-    gp = np.concatenate([p[2] for p in parts])
-    np.savez(str(npz_path), embeddings=emb, uncertainty=unc, gram_probs=gp)
-    write_cache_meta(cache_dir, model_md5)
-    console.print(f"  Cached to {npz_path}")
-    return emb, unc, gp
+    d_model = model.config.d_model
+    tmp_emb = str(emb_path) + ".tmp"
+    emb_mm: np.ndarray = np.lib.format.open_memmap(
+        tmp_emb,
+        mode="w+",
+        dtype=np.float32,
+        shape=(n, d_model),
+    )
+    unc_arr = np.zeros(n, dtype=np.float32)
+    gp_arr = np.zeros(n, dtype=np.float32)
+
+    if cached_n > 0:
+        old_emb: np.ndarray = np.load(str(emb_path), mmap_mode="r")
+        emb_mm[:cached_n] = old_emb[:cached_n]
+        del old_emb
+        unc_arr[:cached_n] = np.load(str(unc_path))[:cached_n]
+        gp_arr[:cached_n] = np.load(str(gp_path))[:cached_n]
+
+    remaining = n - cached_n
+    n_chunks = (remaining + _INFERENCE_CHUNK - 1) // _INFERENCE_CHUNK
+    for ci in range(n_chunks):
+        start = cached_n + ci * _INFERENCE_CHUNK
+        end = min(start + _INFERENCE_CHUNK, n)
+        if n_chunks > 1:
+            console.print(
+                f"\n  [bold]Chunk {ci + 1}/{n_chunks}[/bold]"
+                f" ({end - start:,} sentences)"
+            )
+        encoded = parallel_parse_and_encode(cc_sentences[start:end])
+        c_emb, c_unc, c_gp = embed_and_score(encoded, model, device)
+        emb_mm[start:end] = c_emb
+        unc_arr[start:end] = c_unc
+        gp_arr[start:end] = c_gp
+        del encoded, c_emb, c_unc, c_gp
+
+    del emb_mm
+    Path(tmp_emb).rename(emb_path)
+    np.save(str(unc_path), unc_arr)
+    np.save(str(gp_path), gp_arr)
+    write_cache_meta(
+        cache_dir, model_md5, sentences_fp=sentences_fingerprint(cc_sentences)
+    )
+    console.print(f"  Cached to {cache_dir}")
+
+    return (
+        np.load(str(emb_path), mmap_mode="r"),
+        unc_arr,
+        gp_arr,
+    )

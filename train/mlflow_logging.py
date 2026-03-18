@@ -22,10 +22,12 @@ _GCS_ARTIFACT_LOCATION = "gs://jomof-public-files/mlflow-artifacts"
 def _default_run_name(
     model_config: ModelConfig,
     trainer_config: TrainerConfig,
+    sentence_count: int = 0,
 ) -> str:
     """Generate a short descriptive run name from key config for easy comparison."""
+    count_k = round(sentence_count / 1000)
     base = (
-        f"L{model_config.num_layers}_bs{trainer_config.batch_size}_kc{trainer_config.kc_epochs}_"
+        f"L{model_config.num_layers}_bs{trainer_config.batch_size}_{count_k}K_"
         f"{int(time.time())}"
     )
     prefix = getattr(trainer_config, "mlflow_run_prefix", "")
@@ -113,6 +115,7 @@ def start_run(  # pylint: disable=too-many-positional-arguments
     tracking_uri: Optional[str] = None,
     experiment_name: str = "kotogram-kc",
     artifact_location: Optional[str] = _GCS_ARTIFACT_LOCATION,
+    sentence_count: int = 0,
 ) -> Optional[str]:
     """Start an MLflow run and log params + machine.
 
@@ -142,7 +145,7 @@ def start_run(  # pylint: disable=too-many-positional-arguments
     mlflow.start_run(
         run_name=run_name
         if run_name is not None
-        else _default_run_name(model_config, trainer_config)
+        else _default_run_name(model_config, trainer_config, sentence_count)
     )
 
     params = _params_from_config(model_config, trainer_config, config_path)
@@ -273,6 +276,9 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
         "s1_pct",
         "s0_pct",
         "fuzzy_pct",
+        "canary_gp_1_3",
+        "canary_gp_4_7",
+        "canary_gp_8_15",
     ):
         if metrics.get(key) is not None:
             to_log[f"kc/{key}"] = float(metrics[key])

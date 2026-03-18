@@ -609,6 +609,8 @@ class KcEpochSummary:
     total_samples: int = 0  # Total examples processed in epoch (for frequency calc)
     # Per-bin canary sentence evaluation text (bin_label -> summary string)
     canary_texts: Dict[str, str] = field(default_factory=dict)
+    # Per-bin expected grammar point sigmoid probability (bin_label -> prob)
+    canary_gp_probs: Dict[str, float] = field(default_factory=dict)
     kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
     layer_health: Optional["LayerHealthStats"] = None
     # Populated by view: Dead KCs line (alive = KCs that have been both above/below 0.5)
@@ -760,3 +762,6 @@ class KCTrainingHistory(TrainingHistory):
     s1_pct: List[Optional[float]] = field(default_factory=list)
     s0_pct: List[Optional[float]] = field(default_factory=list)
     fuzzy_pct: List[Optional[float]] = field(default_factory=list)
+    canary_gp_1_3: List[Optional[float]] = field(default_factory=list)
+    canary_gp_4_7: List[Optional[float]] = field(default_factory=list)
+    canary_gp_8_15: List[Optional[float]] = field(default_factory=list)

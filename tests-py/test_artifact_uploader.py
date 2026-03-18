@@ -181,18 +181,20 @@ class TestArtifactUploaderErrorHandling(unittest.TestCase):
 
     def setUp(self):
         self.test_dir = tempfile.mkdtemp()
-        self._clean_stale_snapshots()
+        self._pre_existing = self._snapshot_dirs()
 
     def tearDown(self):
         shutil.rmtree(self.test_dir)
-        self._clean_stale_snapshots()
 
     @staticmethod
-    def _clean_stale_snapshots():
+    def _snapshot_dirs() -> set:
         tmp = tempfile.gettempdir()
-        for name in os.listdir(tmp):
-            if name.startswith("kotogram_artifact_"):
-                shutil.rmtree(os.path.join(tmp, name), ignore_errors=True)
+        return {
+            name for name in os.listdir(tmp) if name.startswith("kotogram_artifact_")
+        }
+
+    def _new_snapshot_dirs(self) -> list:
+        return sorted(self._snapshot_dirs() - self._pre_existing)
 
     @patch("train.artifact_uploader.ArtifactUploader._mlflow_log_artifact")
     def test_upload_failure_raises_from_drain(self, mock_log):
@@ -224,12 +226,7 @@ class TestArtifactUploaderErrorHandling(unittest.TestCase):
         uploader.queue_file(f, "checkpoint")
         uploader.drain(timeout=10)
 
-        remaining = [
-            d
-            for d in os.listdir(tempfile.gettempdir())
-            if d.startswith("kotogram_artifact_")
-        ]
-        self.assertEqual(remaining, [])
+        self.assertEqual(self._new_snapshot_dirs(), [])
 
     @patch("train.artifact_uploader.ArtifactUploader._mlflow_log_artifact")
     def test_temp_files_cleaned_after_failure(self, mock_log):
@@ -244,12 +241,7 @@ class TestArtifactUploaderErrorHandling(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             uploader.drain(timeout=10)
 
-        remaining = [
-            d
-            for d in os.listdir(tempfile.gettempdir())
-            if d.startswith("kotogram_artifact_")
-        ]
-        self.assertEqual(remaining, [])
+        self.assertEqual(self._new_snapshot_dirs(), [])
 
 
 class TestCreateUploader(unittest.TestCase):

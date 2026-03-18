@@ -628,6 +628,9 @@ if __name__ == "__main__":
             trainer_config,
             config_path=args.config,
             run_name=None,
+            sentence_count=int(
+                (kc_dataset.labels["gram"][kc_dataset.indices] == 1).sum()
+            ),
         )
         if create_uploader is not None:
             uploader = create_uploader(run_id)
