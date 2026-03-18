@@ -11,11 +11,14 @@ Processed output is cached in .cc/<crawl-id>/wet-jp/ as JSONL files
 from __future__ import annotations
 
 import argparse
+import collections
 import gzip
+import http.client
 import io
 import json
 import sys
 import time
+import urllib.parse
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -133,24 +136,64 @@ def _process_wet_stream(
     return results
 
 
+_MAX_RETRIES = 8
+
+
+def _urlopen_with_retry(
+    url: str,
+    label: str,
+) -> http.client.HTTPResponse | None:
+    """Open *url* with exponential-backoff retries on 503 (S3 backpressure).
+
+    Uses http.client directly so 503 is just a status code, not an exception.
+    Returns ``None`` when all retries are exhausted so the caller can skip.
+    """
+    parsed = urllib.parse.urlsplit(url)
+    assert parsed.hostname is not None
+    headers = {"User-Agent": "kotogram-cc/1.0"}
+
+    for attempt in range(1, _MAX_RETRIES + 1):
+        conn = http.client.HTTPSConnection(parsed.hostname, timeout=60)
+        conn.request("GET", parsed.path, headers=headers)
+        resp = conn.getresponse()
+        if resp.status != 503:
+            return resp
+        resp.read()
+        conn.close()
+        if attempt == _MAX_RETRIES:
+            console.print(
+                f"    [red]503 persisted after {_MAX_RETRIES} retries,"
+                f" requeueing {label}[/red]"
+            )
+            return None
+        wait = min(2 ** (attempt - 1), 30)
+        console.print(
+            f"    [yellow]503 on {label}, retry {attempt}"
+            f"/{_MAX_RETRIES} in {wait}s[/yellow]"
+        )
+        time.sleep(wait)
+    return None  # pragma: no cover
+
+
 def _download_and_process_wet(  # pylint: disable=too-many-locals
     crawl_id: str,
     wet_path: str,
     jpn_urls: frozenset[str],
-) -> tuple[int, int]:
+) -> tuple[int, int] | None:
     """Download a WET file, extract Japanese text, save, delete raw.
 
-    Returns (pages_extracted, bytes_written).
+    Returns (pages_extracted, bytes_written), or ``None`` if the download
+    failed after all retries (503 backpressure).
     """
-    import urllib.request
-
     url = f"{CC_DATA_BASE}/{wet_path}"
-    req = urllib.request.Request(url, headers={"User-Agent": "kotogram-cc/1.0"})
+    wet_name = Path(wet_path).name
+    resp = _urlopen_with_retry(url, wet_name)
+    if resp is None:
+        return None
 
-    with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310
+    with resp:
         total = int(resp.headers.get("Content-Length") or 0) or None
         chunks: list[bytes] = []
-        wet_name = Path(wet_path).name
 
         with download_progress() as progress:
             task = progress.add_task(f"    {wet_name}", total=total)
@@ -239,10 +282,32 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     total_pages = 0
     total_bytes = 0
+    completed = 0
+    skipped = 0
+    queue: collections.deque[tuple[str, list[str]]] = collections.deque(batch)
+    requeued: set[str] = set()
 
-    for i, (wet_path, urls) in enumerate(batch, 1):
-        console.print(f"  [{i}/{remaining}] {len(urls)} expected Japanese pages")
-        pages, nbytes = _download_and_process_wet(crawl_id, wet_path, frozenset(urls))
+    while queue:
+        wet_path, urls = queue.popleft()
+        completed += 1
+        tag = " [yellow](retry)[/yellow]" if wet_path in requeued else ""
+        console.print(
+            f"  [{completed}/{remaining + len(requeued)}]"
+            f" {len(urls)} expected Japanese pages{tag}"
+        )
+        result = _download_and_process_wet(crawl_id, wet_path, frozenset(urls))
+        if result is None:
+            if wet_path not in requeued:
+                requeued.add(wet_path)
+                queue.append((wet_path, urls))
+                console.print(
+                    f"    [yellow]Requeued to end ({len(queue)} remaining)[/yellow]"
+                )
+            else:
+                skipped += 1
+                console.print("    [red]Skipped (failed twice)[/red]")
+            continue
+        pages, nbytes = result
         total_pages += pages
         total_bytes += nbytes
         console.print(
@@ -251,7 +316,9 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     console.print()
     console.rule("[bold]Summary[/bold]")
-    console.print(f"  Processed:  {remaining} WET files")
+    console.print(f"  Processed:  {completed - skipped} WET files")
+    if skipped:
+        console.print(f"  [red]Skipped:    {skipped} (persistent 503)[/red]")
     console.print(f"  Extracted:  {total_pages:,} Japanese pages")
     console.print(
         f"  Saved:      {format_bytes(total_bytes)} in .cc/{crawl_id}/wet-jp/"
