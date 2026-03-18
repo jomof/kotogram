@@ -181,8 +181,8 @@ class KCTrainer:
             bert_fam.cloze_k if isinstance(bert_fam, KcBertFamily) else 2
         )
 
-        # Optional per-grammar-point priors -> per-label loss weights
-        self._gp_prior_tensor: Optional[torch.Tensor] = None
+        # Per-grammar-point priors -> per-label loss weights
+        self._gp_prior_tensor: torch.Tensor
         self._gp_computed_default_prior: float = 1e-8  # Overwritten by median in _init
         self._init_gp_prior_weights()
 
@@ -491,14 +491,16 @@ class KCTrainer:
         neg_ids: torch.Tensor,
         neg_mask: torch.Tensor,
         vocab_size: int,
+        priors: torch.Tensor,
         unlabeled_weight: float = 1.0,
-        priors: Optional[torch.Tensor] = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """Multi-label PNU loss with stochastic pseudo-labeling.
 
         Labeled positions get hard targets (pos=1, neg=0).  Unlabeled
         positions get stochastic hard targets sampled from Bernoulli(prior)
-        -- a fresh draw every forward pass.
+        -- a fresh draw every forward pass.  Labeled negatives the model
+        predicts as positive are upweighted by 1/prior (hard-negative
+        scaling).
 
         Because all targets are hard 0/1, the loss achieves exactly zero
         when the model perfectly predicts the current random assignment.
@@ -514,9 +516,7 @@ class KCTrainer:
             neg_mask: (B, max_neg) mask for valid negative IDs
             vocab_size: number of grammar points (1374)
             unlabeled_weight: weight for unlabeled loss relative to labeled
-                (default: 1.0)
-            priors: (vocab_size,) per-GP prior probabilities; if None,
-                unlabeled positions get target=0
+            priors: (vocab_size,) per-GP prior probabilities
 
         Returns:
             Tuple[torch.Tensor, torch.Tensor]: (total_loss, loss_by_label)
@@ -540,15 +540,19 @@ class KCTrainer:
         # Build targets: hard labels everywhere
         #   labeled_pos → 1.0, labeled_neg → 0.0
         #   unlabeled → Bernoulli(prior) fresh each forward pass
-        if priors is not None:
-            prior_probs = priors.to(device=device, dtype=logits.dtype).unsqueeze(0)
-            pseudo_labels = torch.bernoulli(prior_probs.expand(batch_size, vocab_size))
-            targets = labeled_pos + unlabeled_mask * pseudo_labels
-        else:
-            targets = labeled_pos  # unlabeled and neg both → 0.0
+        prior_probs = priors.to(device=device, dtype=logits.dtype).unsqueeze(0)
+        pseudo_labels = torch.bernoulli(prior_probs.expand(batch_size, vocab_size))
+        targets = labeled_pos + unlabeled_mask * pseudo_labels
 
         # Single BCE pass -- all targets are hard 0/1
         bce = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
+
+        # Hard-negative upweighting: scale loss by 1/prior for labeled
+        # negatives the model predicts as positive (rare GP false positives
+        # are penalised more heavily).
+        hard_neg = labeled_neg * (logits.detach() > 0).float()
+        inv_prior = 1.0 / prior_probs.clamp_min(1e-6)
+        bce = bce * (1.0 + hard_neg * (inv_prior - 1.0))
 
         # Normalize labeled and unlabeled separately
         labeled_bce = (bce * labeled_mask).sum(dim=0)
@@ -589,15 +593,11 @@ class KCTrainer:
 
         pri = gp_priors.detach().float().cpu()[:gp_vocab_size]
 
-        # Identify GPs with explicitly set priors.
-        finite = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
-        if not finite.any():
-            return
-
-        # Use configured default prior for unset GPs.
         pri_ref = max(self.kc_config.gp_default_prior, 1e-6)
         self._gp_computed_default_prior = pri_ref
 
+        # Fill NaN / out-of-range entries with the default prior.
+        finite = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
         if (~finite).any():
             pri = pri.clone()
             pri[~finite] = pri_ref
@@ -2059,8 +2059,8 @@ class KCTrainer:
                                 neg_ids,
                                 neg_mask,
                                 vocab_size=vocab_size,
-                                unlabeled_weight=self.kc_config.gp_unlabeled_weight,
                                 priors=self._gp_prior_tensor,
+                                unlabeled_weight=self.kc_config.gp_unlabeled_weight,
                             )
 
                             # Apply per-family loss weight for balanced training
