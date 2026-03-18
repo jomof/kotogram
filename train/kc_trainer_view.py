@@ -568,8 +568,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_sizing.add_column("Kth")
         table_sizing.add_column("Spill")
         table_sizing.add_column("Gap")
-        table_sizing.add_column("Canary")
         table_sizing.add_column("ExpGP")
+        table_sizing.add_column("Canary")
 
         sorted_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
 
@@ -663,8 +663,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"[{c_kth}]{s.kth_prob_mean:.3f}[/{c_kth}]{kth_arrow}",
                 f"[{c_spill}]{s.spill_prob_mean:.3f}[/{c_spill}]{spill_arrow}",
                 f"[{c_gap}]{s.gap_mean:.3f}[/{c_gap}]",
-                summary.canary_texts.get(s.bin_label, ""),
                 gp_str,
+                summary.canary_texts.get(s.bin_label, ""),
             )
 
         # Store current spill values for next epoch trajectory arrows
@@ -716,6 +716,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"[bold]{w_kth:.3f}[/bold]",
                 f"[bold]{w_spill:.3f}[/bold]",
                 f"[bold]{w_gap:.3f}[/bold]",
+                "",
                 "",
             )
 
