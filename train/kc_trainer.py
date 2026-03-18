@@ -875,15 +875,21 @@ class KCTrainer:
     def _build_canary_fields(self, skip: bool) -> Dict[str, Any]:
         """Evaluate all canary sentences and return fields for KcEpochSummary."""
         if skip:
-            return {"canary_texts": {}, "canary_gp_probs": {}}
+            return {"canary_texts": {}, "canary_gp_probs": {}, "canary_gp_labels": {}}
         texts: Dict[str, str] = {}
         gp_probs: Dict[str, float] = {}
+        gp_labels: Dict[str, str] = {}
         for bin_label, sentence, expected_gp in self._CANARIES:
             text, prob = self._evaluate_canary(sentence, expected_gp=expected_gp)
             texts[bin_label] = text
+            gp_labels[bin_label] = f"gp{expected_gp:04d}"
             if prob is not None:
                 gp_probs[bin_label] = prob
-        return {"canary_texts": texts, "canary_gp_probs": gp_probs}
+        return {
+            "canary_texts": texts,
+            "canary_gp_probs": gp_probs,
+            "canary_gp_labels": gp_labels,
+        }
 
     def _iter_layer_health_batches(self, num_batches: int) -> Any:
         """Yield batches for layer health, interleaving gram/ungram to match training."""

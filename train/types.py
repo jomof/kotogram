@@ -611,6 +611,8 @@ class KcEpochSummary:
     canary_texts: Dict[str, str] = field(default_factory=dict)
     # Per-bin expected grammar point sigmoid probability (bin_label -> prob)
     canary_gp_probs: Dict[str, float] = field(default_factory=dict)
+    # Per-bin expected grammar point label (bin_label -> e.g. "gp0001")
+    canary_gp_labels: Dict[str, str] = field(default_factory=dict)
     kc_threshold: float = 0.5  # Adaptive KC threshold for this epoch
     layer_health: Optional["LayerHealthStats"] = None
     # Populated by view: Dead KCs line (alive = KCs that have been both above/below 0.5)
