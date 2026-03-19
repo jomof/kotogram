@@ -547,12 +547,12 @@ class KCTrainer:
         # Single BCE pass -- all targets are hard 0/1
         bce = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
 
-        # Hard-negative upweighting: scale loss by 1/prior for labeled
+        # Hard-negative upweighting: scale loss by ln(1/prior) for labeled
         # negatives the model predicts as positive (rare GP false positives
-        # are penalised more heavily).
+        # are penalised more heavily, log-scaled to stay tractable).
         hard_neg = labeled_neg * (logits.detach() > 0).float()
-        inv_prior = 1.0 / prior_probs.clamp_min(1e-6)
-        bce = bce * (1.0 + hard_neg * (inv_prior - 1.0))
+        ln_inv_prior = torch.log(1.0 / prior_probs.clamp_min(1e-6))
+        bce = bce * (1.0 + hard_neg * (ln_inv_prior - 1.0))
 
         # Normalize labeled and unlabeled separately
         labeled_bce = (bce * labeled_mask).sum(dim=0)
