@@ -295,6 +295,12 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if "model_saved" in metrics:
         to_log["kc/model_saved"] = 1.0 if metrics["model_saved"] else 0.0
 
+    if "gp_pos_accuracy" in metrics:
+        to_log["kc/gp_pos_accuracy"] = float(metrics["gp_pos_accuracy"])
+
+    if "gp_neg_accuracy" in metrics:
+        to_log["kc/gp_neg_accuracy"] = float(metrics["gp_neg_accuracy"])
+
     for k, v in to_log.items():
         mlflow.log_metric(k, v, step=epoch)
 
