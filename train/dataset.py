@@ -534,7 +534,10 @@ class StyleDataset(Dataset[Sample]):
         )
 
     def split(
-        self, train_ratio: float = 0.95, seed: int = 42
+        self,
+        train_ratio: float = 0.95,
+        seed: int = 42,
+        sample_ratio: Optional[float] = None,
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation.
 
@@ -550,19 +553,18 @@ class StyleDataset(Dataset[Sample]):
         train_full_idx = self._full_indices[perm[:n_train]]
         val_full_idx = self._full_indices[perm[n_train:]]
 
-        # Children receive the parent's sample_ratio so they apply the
-        # same initial balanced sampling to their portion of the corpus.
+        child_ratio = sample_ratio if sample_ratio is not None else self._sample_ratio
         train_ds = StyleDataset(
             self.data_dir,
             self.tokenizer,
             indices=train_full_idx,
-            sample_ratio=self._sample_ratio,
+            sample_ratio=child_ratio,
         )
         val_ds = StyleDataset(
             self.data_dir,
             self.tokenizer,
             indices=val_full_idx,
-            sample_ratio=self._sample_ratio,
+            sample_ratio=child_ratio,
         )
 
         # Share the big mmaps with both splits to avoid re-opening

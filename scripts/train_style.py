@@ -538,10 +538,11 @@ if __name__ == "__main__":
         config=DatasetConfig(
             verbose=True,
             grammaticality_labels=grammaticality_labels,
-            sample_ratio=trainer_config.sample_ratio,
         ),
     )
-    train_data, val_data = labeled_dataset.split()
+    train_data, val_data = labeled_dataset.split(
+        sample_ratio=trainer_config.sample_ratio,
+    )
     new_vocab_sizes = tokenizer.get_vocab_sizes()
     vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
 
