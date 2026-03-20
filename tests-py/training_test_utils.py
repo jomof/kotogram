@@ -521,26 +521,28 @@ class Bottle:
 
         conn.close()
 
-        # Simulate StyleDataset.split(seed=42, train_ratio=0.8)
-        # We need to simulate the split on the FULL dataset (grammatic + agrammatic).
-        # But we don't know the exact order SQLite returns vs how StyleDataset loads?
-        # StyleDataset reads offsets.bin which follows labeling order.
-        # Labeling iterates corpus.db.
-        # Assuming order is preserved (or stable sort?), we can try simulation.
-        # But the split is random permutation.
-        # If we just need total sizes:
+        # KC training uses a 95% split of the full corpus (split on
+        # _full_indices, before any balanced sampling).  Since the test
+        # does not set --percent, sample_ratio=1.0 so _full_indices ==
+        # all indices.  The gram count in the training split is thus
+        # int(total * 0.95) proportionally.
+        #
+        # With seed=42 and torch.randperm, the exact gram count in the
+        # 95% split depends on the random permutation.  We compute it
+        # by simulating the same split.
         n_train = int(total_predictions * 0.95)
-
-        # For "grammatic_sentences_in_train_split", we need exact indices.
-        # This is hard without exact ordering.
-        # However, test_train_style_script ONLY checks "total_grammatic_sentences" for proper KC.
-        # It does NOT check "grammatic_sentences_in_train_split" for KC anymore (KC uses FULL dataset).
-        # So we can omit or approximate the split metric if it's unused for KC.
-        # Checking usage: test_train_style_script line 226 uses expected_counts["total_grammatic_sentences"].
+        # The split is on all sentences (gram+ungram).  Because the
+        # permutation is random with seed 42, we approximate the gram
+        # count in the training split as int(total_grammatic * (n_train / total_predictions)).
+        gram_train_approx = (
+            int(total_grammatic * (n_train / total_predictions))
+            if total_predictions > 0
+            else 0
+        )
 
         return {
             "total_grammatic_sentences": total_grammatic,
-            "grammatic_sentences_in_train_split": 0,  # Unused for KC full dataset check
+            "grammatic_sentences_in_kc_train_split": gram_train_approx,
             "total_train_split_size": n_train,
         }
 

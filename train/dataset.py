@@ -25,8 +25,6 @@ from train.binary_io import (
 from train.kc import KcFamilyId
 from train.types import Sample, TrainingBatch
 
-# V2: No cache version check needed for raw binary files (handled by label.py generation)
-
 
 @dataclass
 class DatasetConfig:
@@ -43,10 +41,7 @@ class DatasetConfig:
 
 
 class StyleDataset(Dataset[Sample]):
-    """
-    PyTorch Dataset for style classification using memory-mapped binary files.
-    replaces the legacy dictionary-based cache.
-    """
+    """PyTorch Dataset for style classification using memory-mapped binary files."""
 
     def __init__(
         self,
@@ -245,7 +240,7 @@ class StyleDataset(Dataset[Sample]):
         self.indices = torch.tensor(final_indices, dtype=torch.long)
 
     def resample(self, sample_ratio: float) -> None:
-        """Re-apply balanced sampling at a new ratio, using the original full index set."""
+        """Re-apply balanced sampling at a new ratio, using the full pre-sampling index pool."""
         self.indices = self._full_indices.clone()
         self._apply_balanced_sampling(sample_ratio)
         self._len = len(self.indices)
@@ -539,19 +534,24 @@ class StyleDataset(Dataset[Sample]):
     def split(
         self, train_ratio: float = 0.95, seed: int = 42
     ) -> Tuple["StyleDataset", "StyleDataset"]:
-        """Split dataset into train and validation."""
-        # pylint: disable=attribute-defined-outside-init
-        # Subset indices
-        torch.manual_seed(seed)
-        total = len(self)
-        perm = torch.randperm(total)
-        n_train = int(total * train_ratio)
-        train_idx = self.indices[perm[:n_train]]
-        val_idx = self.indices[perm[n_train:]]
+        """Split dataset into train and validation.
 
-        # Return new objects sharing same mmaps (handled by init)
-        train_ds = StyleDataset(self.data_dir, self.tokenizer, indices=train_idx)
-        val_ds = StyleDataset(self.data_dir, self.tokenizer, indices=val_idx)
+        Partitions ``_full_indices`` (pre-sampling corpus) so ``resample()``
+        on the train child only draws from training, keeping val disjoint.
+        """
+        # Split the FULL (pre-sampling) index pool so resample() on the
+        # train split never contaminates the validation set.
+        torch.manual_seed(seed)
+        total_full = len(self._full_indices)
+        perm = torch.randperm(total_full)
+        n_train = int(total_full * train_ratio)
+        train_full_idx = self._full_indices[perm[:n_train]]
+        val_full_idx = self._full_indices[perm[n_train:]]
+
+        # Children use sample_ratio=1.0 (no __init__ sampling); _full_indices
+        # is set automatically to their split portion.
+        train_ds = StyleDataset(self.data_dir, self.tokenizer, indices=train_full_idx)
+        val_ds = StyleDataset(self.data_dir, self.tokenizer, indices=val_full_idx)
 
         # Share the big mmaps with both splits to avoid re-opening
         # file descriptors.  Each split indexes the same underlying storage

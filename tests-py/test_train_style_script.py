@@ -249,11 +249,12 @@ class TestTrainStyleScript(unittest.TestCase):
             self.assertEqual(epoch_events[2].get_type_name(), "KC_EPOCH")
             self.assertEqual(epoch_events[3].get_type_name(), "STYLE_EPOCH")
 
-            # Verify KC pretraining uses ALL grammatical sentences
-            self.assertEqual(
-                epoch_events[0].metrics["sentence_count"],
-                expected_counts["total_grammatic_sentences"],
-            )
+            # Verify KC pretraining uses approximately 95% of grammatical sentences
+            # (the KC train split partitions _full_indices at 95% before sampling)
+            kc_gram_count = epoch_events[0].metrics["sentence_count"]
+            total_gram = expected_counts["total_grammatic_sentences"]
+            self.assertGreater(kc_gram_count, int(total_gram * 0.90))
+            self.assertLessEqual(kc_gram_count, total_gram)
 
             # KC metrics check
             self.assertIn("avg_struct_loss", epoch_events[0].metrics)
