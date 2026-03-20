@@ -335,10 +335,15 @@ class KCTrainer:
         }
 
         self.model.eval()
+        if self.device.type == "cuda":
+            torch.cuda.empty_cache()
         gram_val = val_dataset.filter_by_grammaticality(1)
+        # Use smaller batch size for validation; the GP decoder output
+        # (batch × seq_len × 1374) is large and training leaves memory fragmented.
+        val_batch_size = max(1, self.config.batch_size // 2)
         val_loader = DataLoader(
             gram_val,
-            batch_size=self.config.batch_size,
+            batch_size=val_batch_size,
             shuffle=False,
             collate_fn=partial(collate_fn),
             num_workers=0,
