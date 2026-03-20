@@ -110,6 +110,7 @@ if [ -f "package.json" ]; then
 
     echo "Installing TypeScript dependencies..."
     npm install
+    npm install typescript@4.9.5
 fi
 
 echo ""
