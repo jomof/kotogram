@@ -564,7 +564,6 @@ class StyleDataset(Dataset[Sample]):
             self.data_dir,
             self.tokenizer,
             indices=val_full_idx,
-            sample_ratio=child_ratio,
         )
 
         # Share the big mmaps with both splits to avoid re-opening
