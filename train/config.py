@@ -234,7 +234,7 @@ class TrainerConfig:
     ramp_step: float = (
         0.0  # Adaptive ramp step as decimal (0.0 = disabled, 0.10 = +10%)
     )
-    ramp_posp_threshold: float = 0.85  # GP PosP threshold to trigger ramp
+    ramp_posp_threshold: float = 0.9  # GP PosP threshold to trigger ramp
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
     mlflow: bool = False  # Enable MLflow experiment tracking
