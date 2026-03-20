@@ -1,4 +1,5 @@
 """Dataset and processing logic for style classification (V2 Binary / Memory-Mapped)."""
+# pylint: disable=too-many-lines
 
 import math
 import os
@@ -113,6 +114,7 @@ class StyleDataset(Dataset[Sample]):
         )
 
         self._full_indices = self.indices.clone()
+        self._sample_ratio = sample_ratio
 
         self._apply_balanced_sampling(sample_ratio)
 
@@ -548,10 +550,20 @@ class StyleDataset(Dataset[Sample]):
         train_full_idx = self._full_indices[perm[:n_train]]
         val_full_idx = self._full_indices[perm[n_train:]]
 
-        # Children use sample_ratio=1.0 (no __init__ sampling); _full_indices
-        # is set automatically to their split portion.
-        train_ds = StyleDataset(self.data_dir, self.tokenizer, indices=train_full_idx)
-        val_ds = StyleDataset(self.data_dir, self.tokenizer, indices=val_full_idx)
+        # Children receive the parent's sample_ratio so they apply the
+        # same initial balanced sampling to their portion of the corpus.
+        train_ds = StyleDataset(
+            self.data_dir,
+            self.tokenizer,
+            indices=train_full_idx,
+            sample_ratio=self._sample_ratio,
+        )
+        val_ds = StyleDataset(
+            self.data_dir,
+            self.tokenizer,
+            indices=val_full_idx,
+            sample_ratio=self._sample_ratio,
+        )
 
         # Share the big mmaps with both splits to avoid re-opening
         # file descriptors.  Each split indexes the same underlying storage
