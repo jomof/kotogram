@@ -592,8 +592,9 @@ if __name__ == "__main__":
     kc_epochs_target = trainer_config.kc_epochs
     style_epochs_target = trainer_config.epochs
 
-    # Split full dataset into KC train (95%) and KC val (5%) for validation loss
-    kc_train_dataset, kc_val_dataset = labeled_dataset.split(train_ratio=0.95, seed=42)
+    # KC and Style trainers share the same train/val split
+    kc_train_dataset = train_data
+    kc_val_dataset = val_data
 
     # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
     # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
