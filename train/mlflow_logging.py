@@ -289,6 +289,12 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
             val = val[-1] if val else 0
         to_log["kc/sentence_count"] = int(val)
 
+    if "val_loss" in metrics:
+        to_log["kc/val_loss"] = float(metrics["val_loss"])
+
+    if "model_saved" in metrics:
+        to_log["kc/model_saved"] = 1.0 if metrics["model_saved"] else 0.0
+
     for k, v in to_log.items():
         mlflow.log_metric(k, v, step=epoch)
 

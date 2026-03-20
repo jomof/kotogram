@@ -529,7 +529,7 @@ class Bottle:
         # Assuming order is preserved (or stable sort?), we can try simulation.
         # But the split is random permutation.
         # If we just need total sizes:
-        n_train = int(total_predictions * 0.8)
+        n_train = int(total_predictions * 0.95)
 
         # For "grammatic_sentences_in_train_split", we need exact indices.
         # This is hard without exact ordering.

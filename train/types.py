@@ -10,6 +10,14 @@ from train.kc import KcFamilyId
 
 
 @dataclass
+class KcValResult:
+    """Per-family validation loss breakdown from KC validation."""
+
+    total_loss: float
+    family_losses: Dict[str, float]
+
+
+@dataclass
 class Sample:
     """A single training sample."""
 

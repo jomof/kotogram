@@ -41,6 +41,7 @@ from train.types import (
     KcLossWeights,
     KCStructuralBiases,
     KCTrainingHistory,
+    KcValResult,
     LayerHealthStats,
     RunningLossComponents,
     TensorStats,
@@ -318,6 +319,129 @@ class KCTrainer:
         self.start_batch = 0
         # Per-family positive densities for adaptive loss weighting
         self.family_pos_densities: Dict[str, float] = {}
+
+    @torch.no_grad()
+    def compute_validation_loss(self, val_dataset: StyleDataset) -> KcValResult:
+        """Compute KC validation loss for grammar_point, gender, formality.
+
+        Creates a temporary DataLoader over grammatical sentences,
+        runs forward passes in KC mode (eval), and computes losses
+        for the three key families only.
+        """
+        val_families = {
+            KcFamilyId.GRAMMAR_POINT,
+            KcFamilyId.GENDER,
+            KcFamilyId.FORMALITY,
+        }
+
+        self.model.eval()
+        gram_val = val_dataset.filter_by_grammaticality(1)
+        val_loader = DataLoader(
+            gram_val,
+            batch_size=self.config.batch_size,
+            shuffle=False,
+            collate_fn=partial(collate_fn),
+            num_workers=0,
+            pin_memory=False,
+        )
+
+        total_loss = 0.0
+        n_batches = 0
+        t_val = self.kc_temperature_thawed
+        family_loss_sums: Dict[str, float] = {}
+        family_loss_counts: Dict[str, int] = {}
+
+        for batch_data in val_loader:
+            batch: TrainingBatch = batch_data
+
+            field_inputs = {
+                k: v.to(self.device, non_blocking=True)
+                for k, v in batch.feature_inputs.items()
+            }
+            attention_mask = batch.attention_mask.to(self.device, non_blocking=True)
+
+            outputs = self.model(
+                field_inputs,
+                attention_mask=attention_mask,
+                mode="kc",
+                temperature=t_val,
+                gumbel_scale=0.0,
+            )
+
+            target_logits = outputs["target_logits"]
+
+            kc_targets = create_kc_batch(
+                batch=batch,
+                tokenizer=self.dataset.tokenizer,
+                target_specs=self.config.kc_target_specs,
+            )
+            for k, v in kc_targets.items():
+                kc_targets[k] = v.to(self.device, non_blocking=True)
+
+            batch_loss = 0.0
+            n_families = 0
+            for fid, vocab_size in self.config.kc_target_specs.items():
+                if fid not in val_families:
+                    continue
+                name = fid.name.lower()
+                logits_f = target_logits.get(name)
+                if logits_f is None:
+                    continue
+
+                if fid == KcFamilyId.GRAMMAR_POINT:
+                    # PNU multilabel loss
+                    pos_key = f"kc_gp_pos_inds_{name}"
+                    pos_mask_key = f"kc_gp_pos_mask_{name}"
+                    neg_key = f"kc_gp_neg_inds_{name}"
+                    neg_mask_key = f"kc_gp_neg_mask_{name}"
+                    if pos_key in kc_targets:
+                        loss, _ = self._multilabel_pnu_loss(
+                            logits_f,
+                            kc_targets[pos_key],
+                            kc_targets[pos_mask_key],
+                            kc_targets[neg_key],
+                            kc_targets[neg_mask_key],
+                            vocab_size,
+                            priors=self._gp_prior_tensor,
+                            unlabeled_weight=self.kc_config.gp_unlabeled_weight,
+                        )
+                        loss_val = loss.item()
+                        batch_loss += loss_val
+                        n_families += 1
+                        family_loss_sums[name] = (
+                            family_loss_sums.get(name, 0.0) + loss_val
+                        )
+                        family_loss_counts[name] = family_loss_counts.get(name, 0) + 1
+                else:
+                    # Continuous MSE (gender, formality)
+                    continuous_key = f"kc_continuous_{name}"
+                    if continuous_key in kc_targets:
+                        targets_cont = kc_targets[continuous_key].float()
+                        if not torch.isnan(targets_cont).any():
+                            loss = self._continuous_mse_loss(
+                                logits_f.float(), targets_cont
+                            )
+                            loss_val = loss.item()
+                            batch_loss += loss_val
+                            n_families += 1
+                            family_loss_sums[name] = (
+                                family_loss_sums.get(name, 0.0) + loss_val
+                            )
+                            family_loss_counts[name] = (
+                                family_loss_counts.get(name, 0) + 1
+                            )
+
+            if n_families > 0:
+                total_loss += batch_loss / n_families
+                n_batches += 1
+
+        self.model.train()
+        avg_total = total_loss / n_batches if n_batches > 0 else 0.0
+        avg_families = {
+            name: total / family_loss_counts[name]
+            for name, total in family_loss_sums.items()
+        }
+        return KcValResult(total_loss=avg_total, family_losses=avg_families)
 
     def _rebuild_dataloaders(self) -> None:
         """Re-split dataset into gram/ungram and recreate DataLoaders."""

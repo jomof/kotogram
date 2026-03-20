@@ -537,7 +537,7 @@ class StyleDataset(Dataset[Sample]):
         )
 
     def split(
-        self, train_ratio: float = 0.8, seed: int = 42
+        self, train_ratio: float = 0.95, seed: int = 42
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation."""
         # pylint: disable=attribute-defined-outside-init
@@ -553,17 +553,18 @@ class StyleDataset(Dataset[Sample]):
         train_ds = StyleDataset(self.data_dir, self.tokenizer, indices=train_idx)
         val_ds = StyleDataset(self.data_dir, self.tokenizer, indices=val_idx)
 
-        # Share the big mmaps to save file descriptors?
-        # Python instances share underlying storage?
-        # torch.from_file maps are file descriptors.
-        # If I create new StyleDataset, it opens new FDs.
-        # Better: Pass existing mmaps?
-        # Refactor __init__ to accept shared resources.
-
+        # Share the big mmaps with both splits to avoid re-opening
+        # file descriptors.  Each split indexes the same underlying storage
+        # via its own ``indices`` tensor.
         train_ds.features = self.features
         train_ds.labels = self.labels
         train_ds.offsets = self.offsets
         train_ds.kc_maps = self.kc_maps
+
+        val_ds.features = self.features
+        val_ds.labels = self.labels
+        val_ds.offsets = self.offsets
+        val_ds.kc_maps = self.kc_maps
 
         return train_ds, val_ds
 

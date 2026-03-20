@@ -10,6 +10,7 @@ import glob
 # MLflow logging (optional -- only available when mlflow is installed)
 import importlib.util
 import json
+import math
 import os
 import shutil
 import sys
@@ -339,7 +340,13 @@ if __name__ == "__main__":
                 indent=2,
             )
 
-        _view.on_model_saved(output_path)
+    def _log_kc_val_metrics(epoch: int, val_loss: float, model_saved: bool) -> None:
+        """Log KC validation metrics to MLflow."""
+        if use_mlflow and mlflow_logging:
+            mlflow_logging.log_kc_epoch(
+                epoch,
+                {"val_loss": val_loss, "model_saved": model_saved},
+            )
 
     model: Optional[InferenceClassifier] = None
     tokenizer: Optional[Tokenizer] = None
@@ -585,8 +592,8 @@ if __name__ == "__main__":
     kc_epochs_target = trainer_config.kc_epochs
     style_epochs_target = trainer_config.epochs
 
-    # Use full dataset for KC training (grammatic + ungrammatic)
-    kc_dataset = labeled_dataset
+    # Split full dataset into KC train (95%) and KC val (5%) for validation loss
+    kc_train_dataset, kc_val_dataset = labeled_dataset.split(train_ratio=0.95, seed=42)
 
     # KCTrainer uses configuration from TrainerConfig (which was built by wrapper)
     # But we force thaw the encoder if retraining or loading from checkpoint to ensure correct initialization
@@ -599,25 +606,41 @@ if __name__ == "__main__":
 
     kc_trainer = KCTrainer(
         cast(TrainingClassifier, model),
-        kc_dataset,
+        kc_train_dataset,
         trainer_config,
         dl_config=trainer_config.resolve_dataloader_config(device),
         kc_config=kc_config,
     )
 
+    best_kc_val_loss = float("inf")
+
     style_config = dataclasses.replace(trainer_config, grammaticality_loss_weight=0.0)
 
-    style_trainer = Trainer(
-        model,
-        train_data,
-        val_data,
-        style_config,
-        dl_config_train=trainer_config.resolve_dataloader_config(device, mode="train"),
-        dl_config_val=trainer_config.resolve_dataloader_config(device, mode="val"),
-        output_path=output_path,
-    )
+    # Defer style trainer creation to avoid spawning DataLoader workers
+    # when running KC-only training (--epochs 0)
+    _style_trainer: List[Trainer] = []
 
-    _view.on_kc_training_info(len(kc_dataset))
+    def _get_style_trainer() -> Trainer:
+        if not _style_trainer:
+            assert model is not None
+            _style_trainer.append(
+                Trainer(
+                    model,
+                    train_data,
+                    val_data,
+                    style_config,
+                    dl_config_train=trainer_config.resolve_dataloader_config(
+                        device, mode="train"
+                    ),
+                    dl_config_val=trainer_config.resolve_dataloader_config(
+                        device, mode="val"
+                    ),
+                    output_path=output_path,
+                )
+            )
+        return _style_trainer[0]
+
+    _view.on_kc_training_info(len(kc_train_dataset))
 
     style_start = time.perf_counter()
 
@@ -629,7 +652,7 @@ if __name__ == "__main__":
             config_path=args.config,
             run_name=None,
             sentence_count=int(
-                (kc_dataset.labels["gram"][kc_dataset.indices] == 1).sum()
+                (kc_train_dataset.labels["gram"][kc_train_dataset.indices] == 1).sum()
             ),
         )
         if create_uploader is not None:
@@ -647,24 +670,42 @@ if __name__ == "__main__":
                     start_epoch=kc_epochs_done,
                 )
                 kc_epochs_done += 1
-                # Save model.pt after every KC epoch as requested
-                _export_model(model)
+
+                # Compute KC validation loss
+                kc_val_result = kc_trainer.compute_validation_loss(kc_val_dataset)
+                kc_val_loss = kc_val_result.total_loss
+                if not math.isfinite(kc_val_loss):
+                    raise RuntimeError(
+                        f"KC validation loss is {kc_val_loss} — "
+                        f"family losses: {kc_val_result.family_losses}"
+                    )
+                kc_model_saved = kc_val_loss < best_kc_val_loss
+                if kc_model_saved:
+                    best_kc_val_loss = kc_val_loss
+                    _export_model(model)
+                    _view.on_model_saved(output_path, kc_val_result)
+
+                # Always save checkpoint for resumption
                 train_io.save_checkpoint(model)
+
+                # Log KC validation metrics to MLflow
+                _log_kc_val_metrics(kc_epochs_done, kc_val_loss, kc_model_saved)
+
                 if uploader:
-                    uploader.queue_dir(output_path, "model")
+                    if kc_model_saved:
+                        uploader.queue_dir(output_path, "model")
                     uploader.queue_file(get_checkpoint_path(), "checkpoint")
                     uploader.queue_file(tokenizer_path, "vocab")
 
             # Style epoch (if remaining)
             if style_epochs_done < style_epochs_target:
-                style_trainer.train(
+                _get_style_trainer().train(
                     epochs=style_epochs_done + 1,  # Train up to next epoch
                     on_epoch_end=lambda h: _log_epoch_event(h, "style"),
                     start_epoch=style_epochs_done,
                 )
                 style_epochs_done += 1
-                # Save model and continuation.json after every style epoch
-                _export_model(model)
+                # Model saving is handled by style_trainer based on validation loss
                 if uploader:
                     uploader.queue_dir(output_path, "model")
                     uploader.queue_file(tokenizer_path, "vocab")
@@ -680,18 +721,19 @@ if __name__ == "__main__":
 
         if kc_trainer.history.total_loss:
             _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
-        if style_trainer.history.train_loss:
-            _view.on_style_training_complete(style_trainer.history.train_loss[-1])
+        if _style_trainer and _style_trainer[0].history.train_loss:
+            _view.on_style_training_complete(_style_trainer[0].history.train_loss[-1])
 
-        # Test evaluation and model saving
-        res, _worst_samples = style_trainer.evaluate()
-        _view.on_final_results(
-            FinalResults(
-                formality_accuracy=res.formality_accuracy,
-                gender_accuracy=res.gender_accuracy,
-                grammaticality_accuracy=res.grammaticality_accuracy,
+        # Final evaluation (only if style trainer was used)
+        if _style_trainer:
+            res, _worst_samples = _style_trainer[0].evaluate()
+            _view.on_final_results(
+                FinalResults(
+                    formality_accuracy=res.formality_accuracy,
+                    gender_accuracy=res.gender_accuracy,
+                    grammaticality_accuracy=res.grammaticality_accuracy,
+                )
             )
-        )
 
         # Final model export
         if model:

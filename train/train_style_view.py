@@ -10,6 +10,7 @@ from typing import Any, Dict, Optional, Protocol
 
 from train.architecture_report import ArchitectureReport, format_count, format_size
 from train.display import console
+from train.types import KcValResult
 
 
 @dataclass
@@ -180,8 +181,8 @@ class TrainStyleView(Protocol):
     def on_final_results(self, results: FinalResults) -> None:
         """Display final evaluation results."""
 
-    def on_model_saved(self, output_dir: str) -> None:
-        """Notify model was saved."""
+    def on_model_saved(self, output_dir: str, val_result: KcValResult) -> None:
+        """Notify model was saved with validation loss breakdown."""
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         """Display timing summary."""
@@ -453,8 +454,14 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         )
         self._header("-", 34)
 
-    def on_model_saved(self, output_dir: str) -> None:
-        console.print(f"[dim]Model saved to: {output_dir}[/dim]")
+    def on_model_saved(self, output_dir: str, val_result: KcValResult) -> None:
+        parts = [
+            f"{name}={loss:.4f}" for name, loss in val_result.family_losses.items()
+        ]
+        detail = ", ".join(parts)
+        console.print(
+            f"[green]Model saved[/green] val_loss={val_result.total_loss:.4f} ({detail})"
+        )
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         self._header("-", 34)
