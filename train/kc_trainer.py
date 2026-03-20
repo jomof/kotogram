@@ -350,6 +350,10 @@ class KCTrainer:
         t_val = self.kc_temperature_thawed
         family_loss_sums: Dict[str, float] = {}
         family_loss_counts: Dict[str, int] = {}
+        gp_pos_correct = 0
+        gp_pos_total = 0
+        gp_neg_correct = 0
+        gp_neg_total = 0
 
         for batch_data in val_loader:
             batch: TrainingBatch = batch_data
@@ -412,6 +416,30 @@ class KCTrainer:
                             family_loss_sums.get(name, 0.0) + loss_val
                         )
                         family_loss_counts[name] = family_loss_counts.get(name, 0) + 1
+
+                        # GP accuracy: compare model predictions with labels
+                        with torch.no_grad():
+                            pos_ids = kc_targets[pos_key]
+                            pos_mask = kc_targets[pos_mask_key]
+                            neg_ids = kc_targets[neg_key]
+                            neg_mask = kc_targets[neg_mask_key]
+                            # Gather logits at labeled positions
+                            pos_logits = logits_f.gather(
+                                1, pos_ids.clamp(0, vocab_size - 1)
+                            )
+                            neg_logits = logits_f.gather(
+                                1, neg_ids.clamp(0, vocab_size - 1)
+                            )
+                            # Pos accuracy: logit > 0 at positive positions
+                            gp_pos_correct += int(
+                                ((pos_logits > 0) & pos_mask.bool()).sum().item()
+                            )
+                            gp_pos_total += int(pos_mask.sum().item())
+                            # Neg accuracy: logit <= 0 at negative positions
+                            gp_neg_correct += int(
+                                ((neg_logits <= 0) & neg_mask.bool()).sum().item()
+                            )
+                            gp_neg_total += int(neg_mask.sum().item())
                 else:
                     # Continuous MSE (gender, formality)
                     continuous_key = f"kc_continuous_{name}"
@@ -441,7 +469,14 @@ class KCTrainer:
             name: total / family_loss_counts[name]
             for name, total in family_loss_sums.items()
         }
-        return KcValResult(total_loss=avg_total, family_losses=avg_families)
+        gp_pos_acc = gp_pos_correct / gp_pos_total if gp_pos_total > 0 else None
+        gp_neg_acc = gp_neg_correct / gp_neg_total if gp_neg_total > 0 else None
+        return KcValResult(
+            total_loss=avg_total,
+            family_losses=avg_families,
+            gp_pos_accuracy=gp_pos_acc,
+            gp_neg_accuracy=gp_neg_acc,
+        )
 
     def _rebuild_dataloaders(self) -> None:
         """Re-split dataset into gram/ungram and recreate DataLoaders."""

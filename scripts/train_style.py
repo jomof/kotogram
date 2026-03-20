@@ -54,7 +54,7 @@ from train.train_style_view import (
     TrainStyleView,
 )
 from train.trainer import KCTrainer, Trainer
-from train.types import KCTrainingHistory, TrainingHistory
+from train.types import KCTrainingHistory, KcValResult, TrainingHistory
 
 if importlib.util.find_spec("mlflow") is not None:
     from train import mlflow_logging
@@ -340,13 +340,20 @@ if __name__ == "__main__":
                 indent=2,
             )
 
-    def _log_kc_val_metrics(epoch: int, val_loss: float, model_saved: bool) -> None:
+    def _log_kc_val_metrics(
+        epoch: int, val_result: KcValResult, model_saved: bool
+    ) -> None:
         """Log KC validation metrics to MLflow."""
         if use_mlflow and mlflow_logging:
-            mlflow_logging.log_kc_epoch(
-                epoch,
-                {"val_loss": val_loss, "model_saved": model_saved},
-            )
+            metrics: Dict[str, Any] = {
+                "val_loss": val_result.total_loss,
+                "model_saved": model_saved,
+            }
+            if val_result.gp_pos_accuracy is not None:
+                metrics["gp_pos_accuracy"] = val_result.gp_pos_accuracy
+            if val_result.gp_neg_accuracy is not None:
+                metrics["gp_neg_accuracy"] = val_result.gp_neg_accuracy
+            mlflow_logging.log_kc_epoch(epoch, metrics)
 
     model: Optional[InferenceClassifier] = None
     tokenizer: Optional[Tokenizer] = None
@@ -691,7 +698,7 @@ if __name__ == "__main__":
                 train_io.save_checkpoint(model)
 
                 # Log KC validation metrics to MLflow
-                _log_kc_val_metrics(kc_epochs_done, kc_val_loss, kc_model_saved)
+                _log_kc_val_metrics(kc_epochs_done, kc_val_result, kc_model_saved)
 
                 if uploader:
                     if kc_model_saved:

@@ -15,6 +15,8 @@ class KcValResult:
 
     total_loss: float
     family_losses: Dict[str, float]
+    gp_pos_accuracy: Optional[float] = None
+    gp_neg_accuracy: Optional[float] = None
 
 
 @dataclass

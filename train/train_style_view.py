@@ -459,9 +459,12 @@ class TrainStyleDiagnosticsView(TrainStyleView):
             f"{name}={loss:.4f}" for name, loss in val_result.family_losses.items()
         ]
         detail = ", ".join(parts)
-        console.print(
-            f"[green]Model saved[/green] val_loss={val_result.total_loss:.4f} ({detail})"
-        )
+        msg = f"[green]Model saved[/green] val_loss={val_result.total_loss:.4f} ({detail})"
+        if val_result.gp_pos_accuracy is not None:
+            msg += f" gp_pos={val_result.gp_pos_accuracy:.1%}"
+        if val_result.gp_neg_accuracy is not None:
+            msg += f" gp_neg={val_result.gp_neg_accuracy:.1%}"
+        console.print(msg)
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         self._header("-", 34)
