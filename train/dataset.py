@@ -51,11 +51,12 @@ class StyleDataset(Dataset[Sample]):
         indices: Optional[torch.Tensor] = None,
         sample_ratio: float = 1.0,
         feature_fields: Optional[Sequence[str]] = None,
+        verbose: bool = True,
     ):
         # pylint: disable=too-many-positional-arguments
         self.data_dir = data_dir
         self.tokenizer = tokenizer
-        self.verbose = True
+        self.verbose = verbose
         self._feature_fields = (
             list(feature_fields)
             if feature_fields is not None
@@ -564,6 +565,8 @@ class StyleDataset(Dataset[Sample]):
             self.data_dir,
             self.tokenizer,
             indices=val_full_idx,
+            sample_ratio=child_ratio,
+            verbose=False,
         )
 
         # Share the big mmaps with both splits to avoid re-opening
