@@ -565,7 +565,6 @@ class StyleDataset(Dataset[Sample]):
             self.data_dir,
             self.tokenizer,
             indices=val_full_idx,
-            sample_ratio=child_ratio,
             verbose=False,
         )
 
