@@ -301,6 +301,11 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if "gp_neg_accuracy" in metrics:
         to_log["kc/gp_neg_accuracy"] = float(metrics["gp_neg_accuracy"])
 
+    if "gp_pos_accuracy" in metrics and "gp_neg_accuracy" in metrics:
+        to_log["kc/gp_accuracy"] = (
+            float(metrics["gp_pos_accuracy"]) + float(metrics["gp_neg_accuracy"])
+        ) / 2.0
+
     if "val_sentence_count" in metrics:
         to_log["kc/val_sentence_count"] = int(metrics["val_sentence_count"])
 

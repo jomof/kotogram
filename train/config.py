@@ -148,7 +148,7 @@ class KCConfig:
         0.15  # Fraction of input tokens randomly masked (BERT-style)
     )
     gp_unlabeled_weight: float = (
-        0.01  # Weight for aggregate prior-matching loss vs labeled BCE
+        0.1  # Weight for aggregate prior-matching loss vs labeled BCE
     )
     gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
     kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
