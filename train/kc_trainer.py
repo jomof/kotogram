@@ -481,6 +481,7 @@ class KCTrainer:
             family_losses=avg_families,
             gp_pos_accuracy=gp_pos_acc,
             gp_neg_accuracy=gp_neg_acc,
+            val_sentence_count=len(gram_val),
         )
 
     def _rebuild_dataloaders(self) -> None:

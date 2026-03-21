@@ -353,6 +353,8 @@ if __name__ == "__main__":
                 metrics["gp_pos_accuracy"] = val_result.gp_pos_accuracy
             if val_result.gp_neg_accuracy is not None:
                 metrics["gp_neg_accuracy"] = val_result.gp_neg_accuracy
+            if val_result.val_sentence_count > 0:
+                metrics["val_sentence_count"] = val_result.val_sentence_count
             mlflow_logging.log_kc_epoch(epoch, metrics)
 
     model: Optional[InferenceClassifier] = None

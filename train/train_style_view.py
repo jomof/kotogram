@@ -464,6 +464,8 @@ class TrainStyleDiagnosticsView(TrainStyleView):
             msg += f" gp_pos={val_result.gp_pos_accuracy:.1%}"
         if val_result.gp_neg_accuracy is not None:
             msg += f" gp_neg={val_result.gp_neg_accuracy:.1%}"
+        if val_result.val_sentence_count > 0:
+            msg += f" val_n={val_result.val_sentence_count:,}"
         console.print(msg)
 
     def on_timing_summary(self, style_duration_s: float) -> None:

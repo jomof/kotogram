@@ -17,6 +17,7 @@ class KcValResult:
     family_losses: Dict[str, float]
     gp_pos_accuracy: Optional[float] = None
     gp_neg_accuracy: Optional[float] = None
+    val_sentence_count: int = 0
 
 
 @dataclass
