@@ -309,6 +309,19 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if "val_sentence_count" in metrics:
         to_log["kc/val_sentence_count"] = int(metrics["val_sentence_count"])
 
+    # Save-time metrics: snapshot val metrics only when model was saved
+    if metrics.get("model_saved"):
+        if "val_loss" in metrics:
+            to_log["kc/val_loss_save"] = float(metrics["val_loss"])
+        if "gp_pos_accuracy" in metrics:
+            to_log["kc/gp_pos_accuracy_save"] = float(metrics["gp_pos_accuracy"])
+        if "gp_neg_accuracy" in metrics:
+            to_log["kc/gp_neg_accuracy_save"] = float(metrics["gp_neg_accuracy"])
+        if "gp_pos_accuracy" in metrics and "gp_neg_accuracy" in metrics:
+            to_log["kc/gp_accuracy_save"] = (
+                float(metrics["gp_pos_accuracy"]) + float(metrics["gp_neg_accuracy"])
+            ) / 2.0
+
     for k, v in to_log.items():
         mlflow.log_metric(k, v, step=epoch)
 
