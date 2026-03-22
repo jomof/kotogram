@@ -2226,7 +2226,12 @@ class KCTrainer:
                                 vocab_size=vocab_size,
                                 priors=self._gp_prior_tensor,
                                 unlabeled_weight=self.kc_config.gp_unlabeled_weight
-                                / math.sqrt(2 * epoch + 1),
+                                * math.exp(
+                                    -(
+                                        (epoch / self.kc_config.gp_unlabeled_tau)
+                                        ** self.kc_config.gp_unlabeled_p
+                                    )
+                                ),
                             )
 
                             # Apply per-family loss weight for balanced training

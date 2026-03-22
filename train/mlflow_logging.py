@@ -100,6 +100,8 @@ def _params_from_config(
     params["temperature_thawed"] = kc.temperature_thawed
     params["input_mask_ratio"] = kc.input_mask_ratio
     params["gp_unlabeled_weight"] = kc.gp_unlabeled_weight
+    params["gp_unlabeled_tau"] = kc.gp_unlabeled_tau
+    params["gp_unlabeled_p"] = kc.gp_unlabeled_p
 
     if config_path:
         params["config_path"] = config_path

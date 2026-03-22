@@ -150,6 +150,8 @@ class KCConfig:
     gp_unlabeled_weight: float = (
         1  # Weight for aggregate prior-matching loss vs labeled BCE
     )
+    gp_unlabeled_tau: float = 58.0  # Weibull scale: epoch where decay is steepest
+    gp_unlabeled_p: float = 2.8  # Weibull shape: higher = sharper transition
     gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
     kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
 
