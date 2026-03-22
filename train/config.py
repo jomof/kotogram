@@ -148,7 +148,7 @@ class KCConfig:
         0.15  # Fraction of input tokens randomly masked (BERT-style)
     )
     gp_unlabeled_weight: float = (
-        0.1  # Weight for aggregate prior-matching loss vs labeled BCE
+        1  # Weight for aggregate prior-matching loss vs labeled BCE
     )
     gp_default_prior: float = 0.0004  # Default prior for GPs without explicit priors
     kc_threshold: float = 0.5  # Adaptive KC activation threshold (updated each epoch)
@@ -234,7 +234,7 @@ class TrainerConfig:
     ramp_step: float = (
         0.0  # Adaptive ramp step as decimal (0.0 = disabled, 0.10 = +10%)
     )
-    ramp_posp_threshold: float = 0.95  # GP PosP threshold to trigger ramp
+    ramp_posp_threshold: float = 0.97  # GP PosP threshold to trigger ramp
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
     mlflow: bool = False  # Enable MLflow experiment tracking
