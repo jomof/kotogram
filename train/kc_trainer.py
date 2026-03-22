@@ -2225,7 +2225,8 @@ class KCTrainer:
                                 neg_mask,
                                 vocab_size=vocab_size,
                                 priors=self._gp_prior_tensor,
-                                unlabeled_weight=self.kc_config.gp_unlabeled_weight,
+                                unlabeled_weight=self.kc_config.gp_unlabeled_weight
+                                / math.sqrt(2 * epoch + 1),
                             )
 
                             # Apply per-family loss weight for balanced training
