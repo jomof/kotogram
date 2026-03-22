@@ -3702,7 +3702,11 @@ class KCTrainer:
         self.view.on_surface_unfrozen_by_ramp()
 
     def _maybe_ramp(self, epoch_stats: TrainEpochStats) -> None:
-        """Bump data ratio when grammar_point PosP crosses the threshold."""
+        """Bump data ratio when grammar_point PosP crosses the threshold.
+
+        Only updates ``_current_ratio``; the caller is responsible for
+        calling ``resample`` + ``_rebuild_dataloaders`` afterwards.
+        """
         if self._ramp_step <= 0 or self._current_ratio >= 1.0:
             return
         diag = epoch_stats.kc_diagnostics
@@ -3719,8 +3723,6 @@ class KCTrainer:
         new_ratio = min(1.0, self._current_ratio + self._ramp_step)
         self._current_ratio = new_ratio
 
-        self.dataset.resample(new_ratio)
-        self._rebuild_dataloaders()
         self.view.on_ramp(old_ratio, new_ratio, posp, self._ramp_threshold)
 
     def train(
@@ -3797,6 +3799,10 @@ class KCTrainer:
 
             self._maybe_unfreeze_surface(epoch_stats)
             self._maybe_ramp(epoch_stats)
+
+            # Resample training data every epoch for diversity
+            self.dataset.resample(self._current_ratio, seed=epoch + 1)
+            self._rebuild_dataloaders()
 
         self.view.on_kc_train_end(self.history)
 

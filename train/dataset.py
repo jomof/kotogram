@@ -117,7 +117,7 @@ class StyleDataset(Dataset[Sample]):
         self._full_indices = self.indices.clone()
         self._sample_ratio = sample_ratio
 
-        self._apply_balanced_sampling(sample_ratio)
+        self._apply_balanced_sampling(sample_ratio, seed=42)
 
         self._len = len(self.indices)
 
@@ -155,7 +155,7 @@ class StyleDataset(Dataset[Sample]):
                 gp_to_sentences[gp_id].add(real_idx)
         return gp_to_sentences
 
-    def _select_gp_labeled_sentences(self) -> Tuple[Set[int], int]:
+    def _select_gp_labeled_sentences(self, seed: int = 42) -> Tuple[Set[int], int]:
         """Select GP-labeled sentences with per-GP sqrt-capped sampling.
 
         Returns:
@@ -170,7 +170,7 @@ class StyleDataset(Dataset[Sample]):
         gp_to_sentences = self._group_by_gp(all_labeled)
 
         # Sqrt-capped selection per GP
-        _random.seed(42)
+        _random.seed(seed)
         selected: Set[int] = set()
         for sentence_set in gp_to_sentences.values():
             sents = list(sentence_set)
@@ -183,42 +183,48 @@ class StyleDataset(Dataset[Sample]):
         return selected, len(gp_to_sentences)
 
     @staticmethod
-    def _sample_pool(pool: List[int], count: int) -> Set[int]:
+    def _sample_pool(
+        pool: List[int], count: int, generator: Optional[torch.Generator] = None
+    ) -> Set[int]:
         """Sample up to `count` indices from a sorted pool."""
         if count <= 0 or not pool:
             return set()
-        perm = torch.randperm(len(pool))[:count]
+        perm = torch.randperm(len(pool), generator=generator)[:count]
         return {pool[i] for i in perm.tolist()}
 
     def _fill_from_gp_then_pool(
-        self, gp_pool: Set[int], backfill_pool: List[int], target: int
+        self,
+        gp_pool: Set[int],
+        backfill_pool: List[int],
+        target: int,
+        generator: Optional[torch.Generator] = None,
     ) -> Tuple[Set[int], Set[int]]:
         """Use GP-labeled indices first (capped at target), then backfill from pool."""
         if len(gp_pool) <= target:
-            fill = self._sample_pool(backfill_pool, target - len(gp_pool))
+            fill = self._sample_pool(backfill_pool, target - len(gp_pool), generator)
             return gp_pool, fill
-        return set(self._sample_pool(sorted(gp_pool), target)), set()
+        return set(self._sample_pool(sorted(gp_pool), target, generator)), set()
 
-    def _apply_balanced_sampling(self, sample_ratio: float) -> None:
+    def _apply_balanced_sampling(self, sample_ratio: float, seed: int = 42) -> None:
         if sample_ratio == 1.0 or "gram" not in self.labels:
             return
 
-        gram_indices = self.indices[self.labels["gram"][self.indices] == 1]
-        gram_set = set(gram_indices.tolist())
+        gram_set = set(self.indices[self.labels["gram"][self.indices] == 1].tolist())
         all_set = set(self.indices.tolist())
 
-        target_gram = min(
-            int(gram_indices.numel() * sample_ratio), int(gram_indices.numel())
-        )
+        target_gram = min(int(len(gram_set) * sample_ratio), len(gram_set))
         target_ungram = min(target_gram, len(all_set) - len(gram_set))
 
         # GP-aware stratified selection (full pool, uncapped by ratio)
-        gp_all, _ = self._select_gp_labeled_sentences()
+        gp_all, _ = self._select_gp_labeled_sentences(seed=seed)
         gp_all_gram = {i for i in gp_all if int(self.labels["gram"][i].item()) == 1}
+
+        # Seeded generator for reproducible backfill sampling
+        gen = torch.Generator().manual_seed(seed)
 
         # Cap GP-gram to target; if GP exceeds target, subsample
         gp_gram, gram_fill = self._fill_from_gp_then_pool(
-            gp_all_gram, sorted(gram_set - gp_all), target_gram
+            gp_all_gram, sorted(gram_set - gp_all), target_gram, generator=gen
         )
 
         # Same for ungrammatic
@@ -226,6 +232,7 @@ class StyleDataset(Dataset[Sample]):
             gp_all - gp_all_gram,
             sorted(all_set - gram_set - gp_all),
             target_ungram,
+            generator=gen,
         )
 
         final_indices = sorted(gp_gram | gram_fill | gp_ungram | ungram_fill)
@@ -242,10 +249,10 @@ class StyleDataset(Dataset[Sample]):
 
         self.indices = torch.tensor(final_indices, dtype=torch.long)
 
-    def resample(self, sample_ratio: float) -> None:
+    def resample(self, sample_ratio: float, seed: int = 42) -> None:
         """Re-apply balanced sampling at a new ratio, using the full pre-sampling index pool."""
         self.indices = self._full_indices.clone()
-        self._apply_balanced_sampling(sample_ratio)
+        self._apply_balanced_sampling(sample_ratio, seed=seed)
         self._len = len(self.indices)
 
     def _check_exists(self, path: str) -> bool:
