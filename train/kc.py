@@ -70,9 +70,6 @@ class KcFamilyId(str, Enum):
         "register"  # Multi-label classification (14 registers, can have multiple)
     )
 
-    # Morpheme-Cloze Family (BERT-style: mask all instances of one token, predict it)
-    BERT = "bert"
-
     # Reconstruction Family (predict full input sequence from KC bottleneck)
     RECON = "recon"
 
@@ -377,44 +374,6 @@ class KcDbMultilabelFamily(KcFamily):
 
 
 @dataclass(frozen=True)
-class KcBertFamily(KcFamily):
-    """Morpheme-cloze family: mask K random positions, predict each.
-
-    Targets are generated dynamically at training time (not precomputed).
-    The encoder sees the sentence with K randomly chosen positions replaced
-    by [MASK]; the decoder predicts each masked token ID via cross-entropy
-    over the surface vocabulary from the KC probability bottleneck.
-    """
-
-    _loss_weight: float = 1.0
-    _cloze_k: int = 2
-
-    @property
-    def is_sparse(self) -> bool:
-        return False
-
-    @property
-    def is_db_sourced(self) -> bool:
-        return True  # Targets not precomputed from morphology
-
-    @property
-    def feature_field(self) -> str:
-        return ""  # No fixed feature field
-
-    @property
-    def is_slim_decoder(self) -> bool:
-        return True  # Not needed at inference time
-
-    @property
-    def loss_weight(self) -> float:
-        return self._loss_weight
-
-    @property
-    def cloze_k(self) -> int:
-        return self._cloze_k
-
-
-@dataclass(frozen=True)
 class KcReconFamily(KcFamily):
     """Reconstruction family: predict all input surface tokens from KC bottleneck.
 
@@ -584,11 +543,6 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         family_id=KcFamilyId.REGISTER,
         _num_classes=14,  # 14 register types (sonkeigo, kenjogo, etc.)
         _loss_weight=1.0,
-    ),
-    # Morpheme-cloze family
-    KcFamilyId.BERT: KcBertFamily(
-        family_id=KcFamilyId.BERT,
-        _loss_weight=2.0 / 15.0,
     ),
     # Reconstruction family
     KcFamilyId.RECON: KcReconFamily(

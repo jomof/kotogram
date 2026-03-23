@@ -234,19 +234,18 @@ def _collect_diagnostic_metrics(diags: dict, to_log: Dict[str, float]) -> None:
                 to_log[f"kc/{name}_avg_pos"] = float(fam["avg_pos"])
             if fam.get("med_pos") is not None:
                 to_log[f"kc/{name}_med_pos"] = float(fam["med_pos"])
-
-    for name, bert in diags.get("bert_families", {}).items():
-        if isinstance(bert, dict):
-            if "loss_mean" in bert:
-                to_log[f"kc/{name}_loss"] = float(bert["loss_mean"])
-            if "top1_accuracy" in bert:
-                to_log[f"kc/{name}_top1"] = float(bert["top1_accuracy"])
-            if "top5_accuracy" in bert:
-                to_log[f"kc/{name}_top5"] = float(bert["top5_accuracy"])
-            if bert.get("top1_pos_only_accuracy"):
-                pos_only = float(bert["top1_pos_only_accuracy"])
+    for name, recon in diags.get("recon_families", {}).items():
+        if isinstance(recon, dict):
+            if "loss_mean" in recon:
+                to_log[f"kc/{name}_loss"] = float(recon["loss_mean"])
+            if "top1_accuracy" in recon:
+                to_log[f"kc/{name}_top1"] = float(recon["top1_accuracy"])
+            if "top5_accuracy" in recon:
+                to_log[f"kc/{name}_top5"] = float(recon["top5_accuracy"])
+            if recon.get("top1_pos_only_accuracy"):
+                pos_only = float(recon["top1_pos_only_accuracy"])
                 to_log[f"kc/{name}_top1_pos_only"] = pos_only
-                to_log[f"kc/{name}_kc_gain"] = float(bert["top1_accuracy"]) - pos_only
+                to_log[f"kc/{name}_kc_gain"] = float(recon["top1_accuracy"]) - pos_only
 
 
 def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:

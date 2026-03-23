@@ -105,10 +105,6 @@ def save_model(
             if sublayer in layer_names:
                 return not check_func()  # Strip if no families need this pathway
 
-        # BERT cloze pathway is training-only (always strip from exported models)
-        if sublayer in ("bert_hidden1", "bert_hidden2", "bert_decoders"):
-            return True
-
         # Recon pathway is training-only (always strip from exported models)
         if sublayer in (
             "recon_pos_embed",

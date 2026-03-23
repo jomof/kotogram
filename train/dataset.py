@@ -892,7 +892,6 @@ def create_kc_batch(
 
     # Deferred import to avoid circular dependency
     from train.kc import (  # pylint: disable=import-outside-toplevel
-        KcBertFamily,
         KcDbMultilabelFamily,
         KcPnuFamily,
         get_family,
@@ -901,10 +900,6 @@ def create_kc_batch(
     )
 
     for target_family, vocab_size in target_specs.items():
-        # BERT cloze targets are generated dynamically in kc_trainer, not precomputed
-        if isinstance(get_family(target_family), KcBertFamily):
-            continue
-
         # Strict data alignment: The batch MUST contain data for the requested target.
         if target_family not in batch.kc_targets[0]:
             raise KeyError(

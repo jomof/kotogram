@@ -58,18 +58,12 @@ class KCDecoder(nn.Module):
         self.tanh = nn.Tanh()
 
         # Derive MSE families from registry
-        from train.kc import KcBertFamily, KcMseFamily, KcReconFamily
+        from train.kc import KcMseFamily, KcReconFamily
 
         self._mse_families = frozenset(
             fid.name.lower()
             for fid, fam in KC_FAMILIES.items()
             if isinstance(fam, KcMseFamily) and fid in target_specs
-        )
-
-        self._bert_families = frozenset(
-            fid.name.lower()
-            for fid, fam in KC_FAMILIES.items()
-            if isinstance(fam, KcBertFamily) and fid in target_specs
         )
 
         self._recon_families = frozenset(
@@ -85,10 +79,6 @@ class KCDecoder(nn.Module):
         # Separate hidden layers for label families (structural features)
         self.label_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.label_hidden2 = nn.Linear(hidden_dim, hidden_dim)
-
-        # BERT cloze reads from KC probs (through the bottleneck)
-        self.bert_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
-        self.bert_hidden2 = nn.Linear(hidden_dim, hidden_dim)
 
         # Reconstruction pathway: position-aware MLP from KC probs
         self.recon_decoders = nn.ModuleDict()
@@ -115,7 +105,6 @@ class KCDecoder(nn.Module):
         # Per-family output heads
         self.decoders = nn.ModuleDict()
         self.mse_decoders = nn.ModuleDict()
-        self.bert_decoders = nn.ModuleDict()
 
         for fid, vocab_size in target_specs.items():
             name = fid.name.lower()
@@ -123,8 +112,7 @@ class KCDecoder(nn.Module):
                 self.gp_decoder = nn.Linear(gp_hidden_dim, vocab_size)
             elif name in self._mse_families:
                 self.mse_decoders[name] = nn.Linear(hidden_dim, vocab_size)
-            elif name in self._bert_families:
-                self.bert_decoders[name] = nn.Linear(hidden_dim, vocab_size)
+
             elif name in self._recon_families:
                 self.recon_decoders[name] = nn.Linear(hidden_dim, vocab_size)
             else:
@@ -138,7 +126,7 @@ class KCDecoder(nn.Module):
     ) -> Dict[str, torch.Tensor]:
         """Decode KC probabilities to family outputs.
 
-        All pathways (label, MSE, BERT cloze, recon) read from kc_probs.
+        All pathways (label, MSE, recon) read from kc_probs.
 
         Args:
             kc_probs: Full KC probabilities [B, kc_vocab_size]
@@ -173,14 +161,6 @@ class KCDecoder(nn.Module):
 
             for name, decoder in self.decoders.items():
                 result[name] = decoder(h_label)
-
-        # BERT cloze pathway: reads from KC probs (bottleneck)
-        if self.bert_decoders:
-            h_bert = self.activation(self.bert_hidden1(kc_probs))
-            h_bert = self.activation(self.bert_hidden2(h_bert))
-
-            for name, decoder in self.bert_decoders.items():
-                result[name] = decoder(h_bert)
 
         # Reconstruction pathway: per-position prediction from KC probs + position
         # Position embeddings are end-relative: 0 = last content token,
@@ -243,7 +223,7 @@ class KCDecoder(nn.Module):
         comes from positional statistics vs. the KC bottleneck.
         """
         B, K = positions.shape  # pylint: disable=invalid-name
-        kc_dim = self.bert_hidden1.in_features
+        kc_dim = self.label_hidden1.in_features
         kc_zero = torch.zeros(B, K, kc_dim, device=positions.device)
         pos_emb = self.recon_pos_embed(positions)
         h = torch.cat([kc_zero, pos_emb], dim=-1)

@@ -887,47 +887,47 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
             console.print(table_mse)
 
-        # BLOCK 3a.5: BERT Cloze Families (Morpheme Prediction)
-        if summary.diagnostics.bert_families:
-            table_bert = Table(
+        # BLOCK 3a.5: Reconstruction Families (Token Prediction)
+        if summary.diagnostics.recon_families:
+            table_recon = Table(
                 show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
             )
-            table_bert.add_column("BERT Family")
-            table_bert.add_column("Loss")
-            table_bert.add_column("Top-1")
-            table_bert.add_column("Pos-Only")
-            table_bert.add_column("KC Gain")
-            table_bert.add_column("Top-5")
+            table_recon.add_column("Recon Family")
+            table_recon.add_column("Loss")
+            table_recon.add_column("Top-1")
+            table_recon.add_column("Pos-Only")
+            table_recon.add_column("KC Gain")
+            table_recon.add_column("Top-5")
 
-            for b_name, bert in sorted(summary.diagnostics.bert_families.items()):
+            for r_name, recon in sorted(summary.diagnostics.recon_families.items()):
                 c_t1 = (
                     "green"
-                    if bert.top1_accuracy > 0.3
-                    else ("yellow" if bert.top1_accuracy > 0.1 else "red")
+                    if recon.top1_accuracy > 0.3
+                    else ("yellow" if recon.top1_accuracy > 0.1 else "red")
                 )
                 c_t5 = (
                     "green"
-                    if bert.top5_accuracy > 0.5
-                    else ("yellow" if bert.top5_accuracy > 0.2 else "red")
+                    if recon.top5_accuracy > 0.5
+                    else ("yellow" if recon.top5_accuracy > 0.2 else "red")
                 )
-                if bert.top1_pos_only_accuracy > 0:
-                    pos_only_str = f"{bert.top1_pos_only_accuracy * 100:.1f}%"
-                    kc_gain = bert.top1_accuracy - bert.top1_pos_only_accuracy
+                if recon.top1_pos_only_accuracy > 0:
+                    pos_only_str = f"{recon.top1_pos_only_accuracy * 100:.1f}%"
+                    kc_gain = recon.top1_accuracy - recon.top1_pos_only_accuracy
                     kc_gain_str = f"+{kc_gain * 100:.1f}pp"
                 else:
                     pos_only_str = ""
                     kc_gain_str = ""
 
-                table_bert.add_row(
-                    f"{b_name}",
-                    f"{bert.loss_mean:.4f}",
-                    f"[{c_t1}]{bert.top1_accuracy * 100:.1f}%[/{c_t1}]",
+                table_recon.add_row(
+                    f"{r_name}",
+                    f"{recon.loss_mean:.4f}",
+                    f"[{c_t1}]{recon.top1_accuracy * 100:.1f}%[/{c_t1}]",
                     pos_only_str,
                     kc_gain_str,
-                    f"[{c_t5}]{bert.top5_accuracy * 100:.1f}%[/{c_t5}]",
+                    f"[{c_t5}]{recon.top5_accuracy * 100:.1f}%[/{c_t5}]",
                 )
 
-            console.print(table_bert)
+            console.print(table_recon)
 
         # BLOCK 3b: Label Families (Classification Diagnostics)
         table_fam = Table(
@@ -1110,11 +1110,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Skip if no families (minimal test scenarios).
         all_label_families = list(summary.diagnostics.families.values())
         all_mse_families = list(summary.diagnostics.mse_families.values())
-        all_bert_families = list(summary.diagnostics.bert_families.values())
-        if all_label_families or all_mse_families or all_bert_families:
+        all_recon_families = list(summary.diagnostics.recon_families.values())
+        if all_label_families or all_mse_families or all_recon_families:
             all_batch_counts = [
                 fam.batch_count
-                for fam in all_label_families + all_mse_families + all_bert_families
+                for fam in all_label_families + all_mse_families + all_recon_families
             ]
             do_checksum = not (
                 all_batch_counts
@@ -1123,8 +1123,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             if do_checksum:
                 label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
                 mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
-                bert_loss_sum = sum(fam.loss_mean for fam in all_bert_families)
-                family_loss_sum = label_loss_sum + mse_loss_sum + bert_loss_sum
+                recon_loss_sum = sum(fam.loss_mean for fam in all_recon_families)
+                family_loss_sum = label_loss_sum + mse_loss_sum + recon_loss_sum
                 # struct is BCE only (gap regularizer removed)
                 struct_loss = lc.struct * w.struct / nb
                 tolerance = 1e-3

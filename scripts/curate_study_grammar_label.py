@@ -48,7 +48,7 @@ console = Console(force_terminal=True)
 # Study model should use surface-only tokens (BERT-like surface input).
 GRAMMAR_ENCODER_FIELDS = ["surface"]
 
-# Match kc_trainer's input_mask_ratio for BERT-style token masking.
+# Match kc_trainer's input_mask_ratio for input token masking.
 INPUT_MASK_RATIO = 0.15
 
 

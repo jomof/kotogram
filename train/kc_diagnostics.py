@@ -13,10 +13,10 @@ from kotogram.constants import (
     GrammaticalityThresholds,
 )
 from train.types import (
-    KCBertFamilyStats,
     KCDiagnosticFamilyStats,
     KCDiagnosticReport,
     KCMseFamilyStats,
+    KCReconFamilyStats,
 )
 
 
@@ -159,8 +159,8 @@ class MseFamilyStats:
 
 
 @dataclass
-class BertFamilyStats:
-    """Accumulator for BERT cloze (morpheme-prediction) family statistics."""
+class ReconFamilyStats:
+    """Accumulator for reconstruction (token prediction) family statistics."""
 
     batch_count: int = 0
     sum_loss: float = 0.0
@@ -176,7 +176,8 @@ class KCEpochDiag:
     def __init__(self) -> None:
         self.families: Dict[str, FamilyStats] = {}
         self.mse_families: Dict[str, MseFamilyStats] = {}
-        self.bert_families: Dict[str, BertFamilyStats] = {}
+        self.recon_families: Dict[str, ReconFamilyStats] = {}
+
         # We need a stable hash capability if we want to report collisions on hashed values,
         # but the inputs to update are typically already hashed or raw IDs.
         # We assume 'pos_ids' passed to update are the relevant IDs for collision checking.
@@ -359,7 +360,7 @@ class KCEpochDiag:
         correct = (pred_buckets == target_buckets).sum().item()
         stats.correct_discrete += int(correct)
 
-    def update_bert_family(
+    def update_recon_family(
         self,
         family_name: str,
         loss: float,
@@ -368,10 +369,10 @@ class KCEpochDiag:
         n_samples: int,
         top1_pos_only_correct: int = 0,
     ) -> None:
-        """Update BERT cloze family diagnostics with a batch of predictions."""
-        if family_name not in self.bert_families:
-            self.bert_families[family_name] = BertFamilyStats()
-        stats = self.bert_families[family_name]
+        """Update reconstruction family diagnostics with a batch of predictions."""
+        if family_name not in self.recon_families:
+            self.recon_families[family_name] = ReconFamilyStats()
+        stats = self.recon_families[family_name]
         stats.batch_count += 1
         stats.sum_loss += loss
         stats.top1_correct += top1_correct
@@ -500,23 +501,23 @@ class KCEpochDiag:
                 batch_count=mse_s.batch_count,
             )
 
-        # Compute BERT cloze family stats
-        bert_data: Dict[str, KCBertFamilyStats] = {}
-        for bert_name, bert_s in sorted(self.bert_families.items()):
-            n_batches = max(1, bert_s.batch_count)
-            n_samples = max(1, bert_s.n_samples)
-            bert_data[bert_name] = KCBertFamilyStats(
-                loss_mean=bert_s.sum_loss / n_batches,
-                top1_accuracy=bert_s.top1_correct / n_samples,
-                top5_accuracy=bert_s.top5_correct / n_samples,
-                top1_pos_only_accuracy=bert_s.top1_pos_only / n_samples
-                if bert_s.top1_pos_only
+        # Compute reconstruction family stats
+        recon_data: Dict[str, KCReconFamilyStats] = {}
+        for recon_name, recon_s in sorted(self.recon_families.items()):
+            n_batches = max(1, recon_s.batch_count)
+            n_samples = max(1, recon_s.n_samples)
+            recon_data[recon_name] = KCReconFamilyStats(
+                loss_mean=recon_s.sum_loss / n_batches,
+                top1_accuracy=recon_s.top1_correct / n_samples,
+                top5_accuracy=recon_s.top5_correct / n_samples,
+                top1_pos_only_accuracy=recon_s.top1_pos_only / n_samples
+                if recon_s.top1_pos_only
                 else 0.0,
-                batch_count=bert_s.batch_count,
+                batch_count=recon_s.batch_count,
             )
 
         return KCDiagnosticReport(
-            families=data, mse_families=mse_data, bert_families=bert_data
+            families=data, mse_families=mse_data, recon_families=recon_data
         )
 
 

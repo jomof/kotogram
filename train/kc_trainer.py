@@ -13,7 +13,7 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader
 
 from kotogram.constants import REGISTER_ID_TO_LABEL
-from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, MASK_ID
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -166,21 +166,6 @@ class KCTrainer:
         self.median_content_len: float = 12.0  # EMA estimate, updated per batch
         self.kc_sat_weight = self.kc_config.sat_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
-
-        # Cloze K: number of random positions to mask per sentence
-        from train.kc import KcBertFamily
-
-        bert_fam = next(
-            (
-                get_family(fid)
-                for fid in (config.kc_target_specs or {})
-                if isinstance(get_family(fid), KcBertFamily)
-            ),
-            None,
-        )
-        self._cloze_k: int = (
-            bert_fam.cloze_k if isinstance(bert_fam, KcBertFamily) else 2
-        )
 
         # Per-grammar-point priors -> per-label loss weights
         self._gp_prior_tensor: torch.Tensor
@@ -1889,39 +1874,7 @@ class KCTrainer:
             if self.model.training and surface_key_recon in field_inputs:
                 recon_targets = field_inputs[surface_key_recon].clone()
 
-            # Morpheme-cloze target selection: pick K random positions per sample
-            # BEFORE any masking, so we have the original token IDs.
-            cloze_targets: Optional[torch.Tensor] = None
-            cloze_valid: Optional[torch.Tensor] = None
-            cloze_k = self._cloze_k
-            if self.model.training:
-                surface_key = "input_ids_surface"
-                if surface_key in field_inputs:
-                    surface_ids = field_inputs[surface_key]
-                    bs_cloze = surface_ids.size(0)
-                    cloze_targets = torch.zeros(
-                        bs_cloze, cloze_k, dtype=torch.long, device=self.device
-                    )
-                    cloze_valid = torch.zeros(
-                        bs_cloze, cloze_k, dtype=torch.bool, device=self.device
-                    )
-                    for i in range(bs_cloze):
-                        content_mask = attention_mask[i].bool()
-                        token_ids = surface_ids[i]
-                        content_positions = (
-                            content_mask & (token_ids > MASK_ID)
-                        ).nonzero(as_tuple=True)[0]
-                        if content_positions.numel() > 0:
-                            n_pick = min(cloze_k, content_positions.numel())
-                            perm = torch.randperm(
-                                content_positions.numel(), device=self.device
-                            )[:n_pick]
-                            chosen_pos = content_positions[perm]
-                            cloze_targets[i, :n_pick] = token_ids[chosen_pos]
-                            cloze_valid[i, :n_pick] = True
-                            surface_ids[i, chosen_pos] = MASK_ID
-
-            # BERT-style input masking: randomly replace tokens with pad_id=0
+            # Input masking: randomly replace tokens with pad_id=0
             # (zero embedding) while keeping attention_mask=1 so the model
             # knows a token exists but can't see its identity.
             mask_ratio = self.kc_config.input_mask_ratio
@@ -2015,10 +1968,7 @@ class KCTrainer:
                     if sparse_key in kc_targets:
                         has_match = True
                         break
-                    # BERT family uses cloze_targets, not kc_targets
-                    if name == "bert" and cloze_targets is not None:
-                        has_match = True
-                        break
+
                     # Recon family uses recon_targets, not kc_targets
                     if name == "recon" and recon_targets is not None:
                         has_match = True
@@ -2068,73 +2018,12 @@ class KCTrainer:
                 # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
                 if is_family_db_sourced(fid):
                     from train.kc import (
-                        KcBertFamily,
                         KcDbMultilabelFamily,
                         KcPnuFamily,
                         KcReconFamily,
                     )
 
                     family_def = get_family(fid)
-
-                    if isinstance(family_def, KcBertFamily):
-                        # Morpheme-cloze loss: K cross-entropy terms per sentence
-                        if (
-                            cloze_targets is not None
-                            and cloze_valid is not None
-                            and cloze_valid.any()
-                        ):
-                            logits_bert = logits.float()  # [B, vocab]
-                            # Expand logits to match K targets: [B, K, vocab]
-                            # cloze_targets: [B, K], cloze_valid: [B, K]
-                            any_valid = cloze_valid.any(dim=1)  # [B]
-                            flat_logits = logits_bert[any_valid]  # [B', vocab]
-                            flat_targets = cloze_targets[any_valid]  # [B', K]
-                            flat_valid = cloze_valid[any_valid]  # [B', K]
-                            k_dim = flat_targets.size(1)
-
-                            total_ce = torch.tensor(0.0, device=self.device)
-                            total_t1 = 0
-                            total_t5 = 0
-                            total_n = 0
-                            for ki in range(k_dim):
-                                slot_valid = flat_valid[:, ki]
-                                if not slot_valid.any():
-                                    continue
-                                sl = flat_logits[slot_valid]
-                                st = flat_targets[slot_valid, ki]
-                                total_ce = total_ce + F.cross_entropy(
-                                    sl, st, reduction="sum"
-                                )
-                                total_n += int(slot_valid.sum().item())
-                                if not skip_metrics and kc_diag is not None:
-                                    with torch.no_grad():
-                                        total_t1 += int(
-                                            (sl.argmax(dim=1) == st).sum().item()
-                                        )
-                                        _, t5 = sl.topk(5, dim=1)
-                                        total_t5 += int(
-                                            (t5 == st.unsqueeze(1))
-                                            .any(dim=1)
-                                            .sum()
-                                            .item()
-                                        )
-
-                            if total_n > 0:
-                                raw_ce_loss = total_ce / total_n
-                                task_loss = raw_ce_loss * family_def.loss_weight
-                                batch_kc_losses[name] = task_loss.item()
-                                structural_loss = structural_loss + task_loss
-                                num_struct += 1
-
-                                if not skip_metrics and kc_diag is not None:
-                                    kc_diag.update_bert_family(
-                                        name,
-                                        loss=task_loss.item(),
-                                        top1_correct=total_t1,
-                                        top5_correct=total_t5,
-                                        n_samples=total_n,
-                                    )
-                        continue
 
                     if isinstance(family_def, KcReconFamily):
                         # Reconstruction loss: CE against original surface IDs
@@ -2197,7 +2086,7 @@ class KCTrainer:
                                                 .sum()
                                                 .item()
                                             )
-                                    kc_diag.update_bert_family(
+                                    kc_diag.update_recon_family(
                                         name,
                                         loss=task_loss.item(),
                                         top1_correct=t1,

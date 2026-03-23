@@ -473,8 +473,8 @@ class KCMseFamilyStats:
 
 
 @dataclass
-class KCBertFamilyStats:
-    """KC diagnostic statistics for a BERT cloze (morpheme-prediction) family."""
+class KCReconFamilyStats:
+    """KC diagnostic statistics for a reconstruction (token prediction) family."""
 
     loss_mean: float
     top1_accuracy: float
@@ -489,7 +489,7 @@ class KCDiagnosticReport:
 
     families: Dict[str, KCDiagnosticFamilyStats]  # Label family stats
     mse_families: Dict[str, KCMseFamilyStats] = field(default_factory=dict)
-    bert_families: Dict[str, KCBertFamilyStats] = field(default_factory=dict)
+    recon_families: Dict[str, KCReconFamilyStats] = field(default_factory=dict)
 
 
 @dataclass
