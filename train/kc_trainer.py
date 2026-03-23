@@ -2180,10 +2180,13 @@ class KCTrainer:
                                             .sum()
                                             .item()
                                         )
+                                        end_rel = getattr(
+                                            decoder, "_last_recon_end_rel", None
+                                        )
                                         t1_pos_only = 0
-                                        if positions is not None and valid is not None:
+                                        if end_rel is not None and valid is not None:
                                             baseline = decoder.recon_position_only(
-                                                positions
+                                                end_rel
                                             )
                                             bl_logits = baseline[name][valid]
                                             t1_pos_only = int(

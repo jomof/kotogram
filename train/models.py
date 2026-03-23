@@ -96,6 +96,7 @@ class KCDecoder(nn.Module):
         # Position sampling state (set during forward, read by trainer for loss)
         self._last_recon_positions: Optional[torch.Tensor] = None
         self._last_recon_valid: Optional[torch.Tensor] = None
+        self._last_recon_end_rel: Optional[torch.Tensor] = None
         # Inverse-frequency sampling weights (set by trainer at init time)
         self.recon_freq_weights: Optional[torch.Tensor] = None
         if self._recon_families:
@@ -182,10 +183,14 @@ class KCDecoder(nn.Module):
                 result[name] = decoder(h_bert)
 
         # Reconstruction pathway: per-position prediction from KC probs + position
+        # Position embeddings are end-relative: 0 = last content token,
+        # 1 = second-to-last, etc. This lets the model learn sentence-final
+        # patterns (particles, copulas) directly from positional features.
         if self.recon_decoders and attention_mask is not None:
             B, S = attention_mask.shape  # pylint: disable=invalid-name
             K = self._recon_k  # pylint: disable=invalid-name
             content_mask = attention_mask.bool()
+            content_lengths = content_mask.sum(dim=1)  # [B]
 
             if self.training and K < S:
                 # Sample K positions per sentence, biased toward rare tokens
@@ -198,23 +203,30 @@ class KCDecoder(nn.Module):
                 positions = sorted_idx[:, :K]  # (B, K)
                 valid = torch.gather(content_mask, 1, positions)
 
-                pos_emb = self.recon_pos_embed(positions)  # (B, K, pos_dim)
+                # End-relative: 0 = last token, 1 = second-to-last, ...
+                end_rel = (content_lengths.unsqueeze(1) - 1 - positions).clamp(min=0)
+                pos_emb = self.recon_pos_embed(end_rel)  # (B, K, pos_dim)
                 kc_expanded = kc_probs.unsqueeze(1).expand(-1, K, -1)
                 h_recon = torch.cat([kc_expanded, pos_emb], dim=-1)
                 h_recon = self.activation(self.recon_hidden1(h_recon))
                 h_recon = self.activation(self.recon_hidden2(h_recon))
                 self._last_recon_positions = positions
                 self._last_recon_valid = valid
+                self._last_recon_end_rel = end_rel
             else:
                 # Eval: decode all positions (used for canary display)
-                pos_ids = torch.arange(S, device=kc_probs.device)
-                pos_emb = self.recon_pos_embed(pos_ids).unsqueeze(0).expand(B, -1, -1)
+                abs_pos = (
+                    torch.arange(S, device=kc_probs.device).unsqueeze(0).expand(B, -1)
+                )
+                end_rel = (content_lengths.unsqueeze(1) - 1 - abs_pos).clamp(min=0)
+                pos_emb = self.recon_pos_embed(end_rel)  # (B, S, pos_dim)
                 kc_expanded = kc_probs.unsqueeze(1).expand(-1, S, -1)
                 h_recon = torch.cat([kc_expanded, pos_emb], dim=-1)
                 h_recon = self.activation(self.recon_hidden1(h_recon))
                 h_recon = self.activation(self.recon_hidden2(h_recon))
                 self._last_recon_positions = None
                 self._last_recon_valid = None
+                self._last_recon_end_rel = None
 
             for name, decoder in self.recon_decoders.items():
                 result[name] = decoder(h_recon)
