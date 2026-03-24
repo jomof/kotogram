@@ -690,7 +690,7 @@ if __name__ == "__main__":
                 if kc_model_saved:
                     best_kc_val_loss = kc_val_loss
                     _export_model(model)
-                    _view.on_model_saved(output_path, kc_val_result)
+                _view.on_kc_val_result(output_path, kc_val_result, kc_model_saved)
 
                 # Always save checkpoint for resumption
                 train_io.save_checkpoint(model)

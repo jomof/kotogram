@@ -373,7 +373,8 @@ class KCTrainer:
                 kc_targets[k] = v.to(self.device, non_blocking=True)
 
             batch_loss = 0.0
-            n_families = 0
+            total_weight = 0.0
+            gp_val_weight = 10.0
             for fid, vocab_size in self.config.kc_target_specs.items():
                 if fid not in val_families:
                     continue
@@ -400,8 +401,8 @@ class KCTrainer:
                             unlabeled_weight=self.kc_config.gp_unlabeled_weight,
                         )
                         loss_val = loss.item()
-                        batch_loss += loss_val
-                        n_families += 1
+                        batch_loss += loss_val * gp_val_weight
+                        total_weight += gp_val_weight
                         family_loss_sums[name] = (
                             family_loss_sums.get(name, 0.0) + loss_val
                         )
@@ -441,7 +442,7 @@ class KCTrainer:
                             )
                             loss_val = loss.item()
                             batch_loss += loss_val
-                            n_families += 1
+                            total_weight += 1.0
                             family_loss_sums[name] = (
                                 family_loss_sums.get(name, 0.0) + loss_val
                             )
@@ -449,8 +450,8 @@ class KCTrainer:
                                 family_loss_counts.get(name, 0) + 1
                             )
 
-            if n_families > 0:
-                total_loss += batch_loss / n_families
+            if total_weight > 0:
+                total_loss += batch_loss / total_weight
                 n_batches += 1
 
         self.model.train()

@@ -181,8 +181,10 @@ class TrainStyleView(Protocol):
     def on_final_results(self, results: FinalResults) -> None:
         """Display final evaluation results."""
 
-    def on_model_saved(self, output_dir: str, val_result: KcValResult) -> None:
-        """Notify model was saved with validation loss breakdown."""
+    def on_kc_val_result(
+        self, output_dir: str, val_result: KcValResult, is_best: bool
+    ) -> None:
+        """Display KC validation result. Highlighted when best, dim otherwise."""
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         """Display timing summary."""
@@ -454,18 +456,26 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         )
         self._header("-", 34)
 
-    def on_model_saved(self, output_dir: str, val_result: KcValResult) -> None:
+    def on_kc_val_result(
+        self, output_dir: str, val_result: KcValResult, is_best: bool
+    ) -> None:
         parts = [
             f"{name}={loss:.4f}" for name, loss in val_result.family_losses.items()
         ]
         detail = ", ".join(parts)
-        msg = f"[green]Model saved[/green] val_loss={val_result.total_loss:.4f} ({detail})"
+        if is_best:
+            prefix = "[green]Model saved[/green]"
+        else:
+            prefix = "[dim]Val loss[/dim]   "
+        msg = f"{prefix} val_loss={val_result.total_loss:.4f} ({detail})"
         if val_result.gp_pos_accuracy is not None:
             msg += f" gp_pos={val_result.gp_pos_accuracy:.1%}"
         if val_result.gp_neg_accuracy is not None:
             msg += f" gp_neg={val_result.gp_neg_accuracy:.1%}"
         if val_result.val_sentence_count > 0:
             msg += f" val_n={val_result.val_sentence_count:,}"
+        if not is_best:
+            msg = f"[dim]{msg}[/dim]"
         console.print(msg)
 
     def on_timing_summary(self, style_duration_s: float) -> None:
