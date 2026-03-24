@@ -499,6 +499,7 @@ class KCTrainer:
         """
         kc_maps = gram_val.kc_maps
         if "grammar_point_pos" not in kc_maps:
+            print(f"[best-fit-prior] grammar_point_pos not in kc_maps. keys={list(kc_maps.keys())}")
             return None
         offsets = kc_maps["grammar_point_pos"]["offsets"]
         ids = kc_maps["grammar_point_pos"]["ids"]
@@ -517,14 +518,18 @@ class KCTrainer:
             n_sentences += 1
 
         if n_sentences == 0:
+            print(f"[best-fit-prior] n_sentences=0, len(indices)={len(gram_val.indices)}, len(offsets)={len(offsets)}")
             return None
 
         # Per-GP rate (only for GPs that appeared at least once)
         nonzero = counts[counts > 0].float() / n_sentences
         if nonzero.numel() == 0:
+            print(f"[best-fit-prior] no GPs with positive labels. n_sentences={n_sentences}")
             return None
 
-        return float(nonzero.median().item())
+        result = float(nonzero.median().item())
+        print(f"[best-fit-prior] prior={result:.6f}, n_gps_with_labels={nonzero.numel()}, n_sentences={n_sentences}")
+        return result
 
     def _resample_dataloaders(self) -> None:
         """Update gram/ungram dataset indices and sampler state in-place.
