@@ -18,6 +18,9 @@ class KcValResult:
     gp_pos_accuracy: Optional[float] = None
     gp_neg_accuracy: Optional[float] = None
     val_sentence_count: int = 0
+    gp_best_fit_prior: Optional[float] = None
+    gp_current_prior: Optional[float] = None
+    gp_vocab_size: int = 0
 
 
 @dataclass

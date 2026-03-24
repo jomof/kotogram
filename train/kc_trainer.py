@@ -463,13 +463,68 @@ class KCTrainer:
         }
         gp_pos_acc = gp_pos_correct / gp_pos_total if gp_pos_total > 0 else None
         gp_neg_acc = gp_neg_correct / gp_neg_total if gp_neg_total > 0 else None
+
+        # Compute best-fit default prior from validation set positive label rates
+        gp_vocab_size = int(
+            self.config.kc_target_specs.get(KcFamilyId.GRAMMAR_POINT, 0)
+        )
+        best_fit_prior: Optional[float] = None
+        if gp_vocab_size > 0:
+            best_fit_prior = self._compute_best_fit_prior(gram_val, gp_vocab_size)
+
         return KcValResult(
             total_loss=avg_total,
             family_losses=avg_families,
             gp_pos_accuracy=gp_pos_acc,
             gp_neg_accuracy=gp_neg_acc,
             val_sentence_count=len(gram_val),
+            gp_best_fit_prior=best_fit_prior,
+            gp_current_prior=self._gp_computed_default_prior,
+            gp_vocab_size=gp_vocab_size,
         )
+
+    @staticmethod
+    def _compute_best_fit_prior(
+        gram_val: "StyleDataset",
+        gp_vocab_size: int,
+    ) -> Optional[float]:
+        """Compute best-fit default prior from validation set GP label rates.
+
+        Scans the grammatical validation subset for positive GP labels,
+        counts per-GP occurrences, and returns the median non-zero rate
+        as the best-fit default prior.
+
+        Returns:
+            Median per-GP positive rate, or None if no GP labels found.
+        """
+        kc_maps = gram_val.kc_maps
+        if "grammar_point_pos" not in kc_maps:
+            return None
+        offsets = kc_maps["grammar_point_pos"]["offsets"]
+        ids = kc_maps["grammar_point_pos"]["ids"]
+
+        counts = torch.zeros(gp_vocab_size, dtype=torch.long)
+        n_sentences = 0
+        for idx_t in gram_val.indices:
+            real_idx = int(idx_t.item())
+            if real_idx + 1 >= len(offsets):
+                continue
+            start = int(offsets[real_idx].item())
+            end = int(offsets[real_idx + 1].item())
+            for gp_id in ids[start:end].tolist():
+                if 0 <= gp_id < gp_vocab_size:
+                    counts[gp_id] += 1
+            n_sentences += 1
+
+        if n_sentences == 0:
+            return None
+
+        # Per-GP rate (only for GPs that appeared at least once)
+        nonzero = counts[counts > 0].float() / n_sentences
+        if nonzero.numel() == 0:
+            return None
+
+        return float(nonzero.median().item())
 
     def _resample_dataloaders(self) -> None:
         """Update gram/ungram dataset indices and sampler state in-place.

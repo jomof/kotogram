@@ -477,6 +477,13 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         if not is_best:
             msg = f"[dim]{msg}[/dim]"
         console.print(msg)
+        if val_result.gp_best_fit_prior is not None:
+            console.print(
+                f"[dim]  grammar_point Best-fit default prior: "
+                f"{val_result.gp_best_fit_prior:.6f} "
+                f"(current: {val_result.gp_current_prior}, "
+                f"{val_result.gp_vocab_size} GPs)[/dim]"
+            )
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         self._header("-", 34)
