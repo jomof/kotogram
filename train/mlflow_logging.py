@@ -313,9 +313,6 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if "gp_best_fit_prior" in metrics:
         to_log["kc/gp_best_fit_prior"] = float(metrics["gp_best_fit_prior"])
 
-    if "gp_current_prior" in metrics:
-        to_log["kc/gp_current_prior"] = float(metrics["gp_current_prior"])
-
     # Save-time metrics: snapshot val metrics only when model was saved
     if metrics.get("model_saved"):
         if "val_loss" in metrics:
@@ -328,6 +325,8 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
             to_log["kc/gp_accuracy_save"] = (
                 float(metrics["gp_pos_accuracy"]) + float(metrics["gp_neg_accuracy"])
             ) / 2.0
+        if "gp_best_fit_prior" in metrics:
+            to_log["kc/gp_best_fit_prior_save"] = float(metrics["gp_best_fit_prior"])
 
     for k, v in to_log.items():
         mlflow.log_metric(k, v, step=epoch)

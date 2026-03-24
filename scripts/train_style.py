@@ -357,8 +357,6 @@ if __name__ == "__main__":
                 metrics["val_sentence_count"] = val_result.val_sentence_count
             if val_result.gp_best_fit_prior is not None:
                 metrics["gp_best_fit_prior"] = val_result.gp_best_fit_prior
-            if val_result.gp_current_prior is not None:
-                metrics["gp_current_prior"] = val_result.gp_current_prior
             mlflow_logging.log_kc_epoch(epoch, metrics)
 
     model: Optional[InferenceClassifier] = None
