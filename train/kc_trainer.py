@@ -345,6 +345,14 @@ class KCTrainer:
         gp_neg_correct = 0
         gp_neg_total = 0
 
+        # Accumulate per-GP predicted-positive counts for best-fit prior
+        # (mirrors the training accumulator's freq_by_label / n_ex)
+        gp_vocab_size = int(
+            self.config.kc_target_specs.get(KcFamilyId.GRAMMAR_POINT, 0)
+        )
+        gp_freq_counts = torch.zeros(gp_vocab_size, dtype=torch.long)
+        gp_n_examples = 0
+
         for batch_data in val_loader:
             batch: TrainingBatch = batch_data
 
@@ -432,6 +440,13 @@ class KCTrainer:
                                 ((neg_logits <= 0) & neg_mask.bool()).sum().item()
                             )
                             gp_neg_total += int(neg_mask.sum().item())
+
+                    # Accumulate predicted-positive frequency per GP
+                    # (logit > 0 == sigmoid > 0.5)
+                    with torch.no_grad():
+                        predicted_pos = (logits_f > 0).cpu()  # (B, V)
+                        gp_freq_counts += predicted_pos.sum(dim=0).long()
+                        gp_n_examples += predicted_pos.shape[0]
                 else:
                     # Continuous MSE (gender, formality)
                     continuous_key = f"kc_continuous_{name}"
@@ -464,13 +479,20 @@ class KCTrainer:
         gp_pos_acc = gp_pos_correct / gp_pos_total if gp_pos_total > 0 else None
         gp_neg_acc = gp_neg_correct / gp_neg_total if gp_neg_total > 0 else None
 
-        # Compute best-fit default prior from validation set positive label rates
-        gp_vocab_size = int(
-            self.config.kc_target_specs.get(KcFamilyId.GRAMMAR_POINT, 0)
-        )
+        # Best-fit default prior: mean predicted-positive rate for GPs using
+        # the default prior (NaN in gp_priors).  Mirrors the training epoch
+        # report in kc_trainer_view.py (obs_freq[default_mask].mean()).
         best_fit_prior: Optional[float] = None
-        if gp_vocab_size > 0:
-            best_fit_prior = self._compute_best_fit_prior(gram_val, gp_vocab_size)
+        n_default_gps = 0
+        if gp_vocab_size > 0 and gp_n_examples > 0:
+            obs_freq = gp_freq_counts.float() / gp_n_examples
+            gp_priors = self.dataset.gp_priors
+            pri = gp_priors.detach().float().cpu()[:gp_vocab_size]
+            prior_set = torch.isfinite(pri) & (pri >= 0.0) & (pri <= 1.0)
+            default_mask = ~prior_set
+            n_default_gps = int(default_mask.sum().item())
+            if default_mask.any():
+                best_fit_prior = float(obs_freq[default_mask].mean().item())
 
         return KcValResult(
             total_loss=avg_total,
@@ -480,56 +502,8 @@ class KCTrainer:
             val_sentence_count=len(gram_val),
             gp_best_fit_prior=best_fit_prior,
             gp_current_prior=self._gp_computed_default_prior,
-            gp_vocab_size=gp_vocab_size,
+            gp_vocab_size=n_default_gps,
         )
-
-    @staticmethod
-    def _compute_best_fit_prior(
-        gram_val: "StyleDataset",
-        gp_vocab_size: int,
-    ) -> Optional[float]:
-        """Compute best-fit default prior from validation set GP label rates.
-
-        Scans the grammatical validation subset for positive GP labels,
-        counts per-GP occurrences, and returns the median non-zero rate
-        as the best-fit default prior.
-
-        Returns:
-            Median per-GP positive rate, or None if no GP labels found.
-        """
-        kc_maps = gram_val.kc_maps
-        if "grammar_point_pos" not in kc_maps:
-            print(f"[best-fit-prior] grammar_point_pos not in kc_maps. keys={list(kc_maps.keys())}")
-            return None
-        offsets = kc_maps["grammar_point_pos"]["offsets"]
-        ids = kc_maps["grammar_point_pos"]["ids"]
-
-        counts = torch.zeros(gp_vocab_size, dtype=torch.long)
-        n_sentences = 0
-        for idx_t in gram_val.indices:
-            real_idx = int(idx_t.item())
-            if real_idx + 1 >= len(offsets):
-                continue
-            start = int(offsets[real_idx].item())
-            end = int(offsets[real_idx + 1].item())
-            for gp_id in ids[start:end].tolist():
-                if 0 <= gp_id < gp_vocab_size:
-                    counts[gp_id] += 1
-            n_sentences += 1
-
-        if n_sentences == 0:
-            print(f"[best-fit-prior] n_sentences=0, len(indices)={len(gram_val.indices)}, len(offsets)={len(offsets)}")
-            return None
-
-        # Per-GP rate (only for GPs that appeared at least once)
-        nonzero = counts[counts > 0].float() / n_sentences
-        if nonzero.numel() == 0:
-            print(f"[best-fit-prior] no GPs with positive labels. n_sentences={n_sentences}")
-            return None
-
-        result = float(nonzero.median().item())
-        print(f"[best-fit-prior] prior={result:.6f}, n_gps_with_labels={nonzero.numel()}, n_sentences={n_sentences}")
-        return result
 
     def _resample_dataloaders(self) -> None:
         """Update gram/ungram dataset indices and sampler state in-place.

@@ -310,6 +310,12 @@ def log_kc_epoch(epoch: int, metrics: Dict[str, Any]) -> None:
     if "val_sentence_count" in metrics:
         to_log["kc/val_sentence_count"] = int(metrics["val_sentence_count"])
 
+    if "gp_best_fit_prior" in metrics:
+        to_log["kc/gp_best_fit_prior"] = float(metrics["gp_best_fit_prior"])
+
+    if "gp_current_prior" in metrics:
+        to_log["kc/gp_current_prior"] = float(metrics["gp_current_prior"])
+
     # Save-time metrics: snapshot val metrics only when model was saved
     if metrics.get("model_saved"):
         if "val_loss" in metrics:
