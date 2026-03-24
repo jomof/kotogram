@@ -21,6 +21,8 @@ class KcValResult:
     gp_best_fit_prior: Optional[float] = None
     gp_current_prior: Optional[float] = None
     gp_vocab_size: int = 0
+    val_duration_s: float = 0.0
+    val_elements_per_s: float = 0.0
 
 
 @dataclass

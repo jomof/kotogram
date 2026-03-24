@@ -2,6 +2,7 @@
 import math
 import os
 import random
+import time
 from collections.abc import Iterable, Sized
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple
@@ -352,6 +353,9 @@ class KCTrainer:
         )
         gp_freq_counts = torch.zeros(gp_vocab_size, dtype=torch.long)
         gp_n_examples = 0
+        total_elements = 0
+
+        val_start = time.perf_counter()
 
         for batch_data in val_loader:
             batch: TrainingBatch = batch_data
@@ -469,6 +473,9 @@ class KCTrainer:
             if total_weight > 0:
                 total_loss += batch_loss / total_weight
                 n_batches += 1
+            total_elements += int(attention_mask.sum().item())
+
+        val_duration = time.perf_counter() - val_start
 
         self.model.train()
         avg_total = total_loss / n_batches if n_batches > 0 else 0.0
@@ -503,6 +510,10 @@ class KCTrainer:
             gp_best_fit_prior=best_fit_prior,
             gp_current_prior=self._gp_computed_default_prior,
             gp_vocab_size=n_default_gps,
+            val_duration_s=val_duration,
+            val_elements_per_s=total_elements / val_duration
+            if val_duration > 0
+            else 0.0,
         )
 
     def _resample_dataloaders(self) -> None:

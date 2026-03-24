@@ -484,6 +484,11 @@ class TrainStyleDiagnosticsView(TrainStyleView):
                 f"(current: {val_result.gp_current_prior}, "
                 f"{val_result.gp_vocab_size} GPs)[/dim]"
             )
+        if val_result.val_duration_s > 0:
+            console.print(
+                f"[dim]  Validation: {val_result.val_duration_s:.1f}s "
+                f"({val_result.val_elements_per_s:,.0f} el/s)[/dim]"
+            )
 
     def on_timing_summary(self, style_duration_s: float) -> None:
         self._header("-", 34)
