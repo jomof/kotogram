@@ -4,10 +4,10 @@
 import math
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Sequence, Set, Tuple
 
 import torch
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, Sampler
 
 from kotogram.japanese_parser import JapaneseParser
 from kotogram.model import (
@@ -25,6 +25,46 @@ from train.binary_io import (
 )
 from train.kc import KcFamilyId
 from train.types import Sample, TrainingBatch
+
+
+class ResettableSampler(Sampler[int]):
+    """Sampler whose indices can be swapped between epochs.
+
+    Avoids recreating DataLoaders (and their persistent worker
+    processes / file descriptors) every epoch.
+    """
+
+    def __init__(self, num_samples: int) -> None:
+        super().__init__()
+        self._num_samples = num_samples
+        self._weights: Optional[Sequence[float]] = None
+        self._weighted_num_samples: Optional[int] = None
+
+    def set_epoch_size(self, num_samples: int) -> None:
+        """Update the number of samples for uniform shuffling."""
+        self._num_samples = num_samples
+        self._weights = None
+        self._weighted_num_samples = None
+
+    def set_weighted(self, weights: Sequence[float], num_samples: int) -> None:
+        """Enable weighted random sampling with replacement."""
+        self._weights = weights
+        self._weighted_num_samples = num_samples
+
+    def __iter__(self) -> Iterator[int]:
+        if self._weights is not None and self._weighted_num_samples is not None:
+            weight_tensor = torch.tensor(self._weights, dtype=torch.double)
+            drawn = torch.multinomial(
+                weight_tensor, self._weighted_num_samples, replacement=True
+            )
+            yield from drawn.tolist()
+        else:
+            yield from torch.randperm(self._num_samples).tolist()
+
+    def __len__(self) -> int:
+        if self._weighted_num_samples is not None:
+            return self._weighted_num_samples
+        return self._num_samples
 
 
 @dataclass
@@ -254,6 +294,11 @@ class StyleDataset(Dataset[Sample]):
         self.indices = self._full_indices.clone()
         self._apply_balanced_sampling(sample_ratio, seed=seed)
         self._len = len(self.indices)
+
+    def update_indices(self, new_indices: torch.Tensor) -> None:
+        """Replace active indices in-place (for persistent DataLoader workers)."""
+        self.indices = new_indices
+        self._len = len(new_indices)
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)

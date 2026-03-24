@@ -21,7 +21,7 @@ from train.config import (
     _safe_configure_threads,
     configure_runtime_thread_limits,
 )
-from train.dataset import StyleDataset, collate_fn, create_kc_batch
+from train.dataset import ResettableSampler, StyleDataset, collate_fn, create_kc_batch
 from train.display import (
     RichTrainerProgressBar,
 )
@@ -185,7 +185,6 @@ class KCTrainer:
         self._surface_unfrozen_by_ramp = False
 
         self.val_sampler = None
-        self.gram_sampler = None
         self._surface_id_to_token: Dict[int, str] = {}
         self.data_loader: Optional[Iterable[Any]] = None
         self.ungram_loader: Iterable[Any] = []
@@ -199,33 +198,34 @@ class KCTrainer:
             self.ungram_dataset = dataset.filter_by_grammaticality(0)
             self.gram_dataset = dataset.filter_by_grammaticality(1)
 
-            # Create style-aware sampler if enabled (oversamples non-neutral examples)
-            if kc_config.style_oversample and hasattr(
-                self.gram_dataset, "create_style_oversampler"
+            # Create resettable samplers (updated in-place each epoch)
+            self._ungram_sampler = ResettableSampler(len(self.ungram_dataset))
+            self._gram_sampler = ResettableSampler(len(self.gram_dataset))
+
+            # Apply style-aware oversampling weights if enabled
+            if kc_config.style_oversample and isinstance(
+                self.gram_dataset, StyleDataset
             ):
-                self.gram_sampler = self.gram_dataset.create_style_oversampler(
+                ws = self.gram_dataset.create_style_oversampler(
                     formality_boost=kc_config.formality_boost,
                     gender_boost=kc_config.gender_boost,
                     length_reweight=kc_config.length_reweight,
+                )
+                self._gram_sampler.set_weighted(
+                    list(ws.weights),
+                    ws.num_samples,
                 )
                 self.view.on_style_oversampling_enabled(
                     kc_config.formality_boost, kc_config.gender_boost
                 )
 
-            if dl_config is None:
-                dl_config = self.config.resolve_dataloader_config(
-                    self.device, mode="train"
-                )
-            self._dl_config = dl_config
-
             self.ungram_loader = DataLoader(
                 self.ungram_dataset,
                 batch_size=self.config.batch_size,
-                shuffle=True,
-                sampler=None,
+                shuffle=False,
+                sampler=self._ungram_sampler,
                 collate_fn=partial(
                     collate_fn,
-                    # max_seq_len=max_seq_len, # Removed constant param
                 ),
                 num_workers=dl_config.num_workers,
                 pin_memory=dl_config.pin_memory,
@@ -236,11 +236,10 @@ class KCTrainer:
             self.gram_loader = DataLoader(
                 self.gram_dataset,
                 batch_size=self.config.batch_size,
-                shuffle=(self.gram_sampler is None),
-                sampler=self.gram_sampler,
+                shuffle=False,
+                sampler=self._gram_sampler,
                 collate_fn=partial(
                     collate_fn,
-                    # max_seq_len=max_seq_len, # Removed constant param
                 ),
                 num_workers=dl_config.num_workers,
                 pin_memory=dl_config.pin_memory,
@@ -249,7 +248,6 @@ class KCTrainer:
                 worker_init_fn=_worker_init_fn,
             )
         else:
-            self._dl_config = dl_config
             self.ungram_dataset = dataset
             self.gram_dataset = dataset
             self.ungram_loader = []
@@ -470,45 +468,46 @@ class KCTrainer:
             val_sentence_count=len(gram_val),
         )
 
-    def _rebuild_dataloaders(self) -> None:
-        """Re-split dataset into gram/ungram and recreate DataLoaders."""
-        self.ungram_dataset = self.dataset.filter_by_grammaticality(0)
-        self.gram_dataset = self.dataset.filter_by_grammaticality(1)
+    def _resample_dataloaders(self) -> None:
+        """Update gram/ungram dataset indices and sampler state in-place.
 
-        if self.kc_config.style_oversample and hasattr(
-            self.gram_dataset, "create_style_oversampler"
+        Avoids recreating DataLoaders (and their persistent worker
+        processes + file descriptors) every epoch.  Instead, mutates the
+        existing dataset indices and resets the samplers so the next
+        iteration sees the new data.
+        """
+        if not hasattr(self, "_gram_sampler"):
+            return
+        labels = getattr(self.dataset, "labels", {})
+        if "gram" not in labels:
+            return
+        # Re-derive gram/ungram indices from the parent dataset
+        gram_labels = self.dataset.labels["gram"]
+        gram_mask = gram_labels[self.dataset.indices] == 1
+        gram_indices = self.dataset.indices[gram_mask]
+        ungram_indices = self.dataset.indices[~gram_mask]
+
+        # Update child datasets in-place (persistent workers see these)
+        self.gram_dataset.update_indices(gram_indices)
+        self.ungram_dataset.update_indices(ungram_indices)
+
+        # Reset samplers to match new sizes
+        self._ungram_sampler.set_epoch_size(len(self.ungram_dataset))
+
+        if self.kc_config.style_oversample and isinstance(
+            self.gram_dataset, StyleDataset
         ):
-            self.gram_sampler = self.gram_dataset.create_style_oversampler(
+            ws = self.gram_dataset.create_style_oversampler(
                 formality_boost=self.kc_config.formality_boost,
                 gender_boost=self.kc_config.gender_boost,
                 length_reweight=self.kc_config.length_reweight,
             )
-
-        dl = self._dl_config
-        self.ungram_loader = DataLoader(
-            self.ungram_dataset,
-            batch_size=self.config.batch_size,
-            shuffle=True,
-            sampler=None,
-            collate_fn=partial(collate_fn),
-            num_workers=dl.num_workers,
-            pin_memory=dl.pin_memory,
-            persistent_workers=dl.persistent_workers,
-            prefetch_factor=dl.prefetch_factor,
-            worker_init_fn=_worker_init_fn,
-        )
-        self.gram_loader = DataLoader(
-            self.gram_dataset,
-            batch_size=self.config.batch_size,
-            shuffle=(self.gram_sampler is None),
-            sampler=self.gram_sampler,
-            collate_fn=partial(collate_fn),
-            num_workers=dl.num_workers,
-            pin_memory=dl.pin_memory,
-            persistent_workers=dl.persistent_workers,
-            prefetch_factor=dl.prefetch_factor,
-            worker_init_fn=_worker_init_fn,
-        )
+            self._gram_sampler.set_weighted(
+                list(ws.weights),
+                ws.num_samples,
+            )
+        else:
+            self._gram_sampler.set_epoch_size(len(self.gram_dataset))
 
     @staticmethod
     def _format_kc_pbar_desc(pbar_desc: str, batch_label: str) -> str:
@@ -3598,7 +3597,7 @@ class KCTrainer:
         """Bump data ratio when grammar_point PosP crosses the threshold.
 
         Only updates ``_current_ratio``; the caller is responsible for
-        calling ``resample`` + ``_rebuild_dataloaders`` afterwards.
+        calling ``resample`` + ``_resample_dataloaders`` afterwards.
         """
         if self._ramp_step <= 0 or self._current_ratio >= 1.0:
             return
@@ -3695,7 +3694,7 @@ class KCTrainer:
 
             # Resample training data every epoch for diversity
             self.dataset.resample(self._current_ratio, seed=epoch + 1)
-            self._rebuild_dataloaders()
+            self._resample_dataloaders()
 
         self.view.on_kc_train_end(self.history)
 
