@@ -1,6 +1,6 @@
 """Model extensions and heads for style training."""
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, FrozenSet, Optional
 
 import torch
 from torch import nn
@@ -123,6 +123,7 @@ class KCDecoder(nn.Module):
         kc_probs: torch.Tensor,
         attention_mask: Optional[torch.Tensor] = None,
         surface_ids: Optional[torch.Tensor] = None,
+        families: Optional[FrozenSet[str]] = None,
     ) -> Dict[str, torch.Tensor]:
         """Decode KC probabilities to family outputs.
 
@@ -140,33 +141,45 @@ class KCDecoder(nn.Module):
         result = {}
 
         # Grammar point pathway (reduced capacity, single hidden layer)
-        if hasattr(self, "gp_decoder"):
+        if hasattr(self, "gp_decoder") and (
+            families is None or "grammar_point" in families
+        ):
             h_gp = self.activation(self.gp_hidden(kc_probs))
             result["grammar_point"] = self.gp_decoder(h_gp)
 
         # MSE pathway: Process style features (gender, formality)
-        if self.mse_decoders:
+        if self.mse_decoders and (families is None or self._mse_families & families):
             h_mse = self.activation(self.mse_hidden1(kc_probs))
             h_mse = self.activation(self.mse_hidden2(h_mse))
 
             for name, decoder in self.mse_decoders.items():
+                if families is not None and name not in families:
+                    continue
                 out = decoder(h_mse)
                 out = self.tanh(out)  # Bound to [-1, 1]
                 result[name] = out
 
         # Label pathway: All families use full KC probs
-        if self.decoders:
+        if self.decoders and (
+            families is None or any(name in families for name in self.decoders)
+        ):
             h_label = self.activation(self.label_hidden1(kc_probs))
             h_label = self.activation(self.label_hidden2(h_label))
 
             for name, decoder in self.decoders.items():
+                if families is not None and name not in families:
+                    continue
                 result[name] = decoder(h_label)
 
         # Reconstruction pathway: per-position prediction from KC probs + position
         # Position embeddings are end-relative: 0 = last content token,
         # 1 = second-to-last, etc. This lets the model learn sentence-final
         # patterns (particles, copulas) directly from positional features.
-        if self.recon_decoders and attention_mask is not None:
+        if (
+            self.recon_decoders
+            and attention_mask is not None
+            and (families is None or self._recon_families & families)
+        ):
             B, S = attention_mask.shape  # pylint: disable=invalid-name
             K = self._recon_k  # pylint: disable=invalid-name
             content_mask = attention_mask.bool()
@@ -275,6 +288,7 @@ class TrainingClassifier(InferenceClassifier):
         gumbel_scale: Optional[float] = None,
         grad_cap: Optional[float] = None,
         pooled: Optional[torch.Tensor] = None,
+        families: Optional[FrozenSet[str]] = None,
     ) -> Dict[str, Any]:
         if pooled is None:
             encoder_output = self.get_encoder_output(field_inputs, attention_mask)
@@ -340,6 +354,7 @@ class TrainingClassifier(InferenceClassifier):
             kc_probs,
             attention_mask=attention_mask,
             surface_ids=surface_ids,
+            families=families,
         )
 
         return {

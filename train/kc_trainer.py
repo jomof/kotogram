@@ -316,6 +316,8 @@ class KCTrainer:
             KcFamilyId.GENDER,
             KcFamilyId.FORMALITY,
         }
+        # Only run decoders we actually need (skip recon, label, etc.)
+        val_family_names = frozenset(fid.name.lower() for fid in val_families)
 
         self.model.eval()
         if self.device.type == "cuda":
@@ -358,6 +360,7 @@ class KCTrainer:
                 mode="kc",
                 temperature=t_val,
                 gumbel_scale=0.0,
+                families=val_family_names,
             )
 
             target_logits = outputs["target_logits"]
