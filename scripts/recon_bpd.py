@@ -38,10 +38,14 @@ from train import paths as train_paths
 from train.dataset import StyleDataset, collate_fn
 
 # ── Training config ──────────────────────────────────────────────────
-DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
+DEVICE = (
+    "cuda" if torch.cuda.is_available()
+    else "mps" if torch.backends.mps.is_available()
+    else "cpu"
+)
 BATCH_SIZE = 256
 EPOCHS = 1000
-SAMPLE_RATIO = 1
+SAMPLE_RATIO = 0.08
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
@@ -458,8 +462,11 @@ def main() -> None:
             n_batches += 1
 
             del loss, h_recon, total_nll_nats, total_bits, bpd
-            if device.type == "mps" and n_batches % 8 == 0:
-                torch.mps.empty_cache()
+            if n_batches % 8 == 0:
+                if device.type == "mps":
+                    torch.mps.empty_cache()
+                elif device.type == "cuda":
+                    torch.cuda.empty_cache()
 
             dt_batch = time.perf_counter() - t0
             t1_pct = 100.0 * epoch_t1_correct / max(1, epoch_num_units)
