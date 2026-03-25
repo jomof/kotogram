@@ -1,0 +1,196 @@
+#!/usr/bin/env python3
+"""Optuna hyperparameter search for recon_bpd training.
+
+Minimizes BPD (bits per attended token-position) over the full
+TrainConfig search space.  Each trial is logged as an independent
+MLflow run with per-epoch step metrics (matching the train_style
+pattern).  Supports MedianPruner for early stopping of unpromising
+trials and optional persistent storage for resumable studies.
+
+Usage:
+    python -m scripts.recon_bpd_optuna
+    python -m scripts.recon_bpd_optuna --n-trials 100 --epochs-per-trial 50
+    python -m scripts.recon_bpd_optuna --storage sqlite:///optuna.db
+    python -m scripts.recon_bpd_optuna --no-mlflow
+"""
+
+import argparse
+import dataclasses
+import platform
+from typing import Optional
+
+import optuna
+
+from scripts.recon_bpd import TrainConfig, train
+
+
+def suggest_config(
+    trial: optuna.Trial,
+    epochs: int,
+    sample_ratio: Optional[float] = None,
+) -> TrainConfig:
+    """Build a TrainConfig from Optuna trial suggestions."""
+    d_model = trial.suggest_categorical("d_model", [256, 512])
+    return TrainConfig(
+        epochs=epochs,
+        sample_ratio=sample_ratio,
+        verbose=True,
+        seed=42,
+        # Learning dynamics
+        lr=trial.suggest_float("lr", 1e-5, 1e-2, log=True),
+        temperature=trial.suggest_float("temperature", 0.5, 5.0),
+        grad_cap=trial.suggest_float("grad_cap", 1.0, 10.0),
+        input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.0, 0.3),
+        # Regularization
+        kl_sparse_weight=trial.suggest_float(
+            "kl_sparse_weight", 1e-6, 1e-1, log=True,
+        ),
+        kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
+        cov_penalty_weight=trial.suggest_float(
+            "cov_penalty_weight", 0.1, 20.0,
+        ),
+        # Model architecture
+        d_model=d_model,
+        ffn_dim=trial.suggest_categorical("ffn_dim", [1024, 2048, 4096]),
+        num_layers=trial.suggest_int("num_layers", 2, 6),
+        num_heads=trial.suggest_categorical("num_heads", [4, 8, 16]),
+        dropout=trial.suggest_float("dropout", 0.0, 0.3),
+        kc_vocab_size=trial.suggest_categorical(
+            "kc_vocab_size", [256, 512, 1024, 2048],
+        ),
+        recon_pos_embed_dim=trial.suggest_categorical(
+            "recon_pos_embed_dim", [32, 64, 128],
+        ),
+        recon_hidden_dim=trial.suggest_categorical(
+            "recon_hidden_dim", [128, 256, 512],
+        ),
+    )
+
+
+def objective(
+    trial: optuna.Trial,
+    epochs: int,
+    sample_ratio: Optional[float],
+    use_mlflow: bool,
+) -> float:
+    """Optuna objective: minimize BPD."""
+    config = suggest_config(trial, epochs, sample_ratio)
+
+    mlflow = None
+    if use_mlflow:
+        import mlflow as _mlflow  # type: ignore[import-untyped]
+
+        mlflow = _mlflow
+        mlflow.start_run(run_name=f"trial-{trial.number}")
+        for field in dataclasses.fields(config):
+            mlflow.log_param(field.name, getattr(config, field.name))
+        mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
+        mlflow.set_tag("optuna_trial", str(trial.number))
+
+    try:
+
+        def on_epoch_end(epoch: int, metrics: dict) -> None:
+            if mlflow is not None:
+                for k, v in metrics.items():
+                    mlflow.log_metric(f"bpd/{k}", v, step=epoch)
+            trial.report(metrics["bpd"], epoch)
+            if trial.should_prune():
+                raise optuna.TrialPruned()
+
+        result = train(config, on_epoch_end=on_epoch_end)
+        if mlflow is not None:
+            mlflow.log_metric("final_bpd", result.final_bpd)
+        return result.final_bpd
+    except optuna.TrialPruned:
+        if mlflow is not None:
+            mlflow.set_tag("optuna_pruned", "true")
+        raise
+    finally:
+        if mlflow is not None:
+            mlflow.end_run()
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Optuna hyperparameter search for recon_bpd",
+    )
+    parser.add_argument(
+        "--n-trials", type=int, default=50,
+        help="Number of Optuna trials (default: 50)",
+    )
+    parser.add_argument(
+        "--epochs-per-trial", type=int, default=30,
+        help="Training epochs per trial (default: 30)",
+    )
+    parser.add_argument(
+        "--sample-ratio", type=float, default=None,
+        help="Dataset sample ratio override (default: device-specific)",
+    )
+    parser.add_argument(
+        "--study-name", type=str, default="recon_bpd",
+        help="Optuna study name (default: recon_bpd)",
+    )
+    parser.add_argument(
+        "--storage", type=str, default=None,
+        help="Optuna storage URL, e.g. sqlite:///optuna.db",
+    )
+    parser.add_argument(
+        "--seed", type=int, default=42,
+        help="TPE sampler seed (default: 42)",
+    )
+    parser.add_argument(
+        "--no-mlflow", action="store_true",
+        help="Disable MLflow logging",
+    )
+    parser.add_argument(
+        "--tracking-uri", type=str, default=None,
+        help="MLflow tracking URI override",
+    )
+    parser.add_argument(
+        "--experiment-name", type=str, default="kotogram-bpd",
+        help="MLflow experiment name (default: kotogram-bpd)",
+    )
+    args = parser.parse_args()
+
+    use_mlflow = not args.no_mlflow
+    if use_mlflow:
+        from train.mlflow_logging import configure_tracking
+
+        configure_tracking(
+            tracking_uri=args.tracking_uri,
+            experiment_name=args.experiment_name,
+        )
+
+    sampler = optuna.samplers.TPESampler(seed=args.seed)
+    pruner = optuna.pruners.MedianPruner(
+        n_startup_trials=5, n_warmup_steps=5,
+    )
+
+    study = optuna.create_study(
+        study_name=args.study_name,
+        storage=args.storage,
+        direction="minimize",
+        sampler=sampler,
+        pruner=pruner,
+        load_if_exists=True,
+    )
+
+    study.optimize(
+        lambda trial: objective(
+            trial, args.epochs_per_trial, args.sample_ratio, use_mlflow,
+        ),
+        n_trials=args.n_trials,
+    )
+
+    print("\n" + "=" * 60)
+    print("Best trial:")
+    best = study.best_trial
+    print(f"  BPD:   {best.value:.4f}")
+    print(f"  Trial: {best.number}")
+    print("  Params:")
+    for key, value in sorted(best.params.items()):
+        print(f"    {key}: {value}")
+
+
+if __name__ == "__main__":
+    main()

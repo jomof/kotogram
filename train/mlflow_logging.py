@@ -109,20 +109,15 @@ def _params_from_config(
     return params
 
 
-def start_run(  # pylint: disable=too-many-positional-arguments
-    model_config: ModelConfig,
-    trainer_config: TrainerConfig,
-    config_path: Optional[str] = None,
-    run_name: Optional[str] = None,
+def configure_tracking(
     tracking_uri: Optional[str] = None,
     experiment_name: str = "kotogram-kc",
     artifact_location: Optional[str] = _GCS_ARTIFACT_LOCATION,
-    sentence_count: int = 0,
-) -> Optional[str]:
-    """Start an MLflow run and log params + machine.
+) -> None:
+    """Set up MLflow tracking URI and experiment.
 
-    Returns the run_id of the started run (used by ArtifactUploader),
-    or None if the run could not be started.
+    Auto-detects PostgreSQL (Cloud SQL direct or localhost proxy)
+    and falls back to local ``mlruns/`` directory.
     """
     import mlflow  # type: ignore[import-untyped]
 
@@ -144,6 +139,26 @@ def start_run(  # pylint: disable=too-many-positional-arguments
         mlflow.set_tracking_uri(str(mlruns))
 
     _ensure_experiment(mlflow, experiment_name, artifact_location)
+
+
+def start_run(  # pylint: disable=too-many-positional-arguments
+    model_config: ModelConfig,
+    trainer_config: TrainerConfig,
+    config_path: Optional[str] = None,
+    run_name: Optional[str] = None,
+    tracking_uri: Optional[str] = None,
+    experiment_name: str = "kotogram-kc",
+    artifact_location: Optional[str] = _GCS_ARTIFACT_LOCATION,
+    sentence_count: int = 0,
+) -> Optional[str]:
+    """Start an MLflow run and log params + machine.
+
+    Returns the run_id of the started run (used by ArtifactUploader),
+    or None if the run could not be started.
+    """
+    import mlflow  # type: ignore[import-untyped]
+
+    configure_tracking(tracking_uri, experiment_name, artifact_location)
     mlflow.start_run(
         run_name=run_name
         if run_name is not None

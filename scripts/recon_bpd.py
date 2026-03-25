@@ -23,7 +23,7 @@ import contextlib
 import math
 import time
 from dataclasses import dataclass
-from typing import Tuple, cast
+from typing import Callable, Dict, Optional, Tuple, cast
 
 import torch
 import torch.nn.functional as F
@@ -48,7 +48,7 @@ try:
 except ImportError:
     _HAS_CCE = False
 
-# ── Training config ──────────────────────────────────────────────────
+# ── Hardware detection ────────────────────────────────────────────────
 DEVICE = (
     "cuda" if torch.cuda.is_available()
     else "mps" if torch.backends.mps.is_available()
@@ -56,25 +56,58 @@ DEVICE = (
 )
 IS_CUDA = DEVICE == "cuda"
 USE_FUSED_CE = IS_CUDA and _HAS_CCE
-BATCH_SIZE = 256
-EPOCHS = 1000
-SAMPLE_RATIO = 1 if IS_CUDA else 0.08
-LR = 1e-4
-TEMPERATURE = 1.8
-GRAD_CAP = 5.0
-INPUT_MASK_RATIO = 0.15
-RECON_CHUNK = 8 if IS_CUDA else 4  # CUDA has VRAM for larger chunks
-SEED = 42
-
-KL_SPARSE_WEIGHT = 0.0001
-KL_TARGET_RHO = 0.03
-COV_PENALTY_WEIGHT = 5.0
-
 LOG2 = math.log(2.0)
 AUTOCAST = (
     (lambda: torch.amp.autocast(DEVICE)) if IS_CUDA
     else contextlib.nullcontext
 )
+
+
+# ── Configuration ─────────────────────────────────────────────────────
+
+
+@dataclass
+class TrainConfig:
+    """All tunable hyperparameters for the BPD training loop."""
+
+    # Training
+    batch_size: int = 256
+    epochs: int = 1000
+    sample_ratio: Optional[float] = None  # None → 1 on CUDA, 0.08 otherwise
+    lr: float = 1e-4
+    temperature: float = 1.8
+    grad_cap: float = 5.0
+    input_mask_ratio: float = 0.15
+    seed: int = 42
+    verbose: bool = True
+
+    # Regularization
+    kl_sparse_weight: float = 0.0001
+    kl_target_rho: float = 0.03
+    cov_penalty_weight: float = 5.0
+
+    # Model architecture
+    d_model: int = 512
+    ffn_dim: int = 2048
+    num_layers: int = 4
+    num_heads: int = 16
+    dropout: float = 0.1
+    kc_vocab_size: int = 1024
+    recon_pos_embed_dim: int = 64
+    recon_hidden_dim: int = 256
+
+
+@dataclass
+class TrainResult:
+    """Metrics returned from a training run."""
+
+    final_bpd: float
+    final_top1_pct: float
+    final_cossim: float
+    final_loss: float
+
+
+EpochCallback = Callable[[int, Dict[str, float]], None]
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -272,11 +305,32 @@ class BpdModel(nn.Module):
 # ═════════════════════════════════════════════════════════════════════
 
 
-def main() -> None:
-    torch.manual_seed(SEED)
+def train(
+    config: Optional[TrainConfig] = None,
+    on_epoch_end: Optional[EpochCallback] = None,
+) -> TrainResult:
+    """Run the BPD training loop and return final metrics.
+
+    Args:
+        config: Training configuration.  Uses defaults if None.
+        on_epoch_end: Optional callback invoked at the end of each epoch with
+            ``(epoch_index, metrics_dict)``.  May raise any exception
+            (e.g. ``optuna.TrialPruned``) to abort training early.
+    """
+    if config is None:
+        config = TrainConfig()
+
+    torch.manual_seed(config.seed)
     device = torch.device(DEVICE)
-    print(f"Device: {device}")
-    print(f"Fused CE: {USE_FUSED_CE}")
+    sample_ratio = (
+        config.sample_ratio if config.sample_ratio is not None
+        else (1 if IS_CUDA else 0.08)
+    )
+    recon_chunk = 8 if IS_CUDA else 4
+
+    if config.verbose:
+        print(f"Device: {device}")
+        print(f"Fused CE: {USE_FUSED_CE}")
 
     if IS_CUDA:
         torch.backends.cuda.matmul.allow_tf32 = True
@@ -289,16 +343,18 @@ def main() -> None:
 
     cache_dir = train_paths.get_style_dataset_cache_dir()
     dataset = StyleDataset(
-        cache_dir, tokenizer, sample_ratio=SAMPLE_RATIO, verbose=True
+        cache_dir, tokenizer, sample_ratio=sample_ratio,
+        verbose=config.verbose,
     )
     gram_ds = dataset.filter_by_grammaticality(label=1)
-    print(f"Gram sentences: {len(gram_ds)}")
+    if config.verbose:
+        print(f"Gram sentences: {len(gram_ds)}")
 
-    n_total_batches = (len(gram_ds) + BATCH_SIZE - 1) // BATCH_SIZE
-    dl_generator = torch.Generator().manual_seed(SEED)
+    n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
+    dl_generator = torch.Generator().manual_seed(config.seed)
     loader = DataLoader(
         gram_ds,
-        batch_size=BATCH_SIZE,
+        batch_size=config.batch_size,
         shuffle=True,
         collate_fn=collate_fn,
         num_workers=2 if IS_CUDA else 0,
@@ -309,7 +365,17 @@ def main() -> None:
 
     # ── Model ────────────────────────────────────────────────────────
     surface_vocab = tokenizer.get_vocab_sizes()["surface"]
-    cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
+    cfg = BpdModelConfig(
+        surface_vocab_size=surface_vocab,
+        d_model=config.d_model,
+        ffn_dim=config.ffn_dim,
+        num_layers=config.num_layers,
+        num_heads=config.num_heads,
+        dropout=config.dropout,
+        kc_vocab_size=config.kc_vocab_size,
+        recon_pos_embed_dim=config.recon_pos_embed_dim,
+        recon_hidden_dim=config.recon_hidden_dim,
+    )
     model = BpdModel(cfg)
 
     # Load chiVe pretrained surface embeddings and freeze
@@ -330,11 +396,16 @@ def main() -> None:
         model = torch.compile(model)
     model.train()
 
-    optimizer = Adam(model.parameters(), lr=LR)
+    optimizer = Adam(model.parameters(), lr=config.lr)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # ── Training loop ────────────────────────────────────────────────
-    for epoch in range(EPOCHS):
+    latest_metrics: Dict[str, float] = {
+        "bpd": float("inf"), "top1_pct": 0.0,
+        "cossim": 0.0, "loss": float("inf"),
+    }
+
+    for epoch in range(config.epochs):
         t0 = time.perf_counter()
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
@@ -360,10 +431,10 @@ def main() -> None:
             recon_targets = surface_ids.clone()
 
             # BERT-style input corruption (encoder input only)
-            if INPUT_MASK_RATIO > 0:
+            if config.input_mask_ratio > 0:
                 maskable = attention_mask.bool()
                 rand_mask = (
-                    torch.rand_like(surface_ids.float()) < INPUT_MASK_RATIO
+                    torch.rand_like(surface_ids.float()) < config.input_mask_ratio
                 ) & maskable
                 surface_ids = surface_ids.masked_fill(rand_mask, 0)
 
@@ -378,12 +449,13 @@ def main() -> None:
                 logits_select = kc_logits_raw + 0.6 * g
 
                 if kc_logits_raw.requires_grad:
+                    _cap = config.grad_cap
                     kc_logits_raw.register_hook(
-                        lambda grad: grad.clamp(min=-GRAD_CAP, max=GRAD_CAP)
+                        lambda grad, c=_cap: grad.clamp(min=-c, max=c)
                     )
 
                 logits_select = logits_select.clamp(-12, 12)
-                kc_probs = torch.sigmoid(logits_select / TEMPERATURE)
+                kc_probs = torch.sigmoid(logits_select / config.temperature)
                 kc_probs = torch.nan_to_num(
                     kc_probs, nan=0.0, posinf=1.0, neginf=0.0
                 )
@@ -413,8 +485,8 @@ def main() -> None:
                     batch_units = int(mask_f.sum().item())
                     epoch_t1_units += batch_units
                     with torch.no_grad():
-                        for c0 in range(0, T, RECON_CHUNK):
-                            c1 = min(c0 + RECON_CHUNK, T)
+                        for c0 in range(0, T, recon_chunk):
+                            c1 = min(c0 + recon_chunk, T)
                             with AUTOCAST():
                                 chunk_logits = F.linear(
                                     h_recon[:, c0:c1, :], out_weight
@@ -435,8 +507,8 @@ def main() -> None:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
                 total_nll_nats = torch.tensor(0.0, device=device)
-                for c0 in range(0, T, RECON_CHUNK):
-                    c1 = min(c0 + RECON_CHUNK, T)
+                for c0 in range(0, T, recon_chunk):
+                    c1 = min(c0 + recon_chunk, T)
                     with AUTOCAST():
                         chunk_logits = F.linear(
                             h_recon[:, c0:c1, :], out_weight
@@ -474,23 +546,23 @@ def main() -> None:
             kl_contrib = 0.0
             cov_contrib = 0.0
 
-            if KL_SPARSE_WEIGHT > 0:
+            if config.kl_sparse_weight > 0:
                 rho_hat = kc_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
-                rho = KL_TARGET_RHO
+                rho = config.kl_target_rho
                 kl_term = (
                     rho_hat * torch.log(rho_hat / rho)
                     + (1 - rho_hat) * torch.log((1 - rho_hat) / (1 - rho))
                 ).sum()
-                kl_scaled = KL_SPARSE_WEIGHT * kl_term
+                kl_scaled = config.kl_sparse_weight * kl_term
                 loss = loss + kl_scaled
                 kl_contrib = kl_scaled.item()
 
-            if COV_PENALTY_WEIGHT > 0:
+            if config.cov_penalty_weight > 0:
                 centered = kc_probs - kc_probs.mean(dim=0)
                 cov = (centered.T @ centered) / max(1, B)
                 cov.fill_diagonal_(0.0)
                 cov_term = (cov**2).mean()
-                cov_scaled = COV_PENALTY_WEIGHT * cov_term
+                cov_scaled = config.cov_penalty_weight * cov_term
                 loss = loss + cov_scaled
                 cov_contrib = cov_scaled.item()
 
@@ -514,20 +586,21 @@ def main() -> None:
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
-            dt_batch = time.perf_counter() - t0
-            t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
-            t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-            avg_cos = epoch_cossim_sum / max(1, t1_denom)
-            print(
-                f"\r  batch {n_batches}/{n_total_batches}  "
-                f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
-                f"To-1={t1_pct:.1f}%  "
-                f"cos={avg_cos:.3f}  "
-                f"{total_elements / dt_batch:.1f} el/s  "
-                f"{dt_batch:.1f}s",
-                end="",
-                flush=True,
-            )
+            if config.verbose:
+                dt_batch = time.perf_counter() - t0
+                t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
+                t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+                avg_cos = epoch_cossim_sum / max(1, t1_denom)
+                print(
+                    f"\r  batch {n_batches}/{n_total_batches}  "
+                    f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
+                    f"To-1={t1_pct:.1f}%  "
+                    f"cos={avg_cos:.3f}  "
+                    f"{total_elements / dt_batch:.1f} el/s  "
+                    f"{dt_batch:.1f}s",
+                    end="",
+                    flush=True,
+                )
 
         dt = time.perf_counter() - t0
         avg_bpd = epoch_total_bits / max(1, epoch_num_units)
@@ -538,19 +611,44 @@ def main() -> None:
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
         els = total_elements / dt
-        print()  # finish \r progress line
-        print(
-            f"Epoch {epoch + 1}/{EPOCHS}  "
-            f"bpd={avg_bpd:.4f}  "
-            f"To-1={t1_pct:.1f}%  "
-            f"cos={avg_cos:.3f}  "
-            f"loss={avg_loss:.4f}  "
-            f"sparsity={avg_kl:.4f}  "
-            f"orthogonality={avg_cov:.4f}  "
-            f"{els:.1f} el/s  "
-            f"{total_elements} samples  "
-            f"{dt:.1f}s"
-        )
+
+        latest_metrics = {
+            "bpd": avg_bpd,
+            "top1_pct": t1_pct,
+            "cossim": avg_cos,
+            "loss": avg_loss,
+            "kl": avg_kl,
+            "cov": avg_cov,
+        }
+
+        if config.verbose:
+            print()  # finish \r progress line
+            print(
+                f"Epoch {epoch + 1}/{config.epochs}  "
+                f"bpd={avg_bpd:.4f}  "
+                f"To-1={t1_pct:.1f}%  "
+                f"cos={avg_cos:.3f}  "
+                f"loss={avg_loss:.4f}  "
+                f"sparsity={avg_kl:.4f}  "
+                f"orthogonality={avg_cov:.4f}  "
+                f"{els:.1f} el/s  "
+                f"{total_elements} samples  "
+                f"{dt:.1f}s"
+            )
+
+        if on_epoch_end is not None:
+            on_epoch_end(epoch, latest_metrics)
+
+    return TrainResult(
+        final_bpd=latest_metrics["bpd"],
+        final_top1_pct=latest_metrics["top1_pct"],
+        final_cossim=latest_metrics["cossim"],
+        final_loss=latest_metrics["loss"],
+    )
+
+
+def main() -> None:
+    train()
 
 
 if __name__ == "__main__":
