@@ -1390,36 +1390,9 @@ class KCTrainer:
     ) -> bool:
         self.scaler.unscale_(self.optimizer)
 
-        if not self.use_amp:
-            name_map: Dict[int, str] = {}
-            for n, p in m.named_parameters():
-                name_map[id(p)] = n
-
-            found_nonfinite = False
-            bad: List[Tuple[str, int, int, float]] = []
-            for group in self.optimizer.param_groups:
-                for p in group["params"]:
-                    if p.grad is None:
-                        continue
-                    g = p.grad
-                    if not torch.isfinite(g).all():
-                        found_nonfinite = True
-                        nnan = int(torch.isnan(g).sum().item())
-                        ninf = int(torch.isinf(g).sum().item())
-                        gmax = (
-                            float(g.detach().float().abs().max().item())
-                            if torch.isfinite(g.detach().float().abs().max())
-                            else float("inf")
-                        )
-                        pname = name_map.get(id(p), "<unnamed>")
-                        bad.append((pname, nnan, ninf, gmax))
-                        if len(bad) >= 5:
-                            break
-                if found_nonfinite:
-                    break
-
-            if found_nonfinite:
-                raise RuntimeError("found_nonfinite")
+        # NOTE: Per-parameter gradient/param finiteness checks were removed
+        # as they caused severe O(num_params) GPU sync slowdowns on MPS.
+        # NaNs will trigger a "Non-finite loss detected" error on the next batch.
 
         # B1: Split Clipping (Encoder vs Heads)
         if self.config.gradient_clip and self.config.gradient_clip > 0:
@@ -1440,21 +1413,6 @@ class KCTrainer:
         self.scaler.step(self.optimizer)
         self.scaler.update()
         self.optimizer.zero_grad(set_to_none=True)
-
-        if not self.use_amp:
-            param_nonfinite = False
-            for p in m.kc_head.parameters():
-                if not torch.isfinite(p.data).all():
-                    param_nonfinite = True
-                    break
-            if not param_nonfinite and hasattr(m, "kc_decoders"):
-                for p in m.kc_decoders.parameters():
-                    if not torch.isfinite(p.data).all():
-                        param_nonfinite = True
-                        break
-
-            if param_nonfinite:
-                raise RuntimeError("Params became NaN after step")
 
         return False
 
@@ -2071,72 +2029,76 @@ class KCTrainer:
                     if isinstance(family_def, KcReconFamily):
                         # Reconstruction loss: CE against original surface IDs
                         if recon_targets is not None:
-                            recon_logits = logits.float()
+                            # 1. Fast loss computation using ignore_index=-100
+                            # This completely avoids expensive boolean masking `[valid]` on the massive output tensor.
                             decoder = self.model.kc_decoders
                             positions = getattr(decoder, "_last_recon_positions", None)
                             valid = getattr(decoder, "_last_recon_valid", None)
 
                             if positions is not None and valid is not None:
-                                # Training: sampled K positions per sentence
-                                # recon_logits: (B, K, V), positions: (B, K), valid: (B, K)
                                 tgt = torch.gather(recon_targets, 1, positions)
-                                flat_logits = recon_logits[valid]
-                                flat_targets = tgt[valid]
+                                fast_targets = tgt.masked_fill(~valid, -100).view(-1)
+                                total_n_recon = int(valid.sum().item())
                             else:
-                                # Eval: full sequence
                                 mask = attention_mask.bool()
-                                flat_logits = recon_logits[mask]
-                                flat_targets = recon_targets[mask]
-
-                            total_n_recon = int(flat_targets.numel())
+                                fast_targets = recon_targets.masked_fill(
+                                    ~mask, -100
+                                ).view(-1)
+                                total_n_recon = int(mask.sum().item())
 
                             if total_n_recon > 0:
+                                fast_logits = logits.float().view(-1, logits.size(-1))
                                 raw_ce = F.cross_entropy(
-                                    flat_logits, flat_targets, reduction="mean"
+                                    fast_logits,
+                                    fast_targets,
+                                    reduction="mean",
+                                    ignore_index=-100,
                                 )
                                 task_loss = raw_ce * family_def.loss_weight
                                 batch_kc_losses[name] = task_loss.item()
                                 structural_loss = structural_loss + task_loss
                                 num_struct += 1
 
-                                if not skip_metrics and kc_diag is not None:
-                                    with torch.no_grad():
-                                        preds = flat_logits.argmax(dim=1)
-                                        t1 = int((preds == flat_targets).sum().item())
-                                        _, t5 = flat_logits.topk(
-                                            min(5, flat_logits.size(1)), dim=1
-                                        )
-                                        t5_correct = int(
-                                            (t5 == flat_targets.unsqueeze(1))
-                                            .any(dim=1)
-                                            .sum()
-                                            .item()
-                                        )
-                                        end_rel = getattr(
-                                            decoder, "_last_recon_end_rel", None
-                                        )
-                                        t1_pos_only = 0
-                                        if end_rel is not None and valid is not None:
-                                            baseline = decoder.recon_position_only(
-                                                end_rel
-                                            )
-                                            bl_logits = baseline[name][valid]
-                                            t1_pos_only = int(
-                                                (
-                                                    bl_logits.argmax(dim=1)
-                                                    == flat_targets
-                                                )
-                                                .sum()
-                                                .item()
-                                            )
-                                    kc_diag.update_recon_family(
-                                        name,
-                                        loss=task_loss.item(),
-                                        top1_correct=t1,
-                                        top5_correct=t5_correct,
-                                        n_samples=total_n_recon,
-                                        top1_pos_only_correct=t1_pos_only,
+                        if (
+                            not skip_metrics
+                            and kc_diag is not None
+                            and recon_targets is not None
+                        ):
+                            with torch.no_grad():
+                                if positions is not None and valid is not None:
+                                    tgt = torch.gather(recon_targets, 1, positions)
+                                    mask = valid
+                                else:
+                                    tgt = recon_targets
+                                    mask = attention_mask.bool()
+
+                                preds = logits.argmax(dim=-1)
+                                t1 = int(((preds == tgt) & mask).sum().item())
+
+                                _, t5 = logits.topk(min(5, logits.size(-1)), dim=-1)
+                                t5_correct = int(
+                                    ((t5 == tgt.unsqueeze(-1)).any(dim=-1) & mask)
+                                    .sum()
+                                    .item()
+                                )
+
+                                end_rel = getattr(decoder, "_last_recon_end_rel", None)
+                                t1_pos_only = 0
+                                if end_rel is not None:
+                                    baseline = decoder.recon_position_only(end_rel)
+                                    bl_preds = baseline[name].argmax(dim=-1)
+                                    t1_pos_only = int(
+                                        ((bl_preds == tgt) & mask).sum().item()
                                     )
+                                kc_diag.update_recon_family(
+                                    name,
+                                    loss=task_loss.item(),
+                                    top1_correct=t1,
+                                    top5_correct=t5_correct,
+                                    n_samples=total_n_recon,
+                                    top1_pos_only_correct=t1_pos_only,
+                                )
+
                         continue
 
                     if isinstance(family_def, KcPnuFamily):
@@ -2598,8 +2560,6 @@ class KCTrainer:
                                                     sample_idx=sample_idx,
                                                 )
                                             )
-
-                    continue  # Skip standard dense/sparse path
 
                 if dense_key in kc_targets:
                     targets = kc_targets[dense_key].float()
@@ -3327,6 +3287,11 @@ class KCTrainer:
 
             # Explicitly clear loop variables to prevent graph retention across batches
             del loss, combined_loss, structural_loss, outputs
+
+            # MPS often struggles with deferred deallocations in complex graphs.
+            # Periodically clear the cache to prevent progressive command-queue choke.
+            if self.device.type == "mps" and batch_idx % 8 == 0:
+                torch.mps.empty_cache()
 
             self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_data.start()
