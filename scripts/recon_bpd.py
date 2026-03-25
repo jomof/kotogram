@@ -402,8 +402,8 @@ def train(
 
     # ── Training loop ────────────────────────────────────────────────
     latest_metrics: Dict[str, float] = {
-        "bpd": float("inf"), "top1_pct": 0.0,
-        "cossim": 0.0, "loss": float("inf"),
+        "bpd": float("inf"), "To-1": 0.0,
+        "cos": 0.0, "loss": float("inf"),
     }
     best_bpd = float("inf")
     epochs_without_improvement = 0
@@ -418,6 +418,7 @@ def train(
         epoch_t1_correct = 0
         epoch_t1_units = 0
         epoch_cossim_sum = 0.0
+        epoch_sharpness_sum = 0.0
         total_elements = 0
         n_batches = 0
 
@@ -462,6 +463,11 @@ def train(
                 kc_probs = torch.nan_to_num(
                     kc_probs, nan=0.0, posinf=1.0, neginf=0.0
                 )
+
+                # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
+                _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
+                _h = -_p * torch.log2(_p) - (1 - _p) * torch.log2(1 - _p)
+                epoch_sharpness_sum += (1.0 - _h.mean().item()) * B
 
                 # Recon decoder: pre-logit hidden states [B, T, H]
                 h_recon = model.recon.forward_hidden(kc_probs, attention_mask)
@@ -613,15 +619,17 @@ def train(
         t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
+        avg_sharpness = epoch_sharpness_sum / max(1, total_elements)
         els = total_elements / dt
 
         latest_metrics = {
             "bpd": avg_bpd,
-            "top1_pct": t1_pct,
-            "cossim": avg_cos,
+            "To-1": t1_pct,
+            "cos": avg_cos,
+            "sharp": avg_sharpness,
             "loss": avg_loss,
-            "kl": avg_kl,
-            "cov": avg_cov,
+            "sparsity": avg_kl,
+            "orthogonality": avg_cov,
         }
 
         if config.verbose:
@@ -631,6 +639,7 @@ def train(
                 f"bpd={avg_bpd:.4f}  "
                 f"To-1={t1_pct:.1f}%  "
                 f"cos={avg_cos:.3f}  "
+                f"sharp={avg_sharpness:.3f}  "
                 f"loss={avg_loss:.4f}  "
                 f"sparsity={avg_kl:.4f}  "
                 f"orthogonality={avg_cov:.4f}  "
@@ -658,8 +667,8 @@ def train(
 
     return TrainResult(
         final_bpd=latest_metrics["bpd"],
-        final_top1_pct=latest_metrics["top1_pct"],
-        final_cossim=latest_metrics["cossim"],
+        final_top1_pct=latest_metrics["To-1"],
+        final_cossim=latest_metrics["cos"],
         final_loss=latest_metrics["loss"],
     )
 

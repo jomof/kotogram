@@ -16,6 +16,7 @@ Usage:
 
 import argparse
 import dataclasses
+import os
 import platform
 from typing import Optional
 
@@ -139,7 +140,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--storage", type=str, default=None,
-        help="Optuna storage URL, e.g. sqlite:///optuna.db",
+        help="Optuna storage URL (default: sqlite:///.cache/recon_bpd/optuna.db)",
     )
     parser.add_argument(
         "--seed", type=int, default=42,
@@ -159,14 +160,25 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    experiment_name = args.experiment_name
+    if args.sample_ratio is not None:
+        pct = args.sample_ratio * 100
+        experiment_name += f" ({pct:g}%)"
+
     use_mlflow = not args.no_mlflow
     if use_mlflow:
         from train.mlflow_logging import configure_tracking
 
         configure_tracking(
             tracking_uri=args.tracking_uri,
-            experiment_name=args.experiment_name,
+            experiment_name=experiment_name,
         )
+
+    storage = args.storage
+    if storage is None:
+        db_dir = os.path.join(".cache", "recon_bpd")
+        os.makedirs(db_dir, exist_ok=True)
+        storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
 
     sampler = optuna.samplers.TPESampler(seed=args.seed)
     pruner = optuna.pruners.PercentilePruner(
@@ -175,7 +187,7 @@ def main() -> None:
 
     study = optuna.create_study(
         study_name=args.study_name,
-        storage=args.storage,
+        storage=storage,
         direction="minimize",
         sampler=sampler,
         pruner=pruner,
