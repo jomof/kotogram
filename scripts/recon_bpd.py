@@ -44,7 +44,7 @@ DEVICE = (
     else "cpu"
 )
 IS_CUDA = DEVICE == "cuda"
-BATCH_TOKENS = 16000  # token budget per batch; only cuts B for long sequences
+BATCH_TOKENS = 8000  # token budget per batch; only cuts B for long sequences
 MAX_BATCH_SENTENCES = 1024 if IS_CUDA else 256  # cap B to bound output-projection memory (B * V)
 EPOCHS = 1000
 SAMPLE_RATIO = 0.08
