@@ -56,7 +56,7 @@ IS_CUDA = DEVICE == "cuda"
 USE_FUSED_CE = IS_CUDA and _HAS_CCE
 BATCH_SIZE = 256
 EPOCHS = 1000
-SAMPLE_RATIO = 1
+SAMPLE_RATIO = 1 if IS_CUDA else 0.3
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
@@ -322,6 +322,7 @@ def main() -> None:
         total_kl_sum = 0.0
         total_cov_sum = 0.0
         epoch_t1_correct = 0
+        epoch_t1_units = 0
         total_elements = 0
         n_batches = 0
 
@@ -388,6 +389,7 @@ def main() -> None:
 
                 # Top-1 every 100 batches (separate forward pass is expensive)
                 if n_batches % 100 == 0:
+                    epoch_t1_units += int(mask_f.sum().item())
                     with torch.no_grad():
                         for c0 in range(0, T, RECON_CHUNK):
                             c1 = min(c0 + RECON_CHUNK, T)
@@ -479,7 +481,8 @@ def main() -> None:
                 torch.mps.empty_cache()
 
             dt_batch = time.perf_counter() - t0
-            t1_pct = 100.0 * epoch_t1_correct / max(1, epoch_num_units)
+            t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
+            t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
                 f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
@@ -495,7 +498,8 @@ def main() -> None:
         avg_loss = total_loss_sum / max(1, n_batches)
         avg_kl = total_kl_sum / max(1, n_batches)
         avg_cov = total_cov_sum / max(1, n_batches)
-        t1_pct = 100.0 * epoch_t1_correct / max(1, epoch_num_units)
+        t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
+        t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         els = total_elements / dt
         print()  # finish \r progress line
         print(
@@ -503,8 +507,8 @@ def main() -> None:
             f"bpd={avg_bpd:.4f}  "
             f"To-1={t1_pct:.1f}%  "
             f"loss={avg_loss:.4f}  "
-            f"kl={avg_kl:.4f}  "
-            f"cov={avg_cov:.4f}  "
+            f"sparsity={avg_kl:.4f}  "
+            f"orthogonality={avg_cov:.4f}  "
             f"{els:.1f} el/s  "
             f"{total_elements} samples  "
             f"{dt:.1f}s"
