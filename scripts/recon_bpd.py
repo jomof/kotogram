@@ -79,6 +79,7 @@ class TrainConfig:
     grad_cap: float = 5.0
     input_mask_ratio: float = 0.15
     seed: int = 42
+    patience: Optional[int] = None  # stop after N epochs without BPD improvement
     verbose: bool = True
 
     # Regularization
@@ -404,6 +405,8 @@ def train(
         "bpd": float("inf"), "top1_pct": 0.0,
         "cossim": 0.0, "loss": float("inf"),
     }
+    best_bpd = float("inf")
+    epochs_without_improvement = 0
 
     for epoch in range(config.epochs):
         t0 = time.perf_counter()
@@ -638,6 +641,20 @@ def train(
 
         if on_epoch_end is not None:
             on_epoch_end(epoch, latest_metrics)
+
+        if avg_bpd < best_bpd:
+            best_bpd = avg_bpd
+            epochs_without_improvement = 0
+        else:
+            epochs_without_improvement += 1
+
+        if config.patience is not None and epochs_without_improvement >= config.patience:
+            if config.verbose:
+                print(
+                    f"Early stopping: no BPD improvement for "
+                    f"{config.patience} epochs (best={best_bpd:.4f})"
+                )
+            break
 
     return TrainResult(
         final_bpd=latest_metrics["bpd"],

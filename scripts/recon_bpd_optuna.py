@@ -28,12 +28,14 @@ def suggest_config(
     trial: optuna.Trial,
     epochs: int,
     sample_ratio: Optional[float] = None,
+    patience: Optional[int] = None,
 ) -> TrainConfig:
     """Build a TrainConfig from Optuna trial suggestions."""
     d_model = trial.suggest_categorical("d_model", [256, 512])
     return TrainConfig(
         epochs=epochs,
         sample_ratio=sample_ratio,
+        patience=patience,
         verbose=True,
         seed=42,
         # Learning dynamics
@@ -71,10 +73,11 @@ def objective(
     trial: optuna.Trial,
     epochs: int,
     sample_ratio: Optional[float],
+    patience: Optional[int],
     use_mlflow: bool,
 ) -> float:
     """Optuna objective: minimize BPD."""
-    config = suggest_config(trial, epochs, sample_ratio)
+    config = suggest_config(trial, epochs, sample_ratio, patience)
 
     mlflow = None
     if use_mlflow:
@@ -127,6 +130,10 @@ def main() -> None:
         help="Dataset sample ratio override (default: device-specific)",
     )
     parser.add_argument(
+        "--patience", type=int, default=None,
+        help="Early-stop a trial after N epochs without BPD improvement",
+    )
+    parser.add_argument(
         "--study-name", type=str, default="recon_bpd",
         help="Optuna study name (default: recon_bpd)",
     )
@@ -162,8 +169,8 @@ def main() -> None:
         )
 
     sampler = optuna.samplers.TPESampler(seed=args.seed)
-    pruner = optuna.pruners.MedianPruner(
-        n_startup_trials=5, n_warmup_steps=5,
+    pruner = optuna.pruners.PercentilePruner(
+        percentile=25.0, n_startup_trials=5, n_warmup_steps=5,
     )
 
     study = optuna.create_study(
@@ -175,9 +182,29 @@ def main() -> None:
         load_if_exists=True,
     )
 
+    defaults = TrainConfig()
+    study.enqueue_trial({
+        "lr": defaults.lr,
+        "temperature": defaults.temperature,
+        "grad_cap": defaults.grad_cap,
+        "input_mask_ratio": defaults.input_mask_ratio,
+        "kl_sparse_weight": defaults.kl_sparse_weight,
+        "kl_target_rho": defaults.kl_target_rho,
+        "cov_penalty_weight": defaults.cov_penalty_weight,
+        "d_model": defaults.d_model,
+        "ffn_dim": defaults.ffn_dim,
+        "num_layers": defaults.num_layers,
+        "num_heads": defaults.num_heads,
+        "dropout": defaults.dropout,
+        "kc_vocab_size": defaults.kc_vocab_size,
+        "recon_pos_embed_dim": defaults.recon_pos_embed_dim,
+        "recon_hidden_dim": defaults.recon_hidden_dim,
+    })
+
     study.optimize(
         lambda trial: objective(
-            trial, args.epochs_per_trial, args.sample_ratio, use_mlflow,
+            trial, args.epochs_per_trial, args.sample_ratio,
+            args.patience, use_mlflow,
         ),
         n_trials=args.n_trials,
     )
