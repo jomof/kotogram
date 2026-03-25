@@ -57,7 +57,7 @@ IS_CUDA = DEVICE == "cuda"
 USE_FUSED_CE = IS_CUDA and _HAS_CCE
 BATCH_SIZE = 256
 EPOCHS = 1000
-SAMPLE_RATIO = 1 if IS_CUDA else 0.15
+SAMPLE_RATIO = 1 if IS_CUDA else 0.08
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
@@ -307,13 +307,12 @@ def main() -> None:
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
 
-    # Load chiVe pretrained surface embeddings and freeze
+    # Load chiVe pretrained surface embeddings (trainable)
     chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
     with torch.no_grad():
         n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
         model.surface_embed.weight[:n] = chive_weights[:n]
         model.surface_embed.weight[0].zero_()  # keep padding at zero
-    model.surface_embed.weight.requires_grad = False
 
     # L2-normalized chiVe embeddings for cosine-similarity Top-1 metric.
     # Tokens without chiVe vectors (zero rows) get zero norm → excluded.
