@@ -19,6 +19,7 @@ Usage:
     python -m scripts.recon_bpd
 """
 
+import contextlib
 import math
 import time
 from dataclasses import dataclass
@@ -70,6 +71,10 @@ KL_TARGET_RHO = 0.03
 COV_PENALTY_WEIGHT = 5.0
 
 LOG2 = math.log(2.0)
+AUTOCAST = (
+    (lambda: torch.amp.autocast(DEVICE)) if IS_CUDA
+    else contextlib.nullcontext
+)
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -307,12 +312,13 @@ def main() -> None:
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
 
-    # Load chiVe pretrained surface embeddings (trainable)
+    # Load chiVe pretrained surface embeddings and freeze
     chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
     with torch.no_grad():
         n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
         model.surface_embed.weight[:n] = chive_weights[:n]
         model.surface_embed.weight[0].zero_()  # keep padding at zero
+    model.surface_embed.weight.requires_grad = False
 
     # L2-normalized chiVe embeddings for cosine-similarity Top-1 metric.
     # Tokens without chiVe vectors (zero rows) get zero norm → excluded.
@@ -362,7 +368,7 @@ def main() -> None:
                 surface_ids = surface_ids.masked_fill(rand_mask, 0)
 
             # ── Forward (under autocast, matching KCTrainer) ─────────
-            with torch.amp.autocast(device.type):
+            with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
 
@@ -409,7 +415,7 @@ def main() -> None:
                     with torch.no_grad():
                         for c0 in range(0, T, RECON_CHUNK):
                             c1 = min(c0 + RECON_CHUNK, T)
-                            with torch.amp.autocast(device.type):
+                            with AUTOCAST():
                                 chunk_logits = F.linear(
                                     h_recon[:, c0:c1, :], out_weight
                                 )
@@ -431,7 +437,7 @@ def main() -> None:
                 total_nll_nats = torch.tensor(0.0, device=device)
                 for c0 in range(0, T, RECON_CHUNK):
                     c1 = min(c0 + RECON_CHUNK, T)
-                    with torch.amp.autocast(device.type):
+                    with AUTOCAST():
                         chunk_logits = F.linear(
                             h_recon[:, c0:c1, :], out_weight
                         )
