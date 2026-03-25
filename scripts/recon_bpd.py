@@ -43,7 +43,8 @@ DEVICE = (
     else "mps" if torch.backends.mps.is_available()
     else "cpu"
 )
-BATCH_TOKENS = 8192  # token budget per batch; only cuts B for long sequences
+IS_CUDA = DEVICE == "cuda"
+BATCH_TOKENS = 18192  # token budget per batch; only cuts B for long sequences
 MAX_BATCH_SENTENCES = 256  # cap B to bound output-projection memory (B * V)
 EPOCHS = 1000
 SAMPLE_RATIO = 0.08
@@ -51,8 +52,8 @@ LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
 INPUT_MASK_RATIO = 0.15
-MAX_SEQ_LEN = 100  # cap T to bound O(T²) attention cost
-RECON_CHUNK = 4  # time-steps per output-projection chunk
+MAX_SEQ_LEN = 64  # cap T to bound O(T²) attention cost
+RECON_CHUNK = 32 if IS_CUDA else 4  # CUDA has VRAM headroom for larger chunks
 SEED = 42
 
 KL_SPARSE_WEIGHT = 0.0001
@@ -360,6 +361,11 @@ def main() -> None:
     device = torch.device(DEVICE)
     print(f"Device: {device}")
 
+    if IS_CUDA:
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+        torch.backends.cudnn.benchmark = True
+
     # ── Data loading ─────────────────────────────────────────────────
     output_dir = locations.get_style_output_dir()
     tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
@@ -379,7 +385,8 @@ def main() -> None:
         gram_ds,
         batch_sampler=batch_sampler,
         collate_fn=partial(collate_fn, max_seq_len=MAX_SEQ_LEN),
-        num_workers=0,
+        num_workers=2 if IS_CUDA else 0,
+        pin_memory=IS_CUDA,
     )
 
     # ── Model ────────────────────────────────────────────────────────
@@ -387,9 +394,12 @@ def main() -> None:
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
     model.to(device)
+    if IS_CUDA:
+        model = torch.compile(model)
     model.train()
 
     optimizer = Adam(model.parameters(), lr=LR)
+    scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # ── Training loop ────────────────────────────────────────────────
     for epoch in range(EPOCHS):
@@ -405,8 +415,12 @@ def main() -> None:
         n_batches = 0
 
         for batch in loader:
-            surface_ids = batch.feature_inputs["input_ids_surface"].to(device)
-            attention_mask = batch.attention_mask.to(device)
+            surface_ids = batch.feature_inputs["input_ids_surface"].to(
+                device, non_blocking=IS_CUDA
+            )
+            attention_mask = batch.attention_mask.to(
+                device, non_blocking=IS_CUDA
+            )
             B, T = attention_mask.shape
 
             # Snapshot targets before masking
@@ -504,8 +518,9 @@ def main() -> None:
 
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
 
             # ── Epoch stats ──────────────────────────────────────────
             batch_units = int(num_units.item())
@@ -518,11 +533,8 @@ def main() -> None:
             n_batches += 1
 
             del loss, h_recon, total_nll_nats, total_bits, bpd
-            if n_batches % 8 == 0:
-                if device.type == "mps":
-                    torch.mps.empty_cache()
-                elif device.type == "cuda":
-                    torch.cuda.empty_cache()
+            if device.type == "mps" and n_batches % 8 == 0:
+                torch.mps.empty_cache()
 
             dt_batch = time.perf_counter() - t0
             t1_pct = 100.0 * epoch_t1_correct / max(1, epoch_num_units)
