@@ -45,7 +45,7 @@ DEVICE = (
 )
 IS_CUDA = DEVICE == "cuda"
 BATCH_TOKENS = 28192  # token budget per batch; only cuts B for long sequences
-MAX_BATCH_SENTENCES = 512  # cap B to bound output-projection memory (B * V)
+MAX_BATCH_SENTENCES = 256  # cap B to bound output-projection memory (B * V)
 EPOCHS = 1000
 SAMPLE_RATIO = 0.08
 LR = 1e-4
@@ -53,7 +53,7 @@ TEMPERATURE = 1.8
 GRAD_CAP = 5.0
 INPUT_MASK_RATIO = 0.15
 MAX_SEQ_LEN = 64  # cap T to bound O(T²) attention cost
-RECON_CHUNK = 16 if IS_CUDA else 4  # chunk [B, C, V] must fit in VRAM (~1GB at C=8)
+RECON_CHUNK = 8 if IS_CUDA else 8  # chunk [B, C, V] must fit in VRAM (~1GB at C=8)
 SEED = 42
 
 KL_SPARSE_WEIGHT = 0.0001
