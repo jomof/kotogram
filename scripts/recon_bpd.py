@@ -34,6 +34,7 @@ from torch.utils.data import DataLoader
 from kotogram import locations
 from kotogram.tokenizer import Tokenizer
 from train import paths as train_paths
+from train.chive import load_chive_for_vocab
 from train.dataset import StyleDataset, collate_fn
 
 # Fused linear cross-entropy (apple/ml-cross-entropy): computes the
@@ -56,7 +57,7 @@ IS_CUDA = DEVICE == "cuda"
 USE_FUSED_CE = IS_CUDA and _HAS_CCE
 BATCH_SIZE = 256
 EPOCHS = 1000
-SAMPLE_RATIO = 1 if IS_CUDA else 0.3
+SAMPLE_RATIO = 1 if IS_CUDA else 0.15
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
@@ -305,6 +306,20 @@ def main() -> None:
     surface_vocab = tokenizer.get_vocab_sizes()["surface"]
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
+
+    # Load chiVe pretrained surface embeddings and freeze
+    chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
+    with torch.no_grad():
+        n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
+        model.surface_embed.weight[:n] = chive_weights[:n]
+        model.surface_embed.weight[0].zero_()  # keep padding at zero
+    model.surface_embed.weight.requires_grad = False
+
+    # L2-normalized chiVe embeddings for cosine-similarity Top-1 metric.
+    # Tokens without chiVe vectors (zero rows) get zero norm → excluded.
+    chive_normed = F.normalize(chive_weights[:surface_vocab], dim=-1)
+    chive_normed = chive_normed.to(device)
+
     model.to(device)
     if IS_CUDA:
         model = torch.compile(model)
@@ -323,6 +338,7 @@ def main() -> None:
         total_cov_sum = 0.0
         epoch_t1_correct = 0
         epoch_t1_units = 0
+        epoch_cossim_sum = 0.0
         total_elements = 0
         n_batches = 0
 
@@ -387,9 +403,10 @@ def main() -> None:
                 )
                 total_nll_nats = nll_per_token.sum()
 
-                # Top-1 every 100 batches (separate forward pass is expensive)
+                # Top-1 + cosine sim every 100 batches (forward pass is expensive)
                 if n_batches % 100 == 0:
-                    epoch_t1_units += int(mask_f.sum().item())
+                    batch_units = int(mask_f.sum().item())
+                    epoch_t1_units += batch_units
                     with torch.no_grad():
                         for c0 in range(0, T, RECON_CHUNK):
                             c1 = min(c0 + RECON_CHUNK, T)
@@ -402,6 +419,12 @@ def main() -> None:
                             epoch_t1_correct += int(
                                 ((preds == recon_targets[:, c0:c1]) & chunk_mask)
                                 .sum().item()
+                            )
+                            pred_emb = chive_normed[preds]
+                            tgt_emb = chive_normed[recon_targets[:, c0:c1]]
+                            cos = (pred_emb * tgt_emb).sum(dim=-1)
+                            epoch_cossim_sum += float(
+                                (cos * chunk_mask).sum().item()
                             )
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
@@ -424,9 +447,15 @@ def main() -> None:
                     total_nll_nats = total_nll_nats + (chunk_nll * chunk_mask).sum()
                     with torch.no_grad():
                         preds = chunk_logits.argmax(dim=-1)
+                        valid = chunk_mask.bool()
                         epoch_t1_correct += int(
-                            ((preds == chunk_targets) & chunk_mask.bool())
-                            .sum().item()
+                            ((preds == chunk_targets) & valid).sum().item()
+                        )
+                        pred_emb = chive_normed[preds]
+                        tgt_emb = chive_normed[chunk_targets]
+                        cos = (pred_emb * tgt_emb).sum(dim=-1)
+                        epoch_cossim_sum += float(
+                            (cos * chunk_mask).sum().item()
                         )
 
             # nats → bits, normalize by attended token count
@@ -483,10 +512,12 @@ def main() -> None:
             dt_batch = time.perf_counter() - t0
             t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
             t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+            avg_cos = epoch_cossim_sum / max(1, t1_denom)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
                 f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
                 f"To-1={t1_pct:.1f}%  "
+                f"cos={avg_cos:.3f}  "
                 f"{total_elements / dt_batch:.1f} el/s  "
                 f"{dt_batch:.1f}s",
                 end="",
@@ -500,12 +531,14 @@ def main() -> None:
         avg_cov = total_cov_sum / max(1, n_batches)
         t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+        avg_cos = epoch_cossim_sum / max(1, t1_denom)
         els = total_elements / dt
         print()  # finish \r progress line
         print(
             f"Epoch {epoch + 1}/{EPOCHS}  "
             f"bpd={avg_bpd:.4f}  "
             f"To-1={t1_pct:.1f}%  "
+            f"cos={avg_cos:.3f}  "
             f"loss={avg_loss:.4f}  "
             f"sparsity={avg_kl:.4f}  "
             f"orthogonality={avg_cov:.4f}  "
