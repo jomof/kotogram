@@ -29,7 +29,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 from torch.optim import Adam
-from torch.utils.data import BatchSampler, DataLoader, Sampler
+from torch.utils.data import DataLoader, Sampler
 
 # Data loading only — the sole external dependencies from this project.
 from kotogram import locations
@@ -43,9 +43,10 @@ DEVICE = (
     else "mps" if torch.backends.mps.is_available()
     else "cpu"
 )
-BATCH_SIZE = 256
+BATCH_TOKENS = 8192  # token budget per batch; only cuts B for long sequences
+MAX_BATCH_SENTENCES = 256  # cap B to bound output-projection memory (B * V)
 EPOCHS = 1000
-SAMPLE_RATIO = 1.00
+SAMPLE_RATIO = 0.08
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
@@ -256,44 +257,97 @@ class BpdModel(nn.Module):
 # ═════════════════════════════════════════════════════════════════════
 
 
-class LengthSortedBatchSampler(Sampler[list[int]]):
-    """Yields batches of indices grouped by sequence length.
+class TokenBudgetBatchSampler(Sampler[list[int]]):
+    """Yields batches sized by total token count rather than sentence count.
 
-    Sorts all dataset indices by token count, chunks into batches of
-    ``batch_size``, then shuffles the batch order each epoch so gradient
-    updates remain stochastic while padding waste is minimal.
+    Sorts dataset indices by length, shuffles within mega-chunks for
+    diversity, then greedily packs sentences into batches up to
+    ``max_tokens`` total tokens (capped at ``max_sentences``).  Short
+    sentences get large B, long sentences get small B, so per-batch
+    compute stays roughly constant.  Batch order is reshuffled each epoch.
     """
 
+    BUCKET_MUL_TOKENS = 50_000  # tokens per mega-chunk for diversity shuffle
+
     def __init__(
-        self, dataset: "StyleDataset", batch_size: int, seed: int = 42
+        self,
+        dataset: "StyleDataset",
+        max_tokens: int,
+        max_sentences: int,
+        max_seq_len: int,
+        seed: int = 42,
     ) -> None:
         super().__init__()
-        lengths = []
+        lengths: list[int] = []
         for i in range(len(dataset)):
             real_idx = int(dataset.indices[i].item())
             tok_len = int(dataset.offsets[real_idx + 1].item()) - int(
                 dataset.offsets[real_idx].item()
             )
-            lengths.append(tok_len)
-        sorted_indices = sorted(range(len(dataset)), key=lambda i: lengths[i])
-        self._batches = [
-            sorted_indices[i : i + batch_size]
-            for i in range(0, len(sorted_indices), batch_size)
-        ]
+            lengths.append(min(tok_len, max_seq_len))
+        self._sorted_indices = sorted(range(len(dataset)), key=lambda i: lengths[i])
+        self._lengths = lengths
+        self._max_tokens = max_tokens
+        self._max_sentences = max_sentences
         self._seed = seed
         self._epoch = 0
+        self._n_batches = len(self._pack_batches(self._sorted_indices))
 
     def set_epoch(self, epoch: int) -> None:
         self._epoch = epoch
 
+    def _pack_batches(self, indices: list[int]) -> list[list[int]]:
+        batches: list[list[int]] = []
+        cur: list[int] = []
+        cur_max_len = 0
+        for idx in indices:
+            l = self._lengths[idx]
+            new_max = max(cur_max_len, l)
+            # Cost is (len(cur)+1) * new_max because collation pads to max
+            if cur and (
+                (len(cur) + 1) * new_max > self._max_tokens
+                or len(cur) >= self._max_sentences
+            ):
+                batches.append(cur)
+                cur = [idx]
+                cur_max_len = l
+            else:
+                cur.append(idx)
+                cur_max_len = new_max
+        if cur:
+            batches.append(cur)
+        return batches
+
+    def _build_batches(self, g: torch.Generator) -> list[list[int]]:
+        mega = self.BUCKET_MUL_TOKENS
+        chunks: list[list[int]] = []
+        cum = 0
+        chunk_start = 0
+        for i, idx in enumerate(self._sorted_indices):
+            cum += self._lengths[idx]
+            if cum >= mega:
+                chunk = list(self._sorted_indices[chunk_start : i + 1])
+                perm = torch.randperm(len(chunk), generator=g).tolist()
+                chunks.append([chunk[j] for j in perm])
+                chunk_start = i + 1
+                cum = 0
+        if chunk_start < len(self._sorted_indices):
+            chunk = list(self._sorted_indices[chunk_start:])
+            perm = torch.randperm(len(chunk), generator=g).tolist()
+            chunks.append([chunk[j] for j in perm])
+        flat = [idx for chunk in chunks for idx in chunk]
+        return self._pack_batches(flat)
+
     def __iter__(self):
         g = torch.Generator().manual_seed(self._seed + self._epoch)
-        perm = torch.randperm(len(self._batches), generator=g).tolist()
+        batches = self._build_batches(g)
+        self._n_batches = len(batches)
+        perm = torch.randperm(len(batches), generator=g).tolist()
         for idx in perm:
-            yield self._batches[idx]
+            yield batches[idx]
 
     def __len__(self) -> int:
-        return len(self._batches)
+        return self._n_batches
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -317,7 +371,9 @@ def main() -> None:
     gram_ds = dataset.filter_by_grammaticality(label=1)
     print(f"Gram sentences: {len(gram_ds)}")
 
-    batch_sampler = LengthSortedBatchSampler(gram_ds, BATCH_SIZE, seed=SEED)
+    batch_sampler = TokenBudgetBatchSampler(
+        gram_ds, BATCH_TOKENS, MAX_BATCH_SENTENCES, MAX_SEQ_LEN, seed=SEED
+    )
     n_total_batches = len(batch_sampler)
     loader = DataLoader(
         gram_ds,
