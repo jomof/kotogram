@@ -37,7 +37,12 @@ from train import paths as train_paths
 from train.dataset import StyleDataset, collate_fn
 
 # ── Training config ──────────────────────────────────────────────────
-DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
+DEVICE = (
+    "cuda" if torch.cuda.is_available()
+    else "mps" if torch.backends.mps.is_available()
+    else "cpu"
+)
+IS_CUDA = DEVICE == "cuda"
 BATCH_SIZE = 256
 EPOCHS = 1000
 SAMPLE_RATIO = 1
@@ -45,7 +50,7 @@ LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
 INPUT_MASK_RATIO = 0.15
-RECON_CHUNK = 4  # time-steps per output-projection chunk
+RECON_CHUNK = 8 if IS_CUDA else 4  # CUDA has VRAM for larger chunks
 SEED = 42
 
 KL_SPARSE_WEIGHT = 0.0001
@@ -255,6 +260,11 @@ def main() -> None:
     device = torch.device(DEVICE)
     print(f"Device: {device}")
 
+    if IS_CUDA:
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+        torch.backends.cudnn.benchmark = True
+
     # ── Data loading ─────────────────────────────────────────────────
     output_dir = locations.get_style_output_dir()
     tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
@@ -273,7 +283,8 @@ def main() -> None:
         batch_size=BATCH_SIZE,
         shuffle=True,
         collate_fn=collate_fn,
-        num_workers=0,
+        num_workers=2 if IS_CUDA else 0,
+        pin_memory=IS_CUDA,
         drop_last=False,
         generator=dl_generator,
     )
@@ -283,9 +294,12 @@ def main() -> None:
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
     model.to(device)
+    if IS_CUDA:
+        model = torch.compile(model)
     model.train()
 
     optimizer = Adam(model.parameters(), lr=LR)
+    scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # ── Training loop ────────────────────────────────────────────────
     for epoch in range(EPOCHS):
@@ -300,8 +314,12 @@ def main() -> None:
         n_batches = 0
 
         for batch in loader:
-            surface_ids = batch.feature_inputs["input_ids_surface"].to(device)
-            attention_mask = batch.attention_mask.to(device)
+            surface_ids = batch.feature_inputs["input_ids_surface"].to(
+                device, non_blocking=IS_CUDA
+            )
+            attention_mask = batch.attention_mask.to(
+                device, non_blocking=IS_CUDA
+            )
             B, T = attention_mask.shape
 
             # Snapshot targets before masking
@@ -399,8 +417,9 @@ def main() -> None:
 
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
 
             # ── Epoch stats ──────────────────────────────────────────
             batch_units = int(num_units.item())
