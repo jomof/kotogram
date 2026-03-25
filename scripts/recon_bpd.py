@@ -185,7 +185,7 @@ class ReconDecoder(nn.Module):
         self.pos_embed = nn.Embedding(max_seq_len, pos_embed_dim)
         self.hidden1 = nn.Linear(kc_vocab_size + pos_embed_dim, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
-        self.output_head = nn.Linear(hidden_dim, surface_vocab_size)
+        self.output_head = nn.Linear(hidden_dim, surface_vocab_size, bias=False)
         self.act = nn.ReLU()
 
     def forward_hidden(
@@ -375,16 +375,14 @@ def main() -> None:
             mask_f = attention_mask.float()
 
             out_weight = model.recon.output_head.weight
-            out_bias = model.recon.output_head.bias
 
             if USE_FUSED_CE:
-                # Fused linear CE: h_recon × W^T + b → CE in one kernel,
+                # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
                 ce_targets = recon_targets.clone()
                 ce_targets[~attention_mask.bool()] = -100
                 nll_per_token = _cce_linear_ce(
-                    h_recon, out_weight, ce_targets,
-                    bias=out_bias, reduction="none",
+                    h_recon, out_weight, ce_targets, reduction="none",
                 )
                 total_nll_nats = nll_per_token.sum()
 
@@ -393,7 +391,7 @@ def main() -> None:
                         c1 = min(c0 + RECON_CHUNK, T)
                         with torch.amp.autocast(device.type):
                             chunk_logits = F.linear(
-                                h_recon[:, c0:c1, :], out_weight, out_bias
+                                h_recon[:, c0:c1, :], out_weight
                             )
                         preds = chunk_logits.argmax(dim=-1)
                         chunk_mask = attention_mask[:, c0:c1].bool()
@@ -409,7 +407,7 @@ def main() -> None:
                     c1 = min(c0 + RECON_CHUNK, T)
                     with torch.amp.autocast(device.type):
                         chunk_logits = F.linear(
-                            h_recon[:, c0:c1, :], out_weight, out_bias
+                            h_recon[:, c0:c1, :], out_weight
                         )
                     chunk_logits = chunk_logits.float()
                     chunk_targets = recon_targets[:, c0:c1]
