@@ -20,6 +20,7 @@ pytest-sugar==1.0.0
 psutil==5.9.8
 types-psutil==7.2.2.20260130
 torch
+cut-cross-entropy @ git+https://github.com/apple/ml-cross-entropy.git ; sys_platform == "linux"
 scikit-learn
 mlflow>=2.0
 psycopg2-binary
