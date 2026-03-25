@@ -36,6 +36,16 @@ from kotogram.tokenizer import Tokenizer
 from train import paths as train_paths
 from train.dataset import StyleDataset, collate_fn
 
+# Fused linear cross-entropy (apple/ml-cross-entropy): computes the
+# output_head matmul + CE in a single kernel without materializing [B,T,V].
+# Falls back to chunked approach when unavailable (e.g. MPS without Triton).
+try:
+    from cut_cross_entropy import linear_cross_entropy as _cce_linear_ce
+
+    _HAS_CCE = True
+except ImportError:
+    _HAS_CCE = False
+
 # ── Training config ──────────────────────────────────────────────────
 DEVICE = (
     "cuda" if torch.cuda.is_available()
@@ -43,6 +53,7 @@ DEVICE = (
     else "cpu"
 )
 IS_CUDA = DEVICE == "cuda"
+USE_FUSED_CE = IS_CUDA and _HAS_CCE
 BATCH_SIZE = 256
 EPOCHS = 1000
 SAMPLE_RATIO = 1
@@ -259,6 +270,7 @@ def main() -> None:
     torch.manual_seed(SEED)
     device = torch.device(DEVICE)
     print(f"Device: {device}")
+    print(f"Fused CE: {USE_FUSED_CE}")
 
     if IS_CUDA:
         torch.backends.cuda.matmul.allow_tf32 = True
@@ -357,32 +369,63 @@ def main() -> None:
                 # Recon decoder: pre-logit hidden states [B, T, H]
                 h_recon = model.recon.forward_hidden(kc_probs, attention_mask)
 
-            # ── Chunked output-projection + CE ───────────────────────
-            # Each chunk is [B, RECON_CHUNK, V]; keeps peak memory
-            # bounded instead of materializing full [B, T, V].
+            # ── Output projection + CE ────────────────────────────────
             assert h_recon.shape[:2] == recon_targets.shape
             assert attention_mask.shape == recon_targets.shape
-
             mask_f = attention_mask.float()
-            total_nll_nats = torch.tensor(0.0, device=device)
-            for c0 in range(0, T, RECON_CHUNK):
-                c1 = min(c0 + RECON_CHUNK, T)
-                with torch.amp.autocast(device.type):
-                    chunk_logits = model.recon.output_head(h_recon[:, c0:c1, :])
-                chunk_logits = chunk_logits.float()
-                chunk_targets = recon_targets[:, c0:c1]
-                chunk_mask = mask_f[:, c0:c1]
-                chunk_nll = F.cross_entropy(
-                    chunk_logits.reshape(-1, chunk_logits.size(-1)),
-                    chunk_targets.reshape(-1),
-                    reduction="none",
-                ).reshape(B, -1)
-                total_nll_nats = total_nll_nats + (chunk_nll * chunk_mask).sum()
+
+            out_weight = model.recon.output_head.weight
+            out_bias = model.recon.output_head.bias
+
+            if USE_FUSED_CE:
+                # Fused linear CE: h_recon × W^T + b → CE in one kernel,
+                # never materializes [B, T, V] in global memory.
+                ce_targets = recon_targets.clone()
+                ce_targets[~attention_mask.bool()] = -100
+                nll_per_token = _cce_linear_ce(
+                    h_recon, out_weight, ce_targets,
+                    bias=out_bias, reduction="none",
+                )
+                total_nll_nats = nll_per_token.sum()
+
                 with torch.no_grad():
-                    preds = chunk_logits.argmax(dim=-1)
-                    epoch_t1_correct += int(
-                        ((preds == chunk_targets) & chunk_mask.bool()).sum().item()
-                    )
+                    for c0 in range(0, T, RECON_CHUNK):
+                        c1 = min(c0 + RECON_CHUNK, T)
+                        with torch.amp.autocast(device.type):
+                            chunk_logits = F.linear(
+                                h_recon[:, c0:c1, :], out_weight, out_bias
+                            )
+                        preds = chunk_logits.argmax(dim=-1)
+                        chunk_mask = attention_mask[:, c0:c1].bool()
+                        epoch_t1_correct += int(
+                            ((preds == recon_targets[:, c0:c1]) & chunk_mask)
+                            .sum().item()
+                        )
+            else:
+                # Chunked fallback (MPS / no CCE): each chunk is
+                # [B, RECON_CHUNK, V] to bound peak memory.
+                total_nll_nats = torch.tensor(0.0, device=device)
+                for c0 in range(0, T, RECON_CHUNK):
+                    c1 = min(c0 + RECON_CHUNK, T)
+                    with torch.amp.autocast(device.type):
+                        chunk_logits = F.linear(
+                            h_recon[:, c0:c1, :], out_weight, out_bias
+                        )
+                    chunk_logits = chunk_logits.float()
+                    chunk_targets = recon_targets[:, c0:c1]
+                    chunk_mask = mask_f[:, c0:c1]
+                    chunk_nll = F.cross_entropy(
+                        chunk_logits.reshape(-1, chunk_logits.size(-1)),
+                        chunk_targets.reshape(-1),
+                        reduction="none",
+                    ).reshape(B, -1)
+                    total_nll_nats = total_nll_nats + (chunk_nll * chunk_mask).sum()
+                    with torch.no_grad():
+                        preds = chunk_logits.argmax(dim=-1)
+                        epoch_t1_correct += int(
+                            ((preds == chunk_targets) & chunk_mask.bool())
+                            .sum().item()
+                        )
 
             # nats → bits, normalize by attended token count
             # Primary run-to-run fitness metric.  Lower is better.
