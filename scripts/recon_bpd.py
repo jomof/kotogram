@@ -386,19 +386,21 @@ def main() -> None:
                 )
                 total_nll_nats = nll_per_token.sum()
 
-                with torch.no_grad():
-                    for c0 in range(0, T, RECON_CHUNK):
-                        c1 = min(c0 + RECON_CHUNK, T)
-                        with torch.amp.autocast(device.type):
-                            chunk_logits = F.linear(
-                                h_recon[:, c0:c1, :], out_weight
+                # Top-1 every 100 batches (separate forward pass is expensive)
+                if n_batches % 100 == 0:
+                    with torch.no_grad():
+                        for c0 in range(0, T, RECON_CHUNK):
+                            c1 = min(c0 + RECON_CHUNK, T)
+                            with torch.amp.autocast(device.type):
+                                chunk_logits = F.linear(
+                                    h_recon[:, c0:c1, :], out_weight
+                                )
+                            preds = chunk_logits.argmax(dim=-1)
+                            chunk_mask = attention_mask[:, c0:c1].bool()
+                            epoch_t1_correct += int(
+                                ((preds == recon_targets[:, c0:c1]) & chunk_mask)
+                                .sum().item()
                             )
-                        preds = chunk_logits.argmax(dim=-1)
-                        chunk_mask = attention_mask[:, c0:c1].bool()
-                        epoch_t1_correct += int(
-                            ((preds == recon_targets[:, c0:c1]) & chunk_mask)
-                            .sum().item()
-                        )
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
