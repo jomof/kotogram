@@ -22,14 +22,13 @@ Usage:
 import math
 import time
 from dataclasses import dataclass
-from functools import partial
 from typing import Tuple, cast
 
 import torch
 import torch.nn.functional as F
 from torch import nn
 from torch.optim import Adam
-from torch.utils.data import DataLoader, Sampler
+from torch.utils.data import DataLoader
 
 # Data loading only — the sole external dependencies from this project.
 from kotogram import locations
@@ -38,22 +37,15 @@ from train import paths as train_paths
 from train.dataset import StyleDataset, collate_fn
 
 # ── Training config ──────────────────────────────────────────────────
-DEVICE = (
-    "cuda" if torch.cuda.is_available()
-    else "mps" if torch.backends.mps.is_available()
-    else "cpu"
-)
-IS_CUDA = DEVICE == "cuda"
-BATCH_TOKENS = 8000  # token budget per batch; only cuts B for long sequences
-MAX_BATCH_SENTENCES = 1024 if IS_CUDA else 256  # cap B to bound output-projection memory (B * V)
+DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
+BATCH_SIZE = 256
 EPOCHS = 1000
-SAMPLE_RATIO = 0.08
+SAMPLE_RATIO = 1
 LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
 INPUT_MASK_RATIO = 0.15
-MAX_SEQ_LEN = 64  # cap T to bound O(T²) attention cost
-RECON_CHUNK = 8 if IS_CUDA else 8  # chunk [B, C, V] must fit in VRAM (~1GB at C=8)
+RECON_CHUNK = 4  # time-steps per output-projection chunk
 SEED = 42
 
 KL_SPARSE_WEIGHT = 0.0001
@@ -254,104 +246,6 @@ class BpdModel(nn.Module):
 
 
 # ═════════════════════════════════════════════════════════════════════
-# Length-sorted batch sampler
-# ═════════════════════════════════════════════════════════════════════
-
-
-class TokenBudgetBatchSampler(Sampler[list[int]]):
-    """Yields batches sized by total token count rather than sentence count.
-
-    Sorts dataset indices by length, shuffles within mega-chunks for
-    diversity, then greedily packs sentences into batches up to
-    ``max_tokens`` total tokens (capped at ``max_sentences``).  Short
-    sentences get large B, long sentences get small B, so per-batch
-    compute stays roughly constant.  Batch order is reshuffled each epoch.
-    """
-
-    BUCKET_MUL_TOKENS = 50_000  # tokens per mega-chunk for diversity shuffle
-
-    def __init__(
-        self,
-        dataset: "StyleDataset",
-        max_tokens: int,
-        max_sentences: int,
-        max_seq_len: int,
-        seed: int = 42,
-    ) -> None:
-        super().__init__()
-        lengths: list[int] = []
-        for i in range(len(dataset)):
-            real_idx = int(dataset.indices[i].item())
-            tok_len = int(dataset.offsets[real_idx + 1].item()) - int(
-                dataset.offsets[real_idx].item()
-            )
-            lengths.append(min(tok_len, max_seq_len))
-        self._sorted_indices = sorted(range(len(dataset)), key=lambda i: lengths[i])
-        self._lengths = lengths
-        self._max_tokens = max_tokens
-        self._max_sentences = max_sentences
-        self._seed = seed
-        self._epoch = 0
-        self._n_batches = len(self._pack_batches(self._sorted_indices))
-
-    def set_epoch(self, epoch: int) -> None:
-        self._epoch = epoch
-
-    def _pack_batches(self, indices: list[int]) -> list[list[int]]:
-        batches: list[list[int]] = []
-        cur: list[int] = []
-        cur_max_len = 0
-        for idx in indices:
-            l = self._lengths[idx]
-            new_max = max(cur_max_len, l)
-            # Cost is (len(cur)+1) * new_max because collation pads to max
-            if cur and (
-                (len(cur) + 1) * new_max > self._max_tokens
-                or len(cur) >= self._max_sentences
-            ):
-                batches.append(cur)
-                cur = [idx]
-                cur_max_len = l
-            else:
-                cur.append(idx)
-                cur_max_len = new_max
-        if cur:
-            batches.append(cur)
-        return batches
-
-    def _build_batches(self, g: torch.Generator) -> list[list[int]]:
-        mega = self.BUCKET_MUL_TOKENS
-        chunks: list[list[int]] = []
-        cum = 0
-        chunk_start = 0
-        for i, idx in enumerate(self._sorted_indices):
-            cum += self._lengths[idx]
-            if cum >= mega:
-                chunk = list(self._sorted_indices[chunk_start : i + 1])
-                perm = torch.randperm(len(chunk), generator=g).tolist()
-                chunks.append([chunk[j] for j in perm])
-                chunk_start = i + 1
-                cum = 0
-        if chunk_start < len(self._sorted_indices):
-            chunk = list(self._sorted_indices[chunk_start:])
-            perm = torch.randperm(len(chunk), generator=g).tolist()
-            chunks.append([chunk[j] for j in perm])
-        flat = [idx for chunk in chunks for idx in chunk]
-        return self._pack_batches(flat)
-
-    def __iter__(self):
-        g = torch.Generator().manual_seed(self._seed + self._epoch)
-        batches = self._build_batches(g)
-        self._n_batches = len(batches)
-        perm = torch.randperm(len(batches), generator=g).tolist()
-        for idx in perm:
-            yield batches[idx]
-
-    def __len__(self) -> int:
-        return self._n_batches
-
-
-# ═════════════════════════════════════════════════════════════════════
 # Training loop
 # ═════════════════════════════════════════════════════════════════════
 
@@ -360,11 +254,6 @@ def main() -> None:
     torch.manual_seed(SEED)
     device = torch.device(DEVICE)
     print(f"Device: {device}")
-
-    if IS_CUDA:
-        torch.backends.cuda.matmul.allow_tf32 = True
-        torch.backends.cudnn.allow_tf32 = True
-        torch.backends.cudnn.benchmark = True
 
     # ── Data loading ─────────────────────────────────────────────────
     output_dir = locations.get_style_output_dir()
@@ -377,16 +266,16 @@ def main() -> None:
     gram_ds = dataset.filter_by_grammaticality(label=1)
     print(f"Gram sentences: {len(gram_ds)}")
 
-    batch_sampler = TokenBudgetBatchSampler(
-        gram_ds, BATCH_TOKENS, MAX_BATCH_SENTENCES, MAX_SEQ_LEN, seed=SEED
-    )
-    n_total_batches = len(batch_sampler)
+    n_total_batches = (len(gram_ds) + BATCH_SIZE - 1) // BATCH_SIZE
+    dl_generator = torch.Generator().manual_seed(SEED)
     loader = DataLoader(
         gram_ds,
-        batch_sampler=batch_sampler,
-        collate_fn=partial(collate_fn, max_seq_len=MAX_SEQ_LEN),
-        num_workers=2 if IS_CUDA else 0,
-        pin_memory=IS_CUDA,
+        batch_size=BATCH_SIZE,
+        shuffle=True,
+        collate_fn=collate_fn,
+        num_workers=0,
+        drop_last=False,
+        generator=dl_generator,
     )
 
     # ── Model ────────────────────────────────────────────────────────
@@ -394,16 +283,12 @@ def main() -> None:
     cfg = BpdModelConfig(surface_vocab_size=surface_vocab)
     model = BpdModel(cfg)
     model.to(device)
-    if IS_CUDA:
-        model = torch.compile(model)
     model.train()
 
     optimizer = Adam(model.parameters(), lr=LR)
-    scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # ── Training loop ────────────────────────────────────────────────
     for epoch in range(EPOCHS):
-        batch_sampler.set_epoch(epoch)
         t0 = time.perf_counter()
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
@@ -415,12 +300,8 @@ def main() -> None:
         n_batches = 0
 
         for batch in loader:
-            surface_ids = batch.feature_inputs["input_ids_surface"].to(
-                device, non_blocking=IS_CUDA
-            )
-            attention_mask = batch.attention_mask.to(
-                device, non_blocking=IS_CUDA
-            )
+            surface_ids = batch.feature_inputs["input_ids_surface"].to(device)
+            attention_mask = batch.attention_mask.to(device)
             B, T = attention_mask.shape
 
             # Snapshot targets before masking
@@ -518,9 +399,8 @@ def main() -> None:
 
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad()
-            scaler.scale(loss).backward()
-            scaler.step(optimizer)
-            scaler.update()
+            loss.backward()
+            optimizer.step()
 
             # ── Epoch stats ──────────────────────────────────────────
             batch_units = int(num_units.item())
