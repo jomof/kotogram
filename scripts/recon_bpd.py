@@ -22,13 +22,14 @@ Usage:
 import math
 import time
 from dataclasses import dataclass
+from functools import partial
 from typing import Tuple, cast
 
 import torch
 import torch.nn.functional as F
 from torch import nn
 from torch.optim import Adam
-from torch.utils.data import DataLoader
+from torch.utils.data import BatchSampler, DataLoader, Sampler
 
 # Data loading only — the sole external dependencies from this project.
 from kotogram import locations
@@ -45,6 +46,7 @@ LR = 1e-4
 TEMPERATURE = 1.8
 GRAD_CAP = 5.0
 INPUT_MASK_RATIO = 0.15
+MAX_SEQ_LEN = 100  # cap T to bound O(T²) attention cost
 RECON_CHUNK = 4  # time-steps per output-projection chunk
 SEED = 42
 
@@ -246,6 +248,51 @@ class BpdModel(nn.Module):
 
 
 # ═════════════════════════════════════════════════════════════════════
+# Length-sorted batch sampler
+# ═════════════════════════════════════════════════════════════════════
+
+
+class LengthSortedBatchSampler(Sampler[list[int]]):
+    """Yields batches of indices grouped by sequence length.
+
+    Sorts all dataset indices by token count, chunks into batches of
+    ``batch_size``, then shuffles the batch order each epoch so gradient
+    updates remain stochastic while padding waste is minimal.
+    """
+
+    def __init__(
+        self, dataset: "StyleDataset", batch_size: int, seed: int = 42
+    ) -> None:
+        super().__init__()
+        lengths = []
+        for i in range(len(dataset)):
+            real_idx = int(dataset.indices[i].item())
+            tok_len = int(dataset.offsets[real_idx + 1].item()) - int(
+                dataset.offsets[real_idx].item()
+            )
+            lengths.append(tok_len)
+        sorted_indices = sorted(range(len(dataset)), key=lambda i: lengths[i])
+        self._batches = [
+            sorted_indices[i : i + batch_size]
+            for i in range(0, len(sorted_indices), batch_size)
+        ]
+        self._seed = seed
+        self._epoch = 0
+
+    def set_epoch(self, epoch: int) -> None:
+        self._epoch = epoch
+
+    def __iter__(self):
+        g = torch.Generator().manual_seed(self._seed + self._epoch)
+        perm = torch.randperm(len(self._batches), generator=g).tolist()
+        for idx in perm:
+            yield self._batches[idx]
+
+    def __len__(self) -> int:
+        return len(self._batches)
+
+
+# ═════════════════════════════════════════════════════════════════════
 # Training loop
 # ═════════════════════════════════════════════════════════════════════
 
@@ -266,16 +313,13 @@ def main() -> None:
     gram_ds = dataset.filter_by_grammaticality(label=1)
     print(f"Gram sentences: {len(gram_ds)}")
 
-    n_total_batches = (len(gram_ds) + BATCH_SIZE - 1) // BATCH_SIZE
-    dl_generator = torch.Generator().manual_seed(SEED)
+    batch_sampler = LengthSortedBatchSampler(gram_ds, BATCH_SIZE, seed=SEED)
+    n_total_batches = len(batch_sampler)
     loader = DataLoader(
         gram_ds,
-        batch_size=BATCH_SIZE,
-        shuffle=True,
-        collate_fn=collate_fn,
+        batch_sampler=batch_sampler,
+        collate_fn=partial(collate_fn, max_seq_len=MAX_SEQ_LEN),
         num_workers=0,
-        drop_last=False,
-        generator=dl_generator,
     )
 
     # ── Model ────────────────────────────────────────────────────────
@@ -289,6 +333,7 @@ def main() -> None:
 
     # ── Training loop ────────────────────────────────────────────────
     for epoch in range(EPOCHS):
+        batch_sampler.set_epoch(epoch)
         t0 = time.perf_counter()
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
