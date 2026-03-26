@@ -12,6 +12,7 @@ Usage:
     python -m scripts.recon_bpd_optuna --n-trials 100 --epochs-per-trial 50
     python -m scripts.recon_bpd_optuna --storage sqlite:///optuna.db
     python -m scripts.recon_bpd_optuna --no-mlflow
+    python3 -m scripts.recon_bpd_optuna --n-trials 1000 --sample-ratio 0.15 --epochs-per-trial 15 --storage sqlite:///.cache/recon_bpd/optuna.db
 """
 
 import argparse
@@ -46,7 +47,7 @@ def suggest_config(
         input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.0, 0.3),
         # Regularization
         kl_sparse_weight=trial.suggest_float(
-            "kl_sparse_weight", 1e-6, 1e-1, log=True,
+            "kl_sparse_weight", 0.0001, 1e-1, log=True,
         ),
         kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
         cov_penalty_weight=trial.suggest_float(
@@ -212,23 +213,6 @@ def main() -> None:
             "kc_vocab_size": defaults.kc_vocab_size,
             "recon_pos_embed_dim": defaults.recon_pos_embed_dim,
             "recon_hidden_dim": defaults.recon_hidden_dim,
-        },
-        {
-            "lr": 0.0004911018754945369,
-            "temperature": 0.6827263459224594,
-            "grad_cap": 2.021862829055495,
-            "input_mask_ratio": 0.18596929309185287,
-            "kl_sparse_weight": 1.906089878501103e-06,
-            "kl_target_rho": 0.17999387171245804,
-            "cov_penalty_weight": 1.3129144512780755,
-            "d_model": 256,
-            "ffn_dim": 1024,
-            "num_layers": 2,
-            "num_heads": 16,
-            "dropout": 0.0203546671168967,
-            "kc_vocab_size": 1024,
-            "recon_pos_embed_dim": 128,
-            "recon_hidden_dim": 512,
         },
     ]:
         study.enqueue_trial(params)
