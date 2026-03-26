@@ -74,50 +74,29 @@ class TrainConfig:
     batch_size: int = 256
     epochs: int = 1000
     sample_ratio: Optional[float] = None  # None → 1 on CUDA, 0.08 otherwise
-    lr: float = 0.0005955872530854923  # Original lr: 1e-4
-    temperature: float = 0.736704504185456  # Original temperature: 1.8
-    grad_cap: float = 3.7797968706869023  # Original grad_cap: 5.0
-    input_mask_ratio: float = 0.08337255778691188  # Original input_mask_ratio: 0.15
+    lr: float = 1e-4  # Original lr: 1e-4
+    temperature: float = 1.8  # Original temperature: 1.8
+    grad_cap: float = 5.0  # Original grad_cap: 5.0
+    input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
     seed: int = 42  # Original seed: 42
     patience: Optional[int] = None  # Original patience: None
     verbose: bool = True  # Original verbose: True
 
     # Regularization
-    kl_sparse_weight: float = 0.008373650960455914  # Original kl_sparse_weight: 0.0001
-    kl_target_rho: float = 0.11724817367243817  # Original kl_target_rho: 0.03
-    cov_penalty_weight: float = 8.67982197795842  # Original cov_penalty_weight: 5.0
+    kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
+    kl_target_rho: float = 0.03  # Original kl_target_rho: 0.03
+    cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
 
     # Model architecture
-    d_model: int = 256  # Original d_model: 512
+    d_model: int = 512  # Original d_model: 512
     ffn_dim: int = 2048  # Original ffn_dim: 2048
-    num_layers: int = 3  # Original num_layers: 4
+    num_layers: int = 6  # Original num_layers: 4
     num_heads: int = 16  # Original num_heads: 16
-    dropout: float = 0.12258631733896672  # Original dropout: 0.1
+    dropout: float = 0.1  # Original dropout: 0.1
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024
     recon_pos_embed_dim: int = 64  # Original recon_pos_embed_dim: 64
-    recon_hidden_dim: int = 512  # Original recon_hidden_dim: 256
-
-
-@dataclass
-class OriginalTrainConfig(TrainConfig):
-    """Original baseline hyperparameters for the BPD training loop."""
-
-    lr: float = 1e-4
-    temperature: float = 1.8
-    grad_cap: float = 5.0
-    input_mask_ratio: float = 0.15
-    kl_sparse_weight: float = 0.0001
-    kl_target_rho: float = 0.03
-    cov_penalty_weight: float = 5.0
-    d_model: int = 512
-    ffn_dim: int = 2048
-    num_layers: int = 4
-    num_heads: int = 16
-    dropout: float = 0.1
-    kc_vocab_size: int = 1024
-    recon_pos_embed_dim: int = 64
-    recon_hidden_dim: int = 256
+    recon_hidden_dim: int = 256  # Original recon_hidden_dim: 256
 
 
 @dataclass

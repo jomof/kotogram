@@ -23,7 +23,7 @@ from typing import Optional
 
 import optuna
 
-from scripts.recon_bpd import OriginalTrainConfig, TrainConfig, train
+from scripts.recon_bpd import TrainConfig, train
 
 
 def suggest_config(
@@ -90,17 +90,6 @@ def suggest_config(
     )
 
 
-BASELINE_MARGIN = 0.05
-
-
-def _get_baseline_curve(study: optuna.Study) -> dict:
-    """BPD-per-epoch from the first completed trial (the enqueued defaults)."""
-    for t in study.trials:
-        if t.state == optuna.trial.TrialState.COMPLETE:
-            return dict(t.intermediate_values)
-    return {}
-
-
 def objective(
     trial: optuna.Trial,
     epochs: int,
@@ -113,7 +102,6 @@ def objective(
     config = suggest_config(
         trial, epochs, sample_ratio, patience, consistency_weight_only,
     )
-    baseline = _get_baseline_curve(trial.study)
 
     mlflow = None
     if use_mlflow:
@@ -135,9 +123,6 @@ def objective(
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
-            if baseline and epoch in baseline and epoch > 3:
-                if metrics["bpd"] > baseline[epoch] * (1 + BASELINE_MARGIN):
-                    raise optuna.TrialPruned()
 
         result = train(config, on_epoch_end=on_epoch_end)
         if mlflow is not None:
@@ -194,7 +179,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--consistency-weight-only", action="store_true",
-        help="Optimize ONLY consistency_weight and input_mask_ratio",
+        help="Optimize ONLY consistency_weight",
     )
     args = parser.parse_args()
 
@@ -237,33 +222,15 @@ def main() -> None:
     )
 
     defaults = TrainConfig()
-    original = OriginalTrainConfig()
 
     if args.consistency_weight_only:
         initial_params = [
-            {"consistency_weight": original.consistency_weight, "input_mask_ratio": original.input_mask_ratio},
-            {"consistency_weight": defaults.consistency_weight, "input_mask_ratio": defaults.input_mask_ratio},
+            {
+                 "consistency_weight": defaults.consistency_weight,
+            },
         ]
     else:
         initial_params = [
-            {
-                "lr": original.lr,
-                "temperature": original.temperature,
-                "grad_cap": original.grad_cap,
-                "input_mask_ratio": original.input_mask_ratio,
-                "kl_sparse_weight": original.kl_sparse_weight,
-                "kl_target_rho": original.kl_target_rho,
-                "cov_penalty_weight": original.cov_penalty_weight,
-                "consistency_weight": original.consistency_weight,
-                "d_model": original.d_model,
-                "ffn_dim": original.ffn_dim,
-                "num_layers": original.num_layers,
-                "num_heads": original.num_heads,
-                "dropout": original.dropout,
-                "kc_vocab_size": original.kc_vocab_size,
-                "recon_pos_embed_dim": original.recon_pos_embed_dim,
-                "recon_hidden_dim": original.recon_hidden_dim,
-            },
             {
                 "lr": defaults.lr,
                 "temperature": defaults.temperature,
@@ -275,13 +242,12 @@ def main() -> None:
                 "consistency_weight": defaults.consistency_weight,
                 "d_model": defaults.d_model,
                 "ffn_dim": defaults.ffn_dim,
-                "num_layers": defaults.num_layers,
                 "num_heads": defaults.num_heads,
                 "dropout": defaults.dropout,
                 "kc_vocab_size": defaults.kc_vocab_size,
                 "recon_pos_embed_dim": defaults.recon_pos_embed_dim,
                 "recon_hidden_dim": defaults.recon_hidden_dim,
-            },
+            }
         ]
 
     for params in initial_params:
