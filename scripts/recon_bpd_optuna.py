@@ -45,7 +45,7 @@ def suggest_config(
                 "consistency_weight", 0.0, 1.0,
             ),
             input_mask_ratio=trial.suggest_float(
-                "input_mask_ratio", 0.0, 0.4,
+                "input_mask_ratio", 0.15, 0.4,
             ),
         )
 
@@ -60,7 +60,7 @@ def suggest_config(
         lr=trial.suggest_float("lr", 1e-5, 1e-2, log=True),
         temperature=trial.suggest_float("temperature", 0.5, 5.0),
         grad_cap=trial.suggest_float("grad_cap", 1.0, 10.0),
-        input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.0, 0.3),
+        input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.15, 0.3),
         # Regularization
         kl_sparse_weight=trial.suggest_float(
             "kl_sparse_weight", 0.0001, 1e-1, log=True,
