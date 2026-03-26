@@ -230,7 +230,7 @@ def main() -> None:
             "recon_hidden_dim": defaults.recon_hidden_dim,
         },
     ]:
-        study.enqueue_trial(params)
+        study.enqueue_trial(params, skip_if_exists=True)
 
     study.optimize(
         lambda trial: objective(
