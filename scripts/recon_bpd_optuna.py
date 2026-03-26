@@ -71,6 +71,17 @@ def suggest_config(
     )
 
 
+BASELINE_MARGIN = 0.05
+
+
+def _get_baseline_curve(study: optuna.Study) -> dict:
+    """BPD-per-epoch from the first completed trial (the enqueued defaults)."""
+    for t in study.trials:
+        if t.state == optuna.trial.TrialState.COMPLETE:
+            return dict(t.intermediate_values)
+    return {}
+
+
 def objective(
     trial: optuna.Trial,
     epochs: int,
@@ -80,6 +91,7 @@ def objective(
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(trial, epochs, sample_ratio, patience)
+    baseline = _get_baseline_curve(trial.study)
 
     mlflow = None
     if use_mlflow:
@@ -101,6 +113,9 @@ def objective(
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
+            if baseline and epoch in baseline:
+                if metrics["bpd"] > baseline[epoch] * (1 + BASELINE_MARGIN):
+                    raise optuna.TrialPruned()
 
         result = train(config, on_epoch_end=on_epoch_end)
         if mlflow is not None:
