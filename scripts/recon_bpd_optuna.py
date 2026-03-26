@@ -31,8 +31,21 @@ def suggest_config(
     epochs: int,
     sample_ratio: Optional[float] = None,
     patience: Optional[int] = None,
+    consistency_weight_only: bool = False,
 ) -> TrainConfig:
     """Build a TrainConfig from Optuna trial suggestions."""
+    if consistency_weight_only:
+        return TrainConfig(
+            epochs=epochs,
+            sample_ratio=sample_ratio,
+            patience=patience,
+            verbose=True,
+            seed=42,
+            consistency_weight=trial.suggest_float(
+                "consistency_weight", 0.0, 1.0,
+            ),
+        )
+
     d_model = trial.suggest_categorical("d_model", [256, 512])
     return TrainConfig(
         epochs=epochs,
@@ -52,6 +65,9 @@ def suggest_config(
         kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
         cov_penalty_weight=trial.suggest_float(
             "cov_penalty_weight", 0.1, 20.0,
+        ),
+        consistency_weight=trial.suggest_float(
+            "consistency_weight", 0.0, 1.0,
         ),
         # Model architecture
         d_model=d_model,
@@ -88,9 +104,12 @@ def objective(
     sample_ratio: Optional[float],
     patience: Optional[int],
     use_mlflow: bool,
+    consistency_weight_only: bool = False,
 ) -> float:
     """Optuna objective: minimize BPD."""
-    config = suggest_config(trial, epochs, sample_ratio, patience)
+    config = suggest_config(
+        trial, epochs, sample_ratio, patience, consistency_weight_only,
+    )
     baseline = _get_baseline_curve(trial.study)
 
     mlflow = None
@@ -170,10 +189,16 @@ def main() -> None:
         "--experiment-name", type=str, default="kotogram-bpd",
         help="MLflow experiment name (default: kotogram-bpd)",
     )
+    parser.add_argument(
+        "--consistency-weight-only", action="store_true",
+        help="Optimize ONLY consistency_weight",
+    )
     args = parser.parse_args()
 
     name = args.experiment_name
     suffixes = []
+    if args.consistency_weight_only:
+        suffixes.append("cw-only")
     if args.sample_ratio is not None:
         suffixes.append(f"{args.sample_ratio * 100:g}%")
     suffixes.append(f"{args.epochs_per_trial}ep")
@@ -209,31 +234,37 @@ def main() -> None:
     )
 
     defaults = TrainConfig()
-    for params in [
-        {
-            "lr": defaults.lr,
-            "temperature": defaults.temperature,
-            "grad_cap": defaults.grad_cap,
-            "input_mask_ratio": defaults.input_mask_ratio,
-            "kl_sparse_weight": defaults.kl_sparse_weight,
-            "kl_target_rho": defaults.kl_target_rho,
-            "cov_penalty_weight": defaults.cov_penalty_weight,
-            "d_model": defaults.d_model,
-            "ffn_dim": defaults.ffn_dim,
-            "num_layers": defaults.num_layers,
-            "num_heads": defaults.num_heads,
-            "dropout": defaults.dropout,
-            "kc_vocab_size": defaults.kc_vocab_size,
-            "recon_pos_embed_dim": defaults.recon_pos_embed_dim,
-            "recon_hidden_dim": defaults.recon_hidden_dim,
-        },
-    ]:
+    if args.consistency_weight_only:
+        initial_params = [{"consistency_weight": defaults.consistency_weight}]
+    else:
+        initial_params = [
+            {
+                "lr": defaults.lr,
+                "temperature": defaults.temperature,
+                "grad_cap": defaults.grad_cap,
+                "input_mask_ratio": defaults.input_mask_ratio,
+                "kl_sparse_weight": defaults.kl_sparse_weight,
+                "kl_target_rho": defaults.kl_target_rho,
+                "cov_penalty_weight": defaults.cov_penalty_weight,
+                "consistency_weight": defaults.consistency_weight,
+                "d_model": defaults.d_model,
+                "ffn_dim": defaults.ffn_dim,
+                "num_layers": defaults.num_layers,
+                "num_heads": defaults.num_heads,
+                "dropout": defaults.dropout,
+                "kc_vocab_size": defaults.kc_vocab_size,
+                "recon_pos_embed_dim": defaults.recon_pos_embed_dim,
+                "recon_hidden_dim": defaults.recon_hidden_dim,
+            },
+        ]
+
+    for params in initial_params:
         study.enqueue_trial(params, skip_if_exists=True)
 
     study.optimize(
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
-            args.patience, use_mlflow,
+            args.patience, use_mlflow, args.consistency_weight_only,
         ),
         n_trials=args.n_trials,
     )
