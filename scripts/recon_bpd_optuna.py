@@ -182,16 +182,24 @@ def main() -> None:
         "--consistency-weight-only", action="store_true",
         help="Optimize ONLY consistency_weight",
     )
+    parser.add_argument(
+        "--adhoc", action="store_true",
+        help="Run a single trial with default parameters, logging to adhoc experiment",
+    )
     args = parser.parse_args()
 
-    name = args.experiment_name
+    exp_name = args.experiment_name
+    if args.adhoc:
+        exp_name = "adhoc-kotogram-bpd"
+        args.n_trials = 1
+
     suffixes = []
     if args.consistency_weight_only:
         suffixes.append("cw-imr-only")
     if args.sample_ratio is not None:
         suffixes.append(f"{args.sample_ratio * 100:g}%")
     suffixes.append(f"{args.epochs_per_trial}ep")
-    name += f" ({', '.join(suffixes)})"
+    study_name = f"{exp_name} ({', '.join(suffixes)})"
 
     use_mlflow = not args.no_mlflow
     if use_mlflow:
@@ -199,11 +207,11 @@ def main() -> None:
 
         configure_tracking(
             tracking_uri=args.tracking_uri,
-            experiment_name=name,
+            experiment_name=exp_name,
         )
 
     storage = args.storage
-    if storage is None:
+    if storage is None and not args.adhoc:
         db_dir = os.path.join(".cache", "recon_bpd")
         os.makedirs(db_dir, exist_ok=True)
         storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
@@ -214,12 +222,12 @@ def main() -> None:
     )
 
     study = optuna.create_study(
-        study_name=name,
+        study_name=study_name,
         storage=storage,
         direction="minimize",
         sampler=sampler,
         pruner=pruner,
-        load_if_exists=True,
+        load_if_exists=not args.adhoc,
     )
 
     defaults = TrainConfig()
@@ -252,12 +260,12 @@ def main() -> None:
         ]
 
     for params in initial_params:
-        study.enqueue_trial(params, skip_if_exists=True)
+        study.enqueue_trial(params, skip_if_exists=not args.adhoc)
 
     study.optimize(
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
-            args.patience, use_mlflow, name, args.consistency_weight_only,
+            args.patience, use_mlflow, study_name, args.consistency_weight_only,
         ),
         n_trials=args.n_trials,
     )
