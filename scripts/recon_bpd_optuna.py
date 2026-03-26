@@ -12,7 +12,7 @@ Usage:
     python -m scripts.recon_bpd_optuna --n-trials 100 --epochs-per-trial 50
     python -m scripts.recon_bpd_optuna --storage sqlite:///optuna.db
     python -m scripts.recon_bpd_optuna --no-mlflow
-    python3 -m scripts.recon_bpd_optuna --n-trials 1000 --sample-ratio 0.15 --epochs-per-trial 15 --storage sqlite:///.cache/recon_bpd/optuna.db
+    python3 -m scripts.recon_bpd_optuna --n-trials 1000 --sample-ratio 0.15 --epochs-per-trial 15 --storage sqlite:///.cache/recon_bpd/optuna.db --consistency-weight-only
 """
 
 import argparse
@@ -43,6 +43,9 @@ def suggest_config(
             seed=42,
             consistency_weight=trial.suggest_float(
                 "consistency_weight", 0.0, 1.0,
+            ),
+            input_mask_ratio=trial.suggest_float(
+                "input_mask_ratio", 0.0, 0.4,
             ),
         )
 
@@ -191,14 +194,14 @@ def main() -> None:
     )
     parser.add_argument(
         "--consistency-weight-only", action="store_true",
-        help="Optimize ONLY consistency_weight",
+        help="Optimize ONLY consistency_weight and input_mask_ratio",
     )
     args = parser.parse_args()
 
     name = args.experiment_name
     suffixes = []
     if args.consistency_weight_only:
-        suffixes.append("cw-only")
+        suffixes.append("cw-imr-only")
     if args.sample_ratio is not None:
         suffixes.append(f"{args.sample_ratio * 100:g}%")
     suffixes.append(f"{args.epochs_per_trial}ep")
@@ -235,7 +238,12 @@ def main() -> None:
 
     defaults = TrainConfig()
     if args.consistency_weight_only:
-        initial_params = [{"consistency_weight": defaults.consistency_weight}]
+        initial_params = [
+            {
+                "consistency_weight": defaults.consistency_weight,
+                "input_mask_ratio": defaults.input_mask_ratio,
+            },
+        ]
     else:
         initial_params = [
             {
