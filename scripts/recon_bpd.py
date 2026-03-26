@@ -86,7 +86,7 @@ class TrainConfig:
     kl_sparse_weight: float = 0.008373650960455914  # Original kl_sparse_weight: 0.0001
     kl_target_rho: float = 0.11724817367243817  # Original kl_target_rho: 0.03
     cov_penalty_weight: float = 8.67982197795842  # Original cov_penalty_weight: 5.0
-    consistency_weight: float = 0.0  # dual-mask KC consistency (0 = disabled)
+    consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
 
     # Model architecture
     d_model: int = 256  # Original d_model: 512
