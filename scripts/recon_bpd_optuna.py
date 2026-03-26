@@ -42,10 +42,10 @@ def suggest_config(
             verbose=True,
             seed=42,
             consistency_weight=trial.suggest_float(
-                "consistency_weight", 0.0, 1.0,
+                "consistency_weight", 0.0, 0.2,
             ),
             input_mask_ratio=trial.suggest_float(
-                "input_mask_ratio", 0.15, 0.4,
+                "input_mask_ratio", 0.15, 0.18,
             ),
         )
 
