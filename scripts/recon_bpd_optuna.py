@@ -151,10 +151,6 @@ def main() -> None:
         help="Early-stop a trial after N epochs without BPD improvement",
     )
     parser.add_argument(
-        "--study-name", type=str, default="recon_bpd",
-        help="Optuna study name (default: recon_bpd)",
-    )
-    parser.add_argument(
         "--storage", type=str, default=None,
         help="Optuna storage URL (default: sqlite:///.cache/recon_bpd/optuna.db)",
     )
@@ -176,10 +172,12 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    experiment_name = args.experiment_name
+    name = args.experiment_name
+    suffixes = []
     if args.sample_ratio is not None:
-        pct = args.sample_ratio * 100
-        experiment_name += f" ({pct:g}%)"
+        suffixes.append(f"{args.sample_ratio * 100:g}%")
+    suffixes.append(f"{args.epochs_per_trial}ep")
+    name += f" ({', '.join(suffixes)})"
 
     use_mlflow = not args.no_mlflow
     if use_mlflow:
@@ -187,7 +185,7 @@ def main() -> None:
 
         configure_tracking(
             tracking_uri=args.tracking_uri,
-            experiment_name=experiment_name,
+            experiment_name=name,
         )
 
     storage = args.storage
@@ -202,7 +200,7 @@ def main() -> None:
     )
 
     study = optuna.create_study(
-        study_name=args.study_name,
+        study_name=name,
         storage=storage,
         direction="minimize",
         sampler=sampler,
