@@ -96,6 +96,7 @@ def objective(
     sample_ratio: Optional[float],
     patience: Optional[int],
     use_mlflow: bool,
+    study_name: str,
     consistency_weight_only: bool = False,
 ) -> float:
     """Optuna objective: minimize BPD."""
@@ -108,7 +109,7 @@ def objective(
         import mlflow as _mlflow  # type: ignore[import-untyped]
 
         mlflow = _mlflow
-        mlflow.start_run(run_name=f"trial-{trial.number}")
+        mlflow.start_run(run_name=f"trial-{trial.number}: {study_name}")
         for field in dataclasses.fields(config):
             mlflow.log_param(field.name, getattr(config, field.name))
         mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
@@ -256,7 +257,7 @@ def main() -> None:
     study.optimize(
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
-            args.patience, use_mlflow, args.consistency_weight_only,
+            args.patience, use_mlflow, name, args.consistency_weight_only,
         ),
         n_trials=args.n_trials,
     )
