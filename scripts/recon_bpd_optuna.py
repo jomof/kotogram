@@ -23,7 +23,7 @@ from typing import Optional
 
 import optuna
 
-from scripts.recon_bpd import TrainConfig, train
+from scripts.recon_bpd import OriginalTrainConfig, TrainConfig, train
 
 
 def suggest_config(
@@ -45,7 +45,7 @@ def suggest_config(
                 "consistency_weight", 0.0, 0.2,
             ),
             input_mask_ratio=trial.suggest_float(
-                "input_mask_ratio", 0.15, 0.18,
+                "input_mask_ratio", 0.15, 0.3,
             ),
         )
 
@@ -75,7 +75,7 @@ def suggest_config(
         # Model architecture
         d_model=d_model,
         ffn_dim=trial.suggest_categorical("ffn_dim", [1024, 2048, 4096]),
-        num_layers=trial.suggest_int("num_layers", 2, 6),
+        num_layers=trial.suggest_int("num_layers", 3, 9),
         num_heads=trial.suggest_categorical("num_heads", [4, 8, 16]),
         dropout=trial.suggest_float("dropout", 0.0, 0.3),
         kc_vocab_size=trial.suggest_categorical(
@@ -135,7 +135,7 @@ def objective(
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
-            if baseline and epoch in baseline:
+            if baseline and epoch in baseline and epoch > 3:
                 if metrics["bpd"] > baseline[epoch] * (1 + BASELINE_MARGIN):
                     raise optuna.TrialPruned()
 
@@ -189,8 +189,8 @@ def main() -> None:
         help="MLflow tracking URI override",
     )
     parser.add_argument(
-        "--experiment-name", type=str, default="kotogram-bpd",
-        help="MLflow experiment name (default: kotogram-bpd)",
+        "--experiment-name", type=str, default="kotogram-bpd#2",
+        help="MLflow experiment name (default: kotogram-bpd#2)",
     )
     parser.add_argument(
         "--consistency-weight-only", action="store_true",
@@ -237,15 +237,33 @@ def main() -> None:
     )
 
     defaults = TrainConfig()
+    original = OriginalTrainConfig()
+
     if args.consistency_weight_only:
         initial_params = [
-            {
-                "consistency_weight": defaults.consistency_weight,
-                "input_mask_ratio": defaults.input_mask_ratio,
-            },
+            {"consistency_weight": original.consistency_weight, "input_mask_ratio": original.input_mask_ratio},
+            {"consistency_weight": defaults.consistency_weight, "input_mask_ratio": defaults.input_mask_ratio},
         ]
     else:
         initial_params = [
+            {
+                "lr": original.lr,
+                "temperature": original.temperature,
+                "grad_cap": original.grad_cap,
+                "input_mask_ratio": original.input_mask_ratio,
+                "kl_sparse_weight": original.kl_sparse_weight,
+                "kl_target_rho": original.kl_target_rho,
+                "cov_penalty_weight": original.cov_penalty_weight,
+                "consistency_weight": original.consistency_weight,
+                "d_model": original.d_model,
+                "ffn_dim": original.ffn_dim,
+                "num_layers": original.num_layers,
+                "num_heads": original.num_heads,
+                "dropout": original.dropout,
+                "kc_vocab_size": original.kc_vocab_size,
+                "recon_pos_embed_dim": original.recon_pos_embed_dim,
+                "recon_hidden_dim": original.recon_hidden_dim,
+            },
             {
                 "lr": defaults.lr,
                 "temperature": defaults.temperature,
