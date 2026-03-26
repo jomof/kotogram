@@ -86,6 +86,7 @@ class TrainConfig:
     kl_sparse_weight: float = 0.0001
     kl_target_rho: float = 0.03
     cov_penalty_weight: float = 5.0
+    consistency_weight: float = 0.0  # dual-mask KC consistency (0 = disabled)
 
     # Model architecture
     d_model: int = 512
@@ -419,6 +420,8 @@ def train(
         epoch_t1_units = 0
         epoch_cossim_sum = 0.0
         epoch_sharpness_sum = 0.0
+        total_consistency_sum = 0.0
+        epoch_cossim_pair_sum = 0.0
         total_elements = 0
         n_batches = 0
 
@@ -435,17 +438,34 @@ def train(
             recon_targets = surface_ids.clone()
 
             # BERT-style input corruption (encoder input only)
-            if config.input_mask_ratio > 0:
-                maskable = attention_mask.bool()
+            maskable = attention_mask.bool() if config.input_mask_ratio > 0 else None
+
+            def _apply_mask(ids: torch.Tensor) -> torch.Tensor:
+                if maskable is None:
+                    return ids
                 rand_mask = (
-                    torch.rand_like(surface_ids.float()) < config.input_mask_ratio
+                    torch.rand_like(ids.float()) < config.input_mask_ratio
                 ) & maskable
-                surface_ids = surface_ids.masked_fill(rand_mask, 0)
+                return ids.masked_fill(rand_mask, 0)
+
+            surface_ids = _apply_mask(recon_targets)
 
             # ── Forward (under autocast, matching KCTrainer) ─────────
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
+
+                # ── Dual-mask consistency regularization ──────────────
+                consistency_loss = torch.tensor(0.0, device=device)
+                if config.consistency_weight > 0:
+                    surface_ids_2 = _apply_mask(recon_targets)
+                    pooled_2 = model.encode(surface_ids_2, attention_mask)
+                    kc_logits_raw_2, _ = model.kc_head.forward_with_raw(pooled_2)
+                    cos = F.cosine_similarity(
+                        kc_logits_raw, kc_logits_raw_2, dim=-1,
+                    )
+                    consistency_loss = (1.0 - cos).mean()
+                    epoch_cossim_pair_sum += cos.detach().mean().item() * B
 
                 # Gumbel noise + gradient capping
                 u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
@@ -554,6 +574,12 @@ def train(
             loss = bpd
             kl_contrib = 0.0
             cov_contrib = 0.0
+            consist_contrib = 0.0
+
+            if config.consistency_weight > 0:
+                consist_scaled = config.consistency_weight * consistency_loss
+                loss = loss + consist_scaled
+                consist_contrib = consist_scaled.item()
 
             if config.kl_sparse_weight > 0:
                 rho_hat = kc_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
@@ -588,10 +614,11 @@ def train(
             epoch_num_units += batch_units
             total_kl_sum += kl_contrib
             total_cov_sum += cov_contrib
+            total_consistency_sum += consist_contrib
             total_elements += B
             n_batches += 1
 
-            del loss, h_recon, total_nll_nats, total_bits, bpd
+            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
@@ -616,6 +643,8 @@ def train(
         avg_loss = total_loss_sum / max(1, n_batches)
         avg_kl = total_kl_sum / max(1, n_batches)
         avg_cov = total_cov_sum / max(1, n_batches)
+        avg_consist = total_consistency_sum / max(1, n_batches)
+        avg_pair_cos = epoch_cossim_pair_sum / max(1, total_elements)
         t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
@@ -630,9 +659,16 @@ def train(
             "loss": avg_loss,
             "sparsity": avg_kl,
             "orthogonality": avg_cov,
+            "consistency": avg_consist,
+            "mask-agree": avg_pair_cos,
         }
 
         if config.verbose:
+            consist_str = (
+                f"consistency={avg_consist:.4f}  "
+                f"mask-agree={avg_pair_cos:.3f}  "
+                if config.consistency_weight > 0 else ""
+            )
             print()  # finish \r progress line
             print(
                 f"Epoch {epoch + 1}/{config.epochs}  "
@@ -643,6 +679,7 @@ def train(
                 f"loss={avg_loss:.4f}  "
                 f"sparsity={avg_kl:.4f}  "
                 f"orthogonality={avg_cov:.4f}  "
+                f"{consist_str}"
                 f"{els:.1f} el/s  "
                 f"{total_elements} samples  "
                 f"{dt:.1f}s"
