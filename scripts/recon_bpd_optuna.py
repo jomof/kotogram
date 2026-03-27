@@ -99,8 +99,8 @@ def suggest_config(
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
-    "input_mask_ratio": 0.125,
-    "consistency_weight": 1e-05,
+    "input_mask_ratio": 0.15,
+    "consistency_weight": 1e-06,
 }
 
 _SCRIPT_HASH = hashlib.sha256(
