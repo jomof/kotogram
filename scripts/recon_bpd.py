@@ -125,6 +125,7 @@ class TrainCheckpoint:
     best_bpd: float
     epochs_without_improvement: int
     latest_metrics: Dict[str, float]
+    epoch_history: list  # [(epoch, metrics_dict), ...]
 
 
 EpochCallback = Callable[[int, Dict[str, float]], None]
@@ -144,6 +145,7 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
         "best_bpd": checkpoint.best_bpd,
         "epochs_without_improvement": checkpoint.epochs_without_improvement,
         "latest_metrics": checkpoint.latest_metrics,
+        "epoch_history": checkpoint.epoch_history,
     }, tmp_path)
     os.replace(tmp_path, path)
 
@@ -153,6 +155,8 @@ def load_checkpoint(path: str) -> Optional[TrainCheckpoint]:
     if not os.path.exists(path):
         return None
     data = torch.load(path, weights_only=False, map_location=DEVICE)
+    # Backward compat: checkpoints before epoch_history was added.
+    data.setdefault("epoch_history", [])
     return TrainCheckpoint(**data)
 
 
@@ -473,6 +477,9 @@ def train(
     epochs_without_improvement = (
         checkpoint.epochs_without_improvement if checkpoint is not None else 0
     )
+    epoch_history: list = (
+        list(checkpoint.epoch_history) if checkpoint is not None else []
+    )
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
@@ -759,6 +766,7 @@ def train(
 
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
+        epoch_history.append((epoch, dict(latest_metrics)))
         if checkpoint_path is not None:
             save_checkpoint(TrainCheckpoint(
                 model_state=model.state_dict(),
@@ -768,6 +776,7 @@ def train(
                 best_bpd=best_bpd,
                 epochs_without_improvement=epochs_without_improvement,
                 latest_metrics=latest_metrics,
+                epoch_history=epoch_history,
             ), checkpoint_path)
 
         if on_epoch_end is not None:
@@ -789,6 +798,7 @@ def train(
         best_bpd=best_bpd,
         epochs_without_improvement=epochs_without_improvement,
         latest_metrics=latest_metrics,
+        epoch_history=epoch_history,
     )
     return (
         TrainResult(

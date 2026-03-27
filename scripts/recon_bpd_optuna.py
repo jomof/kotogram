@@ -62,7 +62,7 @@ def suggest_config(
         lr=trial.suggest_float("lr", 1e-5, 1e-2, log=True),
         temperature=trial.suggest_float("temperature", 0.5, 5.0),
         grad_cap=trial.suggest_float("grad_cap", 1.0, 10.0),
-        input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.15, 0.3),
+        input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.1, 0.3),
         # Regularization
         kl_sparse_weight=trial.suggest_float(
             "kl_sparse_weight", 0.0001, 1e-1, log=True,
@@ -138,10 +138,10 @@ def objective(
     )
 
     # Checkpoint keyed by config hash — resume if same params seen before.
+    config_hash = _config_hash(config)
     checkpoint_path = ""
     existing = None
     if checkpoint_dir:
-        config_hash = _config_hash(config)
         checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
         existing = load_checkpoint(checkpoint_path)
         if existing is not None and existing.epoch >= epochs - 1:
@@ -150,11 +150,14 @@ def objective(
                 import mlflow as _mlflow  # type: ignore[import-untyped]
 
                 _mlflow.start_run(
-                    run_name=f"(cached) trial-{trial.number}: {study_name}",
+                    run_name=f"(cached) {config_hash[:8]}: {study_name}",
                 )
                 for field in dataclasses.fields(config):
                     _mlflow.log_param(field.name, getattr(config, field.name))
                 _mlflow.set_tag("cached", "true")
+                for ep, metrics in existing.epoch_history:
+                    for k, v in metrics.items():
+                        _mlflow.log_metric(f"bpd/{k}", v, step=ep)
                 _mlflow.log_metric(
                     "final_bpd", existing.latest_metrics["bpd"],
                 )
@@ -176,7 +179,7 @@ def objective(
             parts = " ".join(f"{k}={v:g}" for k, v in sorted(adhoc_overrides.items()))
             run_name = f"{parts}: {study_name}"
         else:
-            run_name = f"trial-{trial.number}: {study_name}"
+            run_name = f"{config_hash[:8]}: {study_name}"
         mlflow.start_run(run_name=run_name)
         for field in dataclasses.fields(config):
             mlflow.log_param(field.name, getattr(config, field.name))
