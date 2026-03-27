@@ -44,13 +44,13 @@ def suggest_config(
             verbose=True,
             seed=42,
             consistency_weight=trial.suggest_categorical(
-                "consistency_weight", [0.0, 0.0000001, 0.0000003, 0.000001, 0.000003],
+                "consistency_weight", _CW_SEARCH_SPACE["consistency_weight"],
             ),
             input_mask_ratio=trial.suggest_categorical(
-                "input_mask_ratio", [0.15, 0.175],
+                "input_mask_ratio", _CW_SEARCH_SPACE["input_mask_ratio"],
             ),
             num_layers=trial.suggest_categorical(
-                "num_layers", [2],
+                "num_layers", _CW_SEARCH_SPACE["num_layers"],
             ),
         )
 
@@ -95,7 +95,16 @@ def suggest_config(
     )
 
 
+# Consistency-weight-only search space — changing this auto-creates a new study.
+_CW_SEARCH_SPACE: dict = {
+    "consistency_weight": [0.0, 0.0000001, 0.0000003, 0.000001, 0.000003],
+    "input_mask_ratio": [0.15, 0.175],
+    "num_layers": [2],
+}
 
+_CW_SPACE_HASH = hashlib.sha256(
+    json.dumps(_CW_SEARCH_SPACE, sort_keys=True).encode(),
+).hexdigest()[:6]
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
@@ -370,7 +379,8 @@ def main() -> None:
 
     suffixes = []
     if args.consistency_weight_only:
-        suffixes.append("cw-imr-only")
+        suffixes.append(f"cw-imr-only")
+        suffixes.append(_CW_SPACE_HASH)
     if args.sample_ratio is not None:
         suffixes.append(f"{args.sample_ratio * 100:g}%")
     study_name = f"{exp_name} ({', '.join(suffixes)})" if suffixes else exp_name
