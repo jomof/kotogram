@@ -105,19 +105,39 @@ _SCRIPT_HASH = hashlib.sha256(
 ).hexdigest()[:12]
 
 
+def _dataset_fingerprint() -> str:
+    """Content hash of cached dataset files that affect training data."""
+    from train import paths as train_paths
+
+    cache_dir = train_paths.get_style_dataset_cache_dir()
+    h = hashlib.sha256()
+    for name in ("labels.bin_gram", "sentences.txt"):
+        path = os.path.join(cache_dir, name)
+        if os.path.exists(path):
+            h.update(open(path, "rb").read())
+    return h.hexdigest()[:12]
+
+
+_DATASET_HASH = _dataset_fingerprint()
+
+
 def _config_hash(config: TrainConfig) -> str:
     """Deterministic hash of training config for checkpoint keying.
 
-    Includes a hash of ``recon_bpd.py`` so code changes automatically
-    invalidate stale checkpoints.  Excludes ``epochs``, ``verbose``,
-    and ``patience`` so that extending the epoch budget or toggling
-    verbosity still reuses checkpoints.
+    Includes hashes of ``recon_bpd.py`` source and dataset cache files
+    so code or data changes automatically invalidate stale checkpoints.
+    Excludes ``epochs``, ``verbose``, and ``patience`` so that extending
+    the epoch budget or toggling verbosity still reuses checkpoints.
     """
     d = dataclasses.asdict(config)
     del d["epochs"]
     del d["verbose"]
     del d["patience"]
-    canonical = _SCRIPT_HASH + json.dumps(sorted(d.items()), sort_keys=True)
+    canonical = (
+        _SCRIPT_HASH
+        + _DATASET_HASH
+        + json.dumps(sorted(d.items()), sort_keys=True)
+    )
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
 
