@@ -93,9 +93,17 @@ def suggest_config(
 
 
 
-def _config_hash(params: dict) -> str:
-    """Deterministic hash of trial hyperparameters for checkpoint keying."""
-    canonical = json.dumps(sorted(params.items()), sort_keys=True)
+def _config_hash(config: TrainConfig) -> str:
+    """Deterministic hash of training config for checkpoint keying.
+
+    Excludes ``epochs``, ``verbose``, and ``patience`` so that extending
+    the epoch budget or toggling verbosity still reuses checkpoints.
+    """
+    d = dataclasses.asdict(config)
+    del d["epochs"]
+    del d["verbose"]
+    del d["patience"]
+    canonical = json.dumps(sorted(d.items()), sort_keys=True)
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
 
@@ -118,7 +126,7 @@ def objective(
     checkpoint_path = ""
     existing = None
     if checkpoint_dir:
-        config_hash = _config_hash(trial.params)
+        config_hash = _config_hash(config)
         checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
         existing = load_checkpoint(checkpoint_path)
         if existing is not None and existing.epoch >= epochs - 1:
