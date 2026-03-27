@@ -44,10 +44,10 @@ def suggest_config(
             verbose=True,
             seed=42,
             consistency_weight=trial.suggest_categorical(
-                "consistency_weight", [0.0, 0.0000001, 0.0000003],
+                "consistency_weight", [0.0, 0.0000001, 0.0000003, 0.000001, 0.000003],
             ),
             input_mask_ratio=trial.suggest_categorical(
-                "input_mask_ratio", [0.15],
+                "input_mask_ratio", [0.15, 0.175],
             ),
             num_layers=trial.suggest_categorical(
                 "num_layers", [2],
