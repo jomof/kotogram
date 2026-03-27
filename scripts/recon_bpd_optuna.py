@@ -145,7 +145,20 @@ def objective(
         checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
         existing = load_checkpoint(checkpoint_path)
         if existing is not None and existing.epoch >= epochs - 1:
-            # Already fully trained with these params — skip.
+            # Already fully trained with these params — log and skip.
+            if use_mlflow:
+                import mlflow as _mlflow  # type: ignore[import-untyped]
+
+                _mlflow.start_run(
+                    run_name=f"(cached) trial-{trial.number}: {study_name}",
+                )
+                for field in dataclasses.fields(config):
+                    _mlflow.log_param(field.name, getattr(config, field.name))
+                _mlflow.set_tag("cached", "true")
+                _mlflow.log_metric(
+                    "final_bpd", existing.latest_metrics["bpd"],
+                )
+                _mlflow.end_run()
             trial.report(existing.latest_metrics["bpd"], existing.epoch)
             return existing.latest_metrics["bpd"]
         if existing is not None:
