@@ -97,8 +97,8 @@ def suggest_config(
 
 # Consistency-weight-only search space — changing this auto-creates a new study.
 _CW_SEARCH_SPACE: dict = {
-    "consistency_weight": [0.0, 0.0000001, 0.0000003, 0.000001, 0.000003],
-    "input_mask_ratio": [0.15, 0.175],
+    "consistency_weight": [0.0, 0.000001, 0.000003, 0.00001, 0.00003],
+    "input_mask_ratio": [0.125, 0.15, 0.175],
     "num_layers": [2],
 }
 
