@@ -201,8 +201,9 @@ def objective(
 
                 run_id = _find_mlflow_run(run_name)
                 _mlflow.start_run(run_id=run_id, run_name=run_name)
-                for field in dataclasses.fields(config):
-                    _mlflow.log_param(field.name, getattr(config, field.name))
+                if run_id is None:
+                    for field in dataclasses.fields(config):
+                        _mlflow.log_param(field.name, getattr(config, field.name))
                 _mlflow.set_tag("cached", "true")
                 for ep, metrics in existing.epoch_history:
                     for k, v in metrics.items():
@@ -229,9 +230,10 @@ def objective(
         mlflow = _mlflow
         run_id = _find_mlflow_run(run_name)
         mlflow.start_run(run_id=run_id, run_name=run_name)
-        for field in dataclasses.fields(config):
-            mlflow.log_param(field.name, getattr(config, field.name))
-        mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
+        if run_id is None:
+            for field in dataclasses.fields(config):
+                mlflow.log_param(field.name, getattr(config, field.name))
+            mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
         mlflow.set_tag("optuna_trial", str(trial.number))
         if existing is not None:
             mlflow.set_tag("resumed_from_epoch", str(existing.epoch))
