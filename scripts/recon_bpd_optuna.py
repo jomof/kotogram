@@ -328,6 +328,10 @@ def main() -> None:
         "--override", nargs=2, action="append", metavar=("KEY", "VALUE"),
         help="Override a TrainConfig field for adhoc runs, e.g. --override lr 1e-3",
     )
+    parser.add_argument(
+        "--convergence-patience", type=int, default=20,
+        help="Stop if no improvement after this many completed trials (default: 20)",
+    )
     args = parser.parse_args()
 
     exp_name = args.experiment_name
@@ -429,6 +433,20 @@ def main() -> None:
         os.makedirs(checkpoint_dir, exist_ok=True)
         print(f"Checkpoint dir: {checkpoint_dir}")
 
+    def _convergence_callback(
+        study: optuna.Study, trial: optuna.trial.FrozenTrial,
+    ) -> None:
+        if trial.state != optuna.trial.TrialState.COMPLETE:
+            return
+        best_number = study.best_trial.number
+        if trial.number - best_number >= args.convergence_patience:
+            print(
+                f"\nConverged: no improvement for "
+                f"{args.convergence_patience} completed trials "
+                f"(best was trial {best_number})",
+            )
+            study.stop()
+
     study.optimize(
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
@@ -436,6 +454,7 @@ def main() -> None:
             checkpoint_dir, adhoc_overrides or None,
         ),
         n_trials=args.n_trials,
+        callbacks=[_convergence_callback],
     )
 
     print("\n" + "=" * 60)
