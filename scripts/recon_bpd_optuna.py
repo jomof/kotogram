@@ -49,6 +49,9 @@ def suggest_config(
             input_mask_ratio=trial.suggest_categorical(
                 "input_mask_ratio", [0.1, 0.125, 0.15, 0.2],
             ),
+            num_layers=trial.suggest_categorical(
+                "num_layers", [2, 6],
+            ),
         )
 
     d_model = trial.suggest_categorical("d_model", [256, 512])
@@ -407,6 +410,7 @@ def main() -> None:
             {
                  "consistency_weight": defaults.consistency_weight,
                  "input_mask_ratio": defaults.input_mask_ratio,
+                 "num_layers": defaults.num_layers,
             },
         ]
     else:
