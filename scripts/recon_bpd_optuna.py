@@ -43,11 +43,11 @@ def suggest_config(
             patience=patience,
             verbose=True,
             seed=42,
-            consistency_weight=trial.suggest_float(
-                "consistency_weight", 0.0, 0.2,
+            consistency_weight=trial.suggest_categorical(
+                "consistency_weight", [0.0, 0.00001, 0.0003, 0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3],
             ),
-            input_mask_ratio=trial.suggest_float(
-                "input_mask_ratio", 0.15, 0.3,
+            input_mask_ratio=trial.suggest_categorical(
+                "input_mask_ratio", [0.125, 0.15, 0.20, 0.25],
             ),
         )
 
@@ -93,17 +93,24 @@ def suggest_config(
 
 
 
+_SCRIPT_HASH = hashlib.sha256(
+    open(os.path.join(os.path.dirname(__file__), "recon_bpd.py"), "rb").read(),
+).hexdigest()[:12]
+
+
 def _config_hash(config: TrainConfig) -> str:
     """Deterministic hash of training config for checkpoint keying.
 
-    Excludes ``epochs``, ``verbose``, and ``patience`` so that extending
-    the epoch budget or toggling verbosity still reuses checkpoints.
+    Includes a hash of ``recon_bpd.py`` so code changes automatically
+    invalidate stale checkpoints.  Excludes ``epochs``, ``verbose``,
+    and ``patience`` so that extending the epoch budget or toggling
+    verbosity still reuses checkpoints.
     """
     d = dataclasses.asdict(config)
     del d["epochs"]
     del d["verbose"]
     del d["patience"]
-    canonical = json.dumps(sorted(d.items()), sort_keys=True)
+    canonical = _SCRIPT_HASH + json.dumps(sorted(d.items()), sort_keys=True)
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
 
@@ -116,6 +123,7 @@ def objective(
     study_name: str,
     consistency_weight_only: bool = False,
     checkpoint_dir: str = "",
+    adhoc_prefix: str = "",
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(
@@ -144,7 +152,8 @@ def objective(
         import mlflow as _mlflow  # type: ignore[import-untyped]
 
         mlflow = _mlflow
-        mlflow.start_run(run_name=f"trial-{trial.number}: {study_name}")
+        run_prefix = f"{adhoc_prefix} " if adhoc_prefix else ""
+        mlflow.start_run(run_name=f"{run_prefix}trial-{trial.number}: {study_name}")
         for field in dataclasses.fields(config):
             mlflow.log_param(field.name, getattr(config, field.name))
         mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
@@ -225,8 +234,9 @@ def main() -> None:
         help="Optimize ONLY consistency_weight",
     )
     parser.add_argument(
-        "--adhoc", action="store_true",
-        help="Run a single trial with default parameters, logging to adhoc experiment",
+        "--adhoc", nargs="?", const="", default=None, metavar="PREFIX",
+        help="Run a single trial with default parameters, logging to adhoc experiment. "
+             "Optional PREFIX is prepended to the MLflow run name.",
     )
     parser.add_argument(
         "--pruner", type=str, default="hyperband",
@@ -245,9 +255,10 @@ def main() -> None:
     args = parser.parse_args()
 
     exp_name = args.experiment_name
-    if args.adhoc:
+    if args.adhoc is not None:
         exp_name = "adhoc-kotogram-bpd"
         args.n_trials = 1
+    adhoc_prefix = args.adhoc or ""
 
     suffixes = []
     if args.consistency_weight_only:
@@ -267,7 +278,7 @@ def main() -> None:
         )
 
     storage = args.storage
-    if storage is None and not args.adhoc:
+    if storage is None and args.adhoc is None:
         db_dir = os.path.join(".cache", "recon_bpd")
         os.makedirs(db_dir, exist_ok=True)
         storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
@@ -290,7 +301,7 @@ def main() -> None:
         direction="minimize",
         sampler=sampler,
         pruner=pruner,
-        load_if_exists=not args.adhoc,
+        load_if_exists=args.adhoc is None,
     )
 
     defaults = TrainConfig()
@@ -324,7 +335,7 @@ def main() -> None:
         ]
 
     for params in initial_params:
-        study.enqueue_trial(params, skip_if_exists=not args.adhoc)
+        study.enqueue_trial(params, skip_if_exists=args.adhoc is None)
 
     checkpoint_dir = "" if args.no_checkpoint else args.checkpoint_dir
     if checkpoint_dir:
@@ -335,7 +346,7 @@ def main() -> None:
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
             args.patience, use_mlflow, study_name, args.consistency_weight_only,
-            checkpoint_dir,
+            checkpoint_dir, adhoc_prefix,
         ),
         n_trials=args.n_trials,
     )
