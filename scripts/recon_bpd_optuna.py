@@ -220,7 +220,7 @@ def objective(
             return existing.latest_metrics["bpd"]
         if existing is not None:
             print(
-                f"  Resuming trial {trial.number} from "
+                f"  Resuming {run_name} from "
                 f"epoch {existing.epoch + 1} (checkpoint)",
             )
 
