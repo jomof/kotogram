@@ -121,6 +121,25 @@ def _config_hash(config: TrainConfig) -> str:
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
 
+def _find_mlflow_run(run_name: str) -> Optional[str]:
+    """Find an existing MLflow run by name in the active experiment.
+
+    Returns the run_id if found, or None to create a new run.
+    """
+    import mlflow as _mlflow  # type: ignore[import-untyped]
+
+    client = _mlflow.tracking.MlflowClient()
+    experiment_id = _mlflow.tracking.fluent._get_experiment_id()  # type: ignore[attr-defined]
+    runs = client.search_runs(
+        experiment_ids=[experiment_id],
+        filter_string=f'tags.mlflow.runName = "{run_name}"',
+        max_results=1,
+    )
+    if runs:
+        return runs[0].info.run_id
+    return None
+
+
 def objective(
     trial: optuna.Trial,
     epochs: int,
@@ -139,6 +158,10 @@ def objective(
 
     # Checkpoint keyed by config hash — resume if same params seen before.
     config_hash = _config_hash(config)
+    run_name = config_hash[:8]
+    if adhoc_overrides:
+        parts = " ".join(f"{k}={v:g}" for k, v in sorted(adhoc_overrides.items()))
+        run_name = f"{parts} {run_name}"
     checkpoint_path = ""
     existing = None
     if checkpoint_dir:
@@ -149,9 +172,8 @@ def objective(
             if use_mlflow:
                 import mlflow as _mlflow  # type: ignore[import-untyped]
 
-                _mlflow.start_run(
-                    run_name=f"(cached) {config_hash[:8]}: {study_name}",
-                )
+                run_id = _find_mlflow_run(run_name)
+                _mlflow.start_run(run_id=run_id, run_name=run_name)
                 for field in dataclasses.fields(config):
                     _mlflow.log_param(field.name, getattr(config, field.name))
                 _mlflow.set_tag("cached", "true")
@@ -175,12 +197,8 @@ def objective(
         import mlflow as _mlflow  # type: ignore[import-untyped]
 
         mlflow = _mlflow
-        if adhoc_overrides:
-            parts = " ".join(f"{k}={v:g}" for k, v in sorted(adhoc_overrides.items()))
-            run_name = f"{parts}: {study_name}"
-        else:
-            run_name = f"{config_hash[:8]}: {study_name}"
-        mlflow.start_run(run_name=run_name)
+        run_id = _find_mlflow_run(run_name)
+        mlflow.start_run(run_id=run_id, run_name=run_name)
         for field in dataclasses.fields(config):
             mlflow.log_param(field.name, getattr(config, field.name))
         mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
