@@ -210,6 +210,9 @@ def objective(
                 _mlflow.log_metric(
                     "final_bpd", existing.latest_metrics["bpd"],
                 )
+                _mlflow.log_metric(
+                    f"final_bpd_{epochs}ep", existing.latest_metrics["bpd"],
+                )
                 _mlflow.end_run()
             trial.report(existing.latest_metrics["bpd"], existing.epoch)
             return existing.latest_metrics["bpd"]
@@ -254,6 +257,7 @@ def objective(
         )
         if mlflow is not None:
             mlflow.log_metric("final_bpd", result.final_bpd)
+            mlflow.log_metric(f"final_bpd_{epochs}ep", result.final_bpd)
         return result.final_bpd
     except optuna.TrialPruned:
         if mlflow is not None:
