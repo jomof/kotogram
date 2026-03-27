@@ -332,6 +332,14 @@ def main() -> None:
         "--convergence-patience", type=int, default=20,
         help="Stop if no improvement after this many completed trials (default: 20)",
     )
+    parser.add_argument(
+        "--progressive", action="store_true",
+        help="After convergence, increase epochs and re-run indefinitely",
+    )
+    parser.add_argument(
+        "--epoch-step", type=int, default=5,
+        help="Epochs to add each progressive round (default: 5)",
+    )
     args = parser.parse_args()
 
     exp_name = args.experiment_name
@@ -354,8 +362,7 @@ def main() -> None:
         suffixes.append("cw-imr-only")
     if args.sample_ratio is not None:
         suffixes.append(f"{args.sample_ratio * 100:g}%")
-    suffixes.append(f"{args.epochs_per_trial}ep")
-    study_name = f"{exp_name} ({', '.join(suffixes)})"
+    study_name = f"{exp_name} ({', '.join(suffixes)})" if suffixes else exp_name
 
     use_mlflow = not args.no_mlflow
     if use_mlflow:
@@ -433,38 +440,61 @@ def main() -> None:
         os.makedirs(checkpoint_dir, exist_ok=True)
         print(f"Checkpoint dir: {checkpoint_dir}")
 
-    def _convergence_callback(
-        study: optuna.Study, trial: optuna.trial.FrozenTrial,
-    ) -> None:
-        if trial.state != optuna.trial.TrialState.COMPLETE:
-            return
-        best_number = study.best_trial.number
-        if trial.number - best_number >= args.convergence_patience:
+    epochs = args.epochs_per_trial
+    progressive_round = 0
+    while True:
+        # Rebuild study name with current epoch count.
+        suffixes_round = list(suffixes)
+        suffixes_round.append(f"{epochs}ep")
+        study_name_round = f"{exp_name} ({', '.join(suffixes_round)})"
+
+        if progressive_round > 0:
+            print(f"\n{'=' * 60}")
             print(
-                f"\nConverged: no improvement for "
-                f"{args.convergence_patience} completed trials "
-                f"(best was trial {best_number})",
+                f"Progressive round {progressive_round}: "
+                f"extending to {epochs} epochs",
             )
-            study.stop()
+            print("=" * 60)
 
-    study.optimize(
-        lambda trial: objective(
-            trial, args.epochs_per_trial, args.sample_ratio,
-            args.patience, use_mlflow, study_name, args.consistency_weight_only,
-            checkpoint_dir, adhoc_overrides or None,
-        ),
-        n_trials=args.n_trials,
-        callbacks=[_convergence_callback],
-    )
+        def _convergence_callback(
+            study: optuna.Study, trial: optuna.trial.FrozenTrial,
+        ) -> None:
+            if trial.state != optuna.trial.TrialState.COMPLETE:
+                return
+            best_number = study.best_trial.number
+            if trial.number - best_number >= args.convergence_patience:
+                print(
+                    f"\nConverged: no improvement for "
+                    f"{args.convergence_patience} completed trials "
+                    f"(best was trial {best_number})",
+                )
+                study.stop()
 
-    print("\n" + "=" * 60)
-    print("Best trial:")
-    best = study.best_trial
-    print(f"  BPD:   {best.value:.4f}")
-    print(f"  Trial: {best.number}")
-    print("  Params:")
-    for key, value in sorted(best.params.items()):
-        print(f"    {key}: {value}")
+        study.optimize(
+            lambda trial: objective(
+                trial, epochs, args.sample_ratio,
+                args.patience, use_mlflow, study_name_round,
+                args.consistency_weight_only,
+                checkpoint_dir, adhoc_overrides or None,
+            ),
+            n_trials=args.n_trials,
+            callbacks=[_convergence_callback],
+        )
+
+        print(f"\n{'=' * 60}")
+        print(f"Best trial ({epochs} epochs):")
+        best = study.best_trial
+        print(f"  BPD:   {best.value:.4f}")
+        print(f"  Trial: {best.number}")
+        print("  Params:")
+        for key, value in sorted(best.params.items()):
+            print(f"    {key}: {value}")
+
+        if not args.progressive:
+            break
+
+        epochs += args.epoch_step
+        progressive_round += 1
 
 
 if __name__ == "__main__":
