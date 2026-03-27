@@ -391,25 +391,10 @@ def main() -> None:
         storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
 
     sampler = optuna.samplers.TPESampler(seed=args.seed)
-    if args.pruner == "hyperband":
-        pruner = optuna.pruners.HyperbandPruner(
-            min_resource=1,
-            max_resource=args.epochs_per_trial,
-            reduction_factor=4,
-        )
-    else:
+    if args.pruner != "hyperband":
         pruner = optuna.pruners.PercentilePruner(
             percentile=25.0, n_startup_trials=5, n_warmup_steps=5,
         )
-
-    study = optuna.create_study(
-        study_name=study_name,
-        storage=storage,
-        direction="minimize",
-        sampler=sampler,
-        pruner=pruner,
-        load_if_exists=args.adhoc is None,
-    )
 
     defaults = TrainConfig()
 
@@ -445,7 +430,6 @@ def main() -> None:
     for params in initial_params:
         if adhoc_overrides:
             params.update(adhoc_overrides)
-        study.enqueue_trial(params, skip_if_exists=args.adhoc is None)
 
     checkpoint_dir = "" if args.no_checkpoint else args.checkpoint_dir
     if checkpoint_dir:
@@ -455,10 +439,28 @@ def main() -> None:
     epochs = args.epochs_per_trial
     progressive_round = 0
     while True:
-        # Rebuild study name with current epoch count.
+        # Each era gets its own study with epoch count in the name.
         suffixes_round = list(suffixes)
         suffixes_round.append(f"{epochs}ep")
         study_name_round = f"{exp_name} ({', '.join(suffixes_round)})"
+
+        pruner_round = optuna.pruners.HyperbandPruner(
+            min_resource=1,
+            max_resource=epochs,
+            reduction_factor=4,
+        ) if args.pruner == "hyperband" else pruner
+
+        study = optuna.create_study(
+            study_name=study_name_round,
+            storage=storage,
+            direction="minimize",
+            sampler=sampler,
+            pruner=pruner_round,
+            load_if_exists=True,
+        )
+
+        for params in initial_params:
+            study.enqueue_trial(params, skip_if_exists=True)
 
         if progressive_round > 0:
             print(f"\n{'=' * 60}")
