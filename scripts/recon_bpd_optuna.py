@@ -159,8 +159,12 @@ def objective(
     # Checkpoint keyed by config hash — resume if same params seen before.
     config_hash = _config_hash(config)
     run_name = config_hash[:8]
-    if adhoc_overrides:
-        parts = " ".join(f"{k}={v:g}" for k, v in sorted(adhoc_overrides.items()))
+    params_to_show = adhoc_overrides or trial.params
+    if params_to_show:
+        parts = " ".join(
+            f"{k}={v:g}" if isinstance(v, float) else f"{k}={v}"
+            for k, v in sorted(params_to_show.items())
+        )
         run_name = f"{parts} {run_name}"
     checkpoint_path = ""
     existing = None
@@ -205,6 +209,9 @@ def objective(
         mlflow.set_tag("optuna_trial", str(trial.number))
         if existing is not None:
             mlflow.set_tag("resumed_from_epoch", str(existing.epoch))
+            for ep, metrics in existing.epoch_history:
+                for k, v in metrics.items():
+                    mlflow.log_metric(f"bpd/{k}", v, step=ep)
 
     try:
 
