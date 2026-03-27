@@ -205,6 +205,14 @@ def objective(
         existing = load_checkpoint(checkpoint_path)
         if existing is not None and existing.epoch >= epochs - 1:
             # Already fully trained with these params — log and skip.
+            # Use BPD from the target epoch, not the latest (which may
+            # be from a deeper progressive round).
+            target_epoch = epochs - 1
+            era_bpd = existing.latest_metrics["bpd"]
+            for ep, metrics in existing.epoch_history:
+                if ep == target_epoch:
+                    era_bpd = metrics["bpd"]
+                    break
             if use_mlflow:
                 import mlflow as _mlflow  # type: ignore[import-untyped]
 
@@ -218,15 +226,11 @@ def objective(
                 for ep, metrics in existing.epoch_history:
                     for k, v in metrics.items():
                         _mlflow.log_metric(f"bpd/{k}", v, step=ep)
-                _mlflow.log_metric(
-                    "final_bpd", existing.latest_metrics["bpd"],
-                )
-                _mlflow.log_metric(
-                    f"final_bpd_{epochs}ep", existing.latest_metrics["bpd"],
-                )
+                _mlflow.log_metric("final_bpd", era_bpd)
+                _mlflow.log_metric(f"final_bpd_{epochs}ep", era_bpd)
                 _mlflow.end_run()
-            trial.report(existing.latest_metrics["bpd"], existing.epoch)
-            return existing.latest_metrics["bpd"]
+            trial.report(era_bpd, target_epoch)
+            return era_bpd
         if existing is not None:
             print(
                 f"  Resuming {run_name} from "
