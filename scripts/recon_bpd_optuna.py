@@ -373,7 +373,7 @@ def main() -> None:
         pruner = optuna.pruners.HyperbandPruner(
             min_resource=1,
             max_resource=args.epochs_per_trial,
-            reduction_factor=3,
+            reduction_factor=4,
         )
     else:
         pruner = optuna.pruners.PercentilePruner(
