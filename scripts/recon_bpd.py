@@ -21,6 +21,7 @@ Usage:
 
 import contextlib
 import math
+import os
 import time
 from dataclasses import dataclass
 from typing import Callable, Dict, Optional, Tuple, cast
@@ -109,7 +110,50 @@ class TrainResult:
     final_loss: float
 
 
+@dataclass
+class TrainCheckpoint:
+    """Opaque checkpoint for resuming a partially-completed training run.
+
+    The caller should treat this as a black box — pass it back to ``train()``
+    to resume from the last completed epoch.
+    """
+
+    model_state: Dict[str, torch.Tensor]
+    optimizer_state: Dict[str, object]
+    scaler_state: Dict[str, object]
+    epoch: int  # last completed epoch (0-indexed)
+    best_bpd: float
+    epochs_without_improvement: int
+    latest_metrics: Dict[str, float]
+
+
 EpochCallback = Callable[[int, Dict[str, float]], None]
+
+
+def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
+    """Persist a checkpoint to disk (atomic write)."""
+    parent = os.path.dirname(path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    tmp_path = path + ".tmp"
+    torch.save({
+        "model_state": checkpoint.model_state,
+        "optimizer_state": checkpoint.optimizer_state,
+        "scaler_state": checkpoint.scaler_state,
+        "epoch": checkpoint.epoch,
+        "best_bpd": checkpoint.best_bpd,
+        "epochs_without_improvement": checkpoint.epochs_without_improvement,
+        "latest_metrics": checkpoint.latest_metrics,
+    }, tmp_path)
+    os.replace(tmp_path, path)
+
+
+def load_checkpoint(path: str) -> Optional[TrainCheckpoint]:
+    """Load a checkpoint from disk, or return None if not found."""
+    if not os.path.exists(path):
+        return None
+    data = torch.load(path, weights_only=False, map_location=DEVICE)
+    return TrainCheckpoint(**data)
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -310,14 +354,22 @@ class BpdModel(nn.Module):
 def train(
     config: Optional[TrainConfig] = None,
     on_epoch_end: Optional[EpochCallback] = None,
-) -> TrainResult:
-    """Run the BPD training loop and return final metrics.
+    checkpoint: Optional[TrainCheckpoint] = None,
+    checkpoint_path: Optional[str] = None,
+) -> Tuple[TrainResult, TrainCheckpoint]:
+    """Run the BPD training loop and return final metrics + checkpoint.
 
     Args:
         config: Training configuration.  Uses defaults if None.
         on_epoch_end: Optional callback invoked at the end of each epoch with
             ``(epoch_index, metrics_dict)``.  May raise any exception
             (e.g. ``optuna.TrialPruned``) to abort training early.
+        checkpoint: Optional checkpoint from a previous ``train()`` call.
+            When provided, model/optimizer/scaler state is restored and
+            training resumes from ``checkpoint.epoch + 1``.
+        checkpoint_path: Optional path for per-epoch checkpoint persistence.
+            When set, the checkpoint is saved to this path after every epoch
+            (before the ``on_epoch_end`` callback) for crash recovery.
     """
     if config is None:
         config = TrainConfig()
@@ -401,15 +453,29 @@ def train(
     optimizer = Adam(model.parameters(), lr=config.lr)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
-    # ── Training loop ────────────────────────────────────────────────
-    latest_metrics: Dict[str, float] = {
-        "bpd": float("inf"), "To-1": 0.0,
-        "cos": 0.0, "loss": float("inf"),
-    }
-    best_bpd = float("inf")
-    epochs_without_improvement = 0
+    # ── Restore from checkpoint if provided ──────────────────────────
+    start_epoch = 0
+    if checkpoint is not None:
+        model.load_state_dict(checkpoint.model_state)
+        optimizer.load_state_dict(checkpoint.optimizer_state)
+        scaler.load_state_dict(checkpoint.scaler_state)
+        start_epoch = checkpoint.epoch + 1
 
-    for epoch in range(config.epochs):
+    # ── Training loop ────────────────────────────────────────────────
+    latest_metrics: Dict[str, float] = (
+        checkpoint.latest_metrics if checkpoint is not None
+        else {
+            "bpd": float("inf"), "To-1": 0.0,
+            "cos": 0.0, "loss": float("inf"),
+        }
+    )
+    best_bpd = checkpoint.best_bpd if checkpoint is not None else float("inf")
+    epochs_without_improvement = (
+        checkpoint.epochs_without_improvement if checkpoint is not None else 0
+    )
+
+    epoch = max(0, start_epoch - 1)
+    for epoch in range(start_epoch, config.epochs):
         t0 = time.perf_counter()
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
@@ -685,14 +751,27 @@ def train(
                 f"{dt:.1f}s"
             )
 
-        if on_epoch_end is not None:
-            on_epoch_end(epoch, latest_metrics)
-
         if avg_bpd < best_bpd:
             best_bpd = avg_bpd
             epochs_without_improvement = 0
         else:
             epochs_without_improvement += 1
+
+        # Per-epoch checkpoint save (before callback, so pruned trials
+        # still have their checkpoint persisted for later reuse).
+        if checkpoint_path is not None:
+            save_checkpoint(TrainCheckpoint(
+                model_state=model.state_dict(),
+                optimizer_state=optimizer.state_dict(),
+                scaler_state=scaler.state_dict(),
+                epoch=epoch,
+                best_bpd=best_bpd,
+                epochs_without_improvement=epochs_without_improvement,
+                latest_metrics=latest_metrics,
+            ), checkpoint_path)
+
+        if on_epoch_end is not None:
+            on_epoch_end(epoch, latest_metrics)
 
         if config.patience is not None and epochs_without_improvement >= config.patience:
             if config.verbose:
@@ -702,16 +781,28 @@ def train(
                 )
             break
 
-    return TrainResult(
-        final_bpd=latest_metrics["bpd"],
-        final_top1_pct=latest_metrics["To-1"],
-        final_cossim=latest_metrics["cos"],
-        final_loss=latest_metrics["loss"],
+    final_checkpoint = TrainCheckpoint(
+        model_state=model.state_dict(),
+        optimizer_state=optimizer.state_dict(),
+        scaler_state=scaler.state_dict(),
+        epoch=epoch,
+        best_bpd=best_bpd,
+        epochs_without_improvement=epochs_without_improvement,
+        latest_metrics=latest_metrics,
+    )
+    return (
+        TrainResult(
+            final_bpd=latest_metrics["bpd"],
+            final_top1_pct=latest_metrics["To-1"],
+            final_cossim=latest_metrics["cos"],
+            final_loss=latest_metrics["loss"],
+        ),
+        final_checkpoint,
     )
 
 
 def main() -> None:
-    train()
+    train()[0]  # discard checkpoint in standalone mode
 
 
 if __name__ == "__main__":

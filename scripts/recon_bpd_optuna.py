@@ -17,13 +17,15 @@ Usage:
 
 import argparse
 import dataclasses
+import hashlib
+import json
 import os
 import platform
 from typing import Optional
 
 import optuna
 
-from scripts.recon_bpd import TrainConfig, train
+from scripts.recon_bpd import TrainConfig, load_checkpoint, train
 
 
 def suggest_config(
@@ -90,6 +92,13 @@ def suggest_config(
     )
 
 
+
+def _config_hash(params: dict) -> str:
+    """Deterministic hash of trial hyperparameters for checkpoint keying."""
+    canonical = json.dumps(sorted(params.items()), sort_keys=True)
+    return hashlib.sha256(canonical.encode()).hexdigest()[:16]
+
+
 def objective(
     trial: optuna.Trial,
     epochs: int,
@@ -98,11 +107,29 @@ def objective(
     use_mlflow: bool,
     study_name: str,
     consistency_weight_only: bool = False,
+    checkpoint_dir: str = "",
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(
         trial, epochs, sample_ratio, patience, consistency_weight_only,
     )
+
+    # Checkpoint keyed by config hash — resume if same params seen before.
+    checkpoint_path = ""
+    existing = None
+    if checkpoint_dir:
+        config_hash = _config_hash(trial.params)
+        checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
+        existing = load_checkpoint(checkpoint_path)
+        if existing is not None and existing.epoch >= epochs - 1:
+            # Already fully trained with these params — skip.
+            trial.report(existing.latest_metrics["bpd"], existing.epoch)
+            return existing.latest_metrics["bpd"]
+        if existing is not None:
+            print(
+                f"  Resuming trial {trial.number} from "
+                f"epoch {existing.epoch + 1} (checkpoint)",
+            )
 
     mlflow = None
     if use_mlflow:
@@ -114,6 +141,8 @@ def objective(
             mlflow.log_param(field.name, getattr(config, field.name))
         mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
         mlflow.set_tag("optuna_trial", str(trial.number))
+        if existing is not None:
+            mlflow.set_tag("resumed_from_epoch", str(existing.epoch))
 
     try:
 
@@ -125,7 +154,12 @@ def objective(
             if trial.should_prune():
                 raise optuna.TrialPruned()
 
-        result = train(config, on_epoch_end=on_epoch_end)
+        result, _checkpoint = train(
+            config,
+            on_epoch_end=on_epoch_end,
+            checkpoint=existing,
+            checkpoint_path=checkpoint_path or None,
+        )
         if mlflow is not None:
             mlflow.log_metric("final_bpd", result.final_bpd)
         return result.final_bpd
@@ -175,8 +209,8 @@ def main() -> None:
         help="MLflow tracking URI override",
     )
     parser.add_argument(
-        "--experiment-name", type=str, default="kotogram-bpd#2",
-        help="MLflow experiment name (default: kotogram-bpd#2)",
+        "--experiment-name", type=str, default="kotogram-bpd",
+        help="MLflow experiment name (default: kotogram-bpd)",
     )
     parser.add_argument(
         "--consistency-weight-only", action="store_true",
@@ -185,6 +219,20 @@ def main() -> None:
     parser.add_argument(
         "--adhoc", action="store_true",
         help="Run a single trial with default parameters, logging to adhoc experiment",
+    )
+    parser.add_argument(
+        "--pruner", type=str, default="hyperband",
+        choices=["hyperband", "percentile"],
+        help="Pruner algorithm (default: hyperband)",
+    )
+    parser.add_argument(
+        "--checkpoint-dir", type=str,
+        default=os.path.join(".cache", "optuna", "checkpoints"),
+        help="Directory for per-trial checkpoints (default: .cache/optuna/checkpoints)",
+    )
+    parser.add_argument(
+        "--no-checkpoint", action="store_true",
+        help="Disable checkpoint persistence and reuse",
     )
     args = parser.parse_args()
 
@@ -217,9 +265,16 @@ def main() -> None:
         storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
 
     sampler = optuna.samplers.TPESampler(seed=args.seed)
-    pruner = optuna.pruners.PercentilePruner(
-        percentile=25.0, n_startup_trials=5, n_warmup_steps=5,
-    )
+    if args.pruner == "hyperband":
+        pruner = optuna.pruners.HyperbandPruner(
+            min_resource=1,
+            max_resource=args.epochs_per_trial,
+            reduction_factor=3,
+        )
+    else:
+        pruner = optuna.pruners.PercentilePruner(
+            percentile=25.0, n_startup_trials=5, n_warmup_steps=5,
+        )
 
     study = optuna.create_study(
         study_name=study_name,
@@ -262,10 +317,16 @@ def main() -> None:
     for params in initial_params:
         study.enqueue_trial(params, skip_if_exists=not args.adhoc)
 
+    checkpoint_dir = "" if args.no_checkpoint else args.checkpoint_dir
+    if checkpoint_dir:
+        os.makedirs(checkpoint_dir, exist_ok=True)
+        print(f"Checkpoint dir: {checkpoint_dir}")
+
     study.optimize(
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
             args.patience, use_mlflow, study_name, args.consistency_weight_only,
+            checkpoint_dir,
         ),
         n_trials=args.n_trials,
     )
