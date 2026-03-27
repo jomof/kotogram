@@ -399,13 +399,7 @@ def main() -> None:
     defaults = TrainConfig()
 
     if args.consistency_weight_only:
-        initial_params = [
-            {
-                 "consistency_weight": defaults.consistency_weight,
-                 "input_mask_ratio": defaults.input_mask_ratio,
-                 "num_layers": defaults.num_layers,
-            },
-        ]
+        initial_params: list = []
     else:
         initial_params = [
             {
