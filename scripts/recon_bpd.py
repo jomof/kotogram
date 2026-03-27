@@ -527,27 +527,11 @@ def train(
                     surface_ids_2 = _apply_mask(recon_targets)
                     pooled_2 = model.encode(surface_ids_2, attention_mask)
                     kc_logits_raw_2, _ = model.kc_head.forward_with_raw(pooled_2)
-
-                    kc_probs_det_1 = torch.sigmoid(
-                        kc_logits_raw.clamp(-12, 12) / config.temperature
+                    cos = F.cosine_similarity(
+                        kc_logits_raw, kc_logits_raw_2, dim=-1,
                     )
-                    kc_probs_det_1 = torch.nan_to_num(
-                        kc_probs_det_1, nan=0.0, posinf=1.0, neginf=0.0
-                    )
-
-                    kc_probs_det_2 = torch.sigmoid(
-                        kc_logits_raw_2.clamp(-12, 12) / config.temperature
-                    )
-                    kc_probs_det_2 = torch.nan_to_num(
-                        kc_probs_det_2, nan=0.0, posinf=1.0, neginf=0.0
-                    )
-
-                    consistency_loss = F.mse_loss(kc_probs_det_1, kc_probs_det_2)
-
-                    pair_cos = F.cosine_similarity(
-                        kc_probs_det_1, kc_probs_det_2, dim=-1,
-                    )
-                    epoch_cossim_pair_sum += pair_cos.detach().mean().item() * B
+                    consistency_loss = (1.0 - cos).mean()
+                    epoch_cossim_pair_sum += cos.detach().mean().item() * B
 
                 # Gumbel noise + gradient capping
                 u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
