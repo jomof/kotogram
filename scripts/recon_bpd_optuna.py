@@ -291,6 +291,7 @@ def main() -> None:
         initial_params = [
             {
                  "consistency_weight": defaults.consistency_weight,
+                 "input_mask_ratio": defaults.input_mask_ratio,
             },
         ]
     else:
