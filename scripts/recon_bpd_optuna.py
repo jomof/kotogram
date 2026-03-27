@@ -44,10 +44,10 @@ def suggest_config(
             verbose=True,
             seed=42,
             consistency_weight=trial.suggest_categorical(
-                "consistency_weight", [0.0, 0.00001, 0.0003, 0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3],
+                "consistency_weight", [0.0, 0.0000001, 0.0000003, 0.000001, 0.000003, 0.00001, 0.0003, 0.0001],
             ),
             input_mask_ratio=trial.suggest_categorical(
-                "input_mask_ratio", [0.125, 0.15, 0.20, 0.25],
+                "input_mask_ratio", [0.1, 0.125, 0.15, 0.2],
             ),
         )
 
@@ -93,6 +93,13 @@ def suggest_config(
 
 
 
+
+# Default overrides for --adhoc runs.
+ADHOC_OVERRIDES: dict = {
+    "input_mask_ratio": 0.125,
+    "consistency_weight": 1e-05,
+}
+
 _SCRIPT_HASH = hashlib.sha256(
     open(os.path.join(os.path.dirname(__file__), "recon_bpd.py"), "rb").read(),
 ).hexdigest()[:12]
@@ -123,7 +130,7 @@ def objective(
     study_name: str,
     consistency_weight_only: bool = False,
     checkpoint_dir: str = "",
-    adhoc_prefix: str = "",
+    adhoc_overrides: Optional[dict] = None,
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(
@@ -152,8 +159,12 @@ def objective(
         import mlflow as _mlflow  # type: ignore[import-untyped]
 
         mlflow = _mlflow
-        run_prefix = f"{adhoc_prefix} " if adhoc_prefix else ""
-        mlflow.start_run(run_name=f"{run_prefix}trial-{trial.number}: {study_name}")
+        if adhoc_overrides:
+            parts = " ".join(f"{k}={v:g}" for k, v in sorted(adhoc_overrides.items()))
+            run_name = f"{parts}: {study_name}"
+        else:
+            run_name = f"trial-{trial.number}: {study_name}"
+        mlflow.start_run(run_name=run_name)
         for field in dataclasses.fields(config):
             mlflow.log_param(field.name, getattr(config, field.name))
         mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
@@ -252,13 +263,26 @@ def main() -> None:
         "--no-checkpoint", action="store_true",
         help="Disable checkpoint persistence and reuse",
     )
+    parser.add_argument(
+        "--override", nargs=2, action="append", metavar=("KEY", "VALUE"),
+        help="Override a TrainConfig field for adhoc runs, e.g. --override lr 1e-3",
+    )
     args = parser.parse_args()
 
     exp_name = args.experiment_name
     if args.adhoc is not None:
         exp_name = "adhoc-kotogram-bpd"
         args.n_trials = 1
-    adhoc_prefix = args.adhoc or ""
+
+    # Build adhoc overrides: start from defaults, layer on CLI --override.
+    adhoc_overrides: dict = {}
+    if args.adhoc is not None:
+        adhoc_overrides = dict(ADHOC_OVERRIDES)
+        for key, value in (args.override or []):
+            adhoc_overrides[key] = type(ADHOC_OVERRIDES.get(key, 0.0))(value)
+        print("Adhoc overrides:")
+        for k, v in sorted(adhoc_overrides.items()):
+            print(f"  {k}: {v}")
 
     suffixes = []
     if args.consistency_weight_only:
@@ -335,6 +359,8 @@ def main() -> None:
         ]
 
     for params in initial_params:
+        if adhoc_overrides:
+            params.update(adhoc_overrides)
         study.enqueue_trial(params, skip_if_exists=args.adhoc is None)
 
     checkpoint_dir = "" if args.no_checkpoint else args.checkpoint_dir
@@ -346,7 +372,7 @@ def main() -> None:
         lambda trial: objective(
             trial, args.epochs_per_trial, args.sample_ratio,
             args.patience, use_mlflow, study_name, args.consistency_weight_only,
-            checkpoint_dir, adhoc_prefix,
+            checkpoint_dir, adhoc_overrides or None,
         ),
         n_trials=args.n_trials,
     )
