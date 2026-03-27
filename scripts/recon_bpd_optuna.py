@@ -333,8 +333,8 @@ def main() -> None:
         help="Stop if no improvement after this many completed trials (default: 20)",
     )
     parser.add_argument(
-        "--progressive", action="store_true",
-        help="After convergence, increase epochs and re-run indefinitely",
+        "--no-progressive", action="store_true",
+        help="Disable progressive epoch extension (default: progressive is on)",
     )
     parser.add_argument(
         "--epoch-step", type=int, default=5,
@@ -490,7 +490,7 @@ def main() -> None:
         for key, value in sorted(best.params.items()):
             print(f"    {key}: {value}")
 
-        if not args.progressive:
+        if args.no_progressive:
             break
 
         epochs += args.epoch_step
