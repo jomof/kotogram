@@ -155,8 +155,6 @@ def load_checkpoint(path: str) -> Optional[TrainCheckpoint]:
     if not os.path.exists(path):
         return None
     data = torch.load(path, weights_only=False, map_location=DEVICE)
-    # Backward compat: checkpoints before epoch_history was added.
-    data.setdefault("epoch_history", [])
     return TrainCheckpoint(**data)
 
 
@@ -497,6 +495,15 @@ def train(
         epoch_cossim_pair_sum = 0.0
         total_elements = 0
         n_batches = 0
+        s1_count = 0
+        s0_count = 0
+        fuzzy_count = 0
+        kc_prob_count = 0
+        raw_consistency_sum = 0.0
+        logit_abs_sum = 0.0
+        logit_sq_sum = 0.0
+        logit_sum = 0.0
+        logit_count = 0
 
         for batch in loader:
             surface_ids = batch.feature_inputs["input_ids_surface"].to(
@@ -539,6 +546,7 @@ def train(
                     )
                     consistency_loss = (1.0 - cos).mean()
                     epoch_cossim_pair_sum += cos.detach().mean().item() * B
+                    raw_consistency_sum += consistency_loss.detach().item()
 
                 # Gumbel noise + gradient capping
                 u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
@@ -561,6 +569,22 @@ def train(
                 _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
                 _h = -_p * torch.log2(_p) - (1 - _p) * torch.log2(1 - _p)
                 epoch_sharpness_sum += (1.0 - _h.mean().item()) * B
+
+                # s0/fuzzy/s1 sharpness (matches kc_trainer_view thresholds)
+                _det = kc_probs.detach()
+                s1_count += int((_det > 0.9).sum().item())
+                s0_count += int((_det < 0.1).sum().item())
+                fuzzy_count += int(
+                    ((_det >= 0.2) & (_det <= 0.8)).sum().item()
+                )
+                kc_prob_count += _det.numel()
+
+                # KC logit magnitude stats
+                _logits_det = kc_logits_raw.detach()
+                logit_abs_sum += _logits_det.abs().sum().item()
+                logit_sq_sum += (_logits_det ** 2).sum().item()
+                logit_sum += _logits_det.sum().item()
+                logit_count += _logits_det.numel()
 
                 # Recon decoder: pre-logit hidden states [B, T, H]
                 h_recon = model.recon.forward_hidden(kc_probs, attention_mask)
@@ -722,6 +746,13 @@ def train(
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
         avg_sharpness = epoch_sharpness_sum / max(1, total_elements)
+        s1_pct = s1_count / max(1, kc_prob_count)
+        s0_pct = s0_count / max(1, kc_prob_count)
+        fuzzy_pct = fuzzy_count / max(1, kc_prob_count)
+        avg_raw_consist = raw_consistency_sum / max(1, n_batches)
+        mean_abs_logit = logit_abs_sum / max(1, logit_count)
+        logit_std = (logit_sq_sum / max(1, logit_count)
+                     - (logit_sum / max(1, logit_count)) ** 2) ** 0.5
         els = total_elements / dt
 
         latest_metrics = {
@@ -729,6 +760,12 @@ def train(
             "To-1": t1_pct,
             "cos": avg_cos,
             "sharp": avg_sharpness,
+            "s1": s1_pct,
+            "s0": s0_pct,
+            "fuzzy": fuzzy_pct,
+            "raw_consistency": avg_raw_consist,
+            "mean_abs_logit": mean_abs_logit,
+            "logit_std": logit_std,
             "loss": avg_loss,
             "sparsity": avg_kl,
             "orthogonality": avg_cov,
@@ -749,6 +786,7 @@ def train(
                 f"To-1={t1_pct:.1f}%  "
                 f"cos={avg_cos:.3f}  "
                 f"sharp={avg_sharpness:.3f}  "
+                f"s1={s1_pct:.0%} s0={s0_pct:.0%} fuzzy={fuzzy_pct:.0%}  "
                 f"loss={avg_loss:.4f}  "
                 f"sparsity={avg_kl:.4f}  "
                 f"orthogonality={avg_cov:.4f}  "
