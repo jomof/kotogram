@@ -204,6 +204,14 @@ def objective(
     if checkpoint_dir:
         checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
         existing = load_checkpoint(checkpoint_path)
+        if existing is not None:
+            history_epochs = [ep for ep, _ in existing.epoch_history]
+            print(
+                f"  Checkpoint {config_hash[:8]}: "
+                f"epoch={existing.epoch}, "
+                f"history={history_epochs}, "
+                f"target={epochs}",
+            )
         if existing is not None and existing.epoch >= epochs - 1:
             # Already fully trained with these params — log and skip.
             # Use BPD from the target epoch, not the latest (which may
