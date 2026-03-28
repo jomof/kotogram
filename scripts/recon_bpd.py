@@ -121,6 +121,7 @@ class TrainCheckpoint:
     model_state: Dict[str, torch.Tensor]
     optimizer_state: Dict[str, object]
     scaler_state: Dict[str, object]
+    scheduler_state: Dict[str, object]
     epoch: int  # last completed epoch (0-indexed)
     best_bpd: float
     epochs_without_improvement: int
@@ -141,6 +142,7 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
         "model_state": checkpoint.model_state,
         "optimizer_state": checkpoint.optimizer_state,
         "scaler_state": checkpoint.scaler_state,
+        "scheduler_state": checkpoint.scheduler_state,
         "epoch": checkpoint.epoch,
         "best_bpd": checkpoint.best_bpd,
         "epochs_without_improvement": checkpoint.epochs_without_improvement,
@@ -455,12 +457,29 @@ def train(
     optimizer = Adam(model.parameters(), lr=config.lr)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
+    # LR schedule: linear warmup (5 epochs) + cosine decay over 100 epochs.
+    warmup_epochs = 5
+    total_lr_epochs = 100
+    min_lr_ratio = 0.01  # decay to 1% of peak LR
+
+    def _lr_lambda(epoch: int) -> float:
+        if epoch < warmup_epochs:
+            return (epoch + 1) / warmup_epochs
+        progress = (epoch - warmup_epochs) / max(1, total_lr_epochs - warmup_epochs)
+        progress = min(progress, 1.0)
+        return min_lr_ratio + 0.5 * (1.0 - min_lr_ratio) * (
+            1.0 + math.cos(math.pi * progress)
+        )
+
+    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
+
     # ── Restore from checkpoint if provided ──────────────────────────
     start_epoch = 0
     if checkpoint is not None:
         model.load_state_dict(checkpoint.model_state)
         optimizer.load_state_dict(checkpoint.optimizer_state)
         scaler.load_state_dict(checkpoint.scaler_state)
+        scheduler.load_state_dict(checkpoint.scheduler_state)
         start_epoch = checkpoint.epoch + 1
 
     # ── Training loop ────────────────────────────────────────────────
@@ -753,6 +772,7 @@ def train(
         mean_abs_logit = logit_abs_sum / max(1, logit_count)
         logit_std = (logit_sq_sum / max(1, logit_count)
                      - (logit_sum / max(1, logit_count)) ** 2) ** 0.5
+        current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
 
         latest_metrics = {
@@ -771,6 +791,7 @@ def train(
             "orthogonality": avg_cov,
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
+            "lr": current_lr,
         }
 
         if config.verbose:
@@ -791,6 +812,7 @@ def train(
                 f"sparsity={avg_kl:.4f}  "
                 f"orthogonality={avg_cov:.4f}  "
                 f"{consist_str}"
+                f"lr={current_lr:.2e}  "
                 f"{els:.1f} el/s  "
                 f"{total_elements} samples  "
                 f"{dt:.1f}s"
@@ -802,6 +824,8 @@ def train(
         else:
             epochs_without_improvement += 1
 
+        scheduler.step()
+
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
         epoch_history.append((epoch, dict(latest_metrics)))
@@ -810,6 +834,7 @@ def train(
                 model_state=model.state_dict(),
                 optimizer_state=optimizer.state_dict(),
                 scaler_state=scaler.state_dict(),
+                scheduler_state=scheduler.state_dict(),
                 epoch=epoch,
                 best_bpd=best_bpd,
                 epochs_without_improvement=epochs_without_improvement,
@@ -832,6 +857,7 @@ def train(
         model_state=model.state_dict(),
         optimizer_state=optimizer.state_dict(),
         scaler_state=scaler.state_dict(),
+        scheduler_state=scheduler.state_dict(),
         epoch=epoch,
         best_bpd=best_bpd,
         epochs_without_improvement=epochs_without_improvement,
