@@ -109,8 +109,8 @@ _CW_SPACE_HASH = hashlib.sha256(
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
     "input_mask_ratio": 0.15,
-    "consistency_weight": 3e-06,
-    "num_layers": 9,
+    "consistency_weight": 0,
+    "num_layers": 6,
 }
 
 _SCRIPT_HASH = hashlib.sha256(
