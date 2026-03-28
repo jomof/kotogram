@@ -29,7 +29,7 @@ from typing import Callable, Dict, Optional, Tuple, cast
 import torch
 import torch.nn.functional as F
 from torch import nn
-from torch.optim import Adam
+from torch.optim import AdamW
 from torch.utils.data import DataLoader
 
 # Data loading only — the sole external dependencies from this project.
@@ -316,10 +316,17 @@ class BpdModel(nn.Module):
             dropout=cfg.dropout,
             batch_first=True,
             activation="gelu",
+            norm_first=True,
         )
         self.encoder = nn.TransformerEncoder(
             encoder_layer, cfg.num_layers, enable_nested_tensor=False
         )
+
+        # Scale residual stream projections to maintain unit variance regardless of depth
+        std_scale = 1.0 / math.sqrt(2.0 * max(1, cfg.num_layers))
+        for layer in self.encoder.layers:
+            nn.init.normal_(layer.self_attn.out_proj.weight, mean=0.0, std=0.02 * std_scale)
+            nn.init.normal_(layer.linear2.weight, mean=0.0, std=0.02 * std_scale)
 
         # Attention pooler → KC head → recon decoder
         self.pooler = AttentionPooler(cfg.d_model, cfg.num_heads, cfg.dropout)
@@ -446,12 +453,14 @@ def train(
         model = torch.compile(model)
     model.train()
 
-    optimizer = Adam(model.parameters(), lr=config.lr)
+    optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=0.01)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
-    # LR schedule: linear warmup (5 epochs) + cosine decay over 100 epochs.
-    warmup_epochs = 5
-    total_lr_epochs = 100
+    # LR schedule: linear warmup + cosine decay. Bound definitions to dataset size
+    # so schedule shape remains invariant across different sample ratios.
+    effective_ratio = config.sample_ratio
+    warmup_epochs = max(1, round(5 / effective_ratio))
+    total_lr_epochs = round(100 / effective_ratio)
     min_lr_ratio = 0.01  # decay to 1% of peak LR
 
     def _lr_lambda(epoch: int) -> float:
@@ -505,6 +514,7 @@ def train(
         epoch_sharpness_sum = 0.0
         total_consistency_sum = 0.0
         epoch_cossim_pair_sum = 0.0
+        epoch_pooled_std_sum = 0.0
         total_elements = 0
         n_batches = 0
         s1_count = 0
@@ -543,6 +553,8 @@ def train(
             # ── Forward (under autocast, matching KCTrainer) ─────────
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
+                # Track the standard deviation of encoder embeddings to verify depth invariance
+                epoch_pooled_std_sum += float(pooled.std(dim=-1).mean().item()) * B
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
 
                 # ── Dual-mask consistency regularization ──────────────
@@ -747,6 +759,7 @@ def train(
         avg_cov = total_cov_sum / max(1, n_batches)
         avg_consist = total_consistency_sum / max(1, n_batches)
         avg_pair_cos = epoch_cossim_pair_sum / max(1, total_elements)
+        avg_pooled_std = epoch_pooled_std_sum / max(1, total_elements)
         t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
@@ -775,6 +788,7 @@ def train(
             "raw_consistency": avg_raw_consist,
             "mean_abs_logit": mean_abs_logit,
             "logit_std": logit_std,
+            "pooled_std": avg_pooled_std,
             "loss": avg_loss,
             "sparsity": avg_kl,
             "orthogonality": avg_cov,

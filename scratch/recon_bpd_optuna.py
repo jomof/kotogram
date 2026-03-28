@@ -255,6 +255,10 @@ def objective(
                 for ep, metrics in existing.epoch_history:
                     for k, v in metrics.items():
                         _mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                    k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                    _mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                    if "pooled_std" in metrics:
+                        _mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
                 _mlflow.log_metric("final_bpd", era_bpd)
                 _mlflow.log_metric(f"final_bpd_{epochs}ep", era_bpd)
                 _mlflow.end_run()
@@ -301,6 +305,10 @@ def objective(
             for ep, metrics in existing.epoch_history:
                 for k, v in metrics.items():
                     mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                if "pooled_std" in metrics:
+                    mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
 
     try:
 
@@ -334,6 +342,13 @@ def objective(
             if mlflow is not None:
                 for k, v in metrics.items():
                     mlflow.log_metric(f"bpd/{k}", v, step=epoch)
+                
+                # Log invariance diagnostic metrics against tokens trained (in thousands)
+                k_toks = int(metrics.get("cumulative_tokens_trained", epoch * 1000)) // 1000
+                mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                if "pooled_std" in metrics:
+                    mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+                
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
