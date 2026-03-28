@@ -488,6 +488,7 @@ def train(
     epoch_history: list = (
         list(checkpoint.epoch_history) if checkpoint is not None else []
     )
+    cumulative_tokens_trained = int(latest_metrics.get("cumulative_tokens_trained", 0))
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
@@ -761,6 +762,8 @@ def train(
         current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
 
+        cumulative_tokens_trained += epoch_num_units
+
         latest_metrics = {
             "bpd": avg_bpd,
             "To-1": t1_pct,
@@ -781,6 +784,8 @@ def train(
             "el_per_sec": els,
             "samples": total_elements,
             "epoch_secs": dt,
+            "tokens_trained": epoch_num_units,
+            "cumulative_tokens_trained": cumulative_tokens_trained,
         }
 
         print()  # finish \r progress line
