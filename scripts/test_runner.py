@@ -597,7 +597,7 @@ async def check_file_structure() -> CheckResult:
     kotogram/, train/, scripts/, tests-py/.
     """
     # Allowed directories
-    allowed_dirs = {"kotogram", "train", "scripts", "tests-py"}
+    allowed_dirs = {"kotogram", "train", "scripts", "tests-py", "scratch"}
 
     # Use git ls-files to respect .gitignore (e.g. node_modules)
     # --cached: tracked files

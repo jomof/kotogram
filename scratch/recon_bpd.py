@@ -16,7 +16,7 @@ External dependencies limited to data loading:
 
 Usage:
     source requirements.sh
-    python -m scripts.recon_bpd
+    python -m scratch.recon_bpd
 """
 
 import contextlib
@@ -51,17 +51,16 @@ except ImportError:
 
 # ── Hardware detection ────────────────────────────────────────────────
 DEVICE = (
-    "cuda" if torch.cuda.is_available()
-    else "mps" if torch.backends.mps.is_available()
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
     else "cpu"
 )
 IS_CUDA = DEVICE == "cuda"
 USE_FUSED_CE = IS_CUDA and _HAS_CCE
 LOG2 = math.log(2.0)
-AUTOCAST = (
-    (lambda: torch.amp.autocast(DEVICE)) if IS_CUDA
-    else contextlib.nullcontext
-)
+AUTOCAST = (lambda: torch.amp.autocast(DEVICE)) if IS_CUDA else contextlib.nullcontext
 
 
 # ── Configuration ─────────────────────────────────────────────────────
@@ -135,15 +134,18 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
     if parent:
         os.makedirs(parent, exist_ok=True)
     tmp_path = path + ".tmp"
-    torch.save({
-        "model_state": checkpoint.model_state,
-        "optimizer_state": checkpoint.optimizer_state,
-        "scaler_state": checkpoint.scaler_state,
-        "scheduler_state": checkpoint.scheduler_state,
-        "epoch": checkpoint.epoch,
-        "latest_metrics": checkpoint.latest_metrics,
-        "epoch_history": checkpoint.epoch_history,
-    }, tmp_path)
+    torch.save(
+        {
+            "model_state": checkpoint.model_state,
+            "optimizer_state": checkpoint.optimizer_state,
+            "scaler_state": checkpoint.scaler_state,
+            "scheduler_state": checkpoint.scheduler_state,
+            "epoch": checkpoint.epoch,
+            "latest_metrics": checkpoint.latest_metrics,
+            "epoch_history": checkpoint.epoch_history,
+        },
+        tmp_path,
+    )
     os.replace(tmp_path, path)
 
 
@@ -236,9 +238,7 @@ class KCHead(nn.Module):
         self.drop = nn.Dropout(dropout)
         self.norm = nn.LayerNorm(kc_vocab_size)
 
-    def forward_with_raw(
-        self, x: torch.Tensor
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns (raw_logits, layer-normed logits)."""
         x = self.drop(self.act(self.hidden1(x)))
         x = self.drop(self.act(self.hidden2(x)))
@@ -393,7 +393,9 @@ def train(
 
     cache_dir = train_paths.get_style_dataset_cache_dir()
     dataset = StyleDataset(
-        cache_dir, tokenizer, sample_ratio=sample_ratio,
+        cache_dir,
+        tokenizer,
+        sample_ratio=sample_ratio,
     )
     gram_ds = dataset.filter_by_grammaticality(label=1)
     print(f"Gram sentences: {len(gram_ds)}")
@@ -474,10 +476,13 @@ def train(
 
     # ── Training loop ────────────────────────────────────────────────
     latest_metrics: Dict[str, float] = (
-        checkpoint.latest_metrics if checkpoint is not None
+        checkpoint.latest_metrics
+        if checkpoint is not None
         else {
-            "bpd": float("inf"), "To-1": 0.0,
-            "cos": 0.0, "loss": float("inf"),
+            "bpd": float("inf"),
+            "To-1": 0.0,
+            "cos": 0.0,
+            "loss": float("inf"),
         }
     )
     epoch_history: list = (
@@ -515,9 +520,7 @@ def train(
             surface_ids = batch.feature_inputs["input_ids_surface"].to(
                 device, non_blocking=IS_CUDA
             )
-            attention_mask = batch.attention_mask.to(
-                device, non_blocking=IS_CUDA
-            )
+            attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
             B, T = attention_mask.shape
 
             # Snapshot targets before masking
@@ -548,7 +551,9 @@ def train(
                     pooled_2 = model.encode(surface_ids_2, attention_mask)
                     kc_logits_raw_2, _ = model.kc_head.forward_with_raw(pooled_2)
                     cos = F.cosine_similarity(
-                        kc_logits_raw, kc_logits_raw_2, dim=-1,
+                        kc_logits_raw,
+                        kc_logits_raw_2,
+                        dim=-1,
                     )
                     consistency_loss = (1.0 - cos).mean()
                     epoch_cossim_pair_sum += cos.detach().mean().item() * B
@@ -567,9 +572,7 @@ def train(
 
                 logits_select = logits_select.clamp(-12, 12)
                 kc_probs = torch.sigmoid(logits_select / config.temperature)
-                kc_probs = torch.nan_to_num(
-                    kc_probs, nan=0.0, posinf=1.0, neginf=0.0
-                )
+                kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
 
                 # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
                 _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
@@ -580,15 +583,13 @@ def train(
                 _det = kc_probs.detach()
                 s1_count += int((_det > 0.9).sum().item())
                 s0_count += int((_det < 0.1).sum().item())
-                fuzzy_count += int(
-                    ((_det >= 0.2) & (_det <= 0.8)).sum().item()
-                )
+                fuzzy_count += int(((_det >= 0.2) & (_det <= 0.8)).sum().item())
                 kc_prob_count += _det.numel()
 
                 # KC logit magnitude stats
                 _logits_det = kc_logits_raw.detach()
                 logit_abs_sum += _logits_det.abs().sum().item()
-                logit_sq_sum += (_logits_det ** 2).sum().item()
+                logit_sq_sum += (_logits_det**2).sum().item()
                 logit_sum += _logits_det.sum().item()
                 logit_count += _logits_det.numel()
 
@@ -608,7 +609,10 @@ def train(
                 ce_targets = recon_targets.clone()
                 ce_targets[~attention_mask.bool()] = -100
                 nll_per_token = _cce_linear_ce(
-                    h_recon, out_weight, ce_targets, reduction="none",
+                    h_recon,
+                    out_weight,
+                    ce_targets,
+                    reduction="none",
                 )
                 total_nll_nats = nll_per_token.sum()
 
@@ -627,14 +631,13 @@ def train(
                             chunk_mask = attention_mask[:, c0:c1].bool()
                             epoch_t1_correct += int(
                                 ((preds == recon_targets[:, c0:c1]) & chunk_mask)
-                                .sum().item()
+                                .sum()
+                                .item()
                             )
                             pred_emb = chive_normed[preds]
                             tgt_emb = chive_normed[recon_targets[:, c0:c1]]
                             cos = (pred_emb * tgt_emb).sum(dim=-1)
-                            epoch_cossim_sum += float(
-                                (cos * chunk_mask).sum().item()
-                            )
+                            epoch_cossim_sum += float((cos * chunk_mask).sum().item())
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
@@ -642,9 +645,7 @@ def train(
                 for c0 in range(0, T, recon_chunk):
                     c1 = min(c0 + recon_chunk, T)
                     with AUTOCAST():
-                        chunk_logits = F.linear(
-                            h_recon[:, c0:c1, :], out_weight
-                        )
+                        chunk_logits = F.linear(h_recon[:, c0:c1, :], out_weight)
                     chunk_logits = chunk_logits.float()
                     chunk_targets = recon_targets[:, c0:c1]
                     chunk_mask = mask_f[:, c0:c1]
@@ -663,9 +664,7 @@ def train(
                         pred_emb = chive_normed[preds]
                         tgt_emb = chive_normed[chunk_targets]
                         cos = (pred_emb * tgt_emb).sum(dim=-1)
-                        epoch_cossim_sum += float(
-                            (cos * chunk_mask).sum().item()
-                        )
+                        epoch_cossim_sum += float((cos * chunk_mask).sum().item())
 
             # nats → bits, normalize by attended token count
             # Primary run-to-run fitness metric.  Lower is better.
@@ -756,8 +755,9 @@ def train(
         fuzzy_pct = fuzzy_count / max(1, kc_prob_count)
         avg_raw_consist = raw_consistency_sum / max(1, n_batches)
         mean_abs_logit = logit_abs_sum / max(1, logit_count)
-        logit_std = (logit_sq_sum / max(1, logit_count)
-                     - (logit_sum / max(1, logit_count)) ** 2) ** 0.5
+        logit_std = (
+            logit_sq_sum / max(1, logit_count) - (logit_sum / max(1, logit_count)) ** 2
+        ) ** 0.5
         current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
 
@@ -790,15 +790,18 @@ def train(
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
         epoch_history.append((epoch, dict(latest_metrics)))
-        save_checkpoint(TrainCheckpoint(
-            model_state=model.state_dict(),
-            optimizer_state=optimizer.state_dict(),
-            scaler_state=scaler.state_dict(),
-            scheduler_state=scheduler.state_dict(),
-            epoch=epoch,
-            latest_metrics=latest_metrics,
-            epoch_history=epoch_history,
-        ), checkpoint_path)
+        save_checkpoint(
+            TrainCheckpoint(
+                model_state=model.state_dict(),
+                optimizer_state=optimizer.state_dict(),
+                scaler_state=scaler.state_dict(),
+                scheduler_state=scheduler.state_dict(),
+                epoch=epoch,
+                latest_metrics=latest_metrics,
+                epoch_history=epoch_history,
+            ),
+            checkpoint_path,
+        )
 
         on_epoch_end(epoch, latest_metrics)
 
@@ -820,4 +823,3 @@ def train(
         ),
         final_checkpoint,
     )
-

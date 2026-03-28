@@ -8,11 +8,11 @@ pattern).  Supports MedianPruner for early stopping of unpromising
 trials and optional persistent storage for resumable studies.
 
 Usage:
-    python -m scripts.recon_bpd_optuna
-    python -m scripts.recon_bpd_optuna --n-trials 100 --epochs-per-trial 50
-    python -m scripts.recon_bpd_optuna --storage sqlite:///optuna.db
-    python -m scripts.recon_bpd_optuna --no-mlflow
-    python3 -m scripts.recon_bpd_optuna --n-trials 1000 --sample-ratio 0.15 --epochs-per-trial 15 --storage sqlite:///.cache/recon_bpd/optuna.db --consistency-weight-only
+    python -m scratch.recon_bpd_optuna
+    python -m scratch.recon_bpd_optuna --n-trials 100 --epochs-per-trial 50
+    python -m scratch.recon_bpd_optuna --storage sqlite:///optuna.db
+    python -m scratch.recon_bpd_optuna --no-mlflow
+    python3 -m scratch.recon_bpd_optuna --n-trials 1000 --sample-ratio 0.15 --epochs-per-trial 15 --storage sqlite:///.cache/recon_bpd/optuna.db --consistency-weight-only
 """
 
 import argparse
@@ -26,7 +26,7 @@ from typing import Optional
 
 import optuna
 
-from scripts.recon_bpd import TrainConfig, load_checkpoint, train
+from scratch.recon_bpd import TrainConfig, load_checkpoint, train
 
 
 def suggest_config(
@@ -42,13 +42,16 @@ def suggest_config(
             sample_ratio=sample_ratio,
             seed=42,
             consistency_weight=trial.suggest_categorical(
-                "consistency_weight", _CW_SEARCH_SPACE["consistency_weight"],
+                "consistency_weight",
+                _CW_SEARCH_SPACE["consistency_weight"],
             ),
             input_mask_ratio=trial.suggest_categorical(
-                "input_mask_ratio", _CW_SEARCH_SPACE["input_mask_ratio"],
+                "input_mask_ratio",
+                _CW_SEARCH_SPACE["input_mask_ratio"],
             ),
             num_layers=trial.suggest_categorical(
-                "num_layers", _CW_SEARCH_SPACE["num_layers"],
+                "num_layers",
+                _CW_SEARCH_SPACE["num_layers"],
             ),
         )
 
@@ -64,14 +67,21 @@ def suggest_config(
         input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.1, 0.3),
         # Regularization
         kl_sparse_weight=trial.suggest_float(
-            "kl_sparse_weight", 0.0001, 1e-1, log=True,
+            "kl_sparse_weight",
+            0.0001,
+            1e-1,
+            log=True,
         ),
         kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
         cov_penalty_weight=trial.suggest_float(
-            "cov_penalty_weight", 0.1, 20.0,
+            "cov_penalty_weight",
+            0.1,
+            20.0,
         ),
         consistency_weight=trial.suggest_float(
-            "consistency_weight", 0.0, 1.0,
+            "consistency_weight",
+            0.0,
+            1.0,
         ),
         # Model architecture
         d_model=d_model,
@@ -80,15 +90,19 @@ def suggest_config(
         num_heads=trial.suggest_categorical("num_heads", [4, 8, 16]),
         dropout=trial.suggest_float("dropout", 0.0, 0.3),
         kc_vocab_size=trial.suggest_categorical(
-            "kc_vocab_size", [256, 512, 1024, 2048],
+            "kc_vocab_size",
+            [256, 512, 1024, 2048],
         ),
         recon_pos_embed_dim=trial.suggest_categorical(
-            "recon_pos_embed_dim", [32, 64, 128],
+            "recon_pos_embed_dim",
+            [32, 64, 128],
         ),
         recon_hidden_dim=trial.suggest_categorical(
-            "recon_hidden_dim", [128, 256, 512],
+            "recon_hidden_dim",
+            [128, 256, 512],
         ),
     )
+
 
 # Consistency-weight-only search space — changing this auto-creates a new study.
 _CW_SEARCH_SPACE: dict = {
@@ -141,9 +155,7 @@ def _config_hash(config: TrainConfig) -> str:
     d = dataclasses.asdict(config)
     del d["epochs"]
     canonical = (
-        _SCRIPT_HASH
-        + _DATASET_HASH
-        + json.dumps(sorted(d.items()), sort_keys=True)
+        _SCRIPT_HASH + _DATASET_HASH + json.dumps(sorted(d.items()), sort_keys=True)
     )
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
@@ -180,7 +192,10 @@ def objective(
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(
-        trial, epochs, sample_ratio, consistency_weight_only,
+        trial,
+        epochs,
+        sample_ratio,
+        consistency_weight_only,
     )
     if adhoc_overrides:
         for k, v in adhoc_overrides.items():
@@ -253,8 +268,7 @@ def objective(
                     f"target={epochs}\n",
                 )
             print(
-                f"  Resuming {run_name} from "
-                f"epoch {existing.epoch + 1} (checkpoint)",
+                f"  Resuming {run_name} from epoch {existing.epoch + 1} (checkpoint)",
             )
 
     mlflow = None
@@ -264,15 +278,18 @@ def objective(
         mlflow = _mlflow
         run_id = _find_mlflow_run(run_name)
         mlflow.start_run(run_id=run_id, run_name=run_name)
-        
+
         # Capture git commit for reproducibility (safe against git missing/errors)
         git_log = subprocess.run(
             ["git", "log", "-1", "--format=%h %s"],
-            capture_output=True, text=True, check=False, timeout=2,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=2,
         )
         if git_log.returncode == 0 and git_log.stdout.strip():
             mlflow.set_tag("git_commit", git_log.stdout.strip())
-            
+
         if run_id is None:
             for field in dataclasses.fields(config):
                 if field.name not in ("epochs",):
@@ -294,7 +311,8 @@ def objective(
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
                 f"mask-agree={metrics['mask-agree']:.3f}  "
-                if metrics.get("consistency", 0) > 0 else ""
+                if metrics.get("consistency", 0) > 0
+                else ""
             )
             print(
                 f"Epoch {epoch + 1}/{epochs}  "
@@ -345,67 +363,97 @@ def main() -> None:
         description="Optuna hyperparameter search for recon_bpd",
     )
     parser.add_argument(
-        "--n-trials", type=int, default=50,
+        "--n-trials",
+        type=int,
+        default=50,
         help="Number of Optuna trials (default: 50)",
     )
     parser.add_argument(
-        "--epochs-per-trial", type=int, default=30,
+        "--epochs-per-trial",
+        "--epochs",
+        dest="epochs_per_trial",
+        type=int,
+        default=30,
         help="Training epochs per trial (default: 30)",
     )
     parser.add_argument(
-        "--percent", type=float, default=100.0,
+        "--percent",
+        type=float,
+        default=100.0,
         help="Dataset sample percentage (default: 100.0)",
     )
     parser.add_argument(
-        "--storage", type=str, default=None,
+        "--storage",
+        type=str,
+        default=None,
         help="Optuna storage URL (default: sqlite:///.cache/recon_bpd/optuna.db)",
     )
     parser.add_argument(
-        "--seed", type=int, default=42,
+        "--seed",
+        type=int,
+        default=42,
         help="TPE sampler seed (default: 42)",
     )
     parser.add_argument(
-        "--no-mlflow", action="store_true",
+        "--no-mlflow",
+        action="store_true",
         help="Disable MLflow logging",
     )
     parser.add_argument(
-        "--tracking-uri", type=str, default=None,
+        "--tracking-uri",
+        type=str,
+        default=None,
         help="MLflow tracking URI override",
     )
     parser.add_argument(
-        "--experiment-name", type=str, default="kotogram-bpd",
+        "--experiment-name",
+        type=str,
+        default="kotogram-bpd",
         help="MLflow experiment name (default: kotogram-bpd)",
     )
     parser.add_argument(
-        "--consistency-weight-only", action="store_true",
+        "--consistency-weight-only",
+        action="store_true",
         help="Optimize ONLY consistency_weight",
     )
     parser.add_argument(
-        "--adhoc", nargs="?", const="adhoc", default=None, metavar="PREFIX",
+        "--adhoc",
+        nargs="?",
+        const="adhoc",
+        default=None,
+        metavar="PREFIX",
         help="Run a single trial with default parameters, logging to adhoc experiment. "
-             "Optional PREFIX is prepended to the MLflow run name.",
+        "Optional PREFIX is prepended to the MLflow run name.",
     )
     parser.add_argument(
-        "--pruner", type=str, default="hyperband",
+        "--pruner",
+        type=str,
+        default="hyperband",
         choices=["hyperband", "percentile"],
         help="Pruner algorithm (default: hyperband)",
     )
     parser.add_argument(
-        "--checkpoint-dir", type=str,
+        "--checkpoint-dir",
+        type=str,
         default=os.path.join(".cache", "optuna", "checkpoints"),
         help="Directory for per-trial checkpoints (default: .cache/optuna/checkpoints)",
     )
 
     parser.add_argument(
-        "--convergence-patience", type=int, default=20,
+        "--convergence-patience",
+        type=int,
+        default=20,
         help="Stop if no improvement after this many completed trials (default: 20)",
     )
     parser.add_argument(
-        "--no-progressive", action="store_true",
+        "--no-progressive",
+        action="store_true",
         help="Disable progressive epoch extension (default: progressive is on)",
     )
     parser.add_argument(
-        "--epoch-step", type=int, default=5,
+        "--epoch-step",
+        type=int,
+        default=5,
         help="Epochs to add each progressive round (default: 5)",
     )
     args = parser.parse_args()
@@ -424,11 +472,10 @@ def main() -> None:
 
     suffixes = []
     if args.consistency_weight_only:
-        suffixes.append(f"cw-imr-only")
+        suffixes.append("cw-imr-only")
         suffixes.append(_CW_SPACE_HASH)
     if args.percent != 100.0:
         suffixes.append(f"{args.percent:g}%")
-    study_name = f"{exp_name} ({', '.join(suffixes)})" if suffixes else exp_name
 
     use_mlflow = not args.no_mlflow
     if use_mlflow:
@@ -448,7 +495,9 @@ def main() -> None:
     sampler = optuna.samplers.TPESampler(seed=args.seed)
     if args.pruner != "hyperband":
         pruner = optuna.pruners.PercentilePruner(
-            percentile=25.0, n_startup_trials=5, n_warmup_steps=5,
+            percentile=25.0,
+            n_startup_trials=5,
+            n_warmup_steps=5,
         )
 
     defaults = TrainConfig()
@@ -493,11 +542,15 @@ def main() -> None:
         suffixes_round.append(f"{epochs}ep")
         study_name_round = f"{exp_name} ({', '.join(suffixes_round)})"
 
-        pruner_round = optuna.pruners.HyperbandPruner(
-            min_resource=1,
-            max_resource=epochs,
-            reduction_factor=4,
-        ) if args.pruner == "hyperband" else pruner
+        pruner_round = (
+            optuna.pruners.HyperbandPruner(
+                min_resource=1,
+                max_resource=epochs,
+                reduction_factor=4,
+            )
+            if args.pruner == "hyperband"
+            else pruner
+        )
 
         study = optuna.create_study(
             study_name=study_name_round,
@@ -514,13 +567,13 @@ def main() -> None:
         if progressive_round > 0:
             print(f"\n{'=' * 60}")
             print(
-                f"Progressive round {progressive_round}: "
-                f"extending to {epochs} epochs",
+                f"Progressive round {progressive_round}: extending to {epochs} epochs",
             )
             print("=" * 60)
 
         def _convergence_callback(
-            study: optuna.Study, trial: optuna.trial.FrozenTrial,
+            study: optuna.Study,
+            trial: optuna.trial.FrozenTrial,
         ) -> None:
             if trial.state != optuna.trial.TrialState.COMPLETE:
                 return
@@ -535,10 +588,14 @@ def main() -> None:
 
         study.optimize(
             lambda trial: objective(
-                trial, epochs, args.percent / 100.0,
-                use_mlflow, study_name_round,
+                trial,
+                epochs,
+                args.percent / 100.0,
+                use_mlflow,
+                study_name_round,
                 args.consistency_weight_only,
-                checkpoint_dir, adhoc_overrides or None,
+                checkpoint_dir,
+                adhoc_overrides or None,
                 args.adhoc or "",
             ),
             n_trials=args.n_trials,
