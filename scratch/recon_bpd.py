@@ -76,6 +76,7 @@ class TrainConfig:
     sample_ratio: float = 1.0
     lr: float = 1e-4  # Original lr: 1e-4
     temperature: float = 1.8  # Original temperature: 1.8
+    weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
     seed: int = 42  # Original seed: 42
@@ -453,7 +454,7 @@ def train(
         model = torch.compile(model)
     model.train()
 
-    optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=0.01)
+    optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # LR schedule: linear warmup + cosine decay. Bound definitions to dataset size

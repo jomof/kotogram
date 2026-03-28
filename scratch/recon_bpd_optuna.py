@@ -33,25 +33,29 @@ def suggest_config(
     trial: optuna.Trial,
     epochs: int,
     sample_ratio: float,
-    consistency_weight_only: bool = False,
+    sweep: bool = False,
 ) -> TrainConfig:
     """Build a TrainConfig from Optuna trial suggestions."""
-    if consistency_weight_only:
+    if sweep:
         return TrainConfig(
             epochs=epochs,
             sample_ratio=sample_ratio,
             seed=42,
-            consistency_weight=trial.suggest_categorical(
-                "consistency_weight",
-                _CW_SEARCH_SPACE["consistency_weight"],
+            lr=trial.suggest_categorical(
+                "lr",
+                _SWEEP_SEARCH_SPACE["lr"],
             ),
-            input_mask_ratio=trial.suggest_categorical(
-                "input_mask_ratio",
-                _CW_SEARCH_SPACE["input_mask_ratio"],
+            temperature=trial.suggest_categorical(
+                "temperature",
+                _SWEEP_SEARCH_SPACE["temperature"],
+            ),
+            weight_decay=trial.suggest_categorical(
+                "weight_decay",
+                _SWEEP_SEARCH_SPACE["weight_decay"],
             ),
             num_layers=trial.suggest_categorical(
                 "num_layers",
-                _CW_SEARCH_SPACE["num_layers"],
+                _SWEEP_SEARCH_SPACE["num_layers"],
             ),
         )
 
@@ -104,15 +108,16 @@ def suggest_config(
     )
 
 
-# Consistency-weight-only search space — changing this auto-creates a new study.
-_CW_SEARCH_SPACE: dict = {
-    "consistency_weight": [0.0, 0.00001, 0.00003, 0.0001, 0.0003],
-    "input_mask_ratio": [0.125, 0.15, 0.175],
+# Discrete search space for tuning perfectly invariant hyperparameters.
+_SWEEP_SEARCH_SPACE: dict = {
+    "lr": [5e-5, 1e-4, 3e-4, 1e-3],          # 1e-4 is baseline
+    "temperature": [1.2, 1.8, 2.4],          # 1.8 is baseline
+    "weight_decay": [0.0, 0.01, 0.05],       # 0.01 is baseline
     "num_layers": [2],
 }
 
-_CW_SPACE_HASH = hashlib.sha256(
-    json.dumps(_CW_SEARCH_SPACE, sort_keys=True).encode(),
+_SWEEP_SPACE_HASH = hashlib.sha256(
+    json.dumps(_SWEEP_SEARCH_SPACE, sort_keys=True).encode(),
 ).hexdigest()[:6]
 
 
@@ -185,7 +190,7 @@ def objective(
     sample_ratio: float,
     use_mlflow: bool,
     study_name: str,
-    consistency_weight_only: bool,
+    sweep: bool,
     checkpoint_dir: str,
     adhoc_overrides: Optional[dict] = None,
     adhoc_name: str = "",
@@ -195,7 +200,7 @@ def objective(
         trial,
         epochs,
         sample_ratio,
-        consistency_weight_only,
+        sweep,
     )
     if adhoc_overrides:
         for k, v in adhoc_overrides.items():
@@ -427,9 +432,9 @@ def main() -> None:
         help="MLflow experiment name (default: kotogram-bpd)",
     )
     parser.add_argument(
-        "--consistency-weight-only",
+        "--sweep",
         action="store_true",
-        help="Optimize ONLY consistency_weight",
+        help="Run a discrete sweep over core invariant hyperparameters",
     )
     parser.add_argument(
         "--adhoc",
@@ -486,9 +491,9 @@ def main() -> None:
             print(f"  {k}: {v}")
 
     suffixes = []
-    if args.consistency_weight_only:
-        suffixes.append("cw-imr-only")
-        suffixes.append(_CW_SPACE_HASH)
+    if args.sweep:
+        suffixes.append("sweep")
+        suffixes.append(_SWEEP_SPACE_HASH)
     if args.percent != 100.0:
         suffixes.append(f"{args.percent:g}%")
 
@@ -517,7 +522,7 @@ def main() -> None:
 
     defaults = TrainConfig()
 
-    if args.consistency_weight_only:
+    if args.sweep:
         initial_params: list = []
     else:
         initial_params = [
@@ -608,7 +613,7 @@ def main() -> None:
                 args.percent / 100.0,
                 use_mlflow,
                 study_name_round,
-                args.consistency_weight_only,
+                args.sweep,
                 checkpoint_dir,
                 adhoc_overrides or None,
                 args.adhoc or "",
