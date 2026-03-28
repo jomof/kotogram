@@ -94,10 +94,9 @@ def suggest_config(
         ),
     )
 
-
 # Consistency-weight-only search space — changing this auto-creates a new study.
 _CW_SEARCH_SPACE: dict = {
-    "consistency_weight": [0.0, 0.000001, 0.000003, 0.00001, 0.00003],
+    "consistency_weight": [0.0, 0.00001, 0.00003, 0.0001, 0.0003],
     "input_mask_ratio": [0.125, 0.15, 0.175],
     "num_layers": [2],
 }
@@ -106,10 +105,12 @@ _CW_SPACE_HASH = hashlib.sha256(
     json.dumps(_CW_SEARCH_SPACE, sort_keys=True).encode(),
 ).hexdigest()[:6]
 
+
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
     "input_mask_ratio": 0.15,
     "consistency_weight": 0.0003,
+    "num_layers": 2,
 }
 
 _SCRIPT_HASH = hashlib.sha256(
