@@ -201,27 +201,33 @@ def objective(
         run_name = f"{parts} {run_name}"
     checkpoint_path = ""
     existing = None
+    log_path = os.path.join(checkpoint_dir, "debug.log") if checkpoint_dir else ""
     if checkpoint_dir:
         checkpoint_path = os.path.join(checkpoint_dir, f"{config_hash}.pt")
         existing = load_checkpoint(checkpoint_path)
         if existing is not None:
             history_epochs = [ep for ep, _ in existing.epoch_history]
-            print(
-                f"  Checkpoint {config_hash[:8]}: "
-                f"epoch={existing.epoch}, "
-                f"history={history_epochs}, "
-                f"target={epochs}",
-            )
+            with open(log_path, "a") as f:
+                f.write(
+                    f"LOAD  {config_hash[:8]}  "
+                    f"epoch={existing.epoch}  "
+                    f"history={history_epochs}  "
+                    f"target={epochs}  "
+                    f"run_name={run_name}\n",
+                )
         if existing is not None and existing.epoch >= epochs - 1:
-            # Already fully trained with these params — log and skip.
-            # Use BPD from the target epoch, not the latest (which may
-            # be from a deeper progressive round).
             target_epoch = epochs - 1
             era_bpd = existing.latest_metrics["bpd"]
             for ep, metrics in existing.epoch_history:
                 if ep == target_epoch:
                     era_bpd = metrics["bpd"]
                     break
+            with open(log_path, "a") as f:
+                f.write(
+                    f"CACHE {config_hash[:8]}  "
+                    f"era_bpd={era_bpd:.4f}  "
+                    f"target_epoch={target_epoch}\n",
+                )
             if use_mlflow:
                 import mlflow as _mlflow  # type: ignore[import-untyped]
 
@@ -241,6 +247,12 @@ def objective(
             trial.report(era_bpd, target_epoch)
             return era_bpd
         if existing is not None:
+            with open(log_path, "a") as f:
+                f.write(
+                    f"RESUME {config_hash[:8]}  "
+                    f"from_epoch={existing.epoch + 1}  "
+                    f"target={epochs}\n",
+                )
             print(
                 f"  Resuming {run_name} from "
                 f"epoch {existing.epoch + 1} (checkpoint)",
