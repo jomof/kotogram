@@ -21,6 +21,7 @@ import hashlib
 import json
 import os
 import platform
+import subprocess
 from typing import Optional
 
 import optuna
@@ -31,8 +32,7 @@ from scripts.recon_bpd import TrainConfig, load_checkpoint, train
 def suggest_config(
     trial: optuna.Trial,
     epochs: int,
-    sample_ratio: Optional[float] = None,
-    patience: Optional[int] = None,
+    sample_ratio: float,
     consistency_weight_only: bool = False,
 ) -> TrainConfig:
     """Build a TrainConfig from Optuna trial suggestions."""
@@ -40,8 +40,6 @@ def suggest_config(
         return TrainConfig(
             epochs=epochs,
             sample_ratio=sample_ratio,
-            patience=patience,
-            verbose=True,
             seed=42,
             consistency_weight=trial.suggest_categorical(
                 "consistency_weight", _CW_SEARCH_SPACE["consistency_weight"],
@@ -58,8 +56,6 @@ def suggest_config(
     return TrainConfig(
         epochs=epochs,
         sample_ratio=sample_ratio,
-        patience=patience,
-        verbose=True,
         seed=42,
         # Learning dynamics
         lr=trial.suggest_float("lr", 1e-5, 1e-2, log=True),
@@ -139,13 +135,11 @@ def _config_hash(config: TrainConfig) -> str:
 
     Includes hashes of ``recon_bpd.py`` source and dataset cache files
     so code or data changes automatically invalidate stale checkpoints.
-    Excludes ``epochs``, ``verbose``, and ``patience`` so that extending
-    the epoch budget or toggling verbosity still reuses checkpoints.
+    Excludes ``epochs`` so that extending
+    the epoch budget still reuses checkpoints.
     """
     d = dataclasses.asdict(config)
     del d["epochs"]
-    del d["verbose"]
-    del d["patience"]
     canonical = (
         _SCRIPT_HASH
         + _DATASET_HASH
@@ -176,18 +170,21 @@ def _find_mlflow_run(run_name: str) -> Optional[str]:
 def objective(
     trial: optuna.Trial,
     epochs: int,
-    sample_ratio: Optional[float],
-    patience: Optional[int],
+    sample_ratio: float,
     use_mlflow: bool,
     study_name: str,
-    consistency_weight_only: bool = False,
-    checkpoint_dir: str = "",
+    consistency_weight_only: bool,
+    checkpoint_dir: str,
     adhoc_overrides: Optional[dict] = None,
+    adhoc_name: str = "",
 ) -> float:
     """Optuna objective: minimize BPD."""
     config = suggest_config(
-        trial, epochs, sample_ratio, patience, consistency_weight_only,
+        trial, epochs, sample_ratio, consistency_weight_only,
     )
+    if adhoc_overrides:
+        for k, v in adhoc_overrides.items():
+            setattr(config, k, v)
 
     # Checkpoint keyed by config hash — resume if same params seen before.
     config_hash = _config_hash(config)
@@ -199,6 +196,8 @@ def objective(
             for k, v in sorted(params_to_show.items())
         )
         run_name = f"{parts} {run_name}"
+    if adhoc_name:
+        run_name = f"[{adhoc_name}] {run_name}"
     checkpoint_path = ""
     existing = None
     log_path = os.path.join(checkpoint_dir, "debug.log") if checkpoint_dir else ""
@@ -235,7 +234,7 @@ def objective(
                 _mlflow.start_run(run_id=run_id, run_name=run_name)
                 if run_id is None:
                     for field in dataclasses.fields(config):
-                        if field.name not in ("epochs", "verbose", "patience"):
+                        if field.name not in ("epochs",):
                             _mlflow.log_param(field.name, getattr(config, field.name))
                 _mlflow.set_tag("cached", "true")
                 for ep, metrics in existing.epoch_history:
@@ -265,9 +264,18 @@ def objective(
         mlflow = _mlflow
         run_id = _find_mlflow_run(run_name)
         mlflow.start_run(run_id=run_id, run_name=run_name)
+        
+        # Capture git commit for reproducibility (safe against git missing/errors)
+        git_log = subprocess.run(
+            ["git", "log", "-1", "--format=%h %s"],
+            capture_output=True, text=True, check=False, timeout=2,
+        )
+        if git_log.returncode == 0 and git_log.stdout.strip():
+            mlflow.set_tag("git_commit", git_log.stdout.strip())
+            
         if run_id is None:
             for field in dataclasses.fields(config):
-                if field.name not in ("epochs", "verbose", "patience"):
+                if field.name not in ("epochs",):
                     mlflow.log_param(field.name, getattr(config, field.name))
             mlflow.log_param("machine", platform.node().split(".")[0] or "unknown")
         mlflow.set_tag("optuna_trial", str(trial.number))
@@ -279,7 +287,32 @@ def objective(
 
     try:
 
+        def on_epoch_start(epoch: int) -> None:
+            print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
+
         def on_epoch_end(epoch: int, metrics: dict) -> None:
+            consist_str = (
+                f"consistency={metrics['consistency']:.4f}  "
+                f"mask-agree={metrics['mask-agree']:.3f}  "
+                if metrics.get("consistency", 0) > 0 else ""
+            )
+            print(
+                f"Epoch {epoch + 1}/{epochs}  "
+                f"bpd={metrics['bpd']:.4f}  "
+                f"To-1={metrics['To-1']:.1f}%  "
+                f"cos={metrics['cos']:.3f}  "
+                f"sharp={metrics['sharp']:.3f}  "
+                f"s1={metrics['s1']:.0%} s0={metrics['s0']:.0%} "
+                f"fuzzy={metrics['fuzzy']:.0%}  "
+                f"loss={metrics['loss']:.4f}  "
+                f"sparsity={metrics['sparsity']:.4f}  "
+                f"orthogonality={metrics['orthogonality']:.4f}  "
+                f"{consist_str}"
+                f"lr={metrics['lr']:.2e}  "
+                f"{metrics['el_per_sec']:.1f} el/s  "
+                f"{metrics['samples']} samples  "
+                f"{metrics['epoch_secs']:.1f}s"
+            )
             if mlflow is not None:
                 for k, v in metrics.items():
                     mlflow.log_metric(f"bpd/{k}", v, step=epoch)
@@ -289,9 +322,10 @@ def objective(
 
         result, _checkpoint = train(
             config,
+            on_epoch_start=on_epoch_start,
             on_epoch_end=on_epoch_end,
+            checkpoint_path=checkpoint_path,
             checkpoint=existing,
-            checkpoint_path=checkpoint_path or None,
         )
         if mlflow is not None:
             mlflow.log_metric("final_bpd", result.final_bpd)
@@ -319,12 +353,8 @@ def main() -> None:
         help="Training epochs per trial (default: 30)",
     )
     parser.add_argument(
-        "--sample-ratio", type=float, default=None,
-        help="Dataset sample ratio override (default: device-specific)",
-    )
-    parser.add_argument(
-        "--patience", type=int, default=None,
-        help="Early-stop a trial after N epochs without BPD improvement",
+        "--percent", type=float, default=100.0,
+        help="Dataset sample percentage (default: 100.0)",
     )
     parser.add_argument(
         "--storage", type=str, default=None,
@@ -351,7 +381,7 @@ def main() -> None:
         help="Optimize ONLY consistency_weight",
     )
     parser.add_argument(
-        "--adhoc", nargs="?", const="", default=None, metavar="PREFIX",
+        "--adhoc", nargs="?", const="adhoc", default=None, metavar="PREFIX",
         help="Run a single trial with default parameters, logging to adhoc experiment. "
              "Optional PREFIX is prepended to the MLflow run name.",
     )
@@ -365,14 +395,7 @@ def main() -> None:
         default=os.path.join(".cache", "optuna", "checkpoints"),
         help="Directory for per-trial checkpoints (default: .cache/optuna/checkpoints)",
     )
-    parser.add_argument(
-        "--no-checkpoint", action="store_true",
-        help="Disable checkpoint persistence and reuse",
-    )
-    parser.add_argument(
-        "--override", nargs=2, action="append", metavar=("KEY", "VALUE"),
-        help="Override a TrainConfig field for adhoc runs, e.g. --override lr 1e-3",
-    )
+
     parser.add_argument(
         "--convergence-patience", type=int, default=20,
         help="Stop if no improvement after this many completed trials (default: 20)",
@@ -392,12 +415,9 @@ def main() -> None:
         exp_name = "adhoc-kotogram-bpd"
         args.n_trials = 1
 
-    # Build adhoc overrides: start from defaults, layer on CLI --override.
     adhoc_overrides: dict = {}
     if args.adhoc is not None:
         adhoc_overrides = dict(ADHOC_OVERRIDES)
-        for key, value in (args.override or []):
-            adhoc_overrides[key] = type(ADHOC_OVERRIDES.get(key, 0.0))(value)
         print("Adhoc overrides:")
         for k, v in sorted(adhoc_overrides.items()):
             print(f"  {k}: {v}")
@@ -406,8 +426,8 @@ def main() -> None:
     if args.consistency_weight_only:
         suffixes.append(f"cw-imr-only")
         suffixes.append(_CW_SPACE_HASH)
-    if args.sample_ratio is not None:
-        suffixes.append(f"{args.sample_ratio * 100:g}%")
+    if args.percent != 100.0:
+        suffixes.append(f"{args.percent:g}%")
     study_name = f"{exp_name} ({', '.join(suffixes)})" if suffixes else exp_name
 
     use_mlflow = not args.no_mlflow
@@ -460,7 +480,7 @@ def main() -> None:
         if adhoc_overrides:
             params.update(adhoc_overrides)
 
-    checkpoint_dir = "" if args.no_checkpoint else args.checkpoint_dir
+    checkpoint_dir = args.checkpoint_dir
     if checkpoint_dir:
         os.makedirs(checkpoint_dir, exist_ok=True)
         print(f"Checkpoint dir: {checkpoint_dir}")
@@ -515,10 +535,11 @@ def main() -> None:
 
         study.optimize(
             lambda trial: objective(
-                trial, epochs, args.sample_ratio,
-                args.patience, use_mlflow, study_name_round,
+                trial, epochs, args.percent / 100.0,
+                use_mlflow, study_name_round,
                 args.consistency_weight_only,
                 checkpoint_dir, adhoc_overrides or None,
+                args.adhoc or "",
             ),
             n_trials=args.n_trials,
             callbacks=[_convergence_callback],

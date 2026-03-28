@@ -74,14 +74,12 @@ class TrainConfig:
     # Training
     batch_size: int = 256
     epochs: int = 1000
-    sample_ratio: Optional[float] = None  # None → 1 on CUDA, 0.08 otherwise
+    sample_ratio: float = 1.0
     lr: float = 1e-4  # Original lr: 1e-4
     temperature: float = 1.8  # Original temperature: 1.8
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
     seed: int = 42  # Original seed: 42
-    patience: Optional[int] = None  # Original patience: None
-    verbose: bool = True  # Original verbose: True
 
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
@@ -123,13 +121,12 @@ class TrainCheckpoint:
     scaler_state: Dict[str, object]
     scheduler_state: Dict[str, object]
     epoch: int  # last completed epoch (0-indexed)
-    best_bpd: float
-    epochs_without_improvement: int
     latest_metrics: Dict[str, float]
     epoch_history: list  # [(epoch, metrics_dict), ...]
 
 
-EpochCallback = Callable[[int, Dict[str, float]], None]
+EpochEndCallback = Callable[[int, Dict[str, float]], None]
+EpochStartCallback = Callable[[int], None]
 
 
 def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
@@ -144,8 +141,6 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
         "scaler_state": checkpoint.scaler_state,
         "scheduler_state": checkpoint.scheduler_state,
         "epoch": checkpoint.epoch,
-        "best_bpd": checkpoint.best_bpd,
-        "epochs_without_improvement": checkpoint.epochs_without_improvement,
         "latest_metrics": checkpoint.latest_metrics,
         "epoch_history": checkpoint.epoch_history,
     }, tmp_path)
@@ -356,39 +351,36 @@ class BpdModel(nn.Module):
 
 
 def train(
-    config: Optional[TrainConfig] = None,
-    on_epoch_end: Optional[EpochCallback] = None,
+    config: TrainConfig,
+    on_epoch_start: EpochStartCallback,
+    on_epoch_end: EpochEndCallback,
+    checkpoint_path: str,
     checkpoint: Optional[TrainCheckpoint] = None,
-    checkpoint_path: Optional[str] = None,
 ) -> Tuple[TrainResult, TrainCheckpoint]:
     """Run the BPD training loop and return final metrics + checkpoint.
 
     Args:
-        config: Training configuration.  Uses defaults if None.
-        on_epoch_end: Optional callback invoked at the end of each epoch with
+        config: Training configuration.
+        on_epoch_start: Callback invoked at the start of each epoch with
+            ``(epoch_index,)``.
+        on_epoch_end: Callback invoked at the end of each epoch with
             ``(epoch_index, metrics_dict)``.  May raise any exception
             (e.g. ``optuna.TrialPruned``) to abort training early.
         checkpoint: Optional checkpoint from a previous ``train()`` call.
             When provided, model/optimizer/scaler state is restored and
             training resumes from ``checkpoint.epoch + 1``.
-        checkpoint_path: Optional path for per-epoch checkpoint persistence.
-            When set, the checkpoint is saved to this path after every epoch
+        checkpoint_path: Path for per-epoch checkpoint persistence.
+            The checkpoint is saved to this path after every epoch
             (before the ``on_epoch_end`` callback) for crash recovery.
     """
-    if config is None:
-        config = TrainConfig()
 
     torch.manual_seed(config.seed)
     device = torch.device(DEVICE)
-    sample_ratio = (
-        config.sample_ratio if config.sample_ratio is not None
-        else (1 if IS_CUDA else 0.08)
-    )
+    sample_ratio = config.sample_ratio
     recon_chunk = 8 if IS_CUDA else 4
 
-    if config.verbose:
-        print(f"Device: {device}")
-        print(f"Fused CE: {USE_FUSED_CE}")
+    print(f"Device: {device}")
+    print(f"Fused CE: {USE_FUSED_CE}")
 
     if IS_CUDA:
         torch.backends.cuda.matmul.allow_tf32 = True
@@ -402,11 +394,9 @@ def train(
     cache_dir = train_paths.get_style_dataset_cache_dir()
     dataset = StyleDataset(
         cache_dir, tokenizer, sample_ratio=sample_ratio,
-        verbose=config.verbose,
     )
     gram_ds = dataset.filter_by_grammaticality(label=1)
-    if config.verbose:
-        print(f"Gram sentences: {len(gram_ds)}")
+    print(f"Gram sentences: {len(gram_ds)}")
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
@@ -490,16 +480,13 @@ def train(
             "cos": 0.0, "loss": float("inf"),
         }
     )
-    best_bpd = checkpoint.best_bpd if checkpoint is not None else float("inf")
-    epochs_without_improvement = (
-        checkpoint.epochs_without_improvement if checkpoint is not None else 0
-    )
     epoch_history: list = (
         list(checkpoint.epoch_history) if checkpoint is not None else []
     )
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
+        on_epoch_start(epoch)
         t0 = time.perf_counter()
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
@@ -738,21 +725,20 @@ def train(
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
-            if config.verbose:
-                dt_batch = time.perf_counter() - t0
-                t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
-                t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-                avg_cos = epoch_cossim_sum / max(1, t1_denom)
-                print(
-                    f"\r  batch {n_batches}/{n_total_batches}  "
-                    f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
-                    f"To-1={t1_pct:.1f}%  "
-                    f"cos={avg_cos:.3f}  "
-                    f"{total_elements / dt_batch:.1f} el/s  "
-                    f"{dt_batch:.1f}s",
-                    end="",
-                    flush=True,
-                )
+            dt_batch = time.perf_counter() - t0
+            t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
+            t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+            avg_cos = epoch_cossim_sum / max(1, t1_denom)
+            print(
+                f"\r  batch {n_batches}/{n_total_batches}  "
+                f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
+                f"To-1={t1_pct:.1f}%  "
+                f"cos={avg_cos:.3f}  "
+                f"{total_elements / dt_batch:.1f} el/s  "
+                f"{dt_batch:.1f}s",
+                end="",
+                flush=True,
+            )
 
         dt = time.perf_counter() - t0
         avg_bpd = epoch_total_bits / max(1, epoch_num_units)
@@ -792,66 +778,29 @@ def train(
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
             "lr": current_lr,
+            "el_per_sec": els,
+            "samples": total_elements,
+            "epoch_secs": dt,
         }
 
-        if config.verbose:
-            consist_str = (
-                f"consistency={avg_consist:.4f}  "
-                f"mask-agree={avg_pair_cos:.3f}  "
-                if config.consistency_weight > 0 else ""
-            )
-            print()  # finish \r progress line
-            print(
-                f"Epoch {epoch + 1}/{config.epochs}  "
-                f"bpd={avg_bpd:.4f}  "
-                f"To-1={t1_pct:.1f}%  "
-                f"cos={avg_cos:.3f}  "
-                f"sharp={avg_sharpness:.3f}  "
-                f"s1={s1_pct:.0%} s0={s0_pct:.0%} fuzzy={fuzzy_pct:.0%}  "
-                f"loss={avg_loss:.4f}  "
-                f"sparsity={avg_kl:.4f}  "
-                f"orthogonality={avg_cov:.4f}  "
-                f"{consist_str}"
-                f"lr={current_lr:.2e}  "
-                f"{els:.1f} el/s  "
-                f"{total_elements} samples  "
-                f"{dt:.1f}s"
-            )
-
-        if avg_bpd < best_bpd:
-            best_bpd = avg_bpd
-            epochs_without_improvement = 0
-        else:
-            epochs_without_improvement += 1
+        print()  # finish \r progress line
 
         scheduler.step()
 
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
         epoch_history.append((epoch, dict(latest_metrics)))
-        if checkpoint_path is not None:
-            save_checkpoint(TrainCheckpoint(
-                model_state=model.state_dict(),
-                optimizer_state=optimizer.state_dict(),
-                scaler_state=scaler.state_dict(),
-                scheduler_state=scheduler.state_dict(),
-                epoch=epoch,
-                best_bpd=best_bpd,
-                epochs_without_improvement=epochs_without_improvement,
-                latest_metrics=latest_metrics,
-                epoch_history=epoch_history,
-            ), checkpoint_path)
+        save_checkpoint(TrainCheckpoint(
+            model_state=model.state_dict(),
+            optimizer_state=optimizer.state_dict(),
+            scaler_state=scaler.state_dict(),
+            scheduler_state=scheduler.state_dict(),
+            epoch=epoch,
+            latest_metrics=latest_metrics,
+            epoch_history=epoch_history,
+        ), checkpoint_path)
 
-        if on_epoch_end is not None:
-            on_epoch_end(epoch, latest_metrics)
-
-        if config.patience is not None and epochs_without_improvement >= config.patience:
-            if config.verbose:
-                print(
-                    f"Early stopping: no BPD improvement for "
-                    f"{config.patience} epochs (best={best_bpd:.4f})"
-                )
-            break
+        on_epoch_end(epoch, latest_metrics)
 
     final_checkpoint = TrainCheckpoint(
         model_state=model.state_dict(),
@@ -859,8 +808,6 @@ def train(
         scaler_state=scaler.state_dict(),
         scheduler_state=scheduler.state_dict(),
         epoch=epoch,
-        best_bpd=best_bpd,
-        epochs_without_improvement=epochs_without_improvement,
         latest_metrics=latest_metrics,
         epoch_history=epoch_history,
     )
@@ -874,10 +821,3 @@ def train(
         final_checkpoint,
     )
 
-
-def main() -> None:
-    train()[0]  # discard checkpoint in standalone mode
-
-
-if __name__ == "__main__":
-    main()
