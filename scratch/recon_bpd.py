@@ -870,10 +870,11 @@ def train(
         }
 
         for label in bin_labels:
+            mlflow_label = label.replace("+", "_plus")
             n = max(1, kc_prob_count_by_bin[label])
-            latest_metrics[f"s1_{label}"] = s1_count_by_bin[label] / n
-            latest_metrics[f"s0_{label}"] = s0_count_by_bin[label] / n
-            latest_metrics[f"fuzzy_{label}"] = fuzzy_count_by_bin[label] / n
+            latest_metrics[f"s1_{mlflow_label}"] = s1_count_by_bin[label] / n
+            latest_metrics[f"s0_{mlflow_label}"] = s0_count_by_bin[label] / n
+            latest_metrics[f"fuzzy_{mlflow_label}"] = fuzzy_count_by_bin[label] / n
 
         latest_metrics.update({
             "raw_consistency": avg_raw_consist,
