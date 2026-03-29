@@ -572,16 +572,18 @@ def train(
         logit_count = 0
 
         for batch in loader:
-            surface_ids = batch.feature_inputs["input_ids_surface"].to(
-                device, non_blocking=IS_CUDA
-            )
+            ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
+            recon_targets = ids
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
-            B, T = attention_mask.shape
 
-            # Snapshot targets before masking
-            recon_targets = surface_ids.clone()
+            if config.consistency_weight > 0:
+                # Instantly double the batch dimension so the rest of the loop vectorize-processes 
+                # exactly two distinct masked variations of each sentence concurrently.
+                recon_targets = torch.cat([recon_targets, recon_targets], dim=0)
+                attention_mask = torch.cat([attention_mask, attention_mask], dim=0)
 
-            # BERT-style input corruption (encoder input only)
+            B = recon_targets.size(0)
+            T = attention_mask.shape[1]
             maskable = attention_mask.bool() if config.input_mask_ratio > 0 else None
 
             def _apply_mask(ids: torch.Tensor) -> torch.Tensor:
@@ -604,16 +606,14 @@ def train(
                 # ── Dual-mask consistency regularization ──────────────
                 consistency_loss = torch.tensor(0.0, device=device)
                 if config.consistency_weight > 0:
-                    surface_ids_2 = _apply_mask(recon_targets)
-                    pooled_2 = model.encode(surface_ids_2, attention_mask)
-                    kc_logits_raw_2, _ = model.kc_head.forward_with_raw(pooled_2)
+                    half = B // 2
                     cos = F.cosine_similarity(
-                        kc_logits_raw,
-                        kc_logits_raw_2,
+                        kc_logits_raw[:half],
+                        kc_logits_raw[half:],
                         dim=-1,
                     )
                     consistency_loss = (1.0 - cos).mean()
-                    epoch_cossim_pair_sum += cos.detach().mean().item() * B
+                    epoch_cossim_pair_sum += cos.detach().mean().item() * half
                     raw_consistency_sum += consistency_loss.detach().item()
 
                 # Gumbel noise + gradient capping
