@@ -96,7 +96,7 @@ class TrainConfig:
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024
     recon_pos_embed_dim: int = 64  # Original recon_pos_embed_dim: 64
     recon_hidden_dim: int = 256  # Original recon_hidden_dim: 256
-    semantic_gating_threshold: float = 0.85  # >0 filters CE; 0=disabled
+    semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
 
 
 @dataclass
@@ -592,6 +592,15 @@ def train(
         total_semantic_loss_sum = 0.0
         total_semantic_tokens = 0
         total_semantic_skipped = 0
+        
+        # Dynamic Semantic Thresholding (1.0 -> 0.85 over 15 effective epochs)
+        # Scales cleanly by sample_ratio to match LR warmup geometry.
+        base_threshold = config.semantic_gating_threshold
+        if 0.0 < base_threshold < 1.0:
+            eff_epochs = epoch * config.sample_ratio
+            current_threshold = max(base_threshold, 1.0 - 0.01 * eff_epochs)
+        else:
+            current_threshold = base_threshold
 
         for batch in loader:
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
@@ -712,7 +721,7 @@ def train(
                 valid_mask = attention_mask.bool()
                 ce_targets[~valid_mask] = -100
                 
-                threshold = config.semantic_gating_threshold
+                threshold = current_threshold
                 if threshold > 0.0:
                     # 1. Project hidden to 300D and normalize
                     with AUTOCAST():
@@ -831,7 +840,7 @@ def train(
                 bpd_tokens_by_bin[label] += length
 
             # ── Regularizers ─────────────────────────────────────────
-            loss = bpd + semantic_distillation_loss * 5.0
+            loss = bpd + semantic_distillation_loss * 1.0
             kl_contrib = 0.0
             cov_contrib = 0.0
             consist_contrib = 0.0
@@ -970,6 +979,7 @@ def train(
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
             "lr": current_lr,
+            "semantic_threshold": current_threshold,
             "el_per_sec": els,
             "samples": total_elements,
             "epoch_secs": dt,
