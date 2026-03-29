@@ -588,6 +588,10 @@ def train(
         logit_sq_sum = 0.0
         logit_sum = 0.0
         logit_count = 0
+        
+        total_semantic_loss_sum = 0.0
+        total_semantic_tokens = 0
+        total_semantic_skipped = 0
 
         for batch in loader:
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
@@ -721,11 +725,18 @@ def train(
                     # 3. Calculate similarities
                     cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
                     
+                    num_valid_tokens = int(valid_mask.sum().item())
+                    total_semantic_tokens += num_valid_tokens
+                    
                     # 4. Auxiliary semantic loss for active tokens
-                    semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / valid_mask.sum().clamp_min(1)
+                    semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / max(1, num_valid_tokens)
+                    total_semantic_loss_sum += float(semantic_distillation_loss.item()) * num_valid_tokens
                     
                     # 5. Mask out tokens that satisfy semantic gating OR are padded
                     is_hard = (cos_sim < threshold) & valid_mask
+                    
+                    num_hard = int(is_hard.sum().item())
+                    total_semantic_skipped += (num_valid_tokens - num_hard)
                     
                     flat_h = h_recon.reshape(-1, h_recon.size(-1))
                     flat_tgt = ce_targets.reshape(-1)
@@ -944,6 +955,10 @@ def train(
             t = max(1.0, bpd_tokens_by_bin[label])
             latest_metrics[f"bpd_{mlflow_label}"] = bpd_bits_by_bin[label] / t
 
+        if total_semantic_tokens > 0:
+            latest_metrics["semantic_distillation_loss"] = total_semantic_loss_sum / total_semantic_tokens
+            latest_metrics["semantic_skip_ratio"] = total_semantic_skipped / total_semantic_tokens
+            
         latest_metrics.update({
             "raw_consistency": avg_raw_consist,
             "mean_abs_logit": mean_abs_logit,
