@@ -220,10 +220,22 @@ def objective(
     # Checkpoint keyed by config hash — resume if same params seen before.
     config_hash = _config_hash(config)
     run_name = config_hash[:8]
+    PARAM_ABBREV = {
+        "consistency_weight": "cw",
+        "input_mask_ratio": "mask",
+        "kl_sparse_weight": "kl",
+        "kl_target_rho": "rho",
+        "cov_penalty_weight": "cov",
+        "lr": "lr",
+        "num_layers": "L",
+        "temperature": "temp",
+        "weight_decay": "wd",
+    }
+
     params_to_show = adhoc_overrides or trial.params
     if params_to_show:
         parts = " ".join(
-            f"{k}={v:g}" if isinstance(v, float) else f"{k}={v}"
+            f"{PARAM_ABBREV.get(k, k)}={v:g}" if isinstance(v, float) else f"{PARAM_ABBREV.get(k, k)}={v}"
             for k, v in sorted(params_to_show.items())
         )
         run_name = f"{parts} {run_name}"
