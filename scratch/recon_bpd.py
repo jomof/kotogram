@@ -566,6 +566,19 @@ def train(
         s0_count = 0
         fuzzy_count = 0
         kc_prob_count = 0
+
+        def _get_bin_label(length: int) -> str:
+            if length <= 3: return "1-3"
+            if length <= 7: return "4-7"
+            if length <= 15: return "8-15"
+            if length <= 31: return "16-31"
+            return "32+"
+
+        bin_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
+        s1_count_by_bin = {k: 0 for k in bin_labels}
+        s0_count_by_bin = {k: 0 for k in bin_labels}
+        fuzzy_count_by_bin = {k: 0 for k in bin_labels}
+        kc_prob_count_by_bin = {k: 0 for k in bin_labels}
         raw_consistency_sum = 0.0
         logit_abs_sum = 0.0
         logit_sq_sum = 0.0
@@ -641,10 +654,28 @@ def train(
 
                 # s0/fuzzy/s1 sharpness (matches kc_trainer_view thresholds)
                 _det = kc_probs.detach()
-                s1_count += int((_det > 0.9).sum().item())
-                s0_count += int((_det < 0.1).sum().item())
-                fuzzy_count += int(((_det >= 0.2) & (_det <= 0.8)).sum().item())
+                s1_mask = _det > 0.9
+                s0_mask = _det < 0.1
+                fuzzy_mask = (_det >= 0.2) & (_det <= 0.8)
+
+                s1_count += int(s1_mask.sum().item())
+                s0_count += int(s0_mask.sum().item())
+                fuzzy_count += int(fuzzy_mask.sum().item())
                 kc_prob_count += _det.numel()
+
+                # Binned accumulation by sequence length
+                s1_per_row = s1_mask.sum(dim=1).cpu().tolist()
+                s0_per_row = s0_mask.sum(dim=1).cpu().tolist()
+                fuzzy_per_row = fuzzy_mask.sum(dim=1).cpu().tolist()
+                lengths = attention_mask.sum(dim=1).cpu().tolist()
+                V = _det.size(1)
+
+                for i, length in enumerate(lengths):
+                    label = _get_bin_label(length)
+                    s1_count_by_bin[label] += s1_per_row[i]
+                    s0_count_by_bin[label] += s0_per_row[i]
+                    fuzzy_count_by_bin[label] += fuzzy_per_row[i]
+                    kc_prob_count_by_bin[label] += V
 
                 # KC logit magnitude stats
                 _logits_det = kc_logits_raw.detach()
@@ -836,6 +867,15 @@ def train(
             "s1": s1_pct,
             "s0": s0_pct,
             "fuzzy": fuzzy_pct,
+        }
+
+        for label in bin_labels:
+            n = max(1, kc_prob_count_by_bin[label])
+            latest_metrics[f"s1_{label}"] = s1_count_by_bin[label] / n
+            latest_metrics[f"s0_{label}"] = s0_count_by_bin[label] / n
+            latest_metrics[f"fuzzy_{label}"] = fuzzy_count_by_bin[label] / n
+
+        latest_metrics.update({
             "raw_consistency": avg_raw_consist,
             "mean_abs_logit": mean_abs_logit,
             "logit_std": logit_std,
@@ -852,7 +892,7 @@ def train(
             "tokens_trained": epoch_num_units,
             "cumulative_tokens_trained": cumulative_tokens_trained,
             "elapsed_ms": cumulative_elapsed_ms,
-        }
+        })
 
         print()  # finish \r progress line
 
