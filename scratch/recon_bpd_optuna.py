@@ -222,21 +222,11 @@ def objective(
     run_name = config_hash[:8]
     params_to_show = adhoc_overrides or trial.params
     if params_to_show:
-        from scratch.recon_bpd import TrainConfig
-        default_cfg = TrainConfig()
-        
-        filtered_params = {}
-        for k, v in params_to_show.items():
-            if hasattr(default_cfg, k) and getattr(default_cfg, k) == v:
-                continue
-            filtered_params[k] = v
-
         parts = " ".join(
             f"{k}={v:g}" if isinstance(v, float) else f"{k}={v}"
-            for k, v in sorted(filtered_params.items())
+            for k, v in sorted(params_to_show.items())
         )
-        if parts:
-            run_name = f"{parts} {run_name}"
+        run_name = f"{parts} {run_name}"
     if adhoc_name:
         run_name = f"[{adhoc_name}] {run_name}"
     checkpoint_path = ""
