@@ -96,6 +96,7 @@ class TrainConfig:
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024
     recon_pos_embed_dim: int = 64  # Original recon_pos_embed_dim: 64
     recon_hidden_dim: int = 256  # Original recon_hidden_dim: 256
+    semantic_gating_threshold: float = 0.85  # >0 filters CE; 0=disabled
 
 
 @dataclass
@@ -271,6 +272,7 @@ class ReconDecoder(nn.Module):
         self.hidden1 = nn.Linear(kc_vocab_size + pos_embed_dim, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.output_head = nn.Linear(hidden_dim, surface_vocab_size, bias=False)
+        self.semantic_head = nn.Linear(hidden_dim, 300, bias=False)  # 300D Chive early-exit projection
         self.act = nn.ReLU()
 
     def forward_hidden(
@@ -521,7 +523,7 @@ def train(
     # ── Restore from checkpoint if provided ──────────────────────────
     start_epoch = 0
     if checkpoint is not None:
-        model.load_state_dict(checkpoint.model_state)
+        model.load_state_dict(checkpoint.model_state, strict=False)
         optimizer.load_state_dict(checkpoint.optimizer_state)
         scaler.load_state_dict(checkpoint.scaler_state)
         scheduler.load_state_dict(checkpoint.scheduler_state)
@@ -697,19 +699,59 @@ def train(
             out_weight = model.recon.output_head.weight
 
             nats_per_row = torch.zeros(B, device=device)
+            semantic_distillation_loss = torch.tensor(0.0, device=device)
+            
             if USE_FUSED_CE:
                 # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
                 ce_targets = recon_targets.clone()
-                ce_targets[~attention_mask.bool()] = -100
-                nll_per_token = _cce_linear_ce(
-                    h_recon,
-                    out_weight,
-                    ce_targets,
-                    reduction="none",
-                )
-                total_nll_nats = nll_per_token.sum()
-                nats_per_row = nll_per_token.reshape(B, -1).sum(dim=1)
+                valid_mask = attention_mask.bool()
+                ce_targets[~valid_mask] = -100
+                
+                threshold = config.semantic_gating_threshold
+                if threshold > 0.0:
+                    # 1. Project hidden to 300D and normalize
+                    pred_emb = model.recon.semantic_head(h_recon)
+                    pred_emb = F.normalize(pred_emb, p=2, dim=-1)
+                    
+                    # 2. Get true 300D targets
+                    tgt_emb = chive_normed[ce_targets.clamp(min=0)]
+                    
+                    # 3. Calculate similarities
+                    cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
+                    
+                    # 4. Auxiliary semantic loss for active tokens
+                    semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / valid_mask.sum().clamp_min(1)
+                    
+                    # 5. Mask out tokens that satisfy semantic gating OR are padded
+                    is_hard = (cos_sim < threshold) & valid_mask
+                    
+                    flat_h = h_recon.reshape(-1, h_recon.size(-1))
+                    flat_tgt = ce_targets.reshape(-1)
+                    flat_hard = is_hard.reshape(-1)
+                    
+                    h_hard = flat_h[flat_hard]
+                    tgt_hard = flat_tgt[flat_hard]
+                    
+                    if h_hard.size(0) > 0:
+                        nll_hard = _cce_linear_ce(h_hard, out_weight, tgt_hard, reduction="none")
+                        total_nll_nats = nll_hard.sum()
+                        
+                        # Retain row-level metric alignment manually
+                        b_indices = torch.arange(B, device=device).unsqueeze(1).expand(-1, T).reshape(-1)
+                        nats_per_row.scatter_add_(0, b_indices[flat_hard], nll_hard)
+                    else:
+                        total_nll_nats = torch.tensor(0.0, device=device)
+                        
+                else:    
+                    nll_per_token = _cce_linear_ce(
+                        h_recon,
+                        out_weight,
+                        ce_targets,
+                        reduction="none",
+                    )
+                    total_nll_nats = nll_per_token.sum()
+                    nats_per_row = nll_per_token.reshape(B, -1).sum(dim=1)
 
                 # Top-1 + cosine sim every 100 batches (forward pass is expensive)
                 if n_batches % 100 == 0:
@@ -777,7 +819,7 @@ def train(
                 bpd_tokens_by_bin[label] += length
 
             # ── Regularizers ─────────────────────────────────────────
-            loss = bpd
+            loss = bpd + semantic_distillation_loss * 5.0
             kl_contrib = 0.0
             cov_contrib = 0.0
             consist_contrib = 0.0
