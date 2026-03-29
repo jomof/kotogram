@@ -118,27 +118,26 @@ def suggest_config(
 
 # Discrete search space shifted based on winning trial
 _SWEEP_SEARCH_SPACE: dict = {
-    "lr": [3e-4],                            # Locked to 6-layer safe ceiling
-    "temperature": [0.45, 0.6, 0.75],        # Centered on 0.6
-    "weight_decay": [0.001, 0.003, 0.01],    # Centered on 0.003
-    "kl_sparse_weight": [0.0, 0.0001, 0.001], # Baseline is 0.0001
+    "lr": [3e-4],                                 
+    "temperature": [1.2],             
+    "weight_decay": [0.01],         
+    "kl_sparse_weight": [0.00008, 0.00009, 0.0001, 0.0011, 0.0012],
     "consistency_weight": [0.0],
     "num_layers": [2],
+}
+
+# Default overrides for --adhoc runs.
+ADHOC_OVERRIDES: dict = {
+    "lr": 3e-4,
+    "temperature": 1.2,
+    "weight_decay": 0.01,
+    "consistency_weight": 0.0,
+    "num_layers": 6,
 }
 
 _SWEEP_SPACE_HASH = hashlib.sha256(
     json.dumps(_SWEEP_SEARCH_SPACE, sort_keys=True).encode(),
 ).hexdigest()[:6]
-
-
-# Default overrides for --adhoc runs.
-ADHOC_OVERRIDES: dict = {
-    "lr": 3e-4,
-    "temperature": 0.6,
-    "weight_decay": 0.03,
-    "consistency_weight": 0.0,
-    "num_layers": 6,
-}
 
 _SCRIPT_HASH = hashlib.sha256(
     open(os.path.join(os.path.dirname(__file__), "recon_bpd.py"), "rb").read(),

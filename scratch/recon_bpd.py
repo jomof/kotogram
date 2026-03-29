@@ -496,17 +496,21 @@ def train(
     optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
-    # LR schedule: linear warmup + cosine decay. Bound definitions to dataset size
-    # so schedule shape remains invariant across different sample ratios.
+    # LR schedule: smooth token-based linear warmup + cosine decay.
+    # Bound definitions to absolute batch quantities so schedule shape remains
+    # invariant across different sample ratios and creates a smooth curve inside long epochs.
     effective_ratio = config.sample_ratio
     warmup_epochs = max(1, round(5 / effective_ratio))
     total_lr_epochs = round(100 / effective_ratio)
     min_lr_ratio = 0.01  # decay to 1% of peak LR
 
-    def _lr_lambda(epoch: int) -> float:
-        if epoch < warmup_epochs:
-            return (epoch + 1) / warmup_epochs
-        progress = (epoch - warmup_epochs) / max(1, total_lr_epochs - warmup_epochs)
+    warmup_batches = warmup_epochs * n_total_batches
+    total_lr_batches = total_lr_epochs * n_total_batches
+
+    def _lr_lambda(current_batch: int) -> float:
+        if current_batch < warmup_batches:
+            return (current_batch + 1) / max(1, warmup_batches)
+        progress = (current_batch - warmup_batches) / max(1, total_lr_batches - warmup_batches)
         progress = min(progress, 1.0)
         return min_lr_ratio + 0.5 * (1.0 - min_lr_ratio) * (
             1.0 + math.cos(math.pi * progress)
@@ -762,6 +766,9 @@ def train(
             scaler.step(optimizer)
             scaler.update()
 
+            # Step the smooth per-batch scheduler
+            scheduler.step()
+
             # ── Epoch stats ──────────────────────────────────────────
             batch_units = int(num_units.item())
             total_loss_sum += loss.item()
@@ -843,8 +850,6 @@ def train(
         }
 
         print()  # finish \r progress line
-
-        scheduler.step()
 
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
