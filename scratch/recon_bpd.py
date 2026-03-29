@@ -452,7 +452,19 @@ def train(
     )
     # Load chiVe pretrained surface embeddings and freeze
     if GLOBAL_SETUP_CACHE.chive_weights is None:
-        GLOBAL_SETUP_CACHE.chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
+        cw = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
+        
+        # Missing chiVe words are all zeros. Randomize them so OOV words aren't squashed together.
+        norms = cw.norm(dim=-1)
+        missing_mask = (norms == 0.0)
+        missing_mask[0] = False  # Keep index 0 [PAD] strictly at zero
+        
+        if missing_mask.any():
+            # Match the variance of the known chiVe vectors
+            std = cw[~missing_mask].std().item() if (~missing_mask).any() else 0.1
+            cw[missing_mask] = torch.randn_like(cw[missing_mask]) * std
+            
+        GLOBAL_SETUP_CACHE.chive_weights = cw
     chive_weights = GLOBAL_SETUP_CACHE.chive_weights
 
     if GLOBAL_SETUP_CACHE.cached_model_cfg == cfg and GLOBAL_SETUP_CACHE.cached_model is not None:
