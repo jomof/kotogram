@@ -711,8 +711,9 @@ def train(
                 threshold = config.semantic_gating_threshold
                 if threshold > 0.0:
                     # 1. Project hidden to 300D and normalize
-                    pred_emb = model.recon.semantic_head(h_recon)
-                    pred_emb = F.normalize(pred_emb, p=2, dim=-1)
+                    with AUTOCAST():
+                        pred_emb = model.recon.semantic_head(h_recon)
+                    pred_emb = F.normalize(pred_emb.float(), p=2, dim=-1)
                     
                     # 2. Get true 300D targets
                     tgt_emb = chive_normed[ce_targets.clamp(min=0)]
