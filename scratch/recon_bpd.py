@@ -74,8 +74,8 @@ class TrainConfig:
     batch_size: int = 256
     epochs: int = 1000
     sample_ratio: float = 1.0
-    lr: float = 1e-4  # Original lr: 1e-4
-    temperature: float = 1.8  # Original temperature: 1.8
+    lr: float = 3e-4  # Original lr: 1e-4
+    temperature: float = 1.2  # Original temperature: 1.8
     weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
@@ -90,7 +90,7 @@ class TrainConfig:
     # Model architecture
     d_model: int = 512  # Original d_model: 512
     ffn_dim: int = 2048  # Original ffn_dim: 2048
-    num_layers: int = 6  # Original num_layers: 4
+    num_layers: int = 2  # Original num_layers: 4
     num_heads: int = 16  # Original num_heads: 16
     dropout: float = 0.1  # Original dropout: 0.1
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024

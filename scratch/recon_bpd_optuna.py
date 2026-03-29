@@ -37,35 +37,14 @@ def suggest_config(
 ) -> TrainConfig:
     """Build a TrainConfig from Optuna trial suggestions."""
     if sweep:
-        return TrainConfig(
+        config = TrainConfig(
             epochs=epochs,
             sample_ratio=sample_ratio,
             seed=42,
-            lr=trial.suggest_categorical(
-                "lr",
-                _SWEEP_SEARCH_SPACE["lr"],
-            ),
-            temperature=trial.suggest_categorical(
-                "temperature",
-                _SWEEP_SEARCH_SPACE["temperature"],
-            ),
-            weight_decay=trial.suggest_categorical(
-                "weight_decay",
-                _SWEEP_SEARCH_SPACE["weight_decay"],
-            ),
-            kl_sparse_weight=trial.suggest_categorical(
-                "kl_sparse_weight",
-                _SWEEP_SEARCH_SPACE["kl_sparse_weight"],
-            ),
-            consistency_weight=trial.suggest_categorical(
-                "consistency_weight",
-                _SWEEP_SEARCH_SPACE["consistency_weight"],
-            ),
-            num_layers=trial.suggest_categorical(
-                "num_layers",
-                _SWEEP_SEARCH_SPACE["num_layers"],
-            ),
         )
+        for key, values in _SWEEP_SEARCH_SPACE.items():
+            setattr(config, key, trial.suggest_categorical(key, values))
+        return config
 
     d_model = trial.suggest_categorical("d_model", [256, 512])
     return TrainConfig(
@@ -116,29 +95,21 @@ def suggest_config(
     )
 
 
-# Discrete search space shifted based on winning trial
+# Pareto frontier parameter space configuration
 _SWEEP_SEARCH_SPACE: dict = {
-    "lr": [3e-4],                                 
-    "temperature": [1.2],             
-    "weight_decay": [0.01],         
-    "kl_sparse_weight": [0.0001],
-    "consistency_weight": [0.0, 0.00009, 0.0001, 0.00011],
-    "num_layers": [2],
+    "kl_target_rho": [0.01, 0.03, 0.06],
+    "kc_vocab_size": [512, 1024],
 }
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
-    "lr": 3e-4,
-    "temperature": 1.2,
-    "weight_decay": 0.01,
-    "consistency_weight": 0.0001,
-    "num_layers": 6,
+    "kl_target_rho": 0.03,
+    "kc_vocab_size": 1024,
 }
 
 _SWEEP_SPACE_HASH = hashlib.sha256(
     json.dumps(_SWEEP_SEARCH_SPACE, sort_keys=True).encode(),
 ).hexdigest()[:6]
-
 _SCRIPT_HASH = hashlib.sha256(
     open(os.path.join(os.path.dirname(__file__), "recon_bpd.py"), "rb").read(),
 ).hexdigest()[:12]
