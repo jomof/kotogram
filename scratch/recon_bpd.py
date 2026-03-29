@@ -579,6 +579,8 @@ def train(
         s0_count_by_bin = {k: 0 for k in bin_labels}
         fuzzy_count_by_bin = {k: 0 for k in bin_labels}
         kc_prob_count_by_bin = {k: 0 for k in bin_labels}
+        bpd_bits_by_bin = {k: 0.0 for k in bin_labels}
+        bpd_tokens_by_bin = {k: 0.0 for k in bin_labels}
         raw_consistency_sum = 0.0
         logit_abs_sum = 0.0
         logit_sq_sum = 0.0
@@ -694,6 +696,7 @@ def train(
 
             out_weight = model.recon.output_head.weight
 
+            nats_per_row = torch.zeros(B, device=device)
             if USE_FUSED_CE:
                 # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
@@ -706,6 +709,7 @@ def train(
                     reduction="none",
                 )
                 total_nll_nats = nll_per_token.sum()
+                nats_per_row = nll_per_token.reshape(B, -1).sum(dim=1)
 
                 # Top-1 + cosine sim every 100 batches (forward pass is expensive)
                 if n_batches % 100 == 0:
@@ -745,7 +749,9 @@ def train(
                         chunk_targets.reshape(-1),
                         reduction="none",
                     ).reshape(B, -1)
-                    total_nll_nats = total_nll_nats + (chunk_nll * chunk_mask).sum()
+                    masked_chunk_nll = chunk_nll * chunk_mask
+                    total_nll_nats = total_nll_nats + masked_chunk_nll.sum()
+                    nats_per_row += masked_chunk_nll.sum(dim=1)
                     with torch.no_grad():
                         preds = chunk_logits.argmax(dim=-1)
                         valid = chunk_mask.bool()
@@ -762,6 +768,13 @@ def train(
             total_bits = total_nll_nats / LOG2
             num_units = mask_f.sum().clamp_min(1)
             bpd = total_bits / num_units
+            
+            bits_per_row = (nats_per_row / LOG2).cpu().tolist()
+            row_lengths = mask_f.sum(dim=1).cpu().tolist()
+            for i, length in enumerate(row_lengths):
+                label = _get_bin_label(length)
+                bpd_bits_by_bin[label] += bits_per_row[i]
+                bpd_tokens_by_bin[label] += length
 
             # ── Regularizers ─────────────────────────────────────────
             loss = bpd
@@ -775,7 +788,16 @@ def train(
                 consist_contrib = consist_scaled.item()
 
             if config.kl_sparse_weight > 0:
-                rho_hat = kc_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
+                # Length-proportional sparsity adjustment: 
+                # Short sentences are heavily penalized for turning on logits to prevent them 
+                # from monopolizing the capacity budget with "easy memorization" features.
+                # A 15-token sentence acts as the 1.0 baseline.
+                seq_lengths = attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
+                length_penalty = 15.0 / seq_lengths
+                
+                norm_probs = kc_probs * length_penalty
+                rho_hat = norm_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
+                
                 rho = config.kl_target_rho
                 kl_term = (
                     rho_hat * torch.log(rho_hat / rho)
@@ -875,6 +897,9 @@ def train(
             latest_metrics[f"s1_{mlflow_label}"] = s1_count_by_bin[label] / n
             latest_metrics[f"s0_{mlflow_label}"] = s0_count_by_bin[label] / n
             latest_metrics[f"fuzzy_{mlflow_label}"] = fuzzy_count_by_bin[label] / n
+            
+            t = max(1.0, bpd_tokens_by_bin[label])
+            latest_metrics[f"bpd_{mlflow_label}"] = bpd_bits_by_bin[label] / t
 
         latest_metrics.update({
             "raw_consistency": avg_raw_consist,
