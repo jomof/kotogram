@@ -108,11 +108,11 @@ def suggest_config(
     )
 
 
-# Discrete search space for tuning perfectly invariant hyperparameters.
+# Discrete search space shifted based on winning trial (lr=1e-3, temp=1.2, wd=0.01)
 _SWEEP_SEARCH_SPACE: dict = {
-    "lr": [5e-5, 1e-4, 3e-4, 1e-3],          # 1e-4 is baseline
-    "temperature": [1.2, 1.8, 2.4],          # 1.8 is baseline
-    "weight_decay": [0.0, 0.01, 0.05],       # 0.01 is baseline
+    "lr": [3e-4, 1e-3, 3e-3],                # Ceiling was 1e-3
+    "temperature": [0.6, 0.9, 1.2],          # Floor was 1.2
+    "weight_decay": [0.003, 0.01, 0.03],     # Best was 0.01
     "num_layers": [2],
 }
 
