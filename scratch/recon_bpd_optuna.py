@@ -111,8 +111,8 @@ def suggest_config(
 # Discrete search space shifted based on winning trial
 _SWEEP_SEARCH_SPACE: dict = {
     "lr": [3e-4],                            # Locked to 6-layer safe ceiling
-    "temperature": [0.6, 0.9, 1.2],          # Floor was 1.2
-    "weight_decay": [0.003, 0.01, 0.03],     # Best was 0.01
+    "temperature": [0.3, 0.45, 0.6],         # Floor was 0.6
+    "weight_decay": [0.03, 0.05, 0.1],       # Ceiling was 0.03
     "num_layers": [2],
 }
 
@@ -124,8 +124,8 @@ _SWEEP_SPACE_HASH = hashlib.sha256(
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
     "lr": 3e-4,
-    "temperature": 1.2,
-    "weight_decay": 0.01,
+    "temperature": 0.6,
+    "weight_decay": 0.03,
     "input_mask_ratio": 0.15,
     "consistency_weight": 0,
     "num_layers": 6,
