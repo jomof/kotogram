@@ -200,7 +200,6 @@ def objective(
     epochs: int,
     sample_ratio: float,
     use_mlflow: bool,
-    study_name: str,
     sweep: bool,
     checkpoint_dir: str,
     adhoc_overrides: Optional[dict] = None,
@@ -425,12 +424,7 @@ def main() -> None:
         default=100.0,
         help="Dataset sample percentage (default: 100.0)",
     )
-    parser.add_argument(
-        "--storage",
-        type=str,
-        default=None,
-        help="Optuna storage URL (default: sqlite:///.cache/recon_bpd/optuna.db)",
-    )
+
     parser.add_argument(
         "--seed",
         type=int,
@@ -529,13 +523,6 @@ def main() -> None:
             experiment_name=exp_name,
         )
 
-    storage = args.storage
-    if storage is None and args.adhoc is None:
-        db_dir = os.path.join(".cache", "recon_bpd")
-        os.makedirs(db_dir, exist_ok=True)
-        storage = f"sqlite:///{os.path.join(db_dir, 'optuna.db')}"
-
-    sampler = optuna.samplers.TPESampler(seed=args.seed)
     if args.pruner != "hyperband":
         pruner = optuna.pruners.PercentilePruner(
             percentile=25.0,
@@ -578,34 +565,30 @@ def main() -> None:
         print(f"Checkpoint dir: {checkpoint_dir}")
 
     epochs = args.epochs_per_trial
+    
+    study_name = f"{exp_name} ({', '.join(suffixes)})"
+    study_pruner = (
+        optuna.pruners.HyperbandPruner(
+            min_resource=1,
+            max_resource=1000,
+            reduction_factor=4,
+        )
+        if args.pruner == "hyperband"
+        else pruner
+    )
+
+    study = optuna.create_study(
+        study_name=study_name,
+        direction="minimize",
+        sampler=optuna.samplers.TPESampler(seed=args.seed),
+        pruner=study_pruner,
+    )
+
+    for params in initial_params:
+        study.enqueue_trial(params, skip_if_exists=True)
+
     progressive_round = 0
     while True:
-        # Each era gets its own study with epoch count in the name.
-        suffixes_round = list(suffixes)
-        suffixes_round.append(f"{epochs}ep")
-        study_name_round = f"{exp_name} ({', '.join(suffixes_round)})"
-
-        pruner_round = (
-            optuna.pruners.HyperbandPruner(
-                min_resource=1,
-                max_resource=epochs,
-                reduction_factor=4,
-            )
-            if args.pruner == "hyperband"
-            else pruner
-        )
-
-        study = optuna.create_study(
-            study_name=study_name_round,
-            storage=storage,
-            direction="minimize",
-            sampler=sampler,
-            pruner=pruner_round,
-            load_if_exists=True,
-        )
-
-        for params in initial_params:
-            study.enqueue_trial(params, skip_if_exists=True)
 
         if progressive_round > 0:
             print(f"\n{'=' * 60}")
@@ -635,7 +618,6 @@ def main() -> None:
                 epochs,
                 args.percent / 100.0,
                 use_mlflow,
-                study_name_round,
                 args.sweep,
                 checkpoint_dir,
                 adhoc_overrides or None,
