@@ -57,6 +57,10 @@ def suggest_config(
                 "kl_sparse_weight",
                 _SWEEP_SEARCH_SPACE["kl_sparse_weight"],
             ),
+            consistency_weight=trial.suggest_categorical(
+                "consistency_weight",
+                _SWEEP_SEARCH_SPACE["consistency_weight"],
+            ),
             num_layers=trial.suggest_categorical(
                 "num_layers",
                 _SWEEP_SEARCH_SPACE["num_layers"],
@@ -118,6 +122,7 @@ _SWEEP_SEARCH_SPACE: dict = {
     "temperature": [0.45, 0.6, 0.75],        # Centered on 0.6
     "weight_decay": [0.001, 0.003, 0.01],    # Centered on 0.003
     "kl_sparse_weight": [0.0, 0.0001, 0.001], # Baseline is 0.0001
+    "consistency_weight": [0.0],
     "num_layers": [2],
 }
 
@@ -131,6 +136,7 @@ ADHOC_OVERRIDES: dict = {
     "lr": 3e-4,
     "temperature": 0.6,
     "weight_decay": 0.03,
+    "consistency_weight": 0.0,
     "num_layers": 6,
 }
 
