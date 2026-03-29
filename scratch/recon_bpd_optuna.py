@@ -121,7 +121,7 @@ _SWEEP_SEARCH_SPACE: dict = {
     "lr": [3e-4],                                 
     "temperature": [1.2],             
     "weight_decay": [0.01],         
-    "kl_sparse_weight": [0.00008, 0.00009, 0.0001, 0.0011, 0.0012],
+    "kl_sparse_weight": [0.00008, 0.00009, 0.0001, 0.00011, 0.00012, 0.0011, 0.0012],
     "consistency_weight": [0.0],
     "num_layers": [2],
 }
