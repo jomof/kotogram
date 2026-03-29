@@ -131,7 +131,7 @@ ADHOC_OVERRIDES: dict = {
     "lr": 3e-4,
     "temperature": 1.2,
     "weight_decay": 0.01,
-    "consistency_weight": 0.0,
+    "consistency_weight": 0.0001,
     "num_layers": 6,
 }
 
