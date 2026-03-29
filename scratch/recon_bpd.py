@@ -907,11 +907,13 @@ def train(
             t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
             t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
             avg_cos = epoch_cossim_sum / max(1, t1_denom)
+            skip_pct = 100.0 * total_semantic_skipped / max(1, total_semantic_tokens)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
                 f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
                 f"To-1={t1_pct:.1f}%  "
                 f"cos={avg_cos:.3f}  "
+                f"skip={skip_pct:.1f}%  "
                 f"{total_elements / dt_batch:.1f} el/s  "
                 f"{dt_batch:.1f}s",
                 end="",
