@@ -357,6 +357,17 @@ class BpdModel(nn.Module):
 # Training loop
 # ═════════════════════════════════════════════════════════════════════
 
+class _SetupCache:
+    def __init__(self):
+        self.dataset_subsets: Dict[float, object] = {}
+        self.tokenizer: Optional[Tokenizer] = None
+        self.chive_weights: Optional[torch.Tensor] = None
+        self.chive_normed: Optional[torch.Tensor] = None
+        self.cached_model: Optional[BpdModel] = None
+        self.cached_model_cfg: Optional[BpdModelConfig] = None
+
+GLOBAL_SETUP_CACHE = _SetupCache()
+
 
 def train(
     config: TrainConfig,
@@ -396,17 +407,22 @@ def train(
         torch.backends.cudnn.benchmark = True
 
     # ── Data loading ─────────────────────────────────────────────────
-    output_dir = locations.get_style_output_dir()
-    tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
+    global GLOBAL_SETUP_CACHE
+    if GLOBAL_SETUP_CACHE.tokenizer is None:
+        output_dir = locations.get_style_output_dir()
+        GLOBAL_SETUP_CACHE.tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
+    tokenizer = GLOBAL_SETUP_CACHE.tokenizer
 
-    cache_dir = train_paths.get_style_dataset_cache_dir()
-    dataset = StyleDataset(
-        cache_dir,
-        tokenizer,
-        sample_ratio=sample_ratio,
-    )
-    gram_ds = dataset.filter_by_grammaticality(label=1)
-    print(f"Gram sentences: {len(gram_ds)}")
+    if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
+        cache_dir = train_paths.get_style_dataset_cache_dir()
+        dataset = StyleDataset(
+            cache_dir,
+            tokenizer,
+            sample_ratio=sample_ratio,
+        )
+        GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = dataset.filter_by_grammaticality(label=1)
+        print(f"Gram sentences: {len(GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio])}")
+    gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
@@ -434,20 +450,31 @@ def train(
         recon_pos_embed_dim=config.recon_pos_embed_dim,
         recon_hidden_dim=config.recon_hidden_dim,
     )
-    model = BpdModel(cfg)
-
     # Load chiVe pretrained surface embeddings and freeze
-    chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
-    with torch.no_grad():
-        n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
-        model.surface_embed.weight[:n] = chive_weights[:n]
-        model.surface_embed.weight[0].zero_()  # keep padding at zero
-    model.surface_embed.weight.requires_grad = False
+    if GLOBAL_SETUP_CACHE.chive_weights is None:
+        GLOBAL_SETUP_CACHE.chive_weights = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
+    chive_weights = GLOBAL_SETUP_CACHE.chive_weights
+
+    if GLOBAL_SETUP_CACHE.cached_model_cfg == cfg and GLOBAL_SETUP_CACHE.cached_model is not None:
+        import copy
+        model = copy.deepcopy(GLOBAL_SETUP_CACHE.cached_model)
+    else:
+        model = BpdModel(cfg)
+        with torch.no_grad():
+            n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
+            model.surface_embed.weight[:n] = chive_weights[:n]
+            model.surface_embed.weight[0].zero_()  # keep padding at zero
+        model.surface_embed.weight.requires_grad = False
+        import copy
+        GLOBAL_SETUP_CACHE.cached_model_cfg = cfg
+        GLOBAL_SETUP_CACHE.cached_model = copy.deepcopy(model)
 
     # L2-normalized chiVe embeddings for cosine-similarity Top-1 metric.
     # Tokens without chiVe vectors (zero rows) get zero norm → excluded.
-    chive_normed = F.normalize(chive_weights[:surface_vocab], dim=-1)
-    chive_normed = chive_normed.to(device)
+    if GLOBAL_SETUP_CACHE.chive_normed is None:
+        chive_normed = F.normalize(chive_weights[:surface_vocab], dim=-1)
+        GLOBAL_SETUP_CACHE.chive_normed = chive_normed.to(device)
+    chive_normed = GLOBAL_SETUP_CACHE.chive_normed
 
     model.to(device)
     if IS_CUDA:
