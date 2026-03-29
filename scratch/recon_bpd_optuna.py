@@ -123,6 +123,9 @@ _SWEEP_SPACE_HASH = hashlib.sha256(
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
+    "lr": 1e-3,
+    "temperature": 1.2,
+    "weight_decay": 0.01,
     "input_mask_ratio": 0.15,
     "consistency_weight": 0,
     "num_layers": 6,
