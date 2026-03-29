@@ -53,6 +53,10 @@ def suggest_config(
                 "weight_decay",
                 _SWEEP_SEARCH_SPACE["weight_decay"],
             ),
+            kl_sparse_weight=trial.suggest_categorical(
+                "kl_sparse_weight",
+                _SWEEP_SEARCH_SPACE["kl_sparse_weight"],
+            ),
             num_layers=trial.suggest_categorical(
                 "num_layers",
                 _SWEEP_SEARCH_SPACE["num_layers"],
@@ -111,8 +115,9 @@ def suggest_config(
 # Discrete search space shifted based on winning trial
 _SWEEP_SEARCH_SPACE: dict = {
     "lr": [3e-4],                            # Locked to 6-layer safe ceiling
-    "temperature": [0.3, 0.45, 0.6],         # Floor was 0.6
-    "weight_decay": [0.03, 0.05, 0.1],       # Ceiling was 0.03
+    "temperature": [0.45, 0.6, 0.75],        # Centered on 0.6
+    "weight_decay": [0.001, 0.003, 0.01],    # Centered on 0.003
+    "kl_sparse_weight": [0.0, 0.0001, 0.001], # Baseline is 0.0001
     "num_layers": [2],
 }
 
