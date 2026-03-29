@@ -576,6 +576,8 @@ def train(
             recon_targets = ids
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
+            B_actual = ids.size(0)
+
             if config.consistency_weight > 0:
                 # Instantly double the batch dimension so the rest of the loop vectorize-processes 
                 # exactly two distinct masked variations of each sentence concurrently.
@@ -600,7 +602,7 @@ def train(
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
-                epoch_pooled_std_sum += float(pooled.std(dim=-1).mean().item()) * B
+                epoch_pooled_std_sum += float(pooled.std(dim=-1).mean().item()) * B_actual
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
 
                 # ── Dual-mask consistency regularization ──────────────
@@ -634,7 +636,7 @@ def train(
                 # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
                 _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
                 _h = -_p * torch.log2(_p) - (1 - _p) * torch.log2(1 - _p)
-                epoch_sharpness_sum += (1.0 - _h.mean().item()) * B
+                epoch_sharpness_sum += (1.0 - _h.mean().item()) * B_actual
 
                 # s0/fuzzy/s1 sharpness (matches kc_trainer_view thresholds)
                 _det = kc_probs.detach()
@@ -777,7 +779,7 @@ def train(
             total_kl_sum += kl_contrib
             total_cov_sum += cov_contrib
             total_consistency_sum += consist_contrib
-            total_elements += B
+            total_elements += B_actual
             n_batches += 1
 
             del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss
