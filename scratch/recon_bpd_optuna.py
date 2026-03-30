@@ -551,18 +551,18 @@ def main() -> None:
         else pruner
     )
 
-    study = optuna.create_study(
-        study_name=study_name,
-        direction="minimize",
-        sampler=optuna.samplers.TPESampler(seed=args.seed),
-        pruner=study_pruner,
-    )
-
-    for params in initial_params:
-        study.enqueue_trial(params, skip_if_exists=True)
-
     progressive_round = 0
     while True:
+
+        study = optuna.create_study(
+            study_name=study_name,
+            direction="minimize",
+            sampler=optuna.samplers.TPESampler(seed=args.seed),
+            pruner=study_pruner,
+        )
+
+        for params in initial_params:
+            study.enqueue_trial(params, skip_if_exists=True)
 
         if progressive_round > 0:
             print(f"\n{'=' * 60}")
