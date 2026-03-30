@@ -97,8 +97,8 @@ def suggest_config(
 
 # Pareto frontier parameter space configuration
 _SWEEP_SEARCH_SPACE: dict = {
-    "kl_target_rho": [0.01, 0.03, 0.06],
-    "kc_vocab_size": [512, 768, 1024],
+    "kl_target_rho": [0.01, 0.03, 0.06, 0.065],
+    "kc_vocab_size": [512, 768, 1024, 1536, 2048],
 }
 
 # Default overrides for --adhoc runs.
