@@ -103,8 +103,6 @@ _SWEEP_SEARCH_SPACE: dict = {
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
-    "kl_target_rho": 0.06,
-    "kc_vocab_size": 1024,
     "num_layers": 9,
 }
 
