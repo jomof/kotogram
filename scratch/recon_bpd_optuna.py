@@ -437,7 +437,7 @@ def main() -> None:
         "--pruner",
         type=str,
         default="hyperband",
-        choices=["hyperband", "percentile"],
+        choices=["hyperband", "percentile", "none"],
         help="Pruner algorithm (default: hyperband)",
     )
     parser.add_argument(
@@ -495,11 +495,14 @@ def main() -> None:
         )
 
     if args.pruner != "hyperband":
-        pruner = optuna.pruners.PercentilePruner(
-            percentile=25.0,
-            n_startup_trials=5,
-            n_warmup_steps=5,
-        )
+        if args.pruner == "none":
+            pruner = optuna.pruners.NopPruner()
+        else:
+            pruner = optuna.pruners.PercentilePruner(
+                percentile=25.0,
+                n_startup_trials=5,
+                n_warmup_steps=5,
+            )
 
     defaults = TrainConfig()
 
