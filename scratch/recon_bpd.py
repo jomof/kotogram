@@ -83,7 +83,7 @@ class TrainConfig:
 
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
-    kl_target_rho: float = 0.03  # Original kl_target_rho: 0.03
+    kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
 
@@ -593,12 +593,12 @@ def train(
         total_semantic_tokens = 0
         total_semantic_skipped = 0
         
-        # Dynamic Semantic Thresholding (1.0 -> 0.85 over 15 effective epochs)
+        # Dynamic Semantic Thresholding (1.0 -> 0.85 over 30 effective epochs)
         # Scales cleanly by sample_ratio to match LR warmup geometry.
         base_threshold = config.semantic_gating_threshold
         if 0.0 < base_threshold < 1.0:
             eff_epochs = epoch * config.sample_ratio
-            current_threshold = max(base_threshold, 1.0 - 0.01 * eff_epochs)
+            current_threshold = max(base_threshold, 1.0 - 0.005 * eff_epochs)
         else:
             current_threshold = base_threshold
 
@@ -840,7 +840,7 @@ def train(
                 bpd_tokens_by_bin[label] += length
 
             # ── Regularizers ─────────────────────────────────────────
-            loss = bpd + semantic_distillation_loss * 1.0
+            loss = bpd + semantic_distillation_loss * 5.0
             kl_contrib = 0.0
             cov_contrib = 0.0
             consist_contrib = 0.0
