@@ -23,6 +23,7 @@ import contextlib
 import math
 import os
 import time
+import warnings
 from dataclasses import dataclass
 from typing import Callable, Dict, Optional, Tuple, cast
 
@@ -545,7 +546,12 @@ def train(
             1.0 + math.cos(math.pi * progress)
         )
 
-    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
+    # LambdaLR.__init__ calls step() internally, triggering a spurious
+    # "scheduler.step() before optimizer.step()" warning.  The actual
+    # training loop has the correct order (scaler.step → scheduler.step).
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", "Detected call of .lr_scheduler.step", UserWarning)
+        scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
 
     # ── Restore from checkpoint if provided ──────────────────────────
     start_epoch = 0
