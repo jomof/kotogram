@@ -587,6 +587,7 @@ def train(
         epoch_cossim_sum = 0.0
         epoch_sharpness_sum = 0.0
         total_consistency_sum = 0.0
+        total_vicreg_sum = 0.0
         epoch_cossim_pair_sum = 0.0
         epoch_pooled_std_sum = 0.0
         total_elements = 0
@@ -680,6 +681,11 @@ def train(
                 if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
                     # Use only the first view to avoid double-counting
                     z = pooled[:half] if config.consistency_weight > 0 else pooled
+
+                    # Cast to float32 for numerical stability in
+                    # variance/covariance computation. AUTOCAST may
+                    # use TF32/FP16 which causes noisy squared terms.
+                    z = z.float()
                     z_centered = z - z.mean(dim=0)
 
                     # Variance: hinge loss on per-dimension std
@@ -929,6 +935,7 @@ def train(
             # VICReg contribution
             if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
                 loss = loss + vicreg_loss
+                total_vicreg_sum += vicreg_loss.item()
 
             if config.kl_sparse_weight > 0:
                 # Length-proportional sparsity adjustment: 
@@ -979,7 +986,7 @@ def train(
             total_elements += B_actual
             n_batches += 1
 
-            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss
+            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss, vicreg_loss
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
@@ -1060,7 +1067,7 @@ def train(
             "orthogonality": avg_cov,
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
-            "vicreg": float(vicreg_loss.item()) if isinstance(vicreg_loss, torch.Tensor) else 0.0,
+            "vicreg": total_vicreg_sum / max(1, n_batches),
             "lr": current_lr,
             "semantic_threshold": current_threshold,
             "el_per_sec": els,
