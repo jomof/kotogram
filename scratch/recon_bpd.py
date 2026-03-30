@@ -86,6 +86,12 @@ class TrainConfig:
     kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
+    # VICReg regularization on encoder pooled output
+    # Bardes, Ponce & LeCun, "VICReg: Variance-Invariance-Covariance
+    # Regularization for Self-Supervised Learning," ICLR 2022
+    vicreg_var_weight: float = 25.0    # variance term coefficient
+    vicreg_cov_weight: float = 5.0     # covariance term coefficient
+    vicreg_gamma: float = 1.0          # target std per dimension
 
     # Model architecture
     d_model: int = 512  # Original d_model: 512
@@ -96,6 +102,10 @@ class TrainConfig:
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024
     recon_pos_embed_dim: int = 64  # Original recon_pos_embed_dim: 64
     recon_hidden_dim: int = 256  # Original recon_hidden_dim: 256
+    # Stochastic depth: probability of dropping each encoder layer
+    # Fan et al., "Reducing Transformer Depth on Demand with
+    # Structured Dropout," ICLR 2020
+    layer_drop_prob: float = 0.1
     semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
 
 
@@ -181,6 +191,7 @@ class BpdModelConfig:
     kc_vocab_size: int = 1024
     recon_pos_embed_dim: int = 64
     recon_hidden_dim: int = 256
+    layer_drop_prob: float = 0.1
 
 
 class PositionalEncoding(nn.Module):
@@ -351,7 +362,22 @@ class BpdModel(nn.Module):
         x = self.embed_norm(x)
         x = self.embed_drop(x)
         x = self.pos_enc(x)
-        x = self.encoder(x, src_key_padding_mask=(attention_mask == 0))
+        # ── Stochastic Depth (LayerDrop) ────────────────────────
+        # Fan et al., "Reducing Transformer Depth on Demand with
+        # Structured Dropout," ICLR 2020
+        #
+        # Randomly skip entire transformer layers during training.
+        # This prevents the over-smoothing cascade where deep layers
+        # progressively erase token-level distinctions, and ensures
+        # representations are robust at every effective depth.
+        pad_mask = (attention_mask == 0)
+        if self.training and self.cfg.layer_drop_prob > 0:
+            for layer in self.encoder.layers:
+                if torch.rand(1).item() < self.cfg.layer_drop_prob:
+                    continue
+                x = layer(x, src_key_padding_mask=pad_mask)
+        else:
+            x = self.encoder(x, src_key_padding_mask=pad_mask)
         return cast(torch.Tensor, self.pooler(x, attention_mask))
 
 
@@ -451,6 +477,7 @@ def train(
         kc_vocab_size=config.kc_vocab_size,
         recon_pos_embed_dim=config.recon_pos_embed_dim,
         recon_hidden_dim=config.recon_hidden_dim,
+        layer_drop_prob=config.layer_drop_prob,
     )
     # Load chiVe pretrained surface embeddings and freeze
     if GLOBAL_SETUP_CACHE.chive_weights is None:
@@ -634,19 +661,68 @@ def train(
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
                 epoch_pooled_std_sum += float(pooled.std(dim=-1).mean().item()) * B_actual
+
+                half = B // 2
+
+                # ── VICReg: Variance-Covariance Regularization ──────
+                # Bardes, Ponce & LeCun, "VICReg: Variance-Invariance-
+                # Covariance Regularization for Self-Supervised
+                # Learning," ICLR 2022
+                #
+                # Variance term: prevent dimensional collapse by
+                # requiring each dimension to maintain std >= gamma.
+                # Covariance term: decorrelate dimensions to prevent
+                # redundant encoding.
+                # Applied to the pooled encoder output BEFORE the KC
+                # head, so the upstream representation is forced to
+                # remain high-rank and variable across the batch.
+                vicreg_loss = torch.tensor(0.0, device=device)
+                if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
+                    # Use only the first view to avoid double-counting
+                    z = pooled[:half] if config.consistency_weight > 0 else pooled
+                    z_centered = z - z.mean(dim=0)
+
+                    # Variance: hinge loss on per-dimension std
+                    std_z = torch.sqrt(z.var(dim=0) + 1e-4)
+                    var_loss = F.relu(config.vicreg_gamma - std_z).mean()
+
+                    # Covariance: penalize off-diagonal correlations
+                    n = max(1, z.size(0) - 1)
+                    cov_matrix = (z_centered.T @ z_centered) / n
+                    cov_matrix.fill_diagonal_(0.0)
+                    cov_loss = (cov_matrix ** 2).mean()
+
+                    vicreg_loss = (
+                        config.vicreg_var_weight * var_loss
+                        + config.vicreg_cov_weight * cov_loss
+                    )
+
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
 
                 # ── Dual-mask consistency regularization ──────────────
                 consistency_loss = torch.tensor(0.0, device=device)
                 if config.consistency_weight > 0:
-                    half = B // 2
-                    cos = F.cosine_similarity(
+
+                    # ── Stop-gradient consistency (asymmetric + symmetrized) ────
+                    # Grill et al., "Bootstrap Your Own Latent" (BYOL), NeurIPS 2020
+                    # Chen & He, "Exploring Simple Siamese Representation Learning"
+                    # (SimSiam), CVPR 2021
+                    #
+                    # Applying stop_grad to one branch eliminates the symmetric
+                    # collapse attractor where both views converge to a constant.
+                    # Symmetrizing ensures neither branch is privileged.
+                    cos_ab = F.cosine_similarity(
                         kc_logits_raw[:half],
+                        kc_logits_raw[half:].detach(),  # stop-gradient on view B
+                        dim=-1,
+                    )
+                    cos_ba = F.cosine_similarity(
+                        kc_logits_raw[:half].detach(),  # stop-gradient on view A
                         kc_logits_raw[half:],
                         dim=-1,
                     )
-                    consistency_loss = (1.0 - cos).mean()
-                    epoch_cossim_pair_sum += cos.detach().mean().item() * half
+                    consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
+                    epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().mean().item() * half
                     raw_consistency_sum += consistency_loss.detach().item()
 
                 # Gumbel noise + gradient capping
@@ -850,6 +926,10 @@ def train(
                 loss = loss + consist_scaled
                 consist_contrib = consist_scaled.item()
 
+            # VICReg contribution
+            if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
+                loss = loss + vicreg_loss
+
             if config.kl_sparse_weight > 0:
                 # Length-proportional sparsity adjustment: 
                 # Short sentences are heavily penalized for turning on logits to prevent them 
@@ -980,6 +1060,7 @@ def train(
             "orthogonality": avg_cov,
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
+            "vicreg": float(vicreg_loss.item()) if isinstance(vicreg_loss, torch.Tensor) else 0.0,
             "lr": current_lr,
             "semantic_threshold": current_threshold,
             "el_per_sec": els,
