@@ -52,6 +52,7 @@ class ReconTestResults:
 
     metrics: Dict[str, float]
     failure_path: str  # path to failures file (empty if no failures)
+    verbose_path: str  # path to verbose report (empty if not written)
 
 
 def _test_file_path() -> str:
@@ -186,11 +187,11 @@ def run_reconstruction_test(
     """
     path = _test_file_path()
     if not os.path.exists(path):
-        return ReconTestResults(metrics={}, failure_path="")
+        return ReconTestResults(metrics={}, failure_path="", verbose_path="")
 
     cases = load_test_cases(path)
     if not cases:
-        return ReconTestResults(metrics={}, failure_path="")
+        return ReconTestResults(metrics={}, failure_path="", verbose_path="")
 
     id_to_surface = {v: k for k, v in tokenizer.field_vocabs["surface"].items()}
 
@@ -311,6 +312,7 @@ def run_reconstruction_test(
         model.train()
 
     failure_path = ""
+    verbose_path = ""
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
         # Always write verbose report
@@ -335,7 +337,7 @@ def run_reconstruction_test(
         "recon_test_fail": float(failed),
     }
 
-    return ReconTestResults(metrics=metrics, failure_path=failure_path)
+    return ReconTestResults(metrics=metrics, failure_path=failure_path, verbose_path=verbose_path)
 
 
 if __name__ == "__main__":

@@ -322,6 +322,15 @@ def objective(
             # Extract non-numeric keys before logging
             failure_path = metrics.pop("_recon_test_failure_path", "")
 
+            # Construct verbose path from checkpoint location (avoids
+            # changing recon_bpd.py which would invalidate the config hash)
+            verbose_path = ""
+            if checkpoint_path:
+                verbose_path = os.path.join(
+                    os.path.dirname(checkpoint_path), "recon_test",
+                    f"epoch {epoch + 1} verbose.txt",
+                )
+
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
                 f"mask-agree={metrics['mask-agree']:.3f}  "
@@ -363,7 +372,9 @@ def objective(
                 if "pooled_std" in metrics:
                     mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
 
-                # Upload reconstruction test failure file as artifact
+                # Upload reconstruction test artifacts
+                if verbose_path and os.path.exists(verbose_path):
+                    mlflow.log_artifact(verbose_path, "recon_test")
                 if failure_path and os.path.exists(failure_path):
                     mlflow.log_artifact(failure_path, "recon_test")
                 
