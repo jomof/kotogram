@@ -20,6 +20,7 @@ Usage:
 """
 
 import contextlib
+import dataclasses
 import math
 import os
 import time
@@ -148,18 +149,7 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
     if parent:
         os.makedirs(parent, exist_ok=True)
     tmp_path = path + ".tmp"
-    torch.save(
-        {
-            "model_state": checkpoint.model_state,
-            "optimizer_state": checkpoint.optimizer_state,
-            "scaler_state": checkpoint.scaler_state,
-            "scheduler_state": checkpoint.scheduler_state,
-            "epoch": checkpoint.epoch,
-            "latest_metrics": checkpoint.latest_metrics,
-            "epoch_history": checkpoint.epoch_history,
-        },
-        tmp_path,
-    )
+    torch.save(dataclasses.asdict(checkpoint), tmp_path)
     os.replace(tmp_path, path)
 
 
