@@ -103,7 +103,7 @@ _SWEEP_SEARCH_SPACE: dict = {
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
-    "num_layers": 9,
+    "num_layers": 1,
 }
 
 _SWEEP_SPACE_HASH = hashlib.sha256(
@@ -251,7 +251,8 @@ def objective(
                 _mlflow.set_tag("cached", "true")
                 for ep, metrics in existing.epoch_history:
                     for k, v in metrics.items():
-                        _mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                        if isinstance(v, (int, float)):
+                            _mlflow.log_metric(f"bpd/{k}", v, step=ep)
                     k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
                     _mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
                     if "pooled_std" in metrics:
@@ -301,7 +302,8 @@ def objective(
             mlflow.set_tag("resumed_from_epoch", str(existing.epoch))
             for ep, metrics in existing.epoch_history:
                 for k, v in metrics.items():
-                    mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                    if isinstance(v, (int, float)):
+                        mlflow.log_metric(f"bpd/{k}", v, step=ep)
                 k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
                 mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
                 if "pooled_std" in metrics:

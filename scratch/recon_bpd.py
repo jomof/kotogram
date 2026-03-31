@@ -1109,7 +1109,11 @@ def train(
 
         # Per-epoch checkpoint save (before callback, so pruned trials
         # still have their checkpoint persisted for later reuse).
-        epoch_history.append((epoch, dict(latest_metrics)))
+        # Strip transient non-numeric keys before persisting.
+        checkpoint_metrics = {
+            k: v for k, v in latest_metrics.items() if isinstance(v, (int, float))
+        }
+        epoch_history.append((epoch, checkpoint_metrics))
         save_checkpoint(
             TrainCheckpoint(
                 model_state=model.state_dict(),
