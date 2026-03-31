@@ -104,7 +104,7 @@ _SWEEP_SEARCH_SPACE: dict = {
 
 # Default overrides for --adhoc runs.
 ADHOC_OVERRIDES: dict = {
-    "num_layers": 6,
+    "num_layers": 9,
 }
 
 _SWEEP_SPACE_HASH = hashlib.sha256(
