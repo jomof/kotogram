@@ -20,6 +20,7 @@ Usage:
 """
 
 import contextlib
+import dataclasses
 import math
 import os
 import time
@@ -135,6 +136,7 @@ class TrainCheckpoint:
     epoch: int  # last completed epoch (0-indexed)
     latest_metrics: Dict[str, float]
     epoch_history: list  # [(epoch, metrics_dict), ...]
+    rng_states: Dict[str, object]  # torch RNG + DataLoader generator
 
 
 EpochEndCallback = Callable[[int, Dict[str, float]], None]
@@ -147,18 +149,7 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
     if parent:
         os.makedirs(parent, exist_ok=True)
     tmp_path = path + ".tmp"
-    torch.save(
-        {
-            "model_state": checkpoint.model_state,
-            "optimizer_state": checkpoint.optimizer_state,
-            "scaler_state": checkpoint.scaler_state,
-            "scheduler_state": checkpoint.scheduler_state,
-            "epoch": checkpoint.epoch,
-            "latest_metrics": checkpoint.latest_metrics,
-            "epoch_history": checkpoint.epoch_history,
-        },
-        tmp_path,
-    )
+    torch.save(dataclasses.asdict(checkpoint), tmp_path)
     os.replace(tmp_path, path)
 
 
@@ -422,6 +413,7 @@ def train(
             (before the ``on_epoch_end`` callback) for crash recovery.
     """
 
+    torch.manual_seed(config.seed)
     device = torch.device(DEVICE)
     sample_ratio = config.sample_ratio
     recon_chunk = 8 if IS_CUDA else 4
@@ -560,6 +552,12 @@ def train(
         scaler.load_state_dict(checkpoint.scaler_state)
         scheduler.load_state_dict(checkpoint.scheduler_state)
         start_epoch = checkpoint.epoch + 1
+        # Restore RNG states so resumed runs are deterministic
+        rng = checkpoint.rng_states
+        torch.random.set_rng_state(rng["torch_rng"])
+        if IS_CUDA:
+            torch.cuda.set_rng_state(rng["cuda_rng"])
+        dl_generator.set_state(rng["dl_generator"])
 
     # ── Training loop ────────────────────────────────────────────────
     latest_metrics: Dict[str, float] = (
@@ -580,13 +578,6 @@ def train(
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
-        # Deterministic per-epoch seed: same epoch always sees same
-        # batch order and stochastic ops, even after resume.
-        epoch_seed = config.seed + epoch
-        torch.manual_seed(epoch_seed)
-        if IS_CUDA:
-            torch.cuda.manual_seed(epoch_seed)
-        dl_generator.manual_seed(epoch_seed)
         on_epoch_start(epoch)
         t0 = time.perf_counter()
         total_loss_sum = 0.0
@@ -1120,6 +1111,12 @@ def train(
             k: v for k, v in latest_metrics.items() if isinstance(v, (int, float))
         }
         epoch_history.append((epoch, checkpoint_metrics))
+        rng_states: Dict[str, object] = {
+            "torch_rng": torch.random.get_rng_state(),
+            "dl_generator": dl_generator.get_state(),
+        }
+        if IS_CUDA:
+            rng_states["cuda_rng"] = torch.cuda.get_rng_state()
         save_checkpoint(
             TrainCheckpoint(
                 model_state=model.state_dict(),
@@ -1129,12 +1126,19 @@ def train(
                 epoch=epoch,
                 latest_metrics=latest_metrics,
                 epoch_history=epoch_history,
+                rng_states=rng_states,
             ),
             checkpoint_path,
         )
 
         on_epoch_end(epoch, latest_metrics)
 
+    final_rng: Dict[str, object] = {
+        "torch_rng": torch.random.get_rng_state(),
+        "dl_generator": dl_generator.get_state(),
+    }
+    if IS_CUDA:
+        final_rng["cuda_rng"] = torch.cuda.get_rng_state()
     final_checkpoint = TrainCheckpoint(
         model_state=model.state_dict(),
         optimizer_state=optimizer.state_dict(),
@@ -1143,6 +1147,7 @@ def train(
         epoch=epoch,
         latest_metrics=latest_metrics,
         epoch_history=epoch_history,
+        rng_states=final_rng,
     )
     return (
         TrainResult(
