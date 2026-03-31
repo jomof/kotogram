@@ -92,7 +92,7 @@ class TrainConfig:
     # Regularization for Self-Supervised Learning," ICLR 2022
     vicreg_var_weight: float = 25.0    # variance term coefficient
     vicreg_cov_weight: float = 5.0     # covariance term coefficient
-    vicreg_gamma: float = 1.0          # target std per dimension
+    vicreg_gamma: float = 0.3          # target std per dimension
 
     # Model architecture
     d_model: int = 512  # Original d_model: 512
