@@ -77,6 +77,13 @@ class TrainConfig:
     sample_ratio: float = 1.0
     lr: float = 3e-4  # Original lr: 1e-4
     temperature: float = 1.2  # Original temperature: 1.8
+    # Temperature annealing: start warm (soft KC probs) and cool to
+    # target temperature over this many effective epochs.
+    # Jang, Gu & Poole, "Categorical Reparameterization with
+    # Gumbel-Softmax," ICLR 2017
+    # Maddison, Mnih & Teh, "The Concrete Distribution," ICLR 2017
+    temperature_start_multiplier: float = 3.0  # initial temp = temperature * this
+    temperature_anneal_epochs: float = 30.0    # effective epochs to reach target temp
     weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
@@ -604,6 +611,38 @@ def train(
         else:
             current_threshold = base_threshold
 
+        # ── Temperature Annealing ───────────────────────────────
+        # Jang, Gu & Poole, "Categorical Reparameterization with
+        # Gumbel-Softmax," ICLR 2017
+        # Maddison, Mnih & Teh, "The Concrete Distribution,"
+        # ICLR 2017
+        #
+        # Start with high temperature (soft, high-entropy KC probs)
+        # and anneal down to the target temperature. This gives the
+        # length-proportional KL sparsity time to organize logit
+        # allocation across sentence lengths BEFORE the sigmoid
+        # sharpens assignments into irreversible binary decisions.
+        eff_epoch = epoch * config.sample_ratio
+        if eff_epoch < config.temperature_anneal_epochs:
+            temp_start = config.temperature * config.temperature_start_multiplier
+            temp_end = config.temperature
+            anneal_progress = eff_epoch / config.temperature_anneal_epochs
+            current_temperature = temp_start + (temp_end - temp_start) * anneal_progress
+        else:
+            current_temperature = config.temperature
+
+        # ── KL Sparsity Warmup ──────────────────────────────────
+        # Ramp the KL weight from ~0 to full strength on the same
+        # schedule as temperature annealing. Quadratic ramp: near-
+        # zero for the first ~half of the anneal period, then
+        # accelerates to full strength as temperature cools and
+        # assignments begin to sharpen. This ensures the length-
+        # proportional allocation is negotiated under soft probs.
+        if eff_epoch < config.temperature_anneal_epochs:
+            kl_warmup = (eff_epoch / config.temperature_anneal_epochs) ** 2
+        else:
+            kl_warmup = 1.0
+
         for batch in loader:
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
             recon_targets = ids
@@ -717,7 +756,7 @@ def train(
                     )
 
                 logits_select = logits_select.clamp(-12, 12)
-                kc_probs = torch.sigmoid(logits_select / config.temperature)
+                kc_probs = torch.sigmoid(logits_select / current_temperature)
                 kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
 
                 # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
@@ -933,7 +972,7 @@ def train(
                     rho_hat * torch.log(rho_hat / rho)
                     + (1 - rho_hat) * torch.log((1 - rho_hat) / (1 - rho))
                 ).sum()
-                kl_scaled = config.kl_sparse_weight * kl_term
+                kl_scaled = config.kl_sparse_weight * kl_warmup * kl_term
                 loss = loss + kl_scaled
                 kl_contrib = kl_scaled.item()
 
@@ -1049,6 +1088,8 @@ def train(
             "mask-agree": avg_pair_cos,
             "vicreg": total_vicreg_sum / max(1, n_batches),
             "lr": current_lr,
+            "temperature": current_temperature,
+            "kl_warmup": kl_warmup,
             "semantic_threshold": current_threshold,
             "el_per_sec": els,
             "samples": total_elements,
@@ -1080,7 +1121,7 @@ def train(
             model=model,
             tokenizer=tokenizer,
             device=device,
-            temperature=config.temperature,
+            temperature=current_temperature,
             checkpoint_path=checkpoint_path,
         )
         on_epoch_end(epoch, latest_metrics, ctx)
