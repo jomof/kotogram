@@ -313,10 +313,18 @@ def objective(
             print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
 
         def on_epoch_end(epoch: int, metrics: dict) -> None:
+            # Extract non-numeric keys before logging
+            failure_path = metrics.pop("_recon_test_failure_path", "")
+
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
                 f"mask-agree={metrics['mask-agree']:.3f}  "
                 if metrics.get("consistency", 0) > 0
+                else ""
+            )
+            recon_str = (
+                f"recon={metrics['recon_test_pass']:.0f}/{metrics['recon_test_total']:.0f}  "
+                if metrics.get("recon_test_total", 0) > 0
                 else ""
             )
             print(
@@ -331,6 +339,7 @@ def objective(
                 f"sparsity={metrics['sparsity']:.4f}  "
                 f"orthogonality={metrics['orthogonality']:.4f}  "
                 f"{consist_str}"
+                f"{recon_str}"
                 f"lr={metrics['lr']:.2e}  "
                 f"{metrics['el_per_sec']:.1f} el/s  "
                 f"{metrics['samples']} samples  "
@@ -338,13 +347,18 @@ def objective(
             )
             if mlflow is not None:
                 for k, v in metrics.items():
-                    mlflow.log_metric(f"bpd/{k}", v, step=epoch)
+                    if isinstance(v, (int, float)):
+                        mlflow.log_metric(f"bpd/{k}", v, step=epoch)
                 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
                 k_toks = int(metrics.get("cumulative_tokens_trained", epoch * 1000)) // 1000
                 mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
                 if "pooled_std" in metrics:
                     mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+
+                # Upload reconstruction test failure file as artifact
+                if failure_path and os.path.exists(failure_path):
+                    mlflow.log_artifact(failure_path, "recon_test")
                 
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():

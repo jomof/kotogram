@@ -1,0 +1,21 @@
+# Short (3 tokens): particle reconstruction
+雨が降る: 雨x降る
+本を読む: 本x読む
+学校に行く: 学校x行く
+花が咲く: 花x咲く
+
+# Sentence-final (3 tokens)
+寒いですね: 寒いですx
+元気ですか: 元気ですx
+
+# Medium (5-6 tokens): particle in context
+猫は魚が好きだ: 猫x魚が好きだ
+春に桜が咲く: 春に桜x咲く
+夜の風が冷たいね: 夜x風が冷たいね
+
+# Content word (3 tokens)
+水を飲む: xを飲む
+駅で待つ: xで待つ
+
+# Multiple masked variants
+東京から大阪まで行く: 東京x大阪まで行く 東京から大阪x行く

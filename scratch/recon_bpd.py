@@ -1090,6 +1090,21 @@ def train(
             "elapsed_ms": cumulative_elapsed_ms,
         })
 
+        # ── Reconstruction spot-check ─────────────────────────────
+        from scratch.recon_bpd_test import run_reconstruction_test
+
+        recon_output_dir = (
+            os.path.join(os.path.dirname(checkpoint_path), "recon_test")
+            if checkpoint_path
+            else ""
+        )
+        test_results = run_reconstruction_test(
+            model, tokenizer, device, config.temperature, epoch, recon_output_dir,
+        )
+        latest_metrics.update(test_results.metrics)
+        if test_results.failure_path:
+            latest_metrics["_recon_test_failure_path"] = test_results.failure_path  # type: ignore[assignment]
+
         print()  # finish \r progress line
 
         # Per-epoch checkpoint save (before callback, so pruned trials
