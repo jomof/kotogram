@@ -13,12 +13,12 @@
 # these, it hasn't learned basic Japanese syntax.
 雨が降る: 雨x降る
 本を読む: 本x読む
-学校に行く: 学校x行く
+学校に行く[学校へ行く]: 学校x行く
 花が咲く: 花x咲く
 春に桜が咲く: 春x桜が咲く 春に桜x咲く
 公園で遊ぶ: 公園x遊ぶ
 東京から来た: 東京x来た
-海へ行く: 海x行く
+海へ行く[海に行く]: 海x行く
 友達と話す: 友達x話す
 
 # ── §2 Topic vs Subject (は vs が) ────────────────────────────────
@@ -38,8 +38,8 @@
 
 # ── §4 Copula & Sentence Endings (だ, です, である) ──────────────
 # Formality register encoded in the final element.
-これは本だ: これは本x
-これは本です: これは本x
+これは本だ[これは本です]: これは本x
+これは本です[これは本だ]: これは本x
 これは本である: これは本xある
 これは本ではない: これは本xはない これは本でxない
 
@@ -68,7 +68,7 @@
 # ── §8 Content Word Prediction (Semantic KC Test) ────────────────
 # Can the model infer a content word purely from syntactic frame?
 # These test semantic KC capacity, not just grammar.
-水を飲む: xを飲む
+水を飲む[酒を飲む]: xを飲む
 駅で待つ: xで待つ
 手紙を書く: xを書く
 音楽を聴く: xを聴く
@@ -89,7 +89,7 @@
 # ── §11 て-Form Chaining ─────────────────────────────────────────
 # Sequential actions linked by て. Tests multi-clause structure.
 起きて顔を洗う: 起きx顔を洗う
-歩いて学校に行く: 歩いx学校に行く 歩いて学校x行く
+歩いて学校に行く[歩いて学校へ行く]: 歩いx学校に行く 歩いて学校x行く
 
 # ── §12 Relative Clauses ─────────────────────────────────────────
 # Prenominal modification. Token order signals embedding.
@@ -145,117 +145,112 @@
 # Paired sentences whose grammatical frame is IDENTICAL — only the
 # masked token differs, and the two masked tokens are synonyms.
 #
-# Purpose: the KC vector should be nearly identical for both members
-# of each pair (same syntax, same slot). The model's top-K predictions
-# at the masked position should overlap heavily. If the model predicts
-# the SAME token for both (e.g. always 水), that's fine — it means the
-# KC captured the frame, not the lexical choice. If predictions diverge
-# wildly, the KC is encoding surface identity instead of grammar.
+# Each member accepts its partner (and any observed valid prediction)
+# as an alternative. The KC should encode the frame, not the lexical
+# choice — so predicting either synonym is a pass.
 #
-# Best used with the Top-K reconstruction report (qualitative test A)
-# rather than exact-match scoring.
+# Format: sentence[acceptable_alt_1,acceptable_alt_2,...]: mask
 # ═══════════════════════════════════════════════════════════════════
 
 # ── Noun synonyms: beverage in を飲む frame ──────────────────────
-水を飲む: xを飲む
-茶を飲む: xを飲む
+水を飲む[茶を飲む,酒を飲む]: xを飲む
+茶を飲む[水を飲む,酒を飲む]: xを飲む
 
 # ── Noun synonyms: animal in が好きだ frame ──────────────────────
-犬が好きだ: xが好きだ
-猫が好きだ: xが好きだ
+犬が好きだ[猫が好きだ]: xが好きだ
+猫が好きだ[犬が好きだ]: xが好きだ
 
 # ── Noun synonyms: food in を食べる frame ────────────────────────
-肉を食べる: xを食べる
-魚を食べる: xを食べる
+肉を食べる[魚を食べる]: xを食べる
+魚を食べる[肉を食べる]: xを食べる
 
 # ── Noun synonyms: destination in に行く frame ───────────────────
-山に行く: xに行く
-海に行く: xに行く
+山に行く[海に行く]: xに行く
+海に行く[山に行く]: xに行く
 
 # ── Noun synonyms: tool in で書く frame ──────────────────────────
-鉛筆で書く: xで書く
-ペンで書く: xで書く
+鉛筆で書く[ペンで書く]: xで書く
+ペンで書く[鉛筆で書く]: xで書く
 
 # ── Noun synonyms: vehicle in で行く frame ───────────────────────
-車で行く: xで行く
-電車で行く: xで行く
+車で行く[電車で行く]: xで行く
+電車で行く[車で行く]: xで行く
 
 # ── Noun synonyms: written object in を書く frame ────────────────
-手紙を書く: xを書く
-メールを書く: xを書く
+手紙を書く[メールを書く]: xを書く
+メールを書く[手紙を書く]: xを書く
 
 # ── Verb synonyms: locomotion in 道を_ frame ─────────────────────
-道を歩く: 道をx
-道を走る: 道をx
+道を歩く[道を走る]: 道をx
+道を走る[道を歩く]: 道をx
 
 # ── Verb synonyms: communication in 友達と_ frame ────────────────
-友達と話す: 友達とx
-友達と喋る: 友達とx
+友達と話す[友達と喋る]: 友達とx
+友達と喋る[友達と話す]: 友達とx
 
 # ── Verb synonyms: perception in 空を_ frame ─────────────────────
-空を見る: 空をx
-空を眺める: 空をx
+空を見る[空を眺める]: 空をx
+空を眺める[空を見る]: 空をx
 
 # ── Verb synonyms: creation in 料理を_ frame ─────────────────────
-料理を作る: 料理をx
-料理を拵える: 料理をx
+料理を作る[料理を拵える]: 料理をx
+料理を拵える[料理を作る]: 料理をx
 
 # ── Verb synonyms: cognition in 答えを_ frame ───────────────────
-答えを考える: 答えをx
-答えを悩む: 答えをx
+答えを考える[答えを悩む]: 答えをx
+答えを悩む[答えを考える]: 答えをx
 
 # ── Verb synonyms: rest in 家で_ frame ───────────────────────────
-家で休む: 家でx
-家で寛ぐ: 家でx
+家で休む[家で寛ぐ]: 家でx
+家で寛ぐ[家で休む]: 家でx
 
 # ── い-Adjective synonyms: positive quality in _日だ frame ───────
-嬉しい日だ: x日だ
-楽しい日だ: x日だ
+嬉しい日だ[楽しい日だ]: x日だ
+楽しい日だ[嬉しい日だ]: x日だ
 
 # ── い-Adjective synonyms: size in _家だ frame ──────────────────
-大きい家だ: x家だ
-広い家だ: x家だ
+大きい家だ[広い家だ]: x家だ
+広い家だ[大きい家だ]: x家だ
 
 # ── い-Adjective synonyms: temperature in _風だ frame ────────────
-冷たい風だ: x風だ
-涼しい風だ: x風だ
+冷たい風だ[涼しい風だ]: x風だ
+涼しい風だ[冷たい風だ]: x風だ
 
 # ── い-Adjective synonyms: difficulty in _問題だ frame ───────────
-難しい問題だ: x問題だ
-厳しい問題だ: x問題だ
+難しい問題だ[厳しい問題だ]: x問題だ
+厳しい問題だ[難しい問題だ]: x問題だ
 
 # ── な-Adjective synonyms: importance in _な物だ frame ───────────
-# な is a separate copula token; keep it visible in the frame.
-大切な物だ: xな物だ
-大事な物だ: xな物だ
+大切な物だ[大事な物だ]: xな物だ
+大事な物だ[大切な物だ]: xな物だ
 
 # ── な-Adjective synonyms: quietness in _な場所だ frame ──────────
-静かな場所だ: xな場所だ
-穏やかな場所だ: xな場所だ
+静かな場所だ[穏やかな場所だ]: xな場所だ
+穏やかな場所だ[静かな場所だ]: xな場所だ
 
 # ── な-Adjective synonyms: beauty in _な花だ frame ───────────────
-綺麗な花だ: xな花だ
-見事な花だ: xな花だ
+綺麗な花だ[見事な花だ]: xな花だ
+見事な花だ[綺麗な花だ]: xな花だ
 
 # ── Adverb synonyms: degree in _暑い frame ──────────────────────
-とても暑い: x暑い
-すごく暑い: x暑い
+とても暑い[すごく暑い]: x暑い
+すごく暑い[とても暑い]: x暑い
 
 # ── Adverb synonyms: quantity in _食べる frame ──────────────────
-たくさん食べる: x食べる
-いっぱい食べる: x食べる
+たくさん食べる[いっぱい食べる]: x食べる
+いっぱい食べる[たくさん食べる]: x食べる
 
 # ── Adverb synonyms: small amount in _待つ frame ────────────────
-少し待つ: x待つ
-ちょっと待つ: x待つ
+少し待つ[ちょっと待つ]: x待つ
+ちょっと待つ[少し待つ]: x待つ
 
 # ── Adverb synonyms: speed in _歩く frame ──────────────────────
-ゆっくり歩く: x歩く
-のんびり歩く: x歩く
+ゆっくり歩く[のんびり歩く]: x歩く
+のんびり歩く[ゆっくり歩く]: x歩く
 
 # ── Adverb synonyms: immediacy in _行く frame ──────────────────
-すぐ行く: x行く
-直ちに行く: x行く
+すぐ行く[直ちに行く]: x行く
+直ちに行く[すぐ行く]: x行く
 
 # ── Conjunction/reason synonyms: causal in 疲れた_休む frame ────
 疲れたから休む: 疲れたx休む

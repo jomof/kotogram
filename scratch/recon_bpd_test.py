@@ -2,7 +2,13 @@
 """Reconstruction spot-check for BPD training.
 
 Test file format (recon_bpd_test.txt):
-    <full_sentence>: <masked_variant_1> <masked_variant_2> ...
+    <full_sentence>[<alt_1>,<alt_2>,...]: <masked_variant_1> <masked_variant_2> ...
+
+The bracketed alternatives are optional. When present, they list
+full-sentence reconstructions that are considered acceptable in
+addition to the exact original. For example:
+    学校に行く[学校へ行く]: 学校x行く
+means that reconstructing 学校へ行く is as good as 学校に行く.
 
 Each 'x' in a masked variant replaces exactly one surface token.
 Two adjacent 'x' characters replace two consecutive tokens.
@@ -36,6 +42,7 @@ class TestCase:
     """A single reconstruction test case."""
 
     full_sentence: str
+    acceptable_alternatives: List[str] = field(default_factory=list)
     masked_variants: List[str] = field(default_factory=list)
 
 
@@ -52,7 +59,13 @@ def _test_file_path() -> str:
 
 
 def load_test_cases(path: str) -> List[TestCase]:
-    """Load test cases from file."""
+    """Load test cases from file.
+
+    Supports optional alternative reconstructions in brackets:
+        学校に行く[学校へ行く]: 学校x行く
+    Multiple alternatives are comma-separated:
+        水を飲む[茶を飲む,酒を飲む]: xを飲む
+    """
     cases: List[TestCase] = []
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
@@ -60,9 +73,27 @@ def load_test_cases(path: str) -> List[TestCase]:
             if not line or line.startswith("#"):
                 continue
             colon_idx = line.index(": ")
-            full = line[:colon_idx].strip()
+            full_part = line[:colon_idx].strip()
             variants = line[colon_idx + 2 :].strip().split()
-            cases.append(TestCase(full_sentence=full, masked_variants=variants))
+
+            # Parse optional [alt1,alt2,...] bracket syntax
+            alternatives: List[str] = []
+            if "[" in full_part:
+                bracket_start = full_part.index("[")
+                bracket_end = full_part.index("]")
+                alt_str = full_part[bracket_start + 1 : bracket_end]
+                alternatives = [a.strip() for a in alt_str.split(",") if a.strip()]
+                full = full_part[:bracket_start].strip()
+            else:
+                full = full_part
+
+            cases.append(
+                TestCase(
+                    full_sentence=full,
+                    acceptable_alternatives=alternatives,
+                    masked_variants=variants,
+                )
+            )
     return cases
 
 
@@ -117,7 +148,10 @@ def check_test_file() -> bool:
 
     for case in cases:
         surfaces = _tokenize_to_surfaces(case.full_sentence)
-        print(f"  Sentence: {case.full_sentence}")
+        alt_display = ""
+        if case.acceptable_alternatives:
+            alt_display = f"  (also accepts: {', '.join(case.acceptable_alternatives)})"
+        print(f"  Sentence: {case.full_sentence}{alt_display}")
         print(f"  Tokens: {surfaces}")
 
         for variant in case.masked_variants:
@@ -164,8 +198,10 @@ def run_reconstruction_test(
     model.eval()
 
     total = 0
-    passed = 0
+    passed_strict = 0
+    passed_alt = 0
     failure_lines: List[str] = []
+    verbose_lines: List[str] = []
 
     with torch.no_grad():
         for case in cases:
@@ -180,12 +216,33 @@ def run_reconstruction_test(
             encoded = tokenizer.encode_features(features_list)
             surface_ids = encoded["surface"]  # [CLS, tok0, tok1, ...]
 
-            case_passed = True
+            # Pre-tokenize acceptable alternatives for this case
+            alt_surface_ids_list: List[list] = []
+            for alt_sentence in case.acceptable_alternatives:
+                try:
+                    alt_kotogram = parser.japanese_to_kotogram(alt_sentence)
+                    alt_features = [
+                        extract_token_features(tok)
+                        for tok in split_kotogram(alt_kotogram)
+                    ]
+                    alt_encoded = tokenizer.encode_features(alt_features)
+                    alt_ids = alt_encoded["surface"]
+                    # Only use alternatives with matching token count
+                    if len(alt_ids) == len(surface_ids):
+                        alt_surface_ids_list.append(alt_ids)
+                except Exception:
+                    pass  # skip malformed alternatives silently
+
+            # Track per-case outcome: strict, alt, or fail
+            case_strict = True  # all variants match exact original
+            case_alt = True  # all variants match original OR alternative
+            first_fail_line = ""
 
             for variant in case.masked_variants:
                 masked_pos = align_tokens_to_masked(surfaces, variant)
                 if masked_pos is None:
-                    case_passed = False
+                    case_strict = False
+                    case_alt = False
                     continue
 
                 # +1 offset for CLS token at position 0
@@ -207,46 +264,74 @@ def run_reconstruction_test(
                 h_recon = model.recon.forward_hidden(kc_probs, attn_mask)
                 logits = F.linear(h_recon, model.recon.output_head.weight)
 
-                variant_passed = True
+                variant_strict = True
+                variant_alt = True
                 for pos in masked_id_positions:
                     pred_id = int(logits[0, pos].argmax().item())
-                    true_id = surface_ids[pos]
-                    if pred_id != true_id:
-                        variant_passed = False
+                    if pred_id != surface_ids[pos]:
+                        variant_strict = False
+                        # Check alternatives
+                        acceptable_ids = {surface_ids[pos]}
+                        for alt_ids in alt_surface_ids_list:
+                            acceptable_ids.add(alt_ids[pos])
+                        if pred_id not in acceptable_ids:
+                            variant_alt = False
 
-                if not variant_passed:
-                    case_passed = False
-                    # Build actual reconstruction for failure report
-                    actual_surfaces = list(surfaces)
-                    for orig_pos in masked_pos:
-                        pred_id = int(logits[0, orig_pos + 1].argmax().item())
-                        actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
-                    actual_recon = "".join(actual_surfaces)
-                    failure_lines.append(
-                        f"{case.full_sentence}: {actual_recon} (from {variant})"
-                    )
-                    break  # report first failing variant per case
+                if not variant_strict:
+                    case_strict = False
+                if not variant_alt:
+                    case_alt = False
+                    if not first_fail_line:
+                        # Build actual reconstruction for report
+                        actual_surfaces = list(surfaces)
+                        for orig_pos in masked_pos:
+                            pred_id = int(logits[0, orig_pos + 1].argmax().item())
+                            actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
+                        actual_recon = "".join(actual_surfaces)
+                        also = ""
+                        if case.acceptable_alternatives:
+                            also = f" [also accepts: {', '.join(case.acceptable_alternatives)}]"
+                        first_fail_line = (
+                            f"{case.full_sentence}{also}: {actual_recon} (from {variant})"
+                        )
 
             total += 1
-            if case_passed:
-                passed += 1
+            if case_strict:
+                passed_strict += 1
+                passed_alt += 1
+                verbose_lines.append(f"STRICT {case.full_sentence}")
+            elif case_alt:
+                passed_alt += 1
+                verbose_lines.append(f"ALT    {case.full_sentence}")
+            else:
+                verbose_lines.append(f"FAIL   {first_fail_line}")
+                failure_lines.append(first_fail_line)
 
     if was_training:
         model.train()
 
     failure_path = ""
-    if failure_lines and output_dir:
+    if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        failure_path = os.path.join(output_dir, f"epoch {epoch + 1} failures.txt")
-        with open(failure_path, "w", encoding="utf-8") as f:
-            for line in failure_lines:
+        # Always write verbose report
+        verbose_path = os.path.join(output_dir, f"epoch {epoch + 1} verbose.txt")
+        with open(verbose_path, "w", encoding="utf-8") as f:
+            for line in verbose_lines:
                 f.write(line + "\n")
+        # Write failures only if there are any
+        if failure_lines:
+            failure_path = os.path.join(output_dir, f"epoch {epoch + 1} failures.txt")
+            with open(failure_path, "w", encoding="utf-8") as f:
+                for line in failure_lines:
+                    f.write(line + "\n")
 
+    passed = passed_alt  # "pass" means considering alternatives
     failed = total - passed
     metrics: Dict[str, float] = {
         "recon_test_pct": 100.0 * passed / max(1, total),
         "recon_test_total": float(total),
         "recon_test_pass": float(passed),
+        "recon_test_pass_strict": float(passed_strict),
         "recon_test_fail": float(failed),
     }
 

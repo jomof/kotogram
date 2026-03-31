@@ -328,11 +328,12 @@ def objective(
                 if metrics.get("consistency", 0) > 0
                 else ""
             )
-            recon_str = (
-                f"recon={metrics['recon_test_pass']:.0f}/{metrics['recon_test_total']:.0f}  "
-                if metrics.get("recon_test_total", 0) > 0
-                else ""
-            )
+            recon_str = ""
+            if metrics.get("recon_test_total", 0) > 0:
+                strict = metrics.get("recon_test_pass_strict", 0)
+                passed = metrics["recon_test_pass"]
+                total = metrics["recon_test_total"]
+                recon_str = f"recon={strict:.0f}/{passed:.0f}/{total:.0f}  "
             print(
                 f"Epoch {epoch + 1}/{epochs}  "
                 f"bpd={metrics['bpd']:.4f}  "
