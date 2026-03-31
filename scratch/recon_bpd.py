@@ -90,7 +90,7 @@ class TrainConfig:
     # VICReg regularization on encoder pooled output
     # Bardes, Ponce & LeCun, "VICReg: Variance-Invariance-Covariance
     # Regularization for Self-Supervised Learning," ICLR 2022
-    vicreg_var_weight: float = 25.0    # variance term coefficient
+    vicreg_var_weight: float = 11.0    # variance term coefficient
     vicreg_cov_weight: float = 5.0     # covariance term coefficient
     vicreg_gamma: float = 0.3          # target std per dimension
 
