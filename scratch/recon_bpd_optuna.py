@@ -469,6 +469,13 @@ def main() -> None:
     if args.adhoc is not None:
         exp_name = "adhoc-kotogram-bpd"
         args.n_trials = 1
+        # Auto-derive trial name from last git commit touching recon_bpd.py
+        if args.adhoc == "adhoc":
+            git_subject = subprocess.run(
+                ["git", "log", "-1", "--format=%s", "--", "scratch/recon_bpd.py"],
+                capture_output=True, text=True, check=False, timeout=2,
+            )
+            args.adhoc = git_subject.stdout.strip() if git_subject.returncode == 0 and git_subject.stdout.strip() else "adhoc"
 
     adhoc_overrides: dict = {}
     if args.adhoc is not None:
