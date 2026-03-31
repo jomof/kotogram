@@ -106,7 +106,7 @@ class TrainConfig:
     # Stochastic depth: probability of dropping each encoder layer
     # Fan et al., "Reducing Transformer Depth on Demand with
     # Structured Dropout," ICLR 2020
-    layer_drop_prob: float = 0.1
+    layer_drop_prob: float = 0.5
     semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
 
 
@@ -192,7 +192,7 @@ class BpdModelConfig:
     kc_vocab_size: int = 1024
     recon_pos_embed_dim: int = 64
     recon_hidden_dim: int = 256
-    layer_drop_prob: float = 0.1
+    layer_drop_prob: float = 0.5
 
 
 class PositionalEncoding(nn.Module):
@@ -373,8 +373,8 @@ class BpdModel(nn.Module):
         # representations are robust at every effective depth.
         pad_mask = (attention_mask == 0)
         if self.training and self.cfg.layer_drop_prob > 0:
-            for layer in self.encoder.layers:
-                if torch.rand(1).item() < self.cfg.layer_drop_prob:
+            for i, layer in enumerate(self.encoder.layers):
+                if i > 0 and torch.rand(1).item() < self.cfg.layer_drop_prob:
                     continue
                 x = layer(x, src_key_padding_mask=pad_mask)
         else:
