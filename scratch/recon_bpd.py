@@ -135,6 +135,7 @@ class TrainCheckpoint:
     epoch: int  # last completed epoch (0-indexed)
     latest_metrics: Dict[str, float]
     epoch_history: list  # [(epoch, metrics_dict), ...]
+    rng_states: Dict[str, object]  # torch RNG + DataLoader generator
 
 
 EpochEndCallback = Callable[[int, Dict[str, float]], None]
@@ -561,6 +562,12 @@ def train(
         scaler.load_state_dict(checkpoint.scaler_state)
         scheduler.load_state_dict(checkpoint.scheduler_state)
         start_epoch = checkpoint.epoch + 1
+        # Restore RNG states so resumed runs are deterministic
+        rng = checkpoint.rng_states
+        torch.random.set_rng_state(rng["torch_rng"])
+        if IS_CUDA:
+            torch.cuda.set_rng_state(rng["cuda_rng"])
+        dl_generator.set_state(rng["dl_generator"])
 
     # ── Training loop ────────────────────────────────────────────────
     latest_metrics: Dict[str, float] = (
@@ -1114,6 +1121,12 @@ def train(
             k: v for k, v in latest_metrics.items() if isinstance(v, (int, float))
         }
         epoch_history.append((epoch, checkpoint_metrics))
+        rng_states: Dict[str, object] = {
+            "torch_rng": torch.random.get_rng_state(),
+            "dl_generator": dl_generator.get_state(),
+        }
+        if IS_CUDA:
+            rng_states["cuda_rng"] = torch.cuda.get_rng_state()
         save_checkpoint(
             TrainCheckpoint(
                 model_state=model.state_dict(),
@@ -1123,12 +1136,19 @@ def train(
                 epoch=epoch,
                 latest_metrics=latest_metrics,
                 epoch_history=epoch_history,
+                rng_states=rng_states,
             ),
             checkpoint_path,
         )
 
         on_epoch_end(epoch, latest_metrics)
 
+    final_rng: Dict[str, object] = {
+        "torch_rng": torch.random.get_rng_state(),
+        "dl_generator": dl_generator.get_state(),
+    }
+    if IS_CUDA:
+        final_rng["cuda_rng"] = torch.cuda.get_rng_state()
     final_checkpoint = TrainCheckpoint(
         model_state=model.state_dict(),
         optimizer_state=optimizer.state_dict(),
@@ -1137,6 +1157,7 @@ def train(
         epoch=epoch,
         latest_metrics=latest_metrics,
         epoch_history=epoch_history,
+        rng_states=final_rng,
     )
     return (
         TrainResult(

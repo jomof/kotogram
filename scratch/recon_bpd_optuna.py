@@ -249,14 +249,15 @@ def objective(
                         if field.name not in ("epochs",):
                             _mlflow.log_param(field.name, getattr(config, field.name))
                 _mlflow.set_tag("cached", "true")
-                for ep, metrics in existing.epoch_history:
-                    for k, v in metrics.items():
-                        if isinstance(v, (int, float)):
-                            _mlflow.log_metric(f"bpd/{k}", v, step=ep)
-                    k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
-                    _mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
-                    if "pooled_std" in metrics:
-                        _mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+                if run_id is None:
+                    for ep, metrics in existing.epoch_history:
+                        for k, v in metrics.items():
+                            if isinstance(v, (int, float)):
+                                _mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                        k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                        _mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                        if "pooled_std" in metrics:
+                            _mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
                 _mlflow.log_metric("final_bpd", era_bpd)
                 _mlflow.log_metric(f"final_bpd_{epochs}ep", era_bpd)
                 _mlflow.end_run()
@@ -300,14 +301,17 @@ def objective(
         mlflow.set_tag("optuna_trial", str(trial.number))
         if existing is not None:
             mlflow.set_tag("resumed_from_epoch", str(existing.epoch))
-            for ep, metrics in existing.epoch_history:
-                for k, v in metrics.items():
-                    if isinstance(v, (int, float)):
-                        mlflow.log_metric(f"bpd/{k}", v, step=ep)
-                k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
-                mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
-                if "pooled_std" in metrics:
-                    mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+            # Only backfill epoch history for NEW runs; existing runs already
+            # have these metrics from the previous session.
+            if run_id is None:
+                for ep, metrics in existing.epoch_history:
+                    for k, v in metrics.items():
+                        if isinstance(v, (int, float)):
+                            mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                    k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                    mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                    if "pooled_std" in metrics:
+                        mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
 
     try:
 
