@@ -222,7 +222,9 @@ def run_reconstruction_test(
                         pred_id = int(logits[0, orig_pos + 1].argmax().item())
                         actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
                     actual_recon = "".join(actual_surfaces)
-                    failure_lines.append(f"{case.full_sentence}: {actual_recon}")
+                    failure_lines.append(
+                        f"{case.full_sentence}: {actual_recon} (from {variant})"
+                    )
                     break  # report first failing variant per case
 
             total += 1
