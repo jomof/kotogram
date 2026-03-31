@@ -74,10 +74,10 @@ def _tokenize_to_surfaces(sentence: str) -> List[str]:
     surfaces: List[str] = []
     for tok in tokens:
         features: TokenFeatures = extract_token_features(tok)
-        # Use normalized_surface (matches what the tokenizer vocab uses)
-        surface = features.normalized_surface or features.surface
-        if surface:
-            surfaces.append(surface)
+        # Use raw surface (what appears in the text) for alignment,
+        # NOT normalized_surface (dictionary form like 食べる for 食べ).
+        if features.surface:
+            surfaces.append(features.surface)
     return surfaces
 
 
