@@ -829,12 +829,14 @@ def train(
                     semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / max(1, num_valid_tokens)
                     total_semantic_loss_sum += float(semantic_distillation_loss.item()) * num_valid_tokens
                     
-                    # 5. Stochastic token dropout: randomly skip tokens
-                    # with probability = current_threshold. This replaces
-                    # the deterministic cosine-similarity gate with uniform
-                    # random sampling, avoiding hard semantic boundaries.
-                    drop_mask = torch.rand_like(cos_sim) < threshold
-                    is_hard = (~drop_mask) & valid_mask
+                    # 5. Stochastic semantic gating: deterministically
+                    # keep hard tokens (cos_sim < threshold), and
+                    # randomly rescue easy tokens with probability
+                    # (1 - threshold). This drops most easy tokens
+                    # like the original gate but softens the boundary.
+                    is_easy = cos_sim >= threshold
+                    rescue = torch.rand_like(cos_sim) > threshold
+                    is_hard = (~is_easy | rescue) & valid_mask
                     
                     num_hard = int(is_hard.sum().item())
                     total_semantic_skipped += (num_valid_tokens - num_hard)
