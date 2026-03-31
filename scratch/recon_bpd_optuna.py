@@ -26,7 +26,8 @@ from typing import Optional
 
 import optuna
 
-from scratch.recon_bpd import TrainConfig, load_checkpoint, train
+from scratch.recon_bpd import TrainConfig, train
+from scratch.recon_bpd_checkpoint import EpochContext, load_checkpoint
 
 
 def suggest_config(
@@ -318,18 +319,11 @@ def objective(
         def on_epoch_start(epoch: int) -> None:
             print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
 
-        def on_epoch_end(epoch: int, metrics: dict) -> None:
-            # Extract non-numeric keys before logging
-            failure_path = metrics.pop("_recon_test_failure_path", "")
+        def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
+            # ── Reconstruction spot-check (observability, not training) ──
+            from scratch.recon_bpd_test import run_reconstruction_test
 
-            # Construct verbose path from checkpoint location (avoids
-            # changing recon_bpd.py which would invalidate the config hash)
-            verbose_path = ""
-            if checkpoint_path:
-                verbose_path = os.path.join(
-                    os.path.dirname(checkpoint_path), "recon_test",
-                    f"epoch {epoch + 1} verbose.txt",
-                )
+            run_reconstruction_test(ctx, epoch, metrics)
 
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
@@ -372,11 +366,10 @@ def objective(
                 if "pooled_std" in metrics:
                     mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
 
-                # Upload reconstruction test artifacts
-                if verbose_path and os.path.exists(verbose_path):
-                    mlflow.log_artifact(verbose_path, "recon_test")
-                if failure_path and os.path.exists(failure_path):
-                    mlflow.log_artifact(failure_path, "recon_test")
+                # Upload all registered artifacts
+                for artifact_path in ctx.artifact_paths:
+                    if os.path.exists(artifact_path):
+                        mlflow.log_artifact(artifact_path, "recon_test")
                 
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():

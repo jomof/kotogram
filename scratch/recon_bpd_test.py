@@ -173,25 +173,36 @@ def check_test_file() -> bool:
 
 
 def run_reconstruction_test(
-    model: torch.nn.Module,
-    tokenizer: Tokenizer,
-    device: torch.device,
-    temperature: float,
+    ctx: "EpochContext",
     epoch: int,
-    output_dir: str,
-) -> ReconTestResults:
+    metrics: Dict[str, float],
+) -> None:
     """Run reconstruction spot-check after an epoch.
 
-    The model is switched to eval mode internally and restored afterwards.
-    Returns metrics dict and path to failure file (if any failures).
+    Merges test metrics into ``metrics`` and appends any artifact
+    file paths to ``ctx.artifact_paths``.  The model is switched to
+    eval mode internally and restored afterwards.
     """
+    from scratch.recon_bpd_checkpoint import EpochContext as _EC  # noqa: F811
+    assert isinstance(ctx, _EC)
+
     path = _test_file_path()
     if not os.path.exists(path):
-        return ReconTestResults(metrics={}, failure_path="", verbose_path="")
+        return
 
     cases = load_test_cases(path)
     if not cases:
-        return ReconTestResults(metrics={}, failure_path="", verbose_path="")
+        return
+
+    output_dir = (
+        os.path.join(os.path.dirname(ctx.checkpoint_path), "recon_test")
+        if ctx.checkpoint_path
+        else ""
+    )
+    model = ctx.model
+    tokenizer = ctx.tokenizer
+    device = ctx.device
+    temperature = ctx.temperature
 
     id_to_surface = {v: k for k, v in tokenizer.field_vocabs["surface"].items()}
 
@@ -329,15 +340,17 @@ def run_reconstruction_test(
 
     passed = passed_alt  # "pass" means considering alternatives
     failed = total - passed
-    metrics: Dict[str, float] = {
+    metrics.update({
         "recon_test_pct": 100.0 * passed / max(1, total),
         "recon_test_total": float(total),
         "recon_test_pass": float(passed),
         "recon_test_pass_strict": float(passed_strict),
         "recon_test_fail": float(failed),
-    }
-
-    return ReconTestResults(metrics=metrics, failure_path=failure_path, verbose_path=verbose_path)
+    })
+    if verbose_path:
+        ctx.artifact_paths.append(verbose_path)
+    if failure_path:
+        ctx.artifact_paths.append(failure_path)
 
 
 if __name__ == "__main__":
