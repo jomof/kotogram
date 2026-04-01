@@ -458,6 +458,12 @@ def main() -> None:
         "Optional PREFIX is prepended to the MLflow run name.",
     )
     parser.add_argument(
+        "--layers",
+        type=int,
+        default=None,
+        help="Override the number of layers",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -505,7 +511,11 @@ def main() -> None:
     adhoc_overrides: dict = {}
     if args.adhoc is not None:
         adhoc_overrides = dict(ADHOC_OVERRIDES)
-        print("Adhoc overrides:")
+    if args.layers is not None:
+        adhoc_overrides["num_layers"] = args.layers
+
+    if adhoc_overrides:
+        print("Overrides:")
         for k, v in sorted(adhoc_overrides.items()):
             print(f"  {k}: {v}")
 
