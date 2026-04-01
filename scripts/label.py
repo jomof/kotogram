@@ -94,6 +94,74 @@ from train.profile import PhaseTimer, get_profile_dir
 from train.tsv import parse_tsv
 
 
+def _is_content_char(cp: int) -> bool:
+    """Return True if the codepoint belongs to a content character range.
+
+    Content ranges (from char_histogram.md excluded groups):
+      Hiragana         U+3040..U+309F
+      Katakana         U+30A0..U+30FF
+      CJK Ideographs   U+4E00..U+9FFF
+      CJK Extension A  U+3400..U+4DBF
+      Digits 0-9       U+0030..U+0039
+      Fullwidth Digits  U+FF10..U+FF19
+      Fullwidth Latin   U+FF21..U+FF3A, U+FF41..U+FF5A
+      Ideographic Iteration Mark  U+3005 (々)
+    """
+    return (
+        0x3040 <= cp <= 0x309F  # Hiragana
+        or 0x30A0 <= cp <= 0x30FF  # Katakana
+        or 0x31F0 <= cp <= 0x31FF  # Katakana Phonetic Extensions
+        or 0x4E00 <= cp <= 0x9FFF  # CJK Unified Ideographs
+        or 0x3400 <= cp <= 0x4DBF  # CJK Extension A
+        or 0x20000 <= cp <= 0x2A6DF # CJK Extension B
+        or 0xF900 <= cp <= 0xFAFF  # CJK Compatibility Ideographs
+        or 0x0030 <= cp <= 0x0039  # Digits 0-9
+        or cp == 0x002E  # Full stop (period)
+        or cp == 0x0020  # Space
+        or 0x0041 <= cp <= 0x005A  # Latin A-Z
+        or 0x0061 <= cp <= 0x007A  # Latin a-z
+        or 0xFF10 <= cp <= 0xFF19  # Fullwidth Digits
+        or 0xFF21 <= cp <= 0xFF3A  # Fullwidth Latin A-Z
+        or 0xFF41 <= cp <= 0xFF5A  # Fullwidth Latin a-z
+        or cp == 0x3005  # 々 (Iteration)
+    )
+
+
+def _compute_and_write_content_mask(
+    surface_vocab: Dict[str, int], cache_dir: str
+) -> None:
+    """Compute per-token-ID content mask and write to content_mask.bin.
+
+    A token is 'content' (1) if ALL its characters are in content ranges.
+    Special tokens (id 0-3) and empty strings are non-content (0).
+    """
+    vocab_size = max(surface_vocab.values()) + 1 if surface_vocab else 0
+
+    # Build id -> string reverse mapping
+    id_to_token: Dict[int, str] = {v: k for k, v in surface_vocab.items()}
+
+    mask = [0] * vocab_size  # default: non-content
+    for token_id in range(vocab_size):
+        token_str = id_to_token.get(token_id, "")
+        # Special tokens and empty strings are non-content
+        if token_id < 4 or not token_str or token_str.startswith("<"):
+            continue
+        
+        # Any token with more than one character is content.
+        # Single-character tokens must match the content character ranges.
+        if len(token_str) > 1 or all(_is_content_char(ord(ch)) for ch in token_str):
+            mask[token_id] = 1
+
+    path = os.path.join(cache_dir, "content_mask.bin")
+    write_int_array(path, mask, "B")
+
+    content_count = sum(mask)
+    console.print(
+        f"[green]✓[/green] Content mask: {content_count:,} content / "
+        f"{vocab_size - content_count:,} non-content out of {vocab_size:,} tokens"
+    )
+
+
 def _debug_constant_check() -> int:
     """Dummy function to verify parameter recorder."""
     # This function is intended to verify parameter recording,
@@ -1305,6 +1373,11 @@ def main() -> None:
     tokenizer = Tokenizer()
     _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir)
     console.print(f"Saved vocab to {vocab_file}")
+
+    # Compute and write content/non-content token mask from finalized surface vocab
+    _compute_and_write_content_mask(
+        tokenizer.field_vocabs["surface"], dataset_cache_dir
+    )
 
     # -------------------------------------------------------------------------
     # Phase 2: Encoding

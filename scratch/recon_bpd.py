@@ -390,6 +390,7 @@ class _SetupCache:
         self.chive_normed: Optional[torch.Tensor] = None
         self.cached_model: Optional[BpdModel] = None
         self.cached_model_cfg: Optional[BpdModelConfig] = None
+        self.content_mask: Optional[torch.Tensor] = None
 
 GLOBAL_SETUP_CACHE = _SetupCache()
 
@@ -436,6 +437,14 @@ def train(
         output_dir = locations.get_style_output_dir()
         GLOBAL_SETUP_CACHE.tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
     tokenizer = GLOBAL_SETUP_CACHE.tokenizer
+
+    if GLOBAL_SETUP_CACHE.content_mask is None:
+        mask_path = f"{train_paths.get_style_dataset_cache_dir()}/content_mask.bin"
+        GLOBAL_SETUP_CACHE.content_mask = torch.from_file(
+            mask_path, shared=True, size=tokenizer.get_vocab_sizes()["surface"], dtype=torch.uint8
+        ).bool()
+    
+    content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(device, non_blocking=IS_CUDA)
 
     if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
         cache_dir = train_paths.get_style_dataset_cache_dir()
@@ -676,9 +685,19 @@ def train(
 
         for batch in loader:
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
-            recon_targets = ids
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
+            # ── Data Augmentation: Drop Non-Content Tokens (50%) ──────
+            is_content = content_mask_tensor[ids]
+            # Must also protect special tokens (ids < 4) from being dropped
+            is_non_content_valid = (~is_content) & attention_mask.bool() & (ids >= 4)
+            drop_mask = is_non_content_valid & (torch.rand_like(ids.float()) < 0.5)
+
+            # Drop means turning off the attention mask and replacing the ID with PAD
+            ids = ids.masked_fill(drop_mask, 0)
+            attention_mask = attention_mask.masked_fill(drop_mask, 0)
+
+            recon_targets = ids
             B_actual = ids.size(0)
 
             if config.consistency_weight > 0:
