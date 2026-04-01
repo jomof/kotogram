@@ -100,6 +100,9 @@ class TrainConfig:
     vicreg_var_weight: float = 11.0    # variance term coefficient
     vicreg_cov_weight: float = 5.0     # covariance term coefficient
     vicreg_gamma: float = 0.3          # target std per dimension
+    # Sentence length prediction from KC vector (diagnostic head).
+    # Low weight: this is primarily a diagnostic, not a training driver.
+    length_pred_weight: float = 0.01
 
     # Model architecture
     d_model: int = 512  # Original d_model: 512
@@ -232,9 +235,10 @@ class KCHead(nn.Module):
 class ReconDecoder(nn.Module):
     """Position-aware MLP: (kc_probs, position) → hidden → surface logits.
 
-    End-relative position embeddings: 0 = last content token, 1 = second-to-last, …
-    This lets the model learn sentence-final patterns (particles, copulas)
-    directly from positional features.
+    Dual positional encoding: end-relative (0 = last content token) and
+    start-relative (0 = first content token).  Together they implicitly
+    encode both absolute position AND sentence length — a token at
+    start_rel=2, end_rel=5 is the third token in an 8-token sentence.
 
     ``output_head`` is exposed as a plain ``nn.Linear`` so the caller can
     chunk the expensive [H → V] projection externally.
@@ -249,8 +253,13 @@ class ReconDecoder(nn.Module):
         max_seq_len: int = 512,
     ):
         super().__init__()
-        self.pos_embed = nn.Embedding(max_seq_len, pos_embed_dim)
-        self.hidden1 = nn.Linear(kc_vocab_size + pos_embed_dim, hidden_dim)
+        # End-relative position: 0 = last content token, 1 = second-to-last, ...
+        self.pos_embed_end = nn.Embedding(max_seq_len, pos_embed_dim)
+        # Start-relative position: 0 = first content token, 1 = second, ...
+        # Together with end-relative, these implicitly encode both
+        # absolute position and sentence length without a separate signal.
+        self.pos_embed_start = nn.Embedding(max_seq_len, pos_embed_dim)
+        self.hidden1 = nn.Linear(kc_vocab_size + 2 * pos_embed_dim, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.output_head = nn.Linear(hidden_dim, surface_vocab_size, bias=False)
         self.semantic_head = nn.Linear(hidden_dim, 300, bias=False)  # 300D Chive early-exit projection
@@ -263,10 +272,19 @@ class ReconDecoder(nn.Module):
         B, T = attention_mask.shape
         lengths = attention_mask.bool().sum(dim=1)
         abs_pos = torch.arange(T, device=kc_probs.device).unsqueeze(0).expand(B, -1)
+
+        # End-relative: 0 = last content token, counting backward
         end_rel = (lengths.unsqueeze(1) - 1 - abs_pos).clamp(min=0)
-        pos_emb = self.pos_embed(end_rel)
+        pos_emb_end = self.pos_embed_end(end_rel)
+
+        # Start-relative: 0 = first token, counting forward
+        # Clamp to length-1 so padding positions don't get
+        # out-of-bounds indices (they'll be masked out anyway).
+        start_rel = abs_pos.clamp(max=lengths.unsqueeze(1) - 1)
+        pos_emb_start = self.pos_embed_start(start_rel)
+
         kc_exp = kc_probs.unsqueeze(1).expand(-1, T, -1)
-        h = torch.cat([kc_exp, pos_emb], dim=-1)
+        h = torch.cat([kc_exp, pos_emb_end, pos_emb_start], dim=-1)
         h = self.act(self.hidden1(h))
         return self.act(self.hidden2(h))
 
@@ -321,6 +339,15 @@ class BpdModel(nn.Module):
             cfg.recon_pos_embed_dim,
             cfg.recon_hidden_dim,
             cfg.max_seq_len,
+        )
+
+        # Diagnostic head: predict sentence length from KC probs alone.
+        # Simple MLP: 1024 → 128 → 1. Detects whether the KC bottleneck
+        # encodes sentence length information.
+        self.length_head = nn.Sequential(
+            nn.Linear(cfg.kc_vocab_size, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
         )
 
     def encode(
@@ -597,6 +624,10 @@ def train(
         logit_sq_sum = 0.0
         logit_sum = 0.0
         logit_count = 0
+
+        total_length_pred_loss_sum = 0.0
+        total_length_pred_mae_sum = 0.0
+        total_length_pred_count = 0
         
         total_semantic_loss_sum = 0.0
         total_semantic_tokens = 0
@@ -799,6 +830,25 @@ def train(
                 # Recon decoder: pre-logit hidden states [B, T, H]
                 h_recon = model.recon.forward_hidden(kc_probs, attention_mask)
 
+                # ── Sentence length prediction (diagnostic) ─────────
+                # Predict number of content tokens from KC probs alone.
+                # Uses the raw KC probs (not logits) as input since
+                # that's the representation the recon decoder sees.
+                length_pred_loss = torch.tensor(0.0, device=device)
+                if config.length_pred_weight > 0:
+                    pred_lengths = model.length_head(kc_probs.detach() if config.length_pred_weight < 0.1 else kc_probs).squeeze(-1)
+                    # Use only first half if consistency doubling is active
+                    if config.consistency_weight > 0:
+                        true_lengths_lp = attention_mask[:half].sum(dim=1).float()
+                        pred_lengths_lp = pred_lengths[:half]
+                    else:
+                        true_lengths_lp = attention_mask.sum(dim=1).float()
+                        pred_lengths_lp = pred_lengths
+                    # Normalized MSE: divide by mean length squared so the
+                    # loss magnitude is independent of sentence length scale
+                    mean_len = true_lengths_lp.mean().clamp_min(1.0)
+                    length_pred_loss = F.mse_loss(pred_lengths_lp, true_lengths_lp) / (mean_len ** 2)
+
             # ── Output projection + CE ────────────────────────────────
             assert h_recon.shape[:2] == recon_targets.shape
             assert attention_mask.shape == recon_targets.shape
@@ -956,6 +1006,16 @@ def train(
                 loss = loss + vicreg_loss
                 total_vicreg_sum += vicreg_loss.item()
 
+            # Length prediction diagnostic
+            if config.length_pred_weight > 0:
+                loss = loss + config.length_pred_weight * length_pred_loss
+                total_length_pred_loss_sum += length_pred_loss.item()
+                # Also track MAE for interpretability (in token units)
+                with torch.no_grad():
+                    mae = (pred_lengths_lp - true_lengths_lp).abs().mean().item()
+                    total_length_pred_mae_sum += mae
+                    total_length_pred_count += 1
+
             if config.kl_sparse_weight > 0:
                 # Length-proportional sparsity adjustment: 
                 # Short sentences are heavily penalized for turning on logits to prevent them 
@@ -1005,7 +1065,7 @@ def train(
             total_elements += B_actual
             n_batches += 1
 
-            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss, vicreg_loss
+            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss, vicreg_loss, length_pred_loss
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
@@ -1091,6 +1151,8 @@ def train(
             "temperature": current_temperature,
             "kl_warmup": kl_warmup,
             "semantic_threshold": current_threshold,
+            "length_pred_mse": total_length_pred_loss_sum / max(1, total_length_pred_count),
+            "length_pred_mae": total_length_pred_mae_sum / max(1, total_length_pred_count),
             "el_per_sec": els,
             "samples": total_elements,
             "epoch_secs": dt,
