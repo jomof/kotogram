@@ -296,15 +296,19 @@ def run_reconstruction_test(
                     if not first_fail_line:
                         # Build actual reconstruction for report
                         actual_surfaces = list(surfaces)
+                        # Bracket masked tokens in expected sentence
+                        expected_surfaces = list(surfaces)
                         for orig_pos in masked_pos:
                             pred_id = int(logits[0, orig_pos + 1].argmax().item())
                             actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
+                            expected_surfaces[orig_pos] = f"[{surfaces[orig_pos]}]"
                         actual_recon = "".join(actual_surfaces)
+                        expected_display = "".join(expected_surfaces)
                         also = ""
                         if case.acceptable_alternatives:
                             also = f" [also accepts: {', '.join(case.acceptable_alternatives)}]"
                         first_fail_line = (
-                            f"{case.full_sentence}{also}: {actual_recon} (from {variant})"
+                            f"{expected_display}{also}: {actual_recon} (from {variant})"
                         )
 
             total += 1
@@ -327,13 +331,13 @@ def run_reconstruction_test(
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
         # Always write verbose report
-        verbose_path = os.path.join(output_dir, f"epoch {epoch + 1} verbose.txt")
+        verbose_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} verbose.txt")
         with open(verbose_path, "w", encoding="utf-8") as f:
             for line in verbose_lines:
                 f.write(line + "\n")
         # Write failures only if there are any
         if failure_lines:
-            failure_path = os.path.join(output_dir, f"epoch {epoch + 1} failures.txt")
+            failure_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} failures.txt")
             with open(failure_path, "w", encoding="utf-8") as f:
                 for line in failure_lines:
                     f.write(line + "\n")
