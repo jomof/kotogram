@@ -141,7 +141,7 @@ _SWEEP_SEARCH_SPACE: dict = {
     # False = plain cosine similarity (pre-branch)
     # True  = BYOL/SimSiam symmetrized stop-gradient (branch default)
     # Only has effect when consistency_weight > 0.
-    "consistency_stop_gradient": [False],
+    "consistency_stop_gradient": [True],
 
     # ── F1b: VICReg ───────────────────────────────────────────────────
     # False = no VICReg (pre-branch)
