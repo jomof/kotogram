@@ -129,8 +129,11 @@ class TrainConfig:
     # True = rescue gate (branch default). False = deterministic cos_sim < threshold.
     # Ignored when semantic_gating_threshold == 0 (gating fully disabled).
     semantic_rescue_gate: bool = True
-    # Non-content token dropout: fraction of non-content tokens to drop per batch.
-    # 0.0 = disabled (pre-branch behaviour). Default 0.5 = 50% dropout.
+    # Sentence-final punctuation truncation: probability of removing
+    # the final token when it is non-content (punctuation). This
+    # diversifies the end_rel=0 distribution so the model learns to
+    # predict content words at sentence-final position.
+    # 0.0 = disabled (pre-branch behaviour). Default 0.5 = 50% chance.
     non_content_mask_ratio: float = 0.5
     # Bidirectional positional encoding in the recon decoder.
     # True = end-relative + start-relative (branch default, implicitly encodes length).
@@ -719,20 +722,31 @@ def train(
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
-            # ── Data Augmentation: Drop Non-Content Tokens ────────────
-            # Randomly drop non-content tokens (particles, punctuation) to
-            # prevent the encoder from memorizing surface-level grammatical
-            # patterns. Disabled when non_content_mask_ratio == 0.
+            # ── Data Augmentation: Sentence-Final Punctuation Truncation ─
+            # For sentences that end in non-content tokens (punctuation),
+            # randomly truncate the final token by shortening the
+            # attention_mask by 1. This makes the model see real
+            # training examples where end_rel=0 is a content word
+            # (kana/kanji), fixing the bias toward predicting sentence-
+            # final punctuation. Only one token is removed per sentence,
+            # so reconstruction difficulty is barely affected.
+            # Disabled when non_content_mask_ratio == 0.
             if config.non_content_mask_ratio > 0:
-                is_content = content_mask_tensor[ids]
-                # Must also protect special tokens (ids < 4) from being dropped
-                is_non_content_valid = (~is_content) & attention_mask.bool() & (ids >= 4)
-                drop_mask = is_non_content_valid & (
-                    torch.rand_like(ids.float()) < config.non_content_mask_ratio
+                lengths = attention_mask.sum(dim=1).long()  # [B]
+                # Index of the last attended token for each sentence
+                last_idx = (lengths - 1).clamp(min=0)  # [B]
+                # Look up the token ID at the last position
+                last_token_id = ids[torch.arange(ids.size(0), device=device), last_idx]
+                # Check if the last token is non-content and not a special token
+                is_non_content_final = (~content_mask_tensor[last_token_id]) & (last_token_id >= 4)
+                # Randomly decide whether to truncate (per-sentence coin flip)
+                do_truncate = is_non_content_final & (
+                    torch.rand(ids.size(0), device=device) < config.non_content_mask_ratio
                 )
-                # Drop means turning off the attention mask and replacing the ID with PAD
-                ids = ids.masked_fill(drop_mask, 0)
-                attention_mask = attention_mask.masked_fill(drop_mask, 0)
+                # Truncate by zeroing out the attention_mask at the last position.
+                # This genuinely shortens the sentence — no PAD holes in the middle.
+                if do_truncate.any():
+                    attention_mask[do_truncate, last_idx[do_truncate]] = 0
 
             recon_targets = ids
             B_actual = ids.size(0)
