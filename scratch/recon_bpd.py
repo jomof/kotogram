@@ -94,14 +94,20 @@ class TrainConfig:
     kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
+    # Stop-gradient on consistency branches (BYOL/SimSiam collapse prevention).
+    # True = symmetrized detach on both branches (branch default).
+    # False = plain cosine similarity, no stop-gradient (pre-branch behaviour).
+    consistency_stop_gradient: bool = True
     # VICReg regularization on encoder pooled output
     # Bardes, Ponce & LeCun, "VICReg: Variance-Invariance-Covariance
     # Regularization for Self-Supervised Learning," ICLR 2022
+    # Set both weights to 0 to disable entirely (pre-branch behaviour).
     vicreg_var_weight: float = 11.0    # variance term coefficient
     vicreg_cov_weight: float = 5.0     # covariance term coefficient
     vicreg_gamma: float = 0.3          # target std per dimension
     # Sentence length prediction from KC vector (diagnostic head).
     # Low weight: this is primarily a diagnostic, not a training driver.
+    # Set to 0 to disable (pre-branch behaviour).
     length_pred_weight: float = 0.01
 
     # Model architecture
@@ -116,8 +122,20 @@ class TrainConfig:
     # Stochastic depth: probability of dropping each encoder layer
     # Fan et al., "Reducing Transformer Depth on Demand with
     # Structured Dropout," ICLR 2020
+    # Set to 0 to disable (pre-branch behaviour).
     layer_drop_prob: float = 0.5
     semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
+    # Stochastic rescue gate: randomly rescue easy tokens with prob (1-threshold).
+    # True = rescue gate (branch default). False = deterministic cos_sim < threshold.
+    # Ignored when semantic_gating_threshold == 0 (gating fully disabled).
+    semantic_rescue_gate: bool = True
+    # Non-content token dropout: fraction of non-content tokens to drop per batch.
+    # 0.0 = disabled (pre-branch behaviour). Default 0.5 = 50% dropout.
+    non_content_mask_ratio: float = 0.5
+    # Bidirectional positional encoding in the recon decoder.
+    # True = end-relative + start-relative (branch default, implicitly encodes length).
+    # False = end-relative only (pre-branch behaviour).
+    recon_bidirectional_pos: bool = True
 
 
 @dataclass
@@ -165,6 +183,7 @@ class BpdModelConfig:
     recon_pos_embed_dim: int = 64
     recon_hidden_dim: int = 256
     layer_drop_prob: float = 0.5
+    recon_bidirectional_pos: bool = True
 
 
 class PositionalEncoding(nn.Module):
@@ -251,15 +270,22 @@ class ReconDecoder(nn.Module):
         pos_embed_dim: int = 64,
         hidden_dim: int = 256,
         max_seq_len: int = 512,
+        bidirectional_pos: bool = True,
     ):
         super().__init__()
+        self._bidirectional = bidirectional_pos
         # End-relative position: 0 = last content token, 1 = second-to-last, ...
         self.pos_embed_end = nn.Embedding(max_seq_len, pos_embed_dim)
         # Start-relative position: 0 = first content token, 1 = second, ...
         # Together with end-relative, these implicitly encode both
         # absolute position and sentence length without a separate signal.
-        self.pos_embed_start = nn.Embedding(max_seq_len, pos_embed_dim)
-        self.hidden1 = nn.Linear(kc_vocab_size + 2 * pos_embed_dim, hidden_dim)
+        # Only created when bidirectional_pos is True (pre-branch behaviour uses
+        # end-relative only, giving a different hidden1 input dimension).
+        self.pos_embed_start: Optional[nn.Embedding] = (
+            nn.Embedding(max_seq_len, pos_embed_dim) if bidirectional_pos else None
+        )
+        pos_dims = 2 * pos_embed_dim if bidirectional_pos else pos_embed_dim
+        self.hidden1 = nn.Linear(kc_vocab_size + pos_dims, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.output_head = nn.Linear(hidden_dim, surface_vocab_size, bias=False)
         self.semantic_head = nn.Linear(hidden_dim, 300, bias=False)  # 300D Chive early-exit projection
@@ -277,14 +303,18 @@ class ReconDecoder(nn.Module):
         end_rel = (lengths.unsqueeze(1) - 1 - abs_pos).clamp(min=0)
         pos_emb_end = self.pos_embed_end(end_rel)
 
-        # Start-relative: 0 = first token, counting forward
-        # Clamp to length-1 so padding positions don't get
-        # out-of-bounds indices (they'll be masked out anyway).
-        start_rel = abs_pos.clamp(max=lengths.unsqueeze(1) - 1)
-        pos_emb_start = self.pos_embed_start(start_rel)
-
         kc_exp = kc_probs.unsqueeze(1).expand(-1, T, -1)
-        h = torch.cat([kc_exp, pos_emb_end, pos_emb_start], dim=-1)
+
+        if self._bidirectional and self.pos_embed_start is not None:
+            # Start-relative: 0 = first token, counting forward.
+            # Clamp to length-1 so padding positions don't get
+            # out-of-bounds indices (they'll be masked out anyway).
+            start_rel = abs_pos.clamp(max=lengths.unsqueeze(1) - 1)
+            pos_emb_start = self.pos_embed_start(start_rel)
+            h = torch.cat([kc_exp, pos_emb_end, pos_emb_start], dim=-1)
+        else:
+            h = torch.cat([kc_exp, pos_emb_end], dim=-1)
+
         h = self.act(self.hidden1(h))
         return self.act(self.hidden2(h))
 
@@ -339,6 +369,7 @@ class BpdModel(nn.Module):
             cfg.recon_pos_embed_dim,
             cfg.recon_hidden_dim,
             cfg.max_seq_len,
+            bidirectional_pos=cfg.recon_bidirectional_pos,
         )
 
         # Diagnostic head: predict sentence length from KC probs alone.
@@ -483,6 +514,7 @@ def train(
         recon_pos_embed_dim=config.recon_pos_embed_dim,
         recon_hidden_dim=config.recon_hidden_dim,
         layer_drop_prob=config.layer_drop_prob,
+        recon_bidirectional_pos=config.recon_bidirectional_pos,
     )
     # Load chiVe pretrained surface embeddings and freeze
     if GLOBAL_SETUP_CACHE.chive_weights is None:
@@ -687,15 +719,20 @@ def train(
             ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
-            # ── Data Augmentation: Drop Non-Content Tokens (50%) ──────
-            is_content = content_mask_tensor[ids]
-            # Must also protect special tokens (ids < 4) from being dropped
-            is_non_content_valid = (~is_content) & attention_mask.bool() & (ids >= 4)
-            drop_mask = is_non_content_valid & (torch.rand_like(ids.float()) < 0.5)
-
-            # Drop means turning off the attention mask and replacing the ID with PAD
-            ids = ids.masked_fill(drop_mask, 0)
-            attention_mask = attention_mask.masked_fill(drop_mask, 0)
+            # ── Data Augmentation: Drop Non-Content Tokens ────────────
+            # Randomly drop non-content tokens (particles, punctuation) to
+            # prevent the encoder from memorizing surface-level grammatical
+            # patterns. Disabled when non_content_mask_ratio == 0.
+            if config.non_content_mask_ratio > 0:
+                is_content = content_mask_tensor[ids]
+                # Must also protect special tokens (ids < 4) from being dropped
+                is_non_content_valid = (~is_content) & attention_mask.bool() & (ids >= 4)
+                drop_mask = is_non_content_valid & (
+                    torch.rand_like(ids.float()) < config.non_content_mask_ratio
+                )
+                # Drop means turning off the attention mask and replacing the ID with PAD
+                ids = ids.masked_fill(drop_mask, 0)
+                attention_mask = attention_mask.masked_fill(drop_mask, 0)
 
             recon_targets = ids
             B_actual = ids.size(0)
@@ -772,26 +809,36 @@ def train(
                 consistency_loss = torch.tensor(0.0, device=device)
                 if config.consistency_weight > 0:
 
-                    # ── Stop-gradient consistency (asymmetric + symmetrized) ────
-                    # Grill et al., "Bootstrap Your Own Latent" (BYOL), NeurIPS 2020
-                    # Chen & He, "Exploring Simple Siamese Representation Learning"
-                    # (SimSiam), CVPR 2021
-                    #
-                    # Applying stop_grad to one branch eliminates the symmetric
-                    # collapse attractor where both views converge to a constant.
-                    # Symmetrizing ensures neither branch is privileged.
-                    cos_ab = F.cosine_similarity(
-                        kc_logits_raw[:half],
-                        kc_logits_raw[half:].detach(),  # stop-gradient on view B
-                        dim=-1,
-                    )
-                    cos_ba = F.cosine_similarity(
-                        kc_logits_raw[:half].detach(),  # stop-gradient on view A
-                        kc_logits_raw[half:],
-                        dim=-1,
-                    )
-                    consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
-                    epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().mean().item() * half
+                    if config.consistency_stop_gradient:
+                        # ── Stop-gradient consistency (asymmetric + symmetrized) ─
+                        # Grill et al., "Bootstrap Your Own Latent" (BYOL), NeurIPS 2020
+                        # Chen & He, "Exploring Simple Siamese Representation Learning"
+                        # (SimSiam), CVPR 2021
+                        #
+                        # Applying stop_grad to one branch eliminates the symmetric
+                        # collapse attractor where both views converge to a constant.
+                        # Symmetrizing ensures neither branch is privileged.
+                        cos_ab = F.cosine_similarity(
+                            kc_logits_raw[:half],
+                            kc_logits_raw[half:].detach(),  # stop-gradient on view B
+                            dim=-1,
+                        )
+                        cos_ba = F.cosine_similarity(
+                            kc_logits_raw[:half].detach(),  # stop-gradient on view A
+                            kc_logits_raw[half:],
+                            dim=-1,
+                        )
+                        consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
+                        epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().mean().item() * half
+                    else:
+                        # Pre-branch: plain symmetric cosine, no stop-gradient.
+                        cos = F.cosine_similarity(
+                            kc_logits_raw[:half],
+                            kc_logits_raw[half:],
+                            dim=-1,
+                        )
+                        consistency_loss = (1.0 - cos).mean()
+                        epoch_cossim_pair_sum += cos.detach().mean().item() * half
                     raw_consistency_sum += consistency_loss.detach().item()
 
                 # Gumbel noise + gradient capping
@@ -905,14 +952,18 @@ def train(
                     semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / max(1, num_valid_tokens)
                     total_semantic_loss_sum += float(semantic_distillation_loss.item()) * num_valid_tokens
                     
-                    # 5. Stochastic semantic gating: deterministically
-                    # keep hard tokens (cos_sim < threshold), and
-                    # randomly rescue easy tokens with probability
-                    # (1 - threshold). This drops most easy tokens
-                    # like the original gate but softens the boundary.
-                    is_easy = cos_sim >= threshold
-                    rescue = torch.rand_like(cos_sim) > threshold
-                    is_hard = (~is_easy | rescue) & valid_mask
+                    # 5. Token selection for CE loss.
+                    if config.semantic_rescue_gate:
+                        # Stochastic rescue gate: deterministically keep hard tokens
+                        # (cos_sim < threshold) and randomly rescue easy tokens with
+                        # probability (1 - threshold). Softens the hard semantic boundary.
+                        is_easy = cos_sim >= threshold
+                        rescue = torch.rand_like(cos_sim) > threshold
+                        is_hard = (~is_easy | rescue) & valid_mask
+                    else:
+                        # Pre-branch: deterministic gate only — train on tokens
+                        # the model finds hard (cos_sim < threshold).
+                        is_hard = (cos_sim < threshold) & valid_mask
                     
                     num_hard = int(is_hard.sum().item())
                     total_semantic_skipped += (num_valid_tokens - num_hard)

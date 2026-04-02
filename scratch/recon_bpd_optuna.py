@@ -44,7 +44,17 @@ def suggest_config(
             seed=42,
         )
         for key, values in _SWEEP_SEARCH_SPACE.items():
-            setattr(config, key, trial.suggest_categorical(key, values))
+            if key == "vicreg_enabled":
+                # Expand the single vicreg on/off toggle into the two weight fields.
+                on = trial.suggest_categorical(key, values)
+                if on:
+                    config.vicreg_var_weight = _VICREG_ON_WEIGHTS["var"]
+                    config.vicreg_cov_weight = _VICREG_ON_WEIGHTS["cov"]
+                else:
+                    config.vicreg_var_weight = 0.0
+                    config.vicreg_cov_weight = 0.0
+            else:
+                setattr(config, key, trial.suggest_categorical(key, values))
         return config
 
     d_model = trial.suggest_categorical("d_model", [256, 512])
@@ -96,10 +106,80 @@ def suggest_config(
     )
 
 
-# Pareto frontier parameter space configuration
+# VICReg default weights (used when vicreg_enabled = True).
+_VICREG_ON_WEIGHTS = {"var": 11.0, "cov": 5.0}
+
+# Feature-ablation sweep space.
+#
+# Goal: measure the independent contribution of each new training feature
+# introduced on the collapse-firewall branch, and produce a "pre-branch
+# baseline" point by disabling all of them simultaneously.
+#
+# Design rules:
+#   - Each feature has exactly one primary on/off knob listed here.
+#   - Parameters that only matter when a feature is enabled are NOT listed;
+#     they keep their TrainConfig default and can be tuned in a separate
+#     focused sweep if the feature proves useful.
+#   - The full-off combination reproduces pre-branch training behaviour.
+#
+# Feature inventory (from collapse-firewall.md):
+#   F1a. Stop-gradient consistency    → consistency_stop_gradient
+#   F1b. VICReg                       → vicreg_var_weight + vicreg_cov_weight
+#   F1c. LayerDrop (stochastic depth) → layer_drop_prob
+#   F2.  Stochastic rescue gate       → semantic_rescue_gate
+#   F3.  (test suite — no training impact, no flag needed)
+#   F4.  (checkpoint infra — no training impact, no flag needed)
+#   F5.  Temperature annealing        → temperature_start_multiplier (1.0 = off)
+#   F5b. KL warmup                    → temperature_anneal_epochs (0.0 = off)
+#   F6.  Bidirectional decoder        → recon_bidirectional_pos
+#   F7.  Non-content masking          → non_content_mask_ratio (0.0 = off)
+#
+# Pre-branch baseline: all features disabled simultaneously. This is
+# automatically included as one of the sweep combinations.
 _SWEEP_SEARCH_SPACE: dict = {
-    "kl_target_rho": [0.01, 0.03, 0.06, 0.065],
-    "kc_vocab_size": [512, 768, 1024, 1536, 2048],
+    # ── F1a: Stop-gradient consistency ───────────────────────────────
+    # False = plain cosine similarity (pre-branch)
+    # True  = BYOL/SimSiam symmetrized stop-gradient (branch default)
+    # Only has effect when consistency_weight > 0.
+    "consistency_stop_gradient": [False, True],
+
+    # ── F1b: VICReg ───────────────────────────────────────────────────
+    # False = no VICReg (pre-branch)
+    # True  = variance + covariance regularization on pooled encoder output
+    #         (var_weight=11.0, cov_weight=5.0 — branch default)
+    # Expanded to vicreg_var_weight / vicreg_cov_weight in suggest_config.
+    "vicreg_enabled": [False, True],
+
+    # ── F1c: LayerDrop ────────────────────────────────────────────────
+    # 0.0  = no layer dropping (pre-branch)
+    # 0.5  = aggressive stochastic depth (branch default)
+    "layer_drop_prob": [0.0, 0.5],
+
+    # ── F2: Stochastic rescue gate ────────────────────────────────────
+    # False = fully deterministic cos_sim < threshold gate (pre-branch)
+    # True  = deterministic-hard + stochastic-rescue (branch default)
+    # Only has effect when semantic_gating_threshold > 0.
+    "semantic_rescue_gate": [False, True],
+
+    # ── F5: Temperature annealing ─────────────────────────────────────
+    # 1.0  = no warmup, start at target temperature immediately (pre-branch)
+    # 3.0  = start at 3x target temperature and anneal (branch default)
+    "temperature_start_multiplier": [1.0, 3.0],
+
+    # ── F5b: KL warmup ───────────────────────────────────────────────
+    # 0.0  = full KL weight from epoch 0 (pre-branch)
+    # 30.0 = quadratic KL weight ramp over 30 effective epochs (branch default)
+    "temperature_anneal_epochs": [0.0, 30.0],
+
+    # ── F6: Bidirectional decoder ─────────────────────────────────────
+    # False = end-relative only (pre-branch)
+    # True  = end-relative + start-relative pos embeddings (branch default)
+    "recon_bidirectional_pos": [False, True],
+
+    # ── F7: Non-content masking ───────────────────────────────────────
+    # 0.0  = no dropout, raw surface tokens (pre-branch)
+    # 0.5  = 50% random dropout of non-content tokens per batch (branch default)
+    "non_content_mask_ratio": [0.0, 0.5],
 }
 
 # Default overrides for --adhoc runs.
@@ -523,6 +603,9 @@ def main() -> None:
     if args.sweep:
         suffixes.append("sweep")
         suffixes.append(_SWEEP_SPACE_HASH)
+        # In sweep mode every config must run to completion — convergence
+        # stopping mid-round would skip configs and invalidate the ablation.
+        args.convergence_patience = args.n_trials
     if args.percent != 100.0:
         suffixes.append(f"{args.percent:g}%")
 
@@ -582,15 +665,26 @@ def main() -> None:
     epochs = args.epochs_per_trial
     
     study_name = f"{exp_name} ({', '.join(suffixes)})"
-    study_pruner = (
-        optuna.pruners.HyperbandPruner(
-            min_resource=1,
-            max_resource=1000,
-            reduction_factor=4,
+    if args.sweep and args.pruner == "hyperband":
+        # Sweep/ablation mode: never prune.
+        #
+        # Every config in the ablation grid must run to completion so results
+        # are directly comparable. Pruning based on early BPD is unreliable
+        # (epoch-1 BPD is noisy) and would kill the pre-branch baseline configs
+        # that intentionally look worse early. Use --pruner hyperband to override.
+        study_pruner = optuna.pruners.NopPruner()
+    elif args.pruner == "hyperband":
+        # Non-sweep TPE mode: use Hyperband, but with max_resource matched to
+        # the actual epoch budget so brackets are correctly sized.
+        # max_resource=1000 caused Hyperband to treat every run as <0.1%
+        # complete, assigning everything to the 1-epoch explore bracket.
+        study_pruner = optuna.pruners.HyperbandPruner(
+            min_resource=max(1, epochs // 10),  # first rung at ~10% of budget
+            max_resource=epochs,
+            reduction_factor=3,  # keep top 1/3 at each rung
         )
-        if args.pruner == "hyperband"
-        else pruner
-    )
+    else:
+        study_pruner = pruner
 
     progressive_round = 0
     while True:
