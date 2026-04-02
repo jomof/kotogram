@@ -92,18 +92,6 @@ class TrainConfig:
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
     kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
-    # Per-sample KC budget: penalizes each sample when its total
-    # number of active KCs deviates from a length-proportional target.
-    # Unlike the batch-mean KL (which averages across samples and
-    # loses per-sample length signal), this gives each sentence its
-    # own gradient. The two losses are complementary: KL controls
-    # codebook diversity, budget controls per-sample load.
-    # Set to 0.0 to disable (pre-branch behaviour).
-    kc_budget_weight: float = 0.1
-    # Proportionality constant: target active KCs per token.
-    # At the default (0.004), a 15-token sentence targets
-    # 0.004 * 1024 * 15 = ~61 active KCs.
-    kc_budget_per_token: float = 0.004
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
     # Stop-gradient on consistency branches (BYOL/SimSiam collapse prevention).
@@ -652,7 +640,6 @@ def train(
         epoch_sharpness_sum = 0.0
         total_consistency_sum = 0.0
         total_vicreg_sum = 0.0
-        total_budget_sum = 0.0
         epoch_cossim_pair_sum = 0.0
         epoch_pooled_std_sum = 0.0
         total_elements = 0
@@ -1103,25 +1090,6 @@ def train(
                 loss = loss + vicreg_loss
                 total_vicreg_sum += vicreg_loss.item()
 
-            # ── Per-sample KC budget ──────────────────────────────
-            # Each sample gets its own gradient: "you have too many
-            # or too few hot logits for your sentence length."
-            # No cross-talk between samples of different lengths.
-            #
-            # actual_load: soft count of active KCs (sum of sigmoid
-            #   probabilities, so a prob of 0.9 contributes 0.9).
-            # target_load: length-proportional budget. A 15-token
-            #   sentence at default settings targets ~61 active KCs.
-            # Loss: normalized MSE so magnitude is independent of
-            #   kc_vocab_size and sentence length scale.
-            if config.kc_budget_weight > 0:
-                actual_load = kc_probs.sum(dim=1)  # [B]
-                sample_lengths = attention_mask.sum(dim=1).float().clamp_min(1.0)  # [B]
-                target_load = config.kc_budget_per_token * config.kc_vocab_size * (sample_lengths / 15.0)
-                budget_loss = ((actual_load - target_load) ** 2).mean() / config.kc_vocab_size
-                loss = loss + config.kc_budget_weight * kl_warmup * budget_loss
-                total_budget_sum += budget_loss.item()
-
             # Length prediction diagnostic
             if config.length_pred_weight > 0:
                 loss = loss + config.length_pred_weight * length_pred_loss
@@ -1263,7 +1231,6 @@ def train(
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
             "vicreg": total_vicreg_sum / max(1, n_batches),
-            "kc_budget": total_budget_sum / max(1, n_batches),
             "lr": current_lr,
             "temperature": current_temperature,
             "kl_warmup": kl_warmup,
