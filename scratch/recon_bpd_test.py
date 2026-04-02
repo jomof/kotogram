@@ -142,7 +142,23 @@ def align_tokens_to_masked(
 
 
 def check_test_file() -> bool:
-    """Validate that all test cases parse correctly against the tokenizer."""
+    """Validate that all test cases parse correctly against the tokenizer.
+
+    Three checks are performed:
+
+    0. Distinctness check: the main sentence and all alternatives are unique
+       strings.  Duplicates silently waste test budget.
+
+    1. Alignment check: every masked variant aligns correctly to the main
+       sentence's token list (each 'x' corresponds to exactly one token).
+
+    2. Coverage check: for every acceptable alternative, at least one masked
+       variant "covers" it.  A variant covers an alternative when the
+       alternative's tokens at all *unmasked* positions match the main
+       sentence's tokens.  If they differ at an unmasked position the
+       alternative can never be produced by filling in the x's — the test
+       case is broken.
+    """
     path = _test_file_path()
     cases = load_test_cases(path)
     all_ok = True
@@ -155,16 +171,65 @@ def check_test_file() -> bool:
         print(f"  Sentence: {case.full_sentence}{alt_display}")
         print(f"  Tokens: {surfaces}")
 
+        # ── Check 0: all sentences (main + alternatives) are distinct ─────
+        all_sentences = [case.full_sentence] + case.acceptable_alternatives
+        seen: set = set()
+        for s in all_sentences:
+            if s in seen:
+                print(f"    \u2717 FAIL (distinct): '{s}' appears more than once")
+                all_ok = False
+            seen.add(s)
+
+        # ── Check 1: alignment ────────────────────────────────────────────
+        valid_masks: List[List[int]] = []
         for variant in case.masked_variants:
             masked_pos = align_tokens_to_masked(surfaces, variant)
             if masked_pos is None:
-                print(f"    \u2717 FAIL: Cannot align '{variant}'")
+                print(f"    \u2717 FAIL (align): Cannot align '{variant}'")
                 all_ok = False
             else:
                 masked_tokens = [surfaces[i] for i in masked_pos]
                 print(
                     f"    \u2713 OK: '{variant}' \u2192 masked {masked_pos} ({masked_tokens})"
                 )
+                valid_masks.append(masked_pos)
+
+        # ── Check 2: each alternative is coverable by at least one variant ─
+        for alt in case.acceptable_alternatives:
+            alt_surfaces = _tokenize_to_surfaces(alt)
+            if len(alt_surfaces) != len(surfaces):
+                print(
+                    f"    \u2717 FAIL (coverage): '{alt}' has {len(alt_surfaces)} tokens"
+                    f" but main has {len(surfaces)} — length mismatch, no mask can cover it"
+                )
+                all_ok = False
+                continue
+
+            covered = False
+            for masked_pos in valid_masks:
+                masked_set = set(masked_pos)
+                # All unmasked positions must be identical between main and alt
+                if all(
+                    alt_surfaces[p] == surfaces[p]
+                    for p in range(len(surfaces))
+                    if p not in masked_set
+                ):
+                    covered = True
+                    break
+
+            if covered:
+                print(f"    \u2713 OK (coverage): '{alt}' is coverable")
+            else:
+                diff = [
+                    p for p in range(len(surfaces)) if alt_surfaces[p] != surfaces[p]
+                ]
+                print(
+                    f"    \u2717 FAIL (coverage): '{alt}' differs at positions {diff} "
+                    f"({[surfaces[p] for p in diff]} \u2192 {[alt_surfaces[p] for p in diff]})"
+                    f" but no variant masks those positions"
+                )
+                all_ok = False
+
         print()
 
     status = "ALL OK" if all_ok else "SOME FAILURES"
