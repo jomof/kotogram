@@ -105,7 +105,7 @@ class TrainConfig:
     # 0.004 * 1024 * 15 = ~61 active KCs.
     kc_budget_per_token: float = 0.004
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
-    consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
+    consistency_weight: float = 0.002  # dual-mask KC consistency (0 = disabled)
     # Stop-gradient on consistency branches (BYOL/SimSiam collapse prevention).
     # True = symmetrized detach on both branches (branch default).
     # False = plain cosine similarity, no stop-gradient (pre-branch behaviour).
