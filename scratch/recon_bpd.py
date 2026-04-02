@@ -99,7 +99,7 @@ class TrainConfig:
     # own gradient. The two losses are complementary: KL controls
     # codebook diversity, budget controls per-sample load.
     # Set to 0.0 to disable (pre-branch behaviour).
-    kc_budget_weight: float = 0.1
+    kc_budget_weight: float = 1.0
     # Proportionality constant: target active KCs per token.
     # At the default (0.004), a 15-token sentence targets
     # 0.004 * 1024 * 15 = ~61 active KCs.
