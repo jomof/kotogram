@@ -659,17 +659,17 @@ def train(
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
         epoch_num_units = 0
-        total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
+        total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_rank_sum = 0.0
-        total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
+        total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_t1_correct = 0
         epoch_t1_units = 0
         epoch_cossim_sum = 0.0
-        epoch_sharpness_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        total_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        total_vicreg_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        epoch_cossim_pair_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        epoch_pooled_std_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
+        epoch_sharpness_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_vicreg_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_cossim_pair_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_pooled_std_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_elements = 0
         n_batches = 0
         s1_count = torch.tensor(0, device=device, dtype=torch.long)
@@ -682,16 +682,16 @@ def train(
         # Bin boundaries on GPU for torch.bucketize: (0,3], (3,7], (7,15], (15,31], (31,inf]
         _bin_edges = torch.tensor([3, 7, 15, 31], device=device, dtype=torch.float32)
         # GPU-side accumulators -- one element per bin
-        s1_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        s0_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        fuzzy_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        kc_prob_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        bpd_bits_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        bpd_tokens_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float64)
-        raw_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        logit_abs_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        logit_sq_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
-        logit_sum = torch.tensor(0.0, device=device, dtype=torch.float64)
+        s1_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        s0_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        fuzzy_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        kc_prob_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        bpd_bits_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        bpd_tokens_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        raw_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_abs_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_sq_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         logit_count = torch.tensor(0, device=device, dtype=torch.long)
 
         total_length_pred_loss_sum = 0.0
@@ -800,7 +800,7 @@ def train(
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
-                epoch_pooled_std_sum += pooled.std(dim=-1).sum().double()
+                epoch_pooled_std_sum += pooled.std(dim=-1).sum().float()
 
                 half = B // 2
 
@@ -868,7 +868,7 @@ def train(
                             dim=-1,
                         )
                         consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
-                        epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().sum().double()
+                        epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().sum().float()
                     else:
                         # Pre-branch: plain symmetric cosine, no stop-gradient.
                         cos = F.cosine_similarity(
@@ -877,8 +877,8 @@ def train(
                             dim=-1,
                         )
                         consistency_loss = (1.0 - cos).mean()
-                        epoch_cossim_pair_sum += cos.detach().sum().double()
-                    raw_consistency_sum += consistency_loss.detach().double()
+                        epoch_cossim_pair_sum += cos.detach().sum().float()
+                    raw_consistency_sum += consistency_loss.detach().float()
 
                 # Gumbel noise + gradient capping
                 u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
@@ -898,7 +898,7 @@ def train(
                 # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
                 _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
                 _h = -_p * torch.log2(_p) - (1 - _p) * torch.log2(1 - _p)
-                epoch_sharpness_sum += (1.0 - _h.mean()).double() * B_actual
+                epoch_sharpness_sum += (1.0 - _h.mean()).float() * B_actual
 
                 # s0/fuzzy/s1 sharpness (matches kc_trainer_view thresholds)
                 _det = kc_probs.detach()
@@ -918,19 +918,19 @@ def train(
                 lengths_gpu = attention_mask.sum(dim=1).float()  # [B]
                 V = _det.size(1)
                 bin_idx = torch.bucketize(lengths_gpu, _bin_edges)  # [B], values in 0.._NUM_BINS-1
-                s1_count_by_bin_t.scatter_add_(0, bin_idx.long(), s1_per_row.double())
-                s0_count_by_bin_t.scatter_add_(0, bin_idx.long(), s0_per_row.double())
-                fuzzy_count_by_bin_t.scatter_add_(0, bin_idx.long(), fuzzy_per_row.double())
+                s1_count_by_bin_t.scatter_add_(0, bin_idx.long(), s1_per_row.float())
+                s0_count_by_bin_t.scatter_add_(0, bin_idx.long(), s0_per_row.float())
+                fuzzy_count_by_bin_t.scatter_add_(0, bin_idx.long(), fuzzy_per_row.float())
                 kc_prob_count_by_bin_t.scatter_add_(
                     0, bin_idx.long(),
-                    torch.full_like(bin_idx, V, dtype=torch.float64),
+                    torch.full_like(bin_idx, V, dtype=torch.float32),
                 )
 
                 # KC logit magnitude stats
                 _logits_det = kc_logits_raw.detach()
-                logit_abs_sum += _logits_det.abs().sum().double()
-                logit_sq_sum += (_logits_det**2).sum().double()
-                logit_sum += _logits_det.sum().double()
+                logit_abs_sum += _logits_det.abs().sum().float()
+                logit_sq_sum += (_logits_det**2).sum().float()
+                logit_sum += _logits_det.sum().float()
                 logit_count += _logits_det.numel()
 
                 # Recon decoder: pre-logit hidden states [B, T, H]
@@ -1097,8 +1097,8 @@ def train(
             bits_per_row = nats_per_row / LOG2          # [B], stays on GPU
             row_lengths = mask_f.sum(dim=1)              # [B], stays on GPU
             bpd_bin_idx = torch.bucketize(row_lengths, _bin_edges)  # [B]
-            bpd_bits_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), bits_per_row.double())
-            bpd_tokens_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), row_lengths.double())
+            bpd_bits_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), bits_per_row.float())
+            bpd_tokens_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), row_lengths.float())
 
             # ── Regularizers ─────────────────────────────────────────
             loss = bpd + semantic_distillation_loss * 5.0
@@ -1106,12 +1106,12 @@ def train(
             if config.consistency_weight > 0:
                 consist_scaled = config.consistency_weight * consistency_loss
                 loss = loss + consist_scaled
-                total_consistency_sum += consist_scaled.detach().double()
+                total_consistency_sum += consist_scaled.detach().float()
 
             # VICReg contribution
             if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
                 loss = loss + vicreg_loss
-                total_vicreg_sum += vicreg_loss.detach().double()
+                total_vicreg_sum += vicreg_loss.detach().float()
 
             # ── MDL bits-back cost ────────────────────────────────
             # Grünwald, "The Minimum Description Length Principle,"
@@ -1137,7 +1137,7 @@ def train(
                     mdl_lengths = mdl_lengths[:half]
                 mdl_cost = (mdl_load / mdl_lengths).mean()
                 loss = loss + config.mdl_weight * kl_warmup * mdl_cost
-                total_mdl_sum += mdl_cost.detach().double()
+                total_mdl_sum += mdl_cost.detach().float()
 
             # ── Pairwise ranking margin ───────────────────────────
             # Burges et al., "Learning to Rank using Gradient
@@ -1191,7 +1191,7 @@ def train(
                 cov_term = (cov**2).mean()
                 cov_scaled = config.cov_penalty_weight * cov_term
                 loss = loss + cov_scaled
-                total_cov_sum += cov_scaled.detach().double()
+                total_cov_sum += cov_scaled.detach().float()
 
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad()
