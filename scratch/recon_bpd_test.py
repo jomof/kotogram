@@ -47,12 +47,12 @@ class TestCase:
 
 
 @dataclass
-class ReconTestResults:
-    """Results from running reconstruction tests."""
+class _CaseRecord:
+    """Per-case result record for reporting."""
 
-    metrics: Dict[str, float]
-    failure_path: str  # path to failures file (empty if no failures)
-    verbose_path: str  # path to verbose report (empty if not written)
+    outcome: str  # "STRICT", "ALT", or "FAIL"
+    report_line: str  # human-readable line for the report
+    sim: float  # avg cosine sim: predicted embedding vs main-target embedding
 
 
 def _test_file_path() -> str:
@@ -244,9 +244,18 @@ def run_reconstruction_test(
 ) -> None:
     """Run reconstruction spot-check after an epoch.
 
-    Merges test metrics into ``metrics`` and appends any artifact
-    file paths to ``ctx.artifact_paths``.  The model is switched to
-    eval mode internally and restored afterwards.
+    For each masked test case the model predicts the hidden token(s).  The
+    result is recorded as STRICT (exact match), ALT (accepted alternative),
+    or FAIL.  Two report files are written:
+
+    * verbose.txt — FAILURES section then PASSED section, each with a
+      per-case cosine-similarity tag and min/median/max statistics.
+    * failures.txt — same layout (so the failure file alone is self-
+      contained without needing to open the verbose file).
+
+    Cosine similarity is computed between the predicted token’s output
+    embedding and the main-target token’s output embedding, averaged over
+    all masked positions across all variants of the case.
     """
     from scratch.recon_bpd_checkpoint import EpochContext as _EC  # noqa: F811
     assert isinstance(ctx, _EC)
@@ -277,14 +286,14 @@ def run_reconstruction_test(
     total = 0
     passed_strict = 0
     passed_alt = 0
-    failure_lines: List[str] = []
-    verbose_lines: List[str] = []
+    case_records: List[_CaseRecord] = []
 
     with torch.no_grad():
+        embed_weight = model.recon.output_head.weight  # [V, H]
+
         for case in cases:
             surfaces = _tokenize_to_surfaces(case.full_sentence)
 
-            # Encode via tokenizer (produces CLS + token IDs)
             parser = _get_parser()
             kotogram = parser.japanese_to_kotogram(case.full_sentence)
             features_list = [
@@ -293,7 +302,6 @@ def run_reconstruction_test(
             encoded = tokenizer.encode_features(features_list)
             surface_ids = encoded["surface"]  # [CLS, tok0, tok1, ...]
 
-            # Pre-tokenize acceptable alternatives for this case
             alt_surface_ids_list: List[list] = []
             for alt_sentence in case.acceptable_alternatives:
                 try:
@@ -304,16 +312,18 @@ def run_reconstruction_test(
                     ]
                     alt_encoded = tokenizer.encode_features(alt_features)
                     alt_ids = alt_encoded["surface"]
-                    # Only use alternatives with matching token count
                     if len(alt_ids) == len(surface_ids):
                         alt_surface_ids_list.append(alt_ids)
                 except Exception:
-                    pass  # skip malformed alternatives silently
+                    pass
 
-            # Track per-case outcome: strict, alt, or fail
-            case_strict = True  # all variants match exact original
-            case_alt = True  # all variants match original OR alternative
+            case_strict = True
+            case_alt = True
+            # Per-position cosine sims across all variants
+            case_sims: List[float] = []
             first_fail_line = ""
+            # Predictions from the most recently processed variant
+            case_last_actual: List[str] = list(surfaces)
 
             for variant in case.masked_variants:
                 masked_pos = align_tokens_to_masked(surfaces, variant)
@@ -322,10 +332,8 @@ def run_reconstruction_test(
                     case_alt = False
                     continue
 
-                # +1 offset for CLS token at position 0
                 masked_id_positions = [p + 1 for p in masked_pos]
 
-                # Create input with masked positions zeroed out (PAD)
                 ids_tensor = torch.tensor([surface_ids], device=device)
                 for pos in masked_id_positions:
                     ids_tensor[0, pos] = 0
@@ -334,7 +342,6 @@ def run_reconstruction_test(
                     1, len(surface_ids), device=device, dtype=torch.long
                 )
 
-                # Full forward pass: encode -> KC -> recon
                 pooled = model.encode(ids_tensor, attn_mask)
                 kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
                 kc_probs = torch.sigmoid(kc_logits_raw / temperature)
@@ -343,71 +350,123 @@ def run_reconstruction_test(
 
                 variant_strict = True
                 variant_alt = True
-                for pos in masked_id_positions:
+                actual_surfaces = list(surfaces)
+                expected_surfaces = list(surfaces)
+
+                for orig_pos in masked_pos:
+                    pos = orig_pos + 1
                     pred_id = int(logits[0, pos].argmax().item())
-                    if pred_id != surface_ids[pos]:
+                    exp_id = surface_ids[pos]
+
+                    # Cosine similarity: predicted embedding vs main-target embedding
+                    sim = F.cosine_similarity(
+                        embed_weight[pred_id].unsqueeze(0),
+                        embed_weight[exp_id].unsqueeze(0),
+                    ).item()
+                    case_sims.append(sim)
+
+                    actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
+                    expected_surfaces[orig_pos] = f"[{surfaces[orig_pos]}]"
+
+                    if pred_id != exp_id:
                         variant_strict = False
-                        # Check alternatives
-                        acceptable_ids = {surface_ids[pos]}
+                        acceptable_ids: set = {exp_id}
                         for alt_ids in alt_surface_ids_list:
                             acceptable_ids.add(alt_ids[pos])
                         if pred_id not in acceptable_ids:
                             variant_alt = False
+
+                case_last_actual = actual_surfaces
 
                 if not variant_strict:
                     case_strict = False
                 if not variant_alt:
                     case_alt = False
                     if not first_fail_line:
-                        # Build actual reconstruction for report
-                        actual_surfaces = list(surfaces)
-                        # Bracket masked tokens in expected sentence
-                        expected_surfaces = list(surfaces)
-                        for orig_pos in masked_pos:
-                            pred_id = int(logits[0, orig_pos + 1].argmax().item())
-                            actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
-                            expected_surfaces[orig_pos] = f"[{surfaces[orig_pos]}]"
                         actual_recon = "".join(actual_surfaces)
                         expected_display = "".join(expected_surfaces)
                         also = ""
                         if case.acceptable_alternatives:
-                            also = f" [also accepts: {', '.join(case.acceptable_alternatives)}]"
+                            also = (
+                                f" [also accepts:"
+                                f" {', '.join(case.acceptable_alternatives)}]"
+                            )
                         first_fail_line = (
-                            f"{expected_display}{also}: {actual_recon} (from {variant})"
+                            f"{expected_display}{also}:"
+                            f" {actual_recon} (from {variant})"
                         )
 
             total += 1
+            case_sim = sum(case_sims) / max(1, len(case_sims))
+            sim_tag = f"[sim={case_sim:.2f}]"
+            actual_recon = "".join(case_last_actual)
+
             if case_strict:
                 passed_strict += 1
                 passed_alt += 1
-                verbose_lines.append(f"STRICT {case.full_sentence}")
+                report_line = f"STRICT {case.full_sentence} {sim_tag}"
+                case_records.append(
+                    _CaseRecord("STRICT", report_line, case_sim)
+                )
             elif case_alt:
                 passed_alt += 1
-                verbose_lines.append(f"ALT    {case.full_sentence}")
+                report_line = f"ALT    {case.full_sentence} \u2192 {actual_recon} {sim_tag}"
+                case_records.append(
+                    _CaseRecord("ALT", report_line, case_sim)
+                )
             else:
-                verbose_lines.append(f"FAIL   {first_fail_line}")
-                failure_lines.append(first_fail_line)
+                fail_report = f"FAIL   {first_fail_line} {sim_tag}"
+                case_records.append(
+                    _CaseRecord("FAIL", fail_report, case_sim)
+                )
 
     if was_training:
         model.train()
 
-    failure_path = ""
-    verbose_path = ""
+    def _sim_stats(sims: List[float]) -> str:
+        if not sims:
+            return "n/a"
+        sims_s = sorted(sims)
+        n = len(sims_s)
+        median = (
+            sims_s[n // 2]
+            if n % 2 == 1
+            else (sims_s[n // 2 - 1] + sims_s[n // 2]) / 2.0
+        )
+        return f"min={sims_s[0]:.2f}  median={median:.2f}  max={sims_s[-1]:.2f}"
+
+    def _build_section(
+        title: str, records: List[_CaseRecord]
+    ) -> List[str]:
+        sorted_records = sorted(records, key=lambda r: r.sim)
+        sims = [r.sim for r in sorted_records]
+        out = [f"=== {title} ({len(sorted_records)}) ==="]
+        for r in sorted_records:
+            out.append(r.report_line)
+        out.append(f"Stats: {_sim_stats(sims)}")
+        return out
+
+    fail_records = [r for r in case_records if r.outcome == "FAIL"]
+    pass_records = [r for r in case_records if r.outcome != "FAIL"]
+
+    report_path = ""
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        # Always write verbose report
-        verbose_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} verbose.txt")
-        with open(verbose_path, "w", encoding="utf-8") as f:
-            for line in verbose_lines:
-                f.write(line + "\n")
-        # Write failures only if there are any
-        if failure_lines:
-            failure_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} failures.txt")
-            with open(failure_path, "w", encoding="utf-8") as f:
-                for line in failure_lines:
-                    f.write(line + "\n")
 
-    passed = passed_alt  # "pass" means considering alternatives
+        report_sections: List[str] = (
+            _build_section("FAILURES", fail_records)
+            + [""]
+            + _build_section("PASSED", pass_records)
+        )
+
+        report_path = os.path.join(
+            output_dir, f"epoch {epoch + 1:03d} failures.txt"
+        )
+        with open(report_path, "w", encoding="utf-8") as f:
+            for line in report_sections:
+                f.write(line + "\n")
+
+    passed = passed_alt
     failed = total - passed
     metrics.update({
         "recon_test_pct": 100.0 * passed / max(1, total),
@@ -416,10 +475,8 @@ def run_reconstruction_test(
         "recon_test_pass_strict": float(passed_strict),
         "recon_test_fail": float(failed),
     })
-    if verbose_path:
-        ctx.artifact_paths.append(verbose_path)
-    if failure_path:
-        ctx.artifact_paths.append(failure_path)
+    if report_path:
+        ctx.artifact_paths.append(report_path)
 
 
 if __name__ == "__main__":
