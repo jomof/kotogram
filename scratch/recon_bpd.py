@@ -800,7 +800,7 @@ def train(
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
-                epoch_pooled_std_sum += pooled.std(dim=-1).sum().float()
+                epoch_pooled_std_sum += pooled.detach().std(dim=-1).sum().float()
 
                 half = B // 2
 
