@@ -8,42 +8,42 @@
 # are capturing which linguistic features.
 # ═══════════════════════════════════════════════════════════════════
 
-# ── §1 Case Particles (が, を, に, で, から, まで, と, へ, も) ─────
+# ── Case Particles (が, を, に, で, から, まで, と, へ, も) ─────
 # The minimal grammatical signal. If the model can't reconstruct
 # these, it hasn't learned basic Japanese syntax.
 雨が降る: 雨x降る
 本を読む: 本x読む
 学校に行く[学校へ行く]: 学校x行く
 花が咲く: 花x咲く
-春に桜が咲く: 春x桜が咲く 春に桜x咲く
+春に桜が咲く[春の桜が咲く]: 春x桜が咲く 春に桜x咲く
 公園で遊ぶ: 公園x遊ぶ
-東京から来た: 東京x来た
+東京から来た[東京に来た]: 東京x来た
 海へ行く[海に行く]: 海x行く
 友達と話す: 友達x話す
 
-# ── §2 Topic vs Subject (は vs が) ────────────────────────────────
+# ── Topic vs Subject (は vs が) ────────────────────────────────
 # Critical distinction. は marks known/topical information,
 # が marks new/focused information. Tests pragmatic awareness.
 猫は魚が好きだ: 猫x魚が好きだ 猫はxx好きだ
 私は学生です: 私x学生です
 誰が来ましたか[誰か来ましたか]: 誰x来ましたか
 
-# ── §3 Sentence-Final Particles (ね, よ, か, な, わ) ─────────────
+# ── Sentence-Final Particles (ね, よ, か, な, わ) ─────────────
 # Pragmatic/mood markers at sentence boundary. Position-sensitive.
-寒いですね: 寒いですx
+寒いですね[寒いですよ]: 寒いですx
 元気ですか[元気ですね]: 元気ですx
-面白いよ: 面白いx
+面白いよ[面白いです]: 面白いx
 行きたいな[行きたいです,行きたいよ]: 行きたいx
 夜の風が冷たいね[夜は風が冷たいね]: 夜x風が冷たいね
 
-# ── §4 Copula & Sentence Endings (だ, です, である) ──────────────
+# ── Copula & Sentence Endings (だ, です, である) ──────────────
 # Formality register encoded in the final element.
 これは本だ[これは本です]: これは本x
 これは本です[これは本だ]: これは本x
 これは本である: これは本xある
 これは本ではない: これは本xはない これは本でxない
 
-# ── §5 Verb Conjugation (て, た, ない, ます, passive, causative) ──
+# ── Verb Conjugation (て, た, ない, ます; passive adds られ, causative adds させ) ──
 # Tests whether KCs capture morphological paradigm structure.
 # 食べる is one token (terminal form), so no mask possible.
 ご飯を食べた: ご飯をxた
@@ -54,93 +54,91 @@
 ご飯を食べている: ご飯をxxいる
 お寿司を食べたい: お寿司をxたい
 
-# ── §6 い-Adjective Inflection ───────────────────────────────────
+# ── い-Adjective Inflection (い changes to かった in past) ────────────────
 # Adjective stem should be reconstructable from conjugated form.
 夏は暑い日が続く: 夏はx日が続く
 夏なのに暑くない: 夏なのにxない
 夏の日が暑かった: 夏の日がxた
 
-# ── §7 な-Adjective + Copula ─────────────────────────────────────
+# ── な-Adjective + Copula (な dropped for だった, ではない) ─────────────────
 静かな夜だ: 静かx夜だ
 静かだった: 静かxた
 静かではない: 静かxxない
 
-# ── §8 Content Word Prediction (Semantic KC Test) ────────────────
+# ── Content Word Prediction (Semantic KC Test) ────────────────
 # Can the model infer a content word purely from syntactic frame?
 # These test semantic KC capacity, not just grammar.
-喉が渇いて水を飲む[喉が渇いて酒を飲む]: 喉が渇いてxを飲む
 友達を駅で待つ: 友達をxで待つ
-封筒に入れる手紙を書く: 封筒に入れるxを書く
 ヘッドフォンで音楽を聴く: ヘッドフォンでxを聴く
 映画館で映画を見る: 映画館でxを見る
 
-# ── §9 Compound Particles (について, のために) ───────────────────
+# ── Compound Particles (について, のために) ───────────────────
 # Multi-token grammatical constructions.
 # について = に + つい + て (3 tokens); のために = の + ため + に
 日本について話す: 日本xxx話す
 将来のために勉強する: 将来xxx勉強する
 
-# ── §10 Conditional Forms (ば, たら, なら, と) ────────────────────
+# ── Conditional Forms (ば, たら, なら, と) ────────────────────
 # Different conditional semantics encoded in suffixes.
 雨が降れば中止だ: 雨が降れx中止だ
 雨が降ったら中止だ: 雨がxx中止だ
 時間があれば行く: 時間がxば行く
 
-# ── §11 て-Form Chaining ─────────────────────────────────────────
+# ── て-Form Chaining ─────────────────────────────────────────
 # Sequential actions linked by て. Tests multi-clause structure.
 起きて顔を洗う: 起きx顔を洗う
 歩いて学校に行く[歩いて学校へ行く]: 歩いx学校に行く 歩いて学校x行く
 
-# ── §12 Relative Clauses ─────────────────────────────────────────
+# ── Relative Clauses ─────────────────────────────────────────
 # Prenominal modification. Token order signals embedding.
 昨日買った本: 昨日xx本
 母が作った料理: 母x作ったx 母が作ったx
 
-# ── §13 Keigo / Politeness Register ──────────────────────────────
+# ── Keigo / Politeness Register ──────────────────────────────
 # Honorific (尊敬語), humble (謙譲語), polite (丁寧語).
 先生がいらっしゃる: 先生xいらっしゃる
 先生に申し上げる: 先生x申し上げる
 お水をください: お水xください
 
-# ── §14 Giving/Receiving (あげる/もらう/くれる) ───────────────────
+# ── Giving/Receiving (あげる/もらう/くれる) ───────────────────
 # Directional benefactive verbs — uniquely Japanese.
 友達に本をあげる: 友達に本xあげる
 友達が本をくれた: 友達が本xくれた
 友達に本をもらった: 友達に本xもらった
 
-# ── §15 Quotation と ─────────────────────────────────────────────
+# ── Quotation と ─────────────────────────────────────────────
 嘘だと思った[嘘だって思った]: 嘘だx思った
 行くと言った: 行くx言った
 
-# ── §16 Longer Sentences (8+ tokens) ─────────────────────────────
+# ── Longer Sentences (8+ tokens) ─────────────────────────────
 # Stress-tests bottleneck capacity for complex multi-clause input.
 東京から大阪まで行く[東京から大阪へ行く]: 東京x大阪まで行く 東京から大阪x行く
 東京から大阪まで新幹線で行く: 東京x大阪まで新幹線で行く 東京から大阪x新幹線で行く 東京から大阪まで新幹線x行く
 毎朝早く起きて公園を走る: 毎朝早く起きて公園x走る
 日本語を勉強している学生が多い[日本語は勉強している学生が多い]: 日本語x勉強している学生が多い
 
-# ── §17 Negation Scope ───────────────────────────────────────────
+# ── Negation Scope ───────────────────────────────────────────
 全然分からない: 全然xない
 まだ届いていない: まだ届いxいない
 何も食べなかった[何か食べなかった]: 何x食べなかった
 
-# ── §18 Temporal/Aspectual (ている, てある, てしまう, ておく) ────
+# ── Temporal/Aspectual (ている, てある, てしまう, ておく) ────
 窓が開いている: 窓が開いxいる
 窓が開けてある: 窓が開けxある
 食べてしまった: 食べxしまった
 準備しておく: 準備xxおく
 
-# ── §19 Sentence-Medial Conjunctions (けど, から, ので) ──────────
+# ── Sentence-Medial Conjunctions (けど, から, ので) ──────────
 高いけど買った[高いから買った]: 高いx買った
-疲れたから休む: 疲れたx休む
+疲れたから休む[疲れたゆっくり休む]: 疲れたx休む
 寒いので窓を閉めた: 寒いxx窓を閉めた
 
-# ── §20 Counter/Classifier Expressions ───────────────────────────
+# ── Counter/Classifier Expressions ───────────────────────────
 左右と真ん中に猫が三匹いる: 左右と真ん中に猫がx匹いる 左右と真ん中に猫が三xいる
 上下巻の本を二冊買った: 上下巻の本をx冊買った
 
 # ═══════════════════════════════════════════════════════════════════
-# §21 Synonym Pairs
+# Synonym Pairs
 # ═══════════════════════════════════════════════════════════════════
 # Paired sentences whose grammatical frame is IDENTICAL — only the
 # masked token differs, and the two masked tokens are synonyms.
@@ -163,6 +161,7 @@
 # ── Noun synonyms: food in を食べる frame ────────────────────────
 肉を食べる[魚を食べる,野菜を食べる]: xを食べる
 魚を食べる[肉を食べる,野菜を食べる]: xを食べる
+野菜を食べる[肉を食べる,魚を食べる]: xを食べる
 
 # ── Noun synonyms: destination in に行く frame ───────────────────
 登山のために山に行く[登山のために海に行く]: 登山のためにxに行く
@@ -173,16 +172,17 @@
 インクのペンで書く[インクの鉛筆で書く]: インクのxで書く
 
 # ── Noun synonyms: vehicle in で行く frame ───────────────────────
-運転して車で行く[運転して電車で行く]: 運転してxで行く
-切符を買って電車で行く[切符を買って車で行く]: 切符を買ってxで行く
+運転して車で行く[運転して電車で行く,運転してバスで行く]: 運転してxで行く
+切符を買って電車で行く[切符を買って車で行く,切符を買ってバスで行く]: 切符を買ってxで行く
+バスで行く[車で行く,電車で行く]: xで行く
 
 # ── Noun synonyms: written object in を書く frame ────────────────
 封筒に入れる手紙を書く[封筒に入れるメールを書く]: 封筒に入れるxを書く
 パソコンでメールを書く[パソコンで手紙を書く]: パソコンでxを書く
 
 # ── Verb synonyms: locomotion in 道を_ frame ─────────────────────
-道を歩く[道を走る]: 道をx
-道を走る[道を歩く]: 道をx
+道を歩く[道を走る,道を行く]: 道をx
+道を走る[道を歩く,道を行く]: 道をx
 
 # ── Verb synonyms: communication in 友達と_ frame ────────────────
 友達と話す[友達と喋る]: 友達とx
@@ -193,8 +193,8 @@
 空を眺める[空を見る]: 空をx
 
 # ── Verb synonyms: creation in 料理を_ frame ─────────────────────
-料理を作る[料理を拵える]: 料理をx
-料理を拵える[料理を作る]: 料理をx
+料理を作る[料理を拵える,料理を楽しむ]: 料理をx
+料理を拵える[料理を作る,料理を楽しむ]: 料理をx
 
 # ── Verb synonyms: cognition in 答えを_ frame ───────────────────
 答えを考える[答えを悩む]: 答えをx
@@ -210,7 +210,7 @@
 
 # ── い-Adjective synonyms: size in _家だ frame ──────────────────
 庭のある大きい家だ[庭のある広い家だ]: 庭のあるx家だ
-空間の広い家だ[空間の大きい家だ]: 空間のx家だ
+空間の広い家だ[空間の大きい家だ,空間のある家だ]: 空間のx家だ
 
 # ── い-Adjective synonyms: temperature in _風だ frame ────────────
 冬の冷たい風だ[冬の涼しい風だ]: 冬のx風だ
@@ -221,8 +221,9 @@
 倫理の厳しい問題だ[倫理の難しい問題だ]: 倫理のx問題だ
 
 # ── な-Adjective synonyms: importance in _な物だ frame ───────────
-思い出の大切な物だ[思い出の大事な物だ,思い出の特別な物だ]: 思い出のxな物だ
+思い出の大切な物だ[思い出の大事な物だ,思い出の特別な物だ,思い出の素敵な物だ,思い出の重要な物だ]: 思い出のxな物だ
 準備に必要な大事な物だ[準備に必要な大切な物だ,準備に必要な重要な物だ]: 準備に必要なxな物だ
+重要な物だ[大切な物だ,大事な物だ]: xな物だ
 
 # ── な-Adjective synonyms: quietness in _な場所だ frame ──────────
 音のない静かな場所だ[音のない穏やかな場所だ]: 音のないxな場所だ
@@ -253,5 +254,515 @@
 直ちに行く[すぐ行く]: x行く
 
 # ── Conjunction/reason synonyms: causal in 疲れた_休む frame ────
-疲れたから休む: 疲れたx休む
+疲れたから休む[疲れたゆっくり休む]: 疲れたx休む
 疲れたので休む: 疲れたxx休む
+
+# ═══════════════════════════════════════════════════════════════════
+# Grammar Patterns (established JLPT patterns)
+# ═══════════════════════════════════════════════════════════════════
+# Tests whether the model discovers multi-token grammar patterns,
+# especially NON-ADJACENT correlated features. These are established
+# Japanese grammar points where masking one element should be
+# recoverable from the surrounding grammatical frame.
+# ═══════════════════════════════════════════════════════════════════
+
+# ── というのは...事実だ (it is a fact that) ──────────────────────
+# Quotative frame: という signals factual/evidential conclusion.
+# Masking 事実 tests whether the model links という to a factual
+# predicate across intervening tokens.
+彼が辞めたというのは事実だ[彼が辞めたというのは本当だ]: 彼が辞めたというのはxだ
+地球が丸いというのは事実だ[地球が丸いというのは本当だ]: 地球が丸いというのはxだ
+
+# ── 価値がない (to be worthless) ─────────────────────────────────
+# Fixed collocation: Verb+価値がない is a set pattern.
+読む価値がない[読む必要がない,読む意味がない]: 読むxがない
+行く価値がない[行く必要がない,行く意味がない]: 行くxがない
+
+# ── あまり...ない (not very/much) ────────────────────────────────
+# NON-ADJACENT pattern: あまり signals upcoming negation.
+# Single mask: can the model predict あまり from downstream ない?
+この映画はあまり面白くない[この映画は全然面白くない]: この映画はx面白くない
+最近あまり寝ていない[最近全然寝ていない]: 最近x寝ていない
+# Reverse: given あまり, can it predict ない at the boundary?
+あまり美味しくない: あまり美味しくx
+# NON-ADJACENT double mask: can the model reconstruct BOTH ends
+# of the pattern simultaneously?
+この映画はあまり面白くない: この映画はx面白くx
+
+# ── ほかに (other besides) ───────────────────────────────────────
+# ほか pairs with に to form "besides/other than."
+ほかに方法がない: xに方法がない
+ほかには何もない: xには何もない
+
+
+# ── 少しずつ (little by little) ──────────────────────────────────
+# Fixed adverbial pattern: 少し + ずつ.
+少しずつ上手になる: xずつ上手になる
+
+# ── とっくに (long ago / already) ────────────────────────────────
+# とっくに splits as とっく+に (2 tokens); double mask.
+宿題はとっくに終わった: 宿題はxx終わった
+電車はとっくに出た: 電車はxx出た
+
+# ── は〜くらいです (about the only) ─────────────────────────────
+# NON-ADJACENT pattern: は...くらい frame signals limitation.
+# The は earlier in the sentence sets up the くらい conclusion.
+分かるのは名前くらいです[分かるのは名前だけです]: 分かるのは名前xです
+できるのは料理くらいです[できるのは料理だけです]: できるのは料理xです
+
+# ── と同じくらい (about the same as) ────────────────────────────
+# Fixed frame: と_くらい with 同じ as the expected link.
+兄と同じくらい背が高い: 兄とxくらい背が高い
+東京と同じくらい暑い: 東京とxくらい暑い
+
+# ── のこと (about / concerning) ──────────────────────────────────
+# Abstract nominalizer のこと in idiomatic patterns.
+# These contexts strongly prefer こと over concrete nouns.
+将来のことを考える: 将来のxを考える
+日本のことを勉強する: 日本のxを勉強する
+彼女のことをよく知っている: 彼女のxをよく知っている
+
+# ── について・に関して (about/regarding) ─────────────────────────
+# Synonym compound particles. について: に+つい+て (3 tokens).
+# に関して: に+関し+て (3 tokens).
+環境問題について議論する[環境問題に関して議論する]: 環境問題xxx議論する
+この件に関して報告する[この件について報告する]: この件xxx報告する
+
+# ── ともなく (absentmindedly / without intending) ────────────────
+# Fixed pattern: Verb + ともなく + same or related verb. ともなく = と+も+なく (3 tokens).
+見るともなくテレビを見ていた: 見るxxxテレビを見ていた
+聞くともなく話を聞いていた: 聞くxxx話を聞いていた
+
+# ── どうにもこうにも〜ない (absolutely no way) ──────────────────
+# どう+に+も+こう+に+も (6 tokens).
+どうにもこうにも眠れない: xxxxxx眠れない
+どうにもこうにも動けない: xxxxxx動けない
+
+# ── 絶対に〜ない (absolutely not) ───────────────────────────────
+# NON-ADJACENT: 絶対に at start demands negation at end.
+# 絶対 is 1 token, に is 1 token.
+# Single masks — predict 絶対 from the negative frame:
+約束は絶対に忘れない: 約束はxに忘れない
+彼は絶対に諦めない: 彼はxに諦めない
+# Reverse — predict ない given 絶対に:
+絶対に負けない: 絶対に負けx
+# NON-ADJACENT double mask — both ends simultaneously:
+約束は絶対に忘れない: 約束はxに忘れx
+
+# ── 豊富 (abundant/rich) ────────────────────────────────────────
+# な-adjective in attributive contexts that constrain toward 豊富.
+資源が豊富な国だ: 資源がxな国だ
+経験が豊富な先生だ: 経験がxな先生だ
+
+# ── によると・によれば (according to) ───────────────────────────
+# Evidential/hearsay frame. Synonym pair.
+# によると: に+よる+と (3 tokens); によれば: に+よれ+ば (3 tokens).
+天気予報によると明日は雨だ[天気予報によれば明日は雨だ]: 天気予報xxx明日は雨だ
+ニュースによれば事故があった[ニュースによると事故があった]: ニュースxxx事故があった
+
+# ── 向かい (across from) ────────────────────────────────────────
+# Spatial noun. Context constrains to location-relative words.
+駅の向かいに店がある[駅の前に店がある,駅の隣に店がある]: 駅のxに店がある
+学校の向かいに公園がある[学校の前に公園がある,学校の隣に公園がある]: 学校のxに公園がある
+
+# ── も...も (parallel addition particle) ────────────────────────
+# Parallel structure: first も is recoverable from second も.
+猫も犬も好きだ: 猫x犬も好きだ
+子供も大人も楽しめる: 子供x大人も楽しめる
+# Reverse — predict second も from first:
+猫も犬も好きだ: 猫も犬x好きだ
+# NON-ADJACENT double mask — both particles:
+猫も犬も好きだ: 猫x犬x好きだ
+
+# ── 又〜も (additionally) ───────────────────────────────────────
+# 又 is a single token (not normalized to また).
+又失敗もしてしまった: x失敗もしてしまった
+彼は又遅刻もした: 彼はx遅刻もした
+
+# ── 的 (adjectivizer suffix) ───────────────────────────────────
+# noun+的 forms a single token; masks the whole compound.
+科学的な研究だ: xな研究だ
+積極的に参加する: xに参加する
+歴史的な建物だ: xな建物だ
+
+# ── 誰も〜ない (no one / nobody) ───────────────────────────────
+# NON-ADJACENT: 誰も demands negation at end.
+# 誰+も are separate tokens; mask 誰, leave も visible.
+誰も来なかった: xも来なかった
+教室に誰もいなかった: 教室にxもいなかった
+# Reverse — predict negation given 誰も:
+# なかった = なかっ+た (2 tokens); mask なかっ, leave た.
+誰も答えられなかった: 誰も答えられxた
+# NON-ADJACENT double mask (誰+も at start, なかっ at end):
+誰も何も言わなかった: xx何も言わxた
+
+# ── 何も〜ない (nothing / no reason to) ─────────────────────────
+# NON-ADJACENT: 何も demands negation at end.
+# 何+も are separate tokens; mask 何, leave も visible.
+何も食べたくない: xも食べたくない
+今日は何も予定がない: 今日はxも予定がない
+# Reverse — predict negation given 何も:
+何も見えなかった: 何も見えxた
+# NON-ADJACENT double mask:
+何も聞こえなかった: xも聞こえxた
+
+# ── どうにも〜ない (no way to) ──────────────────────────────────
+# NON-ADJACENT: どうにも demands negation at end.
+# どうにも = どう+に+も (3 tokens).
+どうにも止められない: xxx止められない
+この問題はどうにも解けない: この問題はxxx解けない
+
+# ── べくもない (no way to) ──────────────────────────────────────
+# Literary/formal impossibility pattern.
+# べくもない = べく+も+ない (3 tokens). Masks the whole suffix.
+想像すべくもない: 想像すxxx
+比べるべくもない: 比べるxxx
+
+# ── ようがない・ようもない (no way to) ─────────────────────────
+# Synonym pair. しよう is a single token in Sudachi.
+# どうしよう+も+ない (3 tokens after どう); masks the suffix.
+どうしようもない: どうxxx
+# しよう+が+ない (3 tokens); mask が only.
+説明のしようがない[説明のしようもない]: 説明のしようxない
+
+# ── まさか〜ない (no way / unbelievable) ───────────────────────
+# NON-ADJACENT: まさか signals disbelief, demands negation.
+まさか本当だとは思わなかった: x本当だとは思わなかった
+まさか負けるとは思わなかった: x負けるとは思わなかった
+# Reverse — predict negation given まさか:
+# なかった = なかっ+た (2 tokens); mask なかっ, leave た.
+まさか合格するとは思わなかった: まさか合格するとは思わxた
+
+# ── わけがない (no way / impossible) ────────────────────────────
+# Fixed predicate pattern: Verb + わけがない.
+# わけ+が+ない = 3 tokens. Masks the whole predicate suffix.
+そんなことがあるわけがない: そんなことがあるxxx
+彼が失敗するわけがない: 彼が失敗するxxx
+
+# ── さ (nominalizer suffix) ────────────────────────────────────
+# い-adjective stem + さ = abstract noun.
+# 高さ/深さ/暑さ each split as stem+さ (2 tokens); masks さ.
+この山の高さに驚いた: この山の高xに驚いた
+海の深さを測る: 海の深xを測る
+夏の暑さに慣れた: 夏の暑xに慣れた
+
+# ── の (nominalizer / question particle) ────────────────────────
+# Dual function: sentence-final question particle (informal),
+# and nominalizer turning a clause into a noun phrase.
+# As question particle:
+どこに行くの[どこに行くか]: どこに行くx
+何を食べたの[何を食べたか]: 何を食べたx
+# As nominalizer:
+走るのが好きだ: 走るxが好きだ
+早く起きるのは難しい: 早く起きるxは難しい
+
+# ── や (non-exhaustive list particle) ──────────────────────────
+# や signals "A and B among others" — distinct from と (exhaustive).
+# Context with など reinforces the non-exhaustive reading.
+猫や犬などが好きだ: 猫x犬などが好きだ
+りんごやみかんを買った: りんごxみかんを買った
+本やペンを持ってきた: 本xペンを持ってきた
+
+# ── 北 (north — spatial/directional nouns) ─────────────────────
+# Compass directions in spatial frames. Context constrains which
+# direction is plausible.
+北海道は日本の北にある[北海道は日本の上にある]: 北海道は日本のxにある
+北から冷たい風が吹く[山から冷たい風が吹く]: xから冷たい風が吹く
+駅の北側に公園がある[駅の南側に公園がある,駅の向かいに公園がある]: 駅のxに公園がある
+
+# ── ほど〜ない (not as... as) ──────────────────────────────────
+# NON-ADJACENT: ほど marks comparison anchor; ない at end.
+# 思っ+た+ほど+難しく+ない (5 tokens).
+思ったほど難しくない: 思ったx難しくない
+思ったほど難しくない: 思ったほど難しくx
+思ったほど難しくない: 思ったx難しくx
+予想したほど寒くない: 予想したx寒くない
+予想したほど寒くない: 予想したほど寒くx
+
+# ── 全然〜ない (not at all) ──────────────────────────────────────
+# NON-ADJACENT: 全然 is 1 token; negation at end.
+# なかった = なかっ+た (2 tokens); reverse mask uses xた.
+全然知らなかった: x知らなかった
+全然知らなかった: 全然知らxた
+彼女の話は全然面白くない: 彼女の話はx面白くない
+彼女の話は全然面白くない: 彼女の話は全然面白くx
+
+# ── くもなんともない (not at all) ──────────────────────────────
+# Fixed phrase: い-adjective+くもなんともない.
+# Mask the adjective — the frame constrains toward emotional/physical adjectives.
+別に悔しくもなんともない: 別にxもなんともない
+全然怖くもなんともない: 全然xもなんともない
+
+# ── 一切〜ない (not at all) ──────────────────────────────────────
+# NON-ADJACENT: 一切 is 1 token; negation at end.
+# なかった = なかっ+た; reverse mask leaves た visible.
+彼は一切説明しなかった: 彼はx説明しなかった
+彼は一切説明しなかった: 彼は一切説明しxた
+責任を一切認めなかった: 責任をx認めなかった
+責任を一切認めなかった: 責任を一切認めxた
+
+# ── 何〜ない (not at all) ────────────────────────────────────────
+# NON-ADJACENT: 何一つ = 何+一+つ (3 tokens); ない at end.
+何一つ変わっていない: xxx変わっていない
+何一つ変わっていない: 何一つ変わっていx
+何一つ覚えていない: xxx覚えていない
+
+# ── 何ら〜ない (not at all) ──────────────────────────────────────
+# NON-ADJACENT: 何ら = 何+ら (2 tokens); ない at end.
+何ら問題がない: xx問題がない
+何ら問題がない: 何ら問題がx
+何ら変化がない: xx変化がない
+
+# ── 全く〜ない (not at all) ──────────────────────────────────────
+# NON-ADJACENT: 全く is 1 token; ない at end.
+全く興味がない: x興味がない
+全く興味がない: 全く興味がx
+全く理解できない: x理解できない
+全く理解できない: 全く理解できx
+
+# ── なかなか〜ない (not easily) ──────────────────────────────────
+# NON-ADJACENT: なかなか is 1 token; ない at end.
+なかなか眠れない: x眠れない
+なかなか眠れない: なかなか眠れx
+なかなか眠れない: x眠れx
+彼女はなかなか来なかった: 彼女はx来なかった
+彼女はなかなか来なかった: 彼女はなかなか来xた
+
+# ── すこしも〜ない (not even a little) ─────────────────────────
+# NON-ADJACENT: すこし+も (2 tokens); mask すこし, leave も visible.
+すこしも怖くない: xも怖くない
+すこしも怖くない: すこしも怖くx
+すこしも悪くない: xも悪くない
+
+# ── たりとも〜ない (not even a single) ─────────────────────────
+# NON-ADJACENT: たり+とも (2 tokens); ない at end.
+一人たりとも許さない: 一人xx許さない
+一人たりとも許さない: 一人たりとも許さx
+一秒たりとも無駄にしない: 一秒xx無駄にしない
+
+# ── 一度も〜ない (not even once) ────────────────────────────────
+# NON-ADJACENT: 一度+も (2 tokens); ない at end.
+彼には一度も会ったことがない: 彼にはxx会ったことがない
+彼には一度も会ったことがない: 彼には一度も会ったことがx
+そんなことは一度も考えたことがない: そんなことはxx考えたことがない
+
+# ── あながち〜ない (not necessarily) ─────────────────────────────
+# NON-ADJACENT: あながち is 1 token; ない at end.
+彼の言っていることもあながち間違いとは言えない: 彼の言っていることもx間違いとは言えない
+彼の言っていることもあながち間違いとは言えない: 彼の言っていることもあながち間違いとは言えx
+失敗したからといってあながち無駄だとは言えない: 失敗したからといってx無駄だとは言えない
+失敗したからといってあながち無駄だとは言えない: 失敗したからといってあながち無駄だとは言えx
+
+# ── というものでもない (not necessarily) ──────────────────────────
+# Sentence-ending idiom: content clause + と+いう+もの+で+も+ない.
+# Mask と+いう (2 tokens — the quotative frame); also mask ない (reverse).
+値段が高ければ品質がいいというものでもない: 値段が高ければ品質がいいxxものでもない
+値段が高ければ品質がいいというものでもない: 値段が高ければ品質がいいというものでもx
+努力すれば必ず成功するというものでもない: 努力すれば必ず成功するxxものでもない
+
+# ── とは限らない (not necessarily) ───────────────────────────────
+# Sentence-ending pattern: content clause + と+は+限ら+ない.
+# 限ら+ない = 2 tokens; mask together for forward test; mask ない alone for reverse.
+有名な医者が必ずしもいい医者とは限らない: 有名な医者が必ずしもいい医者とはxx
+有名な医者が必ずしもいい医者とは限らない: 有名な医者が必ずしもいい医者とは限らx
+正直に話せばいつも許してもらえるとは限らない: 正直に話せばいつも許してもらえるとはxx
+
+# ── 必ずしも (not necessarily) ────────────────────────────────────
+# NON-ADJACENT: 必ず+しも (2 tokens); negation at end of clause.
+お金があれば必ずしも幸せになれるとは限らない: お金があればxx幸せになれるとは限らない
+お金があれば必ずしも幸せになれるとは限らない: お金があれば必ずしも幸せになれるとは限らx
+成績がよくても必ずしも仕事ができるとは限らない: 成績がよくてもxx仕事ができるとは限らない
+成績がよくても必ずしも仕事ができるとは限らない: 成績がよくても必ずしも仕事ができるとは限らx
+
+# ── はもちろん (not only... but also) ─────────────────────────────
+# A はもちろん B も: "not only A (goes without saying) but also B".
+# もちろん is 1 token.
+英語はもちろん中国語も流暢に話せる: 英語はx中国語も流暢に話せる
+料理はもちろん掃除も洗濯も全部自分でやっている: 料理はx掃除も洗濯も全部自分でやっている
+
+# ── もさることながら (not only・but more so) ──────────────────────
+# A もさることながら B: "not only A, but B even more so".
+# さる+こと+ながら (3 tokens) follow the topic marker も.
+技術もさることながら人柄こそが大切だと思う: 技術もxxx人柄こそが大切だと思う
+値段もさることながら品質と安全性が重要だ: 値段もxxx品質と安全性が重要だ
+
+# ── のみならず (not only・let alone) ─────────────────────────────
+# A のみならず B も: "not only A but also B".
+# のみ+なら+ず (3 tokens).
+日本語のみならず英語も韓国語も堪能だ: 日本語xxx英語も韓国語も堪能だ
+田中さんは職場のみならず地域社会でも尊敬されている: 田中さんは職場xxx地域社会でも尊敬されている
+
+# ── はもとより (not only・let alone) ─────────────────────────────
+# A はもとより B も: "needless to say A, even B holds".
+# もとより is 1 token.
+基本的な漢字はもとより難しい漢字も難なく読める: 基本的な漢字はx難しい漢字も難なく読める
+体の健康はもとより精神的な充実も人生には大切だ: 体の健康はx精神的な充実も人生には大切だ
+
+# ── 別に〜ない (not particularly) ────────────────────────────────
+# NON-ADJACENT: 別+に (2 tokens); negation at end.
+# なかった = なかっ+た; reverse mask leaves た visible.
+彼女が来なくても別に寂しいとは思わなかった: 彼女が来なくてもxx寂しいとは思わなかった
+彼女が来なくても別に寂しいとは思わなかった: 彼女が来なくても別に寂しいとは思わxた
+辛い料理は別に苦手というわけでもない: 辛い料理はxx苦手というわけでもない
+辛い料理は別に苦手というわけでもない: 辛い料理は別に苦手というわけでもx
+
+# ── ろくに〜ない (not properly) ───────────────────────────────────
+# NON-ADJACENT: ろくに is 1 token; ない at end.
+試験が明日なのにろくに勉強もできていない: 試験が明日なのにx勉強もできていない
+試験が明日なのにろくに勉強もできていない: 試験が明日なのにろくに勉強もできていx
+忙しすぎてここ一週間ろくに睡眠もとれていない: 忙しすぎてここ一週間x睡眠もとれていない
+
+# ── ただ〜のみ (nothing but) ──────────────────────────────────────
+# NON-ADJACENT: ただ is 1 token; のみ is 1 token later in the clause.
+今はただ結果を待つのみだ: 今はx結果を待つのみだ
+今はただ結果を待つのみだ: 今はただ結果を待つxだ
+今はただ結果を待つのみだ: 今はx結果を待つxだ
+今は勝利のためにただ全力で練習するのみだ: 今は勝利のためにx全力で練習するのみだ
+今は勝利のためにただ全力で練習するのみだ: 今は勝利のためにただ全力で練習するxだ
+できることはただ合格を祈るのみだ: できることはx合格を祈るのみだ
+
+# ── にほかならない (nothing but) ─────────────────────────────────
+# Sentence-ending pattern: noun + に+ほか+なら+ない.
+# Test 1: mask the full pattern に+ほか+なら+ない (4 tokens).
+# Test 2: mask ほか+なら+ない (3 tokens), leaving the に as a visible cue.
+これはチームの努力の結果にほかならない: これはチームの努力の結果xxxx
+これはチームの努力の結果にほかならない: これはチームの努力の結果にxxx
+彼が成功したのは才能と不断の努力のたまものにほかならない: 彼が成功したのは才能と不断の努力のたまものxxxx
+試験に落ちた原因は準備不足にほかならない: 試験に落ちた原因は準備不足xxxx
+試験に落ちた原因は準備不足にほかならない: 試験に落ちた原因は準備不足にxxx
+
+# ── を置いて他に〜ない (nothing else compares) ────────────────────
+# Pattern: noun + を+置い+て+他+に(+は) + いない.
+# Mask を+置い+て+他+に (5 tokens) leaving いない visible.
+この仕事を任せるなら彼女を置いて他にいない: この仕事を任せるなら彼女xxxxxいない
+この難局を乗り越えられるのは田中さんを置いて他にはいない: この難局を乗り越えられるのは田中さんをxxxxxいない
+
+# ── 。(sentence-ending period) ───────────────────────────────────
+# Declarative statement: predict the maru closing a completed thought.
+彼女は昨日図書館で三時間も勉強した。: 彼女は昨日図書館で三時間も勉強したx
+毎週土曜日は家族と一緒に夕食を食べる。: 毎週土曜日は家族と一緒に夕食を食べるx
+
+# ── ？ (sentence-ending question mark) ──────────────────────────
+# Questions ending in か or の: the question form strongly cues ？.
+明日の会議に全員参加しますか？: 明日の会議に全員参加しますかx
+どうしてこんなに遅刻したんですか？: どうしてこんなに遅刻したんですかx
+
+# ── ！ (sentence-ending exclamation mark) ───────────────────────
+# Emotional intensity or imperative: context cues exclamation.
+こんなに美しい夕焼けは生まれて初めて見た！: こんなに美しい夕焼けは生まれて初めて見たx
+絶対に諦めないで最後まで戦い続ける！: 絶対に諦めないで最後まで戦い続けるx
+
+# ── … (trailing ellipsis) ───────────────────────────────────────
+# Trailing uncertainty or unfinished thought — tokenizes as . + . + . (3 tokens).
+彼がどう思っているのか正直よくわからない…: 彼がどう思っているのか正直よくわからないxxx
+あのときもっと素直に謝ればよかったのに…: あのときもっと素直に謝ればよかったのにxxx
+
+# ── の (noun modifier) ───────────────────────────────────────────
+# の as genitive particle linking two nouns: A の B = "B of A".
+# Context: adjacent nouns with a clear possessive/attributive relationship.
+坂本先生の研究室には優秀な学生が集まっている: 坂本先生x研究室には優秀な学生が集まっている
+友人の誕生日に手作りの料理を持っていった: 友人x誕生日に手作りの料理を持っていった
+友人の誕生日に手作りの料理を持っていった: 友人の誕生日に手作りx料理を持っていった
+日本の伝統文化に深い関心を持っている外国人が増えている: 日本x伝統文化に深い関心を持っている外国人が増えている
+
+# ── の (noun omission) ───────────────────────────────────────────
+# の as pronoun standing in for an elided noun: 赤いの = 赤いもの.
+# Context: の follows an adjective where the referent noun is implicit.
+赤いのは売り切れたので仕方なく青いのを注文した: 赤いxは売り切れたので仕方なく青いのを注文した
+赤いのは売り切れたので仕方なく青いのを注文した: 赤いのは売り切れたので仕方なく青いxを注文した
+古いのはまだ使えるが新しいのに交換することにした: 古いxはまだ使えるが新しいのに交換することにした
+古いのはまだ使えるが新しいのに交換することにした: 古いのはまだ使えるが新しいxに交換することにした
+大きいのより小さいのの方が持ち歩きやすい: 大きいxより小さいのの方が持ち歩きやすい
+
+# ── 〜如し・〜ごとし (like・as if) ──────────────────────────────
+# Literary comparisons: ごとく (adverbial) and ごとき (attributive) are each 1 token.
+彼の言葉は刃のごとく鋭く人の心に突き刺さった: 彼の言葉は刃のx鋭く人の心に突き刺さった
+時は矢のごとく過ぎ去って気がつけばもう三十年が経っていた: 時は矢のx過ぎ去って気がつけばもう三十年が経っていた
+嵐のごとき勢いで仕事を片付けた: 嵐のx勢いで仕事を片付けた
+
+# ── まで (limit・extent) ─────────────────────────────────────────
+# まで is 1 token marking the limit of movement or duration.
+この列車は新大阪まで途中に止まらない: この列車は新大阪x途中に止まらない
+試験に合格するまで毎日十時間勉強し続けた: 試験に合格するx毎日十時間勉強し続けた
+帰りが遅くなるので母が心配して玄関まで迎えに来た: 帰りが遅くなるので母が心配して玄関x迎えに来た
+
+# ── 数量・しか・ない (limited quantity) ─────────────────────────
+# NON-ADJACENT: しか is 1 token; negation at end.
+# なかった = なかっ+た; reverse mask leaves た visible.
+財布の中には小銭が三枚しか残っていなかった: 財布の中には小銭が三枚x残っていなかった
+財布の中には小銭が三枚しか残っていなかった: 財布の中には小銭が三枚しか残っていxた
+財布の中には小銭が三枚しか残っていなかった: 財布の中には小銭が三枚x残っていxた
+締め切りまであと二日しか残っていない: 締め切りまであと二日x残っていない
+締め切りまであと二日しか残っていない: 締め切りまであと二日しか残っていx
+締め切りまであと二日しか残っていない: 締め切りまであと二日x残っていx
+
+# ── 限り (limit・extent) ─────────────────────────────────────────
+# 限り is 1 token marking the boundary condition of a clause.
+体力の続く限り全力で走り続けた: 体力の続くx全力で走り続けた
+自分の知っている限り彼ほど努力家な人はいない: 自分の知っているx彼ほど努力家な人はいない
+この建物の中にいる限り雨に濡れる心配はない: この建物の中にいるx雨に濡れる心配はない
+
+# ── 〜など・〜なんか (listing examples) ─────────────────────────
+# など and なんか are each 1 token; flag a list as non-exhaustive.
+休日には読書や映画鑑賞などが大きな楽しみだ: 休日には読書や映画鑑賞xが大きな楽しみだ
+彼女は野菜などは一切食べないと言い張っていた: 彼女は野菜xは一切食べないと言い張っていた
+こんな簡単な問題なんか小学生でも解けるはずだ: こんな簡単な問題x小学生でも解けるはずだ
+
+# ── とか〜とか (listing examples) ───────────────────────────────
+# とか = と+か (2 tokens each); connects items in a non-exhaustive list.
+週末は映画とか買い物とか友達と色々楽しんでいる: 週末は映画xx買い物とか友達と色々楽しんでいる
+週末は映画とか買い物とか友達と色々楽しんでいる: 週末は映画とか買い物xx友達と色々楽しんでいる
+りんごとかみかんとかの甘いフルーツが特に好きだ: りんごxxみかんとかの甘いフルーツが特に好きだ
+りんごとかみかんとかの甘いフルーツが特に好きだ: りんごとかみかんxxの甘いフルーツが特に好きだ
+疲れたとか眠いとか言わずに最後まで頑張ってほしい: 疲れたxx眠いとか言わずに最後まで頑張ってほしい
+疲れたとか眠いとか言わずに最後まで頑張ってほしい: 疲れたとか眠いxx言わずに最後まで頑張ってほしい
+
+# ── わ〜わ (cumulative factors) ──────────────────────────────────
+# わ is 1 token; repeated to stack simultaneous unfortunate events.
+電車は遅れるわ財布は忘れるわで散々な一日だった: 電車は遅れるx財布は忘れるわで散々な一日だった
+電車は遅れるわ財布は忘れるわで散々な一日だった: 電車は遅れるわ財布は忘れるxで散々な一日だった
+急いでいるのに鍵は見つからないわ車は動かないわで本当に困った: 急いでいるのに鍵は見つからないx車は動かないわで本当に困った
+急いでいるのに鍵は見つからないわ車は動かないわで本当に困った: 急いでいるのに鍵は見つからないわ車は動かないxで本当に困った
+
+# ── あえて (daringly) ────────────────────────────────────────────
+# あえて is 1 token; signals an intentional act against convention or difficulty.
+彼はあえて全員の前で自分の失敗を認めて謝罪した: 彼はx全員の前で自分の失敗を認めて謝罪した
+難しいと分かっていながらもあえてその挑戦を引き受けた: 難しいと分かっていながらもxその挑戦を引き受けた
+
+# ── 〜代 (decade or generation) ──────────────────────────────────
+# 代 is 1 token, separate from the numeral or era prefix before it.
+三十代になってから健康に対する意識が大きく変わった: 三十xになってから健康に対する意識が大きく変わった
+一九八〇年代のポップミュージックが今でも大好きだ: 一九八〇年xのポップミュージックが今でも大好きだ
+
+# ── というのは (definition or reason) ───────────────────────────
+# というのは = と+いう+の+は (4 tokens); mask と+いう (2 tokens).
+彼が遅刻した理由というのは電車が急停止したからだ: 彼が遅刻した理由xxのは電車が急停止したからだ
+友情というのは困ったときに互いに助け合えることだと思う: 友情xxのは困ったときに互いに助け合えることだと思う
+
+# ── もっと (degree) ──────────────────────────────────────────────
+# もっと is 1 token expressing a higher degree or further extent.
+もっと早く相談してくれれば一緒に解決策を考えられたのに: x早く相談してくれれば一緒に解決策を考えられたのに
+次の試験ではもっと丁寧に問題を読んで慎重に解くつもりだ: 次の試験ではx丁寧に問題を読んで慎重に解くつもりだ
+
+# ── ようによっては (depending on the way) ────────────────────────
+# よう is 1 token; によっては = に+よっ+て+は (4 tokens).
+考えようによってはこの失敗も大切な学びだと言える: 考えxによってはこの失敗も大切な学びだと言える
+考えようによってはこの失敗も大切な学びだと言える: 考えようxxxxこの失敗も大切な学びだと言える
+使いようによっては危険な道具でも安全に扱える: 使いxによっては危険な道具でも安全に扱える
+
+# ── いかん (depending on) ───────────────────────────────────────
+# いかん is 1 token; によっては = に+よっ+て+は (4 tokens).
+結果いかんによっては今後の計画を大幅に見直す必要がある: 結果xによっては今後の計画を大幅に見直す必要がある
+結果いかんによっては今後の計画を大幅に見直す必要がある: 結果いかんxxxx今後の計画を大幅に見直す必要がある
+状況いかんによってはすぐにでも対応しなければならない: 状況xによってはすぐにでも対応しなければならない
+
+# ── に応じて (depending on) ─────────────────────────────────────
+# に応じて = に+応じ+て; mask 応じ+て (2 tokens), leaving に as a visible cue.
+お客様のご要望に応じてプランを柔軟に変更することができます: お客様のご要望にxxプランを柔軟に変更することができます
+能力に応じて仕事を分担することでチームの効率が上がった: 能力にxx仕事を分担することでチームの効率が上がった
+
+# ── 〜かは〜によって違う (depends on) ───────────────────────────
+# によって違う = に+よっ+て+違う (4 tokens) at end; mask together.
+試験に合格できるかどうかはどれだけ準備したかによって違う: 試験に合格できるかどうかはどれだけ準備したかxxxx
+美味しいかどうかは食べる人の好みによって違う: 美味しいかどうかは食べる人の好みxxxx
+美味しいかどうかは食べる人の好みによって違う: 美味しいxxxは食べる人の好みによって違う

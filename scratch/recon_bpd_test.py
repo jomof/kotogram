@@ -45,6 +45,7 @@ class TestCase:
     full_sentence: str
     acceptable_alternatives: List[str] = field(default_factory=list)
     masked_variants: List[str] = field(default_factory=list)
+    section: str = ""
 
 
 @dataclass
@@ -69,9 +70,13 @@ def load_test_cases(path: str) -> List[TestCase]:
         水を飲む[茶を飲む,酒を飲む]: xを飲む
     """
     cases: List[TestCase] = []
+    current_section = ""
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
+            # Track section headers: # ── <name> ─────
+            if line.startswith("# ── "):
+                current_section = line[5:].rstrip("\u2500- ").strip()
             if not line or line.startswith("#"):
                 continue
             colon_idx = line.index(": ")
@@ -94,10 +99,38 @@ def load_test_cases(path: str) -> List[TestCase]:
                     full_sentence=full,
                     acceptable_alternatives=alternatives,
                     masked_variants=variants,
+                    section=current_section,
                 )
             )
     return cases
 
+
+def _is_japanese_char(c: str) -> bool:
+    """Return True if c is hiragana, katakana, a CJK ideograph, or Japanese punctuation.
+
+    Covers:
+    - Hiragana (U+3040–309F)
+    - Katakana (U+30A0–30FF)
+    - CJK Symbols & Punctuation (U+3000–303F) — includes 。、〜 etc.
+    - CJK Unified Ideographs (U+4E00–9FFF)
+    - CJK Extension A (U+3400–4DBF)
+    - CJK Extension B (U+20000–2A6DF)
+    - CJK Compatibility Ideographs (U+F900–FAFF)
+    - Halfwidth & Fullwidth Forms (U+FF00–FFEF) — includes ！？ etc.
+    - Horizontal Ellipsis (U+2026) — …
+    """
+    cp = ord(c)
+    return (
+        0x3000 <= cp <= 0x303F  # CJK symbols & punctuation (includes 。、)
+        or 0x3040 <= cp <= 0x309F  # hiragana
+        or 0x30A0 <= cp <= 0x30FF  # katakana
+        or 0x4E00 <= cp <= 0x9FFF  # CJK unified ideographs (common)
+        or 0x3400 <= cp <= 0x4DBF  # CJK extension A
+        or 0x20000 <= cp <= 0x2A6DF  # CJK extension B
+        or 0xF900 <= cp <= 0xFAFF  # CJK compatibility ideographs
+        or 0xFF00 <= cp <= 0xFFEF  # halfwidth & fullwidth forms (includes ！？)
+        or cp == 0x2026  # horizontal ellipsis …
+    )
 
 def _tokenize_to_surfaces(sentence: str) -> List[str]:
     """Tokenize a raw Japanese sentence to surface strings via Sudachi."""
@@ -145,7 +178,12 @@ def align_tokens_to_masked(
 def check_test_file() -> bool:
     """Validate that all test cases parse correctly against the tokenizer.
 
-    Three checks are performed:
+    Four checks are performed:
+
+    -1. Process-comment check: comment lines must not contain editorial
+        phrases left over from editing (e.g. "--check", "TOKENIZATION
+        WARNING", "Adjust", "Verify").  These are authoring notes that
+        should be removed before committing.
 
     0. Distinctness check: the main sentence and all alternatives are unique
        strings.  Duplicates silently waste test budget.
@@ -159,10 +197,44 @@ def check_test_file() -> bool:
        sentence's tokens.  If they differ at an unmasked position the
        alternative can never be produced by filling in the x's — the test
        case is broken.
+
+    3. Relevance check: every sentence (main + alternatives) must contain
+       at least one kanji/kana character that also appears in the section
+       title.  This ensures each test case is actually exercising the
+       grammar/vocabulary pattern the section is named for.  Skipped when
+       the section title contains no CJK characters.
     """
     path = _test_file_path()
-    cases = load_test_cases(path)
     all_ok = True
+
+    # ── Check -1: no process-internal comment phrases ─────────────────
+    _PROCESS_PHRASES = [
+        "TOKENIZATION WARNING",
+        "--check",
+        "Adjust per",
+        "Adjust x",
+        "Verify token",
+        "If --check",
+        "If so,",
+        "DELETE them",
+        "may normalize to",
+        "per --check",
+    ]
+    with open(path, encoding="utf-8") as _f:
+        for _lineno, _raw in enumerate(_f, 1):
+            _stripped = _raw.strip()
+            if not _stripped.startswith("#"):
+                continue
+            for _phrase in _PROCESS_PHRASES:
+                if _phrase in _stripped:
+                    print(
+                        f"  ✗ FAIL (process-comment) line {_lineno}: "
+                        f"'{_phrase}' found in comment — remove before committing"
+                    )
+                    all_ok = False
+                    break
+
+    cases = load_test_cases(path)
 
     for case in cases:
         surfaces = _tokenize_to_surfaces(case.full_sentence)
@@ -183,15 +255,17 @@ def check_test_file() -> bool:
 
         # ── Check 1: alignment ────────────────────────────────────────────
         valid_masks: List[List[int]] = []
+        sec = f"  # {case.section}" if case.section else ""
+
         for variant in case.masked_variants:
             masked_pos = align_tokens_to_masked(surfaces, variant)
             if masked_pos is None:
-                print(f"    \u2717 FAIL (align): Cannot align '{variant}'")
+                print(f"    \u2717 FAIL (align): Cannot align '{variant}'{sec}")
                 all_ok = False
             else:
                 masked_tokens = [surfaces[i] for i in masked_pos]
                 print(
-                    f"    \u2713 OK: '{variant}' \u2192 masked {masked_pos} ({masked_tokens})"
+                    f"    \u2713 OK: '{variant}' \u2192 masked {masked_pos} ({masked_tokens}){sec}"
                 )
                 valid_masks.append(masked_pos)
 
@@ -201,7 +275,7 @@ def check_test_file() -> bool:
             if len(alt_surfaces) != len(surfaces):
                 print(
                     f"    \u2717 FAIL (coverage): '{alt}' has {len(alt_surfaces)} tokens"
-                    f" but main has {len(surfaces)} — length mismatch, no mask can cover it"
+                    f" but main has {len(surfaces)} — length mismatch, no mask can cover it{sec}"
                 )
                 all_ok = False
                 continue
@@ -219,7 +293,7 @@ def check_test_file() -> bool:
                     break
 
             if covered:
-                print(f"    \u2713 OK (coverage): '{alt}' is coverable")
+                print(f"    \u2713 OK (coverage): '{alt}' is coverable{sec}")
             else:
                 diff = [
                     p for p in range(len(surfaces)) if alt_surfaces[p] != surfaces[p]
@@ -227,7 +301,17 @@ def check_test_file() -> bool:
                 print(
                     f"    \u2717 FAIL (coverage): '{alt}' differs at positions {diff} "
                     f"({[surfaces[p] for p in diff]} \u2192 {[alt_surfaces[p] for p in diff]})"
-                    f" but no variant masks those positions"
+                    f" but no variant masks those positions{sec}"
+                )
+                all_ok = False
+
+        # ── Check 3: section relevance ─────────────────────────────────
+        section_japanese: set = {c for c in case.section if _is_japanese_char(c)}
+        if section_japanese:
+            if not any(c in section_japanese for c in case.full_sentence):
+                print(
+                    f"    \u2717 FAIL (relevance): '{case.full_sentence}' shares no"
+                    f" Japanese chars with section title{sec}"
                 )
                 all_ok = False
 
@@ -405,18 +489,18 @@ def run_reconstruction_test(
             if case_strict:
                 passed_strict += 1
                 passed_alt += 1
-                report_line = f"STRICT {case.full_sentence} {sim_tag}"
+                report_line = f"STRICT {case.full_sentence} {sim_tag}  # {case.section}"
                 case_records.append(
                     _CaseRecord("STRICT", report_line, case_sim)
                 )
             elif case_alt:
                 passed_alt += 1
-                report_line = f"ALT    {case.full_sentence} \u2192 {actual_recon} {sim_tag}"
+                report_line = f"ALT    {case.full_sentence} \u2192 {actual_recon} {sim_tag}  # {case.section}"
                 case_records.append(
                     _CaseRecord("ALT", report_line, case_sim)
                 )
             else:
-                fail_report = f"FAIL   {first_fail_line} {sim_tag}"
+                fail_report = f"FAIL   {first_fail_line} {sim_tag}  # {case.section}"
                 case_records.append(
                     _CaseRecord("FAIL", fail_report, case_sim)
                 )
