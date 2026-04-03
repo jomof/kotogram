@@ -68,13 +68,13 @@ def suggest_config(
         grad_cap=trial.suggest_float("grad_cap", 1.0, 10.0),
         input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.1, 0.3),
         # Regularization
-        kl_sparse_weight=trial.suggest_float(
-            "kl_sparse_weight",
-            0.0001,
-            1e-1,
+        mdl_weight=trial.suggest_float(
+            "mdl_weight",
+            0.001,
+            1.0,
             log=True,
         ),
-        kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
+        rank_margin_weight=trial.suggest_float("rank_margin_weight", 0.0, 2.0),
         cov_penalty_weight=trial.suggest_float(
             "cov_penalty_weight",
             0.1,
@@ -273,8 +273,8 @@ def objective(
     PARAM_ABBREV = {
         "consistency_weight": "cw",
         "input_mask_ratio": "mask",
-        "kl_sparse_weight": "kl",
-        "kl_target_rho": "rho",
+        "mdl_weight": "mdl",
+        "rank_margin_weight": "rank",
         "cov_penalty_weight": "cov",
         "lr": "lr",
         "num_layers": "L",
@@ -639,8 +639,8 @@ def main() -> None:
                 "temperature": defaults.temperature,
                 "grad_cap": defaults.grad_cap,
                 "input_mask_ratio": defaults.input_mask_ratio,
-                "kl_sparse_weight": defaults.kl_sparse_weight,
-                "kl_target_rho": defaults.kl_target_rho,
+                "mdl_weight": defaults.mdl_weight,
+                "rank_margin_weight": defaults.rank_margin_weight,
                 "cov_penalty_weight": defaults.cov_penalty_weight,
                 "consistency_weight": defaults.consistency_weight,
                 "d_model": defaults.d_model,
