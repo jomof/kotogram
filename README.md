@@ -319,3 +319,37 @@ This started as a weekend project to explore Japanese linguistics and small-scal
 ## License
 
 MIT — use it for whatever you like!
+
+---
+
+## References
+
+The `recon_bpd` training pipeline draws on the following works:
+
+**Temperature annealing / soft discrete representations**
+
+- Jang, E., Gu, S., & Poole, B. (2017). Categorical reparameterization with Gumbel-Softmax. *International Conference on Learning Representations (ICLR 2017)*.
+- Maddison, C. J., Mnih, A., & Teh, Y. W. (2017). The Concrete distribution: A continuous relaxation of discrete random variables. *International Conference on Learning Representations (ICLR 2017)*.
+
+**Information-theoretic sparsity (MDL bits-back cost)**
+
+- Grünwald, P. D. (2007). *The Minimum Description Length Principle*. MIT Press.
+- Hinton, G. E., & Van Camp, D. (1993). Keeping neural networks simple by minimizing the description length of the weights. *Proceedings of the Sixth Annual Conference on Computational Learning Theory (COLT 1993)*, pp. 5–13.
+
+**Pairwise ranking margin**
+
+- Burges, C., Shaked, T., Renshaw, E., Lazier, A., Deeds, M., Hamilton, N., & Hullender, G. (2005). Learning to rank using gradient descent. *Proceedings of the 22nd International Conference on Machine Learning (ICML 2005)*, pp. 89–96.
+
+**VICReg (variance–invariance–covariance regularization)**
+
+- Bardes, A., Ponce, J., & LeCun, Y. (2022). VICReg: Variance-invariance-covariance regularization for self-supervised learning. *International Conference on Learning Representations (ICLR 2022)*.
+
+**Dual-mask consistency (BYOL / SimSiam)**
+
+- Grill, J.-B., Strub, F., Altché, F., Tallec, C., Richemond, P. H., Buchatskaya, E., … Valko, M. (2020). Bootstrap your own latent: A new approach to self-supervised learning. *Advances in Neural Information Processing Systems (NeurIPS 2020)*, 33, 21271–21284.
+- Chen, X., & He, K. (2021). Exploring simple Siamese representation learning. *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2021)*, pp. 15750–15758.
+
+**Stochastic depth (LayerDrop)**
+
+- Fan, A., Grave, E., & Joulin, A. (2020). Reducing transformer depth on demand with structured dropout. *International Conference on Learning Representations (ICLR 2020)*.
+
