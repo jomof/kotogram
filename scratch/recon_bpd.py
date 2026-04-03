@@ -145,7 +145,7 @@ class TrainConfig:
     # Structured Dropout," ICLR 2020
     # Set to 0 to disable (pre-branch behaviour).
     layer_drop_prob: float = 0.5
-    semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
+    semantic_gating_threshold: float = 0.92  # Set to > 0.0 to enable throughput skips
     # Stochastic rescue gate: randomly rescue easy tokens with prob (1-threshold).
     # True = rescue gate (branch default). False = deterministic cos_sim < threshold.
     # Ignored when semantic_gating_threshold == 0 (gating fully disabled).
