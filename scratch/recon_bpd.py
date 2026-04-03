@@ -520,15 +520,18 @@ def train(
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
+    _num_workers = 4 if IS_CUDA else 0
     loader = DataLoader(
         gram_ds,
         batch_size=config.batch_size,
         shuffle=True,
         collate_fn=collate_fn,
-        num_workers=2 if IS_CUDA else 0,
+        num_workers=_num_workers,
         pin_memory=IS_CUDA,
         drop_last=False,
         generator=dl_generator,
+        persistent_workers=_num_workers > 0,
+        prefetch_factor=4 if _num_workers > 0 else None,
     )
 
     # ── Model ────────────────────────────────────────────────────────
@@ -586,7 +589,7 @@ def train(
 
     model.to(device)
     if IS_CUDA:
-        model = torch.compile(model)
+        model = torch.compile(model, dynamic=True)
     model.train()
 
     optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
