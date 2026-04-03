@@ -18,6 +18,7 @@ Usage:
 """
 
 import argparse
+import dataclasses
 import os
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
@@ -453,8 +454,40 @@ def run_reconstruction_test(
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
 
+        # ── Header ───────────────────────────────────────────────────
+        sep = "=" * 72
+        experiment = ctx.run_name or os.path.basename(ctx.checkpoint_path)
+        header: List[str] = [
+            sep,
+            f"Experiment : {experiment}",
+            f"Epoch      : {epoch + 1}",
+            "",
+            "Model parameters:",
+        ]
+        if ctx.config is not None:
+            for k, v in sorted(
+                dataclasses.asdict(ctx.config).items()  # type: ignore[arg-type]
+            ):
+                header.append(f"  {k:<40} {v}")
+        header += [
+            "",
+            "Similarity metric (sim):",
+            "  sim = cosine_similarity(embed[pred_id], embed[main_target_id])",
+            "  where embed[i] = output_head.weight[i]  (row vector, shape: [hidden_dim])",
+            "  Interpretation:",
+            "    sim = 1.00  → STRICT pass (correct token, same embedding)",
+            "    sim < 1.00  → ALT pass (accepted alternative; measures how close",
+            "                   the alt's embedding is to the main target's embedding)",
+            "    sim ≈ 0.00  → FAIL: prediction nearly orthogonal to target",
+            "    sim < 0.00  → FAIL: prediction antipodal to target",
+            "  Averaged over all masked positions across all variants per case.",
+            sep,
+            "",
+        ]
+
         report_sections: List[str] = (
-            _build_section("FAILURES", fail_records)
+            header
+            + _build_section("FAILURES", fail_records)
             + [""]
             + _build_section("PASSED", pass_records)
         )

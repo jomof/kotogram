@@ -56,6 +56,8 @@ class EpochContext:
     temperature: float
     checkpoint_path: str
     artifact_paths: List[str] = field(default_factory=list)
+    config: object = None  # TrainConfig — typed as object to avoid circular import
+    run_name: str = ""  # human-readable experiment identifier
 
 
 def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:

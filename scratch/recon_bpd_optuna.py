@@ -462,6 +462,7 @@ def objective(
             on_epoch_end=on_epoch_end,
             checkpoint_path=checkpoint_path,
             checkpoint=existing,
+            run_name=run_name,
         )
         if mlflow is not None:
             mlflow.log_metric("final_bpd", result.final_bpd)
