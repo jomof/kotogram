@@ -89,21 +89,30 @@ class TrainConfig:
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
     seed: int = 42  # Original seed: 42
 
-    # Regularization
-    kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
-    kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
-    # Per-sample KC budget: penalizes each sample when its total
-    # number of active KCs deviates from a length-proportional target.
-    # Unlike the batch-mean KL (which averages across samples and
-    # loses per-sample length signal), this gives each sentence its
-    # own gradient. The two losses are complementary: KL controls
-    # codebook diversity, budget controls per-sample load.
-    # Set to 0.0 to disable (pre-branch behaviour).
-    kc_budget_weight: float = 1.0
-    # Proportionality constant: target active KCs per token.
-    # At the default (0.004), a 15-token sentence targets
-    # 0.004 * 1024 * 15 = ~61 active KCs.
-    kc_budget_per_token: float = 0.004
+    # ── MDL bits-back cost (information-theoretic sparsity) ─────
+    # Grünwald, "The Minimum Description Length Principle," MIT
+    # Press, 2007
+    # Hinton & Van Camp, "Keeping Neural Networks Simple by
+    # Minimizing the Description Length of the Weights," COLT 1993
+    #
+    # Charges each active KC a per-token information cost.
+    # Short sentences pay more per KC (cost = load / length),
+    # naturally suppressing over-allocation without a fixed
+    # sparsity target. The model finds its own Pareto frontier
+    # between reconstruction quality and description cost.
+    # Set to 0 to disable.
+    mdl_weight: float = 0.1
+
+    # ── Pairwise ranking margin (monotonic length ordering) ─────
+    # Burges et al., "Learning to Rank using Gradient Descent,"
+    # ICML 2005 (LambdaRank / RankNet framework)
+    #
+    # For pairs of samples where len_a < len_b, penalizes when
+    # load_a >= load_b via a hinge margin. No fixed target —
+    # only enforces that longer sentences use weakly more KCs.
+    # Set to 0 to disable.
+    rank_margin_weight: float = 0.5
+    rank_margin: float = 1.0  # minimum load gap between length-sorted adjacent pairs
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.002  # dual-mask KC consistency (0 = disabled)
     # Stop-gradient on consistency branches (BYOL/SimSiam collapse prevention).
@@ -644,7 +653,8 @@ def train(
         total_loss_sum = 0.0
         epoch_total_bits = 0.0
         epoch_num_units = 0
-        total_kl_sum = 0.0
+        total_mdl_sum = 0.0
+        total_rank_sum = 0.0
         total_cov_sum = 0.0
         epoch_t1_correct = 0
         epoch_t1_units = 0
@@ -652,7 +662,6 @@ def train(
         epoch_sharpness_sum = 0.0
         total_consistency_sum = 0.0
         total_vicreg_sum = 0.0
-        total_budget_sum = 0.0
         epoch_cossim_pair_sum = 0.0
         epoch_pooled_std_sum = 0.0
         total_elements = 0
@@ -1089,7 +1098,6 @@ def train(
 
             # ── Regularizers ─────────────────────────────────────────
             loss = bpd + semantic_distillation_loss * 5.0
-            kl_contrib = 0.0
             cov_contrib = 0.0
             consist_contrib = 0.0
 
@@ -1103,24 +1111,66 @@ def train(
                 loss = loss + vicreg_loss
                 total_vicreg_sum += vicreg_loss.item()
 
-            # ── Per-sample KC budget ──────────────────────────────
-            # Each sample gets its own gradient: "you have too many
-            # or too few hot logits for your sentence length."
-            # No cross-talk between samples of different lengths.
+            # ── MDL bits-back cost ────────────────────────────────
+            # Grünwald, "The Minimum Description Length Principle,"
+            # MIT Press, 2007
+            # Hinton & Van Camp, "Keeping Neural Networks Simple by
+            # Minimizing the Description Length of the Weights,"
+            # COLT 1993
             #
-            # actual_load: soft count of active KCs (sum of sigmoid
-            #   probabilities, so a prob of 0.9 contributes 0.9).
-            # target_load: length-proportional budget. A 15-token
-            #   sentence at default settings targets ~61 active KCs.
-            # Loss: normalized MSE so magnitude is independent of
-            #   kc_vocab_size and sentence length scale.
-            if config.kc_budget_weight > 0:
-                actual_load = kc_probs.sum(dim=1)  # [B]
-                sample_lengths = attention_mask.sum(dim=1).float().clamp_min(1.0)  # [B]
-                target_load = config.kc_budget_per_token * config.kc_vocab_size * (sample_lengths / 15.0)
-                budget_loss = ((actual_load - target_load) ** 2).mean() / config.kc_vocab_size
-                loss = loss + config.kc_budget_weight * kl_warmup * budget_loss
-                total_budget_sum += budget_loss.item()
+            # Each active KC costs 1 bit of description length.
+            # Dividing by sentence length means short sentences pay
+            # more per KC, naturally suppressing over-allocation.
+            # Total objective: reconstruction bits + description
+            # bits, i.e. the model finds the shortest program
+            # (codebook + residual) that explains each sentence.
+            # kl_warmup ramps this from ~0 during temperature
+            # annealing so the model negotiates allocation under
+            # soft probs before being penalized for sparsity.
+            if config.mdl_weight > 0:
+                mdl_load = kc_probs.sum(dim=1)  # [B], soft count of active KCs
+                mdl_lengths = attention_mask.sum(dim=1).float().clamp_min(1.0)
+                if config.consistency_weight > 0:
+                    mdl_load = mdl_load[:half]
+                    mdl_lengths = mdl_lengths[:half]
+                mdl_cost = (mdl_load / mdl_lengths).mean()
+                loss = loss + config.mdl_weight * kl_warmup * mdl_cost
+                total_mdl_sum += mdl_cost.item()
+
+            # ── Pairwise ranking margin ───────────────────────────
+            # Burges et al., "Learning to Rank using Gradient
+            # Descent," ICML 2005
+            #
+            # For length-sorted adjacent pairs where len_a < len_b,
+            # penalize when load_a >= load_b - margin. No fixed
+            # sparsity target — only enforces monotonic ordering
+            # so longer sentences use weakly more KCs. Catches
+            # edge cases where the MDL cost alone finds an
+            # equilibrium that still violates length ordering.
+            if config.rank_margin_weight > 0:
+                rank_load = kc_probs.sum(dim=1)  # [B]
+                rank_lengths = attention_mask.sum(dim=1).float()
+                if config.consistency_weight > 0:
+                    rank_load = rank_load[:half]
+                    rank_lengths = rank_lengths[:half]
+                sorted_idx = rank_lengths.argsort()
+                sorted_load = rank_load[sorted_idx]
+                sorted_len = rank_lengths[sorted_idx]
+                # Adjacent pairs where lengths actually differ
+                len_diff = sorted_len[1:] - sorted_len[:-1]
+                valid_pairs = len_diff > 0
+                if valid_pairs.any():
+                    violations = F.relu(
+                        sorted_load[:-1] - sorted_load[1:] + config.rank_margin
+                    )
+                    rank_loss = (
+                        (violations * valid_pairs.float()).sum()
+                        / valid_pairs.float().sum()
+                    )
+                else:
+                    rank_loss = torch.tensor(0.0, device=device)
+                loss = loss + config.rank_margin_weight * kl_warmup * rank_loss
+                total_rank_sum += rank_loss.item()
 
             # Length prediction diagnostic
             if config.length_pred_weight > 0:
@@ -1131,26 +1181,6 @@ def train(
                     mae = (pred_lengths_lp - true_lengths_lp).abs().mean().item()
                     total_length_pred_mae_sum += mae
                     total_length_pred_count += 1
-
-            if config.kl_sparse_weight > 0:
-                # Length-proportional sparsity adjustment: 
-                # Short sentences are heavily penalized for turning on logits to prevent them 
-                # from monopolizing the capacity budget with "easy memorization" features.
-                # A 15-token sentence acts as the 1.0 baseline.
-                seq_lengths = attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
-                length_penalty = 15.0 / seq_lengths
-                
-                norm_probs = kc_probs * length_penalty
-                rho_hat = norm_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
-                
-                rho = config.kl_target_rho
-                kl_term = (
-                    rho_hat * torch.log(rho_hat / rho)
-                    + (1 - rho_hat) * torch.log((1 - rho_hat) / (1 - rho))
-                ).sum()
-                kl_scaled = config.kl_sparse_weight * kl_warmup * kl_term
-                loss = loss + kl_scaled
-                kl_contrib = kl_scaled.item()
 
             if config.cov_penalty_weight > 0:
                 centered = kc_probs - kc_probs.mean(dim=0)
@@ -1175,7 +1205,6 @@ def train(
             total_loss_sum += loss.item()
             epoch_total_bits += total_bits.item()
             epoch_num_units += batch_units
-            total_kl_sum += kl_contrib
             total_cov_sum += cov_contrib
             total_consistency_sum += consist_contrib
             total_elements += B_actual
@@ -1205,7 +1234,6 @@ def train(
         dt = time.perf_counter() - t0
         avg_bpd = epoch_total_bits / max(1, epoch_num_units)
         avg_loss = total_loss_sum / max(1, n_batches)
-        avg_kl = total_kl_sum / max(1, n_batches)
         avg_cov = total_cov_sum / max(1, n_batches)
         avg_consist = total_consistency_sum / max(1, n_batches)
         avg_pair_cos = epoch_cossim_pair_sum / max(1, total_elements)
@@ -1258,12 +1286,12 @@ def train(
             "logit_std": logit_std,
             "pooled_std": avg_pooled_std,
             "loss": avg_loss,
-            "sparsity": avg_kl,
+            "mdl": total_mdl_sum / max(1, n_batches),
+            "rank": total_rank_sum / max(1, n_batches),
             "orthogonality": avg_cov,
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
             "vicreg": total_vicreg_sum / max(1, n_batches),
-            "kc_budget": total_budget_sum / max(1, n_batches),
             "lr": current_lr,
             "temperature": current_temperature,
             "kl_warmup": kl_warmup,
