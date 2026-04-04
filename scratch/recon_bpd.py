@@ -146,7 +146,7 @@ class TrainConfig:
     # Fan et al., "Reducing Transformer Depth on Demand with
     # Structured Dropout," ICLR 2020
     layer_drop_prob: float = 0.5
-    semantic_gating_threshold: float = 0.85  # Set to > 0.0 to enable throughput skips
+    semantic_gating_threshold: float = 0.99  # Set to > 0.0 to enable throughput skips
 
 
 @dataclass
