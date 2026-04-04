@@ -832,7 +832,11 @@ def train(
                 g = -torch.log(-torch.log(u))
                 logits_select = kc_logits_raw + 0.6 * g
 
-                # Gradient capping applied via clip_grad_value_ after backward()
+                if kc_logits_raw.requires_grad:
+                    _cap = config.grad_cap
+                    kc_logits_raw.register_hook(
+                        lambda grad, c=_cap: grad.clamp(min=-c, max=c)
+                    )
 
                 logits_select = logits_select.clamp(-12, 12)
                 kc_probs = torch.sigmoid(logits_select / current_temperature)
@@ -1094,9 +1098,7 @@ def train(
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad(set_to_none=True)
             scaler.scale(loss).backward()
-            # Gradient capping (replaces per-batch register_hook)
-            if config.grad_cap > 0:
-                torch.nn.utils.clip_grad_value_(model.parameters(), config.grad_cap)
+
             scaler.step(optimizer)
             scaler.update()
 
