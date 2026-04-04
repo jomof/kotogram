@@ -146,7 +146,7 @@ def _build_test_cache(
     random.shuffle(variants_all)
 
     batches = []
-    batch_size = 256
+    batch_size = 32
     for i in range(0, len(variants_all), batch_size):
         chunk = variants_all[i : i + batch_size]
         max_len = max(len(v.surface_ids) for v in chunk)
@@ -519,10 +519,17 @@ def run_reconstruction_test(
             kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
             kc_probs = torch.sigmoid(kc_logits_raw / temperature)
             h_recon = model.recon.forward_hidden(kc_probs, attn_mask)
-            logits = F.linear(h_recon, embed_weight)
 
-            # Predict top-1 for the whole batch
-            pred_ids = logits.argmax(dim=-1).cpu()  # [B, T]
+            # Predict top-1 for the whole batch, but chunked by tokens to save VRAM
+            # [B, T, H] -> [B, T]
+            T = ids_tensor.size(1)
+            pred_ids = torch.zeros((ids_tensor.size(0), T), dtype=torch.long)
+            recon_chunk = 4  # Small chunk to prevent [B, chunk, V] spike
+            for c0 in range(0, T, recon_chunk):
+                c1 = min(c0 + recon_chunk, T)
+                # Manifesting [B, recon_chunk, V] is ~1/16th of the previous memory spike
+                chunk_logits = F.linear(h_recon[:, c0:c1, :], embed_weight)
+                pred_ids[:, c0:c1] = chunk_logits.argmax(dim=-1).cpu()
 
             for b_idx, variant in enumerate(batch.variants):
                 variant_strict = True
@@ -724,6 +731,13 @@ def run_reconstruction_test(
     )
     if report_path:
         ctx.artifact_paths.append(report_path)
+
+    # Explicitly clear GPU memory after massive reconstruction inference
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
+    elif device.type == "mps":
+        torch.mps.empty_cache()
+
 
 
 if __name__ == "__main__":
