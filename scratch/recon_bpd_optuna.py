@@ -152,7 +152,6 @@ def suggest_config(
         config = TrainConfig(
             epochs=epochs,
             sample_ratio=sample_ratio,
-            seed=42,
         )
         for key, values in _SWEEP_SEARCH_SPACE.items():
             setattr(config, key, trial.suggest_categorical(key, values))
@@ -162,7 +161,6 @@ def suggest_config(
     return TrainConfig(
         epochs=epochs,
         sample_ratio=sample_ratio,
-        seed=42,
         # Learning dynamics
         lr=trial.suggest_float("lr", 1e-5, 1e-2, log=True),
         temperature=trial.suggest_float("temperature", 0.5, 5.0),
@@ -459,7 +457,7 @@ def objective(
                 passed = metrics["test/pass"]
                 total = metrics["test/total"]
                 recon_str = f"test={strict:.0f}/{passed:.0f}/{total:.0f}  "
-            
+
             top1 = metrics.get("test/To-1", 0.0)
             cos = metrics.get("test/cos", 0.0)
             if recon_str:

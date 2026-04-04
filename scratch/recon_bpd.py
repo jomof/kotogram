@@ -91,7 +91,6 @@ class TrainConfig:
     weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
-    seed: int = 42  # Original seed: 42
 
     # ── MDL bits-back cost (information-theoretic sparsity) ─────
     # Grünwald, "The Minimum Description Length Principle," MIT
@@ -453,12 +452,14 @@ def train(
 
     # Ensure entirely reproducible model setup across parallel runners
     import random
+
     import numpy as np
-    random.seed(config.seed)
-    np.random.seed(config.seed)
-    torch.manual_seed(config.seed)
+
+    random.seed(0)
+    np.random.seed(0)
+    torch.manual_seed(0)
     if IS_CUDA:
-        torch.cuda.manual_seed_all(config.seed)
+        torch.cuda.manual_seed_all(0)
 
     print(f"Device: {device}")
     print(f"Fused CE: {USE_FUSED_CE}")
@@ -504,7 +505,7 @@ def train(
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
-    dl_generator = torch.Generator().manual_seed(config.seed)
+    dl_generator = torch.Generator().manual_seed(0)
     loader = DataLoader(
         gram_ds,
         batch_size=config.batch_size,
@@ -1168,9 +1169,8 @@ def train(
                         sorted_load[:-1] - sorted_load[1:] + config.rank_margin
                     )
                     rank_loss = (
-                        (violations * valid_pairs.float()).sum()
-                        / valid_pairs.float().sum()
-                    )
+                        violations * valid_pairs.float()
+                    ).sum() / valid_pairs.float().sum()
                 else:
                     rank_loss = torch.tensor(0.0, device=device)
                 loss = loss + config.rank_margin_weight * kl_warmup * rank_loss
