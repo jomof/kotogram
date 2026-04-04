@@ -91,6 +91,7 @@ class TrainConfig:
     weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
+    seed: int = 42  # Original seed: 42
 
     # ── MDL bits-back cost (information-theoretic sparsity) ─────
     # Grünwald, "The Minimum Description Length Principle," MIT
@@ -505,7 +506,7 @@ def train(
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
-    dl_generator = torch.Generator().manual_seed(0)
+    dl_generator = torch.Generator().manual_seed(config.seed)
     loader = DataLoader(
         gram_ds,
         batch_size=config.batch_size,
@@ -630,6 +631,8 @@ def train(
         if checkpoint is not None
         else {
             "bpd": float("inf"),
+            "To-1": 0.0,
+            "cos": 0.0,
             "loss": float("inf"),
         }
     )
@@ -641,32 +644,13 @@ def train(
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
-        # Progress for temperature annealing
-        progress = epoch / max(1.0, config.temperature_anneal_epochs)
-        current_temperature = config.temperature * max(
-            1.0, config.temperature_start_multiplier * (1.0 - progress)
-        )
-
-        ctx = EpochContext(
-            model=model,
-            tokenizer=tokenizer,
-            device=device,
-            temperature=current_temperature,
-            checkpoint_path=checkpoint_path,
-            config=config,
-            run_name=run_name,
-        )
-
         # Deterministic per-epoch seed: same epoch always sees same
         # batch order and stochastic ops, even after resume.
-        epoch_seed = epoch
+        epoch_seed = config.seed + epoch
         torch.manual_seed(epoch_seed)
         if IS_CUDA:
             torch.cuda.manual_seed(epoch_seed)
         dl_generator.manual_seed(epoch_seed)
-
-        # epoch start callback allows pre-epoch evaluation (cos/top-1)
-        on_epoch_start(epoch, latest_metrics, ctx)
 
         model.train()
         t0 = time.perf_counter()
@@ -683,6 +667,9 @@ def train(
         total_vicreg_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_cossim_pair_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_pooled_std_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_t1_correct = 0
+        epoch_t1_units = 0
+        epoch_cossim_sum = 0.0
         total_elements = 0
         n_batches = 0
         s1_count = torch.tensor(0, device=device, dtype=torch.long)
@@ -762,6 +749,19 @@ def train(
             kl_warmup = (eff_epoch / config.temperature_anneal_epochs) ** 2
         else:
             kl_warmup = 1.0
+
+        ctx = EpochContext(
+            model=model,
+            tokenizer=tokenizer,
+            device=device,
+            temperature=current_temperature,
+            checkpoint_path=checkpoint_path,
+            config=config,
+            run_name=run_name,
+        )
+
+        # epoch start callback allows pre-epoch evaluation (cos/top-1)
+        on_epoch_start(epoch, latest_metrics, ctx)
 
         for batch in loader:
             ids = batch.feature_inputs["input_ids_surface"].to(
@@ -1053,7 +1053,28 @@ def train(
                     total_nll_nats = nll_per_token.sum()
                     nats_per_row = nll_per_token.reshape(B, -1).sum(dim=1)
 
-                # Top-1 + cosine sim deferred to epoch end (avoids [B,T,V] materialization)
+                # Top-1 + cosine sim every 100 batches (forward pass is expensive)
+                if n_batches % 100 == 0:
+                    batch_units = int(mask_f.sum().item())
+                    epoch_t1_units += batch_units
+                    with torch.no_grad():
+                        for c0 in range(0, T, recon_chunk):
+                            c1 = min(c0 + recon_chunk, T)
+                            with AUTOCAST():
+                                chunk_logits = F.linear(
+                                    h_recon[:, c0:c1, :], out_weight
+                                )
+                            preds = chunk_logits.argmax(dim=-1)
+                            chunk_mask = attention_mask[:, c0:c1].bool()
+                            epoch_t1_correct += int(
+                                ((preds == recon_targets[:, c0:c1]) & chunk_mask)
+                                .sum()
+                                .item()
+                            )
+                            pred_emb = chive_normed[preds]
+                            tgt_emb = chive_normed[recon_targets[:, c0:c1]]
+                            cos = (pred_emb * tgt_emb).sum(dim=-1)
+                            epoch_cossim_sum += float((cos * chunk_mask).sum().item())
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
@@ -1077,8 +1098,16 @@ def train(
                     ).reshape(B, -1)
                     total_nll_nats = total_nll_nats + chunk_nll.sum()
                     nats_per_row += chunk_nll.sum(dim=1)
-
-                # Top-1 + cosine sim deferred to epoch end (same as CUDA path)
+                    with torch.no_grad():
+                        preds = chunk_logits.argmax(dim=-1)
+                        valid = attention_mask[:, c0:c1].bool()
+                        epoch_t1_correct += int(
+                            ((preds == chunk_targets) & valid).sum().item()
+                        )
+                        pred_emb = chive_normed[preds]
+                        tgt_emb = chive_normed[chunk_targets]
+                        cos = (pred_emb * tgt_emb).sum(dim=-1)
+                        epoch_cossim_sum += float((cos * valid.float()).sum().item())
 
             # nats → bits, normalize by attended token count
             # Primary run-to-run fitness metric.  Lower is better.
@@ -1214,8 +1243,14 @@ def train(
                 torch.mps.empty_cache()
 
             dt_batch = time.perf_counter() - t0
+            t1_denom = epoch_t1_units if USE_FUSED_CE else int(epoch_num_units.item())
+            t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+            avg_cos = epoch_cossim_sum / max(1, t1_denom)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
+                f"bpd={epoch_total_bits.item() / max(1, epoch_num_units.item()):.4f}  "
+                f"To-1={t1_pct:.1f}%  "
+                f"cos={avg_cos:.3f}  "
                 f"{total_elements / dt_batch:.1f} el/s  "
                 f"{dt_batch:.1f}s",
                 end="",
@@ -1277,9 +1312,15 @@ def train(
         cumulative_tokens_trained += _num_units_val
         cumulative_elapsed_ms += dt * 1000.0
 
+        t1_denom = epoch_t1_units if USE_FUSED_CE else _num_units_val
+        t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
+        avg_cos = epoch_cossim_sum / max(1, t1_denom)
+
         latest_metrics.update(
             {
                 "bpd": avg_bpd,
+                "To-1": t1_pct,
+                "cos": avg_cos,
                 "sharp": avg_sharpness,
                 "s1": s1_pct,
                 "s0": s0_pct,
@@ -1370,10 +1411,10 @@ def train(
     )
     return (
         TrainResult(
-            final_bpd=latest_metrics.get("bpd", float("inf")),
-            final_top1_pct=latest_metrics.get("bpd/To-1", 0.0),
-            final_cossim=latest_metrics.get("bpd/cos", 0.0),
-            final_loss=latest_metrics.get("loss", float("inf")),
+            final_bpd=latest_metrics["bpd"],
+            final_top1_pct=latest_metrics["To-1"],
+            final_cossim=latest_metrics["cos"],
+            final_loss=latest_metrics["loss"],
         ),
         final_checkpoint,
     )

@@ -468,9 +468,6 @@ def objective(
                 eval_keys = [k for k in metrics.keys() if k.startswith("test/")]
                 for k in eval_keys:
                     mlflow.log_metric(k, metrics[k], step=epoch)
-                for k in ["bpd/cos", "bpd/To-1"]:
-                    if k in metrics:
-                        mlflow.log_metric(k, metrics[k], step=epoch)
 
         def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             consist_str = (
