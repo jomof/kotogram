@@ -507,6 +507,9 @@ def run_reconstruction_test(
 
     # Predictions from variant_results
     variant_results: List[dict] = []
+    global_sim_sum = 0.0
+    global_t1_correct = 0
+    global_token_count = 0
 
     with torch.no_grad():
         embed_weight = model.recon.output_head.weight  # [V, H]
@@ -550,6 +553,10 @@ def run_reconstruction_test(
                         embed_weight[exp_id].unsqueeze(0),
                     ).item()
                     sims.append(sim)
+                    global_sim_sum += sim
+                    global_token_count += 1
+                    if pred_id == exp_id:
+                        global_t1_correct += 1
 
                     actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
                     expected_surfaces[orig_pos] = f"[{variant.surfaces[orig_pos]}]"
@@ -721,6 +728,8 @@ def run_reconstruction_test(
     t1 = time.perf_counter()
     metrics.update(
         {
+            "cos": global_sim_sum / max(1, global_token_count),
+            "To-1": 100.0 * global_t1_correct / max(1, global_token_count),
             "recon_test_pct": 100.0 * passed / max(1, total),
             "recon_test_total": float(total),
             "recon_test_pass": float(passed),

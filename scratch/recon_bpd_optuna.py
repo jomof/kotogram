@@ -453,6 +453,25 @@ def objective(
             run_reconstruction_test(ctx, epoch, metrics)
             memory_monitor.phase = "train"
 
+            recon_str = ""
+            if metrics.get("recon_test_total", 0) > 0:
+                strict = metrics.get("recon_test_pass_strict", 0)
+                passed = metrics["recon_test_pass"]
+                total = metrics["recon_test_total"]
+                recon_str = f"recon={strict:.0f}/{passed:.0f}/{total:.0f}  "
+            
+            top1 = metrics.get("To-1", 0.0)
+            cos = metrics.get("cos", 0.0)
+            if recon_str:
+                print(f"  {recon_str}To-1={top1:.1f}%  cos={cos:.3f}")
+
+            if mlflow is not None:
+                # Log baseline/evaluation metrics at the exact step before training
+                eval_keys = ["To-1", "cos", "recon_test_pct", "recon_test_pass_strict", "recon_test_pass"]
+                for k in eval_keys:
+                    if k in metrics:
+                        mlflow.log_metric(f"bpd/{k}", metrics[k], step=epoch)
+
         def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
@@ -460,12 +479,6 @@ def objective(
                 if metrics.get("consistency", 0) > 0
                 else ""
             )
-            recon_str = ""
-            if metrics.get("recon_test_total", 0) > 0:
-                strict = metrics.get("recon_test_pass_strict", 0)
-                passed = metrics["recon_test_pass"]
-                total = metrics["recon_test_total"]
-                recon_str = f"recon={strict:.0f}/{passed:.0f}/{total:.0f}  "
             # Sample GPU memory for the epoch
             gpu_stats = memory_monitor.get_stats_and_reset()
             gpu_str = ""
@@ -478,20 +491,17 @@ def objective(
             print(
                 f"Epoch {epoch + 1}/{epochs}  "
                 f"bpd={metrics['bpd']:.4f}  "
-                f"To-1={metrics['To-1']:.1f}%  "
-                f"cos={metrics['cos']:.3f}  "
-                f"sharp={metrics['sharp']:.3f}  "
-                f"s1={metrics['s1']:.0%} s0={metrics['s0']:.0%} "
-                f"fuzzy={metrics['fuzzy']:.0%}  "
-                f"loss={metrics['loss']:.4f}  "
+                f"sharp={metrics.get('sharp', 0):.3f}  "
+                f"s1={metrics.get('s1', 0):.0%} s0={metrics.get('s0', 0):.0%} "
+                f"fuzzy={metrics.get('fuzzy', 0):.0%}  "
+                f"loss={metrics.get('loss', 0):.4f}  "
                 f"sparsity={metrics['sparsity']:.4f}  "
                 f"mdl={metrics.get('mdl', 0):.4f}  "
                 f"rank={metrics.get('rank', 0):.4f}  "
-                f"orthogonality={metrics['orthogonality']:.4f}  "
+                f"orthogonality={metrics.get('orthogonality', 0):.4f}  "
                 f"{consist_str}"
-                f"{recon_str}"
                 f"{gpu_str}"
-                f"lr={metrics['lr']:.2e}  "
+                f"lr={metrics.get('lr', 0):.2e}  "
                 f"{metrics['el_per_sec']:.1f} el/s  "
                 f"{metrics['samples']} samples  "
                 f"{metrics['epoch_secs']:.1f}s"
@@ -500,8 +510,9 @@ def objective(
                 for k, v in gpu_stats.items():
                     mlflow.log_metric(f"gpu/{k}", v, step=epoch)
 
+                eval_keys = {"To-1", "cos", "recon_test_pct", "recon_test_pass_strict", "recon_test_pass"}
                 for k, v in metrics.items():
-                    if isinstance(v, (int, float)):
+                    if isinstance(v, (int, float)) and k not in eval_keys:
                         mlflow.log_metric(f"bpd/{k}", v, step=epoch)
 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)

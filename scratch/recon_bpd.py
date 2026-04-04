@@ -670,9 +670,6 @@ def train(
         total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_rank_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
-        epoch_t1_correct = 0
-        epoch_t1_units = 0
-        epoch_cossim_sum = 0.0
         epoch_sharpness_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_vicreg_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -1236,32 +1233,6 @@ def train(
         avg_kl = _kl_val / max(1, n_batches)
         epoch_num_units = _num_units_val  # reassign for downstream compat
 
-        # ── Epoch-end Top-1 + cosine sim (single evaluation pass) ──
-        # Both CUDA and MPS paths defer Top-1 computation to epoch end
-        # to avoid per-batch [B,T,V] materialization and GPU→CPU syncs.
-        model.eval()
-        with torch.no_grad():
-            # Fresh forward pass on the last batch's data
-            pooled_eval = model.encode(surface_ids, attention_mask)
-            kc_logits_eval, _ = model.kc_head.forward_with_raw(pooled_eval)
-            kc_probs_eval = torch.sigmoid(kc_logits_eval / current_temperature)
-            h_recon_eval = model.recon.forward_hidden(kc_probs_eval, attention_mask)
-            for c0 in range(0, T, recon_chunk):
-                c1 = min(c0 + recon_chunk, T)
-                with AUTOCAST():
-                    chunk_logits = F.linear(h_recon_eval[:, c0:c1, :], out_weight)
-                preds = chunk_logits.argmax(dim=-1)
-                chunk_mask = attention_mask[:, c0:c1].bool()
-                epoch_t1_correct += int(
-                    ((preds == recon_targets[:, c0:c1]) & chunk_mask).sum().item()
-                )
-                pred_emb = chive_normed[preds]
-                tgt_emb = chive_normed[recon_targets[:, c0:c1]]
-                cos = (pred_emb * tgt_emb).sum(dim=-1)
-                epoch_cossim_sum += float((cos * chunk_mask).sum().item())
-            epoch_t1_units = int(attention_mask.sum().item())
-        model.train()
-
         # Single GPU→CPU sync for all per-batch GPU accumulators
         _cov_val = total_cov_sum.item()
         _consist_val = total_consistency_sum.item()
@@ -1283,9 +1254,6 @@ def train(
         avg_consist = _consist_val / max(1, n_batches)
         avg_pair_cos = _cossim_pair_val / max(1, total_elements)
         avg_pooled_std = _pooled_std_val / max(1, total_elements)
-        t1_denom = epoch_t1_units
-        t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-        avg_cos = epoch_cossim_sum / max(1, t1_denom)
         avg_sharpness = _sharpness_val / max(1, total_elements)
         s1_pct = _s1_val / max(1, _kc_prob_val)
         s0_pct = _s0_val / max(1, _kc_prob_val)
@@ -1302,15 +1270,15 @@ def train(
         cumulative_tokens_trained += _num_units_val
         cumulative_elapsed_ms += dt * 1000.0
 
-        latest_metrics = {
-            "bpd": avg_bpd,
-            "To-1": t1_pct,
-            "cos": avg_cos,
-            "sharp": avg_sharpness,
-            "s1": s1_pct,
-            "s0": s0_pct,
-            "fuzzy": fuzzy_pct,
-        }
+        latest_metrics.update(
+            {
+                "bpd": avg_bpd,
+                "sharp": avg_sharpness,
+                "s1": s1_pct,
+                "s0": s0_pct,
+                "fuzzy": fuzzy_pct,
+            }
+        )
 
         # Pull GPU bin accumulators to CPU once at epoch end
         _s1_bins = s1_count_by_bin_t.cpu().tolist()
