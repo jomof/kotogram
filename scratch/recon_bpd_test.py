@@ -39,6 +39,7 @@ def _get_parser() -> SudachiJapaneseParser:
     if not hasattr(_get_parser, "_instance"):
         _get_parser._instance = SudachiJapaneseParser()  # type: ignore[attr-defined]
     from typing import cast
+
     return cast(SudachiJapaneseParser, getattr(_get_parser, "_instance"))
 
 
@@ -242,6 +243,7 @@ def _is_japanese_char(c: str) -> bool:
         or cp == 0x2026  # horizontal ellipsis …
     )
 
+
 def _tokenize_to_surfaces(sentence: str) -> List[str]:
     """Tokenize a raw Japanese sentence to surface strings via Sudachi."""
     parser = _get_parser()
@@ -436,6 +438,7 @@ def check_test_file() -> bool:
 _RAM_CACHE_DIGEST: str = ""
 _RAM_CACHE_BATCHES: List[TestBatch] = []
 
+
 def run_reconstruction_test(
     ctx: Any,
     epoch: int,
@@ -462,6 +465,7 @@ def run_reconstruction_test(
         else ""
     )
     from typing import Any, cast
+
     model = cast(Any, ctx.model)
     tokenizer = cast(Any, ctx.tokenizer)
     device = ctx.device
@@ -494,9 +498,7 @@ def run_reconstruction_test(
         if not os.path.exists(cache_path):
             _build_test_cache(path, cache_path, tokenizer, cases)
 
-        batches = torch.load(
-            cache_path, map_location="cpu", weights_only=False
-        )
+        batches = torch.load(cache_path, map_location="cpu", weights_only=False)
         _RAM_CACHE_DIGEST = digest
         _RAM_CACHE_BATCHES = batches
 

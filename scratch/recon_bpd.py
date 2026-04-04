@@ -35,6 +35,11 @@ from torch.utils.data import DataLoader
 # Data loading only — the sole external dependencies from this project.
 from kotogram import locations
 from kotogram.tokenizer import Tokenizer
+from scratch.recon_bpd_checkpoint import (
+    EpochContext,
+    TrainCheckpoint,
+    save_checkpoint,
+)
 from train import paths as train_paths
 from train.chive import load_chive_for_vocab
 from train.dataset import StyleDataset, collate_fn
@@ -82,7 +87,7 @@ class TrainConfig:
     # Gumbel-Softmax," ICLR 2017
     # Maddison, Mnih & Teh, "The Concrete Distribution," ICLR 2017
     temperature_start_multiplier: float = 3.0  # initial temp = temperature * this
-    temperature_anneal_epochs: float = 30.0    # effective epochs to reach target temp
+    temperature_anneal_epochs: float = 30.0  # effective epochs to reach target temp
     weight_decay: float = 0.01
     grad_cap: float = 5.0  # Original grad_cap: 5.0
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
@@ -96,9 +101,9 @@ class TrainConfig:
     # VICReg regularization on encoder pooled output
     # Bardes, Ponce & LeCun, "VICReg: Variance-Invariance-Covariance
     # Regularization for Self-Supervised Learning," ICLR 2022
-    vicreg_var_weight: float = 11.0    # variance term coefficient
-    vicreg_cov_weight: float = 5.0     # covariance term coefficient
-    vicreg_gamma: float = 0.3          # target std per dimension
+    vicreg_var_weight: float = 11.0  # variance term coefficient
+    vicreg_cov_weight: float = 5.0  # covariance term coefficient
+    vicreg_gamma: float = 0.3  # target std per dimension
     # Sentence length prediction from KC vector (diagnostic head).
     # Low weight: this is primarily a diagnostic, not a training driver.
     length_pred_weight: float = 0.01
@@ -128,12 +133,6 @@ class TrainResult:
     final_cossim: float
     final_loss: float
 
-
-from scratch.recon_bpd_checkpoint import (
-    EpochContext,
-    TrainCheckpoint,
-    save_checkpoint,
-)
 
 EpochEndCallback = Callable[[int, Dict[str, float], EpochContext], None]
 EpochStartCallback = Callable[[int], None]
@@ -259,7 +258,9 @@ class ReconDecoder(nn.Module):
         self.hidden1 = nn.Linear(kc_vocab_size + 2 * pos_embed_dim, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.output_head = nn.Linear(hidden_dim, surface_vocab_size, bias=False)
-        self.semantic_head = nn.Linear(hidden_dim, 300, bias=False)  # 300D Chive early-exit projection
+        self.semantic_head = nn.Linear(
+            hidden_dim, 300, bias=False
+        )  # 300D Chive early-exit projection
         self.act = nn.ReLU()
 
     def forward_hidden(
@@ -324,7 +325,9 @@ class BpdModel(nn.Module):
         # Scale residual stream projections to maintain unit variance regardless of depth
         std_scale = 1.0 / math.sqrt(2.0 * max(1, cfg.num_layers))
         for layer in self.encoder.layers:
-            nn.init.normal_(layer.self_attn.out_proj.weight, mean=0.0, std=0.02 * std_scale)
+            nn.init.normal_(
+                layer.self_attn.out_proj.weight, mean=0.0, std=0.02 * std_scale
+            )
             nn.init.normal_(layer.linear2.weight, mean=0.0, std=0.02 * std_scale)
 
         # Attention pooler → KC head → recon decoder
@@ -364,7 +367,7 @@ class BpdModel(nn.Module):
         # This prevents the over-smoothing cascade where deep layers
         # progressively erase token-level distinctions, and ensures
         # representations are robust at every effective depth.
-        pad_mask = (attention_mask == 0)
+        pad_mask = attention_mask == 0
         if self.training and self.cfg.layer_drop_prob > 0:
             for i, layer in enumerate(self.encoder.layers):
                 if i > 0 and torch.rand(1).item() < self.cfg.layer_drop_prob:
@@ -379,6 +382,7 @@ class BpdModel(nn.Module):
 # Training loop
 # ═════════════════════════════════════════════════════════════════════
 
+
 class _SetupCache:
     def __init__(self):
         self.dataset_subsets: Dict[float, object] = {}
@@ -388,6 +392,7 @@ class _SetupCache:
         self.cached_model: Optional[BpdModel] = None
         self.cached_model_cfg: Optional[BpdModelConfig] = None
         self.content_mask: Optional[torch.Tensor] = None
+
 
 GLOBAL_SETUP_CACHE = _SetupCache()
 
@@ -439,10 +444,15 @@ def train(
     if GLOBAL_SETUP_CACHE.content_mask is None:
         mask_path = f"{train_paths.get_style_dataset_cache_dir()}/content_mask.bin"
         GLOBAL_SETUP_CACHE.content_mask = torch.from_file(
-            mask_path, shared=True, size=tokenizer.get_vocab_sizes()["surface"], dtype=torch.uint8
+            mask_path,
+            shared=True,
+            size=tokenizer.get_vocab_sizes()["surface"],
+            dtype=torch.uint8,
         ).bool()
 
-    content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(device, non_blocking=IS_CUDA)
+    content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(
+        device, non_blocking=IS_CUDA
+    )
 
     if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
         cache_dir = train_paths.get_style_dataset_cache_dir()
@@ -451,8 +461,12 @@ def train(
             tokenizer,
             sample_ratio=sample_ratio,
         )
-        GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = dataset.filter_by_grammaticality(label=1)
-        print(f"Gram sentences: {len(GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio])}")
+        GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = (
+            dataset.filter_by_grammaticality(label=1)
+        )
+        print(
+            f"Gram sentences: {len(GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio])}"
+        )
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
@@ -488,7 +502,7 @@ def train(
 
         # Missing chiVe words are all zeros. Randomize them so OOV words aren't squashed together.
         norms = cw.norm(dim=-1)
-        missing_mask = (norms == 0.0)
+        missing_mask = norms == 0.0
         missing_mask[0] = False  # Keep index 0 [PAD] strictly at zero
 
         if missing_mask.any():
@@ -499,8 +513,12 @@ def train(
         GLOBAL_SETUP_CACHE.chive_weights = cw
     chive_weights = GLOBAL_SETUP_CACHE.chive_weights
 
-    if GLOBAL_SETUP_CACHE.cached_model_cfg == cfg and GLOBAL_SETUP_CACHE.cached_model is not None:
+    if (
+        GLOBAL_SETUP_CACHE.cached_model_cfg == cfg
+        and GLOBAL_SETUP_CACHE.cached_model is not None
+    ):
         import copy
+
         model = copy.deepcopy(GLOBAL_SETUP_CACHE.cached_model)
     else:
         model = BpdModel(cfg)
@@ -510,6 +528,7 @@ def train(
             model.surface_embed.weight[0].zero_()  # keep padding at zero
         model.surface_embed.weight.requires_grad = False
         import copy
+
         GLOBAL_SETUP_CACHE.cached_model_cfg = cfg
         GLOBAL_SETUP_CACHE.cached_model = copy.deepcopy(model)
 
@@ -525,7 +544,9 @@ def train(
         model = torch.compile(model)
     model.train()
 
-    optimizer = AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
+    optimizer = AdamW(
+        model.parameters(), lr=config.lr, weight_decay=config.weight_decay
+    )
     scaler = torch.amp.GradScaler(device.type, enabled=IS_CUDA)
 
     # LR schedule: smooth token-based linear warmup + cosine decay.
@@ -542,7 +563,9 @@ def train(
     def _lr_lambda(current_batch: int) -> float:
         if current_batch < warmup_batches:
             return (current_batch + 1) / max(1, warmup_batches)
-        progress = (current_batch - warmup_batches) / max(1, total_lr_batches - warmup_batches)
+        progress = (current_batch - warmup_batches) / max(
+            1, total_lr_batches - warmup_batches
+        )
         progress = min(progress, 1.0)
         return min_lr_ratio + 0.5 * (1.0 - min_lr_ratio) * (
             1.0 + math.cos(math.pi * progress)
@@ -552,7 +575,9 @@ def train(
     # "scheduler.step() before optimizer.step()" warning.  The actual
     # training loop has the correct order (scaler.step → scheduler.step).
     with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", "Detected call of .lr_scheduler.step", UserWarning)
+        warnings.filterwarnings(
+            "ignore", "Detected call of .lr_scheduler.step", UserWarning
+        )
         scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
 
     # ── Restore from checkpoint if provided ──────────────────────────
@@ -619,8 +644,12 @@ def train(
         _bin_edges = torch.tensor([3, 7, 15, 31], device=device, dtype=torch.float32)
         s1_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
         s0_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
-        fuzzy_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
-        kc_prob_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        fuzzy_count_by_bin_t = torch.zeros(
+            _NUM_BINS, device=device, dtype=torch.float32
+        )
+        kc_prob_count_by_bin_t = torch.zeros(
+            _NUM_BINS, device=device, dtype=torch.float32
+        )
         bpd_bits_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
         bpd_tokens_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
         raw_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -629,8 +658,12 @@ def train(
         logit_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         logit_count = torch.tensor(0, device=device, dtype=torch.long)
 
-        total_length_pred_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
-        total_length_pred_mae_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_length_pred_loss_sum = torch.tensor(
+            0.0, device=device, dtype=torch.float32
+        )
+        total_length_pred_mae_sum = torch.tensor(
+            0.0, device=device, dtype=torch.float32
+        )
         total_length_pred_count = 0
 
         total_semantic_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -679,7 +712,9 @@ def train(
             kl_warmup = 1.0
 
         for batch in loader:
-            ids = batch.feature_inputs["input_ids_surface"].to(device, non_blocking=IS_CUDA)
+            ids = batch.feature_inputs["input_ids_surface"].to(
+                device, non_blocking=IS_CUDA
+            )
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
             # ── Data Augmentation: Drop Non-Content Tokens (50%) ──────
@@ -754,7 +789,7 @@ def train(
                     n = max(1, z.size(0) - 1)
                     cov_matrix = (z_centered.T @ z_centered) / n
                     cov_matrix.fill_diagonal_(0.0)
-                    cov_loss = (cov_matrix ** 2).mean()
+                    cov_loss = (cov_matrix**2).mean()
 
                     vicreg_loss = (
                         config.vicreg_var_weight * var_loss
@@ -766,7 +801,6 @@ def train(
                 # ── Dual-mask consistency regularization ──────────────
                 consistency_loss = torch.tensor(0.0, device=device)
                 if config.consistency_weight > 0:
-
                     # ── Stop-gradient consistency (asymmetric + symmetrized) ────
                     # Grill et al., "Bootstrap Your Own Latent" (BYOL), NeurIPS 2020
                     # Chen & He, "Exploring Simple Siamese Representation Learning"
@@ -785,8 +819,12 @@ def train(
                         kc_logits_raw[half:],
                         dim=-1,
                     )
-                    consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
-                    epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().sum().float()
+                    consistency_loss = (
+                        0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
+                    )
+                    epoch_cossim_pair_sum += (
+                        (0.5 * (cos_ab + cos_ba)).detach().sum().float()
+                    )
                     raw_consistency_sum += consistency_loss.detach().float()
 
                 # Gumbel noise + gradient capping
@@ -817,18 +855,23 @@ def train(
                 kc_prob_count += _det.numel()
 
                 # Binned accumulation by sequence length — fully on GPU
-                s1_per_row = s1_mask.sum(dim=1)   # [B]
-                s0_per_row = s0_mask.sum(dim=1)   # [B]
+                s1_per_row = s1_mask.sum(dim=1)  # [B]
+                s0_per_row = s0_mask.sum(dim=1)  # [B]
                 fuzzy_per_row = fuzzy_mask.sum(dim=1)  # [B]
                 lengths_gpu = attention_mask.sum(dim=1).float()  # [B]
                 V = _det.size(1)
 
-                bin_idx = torch.bucketize(lengths_gpu, _bin_edges)  # [B], values in 0.._NUM_BINS-1
+                bin_idx = torch.bucketize(
+                    lengths_gpu, _bin_edges
+                )  # [B], values in 0.._NUM_BINS-1
                 s1_count_by_bin_t.scatter_add_(0, bin_idx.long(), s1_per_row.float())
                 s0_count_by_bin_t.scatter_add_(0, bin_idx.long(), s0_per_row.float())
-                fuzzy_count_by_bin_t.scatter_add_(0, bin_idx.long(), fuzzy_per_row.float())
+                fuzzy_count_by_bin_t.scatter_add_(
+                    0, bin_idx.long(), fuzzy_per_row.float()
+                )
                 kc_prob_count_by_bin_t.scatter_add_(
-                    0, bin_idx.long(),
+                    0,
+                    bin_idx.long(),
                     torch.full_like(bin_idx, V, dtype=torch.float32),
                 )
 
@@ -848,7 +891,11 @@ def train(
                 # that's the representation the recon decoder sees.
                 length_pred_loss = torch.tensor(0.0, device=device)
                 if config.length_pred_weight > 0:
-                    pred_lengths = model.length_head(kc_probs.detach() if config.length_pred_weight < 0.1 else kc_probs).squeeze(-1)
+                    pred_lengths = model.length_head(
+                        kc_probs.detach()
+                        if config.length_pred_weight < 0.1
+                        else kc_probs
+                    ).squeeze(-1)
                     # Use only first half if consistency doubling is active
                     if config.consistency_weight > 0:
                         true_lengths_lp = attention_mask[:half].sum(dim=1).float()
@@ -859,7 +906,9 @@ def train(
                     # Normalized MSE: divide by mean length squared so the
                     # loss magnitude is independent of sentence length scale
                     mean_len = true_lengths_lp.mean().clamp_min(1.0)
-                    length_pred_loss = F.mse_loss(pred_lengths_lp, true_lengths_lp) / (mean_len ** 2)
+                    length_pred_loss = F.mse_loss(pred_lengths_lp, true_lengths_lp) / (
+                        mean_len**2
+                    )
 
             # ── Output projection + CE ────────────────────────────────
             assert h_recon.shape[:2] == recon_targets.shape
@@ -875,7 +924,9 @@ def train(
                 # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
                 valid_mask = attention_mask.bool()
-                ce_targets = recon_targets.where(valid_mask, torch.tensor(-100, device=device))
+                ce_targets = recon_targets.where(
+                    valid_mask, torch.tensor(-100, device=device)
+                )
 
                 threshold = current_threshold
                 if threshold > 0.0:
@@ -895,7 +946,9 @@ def train(
 
                     # 4. Auxiliary semantic loss for active tokens
                     sem_loss_sum = ((1.0 - cos_sim) * valid_mask.float()).sum()
-                    semantic_distillation_loss = sem_loss_sum / num_valid.clamp_min(1).float()
+                    semantic_distillation_loss = (
+                        sem_loss_sum / num_valid.clamp_min(1).float()
+                    )
                     total_semantic_loss_sum += sem_loss_sum.detach().float()
 
                     # 5. Stochastic semantic gating: deterministically
@@ -908,7 +961,7 @@ def train(
                     is_hard = (~is_easy | rescue) & valid_mask
 
                     num_hard = is_hard.sum()
-                    total_semantic_skipped += (num_valid - num_hard)
+                    total_semantic_skipped += num_valid - num_hard
 
                     flat_h = h_recon.reshape(-1, h_recon.size(-1))
                     flat_tgt = ce_targets.reshape(-1)
@@ -918,11 +971,18 @@ def train(
                     tgt_hard = flat_tgt[flat_hard]
 
                     if h_hard.size(0) > 0:
-                        nll_hard = _cce_linear_ce(h_hard, out_weight, tgt_hard, reduction="none")
+                        nll_hard = _cce_linear_ce(
+                            h_hard, out_weight, tgt_hard, reduction="none"
+                        )
                         total_nll_nats = nll_hard.sum()
 
                         # Retain row-level metric alignment manually
-                        b_indices = torch.arange(B, device=device).unsqueeze(1).expand(-1, T).reshape(-1)
+                        b_indices = (
+                            torch.arange(B, device=device)
+                            .unsqueeze(1)
+                            .expand(-1, T)
+                            .reshape(-1)
+                        )
                         nats_per_row.scatter_add_(0, b_indices[flat_hard], nll_hard)
                     else:
                         total_nll_nats = torch.tensor(0.0, device=device)
@@ -943,7 +1003,9 @@ def train(
                 # [B, RECON_CHUNK, V] to bound peak memory.
                 # Uses ignore_index=-100 to match the CUDA path.
                 valid_mask = attention_mask.bool()
-                ce_targets = recon_targets.where(valid_mask, torch.tensor(-100, device=device))
+                ce_targets = recon_targets.where(
+                    valid_mask, torch.tensor(-100, device=device)
+                )
                 total_nll_nats = torch.tensor(0.0, device=device)
                 for c0 in range(0, T, recon_chunk):
                     c1 = min(c0 + recon_chunk, T)
@@ -968,8 +1030,8 @@ def train(
             num_units = mask_f.sum().clamp_min(1)
             bpd = total_bits / num_units
 
-            bits_per_row = nats_per_row / LOG2          # [B], stays on GPU
-            row_lengths = mask_f.sum(dim=1)              # [B], stays on GPU
+            bits_per_row = nats_per_row / LOG2  # [B], stays on GPU
+            row_lengths = mask_f.sum(dim=1)  # [B], stays on GPU
             bpd_bin_idx = torch.bucketize(row_lengths, _bin_edges)  # [B]
             bpd_bits_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), bits_per_row.float())
             bpd_tokens_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), row_lengths.float())
@@ -993,7 +1055,9 @@ def train(
                 total_length_pred_loss_sum += length_pred_loss.detach().float()
                 # Also track MAE for interpretability (in token units)
                 with torch.no_grad():
-                    total_length_pred_mae_sum += (pred_lengths_lp - true_lengths_lp).abs().mean().float()
+                    total_length_pred_mae_sum += (
+                        (pred_lengths_lp - true_lengths_lp).abs().mean().float()
+                    )
                     total_length_pred_count += 1
 
             if config.kl_sparse_weight > 0:
@@ -1001,7 +1065,9 @@ def train(
                 # Short sentences are heavily penalized for turning on logits to prevent them
                 # from monopolizing the capacity budget with "easy memorization" features.
                 # A 15-token sentence acts as the 1.0 baseline.
-                seq_lengths = attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
+                seq_lengths = (
+                    attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
+                )
                 length_penalty = 15.0 / seq_lengths
 
                 norm_probs = kc_probs * length_penalty
@@ -1044,7 +1110,16 @@ def train(
             total_elements += B_actual
             n_batches += 1
 
-            del loss, h_recon, total_nll_nats, total_bits, bpd, consistency_loss, vicreg_loss, length_pred_loss
+            del (
+                loss,
+                h_recon,
+                total_nll_nats,
+                total_bits,
+                bpd,
+                consistency_loss,
+                vicreg_loss,
+                length_pred_loss,
+            )
             if device.type == "mps" and n_batches % 8 == 0:
                 torch.mps.empty_cache()
 
@@ -1088,15 +1163,11 @@ def train(
             for c0 in range(0, T, recon_chunk):
                 c1 = min(c0 + recon_chunk, T)
                 with AUTOCAST():
-                    chunk_logits = F.linear(
-                        h_recon_eval[:, c0:c1, :], out_weight
-                    )
+                    chunk_logits = F.linear(h_recon_eval[:, c0:c1, :], out_weight)
                 preds = chunk_logits.argmax(dim=-1)
                 chunk_mask = attention_mask[:, c0:c1].bool()
                 epoch_t1_correct += int(
-                    ((preds == recon_targets[:, c0:c1]) & chunk_mask)
-                    .sum()
-                    .item()
+                    ((preds == recon_targets[:, c0:c1]) & chunk_mask).sum().item()
                 )
                 pred_emb = chive_normed[preds]
                 tgt_emb = chive_normed[recon_targets[:, c0:c1]]
@@ -1136,13 +1207,14 @@ def train(
         avg_raw_consist = _raw_consist_val / max(1, n_batches)
         mean_abs_logit = _logit_abs_val / max(1, _logit_count_val)
         logit_std = (
-            _logit_sq_val / max(1, _logit_count_val) - (_logit_sum_val / max(1, _logit_count_val)) ** 2
+            _logit_sq_val / max(1, _logit_count_val)
+            - (_logit_sum_val / max(1, _logit_count_val)) ** 2
         ) ** 0.5
         current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
 
         cumulative_tokens_trained += _num_units_val
-        cumulative_elapsed_ms += (dt * 1000.0)
+        cumulative_elapsed_ms += dt * 1000.0
 
         latest_metrics = {
             "bpd": avg_bpd,
@@ -1172,33 +1244,37 @@ def train(
             latest_metrics[f"bpd_{mlflow_label}"] = _bpd_bits_bins[bi] / t
 
         if _sem_tokens_val > 0:
-            latest_metrics["semantic_distillation_loss"] = _sem_loss_val / _sem_tokens_val
+            latest_metrics["semantic_distillation_loss"] = (
+                _sem_loss_val / _sem_tokens_val
+            )
             latest_metrics["semantic_skip_ratio"] = _sem_skipped_val / _sem_tokens_val
 
-        latest_metrics.update({
-            "raw_consistency": avg_raw_consist,
-            "mean_abs_logit": mean_abs_logit,
-            "logit_std": logit_std,
-            "pooled_std": avg_pooled_std,
-            "loss": avg_loss,
-            "sparsity": avg_kl,
-            "orthogonality": avg_cov,
-            "consistency": avg_consist,
-            "mask-agree": avg_pair_cos,
-            "vicreg": _vicreg_val / max(1, n_batches),
-            "lr": current_lr,
-            "temperature": current_temperature,
-            "kl_warmup": kl_warmup,
-            "semantic_threshold": current_threshold,
-            "length_pred_mse": _lp_loss_val / max(1, total_length_pred_count),
-            "length_pred_mae": _lp_mae_val / max(1, total_length_pred_count),
-            "el_per_sec": els,
-            "samples": total_elements,
-            "epoch_secs": dt,
-            "tokens_trained": _num_units_val,
-            "cumulative_tokens_trained": cumulative_tokens_trained,
-            "elapsed_ms": cumulative_elapsed_ms,
-        })
+        latest_metrics.update(
+            {
+                "raw_consistency": avg_raw_consist,
+                "mean_abs_logit": mean_abs_logit,
+                "logit_std": logit_std,
+                "pooled_std": avg_pooled_std,
+                "loss": avg_loss,
+                "sparsity": avg_kl,
+                "orthogonality": avg_cov,
+                "consistency": avg_consist,
+                "mask-agree": avg_pair_cos,
+                "vicreg": _vicreg_val / max(1, n_batches),
+                "lr": current_lr,
+                "temperature": current_temperature,
+                "kl_warmup": kl_warmup,
+                "semantic_threshold": current_threshold,
+                "length_pred_mse": _lp_loss_val / max(1, total_length_pred_count),
+                "length_pred_mae": _lp_mae_val / max(1, total_length_pred_count),
+                "el_per_sec": els,
+                "samples": total_elements,
+                "epoch_secs": dt,
+                "tokens_trained": _num_units_val,
+                "cumulative_tokens_trained": cumulative_tokens_trained,
+                "elapsed_ms": cumulative_elapsed_ms,
+            }
+        )
 
         print()  # finish \r progress line
 

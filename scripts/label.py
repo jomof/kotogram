@@ -113,7 +113,7 @@ def _is_content_char(cp: int) -> bool:
         or 0x31F0 <= cp <= 0x31FF  # Katakana Phonetic Extensions
         or 0x4E00 <= cp <= 0x9FFF  # CJK Unified Ideographs
         or 0x3400 <= cp <= 0x4DBF  # CJK Extension A
-        or 0x20000 <= cp <= 0x2A6DF # CJK Extension B
+        or 0x20000 <= cp <= 0x2A6DF  # CJK Extension B
         or 0xF900 <= cp <= 0xFAFF  # CJK Compatibility Ideographs
         or 0x0030 <= cp <= 0x0039  # Digits 0-9
         or cp == 0x002E  # Full stop (period)

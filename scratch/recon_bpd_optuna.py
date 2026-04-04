@@ -205,7 +205,9 @@ def objective(
     params_to_show = adhoc_overrides or trial.params
     if params_to_show:
         parts = " ".join(
-            f"{PARAM_ABBREV.get(k, k)}={v:g}" if isinstance(v, float) else f"{PARAM_ABBREV.get(k, k)}={v}"
+            f"{PARAM_ABBREV.get(k, k)}={v:g}"
+            if isinstance(v, float)
+            else f"{PARAM_ABBREV.get(k, k)}={v}"
             for k, v in sorted(params_to_show.items())
         )
         run_name = f"{parts} {run_name}"
@@ -255,10 +257,17 @@ def objective(
                         for k, v in metrics.items():
                             if isinstance(v, (int, float)):
                                 _mlflow.log_metric(f"bpd/{k}", v, step=ep)
-                        k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
-                        _mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
+                        k_toks = (
+                            int(metrics.get("cumulative_tokens_trained", ep * 1000))
+                            // 1000
+                        )
+                        _mlflow.log_metric(
+                            "inv/bpd", metrics.get("bpd", 0.0), step=k_toks
+                        )
                         if "pooled_std" in metrics:
-                            _mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+                            _mlflow.log_metric(
+                                "inv/pooled_std", metrics["pooled_std"], step=k_toks
+                            )
                 _mlflow.log_metric("final_bpd", era_bpd)
                 _mlflow.log_metric(f"final_bpd_{epochs}ep", era_bpd)
                 _mlflow.end_run()
@@ -309,10 +318,14 @@ def objective(
                     for k, v in metrics.items():
                         if isinstance(v, (int, float)):
                             mlflow.log_metric(f"bpd/{k}", v, step=ep)
-                    k_toks = int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                    k_toks = (
+                        int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
+                    )
                     mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
                     if "pooled_std" in metrics:
-                        mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+                        mlflow.log_metric(
+                            "inv/pooled_std", metrics["pooled_std"], step=k_toks
+                        )
 
     try:
 
@@ -361,10 +374,14 @@ def objective(
                         mlflow.log_metric(f"bpd/{k}", v, step=epoch)
 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
-                k_toks = int(metrics.get("cumulative_tokens_trained", epoch * 1000)) // 1000
+                k_toks = (
+                    int(metrics.get("cumulative_tokens_trained", epoch * 1000)) // 1000
+                )
                 mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
                 if "pooled_std" in metrics:
-                    mlflow.log_metric("inv/pooled_std", metrics["pooled_std"], step=k_toks)
+                    mlflow.log_metric(
+                        "inv/pooled_std", metrics["pooled_std"], step=k_toks
+                    )
 
                 # Upload all registered artifacts
                 for artifact_path in ctx.artifact_paths:
@@ -511,9 +528,16 @@ def main() -> None:
         if args.adhoc == "adhoc":
             git_subject = subprocess.run(
                 ["git", "log", "-1", "--format=%s", "--", "scratch/recon_bpd.py"],
-                capture_output=True, text=True, check=False, timeout=2,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=2,
             )
-            args.adhoc = git_subject.stdout.strip() if git_subject.returncode == 0 and git_subject.stdout.strip() else "adhoc"
+            args.adhoc = (
+                git_subject.stdout.strip()
+                if git_subject.returncode == 0 and git_subject.stdout.strip()
+                else "adhoc"
+            )
 
     adhoc_overrides: dict = {}
     if args.adhoc is not None:
@@ -603,7 +627,6 @@ def main() -> None:
 
     progressive_round = 0
     while True:
-
         study = optuna.create_study(
             study_name=study_name,
             direction="minimize",
