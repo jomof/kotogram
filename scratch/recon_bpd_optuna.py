@@ -518,13 +518,6 @@ def objective(
                 for artifact_path in ctx.artifact_paths:
                     if os.path.exists(artifact_path):
                         mlflow.log_artifact(artifact_path, "recon_test")
-
-                # Sample GPU memory for the epoch
-                med_mb, peak_mb = memory_monitor.get_stats_and_reset()
-                if peak_mb > 0:
-                    mlflow.log_metric("gpu/median_mb", med_mb, step=epoch)
-                    mlflow.log_metric("gpu/peak_mb", peak_mb, step=epoch)
-
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
