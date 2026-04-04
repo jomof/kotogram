@@ -132,8 +132,8 @@ class TrainConfig:
     length_pred_weight: float = 0.01
 
     # Model architecture
-    d_model: int = 512  # Original d_model: 512
-    ffn_dim: int = 2048  # Original ffn_dim: 2048
+    d_model: int = 1024  # Original d_model: 512
+    ffn_dim: int = 4096  # Original ffn_dim: 2048
     num_layers: int = 2  # Original num_layers: 4
     num_heads: int = 16  # Original num_heads: 16
     dropout: float = 0.1  # Original dropout: 0.1
@@ -198,8 +198,8 @@ class BpdModelConfig:
 
     surface_vocab_size: int
     surface_embed_dim: int = 300  # matches chiVe pretrained vectors
-    d_model: int = 512
-    ffn_dim: int = 2048
+    d_model: int = 1024
+    ffn_dim: int = 4096
     num_layers: int = 4
     num_heads: int = 16
     dropout: float = 0.1
