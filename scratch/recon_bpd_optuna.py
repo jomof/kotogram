@@ -468,6 +468,9 @@ def objective(
                 eval_keys = [k for k in metrics.keys() if k.startswith("test/")]
                 for k in eval_keys:
                     mlflow.log_metric(k, metrics[k], step=epoch)
+                for k in ["bpd/cos", "bpd/To-1"]:
+                    if k in metrics:
+                        mlflow.log_metric(k, metrics[k], step=epoch)
 
         def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             consist_str = (
@@ -508,7 +511,11 @@ def objective(
                     mlflow.log_metric(f"gpu/{k}", v, step=epoch)
 
                 for k, v in metrics.items():
-                    if isinstance(v, (int, float)) and not k.startswith("test/"):
+                    if (
+                        isinstance(v, (int, float))
+                        and not k.startswith("test/")
+                        and not k.startswith("bpd/")
+                    ):
                         mlflow.log_metric(f"bpd/{k}", v, step=epoch)
 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
