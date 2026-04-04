@@ -160,7 +160,7 @@ class TrainResult:
 
 
 EpochEndCallback = Callable[[int, Dict[str, float], EpochContext], None]
-EpochStartCallback = Callable[[int], None]
+EpochStartCallback = Callable[[int, Dict[str, float], EpochContext], None]
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -633,6 +633,22 @@ def train(
 
     epoch = max(0, start_epoch - 1)
     for epoch in range(start_epoch, config.epochs):
+        # Progress for temperature annealing
+        progress = epoch / max(1.0, config.temperature_anneal_epochs)
+        current_temperature = config.temperature * max(
+            1.0, config.temperature_start_multiplier * (1.0 - progress)
+        )
+
+        ctx = EpochContext(
+            model=model,
+            tokenizer=tokenizer,
+            device=device,
+            temperature=current_temperature,
+            checkpoint_path=checkpoint_path,
+            config=config,
+            run_name=run_name,
+        )
+
         # Deterministic per-epoch seed: same epoch always sees same
         # batch order and stochastic ops, even after resume.
         epoch_seed = config.seed + epoch
@@ -640,7 +656,11 @@ def train(
         if IS_CUDA:
             torch.cuda.manual_seed(epoch_seed)
         dl_generator.manual_seed(epoch_seed)
-        on_epoch_start(epoch)
+
+        # epoch start callback allows pre-epoch evaluation (cos/top-1)
+        on_epoch_start(epoch, latest_metrics, ctx)
+
+        model.train()
         t0 = time.perf_counter()
         # All accumulators on GPU — single .item() batch at epoch end
         total_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -1362,15 +1382,6 @@ def train(
             checkpoint_path,
         )
 
-        ctx = EpochContext(
-            model=model,
-            tokenizer=tokenizer,
-            device=device,
-            temperature=current_temperature,
-            checkpoint_path=checkpoint_path,
-            config=config,
-            run_name=run_name,
-        )
         on_epoch_end(epoch, latest_metrics, ctx)
 
     final_checkpoint = TrainCheckpoint(

@@ -444,18 +444,16 @@ def objective(
 
     try:
 
-        def on_epoch_start(epoch: int) -> None:
+        def on_epoch_start(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
-            memory_monitor.phase = "train"
-
-        def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
-            # ── Reconstruction spot-check (observability, not training) ──
+            # Run reconstruction test at the start of the epoch for baseline/pre-epoch eval
             from scratch.recon_bpd_test import run_reconstruction_test
 
             memory_monitor.phase = "test"
             run_reconstruction_test(ctx, epoch, metrics)
             memory_monitor.phase = "train"
 
+        def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
                 f"mask-agree={metrics['mask-agree']:.3f}  "
