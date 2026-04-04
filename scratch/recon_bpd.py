@@ -1337,8 +1337,19 @@ def train(
 
         print()  # finish \r progress line
 
-        # Per-epoch checkpoint save (before callback, so pruned trials
-        # still have their checkpoint persisted for later reuse).
+        ctx = EpochContext(
+            model=model,
+            tokenizer=tokenizer,
+            device=device,
+            temperature=current_temperature,
+            checkpoint_path=checkpoint_path,
+            config=config,
+            run_name=run_name,
+        )
+        on_epoch_end(epoch, latest_metrics, ctx)
+
+        # Per-epoch checkpoint save (after callback, so metrics from test
+        # are persisted in history).
         epoch_history.append((epoch, dict(latest_metrics)))
         save_checkpoint(
             TrainCheckpoint(
@@ -1352,17 +1363,6 @@ def train(
             ),
             checkpoint_path,
         )
-
-        ctx = EpochContext(
-            model=model,
-            tokenizer=tokenizer,
-            device=device,
-            temperature=current_temperature,
-            checkpoint_path=checkpoint_path,
-            config=config,
-            run_name=run_name,
-        )
-        on_epoch_end(epoch, latest_metrics, ctx)
 
     final_checkpoint = TrainCheckpoint(
         model_state=model.state_dict(),

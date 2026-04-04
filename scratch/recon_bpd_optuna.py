@@ -405,6 +405,22 @@ def objective(
 
             run_reconstruction_test(ctx, epoch, metrics)
 
+            # Accumulate historical reconstruction test time if resuming
+            prev_test_ms = 0.0
+            if existing is not None and existing.epoch_history:
+                # Find the last recorded cumulative test time if available
+                for _, prev_metrics in reversed(existing.epoch_history):
+                    if "cumulative_test_ms" in prev_metrics:
+                        prev_test_ms = prev_metrics["cumulative_test_ms"]
+                        break
+
+            # This handles both fresh starts and resumes within the same process
+            # (since on_epoch_end is called sequentially)
+            if not hasattr(on_epoch_end, "_total_test_ms"):
+                on_epoch_end._total_test_ms = prev_test_ms  # type: ignore
+            on_epoch_end._total_test_ms += metrics.get("recon_test_ms", 0.0)  # type: ignore
+            metrics["cumulative_test_ms"] = on_epoch_end._total_test_ms  # type: ignore
+
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
                 f"mask-agree={metrics['mask-agree']:.3f}  "
@@ -434,7 +450,8 @@ def objective(
                 f"lr={metrics['lr']:.2e}  "
                 f"{metrics['el_per_sec']:.1f} el/s  "
                 f"{metrics['samples']} samples  "
-                f"{metrics['epoch_secs']:.1f}s"
+                f"{metrics['epoch_secs']:.1f}s  "
+                f"test={metrics.get('recon_test_ms', 0.0):.0f}ms"
             )
             if mlflow is not None:
                 for k, v in metrics.items():
