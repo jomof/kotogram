@@ -516,7 +516,8 @@ def objective(
                         and not k.startswith("test/")
                         and not k.startswith("bpd/")
                     ):
-                        mlflow.log_metric(f"bpd/{k}", v, step=epoch)
+                        dest = "total" if k == "bpd" else k
+                        mlflow.log_metric(f"bpd/{dest}", v, step=epoch)
 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
                 k_toks = (
