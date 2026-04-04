@@ -57,7 +57,8 @@ def suggest_config(
                 setattr(config, key, trial.suggest_categorical(key, values))
         return config
 
-    d_model = trial.suggest_categorical("d_model", [256, 512])
+    d_model = trial.suggest_categorical("d_model", [256, 512, 1024])
+    ffn_dim_choices = [1024, 2048, 4096, 6144, 8192]
     return TrainConfig(
         epochs=epochs,
         sample_ratio=sample_ratio,
@@ -87,7 +88,7 @@ def suggest_config(
         ),
         # Model architecture
         d_model=d_model,
-        ffn_dim=trial.suggest_categorical("ffn_dim", [1024, 2048, 4096]),
+        ffn_dim=trial.suggest_categorical("ffn_dim", ffn_dim_choices),
         num_layers=trial.suggest_int("num_layers", 3, 9),
         num_heads=trial.suggest_categorical("num_heads", [4, 8, 16]),
         dropout=trial.suggest_float("dropout", 0.0, 0.3),
