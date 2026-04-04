@@ -755,6 +755,7 @@ def run_reconstruction_test(
     passed = passed_alt
     failed = total - passed
     t1 = time.perf_counter()
+
     def pctl(arr: List[float], p: float) -> float:
         if not arr:
             return 0.0
@@ -793,7 +794,6 @@ def run_reconstruction_test(
         torch.cuda.empty_cache()
     elif device.type == "mps":
         torch.mps.empty_cache()
-
 
 
 if __name__ == "__main__":
