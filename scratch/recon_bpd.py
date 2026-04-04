@@ -943,32 +943,26 @@ def train(
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
+                # Uses ignore_index=-100 to match the CUDA path.
+                valid_mask = attention_mask.bool()
+                ce_targets = recon_targets.where(valid_mask, torch.tensor(-100, device=device))
                 total_nll_nats = torch.tensor(0.0, device=device)
                 for c0 in range(0, T, recon_chunk):
                     c1 = min(c0 + recon_chunk, T)
                     with AUTOCAST():
                         chunk_logits = F.linear(h_recon[:, c0:c1, :], out_weight)
                     chunk_logits = chunk_logits.float()
-                    chunk_targets = recon_targets[:, c0:c1]
-                    chunk_mask = mask_f[:, c0:c1]
+                    chunk_targets = ce_targets[:, c0:c1]
                     chunk_nll = F.cross_entropy(
                         chunk_logits.reshape(-1, chunk_logits.size(-1)),
                         chunk_targets.reshape(-1),
+                        ignore_index=-100,
                         reduction="none",
                     ).reshape(B, -1)
-                    masked_chunk_nll = chunk_nll * chunk_mask
-                    total_nll_nats = total_nll_nats + masked_chunk_nll.sum()
-                    nats_per_row += masked_chunk_nll.sum(dim=1)
-                    with torch.no_grad():
-                        preds = chunk_logits.argmax(dim=-1)
-                        valid = chunk_mask.bool()
-                        epoch_t1_correct += int(
-                            ((preds == chunk_targets) & valid).sum().item()
-                        )
-                        pred_emb = chive_normed[preds]
-                        tgt_emb = chive_normed[chunk_targets]
-                        cos = (pred_emb * tgt_emb).sum(dim=-1)
-                        epoch_cossim_sum += float((cos * chunk_mask).sum().item())
+                    total_nll_nats = total_nll_nats + chunk_nll.sum()
+                    nats_per_row += chunk_nll.sum(dim=1)
+
+                # Top-1 + cosine sim deferred to epoch end (same as CUDA path)
 
             # nats → bits, normalize by attended token count
             # Primary run-to-run fitness metric.  Lower is better.
@@ -1078,36 +1072,34 @@ def train(
         avg_kl = total_kl_sum / max(1, n_batches)
 
         # ── Epoch-end Top-1 + cosine sim (single evaluation pass) ──
-        # Only needed on the fused CE path where Top-1 is not computed
-        # inline during the batch loop. The MPS fallback already computes
-        # Top-1 inline since it materializes logits for the loss anyway.
-        if USE_FUSED_CE:
-            model.eval()
-            with torch.no_grad():
-                # Fresh forward pass on the last batch's data
-                pooled_eval = model.encode(surface_ids, attention_mask)
-                kc_logits_eval, _ = model.kc_head.forward_with_raw(pooled_eval)
-                kc_probs_eval = torch.sigmoid(kc_logits_eval / current_temperature)
-                h_recon_eval = model.recon.forward_hidden(kc_probs_eval, attention_mask)
-                for c0 in range(0, T, recon_chunk):
-                    c1 = min(c0 + recon_chunk, T)
-                    with AUTOCAST():
-                        chunk_logits = F.linear(
-                            h_recon_eval[:, c0:c1, :], out_weight
-                        )
-                    preds = chunk_logits.argmax(dim=-1)
-                    chunk_mask = attention_mask[:, c0:c1].bool()
-                    epoch_t1_correct += int(
-                        ((preds == recon_targets[:, c0:c1]) & chunk_mask)
-                        .sum()
-                        .item()
+        # Both CUDA and MPS paths defer Top-1 computation to epoch end
+        # to avoid per-batch [B,T,V] materialization and GPU→CPU syncs.
+        model.eval()
+        with torch.no_grad():
+            # Fresh forward pass on the last batch's data
+            pooled_eval = model.encode(surface_ids, attention_mask)
+            kc_logits_eval, _ = model.kc_head.forward_with_raw(pooled_eval)
+            kc_probs_eval = torch.sigmoid(kc_logits_eval / current_temperature)
+            h_recon_eval = model.recon.forward_hidden(kc_probs_eval, attention_mask)
+            for c0 in range(0, T, recon_chunk):
+                c1 = min(c0 + recon_chunk, T)
+                with AUTOCAST():
+                    chunk_logits = F.linear(
+                        h_recon_eval[:, c0:c1, :], out_weight
                     )
-                    pred_emb = chive_normed[preds]
-                    tgt_emb = chive_normed[recon_targets[:, c0:c1]]
-                    cos = (pred_emb * tgt_emb).sum(dim=-1)
-                    epoch_cossim_sum += float((cos * chunk_mask).sum().item())
-                epoch_t1_units = int(attention_mask.sum().item())
-            model.train()
+                preds = chunk_logits.argmax(dim=-1)
+                chunk_mask = attention_mask[:, c0:c1].bool()
+                epoch_t1_correct += int(
+                    ((preds == recon_targets[:, c0:c1]) & chunk_mask)
+                    .sum()
+                    .item()
+                )
+                pred_emb = chive_normed[preds]
+                tgt_emb = chive_normed[recon_targets[:, c0:c1]]
+                cos = (pred_emb * tgt_emb).sum(dim=-1)
+                epoch_cossim_sum += float((cos * chunk_mask).sum().item())
+            epoch_t1_units = int(attention_mask.sum().item())
+        model.train()
 
         # Single GPU→CPU sync for all per-batch GPU accumulators
         _cov_val = total_cov_sum.item()
