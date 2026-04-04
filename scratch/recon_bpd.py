@@ -630,8 +630,6 @@ def train(
         if checkpoint is not None
         else {
             "bpd": float("inf"),
-            "To-1": 0.0,
-            "cos": 0.0,
             "loss": float("inf"),
         }
     )
