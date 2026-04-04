@@ -360,6 +360,8 @@ def objective(
                 f"fuzzy={metrics['fuzzy']:.0%}  "
                 f"loss={metrics['loss']:.4f}  "
                 f"sparsity={metrics['sparsity']:.4f}  "
+                f"mdl={metrics.get('mdl', 0):.4f}  "
+                f"rank={metrics.get('rank', 0):.4f}  "
                 f"orthogonality={metrics['orthogonality']:.4f}  "
                 f"{consist_str}"
                 f"{recon_str}"
@@ -488,6 +490,20 @@ def main() -> None:
         help="Override layer drop probability as a percentage (e.g. 50 = drop 50%% of layers)",
     )
     parser.add_argument(
+        "--mdl",
+        type=float,
+        default=None,
+        metavar="WEIGHT",
+        help="Enable MDL bits-back sparsity with given weight (e.g. 0.1)",
+    )
+    parser.add_argument(
+        "--rank",
+        type=float,
+        default=None,
+        metavar="WEIGHT",
+        help="Enable pairwise ranking margin with given weight (e.g. 0.5)",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -546,6 +562,10 @@ def main() -> None:
         adhoc_overrides["num_layers"] = args.layers
     if args.layer_dropout is not None:
         adhoc_overrides["layer_drop_prob"] = args.layer_dropout / 100.0
+    if args.mdl is not None:
+        adhoc_overrides["mdl_weight"] = args.mdl
+    if args.rank is not None:
+        adhoc_overrides["rank_margin_weight"] = args.rank
 
     if adhoc_overrides:
         print("Overrides:")

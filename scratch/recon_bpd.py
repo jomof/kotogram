@@ -93,6 +93,31 @@ class TrainConfig:
     input_mask_ratio: float = 0.15  # Original input_mask_ratio: 0.15
     seed: int = 42  # Original seed: 42
 
+    # ── MDL bits-back cost (information-theoretic sparsity) ─────
+    # Grünwald, "The Minimum Description Length Principle," MIT
+    # Press, 2007
+    # Hinton & Van Camp, "Keeping Neural Networks Simple by
+    # Minimizing the Description Length of the Weights," COLT 1993
+    #
+    # Charges each active KC a per-token information cost.
+    # Short sentences pay more per KC (cost = load / length),
+    # naturally suppressing over-allocation without a fixed
+    # sparsity target. The model finds its own Pareto frontier
+    # between reconstruction quality and description cost.
+    # Set to 0 to disable.
+    mdl_weight: float = 0.0
+
+    # ── Pairwise ranking margin (monotonic length ordering) ─────
+    # Burges et al., "Learning to Rank using Gradient Descent,"
+    # ICML 2005 (LambdaRank / RankNet framework)
+    #
+    # For pairs of samples where len_a < len_b, penalizes when
+    # load_a >= load_b via a hinge margin. No fixed target —
+    # only enforces that longer sentences use weakly more KCs.
+    # Set to 0 to disable.
+    rank_margin_weight: float = 0.0
+    rank_margin: float = 1.0  # minimum load gap between length-sorted adjacent pairs
+
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
     kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
@@ -622,6 +647,8 @@ def train(
         epoch_total_bits = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_num_units = torch.tensor(0, device=device, dtype=torch.long)
         total_kl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_t1_correct = 0
         epoch_t1_units = 0
@@ -1086,6 +1113,43 @@ def train(
                 loss = loss + kl_scaled
                 total_kl_sum += kl_scaled.detach().float()
 
+            # ── MDL bits-back cost ────────────────────────────────
+            if config.mdl_weight > 0:
+                mdl_load = kc_probs.sum(dim=1)  # [B], soft count of active KCs
+                mdl_lengths = attention_mask.sum(dim=1).float().clamp_min(1.0)
+                if config.consistency_weight > 0:
+                    mdl_load = mdl_load[:half]
+                    mdl_lengths = mdl_lengths[:half]
+                mdl_cost = (mdl_load / mdl_lengths).mean()
+                loss = loss + config.mdl_weight * kl_warmup * mdl_cost
+                total_mdl_sum += mdl_cost.detach().float()
+
+            # ── Pairwise ranking margin ───────────────────────────
+            if config.rank_margin_weight > 0:
+                rank_load = kc_probs.sum(dim=1)  # [B]
+                rank_lengths = attention_mask.sum(dim=1).float()
+                if config.consistency_weight > 0:
+                    rank_load = rank_load[:half]
+                    rank_lengths = rank_lengths[:half]
+                sorted_idx = rank_lengths.argsort()
+                sorted_load = rank_load[sorted_idx]
+                sorted_len = rank_lengths[sorted_idx]
+                # Adjacent pairs where lengths actually differ
+                len_diff = sorted_len[1:] - sorted_len[:-1]
+                valid_pairs = len_diff > 0
+                if valid_pairs.any():
+                    violations = F.relu(
+                        sorted_load[:-1] - sorted_load[1:] + config.rank_margin
+                    )
+                    rank_loss = (
+                        (violations * valid_pairs.float()).sum()
+                        / valid_pairs.float().sum()
+                    )
+                else:
+                    rank_loss = torch.tensor(0.0, device=device)
+                loss = loss + config.rank_margin_weight * kl_warmup * rank_loss
+                total_rank_sum += rank_loss.detach().float()
+
             if config.cov_penalty_weight > 0:
                 centered = kc_probs - kc_probs.mean(dim=0)
                 cov = (centered.T @ centered) / max(1, B)
@@ -1259,6 +1323,8 @@ def train(
                 "pooled_std": avg_pooled_std,
                 "loss": avg_loss,
                 "sparsity": avg_kl,
+                "mdl": total_mdl_sum.item() / max(1, n_batches),
+                "rank": total_rank_sum.item() / max(1, n_batches),
                 "orthogonality": avg_cov,
                 "consistency": avg_consist,
                 "mask-agree": avg_pair_cos,
