@@ -537,6 +537,8 @@ def run_reconstruction_test(
             for b_idx, variant in enumerate(batch.variants):
                 variant_strict = True
                 variant_alt = True
+                variant_t1_correct = 0
+                variant_tokens = 0
                 actual_surfaces = list(variant.surfaces)
                 expected_surfaces = list(variant.surfaces)
                 sims = []
@@ -555,8 +557,10 @@ def run_reconstruction_test(
                     sims.append(sim)
                     global_sim_sum += sim
                     global_token_count += 1
+                    variant_tokens += 1
                     if pred_id == exp_id:
                         global_t1_correct += 1
+                        variant_t1_correct += 1
 
                     actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
                     expected_surfaces[orig_pos] = f"[{variant.surfaces[orig_pos]}]"
@@ -578,6 +582,8 @@ def run_reconstruction_test(
                         "strict": variant_strict,
                         "alt": variant_alt,
                         "sims": sims,
+                        "t1_correct": variant_t1_correct,
+                        "tokens": variant_tokens,
                         "actual_surfaces": actual_surfaces,
                         "expected_surfaces": expected_surfaces,
                     }
@@ -595,6 +601,13 @@ def run_reconstruction_test(
     passed_strict = 0
     passed_alt = 0
 
+    sim_all = []
+    sim_pass = []
+    sim_fail = []
+    to1_all = []
+    to1_pass = []
+    to1_fail = []
+
     for case_idx, case in enumerate(cases):
         results = case_to_variants.get(case_idx, [])
         if not results:
@@ -604,11 +617,15 @@ def run_reconstruction_test(
         case_strict = True
         case_alt = True
         case_sims = []
+        case_t1_correct = 0
+        case_tokens = 0
         first_fail_line = ""
         last_actual = []
 
         for res in results:
             case_sims.extend(res["sims"])
+            case_t1_correct += res["t1_correct"]
+            case_tokens += res["tokens"]
             last_actual = res["actual_surfaces"]
             if not res["strict"]:
                 case_strict = False
@@ -630,8 +647,20 @@ def run_reconstruction_test(
 
         total += 1
         case_sim = sum(case_sims) / max(1, len(case_sims))
+        case_to1 = 100.0 * case_t1_correct / max(1, case_tokens)
         sim_tag = f"[sim={case_sim:.2f}]"
         actual_recon = "".join(last_actual)
+
+        is_pass = case_strict or case_alt
+
+        sim_all.append(case_sim)
+        to1_all.append(case_to1)
+        if is_pass:
+            sim_pass.append(case_sim)
+            to1_pass.append(case_to1)
+        else:
+            sim_fail.append(case_sim)
+            to1_fail.append(case_to1)
 
         if case_strict:
             passed_strict += 1
@@ -726,18 +755,36 @@ def run_reconstruction_test(
     passed = passed_alt
     failed = total - passed
     t1 = time.perf_counter()
+    def pctl(arr: List[float], p: float) -> float:
+        if not arr:
+            return 0.0
+        s = sorted(arr)
+        return s[int((len(s) - 1) * p / 100.0)]
+
     metrics.update(
         {
-            "cos": global_sim_sum / max(1, global_token_count),
-            "To-1": 100.0 * global_t1_correct / max(1, global_token_count),
-            "recon_test_pct": 100.0 * passed / max(1, total),
-            "recon_test_total": float(total),
-            "recon_test_pass": float(passed),
-            "recon_test_pass_strict": float(passed_strict),
-            "recon_test_fail": float(failed),
-            "recon_test_ms": (t1 - t0) * 1000.0,
+            "test/cos": global_sim_sum / max(1, global_token_count),
+            "test/To-1": 100.0 * global_t1_correct / max(1, global_token_count),
+            "test/pct": 100.0 * passed / max(1, total),
+            "test/total": float(total),
+            "test/pass": float(passed),
+            "test/pass_strict": float(passed_strict),
+            "test/fail": float(failed),
+            "test/ms": (t1 - t0) * 1000.0,
         }
     )
+
+    for prefix, arr_sim, arr_t1 in [
+        ("test/pass", sim_pass, to1_pass),
+        ("test/fail", sim_fail, to1_fail),
+        ("test/all", sim_all, to1_all),
+    ]:
+        metrics[f"{prefix}/cos/p10"] = pctl(arr_sim, 10)
+        metrics[f"{prefix}/cos/p50"] = pctl(arr_sim, 50)
+        metrics[f"{prefix}/cos/p90"] = pctl(arr_sim, 90)
+        metrics[f"{prefix}/to1/p10"] = pctl(arr_t1, 10)
+        metrics[f"{prefix}/to1/p50"] = pctl(arr_t1, 50)
+        metrics[f"{prefix}/to1/p90"] = pctl(arr_t1, 90)
     if report_path:
         ctx.artifact_paths.append(report_path)
 
