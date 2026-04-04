@@ -595,11 +595,11 @@ def train(
         dl_generator.manual_seed(epoch_seed)
         on_epoch_start(epoch)
         t0 = time.perf_counter()
-        total_loss_sum = 0.0
-        epoch_total_bits = 0.0
-        epoch_num_units = 0
-        total_kl_sum = 0.0
-        # GPU accumulators — single .item() at epoch end avoids per-batch sync
+        # All accumulators on GPU — single .item() batch at epoch end
+        total_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_total_bits = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_num_units = torch.tensor(0, device=device, dtype=torch.long)
+        total_kl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_t1_correct = 0
         epoch_t1_units = 0
@@ -632,13 +632,13 @@ def train(
         logit_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         logit_count = torch.tensor(0, device=device, dtype=torch.long)
 
-        total_length_pred_loss_sum = 0.0
-        total_length_pred_mae_sum = 0.0
+        total_length_pred_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_length_pred_mae_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_length_pred_count = 0
         
-        total_semantic_loss_sum = 0.0
-        total_semantic_tokens = 0
-        total_semantic_skipped = 0
+        total_semantic_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_semantic_tokens = torch.tensor(0, device=device, dtype=torch.long)
+        total_semantic_skipped = torch.tensor(0, device=device, dtype=torch.long)
         
         # Dynamic Semantic Thresholding (1.0 -> 0.85 over 30 effective epochs)
         # Scales cleanly by sample_ratio to match LR warmup geometry.
@@ -893,12 +893,13 @@ def train(
                     # 3. Calculate similarities
                     cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
                     
-                    num_valid_tokens = int(valid_mask.sum().item())
-                    total_semantic_tokens += num_valid_tokens
+                    num_valid = valid_mask.sum()
+                    total_semantic_tokens += num_valid
                     
                     # 4. Auxiliary semantic loss for active tokens
-                    semantic_distillation_loss = ((1.0 - cos_sim) * valid_mask.float()).sum() / max(1, num_valid_tokens)
-                    total_semantic_loss_sum += float(semantic_distillation_loss.item()) * num_valid_tokens
+                    sem_loss_sum = ((1.0 - cos_sim) * valid_mask.float()).sum()
+                    semantic_distillation_loss = sem_loss_sum / num_valid.clamp_min(1).float()
+                    total_semantic_loss_sum += sem_loss_sum.detach().float()
                     
                     # 5. Stochastic semantic gating: deterministically
                     # keep hard tokens (cos_sim < threshold), and
@@ -909,8 +910,8 @@ def train(
                     rescue = torch.rand_like(cos_sim) > threshold
                     is_hard = (~is_easy | rescue) & valid_mask
                     
-                    num_hard = int(is_hard.sum().item())
-                    total_semantic_skipped += (num_valid_tokens - num_hard)
+                    num_hard = is_hard.sum()
+                    total_semantic_skipped += (num_valid - num_hard)
                     
                     flat_h = h_recon.reshape(-1, h_recon.size(-1))
                     flat_tgt = ce_targets.reshape(-1)
@@ -978,7 +979,6 @@ def train(
 
             # ── Regularizers ─────────────────────────────────────────
             loss = bpd + semantic_distillation_loss * 5.0
-            kl_contrib = 0.0
 
             if config.consistency_weight > 0:
                 consist_scaled = config.consistency_weight * consistency_loss
@@ -993,11 +993,10 @@ def train(
             # Length prediction diagnostic
             if config.length_pred_weight > 0:
                 loss = loss + config.length_pred_weight * length_pred_loss
-                total_length_pred_loss_sum += length_pred_loss.item()
+                total_length_pred_loss_sum += length_pred_loss.detach().float()
                 # Also track MAE for interpretability (in token units)
                 with torch.no_grad():
-                    mae = (pred_lengths_lp - true_lengths_lp).abs().mean().item()
-                    total_length_pred_mae_sum += mae
+                    total_length_pred_mae_sum += (pred_lengths_lp - true_lengths_lp).abs().mean().float()
                     total_length_pred_count += 1
 
             if config.kl_sparse_weight > 0:
@@ -1018,7 +1017,7 @@ def train(
                 ).sum()
                 kl_scaled = config.kl_sparse_weight * kl_warmup * kl_term
                 loss = loss + kl_scaled
-                kl_contrib = kl_scaled.item()
+                total_kl_sum += kl_scaled.detach().float()
 
             if config.cov_penalty_weight > 0:
                 centered = kc_probs - kc_probs.mean(dim=0)
@@ -1030,7 +1029,7 @@ def train(
                 total_cov_sum += cov_scaled.detach().float()
 
             # ── Backward + step ──────────────────────────────────────
-            optimizer.zero_grad()
+            optimizer.zero_grad(set_to_none=True)
             scaler.scale(loss).backward()
             # Gradient capping (replaces per-batch register_hook)
             if config.grad_cap > 0:
@@ -1041,12 +1040,10 @@ def train(
             # Step the smooth per-batch scheduler
             scheduler.step()
 
-            # ── Epoch stats ──────────────────────────────────────────
-            batch_units = int(num_units.item())
-            total_loss_sum += loss.item()
-            epoch_total_bits += total_bits.item()
-            epoch_num_units += batch_units
-            total_kl_sum += kl_contrib
+            # ── Epoch stats (all GPU, zero sync) ─────────────────────
+            total_loss_sum += loss.detach().float()
+            epoch_total_bits += total_bits.detach().float()
+            epoch_num_units += num_units.detach().long()
             total_elements += B_actual
             n_batches += 1
 
@@ -1055,11 +1052,8 @@ def train(
                 torch.mps.empty_cache()
 
             dt_batch = time.perf_counter() - t0
-            skip_pct = 100.0 * total_semantic_skipped / max(1, total_semantic_tokens)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
-                f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
-                f"skip={skip_pct:.1f}%  "
                 f"{total_elements / dt_batch:.1f} el/s  "
                 f"{dt_batch:.1f}s",
                 end="",
@@ -1067,9 +1061,22 @@ def train(
             )
 
         dt = time.perf_counter() - t0
-        avg_bpd = epoch_total_bits / max(1, epoch_num_units)
-        avg_loss = total_loss_sum / max(1, n_batches)
-        avg_kl = total_kl_sum / max(1, n_batches)
+
+        # ── Single GPU→CPU sync for ALL accumulators ─────────────
+        _total_loss_val = total_loss_sum.item()
+        _total_bits_val = epoch_total_bits.item()
+        _num_units_val = int(epoch_num_units.item())
+        _kl_val = total_kl_sum.item()
+        _lp_loss_val = total_length_pred_loss_sum.item()
+        _lp_mae_val = total_length_pred_mae_sum.item()
+        _sem_loss_val = total_semantic_loss_sum.item()
+        _sem_tokens_val = int(total_semantic_tokens.item())
+        _sem_skipped_val = int(total_semantic_skipped.item())
+
+        avg_bpd = _total_bits_val / max(1, _num_units_val)
+        avg_loss = _total_loss_val / max(1, n_batches)
+        avg_kl = _kl_val / max(1, n_batches)
+        epoch_num_units = _num_units_val  # reassign for downstream compat
 
         # ── Epoch-end Top-1 + cosine sim (single evaluation pass) ──
         # Both CUDA and MPS paths defer Top-1 computation to epoch end
@@ -1137,7 +1144,7 @@ def train(
         current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
 
-        cumulative_tokens_trained += epoch_num_units
+        cumulative_tokens_trained += _num_units_val
         cumulative_elapsed_ms += (dt * 1000.0)
 
         latest_metrics = {
@@ -1167,9 +1174,9 @@ def train(
             t = max(1.0, _bpd_tok_bins[bi])
             latest_metrics[f"bpd_{mlflow_label}"] = _bpd_bits_bins[bi] / t
 
-        if total_semantic_tokens > 0:
-            latest_metrics["semantic_distillation_loss"] = total_semantic_loss_sum / total_semantic_tokens
-            latest_metrics["semantic_skip_ratio"] = total_semantic_skipped / total_semantic_tokens
+        if _sem_tokens_val > 0:
+            latest_metrics["semantic_distillation_loss"] = _sem_loss_val / _sem_tokens_val
+            latest_metrics["semantic_skip_ratio"] = _sem_skipped_val / _sem_tokens_val
             
         latest_metrics.update({
             "raw_consistency": avg_raw_consist,
@@ -1186,12 +1193,12 @@ def train(
             "temperature": current_temperature,
             "kl_warmup": kl_warmup,
             "semantic_threshold": current_threshold,
-            "length_pred_mse": total_length_pred_loss_sum / max(1, total_length_pred_count),
-            "length_pred_mae": total_length_pred_mae_sum / max(1, total_length_pred_count),
+            "length_pred_mse": _lp_loss_val / max(1, total_length_pred_count),
+            "length_pred_mae": _lp_mae_val / max(1, total_length_pred_count),
             "el_per_sec": els,
             "samples": total_elements,
             "epoch_secs": dt,
-            "tokens_trained": epoch_num_units,
+            "tokens_trained": _num_units_val,
             "cumulative_tokens_trained": cumulative_tokens_trained,
             "elapsed_ms": cumulative_elapsed_ms,
         })
