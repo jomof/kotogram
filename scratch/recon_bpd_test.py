@@ -432,12 +432,17 @@ def check_test_file() -> bool:
     return all_ok
 
 
+# ── Module-level cache to prevent memory leaks from torch.load ──
+_RAM_CACHE_DIGEST: str = ""
+_RAM_CACHE_BATCHES: List[TestBatch] = []
+
 def run_reconstruction_test(
     ctx: Any,
     epoch: int,
     metrics: Dict[str, float],
 ) -> None:
     """Run reconstruction spot-check after an epoch."""
+    global _RAM_CACHE_DIGEST, _RAM_CACHE_BATCHES
     from scratch.recon_bpd_checkpoint import EpochContext as _EC  # noqa: F811
 
     assert isinstance(ctx, _EC)
@@ -479,15 +484,21 @@ def run_reconstruction_test(
             h.update(f.read())
 
     digest = h.hexdigest()[:16]
-    os.makedirs(".cache/optuna", exist_ok=True)
-    cache_path = os.path.join(".cache/optuna", f"recon_test_cache_{digest}.pt")
 
-    if not os.path.exists(cache_path):
-        _build_test_cache(path, cache_path, tokenizer, cases)
+    if _RAM_CACHE_DIGEST == digest and _RAM_CACHE_BATCHES:
+        batches = _RAM_CACHE_BATCHES
+    else:
+        os.makedirs(".cache/optuna", exist_ok=True)
+        cache_path = os.path.join(".cache/optuna", f"recon_test_cache_{digest}.pt")
 
-    batches: List[TestBatch] = torch.load(
-        cache_path, map_location="cpu", weights_only=False
-    )
+        if not os.path.exists(cache_path):
+            _build_test_cache(path, cache_path, tokenizer, cases)
+
+        batches = torch.load(
+            cache_path, map_location="cpu", weights_only=False
+        )
+        _RAM_CACHE_DIGEST = digest
+        _RAM_CACHE_BATCHES = batches
 
     was_training = model.training
     model.eval()
