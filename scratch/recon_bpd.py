@@ -177,6 +177,7 @@ from scratch.recon_bpd_checkpoint import (
     TrainCheckpoint,
     load_checkpoint,
     save_checkpoint,
+    wait_for_checkpoints,
 )
 
 
@@ -1348,9 +1349,6 @@ def train(
         )
         on_epoch_end(epoch, latest_metrics, ctx)
 
-        # Per-epoch checkpoint save (after callback, so metrics from test
-        # are persisted in history).
-        epoch_history.append((epoch, dict(latest_metrics)))
         save_checkpoint(
             TrainCheckpoint(
                 model_state=model.state_dict(),
@@ -1373,6 +1371,9 @@ def train(
         latest_metrics=latest_metrics,
         epoch_history=epoch_history,
     )
+    # Ensure any background per-epoch saves are finished before exiting
+    # which might otherwise kill the background thread pool abruptly.
+    wait_for_checkpoints()
     return (
         TrainResult(
             final_bpd=latest_metrics["bpd"],

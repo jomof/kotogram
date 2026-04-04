@@ -6,6 +6,8 @@ they are infrastructure, not training semantics.
 """
 
 import os
+import time
+import concurrent.futures
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
@@ -60,25 +62,55 @@ class EpochContext:
     run_name: str = ""  # human-readable experiment identifier
 
 
+# Shared executor for backgrounding disk writes to avoid blocking the training loop.
+_SAVE_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+
+
+def wait_for_checkpoints() -> None:
+    """Block until all background checkpoint saves complete."""
+    _SAVE_EXECUTOR.shutdown(wait=True)
+
+
+def _do_save_disk(data: dict, path: str) -> None:
+    """Background task: perform atomic disk write."""
+    tmp_path = path + ".tmp"
+    try:
+        torch.save(data, tmp_path)
+        os.replace(tmp_path, path)
+    except Exception as e:
+        print(f"  [ERROR] Background checkpoint save failed: {e}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+
+
 def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
-    """Persist a checkpoint to disk (atomic write)."""
+    """Capture a snapshot of training state and background the disk write."""
     parent = os.path.dirname(path)
     if parent:
         os.makedirs(parent, exist_ok=True)
-    tmp_path = path + ".tmp"
-    torch.save(
-        {
-            "model_state": checkpoint.model_state,
-            "optimizer_state": checkpoint.optimizer_state,
-            "scaler_state": checkpoint.scaler_state,
-            "scheduler_state": checkpoint.scheduler_state,
-            "epoch": checkpoint.epoch,
-            "latest_metrics": checkpoint.latest_metrics,
-            "epoch_history": checkpoint.epoch_history,
-        },
-        tmp_path,
-    )
-    os.replace(tmp_path, path)
+
+    # Sync capture of model state to CPU to ensure consistency before
+    # backgrounding. This blocks for ~100-200ms depending on model size
+    # but avoids "torn" checkpoints if the next epoch starts immediately.
+    # We do this for all state dicts to be safe.
+    def _to_cpu(d: dict) -> dict:
+        return {
+            k: v.cpu() if isinstance(v, torch.Tensor) else v
+            for k, v in d.items()
+        }
+
+    data = {
+        "model_state": _to_cpu(checkpoint.model_state),
+        "optimizer_state": _to_cpu(checkpoint.optimizer_state),
+        "scaler_state": checkpoint.scaler_state,  # Scaler/Scheduler are small/CPU-native
+        "scheduler_state": checkpoint.scheduler_state,
+        "epoch": checkpoint.epoch,
+        "latest_metrics": dict(checkpoint.latest_metrics),
+        "epoch_history": list(checkpoint.epoch_history),
+    }
+
+    # Background the slow part (SSD I/O)
+    _SAVE_EXECUTOR.submit(_do_save_disk, data, path)
 
 
 def load_checkpoint(path: str) -> Optional[TrainCheckpoint]:
