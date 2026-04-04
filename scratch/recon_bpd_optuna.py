@@ -464,6 +464,13 @@ def main() -> None:
         help="Override the number of layers",
     )
     parser.add_argument(
+        "--layer-dropout",
+        type=float,
+        default=None,
+        metavar="PERCENT",
+        help="Override layer drop probability as a percentage (e.g. 50 = drop 50%% of layers)",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -513,6 +520,8 @@ def main() -> None:
         adhoc_overrides = dict(ADHOC_OVERRIDES)
     if args.layers is not None:
         adhoc_overrides["num_layers"] = args.layers
+    if args.layer_dropout is not None:
+        adhoc_overrides["layer_drop_prob"] = args.layer_dropout / 100.0
 
     if adhoc_overrides:
         print("Overrides:")
