@@ -18,9 +18,13 @@ Usage:
 """
 
 import argparse
+import dataclasses
+import hashlib
 import os
+import random
+import time
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import torch
 import torch.nn.functional as F
@@ -34,7 +38,8 @@ def _get_parser() -> SudachiJapaneseParser:
     """Lazy-load the Sudachi parser singleton."""
     if not hasattr(_get_parser, "_instance"):
         _get_parser._instance = SudachiJapaneseParser()  # type: ignore[attr-defined]
-    return _get_parser._instance  # type: ignore[attr-defined]
+    from typing import cast
+    return cast(SudachiJapaneseParser, getattr(_get_parser, "_instance"))
 
 
 @dataclass
@@ -44,19 +49,126 @@ class TestCase:
     full_sentence: str
     acceptable_alternatives: List[str] = field(default_factory=list)
     masked_variants: List[str] = field(default_factory=list)
+    section: str = ""
 
 
 @dataclass
-class ReconTestResults:
-    """Results from running reconstruction tests."""
+class _CaseRecord:
+    """Per-case result record for reporting."""
 
-    metrics: Dict[str, float]
-    failure_path: str  # path to failures file (empty if no failures)
-    verbose_path: str  # path to verbose report (empty if not written)
+    outcome: str  # "STRICT", "ALT", or "FAIL"
+    report_line: str  # human-readable line for the report
+    sim: float  # avg cosine sim: predicted embedding vs main-target embedding
 
 
 def _test_file_path() -> str:
     return os.path.join(os.path.dirname(__file__), "recon_bpd_test.txt")
+
+
+@dataclass
+class VariantData:
+    """Captured variant data for batching."""
+
+    case_idx: int
+    variant_idx: int
+    variant_str: str
+    surfaces: List[str]
+    surface_ids: List[int]
+    masked_pos: List[int]
+    masked_id_positions: List[int]
+    alt_surface_ids_list: List[List[int]]
+
+
+@dataclass
+class TestBatch:
+    """A single batch of test variants."""
+
+    ids_tensor: torch.Tensor
+    attention_mask: torch.Tensor
+    variants: List[VariantData]
+
+
+def _build_test_cache(
+    txt_path: str, cache_path: str, tokenizer: Tokenizer, cases: List[TestCase]
+) -> None:
+    """Build and save the test cache to disk."""
+    print(f"Building reconstruction test cache: {cache_path}")
+    variants_all = []
+
+    parser = _get_parser()
+    for case_idx, case in enumerate(cases):
+        surfaces = _tokenize_to_surfaces(case.full_sentence)
+        try:
+            kotogram = parser.japanese_to_kotogram(case.full_sentence)
+            features_list = [
+                extract_token_features(tok) for tok in split_kotogram(kotogram)
+            ]
+            encoded = tokenizer.encode_features(features_list)
+            surface_ids = encoded["surface"]
+        except Exception:
+            continue
+
+        alt_surface_ids_list: List[List[int]] = []
+        for alt_sentence in case.acceptable_alternatives:
+            try:
+                alt_kotogram = parser.japanese_to_kotogram(alt_sentence)
+                alt_features = [
+                    extract_token_features(tok) for tok in split_kotogram(alt_kotogram)
+                ]
+                alt_encoded = tokenizer.encode_features(alt_features)
+                alt_ids = alt_encoded["surface"]
+                if len(alt_ids) == len(surface_ids):
+                    alt_surface_ids_list.append(alt_ids)
+            except Exception:
+                pass
+
+        for variant_idx, variant in enumerate(case.masked_variants):
+            masked_pos = align_tokens_to_masked(surfaces, variant)
+            if masked_pos is None:
+                continue
+            masked_id_positions = [p + 1 for p in masked_pos]
+            variants_all.append(
+                VariantData(
+                    case_idx=case_idx,
+                    variant_idx=variant_idx,
+                    variant_str=variant,
+                    surfaces=surfaces,
+                    surface_ids=surface_ids,
+                    masked_pos=masked_pos,
+                    masked_id_positions=masked_id_positions,
+                    alt_surface_ids_list=alt_surface_ids_list,
+                )
+            )
+
+    # Randomize to pack small/large sentences together
+    random.seed(42)
+    random.shuffle(variants_all)
+
+    batches = []
+    batch_size = 256
+    for i in range(0, len(variants_all), batch_size):
+        chunk = variants_all[i : i + batch_size]
+        max_len = max(len(v.surface_ids) for v in chunk)
+
+        ids_tensors = []
+        mask_tensors = []
+        for v in chunk:
+            ids = list(v.surface_ids)
+            for pos in v.masked_id_positions:
+                ids[pos] = 0
+            pad_len = max_len - len(ids)
+            ids_tensors.append(ids + [0] * pad_len)
+            mask_tensors.append([1] * len(ids) + [0] * pad_len)
+
+        batches.append(
+            TestBatch(
+                ids_tensor=torch.tensor(ids_tensors, dtype=torch.long),
+                attention_mask=torch.tensor(mask_tensors, dtype=torch.long),
+                variants=chunk,
+            )
+        )
+
+    torch.save(batches, cache_path)
 
 
 def load_test_cases(path: str) -> List[TestCase]:
@@ -68,9 +180,13 @@ def load_test_cases(path: str) -> List[TestCase]:
         水を飲む[茶を飲む,酒を飲む]: xを飲む
     """
     cases: List[TestCase] = []
+    current_section = ""
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
+            # Track section headers: # ── <name> ─────
+            if line.startswith("# ── "):
+                current_section = line[5:].rstrip("\u2500- ").strip()
             if not line or line.startswith("#"):
                 continue
             colon_idx = line.index(": ")
@@ -93,10 +209,38 @@ def load_test_cases(path: str) -> List[TestCase]:
                     full_sentence=full,
                     acceptable_alternatives=alternatives,
                     masked_variants=variants,
+                    section=current_section,
                 )
             )
     return cases
 
+
+def _is_japanese_char(c: str) -> bool:
+    """Return True if c is hiragana, katakana, a CJK ideograph, or Japanese punctuation.
+
+    Covers:
+    - Hiragana (U+3040–309F)
+    - Katakana (U+30A0–30FF)
+    - CJK Symbols & Punctuation (U+3000–303F) — includes 。、〜 etc.
+    - CJK Unified Ideographs (U+4E00–9FFF)
+    - CJK Extension A (U+3400–4DBF)
+    - CJK Extension B (U+20000–2A6DF)
+    - CJK Compatibility Ideographs (U+F900–FAFF)
+    - Halfwidth & Fullwidth Forms (U+FF00–FFEF) — includes ！？ etc.
+    - Horizontal Ellipsis (U+2026) — …
+    """
+    cp = ord(c)
+    return (
+        0x3000 <= cp <= 0x303F  # CJK symbols & punctuation (includes 。、)
+        or 0x3040 <= cp <= 0x309F  # hiragana
+        or 0x30A0 <= cp <= 0x30FF  # katakana
+        or 0x4E00 <= cp <= 0x9FFF  # CJK unified ideographs (common)
+        or 0x3400 <= cp <= 0x4DBF  # CJK extension A
+        or 0x20000 <= cp <= 0x2A6DF  # CJK extension B
+        or 0xF900 <= cp <= 0xFAFF  # CJK compatibility ideographs
+        or 0xFF00 <= cp <= 0xFFEF  # halfwidth & fullwidth forms (includes ！？)
+        or cp == 0x2026  # horizontal ellipsis …
+    )
 
 def _tokenize_to_surfaces(sentence: str) -> List[str]:
     """Tokenize a raw Japanese sentence to surface strings via Sudachi."""
@@ -142,10 +286,65 @@ def align_tokens_to_masked(
 
 
 def check_test_file() -> bool:
-    """Validate that all test cases parse correctly against the tokenizer."""
+    """Validate that all test cases parse correctly against the tokenizer.
+
+    Four checks are performed:
+
+    -1. Process-comment check: comment lines must not contain editorial
+        phrases left over from editing (e.g. "--check", "TOKENIZATION
+        WARNING", "Adjust", "Verify").  These are authoring notes that
+        should be removed before committing.
+
+    0. Distinctness check: the main sentence and all alternatives are unique
+       strings.  Duplicates silently waste test budget.
+
+    1. Alignment check: every masked variant aligns correctly to the main
+       sentence's token list (each 'x' corresponds to exactly one token).
+
+    2. Coverage check: for every acceptable alternative, at least one masked
+       variant "covers" it.  A variant covers an alternative when the
+       alternative's tokens at all *unmasked* positions match the main
+       sentence's tokens.  If they differ at an unmasked position the
+       alternative can never be produced by filling in the x's — the test
+       case is broken.
+
+    3. Relevance check: every sentence (main + alternatives) must contain
+       at least one kanji/kana character that also appears in the section
+       title.  This ensures each test case is actually exercising the
+       grammar/vocabulary pattern the section is named for.  Skipped when
+       the section title contains no CJK characters.
+    """
     path = _test_file_path()
-    cases = load_test_cases(path)
     all_ok = True
+
+    # ── Check -1: no process-internal comment phrases ─────────────────
+    _PROCESS_PHRASES = [
+        "TOKENIZATION WARNING",
+        "--check",
+        "Adjust per",
+        "Adjust x",
+        "Verify token",
+        "If --check",
+        "If so,",
+        "DELETE them",
+        "may normalize to",
+        "per --check",
+    ]
+    with open(path, encoding="utf-8") as _f:
+        for _lineno, _raw in enumerate(_f, 1):
+            _stripped = _raw.strip()
+            if not _stripped.startswith("#"):
+                continue
+            for _phrase in _PROCESS_PHRASES:
+                if _phrase in _stripped:
+                    print(
+                        f"  ✗ FAIL (process-comment) line {_lineno}: "
+                        f"'{_phrase}' found in comment — remove before committing"
+                    )
+                    all_ok = False
+                    break
+
+    cases = load_test_cases(path)
 
     for case in cases:
         surfaces = _tokenize_to_surfaces(case.full_sentence)
@@ -155,16 +354,77 @@ def check_test_file() -> bool:
         print(f"  Sentence: {case.full_sentence}{alt_display}")
         print(f"  Tokens: {surfaces}")
 
+        # ── Check 0: all sentences (main + alternatives) are distinct ─────
+        all_sentences = [case.full_sentence] + case.acceptable_alternatives
+        seen: set = set()
+        for s in all_sentences:
+            if s in seen:
+                print(f"    \u2717 FAIL (distinct): '{s}' appears more than once")
+                all_ok = False
+            seen.add(s)
+
+        # ── Check 1: alignment ────────────────────────────────────────────
+        valid_masks: List[List[int]] = []
+        sec = f"  # {case.section}" if case.section else ""
+
         for variant in case.masked_variants:
             masked_pos = align_tokens_to_masked(surfaces, variant)
             if masked_pos is None:
-                print(f"    \u2717 FAIL: Cannot align '{variant}'")
+                print(f"    \u2717 FAIL (align): Cannot align '{variant}'{sec}")
                 all_ok = False
             else:
                 masked_tokens = [surfaces[i] for i in masked_pos]
                 print(
-                    f"    \u2713 OK: '{variant}' \u2192 masked {masked_pos} ({masked_tokens})"
+                    f"    \u2713 OK: '{variant}' \u2192 masked {masked_pos} ({masked_tokens}){sec}"
                 )
+                valid_masks.append(masked_pos)
+
+        # ── Check 2: each alternative is coverable by at least one variant ─
+        for alt in case.acceptable_alternatives:
+            alt_surfaces = _tokenize_to_surfaces(alt)
+            if len(alt_surfaces) != len(surfaces):
+                print(
+                    f"    \u2717 FAIL (coverage): '{alt}' has {len(alt_surfaces)} tokens"
+                    f" but main has {len(surfaces)} — length mismatch, no mask can cover it{sec}"
+                )
+                all_ok = False
+                continue
+
+            covered = False
+            for masked_pos in valid_masks:
+                masked_set = set(masked_pos)
+                # All unmasked positions must be identical between main and alt
+                if all(
+                    alt_surfaces[p] == surfaces[p]
+                    for p in range(len(surfaces))
+                    if p not in masked_set
+                ):
+                    covered = True
+                    break
+
+            if covered:
+                print(f"    \u2713 OK (coverage): '{alt}' is coverable{sec}")
+            else:
+                diff = [
+                    p for p in range(len(surfaces)) if alt_surfaces[p] != surfaces[p]
+                ]
+                print(
+                    f"    \u2717 FAIL (coverage): '{alt}' differs at positions {diff} "
+                    f"({[surfaces[p] for p in diff]} \u2192 {[alt_surfaces[p] for p in diff]})"
+                    f" but no variant masks those positions{sec}"
+                )
+                all_ok = False
+
+        # ── Check 3: section relevance ─────────────────────────────────
+        section_japanese: set = {c for c in case.section if _is_japanese_char(c)}
+        if section_japanese:
+            if not any(c in section_japanese for c in case.full_sentence):
+                print(
+                    f"    \u2717 FAIL (relevance): '{case.full_sentence}' shares no"
+                    f" Japanese chars with section title{sec}"
+                )
+                all_ok = False
+
         print()
 
     status = "ALL OK" if all_ok else "SOME FAILURES"
@@ -173,18 +433,15 @@ def check_test_file() -> bool:
 
 
 def run_reconstruction_test(
-    ctx: "EpochContext",
+    ctx: Any,
     epoch: int,
     metrics: Dict[str, float],
 ) -> None:
-    """Run reconstruction spot-check after an epoch.
-
-    Merges test metrics into ``metrics`` and appends any artifact
-    file paths to ``ctx.artifact_paths``.  The model is switched to
-    eval mode internally and restored afterwards.
-    """
+    """Run reconstruction spot-check after an epoch."""
     from scratch.recon_bpd_checkpoint import EpochContext as _EC  # noqa: F811
+
     assert isinstance(ctx, _EC)
+    t0 = time.perf_counter()
 
     path = _test_file_path()
     if not os.path.exists(path):
@@ -199,162 +456,261 @@ def run_reconstruction_test(
         if ctx.checkpoint_path
         else ""
     )
-    model = ctx.model
-    tokenizer = ctx.tokenizer
+    from typing import Any, cast
+    model = cast(Any, ctx.model)
+    tokenizer = cast(Any, ctx.tokenizer)
     device = ctx.device
     temperature = ctx.temperature
 
     id_to_surface = {v: k for k, v in tokenizer.field_vocabs["surface"].items()}
 
+    # Compute hash digest of relevant files for cache invalidation
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        h.update(f.read())
+    with open(__file__, "rb") as f:
+        h.update(f.read())
+    # Add tokenizer json config backing to the hash explicitly
+    from kotogram import locations
+
+    tok_path = os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+    if os.path.exists(tok_path):
+        with open(tok_path, "rb") as f:
+            h.update(f.read())
+
+    digest = h.hexdigest()[:16]
+    os.makedirs(".cache/optuna", exist_ok=True)
+    cache_path = os.path.join(".cache/optuna", f"recon_test_cache_{digest}.pt")
+
+    if not os.path.exists(cache_path):
+        _build_test_cache(path, cache_path, tokenizer, cases)
+
+    batches: List[TestBatch] = torch.load(
+        cache_path, map_location="cpu", weights_only=False
+    )
+
     was_training = model.training
     model.eval()
 
-    total = 0
-    passed_strict = 0
-    passed_alt = 0
-    failure_lines: List[str] = []
-    verbose_lines: List[str] = []
+    # Predictions from variant_results
+    variant_results: List[dict] = []
 
     with torch.no_grad():
-        for case in cases:
-            surfaces = _tokenize_to_surfaces(case.full_sentence)
+        embed_weight = model.recon.output_head.weight  # [V, H]
 
-            # Encode via tokenizer (produces CLS + token IDs)
-            parser = _get_parser()
-            kotogram = parser.japanese_to_kotogram(case.full_sentence)
-            features_list = [
-                extract_token_features(tok) for tok in split_kotogram(kotogram)
-            ]
-            encoded = tokenizer.encode_features(features_list)
-            surface_ids = encoded["surface"]  # [CLS, tok0, tok1, ...]
+        for batch in batches:
+            ids_tensor = batch.ids_tensor.to(device, non_blocking=True)
+            attn_mask = batch.attention_mask.to(device, non_blocking=True)
 
-            # Pre-tokenize acceptable alternatives for this case
-            alt_surface_ids_list: List[list] = []
-            for alt_sentence in case.acceptable_alternatives:
-                try:
-                    alt_kotogram = parser.japanese_to_kotogram(alt_sentence)
-                    alt_features = [
-                        extract_token_features(tok)
-                        for tok in split_kotogram(alt_kotogram)
-                    ]
-                    alt_encoded = tokenizer.encode_features(alt_features)
-                    alt_ids = alt_encoded["surface"]
-                    # Only use alternatives with matching token count
-                    if len(alt_ids) == len(surface_ids):
-                        alt_surface_ids_list.append(alt_ids)
-                except Exception:
-                    pass  # skip malformed alternatives silently
+            pooled = model.encode(ids_tensor, attn_mask)
+            kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
+            kc_probs = torch.sigmoid(kc_logits_raw / temperature)
+            h_recon = model.recon.forward_hidden(kc_probs, attn_mask)
+            logits = F.linear(h_recon, embed_weight)
 
-            # Track per-case outcome: strict, alt, or fail
-            case_strict = True  # all variants match exact original
-            case_alt = True  # all variants match original OR alternative
-            first_fail_line = ""
+            # Predict top-1 for the whole batch
+            pred_ids = logits.argmax(dim=-1).cpu()  # [B, T]
 
-            for variant in case.masked_variants:
-                masked_pos = align_tokens_to_masked(surfaces, variant)
-                if masked_pos is None:
-                    case_strict = False
-                    case_alt = False
-                    continue
-
-                # +1 offset for CLS token at position 0
-                masked_id_positions = [p + 1 for p in masked_pos]
-
-                # Create input with masked positions zeroed out (PAD)
-                ids_tensor = torch.tensor([surface_ids], device=device)
-                for pos in masked_id_positions:
-                    ids_tensor[0, pos] = 0
-
-                attn_mask = torch.ones(
-                    1, len(surface_ids), device=device, dtype=torch.long
-                )
-
-                # Full forward pass: encode -> KC -> recon
-                pooled = model.encode(ids_tensor, attn_mask)
-                kc_logits_raw, _ = model.kc_head.forward_with_raw(pooled)
-                kc_probs = torch.sigmoid(kc_logits_raw / temperature)
-                h_recon = model.recon.forward_hidden(kc_probs, attn_mask)
-                logits = F.linear(h_recon, model.recon.output_head.weight)
-
+            for b_idx, variant in enumerate(batch.variants):
                 variant_strict = True
                 variant_alt = True
-                for pos in masked_id_positions:
-                    pred_id = int(logits[0, pos].argmax().item())
-                    if pred_id != surface_ids[pos]:
+                actual_surfaces = list(variant.surfaces)
+                expected_surfaces = list(variant.surfaces)
+                sims = []
+
+                for orig_pos, pos in zip(
+                    variant.masked_pos, variant.masked_id_positions
+                ):
+                    pred_id = int(pred_ids[b_idx, pos].item())
+                    exp_id = variant.surface_ids[pos]
+
+                    # Cosine similarity: predicted embedding vs main-target embedding
+                    sim = F.cosine_similarity(
+                        embed_weight[pred_id].unsqueeze(0),
+                        embed_weight[exp_id].unsqueeze(0),
+                    ).item()
+                    sims.append(sim)
+
+                    actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
+                    expected_surfaces[orig_pos] = f"[{variant.surfaces[orig_pos]}]"
+
+                    if pred_id != exp_id:
                         variant_strict = False
-                        # Check alternatives
-                        acceptable_ids = {surface_ids[pos]}
-                        for alt_ids in alt_surface_ids_list:
-                            acceptable_ids.add(alt_ids[pos])
+                        acceptable_ids: set = {exp_id}
+                        for alt_ids in variant.alt_surface_ids_list:
+                            if pos < len(alt_ids):
+                                acceptable_ids.add(alt_ids[pos])
                         if pred_id not in acceptable_ids:
                             variant_alt = False
 
-                if not variant_strict:
-                    case_strict = False
-                if not variant_alt:
-                    case_alt = False
-                    if not first_fail_line:
-                        # Build actual reconstruction for report
-                        actual_surfaces = list(surfaces)
-                        # Bracket masked tokens in expected sentence
-                        expected_surfaces = list(surfaces)
-                        for orig_pos in masked_pos:
-                            pred_id = int(logits[0, orig_pos + 1].argmax().item())
-                            actual_surfaces[orig_pos] = id_to_surface.get(pred_id, "?")
-                            expected_surfaces[orig_pos] = f"[{surfaces[orig_pos]}]"
-                        actual_recon = "".join(actual_surfaces)
-                        expected_display = "".join(expected_surfaces)
-                        also = ""
-                        if case.acceptable_alternatives:
-                            also = f" [also accepts: {', '.join(case.acceptable_alternatives)}]"
-                        first_fail_line = (
-                            f"{expected_display}{also}: {actual_recon} (from {variant})"
-                        )
+                variant_results.append(
+                    {
+                        "case_idx": variant.case_idx,
+                        "variant_idx": variant.variant_idx,
+                        "variant_str": variant.variant_str,
+                        "strict": variant_strict,
+                        "alt": variant_alt,
+                        "sims": sims,
+                        "actual_surfaces": actual_surfaces,
+                        "expected_surfaces": expected_surfaces,
+                    }
+                )
 
-            total += 1
-            if case_strict:
-                passed_strict += 1
-                passed_alt += 1
-                verbose_lines.append(f"STRICT {case.full_sentence}")
-            elif case_alt:
-                passed_alt += 1
-                verbose_lines.append(f"ALT    {case.full_sentence}")
-            else:
-                verbose_lines.append(f"FAIL   {first_fail_line}")
-                failure_lines.append(first_fail_line)
+    # Group by case
+    from collections import defaultdict
+
+    case_to_variants = defaultdict(list)
+    for res in variant_results:
+        case_to_variants[res["case_idx"]].append(res)
+
+    case_records: List[_CaseRecord] = []
+    total = 0
+    passed_strict = 0
+    passed_alt = 0
+
+    for case_idx, case in enumerate(cases):
+        results = case_to_variants.get(case_idx, [])
+        if not results:
+            continue
+        results.sort(key=lambda x: x["variant_idx"])
+
+        case_strict = True
+        case_alt = True
+        case_sims = []
+        first_fail_line = ""
+        last_actual = []
+
+        for res in results:
+            case_sims.extend(res["sims"])
+            last_actual = res["actual_surfaces"]
+            if not res["strict"]:
+                case_strict = False
+            if not res["alt"]:
+                case_alt = False
+                if not first_fail_line:
+                    actual_recon = "".join(res["actual_surfaces"])
+                    expected_display = "".join(res["expected_surfaces"])
+                    also = ""
+                    if case.acceptable_alternatives:
+                        also = (
+                            f" [also accepts:"
+                            f" {', '.join(case.acceptable_alternatives)}]"
+                        )
+                    first_fail_line = (
+                        f"{expected_display}{also}:"
+                        f" {actual_recon} (from {res['variant_str']})"
+                    )
+
+        total += 1
+        case_sim = sum(case_sims) / max(1, len(case_sims))
+        sim_tag = f"[sim={case_sim:.2f}]"
+        actual_recon = "".join(last_actual)
+
+        if case_strict:
+            passed_strict += 1
+            passed_alt += 1
+            report_line = f"STRICT {case.full_sentence} {sim_tag}  # {case.section}"
+            case_records.append(_CaseRecord("STRICT", report_line, case_sim))
+        elif case_alt:
+            passed_alt += 1
+            report_line = (
+                f"ALT    {case.full_sentence} \u2192 {actual_recon} {sim_tag}"
+                f"  # {case.section}"
+            )
+            case_records.append(_CaseRecord("ALT", report_line, case_sim))
+        else:
+            fail_report = f"FAIL   {first_fail_line} {sim_tag}  # {case.section}"
+            case_records.append(_CaseRecord("FAIL", fail_report, case_sim))
 
     if was_training:
         model.train()
 
-    failure_path = ""
-    verbose_path = ""
+    def _sim_stats(sims: List[float]) -> str:
+        if not sims:
+            return "n/a"
+        sims_s = sorted(sims)
+        n = len(sims_s)
+        median = (
+            sims_s[n // 2]
+            if n % 2 == 1
+            else (sims_s[n // 2 - 1] + sims_s[n // 2]) / 2.0
+        )
+        return f"min={sims_s[0]:.2f}  median={median:.2f}  max={sims_s[-1]:.2f}"
+
+    def _build_section(title: str, records: List[_CaseRecord]) -> List[str]:
+        sorted_records = sorted(records, key=lambda r: r.sim)
+        sims = [r.sim for r in sorted_records]
+        out = [f"=== {title} ({len(sorted_records)}) ==="]
+        for r in sorted_records:
+            out.append(r.report_line)
+        out.append(f"Stats: {_sim_stats(sims)}")
+        return out
+
+    fail_records = [r for r in case_records if r.outcome == "FAIL"]
+    pass_records = [r for r in case_records if r.outcome != "FAIL"]
+
+    report_path = ""
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        # Always write verbose report
-        verbose_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} verbose.txt")
-        with open(verbose_path, "w", encoding="utf-8") as f:
-            for line in verbose_lines:
-                f.write(line + "\n")
-        # Write failures only if there are any
-        if failure_lines:
-            failure_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} failures.txt")
-            with open(failure_path, "w", encoding="utf-8") as f:
-                for line in failure_lines:
-                    f.write(line + "\n")
 
-    passed = passed_alt  # "pass" means considering alternatives
+        # ── Header ───────────────────────────────────────────────────
+        sep = "=" * 72
+        experiment = ctx.run_name or os.path.basename(ctx.checkpoint_path)
+        header: List[str] = [
+            sep,
+            f"Experiment : {experiment}",
+            f"Epoch      : {epoch + 1}",
+            "",
+            "Model parameters:",
+        ]
+        if ctx.config is not None:
+            for k, v in sorted(
+                dataclasses.asdict(cast(Any, ctx.config)).items()  # type: ignore[arg-type]
+            ):
+                header.append(f"  {k:<40} {v}")
+        header += [
+            "",
+            "Similarity metric (sim):",
+            "  sim = cosine_similarity(embed[pred_id], embed[main_target_id])",
+            "  where embed[i] = output_head.weight[i]  (row vector, shape: [hidden_dim])",
+            "  Interpretation:",
+            "    sim = 1.00  → STRICT pass (correct token, same embedding)",
+            "    sim < 1.00  → ALT pass (accepted alternative; measures how close",
+            "                   the alt's embedding is to the main target's embedding)",
+            "    sim ≈ 0.00  → FAIL: prediction nearly orthogonal to target",
+            "    sim < 0.00  → FAIL: prediction antipodal to target",
+            "  Averaged over all masked positions across all variants per case.",
+            sep,
+            "",
+        ]
+
+        report_sections: List[str] = (
+            header
+            + _build_section("FAILURES", fail_records)
+            + [""]
+            + _build_section("PASSED", pass_records)
+        )
+
+        report_path = os.path.join(output_dir, f"epoch {epoch + 1:03d} failures.txt")
+        with open(report_path, "w", encoding="utf-8") as f_out:
+            for line in report_sections:
+                f_out.write(line + "\n")
+
+    passed = passed_alt
     failed = total - passed
-    metrics.update({
-        "recon_test_pct": 100.0 * passed / max(1, total),
-        "recon_test_total": float(total),
-        "recon_test_pass": float(passed),
-        "recon_test_pass_strict": float(passed_strict),
-        "recon_test_fail": float(failed),
-    })
-    if verbose_path:
-        ctx.artifact_paths.append(verbose_path)
-    if failure_path:
-        ctx.artifact_paths.append(failure_path)
+    t1 = time.perf_counter()
+    metrics.update(
+        {
+            "recon_test_pct": 100.0 * passed / max(1, total),
+            "recon_test_total": float(total),
+            "recon_test_pass": float(passed),
+            "recon_test_pass_strict": float(passed_strict),
+            "recon_test_fail": float(failed),
+            "recon_test_ms": (t1 - t0) * 1000.0,
+        }
+    )
+    if report_path:
+        ctx.artifact_paths.append(report_path)
 
 
 if __name__ == "__main__":

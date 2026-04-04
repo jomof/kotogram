@@ -55,6 +55,8 @@ class EpochContext:
     device: torch.device
     temperature: float
     checkpoint_path: str
+    config: object = None
+    run_name: str = ""
     artifact_paths: List[str] = field(default_factory=list)
 
 

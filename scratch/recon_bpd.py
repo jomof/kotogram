@@ -401,6 +401,7 @@ def train(
     on_epoch_end: EpochEndCallback,
     checkpoint_path: str,
     checkpoint: Optional[TrainCheckpoint] = None,
+    run_name: str = "",
 ) -> Tuple[TrainResult, TrainCheckpoint]:
     """Run the BPD training loop and return final metrics + checkpoint.
 
@@ -1204,6 +1205,8 @@ def train(
             device=device,
             temperature=current_temperature,
             checkpoint_path=checkpoint_path,
+            config=config,
+            run_name=run_name,
         )
         on_epoch_end(epoch, latest_metrics, ctx)
 
