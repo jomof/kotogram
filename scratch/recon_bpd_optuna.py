@@ -21,13 +21,65 @@ import hashlib
 import json
 import os
 import platform
+import statistics
 import subprocess
+import threading
 from typing import Optional
 
 import optuna
+import torch
 
 from scratch.recon_bpd import TrainConfig, train
 from scratch.recon_bpd_checkpoint import EpochContext, load_checkpoint
+
+
+class GpuMemoryMonitor(threading.Thread):
+    """Background thread to sample GPU memory during training."""
+
+    def __init__(self, interval: float = 2.0):
+        super().__init__(daemon=True)
+        self.interval = interval
+        self.samples = []
+        self.stop_event = threading.Event()
+        self.device = torch.device(
+            "cuda"
+            if torch.cuda.is_available()
+            else "mps"
+            if torch.backends.mps.is_available()
+            else "cpu"
+        )
+
+    def run(self):
+        if self.device.type == "cpu":
+            return
+        while not self.stop_event.is_set():
+            if self.device.type == "cuda":
+                # Current resident tensors in MB
+                mb = torch.cuda.memory_allocated() / (1024 * 1024)
+            elif self.device.type == "mps":
+                try:
+                    # Available in newer PyTorch (2.1+)
+                    mb = torch.mps.current_allocated_memory() / (1024 * 1024)
+                except AttributeError:
+                    mb = 0.0
+            else:
+                mb = 0.0
+
+            if mb > 0:
+                self.samples.append(mb)
+            self.stop_event.wait(self.interval)
+
+    def get_stats_and_reset(self):
+        """Return (median_mb, peak_mb) and clear samples."""
+        if not self.samples:
+            return 0.0, 0.0
+        med = statistics.median(self.samples)
+        peak = max(self.samples)
+        self.samples = []
+        return med, peak
+
+    def stop(self):
+        self.stop_event.set()
 
 
 def suggest_config(
@@ -284,6 +336,10 @@ def objective(
                 f"  Resuming {run_name} from epoch {existing.epoch + 1} (checkpoint)",
             )
 
+    # Start background GPU monitor
+    memory_monitor = GpuMemoryMonitor()
+    memory_monitor.start()
+
     mlflow = None
     if use_mlflow:
         import mlflow as _mlflow  # type: ignore[import-untyped]
@@ -350,6 +406,10 @@ def objective(
                 passed = metrics["recon_test_pass"]
                 total = metrics["recon_test_total"]
                 recon_str = f"recon={strict:.0f}/{passed:.0f}/{total:.0f}  "
+            # Sample GPU memory for the epoch
+            med_mb, peak_mb = memory_monitor.get_stats_and_reset()
+            gpu_str = f"gpu={med_mb:.0f}/{peak_mb:.0f}MB  " if peak_mb > 0 else ""
+
             print(
                 f"Epoch {epoch + 1}/{epochs}  "
                 f"bpd={metrics['bpd']:.4f}  "
@@ -365,12 +425,17 @@ def objective(
                 f"orthogonality={metrics['orthogonality']:.4f}  "
                 f"{consist_str}"
                 f"{recon_str}"
+                f"{gpu_str}"
                 f"lr={metrics['lr']:.2e}  "
                 f"{metrics['el_per_sec']:.1f} el/s  "
                 f"{metrics['samples']} samples  "
                 f"{metrics['epoch_secs']:.1f}s"
             )
             if mlflow is not None:
+                if peak_mb > 0:
+                    mlflow.log_metric("gpu/median_mb", med_mb, step=epoch)
+                    mlflow.log_metric("gpu/peak_mb", peak_mb, step=epoch)
+
                 for k, v in metrics.items():
                     if isinstance(v, (int, float)):
                         mlflow.log_metric(f"bpd/{k}", v, step=epoch)
@@ -389,6 +454,12 @@ def objective(
                 for artifact_path in ctx.artifact_paths:
                     if os.path.exists(artifact_path):
                         mlflow.log_artifact(artifact_path, "recon_test")
+
+                # Sample GPU memory for the epoch
+                med_mb, peak_mb = memory_monitor.get_stats_and_reset()
+                if peak_mb > 0:
+                    mlflow.log_metric("gpu/median_mb", med_mb, step=epoch)
+                    mlflow.log_metric("gpu/peak_mb", peak_mb, step=epoch)
 
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
@@ -410,6 +481,7 @@ def objective(
             mlflow.set_tag("optuna_pruned", "true")
         raise
     finally:
+        memory_monitor.stop()
         if mlflow is not None:
             mlflow.end_run()
 
