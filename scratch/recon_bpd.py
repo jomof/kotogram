@@ -599,41 +599,38 @@ def train(
         epoch_total_bits = 0.0
         epoch_num_units = 0
         total_kl_sum = 0.0
-        total_cov_sum = 0.0
+        # GPU accumulators — single .item() at epoch end avoids per-batch sync
+        total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_t1_correct = 0
         epoch_t1_units = 0
         epoch_cossim_sum = 0.0
-        epoch_sharpness_sum = 0.0
-        total_consistency_sum = 0.0
-        total_vicreg_sum = 0.0
-        epoch_cossim_pair_sum = 0.0
-        epoch_pooled_std_sum = 0.0
+        epoch_sharpness_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_vicreg_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_cossim_pair_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        epoch_pooled_std_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_elements = 0
         n_batches = 0
-        s1_count = 0
-        s0_count = 0
-        fuzzy_count = 0
-        kc_prob_count = 0
-
-        def _get_bin_label(length: int) -> str:
-            if length <= 3: return "1-3"
-            if length <= 7: return "4-7"
-            if length <= 15: return "8-15"
-            if length <= 31: return "16-31"
-            return "32+"
+        s1_count = torch.tensor(0, device=device, dtype=torch.long)
+        s0_count = torch.tensor(0, device=device, dtype=torch.long)
+        fuzzy_count = torch.tensor(0, device=device, dtype=torch.long)
+        kc_prob_count = torch.tensor(0, device=device, dtype=torch.long)
 
         bin_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
-        s1_count_by_bin = {k: 0 for k in bin_labels}
-        s0_count_by_bin = {k: 0 for k in bin_labels}
-        fuzzy_count_by_bin = {k: 0 for k in bin_labels}
-        kc_prob_count_by_bin = {k: 0 for k in bin_labels}
-        bpd_bits_by_bin = {k: 0.0 for k in bin_labels}
-        bpd_tokens_by_bin = {k: 0.0 for k in bin_labels}
-        raw_consistency_sum = 0.0
-        logit_abs_sum = 0.0
-        logit_sq_sum = 0.0
-        logit_sum = 0.0
-        logit_count = 0
+        _NUM_BINS = len(bin_labels)
+        # Bin boundaries on GPU for torch.bucketize: (0,3], (3,7], (7,15], (15,31], (31,inf]
+        _bin_edges = torch.tensor([3, 7, 15, 31], device=device, dtype=torch.float32)
+        s1_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        s0_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        fuzzy_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        kc_prob_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        bpd_bits_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        bpd_tokens_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
+        raw_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_abs_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_sq_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        logit_count = torch.tensor(0, device=device, dtype=torch.long)
 
         total_length_pred_loss_sum = 0.0
         total_length_pred_mae_sum = 0.0
@@ -725,7 +722,7 @@ def train(
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
-                epoch_pooled_std_sum += float(pooled.std(dim=-1).mean().item()) * B_actual
+                epoch_pooled_std_sum += pooled.detach().std(dim=-1).sum().float()
 
                 half = B // 2
 
@@ -792,19 +789,15 @@ def train(
                         dim=-1,
                     )
                     consistency_loss = 0.5 * (1.0 - cos_ab).mean() + 0.5 * (1.0 - cos_ba).mean()
-                    epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().mean().item() * half
-                    raw_consistency_sum += consistency_loss.detach().item()
+                    epoch_cossim_pair_sum += (0.5 * (cos_ab + cos_ba)).detach().sum().float()
+                    raw_consistency_sum += consistency_loss.detach().float()
 
                 # Gumbel noise + gradient capping
                 u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
                 g = -torch.log(-torch.log(u))
                 logits_select = kc_logits_raw + 0.6 * g
 
-                if kc_logits_raw.requires_grad:
-                    _cap = config.grad_cap
-                    kc_logits_raw.register_hook(
-                        lambda grad, c=_cap: grad.clamp(min=-c, max=c)
-                    )
+                # Gradient capping applied via clip_grad_value_ after backward()
 
                 logits_select = logits_select.clamp(-12, 12)
                 kc_probs = torch.sigmoid(logits_select / current_temperature)
@@ -813,7 +806,7 @@ def train(
                 # Bernoulli entropy of KC probs: 0 = pure binary, 1 = all at 0.5
                 _p = kc_probs.detach().clamp(1e-7, 1 - 1e-7)
                 _h = -_p * torch.log2(_p) - (1 - _p) * torch.log2(1 - _p)
-                epoch_sharpness_sum += (1.0 - _h.mean().item()) * B_actual
+                epoch_sharpness_sum += (1.0 - _h.mean()).float() * B_actual
 
                 # s0/fuzzy/s1 sharpness (matches kc_trainer_view thresholds)
                 _det = kc_probs.detach()
@@ -821,30 +814,32 @@ def train(
                 s0_mask = _det < 0.1
                 fuzzy_mask = (_det >= 0.2) & (_det <= 0.8)
 
-                s1_count += int(s1_mask.sum().item())
-                s0_count += int(s0_mask.sum().item())
-                fuzzy_count += int(fuzzy_mask.sum().item())
+                s1_count += s1_mask.sum()
+                s0_count += s0_mask.sum()
+                fuzzy_count += fuzzy_mask.sum()
                 kc_prob_count += _det.numel()
 
-                # Binned accumulation by sequence length
-                s1_per_row = s1_mask.sum(dim=1).cpu().tolist()
-                s0_per_row = s0_mask.sum(dim=1).cpu().tolist()
-                fuzzy_per_row = fuzzy_mask.sum(dim=1).cpu().tolist()
-                lengths = attention_mask.sum(dim=1).cpu().tolist()
+                # Binned accumulation by sequence length — fully on GPU
+                s1_per_row = s1_mask.sum(dim=1)   # [B]
+                s0_per_row = s0_mask.sum(dim=1)   # [B]
+                fuzzy_per_row = fuzzy_mask.sum(dim=1)  # [B]
+                lengths_gpu = attention_mask.sum(dim=1).float()  # [B]
                 V = _det.size(1)
 
-                for i, length in enumerate(lengths):
-                    label = _get_bin_label(length)
-                    s1_count_by_bin[label] += s1_per_row[i]
-                    s0_count_by_bin[label] += s0_per_row[i]
-                    fuzzy_count_by_bin[label] += fuzzy_per_row[i]
-                    kc_prob_count_by_bin[label] += V
+                bin_idx = torch.bucketize(lengths_gpu, _bin_edges)  # [B], values in 0.._NUM_BINS-1
+                s1_count_by_bin_t.scatter_add_(0, bin_idx.long(), s1_per_row.float())
+                s0_count_by_bin_t.scatter_add_(0, bin_idx.long(), s0_per_row.float())
+                fuzzy_count_by_bin_t.scatter_add_(0, bin_idx.long(), fuzzy_per_row.float())
+                kc_prob_count_by_bin_t.scatter_add_(
+                    0, bin_idx.long(),
+                    torch.full_like(bin_idx, V, dtype=torch.float32),
+                )
 
-                # KC logit magnitude stats
+                # KC logit magnitude stats — stay on GPU
                 _logits_det = kc_logits_raw.detach()
-                logit_abs_sum += _logits_det.abs().sum().item()
-                logit_sq_sum += (_logits_det**2).sum().item()
-                logit_sum += _logits_det.sum().item()
+                logit_abs_sum += _logits_det.abs().sum().float()
+                logit_sq_sum += (_logits_det**2).sum().float()
+                logit_sum += _logits_det.sum().float()
                 logit_count += _logits_det.numel()
 
                 # Recon decoder: pre-logit hidden states [B, T, H]
@@ -882,9 +877,8 @@ def train(
             if USE_FUSED_CE:
                 # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
-                ce_targets = recon_targets.clone()
                 valid_mask = attention_mask.bool()
-                ce_targets[~valid_mask] = -100
+                ce_targets = recon_targets.where(valid_mask, torch.tensor(-100, device=device))
                 
                 threshold = current_threshold
                 if threshold > 0.0:
@@ -945,28 +939,7 @@ def train(
                     total_nll_nats = nll_per_token.sum()
                     nats_per_row = nll_per_token.reshape(B, -1).sum(dim=1)
 
-                # Top-1 + cosine sim every 100 batches (forward pass is expensive)
-                if n_batches % 100 == 0:
-                    batch_units = int(mask_f.sum().item())
-                    epoch_t1_units += batch_units
-                    with torch.no_grad():
-                        for c0 in range(0, T, recon_chunk):
-                            c1 = min(c0 + recon_chunk, T)
-                            with AUTOCAST():
-                                chunk_logits = F.linear(
-                                    h_recon[:, c0:c1, :], out_weight
-                                )
-                            preds = chunk_logits.argmax(dim=-1)
-                            chunk_mask = attention_mask[:, c0:c1].bool()
-                            epoch_t1_correct += int(
-                                ((preds == recon_targets[:, c0:c1]) & chunk_mask)
-                                .sum()
-                                .item()
-                            )
-                            pred_emb = chive_normed[preds]
-                            tgt_emb = chive_normed[recon_targets[:, c0:c1]]
-                            cos = (pred_emb * tgt_emb).sum(dim=-1)
-                            epoch_cossim_sum += float((cos * chunk_mask).sum().item())
+                # Top-1 + cosine sim deferred to epoch end (avoids [B,T,V] materialization)
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
@@ -1003,28 +976,25 @@ def train(
             num_units = mask_f.sum().clamp_min(1)
             bpd = total_bits / num_units
             
-            bits_per_row = (nats_per_row / LOG2).cpu().tolist()
-            row_lengths = mask_f.sum(dim=1).cpu().tolist()
-            for i, length in enumerate(row_lengths):
-                label = _get_bin_label(length)
-                bpd_bits_by_bin[label] += bits_per_row[i]
-                bpd_tokens_by_bin[label] += length
+            bits_per_row = nats_per_row / LOG2          # [B], stays on GPU
+            row_lengths = mask_f.sum(dim=1)              # [B], stays on GPU
+            bpd_bin_idx = torch.bucketize(row_lengths, _bin_edges)  # [B]
+            bpd_bits_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), bits_per_row.float())
+            bpd_tokens_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), row_lengths.float())
 
             # ── Regularizers ─────────────────────────────────────────
             loss = bpd + semantic_distillation_loss * 5.0
             kl_contrib = 0.0
-            cov_contrib = 0.0
-            consist_contrib = 0.0
 
             if config.consistency_weight > 0:
                 consist_scaled = config.consistency_weight * consistency_loss
                 loss = loss + consist_scaled
-                consist_contrib = consist_scaled.item()
+                total_consistency_sum += consist_scaled.detach().float()
 
             # VICReg contribution
             if config.vicreg_var_weight > 0 or config.vicreg_cov_weight > 0:
                 loss = loss + vicreg_loss
-                total_vicreg_sum += vicreg_loss.item()
+                total_vicreg_sum += vicreg_loss.detach().float()
 
             # Length prediction diagnostic
             if config.length_pred_weight > 0:
@@ -1063,11 +1033,14 @@ def train(
                 cov_term = (cov**2).mean()
                 cov_scaled = config.cov_penalty_weight * cov_term
                 loss = loss + cov_scaled
-                cov_contrib = cov_scaled.item()
+                total_cov_sum += cov_scaled.detach().float()
 
             # ── Backward + step ──────────────────────────────────────
             optimizer.zero_grad()
             scaler.scale(loss).backward()
+            # Gradient capping (replaces per-batch register_hook)
+            if config.grad_cap > 0:
+                torch.nn.utils.clip_grad_value_(model.parameters(), config.grad_cap)
             scaler.step(optimizer)
             scaler.update()
 
@@ -1080,8 +1053,6 @@ def train(
             epoch_total_bits += total_bits.item()
             epoch_num_units += batch_units
             total_kl_sum += kl_contrib
-            total_cov_sum += cov_contrib
-            total_consistency_sum += consist_contrib
             total_elements += B_actual
             n_batches += 1
 
@@ -1090,15 +1061,10 @@ def train(
                 torch.mps.empty_cache()
 
             dt_batch = time.perf_counter() - t0
-            t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
-            t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-            avg_cos = epoch_cossim_sum / max(1, t1_denom)
             skip_pct = 100.0 * total_semantic_skipped / max(1, total_semantic_tokens)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
                 f"bpd={epoch_total_bits / max(1, epoch_num_units):.4f}  "
-                f"To-1={t1_pct:.1f}%  "
-                f"cos={avg_cos:.3f}  "
                 f"skip={skip_pct:.1f}%  "
                 f"{total_elements / dt_batch:.1f} el/s  "
                 f"{dt_batch:.1f}s",
@@ -1110,21 +1076,71 @@ def train(
         avg_bpd = epoch_total_bits / max(1, epoch_num_units)
         avg_loss = total_loss_sum / max(1, n_batches)
         avg_kl = total_kl_sum / max(1, n_batches)
-        avg_cov = total_cov_sum / max(1, n_batches)
-        avg_consist = total_consistency_sum / max(1, n_batches)
-        avg_pair_cos = epoch_cossim_pair_sum / max(1, total_elements)
-        avg_pooled_std = epoch_pooled_std_sum / max(1, total_elements)
-        t1_denom = epoch_t1_units if USE_FUSED_CE else epoch_num_units
+
+        # ── Epoch-end Top-1 + cosine sim (single evaluation pass) ──
+        # Only needed on the fused CE path where Top-1 is not computed
+        # inline during the batch loop. The MPS fallback already computes
+        # Top-1 inline since it materializes logits for the loss anyway.
+        if USE_FUSED_CE:
+            model.eval()
+            with torch.no_grad():
+                # Fresh forward pass on the last batch's data
+                pooled_eval = model.encode(surface_ids, attention_mask)
+                kc_logits_eval, _ = model.kc_head.forward_with_raw(pooled_eval)
+                kc_probs_eval = torch.sigmoid(kc_logits_eval / current_temperature)
+                h_recon_eval = model.recon.forward_hidden(kc_probs_eval, attention_mask)
+                for c0 in range(0, T, recon_chunk):
+                    c1 = min(c0 + recon_chunk, T)
+                    with AUTOCAST():
+                        chunk_logits = F.linear(
+                            h_recon_eval[:, c0:c1, :], out_weight
+                        )
+                    preds = chunk_logits.argmax(dim=-1)
+                    chunk_mask = attention_mask[:, c0:c1].bool()
+                    epoch_t1_correct += int(
+                        ((preds == recon_targets[:, c0:c1]) & chunk_mask)
+                        .sum()
+                        .item()
+                    )
+                    pred_emb = chive_normed[preds]
+                    tgt_emb = chive_normed[recon_targets[:, c0:c1]]
+                    cos = (pred_emb * tgt_emb).sum(dim=-1)
+                    epoch_cossim_sum += float((cos * chunk_mask).sum().item())
+                epoch_t1_units = int(attention_mask.sum().item())
+            model.train()
+
+        # Single GPU→CPU sync for all per-batch GPU accumulators
+        _cov_val = total_cov_sum.item()
+        _consist_val = total_consistency_sum.item()
+        _cossim_pair_val = epoch_cossim_pair_sum.item()
+        _pooled_std_val = epoch_pooled_std_sum.item()
+        _sharpness_val = epoch_sharpness_sum.item()
+        _s1_val = s1_count.item()
+        _s0_val = s0_count.item()
+        _fuzzy_val = fuzzy_count.item()
+        _kc_prob_val = kc_prob_count.item()
+        _raw_consist_val = raw_consistency_sum.item()
+        _logit_abs_val = logit_abs_sum.item()
+        _logit_sq_val = logit_sq_sum.item()
+        _logit_sum_val = logit_sum.item()
+        _logit_count_val = logit_count.item()
+        _vicreg_val = total_vicreg_sum.item()
+
+        avg_cov = _cov_val / max(1, n_batches)
+        avg_consist = _consist_val / max(1, n_batches)
+        avg_pair_cos = _cossim_pair_val / max(1, total_elements)
+        avg_pooled_std = _pooled_std_val / max(1, total_elements)
+        t1_denom = epoch_t1_units
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
-        avg_sharpness = epoch_sharpness_sum / max(1, total_elements)
-        s1_pct = s1_count / max(1, kc_prob_count)
-        s0_pct = s0_count / max(1, kc_prob_count)
-        fuzzy_pct = fuzzy_count / max(1, kc_prob_count)
-        avg_raw_consist = raw_consistency_sum / max(1, n_batches)
-        mean_abs_logit = logit_abs_sum / max(1, logit_count)
+        avg_sharpness = _sharpness_val / max(1, total_elements)
+        s1_pct = _s1_val / max(1, _kc_prob_val)
+        s0_pct = _s0_val / max(1, _kc_prob_val)
+        fuzzy_pct = _fuzzy_val / max(1, _kc_prob_val)
+        avg_raw_consist = _raw_consist_val / max(1, n_batches)
+        mean_abs_logit = _logit_abs_val / max(1, _logit_count_val)
         logit_std = (
-            logit_sq_sum / max(1, logit_count) - (logit_sum / max(1, logit_count)) ** 2
+            _logit_sq_val / max(1, _logit_count_val) - (_logit_sum_val / max(1, _logit_count_val)) ** 2
         ) ** 0.5
         current_lr = scheduler.get_last_lr()[0]
         els = total_elements / dt
@@ -1142,15 +1158,22 @@ def train(
             "fuzzy": fuzzy_pct,
         }
 
-        for label in bin_labels:
+        # Pull GPU bin accumulators to CPU once at epoch end
+        _s1_bins = s1_count_by_bin_t.cpu().tolist()
+        _s0_bins = s0_count_by_bin_t.cpu().tolist()
+        _fuzzy_bins = fuzzy_count_by_bin_t.cpu().tolist()
+        _kc_bins = kc_prob_count_by_bin_t.cpu().tolist()
+        _bpd_bits_bins = bpd_bits_by_bin_t.cpu().tolist()
+        _bpd_tok_bins = bpd_tokens_by_bin_t.cpu().tolist()
+        for bi, label in enumerate(bin_labels):
             mlflow_label = label.replace("+", "_plus")
-            n = max(1, kc_prob_count_by_bin[label])
-            latest_metrics[f"s1_{mlflow_label}"] = s1_count_by_bin[label] / n
-            latest_metrics[f"s0_{mlflow_label}"] = s0_count_by_bin[label] / n
-            latest_metrics[f"fuzzy_{mlflow_label}"] = fuzzy_count_by_bin[label] / n
-            
-            t = max(1.0, bpd_tokens_by_bin[label])
-            latest_metrics[f"bpd_{mlflow_label}"] = bpd_bits_by_bin[label] / t
+            n = max(1, _kc_bins[bi])
+            latest_metrics[f"s1_{mlflow_label}"] = _s1_bins[bi] / n
+            latest_metrics[f"s0_{mlflow_label}"] = _s0_bins[bi] / n
+            latest_metrics[f"fuzzy_{mlflow_label}"] = _fuzzy_bins[bi] / n
+
+            t = max(1.0, _bpd_tok_bins[bi])
+            latest_metrics[f"bpd_{mlflow_label}"] = _bpd_bits_bins[bi] / t
 
         if total_semantic_tokens > 0:
             latest_metrics["semantic_distillation_loss"] = total_semantic_loss_sum / total_semantic_tokens
@@ -1166,7 +1189,7 @@ def train(
             "orthogonality": avg_cov,
             "consistency": avg_consist,
             "mask-agree": avg_pair_cos,
-            "vicreg": total_vicreg_sum / max(1, n_batches),
+            "vicreg": _vicreg_val / max(1, n_batches),
             "lr": current_lr,
             "temperature": current_temperature,
             "kl_warmup": kl_warmup,
