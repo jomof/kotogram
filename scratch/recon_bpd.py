@@ -1370,10 +1370,10 @@ def train(
     )
     return (
         TrainResult(
-            final_bpd=latest_metrics["bpd"],
-            final_top1_pct=latest_metrics["To-1"],
-            final_cossim=latest_metrics["cos"],
-            final_loss=latest_metrics["loss"],
+            final_bpd=latest_metrics.get("bpd", float("inf")),
+            final_top1_pct=latest_metrics.get("bpd/To-1", 0.0),
+            final_cossim=latest_metrics.get("bpd/cos", 0.0),
+            final_loss=latest_metrics.get("loss", float("inf")),
         ),
         final_checkpoint,
     )
