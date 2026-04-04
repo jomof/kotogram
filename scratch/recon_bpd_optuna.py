@@ -504,6 +504,11 @@ def main() -> None:
         help="Enable pairwise ranking margin with given weight (e.g. 0.5)",
     )
     parser.add_argument(
+        "--no-kl",
+        action="store_true",
+        help="Disable KL rho-based sparsity (set kl_sparse_weight=0)",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -566,6 +571,8 @@ def main() -> None:
         adhoc_overrides["mdl_weight"] = args.mdl
     if args.rank is not None:
         adhoc_overrides["rank_margin_weight"] = args.rank
+    if args.no_kl:
+        adhoc_overrides["kl_sparse_weight"] = 0.0
 
     if adhoc_overrides:
         print("Overrides:")
@@ -625,7 +632,10 @@ def main() -> None:
 
     for params in initial_params:
         if adhoc_overrides:
-            params.update(adhoc_overrides)
+            for k, v in adhoc_overrides.items():
+                if k == "kl_sparse_weight" and v == 0.0:
+                    continue
+                params[k] = v
 
     checkpoint_dir = args.checkpoint_dir
     if checkpoint_dir:
