@@ -451,6 +451,15 @@ def train(
     sample_ratio = config.sample_ratio
     recon_chunk = 8 if IS_CUDA else 4
 
+    # Ensure entirely reproducible model setup across parallel runners
+    import random
+    import numpy as np
+    random.seed(config.seed)
+    np.random.seed(config.seed)
+    torch.manual_seed(config.seed)
+    if IS_CUDA:
+        torch.cuda.manual_seed_all(config.seed)
+
     print(f"Device: {device}")
     print(f"Fused CE: {USE_FUSED_CE}")
 
