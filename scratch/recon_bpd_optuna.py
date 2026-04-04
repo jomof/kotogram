@@ -34,12 +34,20 @@ from scratch.recon_bpd_checkpoint import EpochContext, load_checkpoint
 
 
 class GpuMemoryMonitor(threading.Thread):
-    """Background thread to sample GPU memory during training."""
+    """Background thread to sample GPU memory and hardware stats during training."""
 
     def __init__(self, interval: float = 2.0):
         super().__init__(daemon=True)
         self.interval = interval
         self.samples = []
+        self.reserved_samples = []
+        self.utilization_samples = []
+        self.temperature_samples = []
+
+        self.phase = "train"  # "train" or "test"
+        self.train_peak = 0.0
+        self.test_peak = 0.0
+
         self.stop_event = threading.Event()
         self.device = torch.device(
             "cuda"
@@ -53,30 +61,81 @@ class GpuMemoryMonitor(threading.Thread):
         if self.device.type == "cpu":
             return
         while not self.stop_event.is_set():
+            allocated = 0.0
+            reserved = 0.0
+
             if self.device.type == "cuda":
-                # Current resident tensors in MB
-                mb = torch.cuda.memory_allocated() / (1024 * 1024)
+                allocated = torch.cuda.memory_allocated() / (1024 * 1024)
+                reserved = torch.cuda.memory_reserved() / (1024 * 1024)
+                # Sample utilization and temperature
+                try:
+                    res = subprocess.run(
+                        [
+                            "nvidia-smi",
+                            "--query-gpu=utilization.gpu,temperature.gpu",
+                            "--format=csv,noheader,nounits",
+                        ],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                        timeout=1,
+                    )
+                    if res.returncode == 0:
+                        u, t = map(float, res.stdout.strip().split(","))
+                        self.utilization_samples.append(u)
+                        self.temperature_samples.append(t)
+                except Exception:
+                    pass
             elif self.device.type == "mps":
                 try:
-                    # Available in newer PyTorch (2.1+)
-                    mb = torch.mps.current_allocated_memory() / (1024 * 1024)
+                    allocated = torch.mps.current_allocated_memory() / (1024 * 1024)
+                    reserved = allocated  # MPS doesn't have a direct 'reserved' API
                 except AttributeError:
-                    mb = 0.0
-            else:
-                mb = 0.0
+                    pass
 
-            if mb > 0:
-                self.samples.append(mb)
+            if allocated > 0:
+                self.samples.append(allocated)
+                self.reserved_samples.append(reserved)
+                if self.phase == "train":
+                    self.train_peak = max(self.train_peak, allocated)
+                else:
+                    self.test_peak = max(self.test_peak, allocated)
+
             self.stop_event.wait(self.interval)
 
     def get_stats_and_reset(self):
-        """Return (median_mb, peak_mb) and clear samples."""
+        """Return dict of metrics and clear samples."""
         if not self.samples:
-            return 0.0, 0.0
+            return {}
+
         med = statistics.median(self.samples)
         peak = max(self.samples)
+        res_med = statistics.median(self.reserved_samples)
+        frag = (res_med - med) / max(1.0, res_med)
+
+        stats = {
+            "median_mb": med,
+            "peak_mb": peak,
+            "reserved_mb": res_med,
+            "fragmentation": frag,
+            "train_peak_mb": self.train_peak,
+            "test_peak_mb": self.test_peak,
+        }
+
+        if self.utilization_samples:
+            stats["utilization_pct"] = statistics.median(self.utilization_samples)
+        if self.temperature_samples:
+            stats["temperature_c"] = statistics.median(self.temperature_samples)
+
+        # Reset per-epoch buffers
         self.samples = []
-        return med, peak
+        self.reserved_samples = []
+        self.utilization_samples = []
+        self.temperature_samples = []
+        self.train_peak = 0.0
+        self.test_peak = 0.0
+
+        return stats
 
     def stop(self):
         self.stop_event.set()
@@ -387,12 +446,15 @@ def objective(
 
         def on_epoch_start(epoch: int) -> None:
             print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
+            memory_monitor.phase = "train"
 
         def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             # ── Reconstruction spot-check (observability, not training) ──
             from scratch.recon_bpd_test import run_reconstruction_test
 
+            memory_monitor.phase = "test"
             run_reconstruction_test(ctx, epoch, metrics)
+            memory_monitor.phase = "train"
 
             consist_str = (
                 f"consistency={metrics['consistency']:.4f}  "
@@ -407,8 +469,13 @@ def objective(
                 total = metrics["recon_test_total"]
                 recon_str = f"recon={strict:.0f}/{passed:.0f}/{total:.0f}  "
             # Sample GPU memory for the epoch
-            med_mb, peak_mb = memory_monitor.get_stats_and_reset()
-            gpu_str = f"gpu={med_mb:.0f}/{peak_mb:.0f}MB  " if peak_mb > 0 else ""
+            gpu_stats = memory_monitor.get_stats_and_reset()
+            gpu_str = ""
+            if gpu_stats:
+                med_mb = gpu_stats["median_mb"]
+                peak_mb = gpu_stats["peak_mb"]
+                frag = gpu_stats["fragmentation"]
+                gpu_str = f"gpu={med_mb:.0f}/{peak_mb:.0f}MB (frag={frag:.0%})  "
 
             print(
                 f"Epoch {epoch + 1}/{epochs}  "
@@ -432,9 +499,8 @@ def objective(
                 f"{metrics['epoch_secs']:.1f}s"
             )
             if mlflow is not None:
-                if peak_mb > 0:
-                    mlflow.log_metric("gpu/median_mb", med_mb, step=epoch)
-                    mlflow.log_metric("gpu/peak_mb", peak_mb, step=epoch)
+                for k, v in gpu_stats.items():
+                    mlflow.log_metric(f"gpu/{k}", v, step=epoch)
 
                 for k, v in metrics.items():
                     if isinstance(v, (int, float)):
