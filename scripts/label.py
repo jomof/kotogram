@@ -146,7 +146,7 @@ def _compute_and_write_content_mask(
         # Special tokens and empty strings are non-content
         if token_id < 4 or not token_str or token_str.startswith("<"):
             continue
-        
+
         # Any token with more than one character is content.
         # Single-character tokens must match the content character ranges.
         if len(token_str) > 1 or all(_is_content_char(ord(ch)) for ch in token_str):

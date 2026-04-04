@@ -21,7 +21,6 @@ Usage:
 
 import contextlib
 import math
-import os
 import time
 import warnings
 from dataclasses import dataclass
@@ -133,10 +132,8 @@ class TrainResult:
 from scratch.recon_bpd_checkpoint import (
     EpochContext,
     TrainCheckpoint,
-    load_checkpoint,
     save_checkpoint,
 )
-
 
 EpochEndCallback = Callable[[int, Dict[str, float], EpochContext], None]
 EpochStartCallback = Callable[[int], None]
@@ -444,7 +441,7 @@ def train(
         GLOBAL_SETUP_CACHE.content_mask = torch.from_file(
             mask_path, shared=True, size=tokenizer.get_vocab_sizes()["surface"], dtype=torch.uint8
         ).bool()
-    
+
     content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(device, non_blocking=IS_CUDA)
 
     if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
@@ -488,17 +485,17 @@ def train(
     # Load chiVe pretrained surface embeddings and freeze
     if GLOBAL_SETUP_CACHE.chive_weights is None:
         cw = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
-        
+
         # Missing chiVe words are all zeros. Randomize them so OOV words aren't squashed together.
         norms = cw.norm(dim=-1)
         missing_mask = (norms == 0.0)
         missing_mask[0] = False  # Keep index 0 [PAD] strictly at zero
-        
+
         if missing_mask.any():
             # Match the variance of the known chiVe vectors
             std = cw[~missing_mask].std().item() if (~missing_mask).any() else 0.1
             cw[missing_mask] = torch.randn_like(cw[missing_mask]) * std
-            
+
         GLOBAL_SETUP_CACHE.chive_weights = cw
     chive_weights = GLOBAL_SETUP_CACHE.chive_weights
 
@@ -635,11 +632,11 @@ def train(
         total_length_pred_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_length_pred_mae_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_length_pred_count = 0
-        
+
         total_semantic_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_semantic_tokens = torch.tensor(0, device=device, dtype=torch.long)
         total_semantic_skipped = torch.tensor(0, device=device, dtype=torch.long)
-        
+
         # Dynamic Semantic Thresholding (1.0 -> 0.85 over 30 effective epochs)
         # Scales cleanly by sample_ratio to match LR warmup geometry.
         base_threshold = config.semantic_gating_threshold
@@ -699,7 +696,7 @@ def train(
             B_actual = ids.size(0)
 
             if config.consistency_weight > 0:
-                # Instantly double the batch dimension so the rest of the loop vectorize-processes 
+                # Instantly double the batch dimension so the rest of the loop vectorize-processes
                 # exactly two distinct masked variations of each sentence concurrently.
                 recon_targets = torch.cat([recon_targets, recon_targets], dim=0)
                 attention_mask = torch.cat([attention_mask, attention_mask], dim=0)
@@ -873,34 +870,34 @@ def train(
 
             nats_per_row = torch.zeros(B, device=device)
             semantic_distillation_loss = torch.tensor(0.0, device=device)
-            
+
             if USE_FUSED_CE:
                 # Fused linear CE: h_recon × W^T → CE in one kernel,
                 # never materializes [B, T, V] in global memory.
                 valid_mask = attention_mask.bool()
                 ce_targets = recon_targets.where(valid_mask, torch.tensor(-100, device=device))
-                
+
                 threshold = current_threshold
                 if threshold > 0.0:
                     # 1. Project hidden to 300D and normalize
                     with AUTOCAST():
                         pred_emb = model.recon.semantic_head(h_recon)
                     pred_emb = F.normalize(pred_emb.float(), p=2, dim=-1)
-                    
+
                     # 2. Get true 300D targets
                     tgt_emb = chive_normed[ce_targets.clamp(min=0)]
-                    
+
                     # 3. Calculate similarities
                     cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
-                    
+
                     num_valid = valid_mask.sum()
                     total_semantic_tokens += num_valid
-                    
+
                     # 4. Auxiliary semantic loss for active tokens
                     sem_loss_sum = ((1.0 - cos_sim) * valid_mask.float()).sum()
                     semantic_distillation_loss = sem_loss_sum / num_valid.clamp_min(1).float()
                     total_semantic_loss_sum += sem_loss_sum.detach().float()
-                    
+
                     # 5. Stochastic semantic gating: deterministically
                     # keep hard tokens (cos_sim < threshold), and
                     # randomly rescue easy tokens with probability
@@ -909,28 +906,28 @@ def train(
                     is_easy = cos_sim >= threshold
                     rescue = torch.rand_like(cos_sim) > threshold
                     is_hard = (~is_easy | rescue) & valid_mask
-                    
+
                     num_hard = is_hard.sum()
                     total_semantic_skipped += (num_valid - num_hard)
-                    
+
                     flat_h = h_recon.reshape(-1, h_recon.size(-1))
                     flat_tgt = ce_targets.reshape(-1)
                     flat_hard = is_hard.reshape(-1)
-                    
+
                     h_hard = flat_h[flat_hard]
                     tgt_hard = flat_tgt[flat_hard]
-                    
+
                     if h_hard.size(0) > 0:
                         nll_hard = _cce_linear_ce(h_hard, out_weight, tgt_hard, reduction="none")
                         total_nll_nats = nll_hard.sum()
-                        
+
                         # Retain row-level metric alignment manually
                         b_indices = torch.arange(B, device=device).unsqueeze(1).expand(-1, T).reshape(-1)
                         nats_per_row.scatter_add_(0, b_indices[flat_hard], nll_hard)
                     else:
                         total_nll_nats = torch.tensor(0.0, device=device)
-                        
-                else:    
+
+                else:
                     nll_per_token = _cce_linear_ce(
                         h_recon,
                         out_weight,
@@ -970,7 +967,7 @@ def train(
             total_bits = total_nll_nats / LOG2
             num_units = mask_f.sum().clamp_min(1)
             bpd = total_bits / num_units
-            
+
             bits_per_row = nats_per_row / LOG2          # [B], stays on GPU
             row_lengths = mask_f.sum(dim=1)              # [B], stays on GPU
             bpd_bin_idx = torch.bucketize(row_lengths, _bin_edges)  # [B]
@@ -1000,16 +997,16 @@ def train(
                     total_length_pred_count += 1
 
             if config.kl_sparse_weight > 0:
-                # Length-proportional sparsity adjustment: 
-                # Short sentences are heavily penalized for turning on logits to prevent them 
+                # Length-proportional sparsity adjustment:
+                # Short sentences are heavily penalized for turning on logits to prevent them
                 # from monopolizing the capacity budget with "easy memorization" features.
                 # A 15-token sentence acts as the 1.0 baseline.
                 seq_lengths = attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
                 length_penalty = 15.0 / seq_lengths
-                
+
                 norm_probs = kc_probs * length_penalty
                 rho_hat = norm_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
-                
+
                 rho = config.kl_target_rho
                 kl_term = (
                     rho_hat * torch.log(rho_hat / rho)
@@ -1177,7 +1174,7 @@ def train(
         if _sem_tokens_val > 0:
             latest_metrics["semantic_distillation_loss"] = _sem_loss_val / _sem_tokens_val
             latest_metrics["semantic_skip_ratio"] = _sem_skipped_val / _sem_tokens_val
-            
+
         latest_metrics.update({
             "raw_consistency": avg_raw_consist,
             "mean_abs_logit": mean_abs_logit,

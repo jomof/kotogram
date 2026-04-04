@@ -359,7 +359,7 @@ def objective(
                 for k, v in metrics.items():
                     if isinstance(v, (int, float)):
                         mlflow.log_metric(f"bpd/{k}", v, step=epoch)
-                
+
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
                 k_toks = int(metrics.get("cumulative_tokens_trained", epoch * 1000)) // 1000
                 mlflow.log_metric("inv/bpd", metrics.get("bpd", 0.0), step=k_toks)
@@ -370,7 +370,7 @@ def objective(
                 for artifact_path in ctx.artifact_paths:
                     if os.path.exists(artifact_path):
                         mlflow.log_artifact(artifact_path, "recon_test")
-                
+
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
@@ -589,7 +589,7 @@ def main() -> None:
         print(f"Checkpoint dir: {checkpoint_dir}")
 
     epochs = args.epochs_per_trial
-    
+
     study_name = f"{exp_name} ({', '.join(suffixes)})"
     study_pruner = (
         optuna.pruners.HyperbandPruner(

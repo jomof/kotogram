@@ -31,7 +31,7 @@ import torch.nn.functional as F
 
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-from kotogram.tokenizer import Tokenizer, get_vocab_strings
+from kotogram.tokenizer import Tokenizer
 
 
 def _get_parser() -> SudachiJapaneseParser:
