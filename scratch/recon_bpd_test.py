@@ -789,6 +789,101 @@ def run_reconstruction_test(
     if report_path:
         ctx.artifact_paths.append(report_path)
 
+    # ── Evaluate fix 1% of the training subset for bpd/ metric benchmarks ──
+    try:
+        import contextlib
+
+        from torch.utils.data import DataLoader, Subset
+
+        from scratch.recon_bpd import GLOBAL_SETUP_CACHE
+        from train.dataset import collate_fn
+
+        config = getattr(ctx, "config", None)
+        if config and hasattr(config, "sample_ratio"):
+            sr = config.sample_ratio
+            if sr in GLOBAL_SETUP_CACHE.dataset_subsets:
+                gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sr]
+                subset_len = max(1, len(gram_ds) // 100)
+                subset_ds = Subset(gram_ds, range(subset_len))
+
+                chive_normed = GLOBAL_SETUP_CACHE.chive_normed
+                if (
+                    chive_normed is None
+                    and GLOBAL_SETUP_CACHE.chive_weights is not None
+                ):
+                    chive_normed = F.normalize(
+                        GLOBAL_SETUP_CACHE.chive_weights[
+                            : model.surface_embed.weight.size(0)
+                        ],
+                        dim=-1,
+                    ).to(device)
+
+                if chive_normed is not None:
+                    subset_loader = DataLoader(
+                        subset_ds,
+                        batch_size=min(64, subset_len),
+                        shuffle=False,
+                        collate_fn=collate_fn,
+                        num_workers=0,
+                        drop_last=False,
+                    )
+
+                    model.eval()
+                    total_train_t1 = 0
+                    total_train_cos = 0.0
+                    total_train_tok = 0
+                    recon_chunk = 8 if device.type == "cuda" else 4
+                    autocast_ctx = (
+                        torch.autocast(device_type=device.type, dtype=torch.bfloat16)
+                        if device.type == "cuda" and torch.cuda.is_bf16_supported()
+                        else contextlib.nullcontext()
+                    )
+
+                    with torch.no_grad():
+                        for batch in subset_loader:
+                            surface_ids = batch.feature_inputs["input_ids_surface"].to(
+                                device
+                            )
+                            src = surface_ids[:, :-1]
+                            tgt = surface_ids[:, 1:]
+                            att_mask = (src != 0).long()
+
+                            pooled = model.encode(src, att_mask)
+                            kc_logits, _ = model.kc_head.forward_with_raw(pooled)
+                            kc_probs = torch.sigmoid(kc_logits / ctx.temperature)
+                            h_recon = model.recon.forward_hidden(kc_probs, att_mask)
+
+                            B, T, _ = h_recon.shape
+                            for c0 in range(0, T, recon_chunk):
+                                c1 = min(c0 + recon_chunk, T)
+                                with autocast_ctx:
+                                    chunk_logits = F.linear(
+                                        h_recon[:, c0:c1, :],
+                                        model.recon.output_head.weight,
+                                    )
+                                preds = chunk_logits.argmax(dim=-1)
+                                chunk_mask = att_mask[:, c0:c1].bool()
+
+                                correct = (
+                                    ((preds == tgt[:, c0:c1]) & chunk_mask).sum().item()
+                                )
+                                total_train_t1 += int(correct)
+
+                                pred_emb = chive_normed[preds]
+                                tgt_emb = chive_normed[tgt[:, c0:c1]]
+                                cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
+                                total_train_cos += float(
+                                    (cos_sim * chunk_mask).sum().item()
+                                )
+
+                            total_train_tok += int(att_mask.sum().item())
+
+                    if total_train_tok > 0:
+                        metrics["bpd/To-1"] = 100.0 * total_train_t1 / total_train_tok
+                        metrics["bpd/cos"] = total_train_cos / total_train_tok
+    except Exception as e:
+        print(f"Warning: Failed to evaluate training subset: {e}")
+
     # Explicitly clear GPU memory after massive reconstruction inference
     if device.type == "cuda":
         torch.cuda.empty_cache()

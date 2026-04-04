@@ -661,7 +661,7 @@ def train(
 
         # Deterministic per-epoch seed: same epoch always sees same
         # batch order and stochastic ops, even after resume.
-        epoch_seed = config.seed + epoch
+        epoch_seed = epoch
         torch.manual_seed(epoch_seed)
         if IS_CUDA:
             torch.cuda.manual_seed(epoch_seed)
