@@ -110,11 +110,12 @@ class TrainConfig:
     # ICML 2005 (LambdaRank / RankNet framework)
     #
     # For pairs of samples where len_a < len_b, penalizes when
-    # load_a >= load_b via a hinge margin. No fixed target —
-    # only enforces that longer sentences use weakly more KCs.
+    # load_a >= load_b via a hinge margin proportional to
+    # log(len_b / len_a).  Larger length gaps demand proportionally
+    # more KC separation (e.g. 2x length → 0.69·margin, 6x → 1.79·margin).
     # Set to 0 to disable.
     rank_margin_weight: float = 0.0
-    rank_margin: float = 1.0  # minimum load gap between length-sorted adjacent pairs
+    rank_margin: float = 1.0  # scaling coefficient on log-ratio margin
 
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
@@ -1196,8 +1197,14 @@ def train(
                 len_diff = sorted_len[1:] - sorted_len[:-1]
                 valid_pairs = len_diff > 0
                 if valid_pairs.any():
+                    # Proportional margin: log(len_b / len_a) so larger
+                    # length gaps demand proportionally more KC separation.
+                    log_ratio = torch.log(
+                        sorted_len[1:] / sorted_len[:-1].clamp_min(1.0)
+                    )
+                    scaled_margin = config.rank_margin * log_ratio
                     violations = F.relu(
-                        sorted_load[:-1] - sorted_load[1:] + config.rank_margin
+                        sorted_load[:-1] - sorted_load[1:] + scaled_margin
                     )
                     rank_loss = (
                         violations * valid_pairs.float()
