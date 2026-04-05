@@ -136,12 +136,27 @@ def save_model(
 
     os.makedirs(path, exist_ok=True)
 
-    # Save model weights (Always use FP8 if available)
+    # Save model weights -- FP8 for transformer bulk, FP16 for classification
+    # heads whose small-magnitude weights lose all signal in float8.
     if not hasattr(torch, "float8_e4m3fn"):
         raise RuntimeError("FP8 requires PyTorch 2.1+.")
 
+    _FP16_PREFIXES = (
+        "formality_pragmatic_head.",
+        "gender_pragmatic_head.",
+        "grammaticality_classifier.",
+        "kc_head.",
+    )
+
+    def _quantize(k: str, v: torch.Tensor) -> torch.Tensor:
+        if v.dtype != torch.float32:
+            return v.cpu()
+        if any(k.startswith(p) for p in _FP16_PREFIXES):
+            return v.cpu().to(torch.float16)
+        return v.cpu().to(torch.float8_e4m3fn)
+
     state_dict = {
-        k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
+        k: _quantize(k, v)
         for k, v in model.state_dict().items()
         if not _should_strip_key(k)
     }

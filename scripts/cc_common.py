@@ -58,6 +58,26 @@ def perf_log(
     _perf_entries.append(body)
 
 
+def perf_log_dist(label: str, arr: np.ndarray, *, indent: int = 0) -> None:
+    """Log min/p25/median/p75/max/mean/zeros for a 1-D array."""
+    if arr.size == 0:
+        perf_log(label, indent=indent, n=0)
+        return
+    n_zero = int((arr == 0).sum())
+    perf_log(
+        label,
+        indent=indent,
+        n=arr.size,
+        min=float(arr.min()),
+        p25=float(np.percentile(arr, 25)),
+        median=float(np.median(arr)),
+        p75=float(np.percentile(arr, 75)),
+        max=float(arr.max()),
+        mean=float(arr.mean()),
+        zeros=n_zero,
+    )
+
+
 def perf_flush() -> None:
     """Write accumulated entries to .cc/perf-hist.log (append) and clear."""
     if not _perf_entries:
@@ -433,9 +453,15 @@ def diversity_scores(
 ) -> np.ndarray:
     """L2 distance from each CC embedding to its nearest corpus.db neighbour.
 
-    Uses ||a-b||² = ||a||² + ||b||² - 2a·b so the heavy lifting is a matmul,
-    which is the best-optimised operation on MPS/GPU.  Both the query and
-    corpus dimensions are tiled to keep peak memory bounded.
+    Two-phase approach to avoid catastrophic cancellation in the matmul
+    decomposition (||a||²+||b||²-2a·b collapses to 0 in float32 when all
+    embeddings share a large constant norm):
+
+    Phase 1 (fast, approximate): matmul decomposition finds the *index* of
+    the approximate nearest corpus neighbour for each CC row.
+
+    Phase 2 (exact): direct ``(a - b)²`` subtraction for each CC row and
+    its identified neighbour -- O(N·D), no cancellation.
     """
     import torch
     from rich.progress import Progress as RichProgress
@@ -448,6 +474,12 @@ def diversity_scores(
     corpus_t = torch.from_numpy(corpus_f32).to(device)
     corpus_sq_norms = (corpus_t * corpus_t).sum(dim=1)
 
+    cc_norms = np.linalg.norm(cc_embeddings[:min(1000, len(cc_embeddings))], axis=1)
+    corp_norms = corpus_sq_norms[:min(1000, len(corpus_sq_norms))].sqrt().cpu().numpy()
+    perf_log("emb_norms", indent=2,
+             cc_min=float(cc_norms.min()), cc_max=float(cc_norms.max()),
+             corp_min=float(corp_norms.min()), corp_max=float(corp_norms.max()))
+
     result: np.ndarray = np.zeros(len(cc_embeddings), dtype=np.float32)
 
     console.print(f"  Nearest-neighbour query on [bold]{device}[/bold]...")
@@ -458,16 +490,24 @@ def diversity_scores(
             chunk_t = torch.from_numpy(np.array(raw, dtype=np.float32)).to(device)
             chunk_sq_norms = (chunk_t * chunk_t).sum(dim=1, keepdim=True)
 
+            # Phase 1: find approximate NN index via matmul decomposition
             min_sq = torch.full((len(chunk_t),), float("inf"), device=device)
+            nn_idx = torch.zeros(len(chunk_t), dtype=torch.long, device=device)
             for j in range(0, len(corpus_t), _NN_CORPUS_TILE):
                 c_tile = corpus_t[j : j + _NN_CORPUS_TILE]
                 c_norms = corpus_sq_norms[j : j + _NN_CORPUS_TILE]
                 sq_d = chunk_sq_norms + c_norms.unsqueeze(0) - 2.0 * (chunk_t @ c_tile.T)
-                tile_min = sq_d.min(dim=1).values
-                min_sq = torch.minimum(min_sq, tile_min)
+                tile_min, tile_argmin = sq_d.min(dim=1)
+                improved = tile_min < min_sq
+                min_sq[improved] = tile_min[improved]
+                nn_idx[improved] = tile_argmin[improved] + j
 
+            # Phase 2: exact distance via direct subtraction
+            nn_emb = corpus_t[nn_idx]
+            diff = chunk_t - nn_emb
+            exact_sq = (diff * diff).sum(dim=1)
             result[i : i + len(chunk_t)] = (
-                min_sq.clamp(min=0.0).sqrt().cpu().numpy()
+                exact_sq.clamp(min=0.0).sqrt().cpu().numpy()
             )
             progress.advance(task, len(chunk_t))
 

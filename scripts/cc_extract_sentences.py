@@ -54,6 +54,7 @@ from scripts.cc_common import (
     model_hash,
     perf_flush,
     perf_log,
+    perf_log_dist,
     perf_start_run,
 )
 
@@ -924,6 +925,12 @@ def main() -> None:  # pylint: disable=too-many-locals
     unc_pct = _rank_percentiles(cc_uncertainty[keep_idx])
     impact = div_pct * unc_pct**2
 
+    perf_log_dist("diversity_all", all_diversity)
+    perf_log_dist("diversity_kept", diversity)
+    perf_log_dist("uncertainty_kept", cc_uncertainty[keep_idx])
+    perf_log_dist("gram_probs", cc_gram_probs)
+    perf_log_dist("impact", impact)
+
     # -- Select --
     sel_local, cutoff = _select(impact, args.top_pct, args.min_impact)
     sel_global = keep_idx[sel_local]
@@ -935,6 +942,9 @@ def main() -> None:  # pylint: disable=too-many-locals
         for sent in selected_sentences:
             fh.write(sent + "\n")
 
+    perf_log_dist("sel_diversity", diversity[sel_local], indent=1)
+    perf_log_dist("sel_uncertainty", cc_uncertainty[sel_global], indent=1)
+    perf_log_dist("sel_impact", impact[sel_local], indent=1)
     perf_log("selection", n_selected=len(selected_sentences),
              n_candidates=len(keep_idx),
              time_s=time.monotonic() - _t0_sel)
