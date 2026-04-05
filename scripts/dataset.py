@@ -23,6 +23,16 @@ from kotogram.tokenizer import (
     UNK_TOKEN,
     Tokenizer,
 )
+from scripts.gcs import (
+    GCS_BUCKET,
+    find_repo_root,
+    gcs_download_file,
+    gcs_exists,
+    gcs_list_blobs,
+    gcs_read_json,
+    gcs_upload_file,
+    gcs_write_json,
+)
 from train.binary_io import (
     EXT_FEAT_PREFIX,
     EXT_KC_PREFIX,
@@ -34,7 +44,6 @@ from train.dataset import StyleDataset
 from train.kc import KcFamilyId
 
 SCHEMA_VERSION = 1
-GCS_BUCKET = "jomof-public-files"
 GCS_PREFIX = "kotogram-datasets"
 DATASET_LOCK = "dataset.lock"
 LOCAL_CACHE = os.path.join(".cache", "datasets")
@@ -63,56 +72,14 @@ _REQUIRED_KEYS = frozenset(
 
 _LABEL_SPECS = LABEL_SPECS
 
-
-def _gcs_bucket() -> Any:
-    from google.cloud import storage  # type: ignore[import-untyped]
-
-    return storage.Client().bucket(GCS_BUCKET)
-
-
-def _gcs_upload_file(local_path: str, gcs_key: str) -> str:
-    blob = _gcs_bucket().blob(gcs_key)
-    blob.upload_from_filename(local_path)
-    return f"gs://{GCS_BUCKET}/{gcs_key}"
-
-
-def _gcs_download_file(gcs_key: str, local_path: str) -> str:
-    os.makedirs(os.path.dirname(local_path) or ".", exist_ok=True)
-    blob = _gcs_bucket().blob(gcs_key)
-    blob.download_to_filename(local_path)
-    return local_path
-
-
-def _gcs_exists(gcs_key: str) -> bool:
-    return bool(_gcs_bucket().blob(gcs_key).exists())
-
-
-def _gcs_list_blobs(prefix: str) -> List[str]:
-    return [str(b.name) for b in _gcs_bucket().list_blobs(prefix=prefix)]
-
-
-def _gcs_read_json(gcs_key: str) -> Dict[str, Any]:
-    blob = _gcs_bucket().blob(gcs_key)
-    result: Dict[str, Any] = json.loads(blob.download_as_text())
-    return result
-
-
-def _gcs_write_json(gcs_key: str, data: dict) -> None:
-    blob = _gcs_bucket().blob(gcs_key)
-    blob.upload_from_string(json.dumps(data, indent=2), content_type="application/json")
-
-
-def _find_repo_root() -> str:
-    result = subprocess.run(
-        ["git", "rev-parse", "--show-toplevel"],
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=2,
-    )
-    if result.returncode == 0:
-        return result.stdout.strip()
-    return os.getcwd()
+# Backward-compatible aliases for the private GCS helpers.
+_gcs_upload_file = gcs_upload_file
+_gcs_download_file = gcs_download_file
+_gcs_exists = gcs_exists
+_gcs_list_blobs = gcs_list_blobs
+_gcs_read_json = gcs_read_json
+_gcs_write_json = gcs_write_json
+_find_repo_root = find_repo_root
 
 
 def read_lock() -> Optional[Dict[str, Any]]:

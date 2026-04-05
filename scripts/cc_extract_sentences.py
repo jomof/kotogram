@@ -34,13 +34,13 @@ from typing import Any
 import numpy as np
 
 from scripts.cc_common import (
+    _CORPUS_EMBED_META,
     CC_CACHE_DIR,
     CHAR_FILTER,
     CORPUS_DB,
     GRAMMATIC_SOFT_MIN,
     MAX_SENTENCE_LEN,
     STYLE_MODEL_DIR,
-    _CORPUS_EMBED_META,
     _cache_path,
     clean_sentence,
     console,
@@ -465,8 +465,13 @@ def _get_diversity(
         current_corpus_fp = cmeta.get("full_fp", "")
 
     if cached_div is not None and old_cc_n == n_cc and old_corpus_n == n_corpus:
-        perf_log("diversity", cache="hit", cc=n_cc, corpus=n_corpus,
-                 time_s=time.monotonic() - _t0_div)
+        perf_log(
+            "diversity",
+            cache="hit",
+            cc=n_cc,
+            corpus=n_corpus,
+            time_s=time.monotonic() - _t0_div,
+        )
         console.print("  Diversity scores loaded from cache")
         return cached_div
 
@@ -498,9 +503,7 @@ def _get_diversity(
                 f"  Diversity: scoring {new_cc_rows:,} new CC rows"
                 f" against {n_corpus:,} corpus rows"
             )
-            parts.append(
-                diversity_scores(cc_emb[old_cc_n:], corpus_emb, device=device)
-            )
+            parts.append(diversity_scores(cc_emb[old_cc_n:], corpus_emb, device=device))
 
         result = np.concatenate(parts) if len(parts) > 1 else parts[0]
 
@@ -514,10 +517,15 @@ def _get_diversity(
         _div_kind = "partial_corpus"
     else:
         _div_kind = "recompute"
-    perf_log("diversity", cache=_div_kind,
-             cc=n_cc, corpus=n_corpus,
-             old_cc=old_cc_n, old_corpus=old_corpus_n,
-             time_s=time.monotonic() - _t0_div)
+    perf_log(
+        "diversity",
+        cache=_div_kind,
+        cc=n_cc,
+        corpus=n_corpus,
+        old_cc=old_cc_n,
+        old_corpus=old_corpus_n,
+        time_s=time.monotonic() - _t0_div,
+    )
     np.save(str(div_path), result)
     div_meta = {
         "cc_n": n_cc,
@@ -859,9 +867,9 @@ def main() -> None:  # pylint: disable=too-many-locals
     else:
         console.print("\n  [green]No new files to extract.[/green]")
 
-    perf_log("extraction",
-             new_files=len(new_files),
-             time_s=time.monotonic() - _t0_extract)
+    perf_log(
+        "extraction", new_files=len(new_files), time_s=time.monotonic() - _t0_extract
+    )
 
     # -- Load all sentences for selection --
     sentences_path = _sentences_path(crawl_id)
@@ -913,9 +921,12 @@ def main() -> None:  # pylint: disable=too-many-locals
         perf_flush()
         return
 
-    perf_log("model_scoring", n_cc=len(cc_sentences),
-             n_corpus=corpus_emb.shape[0],
-             time_s=time.monotonic() - _t0_scoring)
+    perf_log(
+        "model_scoring",
+        n_cc=len(cc_sentences),
+        n_corpus=corpus_emb.shape[0],
+        time_s=time.monotonic() - _t0_scoring,
+    )
 
     # -- Score filtered subset --
     _t0_sel = time.monotonic()
@@ -945,9 +956,12 @@ def main() -> None:  # pylint: disable=too-many-locals
     perf_log_dist("sel_diversity", diversity[sel_local], indent=1)
     perf_log_dist("sel_uncertainty", cc_uncertainty[sel_global], indent=1)
     perf_log_dist("sel_impact", impact[sel_local], indent=1)
-    perf_log("selection", n_selected=len(selected_sentences),
-             n_candidates=len(keep_idx),
-             time_s=time.monotonic() - _t0_sel)
+    perf_log(
+        "selection",
+        n_selected=len(selected_sentences),
+        n_candidates=len(keep_idx),
+        time_s=time.monotonic() - _t0_sel,
+    )
 
     _print_selection_summary(
         total_cc=len(cc_sentences),

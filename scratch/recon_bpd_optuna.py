@@ -19,18 +19,26 @@ import argparse
 import dataclasses
 import hashlib
 import json
+import logging
 import os
 import platform
 import statistics
 import subprocess
 import threading
-from typing import Optional
+from datetime import datetime, timezone
+from typing import Any, Dict, Optional
 
 import optuna
 import torch
 
 from scratch.recon_bpd import TrainConfig, train
-from scratch.recon_bpd_checkpoint import EpochContext, load_checkpoint
+from scratch.recon_bpd_checkpoint import (
+    EpochContext,
+    compute_architecture_hash,
+    load_checkpoint,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class GpuMemoryMonitor(threading.Thread):
@@ -139,6 +147,256 @@ class GpuMemoryMonitor(threading.Thread):
 
     def stop(self):
         self.stop_event.set()
+
+
+class BestTracker:
+    """Tracks the global best checkpoint across all trials.
+
+    Persists state to ``best_state.json`` in the checkpoint directory
+    so it survives process restarts.  Optionally initialises from GCS
+    ``best.json`` so a fresh training session starts from the real
+    global best rather than zero.
+
+    The "best" criteria requires both ``bpd/cos`` (training cosine
+    similarity from the prior epoch) and ``test/cos`` (reconstruction
+    test cosine similarity from the current epoch start) to strictly
+    exceed the current best.  Only 100% dataset runs are eligible.
+    """
+
+    def __init__(self, checkpoint_dir: str, enable_upload: bool = True):
+        self.checkpoint_dir = checkpoint_dir
+        self.enable_upload = enable_upload
+        self.best_bpd_cos: float = 0.0
+        self.best_test_cos: float = 0.0
+        self.cumulative_best_checkpoints: int = 0
+        self._prior_bpd_cos: Optional[float] = None
+        self._state_path = os.path.join(checkpoint_dir, "best_state.json")
+        self._load_local_state()
+        self._sync_from_gcs()
+
+    def _load_local_state(self) -> None:
+        if os.path.exists(self._state_path):
+            with open(self._state_path, encoding="utf-8") as f:
+                state = json.load(f)
+            self.best_bpd_cos = state.get("best_bpd_cos", 0.0)
+            self.best_test_cos = state.get("best_test_cos", 0.0)
+            self.cumulative_best_checkpoints = state.get(
+                "cumulative_best_checkpoints", 0
+            )
+
+    def _sync_from_gcs(self) -> None:
+        """If GCS has a better "best" than local state, adopt it."""
+        try:
+            from scripts.checkpoint import read_best
+
+            gcs_best = read_best("recon_bpd")
+            if gcs_best is None:
+                return
+            criteria = gcs_best.get("criteria", {})
+            gcs_bpd_cos = criteria.get("bpd_cos", 0.0)
+            gcs_test_cos = criteria.get("test_cos", 0.0)
+            if gcs_bpd_cos > self.best_bpd_cos and gcs_test_cos > self.best_test_cos:
+                self.best_bpd_cos = gcs_bpd_cos
+                self.best_test_cos = gcs_test_cos
+                self._save_state()
+                print(
+                    f"  BestTracker: synced from GCS "
+                    f"(bpd/cos={gcs_bpd_cos:.4f}, test/cos={gcs_test_cos:.4f})"
+                )
+        except Exception as e:
+            logger.debug("BestTracker: could not sync from GCS: %s", e)
+
+    def _save_state(self) -> None:
+        os.makedirs(self.checkpoint_dir, exist_ok=True)
+        with open(self._state_path, "w", encoding="utf-8") as f:
+            json.dump(
+                {
+                    "best_bpd_cos": self.best_bpd_cos,
+                    "best_test_cos": self.best_test_cos,
+                    "cumulative_best_checkpoints": self.cumulative_best_checkpoints,
+                },
+                f,
+                indent=2,
+            )
+            f.write("\n")
+
+    def stash_epoch_end(self, metrics: dict) -> None:
+        """Stash bpd/cos from the just-completed epoch for next-epoch check."""
+        self._prior_bpd_cos = metrics.get("cos")
+
+    def check_and_promote(
+        self,
+        metrics: dict,
+        *,
+        sample_ratio: float,
+        checkpoint_path: str,
+        config: TrainConfig,
+        dataset_id: str,
+        chive_id: str,
+        mlflow_run_id: Optional[str],
+        mlflow_experiment: str,
+        epoch: int,
+        mlflow_module: Any = None,
+    ) -> bool:
+        """Check if the current state qualifies as a new best.
+
+        Called in ``on_epoch_start`` after ``run_reconstruction_test``
+        has populated ``metrics["test/cos"]``.
+
+        Returns True if a new best was found and promoted.
+        """
+        if sample_ratio < 1.0:
+            return False
+
+        if self._prior_bpd_cos is None:
+            return False
+
+        test_cos = metrics.get("test/cos")
+        if test_cos is None:
+            return False
+
+        prior_bpd_cos = self._prior_bpd_cos
+        if prior_bpd_cos <= self.best_bpd_cos or test_cos <= self.best_test_cos:
+            return False
+
+        if not os.path.exists(checkpoint_path):
+            return False
+
+        previous_criteria = {
+            "bpd_cos": self.best_bpd_cos,
+            "test_cos": self.best_test_cos,
+        }
+        self.best_bpd_cos = prior_bpd_cos
+        self.best_test_cos = test_cos
+        self.cumulative_best_checkpoints += 1
+        self._save_state()
+
+        print(
+            f"\n{'=' * 60}\n"
+            f"  NEW BEST CHECKPOINT #{self.cumulative_best_checkpoints}\n"
+            f"  bpd/cos: {prior_bpd_cos:.4f}  test/cos: {test_cos:.4f}\n"
+            f"  (was bpd/cos={previous_criteria['bpd_cos']:.4f} "
+            f"test/cos={previous_criteria['test_cos']:.4f})\n"
+            f"{'=' * 60}"
+        )
+
+        config_dict = dataclasses.asdict(config)
+        now = datetime.now(timezone.utc).isoformat()
+
+        from scripts.checkpoint import compute_checkpoint_id
+
+        checkpoint_id = compute_checkpoint_id(config_dict, dataset_id, epoch, now)
+
+        metadata: Dict[str, Any] = {
+            "checkpoint_id": checkpoint_id,
+            "model_type": "recon_bpd",
+            "criteria": {
+                "bpd_cos": prior_bpd_cos,
+                "test_cos": test_cos,
+            },
+            "previous_criteria": previous_criteria,
+            "epoch": epoch,
+            "config": config_dict,
+            "architecture_hash": compute_architecture_hash(config),
+            "parent_checkpoint_id": None,
+            "dataset_id": dataset_id,
+            "chive_id": chive_id,
+            "sample_ratio": sample_ratio,
+            "git_commit": _get_git_commit(),
+            "machine": platform.node().split(".")[0] or "unknown",
+            "mlflow_run_id": mlflow_run_id,
+            "mlflow_experiment": mlflow_experiment,
+            "pytorch_version": torch.__version__,
+            "created_at": now,
+        }
+
+        if self.enable_upload:
+            self._upload_in_background(checkpoint_path, metadata)
+
+        if mlflow_module is not None:
+            self._log_to_mlflow(
+                mlflow_module,
+                metadata,
+                mlflow_run_id,
+                epoch,
+            )
+
+        return True
+
+    def _upload_in_background(
+        self, checkpoint_path: str, metadata: Dict[str, Any]
+    ) -> None:
+        def _upload() -> None:
+            try:
+                from scripts.checkpoint import upload_best
+
+                upload_best("recon_bpd", checkpoint_path, metadata)
+            except Exception as e:
+                logger.error("Best checkpoint upload failed: %s", e)
+
+        t = threading.Thread(target=_upload, daemon=True, name="best-upload")
+        t.start()
+
+    def _log_to_mlflow(
+        self,
+        mlflow: Any,
+        metadata: Dict[str, Any],
+        mlflow_run_id: Optional[str],
+        epoch: int,
+    ) -> None:
+        try:
+            mlflow.log_metric(
+                "cumulative_best_checkpoints",
+                self.cumulative_best_checkpoints,
+                step=epoch,
+            )
+            mlflow.set_tag("best_checkpoint", "true")
+            mlflow.set_tag("checkpoint_id", metadata["checkpoint_id"])
+            mlflow.set_tag("best_bpd_cos", f"{metadata['criteria']['bpd_cos']:.6f}")
+            mlflow.set_tag("best_test_cos", f"{metadata['criteria']['test_cos']:.6f}")
+            mlflow.log_dict(metadata, "best_model/metadata.json")
+
+            if mlflow_run_id:
+                try:
+                    import mlflow.pytorch  # type: ignore[import-untyped]
+                    from mlflow.tracking import (
+                        MlflowClient,  # type: ignore[import-untyped]
+                    )
+
+                    client = MlflowClient()
+
+                    model_uri = f"runs:/{mlflow_run_id}/best_model"
+                    try:
+                        result = mlflow.register_model(model_uri, "recon_bpd")
+                        client.set_registered_model_alias(
+                            "recon_bpd", "best", result.version
+                        )
+                        logger.info(
+                            "Registered model version %s as 'best'",
+                            result.version,
+                        )
+                    except Exception as e:
+                        logger.debug("Model registry update skipped: %s", e)
+                except Exception as e:
+                    logger.debug("MLflow model registration skipped: %s", e)
+        except Exception as e:
+            logger.error("MLflow best-checkpoint logging failed: %s", e)
+
+
+def _get_git_commit() -> str:
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%h %s"],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=2,
+        )
+        if result.returncode == 0:
+            return result.stdout.strip()
+    except Exception:
+        pass
+    return ""
 
 
 def suggest_config(
@@ -275,6 +533,8 @@ def objective(
     checkpoint_dir: str,
     adhoc_overrides: Optional[dict] = None,
     adhoc_name: str = "",
+    best_tracker: Optional[BestTracker] = None,
+    experiment_name: str = "kotogram-bpd",
 ) -> float:
     """Optuna objective: minimize BPD."""
     global _CHIVE_WEIGHTS
@@ -441,7 +701,6 @@ def objective(
 
         def on_epoch_start(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             print(f"\n{run_name}  epoch {epoch + 1}/{epochs}")
-            # Run reconstruction test at the start of the epoch for baseline/pre-epoch eval
             from scratch.recon_bpd_test import run_reconstruction_test
 
             memory_monitor.phase = "test"
@@ -461,10 +720,25 @@ def objective(
                 print(f"  {recon_str}To-1={top1:.1f}%  cos={cos:.3f}")
 
             if mlflow is not None:
-                # Log baseline/evaluation metrics at the exact step before training
                 eval_keys = [k for k in metrics.keys() if k.startswith("test/")]
                 for k in eval_keys:
                     mlflow.log_metric(k, metrics[k], step=epoch)
+
+            if best_tracker is not None:
+                active_run = mlflow.active_run() if mlflow is not None else None
+                run_id = active_run.info.run_id if active_run else None
+                best_tracker.check_and_promote(
+                    metrics,
+                    sample_ratio=config.sample_ratio,
+                    checkpoint_path=checkpoint_path,
+                    config=config,
+                    dataset_id=_DATASET_ID,
+                    chive_id=_CHIVE_ID,
+                    mlflow_run_id=run_id,
+                    mlflow_experiment=experiment_name,
+                    epoch=epoch,
+                    mlflow_module=mlflow,
+                )
 
         def on_epoch_end(epoch: int, metrics: dict, ctx: EpochContext) -> None:
             consist_str = (
@@ -526,6 +800,9 @@ def objective(
                 for artifact_path in ctx.artifact_paths:
                     if os.path.exists(artifact_path):
                         mlflow.log_artifact(artifact_path, "recon_test")
+            if best_tracker is not None:
+                best_tracker.stash_epoch_end(metrics)
+
             trial.report(metrics["bpd"], epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()
@@ -691,6 +968,11 @@ def main() -> None:
         default=5,
         help="Epochs to add each progressive round (default: 5)",
     )
+    parser.add_argument(
+        "--no-upload",
+        action="store_true",
+        help="Disable GCS checkpoint uploads (local-only mode)",
+    )
     args = parser.parse_args()
 
     # Resolve dataset before anything else
@@ -808,6 +1090,16 @@ def main() -> None:
         os.makedirs(checkpoint_dir, exist_ok=True)
         print(f"Checkpoint dir: {checkpoint_dir}")
 
+    tracker = BestTracker(
+        checkpoint_dir=checkpoint_dir,
+        enable_upload=not args.no_upload,
+    )
+    print(
+        f"  Best tracker: bpd/cos={tracker.best_bpd_cos:.4f}  "
+        f"test/cos={tracker.best_test_cos:.4f}  "
+        f"uploads={tracker.cumulative_best_checkpoints}"
+    )
+
     epochs = args.epochs_per_trial
 
     study_name = f"{exp_name} ({', '.join(suffixes)})"
@@ -865,6 +1157,8 @@ def main() -> None:
                 checkpoint_dir,
                 adhoc_overrides or None,
                 args.adhoc or "",
+                best_tracker=tracker,
+                experiment_name=exp_name,
             ),
             n_trials=args.n_trials,
             callbacks=[_convergence_callback],

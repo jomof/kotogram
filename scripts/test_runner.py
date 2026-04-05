@@ -543,7 +543,7 @@ async def check_vulture_production() -> CheckResult:
     If unused here, it might belong in tests-py/.
     """
     # exclude tests-py
-    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram train_style scripts/test_runner.py scripts/curate --exclude tests-py --min-confidence 60"
+    cmd = "vulture kotogram/ train/ scripts/ scratch/ bin/kotogram train_style scripts/test_runner.py scripts/curate --exclude tests-py --min-confidence 60"
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -574,7 +574,7 @@ async def check_vulture_full() -> CheckResult:
     Ensure everything is used somewhere (including tests).
     If unused here, it is dead code.
     """
-    cmd = "vulture kotogram/ train/ scripts/ tests-py/ bin/kotogram scripts/test_runner.py scripts/curate --min-confidence 60"
+    cmd = "vulture kotogram/ train/ scripts/ scratch/ tests-py/ bin/kotogram scripts/test_runner.py scripts/curate --min-confidence 60"
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )

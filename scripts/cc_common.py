@@ -88,7 +88,7 @@ def perf_flush() -> None:
     log_path = CC_CACHE_DIR / "perf-hist.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with open(log_path, "a", encoding="utf-8") as f:
-        f.write('\n'.join(_perf_entries) + '\n')
+        f.write("\n".join(_perf_entries) + "\n")
     _perf_entries.clear()
 
 
@@ -297,8 +297,13 @@ def parallel_parse_and_encode(
                 encoded.extend(enc_result)
                 progress.advance(task, len(enc_result))
 
-    perf_log("parse_and_encode", indent=1, n=len(sentences),
-            workers=num_workers, time_s=time.monotonic() - _t0_pe)
+    perf_log(
+        "parse_and_encode",
+        indent=1,
+        n=len(sentences),
+        workers=num_workers,
+        time_s=time.monotonic() - _t0_pe,
+    )
     return encoded
 
 
@@ -474,11 +479,16 @@ def diversity_scores(
     corpus_t = torch.from_numpy(corpus_f32).to(device)
     corpus_sq_norms = (corpus_t * corpus_t).sum(dim=1)
 
-    cc_norms = np.linalg.norm(cc_embeddings[:min(1000, len(cc_embeddings))], axis=1)
-    corp_norms = corpus_sq_norms[:min(1000, len(corpus_sq_norms))].sqrt().cpu().numpy()
-    perf_log("emb_norms", indent=2,
-             cc_min=float(cc_norms.min()), cc_max=float(cc_norms.max()),
-             corp_min=float(corp_norms.min()), corp_max=float(corp_norms.max()))
+    cc_norms = np.linalg.norm(cc_embeddings[: min(1000, len(cc_embeddings))], axis=1)
+    corp_norms = corpus_sq_norms[: min(1000, len(corpus_sq_norms))].sqrt().cpu().numpy()
+    perf_log(
+        "emb_norms",
+        indent=2,
+        cc_min=float(cc_norms.min()),
+        cc_max=float(cc_norms.max()),
+        corp_min=float(corp_norms.min()),
+        corp_max=float(corp_norms.max()),
+    )
 
     result: np.ndarray = np.zeros(len(cc_embeddings), dtype=np.float32)
 
@@ -496,7 +506,9 @@ def diversity_scores(
             for j in range(0, len(corpus_t), _NN_CORPUS_TILE):
                 c_tile = corpus_t[j : j + _NN_CORPUS_TILE]
                 c_norms = corpus_sq_norms[j : j + _NN_CORPUS_TILE]
-                sq_d = chunk_sq_norms + c_norms.unsqueeze(0) - 2.0 * (chunk_t @ c_tile.T)
+                sq_d = (
+                    chunk_sq_norms + c_norms.unsqueeze(0) - 2.0 * (chunk_t @ c_tile.T)
+                )
                 tile_min, tile_argmin = sq_d.min(dim=1)
                 improved = tile_min < min_sq
                 min_sq[improved] = tile_min[improved]
@@ -506,14 +518,16 @@ def diversity_scores(
             nn_emb = corpus_t[nn_idx]
             diff = chunk_t - nn_emb
             exact_sq = (diff * diff).sum(dim=1)
-            result[i : i + len(chunk_t)] = (
-                exact_sq.clamp(min=0.0).sqrt().cpu().numpy()
-            )
+            result[i : i + len(chunk_t)] = exact_sq.clamp(min=0.0).sqrt().cpu().numpy()
             progress.advance(task, len(chunk_t))
 
-    perf_log("nn_query", indent=1, cc=len(cc_embeddings),
-            corpus=len(corpus_embeddings),
-            time_s=time.monotonic() - _t0_nn)
+    perf_log(
+        "nn_query",
+        indent=1,
+        cc=len(cc_embeddings),
+        corpus=len(corpus_embeddings),
+        time_s=time.monotonic() - _t0_nn,
+    )
     return result
 
 
@@ -600,9 +614,7 @@ def embed_and_score(  # pylint: disable=too-many-locals
     _t0_es = time.monotonic()
     total = len(encoded_all)
     ref_field = FEATURE_FIELDS[0]
-    lengths = np.array(
-        [len(e[ref_field]) for e in encoded_all], dtype=np.int64
-    )
+    lengths = np.array([len(e[ref_field]) for e in encoded_all], dtype=np.int64)
     order = np.argsort(lengths)
 
     d_model = model.config.d_model
@@ -633,9 +645,7 @@ def embed_and_score(  # pylint: disable=too-many-locals
                     padded[i, :seq_len] = ids
                     if field == ENCODER_FEATURE_FIELDS[0]:
                         mask_np[i, :seq_len] = 1
-                field_inputs[f"input_ids_{field}"] = (
-                    torch.from_numpy(padded).to(device)
-                )
+                field_inputs[f"input_ids_{field}"] = torch.from_numpy(padded).to(device)
             mask = torch.from_numpy(mask_np).to(device)
 
             with torch.inference_mode():
@@ -658,9 +668,13 @@ def embed_and_score(  # pylint: disable=too-many-locals
 
             progress.advance(task, n_batch)
 
-    perf_log("embed_and_score", indent=1, n=total,
-            batches=(total + BATCH_SIZE - 1) // BATCH_SIZE,
-            time_s=time.monotonic() - _t0_es)
+    perf_log(
+        "embed_and_score",
+        indent=1,
+        n=total,
+        batches=(total + BATCH_SIZE - 1) // BATCH_SIZE,
+        time_s=time.monotonic() - _t0_es,
+    )
     return embeddings, uncertainty, gram_probs_out
 
 
@@ -678,9 +692,7 @@ def _load_corpus_sentences() -> list[str]:
     import sqlite3
 
     conn = sqlite3.connect(str(CORPUS_DB))
-    rows = conn.execute(
-        "SELECT sentence FROM sentences WHERE grammatic = 1"
-    ).fetchall()
+    rows = conn.execute("SELECT sentence FROM sentences WHERE grammatic = 1").fetchall()
     conn.close()
     return [r[0] for r in rows]
 
@@ -736,9 +748,14 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
     if not new_sentences:
         console.print(f"  Corpus embeddings loaded from cache ({n:,} sentences)")
         if old_emb is not None and len(reused_sents) == old_emb.shape[0]:
-            perf_log("corpus_embeddings", cache="hit",
-                     reused=n, new=0, total=n,
-                     time_s=time.monotonic() - _t0_ce)
+            perf_log(
+                "corpus_embeddings",
+                cache="hit",
+                reused=n,
+                new=0,
+                total=n,
+                time_s=time.monotonic() - _t0_ce,
+            )
             return old_emb
         emb: np.ndarray = old_emb[reused_src] if old_emb is not None else np.empty(0)
         np.save(str(cache), emb)
@@ -750,9 +767,14 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
             "full_fp": sentences_fingerprint(reused_sents),
         }
         meta_path.write_text(json.dumps(meta_out), encoding="utf-8")
-        perf_log("corpus_embeddings", cache="hit_trimmed",
-                 reused=n, new=0, total=n,
-                 time_s=time.monotonic() - _t0_ce)
+        perf_log(
+            "corpus_embeddings",
+            cache="hit_trimmed",
+            reused=n,
+            new=0,
+            total=n,
+            time_s=time.monotonic() - _t0_ce,
+        )
         return emb
 
     # -- Partial hit or full miss --
@@ -785,9 +807,14 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
     }
     meta_path.write_text(json.dumps(meta_out), encoding="utf-8")
     _cache_kind = "partial" if cached_map else "miss"
-    perf_log("corpus_embeddings", cache=_cache_kind,
-             reused=len(reused_sents), new=len(new_sentences), total=n,
-             time_s=time.monotonic() - _t0_ce)
+    perf_log(
+        "corpus_embeddings",
+        cache=_cache_kind,
+        reused=len(reused_sents),
+        new=len(new_sentences),
+        total=n,
+        time_s=time.monotonic() - _t0_ce,
+    )
     console.print(f"  Cached to {cache}")
     return emb
 
@@ -851,9 +878,14 @@ def get_cc_scores(  # pylint: disable=too-many-locals
                 cached_n = 0
             elif cached_n == n:
                 console.print(f"  CC inference loaded from cache (model {model_md5})")
-                perf_log("cc_scores", cache="hit", cached_n=cached_n,
-                         total=n, chunks=0,
-                         time_s=time.monotonic() - _t0_cc)
+                perf_log(
+                    "cc_scores",
+                    cache="hit",
+                    cached_n=cached_n,
+                    total=n,
+                    chunks=0,
+                    time_s=time.monotonic() - _t0_cc,
+                )
                 return (
                     np.load(str(emb_path), mmap_mode="r"),
                     np.load(str(unc_path)),
@@ -911,9 +943,14 @@ def get_cc_scores(  # pylint: disable=too-many-locals
     write_cache_meta(
         cache_dir, model_md5, sentences_fp=sentences_fingerprint(cc_sentences)
     )
-    perf_log("cc_scores", cache=_cc_cache, cached_n=cached_n,
-             total=n, chunks=n_chunks,
-             time_s=time.monotonic() - _t0_cc)
+    perf_log(
+        "cc_scores",
+        cache=_cc_cache,
+        cached_n=cached_n,
+        total=n,
+        chunks=n_chunks,
+        time_s=time.monotonic() - _t0_cc,
+    )
     console.print(f"  Cached to {cache_dir}")
 
     return (
