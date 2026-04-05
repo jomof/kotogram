@@ -427,9 +427,10 @@ def build_dataset(  # pylint: disable=too-many-locals
         surface_vocab_size,
     )
 
-    # Reuse existing chiVe tensor when the surface vocab is unchanged from the base.
     chive_surface: Optional[torch.Tensor] = None
     chive_id: Optional[str] = None
+
+    # Fast path: if base dataset has same surface vocab, reuse its chiVe directly.
     if base_dataset is not None and merged_vocab.get("surface") == base_dataset.get(
         "vocab", {}
     ).get("surface"):
@@ -444,7 +445,13 @@ def build_dataset(  # pylint: disable=too-many-locals
         print("  Extracting chiVe vectors for merged vocabulary...")
         chive_surface = extract_chive_for_merged_vocab(merged_vocab["surface"])
         chive_id = compute_chive_hash(chive_surface)
-        print(f"  chiVe ID: {chive_id}")
+        # If this hash already exists locally, the content is identical -- skip saving.
+        cached = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
+        if os.path.exists(cached):
+            print(f"  chiVe ID: {chive_id} (already cached)")
+            chive_surface = load_chive(cached)
+        else:
+            print(f"  chiVe ID: {chive_id}")
 
     git_commit = ""
     import shutil
@@ -507,7 +514,8 @@ def build_dataset(  # pylint: disable=too-many-locals
     torch.save(bundle, output_path)
 
     chive_path = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
-    torch.save(chive_surface, chive_path)
+    if not os.path.exists(chive_path):
+        torch.save(chive_surface, chive_path)
 
     size_mb = os.path.getsize(output_path) / (1024 * 1024)
     chive_mb = os.path.getsize(chive_path) / (1024 * 1024)
