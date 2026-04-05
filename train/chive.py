@@ -72,7 +72,7 @@ def load_chive_vocab_set() -> frozenset[str]:
     return frozenset(words)
 
 
-def parse_chive_vectors(
+def parse_chive_vectors(  # pylint: disable=too-many-locals
     txt_path: str,
     surface_vocab: dict[str, int],
     vocab_size: int,
@@ -81,22 +81,47 @@ def parse_chive_vectors(
 
     Returns (vectors_tensor, matched_words_set).
     """
-    vectors = torch.zeros(vocab_size, CHIVE_DIM)
+    base_to_targets: dict[str, list[str]] = {}
     target = set(surface_vocab.keys())
+
+    from sudachipy import SplitMode, dictionary
+
+    tokenizer = dictionary.Dictionary(dict="core").create(mode=SplitMode.C)
+    for t in target:
+        tokens = tokenizer.tokenize(t)
+        base = tokens[0].dictionary_form() if len(tokens) > 0 else t
+        if base != t:
+            if base not in base_to_targets:
+                base_to_targets[base] = []
+            base_to_targets[base].append(t)
+
+    vectors = torch.zeros(vocab_size, CHIVE_DIM)
     matched: set[str] = set()
     with open(txt_path, encoding="utf-8") as f:
         f.readline()
         for line in f:
             space_idx = line.index(" ")
             word = line[:space_idx]
-            if word in target:
+
+            targets_to_fill = []
+            if word in target and word not in matched:
+                targets_to_fill.append(word)
+
+            if word in base_to_targets:
+                for t in base_to_targets[word]:
+                    if t not in matched:
+                        targets_to_fill.append(t)
+
+            if targets_to_fill:
                 vals = line[space_idx + 1 :].strip().split()
-                vectors[surface_vocab[word]] = torch.tensor(
-                    [float(v) for v in vals], dtype=torch.float32
-                )
-                matched.add(word)
+                vec = torch.tensor([float(v) for v in vals], dtype=torch.float32)
+                for t in targets_to_fill:
+                    vectors[surface_vocab[t]] = vec
+                    matched.add(t)
+
                 if len(matched) == len(target):
                     break
+
     return vectors, matched
 
 

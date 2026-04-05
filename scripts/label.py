@@ -445,14 +445,16 @@ def analyze_batch(
         tokens = split_kotogram(kotogram_obj)
 
         token_vocab_strings: List[Dict[str, str]] = []
+        token_base_orths: List[str] = []
         for token in tokens:
             token_feat = extract_token_features(token)
             token_vocab_strings.append(get_vocab_strings(token_feat))
+            token_base_orths.append(token_feat.base_orth)
 
         unknown = [
             vs["surface"]
-            for vs in token_vocab_strings
-            if vs["surface"] not in _CHIVE_VOCAB
+            for vs, base in zip(token_vocab_strings, token_base_orths)
+            if vs["surface"] not in _CHIVE_VOCAB and base not in _CHIVE_VOCAB
         ]
         if unknown:
             chive_skipped.append(sentence)
@@ -613,14 +615,16 @@ def analyze_batch_from_db(
         # Tokenize and collect feature statistics.
         tokens = split_kotogram(kotogram_obj)
         token_vocab_strings: List[Dict[str, str]] = []
+        token_base_orths: List[str] = []
         for token in tokens:
             token_feat = extract_token_features(token)
             token_vocab_strings.append(get_vocab_strings(token_feat))
+            token_base_orths.append(token_feat.base_orth)
 
         unknown = [
             vs["surface"]
-            for vs in token_vocab_strings
-            if vs["surface"] not in _CHIVE_VOCAB
+            for vs, base in zip(token_vocab_strings, token_base_orths)
+            if vs["surface"] not in _CHIVE_VOCAB and base not in _CHIVE_VOCAB
         ]
         if unknown:
             chive_skipped.append(sentence)
