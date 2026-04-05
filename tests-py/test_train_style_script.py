@@ -41,6 +41,7 @@ class TestTrainStyleScript(unittest.TestCase):
             expected_label_manifest = [
                 "[.cache]/style_dataset/vocab.json",
                 "[.cache]/style_dataset/content_mask.bin",
+                "[.cache]/style_dataset/surface_to_base.json",
                 "[.cache]/style_dataset/sentences.txt",
                 "[.cache]/style_dataset/kotograms.txt",
                 "[.cache]/style_dataset/kc_*.bin",

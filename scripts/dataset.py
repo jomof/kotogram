@@ -316,6 +316,7 @@ def merge_content_mask(
 
 def extract_chive_for_merged_vocab(
     surface_vocab: Dict[str, int],
+    surface_to_base: Optional[Dict[str, str]] = None,
 ) -> torch.Tensor:
     """Extract chiVe vectors aligned to merged vocab; unmatched tokens are zero vectors."""
     from train.chive import (  # pylint: disable=redefined-outer-name
@@ -329,7 +330,9 @@ def extract_chive_for_merged_vocab(
         download_chive()
 
     vocab_size = max(surface_vocab.values()) + 1 if surface_vocab else 0
-    vectors, matched = parse_chive_vectors(txt_path, surface_vocab, vocab_size)
+    vectors, matched = parse_chive_vectors(
+        txt_path, surface_vocab, vocab_size, surface_to_base
+    )
     print(f"  chiVe: {len(matched):,}/{len(surface_vocab):,} tokens matched")
     return vectors
 
@@ -442,8 +445,16 @@ def build_dataset(  # pylint: disable=too-many-locals
                 print(f"  chiVe unchanged from base dataset ({chive_id})")
 
     if chive_surface is None:
+        s2b_path = os.path.join(cache_dir, "surface_to_base.json")
+        surface_to_base = {}
+        if os.path.exists(s2b_path):
+            with open(s2b_path, encoding="utf-8") as f:
+                surface_to_base = json.load(f)
+
         print("  Extracting chiVe vectors for merged vocabulary...")
-        chive_surface = extract_chive_for_merged_vocab(merged_vocab["surface"])
+        chive_surface = extract_chive_for_merged_vocab(
+            merged_vocab["surface"], surface_to_base
+        )
         chive_id = compute_chive_hash(chive_surface)
         # If this hash already exists locally, the content is identical -- skip saving.
         cached = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")

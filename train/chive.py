@@ -76,6 +76,7 @@ def parse_chive_vectors(  # pylint: disable=too-many-locals
     txt_path: str,
     surface_vocab: dict[str, int],
     vocab_size: int,
+    surface_to_base: Optional[dict[str, str]] = None,
 ) -> tuple[torch.Tensor, set[str]]:
     """Parse chiVe text file, mapping surface_vocab entries to vectors.
 
@@ -84,16 +85,24 @@ def parse_chive_vectors(  # pylint: disable=too-many-locals
     base_to_targets: dict[str, list[str]] = {}
     target = set(surface_vocab.keys())
 
-    from sudachipy import SplitMode, dictionary
+    if surface_to_base:
+        for t in target:
+            base = surface_to_base.get(t, t)
+            if base != t:
+                if base not in base_to_targets:
+                    base_to_targets[base] = []
+                base_to_targets[base].append(t)
+    else:
+        from sudachipy import SplitMode, dictionary
 
-    tokenizer = dictionary.Dictionary(dict="core").create(mode=SplitMode.C)
-    for t in target:
-        tokens = tokenizer.tokenize(t)
-        base = tokens[0].dictionary_form() if len(tokens) > 0 else t
-        if base != t:
-            if base not in base_to_targets:
-                base_to_targets[base] = []
-            base_to_targets[base].append(t)
+        tokenizer = dictionary.Dictionary(dict="core").create(mode=SplitMode.C)
+        for t in target:
+            tokens = tokenizer.tokenize(t)
+            base = tokens[0].normalized_form() if len(tokens) > 0 else t
+            if base != t:
+                if base not in base_to_targets:
+                    base_to_targets[base] = []
+                base_to_targets[base].append(t)
 
     vectors = torch.zeros(vocab_size, CHIVE_DIM)
     matched: set[str] = set()
@@ -205,6 +214,7 @@ def extract_chive_for_vocab(  # pylint: disable=too-many-locals
     surface_vocab: dict[str, int],
     surface_freqs: Optional[dict[str, int]] = None,
     miss_report_limit: int = 30,
+    surface_to_base: Optional[dict[str, str]] = None,
 ) -> str:
     """Scan the full chiVe text file and save only the matching vectors.
 
@@ -238,7 +248,7 @@ def extract_chive_for_vocab(  # pylint: disable=too-many-locals
         f"Extracting chiVe vectors for {len(target_strings):,} vocab entries..."
     )
     vectors, matched_strings = parse_chive_vectors(
-        chive_txt_path, surface_vocab, vocab_size
+        chive_txt_path, surface_vocab, vocab_size, surface_to_base
     )
 
     matched = len(matched_strings)

@@ -97,6 +97,7 @@ class SudachiJapaneseParser(JapaneseParser):
             surface = token.surface()
             pos_tuple = token.part_of_speech()  # Tuple of 6 elements
             dictionary_form = token.dictionary_form()
+            normalized_form = token.normalized_form()
             reading_form = token.reading_form()
 
             # Parse POS tuple
@@ -177,7 +178,7 @@ class SudachiJapaneseParser(JapaneseParser):
                 add("lemma", "*")  # Compression: means "same as surface"
             add(
                 "base_orth",
-                dictionary_form if dictionary_form != surface else None,
+                normalized_form if normalized_form != surface else None,
             )
             if reading_form != surface:
                 add("reading", encode_star(reading_form))
