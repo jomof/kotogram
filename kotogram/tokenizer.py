@@ -116,7 +116,7 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     Returns:
         Dict mapping field name to vocab-ready string for that field.
     """
-    surface_value = features.normalized_surface or features.surface
+    surface_value = features.surface
     return {
         "surface": surface_value,
         "pos": features.pos,

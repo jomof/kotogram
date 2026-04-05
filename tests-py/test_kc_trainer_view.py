@@ -51,7 +51,6 @@ def create_tiny_style_dataset():
         "base_form": [1, 2],
         "c_type": [1, 2],
         "c_form": [1, 2],
-        "normalized_surface": [1, 2],
         "full_reading": [1, 2],
         "pronunciation": [1, 2],
         "base_orth": [1, 2],

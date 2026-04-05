@@ -252,8 +252,7 @@ def _tokenize_to_surfaces(sentence: str) -> List[str]:
     surfaces: List[str] = []
     for tok in tokens:
         features: TokenFeatures = extract_token_features(tok)
-        # Use raw surface (what appears in the text) for alignment,
-        # NOT normalized_surface (dictionary form like 食べる for 食べ).
+        # Use raw surface (what appears in the text) for alignment.
         if features.surface:
             surfaces.append(features.surface)
     return surfaces
@@ -426,6 +425,34 @@ def check_test_file() -> bool:
                     f" Japanese chars with section title{sec}"
                 )
                 all_ok = False
+
+        # ── Check 4: each x masks exactly one token in all sentences ──
+        for variant in case.masked_variants:
+            # Count x positions in the mask pattern
+            x_positions = [i for i, c in enumerate(variant) if c == "x"]
+            n_x = len(x_positions)
+
+            # Verify main sentence
+            main_masked = align_tokens_to_masked(surfaces, variant)
+            if main_masked is not None and len(main_masked) != n_x:
+                print(
+                    f"    \u2717 FAIL (x-count): '{variant}' has {n_x} x's"
+                    f" but masks {len(main_masked)} tokens in"
+                    f" main sentence{sec}"
+                )
+                all_ok = False
+
+            # Verify each alternative
+            for alt in case.acceptable_alternatives:
+                alt_surfaces = _tokenize_to_surfaces(alt)
+                alt_masked = align_tokens_to_masked(alt_surfaces, variant)
+                if alt_masked is not None and len(alt_masked) != n_x:
+                    print(
+                        f"    \u2717 FAIL (x-count): '{variant}' has {n_x} x's"
+                        f" but masks {len(alt_masked)} tokens in"
+                        f" '{alt}'{sec}"
+                    )
+                    all_ok = False
 
         print()
 

@@ -100,8 +100,8 @@ class TestMasking(unittest.TestCase):
         reconstructed = kotogram_to_japanese(kotogram)
         self.assertEqual(reconstructed, "猫が走る")
 
-    def test_surface_vocab_uses_normalized_surface(self):
-        """Surface vocab uses normalized_surface for embedding lookup, not the mask."""
+    def test_surface_vocab_uses_raw_surface(self):
+        """Surface vocab uses raw surface form for embedding lookup, not the mask."""
         text = "花子が走る"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
@@ -110,7 +110,7 @@ class TestMasking(unittest.TestCase):
         features = extract_token_features(tokens[0])
 
         vocab_strings = get_vocab_strings(features)
-        # Surface vocab is the normalized surface form (for chiVe matching),
+        # Surface vocab is the raw surface form,
         # not the mask placeholder -- masking only applies to reading_gram.
         self.assertEqual(vocab_strings["surface"], "花子")
         self.assertEqual(features.reading_gram, "<given-name>")
