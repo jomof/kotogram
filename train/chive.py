@@ -52,6 +52,54 @@ def get_chive_txt_path() -> str:
     return os.path.join(get_chive_dir(), f"chive-{CHIVE_VERSION}-{CHIVE_VARIANT}.txt")
 
 
+def load_chive_vocab_set() -> frozenset[str]:
+    """Load just the word strings from the chiVe text file.
+
+    Requires the file to already be downloaded (call download_chive() first).
+    Returns a frozenset for efficient membership testing.
+    """
+    txt_path = get_chive_txt_path()
+    if not os.path.exists(txt_path):
+        raise FileNotFoundError(
+            f"chiVe text file not found at {txt_path}. Run download_chive() first."
+        )
+    words: set[str] = set()
+    with open(txt_path, encoding="utf-8") as f:
+        f.readline()  # skip header (vocab_size dim)
+        for line in f:
+            space_idx = line.index(" ")
+            words.add(line[:space_idx])
+    return frozenset(words)
+
+
+def parse_chive_vectors(
+    txt_path: str,
+    surface_vocab: dict[str, int],
+    vocab_size: int,
+) -> tuple[torch.Tensor, set[str]]:
+    """Parse chiVe text file, mapping surface_vocab entries to vectors.
+
+    Returns (vectors_tensor, matched_words_set).
+    """
+    vectors = torch.zeros(vocab_size, CHIVE_DIM)
+    target = set(surface_vocab.keys())
+    matched: set[str] = set()
+    with open(txt_path, encoding="utf-8") as f:
+        f.readline()
+        for line in f:
+            space_idx = line.index(" ")
+            word = line[:space_idx]
+            if word in target:
+                vals = line[space_idx + 1 :].strip().split()
+                vectors[surface_vocab[word]] = torch.tensor(
+                    [float(v) for v in vals], dtype=torch.float32
+                )
+                matched.add(word)
+                if len(matched) == len(target):
+                    break
+    return vectors, matched
+
+
 def download_chive() -> str:
     """Download and extract chiVe vectors if not already cached.
 
@@ -159,40 +207,22 @@ def extract_chive_for_vocab(  # pylint: disable=too-many-locals
         )
 
     vocab_size = max(surface_vocab.values()) + 1
-    vectors = torch.zeros(vocab_size, CHIVE_DIM)
-
     target_strings = set(surface_vocab.keys())
-    matched_strings: set[str] = set()
 
     console.print(
         f"Extracting chiVe vectors for {len(target_strings):,} vocab entries..."
     )
-    with open(chive_txt_path, encoding="utf-8") as f:
-        header = f.readline().strip().split()
-        chive_vocab_size, chive_dim = int(header[0]), int(header[1])
-        assert chive_dim == CHIVE_DIM, f"Expected {CHIVE_DIM}d, got {chive_dim}d"
-
-        for line in f:
-            space_idx = line.index(" ")
-            word = line[:space_idx]
-            if word in target_strings:
-                token_id = surface_vocab[word]
-                vals = line[space_idx + 1 :].strip().split()
-                vectors[token_id] = torch.tensor(
-                    [float(v) for v in vals], dtype=torch.float32
-                )
-                matched_strings.add(word)
-                if len(matched_strings) == len(target_strings):
-                    break
+    vectors, matched_strings = parse_chive_vectors(
+        chive_txt_path, surface_vocab, vocab_size
+    )
 
     matched = len(matched_strings)
     coverage = matched / max(len(target_strings), 1) * 100
     console.print(
         f"  Matched [bold]{matched:,}[/bold] / {len(target_strings):,} "
-        f"tokens ({coverage:.1f}% coverage) from {chive_vocab_size:,} chiVe entries"
+        f"tokens ({coverage:.1f}% coverage)"
     )
 
-    # Report most frequent unmatched tokens
     missed = target_strings - matched_strings
     if missed and surface_freqs is not None:
         missed_with_freq = sorted(
