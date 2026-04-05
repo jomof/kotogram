@@ -12,7 +12,7 @@ different --top-pct).
 
 Output:
   .cc/<crawl-id>/sentences.txt.gz           All extracted sentences
-  .cc/<crawl-id>/selected-sentences.txt      Top-scored subset
+  .cc/selected-sentences.txt                  Top-scored subset (stable path)
 """
 
 from __future__ import annotations
@@ -26,6 +26,7 @@ import multiprocessing as mp
 import re
 import sqlite3
 import struct
+import time
 import unicodedata
 from pathlib import Path
 from typing import Any
@@ -33,24 +34,27 @@ from typing import Any
 import numpy as np
 
 from scripts.cc_common import (
+    CC_CACHE_DIR,
     CHAR_FILTER,
     CORPUS_DB,
     GRAMMATIC_SOFT_MIN,
     MAX_SENTENCE_LEN,
     STYLE_MODEL_DIR,
+    _CORPUS_EMBED_META,
     _cache_path,
     clean_sentence,
     console,
     content_ok,
-    corpus_embed_path,
     diversity_scores,
     format_bytes,
     get_cc_scores,
     get_corpus_embeddings,
     get_crawl_info,
     get_latest_crawl_id,
-    is_cache_valid,
     model_hash,
+    perf_flush,
+    perf_log,
+    perf_start_run,
 )
 
 _HIRAGANA_RE = re.compile(r"[\u3040-\u309F]")
@@ -375,53 +379,152 @@ def _run_extraction(  # pylint: disable=too-many-locals
 # ---------------------------------------------------------------------------
 
 
+_DIV_META = "diversity-meta.json"
+
+
+def _corpus_prefix_ok() -> tuple[bool, str]:
+    """Check whether the old corpus is an exact prefix of the current one.
+
+    ``get_corpus_embeddings`` stores *prefix_fp* (fingerprint of the reused
+    rows) and *full_fp* (fingerprint of the entire array).  If the current
+    ``prefix_fp`` equals the ``corpus_fp`` stored by the last diversity run,
+    the old corpus rows occupy indices ``[:old_corpus_n]`` unchanged and new
+    rows sit at ``[old_corpus_n:]``.
+    """
+    corpus_meta_path = CC_CACHE_DIR / _CORPUS_EMBED_META
+    if not corpus_meta_path.exists():
+        return False, ""
+    meta = json.loads(corpus_meta_path.read_text(encoding="utf-8"))
+    return True, meta.get("prefix_fp", "")
+
+
 def _get_diversity(
     crawl_id: str,
     cc_emb: np.ndarray,
     corpus_emb: np.ndarray,
     model_md5: str,
+    device: Any = None,
 ) -> np.ndarray:
-    """Load or compute NN diversity scores, with incremental extension."""
+    """Load or compute NN diversity scores, with incremental extension.
+
+    Tracks ``(cc_n, corpus_n, corpus_fp)`` so incremental updates are safe:
+
+    * **Corpus grew (additions only)**: old corpus is a verified prefix
+      → compute distances only against the new corpus rows and take the
+      element-wise minimum with cached scores.
+    * **Corpus changed non-trivially** (removals / reordering): detected
+      via ``prefix_fp`` mismatch → full recompute.
+    * **CC grew**: extend with new CC rows scored against full corpus.
+    """
+    _t0_div = time.monotonic()
+    _div_stale = ""
     cache_dir = _cache_path(crawl_id, "inference")
     cache_dir.mkdir(parents=True, exist_ok=True)
     div_path = cache_dir / "diversity.npy"
-    emb_path = cache_dir / "cc-embeddings.npy"
-    corpus_cache = corpus_embed_path()
+    meta_path = cache_dir / _DIV_META
 
-    cached_n = 0
-    parts: list[np.ndarray] = []
+    n_cc = cc_emb.shape[0]
+    n_corpus = corpus_emb.shape[0]
 
-    deps_fresh = (
-        (
-            corpus_cache.exists()
-            and emb_path.exists()
-            and div_path.stat().st_mtime
-            > max(corpus_cache.stat().st_mtime, emb_path.stat().st_mtime)
-        )
-        if div_path.exists()
-        else False
-    )
-    if deps_fresh and is_cache_valid(cache_dir, model_md5):
-        cached: np.ndarray = np.load(str(div_path))
-        cached_n = cached.shape[0]
-        if cached_n == cc_emb.shape[0]:
-            console.print("  Diversity scores loaded from cache")
-            return cached
-        if cached_n < cc_emb.shape[0]:
+    old_cc_n = 0
+    old_corpus_n = 0
+    old_corpus_fp = ""
+    cached_div: np.ndarray | None = None
+
+    if div_path.exists() and meta_path.exists():
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        if meta.get("model_hash") == model_md5:
+            old_cc_n = meta.get("cc_n", 0)
+            old_corpus_n = meta.get("corpus_n", 0)
+            old_corpus_fp = meta.get("corpus_fp", "")
+            existing: np.ndarray = np.load(str(div_path))
+            if existing.shape[0] == old_cc_n and old_cc_n <= n_cc:
+                cached_div = existing
+            else:
+                old_cc_n = 0
+                old_corpus_n = 0
+
+    # Verify the old corpus is a true prefix of the current one
+    prefix_ok, current_prefix_fp = _corpus_prefix_ok()
+    if cached_div is not None and old_corpus_fp and prefix_ok:
+        if current_prefix_fp != old_corpus_fp:
             console.print(
-                f"  Diversity: {cached_n:,} cached, "
-                f"{cc_emb.shape[0] - cached_n:,} new to score"
+                "  Diversity cache stale (corpus rows changed), recomputing..."
             )
-            parts.append(cached)
-        else:
-            cached_n = 0
+            _div_stale = "stale_corpus_prefix"
+            cached_div = None
+            old_cc_n = 0
+            old_corpus_n = 0
 
-    if not cached_n:
+    # Read the current full fingerprint to store in our metadata
+    corpus_meta_path = CC_CACHE_DIR / _CORPUS_EMBED_META
+    current_corpus_fp = ""
+    if corpus_meta_path.exists():
+        cmeta = json.loads(corpus_meta_path.read_text(encoding="utf-8"))
+        current_corpus_fp = cmeta.get("full_fp", "")
+
+    if cached_div is not None and old_cc_n == n_cc and old_corpus_n == n_corpus:
+        perf_log("diversity", cache="hit", cc=n_cc, corpus=n_corpus,
+                 time_s=time.monotonic() - _t0_div)
+        console.print("  Diversity scores loaded from cache")
+        return cached_div
+
+    if cached_div is None:
         console.print("  Computing diversity scores (no valid cache)...")
-    parts.append(diversity_scores(cc_emb[cached_n:], corpus_emb))
+        result = diversity_scores(cc_emb, corpus_emb, device=device)
+    else:
+        parts: list[np.ndarray] = []
 
-    result = np.concatenate(parts) if len(parts) > 1 else parts[0]
+        if old_cc_n > 0:
+            old_div = cached_div
+            if old_corpus_n < n_corpus:
+                new_corpus_rows = n_corpus - old_corpus_n
+                console.print(
+                    f"  Diversity: updating {old_cc_n:,} cached scores"
+                    f" against {new_corpus_rows:,} new corpus rows"
+                )
+                update_dists = diversity_scores(
+                    cc_emb[:old_cc_n],
+                    corpus_emb[old_corpus_n:],
+                    device=device,
+                )
+                old_div = np.minimum(old_div, update_dists)
+            parts.append(old_div)
+
+        if old_cc_n < n_cc:
+            new_cc_rows = n_cc - old_cc_n
+            console.print(
+                f"  Diversity: scoring {new_cc_rows:,} new CC rows"
+                f" against {n_corpus:,} corpus rows"
+            )
+            parts.append(
+                diversity_scores(cc_emb[old_cc_n:], corpus_emb, device=device)
+            )
+
+        result = np.concatenate(parts) if len(parts) > 1 else parts[0]
+
+    if cached_div is None:
+        _div_kind = _div_stale or "miss"
+    elif old_cc_n < n_cc and old_corpus_n < n_corpus:
+        _div_kind = "partial_both"
+    elif old_cc_n < n_cc:
+        _div_kind = "partial_cc"
+    elif old_corpus_n < n_corpus:
+        _div_kind = "partial_corpus"
+    else:
+        _div_kind = "recompute"
+    perf_log("diversity", cache=_div_kind,
+             cc=n_cc, corpus=n_corpus,
+             old_cc=old_cc_n, old_corpus=old_corpus_n,
+             time_s=time.monotonic() - _t0_div)
     np.save(str(div_path), result)
+    div_meta = {
+        "cc_n": n_cc,
+        "corpus_n": n_corpus,
+        "corpus_fp": current_corpus_fp,
+        "model_hash": model_md5,
+    }
+    meta_path.write_text(json.dumps(div_meta), encoding="utf-8")
     return result
 
 
@@ -686,9 +789,13 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     console.rule("[bold]Common Crawl — Extract & Select Japanese Sentences[/bold]")
 
-    bloom = _load_or_build_bloom()
-
     crawl_id = args.crawl or get_latest_crawl_id()
+    perf_start_run("extract-sentences", crawl=crawl_id)
+
+    _t0_bloom = time.monotonic()
+    bloom = _load_or_build_bloom()
+    perf_log("bloom_filter", time_s=time.monotonic() - _t0_bloom)
+
     info = get_crawl_info(crawl_id)
     console.print(f"  Crawl: [bold]{crawl_id}[/bold]  ({info['name']})")
 
@@ -698,6 +805,8 @@ def main() -> None:  # pylint: disable=too-many-locals
         console.print(
             "[red]No fetched WET files found. Run 'cc fetch-jp-wet' first.[/red]"
         )
+        perf_log("early_exit", reason="no_wet_files")
+        perf_flush()
         return
 
     if args.rebuild:
@@ -714,16 +823,16 @@ def main() -> None:  # pylint: disable=too-many-locals
     console.print(f"  Existing sentences: {len(existing_sentences):,}")
     console.print(f"  Sentence length: {min_len}–{max_len} chars")
 
+    _t0_extract = time.monotonic()
     # -- Extraction phase (skip if nothing new) --
     if new_files:
         console.print()
         stats = _run_extraction(new_files, min_len, max_len, seen, already_processed)
 
-        merged = existing_sentences + stats["new_sentences"]
-        merged = [clean_sentence(s) for s in merged]
-        merged = [s for s in merged if content_ok(s)]
-        merged = list(dict.fromkeys(merged))
-        merged, corpus_dupes = _corpus_dedup(merged, bloom)
+        new_batch = [clean_sentence(s) for s in stats["new_sentences"]]
+        new_batch = [s for s in new_batch if content_ok(s)]
+        new_batch, corpus_dupes = _corpus_dedup(new_batch, bloom)
+        merged = list(dict.fromkeys(existing_sentences + new_batch))
 
         out_path = _sentences_path(crawl_id)
         with gzip.open(out_path, "wt", encoding="utf-8") as f:
@@ -749,10 +858,16 @@ def main() -> None:  # pylint: disable=too-many-locals
     else:
         console.print("\n  [green]No new files to extract.[/green]")
 
+    perf_log("extraction",
+             new_files=len(new_files),
+             time_s=time.monotonic() - _t0_extract)
+
     # -- Load all sentences for selection --
     sentences_path = _sentences_path(crawl_id)
     if not sentences_path.exists():
         console.print("[red]No sentences.txt.gz found.[/red]")
+        perf_log("early_exit", reason="no_sentences_gz")
+        perf_flush()
         return
 
     with gzip.open(sentences_path, "rt", encoding="utf-8") as fh:
@@ -772,6 +887,7 @@ def main() -> None:  # pylint: disable=too-many-locals
     model_md5 = model_hash()
     console.print(f"  Model hash: {model_md5}")
 
+    _t0_scoring = time.monotonic()
     corpus_emb = get_corpus_embeddings(model, device, model_md5)
     console.print(
         f"  Corpus embeddings: {corpus_emb.shape[0]:,} x {corpus_emb.shape[1]}"
@@ -792,10 +908,17 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     if len(keep_idx) == 0:
         console.print("[red]No sentences survived filtering.[/red]")
+        perf_log("early_exit", reason="all_filtered")
+        perf_flush()
         return
 
+    perf_log("model_scoring", n_cc=len(cc_sentences),
+             n_corpus=corpus_emb.shape[0],
+             time_s=time.monotonic() - _t0_scoring)
+
     # -- Score filtered subset --
-    all_diversity = _get_diversity(crawl_id, cc_emb, corpus_emb, model_md5)
+    _t0_sel = time.monotonic()
+    all_diversity = _get_diversity(crawl_id, cc_emb, corpus_emb, model_md5, device)
     diversity = all_diversity[keep_idx]
     div_pct = _rank_percentiles(diversity)
     unc_pct = _rank_percentiles(cc_uncertainty[keep_idx])
@@ -807,10 +930,14 @@ def main() -> None:  # pylint: disable=too-many-locals
     selected_sentences = [cc_sentences[i] for i in sel_global]
 
     # -- Write selected output --
-    sel_path = _cache_path(crawl_id, "selected-sentences.txt")
+    sel_path = Path(".cc/selected-sentences.txt")
     with open(sel_path, "w", encoding="utf-8") as fh:
         for sent in selected_sentences:
             fh.write(sent + "\n")
+
+    perf_log("selection", n_selected=len(selected_sentences),
+             n_candidates=len(keep_idx),
+             time_s=time.monotonic() - _t0_sel)
 
     _print_selection_summary(
         total_cc=len(cc_sentences),
@@ -821,6 +948,8 @@ def main() -> None:  # pylint: disable=too-many-locals
         unc=cc_uncertainty[sel_global],
         out_path=sel_path,
     )
+
+    perf_flush()
 
 
 if __name__ == "__main__":

@@ -16,6 +16,7 @@ import gzip
 import http.client
 import io
 import json
+import random
 import sys
 import time
 import urllib.parse
@@ -113,6 +114,24 @@ def _processed_path(crawl_id: str, wet_filename: str) -> Path:
     """Return the output path for a processed WET file."""
     stem = Path(wet_filename).name.replace(".warc.wet.gz", "")
     return _cache_path(crawl_id, "wet-jp", f"{stem}.jsonl.gz")
+
+
+def _done_manifest_path(crawl_id: str) -> Path:
+    return _cache_path(crawl_id, "wet-jp-done.txt")
+
+
+def _load_done_manifest(crawl_id: str) -> set[str]:
+    p = _done_manifest_path(crawl_id)
+    if not p.exists():
+        return set()
+    return {ln for ln in p.read_text(encoding="utf-8").splitlines() if ln}
+
+
+def _mark_done(crawl_id: str, wet_path: str) -> None:
+    p = _done_manifest_path(crawl_id)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with open(p, "a", encoding="utf-8") as f:
+        f.write(wet_path + "\n")
 
 
 def _process_wet_stream(
@@ -230,6 +249,11 @@ def main() -> None:  # pylint: disable=too-many-locals
         default=None,
         help="Crawl ID (default: latest). Example: CC-MAIN-2026-08",
     )
+    parser.add_argument(
+        "--forget",
+        action="store_true",
+        help="Clear the done-manifest so all WET files are eligible again.",
+    )
     args = parser.parse_args()
 
     console.rule("[bold]Common Crawl — Fetch Japanese WET[/bold]")
@@ -250,10 +274,17 @@ def main() -> None:  # pylint: disable=too-many-locals
     con = _ensure_duckdb()
     wet_index = _build_jpn_url_index(crawl_id, con, parquet_files)
 
+    if args.forget:
+        mp = _done_manifest_path(crawl_id)
+        if mp.exists():
+            mp.unlink()
+        console.print("  [yellow]Done-manifest cleared.[/yellow]")
+
+    done_set = _load_done_manifest(crawl_id)
     already_done = 0
     to_process: list[tuple[str, list[str]]] = []
     for wet_path, urls in wet_index.items():
-        if _processed_path(crawl_id, wet_path).exists():
+        if wet_path in done_set or _processed_path(crawl_id, wet_path).exists():
             already_done += 1
         else:
             to_process.append((wet_path, urls))
@@ -268,9 +299,14 @@ def main() -> None:  # pylint: disable=too-many-locals
         console.print("[green]Nothing to do.[/green]")
         return
 
-    # Sort by descending Japanese page count for best yield first
-    to_process.sort(key=lambda x: len(x[1]), reverse=True)
-    batch = to_process[:remaining]
+    weights = [len(urls) for _, urls in to_process]
+    indices = list(range(len(to_process)))
+    chosen: list[int] = []
+    for _ in range(remaining):
+        pick = random.choices(indices, weights=[weights[i] for i in indices])[0]
+        chosen.append(pick)
+        indices.remove(pick)
+    batch = [to_process[i] for i in chosen]
 
     est_download = remaining * 62 * 1024 * 1024
     console.print(
@@ -308,6 +344,7 @@ def main() -> None:  # pylint: disable=too-many-locals
                 console.print("    [red]Skipped (failed twice)[/red]")
             continue
         pages, nbytes = result
+        _mark_done(crawl_id, wet_path)
         total_pages += pages
         total_bytes += nbytes
         console.print(

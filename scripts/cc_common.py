@@ -23,6 +23,54 @@ console = Console()
 STYLE_MODEL_DIR = "models/style"
 MAX_SENTENCE_LEN = 100
 
+# ---------------------------------------------------------------------------
+# Perf / cache diagnostic log  (.cc/perf-hist.log)
+# ---------------------------------------------------------------------------
+
+_perf_entries: list[str] = []
+_perf_t0: float = 0.0
+
+
+def perf_start_run(label: str, **kv: Any) -> None:
+    """Begin a new perf-log block, clearing any prior entries."""
+    global _perf_t0  # noqa: PLW0603
+    _perf_t0 = time.monotonic()
+    _perf_entries.clear()
+    _perf_entries.append(f"=== {label} {time.strftime('%Y-%m-%dT%H:%M:%S')} ===")
+    if kv:
+        _perf_entries.append("  ".join(f"{k}={v}" for k, v in kv.items()))
+
+
+def perf_log(
+    section: str, *, indent: int = 0, time_s: float | None = None, **kv: Any
+) -> None:
+    """Append one diagnostic line."""
+    parts: list[str] = []
+    for k, v in kv.items():
+        if isinstance(v, float):
+            parts.append(f"{k}={v:.4f}")
+        else:
+            parts.append(f"{k}={v}")
+    prefix = "  " * indent
+    body = f"{prefix}{section}  " + "  ".join(parts)
+    if time_s is not None:
+        body += f"  {time_s:.1f}s"
+    _perf_entries.append(body)
+
+
+def perf_flush() -> None:
+    """Write accumulated entries to .cc/perf-hist.log (append) and clear."""
+    if not _perf_entries:
+        return
+    elapsed = time.monotonic() - _perf_t0
+    _perf_entries.append(f"total  {elapsed:.1f}s")
+    _perf_entries.append("")
+    log_path = CC_CACHE_DIR / "perf-hist.log"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(log_path, "a", encoding="utf-8") as f:
+        f.write('\n'.join(_perf_entries) + '\n')
+    _perf_entries.clear()
+
 
 def clean_sentence(sentence: str) -> str:
     """Strip whitespace from a Japanese sentence."""
@@ -201,6 +249,7 @@ def parallel_parse_and_encode(
     """Parse sentences to kotograms then encode, both in parallel."""
     from rich.progress import Progress as RichProgress
 
+    _t0_pe = time.monotonic()
     num_workers = max(1, mp.cpu_count() or 1)
     chunk_size = max(1, len(sentences) // (num_workers * 4))
 
@@ -228,6 +277,8 @@ def parallel_parse_and_encode(
                 encoded.extend(enc_result)
                 progress.advance(task, len(enc_result))
 
+    perf_log("parse_and_encode", indent=1, n=len(sentences),
+            workers=num_workers, time_s=time.monotonic() - _t0_pe)
     return encoded
 
 
@@ -368,68 +419,61 @@ def content_ok(sentence: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# Diversity scoring via sklearn (parallel nearest-neighbour)
+# Diversity scoring via GPU nearest-neighbour (matmul decomposition)
 # ---------------------------------------------------------------------------
 
-_NN_INDEX: Any = None
-
-
-def _nn_worker_init(corpus: np.ndarray) -> None:
-    """Fit the NN index once per worker process."""
-    from sklearn.neighbors import NearestNeighbors  # type: ignore[import-untyped]
-
-    global _NN_INDEX  # noqa: PLW0603  # pylint: disable=global-statement
-    _NN_INDEX = NearestNeighbors(n_neighbors=1, metric="euclidean", algorithm="brute")
-    _NN_INDEX.fit(corpus)
-
-
-def _nn_query_chunk(chunk: np.ndarray) -> np.ndarray:
-    """Worker: query the pre-fitted index for a chunk of vectors."""
-    dists, _ = _NN_INDEX.kneighbors(chunk)
-    result: np.ndarray = dists[:, 0]
-    return result
-
-
 _NN_CHUNK_SIZE = 4096
+_NN_CORPUS_TILE = 32_768
 
 
 def diversity_scores(
     cc_embeddings: np.ndarray,
     corpus_embeddings: np.ndarray,
+    device: Any = None,
 ) -> np.ndarray:
-    """L2 distance from each CC embedding to its nearest corpus.db neighbour."""
+    """L2 distance from each CC embedding to its nearest corpus.db neighbour.
+
+    Uses ||a-b||² = ||a||² + ||b||² - 2a·b so the heavy lifting is a matmul,
+    which is the best-optimised operation on MPS/GPU.  Both the query and
+    corpus dimensions are tiled to keep peak memory bounded.
+    """
+    import torch
     from rich.progress import Progress as RichProgress
 
-    corpus_f32 = (
-        corpus_embeddings
-        if corpus_embeddings.dtype == np.float32
-        else corpus_embeddings.astype(np.float32)
-    )
-    cc_f32 = (
-        cc_embeddings
-        if cc_embeddings.dtype == np.float32
-        else cc_embeddings.astype(np.float32)
-    )
+    if device is None:
+        device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-    num_workers = max(1, mp.cpu_count() or 1)
-    chunks = [
-        cc_f32[i : i + _NN_CHUNK_SIZE] for i in range(0, len(cc_f32), _NN_CHUNK_SIZE)
-    ]
+    _t0_nn = time.monotonic()
+    corpus_f32 = np.array(corpus_embeddings, dtype=np.float32)
+    corpus_t = torch.from_numpy(corpus_f32).to(device)
+    corpus_sq_norms = (corpus_t * corpus_t).sum(dim=1)
 
-    result: np.ndarray = np.zeros(len(cc_f32), dtype=np.float32)
+    result: np.ndarray = np.zeros(len(cc_embeddings), dtype=np.float32)
 
-    console.print(f"  Nearest-neighbour query ({num_workers} workers)...")
+    console.print(f"  Nearest-neighbour query on [bold]{device}[/bold]...")
     with RichProgress(console=console) as progress:
-        task = progress.add_task("  Querying...", total=len(cc_f32))
-        with mp.Pool(
-            num_workers, initializer=_nn_worker_init, initargs=(corpus_f32,)
-        ) as pool:
-            offset = 0
-            for chunk_result in pool.imap(_nn_query_chunk, chunks):
-                result[offset : offset + len(chunk_result)] = chunk_result
-                offset += len(chunk_result)
-                progress.advance(task, len(chunk_result))
+        task = progress.add_task("  Querying...", total=len(cc_embeddings))
+        for i in range(0, len(cc_embeddings), _NN_CHUNK_SIZE):
+            raw = cc_embeddings[i : i + _NN_CHUNK_SIZE]
+            chunk_t = torch.from_numpy(np.array(raw, dtype=np.float32)).to(device)
+            chunk_sq_norms = (chunk_t * chunk_t).sum(dim=1, keepdim=True)
 
+            min_sq = torch.full((len(chunk_t),), float("inf"), device=device)
+            for j in range(0, len(corpus_t), _NN_CORPUS_TILE):
+                c_tile = corpus_t[j : j + _NN_CORPUS_TILE]
+                c_norms = corpus_sq_norms[j : j + _NN_CORPUS_TILE]
+                sq_d = chunk_sq_norms + c_norms.unsqueeze(0) - 2.0 * (chunk_t @ c_tile.T)
+                tile_min = sq_d.min(dim=1).values
+                min_sq = torch.minimum(min_sq, tile_min)
+
+            result[i : i + len(chunk_t)] = (
+                min_sq.clamp(min=0.0).sqrt().cpu().numpy()
+            )
+            progress.advance(task, len(chunk_t))
+
+    perf_log("nn_query", indent=1, cc=len(cc_embeddings),
+            corpus=len(corpus_embeddings),
+            time_s=time.monotonic() - _t0_nn)
     return result
 
 
@@ -493,7 +537,7 @@ def sentences_fingerprint(sentences: list[str]) -> str:
 # Batched inference -> embeddings + uncertainty + grammaticality
 # ---------------------------------------------------------------------------
 
-BATCH_SIZE = 256
+BATCH_SIZE = 512
 
 
 def embed_and_score(  # pylint: disable=too-many-locals
@@ -513,9 +557,13 @@ def embed_and_score(  # pylint: disable=too-many-locals
 
     from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, FEATURE_FIELDS
 
+    _t0_es = time.monotonic()
     total = len(encoded_all)
-    lengths = [len(e[FEATURE_FIELDS[0]]) for e in encoded_all]
-    order = sorted(range(total), key=lambda idx: lengths[idx])
+    ref_field = FEATURE_FIELDS[0]
+    lengths = np.array(
+        [len(e[ref_field]) for e in encoded_all], dtype=np.int64
+    )
+    order = np.argsort(lengths)
 
     d_model = model.config.d_model
     embeddings = np.zeros((total, d_model), dtype=np.float32)
@@ -533,23 +581,24 @@ def embed_and_score(  # pylint: disable=too-many-locals
             batch_idx = order[start : start + BATCH_SIZE]
             batch_encoded = [encoded_all[i] for i in batch_idx]
             n_batch = len(batch_encoded)
-            max_len = lengths[batch_idx[-1]]
+            max_len = int(lengths[batch_idx[-1]])
 
+            mask_np = np.zeros((n_batch, max_len), dtype=np.int64)
             field_inputs = {}
             for field in ENCODER_FEATURE_FIELDS:
-                ids_t = torch.zeros((n_batch, max_len), dtype=torch.long, device=device)
+                padded = np.zeros((n_batch, max_len), dtype=np.int64)
                 for i, enc in enumerate(batch_encoded):
                     ids = enc[field]
-                    ids_t[i, : len(ids)] = torch.tensor(
-                        ids, dtype=torch.long, device=device
-                    )
-                field_inputs[f"input_ids_{field}"] = ids_t
+                    seq_len = len(ids)
+                    padded[i, :seq_len] = ids
+                    if field == ENCODER_FEATURE_FIELDS[0]:
+                        mask_np[i, :seq_len] = 1
+                field_inputs[f"input_ids_{field}"] = (
+                    torch.from_numpy(padded).to(device)
+                )
+            mask = torch.from_numpy(mask_np).to(device)
 
-            mask = torch.zeros((n_batch, max_len), dtype=torch.long, device=device)
-            for i, enc in enumerate(batch_encoded):
-                mask[i, : len(enc[FEATURE_FIELDS[0]])] = 1
-
-            with torch.no_grad():
+            with torch.inference_mode():
                 pooled = model.pool(field_inputs, mask)
 
                 gram_logits = model.grammaticality_classifier(pooled)
@@ -563,17 +612,15 @@ def embed_and_score(  # pylint: disable=too-many-locals
 
                 gp = torch.softmax(gram_logits, dim=-1)[:, 1]
 
-            pooled_np = pooled.cpu().numpy()
-            ent_np = ent.cpu().numpy()
-            gp_np = gp.cpu().numpy()
-
-            for i, orig_idx in enumerate(batch_idx):
-                embeddings[orig_idx] = pooled_np[i]
-                uncertainty[orig_idx] = ent_np[i]
-                gram_probs_out[orig_idx] = gp_np[i]
+            embeddings[batch_idx] = pooled.cpu().numpy()
+            uncertainty[batch_idx] = ent.cpu().numpy()
+            gram_probs_out[batch_idx] = gp.cpu().numpy()
 
             progress.advance(task, n_batch)
 
+    perf_log("embed_and_score", indent=1, n=total,
+            batches=(total + BATCH_SIZE - 1) // BATCH_SIZE,
+            time_s=time.monotonic() - _t0_es)
     return embeddings, uncertainty, gram_probs_out
 
 
@@ -591,29 +638,116 @@ def _load_corpus_sentences() -> list[str]:
     import sqlite3
 
     conn = sqlite3.connect(str(CORPUS_DB))
-    rows = conn.execute("SELECT sentence FROM sentences WHERE grammatic = 1").fetchall()
+    rows = conn.execute(
+        "SELECT sentence FROM sentences WHERE grammatic = 1"
+    ).fetchall()
     conn.close()
     return [r[0] for r in rows]
 
 
+_CORPUS_EMBED_META = "corpus-embed-meta.json"
+_CORPUS_SENTS_CACHE = "corpus-sentences.txt"
+
+
 def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray:
-    """Load or compute corpus.db embeddings (cached to disk)."""
+    """Load or compute corpus.db embeddings (cached to disk).
+
+    Incremental: caches a sentence→embedding mapping so only sentences
+    absent from the cache need to be parsed/encoded/embedded.  The output
+    array is arranged as [reused | new] so that ``corpus_emb[old_n:]``
+    gives exactly the newly-added rows, enabling incremental diversity
+    score updates downstream.
+
+    A ``prefix_fp`` (fingerprint of the reused portion) is stored alongside
+    a ``full_fp`` (fingerprint of the entire array).  Downstream caches can
+    compare their stored ``corpus_fp`` against the new ``prefix_fp`` to
+    verify that the old corpus is an exact prefix of the new one; if not
+    (e.g. sentences were removed), they fall back to a full recompute.
+    """
+    _t0_ce = time.monotonic()
     cache = corpus_embed_path()
-    if cache.exists() and is_cache_valid(CC_CACHE_DIR, model_md5):
-        db_mtime = CORPUS_DB.stat().st_mtime
-        if cache.stat().st_mtime > db_mtime:
-            console.print("  Corpus embeddings loaded from cache")
-            loaded: np.ndarray = np.load(str(cache))
-            return loaded
+    meta_path = CC_CACHE_DIR / _CORPUS_EMBED_META
+    sents_path = CC_CACHE_DIR / _CORPUS_SENTS_CACHE
 
-    console.print("  Computing corpus.db embeddings...")
     sentences = _load_corpus_sentences()
-    console.print(f"  Grammatic corpus sentences: {len(sentences):,}")
-    encoded = parallel_parse_and_encode(sentences)
-    emb, _unc, _gp = embed_and_score(encoded, model, device)
+    n = len(sentences)
+    current_set = set(sentences)
 
+    old_emb: np.ndarray | None = None
+    old_sents: list[str] = []
+
+    if cache.exists() and meta_path.exists() and sents_path.exists():
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        if meta.get("model_hash") == model_md5:
+            old_sents = sents_path.read_text(encoding="utf-8").splitlines()
+            existing: np.ndarray = np.load(str(cache))
+            if existing.shape[0] == len(old_sents):
+                old_emb = existing
+
+    cached_map: dict[str, int] = {}
+    if old_emb is not None:
+        cached_map = {s: i for i, s in enumerate(old_sents) if s in current_set}
+
+    reused_sents = [s for s in old_sents if s in current_set]
+    reused_src = [cached_map[s] for s in reused_sents]
+    new_sentences = [s for s in sentences if s not in cached_map]
+
+    # -- Full cache hit --
+    if not new_sentences:
+        console.print(f"  Corpus embeddings loaded from cache ({n:,} sentences)")
+        if old_emb is not None and len(reused_sents) == old_emb.shape[0]:
+            perf_log("corpus_embeddings", cache="hit",
+                     reused=n, new=0, total=n,
+                     time_s=time.monotonic() - _t0_ce)
+            return old_emb
+        emb: np.ndarray = old_emb[reused_src] if old_emb is not None else np.empty(0)
+        np.save(str(cache), emb)
+        sents_path.write_text("\n".join(reused_sents) + "\n", encoding="utf-8")
+        meta_out = {
+            "model_hash": model_md5,
+            "count": n,
+            "prefix_fp": sentences_fingerprint(reused_sents),
+            "full_fp": sentences_fingerprint(reused_sents),
+        }
+        meta_path.write_text(json.dumps(meta_out), encoding="utf-8")
+        perf_log("corpus_embeddings", cache="hit_trimmed",
+                 reused=n, new=0, total=n,
+                 time_s=time.monotonic() - _t0_ce)
+        return emb
+
+    # -- Partial hit or full miss --
+    if cached_map:
+        console.print(
+            f"  Corpus embeddings: {len(cached_map):,} cached,"
+            f" {len(new_sentences):,} new"
+        )
+    else:
+        console.print("  Computing corpus.db embeddings...")
+
+    console.print(f"  Grammatic corpus sentences: {n:,}")
+    encoded = parallel_parse_and_encode(new_sentences)
+    new_emb, _unc, _gp = embed_and_score(encoded, model, device)
+
+    parts: list[np.ndarray] = []
+    if reused_src and old_emb is not None:
+        parts.append(old_emb[reused_src])
+    parts.append(new_emb)
+    emb = np.concatenate(parts) if len(parts) > 1 else parts[0]
+
+    all_sents = reused_sents + new_sentences
     np.save(str(cache), emb)
-    write_cache_meta(CC_CACHE_DIR, model_md5)
+    sents_path.write_text("\n".join(all_sents) + "\n", encoding="utf-8")
+    meta_out = {
+        "model_hash": model_md5,
+        "count": n,
+        "prefix_fp": sentences_fingerprint(reused_sents),
+        "full_fp": sentences_fingerprint(all_sents),
+    }
+    meta_path.write_text(json.dumps(meta_out), encoding="utf-8")
+    _cache_kind = "partial" if cached_map else "miss"
+    perf_log("corpus_embeddings", cache=_cache_kind,
+             reused=len(reused_sents), new=len(new_sentences), total=n,
+             time_s=time.monotonic() - _t0_ce)
     console.print(f"  Cached to {cache}")
     return emb
 
@@ -646,12 +780,19 @@ def get_cc_scores(  # pylint: disable=too-many-locals
     Embeddings are returned as a memory-mapped array to avoid loading the
     full (N, d_model) matrix into RAM.
     """
+    _t0_cc = time.monotonic()
     cache_dir = _cache_path(crawl_id, "inference")
     cache_dir.mkdir(parents=True, exist_ok=True)
     emb_path, unc_path, gp_path = _cc_score_paths(cache_dir)
 
     n = len(cc_sentences)
     cached_n = 0
+    _cc_cache = "miss_no_file"
+
+    if not emb_path.exists():
+        _cc_cache = "miss_no_file"
+    elif not is_cache_valid(cache_dir, model_md5):
+        _cc_cache = "miss_model"
 
     if emb_path.exists() and is_cache_valid(cache_dir, model_md5):
         existing: np.ndarray = np.load(str(emb_path), mmap_mode="r")
@@ -659,21 +800,27 @@ def get_cc_scores(  # pylint: disable=too-many-locals
         del existing
         if cached_n > n:
             console.print("  Cache stale (sentence count shrank), recomputing...")
+            _cc_cache = f"stale_shrunk(cached={cached_n},now={n})"
             cached_n = 0
         elif cached_n > 0:
             stored_fp = _read_sentences_fp(cache_dir)
             current_fp = sentences_fingerprint(cc_sentences[:cached_n])
             if stored_fp != current_fp:
                 console.print("  Cache stale (sentence list changed), recomputing...")
+                _cc_cache = f"stale_fp(stored={stored_fp[:8]},now={current_fp[:8]})"
                 cached_n = 0
             elif cached_n == n:
                 console.print(f"  CC inference loaded from cache (model {model_md5})")
+                perf_log("cc_scores", cache="hit", cached_n=cached_n,
+                         total=n, chunks=0,
+                         time_s=time.monotonic() - _t0_cc)
                 return (
                     np.load(str(emb_path), mmap_mode="r"),
                     np.load(str(unc_path)),
                     np.load(str(gp_path)),
                 )
             else:
+                _cc_cache = "partial"
                 console.print(
                     f"  CC inference: {cached_n:,} cached,"
                     f" {n - cached_n:,} new to score"
@@ -724,6 +871,9 @@ def get_cc_scores(  # pylint: disable=too-many-locals
     write_cache_meta(
         cache_dir, model_md5, sentences_fp=sentences_fingerprint(cc_sentences)
     )
+    perf_log("cc_scores", cache=_cc_cache, cached_n=cached_n,
+             total=n, chunks=n_chunks,
+             time_s=time.monotonic() - _t0_cc)
     console.print(f"  Cached to {cache_dir}")
 
     return (
