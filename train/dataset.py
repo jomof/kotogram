@@ -22,6 +22,7 @@ from train.binary_io import (
     EXT_KC_PREFIX,
     EXT_LABELS,
     EXT_OFFSETS,
+    LABEL_SPECS,
 )
 from train.kc import KcFamilyId
 from train.types import Sample, TrainingBatch
@@ -285,15 +286,7 @@ class StyleDataset(Dataset[Sample]):
 
     def _init_labels(self, data_dir: str) -> Dict[str, torch.Tensor]:
         labels = {}
-        label_specs = [
-            ("f_val", torch.float32, 4),
-            ("f_prag", torch.uint8, 1),
-            ("g_val", torch.float32, 4),
-            ("g_prag", torch.uint8, 1),
-            ("gram", torch.uint8, 1),
-        ]
-
-        for name, dtype, itemsize in label_specs:
+        for name, dtype, itemsize in LABEL_SPECS:
             fname = f"{EXT_LABELS}_{name}"
             path = os.path.join(data_dir, fname)
             if self._check_exists(path):

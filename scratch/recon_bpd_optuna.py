@@ -224,26 +224,17 @@ _SCRIPT_HASH = hashlib.sha256(
 ).hexdigest()[:12]
 
 
-def _dataset_fingerprint() -> str:
-    """Content hash of cached dataset files that affect training data."""
-    from train import paths as train_paths
-
-    cache_dir = train_paths.get_style_dataset_cache_dir()
-    h = hashlib.sha256()
-    for name in ("labels.bin_gram", "sentences.txt"):
-        path = os.path.join(cache_dir, name)
-        if os.path.exists(path):
-            h.update(open(path, "rb").read())
-    return h.hexdigest()[:12]
-
-
-_DATASET_HASH = _dataset_fingerprint()
+# Resolved at startup in main(); used by _config_hash for checkpoint keying.
+_DATASET_ID: str = ""
+_CHIVE_ID: str = ""
+_DATASET_BUNDLE: dict = {}
+_CHIVE_WEIGHTS: torch.Tensor = torch.empty(0)
 
 
 def _config_hash(config: TrainConfig) -> str:
     """Deterministic hash of training config for checkpoint keying.
 
-    Includes hashes of ``recon_bpd.py`` source and dataset cache files
+    Includes hashes of ``recon_bpd.py`` source and dataset ID
     so code or data changes automatically invalidate stale checkpoints.
     Excludes ``epochs`` so that extending
     the epoch budget still reuses checkpoints.
@@ -251,7 +242,7 @@ def _config_hash(config: TrainConfig) -> str:
     d = dataclasses.asdict(config)
     del d["epochs"]
     canonical = (
-        _SCRIPT_HASH + _DATASET_HASH + json.dumps(sorted(d.items()), sort_keys=True)
+        _SCRIPT_HASH + _DATASET_ID + json.dumps(sorted(d.items()), sort_keys=True)
     )
     return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
@@ -286,6 +277,7 @@ def objective(
     adhoc_name: str = "",
 ) -> float:
     """Optuna objective: minimize BPD."""
+    global _CHIVE_WEIGHTS
     config = suggest_config(
         trial,
         epochs,
@@ -404,6 +396,11 @@ def objective(
         mlflow = _mlflow
         run_id = _find_mlflow_run(run_name)
         mlflow.start_run(run_id=run_id, run_name=run_name)
+
+        # Log dataset provenance
+        from scripts.dataset import log_mlflow_dataset
+
+        log_mlflow_dataset(_DATASET_BUNDLE)
 
         # Capture git commit for reproducibility (safe against git missing/errors)
         git_log = subprocess.run(
@@ -535,11 +532,19 @@ def objective(
 
         result, _checkpoint = train(
             config,
+            dataset_bundle=_DATASET_BUNDLE,
+            chive_weights_cpu=_CHIVE_WEIGHTS,
             on_epoch_start=on_epoch_start,
             on_epoch_end=on_epoch_end,
             checkpoint_path=checkpoint_path,
             checkpoint=existing,
         )
+
+        # After the first trial populates GLOBAL_SETUP_CACHE the raw chiVe
+        # tensor is no longer needed — a processed copy lives on device.
+        if _CHIVE_WEIGHTS.numel() > 0:
+            _CHIVE_WEIGHTS = torch.empty(0)
+
         if mlflow is not None:
             mlflow.log_metric("final_bpd", result.final_bpd)
             mlflow.log_metric(f"final_bpd_{epochs}ep", result.final_bpd)
@@ -661,6 +666,13 @@ def main() -> None:
         default=os.path.join(".cache", "optuna", "checkpoints"),
         help="Directory for per-trial checkpoints (default: .cache/optuna/checkpoints)",
     )
+    parser.add_argument(
+        "--dataset",
+        type=str,
+        default=None,
+        metavar="FLAG",
+        help="Dataset: omit for dataset.lock, 'latest' for newest GCS, or a dataset ID",
+    )
 
     parser.add_argument(
         "--convergence-patience",
@@ -680,6 +692,20 @@ def main() -> None:
         help="Epochs to add each progressive round (default: 5)",
     )
     args = parser.parse_args()
+
+    # Resolve dataset before anything else
+    global _DATASET_ID, _CHIVE_ID, _DATASET_BUNDLE, _CHIVE_WEIGHTS
+    from scripts.dataset import resolve_dataset
+
+    print(f"Resolving dataset (--dataset {args.dataset or '<lock>'})...")
+    _DATASET_BUNDLE, _CHIVE_WEIGHTS = resolve_dataset(args.dataset)
+    _DATASET_ID = _DATASET_BUNDLE["dataset_id"]
+    _CHIVE_ID = _DATASET_BUNDLE["chive_id"]
+    print(f"  Dataset: {_DATASET_ID}  chiVe: {_CHIVE_ID}")
+    print(
+        f"  Sentences: {_DATASET_BUNDLE['sentence_count']:,}  "
+        f"Tokens: {_DATASET_BUNDLE['token_count']:,}"
+    )
 
     exp_name = args.experiment_name
     if args.adhoc is not None:

@@ -278,8 +278,14 @@ def generate_test_chive(root_dir: str) -> None:
         "木",
         "空",
         "こんにちは",
+        "これ",
+        "此れ",
+        "テスト",
+        "美味しい",
+        "文",
         "です",
         "ます",
+        *[str(i) for i in range(100)],
         "の",
         "が",
         "を",
@@ -293,7 +299,28 @@ def generate_test_chive(root_dir: str) -> None:
         "よ",
         "ね",
         "か",
+        "。",
     ]
+
+    db_path = os.path.join(root_dir, "data", "corpus.db")
+    if os.path.exists(db_path):
+        import sqlite3
+
+        from kotogram.kotogram import extract_token_features, split_kotogram
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+        from kotogram.tokenizer import get_vocab_strings
+
+        parser = SudachiJapaneseParser()
+        conn = sqlite3.connect(db_path)
+        for (sent,) in conn.execute("SELECT sentence FROM corpus"):
+            kotogram = parser.japanese_to_kotogram(sent)
+            for tok in split_kotogram(kotogram):
+                feats = extract_token_features(tok)
+                vs = get_vocab_strings(feats)
+                words.append(vs["surface"])
+        conn.close()
+
+    words = list(dict.fromkeys(words))
 
     _rng.seed(42)
     dim = CHIVE_DIM
@@ -489,6 +516,7 @@ class Bottle:
     def populate_test_data(self):
         """Populates the bottle with test data."""
         populate_test_data(self.root_dir, self.project_root)
+        generate_test_chive(self.root_dir)
 
     def calculate_expected_counts(self) -> Dict[str, int]:
         """Calculates expected sentence counts for KC pretraining.

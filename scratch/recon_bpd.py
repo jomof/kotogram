@@ -33,16 +33,14 @@ from torch.optim import AdamW
 from torch.utils.data import DataLoader
 
 # Data loading only — the sole external dependencies from this project.
-from kotogram import locations
 from kotogram.tokenizer import Tokenizer
 from scratch.recon_bpd_checkpoint import (
     EpochContext,
     TrainCheckpoint,
     save_checkpoint,
 )
-from train import paths as train_paths
-from train.chive import load_chive_for_vocab
-from train.dataset import StyleDataset, collate_fn
+from scripts.dataset import BundledStyleDataset
+from train.dataset import collate_fn
 
 # Fused linear cross-entropy (apple/ml-cross-entropy): computes the
 # output_head matmul + CE in a single kernel without materializing [B,T,V].
@@ -424,6 +422,8 @@ GLOBAL_SETUP_CACHE = _SetupCache()
 
 def train(
     config: TrainConfig,
+    dataset_bundle: dict,
+    chive_weights_cpu: torch.Tensor,
     on_epoch_start: EpochStartCallback,
     on_epoch_end: EpochEndCallback,
     checkpoint_path: str,
@@ -434,6 +434,8 @@ def train(
 
     Args:
         config: Training configuration.
+        dataset_bundle: Loaded .pt bundle dict from scripts.dataset.
+        chive_weights_cpu: chiVe vectors tensor (CPU) from scripts.dataset.
         on_epoch_start: Callback invoked at the start of each epoch with
             ``(epoch_index,)``.
         on_epoch_end: Callback invoked at the end of each epoch with
@@ -470,32 +472,24 @@ def train(
         torch.backends.cudnn.allow_tf32 = True
         torch.backends.cudnn.benchmark = True
 
-    # ── Data loading ─────────────────────────────────────────────────
+    # ── Data loading (from dataset bundle) ────────────────────────────
     global GLOBAL_SETUP_CACHE
     if GLOBAL_SETUP_CACHE.tokenizer is None:
-        output_dir = locations.get_style_output_dir()
-        GLOBAL_SETUP_CACHE.tokenizer = Tokenizer.load(f"{output_dir}/tokenizer.json")
+        tokenizer = Tokenizer()
+        tokenizer.load_state({"field_vocabs": dataset_bundle["vocab"], "frozen": True})
+        GLOBAL_SETUP_CACHE.tokenizer = tokenizer
     tokenizer = GLOBAL_SETUP_CACHE.tokenizer
 
     if GLOBAL_SETUP_CACHE.content_mask is None:
-        mask_path = f"{train_paths.get_style_dataset_cache_dir()}/content_mask.bin"
-        GLOBAL_SETUP_CACHE.content_mask = torch.from_file(
-            mask_path,
-            shared=True,
-            size=tokenizer.get_vocab_sizes()["surface"],
-            dtype=torch.uint8,
-        ).bool()
+        GLOBAL_SETUP_CACHE.content_mask = dataset_bundle["content_mask"]
 
     content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(
         device, non_blocking=IS_CUDA
     )
 
     if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
-        cache_dir = train_paths.get_style_dataset_cache_dir()
-        dataset = StyleDataset(
-            cache_dir,
-            tokenizer,
-            sample_ratio=sample_ratio,
+        dataset = BundledStyleDataset.from_bundle(
+            dataset_bundle, sample_ratio=sample_ratio
         )
         GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = (
             dataset.filter_by_grammaticality(label=1)
@@ -504,6 +498,16 @@ def train(
             f"Gram sentences: {len(GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio])}"
         )
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
+
+    # Release heavy non-tensor data now that the cache is populated.
+    # Tensor data is mmap'd; only Python objects (1.7M sentence strings,
+    # vocab dicts) occupy heap memory and compete with MPS for unified RAM.
+    for _drop_key in ("sentences", "vocab"):
+        dataset_bundle.pop(_drop_key, None)
+    gram_ds._sentences = []
+    import gc
+
+    gc.collect()
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
@@ -534,15 +538,15 @@ def train(
     )
     # Load chiVe pretrained surface embeddings and freeze
     if GLOBAL_SETUP_CACHE.chive_weights is None:
-        cw = load_chive_for_vocab(tokenizer.field_vocabs["surface"])
+        cw = chive_weights_cpu.clone()
+        del chive_weights_cpu
 
-        # Missing chiVe words are all zeros. Randomize them so OOV words aren't squashed together.
+        # Zero rows (unmatched tokens) get randomized so OOV words aren't squashed together.
         norms = cw.norm(dim=-1)
         missing_mask = norms == 0.0
         missing_mask[0] = False  # Keep index 0 [PAD] strictly at zero
 
         if missing_mask.any():
-            # Match the variance of the known chiVe vectors
             std = cw[~missing_mask].std().item() if (~missing_mask).any() else 0.1
             cw[missing_mask] = torch.randn_like(cw[missing_mask]) * std
 

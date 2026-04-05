@@ -2,7 +2,9 @@
 
 import array
 import os
-from typing import List
+from typing import List, Tuple
+
+import torch
 
 # File extensions and types
 EXT_OFFSETS = "offsets.bin"
@@ -11,6 +13,14 @@ EXT_FEAT_PREFIX = "feat_"
 EXT_KC_PREFIX = "kc_"
 EXT_SENTENCES = "sentences.txt"
 EXT_KOTOGRAMS = "kotograms.txt"
+
+LABEL_SPECS: List[Tuple[str, "torch.dtype", int]] = [
+    ("f_val", torch.float32, 4),
+    ("f_prag", torch.uint8, 1),
+    ("g_val", torch.float32, 4),
+    ("g_prag", torch.uint8, 1),
+    ("gram", torch.uint8, 1),
+]
 
 
 def write_int_array(path: str, data: List[int], typecode: str = "i") -> None:
