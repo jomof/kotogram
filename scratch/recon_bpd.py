@@ -1105,6 +1105,7 @@ def train(
                 "cos": avg_cos,
                 "sharp": avg_sharpness,
                 "s1": s1_pct,
+                "hot": s1_pct * config.kc_vocab_size,
                 "s0": s0_pct,
                 "fuzzy": fuzzy_pct,
             }
@@ -1120,7 +1121,9 @@ def train(
         for bi, label in enumerate(bin_labels):
             mlflow_label = label.replace("+", "_plus")
             n = max(1, _kc_bins[bi])
-            latest_metrics[f"s1_{mlflow_label}"] = _s1_bins[bi] / n
+            s1_frac = _s1_bins[bi] / n
+            latest_metrics[f"s1_{mlflow_label}"] = s1_frac
+            latest_metrics[f"hot_{mlflow_label}"] = s1_frac * config.kc_vocab_size
             latest_metrics[f"s0_{mlflow_label}"] = _s0_bins[bi] / n
             latest_metrics[f"fuzzy_{mlflow_label}"] = _fuzzy_bins[bi] / n
 
