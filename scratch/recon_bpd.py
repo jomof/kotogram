@@ -195,7 +195,6 @@ class _SetupCache:
         self.chive_normed: Optional[torch.Tensor] = None
         self.cached_model: Optional[BpdModel] = None
         self.cached_model_cfg: Optional[BpdModelConfig] = None
-        self.content_mask: Optional[torch.Tensor] = None
         self.rank_inv_sqrt_freq: Optional[torch.Tensor] = None
         self._rank_hist_dataset_id: Optional[str] = None
         self._token_remap_applied: bool = False
@@ -376,13 +375,6 @@ def train(
         GLOBAL_SETUP_CACHE.tokenizer = tokenizer
     tokenizer = GLOBAL_SETUP_CACHE.tokenizer
 
-    if GLOBAL_SETUP_CACHE.content_mask is None:
-        GLOBAL_SETUP_CACHE.content_mask = dataset_bundle["content_mask"]
-
-    content_mask_tensor = GLOBAL_SETUP_CACHE.content_mask.to(
-        device, non_blocking=IS_CUDA
-    )
-
     did = dataset_bundle["dataset_id"]
     need_hist = (
         config.rank_pair_weighting == "inv_sqrt_freq"
@@ -413,11 +405,11 @@ def train(
         dataset = BundledStyleDataset.from_bundle(
             dataset_bundle, sample_ratio=sample_ratio
         )
-        GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = (
-            dataset.filter_by_grammaticality(label=1)
-        )
+        dataset.content_drop_ratio = 0.5
+        gram_subset = dataset.filter_by_grammaticality(label=1)
+        GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = gram_subset
         print(
-            f"Gram sentences: {len(GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio])}"
+            f"Gram sentences: {len(gram_subset)}"
         )
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
@@ -716,16 +708,6 @@ def train(
                 device, non_blocking=IS_CUDA
             )
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
-
-            # ── Data Augmentation: Drop Non-Content Tokens (50%) ──────
-            is_content = content_mask_tensor[ids]
-            # Must also protect special tokens (ids < 4) from being dropped
-            is_non_content_valid = (~is_content) & attention_mask.bool() & (ids >= 4)
-            drop_mask = is_non_content_valid & (torch.rand_like(ids.float()) < 0.5)
-
-            # Drop means turning off the attention mask and replacing the ID with PAD
-            ids = ids.masked_fill(drop_mask, 0)
-            attention_mask = attention_mask.masked_fill(drop_mask, 0)
 
             recon_targets = ids
             B_actual = ids.size(0)

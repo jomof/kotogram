@@ -384,20 +384,26 @@ def _run_extraction(  # pylint: disable=too-many-locals
 _DIV_META = "diversity-meta.json"
 
 
-def _corpus_prefix_ok() -> tuple[bool, str]:
-    """Check whether the old corpus is an exact prefix of the current one.
+def _corpus_prefix_ok(old_corpus_fp: str) -> tuple[bool, str]:
+    """Check whether the cached corpus is compatible with the current one.
 
     ``get_corpus_embeddings`` stores *prefix_fp* (fingerprint of the reused
-    rows) and *full_fp* (fingerprint of the entire array).  If the current
-    ``prefix_fp`` equals the ``corpus_fp`` stored by the last diversity run,
-    the old corpus rows occupy indices ``[:old_corpus_n]`` unchanged and new
-    rows sit at ``[old_corpus_n:]``.
+    rows) and *full_fp* (fingerprint of the entire array).
+
+    Returns ``(ok, current_full_fp)`` where *ok* is True when either:
+    - ``full_fp == old_corpus_fp`` → corpus is unchanged (exact match), or
+    - ``prefix_fp == old_corpus_fp`` → old corpus is an exact prefix of
+      the current one (rows were appended, incremental update is safe).
     """
     corpus_meta_path = CC_CACHE_DIR / _CORPUS_EMBED_META
     if not corpus_meta_path.exists():
         return False, ""
     meta = json.loads(corpus_meta_path.read_text(encoding="utf-8"))
-    return True, meta.get("prefix_fp", "")
+    full_fp = meta.get("full_fp", "")
+    prefix_fp = meta.get("prefix_fp", "")
+    if full_fp == old_corpus_fp or prefix_fp == old_corpus_fp:
+        return True, full_fp
+    return False, full_fp
 
 
 def _get_diversity(
@@ -446,24 +452,16 @@ def _get_diversity(
                 old_cc_n = 0
                 old_corpus_n = 0
 
-    # Verify the old corpus is a true prefix of the current one
-    prefix_ok, current_prefix_fp = _corpus_prefix_ok()
-    if cached_div is not None and old_corpus_fp and prefix_ok:
-        if current_prefix_fp != old_corpus_fp:
-            console.print(
-                "  Diversity cache stale (corpus rows changed), recomputing..."
-            )
-            _div_stale = "stale_corpus_prefix"
-            cached_div = None
-            old_cc_n = 0
-            old_corpus_n = 0
-
-    # Read the current full fingerprint to store in our metadata
-    corpus_meta_path = CC_CACHE_DIR / _CORPUS_EMBED_META
-    current_corpus_fp = ""
-    if corpus_meta_path.exists():
-        cmeta = json.loads(corpus_meta_path.read_text(encoding="utf-8"))
-        current_corpus_fp = cmeta.get("full_fp", "")
+    # Verify the old corpus is compatible (identical or prefix-extended).
+    prefix_ok, current_corpus_fp = _corpus_prefix_ok(old_corpus_fp)
+    if cached_div is not None and old_corpus_fp and not prefix_ok:
+        console.print(
+            "  Diversity cache stale (corpus rows changed), recomputing..."
+        )
+        _div_stale = "stale_corpus_prefix"
+        cached_div = None
+        old_cc_n = 0
+        old_corpus_n = 0
 
     if cached_div is not None and old_cc_n == n_cc and old_corpus_n == n_corpus:
         perf_log(

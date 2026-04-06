@@ -46,6 +46,7 @@ from train.binary_io import (
 )
 from train.dataset import StyleDataset
 from train.kc import KcFamilyId
+from train.types import Sample
 
 SCHEMA_VERSION = 3
 GCS_PREFIX = "kotogram-datasets"
@@ -835,6 +836,9 @@ class BundledStyleDataset(StyleDataset):
 
         ds.gp_priors = bundle.get("gp_priors", torch.empty(0, dtype=torch.float32))
 
+        ds.content_mask = bundle.get("content_mask")
+        ds.content_drop_ratio = 0.0
+
         ds._full_indices = ds.indices.clone()
         ds._sample_ratio = sample_ratio
         ds._apply_balanced_sampling(sample_ratio, seed=42)
@@ -847,6 +851,22 @@ class BundledStyleDataset(StyleDataset):
         if not self.kc_maps:
             return {fam: [] for fam in KcFamilyId}
         return super()._get_kc_targets(real_idx)
+
+    def __getitem__(self, idx: int) -> Sample:
+        sample = super().__getitem__(idx)
+        if self.content_drop_ratio > 0 and self.content_mask is not None:
+            surface = sample.feature_ids.get("surface")
+            if surface is not None:
+                is_content = self.content_mask[surface]
+                is_special = surface < 4
+                droppable = (~is_content) & (~is_special)
+                drop = droppable & (torch.rand(len(surface)) < self.content_drop_ratio)
+                keep = ~drop
+                if not keep.all():
+                    sample.feature_ids = {
+                        k: v[keep] for k, v in sample.feature_ids.items()
+                    }
+        return sample
 
     def get_sentence_by_idx(self, real_idx: int) -> str:
         """Return sentence text from the in-memory list."""
@@ -877,6 +897,8 @@ class BundledStyleDataset(StyleDataset):
         child.labels = self.labels
         child.kc_maps = self.kc_maps
         child.gp_priors = self.gp_priors
+        child.content_mask = self.content_mask
+        child.content_drop_ratio = self.content_drop_ratio
         child.indices = new_indices
         child._full_indices = new_indices.clone()
         child._sample_ratio = 1.0
