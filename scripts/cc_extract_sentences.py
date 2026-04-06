@@ -601,7 +601,8 @@ def _print_extraction_summary(
     tbl.add_row("New candidate sentences", f"{new_candidates:,}")
     tbl.add_row("After filtering", f"{new_extracted:,}{filtered_pct}")
     tbl.add_row("New unique sentences", f"{new_unique:,}")
-    tbl.add_row("Already in corpus.db", f"-{corpus_dupes:,}" if corpus_dupes else "0")
+    if corpus_dupes:
+        tbl.add_row("Skipped (in corpus.db)", f"{corpus_dupes:,}")
     tbl.add_row("", "")
     tbl.add_row("Total unique sentences", f"{total:,}")
     tbl.add_row("Output", str(out_path))
@@ -728,8 +729,8 @@ def _print_selection_summary(  # pylint: disable=too-many-arguments,too-many-pos
     tbl.add_column("Metric", style="bold")
     tbl.add_column("Value", justify="right")
     tbl.add_row("CC sentences (total)", f"{total_cc:,}")
-    tbl.add_row("Filtered (low-grammatic)", f"{n_filtered:,}")
-    tbl.add_row("Scored", f"{total_cc - n_filtered:,}")
+    tbl.add_row("Filtered", f"{n_filtered:,}")
+    tbl.add_row("Candidates", f"{total_cc - n_filtered:,}")
     tbl.add_row("Selected", f"{n_selected:,}")
     tbl.add_row("Impact cutoff", f"{cutoff:.6f}")
     tbl.add_row("", "")
@@ -923,9 +924,17 @@ def main() -> None:  # pylint: disable=too-many-locals
     # the recon_bpd model has no grammaticality head yet.  When one is added,
     # this gate will start filtering again automatically.
     keep_mask = cc_gram_probs >= GRAMMATIC_SOFT_MIN
-    keep_idx = np.where(keep_mask)[0]
     n_gram = int((~keep_mask).sum())
-    console.print(f"  Filtered: {n_gram:,} low-grammatic")
+
+    # Exclude sentences already in corpus.db -- they would be selected then
+    # discarded at upsert time, wasting diversity computation and skewing
+    # impact percentiles.
+    in_corpus_mask = np.array([bloom.might_contain(s) for s in cc_sentences])
+    n_in_corpus = int(in_corpus_mask.sum())
+    keep_mask &= ~in_corpus_mask
+
+    keep_idx = np.where(keep_mask)[0]
+    console.print(f"  Filtered: {n_gram:,} low-grammatic, {n_in_corpus:,} already in corpus")
     console.print(
         f"  Candidates after filtering: {len(keep_idx):,} / {len(cc_sentences):,}"
     )
@@ -962,7 +971,6 @@ def main() -> None:  # pylint: disable=too-many-locals
     sel_global = keep_idx[sel_local]
     selected_sentences = [cc_sentences[i] for i in sel_global]
 
-    # -- Write selected output --
     sel_path = Path(".cc/selected-sentences.txt")
     with open(sel_path, "w", encoding="utf-8") as fh:
         for sent in selected_sentences:
