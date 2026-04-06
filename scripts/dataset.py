@@ -23,6 +23,11 @@ from kotogram.tokenizer import (
     UNK_TOKEN,
     Tokenizer,
 )
+from scripts.dataset_token_histogram import (
+    TOKEN_LEN_HIST_PREFIX,
+    save_token_length_histogram,
+    token_length_histogram_path,
+)
 from scripts.gcs import (
     GCS_BUCKET,
     find_repo_root,
@@ -491,6 +496,9 @@ def build_dataset(  # pylint: disable=too-many-locals
     output_path = os.path.join(LOCAL_CACHE, f"ds-{dataset_id}.pt")
     torch.save(bundle, output_path)
 
+    hist_path = save_token_length_histogram(bundle, dataset_id)
+    print(f"  Token histogram (gram=1): {hist_path}")
+
     chive_path = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
     if not os.path.exists(chive_path):
         torch.save(chive_surface, chive_path)
@@ -575,6 +583,17 @@ def upload_dataset(pt_path: Optional[str] = None) -> str:
             )
         print(f"  Uploading chiVe {chive_id}...")
         _gcs_upload_file(chive_local, chive_key)
+
+    hist_local = token_length_histogram_path(dataset_id)
+    hist_key = f"{GCS_PREFIX}/datasets/{TOKEN_LEN_HIST_PREFIX}{dataset_id}.npy"
+    if os.path.exists(hist_local):
+        if _gcs_exists(hist_key):
+            print(f"  Token histogram {dataset_id} already in GCS, skipping")
+        else:
+            print(f"  Uploading token histogram {dataset_id}...")
+            _gcs_upload_file(hist_local, hist_key)
+    else:
+        print(f"  No local token histogram at {hist_local} (skipping)")
 
     _gcs_write_json(
         f"{GCS_PREFIX}/latest.json",

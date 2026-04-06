@@ -4,7 +4,7 @@
 import math
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Sequence, Set, Tuple
 
 import torch
 from torch.utils.data import Dataset
@@ -759,6 +759,102 @@ def _collate_register_labels(batch: List[Sample], batch_size: int) -> torch.Tens
             if 0 <= rid < NUM_REGISTER_CLASSES:
                 reg_targets[i, rid] = 1.0
     return reg_targets
+
+
+class LengthStratifiedBatchSampler:
+    """Batch positional indices with round-robin from length tertiles (token counts).
+
+    Uses ``dataset.indices`` and ``dataset.offsets`` like ``StyleDataset``.
+    Falls back to flat shuffled batches when tertiles collapse (e.g. uniform length).
+    """
+
+    def __init__(
+        self,
+        dataset: StyleDataset,
+        batch_size: int,
+        *,
+        generator: Optional[torch.Generator] = None,
+    ) -> None:
+        self.dataset = dataset
+        self.batch_size = batch_size
+        self.generator = generator if generator is not None else torch.Generator()
+        self._mode = "strat"
+        self._pos_buckets: List[List[int]] = []
+        self._rebuild_buckets()
+
+    def _rebuild_buckets(self) -> None:
+        n = len(self.dataset)
+        if n == 0:
+            self._mode = "empty"
+            self._pos_buckets = []
+            return
+        positions = torch.arange(n, dtype=torch.long)
+        real = self.dataset.indices
+        off = self.dataset.offsets
+        lengths = (off[real + 1] - off[real]).float()
+        q1 = torch.quantile(lengths, 1.0 / 3.0)
+        q2 = torch.quantile(lengths, 2.0 / 3.0)
+        m0 = lengths <= q1
+        m1 = (lengths > q1) & (lengths <= q2)
+        m2 = lengths > q2
+        b0 = positions[m0].tolist()
+        b1 = positions[m1].tolist()
+        b2 = positions[m2].tolist()
+        nonempty = [b for b in (b0, b1, b2) if b]
+        if len(nonempty) <= 1:
+            self._mode = "flat"
+            self._pos_buckets = []
+        else:
+            self._mode = "strat"
+            self._pos_buckets = [b0, b1, b2]
+
+    def __len__(self) -> int:
+        n = len(self.dataset)
+        return (n + self.batch_size - 1) // self.batch_size if n else 0
+
+    def __iter__(self) -> Iterator[List[int]]:
+        n = len(self.dataset)
+        if n == 0:
+            return
+        if self._mode == "flat":
+            perm = torch.randperm(n, generator=self.generator).tolist()
+            batch: List[int] = []
+            for pos in perm:
+                batch.append(pos)
+                if len(batch) >= self.batch_size:
+                    yield batch
+                    batch = []
+            if batch:
+                yield batch
+            return
+
+        buckets = [
+            b.clone()
+            for b in [torch.tensor(x, dtype=torch.long) for x in self._pos_buckets]
+        ]
+        for i, buck in enumerate(buckets):
+            perm = torch.randperm(len(buck), generator=self.generator)
+            buckets[i] = buck[perm]
+        ptr = [0] * len(buckets)
+        rr = 0
+        out_batch: List[int] = []
+        while True:
+            picked = False
+            for k in range(len(buckets)):
+                bi = (rr + k) % len(buckets)
+                if ptr[bi] < len(buckets[bi]):
+                    out_batch.append(int(buckets[bi][ptr[bi]]))
+                    ptr[bi] += 1
+                    rr = (bi + 1) % len(buckets)
+                    picked = True
+                    break
+            if not picked:
+                break
+            if len(out_batch) >= self.batch_size:
+                yield out_batch
+                out_batch = []
+        if out_batch:
+            yield out_batch
 
 
 def collate_fn(

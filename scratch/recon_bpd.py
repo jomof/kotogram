@@ -21,11 +21,13 @@ Usage:
 
 import contextlib
 import math
+import os
 import time
 import warnings
 from dataclasses import dataclass
 from typing import Callable, Dict, Optional, Tuple
 
+import numpy as np
 import torch
 import torch.nn.functional as F
 from torch.optim import AdamW
@@ -39,7 +41,11 @@ from scratch.recon_bpd_checkpoint import (
     save_checkpoint,
 )
 from scripts.dataset import BundledStyleDataset
-from train.dataset import collate_fn
+from scripts.dataset_token_histogram import (
+    ensure_token_length_histogram_local,
+    token_length_histogram_path,
+)
+from train.dataset import LengthStratifiedBatchSampler, collate_fn
 
 # Fused linear cross-entropy (apple/ml-cross-entropy): computes the
 # output_head matmul + CE in a single kernel without materializing [B,T,V].
@@ -115,6 +121,10 @@ class TrainConfig:
     # Set to 0 to disable.
     rank_margin_weight: float = 0.0
     rank_margin: float = 1.0  # scaling coefficient on log-ratio margin
+    # Pair aggregation: none | log_ratio | sqrt_log_ratio | inv_sqrt_freq
+    rank_pair_weighting: str = "inv_sqrt_freq"
+    rank_long_range_pairs: bool = True
+    use_stratified_length_batches: bool = True
 
     # Regularization
     kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
@@ -184,9 +194,115 @@ class _SetupCache:
         self.cached_model: Optional[BpdModel] = None
         self.cached_model_cfg: Optional[BpdModelConfig] = None
         self.content_mask: Optional[torch.Tensor] = None
+        self.rank_inv_sqrt_freq: Optional[torch.Tensor] = None
+        self._rank_hist_dataset_id: Optional[str] = None
 
 
 GLOBAL_SETUP_CACHE = _SetupCache()
+
+
+def _rank_margin_loss(
+    sorted_load: torch.Tensor,
+    sorted_len: torch.Tensor,
+    *,
+    rank_margin: float,
+    pair_weighting: str,
+    inv_sqrt_cpu: Optional[torch.Tensor],
+    long_range_pairs: bool,
+    device: torch.device,
+) -> Tuple[torch.Tensor, Dict[str, torch.Tensor]]:
+    """Weighted rank hinge over adjacent sorted pairs plus optional long-range pairs.
+
+    Returns the scalar training loss and detached batch stats for epoch metrics
+    (``rank/...`` namespace).
+    """
+    eps = 1e-8
+    n = sorted_load.shape[0]
+    inv_d = inv_sqrt_cpu.to(device) if inv_sqrt_cpu is not None else None
+    cap = int(inv_d.shape[0] - 1) if inv_d is not None else 0
+    zf = torch.zeros((), device=device, dtype=torch.float32)
+
+    v_chunks: list[torch.Tensor] = []
+    w_chunks: list[torch.Tensor] = []
+
+    n_adj = zf
+    sum_log_ratio_adj = zf
+    viol_adj_count = zf
+    if n >= 2:
+        len_diff = sorted_len[1:] - sorted_len[:-1]
+        valid_adj = len_diff > 0
+        log_ratio = torch.log(sorted_len[1:] / sorted_len[:-1].clamp_min(1.0))
+        margin_adj = rank_margin * log_ratio
+        viol_adj = F.relu(sorted_load[:-1] - sorted_load[1:] + margin_adj)
+        if pair_weighting == "log_ratio":
+            wt = log_ratio.clamp(min=eps)
+        elif pair_weighting == "sqrt_log_ratio":
+            wt = torch.sqrt(log_ratio.clamp(min=eps))
+        elif pair_weighting == "inv_sqrt_freq" and inv_d is not None:
+            ia = sorted_len[:-1].long().clamp(0, cap)
+            ib = sorted_len[1:].long().clamp(0, cap)
+            wt = inv_d[ia] * inv_d[ib]
+        else:
+            wt = torch.ones_like(log_ratio)
+        if valid_adj.any():
+            lr_v = log_ratio[valid_adj]
+            viol_v = viol_adj[valid_adj]
+            n_adj = lr_v.new_tensor(float(lr_v.numel()), dtype=torch.float32)
+            sum_log_ratio_adj = lr_v.sum().to(torch.float32)
+            viol_adj_count = (viol_v.detach() > 1e-6).to(torch.float32).sum()
+            v_chunks.append(viol_adj[valid_adj])
+            w_chunks.append(wt[valid_adj])
+
+    n_lr = zf
+    viol_lr_count = zf
+    if long_range_pairs and n >= 3:
+        for i, j in ((0, n - 1), (0, n // 2), (n // 2, n - 1)):
+            if j <= i:
+                continue
+            la, lb = sorted_len[i], sorted_len[j]
+            if bool((lb <= la).item()):
+                continue
+            lr = torch.log(lb / la.clamp_min(torch.ones_like(la)))
+            margin_ex = rank_margin * lr
+            viol_ex = F.relu(sorted_load[i] - sorted_load[j] + margin_ex)
+            if pair_weighting == "log_ratio":
+                w_ex = lr.clamp(min=eps)
+            elif pair_weighting == "sqrt_log_ratio":
+                w_ex = torch.sqrt(lr.clamp(min=eps))
+            elif pair_weighting == "inv_sqrt_freq" and inv_d is not None:
+                ia = int(la.clamp(min=0, max=cap).item())
+                ib = int(lb.clamp(min=0, max=cap).item())
+                w_ex = inv_d[ia] * inv_d[ib]
+            else:
+                w_ex = torch.tensor(1.0, device=device, dtype=sorted_load.dtype)
+            v_chunks.append(viol_ex.unsqueeze(0))
+            w_chunks.append(w_ex.unsqueeze(0))
+            n_lr = n_lr + 1.0
+            viol_lr_count = viol_lr_count + (viol_ex.detach() > 1e-6).to(
+                torch.float32
+            )
+
+    if not v_chunks:
+        loss = torch.zeros((), device=device, dtype=sorted_load.dtype)
+        return loss, {
+            "n_adj": n_adj,
+            "sum_log_ratio_adj": sum_log_ratio_adj,
+            "viol_adj": viol_adj_count,
+            "n_lr": n_lr,
+            "viol_lr": viol_lr_count,
+        }
+
+    v_all = torch.cat([x.reshape(-1) for x in v_chunks])
+    w_all = torch.cat([x.reshape(-1) for x in w_chunks])
+    den = w_all.sum().clamp_min(eps)
+    loss = (v_all * w_all).sum() / den
+    return loss, {
+        "n_adj": n_adj,
+        "sum_log_ratio_adj": sum_log_ratio_adj,
+        "viol_adj": viol_adj_count,
+        "n_lr": n_lr,
+        "viol_lr": viol_lr_count,
+    }
 
 
 def train(
@@ -225,8 +341,6 @@ def train(
     # Ensure entirely reproducible model setup across parallel runners
     import random
 
-    import numpy as np
-
     random.seed(0)
     np.random.seed(0)
     torch.manual_seed(0)
@@ -256,6 +370,31 @@ def train(
         device, non_blocking=IS_CUDA
     )
 
+    did = dataset_bundle["dataset_id"]
+    need_hist = (
+        config.rank_pair_weighting == "inv_sqrt_freq"
+        or config.use_stratified_length_batches
+    )
+    if need_hist and GLOBAL_SETUP_CACHE._rank_hist_dataset_id != did:
+        GLOBAL_SETUP_CACHE.rank_inv_sqrt_freq = None
+        if config.rank_pair_weighting == "inv_sqrt_freq":
+            hpath = ensure_token_length_histogram_local(did)
+            if hpath is None:
+                hpath = token_length_histogram_path(did)
+            if os.path.isfile(hpath):
+                hist = np.load(hpath, mmap_mode="r")
+                inv = 1.0 / np.sqrt(hist.astype(np.float64) + 1.0)
+                GLOBAL_SETUP_CACHE.rank_inv_sqrt_freq = torch.tensor(
+                    inv, dtype=torch.float32
+                )
+                print(f"  Rank inv-sqrt freq weights from {hpath} (len={len(inv)})")
+            else:
+                print(
+                    f"  Warning: no token histogram at {hpath}; "
+                    "rank_pair_weighting inv_sqrt_freq falls back to uniform"
+                )
+        GLOBAL_SETUP_CACHE._rank_hist_dataset_id = did
+
     if sample_ratio not in GLOBAL_SETUP_CACHE.dataset_subsets:
         dataset = BundledStyleDataset.from_bundle(
             dataset_bundle, sample_ratio=sample_ratio
@@ -280,16 +419,30 @@ def train(
 
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
-    loader = DataLoader(
-        gram_ds,
-        batch_size=config.batch_size,
-        shuffle=True,
-        collate_fn=collate_fn,
-        num_workers=2 if IS_CUDA else 0,
-        pin_memory=IS_CUDA,
-        drop_last=False,
-        generator=dl_generator,
-    )
+    if config.use_stratified_length_batches:
+        batch_sampler = LengthStratifiedBatchSampler(
+            gram_ds,
+            config.batch_size,
+            generator=dl_generator,
+        )
+        loader = DataLoader(
+            gram_ds,
+            batch_sampler=batch_sampler,
+            collate_fn=collate_fn,
+            num_workers=2 if IS_CUDA else 0,
+            pin_memory=IS_CUDA,
+        )
+    else:
+        loader = DataLoader(
+            gram_ds,
+            batch_size=config.batch_size,
+            shuffle=True,
+            collate_fn=collate_fn,
+            num_workers=2 if IS_CUDA else 0,
+            pin_memory=IS_CUDA,
+            drop_last=False,
+            generator=dl_generator,
+        )
 
     # ── Model ────────────────────────────────────────────────────────
     surface_vocab = tokenizer.get_vocab_sizes()["surface"]
@@ -434,6 +587,14 @@ def train(
         total_kl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_rank_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_weighted_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_n_adj = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_sum_log_ratio_adj = torch.tensor(
+            0.0, device=device, dtype=torch.float32
+        )
+        total_rank_viol_adj = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_n_lr = torch.tensor(0.0, device=device, dtype=torch.float32)
+        total_rank_viol_lr = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_cov_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_sharpness_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_consistency_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -961,29 +1122,28 @@ def train(
                 sorted_idx = rank_lengths.argsort()
                 sorted_load = rank_load[sorted_idx]
                 sorted_len = rank_lengths[sorted_idx]
-                # Adjacent pairs where lengths actually differ
-                len_diff = sorted_len[1:] - sorted_len[:-1]
-                valid_pairs = len_diff > 0
-                if valid_pairs.any():
-                    # Proportional margin: log(len_b / len_a) so larger
-                    # length gaps demand proportionally more KC separation.
-                    log_ratio = torch.log(
-                        sorted_len[1:] / sorted_len[:-1].clamp_min(1.0)
-                    )
-                    scaled_margin = config.rank_margin * log_ratio
-                    violations = F.relu(
-                        sorted_load[:-1] - sorted_load[1:] + scaled_margin
-                    )
-                    rank_loss = (
-                        violations * valid_pairs.float()
-                    ).sum() / valid_pairs.float().sum()
-                else:
-                    rank_loss = torch.tensor(0.0, device=device)
-                # No kl_warmup: enforce monotonic ordering from epoch 0
-                # so length→load structure is established before logit
-                # assignments solidify.
+                inv_cpu = None
+                if config.rank_pair_weighting == "inv_sqrt_freq":
+                    inv_cpu = GLOBAL_SETUP_CACHE.rank_inv_sqrt_freq
+                rank_loss, rank_bs = _rank_margin_loss(
+                    sorted_load,
+                    sorted_len,
+                    rank_margin=config.rank_margin,
+                    pair_weighting=config.rank_pair_weighting,
+                    inv_sqrt_cpu=inv_cpu,
+                    long_range_pairs=config.rank_long_range_pairs,
+                    device=device,
+                )
                 loss = loss + config.rank_margin_weight * rank_loss
                 total_rank_sum += rank_loss.detach().float()
+                total_rank_weighted_sum += (
+                    rank_loss.detach().float() * config.rank_margin_weight
+                )
+                total_rank_n_adj += rank_bs["n_adj"]
+                total_rank_sum_log_ratio_adj += rank_bs["sum_log_ratio_adj"]
+                total_rank_viol_adj += rank_bs["viol_adj"]
+                total_rank_n_lr += rank_bs["n_lr"]
+                total_rank_viol_lr += rank_bs["viol_lr"]
 
             if config.cov_penalty_weight > 0:
                 centered = kc_probs - kc_probs.mean(dim=0)
@@ -1097,6 +1257,7 @@ def train(
         t1_denom = epoch_t1_units if USE_FUSED_CE else _num_units_val
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
         avg_cos = epoch_cossim_sum / max(1, t1_denom)
+        avg_rank_loss = total_rank_sum.item() / max(1, n_batches)
 
         latest_metrics.update(
             {
@@ -1145,7 +1306,7 @@ def train(
                 "loss": avg_loss,
                 "sparsity": avg_kl,
                 "mdl": total_mdl_sum.item() / max(1, n_batches),
-                "rank": total_rank_sum.item() / max(1, n_batches),
+                "rank": avg_rank_loss,
                 "orthogonality": avg_cov,
                 "consistency": avg_consist,
                 "mask-agree": avg_pair_cos,
@@ -1164,6 +1325,37 @@ def train(
                 "elapsed_ms": cumulative_elapsed_ms,
             }
         )
+
+        if config.rank_margin_weight > 0:
+            n_adj_epoch = total_rank_n_adj.item()
+            n_lr_epoch = total_rank_n_lr.item()
+            d_adj = n_adj_epoch if n_adj_epoch > 0 else 1.0
+            d_lr = n_lr_epoch if n_lr_epoch > 0 else 1.0
+            latest_metrics["rank/loss_mean"] = avg_rank_loss
+            latest_metrics["rank/margin_weighted_mean"] = (
+                total_rank_weighted_sum.item() / max(1, n_batches)
+            )
+            latest_metrics["rank/violation_rate_adj"] = (
+                (total_rank_viol_adj.item() / d_adj) if n_adj_epoch > 0 else 0.0
+            )
+            latest_metrics["rank/mean_log_ratio_adj"] = (
+                (total_rank_sum_log_ratio_adj.item() / d_adj)
+                if n_adj_epoch > 0
+                else 0.0
+            )
+            latest_metrics["rank/valid_adj_pairs_per_batch"] = (
+                n_adj_epoch / max(1, n_batches)
+            )
+            latest_metrics["rank/long_range_pairs_per_batch"] = (
+                n_lr_epoch / max(1, n_batches)
+            )
+            latest_metrics["rank/violation_rate_long"] = (
+                (total_rank_viol_lr.item() / d_lr) if n_lr_epoch > 0 else 0.0
+            )
+        else:
+            for _rk in list(latest_metrics.keys()):
+                if _rk.startswith("rank/"):
+                    del latest_metrics[_rk]
 
         print()  # finish \r progress line
 

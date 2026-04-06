@@ -157,10 +157,11 @@ class BestTracker:
     ``best.json`` so a fresh training session starts from the real
     global best rather than zero.
 
-    The "best" criteria requires both ``bpd/cos`` (training cosine
+    The "best" criteria requires ``bpd/cos`` (training cosine
     similarity from the prior epoch) and ``test/cos`` (reconstruction
     test cosine similarity from the current epoch start) to strictly
-    exceed the current best.  Only 100% dataset runs are eligible.
+    exceed the current best, **and** ``rank`` (KC ordering loss) to be
+    strictly lower.  Only 100% dataset runs are eligible.
     """
 
     def __init__(self, checkpoint_dir: str, enable_upload: bool = True):
@@ -168,8 +169,10 @@ class BestTracker:
         self.enable_upload = enable_upload
         self.best_bpd_cos: float = 0.0
         self.best_test_cos: float = 0.0
+        self.best_rank: float = 1.0
         self.cumulative_best_checkpoints: int = 0
         self._prior_bpd_cos: Optional[float] = None
+        self._prior_rank: Optional[float] = None
         self._state_path = os.path.join(checkpoint_dir, "best_state.json")
         self._load_local_state()
         self._sync_from_gcs()
@@ -180,6 +183,7 @@ class BestTracker:
                 state = json.load(f)
             self.best_bpd_cos = state.get("best_bpd_cos", 0.0)
             self.best_test_cos = state.get("best_test_cos", 0.0)
+            self.best_rank = state.get("best_rank", 1.0)
             self.cumulative_best_checkpoints = state.get(
                 "cumulative_best_checkpoints", 0
             )
@@ -195,13 +199,20 @@ class BestTracker:
             criteria = gcs_best.get("criteria", {})
             gcs_bpd_cos = criteria.get("bpd_cos", 0.0)
             gcs_test_cos = criteria.get("test_cos", 0.0)
-            if gcs_bpd_cos > self.best_bpd_cos and gcs_test_cos > self.best_test_cos:
+            gcs_rank = criteria.get("rank", 1.0)
+            if (
+                gcs_bpd_cos > self.best_bpd_cos
+                and gcs_test_cos > self.best_test_cos
+                and gcs_rank < self.best_rank
+            ):
                 self.best_bpd_cos = gcs_bpd_cos
                 self.best_test_cos = gcs_test_cos
+                self.best_rank = gcs_rank
                 self._save_state()
                 print(
                     f"  BestTracker: synced from GCS "
-                    f"(bpd/cos={gcs_bpd_cos:.4f}, test/cos={gcs_test_cos:.4f})"
+                    f"(bpd/cos={gcs_bpd_cos:.4f}, test/cos={gcs_test_cos:.4f},"
+                    f" rank={gcs_rank:.4f})"
                 )
         except Exception as e:
             logger.debug("BestTracker: could not sync from GCS: %s", e)
@@ -213,6 +224,7 @@ class BestTracker:
                 {
                     "best_bpd_cos": self.best_bpd_cos,
                     "best_test_cos": self.best_test_cos,
+                    "best_rank": self.best_rank,
                     "cumulative_best_checkpoints": self.cumulative_best_checkpoints,
                 },
                 f,
@@ -221,8 +233,9 @@ class BestTracker:
             f.write("\n")
 
     def stash_epoch_end(self, metrics: dict) -> None:
-        """Stash bpd/cos from the just-completed epoch for next-epoch check."""
+        """Stash bpd/cos and rank from the just-completed epoch for next-epoch check."""
         self._prior_bpd_cos = metrics.get("cos")
+        self._prior_rank = metrics.get("rank/loss_mean", metrics.get("rank"))
 
     def check_and_promote(
         self,
@@ -256,7 +269,12 @@ class BestTracker:
             return False
 
         prior_bpd_cos = self._prior_bpd_cos
-        if prior_bpd_cos <= self.best_bpd_cos or test_cos <= self.best_test_cos:
+        prior_rank = self._prior_rank if self._prior_rank is not None else 1.0
+        if (
+            prior_bpd_cos <= self.best_bpd_cos
+            or test_cos <= self.best_test_cos
+            or prior_rank >= self.best_rank
+        ):
             return False
 
         if not os.path.exists(checkpoint_path):
@@ -265,18 +283,22 @@ class BestTracker:
         previous_criteria = {
             "bpd_cos": self.best_bpd_cos,
             "test_cos": self.best_test_cos,
+            "rank": self.best_rank,
         }
         self.best_bpd_cos = prior_bpd_cos
         self.best_test_cos = test_cos
+        self.best_rank = prior_rank
         self.cumulative_best_checkpoints += 1
         self._save_state()
 
         print(
             f"\n{'=' * 60}\n"
             f"  NEW BEST CHECKPOINT #{self.cumulative_best_checkpoints}\n"
-            f"  bpd/cos: {prior_bpd_cos:.4f}  test/cos: {test_cos:.4f}\n"
+            f"  bpd/cos: {prior_bpd_cos:.4f}  test/cos: {test_cos:.4f}"
+            f"  rank: {prior_rank:.4f}\n"
             f"  (was bpd/cos={previous_criteria['bpd_cos']:.4f} "
-            f"test/cos={previous_criteria['test_cos']:.4f})\n"
+            f"test/cos={previous_criteria['test_cos']:.4f} "
+            f"rank={previous_criteria['rank']:.4f})\n"
             f"{'=' * 60}"
         )
 
@@ -293,6 +315,7 @@ class BestTracker:
             "criteria": {
                 "bpd_cos": prior_bpd_cos,
                 "test_cos": test_cos,
+                "rank": prior_rank,
             },
             "previous_criteria": previous_criteria,
             "epoch": epoch,
@@ -617,7 +640,10 @@ def objective(
                     for ep, metrics in existing.epoch_history:
                         for k, v in metrics.items():
                             if isinstance(v, (int, float)):
-                                _mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                                if k.startswith("rank/"):
+                                    _mlflow.log_metric(k, v, step=ep)
+                                elif not k.startswith("test/"):
+                                    _mlflow.log_metric(f"bpd/{k}", v, step=ep)
                         k_toks = (
                             int(metrics.get("cumulative_tokens_trained", ep * 1000))
                             // 1000
@@ -687,7 +713,10 @@ def objective(
                 for ep, metrics in existing.epoch_history:
                     for k, v in metrics.items():
                         if isinstance(v, (int, float)):
-                            mlflow.log_metric(f"bpd/{k}", v, step=ep)
+                            if k.startswith("rank/"):
+                                mlflow.log_metric(k, v, step=ep)
+                            elif not k.startswith("test/"):
+                                mlflow.log_metric(f"bpd/{k}", v, step=ep)
                     k_toks = (
                         int(metrics.get("cumulative_tokens_trained", ep * 1000)) // 1000
                     )
@@ -784,7 +813,10 @@ def objective(
                         and not k.startswith("test/")
                         and not k.startswith("bpd/")
                     ):
-                        mlflow.log_metric(f"bpd/{k}", v, step=epoch)
+                        if k.startswith("rank/"):
+                            mlflow.log_metric(k, v, step=epoch)
+                        else:
+                            mlflow.log_metric(f"bpd/{k}", v, step=epoch)
 
                 # Log invariance diagnostic metrics against tokens trained (in thousands)
                 k_toks = (
@@ -1097,6 +1129,7 @@ def main() -> None:
     print(
         f"  Best tracker: bpd/cos={tracker.best_bpd_cos:.4f}  "
         f"test/cos={tracker.best_test_cos:.4f}  "
+        f"rank={tracker.best_rank:.4f}  "
         f"uploads={tracker.cumulative_best_checkpoints}"
     )
 
