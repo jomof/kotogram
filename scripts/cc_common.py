@@ -255,11 +255,21 @@ def parse_kotogram_chunk(sentences: list[str]) -> list[str]:
     return [parser.japanese_to_kotogram(s) for s in sentences]
 
 
+_TOKENIZER_PATH: str = ""
+
+
+def set_tokenizer_path(path: str) -> None:
+    """Set the tokenizer JSON path for worker processes."""
+    global _TOKENIZER_PATH  # noqa: PLW0603
+    _TOKENIZER_PATH = path
+
+
 def encode_kotogram_chunk(kotograms: list[str]) -> list[dict[str, list[int]]]:
     """Worker: encode kotogram strings to token-id dicts."""
     from kotogram.tokenizer import Tokenizer
 
-    tokenizer = Tokenizer.load(f"{STYLE_MODEL_DIR}/tokenizer.json")
+    path = _TOKENIZER_PATH or f"{STYLE_MODEL_DIR}/tokenizer.json"
+    tokenizer = Tokenizer.load(path)
     return [tokenizer.encode(k) for k in kotograms]
 
 
@@ -539,15 +549,16 @@ _CACHE_META_NAME = "inference-cache-meta.json"
 
 
 def model_hash() -> str:
-    """MD5 of model.pt -- changes when the model is retrained."""
-    h = hashlib.md5()  # noqa: S324
-    with open(f"{STYLE_MODEL_DIR}/model.pt", "rb") as fh:
-        while True:
-            block = fh.read(1 << 20)
-            if not block:
-                break
-            h.update(block)
-    return h.hexdigest()[:12]
+    """Checkpoint ID from checkpoint.lock -- changes when the model is retrained."""
+    from scripts.checkpoint import read_lock
+
+    lock = read_lock()
+    if lock is None:
+        raise FileNotFoundError(
+            "checkpoint.lock not found. Run: scripts/cc checkpoint pull recon_bpd"
+        )
+    ckpt_id: str = lock["checkpoint_id"]
+    return ckpt_id[:12]
 
 
 def is_cache_valid(cache_dir: Path, model_md5: str) -> bool:
@@ -591,7 +602,7 @@ def sentences_fingerprint(sentences: list[str]) -> str:
 # Batched inference -> embeddings + uncertainty + grammaticality
 # ---------------------------------------------------------------------------
 
-BATCH_SIZE = 512
+BPD_BATCH_SIZE = 64
 
 
 def embed_and_score(  # pylint: disable=too-many-locals
@@ -599,72 +610,61 @@ def embed_and_score(  # pylint: disable=too-many-locals
     model: Any,
     device: Any,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Run batched inference in a single encoder pass.
+    """Run batched BPD inference: embeddings + reconstruction uncertainty.
 
     Returns (embeddings, uncertainty, gram_probs):
-      embeddings:  (N, d_model) float32
-      uncertainty: (N,) float32  -- mean entropy across classification heads
-      gram_probs:  (N,) float32  -- P(grammatic) per sentence
+      embeddings:  (N, d_model) float32  -- pooled encoder representations
+      uncertainty: (N,) float32  -- per-sentence BPD (bits per token)
+      gram_probs:  (N,) float32  -- always 1.0 (no grammaticality head yet)
     """
     import torch
     from rich.progress import Progress
 
-    from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, FEATURE_FIELDS
+    from scripts.recon_bpd.inference import embed_and_bpd
 
     _t0_es = time.monotonic()
     total = len(encoded_all)
-    ref_field = FEATURE_FIELDS[0]
-    lengths = np.array([len(e[ref_field]) for e in encoded_all], dtype=np.int64)
+    lengths = np.array([len(e["surface"]) for e in encoded_all], dtype=np.int64)
     order = np.argsort(lengths)
 
-    d_model = model.config.d_model
+    d_model = model.cfg.d_model
     embeddings = np.zeros((total, d_model), dtype=np.float32)
     uncertainty = np.zeros(total, dtype=np.float32)
-    gram_probs_out = np.zeros(total, dtype=np.float32)
+    gram_probs_out = np.ones(total, dtype=np.float32)
 
-    def _entropy(logits: torch.Tensor) -> torch.Tensor:
-        probs = torch.softmax(logits, dim=-1)
-        return -(probs * probs.clamp(min=1e-8).log()).sum(-1)
+    is_mps = device.type == "mps"
 
     console.print(f"  Inference on [bold]{device}[/bold]...")
     with Progress(console=console) as progress:
-        task = progress.add_task("  Embedding + scoring...", total=total)
-        for start in range(0, len(order), BATCH_SIZE):
-            batch_idx = order[start : start + BATCH_SIZE]
+        task = progress.add_task("  Embedding + BPD scoring...", total=total)
+        for start in range(0, len(order), BPD_BATCH_SIZE):
+            batch_idx = order[start : start + BPD_BATCH_SIZE]
             batch_encoded = [encoded_all[i] for i in batch_idx]
             n_batch = len(batch_encoded)
             max_len = int(lengths[batch_idx[-1]])
 
-            mask_np = np.zeros((n_batch, max_len), dtype=np.int64)
-            field_inputs = {}
-            for field in ENCODER_FEATURE_FIELDS:
-                padded = np.zeros((n_batch, max_len), dtype=np.int64)
-                for i, enc in enumerate(batch_encoded):
-                    ids = enc[field]
-                    seq_len = len(ids)
-                    padded[i, :seq_len] = ids
-                    if field == ENCODER_FEATURE_FIELDS[0]:
-                        mask_np[i, :seq_len] = 1
-                field_inputs[f"input_ids_{field}"] = torch.from_numpy(padded).to(device)
+            padded = np.zeros((n_batch, max_len), dtype=np.int64)
+            mask_np = np.zeros((n_batch, max_len), dtype=np.float32)
+            for i, enc in enumerate(batch_encoded):
+                ids = enc["surface"]
+                seq_len = len(ids)
+                padded[i, :seq_len] = ids
+                mask_np[i, :seq_len] = 1.0
+
+            surface_ids = torch.from_numpy(padded).to(device)
             mask = torch.from_numpy(mask_np).to(device)
 
             with torch.inference_mode():
-                pooled = model.pool(field_inputs, mask)
-
-                gram_logits = model.grammaticality_classifier(pooled)
-                form_logits = model.formality_pragmatic_head(pooled)
-                gend_logits = model.gender_pragmatic_head(pooled)
-
-                gram_h = _entropy(gram_logits)
-                form_h = _entropy(form_logits)
-                gend_h = _entropy(gend_logits)
-                ent = (gram_h + form_h + gend_h) / 3.0
-
-                gp = torch.softmax(gram_logits, dim=-1)[:, 1]
+                use_vec = getattr(model, "_distilled", False)
+                pooled, bpd = embed_and_bpd(
+                    model, surface_ids, mask, vectorized=use_vec
+                )
 
             embeddings[batch_idx] = pooled.cpu().numpy()
-            uncertainty[batch_idx] = ent.cpu().numpy()
-            gram_probs_out[batch_idx] = gp.cpu().numpy()
+            uncertainty[batch_idx] = bpd.cpu().numpy()
+
+            if is_mps:
+                torch.mps.empty_cache()
 
             progress.advance(task, n_batch)
 
@@ -672,7 +672,7 @@ def embed_and_score(  # pylint: disable=too-many-locals
         "embed_and_score",
         indent=1,
         n=total,
-        batches=(total + BATCH_SIZE - 1) // BATCH_SIZE,
+        batches=(total + BPD_BATCH_SIZE - 1) // BPD_BATCH_SIZE,
         time_s=time.monotonic() - _t0_es,
     )
     return embeddings, uncertainty, gram_probs_out
@@ -730,11 +730,29 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
 
     if cache.exists() and meta_path.exists() and sents_path.exists():
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        if meta.get("model_hash") == model_md5:
+        cached_hash = meta.get("model_hash", "")
+        if cached_hash == model_md5:
             old_sents = sents_path.read_text(encoding="utf-8").splitlines()
             existing: np.ndarray = np.load(str(cache))
             if existing.shape[0] == len(old_sents):
                 old_emb = existing
+            else:
+                console.print(
+                    f"  Corpus cache invalidated: embedding count"
+                    f" ({existing.shape[0]}) != sentence count ({len(old_sents)})"
+                )
+        else:
+            console.print(
+                f"  Corpus cache invalidated: model changed"
+                f" ({cached_hash} -> {model_md5})"
+            )
+    elif cache.exists() or meta_path.exists() or sents_path.exists():
+        missing = [
+            name for name, p in [
+                ("embeddings", cache), ("meta", meta_path), ("sentences", sents_path),
+            ] if not p.exists()
+        ]
+        console.print(f"  Corpus cache invalidated: missing {', '.join(missing)}")
 
     cached_map: dict[str, int] = {}
     if old_emb is not None:
@@ -824,7 +842,7 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
 # ---------------------------------------------------------------------------
 
 
-_INFERENCE_CHUNK = 200_000
+_INFERENCE_CHUNK = 50_000
 
 
 def _cc_score_paths(cache_dir: Path) -> tuple[Path, Path, Path]:
@@ -860,6 +878,16 @@ def get_cc_scores(  # pylint: disable=too-many-locals
         _cc_cache = "miss_no_file"
     elif not is_cache_valid(cache_dir, model_md5):
         _cc_cache = "miss_model"
+        _meta_path = cache_dir / _CACHE_META_NAME
+        _old_hash = ""
+        if _meta_path.exists():
+            _old_hash = json.loads(
+                _meta_path.read_text(encoding="utf-8")
+            ).get("model_hash", "")
+        console.print(
+            f"  CC inference cache invalidated: model changed"
+            f" ({_old_hash} -> {model_md5})"
+        )
 
     if emb_path.exists() and is_cache_valid(cache_dir, model_md5):
         existing: np.ndarray = np.load(str(emb_path), mmap_mode="r")
@@ -901,23 +929,17 @@ def get_cc_scores(  # pylint: disable=too-many-locals
     if not cached_n:
         console.print("  Running inference (no valid cache)...")
 
-    d_model = model.config.d_model
-    tmp_emb = str(emb_path) + ".tmp"
-    emb_mm: np.ndarray = np.lib.format.open_memmap(
-        tmp_emb,
-        mode="w+",
-        dtype=np.float32,
-        shape=(n, d_model),
-    )
-    unc_arr = np.zeros(n, dtype=np.float32)
-    gp_arr = np.zeros(n, dtype=np.float32)
+    # Seed arrays from any valid cached prefix
+    emb_parts: list[np.ndarray] = []
+    unc_parts: list[np.ndarray] = []
+    gp_parts: list[np.ndarray] = []
 
     if cached_n > 0:
-        old_emb: np.ndarray = np.load(str(emb_path), mmap_mode="r")
-        emb_mm[:cached_n] = old_emb[:cached_n]
+        old_emb: np.ndarray = np.load(str(emb_path))
+        emb_parts.append(old_emb[:cached_n])
         del old_emb
-        unc_arr[:cached_n] = np.load(str(unc_path))[:cached_n]
-        gp_arr[:cached_n] = np.load(str(gp_path))[:cached_n]
+        unc_parts.append(np.load(str(unc_path))[:cached_n])
+        gp_parts.append(np.load(str(gp_path))[:cached_n])
 
     remaining = n - cached_n
     n_chunks = (remaining + _INFERENCE_CHUNK - 1) // _INFERENCE_CHUNK
@@ -931,18 +953,25 @@ def get_cc_scores(  # pylint: disable=too-many-locals
             )
         encoded = parallel_parse_and_encode(cc_sentences[start:end])
         c_emb, c_unc, c_gp = embed_and_score(encoded, model, device)
-        emb_mm[start:end] = c_emb
-        unc_arr[start:end] = c_unc
-        gp_arr[start:end] = c_gp
-        del encoded, c_emb, c_unc, c_gp
+        emb_parts.append(c_emb)
+        unc_parts.append(c_unc)
+        gp_parts.append(c_gp)
+        del encoded
 
-    del emb_mm
-    Path(tmp_emb).rename(emb_path)
-    np.save(str(unc_path), unc_arr)
-    np.save(str(gp_path), gp_arr)
-    write_cache_meta(
-        cache_dir, model_md5, sentences_fp=sentences_fingerprint(cc_sentences)
-    )
+        # Flush after every chunk so partial progress survives crashes
+        _flush_emb = np.concatenate(emb_parts)
+        _flush_unc = np.concatenate(unc_parts)
+        _flush_gp = np.concatenate(gp_parts)
+        np.save(str(emb_path), _flush_emb)
+        np.save(str(unc_path), _flush_unc)
+        np.save(str(gp_path), _flush_gp)
+        write_cache_meta(
+            cache_dir,
+            model_md5,
+            sentences_fp=sentences_fingerprint(cc_sentences[:end]),
+        )
+        del _flush_emb, _flush_unc, _flush_gp
+        console.print(f"    Cached {end:,}/{n:,} sentences")
     perf_log(
         "cc_scores",
         cache=_cc_cache,
@@ -955,6 +984,6 @@ def get_cc_scores(  # pylint: disable=too-many-locals
 
     return (
         np.load(str(emb_path), mmap_mode="r"),
-        unc_arr,
-        gp_arr,
+        np.load(str(unc_path)),
+        np.load(str(gp_path)),
     )

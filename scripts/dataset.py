@@ -653,6 +653,12 @@ def load_chive(path: str) -> torch.Tensor:
     return result
 
 
+def resolve_dataset_by_id(dataset_id: str) -> dict:
+    """Resolve a dataset ID to its bundle (without chiVe weights)."""
+    ds_path = _ensure_dataset_local(dataset_id)
+    return load_dataset(ds_path)
+
+
 def resolve_dataset(flag: Optional[str] = None) -> Tuple[dict, torch.Tensor]:
     """Resolve a --dataset flag (None/latest/<id>) to (bundle, chive_tensor)."""
     if flag is None:

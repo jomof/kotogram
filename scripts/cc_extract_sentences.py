@@ -40,7 +40,6 @@ from scripts.cc_common import (
     CORPUS_DB,
     GRAMMATIC_SOFT_MIN,
     MAX_SENTENCE_LEN,
-    STYLE_MODEL_DIR,
     _cache_path,
     clean_sentence,
     console,
@@ -56,6 +55,7 @@ from scripts.cc_common import (
     perf_log,
     perf_log_dist,
     perf_start_run,
+    set_tokenizer_path,
 )
 
 _HIRAGANA_RE = re.compile(r"[\u3040-\u309F]")
@@ -756,7 +756,7 @@ def _print_selection_summary(  # pylint: disable=too-many-arguments,too-many-pos
 def main() -> None:  # pylint: disable=too-many-locals
     import torch
 
-    from kotogram.model import load_model
+    from scripts.recon_bpd.inference import load_model_from_checkpoint
 
     parser = argparse.ArgumentParser(
         description="Extract and select Japanese sentences from Common Crawl."
@@ -887,14 +887,21 @@ def main() -> None:  # pylint: disable=too-many-locals
     # -- Selection phase --
     console.rule("Scoring & Selection")
 
-    model, _tokenizer = load_model(STYLE_MODEL_DIR)
+    model, tokenizer_path, checkpoint_id = load_model_from_checkpoint(
+        drop_layers=7, output_rank=16,
+    )
+    set_tokenizer_path(tokenizer_path)
     device = torch.device("cpu")
     if torch.backends.mps.is_available():
         device = torch.device("mps")
     model.to(device)
 
     model_md5 = model_hash()
-    console.print(f"  Model hash: {model_md5}")
+    if getattr(model, "_distilled", False):
+        variant = "fp16 -7L r16"
+    else:
+        variant = "full fp32"
+    console.print(f"  Checkpoint: {checkpoint_id}  ({variant}, cache key: {model_md5})")
 
     _t0_scoring = time.monotonic()
     corpus_emb = get_corpus_embeddings(model, device, model_md5)
@@ -906,7 +913,9 @@ def main() -> None:  # pylint: disable=too-many-locals
         crawl_id, cc_sentences, model, device, model_md5
     )
 
-    # -- Grammaticality filter (content already filtered during extraction) --
+    # Grammaticality filter -- currently a no-op (all gram_probs=1.0) because
+    # the recon_bpd model has no grammaticality head yet.  When one is added,
+    # this gate will start filtering again automatically.
     keep_mask = cc_gram_probs >= GRAMMATIC_SOFT_MIN
     keep_idx = np.where(keep_mask)[0]
     n_gram = int((~keep_mask).sum())
