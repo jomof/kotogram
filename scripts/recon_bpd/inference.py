@@ -104,6 +104,7 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
     distilled: bool = True,
     drop_layers: int = 0,
     output_rank: int = 0,
+    token_percentile: float = 100.0,
 ) -> Tuple[BpdModel, str, str]:
     """Build and load a BpdModel from checkpoint.lock + dataset.lock.
 
@@ -112,6 +113,11 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
     encoder layers; *output_rank* applies low-rank SVD to the output head.
     The returned model has ``_distilled`` and (optionally) ``_output_u`` /
     ``_output_v`` attributes for the inference path.
+
+    When *token_percentile* < 100, the distilled checkpoint uses a reduced
+    surface vocabulary.  The model receives a ``_token_remap`` buffer mapping
+    full-vocab IDs to reduced IDs so ``embed_and_bpd`` can transparently
+    remap tokenizer output.
 
     Returns ``(model, tokenizer_path, checkpoint_id)``.
     """
@@ -134,6 +140,7 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
             model_type,
             drop_layers=drop_layers,
             output_rank=output_rank,
+            token_percentile=token_percentile,
         )
     else:
         local_pt = download_checkpoint(model_type, checkpoint_id)
@@ -155,6 +162,24 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
     if output_u is not None and output_v is not None:
         model.register_buffer("_output_u", output_u)  # [V, r]
         model.register_buffer("_output_v", output_v)  # [r, H]
+
+    # Attach token remap for reduced-vocab models so embed_and_bpd can
+    # transparently convert full-vocab tokenizer IDs to reduced IDs.
+    token_remap_meta = ckpt.get("token_remap")
+    if token_remap_meta is not None:
+        from scripts.recon_bpd.token_remap import NUM_SPECIAL
+
+        kept = token_remap_meta["kept_indices"]
+        v_new = int(token_remap_meta["v_new"])
+        unk_id = int(token_remap_meta["unk_id"])
+        v_old = int(kept.max().item()) + 1 if len(kept) > 0 else NUM_SPECIAL
+        # Pad to cover any ID the tokenizer might produce
+        v_old = max(v_old, NUM_SPECIAL) + 1
+        old_to_new = torch.full((v_old,), unk_id, dtype=torch.long)
+        for new_id, old_id in enumerate(kept.tolist()):
+            if old_id < v_old:
+                old_to_new[old_id] = new_id
+        model.register_buffer("_token_remap", old_to_new)
 
     from scripts.dataset import resolve_dataset_by_id
 
@@ -185,6 +210,12 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
     Returns:
         (pooled, bpd) where pooled is [B, d_model] and bpd is [B].
     """
+    # Remap full-vocab tokenizer IDs to reduced-vocab IDs if applicable.
+    token_remap: Optional[torch.Tensor] = getattr(model, "_token_remap", None)
+    if token_remap is not None:
+        clamped = surface_ids.clamp(max=token_remap.size(0) - 1)
+        surface_ids = token_remap.to(surface_ids.device)[clamped]
+
     pooled = model.encode(surface_ids, attention_mask)
     kc_raw, _ = model.kc_head.forward_with_raw(pooled)
     kc_probs = torch.sigmoid(kc_raw)

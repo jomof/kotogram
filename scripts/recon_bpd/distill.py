@@ -31,12 +31,15 @@ def _distilled_path(
     checkpoint_id: str,
     drop_layers: int = 0,
     output_rank: int = 0,
+    token_percentile: float = 100.0,
 ) -> str:
     parts = [f"ckpt-{checkpoint_id}.distilled"]
     if drop_layers > 0:
         parts.append(f"-drop{drop_layers}")
     if output_rank > 0:
         parts.append(f"-rank{output_rank}")
+    if token_percentile < 100.0:
+        parts.append(f"-tp{token_percentile:g}")
     parts.append(".pt")
     return os.path.join(LOCAL_CACHE, "".join(parts))
 
@@ -160,13 +163,20 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
     *,
     drop_layers: int = 0,
     output_rank: int = 0,
+    token_percentile: float = 100.0,
     force: bool = False,
 ) -> str:
     """Convert a full checkpoint to FP16, optionally with layer-drop and low-rank.
 
+    When *token_percentile* < 100, also reduces the surface vocabulary by
+    keeping only the tokens that cover that percentage of gram token-position
+    mass (requires dataset.lock to resolve the dataset bundle).
+
     Returns the path to the distilled checkpoint.
     """
-    out_path = _distilled_path(checkpoint_id, drop_layers, output_rank)
+    out_path = _distilled_path(
+        checkpoint_id, drop_layers, output_rank, token_percentile
+    )
     if os.path.exists(out_path) and not force:
         return out_path
 
@@ -176,6 +186,8 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
         extras.append(f"dropping {drop_layers} layers")
     if output_rank:
         extras.append(f"rank-{output_rank} output head")
+    if token_percentile < 100.0:
+        extras.append(f"token-percentile {token_percentile:g}")
     label = f" ({', '.join(extras)})" if extras else ""
     print(f"  Distilling {checkpoint_id} to FP16{label}...")
 
@@ -188,6 +200,42 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
     if output_rank > 0:
         cleaned = _apply_low_rank(cleaned, output_rank)
 
+    # Token percentile vocab reduction
+    token_remap_meta: Optional[Dict[str, Any]] = None
+    if token_percentile < 100.0:
+        from scripts.recon_bpd.token_remap import (
+            apply_remap_to_state_dict,
+            compute_token_remap,
+        )
+
+        lock = read_lock()
+        if lock is None:
+            raise FileNotFoundError(
+                "checkpoint.lock needed for token remap (dataset resolution)"
+            )
+        from scripts.dataset import resolve_dataset
+
+        bundle, chive_weights = resolve_dataset(None)
+        tgf = bundle.get("token_gram_freq")
+        if tgf is None:
+            raise KeyError(
+                "Dataset bundle missing 'token_gram_freq'. "
+                "Rebuild with latest scripts/dataset.py."
+            )
+        remap = compute_token_remap(tgf, token_percentile, chive_weights)
+        cleaned = apply_remap_to_state_dict(cleaned, remap, chive_weights)
+        v_old = len(remap.old_to_new)
+        print(
+            f"  Token remap: {v_old:,} -> {remap.v_new:,} "
+            f"({v_old - remap.v_new:,} removed)"
+        )
+        token_remap_meta = {
+            "percentile": token_percentile,
+            "v_new": remap.v_new,
+            "unk_id": remap.unk_id,
+            "kept_indices": remap.kept_indices,
+        }
+
     distilled_ckpt: Dict[str, Any] = {
         "model_state": cleaned,
         "distilled": True,
@@ -195,10 +243,14 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
         "output_rank": output_rank,
         "source_checkpoint_id": checkpoint_id,
     }
+    if token_remap_meta is not None:
+        distilled_ckpt["token_remap"] = token_remap_meta
     if "config_dict" in ckpt:
         cfg = dict(ckpt["config_dict"])
         if drop_layers > 0:
             cfg["num_layers"] = cfg.get("num_layers", 16) - drop_layers
+        if token_remap_meta is not None:
+            cfg["surface_vocab_size"] = token_remap_meta["v_new"]
         distilled_ckpt["config_dict"] = cfg
 
     os.makedirs(LOCAL_CACHE, exist_ok=True)
@@ -216,9 +268,12 @@ def ensure_distilled(
     *,
     drop_layers: int = 0,
     output_rank: int = 0,
+    token_percentile: float = 100.0,
 ) -> str:
     """Return path to distilled checkpoint, creating it if needed."""
-    out_path = _distilled_path(checkpoint_id, drop_layers, output_rank)
+    out_path = _distilled_path(
+        checkpoint_id, drop_layers, output_rank, token_percentile
+    )
     if os.path.exists(out_path):
         return out_path
     return distill_checkpoint(
@@ -226,6 +281,7 @@ def ensure_distilled(
         model_type,
         drop_layers=drop_layers,
         output_rank=output_rank,
+        token_percentile=token_percentile,
     )
 
 
@@ -637,6 +693,12 @@ def main() -> None:
         default=None,
         help="Output-head ranks to benchmark (default: 16 32 64 128)",
     )
+    parser.add_argument(
+        "--token-percentile",
+        type=float,
+        default=100.0,
+        help="Surface token percentile to keep (default: 100.0 = no reduction)",
+    )
     args = parser.parse_args()
 
     lock = read_lock()
@@ -647,7 +709,12 @@ def main() -> None:
     checkpoint_id = lock["checkpoint_id"]
     print(f"Checkpoint: {checkpoint_id}")
 
-    distill_checkpoint(checkpoint_id, lock["model_type"], force=args.force)
+    distill_checkpoint(
+        checkpoint_id,
+        lock["model_type"],
+        token_percentile=args.token_percentile,
+        force=args.force,
+    )
 
     if args.benchmark:
         print()

@@ -963,6 +963,12 @@ def main() -> None:
         help="Disable KL rho-based sparsity (set kl_sparse_weight=0)",
     )
     parser.add_argument(
+        "--token-percentile",
+        type=float,
+        default=99.0,
+        help="Surface token percentile to keep (default: 99.0; 100.0 disables reduction)",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -1053,6 +1059,8 @@ def main() -> None:
         adhoc_overrides["rank_margin_weight"] = args.rank
     if args.no_kl:
         adhoc_overrides["kl_sparse_weight"] = 0.0
+    if args.token_percentile != 99.0:
+        adhoc_overrides["token_percentile"] = args.token_percentile
 
     if adhoc_overrides:
         print("Overrides:")

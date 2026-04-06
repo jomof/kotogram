@@ -152,6 +152,12 @@ class TrainConfig:
     layer_drop_prob: float = 0.5
     semantic_gating_threshold: float = 0.99  # Set to > 0.0 to enable throughput skips
 
+    # Token percentile reduction: keep surface tokens covering this % of
+    # gram token-position mass, collapsing rare tokens into a single UNK.
+    # 99.0 removes ~55% of vocab (~2.2x CE speedup) affecting 1% of positions.
+    # Set to 100.0 to disable (full vocabulary).
+    token_percentile: float = 99.0
+
 
 @dataclass
 class TrainResult:
@@ -192,6 +198,7 @@ class _SetupCache:
         self.content_mask: Optional[torch.Tensor] = None
         self.rank_inv_sqrt_freq: Optional[torch.Tensor] = None
         self._rank_hist_dataset_id: Optional[str] = None
+        self._token_remap_applied: bool = False
 
 
 GLOBAL_SETUP_CACHE = _SetupCache()
@@ -353,6 +360,16 @@ def train(
 
     # ── Data loading (from dataset bundle) ────────────────────────────
     global GLOBAL_SETUP_CACHE
+
+    # Token percentile reduction: remap surface IDs before any caching.
+    if config.token_percentile < 100.0 and not GLOBAL_SETUP_CACHE._token_remap_applied:
+        from scripts.recon_bpd.token_remap import apply_remap_to_bundle
+
+        dataset_bundle, chive_weights_cpu, _remap = apply_remap_to_bundle(
+            dataset_bundle, chive_weights_cpu, config.token_percentile
+        )
+        GLOBAL_SETUP_CACHE._token_remap_applied = True
+
     if GLOBAL_SETUP_CACHE.tokenizer is None:
         tokenizer = Tokenizer()
         tokenizer.load_state({"field_vocabs": dataset_bundle["vocab"], "frozen": True})
@@ -407,7 +424,7 @@ def train(
     # Release heavy non-tensor data now that the cache is populated.
     # Tensor data is mmap'd; only Python objects (1.7M sentence strings,
     # vocab dicts) occupy heap memory and compete with MPS for unified RAM.
-    for _drop_key in ("sentences", "vocab", "token_length_counts"):
+    for _drop_key in ("sentences", "vocab", "token_length_counts", "token_gram_freq"):
         dataset_bundle.pop(_drop_key, None)
     gram_ds._sentences = []
     import gc

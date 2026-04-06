@@ -23,7 +23,10 @@ from kotogram.tokenizer import (
     UNK_TOKEN,
     Tokenizer,
 )
-from scripts.dataset_token_histogram import grammatical_token_length_counts
+from scripts.dataset_token_histogram import (
+    grammatical_token_gram_freq,
+    grammatical_token_length_counts,
+)
 from scripts.gcs import (
     GCS_BUCKET,
     find_repo_root,
@@ -44,7 +47,7 @@ from train.binary_io import (
 from train.dataset import StyleDataset
 from train.kc import KcFamilyId
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 GCS_PREFIX = "kotogram-datasets"
 DATASET_LOCK = "dataset.lock"
 LOCAL_CACHE = os.path.join(".cache", "datasets")
@@ -69,6 +72,7 @@ _REQUIRED_KEYS = frozenset(
         "sentences",
         "chive_id",
         "token_length_counts",
+        "token_gram_freq",
     }
 )
 
@@ -502,6 +506,14 @@ def build_dataset(  # pylint: disable=too-many-locals
         f"(embedded in bundle as token_length_counts)"
     )
 
+    tgf = grammatical_token_gram_freq(bundle)
+    bundle["token_gram_freq"] = torch.from_numpy(tgf)
+    nonzero = int((tgf > 0).sum())
+    print(
+        f"  Token gram freq: {nonzero:,}/{len(tgf):,} active "
+        f"(embedded in bundle as token_gram_freq)"
+    )
+
     os.makedirs(LOCAL_CACHE, exist_ok=True)
     output_path = os.path.join(LOCAL_CACHE, f"ds-{dataset_id}.pt")
     torch.save(bundle, output_path)
@@ -512,36 +524,59 @@ def build_dataset(  # pylint: disable=too-many-locals
 
     size_mb = os.path.getsize(output_path) / (1024 * 1024)
     chive_mb = os.path.getsize(chive_path) / (1024 * 1024)
-    col_w = 28
+    lbl_w = 28
+    mb_w = 8
 
     def _tmb(t: torch.Tensor) -> float:
         return t.nelement() * t.element_size() / (1024 * 1024)
 
-    def _row(label: str, mb: float) -> None:
-        print(f"  {label:<{col_w}} {mb:>8.1f} MB")
+    def _row(label: str, mb: float, desc: str = "") -> None:
+        base = f"  {label:<{lbl_w}} {mb:>{mb_w}.1f} MB"
+        if desc:
+            base += f"  {desc}"
+        print(base)
 
     print(f"\nDataset built: {dataset_id}")
     print(f"  {n_sentences:,} sentences, {n_tokens:,} tokens\n")
+
+    print("  Tensor storage (zip data/):")
     for fname, ftensor in sorted(bundle["features"].items()):
-        _row(f"features/{fname}", _tmb(ftensor))
-    _row("offsets", _tmb(bundle["offsets"]))
+        _row(f"  features/{fname}", _tmb(ftensor), "int32 token IDs per position")
+    _row("  offsets", _tmb(bundle["offsets"]), "int32 sentence→token boundaries")
     for lname, ltensor in sorted(bundle["labels"].items()):
-        _row(f"labels/{lname}", _tmb(ltensor))
-    _row("content_mask", _tmb(bundle["content_mask"]))
+        _row(f"  labels/{lname}", _tmb(ltensor), "per-sentence classification label")
+    _row("  content_mask", _tmb(bundle["content_mask"]), "bool[V] content vs function tokens")
+    _row("  token_length_counts", _tmb(bundle["token_length_counts"]), "uint64 gram sentence-length histogram")
+    _row("  token_gram_freq", _tmb(bundle["token_gram_freq"]), "int64[V] per-token gram position freq")
     for prefix in ("gp_pos", "gp_neg"):
         ids_key, off_key = f"{prefix}_ids", f"{prefix}_offsets"
         if ids_key in bundle:
             _row(
-                f"{prefix} (ids+offsets)", _tmb(bundle[ids_key]) + _tmb(bundle[off_key])
+                f"  {prefix} (ids+offsets)",
+                _tmb(bundle[ids_key]) + _tmb(bundle[off_key]),
+                "int32 ragged grammar-point labels",
             )
+
+    print("  Pickled in data.pkl:")
     _row(
-        "sentences",
+        "  sentences",
         sum(len(s.encode("utf-8")) for s in bundle["sentences"]) / (1024 * 1024),
+        "list[str] original sentence text",
     )
-    _row("vocab", len(json.dumps(bundle["vocab"]).encode()) / (1024 * 1024))
-    print(f"  {'-' * (col_w + 12)}")
+    _row(
+        "  vocab",
+        len(json.dumps(bundle["vocab"]).encode()) / (1024 * 1024),
+        "dict field→token→id maps",
+    )
+    print(
+        f"    + scalars: schema_version, dataset_id, created_at, "
+        f"git_commit, base_dataset_id, chive_id, "
+        f"sentence_count, token_count"
+    )
+
+    print(f"  {'-' * (lbl_w + mb_w + 8)}")
     _row("total on disk", size_mb)
-    _row("chiVe (separate file)", chive_mb)
+    _row("chiVe (separate file)", chive_mb, "float32[V,300] pretrained embeddings")
     print(f"\n  Dataset: {output_path}")
     print(f"  chiVe:   {chive_path}")
     return dataset_id, output_path
