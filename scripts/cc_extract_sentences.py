@@ -888,7 +888,8 @@ def main() -> None:  # pylint: disable=too-many-locals
     console.rule("Scoring & Selection")
 
     model, tokenizer_path, checkpoint_id = load_model_from_checkpoint(
-        drop_layers=7, output_rank=16,
+        drop_layers=7,
+        output_rank=16,
     )
     set_tokenizer_path(tokenizer_path)
     device = torch.device("cpu")

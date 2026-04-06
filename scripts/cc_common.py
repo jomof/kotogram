@@ -749,9 +749,13 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
             )
     elif cache.exists() or meta_path.exists() or sents_path.exists():
         missing = [
-            name for name, p in [
-                ("embeddings", cache), ("meta", meta_path), ("sentences", sents_path),
-            ] if not p.exists()
+            name
+            for name, p in [
+                ("embeddings", cache),
+                ("meta", meta_path),
+                ("sentences", sents_path),
+            ]
+            if not p.exists()
         ]
         console.print(f"  Corpus cache invalidated: missing {', '.join(missing)}")
 
@@ -882,9 +886,9 @@ def get_cc_scores(  # pylint: disable=too-many-locals
         _meta_path = cache_dir / _CACHE_META_NAME
         _old_hash = ""
         if _meta_path.exists():
-            _old_hash = json.loads(
-                _meta_path.read_text(encoding="utf-8")
-            ).get("model_hash", "")
+            _old_hash = json.loads(_meta_path.read_text(encoding="utf-8")).get(
+                "model_hash", ""
+            )
         console.print(
             f"  CC inference cache invalidated: model changed"
             f" ({_old_hash} -> {model_md5})"
