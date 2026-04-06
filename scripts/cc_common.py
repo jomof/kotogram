@@ -341,6 +341,7 @@ _EXPLICIT_KEYWORDS: tuple[str, ...] = (
     "チンポ",
     "チ○ポ",
     "チ〇ポ",
+    "〇",  # common mask in adult/obscene spellings (ま〇こ, etc.)
     "マンコ",
     "オナニー",
     "アナル",
