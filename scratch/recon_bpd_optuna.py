@@ -409,7 +409,7 @@ class BestTracker:
 def _get_git_commit() -> str:
     try:
         result = subprocess.run(
-            ["git", "log", "-1", "--format=%h %s"],
+            ["git", "log", "-1", "--format=%h %s", "--", "scratch/recon_bpd.py"],
             capture_output=True,
             text=True,
             check=False,
@@ -690,7 +690,7 @@ def objective(
 
         # Capture git commit for reproducibility (safe against git missing/errors)
         git_log = subprocess.run(
-            ["git", "log", "-1", "--format=%h %s"],
+            ["git", "log", "-1", "--format=%h %s", "--", "scratch/recon_bpd.py"],
             capture_output=True,
             text=True,
             check=False,
