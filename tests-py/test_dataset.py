@@ -32,6 +32,7 @@ from scripts.dataset import (
     remap_feature_tensor,
     write_lock,
 )
+from scripts.dataset_token_histogram import grammatical_token_length_counts
 from train.dataset import collate_fn
 
 
@@ -84,7 +85,7 @@ def _make_minimal_bundle(
 
     sentences = [f"sentence {i}" for i in range(n_sentences)]
 
-    return {
+    bundle = {
         "schema_version": SCHEMA_VERSION,
         "dataset_id": "test0000",
         "created_at": "2026-01-01T00:00:00Z",
@@ -100,6 +101,10 @@ def _make_minimal_bundle(
         "content_mask": content_mask,
         "sentences": sentences,
     }
+    bundle["token_length_counts"] = torch.from_numpy(
+        grammatical_token_length_counts(bundle)
+    )
+    return bundle
 
 
 class TestVocabMerge(unittest.TestCase):
@@ -273,6 +278,14 @@ class TestDatasetSaveLoad(unittest.TestCase):
         with self.assertRaises(ValueError):
             load_dataset(path)
 
+    def test_missing_token_length_counts_raises(self):
+        bundle = _make_minimal_bundle()
+        del bundle["token_length_counts"]
+        path = os.path.join(self.tmpdir, "missing_hist.pt")
+        torch.save(bundle, path)
+        with self.assertRaises(ValueError):
+            load_dataset(path)
+
 
 class TestDatasetIdDeterminism(unittest.TestCase):
     def test_same_data_same_id(self):
@@ -297,6 +310,19 @@ class TestDatasetIdDeterminism(unittest.TestCase):
         id1 = compute_dataset_id(b1)
         id2 = compute_dataset_id(b2)
         self.assertNotEqual(id1, id2)
+
+    def test_schema_version_affects_id(self):
+        b1 = _make_minimal_bundle()
+        b2 = _make_minimal_bundle()
+        b2["features"]["surface"] = b1["features"]["surface"].clone()
+        b2["labels"] = {k: v.clone() for k, v in b1["labels"].items()}
+        b2["offsets"] = b1["offsets"].clone()
+        b2["content_mask"] = b1["content_mask"].clone()
+        b2["sentences"] = list(b1["sentences"])
+        b2["vocab"] = json.loads(json.dumps(b1["vocab"]))
+        b2["token_length_counts"] = b1["token_length_counts"].clone()
+        b2["schema_version"] = SCHEMA_VERSION + 1
+        self.assertNotEqual(compute_dataset_id(b1), compute_dataset_id(b2))
 
 
 class TestChiveHash(unittest.TestCase):

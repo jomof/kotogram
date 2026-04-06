@@ -41,10 +41,6 @@ from scratch.recon_bpd_checkpoint import (
     save_checkpoint,
 )
 from scripts.dataset import BundledStyleDataset
-from scripts.dataset_token_histogram import (
-    ensure_token_length_histogram_local,
-    token_length_histogram_path,
-)
 from train.dataset import LengthStratifiedBatchSampler, collate_fn
 
 # Fused linear cross-entropy (apple/ml-cross-entropy): computes the
@@ -378,19 +374,20 @@ def train(
     if need_hist and GLOBAL_SETUP_CACHE._rank_hist_dataset_id != did:
         GLOBAL_SETUP_CACHE.rank_inv_sqrt_freq = None
         if config.rank_pair_weighting == "inv_sqrt_freq":
-            hpath = ensure_token_length_histogram_local(did)
-            if hpath is None:
-                hpath = token_length_histogram_path(did)
-            if os.path.isfile(hpath):
-                hist = np.load(hpath, mmap_mode="r")
-                inv = 1.0 / np.sqrt(hist.astype(np.float64) + 1.0)
+            tc = dataset_bundle.get("token_length_counts")
+            if tc is not None:
+                arr = tc.detach().cpu().numpy().astype(np.float64)
+                inv = 1.0 / np.sqrt(arr + 1.0)
                 GLOBAL_SETUP_CACHE.rank_inv_sqrt_freq = torch.tensor(
                     inv, dtype=torch.float32
                 )
-                print(f"  Rank inv-sqrt freq weights from {hpath} (len={len(inv)})")
+                print(
+                    f"  Rank inv-sqrt freq from bundle token_length_counts "
+                    f"(len={len(inv)})"
+                )
             else:
                 print(
-                    f"  Warning: no token histogram at {hpath}; "
+                    "  Warning: bundle missing token_length_counts; "
                     "rank_pair_weighting inv_sqrt_freq falls back to uniform"
                 )
         GLOBAL_SETUP_CACHE._rank_hist_dataset_id = did
@@ -410,7 +407,7 @@ def train(
     # Release heavy non-tensor data now that the cache is populated.
     # Tensor data is mmap'd; only Python objects (1.7M sentence strings,
     # vocab dicts) occupy heap memory and compete with MPS for unified RAM.
-    for _drop_key in ("sentences", "vocab"):
+    for _drop_key in ("sentences", "vocab", "token_length_counts"):
         dataset_bundle.pop(_drop_key, None)
     gram_ds._sentences = []
     import gc

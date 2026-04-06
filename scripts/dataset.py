@@ -23,11 +23,7 @@ from kotogram.tokenizer import (
     UNK_TOKEN,
     Tokenizer,
 )
-from scripts.dataset_token_histogram import (
-    TOKEN_LEN_HIST_PREFIX,
-    save_token_length_histogram,
-    token_length_histogram_path,
-)
+from scripts.dataset_token_histogram import grammatical_token_length_counts
 from scripts.gcs import (
     GCS_BUCKET,
     find_repo_root,
@@ -48,7 +44,7 @@ from train.binary_io import (
 from train.dataset import StyleDataset
 from train.kc import KcFamilyId
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 GCS_PREFIX = "kotogram-datasets"
 DATASET_LOCK = "dataset.lock"
 LOCAL_CACHE = os.path.join(".cache", "datasets")
@@ -72,6 +68,7 @@ _REQUIRED_KEYS = frozenset(
         "content_mask",
         "sentences",
         "chive_id",
+        "token_length_counts",
     }
 )
 
@@ -315,8 +312,14 @@ def compute_chive_hash(vectors: torch.Tensor) -> str:
 
 
 def compute_dataset_id(bundle: dict) -> str:
-    """Deterministic content hash of the dataset's training-relevant data."""
+    """Deterministic content hash of the dataset's training-relevant data.
+
+    Includes ``schema_version`` so a new bundle format (e.g. added tensors)
+    yields a new ``dataset_id``, fresh GCS keys, and clients pick up changes
+    via ``dataset.lock`` instead of reusing a stale local ``ds-*.pt``.
+    """
     h = hashlib.sha256()
+    h.update(int(bundle.get("schema_version", 0)).to_bytes(4, "little"))
     h.update(json.dumps(bundle["vocab"], sort_keys=True).encode())
     h.update(bundle["offsets"].numpy().tobytes())
     for field in sorted(bundle["features"].keys()):
@@ -492,12 +495,16 @@ def build_dataset(  # pylint: disable=too-many-locals
     bundle["dataset_id"] = compute_dataset_id(bundle)
     dataset_id = bundle["dataset_id"]
 
+    counts = grammatical_token_length_counts(bundle)
+    bundle["token_length_counts"] = torch.from_numpy(counts)
+    print(
+        f"  Token histogram (gram=1): len={counts.size} "
+        f"(embedded in bundle as token_length_counts)"
+    )
+
     os.makedirs(LOCAL_CACHE, exist_ok=True)
     output_path = os.path.join(LOCAL_CACHE, f"ds-{dataset_id}.pt")
     torch.save(bundle, output_path)
-
-    hist_path = save_token_length_histogram(bundle, dataset_id)
-    print(f"  Token histogram (gram=1): {hist_path}")
 
     chive_path = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
     if not os.path.exists(chive_path):
@@ -540,8 +547,15 @@ def build_dataset(  # pylint: disable=too-many-locals
     return dataset_id, output_path
 
 
-def upload_dataset(pt_path: Optional[str] = None) -> str:
-    """Upload dataset + chiVe to GCS, update latest.json and dataset.lock."""
+def upload_dataset(
+    pt_path: Optional[str] = None, *, force: bool = False
+) -> str:
+    """Upload dataset + chiVe to GCS, update latest.json and dataset.lock.
+
+    By default, skips upload when the object already exists (same dataset_id).
+    Use ``force=True`` after rebuilding with the same content hash but a newer
+    on-disk bundle (e.g. added ``token_length_counts``) so GCS matches local.
+    """
     if pt_path is None:
         if not os.path.isdir(LOCAL_CACHE):
             raise FileNotFoundError(f"No local datasets in {LOCAL_CACHE}")
@@ -564,18 +578,23 @@ def upload_dataset(pt_path: Optional[str] = None) -> str:
 
     ds_key = f"{GCS_PREFIX}/datasets/ds-{dataset_id}.pt"
     uri = f"gs://{GCS_BUCKET}/{ds_key}"
-    if _gcs_exists(ds_key):
-        print(f"  Dataset {dataset_id} already in GCS, skipping upload")
-    else:
+    if not _gcs_exists(ds_key):
         print(f"Uploading dataset {dataset_id}...")
         _gcs_upload_file(pt_path, ds_key)
         print(f"  -> {uri}")
+    elif force:
+        print(f"  Replacing dataset {dataset_id} on GCS (--force)...")
+        _gcs_upload_file(pt_path, ds_key)
+        print(f"  -> {uri}")
+    else:
+        print(
+            f"  Dataset {dataset_id} already in GCS, skipping upload "
+            f"(use --force if local .pt was rebuilt with the same id)"
+        )
 
     chive_key = f"{GCS_PREFIX}/chive/chive-{chive_id}.pt"
-    if _gcs_exists(chive_key):
-        print(f"  chiVe {chive_id} already in GCS, skipping upload")
-    else:
-        chive_local = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
+    chive_local = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
+    if not _gcs_exists(chive_key):
         if not os.path.exists(chive_local):
             raise FileNotFoundError(
                 f"chiVe not found at {chive_local}. "
@@ -583,17 +602,16 @@ def upload_dataset(pt_path: Optional[str] = None) -> str:
             )
         print(f"  Uploading chiVe {chive_id}...")
         _gcs_upload_file(chive_local, chive_key)
-
-    hist_local = token_length_histogram_path(dataset_id)
-    hist_key = f"{GCS_PREFIX}/datasets/{TOKEN_LEN_HIST_PREFIX}{dataset_id}.npy"
-    if os.path.exists(hist_local):
-        if _gcs_exists(hist_key):
-            print(f"  Token histogram {dataset_id} already in GCS, skipping")
-        else:
-            print(f"  Uploading token histogram {dataset_id}...")
-            _gcs_upload_file(hist_local, hist_key)
+    elif force:
+        if not os.path.exists(chive_local):
+            raise FileNotFoundError(
+                f"chiVe not found at {chive_local}. "
+                "It should have been created during 'build'."
+            )
+        print(f"  Replacing chiVe {chive_id} on GCS (--force)...")
+        _gcs_upload_file(chive_local, chive_key)
     else:
-        print(f"  No local token histogram at {hist_local} (skipping)")
+        print(f"  chiVe {chive_id} already in GCS, skipping upload")
 
     _gcs_write_json(
         f"{GCS_PREFIX}/latest.json",
@@ -880,7 +898,7 @@ def _cmd_build(args: argparse.Namespace) -> None:
 
 
 def _cmd_upload(args: argparse.Namespace) -> None:
-    upload_dataset(args.path)
+    upload_dataset(args.path, force=args.force)
 
 
 def _cmd_download(args: argparse.Namespace) -> None:
@@ -951,6 +969,12 @@ def main() -> None:
     p_upload = sub.add_parser("upload", help="Upload dataset to GCS")
     p_upload.add_argument(
         "path", nargs="?", default=None, help="Path to .pt file (default: most recent)"
+    )
+    p_upload.add_argument(
+        "--force",
+        "-f",
+        action="store_true",
+        help="Replace dataset/chiVe blobs even if keys already exist (same dataset_id)",
     )
 
     p_download = sub.add_parser("download", help="Download dataset from GCS")
