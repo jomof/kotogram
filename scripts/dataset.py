@@ -71,10 +71,12 @@ _REQUIRED_KEYS = frozenset(
         "content_mask",
         "sentences",
         "chive_id",
-        "token_length_counts",
-        "token_gram_freq",
     }
 )
+
+# Minimum schema version we can still load (older bundles lack derived
+# fields like token_gram_freq but are otherwise structurally compatible).
+_MIN_SCHEMA_VERSION = 1
 
 _LABEL_SPECS = LABEL_SPECS
 
@@ -700,14 +702,19 @@ def download_chive(chive_id: str) -> str:
 
 
 def load_dataset(path: str) -> dict:
-    """Load and validate a .pt dataset bundle (memory-mapped)."""
+    """Load and validate a .pt dataset bundle (memory-mapped).
+
+    Accepts any schema version >= ``_MIN_SCHEMA_VERSION``.  Older bundles
+    may lack derived fields (e.g. ``token_gram_freq``); callers that need
+    those fields should check and raise with a clear message.
+    """
     bundle: dict = torch.load(path, map_location="cpu", weights_only=False, mmap=True)
 
     version = bundle.get("schema_version", 0)
-    if version != SCHEMA_VERSION:
+    if version < _MIN_SCHEMA_VERSION:
         raise ValueError(
-            f"Dataset schema version {version} != expected {SCHEMA_VERSION}. "
-            "Rebuild the dataset or implement migration."
+            f"Dataset schema version {version} < minimum {_MIN_SCHEMA_VERSION}. "
+            "Rebuild the dataset."
         )
 
     missing = _REQUIRED_KEYS - set(bundle.keys())

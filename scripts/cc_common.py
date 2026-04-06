@@ -680,6 +680,141 @@ def embed_and_score(  # pylint: disable=too-many-locals
 
 
 # ---------------------------------------------------------------------------
+# Shared sentence-level embedding store
+# ---------------------------------------------------------------------------
+# Both the CC and corpus paths feed through this store so that the same
+# (model, sentence) pair is never embedded twice -- regardless of whether
+# it first appeared as a CC candidate or a corpus member.
+
+
+class EmbedStore:
+    """Sentence→embedding cache shared across CC and corpus paths.
+
+    Backed by flat files under ``.cc/embed-store/{model_hash[:12]}/``:
+    - ``sents.txt`` – one sentence per line (append-only)
+    - ``embed.npy`` – ``[N, d_model]`` float32
+    - ``bpd.npy``   – ``[N]`` float32
+
+    Keyed by model hash so a model retrain starts a fresh store.
+    """
+
+    def __init__(self, model_md5: str, d_model: int = 512) -> None:
+        prefix = model_md5[:12]
+        self._dir = CC_CACHE_DIR / "embed-store" / prefix
+        self._dir.mkdir(parents=True, exist_ok=True)
+        self._sents_path = self._dir / "sents.txt"
+        self._embed_path = self._dir / "embed.npy"
+        self._bpd_path = self._dir / "bpd.npy"
+        self._d_model = d_model
+
+        self._index: dict[str, int] = {}
+        self._embed: np.ndarray | None = None
+        self._bpd: np.ndarray | None = None
+        self._dirty = False
+        self._load()
+
+    # -- persistence --
+
+    def _load(self) -> None:
+        if not (self._sents_path.exists() and self._embed_path.exists()):
+            return
+        sents = self._sents_path.read_text(encoding="utf-8").splitlines()
+        embed = np.load(str(self._embed_path))
+        if embed.shape[0] != len(sents):
+            console.print(
+                f"  [yellow]EmbedStore: count mismatch "
+                f"(embed={embed.shape[0]}, sents={len(sents)}), resetting[/yellow]"
+            )
+            return
+        self._embed = embed
+        self._index = {s: i for i, s in enumerate(sents)}
+        if self._bpd_path.exists():
+            bpd = np.load(str(self._bpd_path))
+            if bpd.shape[0] == len(sents):
+                self._bpd = bpd
+
+    def flush(self) -> None:
+        """Write any pending additions to disk."""
+        if not self._dirty or self._embed is None:
+            return
+        np.save(str(self._embed_path), self._embed)
+        if self._bpd is not None:
+            np.save(str(self._bpd_path), self._bpd)
+        sents = [""] * len(self._index)
+        for s, i in self._index.items():
+            sents[i] = s
+        self._sents_path.write_text("\n".join(sents) + "\n", encoding="utf-8")
+        self._dirty = False
+
+    # -- query / update --
+
+    def lookup_embeddings(
+        self, sentences: list[str]
+    ) -> tuple[dict[str, np.ndarray], list[str]]:
+        """Return ``(hits, misses)`` where hits maps sentence→embedding row."""
+        hits: dict[str, np.ndarray] = {}
+        misses: list[str] = []
+        for s in sentences:
+            idx = self._index.get(s)
+            if idx is not None and self._embed is not None:
+                hits[s] = self._embed[idx]
+            else:
+                misses.append(s)
+        return hits, misses
+
+    def lookup_full(
+        self, sentences: list[str]
+    ) -> tuple[dict[str, tuple[np.ndarray, float]], list[str]]:
+        """Return ``(hits, misses)`` where hits maps sentence→(embedding, bpd)."""
+        hits: dict[str, tuple[np.ndarray, float]] = {}
+        misses: list[str] = []
+        for s in sentences:
+            idx = self._index.get(s)
+            if idx is not None and self._embed is not None:
+                bpd = float(self._bpd[idx]) if self._bpd is not None else 0.0
+                hits[s] = (self._embed[idx], bpd)
+            else:
+                misses.append(s)
+        return hits, misses
+
+    def store(
+        self,
+        sentences: list[str],
+        embeddings: np.ndarray,
+        bpds: np.ndarray | None = None,
+    ) -> None:
+        """Add new sentence→embedding mappings (deduplicates internally)."""
+        new_s: list[str] = []
+        new_rows: list[int] = []
+        for i, s in enumerate(sentences):
+            if s not in self._index:
+                self._index[s] = len(self._index)
+                new_s.append(s)
+                new_rows.append(i)
+        if not new_s:
+            return
+
+        new_embed = embeddings[new_rows]
+        if self._embed is not None:
+            self._embed = np.concatenate([self._embed, new_embed])
+        else:
+            self._embed = new_embed.copy()
+
+        if bpds is not None:
+            new_bpd = bpds[new_rows]
+            if self._bpd is not None:
+                self._bpd = np.concatenate([self._bpd, new_bpd])
+            else:
+                self._bpd = new_bpd.copy()
+
+        self._dirty = True
+
+    @property
+    def count(self) -> int:
+        return len(self._index)
+
+
+# ---------------------------------------------------------------------------
 # Corpus embedding cache
 # ---------------------------------------------------------------------------
 
@@ -702,7 +837,12 @@ _CORPUS_EMBED_META = "corpus-embed-meta.json"
 _CORPUS_SENTS_CACHE = "corpus-sentences.txt"
 
 
-def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray:
+def get_corpus_embeddings(
+    model: Any,
+    device: Any,
+    model_md5: str,
+    embed_store: EmbedStore | None = None,
+) -> np.ndarray:
     """Load or compute corpus.db embeddings (cached to disk).
 
     Incremental: caches a sentence→embedding mapping so only sentences
@@ -716,6 +856,10 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
     compare their stored ``corpus_fp`` against the new ``prefix_fp`` to
     verify that the old corpus is an exact prefix of the new one; if not
     (e.g. sentences were removed), they fall back to a full recompute.
+
+    If *embed_store* is provided, it is consulted before running inference
+    for "new" sentences, avoiding redundant computation for sentences
+    already embedded as CC candidates.
     """
     _t0_ce = time.monotonic()
     cache = corpus_embed_path()
@@ -801,25 +945,45 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
         return emb
 
     # -- Partial hit or full miss --
-    if cached_map:
+    # Check the shared embedding store for sentences already scored as CC
+    # candidates (avoids re-embedding after curate upsert).
+    store_hits: dict[str, np.ndarray] = {}
+    if embed_store is not None and new_sentences:
+        store_hits, new_sentences = embed_store.lookup_embeddings(new_sentences)
+
+    if cached_map or store_hits:
         console.print(
-            f"  Corpus embeddings: {len(cached_map):,} cached,"
+            f"  Corpus embeddings: {len(cached_map):,} file-cached,"
+            f" {len(store_hits):,} from embed-store,"
             f" {len(new_sentences):,} new"
         )
     else:
         console.print("  Computing corpus.db embeddings...")
 
     console.print(f"  Grammatic corpus sentences: {n:,}")
-    encoded = parallel_parse_and_encode(new_sentences)
-    new_emb, _unc, _gp = embed_and_score(encoded, model, device)
 
+    # Order: [reused from file cache | hits from shared store | freshly computed]
     parts: list[np.ndarray] = []
     if reused_src and old_emb is not None:
         parts.append(old_emb[reused_src])
-    parts.append(new_emb)
+
+    store_hit_sents: list[str] = []
+    if store_hits:
+        store_hit_sents = [s for s in sentences if s in store_hits]
+        parts.append(np.stack([store_hits[s] for s in store_hit_sents]))
+
+    if new_sentences:
+        encoded = parallel_parse_and_encode(new_sentences)
+        new_emb, _unc, _gp = embed_and_score(encoded, model, device)
+        if embed_store is not None:
+            embed_store.store(new_sentences, new_emb)
+            embed_store.flush()
+        parts.append(new_emb)
+    else:
+        new_emb = np.empty((0, 0))
     emb = np.concatenate(parts) if len(parts) > 1 else parts[0]
 
-    all_sents = reused_sents + new_sentences
+    all_sents = reused_sents + store_hit_sents + new_sentences
     np.save(str(cache), emb)
     sents_path.write_text("\n".join(all_sents) + "\n", encoding="utf-8")
     meta_out = {
@@ -834,6 +998,7 @@ def get_corpus_embeddings(model: Any, device: Any, model_md5: str) -> np.ndarray
         "corpus_embeddings",
         cache=_cache_kind,
         reused=len(reused_sents),
+        store_hits=len(store_hit_sents),
         new=len(new_sentences),
         total=n,
         time_s=time.monotonic() - _t0_ce,
@@ -864,11 +1029,16 @@ def get_cc_scores(  # pylint: disable=too-many-locals
     model: Any,
     device: Any,
     model_md5: str,
+    embed_store: EmbedStore | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Load or compute CC inference results, streamed in chunks.
 
     Embeddings are returned as a memory-mapped array to avoid loading the
     full (N, d_model) matrix into RAM.
+
+    If *embed_store* is provided, newly computed embeddings are written to
+    the shared store so that downstream corpus embedding computation can
+    reuse them without re-inference.
     """
     _t0_cc = time.monotonic()
     cache_dir = _cache_path(crawl_id, "inference")
@@ -911,6 +1081,11 @@ def get_cc_scores(  # pylint: disable=too-many-locals
                 cached_n = 0
             elif cached_n == n:
                 console.print(f"  CC inference loaded from cache (model {model_md5})")
+                emb_out = np.load(str(emb_path), mmap_mode="r")
+                unc_out = np.load(str(unc_path))
+                if embed_store is not None:
+                    embed_store.store(cc_sentences, np.array(emb_out), unc_out)
+                    embed_store.flush()
                 perf_log(
                     "cc_scores",
                     cache="hit",
@@ -919,11 +1094,7 @@ def get_cc_scores(  # pylint: disable=too-many-locals
                     chunks=0,
                     time_s=time.monotonic() - _t0_cc,
                 )
-                return (
-                    np.load(str(emb_path), mmap_mode="r"),
-                    np.load(str(unc_path)),
-                    np.load(str(gp_path)),
-                )
+                return (emb_out, unc_out, np.load(str(gp_path)))
             else:
                 _cc_cache = "partial"
                 console.print(
@@ -941,10 +1112,16 @@ def get_cc_scores(  # pylint: disable=too-many-locals
 
     if cached_n > 0:
         old_emb: np.ndarray = np.load(str(emb_path))
+        old_unc: np.ndarray = np.load(str(unc_path))
         emb_parts.append(old_emb[:cached_n])
-        del old_emb
-        unc_parts.append(np.load(str(unc_path))[:cached_n])
+        unc_parts.append(old_unc[:cached_n])
         gp_parts.append(np.load(str(gp_path))[:cached_n])
+        if embed_store is not None:
+            embed_store.store(
+                cc_sentences[:cached_n], old_emb[:cached_n], old_unc[:cached_n]
+            )
+            embed_store.flush()
+        del old_emb, old_unc
 
     remaining = n - cached_n
     n_chunks = (remaining + _INFERENCE_CHUNK - 1) // _INFERENCE_CHUNK
@@ -956,12 +1133,17 @@ def get_cc_scores(  # pylint: disable=too-many-locals
                 f"\n  [bold]Chunk {ci + 1}/{n_chunks}[/bold]"
                 f" ({end - start:,} sentences)"
             )
-        encoded = parallel_parse_and_encode(cc_sentences[start:end])
+        chunk_sents = cc_sentences[start:end]
+        encoded = parallel_parse_and_encode(chunk_sents)
         c_emb, c_unc, c_gp = embed_and_score(encoded, model, device)
         emb_parts.append(c_emb)
         unc_parts.append(c_unc)
         gp_parts.append(c_gp)
         del encoded
+
+        if embed_store is not None:
+            embed_store.store(chunk_sents, c_emb, c_unc)
+            embed_store.flush()
 
         # Flush after every chunk so partial progress survives crashes
         _flush_emb = np.concatenate(emb_parts)

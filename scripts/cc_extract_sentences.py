@@ -38,6 +38,7 @@ from scripts.cc_common import (
     CC_CACHE_DIR,
     CHAR_FILTER,
     CORPUS_DB,
+    EmbedStore,
     GRAMMATIC_SOFT_MIN,
     MAX_SENTENCE_LEN,
     _cache_path,
@@ -905,13 +906,19 @@ def main() -> None:  # pylint: disable=too-many-locals
     console.print(f"  Checkpoint: {checkpoint_id}  ({variant}, cache key: {model_md5})")
 
     _t0_scoring = time.monotonic()
-    corpus_emb = get_corpus_embeddings(model, device, model_md5)
+    embed_store = EmbedStore(model_md5, d_model=model.cfg.d_model)
+    console.print(f"  Shared embedding store: {embed_store.count:,} sentences")
+
+    corpus_emb = get_corpus_embeddings(
+        model, device, model_md5, embed_store=embed_store
+    )
     console.print(
         f"  Corpus embeddings: {corpus_emb.shape[0]:,} x {corpus_emb.shape[1]}"
     )
 
     cc_emb, cc_uncertainty, cc_gram_probs = get_cc_scores(
-        crawl_id, cc_sentences, model, device, model_md5
+        crawl_id, cc_sentences, model, device, model_md5,
+        embed_store=embed_store,
     )
 
     # Grammaticality filter -- currently a no-op (all gram_probs=1.0) because
