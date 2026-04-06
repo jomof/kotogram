@@ -1025,7 +1025,10 @@ def main() -> None:
     sub.add_parser("list", help="List datasets in GCS")
 
     p_info = sub.add_parser("info", help="Show dataset metadata")
-    p_info.add_argument("id", help="Dataset ID or 'latest'")
+    p_info.add_argument(
+        "id", nargs="?", default=None,
+        help="Dataset ID or 'latest' (default: local dataset.lock)",
+    )
 
     p_resolve = sub.add_parser("resolve", help="Resolve and validate a dataset")
     p_resolve.add_argument(
