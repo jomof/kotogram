@@ -1,4 +1,4 @@
-"""Dataset management: build, upload, download, list, info, resolve."""
+"""Dataset management: build, upload, download, list, info, resolve."""  # pylint: disable=too-many-lines
 
 import argparse
 import hashlib
@@ -93,26 +93,19 @@ _find_repo_root = find_repo_root
 
 def read_lock() -> Optional[Dict[str, Any]]:
     """Read dataset.lock from the repo root. Returns None if missing."""
-    lock_path = os.path.join(_find_repo_root(), DATASET_LOCK)
-    if not os.path.exists(lock_path):
-        return None
-    with open(lock_path, encoding="utf-8") as f:
-        result: Dict[str, Any] = json.load(f)
-    return result
+    from scripts.lock_io import read_lock_file
+
+    return read_lock_file(os.path.join(_find_repo_root(), DATASET_LOCK))
 
 
 def write_lock(dataset_id: str, chive_id: str) -> str:
     """Write dataset.lock to the repo root. Returns the path written."""
-    lock_path = os.path.join(_find_repo_root(), DATASET_LOCK)
-    data = {
-        "dataset_id": dataset_id,
-        "chive_id": chive_id,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-    }
-    with open(lock_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-        f.write("\n")
-    return lock_path
+    from scripts.lock_io import write_lock_file
+
+    return write_lock_file(
+        os.path.join(_find_repo_root(), DATASET_LOCK),
+        {"dataset_id": dataset_id, "chive_id": chive_id},
+    )
 
 
 def _load_local_vocab(cache_dir: str) -> Dict[str, Dict[str, int]]:
@@ -356,6 +349,61 @@ def _resolve_base_dataset(flag: str) -> dict:
     return load_dataset(local_path)
 
 
+def _check_dataset_integrity(bundle: Dict[str, Any]) -> None:  # pylint: disable=too-many-locals
+    """Defense in depth: verify no canonical duplicates or banned vocab surfaces."""
+    from collections import defaultdict
+
+    from kotogram.masking import SURFACE_EXEMPLARS
+    from scripts.integrity import DataIntegrityException
+
+    # 1. Vocab check: no banned surfaces in the surface vocabulary
+    surface_vocab = bundle.get("vocab", {}).get("surface", {})
+    exemplar_surfaces = set(SURFACE_EXEMPLARS.values())
+    for surface_str in surface_vocab:
+        if surface_str in (PAD_TOKEN, UNK_TOKEN, CLS_TOKEN, MASK_TOKEN):
+            continue
+        # Parse the surface as a standalone token to check if it would be masked.
+        # We can't use get_surface_mask_for_features without full POS info, so
+        # instead check if the surface is a digit string (indicating a number
+        # that should have been replaced by the "1" exemplar).
+        if surface_str.isdigit() and surface_str not in exemplar_surfaces:
+            raise DataIntegrityException(
+                f"[Dataset Build] Banned surface in vocab: {surface_str!r} "
+                f"(digit string not in exemplars). "
+                f"Check that label.py uses TRAINING_MASK format."
+            )
+
+    # 2. Sentence check: no canonical duplicates
+    sentences = bundle.get("sentences", [])
+    if sentences:
+        import time as _time
+
+        from scripts.canonical_index import parallel_canonicalize
+
+        print(f"  Checking {len(sentences):,} sentences for canonical duplicates...")
+        _t0 = _time.monotonic()
+        canonical = parallel_canonicalize(sentences)
+        _elapsed = _time.monotonic() - _t0
+        print(f"  Canonicalized in {_elapsed:.1f}s, checking for duplicates...")
+        groups: dict[str, list[str]] = defaultdict(list)
+        for orig, canon in zip(sentences, canonical):
+            groups[canon].append(orig)
+
+        dupes = {k: v for k, v in groups.items() if len(v) > 1}
+        if dupes:
+            sample_key = next(iter(dupes))
+            sample = dupes[sample_key][:3]
+            raise DataIntegrityException(
+                f"[Dataset Build] {len(dupes)} canonical duplicate group(s) found. "
+                f"Sample: key={sample_key!r}, count={len(dupes[sample_key])}, "
+                f"sentences={sample!r}. "
+                f"Run corpus.db migration or check curate upsert canonical gating."
+            )
+        print(f"  Integrity OK: {len(sentences):,} sentences, 0 canonical duplicates")
+
+    print("  Integrity checks passed (vocab + canonical dedup)")
+
+
 def build_dataset(  # pylint: disable=too-many-locals
     cache_dir: Optional[str] = None,
     base_dataset_flag: str = "latest",
@@ -499,6 +547,9 @@ def build_dataset(  # pylint: disable=too-many-locals
             bundle[ids_key] = local_data[ids_key]
             bundle[off_key] = local_data[off_key]
 
+    # Defense in depth: check for canonical duplicates and banned vocab surfaces
+    _check_dataset_integrity(bundle)
+
     bundle["dataset_id"] = compute_dataset_id(bundle)
     dataset_id = bundle["dataset_id"]
 
@@ -548,9 +599,21 @@ def build_dataset(  # pylint: disable=too-many-locals
     _row("  offsets", _tmb(bundle["offsets"]), "int32 sentence→token boundaries")
     for lname, ltensor in sorted(bundle["labels"].items()):
         _row(f"  labels/{lname}", _tmb(ltensor), "per-sentence classification label")
-    _row("  content_mask", _tmb(bundle["content_mask"]), "bool[V] content vs function tokens")
-    _row("  token_length_counts", _tmb(bundle["token_length_counts"]), "uint64 gram sentence-length histogram")
-    _row("  token_gram_freq", _tmb(bundle["token_gram_freq"]), "int64[V] per-token gram position freq")
+    _row(
+        "  content_mask",
+        _tmb(bundle["content_mask"]),
+        "bool[V] content vs function tokens",
+    )
+    _row(
+        "  token_length_counts",
+        _tmb(bundle["token_length_counts"]),
+        "uint64 gram sentence-length histogram",
+    )
+    _row(
+        "  token_gram_freq",
+        _tmb(bundle["token_gram_freq"]),
+        "int64[V] per-token gram position freq",
+    )
     for prefix in ("gp_pos", "gp_neg"):
         ids_key, off_key = f"{prefix}_ids", f"{prefix}_offsets"
         if ids_key in bundle:
@@ -572,9 +635,9 @@ def build_dataset(  # pylint: disable=too-many-locals
         "dict field→token→id maps",
     )
     print(
-        f"    + scalars: schema_version, dataset_id, created_at, "
-        f"git_commit, base_dataset_id, chive_id, "
-        f"sentence_count, token_count"
+        "    + scalars: schema_version, dataset_id, created_at, "
+        "git_commit, base_dataset_id, chive_id, "
+        "sentence_count, token_count"
     )
 
     print(f"  {'-' * (lbl_w + mb_w + 8)}")
@@ -585,9 +648,7 @@ def build_dataset(  # pylint: disable=too-many-locals
     return dataset_id, output_path
 
 
-def upload_dataset(
-    pt_path: Optional[str] = None, *, force: bool = False
-) -> str:
+def upload_dataset(pt_path: Optional[str] = None, *, force: bool = False) -> str:
     """Upload dataset + chiVe to GCS, update latest.json and dataset.lock.
 
     By default, skips upload when the object already exists (same dataset_id).
@@ -773,6 +834,8 @@ class BundledStyleDataset(StyleDataset):
     """StyleDataset backed by an in-memory .pt bundle instead of mmap'd files."""
 
     _sentences: List[str]
+    content_mask: Optional[Any]
+    content_drop_ratio: float
 
     @classmethod
     def from_bundle(
@@ -1048,7 +1111,9 @@ def main() -> None:
 
     p_info = sub.add_parser("info", help="Show dataset metadata")
     p_info.add_argument(
-        "id", nargs="?", default=None,
+        "id",
+        nargs="?",
+        default=None,
         help="Dataset ID or 'latest' (default: local dataset.lock)",
     )
 

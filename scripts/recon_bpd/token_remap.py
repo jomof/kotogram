@@ -17,7 +17,7 @@ from typing import Any, Dict, Optional, Tuple
 import numpy as np
 import torch
 
-from kotogram.tokenizer import MASK_ID, Tokenizer
+from kotogram.tokenizer import MASK_ID
 
 NUM_SPECIAL = MASK_ID + 1  # IDs 0..3 are PAD, UNK, CLS, MASK
 
@@ -34,7 +34,7 @@ class TokenRemap:
     percentile: float  # the percentile that produced this remap
 
 
-def compute_token_remap(
+def compute_token_remap(  # pylint: disable=too-many-locals
     token_gram_freq: torch.Tensor,
     percentile: float,
     chive_weights: torch.Tensor,
@@ -50,7 +50,7 @@ def compute_token_remap(
     Returns:
         A ``TokenRemap`` describing the old-to-new mapping and UNK embedding.
     """
-    freq = token_gram_freq.cpu().numpy().astype(np.float64)
+    freq: np.ndarray = token_gram_freq.cpu().numpy().astype(np.float64)
     v_old = len(freq)
     total = freq.sum()
 
@@ -95,7 +95,7 @@ def compute_token_remap(
     )
 
 
-def apply_remap_to_bundle(
+def apply_remap_to_bundle(  # pylint: disable=too-many-locals
     bundle: Dict[str, Any],
     chive_weights: torch.Tensor,
     percentile: float,
@@ -146,7 +146,9 @@ def apply_remap_to_bundle(
     bundle["content_mask"] = new_cm
 
     # Build reduced chiVe: kept rows + UNK row
-    new_chive = torch.zeros(remap.v_new, chive_weights.size(1), dtype=chive_weights.dtype)
+    new_chive = torch.zeros(
+        remap.v_new, chive_weights.size(1), dtype=chive_weights.dtype
+    )
     new_chive[: len(remap.kept_indices)] = chive_weights[remap.kept_indices]
     new_chive[remap.unk_id] = remap.unk_chive_row
 
@@ -183,9 +185,7 @@ def apply_remap_to_state_dict(
     embed_key = "surface_embed.weight"
     if embed_key in out:
         old_embed = out[embed_key]
-        new_embed = torch.zeros(
-            remap.v_new, old_embed.size(1), dtype=old_embed.dtype
-        )
+        new_embed = torch.zeros(remap.v_new, old_embed.size(1), dtype=old_embed.dtype)
         new_embed[: len(remap.kept_indices)] = old_embed[remap.kept_indices]
         if chive_weights is not None:
             new_embed[remap.unk_id] = remap.unk_chive_row.to(old_embed.dtype)
@@ -194,9 +194,7 @@ def apply_remap_to_state_dict(
     output_key = "recon.output_head.weight"
     if output_key in out:
         old_out = out[output_key]  # [V_old, H]
-        new_out = torch.zeros(
-            remap.v_new, old_out.size(1), dtype=old_out.dtype
-        )
+        new_out = torch.zeros(remap.v_new, old_out.size(1), dtype=old_out.dtype)
         new_out[: len(remap.kept_indices)] = old_out[remap.kept_indices]
         out[output_key] = new_out
 

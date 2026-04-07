@@ -828,13 +828,13 @@ class LengthStratifiedBatchSampler:
                 yield batch
             return
 
-        buckets = [
+        buckets: List[torch.Tensor] = [
             b.clone()
             for b in [torch.tensor(x, dtype=torch.long) for x in self._pos_buckets]
         ]
         for i, buck in enumerate(buckets):
-            perm = torch.randperm(len(buck), generator=self.generator)
-            buckets[i] = buck[perm]
+            perm = torch.randperm(len(buck), generator=self.generator)  # type: ignore[assignment]
+            buckets[i] = buck[perm]  # type: ignore[assignment]
         ptr = [0] * len(buckets)
         rr = 0
         out_batch: List[int] = []

@@ -141,7 +141,7 @@ def save_model(
     if not hasattr(torch, "float8_e4m3fn"):
         raise RuntimeError("FP8 requires PyTorch 2.1+.")
 
-    _FP16_PREFIXES = (
+    fp16_prefixes = (
         "formality_pragmatic_head.",
         "gender_pragmatic_head.",
         "grammaticality_classifier.",
@@ -151,7 +151,7 @@ def save_model(
     def _quantize(k: str, v: torch.Tensor) -> torch.Tensor:
         if v.dtype != torch.float32:
             return v.cpu()
-        if any(k.startswith(p) for p in _FP16_PREFIXES):
+        if any(k.startswith(p) for p in fp16_prefixes):
             return v.cpu().to(torch.float16)
         return v.cpu().to(torch.float8_e4m3fn)
 

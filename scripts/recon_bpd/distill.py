@@ -7,8 +7,12 @@ head for further speedup.
 
 Usage:
     python -m scripts.recon_bpd.distill                # distill checkpoint.lock
-    python -m scripts.recon_bpd.distill --benchmark    # sweep layer-drop + rank
+    python -m scripts.recon_bpd.distill --benchmark    # arena benchmark
     python -m scripts.recon_bpd.distill --force         # re-distill even if cached
+
+The ``--benchmark`` flag runs an arena-style tournament: all variants compete
+at 400 sentences, the bottom 25% are eliminated each round (adding 400
+sentences per round), and the final 8 are compared in a full table.
 """
 
 from __future__ import annotations
@@ -93,14 +97,9 @@ def _drop_encoder_layers(
     drop_layers: int,
 ) -> Dict[str, torch.Tensor]:
     """Remove encoder layers and renumber survivors to 0..K-1."""
-    layer_nums = set()
-    for k in state:
-        if "encoder.layers." in k:
-            parts = k.split(".")
-            idx = parts.index("layers") + 1
-            if idx < len(parts) and parts[idx].isdigit():
-                layer_nums.add(int(parts[idx]))
-    total = max(layer_nums) + 1 if layer_nums else 1
+    from scripts.recon_bpd import count_encoder_layers
+
+    total = count_encoder_layers(state)
 
     kept = _select_kept_layers(total, drop_layers)
     old_to_new = {old: new for new, old in enumerate(kept)}
@@ -271,18 +270,15 @@ def ensure_distilled(
     token_percentile: float = 100.0,
 ) -> str:
     """Return path to distilled checkpoint, creating it if needed."""
-    out_path = _distilled_path(
-        checkpoint_id, drop_layers, output_rank, token_percentile
-    )
-    if os.path.exists(out_path):
-        return out_path
-    return distill_checkpoint(
-        checkpoint_id,
-        model_type,
-        drop_layers=drop_layers,
-        output_rank=output_rank,
-        token_percentile=token_percentile,
-    )
+    cached = _distilled_path(checkpoint_id, drop_layers, output_rank, token_percentile)
+    if os.path.exists(cached):
+        return cached
+    opts = {
+        "drop_layers": drop_layers,
+        "output_rank": output_rank,
+        "token_percentile": token_percentile,
+    }
+    return distill_checkpoint(checkpoint_id, model_type, **opts)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------
@@ -377,8 +373,38 @@ def _run_one_variant(  # pylint: disable=too-many-locals
     }
 
 
-_SCREEN_N = 200
-_SHORTLIST_K = 5
+_ARENA_STEP = 400
+_ARENA_FINAL_SIZE = 8
+_ARENA_KEEP_FRAC = 0.75
+
+
+def _arena_max_sentences(n_contestants: int) -> int:
+    """Compute total sentences needed for the full arena."""
+    if n_contestants <= _ARENA_FINAL_SIZE:
+        return _ARENA_STEP
+    pool = n_contestants
+    rounds = 1
+    while True:
+        keep = max(int(pool * _ARENA_KEEP_FRAC), 1)
+        rounds += 1
+        if keep < _ARENA_FINAL_SIZE:
+            break
+        pool = keep
+    return rounds * _ARENA_STEP
+
+
+def _composite_score(
+    ref_pooled: torch.Tensor, v: Dict[str, Any]
+) -> tuple[float, float]:
+    """Return (sps * cos^4, cosine_similarity)."""
+    cos: float = (
+        torch.nn.functional.cosine_similarity(  # pylint: disable=not-callable
+            ref_pooled, v["pooled"], dim=-1
+        )
+        .mean()
+        .item()
+    )
+    return v["sps"] * (cos**4), cos
 
 
 def _get_total_layers(lock: Dict[str, Any]) -> int:
@@ -387,14 +413,9 @@ def _get_total_layers(lock: Dict[str, Any]) -> int:
     ckpt = torch.load(full_path, map_location="cpu", weights_only=False)
     if "config_dict" in ckpt:
         return int(ckpt["config_dict"].get("num_layers", 9))
-    layer_nums = set()
-    for k in ckpt["model_state"]:
-        if "encoder.layers." in k:
-            parts = k.split(".")
-            idx = parts.index("layers") + 1
-            if idx < len(parts) and parts[idx].isdigit():
-                layer_nums.add(int(parts[idx]))
-    return max(layer_nums) + 1 if layer_nums else 1
+    from scripts.recon_bpd import count_encoder_layers
+
+    return count_encoder_layers(ckpt["model_state"])
 
 
 def _build_all_configs(
@@ -463,15 +484,16 @@ def _run_configs(
 def benchmark(  # pylint: disable=too-many-locals
     checkpoint_id: Optional[str] = None,
     *,
-    n_sentences: int = 200,
     drop_sweep: Optional[List[int]] = None,
     rank_sweep: Optional[List[int]] = None,
 ) -> None:
-    """Compare distillation variants with two-phase screening.
+    """Arena-style benchmark with progressive elimination.
 
-    When *n_sentences* > 200, screens the full grid (individual + all drop x rank
-    combinations) cheaply at 200 sentences, then re-runs only the top-K fastest
-    at the requested sentence count for accurate throughput numbers.
+    Runs all variants at _ARENA_STEP sentences, keeps the top 75% by
+    sps * cos^4, adds _ARENA_STEP more sentences each round, and repeats
+    until fewer than _ARENA_FINAL_SIZE would survive.  The final round
+    re-evaluates the top _ARENA_FINAL_SIZE variants at the accumulated
+    sentence count and prints a full comparison table.
     """
     lock = read_lock()
     if lock is None:
@@ -487,63 +509,77 @@ def benchmark(  # pylint: disable=too-many-locals
 
     total_layers = _get_total_layers(lock)
     configs = _build_all_configs(total_layers, drop_sweep, rank_sweep)
-    n_combos = sum(1 for _, _, d, r in configs if d > 0 and r > 0)
 
-    print(f"Benchmarking {checkpoint_id} on {device} ({n_sentences} sentences)")
-    use_screen = n_sentences > _SCREEN_N and len(configs) > _SHORTLIST_K + 2
+    baselines = configs[:2]  # full fp32, fp16 — always run, never eliminated
+    contestants = list(configs[2:])
 
-    if use_screen:
-        print(
-            f"  Screening {len(configs)} variants at {_SCREEN_N} sentences"
-            f" ({n_combos} combinations)\n"
-        )
-        test_ids, test_mask = _make_test_batch(lock, n_sentences, device)
-        screen_results = _run_configs(
+    max_n = _arena_max_sentences(len(contestants))
+    test_ids, test_mask = _make_test_batch(lock, max_n, device)
+
+    print(f"Benchmarking {checkpoint_id} on {device}")
+    print(f"  {len(configs)} variants, arena up to {max_n} sentences\n")
+
+    is_final = len(contestants) <= _ARENA_FINAL_SIZE
+    round_num = 0
+
+    while True:
+        round_num += 1
+        n = round_num * _ARENA_STEP
+
+        label = "Final round" if is_final else f"Round {round_num}"
+        print(f"  {label} ({n} sentences, {len(contestants)} variants)")
+
+        round_configs = baselines + contestants
+        results = _run_configs(
             lock,
-            configs,
-            test_ids[:_SCREEN_N],
-            test_mask[:_SCREEN_N],
+            round_configs,
+            test_ids[:n],
+            test_mask[:n],
             device=device,
-            n_sentences=_SCREEN_N,
-        )
-        # Always keep baselines (first two); shortlist rest by speed
-        baselines = configs[:2]
-        ranked = sorted(
-            zip(configs[2:], screen_results[2:]),
-            key=lambda cr: cr[1][1]["sps"],
-            reverse=True,
-        )
-        top_configs = [c for c, _ in ranked[:_SHORTLIST_K]]
-        top_names = [c[0] for c in top_configs]
-        print(f"  \u2192 Top {_SHORTLIST_K}: {', '.join(top_names)}")
-        print(
-            f"  Full benchmark: {len(baselines) + len(top_configs)} variants"
-            f" at {n_sentences} sentences\n"
+            n_sentences=n,
         )
 
-        final_configs = baselines + top_configs
-        variants = _run_configs(
-            lock,
-            final_configs,
-            test_ids,
-            test_mask,
-            device=device,
-            n_sentences=n_sentences,
-        )
-    else:
+        ref = dict(results)["full fp32"]
+        ref_pooled = ref["pooled"]
+
+        # Score contestants by composite (sps * cos^4)
+        scored: list[
+            tuple[tuple[str, bool, int, int], str, float, float, float]
+        ] = []
+        for cfg, (name, v) in zip(contestants, results[len(baselines):]):
+            composite, cos = _composite_score(ref_pooled, v)
+            scored.append((cfg, name, composite, cos, v["sps"]))
+        scored.sort(key=lambda x: x[2], reverse=True)
+
+        if is_final:
+            print()
+            _print_sweep(ref, results)
+            break
+
+        # Round summary
+        if scored:
+            _, b_name, b_score, b_cos, b_sps = scored[0]
+            print(f"    Best: {b_name} — {b_sps:.0f} s/s, {b_cos:.4f} cos")
+
+        # Elimination
+        keep_n = max(int(len(scored) * _ARENA_KEEP_FRAC), 1)
+        eliminated = [name for _, name, _, _, _ in scored[keep_n:]]
+        if eliminated:
+            elim_str = ", ".join(eliminated)
+            if len(elim_str) > 72:
+                elim_str = (
+                    ", ".join(eliminated[:4]) + f" ... ({len(eliminated)} total)"
+                )
+            print(f"    Eliminated {len(eliminated)}: {elim_str}")
+
+        if keep_n < _ARENA_FINAL_SIZE:
+            contestants = [
+                cfg for cfg, _, _, _, _ in scored[:_ARENA_FINAL_SIZE]
+            ]
+            is_final = True
+        else:
+            contestants = [cfg for cfg, _, _, _, _ in scored[:keep_n]]
         print()
-        test_ids, test_mask = _make_test_batch(lock, n_sentences, device)
-        variants = _run_configs(
-            lock,
-            configs,
-            test_ids,
-            test_mask,
-            device=device,
-            n_sentences=n_sentences,
-        )
-
-    ref = dict(variants)["full fp32"]
-    _print_sweep(ref, variants)
 
 
 # ---------------------------------------------------------------------------
@@ -559,6 +595,17 @@ def _print_sweep(
     ref_pooled, ref_bpd, ref_sps = ref["pooled"], ref["bpd_vec"], ref["sps"]
     show_mem = ref["mem_mb"] > 0
 
+    # Find best composite (sps * cos^4) among non-reference variants
+    best_name = ""
+    best_score = -1.0
+    for name, v in variants:
+        if name == "full fp32":
+            continue
+        score, _ = _composite_score(ref_pooled, v)
+        if score > best_score:
+            best_score = score
+            best_name = name
+
     headers = ["Variant", "Layers", "s/s", "Time", "BPD", "Emb cos", "BPD |d|", "Speed"]
     if show_mem:
         headers.insert(5, "Mem MB")
@@ -572,7 +619,9 @@ def _print_sweep(
     sorted_variants = sorted(variants, key=lambda nv: nv[1]["sps"], reverse=True)
     for name, v in sorted_variants:
         _print_variant_row(
-            name, v, ref_pooled, ref_bpd, ref_sps=ref_sps, show_mem=show_mem
+            name, v, ref_pooled, ref_bpd,
+            ref_sps=ref_sps, show_mem=show_mem,
+            starred=(name == best_name),
         )
 
 
@@ -584,6 +633,7 @@ def _print_variant_row(
     *,
     ref_sps: float,
     show_mem: bool,
+    starred: bool = False,
 ) -> None:
     """Print one row of the vertical benchmark table."""
     cos = (
@@ -610,7 +660,10 @@ def _print_variant_row(
     ]
     if show_mem:
         cols.insert(5, f"{v['mem_mb']:.0f}".rjust(6))
-    print("  ".join(cols))
+    line = "  ".join(cols)
+    if starred:
+        line += "  *"
+    print(line)
 
 
 # ---------------------------------------------------------------------------
@@ -666,18 +719,12 @@ def main() -> None:
     parser.add_argument(
         "--benchmark",
         action="store_true",
-        help="Sweep layer-drop and low-rank variants",
+        help="Arena-style benchmark of layer-drop and low-rank variants",
     )
     parser.add_argument(
         "--force",
         action="store_true",
         help="Re-distill even if cached",
-    )
-    parser.add_argument(
-        "--n-sentences",
-        type=int,
-        default=200,
-        help="Sentences for benchmark (default: 200)",
     )
     parser.add_argument(
         "--drop-layers",
@@ -720,7 +767,6 @@ def main() -> None:
         print()
         benchmark(
             checkpoint_id,
-            n_sentences=args.n_sentences,
             drop_sweep=args.drop_layers,
             rank_sweep=args.ranks,
         )

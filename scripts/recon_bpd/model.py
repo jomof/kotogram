@@ -11,6 +11,8 @@ from typing import Tuple, cast
 import torch
 from torch import nn
 
+from kotogram.model import AttentionPooler, PositionalEncoding
+
 
 @dataclass
 class BpdModelConfig:
@@ -28,50 +30,6 @@ class BpdModelConfig:
     recon_pos_embed_dim: int = 64
     recon_hidden_dim: int = 256
     layer_drop_prob: float = 0.5
-
-
-class PositionalEncoding(nn.Module):
-    """Sinusoidal positional encoding for Transformer."""
-
-    def __init__(self, d_model: int, max_len: int = 512, dropout: float = 0.1):
-        super().__init__()
-        self.dropout = nn.Dropout(p=dropout)
-        pe = torch.zeros(max_len, d_model)
-        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(
-            torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model)
-        )
-        pe[:, 0::2] = torch.sin(position * div_term)
-        pe[:, 1::2] = torch.cos(position * div_term)
-        self.register_buffer("pe", pe.unsqueeze(0))
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = x + cast(torch.Tensor, self.pe)[:, : x.size(1), :]
-        return cast(torch.Tensor, self.dropout(x))
-
-
-class AttentionPooler(nn.Module):
-    """Attention-weighted pooling with a learnable query vector."""
-
-    def __init__(self, d_model: int, num_heads: int = 8, dropout: float = 0.1):
-        super().__init__()
-        self.query = nn.Parameter(torch.randn(1, 1, d_model))
-        self.attention = nn.MultiheadAttention(
-            d_model, num_heads, dropout=dropout, batch_first=True
-        )
-        self.layer_norm = nn.LayerNorm(d_model)
-
-    def forward(
-        self, encoder_output: torch.Tensor, attention_mask: torch.Tensor
-    ) -> torch.Tensor:
-        query = self.query.expand(encoder_output.size(0), -1, -1)
-        attn_output, _ = self.attention(
-            query=query,
-            key=encoder_output,
-            value=encoder_output,
-            key_padding_mask=(attention_mask == 0),
-        )
-        return cast(torch.Tensor, self.layer_norm(attn_output.squeeze(1)))
 
 
 class KCHead(nn.Module):  # pylint: disable=abstract-method

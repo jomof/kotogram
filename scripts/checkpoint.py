@@ -9,7 +9,6 @@ import argparse
 import hashlib
 import json
 import os
-from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from scripts.gcs import (
@@ -224,12 +223,9 @@ def list_checkpoints(model_type: str) -> List[str]:
 
 def read_lock() -> Optional[Dict[str, Any]]:
     """Read checkpoint.lock from the repo root. Returns None if missing."""
-    lock_path = os.path.join(find_repo_root(), CHECKPOINT_LOCK)
-    if not os.path.exists(lock_path):
-        return None
-    with open(lock_path, encoding="utf-8") as f:
-        result: Dict[str, Any] = json.load(f)
-    return result
+    from scripts.lock_io import read_lock_file
+
+    return read_lock_file(os.path.join(find_repo_root(), CHECKPOINT_LOCK))
 
 
 def write_lock(
@@ -243,21 +239,20 @@ def write_lock(
     mlflow_run_id: Optional[str] = None,
 ) -> str:
     """Write checkpoint.lock to the repo root. Returns the path written."""
-    lock_path = os.path.join(find_repo_root(), CHECKPOINT_LOCK)
-    data: Dict[str, Any] = {
-        "model_type": model_type,
-        "checkpoint_id": checkpoint_id,
-        "criteria": criteria,
-        "epoch": epoch,
-        "dataset_id": dataset_id,
-        "chive_id": chive_id,
-        "mlflow_run_id": mlflow_run_id,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-    }
-    with open(lock_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-        f.write("\n")
-    return lock_path
+    from scripts.lock_io import write_lock_file
+
+    return write_lock_file(
+        os.path.join(find_repo_root(), CHECKPOINT_LOCK),
+        {
+            "model_type": model_type,
+            "checkpoint_id": checkpoint_id,
+            "criteria": criteria,
+            "epoch": epoch,
+            "dataset_id": dataset_id,
+            "chive_id": chive_id,
+            "mlflow_run_id": mlflow_run_id,
+        },
+    )
 
 
 # ── CLI ────────────────────────────────────────────────────────────────
@@ -288,8 +283,8 @@ def _cmd_list(args: argparse.Namespace) -> None:
 
 def _format_bytes(n: int) -> str:
     if n >= 1_000_000_000:
-        return f"{n / (1024 ** 3):.1f} GB"
-    return f"{n / (1024 ** 2):.1f} MB"
+        return f"{n / (1024**3):.1f} GB"
+    return f"{n / (1024**2):.1f} MB"
 
 
 def _print_info_compact(meta: dict) -> None:
@@ -333,7 +328,7 @@ def _print_info_compact(meta: dict) -> None:
 # ---------------------------------------------------------------------------
 
 
-def _classify_param(name: str, shape: tuple) -> str:
+def _classify_param(name: str, shape: tuple) -> str:  # pylint: disable=too-many-return-statements
     """Classify a parameter by its role based on name suffix and shape."""
     ndim = len(shape)
     base = name.rsplit(".", 1)[-1] if "." in name else name
@@ -357,22 +352,30 @@ def _classify_param(name: str, shape: tuple) -> str:
         if "norm" in parent.lower():
             return "LayerNorm"
         return "bias" if base == "bias" else "param"
-    if base == "query" or base == "pe":
+    if base in ("query", "pe"):
         return "buffer"
     return "param"
 
 
 def _param_bytes(shape: tuple, dtype_str: str) -> int:
     from functools import reduce
+
     numel = reduce(lambda a, b: a * b, shape, 1)
-    bits = {"torch.float32": 32, "torch.float16": 16, "torch.bfloat16": 16,
-            "torch.int64": 64, "torch.int32": 32, "torch.int16": 16,
-            "torch.int8": 8, "torch.uint8": 8, "torch.bool": 8}
+    bits = {
+        "torch.float32": 32,
+        "torch.float16": 16,
+        "torch.bfloat16": 16,
+        "torch.int64": 64,
+        "torch.int32": 32,
+        "torch.int16": 16,
+        "torch.int8": 8,
+        "torch.uint8": 8,
+        "torch.bool": 8,
+    }
     return numel * bits.get(dtype_str, 32) // 8
 
 
-
-def _print_decoders(model_type: str, checkpoint_id: str) -> None:
+def _print_decoders(model_type: str, checkpoint_id: str) -> None:  # pylint: disable=too-many-locals
     """Load the checkpoint and list decoder heads with input/output signatures."""
     import torch
 
@@ -405,8 +408,7 @@ def _print_decoders(model_type: str, checkpoint_id: str) -> None:
     # input and outputs something != d_model.
     kc_dim = 0
     for mod, params in modules.items():
-        linears = [(k, s) for k, s, _ in params
-                   if _classify_param(k, s) == "Linear"]
+        linears = [(k, s) for k, s, _ in params if _classify_param(k, s) == "Linear"]
         if linears and linears[0][1][1] == d_model:
             last_out = linears[-1][1][0]
             if last_out != d_model and last_out > kc_dim:
@@ -417,16 +419,14 @@ def _print_decoders(model_type: str, checkpoint_id: str) -> None:
     # and which does NOT contain self-attention (those are encoder/pooler trunk).
     heads: list[tuple[str, list]] = []
     for mod, params in sorted(modules.items()):
-        linears = [(k, s) for k, s, _ in params
-                   if _classify_param(k, s) == "Linear"]
+        linears = [(k, s) for k, s, _ in params if _classify_param(k, s) == "Linear"]
         if not linears:
             continue
         has_attn = any("in_proj" in k for k, _, _ in params)
         if has_attn:
             continue
         first_in = linears[0][1][1]
-        embeds = [(k, s) for k, s, _ in params
-                  if _classify_param(k, s) == "Embedding"]
+        embeds = [(k, s) for k, s, _ in params if _classify_param(k, s) == "Embedding"]
         embed_total = sum(s[1] for _, s in embeds)
         core_in = first_in - embed_total if embed_total else first_in
         if core_in in (d_model, kc_dim):
@@ -439,10 +439,8 @@ def _print_decoders(model_type: str, checkpoint_id: str) -> None:
     print(f"\n  Decoder heads (d_model={d_model}, kc={kc_dim}):")
     for mod_name, params in heads:
         total_b = sum(_param_bytes(s, d) for _, s, d in params)
-        linears = [(k, s) for k, s, _ in params
-                   if _classify_param(k, s) == "Linear"]
-        embeds = [(k, s) for k, s, _ in params
-                  if _classify_param(k, s) == "Embedding"]
+        linears = [(k, s) for k, s, _ in params if _classify_param(k, s) == "Linear"]
+        embeds = [(k, s) for k, s, _ in params if _classify_param(k, s) == "Embedding"]
 
         # Input description
         first_in = linears[0][1][1]
@@ -468,21 +466,22 @@ def _print_decoders(model_type: str, checkpoint_id: str) -> None:
             out_dim = ls[0]
             if out_dim not in consumed_dims:
                 # Use the non-digit parent as the label
-                segments = [p for p in lk.rsplit(".", 1)[0].split(".")
-                            if not p.isdigit()]
+                segments = [
+                    p for p in lk.rsplit(".", 1)[0].split(".") if not p.isdigit()
+                ]
                 short = segments[-1] if segments else lk
                 out_parts.append(f"{short}[{out_dim:,}]")
         if not out_parts:
             lk, ls = linears[-1]
-            segments = [p for p in lk.rsplit(".", 1)[0].split(".")
-                        if not p.isdigit()]
+            segments = [p for p in lk.rsplit(".", 1)[0].split(".") if not p.isdigit()]
             short = segments[-1] if segments else lk
             out_parts.append(f"{short}[{ls[0]:,}]")
 
         in_str = " + ".join(in_parts)
         out_str = ", ".join(out_parts)
-        print(f"    {mod_name:<16s} {in_str} -> {out_str}"
-              f"    ({_format_bytes(total_b)})")
+        print(
+            f"    {mod_name:<16s} {in_str} -> {out_str}    ({_format_bytes(total_b)})"
+        )
 
 
 def _cmd_info(args: argparse.Namespace) -> None:
@@ -533,19 +532,25 @@ def main() -> None:
 
     p_info = sub.add_parser("info", help="Show metadata for a checkpoint")
     p_info.add_argument(
-        "model_type", nargs="?", default=None,
+        "model_type",
+        nargs="?",
+        default=None,
         help="Model type (default: from checkpoint.lock)",
     )
     p_info.add_argument(
-        "checkpoint_id", nargs="?", default=None,
+        "checkpoint_id",
+        nargs="?",
+        default=None,
         help="Checkpoint ID or 'best' (default: from checkpoint.lock)",
     )
     p_info.add_argument(
-        "--detailed", action="store_true",
+        "--detailed",
+        action="store_true",
         help="Show full metadata as JSON",
     )
     p_info.add_argument(
-        "--decoders", action="store_true",
+        "--decoders",
+        action="store_true",
         help="Show model structure introspected from weights",
     )
     p_info.set_defaults(func=_cmd_info)

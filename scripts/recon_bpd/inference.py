@@ -42,14 +42,9 @@ def infer_config_from_state(
     recon_hidden_dim = _get("recon.hidden1.weight").shape[0]
     recon_pos_embed_dim = _get("recon.pos_embed_end.weight").shape[1]
 
-    layer_nums = set()
-    for k in state:
-        if "encoder.layers." in k:
-            parts = k.split(".")
-            idx = parts.index("layers") + 1
-            if idx < len(parts) and parts[idx].isdigit():
-                layer_nums.add(int(parts[idx]))
-    num_layers = max(layer_nums) + 1 if layer_nums else 1
+    from scripts.recon_bpd import count_encoder_layers
+
+    num_layers = count_encoder_layers(state)
 
     # num_heads: in_proj_weight is (3*d_model, d_model), but head count is
     # not directly inferrable from shapes -- use common defaults.
@@ -170,7 +165,6 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
         from scripts.recon_bpd.token_remap import NUM_SPECIAL
 
         kept = token_remap_meta["kept_indices"]
-        v_new = int(token_remap_meta["v_new"])
         unk_id = int(token_remap_meta["unk_id"])
         v_old = int(kept.max().item()) + 1 if len(kept) > 0 else NUM_SPECIAL
         # Pad to cover any ID the tokenizer might produce

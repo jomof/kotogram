@@ -545,7 +545,7 @@ class Bottle:
         total_grammatic = cursor.fetchone()[0]
         # Count total sentences
         cursor.execute("SELECT COUNT(*) FROM corpus")
-        total_predictions = cursor.fetchone()[0]  # Total loaded dataset size
+        total_predictions = cursor.fetchone()[0]
 
         conn.close()
 

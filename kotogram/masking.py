@@ -4,7 +4,7 @@ This module provides utilities to mask specific tokens in a kotogram stream,
 primarily for anonymization or data augmentation purposes.
 """
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 if TYPE_CHECKING:
     from kotogram.kotogram import Token, TokenFeatures
@@ -54,6 +54,21 @@ PRESERVED_READING_MASKS = {
 
 READING_MASK = "<READING_MASK>"
 
+# Fixed exemplar surfaces for each mask category. Used as:
+# - Dedup key: canonicalize_sentence() replaces masked tokens with these
+# - Vocab entry: apply_training_mask() uses these instead of raw surfaces
+# - chiVe init: each exemplar has a real pretrained embedding
+# All exemplars verified present in chiVe v1.3-mc5.
+SURFACE_EXEMPLARS: Dict[str, str] = {
+    "<number>": "1",
+    "<surname>": "田中",
+    "<given-name>": "太郎",
+    "<person-name>": "田中",
+    "<place-name>": "東京",
+    "<country>": "日本",
+    "<proper-noun>": "東京",
+}
+
 
 def katakana_to_hiragana(text: str) -> str:
     """Convert katakana characters to hiragana.
@@ -75,10 +90,11 @@ def katakana_to_hiragana(text: str) -> str:
 
 
 def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
-    """Apply training mask to anonymize given names immutable.
+    """Apply training mask: replace masked-category surfaces with exemplars.
 
-    Replaces Japanese given names (First Names) with the placeholder "太郎" (Taro).
-    Returns a new list of tokens.
+    For tokens matching a mask category (numbers, proper nouns, names, places),
+    the surface is replaced with the fixed exemplar from SURFACE_EXEMPLARS and
+    the reading_gram is set to the mask tag.
 
     Also removes trailing "。" (Japanese period) from the end of the sentence.
 
@@ -90,7 +106,6 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
     """
     from kotogram.kotogram import Token  # Deferred import to avoid cycle
 
-    # Remove trailing "。" (Japanese period) if present at end of sentence
     if tokens and tokens[-1].surface == "。":
         tokens = tokens[:-1]
 
@@ -99,12 +114,13 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
         new_token = token
         features = token.features
 
-        target_surface = get_surface_mask_for_features(features)
-        if target_surface:
+        mask_tag = get_surface_mask_for_features(features)
+        if mask_tag:
             from kotogram.kotogram import TokenFeatures
 
+            exemplar = SURFACE_EXEMPLARS[mask_tag]
             new_features = TokenFeatures(
-                surface=features.surface,
+                surface=exemplar,
                 pos=features.pos,
                 pos_detail_1=features.pos_detail_1,
                 pos_detail_2=features.pos_detail_2,
@@ -114,13 +130,116 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
                 base_orth=features.base_orth,
                 lemma="",
                 reading="",
-                reading_gram=target_surface,
+                reading_gram=mask_tag,
             )
-            new_token = Token(token.surface, features=new_features)
+            new_token = Token(exemplar, features=new_features)
 
         masked_tokens.append(new_token)
 
     return masked_tokens
+
+
+def canonicalize_sentence(sentence: str, *, _parser: Optional[object] = None) -> str:
+    """Replace masked-category tokens with exemplar surfaces in raw text.
+
+    Used as a dedup key: two sentences that differ only by numbers, names, or
+    places will produce the same canonical string.  The result is NOT stored;
+    it exists only for comparison.
+
+    Idempotent: canonicalizing an already-canonical sentence is a no-op.
+
+    Pass ``_parser`` (a ``SudachiJapaneseParser``) to avoid re-creating
+    the tokenizer on each call in hot loops.
+    """
+    if _parser is None:
+        import importlib
+
+        _sjp = importlib.import_module("kotogram.sudachi_japanese_parser")
+        _parser = _sjp.SudachiJapaneseParser(validate=False)
+
+    sudachi_tokens = _parser.tokenizer.tokenize(sentence)  # type: ignore[union-attr]
+    kotogram_tokens = _parser._to_kotogram_tokens(sudachi_tokens)  # type: ignore[union-attr]  # pylint: disable=protected-access
+    parts: List[str] = []
+    for token in kotogram_tokens:
+        mask = get_surface_mask_for_features(token.features)
+        parts.append(SURFACE_EXEMPLARS[mask] if mask else token.surface)
+    return "".join(parts)
+
+
+# -------------------------------------------------------------------------
+# Content character classification (shared by label.py and cc_common.py)
+# -------------------------------------------------------------------------
+
+
+def is_content_char(cp: int) -> bool:
+    """Return True if the codepoint belongs to a content character range.
+
+    Content ranges:
+      Hiragana, Katakana, CJK Ideographs (+Extension A/B, Compat),
+      ASCII/fullwidth digits, ASCII/fullwidth Latin, period, space, 々.
+    """
+    return (
+        0x3040 <= cp <= 0x309F  # Hiragana
+        or 0x30A0 <= cp <= 0x30FF  # Katakana
+        or 0x31F0 <= cp <= 0x31FF  # Katakana Phonetic Extensions
+        or 0x4E00 <= cp <= 0x9FFF  # CJK Unified Ideographs
+        or 0x3400 <= cp <= 0x4DBF  # CJK Extension A
+        or 0x20000 <= cp <= 0x2A6DF  # CJK Extension B
+        or 0xF900 <= cp <= 0xFAFF  # CJK Compatibility Ideographs
+        or 0x0030 <= cp <= 0x0039  # Digits 0-9
+        or cp == 0x002E  # Full stop (period)
+        or cp == 0x0020  # Space
+        or 0x0041 <= cp <= 0x005A  # Latin A-Z
+        or 0x0061 <= cp <= 0x007A  # Latin a-z
+        or 0xFF10 <= cp <= 0xFF19  # Fullwidth Digits
+        or 0xFF21 <= cp <= 0xFF3A  # Fullwidth Latin A-Z
+        or 0xFF41 <= cp <= 0xFF5A  # Fullwidth Latin a-z
+        or cp == 0x3005  # 々 (Ideographic Iteration Mark)
+    )
+
+
+def is_content_token(surface: str) -> bool:
+    """Return True if a surface token counts as content.
+
+    A token is content if at least half its characters are content characters
+    (see ``is_content_char``).  This filters out pure-symbol tokens like
+    ``~~~~~~~~~~~`` or ``====`` while keeping tokens that mix content with
+    occasional punctuation.
+
+    Special case: multi-character tokens consisting entirely of periods
+    (ellipsis) are non-content, even though a single ``.`` is content.
+    """
+    if not surface:
+        return False
+    if len(surface) > 1 and all(ch == "." for ch in surface):
+        return False
+    content = sum(1 for ch in surface if is_content_char(ord(ch)))
+    return content >= len(surface) - content
+
+
+_LONG_NONCONTENT_THRESHOLD = 4
+
+
+def has_majority_content(surfaces: List[str]) -> bool:
+    """Return True if a token surface list has at least as many content as non-content tokens
+    and contains no long non-content tokens.
+
+    Sentences that fail this check are dominated by punctuation/symbols and
+    should be excluded from training.  Any single non-content token of
+    4+ characters (e.g. ``------``, ``////``) also disqualifies the sentence.
+
+    *surfaces* can be raw surface strings from either ``Token.surface`` or
+    ``get_vocab_strings(...)["surface"]``.
+    """
+    if not surfaces:
+        return False
+    content = 0
+    for s in surfaces:
+        if is_content_token(s):
+            content += 1
+        elif len(s) >= _LONG_NONCONTENT_THRESHOLD:
+            return False
+    return content >= len(surfaces) - content
 
 
 def get_surface_mask_for_features(features: "TokenFeatures") -> Optional[str]:

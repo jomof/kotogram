@@ -15,6 +15,7 @@ from .constants import (
 )
 from .japanese_parser import JapaneseParser
 from .kotogram import extract_token_features, kotogram_to_japanese, split_kotogram
+from .masking import canonicalize_sentence, has_majority_content
 from .sudachi_japanese_parser import SudachiJapaneseParser
 
 __all__ = [
@@ -33,4 +34,6 @@ __all__ = [
     "PragmaticThresholds",
     "RegisterLevel",
     "extract_token_features",
+    "canonicalize_sentence",
+    "has_majority_content",
 ]

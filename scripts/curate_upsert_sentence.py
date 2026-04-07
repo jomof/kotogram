@@ -495,11 +495,17 @@ def curate_upsert_batch(
         console.print(f"[red]Database not found at {db_path}[/red]")
         return {}
 
+    # Load canonical index for dedup gating on new inserts
+    from scripts.canonical_index import CanonicalIndex
+
+    canon_index = CanonicalIndex.corpus().load_or_build()
+
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys=ON")
     c = conn.cursor()
 
     change_stats: Counter[str] = Counter()
+    canon_skipped = 0
 
     try:
         # Pass 1: Calculation and Validation (Dry Run)
@@ -537,13 +543,21 @@ def curate_upsert_batch(
             )
 
             # 3. Logic Validation
-            # calculate_upsert_values returns bool(row) for is_existing_row
             is_update_context = is_existing_row
 
             if not is_update_context and not allow_insert:
                 raise ValueError(
                     f"Sentence '{sentence}' not found. Use --allow-insert to create it."
                 )
+
+            # Canonical dedup gate: skip new inserts if a canonical equivalent
+            # already exists in corpus.db.
+            if not is_update_context and allow_insert:
+                if canon_index.might_contain(sentence):
+                    existing = canon_index.get_existing(sentence)
+                    if existing:
+                        canon_skipped += 1
+                        continue
 
             write_args = (
                 sentence,
@@ -565,7 +579,6 @@ def curate_upsert_batch(
 
             old_is_gram = 1 if (old_f is not None and old_g is not None) else 0
             if is_update_context:
-                # If updating, check if grammatic changed
                 if old_is_gram != new_is_gram:
                     diffs["grammatic"] = (old_is_gram, new_is_gram)
 
@@ -596,14 +609,20 @@ def curate_upsert_batch(
                 else:
                     inserted_count += 1
                     change_stats["Inserted"] += 1
+                    canon_index.add(sentence)
 
                 for k, (o, n) in diffs.items():
                     change_desc = f"{k}: {o} -> {n}"
                     change_stats[change_desc] += 1
 
+        canon_index.save()
+        canon_index.close()
+
         console.print("[green]Batch upsert complete.[/green]")
         console.print(f"  Inserted: {inserted_count}")
         console.print(f"  Updated:  {updated_count}")
+        if canon_skipped:
+            console.print(f"  Skipped (canonical duplicate): {canon_skipped}")
 
         if change_stats:
             console.print("\n[bold]Change Report:[/bold]")

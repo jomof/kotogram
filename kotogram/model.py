@@ -130,10 +130,9 @@ class ModelConfig:
 class PositionalEncoding(nn.Module):
     """Sinusoidal positional encoding for Transformer."""
 
-    def __init__(self, d_model: int):
+    def __init__(self, d_model: int, max_len: int = 512, dropout: float = 0.1):
         super().__init__()
-        self.dropout = nn.Dropout(p=0.1)
-        max_len = 512
+        self.dropout = nn.Dropout(p=dropout)
 
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
@@ -143,9 +142,7 @@ class PositionalEncoding(nn.Module):
 
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
-        pe = pe.unsqueeze(0)  # (1, max_len, d_model)
-
-        self.register_buffer("pe", pe)
+        self.register_buffer("pe", pe.unsqueeze(0))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         pe = cast(torch.Tensor, self.pe)

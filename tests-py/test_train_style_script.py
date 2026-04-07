@@ -35,6 +35,13 @@ class TestTrainStyleScript(unittest.TestCase):
             label_args = "--label --force-relabel"
             bottle.train_style(label_args)
 
+            # Re-derive train split size from actual labeled sentences
+            # (content-majority filtering may reduce the count vs raw DB).
+            sentences_path = bottle.resolve_path("[.cache]/style_dataset/sentences.txt")
+            with open(sentences_path, encoding="utf-8") as f:
+                labeled_count = sum(1 for _ in f)
+            expected_counts["total_train_split_size"] = int(labeled_count * 0.95)
+
             shutil.rmtree(bottle.resolve_path("[data]"))
 
             # Verify label phase output files using glob patterns
@@ -52,6 +59,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.cache]/style_dataset/gp_*.bin",  # Grammar point ids/offsets
                 "[.cache]/style_dataset/chive_surface.pt",
                 "[.cache]/chive/chive-1.3-mc5.txt",
+                "[.cache]/chive-unknown-sentences.txt",
                 "[history]/config.json",
                 "[models]/style/tokenizer.json",
             ]

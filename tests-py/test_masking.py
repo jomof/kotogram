@@ -15,72 +15,56 @@ class TestMasking(unittest.TestCase):
         self.parser = SudachiJapaneseParser()
 
     def test_basic_masking(self):
-        """Test that a given name is masked to '<given-name>'."""
-        # 花子 (Hanako) is a given name
+        """Test that a given name surface is replaced with the exemplar."""
+        # 花子 (Hanako) is a given name -> exemplar is 太郎
         text = "花子が走る"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
         )
 
-        # Check surface form in kotogram string (SHOULD BE PRESERVED)
-        self.assertIn("ˢ花子", kotogram)
-        self.assertNotIn("ˢ<given-name>", kotogram)
-        # Check reading form (SHOULD BE CLEARED) -> No "ʳ<given-name>"
-        self.assertNotIn("ʳ<given-name>", kotogram)
-        # Check reading_gram form (SHOULD BE PRESENT via ᵍ)
+        # Surface replaced with exemplar
+        self.assertIn("ˢ太郎", kotogram)
+        self.assertNotIn("ˢ花子", kotogram)
+        # reading_gram carries the mask tag
         self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_round_trip_masked(self):
-        """Test round trip reconstruction of a masked sentence."""
+        """Test round trip reconstruction uses exemplar surface."""
         text = "花子が走る"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
         )
         reconstructed = kotogram_to_japanese(kotogram)
 
-        # Reconstructed text should use SURFACE, so it matches ORIGINAL text now
-        self.assertEqual(reconstructed, "花子が走る")
+        # Reconstructed text uses the exemplar surface, not the original
+        self.assertEqual(reconstructed, "太郎が走る")
 
     def test_pos_consistency(self):
-        """Test that the masked token retains the grammatical role of the original."""
+        """Test that the masked token retains POS and uses exemplar surface."""
         original_text = "花子が走る"
-        # 1. Parse original to find the target token
         original_kotogram = self.parser.japanese_to_kotogram(original_text)
         orig_tokens = split_kotogram(original_kotogram)
-
-        # Identify the name token (first one)
         orig_features = extract_token_features(orig_tokens[0])
         self.assertEqual(orig_features.surface, "花子")
         self.assertEqual(orig_features.pos_detail_3, "given-name")
 
-        # 2. Parse masked
         masked_kotogram = self.parser.japanese_to_kotogram(
             original_text, fmt=KotogramFormat.TRAINING_MASK
         )
         masked_tokens = split_kotogram(masked_kotogram)
-
-        # Identify the masked token (first one)
-        # Identify the masked token (first one)
         masked_features = extract_token_features(masked_tokens[0])
-        # Surface should be preserved
-        self.assertEqual(masked_features.surface, "花子")
 
-        # 3. Assert POS tags are identical
+        # Surface replaced with exemplar
+        self.assertEqual(masked_features.surface, "太郎")
+
+        # POS tags preserved from original
         self.assertEqual(masked_features.pos, orig_features.pos)
         self.assertEqual(masked_features.pos_detail_1, orig_features.pos_detail_1)
         self.assertEqual(masked_features.pos_detail_2, orig_features.pos_detail_2)
-        # Note: pos_detail_3 should also be "given-name" for placeholder
         self.assertEqual(masked_features.pos_detail_3, orig_features.pos_detail_3)
 
-        # 4. Assert reading is CLEARED (empty)
         self.assertEqual(masked_features.reading, "")
-        # 5. Assert reading_gram is MASKED to <given-name>
         self.assertEqual(masked_features.reading_gram, "<given-name>")
-
-        # 5. Assert lemma is stripped (defaults to *)
-        # Actually in kotogram parser: if feature.lemma == "*", it sets it to surface.
-        # But here we want to assert the underlying token has lemma="*"
-        # 6. Assert lemma is stripped (empty string, no marker)
         self.assertEqual(masked_features.lemma, "")
         self.assertNotIn("ᵈ", masked_tokens[0])
 
@@ -100,8 +84,8 @@ class TestMasking(unittest.TestCase):
         reconstructed = kotogram_to_japanese(kotogram)
         self.assertEqual(reconstructed, "猫が走る")
 
-    def test_surface_vocab_uses_raw_surface(self):
-        """Surface vocab uses raw surface form for embedding lookup, not the mask."""
+    def test_surface_vocab_uses_exemplar(self):
+        """Surface vocab uses the exemplar surface, not the original or mask tag."""
         text = "花子が走る"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
@@ -110,16 +94,9 @@ class TestMasking(unittest.TestCase):
         features = extract_token_features(tokens[0])
 
         vocab_strings = get_vocab_strings(features)
-        # Surface vocab is the raw surface form,
-        # not the mask placeholder -- masking only applies to reading_gram.
-        self.assertEqual(vocab_strings["surface"], "花子")
+        # Surface vocab now gets the exemplar (太郎), not the original (花子)
+        self.assertEqual(vocab_strings["surface"], "太郎")
         self.assertEqual(features.reading_gram, "<given-name>")
-
-        unmasked_kotogram = self.parser.japanese_to_kotogram(text)
-        unmasked_tokens = split_kotogram(unmasked_kotogram)
-        unmasked_features = extract_token_features(unmasked_tokens[0])
-        unmasked_vocab_strings = get_vocab_strings(unmasked_features)
-        self.assertEqual(unmasked_vocab_strings["surface"], "花子")
 
     def test_multiple_names(self):
         """Test masking multiple given names in one sentence."""
@@ -129,28 +106,25 @@ class TestMasking(unittest.TestCase):
         )
 
         reconstructed = kotogram_to_japanese(kotogram)
-        # Surface preserved
-        self.assertEqual(reconstructed, "花子と次郎が遊ぶ")
-        # Readings masked (no R marker, yes G marker)
+        # Both given names replaced with the exemplar 太郎
+        self.assertEqual(reconstructed, "太郎と太郎が遊ぶ")
         self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_merge_prevention(self):
-        """Regression test for surnames merging (e.g. 渡辺太郎)."""
+        """Regression test for surnames merging -- exemplars must stay separate tokens."""
         # "渡辺五郎" -> 2 tokens: 渡辺(Surname) + 五郎(Given)
         text = "こちらは渡辺五郎です。"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
         )
 
-        # Verify surface replacement (SHOULD BE PRESERVED)
-        self.assertIn("ˢ渡辺", kotogram)
-        self.assertIn("ˢ五郎", kotogram)
-        # Verify reading replacement (Cleared R, added G)
+        # Surfaces replaced with exemplars (田中 for surname, 太郎 for given-name)
+        self.assertIn("ˢ田中", kotogram)
+        self.assertIn("ˢ太郎", kotogram)
         self.assertIn("ᵍ<surname>", kotogram)
         self.assertIn("ᵍ<given-name>", kotogram)
         reconstructed = kotogram_to_japanese(kotogram)
-        # Masking removes sentence-final punctuation for boundary noise reduction
-        self.assertEqual(reconstructed, "こちらは渡辺五郎です")
+        self.assertEqual(reconstructed, "こちらは田中太郎です")
 
     def test_pos_stability(self):
         """Regression test for adjacent particle POS stability ('ka')."""
@@ -158,13 +132,12 @@ class TestMasking(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
         )
-        # Should not raise RuntimeError
-        # Should not raise RuntimeError
-        self.assertIn("ˢ啓太", kotogram)
+        # Should not raise RuntimeError; given-name replaced with exemplar
+        self.assertIn("ˢ太郎", kotogram)
         self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_generic_person_masking(self):
-        """Test masking of generic person names (no given/surname detail)."""
+        """Test masking of generic person names uses person-name exemplar."""
         # "ジョン" (John) is parsed as noun:proper-noun:person-name (generic)
         text = "ジョン"
         kotogram = self.parser.japanese_to_kotogram(
@@ -173,15 +146,16 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "ジョン")
+        self.assertEqual(t0.surface, "田中")  # person-name exemplar
         self.assertEqual(t0.reading, "")
         self.assertEqual(t0.reading_gram, "<person-name>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
         self.assertEqual(t0.pos_detail_2, "person-name")
 
     def test_generic_place_masking(self):
-        """Test masking of generic place names (no country detail)."""
+        """Test masking of generic place names uses place-name exemplar."""
         # "東京" (Tokyo) is noun:proper-noun:place-name (generic/general)
+        # 東京 is both the original AND the exemplar, so surface stays 東京
         text = "東京"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
@@ -189,16 +163,15 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "東京")
+        self.assertEqual(t0.surface, "東京")  # exemplar == original here
         self.assertEqual(t0.reading, "")
         self.assertEqual(t0.reading_gram, "<place-name>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
         self.assertEqual(t0.pos_detail_2, "place-name")
 
     def test_generic_proper_noun_masking(self):
-        """Test masking of generic proper nouns (orgs, etc)."""
-        # "トヨタ" (Toyota) is noun:proper-noun (generic, no detail2 in standard dict)
-        # Actually my probe showed D2="" for "トヨタ"
+        """Test masking of generic proper nouns uses proper-noun exemplar."""
+        # "トヨタ" (Toyota) is noun:proper-noun (generic)
         text = "トヨタ"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
@@ -206,7 +179,7 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "トヨタ")
+        self.assertEqual(t0.surface, "東京")  # proper-noun exemplar
         self.assertEqual(t0.reading, "")
         self.assertEqual(t0.reading_gram, "<proper-noun>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
@@ -257,30 +230,24 @@ class TestMasking(unittest.TestCase):
             apply_training_mask([bad_country])
 
     def test_numeral_masking(self):
-        """Test validation of numeral masking to <number> using real parsing."""
-        # "500円" -> "500" should be masked to <number>
+        """Test that numerals are replaced with the number exemplar."""
+        # "500円" -> "500" should be replaced with "1" (number exemplar)
         text = "500円"
         kotogram = self.parser.japanese_to_kotogram(
             text, fmt=KotogramFormat.TRAINING_MASK
         )
 
         tokens = split_kotogram(kotogram)
-        # First token is 500
         t0_features = extract_token_features(tokens[0])
 
-        self.assertEqual(t0_features.surface, "500")
-        # Parser replaces '*' lemma with surface
-        # Parser replaces '*' lemma with surface
+        self.assertEqual(t0_features.surface, "1")  # number exemplar
         self.assertIn(t0_features.lemma, {"", "*"})
         self.assertEqual(t0_features.reading, "")
         self.assertEqual(t0_features.reading_gram, "<number>")
         self.assertEqual(t0_features.pos, "noun")
         self.assertEqual(t0_features.pos_detail_1, "numeral")
 
-        # Second token "円" (counter/noun) should remain or be masked if it falls into specific rules?
-        # It's a common noun / counter, usually not masked by existing rules unless it hits proper noun logic.
-        # "円" is noun:common-noun:counter-possible.
-        # So it stays as surface.
+        # "円" is a common noun, not masked
         t1_features = extract_token_features(tokens[1])
         self.assertEqual(t1_features.surface, "円")
 

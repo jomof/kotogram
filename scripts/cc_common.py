@@ -1,4 +1,4 @@
-"""Shared utilities for Common Crawl scripts."""
+"""Shared utilities for Common Crawl scripts."""  # pylint: disable=too-many-lines
 
 from __future__ import annotations
 
@@ -28,12 +28,12 @@ MAX_SENTENCE_LEN = 100
 # ---------------------------------------------------------------------------
 
 _perf_entries: list[str] = []
-_perf_t0: float = 0.0
+_perf_t0: float = 0.0  # pylint: disable=invalid-name
 
 
 def perf_start_run(label: str, **kv: Any) -> None:
     """Begin a new perf-log block, clearing any prior entries."""
-    global _perf_t0  # noqa: PLW0603
+    global _perf_t0  # noqa: PLW0603  # pylint: disable=global-statement
     _perf_t0 = time.monotonic()
     _perf_entries.clear()
     _perf_entries.append(f"=== {label} {time.strftime('%Y-%m-%dT%H:%M:%S')} ===")
@@ -248,11 +248,11 @@ def get_crawl_sizes(crawl_id: str) -> dict[str, float]:
 
 
 def parse_kotogram_chunk(sentences: list[str]) -> list[str]:
-    """Worker: parse raw sentences to kotogram format via Sudachi."""
+    """Worker: parse raw sentences to kotogram with TRAINING_MASK (exemplar surfaces)."""
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
     parser = SudachiJapaneseParser()
-    return [parser.japanese_to_kotogram(s) for s in sentences]
+    return [parser.japanese_to_kotogram(s, fmt="TrainingMask") for s in sentences]
 
 
 _TOKENIZER_PATH: str = ""
@@ -260,7 +260,7 @@ _TOKENIZER_PATH: str = ""
 
 def set_tokenizer_path(path: str) -> None:
     """Set the tokenizer JSON path for worker processes."""
-    global _TOKENIZER_PATH  # noqa: PLW0603
+    global _TOKENIZER_PATH  # noqa: PLW0603  # pylint: disable=global-statement
     _TOKENIZER_PATH = path
 
 
@@ -429,6 +429,7 @@ _SPAM_PATTERNS: tuple[re.Pattern[str], ...] = (
     re.compile(r"www\."),
     re.compile(r"！{3,}"),
     re.compile(r"!{3,}"),
+    re.compile(r"ー{5,}"),
     re.compile(r"高価買取"),
     re.compile(r"無料見積"),
     re.compile(r"お問い合わせ"),
@@ -462,7 +463,7 @@ _NN_CHUNK_SIZE = 4096
 _NN_CORPUS_TILE = 32_768
 
 
-def diversity_scores(
+def diversity_scores(  # pylint: disable=too-many-locals
     cc_embeddings: np.ndarray,
     corpus_embeddings: np.ndarray,
     device: Any = None,
@@ -698,14 +699,13 @@ class EmbedStore:
     Keyed by model hash so a model retrain starts a fresh store.
     """
 
-    def __init__(self, model_md5: str, d_model: int = 512) -> None:
+    def __init__(self, model_md5: str, d_model: int = 512) -> None:  # pylint: disable=unused-argument
         prefix = model_md5[:12]
         self._dir = CC_CACHE_DIR / "embed-store" / prefix
         self._dir.mkdir(parents=True, exist_ok=True)
         self._sents_path = self._dir / "sents.txt"
         self._embed_path = self._dir / "embed.npy"
         self._bpd_path = self._dir / "bpd.npy"
-        self._d_model = d_model
 
         self._index: dict[str, int] = {}
         self._embed: np.ndarray | None = None
@@ -758,21 +758,6 @@ class EmbedStore:
             idx = self._index.get(s)
             if idx is not None and self._embed is not None:
                 hits[s] = self._embed[idx]
-            else:
-                misses.append(s)
-        return hits, misses
-
-    def lookup_full(
-        self, sentences: list[str]
-    ) -> tuple[dict[str, tuple[np.ndarray, float]], list[str]]:
-        """Return ``(hits, misses)`` where hits maps sentence→(embedding, bpd)."""
-        hits: dict[str, tuple[np.ndarray, float]] = {}
-        misses: list[str] = []
-        for s in sentences:
-            idx = self._index.get(s)
-            if idx is not None and self._embed is not None:
-                bpd = float(self._bpd[idx]) if self._bpd is not None else 0.0
-                hits[s] = (self._embed[idx], bpd)
             else:
                 misses.append(s)
         return hits, misses
@@ -837,7 +822,7 @@ _CORPUS_EMBED_META = "corpus-embed-meta.json"
 _CORPUS_SENTS_CACHE = "corpus-sentences.txt"
 
 
-def get_corpus_embeddings(
+def get_corpus_embeddings(  # pylint: disable=too-many-locals
     model: Any,
     device: Any,
     model_md5: str,
@@ -1023,7 +1008,7 @@ def _cc_score_paths(cache_dir: Path) -> tuple[Path, Path, Path]:
     )
 
 
-def get_cc_scores(  # pylint: disable=too-many-locals
+def get_cc_scores(  # pylint: disable=too-many-locals,too-many-positional-arguments
     crawl_id: str,
     cc_sentences: list[str],
     model: Any,

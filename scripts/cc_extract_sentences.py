@@ -19,13 +19,9 @@ from __future__ import annotations
 
 import argparse
 import gzip
-import hashlib
 import json
-import math
 import multiprocessing as mp
 import re
-import sqlite3
-import struct
 import time
 import unicodedata
 from pathlib import Path
@@ -33,14 +29,16 @@ from typing import Any
 
 import numpy as np
 
+from kotogram.masking import canonicalize_sentence
+from scripts.canonical_index import CanonicalIndex, parallel_canonicalize
 from scripts.cc_common import (
     _CORPUS_EMBED_META,
     CC_CACHE_DIR,
     CHAR_FILTER,
     CORPUS_DB,
-    EmbedStore,
     GRAMMATIC_SOFT_MIN,
     MAX_SENTENCE_LEN,
+    EmbedStore,
     _cache_path,
     clean_sentence,
     console,
@@ -58,6 +56,7 @@ from scripts.cc_common import (
     perf_start_run,
     set_tokenizer_path,
 )
+from scripts.integrity import DataIntegrityException
 
 _HIRAGANA_RE = re.compile(r"[\u3040-\u309F]")
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[。！？!?])")
@@ -79,9 +78,6 @@ _JUNK_PATTERNS = [
     re.compile(r"cookie|Cookie|COOKIE"),
     re.compile(r"プライバシーポリシー|利用規約|著作権"),
 ]
-
-_BLOOM_CACHE = Path(".cc/corpus-bloom.bin")
-_BLOOM_FPR = 0.001
 
 
 # ---------------------------------------------------------------------------
@@ -161,124 +157,8 @@ def _sentences_path(crawl_id: str) -> Path:
 
 
 # ---------------------------------------------------------------------------
-# Bloom filter for corpus deduplication
+# Canonical dedup helpers
 # ---------------------------------------------------------------------------
-
-
-class BloomFilter:
-    """Simple bloom filter backed by a bytearray."""
-
-    def __init__(self, capacity: int, fpr: float = _BLOOM_FPR):
-        self.num_hashes = max(1, round(-math.log2(fpr)))
-        self.num_bits = max(8, round(-capacity * math.log(fpr) / (math.log(2) ** 2)))
-        self.bits = bytearray(self.num_bits // 8 + 1)
-        self.count = 0
-
-    def _hashes(self, key: str) -> list[int]:
-        digest = hashlib.sha256(key.encode("utf-8")).digest()
-        h1, h2 = struct.unpack_from("<QQ", digest)
-        return [(h1 + i * h2) % self.num_bits for i in range(self.num_hashes)]
-
-    def add(self, key: str) -> None:
-        for h in self._hashes(key):
-            self.bits[h >> 3] |= 1 << (h & 7)
-        self.count += 1
-
-    def might_contain(self, key: str) -> bool:
-        return all(self.bits[h >> 3] & (1 << (h & 7)) for h in self._hashes(key))
-
-    def save(self, path: Path) -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "wb") as f:
-            f.write(struct.pack("<QII", self.num_bits, self.num_hashes, self.count))
-            f.write(self.bits)
-
-    @classmethod
-    def load(cls, path: Path) -> BloomFilter:
-        with open(path, "rb") as f:
-            num_bits, num_hashes, count = struct.unpack("<QII", f.read(16))
-            bits = bytearray(f.read())
-        bf = cls.__new__(cls)
-        bf.num_bits = num_bits
-        bf.num_hashes = num_hashes
-        bf.count = count
-        bf.bits = bits
-        return bf
-
-
-def _corpus_mtime() -> float:
-    return CORPUS_DB.stat().st_mtime if CORPUS_DB.exists() else 0.0
-
-
-def _bloom_is_fresh() -> bool:
-    if not _BLOOM_CACHE.exists():
-        return False
-    return _BLOOM_CACHE.stat().st_mtime >= _corpus_mtime()
-
-
-def _build_corpus_bloom() -> BloomFilter:
-    """Build a bloom filter from all sentences in corpus.db and cache it."""
-    console.print("  Building corpus bloom filter...")
-    con = sqlite3.connect(str(CORPUS_DB))
-    n = con.execute("SELECT COUNT(*) FROM sentences").fetchone()[0]
-    bf = BloomFilter(max(n, 1))
-    cur = con.execute("SELECT sentence FROM sentences")
-    loaded = 0
-    while True:
-        rows = cur.fetchmany(10_000)
-        if not rows:
-            break
-        for (s,) in rows:
-            bf.add(clean_sentence(s))
-            loaded += 1
-    con.close()
-    bf.save(_BLOOM_CACHE)
-    console.print(
-        f"  Bloom filter: {loaded:,} sentences, {len(bf.bits):,} bytes cached"
-    )
-    return bf
-
-
-def _load_or_build_bloom() -> BloomFilter:
-    if _bloom_is_fresh():
-        bf = BloomFilter.load(_BLOOM_CACHE)
-        console.print(f"  Corpus bloom filter: {bf.count:,} sentences (cached)")
-        return bf
-    if not CORPUS_DB.exists():
-        console.print("  [yellow]No corpus.db found, skipping corpus dedup[/yellow]")
-        return BloomFilter(1)
-    return _build_corpus_bloom()
-
-
-def _corpus_dedup(sentences: list[str], bloom: BloomFilter) -> tuple[list[str], int]:
-    """Remove sentences already in corpus.db using bloom + SQL verification.
-
-    Returns (filtered_sentences, num_removed).
-    """
-    if bloom.count == 0:
-        return sentences, 0
-
-    candidates = [s for s in sentences if bloom.might_contain(s)]
-    if not candidates:
-        return sentences, 0
-
-    con = sqlite3.connect(str(CORPUS_DB))
-    corpus_cleaned: set[str] = set()
-    cur = con.execute("SELECT sentence FROM sentences")
-    while True:
-        rows = cur.fetchmany(10_000)
-        if not rows:
-            break
-        for (s,) in rows:
-            corpus_cleaned.add(clean_sentence(s))
-    con.close()
-
-    in_corpus = {s for s in candidates if s in corpus_cleaned}
-    if not in_corpus:
-        return sentences, 0
-
-    filtered = [s for s in sentences if s not in in_corpus]
-    return filtered, len(in_corpus)
 
 
 def _load_manifest(crawl_id: str) -> set[str]:
@@ -401,12 +281,12 @@ def _corpus_prefix_ok(old_corpus_fp: str) -> tuple[bool, str]:
     meta = json.loads(corpus_meta_path.read_text(encoding="utf-8"))
     full_fp = meta.get("full_fp", "")
     prefix_fp = meta.get("prefix_fp", "")
-    if full_fp == old_corpus_fp or prefix_fp == old_corpus_fp:
+    if old_corpus_fp in (full_fp, prefix_fp):
         return True, full_fp
     return False, full_fp
 
 
-def _get_diversity(
+def _get_diversity(  # pylint: disable=too-many-locals
     crawl_id: str,
     cc_emb: np.ndarray,
     corpus_emb: np.ndarray,
@@ -455,9 +335,7 @@ def _get_diversity(
     # Verify the old corpus is compatible (identical or prefix-extended).
     prefix_ok, current_corpus_fp = _corpus_prefix_ok(old_corpus_fp)
     if cached_div is not None and old_corpus_fp and not prefix_ok:
-        console.print(
-            "  Diversity cache stale (corpus rows changed), recomputing..."
-        )
+        console.print("  Diversity cache stale (corpus rows changed), recomputing...")
         _div_stale = "stale_corpus_prefix"
         cached_div = None
         old_cc_n = 0
@@ -801,9 +679,13 @@ def main() -> None:  # pylint: disable=too-many-locals
     crawl_id = args.crawl or get_latest_crawl_id()
     perf_start_run("extract-sentences", crawl=crawl_id)
 
-    _t0_bloom = time.monotonic()
-    bloom = _load_or_build_bloom()
-    perf_log("bloom_filter", time_s=time.monotonic() - _t0_bloom)
+    _t0_idx = time.monotonic()
+    if CORPUS_DB.exists():
+        corpus_index = CanonicalIndex.corpus().load_or_build()
+    else:
+        corpus_index = None
+        console.print("  [yellow]No corpus.db found, skipping corpus dedup[/yellow]")
+    perf_log("canonical_index", time_s=time.monotonic() - _t0_idx)
 
     info = get_crawl_info(crawl_id)
     console.print(f"  Crawl: [bold]{crawl_id}[/bold]  ({info['name']})")
@@ -840,7 +722,46 @@ def main() -> None:  # pylint: disable=too-many-locals
 
         new_batch = [clean_sentence(s) for s in stats["new_sentences"]]
         new_batch = [s for s in new_batch if content_ok(s)]
-        new_batch, corpus_dupes = _corpus_dedup(new_batch, bloom)
+
+        # Filter sentences dominated by punctuation/symbols
+        from kotogram.masking import has_majority_content
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser as _SJP_cm
+
+        _cm_parser = _SJP_cm(validate=False)
+        pre_content = len(new_batch)
+        _to_tokens = _cm_parser._to_kotogram_tokens  # pylint: disable=protected-access
+        new_batch = [
+            s
+            for s in new_batch
+            if has_majority_content(
+                [t.surface for t in _to_tokens(_cm_parser.tokenizer.tokenize(s))]
+            )
+        ]
+        content_filtered = pre_content - len(new_batch)
+        if content_filtered:
+            console.print(
+                f"  Filtered {content_filtered:,} majority-non-content sentences"
+            )
+
+        # Canonical dedup against corpus.db
+        if corpus_index is not None:
+            new_batch, corpus_dupes = corpus_index.filter_duplicates(new_batch)
+        else:
+            corpus_dupes = 0
+
+        # Within-batch canonical dedup (keep one original per canonical key)
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser as _SJP
+
+        _dedup_parser = _SJP(validate=False)
+        canon_seen: set[str] = set()
+        deduped: list[str] = []
+        for s in new_batch:
+            key = canonicalize_sentence(s, _parser=_dedup_parser)
+            if key not in canon_seen:
+                canon_seen.add(key)
+                deduped.append(s)
+        new_batch = deduped
+
         merged = list(dict.fromkeys(existing_sentences + new_batch))
 
         out_path = _sentences_path(crawl_id)
@@ -888,8 +809,8 @@ def main() -> None:  # pylint: disable=too-many-locals
     console.rule("Scoring & Selection")
 
     model, tokenizer_path, checkpoint_id = load_model_from_checkpoint(
-        drop_layers=7,
-        output_rank=16,
+        drop_layers=6,
+        output_rank=32,
     )
     set_tokenizer_path(tokenizer_path)
     device = torch.device("cpu")
@@ -899,7 +820,7 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     model_md5 = model_hash()
     if getattr(model, "_distilled", False):
-        variant = "fp16 -7L r16"
+        variant = "fp16 -6L r32"
     else:
         variant = "full fp32"
     console.print(f"  Checkpoint: {checkpoint_id}  ({variant}, cache key: {model_md5})")
@@ -916,7 +837,11 @@ def main() -> None:  # pylint: disable=too-many-locals
     )
 
     cc_emb, cc_uncertainty, cc_gram_probs = get_cc_scores(
-        crawl_id, cc_sentences, model, device, model_md5,
+        crawl_id,
+        cc_sentences,
+        model,
+        device,
+        model_md5,
         embed_store=embed_store,
     )
 
@@ -926,15 +851,21 @@ def main() -> None:  # pylint: disable=too-many-locals
     keep_mask = cc_gram_probs >= GRAMMATIC_SOFT_MIN
     n_gram = int((~keep_mask).sum())
 
-    # Exclude sentences already in corpus.db -- they would be selected then
-    # discarded at upsert time, wasting diversity computation and skewing
-    # impact percentiles.
-    in_corpus_mask = np.array([bloom.might_contain(s) for s in cc_sentences])
+    # Exclude sentences already in corpus.db (canonical-aware) -- they would
+    # be selected then discarded at upsert time, wasting diversity computation
+    # and skewing impact percentiles.
+    if corpus_index is not None:
+        mask_list, _canonicals = corpus_index.batch_might_contain(cc_sentences)
+        in_corpus_mask = np.array(mask_list)
+    else:
+        in_corpus_mask = np.zeros(len(cc_sentences), dtype=bool)
     n_in_corpus = int(in_corpus_mask.sum())
     keep_mask &= ~in_corpus_mask
 
     keep_idx = np.where(keep_mask)[0]
-    console.print(f"  Filtered: {n_gram:,} low-grammatic, {n_in_corpus:,} already in corpus")
+    console.print(
+        f"  Filtered: {n_gram:,} low-grammatic, {n_in_corpus:,} already in corpus"
+    )
     console.print(
         f"  Candidates after filtering: {len(keep_idx):,} / {len(cc_sentences):,}"
     )
@@ -971,6 +902,27 @@ def main() -> None:  # pylint: disable=too-many-locals
     sel_global = keep_idx[sel_local]
     selected_sentences = [cc_sentences[i] for i in sel_global]
 
+    # Defense in depth: deduplicate selection by canonical form
+    console.print(
+        f"  Checking {len(selected_sentences):,} selected sentences for canonical duplicates..."
+    )
+    _sel_canonicals = parallel_canonicalize(selected_sentences)
+    _sel_canon: dict[str, str] = {}
+    _dedup_kept: list[str] = []
+    _canon_dupes = 0
+    for s, key in zip(selected_sentences, _sel_canonicals):
+        if key in _sel_canon:
+            _canon_dupes += 1
+            continue
+        _sel_canon[key] = s
+        _dedup_kept.append(s)
+    if _canon_dupes:
+        console.print(
+            f"  Removed {_canon_dupes} canonical duplicate(s) from selection"
+        )
+    selected_sentences = _dedup_kept
+    del _sel_canon, _sel_canonicals, _dedup_kept
+
     sel_path = Path(".cc/selected-sentences.txt")
     with open(sel_path, "w", encoding="utf-8") as fh:
         for sent in selected_sentences:
@@ -995,6 +947,9 @@ def main() -> None:  # pylint: disable=too-many-locals
         unc=cc_uncertainty[sel_global],
         out_path=sel_path,
     )
+
+    if corpus_index is not None:
+        corpus_index.close()
 
     perf_flush()
 

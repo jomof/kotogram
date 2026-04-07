@@ -16,9 +16,9 @@ def grammatical_token_length_counts(bundle: Dict[str, Any]) -> np.ndarray:
         g = gram[:n].cpu().numpy().astype(bool)
         diffs = diffs[g]
     if diffs.size == 0:
-        return np.zeros(1, dtype=np.uint64)
+        return np.zeros(1, dtype=np.uint64)  # type: ignore[no-any-return]
     max_t = int(diffs.max())
-    return np.bincount(diffs, minlength=max_t + 1).astype(np.uint64)
+    return np.bincount(diffs, minlength=max_t + 1).astype(np.uint64)  # type: ignore[no-any-return]
 
 
 def grammatical_token_gram_freq(bundle: Dict[str, Any]) -> np.ndarray:
@@ -44,4 +44,4 @@ def grammatical_token_gram_freq(bundle: Dict[str, Any]) -> np.ndarray:
         ids = surface_ids[start:end].numpy().astype(np.int64)
         for tid in ids:
             counts[tid] += 1
-    return counts
+    return counts  # type: ignore[no-any-return]

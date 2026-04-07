@@ -75,29 +75,38 @@ def verify_model_size(
 
     report = generate_architecture_report(model)
 
-    # The report gives us actual model sizes in memory (FP32 = 4 bytes/param).
-    # The saved file uses FP8 (1 byte/param), so divide by 4.
-    # Filter out KC decoder layers that are stripped from slim models.
+    # The report gives FP32 sizes (4 bytes/param). Saved file uses FP8 (1 byte)
+    # for most layers, but FP16 (2 bytes) for classification heads.
+    _fp16_prefixes = (
+        "formality_pragmatic_head.",
+        "gender_pragmatic_head.",
+        "grammaticality_classifier.",
+        "kc_head.",
+    )
     saved_layers = [
         layer for layer in report.layers if _is_layer_saved_in_slim(layer.name)
     ]
-    expected_size = sum(layer.size_bytes for layer in saved_layers) // 4
+    expected_size = sum(
+        layer.size_bytes // 2
+        if any(layer.name.startswith(p) for p in _fp16_prefixes)
+        else layer.size_bytes // 4
+        for layer in saved_layers
+    )
 
     if not math.isclose(
         actual_file_size, expected_size, abs_tol=SIZE_VERIFICATION_TOLERANCE
     ):
-        # Generate detailed breakdown for error message
-        breakdown_lines = ["", "Size Breakdown (FP8 bytes):"]
+        breakdown_lines = ["", "Size Breakdown (quantized bytes):"]
         breakdown_lines.append(f"{'Component':<30} {'Size':<15}")
         breakdown_lines.append("-" * 50)
 
-        # Group by top-level component (using saved_layers, not all layers)
         component_sizes: dict[str, int] = {}
         for layer in saved_layers:
             top_component = layer.name.split(".")[0]
-            fp8_size = layer.size_bytes // 4  # Convert to FP8
+            is_fp16 = any(layer.name.startswith(p) for p in _fp16_prefixes)
+            q_size = layer.size_bytes // 2 if is_fp16 else layer.size_bytes // 4
             component_sizes[top_component] = (
-                component_sizes.get(top_component, 0) + fp8_size
+                component_sizes.get(top_component, 0) + q_size
             )
 
         for component, size in sorted(component_sizes.items()):

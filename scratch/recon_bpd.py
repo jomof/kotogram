@@ -21,7 +21,6 @@ Usage:
 
 import contextlib
 import math
-import os
 import time
 import warnings
 from dataclasses import dataclass
@@ -164,8 +163,8 @@ class TrainResult:
     """Metrics returned from a training run."""
 
     final_bpd: float
-    final_top1_pct: float
-    final_cossim: float
+    _final_top1_pct: float
+    _final_cossim: float
     final_loss: float
 
 
@@ -280,9 +279,7 @@ def _rank_margin_loss(
             v_chunks.append(viol_ex.unsqueeze(0))
             w_chunks.append(w_ex.unsqueeze(0))
             n_lr = n_lr + 1.0
-            viol_lr_count = viol_lr_count + (viol_ex.detach() > 1e-6).to(
-                torch.float32
-            )
+            viol_lr_count = viol_lr_count + (viol_ex.detach() > 1e-6).to(torch.float32)
 
     if not v_chunks:
         loss = torch.zeros((), device=device, dtype=sorted_load.dtype)
@@ -353,9 +350,9 @@ def train(
     print(f"Fused CE: {USE_FUSED_CE}")
 
     if IS_CUDA:
-        torch.backends.cuda.matmul.allow_tf32 = True
-        torch.backends.cudnn.allow_tf32 = True
-        torch.backends.cudnn.benchmark = True
+        setattr(torch.backends.cuda.matmul, "allow_tf32", True)
+        setattr(torch.backends.cudnn, "allow_tf32", True)
+        setattr(torch.backends.cudnn, "benchmark", True)
 
     # ── Data loading (from dataset bundle) ────────────────────────────
     global GLOBAL_SETUP_CACHE
@@ -408,9 +405,7 @@ def train(
         dataset.content_drop_ratio = 0.5
         gram_subset = dataset.filter_by_grammaticality(label=1)
         GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = gram_subset
-        print(
-            f"Gram sentences: {len(gram_subset)}"
-        )
+        print(f"Gram sentences: {len(gram_subset)}")
     gram_ds = GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio]
 
     # Release heavy non-tensor data now that the cache is populated.
@@ -1339,11 +1334,11 @@ def train(
                 if n_adj_epoch > 0
                 else 0.0
             )
-            latest_metrics["rank/valid_adj_pairs_per_batch"] = (
-                n_adj_epoch / max(1, n_batches)
+            latest_metrics["rank/valid_adj_pairs_per_batch"] = n_adj_epoch / max(
+                1, n_batches
             )
-            latest_metrics["rank/long_range_pairs_per_batch"] = (
-                n_lr_epoch / max(1, n_batches)
+            latest_metrics["rank/long_range_pairs_per_batch"] = n_lr_epoch / max(
+                1, n_batches
             )
             latest_metrics["rank/violation_rate_long"] = (
                 (total_rank_viol_lr.item() / d_lr) if n_lr_epoch > 0 else 0.0
@@ -1385,8 +1380,8 @@ def train(
     return (
         TrainResult(
             final_bpd=latest_metrics["bpd"],
-            final_top1_pct=latest_metrics["To-1"],
-            final_cossim=latest_metrics["cos"],
+            _final_top1_pct=latest_metrics["To-1"],
+            _final_cossim=latest_metrics["cos"],
             final_loss=latest_metrics["loss"],
         ),
         final_checkpoint,

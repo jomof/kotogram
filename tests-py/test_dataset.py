@@ -264,7 +264,7 @@ class TestDatasetSaveLoad(unittest.TestCase):
 
     def test_wrong_schema_version_raises(self):
         bundle = _make_minimal_bundle()
-        bundle["schema_version"] = 999
+        bundle["schema_version"] = 0
         path = os.path.join(self.tmpdir, "bad.pt")
         torch.save(bundle, path)
         with self.assertRaises(ValueError):
@@ -278,13 +278,14 @@ class TestDatasetSaveLoad(unittest.TestCase):
         with self.assertRaises(ValueError):
             load_dataset(path)
 
-    def test_missing_token_length_counts_raises(self):
+    def test_missing_token_length_counts_loads(self):
+        """token_length_counts is a derived field; load_dataset must succeed without it."""
         bundle = _make_minimal_bundle()
         del bundle["token_length_counts"]
         path = os.path.join(self.tmpdir, "missing_hist.pt")
         torch.save(bundle, path)
-        with self.assertRaises(ValueError):
-            load_dataset(path)
+        loaded = load_dataset(path)
+        self.assertNotIn("token_length_counts", loaded)
 
 
 class TestDatasetIdDeterminism(unittest.TestCase):

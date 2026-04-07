@@ -67,6 +67,10 @@ from kotogram.constants import (
 )
 from kotogram.japanese_parser import KotogramFormat
 from kotogram.kotogram import extract_token_features, split_kotogram
+from kotogram.masking import (  # noqa: E302
+    has_majority_content,
+    is_content_token,
+)
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer, get_vocab_strings
 from scripts.progress_utils import create_progress
@@ -96,46 +100,13 @@ from train.profile import PhaseTimer, get_profile_dir
 from train.tsv import parse_tsv
 
 
-def _is_content_char(cp: int) -> bool:
-    """Return True if the codepoint belongs to a content character range.
-
-    Content ranges (from char_histogram.md excluded groups):
-      Hiragana         U+3040..U+309F
-      Katakana         U+30A0..U+30FF
-      CJK Ideographs   U+4E00..U+9FFF
-      CJK Extension A  U+3400..U+4DBF
-      Digits 0-9       U+0030..U+0039
-      Fullwidth Digits  U+FF10..U+FF19
-      Fullwidth Latin   U+FF21..U+FF3A, U+FF41..U+FF5A
-      Ideographic Iteration Mark  U+3005 (々)
-    """
-    return (
-        0x3040 <= cp <= 0x309F  # Hiragana
-        or 0x30A0 <= cp <= 0x30FF  # Katakana
-        or 0x31F0 <= cp <= 0x31FF  # Katakana Phonetic Extensions
-        or 0x4E00 <= cp <= 0x9FFF  # CJK Unified Ideographs
-        or 0x3400 <= cp <= 0x4DBF  # CJK Extension A
-        or 0x20000 <= cp <= 0x2A6DF  # CJK Extension B
-        or 0xF900 <= cp <= 0xFAFF  # CJK Compatibility Ideographs
-        or 0x0030 <= cp <= 0x0039  # Digits 0-9
-        or cp == 0x002E  # Full stop (period)
-        or cp == 0x0020  # Space
-        or 0x0041 <= cp <= 0x005A  # Latin A-Z
-        or 0x0061 <= cp <= 0x007A  # Latin a-z
-        or 0xFF10 <= cp <= 0xFF19  # Fullwidth Digits
-        or 0xFF21 <= cp <= 0xFF3A  # Fullwidth Latin A-Z
-        or 0xFF41 <= cp <= 0xFF5A  # Fullwidth Latin a-z
-        or cp == 0x3005  # 々 (Iteration)
-    )
-
-
 def _compute_and_write_content_mask(
     surface_vocab: Dict[str, int], cache_dir: str
 ) -> None:
     """Compute per-token-ID content mask and write to content_mask.bin.
 
-    A token is 'content' (1) if ALL its characters are in content ranges.
-    Special tokens (id 0-3) and empty strings are non-content (0).
+    Uses ``is_content_token`` from ``kotogram.masking`` (single source of truth).
+    Special tokens (id 0-3), empty strings, and mask sentinels are non-content.
     """
     vocab_size = max(surface_vocab.values()) + 1 if surface_vocab else 0
 
@@ -145,13 +116,10 @@ def _compute_and_write_content_mask(
     mask = [0] * vocab_size  # default: non-content
     for token_id in range(vocab_size):
         token_str = id_to_token.get(token_id, "")
-        # Special tokens and empty strings are non-content
         if token_id < 4 or not token_str or token_str.startswith("<"):
             continue
 
-        # Any token with more than one character is content.
-        # Single-character tokens must match the content character ranges.
-        if len(token_str) > 1 or all(_is_content_char(ord(ch)) for ch in token_str):
+        if is_content_token(token_str):
             mask[token_id] = 1
 
     path = os.path.join(cache_dir, "content_mask.bin")
@@ -438,6 +406,8 @@ def analyze_batch(
     chive_skipped: List[str] = []
     chive_missing_tokens: Counter[str] = Counter()
 
+    content_skipped = 0
+
     for sentence, gram_label in batch:
         kotogram_obj = parser.japanese_to_kotogram(
             sentence, fmt=KotogramFormat.TRAINING_MASK
@@ -456,6 +426,10 @@ def analyze_batch(
             token_vocab_strings.append(get_vocab_strings(token_feat))
             token_base_orths.append(token_feat.base_orth)
             token_lemmas.append(token_feat.lemma)
+
+        if not has_majority_content([vs["surface"] for vs in token_vocab_strings]):
+            content_skipped += 1
+            continue
 
         unknown = [
             vs["surface"]
@@ -562,6 +536,7 @@ def analyze_batch(
         "reg_samples": reg_samples,
         "chive_skipped": chive_skipped,
         "chive_missing_tokens": chive_missing_tokens,
+        "content_skipped": content_skipped,
     }
 
 
@@ -617,6 +592,7 @@ def analyze_batch_from_db(
     reg_samples: Dict[str, List[Any]] = {}
     chive_skipped: List[str] = []
     chive_missing_tokens: Counter[str] = Counter()
+    content_skipped = 0
 
     for row in batch:
         # Unpack row from `corpus` table (including grammar columns).
@@ -639,6 +615,10 @@ def analyze_batch_from_db(
             token_vocab_strings.append(get_vocab_strings(token_feat))
             token_base_orths.append(token_feat.base_orth)
             token_lemmas.append(token_feat.lemma)
+
+        if not has_majority_content([vs["surface"] for vs in token_vocab_strings]):
+            content_skipped += 1
+            continue
 
         unknown = [
             vs["surface"]
@@ -771,6 +751,7 @@ def analyze_batch_from_db(
         "reg_samples": reg_samples,
         "chive_skipped": chive_skipped,
         "chive_missing_tokens": chive_missing_tokens,
+        "content_skipped": content_skipped,
     }
 
 
@@ -989,6 +970,7 @@ def worker_p1_wrapper(  # pylint: disable=too-many-positional-arguments
         "reg_samples": {},
         "chive_skipped": [],
         "chive_missing_tokens": Counter(),
+        "content_skipped": 0,
     }
 
     total_reg_ids_so_far = 0
@@ -1027,6 +1009,7 @@ def worker_p1_wrapper(  # pylint: disable=too-many-positional-arguments
         cast(Counter[str], buffers["chive_missing_tokens"]).update(
             res["chive_missing_tokens"]
         )
+        buffers["content_skipped"] += res["content_skipped"]
 
     _write_shard_data(wid, s_dir, buffers)
 
@@ -1038,6 +1021,7 @@ def worker_p1_wrapper(  # pylint: disable=too-many-positional-arguments
             buffers["reg_samples"],
             buffers["chive_skipped"],
             buffers["chive_missing_tokens"],
+            buffers["content_skipped"],
         )
     )
 
@@ -1081,6 +1065,7 @@ def worker_p1_db_wrapper(
         "reg_samples": {},
         "chive_skipped": [],
         "chive_missing_tokens": Counter(),
+        "content_skipped": 0,
     }
 
     total_reg_ids_so_far = 0
@@ -1137,6 +1122,7 @@ def worker_p1_db_wrapper(
         cast(Counter[str], buffers["chive_missing_tokens"]).update(
             res["chive_missing_tokens"]
         )
+        buffers["content_skipped"] += res["content_skipped"]
 
     _write_shard_data(wid, s_dir, buffers)
 
@@ -1148,6 +1134,7 @@ def worker_p1_db_wrapper(
             buffers["reg_samples"],
             buffers["chive_skipped"],
             buffers["chive_missing_tokens"],
+            buffers["content_skipped"],
         )
     )
 
@@ -1394,6 +1381,7 @@ def main() -> None:
     merged_reg_samples: Dict[str, List[Any]] = {}
     all_chive_skipped: List[str] = []
     merged_chive_missing_tokens: Counter[str] = Counter()
+    total_content_skipped = 0
 
     from scripts.rule_based_analysis import load_register_overrides
 
@@ -1444,7 +1432,7 @@ def main() -> None:
                 res = result_queue.get(timeout=0.1)
 
                 # Aggregate stats from this chunk.
-                vc, s2b, ls, rs, skipped, missing_tokens = res
+                vc, s2b, ls, rs, skipped, missing_tokens, c_skipped = res
                 # Merge counters.
                 for f in FEATURE_FIELDS:
                     merged_counters[f].update(vc[f])
@@ -1458,9 +1446,10 @@ def main() -> None:
                     merged_reg_samples[rid].extend(samps)
                 all_chive_skipped.extend(skipped)
                 merged_chive_missing_tokens.update(missing_tokens)
+                total_content_skipped += c_skipped
 
                 # Advance progress bar by number of items processed in this batch stats.
-                count = sum(ls["grammatic"].values()) + len(skipped)
+                count = sum(ls["grammatic"].values()) + len(skipped) + c_skipped
                 progress.update(task1, advance=count)
 
                 finished_count += 1
@@ -1486,6 +1475,12 @@ def main() -> None:
 
     timer.mark("Phase 1: Analysis Complete")
     print_stats(merged_label_stats)
+
+    if total_content_skipped:
+        console.print(
+            f"  Skipped {total_content_skipped:,} sentences "
+            f"with majority non-content tokens (punctuation/symbol spam)"
+        )
 
     if all_chive_skipped:
         skip_path = os.path.join(
