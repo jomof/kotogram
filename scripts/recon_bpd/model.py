@@ -29,6 +29,7 @@ class BpdModelConfig:
     kc_vocab_size: int = 1024
     recon_pos_embed_dim: int = 64
     recon_hidden_dim: int = 256
+    tie_output_weights: bool = False
     layer_drop_prob: float = 0.5
 
 
@@ -150,13 +151,19 @@ class BpdModel(nn.Module):  # pylint: disable=abstract-method
 
         self.pooler = AttentionPooler(cfg.d_model, cfg.num_heads, cfg.dropout)
         self.kc_head = KCHead(cfg.d_model, cfg.kc_vocab_size, cfg.dropout)
+
+        recon_hdim = (
+            cfg.surface_embed_dim if cfg.tie_output_weights else cfg.recon_hidden_dim
+        )
         self.recon = ReconDecoder(
             cfg.kc_vocab_size,
             cfg.surface_vocab_size,
             pos_embed_dim=cfg.recon_pos_embed_dim,
-            hidden_dim=cfg.recon_hidden_dim,
+            hidden_dim=recon_hdim,
             max_seq_len=cfg.max_seq_len,
         )
+        if cfg.tie_output_weights:
+            self.recon.output_head.weight = self.surface_embed.weight
 
         # Diagnostic head: predict sentence length from KC probs alone.
         self.length_head = nn.Sequential(
@@ -174,13 +181,25 @@ class BpdModel(nn.Module):  # pylint: disable=abstract-method
         x = self.embed_norm(x)
         x = self.embed_drop(x)
         x = self.pos_enc(x)
-        # Stochastic Depth (LayerDrop) -- training only
+        # Stochastic Depth (LayerDrop)
         pad_mask = attention_mask == 0
-        if self.training and self.cfg.layer_drop_prob > 0:
+        p = self.cfg.layer_drop_prob
+        if self.training and p > 0:
             for i, layer in enumerate(self.encoder.layers):
-                if i > 0 and torch.rand(1).item() < self.cfg.layer_drop_prob:
+                if i > 0 and torch.rand(1).item() < p:
                     continue
                 x = layer(x, src_key_padding_mask=pad_mask)
+        elif p > 0:
+            # Test-time scaling: each droppable layer's residual is scaled
+            # by (1-p) to match the expected magnitude during training.
+            scale = 1.0 - p
+            for i, layer in enumerate(self.encoder.layers):
+                if i == 0:
+                    x = layer(x, src_key_padding_mask=pad_mask)
+                else:
+                    x_in = x
+                    x = layer(x, src_key_padding_mask=pad_mask)
+                    x = x_in + scale * (x - x_in)
         else:
             x = self.encoder(x, src_key_padding_mask=pad_mask)
         return cast(torch.Tensor, self.pooler(x, attention_mask))

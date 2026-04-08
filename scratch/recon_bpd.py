@@ -145,6 +145,10 @@ class TrainConfig:
     kc_vocab_size: int = 1024  # Original kc_vocab_size: 1024
     recon_pos_embed_dim: int = 64  # Original recon_pos_embed_dim: 64
     recon_hidden_dim: int = 256  # Original recon_hidden_dim: 256
+    # Tie output_head weights to surface_embed: recon_hidden_dim is forced
+    # to surface_embed_dim (300) and the output head reuses the embedding
+    # matrix, halving vocab-sized parameters.
+    tie_output_weights: bool = False
     # Stochastic depth: probability of dropping each encoder layer
     # Fan et al., "Reducing Transformer Depth on Demand with
     # Structured Dropout," ICLR 2020
@@ -197,6 +201,7 @@ class _SetupCache:
         self.rank_inv_sqrt_freq: Optional[torch.Tensor] = None
         self._rank_hist_dataset_id: Optional[str] = None
         self._token_remap_applied: bool = False
+        self.token_remap: Optional[torch.Tensor] = None
 
 
 GLOBAL_SETUP_CACHE = _SetupCache()
@@ -361,10 +366,11 @@ def train(
     if config.token_percentile < 100.0 and not GLOBAL_SETUP_CACHE._token_remap_applied:
         from scripts.recon_bpd.token_remap import apply_remap_to_bundle
 
-        dataset_bundle, chive_weights_cpu, _remap = apply_remap_to_bundle(
+        dataset_bundle, chive_weights_cpu, remap = apply_remap_to_bundle(
             dataset_bundle, chive_weights_cpu, config.token_percentile
         )
         GLOBAL_SETUP_CACHE._token_remap_applied = True
+        GLOBAL_SETUP_CACHE.token_remap = remap.old_to_new
 
     if GLOBAL_SETUP_CACHE.tokenizer is None:
         tokenizer = Tokenizer()
@@ -457,6 +463,7 @@ def train(
         kc_vocab_size=config.kc_vocab_size,
         recon_pos_embed_dim=config.recon_pos_embed_dim,
         recon_hidden_dim=config.recon_hidden_dim,
+        tie_output_weights=config.tie_output_weights,
         layer_drop_prob=config.layer_drop_prob,
     )
     # Load chiVe pretrained surface embeddings and freeze
@@ -489,7 +496,10 @@ def train(
             n = min(model.surface_embed.weight.size(0), chive_weights.size(0))
             model.surface_embed.weight[:n] = chive_weights[:n]
             model.surface_embed.weight[0].zero_()  # keep padding at zero
-        model.surface_embed.weight.requires_grad = False
+        # With weight tying the embedding must stay trainable (output head
+        # gradients flow through it).  Otherwise freeze as before.
+        if not config.tie_output_weights:
+            model.surface_embed.weight.requires_grad = False
         import copy
 
         GLOBAL_SETUP_CACHE.cached_model_cfg = cfg
@@ -503,8 +513,7 @@ def train(
     chive_normed = GLOBAL_SETUP_CACHE.chive_normed
 
     model.to(device)
-    if IS_CUDA:
-        model = torch.compile(model)
+    model = torch.compile(model)
     model.train()
 
     optimizer = AdamW(
@@ -1362,6 +1371,7 @@ def train(
                 epoch=epoch,
                 latest_metrics=latest_metrics,
                 epoch_history=epoch_history,
+                token_remap=GLOBAL_SETUP_CACHE.token_remap,
             ),
             checkpoint_path,
         )
@@ -1376,6 +1386,7 @@ def train(
         epoch=epoch,
         latest_metrics=latest_metrics,
         epoch_history=epoch_history,
+        token_remap=GLOBAL_SETUP_CACHE.token_remap,
     )
     return (
         TrainResult(

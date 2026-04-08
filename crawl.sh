@@ -6,6 +6,6 @@ while true; do
     scripts/curate upsert --allow-insert --sentences .cc/selected-sentences.txt
     sqlite3 data/corpus.db "VACUUM"
     wc -c data/corpus.db
-    echo "Sleeping 5 minutes..."
-    sleep 300
+    #echo "Sleeping 5 minutes..."
+    #sleep 300
 done

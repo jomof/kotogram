@@ -619,15 +619,24 @@ def embed_and_score(  # pylint: disable=too-many-locals
       uncertainty: (N,) float32  -- per-sentence BPD (bits per token)
       gram_probs:  (N,) float32  -- always 1.0 (no grammaticality head yet)
     """
+    import random
+
     import torch
-    from rich.progress import Progress
+    from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 
     from scripts.recon_bpd.inference import embed_and_bpd
 
     _t0_es = time.monotonic()
     total = len(encoded_all)
     lengths = np.array([len(e["surface"]) for e in encoded_all], dtype=np.int64)
-    order = np.argsort(lengths)
+
+    # Build batch index ranges, then shuffle so long sentences are spread
+    # across the run instead of clustering at the end.
+    batch_ranges: list[np.ndarray] = []
+    sorted_order = np.argsort(lengths)
+    for start in range(0, len(sorted_order), BPD_BATCH_SIZE):
+        batch_ranges.append(sorted_order[start : start + BPD_BATCH_SIZE])
+    random.shuffle(batch_ranges)
 
     d_model = model.cfg.d_model
     embeddings = np.zeros((total, d_model), dtype=np.float32)
@@ -637,13 +646,18 @@ def embed_and_score(  # pylint: disable=too-many-locals
     is_mps = device.type == "mps"
 
     console.print(f"  Inference on [bold]{device}[/bold]...")
-    with Progress(console=console) as progress:
+    with Progress(
+        SpinnerColumn(),
+        *Progress.get_default_columns(),
+        TimeElapsedColumn(),
+        console=console,
+    ) as progress:
         task = progress.add_task("  Embedding + BPD scoring...", total=total)
-        for start in range(0, len(order), BPD_BATCH_SIZE):
-            batch_idx = order[start : start + BPD_BATCH_SIZE]
+        scored = 0
+        for batch_idx in batch_ranges:
             batch_encoded = [encoded_all[i] for i in batch_idx]
             n_batch = len(batch_encoded)
-            max_len = int(lengths[batch_idx[-1]])
+            max_len = int(lengths[batch_idx].max())
 
             padded = np.zeros((n_batch, max_len), dtype=np.int64)
             mask_np = np.zeros((n_batch, max_len), dtype=np.float32)
@@ -668,14 +682,28 @@ def embed_and_score(  # pylint: disable=too-many-locals
             if is_mps:
                 torch.mps.empty_cache()
 
-            progress.advance(task, n_batch)
+            scored += n_batch
+            elapsed = time.monotonic() - _t0_es
+            els = scored / elapsed if elapsed > 0 else 0
+            progress.update(
+                task, advance=n_batch, description=f"  BPD scoring ({els:.0f} el/s)"
+            )
 
+    elapsed_s = time.monotonic() - _t0_es
+    mean_bpd = float(uncertainty.mean())
+    median_bpd = float(np.median(uncertainty))
+    console.print(
+        f"  BPD: mean={mean_bpd:.4f}  median={median_bpd:.4f}"
+        f"  ({total:,} sentences in {elapsed_s:.1f}s, {total / elapsed_s:.0f} el/s)"
+    )
     perf_log(
         "embed_and_score",
         indent=1,
         n=total,
-        batches=(total + BPD_BATCH_SIZE - 1) // BPD_BATCH_SIZE,
-        time_s=time.monotonic() - _t0_es,
+        batches=len(batch_ranges),
+        mean_bpd=mean_bpd,
+        median_bpd=median_bpd,
+        time_s=elapsed_s,
     )
     return embeddings, uncertainty, gram_probs_out
 

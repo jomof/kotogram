@@ -89,23 +89,24 @@ def _build_config(
     return BpdModelConfig(
         **infer_config_from_state(cleaned_state),
         dropout=0.0,
-        layer_drop_prob=0.0,
     )
 
 
-def load_model_from_checkpoint(  # pylint: disable=too-many-locals
+def load_model_from_checkpoint(  # pylint: disable=too-many-locals,redefined-builtin
     lock: Optional[Dict[str, Any]] = None,
     *,
     distilled: bool = True,
-    drop_layers: int = 0,
+    layer_mask: str = "",
     output_rank: int = 0,
     token_percentile: float = 100.0,
+    compile: bool = True,
 ) -> Tuple[BpdModel, str, str]:
     """Build and load a BpdModel from checkpoint.lock + dataset.lock.
 
     When *distilled* is True (default), loads or creates the FP16 distilled
-    variant for faster MPS inference.  *drop_layers* permanently removes
-    encoder layers; *output_rank* applies low-rank SVD to the output head.
+    variant for faster MPS inference.  *layer_mask* is a binary string
+    (``'1'`` = keep, ``'0'`` = drop) controlling which encoder layers to
+    retain; *output_rank* applies low-rank SVD to the output head.
     The returned model has ``_distilled`` and (optionally) ``_output_u`` /
     ``_output_v`` attributes for the inference path.
 
@@ -113,6 +114,10 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
     surface vocabulary.  The model receives a ``_token_remap`` buffer mapping
     full-vocab IDs to reduced IDs so ``embed_and_bpd`` can transparently
     remap tokenizer output.
+
+    When *compile* is True (default), the model is wrapped with
+    ``torch.compile`` for fused-kernel acceleration.  Set to False
+    for short-lived models where compilation overhead dominates.
 
     Returns ``(model, tokenizer_path, checkpoint_id)``.
     """
@@ -133,7 +138,7 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
         local_pt = ensure_distilled(
             checkpoint_id,
             model_type,
-            drop_layers=drop_layers,
+            layer_mask=layer_mask,
             output_rank=output_rank,
             token_percentile=token_percentile,
         )
@@ -144,11 +149,27 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
     state = ckpt["model_state"]
     cleaned = {k.replace("_orig_mod.", ""): v for k, v in state.items()}
 
+    # FP32 layer dropping: apply mask to state dict at load time
+    has_drops = bool(layer_mask) and "0" in layer_mask
+    if not distilled and has_drops:
+        from scripts.recon_bpd.distill import _drop_encoder_layers
+
+        cleaned = _drop_encoder_layers(cleaned, layer_mask)
+
     # Extract low-rank factors before building the model
     output_u = cleaned.pop("recon.output_u", None)
     output_v = cleaned.pop("recon.output_v", None)
 
     cfg = _build_config(ckpt.get("config_dict"), cleaned)
+    # Override num_layers when FP32 layer dropping changed the state dict
+    if not distilled and has_drops:
+        cfg.num_layers = layer_mask.count("1")
+    # Models with dropped layers must not apply stochastic depth
+    # scaling — those layers are permanently gone, not randomly dropped.
+    if has_drops or (
+        ckpt.get("distilled") and ckpt.get("layer_mask", "").count("0") > 0
+    ):
+        cfg.layer_drop_prob = 0.0
     model = BpdModel(cfg)
     model.load_state_dict(cleaned, strict=False)
     model.eval()
@@ -160,14 +181,17 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
 
     # Attach token remap for reduced-vocab models so embed_and_bpd can
     # transparently convert full-vocab tokenizer IDs to reduced IDs.
-    token_remap_meta = ckpt.get("token_remap")
-    if token_remap_meta is not None:
+    # Two formats: raw old_to_new tensor (from training) or dict with
+    # kept_indices/unk_id (from distillation).
+    token_remap_raw = ckpt.get("token_remap")
+    if isinstance(token_remap_raw, torch.Tensor):
+        model.register_buffer("_token_remap", token_remap_raw)
+    elif isinstance(token_remap_raw, dict):
         from scripts.recon_bpd.token_remap import NUM_SPECIAL
 
-        kept = token_remap_meta["kept_indices"]
-        unk_id = int(token_remap_meta["unk_id"])
+        kept = token_remap_raw["kept_indices"]
+        unk_id = int(token_remap_raw["unk_id"])
         v_old = int(kept.max().item()) + 1 if len(kept) > 0 else NUM_SPECIAL
-        # Pad to cover any ID the tokenizer might produce
         v_old = max(v_old, NUM_SPECIAL) + 1
         old_to_new = torch.full((v_old,), unk_id, dtype=torch.long)
         for new_id, old_id in enumerate(kept.tolist()):
@@ -175,12 +199,75 @@ def load_model_from_checkpoint(  # pylint: disable=too-many-locals
                 old_to_new[old_id] = new_id
         model.register_buffer("_token_remap", old_to_new)
 
+    # KC inference parameters: match training's clamp + temperature scaling
+    # so the reconstruction decoder sees the same KC probability distribution.
+    metrics = ckpt.get("latest_metrics") or {}
+    model._kc_temperature = float(metrics.get("temperature", 1.2))  # type: ignore[assignment]  # pylint: disable=protected-access
+    model._kc_clamp = 12.0  # type: ignore[assignment]  # pylint: disable=protected-access
+
     from scripts.dataset import resolve_dataset_by_id
 
     bundle = resolve_dataset_by_id(dataset_id)
     tokenizer_path = _cache_tokenizer(checkpoint_id, bundle["vocab"])
 
+    # Legacy fallback: checkpoint predates token_remap persistence.
+    # Reconstruct the mapping via byte-level embedding matching (slow).
+    if getattr(model, "_token_remap", None) is None:
+        _maybe_register_inferred_remap(model, bundle)
+
+    if compile:
+        model = torch.compile(model)  # type: ignore[assignment]
+
     return model, tokenizer_path, checkpoint_id
+
+
+def _maybe_register_inferred_remap(  # pylint: disable=too-many-locals
+    model: BpdModel,
+    bundle: Dict[str, Any],
+) -> None:
+    """Infer and register a ``_token_remap`` buffer when the bundle vocabulary
+    exceeds the model's ``surface_vocab_size``.
+
+    Derives the mapping by matching each chiVe vector in the full vocabulary
+    against the checkpoint's embedding rows (exact byte-level match).  This
+    is robust to changes in ``token_gram_freq`` ordering that would otherwise
+    produce a different old→new mapping than what was used during training.
+    """
+    from scripts.dataset import download_chive, load_chive
+
+    v_new = model.cfg.surface_vocab_size
+    chive_id = bundle.get("chive_id")
+    if chive_id is None:
+        return
+
+    # Check if remapping is needed
+    surface_vocab = bundle.get("vocab", {}).get("surface", {})
+    v_old = len(surface_vocab)
+    if v_old <= v_new:
+        return
+
+    chive_path = download_chive(chive_id)
+    chive = load_chive(chive_path)
+    v_old = chive.shape[0]
+    if v_old <= v_new:
+        return
+
+    ckpt_embed = model.surface_embed.weight.detach()  # [v_new, 300]
+    unk_id = v_new - 1
+
+    embed_index: Dict[bytes, int] = {}
+    for new_id in range(v_new):
+        key = ckpt_embed[new_id].numpy().tobytes()
+        if key not in embed_index:
+            embed_index[key] = new_id
+
+    old_to_new = torch.full((v_old,), unk_id, dtype=torch.long)
+    for old_id in range(v_old):
+        key = chive[old_id].numpy().tobytes()
+        if key in embed_index:
+            old_to_new[old_id] = embed_index[key]
+
+    model.register_buffer("_token_remap", old_to_new)
 
 
 LN2 = 0.6931471805599453  # ln(2), for nat -> bit conversion
@@ -212,7 +299,15 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
 
     pooled = model.encode(surface_ids, attention_mask)
     kc_raw, _ = model.kc_head.forward_with_raw(pooled)
-    kc_probs = torch.sigmoid(kc_raw)
+
+    # Match training's KC logit processing: clamp to [-C, C] then scale by
+    # temperature before sigmoid.  Without this, extreme logits (mean ≈ -36)
+    # produce near-zero KC probabilities that starve the reconstruction decoder.
+    kc_clamp: float = getattr(model, "_kc_clamp", 12.0)
+    kc_temp: float = getattr(model, "_kc_temperature", 1.0)
+    kc_raw = kc_raw.clamp(-kc_clamp, kc_clamp)
+    kc_probs = torch.sigmoid(kc_raw / kc_temp)
+
     h_recon = model.recon.forward_hidden(kc_probs, attention_mask)  # [B, T, H]
 
     bsz, seq_len = surface_ids.shape

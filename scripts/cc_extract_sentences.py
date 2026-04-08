@@ -56,7 +56,6 @@ from scripts.cc_common import (
     perf_start_run,
     set_tokenizer_path,
 )
-from scripts.integrity import DataIntegrityException
 
 _HIRAGANA_RE = re.compile(r"[\u3040-\u309F]")
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[。！？!?])")
@@ -808,9 +807,10 @@ def main() -> None:  # pylint: disable=too-many-locals
     # -- Selection phase --
     console.rule("Scoring & Selection")
 
+    distill_mask = "100000001"
+
     model, tokenizer_path, checkpoint_id = load_model_from_checkpoint(
-        drop_layers=6,
-        output_rank=32,
+        layer_mask=distill_mask,
     )
     set_tokenizer_path(tokenizer_path)
     device = torch.device("cpu")
@@ -820,7 +820,7 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     model_md5 = model_hash()
     if getattr(model, "_distilled", False):
-        variant = "fp16 -6L r32"
+        variant = f"fp16 {distill_mask}"
     else:
         variant = "full fp32"
     console.print(f"  Checkpoint: {checkpoint_id}  ({variant}, cache key: {model_md5})")
@@ -917,9 +917,7 @@ def main() -> None:  # pylint: disable=too-many-locals
         _sel_canon[key] = s
         _dedup_kept.append(s)
     if _canon_dupes:
-        console.print(
-            f"  Removed {_canon_dupes} canonical duplicate(s) from selection"
-        )
+        console.print(f"  Removed {_canon_dupes} canonical duplicate(s) from selection")
     selected_sentences = _dedup_kept
     del _sel_canon, _sel_canonicals, _dedup_kept
 
