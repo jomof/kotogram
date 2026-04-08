@@ -550,8 +550,16 @@ def diversity_scores(  # pylint: disable=too-many-locals
 _CACHE_META_NAME = "inference-cache-meta.json"
 
 
-def model_hash() -> str:
-    """Checkpoint ID from checkpoint.lock -- changes when the model is retrained."""
+def model_hash(
+    *,
+    layer_mask: str = "",
+    output_rank: int = 0,
+) -> str:
+    """Cache key combining checkpoint ID with distillation variant.
+
+    Changes when the model is retrained *or* when the distillation
+    parameters (layer mask, output rank) change.
+    """
     from scripts.checkpoint import read_lock
 
     lock = read_lock()
@@ -560,7 +568,8 @@ def model_hash() -> str:
             "checkpoint.lock not found. Run: scripts/cc checkpoint pull recon_bpd"
         )
     ckpt_id: str = lock["checkpoint_id"]
-    return ckpt_id[:12]
+    variant = f"{ckpt_id}|mask={layer_mask}|rank={output_rank}"
+    return hashlib.md5(variant.encode()).hexdigest()[:12]
 
 
 def is_cache_valid(cache_dir: Path, model_md5: str) -> bool:

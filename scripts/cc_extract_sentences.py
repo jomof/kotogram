@@ -818,7 +818,7 @@ def main() -> None:  # pylint: disable=too-many-locals
         device = torch.device("mps")
     model.to(device)
 
-    model_md5 = model_hash()
+    model_md5 = model_hash(layer_mask=distill_mask)
     if getattr(model, "_distilled", False):
         variant = f"fp16 {distill_mask}"
     else:
