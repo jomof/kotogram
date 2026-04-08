@@ -616,6 +616,7 @@ def train(
         epoch_cossim_sum = 0.0
         total_elements = 0
         n_batches = 0
+        pool_sign_set: set[bytes] = set()
         s1_count = torch.tensor(0, device=device, dtype=torch.long)
         s0_count = torch.tensor(0, device=device, dtype=torch.long)
         fuzzy_count = torch.tensor(0, device=device, dtype=torch.long)
@@ -741,6 +742,8 @@ def train(
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
                 epoch_pooled_std_sum += pooled.detach().std(dim=-1).sum().float()
+                for row in (pooled.detach() > 0).to(torch.uint8).cpu().numpy():
+                    pool_sign_set.add(row.tobytes())
 
                 half = B // 2
 
@@ -1303,6 +1306,8 @@ def train(
                 "mean_abs_logit": mean_abs_logit,
                 "logit_std": logit_std,
                 "pooled_std": avg_pooled_std,
+                "pool/uniq_relative": len(pool_sign_set) / max(1, total_elements),
+                "pool/uniq_absolute": len(pool_sign_set),
                 "loss": avg_loss,
                 "sparsity": avg_kl,
                 "mdl": total_mdl_sum.item() / max(1, n_batches),
