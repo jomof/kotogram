@@ -32,6 +32,7 @@ _ARCHITECTURE_KEYS = (
     "num_layers",
     "recon_hidden_dim",
     "recon_pos_embed_dim",
+    "tie_output_weights",
 )
 
 
@@ -69,6 +70,8 @@ class TrainCheckpoint:
     dataset_id: Optional[str] = None
     chive_id: Optional[str] = None
     parent_checkpoint_id: Optional[str] = None
+    # old_to_new mapping from token_percentile reduction (None = full vocab).
+    token_remap: Optional[torch.Tensor] = None
 
 
 @dataclass
@@ -116,6 +119,8 @@ def save_checkpoint(checkpoint: TrainCheckpoint, path: str) -> None:
         data["chive_id"] = checkpoint.chive_id
     if checkpoint.parent_checkpoint_id is not None:
         data["parent_checkpoint_id"] = checkpoint.parent_checkpoint_id
+    if checkpoint.token_remap is not None:
+        data["token_remap"] = checkpoint.token_remap
     torch.save(data, tmp_path)
     os.replace(tmp_path, path)
 

@@ -583,6 +583,7 @@ def objective(
         "lr": "lr",
         "num_layers": "L",
         "temperature": "temp",
+        "tie_output_weights": "tie",
         "weight_decay": "wd",
     }
 
@@ -969,6 +970,11 @@ def main() -> None:
         help="Surface token percentile to keep (default: 99.0; 100.0 disables reduction)",
     )
     parser.add_argument(
+        "--weight-sharing",
+        action="store_true",
+        help="Tie output head to surface embeddings (forces recon_hidden_dim=300)",
+    )
+    parser.add_argument(
         "--pruner",
         type=str,
         default="hyperband",
@@ -1061,6 +1067,8 @@ def main() -> None:
         adhoc_overrides["kl_sparse_weight"] = 0.0
     if args.token_percentile != 99.0:
         adhoc_overrides["token_percentile"] = args.token_percentile
+    if args.weight_sharing:
+        adhoc_overrides["tie_output_weights"] = True
 
     if adhoc_overrides:
         print("Overrides:")
