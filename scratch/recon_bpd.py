@@ -103,7 +103,7 @@ class TrainConfig:
     # sparsity target. The model finds its own Pareto frontier
     # between reconstruction quality and description cost.
     # Set to 0 to disable.
-    mdl_weight: float = 0.0
+    mdl_weight: float = 0.1
 
     # ── Pairwise ranking margin (monotonic length ordering) ─────
     # Burges et al., "Learning to Rank using Gradient Descent,"
@@ -114,7 +114,7 @@ class TrainConfig:
     # log(len_b / len_a).  Larger length gaps demand proportionally
     # more KC separation (e.g. 2x length → 0.69·margin, 6x → 1.79·margin).
     # Set to 0 to disable.
-    rank_margin_weight: float = 0.0
+    rank_margin_weight: float = 3.0
     rank_margin: float = 1.0  # scaling coefficient on log-ratio margin
     # Pair aggregation: none | log_ratio | sqrt_log_ratio | inv_sqrt_freq
     rank_pair_weighting: str = "inv_sqrt_freq"
@@ -122,8 +122,6 @@ class TrainConfig:
     use_stratified_length_batches: bool = True
 
     # Regularization
-    kl_sparse_weight: float = 0.0001  # Original kl_sparse_weight: 0.0001
-    kl_target_rho: float = 0.06  # Original kl_target_rho: 0.03
     cov_penalty_weight: float = 5.0  # Original cov_penalty_weight: 5.0
     consistency_weight: float = 0.0001  # dual-mask KC consistency (0 = disabled)
     # VICReg regularization on encoder pooled output
@@ -594,7 +592,6 @@ def train(
         total_loss_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_total_bits = torch.tensor(0.0, device=device, dtype=torch.float32)
         epoch_num_units = torch.tensor(0, device=device, dtype=torch.long)
-        total_kl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_mdl_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_rank_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
         total_rank_weighted_sum = torch.tensor(0.0, device=device, dtype=torch.float32)
@@ -691,9 +688,9 @@ def train(
         # assignments begin to sharpen. This ensures the length-
         # proportional allocation is negotiated under soft probs.
         if eff_epoch < config.temperature_anneal_epochs:
-            kl_warmup = (eff_epoch / config.temperature_anneal_epochs) ** 2
+            mdl_warmup = (eff_epoch / config.temperature_anneal_epochs) ** 2
         else:
-            kl_warmup = 1.0
+            mdl_warmup = 1.0
 
         ctx = EpochContext(
             model=model,
@@ -1082,28 +1079,6 @@ def train(
                     )
                     total_length_pred_count += 1
 
-            if config.kl_sparse_weight > 0:
-                # Length-proportional sparsity adjustment:
-                # Short sentences are heavily penalized for turning on logits to prevent them
-                # from monopolizing the capacity budget with "easy memorization" features.
-                # A 15-token sentence acts as the 1.0 baseline.
-                seq_lengths = (
-                    attention_mask.sum(dim=1, keepdim=True).float().clamp_min(1.0)
-                )
-                length_penalty = 15.0 / seq_lengths
-
-                norm_probs = kc_probs * length_penalty
-                rho_hat = norm_probs.mean(dim=0).clamp(1e-7, 1 - 1e-7)
-
-                rho = config.kl_target_rho
-                kl_term = (
-                    rho_hat * torch.log(rho_hat / rho)
-                    + (1 - rho_hat) * torch.log((1 - rho_hat) / (1 - rho))
-                ).sum()
-                kl_scaled = config.kl_sparse_weight * kl_warmup * kl_term
-                loss = loss + kl_scaled
-                total_kl_sum += kl_scaled.detach().float()
-
             # ── MDL bits-back cost ────────────────────────────────
             if config.mdl_weight > 0:
                 mdl_load = kc_probs.sum(dim=1)  # [B], soft count of active KCs
@@ -1112,7 +1087,7 @@ def train(
                     mdl_load = mdl_load[:half]
                     mdl_lengths = mdl_lengths[:half]
                 mdl_cost = (mdl_load / mdl_lengths).mean()
-                loss = loss + config.mdl_weight * kl_warmup * mdl_cost
+                loss = loss + config.mdl_weight * mdl_warmup * mdl_cost
                 total_mdl_sum += mdl_cost.detach().float()
 
             # ── Pairwise ranking margin ───────────────────────────
@@ -1208,7 +1183,6 @@ def train(
         _total_loss_val = total_loss_sum.item()
         _total_bits_val = epoch_total_bits.item()
         _num_units_val = int(epoch_num_units.item())
-        _kl_val = total_kl_sum.item()
         _lp_loss_val = total_length_pred_loss_sum.item()
         _lp_mae_val = total_length_pred_mae_sum.item()
         _sem_loss_val = total_semantic_loss_sum.item()
@@ -1217,7 +1191,6 @@ def train(
 
         avg_bpd = _total_bits_val / max(1, _num_units_val)
         avg_loss = _total_loss_val / max(1, n_batches)
-        avg_kl = _kl_val / max(1, n_batches)
         epoch_num_units = _num_units_val  # reassign for downstream compat
 
         # Single GPU→CPU sync for all per-batch GPU accumulators
@@ -1309,7 +1282,6 @@ def train(
                 "pool/uniq_relative": len(pool_sign_set) / max(1, total_elements),
                 "pool/uniq_absolute": len(pool_sign_set),
                 "loss": avg_loss,
-                "sparsity": avg_kl,
                 "mdl": total_mdl_sum.item() / max(1, n_batches),
                 "rank": avg_rank_loss,
                 "orthogonality": avg_cov,
@@ -1318,7 +1290,7 @@ def train(
                 "vicreg": _vicreg_val / max(1, n_batches),
                 "lr": current_lr,
                 "temperature": current_temperature,
-                "kl_warmup": kl_warmup,
+                "mdl_warmup": mdl_warmup,
                 "semantic_threshold": current_threshold,
                 "length_pred_mse": _lp_loss_val / max(1, total_length_pred_count),
                 "length_pred_mae": _lp_mae_val / max(1, total_length_pred_count),

@@ -448,13 +448,6 @@ def suggest_config(
         grad_cap=trial.suggest_float("grad_cap", 1.0, 10.0),
         input_mask_ratio=trial.suggest_float("input_mask_ratio", 0.1, 0.3),
         # Regularization
-        kl_sparse_weight=trial.suggest_float(
-            "kl_sparse_weight",
-            0.0001,
-            1e-1,
-            log=True,
-        ),
-        kl_target_rho=trial.suggest_float("kl_target_rho", 0.01, 0.2),
         cov_penalty_weight=trial.suggest_float(
             "cov_penalty_weight",
             0.1,
@@ -488,7 +481,6 @@ def suggest_config(
 
 # Pareto frontier parameter space configuration
 _SWEEP_SEARCH_SPACE: dict = {
-    "kl_target_rho": [0.01, 0.03, 0.06, 0.065],
     "kc_vocab_size": [512, 768, 1024, 1536, 2048],
 }
 
@@ -577,8 +569,6 @@ def objective(
     PARAM_ABBREV = {
         "consistency_weight": "cw",
         "input_mask_ratio": "mask",
-        "kl_sparse_weight": "kl",
-        "kl_target_rho": "rho",
         "cov_penalty_weight": "cov",
         "lr": "lr",
         "num_layers": "L",
@@ -793,7 +783,6 @@ def objective(
                 f"s1={metrics.get('s1', 0):.0%} s0={metrics.get('s0', 0):.0%} "
                 f"fuzzy={metrics.get('fuzzy', 0):.0%}  "
                 f"loss={metrics.get('loss', 0):.4f}  "
-                f"sparsity={metrics['sparsity']:.4f}  "
                 f"mdl={metrics.get('mdl', 0):.4f}  "
                 f"rank={metrics.get('rank', 0):.4f}  "
                 f"orthogonality={metrics.get('orthogonality', 0):.4f}  "
@@ -949,19 +938,14 @@ def main() -> None:
         type=float,
         default=None,
         metavar="WEIGHT",
-        help="Enable MDL bits-back sparsity with given weight (e.g. 0.1)",
+        help="Override MDL bits-back sparsity weight (default: 0.1)",
     )
     parser.add_argument(
         "--rank",
         type=float,
         default=None,
         metavar="WEIGHT",
-        help="Enable pairwise ranking margin with given weight (e.g. 0.5)",
-    )
-    parser.add_argument(
-        "--no-kl",
-        action="store_true",
-        help="Disable KL rho-based sparsity (set kl_sparse_weight=0)",
+        help="Override pairwise ranking margin weight (default: 3.0)",
     )
     parser.add_argument(
         "--token-percentile",
@@ -1063,8 +1047,6 @@ def main() -> None:
         adhoc_overrides["mdl_weight"] = args.mdl
     if args.rank is not None:
         adhoc_overrides["rank_margin_weight"] = args.rank
-    if args.no_kl:
-        adhoc_overrides["kl_sparse_weight"] = 0.0
     if args.token_percentile != 99.0:
         adhoc_overrides["token_percentile"] = args.token_percentile
     if args.weight_sharing:
@@ -1112,8 +1094,6 @@ def main() -> None:
                 "temperature": defaults.temperature,
                 "grad_cap": defaults.grad_cap,
                 "input_mask_ratio": defaults.input_mask_ratio,
-                "kl_sparse_weight": defaults.kl_sparse_weight,
-                "kl_target_rho": defaults.kl_target_rho,
                 "cov_penalty_weight": defaults.cov_penalty_weight,
                 "consistency_weight": defaults.consistency_weight,
                 "d_model": defaults.d_model,
@@ -1129,8 +1109,6 @@ def main() -> None:
     for params in initial_params:
         if adhoc_overrides:
             for k, v in adhoc_overrides.items():
-                if k == "kl_sparse_weight" and v == 0.0:
-                    continue
                 params[k] = v
 
     checkpoint_dir = args.checkpoint_dir

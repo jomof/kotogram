@@ -27,9 +27,7 @@ IDENTICAL_GROUPS_FILE = Path("scratch/identical_groups.txt")
 KC_CACHE = Path(".cc/corpus-kc-probs.npy")
 
 
-def compute_kc_probs(
-    sents: list[str], console: Console
-) -> np.ndarray:
+def compute_kc_probs(sents: list[str], console: Console) -> np.ndarray:
     """Compute KC probability vectors for all sentences via batched inference."""
     from scripts.recon_bpd.inference import load_model_from_checkpoint
 
@@ -93,7 +91,9 @@ def compute_kc_probs(
             scored += len(batch_idx)
             elapsed = time.monotonic() - t0
             els = scored / elapsed if elapsed > 0 else 0
-            progress.update(task, advance=len(batch_idx), description=f"KC probs ({els:.0f} el/s)")
+            progress.update(
+                task, advance=len(batch_idx), description=f"KC probs ({els:.0f} el/s)"
+            )
 
     elapsed = time.monotonic() - t0
     console.print(f"  Done in {elapsed:.1f}s ({scored / elapsed:.0f} el/s)")
@@ -146,9 +146,7 @@ def write_identical_groups(
 def print_identical_summary(
     groups: list[list[int]], sents: list[str], hot_counts: np.ndarray, console: Console
 ) -> None:
-    tbl = Table(
-        title=f"Identical KC Groups ({len(groups):,} groups)", show_header=True
-    )
+    tbl = Table(title=f"Identical KC Groups ({len(groups):,} groups)", show_header=True)
     tbl.add_column("Size", justify="right", width=5)
     tbl.add_column("KCs", justify="right", width=4)
     tbl.add_column("Sample sentences")
@@ -171,7 +169,9 @@ def _edit_distance(a: str, b: str) -> int:
     for i, ca in enumerate(a, 1):
         curr = [i] + [0] * len(b)
         for j, cb in enumerate(b, 1):
-            curr[j] = prev[j - 1] if ca == cb else 1 + min(prev[j], curr[j - 1], prev[j - 1])
+            curr[j] = (
+                prev[j - 1] if ca == cb else 1 + min(prev[j], curr[j - 1], prev[j - 1])
+            )
         prev = curr
     return prev[-1]
 
@@ -310,7 +310,11 @@ def main():
             elapsed = time.monotonic() - t0
             rate = (qi + 1) / elapsed if elapsed > 0 else 1
             eta = (total_q - qi - 1) / rate
-            live.update(build_table(list(heap), sents, hot_counts, qi + 1, total_q, elapsed, eta))
+            live.update(
+                build_table(
+                    list(heap), sents, hot_counts, qi + 1, total_q, elapsed, eta
+                )
+            )
 
     elapsed = time.monotonic() - t0
     results = sorted(heap, key=lambda x: -x[0])
