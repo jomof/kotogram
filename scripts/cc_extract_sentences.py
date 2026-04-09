@@ -29,7 +29,7 @@ from typing import Any
 
 import numpy as np
 
-from kotogram.masking import canonicalize_sentence
+from kotogram.masking import canonicalize_sentence, is_content_char
 from scripts.canonical_index import CanonicalIndex, parallel_canonicalize
 from scripts.cc_common import (
     _CORPUS_EMBED_META,
@@ -105,14 +105,32 @@ def _is_candidate(s: str, min_len: int, max_len: int) -> bool:
     return True
 
 
+_REJECTED_CHARS = set("|/")
+_MAX_NON_CONTENT_CHARS = 3
+
+
 def _passes_char_filter(s: str) -> bool:
     """Return True if the sentence contains no banned characters or junk patterns."""
     if CHAR_FILTER.search(s):
+        return False
+    if _REJECTED_CHARS.intersection(s):
+        return False
+    if sum(1 for ch in s if not is_content_char(ord(ch))) > _MAX_NON_CONTENT_CHARS:
+        return False
+    if s.count("...") > 1:
         return False
     for pat in _JUNK_PATTERNS:
         if pat.search(s):
             return False
     return True
+
+
+def _strip_leading_non_content(s: str) -> str:
+    """Strip leading non-content characters (quotes, symbols, etc.)."""
+    i = 0
+    while i < len(s) and not is_content_char(ord(s[i])):
+        i += 1
+    return s[i:]
 
 
 def _extract_sentences_from_text(
@@ -130,7 +148,7 @@ def _extract_sentences_from_text(
             continue
         parts = _SENTENCE_SPLIT_RE.split(line)
         for part in parts:
-            part = part.strip()
+            part = _strip_leading_non_content(part.strip())
             if _is_candidate(part, min_len, max_len):
                 candidates += 1
                 if _passes_char_filter(part):
@@ -729,17 +747,27 @@ def main() -> None:  # pylint: disable=too-many-locals
         _cm_parser = _SJP_cm(validate=False)
         pre_content = len(new_batch)
         _to_tokens = _cm_parser._to_kotogram_tokens  # pylint: disable=protected-access
-        new_batch = [
-            s
-            for s in new_batch
-            if has_majority_content(
-                [t.surface for t in _to_tokens(_cm_parser.tokenizer.tokenize(s))]
-            )
-        ]
-        content_filtered = pre_content - len(new_batch)
+        _MAX_TOKENS = 31
+        filtered_batch: list[str] = []
+        token_filtered = 0
+        for s in new_batch:
+            toks = _to_tokens(_cm_parser.tokenizer.tokenize(s))
+            surfaces = [t.surface for t in toks]
+            if not has_majority_content(surfaces):
+                continue
+            if len(toks) > _MAX_TOKENS:
+                token_filtered += 1
+                continue
+            filtered_batch.append(s)
+        new_batch = filtered_batch
+        content_filtered = pre_content - len(new_batch) - token_filtered
         if content_filtered:
             console.print(
                 f"  Filtered {content_filtered:,} majority-non-content sentences"
+            )
+        if token_filtered:
+            console.print(
+                f"  Filtered {token_filtered:,} sentences > {_MAX_TOKENS} tokens"
             )
 
         # Canonical dedup against corpus.db

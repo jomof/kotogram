@@ -422,6 +422,18 @@ def train(
 
     gc.collect()
 
+    # ── Compute quintile bin edges from token lengths ───────────
+    _q_lengths = (gram_ds.offsets[gram_ds.indices + 1] - gram_ds.offsets[gram_ds.indices]).float()
+    _q_boundaries = torch.quantile(_q_lengths, torch.linspace(0, 1, 6))
+    QUINTILE_EDGES = _q_boundaries[1:-1].to(torch.float32)  # 4 interior edges
+    QUINTILE_LABELS = []
+    for qi in range(5):
+        lo = int(_q_boundaries[qi].item())
+        hi = int(_q_boundaries[qi + 1].item())
+        QUINTILE_LABELS.append(f"{lo}-{hi}")
+    print(f"Quintile bins: {QUINTILE_LABELS}")
+    del _q_lengths, _q_boundaries
+
     n_total_batches = (len(gram_ds) + config.batch_size - 1) // config.batch_size
     dl_generator = torch.Generator().manual_seed(config.seed)
     if config.use_stratified_length_batches:
@@ -619,10 +631,9 @@ def train(
         fuzzy_count = torch.tensor(0, device=device, dtype=torch.long)
         kc_prob_count = torch.tensor(0, device=device, dtype=torch.long)
 
-        bin_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
+        bin_labels = QUINTILE_LABELS
         _NUM_BINS = len(bin_labels)
-        # Bin boundaries on GPU for torch.bucketize: (0,3], (3,7], (7,15], (15,31], (31,inf]
-        _bin_edges = torch.tensor([3, 7, 15, 31], device=device, dtype=torch.float32)
+        _bin_edges = QUINTILE_EDGES.to(device)
         s1_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
         s0_count_by_bin_t = torch.zeros(_NUM_BINS, device=device, dtype=torch.float32)
         fuzzy_count_by_bin_t = torch.zeros(
@@ -1258,7 +1269,7 @@ def train(
         _bpd_bits_bins = bpd_bits_by_bin_t.cpu().tolist()
         _bpd_tok_bins = bpd_tokens_by_bin_t.cpu().tolist()
         for bi, label in enumerate(bin_labels):
-            mlflow_label = label.replace("+", "_plus")
+            mlflow_label = label
             n = max(1, _kc_bins[bi])
             s1_frac = _s1_bins[bi] / n
             latest_metrics[f"s1_{mlflow_label}"] = s1_frac

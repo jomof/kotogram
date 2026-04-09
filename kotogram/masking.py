@@ -176,7 +176,8 @@ def is_content_char(cp: int) -> bool:
 
     Content ranges:
       Hiragana, Katakana, CJK Ideographs (+Extension A/B, Compat),
-      ASCII/fullwidth digits, ASCII/fullwidth Latin, period, space, 々.
+      ASCII/fullwidth digits, ASCII/fullwidth Latin, standard Japanese
+      punctuation, 々.
     """
     return (
         0x3040 <= cp <= 0x309F  # Hiragana
@@ -188,13 +189,34 @@ def is_content_char(cp: int) -> bool:
         or 0xF900 <= cp <= 0xFAFF  # CJK Compatibility Ideographs
         or 0x0030 <= cp <= 0x0039  # Digits 0-9
         or cp == 0x002E  # Full stop (period)
-        or cp == 0x0020  # Space
         or 0x0041 <= cp <= 0x005A  # Latin A-Z
         or 0x0061 <= cp <= 0x007A  # Latin a-z
         or 0xFF10 <= cp <= 0xFF19  # Fullwidth Digits
         or 0xFF21 <= cp <= 0xFF3A  # Fullwidth Latin A-Z
         or 0xFF41 <= cp <= 0xFF5A  # Fullwidth Latin a-z
         or cp == 0x3005  # 々 (Ideographic Iteration Mark)
+        or cp == 0x3001  # 、 Ideographic Comma
+        or cp == 0x3002  # 。 Ideographic Full Stop
+        or cp == 0xFF01  # ！ Fullwidth Exclamation Mark
+        or cp == 0xFF1F  # ？ Fullwidth Question Mark
+        or cp == 0x300C  # 「 Left Corner Bracket
+        or cp == 0x300D  # 」 Right Corner Bracket
+        or cp == 0x300E  # 『 Left White Corner Bracket
+        or cp == 0x300F  # 』 Right White Corner Bracket
+        or cp == 0x3010  # 【 Left Black Lenticular Bracket
+        or cp == 0x3011  # 】 Right Black Lenticular Bracket
+        or cp == 0xFF08  # （ Fullwidth Left Parenthesis
+        or cp == 0xFF09  # （ Fullwidth Right Parenthesis
+        or cp == 0x30FB  # ・ Katakana Middle Dot
+        or cp == 0x30FC  # ー Katakana-Hiragana Prolonged Sound Mark
+        or cp == 0x2026  # … Horizontal Ellipsis
+        or cp == 0xFF5E  # ～ Fullwidth Tilde
+        or cp == 0xFF61  # ｡ Halfwidth Ideographic Full Stop
+        or cp == 0xFF62  # ｢ Halfwidth Left Corner Bracket
+        or cp == 0xFF63  # ｣ Halfwidth Right Corner Bracket
+        or cp == 0xFF64  # ､ Halfwidth Ideographic Comma
+        or cp == 0xFF65  # ･ Halfwidth Katakana Middle Dot
+        or cp == 0xFF1A  # ： Fullwidth Colon
     )
 
 
