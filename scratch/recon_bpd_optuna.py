@@ -588,6 +588,8 @@ def objective(
         run_name = f"{parts} {run_name}"
     if adhoc_name:
         run_name = f"[{adhoc_name}] {run_name}"
+        if len(run_name) > 250:
+            run_name = run_name[:247] + "..."
     checkpoint_path = ""
     existing = None
     log_path = os.path.join(checkpoint_dir, "debug.log") if checkpoint_dir else ""
@@ -1024,17 +1026,19 @@ def main() -> None:
         # Auto-derive trial name from last git commit touching recon_bpd.py
         if args.adhoc == "adhoc":
             git_subject = subprocess.run(
-                ["git", "log", "-1", "--format=%s", "--", "scratch/recon_bpd.py"],
+                ["git", "log", "-1", "--format=%B", "--", "scratch/recon_bpd.py"],
                 capture_output=True,
                 text=True,
                 check=False,
                 timeout=2,
             )
-            args.adhoc = (
-                git_subject.stdout.strip()
-                if git_subject.returncode == 0 and git_subject.stdout.strip()
-                else "adhoc"
-            )
+            title = ""
+            if git_subject.returncode == 0:
+                for line in git_subject.stdout.splitlines():
+                    if line.strip():
+                        title = line.strip()
+                        break
+            args.adhoc = title or "adhoc"
 
     adhoc_overrides: dict = {}
     if args.adhoc is not None:
