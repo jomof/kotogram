@@ -5,6 +5,6 @@ while true; do
     scripts/cc extract-sentences --min-impact 0.8
     scripts/curate upsert --allow-insert --sentences .cc/selected-sentences.txt
     wc -c data/corpus.db
-    #echo "Sleeping 5 minutes..."
-    #sleep 300
+    echo "Sleeping 5 minutes..."
+    sleep 300
 done
