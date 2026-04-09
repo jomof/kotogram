@@ -739,7 +739,9 @@ def train(
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
                 epoch_pooled_std_sum += pooled.detach().std(dim=-1).sum().float()
-                for row in (pooled.detach() > 0).to(torch.uint8).cpu().numpy():
+                # Only count the first B_actual rows (before consistency doubling)
+                # so each original sentence contributes exactly one sign pattern.
+                for row in (pooled[:B_actual].detach() > 0).to(torch.uint8).cpu().numpy():
                     pool_sign_set.add(row.tobytes())
 
                 half = B // 2
