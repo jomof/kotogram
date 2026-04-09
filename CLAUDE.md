@@ -48,6 +48,29 @@ Python and TypeScript implementations must stay in sync. `TOKEN_SHORTHANDS` comp
 Install Python deps: `pip install -r requirements.txt`
 Install TS deps: `npm install`
 
+## Corpus DB (data/corpus.db)
+
+Stored in Google Cloud Storage (bucket `jomof-public-files`, prefix `kotogram-datasets/corpus/`), **not** in git. The well-known local path is `data/corpus.db`.
+
+### Workflow
+```bash
+python -m scripts.dataset corpus-download latest   # Pull corpus.db from GCS
+# ... curate / crawl / cleanup ...
+python -m scripts.label --source-db data/corpus.db  # Labels & stamps content hash
+python -m scripts.dataset build                     # Checks hash, builds .pt bundle
+python -m scripts.dataset upload                    # VACUUM+gzip+push corpus.db & .pt to GCS
+# Commit dataset.lock
+```
+
+### Consistency guards
+- Labeling writes `label_content_hash` into the `metadata` table in corpus.db.
+- `dataset build` and `dataset upload` verify corpus.db hasn't changed since labeling.
+- `dataset upload` automatically uploads corpus.db (VACUUM + gzip) if not already in GCS.
+- `dataset.lock` records `corpus_hash` alongside `dataset_id` and `chive_id`.
+
+### GP info
+Labeling writes `gp_info.json` into the label cache so training never needs corpus.db.
+
 ## Neural Style Model
 
 Located in `models/style/`. Multi-task transformer for:

@@ -53,6 +53,7 @@ import shutil
 import sqlite3
 import sys
 from collections import Counter
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set, Tuple, cast
 
 from rich.console import Console
@@ -1318,8 +1319,57 @@ def main() -> None:
             "SELECT sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative FROM corpus"
         )
         all_rows = c.fetchall()
+
+        # Write gp_info.json so training never needs corpus.db for GP name lookups.
+        gp_info: Dict[str, Dict[str, object]] = {}
+        has_grammar_stats = c.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='view' AND name='grammar_stats'"
+        ).fetchone()
+        if has_grammar_stats:
+            for row in c.execute(
+                "SELECT gp_id, name, pos_count, neg_count FROM grammar_stats"
+            ):
+                gp_info[row[0]] = {
+                    "name": row[1],
+                    "pos_count": row[2],
+                    "neg_count": row[3],
+                }
+        else:
+            console.print(
+                "[yellow]Warning: grammar_stats view not found, skipping gp_info.json[/yellow]"
+            )
+
         conn.close()
         console.print(f"Loaded {len(all_rows):,} rows from DB.")
+
+        # Stamp corpus with labeling content hash.
+        from scripts.corpus_hash import corpus_content_hash, write_metadata
+
+        content_hash = corpus_content_hash(args.source_db)
+        write_metadata(args.source_db, "label_content_hash", content_hash)
+        write_metadata(
+            args.source_db,
+            "label_timestamp",
+            datetime.now(timezone.utc).isoformat(),
+        )
+        console.print(
+            f"[green]✓[/green] Stamped label_content_hash: {content_hash[:12]}..."
+        )
+
+        # Write gp_info.json into label cache dir.
+        os.makedirs(cache_dir, exist_ok=True)
+        gp_info_path = os.path.join(cache_dir, "gp_info.json")
+        with open(gp_info_path, "w", encoding="utf-8") as gp_out:
+            json.dump(gp_info, gp_out, indent=2)
+        console.print(
+            f"[green]✓[/green] Wrote {len(gp_info)} GP entries to {gp_info_path}"
+        )
+
+        # Write corpus_hash.txt breadcrumb for debugging.
+        with open(
+            os.path.join(cache_dir, "corpus_hash.txt"), "w", encoding="utf-8"
+        ) as hash_out:
+            hash_out.write(content_hash + "\n")
 
     else:
         # FILE PATH: parsing raw TSV files.

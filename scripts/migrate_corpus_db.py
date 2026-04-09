@@ -64,6 +64,12 @@ CREATE TABLE corpus_gp_neg(
   FOREIGN KEY(gp_id)    REFERENCES grammar(id)
 ) WITHOUT ROWID;
 
+-- key-value metadata (excluded from content hashing)
+CREATE TABLE metadata(
+  key   TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+) WITHOUT ROWID;
+
 -- corpus VIEW: mimics old corpus table layout EXACTLY
 CREATE VIEW corpus AS
 SELECT

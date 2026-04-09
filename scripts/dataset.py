@@ -1,10 +1,14 @@
 """Dataset management: build, upload, download, list, info, resolve."""  # pylint: disable=too-many-lines
 
 import argparse
+import glob as glob_mod
+import gzip
 import hashlib
 import json
 import os
+import sqlite3
 import subprocess
+import tempfile
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -53,6 +57,7 @@ GCS_PREFIX = "kotogram-datasets"
 DATASET_LOCK = "dataset.lock"
 LOCAL_CACHE = os.path.join(".cache", "datasets")
 CHIVE_DIM = 300
+CORPUS_DB_PATH = os.path.join("data", "corpus.db")
 
 _SPECIAL_TOKENS = {
     PAD_TOKEN: PAD_ID,
@@ -98,14 +103,184 @@ def read_lock() -> Optional[Dict[str, Any]]:
     return read_lock_file(os.path.join(_find_repo_root(), DATASET_LOCK))
 
 
-def write_lock(dataset_id: str, chive_id: str) -> str:
+def write_lock(
+    dataset_id: str, chive_id: str, corpus_hash: Optional[str] = None
+) -> str:
     """Write dataset.lock to the repo root. Returns the path written."""
     from scripts.lock_io import write_lock_file
 
+    data: Dict[str, str] = {"dataset_id": dataset_id, "chive_id": chive_id}
+    if corpus_hash is not None:
+        data["corpus_hash"] = corpus_hash
     return write_lock_file(
         os.path.join(_find_repo_root(), DATASET_LOCK),
-        {"dataset_id": dataset_id, "chive_id": chive_id},
+        data,
     )
+
+
+def _verify_corpus_label_hash(db_path: str) -> str:
+    """Check that corpus.db exists, has been labeled, and hasn't changed since.
+
+    Returns the verified content hash.
+    Raises ``SystemExit`` on any mismatch.
+    """
+    from scripts.corpus_hash import corpus_content_hash, read_metadata
+
+    if not os.path.exists(db_path):
+        raise SystemExit(
+            f"corpus.db not found at {db_path}. "
+            "Run 'python -m scripts.dataset corpus-download latest' first."
+        )
+
+    content_hash = corpus_content_hash(db_path)
+    label_hash = read_metadata(db_path, "label_content_hash")
+
+    if label_hash is None:
+        raise SystemExit(
+            "No labeling hash found in corpus.db metadata. "
+            "Run labeling (scripts/label.py --source-db ...) before building."
+        )
+
+    if content_hash != label_hash:
+        raise SystemExit(
+            f"corpus.db has been modified since last labeling.\n"
+            f"  Current content hash:  {content_hash[:16]}...\n"
+            f"  Labeling content hash: {label_hash[:16]}...\n"
+            "Re-run labeling first."
+        )
+
+    return content_hash
+
+
+def _print_corpus_summary(db_path: str, content_hash: str) -> None:
+    """Print corpus statistics so regressions are noticeable at a glance."""
+    from scripts.corpus_hash import corpus_summary, read_metadata
+
+    stats = corpus_summary(db_path)
+    label_ts = read_metadata(db_path, "label_timestamp") or "unknown"
+
+    print(f"\n  Corpus summary ({db_path}):")
+    print(f"    Content hash:   {content_hash[:12]}...")
+    print(f"    Labeled at:     {label_ts}")
+    gram = stats["grammatic"]
+    agram = stats["agrammatic"]
+    total = stats["total_sentences"]
+    print(f"    Sentences:      {total:,}  (grammatic {gram:,} / agrammatic {agram:,})")
+    print(
+        f"    Label coverage: formality {stats['formality_labeled']:,}, "
+        f"gender {stats['gender_labeled']:,}"
+    )
+    print(
+        f"    Grammar points: {stats['grammar_points']:,} GPs, "
+        f"{stats['gp_pos_annotations']:,} pos / {stats['gp_neg_annotations']:,} neg annotations"
+    )
+    reg = stats.get("register_distribution", {})
+    if reg:
+        parts = [f"{label} {cnt:,}" for label, cnt in reg.items()]
+        print(f"    Registers:      {', '.join(parts)}")
+    print()
+
+
+def _prepare_corpus_gz(db_path: str, content_hash: str) -> str:
+    """VACUUM and gzip corpus.db into .cache/datasets/. Returns the .gz path."""
+    os.makedirs(LOCAL_CACHE, exist_ok=True)
+    gz_path = os.path.join(LOCAL_CACHE, f"corpus-{content_hash}.db.gz")
+    if os.path.exists(gz_path):
+        print(f"  Corpus .gz already cached: {gz_path}")
+        return gz_path
+
+    print(f"  VACUUMing {db_path}...")
+    conn = sqlite3.connect(db_path)
+    conn.execute("VACUUM")
+    conn.close()
+
+    print(f"  Compressing {db_path}...")
+    with (
+        open(db_path, "rb") as f_in,
+        gzip.open(gz_path, "wb", compresslevel=6) as f_out,
+    ):
+        while True:
+            chunk = f_in.read(1 << 20)
+            if not chunk:
+                break
+            f_out.write(chunk)
+
+    raw_mb = os.path.getsize(db_path) / (1024 * 1024)
+    gz_mb = os.path.getsize(gz_path) / (1024 * 1024)
+    print(f"  Corpus: {raw_mb:.1f} MB -> {gz_mb:.1f} MB gzip")
+    return gz_path
+
+
+def _upload_corpus_gz(gz_path: str, content_hash: str) -> None:
+    """Upload a prepared corpus.db.gz to GCS if the blob doesn't already exist."""
+    corpus_key = f"{GCS_PREFIX}/corpus/corpus-{content_hash}.db.gz"
+
+    if _gcs_exists(corpus_key):
+        print(f"  Corpus {content_hash[:12]}... already in GCS, skipping upload")
+    else:
+        print(f"  Uploading corpus {content_hash[:12]}...")
+        _gcs_upload_file(gz_path, corpus_key)
+        print(f"  -> gs://{GCS_BUCKET}/{corpus_key}")
+
+    _gcs_write_json(
+        f"{GCS_PREFIX}/corpus-latest.json",
+        {
+            "corpus_hash": content_hash,
+            "uploaded_at": datetime.now(timezone.utc).isoformat(),
+        },
+    )
+    print(f"  Updated corpus-latest.json -> {content_hash[:12]}...")
+
+
+def download_corpus(corpus_id: str) -> str:
+    """Download corpus.db from GCS. Returns the local path."""
+    if corpus_id == "latest":
+        latest = _gcs_read_json(f"{GCS_PREFIX}/corpus-latest.json")
+        corpus_hash = latest["corpus_hash"]
+    else:
+        corpus_hash = corpus_id
+
+    corpus_key = f"{GCS_PREFIX}/corpus/corpus-{corpus_hash}.db.gz"
+    if not _gcs_exists(corpus_key):
+        raise FileNotFoundError(
+            f"Corpus blob not found: gs://{GCS_BUCKET}/{corpus_key}"
+        )
+
+    with tempfile.NamedTemporaryFile(suffix=".db.gz", delete=False) as tmp:
+        tmp_path = tmp.name
+    try:
+        print(f"Downloading corpus {corpus_hash[:12]}...")
+        _gcs_download_file(corpus_key, tmp_path)
+
+        os.makedirs(os.path.dirname(CORPUS_DB_PATH) or ".", exist_ok=True)
+        print(f"  Decompressing to {CORPUS_DB_PATH}...")
+        with gzip.open(tmp_path, "rb") as f_in, open(CORPUS_DB_PATH, "wb") as f_out:
+            while True:
+                chunk = f_in.read(1 << 20)
+                if not chunk:
+                    break
+                f_out.write(chunk)
+    finally:
+        if os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+
+    from scripts.corpus_hash import corpus_content_hash
+
+    actual_hash = corpus_content_hash(CORPUS_DB_PATH)
+    if actual_hash != corpus_hash:
+        raise ValueError(
+            f"Corpus hash mismatch after download! "
+            f"Expected {corpus_hash[:16]}..., got {actual_hash[:16]}..."
+        )
+
+    # Invalidate canonical index caches derived from the old corpus.db
+    for stale in glob_mod.glob(".cc/corpus-canonical-*"):
+        print(f"  Removing stale cache: {stale}")
+        os.unlink(stale)
+
+    size_mb = os.path.getsize(CORPUS_DB_PATH) / (1024 * 1024)
+    print(f"  Corpus downloaded: {CORPUS_DB_PATH} ({size_mb:.1f} MB, hash verified)")
+    return CORPUS_DB_PATH
 
 
 def _load_local_vocab(cache_dir: str) -> Dict[str, Dict[str, int]]:
@@ -414,6 +589,9 @@ def build_dataset(  # pylint: disable=too-many-locals
     if cache_dir is None:
         cache_dir = train_paths.get_style_dataset_cache_dir()
 
+    content_hash = _verify_corpus_label_hash(CORPUS_DB_PATH)
+    _print_corpus_summary(CORPUS_DB_PATH, content_hash)
+
     print(f"Building dataset from {cache_dir}")
 
     local_vocab = _load_local_vocab(cache_dir)
@@ -576,8 +754,11 @@ def build_dataset(  # pylint: disable=too-many-locals
     if not os.path.exists(chive_path):
         torch.save(chive_surface, chive_path)
 
+    corpus_gz_path = _prepare_corpus_gz(CORPUS_DB_PATH, content_hash)
+
     size_mb = os.path.getsize(output_path) / (1024 * 1024)
     chive_mb = os.path.getsize(chive_path) / (1024 * 1024)
+    corpus_gz_mb = os.path.getsize(corpus_gz_path) / (1024 * 1024)
     lbl_w = 28
     mb_w = 8
 
@@ -643,18 +824,30 @@ def build_dataset(  # pylint: disable=too-many-locals
     print(f"  {'-' * (lbl_w + mb_w + 8)}")
     _row("total on disk", size_mb)
     _row("chiVe (separate file)", chive_mb, "float32[V,300] pretrained embeddings")
+    _row(
+        "corpus.db.gz",
+        corpus_gz_mb,
+        f"vacuumed+gzipped SQLite, hash {content_hash[:12]}...",
+    )
     print(f"\n  Dataset: {output_path}")
     print(f"  chiVe:   {chive_path}")
     return dataset_id, output_path
 
 
 def upload_dataset(pt_path: Optional[str] = None, *, force: bool = False) -> str:
-    """Upload dataset + chiVe to GCS, update latest.json and dataset.lock.
+    """Upload dataset + chiVe + corpus.db to GCS, update latest.json and dataset.lock.
 
-    By default, skips upload when the object already exists (same dataset_id).
-    Use ``force=True`` after rebuilding with the same content hash but a newer
-    on-disk bundle (e.g. added ``token_length_counts``) so GCS matches local.
+    Corpus.db is VACUUMed, gzipped, and uploaded if the content-addressed blob
+    doesn't already exist.  By default, skips dataset upload when the object
+    already exists (same dataset_id).  Use ``force=True`` to replace blobs.
     """
+    content_hash = _verify_corpus_label_hash(CORPUS_DB_PATH)
+
+    corpus_gz = os.path.join(LOCAL_CACHE, f"corpus-{content_hash}.db.gz")
+    if not os.path.exists(corpus_gz):
+        corpus_gz = _prepare_corpus_gz(CORPUS_DB_PATH, content_hash)
+    _upload_corpus_gz(corpus_gz, content_hash)
+
     if pt_path is None:
         if not os.path.isdir(LOCAL_CACHE):
             raise FileNotFoundError(f"No local datasets in {LOCAL_CACHE}")
@@ -722,7 +915,12 @@ def upload_dataset(pt_path: Optional[str] = None, *, force: bool = False) -> str
     )
     print(f"  Updated latest.json -> {dataset_id}")
 
-    lock_path = write_lock(dataset_id, chive_id)
+    from scripts.corpus_hash import corpus_content_hash
+
+    corpus_hash = (
+        corpus_content_hash(CORPUS_DB_PATH) if os.path.exists(CORPUS_DB_PATH) else None
+    )
+    lock_path = write_lock(dataset_id, chive_id, corpus_hash=corpus_hash)
     print(f"  Updated {lock_path}")
 
     return uri
@@ -1033,6 +1231,10 @@ def _cmd_download(args: argparse.Namespace) -> None:
     print(f"Downloaded to {path}")
 
 
+def _cmd_corpus_download(args: argparse.Namespace) -> None:
+    download_corpus(args.id)
+
+
 def _cmd_list(_args: argparse.Namespace) -> None:
     blobs = _gcs_list_blobs(f"{GCS_PREFIX}/datasets/")
     if not blobs:
@@ -1107,6 +1309,9 @@ def main() -> None:
     p_download = sub.add_parser("download", help="Download dataset from GCS")
     p_download.add_argument("id", help="Dataset ID or 'latest'")
 
+    p_corpus_dl = sub.add_parser("corpus-download", help="Download corpus.db from GCS")
+    p_corpus_dl.add_argument("id", help="Corpus hash or 'latest'")
+
     sub.add_parser("list", help="List datasets in GCS")
 
     p_info = sub.add_parser("info", help="Show dataset metadata")
@@ -1130,6 +1335,7 @@ def main() -> None:
         "build": _cmd_build,
         "upload": _cmd_upload,
         "download": _cmd_download,
+        "corpus-download": _cmd_corpus_download,
         "list": _cmd_list,
         "info": _cmd_info,
         "resolve": _cmd_resolve,

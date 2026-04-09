@@ -74,7 +74,6 @@ env/
 # Build artifacts (prevent cross-contamination)
 *.whl
 *.tar.gz
-!data/corpus.tar.gz
 .cache/
 .cache.old/
 .cc/
@@ -85,7 +84,8 @@ mlruns/**/artifacts/
 mlruns/**/models/
 cloud-sql-proxy
 
-# Generated Indices
+# Corpus DB (stored in GCS, not git)
+data/corpus.db
 data/corpus-kc-index.db
 data/corpus-inference.db
 data/corpus.db-wal

@@ -23,6 +23,25 @@ from train.types import (
 )
 
 
+def _load_gp_info() -> Dict[str, Dict[str, Any]]:
+    """Load GP info from gp_info.json written by labeling.
+
+    Falls back to empty dict if the file doesn't exist (backward compat).
+    """
+    import json
+
+    from train import paths as train_paths
+
+    gp_info_path = os.path.join(
+        train_paths.get_style_dataset_cache_dir(), "gp_info.json"
+    )
+    if not os.path.exists(gp_info_path):
+        return {}
+    with open(gp_info_path, encoding="utf-8") as f:
+        result: Dict[str, Dict[str, Any]] = json.load(f)
+    return result
+
+
 class KCTrainerView(Protocol):
     """Interface for KC training visualization and logging."""
 
@@ -1226,27 +1245,17 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                         all_gids = set(label_freq) | set(pred_freq)
                         # Write GP listing
                         if all_gids:
-                            # Look up GP names and pos/neg counts from corpus.db
                             gp_names: dict[int, str] = {}
                             gp_pos: dict[int, int] = {}
                             gp_neg: dict[int, int] = {}
-                            db_path = os.path.join("data", "corpus.db")
-                            if os.path.exists(db_path):
-                                import sqlite3
-
-                                conn = sqlite3.connect(db_path)
-                                for gid in all_gids:
-                                    gp_id_str = f"gp{gid:04d}"
-                                    row = conn.execute(
-                                        "SELECT name, pos_count, neg_count"
-                                        " FROM grammar_stats WHERE gp_id = ?",
-                                        (gp_id_str,),
-                                    ).fetchone()
-                                    if row:
-                                        gp_names[gid] = f"data/grammar/{row[0]}.yaml"
-                                        gp_pos[gid] = row[1]
-                                        gp_neg[gid] = row[2]
-                                conn.close()
+                            gp_info = _load_gp_info()
+                            for gid in all_gids:
+                                gp_id_str = f"gp{gid:04d}"
+                                info = gp_info.get(gp_id_str)
+                                if info:
+                                    gp_names[gid] = f"data/grammar/{info['name']}.yaml"
+                                    gp_pos[gid] = info["pos_count"]
+                                    gp_neg[gid] = info["neg_count"]
                             # Build entries
                             # (gid, lf, pf, prior_val, prior_str, pos, neg, name)
                             entries: list[
