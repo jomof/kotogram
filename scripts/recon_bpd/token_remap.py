@@ -59,11 +59,9 @@ def build_pristine_id_mapping(vocab: Dict[str, int]) -> torch.Tensor:
     """Build a [vocab_size] static ID mapping for non-context-dependent rules.
 
     Context-dependent rules ('.' handling) are applied by ``apply_pristine()``.
-    Non-content tokens with no pristine mapping are mapped to PAD (ID 0).
+    Non-content tokens are left as identity; the dataloader's
+    ``content_drop_ratio`` physically removes them from both input and target.
     """
-    from kotogram.masking import is_content_token
-    from kotogram.tokenizer import PAD_ID
-
     inv_vocab = {v: k for k, v in vocab.items()}
     v = max(vocab.values()) + 1
     mapping = torch.arange(v, dtype=torch.long)
@@ -78,15 +76,11 @@ def build_pristine_id_mapping(vocab: Dict[str, int]) -> torch.Tensor:
             if pid is not None:
                 mapping[tid] = pid
                 continue
-        if tok == '"':
-            continue  # identity; apply_pristine maps by open/close parity
-        if not is_content_token(tok):
-            mapping[tid] = PAD_ID
 
     return mapping
 
 
-def apply_pristine(  # pylint: disable=too-many-locals
+def apply_pristine(
     ids: torch.Tensor,
     vocab: Dict[str, int],
     static_mapping: Optional[torch.Tensor] = None,
@@ -95,46 +89,27 @@ def apply_pristine(  # pylint: disable=too-many-locals
 
     Handles context-dependent rules:
     - '.' as last token → '。'
-    - Consecutive '.' runs (e.g. `. . .`) → first becomes '…', rest become PAD
-    - '...' single token → '…' (via static mapping)
     - ASCII '"' by occurrence → alternating 「 and 」 (1st, 3rd, … open; 2nd, 4th, … close)
     - All other rules via static mapping
 
+    Never introduces PAD tokens; non-content tokens are left as identity
+    and handled by the dataloader's ``content_drop_ratio``.
+
     Pass a pre-built ``static_mapping`` to avoid recomputing it per call.
     """
-    from kotogram.tokenizer import PAD_ID
-
     if static_mapping is None:
         static_mapping = build_pristine_id_mapping(vocab)
     out = static_mapping[ids].clone()
 
+    # Sentence-final '.' → '。'
     dot_id = vocab.get(".")
     maru_id = vocab.get("\u3002")  # 。
-    ellipsis_id = vocab.get("\u2026")  # …
-
     n = len(ids)
-    if dot_id is not None:
-        i = 0
-        while i < n:
-            if int(ids[i]) == dot_id:
-                run_start = i
-                while i < n and int(ids[i]) == dot_id:
-                    i += 1
-                run_len = i - run_start
+    if dot_id is not None and maru_id is not None:
+        if n > 0 and int(ids[n - 1]) == dot_id:
+            out[n - 1] = maru_id
 
-                if run_len >= 2 and ellipsis_id is not None:
-                    out[run_start] = ellipsis_id
-                    for j in range(run_start + 1, run_start + run_len):
-                        out[j] = PAD_ID
-                elif run_len == 1 and run_start == n - 1 and maru_id is not None:
-                    out[run_start] = maru_id
-                else:
-                    out[run_start] = ids[
-                        run_start
-                    ]  # identity for lone mid-sentence '.'
-            else:
-                i += 1
-
+    # ASCII '"' → alternating 「 / 」 by occurrence parity
     quote_id = vocab.get('"')
     open_k = vocab.get("\u300c")
     close_k = vocab.get("\u300d")

@@ -152,7 +152,6 @@ class TrainConfig:
     # Structured Dropout," ICLR 2020
     layer_drop_prob: float = 0.5
     semantic_gating_threshold: float = 1.0  # Set to > 0.0 to enable throughput skips
-    semantic_weight: float = 5.0  # Multiplier on semantic distillation loss
 
     # Token percentile reduction: keep surface tokens covering this % of
     # gram token-position mass, collapsing rare tokens into a single UNK.
@@ -721,19 +720,6 @@ def train(
         else:
             mdl_warmup = 1.0
 
-        # ── Semantic Distillation Warmup ─────────────────────────
-        # Ramp semantic weight from 0 → full on the same schedule as
-        # MDL / temperature annealing.  During early epochs the KC
-        # structure is still forming under soft (high-temperature)
-        # Gumbel-Softmax; adding full denoising gradient pressure
-        # can cause KC logit explosion and collapse.  Quadratic ramp
-        # keeps semantic loss near-zero while KC allocation stabilizes.
-        if eff_epoch < config.temperature_anneal_epochs:
-            semantic_warmup = (eff_epoch / config.temperature_anneal_epochs) ** 2
-        else:
-            semantic_warmup = 1.0
-        current_semantic_weight = config.semantic_weight * semantic_warmup
-
         ctx = EpochContext(
             model=model,
             tokenizer=tokenizer,
@@ -1126,7 +1112,7 @@ def train(
             bpd_tokens_by_bin_t.scatter_add_(0, bpd_bin_idx.long(), row_lengths.float())
 
             # ── Regularizers ─────────────────────────────────────────
-            loss = bpd + semantic_distillation_loss * current_semantic_weight
+            loss = bpd + semantic_distillation_loss * 5.0
 
             if config.consistency_weight > 0:
                 consist_scaled = config.consistency_weight * consistency_loss
@@ -1366,7 +1352,6 @@ def train(
                 "lr": current_lr,
                 "temperature": current_temperature,
                 "mdl_warmup": mdl_warmup,
-                "semantic_weight": current_semantic_weight,
                 "semantic_threshold": current_threshold,
                 "length_pred_mse": _lp_loss_val / max(1, total_length_pred_count),
                 "length_pred_mae": _lp_mae_val / max(1, total_length_pred_count),

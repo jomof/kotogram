@@ -1165,16 +1165,6 @@ class BundledStyleDataset(StyleDataset):
                     if pristine_result is not None:
                         pristine_result = pristine_result[keep]
 
-        # Step 4: In pristine target, map remaining non-content to PAD
-        if pristine_result is not None and self.content_mask is not None:
-            post_pristine = pristine_result
-            is_content = self.content_mask[post_pristine.clamp(min=0)]
-            is_special = post_pristine < 4  # PAD, UNK, CLS, MASK
-            still_noncontent = (~is_content) & (~is_special) & (post_pristine > 0)
-            if still_noncontent.any():
-                pristine_result = pristine_result.clone()
-                pristine_result[still_noncontent] = 0  # PAD
-
         if pristine_result is not None:
             sample.pristine_ids = pristine_result
 
