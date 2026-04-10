@@ -40,6 +40,9 @@ class Sample:
     kotogram: str = ""
     kc_targets: Dict[KcFamilyId, Any] = field(default_factory=dict)
     idx: int = -1
+    pristine_ids: Optional[torch.Tensor] = (
+        None  # pristine surface IDs (aligned with feature_ids["surface"])
+    )
 
     def to_dict(self) -> Dict[str, Any]:
         return {

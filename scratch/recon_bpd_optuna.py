@@ -1003,6 +1003,11 @@ def main() -> None:
         action="store_true",
         help="Disable GCS checkpoint uploads (local-only mode)",
     )
+    parser.add_argument(
+        "--no-pristine",
+        action="store_true",
+        help="Disable pristine targets (train dirty→dirty instead of dirty→pristine)",
+    )
     args = parser.parse_args()
 
     # Resolve dataset before anything else
@@ -1055,6 +1060,8 @@ def main() -> None:
         adhoc_overrides["token_percentile"] = args.token_percentile
     if args.weight_sharing:
         adhoc_overrides["tie_output_weights"] = True
+    if args.no_pristine:
+        adhoc_overrides["use_pristine_targets"] = False
 
     if adhoc_overrides:
         print("Overrides:")

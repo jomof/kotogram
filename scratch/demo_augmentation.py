@@ -1,291 +1,254 @@
 #!/usr/bin/env python3
-"""One-off demo: visualize the data augmentation stages in recon_bpd.
+"""Demo: token-level pristine mapping as it would work in the dataloader.
 
-Shows how a single sentence transforms at each stage:
-  1. Raw dataset sample (feature_ids from StyleDataset.__getitem__)
-  2. Content drop (BundledStyleDataset.__getitem__, content_drop_ratio=0.5)
-  3. Collation + padding (collate_fn → attention_mask)
-  4. Consistency doubling (batch duplicated for dual-mask regularization)
-  5. Input masking (_apply_mask, input_mask_ratio=0.15)
+Shows input (dirty) vs output (pristine) token sequences for real sentences.
+Non-content tokens with no pristine equivalent are mapped to <PAD>.
 """
 
-import re
-import sys, os
-import unicodedata
+import os
+import sqlite3
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import torch
-from kotogram.tokenizer import Tokenizer
-from scripts.dataset import BundledStyleDataset, resolve_dataset
-from train.dataset import collate_fn
 
-# Matches tokens that contain a mix of Japanese (Hiragana/Katakana/CJK) and
-# non-standard characters (Latin, digits, symbols, emoji, etc.)
-_JP_RE = re.compile(r"[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]")
-_LATIN_RE = re.compile(r"[A-Za-z]{2,}")
-_EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAD6\U0001F600-\U0001F64F\u2600-\u26FF\u2700-\u27BF]")
-_SYMBOL_RE = re.compile(r"[♪♫♬★☆●○◎◆◇■□▲△▼▽※→←↑↓♡♥＊〜～…‥§†‡¶]")
-_FULLWIDTH_LATIN_RE = re.compile(r"[\uFF21-\uFF3A\uFF41-\uFF5A]")
-_HALFWIDTH_KANA_RE = re.compile(r"[\uFF65-\uFF9F]")
+from kotogram.tokenizer import PAD_ID, Tokenizer
+from scripts.dataset import resolve_dataset
+from scripts.recon_bpd.token_remap import (
+    apply_pristine,
+    build_pristine_id_mapping,
+)
+
+# Corpus rows added for pristine regression (see --mode regression).
+# Note: SQLite trigger rejects ASCII letters in sentences; use 甲/乙 not A/B for =/- tests.
+PRISTINE_REGRESSION: tuple[tuple[str, str], ...] = (
+    ("!", "テストです!"),
+    ("?", "本当ですか?"),
+    ("ASCII ,", "果物,野菜を食べよう。"),
+    (":", "結論:今日は休みです。"),
+    ("~", "今日は休み~明日だ。"),
+    ('"', '彼は"猫が好き"と言った。'),
+    ("U+FF0E", "終わります．"),
+    ("｡", "句点は｡で書く。"),
+    ("､", "読点は､で区切る。"),
+    ("｢｣", "｢引用｣の例です。"),
+    ("... token", "もう少し...待って。"),
+    (". . . run + ?", "そうかな...?"),
+    ("final .", "これで完結です."),
+    ("mid . (list)", "3.本文を読んでください。"),
+    ("&", "醤油&味噌は合う。"),
+    ("%", "割引は50%です。"),
+    ("=", "式=甲と乙。"),
+    ("-", "試験-甲と乙。"),
+    ("*", "注*読むこと。"),
+    ("+", "合計+税で百円。"),
+    ("two . run", "あ..あ。"),
+    ("fullwidth ％", "料金は５０％です。"),
+    ("already …", "それは…本当ですか。"),
+    ("already 「」", "彼は「猫が好きです」と言った。"),
+)
 
 
-def _dirt_score(tokens: list[str]) -> float:
-    """Score how 'dirty' a sentence is. Higher = more non-standard mixing."""
-    if not tokens:
-        return 0.0
-    score = 0.0
-    has_jp = any(_JP_RE.search(t) for t in tokens)
-    if not has_jp:
-        return 0.0
+def tokenize_sentence(parser, s):
+    from kotogram.kotogram import extract_token_features, split_kotogram
+    from kotogram.tokenizer import get_vocab_strings
+
+    kotogram = parser.japanese_to_kotogram(s, fmt="TrainingMask")
+    tokens = split_kotogram(kotogram)
+    surfs = []
     for t in tokens:
-        if t in ("<PAD>", "<UNK>", "<CLS>", "<MASK>"):
-            continue
-        if _LATIN_RE.search(t):
-            score += 3.0  # multi-char Latin is very dirty
-        if _EMOJI_RE.search(t):
-            score += 5.0
-        if _SYMBOL_RE.search(t):
-            score += 2.0
-        if _FULLWIDTH_LATIN_RE.search(t):
-            score += 1.5
-        if _HALFWIDTH_KANA_RE.search(t):
-            score += 2.0
-        # UNK tokens hint at truly weird characters
-        if t == "<UNK>":
-            score += 4.0
-    return score / len(tokens)
+        feats = extract_token_features(t)
+        vs = get_vocab_strings(feats)
+        surfs.append(vs["surface"])
+    return surfs
 
 
-def decode_ids(inv_vocab: dict, ids: torch.Tensor) -> str:
-    return " ".join(inv_vocab.get(int(i), f"[{i}]") for i in ids)
+def main() -> None:
+    import argparse
 
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        "--mode",
+        default="demo",
+        choices=["dots", "demo", "regression"],
+    )
+    args = ap.parse_args()
 
-def show_ids(label: str, ids: torch.Tensor, inv_vocab: dict):
-    print(f"\n  {label}")
-    print(f"    IDs  : {ids.tolist()}")
-    print(f"    Toks : {decode_ids(inv_vocab, ids)}")
-    print(f"    Len  : {len(ids)}")
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
+    parser = SudachiJapaneseParser(validate=False)
 
-def main():
-    torch.manual_seed(42)
+    db_path = os.path.join(os.path.dirname(__file__), "..", "data", "corpus.db")
 
-    print("Loading dataset from dataset.lock...")
-    bundle, _chive = resolve_dataset()
-    print(f"  Dataset: {bundle['dataset_id']}  sentences: {bundle['sentence_count']:,}")
+    if args.mode == "dots":
+        # Investigate how Sudachi tokenizes '...' across all corpus sentences
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT sentence FROM sentences WHERE sentence LIKE '%...%' ORDER BY RANDOM() LIMIT 500"
+        )
+        rows = [r[0] for r in cur.fetchall()]
+        conn.close()
 
+        from collections import Counter
+
+        patterns: Counter[str] = Counter()
+        examples: dict[str, list[str]] = {}
+
+        for s in rows:
+            surfs = tokenize_sentence(parser, s)
+            # Find runs containing '.' or '...' tokens
+            i = 0
+            while i < len(surfs):
+                if surfs[i] in (".", "...", "…", ".."):
+                    run = []
+                    while i < len(surfs) and surfs[i] in (".", "...", "…", ".."):
+                        run.append(surfs[i])
+                        i += 1
+                    pat = " ".join(run)
+                    patterns[pat] += 1
+                    if pat not in examples or len(examples[pat]) < 3:
+                        examples.setdefault(pat, []).append(
+                            f"{s[:60]}  →  {' '.join(surfs)}"
+                        )
+                else:
+                    i += 1
+
+        print(f"Checked {len(rows)} sentences containing '...'")
+        print("\nDot-token patterns found:")
+        for pat, cnt in patterns.most_common():
+            print(f"  {cnt:5d}x  [{pat}]")
+            for ex in examples[pat][:2]:
+                print(f"         {ex}")
+        return
+
+    if args.mode == "regression":
+        print("Loading dataset bundle (vocab)...")
+        bundle, _ = resolve_dataset()
+        tokenizer = Tokenizer()
+        tokenizer.load_state({"field_vocabs": bundle["vocab"], "frozen": True})
+        vocab = tokenizer.field_vocabs["surface"]
+        inv_vocab = {v: k for k, v in vocab.items()}
+        static_mapping = build_pristine_id_mapping(vocab)
+
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        missing: list[str] = []
+        print(f"\nPristine regression ({len(PRISTINE_REGRESSION)} cases)\n")
+        for label, s in PRISTINE_REGRESSION:
+            row = cur.execute(
+                "SELECT 1 FROM sentences WHERE sentence = ?", (s,)
+            ).fetchone()
+            if not row:
+                missing.append(s)
+                print(f"[MISSING FROM corpus.db] ({label}) {s}")
+                continue
+
+            surfs = tokenize_sentence(parser, s)
+            dirty_ids = [vocab.get(sf, 1) for sf in surfs]
+            dirty_t = torch.tensor(dirty_ids, dtype=torch.long)
+            pristine_t = apply_pristine(dirty_t, vocab, static_mapping=static_mapping)
+
+            dirty_str = " ".join(inv_vocab.get(int(x), "?") for x in dirty_t)
+            pristine_str = " ".join(
+                inv_vocab.get(int(x), "?") if int(x) != PAD_ID else "___"
+                for x in pristine_t
+            )
+            changes = []
+            for d, p in zip(dirty_t.tolist(), pristine_t.tolist()):
+                if d != p:
+                    dt = inv_vocab.get(d, "?")
+                    pt = "PAD" if p == PAD_ID else inv_vocab.get(p, "?")
+                    changes.append(f"{dt}->{pt}")
+            ch = ", ".join(changes) if changes else "(no change)"
+            print(f"({label})")
+            print(f"  {s}")
+            print(f"  DIRTY:    {dirty_str}")
+            print(f"  PRISTINE: {pristine_str}")
+            print(f"  {ch}\n")
+        conn.close()
+        if missing:
+            print(f"Missing {len(missing)} row(s); insert into data/corpus.db to fix.")
+        return
+
+    # --- demo mode ---
+    print("Loading dataset...")
+    bundle, _ = resolve_dataset()
     tokenizer = Tokenizer()
     tokenizer.load_state({"field_vocabs": bundle["vocab"], "frozen": True})
-    inv_vocab = {v: k for k, v in tokenizer.field_vocabs["surface"].items()}
+    vocab = tokenizer.field_vocabs["surface"]
+    inv_vocab = {v: k for k, v in vocab.items()}
 
-    content_mask = bundle.get("content_mask")
+    static_mapping = build_pristine_id_mapping(vocab)
+    v = len(static_mapping)
 
-    # ── Find non-Japanese punctuation tokens ──────────────────────
-    # Western punctuation that should be Japanese equivalents
-    NON_JP_PUNCT = set(",.:;!?()[]\"'`~-/\\@#$%^&*+=|<>{}")
-    JP_EQUIV = {
-        ",": "、", ".": "。", "!": "！", "?": "？",
-        ":": "：", ";": "；", "(": "（", ")": "）",
-        "~": "～", "-": "ー", "\"": "「」",
-    }
+    n_pristine = 0
+    n_pad = 0
+    pad_toks = []
+    for tid in range(4, v):
+        if static_mapping[tid] == PAD_ID and tid != PAD_ID:
+            n_pad += 1
+            pad_toks.append((tid, inv_vocab.get(tid, "?")))
+        elif int(static_mapping[tid]) != tid:
+            n_pristine += 1
 
-    print("\nScanning vocabulary for non-Japanese punctuation tokens...")
-    nonjp_punct_ids: dict[int, str] = {}
-    for tok, tid in tokenizer.field_vocabs["surface"].items():
-        if tid < 4:
-            continue
-        if any(ch in NON_JP_PUNCT for ch in tok):
-            nonjp_punct_ids[tid] = tok
+    print(f"  Vocab size: {v:,}")
+    print(f"  Static pristine rewrites: {n_pristine}")
+    print(f"  Non-content -> PAD: {n_pad}")
+    print("  Context-dependent: '.' (last-token->。, dot-runs->…+PAD)")
 
-    print(f"  {len(nonjp_punct_ids)} tokens contain non-JP punctuation")
-    by_char: dict[str, list[str]] = {}
-    for tok in nonjp_punct_ids.values():
-        for ch in tok:
-            if ch in NON_JP_PUNCT:
-                by_char.setdefault(ch, []).append(tok)
-    for ch in sorted(by_char):
-        examples = sorted(set(by_char[ch]))[:8]
-        jp = JP_EQUIV.get(ch, "?")
-        print(f"    '{ch}' (JP: {jp})  →  {examples}")
+    print("\n  Tokens mapped to PAD (non-content, no pristine equiv):")
+    for tid, tok in pad_toks[:30]:
+        print(f"    id={tid:6d}  '{tok}'")
+    if len(pad_toks) > 30:
+        print(f"    ... and {len(pad_toks) - 30} more")
 
-    # ── Scan sentences for non-JP punctuation ────────────────────
-    print("\nScanning for sentences with non-JP punctuation (10% sample)...")
-    ds_scan = BundledStyleDataset.from_bundle(bundle, sample_ratio=0.10)
-    ds_scan.content_drop_ratio = 0.0
-    gram_scan = ds_scan.filter_by_grammaticality(label=1)
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("SELECT sentence FROM sentences ORDER BY RANDOM() LIMIT 5000")
+    rows = [r[0] for r in cur.fetchall()]
+    conn.close()
 
-    punct_ids_set = set(nonjp_punct_ids.keys())
-    hits = []
-    for i in range(len(gram_scan)):
-        sample = gram_scan[i]
-        surface = sample.feature_ids["surface"]
-        ids_list = [int(x) for x in surface]
-        matched = [nonjp_punct_ids[x] for x in ids_list if x in punct_ids_set]
-        if not matched:
-            continue
-        tokens = [inv_vocab.get(int(tid), "") for tid in surface]
-        hits.append((i, len(matched), matched, " ".join(tokens)))
+    changed_sentences = []
+    for s in rows:
+        surfs = tokenize_sentence(parser, s)
 
-    hits.sort(key=lambda x: (-x[1], x[0]))
-    print(f"  Found {len(hits)} sentences with non-JP punctuation")
-    print(f"\n  Top 20:")
-    for rank, (idx, cnt, matched, text) in enumerate(hits[:20]):
-        print(f"    #{rank:2d} [{', '.join(matched)}]  {text[:90]}")
+        dirty_ids = [vocab.get(sf, 1) for sf in surfs]
+        dirty_t = torch.tensor(dirty_ids, dtype=torch.long)
+        pristine_t = apply_pristine(dirty_t, vocab, static_mapping=static_mapping)
 
-    # Pick a spread
-    picks_idx = []
-    n = len(hits)
-    if n >= 5:
-        picks_idx = [0, 1, 2, n // 3, 2 * n // 3]
-    else:
-        picks_idx = list(range(min(n, 5)))
+        if not torch.equal(dirty_t, pristine_t):
+            changes = []
+            for i, (d, p) in enumerate(zip(dirty_t.tolist(), pristine_t.tolist())):
+                if d != p:
+                    d_tok = inv_vocab.get(d, f"[{d}]")
+                    if p == PAD_ID:
+                        changes.append(f"'{d_tok}'->PAD")
+                    else:
+                        p_tok = inv_vocab.get(p, f"[{p}]")
+                        changes.append(f"'{d_tok}'->'{p_tok}'")
+            changed_sentences.append((s, surfs, dirty_t, pristine_t, changes))
 
-    gram_nodrop = gram_scan
-    gram_drop = gram_scan
-    gram_drop.content_drop_ratio = 0.5
+    print(f"\n{'=' * 72}")
+    print(
+        f"Sampled {len(rows):,} sentences, {len(changed_sentences):,} changed by pristine mapping"
+    )
+    print(f"{'=' * 72}\n")
 
-    demo_indices = [hits[i][0] for i in picks_idx]
-    print(f"\n  Selected {len(demo_indices)} samples for full augmentation walkthrough")
-
-    for demo_idx in demo_indices:
-        print("\n" + "=" * 72)
-        print(f"SAMPLE idx={demo_idx}")
-        print("=" * 72)
-
-        # ── 1. Raw sample (no content drop) ──────────────────────
-        raw_sample = gram_nodrop[demo_idx]
-        raw_surface = raw_sample.feature_ids["surface"]
-        show_ids("1. RAW (no augmentation)", raw_surface, inv_vocab)
-
-        if content_mask is not None and len(content_mask) > 0:
-            is_content = content_mask[raw_surface]
-            markers = "".join("C" if c else "F" for c in is_content)
-            print(f"    C/F  : {markers}  (C=content, F=function)")
-
-        # ── 2. Content drop ──────────────────────────────────────
-        torch.manual_seed(demo_idx)
-        drop_sample = gram_drop[demo_idx]
-        drop_surface = drop_sample.feature_ids["surface"]
-        show_ids("2. CONTENT DROP (ratio=0.5)", drop_surface, inv_vocab)
-        delta = len(raw_surface) - len(drop_surface)
-        print(f"    Dropped {delta} function token(s)")
-
-        print("\n    Stochastic variations (same sentence, different random seeds):")
-        for trial in range(3):
-            torch.manual_seed(demo_idx * 100 + trial + 1)
-            var_sample = gram_drop[demo_idx]
-            var_surface = var_sample.feature_ids["surface"]
-            print(
-                f"      trial {trial}: "
-                f"{decode_ids(inv_vocab, var_surface)}  (len={len(var_surface)})"
-            )
-
-        # ── 3. Collation (padding + attention_mask) ──────────────
-        # Get 3 samples with different content-drop randomness
-        mini_batch = []
-        for i in range(3):
-            torch.manual_seed(demo_idx * 100 + i + 10)
-            mini_batch.append(gram_drop[demo_idx])
-
-        collated = collate_fn(mini_batch)
-        surface_t = collated.feature_inputs["input_ids_surface"]
-        attn_mask = collated.attention_mask
-
-        print(
-            f"\n  3. COLLATED BATCH "
-            f"(3 samples, padded to max_len={surface_t.shape[1]})"
+    for i, (s, surfs, dirty_t, pristine_t, changes) in enumerate(
+        changed_sentences[:40]
+    ):
+        dirty_str = " ".join(inv_vocab.get(int(x), "?") for x in dirty_t)
+        pristine_str = " ".join(
+            inv_vocab.get(int(x), "?") if int(x) != PAD_ID else "___"
+            for x in pristine_t
         )
-        for i in range(surface_t.shape[0]):
-            seq_len = int(attn_mask[i].sum().item())
-            toks = decode_ids(inv_vocab, surface_t[i, :seq_len])
-            pad_count = surface_t.shape[1] - seq_len
-            print(f"    [{i}] {toks}  | +{pad_count} pad")
-        print(f"    Attention mask shape: {attn_mask.shape}")
-
-        # ── 4. Consistency doubling ──────────────────────────────
-        ids = surface_t
-        mask = attn_mask
-        B_actual = ids.size(0)
-        recon_targets = torch.cat([ids, ids], dim=0)
-        mask_doubled = torch.cat([mask, mask], dim=0)
-
-        print(
-            f"\n  4. CONSISTENCY DOUBLING "
-            f"(B {B_actual} → {recon_targets.size(0)})"
-        )
-        print(f"    recon_targets shape: {recon_targets.shape}")
-        print(f"    attention_mask shape: {mask_doubled.shape}")
-        print(
-            f"    row[0] == row[{B_actual}]: "
-            f"{torch.equal(recon_targets[0], recon_targets[B_actual])}"
-        )
-
-        # ── 5. Input masking ─────────────────────────────────────
-        INPUT_MASK_RATIO = 0.15
-        maskable = mask_doubled.bool()
-
-        def _apply_mask(ids_in: torch.Tensor) -> torch.Tensor:
-            rand_mask = (
-                torch.rand_like(ids_in.float()) < INPUT_MASK_RATIO
-            ) & maskable
-            return ids_in.masked_fill(rand_mask, 0)
-
-        torch.manual_seed(42)
-        masked_v1 = _apply_mask(recon_targets)
-        torch.manual_seed(43)
-        masked_v2 = _apply_mask(recon_targets)
-
-        print(f"\n  5. INPUT MASKING (ratio={INPUT_MASK_RATIO})")
-        print("    Two independent masks on the SAME doubled batch:")
-        for row in range(min(2, B_actual)):
-            seq_len = int(mask_doubled[row].sum().item())
-            orig = recon_targets[row, :seq_len]
-            m1 = masked_v1[row, :seq_len]
-            m2 = masked_v2[row, :seq_len]
-
-            n_masked_1 = int((m1 == 0).sum().item()) - int((orig == 0).sum().item())
-            n_masked_2 = int((m2 == 0).sum().item()) - int((orig == 0).sum().item())
-
-            print(f"\n    row[{row}] (len={seq_len}):")
-            print(f"      original: {decode_ids(inv_vocab, orig)}")
-            print(f"      mask_v1 : {decode_ids(inv_vocab, m1)}  ({n_masked_1} masked)")
-            print(f"      mask_v2 : {decode_ids(inv_vocab, m2)}  ({n_masked_2} masked)")
-
-            twin_row = row + B_actual
-            m1_twin = masked_v1[twin_row, :seq_len]
-            differs = int((m1[:seq_len] != m1_twin[:seq_len]).sum().item())
-            print(
-                f"      twin[{twin_row}]: "
-                f"{decode_ids(inv_vocab, m1_twin)}  "
-                f"(same seed → {differs} position(s) differ from row[{row}])"
-            )
-
-        # ── Summary diagram ──────────────────────────────────────
-        print(f"\n  PIPELINE SUMMARY for this sample:")
-        print(f"    raw tokens          → {len(raw_surface)} tokens")
-        print(
-            f"    content drop (0.5)  → {len(drop_surface)} tokens  "
-            f"({delta} function words dropped)"
-        )
-        print(
-            f"    collate + pad       → {surface_t.shape[1]} positions  "
-            f"(batch-max aligned)"
-        )
-        print(
-            f"    consistency double  → 2x batch "
-            f"({B_actual}→{2*B_actual} rows)"
-        )
-        print(
-            f"    input mask (15%)    → ~{int(len(drop_surface)*0.15)} "
-            f"positions zeroed per view"
-        )
-
-    print("\n" + "=" * 72)
-    print("DONE — These augmentations happen every batch, every epoch.")
-    print("Content drop and input masking are stochastic → the model never")
-    print("sees the exact same input twice.")
-    print("=" * 72)
+        print(f"#{i:3d} {s}")
+        print(f"     DIRTY:    {dirty_str}")
+        print(f"     PRISTINE: {pristine_str}")
+        print(f"     CHANGES:  {', '.join(changes)}")
+        print()
 
 
 if __name__ == "__main__":

@@ -889,6 +889,15 @@ def collate_fn(
     feature_tensors = _collate_features(batch, batch_size, max_seq_len)
     reg_labels = _collate_register_labels(batch, batch_size)
 
+    # Pack pristine surface IDs if any sample has them
+    if batch and batch[0].pristine_ids is not None:
+        pristine_tensor = torch.zeros((batch_size, max_seq_len), dtype=torch.long)
+        for i, s in enumerate(batch):
+            if s.pristine_ids is not None:
+                plen = min(len(s.pristine_ids), max_seq_len)
+                pristine_tensor[i, :plen] = s.pristine_ids[:plen]
+        feature_tensors["pristine_ids_surface"] = pristine_tensor
+
     return TrainingBatch(
         feature_inputs=feature_tensors,
         attention_mask=attention_mask,

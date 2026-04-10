@@ -159,6 +159,11 @@ class TrainConfig:
     # Set to 100.0 to disable (full vocabulary).
     token_percentile: float = 99.0
 
+    # Pristine targets: train as a denoiser mapping dirty surface tokens to
+    # canonical Japanese punctuation/PAD.  Reduces the effective output
+    # vocabulary and enables inference-time make_pristine(dirty) → clean.
+    use_pristine_targets: bool = True
+
 
 @dataclass
 class TrainResult:
@@ -407,6 +412,15 @@ def train(
             dataset_bundle, sample_ratio=sample_ratio
         )
         dataset.content_drop_ratio = 0.5
+
+        # Pristine targets: set up before filter_by_grammaticality so it propagates.
+        if config.use_pristine_targets:
+            from scripts.recon_bpd.token_remap import build_pristine_id_mapping
+
+            vocab = dataset_bundle["vocab"]["surface"]
+            dataset.pristine_static_mapping = build_pristine_id_mapping(vocab)
+            dataset.pristine_vocab = dict(vocab)  # snapshot before bundle drop
+
         gram_subset = dataset.filter_by_grammaticality(label=1)
         GLOBAL_SETUP_CACHE.dataset_subsets[sample_ratio] = gram_subset
         print(f"Gram sentences: {len(gram_subset)}")
@@ -423,7 +437,9 @@ def train(
     gc.collect()
 
     # ── Compute quintile bin edges from token lengths ───────────
-    _q_lengths = (gram_ds.offsets[gram_ds.indices + 1] - gram_ds.offsets[gram_ds.indices]).float()
+    _q_lengths = (
+        gram_ds.offsets[gram_ds.indices + 1] - gram_ds.offsets[gram_ds.indices]
+    ).float()
     _q_boundaries = torch.quantile(_q_lengths, torch.linspace(0, 1, 6))
     QUINTILE_EDGES = _q_boundaries[1:-1].to(torch.float32)  # 4 interior edges
     QUINTILE_LABELS = []
@@ -623,9 +639,10 @@ def train(
         epoch_t1_correct = 0
         epoch_t1_units = 0
         epoch_cossim_sum = 0.0
+        epoch_cossim_units = 0  # separate from t1 for pristine PAD exclusion
+        total_pristine_pad = torch.tensor(0, device=device, dtype=torch.long)
         total_elements = 0
         n_batches = 0
-        pool_sign_set: set[bytes] = set()
         s1_count = torch.tensor(0, device=device, dtype=torch.long)
         s0_count = torch.tensor(0, device=device, dtype=torch.long)
         fuzzy_count = torch.tensor(0, device=device, dtype=torch.long)
@@ -722,12 +739,20 @@ def train(
             )
             attention_mask = batch.attention_mask.to(device, non_blocking=IS_CUDA)
 
-            recon_targets = ids
+            # Pristine targets from dataloader (dirty→pristine denoising);
+            # falls back to dirty ids when pristine is not configured.
+            pristine = batch.feature_inputs.get("pristine_ids_surface")
+            if pristine is not None:
+                recon_targets = pristine.to(device, non_blocking=IS_CUDA)
+            else:
+                recon_targets = ids
+
             B_actual = ids.size(0)
 
             if config.consistency_weight > 0:
                 # Instantly double the batch dimension so the rest of the loop vectorize-processes
                 # exactly two distinct masked variations of each sentence concurrently.
+                ids = torch.cat([ids, ids], dim=0)
                 recon_targets = torch.cat([recon_targets, recon_targets], dim=0)
                 attention_mask = torch.cat([attention_mask, attention_mask], dim=0)
 
@@ -735,25 +760,22 @@ def train(
             T = attention_mask.shape[1]
             maskable = attention_mask.bool() if config.input_mask_ratio > 0 else None
 
-            def _apply_mask(ids: torch.Tensor) -> torch.Tensor:
+            def _apply_mask(x: torch.Tensor) -> torch.Tensor:
                 if maskable is None:
-                    return ids
+                    return x
                 rand_mask = (
-                    torch.rand_like(ids.float()) < config.input_mask_ratio
+                    torch.rand_like(x.float()) < config.input_mask_ratio
                 ) & maskable
-                return ids.masked_fill(rand_mask, 0)
+                return x.masked_fill(rand_mask, 0)
 
-            surface_ids = _apply_mask(recon_targets)
+            # Encoder sees masked DIRTY ids; CE target is pristine (or dirty).
+            surface_ids = _apply_mask(ids)
 
             # ── Forward (under autocast, matching KCTrainer) ─────────
             with AUTOCAST():
                 pooled = model.encode(surface_ids, attention_mask)
                 # Track the standard deviation of encoder embeddings to verify depth invariance
                 epoch_pooled_std_sum += pooled.detach().std(dim=-1).sum().float()
-                # Only count the first B_actual rows (before consistency doubling)
-                # so each original sentence contributes exactly one sign pattern.
-                for row in (pooled[:B_actual].detach() > 0).to(torch.uint8).cpu().numpy():
-                    pool_sign_set.add(row.tobytes())
 
                 half = B // 2
 
@@ -944,13 +966,15 @@ def train(
                     # 3. Calculate similarities
                     cos_sim = (pred_emb * tgt_emb).sum(dim=-1)
 
-                    num_valid = valid_mask.sum()
-                    total_semantic_tokens += num_valid
+                    # Exclude pristine-PAD from semantic (zero-vector targets are noise)
+                    semantic_valid = valid_mask & (recon_targets != 0)
+                    num_semantic = semantic_valid.sum()
+                    total_semantic_tokens += num_semantic
 
                     # 4. Auxiliary semantic loss for active tokens
-                    sem_loss_sum = ((1.0 - cos_sim) * valid_mask.float()).sum()
+                    sem_loss_sum = ((1.0 - cos_sim) * semantic_valid.float()).sum()
                     semantic_distillation_loss = (
-                        sem_loss_sum / num_valid.clamp_min(1).float()
+                        sem_loss_sum / num_semantic.clamp_min(1).float()
                     )
                     total_semantic_loss_sum += sem_loss_sum.detach().float()
 
@@ -964,6 +988,7 @@ def train(
                     is_hard = (~is_easy | rescue) & valid_mask
 
                     num_hard = is_hard.sum()
+                    num_valid = valid_mask.sum()
                     total_semantic_skipped += num_valid - num_hard
 
                     flat_h = h_recon.reshape(-1, h_recon.size(-1))
@@ -1004,6 +1029,9 @@ def train(
                 if n_batches % 100 == 0:
                     batch_units = int(mask_f.sum().item())
                     epoch_t1_units += batch_units
+                    # Cossim excludes pristine-PAD (zero-vector targets)
+                    cos_valid = attention_mask.bool() & (recon_targets != 0)
+                    epoch_cossim_units += int(cos_valid.sum().item())
                     with torch.no_grad():
                         for c0 in range(0, T, recon_chunk):
                             c1 = min(c0 + recon_chunk, T)
@@ -1021,12 +1049,18 @@ def train(
                             pred_emb = chive_normed[preds]
                             tgt_emb = chive_normed[recon_targets[:, c0:c1]]
                             cos = (pred_emb * tgt_emb).sum(dim=-1)
-                            epoch_cossim_sum += float((cos * chunk_mask).sum().item())
+                            chunk_cos_valid = cos_valid[:, c0:c1]
+                            epoch_cossim_sum += float(
+                                (cos * chunk_cos_valid.float()).sum().item()
+                            )
             else:
                 # Chunked fallback (MPS / no CCE): each chunk is
                 # [B, RECON_CHUNK, V] to bound peak memory.
                 # Uses ignore_index=-100 to match the CUDA path.
                 valid_mask = attention_mask.bool()
+                # Track cossim units (excluding pristine-PAD)
+                cos_valid_mps = valid_mask & (recon_targets != 0)
+                epoch_cossim_units += int(cos_valid_mps.sum().item())
                 ce_targets = recon_targets.where(
                     valid_mask, torch.tensor(-100, device=device)
                 )
@@ -1052,15 +1086,24 @@ def train(
                             ((preds == chunk_targets) & valid).sum().item()
                         )
                         pred_emb = chive_normed[preds]
-                        tgt_emb = chive_normed[chunk_targets]
+                        tgt_emb = chive_normed[recon_targets[:, c0:c1]]
                         cos = (pred_emb * tgt_emb).sum(dim=-1)
-                        epoch_cossim_sum += float((cos * valid.float()).sum().item())
+                        chunk_cos_valid = valid & (recon_targets[:, c0:c1] != 0)
+                        epoch_cossim_sum += float(
+                            (cos * chunk_cos_valid.float()).sum().item()
+                        )
 
             # nats → bits, normalize by attended token count
             # Primary run-to-run fitness metric.  Lower is better.
             total_bits = total_nll_nats / LOG2
             num_units = mask_f.sum().clamp_min(1)
             bpd = total_bits / num_units
+
+            # Track pristine PAD ratio (fraction of attended targets == PAD)
+            if config.use_pristine_targets:
+                total_pristine_pad += (
+                    (recon_targets == 0) & attention_mask.bool()
+                ).sum()
 
             bits_per_row = nats_per_row / LOG2  # [B], stays on GPU
             row_lengths = mask_f.sum(dim=1)  # [B], stays on GPU
@@ -1178,7 +1221,8 @@ def train(
             dt_batch = time.perf_counter() - t0
             t1_denom = epoch_t1_units if USE_FUSED_CE else int(epoch_num_units.item())
             t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-            avg_cos = epoch_cossim_sum / max(1, t1_denom)
+            cos_denom = epoch_cossim_units if USE_FUSED_CE else max(1, t1_denom)
+            avg_cos = epoch_cossim_sum / max(1, cos_denom)
             print(
                 f"\r  batch {n_batches}/{n_total_batches}  "
                 f"bpd={epoch_total_bits.item() / max(1, epoch_num_units.item()):.4f}  "
@@ -1245,7 +1289,8 @@ def train(
 
         t1_denom = epoch_t1_units if USE_FUSED_CE else _num_units_val
         t1_pct = 100.0 * epoch_t1_correct / max(1, t1_denom)
-        avg_cos = epoch_cossim_sum / max(1, t1_denom)
+        cos_denom = epoch_cossim_units if epoch_cossim_units > 0 else max(1, t1_denom)
+        avg_cos = epoch_cossim_sum / max(1, cos_denom)
         avg_rank_loss = total_rank_sum.item() / max(1, n_batches)
 
         latest_metrics.update(
@@ -1286,14 +1331,17 @@ def train(
             )
             latest_metrics["semantic_skip_ratio"] = _sem_skipped_val / _sem_tokens_val
 
+        if config.use_pristine_targets:
+            latest_metrics["pristine_pad_ratio"] = int(total_pristine_pad.item()) / max(
+                1, _num_units_val
+            )
+
         latest_metrics.update(
             {
                 "raw_consistency": avg_raw_consist,
                 "mean_abs_logit": mean_abs_logit,
                 "logit_std": logit_std,
                 "pooled_std": avg_pooled_std,
-                "pool/uniq_relative": len(pool_sign_set) / max(1, total_elements),
-                "pool/uniq_absolute": len(pool_sign_set),
                 "loss": avg_loss,
                 "mdl": total_mdl_sum.item() / max(1, n_batches),
                 "rank": avg_rank_loss,

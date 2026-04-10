@@ -358,6 +358,7 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
     token_remap_meta: Optional[Dict[str, Any]] = None
     if token_percentile < 100.0:
         from scripts.recon_bpd.token_remap import (
+            _pristine_token_ids,
             apply_remap_to_state_dict,
             compute_token_remap,
         )
@@ -376,7 +377,10 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
                 "Dataset bundle missing 'token_gram_freq'. "
                 "Rebuild with latest scripts/dataset.py."
             )
-        remap = compute_token_remap(tgf, token_percentile, chive_weights)
+        pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
+        remap = compute_token_remap(
+            tgf, token_percentile, chive_weights, force_keep=pristine_ids
+        )
         cleaned = apply_remap_to_state_dict(cleaned, remap, chive_weights)
         v_old = len(remap.old_to_new)
         print(

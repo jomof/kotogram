@@ -58,9 +58,6 @@ class SudachiJapaneseParser(JapaneseParser):
         # Fix for special case with っ character
         text = text.replace(" っ", "っ").replace("っ ", "っ")
 
-        # Fix for phantom tokens caused by ellipsis in Sudachi (maps … -> ...)
-        text = text.replace("…", "...")
-
         # Normalize double exclamation mark (‼ -> !!) for consistent tokenization
         text = text.replace("‼", "!!")
 

@@ -4,9 +4,9 @@
 Usage: .venv/bin/python scratch/corpus_content_histogram.py
 """
 
+import os
 import sqlite3
 import sys
-import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -36,7 +36,7 @@ def main():
     bar_width = 50
 
     print(f"Total sentences: {total:,}")
-    print(f"Non-content chars per is_content_char (JP punctuation = content)")
+    print("Non-content chars per is_content_char (JP punctuation = content)")
     print()
     print(f"{'n+':>4s}  {'count':>10s}  {'%':>6s}  {'':>{bar_width}s}  example")
     print(f"{'':->4s}  {'':->10s}  {'':->6s}  {'':->{bar_width}s}  {'':->50s}")
@@ -60,7 +60,9 @@ def main():
         if len(ex_str) > 80:
             ex_str = ex_str[:77] + "..."
 
-        print(f"{t:>3d}+  {cumulative:>10,}  {pct:>5.1f}%  {bar:<{bar_width}s}  {ex_str}")
+        print(
+            f"{t:>3d}+  {cumulative:>10,}  {pct:>5.1f}%  {bar:<{bar_width}s}  {ex_str}"
+        )
         cumulative -= at
 
     print()

@@ -9,7 +9,6 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-import torch
 from scripts.dataset import BundledStyleDataset, resolve_dataset
 
 
@@ -25,8 +24,10 @@ def main():
 
     n = len(lengths)
     print(f"Grammatical sentences: {n:,}")
-    print(f"Token length: min={lengths[0]}  max={lengths[-1]}  "
-          f"median={lengths[n//2]}  mean={lengths.mean():.1f}")
+    print(
+        f"Token length: min={lengths[0]}  max={lengths[-1]}  "
+        f"median={lengths[n // 2]}  mean={lengths.mean():.1f}"
+    )
 
     n_bins = 5
     print(f"\n{n_bins} equal-count bins:")
@@ -40,7 +41,7 @@ def main():
         hi_val = int(lengths[hi_idx])
         count = hi_idx - lo_idx + 1
         pct = 100 * count / n
-        print(f"  {b+1:>4d}  {lo_val:>5d}–{hi_val:<5d}  {count:>10,}  {pct:>5.1f}%")
+        print(f"  {b + 1:>4d}  {lo_val:>5d}–{hi_val:<5d}  {count:>10,}  {pct:>5.1f}%")
 
 
 if __name__ == "__main__":

@@ -217,6 +217,11 @@ def is_content_char(cp: int) -> bool:
         or cp == 0xFF64  # ､ Halfwidth Ideographic Comma
         or cp == 0xFF65  # ･ Halfwidth Katakana Middle Dot
         or cp == 0xFF1A  # ： Fullwidth Colon
+        or cp == 0xFF1B  # ； Fullwidth Semicolon
+        or cp == 0x3007  # 〇 Ideographic Number Zero
+        or cp == 0x3191  # ㆑ Ideographic Annotation Reverse Mark
+        or cp == 0x303B  # 〻 Vertical Ideographic Iteration Mark
+        or cp == 0x303D  # 〽 Part Alternation Mark
     )
 
 

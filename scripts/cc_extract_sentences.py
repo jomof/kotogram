@@ -119,6 +119,8 @@ def _passes_char_filter(s: str) -> bool:
         return False
     if s.count("...") > 1:
         return False
+    if s.count('"') % 2 != 0:
+        return False
     for pat in _JUNK_PATTERNS:
         if pat.search(s):
             return False

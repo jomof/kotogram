@@ -21,6 +21,178 @@ from kotogram.tokenizer import MASK_ID
 
 NUM_SPECIAL = MASK_ID + 1  # IDs 0..3 are PAD, UNK, CLS, MASK
 
+# Whole-token pristine mappings: only applied when the entire token matches.
+_PRISTINE_EXACT: Dict[str, str] = {
+    "...": "\u2026",  # three dots -> ellipsis
+}
+
+# Single-char pristine mappings: only applied to single-character tokens.
+# NOTE: '.' and ASCII '"' are handled context-dependently in apply_pristine().
+_PRISTINE_SINGLE: Dict[str, str] = {
+    "!": "\uff01",
+    "?": "\uff1f",
+    ",": "\u3001",
+    ":": "\uff1a",
+    "~": "\uff5e",
+    "\uff0e": "\u3002",  # fullwidth stop -> ideographic stop
+    "\uff61": "\u3002",
+    "\uff64": "\u3001",  # halfwidth variants
+    "\uff62": "\u300c",
+    "\uff63": "\u300d",  # halfwidth brackets
+}
+
+
+def pristine_surface(tok: str) -> str:
+    """Map a dirty surface token to its pristine form, or return unchanged.
+
+    NOTE: Does NOT handle '.' or ASCII '"' — those need sequence context.
+    Use ``apply_pristine()`` for the full context-aware mapping.
+    """
+    if tok in _PRISTINE_EXACT:
+        return _PRISTINE_EXACT[tok]
+    if len(tok) == 1 and tok in _PRISTINE_SINGLE:
+        return _PRISTINE_SINGLE[tok]
+    return tok
+
+
+def build_pristine_id_mapping(vocab: Dict[str, int]) -> torch.Tensor:
+    """Build a [vocab_size] static ID mapping for non-context-dependent rules.
+
+    Context-dependent rules ('.' handling) are applied by ``apply_pristine()``.
+    Non-content tokens with no pristine mapping are mapped to PAD (ID 0).
+    """
+    from kotogram.masking import is_content_token
+    from kotogram.tokenizer import PAD_ID
+
+    inv_vocab = {v: k for k, v in vocab.items()}
+    v = max(vocab.values()) + 1
+    mapping = torch.arange(v, dtype=torch.long)
+
+    for tid in range(NUM_SPECIAL, v):
+        tok = inv_vocab.get(tid)
+        if tok is None:
+            continue
+        p = pristine_surface(tok)
+        if p != tok:
+            pid = vocab.get(p)
+            if pid is not None:
+                mapping[tid] = pid
+                continue
+        if tok == '"':
+            continue  # identity; apply_pristine maps by open/close parity
+        if not is_content_token(tok):
+            mapping[tid] = PAD_ID
+
+    return mapping
+
+
+def apply_pristine(  # pylint: disable=too-many-locals
+    ids: torch.Tensor,
+    vocab: Dict[str, int],
+    static_mapping: Optional[torch.Tensor] = None,
+) -> torch.Tensor:
+    """Apply full pristine mapping to a 1-D token ID sequence.
+
+    Handles context-dependent rules:
+    - '.' as last token → '。'
+    - Consecutive '.' runs (e.g. `. . .`) → first becomes '…', rest become PAD
+    - '...' single token → '…' (via static mapping)
+    - ASCII '"' by occurrence → alternating 「 and 」 (1st, 3rd, … open; 2nd, 4th, … close)
+    - All other rules via static mapping
+
+    Pass a pre-built ``static_mapping`` to avoid recomputing it per call.
+    """
+    from kotogram.tokenizer import PAD_ID
+
+    if static_mapping is None:
+        static_mapping = build_pristine_id_mapping(vocab)
+    out = static_mapping[ids].clone()
+
+    dot_id = vocab.get(".")
+    maru_id = vocab.get("\u3002")  # 。
+    ellipsis_id = vocab.get("\u2026")  # …
+
+    n = len(ids)
+    if dot_id is not None:
+        i = 0
+        while i < n:
+            if int(ids[i]) == dot_id:
+                run_start = i
+                while i < n and int(ids[i]) == dot_id:
+                    i += 1
+                run_len = i - run_start
+
+                if run_len >= 2 and ellipsis_id is not None:
+                    out[run_start] = ellipsis_id
+                    for j in range(run_start + 1, run_start + run_len):
+                        out[j] = PAD_ID
+                elif run_len == 1 and run_start == n - 1 and maru_id is not None:
+                    out[run_start] = maru_id
+                else:
+                    out[run_start] = ids[
+                        run_start
+                    ]  # identity for lone mid-sentence '.'
+            else:
+                i += 1
+
+    quote_id = vocab.get('"')
+    open_k = vocab.get("\u300c")
+    close_k = vocab.get("\u300d")
+    if quote_id is not None and open_k is not None and close_k is not None:
+        dq_count = 0
+        for i in range(n):
+            if int(ids[i]) == quote_id:
+                dq_count += 1
+                out[i] = open_k if dq_count % 2 == 1 else close_k
+
+    return out
+
+
+def _pristine_token_ids(vocab: Dict[str, int]) -> set:
+    """Return token IDs that participate in pristine mappings (both sides)."""
+    ids: set = set()
+    for tok, tid in vocab.items():
+        if tid < NUM_SPECIAL:
+            continue
+        p = pristine_surface(tok)
+        if p != tok:
+            ids.add(tid)
+            pid = vocab.get(p)
+            if pid is not None:
+                ids.add(pid)
+    # Context-dependent: '.' runs, '" parity'
+    for tok in (".", "\u3002", "\u2026", '"', "\u300c", "\u300d"):
+        ctx_tid = vocab.get(tok)
+        if ctx_tid is not None:
+            ids.add(ctx_tid)
+    return ids
+
+
+def apply_pristine_batch(
+    ids: torch.Tensor,
+    attention_mask: torch.Tensor,
+    vocab: Dict[str, int],
+    static_mapping: torch.Tensor,
+) -> torch.Tensor:
+    """Apply pristine mapping to a batch of token ID sequences.
+
+    Args:
+        ids: [B, T] int64 tensor of dirty surface token IDs.
+        attention_mask: [B, T] float tensor (1.0 for real tokens, 0.0 for padding).
+        vocab: Surface vocabulary dict (token string -> ID).
+        static_mapping: Pre-built mapping from ``build_pristine_id_mapping``.
+
+    Returns:
+        [B, T] int64 tensor of pristine surface token IDs.
+    """
+    bsz = ids.size(0)
+    out = ids.clone()
+    for b in range(bsz):
+        seq_len = int(attention_mask[b].sum().item())
+        row = ids[b, :seq_len]
+        out[b, :seq_len] = apply_pristine(row, vocab, static_mapping=static_mapping)
+    return out
+
 
 @dataclass
 class TokenRemap:
@@ -38,6 +210,7 @@ def compute_token_remap(  # pylint: disable=too-many-locals
     token_gram_freq: torch.Tensor,
     percentile: float,
     chive_weights: torch.Tensor,
+    force_keep: Optional[set] = None,
 ) -> TokenRemap:
     """Compute a vocabulary reduction from a token-frequency vector.
 
@@ -46,6 +219,8 @@ def compute_token_remap(  # pylint: disable=too-many-locals
         percentile: Keep tokens covering this percentage of total position mass
             (e.g. 99.0 keeps tokens accounting for 99% of positions).
         chive_weights: ``[V, 300]`` float32 chiVe embeddings.
+        force_keep: Optional set of token IDs that must survive the reduction
+            regardless of frequency (e.g. pristine target tokens).
 
     Returns:
         A ``TokenRemap`` describing the old-to-new mapping and UNK embedding.
@@ -65,6 +240,10 @@ def compute_token_remap(  # pylint: disable=too-many-locals
     # Always keep special tokens
     for sid in range(NUM_SPECIAL):
         kept_set.add(sid)
+
+    # Force-keep pristine target tokens (and their dirty sources)
+    if force_keep:
+        kept_set.update(fid for fid in force_keep if fid < v_old)
 
     kept_sorted = sorted(kept_set)
     kept_indices = torch.tensor(kept_sorted, dtype=torch.long)
@@ -121,7 +300,8 @@ def apply_remap_to_bundle(  # pylint: disable=too-many-locals
             "Rebuild the dataset with the latest scripts/dataset.py."
         )
 
-    remap = compute_token_remap(tgf, percentile, chive_weights)
+    pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
+    remap = compute_token_remap(tgf, percentile, chive_weights, force_keep=pristine_ids)
     v_old = len(remap.old_to_new)
 
     # Remap surface feature IDs

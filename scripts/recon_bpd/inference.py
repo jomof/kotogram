@@ -273,12 +273,41 @@ def _maybe_register_inferred_remap(  # pylint: disable=too-many-locals
 LN2 = 0.6931471805599453  # ln(2), for nat -> bit conversion
 
 
+def make_pristine(
+    dirty_ids: torch.Tensor,
+    attention_mask: torch.Tensor,
+    vocab: Dict[str, int],
+) -> torch.Tensor:
+    """Ground-truth pristine transform (rule-based, exact).
+
+    Applies the same pristine rules used during training to convert dirty
+    tokenized text to clean canonical form.  Useful for inference-time
+    BPD calibration and text cleaning.
+
+    Args:
+        dirty_ids: [B, T] int64 tensor of dirty surface token IDs.
+        attention_mask: [B, T] float tensor (1.0 for real, 0.0 for padding).
+        vocab: Surface vocabulary dict (token string -> ID).
+
+    Returns:
+        [B, T] int64 tensor of pristine surface token IDs.
+    """
+    from scripts.recon_bpd.token_remap import (
+        apply_pristine_batch,
+        build_pristine_id_mapping,
+    )
+
+    static = build_pristine_id_mapping(vocab)
+    return apply_pristine_batch(dirty_ids, attention_mask, vocab, static)
+
+
 def embed_and_bpd(  # pylint: disable=too-many-locals
     model: BpdModel,
     surface_ids: torch.Tensor,
     attention_mask: torch.Tensor,
     *,
     vectorized: bool = False,
+    pristine_vocab: Optional[Dict[str, int]] = None,
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """Single forward pass returning pooled embeddings and per-sentence BPD.
 
@@ -287,6 +316,9 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
     When True (FP16 distilled model), uses a single matmul over all positions
     at once -- feasible because FP16 halves the tensor size and distilled
     models are run at smaller batch sizes.
+
+    If *pristine_vocab* is provided, BPD is measured against pristine targets
+    instead of the dirty input (matching pristine-trained models).
 
     Returns:
         (pooled, bpd) where pooled is [B, d_model] and bpd is [B].
@@ -312,6 +344,11 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
 
     bsz, seq_len = surface_ids.shape
 
+    # BPD targets: pristine (if calibrated) or dirty (backward compat)
+    bpd_targets = surface_ids
+    if pristine_vocab is not None:
+        bpd_targets = make_pristine(surface_ids, attention_mask, pristine_vocab)
+
     output_u: Optional[torch.Tensor] = getattr(model, "_output_u", None)
     output_v: Optional[torch.Tensor] = getattr(model, "_output_v", None)
     has_lowrank = output_u is not None and output_v is not None
@@ -322,7 +359,7 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
         mid = F.linear(h_recon, output_v)  # pylint: disable=not-callable
         logits = F.linear(mid, output_u)  # pylint: disable=not-callable
         log_probs = F.log_softmax(logits.float(), dim=-1)
-        targets = surface_ids.unsqueeze(-1)
+        targets = bpd_targets.unsqueeze(-1)
         nll = -log_probs.gather(2, targets).squeeze(-1)
         nll_sum = (nll * attention_mask.float()).sum(dim=1)
     elif has_lowrank:
@@ -333,14 +370,14 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
             mid_t = F.linear(h_recon[:, t, :], output_v)  # pylint: disable=not-callable
             logits_t = F.linear(mid_t, output_u)  # pylint: disable=not-callable
             log_probs_t = F.log_softmax(logits_t.float(), dim=-1)
-            target_t = surface_ids[:, t]
+            target_t = bpd_targets[:, t]
             nll_t = -log_probs_t.gather(1, target_t.unsqueeze(1)).squeeze(1)
             nll_sum += nll_t * attention_mask[:, t].float()
     elif vectorized:
         output_weight = model.recon.output_head.weight  # [V, H]
         logits = F.linear(h_recon, output_weight)  # pylint: disable=not-callable
         log_probs = F.log_softmax(logits.float(), dim=-1)
-        targets = surface_ids.unsqueeze(-1)
+        targets = bpd_targets.unsqueeze(-1)
         nll = -log_probs.gather(2, targets).squeeze(-1)
         nll_sum = (nll * attention_mask.float()).sum(dim=1)
     else:
@@ -349,7 +386,7 @@ def embed_and_bpd(  # pylint: disable=too-many-locals
         for t in range(seq_len):
             logits_t = F.linear(h_recon[:, t, :], output_weight)  # pylint: disable=not-callable
             log_probs_t = F.log_softmax(logits_t, dim=-1)
-            target_t = surface_ids[:, t]
+            target_t = bpd_targets[:, t]
             nll_t = -log_probs_t.gather(1, target_t.unsqueeze(1)).squeeze(1)
             nll_sum += nll_t * attention_mask[:, t].float()
 
