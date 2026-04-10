@@ -461,7 +461,7 @@ def merge_content_mask(
 def extract_chive_for_merged_vocab(
     surface_vocab: Dict[str, int],
     surface_to_base: Optional[Dict[str, str]] = None,
-) -> torch.Tensor:
+) -> tuple[torch.Tensor, torch.Tensor]:
     """Extract chiVe vectors aligned to merged vocab; unmatched tokens are zero vectors."""
     from train.chive import (  # pylint: disable=redefined-outer-name
         download_chive,
@@ -474,11 +474,11 @@ def extract_chive_for_merged_vocab(
         download_chive()
 
     vocab_size = max(surface_vocab.values()) + 1 if surface_vocab else 0
-    vectors, matched = parse_chive_vectors(
+    vectors, matched, ranks = parse_chive_vectors(
         txt_path, surface_vocab, vocab_size, surface_to_base
     )
     print(f"  chiVe: {len(matched):,}/{len(surface_vocab):,} tokens matched")
-    return vectors
+    return vectors, ranks
 
 
 def compute_chive_hash(vectors: torch.Tensor) -> str:
@@ -639,6 +639,7 @@ def build_dataset(  # pylint: disable=too-many-locals
     )
 
     chive_surface: Optional[torch.Tensor] = None
+    chive_ranks: Optional[torch.Tensor] = None
     chive_id: Optional[str] = None
 
     # Fast path: if base dataset has same surface vocab, reuse its chiVe directly.
@@ -648,11 +649,15 @@ def build_dataset(  # pylint: disable=too-many-locals
         chive_id = base_dataset.get("chive_id")
         if chive_id:
             cached = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
-            if os.path.exists(cached):
+            cached_ranks = os.path.join(LOCAL_CACHE, f"chive_ranks-{chive_id}.pt")
+            if os.path.exists(cached) and os.path.exists(cached_ranks):
                 chive_surface = load_chive(cached)
+                chive_ranks = torch.load(
+                    cached_ranks, map_location="cpu", weights_only=True
+                )
                 print(f"  chiVe unchanged from base dataset ({chive_id})")
 
-    if chive_surface is None:
+    if chive_surface is None or chive_ranks is None:
         s2b_path = os.path.join(cache_dir, "surface_to_base.json")
         surface_to_base = {}
         if os.path.exists(s2b_path):
@@ -660,15 +665,19 @@ def build_dataset(  # pylint: disable=too-many-locals
                 surface_to_base = json.load(f)
 
         print("  Extracting chiVe vectors for merged vocabulary...")
-        chive_surface = extract_chive_for_merged_vocab(
+        chive_surface, chive_ranks = extract_chive_for_merged_vocab(
             merged_vocab["surface"], surface_to_base
         )
         chive_id = compute_chive_hash(chive_surface)
         # If this hash already exists locally, the content is identical -- skip saving.
         cached = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
-        if os.path.exists(cached):
+        cached_ranks = os.path.join(LOCAL_CACHE, f"chive_ranks-{chive_id}.pt")
+        if os.path.exists(cached) and os.path.exists(cached_ranks):
             print(f"  chiVe ID: {chive_id} (already cached)")
             chive_surface = load_chive(cached)
+            chive_ranks = torch.load(
+                cached_ranks, map_location="cpu", weights_only=True
+            )
         else:
             print(f"  chiVe ID: {chive_id}")
 
@@ -716,6 +725,7 @@ def build_dataset(  # pylint: disable=too-many-locals
         "labels": slim_labels,
         "content_mask": content_mask,
         "sentences": local_data["sentences"],
+        "chive_ranks": chive_ranks,
     }
 
     for prefix in ("gp_pos", "gp_neg"):
@@ -753,6 +763,10 @@ def build_dataset(  # pylint: disable=too-many-locals
     chive_path = os.path.join(LOCAL_CACHE, f"chive-{chive_id}.pt")
     if not os.path.exists(chive_path):
         torch.save(chive_surface, chive_path)
+
+    chive_ranks_path = os.path.join(LOCAL_CACHE, f"chive_ranks-{chive_id}.pt")
+    if not os.path.exists(chive_ranks_path):
+        torch.save(chive_ranks, chive_ranks_path)
 
     corpus_gz_path = _prepare_corpus_gz(CORPUS_DB_PATH, content_hash)
 

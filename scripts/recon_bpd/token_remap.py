@@ -206,11 +206,13 @@ class TokenRemap:
     percentile: float  # the percentile that produced this remap
 
 
-def compute_token_remap(  # pylint: disable=too-many-locals
+def compute_token_remap(  # pylint: disable=too-many-locals,too-many-positional-arguments
     token_gram_freq: torch.Tensor,
     percentile: float,
     chive_weights: torch.Tensor,
     force_keep: Optional[set] = None,
+    chive_ranks: Optional[torch.Tensor] = None,
+    chive_quartile: float = 0.25,
 ) -> TokenRemap:
     """Compute a vocabulary reduction from a token-frequency vector.
 
@@ -244,6 +246,13 @@ def compute_token_remap(  # pylint: disable=too-many-locals
     # Force-keep pristine target tokens (and their dirty sources)
     if force_keep:
         kept_set.update(fid for fid in force_keep if fid < v_old)
+
+    # Force-keep top quartile ChiVe tokens that appear at least once functionally
+    if chive_ranks is not None:
+        limit = int(2530792 * chive_quartile)
+        protected_mask = (chive_ranks <= limit) & (token_gram_freq > 0)
+        protected_ids = torch.nonzero(protected_mask).squeeze(1).tolist()
+        kept_set.update(fid for fid in protected_ids if fid < v_old)
 
     kept_sorted = sorted(kept_set)
     kept_indices = torch.tensor(kept_sorted, dtype=torch.long)
@@ -301,7 +310,13 @@ def apply_remap_to_bundle(  # pylint: disable=too-many-locals
         )
 
     pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
-    remap = compute_token_remap(tgf, percentile, chive_weights, force_keep=pristine_ids)
+    remap = compute_token_remap(
+        tgf,
+        percentile,
+        chive_weights,
+        force_keep=pristine_ids,
+        chive_ranks=bundle.get("chive_ranks"),
+    )
     v_old = len(remap.old_to_new)
 
     # Remap surface feature IDs

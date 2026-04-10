@@ -379,7 +379,11 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
             )
         pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
         remap = compute_token_remap(
-            tgf, token_percentile, chive_weights, force_keep=pristine_ids
+            tgf,
+            token_percentile,
+            chive_weights,
+            force_keep=pristine_ids,
+            chive_ranks=bundle.get("chive_ranks"),
         )
         cleaned = apply_remap_to_state_dict(cleaned, remap, chive_weights)
         v_old = len(remap.old_to_new)

@@ -77,10 +77,10 @@ def parse_chive_vectors(  # pylint: disable=too-many-locals
     surface_vocab: dict[str, int],
     vocab_size: int,
     surface_to_base: Optional[dict[str, str]] = None,
-) -> tuple[torch.Tensor, set[str]]:
-    """Parse chiVe text file, mapping surface_vocab entries to vectors.
+) -> tuple[torch.Tensor, set[str], torch.Tensor]:
+    """Parse chiVe text file, mapping surface_vocab entries to vectors and ranks.
 
-    Returns (vectors_tensor, matched_words_set).
+    Returns (vectors_tensor, matched_words_set, ranks_tensor).
     """
     base_to_targets: dict[str, list[str]] = {}
     target = set(surface_vocab.keys())
@@ -105,10 +105,11 @@ def parse_chive_vectors(  # pylint: disable=too-many-locals
                 base_to_targets[base].append(t)
 
     vectors = torch.zeros(vocab_size, CHIVE_DIM)
+    ranks = torch.full((vocab_size,), 9999999, dtype=torch.int32)
     matched: set[str] = set()
     with open(txt_path, encoding="utf-8") as f:
         f.readline()
-        for line in f:
+        for i, line in enumerate(f):
             space_idx = line.index(" ")
             word = line[:space_idx]
 
@@ -125,13 +126,15 @@ def parse_chive_vectors(  # pylint: disable=too-many-locals
                 vals = line[space_idx + 1 :].strip().split()
                 vec = torch.tensor([float(v) for v in vals], dtype=torch.float32)
                 for t in targets_to_fill:
-                    vectors[surface_vocab[t]] = vec
+                    tid = surface_vocab[t]
+                    vectors[tid] = vec
+                    ranks[tid] = i
                     matched.add(t)
 
                 if len(matched) == len(target):
                     break
 
-    return vectors, matched
+    return vectors, matched, ranks
 
 
 def download_chive() -> str:
@@ -247,7 +250,7 @@ def extract_chive_for_vocab(  # pylint: disable=too-many-locals
     console.print(
         f"Extracting chiVe vectors for {len(target_strings):,} vocab entries..."
     )
-    vectors, matched_strings = parse_chive_vectors(
+    vectors, matched_strings, _ranks = parse_chive_vectors(
         chive_txt_path, surface_vocab, vocab_size, surface_to_base
     )
 

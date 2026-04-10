@@ -14,6 +14,7 @@ Output:
   .cc/<crawl-id>/sentences.txt.gz           All extracted sentences
   .cc/selected-sentences.txt                  Top-scored subset (stable path)
 """
+# pylint: disable=too-many-lines
 
 from __future__ import annotations
 
@@ -50,10 +51,12 @@ from scripts.cc_common import (
     get_crawl_info,
     get_latest_crawl_id,
     model_hash,
+    parallel_parse_and_encode,
     perf_flush,
     perf_log,
     perf_log_dist,
     perf_start_run,
+    sentences_fingerprint,
     set_tokenizer_path,
 )
 
@@ -111,20 +114,14 @@ _MAX_NON_CONTENT_CHARS = 3
 
 def _passes_char_filter(s: str) -> bool:
     """Return True if the sentence contains no banned characters or junk patterns."""
-    if CHAR_FILTER.search(s):
-        return False
-    if _REJECTED_CHARS.intersection(s):
-        return False
-    if sum(1 for ch in s if not is_content_char(ord(ch))) > _MAX_NON_CONTENT_CHARS:
-        return False
-    if s.count("...") > 1:
-        return False
-    if s.count('"') % 2 != 0:
-        return False
-    for pat in _JUNK_PATTERNS:
-        if pat.search(s):
-            return False
-    return True
+    return not (
+        CHAR_FILTER.search(s)
+        or _REJECTED_CHARS.intersection(s)
+        or sum(1 for ch in s if not is_content_char(ord(ch))) > _MAX_NON_CONTENT_CHARS
+        or s.count("...") > 1
+        or s.count('"') % 2 != 0
+        or any(pat.search(s) for pat in _JUNK_PATTERNS)
+    )
 
 
 def _strip_leading_non_content(s: str) -> str:
@@ -614,6 +611,7 @@ def _print_selection_summary(  # pylint: disable=too-many-arguments,too-many-pos
     total_cc: int,
     n_filtered: int,
     n_selected: int,
+    n_oov_added: int,
     cutoff: float,
     diversity: np.ndarray,
     unc: np.ndarray,
@@ -628,7 +626,9 @@ def _print_selection_summary(  # pylint: disable=too-many-arguments,too-many-pos
     tbl.add_row("CC sentences (total)", f"{total_cc:,}")
     tbl.add_row("Filtered", f"{n_filtered:,}")
     tbl.add_row("Candidates", f"{total_cc - n_filtered:,}")
-    tbl.add_row("Selected", f"{n_selected:,}")
+    tbl.add_row("Selected (Impact)", f"{n_selected:,}")
+    if n_oov_added > 0:
+        tbl.add_row("Selected (New Vocab)", f"{n_oov_added:,}")
     tbl.add_row("Impact cutoff", f"{cutoff:.6f}")
     tbl.add_row("", "")
     tbl.add_row("Diversity (mean)", f"{diversity.mean():.4f}")
@@ -749,7 +749,7 @@ def main() -> None:  # pylint: disable=too-many-locals
         _cm_parser = _SJP_cm(validate=False)
         pre_content = len(new_batch)
         _to_tokens = _cm_parser._to_kotogram_tokens  # pylint: disable=protected-access
-        _MAX_TOKENS = 31
+        max_tokens = 31
         filtered_batch: list[str] = []
         token_filtered = 0
         for s in new_batch:
@@ -757,7 +757,7 @@ def main() -> None:  # pylint: disable=too-many-locals
             surfaces = [t.surface for t in toks]
             if not has_majority_content(surfaces):
                 continue
-            if len(toks) > _MAX_TOKENS:
+            if len(toks) > max_tokens:
                 token_filtered += 1
                 continue
             filtered_batch.append(s)
@@ -769,7 +769,7 @@ def main() -> None:  # pylint: disable=too-many-locals
             )
         if token_filtered:
             console.print(
-                f"  Filtered {token_filtered:,} sentences > {_MAX_TOKENS} tokens"
+                f"  Filtered {token_filtered:,} sentences > {max_tokens} tokens"
             )
 
         # Canonical dedup against corpus.db
@@ -929,7 +929,55 @@ def main() -> None:  # pylint: disable=too-many-locals
 
     # -- Select --
     sel_local, cutoff = _select(impact, args.top_pct, args.min_impact)
-    sel_global = keep_idx[sel_local]
+
+    # -- Target OOV Sentences --
+    keep_sents = [cc_sentences[i] for i in keep_idx]
+    keep_fp = sentences_fingerprint(keep_sents)
+    cache_dir = _cache_path(crawl_id, "inference")
+    keep_unk_path = cache_dir / "keep_unk.npy"
+    keep_meta_path = cache_dir / "keep_unk_meta.json"
+
+    has_unk: np.ndarray | None = None
+    if keep_unk_path.exists() and keep_meta_path.exists():
+        meta = json.loads(keep_meta_path.read_text(encoding="utf-8"))
+        if meta.get("fp") == keep_fp and meta.get("model_hash") == model_md5:
+            has_unk = np.load(str(keep_unk_path))
+
+    if has_unk is None or len(has_unk) != len(keep_sents):
+        console.print("  Parsing and encoding candidates to detect OOV vocabulary...")
+        set_tokenizer_path(tokenizer_path)
+        encoded_keep = parallel_parse_and_encode(keep_sents)
+
+        has_unk = np.zeros(len(keep_sents), dtype=bool)
+        remap = getattr(model, "_token_remap", None)
+        if remap is not None:
+            remap = remap.cpu().numpy()
+        unk_id = model.cfg.surface_vocab_size - 1
+
+        for i, enc in enumerate(encoded_keep):
+            surf_ids = np.array(enc["surface"])
+            if remap is not None:
+                surf_ids = remap[np.clip(surf_ids, 0, len(remap) - 1)]
+            if unk_id in surf_ids:
+                has_unk[i] = True
+
+        np.save(str(keep_unk_path), has_unk)
+        keep_meta_path.write_text(
+            json.dumps({"fp": keep_fp, "model_hash": model_md5}), encoding="utf-8"
+        )
+
+    sel_local_set = set(sel_local)
+    oov_local = [i for i, unk in enumerate(has_unk) if unk and i not in sel_local_set]
+    np.random.shuffle(oov_local)
+
+    oov_local = oov_local[: len(sel_local)]
+    n_oov_added = len(oov_local)
+    if n_oov_added > 0:
+        console.print(f"  Targeted {n_oov_added:,} additional OOV sentences.")
+
+    final_sel_local = list(sel_local) + list(oov_local)
+    sel_global = keep_idx[final_sel_local]
+
     selected_sentences = [cc_sentences[i] for i in sel_global]
 
     # Defense in depth: deduplicate selection by canonical form
@@ -969,9 +1017,10 @@ def main() -> None:  # pylint: disable=too-many-locals
     _print_selection_summary(
         total_cc=len(cc_sentences),
         n_filtered=len(cc_sentences) - len(keep_idx),
-        n_selected=len(selected_sentences),
+        n_selected=len(sel_local),
+        n_oov_added=n_oov_added,
         cutoff=cutoff,
-        diversity=diversity[sel_local],
+        diversity=diversity[final_sel_local],
         unc=cc_uncertainty[sel_global],
         out_path=sel_path,
     )

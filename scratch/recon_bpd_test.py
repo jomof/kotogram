@@ -29,6 +29,7 @@ from typing import Any, Dict, List, Optional
 import torch
 import torch.nn.functional as F
 
+from kotogram.japanese_parser import KotogramFormat
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import Tokenizer
@@ -258,6 +259,19 @@ def _tokenize_to_surfaces(sentence: str) -> List[str]:
     return surfaces
 
 
+def _tokenize_to_canonical_surfaces(sentence: str) -> List[str]:
+    """Tokenize a Japanese sentence to canonical strings used during training."""
+    parser = _get_parser()
+    kotogram = parser.japanese_to_kotogram(sentence, fmt=KotogramFormat.TRAINING_MASK)
+    tokens = split_kotogram(kotogram)
+    surfaces: List[str] = []
+    for tok in tokens:
+        features: TokenFeatures = extract_token_features(tok)
+        if features.surface:
+            surfaces.append(features.surface)
+    return surfaces
+
+
 def align_tokens_to_masked(
     token_surfaces: List[str],
     masked_string: str,
@@ -345,6 +359,36 @@ def check_test_file() -> bool:
                     all_ok = False
                     break
 
+    # ── Check -0.5: Load dataset token constraints ─────────────────────
+    available_token_ids = None
+    surface_vocab_cache = None
+    try:
+        import torch
+
+        from scripts.dataset import resolve_dataset
+        from scripts.recon_bpd.token_remap import (
+            _pristine_token_ids,
+            compute_token_remap,
+        )
+
+        bundle, chive_weights = resolve_dataset(None)
+        tgf = bundle.get("token_gram_freq")
+        if tgf is not None:
+            surface_vocab_cache = bundle.get("vocab", {}).get("surface", {})
+            force_keep = _pristine_token_ids(surface_vocab_cache)
+            remap = compute_token_remap(
+                torch.tensor(tgf),
+                percentile=99.0,
+                chive_weights=torch.zeros((len(tgf), 300), dtype=torch.float32),
+                force_keep=force_keep,
+                chive_ranks=bundle.get("chive_ranks"),
+            )
+            available_token_ids = set(remap.kept_indices.tolist())
+    except Exception as e:
+        print(
+            f"  \u26a0 WARNING: Failed to load dataset to verify token availability: {e}"
+        )
+
     cases = load_test_cases(path)
 
     for case in cases:
@@ -354,6 +398,26 @@ def check_test_file() -> bool:
             alt_display = f"  (also accepts: {', '.join(case.acceptable_alternatives)})"
         print(f"  Sentence: {case.full_sentence}{alt_display}")
         print(f"  Tokens: {surfaces}")
+
+        # ── Check Vocabulary Availability ─────────────────────────────────
+        if surface_vocab_cache is not None and available_token_ids is not None:
+            canonical_surfaces = _tokenize_to_canonical_surfaces(case.full_sentence)
+            for s_str in canonical_surfaces:
+                s_id = surface_vocab_cache.get(s_str, -1)
+                if s_id not in available_token_ids:
+                    print(
+                        f"    \u2717 FAIL (vocabulary): Token '{s_str}' is PRUNED from the trained dataset"
+                    )
+                    all_ok = False
+            for alt in case.acceptable_alternatives:
+                canonical_alt_surfaces = _tokenize_to_canonical_surfaces(alt)
+                for a_str in canonical_alt_surfaces:
+                    a_id = surface_vocab_cache.get(a_str, -1)
+                    if a_id not in available_token_ids:
+                        print(
+                            f"    \u2717 FAIL (vocabulary): Token '{a_str}' in alt '{alt}' is PRUNED"
+                        )
+                        all_ok = False
 
         # ── Check 0: all sentences (main + alternatives) are distinct ─────
         all_sentences = [case.full_sentence] + case.acceptable_alternatives

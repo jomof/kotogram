@@ -428,7 +428,7 @@ def extract_token_features(token: str) -> TokenFeatures:
         if start_idx == -1:
             return ""
         start = start_idx + start_offset
-        next_indices = [i for i in all_markers if i > start]
+        next_indices = [i for i in all_markers if i >= start]
         end = min(next_indices) if next_indices else len(token)
         return token[start:end]
 
@@ -456,7 +456,7 @@ def extract_token_features(token: str) -> TokenFeatures:
             idx_g,
             idx_end,
         ]
-        next_indices = [i for i in markers if i > start]
+        next_indices = [i for i in markers if i >= start]
         end = min(next_indices) if next_indices else len(token)
         return token[start:end]
 
