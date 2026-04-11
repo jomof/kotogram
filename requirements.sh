@@ -71,7 +71,21 @@ else
             rm -rf .venv
         fi
         
-        "$PYTHON_BASE" -m venv .venv
+        if ! "$PYTHON_BASE" -m venv .venv; then
+            echo "Failed to create virtual environment directly."
+            if command -v apt-get &>/dev/null; then
+                echo "Attempting to install missing python3-venv packages..."
+                sudo apt-get update
+                sudo apt-get install -y python3-venv python3.10-venv || true
+                echo "Retrying venv creation..."
+                "$PYTHON_BASE" -m venv .venv
+            fi
+            
+            if [ ! -d ".venv" ] || [ ! -f ".venv/bin/activate" ]; then
+                echo "ERROR: Failed to create virtual environment securely."
+                return 1
+            fi
+        fi
     fi
     
     # Disable default venv prompt change, we'll restore user's prompt if needed
