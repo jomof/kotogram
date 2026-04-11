@@ -59,4 +59,11 @@ if ! nc -z localhost 5432 2>/dev/null; then
 fi
 
 echo "Proxy ready. Starting MLflow UI on http://localhost:${MLFLOW_PORT}"
-mlflow ui --backend-store-uri "$PG_URI" --port "$MLFLOW_PORT"
+
+if [ -f ".venv/bin/python" ]; then
+    PYTHON=".venv/bin/python"
+else
+    PYTHON="python"
+fi
+
+$PYTHON -m mlflow ui --backend-store-uri "$PG_URI" --port "$MLFLOW_PORT"
