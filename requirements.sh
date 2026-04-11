@@ -22,6 +22,9 @@ cd "$SCRIPT_DIR"
 # Save original prompt to prevent clobbering by activate script
 ORIG_PS1="${PS1:-}"
 
+# Reject user site-packages to ensure strictly isolated environments
+export PYTHONNOUSERSITE=1
+
 
 if [[ -n "$VIRTUAL_ENV" ]] && [ -f "$VIRTUAL_ENV/bin/python" ]; then
     VENV_PY_VER=$("$VIRTUAL_ENV/bin/python" --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
@@ -46,10 +49,13 @@ else
         if [ ! -d ".venv" ] || [ ! -f ".venv/bin/activate" ]; then
             echo "Creating virtual environment in .venv..."
         PYTHON_BASE=""
-        for candidate in python3.10 /opt/homebrew/bin/python3.10 /usr/local/bin/python3.10; do
+        for candidate in python3.10 /opt/homebrew/bin/python3.10 /usr/local/bin/python3.10 python3; do
             if command -v "$candidate" &>/dev/null; then
-                PYTHON_BASE="$candidate"
-                break
+                VER=$("$candidate" --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+                if [ "$VER" == "3.10" ]; then
+                    PYTHON_BASE="$candidate"
+                    break
+                fi
             fi
         done
         
@@ -139,13 +145,16 @@ if [ -f "package.json" ]; then
                  sudo apt-get update && sudo apt-get install -y npm
              fi
         else
-             echo "ERROR: Could not install/upgrade Node.js automatically."
-             exit 1
+             echo "WARNING: Could not install/upgrade Node.js automatically."
+             echo "         TypeScript compilation will be skipped."
+             NEED_NODE_INSTALL=false
         fi
     fi
 
-    echo "Installing TypeScript dependencies..."
-    npm install
+    if [ "$NEED_NODE_INSTALL" != false ]; then
+        echo "Installing TypeScript dependencies..."
+        npm install
+    fi
 fi
 
 echo ""
