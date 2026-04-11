@@ -47,11 +47,7 @@ def can_connect(host: str, port: int, timeout: float = 1.0) -> bool:
     return result == 0
 
 
-def pg_available() -> bool:
-    """Check if the Cloud SQL instance is reachable (direct or via proxy)."""
-    if can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
-        return True
-    return can_connect("localhost", 5432)
+
 
 
 def _get_machine_id() -> str:
@@ -116,8 +112,7 @@ def configure_tracking(
 ) -> None:
     """Set up MLflow tracking URI and experiment.
 
-    Auto-detects PostgreSQL (Cloud SQL direct or localhost proxy)
-    and falls back to local ``mlruns/`` directory.
+    Always uses PostgreSQL (Cloud SQL direct if available, else localhost proxy).
     """
     import mlflow  # type: ignore[import-untyped]
 
@@ -125,18 +120,13 @@ def configure_tracking(
         mlflow.set_tracking_uri(tracking_uri)
     elif os.environ.get("MLFLOW_TRACKING_URI"):
         pass  # MLflow reads it automatically
-    elif pg_available():
-        if can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
-            mlflow.set_tracking_uri(_DEFAULT_PG_URI)
-        else:
-            mlflow.set_tracking_uri(
-                "postgresql+psycopg2://postgres:mlflow-kotogram-2026@localhost:5432/mlflow"
-            )
+    elif can_connect(_CLOUD_SQL_PRIVATE_IP, 5432):
+        mlflow.set_tracking_uri(_DEFAULT_PG_URI)
     else:
-        root = Path.cwd()
-        mlruns = root / "mlruns"
-        mlruns.mkdir(exist_ok=True)
-        mlflow.set_tracking_uri(str(mlruns))
+        # Default to local proxy connection
+        mlflow.set_tracking_uri(
+            "postgresql+psycopg2://postgres:mlflow-kotogram-2026@localhost:5432/mlflow"
+        )
 
     _ensure_experiment(mlflow, experiment_name, artifact_location)
 

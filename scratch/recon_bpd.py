@@ -153,11 +153,9 @@ class TrainConfig:
     layer_drop_prob: float = 0.5
     semantic_gating_threshold: float = 1.0  # Set to > 0.0 to enable throughput skips
 
-    # Token percentile reduction: keep surface tokens covering this % of
-    # gram token-position mass, collapsing rare tokens into a single UNK.
-    # 99.0 removes ~55% of vocab (~2.2x CE speedup) affecting 1% of positions.
-    # Set to 100.0 to disable (full vocabulary).
-    token_percentile: float = 99.0
+    # ChiVe percentile reduction: keep surface tokens that are in the top X%
+    # of the chiVe corpus vocabulary. 50.0 = top 50% of chiVe ranks.
+    chive_percentile: float = 50.0
 
     # Pristine targets: train as a denoiser mapping dirty surface tokens to
     # canonical Japanese punctuation/PAD.  Reduces the effective output
@@ -365,12 +363,12 @@ def train(
     # ── Data loading (from dataset bundle) ────────────────────────────
     global GLOBAL_SETUP_CACHE
 
-    # Token percentile reduction: remap surface IDs before any caching.
-    if config.token_percentile < 100.0 and not GLOBAL_SETUP_CACHE._token_remap_applied:
+    # ChiVe-rank percentile reduction: inline mapping using fast chive_rank thresholds
+    if config.chive_percentile < 100.0 and not GLOBAL_SETUP_CACHE._token_remap_applied:
         from scripts.recon_bpd.token_remap import apply_remap_to_bundle
 
         dataset_bundle, chive_weights_cpu, remap = apply_remap_to_bundle(
-            dataset_bundle, chive_weights_cpu, config.token_percentile
+            dataset_bundle, chive_weights_cpu, config.chive_percentile
         )
         GLOBAL_SETUP_CACHE._token_remap_applied = True
         GLOBAL_SETUP_CACHE.token_remap = remap.old_to_new

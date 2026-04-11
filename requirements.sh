@@ -24,12 +24,48 @@ ORIG_PS1="${PS1:-}"
 
 
 if [[ -n "$VIRTUAL_ENV" ]] && [ -f "$VIRTUAL_ENV/bin/python" ]; then
-    echo "Using existing virtual environment: $VIRTUAL_ENV"
-    PYTHON_EXEC="$VIRTUAL_ENV/bin/python"
+    VENV_PY_VER=$("$VIRTUAL_ENV/bin/python" --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+    if [[ "$VENV_PY_VER" == "3.10" ]]; then
+        echo "Using existing virtual environment: $VIRTUAL_ENV"
+        PYTHON_EXEC="$VIRTUAL_ENV/bin/python"
+    else
+        echo "Existing venv is Python $VENV_PY_VER, but Python 3.10 is required."
+        echo "Please deactivate the current virtual environment (run 'deactivate') and re-run this script."
+        return 1
+    fi
 else
-    if [ ! -f ".venv/bin/activate" ]; then
-        echo "Creating virtual environment in .venv..."
-        python3 -m venv .venv
+        # If .venv exists, verify its version
+        if [ -d ".venv" ]; then
+            VENV_PY_VER=$(.venv/bin/python --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+            if [[ "$VENV_PY_VER" != "3.10" ]]; then
+                echo "Removing existing .venv because it uses Python $VENV_PY_VER instead of 3.10..."
+                rm -rf .venv
+            fi
+        fi
+
+        if [ ! -d ".venv" ] || [ ! -f ".venv/bin/activate" ]; then
+            echo "Creating virtual environment in .venv..."
+        PYTHON_BASE=""
+        for candidate in python3.10 /opt/homebrew/bin/python3.10 /usr/local/bin/python3.10; do
+            if command -v "$candidate" &>/dev/null; then
+                PYTHON_BASE="$candidate"
+                break
+            fi
+        done
+        
+        if [ -z "$PYTHON_BASE" ]; then
+            echo "ERROR: Python 3.10 not found."
+            echo "Please install it (e.g. brew install python@3.10 on macOS, or apt install python3.10)."
+            exit 1
+        fi
+        
+        # If .venv exists but it's not exactly 3.10, Python's venv module will safely replace it 
+        # or we could explicitly remove it here. Let's explicitly remove.
+        if [ -d ".venv" ]; then
+            rm -rf .venv
+        fi
+        
+        "$PYTHON_BASE" -m venv .venv
     fi
     
     # Disable default venv prompt change, we'll restore user's prompt if needed

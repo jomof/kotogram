@@ -14,7 +14,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Tuple
 
-import numpy as np
 import torch
 
 from kotogram.tokenizer import MASK_ID
@@ -181,38 +180,36 @@ class TokenRemap:
     percentile: float  # the percentile that produced this remap
 
 
-def compute_token_remap(  # pylint: disable=too-many-locals,too-many-positional-arguments
+def compute_token_remap(
     token_gram_freq: torch.Tensor,
-    percentile: float,
+    chive_percentile: float,
     chive_weights: torch.Tensor,
+    chive_ranks: torch.Tensor,
     force_keep: Optional[set] = None,
-    chive_ranks: Optional[torch.Tensor] = None,
-    chive_quartile: float = 0.25,
 ) -> TokenRemap:
-    """Compute a vocabulary reduction from a token-frequency vector.
+    """Compute a vocabulary reduction based on chiVe corpus frequency ranks.
 
     Args:
         token_gram_freq: ``[V]`` int64 tensor of per-token gram position counts.
-        percentile: Keep tokens covering this percentage of total position mass
-            (e.g. 99.0 keeps tokens accounting for 99% of positions).
+        chive_percentile: Keep tokens in the top X% of chiVe's global vocabulary.
+            (e.g., 50.0 keeps rank <= 1,265,396).
         chive_weights: ``[V, 300]`` float32 chiVe embeddings.
+        chive_ranks: ``[V]`` float or int tensor of chiVe frequency ranks.
         force_keep: Optional set of token IDs that must survive the reduction
-            regardless of frequency (e.g. pristine target tokens).
+            regardless of chiVe rank (e.g. pristine target tokens).
 
     Returns:
         A ``TokenRemap`` describing the old-to-new mapping and UNK embedding.
     """
-    freq: np.ndarray = token_gram_freq.cpu().numpy().astype(np.float64)
-    v_old = len(freq)
-    total = freq.sum()
+    v_old = len(token_gram_freq)
 
-    sorted_idx = np.argsort(-freq)
-    cumsum = np.cumsum(freq[sorted_idx])
-    threshold = percentile / 100.0 * total
-    n_kept = int(np.searchsorted(cumsum, threshold, side="right")) + 1
-    n_kept = min(n_kept, v_old)
+    # chiVe 1.3 mc5 has 2,530,792 total tokens.
+    CHIVE_TOTAL_VOCAB = 2530792
+    limit = int(CHIVE_TOTAL_VOCAB * (chive_percentile / 100.0))
 
-    kept_set = set(sorted_idx[:n_kept].tolist())
+    # Keep tokens that are within the chiVe rank limit AND appear in our corpus
+    kept_mask = (chive_ranks <= limit) & (token_gram_freq > 0)
+    kept_set = set(torch.nonzero(kept_mask).squeeze(-1).tolist())
 
     # Always keep special tokens
     for sid in range(NUM_SPECIAL):
@@ -221,13 +218,6 @@ def compute_token_remap(  # pylint: disable=too-many-locals,too-many-positional-
     # Force-keep pristine target tokens (and their dirty sources)
     if force_keep:
         kept_set.update(fid for fid in force_keep if fid < v_old)
-
-    # Force-keep top quartile ChiVe tokens that appear at least once functionally
-    if chive_ranks is not None:
-        limit = int(2530792 * chive_quartile)
-        protected_mask = (chive_ranks <= limit) & (token_gram_freq > 0)
-        protected_ids = torch.nonzero(protected_mask).squeeze(1).tolist()
-        kept_set.update(fid for fid in protected_ids if fid < v_old)
 
     kept_sorted = sorted(kept_set)
     kept_indices = torch.tensor(kept_sorted, dtype=torch.long)
@@ -243,25 +233,27 @@ def compute_token_remap(  # pylint: disable=too-many-locals,too-many-positional-
     # Frequency-weighted mean of removed tokens' chiVe vectors
     removed_mask = torch.ones(v_old, dtype=torch.bool)
     removed_mask[kept_indices] = False
+
     removed_freq = token_gram_freq[removed_mask].float()
     w_sum = removed_freq.sum().clamp_min(1.0)
     weights = removed_freq / w_sum
     unk_chive_row = (chive_weights[removed_mask] * weights.unsqueeze(1)).sum(dim=0)
 
+    # Convert the chive parameter naming back to generic "percentile" for the dataclass
     return TokenRemap(
         old_to_new=old_to_new,
         kept_indices=kept_indices,
         v_new=v_new,
         unk_id=unk_id,
         unk_chive_row=unk_chive_row,
-        percentile=percentile,
+        percentile=chive_percentile,
     )
 
 
 def apply_remap_to_bundle(  # pylint: disable=too-many-locals
     bundle: Dict[str, Any],
     chive_weights: torch.Tensor,
-    percentile: float,
+    chive_percentile: float,
 ) -> Tuple[Dict[str, Any], torch.Tensor, TokenRemap]:
     """Apply token percentile reduction to a dataset bundle in-place.
 
@@ -270,7 +262,7 @@ def apply_remap_to_bundle(  # pylint: disable=too-many-locals
     and constructs a new chiVe matrix for the reduced vocab.
 
     Args:
-        bundle: Dataset bundle dict (modified in-place).
+        bundle: Dataset bundle dict (read-only, a shallow copy is returned).
         chive_weights: ``[V_old, 300]`` chiVe embeddings.
         percentile: Token percentile to keep (e.g. 99.0).
 
@@ -284,36 +276,45 @@ def apply_remap_to_bundle(  # pylint: disable=too-many-locals
             "Rebuild the dataset with the latest scripts/dataset.py."
         )
 
+    chive_ranks = bundle.get("chive_ranks")
+    if chive_ranks is None:
+        raise KeyError("bundle missing 'chive_ranks' required for chiVe-rank remap.")
+
     pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
     remap = compute_token_remap(
-        tgf,
-        percentile,
-        chive_weights,
+        token_gram_freq=tgf,
+        chive_percentile=chive_percentile,
+        chive_weights=chive_weights,
+        chive_ranks=chive_ranks,
         force_keep=pristine_ids,
-        chive_ranks=bundle.get("chive_ranks"),
     )
     v_old = len(remap.old_to_new)
 
+    # Create a shallow copy to avoid destroying global shared state in Optuna
+    new_bundle = dict(bundle)
+    new_bundle["features"] = dict(bundle["features"])
+    new_bundle["vocab"] = dict(bundle["vocab"])
+
     # Remap surface feature IDs
-    surface = bundle["features"]["surface"]
-    bundle["features"]["surface"] = remap.old_to_new[surface.long()]
+    surface = new_bundle["features"]["surface"]
+    new_bundle["features"]["surface"] = remap.old_to_new[surface.long()]
 
     # Rebuild surface vocab: kept tokens get new IDs, plus <UNK_REDUCED>
-    old_vocab: Dict[str, int] = bundle["vocab"]["surface"]
+    old_vocab: Dict[str, int] = new_bundle["vocab"]["surface"]
     inv_old: Dict[int, str] = {v: k for k, v in old_vocab.items()}
     new_vocab: Dict[str, int] = {}
     for new_id, old_id in enumerate(remap.kept_indices.tolist()):
         token_str = inv_old.get(old_id, f"<id_{old_id}>")
         new_vocab[token_str] = new_id
     new_vocab["<UNK_REDUCED>"] = remap.unk_id
-    bundle["vocab"]["surface"] = new_vocab
+    new_bundle["vocab"]["surface"] = new_vocab
 
     # Slice content_mask to new vocab
-    old_cm = bundle["content_mask"]
+    old_cm = new_bundle["content_mask"]
     new_cm = torch.zeros(remap.v_new, dtype=old_cm.dtype)
     new_cm[: len(remap.kept_indices)] = old_cm[remap.kept_indices]
     new_cm[remap.unk_id] = True  # treat merged UNK as content
-    bundle["content_mask"] = new_cm
+    new_bundle["content_mask"] = new_cm
 
     # Build reduced chiVe: kept rows + UNK row
     new_chive = torch.zeros(
@@ -323,13 +324,13 @@ def apply_remap_to_bundle(  # pylint: disable=too-many-locals
     new_chive[remap.unk_id] = remap.unk_chive_row
 
     print(
-        f"  Token remap (p={percentile}): "
+        f"  Token remap (chive_{chive_percentile}p): "
         f"{v_old:,} -> {remap.v_new:,} surface tokens "
         f"({v_old - remap.v_new:,} removed, "
         f"{(v_old - remap.v_new) / v_old * 100:.1f}% reduction)"
     )
 
-    return bundle, new_chive, remap
+    return new_bundle, new_chive, remap
 
 
 def apply_remap_to_state_dict(

@@ -1270,12 +1270,24 @@ def _cmd_upload(args: argparse.Namespace) -> None:
 
 
 def _cmd_download(args: argparse.Namespace) -> None:
-    path = download_dataset(args.id)
+    dataset_id = args.id
+    if dataset_id is None:
+        lock = read_lock()
+        if lock is None:
+            raise FileNotFoundError("No dataset.lock found and no ID provided.")
+        dataset_id = lock["dataset_id"]
+    path = download_dataset(dataset_id)
     print(f"Downloaded to {path}")
 
 
 def _cmd_corpus_download(args: argparse.Namespace) -> None:
-    download_corpus(args.id)
+    corpus_id = args.id
+    if corpus_id is None:
+        lock = read_lock()
+        if lock is None:
+            raise FileNotFoundError("No dataset.lock found and no ID provided.")
+        corpus_id = lock["corpus_hash"]
+    download_corpus(corpus_id)
 
 
 def _cmd_list(_args: argparse.Namespace) -> None:
@@ -1350,10 +1362,20 @@ def main() -> None:
     )
 
     p_download = sub.add_parser("download", help="Download dataset from GCS")
-    p_download.add_argument("id", help="Dataset ID or 'latest'")
+    p_download.add_argument(
+        "id",
+        nargs="?",
+        default=None,
+        help="Dataset ID or 'latest' (default: local dataset.lock)",
+    )
 
     p_corpus_dl = sub.add_parser("corpus-download", help="Download corpus.db from GCS")
-    p_corpus_dl.add_argument("id", help="Corpus hash or 'latest'")
+    p_corpus_dl.add_argument(
+        "id",
+        nargs="?",
+        default=None,
+        help="Corpus hash or 'latest' (default: local dataset.lock)",
+    )
 
     sub.add_parser("list", help="List datasets in GCS")
 

@@ -303,7 +303,7 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
     *,
     layer_mask: str = "",
     output_rank: int = 0,
-    token_percentile: float = 100.0,
+    chive_percentile: float = 100.0,
     force: bool = False,
 ) -> str:
     """Convert a full checkpoint to FP16, optionally with layer-mask and low-rank.
@@ -320,7 +320,7 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
     """
     has_drops = bool(layer_mask) and "0" in layer_mask
 
-    out_path = _distilled_path(checkpoint_id, layer_mask, output_rank, token_percentile)
+    out_path = _distilled_path(checkpoint_id, layer_mask, output_rank, chive_percentile)
     if os.path.exists(out_path) and not force:
         return out_path
 
@@ -330,8 +330,8 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
         extras.append(f"mask {layer_mask}")
     if output_rank:
         extras.append(f"rank-{output_rank} output head")
-    if token_percentile < 100.0:
-        extras.append(f"token-percentile {token_percentile:g}")
+    if chive_percentile < 100.0:
+        extras.append(f"chive-percentile {chive_percentile:g}")
     label = f" ({', '.join(extras)})" if extras else ""
     print(f"  Distilling {checkpoint_id} to FP16{label}...")
 
@@ -356,7 +356,7 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
 
     # Token percentile vocab reduction (additional reduction on top of source)
     token_remap_meta: Optional[Dict[str, Any]] = None
-    if token_percentile < 100.0:
+    if chive_percentile < 100.0:
         from scripts.recon_bpd.token_remap import (
             _pristine_token_ids,
             apply_remap_to_state_dict,
@@ -379,11 +379,11 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
             )
         pristine_ids = _pristine_token_ids(bundle["vocab"]["surface"])
         remap = compute_token_remap(
-            tgf,
-            token_percentile,
-            chive_weights,
-            force_keep=pristine_ids,
+            token_gram_freq=tgf,
+            chive_percentile=chive_percentile,
+            chive_weights=chive_weights,
             chive_ranks=bundle.get("chive_ranks"),
+            force_keep=pristine_ids,
         )
         cleaned = apply_remap_to_state_dict(cleaned, remap, chive_weights)
         v_old = len(remap.old_to_new)
@@ -392,7 +392,7 @@ def distill_checkpoint(  # pylint: disable=too-many-locals
             f"({v_old - remap.v_new:,} removed)"
         )
         token_remap_meta = {
-            "percentile": token_percentile,
+            "percentile": chive_percentile,
             "v_new": remap.v_new,
             "unk_id": remap.unk_id,
             "kept_indices": remap.kept_indices,
@@ -432,16 +432,16 @@ def ensure_distilled(
     *,
     layer_mask: str = "",
     output_rank: int = 0,
-    token_percentile: float = 100.0,
+    chive_percentile: float = 100.0,
 ) -> str:
     """Return path to distilled checkpoint, creating it if needed."""
-    cached = _distilled_path(checkpoint_id, layer_mask, output_rank, token_percentile)
+    cached = _distilled_path(checkpoint_id, layer_mask, output_rank, chive_percentile)
     if os.path.exists(cached):
         return cached
     opts = {
         "layer_mask": layer_mask,
         "output_rank": output_rank,
-        "token_percentile": token_percentile,
+        "chive_percentile": chive_percentile,
     }
     return distill_checkpoint(checkpoint_id, model_type, **opts)  # type: ignore[arg-type]
 
@@ -1171,10 +1171,10 @@ def main() -> None:
         help="Output-head low-rank SVD ranks to benchmark (default: none)",
     )
     parser.add_argument(
-        "--token-percentile",
+        "--chive-percentile",
         type=float,
         default=100.0,
-        help="Surface token percentile to keep (default: 100.0 = no reduction)",
+        help="Surface token percentile to keep based on chiVe rank (default 100.0 keeps all)",
     )
     args = parser.parse_args()
 
@@ -1190,7 +1190,7 @@ def main() -> None:
         checkpoint_id,
         lock["model_type"],
         layer_mask=args.layer_mask,
-        token_percentile=args.token_percentile,
+        chive_percentile=args.chive_percentile,
         force=args.force,
     )
 

@@ -950,10 +950,10 @@ def main() -> None:
         help="Override pairwise ranking margin weight (default: 3.0)",
     )
     parser.add_argument(
-        "--token-percentile",
+        "--chive-percentile",
         type=float,
-        default=99.0,
-        help="Surface token percentile to keep (default: 99.0; 100.0 disables reduction)",
+        default=50.0,
+        help="Surface token percentile to keep based on chiVe rank (default: 50.0; 100.0 disables reduction)",
     )
     parser.add_argument(
         "--weight-sharing",
@@ -1056,8 +1056,8 @@ def main() -> None:
         adhoc_overrides["mdl_weight"] = args.mdl
     if args.rank is not None:
         adhoc_overrides["rank_margin_weight"] = args.rank
-    if args.token_percentile != 99.0:
-        adhoc_overrides["token_percentile"] = args.token_percentile
+    if args.chive_percentile != 50.0:
+        adhoc_overrides["chive_percentile"] = args.chive_percentile
     if args.weight_sharing:
         adhoc_overrides["tie_output_weights"] = True
     if args.no_pristine:
